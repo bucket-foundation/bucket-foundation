@@ -19,7 +19,7 @@
 
 export type Stage = "mvp" | "near" | "later";
 export type Status = "shipped" | "partial" | "open";
-/** Loop ticks: s is one or two, m is up to six, l is more. */
+/** Loop passes: s is one or two, m is up to six, l is more. */
 export type Cost = "s" | "m" | "l";
 
 export interface RoadmapItem {
@@ -50,9 +50,9 @@ export const STAGE_TEST: Record<Stage, string> = {
 };
 
 export const COST_LABEL: Record<Cost, string> = {
-  s: "1 to 2 ticks",
-  m: "3 to 6 ticks",
-  l: "more than 6 ticks",
+  s: "1 to 2 loop passes",
+  m: "3 to 6 loop passes",
+  l: "more than 6 loop passes",
 };
 
 export const ROADMAP: RoadmapItem[] = [
@@ -377,23 +377,33 @@ export const ROADMAP: RoadmapItem[] = [
   {
     id: "ros-09a",
     epic: "funding",
-    title: "The wave-1 targets that take an individual: Tools Competition by 2026-10-13, DPG registration, the Renaissance Philanthropy inquiry, and the OSS credit programs",
+    title: "The targets that take an individual: Tools Competition by 2026-10-13, DPG registration, the Renaissance Philanthropy inquiry, and the Sentry open-source plan",
     stage: "near",
     status: "open",
     cost: "m",
     dependsOn: [],
-    unlocks: "Funding that needs no entity decision, on the nearest live deadline",
+    unlocks: "Funding and credits that need no entity decision, on the nearest live deadline",
   },
   {
     id: "ros-09b",
     epic: "funding",
-    title: "The wave-1 targets that ask who the applicant is: NLnet NGI Zero by 2026-11-03, with Fast Forward closed until its 2028 cycle",
+    title: "NLnet NGI Zero by 2026-11-03, which first needs NLnet's answer on the European-dimension bar",
+    stage: "near",
+    status: "open",
+    cost: "m",
+    dependsOn: [],
+    unlocks: "The feed402 grant path, once a US applicant's standing is confirmed",
+  },
+  {
+    id: "ros-09c",
+    epic: "funding",
+    title: "The targets that ask who the applicant is: Cloudflare Project Galileo, Vercel for Startups, and Fast Forward's next cycle",
     stage: "near",
     status: "open",
     cost: "m",
     dependsOn: [],
     blockedBy: ["FD-8"],
-    unlocks: "The funders that ask for a nonprofit or a fiscal sponsor",
+    unlocks: "The funders and credit programs that ask for a nonprofit",
   },
 
   // ---- later -----------------------------------------------------------

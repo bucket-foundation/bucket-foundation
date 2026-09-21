@@ -21,6 +21,8 @@ A criterion scores whole or half points. The total is the score, and the verdict
 
 A round never repeats an earlier round's verification. Each critic brief carries the **verification ledger**: what earlier rounds checked against a live source or by running code, so the new round spends its budget on what changed and on what nobody has reached yet. A round that finds nothing new in a checked area says so and moves on.
 
+Every ledger entry carries the commit it was verified at and the files it covers. An entry is void as soon as a later commit touches one of those files, and the brief lists it as open again. Without that trigger a fix made after a check would inherit the check, which is how a rewritten row keeps a verification it never earned.
+
 Each round also raises its own bar: the first round reads the change, the second attacks the fixes, the third attacks the whole as a reader would meet it, and a fourth exists to confirm a 9 rather than to hunt.
 
 ## Severity

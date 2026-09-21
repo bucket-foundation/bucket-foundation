@@ -145,7 +145,7 @@ export default async function RoadmapPage({
       <PageHeader
         eyebrow="Research OS · roadmap"
         title="what ships next"
-        lede="Every open Research OS item staged as MVP, near-term, or later, beside the shipped items they rest on. The founder sets the order between stages; the loop keeps the order inside one."
+        lede="Every open Research OS item staged as MVP, near-term, or later, beside the shipped items they rest on. The founder sets the order between stages; the loop keeps the order inside one. Cost is in loop passes, one pass being one turn of the build loop."
       />
 
       <section className="flex flex-col gap-3">
@@ -161,8 +161,15 @@ export default async function RoadmapPage({
             ),
           )}
         </div>
-        <div className="flex flex-wrap gap-2">
-          {epics.map((e) => filterLink(e, hrefWith({ epic: epicFilter === e ? null : e }), epicFilter === e))}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">by epic</span>
+          {epics.map((e) =>
+            filterLink(
+              epicFilter === e ? e : `${e} · ${ROADMAP.filter((i) => i.epic === e && i.status !== "shipped").length}`,
+              hrefWith({ epic: epicFilter === e ? null : e }),
+              epicFilter === e,
+            ),
+          )}
         </div>
       </section>
 
