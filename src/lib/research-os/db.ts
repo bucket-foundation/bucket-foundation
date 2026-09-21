@@ -676,6 +676,14 @@ export interface EvidenceAppend {
   stage: Stage;
   /** True when this call created the learner's row for that node. */
   created: boolean;
+  /**
+   * The stage XP is awarded from, which is the highest stage already
+   * credited for this node, or null on a first award. Equal to `stage` when
+   * the node has been credited this high before, so nothing is awarded.
+   */
+  awardFrom: Stage | null;
+  /** True when this append raised the node's high-water mark. */
+  awards: boolean;
   /** How many events the log holds after this one. */
   eventCount: number;
 }
@@ -726,7 +734,14 @@ export async function recordEvidence(
     p_monotone: options.monotone !== false,
   };
 
-  type AppendRow = { prior_stage?: string | null; stage?: string; created?: boolean; event_count?: number };
+  type AppendRow = {
+    prior_stage?: string | null;
+    stage?: string;
+    created?: boolean;
+    award_from?: string | null;
+    awards?: boolean;
+    event_count?: number;
+  };
   let last: EvidenceAppendError | null = null;
   let row: AppendRow | null = null;
   for (let attempt = 0; attempt < 2; attempt += 1) {
@@ -759,17 +774,22 @@ export async function recordEvidence(
     priorStage: (row?.prior_stage as Stage | null) ?? null,
     stage: (row?.stage as Stage) ?? ((nextStage || "access") as Stage),
     created: row?.created === true,
+    awardFrom: (row?.award_from as Stage | null) ?? null,
+    awards: row?.awards === true,
     eventCount: row?.event_count ?? 0,
   };
 
   // ros-33: the game layer reads every recorded transition here, so a level
-  // rise counts once wherever it was recorded. A row this call created has
-  // no prior stage, which is what the old read-then-upsert reported too.
+  // rise counts once wherever it was recorded. The award runs from the
+  // node's high-water mark, so a teacher demotion and the re-promotion that
+  // follows it award nothing the learner was already credited for.
   // Awarding never fails the evidence write.
-  try {
-    await awardProgress(learnerId, nodeId, result.priorStage, result.stage);
-  } catch {
-    /* the profile row is missing or the columns are not migrated yet */
+  if (result.awards) {
+    try {
+      await awardProgress(learnerId, nodeId, result.awardFrom, result.stage);
+    } catch {
+      /* the profile row is missing or the columns are not migrated yet */
+    }
   }
   return result;
 }
@@ -789,14 +809,37 @@ export async function loadGame(learnerId: string): Promise<GameState | null> {
   return { xp: row.xp ?? 0, streakDays: row.streak_days ?? 0, lastActiveDay: row.last_active_day, badges: Array.isArray(row.badges) ? row.badges : [] };
 }
 
+/**
+ * Adds one transition's XP, streak and badges to a learner's profile.
+ *
+ * The read and the write are separate statements, so the update names the
+ * xp it read and retries when another award moved it first. Without that,
+ * two evidence events landing together each read the same xp and one award
+ * is lost, which is the same shape the evidence append itself fixed one
+ * layer down (Bucket critic ROS194-14).
+ */
 export async function awardProgress(learnerId: string, nodeId: string, from: Stage | null, to: Stage): Promise<void> {
-  const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
-  const next = applyTransition(current, nodeId, from, to);
-  const { error } = await graphService()
-    .from("learner_profiles")
-    .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
-    .eq("learner_id", learnerId);
-  if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
+    const next = applyTransition(current, nodeId, from, to);
+    const { data, error } = await graphService()
+      .from("learner_profiles")
+      .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
+      .eq("learner_id", learnerId)
+      .eq("xp", current.xp)
+      .select("learner_id");
+    if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+    if ((data || []).length > 0) return;
+    // No row matched: either the profile is missing, or another award moved
+    // xp between the read and the write. Tell those apart before retrying.
+    const { data: exists } = await graphService()
+      .from("learner_profiles")
+      .select("learner_id")
+      .eq("learner_id", learnerId)
+      .maybeSingle();
+    if (!exists) return;
+  }
+  throw new Error("awardProgress: xp moved under four attempts");
 }
 
 /** XP per learner for a class leaderboard; missing profiles read as 0. */

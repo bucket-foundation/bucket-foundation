@@ -179,11 +179,31 @@ test("a teacher override lowers the stage through overrideLevel", { skip }, asyn
   assert.equal(events.out, "1", `the override appends one evidence event, got ${events.out}`);
 });
 
-// The function is the only way to write that row, and nothing in Postgres
-// enforces it, so this keeps the invariant the RPC depends on visible: one
-// writer in the application, and the tests that build fixtures.
-test("recordEvidence is the only application writer of learner_node_state", () => {
-  const roots = [path.join(__dirname, "..", "src")];
+// Every writer of the row, from the database's own catalog. A regex over
+// src/ cannot see a Postgres function, and graph.privacy_delete_learner is
+// one, so the invariant is stated where it can be checked: the application
+// writes through db.ts, and the functions that write the table are the ones
+// named here. graph.override_level is absent on purpose: it locks the row
+// and appends through append_evidence, so it writes no statement of its own.
+test("the writers of learner_node_state are the ones we know about", { skip }, () => {
+  const functions = sql(`
+    select string_agg(p.proname, ',' order by p.proname)
+    from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'graph'
+      and p.prosrc ilike '%learner_node_state%'
+      and (p.prosrc ilike '%insert into graph.learner_node_state%'
+        or p.prosrc ilike '%update graph.learner_node_state%'
+        or p.prosrc ilike '%delete from graph.learner_node_state%')
+  `);
+  assert.equal(
+    functions.out,
+    "append_evidence,privacy_delete_learner",
+    `an unknown function writes learner_node_state: ${functions.out}`,
+  );
+
+  // The application writes through the functions above. A PostgREST chain
+  // that names the table and then writes is read statement by statement, so
+  // a file that only reads it, or writes another table, is not flagged.
   const offenders: string[] = [];
   const walk = (dir: string): void => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -191,15 +211,115 @@ test("recordEvidence is the only application writer of learner_node_state", () =
       if (entry.isDirectory()) walk(full);
       else if (/\.(ts|tsx)$/.test(entry.name)) {
         const text = fs.readFileSync(full, "utf8");
-        const writes = /from\(\s*["']learner_node_state["']\s*\)[\s\S]{0,200}?\.(upsert|update|insert|delete)\(/g;
-        if (writes.test(text)) offenders.push(path.relative(path.join(__dirname, ".."), full));
+        for (const statement of text.split(";")) {
+          if (!/from\(\s*["'`]learner_node_state["'`]\s*\)/.test(statement)) continue;
+          if (!/\.(upsert|update|insert|delete)\(/.test(statement)) continue;
+          offenders.push(path.relative(path.join(__dirname, ".."), full));
+          break;
+        }
       }
     }
   };
-  roots.forEach(walk);
-  assert.deepEqual(
-    offenders,
-    [],
-    `these write learner_node_state outside graph.append_evidence: ${offenders.join(", ")}`,
-  );
+  walk(path.join(__dirname, "..", "src"));
+  assert.deepEqual(offenders, [], `these write learner_node_state directly: ${offenders.join(", ")}`);
+});
+
+test("a demote and a re-promote award no XP twice", { skip }, async (t) => {
+  const learner = randomUUID();
+  const teacher = randomUUID();
+  const node = randomUUID();
+  const klass = randomUUID();
+  const email = `xp-${learner}@bucket.test`;
+
+  const made = sql(`
+    insert into auth.users (id, instance_id, aud, role, email) values
+      ('${learner}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', '${email}'),
+      ('${teacher}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'xp-teacher-${teacher}@bucket.test');
+    insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
+      values ('${node}', 'xp-fixture-${node}', 'XP fixture', 'concept', 10, '01-mathematics', 'fixture');
+    insert into graph.classes (id, name, reviewer_email, created_by)
+      values ('${klass}', 'XP fixture class', 'xp-teacher-${teacher}@bucket.test', '${teacher}');
+    insert into graph.class_members (class_id, learner_id, role) values ('${klass}', '${learner}', 'learner');
+    insert into graph.learner_profiles (learner_id, xp) values ('${learner}', 0)
+      on conflict (learner_id) do update set xp = 0, badges = '[]'::jsonb;
+    select 'made';
+  `);
+  assert.equal(made.status, 0, made.out);
+
+  t.after(() => {
+    sql(`delete from graph.level_overrides where learner_id = '${learner}';
+         delete from graph.learner_node_state where learner_id = '${learner}';
+         delete from graph.class_members where class_id = '${klass}';
+         delete from graph.classes where id = '${klass}';
+         delete from graph.learner_profiles where learner_id = '${learner}';
+         delete from graph.nodes where id = '${node}';
+         delete from auth.users where id in ('${learner}', '${teacher}');`);
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { recordEvidence } = require("../src/lib/research-os/db") as typeof import("../src/lib/research-os/db");
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { overrideLevel } = require("../src/lib/research-os/class-db") as typeof import("../src/lib/research-os/class-db");
+
+  await recordEvidence(learner, node, "production", { kind: "production_submitted", at: new Date().toISOString() });
+  const climbed = sql(`select xp from graph.learner_profiles where learner_id = '${learner}'`);
+  const afterClimb = Number(climbed.out);
+  assert.ok(afterClimb > 0, `the climb awards XP, got ${climbed.out}`);
+
+  const staff = { id: teacher, email: `xp-teacher-${teacher}@bucket.test`, roles: ["teacher" as const] };
+  for (let cycle = 0; cycle < 3; cycle += 1) {
+    const down = await overrideLevel(staff, klass, learner, node, "awareness", "returned for revision");
+    assert.equal(down.ok, true, JSON.stringify(down));
+    const up = await recordEvidence(learner, node, "production", { kind: "production_submitted", at: new Date().toISOString() });
+    assert.equal(up.stage, "production", "the learner climbs back");
+    assert.equal(up.awards, false, "a stage already credited awards nothing");
+  }
+
+  const after = sql(`select xp from graph.learner_profiles where learner_id = '${learner}'`);
+  assert.equal(Number(after.out), afterClimb, `three demote and re-promote cycles award nothing, got ${after.out}`);
+});
+
+test("a failed audit row leaves the stage where it was", { skip }, async (t) => {
+  const learner = randomUUID();
+  const teacher = randomUUID();
+  const node = randomUUID();
+  const klass = randomUUID();
+  const missingClass = randomUUID();
+
+  const made = sql(`
+    insert into auth.users (id, instance_id, aud, role, email) values
+      ('${learner}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'audit-${learner}@bucket.test'),
+      ('${teacher}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'audit-teacher-${teacher}@bucket.test');
+    insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
+      values ('${node}', 'audit-fixture-${node}', 'Audit fixture', 'concept', 10, '01-mathematics', 'fixture');
+    insert into graph.classes (id, name, reviewer_email, created_by)
+      values ('${klass}', 'Audit fixture class', 'audit-teacher-${teacher}@bucket.test', '${teacher}');
+    insert into graph.class_members (class_id, learner_id, role) values ('${klass}', '${learner}', 'learner');
+    select graph.append_evidence('${learner}', '${node}', 'production', '{"kind":"production_submitted"}'::jsonb);
+  `);
+  assert.equal(made.status, 0, made.out);
+
+  t.after(() => {
+    sql(`delete from graph.level_overrides where learner_id = '${learner}';
+         delete from graph.learner_node_state where learner_id = '${learner}';
+         delete from graph.class_members where class_id = '${klass}';
+         delete from graph.classes where id = '${klass}';
+         delete from graph.nodes where id = '${node}';
+         delete from auth.users where id in ('${learner}', '${teacher}');`);
+  });
+
+  // The audit insert fails on its class foreign key, which is the failure
+  // that used to leave a committed demotion with nothing to explain it.
+  const attempt = sql(`select graph.override_level('${learner}', '${node}', '${teacher}', '${missingClass}', 'awareness', 'no such class')`);
+  assert.notEqual(attempt.status, 0, "an unknown class refuses the override");
+
+  const stage = sql(`select stage from graph.learner_node_state where learner_id = '${learner}' and node_id = '${node}'`);
+  assert.equal(stage.out, "production", `the stage did not move, got ${stage.out}`);
+
+  const events = sql(`select count(*) from graph.learner_node_state, jsonb_array_elements(evidence) e
+                      where learner_id = '${learner}' and node_id = '${node}' and e->>'kind' = 'override'`);
+  assert.equal(events.out, "0", `no override event was written, got ${events.out}`);
+
+  const audits = sql(`select count(*) from graph.level_overrides where learner_id = '${learner}'`);
+  assert.equal(audits.out, "0", `no audit row was written, got ${audits.out}`);
 });

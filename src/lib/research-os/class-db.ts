@@ -6,8 +6,8 @@
  * component.
  */
 import type { NextRequest } from "next/server";
-import { graphService, recordEvidence, verifyLearnerIdentity } from "./db";
-import { canAssign, canManageMembers, canOverride, overrideEvent, rolesIn, validateOverride, type Membership, type Role } from "./roles";
+import { awardProgress, graphService, verifyLearnerIdentity } from "./db";
+import { canAssign, canManageMembers, canOverride, rolesIn, validateOverride, type Membership, type Role } from "./roles";
 import { assignmentStatus, validateAssignment, type Assignment, type AssignmentStatus, type NewAssignment } from "./assignments";
 import type { Stage } from "./types";
 
@@ -183,36 +183,45 @@ export async function overrideLevel(
   const fromStage = ((state as { stage: Stage } | null)?.stage ?? null) as Stage | null;
   const v = validateOverride({ fromStage, toStage, reason });
   if (!v.ok) return { ok: false, error: v.error };
-  // A teacher override is the one write that may lower a stage, so it opts
-  // out of the append's monotone rule (src/lib/research-os/db.ts). The
-  // append runs first and reports the stage it locked, so the audit row
-  // records the stage the state row held under that lock, in place of a
-  // value read before it.
-  let applied;
-  try {
-    applied = await recordEvidence(
-      learnerId,
-      nodeId,
-      toStage,
-      overrideEvent({ fromStage, toStage, reason, setBy: staff.id, classId }),
-      { monotone: false },
-    );
-  } catch {
+  // A teacher override is the one write that lowers a stage, and its two
+  // writes belong together: graph.override_level locks the state row,
+  // appends the evidence event built from the stage it locked, and writes
+  // the audit row in the same transaction. An audit insert that failed
+  // after a committed append left a demotion nobody could account for.
+  const { data, error } = await svc.rpc("override_level", {
+    p_learner: learnerId,
+    p_node: nodeId,
+    p_set_by: staff.id,
+    p_class: classId,
+    p_to_stage: toStage,
+    p_reason: reason.trim(),
+  });
+  if (error) {
+    const code = (error as { code?: string }).code ?? null;
+    // A lock wait or a serialization failure is worth another attempt from
+    // the caller; anything else is a refusal.
+    if (code === "55P03" || code === "40001" || code === "40P01") return { ok: false, error: "busy" };
     return { ok: false, error: "write_failed" };
   }
-  const { error } = await svc
-    .from("level_overrides")
-    .insert({
-      learner_id: learnerId,
-      node_id: nodeId,
-      set_by: staff.id,
-      class_id: classId,
-      from_stage: applied.priorStage,
-      to_stage: applied.stage,
-      reason: reason.trim(),
-    });
-  if (error) return { ok: false, error: "write_failed" };
-  return { ok: true, value: { fromStage: applied.priorStage, toStage: applied.stage } };
+  const applied = (data || {}) as {
+    ok?: boolean;
+    error?: string;
+    prior_stage?: Stage | null;
+    stage?: Stage;
+    awards?: boolean;
+    award_from?: Stage | null;
+  };
+  if (!applied.ok) return { ok: false, error: applied.error === "same_level" ? "same_level" : "write_failed" };
+
+  // The append's own award rule runs here, since the RPC wrote the row.
+  if (applied.awards === true && applied.stage) {
+    try {
+      await awardProgress(learnerId, nodeId, applied.award_from ?? null, applied.stage);
+    } catch {
+      /* the profile row is missing or the columns are not migrated yet */
+    }
+  }
+  return { ok: true, value: { fromStage: applied.prior_stage ?? null, toStage: (applied.stage ?? toStage) as Stage } };
 }
 
 export async function setMemberRole(
