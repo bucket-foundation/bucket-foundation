@@ -34,7 +34,9 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
-  const { nodes, edges } = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  if (filtered.unavailable) return bad(503, "access_unavailable");
+  const { nodes, edges } = filtered;
   if (!nodes.some((n) => n.id === nodeId)) return bad(404, "node_not_found");
   const d = directionsFrom(nodeId, nodes, edges);
   return NextResponse.json(

@@ -64,15 +64,22 @@ export async function GET(req: NextRequest) {
   const nodes: SearchNode[] = rows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, branch: n.branch, summary: n.summary, visibility: n.visibility, ownerId: n.owner_id }));
   const ranked = rankNodes(nodes, q, limit);
   // Personal standing is personal data: a signed-in viewer reads it after
-  // consent, and a viewer without consent still gets the search.
+  // consent, and a viewer without consent still gets the search. The
+  // response says when standing was withheld, so an empty map cannot be
+  // read as "nothing recorded" (Bucket critic C4).
   let standing: Record<string, string> = {};
-  const consented = viewerId ? (await requireConsent(viewerId, "workspace_tool")).allowed : false;
-  if (viewerId && consented && ranked.length) {
+  const consent = viewerId ? await requireConsent(viewerId, "search_standing") : null;
+  const standingWithheld = Boolean(viewerId) && consent !== null && !consent.allowed;
+  if (viewerId && consent?.allowed && ranked.length) {
     const { data: st } = await svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", ranked.map((r) => r.id));
     standing = Object.fromEntries(((st as { node_id: string; stage: string }[]) || []).map((r) => [r.node_id, r.stage]));
   }
   return NextResponse.json(
-    { q, results: ranked.map((r) => ({ id: r.id, slug: r.slug, title: r.title, kind: r.kind, tier: r.tier, branch: r.branch, summary: r.summary ? r.summary.slice(0, 160) : null, stage: standing[r.id] ?? null })) },
+    {
+      q,
+      results: ranked.map((r) => ({ id: r.id, slug: r.slug, title: r.title, kind: r.kind, tier: r.tier, branch: r.branch, summary: r.summary ? r.summary.slice(0, 160) : null, stage: standing[r.id] ?? null })),
+      ...(standingWithheld ? { standingWithheld: true, standingReason: consent?.reason ?? "consent_required" } : {}),
+    },
     NO_STORE
   );
 }

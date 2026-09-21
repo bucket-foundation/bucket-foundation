@@ -96,9 +96,32 @@ async function get(handler: (req: NextRequest) => Promise<Response>, query: stri
 }
 
 test("the read gates hold at the routes", { skip }, async (t) => {
+  // Registered before anything exists, so a throw while creating fixtures
+  // still cleans up what was made (Bucket critic C8).
+  const learners: string[] = [];
+  const nodeIds: string[] = [];
+  t.after(async () => {
+    if (nodeIds.length) {
+      const ids = nodeIds.map((id) => `'${id}'`).join(",");
+      sql(`delete from graph.edges where from_id in (${ids}) or to_id in (${ids});
+           delete from graph.node_grants where node_id in (${ids});
+           delete from graph.learner_node_state where node_id in (${ids});
+           delete from graph.check_attempts where node_id in (${ids});
+           delete from graph.nodes where id in (${ids});`);
+    }
+    if (learners.length) {
+      const ids = learners.map((id) => `'${id}'`).join(",");
+      sql(`delete from graph.learner_node_state where learner_id in (${ids});
+           delete from graph.learner_profiles where learner_id in (${ids});`);
+      await Promise.all(learners.map(removeLearner));
+    }
+    sql(`grant select on graph.node_grants to service_role;`);
+  });
+
   const owner = await makeLearner("owner");
   const grantee = await makeLearner("grantee");
   const stranger = await makeLearner("stranger");
+  learners.push(owner.id, grantee.id, stranger.id);
 
   const branch = "01-mathematics";
   const publicNode = randomUUID();
@@ -106,6 +129,7 @@ test("the read gates hold at the routes", { skip }, async (t) => {
   const sharedNode = randomUUID();
   const expiredNode = randomUUID();
   const token = `readaccess${Date.now().toString(36)}`;
+  nodeIds.push(publicNode, privateNode, sharedNode, expiredNode);
 
   const made = sql(`
     insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility, owner_id) values
@@ -119,14 +143,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     select 'made';
   `);
   assert.equal(made.status, 0, made.out);
-
-  t.after(async () => {
-    sql(`delete from graph.node_grants where node_id in ('${sharedNode}', '${expiredNode}');
-         delete from graph.learner_node_state where node_id in ('${publicNode}', '${privateNode}', '${sharedNode}', '${expiredNode}');
-         delete from graph.nodes where id in ('${publicNode}', '${privateNode}', '${sharedNode}', '${expiredNode}');
-         delete from graph.learner_profiles where learner_id in ('${owner.id}', '${grantee.id}', '${stranger.id}');`);
-    await Promise.all([removeLearner(owner.id), removeLearner(grantee.id), removeLearner(stranger.id)]);
-  });
 
   /* eslint-disable @typescript-eslint/no-var-requires */
   const search = require("../src/app/api/research-os/search/route") as { GET: (req: NextRequest) => Promise<Response> };
@@ -200,6 +216,84 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     );
     assert.equal(denied.status, 404, `a private node answers 404: ${JSON.stringify(denied.json)}`);
     assert.equal(JSON.stringify(denied.json).includes("private summary"), false, "no content in the refusal");
+  });
+
+  await t.test("secondSource refuses a reference the learner may not read", async () => {
+    const denied = await post(
+      workspace.POST,
+      { action: "locate", mode: "secondSource", query: token, quotedSourceNodeId: privateNode, sessionId: randomUUID() },
+      stranger.token,
+    );
+    assert.equal(denied.status, 404, `a hidden reference answers 404: ${JSON.stringify(denied.json)}`);
+    assert.equal(JSON.stringify(denied.json).includes("private summary"), false, "no content in the refusal");
+
+    const allowed = await post(
+      workspace.POST,
+      { action: "locate", mode: "secondSource", query: token, quotedSourceNodeId: publicNode, sessionId: randomUUID() },
+      stranger.token,
+    );
+    assert.equal(allowed.status, 200, `a public reference is accepted: ${JSON.stringify(allowed.json)}`);
+    const found = ((allowed.json.results as { title: string }[]) || []).map((r) => r.title);
+    assert.ok(!found.includes(`${token} private idea`), `secondSource leaked: ${found.join(", ")}`);
+  });
+
+  await t.test("probe refuses a node the learner may not continue on", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const probe = require("../src/app/api/research-os/probe/route") as { POST: (req: NextRequest) => Promise<Response> };
+    const res = await post(probe.POST, { nodeId: privateNode, answer: "an answer long enough to be graded", sessionId: randomUUID() }, stranger.token);
+    assert.equal(res.status, 404, `a private node answers 404: ${JSON.stringify(res.json)}`);
+    const state = sql(`select count(*) from graph.learner_node_state where learner_id = '${stranger.id}' and node_id = '${privateNode}'`);
+    assert.equal(state.out, "0", "a refused probe writes no learner state");
+  });
+
+  await t.test("check abstains when every prerequisite is withheld", async () => {
+    // The public node now rests on the private one, which this learner may
+    // not read, so there is nothing left to ground a verdict on.
+    sql(`insert into graph.edges (from_id, to_id, kind) values ('${privateNode}', '${publicNode}', 'prerequisite')
+         on conflict do nothing;`);
+    try {
+      const res = await post(
+        workspace.POST,
+        { action: "check", nodeId: publicNode, explanation: "an explanation long enough for the check tool to grade", sessionId: randomUUID() },
+        stranger.token,
+      );
+      assert.equal(res.status, 409, `the check abstains: ${JSON.stringify(res.json)}`);
+      assert.equal(res.json.error, "check_grounding_unavailable");
+      assert.equal(JSON.stringify(res.json).includes("private summary"), false, "no withheld content in the refusal");
+    } finally {
+      sql(`delete from graph.edges where from_id = '${privateNode}' and to_id = '${publicNode}';`);
+    }
+  });
+
+  await t.test("an access-store outage answers 503, never an empty result", async () => {
+    // The grants read is what fails: revoking select on the table is the
+    // outage a learner would see during one.
+    sql(`revoke select on graph.node_grants from service_role;`);
+    try {
+      const search503 = await get(search.GET, `q=${token}`, grantee.token);
+      assert.equal(search503.status, 503, `search says the store is down: ${JSON.stringify(search503.json)}`);
+
+      const quote503 = await post(workspace.POST, { action: "quote", nodeId: sharedNode, sessionId: randomUUID() }, grantee.token);
+      assert.equal(quote503.status, 503, `quote says the store is down: ${JSON.stringify(quote503.json)}`);
+    } finally {
+      sql(`grant select on graph.node_grants to service_role;`);
+    }
+
+    const recovered = await get(search.GET, `q=${token}`, grantee.token);
+    assert.equal(recovered.status, 200, "the route recovers when the store does");
+  });
+
+  await t.test("a cookie session reads as itself, and a bad cookie as anonymous", async () => {
+    const res = await new Promise<Response>((resolve) => {
+      const req = new NextRequest(`http://127.0.0.1/api/research-os/search?q=${token}`, {
+        headers: { cookie: `sb-127-auth-token=${JSON.stringify({ access_token: "not-a-real-token" })}` },
+      });
+      resolve(search.GET(req) as unknown as Response);
+    }).then((r) => r);
+    const json = (await res.json()) as Record<string, unknown>;
+    assert.equal(res.status, 200);
+    const seen = ((json.results as { title: string }[]) || []).map((r) => r.title);
+    assert.deepEqual(seen.sort(), [`${token} public idea`], "a cookie carrying nothing valid sees the public graph alone");
   });
 
   await t.test("an unverified token reads as anonymous rather than as its claim", async () => {

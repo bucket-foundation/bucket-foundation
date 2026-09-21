@@ -16,12 +16,13 @@
  *      reads as a denial and hides an outage.
  *   2. A visibility the code does not know is private. The column is
  *      NOT NULL with a three-value check today, so this is insurance.
- *   3. Reads are batched: one query for the nodes, one for their grants,
- *      one for the viewer's groups, whatever the result count.
+ *   3. Reads are batched by kind: the nodes, then their grants, then the
+ *      viewer's groups, each in chunks of 100 ids rather than one query
+ *      per result.
  *
  * The store is injectable so the rules can be tested without a database.
  */
-import { can, canView, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
+import { GRANT_ROLES, can, canView, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
 import { graphService } from "./db";
 
 /** What a read can ask for. `view` is the floor; the rest are grant roles. */
@@ -64,7 +65,10 @@ function liveGrant(grant: NodeGrant, now: Date): boolean {
   return Number.isFinite(at) && at > now.getTime();
 }
 
-function chunk<T>(items: T[], size = 200): T[][] {
+// 100 ids is about 3.7 KB of request line, half the 8 KB a proxy allows by
+// default. 200 measured at 7.5 KB, which a longer host or select clause
+// turns into a 414 (Bucket critic C7).
+function chunk<T>(items: T[], size = 100): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
   return out;
@@ -99,6 +103,14 @@ export const dbAccessStore: AccessStore = {
         role: string;
         expires_at: string | null;
       }[]) || []) {
+        // A role this code does not know grants nothing, the way an
+        // unknown visibility hides a node. The column carries a check
+        // constraint today, so this is the same insurance.
+        if (!GRANT_ROLES.includes(r.role as GrantRole)) continue;
+        // A row naming both a person and a group would admit the whole
+        // group through the person's grant, so it admits nobody until the
+        // row is repaired.
+        if (r.grantee_id && r.grantee_group) continue;
         rows.push({
           id: r.id,
           nodeId: r.node_id,
@@ -138,11 +150,18 @@ export async function authorizeNodes(
   const nodes = await store.nodes(unique);
   if (!nodes.ok) return { ok: false, reason: "unavailable", detail: nodes.error };
 
-  const byId = new Map(nodes.value.map((n) => [n.id, n]));
+  // A store that answers with the same id twice resolves to the stricter
+  // row, since nothing in the interface promises an order.
+  const rank: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
+  const byId = new Map<string, NodeAccess>();
+  for (const node of nodes.value) {
+    const held = byId.get(node.id);
+    if (!held || rank[node.visibility] > rank[held.visibility]) byId.set(node.id, node);
+  }
   const missing = unique.filter((id) => !byId.has(id));
 
-  // A public node needs no grant and no group, so a viewer reading public
-  // rows costs one query. Anything else loads both.
+  // A `view` over public rows needs no grant and no group, so it costs one
+  // read. Any other verb, or any row that is not public, loads both.
   const needsGrants = nodes.value.some((n) => n.visibility !== "public") || verb !== "view";
   let grants: NodeGrant[] = [];
   let groups: string[] = [];
@@ -157,7 +176,9 @@ export async function authorizeNodes(
     }
   }
 
-  const subject: Viewer = { id: viewer.id, groups: viewer.groups ?? groups };
+  // A caller's groups add to the ones on file. Replacing them would let a
+  // caller passing an empty list revoke a class grant by accident.
+  const subject: Viewer = { id: viewer.id, groups: Array.from(new Set([...(viewer.groups ?? []), ...groups])) };
   const allowed = unique.filter((id) => {
     const node = byId.get(id);
     if (!node) return false;
@@ -181,6 +202,46 @@ export function storeWithNodes(rows: NodeAccess[], base: AccessStore = dbAccessS
     grants: base.grants.bind(base),
     groups: base.groups.bind(base),
   };
+}
+
+export type VerbsResult =
+  | { ok: true; node: NodeAccess; allowed: Record<ReadVerb, boolean> }
+  | { ok: false; reason: "denied" | "not_found" | "unavailable"; detail?: string };
+
+/**
+ * Every verb for one node, from a single load. A page that shows which
+ * actions a viewer has would otherwise authorize once per verb, and each
+ * call would read the node, its grants and the viewer's classes again.
+ */
+export async function authorizeVerbs(
+  id: string,
+  viewer: Viewer,
+  verbs: ReadVerb[],
+  store: AccessStore = dbAccessStore,
+  now: Date = new Date(),
+): Promise<VerbsResult> {
+  const nodes = await store.nodes([id]);
+  if (!nodes.ok) return { ok: false, reason: "unavailable", detail: nodes.error };
+  const node = nodes.value.find((n) => n.id === id);
+  if (!node) return { ok: false, reason: "not_found" };
+
+  const loadedGrants = await store.grants([id]);
+  if (!loadedGrants.ok) return { ok: false, reason: "unavailable", detail: loadedGrants.error };
+  const grants = loadedGrants.value.filter((g) => liveGrant(g, now));
+
+  let groups: string[] = [];
+  if (viewer.id) {
+    const inGroups = await store.groups(viewer.id);
+    if (!inGroups.ok) return { ok: false, reason: "unavailable", detail: inGroups.error };
+    groups = inGroups.value;
+  }
+  const subject: Viewer = { id: viewer.id, groups: Array.from(new Set([...(viewer.groups ?? []), ...groups])) };
+
+  const allowed = {} as Record<ReadVerb, boolean>;
+  for (const verb of verbs) {
+    allowed[verb] = verb === "view" ? canView(node, subject, grants, now) : can(node, subject, verb, grants, now);
+  }
+  return { ok: true, node, allowed };
 }
 
 export type OneResult =

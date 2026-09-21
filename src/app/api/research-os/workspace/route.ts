@@ -157,7 +157,7 @@ import type { NodeAccess } from "@/lib/research-os/access";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled, finalizeReveal } from "@/lib/research-os/forcing";
-import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt } from "@/lib/research-os/check-attempts-db";
+import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt, dbConsumePendingAttempt } from "@/lib/research-os/check-attempts-db";
 import { checkSecondSourceGate, resolveSecondSourceRequired, secondSourceRequiredAtStage } from "@/lib/research-os/lateral-reading";
 
 export const runtime = "nodejs";
@@ -468,6 +468,11 @@ export async function POST(req: NextRequest) {
         const stillContinuable = await authorizeNode(pendingPrecheck.nodeId, { id: learnerId }, "continue");
         if (!stillContinuable.ok) {
           if (stillContinuable.reason === "unavailable") return bad(503, "access_unavailable");
+          // The verdict is denied and the attempt is spent: a held attempt
+          // the learner can never reveal would sit there until it expired,
+          // with no way to start another on that node. The plan's rule is
+          // that a revoked input requires a new attempt.
+          await dbConsumePendingAttempt(attemptId);
           return bad(404, "node_not_found");
         }
 
@@ -637,9 +642,15 @@ export async function POST(req: NextRequest) {
         // is kept so a check with nothing left to stand on abstains.
         const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
         if (!readablePrereqs.ok) return bad(503, "access_unavailable");
-        prereqsWithheld = prereqIds.length - readablePrereqs.allowed.length;
+        // Withheld means denied. An id with no row at all is a graph gap,
+        // which is not the learner's access problem and must not read as
+        // one.
+        prereqsWithheld = prereqIds.length - readablePrereqs.missing.length - readablePrereqs.allowed.length;
         if (readablePrereqs.allowed.length) {
-          const { data: prereqNodes } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+          const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+          // A read that failed leaves no grounding either, and grading an
+          // explanation against nothing is worse than saying so.
+          if (prereqErr) return bad(503, "access_unavailable");
           prereqSummaries = prereqNodes || [];
         }
       }

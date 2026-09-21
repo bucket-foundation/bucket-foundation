@@ -6,6 +6,7 @@
  * write. Never import from a client component.
  */
 import { graphService } from "./db";
+import { authorizeNodes, readVisibility, storeWithNodes } from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
@@ -59,27 +60,37 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
  * hidden node are dropped, so routing and directions never cross into a
  * node the viewer cannot open.
  */
+/**
+ * The nodes and edges a viewer may see. Reads through read-access.ts, so
+ * an access-store failure is an outage rather than an empty grant list:
+ * this function used to read the groups and the grants directly, both of
+ * which answer `[]` on error, and an outage then hid every shared node
+ * behind a 404 (Bucket critic C2).
+ *
+ * `unavailable` is set when the store failed, with no nodes and no edges,
+ * so a caller can say so rather than serve a graph with holes in it.
+ */
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
   viewerId: string | null
-): Promise<{ nodes: N[]; edges: E[] }> {
+): Promise<{ nodes: N[]; edges: E[]; unavailable?: true }> {
   const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
   if (nonPublic.length === 0) return { nodes, edges };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  let grants: NodeGrant[] = [];
-  if (viewerId) {
-    const { data } = await graphService()
-      .from("node_grants")
-      .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-      .in("node_id", nonPublic.map((n) => n.id));
-    grants = ((data as GrantRow[]) || []).map(grantFromRow);
-  }
-  const keep = new Set(
-    nodes
-      .filter((n) => canView({ id: n.id, visibility: n.visibility ?? "public", ownerId: n.ownerId ?? null }, viewer, grants))
-      .map((n) => n.id)
+
+  const access: NodeAccess[] = nodes.map((n) => ({
+    id: n.id,
+    visibility: readVisibility(n.visibility),
+    ownerId: n.ownerId ?? null,
+  }));
+  const decision = await authorizeNodes(
+    nodes.map((n) => n.id),
+    { id: viewerId },
+    "view",
+    storeWithNodes(access),
   );
+  if (!decision.ok) return { nodes: [], edges: [], unavailable: true };
+  const keep = new Set(decision.allowed);
   return { nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 

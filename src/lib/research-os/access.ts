@@ -57,10 +57,16 @@ export interface Viewer {
   groups?: string[];
 }
 
+/**
+ * A grant with no expiry never expires. An expiry this code cannot read is
+ * treated as expired: read-access.ts judged it that way and this file
+ * judged it live, so the same row admitted a learner on one route and
+ * denied them on another (Bucket critic C2).
+ */
 function live(grant: NodeGrant, now: Date): boolean {
   if (!grant.expiresAt) return true;
   const t = Date.parse(grant.expiresAt);
-  return Number.isNaN(t) || t > now.getTime();
+  return Number.isFinite(t) && t > now.getTime();
 }
 
 function grantsFor(viewer: Viewer, grants: NodeGrant[], nodeId: string, now: Date): NodeGrant[] {

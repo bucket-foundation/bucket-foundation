@@ -40,7 +40,11 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
-  const { nodes, edges } = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  // An access-store failure is an outage: serving an empty graph would
+  // tell a learner their branch has nothing in it.
+  if (filtered.unavailable) return bad(503, "access_unavailable");
+  const { nodes, edges } = filtered;
   const ids = nodes.map((n) => n.id);
   const svc = graphService();
   const standing: Record<string, string> = {};
