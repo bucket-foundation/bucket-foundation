@@ -17,6 +17,11 @@ const n = (v: number, one: string, many = one + "s") => `${v} ${v === 1 ? one : 
 export default function LoopPanel() {
   const [loop, setLoop] = useState<Loop | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  // 503 means two things on this route now: a deployment with no graph
+  // behind it, and a read that failed this minute. The body says which,
+  // and reading only the status told a learner their install was broken
+  // (Bucket critic C59).
+  const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -24,7 +29,12 @@ export default function LoopPanel() {
       .then(async (r) => {
         if (!alive) return;
         setStatus(r.status);
-        if (r.ok) setLoop((await r.json()) as Loop);
+        if (r.ok) {
+          setLoop((await r.json()) as Loop);
+          return;
+        }
+        const body = (await r.json().catch(() => ({}))) as { error?: string };
+        setCode(body.error ?? null);
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -33,6 +43,9 @@ export default function LoopPanel() {
   }, []);
 
   if (status === null) return <LoadingState label="Reading your loop" />;
+  if (status === 503 && code && code !== "research_os_unavailable") {
+    return <ErrorState title="Your loop could not be read" body="The server could not finish reading it. Try again in a moment." retry={() => location.reload()} />;
+  }
   if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" />;
   if (!loop) return <ErrorState body="Could not read your loop." />;
 

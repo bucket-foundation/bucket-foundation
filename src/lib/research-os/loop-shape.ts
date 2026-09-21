@@ -50,7 +50,12 @@ export function internalizationState(internalization: LoopInternalization): stri
  */
 export function internalizationDetail(internalization: LoopInternalization): string {
   if (internalization.bridges === null) {
-    return internalization.nodes > 0 ? `${internalization.nodes} internalized` : "count unavailable";
+    // Saying only what is known. Falling back to the node count read
+    // identically to "no bridges", so the learner could not tell an
+    // unfinished read from a frontier with nothing next to it
+    // (Bucket critic C69).
+    const known = internalization.nodes > 0 ? `${internalization.nodes} internalized · ` : "";
+    return `${known}bridges unavailable`;
   }
   if (internalization.bridges > 0) return `${internalization.bridges} ${internalization.bridges === 1 ? "bridge" : "bridges"} one step away`;
   return `${internalization.nodes} internalized`;

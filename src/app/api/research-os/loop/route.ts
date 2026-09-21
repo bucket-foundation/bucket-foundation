@@ -31,6 +31,18 @@ async function learnDecksStarted(userId: string): Promise<number> {
   }
 }
 
+/**
+ * A head count that fails is an outage, the way a paged read that fails
+ * is one. A head count resolves with `{count: null, error}` and never
+ * throws, so `?? 0` reported a failed read as a learner who owns
+ * nothing (Bucket critic C58).
+ */
+async function counted(query: PromiseLike<{ count: number | null; error: { message: string } | null }>, what: string): Promise<number> {
+  const { count, error } = await query;
+  if (error) throw new Error(`${what}: ${error.message}`);
+  return count ?? 0;
+}
+
 export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
@@ -38,21 +50,21 @@ export async function GET(req: NextRequest) {
   const svc = graphService();
   // A read that fails is an outage. Before these reads paged, a failure
   // left the data null and every counter rendered zero, which told the
-  // learner they had opened nothing (the third defect in
-  // docs/CRITIC-PROTOCOL.md). pagedRead throws instead, and the throw
-  // becomes a 503 here rather than an unhandled rejection.
+  // learner they had opened nothing. pagedRead and counted() throw
+  // instead, and the throw becomes a 503 here rather than an unhandled
+  // rejection.
   let reads;
   try {
     reads = await Promise.all([
     pagedRead<{ node_id: string; stage: string }>((page) =>
       svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>,
     ),
-    svc.from("nodes").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
-    svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
+      counted(svc.from("nodes").select("id", { count: "exact", head: true }).eq("owner_id", learnerId), "nodes"),
+      counted(svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId), "imports"),
     pagedRead<{ id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }>((page) =>
       svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[] | null; error: { message: string } | null }>,
     ),
-    svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
+      counted(svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"), "access_requests"),
     loadConnections(learnerId).catch(() => ({ held: [], bridges: [], unavailable: true as const })),
     learnDecksStarted(learnerId),
     ]);
@@ -66,7 +78,7 @@ export async function GET(req: NextRequest) {
   const productions = (prodRes as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || [];
   const byStatus = (st: string) => productions.filter((p) => p.status === st).length;
   const payload: LoopResponse = {
-      access: { owned: ownedRes.count ?? 0, imports: importsRes.count ?? 0, pendingRequests: requestsRes.count ?? 0 },
+      access: { owned: ownedRes, imports: importsRes, pendingRequests: requestsRes },
       awareness: { opened: states.length, atLeastAwareness: atLeast("awareness") },
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
       // An access-store failure leaves the connection counts unknown. Zero
@@ -85,7 +97,7 @@ export async function GET(req: NextRequest) {
         nodes: productions.filter((p) => p.node_id).length,
         latest: productions[0] ?? null,
       },
-      empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0 && decks === 0,
+      empty: states.length === 0 && productions.length === 0 && ownedRes === 0 && decks === 0,
   };
   return NextResponse.json(payload, NO_STORE);
 }

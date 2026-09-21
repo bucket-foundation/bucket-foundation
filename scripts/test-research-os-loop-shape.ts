@@ -29,22 +29,29 @@ test("an unknown count lights the column only on what is known", () => {
   assert.equal(internalizationLit({ ...base, held: 0, nodes: 0 }), false);
 });
 
-test("an unknown bridge count is unknown, never zero bridges", () => {
-  // The shared type forced `held === null` to be handled and left
-  // `bridges === null` falling into the same branch as no bridges at all
-  // (Bucket critic C46, C49).
+test("an unknown bridge count never prints the null or a made-up number", () => {
   const unknown = internalizationDetail({ ...base, nodes: 3, bridges: null, held: null });
   assert.ok(!unknown.includes("null"), "the literal null never reaches the learner");
-  assert.ok(!unknown.includes("bridge"), "and an unknown count is not reported as a bridge count");
-  assert.equal(unknown, "3 internalized");
+  assert.ok(!/\d+ bridges? one step away/.test(unknown), "and no bridge count is invented");
+  assert.equal(unknown, "3 internalized · bridges unavailable");
 });
 
 test("an unknown count with nothing else to show says unknown", () => {
   // A learner who has internalized nothing yet, on a read that failed,
   // used to be told "0 internalized", which is the outage reading as an
   // answer (Bucket critic C46).
-  assert.equal(internalizationDetail({ ...base, nodes: 0, bridges: null, held: null }), "count unavailable");
+  assert.equal(internalizationDetail({ ...base, nodes: 0, bridges: null, held: null }), "bridges unavailable");
   assert.notEqual(internalizationDetail({ ...base, nodes: 0, bridges: null, held: null }), "0 internalized");
+});
+
+test("an unknown bridge count says so even when nodes are held", () => {
+  // Falling back to the node count read identically to "no bridges"
+  // (Bucket critic C69).
+  const unknown = internalizationDetail({ ...base, nodes: 3, bridges: null, held: null });
+  const none = internalizationDetail({ ...base, nodes: 3, bridges: 0 });
+  assert.notEqual(unknown, none, "an unfinished read does not read as a frontier with nothing next to it");
+  assert.match(unknown, /unavailable/);
+  assert.match(unknown, /3 internalized/, "and it still says what is known");
 });
 
 test("a known bridge count reads as one, singular and plural", () => {

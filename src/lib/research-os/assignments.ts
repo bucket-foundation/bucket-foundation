@@ -90,3 +90,18 @@ export function firstOpenTarget<T extends { status: AssignmentStatus | string; t
 export function targetIsLinkable(a: { targetSlug?: string; targetHidden?: boolean }): boolean {
   return !a.targetHidden && Boolean(a.targetSlug);
 }
+
+/**
+ * The workspace link for an assignment's target, or null when there is
+ * none to give.
+ *
+ * A boolean plus a hand-built href let one surface swap its two branches
+ * and render every readable target as plain text while linking every
+ * withheld one to an empty target. `tsc` accepted it, because the slug
+ * was still a string (Bucket critic C57). Returning the href narrows to
+ * null in the other branch, so the inversion stops compiling.
+ */
+export function assignmentTargetHref(a: { targetSlug?: string; targetHidden?: boolean }): string | null {
+  if (!targetIsLinkable(a)) return null;
+  return `/research-os/workspace?target=${encodeURIComponent(a.targetSlug as string)}`;
+}

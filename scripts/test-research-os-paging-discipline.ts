@@ -1,9 +1,12 @@
 /**
- * Paging discipline across every Research OS read
- * (docs/CRITIC-PROTOCOL.md, "A list of ids chunked but not paged").
+ * Two paging rules for a read filtered by a list of ids, checked against
+ * the source so they hold for reads no test happens to exercise. No
+ * database needed.
  *
- * Two rules, checked against the source, so they
- * hold for reads no test happens to exercise. No database needed.
+ * These rules cover the reads they can see. A raw `.in(ids)` read that
+ * uses no chunk helper is invisible to both of them, and so is a builder
+ * hidden behind a local function. A green run is the absence of these
+ * two shapes, and nothing more.
  *
  * 1. A read that pages carries an order. Postgres gives no stable row
  *    order across LIMIT and OFFSET without one, so a page boundary

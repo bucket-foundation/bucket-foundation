@@ -103,6 +103,11 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-append.ts
+      - name: connection paging against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-connections-paging.ts
       - name: read authorization at the routes
         if: steps.paths.outputs.run == 'true'
         env:

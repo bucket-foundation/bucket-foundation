@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 // The server type, so a change to what /assignments returns is a compile
 // error here rather than a wrong label on the page (Bucket critic C40).
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
-import { targetIsLinkable } from "@/lib/research-os/assignments";
+import { assignmentTargetHref, targetIsLinkable } from "@/lib/research-os/assignments";
 
 const STATUS: Record<LearnerAssignment["status"], string> = {
   not_started: "not started",
@@ -58,7 +58,9 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
     <div className="mb-3 p-3 border border-[color:var(--gold)] bg-[color:var(--bone-2)]/70 text-[12px]">
       <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)] mb-1">assigned</div>
       <ul className="grid gap-1">
-        {rows.map((a) => (
+        {rows.map((a) => {
+          const href = assignmentTargetHref(a);
+          return (
           <li key={a.id} className="flex flex-wrap items-center gap-2">
             <b>{a.title}</b>
             <span className="text-[color:var(--basalt-3)]">{a.className}</span>
@@ -68,15 +70,16 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
               // Labelling a node the learner may not read as "this target"
               // tells them they are already on it (Bucket critic C38).
               <span className="text-[color:var(--basalt-3)]">· target not shared with you</span>
-            ) : a.targetSlug && a.targetSlug !== currentTarget ? (
-              <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="underline decoration-[color:var(--gold)] underline-offset-4">
+            ) : href && a.targetSlug !== currentTarget ? (
+              <Link href={href} className="underline decoration-[color:var(--gold)] underline-offset-4">
                 open {a.targetTitle} →
               </Link>
             ) : (
               <span className="text-[color:var(--basalt-3)]">· this target</span>
             )}
           </li>
-        ))}
+          );
+        })}
       </ul>
     </div>
   );

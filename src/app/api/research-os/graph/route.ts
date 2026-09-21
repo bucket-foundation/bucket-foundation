@@ -96,9 +96,19 @@ export async function GET(req: NextRequest) {
         const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
-          let rows: { node_id: string; stage: string }[];
+          const rows: { node_id: string; stage: string }[] = [];
           try {
-            rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>);
+            // Both lists are chunked. Taking the first IN_CHUNK learners
+            // counted a heatmap over 60 of them while `learners` above
+            // reported the true total, so the map under-reported every
+            // stage for any class past that with no sign it had
+            // (Bucket critic C63).
+            for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
+              const someLearners = learnerIds.slice(i, i + IN_CHUNK);
+              rows.push(
+                ...(await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", someLearners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>)),
+              );
+            }
           } catch (err) {
             console.error("[research-os/graph] heatmap read failed:", err instanceof Error ? err.message : err);
             return bad(503, "graph_read_failed");

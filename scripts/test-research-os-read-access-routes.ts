@@ -769,7 +769,7 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     }
   });
 
-  await t.test("a failed read on the loop is an outage, not a learner with nothing", async () => {
+  await t.test("a failed read on the loop answers 503 rather than zeros", async () => {
     /* eslint-disable-next-line @typescript-eslint/no-var-requires */
     const loop = require("../src/app/api/research-os/loop/route") as { GET: (req: NextRequest) => Promise<Response> };
 
@@ -793,6 +793,92 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       assert.equal(json.awareness, undefined, "no counter is served from a read that failed");
     } finally {
       sql(`grant select on graph.learner_node_state to service_role;`);
+    }
+  });
+
+  await t.test("a branch read the graph route cannot make is an outage", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const graph = require("../src/app/api/research-os/graph/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const healthy = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
+      headers: { authorization: `Bearer ${grantee.token}` },
+    }));
+    assert.equal(healthy.status, 200, `the map answers when its reads work: ${healthy.status}`);
+
+    try {
+      // The standing map used to come back empty behind a 200, so every
+      // node showed no stage and the heatmap showed nobody at any level
+      // (Bucket critic C53, C61).
+      requireLoopback();
+      sql(`revoke select on graph.learner_node_state from service_role;`);
+      const res = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(res.status, 503, `a read it cannot make is an outage: ${res.status}`);
+      const json = (await res.json().catch(() => ({}))) as { error?: string; standing?: unknown; nodes?: unknown };
+      assert.equal(json.error, "graph_read_failed");
+      assert.equal(json.standing, undefined, "no standing map is served from a read that failed");
+      assert.equal(json.nodes, undefined, "and no partial graph either");
+    } finally {
+      sql(`grant select on graph.learner_node_state to service_role;`);
+    }
+  });
+
+  await t.test("an assignment list is refused whole when any of its reads fails", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const classDb = require("../src/lib/research-os/class-db") as {
+      listAssignmentsForLearner: (id: string) => Promise<{ ok: true; assignments: unknown[] } | { ok: false; reason: string }>;
+    };
+
+    const teacher = await makeLearner("bulk-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const tag = `bulk-${Date.now().toString(36)}`;
+    // More targets than one request line holds, so the read has to chunk.
+    // Unchunked it answers 414, every title comes back blank, and the row
+    // still claims the target is visible (Bucket critic C50, C61).
+    const TARGETS = 220;
+
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Bulk fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility)
+        select gen_random_uuid(), '${tag}-' || g, '${tag} node ' || g, 'concept', 10, '${branch}', 'fixture', 'public'
+        from generate_series(1, ${TARGETS}) g;
+      insert into graph.assignments (class_id, target_node_id, assigned_by, title)
+        select '${klass}', id, '${teacher.id}', 'read ' || slug from graph.nodes where slug like '${tag}-%';
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const listed = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(listed.ok, true, `the list comes back: ${JSON.stringify(listed).slice(0, 120)}`);
+      if (listed.ok) {
+        const mine = (listed.assignments as { title: string; targetTitle: string; targetHidden: boolean }[]).filter((a) => a.title.startsWith(`read ${tag}-`));
+        assert.equal(mine.length, TARGETS, `every assignment is listed: ${mine.length}`);
+        const blank = mine.filter((a) => !a.targetTitle && !a.targetHidden);
+        assert.deepEqual(blank, [], `no row claims a visible target with no title: ${blank.length} of ${mine.length}`);
+      }
+
+      // A read it cannot make refuses the whole list rather than serving
+      // it with every title stripped.
+      requireLoopback();
+      sql(`revoke select on graph.nodes from service_role;`);
+      const outage = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(outage.ok, false, "an outage is not a list of blank rows");
+      assert.equal(outage.ok === false && outage.reason, "unavailable");
+    } finally {
+      sql(`grant select on graph.nodes to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';
+           delete from graph.edges where from_id in (select id from graph.nodes where slug like '${tag}-%')
+              or to_id in (select id from graph.nodes where slug like '${tag}-%');
+           delete from graph.nodes where slug like '${tag}-%';`);
     }
   });
 

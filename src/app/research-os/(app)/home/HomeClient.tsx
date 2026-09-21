@@ -36,7 +36,7 @@ interface ProfileResponse {
 // error here rather than a wrong string on the page. `import type` is
 // erased, so none of class-db's server-only imports reach the client.
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
-import { firstOpenTarget, targetIsLinkable } from "@/lib/research-os/assignments";
+import { assignmentTargetHref, firstOpenTarget, targetIsLinkable } from "@/lib/research-os/assignments";
 interface NodeLite {
   id: string;
   slug: string;
@@ -212,15 +212,21 @@ export default function HomeClient() {
             />
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
-              {assignments.value.assignments.map((a) => (
+              {assignments.value.assignments.map((a) => {
+                // Held in a const so the null case narrows. A boolean and
+                // a hand-built href let this block swap its branches and
+                // link every withheld target while `tsc` passed
+                // (Bucket critic C57).
+                const href = assignmentTargetHref(a);
+                return (
                 <li key={a.id} className="py-3 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
-                    {targetIsLinkable(a) ? (
-                      <span className="text-[14px] text-[color:var(--basalt)]">{a.title}</span>
-                    ) : (
-                      <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
+                    {href ? (
+                      <Link href={href} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
                         {a.title}
                       </Link>
+                    ) : (
+                      <span className="text-[14px] text-[color:var(--basalt)]">{a.title}</span>
                     )}
                     <div className="text-[12px] text-[color:var(--basalt-3)]">
                       {a.className} · {targetIsLinkable(a) ? a.targetTitle : "target not shared with you"}
@@ -232,7 +238,8 @@ export default function HomeClient() {
                     {STATUS[a.status]}
                   </span>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
         </Panel>
