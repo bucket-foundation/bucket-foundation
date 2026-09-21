@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
+import { getCandidateClaimsByConcept, getCandidateConcepts } from "@/lib/canon-claims";
 
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return getConcepts().map((c) => ({ concept: c.concept }));
+  return getCandidateConcepts().map((c) => ({ concept: c.concept }));
 }
 
 export function generateMetadata({ params }: { params: { concept: string } }) {
@@ -15,7 +15,7 @@ export function generateMetadata({ params }: { params: { concept: string } }) {
 }
 
 export default function Page({ params }: { params: { concept: string } }) {
-  const all = getClaimsByConcept();
+  const all = getCandidateClaimsByConcept();
   const claims = all[params.concept];
   if (!claims) notFound();
 

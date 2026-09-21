@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getClaim, getClaimsByConcept } from "@/lib/canon-claims";
+import { getCandidateClaim, getCandidateClaimsByConcept } from "@/lib/canon-claims";
 import { getEvidenceFor, prettySourcePath, sourceKind } from "@/lib/canon-evidence";
 
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  const all = getClaimsByConcept();
+  const all = getCandidateClaimsByConcept();
   const out: { concept: string; slug: string }[] = [];
   for (const [concept, claims] of Object.entries(all)) {
     for (const c of claims) out.push({ concept, slug: c.slug });
@@ -17,16 +17,19 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { concept: string; slug: string } }) {
-  const c = getClaim(params.concept, params.slug);
-  if (!c) return { title: "Claim · bucket.foundation" };
+  const c = getCandidateClaim(params.concept, params.slug);
+  if (!c) return { title: "Claim candidate · bucket.foundation" };
+  // The excerpt was the whole title, so a search result or a shared link
+  // showed a podcast aside as a Bucket claim about the concept. The
+  // concept leads and the card says what it is.
   return {
-    title: `${c.excerpt.slice(0, 60)}… · ${c.concept} · bucket.foundation`,
-    description: c.excerpt.slice(0, 160),
+    title: `${c.concept} candidate · bucket.foundation`,
+    description: `An uncurated transcript excerpt filed under ${c.concept}, awaiting verification. ${c.excerpt.slice(0, 120)}`,
   };
 }
 
 export default function Page({ params }: { params: { concept: string; slug: string } }) {
-  const c = getClaim(params.concept, params.slug);
+  const c = getCandidateClaim(params.concept, params.slug);
   if (!c) notFound();
   const evidence = getEvidenceFor(params.concept, params.slug);
 

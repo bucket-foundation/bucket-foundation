@@ -20,6 +20,16 @@ export type ClaimCard = {
   patternSignals: string[];
   crossConcepts: string[];
   capturedAt: string;
+  /**
+   * Whether a person has ticked "Promote to canon" on the card.
+   *
+   * Every card carries a curation checklist, and the third box is the
+   * gate: verify the excerpt, promote it, cross-cite it, file it. The
+   * card format was designed around that box and nothing read it, so
+   * 609 unpromoted candidates reached the graph as `canon_claim` and the
+   * public site as claims. Zero cards have ever been ticked.
+   */
+  promoted: boolean;
 };
 
 const REPO_ROOT = path.resolve(process.cwd());
@@ -96,6 +106,10 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
   const provSlugMatch = raw.match(/Video slug:\s*`([^`]+)`/);
   const videoSlug = provSlugMatch?.[1] || "";
 
+  // The curation gate. A box is ticked with `x` or `X`; anything else,
+  // including a missing checklist, leaves the card a candidate.
+  const promoted = /^\s*-\s*\[[xX]\]\s*Promote to canon/m.test(raw);
+
   return {
     branch,
     concept,
@@ -111,10 +125,36 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
     patternSignals: ps,
     crossConcepts,
     capturedAt,
+    promoted,
   };
 }
 
+/**
+ * Every card on disk, promoted or not. The curation queue reads this.
+ *
+ * Nothing that means "canon" should: the default here is the gate, and
+ * seeing candidates takes asking for them by name. That is the inverse
+ * of how this file used to read, which is the bug.
+ */
+export function getCandidateClaims(): ClaimCard[] {
+  return readAllCards();
+}
+
+/**
+ * The cards a person has promoted, which is what "canon" means here.
+ *
+ * Every card carries a curation checklist whose third box is the gate.
+ * Nothing read it, so 609 candidates reached the graph as `canon_claim`,
+ * the public site as claims, and the MCP server as canon served to
+ * agents. Zero cards have ever been ticked, so this is empty until
+ * somebody curates, which is the correct answer to "what has Bucket
+ * promoted".
+ */
 export function getAllClaims(): ClaimCard[] {
+  return readAllCards().filter((c) => c.promoted);
+}
+
+function readAllCards(): ClaimCard[] {
   const out: ClaimCard[] = [];
   for (const { branch, root } of getBranchDirs()) {
     for (const concept of fs.readdirSync(root)) {
@@ -132,8 +172,24 @@ export function getAllClaims(): ClaimCard[] {
   return out;
 }
 
+/** Promoted cards by concept. The branch pages count canon with this. */
 export function getClaimsByConcept(): Record<string, ClaimCard[]> {
-  const all = getAllClaims();
+  return byConcept(getAllClaims());
+}
+
+/** Every card by concept, for the public curation queue. */
+export function getCandidateClaimsByConcept(): Record<string, ClaimCard[]> {
+  return byConcept(getCandidateClaims());
+}
+
+/** Concepts and their candidate counts, for the public curation queue. */
+export function getCandidateConcepts(): { concept: string; count: number }[] {
+  return Object.entries(getCandidateClaimsByConcept())
+    .map(([concept, claims]) => ({ concept, count: claims.length }))
+    .sort((a, b) => b.count - a.count);
+}
+
+function byConcept(all: ClaimCard[]): Record<string, ClaimCard[]> {
   const by: Record<string, ClaimCard[]> = {};
   for (const c of all) {
     (by[c.concept] ||= []).push(c);
@@ -141,7 +197,14 @@ export function getClaimsByConcept(): Record<string, ClaimCard[]> {
   return by;
 }
 
+/** A promoted card, or null. An unpromoted one answers null, so its page 404s. */
 export function getClaim(concept: string, slug: string): ClaimCard | null {
+  const card = getCandidateClaim(concept, slug);
+  return card && card.promoted ? card : null;
+}
+
+/** A card whether or not it is promoted, for the curation queue. */
+export function getCandidateClaim(concept: string, slug: string): ClaimCard | null {
   for (const { branch, root } of getBranchDirs()) {
     const file = path.join(root, concept, `${slug}.md`);
     if (fs.existsSync(file)) return parseClaimMd(file, branch, concept, slug);

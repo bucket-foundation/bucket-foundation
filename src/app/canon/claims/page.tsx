@@ -2,14 +2,14 @@
 // Build-time render. Filesystem is the CMS.
 
 import Link from "next/link";
-import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
+import { getCandidateClaimsByConcept, getCandidateConcepts } from "@/lib/canon-claims";
 
 export const metadata = { title: "Canon claims · bucket.foundation" };
 export const dynamic = "force-static";
 
 export default function Page() {
-  const concepts = getConcepts();
-  const byConcept = getClaimsByConcept();
+  const concepts = getCandidateConcepts();
+  const byConcept = getCandidateClaimsByConcept();
   const total = concepts.reduce((s, c) => s + c.count, 0);
 
   return (
