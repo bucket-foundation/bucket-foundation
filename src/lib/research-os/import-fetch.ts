@@ -51,13 +51,62 @@ export interface FetchedSource {
   bytes: number;
 }
 
+/** How many redirects a fetch will follow before giving up. */
+export const MAX_REDIRECTS = 5;
+
+/**
+ * Follow a redirect chain, checking every hop.
+ *
+ * `redirect: "follow"` let the runtime do this, and the host check ran
+ * once, against the URL the learner typed. A public host answering 302
+ * with a `Location` of `http://169.254.169.254/latest/meta-data/` was
+ * fetched by the server, and the reply reached the learner as the body
+ * of their import. Any signed-in learner could ask for it: the route at
+ * `src/app/api/research-os/access/route.ts:112` takes an arbitrary URL
+ * behind nothing but a session.
+ *
+ * Each hop is checked with the same rule the first one is, and a
+ * relative `Location` resolves against the URL that sent it.
+ *
+ * Residual, and written down rather than implied away: a hostname that
+ * resolves to a private address defeats this, because the check reads
+ * the URL and not the socket. Closing that needs the address pinned
+ * between the lookup and the connection, which this runtime's fetch
+ * does not expose.
+ */
+export async function fetchFollowingChecked(
+  raw: string,
+  init: RequestInit,
+  // Injectable so a test can allow its own loopback fixture as the first
+  // hop and still refuse the address the redirect aims at. Every caller
+  // in the application uses the default.
+  isAllowed: (url: string) => boolean = isPublicHttpUrl,
+): Promise<Response | null> {
+  let url = raw;
+  for (let hop = 0; hop <= MAX_REDIRECTS; hop += 1) {
+    if (!isAllowed(url)) return null;
+    const res = await fetch(url, { ...init, redirect: "manual" });
+    if (res.status < 300 || res.status > 399) return res;
+    const location = res.headers.get("location");
+    if (!location) return res;
+    let next: URL;
+    try {
+      next = new URL(location, url);
+    } catch {
+      return null;
+    }
+    url = next.toString();
+  }
+  return null;
+}
+
 export async function fetchTextFromUrl(raw: string): Promise<FetchedSource | null> {
   if (!isPublicHttpUrl(raw)) return null;
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
-    const res = await fetch(raw, { signal: ctrl.signal, redirect: "follow", headers: { accept: "text/html,text/plain;q=0.9,*/*;q=0.1", "user-agent": "bucket-foundation-research-os/1 (+https://www.bucket.foundation)" } });
-    if (!res.ok) return null;
+    const res = await fetchFollowingChecked(raw, { signal: ctrl.signal, headers: { accept: "text/html,text/plain;q=0.9,*/*;q=0.1", "user-agent": "bucket-foundation-research-os/1 (+https://www.bucket.foundation)" } });
+    if (!res || !res.ok) return null;
     const contentType = (res.headers.get("content-type") || "").toLowerCase();
     if (!contentType.includes("text/html") && !contentType.includes("text/plain") && !contentType.includes("application/xhtml")) return null;
     const buf = Buffer.from(await res.arrayBuffer());
