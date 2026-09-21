@@ -10,6 +10,11 @@ Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, P
 
 ### Edited
 
+- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, what the staging says today, and what the page does not do yet.
+- `src/lib/research-os/roadmap.ts`: the staged queue as data, 38 items with stage, status, cost, dependencies and what each unlocks, plus `readyNow()` and `roadmapProblems()`.
+- `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself. Linked from the shell.
+- `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, for the standing rule that each task shows its work.
+- `docs/FOUNDER-DECISIONS.md`: seven open decisions that need the founder, each with what it blocks and what the loop does while it waits.
 - `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
 
 ### Added
