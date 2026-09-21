@@ -32,11 +32,21 @@ if (paths.length === 0) {
 }
 mkdirSync(OUT, { recursive: true });
 
+async function mail(path) {
+  try {
+    return await fetch(`${MAIL}${path}`);
+  } catch (err) {
+    throw new Error(
+      `the mail catcher at ${MAIL} did not answer (${err.message}). Start the local Supabase stack with npm run db:local, or set SHOTS_MAIL.`,
+    );
+  }
+}
+
 async function latestCode(address, after) {
   // Mailpit, which the local Supabase stack runs on 54324: a list endpoint
   // and one message by id.
   for (let i = 0; i < 30; i += 1) {
-    const res = await fetch(`${MAIL}/api/v1/messages?limit=20`);
+    const res = await mail("/api/v1/messages?limit=20");
     if (res.ok) {
       const { messages = [] } = await res.json();
       const mine = messages
@@ -44,7 +54,7 @@ async function latestCode(address, after) {
         .filter((m) => new Date(m.Created).getTime() >= after - 5000)
         .sort((a, b) => new Date(b.Created) - new Date(a.Created));
       for (const m of mine) {
-        const full = await fetch(`${MAIL}/api/v1/message/${m.ID}`);
+        const full = await mail(`/api/v1/message/${m.ID}`);
         if (!full.ok) continue;
         const body = await full.json();
         const hit = `${body.Text ?? ""} ${body.HTML ?? ""}`.match(/\b(\d{6})\b/);

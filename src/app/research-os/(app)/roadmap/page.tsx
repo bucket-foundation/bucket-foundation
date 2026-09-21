@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/ui";
+import { getSessionUser } from "@/lib/supabase/server";
+import { isReviewerEmail } from "@/lib/research-os/reviewer";
+import { isClassStaffAnywhere } from "@/lib/research-os/class-db";
 import {
   COST_LABEL,
+  decisionsFor,
   ROADMAP,
   STAGE_LABEL,
   STAGE_TEST,
@@ -20,6 +25,12 @@ export const metadata: Metadata = { title: "Roadmap", robots: { index: false, fo
 // The staged queue (learning/research-os/ROADMAP.md). The list itself is
 // src/lib/research-os/roadmap.ts, so the page and the memo cannot drift.
 // ?stage= shows one stage, ?epic= one epic.
+//
+// Staff only, the same test the shell uses to show the teaching nav: this
+// is the internal order of the work, and it names the decisions waiting on
+// the founder. A signed-in learner gets a 404.
+
+export const dynamic = "force-dynamic";
 
 const CARD =
   "border border-[color:var(--hairline)] rounded-sm p-4 bg-[color:var(--bone)]/70 flex flex-col gap-2";
@@ -32,7 +43,15 @@ function statusChip(item: RoadmapItem) {
   return { label: "open", tone: "text-[color:var(--basalt)]" };
 }
 
-function Item({ item, blockedFirst }: { item: RoadmapItem; blockedFirst: string[] }) {
+function Item({
+  item,
+  blockedFirst,
+  decisions,
+}: {
+  item: RoadmapItem;
+  blockedFirst: string[];
+  decisions: string[];
+}) {
   const status = statusChip(item);
   return (
     <li className={CARD}>
@@ -52,24 +71,33 @@ function Item({ item, blockedFirst }: { item: RoadmapItem; blockedFirst: string[
           )}
         </p>
       )}
-      {item.blockedBy && (
+      {decisions.length > 0 && (
         <p className="text-[12px]">
           Waits on{" "}
-          <Link className="underline underline-offset-4" href="https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/FOUNDER-DECISIONS.md">
-            {item.blockedBy}
+          <Link
+            className="underline underline-offset-4"
+            href="https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/FOUNDER-DECISIONS.md"
+          >
+            {decisions.join(", ")}
           </Link>
-          , a decision only the founder makes.
+          {item.blockedBy ? "" : ", through what it rests on"}, and only the founder answers that.
         </p>
       )}
     </li>
   );
 }
 
-export default function RoadmapPage({
+export default async function RoadmapPage({
   searchParams,
 }: {
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
+  const user = await getSessionUser();
+  const staff =
+    (user?.email ? isReviewerEmail(user.email) : false) ||
+    (user ? await isClassStaffAnywhere(user.id) : false);
+  if (!staff) notFound();
+
   const pick = (k: string) => {
     const v = searchParams?.[k];
     return Array.isArray(v) ? v[0] : v;
@@ -81,8 +109,9 @@ export default function RoadmapPage({
   const visible = ROADMAP.filter(
     (i) => (!stageFilter || i.stage === stageFilter) && (!epicFilter || i.epic === epicFilter),
   );
-  const counts = countsByStage();
-  const ready = readyNow();
+  const filtered = Boolean(stageFilter || epicFilter);
+  const counts = countsByStage(visible);
+  const ready = readyNow(visible);
   const problems = roadmapProblems();
   const statusById = new Map(ROADMAP.map((i) => [i.id, i.status]));
   const shownStages: Stage[] = stageFilter ? [stageFilter] : STAGES;
@@ -102,7 +131,7 @@ export default function RoadmapPage({
       <PageHeader
         eyebrow="Research OS · roadmap"
         title="what ships next"
-        lede="Every queued item staged as MVP, near-term, or later, with what it depends on and what it unlocks. The founder sets the order between stages; the loop keeps the order inside one."
+        lede="Every open Research OS item staged as MVP, near-term, or later, beside the shipped items they rest on. The founder sets the order between stages; the loop keeps the order inside one."
       />
 
       <section className="flex flex-col gap-3">
@@ -137,7 +166,8 @@ export default function RoadmapPage({
       <section className="border border-[color:var(--hairline)] rounded-sm p-4">
         <h2 className="text-[13px] small-caps tracking-[0.14em]">Ready to start</h2>
         <p className="mt-1 text-[13px] text-[color:var(--basalt-3)]">
-          Nothing open in front of them, and no decision pending.
+          Nothing open in front of them, and no decision pending
+          {filtered ? ", inside the filter above" : ""}.
         </p>
         <ul className="mt-2 flex flex-col gap-1 text-[14px]">
           {ready.map((i) => (
@@ -146,9 +176,21 @@ export default function RoadmapPage({
               <span className="text-[color:var(--basalt-3)]">{STAGE_LABEL[i.stage]}</span>, {i.title}
             </li>
           ))}
-          {ready.length === 0 && <li className="text-[color:var(--basalt-3)]">Everything open waits on something.</li>}
+          {ready.length === 0 && (
+            <li className="text-[color:var(--basalt-3)]">Everything open here waits on something.</li>
+          )}
         </ul>
       </section>
+
+      {visible.length === 0 && (
+        <p className="text-[14px] text-[color:var(--basalt-3)]">
+          No item matches that stage and epic together.{" "}
+          <Link className="underline underline-offset-4" href="/research-os/roadmap">
+            Clear the filters
+          </Link>
+          .
+        </p>
+      )}
 
       {shownStages.map((stage) => {
         const items = itemsByStage(stage, visible);
@@ -167,6 +209,7 @@ export default function RoadmapPage({
                   key={item.id}
                   item={item}
                   blockedFirst={item.dependsOn.filter((d) => statusById.get(d) !== "shipped")}
+                  decisions={decisionsFor(item)}
                 />
               ))}
             </ul>

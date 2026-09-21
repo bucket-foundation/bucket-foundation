@@ -2,6 +2,24 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-roadmap: the staged queue and its page
+
+Every open Research OS item staged MVP, near-term or later, with what it depends on and what it unlocks, on the page the founder reads to set the order.
+
+Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #190 into `dev`. Founder direction: stage the queue before it grows further, and show the work inside Research OS.
+
+### Added
+
+- `src/lib/research-os/roadmap.ts`: the staged queue as data, 39 items with stage, status, cost in loop ticks, dependencies, the decisions that block them, and what each unlocks, plus `readyNow()`, `decisionsFor()` and `roadmapProblems()`.
+- `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface for staff, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself.
+- `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, reporting horizontal overflow, for the standing rule that each task shows its work.
+- `docs/FOUNDER-DECISIONS.md`: the eight open decisions that need the founder, each with what it blocks and what the loop does while it waits.
+
+### Edited
+
+- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, the scope of the list, what the staging says today, and what the page does not do yet.
+- `src/app/research-os/(app)/AppShell.tsx`: a Roadmap entry in the teaching nav.
+
 ## ros-patents 1: the research memo
 
 The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
@@ -10,11 +28,6 @@ Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, P
 
 ### Edited
 
-- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, what the staging says today, and what the page does not do yet.
-- `src/lib/research-os/roadmap.ts`: the staged queue as data, 38 items with stage, status, cost, dependencies and what each unlocks, plus `readyNow()` and `roadmapProblems()`.
-- `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself. Linked from the shell.
-- `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, for the standing rule that each task shows its work.
-- `docs/FOUNDER-DECISIONS.md`: seven open decisions that need the founder, each with what it blocks and what the loop does while it waits.
 - `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
 
 ### Added

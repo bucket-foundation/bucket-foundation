@@ -3,6 +3,10 @@
  * depends on, and what it unlocks, plus the shipped items that carry the
  * dependencies. Read at /research-os/roadmap.
  *
+ * Scope: every open Research OS bead in BEADS-PENDING.jsonl, and the
+ * shipped beads other rows depend on. A shipped bead that carries no
+ * dependency is left out, so the page stays the order of the work ahead.
+ *
  * The staging test lives in learning/research-os/ROADMAP.md:
  *   mvp   one researcher runs a whole loop on one machine
  *   near  a second person joins, or the work reaches the public site
@@ -28,8 +32,8 @@ export interface RoadmapItem {
   status: Status;
   cost: Cost;
   dependsOn: string[];
-  /** A row in docs/FOUNDER-DECISIONS.md that has to close first. */
-  blockedBy?: string;
+  /** Rows of docs/FOUNDER-DECISIONS.md that have to close first. */
+  blockedBy?: string[];
   unlocks: string;
 }
 
@@ -235,7 +239,7 @@ export const ROADMAP: RoadmapItem[] = [
     status: "open",
     cost: "l",
     dependsOn: ["ros-patents 1"],
-    blockedBy: "FD-1",
+    blockedBy: ["FD-1"],
     unlocks: "Patents as nodes, and prior-art search over them",
   },
   {
@@ -366,8 +370,20 @@ export const ROADMAP: RoadmapItem[] = [
     status: "open",
     cost: "s",
     dependsOn: ["research: human-AI-computer work"],
-    blockedBy: "FD-4",
+    blockedBy: ["FD-4"],
     unlocks: "The public reading of what Research OS is for",
+  },
+
+  {
+    id: "ros-09",
+    epic: "funding",
+    title: "Funding wave 1: the applications, and the entity the applications need",
+    stage: "near",
+    status: "open",
+    cost: "m",
+    dependsOn: [],
+    blockedBy: ["FD-8"],
+    unlocks: "Money for the work, and the deadlines that are already running",
   },
 
   // ---- later -----------------------------------------------------------
@@ -409,7 +425,7 @@ export const ROADMAP: RoadmapItem[] = [
     status: "open",
     cost: "m",
     dependsOn: ["ros-patents 2", "ros-prime 2"],
-    blockedBy: "FD-3",
+    blockedBy: ["FD-2", "FD-3"],
     unlocks: "A claim read as a combination of known primes, and a disclosure the graph can hold",
   },
   {
@@ -446,6 +462,11 @@ export const ROADMAP: RoadmapItem[] = [
 
 export const STAGES: Stage[] = ["mvp", "near", "later"];
 
+/** The rows of docs/FOUNDER-DECISIONS.md a `blockedBy` may name. */
+export const DECISIONS = ["FD-1", "FD-2", "FD-3", "FD-4", "FD-5", "FD-6", "FD-7", "FD-8"];
+
+const STAGE_ORDER: Record<Stage, number> = { mvp: 0, near: 1, later: 2 };
+
 export function itemsByStage(stage: Stage, items: RoadmapItem[] = ROADMAP): RoadmapItem[] {
   return items.filter((i) => i.stage === stage);
 }
@@ -466,11 +487,31 @@ export function countsByStage(items: RoadmapItem[] = ROADMAP): Record<Stage, { o
 /** Items with nothing open in front of them, in stage order. */
 export function readyNow(items: RoadmapItem[] = ROADMAP): RoadmapItem[] {
   const status = new Map(items.map((i) => [i.id, i.status]));
-  const order: Record<Stage, number> = { mvp: 0, near: 1, later: 2 };
   return items
-    .filter((i) => i.status !== "shipped" && !i.blockedBy)
+    .filter((i) => i.status === "open" && !i.blockedBy)
     .filter((i) => i.dependsOn.every((d) => status.get(d) === "shipped"))
-    .sort((a, b) => order[a.stage] - order[b.stage]);
+    .sort((a, b) => STAGE_ORDER[a.stage] - STAGE_ORDER[b.stage]);
+}
+
+/**
+ * Every decision standing between an item and its start: its own, and the
+ * ones blocking the unshipped items it rests on.
+ */
+export function decisionsFor(item: RoadmapItem, items: RoadmapItem[] = ROADMAP): string[] {
+  const byId = new Map(items.map((i) => [i.id, i]));
+  const found = new Set<string>();
+  const seen = new Set<string>();
+  const walk = (i: RoadmapItem): void => {
+    if (seen.has(i.id)) return;
+    seen.add(i.id);
+    for (const fd of i.blockedBy ?? []) found.add(fd);
+    for (const d of i.dependsOn) {
+      const dep = byId.get(d);
+      if (dep && dep.status !== "shipped") walk(dep);
+    }
+  };
+  walk(item);
+  return Array.from(found).sort();
 }
 
 /** Rules the list has to keep: named dependencies, no blocked MVP row, no cycles. */
@@ -485,7 +526,16 @@ export function roadmapProblems(items: RoadmapItem[] = ROADMAP): string[] {
       if (!ids.has(d)) problems.push(`${i.id} depends on ${d}, which is not on the list`);
     }
     if (i.stage === "mvp" && i.blockedBy) {
-      problems.push(`${i.id} sits in MVP and waits on ${i.blockedBy}`);
+      problems.push(`${i.id} sits in MVP and waits on ${i.blockedBy.join(" and ")}`);
+    }
+    for (const fd of i.blockedBy ?? []) {
+      if (!DECISIONS.includes(fd)) problems.push(`${i.id} waits on ${fd}, which is not a row of FOUNDER-DECISIONS.md`);
+    }
+    for (const d of i.dependsOn) {
+      const dep = items.find((x) => x.id === d);
+      if (dep && STAGE_ORDER[dep.stage] > STAGE_ORDER[i.stage]) {
+        problems.push(`${i.id} is staged ${STAGE_LABEL[i.stage]} over ${d}, which is staged ${STAGE_LABEL[dep.stage]}`);
+      }
     }
     if (i.status === "shipped" && i.dependsOn.some((d) => items.find((x) => x.id === d)?.status !== "shipped")) {
       problems.push(`${i.id} is shipped over an unshipped dependency`);

@@ -1,6 +1,8 @@
 # Research OS roadmap
 
-Every queued item staged as MVP, near-term, or later, with what it depends on and what it unlocks, so the order of the work is one page the founder can mark. Bead: `ros-roadmap`, priority 0.
+Every open Research OS item staged as MVP, near-term, or later, with what it depends on and what it unlocks, so the order of the work is one page the founder can mark. Bead: `ros-roadmap`, priority 0.
+
+Scope: the open Research OS beads in `BEADS-PENDING.jsonl`, and the shipped beads other rows rest on. A shipped bead that carries no dependency is left out, since the page is the order of the work ahead. The beads left out this way are the K-12 slices that shipped through PR #6 to PR #130, the access model, the shell, the deterministic workspace, Academy and canon in the workspace, and the primality research that became `PRIMES.md`.
 
 The list lives in `src/lib/research-os/roadmap.ts` and shows at `/research-os/roadmap`. This file holds the test behind the stages and the rules the list has to keep. One list, read by the page and by the loop, so the two cannot drift.
 
@@ -16,13 +18,13 @@ Two rules keep the staging usable. An item cannot ship before what it rests on, 
 
 ## What the staging says today
 
-38 items: 17 in MVP, 14 near-term, 7 later. Seven of the MVP rows are shipped and carry the rest.
+39 items: 17 in MVP, 15 near-term, 7 later. Seven of the MVP rows are shipped and carry the rest.
 
 **Shipped.** Prime decomposition with its signature, penetration and tier; the decompose-further queue that holds model-proposed factors for human review; the made-of section on the node page; both patent slices; the Vercel gate with the pre-push check; the engine's local host.
 
 **MVP, open.** The truth memo and the claim-provenance schema under it; the truth level per node with the network analysis that names the load-bearing primes; the grade-tier reconciliation; imports 1 through 3, which is the data model, the upload, and the extraction into passages and tables; the research on human-AI-computer work; this roadmap; and the standing rule that every task shows its work.
 
-**Near-term.** Both remaining patent slices, the first waiting on FD-1; the software atlas and the workbench design; the map layers and the canon-tag split; graph dedup; imports in search and sharing; the Awareness view, production placement, and roles as grants; first-hand verification; the local model tier; and the site copy, waiting on FD-4.
+**Near-term.** Funding wave 1, which waits on FD-8, the entity a funder asks about, with Fast Forward's date already past and NLnet closing 2026-11-03; both remaining patent slices, the first waiting on FD-1; the software atlas and the workbench design; the map layers and the canon-tag split; graph dedup; imports in search and sharing; the Awareness view, production placement, and roles as grants; first-hand verification; the local model tier; and the site copy, waiting on FD-4.
 
 **Later.** The compute runner and everything on top of it, hosted and self-hosted datasets, claims into elements with invention disclosure, the research tools and engine inside the workspace, under-13 gates, and the game layer.
 
@@ -32,4 +34,4 @@ The page groups by stage, filters by stage or epic, and opens with what is ready
 
 ## What the page does not do yet
 
-It reads a list in code, so the founder's marks arrive through a session rather than a click. Recording a mark in the database, and showing the bead behind each row, come with `ros-frontend`'s next pass.
+It reads a list in code, so the founder's marks arrive through a session rather than a click. Recording a mark in the database, and showing the bead behind each row, come with `ros-frontend`'s next pass. The page is staff-only, on the same test the shell uses for the teaching nav.
