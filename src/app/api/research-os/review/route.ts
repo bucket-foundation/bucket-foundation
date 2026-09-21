@@ -87,7 +87,7 @@ import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib
 import type { Stage } from "@/lib/research-os/types";
 import { awardProgress, configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyReviewer, isReviewerEmail } from "@/lib/research-os/reviewer";
 import {
   hasUnverifiedSource,
   isSourceProvenanceStale,
@@ -160,10 +160,38 @@ export async function GET(req: NextRequest) {
   // Internalization or Production either never held, or already got a
   // decision, so scoping to 'understanding' here is the same "pending"
   // filter a join against teacher_reviews would give, with no join needed.
-  const { data: stateRows, error: stateErr } = await svc
+  // Who this reviewer may see. An email on RESEARCH_OS_REVIEWER_EMAILS is
+  // the graph's own reviewer and sees every queue. A reviewer who holds
+  // the role through a class sees the learners in their classes alone:
+  // creating a class is open to anyone signed in, so class staff is
+  // self-grantable and cannot carry a graph-wide read of other learners'
+  // claims, evidence and sources (Bucket critic C21).
+  const allowlisted = reviewer.email ? isReviewerEmail(reviewer.email) : false;
+  let scopedLearners: string[] | null = null;
+  if (!allowlisted) {
+    const { data: staffRows, error: staffErr } = await svc
+      .from("class_members")
+      .select("class_id")
+      .eq("learner_id", reviewer.id)
+      .in("role", ["teacher", "librarian"]);
+    if (staffErr) return bad(500, "read_failed");
+    const classIds = ((staffRows as { class_id: string }[]) || []).map((r) => r.class_id);
+    if (classIds.length === 0) return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
+    const { data: memberRows, error: memberErr } = await svc
+      .from("class_members")
+      .select("learner_id")
+      .in("class_id", classIds);
+    if (memberErr) return bad(500, "read_failed");
+    scopedLearners = Array.from(new Set(((memberRows as { learner_id: string }[]) || []).map((r) => r.learner_id)));
+    if (scopedLearners.length === 0) return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
+  }
+
+  let stateQuery = svc
     .from("learner_node_state")
     .select("learner_id,node_id,stage,evidence,updated_at")
     .eq("stage", "understanding");
+  if (scopedLearners) stateQuery = stateQuery.in("learner_id", scopedLearners);
+  const { data: stateRows, error: stateErr } = await stateQuery;
   if (stateErr) return bad(500, "read_failed");
 
   const held = ((stateRows as StateRow[]) || []).filter((r) => {
@@ -172,13 +200,14 @@ export async function GET(req: NextRequest) {
     return last && last.kind === "transfer_item" && last.held === true;
   });
 
-  const { data: productionRows, error: prodErr } = await svc
+  let productionQuery = svc
     .from("productions")
     .select(
       "id,learner_id,target_node_id,related_node_id,kind,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
     )
-    .eq("status", "submitted")
-    .order("created_at", { ascending: true });
+    .eq("status", "submitted");
+  if (scopedLearners) productionQuery = productionQuery.in("learner_id", scopedLearners);
+  const { data: productionRows, error: prodErr } = await productionQuery.order("created_at", { ascending: true });
   if (prodErr) return bad(500, "read_failed");
 
   const nodeIds = Array.from(

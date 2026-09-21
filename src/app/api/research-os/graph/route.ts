@@ -7,6 +7,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { IN_CHUNK, configured, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
+import { authorizeNode } from "@/lib/research-os/read-access";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { listMyClasses } from "@/lib/research-os/classes";
 
@@ -23,7 +24,10 @@ export async function GET(req: NextRequest) {
     // PostgREST pages at 1,000 rows; walk the pages.
     const counts = new Map<string, number>();
     for (let from = 0; ; from += 1000) {
-      const { data } = await graphService().from("nodes").select("branch").range(from, from + 999);
+      // This answers before identity, so it counts the public graph
+      // alone: a private node's existence is not a branch statistic
+      // (Bucket critic C23).
+      const { data } = await graphService().from("nodes").select("branch").eq("visibility", "public").range(from, from + 999);
       const rows = (data as { branch: string }[]) || [];
       rows.forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
       if (rows.length < 1000) break;

@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
     svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
     svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }),
     svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
-    loadConnections(learnerId).catch(() => ({ held: [], bridges: [] })),
+    loadConnections(learnerId).catch(() => ({ held: [], bridges: [], unavailable: true as const })),
     learnDecksStarted(learnerId),
   ]);
   const states = ((statesRes.data as { node_id: string; stage: Stage }[]) || []);

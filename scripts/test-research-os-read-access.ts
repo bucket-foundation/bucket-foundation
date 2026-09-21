@@ -10,6 +10,7 @@ import {
   authorizeNode,
   authorizeNodes,
   authorizeVerbs,
+  storeWithNodes,
   readVisibility,
   type AccessStore,
   type StoreResult,
@@ -231,4 +232,20 @@ test("both entry points resolve a duplicate id to the stricter row", async () =>
   const one = await authorizeVerbs("dup", { id: STRANGER }, ["view"], twice, NOW);
   assert.equal(many.ok && many.allowed.length, 0, "the private row decides");
   assert.equal(one.ok, false, "and it decides the same way here");
+});
+
+test("a store that fails is an outage wherever it is read from", async () => {
+  // storeWithNodes serves rows a caller already read and passes grants and
+  // groups through, which is how the routes and filterSubgraphForViewer
+  // avoid a second read. A failure underneath still has to surface.
+  const failing = storeWithNodes(nodes, store({ failOn: "grants" }));
+  const shared = await authorizeNodes(["shared"], { id: LEARNER }, "view", failing, NOW);
+  assert.equal(shared.ok, false, "a grants failure under the passthrough is an outage");
+  if (shared.ok) return;
+  assert.equal(shared.reason, "unavailable");
+
+  // A public-only read needs no grants, so it answers from the rows alone.
+  const pub = await authorizeNodes(["pub"], { id: LEARNER }, "view", failing, NOW);
+  assert.equal(pub.ok, true, "a public view survives a grants outage");
+  assert.deepEqual(pub.ok ? pub.allowed : [], ["pub"]);
 });

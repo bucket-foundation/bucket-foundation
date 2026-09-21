@@ -635,17 +635,12 @@ export async function POST(req: NextRequest) {
       const { data: prereqEdges } = await svc.from("edges").select("from_id").eq("to_id", nodeId).eq("kind", "prerequisite");
       const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
       let prereqSummaries: { title: string; summary: string | null }[] = [];
-      let prereqsWithheld = 0;
       if (prereqIds.length) {
         // A prerequisite the learner may not read stays out of the
         // grounding rather than reaching the model through it. The count
         // is kept so a check with nothing left to stand on abstains.
         const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
         if (!readablePrereqs.ok) return bad(503, "access_unavailable");
-        // Withheld means denied. An id with no row at all is a graph gap,
-        // which is not the learner's access problem and must not read as
-        // one.
-        prereqsWithheld = prereqIds.length - readablePrereqs.missing.length - readablePrereqs.allowed.length;
         if (readablePrereqs.allowed.length) {
           const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
           // A read that failed leaves no grounding either, and grading an
@@ -654,10 +649,11 @@ export async function POST(req: NextRequest) {
           prereqSummaries = prereqNodes || [];
         }
       }
-      // Every prerequisite withheld leaves the model judging an
-      // explanation against a chain it cannot see, so the check abstains
-      // rather than grading on what is left.
-      if (prereqIds.length > 0 && prereqSummaries.length === 0 && prereqsWithheld > 0) {
+      // A node with prerequisites and no readable grounding abstains,
+      // whether the rows are withheld or missing. Answering differently
+      // would tell a learner that a prerequisite they cannot see exists
+      // (Bucket critic C17).
+      if (prereqIds.length > 0 && prereqSummaries.length === 0) {
         return bad(409, "check_grounding_unavailable");
       }
 

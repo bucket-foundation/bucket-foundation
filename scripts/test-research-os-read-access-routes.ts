@@ -291,6 +291,53 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     }
   });
 
+  await t.test("the probe question list hides a node the learner may not read", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const probe = require("../src/app/api/research-os/probe/route") as { GET: (req: NextRequest) => Promise<Response> };
+    const res = await probe.GET(
+      new NextRequest(`http://127.0.0.1/api/research-os/probe?branch=${branch}&target=ra-public-${publicNode}`, {
+        headers: { authorization: `Bearer ${stranger.token}` },
+      }),
+    );
+    assert.equal(res.status, 200, "the public target resolves");
+    const body = (await res.json()) as { questions?: { nodeId?: string; title?: string }[] };
+    const titles = (body.questions || []).map((q) => q.title || "");
+    assert.ok(!titles.some((t2) => t2.includes("private idea")), `the question list leaked: ${titles.join(", ")}`);
+
+    const hidden = await probe.GET(
+      new NextRequest(`http://127.0.0.1/api/research-os/probe?branch=${branch}&target=ra-private-${privateNode}`, {
+        headers: { authorization: `Bearer ${stranger.token}` },
+      }),
+    );
+    assert.equal(hidden.status, 404, "a private target is not a target");
+  });
+
+  await t.test("a stage write refuses a node the learner may not continue on", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const state = require("../src/app/api/research-os/state/route") as { POST: (req: NextRequest) => Promise<Response> };
+    const res = await state.POST(
+      new NextRequest("http://127.0.0.1/api/research-os/state", {
+        method: "POST",
+        headers: { authorization: `Bearer ${stranger.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ nodeId: privateNode, action: "open", sessionId: randomUUID() }),
+      }),
+    );
+    assert.equal(res.status, 404, `a private node answers 404: ${res.status}`);
+    const rows = sql(`select count(*) from graph.learner_node_state where learner_id = '${stranger.id}' and node_id = '${privateNode}'`);
+    assert.equal(rows.out, "0", "a refused write leaves no state row");
+  });
+
+  await t.test("the branch counts answer before identity and count the public graph", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const graph = require("../src/app/api/research-os/graph/route") as { GET: (req: NextRequest) => Promise<Response> };
+    const before = sql(`select count(*) from graph.nodes where branch = '${branch}' and visibility = 'public'`);
+    const res = await graph.GET(new NextRequest("http://127.0.0.1/api/research-os/graph?list=1"));
+    assert.equal(res.status, 200);
+    const body = (await res.json()) as { branches?: { id: string; nodes: number }[] };
+    const row = (body.branches || []).find((b) => b.id === branch);
+    assert.equal(row?.nodes, Number(before.out), `the count is the public graph, got ${row?.nodes} against ${before.out}`);
+  });
+
   await t.test("an access-store outage answers 503, never an empty result", async () => {
     // The grants read is what fails: revoking select on the table is the
     // outage a learner would see during one.

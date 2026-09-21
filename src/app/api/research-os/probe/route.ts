@@ -41,6 +41,7 @@ import { onProbeCheckResult } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 import { authorizeNode, authorizeNodes } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 
 export const runtime = "nodejs";
@@ -68,6 +69,14 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
+
+  // The questions and the target come out of this subgraph, so it carries
+  // the same filter every other graph read does: a node the learner may
+  // not see is neither a question nor a target (Bucket critic C19).
+  const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  ({ nodes, edges } = filtered);
+
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 
@@ -146,8 +155,9 @@ export async function POST(req: NextRequest) {
       if (prereqErr) return bad(503, "access_unavailable");
       prereqSummaries = prereqNodes || [];
     }
-    const denied = readablePrereqs.allowed.length < prereqIds.length - readablePrereqs.missing.length;
-    if (prereqSummaries.length === 0 && denied) return bad(409, "probe_grounding_unavailable");
+    // Withheld and missing answer the same way, so the reply says nothing
+    // about which it was (Bucket critic C17).
+    if (prereqSummaries.length === 0) return bad(409, "probe_grounding_unavailable");
   }
 
   const provider = selectProvider();

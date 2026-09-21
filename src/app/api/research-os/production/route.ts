@@ -145,6 +145,17 @@ export async function POST(req: NextRequest) {
   } catch {
     return bad(400, "bad_request");
   }
+  // A production names nodes, and naming one is reading it: without this a
+  // learner who knows a uuid could target a node they may not see and read
+  // its slug, title and kind back from the list (Bucket critic C14).
+  const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
+    (id): id is string => typeof id === "string" && id.length > 0,
+  );
+  if (namedNodes.length) {
+    const readable = await authorizeNodes(namedNodes, { id: learnerId }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length < namedNodes.length) return bad(404, "node_not_found");
+  }
   if (!body.id && !body.targetNodeId) return bad(400, "targetNodeId is required for a new production");
   if (body.status && body.status !== "draft" && body.status !== "submitted") {
     return bad(400, 'status must be "draft" or "submitted" (accept/return require a teacher, Phase 1)');
@@ -228,17 +239,6 @@ export async function POST(req: NextRequest) {
   };
   if (body.id) row.id = body.id;
 
-  // A production names nodes, and naming one is reading it: without this a
-  // learner who knows a uuid could target a node they may not see and read
-  // its slug, title and kind back from the list (Bucket critic C14).
-  const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
-    (id): id is string => typeof id === "string" && id.length > 0,
-  );
-  if (namedNodes.length) {
-    const readable = await authorizeNodes(namedNodes, { id: learnerId }, "view");
-    if (!readable.ok) return bad(503, "access_unavailable");
-    if (readable.allowed.length < namedNodes.length) return bad(404, "node_not_found");
-  }
 
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
   if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;

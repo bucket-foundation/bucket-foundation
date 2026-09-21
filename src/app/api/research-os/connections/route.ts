@@ -18,7 +18,13 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   try {
-    return NextResponse.json(await loadConnections(learnerId), NO_STORE);
+    const connections = await loadConnections(learnerId);
+    // An access-store failure is an outage: an empty bridge list would read
+    // as a learner with nothing connected.
+    if ("unavailable" in connections && connections.unavailable) {
+      return NextResponse.json({ error: "access_unavailable" }, { status: 503, ...NO_STORE });
+    }
+    return NextResponse.json(connections, NO_STORE);
   } catch {
     return bad(500, "read_failed");
   }
