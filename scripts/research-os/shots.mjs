@@ -61,6 +61,52 @@ async function open(page, url) {
   return res;
 }
 
+/**
+ * Scroll the whole page once, then return to the top.
+ *
+ * Anything revealed by an IntersectionObserver starts at opacity 0 and
+ * only becomes visible when it enters the viewport. A fullPage screenshot
+ * does not scroll, so those sections photograph as blank bands: the
+ * Research OS landing page came back with a thousand empty pixels under
+ * "Five States" and the capture still reported ok. Evidence that cannot
+ * show the page is worse than no evidence.
+ */
+async function revealAll(page) {
+  await page.evaluate(async () => {
+    const step = Math.floor(window.innerHeight * 0.8);
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 120));
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+    await new Promise((r) => setTimeout(r, 400));
+    window.scrollTo(0, 0);
+    await new Promise((r) => setTimeout(r, 200));
+  });
+  // The reveals are 0.6s to 0.7s transitions, so wait one out.
+  await page.waitForTimeout(900);
+}
+
+/**
+ * Anything still transparent after a full scroll is content a reader
+ * cannot see. A page that hides its own body behind a script is a finding,
+ * so the run says which elements and stops being silent about it.
+ */
+async function hiddenAfterReveal(page) {
+  return page.evaluate(() => {
+    const out = [];
+    for (const el of Array.from(document.querySelectorAll("main *"))) {
+      const style = window.getComputedStyle(el);
+      if (parseFloat(style.opacity) > 0.05) continue;
+      if (style.display === "none" || style.visibility === "hidden") continue;
+      const box = el.getBoundingClientRect();
+      if (box.width < 40 || box.height < 40) continue;
+      out.push(`${el.tagName.toLowerCase()}.${String(el.className || "").split(" ")[0]} ${Math.round(box.width)}x${Math.round(box.height)}`);
+    }
+    return out.slice(0, 8);
+  });
+}
+
 async function mail(path) {
   try {
     return await fetch(`${MAIL}${path}`);
@@ -135,8 +181,13 @@ try {
       const page = await context.newPage();
       await page.setViewportSize({ width, height });
       await open(page, `${BASE}${path}`);
+      await revealAll(page);
+      const stillHidden = await hiddenAfterReveal(page);
       const file = `${OUT}/${slug}-${name}.png`;
       await page.screenshot({ path: file, fullPage: true });
+      if (stillHidden.length) {
+        console.log(`  ${stillHidden.length} element(s) still transparent after a full scroll: ${stillHidden.join(", ")}`);
+      }
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
       const wide = scrollWidth > width + 1;
       if (wide) overflow += 1;
