@@ -24,7 +24,7 @@ Two rules keep the staging usable. An item cannot ship before what it rests on, 
 
 **MVP, open.** The truth memo and the claim-provenance schema under it; the truth level per node with the network analysis that names the load-bearing primes; the grade-tier reconciliation; imports 1 through 3, which is the data model, the upload, and the extraction into passages and tables; the research on human-AI-computer work; this roadmap; and the standing rule that every task shows its work.
 
-**Near-term.** Funding wave 1 in two rows, since a funder's answer depends on what it asks: the Tools Competition and DPG registration take an individual and run on the nearest live deadline, 2026-10-13, while Fast Forward and NLnet ask who the applicant is and wait on FD-8; both remaining patent slices, the first waiting on FD-1; the software atlas and the workbench design; the map layers and the canon-tag split; graph dedup; imports in search and sharing; the Awareness view, production placement, and roles as grants; first-hand verification; the local model tier; and the site copy, waiting on FD-4.
+**Near-term.** Funding wave 1 in two rows, since a funder's answer depends on what it asks: the Tools Competition, DPG registration, the Renaissance Philanthropy inquiry and the OSS credit programs take an individual, and the nearest live deadline among them is 2026-10-13, while NLnet asks who the applicant is and waits on FD-8, and Fast Forward's cycle closed on 2026-09-18; both remaining patent slices, the first waiting on FD-1; the software atlas and the workbench design; the map layers and the canon-tag split; graph dedup; imports in search and sharing; the Awareness view, production placement, and roles as grants; first-hand verification; the local model tier; and the site copy, waiting on FD-4.
 
 **Later.** The compute runner and everything on top of it, hosted and self-hosted datasets, claims into elements with invention disclosure, the research tools and engine inside the workspace, under-13 gates, and the game layer.
 
@@ -34,4 +34,4 @@ The page groups by stage, filters by stage or epic, and opens with what is ready
 
 ## What the page does not do yet
 
-It reads a list in code, so the founder's marks arrive through a session rather than a click. Recording a mark in the database, and showing the bead behind each row, come with `ros-frontend`'s next pass. The page is staff-only, on the same test the shell uses for the teaching nav.
+It reads a list in code, so the founder's marks arrive through a session. Recording a mark in the database, and showing the bead behind each row, come with `ros-frontend`'s next pass. The page is staff-only, on the same test the shell uses for the teaching nav.

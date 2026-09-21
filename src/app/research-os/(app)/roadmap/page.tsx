@@ -131,9 +131,12 @@ export default async function RoadmapPage({
     <Link
       key={href + label}
       href={href}
+      aria-pressed={active}
+      title={active ? "on, and another click clears it" : undefined}
       className={`${CHIP} min-h-[36px] ${active ? "bg-[color:var(--bone-2)]" : ""}`}
     >
       {label}
+      {active ? " ×" : ""}
     </Link>
   );
 
@@ -150,7 +153,9 @@ export default async function RoadmapPage({
           {filterLink("everything", "/research-os/roadmap", !stageFilter && !epicFilter)}
           {STAGES.map((s) =>
             filterLink(
-              `${STAGE_LABEL[s]} · ${countsByStage(ROADMAP.filter((i) => !epicFilter || i.epic === epicFilter))[s].open} open`,
+              stageFilter === s
+                ? STAGE_LABEL[s]
+                : `${STAGE_LABEL[s]} · ${countsByStage(ROADMAP.filter((i) => !epicFilter || i.epic === epicFilter))[s].open} open`,
               hrefWith({ stage: stageFilter === s ? null : s }),
               stageFilter === s,
             ),
@@ -209,10 +214,10 @@ export default async function RoadmapPage({
         return (
           <section key={stage} className="flex flex-col gap-3">
             <div>
-              <h2 className="text-[15px] small-caps tracking-[0.14em]">
-                {STAGE_LABEL[stage]}, {counts[stage].open} open and {counts[stage].shipped} shipped
-              </h2>
-              <p className="text-[13px] text-[color:var(--basalt-3)]">{STAGE_TEST[stage]}</p>
+              <h2 className="text-[15px] small-caps tracking-[0.14em]">{STAGE_LABEL[stage]}</h2>
+              <p className="text-[13px] text-[color:var(--basalt-3)]">
+                {counts[stage].open} open and {counts[stage].shipped} shipped. {STAGE_TEST[stage]}
+              </p>
             </div>
             <ul className="grid gap-3 md:grid-cols-2">
               {items.map((item) => (

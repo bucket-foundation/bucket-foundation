@@ -49,6 +49,15 @@ async function open(page, url) {
       `${url} answered ${status}. A staff-gated path needs SHOTS_EMAIL (${EMAIL}) on RESEARCH_OS_REVIEWER_EMAILS.`,
     );
   }
+  // A redirect to the sign-in page answers 200 at another path, so a
+  // screenshot of the wrong page would pass the status check alone.
+  const asked = new URL(url).pathname;
+  const landed = new URL(res.url()).pathname;
+  if (landed !== asked) {
+    throw new Error(
+      `${url} redirected to ${landed}. The session expired, or SHOTS_EMAIL (${EMAIL}) is not on RESEARCH_OS_REVIEWER_EMAILS.`,
+    );
+  }
   return res;
 }
 
