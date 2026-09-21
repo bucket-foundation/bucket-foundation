@@ -2,6 +2,32 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-workbench 0: the software atlas
+
+The software each science uses, open and closed, with its license, what it renders, its formats, and the path by which Research OS meets it, with directions for the workbench design.
+
+Date 2026-09-21. Branch `feat/ros-workbench-atlas`, worktree `.wt-ros-workbench-0`, draft PR #203 into `dev`, merging on hold. Founder direction, 2026-09-18: map the software each science and research area uses, open and closed, including rendering, even where Research OS will not build it.
+
+### Added
+
+- `learning/research-os/SOFTWARE-ATLAS.md`: 64 tools across fifteen fields, each with a first path and a fallback among browser, runner, import, and link, with sources checked on 2026-09-21 under each table and seven claims marked unverified. The Lean section reads the two Lake projects under `papers/` and designs a `lean-check` runner job. The suite section maps the forty `/research/tools` pages. Directions for the workbench closes the memo.
+- `services/research-tools/pyodide/baseline.py` and `check.mjs`: run the 25 suite tools whose imports ship in Pyodide 314.0.7 under Node and compare each to CPython. On 2026-09-21, 25 ran and 24 matched.
+
+### Edited
+
+- `learning/research-os/CHANGE-LEDGER.md`: this entry.
+
+### Removed
+
+None.
+
+### Verified
+
+- Both Lean projects build: the template in 2.0 s, the hypothesis-engine paper in 16.2 s with one `sorry` at `Bucket/Address.lean:57:8`; `lake env lean --json` reports it as `"kind":"hasSorry"`.
+- `python3 -m pytest tests` in `services/research-tools/`: 245 passed.
+- The gateway at `research-tools.agfarms.dev` timed out on `/health`, and the live proxy returned 504.
+- A correction within the run: the "founder GPU" label on three suite tools is a badge only, and all forty go through one gateway, two in synthetic mode.
+
 ## ros-patents 1: the research memo
 
 The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
