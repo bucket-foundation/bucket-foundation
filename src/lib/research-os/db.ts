@@ -668,40 +668,56 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
 }
 
 /** Append one evidence event and, if `nextStage` differs, raise `stage`. Upserts the row if absent. */
+/** What the append left behind, for a caller that has to report durability. */
+export interface EvidenceAppend {
+  /** The stage the row held when the append locked it. */
+  priorStage: Stage | null;
+  /** The stage the row holds now. */
+  stage: Stage;
+  /** How many events the log holds after this one. */
+  eventCount: number;
+}
+
+/**
+ * Appends one evidence event to a learner's node state inside the
+ * graph.append_evidence transaction (ros-ai-access, migration
+ * 20260921010000). The function locks or creates the row, so two writers on
+ * the same learner and node keep both events; the read-then-upsert this
+ * replaced let the second writer erase the first.
+ *
+ * Throws when the append fails. A caller that reports a durable result to
+ * the person in front of it has to let that throw reach them.
+ */
 export async function recordEvidence(
   learnerId: string,
   nodeId: string,
   nextStage: string,
   event: Record<string, unknown>,
-): Promise<void> {
+): Promise<EvidenceAppend> {
   const svc = graphService();
-  const { data: existing } = await svc
-    .from("learner_node_state")
-    .select("stage,evidence")
-    .eq("learner_id", learnerId)
-    .eq("node_id", nodeId)
-    .maybeSingle();
-
-  const priorEvidence = (existing?.evidence as unknown[] | null) ?? [];
-  const evidence = [...priorEvidence, event];
-  const stage = nextStage || existing?.stage || "access";
-
-  const { error } = await svc
-    .from("learner_node_state")
-    .upsert(
-      { learner_id: learnerId, node_id: nodeId, stage, evidence, updated_at: new Date().toISOString() },
-      { onConflict: "learner_id,node_id" },
-    );
-  if (error) throw new Error(`recordEvidence: upsert failed: ${error.message}`);
+  const { data, error } = await svc.rpc("append_evidence", {
+    p_learner: learnerId,
+    p_node: nodeId,
+    p_stage: nextStage || "",
+    p_event: event,
+  });
+  if (error) throw new Error(`recordEvidence: append failed: ${error.message}`);
+  const row = (data || {}) as { prior_stage?: string | null; stage?: string; event_count?: number };
+  const result: EvidenceAppend = {
+    priorStage: (row.prior_stage as Stage | null) ?? null,
+    stage: (row.stage as Stage) ?? ((nextStage || "access") as Stage),
+    eventCount: row.event_count ?? 0,
+  };
 
   // ros-33: the game layer reads every recorded transition here, so a level
   // rise counts once wherever it was recorded. Awarding never fails the
   // evidence write.
   try {
-    await awardProgress(learnerId, nodeId, (existing?.stage as Stage | undefined) ?? null, stage as Stage);
+    await awardProgress(learnerId, nodeId, result.priorStage, result.stage);
   } catch {
     /* the profile row is missing or the columns are not migrated yet */
   }
+  return result;
 }
 
 // ---------------------------------------------------------------------------
