@@ -16,7 +16,10 @@ HOOKS="$(git config --get core.hooksPath || true)"
 SHARED=""
 if [[ -z "$HOOKS" ]]; then
   HOOKS="$(git rev-parse --git-common-dir)/hooks"
-elif [[ "${HOOKS/#\~/$HOME}" != "$TOP"/* ]]; then
+fi
+HOOKS="${HOOKS/#\~/$HOME}"
+[[ "$HOOKS" = /* ]] || HOOKS="$TOP/$HOOKS"
+if [[ "$HOOKS" != "$TOP"/* ]]; then
   SHARED="yes"
 fi
 # A shared hooks directory serves every repository on the machine, so an
@@ -27,8 +30,6 @@ if [[ -n "$SHARED" && -z "${AGF_INSTALL_HOOKS:-}" && -n "${npm_lifecycle_event:-
   echo "To install the pre-push check there: AGF_INSTALL_HOOKS=1 bash scripts/install-git-hooks.sh"
   exit 0
 fi
-HOOKS="${HOOKS/#\~/$HOME}"
-[[ "$HOOKS" = /* ]] || HOOKS="$TOP/$HOOKS"
 mkdir -p "$HOOKS"
 
 TARGET="$HOOKS/pre-push"

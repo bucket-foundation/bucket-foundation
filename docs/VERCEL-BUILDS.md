@@ -41,9 +41,11 @@ Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful dep
 
 ## Changes on 2026-09-21
 
-The gate fell open on `dev` and `main` after every skip it performed. Vercel stops supplying `VERCEL_GIT_PREVIOUS_SHA` once the branch's last deployment was canceled, which a skip produces, so the base arrived empty and the next merge built whatever it touched. Deployment `dpl_GRCQFCJkedFQHWkKekvsvtYt2rtg` on `dev` at `884156aeb`, a docs-only merge, logged `prev=<empty>` and ran a full build; `dpl_HkRXdMA7pRyu2iB5K5YJekXRzd9c` before it skipped and canceled. The gate now falls back to the pushed commit's first parent on those branches, and only when the commit is a merge or a squash merge, since one parent covers one commit. Four cases in `scripts/test-vercel-ignore-build.sh` hold both halves, and the old suite asserted the fail-open as correct.
+The gate fell open on `dev` and `main` after every skip it performed. Vercel stops supplying `VERCEL_GIT_PREVIOUS_SHA` once the branch's last deployment was canceled, which a skip produces, so the base arrived empty and the next merge built whatever it touched. Deployment `dpl_GRCQFCJkedFQHWkKekvsvtYt2rtg` on `dev` at `884156aeb`, a docs-only merge, logged `prev=<empty>` and ran a full build; `dpl_HkRXdMA7pRyu2iB5K5YJekXRzd9c` before it skipped and canceled. The gate now falls back to the pushed commit's first parent on those branches, and only when the commit is a merge or a squash merge, since one parent covers one commit. Six cases in `scripts/test-vercel-ignore-build.sh` hold both halves and the refusal, and the old suite asserted the fail-open as correct.
 
-The pre-push check also ran only when the gate answered build, so a branch whose pushes all carried `[skip ci]` reached a pull request with no lint and no type check. It now runs both whenever a push carries code.
+The pre-push check also ran only when the gate answered build, so a branch whose pushes all carried `[skip ci]` reached a pull request with no lint and no type check. It now runs both whenever a push carries code, and on `dev` and `main` it passes the remote's current tip as the base, which is what the push adds to; the gate's first-parent fallback is left for a first push of those branches.
+
+The squash test reads the subject for a trailing `(#123)`, so a plain commit written that way is taken for a merge. A push of several ordinary commits to `dev` or `main` builds.
 
 ## Changes on 2026-09-18
 

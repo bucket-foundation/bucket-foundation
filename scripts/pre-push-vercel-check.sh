@@ -13,9 +13,10 @@
 # the commit being pushed, and a base. On a feature branch the base is its
 # merge base with origin/dev, so every site change the branch carries counts:
 # Vercel compares with the last successful deployment, which after a failed
-# build lies further back than the remote's tip. On dev and main no base is
-# passed, and the gate falls back to the pushed commit's first parent when
-# that commit is a merge or a squash merge.
+# build lies further back than the remote's tip. On dev and main the base is
+# the remote's current tip, which is what the push adds to; on a first push
+# of those branches there is none, and the gate falls back to the pushed
+# commit's first parent when that commit is a merge or a squash merge.
 #
 # Lint and the type check read the working tree, so they vouch for the
 # pushed commit only when HEAD is that commit and no file they read differs

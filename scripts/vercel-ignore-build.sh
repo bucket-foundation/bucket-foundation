@@ -27,8 +27,11 @@
 # successful deployment yet. On dev or main with no previous deployment sha,
 # which Vercel stops sending once the branch's last deployment was canceled,
 # the base is the pushed commit's first parent, and only when that commit is
-# a merge or a squash merge; anything else on those branches builds. Vercel's build clone holds the pushed commit alone and has
-# no remote (measured 2026-09-18, see docs/VERCEL-BUILDS.md), so the script
+# a merge or a squash merge; anything else on those branches builds. The
+# squash test reads the subject for a trailing "(#123)", so an ordinary
+# commit written that way is taken at its word. Vercel's build clone holds
+# the pushed commit alone and has no remote (measured 2026-09-18, see
+# docs/VERCEL-BUILDS.md), so the script
 # fetches the trees of the base and the pushed commit at depth 1 from the
 # public repository into a scratch repository when the clone lacks the base.
 #
