@@ -17,7 +17,7 @@ alter table graph.nodes add constraint nodes_kind_check check (kind in (
 
 update graph.nodes
    set kind = 'excerpt'
- where provenance->>'type' = 'canon_claim'
+ where provenance->>'type' in ('canon_claim', 'source_excerpt')
    and kind <> 'excerpt';
 
 -- graph_edges_from_to_kind_uidx keeps one edge per (from, to, kind): where an
@@ -38,3 +38,10 @@ update graph.edges e
  where e.from_id = n.id
    and n.kind = 'excerpt'
    and e.kind = 'derives_from';
+
+-- The provenance type names where a row came from; `canon_claim` read as a
+-- canon claim to anything that filtered on it, so it becomes
+-- `source_excerpt`. Last, since the steps above find the rows by it.
+update graph.nodes
+   set provenance = jsonb_set(provenance, '{type}', '"source_excerpt"')
+ where provenance->>'type' = 'canon_claim';

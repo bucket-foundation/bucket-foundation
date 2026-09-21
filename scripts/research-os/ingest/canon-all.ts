@@ -110,7 +110,7 @@ function main() {
       branch: c.branch,
       summary: c.excerpt.slice(0, 600) || null,
       labels: { en: { title } },
-      provenance: { type: "canon_claim", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
+      provenance: { type: "source_excerpt", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
     });
     counts.claims++;
     edges.push({ fromSlug: slug, toSlug: cs, kind: "example_of", confidence: 1, confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "claim_in_concept" } });

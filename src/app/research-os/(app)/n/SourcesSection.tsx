@@ -20,7 +20,8 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
   const [error, setError] = useState<string | null>(null);
   const p = data.node.provenance ?? {};
   const line =
-    p.type === "canon_claim"
+    // `canon_claim` is the type before migration 20260921050000 renamed it.
+    p.type === "source_excerpt" || p.type === "canon_claim"
       ? [typeof p.video === "string" ? `From "${p.video}"` : null, typeof p.timestamp === "string" ? `at ${p.timestamp}` : null, typeof p.concept === "string" ? `concept: ${String(p.concept).replace(/-/g, " ")}` : null].filter(Boolean).join(" · ")
       : p.type === "canon_figure"
         ? [typeof p.lifespan === "string" ? p.lifespan : null, Array.isArray(p.works) ? `${(p.works as { title: string }[]).length} primary works` : null].filter(Boolean).join(" · ")
