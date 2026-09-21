@@ -10,7 +10,7 @@ Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, P
 
 ### Edited
 
-- `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; and what the memo settles.
+- `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
 
 ### Added
 
