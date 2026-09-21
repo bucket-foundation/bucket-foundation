@@ -213,12 +213,17 @@ export async function overrideLevel(
   };
   if (!applied.ok) return { ok: false, error: applied.error === "same_level" ? "same_level" : "write_failed" };
 
-  // The append's own award rule runs here, since the RPC wrote the row.
-  if (applied.awards === true && applied.stage) {
+  // The append's award rule runs here, since the RPC wrote the row: the
+  // teacher's action keeps the learner's activity current, and XP follows
+  // the node's high-water mark, which a demotion does not move.
+  if (applied.stage) {
     try {
-      await awardProgress(learnerId, nodeId, applied.award_from ?? null, applied.stage);
-    } catch {
-      /* the profile row is missing or the columns are not migrated yet */
+      await awardProgress(learnerId, nodeId, applied.award_from ?? null, applied.stage, { xp: applied.awards === true });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      if (!message.includes("update failed")) {
+        console.warn(`[research-os] override award failed for learner ${learnerId} node ${nodeId}: ${message}`);
+      }
     }
   }
   return { ok: true, value: { fromStage: applied.prior_stage ?? null, toStage: (applied.stage ?? toStage) as Stage } };

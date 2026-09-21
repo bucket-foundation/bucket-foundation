@@ -222,6 +222,70 @@ test("the writers of learner_node_state are the ones we know about", { skip }, (
   };
   walk(path.join(__dirname, "..", "src"));
   assert.deepEqual(offenders, [], `these write learner_node_state directly: ${offenders.join(", ")}`);
+
+  // The scan above is advisory: a table name held in a variable or a write
+  // from outside src/ would pass it. The grant is what enforces the
+  // invariant, so it is asserted here.
+  const writes = sql(`
+    select string_agg(priv, ',' order by priv) from (
+      select unnest(array['INSERT','UPDATE','DELETE']) as priv
+    ) p
+    where has_table_privilege('service_role', 'graph.learner_node_state', p.priv)
+  `);
+  assert.equal(writes.out, "", `service_role can still write the table directly: ${writes.out}`);
+
+  const reads = sql(`select has_table_privilege('service_role', 'graph.learner_node_state', 'SELECT')`);
+  assert.equal(reads.out, "t", "service_role keeps its reads");
+
+  const definers = sql(`
+    select string_agg(p.proname, ',' order by p.proname)
+    from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'graph' and p.proname in ('append_evidence','override_level','privacy_delete_learner')
+      and p.prosecdef
+  `);
+  assert.equal(
+    definers.out,
+    "append_evidence,override_level,privacy_delete_learner",
+    `every writer runs as its definer: ${definers.out}`,
+  );
+});
+
+test("a same-stage event keeps a streak alive and awards nothing", { skip }, async (t) => {
+  const learner = randomUUID();
+  const node = randomUUID();
+
+  const made = sql(`
+    insert into auth.users (id, instance_id, aud, role, email)
+      values ('${learner}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'streak-${learner}@bucket.test');
+    insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
+      values ('${node}', 'streak-fixture-${node}', 'Streak fixture', 'concept', 10, '01-mathematics', 'fixture');
+    insert into graph.learner_profiles (learner_id, xp, streak_days, last_active_day)
+      values ('${learner}', 0, 3, '2020-01-01')
+      on conflict (learner_id) do update set xp = 0, streak_days = 3, last_active_day = '2020-01-01', badges = '[]'::jsonb;
+    select graph.append_evidence('${learner}', '${node}', 'awareness', '{"kind":"open"}'::jsonb);
+    update graph.learner_profiles set xp = 0, streak_days = 3, last_active_day = '2020-01-01' where learner_id = '${learner}';
+    select 'made';
+  `);
+  assert.equal(made.status, 0, made.out);
+
+  t.after(() => {
+    sql(`delete from graph.learner_node_state where learner_id = '${learner}';
+         delete from graph.learner_profiles where learner_id = '${learner}';
+         delete from graph.nodes where id = '${node}';
+         delete from auth.users where id = '${learner}';`);
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { recordEvidence } = require("../src/lib/research-os/db") as typeof import("../src/lib/research-os/db");
+  const again = await recordEvidence(learner, node, "awareness", { kind: "check", at: new Date().toISOString() });
+  assert.equal(again.awards, false, "a stage already credited awards nothing");
+
+  const profile = sql(`select xp || '|' || streak_days || '|' || coalesce(last_active_day::text, 'null')
+                       from graph.learner_profiles where learner_id = '${learner}'`);
+  const [xp, streak, day] = profile.out.split("|");
+  assert.equal(xp, "0", `no XP for a stage already credited, got ${xp}`);
+  assert.equal(streak, "1", `the streak restarts on a new day, got ${streak}`);
+  assert.notEqual(day, "2020-01-01", `the day the learner was last active moves, got ${day}`);
 });
 
 test("a demote and a re-promote award no XP twice", { skip }, async (t) => {

@@ -740,6 +740,7 @@ export async function recordEvidence(
     created?: boolean;
     award_from?: string | null;
     awards?: boolean;
+    deleted?: boolean;
     event_count?: number;
   };
   let last: EvidenceAppendError | null = null;
@@ -770,6 +771,13 @@ export async function recordEvidence(
   }
   if (last) throw last;
 
+  if (row?.deleted === true) {
+    throw new EvidenceAppendError(
+      `recordEvidence: learner ${learnerId} was deleted while the event was being written`,
+      "LEARNER_DELETED",
+    );
+  }
+
   const result: EvidenceAppend = {
     priorStage: (row?.prior_stage as Stage | null) ?? null,
     stage: (row?.stage as Stage) ?? ((nextStage || "access") as Stage),
@@ -779,16 +787,19 @@ export async function recordEvidence(
     eventCount: row?.event_count ?? 0,
   };
 
-  // ros-33: the game layer reads every recorded transition here, so a level
-  // rise counts once wherever it was recorded. The award runs from the
-  // node's high-water mark, so a teacher demotion and the re-promotion that
-  // follows it award nothing the learner was already credited for.
-  // Awarding never fails the evidence write.
-  if (result.awards) {
-    try {
-      await awardProgress(learnerId, nodeId, result.awardFrom, result.stage);
-    } catch {
-      /* the profile row is missing or the columns are not migrated yet */
+  // ros-33: the game layer reads every recorded transition here. Activity
+  // follows every event, so a check or a quote keeps a streak alive. XP and
+  // badges follow the node's high-water mark, so a teacher demotion and the
+  // re-climb after it award nothing already credited. Awarding never fails
+  // the evidence write.
+  try {
+    await awardProgress(learnerId, nodeId, result.awardFrom, result.stage, { xp: result.awards });
+  } catch (err) {
+    // A missing profile row is ordinary. Anything else loses a learner's
+    // XP or streak quietly, so it says so.
+    const message = err instanceof Error ? err.message : String(err);
+    if (!message.includes("update failed")) {
+      console.warn(`[research-os] awardProgress failed for learner ${learnerId} node ${nodeId}: ${message}`);
     }
   }
   return result;
@@ -818,15 +829,25 @@ export async function loadGame(learnerId: string): Promise<GameState | null> {
  * is lost, which is the same shape the evidence append itself fixed one
  * layer down (Bucket critic ROS194-14).
  */
-export async function awardProgress(learnerId: string, nodeId: string, from: Stage | null, to: Stage): Promise<void> {
+export async function awardProgress(
+  learnerId: string,
+  nodeId: string,
+  from: Stage | null,
+  to: Stage,
+  options: { xp?: boolean } = {},
+): Promise<void> {
+  const withXp = options.xp !== false;
   for (let attempt = 0; attempt < 4; attempt += 1) {
     const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
-    const next = applyTransition(current, nodeId, from, to);
+    const moved = applyTransition(current, nodeId, from, to);
+    // An event that credits nothing still says the learner was here today.
+    const next = withXp ? moved : { ...moved, xp: current.xp, badges: current.badges };
     const { data, error } = await graphService()
       .from("learner_profiles")
       .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
       .eq("learner_id", learnerId)
       .eq("xp", current.xp)
+      .eq("streak_days", current.streakDays)
       .select("learner_id");
     if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
     if ((data || []).length > 0) return;

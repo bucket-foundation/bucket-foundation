@@ -21,7 +21,27 @@
 -- mark did not move. Existing rows start at the stage they hold, so no past
 -- award repeats.
 alter table graph.learner_node_state add column if not exists awarded_stage text;
-update graph.learner_node_state set awarded_stage = stage where awarded_stage is null;
+
+-- A row demoted by a teacher before this migration sits below the stage it
+-- was credited for, so the mark takes the higher of the current stage and
+-- the highest stage any override moved it down from.
+update graph.learner_node_state s
+   set awarded_stage = (
+     select stage_by_rank.stage
+     from (
+       select st as stage, graph.stage_rank(st) as rank
+       from unnest(array[
+         s.stage,
+         coalesce((select o.from_stage from graph.level_overrides o
+                    where o.learner_id = s.learner_id and o.node_id = s.node_id
+                      and o.from_stage is not null
+                    order by graph.stage_rank(o.from_stage) desc limit 1), s.stage)
+       ]) as st
+     ) stage_by_rank
+     order by stage_by_rank.rank desc
+     limit 1
+   )
+ where awarded_stage is null;
 
 create or replace function graph.stage_rank(p_stage text)
 returns integer
@@ -47,6 +67,8 @@ create or replace function graph.append_evidence(
 )
 returns jsonb
 language plpgsql
+security definer
+set search_path = graph, pg_catalog, pg_temp
 as $$
 declare
   v_prior text;
@@ -84,12 +106,14 @@ begin
   -- remove the row between the insert and the lock, so the pair runs twice
   -- before giving up.
   for v_attempt in 1..2 loop
+    -- awarded_stage stays null until something is credited, so a first
+    -- touch that lands on access is still a first award.
     insert into graph.learner_node_state (learner_id, node_id, stage, evidence, awarded_stage)
-    values (p_learner, p_node, 'access', '[]'::jsonb, 'access')
+    values (p_learner, p_node, 'access', '[]'::jsonb, null)
     on conflict (learner_id, node_id) do nothing;
     if found then v_created := true; end if;
 
-    select stage, coalesce(awarded_stage, stage) into v_prior, v_awarded
+    select stage, awarded_stage into v_prior, v_awarded
     from graph.learner_node_state
     where learner_id = p_learner and node_id = p_node
     for update;
@@ -98,7 +122,9 @@ begin
   end loop;
 
   if v_prior is null then
-    raise exception 'append_evidence: no state row for learner % node %', p_learner, p_node;
+    -- A privacy delete removed the learner between the insert and the lock,
+    -- twice. The caller is told what happened instead of reading a raise.
+    return jsonb_build_object('deleted', true, 'stage', null, 'event_count', 0);
   end if;
 
   v_stage := coalesce(v_asked, v_prior);
@@ -108,8 +134,10 @@ begin
 
   -- XP is awarded on the high-water mark, so the award runs from the
   -- highest stage already credited. A stage at or below it awards nothing.
-  if graph.stage_rank(v_stage) > graph.stage_rank(v_awarded) then
-    v_award_from := case when v_created and v_awarded = 'access' then null else v_awarded end;
+  -- A null mark means nothing has been credited for this node yet, which
+  -- ranks below every stage.
+  if graph.stage_rank(v_stage) > graph.stage_rank(coalesce(v_awarded, '')) then
+    v_award_from := v_awarded;
     v_awarded := v_stage;
   else
     v_award_from := v_stage;
@@ -128,7 +156,7 @@ begin
     'stage', v_stage,
     'created', v_created,
     'award_from', case when v_award_from is null then null else to_jsonb(v_award_from) end,
-    'awards', graph.stage_rank(v_stage) > graph.stage_rank(coalesce(v_award_from, '')),
+    'awards', v_award_from is distinct from v_stage,
     'event_count', v_count
   );
 end;
@@ -157,6 +185,8 @@ create or replace function graph.override_level(
 )
 returns jsonb
 language plpgsql
+security definer
+set search_path = graph, pg_catalog, pg_temp
 as $$
 declare
   v_append jsonb;
@@ -169,6 +199,11 @@ begin
   if graph.stage_rank(p_to_stage) < 0 then
     raise exception 'override_level: unknown stage %', p_to_stage;
   end if;
+
+  -- A row that does not exist yet cannot be locked, so two overrides on an
+  -- untouched node would both read a null prior stage and both write an
+  -- audit row. The advisory lock exists whether the row does or not.
+  perform pg_advisory_xact_lock(hashtextextended(p_learner::text || ':' || p_node::text, 0));
 
   select stage into v_prior
   from graph.learner_node_state
@@ -209,3 +244,20 @@ $$;
 
 revoke all on function graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz) from public;
 grant execute on function graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz) to service_role;
+
+
+-- The two functions above own every application write of the state row, and
+-- graph.privacy_delete_learner owns the deletion. Both are security
+-- definers, so the service role keeps its reads and loses the writes it no
+-- longer performs. This is the invariant the receipts in the next slice
+-- rest on, enforced where a test cannot be talked out of it.
+revoke insert, update, delete on graph.learner_node_state from service_role;
+
+-- Rollback for this migration, in order:
+--   revoke: grant insert, update, delete on graph.learner_node_state to service_role;
+--   drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
+--   drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
+--   drop function if exists graph.stage_rank(text);
+--   alter table graph.learner_node_state drop column if exists awarded_stage;
+-- A build carrying src/lib/research-os/db.ts's recordEvidence needs the
+-- functions, so the rollback goes with a revert of that build.

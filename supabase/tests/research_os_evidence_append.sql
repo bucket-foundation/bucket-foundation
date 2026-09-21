@@ -70,6 +70,95 @@ begin
     'the last event is last';
 end $$;
 
+-- The award mark: what a node has already been credited for.
+do $$
+declare
+  l uuid; n uuid; r jsonb;
+begin
+  select learner, node into l, n from t_ids;
+  delete from graph.learner_node_state where learner_id = l and node_id = n;
+
+  -- A first touch that lands on access is still a first award.
+  r := graph.append_evidence(l, n, 'access', '{"kind":"open","at":"a1"}'::jsonb);
+  assert r->'award_from' = 'null'::jsonb, 'a first touch awards from nothing: ' || r::text;
+  assert (r->>'awards')::boolean, 'a first touch at access awards: ' || r::text;
+  assert (select awarded_stage from graph.learner_node_state where learner_id = l and node_id = n) = 'access',
+    'the mark moves to access';
+
+  -- A climb awards the step above the mark.
+  r := graph.append_evidence(l, n, 'understanding', '{"kind":"check","at":"a2"}'::jsonb);
+  assert r->>'award_from' = 'access', 'a climb awards from the mark: ' || r::text;
+  assert (r->>'awards')::boolean, 'a climb awards: ' || r::text;
+
+  -- An event at or below the mark awards nothing.
+  r := graph.append_evidence(l, n, 'awareness', '{"kind":"quote","at":"a3"}'::jsonb);
+  assert not (r->>'awards')::boolean, 'a stage below the mark awards nothing: ' || r::text;
+  r := graph.append_evidence(l, n, 'understanding', '{"kind":"check","at":"a4"}'::jsonb);
+  assert not (r->>'awards')::boolean, 'a stage already credited awards nothing: ' || r::text;
+
+  -- A demotion by any caller leaves the mark where it was, so the re-climb
+  -- to that stage awards nothing.
+  r := graph.append_evidence(l, n, 'access', '{"kind":"override","at":"a5"}'::jsonb, false);
+  assert r->>'stage' = 'access', 'the demotion lands: ' || r::text;
+  assert (select awarded_stage from graph.learner_node_state where learner_id = l and node_id = n) = 'understanding',
+    'the mark survives a demotion';
+  r := graph.append_evidence(l, n, 'understanding', '{"kind":"check","at":"a6"}'::jsonb);
+  assert not (r->>'awards')::boolean, 'the re-climb awards nothing: ' || r::text;
+
+  -- A row the migration backfilled carries its own stage as the mark, so
+  -- the next event at that stage awards nothing.
+  update graph.learner_node_state set stage = 'awareness', awarded_stage = 'awareness'
+   where learner_id = l and node_id = n;
+  r := graph.append_evidence(l, n, 'awareness', '{"kind":"open","at":"a7"}'::jsonb);
+  assert not (r->>'awards')::boolean, 'a backfilled row awards nothing at its own stage: ' || r::text;
+
+  -- A mark that is absent at runtime means nothing has been credited, which
+  -- is what a row created after this migration starts with.
+  update graph.learner_node_state set awarded_stage = null where learner_id = l and node_id = n;
+  r := graph.append_evidence(l, n, 'awareness', '{"kind":"open","at":"a8"}'::jsonb);
+  assert (r->>'awards')::boolean, 'an uncredited row awards: ' || r::text;
+end $$;
+
+-- An override writes its three artifacts together, or none of them.
+do $$
+declare
+  l uuid; n uuid; t uuid; c uuid; r jsonb; caught boolean;
+begin
+  select learner, node into l, n from t_ids;
+  insert into auth.users (id, instance_id, aud, role, email)
+  values (gen_random_uuid(), '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
+          'override-sql-' || gen_random_uuid() || '@bucket.test')
+  returning id into t;
+  insert into graph.classes (id, name, reviewer_email, created_by)
+  values (gen_random_uuid(), 'Override SQL fixture', 'override-sql@bucket.test', t)
+  returning id into c;
+
+  delete from graph.learner_node_state where learner_id = l and node_id = n;
+  perform graph.append_evidence(l, n, 'production', '{"kind":"production_submitted"}'::jsonb);
+
+  r := graph.override_level(l, n, t, c, 'awareness', 'returned for revision');
+  assert (r->>'ok')::boolean, 'the override succeeds: ' || r::text;
+  assert r->>'prior_stage' = 'production', 'the override reports the stage it locked: ' || r::text;
+  assert (select stage from graph.learner_node_state where learner_id = l and node_id = n) = 'awareness',
+    'the override lands on the state row';
+  assert (select count(*) from graph.level_overrides where learner_id = l and node_id = n) = 1,
+    'the override writes one audit row';
+
+  -- The same level twice writes nothing.
+  r := graph.override_level(l, n, t, c, 'awareness', 'again');
+  assert not (r->>'ok')::boolean and r->>'error' = 'same_level', 'a no-op override is refused: ' || r::text;
+  assert (select count(*) from graph.level_overrides where learner_id = l and node_id = n) = 1,
+    'the refusal writes no audit row';
+
+  -- An unknown class takes the whole transaction with it.
+  caught := false;
+  begin
+    perform graph.override_level(l, n, t, gen_random_uuid(), 'understanding', 'no such class');
+  exception when others then caught := true;
+  end;
+  assert caught, 'an unknown class refuses the override';
+end $$;
+
 -- Bad input is refused rather than written.
 do $$
 declare
@@ -98,7 +187,8 @@ begin
   end;
   assert caught, 'a missing learner is refused';
 
-  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = 8,
+  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n)
+         = (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n),
     'a refused call writes nothing';
 end $$;
 
