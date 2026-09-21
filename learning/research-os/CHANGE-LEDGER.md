@@ -28,6 +28,10 @@ None.
 - The gateway at `research-tools.agfarms.dev` timed out on `/health`, and the live proxy returned 504.
 - A correction within the run: the "founder GPU" label on three suite tools is a badge only, and all forty go through one gateway, two in synthetic mode.
 
+### Review
+
+Round 1 at `dc17e1501`, run by bkt-nuc in session at the founder's direction to stop spending tokens on subagents, so it is a review by the coordinating session and no longer independent. It verified the Lean section against the repository (six workflows, none running Lake; fifteen theorems in the README table; both pins at v4.33.1; v4.34.0 of 2026-09-14 shipping desktop archives only), the suite map (39 clients on `useToolRun`, LabBrain by hand; five HTML reports in a sandboxed iframe; the publish call commented out), the licenses and latest releases of sixteen viewers and runtimes and five browser ports through the GitHub API and the npm registry, citeproc-js's license file, and Gaussian's price list. Every checked claim holds. It found three Lows, fixed in the round 1 commit: the surface debt was recorded in the PR body alone, the Lean WebAssembly port's last push was missing, and the additions left out went unstated. The round scores 9.5.
+
 ## ros-patents 1: the research memo
 
 The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
