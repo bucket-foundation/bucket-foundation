@@ -10,7 +10,7 @@ Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #19
 
 ### Added
 
-- `src/lib/research-os/roadmap.ts`: the staged queue as data, 41 items with stage, status, cost in loop ticks, dependencies, the decisions that block them, and what each unlocks, plus `readyNow()`, `decisionsFor()` and `roadmapProblems()`.
+- `src/lib/research-os/roadmap.ts`: the staged queue as data, 41 items with stage, status, cost in loop passes, dependencies, the decisions that block them, and what each unlocks, plus `readyNow()`, `decisionsFor()` and `roadmapProblems()`.
 - `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface for staff, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself.
 - `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, reporting horizontal overflow, for the standing rule that each task shows its work.
 - `docs/FOUNDER-DECISIONS.md`: the eight open decisions that need the founder, each with what it blocks and what the loop does while it waits.

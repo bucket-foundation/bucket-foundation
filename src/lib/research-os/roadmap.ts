@@ -222,12 +222,22 @@ export const ROADMAP: RoadmapItem[] = [
   {
     id: "ros-frontend",
     epic: "product",
-    title: "Standing rule: every task shows its work inside Research OS at both widths",
+    title: "The gate: a task merges when its result is usable inside Research OS at 1280 and 390",
     stage: "mvp",
     status: "open",
     cost: "s",
     dependsOn: [],
     unlocks: "Results people can use without reading a memo",
+  },
+  {
+    id: "ros-frontend 1",
+    epic: "product",
+    title: "The surfaces four earlier tasks owe: the prime report, the patents design, build health, and the engine host",
+    stage: "mvp",
+    status: "open",
+    cost: "m",
+    dependsOn: [],
+    unlocks: "The work of 2026-09-18 and 2026-09-19 becomes readable where people work",
   },
 
   // ---- near-term -------------------------------------------------------
@@ -397,13 +407,13 @@ export const ROADMAP: RoadmapItem[] = [
   {
     id: "ros-09c",
     epic: "funding",
-    title: "The targets that ask who the applicant is: Cloudflare Project Galileo, Vercel for Startups, and Fast Forward's next cycle",
+    title: "The targets that ask who the applicant is: Cloudflare Project Galileo, which asks for a nonprofit, Vercel for Startups, whose eligibility is unstated, and Fast Forward's next cycle",
     stage: "near",
     status: "open",
     cost: "m",
     dependsOn: [],
     blockedBy: ["FD-8"],
-    unlocks: "The funders and credit programs that ask for a nonprofit",
+    unlocks: "The funders and credit programs whose answer turns on the entity",
   },
 
   // ---- later -----------------------------------------------------------

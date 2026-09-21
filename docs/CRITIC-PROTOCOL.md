@@ -44,4 +44,10 @@ Verification ledger: what this round verified by running or fetching, and what i
 
 ## The loop's side
 
-The loop records each round's score and findings in the PR body, fixes everything above Low, and runs the next round with the ledger carried forward. A task merges on a 9 or higher. A task that reaches three rounds without a 9 gets its scope cut rather than its standard lowered.
+The loop records each round's score and findings in the PR body before it starts the next round, fixes everything above Low, and carries the ledger forward with each entry keyed to the commit it was verified at. A task merges on a 9 or higher. A task that reaches three rounds without a 9 gets its scope cut and keeps its standard.
+
+The PR body holds one table of rounds: the round, its score, its verdict, the findings above Low, and the commit that fixed them. A round that starts before the previous one is written up is a round without a baseline, which is how a rewritten artifact keeps a verification it never earned.
+
+## The surface gate
+
+A task merges when its result is usable inside Research OS at 1280 and 390, which is the founder's standing rule of 2026-09-18. A task whose output is a memo or a script owes a surface, and the loop records that debt as a roadmap row in the same pass. `ros-frontend 1` carries the debt from the four tasks that shipped before this rule had teeth.

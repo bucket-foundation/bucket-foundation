@@ -20,6 +20,11 @@
 # pushed commit only when HEAD is that commit and no file they read differs
 # from it. Otherwise the push is refused with the reason.
 #
+# A push that Vercel would skip still gets the check when it carries code
+# lint or the type checker reads. [skip ci] holds back a build; it says
+# nothing about whether the code compiles, and a branch whose last push
+# carried [skip ci] reaches a pull request unchecked otherwise.
+#
 # Bypass: AGF_PREPUSH_SKIP=1 git push ...
 
 set -uo pipefail
@@ -68,6 +73,16 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     fi
     needs_check="yes"
     pushed_shas="$pushed_shas $local_sha"
+  else
+    # The gate skips the build. Run the check anyway when the push carries
+    # code the linter and the type checker read.
+    code="$(git diff --name-only "${base:-$local_sha^}" "$local_sha" -- \
+      '*.ts' '*.tsx' '*.js' '*.jsx' '*.mjs' '*.cjs' 'package.json' 2>/dev/null | head -1)"
+    if [[ -n "$code" ]]; then
+      echo "[pre-push] $branch: Vercel would skip this push, and it carries code ($code)"
+      needs_check="yes"
+      pushed_shas="$pushed_shas $local_sha"
+    fi
   fi
 done
 

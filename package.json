@@ -22,6 +22,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "prepare": "bash scripts/install-git-hooks.sh || true",
     "predev": "node scripts/sync-academy.mjs",
     "dev": "next dev",
     "prebuild": "node scripts/sync-academy.mjs",

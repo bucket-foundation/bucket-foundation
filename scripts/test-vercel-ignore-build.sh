@@ -130,6 +130,18 @@ run_case "first deployment with no way to fetch dev builds" build \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
+run_case "dev with no previous sha skips a docs-only merge from the clone" skip \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+run_case "dev with no previous sha builds a site merge from the clone" build \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
 run_case "a squash body carrying [skip ci] lines still builds a site change" build \
   "VERCEL_GIT_COMMIT_REF=dev" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a task (#200)
@@ -324,13 +336,24 @@ run_case "shallow clone: first deployment, a site change beside dev, builds" bui
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_LATE_DOCS"
 
+# Vercel stops supplying a previous sha after a canceled deployment, which
+# is what a skip produces, so the every-other-merge case is the one that
+# leaked before 2026-09-21: the gate falls back to the commit's own parent.
 shallow_clone "$SHA_DOCS"
-run_case "shallow clone: dev with no previous deployment builds" build \
+run_case "shallow clone: dev with no previous sha skips a docs-only merge" skip \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
   "VERCEL_GIT_COMMIT_REF=dev" \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+shallow_clone "$SHA_SITE"
+run_case "shallow clone: dev with no previous sha builds a site merge" build \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
 shallow_clone "$SHA_DOCS"
 EXPECT_REASON="github.com/nobody-$$/none-$$.git" \

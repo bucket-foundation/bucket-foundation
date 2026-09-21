@@ -165,7 +165,9 @@ export default async function RoadmapPage({
           <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">by epic</span>
           {epics.map((e) =>
             filterLink(
-              epicFilter === e ? e : `${e} · ${ROADMAP.filter((i) => i.epic === e && i.status !== "shipped").length}`,
+              epicFilter === e
+                ? e
+                : `${e} · ${ROADMAP.filter((i) => i.epic === e && i.status !== "shipped" && (!stageFilter || i.stage === stageFilter)).length}`,
               hrefWith({ epic: epicFilter === e ? null : e }),
               epicFilter === e,
             ),
@@ -198,7 +200,9 @@ export default async function RoadmapPage({
             </li>
           ))}
           {ready.length === 0 && (
-            <li className="text-[color:var(--basalt-3)]">Everything open here waits on something.</li>
+            <li className="text-[color:var(--basalt-3)]">
+              {visible.length === 0 ? "Nothing matches the filter." : "Everything open here waits on something."}
+            </li>
           )}
         </ul>
       </section>
