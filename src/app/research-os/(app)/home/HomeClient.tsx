@@ -32,16 +32,10 @@ interface ProfileResponse {
   profile: { role: string; birthYearBucket: string | null; consentStatus: string } | null;
   game: Game | null;
 }
-interface LearnerAssignment {
-  id: string;
-  title: string;
-  className: string;
-  targetSlug: string;
-  targetTitle: string;
-  dueAt?: string | null;
-  requiresProduction: boolean;
-  status: "not_started" | "in_progress" | "produced" | "accepted" | "overdue";
-}
+// The server type, so a change to what /assignments returns is a compile
+// error here rather than a wrong string on the page. `import type` is
+// erased, so none of class-db's server-only imports reach the client.
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
 interface NodeLite {
   id: string;
   slug: string;
@@ -124,8 +118,8 @@ export default function HomeClient() {
       if (!alive) return;
       setProfile(p);
       setAssignments(a);
-      const open = a.state === "ready" ? a.value.assignments.find((x) => x.status !== "accepted") : undefined;
-      const target = open?.targetSlug ?? DEFAULT_TARGET;
+      const open = a.state === "ready" ? a.value.assignments.find((x) => x.status !== "accepted" && !x.targetHidden) : undefined;
+      const target = open?.targetSlug || DEFAULT_TARGET;
       const r = await load<RouteResponse>(`/api/research-os/route?target=${encodeURIComponent(target)}&branch=${encodeURIComponent(DEFAULT_BRANCH)}`, headers);
       if (alive) setRoute(r);
     })();
@@ -211,11 +205,15 @@ export default function HomeClient() {
               {assignments.value.assignments.map((a) => (
                 <li key={a.id} className="py-3 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
-                      {a.title}
-                    </Link>
+                    {a.targetHidden ? (
+                      <span className="text-[14px] text-[color:var(--basalt)]">{a.title}</span>
+                    ) : (
+                      <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
+                        {a.title}
+                      </Link>
+                    )}
                     <div className="text-[12px] text-[color:var(--basalt-3)]">
-                      {a.className} · {a.targetTitle}
+                      {a.className} · {a.targetHidden ? "target not shared with you" : a.targetTitle}
                       {a.requiresProduction ? " · paper required" : ""}
                       {due(a.dueAt) ? ` · due ${due(a.dueAt)}` : ""}
                     </div>

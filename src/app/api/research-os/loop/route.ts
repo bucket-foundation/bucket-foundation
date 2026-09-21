@@ -5,6 +5,7 @@
  * hold (Understanding), what connects across branches (Internalization),
  * and what they have produced and what it became (Production).
  */
+import type { LoopResponse } from "@/lib/research-os/loop-shape";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
@@ -48,8 +49,7 @@ export async function GET(req: NextRequest) {
   const atLeast = (s: Stage) => states.filter((r) => stageAtLeast(r.stage, s)).length;
   const productions = ((prodRes.data as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || []);
   const byStatus = (st: string) => productions.filter((p) => p.status === st).length;
-  return NextResponse.json(
-    {
+  const payload: LoopResponse = {
       access: { owned: ownedRes.count ?? 0, imports: importsRes.count ?? 0, pendingRequests: requestsRes.count ?? 0 },
       awareness: { opened: states.length, atLeastAwareness: atLeast("awareness") },
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
@@ -70,7 +70,6 @@ export async function GET(req: NextRequest) {
         latest: productions[0] ?? null,
       },
       empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0 && decks === 0,
-    },
-    NO_STORE
-  );
+  };
+  return NextResponse.json(payload, NO_STORE);
 }

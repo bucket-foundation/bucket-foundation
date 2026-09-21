@@ -140,9 +140,24 @@ export const dbAccessStore: AccessStore = {
     return { ok: true, value: rows };
   },
   async groups(learnerId) {
-    const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-    if (error) return { ok: false, error: `groups: ${error.message}` };
-    return { ok: true, value: ((data as { class_id: string }[]) || []).map((r) => `class:${r.class_id}`) };
+    // Paged and ordered, the way every other read here is. PostgREST stops
+    // at a thousand rows, and a learner past that would lose the group
+    // grants on the classes it dropped, which reads as a denial rather
+    // than as the truncation it is (Bucket critic C36).
+    const groups: string[] = [];
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await graphService()
+        .from("class_members")
+        .select("class_id")
+        .eq("learner_id", learnerId)
+        .order("class_id", { ascending: true })
+        .range(from, from + 999);
+      if (error) return { ok: false, error: `groups: ${error.message}` };
+      const rows = (data as { class_id: string }[]) || [];
+      groups.push(...rows.map((r) => `class:${r.class_id}`));
+      if (rows.length < 1000) break;
+    }
+    return { ok: true, value: groups };
   },
 };
 

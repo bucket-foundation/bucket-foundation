@@ -3,15 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
+import { internalizationLit, internalizationState, type LoopResponse } from "@/lib/research-os/loop-shape";
 
-interface Loop {
-  access: { owned: number; imports: number; pendingRequests: number };
-  awareness: { opened: number; atLeastAwareness: number };
-  understanding: { nodes: number; decksStarted: number };
-  internalization: { nodes: number; held: number; bridges: number; nextBridge: { slug: string; title: string } | null };
-  production: { drafts: number; submitted: number; accepted: number; returned: number; nodes: number; latest: { id: string; status: string; kind: string; claim: string | null } | null };
-  empty: boolean;
-}
+type Loop = LoopResponse;
 
 const n = (v: number, one: string, many = one + "s") => `${v} ${v === 1 ? one : many}`;
 
@@ -95,11 +89,11 @@ export default function LoopPanel() {
     },
     {
       name: "Internalization",
-      state: n(loop.internalization.held, "connection") + " held",
+      state: internalizationState(loop.internalization),
       detail: loop.internalization.bridges ? `${n(loop.internalization.bridges, "bridge")} one step away` : `${loop.internalization.nodes} internalized`,
       href: loop.internalization.nextBridge ? `/research-os/n/${encodeURIComponent(loop.internalization.nextBridge.slug)}` : "/research-os/workspace",
       cta: loop.internalization.nextBridge ? `cross to ${loop.internalization.nextBridge.title}` : "transfer",
-      lit: loop.internalization.held > 0 || loop.internalization.nodes > 0,
+      lit: internalizationLit(loop.internalization),
     },
     {
       name: "Production",

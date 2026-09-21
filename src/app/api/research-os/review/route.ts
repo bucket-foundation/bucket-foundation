@@ -155,11 +155,6 @@ export async function GET(req: NextRequest) {
 
   const svc = graphService();
 
-  // A held transfer_item never changes `stage` (onTransferItemAnswered),
-  // so it always leaves the row at 'understanding'. Any row already at
-  // Internalization or Production either never held, or already got a
-  // decision, so scoping to 'understanding' here is the same "pending"
-  // filter a join against teacher_reviews would give, with no join needed.
   const scope = await reviewerScope(reviewer);
   if (!scope.ok) return bad(500, "read_failed");
   const scopedLearners = scope.learners;
@@ -167,10 +162,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
   }
 
-  const stateRead = await inLearnerChunks<StateRow>(scopedLearners, (chunk) => {
+  // A held transfer_item never changes `stage` (onTransferItemAnswered),
+  // so it always leaves the row at 'understanding'. Any row already at
+  // Internalization or Production either never held, or already got a
+  // decision, so scoping to 'understanding' here is the same "pending"
+  // filter a join against teacher_reviews would give, with no join needed.
+  const stateRead = await inLearnerChunks<StateRow>(scopedLearners, (chunk, from, to) => {
     let q = svc.from("learner_node_state").select("learner_id,node_id,stage,evidence,updated_at").eq("stage", "understanding");
     if (chunk) q = q.in("learner_id", chunk);
-    return q as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>;
+    return q
+      .order("learner_id", { ascending: true })
+      .order("node_id", { ascending: true })
+      .range(from, to) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>;
   });
   if (!stateRead.ok) return bad(500, "read_failed");
   const stateRows = stateRead.rows;
@@ -181,7 +184,7 @@ export async function GET(req: NextRequest) {
     return last && last.kind === "transfer_item" && last.held === true;
   });
 
-  const productionRead = await inLearnerChunks<ProductionRow>(scopedLearners, (chunk) => {
+  const productionRead = await inLearnerChunks<ProductionRow>(scopedLearners, (chunk, from, to) => {
     let q = svc
       .from("productions")
       .select(
@@ -189,7 +192,10 @@ export async function GET(req: NextRequest) {
       )
       .eq("status", "submitted");
     if (chunk) q = q.in("learner_id", chunk);
-    return q.order("created_at", { ascending: true }) as unknown as Promise<{ data: ProductionRow[] | null; error: { message: string } | null }>;
+    return q
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from, to) as unknown as Promise<{ data: ProductionRow[] | null; error: { message: string } | null }>;
   });
   if (!productionRead.ok) return bad(500, "read_failed");
   const productionRows = productionRead.rows.sort((x, y) => String(x.created_at).localeCompare(String(y.created_at)));
@@ -281,7 +287,9 @@ export async function GET(req: NextRequest) {
  * graph-wide read or a graph-wide decision (Bucket critic C21, C24).
  *
  * Both reads page, since PostgREST stops at a thousand rows and a
- * reviewer above that would silently lose learners.
+ * reviewer above that would silently lose learners. Each page is ordered:
+ * Postgres gives no stable row order across LIMIT/OFFSET without one, so
+ * an unordered page can repeat a row and skip another (Bucket critic C30).
  */
 async function reviewerScope(reviewer: { id: string; email: string | null }): Promise<{ ok: true; learners: string[] | null } | { ok: false }> {
   if (reviewer.email && isReviewerEmail(reviewer.email)) return { ok: true, learners: null };
@@ -294,6 +302,7 @@ async function reviewerScope(reviewer: { id: string; email: string | null }): Pr
       .select("class_id")
       .eq("learner_id", reviewer.id)
       .in("role", ["teacher", "librarian"])
+      .order("class_id", { ascending: true })
       .range(from, from + 999);
     if (error) return { ok: false };
     const rows = (data as { class_id: string }[]) || [];
@@ -305,7 +314,12 @@ async function reviewerScope(reviewer: { id: string; email: string | null }): Pr
   const learners = new Set<string>();
   for (const part of chunkIds(classIds)) {
     for (let from = 0; ; from += 1000) {
-      const { data, error } = await svc.from("class_members").select("learner_id").in("class_id", part).range(from, from + 999);
+      const { data, error } = await svc
+        .from("class_members")
+        .select("learner_id")
+        .in("class_id", part)
+        .order("learner_id", { ascending: true })
+        .range(from, from + 999);
       if (error) return { ok: false };
       const rows = (data as { learner_id: string }[]) || [];
       rows.forEach((r) => learners.add(r.learner_id));
@@ -322,21 +336,31 @@ function chunkIds(ids: string[], size = 100): string[][] {
   return out;
 }
 
-/** The rows for these learners, read in bounded batches. */
+/**
+ * The rows for these learners, read in bounded batches and paged.
+ *
+ * Two different limits bite here. The `in()` list is bounded at 100 ids
+ * because PostgREST puts it in the request line, and the row count is
+ * bounded at 1,000 by PostgREST itself. Chunking the ids alone left the
+ * second one silent: a hundred learners at `understanding` overflow a
+ * thousand rows and the queue drops the remainder with no error at all
+ * (Bucket critic C30). Each page is ordered by the caller.
+ */
+const PAGE = 1000;
+
 async function inLearnerChunks<T>(
   learners: string[] | null,
-  read: (chunk: string[] | null) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+  read: (chunk: string[] | null, from: number, to: number) => Promise<{ data: T[] | null; error: { message: string } | null }>,
 ): Promise<{ ok: true; rows: T[] } | { ok: false }> {
-  if (!learners) {
-    const { data, error } = await read(null);
-    if (error) return { ok: false };
-    return { ok: true, rows: (data as T[]) || [] };
-  }
   const rows: T[] = [];
-  for (const part of chunkIds(learners)) {
-    const { data, error } = await read(part);
-    if (error) return { ok: false };
-    rows.push(...((data as T[]) || []));
+  for (const part of learners ? chunkIds(learners) : [null]) {
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await read(part, from, from + PAGE - 1);
+      if (error) return { ok: false };
+      const page = (data as T[]) || [];
+      rows.push(...page);
+      if (page.length < PAGE) break;
+    }
   }
   return { ok: true, rows };
 }
@@ -380,9 +404,10 @@ export async function POST(req: NextRequest) {
     const learnerId = (body.learnerId || "").trim();
     const nodeId = (body.nodeId || "").trim();
     if (!learnerId || !nodeId) return bad(400, "learnerId and nodeId are required");
-    // Out of scope answers the same 404 a missing hold does, so a
-    // reviewer cannot map the graph's learners by probing.
-    if (!mayDecideFor(learnerId)) return bad(404, "no_pending_transfer_item");
+    // Out of scope answers the same 404, with the same code, that a
+    // learner with no row answers, so a reviewer cannot map the graph's
+    // learners by reading the error (Bucket critic C34).
+    if (!mayDecideFor(learnerId)) return bad(404, "state_not_found");
 
     const { data: existing, error: readErr } = await svc
       .from("learner_node_state")

@@ -92,17 +92,29 @@ export async function listAssignments(classId: string): Promise<(Assignment & { 
 
 export interface LearnerAssignment extends Assignment {
   className: string;
+  /** Empty when `targetHidden` is true: the learner may not read the node. */
   targetSlug: string;
   targetTitle: string;
+  /** The assignment is theirs, and the node it points at is not readable. */
+  targetHidden: boolean;
   status: AssignmentStatus;
 }
 
-/** Open assignments across every class the learner belongs to, with status. */
-export async function listAssignmentsForLearner(learnerId: string): Promise<LearnerAssignment[]> {
+export type LearnerAssignments = { ok: true; assignments: LearnerAssignment[] } | { ok: false; reason: "unavailable" };
+
+/**
+ * Open assignments across every class the learner belongs to, with status.
+ *
+ * An access-store failure refuses the whole list. Collapsing it to "nothing
+ * is visible" stripped the title and slug off every assignment for every
+ * learner and reported it as a normal answer, which is the failure
+ * read-access.ts exists to stop (Bucket critic C33).
+ */
+export async function listAssignmentsForLearner(learnerId: string): Promise<LearnerAssignments> {
   const svc = graphService();
   const memberships = await loadMemberships(learnerId);
   const classIds = Array.from(new Set(memberships.map((m) => m.classId)));
-  if (classIds.length === 0) return [];
+  if (classIds.length === 0) return { ok: true, assignments: [] };
   const { data: rows } = await svc
     .from("assignments")
     .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
@@ -110,7 +122,7 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
     .is("closed_at", null)
     .order("created_at", { ascending: false });
   const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
-  if (assignments.length === 0) return [];
+  if (assignments.length === 0) return { ok: true, assignments: [] };
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
   const [{ data: nodes }, { data: classes }, { data: states }, { data: productions }] = await Promise.all([
     svc.from("nodes").select("id,slug,title").in("id", nodeIds),
@@ -123,7 +135,8 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   // C27). The assignment itself stays in the list: it is theirs, and the
   // class staff who set it can see what it points at.
   const readableTargets = await authorizeNodes(nodeIds, { id: learnerId }, "view");
-  const visibleTargets = readableTargets.ok ? new Set(readableTargets.allowed) : new Set<string>();
+  if (!readableTargets.ok) return { ok: false, reason: "unavailable" };
+  const visibleTargets = new Set(readableTargets.allowed);
   const nodeById = new Map(
     ((nodes as { id: string; slug: string; title: string }[]) || [])
       .filter((n) => visibleTargets.has(n.id))
@@ -135,13 +148,17 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   for (const p of (productions as { target_node_id: string; status: string }[]) || []) {
     prodsByNode.set(p.target_node_id, [...(prodsByNode.get(p.target_node_id) ?? []), { status: p.status }]);
   }
-  return assignments.map((a) => ({
-    ...a,
-    className: classById.get(a.classId) ?? "class",
-    targetSlug: nodeById.get(a.targetNodeId)?.slug ?? "",
-    targetTitle: nodeById.get(a.targetNodeId)?.title ?? "",
-    status: assignmentStatus(a, { stage: stageByNode.get(a.targetNodeId) ?? null, productions: prodsByNode.get(a.targetNodeId) ?? [] }),
-  }));
+  return {
+    ok: true,
+    assignments: assignments.map((a) => ({
+      ...a,
+      className: classById.get(a.classId) ?? "class",
+      targetSlug: nodeById.get(a.targetNodeId)?.slug ?? "",
+      targetTitle: nodeById.get(a.targetNodeId)?.title ?? "",
+      targetHidden: !visibleTargets.has(a.targetNodeId),
+      status: assignmentStatus(a, { stage: stageByNode.get(a.targetNodeId) ?? null, productions: prodsByNode.get(a.targetNodeId) ?? [] }),
+    })),
+  };
 }
 
 export type ClassResult<T> = { ok: true; value: T } | { ok: false; error: string };
