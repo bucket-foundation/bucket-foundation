@@ -336,7 +336,14 @@ async function reviewerScope(reviewer: { id: string; email: string | null }): Pr
       const { data, error } = await svc
         .from("class_members")
         .select("learner_id")
+        // (class_id, learner_id) is the primary key, and class_id
+        // takes a list of values here, so learner_id alone leaves a tie
+        // group wherever one learner is in two classes of the part.
+        // A page boundary inside a tie group repeats one row and drops
+        // another, and a dropped learner is missing from this set with
+        // no error to show for it.
         .in("class_id", part)
+        .order("class_id", { ascending: true })
         .order("learner_id", { ascending: true })
         .range(from, from + 999);
       if (error) return { ok: false };

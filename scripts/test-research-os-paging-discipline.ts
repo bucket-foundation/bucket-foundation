@@ -22,6 +22,7 @@ import path from "node:path";
 // One copy of the rule. This file carried its own, character for
 // character, beside the one in scan-source.ts.
 import { stripComments } from "./research-os/scan-source";
+import { GRAPH_UNIQUE_KEYS, orderIsTotal } from "./research-os/graph-keys";
 
 const root = path.join(__dirname, "..");
 // The ingest scripts write the graph the routes then read, so a read
@@ -46,12 +47,12 @@ function sources(dir: string): string[] {
  * can wrap across lines, so the file is flattened first and then split
  * on `;`, which is where one chain ends.
  */
-function statements(src: string): { text: string; line: number }[] {
+function statements(src: string, options: { keepStrings?: boolean } = {}): { text: string; line: number }[] {
   const out: { text: string; line: number }[] = [];
   // A comment may describe these rules or break them, and a
   // docstring naming `.range(` is not a read. They are blanked, keeping
   // the line count so a report still points at the right line.
-  const lines = stripComments(src).split("\n");
+  const lines = stripComments(src, options).split("\n");
   let buf = "";
   let start = 1;
   for (let i = 0; i < lines.length; i += 1) {
@@ -125,4 +126,70 @@ test("every read filtered by a chunked id list pages", () => {
     }
   }
   assert.deepEqual(offenders, [], `these chunked reads never page: ${offenders.join(", ")}`);
+});
+
+/**
+ * Every paged read of a `graph` table, with the table it reads, the
+ * columns it orders on, and the columns it pins to a single value.
+ *
+ * A statement is the unit here because one PostgREST chain is one
+ * statement. `eq()` pins a column to one value, so that column cannot
+ * vary across the result and contributes to the order for free.
+ * `in()` hands a list, which pins nothing.
+ */
+function pagedReads(src: string): { table: string; ordered: string[]; pinned: string[]; line: number }[] {
+  const out: { table: string; ordered: string[]; pinned: string[]; line: number }[] = [];
+  for (const s of statements(src, { keepStrings: true })) {
+    if (!/\.range\(/.test(s.text)) continue;
+    const table = s.text.match(/\.from\(\s*["']([a-z_]+)["']\s*\)/);
+    if (!table) continue;
+    out.push({
+      table: table[1],
+      ordered: Array.from(s.text.matchAll(/\.order\(\s*["']([a-z_]+)["']/g)).map((m) => m[1]),
+      pinned: Array.from(s.text.matchAll(/\.eq\(\s*["']([a-z_]+)["']/g)).map((m) => m[1]),
+      line: s.line,
+    });
+  }
+  return out;
+}
+
+test("every paged read of a known table carries a total order", () => {
+  // Rule 1 above asks only that an order exists. An order that is not
+  // total passes it and still repeats and skips rows: graph/route.ts
+  // read class_members with `.in("class_id", chunk).order("learner_id")`
+  // and satisfied rule 1 while leaving every learner enrolled in two
+  // classes of the chunk in a tie group with another. class_members'
+  // primary key is (class_id, learner_id).
+  const offenders: string[] = [];
+  const checked: string[] = [];
+  for (const file of files) {
+      // keepStrings, because this rule reads which table and which
+      // columns the call names.
+      for (const r of pagedReads(fs.readFileSync(file, "utf8"))) {
+      if (!GRAPH_UNIQUE_KEYS[r.table]) continue;
+      checked.push(`${r.table}@${path.relative(root, file)}:${r.line}`);
+      if (orderIsTotal(r.table, r.ordered, r.pinned)) continue;
+      offenders.push(
+        `${path.relative(root, file)}:${r.line} reads ${r.table} ordered on [${r.ordered.join(", ") || "nothing"}] with [${r.pinned.join(", ") || "nothing"}] pinned, and its keys are ${GRAPH_UNIQUE_KEYS[r.table].map((k) => `(${k.join(", ")})`).join(" or ")}`,
+      );
+    }
+  }
+  assert.ok(checked.length > 10, `the rule reached ${checked.length} paged reads of known tables`);
+  assert.deepEqual(
+    offenders,
+    [],
+    `these paged reads can repeat a row on one page and drop another: ${offenders.join("; ")}`,
+  );
+});
+
+test("the rule counts an eq-pinned key column and refuses an in-list one", () => {
+  // learner_node_state is (learner_id, node_id). Pinning the learner
+  // leaves node_id total; handing a list of learners does not.
+  assert.equal(orderIsTotal("learner_node_state", ["node_id"], ["learner_id"]), true);
+  assert.equal(orderIsTotal("learner_node_state", ["node_id"], []), false);
+  assert.equal(orderIsTotal("class_members", ["learner_id"], []), false, "the shape graph/route.ts shipped");
+  assert.equal(orderIsTotal("class_members", ["class_id", "learner_id"], []), true);
+  assert.equal(orderIsTotal("edges", ["id"], []), true);
+  assert.equal(orderIsTotal("edges", ["from_id"], []), false);
+  assert.equal(orderIsTotal("some_table_nobody_declared", [], []), true, "an unknown table is out of scope, not a failure");
 });

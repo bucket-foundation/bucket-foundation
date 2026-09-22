@@ -13,13 +13,17 @@ import path from "node:path";
 import * as ts from "typescript";
 
 /**
- * Comments and string contents blanked, newlines kept, so a reported
- * line number still points at the right line.
+ * Comments blanked, newlines kept, so a reported line number still
+ * points at the right line.
  *
- * String bodies go too: `.range(` inside an error message is not a
- * read, and a table name inside a log line is not a query.
+ * String bodies go by default: `.range(` inside an error message is not
+ * a read, and a table name inside a log line is not a query. A rule
+ * that has to read which table or column a call names passes
+ * `keepStrings`, and pays for it by matching only inside a call it has
+ * already identified.
  */
-export function stripComments(src: string): string {
+export function stripComments(src: string, options: { keepStrings?: boolean } = {}): string {
+  const keep = options.keepStrings === true;
   let out = "";
   let i = 0;
   let mode: "code" | "line" | "block" | "single" | "double" | "tick" = "code";
@@ -41,12 +45,13 @@ export function stripComments(src: string): string {
       if (two === "*/") { mode = "code"; out += "  "; i += 2; continue; }
       out += src[i] === "\n" ? "\n" : " "; i += 1; continue;
     }
-    if (src[i] === "\\") { out += "  "; i += 2; continue; }
+    if (src[i] === "\\") { out += keep ? src.slice(i, i + 2) : "  "; i += 2; continue; }
     if ((mode === "single" && src[i] === "'") || (mode === "double" && src[i] === '"') || (mode === "tick" && src[i] === "`")) {
       mode = "code";
       out += src[i]; i += 1; continue;
     }
-    out += src[i] === "\n" ? "\n" : " "; i += 1;
+    out += keep || src[i] === "\n" ? src[i] : " ";
+    i += 1;
   }
   return out;
 }

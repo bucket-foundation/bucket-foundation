@@ -136,3 +136,42 @@ test("both access reads carry a total order", () => {
     assert.match(chain, /\.order\("(id|class_id)"\)/, `the ${table} read orders on a unique column`);
   }
 });
+
+test("the declared unique keys are the ones the database has", { skip }, () => {
+  // scripts/research-os/graph-keys.ts is what the paging gate reads, and
+  // it runs without a database. A migration that adds or drops a unique
+  // key would leave it stale, and a stale map excuses a read it should
+  // refuse. This is the only place the two meet.
+  /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+  const { GRAPH_UNIQUE_KEYS } = require("./research-os/graph-keys") as {
+    GRAPH_UNIQUE_KEYS: Record<string, readonly (readonly string[])[]>;
+  };
+
+  // Partial indexes are excluded on both sides: a key that holds only
+  // under a predicate makes an order total only when the read pins that
+  // predicate, which this gate does not model.
+  const live = sql(`
+    select c.relname || ':' || string_agg(a.attname, ',' order by k.ord)
+    from pg_index x
+    join pg_class c on c.oid = x.indrelid
+    join pg_class i on i.oid = x.indexrelid
+    join pg_namespace n on n.oid = c.relnamespace
+    cross join lateral unnest(x.indkey) with ordinality as k(attnum, ord)
+    join pg_attribute a on a.attrelid = c.oid and a.attnum = k.attnum
+    where n.nspname = 'graph' and x.indisunique and x.indpred is null
+    group by c.relname, i.relname
+    order by 1
+  `);
+  assert.equal(live.status, 0, live.out);
+
+  const fromDb = new Set(live.out.split("\n").filter(Boolean));
+  const declared = new Set<string>();
+  for (const table of Object.keys(GRAPH_UNIQUE_KEYS)) {
+    for (const key of GRAPH_UNIQUE_KEYS[table]) declared.add(`${table}:${key.join(",")}`);
+  }
+
+  const missing = Array.from(fromDb).filter((k) => !declared.has(k)).sort();
+  const extra = Array.from(declared).filter((k) => !fromDb.has(k)).sort();
+  assert.deepEqual(missing, [], `the database has unique keys graph-keys.ts does not declare: ${missing.join("; ")}`);
+  assert.deepEqual(extra, [], `graph-keys.ts declares unique keys the database does not have, which excuses reads it should refuse: ${extra.join("; ")}`);
+});
