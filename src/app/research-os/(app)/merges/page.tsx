@@ -1,5 +1,7 @@
 "use client";
 
+import { isTransientOutage } from "@/lib/research-os/outage";
+
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -47,7 +49,12 @@ export default function MergesPage() {
       const res = await fetch("/api/research-os/merges", { cache: "no-store" });
       const data = (await res.json().catch(() => ({}))) as { proposals?: Proposal[]; error?: string };
       if (res.status === 403) return setState("forbidden");
-      if (res.status === 503 && data.error === "research_os_unavailable") return setState("no_graph");
+      // Through isTransientOutage, so this page and every other client
+      // answer an unrecognized 503 code the same way. Reading the one
+      // permanent code inline sent every other 503 to the retry copy,
+      // and the shared rule sends it to the no-graph copy.
+      if (isTransientOutage(res.status, data.error ?? null)) return setState("failed");
+      if (res.status === 503) return setState("no_graph");
       if (!res.ok || !Array.isArray(data.proposals)) return setState("failed");
       setItems(data.proposals);
       setState("ready");
