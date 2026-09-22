@@ -79,13 +79,23 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [layer, setLayer] = useState<"standing" | "class">("standing");
   const [hover, setHover] = useState<string | null>(null);
   const [branches, setBranches] = useState<{ id: string; nodes: number }[]>([]);
+  const [branchesFailed, setBranchesFailed] = useState(false);
   const [show, setShow] = useState<Set<string>>(() => new Set(SOURCES));
 
   useEffect(() => {
+    // A 503 used to read as a graph with no branches in it, which is the
+    // fourth defect the scanner's own header names as its motivation.
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { branches: [] }))
-      .then((j: { branches?: { id: string; nodes: number }[] }) => setBranches(j.branches ?? []))
-      .catch(() => {});
+      .then(async (r) => {
+        if (!r.ok) {
+          setBranchesFailed(true);
+          return;
+        }
+        const j = (await r.json()) as { branches?: { id: string; nodes: number }[] };
+        setBranchesFailed(false);
+        setBranches(j.branches ?? []);
+      })
+      .catch(() => setBranchesFailed(true));
   }, []);
 
   useEffect(() => {
@@ -134,6 +144,11 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
+        {branchesFailed && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            The branch list could not be read this minute, so only this branch is shown.
+          </p>
+        )}
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
           {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (
             <button

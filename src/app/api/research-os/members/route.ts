@@ -26,7 +26,15 @@ export async function GET(req: NextRequest) {
   if (!staffCheck.ok) return bad(503, "class_read_failed");
   const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
-  return NextResponse.json({ members: await listMembers(classId), roles: staff.roles }, NO_STORE);
+  // listMembers raises on a failed read now, and awaiting it inline made
+  // that an unhandled rejection: a bodiless 500 in a teacher's roster,
+  // under a staff check that answers 503 for the same outage.
+  try {
+    return NextResponse.json({ members: await listMembers(classId), roles: staff.roles }, NO_STORE);
+  } catch (err) {
+    console.error("[research-os/members] read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "class_read_failed");
+  }
 }
 
 export async function POST(req: NextRequest) {

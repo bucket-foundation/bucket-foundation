@@ -242,6 +242,38 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
   };
 
   const visit = (node: ts.Node): void => {
+    // `let a, b; try { [a, b] = await Promise.all([...]) }` is the same
+    // read as the const form and every rule below keys on a variable
+    // declaration, so rewriting a declaration into an assignment moved
+    // six live dropped reads out of this scanner's view at once.
+    if (
+      ts.isBinaryExpression(node) &&
+      node.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isArrayLiteralExpression(node.left) &&
+      ts.isAwaitExpression(node.right) &&
+      isPromiseAllOfReads(node.right.expression)
+    ) {
+      const list = (node.right.expression as ts.CallExpression).arguments[0];
+      const elements = ts.isArrayLiteralExpression(list) ? list.elements : undefined;
+      node.left.elements.forEach((target, i) => {
+        if (!ts.isIdentifier(target)) return;
+        const held = target.text;
+        const fn = enclosingFunction(node);
+        if (!fn) return;
+        const text = fn.getText(source);
+        const readsData = new RegExp(`\\b${held}\\b[^;]{0,160}\\.(data|count)\\b`).test(text);
+        const readsError = new RegExp(`\\b${held}\\.error\\b`).test(text);
+        if (readsData && !readsError && !checkedThroughLoop(fn, held, source)) {
+          const { line } = source.getLineAndCharacterOfPosition(target.getStart(source));
+          findings.push({
+            file,
+            line: line + 1,
+            what: "assigns a Promise.all element and reads data off it without ever reading error",
+            anchor: anchorFor(node, elements?.[i] ?? node, held),
+          });
+        }
+      });
+    }
     // `const { data } = await svc.from(...)...`
     if (ts.isVariableDeclaration(node) && node.initializer && ts.isAwaitExpression(node.initializer)) {
       if (ts.isObjectBindingPattern(node.name) && isReadChain(node.initializer.expression)) {
@@ -251,7 +283,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
         // that matters is whether `error` is bound.
         if (names.includes("data") && !names.includes("error")) {
           const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-          findings.push({ file, line: line + 1, what: "destructures data and drops error", anchor: anchorFor(node, node) });
+          findings.push({ file, line: line + 1, what: "destructures data and drops error", anchor: anchorFor(node, node, localNameFor(node.name, "data") ?? undefined) });
         } else if (names.includes("data") && names.includes("error")) {
           // Binding `error` is not the same as answering it. The live
           // form of this defect guards on `error || !data` and returns
@@ -263,7 +295,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
             const ret = soleReturn(next.thenStatement);
             if (ret && returnsEmptyish(ret)) {
               const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-              findings.push({ file, line: line + 1, what: "checks error and returns the same empty value a successful read would give", anchor: anchorFor(node, node) });
+              findings.push({ file, line: line + 1, what: "checks error and returns the same empty value a successful read would give", anchor: anchorFor(node, node, localNameFor(node.name, "data") ?? undefined) });
             }
           } else if (errName && !next) {
             // Bound and never looked at, which reads as handled and is
@@ -273,7 +305,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
             const fn = enclosingFunction(node);
             if (fn && !mentionsOutside(fn, errName, node.name)) {
               const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-              findings.push({ file, line: line + 1, what: "binds error and never reads it", anchor: anchorFor(node, node) });
+              findings.push({ file, line: line + 1, what: "binds error and never reads it", anchor: anchorFor(node, node, localNameFor(node.name, "data") ?? undefined) });
             }
           }
         }
@@ -308,7 +340,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
             const fn = enclosingFunction(node);
             if (!fn) continue;
             const text = fn.getText(source);
-            const readsData = new RegExp(`\\b${held}\\.(data|count)\\b`).test(text);
+            const readsData = new RegExp(`\\b${held}\\b[^;]{0,160}\\.(data|count)\\b`).test(text);
             const readsError = new RegExp(`\\b${held}\\.error\\b`).test(text);
             if (readsData && !readsError && !checkedThroughLoop(fn, held, source)) {
               const { line } = source.getLineAndCharacterOfPosition(el.getStart(source));
@@ -339,7 +371,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
           const readsError = new RegExp(`\\b${held}\\.error\\b`).test(text);
           if (readsData && !readsError && !checkedThroughLoop(fn, held, source)) {
             const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-            findings.push({ file, line: line + 1, what: "holds the result and reads data off it without ever reading error", anchor: anchorFor(node, node) });
+            findings.push({ file, line: line + 1, what: "holds the result and reads data off it without ever reading error", anchor: anchorFor(node, node, held) });
           }
         }
       }

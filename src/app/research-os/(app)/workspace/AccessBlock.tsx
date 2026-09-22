@@ -27,15 +27,26 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
   const [data, setData] = useState<AccessResponse | null>(null);
   // Classes the person belongs to, for sharing a node with a whole class.
   const [classes, setClasses] = useState<{ id: string; name: string; role: string }[]>([]);
+  const [classesFailed, setClassesFailed] = useState(false);
   const [shareClass, setShareClass] = useState("");
 
   useEffect(() => {
     if (!token) return;
     let alive = true;
+    // An empty class list here makes a share to a class the learner
+    // belongs to unreachable, with no reason given.
     fetch("/api/research-os/classes", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { classes: [] }))
-      .then((j: { classes?: { id: string; name: string; role: string }[] }) => alive && setClasses(j.classes ?? []))
-      .catch(() => {});
+      .then(async (r) => {
+        if (!alive) return;
+        if (!r.ok) {
+          setClassesFailed(true);
+          return;
+        }
+        const j = (await r.json()) as { classes?: { id: string; name: string; role: string }[] };
+        setClassesFailed(false);
+        setClasses(j.classes ?? []);
+      })
+      .catch(() => alive && setClassesFailed(true));
     return () => {
       alive = false;
     };
@@ -174,6 +185,11 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
             request
           </button>
         </div>
+      )}
+      {data.isOwner && classesFailed && (
+        <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
+          Your classes could not be read this minute, so sharing with a class is unavailable. Reload to try again.
+        </p>
       )}
       {data.isOwner && classes.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-2">

@@ -85,6 +85,13 @@ export async function GET(req: NextRequest) {
   const d = inBranch ? directionsFrom(node.id, visible.nodes, visible.edges) : { dependents: [], frontier: [], openQuestions: [], reach: [] };
   const dlite = (n: { id: string; slug: string; title: string; kind: string; frontierFlag?: string | null }) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, frontierFlag: n.frontierFlag ?? null });
 
+  // The read answers before its data is used. A dropped error here made
+  // a learner who holds the node read as a learner who has never opened
+  // it, which is the standing the whole page is built from.
+  if (standingRes.error) {
+    console.error("[research-os/node] standing read failed:", standingRes.error.message);
+    return bad(503, "node_read_failed");
+  }
   const standingRow = (standingRes as { data: { stage: Stage; evidence: unknown[]; updated_at: string } | null }).data;
   const evidence = Array.isArray(standingRow?.evidence) ? (standingRow!.evidence as Record<string, unknown>[]).slice(-12) : [];
 
