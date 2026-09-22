@@ -11,7 +11,9 @@ import assert from "node:assert/strict";
 import { scanFile, scanTree } from "./research-os/error-scan";
 import { ERROR_EXCEPTIONS } from "./research-os/error-allowlist";
 
-const ROOTS = ["src/lib/research-os", "src/app/api/research-os"];
+// The ingest scripts write the graph the routes read, so a dropped error
+// there lands in what every route serves. They are inside the gate.
+const ROOTS = ["src/lib/research-os", "src/app/api/research-os", "scripts/research-os"];
 
 test("a read that drops its error is found", () => {
   const found = scanFile("f.ts", `const { data } = await svc.from("nodes").select("id").eq("id", x);`);

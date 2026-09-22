@@ -240,6 +240,7 @@ const rpcs = (restsOn = false): Record<string, Rpc> => ({
   idea_dependents: (a: { p_slugs: string[] }) => ({ data: a.p_slugs.map((s) => ({ slug: s, dependents: s === "kinematics" ? 52 : 0 })), error: null }),
   rests_on: () => ({ data: restsOn, error: null }),
   replace_prereq_ancestor: () => ({ data: 0, error: null }),
+  enforce_prerequisite_tiers: () => ({ data: 3, error: null }),
 });
 
 test("priority weighs uncertainty by the decompositions a pair reaches", () => {
@@ -290,6 +291,27 @@ test("approving as prerequisite writes the factor to target edge and rebuilds th
   assert.equal(r.status, 200);
   assert.deepEqual([db.edges[0].from_id, db.edges[0].to_id, db.edges[0].kind], ["n-der", "n-kin", "prerequisite"]);
   assert.ok(calls.includes("rpc:replace_prereq_ancestor"));
+  assert.ok(calls.includes("rpc:enforce_prerequisite_tiers"));
+  assert.equal(r.body.tiersRaised, 3);
+  assert.ok(calls.indexOf("rpc:enforce_prerequisite_tiers") < calls.indexOf("rpc:replace_prereq_ancestor"), "tiers rise before the closure rebuild");
+});
+
+test("approving as rests-on leaves grade tiers alone", async () => {
+  const db = seed();
+  const calls: string[] = [];
+  const r = await decideEdge(fake(db, rpcs(), new Set(), calls), { id: "p-conf", decision: "approved", kind: "derives_from", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.ok(!calls.includes("rpc:enforce_prerequisite_tiers"));
+  assert.equal(r.body.tiersRaised, undefined);
+});
+
+test("a failed tier raise keeps the edge and says so", async () => {
+  const db = seed();
+  const failing = { ...rpcs(), enforce_prerequisite_tiers: () => ({ data: null, error: { message: "boom" } }) };
+  const r = await decideEdge(fake(db, failing), { id: "p-conf", decision: "approved", kind: "prerequisite", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(db.edges.length, 1);
+  assert.match(String(r.body.warning), /grade tiers/);
 });
 
 test("a pair that would close a cycle returns 409 and stays pending", async () => {
