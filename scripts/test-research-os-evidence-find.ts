@@ -6,7 +6,7 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import type { SupabaseClient } from "@supabase/supabase-js";
@@ -236,6 +236,17 @@ test("a corpus directory is read only when it matches its manifest", () => {
     writeFileSync(path.join(one, "manifest.json"), JSON.stringify({ corpusRevision: rev("a") }));
     assert.equal(newestCorpusDir(dir), one);
     assert.equal(newestCorpusDir(path.join(dir, "missing")), null);
+    // A failed build leaves `.tmp-<revision>-<pid>` on disk with its
+    // manifest already written, and it is the newest manifest in the
+    // root. Selecting it would pin the server to artifacts that failed
+    // their own readback, with no request able to clear it.
+    const failed = path.join(dir, ".tmp-abcdef123456-4242");
+    mkdirSync(failed);
+    writeFileSync(path.join(failed, "manifest.json"), JSON.stringify({ corpusRevision: rev("b") }));
+    utimesSync(path.join(failed, "manifest.json"), new Date(), new Date(Date.now() + 60_000));
+    assert.equal(newestCorpusDir(dir), one, "a dot-prefixed build directory is never selected");
+    rmSync(one, { recursive: true, force: true });
+    assert.equal(newestCorpusDir(dir), null, "with only a failed build present, there is no corpus");
     assert.throws(() => readCorpus(one, { version: 1, status: "draft", reviewedAt: "2026-09-22", reviewer: "x", index: [], quote: [] }, rev("f")), CorpusUnavailable);
     assert.throws(() => readCorpus(path.join(dir, "missing"), { version: 1, status: "draft", reviewedAt: "2026-09-22", reviewer: "x", index: [], quote: [] }, rev("f")), CorpusUnavailable);
   } finally {
