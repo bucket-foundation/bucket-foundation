@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import type { Quote } from "./types";
@@ -60,7 +61,8 @@ export default function ProduceForm({
       });
       const j = (await res.json().catch(() => ({}))) as { production?: { id: string; status: string }; error?: string; message?: string; needsProfile?: boolean };
       if (!res.ok) {
-        setNote({ text: j.message ?? j.error ?? "Could not save.", profile: Boolean(j.needsProfile) });
+        const text = isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not save.");
+        setNote({ text, profile: Boolean(j.needsProfile) });
         return;
       }
       setSavedId(j.production?.id ?? savedId);
