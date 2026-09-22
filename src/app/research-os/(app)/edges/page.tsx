@@ -258,7 +258,7 @@ export default function ResearchOsEdgesPage() {
           id: null,
           text:
             decision === "approved"
-              ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${data.warning ? ` Warning: ${data.warning}.` : ""}`
+              ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${typeof data.tiersRaised === "number" && data.tiersRaised > 0 ? ` Grade tier raised on ${data.tiersRaised} ${data.tiersRaised === 1 ? "idea" : "ideas"}.` : ""}${data.warning ? ` Warning: ${data.warning}.` : ""}`
               : `Rejected: ${p.fromTitle} for ${p.toTitle}.`,
         });
         // A decision changes which pairs loop, repeat a chain, or shortcut
@@ -767,8 +767,8 @@ export default function ResearchOsEdgesPage() {
                           </label>
                         </fieldset>
                         {kind === "prerequisite" && p.fromTier !== null && p.toTier !== null && p.fromTier > p.toTier && (
-                          <p className="mt-1 text-[12px] text-red-700">
-                            Learning order would put a grade-tier {p.fromTier} idea before a grade-tier {p.toTier} one. Keep it as &ldquo;rests on&rdquo;, or fix the tiers first.
+                          <p className="mt-1 text-[12px] text-[color:var(--gold-deep)]">
+                            Learning order raises this idea from grade tier {p.toTier} to {p.fromTier}, and every idea that follows it in learning order as far as needed. &ldquo;Rests on&rdquo; leaves the tiers as they are.
                           </p>
                         )}
                         {noteInput(p.id)}

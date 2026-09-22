@@ -1,0 +1,125 @@
+{
+  "source": "supabase/seed/research-os-sky-blue.json, titles and summaries written for the seed",
+  "docs": [
+    {
+      "id": "light-travels-in-straight-lines",
+      "text": "Light travels in straight lines\n\nLight moves in a straight path until it hits something that reflects it, bends it, or scatters it."
+    },
+    {
+      "id": "sunlight-looks-white",
+      "text": "Sunlight looks white\n\nSunlight looks white to our eyes, even though, as later nodes show, it is a mix of every visible color."
+    },
+    {
+      "id": "air-is-made-of-tiny-particles",
+      "text": "Air is made of tiny particles\n\nAir is made of countless tiny particles, mostly nitrogen and oxygen molecules, far too small to see."
+    },
+    {
+      "id": "white-light-splits-into-colors",
+      "text": "White light splits into colors\n\nWhite light can split into the colors of the rainbow: red, orange, yellow, green, blue, and violet, the way a prism or raindrop shows."
+    },
+    {
+      "id": "each-color-is-a-wavelength",
+      "text": "Each color is a wavelength\n\nEach color of light has its own wavelength. Red light has a longer wavelength; blue and violet light have shorter wavelengths."
+    },
+    {
+      "id": "light-can-scatter-off-small-things",
+      "text": "Light can scatter off small things\n\nWhen light meets something much smaller than itself, some of the light bounces off in new directions instead of continuing straight. This is called scattering."
+    },
+    {
+      "id": "waves-have-wavelength-and-frequency",
+      "text": "Waves have wavelength and frequency\n\nA wave repeats itself in space. The distance between two repeats is its wavelength; a shorter wavelength means more repeats fit into the same distance."
+    },
+    {
+      "id": "visible-light-is-part-of-em-spectrum",
+      "text": "Visible light is part of the electromagnetic spectrum\n\nVisible light is a narrow band, about 380 to 750 nanometers, inside the much larger electromagnetic spectrum that also includes radio waves, infrared, ultraviolet, and X-rays."
+    },
+    {
+      "id": "blue-violet-have-shortest-visible-wavelengths",
+      "text": "Blue and violet have the shortest visible wavelengths\n\nAmong visible colors, violet and blue sit at the short-wavelength end (about 380-500 nm) and red sits at the long-wavelength end (about 625-750 nm)."
+    },
+    {
+      "id": "light-as-a-wave",
+      "text": "Light travels as a wave\n\nLight travels as an electromagnetic wave, and how it interacts with matter depends on the relation between its wavelength and the size of what it meets."
+    },
+    {
+      "id": "air-molecules-are-much-smaller-than-light-wavelengths",
+      "text": "Air molecules are much smaller than light's wavelength\n\nNitrogen and oxygen molecules, roughly a few tenths of a nanometer across, are thousands of times smaller than visible-light wavelengths (about 400-700 nm)."
+    },
+    {
+      "id": "tyndall-scattering-by-small-particles",
+      "text": "Tyndall's experiments on scattering by small particles\n\nJohn Tyndall showed experimentally that light scattered by small particles suspended in a clear medium comes out bluish and polarized, tying a scattered blue color to scattering by particles far smaller than the light's wavelength."
+    },
+    {
+      "id": "scattering-strength-depends-on-particle-size-vs-wavelength",
+      "text": "Scattering strength depends on particle size versus wavelength\n\nHow strongly a particle scatters light, and how that scattering depends on wavelength, changes with the particle's size relative to the wavelength. Particles much smaller than the wavelength, like air molecules, scatter short wavelengths far more strongly than long ones."
+    },
+    {
+      "id": "rayleigh-1871-sky-color-papers",
+      "text": "Rayleigh's 1871 papers on the light from the sky\n\nLord Rayleigh's 1871 papers derived the polarization and color of skylight from scattering by particles much smaller than the light's wavelength, putting Tyndall's observation on a mathematical footing."
+    },
+    {
+      "id": "rayleigh-scattering-law",
+      "text": "Rayleigh scattering law\n\nFor particles much smaller than the wavelength of light, the intensity of scattered light depends on the particle's size and refractive index and, steeply, on the wavelength of the light."
+    },
+    {
+      "id": "lambda-minus-4-law",
+      "text": "The lambda^-4 law\n\nRayleigh-scattering intensity is proportional to 1/wavelength^4 (I_scattered is proportional to lambda^-4), holding the particle's size, distance, and refractive index fixed. This is the steep wavelength dependence Rayleigh derived in the scattering paper."
+    },
+    {
+      "id": "blue-scatters-more-than-red",
+      "text": "Blue scatters far more than red\n\nComparing violet/blue light (about 400 nm) to red light (about 700 nm) through the lambda^-4 law: (700/400)^4 is about 9.4, so short wavelengths scatter close to an order of magnitude more than long ones."
+    },
+    {
+      "id": "sky-is-blue-not-violet",
+      "text": "Why the sky reads as blue and not violet\n\nSunlight scatters violet even more than blue, but the sky reads as blue because the Sun emits less violet than blue, the upper atmosphere absorbs some violet, and human eyes are more sensitive to blue than violet."
+    },
+    {
+      "id": "why-the-sky-is-blue",
+      "text": "Why the sky is blue\n\nRayleigh scattering by air molecules, molecules much smaller than light's wavelength, scatters short (blue/violet) wavelengths far more than long (red) ones. Scattered blue light reaches our eyes from every direction in the sky, which is why the sky looks blue."
+    },
+    {
+      "id": "canon-waves",
+      "text": "Waves and the wave equation (canon bridge)\n\nBridge node mirroring the Bucket Academy 02-physics canon atom `waves` (Waves and the wave equation). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json."
+    },
+    {
+      "id": "canon-em-waves",
+      "text": "Electromagnetic waves (canon bridge)\n\nBridge node mirroring the Bucket Academy 02-physics canon atom `em-waves` (Electromagnetic waves). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json."
+    },
+    {
+      "id": "canon-wave-optics",
+      "text": "Wave optics, interference and diffraction (canon bridge)\n\nBridge node mirroring the Bucket Academy 02-physics canon atom `wave-optics` (Wave optics, interference and diffraction). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json."
+    }
+  ],
+  "queries": [
+    {
+      "query": "what makes the heavens look azure during daytime",
+      "relevant": [
+        "why-the-sky-is-blue",
+        "sky-is-blue-not-violet"
+      ],
+      "lexicalTop": "light-as-a-wave"
+    },
+    {
+      "query": "does the glow from our star contain every hue",
+      "relevant": [
+        "sunlight-looks-white"
+      ],
+      "lexicalTop": "sunlight-looks-white"
+    },
+    {
+      "query": "tiny specks bounce short wavelengths more than long ones",
+      "relevant": [
+        "blue-scatters-more-than-red",
+        "light-can-scatter-off-small-things"
+      ],
+      "lexicalTop": "blue-scatters-more-than-red"
+    },
+    {
+      "query": "why isn't the sky purple if violet scatters more",
+      "relevant": [
+        "sky-is-blue-not-violet"
+      ],
+      "lexicalTop": "sky-is-blue-not-violet"
+    }
+  ]
+}
