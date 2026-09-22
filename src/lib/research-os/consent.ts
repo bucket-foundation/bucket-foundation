@@ -184,20 +184,32 @@ export async function requireConsent(learnerId: string, action: ConsentAction): 
   return decideConsent({ ...profile, consentStatus: effective.status, consentSource: effective.source }, action);
 }
 
-/** The school-exception and vendor paths for one learner (consent-paths.ts). */
+/**
+ * The school-exception and vendor paths for one learner (consent-paths.ts).
+ *
+ * All three reads dropped their error, and each one fails toward a more
+ * restrictive answer: a failed `class_members` read is a learner in no
+ * class, which is a learner with no school exception, which blocks them.
+ * Fail-closed is the right direction and a silent definite answer is
+ * still the wrong report, so a read that could not complete raises and
+ * the caller decides.
+ */
 export async function resolveConsentPaths(learnerId: string, profile: LearnerProfile): Promise<EffectiveConsent> {
   const svc = graphService();
-  const { data: members } = await svc.from("class_members").select("class_id,role").eq("learner_id", learnerId);
+  const { data: members, error: membersErr } = await svc.from("class_members").select("class_id,role").eq("learner_id", learnerId);
+  if (membersErr) throw new Error(`resolveConsentPaths: class_members read failed: ${membersErr.message}`);
   const memberships = ((members as { class_id: string; role: string | null }[]) || []).map((m) => ({ classId: m.class_id, role: m.role || "learner" }));
   const classIds = memberships.map((m) => m.classId);
   const classes: ClassConsent[] = [];
   if (classIds.length) {
-    const { data: rows } = await svc.from("classes").select("id,consent_basis,consent_document").in("id", classIds);
+    const { data: rows, error: rowsErr } = await svc.from("classes").select("id,consent_basis,consent_document").in("id", classIds);
+    if (rowsErr) throw new Error(`resolveConsentPaths: classes read failed: ${rowsErr.message}`);
     for (const c of (rows as { id: string; consent_basis: string | null; consent_document: string | null }[]) || []) {
       classes.push({ classId: c.id, consentBasis: c.consent_basis === "school" ? "school" : "none", consentDocument: c.consent_document });
     }
   }
-  const { data: reqs } = await svc.from("consent_requests").select("vendor,status,vendor_ref").eq("learner_id", learnerId);
+  const { data: reqs, error: reqsErr } = await svc.from("consent_requests").select("vendor,status,vendor_ref").eq("learner_id", learnerId);
+  if (reqsErr) throw new Error(`resolveConsentPaths: consent_requests read failed: ${reqsErr.message}`);
   const requests: ConsentRequestRecord[] = ((reqs as { vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null }[]) || []).map((r) => ({
     vendor: r.vendor,
     status: r.status,

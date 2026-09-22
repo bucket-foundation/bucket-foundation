@@ -46,12 +46,22 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   const profile = await loadProfile(learnerId);
-  const effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
-  const { data: reqs } = await graphService()
+  // A consent answer computed from a read that failed is a more
+  // restrictive answer than the truth, delivered as though it were the
+  // truth. resolveConsentPaths raises instead, and this says so.
+  let effective;
+  try {
+    effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
+  } catch (err) {
+    console.error("[research-os/consent] path read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "consent_unavailable");
+  }
+  const { data: reqs, error: reqsErr } = await graphService()
     .from("consent_requests")
     .select("id,vendor,status,vendor_ref,created_at,decided_at")
     .eq("learner_id", learnerId)
     .order("created_at", { ascending: false });
+  if (reqsErr) return bad(503, "consent_unavailable");
   const requests = ((reqs as { id: string; vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null; created_at: string }[]) || []).map((r) => ({
     id: r.id,
     vendor: r.vendor,
