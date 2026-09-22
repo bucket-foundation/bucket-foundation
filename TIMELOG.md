@@ -8,6 +8,20 @@
 
 ---
 
+## 2026-09-22: evidence search release gates
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-09-22 | ~0.5 | engineering-ai | bkt / research-os | Workspace read its target at module scope, so every visit with `?target=` threw away the server's HTML. `useSearchParams` inside the component, per-target keys as functions of the slug, Suspense around the default export. Eleven console errors to zero, verified in the browser | `ros-frontend` (pending) |
+| 2026-09-22 | ~2.0 | engineering-ai | bkt / research-os | Runtime and Model release gates, `gates.ts` plus two runners and 24 tests. First run: warm p95 97 ms at concurrency one and 94 ms at two, 400 of 400 on the neural path, cold first answer 187 ms, 11 of 12 paraphrase cases reordered by the pinned revision | `ros-ai-find` (#232) |
+| 2026-09-22 | ~0.3 | engineering-ai | bkt / research-os | A failed corpus build left `.tmp-*` with its manifest, and selection by mtime pinned the server to artifacts that failed their own readback, permanently. Dot-prefixed names are now skipped. Found by the peer session | `ros-ai-corpus` (#233) |
+| 2026-09-22 | ~1.0 | engineering-ai | bkt / research-os | The Access gate the plan names as uncovered: six accounts on the local stack, each differing from the admitted one in one way, plus anonymous and forged bearer tokens. The admitted account passes every gate and stops at the corpus, which is what makes the refusals mean anything | `ros-ai-find` (#234) |
+| 2026-09-22 | ~0.7 | engineering-ai | bkt / research-os | The encoder as a systemd user service with caps set from the measured 3.4 GiB and eight threads, plus the operator runbook. Turning off is flag first and worker second; rolling back serves no withdrawn revision at any point | `ros-ai-find` (#235) |
+
+**Measured, and kept rather than tuned away.** The model gate's two usefulness signals came in short, 2 of 12 recovered against a target of 3. All three misses returned better answers than the fixture named: a query about how steeply scattering depends on colour returned the size-versus-wavelength rule and the Rayleigh law above the fourth-power law. Single-target scoring marks a correct answer as a miss, which is recorded in `learning/research-os/ai/RUNTIME.md` as a weakness the Quality gate inherits.
+
+**Still waiting.** `ros-ai-import-quotes` and `ros-ai-eval` need the versioned passage from ros-import 3. The passage identity is settled with the import owner: `sourceRevision` is a hash over the file's bytes and the extraction revision together, `quoteRevision` derives from it, and `textHash` is the check inside the Quote transaction.
+
 ## 2026-04-23, `/learn` reformative-education surface
 
 > **Bead intent (no cert, no env creds, founder-authorized "do the rest" path per CLAUDE.md workaround):**
