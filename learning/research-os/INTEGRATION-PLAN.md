@@ -1,5 +1,7 @@
 # Research OS: the one product
 
+The [AI evidence-search architecture](ai/IMPLEMENTATION.md) adds a staged local encoder pilot to Find and Sources, with access checks, durable quotations and measured release gates. [Evaluation and research](ai/EVALUATION.md) holds the contingent source-aware study. Execution records use the `research-os-ai` source in `BEADS-PENDING.jsonl`.
+
 Source: the founder's answers to the requirements questionnaire, 2026-09-15 (artifact `KuAjHWswfh9pzownAjcPzp`, pasted into the session). Where an answer settles a decision that `PLAN-REVISION-3.md` left open, this file records the settlement; the revision files stay as history.
 
 ## 1. Thesis

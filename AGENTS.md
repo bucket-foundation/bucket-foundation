@@ -2,6 +2,12 @@
 
 This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get started.
 
+## Bucket critic
+
+For material architecture, implementation plans, code and research claims anywhere in this repository, the parent agent delegates a separate critic review using [the Bucket critic](docs/agents/BUCKET-CRITIC.md). Codex's saved role is `bucket_critic`; Claude and Cursor use `bucket-critic`. If named roles are unavailable, pass that document to a reviewer subagent. The critic returns evidence and the parent owns repairs and report persistence.
+
+Repeat review after fixes until the weighted score exceeds 9/10, every applicable dimension is at least 8, and no unresolved critical/high blocker remains. Preserve failed rounds and bind the final verdict to file hashes. A passing plan does not certify unrun tests or authorize deployment. Trivial prose edits can use ordinary diff review. The critic must not recursively delegate itself.
+
 ## Quick Reference
 
 ```bash
