@@ -249,3 +249,45 @@ test("a store that fails is an outage wherever it is read from", async () => {
   assert.equal(pub.ok, true, "a public view survives a grants outage");
   assert.deepEqual(pub.ok ? pub.allowed : [], ["pub"]);
 });
+
+test("an expiry that cannot be parsed is expired, in one place", () => {
+  // The rule lived in access.ts and read-access.ts and they disagreed:
+  // one treated an unparseable expiry as live, so a grant whose expiry
+  // read "next tuesday" never ended. The first repair wrote
+  // the same fix into both files. `live` is now exported and this
+  // asserts both entry points answer through it.
+  const badExpiry: NodeGrant[] = [{ id: "g", nodeId: "shared", granteeId: LEARNER, role: "view", expiresAt: "next tuesday" }];
+  const store: AccessStore = {
+    async nodes(ids) {
+      return { ok: true, value: nodes.filter((n) => ids.includes(n.id)) };
+    },
+    async grants() {
+      return { ok: true, value: badExpiry };
+    },
+    async groups() {
+      return { ok: true, value: [] };
+    },
+  };
+  return authorizeNodes(["shared"], { id: LEARNER }, "view", store, NOW).then((r) => {
+    assert.equal(r.ok, true);
+    assert.deepEqual(r.ok ? r.allowed : ["?"], [], "an unparseable expiry does not admit");
+  });
+});
+
+test("an expiry in the past is expired and one in the future admits", async () => {
+  const withExpiry = (expiresAt: string): AccessStore => ({
+    async nodes(ids) {
+      return { ok: true, value: nodes.filter((n) => ids.includes(n.id)) };
+    },
+    async grants() {
+      return { ok: true, value: [{ id: "g", nodeId: "shared", granteeId: LEARNER, role: "view", expiresAt }] };
+    },
+    async groups() {
+      return { ok: true, value: [] };
+    },
+  });
+  const past = await authorizeNodes(["shared"], { id: LEARNER }, "view", withExpiry("2020-01-01T00:00:00.000Z"), NOW);
+  const future = await authorizeNodes(["shared"], { id: LEARNER }, "view", withExpiry("2099-01-01T00:00:00.000Z"), NOW);
+  assert.deepEqual(past.ok ? past.allowed : ["?"], []);
+  assert.deepEqual(future.ok ? future.allowed : [], ["shared"]);
+});

@@ -80,12 +80,13 @@
  * event together, so an audit-row failure now reads as write_failed rather
  * than the review_write_failed the four-statement sequence returned.
  */
+import { authorizeNodes } from "@/lib/research-os/read-access";
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { createNodeFromProduction } from "@/lib/research-os/production-node";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
-import { awardProgress, configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
+import { awardProgress, configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById, inChunks} from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { verifyReviewer, isReviewerEmail } from "@/lib/research-os/reviewer";
 import {
@@ -205,8 +206,26 @@ export async function GET(req: NextRequest) {
   );
   let titleById = new Map<string, string>();
   if (nodeIds.length) {
-    const { data: nodes } = await svc.from("nodes").select("id,title").in("id", nodeIds);
-    titleById = new Map(((nodes as Array<{ id: string; title: string }>) || []).map((n) => [n.id, n.title]));
+    // A queue item names a node, and the node is not the reviewer's to
+    // read just because a learner in their class worked on it. Same rule
+    // the connections graph got: titles are filtered before they join.
+    const readable = await authorizeNodes(nodeIds, { id: reviewer.id }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length) {
+      // Chunked, because a queue past a thousand items puts a thousand
+      // uuids in the request line and PostgREST answers 414. The old
+      // read discarded that error and served no titles at all.
+      let nodes: { id: string; title: string }[];
+      try {
+        nodes = await inChunks<{ id: string; title: string }>(readable.allowed, (chunk, page) =>
+          svc.from("nodes").select("id,title").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; title: string }[] | null; error: { message: string } | null }>,
+        );
+      } catch (err) {
+        console.error("[research-os/review] title read failed:", err instanceof Error ? err.message : err);
+        return bad(503, "access_unavailable");
+      }
+      titleById = new Map(nodes.map((n) => [n.id, n.title]));
+    }
   }
 
   return NextResponse.json(

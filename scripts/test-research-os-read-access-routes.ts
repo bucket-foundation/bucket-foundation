@@ -996,6 +996,37 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     }
   });
 
+  await t.test("a production cannot forward a node its owner may no longer read", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const hypothesize = require("../src/app/api/research-os/hypothesize/route") as { POST: (req: NextRequest) => Promise<Response> };
+
+    const prod = randomUUID();
+    // The learner owns the production and the production names a node
+    // they were never granted. Owning the production is not reading the
+    // node it names: without the gate, its slug, title, tier and branch
+    // go to the engine (Bucket critic C14, A4).
+    const seeded = sql(`
+      insert into graph.productions (id, learner_id, target_node_id, kind, claim, status)
+        values ('${prod}', '${grantee.id}', '${privateNode}', 'production', 'a claim about a node they cannot read', 'draft');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const res = await hypothesize.POST(new NextRequest("http://127.0.0.1/api/research-os/hypothesize", {
+        method: "POST",
+        headers: { authorization: `Bearer ${grantee.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ productionId: prod }),
+      }));
+      assert.equal(res.status, 404, `the node is not theirs to forward: ${res.status}`);
+      const json = (await res.json().catch(() => ({}))) as { error?: string; node?: unknown };
+      assert.equal(json.error, "production_not_found", "and the reply says nothing about which it was");
+      assert.equal(json.node, undefined, "no node field reaches the caller");
+    } finally {
+      sql(`delete from graph.productions where id = '${prod}';`);
+    }
+  });
+
   await t.test("an unverified token reads as anonymous rather than as its claim", async () => {
     const res = await get(search.GET, `q=${token}`, "not-a-real-token");
     assert.equal(res.status, 200);

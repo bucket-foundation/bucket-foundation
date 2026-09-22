@@ -48,16 +48,22 @@ function bad(status: number, error: string) {
 const VISIBILITIES: Visibility[] = ["public", "private", "shared"];
 const PURPOSES: RequestPurpose[] = ["continue", "extend", "cite", "replicate", "review"];
 
-async function viewerFrom(req: NextRequest): Promise<Viewer> {
+async function viewerFrom(req: NextRequest): Promise<{ ok: true; viewer: Viewer } | { ok: false }> {
   const id = await verifyLearner(req);
-  if (!id) return { id: null, groups: [] };
-  return { id, groups: await loadViewerGroups(id) };
+  if (!id) return { ok: true, viewer: { id: null, groups: [] } };
+  const groups = await loadViewerGroups(id);
+  // A failed groups read is not a learner in no class. Answering one
+  // tells a group grantee they have no access, behind a 200.
+  if (!groups.ok) return { ok: false };
+  return { ok: true, viewer: { id, groups: groups.value } };
 }
 
 export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const { searchParams } = new URL(req.url);
-  const viewer = await viewerFrom(req);
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
 
   if (searchParams.get("mine")) {
     if (!viewer.id) return bad(401, "unauthorized");
@@ -70,9 +76,13 @@ export async function GET(req: NextRequest) {
 
   const nodeId = searchParams.get("node");
   if (!nodeId) return bad(400, "node_required");
-  const node = await loadNodeAccess(nodeId);
+  const nodeRead = await loadNodeAccess(nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
-  const grants = await loadGrants(nodeId);
+  const grantsRead = await loadGrants(nodeId);
+  if (!grantsRead.ok) return bad(503, "access_unavailable");
+  const grants = grantsRead.value;
   const owner = isOwner(node, viewer);
   const verbs = Object.fromEntries(GRANT_ROLES.filter((r) => r !== "view").map((r) => [r, can(node, viewer, r as GrantRole, grants)]));
   return NextResponse.json(
@@ -99,7 +109,9 @@ type Body =
 
 export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
-  const viewer = await viewerFrom(req);
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
   if (!viewer.id) return bad(401, "unauthorized");
   let body: Body;
   try {
@@ -115,7 +127,9 @@ export async function POST(req: NextRequest) {
     return r.ok ? NextResponse.json(r.value, NO_STORE) : bad(500, r.error);
   }
 
-  const node = await loadNodeAccess(body.nodeId);
+  const nodeRead = await loadNodeAccess(body.nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
 
   switch (body.action) {
@@ -135,7 +149,9 @@ export async function POST(req: NextRequest) {
     }
     case "request": {
       if (!PURPOSES.includes(body.purpose)) return bad(400, "bad_purpose");
-      const grants = await loadGrants(node.id);
+      const grantsRead = await loadGrants(node.id);
+      if (!grantsRead.ok) return bad(503, "access_unavailable");
+      const grants = grantsRead.value;
       const r = await createRequest(node, viewer, body.purpose, body.message?.trim().slice(0, 1000) || null, grants);
       if (r.ok) return NextResponse.json({ request: r.value }, NO_STORE);
       return bad(r.error === "already_pending" ? 409 : r.error === "request_refused" ? 403 : 500, r.error);

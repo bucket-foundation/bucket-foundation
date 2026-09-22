@@ -98,23 +98,46 @@ export async function filterSubgraphForViewer<N extends { id: string; visibility
   return { ok: true, nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
-export async function loadNodeAccess(nodeId: string): Promise<NodeAccess | null> {
+/**
+ * These three read what `/api/research-os/access` decides on, and all
+ * three broke the two rules `read-access.ts` exists to enforce. An
+ * unknown or null visibility became `public`, which is the inverse of
+ * "a visibility this code does not know is private". A failed grants or
+ * groups read became an empty list, which is the inverse of "an
+ * access-store failure is unavailable, never no grants".
+ *
+ * Each now answers a result, so the route has to decide what an outage
+ * means rather than being handed a denial that looks like an answer.
+ */
+export type AccessRead<T> = { ok: true; value: T } | { ok: false; reason: "unavailable" };
+
+export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAccess | null>> {
   const { data, error } = await graphService().from("nodes").select("id,visibility,owner_id").eq("id", nodeId).maybeSingle();
-  if (error || !data) return null;
-  return { id: data.id as string, visibility: (data.visibility as Visibility) ?? "public", ownerId: (data.owner_id as string | null) ?? null };
+  if (error) return { ok: false, reason: "unavailable" };
+  if (!data) return { ok: true, value: null };
+  return {
+    ok: true,
+    value: {
+      id: data.id as string,
+      // readVisibility, so a visibility this code does not know is
+      // private. `?? "public"` made an unknown value world-readable.
+      visibility: readVisibility(data.visibility as string | null),
+      ownerId: (data.owner_id as string | null) ?? null,
+    },
+  };
 }
 
-export async function loadGrants(nodeId: string): Promise<NodeGrant[]> {
+export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]>> {
   const { data, error } = await graphService().from("node_grants").select("id,node_id,grantee_id,grantee_group,role,expires_at").eq("node_id", nodeId);
-  if (error || !data) return [];
-  return (data as GrantRow[]).map(grantFromRow);
+  if (error) return { ok: false, reason: "unavailable" };
+  return { ok: true, value: ((data as GrantRow[]) || []).map(grantFromRow) };
 }
 
 /** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
-export async function loadViewerGroups(learnerId: string): Promise<string[]> {
+export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
   const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-  if (error || !data) return [];
-  return (data as { class_id: string }[]).map((r) => `class:${r.class_id}`);
+  if (error) return { ok: false, reason: "unavailable" };
+  return { ok: true, value: ((data as { class_id: string }[]) || []).map((r) => `class:${r.class_id}`) };
 }
 
 export async function loadRequestsForNode(nodeId: string): Promise<(AccessRequest & { createdAt: string })[]> {

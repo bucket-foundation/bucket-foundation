@@ -80,14 +80,35 @@ export async function verifyClassStaff(req: NextRequest, classId: string): Promi
   return { id: identity.id, email: identity.email, roles };
 }
 
-export async function listAssignments(classId: string): Promise<(Assignment & { assignedBy: string | null; createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("assignments")
-    .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
-    .eq("class_id", classId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as AssignmentRow[]).map(assignmentFromRow);
+export type StaffAssignments =
+  | { ok: true; assignments: (Assignment & { assignedBy: string | null; createdAt: string })[] }
+  | { ok: false; reason: "unavailable" };
+
+/**
+ * Every assignment in a class, for the staff who run it.
+ *
+ * The learner-facing sibling of this function was fixed to refuse the
+ * whole list on a failed read; this one, thirty lines above it in the
+ * same file, kept answering an empty list. A teacher then read "no
+ * assignments" during an outage, and lost everything past a thousand in
+ * a class that has them.
+ */
+export async function listAssignments(classId: string): Promise<StaffAssignments> {
+  try {
+    const rows = await inChunks<AssignmentRow>([classId], (chunk, page) =>
+      graphService()
+        .from("assignments")
+        .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
+        .in("class_id", chunk)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: AssignmentRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, assignments: rows.map(assignmentFromRow) };
+  } catch (err) {
+    console.error("[research-os] staff assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
 }
 
 export interface LearnerAssignment extends Assignment {

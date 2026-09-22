@@ -63,7 +63,7 @@ export interface Viewer {
  * judged it live, so the same row admitted a learner on one route and
  * denied them on another (Bucket critic C2).
  */
-function live(grant: NodeGrant, now: Date): boolean {
+export function live(grant: NodeGrant, now: Date): boolean {
   if (!grant.expiresAt) return true;
   const t = Date.parse(grant.expiresAt);
   return Number.isFinite(t) && t > now.getTime();

@@ -22,7 +22,7 @@
  *
  * The store is injectable so the rules can be tested without a database.
  */
-import { GRANT_ROLES, can, canView, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
+import { can, canView, GRANT_ROLES, live, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
 import { graphService } from "./db";
 
 /** What a read can ask for. `view` is the floor; the rest are grant roles. */
@@ -75,11 +75,11 @@ export function readVisibility(value: string | null | undefined): Visibility {
 }
 
 /** A grant whose expiry cannot be read is treated as expired. */
-function liveGrant(grant: NodeGrant, now: Date): boolean {
-  if (!grant.expiresAt) return true;
-  const at = Date.parse(grant.expiresAt);
-  return Number.isFinite(at) && at > now.getTime();
-}
+// The expiry rule lived here and in access.ts, they disagreed, and the
+// repair was to write the same fix into both. One exported function is
+// the repair: `live` comes from access.ts, which this file already
+// imports from.
+const liveGrant = live;
 
 // 100 ids is about 3.7 KB of request line, half the 8 KB a proxy allows by
 // default. 200 measured at 7.5 KB, which a longer host or select clause
