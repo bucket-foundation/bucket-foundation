@@ -7,9 +7,10 @@
  * CSV and TSV. XLSX and Parquet need a decoder in front of them and
  * produce the same `TableSchema` once they have one.
  *
- * Pure, so a browser can show a learner the shape of a file before it is
- * uploaded and a runner can read the same shape from the stored bytes
- * later and get the same answer.
+ * Pure, with no module state and no clock: a browser can show a learner
+ * the shape of a file before it is uploaded and a runner reads the same
+ * shape from the stored bytes later and gets the same answer, on any
+ * host in any timezone.
  *
  * WHAT A TYPE MEANS HERE. A column's type is the narrowest that every
  * non-empty value in it fits, checked over the whole column rather than
@@ -38,10 +39,11 @@
  * than through an error.
  */
 
-/** Set by the last parseCells call when the text ended inside a quote.
- * Module state rather than a second return value, so parseDelimited's
- * shape is unchanged for its existing callers. */
-let unterminated = false;
+/** The rows and whether the text ran out inside a quote. */
+export interface ParsedRows {
+  rows: Cell[][];
+  unterminated: boolean;
+}
 
 /** One parsed field, with whether the source quoted it. */
 export interface Cell {
@@ -108,6 +110,38 @@ export function isMissing(value: string, tokens: readonly string[] = MISSING_TOK
 }
 
 /** The narrowest type a single value fits. */
+/**
+ * Whether an ISO 8601 value names a day that exists.
+ *
+ * No Date is constructed. The first version of this check built one and
+ * compared `toISOString()` against the literal, which reads an
+ * offsetless datetime as local time and renders UTC, so
+ * `2026-03-04T23:30` typed as a date in UTC and as text in New York.
+ * The same bytes gave two answers by host clock, which is the failure
+ * the date rule exists to prevent.
+ */
+function isRealDate(v: string): boolean {
+  const y = Number(v.slice(0, 4));
+  const m = Number(v.slice(5, 7));
+  const d = Number(v.slice(8, 10));
+  if (m < 1 || m > 12 || d < 1) return false;
+  const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+  const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1];
+  if (d > days) return false;
+  const time = v.slice(10);
+  if (time === "") return true;
+  const t = time.match(/^[T ](\d{2}):(\d{2})(?::(\d{2})(?:\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?$/);
+  if (!t) return false;
+  if (Number(t[1]) > 23 || Number(t[2]) > 59 || (t[3] !== undefined && Number(t[3]) > 60)) return false;
+  const off = t[4];
+  if (off && off !== "Z") {
+    const oh = Number(off.slice(1, 3));
+    const om = Number(off.replace(":", "").slice(3, 5));
+    if (oh > 14 || om > 59) return false;
+  }
+  return true;
+}
+
 export function typeOf(value: string): ColumnType {
   const v = value.trim();
   if (INTEGER.test(v)) {
@@ -126,12 +160,7 @@ export function typeOf(value: string): ColumnType {
     if (!Number.isFinite(Number(v))) return "text";
     return "number";
   }
-  if (DATE.test(v)) {
-    // Shape alone accepted 2026-13-45. A form offering date arithmetic
-    // on that column gets Invalid Date.
-    const d = new Date(v);
-    return Number.isNaN(d.getTime()) || !d.toISOString().startsWith(v.slice(0, 10)) ? "text" : "date";
-  }
+  if (DATE.test(v) && isRealDate(v)) return "date";
   if (BOOLEAN.has(v.toLowerCase())) return "boolean";
   return "text";
 }
@@ -153,7 +182,7 @@ export function widen(a: ColumnType, b: ColumnType): ColumnType {
  * tables a learner brings in.
  */
 export function parseDelimited(text: string, delimiter: "," | "\t"): string[][] {
-  return parseCells(text, delimiter).map((r) => r.map((c) => c.value));
+  return parseCells(text, delimiter).rows.map((r) => r.map((c) => c.value));
 }
 
 /**
@@ -165,8 +194,7 @@ export function parseDelimited(text: string, delimiter: "," | "\t"): string[][] 
  * rule runs. The docstring above promised that escape hatch while the
  * code did not provide it.
  */
-export function parseCells(text: string, delimiter: "," | "\t"): Cell[][] {
-  unterminated = false;
+export function parseCells(text: string, delimiter: "," | "\t"): ParsedRows {
   const rows: Cell[][] = [];
   let row: Cell[] = [];
   let wasQuoted = false;
@@ -221,8 +249,9 @@ export function parseCells(text: string, delimiter: "," | "\t"): Cell[][] {
   // Ending inside a quote means an unescaped quote somewhere above
   // swallowed everything after it into one field. The rows returned are
   // a fabrication, so the caller is told rather than left to trust them.
-  unterminated = quoted;
-  return rows;
+  // Returned rather than parked in module state: an exported parser that
+  // reports through a module variable gives its callers no way to ask.
+  return { rows, unterminated: quoted };
 }
 
 /** The delimiter that yields a consistent field count over the first few
@@ -233,12 +262,29 @@ export function sniffDelimiter(text: string): "," | "\t" {
   const score = (d: "," | "\t"): number => {
     const rows = parseDelimited(head, d).slice(0, 10).filter((r) => r.length > 0);
     if (rows.length < 2) return 0;
-    const width = rows[0].length;
+    // The modal width rather than the first row's: a header shorter or
+    // longer than the body decided the whole file.
+    const widths = rows.map((r) => r.length);
+    let width = 0;
+    let agree = 0;
+    for (const w of widths) {
+      const n = widths.filter((x) => x === w).length;
+      if (n > agree || (n === agree && w > width)) { width = w; agree = n; }
+    }
     if (width < 2) return 0;
-    const agree = rows.filter((r) => r.length === width).length;
-    return agree === rows.length ? width : 0;
+    // Proportional. Unanimity meant one ragged row, one blank line or one
+    // comment zeroed a correct delimiter, and this file counts ragged
+    // rows twelve lines below because it expects them.
+    // Two thirds. A ragged TSV agreeing three rows in four scores here;
+    // prose split on commas agrees one row in three and does not, which
+    // is the line between a table with a short row and a column of
+    // sentences that happen to contain commas.
+    const share = agree / rows.length;
+    return share >= 0.6 ? width * share : 0;
   };
-  return score("\t") >= score(",") && score("\t") > 0 ? "\t" : ",";
+  const tab = score("\t");
+  const comma = score(",");
+  return tab >= comma && tab > 0 ? "\t" : ",";
 }
 
 /**
@@ -248,13 +294,17 @@ export function sniffDelimiter(text: string): "," | "\t" {
  * `column_<n>` by its position, so the form has something to offer and
  * the name still says where it came from.
  */
-export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSchema {
+export function readTableSchema(text: string, delimiter?: "," | "\t", options: { missingTokens?: readonly string[] } = {}): TableSchema {
   const truncated = text.length > MAX_TEXT_CHARS;
   const body = truncated ? text.slice(0, MAX_TEXT_CHARS) : text;
   const d = delimiter ?? sniffDelimiter(body);
-  const rows = parseCells(body, d).filter((r) => !(r.length === 1 && r[0].value === ""));
+  const parsed = parseCells(body, d);
+  // A quoted empty cell is a row the source wrote. The filter ignored
+  // `quoted` while the missing rule twenty lines below honours it, so a
+  // lone "" row vanished and a three-row file reported two.
+  const rows = parsed.rows.filter((r) => !(r.length === 1 && r[0].value === "" && !r[0].quoted));
   if (rows.length === 0) {
-    return { delimiter: d, columns: [], rows: 0, preview: [], ragged: 0, truncated, malformed: unterminated };
+    return { delimiter: d, columns: [], rows: 0, preview: [], ragged: 0, truncated, malformed: parsed.unterminated };
   }
 
   const header = rows[0];
@@ -274,11 +324,11 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
       const cell = r[i] ?? { value: "", quoted: false };
       // A quoted cell is a value the source wrote on purpose, so NA in
       // quotes is the string and the absence is an empty cell.
-      if (!cell.quoted && isMissing(cell.value)) { missing[i] += 1; continue; }
+      if (!cell.quoted && isMissing(cell.value, options.missingTokens)) { missing[i] += 1; continue; }
       present[i] += 1;
       const v = cell.value.trim();
       types[i] = types[i] === null ? typeOf(v) : widen(types[i] as ColumnType, typeOf(v));
-      if (seen[i].size < DISTINCT_CAP) seen[i].add(v);
+      if (seen[i].size <= DISTINCT_CAP) seen[i].add(v);
       if (samples[i].length < SAMPLE_VALUES) samples[i].push(v);
     }
   }
@@ -290,8 +340,10 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
     type: types[i] ?? "text",
     present: present[i],
     missing: missing[i],
-    distinct: seen[i].size,
-    distinctCapped: seen[i].size >= DISTINCT_CAP,
+    distinct: Math.min(seen[i].size, DISTINCT_CAP),
+    // Strictly greater, because the set is allowed to reach the cap and
+    // a column holding exactly DISTINCT_CAP values is an exact count.
+    distinctCapped: seen[i].size > DISTINCT_CAP,
     sample: samples[i],
   }));
 
@@ -299,5 +351,5 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
     names.map((_, i) => r[i]?.value ?? ""),
   );
 
-  return { delimiter: d, columns, rows: data.length, preview, ragged, truncated, malformed: unterminated };
+  return { delimiter: d, columns, rows: data.length, preview, ragged, truncated, malformed: parsed.unterminated };
 }

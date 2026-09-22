@@ -249,3 +249,79 @@ test("a file that ends inside a quote says so", () => {
   assert.equal(bad.malformed, true);
   assert.equal(readTableSchema("a,b\n1,2\n").malformed, false);
 });
+
+test("a date types the same in every timezone", () => {
+  // The first calendar check built a Date and compared its UTC rendering
+  // against the literal, so an offsetless datetime read as local time and
+  // rendered as UTC: 2026-03-04T23:30 was a date in UTC and text in New
+  // York. The same bytes gave two answers by host clock, which is the
+  // failure the date rule exists to prevent.
+  const saved = process.env.TZ;
+  try {
+    for (const tz of ["UTC", "America/New_York", "Pacific/Kiritimati", "Asia/Kolkata"]) {
+      process.env.TZ = tz;
+      assert.equal(typeOf("2026-03-04T23:30"), "date", tz);
+      assert.equal(typeOf("2026-03-04"), "date", tz);
+      assert.equal(typeOf("2026-02-30"), "text", tz);
+      assert.equal(typeOf("2024-02-29"), "date", `${tz}: a leap day exists`);
+      assert.equal(typeOf("2026-02-29"), "text", `${tz}: and only in a leap year`);
+    }
+  } finally {
+    process.env.TZ = saved;
+  }
+});
+
+test("an hour or an offset outside its range is text", () => {
+  assert.equal(typeOf("2026-03-04T25:00"), "text");
+  assert.equal(typeOf("2026-03-04T12:61"), "text");
+  assert.equal(typeOf("2026-03-04T12:00:00+15:00"), "text", "no offset runs past 14 hours");
+  assert.equal(typeOf("2026-03-04T12:00:00+05:30"), "date");
+  assert.equal(typeOf("2026-03-04T12:00:00Z"), "date");
+});
+
+test("a quoted empty cell is a row", () => {
+  // The blank-row filter ignored quotedness while the missing rule
+  // honoured it, so a lone "" row vanished and a three-row file said two.
+  const s = readTableSchema('v\n1\n""\n2\n');
+  assert.equal(s.rows, 3);
+  assert.equal(s.columns[0].present, 3, "the quoted empty is a value");
+  assert.equal(readTableSchema("v\n1\n\n2\n").rows, 2, "an unquoted blank line is still skipped");
+});
+
+test("the parse reports an unterminated quote to its caller", () => {
+  // It rode on module state, so an exported parser gave its callers no
+  // way to ask.
+  const bad = parseCells('a,b\n1,"unclosed\n2,3\n', ",");
+  assert.equal(bad.unterminated, true);
+  assert.equal(parseCells("a,b\n1,2\n", ",").unterminated, false);
+  assert.deepEqual(parseDelimited("a,b\n1,2\n", ","), [["a", "b"], ["1", "2"]], "the old shape is unchanged");
+});
+
+test("a caller's missing tokens reach the schema", () => {
+  // The comment promised this and only isMissing accepted it, which is
+  // the round-one defect one layer up.
+  const s = readTableSchema("mark\n-\n5\n", ",", { missingTokens: ["", "-"] });
+  assert.equal(s.columns[0].missing, 1);
+  assert.equal(s.columns[0].present, 1);
+  assert.equal(readTableSchema("mark\n-\n5\n").columns[0].missing, 0, "the default still keeps the dash");
+});
+
+test("a ragged table still sniffs its own delimiter", () => {
+  // Unanimity over ten rows meant one short row zeroed a correct
+  // delimiter, and this reader counts ragged rows because it expects
+  // them.
+  assert.equal(sniffDelimiter("a\tb\tc\n1\t2\t3\n4\t5\n6\t7\t8\n"), "\t");
+  assert.equal(readTableSchema("a\tb\tc\n1\t2\t3\n4\t5\n6\t7\t8\n").columns.length, 3);
+  assert.equal(sniffDelimiter("note\none, two, and three\nfour, five\n"), ",", "prose is still one column");
+});
+
+test("the distinct cap flags only a count that was cut", () => {
+  const exact = ["v"].concat(Array.from({ length: DISTINCT_CAP }, (_, i) => `v-${i}`));
+  const over = ["v"].concat(Array.from({ length: DISTINCT_CAP + 5 }, (_, i) => `v-${i}`));
+  const e = readTableSchema(exact.join("\n")).columns[0];
+  const o = readTableSchema(over.join("\n")).columns[0];
+  assert.equal(e.distinct, DISTINCT_CAP);
+  assert.equal(e.distinctCapped, false, "an exact cap is an exact count");
+  assert.equal(o.distinct, DISTINCT_CAP);
+  assert.equal(o.distinctCapped, true);
+});
