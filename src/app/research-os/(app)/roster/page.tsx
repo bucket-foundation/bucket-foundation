@@ -121,7 +121,7 @@ export default function ResearchOsRosterPage() {
       // A gateway 503 carries HTML, so parsing it before the ok check
       // threw and the outer catch reported a network error with no
       // retry. The rule decides now.
-      const body = (await res.json().catch(() => ({}))) as { error?: string };
+      const body = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
         setError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? OUTAGE_COPY.body : body.error || "sync_failed");
         return;

@@ -73,16 +73,29 @@ export default function ResearchOsProfilePage() {
   useEffect(() => {
     if (!token) return;
     setLoadError(null);
-    fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } })
-      .then((res) => res.json())
-      .then((data: { profile: ProfileResponse | null; error?: string }) => {
+    // This read had no status check anywhere. A 503 carrying JSON parsed
+    // fine, `profile` was undefined, nothing was set, and the learner
+    // saw the empty form a person with no profile sees. Re-entering and
+    // saving then upserts role and birth_year_bucket over the stored
+    // row, and birth_year_bucket is what gates consent, so a read that
+    // failed for a second became a durable write of re-entered values.
+    (async () => {
+      try {
+        const res = await fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } });
+        const data = (await res.json().catch(() => ({}))) as { profile?: ProfileResponse | null; error?: string };
+        if (!res.ok) {
+          setLoadError(isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed");
+          return;
+        }
         if (data.profile) {
           setExisting(data.profile);
           setRole(data.profile.role);
           setBucket(data.profile.birthYearBucket ?? "");
         }
-      })
-      .catch(() => setLoadError("network_error"));
+      } catch {
+        setLoadError("transient");
+      }
+    })();
   }, [token]);
 
 
@@ -143,7 +156,8 @@ export default function ResearchOsProfilePage() {
 
         <SignInGate signedIn={Boolean(token)} />
 
-        {loadError && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
+        {loadError === "transient" && <p className="mt-4 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {loadError && loadError !== "transient" && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
 
         {token && (
           <div className="mt-6 p-4 bg-[color:var(--bone)] flex flex-col gap-5">

@@ -49,6 +49,11 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
       setHolds(j.transferHolds.filter((h) => h.nodeId === nodeId));
       setProductions(j.productions.filter((p) => p.targetNodeId === nodeId || p.relatedNodeId === nodeId));
     } catch {
+      // A fetch that rejects never reached the server. Emptying the
+      // lists without a note rendered "Nothing on this node waits on
+      // you." for every offline reload, which is the sentence this
+      // whole repair exists to stop.
+      setQueueNote(OUTAGE_COPY.body);
       setHolds([]);
       setProductions([]);
     }

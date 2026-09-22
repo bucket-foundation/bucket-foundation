@@ -408,7 +408,19 @@ test("nothing parses a body and then asks whether the request succeeded", () => 
         ) {
           top = top.parent;
         }
-        if (/\.catch\s*\(/.test(top.getText(source))) {
+        // A parse whose own conditional already tested the status is
+        // checked. `res.ok ? await res.json() : await res.json().catch(...)`
+        // is the shape that puts the guard on the failure path alone,
+        // and reading it as unguarded would have this rule demand the
+        // thing it exists to produce.
+        let conditioned = false;
+        for (let up: ts.Node | undefined = n; up; up = up.parent) {
+          if (ts.isConditionalExpression(up) && /\.(ok|status)\b/.test(up.condition.getText(source))) { conditioned = true; break; }
+          if (ts.isFunctionDeclaration(up) || ts.isArrowFunction(up) || ts.isFunctionExpression(up)) break;
+        }
+        if (conditioned) {
+          guarded += 1;
+        } else if (/\.catch\s*\(/.test(top.getText(source))) {
           guarded += 1;
         } else {
           let stmt: ts.Node = n;

@@ -121,7 +121,11 @@ export default function ResearchOsReviewPage() {
       // rule was never consulted. The line forty-six below this one was
       // repaired and this one was left, which is the thing this PR
       // charged its predecessor with.
-      const data = (await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
+      // The guard is for the failure path: a gateway 503 carries HTML.
+      // A 200 whose body is not JSON is a different failure, and letting
+      // it throw keeps the outer catch reporting it rather than handing
+      // the success branch an empty object to read fields off.
+      const data = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
         // A lock wait printed as "Could not load the queue (busy)."
         // "transient" is rendered as the shared retryable copy below.

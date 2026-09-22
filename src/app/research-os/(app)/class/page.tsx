@@ -163,9 +163,13 @@ export default function ResearchOsClassPage() {
       // A gateway 503 carries HTML, so parsing it before the ok check
       // threw and the outer catch reported a network error with no
       // retry. The rule decides now.
-      const body = (await res.json().catch(() => ({}))) as ClassResponse & { error?: string };
+      const body = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ClassResponse & { error?: string };
       if (!res.ok) {
-        setLoadError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? OUTAGE_COPY.body : body.error || "load_failed");
+        // A sentinel, because the slot below is a code inside
+        // parentheses and a sentence read as
+        // "Could not load classes (The server could not finish the
+        // read. Try again in a moment.)."
+        setLoadError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? "transient" : body.error || "load_failed");
         setData(null);
         return;
       }
@@ -216,7 +220,8 @@ export default function ResearchOsClassPage() {
             RESEARCH_OS_REVIEWER_EMAILS (see src/lib/research-os/reviewer.ts).
           </p>
         )}
-        {loadError && loadError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load classes ({loadError}).</p>}
+        {loadError === "transient" && <p className="mt-6 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {loadError && loadError !== "forbidden" && loadError !== "transient" && <p className="mt-6 text-[13px] text-red-700">Could not load classes ({loadError}).</p>}
 
         {data && data.classes.length === 0 && (
           <p className="mt-8 text-[13px] text-[color:var(--basalt-2)]">
