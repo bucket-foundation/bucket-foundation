@@ -258,7 +258,7 @@ export const ROADMAP: RoadmapItem[] = [
     epic: "ai",
     title: "Pending beads filed once each, with their dependency edges read back",
     stage: "mvp",
-    status: "open",
+    status: "shipped",
     cost: "s",
     dependsOn: [],
     unlocks: "The AI queue in Nucleus with its order enforced, once the host returns",
