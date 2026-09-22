@@ -30,6 +30,22 @@ interface Picked {
 const KB = 1024;
 const size = (bytes: number) => (bytes < KB ? `${bytes} B` : bytes < KB * KB ? `${(bytes / KB).toFixed(0)} KB` : `${(bytes / KB / KB).toFixed(1)} MB`);
 
+/**
+ * What to say when storage refuses the upload itself.
+ *
+ * The bucket's insert policy caps how many uploaded objects an owner may
+ * hold that no import row records, so a person who uploaded files that
+ * never finished recording meets that cap here. Postgres answers with its
+ * own sentence about row-level security, which names nothing a person can
+ * act on. Any other refusal keeps the message storage gave.
+ */
+function uploadRefusal(message: string): string {
+  if (/row-level security|violates|not authorized|unauthorized/i.test(message)) {
+    return "Storage refused this file. Files that were uploaded but never recorded count against a limit; open your imports and finish or remove those first.";
+  }
+  return message;
+}
+
 export default function ImportPage() {
   const [kind, setKind] = useState<ImportKind>("dataset");
   const [title, setTitle] = useState("");
@@ -122,7 +138,7 @@ export default function ImportPage() {
         // holds this file. A conflict is the file arriving twice.
         const already = Boolean(upload.error && /exists/i.test(upload.error.message));
         if (upload.error && !already) {
-          update(index, { stage: "failed", message: upload.error.message });
+          update(index, { stage: "failed", message: uploadRefusal(upload.error.message) });
           continue;
         }
         update(index, { stage: "recording" });
