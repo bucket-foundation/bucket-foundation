@@ -32,7 +32,9 @@ export async function GET(req: NextRequest) {
   }
   const classId = searchParams.get("class");
   if (!classId) return bad(400, "class_required");
-  const staff = await verifyClassStaff(req, classId);
+  const staffCheck = await verifyClassStaff(req, classId);
+  if (!staffCheck.ok) return bad(503, "class_read_failed");
+  const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
   return NextResponse.json({ assignments: await listAssignments(classId), roles: staff.roles }, NO_STORE);
 }
@@ -50,7 +52,9 @@ export async function POST(req: NextRequest) {
     return bad(400, "bad_json");
   }
   if (!body?.classId) return bad(400, "class_required");
-  const staff = await verifyClassStaff(req, body.classId);
+  const staffCheck = await verifyClassStaff(req, body.classId);
+  if (!staffCheck.ok) return bad(503, "class_read_failed");
+  const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
   if (body.action === "create") {
     if (!body.targetSlug?.trim()) return bad(400, "target_required");

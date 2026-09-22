@@ -50,7 +50,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { PRODUCTION_KINDS, type ProductionKind } from "@/lib/research-os/production-node";
 import {
   configured,
@@ -130,7 +130,10 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "production_submit");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   let body: ProductionBody;
   try {

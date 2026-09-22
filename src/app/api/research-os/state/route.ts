@@ -27,7 +27,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onNodeOpened, onTransferItemAnswered } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
@@ -102,7 +102,10 @@ export async function POST(req: NextRequest) {
   const answer = (body.answer || "").trim();
   if (body.action === "transfer_item") {
     const gate = await requireConsent(learnerId, "transfer_answer");
-    if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+    if (!gate.allowed) {
+      const refusal = consentRefusal(gate);
+      return NextResponse.json(refusal.body, { status: refusal.status });
+    }
     if (!answer) return bad(400, "answer is required");
     if (answer.length > MAX_TRANSFER_ANSWER_CHARS) return bad(400, "answer too long");
   }

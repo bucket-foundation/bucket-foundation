@@ -135,7 +135,7 @@ import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/r
 import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
 import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
@@ -268,7 +268,10 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "workspace_tool");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 

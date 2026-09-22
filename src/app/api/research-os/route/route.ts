@@ -80,7 +80,14 @@ export async function GET(req: NextRequest) {
   // The target names its branch; an explicit ?branch= still wins.
   let branch = (searchParams.get("branch") || "").trim();
   if (!branch) {
-    const { data: t } = await graphService().from("nodes").select("branch").eq("slug", targetSlug).maybeSingle();
+    const { data: t, error: tErr } = await graphService().from("nodes").select("branch").eq("slug", targetSlug).maybeSingle();
+    // A failed lookup used to fall to the default branch, so the route
+    // was computed through a branch the target does not sit in and
+    // served at 200 as though it were the answer.
+    if (tErr) {
+      console.error("[research-os/route] target branch read failed:", tErr.message);
+      return bad(503, "graph_read_failed");
+    }
     branch = ((t as { branch?: string } | null)?.branch || "02-physics").trim();
   }
   if (!targetSlug) return bad(400, "target is required");

@@ -65,18 +65,28 @@ export interface ClassStaff {
  * identity) or a membership with role teacher or librarian. Returns the
  * caller's roles in the class, or null when they hold none.
  */
-export async function verifyClassStaff(req: NextRequest, classId: string): Promise<ClassStaff | null> {
+/** A staff check, or the fact that it could not be made. The class read
+ * used to return null on failure, and every caller reads null as "you
+ * hold no role in this class", so an outage reached a teacher as a
+ * permissions answer about themselves. */
+export type StaffCheck = { ok: true; staff: ClassStaff | null } | { ok: false; reason: "unavailable" };
+
+export async function verifyClassStaff(req: NextRequest, classId: string): Promise<StaffCheck> {
   const identity = await verifyLearnerIdentity(req);
-  if (!identity) return null;
+  if (!identity) return { ok: true, staff: null };
   const svc = graphService();
-  const { data: cls } = await svc.from("classes").select("id,reviewer_email").eq("id", classId).maybeSingle();
-  if (!cls) return null;
+  const { data: cls, error } = await svc.from("classes").select("id,reviewer_email").eq("id", classId).maybeSingle();
+  if (error) {
+    console.error("[research-os/class] classes read failed:", error.message);
+    return { ok: false, reason: "unavailable" };
+  }
+  if (!cls) return { ok: true, staff: null };
   const roles: Role[] = [];
   if (identity.email && (cls as { reviewer_email: string }).reviewer_email?.toLowerCase() === identity.email.toLowerCase()) roles.push("teacher");
   const memberships = await loadMemberships(identity.id);
   for (const r of rolesIn(memberships, classId, identity.id)) if (!roles.includes(r)) roles.push(r);
-  if (roles.length === 0) return null;
-  return { id: identity.id, email: identity.email, roles };
+  if (roles.length === 0) return { ok: true, staff: null };
+  return { ok: true, staff: { id: identity.id, email: identity.email, roles } };
 }
 
 export async function listAssignments(classId: string): Promise<(Assignment & { assignedBy: string | null; createdAt: string })[]> {
@@ -140,7 +150,11 @@ export async function createAssignment(staff: ClassStaff, classId: string, targe
   const v = validateAssignment(input);
   if (!v.ok) return { ok: false, error: v.error };
   const svc = graphService();
-  const { data: node } = await svc.from("nodes").select("id").eq("slug", targetSlug).maybeSingle();
+  const { data: node, error: nodeErr } = await svc.from("nodes").select("id").eq("slug", targetSlug).maybeSingle();
+  if (nodeErr) {
+    console.error("[research-os/class] target node read failed:", nodeErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   if (!node) return { ok: false, error: "target_not_found" };
   const { data, error } = await svc
     .from("assignments")
@@ -177,9 +191,23 @@ export async function overrideLevel(
 ): Promise<ClassResult<{ fromStage: Stage | null; toStage: Stage }>> {
   if (!canOverride(staff.roles)) return { ok: false, error: "forbidden" };
   const svc = graphService();
-  const { data: member } = await svc.from("class_members").select("learner_id").eq("class_id", classId).eq("learner_id", learnerId).maybeSingle();
+  // Both reads answer before a durable write. A failed membership read
+  // used to reach the teacher as "not a member", a claim about the
+  // learner, and a failed state read used to become fromStage null,
+  // which validateOverride then judged and graph.override_level then
+  // recorded in its audit row. An audit trail must never hold a stage
+  // the code did not read.
+  const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", classId).eq("learner_id", learnerId).maybeSingle();
+  if (memberErr) {
+    console.error("[research-os/class] class_members read failed:", memberErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   if (!member) return { ok: false, error: "not_a_member" };
-  const { data: state } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  const { data: state, error: stateErr } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  if (stateErr) {
+    console.error("[research-os/class] learner_node_state read failed:", stateErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   const fromStage = ((state as { stage: Stage } | null)?.stage ?? null) as Stage | null;
   const v = validateOverride({ fromStage, toStage, reason });
   if (!v.ok) return { ok: false, error: v.error };

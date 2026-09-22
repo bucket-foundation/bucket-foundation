@@ -17,16 +17,27 @@ export const dynamic = "force-dynamic";
 const NO_STORE = { headers: { "cache-control": "no-store" } };
 const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 
-async function learnDecksStarted(userId: string): Promise<number> {
+/** How many Academy decks this learner has started, or null when the read
+ * did not complete. Zero is the first-run screen, so a learner with a
+ * started deck was shown "you have not begun" whenever this read failed,
+ * and the enclosing catch swallowed it a second time. */
+async function learnDecksStarted(userId: string): Promise<number | null> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  // No Academy stack behind this deployment is a real zero. The learner
+  // has started no decks because there are none to start.
   if (!url || !key) return 0;
   try {
     const svc = createClient(url, key, { db: { schema: "bucket" }, auth: { persistSession: false, autoRefreshToken: false } });
-    const { data } = await svc.from("academy_progress").select("branch,data").eq("user_id", userId);
+    const { data, error } = await svc.from("academy_progress").select("branch,data").eq("user_id", userId);
+    if (error) {
+      console.error("[research-os/loop] academy_progress read failed:", error.message);
+      return null;
+    }
     return ((data as { data: { cards?: Record<string, unknown> } }[]) || []).filter((r) => Object.keys(r.data?.cards ?? {}).length > 0).length;
-  } catch {
-    return 0;
+  } catch (err) {
+    console.error("[research-os/loop] academy_progress read raised:", err instanceof Error ? err.message : err);
+    return null;
   }
 }
 

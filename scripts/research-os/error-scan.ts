@@ -29,10 +29,56 @@ export interface ErrorFinding {
 function isReadChain(node: ts.Expression): boolean {
   let cur: ts.Node = node;
   while (ts.isCallExpression(cur) && ts.isPropertyAccessExpression(cur.expression)) {
-    if (cur.expression.name.text === "from") return true;
+    // `rpc` resolves to the same { data, error } and fails the same way.
+    if (cur.expression.name.text === "from" || cur.expression.name.text === "rpc") return true;
     cur = cur.expression.expression;
   }
   return false;
+}
+
+/** A value that says "there was nothing", which is what a failed read
+ * must never be turned into without a reason. */
+function isEmptyish(node: ts.Expression | undefined): boolean {
+  if (!node) return false;
+  if (ts.isArrayLiteralExpression(node) && node.elements.length === 0) return true;
+  if (ts.isObjectLiteralExpression(node) && node.properties.length === 0) return true;
+  if (node.kind === ts.SyntaxKind.NullKeyword) return true;
+  if (node.kind === ts.SyntaxKind.FalseKeyword) return true;
+  if (ts.isNumericLiteral(node) && node.text === "0") return true;
+  if (ts.isIdentifier(node) && node.text === "undefined") return true;
+  return false;
+}
+
+/** The statement that follows this declaration inside its own block. */
+function nextStatement(decl: ts.VariableDeclaration): ts.Statement | null {
+  const stmt = decl.parent?.parent;
+  if (!stmt || !ts.isVariableStatement(stmt)) return null;
+  const block = stmt.parent;
+  if (!block || !("statements" in block)) return null;
+  const list = (block as ts.Block).statements;
+  const i = list.indexOf(stmt);
+  return i >= 0 && i + 1 < list.length ? list[i + 1] : null;
+}
+
+/** Whether an expression mentions the given identifier anywhere. */
+function mentions(node: ts.Node, name: string): boolean {
+  let found = false;
+  const walk = (n: ts.Node): void => {
+    if (found) return;
+    if (ts.isIdentifier(n) && n.text === name) { found = true; return; }
+    ts.forEachChild(n, walk);
+  };
+  walk(node);
+  return found;
+}
+
+/** The local name a destructuring pattern gives one property. */
+function localNameFor(pattern: ts.ObjectBindingPattern, property: string): string | null {
+  for (const el of pattern.elements) {
+    const prop = el.propertyName && ts.isIdentifier(el.propertyName) ? el.propertyName.text : ts.isIdentifier(el.name) ? el.name.text : "";
+    if (prop === property && ts.isIdentifier(el.name)) return el.name.text;
+  }
+  return null;
 }
 
 /** The property names a destructuring pattern binds. */
@@ -55,9 +101,31 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
     if (ts.isVariableDeclaration(node) && node.initializer && ts.isAwaitExpression(node.initializer)) {
       if (ts.isObjectBindingPattern(node.name) && isReadChain(node.initializer.expression)) {
         const names = boundNames(node.name);
-        if (names.includes("data") && !names.includes("error") && !names.includes("count")) {
+        // Binding `count` beside `data` used to exempt the read. It is
+        // the same read and it fails the same way, so the only thing
+        // that matters is whether `error` is bound.
+        if (names.includes("data") && !names.includes("error")) {
           const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
           findings.push({ file, line: line + 1, what: "destructures data and drops error" });
+        } else if (names.includes("data") && names.includes("error")) {
+          // Binding `error` is not the same as answering it. The live
+          // form of this defect guards on `error || !data` and returns
+          // the same empty value either way, so the caller still cannot
+          // tell an outage from a learner with nothing.
+          const errName = localNameFor(node.name, "error");
+          const next = errName ? nextStatement(node) : null;
+          if (errName && next && ts.isIfStatement(next) && mentions(next.expression, errName)) {
+            const then = next.thenStatement;
+            const ret = ts.isReturnStatement(then)
+              ? then
+              : ts.isBlock(then) && then.statements.length === 1 && ts.isReturnStatement(then.statements[0])
+                ? (then.statements[0] as ts.ReturnStatement)
+                : null;
+            if (ret && isEmptyish(ret.expression)) {
+              const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
+              findings.push({ file, line: line + 1, what: "checks error and returns the same empty value a successful read would give" });
+            }
+          }
         }
       }
     }

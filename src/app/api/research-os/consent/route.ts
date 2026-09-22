@@ -27,8 +27,14 @@ function bad(status: number, error: string) {
 }
 const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
+/** The profile, or null when the learner has none. Raises when the read
+ * did not complete: a failed read used to return null here, and three
+ * lines below that null is served as the learner's effective consent,
+ * `{status:"none"}` with HTTP 200, which is a claim about them drawn
+ * from a read that never finished. */
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
-  const { data } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  if (error) throw new Error(`learner_profiles read failed: ${error.message}`);
   if (!data) return null;
   const r = data as { learner_id: string; role: string; birth_year_bucket: string | null; consent_status: string; consent_source: string | null; updated_at: string };
   return {
@@ -45,12 +51,13 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
-  const profile = await loadProfile(learnerId);
   // A consent answer computed from a read that failed is a more
   // restrictive answer than the truth, delivered as though it were the
-  // truth. resolveConsentPaths raises instead, and this says so.
+  // truth. Both reads raise instead, and this says so.
   let effective;
+  let profile: LearnerProfile | null;
   try {
+    profile = await loadProfile(learnerId);
     effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
   } catch (err) {
     console.error("[research-os/consent] path read failed:", err instanceof Error ? err.message : err);
@@ -118,7 +125,9 @@ export async function POST(req: NextRequest) {
 
   if (body.action === "record" || body.action === "class_basis") {
     if (!body.classId) return bad(400, "class_required");
-    const staff = await verifyClassStaff(req, body.classId);
+    const staffCheck = await verifyClassStaff(req, body.classId);
+    if (!staffCheck.ok) return bad(503, "class_read_failed");
+    const staff = staffCheck.staff;
     if (!staff || !staff.roles.some((r) => r === "teacher" || r === "librarian")) return bad(403, "forbidden");
 
     if (body.action === "class_basis") {

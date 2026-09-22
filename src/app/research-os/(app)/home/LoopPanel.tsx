@@ -7,7 +7,9 @@ import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
 interface Loop {
   access: { owned: number; imports: number; pendingRequests: number };
   awareness: { opened: number; atLeastAwareness: number };
-  understanding: { nodes: number; decksStarted: number };
+  // decksStarted is null when the Academy read did not complete. Zero is
+  // the first-run line, so the two have to stay distinguishable here.
+  understanding: { nodes: number; decksStarted: number | null };
   internalization: { nodes: number; held: number; bridges: number; nextBridge: { slug: string; title: string } | null };
   production: { drafts: number; submitted: number; accepted: number; returned: number; nodes: number; latest: { id: string; status: string; kind: string; claim: string | null } | null };
   empty: boolean;
@@ -88,7 +90,10 @@ export default function LoopPanel() {
     {
       name: "Understanding",
       state: n(loop.understanding.nodes, "node") + " held",
-      detail: `${n(loop.understanding.decksStarted, "deck")} started in Learn`,
+      detail:
+        loop.understanding.decksStarted === null
+          ? "Learn progress could not be read this minute"
+          : `${n(loop.understanding.decksStarted, "deck")} started in Learn`,
       href: "/research-os/learn",
       cta: loop.understanding.decksStarted ? "keep learning" : "start a deck",
       lit: loop.understanding.nodes > 0,

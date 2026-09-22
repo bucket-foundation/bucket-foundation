@@ -62,8 +62,35 @@ test("the list carries no entry for a read that is already fixed", () => {
 });
 
 test("the untriaged count is recorded, so it can only fall", () => {
-  // A ratchet. Triaging an entry, or fixing the read, lowers this. A new
-  // untriaged read raises it and fails here, which is the point.
-  const untriaged = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged")).length;
-  assert.ok(untriaged <= 27, `untriaged reads went up to ${untriaged}; lower the ceiling in this test when you bring it down`);
+  // A ratchet, and it only ratchets when the ceiling is the count. It was
+  // written at 27 against a list holding 19, so eight new untriaged reads
+  // could be added without failing anything, which a critic proved by
+  // adding one. The ceiling is the current number, and lowering it is the
+  // only edit this line ever takes.
+  // Two ceilings, because the scanner learned a second shape and a new
+  // rule's backlog must not be able to hide inside the old rule's. The
+  // dropped-error count is the one the branch started from; the
+  // empty-guard count is what the new rule found on its first run.
+  const UNTRIAGED_CEILING = 17;
+  const EMPTY_GUARD_CEILING = 23;
+  const emptyGuard = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged, empty-guard")).length;
+  assert.ok(
+    emptyGuard <= EMPTY_GUARD_CEILING,
+    `empty-guard reads went up to ${emptyGuard}, above the ceiling of ${EMPTY_GUARD_CEILING}. Triage the read rather than raising this number.`,
+  );
+  assert.equal(
+    emptyGuard,
+    EMPTY_GUARD_CEILING,
+    `empty-guard reads are down to ${emptyGuard}. Lower EMPTY_GUARD_CEILING to ${emptyGuard}.`,
+  );
+  const untriaged = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged") && !e.because.startsWith("not yet triaged, empty-guard")).length;
+  assert.ok(
+    untriaged <= UNTRIAGED_CEILING,
+    `untriaged reads went up to ${untriaged}, above the ceiling of ${UNTRIAGED_CEILING}. Triage the read rather than raising this number.`,
+  );
+  assert.equal(
+    untriaged,
+    UNTRIAGED_CEILING,
+    `untriaged reads are down to ${untriaged}. Lower UNTRIAGED_CEILING to ${untriaged} so the ground that was won cannot be given back.`,
+  );
 });

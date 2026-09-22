@@ -22,7 +22,9 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const classId = new URL(req.url).searchParams.get("class");
   if (!classId) return bad(400, "class_required");
-  const staff = await verifyClassStaff(req, classId);
+  const staffCheck = await verifyClassStaff(req, classId);
+  if (!staffCheck.ok) return bad(503, "class_read_failed");
+  const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
   return NextResponse.json({ members: await listMembers(classId), roles: staff.roles }, NO_STORE);
 }
@@ -37,7 +39,9 @@ export async function POST(req: NextRequest) {
   }
   if (!body.classId || !body.userId || !body.role) return bad(400, "class_user_role_required");
   if (!ROLES.includes(body.role as Role)) return bad(400, "bad_role");
-  const staff = await verifyClassStaff(req, body.classId);
+  const staffCheck = await verifyClassStaff(req, body.classId);
+  if (!staffCheck.ok) return bad(503, "class_read_failed");
+  const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
   const r = await setMemberRole(staff, body.classId, body.userId, body.role as Role, body.relatedLearnerId);
   return r.ok ? NextResponse.json({ member: r.value }, NO_STORE) : bad(r.error === "forbidden" ? 403 : 500, r.error);
