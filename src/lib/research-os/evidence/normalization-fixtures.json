@@ -1,0 +1,164 @@
+{
+  "normalization": "nfc-lf/1",
+  "generatedBy": "Python unicodedata.normalize('NFC') after dropping a leading U+FEFF and turning CRLF and CR into LF",
+  "cases": [
+    {
+      "name": "ascii",
+      "raw": "Light travels in a straight line.",
+      "normalized": "Light travels in a straight line.",
+      "bytes": 33,
+      "originalSha256": "fc0a3a92454b6f4538c6859433290f2b4b88d43c66d69ce4bb8585cfe5633551",
+      "normalizedSha256": "fc0a3a92454b6f4538c6859433290f2b4b88d43c66d69ce4bb8585cfe5633551",
+      "spans": [
+        {
+          "start": 19,
+          "end": 27,
+          "text": "straight"
+        }
+      ],
+      "insideCharacter": []
+    },
+    {
+      "name": "crlf and lone cr",
+      "raw": "first line\r\nsecond line\rthird line",
+      "normalized": "first line\nsecond line\nthird line",
+      "bytes": 33,
+      "originalSha256": "85a82c2356d9c69d13fe8cd864c554902e930068ec4e1b77896a566583b8700c",
+      "normalizedSha256": "7e30068370e3cff508e3157d413b5efd1b279f188f9274b2ad4bc6ee5eb3d2ff",
+      "spans": [
+        {
+          "start": 11,
+          "end": 22,
+          "text": "second line"
+        }
+      ],
+      "insideCharacter": []
+    },
+    {
+      "name": "byte order mark",
+      "raw": "\ufeffWhy is the sky blue?",
+      "normalized": "Why is the sky blue?",
+      "bytes": 20,
+      "originalSha256": "205ae8b827361c83dcf2a986252b53358927d08818cdb9594dbe02bd939b703b",
+      "normalizedSha256": "09ea26793343ba6c850b0e7b499ff5d4fca39de5381cdec99a6375a7b4efbc64",
+      "spans": [
+        {
+          "start": 11,
+          "end": 14,
+          "text": "sky"
+        }
+      ],
+      "insideCharacter": []
+    },
+    {
+      "name": "combining acute becomes one code point",
+      "raw": "Ampe\u0300re and Poincare\u0301",
+      "normalized": "Amp\u00e8re and Poincar\u00e9",
+      "bytes": 21,
+      "originalSha256": "5ad0384e658a9110f40c679a7cc99276d084edca105ab66b5636422af8b3e488",
+      "normalizedSha256": "5ac0c3487ec761b295a65e6582cb8373ae20ac6bff443da560d8aa0379ff0998",
+      "spans": [
+        {
+          "start": 12,
+          "end": 21,
+          "text": "Poincar\u00e9"
+        }
+      ],
+      "insideCharacter": [
+        4,
+        20
+      ]
+    },
+    {
+      "name": "astral emoji",
+      "raw": "sky \ud83c\udf24 blue",
+      "normalized": "sky \ud83c\udf24 blue",
+      "bytes": 13,
+      "originalSha256": "27dc18f521f4d6723108f914ae05322553f5dcea643c22e9bc751223f29c0d54",
+      "normalizedSha256": "27dc18f521f4d6723108f914ae05322553f5dcea643c22e9bc751223f29c0d54",
+      "spans": [
+        {
+          "start": 4,
+          "end": 8,
+          "text": "\ud83c\udf24"
+        },
+        {
+          "start": 9,
+          "end": 13,
+          "text": "blue"
+        }
+      ],
+      "insideCharacter": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "name": "zero width joiner sequence",
+      "raw": "a \ud83d\udc69\u200d\ud83d\udd2c studies light",
+      "normalized": "a \ud83d\udc69\u200d\ud83d\udd2c studies light",
+      "bytes": 27,
+      "originalSha256": "ecbeeb9a96ea346023dab78cad22df5864731e178a2901f323280d5cf8f6b11b",
+      "normalizedSha256": "ecbeeb9a96ea346023dab78cad22df5864731e178a2901f323280d5cf8f6b11b",
+      "spans": [
+        {
+          "start": 2,
+          "end": 13,
+          "text": "\ud83d\udc69\u200d\ud83d\udd2c"
+        }
+      ],
+      "insideCharacter": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "greek and superscripts",
+      "raw": "the \u03bb\u207b\u2074 law",
+      "normalized": "the \u03bb\u207b\u2074 law",
+      "bytes": 16,
+      "originalSha256": "023d073a695f50f6b0c14fb132dd730c3ee235475cd81ccff97e8f009be529eb",
+      "normalizedSha256": "023d073a695f50f6b0c14fb132dd730c3ee235475cd81ccff97e8f009be529eb",
+      "spans": [
+        {
+          "start": 4,
+          "end": 12,
+          "text": "\u03bb\u207b\u2074"
+        }
+      ],
+      "insideCharacter": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ]
+    },
+    {
+      "name": "hangul jamo compose",
+      "raw": "\u1100\u1161 and \u1102\u1161",
+      "normalized": "\uac00 and \ub098",
+      "bytes": 11,
+      "originalSha256": "fd516a3c8c973fd8b32e2d51324a5a95d5b123a5271d68502b9c1f68fe91731d",
+      "normalizedSha256": "ebb0e995695504f051958106f0dd70736aedbe22d2581d02b191592eff7e4c2a",
+      "spans": [
+        {
+          "start": 0,
+          "end": 3,
+          "text": "\uac00"
+        }
+      ],
+      "insideCharacter": [
+        1,
+        2,
+        9,
+        10
+      ]
+    }
+  ]
+}

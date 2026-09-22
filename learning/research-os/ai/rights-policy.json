@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "status": "draft",
+  "reviewedAt": "2026-09-22",
+  "reviewer": "bkt-nuc, an agent. The founder confirms before any pilot account sees a result; activation refuses a draft policy outside development.",
+  "index": [
+    {
+      "id": "sky-blue-seed",
+      "match": { "seedFile": "supabase/seed/research-os-sky-blue.json" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "The summaries are paraphrases written for the seed in this repository, under its MIT LICENSE. The sources they rest on are cited in provenance and quoted only through the quote rules.",
+      "evidence": ["LICENSE", "supabase/seed/research-os-sky-blue.json"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "academy-atom",
+      "match": { "provenanceType": "academy_atom" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "Lesson summaries written in this repository under its MIT LICENSE. Each atom's resources are links, and no resource text is copied.",
+      "evidence": ["LICENSE", "learning/app/corpus/index.json"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "canon-figure",
+      "match": { "provenanceType": "canon_figure" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "Lifespan, era, region and a short account from the contributor index written in this repository.",
+      "evidence": ["LICENSE", "canon-figures/"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "canon-concept",
+      "match": { "provenanceType": "canon_concept" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "A concept name from the canon map, with no summary text.",
+      "evidence": ["scripts/research-os/ingest/canon-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "canon-site",
+      "match": { "provenanceType": "canon_site" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "A civilization and a date, composed by the ingest from the site index.",
+      "evidence": ["scripts/research-os/ingest/canon-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "intake-digest",
+      "match": { "provenanceType": "intake_digest" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "A count line the ingest composes for a concept digest.",
+      "evidence": ["scripts/research-os/ingest/intake-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "intake-target",
+      "match": { "provenanceType": "intake_target" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "Research target notes written in this repository's _intake folders.",
+      "evidence": ["scripts/research-os/ingest/intake-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "source-excerpt",
+      "match": { "provenanceType": "source_excerpt" },
+      "allow": false,
+      "permission": "third-party",
+      "basis": "Transcript excerpts of a third party's videos. The Kruse corpus stays private until its author gives permission.",
+      "evidence": ["CLAUDE.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "canon-paper",
+      "match": { "provenanceType": "canon_paper" },
+      "allow": false,
+      "permission": "third-party",
+      "basis": "The summary is the first 600 characters of the paper's own text, which belongs to its publisher.",
+      "evidence": ["scripts/research-os/ingest/canon-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "canon-bridge",
+      "match": { "provenanceType": "canon_bridge" },
+      "allow": false,
+      "permission": "third-party",
+      "basis": "The summary carries a transcript claim's title as its exemplar.",
+      "evidence": ["scripts/research-os/ingest/canon-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "literature-paper",
+      "match": { "provenanceType": "literature_paper" },
+      "allow": false,
+      "permission": "unreviewed",
+      "basis": "Notes on third-party papers that can carry abstract text. Admitted after each file is read.",
+      "evidence": ["scripts/research-os/ingest/intake-all.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "intake-paper",
+      "match": { "provenanceType": "intake_paper" },
+      "allow": false,
+      "permission": "third-party",
+      "basis": "A third-party paper's title with no text written here.",
+      "evidence": ["scripts/research-os/ingest/intake-all.ts"],
+      "rightsRevision": 1
+    }
+  ],
+  "quote": [
+    {
+      "id": "nasa-space-place",
+      "urlPrefix": "https://spaceplace.nasa.gov/",
+      "allow": true,
+      "permission": "attributed-quotation",
+      "basis": "Quotations under 90 words with their locator and URL, which Quote already serves. The seed's provenance records the page as public-domain (US government work); Space Place is produced with JPL-Caltech, so that label is for the founder to confirm.",
+      "evidence": ["src/lib/research-os/passages.ts", "supabase/seed/research-os-sky-blue.json"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "wikipedia",
+      "urlPrefix": "https://en.wikipedia.org/",
+      "allow": true,
+      "permission": "cc-by-sa-4.0",
+      "basis": "CC BY-SA 4.0 permits copying with attribution. Each quote carries its author line, locator and URL.",
+      "evidence": ["https://creativecommons.org/licenses/by-sa/4.0/", "src/lib/research-os/passages.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "wikisource-rayleigh",
+      "urlPrefix": "https://en.wikisource.org/",
+      "allow": true,
+      "permission": "public-domain",
+      "basis": "Rayleigh's 1871 paper, published in the US public domain window before 1931; Rayleigh died in 1919.",
+      "evidence": ["src/lib/research-os/passages.ts"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "gutenberg-tyndall",
+      "urlPrefix": "https://www.gutenberg.org/",
+      "allow": true,
+      "permission": "public-domain",
+      "basis": "Tyndall's 1869 essay as reprinted in Fragments of Science, Project Gutenberg eBook 24527; Tyndall died in 1893.",
+      "evidence": ["src/lib/research-os/passages.ts"],
+      "rightsRevision": 1
+    }
+  ]
+}
