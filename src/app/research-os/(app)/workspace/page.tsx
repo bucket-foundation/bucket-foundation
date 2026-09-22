@@ -82,6 +82,7 @@
  * feedback; loadRoute() (already called after every successful Check)
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
+import EvidenceFind from "./EvidenceFind";
 import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -1106,6 +1107,7 @@ export default function ResearchOsWorkspacePage() {
                       <li key={r.nodeId}>{r.title}: {r.citation}</li>
                     ))}
                   </ul>
+                  <EvidenceFind token={token} branch={selected?.branch ?? "02-physics"} targetNodeId={selected?.id ?? null} />
                 </div>
 
                 <div className="bg-[color:var(--bone)] p-4">
