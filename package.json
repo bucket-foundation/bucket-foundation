@@ -64,7 +64,8 @@
     "ai-watch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/research-os/ai-watch/cli.ts",
     "gate:evidence:runtime": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/research-os/evidence/bench.ts",
     "gate:evidence:model": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/research-os/evidence/model-gate.ts",
-    "test:evidence-route-access": "TS_NODE_BASEURL=. npx ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"commonjs\",\"baseUrl\":\".\"}' scripts/test-research-os-evidence-route-access.ts"
+    "test:evidence-route-access": "TS_NODE_BASEURL=. npx ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"commonjs\",\"baseUrl\":\".\"}' scripts/test-research-os-evidence-route-access.ts",
+    "gate:evidence:saturate": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/research-os/evidence/saturate.ts"
   },
   "author": "bucket.foundation contributors",
   "dependencies": {
