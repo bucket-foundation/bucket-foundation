@@ -42,9 +42,14 @@ function assignmentFromRow(r: AssignmentRow): Assignment & { assignedBy: string 
   };
 }
 
+/** Raises when the read did not complete. An empty list is a person in no
+ * class, and verifyClassStaff turns that into "you hold no role here",
+ * so the two have to stay apart: repairing the classes read and leaving
+ * this one still answered an outage with a permissions verdict. */
 export async function loadMemberships(userId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("learner_id", userId);
-  if (error || !data) return [];
+  if (error) throw new Error(`loadMemberships: class_members read failed: ${error.message}`);
+  if (!data) return [];
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
@@ -83,19 +88,30 @@ export async function verifyClassStaff(req: NextRequest, classId: string): Promi
   if (!cls) return { ok: true, staff: null };
   const roles: Role[] = [];
   if (identity.email && (cls as { reviewer_email: string }).reviewer_email?.toLowerCase() === identity.email.toLowerCase()) roles.push("teacher");
-  const memberships = await loadMemberships(identity.id);
+  let memberships: Membership[];
+  try {
+    memberships = await loadMemberships(identity.id);
+  } catch (err) {
+    console.error("[research-os/class] memberships read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
   for (const r of rolesIn(memberships, classId, identity.id)) if (!roles.includes(r)) roles.push(r);
   if (roles.length === 0) return { ok: true, staff: null };
   return { ok: true, staff: { id: identity.id, email: identity.email, roles } };
 }
 
+/** Raises when the read did not complete. The empty list this used to
+ * return is the defect this whole change is named after: a failed read
+ * reached the learner's home as the tile "No assignments yet", which is
+ * a statement about their class drawn from a read that never finished. */
 export async function listAssignments(classId: string): Promise<(Assignment & { assignedBy: string | null; createdAt: string })[]> {
   const { data, error } = await graphService()
     .from("assignments")
     .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
     .eq("class_id", classId)
     .order("created_at", { ascending: false });
-  if (error || !data) return [];
+  if (error) throw new Error(`listAssignments: assignments read failed: ${error.message}`);
+  if (!data) return [];
   return (data as AssignmentRow[]).map(assignmentFromRow);
 }
 
@@ -121,12 +137,22 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
   if (assignments.length === 0) return [];
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
-  const [{ data: nodes }, { data: classes }, { data: states }, { data: productions }] = await Promise.all([
+  // Four reads, each failing on its own. Their errors were dropped, so a
+  // failed node read gave a learner assignments with no titles and a
+  // failed state read reported every one of them as untouched.
+  const [nodesRes, classesRes, statesRes, productionsRes] = await Promise.all([
     svc.from("nodes").select("id,slug,title").in("id", nodeIds),
     svc.from("classes").select("id,name").in("id", classIds),
     svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", nodeIds),
     svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", nodeIds),
   ]);
+  for (const r of [nodesRes, classesRes, statesRes, productionsRes]) {
+    if (r.error) throw new Error(`listAssignmentsForLearner: read failed: ${r.error.message}`);
+  }
+  const { data: nodes } = nodesRes;
+  const { data: classes } = classesRes;
+  const { data: states } = statesRes;
+  const { data: productions } = productionsRes;
   const nodeById = new Map(((nodes as { id: string; slug: string; title: string }[]) || []).map((n) => [n.id, n]));
   const classById = new Map(((classes as { id: string; name: string }[]) || []).map((c) => [c.id, c.name]));
   const stageByNode = new Map(((states as { node_id: string; stage: Stage }[]) || []).map((s) => [s.node_id, s.stage]));

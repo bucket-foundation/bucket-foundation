@@ -55,6 +55,15 @@ export async function GET(req: NextRequest) {
     loadConnections(learnerId).catch(() => ({ held: [], bridges: [] })),
     learnDecksStarted(learnerId),
   ]);
+  // Each element of the Promise.all is its own read and fails on its
+  // own. Their errors were dropped, so a failed learner_node_state read
+  // rendered the first-run screen to a learner with a full map.
+  for (const res of [statesRes, ownedRes, importsRes, prodRes, requestsRes]) {
+    if (res.error) {
+      console.error("[research-os/loop] read failed:", res.error.message);
+      return bad(503, "loop_unavailable");
+    }
+  }
   const states = ((statesRes.data as { node_id: string; stage: Stage }[]) || []);
   const atLeast = (s: Stage) => states.filter((r) => stageAtLeast(r.stage, s)).length;
   const productions = ((prodRes.data as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || []);
@@ -73,7 +82,10 @@ export async function GET(req: NextRequest) {
         nodes: productions.filter((p) => p.node_id).length,
         latest: productions[0] ?? null,
       },
-      empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0 && decks === 0,
+        // Computed from the Research OS signals alone. Folding decks in
+      // suppressed the first-run path for a learner who does have
+      // nothing whenever the Academy read was the thing that failed.
+      empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0,
     },
     NO_STORE
   );

@@ -95,7 +95,14 @@ export default function LoopPanel() {
           ? "Learn progress could not be read this minute"
           : `${n(loop.understanding.decksStarted, "deck")} started in Learn`,
       href: "/research-os/learn",
-      cta: loop.understanding.decksStarted ? "keep learning" : "start a deck",
+      // null is falsy, so the panel said "start a deck" beside a line
+      // saying the read had not completed.
+      cta:
+        loop.understanding.decksStarted === null
+          ? "open Learn"
+          : loop.understanding.decksStarted
+            ? "keep learning"
+            : "start a deck",
       lit: loop.understanding.nodes > 0,
     },
     {

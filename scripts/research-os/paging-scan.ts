@@ -26,6 +26,31 @@ export interface PagingFinding {
   line: number;
   chain: string;
   reasons: string[];
+  /** A key that survives an edit above the read: the file, the enclosing
+   * function, the table, and which read of that table in that function
+   * this is. The sibling error allowlist moved five times in one branch
+   * on line keys alone, and every move failed a gate on entries that
+   * were right about the code. */
+  anchor: string;
+}
+
+/** The nearest named function, or the file's top level. */
+function enclosingName(node: ts.Node): string {
+  let cur: ts.Node | undefined = node;
+  while (cur) {
+    if ((ts.isFunctionDeclaration(cur) || ts.isMethodDeclaration(cur)) && cur.name) return cur.name.getText();
+    if ((ts.isArrowFunction(cur) || ts.isFunctionExpression(cur)) && cur.parent && ts.isVariableDeclaration(cur.parent) && ts.isIdentifier(cur.parent.name)) {
+      return cur.parent.name.text;
+    }
+    cur = cur.parent;
+  }
+  return "<module>";
+}
+
+/** The table or routine a read chain names. */
+function tableOf(node: ts.Node, source: ts.SourceFile): string {
+  const m = node.getText(source).match(/\.(?:from|rpc)\(\s*["'`]([^"'`]+)["'`]/);
+  return m ? m[1] : "<unknown>";
 }
 
 /** The method names in one builder chain, innermost first. */
@@ -71,6 +96,14 @@ function chainReturningLocals(source: ts.SourceFile): Set<string> {
 
 export function scanFile(file: string, text: string): PagingFinding[] {
   const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true);
+  const seenAnchors = new Map<string, number>();
+  const anchorFor = (node: ts.Node): string => {
+    const rel = file.replace(/^.*?\/(src|scripts)\//, "$1/");
+    const base = `${rel}::${enclosingName(node)}::${tableOf(node, source)}`;
+    const n = (seenAnchors.get(base) ?? 0) + 1;
+    seenAnchors.set(base, n);
+    return `${base}::${n}`;
+  };
   const locals = chainReturningLocals(source);
   const findings: PagingFinding[] = [];
   const seen = new Set<ts.Node>();
@@ -96,6 +129,7 @@ export function scanFile(file: string, text: string): PagingFinding[] {
               line: line + 1,
               chain: names.join("."),
               reasons,
+              anchor: anchorFor(node),
             });
           }
         }

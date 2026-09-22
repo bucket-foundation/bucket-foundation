@@ -28,7 +28,14 @@ export async function GET(req: NextRequest) {
   if (searchParams.get("mine")) {
     const learnerId = await verifyLearner(req);
     if (!learnerId) return bad(401, "unauthorized");
-    return NextResponse.json({ assignments: await listAssignmentsForLearner(learnerId) }, NO_STORE);
+    // The five reads behind this raise rather than flattening to an
+    // empty list, so a failed one answers here.
+    try {
+      return NextResponse.json({ assignments: await listAssignmentsForLearner(learnerId) }, NO_STORE);
+    } catch (err) {
+      console.error("[research-os/assignments] read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "class_read_failed");
+    }
   }
   const classId = searchParams.get("class");
   if (!classId) return bad(400, "class_required");
@@ -36,7 +43,12 @@ export async function GET(req: NextRequest) {
   if (!staffCheck.ok) return bad(503, "class_read_failed");
   const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
-  return NextResponse.json({ assignments: await listAssignments(classId), roles: staff.roles }, NO_STORE);
+  try {
+    return NextResponse.json({ assignments: await listAssignments(classId), roles: staff.roles }, NO_STORE);
+  } catch (err) {
+    console.error("[research-os/assignments] class read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "class_read_failed");
+  }
 }
 
 type Body =
@@ -59,6 +71,10 @@ export async function POST(req: NextRequest) {
   if (body.action === "create") {
     if (!body.targetSlug?.trim()) return bad(400, "target_required");
     const r = await createAssignment(staff, body.classId, body.targetSlug.trim(), body);
+    // A read that did not complete is the server's problem. It used to
+    // fall to the 400 every unlisted code took, which named the
+    // teacher's own input as the thing that was wrong.
+    if (!r.ok && r.error === "unavailable") return bad(503, "class_read_failed");
     if (!r.ok) return bad(r.error === "forbidden" ? 403 : r.error === "write_failed" ? 500 : 400, r.error);
     // A class is a region: a private or shared node the assigner owns becomes
     // visible to the class it is assigned to (IDEAL-STATE.md, Access × class).

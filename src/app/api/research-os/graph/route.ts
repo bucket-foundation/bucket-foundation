@@ -55,16 +55,30 @@ export async function GET(req: NextRequest) {
   let holders: Record<string, Record<string, number>> | null = null;
   let learners = 0;
   if (viewerId && ids.length) {
-    const [st, classes] = await Promise.all([
-      inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
-      listMyClasses(viewerId),
-    ]);
+    // The catch used to return [], which is a learner who holds nothing.
+    // The rejection is the error, so it answers rather than flattening.
+    let st: { node_id: string; stage: string }[];
+    let classes: Awaited<ReturnType<typeof listMyClasses>>;
+    try {
+      [st, classes] = await Promise.all([
+        inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>),
+        listMyClasses(viewerId),
+      ]);
+    } catch (err) {
+      console.error("[research-os/graph] standing read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "graph_read_failed");
+    }
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
+    // One try over the class reads below. Each used to carry its own
+    // .catch returning an empty list, so a failed assignment read showed
+    // a learner no assignments and a failed member read showed a teacher
+    // a class with nobody in it, both at 200.
+    try {
     if (classIds.length) {
       const asg = await inChunks<{ target_node_id: string; title: string; class_id: string; due_at: string | null }>(classIds, (chunk, page) =>
         svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", chunk).is("closed_at", null).order("class_id").order("target_node_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; title: string; class_id: string; due_at: string | null }[] | null; error: { message: string } | null }>,
-      ).catch(() => [] as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]);
+      );
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
       const idSet = new Set(ids);
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
@@ -74,7 +88,7 @@ export async function GET(req: NextRequest) {
         // ordinary staff class list.
         const members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
           svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
-        ).catch(() => [] as { learner_id: string }[]);
+        );
         const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
@@ -85,8 +99,11 @@ export async function GET(req: NextRequest) {
           const rows: { node_id: string; stage: string }[] = [];
           for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
             const someLearners = learnerIds.slice(i, i + IN_CHUNK);
+            // A failed page here used to drop those learners from the
+            // holder counts, which a teacher reads as nobody holding the
+            // node rather than as a read that did not finish.
             rows.push(
-              ...(await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", someLearners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => [])),
+              ...(await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", someLearners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>)),
             );
           }
           holders = {};
@@ -96,6 +113,10 @@ export async function GET(req: NextRequest) {
           });
         }
       }
+    }
+    } catch (err) {
+      console.error("[research-os/graph] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "graph_read_failed");
     }
   }
   return NextResponse.json(

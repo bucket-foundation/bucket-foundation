@@ -93,9 +93,13 @@ export async function GET(req: NextRequest) {
   let assignments: unknown[] = [];
   let holders: { stage: string; count: number }[] | null = null;
   if (classIds.length) {
+    // One try over the class reads. Each carried its own .catch
+    // returning an empty list, so a failed read showed a learner a node
+    // with no assignment on it, at 200.
+    try {
     const asg = await inChunks<{ id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }>(classIds, (chunk, page) =>
       svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", chunk).is("closed_at", null).order("class_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[] | null; error: { message: string } | null }>,
-    ).catch(() => [] as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]);
+    );
     const nameOf = new Map(myClasses.map((c) => [c.id, c.name]));
     assignments = ((asg as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]) || []).map((a) => ({ id: a.id, classId: a.class_id, className: nameOf.get(a.class_id) ?? "", title: a.title, dueAt: a.due_at, requiresProduction: a.requires_production }));
     const staffClasses = myClasses.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
@@ -104,7 +108,7 @@ export async function GET(req: NextRequest) {
       // ordinary staff class list.
       const members = await inChunks<{ learner_id: string }>(staffClasses, (chunk, page) =>
         svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
-      ).catch(() => [] as { learner_id: string }[]);
+      );
       const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
       if (learnerIds.length) {
         // Paging the member read above removed the bound this one used
@@ -126,6 +130,10 @@ export async function GET(req: NextRequest) {
         const opened = st.length;
         holders = [...["access", "awareness", "understanding", "internalization", "production"].map((s) => ({ stage: s, count: counts.get(s) ?? 0 })), { stage: "unopened", count: Math.max(0, learnerIds.length - opened) }];
       }
+    }
+    } catch (err) {
+      console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "node_read_failed");
     }
   }
 
