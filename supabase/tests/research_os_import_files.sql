@@ -270,43 +270,80 @@ begin
   assert refused = 3, 'only <owner>/<sha256> is accepted, refused ' || refused || ' of 3';
 end $$;
 
--- The cap on objects no row records. Without it an open signup is an
--- unmetered object store: the key rule says where a write lands and
--- nothing about how many.
+-- The quota, which replaced a cap that failed three ways. Each case is
+-- the reproduction of one of them.
 do $$
 declare
-  o uuid; refused boolean := false; n int;
+  o uuid; i uuid; n bigint; b bigint; refused boolean; before_n bigint; before_b bigint;
 begin
   if not exists (select 1 from information_schema.schemata where schema_name = 'storage') then
     return;
   end if;
-  select owner into o from t_ids;
+  select owner, imp into o, i from t_ids;
+  -- Earlier blocks in this file already wrote objects for this owner, so
+  -- every count below is relative to where they left it.
+  select count(*) into before_n from storage.objects
+   where bucket_id = 'research-os-imports' and name like o::text || '/%';
+  select coalesce(bytes, 0) into before_b from graph.import_quota where owner_id = o;
 
   set local role authenticated;
   perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
 
-  -- Fill the allowance with objects nothing records. lpad keeps every
-  -- name a 64-character lowercase hex string, which the key rule needs.
-  for n in 1..60 loop
-    begin
-      insert into storage.objects (bucket_id, name)
-      values ('research-os-imports', o::text || '/' || lpad(to_hex(n), 64, '0'));
-    exception when others then
-      refused := true;
-      exit;
-    end;
-  end loop;
+  -- One statement wrote 500 against a cap of 50, because a stable
+  -- function reads the statement snapshot and cannot see the rows that
+  -- statement is inserting. The trigger fires per row and locks.
+  refused := false;
+  begin
+    insert into storage.objects (bucket_id, name)
+    select 'research-os-imports', o::text || '/' || lpad(to_hex(g), 64, '0') from generate_series(1, 600) g;
+  exception when check_violation then refused := true;
+  end;
   reset role;
+  assert refused, 'a multi-row insert past the object limit is refused';
+  select count(*) into n from storage.objects
+   where bucket_id = 'research-os-imports' and name like o::text || '/%';
+  assert n = before_n, 'and none of its rows landed, got ' || n || ' against ' || before_n;
 
-  assert refused, 'an owner cannot write unrecorded objects without limit';
+  -- The old cap counted objects and never bytes, so recording bought
+  -- unlimited headroom.
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
+  refused := false;
+  begin
+    insert into storage.objects (bucket_id, name, metadata)
+    values ('research-os-imports', o::text || '/' || repeat('c', 64), jsonb_build_object('size', 3221225472::bigint));
+  exception when check_violation then refused := true;
+  end;
+  reset role;
+  assert refused, 'one object past the byte limit is refused';
 
-  -- Recording one makes room again: the cap counts what no row names.
-  select count(*) into n
-  from storage.objects o2
-  where o2.bucket_id = 'research-os-imports'
-    and o2.name like o::text || '/%'
-    and not exists (select 1 from graph.import_files f where f.storage_path = o2.name);
-  assert n <= 50, 'the allowance holds at 50 unrecorded objects, found ' || n;
+  -- Sixty recorded objects, then the import deleted the way the import
+  -- page tells a blocked owner to. The old cap counted only unrecorded
+  -- objects, so this turned sixty accounted objects into sixty orphans
+  -- and locked the owner out for good.
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
+  insert into storage.objects (bucket_id, name, metadata)
+  select 'research-os-imports', o::text || '/' || lpad(to_hex(g), 64, '0'), jsonb_build_object('size', 1048576)
+  from generate_series(1, 60) g;
+  reset role;
+  select objects, bytes into n, b from graph.import_quota where owner_id = o;
+  assert n = before_n + 60, 'sixty more objects are held, got ' || n || ' against ' || before_n;
+  assert b = before_b + 62914560, 'and their bytes, got ' || b;
+
+  insert into graph.import_files (import_id, owner_id, sha256, bytes, media_type)
+  select i, o, lpad(to_hex(g), 64, '0'), 1048576, 'text/csv' from generate_series(1, 60) g;
+  delete from graph.imports where id = i;
+  select objects, bytes into n, b from graph.import_quota where owner_id = o;
+  assert n = before_n + 60 and b = before_b + 62914560, 'deleting the import moves no allowance, got ' || n || '/' || b;
+
+  -- And deleting the objects returns it, which is what makes the remedy
+  -- real. storage.protect_delete refuses a direct delete, so this is the
+  -- path the Storage API takes.
+  perform set_config('storage.allow_delete_query', 'true', true);
+  delete from storage.objects where bucket_id = 'research-os-imports' and name like o::text || '/%';
+  select objects, bytes into n, b from graph.import_quota where owner_id = o;
+  assert n = 0 and b = 0, 'deleting the objects returns the allowance, got ' || n || '/' || b;
 end $$;
 
 -- The recursion this policy set once caused, as a standing check: a

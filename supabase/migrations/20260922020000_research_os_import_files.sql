@@ -191,45 +191,121 @@ revoke execute on function graph.can_read_import_object(text) from public;
 grant execute on function graph.can_read_import_object(text) to authenticated;
 
 /**
- * Whether the calling user may write another object that no row records.
+ * What one owner is holding in the imports bucket.
  *
- * The key rule bounds where a write lands and says nothing about how
- * many. Signup is open, so without this any account can write 50 MiB
- * objects that no row names, nothing bills and nothing reaps, and the
- * delete policy lets them churn keys.
+ * A counter rather than a count. The first version of this cap was a
+ * `stable` function in the insert policy that counted objects with no
+ * import_files row, and it failed three ways that one row fixes.
  *
- * The cap counts only objects with no graph.import_files row, because
- * the uploader writes the bytes and then records them: one unrecorded
- * object at a time is its normal state, and an object that has been
- * recorded is accounted for. Recording is what raises the ceiling.
+ * It was check-then-act with nothing serializing it. Three concurrent
+ * transactions each read the same pre-burst count and each wrote fifty,
+ * and a single multi-row statement wrote five hundred, because a stable
+ * function reads the statement snapshot and cannot see the rows that
+ * statement is inserting. Measured, both.
  *
- * An upload whose record never arrives leaves an orphan, which is the
- * failure this shape creates and which the cap bounds at UNRECORDED_CAP
- * per owner. Reaping them belongs to the import routes; until that
- * exists an owner who fills the cap with orphans cannot upload, and
- * deleting their own objects is the way out.
+ * It bounded orphans instead of bytes. Recording an object took it out
+ * of the count, and recording was unlimited, so fifty thousand recorded
+ * objects passed. At the 50 MiB object limit that is 2.5 TB for one
+ * account on open signup.
+ *
+ * And its own documented remedy made the lockout permanent. import_files
+ * rows cascade when an import is deleted, so an owner with sixty
+ * recorded objects sat inside the allowance, deleted the import the way
+ * the import page tells a blocked owner to, and arrived at sixty
+ * unrecorded objects and a refusal. Measured: 60 objects, 0 unrecorded
+ * before, 60 unrecorded after.
+ *
+ * Counting every object and locking the row closes all three. The
+ * numbers below are provisional and are a product decision nobody has
+ * taken; they are written here so the bound exists, and filed.
  */
-create or replace function graph.import_upload_allowed(object_name text)
-returns boolean
-language sql
-stable
+create table if not exists graph.import_quota (
+  owner_id uuid primary key references auth.users (id) on delete cascade,
+  objects  bigint not null default 0 check (objects >= 0),
+  bytes    bigint not null default 0 check (bytes >= 0)
+);
+
+grant all on graph.import_quota to service_role;
+revoke all on graph.import_quota from authenticated;
+revoke all on graph.import_quota from anon;
+
+/**
+ * Admits or refuses a write, and accounts for it, in one locked step.
+ *
+ * BEFORE INSERT, so the decision and the increment cannot be separated:
+ * `for update` holds the owner's row until the transaction ends, and a
+ * concurrent writer waits rather than reading a stale count. The trigger
+ * fires per row, so a multi-row statement is counted row by row.
+ *
+ * It counts every object, recorded or not, so recording no longer buys
+ * headroom, and deleting an object gives it back, which makes the
+ * remedy the import page offers work at all.
+ */
+create or replace function graph.import_quota_gate()
+returns trigger
+language plpgsql
 security definer
 set search_path = ''
 as $$
-  select auth.uid() is not null
-     and (
-       select count(*)
-       from storage.objects o
-       where o.bucket_id = 'research-os-imports'
-         and o.name like auth.uid()::text || '/%'
-         and not exists (
-           select 1 from graph.import_files f where f.storage_path = o.name
-         )
-     ) < 50;
-$$;
+declare
+  o uuid;
+  sz bigint;
+  held record;
+begin
+  if new.bucket_id <> 'research-os-imports' then
+    return new;
+  end if;
+  -- The key rule the insert policy enforces. A name that does not match
+  -- is refused there; parsing it here would raise on the cast first and
+  -- report the wrong thing.
+  if new.name !~ '^[0-9a-fA-F-]{36}/[0-9a-f]{64}$' then
+    return new;
+  end if;
+  o := split_part(new.name, '/', 1)::uuid;
+  sz := coalesce((new.metadata ->> 'size')::bigint, 0);
 
-revoke execute on function graph.import_upload_allowed(text) from public;
-grant execute on function graph.import_upload_allowed(text) to authenticated;
+  insert into graph.import_quota (owner_id) values (o) on conflict (owner_id) do nothing;
+  select objects, bytes into held from graph.import_quota where owner_id = o for update;
+
+  if held.objects + 1 > 500 then
+    raise exception 'import quota: one owner holds at most 500 objects in this bucket'
+      using errcode = 'check_violation';
+  end if;
+  if held.bytes + sz > 2147483648 then
+    raise exception 'import quota: one owner holds at most 2 GiB in this bucket'
+      using errcode = 'check_violation';
+  end if;
+
+  update graph.import_quota
+     set objects = held.objects + 1, bytes = held.bytes + sz
+   where owner_id = o;
+  return new;
+end $$;
+
+/** Deleting an object returns its allowance. */
+create or replace function graph.import_quota_release()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  o uuid;
+  sz bigint;
+begin
+  if old.bucket_id <> 'research-os-imports' then
+    return old;
+  end if;
+  if old.name !~ '^[0-9a-fA-F-]{36}/[0-9a-f]{64}$' then
+    return old;
+  end if;
+  o := split_part(old.name, '/', 1)::uuid;
+  sz := coalesce((old.metadata ->> 'size')::bigint, 0);
+  update graph.import_quota
+     set objects = greatest(objects - 1, 0), bytes = greatest(bytes - sz, 0)
+   where owner_id = o;
+  return old;
+end $$;
 
 -- 4. The bucket and its policies. Guarded, because a bare Postgres with the
 -- graph schema and no Supabase Storage is a database this migration still
@@ -256,7 +332,6 @@ do $$ begin
         with check (
           bucket_id = 'research-os-imports'
           and name ~ ('^' || auth.uid()::text || '/[0-9a-f]{64}$')
-          and graph.import_upload_allowed(name)
         );
 
     -- Reads follow the record's own rule, so a grant on the import's node
@@ -281,6 +356,19 @@ do $$ begin
             or graph.can_read_import_object(name)
           )
         );
+
+    -- The quota, as a trigger rather than a policy predicate, because a
+    -- policy cannot lock and a WITH CHECK cannot count what the same
+    -- statement is inserting.
+    drop trigger if exists research_os_import_quota_gate on storage.objects;
+    create trigger research_os_import_quota_gate
+      before insert on storage.objects
+      for each row execute function graph.import_quota_gate();
+
+    drop trigger if exists research_os_import_quota_release on storage.objects;
+    create trigger research_os_import_quota_release
+      before delete on storage.objects
+      for each row execute function graph.import_quota_release();
 
     -- Only the owner removes an object, and no policy grants an update at
     -- all: a path names one set of bytes for as long as it exists.
