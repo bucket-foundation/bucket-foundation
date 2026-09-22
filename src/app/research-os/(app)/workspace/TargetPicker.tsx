@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY, LoadingState, PageHeader, Panel, STAGE_LABEL } from "@/components/ui";
@@ -23,6 +24,7 @@ type Assignment = LearnerAssignment;
 export default function TargetPicker() {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
+  const [searchNote, setSearchNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | null>(null);
 
@@ -31,7 +33,7 @@ export default function TargetPicker() {
       .then(async (r) => {
         // An outage answers 503. Rendering "None open." would tell the
         // learner they have no assignments (Bucket critic C44).
-        if (!r.ok) return { unavailable: true as const };
+        if (!r.ok) return { unavailable: true as const, transient: isTransientOutage(r.status, await readErrorCode(r)) };
         return (await r.json()) as { assignments?: Assignment[] };
       })
       .then((j) => ("unavailable" in j ? setAssignments("unavailable") : setAssignments(j.assignments ?? [])))
@@ -47,7 +49,13 @@ export default function TargetPicker() {
       setBusy(true);
       try {
         const r = await fetch(`/api/research-os/search?q=${encodeURIComponent(q)}&limit=12`, { cache: "no-store" });
-        if (r.ok) setHits(((await r.json()) as { results: Hit[] }).results);
+        if (r.ok) {
+          setSearchNote(null);
+          setHits(((await r.json()) as { results: Hit[] }).results);
+        } else {
+          setSearchNote(isTransientOutage(r.status, await readErrorCode(r)) ? OUTAGE_COPY.body : null);
+          setHits([]);
+        }
       } finally {
         setBusy(false);
       }
@@ -63,6 +71,11 @@ export default function TargetPicker() {
       <Panel title="find a target">
         <input id="target-search" autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="a law, a claim, a concept, a paper, a figure" className="w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/60" />
         {busy && <LoadingState label="Searching the graph" />}
+        {searchNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {searchNote}
+          </p>
+        )}
         {hits.length > 0 && (
           <ul className="mt-3 flex flex-col divide-y divide-[color:var(--hairline)]">
             {hits.map((h) => (

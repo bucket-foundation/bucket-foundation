@@ -247,9 +247,42 @@ test("every call to a route that can answer busy consults the rule", () => {
     const guard = /isTransientOutage|readErrorCode/g;
     for (let m = guard.exec(src); m !== null; m = guard.exec(src)) guards.push(m.index);
 
+    // A route string handed to a local helper rather than to fetch is
+    // that helper's call, and the helper is where the code is read.
+    // HomeClient's load<T>() captures it with readErrorCode and its
+    // callers pass only a URL, so crediting the window alone reported
+    // correct code as a defect.
+    const helpers = new Set<string>();
+    const findHelpers = (n: ts.Node): void => {
+      if ((ts.isFunctionDeclaration(n) || ts.isArrowFunction(n) || ts.isFunctionExpression(n)) && n.body) {
+        const name = ts.isFunctionDeclaration(n) && n.name
+          ? n.name.text
+          : n.parent && ts.isVariableDeclaration(n.parent) && ts.isIdentifier(n.parent.name)
+            ? n.parent.name.text
+            : null;
+        if (name && /isTransientOutage|readErrorCode/.test(n.body.getText(source)) && /\bfetch\s*\(/.test(n.body.getText(source))) {
+          helpers.add(name);
+        }
+      }
+      ts.forEachChild(n, findHelpers);
+    };
+    ts.forEachChild(source, findHelpers);
+    // The argument spans of every call to such a helper, so a route
+    // string inside one is that helper's fetch rather than a bare one.
+    const helperSpans: [number, number][] = [];
+    const findCalls = (n: ts.Node): void => {
+      if (ts.isCallExpression(n) && ts.isIdentifier(n.expression) && helpers.has(n.expression.text)) {
+        helperSpans.push([n.arguments.pos, n.arguments.end]);
+      }
+      ts.forEachChild(n, findCalls);
+    };
+    ts.forEachChild(source, findCalls);
+    const viaHelper = (at: number): boolean => helperSpans.some(([lo, hi]) => at >= lo && at < hi);
+
     for (let i = 0; i < marks.length; i += 1) {
       const from = marks[i];
       const to = i + 1 < marks.length ? marks[i + 1] : src.length;
+      if (viaHelper(from)) continue;
       if (!guards.some((g) => g > from && g < to)) {
         const { line } = source.getLineAndCharacterOfPosition(from);
         offenders.push(`${path.relative(root, file)}:${line + 1}`);

@@ -89,6 +89,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   // Two meanings behind one 503, told apart by the body (Bucket critic C59).
   const [code, setCode] = useState<string | null>(null);
   const [branchesUnavailable, setBranchesUnavailable] = useState(false);
+  const [branchesTransient, setBranchesTransient] = useState(false);
 
   useEffect(() => {
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
@@ -97,6 +98,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
       .then(async (r) => {
         if (r.ok) return (await r.json()) as { branches?: { id: string; nodes: number }[] };
         setBranchesUnavailable(true);
+        setBranchesTransient(isTransientOutage(r.status, await readErrorCode(r)));
         return { branches: [] };
       })
       .then((j) => setBranches(j.branches ?? []))
@@ -158,7 +160,9 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
         {branchesUnavailable && (
-          <span className="text-[11px] text-[color:var(--basalt-3)]">the branch list could not be read, showing this branch alone</span>
+          <span className="text-[11px] text-[color:var(--basalt-3)]">
+            {branchesTransient ? "the branch list could not be read, showing this branch alone" : UNCONFIGURED_COPY.body}
+          </span>
         )}
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
           {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (

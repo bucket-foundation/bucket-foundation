@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -24,6 +25,7 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
   // An outage is its own state. Leaving the banner absent said the
   // learner has no assignments (Bucket critic C44).
   const [unavailable, setUnavailable] = useState(false);
+  const [transient, setTransient] = useState(false);
 
   useEffect(() => {
     if (!token) return;
@@ -32,7 +34,13 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
       try {
         const res = await fetch("/api/research-os/assignments?mine=1", { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
         if (!res.ok) {
-          if (!cancelled) setUnavailable(true);
+          // A read that failed this minute is not a deployment without
+          // assignments, and the banner said the same thing for both.
+          const transient = isTransientOutage(res.status, await readErrorCode(res));
+          if (!cancelled) {
+            setUnavailable(true);
+            setTransient(transient);
+          }
           return;
         }
         const j = (await res.json()) as { assignments: LearnerAssignment[] };
@@ -48,11 +56,12 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
 
   if (unavailable) {
     return (
-      <div className="mb-3 p-3 border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/70 text-[12px] text-[color:var(--basalt-3)]">
-        Assignments could not be read right now.
-      </div>
+      <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+        {transient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body}
+      </p>
     );
   }
+
   if (rows.length === 0) return null;
   return (
     <div className="mb-3 p-3 border border-[color:var(--gold)] bg-[color:var(--bone-2)]/70 text-[12px]">

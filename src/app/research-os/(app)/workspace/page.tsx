@@ -307,8 +307,11 @@ export default function ResearchOsWorkspacePage() {
   // the module-level TARGET_SLUG picks it up.
   useEffect(() => {
     if (!token || new URLSearchParams(window.location.search).get("target")) return;
+    // A failed read leaves the learner where they are. Redirecting on a
+    // guess is worse than not redirecting, and AssignmentsBanner reports
+    // the failure on the same screen.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { assignments: [] }))
+      .then(async (r) => (r.ok ? r.json() : { assignments: [], transient: isTransientOutage(r.status, await readErrorCode(r)) }))
       .then((j: { assignments?: LearnerAssignment[] }) => {
         // A target the learner may not read carries no slug. Redirecting
         // to `?target=` would land back here with an empty value, which
@@ -460,7 +463,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
       const data = (await res.json().catch(() => ({}))) as RouteResponse;
       if (!res.ok) {
-        setRouteError(data.error || "route_failed");
+        setRouteError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "route_failed");
         return;
       }
       setRoute(data);

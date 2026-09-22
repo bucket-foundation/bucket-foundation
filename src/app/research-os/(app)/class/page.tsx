@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 /**
  * /research-os/class, the teacher class view (bkt-ros, ros-06 item 2).
  * Renders GET /api/research-os/class's already-computed, already-scoped
@@ -161,7 +162,13 @@ export default function ResearchOsClassPage() {
       const res = await fetch("/api/research-os/class", { headers: authHeaders() });
       const body = await res.json();
       if (!res.ok) {
-        setLoadError(res.status === 403 ? "forbidden" : body.error || "load_failed");
+        setLoadError(
+          res.status === 403
+            ? "forbidden"
+            : isTransientOutage(res.status, body.error ?? null)
+              ? OUTAGE_COPY.body
+              : body.error || "load_failed",
+        );
         setData(null);
         return;
       }
