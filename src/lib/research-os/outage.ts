@@ -10,8 +10,19 @@
  * (Bucket critic C44, C59, C73).
  *
  * The rule lived in two clients and four more had the defect. It lives
- * here now, and `scripts/test-research-os-outage.ts` asserts every
- * client that renders a 503 reads a code.
+ * here now.
+ *
+ * What the gate in `scripts/test-research-os-outage.ts` covers, and what
+ * it does not. It marks a call whose route emits a transient code from
+ * its own handler, or imports `evidence-errors`, which is eight of the
+ * twenty-eight routes, and it requires a call to this rule in the
+ * window between that call and the next. It does not cover the other
+ * twenty. `isTransientOutage(503, null)` answers true because a bare
+ * 503 comes from a gateway or a CDN, and a gateway sits in front of
+ * every route, so a client calling any of the twenty-eight can be
+ * handed one. Thirty-seven calls across twelve files would be flagged
+ * by marking them all; that is filed rather than done here. A green run
+ * says the eight are guarded, and nothing more.
  */
 
 /** The one code that means the deployment has no graph behind it. */

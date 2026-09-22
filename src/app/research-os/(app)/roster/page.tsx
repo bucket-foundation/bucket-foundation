@@ -20,6 +20,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 
 interface RosterDiffCounts {
   orgsParsed: number;
@@ -117,9 +118,12 @@ export default function ResearchOsRosterPage() {
       for (const f of FIELDS) form.set(f, files[f] as File);
       form.set("apply", apply ? "true" : "false");
       const res = await fetch("/api/research-os/roster", { method: "POST", headers: authHeaders(), body: form });
-      const body = await res.json();
+      // A gateway 503 carries HTML, so parsing it before the ok check
+      // threw and the outer catch reported a network error with no
+      // retry. The rule decides now.
+      const body = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
-        setError(res.status === 403 ? "forbidden" : body.error || "sync_failed");
+        setError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? OUTAGE_COPY.body : body.error || "sync_failed");
         return;
       }
       setResponse(body as RosterResponse);

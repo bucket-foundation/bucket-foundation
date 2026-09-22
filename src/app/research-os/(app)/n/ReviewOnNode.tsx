@@ -77,6 +77,18 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
   }
 
   if (holds === null || productions === null) return <LoadingState label="Reading the queue" />;
+  // The note comes before the empty state. A failed read sets it and
+  // empties both lists, so the early return below fired on exactly the
+  // path the note exists for and the reviewer read "Nothing on this node
+  // waits on you." for every outage, which is the sentence the comment
+  // in load() claims to have fixed.
+  if (queueNote) {
+    return (
+      <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+        {queueNote}
+      </p>
+    );
+  }
   if (holds.length === 0 && productions.length === 0) return <p className="text-[12px] text-[color:var(--basalt-3)]">Nothing on this node waits on you.</p>;
 
   return (

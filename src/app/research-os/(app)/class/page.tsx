@@ -28,6 +28,7 @@ import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import AssignmentsPanel from "./AssignmentsPanel";
 import OverrideControl from "./OverrideControl";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import SignInGate from "@/components/auth/SignInGate";
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
@@ -159,9 +160,12 @@ export default function ResearchOsClassPage() {
     setLoadError(null);
     try {
       const res = await fetch("/api/research-os/class", { headers: authHeaders() });
-      const body = await res.json();
+      // A gateway 503 carries HTML, so parsing it before the ok check
+      // threw and the outer catch reported a network error with no
+      // retry. The rule decides now.
+      const body = (await res.json().catch(() => ({}))) as ClassResponse & { error?: string };
       if (!res.ok) {
-        setLoadError(res.status === 403 ? "forbidden" : body.error || "load_failed");
+        setLoadError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? OUTAGE_COPY.body : body.error || "load_failed");
         setData(null);
         return;
       }

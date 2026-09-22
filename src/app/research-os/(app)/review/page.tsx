@@ -115,7 +115,13 @@ export default function ResearchOsReviewPage() {
     setQueueError(null);
     try {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
-      const data = await res.json();
+      // A gateway 503 carries HTML, so parsing before the ok check threw,
+      // the outer catch set "network_error", and the reviewer read
+      // "Could not load the queue (network_error)." with no retry. The
+      // rule was never consulted. The line forty-six below this one was
+      // repaired and this one was left, which is the thing this PR
+      // charged its predecessor with.
+      const data = (await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
         // A lock wait printed as "Could not load the queue (busy)."
         // "transient" is rendered as the shared retryable copy below.

@@ -20,7 +20,7 @@ import assert from "node:assert/strict";
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
-import { OUTAGE_COPY, PERMANENT_CODES, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage } from "../src/lib/research-os/outage";
+import { OUTAGE_COPY, PERMANENT_CODES, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "../src/lib/research-os/outage";
 
 const root = path.join(__dirname, "..");
 const CLIENTS = path.join(root, "src/app/research-os");
@@ -264,11 +264,49 @@ test("every call to a route that can answer busy consults the rule", () => {
 
     // Each call's window ends where the next one begins, so one guard
     // covers one call and no more.
-    // Identifiers, because the guard was matched as raw text and a
-    // comment carrying the word satisfied the gate.
+    // A call, and a call to the imported rule.
+    //
+    // Raw text came first, and a comment carrying the word satisfied the
+    // gate. Identifiers came next, and a dead `void isTransientOutage;`
+    // anywhere in the window satisfied it, as did shadowing the name
+    // with `const isTransientOutage = () => false`. The guard has to be
+    // called, and the name it is called by has to resolve through an
+    // import of @/lib/research-os/outage rather than to a local of the
+    // same name.
+    const GUARD_NAMES = ["isTransientOutage", "readErrorCode"];
+    const imported = new Set<string>();
+    for (const st of source.statements) {
+      if (!ts.isImportDeclaration(st) || !st.importClause) continue;
+      const from = ts.isStringLiteral(st.moduleSpecifier) ? st.moduleSpecifier.text : "";
+      if (!/research-os\/outage$/.test(from)) continue;
+      const named = st.importClause.namedBindings;
+      if (named && ts.isNamedImports(named)) {
+        for (const el of named.elements) {
+          const original = el.propertyName ? el.propertyName.text : el.name.text;
+          if (GUARD_NAMES.includes(original)) imported.add(el.name.text);
+        }
+      }
+    }
+    // A local declaration of an imported name shadows it, and a shadowed
+    // guard answers whatever the local says.
+    const shadowed = new Set<string>();
+    const findShadows = (n: ts.Node): void => {
+      if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name) && imported.has(n.name.text)) shadowed.add(n.name.text);
+      if (ts.isFunctionDeclaration(n) && n.name && imported.has(n.name.text)) shadowed.add(n.name.text);
+      ts.forEachChild(n, findShadows);
+    };
+    ts.forEachChild(source, findShadows);
+
     const guards: number[] = [];
     const collect = (n: ts.Node): void => {
-      if (ts.isIdentifier(n) && (n.text === "isTransientOutage" || n.text === "readErrorCode")) guards.push(n.getStart(source));
+      if (
+        ts.isCallExpression(n) &&
+        ts.isIdentifier(n.expression) &&
+        imported.has(n.expression.text) &&
+        !shadowed.has(n.expression.text)
+      ) {
+        guards.push(n.getStart(source));
+      }
       ts.forEachChild(n, collect);
     };
     ts.forEachChild(source, collect);
@@ -295,5 +333,108 @@ test("the permanent copy is written once", () => {
     copies.map((f) => path.relative(root, f)),
     [],
     "the string lives in outage.ts, so changing it changes every surface at once",
+  );
+});
+
+/**
+ * A Response whose body is not JSON, which is what a gateway 503 is.
+ *
+ * Every repair in this branch turns on a `.catch` around `res.json()`,
+ * and reverting any of them left the whole suite green: nothing anywhere
+ * constructed a response that makes the parse throw.
+ */
+function gatewayResponse(status: number): Response {
+  return new Response("<html><body>503 Service Unavailable</body></html>", {
+    status,
+    headers: { "content-type": "text/html" },
+  });
+}
+
+test("a gateway 503 carries HTML, and reading its code answers null", async () => {
+  const res = gatewayResponse(503);
+  await assert.rejects(res.clone().json(), "the body is not JSON, which is the whole problem");
+  assert.equal(await readErrorCode(gatewayResponse(503)), null, "readErrorCode absorbs the parse and answers null");
+  assert.equal(isTransientOutage(503, null), true, "and a bare 503 earns a retry");
+});
+
+test("the guarded parse the clients use survives a gateway body", async () => {
+  // The shape every repair on this branch writes. Without the catch this
+  // throws, the caller's outer catch reports a network error, and the
+  // rule is never consulted.
+  const data = (await gatewayResponse(503).json().catch(() => ({}))) as { error?: string };
+  assert.deepEqual(data, {}, "an unparseable body reads as no code");
+  assert.equal(isTransientOutage(503, data.error ?? null), true, "which the rule answers as retryable");
+});
+
+test("a corpus read failure is its own class and is retryable", async () => {
+  /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+  const { CorpusReadFailed, CorpusUnavailable } = require("../src/lib/research-os/evidence-search/server") as {
+    CorpusReadFailed: new (m: string) => Error & { code?: string };
+    CorpusUnavailable: new (m: string) => Error;
+  };
+  const failed = new CorpusReadFailed("permission denied");
+  // CorpusReadFailed extends CorpusUnavailable, so the nearest existing
+  // assertion, "a missing corpus dir throws CorpusUnavailable", is blind
+  // to the classification by inheritance. This asserts the distinction
+  // the branch added.
+  assert.ok(failed instanceof CorpusUnavailable, "it is one");
+  assert.equal(failed.name, "CorpusReadFailed", "and it says which one");
+  assert.equal(isTransientOutage(503, "corpus_read_failed"), true, "a read that failed this minute earns a retry");
+  assert.equal(isTransientOutage(503, "corpus_unavailable"), false, "a deployment with no corpus does not");
+});
+
+test("nothing parses a body and then asks whether the request succeeded", () => {
+  // `const data = await res.json(); if (!res.ok) { ...data.error... }`
+  // reads naturally and cannot work: a gateway 503 carries HTML, so the
+  // parse throws before the branch is reached, the outer catch reports a
+  // network error, and the rule is never consulted. Four files were
+  // written this way, one of them forty-six lines above a line this
+  // branch had already repaired.
+  //
+  // Parsing inside `if (res.ok)`, or in a `r.ok ? r.json() : fallback`,
+  // only ever sees a 200 and is left alone.
+  const offenders: string[] = [];
+  let guarded = 0;
+  for (const file of clientFiles([path.join(root, "src/app/research-os"), path.join(root, "src/components")])) {
+    const src = fs.readFileSync(file, "utf8");
+    if (!/\/api\/research-os\//.test(src)) continue;
+    const source = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true);
+    const visit = (n: ts.Node): void => {
+      if (ts.isCallExpression(n) && ts.isPropertyAccessExpression(n.expression) && n.expression.name.text === "json" && n.arguments.length === 0) {
+        let top: ts.Node = n;
+        while (
+          top.parent &&
+          (ts.isPropertyAccessExpression(top.parent) || ts.isCallExpression(top.parent) || ts.isAwaitExpression(top.parent) || ts.isParenthesizedExpression(top.parent) || ts.isAsExpression(top.parent))
+        ) {
+          top = top.parent;
+        }
+        if (/\.catch\s*\(/.test(top.getText(source))) {
+          guarded += 1;
+        } else {
+          let stmt: ts.Node = n;
+          while (stmt.parent && !ts.isStatement(stmt)) stmt = stmt.parent;
+          const block = stmt.parent;
+          if (block && "statements" in block) {
+            const list = (block as ts.Block).statements;
+            const i = list.indexOf(stmt as ts.Statement);
+            for (let k = i + 1; k < list.length; k += 1) {
+              if (/if\s*\(\s*!\s*\w+\.ok\b/.test(list[k].getText(source))) {
+                const { line } = source.getLineAndCharacterOfPosition(n.getStart(source));
+                offenders.push(`${path.relative(root, file)}:${line + 1}`);
+                break;
+              }
+            }
+          }
+        }
+      }
+      ts.forEachChild(n, visit);
+    };
+    ts.forEachChild(source, visit);
+  }
+  assert.ok(guarded > 20, `the rule is looking at real parses, found ${guarded} guarded`);
+  assert.deepEqual(
+    offenders.sort(),
+    [],
+    `these parse the body before checking the status, so a gateway 503 throws and the rule never runs. Add .catch(() => ({})): ${offenders.join(", ")}`,
   );
 });

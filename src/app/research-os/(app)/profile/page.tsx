@@ -24,6 +24,7 @@ import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import { BIRTH_YEAR_BUCKET_LABELS, ROLE_LABELS } from "@/lib/research-os/profile";
 import type { BirthYearBucket, ConsentStatus, LearnerRole } from "@/lib/research-os/consent";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
@@ -103,12 +104,15 @@ export default function ResearchOsProfilePage() {
         headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
         body: JSON.stringify({ role, birthYearBucket: bucket }),
       });
-      const data = await res.json();
+      // A gateway 503 carries HTML, so parsing it before the ok check
+      // threw and the outer catch reported a network error with no
+      // retry. The rule decides now.
+      const data = (await res.json().catch(() => ({}))) as { error?: string; profile?: ProfileResponse | null };
       if (!res.ok) {
-        setSaveError(data.error || "save_failed");
+        setSaveError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "save_failed");
         return;
       }
-      setExisting(data.profile);
+      setExisting(data.profile ?? null);
       setSaved(true);
     } catch {
       setSaveError("network_error");
