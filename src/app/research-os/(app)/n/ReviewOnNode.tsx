@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY, LoadingState } from "@/components/ui";
 
@@ -29,16 +30,21 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
   const [holds, setHolds] = useState<Hold[] | null>(null);
   const [productions, setProductions] = useState<QueuedProduction[] | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+  const [queueNote, setQueueNote] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
       const res = await fetch("/api/research-os/review", { cache: "no-store" });
       if (!res.ok) {
+        // An empty queue and a failed read looked the same, so a lock
+        // wait told a reviewer this node had nothing waiting on it.
+        setQueueNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
         setHolds([]);
         setProductions([]);
         return;
       }
+      setQueueNote(null);
       const j = (await res.json()) as { transferHolds: Hold[]; productions: QueuedProduction[] };
       setHolds(j.transferHolds.filter((h) => h.nodeId === nodeId));
       setProductions(j.productions.filter((p) => p.targetNodeId === nodeId || p.relatedNodeId === nodeId));
@@ -59,7 +65,7 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
       const res = await fetch("/api/research-os/review", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const j = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
       if (!res.ok) {
-        setNote(j.message ?? j.error ?? "Could not record the decision.");
+        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not record the decision."));
         return;
       }
       setNote("Recorded.");
@@ -75,6 +81,11 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
 
   return (
     <div className="flex flex-col gap-4">
+      {queueNote && (
+        <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+          {queueNote}
+        </p>
+      )}
       {holds.length > 0 && (
         <div>
           <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">transfer holds</h3>
