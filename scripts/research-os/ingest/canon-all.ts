@@ -246,6 +246,11 @@ async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
     if (error) throw new Error(`edge upsert failed: ${error.message}`);
     written += Math.min(500, rows.length - i);
   }
+  // Re-importing resets tiers to this importer's own values; learning order
+  // across courses raises them again (ros-tier-fix).
+  const { data: raised, error: tierErr } = await svc.rpc("enforce_prerequisite_tiers");
+  if (tierErr) throw new Error(`enforce_prerequisite_tiers failed: ${tierErr.message}`);
+  if (typeof raised === "number" && raised > 0) console.log(`raised ${raised} grade tiers to keep learning order monotone`);
   console.log(`[canon-all] wrote ${idBySlug.size >= nodes.length ? nodes.length : idBySlug.size} nodes, ${written} edges (${edges.length - rows.length} skipped).`);
 }
 
