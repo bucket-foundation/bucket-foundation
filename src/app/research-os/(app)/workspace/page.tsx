@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 /**
  * /research-os/workspace, the Phase 0 student workspace (bkt-ros, task item
  * 4). Shows the target node, the frontier-backward chain as a vertical map
@@ -363,6 +364,10 @@ export default function ResearchOsWorkspacePage() {
   const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[]; abstained?: boolean } | null>(null);
   const [transferAnswer, setTransferAnswer] = useState("");
   const [transferSaved, setTransferSaved] = useState(false);
+  // A transfer write that came back 503 used to fall past `if (res.ok)`
+  // with nothing said, so the learner's typed answer was discarded and
+  // the page looked as though they had never pressed the button.
+  const [transferNote, setTransferNote] = useState<string | null>(null);
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "", counterEvidence: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
   // The kind of production the form saves (ProduceBlock): a plain production
@@ -773,9 +778,15 @@ export default function ResearchOsWorkspacePage() {
       const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data as { error?: string; message?: string; needsProfile?: boolean })) return;
       if (res.ok) {
+        setTransferNote(null);
         setTransferSaved(true);
         loadRoute();
+        return;
       }
+      // The answer stays in transferAnswer either way, so pressing the
+      // button again sends what they typed rather than an empty box.
+      const code = (data as { error?: string }).error ?? null;
+      setTransferNote(isTransientOutage(res.status, code) ? OUTAGE_COPY.body : "That answer was not recorded.");
     } finally {
       setBusy(null);
     }
@@ -1428,6 +1439,11 @@ export default function ResearchOsWorkspacePage() {
                     <p className="mt-2 text-[11px] text-[color:var(--basalt-2)]">
                       Logged. Held for teacher review (Phase 0 has no teacher layer yet; see
                       src/lib/research-os/stages.ts).
+                    </p>
+                  )}
+                  {transferNote && (
+                    <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
+                      {transferNote}
                     </p>
                   )}
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY, LoadingState } from "@/components/ui";
 
@@ -59,7 +60,7 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
       const res = await fetch("/api/research-os/review", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const j = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
       if (!res.ok) {
-        setNote(j.message ?? j.error ?? "Could not record the decision.");
+        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not record the decision."));
         return;
       }
       setNote("Recorded.");

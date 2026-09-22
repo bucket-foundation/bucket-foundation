@@ -18,23 +18,37 @@
 export const UNCONFIGURED = "research_os_unavailable";
 
 /**
- * The 503 codes a retry might clear, named one by one.
+ * The 503 codes a retry might clear, each one emitted by a route in this
+ * tree.
  *
  * The first version of this rule said the opposite: any 503 whose code
  * was not `research_os_unavailable` was transient. Every other 503 in
- * the tree is a permanent misconfiguration, six of them, and each would
- * have rendered "Try again in a moment" with a retry button for a state
- * no retry clears. Naming what is transient fails safe; naming what is
- * permanent fails toward a button that does nothing.
+ * the tree is a permanent misconfiguration, and each would have rendered
+ * "Try again in a moment" with a retry button for a state no retry
+ * clears. Naming what is transient fails safe. Naming what is permanent
+ * fails toward a button that does nothing.
+ *
+ * The second version named six codes and four of them were emitted by
+ * nothing. They were written for routes on branches that have not
+ * landed, so the effective rule on most clients was "a 503 with no
+ * body", and `busy`, the one live retryable code, reached five clients
+ * that consulted no rule at all. The set holds what ships:
+ *
+ *   busy              a Postgres lock wait, sent with retry-after: 1 by
+ *                     override/route.ts, review/route.ts and
+ *                     evidence-errors.ts, which probe, production, state
+ *                     and review all answer through.
+ *   node_read_failed  node/route.ts, a failed read of one node.
+ *
+ * `scripts/test-research-os-outage.ts` checks the set against the tree
+ * in both directions, so a code a route emits and nobody classified
+ * fails, and so does an entry here that no route emits.
  */
-export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
-  "busy",
-  "access_unavailable",
-  "loop_unavailable",
-  "graph_read_failed",
-  "node_read_failed",
-  "consent_unavailable",
-]);
+export const TRANSIENT_CODES: ReadonlySet<string> = new Set(["busy", "node_read_failed"]);
+
+/** The 503 bodies that name a key or a vendor nobody configured. Each is
+ * a sentence, and no retry clears any of them. */
+const PERMANENT_MESSAGE = /enabled yet|credentials are invalid|not_configured/;
 
 export const UNCONFIGURED_COPY = {
   title: "Research OS is unavailable on this deployment",
@@ -56,7 +70,18 @@ export const OUTAGE_COPY = {
 export function isTransientOutage(status: number | null, code: string | null): boolean {
   if (status !== 503) return false;
   if (code === null || code === "") return true;
-  return TRANSIENT_CODES.has(code);
+  if (TRANSIENT_CODES.has(code)) return true;
+  if (code === UNCONFIGURED || PERMANENT_MESSAGE.test(code)) return false;
+  // A code nobody classified. Falling to the permanent copy here tells a
+  // reader their install has no graph, which is a statement about the
+  // deployment drawn from a code no one has looked at. Offering a retry
+  // costs one request and says only what is known.
+  //
+  // The gate keeps this branch unreachable for routes in this tree: a
+  // 503 code a route emits and the set does not name fails
+  // scripts/test-research-os-outage.ts. It stays for a proxy, a newer
+  // deployment, or a route on a branch that has not landed.
+  return true;
 }
 
 /** The `error` code a failed Research OS response carries, if any. */
