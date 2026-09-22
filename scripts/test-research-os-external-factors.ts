@@ -6,7 +6,7 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { PAGE, PagingError, addExternalFactors, inChunks, type EdgeRow } from "../src/lib/research-os/db";
+import { PAGE, PagingError, addExternalFactors, inChunks, pagedRead, type EdgeRow } from "../src/lib/research-os/db";
 import type { GraphNode } from "../src/lib/research-os/types";
 
 type Row = Record<string, any>;
@@ -98,5 +98,46 @@ test("a read that forgets its range fails loudly rather than spinning", async ()
     () => inChunks<Row>(["n1"], (chunk) => svc.from("edges").select("id,from_id").in("from_id", chunk).order("id")),
     (err: unknown) => err instanceof PagingError,
     "an unranged callback answers the same page forever, so the loop has to stop itself",
+  );
+});
+
+test("pagedRead walks every page of a read with no id list to chunk", async () => {
+  // The helper this branch is named for had no executed test: making it
+  // stop after the first page left the whole suite green.
+  const rows: Row[] = Array.from({ length: PAGE * 2 + 9 }, (_, i) => ({ id: String(i).padStart(6, "0"), learner_id: "l1" }));
+  const svc = fake({ learner_node_state: rows });
+  const got = await pagedRead<Row>((page) =>
+    svc.from("learner_node_state").select("id,learner_id").eq("learner_id", "l1").order("id").range(page.from, page.to),
+  );
+  assert.equal(got.length, rows.length, `every row came back, not the first page: ${got.length}`);
+  assert.equal(new Set(got.map((r) => r.id)).size, rows.length, "and none came back twice");
+});
+
+test("pagedRead stops on a short page rather than asking for one more", async () => {
+  const rows: Row[] = Array.from({ length: 3 }, (_, i) => ({ id: String(i), learner_id: "l1" }));
+  let calls = 0;
+  const svc = fake({ learner_node_state: rows });
+  await pagedRead<Row>((page) => {
+    calls += 1;
+    return svc.from("learner_node_state").select("id").eq("learner_id", "l1").order("id").range(page.from, page.to);
+  });
+  assert.equal(calls, 1, "a page shorter than the cap is the last one");
+});
+
+test("pagedRead that forgets its range fails loudly rather than spinning", async () => {
+  const rows: Row[] = Array.from({ length: PAGE + 1 }, (_, i) => ({ id: String(i), learner_id: "l1" }));
+  const svc = fake({ learner_node_state: rows });
+  await assert.rejects(
+    () => pagedRead<Row>(() => svc.from("learner_node_state").select("id").eq("learner_id", "l1").order("id")),
+    (err: unknown) => err instanceof PagingError,
+    "an unranged callback answers the same page forever, so the loop has to stop itself",
+  );
+});
+
+test("pagedRead surfaces a failed read rather than returning what it got", async () => {
+  const svc = fake({ learner_node_state: [] }, "learner_node_state");
+  await assert.rejects(
+    () => pagedRead<Row>((page) => svc.from("learner_node_state").select("id").order("id").range(page.from, page.to)),
+    /down/,
   );
 });

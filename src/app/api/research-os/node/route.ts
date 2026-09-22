@@ -103,14 +103,27 @@ export async function GET(req: NextRequest) {
       // Many members per class, so this overflows the row cap on an
       // ordinary staff class list.
       const members = await inChunks<{ learner_id: string }>(staffClasses, (chunk, page) =>
-        svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+        svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
       ).catch(() => [] as { learner_id: string }[]);
       const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
       if (learnerIds.length) {
-        const { data: st } = await svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", learnerIds);
+        // Paging the member read above removed the bound this one used
+        // to inherit: PostgREST capped that list at a thousand, so this
+        // `in()` was short by construction. It is not any more, so it
+        // chunks for the request line and pages for the row cap, and a
+        // failure says so rather than counting nobody as opened.
+        let st: { learner_id: string; stage: string }[];
+        try {
+          st = await inChunks<{ learner_id: string; stage: string }>(learnerIds, (chunk, page) =>
+            svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string; stage: string }[] | null; error: { message: string } | null }>,
+          );
+        } catch (err) {
+          console.error("[research-os/node] holder read failed:", err instanceof Error ? err.message : err);
+          return bad(503, "node_read_failed");
+        }
         const counts = new Map<string, number>();
-        ((st as { stage: string }[]) || []).forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
-        const opened = ((st as unknown[]) || []).length;
+        st.forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
+        const opened = st.length;
         holders = [...["access", "awareness", "understanding", "internalization", "production"].map((s) => ({ stage: s, count: counts.get(s) ?? 0 })), { stage: "unopened", count: Math.max(0, learnerIds.length - opened) }];
       }
     }

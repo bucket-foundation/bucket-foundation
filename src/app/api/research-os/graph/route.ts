@@ -56,7 +56,7 @@ export async function GET(req: NextRequest) {
     const classIds = classes.map((c) => c.id);
     if (classIds.length) {
       const asg = await inChunks<{ target_node_id: string; title: string; class_id: string; due_at: string | null }>(classIds, (chunk, page) =>
-        svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", chunk).is("closed_at", null).order("class_id").order("target_node_id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; title: string; class_id: string; due_at: string | null }[] | null; error: { message: string } | null }>,
+        svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", chunk).is("closed_at", null).order("class_id").order("target_node_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; title: string; class_id: string; due_at: string | null }[] | null; error: { message: string } | null }>,
       ).catch(() => [] as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]);
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
       const idSet = new Set(ids);
@@ -66,7 +66,7 @@ export async function GET(req: NextRequest) {
         // Many members per class, so this overflows the row cap on an
         // ordinary staff class list.
         const members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
-          svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+          svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
         ).catch(() => [] as { learner_id: string }[]);
         const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
         learners = learnerIds.length;

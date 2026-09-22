@@ -517,7 +517,7 @@ export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<Cl
   let peerRows: { learner_id: string }[];
   try {
     peerRows = await inChunks<{ learner_id: string }>(classIds, (chunk, page) =>
-      svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+      svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
     );
   } catch (err) {
     throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${err instanceof Error ? err.message : String(err)}`);

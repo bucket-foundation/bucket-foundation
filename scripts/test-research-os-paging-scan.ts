@@ -90,9 +90,22 @@ test("the list carries no entry for a read that is already fixed", () => {
   assert.deepEqual(stale, [], `paged or moved, so the entry is stale and should go: ${stale.join(", ")}`);
 });
 
-test("every reason says something", () => {
+test("a reason either names what bounds the read, or says it is untriaged", () => {
+  // The first version asserted only that the string was longer than
+  // thirty characters, so a reviewer replaced a true reason with "the
+  // moon is made of cheese" and the suite stayed green. A reason now has
+  // to cite a constraint or an `eq()`, or admit it has not been checked.
+  const grounded = /primary key|unique|pinned with eq|by construction/;
   for (const e of PAGING_EXCEPTIONS) {
-    assert.ok(e.because.length > 30, `${e.at} needs a real reason, found "${e.because}"`);
     assert.ok(path.isAbsolute(e.at) === false, `${e.at} is a repo-relative path`);
+    assert.ok(
+      e.because.startsWith("UNTRIAGED:") || grounded.test(e.because),
+      `${e.at} claims a bound without naming one: "${e.because}"`,
+    );
   }
+});
+
+test("the untriaged count is a ratchet", () => {
+  const untriaged = PAGING_EXCEPTIONS.filter((e) => e.because.startsWith("UNTRIAGED:")).length;
+  assert.ok(untriaged <= 6, `untriaged reads rose to ${untriaged}; lower this ceiling when you bring it down`);
 });
