@@ -14,15 +14,27 @@
  *
  * What the gate in `scripts/test-research-os-outage.ts` covers, and what
  * it does not. It marks a call whose route emits a transient code from
- * its own handler, or imports `evidence-errors`, which is eight of the
- * twenty-eight routes, and it requires a call to this rule in the
- * window between that call and the next. It does not cover the other
- * twenty. `isTransientOutage(503, null)` answers true because a bare
- * 503 comes from a gateway or a CDN, and a gateway sits in front of
- * every route, so a client calling any of the twenty-eight can be
- * handed one. Thirty-seven calls across twelve files would be flagged
- * by marking them all; that is filed rather than done here. A green run
- * says the eight are guarded, and nothing more.
+ * its own handler, or imports `evidence-errors`, and requires a call to
+ * this rule in the window between that call and the next.
+ *
+ * Counted on this revision: 31 route directories, every one with a
+ * route.ts, of which the rule marks 8 (evidence-search, node, override,
+ * probe, production, review, state, workspace) and leaves 23 unmarked.
+ * Marking every route instead flags 36 calls across 17 files, which is
+ * filed rather than done here.
+ *
+ * Those counts move with the code and have already moved three times
+ * today, so treat them as of this revision rather than as a property of
+ * the design. An earlier version of this paragraph said 28 routes and
+ * 37 calls across 12 files. The 28 was never right. The 12 was the
+ * number of lines I had asked a terminal to print, read back as the
+ * number of files.
+ *
+ * The coverage gap is real whatever the counts are.
+ * `isTransientOutage(503, null)` answers true because a bare 503 comes
+ * from a gateway or a CDN, and a gateway sits in front of every route,
+ * so a client calling any of the 31 can be handed one. A green run says
+ * the marked routes are guarded, and nothing more.
  */
 
 /** The one code that means the deployment has no graph behind it. */
