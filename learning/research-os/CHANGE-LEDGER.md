@@ -55,6 +55,36 @@ Round 2 at `7a2cb31c7`, run by bkt-nuc in session at the founder's direction to 
 
 The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it, and the memo sets out the section's layout at 390 pixels. The roadmap row goes into `learning/research-os/ROADMAP.md` when the loop's branch that holds that file merges.
 
+## ros-workbench 0: the software atlas
+
+The software each science uses, open and closed, with its license, what it renders, its formats, and the path by which Research OS meets it, with directions for the workbench design.
+
+Date 2026-09-21. Branch `feat/ros-workbench-atlas`, worktree `.wt-ros-workbench-0`, draft PR #203 into `dev`, merging on hold. Founder direction, 2026-09-18: map the software each science and research area uses, open and closed, including rendering, even where Research OS will not build it.
+
+### Added
+
+- `learning/research-os/SOFTWARE-ATLAS.md`: 64 tools across fifteen fields, each with a first path and a fallback among browser, runner, import, and link, with sources checked on 2026-09-21 under each table and seven claims marked unverified. The Lean section reads the two Lake projects under `papers/` and designs a `lean-check` runner job. The suite section maps the forty `/research/tools` pages. Directions for the workbench closes the memo.
+- `services/research-tools/pyodide/baseline.py` and `check.mjs`: run the 25 suite tools whose imports ship in Pyodide 314.0.7 under Node and compare each to CPython. On 2026-09-21, 25 ran and 24 matched.
+
+### Edited
+
+- `learning/research-os/CHANGE-LEDGER.md`: this entry.
+
+### Removed
+
+None.
+
+### Verified
+
+- Both Lean projects build: the template in 2.0 s, the hypothesis-engine paper in 16.2 s with one `sorry` at `Bucket/Address.lean:57:8`; `lake env lean --json` reports it as `"kind":"hasSorry"`.
+- `python3 -m pytest tests` in `services/research-tools/`: 245 passed.
+- The gateway at `research-tools.agfarms.dev` timed out on `/health`, and the live proxy returned 504.
+- A correction within the run: the "founder GPU" label on three suite tools is a badge only, and all forty go through one gateway, two in synthetic mode.
+
+### Review
+
+Round 1 at `dc17e1501`, run by bkt-nuc in session at the founder's direction to stop spending tokens on subagents, so it is a review by the coordinating session and no longer independent. It verified the Lean section against the repository (six workflows, none running Lake; fifteen theorems in the README table; both pins at v4.33.1; v4.34.0 of 2026-09-14 shipping desktop archives only), the suite map (39 clients on `useToolRun`, LabBrain by hand; five HTML reports in a sandboxed iframe; the publish call commented out), the licenses and latest releases of sixteen viewers and runtimes and five browser ports through the GitHub API and the npm registry, citeproc-js's license file, and Gaussian's price list. Every checked claim holds. It found three Lows, fixed in the round 1 commit: the surface debt was recorded in the PR body alone, the Lean WebAssembly port's last push was missing, and the additions left out went unstated. The round scores 9.5.
+
 ## ros-patents 1: the research memo
 
 The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
