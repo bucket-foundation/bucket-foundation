@@ -109,31 +109,67 @@ export const SAMPLE_VALUES = 3;
 export const MAX_TEXT_CHARS = 20_000_000;
 
 /**
- * The longest prefix of `text` no longer than `limit` that ends on a row
- * boundary, with no quote left open.
+ * The longest prefix of `text` no longer than `limit` that ends where a
+ * row ends, with no quote left open.
  *
- * Cutting at a byte count lands inside a quoted cell at a rate set by
- * how long the cells are, and the parser then reports the file as
- * malformed for a break the reader made. Scanning forward once is
- * linear in the limit, and only a file past that limit pays it.
+ * Cutting at a character count lands inside a quoted cell at a rate set
+ * by how long the cells are, and the parser then reports the file as
+ * malformed for a break the reader made.
+ *
+ * It answers the same questions parseCells does, the same way, because
+ * a second opinion about where a row ends is a second defect. The first
+ * version had its own: it toggled the quote state on any `"`, while
+ * parseCells opens a quoted field only at the start of a field, so one
+ * inch mark in `5" pipe` put the cutter inside a quote for the rest of
+ * the file and a 20 MB table came back with zero rows. It also looked
+ * for `\n` alone, so a CR-only file, the format parseCells carries a
+ * comment about supporting, had no boundary anywhere and the cut landed
+ * mid-row.
+ *
+ * A limit at or below zero yields nothing. A limit shorter than the
+ * first row yields nothing too: a partial row is a fabricated row.
+ *
+ * The delimiter is a parameter because a quote opens only at the start
+ * of a field, and nothing knows where a field starts without it.
  */
-export function cutAtRowBoundary(text: string, limit: number): string {
+export function cutAtRowBoundary(text: string, limit: number, delimiter: "," | "\t"): string {
+  if (limit <= 0) return "";
   if (text.length <= limit) return text;
-  let inQuotes = false;
+  let quoted = false;
+  let fieldEmpty = true;
   let lastBoundary = 0;
   for (let i = 0; i < limit; i += 1) {
-    const ch = text[i];
-    if (ch === '"') {
-      if (inQuotes && text[i + 1] === '"') { i += 1; continue; }
-      inQuotes = !inQuotes;
+    const c = text[i];
+    if (quoted) {
+      // `""` is an escaped quote, exactly as parseCells reads it.
+      if (c === '"') {
+        if (text[i + 1] === '"') { i += 1; continue; }
+        quoted = false;
+        continue;
+      }
       continue;
     }
-    if (ch === "\n" && !inQuotes) lastBoundary = i + 1;
+    if (c === '"' && fieldEmpty) { quoted = true; fieldEmpty = false; continue; }
+    // A field boundary, which is why this needs the delimiter: without
+    // it the scan never knew a field had started, so the quote opening
+    // `1,"line one` was read as a quote inside a field body and the
+    // newline within it counted as a row end.
+    if (c === delimiter) { fieldEmpty = true; continue; }
+    if (c === "\r") {
+      // \r\n is one boundary, at the \n.
+      if (text[i + 1] === "\n") continue;
+      lastBoundary = i + 1;
+      fieldEmpty = true;
+      continue;
+    }
+    if (c === "\n") {
+      lastBoundary = i + 1;
+      fieldEmpty = true;
+      continue;
+    }
+    fieldEmpty = false;
   }
-  // No boundary at all means one row longer than the limit. Nothing
-  // here can describe it, so the prefix stands and the quote state
-  // travels with it.
-  return lastBoundary > 0 ? text.slice(0, lastBoundary) : text.slice(0, limit);
+  return text.slice(0, lastBoundary);
 }
 
 /** A bare dash is left out: a column that uses one as data read as
@@ -367,10 +403,24 @@ export function sniffDelimiter(text: string): "," | "\t" {
     // happen to contain commas.
     const share = agree / rows.length;
     if (share < AGREEMENT) return 0;
-    // The header carries the table's own shape, or this is not the
-    // table's delimiter.
-    if (widths[0] !== width) return 0;
-    return width * share;
+    // The header carries the table's own shape, and a delimiter whose
+    // header row is off-modal scores at half.
+    //
+    // A veto here was wrong. It answers `id,note` with a tab inside a
+    // cell, which is what it was written for, and it also throws away
+    // every file whose header is a different width from its body: an R
+    // export writes `ncol` names over `rownames + ncol` values, a sheet
+    // exported with a trailing empty column writes one more name than
+    // values, and a comment or title line above the header is not a row
+    // of the table at all. Four real shapes, and the comment twenty
+    // lines above this one already said a header shorter or longer than
+    // the body must not decide the file.
+    //
+    // A discount keeps both: the R export stays on tab, because comma
+    // scores nothing there, and `id,note` still goes to comma, because
+    // tab at 1 x 0.8 x 0.5 loses to comma at 2 x 1.0.
+    const headerFits = widths[0] === width;
+    return width * share * (headerFits ? 1 : 0.5);
   };
   const tab = score("\t");
   const comma = score(",");
@@ -399,10 +449,16 @@ export function readTableSchema(
     maxChars?: number;
   } = {},
 ): TableSchema {
+  // cutAtRowBoundary answers "" at or below zero, so clamping here as
+  // well would be the same rule in two places, which is the defect this
+  // module keeps producing.
   const limit = options.maxChars ?? MAX_TEXT_CHARS;
+  // The delimiter comes from the whole text, before the cut. It is a
+  // property of the file, and the cut needs it to know where a field
+  // starts, so sniffing the cut body would be circular.
+  const d = delimiter ?? sniffDelimiter(text);
   const truncated = text.length > limit;
-  const body = truncated ? cutAtRowBoundary(text, limit) : text;
-  const d = delimiter ?? sniffDelimiter(body);
+  const body = truncated ? cutAtRowBoundary(text, limit, d) : text;
   const parsed = parseCells(body, d);
   // A quoted empty cell is a row the source wrote. The filter ignored
   // `quoted` while the missing rule twenty lines below honours it, so a
@@ -431,7 +487,15 @@ export function readTableSchema(
       const cell = r[i] ?? { value: "", quoted: false };
       // A quoted cell is a value the source wrote on purpose, so NA in
       // quotes is the string and the absence is an empty cell.
-      if (!cell.quoted && isMissing(cell.value, options.missingTokens)) { missing[i] += 1; continue; }
+      // Quoting makes a written token data: a source that means the
+      // letters NA keeps them by quoting them. An empty cell is the
+      // exception, because QUOTE_ALL writers quote every cell, so `""`
+      // there carries no intent at all. Without the exception the same
+      // table written twice describes two schemas: `"2",""` typed the
+      // column text with three present values, and `2,` typed it
+      // integer with one missing.
+      const empty = cell.value.trim() === "";
+      if ((!cell.quoted || empty) && isMissing(cell.value, options.missingTokens)) { missing[i] += 1; continue; }
       present[i] += 1;
       const v = cell.value.trim();
       types[i] = types[i] === null ? typeOf(v) : widen(types[i] as ColumnType, typeOf(v));

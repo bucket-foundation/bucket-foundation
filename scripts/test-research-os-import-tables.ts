@@ -285,12 +285,16 @@ test("an hour or an offset outside its range is text", () => {
   assert.equal(typeOf("2026-03-04T12:00:00Z"), "date");
 });
 
-test("a quoted empty cell is a row", () => {
-  // The blank-row filter ignored quotedness while the missing rule
-  // honoured it, so a lone "" row vanished and a three-row file said two.
+test("a quoted empty cell is a row, and an empty value in it", () => {
+  // Two questions, and they have different answers. Whether `""` is a
+  // ROW: yes, the source wrote it, and the blank-row filter ignored
+  // quotedness so a three-row file reported two. Whether it is a
+  // VALUE: no, because a QUOTE_ALL writer quotes every cell and `""`
+  // there carries no intent.
   const s = readTableSchema('v\n1\n""\n2\n');
-  assert.equal(s.rows, 3);
-  assert.equal(s.columns[0].present, 3, "the quoted empty is a value");
+  assert.equal(s.rows, 3, "the row the source wrote is a row");
+  assert.equal(s.columns[0].present, 2, "and its cell is empty, so it is missing");
+  assert.equal(s.columns[0].missing, 1);
   assert.equal(readTableSchema("v\n1\n\n2\n").rows, 2, "an unquoted blank line is still skipped");
 });
 
@@ -369,9 +373,35 @@ test("a file cut at the size limit is not a malformed file", () => {
   // The cut used to land inside a quote at a rate set by how long the
   // cells are, so a well-formed CSV of quoted prose, which is the shape
   // the limit exists for, came back malformed.
-  assert.equal(cutAtRowBoundary('a,b\n1,"x,y"\n2,3\n', 9), "a,b\n", "the cut backs up to the last boundary outside a quote");
-  assert.equal(cutAtRowBoundary("a,b\n1,2\n", 100), "a,b\n1,2\n", "a file under the limit is untouched");
-  assert.equal(cutAtRowBoundary("no newline at all", 5), "no ne", "one row longer than the limit has no boundary to find");
+  assert.equal(cutAtRowBoundary('a,b\n1,"x,y"\n2,3\n', 9, ","), "a,b\n", "the cut backs up to the last boundary outside a quote");
+  assert.equal(cutAtRowBoundary("a,b\n1,2\n", 100, ","), "a,b\n1,2\n", "a file under the limit is untouched");
+  assert.equal(cutAtRowBoundary("no newline at all", 5, ","), "", "one row longer than the limit yields nothing: a partial row is a fabricated row");
+  assert.equal(cutAtRowBoundary("a,b\n1,2\n", -5, ","), "", "and a negative limit never returns more than it was given");
+
+  // The cut and parseCells have to agree about where a quote opens.
+  // parseCells opens one only at the start of a field, and the cutter
+  // toggled on any quote, so one inch mark put it inside a quote for
+  // the rest of the file.
+  const inch = 'id,note\n1,5" pipe\n2,row 2\n3,row 3\n4,row 4\n5,row 5\n6,row 6\n';
+  // Boundaries sit at 8, 18, 26, 34 and 42; a limit of 40 cuts at 34.
+  // The old cutter opened a quote at the inch mark and found no
+  // boundary after it, so it returned the header alone and the table
+  // arrived with zero rows.
+  assert.equal(readTableSchema(inch, ",", { maxChars: 40 }).rows, 3, "an unpaired quote in a cell body is not an open quote");
+
+  // A newline inside a quoted cell is not a row boundary. The earlier
+  // case put its quoted newline past the limit, so deleting the whole
+  // quote-tracking block left it passing.
+  assert.equal(cutAtRowBoundary('a,b\n1,"line one\nline two"\n2,3\n', 20, ","), "a,b\n", "a newline inside a quote ends no row");
+
+  // CR-only files. parseCells carries a comment about Excel's
+  // "CSV (Macintosh)", and the cutter knew only \n, so such a file had
+  // no boundary anywhere and truncation reported it malformed.
+  const cr = "a,b\r" + Array.from({ length: 8 }, (_, i) => `${i},"cell ${i}"`).join("\r") + "\r";
+  const cut = readTableSchema(cr, ",", { maxChars: 30 });
+  assert.equal(cut.malformed, false, "a CR-only file cut at a row boundary is not malformed");
+  assert.equal(cut.truncated, true);
+  assert.ok(cut.rows > 0 && cut.rows < 8, `it describes the rows that survived, got ${cut.rows}`);
 
   const openQuote = 'a,b\n1,"' + "x".repeat(50) + "\n";
   assert.equal(readTableSchema(openQuote).malformed, true, "a file that really ends inside a quote still says so");
@@ -436,4 +466,61 @@ test("the sample keeps the first SAMPLE_VALUES distinct values", () => {
   const s = readTableSchema("v\na\nb\nc\nd\ne\n");
   assert.equal(s.columns[0].sample.length, SAMPLE_VALUES);
   assert.deepEqual(s.columns[0].sample, ["a", "b", "c"], "the first three, in file order");
+});
+
+test("a header whose width differs from the body does not lose the delimiter", () => {
+  // The header rule was a veto, and it threw away four real shapes to
+  // fix one. An R export writes `ncol` names over `rownames + ncol`
+  // values, which is the common case, and it came back as a single text
+  // column with ragged 0: the delimiter lost and the only signal that
+  // anything was dropped lost with it.
+  const rExport = 'weight\theight\n"1"\t62.1\t170\n"2"\t58.4\t165\n"3"\t71.0\t181\n"4"\t66.2\t174\n';
+  const r = readTableSchema(rExport);
+  assert.equal(r.delimiter, "\t");
+  assert.deepEqual(r.columns.map((c) => c.name), ["weight", "height"]);
+  assert.equal(r.ragged, 4, "and every data row is ragged, which is the signal");
+
+  const trailing = readTableSchema("id\tname\tscore\t\n1\ta\t10\n2\tb\t20\n3\tc\t30\n");
+  assert.equal(trailing.delimiter, "\t", "a trailing empty header column keeps the delimiter");
+
+  const commented = readTableSchema("# exported from lab notebook\nid\tname\tscore\n1\ta\t10\n2\tb\t20\n");
+  assert.equal(commented.delimiter, "\t", "so does a comment line above the header");
+
+  // And the case the veto was written for still goes to comma.
+  assert.equal(sniffDelimiter("id,note\n1,hello, there\tx\n2,hi\ty\n3,yo\tz\n4,hey\tw\n"), ",");
+});
+
+test("a quoted empty cell is missing, and a quoted token is still data", () => {
+  // Quoting makes a written token data. QUOTE_ALL writers quote every
+  // cell, so `""` carries no intent, and treating it as data made the
+  // same table describe two schemas depending on who wrote it.
+  const quoted = readTableSchema('"id","score"\n"1","10"\n"2",""\n"3","30"\n').columns[1];
+  const plain = readTableSchema("id,score\n1,10\n2,\n3,30\n").columns[1];
+  assert.equal(quoted.type, plain.type, "one table, one type");
+  assert.equal(quoted.missing, plain.missing);
+  assert.equal(quoted.present, plain.present);
+  assert.equal(plain.type, "integer", "and an empty cell does not make a number column text");
+
+  const na = readTableSchema('a\n"NA"\n').columns[0];
+  assert.equal(na.missing, 0, "a quoted NA is the letters NA");
+  assert.equal(na.present, 1);
+});
+
+test("an escaped quote inside a quoted cell keeps the cell open", () => {
+  // `""` is one quote. Reading it as a close and a reopen put
+  // the cutter outside the quote, and the newline in the same cell then
+  // ended a row that had not ended.
+  const doubled = 'a,b\n1,"say ""hi"" now\nstill the same cell"\n2,3\n';
+  assert.equal(cutAtRowBoundary(doubled, 40, ","), "a,b\n", "the newline inside the cell ends no row");
+  const s = readTableSchema(doubled);
+  assert.equal(s.rows, 2, "and the whole file is two data rows");
+  assert.equal(s.malformed, false);
+});
+
+test("a limit at or below zero describes nothing", () => {
+  const text = "a,b\n1,2\n3,4\n";
+  const negative = readTableSchema(text, ",", { maxChars: -5 });
+  assert.equal(negative.rows, 0, "a negative limit yields nothing, so no partial row is fabricated");
+  assert.equal(negative.truncated, true, "and the caller is told the schema describes a prefix");
+  assert.equal(readTableSchema(text, ",", { maxChars: 0 }).rows, 0);
 });
