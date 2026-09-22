@@ -151,6 +151,29 @@ Run on 2026-09-18 over the local graph's idea layer, proposer `claude-sonnet-5`,
 
 The first run, before the target and blinding rules, asked about 166 targets and produced 716 proposals with no blinded check; its report is kept as `decompose-further-baseline-v1.json`. Two runs before model ids were resolved gave 148 and 147 proposals, a kappa of 0.54, and one irreducible verdict; their recorded model ids are unreliable. The run over every public node gave 151 proposals and a kappa of 0.59 on 40 targets.
 
+## Grade tiers and reversals
+
+ros-tier-fix, 2026-09-21, on the local stack after the excerpt reclassification (migration `20260921050000`).
+
+**The invariant.** `tier` is a difficulty and ordering axis (`TRUTH-TIERS.md`, "What `tier` means today"), and `checkTierMonotonicity` in `src/lib/research-os/ingest/validate.ts` states the rule: a prerequisite never carries a higher tier than its dependent. The 841 prerequisite edges in the graph break it nowhere, since each sits inside one Academy course, where the importer sets tiers by depth. It breaks when a reviewer approves a cross-course factor as learning order: 61 of the 98 confirmed decompose-further pairs have the factor above its target, "Spin and the Pauli exclusion principle" at 28 under "Van der Waals forces" at 13.
+
+**The fix.** `graph.enforce_prerequisite_tiers()` (migration `20260921060000`) raises every target to the highest tier among its prerequisites and repeats until nothing moves. `decideEdge` calls it after writing a prerequisite edge, before the `prereq_ancestor` rebuild, and returns the count as `tiersRaised`. The three importers that upsert nodes (`academy-import.ts`, `canon-import.ts`, `canon-all.ts`) call it after their writes, since a re-import resets tiers to the importer's own values. The review page says what approving as learning order does to the tiers. Approving the Van der Waals pair, tried inside a transaction that was rolled back, raised 38 nodes and left no inversion.
+
+**The eight reversal candidates.** The v5 run's `reversal_candidates` are matches whose factor already rests on the target. Each existing edge stays:
+
+| Existing learning order | The model's reading | Verdict |
+|---|---|---|
+| How learning works before spacing, retrieval practice, and the fluency illusion | the overview is made of the three | The course's order is right for teaching; the model reads makeup |
+| The ideal chain before Flory scaling | Flory scaling under the ideal chain | The model reads it backward: Flory's excluded-volume exponent builds on the ideal chain's statistics |
+| The radius of gyration before Flory scaling | Flory scaling under the radius of gyration | The model reads it backward: the radius of gyration is the measure Flory scaling predicts |
+| The central limit theorem before the random walk | the random walk under the central limit theorem | The model reads it backward: the walk's Gaussian limit is a case of the theorem |
+| Fick's law before the random walk | the random walk under Fick's law | The course teaches Fick first; as makeup the model is right, since Fick's law is the continuum limit of many walks |
+| The structure hierarchy before the Ramachandran plot | the plot under the hierarchy | The course teaches the hierarchy first; as makeup the model is right, since the plot's angles constrain secondary structure |
+
+Three are model errors and five are makeup readings of learning-order edges. A makeup edge beside a learning-order edge on the same pair would close a loop, because the decomposition counts both kinds as factor edges (`FACTOR_EDGES` in `src/lib/research-os/primes.ts`), so none is added.
+
+**The sky-blue seed.** `supabase/seed/research-os-sky-blue.json` had Rayleigh's 1871 papers derive from the scattering law, which reads as the papers resting on the law, and beside the papers-to-law prerequisite it formed a two-node loop. The law now derives from the papers, in the seed and in the local graph. The rest of the seed's order is a grade-by-grade lesson sequence, phenomena at grade 3 up to "light as a wave" at grade 7, and it reads as makeup only because the decomposition counts prerequisite edges as factors. Whether learning order should count as makeup at all is the question these reversals and the seed share, and it belongs to the next ros-prime slice.
+
 ## Next slices
 
 1. **Truth level** (ros-prime 3, with ros-truth). A node's truth level combines its primes' standing and its factor edges' confidence. Independent factors combine as a product; shared primes count once, so two factors that rest on the same prime do not double its weight, the effective-count idea `hte` already uses for evidence. Bootstrap over edge confidences for an interval. Network statistics over the dependency graph: PageRank for load-bearing primes, betweenness for bottlenecks, k-core for the dense center, articulation points for single primes whose failure would disconnect large parts of the graph. How a claim is known, the source levels in ros-truth, sets each prime's starting standing.

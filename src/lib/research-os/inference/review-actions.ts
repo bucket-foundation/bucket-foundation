@@ -298,7 +298,19 @@ export async function decideEdge(
   // The edge stands either way; a failed rebuild leaves routing stale, so
   // the reply carries a warning the page shows.
   const stale: string[] = [];
+  let tiersRaised: number | null = null;
   if (e.kind === "prerequisite") {
+    // Learning order puts the target at or above the factor's grade tier,
+    // and everything downstream with it (ros-tier-fix,
+    // supabase/migrations/20260921060000_research_os_prerequisite_tiers.sql).
+    try {
+      const { data, error } = await svc.rpc("enforce_prerequisite_tiers");
+      if (error) throw new Error(error.message);
+      tiersRaised = typeof data === "number" ? data : null;
+    } catch (err) {
+      stale.push("grade tiers");
+      console.error("[research-os/edges] enforce_prerequisite_tiers failed:", (err as Error).message);
+    }
     const branches = new Set<string>([target.branch]);
     let lookupFailed = false;
     try {
@@ -321,8 +333,9 @@ export async function decideEdge(
     decision: "approved",
     alreadyDecided: false,
     kind,
+    ...(tiersRaised !== null ? { tiersRaised } : {}),
     ...(stale.length
-      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all` }
+      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all and select graph.enforce_prerequisite_tiers()` }
       : {}),
   });
 }

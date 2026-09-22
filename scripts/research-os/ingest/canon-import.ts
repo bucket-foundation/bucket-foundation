@@ -134,6 +134,11 @@ async function applyToSupabase(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[
     const { error: edgeErr } = await svc.from("edges").upsert(edgeRows, { onConflict: "from_id,to_id,kind", ignoreDuplicates: true });
     if (edgeErr) throw new Error(`edge upsert failed: ${edgeErr.message}`);
   }
+  // Re-importing resets tiers to this importer's own values; learning order
+  // across courses raises them again (ros-tier-fix).
+  const { data: raised, error: tierErr } = await svc.rpc("enforce_prerequisite_tiers");
+  if (tierErr) throw new Error(`enforce_prerequisite_tiers failed: ${tierErr.message}`);
+  if (typeof raised === "number" && raised > 0) console.log(`raised ${raised} grade tiers to keep learning order monotone`);
   return { nodesWritten: nodeRows.length, edgesWritten: edgeRows.length };
 }
 
