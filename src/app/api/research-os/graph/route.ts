@@ -23,8 +23,8 @@ export async function GET(req: NextRequest) {
     // PostgREST pages at 1,000 rows; walk the pages.
     const counts = new Map<string, number>();
     for (let from = 0; ; from += 1000) {
-      const { data } = await graphService().from("nodes").select("branch").range(from, from + 999);
-      const rows = (data as { branch: string }[]) || [];
+      const { data } = await graphService().from("nodes").select("id,branch").order("id").range(from, from + 999);
+      const rows = (data as { id: string; branch: string }[]) || [];
       rows.forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
       if (rows.length < 1000) break;
     }
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
   let learners = 0;
   if (viewerId && ids.length) {
     const [st, classes] = await Promise.all([
-      inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
+      inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
       listMyClasses(viewerId),
     ]);
     st.forEach((r) => (standing[r.node_id] = r.stage));
@@ -65,7 +65,17 @@ export async function GET(req: NextRequest) {
         const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
-          const rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []);
+          // Both lists are chunked. Taking the first IN_CHUNK learners
+          // counted a heatmap over 60 of them while `learners` above
+          // reported the true total, so any class past that
+          // under-reported every stage with no sign it had.
+          const rows: { node_id: string; stage: string }[] = [];
+          for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
+            const someLearners = learnerIds.slice(i, i + IN_CHUNK);
+            rows.push(
+              ...(await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", someLearners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => [])),
+            );
+          }
           holders = {};
           rows.forEach((r) => {
             const h = (holders![r.node_id] = holders![r.node_id] ?? Object.fromEntries(STAGES.map((s) => [s, 0])));
