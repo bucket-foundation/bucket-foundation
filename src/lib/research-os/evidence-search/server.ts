@@ -46,9 +46,15 @@ export class CorpusUnavailable extends Error {
  * that already treats a corpus as absent stays correct, and the route
  * checks this one first to offer the retry.
  *
- * newestCorpusDir picks by mtime, so a corpus mid-rebuild is selected
- * while its files are still being written and the read that fails now
- * succeeds a moment later.
+ * The cases are a permission error, an I/O error, and a directory named
+ * by RESEARCH_OS_EVIDENCE_DIR that has gone. Each may clear without a
+ * rebuild, so each earns a retry.
+ *
+ * Not a rebuild race: build-corpus.ts writes the jsonl files first and
+ * manifest.json last into .tmp-<rev>-<pid>, validates the readback, then
+ * renames, and newestCorpusDir only selects a directory that already
+ * carries a manifest. The first version of this comment claimed that
+ * race and no build path produces it.
  */
 export class CorpusReadFailed extends CorpusUnavailable {
   constructor(message: string) {
@@ -95,10 +101,10 @@ export function readCorpus(directory: string, policy: RightsPolicy, policySha256
       "passages.jsonl": readFileSync(path.join(directory, "passages.jsonl"), "utf8"),
     };
   } catch (e) {
-    // A read that did not complete. newestCorpusDir picks by mtime, so a
-    // corpus mid-rebuild is chosen while its files are still being
-    // written, and the next request can succeed. Reporting that as a
-    // corpus that was never built refuses a retry that would work.
+    // A read that did not complete: a permission error, an I/O error, or
+    // a directory named by the environment that has gone. Reporting one
+    // of those as a corpus that was never built refuses a retry that
+    // would work.
     throw new CorpusReadFailed(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
   }
   const problems = validateCorpus(manifest, files, policy, policySha256);
