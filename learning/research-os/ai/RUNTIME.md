@@ -8,6 +8,7 @@ Two of the release gates in [IMPLEMENTATION.md](IMPLEMENTATION.md), "Verificatio
 |---|---|---|
 | Runtime | Can a person use this | 200 warm requests at concurrency one and 200 at concurrency two, p95 at or under 2 s and 5 s; 20 cold starts, first answer p95 at or under 5 s; errors at or under 1%; no request past the eight-second deadline; at least 99% of answered requests on the neural path; every request during a restart answered from keyword ranking |
 | Model | Are the weights doing the work | Every case answers on the neural path with the pinned model revision, the worker's own counter rises once per case, the neural path reorders at least 6 of the 12 cases, and returns at least 3 that keyword search misses |
+| Saturation | What more requests than the worker holds does to a person | Zero errors and nothing past the deadline at every concurrency, the neural path alone at one request in flight, and every degraded answer attributable to a refusal the worker counted |
 
 The neural-share check is the one that stops a run passing on the fallback. A worker that is down still answers, through the keyword fallback, inside every latency budget. Without that check a run where the model never loaded would read as the fastest run ever recorded.
 
@@ -42,6 +43,7 @@ export EVIDENCE_WORKER_URL=http://127.0.0.1:8431 EVIDENCE_WORKER_SECRET=<the sam
 export BENCH_EMAIL=<the pilot account>
 npm run gate:evidence:model      # about a minute
 npm run gate:evidence:runtime    # about six minutes, mostly the 20 model loads
+npm run gate:evidence:saturate   # about a minute
 ```
 
 `RESEARCH_OS_DAILY_TOOL_CAP` matters: the default is 200 requests a day per learner, and a runtime run sends more than 400. A reached cap fails the run on its own check rather than hiding inside the error rate, so a report can never read as a latency problem when it was a configuration one.
@@ -65,6 +67,7 @@ Editing a case after seeing its result voids the gate. Write a new fixture file,
 | warm p95 at concurrency two | One model computation at a time is the worker's contract, so the second request waits for the first |
 | cases the neural path reorders | The vectors were built from a different corpus revision than the one the app serves |
 | worker requests scored | The app answered without the worker, so what the report measured was the fallback |
+| degraded answers the worker cannot account for | The dense ranking was lost somewhere the worker never saw, and the caller still read a working search |
 
 ## Where these sit
 
@@ -90,3 +93,20 @@ Model, 5 checks, all passing: 12 of 12 cases on the neural path, 12 worker reque
 The two usefulness signals came in short, 2 of 12 recovered against a target of 3, and 9 of 12 returned by either path. Every one of the three misses returned plausible neighbours rather than nothing: `colour-dependence` asked how steeply scattering depends on colour and got the size-versus-wavelength rule and the Rayleigh law above the fourth-power law, which are better answers than the one the fixture named; `why-membranes-form` got the hydrophobic effect at rank one, which is why bilayers form.
 
 So the signal shortfall is a measurement problem as much as a retrieval one: a fixture that names one acceptable source scores a correct answer as a miss. Sealed human judgments over a set of acceptable sources are the instrument for this, they belong to the Quality gate in [EVALUATION.md](EVALUATION.md), and the corpus there is at release scale rather than the 500-record debug slice. Recorded here so the Quality gate starts from a known weakness in single-target scoring.
+
+## Saturation
+
+The worker holds one computation and four waiting requests. Past five in flight it answers 503 `queue_full`, the server drops the dense ranking, and the person gets checked keyword ranking marked degraded. `npm run gate:evidence:saturate` runs the same requests at rising concurrency and reads the worker's counters either side of each level, so a degraded answer can be attributed to the refusal that caused it.
+
+Measured 2026-09-22, 40 requests at each level:
+
+| In flight | p50 ms | p95 ms | neural | degraded | errors | queue_full |
+|---|---|---|---|---|---|---|
+| 1 | 94 | 150 | 40 | 0 | 0 | 0 |
+| 4 | 148 | 186 | 40 | 0 | 0 | 0 |
+| 8 | 189 | 236 | 35 | 5 | 0 | 5 |
+| 16 | 281 | 314 | 23 | 17 | 0 | 17 |
+
+Four in flight fits inside the queue and every request took the neural path. Past that the refusals begin, and the count of degraded answers equals the count of refusals at both levels. Nobody saw an error, and 16 in flight answered at p95 314 ms against an 8-second deadline.
+
+The check that matters is the last one in the table the run prints. A degraded answer the counters cannot explain means the dense ranking was lost somewhere the worker never saw, and the person read a working search with no sign anything was missing. That is the failure this run exists to catch, and the unit tests drive it from both sides.
