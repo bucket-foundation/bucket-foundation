@@ -28,6 +28,8 @@ const LEARN: Item[] = [
   { href: "/research-os/workspace", label: "Workspace", hint: "any node: find, quote, check, produce", match: ["/research-os/workspace", "/research-os/n"] },
   { href: "/research-os/learn", label: "Learn", hint: "lessons and recall", match: ["/research-os/learn"] },
   { href: "/research-os/map", label: "Map", hint: "the graph, the globe", match: ["/research-os/map"] },
+  { href: "/research-os/primes", label: "Primes", hint: "what the graph rests on", match: ["/research-os/primes"] },
+  { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
 ];
@@ -38,6 +40,8 @@ const TEACH: Item[] = [
   { href: "/research-os/merges", label: "Duplicates", hint: "one concept listed twice: merge or keep", match: ["/research-os/merges"] },
   { href: "/research-os/roster", label: "Roster", hint: "members and consent", match: ["/research-os/roster"] },
   { href: "/research-os/edges", label: "Edges", hint: "proposed graph links", match: ["/research-os/edges"] },
+  { href: "/research-os/status", label: "Status", hint: "engine, tutor model, builds", match: ["/research-os/status"] },
+  { href: "/research-os/patents", label: "Patents", hint: "the design and its slices", match: ["/research-os/patents"] },
   { href: "/research-os/roadmap", label: "Roadmap", hint: "what ships next, and what waits", match: ["/research-os/roadmap"] },
 ];
 
