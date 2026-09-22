@@ -19,6 +19,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+// One copy of the rule. This file carried its own, character for
+// character, beside the one in scan-source.ts.
+import { stripComments } from "./research-os/scan-source";
 
 const root = path.join(__dirname, "..");
 // The ingest scripts write the graph the routes then read, so a read
@@ -37,40 +40,6 @@ function sources(dir: string): string[] {
   return out;
 }
 
-/** Comments blanked, newlines kept, so line numbers still line up. */
-function stripComments(src: string): string {
-  let out = "";
-  let i = 0;
-  let mode: "code" | "line" | "block" | "single" | "double" | "tick" = "code";
-  while (i < src.length) {
-    const two = src.slice(i, i + 2);
-    if (mode === "code") {
-      if (two === "//") { mode = "line"; out += "  "; i += 2; continue; }
-      if (two === "/*") { mode = "block"; out += "  "; i += 2; continue; }
-      if (src[i] === "'") mode = "single";
-      else if (src[i] === '"') mode = "double";
-      else if (src[i] === "`") mode = "tick";
-      out += src[i]; i += 1; continue;
-    }
-    if (mode === "line") {
-      if (src[i] === "\n") { mode = "code"; out += "\n"; } else out += " ";
-      i += 1; continue;
-    }
-    if (mode === "block") {
-      if (two === "*/") { mode = "code"; out += "  "; i += 2; continue; }
-      out += src[i] === "\n" ? "\n" : " "; i += 1; continue;
-    }
-    // Inside a string: blank the contents, keep the quotes and the
-    // newlines. A `.range(` inside an error message is not a read.
-    if (src[i] === "\\") { out += "  "; i += 2; continue; }
-    if ((mode === "single" && src[i] === "'") || (mode === "double" && src[i] === '"') || (mode === "tick" && src[i] === "`")) {
-      mode = "code";
-      out += src[i]; i += 1; continue;
-    }
-    out += src[i] === "\n" ? "\n" : " "; i += 1;
-  }
-  return out;
-}
 
 /**
  * The statements in a file, as single lines. A PostgREST builder chain
