@@ -30,15 +30,6 @@ import { MAX_CARDS, type EvidenceCard, type EvidenceSearchRequest, type Evidence
 export const EVIDENCE_DIR = "RESEARCH_OS_EVIDENCE_DIR";
 const PAGE = 500;
 
-/** A corpus read that did not complete this minute. A retry may clear it. */
-export class CorpusReadFailed extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "CorpusReadFailed";
-    Object.setPrototypeOf(this, CorpusReadFailed.prototype);
-  }
-}
-
 /** A corpus that was never built here, or one whose files do not validate.
  * No retry changes either. */
 export class CorpusUnavailable extends Error {
@@ -46,6 +37,24 @@ export class CorpusUnavailable extends Error {
     super(message);
     this.name = "CorpusUnavailable";
     Object.setPrototypeOf(this, CorpusUnavailable.prototype);
+  }
+}
+
+/**
+ * A corpus read that did not complete this minute, which a retry may
+ * clear. It extends CorpusUnavailable because it is one: every caller
+ * that already treats a corpus as absent stays correct, and the route
+ * checks this one first to offer the retry.
+ *
+ * newestCorpusDir picks by mtime, so a corpus mid-rebuild is selected
+ * while its files are still being written and the read that fails now
+ * succeeds a moment later.
+ */
+export class CorpusReadFailed extends CorpusUnavailable {
+  constructor(message: string) {
+    super(message);
+    this.name = "CorpusReadFailed";
+    Object.setPrototypeOf(this, CorpusReadFailed.prototype);
   }
 }
 
