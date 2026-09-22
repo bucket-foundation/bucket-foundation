@@ -40,6 +40,7 @@ import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -147,7 +148,13 @@ export async function POST(req: NextRequest) {
     { result: graded.result, confidence: graded.confidence, abstained: graded.abstained },
     { learnerText: answer, modelFeedback: graded.feedback, citations: graded.citations, sessionId },
   );
-  await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  try {
+    await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  } catch (err) {
+    const mapped = evidenceErrorResponse(err);
+    if (mapped) return mapped;
+    throw err;
+  }
 
   return NextResponse.json(
     {

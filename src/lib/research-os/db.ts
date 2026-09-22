@@ -668,40 +668,141 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
 }
 
 /** Append one evidence event and, if `nextStage` differs, raise `stage`. Upserts the row if absent. */
+/** What the append left behind, for a caller that has to report durability. */
+export interface EvidenceAppend {
+  /** The stage the row held when the append locked it, null when this call created it. */
+  priorStage: Stage | null;
+  /** The stage the row holds now. */
+  stage: Stage;
+  /** True when this call created the learner's row for that node. */
+  created: boolean;
+  /**
+   * The stage XP is awarded from, which is the highest stage already
+   * credited for this node, or null on a first award. Equal to `stage` when
+   * the node has been credited this high before, so nothing is awarded.
+   */
+  awardFrom: Stage | null;
+  /** True when this append raised the node's high-water mark. */
+  awards: boolean;
+  /** How many events the log holds after this one. */
+  eventCount: number;
+}
+
+/** Postgres codes worth one more attempt: lock timeout, serialization, deadlock. */
+const RETRYABLE_SQLSTATES = new Set(["55P03", "40001", "40P01"]);
+
+/** An append that failed, carrying the SQLSTATE so a caller can tell a wait from a refusal. */
+export class EvidenceAppendError extends Error {
+  readonly code: string | null;
+  readonly retryable: boolean;
+  constructor(message: string, code: string | null) {
+    super(message);
+    this.name = "EvidenceAppendError";
+    this.code = code;
+    this.retryable = code !== null && RETRYABLE_SQLSTATES.has(code);
+  }
+}
+
+/**
+ * Appends one evidence event to a learner's node state inside the
+ * graph.append_evidence transaction (ros-ai-access, migration
+ * 20260921010000). The function locks or creates the row, so two writers on
+ * the same learner and node keep both events; the read-then-upsert this
+ * replaced let the second writer erase the first.
+ *
+ * Stage is monotone by default, matching stages.ts, where a transition
+ * never moves a learner backward. A teacher override is the one caller that
+ * lowers a stage on purpose and passes `monotone: false`.
+ *
+ * A lock wait raises a retryable error, which this retries once before it
+ * throws. A caller that reports a durable result to the person in front of
+ * it has to let that throw reach them.
+ */
 export async function recordEvidence(
   learnerId: string,
   nodeId: string,
   nextStage: string,
   event: Record<string, unknown>,
-): Promise<void> {
+  options: { monotone?: boolean } = {},
+): Promise<EvidenceAppend> {
   const svc = graphService();
-  const { data: existing } = await svc
-    .from("learner_node_state")
-    .select("stage,evidence")
-    .eq("learner_id", learnerId)
-    .eq("node_id", nodeId)
-    .maybeSingle();
+  const args = {
+    p_learner: learnerId,
+    p_node: nodeId,
+    p_stage: nextStage || "",
+    p_event: event,
+    p_monotone: options.monotone !== false,
+  };
 
-  const priorEvidence = (existing?.evidence as unknown[] | null) ?? [];
-  const evidence = [...priorEvidence, event];
-  const stage = nextStage || existing?.stage || "access";
-
-  const { error } = await svc
-    .from("learner_node_state")
-    .upsert(
-      { learner_id: learnerId, node_id: nodeId, stage, evidence, updated_at: new Date().toISOString() },
-      { onConflict: "learner_id,node_id" },
-    );
-  if (error) throw new Error(`recordEvidence: upsert failed: ${error.message}`);
-
-  // ros-33: the game layer reads every recorded transition here, so a level
-  // rise counts once wherever it was recorded. Awarding never fails the
-  // evidence write.
-  try {
-    await awardProgress(learnerId, nodeId, (existing?.stage as Stage | undefined) ?? null, stage as Stage);
-  } catch {
-    /* the profile row is missing or the columns are not migrated yet */
+  type AppendRow = {
+    prior_stage?: string | null;
+    stage?: string;
+    created?: boolean;
+    award_from?: string | null;
+    awards?: boolean;
+    deleted?: boolean;
+    event_count?: number;
+  };
+  let last: EvidenceAppendError | null = null;
+  let row: AppendRow | null = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const { data, error } = await svc.rpc("append_evidence", args);
+    if (!error) {
+      row = (data || {}) as AppendRow;
+      last = null;
+      break;
+    }
+    const code = (error as { code?: string }).code ?? null;
+    // PGRST202 and 42883 both mean the function is missing, which happens
+    // when a deploy lands before its migration. Say so, since the fix is to
+    // apply the migration rather than to retry.
+    if (code === "PGRST202" || code === "42883") {
+      throw new EvidenceAppendError(
+        "recordEvidence: graph.append_evidence is missing; apply supabase/migrations/20260921010000_research_os_evidence_append.sql before deploying this build",
+        code,
+      );
+    }
+    // The database's message can carry the function body, so the error the
+    // caller sees names the code and the first line alone.
+    const first = (error.message || "append failed").split("\n")[0].slice(0, 200);
+    last = new EvidenceAppendError(`recordEvidence: append failed (${code ?? "unknown"}): ${first}`, code);
+    if (!last.retryable) break;
+    await new Promise((r) => setTimeout(r, 120));
   }
+  if (last) throw last;
+
+  if (row?.deleted === true) {
+    throw new EvidenceAppendError(
+      `recordEvidence: learner ${learnerId} was deleted while the event was being written`,
+      "LEARNER_DELETED",
+    );
+  }
+
+  const result: EvidenceAppend = {
+    priorStage: (row?.prior_stage as Stage | null) ?? null,
+    stage: (row?.stage as Stage) ?? ((nextStage || "access") as Stage),
+    created: row?.created === true,
+    awardFrom: (row?.award_from as Stage | null) ?? null,
+    awards: row?.awards === true,
+    eventCount: row?.event_count ?? 0,
+  };
+
+  // ros-33: the game layer reads every recorded transition here. Activity
+  // follows every event, so a check or a quote keeps a streak alive. XP and
+  // badges follow the node's high-water mark, so a teacher demotion and the
+  // re-climb after it award nothing already credited. Awarding never fails
+  // the evidence write.
+  try {
+    await awardProgress(learnerId, nodeId, result.awardFrom, result.stage, { xp: result.awards });
+  } catch (err) {
+    // A missing profile row is ordinary. Anything else loses a learner's
+    // XP or streak quietly, so it says so.
+    const message = err instanceof Error ? err.message : String(err);
+    if (!message.includes("update failed")) {
+      console.warn(`[research-os] awardProgress failed for learner ${learnerId} node ${nodeId}: ${message}`);
+    }
+  }
+  return result;
 }
 
 // ---------------------------------------------------------------------------
@@ -719,14 +820,47 @@ export async function loadGame(learnerId: string): Promise<GameState | null> {
   return { xp: row.xp ?? 0, streakDays: row.streak_days ?? 0, lastActiveDay: row.last_active_day, badges: Array.isArray(row.badges) ? row.badges : [] };
 }
 
-export async function awardProgress(learnerId: string, nodeId: string, from: Stage | null, to: Stage): Promise<void> {
-  const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
-  const next = applyTransition(current, nodeId, from, to);
-  const { error } = await graphService()
-    .from("learner_profiles")
-    .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
-    .eq("learner_id", learnerId);
-  if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+/**
+ * Adds one transition's XP, streak and badges to a learner's profile.
+ *
+ * The read and the write are separate statements, so the update names the
+ * xp it read and retries when another award moved it first. Without that,
+ * two evidence events landing together each read the same xp and one award
+ * is lost, which is the same shape the evidence append itself fixed one
+ * layer down (Bucket critic ROS194-14).
+ */
+export async function awardProgress(
+  learnerId: string,
+  nodeId: string,
+  from: Stage | null,
+  to: Stage,
+  options: { xp?: boolean } = {},
+): Promise<void> {
+  const withXp = options.xp !== false;
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
+    const moved = applyTransition(current, nodeId, from, to);
+    // An event that credits nothing still says the learner was here today.
+    const next = withXp ? moved : { ...moved, xp: current.xp, badges: current.badges };
+    const { data, error } = await graphService()
+      .from("learner_profiles")
+      .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
+      .eq("learner_id", learnerId)
+      .eq("xp", current.xp)
+      .eq("streak_days", current.streakDays)
+      .select("learner_id");
+    if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+    if ((data || []).length > 0) return;
+    // No row matched: either the profile is missing, or another award moved
+    // xp between the read and the write. Tell those apart before retrying.
+    const { data: exists } = await graphService()
+      .from("learner_profiles")
+      .select("learner_id")
+      .eq("learner_id", learnerId)
+      .maybeSingle();
+    if (!exists) return;
+  }
+  throw new Error("awardProgress: xp moved under four attempts");
 }
 
 /** XP per learner for a class leaderboard; missing profiles read as 0. */

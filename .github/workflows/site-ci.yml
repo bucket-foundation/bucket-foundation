@@ -48,6 +48,62 @@ jobs:
       - name: vercel build gate and pre-push check
         run: bash scripts/test-vercel-ignore-build.sh && bash scripts/test-pre-push-vercel-check.sh
 
+  # The database-backed tests, which skip when no Postgres answers and so
+  # would pass on a runner with none (Bucket critic ROS194-34). This job
+  # starts the local stack and requires them, and it runs when a migration,
+  # a SQL test, or the code that writes through them changes.
+  db:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: paths
+        id: paths
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$base" ]; then base="$(git rev-parse HEAD~1)"; fi
+          # A diff this step cannot compute is not "nothing changed": it runs
+          # the job rather than passing a check nobody performed.
+          if ! changed="$(git diff --name-only "$base"...HEAD)"; then
+            echo "could not diff against $base; running the database tests" >&2
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Every path that writes through the functions, their callers
+          # included: the route that calls an RPC is the code under test.
+          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.paths.outputs.run == 'true'
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+        if: steps.paths.outputs.run == 'true'
+      - name: local supabase
+        if: steps.paths.outputs.run == 'true'
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+      - name: env
+        if: steps.paths.outputs.run == 'true'
+        run: |
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+          } > .env.local
+      - name: evidence append against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-append.ts
+
   # The loop as a person, over a fresh local stack. On demand: it pulls the
   # Supabase images and seeds the graph, which is too slow for every pull
   # request.
@@ -63,11 +119,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: local supabase
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         run: |
-          npx supabase@latest status -o env > .supa.env
-          set -a; . ./.supa.env; set +a
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
