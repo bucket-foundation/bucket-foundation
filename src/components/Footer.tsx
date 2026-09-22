@@ -45,7 +45,7 @@ export default function Footer({ launchList = false }: { launchList?: boolean })
             <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
             <li><Link href="/canon/timeline" className="hover:text-[color:var(--bone)] transition">Timeline</Link></li>
             <li><Link href="/earth" className="hover:text-[color:var(--bone)] transition">Earth data globe</Link></li>
-            <li><Link href="/canon/claims" className="hover:text-[color:var(--bone)] transition">All claims</Link></li>
+            <li><Link href="/excerpts" className="hover:text-[color:var(--bone)] transition">Source excerpts</Link></li>
             <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
             <li><Link href="/protocol" className="hover:text-[color:var(--bone)] transition">Protocol, feed402/x402</Link></li>

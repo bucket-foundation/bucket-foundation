@@ -31,6 +31,29 @@ Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #19
 - `learning/research-os/PATENTS.md`: `patent` stays out of `WORK_NODE_KINDS`, with the contract that decides it, and the fourteen branches say where they come from.
 - `docs/FEED402_PATENTS.md` and `docs/PATENT_LICENSING.md`: a banner naming the canonical home in the org repositories, and no new serving work here.
 - `src/lib/research-os/directions.ts` and `src/lib/research-os/makeup.ts`: two comments reworded.
+## ros-workbench 1: the research memo and design
+
+The prior work on compute shared across machines, notebooks, Python and R in the browser, statistics, machine learning, and LaTeX, checked against its sources, and a design that joins the node page, productions, imports, and the engine through one new object, the run.
+
+Date 2026-09-21. Branch `feat/ros-workbench-memo`, worktree `.wt-ros-workbench-1`, draft PR #202 into `dev`. Founder direction of 2026-09-18, recorded in the ros-workbench epic: people hook up their own machines as compute for their research, with statistics, machine learning, custom code, and LaTeX on top. The software atlas's directions (ros-workbench 0) are folded into the design.
+
+### Added
+
+- `learning/research-os/WORKBENCH.md`: what the repository holds for the workbench; the survey of volunteer and cluster computing, notebooks, in-browser runtimes, statistics and machine learning packages, LaTeX, sandboxes, and provenance standards, with a primary source beside each claim; the design, with the four integration paths, the run record, reproduction, the security model, failure and the owner's policy, what imports owe the workbench, the engine, the node page section, the atlas's directions, and the build order; and the claims left unverified.
+
+### Edited
+
+None.
+
+### Removed
+
+None.
+
+Critic round 1 at `3083d4e0e` scored 7.0 and failed. The revision corrects the research tools' hosting (one gateway for all forty; `founder-gpu` is a stale label), registers the engine host as a service runner and lets a run name a production input by the hash of its canonical JSON, makes the engine a trusted job kind with its exemptions on the run, marks every run self-reported until others reproduce it, splits the reproducible mark by who can read the inputs, adds confidentiality of inputs to the security model with an output frame and a sanitizer that strips remote URLs, and tests the LaTeX namespace in bubblewrap on this machine. It re-syncs the atlas's directions to its commit `c12a88bf2`.
+
+Round 2 at `7a2cb31c7`, run by bkt-nuc in session at the founder's direction to stop spending tokens on subagents, so it is a review by the coordinating session and no longer independent. It verified the new code names (`authorizeHypothesize`, `can` with `hasRole`, `NodeView`, `ProduceForm`, `createNodeFromProduction`), the four new MDN and GitHub quotations word for word, and reran the bubblewrap test. It found one Medium, a run's strictest-input visibility against the author publishing a run on their own private input, and four Lows: sandbox wording that trusted jobs contradicted, who may replay an engine run, where the engine host is registered on a hosted stack, and two lines stale against the atlas at `dc17e1501`. All five are fixed in the round 2 commit, and the round scores 9.5.
+
+The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it, and the memo sets out the section's layout at 390 pixels. The roadmap row goes into `learning/research-os/ROADMAP.md` when the loop's branch that holds that file merges.
 
 ## ros-patents 1: the research memo
 

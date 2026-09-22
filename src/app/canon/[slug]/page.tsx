@@ -93,7 +93,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <span className="text-[color:var(--parchment-dim)]">· {figures.length} figures</span>
             )}
             {claimsTotal > 0 && (
-              <span className="text-[color:var(--parchment-dim)]">· {claimsTotal} claim cards</span>
+              <span className="text-[color:var(--parchment-dim)]">· {claimsTotal} source excerpts</span>
             )}
           </div>
           {readmeIntro && (
@@ -156,7 +156,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {claimsByConcept.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">
-              Claim cards
+              Source excerpts
               <span className="ml-3 small-caps text-[11px] text-[color:var(--parchment-dim)]">
                 · {claimsTotal} across {claimsByConcept.length} concepts
               </span>
@@ -166,7 +166,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <div key={concept}>
                   <h3 className="font-serif-display text-lg text-[color:var(--basalt)] mb-3 capitalize">
                     <Link
-                      href={`/canon/claims/${concept}`}
+                      href={`/excerpts/${concept}`}
                       className="hover:text-[color:var(--gold)]"
                     >
                       {concept.replace(/-/g, " ")}
@@ -179,7 +179,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     {claims.slice(0, 6).map((c) => (
                       <li key={c.slug} className="text-[14px] leading-relaxed">
                         <Link
-                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          href={`/excerpts/${c.concept}/${c.slug}`}
                           className="text-[color:var(--basalt-2)] hover:text-[color:var(--gold)]"
                         >
                           {c.title.length > 110 ? c.title.slice(0, 110) + "…" : c.title}
@@ -189,7 +189,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     {claims.length > 6 && (
                       <li className="text-[11px] small-caps">
                         <Link
-                          href={`/canon/claims/${concept}`}
+                          href={`/excerpts/${concept}`}
                           className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
                         >
                           + {claims.length - 6} more →
