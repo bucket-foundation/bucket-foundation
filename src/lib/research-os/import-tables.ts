@@ -441,10 +441,23 @@ export function readTableSchema(
     missingTokens?: readonly string[];
     /**
      * The size past which this reads a prefix. MAX_TEXT_CHARS by
-     * default, which a 20 MB file parses in about 0.7 seconds and a
-     * quarter of a gigabyte of heap. A browser path that cannot afford
-     * that passes its own, and a test can reach the truncation without
-     * building 20 MB.
+     * default.
+     *
+     * Measured on node v22 on a development machine, over 20 MB of
+     * two-column quoted CSV: 0.7 to 0.8 seconds and 0.49 GB of heap at
+     * 800,000 twenty-character rows, 1.1 to 1.2 seconds and 0.56 GB at
+     * 400,000 forty-five-character rows, 1.3 to 1.6 seconds and 0.61 GB
+     * at 98,000 two-hundred-character rows, with resident memory
+     * reaching 1.7 to 2.4 GB across repeats. parseCells builds one
+     * object per cell, so the row shape moves the cost more than the
+     * byte count does.
+     *
+     * An earlier version of this comment said 0.7 seconds and a quarter
+     * of a gigabyte, which is the fastest shape and about half the
+     * heap. It was written in the voice of a measurement without being
+     * one, which is the thing a caller sizing a browser path cannot
+     * afford. Those callers pass their own limit; a test reaches the
+     * truncation without building 20 MB.
      */
     maxChars?: number;
   } = {},
