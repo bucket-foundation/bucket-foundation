@@ -6,12 +6,19 @@
 -- owner and grant.
 --
 -- The path rule is the whole design. An object lives at
--- <owner_id>/<sha256>, so the bytes decide the name. Two people who upload
--- the same file keep separate objects, because the owner is the first
--- segment. One person who uploads the same file twice writes the same
--- object, because the hash is the second. Different bytes can never land on
--- an existing path, so a run that recorded an input by its hash reads those
--- same bytes forever. Nothing in this migration grants an update.
+-- <owner_id>/<sha256>, so the name is content-addressed. Two people who
+-- upload the same file keep separate objects, because the owner is the
+-- first segment. One person who uploads the same file twice writes the
+-- same object, because the hash is the second. Nothing here grants an
+-- update, so a key cannot be overwritten in place.
+--
+-- The name is content-addressed and the object is not. Nothing in this
+-- migration hashes a stored object, so a run that recorded an input by its
+-- hash reads the same bytes only because the uploader recomputes the digest
+-- server-side and refuses a mismatch. An owner may also delete a key and
+-- write different bytes at it, and a service-role caller bypasses every
+-- policy below. The guarantee is the uploader's; this migration makes it
+-- expressible and gives it the key shape to hold to.
 
 -- 1. The file attached to an import. One row per set of bytes per import;
 -- the same owner may attach one object to several imports, and the object
@@ -86,8 +93,53 @@ do $$ begin
   end if;
 end $$;
 
-grant select on graph.import_files to authenticated;
+-- Service role only. `authenticated` holds no USAGE on schema graph, so a
+-- grant here reaches nothing and the policy above never runs for a
+-- client: every read of this table goes through a route. The policy
+-- stays because graph.can_read_import_object applies the same rule, and
+-- a future grant of schema usage should find the table already governed.
 grant all on graph.import_files to service_role;
+
+/**
+ * Whether `viewer` may read the object stored at `object_name`.
+ *
+ * security definer, so the graph join runs as the owner and the caller's
+ * plan never contains a graph table. That is the point: graph.nodes'
+ * visible_select and graph.node_grants' grantee_or_owner_select select
+ * from each other, and a policy that reaches them from storage.objects
+ * made every authenticated Storage read in the project fail with
+ * "infinite recursion detected in policy for relation node_grants".
+ *
+ * search_path is empty so every name inside is schema-qualified, and
+ * execute is granted to authenticated alone.
+ */
+create or replace function graph.can_read_import_object(object_name text, viewer uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  select exists (
+    select 1
+    from graph.import_files f
+    join graph.imports i on i.id = f.import_id
+    join graph.nodes n on n.id = i.node_id
+    where f.storage_path = object_name
+      and (
+        n.visibility = 'public'
+        or n.owner_id = viewer
+        or exists (
+          select 1 from graph.node_grants g
+          where g.node_id = n.id and g.grantee_id = viewer
+            and (g.expires_at is null or g.expires_at > now())
+        )
+      )
+  );
+$$;
+
+revoke execute on function graph.can_read_import_object(text, uuid) from public;
+grant execute on function graph.can_read_import_object(text, uuid) to authenticated;
 
 -- 4. The bucket and its policies. Guarded, because a bare Postgres with the
 -- graph schema and no Supabase Storage is a database this migration still
@@ -101,40 +153,38 @@ do $$ begin
 
     -- Writes land in the caller's own prefix and nowhere else.
     if not exists (select 1 from pg_policies where schemaname = 'storage' and tablename = 'objects' and policyname = 'research_os_imports_own_insert') then
+      -- Anchored, because storage.foldername returns the first segment of
+      -- any depth: <uid>/sub/<hash>, <uid>/<not-a-hash> and a key holding
+      -- .. all passed a check on segment one alone, and nothing then
+      -- bound a written object to the <owner>/<sha256> rule this whole
+      -- migration rests on.
       create policy research_os_imports_own_insert on storage.objects for insert to authenticated
         with check (
           bucket_id = 'research-os-imports'
-          and (storage.foldername(name))[1] = auth.uid()::text
+          and name ~ ('^' || auth.uid()::text || '/[0-9a-f]{64}$')
         );
     end if;
 
     -- Reads follow the record's own rule, so a grant on the import's node
-    -- reaches the bytes and nothing else does. The join is spelled out
-    -- rather than left to import_files' own policy: a read rule that
-    -- depends on a second table's RLS still being on is a rule that turns
-    -- off quietly.
+    -- reaches the bytes and nothing else does. The join runs inside
+    -- graph.can_read_import_object rather than in the policy body.
+    --
+    -- Spelling the join out here took every authenticated Storage read in
+    -- the project down. graph.nodes' visible_select selects from
+    -- node_grants and node_grants' grantee_or_owner_select selects from
+    -- nodes, so the two recurse, and this policy was the first thing in
+    -- the project to reach them from a table authenticated can read.
+    -- Postgres answered "infinite recursion detected in policy for
+    -- relation node_grants" for every object in every bucket. A security
+    -- definer function owns that recursion internally and the caller's
+    -- plan never contains a graph table.
     if not exists (select 1 from pg_policies where schemaname = 'storage' and tablename = 'objects' and policyname = 'research_os_imports_owner_or_grantee_select') then
       create policy research_os_imports_owner_or_grantee_select on storage.objects for select to authenticated
         using (
           bucket_id = 'research-os-imports'
           and (
-            (storage.foldername(name))[1] = auth.uid()::text
-            or exists (
-              select 1
-              from graph.import_files f
-              join graph.imports i on i.id = f.import_id
-              join graph.nodes n on n.id = i.node_id
-              where f.storage_path = name
-                and (
-                  n.visibility = 'public'
-                  or n.owner_id = auth.uid()
-                  or exists (
-                    select 1 from graph.node_grants g
-                    where g.node_id = n.id and g.grantee_id = auth.uid()
-                      and (g.expires_at is null or g.expires_at > now())
-                  )
-                )
-            )
+            name ~ ('^' || auth.uid()::text || '/[0-9a-f]{64}$')
+            or graph.can_read_import_object(name, auth.uid())
           )
         );
     end if;
@@ -145,7 +195,7 @@ do $$ begin
       create policy research_os_imports_own_delete on storage.objects for delete to authenticated
         using (
           bucket_id = 'research-os-imports'
-          and (storage.foldername(name))[1] = auth.uid()::text
+          and name ~ ('^' || auth.uid()::text || '/[0-9a-f]{64}$')
         );
     end if;
 

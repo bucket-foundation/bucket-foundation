@@ -21,6 +21,20 @@
  * separate objects, so one person deleting their copy cannot take the
  * other's bytes with it, and the Storage policies can gate on a prefix.
  *
+ * WHAT THE PATH DOES NOT GUARANTEE. The name is content-addressed and
+ * the object is not. Nothing in this module or in the migration reads an
+ * object, hashes it, or compares it to the row, so `<owner>/<sha_of_A>`
+ * may hold bytes B if a caller says so. The guarantee starts at the
+ * uploader: it recomputes the digest server-side over the bytes it
+ * received, refuses a mismatch, and never calls the storage API with
+ * `x-upsert`. An owner can also delete an object and write different
+ * bytes at the same key, because a delete policy exists and no content
+ * check does, and a service-role caller bypasses every policy here.
+ *
+ * A repeat upload of bytes already stored answers 409 rather than
+ * succeeding, because the missing UPDATE policy is deliberate. The
+ * caller treats that as a hit.
+ *
  * Nothing here uploads. This module is the naming and the bounds, and it
  * is pure so both sides of the request can use it.
  */
@@ -37,7 +51,11 @@ export const IMPORT_BUCKET = "research-os-imports";
 export const MAX_IMPORT_BYTES = 52_428_800;
 
 const SHA256_HEX = /^[0-9a-f]{64}$/;
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+// Lowercase, no `i` flag. Postgres renders uuid::text lowercase, and the
+// storage_path column is generated from it, so an uppercase owner id
+// built one key while the row named another: the object and the row
+// diverge and the read policy's name match never fires.
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 /** One `type/subtype`, the shape the migration's check constraint accepts. */
 const MEDIA_TYPE = /^[a-z0-9][a-z0-9!#$&^_.+-]{0,126}\/[a-z0-9][a-z0-9!#$&^_.+-]{0,126}$/;
 
@@ -115,8 +133,9 @@ export function validateImportFile(input: ImportFileInput): Validated<ImportFile
  * recomputes are the same function.
  */
 export async function sha256Hex(bytes: Uint8Array): Promise<string> {
-  const view = new Uint8Array(bytes);
-  const digest = await crypto.subtle.digest("SHA-256", view);
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle) throw new Error("import-storage: WebCrypto is unavailable; Node 18 or later, or a browser, is required");
+  const digest = await subtle.digest("SHA-256", bytes as unknown as ArrayBufferView);
   return Array.from(new Uint8Array(digest))
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
