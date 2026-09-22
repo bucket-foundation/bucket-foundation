@@ -181,3 +181,10 @@ learning/.buildloop/run.log
 
 # The local stack writes a service-role key here
 .supa.env
+
+# Signed-in screenshot runs (scripts/research-os/shots.mjs)
+ros-shots/
+session.json
+
+# Launch-list signups in local dev (src/lib/waitlist/store.ts)
+.data/

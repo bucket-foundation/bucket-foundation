@@ -1,4 +1,4 @@
-// /canon/claims/[concept], all curated claims for a concept.
+// /excerpts/[concept], every source excerpt for a concept.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,7 +11,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { concept: string } }) {
-  return { title: `${params.concept} · canon claims · bucket.foundation` };
+  return { title: `${params.concept} · source excerpts · bucket.foundation` };
 }
 
 export default function Page({ params }: { params: { concept: string } }) {
@@ -25,8 +25,8 @@ export default function Page({ params }: { params: { concept: string } }) {
         className="mb-3 text-xs uppercase tracking-[0.22em]"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
       >
-        <Link href="/canon/claims" className="hover:text-[color:var(--gold)]">
-          ← canon claims
+        <Link href="/excerpts" className="hover:text-[color:var(--gold)]">
+          ← source excerpts
         </Link>
       </p>
       <h1
@@ -39,7 +39,7 @@ export default function Page({ params }: { params: { concept: string } }) {
         className="mt-3 text-lg"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
       >
-        {claims.length} candidate claims · branch V · biophysics
+        {claims.length} {claims.length === 1 ? "excerpt" : "excerpts"} · {claims[0].branch}
       </p>
 
       <ul className="mt-12 space-y-8">
@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { concept: string } }) {
               )}
             </div>
             <Link
-              href={`/canon/claims/${c.concept}/${c.slug}`}
+              href={`/excerpts/${c.concept}/${c.slug}`}
               className="block text-lg md:text-xl"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >

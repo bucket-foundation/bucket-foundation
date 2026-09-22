@@ -42,10 +42,20 @@ const nextConfig = {
       "./_intake/connections/graph.json",
       "./_intake/connections/centrality.json",
     ],
-    "/canon/claims/[concept]/[slug]": [
+    "/excerpts/[concept]/[slug]": [
       "./_intake/embeddings/claim-evidence.jsonl",
       "./bucket-canon/*/sub-claims/**/*.md",
     ],
+  },
+
+  // The transcript cards left canon for /excerpts on 2026-09-21; old links
+  // and citations that point at /canon/claims keep resolving.
+  async redirects() {
+    return [
+      { source: "/canon/claims", destination: "/excerpts", permanent: true },
+      { source: "/canon/claims/:concept", destination: "/excerpts/:concept", permanent: true },
+      { source: "/canon/claims/:concept/:slug", destination: "/excerpts/:concept/:slug", permanent: true },
+    ];
   },
 
   async headers() {

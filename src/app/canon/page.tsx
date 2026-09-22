@@ -79,10 +79,10 @@ export default function Page() {
               ⌕  search canon
             </Link>
             <Link
-              href="/canon/claims"
+              href="/excerpts"
               className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
             >
-              ◯  599 claim cards
+              ◯  599 source excerpts
             </Link>
             <Link
               href="/canon/bridges"
@@ -262,7 +262,7 @@ function CoverageBar({ branches }: { branches: BranchLike[] }) {
               key={c.slug}
               href={`/canon/${c.slug}`}
               className="block group"
-              title={`${c.count} claim cards in ${c.name}`}
+              title={`${c.count} source excerpts in ${c.name}`}
             >
               <div className="flex items-center gap-3">
                 <div
@@ -293,7 +293,7 @@ function CoverageBar({ branches }: { branches: BranchLike[] }) {
         })}
       </div>
       <div className="mt-3 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
-        {total} claim cards · {counts.filter((c) => c.count > 0).length} of {counts.length} branches active
+        {total} source excerpts · {counts.filter((c) => c.count > 0).length} of {counts.length} branches active
       </div>
     </div>
   );

@@ -24,9 +24,14 @@
 #
 # The base at step 3: VERCEL_GIT_PREVIOUS_SHA, the branch's last successful
 # deployment, when Vercel sets it; the tip of dev on a feature branch with no
-# successful deployment yet. On dev or main with no previous deployment the
-# script builds. Vercel's build clone holds the pushed commit alone and has
-# no remote (measured 2026-09-18, see docs/VERCEL-BUILDS.md), so the script
+# successful deployment yet. On dev or main with no previous deployment sha,
+# which Vercel stops sending once the branch's last deployment was canceled,
+# the base is the pushed commit's first parent, and only when that commit is
+# a merge or a squash merge; anything else on those branches builds. The
+# squash test reads the subject for a trailing "(#123)", so an ordinary
+# commit written that way is taken at its word. Vercel's build clone holds
+# the pushed commit alone and has no remote (measured 2026-09-18, see
+# docs/VERCEL-BUILDS.md), so the script
 # fetches the trees of the base and the pushed commit at depth 1 from the
 # public repository into a scratch repository when the clone lacks the base.
 #
@@ -121,6 +126,17 @@ fi
 
 have_commit() { git cat-file -e "$1^{commit}" 2>/dev/null; }
 
+# True when the pushed commit brought a whole branch with it: a merge
+# commit, or a squash merge, which carries "(#123)" at the end of its
+# subject. Both hold one commit's worth of branch history on the target
+# branch, so their first parent is the base.
+merge_shaped() {
+  [[ "$SUBJECT" =~ \(#[0-9]+\)[[:space:]]*$ ]] && return 0
+  local parents
+  parents="$(git rev-list --parents -n 1 "$CUR_SHA" 2>/dev/null | wc -w)"
+  [[ "$parents" -ge 3 ]]
+}
+
 # The diff runs in the clone when it holds the base. Vercel's clone does
 # not, so both commits' trees are fetched at depth 1 into a scratch bare
 # repository and the diff runs there. The scratch repository leaves the
@@ -143,6 +159,41 @@ trap cleanup EXIT
 # refs/gate/cur. It runs in a command substitution to capture its reason on
 # failure, so the scratch repository is made beforehand in this shell,
 # where SCRATCH must be set for the diff and the cleanup to see it.
+# Fetches the pushed commit with one ancestor, so its first parent can serve
+# as the base. Vercel stops supplying VERCEL_GIT_PREVIOUS_SHA once the last
+# deployment on the branch was canceled, which a skip does, so on dev and
+# main a skip would otherwise force the next merge to build (measured on
+# deployments dpl_HkRXdM... and dpl_GRCQFC..., 2026-09-20).
+fetch_parent() {
+  if [[ -z "$REPO_URL" ]]; then
+    echo "no repository URL (VERCEL_GIT_REPO_OWNER and VERCEL_GIT_REPO_SLUG unset)"
+    return 1
+  fi
+  if [[ -z "$SCRATCH" ]]; then
+    echo "no scratch repository"
+    return 1
+  fi
+  local runner=() out status parent
+  command -v timeout >/dev/null 2>&1 && runner=(timeout "$FETCH_TIMEOUT")
+  out="$(GIT_TERMINAL_PROMPT=0 "${runner[@]}" git --git-dir="$SCRATCH" fetch --quiet --no-tags \
+    --filter=blob:none --depth=2 origin "+$CUR_SHA:refs/gate/cur" 2>&1)"
+  status=$?
+  if [[ $status -eq 124 ]]; then
+    echo "fetch from $REPO_URL timed out after ${FETCH_TIMEOUT}s"
+    return 1
+  fi
+  if [[ $status -ne 0 ]]; then
+    echo "git fetch from $REPO_URL exited $status: ${out:-no output}"
+    return 1
+  fi
+  parent="$(git --git-dir="$SCRATCH" rev-parse --verify --quiet "refs/gate/cur^1^{commit}" 2>/dev/null)"
+  if [[ -z "$parent" ]]; then
+    echo "$CUR_SHA has no first parent in the fetch"
+    return 1
+  fi
+  git --git-dir="$SCRATCH" update-ref refs/gate/base "$parent"
+}
+
 fetch_pair() {
   if [[ -z "$REPO_URL" ]]; then
     echo "no repository URL (VERCEL_GIT_REPO_OWNER and VERCEL_GIT_REPO_SLUG unset)"
@@ -211,10 +262,26 @@ elif [[ "$REF" != "dev" && "$REF" != "main" ]]; then
   DIFF_BASE="refs/gate/base"
   DIFF_CUR="refs/gate/cur"
   BASE_DESC="the tip of dev $("${DIFF_GIT[@]}" rev-parse refs/gate/base 2>/dev/null) (no successful deployment of this branch yet)"
+elif ! merge_shaped; then
+  # dev and main with no previous sha, on a commit that is neither a merge
+  # nor a squash merge. One parent covers one commit, and a push of several
+  # ordinary commits carries changes that parent cannot see, so a site
+  # change in an earlier commit would skip and never deploy.
+  build "no previous deployment sha on '$REF' and $CUR_SHA is not a merge, so one parent cannot cover the push; building to be safe"
+elif have_commit "$CUR_SHA^"; then
+  # A merge or a squash merge brings one commit's worth of branch history,
+  # so its first parent is what the branch held before it. Vercel drops the
+  # previous sha after a canceled deployment, which a skip produces.
+  DIFF_BASE="$CUR_SHA^"
+  DIFF_CUR="$CUR_SHA"
+  BASE_DESC="the first parent of $CUR_SHA (no previous deployment sha on '$REF')"
+elif make_scratch && out="$(fetch_parent)"; then
+  DIFF_GIT=(git --git-dir="$SCRATCH")
+  DIFF_BASE="refs/gate/base"
+  DIFF_CUR="refs/gate/cur"
+  BASE_DESC="the first parent of $CUR_SHA (no previous deployment sha on '$REF')"
 else
-  # dev and main have deployed for as long as this gate has existed; with no
-  # previous deployment there is no base that covers every pushed commit.
-  build "no successful deployment on '$REF' to compare with; building to be safe"
+  build "no previous deployment sha on '$REF' and the parent of $CUR_SHA could not be fetched ($out); building to be safe"
 fi
 
 RANGE_DESC="$BASE_DESC to $CUR_SHA"

@@ -106,9 +106,12 @@ ref() { echo "refs/heads/$1 $2 refs/heads/$1 $3"; }
 run_case "a site change runs lint and types, and passes" 0 yes "$(ref feat/site "$SITE" "$ZERO")"
 run_case "a lint error refuses the push" 1 yes "$(ref feat/site "$SITE" "$ZERO")" FAIL_LINT=1
 run_case "a type error refuses the push" 1 yes "$(ref feat/site "$SITE" "$ZERO")" FAIL_TYPES=1
-run_case "[skip ci] pushes without a check" 0 no "$(ref feat/wip "$SITE_WIP" "$ZERO")" FAIL_LINT=1
+# [skip ci] holds back a build, and code still gets checked.
+run_case "[skip ci] on code still runs the check" 1 yes "$(ref feat/wip "$SITE_WIP" "$ZERO")" FAIL_LINT=1
+run_case "[skip ci] on code passes when the code is clean" 0 yes "$(ref feat/wip "$SITE_WIP" "$ZERO")"
 run_case "a docs-only branch pushes without a check" 0 no "$(ref feat/docs "$DOCS" "$ZERO")" FAIL_LINT=1
-run_case "an engine branch pushes without a check" 0 no "$(ref feat/hte-run "$ENGINE" "$ZERO")" FAIL_LINT=1
+# An engine branch skips the build and still has to compile.
+run_case "an engine branch with code still runs the check" 1 yes "$(ref feat/hte-run "$ENGINE" "$ZERO")" FAIL_LINT=1
 run_case "docs on top of a branch's site change still checks" 1 yes "$(ref feat/two "$SITE_THEN_DOCS" "$SITE")" FAIL_LINT=1
 run_case "deleting a branch pushes without a check" 0 no "(delete) $ZERO refs/heads/feat/site $SITE" FAIL_LINT=1
 run_case "AGF_PREPUSH_SKIP=1 bypasses the check" 0 no "$(ref feat/site "$SITE" "$ZERO")" FAIL_LINT=1 AGF_PREPUSH_SKIP=1
@@ -116,8 +119,10 @@ run_case "a push from another checkout is refused" 1 no "$(ref feat/site "$SITE"
 run_case "an uncommitted change to a checked file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" DIRTY=1
 run_case "an untracked .ts file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" UNTRACKED=1
 run_case "missing node_modules is refused with the reason" 1 no "$(ref feat/site "$SITE" "$ZERO")" NO_MODULES=1
-run_case "a push to dev checks" 0 yes "$(ref dev "$DOCS" "$BASE")"
-run_case "[skip ci] on dev pushes without a check" 0 no "$(ref dev "$SITE_WIP" "$BASE")" FAIL_LINT=1
+# A docs-only push to dev skips the build and carries no code to check.
+run_case "a docs-only push to dev needs no check" 0 no "$(ref dev "$DOCS" "$BASE")" FAIL_LINT=1
+run_case "a code push to dev runs the check" 1 yes "$(ref dev "$SITE" "$BASE")" FAIL_LINT=1
+run_case "[skip ci] on dev still runs the check on code" 1 yes "$(ref dev "$SITE_WIP" "$BASE")" FAIL_LINT=1
 run_case "a tag push has no check" 0 no "refs/tags/v1 $SITE refs/tags/v1 $ZERO" FAIL_LINT=1
 # A gate that crashes answers build on Vercel, so the check must run.
 cp "$REPO/scripts/vercel-ignore-build.sh" "$WORKDIR/gate.keep"
@@ -155,6 +160,21 @@ else
   FAIL=$((FAIL + 1)); echo "FAIL  the installed hook did not run lint on a building push"
   sed "s/^/      /" "$WORKDIR/hook.out"
 fi
+# A worktree's own hooks directory sits in the main checkout, so the shared
+# test must not read it as somebody else's.
+WT="$WORKDIR/worktree"
+git -C "$REPO" worktree add -q --detach "$WT" HEAD 2>/dev/null
+cp "$HERE/install-git-hooks.sh" "$HERE/pre-push-vercel-check.sh" "$HERE/vercel-ignore-build.sh" "$WT/scripts/" 2>/dev/null
+if (cd "$WT" && git config --unset core.hooksPath 2>/dev/null; cd "$WT" && npm_lifecycle_event=prepare bash scripts/install-git-hooks.sh >"$WORKDIR/wt.out" 2>&1) &&
+  [[ -x "$(git -C "$WT" rev-parse --git-common-dir)/hooks/pre-push" ]]; then
+  PASS=$((PASS + 1)); echo "PASS  npm install inside a worktree installs the hook"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  npm install inside a worktree did not install the hook"
+  sed 's/^/      /' "$WORKDIR/wt.out" 2>/dev/null
+fi
+git -C "$REPO" worktree remove --force "$WT" 2>/dev/null
+git -C "$REPO" config core.hooksPath "$HOOKS"
+
 printf '#!/bin/sh\necho mine\n' >"$HOOKS/pre-push"
 install_case "an existing pre-push of someone else's is left alone" 1
 if grep -q "echo mine" "$HOOKS/pre-push"; then
