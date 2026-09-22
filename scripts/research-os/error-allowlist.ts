@@ -23,6 +23,14 @@ export interface ErrorException {
 }
 
 export const ERROR_EXCEPTIONS: ErrorException[] = [
+  { at: "src/app/api/academy/credential/verify/route.ts:71", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/app/api/academy/profile/route.ts:110", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/app/m/[handle]/page.tsx:59", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/lib/academy/credential/store.ts:108", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/lib/academy/credential/store.ts:123", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/lib/academy/credential/store.ts:89", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/lib/auth/identity.ts:48", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
+  { at: "src/lib/auth/identity.ts:51", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/lib/research-os/access-db.ts:100", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/lib/research-os/access-db.ts:106", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/lib/research-os/access-db.ts:116", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },

@@ -13,7 +13,10 @@ import { ERROR_EXCEPTIONS } from "./research-os/error-allowlist";
 
 // The ingest scripts write the graph the routes read, so a dropped error
 // there lands in what every route serves. They are inside the gate.
-const ROOTS = ["src/lib/research-os", "src/app/api/research-os", "scripts/research-os"];
+// The whole of src and scripts. The narrower roots left three live
+// dropped reads outside the gate, one of them serving a credential
+// verification an empty progress list as though it were the answer.
+const ROOTS = ["src", "scripts"];
 
 test("a read that drops its error is found", () => {
   const found = scanFile("f.ts", `const { data } = await svc.from("nodes").select("id").eq("id", x);`);
@@ -72,7 +75,7 @@ test("the untriaged count is recorded, so it can only fall", () => {
   // dropped-error count is the one the branch started from; the
   // empty-guard count is what the new rule found on its first run.
   const UNTRIAGED_CEILING = 17;
-  const EMPTY_GUARD_CEILING = 23;
+  const EMPTY_GUARD_CEILING = 31;
   const emptyGuard = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged, empty-guard")).length;
   assert.ok(
     emptyGuard <= EMPTY_GUARD_CEILING,
