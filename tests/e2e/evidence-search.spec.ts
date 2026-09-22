@@ -93,3 +93,30 @@ test("an empty answer says so rather than showing the last one", async () => {
   await page.getByRole("button", { name: "search sources" }).click();
   await expect(page.getByText(/No admitted source matched|open source/).first()).toBeVisible({ timeout: 30_000 });
 });
+
+test("changing the step being worked on takes the previous step's sources away", async () => {
+  await page.goto(WORKSPACE);
+  await page.fill("#evidence-query", QUERY);
+  await page.getByRole("button", { name: "search sources" }).click();
+  const cards = page.locator("#evidence-query").locator("xpath=../..").locator("li");
+  await expect(cards.first()).toBeVisible({ timeout: 30_000 });
+
+  // The path's steps are buttons carrying their node's title. Moving to
+  // another one changes the target Quote would attach a source to, so
+  // sources found for the step before it cannot stay on screen.
+  const steps = page.locator("button").filter({ hasText: /\S/ });
+  const before = await cards.count();
+  expect(before).toBeGreaterThan(0);
+
+  // The last step is the target, which is already the one being worked
+  // on, so moving to it would change nothing. The first step is the
+  // furthest prerequisite and is never the one selected on arrival.
+  const path = page.locator("div.flex.flex-col.gap-px > button");
+  const total = await path.count();
+  test.skip(total < 2, `the path has ${total} steps, so there is no other step to move to`);
+  await path.nth(0).click();
+
+  await expect(cards).toHaveCount(0, { timeout: 10_000 });
+  await expect(page.locator("#evidence-query")).toBeVisible();
+  expect(await steps.count()).toBeGreaterThan(0);
+});
