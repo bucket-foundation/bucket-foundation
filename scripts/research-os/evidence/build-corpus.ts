@@ -15,8 +15,18 @@
  * IMPLEMENTATION.md, "Operating envelope".
  *
  * `check` validates a built corpus and compares it with the live graph.
- * Exit 0: sound and current. Exit 1: problems or stale sources, listed.
- * Exit 2: the run could not start.
+ *
+ * `admit <dir>` records a validated corpus in graph.evidence_source_admissions
+ * and makes it the active set, in one transaction. A draft rights policy
+ * admits only with --allow-draft, which is for local development.
+ * `withdraw <sourceId> --reason <text>` withdraws every revision of one
+ * source; admitting it again needs a newer rights revision.
+ *
+ * Exit 0: done, sound and current. Exit 1: problems, stale or refused
+ * sources, listed. Exit 2: the run could not start.
+ *
+ *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts admit local/evidence/<revision> --allow-draft
+ *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts withdraw graph:<uuid> --reason "permission withdrawn"
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statfsSync, writeFileSync } from "node:fs";
@@ -32,8 +42,10 @@ import {
   type ArtifactFiles,
   type GraphNodeRow,
   type Manifest,
+  type PassageRecord,
   type SourceRecord,
 } from "../../../src/lib/research-os/evidence/corpus";
+import { admissionRows, admitRefusal, type AdmissionResult } from "../../../src/lib/research-os/evidence/admissions";
 import { parsePolicy, type RightsPolicy } from "../../../src/lib/research-os/evidence/rights";
 import { sha256Hex } from "../../../src/lib/research-os/evidence/text";
 
@@ -59,11 +71,15 @@ function seedSlugs(policy: RightsPolicy): Map<string, Set<string>> {
   return out;
 }
 
-async function loadNodes(): Promise<GraphNodeRow[]> {
+function graphDb() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set; source .env.local");
-  const db = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } });
+  return createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } });
+}
+
+async function loadNodes(): Promise<GraphNodeRow[]> {
+  const db = graphDb();
   const rows: GraphNodeRow[] = [];
   // PostgREST answers at most 1000 rows, so page in a fixed order.
   for (let from = 0; ; from += PAGE) {
@@ -176,12 +192,51 @@ async function check(args: string[]): Promise<number> {
   return problems.length || stale.length ? 1 : 0;
 }
 
+const lines = <T>(text: string): T[] => text.split("\n").filter(Boolean).map((l) => JSON.parse(l) as T);
+
+async function admit(args: string[]): Promise<number> {
+  const dir = args.find((a) => !a.startsWith("--"));
+  if (!dir) throw new Error("admit needs a corpus directory");
+  const { policy, sha256 } = loadPolicy();
+  const { manifest, files } = readArtifacts(path.resolve(dir));
+  const problems = validateCorpus(manifest, files, policy, sha256);
+  const refusal = admitRefusal(policy, { allowDraft: args.includes("--allow-draft"), problems });
+  if (refusal) {
+    console.error(`[corpus] ${refusal}`);
+    return 1;
+  }
+  const rows = admissionRows(lines<SourceRecord>(files["sources.jsonl"]), lines<PassageRecord>(files["passages.jsonl"]), policy);
+  const { data, error } = await graphDb().rpc("admit_evidence_corpus", {
+    p_corpus_revision: manifest.corpusRevision,
+    p_policy_sha256: sha256,
+    p_policy_status: policy.status,
+    p_rows: rows,
+  });
+  if (error) throw new Error(`admit_evidence_corpus: ${error.message}`);
+  const res = data as AdmissionResult;
+  console.log(`[corpus] ${res.corpus_revision}: ${rows.length} rows sent, ${res.staged} staged, ${res.activated} activated, ${res.unchanged} unchanged, ${res.retired} retired`);
+  for (const r of res.refused) console.log(`  [refused] ${r.source_id} ${r.scope}: ${r.reason}`);
+  return res.refused.length ? 1 : 0;
+}
+
+async function withdraw(args: string[]): Promise<number> {
+  const sourceId = args[0];
+  const reason = flag(args, "--reason");
+  if (!sourceId || !reason) throw new Error("withdraw needs a source id and --reason");
+  const { data, error } = await graphDb().rpc("withdraw_evidence_source", { p_source_id: sourceId, p_reason: reason });
+  if (error) throw new Error(`withdraw_evidence_source: ${error.message}`);
+  console.log(`[corpus] ${sourceId}: ${data} revisions withdrawn`);
+  return 0;
+}
+
 async function main(): Promise<number> {
   const [cmd, ...rest] = process.argv.slice(2);
   try {
     if (cmd === "build") return await build(rest);
     if (cmd === "check") return await check(rest);
-    console.error("usage: build-corpus.ts build [--limit N] [--out DIR] | check DIR");
+    if (cmd === "admit") return await admit(rest);
+    if (cmd === "withdraw") return await withdraw(rest);
+    console.error("usage: build-corpus.ts build [--limit N] [--out DIR] | check DIR | admit DIR [--allow-draft] | withdraw SOURCE_ID --reason TEXT");
     return 2;
   } catch (e) {
     console.error(`[corpus] ${e instanceof Error ? e.message : e}`);
