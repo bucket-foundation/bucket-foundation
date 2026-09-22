@@ -7,7 +7,7 @@
  * and hash so a new upload is a new version and never replaces bytes a
  * run read, the file's size and media type, and Storage policies by owner
  * and grant. The policies are in
- * supabase/migrations/20260922010000_research_os_import_files.sql. The
+ * supabase/migrations/20260922020000_research_os_import_files.sql. The
  * path rule is here, because the client, the route and the workbench all
  * have to agree on it byte for byte.
  *
