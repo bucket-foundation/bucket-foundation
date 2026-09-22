@@ -99,7 +99,9 @@ scripts/systemd/install-evidence-worker.sh local/evidence/vectors/<older revisio
 #    .env.local: RESEARCH_OS_EVIDENCE_DIR=local/evidence/<older revision>
 ```
 
-Between steps 1 and 2 the worker holds a revision the server no longer admits, so every request answers `degraded` on keyword ranking. Nothing serves the withdrawn revision at any point in the sequence, which is the property the rollback exists for.
+Between steps 1 and 2 the worker holds a revision the server no longer admits. Each piece of that window is covered: the worker refuses a corpus revision other than its own with `stale_corpus`, the server answers a worker refusal from keyword ranking marked `degraded`, and eligibility comes from the registry rather than from the files on disk.
+
+**The sequence itself has not been run.** What the three pieces do together, in the order above, against a second built revision, is asserted here and unmeasured, so the Rollback gate stays open. The bead names the run that would close it. Read the claim above as a design, and check it before a rollback that matters.
 
 A failed build leaves `.tmp-<revision>-<pid>` on disk with its manifest written. Selection skips dot-prefixed names, so it cannot become the corpus the server serves; delete it once its problem is read.
 
