@@ -29,7 +29,7 @@ export type Makeup = {
   factors: (MakeupNode & { throughEvidence: boolean })[];
   /** For a prime: how many idea composites contain it, across how many branches. */
   reach: { composites: number; branches: number } | null;
-  /** Facts, sources, and other non-idea nodes the idea rests on directly: its evidence, apart from its makeup. */
+  /** The non-idea nodes an idea rests on directly, facts and sources among them: its evidence, apart from its makeup. */
   evidence: { count: number; items: MakeupNode[] };
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];

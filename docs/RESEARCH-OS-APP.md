@@ -30,6 +30,8 @@ One graph holds everything researched. `scripts/research-os/ingest/academy-impor
 
 ## Search
 
+The proposed [AI evidence-search architecture](../learning/research-os/ai/IMPLEMENTATION.md) connects workspace Find to source-node Quote, with access parity as its first prerequisite. Release and research gates are in [AI evaluation](../learning/research-os/ai/EVALUATION.md). Work is queued under `research-os-ai` in `BEADS-PENDING.jsonl`; this is planned behavior.
+
 `/api/research-os/search?q=` ranks the nodes the viewer may see by title, slug, and summary (`src/lib/research-os/search.ts`) and returns each with the viewer's standing. `SearchPalette` opens on every app page with Ctrl or Cmd K and from the sidebar; Enter opens the node.
 
 ## Home

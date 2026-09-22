@@ -1,0 +1,6 @@
+---
+description: Use the shared Bucket critic for material plans and implementation reviews across the repository.
+alwaysApply: true
+---
+
+The parent agent delegates a separate `bucket-critic` review for material architecture, implementation and research changes. Use `docs/agents/BUCKET-CRITIC.md`. Repair findings and repeat until the score exceeds 9/10, each applicable dimension is at least 8, and no critical/high blocker remains. Preserve failed rounds and evidence. The critic returns its report without recursive delegation. Trivial prose edits can use ordinary diff review. A score does not authorize merging, deployment or an unmeasured scientific claim.

@@ -30,6 +30,7 @@ import { onNodeOpened, onTransferItemAnswered } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -120,7 +121,13 @@ export async function POST(req: NextRequest) {
       ? onNodeOpened(currentStage, { sessionId })
       : onTransferItemAnswered(currentStage, { learnerText: answer, itemId: (body.itemId || "").trim() || undefined, sessionId });
 
-  await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  try {
+    await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  } catch (err) {
+    const mapped = evidenceErrorResponse(err);
+    if (mapped) return mapped;
+    throw err;
+  }
 
   return NextResponse.json({ stage: transition.nextStage, event: transition.event }, { headers: { "cache-control": "no-store" } });
 }

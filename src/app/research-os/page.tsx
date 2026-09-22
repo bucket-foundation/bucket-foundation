@@ -97,6 +97,12 @@ const TRUST = "Free · no login for the demo · every quote traces to a real sou
 export default function ResearchOsPage() {
   return (
     <>
+      {/* `@media (scripting: none)` in landing.css covers current browsers.
+          This covers the rest: without it, a reader with scripting off gets
+          the hero and an empty page under it. */}
+      <noscript>
+        <style>{".ros-row .ros-image,.ros-row .ros-text{opacity:1;transform:none;transition:none}"}</style>
+      </noscript>
       <FixedCanonGlobeBackground />
       <main className="stone-bone relative z-10 grain">
         <section className="ros-hero">

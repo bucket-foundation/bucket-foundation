@@ -6,7 +6,7 @@
  *   -> { fromStage, toStage }
  *
  * Writes graph.level_overrides and an "override" evidence event on the
- * learner's node state (recordEvidence), so the game layer and the class
+ * learner's node state (graph.override_level), so the game layer and the class
  * view read it like any other transition.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -36,6 +36,13 @@ export async function POST(req: NextRequest) {
   if (!staff) return bad(403, "forbidden");
   const r = await overrideLevel(staff, classId, learnerId, nodeId, toStage as Stage, reason || "");
   if (r.ok) return NextResponse.json(r.value, NO_STORE);
+  // A lock wait is a wait: the teacher can send the same override again.
+  if (r.error === "busy") {
+    return NextResponse.json(
+      { error: "busy" },
+      { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } },
+    );
+  }
   const status = r.error === "forbidden" ? 403 : r.error === "not_a_member" ? 404 : r.error === "write_failed" ? 500 : 400;
   return bad(status, r.error);
 }
