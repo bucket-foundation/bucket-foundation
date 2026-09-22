@@ -50,9 +50,8 @@ export default function MergesPage() {
       const data = (await res.json().catch(() => ({}))) as { proposals?: Proposal[]; error?: string };
       if (res.status === 403) return setState("forbidden");
       // Through isTransientOutage, so this page and every other client
-      // answer an unrecognized 503 code the same way. Reading the one
-      // permanent code inline sent every other 503 to the retry copy,
-      // and the shared rule sends it to the no-graph copy.
+      // answer an unrecognized 503 code the same way. For the two codes
+      // this page already handled the branch is unchanged.
       if (isTransientOutage(res.status, data.error ?? null)) return setState("failed");
       if (res.status === 503) return setState("no_graph");
       if (!res.ok || !Array.isArray(data.proposals)) return setState("failed");

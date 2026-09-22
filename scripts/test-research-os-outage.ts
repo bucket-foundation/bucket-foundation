@@ -17,9 +17,10 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
+import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
-import { OUTAGE_COPY, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage } from "../src/lib/research-os/outage";
+import { OUTAGE_COPY, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage } from "../src/lib/research-os/outage";
 
 const root = path.join(__dirname, "..");
 const CLIENTS = path.join(root, "src/app/research-os");
@@ -28,7 +29,11 @@ const CLIENTS = path.join(root, "src/app/research-os");
  * reply({ status: 503, body: { error: "code" } }) and
  * NextResponse.json({ error: "code" }, { status: 503 }). Matching the
  * helper alone missed the last two, which is where `busy` lives. */
-const PERMANENT = /enabled yet|credentials are invalid|not_configured/;
+// The rule's own regex, imported rather than copied. It was a second
+// literal here, and it is the only thing standing between a permanent
+// 503 and a retry button, so a copy that fell out of step would leave
+// this test passing against a rule it no longer describes.
+const PERMANENT = PERMANENT_MESSAGE;
 
 export function emittedCodes(roots: string[]): Set<string> {
   const codes = new Set<string>();
@@ -68,6 +73,14 @@ export function emittedCodes(roots: string[]): Set<string> {
 
 /** Every `.ts` and `.tsx` under these roots. The first version walked
  * `.tsx` alone, so a client in a `.ts` file was invisible by construction. */
+/** True when `b` names an enclosing function of `a` in the same file, so
+ * only the innermost offender is reported. */
+function sameFileEarlier(a: string, b: string): boolean {
+  const [fa, la] = a.split(":");
+  const [fb, lb] = b.split(":");
+  return fa === fb && Number(lb) < Number(la);
+}
+
 function clientFiles(roots: string[]): string[] {
   const out: string[] = [];
   const walk = (dir: string): void => {
@@ -187,16 +200,12 @@ test("the two messages say different things, and the retryable one offers a retr
   assert.ok(!/try again/i.test(UNCONFIGURED_COPY.body), "a deployment with no graph is not worth retrying");
 });
 
-test("every client of a route that can answer busy consults the rule", () => {
-  // The first version skipped any file without the literal `status ===
-  // 503`, which is most of them: a client that reads `data.error` and
-  // prints it renders a 503 without ever comparing the status, and five
-  // such files sat against routes that emit `busy`. A learner saw the
-  // word "busy" where a retry belonged.
-  //
-  // The route decides, and the spelling is left alone. A client that
-  // calls a route which can answer a transient 503 has to consult
-  // isTransientOutage.
+test("every fetch of a route that can answer busy consults the rule", () => {
+  // Per call site, because a file-level check is a file-level escape
+  // hatch: workspace/page.tsx imported the rule, used it once, and
+  // carried three more failure branches against transient-capable routes
+  // that the gate then skipped. The unit is the function that holds the
+  // fetch, so one guarded branch no longer covers its neighbours.
   const transientRoutes = routesEmittingTransient(path.join(root, "src/app/api/research-os"));
   assert.ok(transientRoutes.size > 0, "some route answers a transient 503, or this gate checks nothing");
 
@@ -204,14 +213,36 @@ test("every client of a route that can answer busy consults the rule", () => {
   for (const file of clientFiles([path.join(root, "src/app/research-os"), path.join(root, "src/components")])) {
     const src = fs.readFileSync(file, "utf8");
     if (!/\bfetch\s*\(/.test(src)) continue;
-    if (/isTransientOutage/.test(src)) continue;
-    const called = Array.from(src.matchAll(/\/api\/research-os\/([a-z-]+)/g)).map((m) => m[1]);
-    if (called.some((r) => transientRoutes.has(r))) offenders.push(path.relative(root, file));
+    const source = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true);
+    const visit = (node: ts.Node): void => {
+      if (ts.isFunctionDeclaration(node) || ts.isArrowFunction(node) || ts.isFunctionExpression(node) || ts.isMethodDeclaration(node)) {
+        const body = node.body;
+        if (body) {
+          const text = body.getText(source);
+          const calls = Array.from(text.matchAll(/\/api\/research-os\/([a-z-]+)/g)).map((m) => m[1]);
+          const dynamic = /\/api\/research-os\/\$\{/.test(text);
+          const hits = calls.some((r) => transientRoutes.has(r));
+          // Consulting the rule here, or capturing the code with
+          // readErrorCode so the render can, both count. A call site
+          // that does neither has thrown the code away before anything
+          // could branch on it.
+          const consults = /isTransientOutage|readErrorCode/.test(text);
+          if ((hits || dynamic) && /\bfetch\s*\(/.test(text) && !consults) {
+            const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
+            offenders.push(`${path.relative(root, file)}:${line + 1}`);
+          }
+        }
+      }
+      ts.forEachChild(node, visit);
+    };
+    ts.forEachChild(source, visit);
   }
+  // A nested function reports its parent too; the innermost is enough.
+  const innermost = offenders.filter((o, i) => offenders.every((p2, j) => i === j || !sameFileEarlier(o, p2)));
   assert.deepEqual(
-    offenders.sort(),
+    innermost.sort(),
     [],
-    `these clients call a route that can answer a retryable 503 and never ask whether it did: ${offenders.join(", ")}`,
+    `these call sites reach a route that can answer a retryable 503 and never ask whether it did: ${innermost.join(", ")}`,
   );
 });
 

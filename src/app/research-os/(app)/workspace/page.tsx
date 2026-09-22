@@ -1,6 +1,6 @@
 "use client";
 
-import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 /**
  * /research-os/workspace, the Phase 0 student workspace (bkt-ros, task item
  * 4). Shows the target node, the frontier-backward chain as a vertical map
@@ -398,6 +398,13 @@ export default function ResearchOsWorkspacePage() {
 
   // Phase 1 (bkt-ros item 2): diagnostic probe state.
   const [probe, setProbe] = useState<ProbeResponse | null>(null);
+  // A failed probe read used to render as "no probe due".
+  const [probeNote, setProbeNote] = useState<string | null>(null);
+  const [openNote, setOpenNote] = useState<string | null>(null);
+  const [locateNote, setLocateNote] = useState<string | null>(null);
+  const [quoteNote, setQuoteNote] = useState<string | null>(null);
+  const [secondSourceNote, setSecondSourceNote] = useState<string | null>(null);
+  const [organizeNote, setOrganizeNote] = useState<string | null>(null);
   const [probeAnswers, setProbeAnswers] = useState<Record<string, string>>({});
   const [probeResults, setProbeResults] = useState<Record<string, ProbeAnswerResult>>({});
   const [probeBusy, setProbeBusy] = useState<string | null>(null);
@@ -471,6 +478,8 @@ export default function ResearchOsWorkspacePage() {
     try {
       const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
       const data = (await res.json()) as ProbeResponse;
+      // null is "no probe due", which a failed read used to look like.
+      setProbeNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setProbe(res.ok ? data : null);
     } catch {
       setProbe(null);
@@ -504,7 +513,12 @@ export default function ResearchOsWorkspacePage() {
         // A grading that failed carries no result and no stage. Inventing
         // an empty stage put a value on the page that the server can
         // never send.
-        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback: data.error || "Probe grading failed." } }));
+        // A lock wait used to reach the learner as the word "busy" in
+        // the feedback box.
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Probe grading failed.";
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback } }));
       }
     } finally {
       setProbeBusy(null);
@@ -530,14 +544,18 @@ export default function ResearchOsWorkspacePage() {
     setOrganized(null);
     if (!token) return; // anonymous browsing is fine; only a signed-in learner logs progress
     try {
-      await fetch("/api/research-os/state", {
+      const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId: node.id, action: "open", sessionId }),
       });
+      // The open event is what the route is computed from, so losing one
+      // quietly changes what the learner is shown next with nothing to
+      // say why. A lock wait says so and the learner can reopen.
+      setOpenNote(!res.ok && isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
       loadRoute();
     } catch {
-      /* best-effort; the map still renders from the last known state */
+      /* the map still renders from the last known state */
     }
   }
 
@@ -563,6 +581,9 @@ export default function ResearchOsWorkspacePage() {
         setLocateResults([]);
         return;
       }
+      // An empty list is a search that found nothing, which a failed
+      // read used to look exactly like.
+      setLocateNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setLocateResults(res.ok ? data.results : []);
     } finally {
       setBusy(null);
@@ -588,6 +609,15 @@ export default function ResearchOsWorkspacePage() {
           { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
           ...prev.filter((q) => q.nodeId !== selected.id),
         ]);
+        setQuoteNote(null);
+      } else {
+        // A failed quote left the panel exactly as it was, so the button
+        // read as having done nothing at all.
+        setQuoteNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That source could not be quoted.",
+        );
       }
     } finally {
       setBusy(null);
@@ -623,7 +653,12 @@ export default function ResearchOsWorkspacePage() {
       const data = await res.json();
       if (handleConsentResponse(res, data)) return;
       if (!res.ok) {
-        setCheckResult({ result: "error", feedback: data.error || "Check failed.", citations: [] });
+        // A lock wait on Check used to print the word "busy" into the
+        // feedback box where the tutor's answer goes.
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Check failed.";
+        setCheckResult({ result: "error", feedback, citations: [] });
         return;
       }
       if (data.forcingRequired) {
@@ -674,7 +709,11 @@ export default function ResearchOsWorkspacePage() {
         setCheckAttemptId(null);
         loadRoute();
       } else {
-        setCheckForcingError(data.error || "Could not show your results yet.");
+        setCheckForcingError(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "Could not show your results yet.",
+        );
       }
     } finally {
       setBusy(null);
@@ -704,6 +743,10 @@ export default function ResearchOsWorkspacePage() {
         setSecondSourceCandidates([]);
         return;
       }
+      // An empty candidate list is a search that found nothing, which a
+      // failed read used to look exactly like, on the step that decides
+      // whether the learner can corroborate at all.
+      setSecondSourceNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setSecondSourceCandidates(res.ok ? data.results : []);
     } finally {
       setSecondSourceBusy(false);
@@ -732,6 +775,15 @@ export default function ResearchOsWorkspacePage() {
         ]);
         setSecondSourceNodeId(nodeId);
         setSecondSourceQuoted(true);
+        setSecondSourceNote(null);
+      } else {
+        // A failed quote left the corroboration step looking as though
+        // the learner had not pressed the button.
+        setSecondSourceNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That second source could not be quoted.",
+        );
       }
     } finally {
       setSecondSourceBusy(false);
@@ -752,6 +804,15 @@ export default function ResearchOsWorkspacePage() {
       if (res.ok) {
         setOrganized(data);
         setProduction((p) => ({ ...p, claim: data.claim || p.claim, evidence: (data.evidence || []).join("\n"), sources: (data.sources || []).join("\n") }));
+        setOrganizeNote(null);
+      } else {
+        // Organize returning nothing looked the same as Organize not
+        // having been pressed.
+        setOrganizeNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That could not be organized.",
+        );
       }
     } finally {
       setBusy(null);
@@ -822,7 +883,15 @@ export default function ResearchOsWorkspacePage() {
         setProductionStatus(null);
         return;
       }
-      setProductionStatus(res.ok ? `${status} saved` : data.error || "save_failed");
+      // A lock wait on Save used to print the word "busy" where a
+      // retry belonged. The draft stays in the form either way.
+      setProductionStatus(
+        res.ok
+          ? `${status} saved`
+          : isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "save_failed",
+      );
       if (res.ok) loadRoute();
     } finally {
       setBusy(null);
@@ -950,6 +1019,36 @@ export default function ResearchOsWorkspacePage() {
 
         {/* Phase 1 (bkt-ros item 2): diagnostic probe, shown only when the
             signed-in learner has no state on any ancestor of the target. */}
+        {probeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {probeNote}
+          </p>
+        )}
+        {openNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {openNote}
+          </p>
+        )}
+        {locateNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {locateNote}
+          </p>
+        )}
+        {quoteNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {quoteNote}
+          </p>
+        )}
+        {secondSourceNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {secondSourceNote}
+          </p>
+        )}
+        {organizeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {organizeNote}
+          </p>
+        )}
         {probe?.due && probe.questions.length > 0 && (
           <div className="mt-8 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
             <div className="font-display uppercase text-[14px] mb-1">quick check first</div>

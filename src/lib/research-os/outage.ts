@@ -48,7 +48,7 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set(["busy", "node_read_
 
 /** The 503 bodies that name a key or a vendor nobody configured. Each is
  * a sentence, and no retry clears any of them. */
-const PERMANENT_MESSAGE = /enabled yet|credentials are invalid|not_configured/;
+export const PERMANENT_MESSAGE = /enabled yet|credentials are invalid|not_configured/;
 
 export const UNCONFIGURED_COPY = {
   title: "Research OS is unavailable on this deployment",
