@@ -168,7 +168,7 @@ async function build(args: string[]): Promise<number> {
   const problems = validateCorpus(back.manifest, back.files, policy, sha256);
   if (problems.length) {
     for (const p of problems) console.error(`  [invalid] ${p}`);
-    console.error(`[corpus] the written artifacts fail validation; left in ${tmp} for inspection`);
+    console.error(`[corpus] the written artifacts fail validation; left in ${tmp} for inspection, and its leading dot keeps the server from selecting it`);
     return 1;
   }
   renameSync(tmp, dir);
