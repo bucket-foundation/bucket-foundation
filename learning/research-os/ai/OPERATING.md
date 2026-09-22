@@ -99,9 +99,18 @@ scripts/systemd/install-evidence-worker.sh local/evidence/vectors/<older revisio
 #    .env.local: RESEARCH_OS_EVIDENCE_DIR=local/evidence/<older revision>
 ```
 
-Between steps 1 and 2 the worker holds a revision the server no longer admits. Each piece of that window is covered: the worker refuses a corpus revision other than its own with `stale_corpus`, the server answers a worker refusal from keyword ranking marked `degraded`, and eligibility comes from the registry rather than from the files on disk.
+Between steps 1 and 2 the worker holds a revision the server no longer admits. Run on 2026-09-22 against a 500-source revision rolling back to a 400-source one, 100 sources retired:
 
-**The sequence itself has not been run.** What the three pieces do together, in the order above, against a second built revision, is asserted here and unmeasured, so the Rollback gate stays open. The bead names the run that would close it. Read the claim above as a design, and check it before a rollback that matters.
+| What | Measured |
+|---|---|
+| requests in the window | every one answered `hybrid` and `ok` |
+| retired sources served | none, across 14 cards from six queries |
+| a query aimed at retired material | returned the one source still admitted, and excluded the two retired |
+| the same query after restoring | returned all three |
+
+So nothing serves a retired revision, which is the property the rollback exists for. It holds for a different reason than this page gave before the run: the server resolves the admitted set from the registry on every request, so a source stops being served the moment its row is retired, with no worker restart and no rebuild.
+
+Search keeps working at full quality in the window, on whatever remains admitted. The worker's staleness check compares the corpus revision the server sends with the one the worker holds, and in this window both are still the newer corpus, so the worker has nothing to refuse. Degradation would need the worker pointed at a revision the server is no longer loading, which is step 2's business.
 
 A failed build leaves `.tmp-<revision>-<pid>` on disk with its manifest written. Selection skips dot-prefixed names, so it cannot become the corpus the server serves; delete it once its problem is read.
 
