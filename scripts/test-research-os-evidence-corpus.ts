@@ -2,8 +2,8 @@
  * The admitted public-source corpus (ros-ai-corpus): normalization and
  * byte offsets against fixtures Python generated, source identities, the
  * rights policy, the builder's admission rules, revision behavior, the
- * validator against tampered artifacts, and staleness against a changed
- * graph. node:test, no database, no network.
+ * validator against tampered artifacts, staleness against a changed graph,
+ * and the rows the admission step sends. node:test, no database, no network.
  */
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -20,6 +20,7 @@ import {
   type PassageRecord,
   type SourceRecord,
 } from "../src/lib/research-os/evidence/corpus";
+import { admissionRows, admitRefusal } from "../src/lib/research-os/evidence/admissions";
 import { doiSourceId, graphSourceId, normalizeDoi, parseSourceId } from "../src/lib/research-os/evidence/identity";
 import { indexRights, parsePolicy, quoteRights, type RightsPolicy } from "../src/lib/research-os/evidence/rights";
 import { byteLength, byteSlice, normalizeText, OffsetError, sha256Hex } from "../src/lib/research-os/evidence/text";
@@ -318,4 +319,28 @@ test("staleness: an edited, hidden or deleted node is stale; an untouched one is
   );
   const movedQuote = staleSources(records, new Map(nodes.map((n) => [n.id, n])), (s) => (s === "seeded" ? { ...WIKI, text: WIKI.text + " More." } : null), POLICY, seedSlugs("seeded"));
   assert.deepEqual(movedQuote.map((s) => s.slug), ["seeded"]);
+});
+
+test("admission rows: one index row per source, one quote row per passage, under the receipts' revision", () => {
+  const { result } = artifactsOf([node(1, { slug: "seeded" }), node(2)], { seeded: WIKI });
+  const rows = admissionRows(result.records, result.passages, POLICY);
+  assert.equal(rows.length, 3);
+  const quote = rows.filter((r) => r.scope === "quote");
+  assert.equal(quote.length, 1);
+  assert.equal(quote[0].source_revision, result.passages[0].quoteRevision);
+  assert.equal(quote[0].node_id, uuid(1));
+  assert.deepEqual([quote[0].allow_index, quote[0].allow_quote], [false, true]);
+  assert.equal(quote[0].permission_evidence.permission, "cc-by-sa-4.0");
+  const index = rows.filter((r) => r.scope === "index");
+  assert.deepEqual(index.map((r) => r.source_revision).sort(), result.records.map((r) => r.sourceRevision).sort());
+  assert.ok(index.every((r) => r.allow_index && !r.allow_quote && r.extraction_revision === "graph-node/1 nfc-lf/1"));
+  const broken = [{ ...result.records[0], rights: { ...result.records[0].rights, rule: "no-such-rule" } }];
+  assert.throws(() => admissionRows(broken, [], POLICY), /no-such-rule/);
+});
+
+test("admission refuses a draft policy unless development says so, and any invalid corpus", () => {
+  assert.match(admitRefusal(POLICY, { allowDraft: false, problems: [] }) ?? "", /draft/);
+  assert.equal(admitRefusal(POLICY, { allowDraft: true, problems: [] }), null);
+  assert.equal(admitRefusal({ ...POLICY, status: "approved" }, { allowDraft: false, problems: [] }), null);
+  assert.match(admitRefusal({ ...POLICY, status: "approved" }, { allowDraft: true, problems: ["sources.jsonl does not match"] }) ?? "", /fails validation/);
 });

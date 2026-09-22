@@ -35,7 +35,19 @@ The build stops before writing when two admitted records share a source id or a 
 
 The four quote rules cover every curated passage in `src/lib/research-os/passages.ts`: NASA Space Place, Wikipedia under CC BY-SA 4.0, Rayleigh's 1871 paper on Wikisource, and Tyndall's 1869 essay on Project Gutenberg.
 
-**For the founder.** The policy's status is `draft`. Two points are yours: the policy as a whole, and the NASA Space Place label. The seed records that page as public domain as a US government work, and Space Place is produced with JPL-Caltech, whose text may carry its own terms. Every Space Place quotation is under 90 words, attributed, and already served by Quote today. Changing the status to `approved` is one line. The admission step, the next slice, refuses a draft policy outside development.
+**For the founder.** The policy's status is `draft`. Two points are yours: the policy as a whole, and the NASA Space Place label. The seed records that page as public domain as a US government work, and Space Place is produced with JPL-Caltech, whose text may carry its own terms. Every Space Place quotation is under 90 words, attributed, and already served by Quote today. Changing the status to `approved` is one line. The admission step refuses a draft policy unless it is told this is local development.
+
+## Admission
+
+`build-corpus.ts admit <dir>` validates a built corpus and records it in `graph.evidence_source_admissions`, one `index` row per source under its `sourceRevision` and one `quote` row per passage under its `quoteRevision`. `graph.admit_evidence_corpus` stages every row and makes the corpus the active set in one transaction: a new revision supersedes the one it replaces, and an active source missing from the corpus is superseded too. A draft policy admits only with `--allow-draft`.
+
+`withdraw <sourceId> --reason <text>` withdraws every revision of a source. Its rights revision becomes a fence: admitting the source again takes a newer rights review, so an older policy cannot undo a withdrawal. A re-admitted row keeps its withdrawal date.
+
+Quote's check is `graph.quote_admission(source_id, source_revision)`, which reads the row `FOR SHARE`. A withdrawal of that source waits until the Quote transaction ends; the database test measures the wait, and it drops to 25 ms when the lock is removed. `graph.record_quote_receipt` on #196 calls this check once both land, and from then a curated passage without an active quote admission is refused. `graph.eligible_evidence_sources()` is the set a search request may score: active index rows whose node is still public and not merged away.
+
+No browser role reads or calls any of it, and the service role reads the table and moves rows only through the functions.
+
+On the local database on 2026-09-22, the capped corpus admitted with `--allow-draft` as 513 rows, 500 index and 13 quote, and a second admission changed nothing. For all 13 real passages, `curatedSourceRevision` from #196 computes the revision the quote row holds.
 
 ## Identity and revisions
 
