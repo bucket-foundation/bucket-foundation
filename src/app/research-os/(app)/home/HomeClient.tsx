@@ -72,9 +72,7 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 async function load<T>(url: string, headers: Record<string, string>): Promise<Load<T>> {
   try {
     const res = await fetch(url, { headers, cache: "no-store" });
-    if (!res.ok) {
-      return { state: "error", status: res.status, code: await readErrorCode(res) };
-    }
+    if (!res.ok) return { state: "error", status: res.status, code: await readErrorCode(res) };
     return { state: "ready", value: (await res.json()) as T };
   } catch {
     return { state: "error", status: 0 };

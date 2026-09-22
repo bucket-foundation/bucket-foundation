@@ -514,14 +514,26 @@ export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<Cl
   const classIds = Array.from(new Set(((memberships as { class_id: string }[]) || []).map((m) => m.class_id)));
   if (classIds.length === 0) return [];
 
-  const { data: peerRows, error: peerErr } = await svc.from("class_members").select("learner_id").in("class_id", classIds);
-  if (peerErr) throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${peerErr.message}`);
-  const peerIds = Array.from(new Set(((peerRows as { learner_id: string }[]) || []).map((r) => r.learner_id))).filter((id) => id !== learnerId);
+  let peerRows: { learner_id: string }[];
+  try {
+    peerRows = await inChunks<{ learner_id: string }>(classIds, (chunk, page) =>
+      svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  const peerIds = Array.from(new Set(peerRows.map((r) => r.learner_id))).filter((id) => id !== learnerId);
   if (peerIds.length === 0) return [];
 
-  const { data: prodRows, error: prodErr } = await svc.from("productions").select("id,claim").in("learner_id", peerIds).eq("status", "accepted");
-  if (prodErr) throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${prodErr.message}`);
-  return ((prodRows as { id: string; claim: string | null }[]) || [])
+  let prodRows: { id: string; claim: string | null }[];
+  try {
+    prodRows = await inChunks<{ id: string; claim: string | null }>(peerIds, (chunk, page) =>
+      svc.from("productions").select("id,claim").in("learner_id", chunk).eq("status", "accepted").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; claim: string | null }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  return prodRows
     .filter((r) => (r.claim || "").trim())
     .map((r) => ({ id: r.id, claim: r.claim as string }));
 }
@@ -531,9 +543,15 @@ export async function loadClassMembers(classIds: string[]): Promise<Map<string, 
   const out = new Map<string, string[]>();
   if (classIds.length === 0) return out;
   const svc = graphService();
-  const { data, error } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
-  if (error) throw new Error(`loadClassMembers: query failed: ${error.message}`);
-  for (const r of (data as { class_id: string; learner_id: string }[]) || []) {
+  let data: { class_id: string; learner_id: string }[];
+  try {
+    data = await inChunks<{ class_id: string; learner_id: string }>(classIds, (chunk, page) =>
+      svc.from("class_members").select("class_id,learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { class_id: string; learner_id: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassMembers: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  for (const r of data) {
     if (!out.has(r.class_id)) out.set(r.class_id, []);
     out.get(r.class_id)!.push(r.learner_id);
   }

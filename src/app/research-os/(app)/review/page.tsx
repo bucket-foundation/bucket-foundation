@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 /**
  * /research-os/review, the teacher review queue (bkt-ros, Phase 1 item 4).
  * Lists every held transfer-item answer and every submitted Production
@@ -116,7 +117,11 @@ export default function ResearchOsReviewPage() {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
       const data = await res.json();
       if (!res.ok) {
-        setQueueError(res.status === 403 ? "forbidden" : data.error || "load_failed");
+        // A lock wait printed as "Could not load the queue (busy)."
+        // "transient" is rendered as the shared retryable copy below.
+        setQueueError(
+          res.status === 403 ? "forbidden" : isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed",
+        );
         setQueue(null);
         return;
       }
@@ -157,7 +162,13 @@ export default function ResearchOsReviewPage() {
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
       const data = await res.json();
-      setNotice(res.ok ? `${decision === "approved" ? "Approved" : "Returned"}.` : data.message || data.error || "decision_failed");
+      setNotice(
+        res.ok
+          ? `${decision === "approved" ? "Approved" : "Returned"}.`
+          : isTransientOutage(res.status, data.error ?? null)
+            ? OUTAGE_COPY.body
+            : data.message || data.error || "decision_failed",
+      );
       if (res.ok) loadQueue();
     } finally {
       setBusyKey(null);
@@ -194,7 +205,10 @@ export default function ResearchOsReviewPage() {
             RESEARCH_OS_REVIEWER_EMAILS (see src/lib/research-os/reviewer.ts).
           </p>
         )}
-        {queueError && queueError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>}
+        {queueError === "transient" && <p className="mt-6 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {queueError && queueError !== "forbidden" && queueError !== "transient" && (
+          <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>
+        )}
 
         {queue && (
           <div className="mt-8 flex flex-col gap-10">

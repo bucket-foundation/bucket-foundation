@@ -128,6 +128,7 @@
  * learning/research-os/LATERAL-READING.md.
  */
 import { NextRequest, NextResponse } from "next/server";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
 import { deterministicCheck, deterministicOrganize, llmEnabled } from "@/lib/research-os/deterministic";
@@ -411,15 +412,24 @@ export async function POST(req: NextRequest) {
       // Best-effort: a write failure here degrades to "this source can't be
       // verified later," never to a broken Quote response for the learner
       // in front of it right now.
+      let provenanceRecorded = true;
       if (passage) {
         try {
           const currentStage = await loadCurrentStage(learnerId, nodeId);
           const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
           await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
         } catch (err) {
-          // The degrade stays: a learner reading a source is not blocked by
-          // a write failure. The silence does not, since production-guard
-          // reads this event to verify a cited source later.
+          // A retryable lock wait answers, so the learner can press the
+          // button again against the same row.
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          // Anything else keeps the degrade: a learner reading a source
+          // is not blocked by a write failure. The silence goes, though.
+          // production-guard.ts matches a cited source against exactly
+          // this event, so a lost row later returns the learner's
+          // production telling them to quote a source they did quote,
+          // with the reason in a server log they cannot read.
+          provenanceRecorded = false;
           const message = err instanceof Error ? err.message : String(err);
           console.warn(`[research-os] quote evidence not recorded for learner ${learnerId} node ${nodeId}: ${message}`);
         }
@@ -434,6 +444,10 @@ export async function POST(req: NextRequest) {
           locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
           source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
+          // False when the quote landed and its provenance row did not,
+          // so the client can say the source needs quoting again before
+          // a production rests on it.
+          provenanceRecorded,
         },
         { headers: { "cache-control": "no-store" } },
       );
@@ -557,7 +571,17 @@ export async function POST(req: NextRequest) {
             guidanceLevel: revealGuidance,
           },
         );
-        await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        // A retryable lock wait used to leave this handler as an
+        // unhandled throw, so Next answered 500 on the most-used learner
+        // write in the app. evidenceErrorResponse maps it to the 503 with
+        // retry-after that every other write already sends.
+        try {
+          await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
 
         // Corroboration record (task item 3): only when a second source
         // was required AND attached to this attempt, never for an
@@ -573,7 +597,17 @@ export async function POST(req: NextRequest) {
             independenceReason,
             passagesAgree: Boolean(body.passagesAgree),
           });
-          await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          // A retryable lock wait used to leave this handler as an
+          // unhandled throw, so Next answered 500 on the most-used learner
+          // write in the app. evidenceErrorResponse maps it to the 503 with
+          // retry-after that every other write already sends.
+          try {
+            await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          } catch (err) {
+            const mapped = evidenceErrorResponse(err);
+            if (mapped) return mapped;
+            throw err;
+          }
         }
 
         logToolCall("check", learnerId, pending.sessionId, {
@@ -708,7 +742,17 @@ export async function POST(req: NextRequest) {
           { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
           { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false, guidanceLevel: guidance },
         );
-        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        // A retryable lock wait used to leave this handler as an
+        // unhandled throw, so Next answered 500 on the most-used learner
+        // write in the app. evidenceErrorResponse maps it to the 503 with
+        // retry-after that every other write already sends.
+        try {
+          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
         logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false, guidance });
 
         return NextResponse.json(

@@ -12,11 +12,12 @@ type EdgeRow = { id: string; from_id: string; to_id: string; kind: string };
  * once.
  *
  * Two things make that true. `id` is the final sort key on both reads,
- * because a page boundary landing inside a group of edges that share a
- * pair would otherwise repeat one and skip another, and `id` is the
- * primary key so the order it completes is total (Bucket critic C48).
- * And an edge whose two ends are both in `ids` comes back from both
- * reads, so the results merge by that same key.
+ * because a page boundary landing inside a group of edges sharing a pair
+ * would otherwise repeat one and skip another, and `id` is the primary
+ * key so the order it completes is total. And an edge whose two ends are
+ * both in `ids` comes back from both reads, so the results merge by that
+ * same key. Nothing downstream deduplicates: a repeat inflates a held
+ * count and a skip loses a connection.
  *
  * Exported for `scripts/test-research-os-connections-paging.ts`, which
  * seeds past the row cap and checks both properties.
@@ -34,6 +35,9 @@ export async function loadTouchingEdges(ids: string[]): Promise<ConnEdge[]> {
 
 export async function loadConnections(learnerId: string) {
   const svc = graphService();
+  // This read feeds every id below it, and it was neither ordered nor
+  // paged, so the connection counters capped at a thousand states
+  // whatever the reads under them did.
   const stateRows = await pagedRead<{ node_id: string; stage: Stage }>((page) =>
     svc
       .from("learner_node_state")

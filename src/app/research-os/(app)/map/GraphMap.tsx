@@ -109,12 +109,16 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     fetch(`/api/research-os/graph?branch=${encodeURIComponent(branch)}`, { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
-        setStatus(r.status);
+        // The code is read before any setState, so no render happens
+        // with the status set and the code still null, which showed one
+        // frame of the permanent copy for a passing outage.
         if (r.ok) {
           setData((await r.json()) as GraphData);
+          setStatus(r.status);
           return;
         }
         setCode(await readErrorCode(r));
+        setStatus(r.status);
       })
       .catch(() => alive && setStatus(0));
     return () => {

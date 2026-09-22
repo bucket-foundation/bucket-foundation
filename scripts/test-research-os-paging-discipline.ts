@@ -21,7 +21,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.join(__dirname, "..");
-const ROOTS = [path.join(root, "src/lib/research-os"), path.join(root, "src/app/api/research-os")];
+// The ingest scripts write the graph the routes then read, so a read
+// there that stops at the row cap corrupts what every route serves. They
+// are inside the gate for that reason.
+const ROOTS = [path.join(root, "src/lib/research-os"), path.join(root, "src/app/api/research-os"), path.join(root, "scripts/research-os")];
 
 function sources(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
@@ -98,10 +101,8 @@ const files = ROOTS.flatMap(sources);
 
 test("the checker is looking at the files it is meant to police", () => {
   assert.ok(files.length > 20, `found ${files.length} Research OS sources`);
-  assert.ok(
-    files.some((f) => f.endsWith("read-access.ts")),
-    "read-access.ts is among them",
-  );
+  assert.ok(files.some((f) => f.endsWith("read-access.ts")), "read-access.ts is among them");
+  assert.ok(files.some((f) => f.endsWith("db.ts")), "db.ts is among them, which is where the page helpers live");
 });
 
 test("every paged read carries an order", () => {
