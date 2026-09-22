@@ -1,0 +1,380 @@
+{
+ "memo": "learning/research-os/PATENTS.md",
+ "sources": [
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "USPTO ODP (public domain)"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "on org "
+    },
+    {
+     "t": "code",
+     "v": "main"
+    },
+    {
+     "t": "text",
+     "v": ", deployment unconfirmed (#68)"
+    }
+   ]
+  },
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "PatentsView and Google Patents Public Data, CC BY 4.0"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "yes, with attribution"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "yes, with attribution, per #68"
+    }
+   ]
+  },
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "yes, marked as Bucket's adaptation of CC BY data"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "once feed402 #12 adds a field"
+    }
+   ]
+  },
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "Reliance on Science, CC BY-NC 4.0"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "not in v1: Bucket charges citation fees and is not yet a filed nonprofit"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "no"
+    }
+   ]
+  },
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "EPO, through OPS or the free bulk products"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "not in v1"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "inside composed answers only, per #68"
+    }
+   ]
+  },
+  {
+   "source": [
+    {
+     "t": "text",
+     "v": "WIPO PATENTSCOPE"
+    }
+   ],
+   "researchOs": [
+    {
+     "t": "text",
+     "v": "no"
+    }
+   ],
+   "gateway": [
+    {
+     "t": "text",
+     "v": "no, until a paid licence"
+    }
+   ]
+  }
+ ],
+ "corpus": [
+  {
+   "branch": [
+    {
+     "t": "text",
+     "v": "05-biophysics"
+    }
+   ],
+   "cpc": [
+    {
+     "t": "code",
+     "v": "A61"
+    },
+    {
+     "t": "text",
+     "v": " (medical or veterinary science; hygiene), "
+    },
+    {
+     "t": "code",
+     "v": "C12N"
+    },
+    {
+     "t": "text",
+     "v": " (microorganisms or enzymes, mutation or genetic engineering, culture media) and "
+    },
+    {
+     "t": "code",
+     "v": "C12Q"
+    },
+    {
+     "t": "text",
+     "v": " (measuring or testing processes involving enzymes, nucleic acids or microorganisms), "
+    },
+    {
+     "t": "code",
+     "v": "G01N"
+    },
+    {
+     "t": "text",
+     "v": " (investigating or analysing materials by determining their chemical or physical properties)"
+    }
+   ],
+   "why": [
+    {
+     "t": "text",
+     "v": "The largest branch, and the one where measurement of materials meets the literature"
+    }
+   ]
+  },
+  {
+   "branch": [
+    {
+     "t": "text",
+     "v": "04-information"
+    }
+   ],
+   "cpc": [
+    {
+     "t": "code",
+     "v": "G06N"
+    },
+    {
+     "t": "text",
+     "v": " (computing arrangements based on specific computational models), "
+    },
+    {
+     "t": "code",
+     "v": "G06F"
+    },
+    {
+     "t": "text",
+     "v": " (electric digital data processing), "
+    },
+    {
+     "t": "code",
+     "v": "H04L"
+    },
+    {
+     "t": "text",
+     "v": " (transmission of digital information)"
+    }
+   ],
+   "why": [
+    {
+     "t": "text",
+     "v": "The branch's own subject is computation and information"
+    }
+   ]
+  },
+  {
+   "branch": [
+    {
+     "t": "text",
+     "v": "03-chemistry"
+    }
+   ],
+   "cpc": [
+    {
+     "t": "code",
+     "v": "C07"
+    },
+    {
+     "t": "text",
+     "v": " (organic chemistry), "
+    },
+    {
+     "t": "code",
+     "v": "C08"
+    },
+    {
+     "t": "text",
+     "v": " (organic macromolecular compounds)"
+    }
+   ],
+   "why": [
+    {
+     "t": "text",
+     "v": "Compounds and materials, beside the canon's chemistry entries"
+    }
+   ]
+  },
+  {
+   "branch": [
+    {
+     "t": "text",
+     "v": "02-physics"
+    }
+   ],
+   "cpc": [
+    {
+     "t": "code",
+     "v": "G01"
+    },
+    {
+     "t": "text",
+     "v": " other than "
+    },
+    {
+     "t": "code",
+     "v": "G01N"
+    },
+    {
+     "t": "text",
+     "v": " (measuring; testing), "
+    },
+    {
+     "t": "code",
+     "v": "H01"
+    },
+    {
+     "t": "text",
+     "v": " (electric elements)"
+    }
+   ],
+   "why": [
+    {
+     "t": "text",
+     "v": "Apparatus and measurement"
+    }
+   ]
+  }
+ ],
+ "settled": [
+  [
+   {
+    "t": "text",
+    "v": "Patents belong near the graph's applied branches, and the first slice is biophysics, information, chemistry, and physics, by the CPC classes in the table above."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "A "
+   },
+   {
+    "t": "code",
+    "v": "cites"
+   },
+   {
+    "t": "text",
+    "v": " edge records who added the citation, since examiners add most of them."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "The patent-to-paper links Bucket builds follow the matched-link method: a match, a confidence score, and a hand-checked sample that reports coverage and accuracy."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "A claim decomposes into elements against the graph, and the reviewer judges obviousness."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "Prior-art search reports recall at 10, 50, and 100 and PRES against held-out citations, and shows its reasons."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "Patent counts appear as counts of a named measure, with the measure and its date beside the number."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "Invention disclosure is the production kind that fits a nonprofit that publishes; it waits on the founder's stance."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "The case for holding an invention open rests on measured follow-on effects: citations to a paper fall 9 to 17% after its patent grants, and Celera's gene-level IP, held up to two years, cut later research and product development on the order of 20 to 30 percent."
+   }
+  ]
+ ],
+ "slices": [
+  {
+   "n": 0,
+   "title": "patents in Research OS, with the gateway and feed402 findings handed to the org repositories",
+   "shipped": true
+  },
+  {
+   "n": 1,
+   "title": "research memo on patents in discovery and innovation, with a design for Research OS",
+   "shipped": true
+  },
+  {
+   "n": 2,
+   "title": "a first patent corpus in the graph, linked to the science it cites",
+   "shipped": false
+  },
+  {
+   "n": 3,
+   "title": "prior-art search on nodes and productions",
+   "shipped": false
+  },
+  {
+   "n": 4,
+   "title": "claims decomposed into elements, and invention disclosure as a production",
+   "shipped": false
+  }
+ ]
+}

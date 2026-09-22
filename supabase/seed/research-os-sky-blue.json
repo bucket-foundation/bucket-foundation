@@ -222,7 +222,7 @@
     { "from": "air-molecules-are-much-smaller-than-light-wavelengths", "to": "tyndall-scattering-by-small-particles", "kind": "prerequisite", "weight": 1.0 },
     { "from": "tyndall-scattering-by-small-particles", "to": "scattering-strength-depends-on-particle-size-vs-wavelength", "kind": "prerequisite", "weight": 1.0 },
     { "from": "scattering-strength-depends-on-particle-size-vs-wavelength", "to": "rayleigh-1871-sky-color-papers", "kind": "prerequisite", "weight": 1.0 },
-    { "from": "rayleigh-1871-sky-color-papers", "to": "rayleigh-scattering-law", "kind": "derives_from", "weight": 1.0 },
+    { "from": "rayleigh-scattering-law", "to": "rayleigh-1871-sky-color-papers", "kind": "derives_from", "weight": 1.0 },
     { "from": "rayleigh-1871-sky-color-papers", "to": "rayleigh-scattering-law", "kind": "prerequisite", "weight": 1.0 },
     { "from": "rayleigh-scattering-law", "to": "lambda-minus-4-law", "kind": "prerequisite", "weight": 1.0 },
     { "from": "lambda-minus-4-law", "to": "blue-scatters-more-than-red", "kind": "prerequisite", "weight": 1.0 },

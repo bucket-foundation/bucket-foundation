@@ -6,6 +6,7 @@ on:
     paths:
       - "src/**"
       - "scripts/**"
+      - "tools/evidence-search/**"
       - "learning/app/**"
       - "supabase/migrations/**"
       - "tests/**"
@@ -43,6 +44,15 @@ jobs:
         run: npm test
       - name: research os tests
         run: npm run test:research-os
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: evidence worker tests
+        # numpy is all the unit tests need; the model tests skip on a runner
+        # without the pinned snapshot, and run on the machine that serves it.
+        run: |
+          python -m pip install --quiet "numpy>=2,<3"
+          npm run test:evidence-worker
       - name: academy app
         run: bash learning/app/validate.sh
       - name: vercel build gate and pre-push check
@@ -103,6 +113,16 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-append.ts
+      - name: evidence admissions against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-admissions-db.ts
+      - name: evidence search route authorization against real accounts
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npm run test:evidence-route-access
 
   # The loop as a person, over a fresh local stack. On demand: it pulls the
   # Supabase images and seeds the graph, which is too slow for every pull
