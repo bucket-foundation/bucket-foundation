@@ -362,6 +362,11 @@ export async function POST(req: NextRequest) {
       if (passage) {
         try {
           const currentStage = await loadCurrentStage(learnerId, nodeId);
+          // A stage that was not read is not a stage. The event this
+          // writes is what production-guard reads to verify a cited
+          // source, so recording a guessed "access" would put a claim in
+          // the audit trail that nothing here established.
+          if (currentStage === null) throw new Error("loadCurrentStage: learner_node_state read failed");
           const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
           await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
         } catch (err) {

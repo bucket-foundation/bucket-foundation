@@ -351,9 +351,18 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
  * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
  * it the same way state/route.ts and workspace/route.ts already do).
  */
-export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage> {
+export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage | null> {
   const svc = graphService();
-  const { data } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  // null when the read failed. No row is a real "access", and a failure
+  // is not: answering "access" for both sent an internalization-tier
+  // submission past requiresCounterEvidence, wrote
+  // counter_evidence_required: false into the row, and recorded an
+  // evidence event claiming the learner moved from a stage nothing read.
+  const { data, error } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  if (error) {
+    console.error("[research-os/db] learner_node_state read failed:", error.message);
+    return null;
+  }
   return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 

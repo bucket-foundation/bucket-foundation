@@ -91,10 +91,19 @@ export async function GET(req: NextRequest) {
         nodes: productions.filter((p) => p.node_id).length,
         latest: productions[0] ?? null,
       },
-        // Computed from the Research OS signals alone. Folding decks in
-      // suppressed the first-run path for a learner who does have
-      // nothing whenever the Academy read was the thing that failed.
-      empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0,
+      // `empty` replaces the five columns with the first-run guide, so a
+      // learner who has started decks must never see it: their progress
+      // would vanish from the screen on every load. Decks came out of
+      // this expression to stop a failed Academy read from suppressing
+      // first-run, and the repair was too wide, because `decks === 0` is
+      // false when `decks` is null.
+      //
+      // decks === 0 is the only value that says the learner has started
+      // nothing. null is a read that did not answer, and an unknown
+      // count does not get to claim emptiness: a new learner then sees
+      // the columns during an Academy outage, which is a worse guide and
+      // not a false one.
+      empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0 && decks === 0,
     },
     NO_STORE
   );

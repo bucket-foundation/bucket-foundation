@@ -97,11 +97,60 @@ function returnsEmptyish(ret: ts.ReturnStatement): boolean {
   return false;
 }
 
-/** The single return an if-branch makes, however it is written. */
+/**
+ * Whether the branch answers with a value a successful read could also
+ * give, which is what makes the failure invisible to the caller.
+ *
+ * `[]`, `{}`, `0` and `false` always qualify: a read that succeeded and
+ * found nothing gives the same bytes. `null` is the signal this tree
+ * uses for "the read did not answer", so it qualifies only where the
+ * branch throws that meaning away, which happens two ways. A branch that
+ * never reads the error treats the failure as nothing worth naming, and
+ * a branch whose condition also tests the data answers a miss and an
+ * outage with one value, which is the shape this gate exists for.
+ *
+ * Without this, `if (error) { console.error(error.message); return null; }`
+ * reads as a defect, and that is the repair.
+ */
+function branchHidesTheFailure(
+  ret: ts.ReturnStatement,
+  condition: ts.Expression,
+  thenStatement: ts.Statement,
+  errName: string,
+  dataName: string | undefined,
+): boolean {
+  const e = ret.expression;
+  // A bare `return;` leaves a void function. Nothing reaches a caller to
+  // be mistaken for a result, so logging the error and bailing is the
+  // repair rather than the defect.
+  if (!e) return false;
+  if (e.kind === ts.SyntaxKind.NullKeyword) {
+    const readsError = mentions(thenStatement, errName);
+    const alsoTestsData = dataName ? mentions(condition, dataName) : false;
+    return !readsError || alsoTestsData;
+  }
+  return isEmptyish(e) || allEmptyObject(e);
+}
+
+/**
+ * The value an if-branch answers with, however the branch is written.
+ *
+ * The branch's last statement is its answer. An earlier version took a
+ * block only when it held exactly one statement, so adding a line above
+ * the return took the read out of the scan: `if (error) { return []; }`
+ * failed the gate and `if (error) { console.error(e); return []; }`
+ * passed it. Logging is not handling, and every repair on this branch is
+ * written in that two-statement shape, so the house style was the way
+ * out of the gate.
+ *
+ * A branch that throws has no return and answers null here, which is
+ * right: a throw reaches the caller.
+ */
 function soleReturn(then: ts.Statement): ts.ReturnStatement | null {
   if (ts.isReturnStatement(then)) return then;
-  if (ts.isBlock(then) && then.statements.length === 1 && ts.isReturnStatement(then.statements[0])) {
-    return then.statements[0] as ts.ReturnStatement;
+  if (ts.isBlock(then) && then.statements.length > 0) {
+    const last = then.statements[then.statements.length - 1];
+    if (ts.isReturnStatement(last)) return last;
   }
   return null;
 }
@@ -293,7 +342,7 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
           const next = errName ? firstStatementMentioning(node, errName) : null;
           if (errName && next && ts.isIfStatement(next) && mentions(next.expression, errName)) {
             const ret = soleReturn(next.thenStatement);
-            if (ret && returnsEmptyish(ret)) {
+            if (ret && branchHidesTheFailure(ret, next.expression, next.thenStatement, errName, localNameFor(node.name, "data") ?? undefined)) {
               const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
               findings.push({ file, line: line + 1, what: "checks error and returns the same empty value a successful read would give", anchor: anchorFor(node, node, localNameFor(node.name, "data") ?? undefined) });
             }

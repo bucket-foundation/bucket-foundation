@@ -90,3 +90,116 @@ test("the list can only get shorter", () => {
     `these baseline reads are no longer allowlisted, which means they were repaired. Remove them from error-allowlist-baseline.ts: ${gone.join(", ")}`,
   );
 });
+
+test("a log line above the empty return does not buy a way out", () => {
+  // The branch took a block only when it held exactly one statement, so
+  // every repair on this branch, all written as log-then-return, was a
+  // shape the gate could no longer see. The house style was the bypass.
+  const logged = scanFile(
+    "f.ts",
+    `async function read() {
+       const { data, error } = await svc.from("nodes").select("id");
+       if (error) {
+         console.error("nodes read failed:", error.message);
+         return [];
+       }
+       return data;
+     }`,
+  );
+  assert.equal(logged.length, 1, "logging is not handling");
+
+  const bare = scanFile(
+    "f.ts",
+    `async function read() {
+       const { data, error } = await svc.from("nodes").select("id");
+       if (error) return [];
+       return data;
+     }`,
+  );
+  assert.equal(bare.length, 1, "and the one-statement form is the same defect");
+});
+
+test("null is the unknown this tree uses, and only counts when the branch throws it away", () => {
+  // `if (error) { log; return null; }` in a function answering
+  // `number | null` is the repair. Reading it as a defect would have the
+  // gate demand the thing it exists to produce.
+  const signal = scanFile(
+    "f.ts",
+    `async function decks(): Promise<number | null> {
+       const { data, error } = await svc.from("academy_progress").select("branch");
+       if (error) {
+         console.error("read failed:", error.message);
+         return null;
+       }
+       return (data ?? []).length;
+     }`,
+  );
+  assert.deepEqual(signal, [], "a null answered after reading the error is the signal");
+
+  // The same null is a drop when the branch never looks at the error.
+  const ignored = scanFile(
+    "f.ts",
+    `async function p() {
+       const { data, error } = await svc.from("academy_profiles").select("id").maybeSingle();
+       if (error) return null;
+       return data;
+     }`,
+  );
+  assert.equal(ignored.length, 1, "a null with the error unread is a drop");
+
+  // And when the same branch answers a miss, which makes an outage and a
+  // not-found one value the caller cannot tell apart.
+  const conflated = scanFile(
+    "f.ts",
+    `async function p() {
+       const { data, error } = await svc.from("academy_profiles").select("id").maybeSingle();
+       if (error || !data) {
+         console.error("read failed:", error?.message);
+         return null;
+       }
+       return data;
+     }`,
+  );
+  assert.equal(conflated.length, 1, "a branch shared with a miss conflates the two");
+});
+
+test("a bare return leaves a void function and hides nothing", () => {
+  const bail = scanFile(
+    "f.ts",
+    `async function mint(id: string) {
+       const { data, error } = await svc.from("ip_metadata").select().eq("research_id", id);
+       if (error) {
+         console.error("read failed:", error.message);
+         return;
+       }
+       if (data?.length) await mintReadNFT(data[0]);
+     }`,
+  );
+  assert.deepEqual(bail, [], "nothing reaches a caller to be mistaken for a result");
+});
+
+/** An entry that says out loud that nobody has read the code yet. */
+const UNTRIAGED = /^(UNTRIAGED:|not yet triaged)/i;
+
+test("every reason is substantive, and an unread one says so", () => {
+  // The sibling paging gate has carried a reason-shape assertion since
+  // six of its reasons were found to have been written from table names
+  // without reading the code. This one had none: blanking a `because`
+  // to the empty string left the suite green.
+  for (const e of ERROR_EXCEPTIONS) {
+    assert.ok(e.at.includes("::"), `${e.at} is an anchor, not a line key`);
+    assert.ok(e.because.trim().length > 25, `${e.at} carries no reason: "${e.because}"`);
+  }
+});
+
+test("the untriaged count is a ratchet", () => {
+  // 38 of the 43 entries say nobody has read the code they excuse. That
+  // number is the debt this branch takes on, and it can only fall.
+  // Triaging one means reading the callers and writing what they do with
+  // the empty value, which is the work, and this holds the score.
+  const untriaged = ERROR_EXCEPTIONS.filter((e) => UNTRIAGED.test(e.because)).length;
+  assert.ok(
+    untriaged <= 38,
+    `${untriaged} entries are untriaged, and the ceiling is 38. Triage one and lower this number; never raise it.`,
+  );
+});

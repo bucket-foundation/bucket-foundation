@@ -185,6 +185,9 @@ export async function POST(req: NextRequest) {
   if (body.status === "submitted") {
     if (!targetNodeId) return bad(400, "targetNodeId is required to submit a production");
     submitFromStage = await loadCurrentStage(learnerId, targetNodeId);
+    // A stage that was not read cannot gate a submission or be written
+    // into an audit event.
+    if (submitFromStage === null) return bad(503, "stage_read_failed");
     counterEvidenceRequired = requiresCounterEvidence(submitFromStage);
     if (counterEvidenceRequired && !hasCounterEvidence(body.counterEvidence)) {
       return bad(400, "counter_evidence is required to submit an internalization-tier production (Osborne 2010)");
@@ -243,6 +246,8 @@ export async function POST(req: NextRequest) {
     // once above (submitFromStage) rather than re-fetched here, since
     // nothing between that read and this write can change it.
     const transition = onProductionSubmitted(submitFromStage ?? "access", { sessionId: (body.sessionId || "").trim() || undefined });
+    // submitFromStage is non-null here: the submitted path returns 503
+    // above when the read failed, so the ?? is the no-row default alone.
     try {
       await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
     } catch (err) {

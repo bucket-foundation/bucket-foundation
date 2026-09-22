@@ -140,7 +140,12 @@ export async function POST(req: NextRequest) {
     }
 
     if (!body.learnerId || (body.status !== "verified" && body.status !== "declined")) return bad(400, "learner_and_status_required");
-    const { data: member } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    // A miss and a failure mean opposite things here. This records
+    // verified parental consent, and a dropped error told the teacher
+    // the learner is not in their class, which is a claim about the
+    // roster drawn from a read that never finished.
+    const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    if (memberErr) return bad(503, "class_read_failed");
     if (!member) return bad(404, "not_a_member");
     const now = new Date().toISOString();
     if (body.requestId) {

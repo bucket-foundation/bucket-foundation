@@ -115,11 +115,23 @@ export async function listCredentialsForUser(uid: string): Promise<CredentialRow
 }
 
 /** Revoke a credential, owner-scoped. Returns true if a row was revoked. */
+/**
+ * The outcome of a revocation, in three parts.
+ *
+ * A boolean could not carry them. `false` meant "no row matched", which
+ * the route renders as 409 with the message that the credential is not
+ * yours, already revoked, or missing. A failed write answered the same
+ * `false`, so an issuer revoking a leaked credential was told the
+ * request was refused for a reason that was not the reason, while the
+ * credential stayed live.
+ */
+export type RevokeResult = "revoked" | "no_row" | "unavailable";
+
 export async function revokeCredential(
   id: string,
   uid: string,
   reason: string | null
-): Promise<boolean> {
+): Promise<RevokeResult> {
   const { data, error } = await service()
     .from(TABLE)
     .update({
@@ -130,6 +142,6 @@ export async function revokeCredential(
     .eq("user_id", uid) // hard owner scope, never revoke another user's credential
     .is("revoked_at", null)
     .select("id");
-  if (error || !data) return false;
-  return (data as unknown[]).length > 0;
+  if (error) return "unavailable";
+  return ((data as unknown[]) ?? []).length > 0 ? "revoked" : "no_row";
 }
