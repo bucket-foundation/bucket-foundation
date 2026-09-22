@@ -37,6 +37,7 @@ export type Quote = { quotable_span: string | null; citation: string; locator?: 
 export const KIND_LABEL: Record<string, string> = {
   fact: "fact", concept: "concept", law: "law", derivation: "derivation", primary_source: "primary source", artifact: "artifact",
   hypothesis: "hypothesis", extension: "extension", replication: "replication", peer_review: "peer review", production: "production",
+  excerpt: "source excerpt",
 };
 export const EDGE_LABEL: Record<string, string> = {
   derives_from: "derives from", generalizes: "generalizes", example_of: "is an example of", cites: "cites", contradicts: "contradicts",

@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "@/providers/SessionProvider";
+import { signInOpen } from "@/lib/launch";
 
 const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
@@ -257,9 +258,9 @@ export default function RootLayout({
             strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
           />
-          <Header />
+          <Header launchList={!signInOpen()} />
           {children}
-          <Footer />
+          <Footer launchList={!signInOpen()} />
           {/* Vercel data tracking. Web Analytics must be enabled in the Vercel
  dashboard (Project → Analytics → Enable) for events to be recorded;
  Speed Insights (Core Web Vitals) works once the project is deployed

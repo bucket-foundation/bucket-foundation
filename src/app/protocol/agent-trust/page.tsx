@@ -57,7 +57,7 @@ const AFTER = `{
     "source_id": "canon:mitochondria/…",
     "provider": "bucket-foundation",
     "license": "CC-BY-4.0",
-    "canonical_url": "https://www.bucket.foundation/canon/claims/mitochondria/…"
+    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/…"
   },
   "receipt": {
     "tier": "insight",
