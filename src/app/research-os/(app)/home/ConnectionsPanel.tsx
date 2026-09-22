@@ -30,8 +30,12 @@ export default function ConnectionsPanel() {
     fetch("/api/research-os/connections", { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
+        // The code is read before any setState, so no render happens
+        // with the status set and the code still null, which showed
+        // one frame of the permanent copy for a passing outage.
+        const outageCode = r.ok ? null : await readErrorCode(r);
+        setErrorCode(outageCode);
         setStatus(r.status);
-        if (!r.ok) setErrorCode(await readErrorCode(r));
         if (r.ok) setData((await r.json()) as Data);
       })
       .catch(() => alive && setStatus(0));

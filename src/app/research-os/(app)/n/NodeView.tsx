@@ -48,8 +48,12 @@ export default function NodeView({ slug }: { slug: string }) {
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/research-os/node?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
+      // The code is read before any setState, so no render happens
+      // with the status set and the code still null, which showed
+      // one frame of the permanent copy for a passing outage.
+      const outageCode = res.ok ? null : await readErrorCode(res);
+      setErrorCode(outageCode);
       setStatus(res.status);
-        if (!res.ok) setErrorCode(await readErrorCode(res));
       if (res.ok) setData((await res.json()) as NodeData);
     } catch {
       setStatus(0);

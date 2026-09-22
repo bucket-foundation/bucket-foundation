@@ -17,6 +17,25 @@
 /** The one code that means the deployment has no graph behind it. */
 export const UNCONFIGURED = "research_os_unavailable";
 
+/**
+ * The 503 codes a retry might clear, named one by one.
+ *
+ * The first version of this rule said the opposite: any 503 whose code
+ * was not `research_os_unavailable` was transient. Every other 503 in
+ * the tree is a permanent misconfiguration, six of them, and each would
+ * have rendered "Try again in a moment" with a retry button for a state
+ * no retry clears. Naming what is transient fails safe; naming what is
+ * permanent fails toward a button that does nothing.
+ */
+export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
+  "busy",
+  "access_unavailable",
+  "loop_unavailable",
+  "graph_read_failed",
+  "node_read_failed",
+  "consent_unavailable",
+]);
+
 export const UNCONFIGURED_COPY = {
   title: "Research OS is unavailable on this deployment",
   body: "The graph database is not configured here.",
@@ -27,9 +46,17 @@ export const OUTAGE_COPY = {
   body: "The server could not finish the read. Try again in a moment.",
 };
 
-/** A 503 that a retry might clear. */
+/**
+ * A 503 that a retry might clear.
+ *
+ * A 503 with no code at all comes from a gateway, a CDN or the platform
+ * rather than from a route, and those pass. Requiring a code made every
+ * one of them render as an install that was never configured.
+ */
 export function isTransientOutage(status: number | null, code: string | null): boolean {
-  return status === 503 && Boolean(code) && code !== UNCONFIGURED;
+  if (status !== 503) return false;
+  if (code === null || code === "") return true;
+  return TRANSIENT_CODES.has(code);
 }
 
 /** The `error` code a failed Research OS response carries, if any. */

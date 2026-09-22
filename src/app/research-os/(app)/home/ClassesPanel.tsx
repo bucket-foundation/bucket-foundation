@@ -30,8 +30,12 @@ export default function ClassesPanel() {
     try {
       const res = await fetch("/api/research-os/classes", { cache: "no-store" });
       if (!res.ok) {
+        // The code is read before any setState, so no render happens
+        // with the status set and the code still null, which showed
+        // one frame of the permanent copy for a passing outage.
+        const outageCode = res.ok ? null : await readErrorCode(res);
+        setErrorCode(outageCode);
         setStatus(res.status);
-        if (!res.ok) setErrorCode(await readErrorCode(res));
         return;
       }
       setRows(((await res.json()) as { classes: ClassSummary[] }).classes);
