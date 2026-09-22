@@ -10,8 +10,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  cutAtRowBoundary,
   DISTINCT_CAP,
   PREVIEW_ROWS,
+  SAMPLE_VALUES,
   isMissing,
   parseCells,
   parseDelimited,
@@ -267,7 +269,11 @@ test("a date types the same in every timezone", () => {
       assert.equal(typeOf("2026-02-29"), "text", `${tz}: and only in a leap year`);
     }
   } finally {
-    process.env.TZ = saved;
+    // TZ is unset here and in CI, so `saved` is undefined and assigning
+    // it writes the string "undefined", which names no zone and which
+    // every test below would then run under.
+    if (saved === undefined) delete process.env.TZ;
+    else process.env.TZ = saved;
   }
 });
 
@@ -324,4 +330,110 @@ test("the distinct cap flags only a count that was cut", () => {
   assert.equal(e.distinctCapped, false, "an exact cap is an exact count");
   assert.equal(o.distinct, DISTINCT_CAP);
   assert.equal(o.distinctCapped, true);
+});
+
+test("the agreement threshold is pinned at both sides of its boundary", () => {
+  // Round 3 found the comment saying two thirds over code saying 0.6,
+  // and raising the code to match turned a ragged TSV back into one text
+  // column. 0.6 is the number the reader needs, and these two hold it:
+  // loosening it to 0.2 or tightening it to 2/3 fails one of them.
+  const threeOfFive = "a\tb\n1\t2\n3\t4\nplain line\nanother plain\n";
+  assert.equal(sniffDelimiter(threeOfFive), "\t", "three rows in five agree, which is exactly the threshold");
+
+  const threeOfSix = "a\tb\n1\t2\n3\t4\nplain line\nanother plain\nthird plain\n";
+  assert.equal(sniffDelimiter(threeOfSix), ",", "three in six is below it");
+});
+
+test("the header has to be a row of the table", () => {
+  // A CSV whose note column contains a tab gives tab the widths
+  // [1,2,2,2,2]: four rows in five agree, which passes on share alone
+  // and hands the file to the wrong delimiter. The header is width 1
+  // under tab, so tab does not describe this file.
+  const csvWithTabs = "id,note\n1,hello, there\tx\n2,hi\ty\n3,yo\tz\n4,hey\tw\n";
+  assert.equal(sniffDelimiter(csvWithTabs), ",");
+  assert.deepEqual(readTableSchema(csvWithTabs).columns.map((c) => c.name), ["id", "note"]);
+});
+
+test("blank lines between rows do not decide the delimiter", () => {
+  // readTableSchema deletes these before counting; the sniffer counted
+  // them as width-1 rows forty lines away, so this read as one text
+  // column named "a\tb" with ragged 0 and nothing to say why.
+  const spaced = "a\tb\n\n1\t2\n\n3\t4\n\n5\t6\n";
+  assert.equal(sniffDelimiter(spaced), "\t");
+  const s = readTableSchema(spaced);
+  assert.deepEqual(s.columns.map((c) => c.name), ["a", "b"]);
+  assert.equal(s.rows, 3);
+});
+
+test("a file cut at the size limit is not a malformed file", () => {
+  // The cut used to land inside a quote at a rate set by how long the
+  // cells are, so a well-formed CSV of quoted prose, which is the shape
+  // the limit exists for, came back malformed.
+  assert.equal(cutAtRowBoundary('a,b\n1,"x,y"\n2,3\n', 9), "a,b\n", "the cut backs up to the last boundary outside a quote");
+  assert.equal(cutAtRowBoundary("a,b\n1,2\n", 100), "a,b\n1,2\n", "a file under the limit is untouched");
+  assert.equal(cutAtRowBoundary("no newline at all", 5), "no ne", "one row longer than the limit has no boundary to find");
+
+  const openQuote = 'a,b\n1,"' + "x".repeat(50) + "\n";
+  assert.equal(readTableSchema(openQuote).malformed, true, "a file that really ends inside a quote still says so");
+});
+
+test("1900 is not a leap year and 2000 is", () => {
+  // The century rule had no test, so deleting it left the suite green
+  // while 1900-02-29 typed as a date.
+  assert.equal(readTableSchema("d\n1900-02-29\n").columns[0].type, "text");
+  assert.equal(readTableSchema("d\n2000-02-29\n").columns[0].type, "date");
+  assert.equal(readTableSchema("d\n2024-02-29\n").columns[0].type, "date");
+  assert.equal(readTableSchema("d\n2023-02-29\n").columns[0].type, "text");
+});
+
+test("an offset minute past 59 is not an offset", () => {
+  assert.equal(readTableSchema("d\n2026-01-01T00:00+01:30\n").columns[0].type, "date");
+  assert.equal(readTableSchema("d\n2026-01-01T00:00+01:60\n").columns[0].type, "text");
+  assert.equal(readTableSchema("d\n2026-01-01T00:00+01:99\n").columns[0].type, "text");
+});
+
+test("the sample stops at SAMPLE_VALUES", () => {
+  const many = "v\n" + ["a", "b", "c", "d", "e", "f"].join("\n") + "\n";
+  assert.equal(readTableSchema(many).columns[0].sample.length, SAMPLE_VALUES);
+});
+
+test("a row with more fields than the header is ragged too", () => {
+  // Only short rows were counted, so a row carrying extra values passed
+  // as well-formed while the extras reached nothing.
+  const overWide = readTableSchema("a,b\n1,2,3,4\n5,6\n");
+  assert.equal(overWide.ragged, 1, "the long row is ragged");
+  assert.deepEqual(overWide.preview[0], ["1", "2"], "and its extra fields are gone, which is what ragged says");
+});
+
+test("a caller's own missing tokens still treat an empty cell as missing", () => {
+  // isMissing took the caller's set whole, so a set written without ""
+  // made every empty cell a present value, against this module's header
+  // and against ColumnSchema.missing.
+  const s = readTableSchema("a,b\n,1\n,2\n", ",", { missingTokens: ["-"] });
+  assert.equal(s.columns[0].missing, 2, "an empty cell is missing whatever the set says");
+  assert.equal(s.columns[0].present, 0);
+
+  const dash = readTableSchema("a\n-\n", ",", { missingTokens: ["-"] });
+  assert.equal(dash.columns[0].missing, 1, "and the caller's own token is honoured");
+});
+
+test("past the size limit the schema describes a prefix and says so", () => {
+  // MAX_TEXT_CHARS and `truncated` were exported and imported by
+  // nothing, so removing the truncation entirely left the suite green.
+  // maxChars reaches the same path without building 20 MB.
+  const text = "a,b\n1,2\n3,4\n5,6\n7,8\n";
+  const whole = readTableSchema(text);
+  assert.equal(whole.truncated, false);
+  assert.equal(whole.rows, 4);
+
+  const cut = readTableSchema(text, ",", { maxChars: 12 });
+  assert.equal(cut.truncated, true, "the caller is told the schema describes a prefix");
+  assert.equal(cut.rows, 2, "and it describes only the rows that survived the cut: a,b|1,2|3,4");
+  assert.equal(cut.malformed, false, "a cut is not a malformed file");
+});
+
+test("the sample keeps the first SAMPLE_VALUES distinct values", () => {
+  const s = readTableSchema("v\na\nb\nc\nd\ne\n");
+  assert.equal(s.columns[0].sample.length, SAMPLE_VALUES);
+  assert.deepEqual(s.columns[0].sample, ["a", "b", "c"], "the first three, in file order");
 });

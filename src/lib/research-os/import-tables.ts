@@ -75,13 +75,29 @@ export interface TableSchema {
   columns: ColumnSchema[];
   /** Data rows, header excluded. */
   rows: number;
-  /** The first PREVIEW_ROWS data rows, each padded to the header width. */
+  /**
+   * The first PREVIEW_ROWS data rows, each padded or truncated to the
+   * header width.
+   *
+   * A row with more fields than the header has nowhere to put them:
+   * they reach no count, no distinct set, no sample and no preview. The
+   * row is counted in `ragged`, which is the only signal a caller gets
+   * that anything was dropped.
+   */
   preview: string[][];
-  /** Rows whose field count differed from the header's. */
+  /** Rows whose field count differed from the header's, short or long. */
   ragged: number;
   truncated: boolean;
-  /** True when the text ended inside a quote, so the rows above it ran
-   * together and every count is a fabrication. */
+  /**
+   * True when the file itself ends inside a quote, so the rows above it
+   * ran together and every count is a fabrication.
+   *
+   * A file past MAX_TEXT_CHARS is cut at the last row boundary outside a
+   * quote, so truncation alone never sets this. It used to: the cut
+   * landed mid-quote and a well-formed 25 MB CSV of quoted prose, which
+   * is the shape the limit exists for, came back malformed and a caller
+   * obeying the contract threw it away.
+   */
   malformed: boolean;
 }
 
@@ -91,6 +107,34 @@ export const SAMPLE_VALUES = 3;
 /** 20 MB of text. Past this the file belongs on a runner, and the caller
  * is told the schema describes a prefix. */
 export const MAX_TEXT_CHARS = 20_000_000;
+
+/**
+ * The longest prefix of `text` no longer than `limit` that ends on a row
+ * boundary, with no quote left open.
+ *
+ * Cutting at a byte count lands inside a quoted cell at a rate set by
+ * how long the cells are, and the parser then reports the file as
+ * malformed for a break the reader made. Scanning forward once is
+ * linear in the limit, and only a file past that limit pays it.
+ */
+export function cutAtRowBoundary(text: string, limit: number): string {
+  if (text.length <= limit) return text;
+  let inQuotes = false;
+  let lastBoundary = 0;
+  for (let i = 0; i < limit; i += 1) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (inQuotes && text[i + 1] === '"') { i += 1; continue; }
+      inQuotes = !inQuotes;
+      continue;
+    }
+    if (ch === "\n" && !inQuotes) lastBoundary = i + 1;
+  }
+  // No boundary at all means one row longer than the limit. Nothing
+  // here can describe it, so the prefix stands and the quote state
+  // travels with it.
+  return lastBoundary > 0 ? text.slice(0, lastBoundary) : text.slice(0, limit);
+}
 
 /** A bare dash is left out: a column that uses one as data read as
  * entirely empty, and it is the token most likely to be a value. A
@@ -106,7 +150,13 @@ const BOOLEAN = new Set(["true", "false", "t", "f", "yes", "no", "y", "n", "0", 
 const DATE = /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?)?$/;
 
 export function isMissing(value: string, tokens: readonly string[] = MISSING_TOKENS): boolean {
-  return tokens.includes(value.trim().toLowerCase());
+  const v = value.trim().toLowerCase();
+  // An empty cell is missing whatever the caller's set says. A set
+  // written without "" made every empty cell a present value, against
+  // both this module's header and ColumnSchema.missing, and the only
+  // test passed ["", "-"] so it never showed.
+  if (v === "") return true;
+  return tokens.includes(v);
 }
 
 /** The narrowest type a single value fits. */
@@ -254,13 +304,49 @@ export function parseCells(text: string, delimiter: "," | "\t"): ParsedRows {
   return { rows, unterminated: quoted };
 }
 
-/** The delimiter that yields a consistent field count over the first few
- * lines. A tab beats a comma when both are consistent, because a comma
- * inside prose is ordinary and a tab inside prose is rare. */
+/**
+ * The share of sampled rows that must agree on a width for it to count.
+ *
+ * 0.6, and the boundary is load-bearing: a five-row TSV with two rows of
+ * trailing prose agrees three in five, which is exactly this, and that
+ * is the ragged file the proportional rule was written for. A comment
+ * here said two thirds while the code said 0.6, and raising the code to
+ * match the comment turned that file back into one text column.
+ */
+const AGREEMENT = 0.6;
+
+/**
+ * A row the file wrote, as opposed to a blank line between rows.
+ *
+ * readTableSchema deletes these before it counts anything. The sniffer
+ * counted them as width-1 rows, so a TSV with a blank line between each
+ * pair of rows read as four disagreeing widths out of seven and
+ * collapsed to a single text column named "a\tb". One value, honoured
+ * in one place and discarded in the other, forty lines apart.
+ */
+function isBlankRow(row: { value: string; quoted: boolean }[]): boolean {
+  return row.length === 1 && row[0].value === "" && !row[0].quoted;
+}
+
+/**
+ * The delimiter this text is written with.
+ *
+ * A tab beats a comma when both describe the same shape, because a comma
+ * inside prose is ordinary and a tab inside prose is rare. Two things
+ * decide whether a delimiter describes a shape at all: enough rows agree
+ * on a width, and the header is one of them.
+ *
+ * The header rule is what separates a table from a file that happens to
+ * contain the character. `id,note` over rows where one cell holds a tab
+ * gives tab the widths [1,2,2,2,2]: four rows in five agree on 2, which
+ * passes on share alone and hands a CSV to the wrong delimiter. The
+ * header row has width 1 under tab, and a file whose first row is not a
+ * row of the table is not a table in that delimiter.
+ */
 export function sniffDelimiter(text: string): "," | "\t" {
   const head = text.slice(0, 64_000);
   const score = (d: "," | "\t"): number => {
-    const rows = parseDelimited(head, d).slice(0, 10).filter((r) => r.length > 0);
+    const rows = parseCells(head, d).rows.slice(0, 10).filter((r) => !isBlankRow(r));
     if (rows.length < 2) return 0;
     // The modal width rather than the first row's: a header shorter or
     // longer than the body decided the whole file.
@@ -275,12 +361,16 @@ export function sniffDelimiter(text: string): "," | "\t" {
     // Proportional. Unanimity meant one ragged row, one blank line or one
     // comment zeroed a correct delimiter, and this file counts ragged
     // rows twelve lines below because it expects them.
-    // Two thirds. A ragged TSV agreeing three rows in four scores here;
-    // prose split on commas agrees one row in three and does not, which
-    // is the line between a table with a short row and a column of
-    // sentences that happen to contain commas.
+    // A ragged TSV agreeing three rows in five scores here; prose split
+    // on commas agrees one row in three and does not, which is the line
+    // between a table with a short row and a column of sentences that
+    // happen to contain commas.
     const share = agree / rows.length;
-    return share >= 0.6 ? width * share : 0;
+    if (share < AGREEMENT) return 0;
+    // The header carries the table's own shape, or this is not the
+    // table's delimiter.
+    if (widths[0] !== width) return 0;
+    return width * share;
   };
   const tab = score("\t");
   const comma = score(",");
@@ -294,15 +384,32 @@ export function sniffDelimiter(text: string): "," | "\t" {
  * `column_<n>` by its position, so the form has something to offer and
  * the name still says where it came from.
  */
-export function readTableSchema(text: string, delimiter?: "," | "\t", options: { missingTokens?: readonly string[] } = {}): TableSchema {
-  const truncated = text.length > MAX_TEXT_CHARS;
-  const body = truncated ? text.slice(0, MAX_TEXT_CHARS) : text;
+export function readTableSchema(
+  text: string,
+  delimiter?: "," | "\t",
+  options: {
+    missingTokens?: readonly string[];
+    /**
+     * The size past which this reads a prefix. MAX_TEXT_CHARS by
+     * default, which a 20 MB file parses in about 0.7 seconds and a
+     * quarter of a gigabyte of heap. A browser path that cannot afford
+     * that passes its own, and a test can reach the truncation without
+     * building 20 MB.
+     */
+    maxChars?: number;
+  } = {},
+): TableSchema {
+  const limit = options.maxChars ?? MAX_TEXT_CHARS;
+  const truncated = text.length > limit;
+  const body = truncated ? cutAtRowBoundary(text, limit) : text;
   const d = delimiter ?? sniffDelimiter(body);
   const parsed = parseCells(body, d);
   // A quoted empty cell is a row the source wrote. The filter ignored
   // `quoted` while the missing rule twenty lines below honours it, so a
   // lone "" row vanished and a three-row file reported two.
-  const rows = parsed.rows.filter((r) => !(r.length === 1 && r[0].value === "" && !r[0].quoted));
+  // The same rule the sniffer applies, from the same function, so the
+  // two cannot answer differently about which rows the file wrote.
+  const rows = parsed.rows.filter((r) => !isBlankRow(r));
   if (rows.length === 0) {
     return { delimiter: d, columns: [], rows: 0, preview: [], ragged: 0, truncated, malformed: parsed.unterminated };
   }
