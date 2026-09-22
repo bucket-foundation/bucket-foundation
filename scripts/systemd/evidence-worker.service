@@ -8,10 +8,12 @@
 # which is outside the repository and readable only by its owner. %h is the
 # home directory, so this file holds no machine path.
 #
-# The caps come from IMPLEMENTATION.md, "Operating envelope", against what
-# the runtime gate measured: 3.4 GiB at peak, eight threads, a 32-second
-# start. MemoryMax stops a leak taking the machine with it, and the
-# resource reserve means a kill here never reaches the app or the database.
+# The caps come from IMPLEMENTATION.md, "Operating envelope", against two
+# measurements taken separately: `evidence_search probe` reported 3.4 GiB
+# at peak on eight threads, and the runtime gate's 20 restarts put the
+# start between 22 and 33 seconds across two runs on this machine.
+# MemoryMax stops a leak taking the machine with it, and the resource
+# reserve means a kill here never reaches the app or the database.
 [Unit]
 Description=Bucket Foundation evidence-search encoder on 127.0.0.1:8431
 After=network-online.target

@@ -56,15 +56,15 @@ The app's readiness answer names the corpus revision it loaded, how many sources
 
 ## What it costs
 
-Measured on 2026-09-22, in the run recorded in [RUNTIME.md](RUNTIME.md).
+Measured on 2026-09-22 on the founder's machine, a Ryzen 7 7840HS with 60 GiB of RAM, against the 500-source corpus. Memory and threads come from `python3 -m evidence_search probe`; the rest comes from the runs recorded in [RUNTIME.md](RUNTIME.md). Another machine, or a corpus at release scale, moves all of these.
 
-| | Measured | The unit's cap |
-|---|---|---|
-| memory at peak | 3.4 GiB | `MemoryHigh=6G`, `MemoryMax=8G` |
-| threads | 8 | `CPUQuota=800%` |
-| start to first answer | 32 s | none; a start that never finishes shows as a failed unit |
-| a search, warm | 91 ms p95 | the route's own 8-second deadline |
-| vectors on disk | 12 MiB at 500 sources | the 20 GiB new-disk cap in the plan |
+| | Measured | Where | The unit's cap |
+|---|---|---|---|
+| memory at peak | 3.4 GiB | the probe | `MemoryHigh=6G`, `MemoryMax=8G` |
+| threads | 8 | the probe | `CPUQuota=800%` |
+| start to first answer | 22 s to 33 s | two runtime gate runs, 20 restarts each | none; a start that never finishes shows as a failed unit |
+| a search, warm | 91 ms to 97 ms p95 | two runtime gate runs, 200 requests each | the route's own 8-second deadline |
+| vectors on disk | 12 MiB at 500 sources | the build | the 20 GiB new-disk cap in the plan |
 
 `MemoryMax` is what stops a leak taking the machine with it. The worker is one process holding one model; a kill under memory pressure ends the worker and the app keeps answering from keyword ranking.
 
