@@ -23,7 +23,7 @@ export default function MapBlock({
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">map</span>
         {concept && (
-          <Link href={`/canon/claims/${encodeURIComponent(concept)}`} className={link}>
+          <Link href={`/excerpts/${encodeURIComponent(concept)}`} className={link}>
             canon claims for {concept} →
           </Link>
         )}

@@ -49,12 +49,16 @@ bearer reach the shim.
 
 ## Why llama.cpp over the system Ollama
 
-The installed `ollama 0.18.2` ships **only** the `cuda_v12` backend in
-`/usr/local/lib/ollama`, **no Vulkan, no ROCm** `.so`. So `OLLAMA_VULKAN=1` (set
-In the root systemd unit) is a silent no-op and every chat model runs **100% CPU**
-(`ollama ps` => "100% CPU", `rocm-smi` GPU use 0%). `llama.cpp` built with the
-Vulkan backend (`~/llama.cpp/build/bin/llama-server`,
-`libggml-vulkan.so`) offloads to the discrete GPU.
+The tutor's server is llama.cpp, built with the Vulkan backend
+(`~/llama.cpp/build/bin/llama-server`, `libggml-vulkan.so`), and it offloads to
+the discrete GPU.
+
+The system Ollama runs on the GPU too. An earlier version of this section said
+`ollama 0.18.2` ships only the `cuda_v12` backend; that was wrong.
+`/usr/local/lib/ollama` has held `rocm/`, `vulkan/` and `cuda_v12/` since the
+install on 2026-03-18, and on 2026-09-21 Ollama ran every local chat model on
+`ROCm0` (RX 7700S, gfx1102), `llama3.2:3b` with all 29 layers offloaded. Ollama
+serves the non-Claude judges and ad hoc runs; the tutor stays on llama.cpp.
 
 Vulkan enumerates `0 = Radeon 780M (iGPU, gfx1103)`, `1 = RX 7700S (dGPU, gfx1102)`.
 `GGML_VK_VISIBLE_DEVICES=1` isolates the dGPU; it then becomes `Vulkan0` and gets
@@ -69,6 +73,62 @@ full offload (`offloaded 29/29 layers to GPU`).
 
 ~2.4× faster sustained, and it gets inference off the CPU entirely. Model = 4.1 GiB
 on the GPU + 224 MiB KV + 304 MiB compute; fits the 8 GiB dGPU comfortably.
+
+## Health
+
+```bash
+bash scripts/llm/health.sh          # ~10 ms: the dGPU on the bus, Ollama, llama.cpp, the shim
+bash scripts/llm/health.sh --deep   # adds a one-token chat through Ollama and llama.cpp,
+                                    # this boot's kernel log, and the public endpoint
+```
+
+One status line, then a `fix:` line per problem. Exit 0 ok, 1 degraded, 2 down.
+Every new shell prints the fast line (`~/.bashrc`, alias `llm-health`).
+
+```
+local-llm: ok · dGPU 0000:03:00.0 · ollama 0.18.2 · llama.cpp ok · shim ok
+```
+
+Overrides: `LLM_DGPU_PCI_ID` (default `0x7480`, Navi 33), `OLLAMA_URL`,
+`LLM_SERVER_URL`, `LLM_SHIM_URL`, `LLM_PUBLIC_HEALTH`, `OLLAMA_PROBE_MODEL`
+(default `llama3.2:3b`), `LLM_ALIAS`.
+
+## The dGPU Drops Off the Bus
+
+Symptom, 2026-09-18: Ollama lists its models, and every chat fails with
+`model failed to load` or `model runner has unexpectedly stopped`; the journal
+shows `llama runner terminated: signal: aborted (core dumped)`.
+
+Cause, from the journals:
+
+1. On 2026-09-13 at 12:41 the RX 7700S, in the Framework Laptop 16 expansion
+   bay, failed across a suspend and resume: `SMU: response:0xFFFFFFFF`,
+   `Failed to disable gfxoff!`, then `amdgpu 0000:03:00.0: device lost from bus!`.
+2. Ollama had enumerated GPUs when it started on 2026-09-03 and kept that list.
+   Its runners now opened ROCm device 0 and found the Radeon 780M iGPU
+   (`found 1 ROCm devices: Device 0: AMD Radeon 780M Graphics, gfx1103`).
+3. Ollama's bundled rocBLAS carries kernels for gfx1030, gfx1100, gfx1101,
+   gfx1102, gfx1150, gfx1151, gfx1200 and gfx1201, and none for gfx1103. Each
+   load aborted: `rocBLAS error: Cannot read .../TensileLibrary.dat: Illegal
+   seek for GPU arch : gfx1103`.
+
+The restart of the machine on 2026-09-19 brought the dGPU back, and every model
+loads again.
+
+Recovery when `health.sh` reports `dGPU missing` or `dGPU lost this boot`:
+
+- Restart the machine. That is the only thing that brings the card back.
+- Until then, `sudo systemctl restart ollama` makes Ollama enumerate again; with
+  the dGPU gone and the 780M unsupported it runs on the CPU.
+
+Prevention to try, in order:
+
+- Update the BIOS. This machine runs 03.05; Framework's Laptop 16 (Ryzen 7040)
+  page lists newer releases, and 3.06 notes a fix for the dGPU in BOCO, the
+  power-off state it enters between uses:
+  https://knowledgebase.frame.work/framework-laptop-16-bios-and-driver-releases-amd-ryzen-7040-series-BkeqkVovp
+- If it recurs after the update, keep the dGPU out of runtime power-off with
+  the kernel parameter `amdgpu.runpm=0`, at a battery cost.
 
 ## Operate
 
