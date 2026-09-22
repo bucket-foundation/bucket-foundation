@@ -25,8 +25,29 @@
  * empty cell mean the same thing and a learner comparing two files
  * should not see one column called text for that reason alone. A source
  * that means one of those strings as data keeps it by quoting it, which
- * the parser honors.
+ * `parseCells` records and `readTableSchema` honors. A bare dash is not
+ * in the set: a column that writes one as data read as entirely empty.
+ *
+ * WHAT THIS DOES NOT DO. It takes decoded text and never says who
+ * decoded it, so a caller that reads latin-1 bytes as UTF-8 gets
+ * different values than one that does not. The browser and the runner
+ * have to agree on the encoding and on the delimiter, which means the
+ * side that sniffs passes its answer to the other rather than each
+ * sniffing alone. Only `,` and `\t` are candidates, so a semicolon file
+ * arrives as one column and says so through a column count of 1 rather
+ * than through an error.
  */
+
+/** Set by the last parseCells call when the text ended inside a quote.
+ * Module state rather than a second return value, so parseDelimited's
+ * shape is unchanged for its existing callers. */
+let unterminated = false;
+
+/** One parsed field, with whether the source quoted it. */
+export interface Cell {
+  value: string;
+  quoted: boolean;
+}
 
 export type ColumnType = "integer" | "number" | "boolean" | "date" | "text";
 
@@ -57,6 +78,9 @@ export interface TableSchema {
   /** Rows whose field count differed from the header's. */
   ragged: number;
   truncated: boolean;
+  /** True when the text ended inside a quote, so the rows above it ran
+   * together and every count is a fabrication. */
+  malformed: boolean;
 }
 
 export const PREVIEW_ROWS = 20;
@@ -66,7 +90,10 @@ export const SAMPLE_VALUES = 3;
  * is told the schema describes a prefix. */
 export const MAX_TEXT_CHARS = 20_000_000;
 
-const MISSING_TOKENS = new Set(["", "na", "n/a", "null", "nan", "none", "-", "--"]);
+/** A bare dash is left out: a column that uses one as data read as
+ * entirely empty, and it is the token most likely to be a value. A
+ * caller that wants it can pass its own set. */
+const MISSING_TOKENS: readonly string[] = ["", "na", "n/a", "null", "nan", "none"];
 
 const INTEGER = /^[+-]?\d+$/;
 const NUMBER = /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/;
@@ -76,16 +103,35 @@ const BOOLEAN = new Set(["true", "false", "t", "f", "yes", "no", "y", "n", "0", 
  * wrote it, and guessing turns a run's answer into a coin flip. */
 const DATE = /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?)?$/;
 
-export function isMissing(value: string): boolean {
-  return MISSING_TOKENS.has(value.trim().toLowerCase());
+export function isMissing(value: string, tokens: readonly string[] = MISSING_TOKENS): boolean {
+  return tokens.includes(value.trim().toLowerCase());
 }
 
 /** The narrowest type a single value fits. */
 export function typeOf(value: string): ColumnType {
   const v = value.trim();
-  if (INTEGER.test(v)) return "integer";
-  if (NUMBER.test(v)) return "number";
-  if (DATE.test(v)) return "date";
+  if (INTEGER.test(v)) {
+    const digits = v.replace(/^[+-]/, "");
+    // A zip code, a SKU and a 64-bit id all match the integer shape and
+    // none survives arithmetic: 007 loses its width and an id past
+    // Number.MAX_SAFE_INTEGER loses its last digits. Calling them text
+    // is the same rule this file applies to a column that disagrees
+    // with itself.
+    if (digits.length > 1 && digits.startsWith("0")) return "text";
+    if (!Number.isSafeInteger(Number(v))) return "text";
+    return "integer";
+  }
+  if (NUMBER.test(v)) {
+    // 1e999 parses and is Infinity, which no arithmetic can use.
+    if (!Number.isFinite(Number(v))) return "text";
+    return "number";
+  }
+  if (DATE.test(v)) {
+    // Shape alone accepted 2026-13-45. A form offering date arithmetic
+    // on that column gets Invalid Date.
+    const d = new Date(v);
+    return Number.isNaN(d.getTime()) || !d.toISOString().startsWith(v.slice(0, 10)) ? "text" : "date";
+  }
   if (BOOLEAN.has(v.toLowerCase())) return "boolean";
   return "text";
 }
@@ -107,8 +153,23 @@ export function widen(a: ColumnType, b: ColumnType): ColumnType {
  * tables a learner brings in.
  */
 export function parseDelimited(text: string, delimiter: "," | "\t"): string[][] {
-  const rows: string[][] = [];
-  let row: string[] = [];
+  return parseCells(text, delimiter).map((r) => r.map((c) => c.value));
+}
+
+/**
+ * The same parse, keeping whether each cell was quoted.
+ *
+ * `readTableSchema` needs it: a source that writes NA and means the
+ * string rather than the absence says so by quoting it, and a parser
+ * that returns bare strings has thrown that away before the missing
+ * rule runs. The docstring above promised that escape hatch while the
+ * code did not provide it.
+ */
+export function parseCells(text: string, delimiter: "," | "\t"): Cell[][] {
+  unterminated = false;
+  const rows: Cell[][] = [];
+  let row: Cell[] = [];
+  let wasQuoted = false;
   let field = "";
   let quoted = false;
   let started = false;
@@ -124,14 +185,28 @@ export function parseDelimited(text: string, delimiter: "," | "\t"): string[][] 
       field += c;
       continue;
     }
-    if (c === '"' && field === "") { quoted = true; started = true; continue; }
-    if (c === delimiter) { row.push(field); field = ""; started = true; continue; }
-    if (c === "\r") continue;
-    if (c === "\n") {
-      row.push(field);
+    if (c === '"' && field === "") { quoted = true; wasQuoted = true; started = true; continue; }
+    if (c === delimiter) { row.push({ value: field, quoted: wasQuoted }); field = ""; wasQuoted = false; started = true; continue; }
+    if (c === "\r") {
+      // A lone CR ends a row. Excel still writes "CSV (Macintosh)", and
+      // dropping CR unconditionally ran every row of such a file into
+      // one: the header became the whole file and the table arrived with
+      // no rows and nothing to say so.
+      if (text[i + 1] === "\n") continue;
+      row.push({ value: field, quoted: wasQuoted });
       rows.push(row);
       row = [];
       field = "";
+      wasQuoted = false;
+      started = false;
+      continue;
+    }
+    if (c === "\n") {
+      row.push({ value: field, quoted: wasQuoted });
+      rows.push(row);
+      row = [];
+      field = "";
+      wasQuoted = false;
       started = false;
       continue;
     }
@@ -140,9 +215,13 @@ export function parseDelimited(text: string, delimiter: "," | "\t"): string[][] 
   }
   // A file with no trailing newline still ends on a row.
   if (started || field !== "" || row.length > 0) {
-    row.push(field);
+    row.push({ value: field, quoted: wasQuoted });
     rows.push(row);
   }
+  // Ending inside a quote means an unescaped quote somewhere above
+  // swallowed everything after it into one field. The rows returned are
+  // a fabrication, so the caller is told rather than left to trust them.
+  unterminated = quoted;
   return rows;
 }
 
@@ -173,13 +252,13 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
   const truncated = text.length > MAX_TEXT_CHARS;
   const body = truncated ? text.slice(0, MAX_TEXT_CHARS) : text;
   const d = delimiter ?? sniffDelimiter(body);
-  const rows = parseDelimited(body, d).filter((r) => !(r.length === 1 && r[0] === ""));
+  const rows = parseCells(body, d).filter((r) => !(r.length === 1 && r[0].value === ""));
   if (rows.length === 0) {
-    return { delimiter: d, columns: [], rows: 0, preview: [], ragged: 0, truncated };
+    return { delimiter: d, columns: [], rows: 0, preview: [], ragged: 0, truncated, malformed: unterminated };
   }
 
   const header = rows[0];
-  const names = header.map((h, i) => (h.trim() === "" ? `column_${i + 1}` : h.trim()));
+  const names = header.map((h, i) => (h.value.trim() === "" ? `column_${i + 1}` : h.value.trim()));
   const data = rows.slice(1);
 
   const seen: Set<string>[] = names.map(() => new Set<string>());
@@ -192,10 +271,12 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
   for (const r of data) {
     if (r.length !== names.length) ragged += 1;
     for (let i = 0; i < names.length; i += 1) {
-      const raw = r[i] ?? "";
-      if (isMissing(raw)) { missing[i] += 1; continue; }
+      const cell = r[i] ?? { value: "", quoted: false };
+      // A quoted cell is a value the source wrote on purpose, so NA in
+      // quotes is the string and the absence is an empty cell.
+      if (!cell.quoted && isMissing(cell.value)) { missing[i] += 1; continue; }
       present[i] += 1;
-      const v = raw.trim();
+      const v = cell.value.trim();
       types[i] = types[i] === null ? typeOf(v) : widen(types[i] as ColumnType, typeOf(v));
       if (seen[i].size < DISTINCT_CAP) seen[i].add(v);
       if (samples[i].length < SAMPLE_VALUES) samples[i].push(v);
@@ -215,8 +296,8 @@ export function readTableSchema(text: string, delimiter?: "," | "\t"): TableSche
   }));
 
   const preview = data.slice(0, PREVIEW_ROWS).map((r) =>
-    names.map((_, i) => r[i] ?? ""),
+    names.map((_, i) => r[i]?.value ?? ""),
   );
 
-  return { delimiter: d, columns, rows: data.length, preview, ragged, truncated };
+  return { delimiter: d, columns, rows: data.length, preview, ragged, truncated, malformed: unterminated };
 }

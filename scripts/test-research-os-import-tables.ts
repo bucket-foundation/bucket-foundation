@@ -13,6 +13,7 @@ import {
   DISTINCT_CAP,
   PREVIEW_ROWS,
   isMissing,
+  parseCells,
   parseDelimited,
   readTableSchema,
   sniffDelimiter,
@@ -80,11 +81,12 @@ test("the numeric types are the ones a form can do arithmetic on", () => {
 });
 
 test("an empty cell and a written NA are both missing", () => {
-  for (const v of ["", "  ", "NA", "n/a", "NULL", "NaN", "none", "-", "--"]) {
+  for (const v of ["", "  ", "NA", "n/a", "NULL", "NaN", "none"]) {
     assert.equal(isMissing(v), true, `${JSON.stringify(v)} is missing`);
   }
   assert.equal(isMissing("0"), false, "zero is a value");
   assert.equal(isMissing("false"), false);
+  assert.equal(isMissing("-"), false, "a dash is data; see the dash case below");
   assert.equal(isMissing("not applicable"), false, "only the listed tokens count");
 });
 
@@ -173,4 +175,77 @@ test("a header with no data rows still describes its columns", () => {
   assert.deepEqual(s.columns.map((c) => c.name), ["a", "b", "c"]);
   assert.equal(s.rows, 0);
   assert.equal(s.columns[0].type, "text", "no value has said otherwise");
+});
+
+test("a CR-only file is read as rows rather than run together", () => {
+  // Excel still writes "CSV (Macintosh)". Dropping CR unconditionally
+  // gave this file one row holding the whole text, columns named
+  // ["a","b1","23","4"], and rows: 0 with nothing to say so.
+  const s = readTableSchema("a,b\r1,2\r3,4\r");
+  assert.deepEqual(s.columns.map((c) => c.name), ["a", "b"]);
+  assert.equal(s.rows, 2);
+  assert.deepEqual(s.preview[0], ["1", "2"]);
+});
+
+test("CRLF and LF read the same as CR", () => {
+  const lf = readTableSchema("a,b\n1,2\n");
+  const crlf = readTableSchema("a,b\r\n1,2\r\n");
+  const cr = readTableSchema("a,b\r1,2\r");
+  for (const s of [crlf, cr]) {
+    assert.equal(s.rows, lf.rows);
+    assert.deepEqual(s.columns.map((c) => c.name), lf.columns.map((c) => c.name));
+  }
+});
+
+test("a quoted missing token is a value", () => {
+  // The docstring promised this and the parser threw quotedness away
+  // before the missing rule ran, so the one escape hatch did not exist.
+  const s = readTableSchema('v\n"NA"\nx\n');
+  assert.equal(s.columns[0].present, 2);
+  assert.equal(s.columns[0].missing, 0);
+  assert.deepEqual(s.columns[0].sample, ["NA", "x"]);
+
+  const bare = readTableSchema("v\nNA\nx\n");
+  assert.equal(bare.columns[0].present, 1, "unquoted NA is still missing");
+  assert.equal(bare.columns[0].missing, 1);
+});
+
+test("a value arithmetic cannot round-trip is text", () => {
+  assert.equal(typeOf("007"), "text", "a zip code keeps its width");
+  assert.equal(typeOf("0"), "integer", "a single zero is a number");
+  assert.equal(typeOf("-0"), "integer");
+  assert.equal(typeOf("9007199254740993"), "text", "past MAX_SAFE_INTEGER the last digits are lost");
+  assert.equal(typeOf("9007199254740991"), "integer", "the boundary itself is safe");
+  assert.equal(typeOf("1e999"), "text", "this parses to Infinity");
+  assert.equal(typeOf("1e3"), "number");
+});
+
+test("a date that names no day is text", () => {
+  assert.equal(typeOf("2026-13-45"), "text");
+  assert.equal(typeOf("2026-02-30"), "text");
+  assert.equal(typeOf("2026-02-28"), "date");
+  assert.equal(typeOf("2026-12-31T23:59:59Z"), "date");
+});
+
+test("a dash is data", () => {
+  // A column that writes a dash read as entirely empty, and it is the
+  // token most likely to mean something.
+  const s = readTableSchema("mark\n-\n--\n-\n");
+  assert.equal(s.columns[0].present, 3);
+  assert.equal(s.columns[0].missing, 0);
+  assert.equal(isMissing("-"), false);
+  assert.equal(isMissing("NA"), true, "the written absences still count");
+});
+
+test("a caller may name its own missing tokens", () => {
+  assert.equal(isMissing("-", ["-"]), true);
+  assert.equal(isMissing("na", ["-"]), false, "the caller's set replaces the default");
+});
+
+test("a file that ends inside a quote says so", () => {
+  // An unescaped quote swallows the rest of the file into one field, so
+  // the rows that come back are a fabrication.
+  const bad = readTableSchema('a,b\n"oops,2\n3,4\n');
+  assert.equal(bad.malformed, true);
+  assert.equal(readTableSchema("a,b\n1,2\n").malformed, false);
 });
