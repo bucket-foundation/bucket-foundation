@@ -346,6 +346,46 @@ begin
   assert n = 0 and b = 0, 'deleting the objects returns the allowance, got ' || n || '/' || b;
 end $$;
 
+-- One owner cannot spend another owner's allowance.
+--
+-- The quota gate is a BEFORE INSERT trigger, so it runs and increments
+-- before row-level security judges the row. A write under someone else's
+-- prefix therefore touches their counter on the way to being refused,
+-- and the only thing that makes that safe is the refusal aborting the
+-- statement and taking the increment with it. That is a property of the
+-- ordering rather than of the trigger, so it is checked here.
+do $$
+declare
+  victim uuid; attacker uuid; before_n bigint; after_n bigint; refused boolean := false;
+begin
+  if not exists (select 1 from information_schema.schemata where schema_name = 'storage') then
+    return;
+  end if;
+  select owner into victim from t_ids;
+  insert into auth.users (id, instance_id, aud, role, email)
+  values (gen_random_uuid(), '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
+          'quota-attacker-' || gen_random_uuid() || '@bucket.test')
+  returning id into attacker;
+
+  select coalesce(objects, 0) into before_n from graph.import_quota where owner_id = victim;
+  before_n := coalesce(before_n, 0);
+
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', attacker::text, 'role', 'authenticated')::text, true);
+  begin
+    insert into storage.objects (bucket_id, name, metadata)
+    values ('research-os-imports', victim::text || '/' || repeat('a', 64), jsonb_build_object('size', 52428800));
+  exception when others then refused := true;
+  end;
+  reset role;
+
+  assert refused, 'a write under another owner prefix is refused';
+  select coalesce(objects, 0) into after_n from graph.import_quota where owner_id = victim;
+  after_n := coalesce(after_n, 0);
+  assert after_n = before_n,
+    'and it spends none of their allowance: before ' || before_n || ', after ' || after_n;
+end $$;
+
 -- The recursion this policy set once caused, as a standing check: a
 -- storage read under the authenticated role must answer rather than
 -- raise. It raised "infinite recursion detected in policy for relation

@@ -16,11 +16,13 @@ import {
   rankOf,
   RUNTIME_THRESHOLDS,
   runtimeVerdict,
+  saturationVerdict,
   summarize,
   summarizeCold,
   type ColdStart,
   type ModelEvidence,
   type Sample,
+  type SaturationPhase,
 } from "../src/lib/research-os/evidence-search/gates";
 
 test("percentile: nearest rank names an observed value", () => {
@@ -294,4 +296,70 @@ test("checksTable: a failing row reads as FAIL", () => {
   const table = checksTable(runtimeVerdict({ ...goodRun(), warmOne: summarize([ok(10)]) }).checks);
   assert.match(table, /\| FAIL \| warm requests at concurrency one \|/);
   assert.match(table, /at least 200/);
+});
+
+const lane = (lanes: number, over: Partial<SaturationPhase> = {}): SaturationPhase => ({
+  lanes,
+  summary: summarize(Array.from({ length: 40 }, () => ok(200))),
+  scored: 40,
+  queueFull: 0,
+  deadline: 0,
+  ...over,
+});
+
+test("saturationVerdict: queue refusals that become degraded answers pass", () => {
+  const degraded = [
+    ...Array.from({ length: 23 }, () => ok(300)),
+    ...Array.from({ length: 17 }, () => ({ ms: 300, status: 200, mode: "lexical" as const, result: "degraded" as const })),
+  ];
+  const v = saturationVerdict([lane(1), lane(16, { summary: summarize(degraded), scored: 23, queueFull: 17 })]);
+  assert.equal(v.pass, true, checksTable(v.checks));
+});
+
+test("saturationVerdict: a degraded answer no counter explains fails", () => {
+  // The worker refused nothing, so the dense ranking was lost somewhere
+  // the worker never saw, and the caller still read a working search.
+  const degraded = [
+    ...Array.from({ length: 30 }, () => ok(300)),
+    ...Array.from({ length: 10 }, () => ({ ms: 300, status: 200, mode: "lexical" as const, result: "degraded" as const })),
+  ];
+  const v = saturationVerdict([lane(1), lane(8, { summary: summarize(degraded), scored: 30, queueFull: 0 })]);
+  assert.equal(v.pass, false);
+  assert.deepEqual(
+    v.checks.filter((c) => !c.pass).map((c) => c.name),
+    ["degraded answers the worker cannot account for at concurrency 8"],
+  );
+});
+
+test("saturationVerdict: a deadline refusal explains a degraded answer as well as a full queue", () => {
+  const degraded = [...Array.from({ length: 36 }, () => ok(300)), ...Array.from({ length: 4 }, () => ({ ms: 300, status: 200, mode: "lexical" as const, result: "degraded" as const }))];
+  const v = saturationVerdict([lane(1), lane(8, { summary: summarize(degraded), scored: 36, queueFull: 1, deadline: 3 })]);
+  assert.equal(v.pass, true, checksTable(v.checks));
+});
+
+test("saturationVerdict: an error reaching the caller fails, whatever the queue did", () => {
+  const withError = [...Array.from({ length: 39 }, () => ok(300)), { ms: 300, status: 503 }];
+  const v = saturationVerdict([lane(1), lane(8, { summary: summarize(withError), scored: 39, queueFull: 1 })]);
+  assert.equal(v.pass, false);
+  assert.ok(v.checks.some((c) => c.name === "errors at concurrency 8" && !c.pass));
+});
+
+test("saturationVerdict: a request past the hard deadline fails even with no error", () => {
+  const slow = [...Array.from({ length: 39 }, () => ok(300)), ok(HARD_DEADLINE_MS + 1)];
+  const v = saturationVerdict([lane(1), lane(8, { summary: summarize(slow) })]);
+  assert.equal(v.pass, false);
+  assert.ok(v.checks.some((c) => c.name === "past the hard deadline at concurrency 8" && !c.pass));
+});
+
+test("saturationVerdict: a run answered from the fallback at one request in flight fails", () => {
+  const allLexical = Array.from({ length: 40 }, () => ({ ms: 100, status: 200, mode: "lexical" as const, result: "degraded" as const }));
+  const v = saturationVerdict([lane(1, { summary: summarize(allLexical), scored: 0, queueFull: 40 }), lane(8)]);
+  assert.equal(v.pass, false);
+  assert.ok(v.checks.some((c) => c.name === "neural share with one request in flight" && !c.pass));
+});
+
+test("saturationVerdict: one concurrency level is not a saturation run", () => {
+  const v = saturationVerdict([lane(1)]);
+  assert.equal(v.pass, false);
+  assert.ok(v.checks.some((c) => c.name === "concurrency levels" && !c.pass));
 });

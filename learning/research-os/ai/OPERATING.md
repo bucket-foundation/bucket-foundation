@@ -56,15 +56,15 @@ The app's readiness answer names the corpus revision it loaded, how many sources
 
 ## What it costs
 
-Measured on 2026-09-22, in the run recorded in [RUNTIME.md](RUNTIME.md).
+Measured on 2026-09-22 on the founder's machine, a Ryzen 7 7840HS with 60 GiB of RAM, against the 500-source corpus. Memory and threads come from `python3 -m evidence_search probe`; the rest comes from the runs recorded in [RUNTIME.md](RUNTIME.md). Another machine, or a corpus at release scale, moves all of these.
 
-| | Measured | The unit's cap |
-|---|---|---|
-| memory at peak | 3.4 GiB | `MemoryHigh=6G`, `MemoryMax=8G` |
-| threads | 8 | `CPUQuota=800%` |
-| start to first answer | 32 s | none; a start that never finishes shows as a failed unit |
-| a search, warm | 91 ms p95 | the route's own 8-second deadline |
-| vectors on disk | 12 MiB at 500 sources | the 20 GiB new-disk cap in the plan |
+| | Measured | Where | The unit's cap |
+|---|---|---|---|
+| memory at peak | 3.4 GiB | the probe | `MemoryHigh=6G`, `MemoryMax=8G` |
+| threads | 8 | the probe | `CPUQuota=800%` |
+| start to first answer | 22 s to 33 s | two runtime gate runs, 20 restarts each | none; a start that never finishes shows as a failed unit |
+| a search, warm | 91 ms to 97 ms p95 | two runtime gate runs, 200 requests each | the route's own 8-second deadline |
+| vectors on disk | 12 MiB at 500 sources | the build | the 20 GiB new-disk cap in the plan |
 
 `MemoryMax` is what stops a leak taking the machine with it. The worker is one process holding one model; a kill under memory pressure ends the worker and the app keeps answering from keyword ranking.
 
@@ -99,7 +99,9 @@ scripts/systemd/install-evidence-worker.sh local/evidence/vectors/<older revisio
 #    .env.local: RESEARCH_OS_EVIDENCE_DIR=local/evidence/<older revision>
 ```
 
-Between steps 1 and 2 the worker holds a revision the server no longer admits, so every request answers `degraded` on keyword ranking. Nothing serves the withdrawn revision at any point in the sequence, which is the property the rollback exists for.
+Between steps 1 and 2 the worker holds a revision the server no longer admits. Each piece of that window is covered: the worker refuses a corpus revision other than its own with `stale_corpus`, the server answers a worker refusal from keyword ranking marked `degraded`, and eligibility comes from the registry rather than from the files on disk.
+
+**The sequence itself has not been run.** What the three pieces do together, in the order above, against a second built revision, is asserted here and unmeasured, so the Rollback gate stays open. The bead names the run that would close it. Read the claim above as a design, and check it before a rollback that matters.
 
 A failed build leaves `.tmp-<revision>-<pid>` on disk with its manifest written. Selection skips dot-prefixed names, so it cannot become the corpus the server serves; delete it once its problem is read.
 
