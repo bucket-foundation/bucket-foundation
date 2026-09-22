@@ -34,8 +34,8 @@ const NAV: NavItem[] = [
     href: "/canon",
     label: "Canon",
     sub: [
-      { href: "/canon/search",   label: "Search",        meta: "599 claims, 9 branches" },
-      { href: "/canon/claims",   label: "All claims",    meta: "browse the cards" },
+      { href: "/canon/search",   label: "Search",        meta: "599 excerpts, 9 branches" },
+      { href: "/excerpts",   label: "Source excerpts", meta: "talks and podcasts, by concept" },
       { href: "/canon/bridges",  label: "Bridges",       meta: "17 multi-branch primitives" },
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
       { href: "/earth",          label: "Earth data",    meta: "32 indicators, 211 countries" },
