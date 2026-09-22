@@ -64,6 +64,7 @@ import {
   loadClassPeerAcceptedClaims,
   loadLearnerCorroborationEvidence,
 } from "@/lib/research-os/db";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import {
   checkSourceProvenance,
   computeDuplicateFlag,
@@ -239,7 +240,13 @@ export async function POST(req: NextRequest) {
     // once above (submitFromStage) rather than re-fetched here, since
     // nothing between that read and this write can change it.
     const transition = onProductionSubmitted(submitFromStage ?? "access", { sessionId: (body.sessionId || "").trim() || undefined });
-    await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+    try {
+      await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+    } catch (err) {
+      const mapped = evidenceErrorResponse(err);
+      if (mapped) return mapped;
+      throw err;
+    }
   }
 
   // Engine bridge task item 3: an accepted production is the engine's own
