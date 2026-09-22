@@ -157,13 +157,17 @@ begin
   end if;
 end $$;
 
--- The policies themselves, under a real role. Every case above runs as
--- superuser and proves a constraint; none of them proved that a stranger
--- is refused, which is what the migration's security half claims.
+-- The policies themselves, under the authenticated role with a JWT.
+--
+-- Every case above runs as superuser and proves a constraint. The first
+-- version of this block called graph.can_read_import_object directly and
+-- announced that it was testing the insert policy while comparing a
+-- regex literal against itself, so reverting all three policies to
+-- storage.foldername passed it. These go through storage.objects.
 do $$
 declare
   o uuid; i uuid; other uuid; n uuid; h text := repeat('a', 64); p text;
-  seen int;
+  seen int; refused boolean;
 begin
   if not exists (select 1 from information_schema.schemata where schema_name = 'storage') then
     return;
@@ -175,38 +179,134 @@ begin
           'import-stranger-' || gen_random_uuid() || '@bucket.test')
   returning id into other;
 
+  -- The object the policies are judged on.
+  insert into storage.objects (bucket_id, name, owner, owner_id)
+  values ('research-os-imports', p, o, o::text)
+  on conflict do nothing;
+
   -- The owner reads their own object.
-  assert graph.can_read_import_object(p, o), 'the owner may read their object';
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports' and name = p;
+  assert seen = 1, 'the owner reads their object through the policy, got ' || seen;
+  reset role;
 
   -- A stranger does not, while the node is private.
-  assert not graph.can_read_import_object(p, other), 'a stranger may not';
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', other::text, 'role', 'authenticated')::text, true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports' and name = p;
+  assert seen = 0, 'a stranger reads nothing, got ' || seen;
+  reset role;
 
   -- A live grant admits them.
   insert into graph.node_grants (node_id, grantee_id, role, granted_by)
   values (n, other, 'view', o);
-  assert graph.can_read_import_object(p, other), 'a live grant admits the grantee';
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', other::text, 'role', 'authenticated')::text, true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports' and name = p;
+  assert seen = 1, 'a live grant admits the grantee, got ' || seen;
+  reset role;
 
   -- An expired one does not.
   update graph.node_grants set expires_at = now() - interval '1 minute' where node_id = n and grantee_id = other;
-  assert not graph.can_read_import_object(p, other), 'an expired grant admits nobody';
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', other::text, 'role', 'authenticated')::text, true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports' and name = p;
+  assert seen = 0, 'an expired grant admits nobody, got ' || seen;
+  reset role;
 
-  -- A public node admits anyone.
+  -- A public node admits any signed-in reader.
   update graph.node_grants set expires_at = null where node_id = n and grantee_id = other;
   update graph.nodes set visibility = 'public' where id = n;
-  assert graph.can_read_import_object(p, gen_random_uuid()), 'a public node is readable';
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', gen_random_uuid()::text, 'role', 'authenticated')::text, true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports' and name = p;
+  assert seen = 1, 'a public node is readable, got ' || seen;
+  reset role;
   update graph.nodes set visibility = 'private' where id = n;
 
-  -- An object nobody recorded is nobody's.
-  assert not graph.can_read_import_object(o::text || '/' || repeat('9', 64), o), 'an unrecorded path is refused';
+  -- No claim at all: auth.uid() is null, the regex is null, nothing matches.
+  set local role authenticated;
+  perform set_config('request.jwt.claims', '', true);
+  select count(*) into seen from storage.objects where bucket_id = 'research-os-imports';
+  assert seen = 0, 'a caller with no subject reads nothing, got ' || seen;
+  reset role;
+end $$;
 
-  -- The key shape the insert policy accepts, checked as the rule rather
-  -- than through the storage API: two segments, the second lowercase hex.
-  seen := 0;
-  if (o::text || '/' || h) ~ ('^' || o::text || '/[0-9a-f]{64}$') then seen := seen + 1; end if;
-  if (o::text || '/sub/' || h) ~ ('^' || o::text || '/[0-9a-f]{64}$') then seen := seen + 1; end if;
-  if (other::text || '/' || h) ~ ('^' || o::text || '/[0-9a-f]{64}$') then seen := seen + 1; end if;
-  if (o::text || '/NOTAHASH') ~ ('^' || o::text || '/[0-9a-f]{64}$') then seen := seen + 1; end if;
-  assert seen = 1, 'only <owner>/<sha256> matches the key rule, got ' || seen;
+-- The insert policy, through the API the policy governs.
+do $$
+declare
+  o uuid; other uuid; h text := repeat('7', 64); refused int := 0;
+begin
+  if not exists (select 1 from information_schema.schemata where schema_name = 'storage') then
+    return;
+  end if;
+  select owner into o from t_ids;
+  select id into other from auth.users where email like 'import-stranger-%' limit 1;
+
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
+
+  -- The shape the rule accepts.
+  insert into storage.objects (bucket_id, name) values ('research-os-imports', o::text || '/' || h);
+
+  -- The three it refuses: a nested key, a second segment that is not a
+  -- hash, and another owner's prefix. storage.foldername checks only the
+  -- first segment, so the first two passed before the rule was anchored.
+  begin
+    insert into storage.objects (bucket_id, name) values ('research-os-imports', o::text || '/sub/' || h);
+  exception when others then refused := refused + 1;
+  end;
+  begin
+    insert into storage.objects (bucket_id, name) values ('research-os-imports', o::text || '/NOTAHASH');
+  exception when others then refused := refused + 1;
+  end;
+  begin
+    insert into storage.objects (bucket_id, name) values ('research-os-imports', other::text || '/' || h);
+  exception when others then refused := refused + 1;
+  end;
+  reset role;
+
+  assert refused = 3, 'only <owner>/<sha256> is accepted, refused ' || refused || ' of 3';
+end $$;
+
+-- The cap on objects no row records. Without it an open signup is an
+-- unmetered object store: the key rule says where a write lands and
+-- nothing about how many.
+do $$
+declare
+  o uuid; refused boolean := false; n int;
+begin
+  if not exists (select 1 from information_schema.schemata where schema_name = 'storage') then
+    return;
+  end if;
+  select owner into o from t_ids;
+
+  set local role authenticated;
+  perform set_config('request.jwt.claims', json_build_object('sub', o::text, 'role', 'authenticated')::text, true);
+
+  -- Fill the allowance with objects nothing records. lpad keeps every
+  -- name a 64-character lowercase hex string, which the key rule needs.
+  for n in 1..60 loop
+    begin
+      insert into storage.objects (bucket_id, name)
+      values ('research-os-imports', o::text || '/' || lpad(to_hex(n), 64, '0'));
+    exception when others then
+      refused := true;
+      exit;
+    end;
+  end loop;
+  reset role;
+
+  assert refused, 'an owner cannot write unrecorded objects without limit';
+
+  -- Recording one makes room again: the cap counts what no row names.
+  select count(*) into n
+  from storage.objects o2
+  where o2.bucket_id = 'research-os-imports'
+    and o2.name like o::text || '/%'
+    and not exists (select 1 from graph.import_files f where f.storage_path = o2.name);
+  assert n <= 50, 'the allowance holds at 50 unrecorded objects, found ' || n;
 end $$;
 
 -- The recursion this policy set once caused, as a standing check: a

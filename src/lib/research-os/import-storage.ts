@@ -24,16 +24,20 @@
  * WHAT THE PATH DOES NOT GUARANTEE. The name is content-addressed and
  * the object is not. Nothing in this module or in the migration reads an
  * object, hashes it, or compares it to the row, so `<owner>/<sha_of_A>`
- * may hold bytes B if a caller says so. The guarantee starts at the
- * uploader: it recomputes the digest server-side over the bytes it
- * received, refuses a mismatch, and never calls the storage API with
- * `x-upsert`. An owner can also delete an object and write different
- * bytes at the same key, because a delete policy exists and no content
- * check does, and a service-role caller bypasses every policy here.
+ * may hold bytes B if a caller says so. The guarantee has to start at
+ * the uploader, which recomputes the digest server-side over the bytes
+ * it received, refuses a mismatch, and never calls the storage API with
+ * `x-upsert`. That uploader is ros-import 2 and is not written yet, so
+ * today the property is expressible and unenforced. An owner can also
+ * delete an object and write different bytes at the same key, because a
+ * delete policy exists and no content check does, and a service-role
+ * caller bypasses every policy here.
  *
- * A repeat upload of bytes already stored answers 409 rather than
- * succeeding, because the missing UPDATE policy is deliberate. The
- * caller treats that as a hit.
+ * A repeat upload of bytes already stored answers 409, because
+ * storage.objects carries a unique key on (bucket_id, name). The caller
+ * treats that as a hit. The missing UPDATE policy is what turns an
+ * `x-upsert` request into a 403; the two are separate mechanisms and
+ * nothing here tests either.
  *
  * Nothing here uploads. This module is the naming and the bounds, and it
  * is pure so both sides of the request can use it.
