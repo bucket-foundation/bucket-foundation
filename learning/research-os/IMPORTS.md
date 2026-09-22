@@ -55,7 +55,7 @@ The node is `visibility: "private"` at `:238`, so `graph.nodes`'s `visible_selec
 
 ### The fetch
 
-`fetchTextFromUrl` at `src/lib/research-os/import-fetch.ts:54` is the only network call in the path. It is already careful in four ways.
+`fetchTextFromUrl` at `src/lib/research-os/import-fetch.ts:103` is the only network call in the path. It is already careful in four ways.
 
 | Control | Value | Where |
 |---|---|---|
@@ -72,7 +72,7 @@ Four things it does not do.
 
 **Nothing reads the origin's `robots.txt`.** The repository serves its own at `src/app/robots.ts` and reads nobody else's.
 
-**The byte cap truncates rather than refuses.** `src/lib/research-os/import-fetch.ts:64` slices the buffer at `MAX_BYTES` and parses whatever that produced, so a 4 MB page yields the first megabyte cut mid-tag. The text is then cut again to 6,000 characters at `:67`.
+**The byte cap truncates rather than refuses.** `src/lib/research-os/import-fetch.ts:113` slices the buffer at `MAX_BYTES` and parses whatever that produced, so a 4 MB page yields the first megabyte cut mid-tag. The text is then cut again to 6,000 characters at `:67`.
 
 **Nothing is fetched twice.** `provenance.fetched_at` is stamped once in `createImport` and no job re-reads the URL, so a source that changes, moves or dies leaves the node holding a copy nobody has compared to anything since.
 
