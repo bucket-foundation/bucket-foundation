@@ -488,7 +488,7 @@ function InteractiveCanonGlobeMount({
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="search canon · 599 claims across 9 branches"
+              placeholder="search 599 source excerpts across 9 branches"
               className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
@@ -1083,7 +1083,7 @@ function Drawer({
                 {/* Open the canonical page when one exists */}
                 {search ? (
                   <Link
-                    href={`/canon/claims/${search.concept}/${search.slug}`}
+                    href={`/excerpts/${search.concept}/${search.slug}`}
                     className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
                   >
                     open full claim →
@@ -1223,7 +1223,7 @@ function Drawer({
                 {relatedClaims.length === 0 && !relatedLoading && (
                   <p className="text-[12px] leading-relaxed"
                      style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
-                    No claim cards mention &ldquo;{selected.title}&rdquo; yet — try{" "}
+                    No source excerpts mention &ldquo;{selected.title}&rdquo; yet — try{" "}
                     <Link href={`/canon/search?q=${encodeURIComponent(selected.title)}`}
                           className="text-[color:var(--gold)] hover:text-[color:var(--basalt)] underline">
                       full canon search →
@@ -1235,7 +1235,7 @@ function Drawer({
                     {relatedClaims.map((c) => (
                       <li key={`${c.concept}/${c.slug}`}>
                         <Link
-                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          href={`/excerpts/${c.concept}/${c.slug}`}
                           className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
                           style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
                         >
@@ -1390,7 +1390,7 @@ function Drawer({
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 <div className="flex justify-between">
-                  <dt style={{ color: "var(--parchment-dim)" }}>Claim cards</dt>
+                  <dt style={{ color: "var(--parchment-dim)" }}>Source excerpts</dt>
                   <dd>599</dd>
                 </div>
                 <div className="flex justify-between">

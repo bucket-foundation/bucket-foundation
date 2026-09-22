@@ -12,8 +12,8 @@ export const dynamic = "force-static";
 
 const WEB_ROUTES = [
   { path: "/canon",                 what: "7-branch grid + interactive globe — entry point" },
-  { path: "/canon/search",          what: "Type a question, get ranked claim cards" },
-  { path: "/canon/claims",          what: "All 599 curated claim cards" },
+  { path: "/canon/search",          what: "Type a question, get ranked source excerpts" },
+  { path: "/excerpts",          what: "All 599 source excerpts from talks and podcasts" },
   { path: "/canon/bridges",         what: "17 multi-branch primitives (cross-domain isomorphisms)" },
   { path: "/canon/graph",           what: "Knowledge graph: 1,133 nodes, PageRank rankings" },
   { path: "/canon/timeline",        what: "Globe through time: 50 events 570 BCE → 2020 CE" },
@@ -57,7 +57,7 @@ const REPOS = [
     name: "bucket-foundation/bucket-foundation",
     url: "https://github.com/bucket-foundation/bucket-foundation",
     role: "Main site + canon data + tools",
-    contents: "The Next.js app you're using. Canon claim cards (bucket-canon/), detected bridges (bucket-canon/_bridges/), embeddings + trained ML artifacts (_intake/), MCP server (mcp-server/), pipeline tools.",
+    contents: "The Next.js app you're using. Source excerpts (bucket-canon/*/sub-claims/), detected bridges (bucket-canon/_bridges/), embeddings + trained ML artifacts (_intake/), MCP server (mcp-server/), pipeline tools.",
   },
   {
     name: "AGFarms/x402-research-gateway",
@@ -70,7 +70,7 @@ const REPOS = [
 const AGENT_INTEGRATIONS = [
   {
     title: "Claude Code · Claude Desktop · any MCP client",
-    desc: "One MCP server, seven tools. Connects local canon files AND the bucket.foundation research API in one server. (Previously split across two repos — consolidated.)",
+    desc: "One MCP server, seven tools. Connects local canon files AND the bucket.foundation research API in one server. (Previously split across two repos, now one.)",
     options: [
       {
         name: "bucket-mcp",
@@ -95,7 +95,7 @@ export default function AccessPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg"
            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
-          Bucket exists in three layers — a website (this page), an open
+          Bucket exists in three layers: a website (this page), an open
           protocol (the x402 rail), and four GitHub repos (the source).
           End users read the canon. Researchers cite it. AI agents query
           it. Everyone accesses the same data.
@@ -237,7 +237,7 @@ export default function AccessPage() {
           </div>
           <p className="text-sm"
              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
-            Public Google Drive folder mirroring the canon — <code>bucket-canon/</code>{" "}
+            Public Google Drive folder mirroring the canon: <code>bucket-canon/</code>{" "}
             in this repo. PDFs (which don&apos;t belong in git), large datasets,
             Figma exports, scanned manuscripts. Same branch tree as the repo.
           </p>
@@ -286,7 +286,7 @@ export default function AccessPage() {
               Read <a href="/llms.txt" target="_blank" rel="noreferrer" className="underline">/llms.txt</a>.
               Hit <code>/api/canon/search</code> or{" "}
               <code>/api/research</code>. Or install the MCP server.
-              No wallet, no key, no auth — anonymous rate-limit only.
+              No wallet, no key, no auth: an anonymous rate limit only.
             </p>
           </div>
         </div>

@@ -25,7 +25,6 @@ import { join, resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { getAllClaims, type ClaimCard } from "../../../src/lib/canon-claims";
 import { loadPrimaryPapers, authorsShort, type PrimaryPaper } from "../../../src/lib/canon-primary";
-import { isLawFolder } from "../../../src/lib/research-os/ingest/canon";
 import { academyNodeSlug } from "../../../src/lib/research-os/ingest/academy";
 import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../../src/lib/research-os/ingest/types";
 import { Linker } from "../../../src/lib/research-os/ingest/link";
@@ -104,17 +103,21 @@ function main() {
     push({
       slug,
       title,
-      kind: isLawFolder(c.concept) ? "law" : "fact",
+      // Every card is a transcript passage with a video and a timestamp: an
+      // excerpt, whatever its folder is called (founder decision 2026-09-21).
+      kind: "excerpt",
       tier,
       branch: c.branch,
       summary: c.excerpt.slice(0, 600) || null,
       labels: { en: { title } },
-      provenance: { type: "canon_claim", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
+      provenance: { type: "source_excerpt", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
     });
     counts.claims++;
     edges.push({ fromSlug: slug, toSlug: cs, kind: "example_of", confidence: 1, confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "claim_in_concept" } });
     for (const h of hits) {
-      edges.push({ fromSlug: slug, toSlug: h.id, kind: "derives_from", confidence: Math.min(0.9, 0.5 + h.score), confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "lexical", score: h.score, shared: h.shared } });
+      // An excerpt mentions the atoms its text matched and rests on none, so
+      // these are cites edges, which the prime decomposition does not follow.
+      edges.push({ fromSlug: slug, toSlug: h.id, kind: "cites", confidence: Math.min(0.9, 0.5 + h.score), confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "lexical", score: h.score, shared: h.shared } });
       counts.claimLinks++;
     }
   }

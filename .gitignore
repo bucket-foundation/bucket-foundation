@@ -178,3 +178,10 @@ learning/.buildloop/run.log
 # Playwright
 /test-results/
 /playwright-report/
+
+# Signed-in screenshot runs (scripts/research-os/shots.mjs)
+ros-shots/
+session.json
+
+# Launch-list signups in local dev (src/lib/waitlist/store.ts)
+.data/

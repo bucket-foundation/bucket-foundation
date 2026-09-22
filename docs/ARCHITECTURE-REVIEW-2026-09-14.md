@@ -29,14 +29,19 @@ P0 identity
 
 P1 cost
 5. x402 daily spend cap is a module-level variable in a serverless function (`src/app/api/research/route.ts:92`); each warm instance has its own counter.
+
 6. Viatika meter stub returns `balanceUsd: 999` (`src/lib/meter.ts:29-33`); `/api/chat` has a session gate and no per-user limit.
+
 7. hypothesis-engine has no dollar ceiling per campaign, only reactive rate-limit backoff.
 
 P1 reliability
 8. Tutor LLM path and all mirror jobs run on the founder laptop. Laptop sleep = production outage.
-9. `academy_profiles` DDL lives in `scripts/sql/`, never in `supabase/migrations/`; a fresh env misses it. Env var drift: `SUPABASE_SERVICE_ROLE_KEY` vs `SUPABASE_SERVICE_KEY` (`hte/corpus/production.py:748`).
+
+9. `academy_profiles` DDL lives in `scripts/sql/`, never in `supabase/migrations/`; a fresh env misses it. Env var drift: `SUPABASE_SERVICE_ROLE_KEY` vs `SUPABASE_SERVICE_KEY` (`tools/hypothesis-engine/hte/corpus/production.py:1089`).
+
 10. This branch has 2 of 18 migrations; code depending on the `graph` schema ships here anyway.
-11. `photon-api/server_pg.py:18-22` falls back to hardcoded `bucket/bucket` credentials.
+
+11. `services/photon-api/server_pg.py:19-23` falls back to hardcoded `bucket/bucket` credentials.
 
 P1 engineering
 12. 40 research proxies duplicate the same 135-220 line scaffold (5,815 lines). One fix = 40 edits.

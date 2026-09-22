@@ -116,7 +116,7 @@ export const DEPTH_LADDER: DepthRung[] = [
     surfaces: [
       {
         label: "canon + claims",
-        href: "/canon/claims",
+        href: "/excerpts",
         note: "Read the primary derivations and the claim graph at the boundary of a branch.",
       },
       {
