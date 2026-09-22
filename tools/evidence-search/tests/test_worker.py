@@ -178,7 +178,22 @@ class Http(unittest.TestCase):
         self.assertEqual(self.call("POST", "/score", raw=b"not json")[0], 400)
         self.assertEqual(self.call("POST", "/score", request(corpusRevision="f" * 64))[0], 409)
         self.assertEqual(self.call("GET", "/elsewhere")[0], 404)
-        self.assertEqual(self.call("POST", "/score", raw=b"x" * (2 * 1024 * 1024 + 1))[0], 413)
+        self.assertEqual(self.oversize(), 413)
+
+    def oversize(self):
+        # The length header alone decides: sending the full body would race the
+        # server's early answer into a broken pipe.
+        import http.client
+
+        conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=5)
+        conn.putrequest("POST", "/score")
+        conn.putheader("x-evidence-worker-key", SECRET)
+        conn.putheader("content-length", str(2 * 1024 * 1024 + 1))
+        conn.endheaders()
+        conn.send(b"{}")
+        status = conn.getresponse().status
+        conn.close()
+        return status
 
 
 class Binding(unittest.TestCase):
