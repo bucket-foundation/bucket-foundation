@@ -161,7 +161,7 @@ export default function ResearchOsReviewPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
       setNotice(
         res.ok
           ? `${decision === "approved" ? "Approved" : "Returned"}.`

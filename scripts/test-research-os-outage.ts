@@ -81,6 +81,24 @@ export function emittedCodes(roots: string[]): Set<string> {
 
 /** Every `.ts` and `.tsx` under these roots. The first version walked
  * `.tsx` alone, so a client in a `.ts` file was invisible by construction. */
+/** The source with every comment blanked and every offset kept, so a
+ * position found in it is a position in the real file. A route named in
+ * a docstring may be written in backticks, which no test on the
+ * preceding character can tell from code. */
+function withoutComments(src: string, source: ts.SourceFile): string {
+  const out = src.split("");
+  const blank = (from: number, to: number): void => {
+    for (let i = from; i < to && i < out.length; i += 1) if (out[i] !== "\n") out[i] = " ";
+  };
+  const visit = (n: ts.Node): void => {
+    for (const r of ts.getLeadingCommentRanges(src, n.getFullStart()) ?? []) blank(r.pos, r.end);
+    for (const r of ts.getTrailingCommentRanges(src, n.getEnd()) ?? []) blank(r.pos, r.end);
+    ts.forEachChild(n, visit);
+  };
+  ts.forEachChild(source, visit);
+  return out.join("");
+}
+
 function clientFiles(roots: string[]): string[] {
   const out: string[] = [];
   const walk = (dir: string): void => {
@@ -219,33 +237,41 @@ test("every call to a route that can answer busy consults the rule", () => {
   assert.ok(transientRoutes.size > 0, "some route answers a transient 503, or this gate checks nothing");
 
   const offenders: string[] = [];
-  for (const file of clientFiles([path.join(root, "src/app/research-os"), path.join(root, "src/components")])) {
+  // src/lib/research-os too: a request wrapper there fetches a transient
+  // route and its callers carry no route string, so dropping the
+  // `fetch(` precondition moved the same hole to a different boundary.
+  for (const file of clientFiles([
+    path.join(root, "src/app/research-os"),
+    path.join(root, "src/components"),
+    path.join(root, "src/lib/research-os"),
+  ])) {
     const src = fs.readFileSync(file, "utf8");
     const source = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true);
 
-    // Every position that names a transient-capable route, literal or
-    // built from a template.
-    // Inside a string, so the route names in a docstring stay prose. A
-    // path that is fetched opens with a quote, a backtick, or the close
-    // of a template expression.
-    const inString = (at: number): boolean => '"\'`}'.includes(src[at - 1] ?? "");
+    // Comments blanked, so a route named in a docstring stays prose. A
+    // path in a docstring may be written in backticks, which no test on
+    // the preceding character can tell from code.
+    const code = withoutComments(src, source);
     const marks: number[] = [];
     const route = /\/api\/research-os\/([a-z-]+)/g;
-    for (let m = route.exec(src); m !== null; m = route.exec(src)) {
-      if (transientRoutes.has(m[1]) && inString(m.index)) marks.push(m.index);
+    for (let m = route.exec(code); m !== null; m = route.exec(code)) {
+      if (transientRoutes.has(m[1])) marks.push(m.index);
     }
     const dynamic = /\/api\/research-os\/\$\{/g;
-    for (let m = dynamic.exec(src); m !== null; m = dynamic.exec(src)) {
-      if (inString(m.index)) marks.push(m.index);
-    }
+    for (let m = dynamic.exec(code); m !== null; m = dynamic.exec(code)) marks.push(m.index);
     marks.sort((x, y) => x - y);
     if (marks.length === 0) continue;
 
     // Each call's window ends where the next one begins, so one guard
     // covers one call and no more.
+    // Identifiers, because the guard was matched as raw text and a
+    // comment carrying the word satisfied the gate.
     const guards: number[] = [];
-    const guard = /isTransientOutage|readErrorCode/g;
-    for (let m = guard.exec(src); m !== null; m = guard.exec(src)) guards.push(m.index);
+    const collect = (n: ts.Node): void => {
+      if (ts.isIdentifier(n) && (n.text === "isTransientOutage" || n.text === "readErrorCode")) guards.push(n.getStart(source));
+      ts.forEachChild(n, collect);
+    };
+    ts.forEachChild(source, collect);
 
     for (let i = 0; i < marks.length; i += 1) {
       const from = marks[i];

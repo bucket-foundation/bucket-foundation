@@ -51,6 +51,9 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // search is off until it does.
   "profile_unavailable",
   "eligibility_unavailable",
+  // A corpus file that could not be read this minute. The corpus that was
+  // never built is corpus_unavailable, below, and that one stays.
+  "corpus_read_failed",
 ]);
 
 /**

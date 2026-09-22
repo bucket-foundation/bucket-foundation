@@ -30,6 +30,17 @@ import { MAX_CARDS, type EvidenceCard, type EvidenceSearchRequest, type Evidence
 export const EVIDENCE_DIR = "RESEARCH_OS_EVIDENCE_DIR";
 const PAGE = 500;
 
+/** A corpus read that did not complete this minute. A retry may clear it. */
+export class CorpusReadFailed extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "CorpusReadFailed";
+    Object.setPrototypeOf(this, CorpusReadFailed.prototype);
+  }
+}
+
+/** A corpus that was never built here, or one whose files do not validate.
+ * No retry changes either. */
 export class CorpusUnavailable extends Error {
   constructor(message: string) {
     super(message);
@@ -75,7 +86,11 @@ export function readCorpus(directory: string, policy: RightsPolicy, policySha256
       "passages.jsonl": readFileSync(path.join(directory, "passages.jsonl"), "utf8"),
     };
   } catch (e) {
-    throw new CorpusUnavailable(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
+    // A read that did not complete. newestCorpusDir picks by mtime, so a
+    // corpus mid-rebuild is chosen while its files are still being
+    // written, and the next request can succeed. Reporting that as a
+    // corpus that was never built refuses a retry that would work.
+    throw new CorpusReadFailed(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
   }
   const problems = validateCorpus(manifest, files, policy, policySha256);
   if (problems.length) throw new CorpusUnavailable(`${directory}: ${problems.slice(0, 3).join("; ")}`);
@@ -101,7 +116,12 @@ export function loadCorpus(env: Record<string, string | undefined> = process.env
   if (!directory) throw new CorpusUnavailable(`no built corpus under ${root}; set ${EVIDENCE_DIR}`);
   if (cached && cached.directory === directory) return cached;
   const policyPath = path.join(process.cwd(), "learning", "research-os", "ai", "rights-policy.json");
-  const raw = readFileSync(policyPath);
+  let raw: Buffer;
+  try {
+    raw = readFileSync(policyPath);
+  } catch (e) {
+    throw new CorpusReadFailed(`${policyPath}: ${e instanceof Error ? e.message : String(e)}`);
+  }
   cached = readCorpus(directory, parsePolicy(JSON.parse(raw.toString("utf8"))), sha256Hex(raw));
   return cached;
 }
