@@ -35,7 +35,7 @@ x-bucket-source: canon
     "source_id":     "canon:mitochondria/peter-mitchell-1961",
     "provider":      "bucket-foundation",
     "license":       "CC-BY-4.0",
-    "canonical_url": "https://www.bucket.foundation/canon/claims/mitochondria/peter-mitchell-1961"
+    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/peter-mitchell-1961"
   },
   "receipt": {
     "tier":      "insight",

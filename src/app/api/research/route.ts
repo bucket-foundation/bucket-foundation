@@ -289,7 +289,7 @@ function transcriptCandidates(q: string) {
       title: r.entry.title,
       snippet: r.entry.text.slice(0, 400),
       score: Number(r.score.toFixed(3)),
-      canonical_url: `https://www.bucket.foundation/canon/claims/${r.entry.concept}/${r.entry.slug}`,
+      canonical_url: `https://www.bucket.foundation/excerpts/${r.entry.concept}/${r.entry.slug}`,
       evidence_count: ev ? ev.evidence.length : 0,
     };
   });
@@ -462,7 +462,7 @@ function canonFallback(q: string, tier: string) {
         provider: "bucket-foundation",
         retrieved_at: now,
         license: "CC-BY-4.0",
-        canonical_url: `https://www.bucket.foundation/canon/claims/${top.concept}/${top.slug}`,
+        canonical_url: `https://www.bucket.foundation/excerpts/${top.concept}/${top.slug}`,
         title: top.title,
         note: "unverified auto-segmented transcript — one partial source, not canon",
       },

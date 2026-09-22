@@ -90,7 +90,7 @@ export default function Page() {
             style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
           >
             Multi-branch primitives discovered by purely structural analysis —
-            embedding every claim card, clustering the semantic space, and
+            embedding every source excerpt, clustering the semantic space, and
             keeping only clusters whose members span three or more canon
             branches. The clusters emerged from semantic distance alone; an LLM
             then named each underlying primitive. These are working hypotheses,
