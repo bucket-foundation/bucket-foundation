@@ -22,7 +22,7 @@ export const FRONTIER_NODE_KINDS: NodeKind[] = ["hypothesis", "extension", "repl
 /** Work built on ideas, which the walk visits beside the ideas themselves. */
 const WORK_NODE_KINDS = new Set(["production", "hypothesis", "extension", "replication", "peer_review"]);
 
-/** An idea (idea.ts, the rule the decomposition uses) or work built on one. Canon tags, digests, and evidence stay out. */
+/** An idea (idea.ts, the rule the decomposition uses) or work built on one. Canon tags and digests stay out, with the rest of the evidence. */
 function walkable(n: GraphNode): boolean {
   if (WORK_NODE_KINDS.has(n.kind)) return true;
   const type = (n.provenance as { type?: unknown } | undefined)?.type;

@@ -1,5 +1,7 @@
 # Patent Data Licensing
 
+> **Canonical home, set 2026-09-19.** The founder's correction: "the x402 feed402 patents work is a different bucket org repo." The serving side of this file, the routes, the pricing and the redistribution terms, belongs to `bucket-foundation/x402-research-gateway` and `bucket-foundation/feed402`, tracked as gateway issues #67 and #68 and feed402 issue #12. This copy stays as the record of what was designed here and takes no new serving work. What Research OS builds from it lives in `learning/research-os/PATENTS.md`.
+
 Per-Jurisdiction Redistribution Matrix.
 
 **Bead:** bkt-z6k (parent epic bkt-tfu)

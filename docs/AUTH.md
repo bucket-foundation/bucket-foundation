@@ -47,6 +47,24 @@ npm run db:local:stop
 
 Put the local `API_URL`, `ANON_KEY`, and `SERVICE_ROLE_KEY` from `db:local:status` into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. Sign-in codes land in Inbucket at http://localhost:54324. The hosted project gets the same migrations with `npx supabase link` and `npx supabase db push`; `graph` and `bucket` must be in its exposed schemas (Settings → API), which `config.toml` sets for the local stack.
 
+## Launch List
+
+Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` decides: `BUCKET_SIGNIN_OPEN=1` opens sign-in on production at launch, and `0` shows the launch list anywhere. The flag is read at build time, so a change needs a redeploy.
+
+| Piece | File | Job |
+|---|---|---|
+| Rules | `src/lib/waitlist/core.ts` | Validation, one record per address, CSV export with formula cells defused. Tested in `scripts/test-waitlist.ts` (`npm run test:waitlist`). |
+| Store | `src/lib/waitlist/store.ts` | The private Vercel Blob store `bucket-foundation-blob`, one JSON object per address at `waitlist/<sha256(email)>.json` on production and `waitlist-preview/` on previews. Off Vercel with no Blob credentials it writes the same layout under `.data/waitlist-local/`. |
+| Route | `src/app/api/waitlist/route.ts` | `POST` adds or updates a signup and answers the same for new and known addresses; a filled honeypot field saves the signup under `suspect/` for review; 503 when no store is connected. `GET` with `Authorization: Bearer <WAITLIST_ADMIN_KEY>` returns the list and the suspects, `?format=csv` the list as a download. |
+| List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails, and the signups the bot filter held. Asks for the list key. |
+| Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` asks Supabase to sign in existing accounts only (`shouldCreateUser` off) and answers the same for a known and an unknown address. The flag comes from the browser; whether the project accepts new accounts is GoTrue's signup setting (`GOTRUE_DISABLE_SIGNUP` on the self-hosted stack), which is the server-side control. |
+
+The Blob store keeps every object until someone deletes it; it lives on the Vercel account, apart from the Hetzner box. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
+
+```bash
+curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundation/api/waitlist?format=csv" -o launch-list.csv
+```
+
 ## Retired
 
 NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/knowledge`, `/library`, `/research`, and `/assets` (the bucket 1.0 publish path); a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.

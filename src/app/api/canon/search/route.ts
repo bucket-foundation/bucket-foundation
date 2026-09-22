@@ -1,7 +1,7 @@
 /**
  * bucket.foundation, /api/canon/search
  * --------------------------------------
- * Semantic + lexical search across the 599 curated canon claim cards
+ * Semantic + lexical search across the 599 source excerpts (bucket-canon/<branch>/sub-claims/)
  * and 18 detected multi-branch primitive bridges.
  *
  * This is the **AI-agent-facing canon API**. Both humans (via the
@@ -32,7 +32,7 @@
  * "title": "Claim...",
  * "score": 12.0,
  * "tier": "nucleus",
- * "url": "https://bucket.foundation/canon/claims/topology/001-...",
+ * "url": "https://bucket.foundation/excerpts/topology/001-...",
  * "excerpt": "...",
  * "evidence_count": 10
  * },
@@ -126,7 +126,7 @@ export async function GET(req: NextRequest) {
       slug: r.entry.slug,
       title: r.entry.title,
       score: r.score,
-      url: `https://bucket.foundation/canon/claims/${r.entry.concept}/${r.entry.slug}`,
+      url: `https://bucket.foundation/excerpts/${r.entry.concept}/${r.entry.slug}`,
       excerpt: r.entry.text.slice(0, 400),
       evidence_count: ev ? ev.evidence.length : 0,
     };

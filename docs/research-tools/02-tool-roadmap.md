@@ -362,4 +362,3 @@ Bucket thesis.
 Core invariant: **every tool run emits the same `{data, citation, receipt, cite, provenance,
 canon_tier}` envelope `/api/research` already returns**, making every output born-citeable and
 Run→Publish a one-button hop.
-```

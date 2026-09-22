@@ -13,12 +13,19 @@
 # the commit being pushed, and a base. On a feature branch the base is its
 # merge base with origin/dev, so every site change the branch carries counts:
 # Vercel compares with the last successful deployment, which after a failed
-# build lies further back than the remote's tip. On dev and main there is no
-# base, so the gate answers build unless the message or branch skips.
+# build lies further back than the remote's tip. On dev and main the base is
+# the remote's current tip, which is what the push adds to; on a first push
+# of those branches there is none, and the gate falls back to the pushed
+# commit's first parent when that commit is a merge or a squash merge.
 #
 # Lint and the type check read the working tree, so they vouch for the
 # pushed commit only when HEAD is that commit and no file they read differs
 # from it. Otherwise the push is refused with the reason.
+#
+# A push that Vercel would skip still gets the check when it carries code
+# lint or the type checker reads. [skip ci] holds back a build; it says
+# nothing about whether the code compiles, and a branch whose last push
+# carried [skip ci] reaches a pull request unchecked otherwise.
 #
 # Bypass: AGF_PREPUSH_SKIP=1 git push ...
 
@@ -40,7 +47,10 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   branch="${remote_ref#refs/heads/}"
   message="$(git log -1 --format=%B "$local_sha")"
   if [[ "$branch" == "dev" || "$branch" == "main" ]]; then
+    # The remote's current tip is exactly what this push adds to, which is
+    # a better base than the gate's own fallback and is known here.
     base=""
+    [[ "$remote_sha" != "$ZERO" ]] && base="$remote_sha"
   else
     base="$(git merge-base "$local_sha" origin/dev 2>/dev/null || true)"
   fi
@@ -68,6 +78,16 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     fi
     needs_check="yes"
     pushed_shas="$pushed_shas $local_sha"
+  else
+    # The gate skips the build. Run the check anyway when the push carries
+    # code the linter and the type checker read.
+    code="$(git diff --name-only "${base:-$local_sha^}" "$local_sha" -- \
+      '*.ts' '*.tsx' '*.js' '*.jsx' '*.mjs' '*.cjs' 'package.json' 2>/dev/null | head -1)"
+    if [[ -n "$code" ]]; then
+      echo "[pre-push] $branch: Vercel would skip this push, and it carries code ($code)"
+      needs_check="yes"
+      pushed_shas="$pushed_shas $local_sha"
+    fi
   fi
 done
 

@@ -22,7 +22,11 @@ export type NodeKind =
   // an accepted production of a new claim; a canon figure; a site on the globe.
   | "production"
   | "figure"
-  | "site";
+  | "site"
+  // a passage from a talk or podcast with its video and timestamp, the
+  // transcript cards under bucket-canon/*/sub-claims/; it cites atoms and
+  // rests on none (founder decision 2026-09-21).
+  | "excerpt";
 
 export type EdgeKind =
   | "prerequisite"
