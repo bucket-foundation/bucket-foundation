@@ -96,10 +96,17 @@ export async function GET(req: NextRequest) {
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
       const staffIds = classes.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
       if (staffIds.length) {
+        // Many members per class, so this overflows the row cap on an
+        // ordinary staff class list, and the order has to be total.
+        // class_members' primary key is (class_id, learner_id), so one
+        // learner enrolled in two classes of the chunk appears twice and
+        // learner_id alone leaves a tie group. A page boundary landing
+        // inside one repeats a row and skips another, and the skipped
+        // learner is missing from the roster count with no error.
         let members: { learner_id: string }[];
         try {
           members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
-            svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+            svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
           );
         } catch (err) {
           console.error("[research-os/graph] roster read failed:", err instanceof Error ? err.message : err);

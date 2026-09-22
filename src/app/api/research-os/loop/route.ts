@@ -90,10 +90,14 @@ export async function GET(req: NextRequest) {
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
       // An access-store failure leaves the connection counts unknown. Zero
       // would read as a learner with nothing connected (Bucket critic C25).
+      // The nulls carry that: internalizationState renders "connections
+      // unavailable" off `held === null` and internalizationDetail
+      // renders "bridges unavailable" off `bridges === null`, so the
+      // learner is told the read did not finish.
       internalization: {
         nodes: atLeast("internalization"),
         ...("unavailable" in connections && connections.unavailable
-          ? { held: null, bridges: null, nextBridge: null, connectionsUnavailable: true }
+          ? { held: null, bridges: null, nextBridge: null }
           : { held: connections.held.length, bridges: connections.bridges.length, nextBridge: connections.bridges[0]?.next ?? null }),
       },
       production: {

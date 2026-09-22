@@ -311,7 +311,10 @@ export default function ResearchOsWorkspacePage() {
     // guess is worse than not redirecting, and AssignmentsBanner reports
     // the failure on the same screen.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
-      .then(async (r) => (r.ok ? r.json() : { assignments: [], transient: isTransientOutage(r.status, await readErrorCode(r)) }))
+      // The rule was asked here and its answer dropped into a field
+      // nothing read, which satisfied the outage gate and showed the
+      // learner nothing. The banner below does the reporting.
+      .then((r) => (r.ok ? r.json() : { assignments: [] }))
       .then((j: { assignments?: LearnerAssignment[] }) => {
         // A target the learner may not read carries no slug. Redirecting
         // to `?target=` would land back here with an empty value, which

@@ -26,7 +26,10 @@ export default function TargetPicker() {
   const [hits, setHits] = useState<Hit[]>([]);
   const [searchNote, setSearchNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | null>(null);
+  // "outage" is a read a retry may clear; "unavailable" is one it will
+  // not. The rule was asked and its answer thrown away here, so both
+  // rendered the same dead end.
+  const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | "outage" | null>(null);
 
   useEffect(() => {
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
@@ -36,8 +39,10 @@ export default function TargetPicker() {
         if (!r.ok) return { unavailable: true as const, transient: isTransientOutage(r.status, await readErrorCode(r)) };
         return (await r.json()) as { assignments?: Assignment[] };
       })
-      .then((j) => ("unavailable" in j ? setAssignments("unavailable") : setAssignments(j.assignments ?? [])))
-      .catch(() => setAssignments("unavailable"));
+      .then((j) => ("unavailable" in j ? setAssignments(j.transient ? "outage" : "unavailable") : setAssignments(j.assignments ?? [])))
+      // A fetch that rejects never reached the server, which a retry may
+      // clear.
+      .catch(() => setAssignments("outage"));
   }, []);
 
   useEffect(() => {
@@ -97,6 +102,8 @@ export default function TargetPicker() {
         <Panel title="your assignments">
           {assignments === null ? (
             <LoadingState />
+          ) : assignments === "outage" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">{OUTAGE_COPY.body}</p>
           ) : assignments === "unavailable" ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">Assignments could not be read right now.</p>
           ) : assignments.length === 0 ? (

@@ -205,6 +205,77 @@ test("the two messages say different things, and the retryable one offers a retr
   assert.ok(!/try again/i.test(UNCONFIGURED_COPY.body), "a deployment with no graph is not worth retrying");
 });
 
+/**
+ * Calls that reach a transient-capable route and render nothing of
+ * their own, with what renders the failure instead.
+ *
+ * A call like this used to satisfy the gate by computing the rule's
+ * answer into a field nothing read. That passes the check and shows the
+ * learner nothing, which is worse than failing it: the gate reports a
+ * guarded call and the screen stays silent. So the dead computation
+ * goes and the reason is written here, where `proof` has to match the
+ * file that does the reporting.
+ */
+const SILENT: { file: string; route: string; because: string; reportedBy: string; proof: RegExp }[] = [
+  {
+    file: "src/app/research-os/(app)/workspace/page.tsx",
+    route: "assignments",
+    because: "this read only decides whether to redirect to an open assignment, and a failure leaves the learner where they are. It renders nothing, so a second outage message here would be the same failure twice on one screen",
+    reportedBy: "src/app/research-os/(app)/workspace/AssignmentsBanner.tsx",
+    // Anchored on a call. An earlier version matched the bare name, so
+    // renaming the helper to isTransientOutageX kept the proof passing.
+    proof: /\bisTransientOutage\s*\(/,
+  },
+];
+
+test("a silent call names what reports its failure, and that still reports it", () => {
+  for (const e of SILENT) {
+    const reporter = path.join(root, e.reportedBy);
+    assert.ok(fs.existsSync(reporter), `${e.file} says ${e.reportedBy} reports the failure, and it does not exist`);
+    assert.match(fs.readFileSync(reporter, "utf8"), e.proof, `${e.reportedBy} no longer consults the rule, so ${e.file} reports nothing at all`);
+    assert.ok(e.because.length > 40, `${e.file} needs a real reason`);
+  }
+});
+
+/**
+ * The name a function expression is bound to, through any wrapper.
+ *
+ * `const load = useCallback(async (url) => {...}, [])` binds the arrow
+ * to the useCallback call, so a rule reading the immediate parent found
+ * no name and the helper went undetected. Six helpers in this tree are
+ * written that way, including `loadRoute` and `loadProbe`; a route
+ * string handed to one of them was credited to whatever guard happened
+ * to sit in the window.
+ */
+function namedBinding(n: ts.Node): string | null {
+  let up: ts.Node = n;
+  while (up.parent && (ts.isCallExpression(up.parent) || ts.isParenthesizedExpression(up.parent) || ts.isAsExpression(up.parent))) {
+    up = up.parent;
+  }
+  if (up.parent && ts.isVariableDeclaration(up.parent) && ts.isIdentifier(up.parent.name)) return up.parent.name.text;
+  return null;
+}
+
+test("a helper bound through useCallback is still a helper", () => {
+  // The shape the old rule missed, with the guard and the fetch inside.
+  const sf = ts.createSourceFile(
+    "probe.tsx",
+    `const load = useCallback(async (u: string) => {
+       const r = await fetch(u);
+       if (!r.ok) return isTransientOutage(r.status, await readErrorCode(r));
+     }, []);`,
+    ts.ScriptTarget.Latest,
+    true,
+  );
+  const names: (string | null)[] = [];
+  const visit = (n: ts.Node): void => {
+    if (ts.isArrowFunction(n)) names.push(namedBinding(n));
+    ts.forEachChild(n, visit);
+  };
+  ts.forEachChild(sf, visit);
+  assert.deepEqual(names, ["load"], "the arrow inside useCallback is bound to `load`");
+});
+
 test("every call to a route that can answer busy consults the rule", () => {
   // Per call, because per function is still a hatch: two fetches in one
   // body share one guard, so a guarded read immunized an unguarded write
@@ -229,16 +300,16 @@ test("every call to a route that can answer busy consults the rule", () => {
     // path that is fetched opens with a quote, a backtick, or the close
     // of a template expression.
     const inString = (at: number): boolean => '"\'`}'.includes(src[at - 1] ?? "");
-    const marks: number[] = [];
+    const marks: { at: number; route: string }[] = [];
     const route = /\/api\/research-os\/([a-z-]+)/g;
     for (let m = route.exec(src); m !== null; m = route.exec(src)) {
-      if (transientRoutes.has(m[1]) && inString(m.index)) marks.push(m.index);
+      if (transientRoutes.has(m[1]) && inString(m.index)) marks.push({ at: m.index, route: m[1] });
     }
     const dynamic = /\/api\/research-os\/\$\{/g;
     for (let m = dynamic.exec(src); m !== null; m = dynamic.exec(src)) {
-      if (inString(m.index)) marks.push(m.index);
+      if (inString(m.index)) marks.push({ at: m.index, route: "(built from a template)" });
     }
-    marks.sort((x, y) => x - y);
+    marks.sort((x, y) => x.at - y.at);
     if (marks.length === 0) continue;
 
     // Each call's window ends where the next one begins, so one guard
@@ -255,11 +326,7 @@ test("every call to a route that can answer busy consults the rule", () => {
     const helpers = new Set<string>();
     const findHelpers = (n: ts.Node): void => {
       if ((ts.isFunctionDeclaration(n) || ts.isArrowFunction(n) || ts.isFunctionExpression(n)) && n.body) {
-        const name = ts.isFunctionDeclaration(n) && n.name
-          ? n.name.text
-          : n.parent && ts.isVariableDeclaration(n.parent) && ts.isIdentifier(n.parent.name)
-            ? n.parent.name.text
-            : null;
+        const name = ts.isFunctionDeclaration(n) && n.name ? n.name.text : namedBinding(n);
         if (name && /isTransientOutage|readErrorCode/.test(n.body.getText(source)) && /\bfetch\s*\(/.test(n.body.getText(source))) {
           helpers.add(name);
         }
@@ -279,13 +346,15 @@ test("every call to a route that can answer busy consults the rule", () => {
     ts.forEachChild(source, findCalls);
     const viaHelper = (at: number): boolean => helperSpans.some(([lo, hi]) => at >= lo && at < hi);
 
+    const rel = path.relative(root, file);
     for (let i = 0; i < marks.length; i += 1) {
-      const from = marks[i];
-      const to = i + 1 < marks.length ? marks[i + 1] : src.length;
+      const from = marks[i].at;
+      const to = i + 1 < marks.length ? marks[i + 1].at : src.length;
       if (viaHelper(from)) continue;
+      if (SILENT.some((e) => e.file === rel && e.route === marks[i].route)) continue;
       if (!guards.some((g) => g > from && g < to)) {
         const { line } = source.getLineAndCharacterOfPosition(from);
-        offenders.push(`${path.relative(root, file)}:${line + 1}`);
+        offenders.push(`${rel}:${line + 1}`);
       }
     }
   }
