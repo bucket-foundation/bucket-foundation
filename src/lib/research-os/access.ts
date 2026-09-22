@@ -13,6 +13,18 @@
 
 export type Visibility = "public" | "private" | "shared";
 
+const KNOWN_VISIBILITY: Visibility[] = ["public", "private", "shared"];
+
+/**
+ * A visibility this code does not know is treated as private.
+ *
+ * It lives here rather than in read-access.ts because db.ts needs it
+ * too, and read-access.ts imports db.ts. access.ts imports nothing.
+ */
+export function readVisibility(value: string | null | undefined): Visibility {
+  return KNOWN_VISIBILITY.includes(value as Visibility) ? (value as Visibility) : "private";
+}
+
 /** What a grant lets a person do. `view` reads; the rest each imply view. */
 export type GrantRole = "view" | "continue" | "extend" | "cite" | "replicate" | "review";
 

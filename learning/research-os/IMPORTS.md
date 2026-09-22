@@ -28,7 +28,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
 
 ### The write
 
-`createImport` at `src/lib/research-os/access-db.ts:253` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:229-238`:
+`createImport` at `src/lib/research-os/access-db.ts:292` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:302-318`:
 
 ```ts
       title: input.title,

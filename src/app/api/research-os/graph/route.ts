@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { IN_CHUNK, configured, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
+import { readVisibility } from "@/lib/research-os/access";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { listMyClasses } from "@/lib/research-os/classes";
 
@@ -136,7 +137,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(
     {
       branch,
-      nodes: nodes.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, frontierFlag: n.frontierFlag ?? null, visibility: n.visibility ?? "public", source: String((n.provenance as { type?: string } | undefined)?.type ?? "") })),
+      nodes: nodes.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, frontierFlag: n.frontierFlag ?? null, visibility: readVisibility(n.visibility), source: String((n.provenance as { type?: string } | undefined)?.type ?? "") })),
       edges: edges.map((e) => ({ fromId: e.fromId, toId: e.toId, kind: e.kind })),
       standing,
       assignments,

@@ -38,17 +38,17 @@ export interface PagingException {
 }
 
 export const PAGING_EXCEPTIONS: PagingException[] = [
-  { at: "src/lib/research-os/read-access.ts:107", because: "nodes.id is the primary key, so one row per id, and the loop hands in() one chunk at a time" },
+  { at: "src/lib/research-os/read-access.ts:102", because: "nodes.id is the primary key, so one row per id, and the loop hands in() one chunk at a time" },
   { at: "src/lib/research-os/inference/merge-actions.ts:60", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 100 slugs a call" },
   { at: "scripts/research-os/ingest/canon-all.ts:237", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 200 slugs a call" },
   { at: "scripts/research-os/ingest/lib/apply-drafts.ts:22", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 60 slugs a call" },
   { at: "src/lib/research-os/classes.ts:46", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/lib/research-os/consent.ts:202", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
-  { at: "src/lib/research-os/db.ts:582", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
-  { at: "src/lib/research-os/db.ts:609", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
-  { at: "src/lib/research-os/db.ts:961", because: "UNTRIAGED: reads learner_profiles by learner_id, and nothing here has checked the rows per value against the schema" },
-  { at: "src/lib/research-os/db.ts:1067", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
-  { at: "src/lib/research-os/db.ts:1170", because: "nodes.slug is unique, so one row per slug" },
+  { at: "src/lib/research-os/db.ts:585", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/lib/research-os/db.ts:612", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/lib/research-os/db.ts:964", because: "UNTRIAGED: reads learner_profiles by learner_id, and nothing here has checked the rows per value against the schema" },
+  { at: "src/lib/research-os/db.ts:1070", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/lib/research-os/db.ts:1173", because: "nodes.slug is unique, so one row per slug" },
   { at: "src/lib/research-os/inference/review-actions.ts:80", because: "nodes.slug is unique, so one row per slug" },
   { at: "src/lib/research-os/inference/review-actions.ts:189", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/lib/research-os/learn-sync.ts:35", because: "UNTRIAGED: reads nodes by ?, and nothing here has checked the rows per value against the schema" },

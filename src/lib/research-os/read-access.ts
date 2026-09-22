@@ -22,7 +22,7 @@
  *
  * The store is injectable so the rules can be tested without a database.
  */
-import { can, canView, GRANT_ROLES, live, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
+import { can, canView, GRANT_ROLES, live, readVisibility, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
 import { graphService } from "./db";
 
 /** What a read can ask for. `view` is the floor; the rest are grant roles. */
@@ -51,8 +51,6 @@ export type Unavailable = { ok: false; reason: "unavailable"; detail: string };
 
 export type AuthorizeResult = Authorized | Unavailable;
 
-const KNOWN_VISIBILITY: Visibility[] = ["public", "private", "shared"];
-
 const VISIBILITY_RANK: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
 
 /**
@@ -69,10 +67,7 @@ function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
   return byId;
 }
 
-/** A visibility this code does not know is treated as private. */
-export function readVisibility(value: string | null | undefined): Visibility {
-  return KNOWN_VISIBILITY.includes(value as Visibility) ? (value as Visibility) : "private";
-}
+export { readVisibility };
 
 /** A grant whose expiry cannot be read is treated as expired. */
 // The expiry rule lived here and in access.ts, they disagreed, and the

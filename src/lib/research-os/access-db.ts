@@ -5,8 +5,8 @@
  * the private `graph` schema, applying the rules in access.ts before any
  * write. Never import from a client component.
  */
-import { graphService } from "./db";
-import { authorizeNodes, readVisibility, storeWithNodes } from "./read-access";
+import { graphService, pagedRead } from "./db";
+import { authorizeNodes, dbAccessStore, readVisibility, storeWithNodes, type AccessStore } from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
@@ -77,9 +77,17 @@ export type SubgraphForViewer<N, E> = { ok: true; nodes: N[]; edges: E[] } | { o
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
-  viewerId: string | null
+  viewerId: string | null,
+  // The grants and groups come from here. It is the database in every
+  // caller; a test supplies its own so the rule below can be checked
+  // without one.
+  store: AccessStore = dbAccessStore,
 ): Promise<SubgraphForViewer<N, E>> {
-  const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
+  // readVisibility, so a node whose visibility this code cannot read is
+  // non-public and goes through the decision below. `?? "public"` let a
+  // node with no visibility skip authorization, and a caller that built
+  // its nodes by hand got every one of them back.
+  const nonPublic = nodes.filter((n) => readVisibility(n.visibility) !== "public");
   if (nonPublic.length === 0) return { ok: true, nodes, edges };
 
   const access: NodeAccess[] = nodes.map((n) => ({
@@ -91,7 +99,7 @@ export async function filterSubgraphForViewer<N extends { id: string; visibility
     nodes.map((n) => n.id),
     { id: viewerId },
     "view",
-    storeWithNodes(access),
+    storeWithNodes(access, store),
   );
   if (!decision.ok) return { ok: false, reason: "unavailable" };
   const keep = new Set(decision.allowed);
@@ -127,17 +135,48 @@ export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAcc
   };
 }
 
+/**
+ * Both of these decide access, and both took one unpaged request.
+ * PostgREST stops at a thousand rows and reports no error, so the grant
+ * that admits you is dropped when you are the 1,001st grantee of a node
+ * and the answer reads as a complete list of grants that excludes you.
+ * That is the row cap producing a denial rather than a truncation.
+ *
+ * pagedRead throws where the builder answers an error. A caller of
+ * these two reads a union, so the throw is turned back into the
+ * unavailable it already knows how to answer.
+ */
 export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]>> {
-  const { data, error } = await graphService().from("node_grants").select("id,node_id,grantee_id,grantee_group,role,expires_at").eq("node_id", nodeId);
-  if (error) return { ok: false, reason: "unavailable" };
-  return { ok: true, value: ((data as GrantRow[]) || []).map(grantFromRow) };
+  try {
+    const rows = await pagedRead<GrantRow>((page) =>
+      graphService()
+        .from("node_grants")
+        .select("id,node_id,grantee_id,grantee_group,role,expires_at")
+        .eq("node_id", nodeId)
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: GrantRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(grantFromRow) };
+  } catch {
+    return { ok: false, reason: "unavailable" };
+  }
 }
 
 /** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
 export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
-  const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-  if (error) return { ok: false, reason: "unavailable" };
-  return { ok: true, value: ((data as { class_id: string }[]) || []).map((r) => `class:${r.class_id}`) };
+  try {
+    const rows = await pagedRead<{ class_id: string }>((page) =>
+      graphService()
+        .from("class_members")
+        .select("class_id")
+        .eq("learner_id", learnerId)
+        .order("class_id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { class_id: string }[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map((r) => `class:${r.class_id}`) };
+  } catch {
+    return { ok: false, reason: "unavailable" };
+  }
 }
 
 export async function loadRequestsForNode(nodeId: string): Promise<(AccessRequest & { createdAt: string })[]> {
