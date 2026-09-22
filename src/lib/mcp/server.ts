@@ -144,7 +144,7 @@ const PRODUCTION_RECORD = {
 export const TOOLS: ToolSpec[] = [
   {
     name: "canon_search",
-    description: "Search the bucket.foundation canon's claim cards by natural-language query; lexical ranking over title and excerpt, optional branch filter. Returns slug, concept, branch, score, excerpt, and the card URL.",
+    description: "Search the source excerpts behind the bucket.foundation canon, passages from talks and podcasts with a video and timestamp each, by natural-language query; lexical ranking over title and excerpt, optional branch filter. Returns slug, concept, branch, score, excerpt, and the card URL.",
     inputSchema: {
       type: "object",
       properties: {
@@ -158,7 +158,7 @@ export const TOOLS: ToolSpec[] = [
   },
   {
     name: "canon_get_claim",
-    description: "Fetch one claim card by concept and slug, with its evidence passages.",
+    description: "Fetch one source excerpt by concept and slug, with its evidence passages.",
     inputSchema: { type: "object", properties: { concept: { type: "string" }, slug: { type: "string" } }, required: ["concept", "slug"] },
     handler: canonGetClaim,
   },
@@ -222,7 +222,7 @@ export async function handleMessage(msg: RpcRequest): Promise<RpcResponse | null
         capabilities: { tools: { listChanged: false } },
         serverInfo: SERVER_INFO,
         instructions:
-          "Bucket Foundation: canon search and claim cards, DOI citations, and the hypothesis engine's hypothesize tool. Read-only; every card answer carries its canonical URL for citation.",
+          "Bucket Foundation: canon search and source excerpts, DOI citations, and the hypothesis engine's hypothesize tool. Read-only; every excerpt answer carries its canonical URL for citation.",
       });
     case "ping":
       return ok(id, {});
