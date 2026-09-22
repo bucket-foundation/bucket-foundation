@@ -84,6 +84,14 @@ export interface Corpus {
 export function newestCorpusDir(root: string): string | null {
   if (!existsSync(root)) return null;
   const dirs = readdirSync(root)
+    // A dot-prefixed name is a build's working state, never a promoted
+    // corpus. The builder writes into `.tmp-<revision>-<pid>` and renames
+    // it into place, and on a failed readback it leaves that directory,
+    // manifest and all, for a person to inspect. Selecting by manifest
+    // mtime would pick exactly that directory, and the server would then
+    // answer `corpus_unavailable` on every request until someone deleted
+    // it by hand.
+    .filter((name) => !name.startsWith("."))
     .map((name) => path.join(root, name))
     .filter((dir) => existsSync(path.join(dir, "manifest.json")))
     .sort((a, b) => statSync(path.join(b, "manifest.json")).mtimeMs - statSync(path.join(a, "manifest.json")).mtimeMs);
