@@ -21,7 +21,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.join(__dirname, "..");
-const ROOTS = [path.join(root, "src/lib/research-os"), path.join(root, "src/app/api/research-os")];
+// The ingest scripts write the graph the routes then read, so a read
+// there that stops at the row cap corrupts what every route serves. They
+// are inside the gate for that reason.
+const ROOTS = [path.join(root, "src/lib/research-os"), path.join(root, "src/app/api/research-os"), path.join(root, "scripts/research-os")];
 
 function sources(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];

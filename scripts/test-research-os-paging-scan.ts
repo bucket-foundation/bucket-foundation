@@ -15,7 +15,10 @@ import path from "node:path";
 import { scanFile, scanTree } from "./research-os/paging-scan";
 import { PAGING_EXCEPTIONS } from "./research-os/paging-allowlist";
 
-const ROOTS = ["src/lib/research-os", "src/app/api/research-os"];
+// Same roots as scripts/test-research-os-paging-discipline.ts. The two
+// suites read one allowlist, so a root in one and absent from the other
+// makes every entry from the wider tree read as stale.
+const ROOTS = ["src/lib/research-os", "src/app/api/research-os", "scripts/research-os"];
 
 test("the scanner finds a read that pages neither way", () => {
   const src = `

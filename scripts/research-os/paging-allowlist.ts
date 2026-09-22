@@ -38,6 +38,9 @@ export interface PagingException {
 }
 
 export const PAGING_EXCEPTIONS: PagingException[] = [
+  { at: "src/lib/research-os/inference/merge-actions.ts:60", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 100 slugs a call" },
+  { at: "scripts/research-os/ingest/canon-all.ts:237", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 200 slugs a call" },
+  { at: "scripts/research-os/ingest/lib/apply-drafts.ts:22", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 60 slugs a call" },
   { at: "src/lib/research-os/access-db.ts:72", because: "UNTRIAGED: reads node_grants by node_id, and nothing here has checked the rows per value against the schema" },
   { at: "src/lib/research-os/class-db.ts:105", because: "UNTRIAGED: reads assignments by class_id, and nothing here has checked the rows per value against the schema" },
   { at: "src/lib/research-os/class-db.ts:115", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
@@ -56,7 +59,7 @@ export const PAGING_EXCEPTIONS: PagingException[] = [
   { at: "src/lib/research-os/learn-sync.ts:35", because: "UNTRIAGED: reads nodes by ?, and nothing here has checked the rows per value against the schema" },
   { at: "src/lib/research-os/learn-sync.ts:47", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
   { at: "src/lib/research-os/roster/apply.ts:161", because: "UNTRIAGED: reads classes by sourced_id, and nothing here has checked the rows per value against the schema" },
-  { at: "src/app/api/research-os/probe/route.ts:129", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/app/api/research-os/probe/route.ts:130", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/production/route.ts:105", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/review/route.ts:189", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/search/route.ts:42", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
