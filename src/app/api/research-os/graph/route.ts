@@ -77,8 +77,19 @@ export async function GET(req: NextRequest) {
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
     if (classIds.length) {
-      const { data: asg, error: asgErr } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).is("closed_at", null).order("target_node_id").limit(1000);
-      if (asgErr) return bad(503, "graph_read_failed");
+      // Chunked and paged, which dev had and this merge dropped when it
+      // took the branch's side of the whole block. A class list of any
+      // size puts more than a thousand assignments here, and the limit
+      // above truncated them silently.
+      let asg: { target_node_id: string; title: string; class_id: string; due_at: string | null }[];
+      try {
+        asg = await inChunks<{ target_node_id: string; title: string; class_id: string; due_at: string | null }>(classIds, (chunk, page) =>
+          svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", chunk).is("closed_at", null).order("class_id").order("target_node_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; title: string; class_id: string; due_at: string | null }[] | null; error: { message: string } | null }>,
+        );
+      } catch (err) {
+        console.error("[research-os/graph] assignment read failed:", err instanceof Error ? err.message : err);
+        return bad(503, "graph_read_failed");
+      }
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
       const idSet = new Set(ids);
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
