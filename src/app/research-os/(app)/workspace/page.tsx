@@ -82,6 +82,7 @@
  * feedback; loadRoute() (already called after every successful Check)
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
+import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -226,11 +227,11 @@ interface ProbeResponse {
   questions: ProbeQuestion[];
   error?: string;
 }
-interface ProbeAnswerResult {
-  result: string;
-  feedback: string;
-  stage: string;
-}
+// The server shape, so a change to what /probe answers is a compile
+// error here rather than a wrong string on the page.
+type ProbeAnswerResult =
+  | ({ ok: true } & Pick<ProbeAnswerResponse, "result" | "feedback" | "stage">)
+  | { ok: false; feedback: string };
 
 const STAGE_LABEL: Record<Stage, string> = {
   access: "Access",
@@ -488,14 +489,17 @@ export default function ResearchOsWorkspacePage() {
       const data = await res.json();
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
-        setProbeResults((r) => ({ ...r, [nodeId]: data }));
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: true, ...data } }));
         // Answering even one question resolves the cold-start condition
         // (probeDue requires NO ancestor state at all), so both the probe
         // panel and the route/frontier can change; reload both.
         loadProbe();
         loadRoute();
       } else {
-        setProbeResults((r) => ({ ...r, [nodeId]: { result: "error", feedback: data.error || "Probe grading failed.", stage: "" } }));
+        // A grading that failed carries no result and no stage. Inventing
+        // an empty stage put a value on the page that the server can
+        // never send.
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback: data.error || "Probe grading failed." } }));
       }
     } finally {
       setProbeBusy(null);
@@ -962,7 +966,15 @@ export default function ResearchOsWorkspacePage() {
                     </button>
                     {result && (
                       <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">
-                        <strong>{result.result}</strong>: {result.feedback}
+                        {result.ok ? (
+                          <>
+                            <strong>{result.result}</strong>: {result.feedback}
+                          </>
+                        ) : (
+                          // A grading that failed said "error: ..." with an
+                          // empty stage behind it. It says what happened.
+                          <>{result.feedback}</>
+                        )}
                       </p>
                     )}
                   </div>
