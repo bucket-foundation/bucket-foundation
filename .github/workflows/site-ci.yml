@@ -6,6 +6,7 @@ on:
     paths:
       - "src/**"
       - "scripts/**"
+      - "tools/evidence-search/**"
       - "learning/app/**"
       - "supabase/migrations/**"
       - "tests/**"
@@ -43,6 +44,15 @@ jobs:
         run: npm test
       - name: research os tests
         run: npm run test:research-os
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: evidence worker tests
+        # numpy is all the unit tests need; the model tests skip on a runner
+        # without the pinned snapshot, and run on the machine that serves it.
+        run: |
+          python -m pip install --quiet "numpy>=2,<3"
+          npm run test:evidence-worker
       - name: academy app
         run: bash learning/app/validate.sh
       - name: vercel build gate and pre-push check
