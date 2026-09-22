@@ -64,5 +64,5 @@ export const PAGING_EXCEPTIONS: PagingException[] = [
   { at: "src/app/api/research-os/review/route.ts:189", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/search/route.ts:42", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
   { at: "src/app/api/research-os/state/route.ts:55", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
-  { at: "src/app/api/research-os/workspace/route.ts:576", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/app/api/research-os/workspace/route.ts:589", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
 ];
