@@ -33,7 +33,7 @@ The `tier` column is declared at `supabase/migrations/20260910000000_research_os
 | Bulk imports, fixed by node class | `canon_concept` 12, `canon_figure` 13, `canon_site` 13, `canon_bridge` 16 | `scripts/research-os/ingest/canon-all.ts:97`, `:169`, `:191`, `:202` |
 | Bulk imports, fixed by node class | `literature_paper` 14, `intake_digest` 12, `intake_paper` 14, `intake_target` 15 | `scripts/research-os/ingest/intake-all.ts:84`, `:108`, `:131`, `:150` |
 | Canon claims, computed | `max(linked atom depth) + 1`, range 1 to 17, or the sentinel `CLAIM_TIER_UNLINKED = 15` | `scripts/research-os/ingest/canon-all.ts:103`, sentinel at `:36` |
-| Imported private nodes | 0 | `createImport`, `src/lib/research-os/access-db.ts:215`, value at `:231` |
+| Imported private nodes | 0 | `createImport`, `src/lib/research-os/access-db.ts:230`, value at `:231` |
 | Accepted productions | the target's tier plus 1 | `createNodeFromProduction`, `src/lib/research-os/production-node.ts:52`, value at `:67` |
 | Decomposition depth, a separate field of the same name | 0 for a prime, one per layer of combination | `Decomposition` at `src/lib/research-os/primes.ts:44`, its `tier` field at `:55-56`, set at `:273` |
 
