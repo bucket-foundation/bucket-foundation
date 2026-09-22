@@ -170,7 +170,7 @@ test("every paged read of a known table carries a total order", () => {
       checked.push(`${r.table}@${path.relative(root, file)}:${r.line}`);
       if (orderIsTotal(r.table, r.ordered, r.pinned)) continue;
       offenders.push(
-        `${path.relative(root, file)}:${r.line} reads ${r.table} ordered on [${r.ordered.join(", ") || "nothing"}] with [${r.pinned.join(", ") || "nothing"}] pinned, and its keys are ${GRAPH_UNIQUE_KEYS[r.table].map((k) => `(${k.join(", ")})`).join(" or ")}`,
+        `${path.relative(root, file)}:${r.line} reads ${r.table} ordered on [${r.ordered.join(", ") || "nothing"}] with [${r.pinned.join(", ") || "nothing"}] pinned, and its keys are ${GRAPH_UNIQUE_KEYS[r.table].map((k) => `(${k.columns.join(", ")})${k.nullable.length ? ` with ${k.nullable.join(", ")} nullable` : ""}`).join(" or ")}`,
       );
     }
   }
@@ -192,4 +192,12 @@ test("the rule counts an eq-pinned key column and refuses an in-list one", () =>
   assert.equal(orderIsTotal("edges", ["id"], []), true);
   assert.equal(orderIsTotal("edges", ["from_id"], []), false);
   assert.equal(orderIsTotal("some_table_nobody_declared", [], []), true, "an unknown table is out of scope, not a failure");
+
+  // NULLS DISTINCT: a unique index over a nullable column admits any
+  // number of rows sharing the non-null part. Every group grant has a
+  // null grantee_id, so a thousand of them on one node with role 'view'
+  // are one tie group under (node_id, grantee_id, role).
+  assert.equal(orderIsTotal("node_grants", ["node_id", "grantee_id", "role"], []), false, "ordering on a nullable column leaves the nulls in one tie group");
+  assert.equal(orderIsTotal("node_grants", ["node_id", "role"], ["grantee_id"]), true, "pinning it with eq excludes the nulls");
+  assert.equal(orderIsTotal("node_grants", ["id"], []), true, "and the primary key is total either way");
 });

@@ -28,7 +28,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
 
 ### The write
 
-`createImport` at `src/lib/research-os/access-db.ts:292` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:302-318`:
+`createImport` at `src/lib/research-os/access-db.ts:377` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:389-401`:
 
 ```ts
       title: input.title,
@@ -43,7 +43,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
       visibility: "private",
 ```
 
-Then the import row at `:245`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:113`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
+Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:149`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
 
 Three consequences follow from those lines, and all three matter later.
 

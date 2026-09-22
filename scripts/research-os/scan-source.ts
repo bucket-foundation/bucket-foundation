@@ -78,12 +78,46 @@ export function walk(node: ts.Node, visit: (n: ts.Node) => void): void {
   ts.forEachChild(node, (c) => walk(c, visit));
 }
 
-/** The names called as plain functions anywhere under `node`. */
+/**
+ * The names called under `node`, as plain calls and as one-level
+ * property calls.
+ *
+ * `dbAccessStore.nodes(ids)` reads node rows and is not a bare
+ * identifier call, so a rule matching identifiers alone never saw it.
+ * A property call is recorded under its qualified name and under the
+ * method name, so a reader set can name either.
+ */
 export function calleeNames(node: ts.Node): Set<string> {
   const out = new Set<string>();
   walk(node, (n) => {
-    if (ts.isCallExpression(n) && ts.isIdentifier(n.expression)) out.add(n.expression.text);
+    if (!ts.isCallExpression(n)) return;
+    if (ts.isIdentifier(n.expression)) { out.add(n.expression.text); return; }
+    if (ts.isPropertyAccessExpression(n.expression) && ts.isIdentifier(n.expression.expression)) {
+      out.add(`${n.expression.expression.text}.${n.expression.name.text}`);
+    }
   });
+  return out;
+}
+
+/**
+ * Local name to imported name, for every import in the file.
+ *
+ * `import { loadSubgraph as graphOf }` then `graphOf(branch)` reads the
+ * graph under a name no reader set holds, so an alias has to resolve
+ * before a call is matched.
+ */
+export function importAliases(sf: ts.SourceFile): Map<string, string> {
+  const out = new Map<string, string>();
+  for (const st of sf.statements) {
+    if (!ts.isImportDeclaration(st) || !st.importClause) continue;
+    const named = st.importClause.namedBindings;
+    if (named && ts.isNamedImports(named)) {
+      for (const el of named.elements) {
+        out.set(el.name.text, el.propertyName ? el.propertyName.text : el.name.text);
+      }
+    }
+    if (st.importClause.name) out.set(st.importClause.name.text, st.importClause.name.text);
+  }
   return out;
 }
 
@@ -108,15 +142,26 @@ export function readsContentFrom(root: ts.Node, sf: ts.SourceFile, tables: reado
     if (!ts.isCallExpression(n) || !ts.isPropertyAccessExpression(n.expression)) return;
     if (n.expression.name.text !== "from") return;
     const arg = n.arguments[0];
-    if (!arg || !ts.isStringLiteral(arg) || !tables.includes(arg.text)) return;
+    if (!arg) return;
+    // A template with no substitution is the same string.
+    const name = ts.isStringLiteral(arg)
+      ? arg.text
+      : ts.isNoSubstitutionTemplateLiteral(arg)
+        ? arg.text
+        : null;
+    if (name === null || !tables.includes(name)) return;
     // Climb to the root of the builder chain, so `.select()` and
     // `.update()` further along are both in view.
     let top: ts.Node = n;
     while (top.parent && (ts.isPropertyAccessExpression(top.parent) || ts.isCallExpression(top.parent))) top = top.parent;
     const chain = top.getText(sf);
-    if (!/\.select\s*\(/.test(chain)) return;
     if (/\.(update|insert|upsert|delete)\s*\(/.test(chain)) return;
     if (/head:\s*true/.test(chain)) return;
+    // A chain the walk cannot resolve to a write or a head count counts
+    // as a read. `const q = svc.from("nodes"); await q.select(...)`
+    // splits the builder across statements, so the `.select(` is not in
+    // this text and the read was invisible. Guessing toward a read is
+    // the safe direction for a gate about what reaches a browser.
     found = true;
   });
   return found;
@@ -142,6 +187,22 @@ export function functionsIn(file: string): FnDef[] {
       const init = node.initializer;
       if (ts.isArrowFunction(init) || ts.isFunctionExpression(init)) {
         out.push({ name: node.name.text, file, body: init.body, sf });
+        return;
+      }
+      // An object literal's methods, under `<object>.<method>`.
+      // dbAccessStore is written this way and reads node rows, and a
+      // rule that saw only declarations and arrows never held it.
+      if (ts.isObjectLiteralExpression(init)) {
+        const owner = node.name.text;
+        for (const prop of init.properties) {
+          const mname = prop.name && ts.isIdentifier(prop.name) ? prop.name.text : null;
+          if (!mname) continue;
+          if (ts.isMethodDeclaration(prop) && prop.body) {
+            out.push({ name: `${owner}.${mname}`, file, body: prop.body, sf });
+          } else if (ts.isPropertyAssignment(prop) && (ts.isArrowFunction(prop.initializer) || ts.isFunctionExpression(prop.initializer))) {
+            out.push({ name: `${owner}.${mname}`, file, body: prop.initializer.body, sf });
+          }
+        }
       }
     }
   });

@@ -144,14 +144,18 @@ test("the declared unique keys are the ones the database has", { skip }, () => {
   // refuse. This is the only place the two meet.
   /* eslint-disable-next-line @typescript-eslint/no-var-requires */
   const { GRAPH_UNIQUE_KEYS } = require("./research-os/graph-keys") as {
-    GRAPH_UNIQUE_KEYS: Record<string, readonly (readonly string[])[]>;
+    GRAPH_UNIQUE_KEYS: Record<string, readonly { columns: readonly string[]; nullable: readonly string[] }[]>;
   };
 
   // Partial indexes are excluded on both sides: a key that holds only
   // under a predicate makes an order total only when the read pins that
   // predicate, which this gate does not model.
+  // Columns and nullability both. A key whose nullable column the map
+  // forgets is a key the gate would accept an ordering on, and every
+  // group grant is null in grantee_id.
   const live = sql(`
     select c.relname || ':' || string_agg(a.attname, ',' order by k.ord)
+               || '|' || coalesce(string_agg(a.attname, ',' order by k.ord) filter (where not a.attnotnull), '')
     from pg_index x
     join pg_class c on c.oid = x.indrelid
     join pg_class i on i.oid = x.indexrelid
@@ -167,11 +171,67 @@ test("the declared unique keys are the ones the database has", { skip }, () => {
   const fromDb = new Set(live.out.split("\n").filter(Boolean));
   const declared = new Set<string>();
   for (const table of Object.keys(GRAPH_UNIQUE_KEYS)) {
-    for (const key of GRAPH_UNIQUE_KEYS[table]) declared.add(`${table}:${key.join(",")}`);
+    for (const key of GRAPH_UNIQUE_KEYS[table]) declared.add(`${table}:${key.columns.join(",")}|${key.nullable.join(",")}`);
   }
 
   const missing = Array.from(fromDb).filter((k) => !declared.has(k)).sort();
   const extra = Array.from(declared).filter((k) => !fromDb.has(k)).sort();
   assert.deepEqual(missing, [], `the database has unique keys graph-keys.ts does not declare: ${missing.join("; ")}`);
   assert.deepEqual(extra, [], `graph-keys.ts declares unique keys the database does not have, which excuses reads it should refuse: ${extra.join("; ")}`);
+});
+
+test("a bridge into a node the learner cannot read carries no title", { skip }, async (t) => {
+  // loadConnections seals the read for connections/route.ts and
+  // loop/route.ts: they authorize nobody and the gate reports them clean
+  // because this function decides. Nothing tested that it does. Deleting
+  // the two filters while keeping authorizeNodes left every suite green
+  // and put every bridge title in front of a learner who may not read
+  // them.
+  /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+  const { loadConnections } = require("../src/lib/research-os/connections-db") as {
+    loadConnections: (learnerId: string) => Promise<{ held: { title?: string }[]; bridges: { next?: { title?: string; slug?: string } }[]; unavailable?: boolean }>;
+  };
+
+  const tag = `conn-auth-${Date.now().toString(36)}`;
+  const learnerId = randomUUID();
+  const ownerId = randomUUID();
+  const heldId = randomUUID();
+  const secretId = randomUUID();
+  // The positive control. Without it the private node's absence proves
+  // nothing, because a filter that drops everything also drops the
+  // secret.
+  const openId = randomUUID();
+
+  t.after(() => {
+    sql(`delete from graph.learner_node_state where learner_id = '${learnerId}';
+         delete from graph.edges where from_id in ('${heldId}','${secretId}','${openId}') or to_id in ('${heldId}','${secretId}','${openId}');
+         delete from graph.nodes where id in ('${heldId}','${secretId}','${openId}');
+         delete from auth.users where id in ('${learnerId}','${ownerId}');`);
+  });
+
+  const seeded = sql(`
+    insert into auth.users (id, instance_id, aud, role, email) values
+      ('${learnerId}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', '${tag}-l@bucket.test'),
+      ('${ownerId}',   '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', '${tag}-o@bucket.test');
+    insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility, owner_id, created_by) values
+      ('${heldId}',   '${tag}-held',   '${tag} held',   'concept', 10, '01-mathematics', 'fixture', 'public',  '${ownerId}', '${ownerId}'),
+      ('${secretId}', '${tag}-secret', '${tag} SECRET', 'concept', 10, '02-physics',     'fixture', 'private', '${ownerId}', '${ownerId}'),
+      ('${openId}',   '${tag}-open',   '${tag} OPEN',   'concept', 10, '03-chemistry',   'fixture', 'public',  '${ownerId}', '${ownerId}');
+    insert into graph.edges (from_id, to_id, kind) values
+      ('${heldId}', '${secretId}', 'derives_from'),
+      ('${heldId}', '${openId}',   'derives_from');
+    insert into graph.learner_node_state (learner_id, node_id, stage)
+      values ('${learnerId}', '${heldId}', 'internalization');
+    select 'seeded';
+  `);
+  assert.equal(seeded.status, 0, seeded.out);
+
+  const out = await loadConnections(learnerId);
+  assert.notEqual(out.unavailable, true, "the store answered");
+  const rendered = JSON.stringify(out);
+  assert.ok(!rendered.includes("SECRET"), `a private node's title reached the learner: ${rendered.slice(0, 300)}`);
+
+  // And the decision admits what it should. Both bridges leave the same
+  // held node into another branch; one target is public and one is not.
+  assert.ok(rendered.includes(`${tag} OPEN`), `the public bridge was dropped too, so the absence above proves nothing: ${rendered.slice(0, 300)}`);
 });

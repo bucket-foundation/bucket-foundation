@@ -5,7 +5,7 @@
  * the private `graph` schema, applying the rules in access.ts before any
  * write. Never import from a client component.
  */
-import { graphService, pagedRead } from "./db";
+import { graphService, inChunks, pagedRead } from "./db";
 import { authorizeNodes, dbAccessStore, readVisibility, storeWithNodes, type AccessStore } from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
@@ -146,6 +146,23 @@ export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAcc
  * these two reads a union, so the throw is turned back into the
  * unavailable it already knows how to answer.
  */
+/**
+ * An outage, said out loud.
+ *
+ * Both callers answer a union, so the throw becomes the `unavailable`
+ * the route already knows how to turn into a 503. A bare `catch {}`
+ * made that silent, and it hides more than an outage: graphService()
+ * throwing on an unconfigured stack, a TypeError in the callback, and a
+ * PagingError, which means 200,000 rows of database work ran without
+ * terminating and every retry the 503 invites runs them again. The log
+ * is the only place that distinction survives.
+ */
+function unavailable(table: string, err: unknown): { ok: false; reason: "unavailable" } {
+  const detail = err instanceof Error ? err.message : String(err);
+  console.error(`[research-os/access] ${table} read failed:`, detail);
+  return { ok: false, reason: "unavailable" };
+}
+
 export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]>> {
   try {
     const rows = await pagedRead<GrantRow>((page) =>
@@ -157,8 +174,8 @@ export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]
         .range(page.from, page.to) as unknown as Promise<{ data: GrantRow[] | null; error: { message: string } | null }>,
     );
     return { ok: true, value: rows.map(grantFromRow) };
-  } catch {
-    return { ok: false, reason: "unavailable" };
+  } catch (err) {
+    return unavailable("node_grants", err);
   }
 }
 
@@ -174,35 +191,103 @@ export async function loadViewerGroups(learnerId: string): Promise<AccessRead<st
         .range(page.from, page.to) as unknown as Promise<{ data: { class_id: string }[] | null; error: { message: string } | null }>,
     );
     return { ok: true, value: rows.map((r) => `class:${r.class_id}`) };
-  } catch {
-    return { ok: false, reason: "unavailable" };
+  } catch (err) {
+    return unavailable("class_members", err);
   }
 }
 
-export async function loadRequestsForNode(nodeId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("node_id", nodeId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+/**
+ * These three read what /api/research-os/access serves, and each was one
+ * unpaged request answering `[]` on error, under a header saying every
+ * read in this file had stopped doing that.
+ *
+ * Both failures are quiet. A node past a thousand access requests showed
+ * its owner a truncated queue, and `created_at` carries no unique index,
+ * so the truncation point was not even stable between requests. During a
+ * Postgres outage all three rendered "you own nothing, nobody has asked"
+ * behind a 200.
+ *
+ * They page on `(created_at, id)` and `(id)`, and they answer the union
+ * the rest of this file answers.
+ */
+export async function loadRequestsForNode(nodeId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("node_id", nodeId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export async function loadRequestsByRequester(requesterId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("requester_id", requesterId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+export async function loadRequestsByRequester(requesterId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("requester_id", requesterId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export async function loadOwnedNodes(ownerId: string): Promise<{ id: string; slug: string; title: string; visibility: Visibility }[]> {
-  const { data, error } = await graphService().from("nodes").select("id,slug,title,visibility").eq("owner_id", ownerId).order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return data as { id: string; slug: string; title: string; visibility: Visibility }[];
+export async function loadOwnedNodes(ownerId: string): Promise<AccessRead<{ id: string; slug: string; title: string; visibility: Visibility }[]>> {
+  try {
+    const rows = await pagedRead<{ id: string; slug: string; title: string; visibility: Visibility }>((page) =>
+      graphService()
+        .from("nodes")
+        .select("id,slug,title,visibility")
+        .eq("owner_id", ownerId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { id: string; slug: string; title: string; visibility: Visibility }[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows };
+  } catch (err) {
+    return unavailable("nodes", err);
+  }
+}
+
+/**
+ * Pending access requests per node, for a list of nodes, in one paged
+ * read per chunk.
+ *
+ * The owned-nodes view counted these with one request per node inside a
+ * Promise.all, so an owner with 800 nodes opened 800 concurrent
+ * PostgREST connections from a single GET to compute 800 integers.
+ */
+export async function loadPendingCountsForNodes(nodeIds: string[]): Promise<AccessRead<Map<string, number>>> {
+  const counts = new Map<string, number>();
+  if (nodeIds.length === 0) return { ok: true, value: counts };
+  try {
+    const rows = await inChunks<{ node_id: string }>(nodeIds, (chunk, page) =>
+      graphService()
+        .from("access_requests")
+        .select("node_id")
+        .in("node_id", chunk)
+        .eq("status", "pending")
+        .order("node_id")
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string }[] | null; error: { message: string } | null }>,
+    );
+    for (const r of rows) counts.set(r.node_id, (counts.get(r.node_id) ?? 0) + 1);
+    return { ok: true, value: counts };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
 export type AccessResult<T> = { ok: true; value: T } | { ok: false; error: string };
