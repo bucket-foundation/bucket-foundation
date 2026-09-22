@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 /**
  * /research-os/workspace, the Phase 0 student workspace (bkt-ros, task item
  * 4). Shows the target node, the frontier-backward chain as a vertical map
@@ -84,8 +85,9 @@
  */
 import EvidenceFind from "./EvidenceFind";
 import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
 import TargetPicker from "./TargetPicker";
@@ -109,12 +111,12 @@ import AssignmentsBanner from "./AssignmentsBanner";
 import DirectionsBlock from "./DirectionsBlock";
 
 const DEFAULT_TARGET_SLUG = "why-the-sky-is-blue";
-// The routed target: ?target=<slug> (an assignment's deep link) or the
-// Phase 0 default. Read once at module load in the browser; the server
-// render uses the default and the client re-renders with the same value.
-const HAS_TARGET = typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("target")?.trim());
-const TARGET_SLUG =
-  typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("target")?.trim() || DEFAULT_TARGET_SLUG : DEFAULT_TARGET_SLUG;
+// The routed target is ?target=<slug>, an assignment's deep link, or the
+// Phase 0 default. It is read inside the component through
+// useSearchParams, so the server render and the first client render agree.
+// Reading window.location at module scope made them disagree: the server
+// rendered the target picker and the browser rendered the workspace, and
+// React threw the server's HTML away on every visit that named a target.
 
 // Phase 0 has no sealed, held-out transfer-item pool (LEARNER-STATE-MODEL.md
 // section 4's "Transfer-task construction rule" names the real pool as
@@ -122,10 +124,10 @@ const TARGET_SLUG =
 // prompt below so the evidence log at least records WHICH item was
 // answered, forwarded verbatim rather than checked against a pool table
 // that does not exist yet.
-const TRANSFER_ITEM_ID = `${TARGET_SLUG}::transfer-v1`;
+const transferItemIdFor = (targetSlug: string) => `${targetSlug}::transfer-v1`;
 
 const SESSION_STORAGE_KEY = "research-os-session-id";
-const NOTES_STORAGE_KEY = `research-os-notes:${TARGET_SLUG}`;
+const notesStorageKeyFor = (targetSlug: string) => `research-os-notes:${targetSlug}`;
 
 /** One session id per browser tab, per EVIDENCE-SCHEMA.md ("client-generated
  * ... so a session id is stable across a reconnect"). sessionStorage (not
@@ -274,7 +276,14 @@ function WorkedExampleBlock({ node, guidance }: { node: GraphNodeLite; guidance:
   );
 }
 
-export default function ResearchOsWorkspacePage() {
+function Workspace() {
+  const searchParams = useSearchParams();
+  const targetParam = searchParams.get("target")?.trim() ?? "";
+  const queryParam = searchParams.get("q")?.trim() ?? "";
+  const hasTarget = Boolean(targetParam);
+  const targetSlug = targetParam || DEFAULT_TARGET_SLUG;
+  const transferItemId = transferItemIdFor(targetSlug);
+  const notesStorageKey = notesStorageKeyFor(targetSlug);
   const supabase = useMemo(() => {
     try {
       return getSupabase();
@@ -297,32 +306,27 @@ export default function ResearchOsWorkspacePage() {
   }, []);
 
   // ?q=<query> (from the map's "work on this") pre-fills Find and runs it once signed in.
-  const [locateQuery, setLocateQuery] = useState(() =>
-    typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("q")?.trim() ?? "" : ""
-  );
-  // No ?target: open on the person's first open assignment. A full load, so
-  // the module-level TARGET_SLUG picks it up.
+  const [locateQuery, setLocateQuery] = useState(queryParam);
+  // No ?target: open on the person's first open assignment, through a full
+  // load so the page reads the new target from its own URL.
   useEffect(() => {
-    if (!token || new URLSearchParams(window.location.search).get("target")) return;
-    // A failed read leaves the learner where they are. Redirecting on a
-    // guess is worse than not redirecting, and AssignmentsBanner says
-    // the read failed on the same screen.
+    // hasTarget, from dev: the same value on the server and after
+    // hydration, where reading window.location here gave two answers.
+    // A failed read leaves the learner where they are, and
+    // AssignmentsBanner reports the failure on the same screen.
+    if (!token || hasTarget) return;
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { assignments: [] }))
       .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {
         const open = (j.assignments ?? []).find((a) => a.status !== "accepted");
-        if (open && open.targetSlug !== TARGET_SLUG) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+        if (open && open.targetSlug !== targetSlug) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
       })
       .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
-  const locateFromUrl = useRef(typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("q")?.trim()));
+  }, [token, hasTarget, targetSlug]);
+  const locateFromUrl = useRef(Boolean(queryParam));
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
   const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
-  // Quote had a success branch and nothing else, so every failure that
-  // was not a consent answer pressed the button and changed nothing on
-  // the screen.
-  const [quoteNote, setQuoteNote] = useState<string | null>(null);
   // ros-04, canvas item 3: "sources I have quoted", every distinct Quote
   // result this sitting, most recent first. Client-side only (no new
   // backend route): Quote is already logged server-side per tool call
@@ -371,6 +375,10 @@ export default function ResearchOsWorkspacePage() {
   const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[]; abstained?: boolean } | null>(null);
   const [transferAnswer, setTransferAnswer] = useState("");
   const [transferSaved, setTransferSaved] = useState(false);
+  // A transfer write that came back 503 used to fall past `if (res.ok)`
+  // with nothing said, so the learner's typed answer was discarded and
+  // the page looked as though they had never pressed the button.
+  const [transferNote, setTransferNote] = useState<string | null>(null);
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "", counterEvidence: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
   // The kind of production the form saves (ProduceBlock): a plain production
@@ -386,21 +394,28 @@ export default function ResearchOsWorkspacePage() {
   const [notes, setNotes] = useState("");
   useEffect(() => {
     try {
-      setNotes(window.localStorage.getItem(NOTES_STORAGE_KEY) || "");
+      setNotes(window.localStorage.getItem(notesStorageKey) || "");
     } catch {
       /* localStorage unavailable; notes just stay session-local via state */
     }
-  }, []);
+  }, [notesStorageKey]);
   useEffect(() => {
     try {
-      window.localStorage.setItem(NOTES_STORAGE_KEY, notes);
+      window.localStorage.setItem(notesStorageKey, notes);
     } catch {
       /* best effort */
     }
-  }, [notes]);
+  }, [notes, notesStorageKey]);
 
   // Phase 1 (bkt-ros item 2): diagnostic probe state.
   const [probe, setProbe] = useState<ProbeResponse | null>(null);
+  // A failed probe read used to render as "no probe due".
+  const [probeNote, setProbeNote] = useState<string | null>(null);
+  const [openNote, setOpenNote] = useState<string | null>(null);
+  const [locateNote, setLocateNote] = useState<string | null>(null);
+  const [quoteNote, setQuoteNote] = useState<string | null>(null);
+  const [secondSourceNote, setSecondSourceNote] = useState<string | null>(null);
+  const [organizeNote, setOrganizeNote] = useState<string | null>(null);
   const [probeAnswers, setProbeAnswers] = useState<Record<string, string>>({});
   const [probeResults, setProbeResults] = useState<Record<string, ProbeAnswerResult>>({});
   const [probeBusy, setProbeBusy] = useState<string | null>(null);
@@ -462,8 +477,8 @@ export default function ResearchOsWorkspacePage() {
   const loadRoute = useCallback(async () => {
     setRouteError(null);
     try {
-      const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as RouteResponse;
+      const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(targetSlug)}`, { headers: authHeaders() });
+      const data = (await res.json().catch(() => ({}))) as RouteResponse;
       if (!res.ok) {
         setRouteError(data.error || "route_failed");
         return;
@@ -474,7 +489,7 @@ export default function ResearchOsWorkspacePage() {
       setRouteError("network_error");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authHeaders]);
+  }, [authHeaders, targetSlug]);
 
   useEffect(() => {
     loadRoute();
@@ -488,13 +503,15 @@ export default function ResearchOsWorkspacePage() {
       return;
     }
     try {
-      const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as ProbeResponse;
+      const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(targetSlug)}`, { headers: authHeaders() });
+      const data = (await res.json().catch(() => ({}))) as ProbeResponse;
+      // null is "no probe due", which a failed read used to look like.
+      setProbeNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setProbe(res.ok ? data : null);
     } catch {
       setProbe(null);
     }
-  }, [token, authHeaders]);
+  }, [token, authHeaders, targetSlug]);
 
   useEffect(() => {
     loadProbe();
@@ -510,7 +527,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId, answer, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setProbeResults((r) => ({ ...r, [nodeId]: { ok: true, ...data } }));
@@ -523,7 +540,12 @@ export default function ResearchOsWorkspacePage() {
         // A grading that failed carries no result and no stage. Inventing
         // an empty stage put a value on the page that the server can
         // never send.
-        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback: data.error || "Probe grading failed." } }));
+        // A lock wait used to reach the learner as the word "busy" in
+        // the feedback box.
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Probe grading failed.";
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback } }));
       }
     } finally {
       setProbeBusy(null);
@@ -549,14 +571,18 @@ export default function ResearchOsWorkspacePage() {
     setOrganized(null);
     if (!token) return; // anonymous browsing is fine; only a signed-in learner logs progress
     try {
-      await fetch("/api/research-os/state", {
+      const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId: node.id, action: "open", sessionId }),
       });
+      // The open event is what the route is computed from, so losing one
+      // quietly changes what the learner is shown next with nothing to
+      // say why. A lock wait says so and the learner can reopen.
+      setOpenNote(!res.ok && isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
       loadRoute();
     } catch {
-      /* best-effort; the map still renders from the last known state */
+      /* the map still renders from the last known state */
     }
   }
 
@@ -577,11 +603,14 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "locate", query: locateQuery, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setLocateResults([]);
         return;
       }
+      // An empty list is a search that found nothing, which a failed
+      // read used to look exactly like.
+      setLocateNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setLocateResults(res.ok ? data.results : []);
     } finally {
       setBusy(null);
@@ -597,11 +626,32 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId: selected.id, sessionId }),
       });
-      const data = await res.json().catch(() => ({}) as { error?: string; message?: string });
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
-      if (!res.ok) {
-        setQuoteNote(data.message || data.error || `That quote could not be recorded (${res.status}).`);
-        return;
+      if (res.ok) {
+        setQuote(data);
+        // "sources I have quoted" (canvas item 3): keep the most recent
+        // quote per node, newest node first.
+        setQuotedSources((prev) => [
+          { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
+          ...prev.filter((q) => q.nodeId !== selected.id),
+        ]);
+        // The quote landed and its provenance row did not, so the
+        // production guard will later report this source as unverified.
+        // Saying so now beats returning their work for it.
+        setQuoteNote(
+          (data as { provenanceRecorded?: boolean }).provenanceRecorded === false
+            ? "Quoted. The server could not record that you quoted it, so quote it again before you cite it."
+            : null,
+        );
+      } else {
+        // A failed quote left the panel exactly as it was, so the button
+        // read as having done nothing at all.
+        setQuoteNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That source could not be quoted.",
+        );
       }
       setQuoteNote(null);
       setQuote(data);
@@ -642,10 +692,15 @@ export default function ResearchOsWorkspacePage() {
           quotes: quotedSources.map((q) => ({ quotable_span: q.quotable_span, citation: q.citation })),
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (!res.ok) {
-        setCheckResult({ result: "error", feedback: data.error || "Check failed.", citations: [] });
+        // A lock wait on Check used to print the word "busy" into the
+        // feedback box where the tutor's answer goes.
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Check failed.";
+        setCheckResult({ result: "error", feedback, citations: [] });
         return;
       }
       if (data.forcingRequired) {
@@ -689,14 +744,18 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setCheckResult(data);
         setCheckAttemptId(null);
         loadRoute();
       } else {
-        setCheckForcingError(data.error || "Could not show your results yet.");
+        setCheckForcingError(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "Could not show your results yet.",
+        );
       }
     } finally {
       setBusy(null);
@@ -721,11 +780,15 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setSecondSourceCandidates([]);
         return;
       }
+      // An empty candidate list is a search that found nothing, which a
+      // failed read used to look exactly like, on the step that decides
+      // whether the learner can corroborate at all.
+      setSecondSourceNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setSecondSourceCandidates(res.ok ? data.results : []);
     } finally {
       setSecondSourceBusy(false);
@@ -745,7 +808,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuotedSources((prev) => [
@@ -754,6 +817,15 @@ export default function ResearchOsWorkspacePage() {
         ]);
         setSecondSourceNodeId(nodeId);
         setSecondSourceQuoted(true);
+        setSecondSourceNote(null);
+      } else {
+        // A failed quote left the corroboration step looking as though
+        // the learner had not pressed the button.
+        setSecondSourceNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That second source could not be quoted.",
+        );
       }
     } finally {
       setSecondSourceBusy(false);
@@ -769,11 +841,20 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setOrganized(data);
         setProduction((p) => ({ ...p, claim: data.claim || p.claim, evidence: (data.evidence || []).join("\n"), sources: (data.sources || []).join("\n") }));
+        setOrganizeNote(null);
+      } else {
+        // Organize returning nothing looked the same as Organize not
+        // having been pressed.
+        setOrganizeNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That could not be organized.",
+        );
       }
     } finally {
       setBusy(null);
@@ -791,7 +872,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: TRANSFER_ITEM_ID, sessionId }),
+        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: transferItemId, sessionId }),
       });
       // ros-07: this call ignored its own response status before this pass
       // (a consent block used to look identical to a successful save).
@@ -800,9 +881,15 @@ export default function ResearchOsWorkspacePage() {
       const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data as { error?: string; message?: string; needsProfile?: boolean })) return;
       if (res.ok) {
+        setTransferNote(null);
         setTransferSaved(true);
         loadRoute();
+        return;
       }
+      // The answer stays in transferAnswer either way, so pressing the
+      // button again sends what they typed rather than an empty box.
+      const code = (data as { error?: string }).error ?? null;
+      setTransferNote(isTransientOutage(res.status, code) ? OUTAGE_COPY.body : "That answer was not recorded.");
     } finally {
       setBusy(null);
     }
@@ -833,12 +920,20 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setProductionStatus(null);
         return;
       }
-      setProductionStatus(res.ok ? `${status} saved` : data.error || "save_failed");
+      // A lock wait on Save used to print the word "busy" where a
+      // retry belonged. The draft stays in the form either way.
+      setProductionStatus(
+        res.ok
+          ? `${status} saved`
+          : isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "save_failed",
+      );
       if (res.ok) loadRoute();
     } finally {
       setBusy(null);
@@ -855,7 +950,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "export" }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "export_failed");
         return;
@@ -893,7 +988,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "delete", confirm: DELETE_CONFIRM_TOKEN }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "delete_failed");
         return;
@@ -909,7 +1004,7 @@ export default function ResearchOsWorkspacePage() {
     }
   }
 
-  if (!HAS_TARGET) return <TargetPicker />;
+  if (!hasTarget) return <TargetPicker />;
 
   return (
     <main>
@@ -966,6 +1061,36 @@ export default function ResearchOsWorkspacePage() {
 
         {/* Phase 1 (bkt-ros item 2): diagnostic probe, shown only when the
             signed-in learner has no state on any ancestor of the target. */}
+        {probeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {probeNote}
+          </p>
+        )}
+        {openNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {openNote}
+          </p>
+        )}
+        {locateNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {locateNote}
+          </p>
+        )}
+        {quoteNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {quoteNote}
+          </p>
+        )}
+        {secondSourceNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {secondSourceNote}
+          </p>
+        )}
+        {organizeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {organizeNote}
+          </p>
+        )}
         {probe?.due && probe.questions.length > 0 && (
           <div className="mt-8 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
             <div className="font-display uppercase text-[14px] mb-1">quick check first</div>
@@ -1021,7 +1146,7 @@ export default function ResearchOsWorkspacePage() {
                 below the routing confidence floor and should have a
                 teacher's eyes on it. */}
             <div className="flex flex-col gap-4">
-              <AssignmentsBanner token={token} currentTarget={TARGET_SLUG} />
+              <AssignmentsBanner token={token} currentTarget={targetSlug} />
               <PathMap
                 steps={route.chain.map((s) => ({ id: s.node.id, title: s.node.title, stage: s.stage, isFrontier: s.isFrontier }))}
                 selectedId={selected?.id ?? null}
@@ -1441,7 +1566,7 @@ export default function ResearchOsWorkspacePage() {
                 <div className="p-4 bg-[color:var(--bone)]">
                   <div className="font-display uppercase text-[14px] mb-2">transfer item</div>
                   <p className="text-[12px] text-[color:var(--basalt-2)] mb-2">
-                    {TARGET_SLUG === DEFAULT_TARGET_SLUG
+                    {targetSlug === DEFAULT_TARGET_SLUG
                       ? "A sunset looks red. Using the lambda^-4 law, explain why the SAME scattering that makes the daytime sky blue makes a sunset red instead."
                       : `Take "${route?.target?.title ?? "this target"}" somewhere it was not taught: a case, a field, or a question outside this branch. Where does it hold, and where does it stop applying?`}
                   </p>
@@ -1457,6 +1582,11 @@ export default function ResearchOsWorkspacePage() {
                     <p className="mt-2 text-[11px] text-[color:var(--basalt-2)]">
                       Logged. Held for teacher review (Phase 0 has no teacher layer yet; see
                       src/lib/research-os/stages.ts).
+                    </p>
+                  )}
+                  {transferNote && (
+                    <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
+                      {transferNote}
                     </p>
                   )}
                 </div>
@@ -1565,5 +1695,17 @@ export default function ResearchOsWorkspacePage() {
         )}
       </div>
     </main>
+  );
+}
+
+/**
+ * useSearchParams asks for a Suspense boundary, so a build that
+ * prerenders this route has something to render while the URL is read.
+ */
+export default function ResearchOsWorkspacePage() {
+  return (
+    <Suspense fallback={null}>
+      <Workspace />
+    </Suspense>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 
 // Assignments for one class (the Class step, decision 6): the teacher or
 // librarian assigns a target from the class path with a title, instructions,
@@ -41,12 +42,20 @@ export default function AssignmentsPanel({
     if (!token) return;
     try {
       const res = await fetch(`/api/research-os/assignments?class=${encodeURIComponent(classId)}`, { headers: headers(), cache: "no-store" });
-      if (!res.ok) return;
+      if (!res.ok) {
+        // Returning here left the panel showing the assignments it had,
+        // or none at all, for a read that never finished. This route
+        // answers class_read_failed now, so the failure has a name.
+        const j = (await res.json().catch(() => ({}))) as { error?: string };
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : "Assignments could not be read.");
+        return;
+      }
+      setError(null);
       const j = (await res.json()) as { assignments: AssignmentRow[]; roles: string[] };
       setRows(j.assignments);
       setCanAssign(j.roles.some((r) => r === "teacher" || r === "librarian"));
     } catch {
-      /* unavailable */
+      setError(OUTAGE_COPY.body);
     }
   }, [classId, token, headers]);
 
@@ -65,7 +74,7 @@ export default function AssignmentsPanel({
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? `failed (${res.status})`);
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
       } else if (body.action === "create") {
         setTitle("");
         setInstructions("");

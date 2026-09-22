@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -79,23 +80,24 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [layer, setLayer] = useState<"standing" | "class">("standing");
   const [hover, setHover] = useState<string | null>(null);
   const [branches, setBranches] = useState<{ id: string; nodes: number }[]>([]);
-  const [branchesFailed, setBranchesFailed] = useState(false);
   const [show, setShow] = useState<Set<string>>(() => new Set(SOURCES));
+  // Two meanings behind one 503, told apart by the body (Bucket critic C59).
+  const [code, setCode] = useState<string | null>(null);
+  const [branchesUnavailable, setBranchesUnavailable] = useState(false);
 
   useEffect(() => {
     // A 503 used to read as a graph with no branches in it, which is the
     // fourth defect the scanner's own header names as its motivation.
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
+      // C62: a failed branch count rendered as a graph with no branches
+      // in it, which is the outage reading as an answer.
       .then(async (r) => {
-        if (!r.ok) {
-          setBranchesFailed(true);
-          return;
-        }
-        const j = (await r.json()) as { branches?: { id: string; nodes: number }[] };
-        setBranchesFailed(false);
-        setBranches(j.branches ?? []);
+        if (r.ok) return (await r.json()) as { branches?: { id: string; nodes: number }[] };
+        setBranchesUnavailable(true);
+        return { branches: [] };
       })
-      .catch(() => setBranchesFailed(true));
+      .then((j) => setBranches(j.branches ?? []))
+      .catch(() => setBranchesUnavailable(true));
   }, []);
 
   useEffect(() => {
@@ -104,8 +106,16 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     fetch(`/api/research-os/graph?branch=${encodeURIComponent(branch)}`, { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
+        // The code is read before any setState, so no render happens
+        // with the status set and the code still null, which showed one
+        // frame of the permanent copy for a passing outage.
+        if (r.ok) {
+          setData((await r.json()) as GraphData);
+          setStatus(r.status);
+          return;
+        }
+        setCode(await readErrorCode(r));
         setStatus(r.status);
-        if (r.ok) setData((await r.json()) as GraphData);
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -144,10 +154,8 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
-        {branchesFailed && (
-          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
-            The branch list could not be read this minute, so only this branch is shown.
-          </p>
+        {branchesUnavailable && (
+          <span className="text-[11px] text-[color:var(--basalt-3)]">the branch list could not be read, showing this branch alone</span>
         )}
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
           {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (
@@ -219,8 +227,10 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
 
       {status === null ? (
         <LoadingState label="Laying out the branch" />
+      ) : isTransientOutage(status, code) ? (
+        <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />
       ) : status === 503 ? (
-        <ErrorState title="Research OS is unavailable on this deployment" />
+        <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />
       ) : !data || !layout ? (
         <ErrorState body="Could not load the branch." />
       ) : (
