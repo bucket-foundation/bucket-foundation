@@ -53,9 +53,13 @@ export async function loadMemberships(userId: string): Promise<Membership[]> {
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
+/** Raises when the read did not complete. An empty list is a class with
+ * nobody in it, and the members route served that at 200 underneath a
+ * staff check that answers 503 for the same outage. */
 export async function loadClassMemberships(classId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("class_id", classId);
-  if (error || !data) return [];
+  if (error) throw new Error(`loadClassMemberships: class_members read failed: ${error.message}`);
+  if (!data) return [];
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
@@ -128,12 +132,17 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const memberships = await loadMemberships(learnerId);
   const classIds = Array.from(new Set(memberships.map((m) => m.classId)));
   if (classIds.length === 0) return [];
-  const { data: rows } = await svc
+  // The primary read. Its four decoration reads below were repaired and
+  // this one was left, so the function raised on a failed node read and
+  // answered "no assignments" on a failed assignments read, which is the
+  // defect the whole change is named after.
+  const { data: rows, error: rowsErr } = await svc
     .from("assignments")
     .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
     .in("class_id", classIds)
     .is("closed_at", null)
     .order("created_at", { ascending: false });
+  if (rowsErr) throw new Error(`listAssignmentsForLearner: assignments read failed: ${rowsErr.message}`);
   const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
   if (assignments.length === 0) return [];
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));

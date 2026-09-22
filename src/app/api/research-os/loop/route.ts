@@ -46,15 +46,24 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   const svc = graphService();
-  const [statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks] = await Promise.all([
+  let statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks;
+  try {
+    [statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks] = await Promise.all([
     svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId),
     svc.from("nodes").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
     svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
     svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }),
     svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
-    loadConnections(learnerId).catch(() => ({ held: [], bridges: [] })),
+    // The catch returned a learner holding nothing and bridging to
+    // nowhere, which is what the Internalization row then reported. It
+    // answers with the rest of the reads below.
+    loadConnections(learnerId),
     learnDecksStarted(learnerId),
-  ]);
+    ]);
+  } catch (err) {
+    console.error("[research-os/loop] read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "loop_unavailable");
+  }
   // Each element of the Promise.all is its own read and fails on its
   // own. Their errors were dropped, so a failed learner_node_state read
   // rendered the first-run screen to a learner with a full map.

@@ -48,7 +48,11 @@ export async function GET(req: NextRequest) {
   const grants = access.visibility === "public" ? [] : await loadGrants(node.id);
   if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
 
-  const [graph, standingRes, myClasses] = await Promise.all([
+  let graph: Awaited<ReturnType<typeof loadSubgraph>> | { nodes: never[]; edges: never[]; failed: true };
+  let standingRes: { data: unknown; error?: { message: string } | null };
+  let myClasses: Awaited<ReturnType<typeof listMyClasses>>;
+  try {
+    [graph, standingRes, myClasses] = await Promise.all([
     // A failed graph read still serves the node itself, and the reply marks
     // the neighbourhood as unavailable so the page says so.
     loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
@@ -56,8 +60,14 @@ export async function GET(req: NextRequest) {
       return { nodes: [], edges: [], failed: true as const };
     }),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
+    // listMyClasses raises on a failed read now. The whole Promise.all
+    // sits outside a try here, so the raise is caught beside it.
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
-  ]);
+    ]);
+  } catch (err) {
+    console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "node_read_failed");
+  }
   const visible = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
   const byId = new Map(visible.nodes.map((n) => [n.id, n]));
   const lite = (id: string) => {

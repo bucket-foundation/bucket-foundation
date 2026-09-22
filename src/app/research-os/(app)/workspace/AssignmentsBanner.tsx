@@ -27,6 +27,7 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 
 export default function AssignmentsBanner({ token, currentTarget }: { token: string | null; currentTarget: string }) {
   const [rows, setRows] = useState<LearnerAssignment[]>([]);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     if (!token) return;
@@ -34,11 +35,20 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
     (async () => {
       try {
         const res = await fetch("/api/research-os/assignments?mine=1", { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
-        if (!res.ok) return;
+        if (!res.ok) {
+          // The banner hides itself on an empty list, so returning here
+          // showed a learner with assignments the screen of a learner
+          // with none.
+          if (!cancelled) setFailed(true);
+          return;
+        }
         const j = (await res.json()) as { assignments: LearnerAssignment[] };
-        if (!cancelled) setRows(j.assignments);
+        if (!cancelled) {
+          setFailed(false);
+          setRows(j.assignments);
+        }
       } catch {
-        /* unavailable */
+        if (!cancelled) setFailed(true);
       }
     })();
     return () => {
@@ -46,6 +56,13 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
     };
   }, [token]);
 
+  if (failed) {
+    return (
+      <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+        Your assignments could not be read this minute. Reload to try again.
+      </p>
+    );
+  }
   if (rows.length === 0) return null;
   return (
     <div className="mb-3 p-3 border border-[color:var(--gold)] bg-[color:var(--bone-2)]/70 text-[12px]">

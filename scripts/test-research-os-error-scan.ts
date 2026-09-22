@@ -10,6 +10,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { scanFile, scanTree } from "./research-os/error-scan";
 import { ERROR_EXCEPTIONS } from "./research-os/error-allowlist";
+import { ALLOWED_BASELINE } from "./research-os/error-allowlist-baseline";
 
 // The ingest scripts write the graph the routes read, so a dropped error
 // there lands in what every route serves. They are inside the gate.
@@ -65,26 +66,27 @@ test("the list carries no entry for a read that is already fixed", () => {
 });
 
 test("the list can only get shorter", () => {
-  // Three ratchets, and the total is the one that binds. Pinning the two
-  // worded buckets alone let a new entry launder itself into neither by
-  // choosing different prose: a critic added a live dropped read with an
-  // entry worded "a maybeSingle lookup whose miss and whose failure both
-  // mean carry on without it" and all nine tests stayed green. The total
-  // has no third bucket to escape into, so a new entry now has to remove
-  // an old one.
-  const TOTAL_CEILING = 51;
-  const UNTRIAGED_CEILING = 17;
-  const EMPTY_GUARD_CEILING = 27;
+  // The set is what binds here. Three ceilings by equality closed the free
+  // addition, and a swap walked straight through: repair one trivial
+  // lookup, add one new dropped read, reuse the bucket wording, and
+  // every test stayed green. A read that is not in the baseline cannot
+  // be allowlisted without editing the baseline, which is a line in a
+  // diff whose only purpose is to be that.
+  const listed = ERROR_EXCEPTIONS.map((e) => e.at).sort();
+  const baseline = new Set(ALLOWED_BASELINE);
+  const added = listed.filter((a) => !baseline.has(a));
+  assert.deepEqual(
+    added,
+    [],
+    `these reads are allowlisted and are not in the baseline. Repair the read, or add it to error-allowlist-baseline.ts and say why in the review: ${added.join(", ")}`,
+  );
 
-  const emptyGuard = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged, empty-guard")).length;
-  const untriaged = ERROR_EXCEPTIONS.filter((e) => e.because.startsWith("not yet triaged") && !e.because.startsWith("not yet triaged, empty-guard")).length;
-
-  for (const [name, count, ceiling] of [
-    ["entries", ERROR_EXCEPTIONS.length, TOTAL_CEILING],
-    ["untriaged reads", untriaged, UNTRIAGED_CEILING],
-    ["empty-guard reads", emptyGuard, EMPTY_GUARD_CEILING],
-  ] as [string, number, number][]) {
-    assert.ok(count <= ceiling, `${name} went up to ${count}, above the ceiling of ${ceiling}. Repair the read rather than raising this number.`);
-    assert.equal(count, ceiling, `${name} are down to ${count}. Lower the ceiling to ${count} so the ground that was won cannot be given back.`);
-  }
+  // And it shrinks. A repaired read leaves the list, and the baseline
+  // follows it down so the ground cannot be given back.
+  const gone = ALLOWED_BASELINE.filter((a) => !listed.includes(a));
+  assert.deepEqual(
+    gone,
+    [],
+    `these baseline reads are no longer allowlisted, which means they were repaired. Remove them from error-allowlist-baseline.ts: ${gone.join(", ")}`,
+  );
 });

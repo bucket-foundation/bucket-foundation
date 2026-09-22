@@ -304,6 +304,9 @@ export default function ResearchOsWorkspacePage() {
   // the module-level TARGET_SLUG picks it up.
   useEffect(() => {
     if (!token || new URLSearchParams(window.location.search).get("target")) return;
+    // A failed read leaves the learner where they are. Redirecting on a
+    // guess is worse than not redirecting, and AssignmentsBanner says
+    // the read failed on the same screen.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { assignments: [] }))
       .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {

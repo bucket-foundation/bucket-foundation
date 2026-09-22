@@ -41,9 +41,14 @@ export type ClassesResult<T> = { ok: true; value: T } | { ok: false; error: "bad
 export async function listMyClasses(userId: string): Promise<ClassSummary[]> {
   const svc = graphService();
   const { data: members, error } = await svc.from("class_members").select("class_id,role").eq("learner_id", userId);
-  if (error || !members || members.length === 0) return [];
+  // An empty list is a learner in no class. The graph route reads this
+  // inside a Promise.all the branch repaired and flattened a failure to
+  // the same empty list, so a teacher lost every class on an outage.
+  if (error) throw new Error(`listMyClasses: class_members read failed: ${error.message}`);
+  if (!members || members.length === 0) return [];
   const ids = (members as { class_id: string; role: string }[]).map((m) => m.class_id);
-  const { data: classes } = await svc.from("classes").select("id,name,join_code,created_at").in("id", ids);
+  const { data: classes, error: classesErr } = await svc.from("classes").select("id,name,join_code,created_at").in("id", ids);
+  if (classesErr) throw new Error(`listMyClasses: classes read failed: ${classesErr.message}`);
   const byId = new Map(((classes as { id: string; name: string; join_code: string | null; created_at: string }[]) || []).map((c) => [c.id, c]));
   return (members as { class_id: string; role: string }[])
     .map((m) => {

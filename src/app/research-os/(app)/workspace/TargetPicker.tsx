@@ -28,12 +28,23 @@ export default function TargetPicker() {
   const [hits, setHits] = useState<Hit[]>([]);
   const [busy, setBusy] = useState(false);
   const [assignments, setAssignments] = useState<Assignment[] | null>(null);
+  const [assignmentsFailed, setAssignmentsFailed] = useState(false);
 
   useEffect(() => {
+    // The server answers 503 on a failed read now, and turning that back
+    // into an empty list here put the defect one layer out: a learner
+    // with assignments saw the same picker as a learner with none.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: Assignment[] }) => setAssignments(j.assignments ?? []))
-      .catch(() => setAssignments([]));
+      .then(async (r) => {
+        if (!r.ok) {
+          setAssignmentsFailed(true);
+          return;
+        }
+        const j = (await r.json()) as { assignments?: Assignment[] };
+        setAssignmentsFailed(false);
+        setAssignments(j.assignments ?? []);
+      })
+      .catch(() => setAssignmentsFailed(true));
   }, []);
 
   useEffect(() => {
@@ -80,7 +91,11 @@ export default function TargetPicker() {
       </Panel>
       <div className="grid md:grid-cols-2 gap-6">
         <Panel title="your assignments">
-          {assignments === null ? (
+          {assignmentsFailed ? (
+            <p role="alert" className="text-[13px] text-[color:var(--gold-deep)]">
+              Your assignments could not be read this minute. Reload to try again.
+            </p>
+          ) : assignments === null ? (
             <LoadingState />
           ) : assignments.length === 0 ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">None open.</p>

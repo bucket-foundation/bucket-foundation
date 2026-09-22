@@ -44,8 +44,9 @@
  *   - src/app/api/research-os/production/route.ts POST (action
  *     "production_submit"), in front of the whole handler (draft saves
  *     and submits both carry learner-authored content).
- * Every gated route returns consentBlockedBody(gate) as its JSON body on a
- * blocked call, status 403. Review and class routes (teacher-facing) are
+ * Every gated route answers a blocked call through consentRefusal(gate),
+ * which carries the 403 for a real refusal and the 503 for a consent
+ * read that did not complete. Review and class routes (teacher-facing) are
  * deliberately untouched: verifyReviewer already gates them, and a
  * teacher's own age/consent status is not the thing being asked about.
  *

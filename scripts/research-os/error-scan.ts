@@ -152,7 +152,10 @@ function isPromiseAllOfReads(node: ts.Expression): boolean {
 /** Whether an expression's source reads like a database read. Matched on
  * text, because a paging helper can sit between the read and the .catch
  * attached to it. */
-const READ_HELPERS = /\.from\(|\.rpc\(|inChunks\(|pagedRead\(|loadSubgraph\(/;
+// Anchored to a client receiver, because a bare `.from(` also matches
+// Array.from and Buffer.from, and a catch on any chain containing one
+// became gate traffic with no way out but an allowlist entry.
+const READ_HELPERS = /(?:svc|client|supabase|graphService\(\))\s*\.(?:from|rpc)\(|inChunks\(|pagedRead\(|loadSubgraph\(|loadConnections\(/;
 function looksLikeRead(text: string): boolean {
   return READ_HELPERS.test(text);
 }
@@ -201,13 +204,38 @@ function tableOf(node: ts.Node, source: ts.SourceFile): string {
   return m ? m[1] : "<unknown>";
 }
 
+/** An object literal whose every property is itself empty. */
+function allEmptyObject(node: ts.Expression): boolean {
+  const e = ts.isParenthesizedExpression(node) ? node.expression : node;
+  if (!ts.isObjectLiteralExpression(e) || e.properties.length === 0) return false;
+  return e.properties.every((prop) => ts.isPropertyAssignment(prop) && isEmptyish(prop.initializer as ts.Expression));
+}
+
+/** Whether `name` appears anywhere in `scope` outside `exclude`'s span. */
+function mentionsOutside(scope: ts.Node, name: string, exclude: ts.Node): boolean {
+  let found = false;
+  const lo = exclude.getStart();
+  const hi = exclude.getEnd();
+  const walk = (n: ts.Node): void => {
+    if (found) return;
+    if (ts.isIdentifier(n) && n.text === name && (n.getStart() < lo || n.getStart() >= hi)) { found = true; return; }
+    ts.forEachChild(n, walk);
+  };
+  walk(scope);
+  return found;
+}
+
 export function scanFile(file: string, text: string): ErrorFinding[] {
   const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true);
   const findings: ErrorFinding[] = [];
   const seen = new Map<string, number>();
-  const anchorFor = (node: ts.Node, chain: ts.Node): string => {
+  const anchorFor = (node: ts.Node, chain: ts.Node, bound?: string): string => {
     const rel = file.replace(/^.*?\/(src|scripts)\//, "$1/");
-    const base = `${rel}::${enclosingName(node)}::${tableOf(chain, source)}`;
+    // The bound name joins the key, because the ordinal alone is a
+    // position: inserting a read of the same table above an allowlisted
+    // one silently re-pointed that entry at the new read, and swapping
+    // two same-table reads swapped their written reasons with no signal.
+    const base = `${rel}::${enclosingName(node)}::${tableOf(chain, source)}${bound ? `::${bound}` : ""}`;
     const n = (seen.get(base) ?? 0) + 1;
     seen.set(base, n);
     return `${base}::${n}`;
@@ -238,9 +266,12 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
               findings.push({ file, line: line + 1, what: "checks error and returns the same empty value a successful read would give", anchor: anchorFor(node, node) });
             }
           } else if (errName && !next) {
-            // Bound and never looked at, which reads as handled and is not.
+            // Bound and never looked at, which reads as handled and is
+            // not. Counted outside the declaration, because the binding
+            // `{ data, error }` is itself an identifier of that name and
+            // a whole-function search therefore always found one.
             const fn = enclosingFunction(node);
-            if (fn && !mentions(fn, errName)) {
+            if (fn && !mentionsOutside(fn, errName, node.name)) {
               const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
               findings.push({ file, line: line + 1, what: "binds error and never reads it", anchor: anchorFor(node, node) });
             }
@@ -259,7 +290,14 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
             const names = boundNames(el.name);
             if (names.includes("data") && !names.includes("error")) {
               const { line } = source.getLineAndCharacterOfPosition(el.getStart(source));
-              findings.push({ file, line: line + 1, what: "destructures data out of a Promise.all element and drops error", anchor: anchorFor(node, node) });
+              const list = (node.initializer.expression as ts.CallExpression).arguments[0];
+              const own = ts.isArrayLiteralExpression(list) ? list.elements[node.name.elements.indexOf(el)] : undefined;
+              findings.push({
+                file,
+                line: line + 1,
+                what: "destructures data out of a Promise.all element and drops error",
+                anchor: anchorFor(node, own ?? node, localNameFor(el.name as ts.ObjectBindingPattern, "data") ?? undefined),
+              });
             }
             continue;
           }
@@ -274,7 +312,14 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
             const readsError = new RegExp(`\\b${held}\\.error\\b`).test(text);
             if (readsData && !readsError && !checkedThroughLoop(fn, held, source)) {
               const { line } = source.getLineAndCharacterOfPosition(el.getStart(source));
-              findings.push({ file, line: line + 1, what: "holds a Promise.all element and reads data off it without ever reading error", anchor: anchorFor(node, node) });
+              const list = (node.initializer.expression as ts.CallExpression).arguments[0];
+              const own = ts.isArrayLiteralExpression(list) ? list.elements[node.name.elements.indexOf(el)] : undefined;
+              findings.push({
+                file,
+                line: line + 1,
+                what: "holds a Promise.all element and reads data off it without ever reading error",
+                anchor: anchorFor(node, own ?? node, held),
+              });
             }
           }
         }
@@ -310,7 +355,14 @@ export function scanFile(file: string, text: string): ErrorFinding[] {
     ) {
       const arg = node.arguments[0];
       const body = ts.isArrowFunction(arg) ? arg.body : null;
-      const empty = body && !ts.isBlock(body) ? isEmptyish(body as ts.Expression) : false;
+      // `() => ({ held: [], bridges: [] })` is as empty as `() => []`,
+      // and `() => { return []; }` is the same value behind a block.
+      let returned: ts.Expression | undefined;
+      if (body && !ts.isBlock(body)) returned = body as ts.Expression;
+      else if (body && ts.isBlock(body) && body.statements.length === 1 && ts.isReturnStatement(body.statements[0])) {
+        returned = (body.statements[0] as ts.ReturnStatement).expression;
+      }
+      const empty = returned ? isEmptyish(returned) || allEmptyObject(returned) : false;
       if (empty && looksLikeRead(node.expression.expression.getText(source))) {
         const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
         findings.push({ file, line: line + 1, what: "catches a failed read and returns the same empty value a successful one would give", anchor: anchorFor(node, node) });
