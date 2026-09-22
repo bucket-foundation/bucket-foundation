@@ -1,17 +1,12 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
+import { internalizationDetail, internalizationLit, internalizationState, type LoopResponse } from "@/lib/research-os/loop-shape";
 
-interface Loop {
-  access: { owned: number; imports: number; pendingRequests: number };
-  awareness: { opened: number; atLeastAwareness: number };
-  understanding: { nodes: number; decksStarted: number };
-  internalization: { nodes: number; held: number; bridges: number; nextBridge: { slug: string; title: string } | null };
-  production: { drafts: number; submitted: number; accepted: number; returned: number; nodes: number; latest: { id: string; status: string; kind: string; claim: string | null } | null };
-  empty: boolean;
-}
+type Loop = LoopResponse;
 
 const n = (v: number, one: string, many = one + "s") => `${v} ${v === 1 ? one : many}`;
 
@@ -23,6 +18,11 @@ const n = (v: number, one: string, many = one + "s") => `${v} ${v === 1 ? one : 
 export default function LoopPanel() {
   const [loop, setLoop] = useState<Loop | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  // 503 means two things on this route now: a deployment with no graph
+  // behind it, and a read that failed this minute. The body says which,
+  // and reading only the status told a learner their install was broken
+  // (Bucket critic C59).
+  const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -30,7 +30,11 @@ export default function LoopPanel() {
       .then(async (r) => {
         if (!alive) return;
         setStatus(r.status);
-        if (r.ok) setLoop((await r.json()) as Loop);
+        if (r.ok) {
+          setLoop((await r.json()) as Loop);
+          return;
+        }
+        setCode(await readErrorCode(r));
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -39,7 +43,10 @@ export default function LoopPanel() {
   }, []);
 
   if (status === null) return <LoadingState label="Reading your loop" />;
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" />;
+  if (isTransientOutage(status, code)) {
+    return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />;
+  }
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (!loop) return <ErrorState body="Could not read your loop." />;
 
   if (loop.empty) {
@@ -95,11 +102,11 @@ export default function LoopPanel() {
     },
     {
       name: "Internalization",
-      state: n(loop.internalization.held, "connection") + " held",
-      detail: loop.internalization.bridges ? `${n(loop.internalization.bridges, "bridge")} one step away` : `${loop.internalization.nodes} internalized`,
+      state: internalizationState(loop.internalization),
+      detail: internalizationDetail(loop.internalization),
       href: loop.internalization.nextBridge ? `/research-os/n/${encodeURIComponent(loop.internalization.nextBridge.slug)}` : "/research-os/workspace",
       cta: loop.internalization.nextBridge ? `cross to ${loop.internalization.nextBridge.title}` : "transfer",
-      lit: loop.internalization.held > 0 || loop.internalization.nodes > 0,
+      lit: internalizationLit(loop.internalization),
     },
     {
       name: "Production",

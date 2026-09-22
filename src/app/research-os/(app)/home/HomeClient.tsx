@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/providers/SessionProvider";
@@ -63,7 +64,7 @@ interface RouteResponse {
   llmEnabled: boolean;
 }
 
-type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number };
+type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number; code?: string | null };
 
 const STATUS: Record<LearnerAssignment["status"], string> = {
   not_started: "not started",
@@ -76,15 +77,18 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 async function load<T>(url: string, headers: Record<string, string>): Promise<Load<T>> {
   try {
     const res = await fetch(url, { headers, cache: "no-store" });
-    if (!res.ok) return { state: "error", status: res.status };
+    if (!res.ok) return { state: "error", status: res.status, code: await readErrorCode(res) };
     return { state: "ready", value: (await res.json()) as T };
   } catch {
     return { state: "error", status: 0 };
   }
 }
 
-function Unavailable({ status, retry }: { status: number; retry: () => void }) {
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" body="The graph database is not configured here." />;
+function Unavailable({ status, code, retry }: { status: number; code?: string | null; retry: () => void }) {
+  if (isTransientOutage(status, code ?? null)) {
+    return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={retry} />;
+  }
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (status === 401) return <ErrorState title="Your session ended" body="Sign in again to continue." />;
   return <ErrorState body={status ? `The server answered ${status}.` : "The request did not reach the server."} retry={retry} />;
 }
@@ -182,7 +186,7 @@ export default function HomeClient() {
           </div>
         ) : profile.state === "error" ? (
           <div className="col-span-2 md:col-span-4">
-            <Unavailable status={profile.status} retry={retry} />
+            <Unavailable status={profile.status} code={profile.code} retry={retry} />
           </div>
         ) : (
           <>
@@ -199,7 +203,7 @@ export default function HomeClient() {
           {assignments.state === "loading" ? (
             <LoadingState />
           ) : assignments.state === "error" ? (
-            <Unavailable status={assignments.status} retry={retry} />
+            <Unavailable status={assignments.status} code={assignments.code} retry={retry} />
           ) : assignments.value.assignments.length === 0 ? (
             <EmptyState
               title="No assignments yet"
@@ -233,7 +237,7 @@ export default function HomeClient() {
           {route.state === "loading" ? (
             <LoadingState label="Finding your place on the graph" />
           ) : route.state === "error" ? (
-            <Unavailable status={route.status} retry={retry} />
+            <Unavailable status={route.status} code={route.code} retry={retry} />
           ) : (
             <PathList route={route.value} />
           )}
