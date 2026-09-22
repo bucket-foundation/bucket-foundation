@@ -357,15 +357,24 @@ export async function POST(req: NextRequest) {
       // Best-effort: a write failure here degrades to "this source can't be
       // verified later," never to a broken Quote response for the learner
       // in front of it right now.
+      let provenanceRecorded = true;
       if (passage) {
         try {
           const currentStage = await loadCurrentStage(learnerId, nodeId);
           const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
           await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
         } catch (err) {
-          // The degrade stays: a learner reading a source is not blocked by
-          // a write failure. The silence does not, since production-guard
-          // reads this event to verify a cited source later.
+          // A retryable lock wait answers, so the learner can press the
+          // button again against the same row.
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          // Anything else keeps the degrade: a learner reading a source
+          // is not blocked by a write failure. The silence goes, though.
+          // production-guard.ts matches a cited source against exactly
+          // this event, so a lost row later returns the learner's
+          // production telling them to quote a source they did quote,
+          // with the reason in a server log they cannot read.
+          provenanceRecorded = false;
           const message = err instanceof Error ? err.message : String(err);
           console.warn(`[research-os] quote evidence not recorded for learner ${learnerId} node ${nodeId}: ${message}`);
         }
@@ -380,6 +389,10 @@ export async function POST(req: NextRequest) {
           locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
           source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
+          // False when the quote landed and its provenance row did not,
+          // so the client can say the source needs quoting again before
+          // a production rests on it.
+          provenanceRecorded,
         },
         { headers: { "cache-control": "no-store" } },
       );

@@ -20,7 +20,7 @@ import assert from "node:assert/strict";
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
-import { OUTAGE_COPY, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage } from "../src/lib/research-os/outage";
+import { OUTAGE_COPY, PERMANENT_CODES, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage } from "../src/lib/research-os/outage";
 
 const root = path.join(__dirname, "..");
 const CLIENTS = path.join(root, "src/app/research-os");
@@ -46,6 +46,14 @@ export function emittedCodes(roots: string[]): Set<string> {
       const src = fs.readFileSync(full, "utf8");
       for (const m of src.match(/bad\(\s*503\s*,\s*"[^"]+"/g) || []) {
         codes.add(m.replace(/^bad\(\s*503\s*,\s*"/, "").replace(/"$/, ""));
+      }
+      // Any helper taking (503, { error }). ros-ai-find built its own
+      // `answer(status, body)` and emitted three codes through it, and a
+      // scanner that knew three spellings by name saw none of them. The
+      // shape rather than the helper's name is what this matches.
+      for (const m of src.match(/\(\s*503\s*,\s*\{[^}]*error:\s*"[^"]+"/g) || []) {
+        const err = m.match(/error:\s*"([^"]+)"/);
+        if (err) codes.add(err[1]);
       }
       // The other two spellings put the code and the status in one
       // expression, so the window is the statement holding the 503 and
@@ -73,14 +81,6 @@ export function emittedCodes(roots: string[]): Set<string> {
 
 /** Every `.ts` and `.tsx` under these roots. The first version walked
  * `.tsx` alone, so a client in a `.ts` file was invisible by construction. */
-/** True when `b` names an enclosing function of `a` in the same file, so
- * only the innermost offender is reported. */
-function sameFileEarlier(a: string, b: string): boolean {
-  const [fa, la] = a.split(":");
-  const [fb, lb] = b.split(":");
-  return fa === fb && Number(lb) < Number(la);
-}
-
 function clientFiles(roots: string[]): string[] {
   const out: string[] = [];
   const walk = (dir: string): void => {
@@ -95,19 +95,24 @@ function clientFiles(roots: string[]): string[] {
   return out;
 }
 
-/** The route names that can answer a 503 a retry might clear, either in
- * their own file or through a helper that does. */
+/** The route names that can answer a 503 a retry might clear.
+ *
+ * Read through emittedCodes rather than by probing for two words, so a
+ * route that emits a transient code through a helper this file has
+ * never heard of is still counted. A route importing evidence-errors
+ * answers `busy` from inside that module, which no scan of the route's
+ * own text can see, so that one import stays a named case. */
 function routesEmittingTransient(apiRoot: string): Set<string> {
   const names = new Set<string>();
   if (!fs.existsSync(apiRoot)) return names;
-  const helpers = /evidence-errors/;
   for (const entry of fs.readdirSync(apiRoot, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
-    const file = path.join(apiRoot, entry.name, "route.ts");
+    const dir = path.join(apiRoot, entry.name);
+    const file = path.join(dir, "route.ts");
     if (!fs.existsSync(file)) continue;
-    const src = fs.readFileSync(file, "utf8");
-    const emitsHere = Array.from(TRANSIENT_CODES).some((c) => src.includes(`"${c}"`));
-    if (emitsHere || helpers.test(src)) names.add(entry.name);
+    const emits = emittedCodes([dir]);
+    const transient = Array.from(emits).some((c) => isTransientOutage(503, c));
+    if (transient || /evidence-errors/.test(fs.readFileSync(file, "utf8"))) names.add(entry.name);
   }
   return names;
 }
@@ -178,7 +183,7 @@ test("every 503 the routes emit is classified on purpose, and nothing else is li
   assert.ok(emitted.size >= 4, `found ${emitted.size} distinct 503 codes, which is fewer than ship`);
 
   const unclassified = Array.from(emitted).filter(
-    (c) => c !== UNCONFIGURED && !TRANSIENT_CODES.has(c) && !PERMANENT.test(c),
+    (c) => !PERMANENT_CODES.has(c) && !TRANSIENT_CODES.has(c) && !PERMANENT.test(c),
   );
   assert.deepEqual(
     unclassified,
@@ -200,49 +205,61 @@ test("the two messages say different things, and the retryable one offers a retr
   assert.ok(!/try again/i.test(UNCONFIGURED_COPY.body), "a deployment with no graph is not worth retrying");
 });
 
-test("every fetch of a route that can answer busy consults the rule", () => {
-  // Per call site, because a file-level check is a file-level escape
-  // hatch: workspace/page.tsx imported the rule, used it once, and
-  // carried three more failure branches against transient-capable routes
-  // that the gate then skipped. The unit is the function that holds the
-  // fetch, so one guarded branch no longer covers its neighbours.
+test("every call to a route that can answer busy consults the rule", () => {
+  // Per call, because per function is still a hatch: two fetches in one
+  // body share one guard, so a guarded read immunized an unguarded write
+  // beside it. The window for each call runs from that call to the next
+  // one in the same block, which is where its own failure branch lives.
+  //
+  // The `fetch(` precondition is gone too. A client reaching a transient
+  // route through a request wrapper never writes the word, and skipping
+  // the file on that basis skipped the wrapper's callers by
+  // construction.
   const transientRoutes = routesEmittingTransient(path.join(root, "src/app/api/research-os"));
   assert.ok(transientRoutes.size > 0, "some route answers a transient 503, or this gate checks nothing");
 
   const offenders: string[] = [];
   for (const file of clientFiles([path.join(root, "src/app/research-os"), path.join(root, "src/components")])) {
     const src = fs.readFileSync(file, "utf8");
-    if (!/\bfetch\s*\(/.test(src)) continue;
     const source = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
-      if (ts.isFunctionDeclaration(node) || ts.isArrowFunction(node) || ts.isFunctionExpression(node) || ts.isMethodDeclaration(node)) {
-        const body = node.body;
-        if (body) {
-          const text = body.getText(source);
-          const calls = Array.from(text.matchAll(/\/api\/research-os\/([a-z-]+)/g)).map((m) => m[1]);
-          const dynamic = /\/api\/research-os\/\$\{/.test(text);
-          const hits = calls.some((r) => transientRoutes.has(r));
-          // Consulting the rule here, or capturing the code with
-          // readErrorCode so the render can, both count. A call site
-          // that does neither has thrown the code away before anything
-          // could branch on it.
-          const consults = /isTransientOutage|readErrorCode/.test(text);
-          if ((hits || dynamic) && /\bfetch\s*\(/.test(text) && !consults) {
-            const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-            offenders.push(`${path.relative(root, file)}:${line + 1}`);
-          }
-        }
+
+    // Every position that names a transient-capable route, literal or
+    // built from a template.
+    // Inside a string, so the route names in a docstring stay prose. A
+    // path that is fetched opens with a quote, a backtick, or the close
+    // of a template expression.
+    const inString = (at: number): boolean => '"\'`}'.includes(src[at - 1] ?? "");
+    const marks: number[] = [];
+    const route = /\/api\/research-os\/([a-z-]+)/g;
+    for (let m = route.exec(src); m !== null; m = route.exec(src)) {
+      if (transientRoutes.has(m[1]) && inString(m.index)) marks.push(m.index);
+    }
+    const dynamic = /\/api\/research-os\/\$\{/g;
+    for (let m = dynamic.exec(src); m !== null; m = dynamic.exec(src)) {
+      if (inString(m.index)) marks.push(m.index);
+    }
+    marks.sort((x, y) => x - y);
+    if (marks.length === 0) continue;
+
+    // Each call's window ends where the next one begins, so one guard
+    // covers one call and no more.
+    const guards: number[] = [];
+    const guard = /isTransientOutage|readErrorCode/g;
+    for (let m = guard.exec(src); m !== null; m = guard.exec(src)) guards.push(m.index);
+
+    for (let i = 0; i < marks.length; i += 1) {
+      const from = marks[i];
+      const to = i + 1 < marks.length ? marks[i + 1] : src.length;
+      if (!guards.some((g) => g > from && g < to)) {
+        const { line } = source.getLineAndCharacterOfPosition(from);
+        offenders.push(`${path.relative(root, file)}:${line + 1}`);
       }
-      ts.forEachChild(node, visit);
-    };
-    ts.forEachChild(source, visit);
+    }
   }
-  // A nested function reports its parent too; the innermost is enough.
-  const innermost = offenders.filter((o, i) => offenders.every((p2, j) => i === j || !sameFileEarlier(o, p2)));
   assert.deepEqual(
-    innermost.sort(),
+    offenders.sort(),
     [],
-    `these call sites reach a route that can answer a retryable 503 and never ask whether it did: ${innermost.join(", ")}`,
+    `these calls reach a route that can answer a retryable 503 and never ask whether it did: ${offenders.join(", ")}`,
   );
 });
 

@@ -44,7 +44,23 @@ export const UNCONFIGURED = "research_os_unavailable";
  * in both directions, so a code a route emits and nobody classified
  * fails, and so does an entry here that no route emits.
  */
-export const TRANSIENT_CODES: ReadonlySet<string> = new Set(["busy", "node_read_failed"]);
+export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
+  "busy",
+  "node_read_failed",
+  // ros-ai-find. Both say a read did not complete this minute and the
+  // search is off until it does.
+  "profile_unavailable",
+  "eligibility_unavailable",
+]);
+
+/**
+ * Codes that name a state of the deployment rather than of this minute.
+ * `research_os_unavailable` is the original; `corpus_unavailable` says
+ * the evidence corpus was never built on this server, which no retry
+ * builds. A code here is refused a retry the same way the permanent
+ * message bodies are.
+ */
+export const PERMANENT_CODES: ReadonlySet<string> = new Set([UNCONFIGURED, "corpus_unavailable"]);
 
 /** The 503 bodies that name a key or a vendor nobody configured. Each is
  * a sentence, and no retry clears any of them. */
@@ -71,7 +87,7 @@ export function isTransientOutage(status: number | null, code: string | null): b
   if (status !== 503) return false;
   if (code === null || code === "") return true;
   if (TRANSIENT_CODES.has(code)) return true;
-  if (code === UNCONFIGURED || PERMANENT_MESSAGE.test(code)) return false;
+  if (PERMANENT_CODES.has(code) || PERMANENT_MESSAGE.test(code)) return false;
   // A code nobody classified. Falling to the permanent copy here tells a
   // reader their install has no graph, which is a statement about the
   // deployment drawn from a code no one has looked at. Offering a retry

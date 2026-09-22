@@ -452,7 +452,7 @@ export default function ResearchOsWorkspacePage() {
     setRouteError(null);
     try {
       const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as RouteResponse;
+      const data = (await res.json().catch(() => ({}))) as RouteResponse;
       if (!res.ok) {
         setRouteError(data.error || "route_failed");
         return;
@@ -478,7 +478,7 @@ export default function ResearchOsWorkspacePage() {
     }
     try {
       const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as ProbeResponse;
+      const data = (await res.json().catch(() => ({}))) as ProbeResponse;
       // null is "no probe due", which a failed read used to look like.
       setProbeNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setProbe(res.ok ? data : null);
@@ -501,7 +501,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId, answer, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setProbeResults((r) => ({ ...r, [nodeId]: { ok: true, ...data } }));
@@ -577,7 +577,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "locate", query: locateQuery, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setLocateResults([]);
         return;
@@ -600,7 +600,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId: selected.id, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuote(data);
@@ -610,7 +610,14 @@ export default function ResearchOsWorkspacePage() {
           { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
           ...prev.filter((q) => q.nodeId !== selected.id),
         ]);
-        setQuoteNote(null);
+        // The quote landed and its provenance row did not, so the
+        // production guard will later report this source as unverified.
+        // Saying so now beats returning their work for it.
+        setQuoteNote(
+          (data as { provenanceRecorded?: boolean }).provenanceRecorded === false
+            ? "Quoted. The server could not record that you quoted it, so quote it again before you cite it."
+            : null,
+        );
       } else {
         // A failed quote left the panel exactly as it was, so the button
         // read as having done nothing at all.
@@ -651,7 +658,7 @@ export default function ResearchOsWorkspacePage() {
           quotes: quotedSources.map((q) => ({ quotable_span: q.quotable_span, citation: q.citation })),
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (!res.ok) {
         // A lock wait on Check used to print the word "busy" into the
@@ -703,7 +710,7 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setCheckResult(data);
@@ -739,7 +746,7 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setSecondSourceCandidates([]);
         return;
@@ -767,7 +774,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuotedSources((prev) => [
@@ -800,7 +807,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setOrganized(data);
@@ -879,7 +886,7 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setProductionStatus(null);
         return;
@@ -909,7 +916,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "export" }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "export_failed");
         return;
@@ -947,7 +954,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "delete", confirm: DELETE_CONFIRM_TOKEN }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "delete_failed");
         return;
