@@ -55,14 +55,20 @@ export async function GET(req: NextRequest) {
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
     if (classIds.length) {
-      const { data: asg } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).is("closed_at", null);
+      const asg = await inChunks<{ target_node_id: string; title: string; class_id: string; due_at: string | null }>(classIds, (chunk, page) =>
+        svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", chunk).is("closed_at", null).order("class_id").order("target_node_id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; title: string; class_id: string; due_at: string | null }[] | null; error: { message: string } | null }>,
+      ).catch(() => [] as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]);
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
       const idSet = new Set(ids);
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
       const staffIds = classes.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
       if (staffIds.length) {
-        const { data: members } = await svc.from("class_members").select("learner_id").in("class_id", staffIds);
-        const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
+        // Many members per class, so this overflows the row cap on an
+        // ordinary staff class list.
+        const members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
+          svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+        ).catch(() => [] as { learner_id: string }[]);
+        const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
           // Both lists are chunked. Taking the first IN_CHUNK learners

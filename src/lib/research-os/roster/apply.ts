@@ -14,7 +14,7 @@
  * tested, live adapter reviewed by hand" split TEACHER-LAYER.md's own
  * "what this suite does not cover" section describes.
  */
-import { graphService, publicService } from "../db";
+import { graphService, inChunks, publicService } from "../db";
 import { classMemberKey, type ExistingClass, type ExistingLearnerProfile, type ExistingReviewerCandidate, type RosterDiff, type RosterExistingState } from "./diff";
 
 interface ClassRow {
@@ -81,8 +81,14 @@ export async function loadRosterExistingState(): Promise<RosterExistingState> {
   const classMemberKeys = new Set<string>();
   const classIds = classes.map((c) => c.id);
   if (classIds.length > 0) {
-    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
-    if (memberErr) throw new Error(`loadRosterExistingState: class_members query failed: ${memberErr.message}`);
+    let memberRows: { class_id: string; learner_id: string }[];
+    try {
+      memberRows = await inChunks<{ class_id: string; learner_id: string }>(classIds, (chunk, page) =>
+        svc.from("class_members").select("class_id,learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { class_id: string; learner_id: string }[] | null; error: { message: string } | null }>,
+      );
+    } catch (err) {
+      throw new Error(`loadRosterExistingState: class_members query failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
     for (const r of (memberRows as ClassMemberRow[]) || []) classMemberKeys.add(classMemberKey(r.class_id, r.learner_id));
   }
 
