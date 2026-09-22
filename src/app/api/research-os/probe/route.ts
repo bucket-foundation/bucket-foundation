@@ -32,6 +32,7 @@
  * check and the question prompts themselves, no learner-authored content.
  * A blocked POST returns 403 with consentBlockedBody(gate) as its body.
  */
+import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { NextRequest, NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
 import { buildProbe } from "@/lib/research-os/probe";
@@ -156,14 +157,12 @@ export async function POST(req: NextRequest) {
     throw err;
   }
 
-  return NextResponse.json(
-    {
-      result: graded.result,
-      confidence: graded.confidence,
-      abstained: graded.abstained,
-      feedback: graded.feedback,
-      stage: transition.nextStage,
-    },
-    { headers: { "cache-control": "no-store" } },
-  );
+  const payload: ProbeAnswerResponse = {
+    result: graded.result,
+    confidence: graded.confidence,
+    abstained: graded.abstained,
+    feedback: graded.feedback,
+    stage: transition.nextStage,
+  };
+  return NextResponse.json(payload, { headers: { "cache-control": "no-store" } });
 }
