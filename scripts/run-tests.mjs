@@ -5,13 +5,9 @@ import path from "node:path";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 const EXCLUDED = {
-  "scripts/test-academy-mastery.ts": "no suite ran it before the runner existed",
-  "scripts/test-canon-allbranch-index.ts": "no suite ran it before the runner existed",
   "scripts/test-permanence.ts": "dry run against Base Sepolia and Irys devnet",
   "scripts/test-research-os-evidence-worker-live.ts": "needs the live evidence worker, run by test:evidence-live",
-  "scripts/test-research-os-import-upload.ts": "no suite ran it before the runner existed",
   "scripts/test-research-route.ts": "excluded from tsconfig and from every suite",
-  "scripts/test-tutor-provider.ts": "no suite ran it before the runner existed",
 };
 
 const SUITES = {
@@ -20,14 +16,16 @@ const SUITES = {
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
       "scripts/test-waitlist.ts",
-      "scripts/test-academy-{engine,diagnostic,assess}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery}.ts",
+      "scripts/test-canon-allbranch-index.ts",
+      "scripts/test-tutor-provider.ts",
       "scripts/test-mcp-route.ts",
       "scripts/test-research-os-{dedup,merge-actions}.ts",
       "scripts/test-beads-dispatch.ts",
     ],
   },
   db: {
-    files: ["scripts/test-research-os-evidence-route-access.ts"],
+    files: ["scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access}.ts"],
   },
   "research-os": {
     files: [
@@ -41,7 +39,7 @@ const SUITES = {
     ],
     exclude: [
       "scripts/test-research-os-{dedup,merge-actions}.ts",
-      "scripts/test-research-os-evidence-route-access.ts",
+      "scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access}.ts",
     ],
     commands: [
       ["node", "scripts/check-code-citations.mjs"],
