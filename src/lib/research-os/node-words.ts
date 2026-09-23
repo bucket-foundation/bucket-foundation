@@ -30,6 +30,9 @@ export interface NodeWord {
   sense: string | null;
   confidence: number;
   uncertain: boolean;
+  rootConfidence: number;
+  rootUncertain: boolean;
+  rootSource: string | null;
   source: string;
 }
 
@@ -46,6 +49,8 @@ export interface NodeWordRow {
   en_term: string | null;
   sense: string | null;
   confidence: number | string | null;
+  root_confidence?: number | string | null;
+  root_source?: string | null;
   source: string;
 }
 
@@ -88,22 +93,27 @@ function readConfidence(v: unknown): number {
 
 export function toNodeWord(row: NodeWordRow): NodeWord {
   const confidence = readConfidence(row.confidence);
+  const rootConfidence = row.root_form ? (row.root_confidence === undefined ? confidence : readConfidence(row.root_confidence)) : 0;
+  const keepRoot = Boolean(row.root_form) && rootConfidence >= HIDE_BELOW;
   return {
     lang: row.lang,
     langName: langName(row.lang),
     word: row.word,
     roman: row.roman || null,
     gloss: row.gloss || null,
-    rootLang: row.root_lang || null,
-    rootLangName: row.root_lang ? langName(row.root_lang) : null,
-    rootForm: row.root_form || null,
-    rootGloss: row.root_gloss || null,
-    chain: asArray<ChainStep>(row.chain),
+    rootLang: keepRoot ? row.root_lang || null : null,
+    rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
+    rootForm: keepRoot ? row.root_form || null : null,
+    rootGloss: keepRoot ? row.root_gloss || null : null,
+    chain: keepRoot ? asArray<ChainStep>(row.chain) : [],
     rootTexts: asArray<RootText>(row.root_texts).filter((t) => t && Array.isArray(t.samples)),
     enTerm: row.en_term || null,
     sense: row.sense || null,
     confidence,
     uncertain: confidence < UNCERTAIN_BELOW,
+    rootConfidence,
+    rootUncertain: keepRoot && rootConfidence < UNCERTAIN_BELOW,
+    rootSource: keepRoot ? row.root_source || null : null,
     source: row.source,
   };
 }
@@ -123,6 +133,12 @@ export function orderWords(words: NodeWord[]): NodeWord[] {
 export function hasRoot(w: NodeWord): boolean {
   return Boolean(w.rootForm);
 }
+
+export const OSHB_ATTRIBUTION = {
+  text: "Hebrew roots from the Open Scriptures Hebrew Bible lexical index, under CC BY 4.0.",
+  href: "https://hb.openscriptures.org/",
+  license: "https://creativecommons.org/licenses/by/4.0/",
+};
 
 export const KAIKKI_ATTRIBUTION = {
   text: "Words, meanings and etymologies from Wiktionary, via Kaikki.org, under CC BY-SA 4.0.",

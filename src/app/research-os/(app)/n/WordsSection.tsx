@@ -3,7 +3,7 @@
 import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
-import { KAIKKI_ATTRIBUTION, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
 
 const FIRST = 12;
 
@@ -52,6 +52,8 @@ function WordRow({ w }: { w: NodeWord }) {
             <span lang={(w.rootLang ?? "").split("-")[0] || undefined} dir="auto" className="text-[15px] text-[color:var(--basalt)]">{w.rootForm}</span>
             {w.rootLangName && <span className="text-[color:var(--basalt-3)]"> · {w.rootLangName}</span>}
             {w.rootGloss && <span> · “{w.rootGloss}”</span>}
+            {w.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
+            {w.rootUncertain && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">uncertain root</span>}
           </p>
         )}
         {w.chain.length > 0 && (
@@ -151,6 +153,14 @@ export default function WordsSection({ nodeId }: { nodeId: string }) {
             {", "}
             <a href={KAIKKI_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY-SA 4.0</a>
           </p>
+          {list.some((w) => w.lang === "he") && (
+            <p className="text-[11px] text-[color:var(--basalt-3)]">
+              Hebrew roots checked against the{" "}
+              <a href={OSHB_ATTRIBUTION.href} target="_blank" rel="noreferrer" className="underline underline-offset-2">Open Scriptures Hebrew Bible</a>
+              {" lexical index, "}
+              <a href={OSHB_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY 4.0</a>
+            </p>
+          )}
         </div>
       )}
     </Section>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
-import { KAIKKI_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -72,6 +72,7 @@ function Root({ e }: { e: NsmExponent }) {
       <span className="small-caps text-[10px] tracking-[0.12em] text-[color:var(--basalt-3)]">{e.rootLangName} </span>
       <span lang={(e.rootLang || "").split("-")[0]} dir="auto">{e.rootForm}</span>
       {e.rootGloss && <span className="text-[color:var(--basalt-3)]"> “{e.rootGloss}”</span>}
+      {e.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
       {e.rootHidden ? <Mark text="root unconfirmed" /> : e.rootUncertain && <Mark text="root uncertain" />}
     </span>
   );
@@ -225,6 +226,17 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
           ,{" "}
           <a href={KAIKKI_ATTRIBUTION.license} className="underline underline-offset-4">
             CC BY-SA 4.0
+          </a>
+          .
+        </p>
+        <p className="mt-1">
+          {OSHB_ATTRIBUTION.text}{" "}
+          <a href={OSHB_ATTRIBUTION.href} className="underline underline-offset-4">
+            hb.openscriptures.org
+          </a>
+          ,{" "}
+          <a href={OSHB_ATTRIBUTION.license} className="underline underline-offset-4">
+            CC BY 4.0
           </a>
           .
         </p>

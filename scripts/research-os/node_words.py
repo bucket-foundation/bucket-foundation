@@ -143,6 +143,57 @@ def head_terms(title):
 def tokens(text):
     return {w for w in re.findall(r"[a-z]+", (text or "").lower()) if len(w) > 2 and w not in STOP}
 
+SUFFIXES = ("ations", "ation", "ings", "ing", "ness", "ies", "ied", "ed", "es", "ly", "s")
+
+def stem(w):
+    for suf in SUFFIXES:
+        if w.endswith(suf) and len(w) - len(suf) >= 3:
+            w = w[: -len(suf)]
+            break
+    return w[:6]
+
+def stems(text):
+    return {stem(w) for w in tokens(text)}
+
+FUNCTION_POS = {"pron", "det", "article", "particle", "conj", "prep", "postp", "prep_phrase", "intj", "contraction", "suffix", "prefix"}
+CONTENT_POS = {"noun", "name", "verb", "adj", "adv", "num", "character", "phrase"}
+POS_MISMATCH_ROOT = 0.4
+NO_OVERLAP_ROOT = 0.4
+
+def pos_side(pos):
+    if pos in FUNCTION_POS:
+        return "function"
+    if pos in CONTENT_POS:
+        return "content"
+    return None
+
+def pos_clash(a, b):
+    sa, sb = pos_side(a), pos_side(b)
+    return bool(sa and sb and sa != sb)
+
+def trim_chain(chain, context):
+    seen = set(context)
+    linked = False
+    out = []
+    for c in chain:
+        g = stems(c.get("gloss")) if c.get("rel") not in ("character", "part", "root") else set()
+        if g and linked and not (g & seen):
+            break
+        if g & seen:
+            linked = True
+        seen |= g
+        out.append(c)
+    return out, len(out) < len(chain)
+
+def any_overlap(chain, root_gloss, context):
+    glossed = [stems(c.get("gloss")) for c in chain if c.get("gloss") and c.get("rel") not in ("character", "part")]
+    if root_gloss:
+        glossed.append(stems(root_gloss))
+    glossed = [g for g in glossed if g]
+    if not glossed:
+        return None
+    return any(g & context for g in glossed)
+
 def branch_match(sense, branch):
     topics = BRANCH_TOPICS.get(branch or "", set())
     if not topics:
@@ -346,6 +397,17 @@ class Roots:
         r = self.db.execute("select gloss from text_gloss where form = ? order by n desc limit 1", (form,)).fetchone()
         return r[0] if r else ""
 
+    def gloss_pos(self, lang, form, gloss):
+        if not gloss or self.db.execute("select 1 from root where lang = ? and form = ? and gloss != ''", (lang, form)).fetchone():
+            return None
+        resolved = self.resolve(lang, form)
+        if not resolved:
+            return None
+        for r in self.db.execute("select pos, gloss from word where lang = ? and word = ?", (lang, resolved)):
+            if r["gloss"] and r["gloss"] == gloss:
+                return r["pos"]
+        return None
+
     def root_gloss(self, lang, form):
         r = self.db.execute("select gloss from root where lang = ? and form = ? and gloss != ''", (lang, form)).fetchone()
         if r:
@@ -438,14 +500,37 @@ def choose_root(lang, word, chain, roots, db):
         return c["lang"], c["form"], c["gloss"]
     return None, None, None
 
-def analyze(lang, word, db, hint=frozenset()):
+def root_check(lang, resolved, ety, chain, root, db, hint, pos=None):
+    root_lang, root_form, root_gloss = root
+    if not root_form:
+        return 0.0, []
+    flags = []
+    cap = 1.0
+    word_pos = pos or ((db.entry(lang, resolved, ety) or {}).get("pos") if resolved else None)
+    rpos = db.gloss_pos(root_lang, root_form, root_gloss) if root_lang and root_lang != "mixed" else None
+    if word_pos and rpos and pos_clash(word_pos, rpos):
+        cap = min(cap, POS_MISMATCH_ROOT)
+        flags.append("pos")
+    if pos_side(word_pos) == "function" and not (root_lang == "zh" and " + " in (root_form or "")):
+        own = " ".join(e["gloss"] or "" for e in db.entries(lang, resolved)) if resolved else ""
+        ok = any_overlap(chain, root_gloss, frozenset({stem(t) for t in hint}) | stems(own))
+        if ok is False:
+            cap = min(cap, NO_OVERLAP_ROOT)
+            flags.append("gloss")
+    return cap, flags
+
+def analyze(lang, word, db, hint=frozenset(), pos=None):
     resolved = db.resolve(lang, word)
     if not resolved:
         return None, [], (None, None, None), 1.0, None
     ety, conf = db.pick_ety(lang, resolved, hint)
     chain, chain_conf = db.chain(lang, resolved, ety, hint)
     conf = min(conf, chain_conf)
-    roots = db.word_roots(lang, resolved, ety)
+    own = " ".join(e["gloss"] or "" for e in db.entries(lang, resolved))
+    full = chain
+    chain, _cut = trim_chain(chain, frozenset({stem(t) for t in hint}) | stems(own))
+    dropped = {(c["lang"], c["form"]) for c in full[len(chain):]}
+    roots = [r for r in db.word_roots(lang, resolved, ety) if (r["root_lang"], r["root_form"]) not in dropped]
     for c in chain:
         if c["lang"] == lang and not roots:
             base = db.resolve(lang, c["form"])
@@ -466,15 +551,15 @@ def analyze(lang, word, db, hint=frozenset()):
 
 PHRASE_STOP = {"de", "la", "le", "les", "des", "du", "da", "do", "della", "del", "di", "the", "of", "der", "die", "das", "des", "van", "het", "el", "los", "las", "tou", "ha"}
 
-def analyze_word(lang, word, db, hint=frozenset()):
-    resolved, chain, root, conf, ety = analyze(lang, word, db, hint)
+def analyze_word(lang, word, db, hint=frozenset(), pos=None):
+    resolved, chain, root, conf, ety = analyze(lang, word, db, hint, pos)
     if root[1] or " " not in word.strip():
         return resolved, chain, root, conf, ety
     parts = []
     for tok in word.split():
         if tok.lower() in PHRASE_STOP or len(word_key(tok)) < 3:
             continue
-        r2, c2, root2, conf2, _e = analyze(lang, tok, db, hint)
+        r2, c2, root2, conf2, _e = analyze(lang, tok, db, hint, pos)
         if root2[1]:
             parts.append((tok, c2, root2, conf2))
     if not parts:
@@ -483,6 +568,19 @@ def analyze_word(lang, word, db, hint=frozenset()):
     langs = [r[0] for _t, _c, r, _x in parts]
     conf = min([conf] + [x for _t, _c, _r, x in parts])
     return resolved, chain, (langs[0] if len(set(langs)) == 1 else "mixed", " + ".join(r[1] for _t, _c, r, _x in parts), " + ".join(short(r[2]) or "?" for _t, _c, r, _x in parts)), conf, ety
+
+def oshb_load():
+    try:
+        import oshb
+    except ImportError:
+        return None
+    return oshb.Oshb.load()
+
+def oshb_apply(o, lang, word, root, root_conf, chain):
+    if o is None:
+        return root, root_conf, "wiktionary", chain, None
+    import oshb
+    return oshb.apply(o, lang, word, root, root_conf, chain)
 
 def display_gloss(entry, t):
     g = (entry or {}).get("gloss") or ""
@@ -506,7 +604,7 @@ def translations_for(term, db, targets):
     langs = {LANG_ALIASES.get(t["lang"], t["lang"]) for t in trs} & targets
     return trs if len(langs) >= MIN_LANGS else []
 
-def node_rows(node, db, ayahs, targets):
+def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None):
     context = " ".join([node.get("title") or "", node.get("summary") or ""])
     if is_name_title(node.get("title"), db):
         return None, []
@@ -526,11 +624,18 @@ def node_rows(node, db, ayahs, targets):
     for lang, t in sorted(picks.items()):
         surface = t["word"]
         hint = frozenset(tokens(term) | tokens(t.get("sense")))
-        resolved, chain, (root_lang, root_form, root_gloss), word_conf, ety = analyze_word(lang, surface, db, hint)
+        pos = t.get("en_pos") or "noun"
+        resolved, chain, root, word_conf, ety = analyze_word(lang, surface, db, hint, pos)
         entry = db.entry(lang, resolved, ety) if resolved else None
         confidence = sense_conf * (1.0 if t.get("from_top", True) else 0.8)
         if lang != "en":
             confidence = min(confidence, word_conf)
+        cap, _flags = root_check(lang, resolved, ety, chain, root, db, hint, pos)
+        root_conf = min(confidence, cap) if root[1] else 0.0
+        root, root_conf, root_source, chain, outcome = oshb_apply(oshb, lang, surface, root, root_conf, chain)
+        if outcomes is not None and outcome:
+            outcomes[outcome] = outcomes.get(outcome, 0) + 1
+        root_lang, root_form, root_gloss = root
         texts = []
         if lang == "ar" and ayahs:
             q = quran_hits(ayahs, surface)
@@ -542,7 +647,7 @@ def node_rows(node, db, ayahs, targets):
             "gloss": display_gloss(entry, t),
             "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
             "chain": chain, "root_texts": texts, "source": SOURCE, "en_term": term, "sense": t.get("sense") or "",
-            "confidence": round(confidence, 3),
+            "confidence": round(confidence, 3), "root_confidence": round(root_conf, 3), "root_source": root_source if root_form else None,
         })
     return term, rows
 
@@ -554,7 +659,7 @@ def fetch_nodes(db_url):
     out = subprocess.run(["psql", db_url, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout
     return json.loads(out.strip() or "[]")
 
-COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence"]
+COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence", "root_confidence", "root_source"]
 
 def write_rows(db_url, rows, node_ids):
     with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False, encoding="utf-8", newline="") as f:
@@ -589,14 +694,15 @@ def main(argv=None):
     db = Roots(a.roots)
     targets = set(db.langs)
     ayahs = load_quran(a.quran, a.quran_data) if os.path.exists(a.quran) and os.path.exists(a.quran_data) else []
+    oshb = oshb_load()
     nodes = fetch_nodes(a.db_url)
     if a.show:
         nodes = [n for n in nodes if a.show.lower() in (n["title"] or "").lower()]
     if a.limit:
         nodes = nodes[: a.limit]
-    all_rows, linked, terms = [], [], {}
+    all_rows, linked, terms, outcomes = [], [], {}, {}
     for n in nodes:
-        term, rows = node_rows(n, db, ayahs, targets)
+        term, rows = node_rows(n, db, ayahs, targets, oshb, outcomes)
         if rows:
             linked.append(n["id"])
             terms[n["title"]] = term
@@ -607,6 +713,7 @@ def main(argv=None):
     print(f"nodes {len(nodes)} linked {len(linked)} rows {len(all_rows)}")
     print("rows by lang", dict(sorted(by_lang.items(), key=lambda x: -x[1])))
     print("with root", sum(1 for r in all_rows if r["root_form"]), "with root gloss", sum(1 for r in all_rows if r["root_gloss"]), "with quran", sum(1 for r in all_rows if r["root_texts"]))
+    print("root shown", sum(1 for r in all_rows if r["root_form"] and r["confidence"] >= HIDE_BELOW and r["root_confidence"] >= HIDE_BELOW), "oshb", json.dumps(outcomes, sort_keys=True))
     if a.show:
         for r in all_rows:
             print(json.dumps({k: r[k] for k in ("lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss")}, ensure_ascii=False))

@@ -33,6 +33,7 @@ export interface NsmExponentRow {
   root_form: string | null;
   root_gloss: string | null;
   colex_with?: string[] | null;
+  root_source?: string | null;
 }
 
 export interface NsmExponent {
@@ -52,6 +53,7 @@ export interface NsmExponent {
   rootForm: string | null;
   rootGloss: string | null;
   colexWith: string[];
+  rootSource: string | null;
 }
 
 export type SenseStatus = "matched" | "fallback" | "none";
@@ -108,6 +110,7 @@ export function toExponent(row: NsmExponentRow, opts: { includeHidden?: boolean 
     rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
     rootForm: keepRoot ? row.root_form || null : null,
     rootGloss: keepRoot ? row.root_gloss || null : null,
+    rootSource: keepRoot ? row.root_source || null : null,
     colexWith: Array.isArray(row.colex_with) ? row.colex_with.filter((x): x is string => typeof x === "string") : [],
   };
 }
