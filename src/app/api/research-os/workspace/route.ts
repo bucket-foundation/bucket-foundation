@@ -154,6 +154,7 @@ import {
   isGuidanceEnabledForLearner,
 } from "@/lib/research-os/db";
 import { authorizeNode, authorizeNodes, readVisibility, storeWithNodes } from "@/lib/research-os/read-access";
+import { curatedQuotePayload } from "@/lib/research-os/quote-receipt";
 import type { NodeAccess } from "@/lib/research-os/access";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
@@ -407,40 +408,69 @@ export async function POST(req: NextRequest) {
       // quotation.
       const passage = getPassage(node.slug);
 
-      // Production guard, task item 1: a Production's own cited sources are
-      // only verifiable against a Quote call this learner made. Recorded
-      // only for a real, curated passage (a "quote" result), since the
-      // "summary" fallback carries no locator for production-guard.ts's
-      // checkSourceProvenance to match against.
-      // Best-effort: a write failure here degrades to "this source can't be
-      // verified later," never to a broken Quote response for the learner
-      // in front of it right now.
-      let provenanceRecorded = true;
+      let receipt: { id: string; sourceId: string; sourceRevision: string; createdAt: string; replayed: boolean } | null = null;
       if (passage) {
-        try {
-          const currentStage = await loadCurrentStage(learnerId, nodeId);
-          // A stage that was not read is not a stage. The event this
-          // writes is what production-guard reads to verify a cited
-          // source, so recording a guessed "access" would put a claim in
-          // the audit trail that nothing here established.
-          if (currentStage === null) throw new Error("loadCurrentStage: learner_node_state read failed");
-          const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
-          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-        } catch (err) {
-          // A retryable lock wait answers, so the learner can press the
-          // button again against the same row.
-          const mapped = evidenceErrorResponse(err);
-          if (mapped) return mapped;
-          // Anything else keeps the degrade: a learner reading a source
-          // is not blocked by a write failure. The silence goes, though.
-          // production-guard.ts matches a cited source against exactly
-          // this event, so a lost row later returns the learner's
-          // production telling them to quote a source they did quote,
-          // with the reason in a server log they cannot read.
-          provenanceRecorded = false;
-          const message = err instanceof Error ? err.message : String(err);
-          console.warn(`[research-os] quote evidence not recorded for learner ${learnerId} node ${nodeId}: ${message}`);
+        const citation = citationLabel({ title: node.title, provenance: p });
+        const identity = curatedQuotePayload(
+          {
+            nodeId: node.id as string,
+            slug: node.slug as string,
+            title: node.title as string,
+            text: passage.text,
+            locator: passage.locator,
+            citation,
+          },
+          sessionId || null,
+        );
+        const currentStage = await loadCurrentStage(learnerId, nodeId);
+        if (currentStage === null) {
+          return NextResponse.json({ error: "busy" }, { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } });
         }
+        const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
+        const { data: written, error: receiptErr } = await svc.rpc("record_quote_receipt", {
+          p_learner: learnerId,
+          p_target: nodeId,
+          p_source_id: identity.sourceId,
+          p_source_revision: identity.sourceRevision,
+          p_source_node: identity.sourceNodeId,
+          p_passage_id: identity.passageId,
+          p_locator: identity.locator,
+          p_text_hash: identity.textHash,
+          p_session: sessionId || null,
+          p_idempotency_key: identity.idempotencyKey,
+          p_payload_hash: identity.payloadHash,
+          p_stage: transition.nextStage,
+          p_event: transition.event as unknown as Record<string, unknown>,
+        });
+        if (receiptErr) {
+          const code = (receiptErr as { code?: string }).code ?? null;
+          console.error(`[research-os] quote receipt failed (${code ?? "unknown"}) for learner ${learnerId} node ${nodeId}: ${receiptErr.message}`);
+          if (code === "55P03" || code === "40001" || code === "40P01") {
+            return NextResponse.json(
+              { error: "busy" },
+              { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } },
+            );
+          }
+          return bad(500, "quote_not_recorded");
+        }
+        const result = (written || {}) as {
+          ok?: boolean;
+          error?: string;
+          receipt_id?: string;
+          created_at?: string;
+          replayed?: boolean;
+        };
+        if (!result.ok) {
+          if (result.error === "idempotency_conflict") return bad(409, "quote_receipt_conflict");
+          return bad(404, "node_not_found");
+        }
+        receipt = {
+          id: result.receipt_id as string,
+          sourceId: identity.sourceId,
+          sourceRevision: identity.sourceRevision,
+          createdAt: (result.created_at as string) ?? new Date().toISOString(),
+          replayed: result.replayed === true,
+        };
       }
 
       logToolCall("quote", learnerId, sessionId, { nodeId, kind: passage ? "quote" : "summary" });
@@ -452,10 +482,18 @@ export async function POST(req: NextRequest) {
           locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
           source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
-          // False when the quote landed and its provenance row did not,
-          // so the client can say the source needs quoting again before
-          // a production rests on it.
-          provenanceRecorded,
+          ...(receipt
+            ? {
+                receipt: {
+                  id: receipt.id,
+                  sourceId: receipt.sourceId,
+                  sourceRevision: receipt.sourceRevision,
+                  createdAt: receipt.createdAt,
+                  replayed: receipt.replayed,
+                },
+                durable: true,
+              }
+            : { durable: false }),
         },
         { headers: { "cache-control": "no-store" } },
       );

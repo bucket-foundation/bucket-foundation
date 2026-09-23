@@ -75,6 +75,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   privacy_events: [{ columns: ["id"], nullable: [] }],
   productions: [{ columns: ["id"], nullable: [] }],
   reviewer_candidates: [{ columns: ["id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: [] }],
+  source_quote_receipts: [{ columns: ["id"], nullable: [] }, { columns: ["learner_id", "idempotency_key"], nullable: [] }],
   teacher_reviews: [{ columns: ["id"], nullable: [] }],
 };
 

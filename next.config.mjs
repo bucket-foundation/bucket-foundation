@@ -55,6 +55,10 @@ const nextConfig = {
       { source: "/canon/claims", destination: "/excerpts", permanent: true },
       { source: "/canon/claims/:concept", destination: "/excerpts/:concept", permanent: true },
       { source: "/canon/claims/:concept/:slug", destination: "/excerpts/:concept/:slug", permanent: true },
+      { source: "/knowledge", destination: "/", permanent: true },
+      { source: "/library", destination: "/", permanent: true },
+      { source: "/assets", destination: "/", permanent: true },
+      { source: "/chat", destination: "/", permanent: true },
     ];
   },
 

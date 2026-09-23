@@ -6,7 +6,7 @@ This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get sta
 
 For material architecture, implementation plans, code and research claims anywhere in this repository, the parent agent delegates a separate critic review using [the Bucket critic](docs/agents/BUCKET-CRITIC.md). Codex's saved role is `bucket_critic`; Claude and Cursor use `bucket-critic`. If named roles are unavailable, pass that document to a reviewer subagent. The critic returns evidence and the parent owns repairs and report persistence.
 
-Review after fixes, three rounds at most. After round three the change merges with its open findings filed as beads, or it closes. Keep only the final report. A passing plan does not certify unrun tests or authorize deployment. Trivial prose edits can use ordinary diff review. The critic must not recursively delegate itself.
+Plans and PRs both get a critic review before work starts and before merge. Pass: weighted score above 8.0/10, no dimension below 7, no open critical or high finding. Three rounds at most; after round three the change merges with its open medium and low findings filed as beads, or it closes. Post the final report on the PR. The critic must not recursively delegate itself.
 
 ## Quick Reference
 

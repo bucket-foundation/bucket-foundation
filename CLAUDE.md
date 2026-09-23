@@ -10,7 +10,7 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 
 ## Bucket critic
 
-Use the repo-wide [Bucket critic](docs/agents/BUCKET-CRITIC.md) and the review loop in [AGENTS.md](AGENTS.md) for material architecture, implementation and research changes. The saved Claude agent is `bucket-critic`. Its role is review; the parent implements fixes and saves the report. Three review rounds at most per artifact. After round three it merges with its open findings filed as beads, or it closes. Save only the final report.
+Use the repo-wide [Bucket critic](docs/agents/BUCKET-CRITIC.md) and the review loop in [AGENTS.md](AGENTS.md) for material architecture, implementation and research changes. The saved Claude agent is `bucket-critic`. Its role is review; the parent implements fixes and saves the report. Plans and PRs both get a critic review. Pass above 8.0/10 with no open critical or high finding, three rounds at most; after round three it merges with medium and low findings filed as beads, or it closes. Post the final report on the PR.
 
 ## Nucleus Connection
 
