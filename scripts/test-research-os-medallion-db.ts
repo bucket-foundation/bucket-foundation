@@ -30,6 +30,16 @@ test("the recast and restore contract holds in real Postgres", { skip: recastSki
   assert.equal(run.status, 0, (run.stdout || "") + (run.stderr || ""));
 });
 
+const restoreMigrated = sql("select to_regprocedure('graph.restore_withdrawn_node(uuid,uuid)') is not null");
+if (REQUIRED && restoreMigrated.out !== "t") throw new Error("RESEARCH_OS_REQUIRE_DB=1 and the restore migration is not applied");
+const restoreSkip = skip || (restoreMigrated.out === "t" ? false : "the restore migration is not applied");
+
+test("withdrawal across revisions and restore after readmission hold in real Postgres", { skip: restoreSkip }, () => {
+  const file = path.join(__dirname, "..", "supabase", "tests", "research_os_medallion_restore.sql");
+  const run = spawnSync("psql", [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", file], { encoding: "utf8" });
+  assert.equal(run.status, 0, (run.stdout || "") + (run.stderr || ""));
+});
+
 test("the path CHECK and checkRepoPath agree", { skip }, () => {
   const cases = [
     "_intake/concept-digests/a.md",
@@ -55,7 +65,7 @@ test("the path CHECK and checkRepoPath agree", { skip }, () => {
 });
 
 test("each medallion function has one signature", { skip }, () => {
-  for (const fn of ["admit_bronze_sources", "admit_evidence_corpus", "eligible_evidence_sources", "gold_lineage_rules", "silver_items_rights", "medallion_withdrawal_cascade", "recast_edge_to_cites", "restore_recast_edge"]) {
+  for (const fn of ["admit_bronze_sources", "admit_evidence_corpus", "eligible_evidence_sources", "gold_lineage_rules", "silver_items_rights", "medallion_withdrawal_cascade", "recast_edge_to_cites", "restore_recast_edge", "restore_withdrawn_node"]) {
     const n = sql(`select count(*) from pg_proc p join pg_namespace s on s.oid = p.pronamespace where s.nspname = 'graph' and p.proname = '${fn}'`);
     assert.equal(n.out, "1", `${fn}: ${n.out}`);
   }
