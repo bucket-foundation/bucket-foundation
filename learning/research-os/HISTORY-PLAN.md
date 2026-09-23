@@ -19,7 +19,7 @@ Every figure, site, event, text and idea carries a sourced time and place. A rea
 - **Three date encodings.** Wikidata ISO strings (106 bindings), free text in `canon-figures/figures.json` (99, such as `"c.325-c.265 BCE"`), and signed integers in `src/data/canon-sites.json` (47) and `src/data/canon-timeline.json` (114).
 - **Two year conventions.** `canon-all.ts` reads -570 as 570 BCE. `hte/timeline.py`, ISO 8601 and EDTF use astronomical years, where 570 BCE is -569.
 - **Dates older than Postgres `date`.** Eridu (-5400) and Lascaux (-17000) predate its 4713 BC floor (https://www.postgresql.org/docs/current/datatype-datetime.html).
-- **Wikidata precision is lost.** The seed SPARQL keeps only the `wdt:` value. Those are proleptic Gregorian, as `build-timeline.py:141` records, so nothing is reconverted. Precision lives on the `psv:` node (https://www.wikidata.org/wiki/Help:Dates) and was dropped.
+- **Wikidata precision is lost.** The seed SPARQL keeps only the `wdt:` value. Those are proleptic Gregorian, as `build-timeline.py` in the sacred-history tools, line 141, records, so nothing is reconverted. Precision lives on the `psv:` node (https://www.wikidata.org/wiki/Help:Dates) and was dropped.
 - **Untracked inputs.** Both sacred-history inputs sit under `work/`, which `_intake/sacred-history-corpus/.gitignore:6` ignores: `work/wikidata-sacred-events.json` (45 KB) and `work/graph/timeline-events.jsonl` (74 KB, 74 lines). A fresh clone cannot bronze them.
 - **Irregular lifespans.** Two composites (`watson-crick`, `hodgkin-huxley`), ten open-ended living entries (`chomsky`, `marino`, `pollack`, `levin`, `wallace-doug`, `lane`, `solis-herrera`, `khavinson`, `schoch`, `carlson-randall`), two single-century floruits (`laozi`, `homer`), and one Old Style pair (`newton`, "25 Dec 1642 OS" and "20 Mar 1727 OS"). `marino` and `pollack` share the text "1939-".
 - **Pleiades is outside bronze.** `archaeology/pleiades/` holds 42,076 CC BY 3.0 `place.json` records. Its root is missing from `BRONZE_ROOTS` in `src/lib/research-os/medallion/paths.ts:1` and from the regex in `20260924000000_research_os_medallion.sql:176`, and no test compares the two lists.
@@ -128,7 +128,7 @@ Golden cases, at least 70, in `scripts/fixtures/history-span-golden.json`:
 | Graph | hte |
 |---|---|
 | A factoid | `Interval(start_year, end_year, u)`. The extent lives in the Interval. |
-| Endpoint bounds | `u = Uncertainty(UNIFORM, {"min": start_min, "max": end_max, "endpoints": {"start": [start_min, start_max], "end": [end_min, end_max]}})`, or `Uncertainty.point()` when both pairs collapse. `min` and `max` match `Uncertainty.uniform`. `from_dict` copies params verbatim (`timeline.py:176`); no hte code reads them yet. |
+| Endpoint bounds | `u = Uncertainty(UNIFORM, {"min": start_min, "max": end_max, "endpoints": {"start": [start_min, start_max], "end": [end_min, end_max]}})`, or `Uncertainty.point()` when both pairs collapse. `min` and `max` match `Uncertainty.uniform`. `from_dict` copies params verbatim (`timeline.py` on hte/integration, line 176,); no hte code reads them yet. |
 | `graph.periods` | `Period(id, NodeLevel.PERIOD, interval, label, region=spatial_qids, disputed)` |
 | precision | `Resolution`: day, month, year to YEAR; decade, century, millennium to their own; `ka` to MILLENNIUM; `10ka` (Wikidata 5) and `100ka` (Wikidata 4) to ERA |
 | Conflicts | `combine_date_observations` at query time, never stored |
@@ -139,7 +139,7 @@ Golden cases, at least 70, in `scripts/fixtures/history-span-golden.json`:
 |---|---|
 | int4 astronomical years | Eridu and Lascaux predate `date`. hte's `DEFAULT_SPAN_START` is -20000. |
 | Generated `int4range` plus GiST | The window query is `span && int4range($from,$to,'[]')` (https://www.postgresql.org/docs/current/rangetypes.html) |
-| PostGIS in P4 | `supabase/postgres:17.6.1.167` offers postgis 3.3.7, uninstalled; CI runs the same stack (`site-ci.yml:102`). Only region assignment needs it. |
+| PostGIS in P4 | `supabase/postgres:17.6.1.167` offers postgis 3.3.7, uninstalled; CI runs the same stack (the CI workflow (site-ci, line 102)). Only region assignment needs it. |
 | `graph` schema | `20260916010000_service_role_grants.sql` default privileges cover new tables. |
 | RLS on, revoked from anon and authenticated, no authenticated policy | `authenticated` holds no USAGE on schema `graph` (`20260922020000_research_os_import_files.sql:86-87`). Reads run as service role, filtered through `authorizeNodes` (`src/lib/research-os/read-access.ts:113`); route tests prove a private subject's factoids never appear. |
 | Writes via `graph.promote_history_factoid(p_silver, p_reviewer, p_preferred)` | Security definer, service_role only, behind the `RESEARCH_OS_REVIEWER_EMAILS` check. Locks the silver row and the `(subject, role)` set; idempotent on `(silver_item_id, role)`. |
