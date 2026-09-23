@@ -55,7 +55,7 @@ export type RouteContext<O extends RouteOptions> = O extends { auth: "required" 
     ? { learnerId: string | null }
     : { learnerId?: undefined };
 
-type Result = Response | Body | unknown[];
+type Result = Response | object;
 type Handler<O extends RouteOptions, P> = (req: NextRequest, ctx: RouteContext<O>, params: P) => Promise<Result> | Result;
 
 function refusal(r: Response | (() => Response) | undefined, fallback: () => Response): Response {
@@ -81,7 +81,7 @@ export function withResearchOsRoute<O extends RouteOptions, P = unknown>(options
       }
       const ctx = (options.auth === "none" ? {} : { learnerId }) as RouteContext<O>;
       const out = await handler(req, ctx, params);
-      return out instanceof Response ? withNoStore(out) : ok(out);
+      return out instanceof Response ? withNoStore(out) : ok(out as Body);
     } catch (err) {
       console.error(`[research-os] ${req.method} ${new URL(req.url).pathname} failed:`, err instanceof Error ? err.message : String(err));
       return options.failed ? withNoStore(options.failed(err)) : bad(503, "research_os_unavailable");
