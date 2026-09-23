@@ -4,6 +4,7 @@ import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os
 import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
 import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
+import RootTexts from "../RootTexts";
 
 const FIRST = 12;
 
@@ -69,20 +70,7 @@ function WordRow({ w }: { w: NodeWord }) {
             </ol>
           </details>
         )}
-        {texts.map((t, i) => (
-          <div key={i} className="mt-1 flex flex-col gap-1">
-            <p className="text-[12px] text-[color:var(--basalt-3)]">
-              In the {t.corpus}: {t.count} {t.count === 1 ? "verse" : "verses"} carry this word.
-            </p>
-            {t.samples.map((s) => (
-              <blockquote key={s.ref} className="border-l-2 border-[color:var(--gold)] pl-3 text-[15px] leading-[1.9] text-[color:var(--basalt-2)]">
-                <span lang={w.lang} dir="rtl" className="block">{s.text}</span>
-                <footer className="text-[11px] text-[color:var(--basalt-3)]">{t.corpus} {s.ref}</footer>
-              </blockquote>
-            ))}
-            <p className="text-[11px] text-[color:var(--basalt-3)]">{t.source}</p>
-          </div>
-        ))}
+        <RootTexts texts={texts} lang={w.lang} uncertain={w.uncertain} rootUncertain={w.rootUncertain} />
       </div>
     </li>
   );
@@ -155,10 +143,9 @@ export default function WordsSection({ nodeId }: { nodeId: string }) {
           </p>
           {list.some((w) => w.lang === "he") && (
             <p className="text-[11px] text-[color:var(--basalt-3)]">
-              Hebrew roots checked against the{" "}
-              <a href={OSHB_ATTRIBUTION.href} target="_blank" rel="noreferrer" className="underline underline-offset-2">Open Scriptures Hebrew Bible</a>
-              {" lexical index, "}
+              Hebrew roots and verses: {OSHB_ATTRIBUTION.text}, under{" "}
               <a href={OSHB_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY 4.0</a>
+              . {OSHB_ATTRIBUTION.wlc}
             </p>
           )}
         </div>

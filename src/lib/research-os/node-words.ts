@@ -106,7 +106,7 @@ export function toNodeWord(row: NodeWordRow): NodeWord {
     rootForm: keepRoot ? row.root_form || null : null,
     rootGloss: keepRoot ? row.root_gloss || null : null,
     chain: keepRoot ? asArray<ChainStep>(row.chain) : [],
-    rootTexts: asArray<RootText>(row.root_texts).filter((t) => t && Array.isArray(t.samples)),
+    rootTexts: rootTextsFor(row.root_texts, keepRoot),
     enTerm: row.en_term || null,
     sense: row.sense || null,
     confidence,
@@ -135,10 +135,26 @@ export function hasRoot(w: NodeWord): boolean {
 }
 
 export const OSHB_ATTRIBUTION = {
-  text: "Hebrew roots from the Open Scriptures Hebrew Bible lexical index, under CC BY 4.0.",
-  href: "https://hb.openscriptures.org/",
+  text: "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb",
+  href: "https://github.com/openscriptures/morphhb",
   license: "https://creativecommons.org/licenses/by/4.0/",
+  wlc: "Based on the Westminster Leningrad Codex, which is in the public domain.",
 };
+
+export const HEBREW_BIBLE = "Hebrew Bible";
+
+export function rootTextsFor(raw: unknown, keepRoot: boolean): RootText[] {
+  return asArray<RootText>(raw).filter((t) => t && Array.isArray(t.samples) && (keepRoot || t.corpus !== HEBREW_BIBLE));
+}
+
+export function rootTextLine(t: RootText): string {
+  const what = t.corpus === HEBREW_BIBLE ? "this root" : "this word";
+  return `In the ${t.corpus}: ${t.count} ${t.count === 1 ? "verse carries" : "verses carry"} ${what}.`;
+}
+
+export function rootTextUncertain(t: RootText, w: { uncertain: boolean; rootUncertain: boolean }): boolean {
+  return t.corpus === HEBREW_BIBLE && (w.uncertain || w.rootUncertain);
+}
 
 export const KAIKKI_ATTRIBUTION = {
   text: "Words, meanings and etymologies from Wiktionary, via Kaikki.org, under CC BY-SA 4.0.",

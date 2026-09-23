@@ -1,6 +1,6 @@
 # Polingual Roots
 
-A node names an idea in English. The same idea has a word in Hebrew, Arabic, Chinese, Sanskrit, Latin and thirty more languages, and each of those words means something in its own language and grew from a root that meant something before it. The node page shows them under "in other languages": the word in its script, its romanization, what it means there, its root and the root's meaning, and, for Arabic, verses of the Quran that carry the word.
+A node names an idea in English. The same idea has a word in Hebrew, Arabic, Chinese, Sanskrit, Latin and thirty more languages, and each of those words means something in its own language and grew from a root that meant something before it. The node page shows them under "in other languages": the word in its script, its romanization, what it means there, its root and the root's meaning, verses of the Quran that carry an Arabic word, and verses of the Hebrew Bible that carry a Hebrew word's root.
 
 Founder direction, 2026-09-22. Beads: "Polingual on the node: meanings in each language, roots, and root texts in their original languages" and "Medallion layers for Research OS data: bronze raw, silver parsed, gold graph" in `BEADS-PENDING.jsonl`.
 
@@ -39,11 +39,22 @@ The page hides rows below 0.5 and marks rows from 0.5 to 0.75 "uncertain match".
 
 Run of 2026-09-23 over the local graph: 670 public idea nodes, 564 linked, 10,239 rows across 35 languages. 6,026 rows at 0.75 or above, 3,234 uncertain, 979 hidden; 560 nodes show at least one word outside English. Of the shown rows, 6,135 have a root, 5,513 the root's meaning, and 33 Arabic words carry Quran verses. Proto-language roots with a gloss in silver: 15,710.
 
+## Hebrew Bible Verses
+
+bkt-jlz2. The text is `openscriptures/morphhb` at commit `3d15126fb1ef74867fc1434be1942e837932691f`: `wlc/*.xml`, 39 books and 23,213 verses, with its `LICENSE.md`, in `_intake/oshb/wlc/`, which `.gitignore` covers. `python3 scripts/research-os/oshb_verses.py` fetches that commit when the folder is empty (`--fetch` forces it) and writes the `verse` and `lemma_verse` tables into `_intake/oshb/oshb.sqlite`.
+
+Each `<w>` in the main text carries a lemma such as `b/7225` or `1254 a`; the prefixes and the letter drop, leaving a Strong's number, 8,632 in all. Readings in notes are left out. In the LexicalIndex every entry has a Strong's number and an `etym` chain up to its root, so a root gathers the numbers of every entry under it: 1,763 roots gather at least one. A Hebrew row whose root shows, at 0.5 or above for both the word and the root, gets the count of verses holding the root and up to 3 of them: first those holding the word's own entry, then the shortest, then canonical order, shown in canonical order. The text keeps the WLC letters, vowel points and maqaf, drops cantillation and morphhb's `/` separators, and the reference reads "Genesis 1:3". A row between 0.5 and 0.75 shows its verses under "verses for an uncertain root", since the root beside them carries the same mark and the verses are exact lemma matches. `graph.nsm_exponents` takes a `root_texts` column for the NSM page (migration `20260924050000`).
+
+The credit is morphhb's own sentence: "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb", under CC BY 4.0, and the Westminster Leningrad Codex it rests on is in the public domain. Both pages show it for roots and verses.
+
+Run of 2026-09-23 on the local stack. Of 356 shown Hebrew rows, 166 gain verses, 46.6%, against a go line of 20%: 41 at 0.75 or above (node_words 21, nsm_exponents 20) and 125 between 0.5 and 0.75 (91 and 34). Classical Chinese waits for a text source; the ctext files hold structure only, and bkt-61kn covers it.
+
 ## Rerun
 
 ```bash
 python3 scripts/photon/roots_extract.py                      # bronze to silver, resumes where it stopped
 python3 scripts/photon/roots_extract.py --counts             # print per-language counts
+python3 scripts/research-os/oshb_verses.py                   # fetch the pinned morphhb text if missing, write verse silver
 python3 scripts/research-os/node_words.py --dry-run          # match and report, no writes
 python3 scripts/research-os/node_words.py                    # replace this source's rows in graph.node_words
 npm run test:polingual-roots

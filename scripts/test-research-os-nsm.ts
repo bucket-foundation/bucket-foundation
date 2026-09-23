@@ -151,3 +151,14 @@ test("anon and authenticated may read the tables and may not write them", { skip
   }
   assert.equal(sql("select has_schema_privilege('anon', 'graph', 'usage')").out, "f");
 });
+
+test("an exponent carries its Hebrew Bible verses only while its root shows", () => {
+  const verses = { corpus: "Hebrew Bible", source: "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb", count: 3, samples: [{ ref: "Genesis 1:3", text: "אוֹר" }] };
+  const base = { ...exp("see", "he", "ראה", 0.9), root_lang: "he", root_form: "ר־א־ה", root_gloss: "see", root_texts: [verses] };
+  assert.equal(toExponent({ ...base, root_confidence: 0.8 }).rootTexts.length, 1);
+  assert.equal(toExponent({ ...base, root_confidence: 0.6 }).rootTexts.length, 1);
+  assert.deepEqual(toExponent({ ...base, root_confidence: 0.4 }).rootTexts, []);
+  assert.deepEqual(toExponent({ ...base, root_confidence: 0.4 }, { includeHidden: true }).rootTexts, []);
+  assert.deepEqual(toExponent({ ...base, root_confidence: 0.8, root_texts: "junk" }).rootTexts, []);
+  assert.deepEqual(toExponent(exp("see", "he", "ראה", 0.9)).rootTexts, []);
+});

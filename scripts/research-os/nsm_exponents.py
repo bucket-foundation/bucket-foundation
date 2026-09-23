@@ -33,7 +33,7 @@ CLOSED_CLASS = {
     "du", "di", "da", "do", "del", "della", "dei", "degli", "al", "au", "aux", "à", "in", "of", "to", "zu", "van", "på", "av",
     "ne", "pas", "que", "qu", "che", "ce", "ça", "y", "e", "et", "und", "och", "og", "ja", "ya", "je", "est", "is",
 }
-ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "root_source", "source", "run_id"]
+ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "root_source", "root_texts", "source", "run_id"]
 
 def load_seed(path=SEED):
     with open(path, encoding="utf-8") as f:
@@ -113,7 +113,7 @@ def english_words(prime):
             out.append(w)
     return [{"word": w, "roman": ""} for w in out]
 
-def prime_rows(prime, db, targets, run_id, oshb=None, outcomes=None):
+def prime_rows(prime, db, targets, run_id, oshb=None, outcomes=None, hebrew=None):
     spec = prime.get("sense")
     if not spec:
         return {"sense": None, "sense_match": None, "langs": 0}, []
@@ -138,14 +138,18 @@ def prime_rows(prime, db, targets, run_id, oshb=None, outcomes=None):
             root_lang, root_form, root_gloss = root
             entry = db.entry(lang, resolved, ety) if resolved else None
             row_conf = conf if lang == "en" else min(conf, word_conf)
+            h = node_words.hebrew_hits(hebrew, lang, w["word"], root_lang, root_form, row_conf, min(root_conf, row_conf))
             rows.append({
                 "prime_id": prime["id"], "lang": lang, "word": w["word"], "rank": rank,
                 "roman": w["roman"] or (entry or {}).get("roman") or None,
                 "sense": chosen["sense"], "sense_match": matched, "confidence": round(row_conf, 3), "root_confidence": round(min(root_conf, row_conf), 3),
                 "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
-                "root_source": root_source if root_form else None, "source": SOURCE, "run_id": run_id,
+                "root_source": root_source if root_form else None, "root_texts": [h] if h else [], "source": SOURCE, "run_id": run_id,
             })
     return {"sense": chosen["sense"], "sense_match": matched, "langs": len(chosen["langs"])}, rows
+
+def jsonb_lit(v):
+    return "'" + json.dumps(v, ensure_ascii=False).replace("'", "''") + "'::jsonb"
 
 def lit(v):
     if v is None:
@@ -181,17 +185,17 @@ def build_sql(seed_primes, results):
         out.append("begin;")
         out.append(f"delete from graph.nsm_exponents where prime_id = {lit(p['id'])};")
         for r in rows:
-            out.append("insert into graph.nsm_exponents (" + ", ".join(ROW_COLUMNS) + ") values (" + ", ".join(lit(r[c]) for c in ROW_COLUMNS) + ");")
+            out.append("insert into graph.nsm_exponents (" + ", ".join(ROW_COLUMNS) + ") values (" + ", ".join(jsonb_lit(r[c]) if c == "root_texts" else lit(r[c]) for c in ROW_COLUMNS) + ");")
         out.append("commit;")
     return "\n".join(out) + "\n"
 
 def apply_sql(db_url, sql):
     subprocess.run(["psql", db_url, "-q", "-v", "ON_ERROR_STOP=1", "-f", "-"], input=sql, text=True, check=True)
 
-def run(seed, db, targets, run_id, oshb=None, outcomes=None):
+def run(seed, db, targets, run_id, oshb=None, outcomes=None, hebrew=None):
     results = {}
     for p in seed["primes"]:
-        results[p["id"]] = prime_rows(p, db, targets, run_id, oshb, outcomes)
+        results[p["id"]] = prime_rows(p, db, targets, run_id, oshb, outcomes, hebrew)
     return results
 
 def report(seed, results):
@@ -208,6 +212,7 @@ def report(seed, results):
     multi = [r for r in rows if re.search(r"\s", r["word"].strip())]
     print("with root", sum(1 for r in rows if r["root_form"]), "with root gloss", sum(1 for r in rows if r["root_gloss"]), "root shown", len(shown))
     print("multiword rows", len(multi), "with root", sum(1 for r in multi if r["root_form"]), "root shown", sum(1 for r in multi if r["root_form"] and r["root_confidence"] >= HIDE_BELOW))
+    print("with hebrew bible", json.dumps(node_words.verse_bands(rows, "confidence")))
     print("no sense match", no_match)
     print("no wiktionary lookup", no_lookup)
     return {"rows": len(rows), "by_lang": by_lang, "no_match": no_match, "no_lookup": no_lookup}
@@ -225,7 +230,8 @@ def main(argv=None):
     targets = set(db.langs)
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     oshb, outcomes = node_words.oshb_load(), {}
-    results = run(seed, db, targets, run_id, oshb, outcomes)
+    hebrew = node_words.hebrew_load()
+    results = run(seed, db, targets, run_id, oshb, outcomes, hebrew)
     report(seed, results)
     print("oshb", json.dumps(outcomes, sort_keys=True))
     if a.show:

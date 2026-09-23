@@ -1,4 +1,4 @@
-import { HIDE_BELOW, UNCERTAIN_BELOW, langName } from "./node-words";
+import { HIDE_BELOW, UNCERTAIN_BELOW, langName, rootTextsFor, type RootText } from "./node-words";
 
 export { HIDE_BELOW, UNCERTAIN_BELOW };
 
@@ -34,6 +34,7 @@ export interface NsmExponentRow {
   root_gloss: string | null;
   colex_with?: string[] | null;
   root_source?: string | null;
+  root_texts?: unknown;
 }
 
 export interface NsmExponent {
@@ -54,6 +55,7 @@ export interface NsmExponent {
   rootGloss: string | null;
   colexWith: string[];
   rootSource: string | null;
+  rootTexts: RootText[];
 }
 
 export type SenseStatus = "matched" | "fallback" | "none";
@@ -112,6 +114,7 @@ export function toExponent(row: NsmExponentRow, opts: { includeHidden?: boolean 
     rootGloss: keepRoot ? row.root_gloss || null : null,
     rootSource: keepRoot ? row.root_source || null : null,
     colexWith: Array.isArray(row.colex_with) ? row.colex_with.filter((x): x is string => typeof x === "string") : [],
+    rootTexts: keepRoot && !rootHidden ? rootTextsFor(row.root_texts, true) : [],
   };
 }
 
