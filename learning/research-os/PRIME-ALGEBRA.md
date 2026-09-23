@@ -16,6 +16,23 @@ A query of several nodes sums their vectors. Candidates are composites sharing a
 
 The node page shows the cosine, since a softmax weight depends on how many candidates there are. Composites with the same set of primes collapse into one row, the shallowest and then the first by title shown, with "and N more with the same primes". Over the idea layer, Folding funnel's nearest row is Two-state folding equilibrium at cosine 1, with 3 more on the same primes (Anfinsen's hypothesis among them), then Contact order and folding rate at 0.96.
 
+### Attention as a Tool
+
+bkt-jl1v. `/research-os/attend` and `GET /api/research-os/attend` rank the idea layer against concepts a user picks (`ids`, up to 8) or a phrase (`q`, up to 200 characters). Code: `src/lib/research-os/attention.ts`; tests: `scripts/test-research-os-attention.ts`.
+
+Each hit carries its shared primes with their terms, x_q(p) * x_v(p) / (|x_q| |x_v|). The route divides every exposed term by qn * vn, so the terms sum to the cosine the hit is ranked by. A phrase enters through the 3 ideas with the highest IDF-weighted word overlap (`lexicalScore`) at 0.1 or more, each weighted by its overlap, and their vectors are summed. It runs in pure JavaScript. By default the query nodes' factor cone is hidden: every idea above or below them in the factor graph. `cone=show` lifts that. For a private node, the cone is its public factors and everything under them. Results come from the public snapshot. A signed-in user may name a private node; `authorizeNode` must allow it, and its vector is the sum of its public factors' vectors, with a fact contracted to the ideas under it. It never comes back as a result.
+
+**Against embedding search.** `scripts/research-os/eval-attention.ts` takes 120 Academy atoms at random from 469 with a Wikipedia mapping. Each query is the first lesson sentence that shares no word with the atom's title. The atoms split 60 for tuning and 60 held out. A node counts as relevant when its Wikipedia article links to or from the source atom's article. The source atom and its near duplicates are removed from the entries, the candidates and the relevant set: same title, title overlap of 0.8 or more, same article, or a bge-small cosine of 0.93 or more. The held-out results over 497 idea nodes, with paired bootstrap intervals over queries:
+
+| Arm | nDCG@10 | recall@20 | nDCG@10 against embedding |
+|---|---|---|---|
+| Embedding search, bge-small | 0.285 | 0.238 | |
+| Attention, lexical entry | 0.156 | 0.141 | -0.129, interval -0.201 to -0.051 |
+| Attention, embedding entry | 0.202 | 0.167 | -0.083, interval -0.152 to -0.018 |
+| Rank fusion of embedding and lexical attention | 0.237 | 0.226 | -0.049, interval -0.113 to 0.014 |
+
+Plain embedding search wins on this relevance. Attention ranks composites alone, and it spreads a query over everything that shares its primes, while Wikipedia's links reward neighbours by topic. Tuning picked 1 lexical entry with the cone shown. The page serves to explain makeup, with the primes as the reasons for each rank. Rank fusion comes closest, and its interval includes 0. On the local stack, lexical entry takes 3.9 ms at the median and 5.3 ms at p95, and the attention pass 0.4 ms and 0.9 ms. The founder labels 20 held-out queries blind as a second check.
+
 ## M2: Leibniz Numbers and the Euler Gap
 
 Rank primes by penetration and give them 2, 3, 5, 7 in order. A node's Leibniz number is n(v) = product of q_i over i in S(v), squarefree. Divisibility is containment.

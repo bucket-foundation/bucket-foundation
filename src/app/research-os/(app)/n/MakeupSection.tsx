@@ -231,7 +231,11 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
             <div>
               <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-1">nearest by makeup</h3>
               <p className="text-[12px] text-[color:var(--basalt-3)] mb-2 max-w-[68ch]">
-                Ideas built from the same primes, scored by cosine from 0 to 1. Rare primes count for more, and a prime every idea holds counts for nothing.
+                Ideas built from the same primes, scored by cosine from 0 to 1. Rare primes count for more, and a prime every idea holds counts for nothing.{" "}
+                <Link href={`/research-os/attend?ids=${encodeURIComponent(slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                  Rank the whole graph from here
+                </Link>
+                .
               </p>
               <ul className="flex flex-col gap-1.5">
                 {m.nearest.map((n) => (

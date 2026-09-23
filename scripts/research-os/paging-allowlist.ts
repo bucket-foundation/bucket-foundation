@@ -15,6 +15,7 @@ export const PAGING_EXCEPTIONS: PagingException[] = [
   { at: "src/lib/research-os/db.ts::isGuidanceEnabledForLearner::classes::1", because: "classes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/lib/research-os/db.ts::resolveNodeIdsBySlug::nodes::1", because: "nodes.slug is unique, so one row per slug" },
   { at: "src/lib/research-os/inference/review-actions.ts::lowestIdeaTier::nodes::1", because: "limit(1) after the order on tier caps the read at one row by construction" },
+  { at: "src/lib/research-os/attention-db.ts::privateQueryFactors::nodes::1", because: "nodes.slug is unique, so one row per slug, and parseAttendParams caps the list at 8 ids" },
   { at: "src/lib/research-os/inference/review-actions.ts::nodesBySlug::nodes::1", because: "nodes.slug is unique, so one row per slug" },
   { at: "src/lib/research-os/inference/review-actions.ts::branchesResting::nodes::1", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/lib/research-os/learn-sync.ts::syncAcademyMastery::nodes::1", because: "UNTRIAGED: reads nodes by ?, and nothing here has checked the rows per value against the schema" },
