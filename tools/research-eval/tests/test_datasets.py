@@ -9,7 +9,7 @@ import pyarrow.parquet as pq
 import pytest
 
 from bucket_eval.datasets import openalex_slice, science4cast
-from bucket_eval.datasets.common import ChecksumError
+from bucket_eval.datasets.common import BRONZE, ChecksumError
 
 def tiny_zip():
     buf = io.BytesIO()
@@ -78,3 +78,12 @@ def test_openalex_refuses_a_file_whose_size_disagrees(tmp_path):
     (root / "works" / "manifest.json").write_text(json.dumps({"date": "2026-09-23", "record_count": 1, "content_length": 1, "files": files}))
     with pytest.raises(RuntimeError, match="manifest lists"):
         openalex_slice.pilot(fs=pafs.LocalFileSystem(), root=str(root), bronze=tmp_path / "bronze", manifest=tmp_path / "m.json", stride=1, min_free=0)
+
+
+def test_pinned_science4cast_bronze_matches_its_manifest():
+    target = BRONZE / "science4cast" / science4cast.PUBLISHED / science4cast.FILE
+    if not target.exists():
+        pytest.skip(f"no Science4Cast bronze at {BRONZE}; set RESEARCH_EVAL_DATA")
+    got = science4cast.verify()
+    assert (got["size"], got["md5"]) == (science4cast.SIZE, science4cast.MD5)
+    assert got["members"] > 0

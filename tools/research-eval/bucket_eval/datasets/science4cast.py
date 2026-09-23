@@ -74,3 +74,19 @@ def pull(bronze: Path = BRONZE, manifest: Path = MANIFEST, opener: Opener = _ope
     }
     pin(manifest, doc, ("url", "license", "size", "md5", "sha256", "members"))
     return doc
+
+
+def verify(bronze: Path = BRONZE, manifest: Path = MANIFEST) -> dict:
+    held = read_manifest(manifest)
+    if held is None:
+        raise ChecksumError(f"{manifest} is not pinned yet")
+    target = bronze / "science4cast" / held["published"] / held["file"]
+    if not target.exists():
+        raise FileNotFoundError(f"{target} is absent; run science4cast-pull or set RESEARCH_EVAL_DATA")
+    got = {"size": target.stat().st_size, "md5": digest(target, "md5"), "sha256": digest(target, "sha256")}
+    wrong = [k for k, v in got.items() if held[k] != v]
+    extract = target.parent / "extracted"
+    wrong += [m["name"] for m in held["members"] if not (extract / m["name"]).exists() or (extract / m["name"]).stat().st_size != m["size"]]
+    if wrong:
+        raise ChecksumError(f"{target}: {', '.join(wrong)} disagree with the pinned manifest")
+    return {"path": str(target), **got, "members": len(held["members"])}

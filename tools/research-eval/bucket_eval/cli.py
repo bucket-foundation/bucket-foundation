@@ -13,6 +13,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="bucket-eval")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("science4cast-pull")
+    sub.add_parser("science4cast-verify")
     pilot = sub.add_parser("openalex-pilot")
     pilot.add_argument("--stride", type=int, default=100)
     pilot.add_argument("--out", type=Path, default=RUNS / "d2-pilot.json")
@@ -20,6 +21,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "science4cast-pull":
         doc = science4cast.pull()
         print(json.dumps({k: doc[k] for k in ("file", "size", "md5", "sha256", "extracted_bytes")}, indent=2))
+        return 0
+    if args.command == "science4cast-verify":
+        print(json.dumps(science4cast.verify(), indent=2))
         return 0
     result = openalex_slice.pilot(stride=args.stride)
     args.out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")

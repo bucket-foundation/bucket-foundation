@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[4]
-BRONZE = Path(os.environ.get("BUCKET_EVAL_BRONZE", REPO / "_intake" / "research-eval"))
+BRONZE = Path(os.environ.get("RESEARCH_EVAL_DATA") or REPO / "_intake" / "research-eval")
 MANIFESTS = Path(__file__).resolve().parent / "manifests"
 MIN_FREE_BYTES = 60 * 1024**3
 
