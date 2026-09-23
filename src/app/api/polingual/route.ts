@@ -4,9 +4,9 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const clean = (u: string) => u.replace(/\/$/, "");
-const PRIMARY = clean(process.env.POLINGUAL_API_URL ?? "https://polingual.agfarms.dev");
-const FALLBACK = clean(process.env.POLINGUAL_FALLBACK_API_URL ?? "https://polingual.agfarms.dev");
-const UPSTREAMS = PRIMARY === FALLBACK ? [PRIMARY] : [PRIMARY, FALLBACK];
+const PRIMARY = process.env.POLINGUAL_API_URL ? clean(process.env.POLINGUAL_API_URL) : "";
+const FALLBACK = process.env.POLINGUAL_FALLBACK_API_URL ? clean(process.env.POLINGUAL_FALLBACK_API_URL) : "";
+const UPSTREAMS = Array.from(new Set([PRIMARY, FALLBACK].filter(Boolean)));
 
 const TIMEOUT_MS = Number(process.env.POLINGUAL_TIMEOUT_MS ?? "4000");
 
@@ -44,6 +44,22 @@ export async function GET(req: NextRequest) {
   }
   if (op !== "health" && !url.searchParams.get("surface")) {
     return err(400, "missing_surface");
+  }
+
+  if (UPSTREAMS.length === 0) {
+    return new Response(
+      JSON.stringify(
+        {
+          error: { code: "upstream_not_configured" },
+          op,
+          note: "No Polingual API URL is configured; the explorer falls back to its baked subset.",
+          provenance: "Wiktionary via Kaikki (CC-BY-SA)",
+        },
+        null,
+        2,
+      ),
+      { status: 503, headers: { ...JSON_HEADERS, "x-polingual-upstream": "none" } },
+    );
   }
 
   const t0 = Date.now();

@@ -22,7 +22,8 @@ const SUITES = {
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
       "scripts/test-research-os-{dedup,merge-actions}.ts",
-      "scripts/test-beads-dispatch.ts",
+      "scripts/test-no-hetzner-defaults.ts",
+      "scripts/test-beads-export.mjs",
     ],
   },
   db: {

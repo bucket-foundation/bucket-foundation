@@ -1,4 +1,4 @@
-# Bucket Foundation, Nucleus-Managed Venture
+# Bucket Foundation
 
 **build the past. build history. bucket is the new renaissance.**
 
@@ -6,21 +6,11 @@ Nonprofit reference implementation, primary research paid-for-once, citeable-for
 
 Canon thesis: AI + foundations + a small number of brilliant humans = the next layer of reality. Canon holds **only foundations**, axioms, real math, rules, laws, principles, primary derivations, across **seven branches**: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 
-Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
+Part of AGFarms venture studio.
 
 ## Bucket critic
 
 Use the repo-wide [Bucket critic](docs/agents/BUCKET-CRITIC.md) and the review loop in [AGENTS.md](AGENTS.md) for material architecture, implementation and research changes. The saved Claude agent is `bucket-critic`. Its role is review; the parent implements fixes and saves the report. Plans and PRs both get a critic review. Pass above 8.0/10 with no open critical or high finding, three rounds at most; after round three it merges with medium and low findings filed as beads, or it closes. Post the final report on the PR.
-
-## Nucleus Connection
-
-- **Instance ID**: `bucket-foundation`
-- **Dashboard**: https://bucket-foundation.nucleus.agfarms.dev/admin
-- **API**: https://bucket-foundation.nucleus.agfarms.dev *(host down since 2026-09-14, see Known Infra Gaps)*
-- **Org fallback**: https://nucleus.agfarms.dev/api/portfolio/dispatch *(same host, also down)*
-- **Auth**: export `NUCLEUS_ADMIN_USER` and `NUCLEUS_ADMIN_PASSWORD` in your shell
-- **Bead Prefix**: `bkt-`
-- **Tier**: 3 (experiment/idea), graduating to Tier 2 once instance is deployed + first paying customer signs
 
 ## Local First
 
@@ -29,13 +19,12 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 - **Database**: the local Supabase stack. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and `docs/AUTH.md` has the steps. Building and testing need no hosted Supabase project.
 - **App**: `npm run dev` against the local stack.
 - **Engine**: `hte-serve` runs as the `hte-serve.service` user unit on 127.0.0.1:8420 in live mode (`scripts/systemd/install-hte-serve.sh`). `.env.local` sets `HTE_SERVE_URL=http://127.0.0.1:8420` and `HTE_SERVE_TIMEOUT_S=600`, so `/api/research-os/hypothesize` and the MCP `hypothesize` tool answer locally.
-- **Beads**: new beads go to `BEADS-PENDING.jsonl` while the Nucleus host is down, and drain when it returns through `npm run beads:dispatch -- --source <source>` (a dry run; add `--apply` to write). It files each row once, adds its dependency edges, and records the result in `BEADS-DISPATCHED.jsonl`.
+- **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
 - **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
 
 ## Known Infra Gaps
 
 1. **No `NSMotionUsageDescription`** on DerbyFish iOS (needed for Path B sensor capture, tracked as cross-venture `dbt-` bead).
-2. **Nucleus host unreachable since at least 2026-09-14.** `5.161.236.151` answered no ping and no port on 2026-09-18, so `bd-remote` and every `*.nucleus.agfarms.dev` call time out. Beads queue in `BEADS-PENDING.jsonl`.
 
 ## Repo
 
@@ -105,7 +94,7 @@ Manual control commands: `docs/internal/OPERATIONS.md`.
 
 ## Bead Tracking
 
-`bd-remote` against the instance above when the host is up; `BEADS-PENDING.jsonl` otherwise (Local First).
+Local `bd` against the Dolt database (see Local First). The founder's Hetzner server that hosted `bd-remote` and the Nucleus instance is gone; both are retired.
 
 ## Code Conventions
 
@@ -130,7 +119,7 @@ Manual control commands: `docs/internal/OPERATIONS.md`.
 Set by the founder on 2026-09-22 after a week where 17% of added lines reached a user.
 
 - **Launch gate.** Until the launch list opens, a bead is ready only when it names a screen or API a user touches at launch. Everything else carries the label `post-launch` and gets no agent time.
-- **Founder-sourced queue.** A bead or roadmap row an agent writes stays in `BEADS-PENDING.jsonl` with `"source": "agent ..."` and is not worked until the founder approves it. Rows the founder asked for carry `"source": "founder YYYY-MM-DD"`.
+- **Founder-sourced queue.** A bead or roadmap row an agent writes carries the labels `needs-founder` and `source-agent` and is not worked until the founder approves it. Rows the founder asked for carry `source-founder` instead.
 - **Ops work stays off dev.** Gates, load measurements, runbooks, watch ledgers, build scripts and bead tooling go on `ops/*` branches into `ops/integration` (Branch Policy).
 - **No per-change logs.** `learning/research-os/CHANGE-LEDGER.md` and `TIMELOG.md` are frozen. The PR is the record.
 - **Memos need a question.** A memo over 200 lines needs a founder question named in its bead. Agent process docs go in `docs/internal/`, and no page renders them.
@@ -158,11 +147,15 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
  procedural-SVG art. Branch manifest = `learning/app/corpus/index.json`.
 - **Engine:** FSRS-5 + two-layer graph + FIRe + mastery (`M=proficiency^α·retention^β`).
  ALEKS-style diagnostic placement. "Test yourself" assessment w/ deterministic grader.
-- **Auth + profile:** email-OTP via the self-hosted Supabase at **db.agfarms.dev**
- (`agf-supabase-*` on Hetzner). Tables `bucket.academy_progress` + `bucket.academy_profiles`
- (in the **private `bucket` schema**, sealed off from PostgREST; reached via service-role Next
- API routes `src/app/api/academy/{progress,profile}/route.ts`). Public Mastery Profile at
- `/m/<handle>` (signal; NO certified rating until `bkt-4at` validates vs real exams).
+- **Auth + profile:** email-OTP via a hosted Supabase project. The prior host,
+ **db.agfarms.dev** (`agf-supabase-*` on the founder's Hetzner box), is gone
+ for good; a replacement is pending the founder's decision, and
+ `NEXT_PUBLIC_SUPABASE_URL` plus the Academy auth code stay as they are until
+ then. Tables `bucket.academy_progress` + `bucket.academy_profiles` (in the
+ **private `bucket` schema**, sealed off from PostgREST; reached via
+ service-role Next API routes `src/app/api/academy/{progress,profile}/route.ts`).
+ Public Mastery Profile at `/m/<handle>` (signal; NO certified rating until
+ `bkt-4at` validates vs real exams).
 - **AI features (dark until founder sets `ANTHROPIC_API_KEY` in Vercel):** grounded Socratic
  tutor (`src/app/api/academy/tutor`, S1, S7 safety: closed-set citations, abstain, fail-safe).
 
@@ -177,8 +170,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 Language surface on the photon substrate. Contract and vision: `PHOTON-SPEC.md`, `POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
 
 - Full index: 6,564,942 photons, 35 languages, LaBSE-768 plus 64-d phonetic vectors with HNSW, in local docker `bucket-pgvector` on 127.0.0.1:5433, table `photons_full`. API `services/photon-api/server_pg.py` on :8090.
-- Fallback: `polingual.agfarms.dev`, 209k photons. The app reaches either through `src/app/api/polingual/route.ts` (`POLINGUAL_API_URL`, then `POLINGUAL_FALLBACK_API_URL`, then the baked subset).
-- Authoritative metadata with `relations` jsonb (translation and etymology edges): `polingual.photons` on the Hetzner Supabase.
+- The `polingual.agfarms.dev` fallback and the Hetzner Supabase that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call and the app runs on the baked subset.
 - Data is Wiktionary via Kaikki, CC-BY-SA, and must be attributed.
 - Build pipeline, sizing, gotchas and infra history: `docs/internal/OPERATIONS.md`.
 
