@@ -172,6 +172,10 @@ def prime_sql(prime, ord_, meta):
         " en_word = excluded.en_word, en_pos = excluded.en_pos, sense = excluded.sense, sense_match = excluded.sense_match;"
     )
 
+def row_sql(r):
+    vals = [jsonb_lit(r.get(c) or []) if c == "root_texts" else lit(r[c]) for c in ROW_COLUMNS]
+    return "insert into graph.nsm_exponents (" + ", ".join(ROW_COLUMNS) + ") values (" + ", ".join(vals) + ");"
+
 def build_sql(seed_primes, results):
     ids = [p["id"] for p in seed_primes]
     out = ["\\set ON_ERROR_STOP 1", "begin;"]
@@ -185,7 +189,7 @@ def build_sql(seed_primes, results):
         out.append("begin;")
         out.append(f"delete from graph.nsm_exponents where prime_id = {lit(p['id'])};")
         for r in rows:
-            out.append("insert into graph.nsm_exponents (" + ", ".join(ROW_COLUMNS) + ") values (" + ", ".join(jsonb_lit(r[c]) if c == "root_texts" else lit(r[c]) for c in ROW_COLUMNS) + ");")
+            out.append(row_sql(r))
         out.append("commit;")
     return "\n".join(out) + "\n"
 
