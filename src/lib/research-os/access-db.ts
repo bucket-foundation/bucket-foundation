@@ -5,7 +5,8 @@
  * the private `graph` schema, applying the rules in access.ts before any
  * write. Never import from a client component.
  */
-import { graphService } from "./db";
+import { graphService, inChunks, pagedRead } from "./db";
+import { authorizeNodes, dbAccessStore, readVisibility, storeWithNodes, type AccessStore } from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
@@ -59,73 +60,234 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
  * hidden node are dropped, so routing and directions never cross into a
  * node the viewer cannot open.
  */
+/**
+ * The nodes and edges a viewer may see. Reads through read-access.ts, so
+ * an access-store failure is an outage rather than an empty grant list:
+ * this function used to read the groups and the grants directly, both of
+ * which answer `[]` on error, and an outage then hid every shared node
+ * behind a 404 (Bucket critic C2).
+ *
+ * The result is a union, so a caller cannot read the nodes without
+ * deciding what an outage means. An optional `unavailable` flag let one of
+ * the four callers serve an empty neighbourhood with a 200 (Bucket critic
+ * C13); the compiler now names every caller that has to choose.
+ */
+export type SubgraphForViewer<N, E> = { ok: true; nodes: N[]; edges: E[] } | { ok: false; reason: "unavailable" };
+
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
-  viewerId: string | null
-): Promise<{ nodes: N[]; edges: E[] }> {
-  const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
-  if (nonPublic.length === 0) return { nodes, edges };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  let grants: NodeGrant[] = [];
-  if (viewerId) {
-    const { data } = await graphService()
-      .from("node_grants")
-      .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-      .in("node_id", nonPublic.map((n) => n.id));
-    grants = ((data as GrantRow[]) || []).map(grantFromRow);
-  }
-  const keep = new Set(
-    nodes
-      .filter((n) => canView({ id: n.id, visibility: n.visibility ?? "public", ownerId: n.ownerId ?? null }, viewer, grants))
-      .map((n) => n.id)
+  viewerId: string | null,
+  // The grants and groups come from here. It is the database in every
+  // caller; a test supplies its own so the rule below can be checked
+  // without one.
+  store: AccessStore = dbAccessStore,
+): Promise<SubgraphForViewer<N, E>> {
+  // readVisibility, so a node whose visibility this code cannot read is
+  // non-public and goes through the decision below. `?? "public"` let a
+  // node with no visibility skip authorization, and a caller that built
+  // its nodes by hand got every one of them back.
+  const nonPublic = nodes.filter((n) => readVisibility(n.visibility) !== "public");
+  if (nonPublic.length === 0) return { ok: true, nodes, edges };
+
+  const access: NodeAccess[] = nodes.map((n) => ({
+    id: n.id,
+    visibility: readVisibility(n.visibility),
+    ownerId: n.ownerId ?? null,
+  }));
+  const decision = await authorizeNodes(
+    nodes.map((n) => n.id),
+    { id: viewerId },
+    "view",
+    storeWithNodes(access, store),
   );
-  return { nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
+  if (!decision.ok) return { ok: false, reason: "unavailable" };
+  const keep = new Set(decision.allowed);
+  return { ok: true, nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
-export async function loadNodeAccess(nodeId: string): Promise<NodeAccess | null> {
+/**
+ * These three read what `/api/research-os/access` decides on, and all
+ * three broke the two rules `read-access.ts` exists to enforce. An
+ * unknown or null visibility became `public`, which is the inverse of
+ * "a visibility this code does not know is private". A failed grants or
+ * groups read became an empty list, which is the inverse of "an
+ * access-store failure is unavailable, never no grants".
+ *
+ * Each now answers a result, so the route has to decide what an outage
+ * means rather than being handed a denial that looks like an answer.
+ */
+export type AccessRead<T> = { ok: true; value: T } | { ok: false; reason: "unavailable" };
+
+export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAccess | null>> {
   const { data, error } = await graphService().from("nodes").select("id,visibility,owner_id").eq("id", nodeId).maybeSingle();
-  if (error || !data) return null;
-  return { id: data.id as string, visibility: (data.visibility as Visibility) ?? "public", ownerId: (data.owner_id as string | null) ?? null };
+  if (error) return { ok: false, reason: "unavailable" };
+  if (!data) return { ok: true, value: null };
+  return {
+    ok: true,
+    value: {
+      id: data.id as string,
+      // readVisibility, so a visibility this code does not know is
+      // private. `?? "public"` made an unknown value world-readable.
+      visibility: readVisibility(data.visibility as string | null),
+      ownerId: (data.owner_id as string | null) ?? null,
+    },
+  };
 }
 
-export async function loadGrants(nodeId: string): Promise<NodeGrant[]> {
-  const { data, error } = await graphService().from("node_grants").select("id,node_id,grantee_id,grantee_group,role,expires_at").eq("node_id", nodeId);
-  if (error || !data) return [];
-  return (data as GrantRow[]).map(grantFromRow);
+/**
+ * Both of these decide access, and both took one unpaged request.
+ * PostgREST stops at a thousand rows and reports no error, so the grant
+ * that admits you is dropped when you are the 1,001st grantee of a node
+ * and the answer reads as a complete list of grants that excludes you.
+ * That is the row cap producing a denial rather than a truncation.
+ *
+ * pagedRead throws where the builder answers an error. A caller of
+ * these two reads a union, so the throw is turned back into the
+ * unavailable it already knows how to answer.
+ */
+/**
+ * An outage, said out loud.
+ *
+ * Both callers answer a union, so the throw becomes the `unavailable`
+ * the route already knows how to turn into a 503. A bare `catch {}`
+ * made that silent, and it hides more than an outage: graphService()
+ * throwing on an unconfigured stack, a TypeError in the callback, and a
+ * PagingError, which means 200,000 rows of database work ran without
+ * terminating and every retry the 503 invites runs them again. The log
+ * is the only place that distinction survives.
+ */
+function unavailable(table: string, err: unknown): { ok: false; reason: "unavailable" } {
+  const detail = err instanceof Error ? err.message : String(err);
+  console.error(`[research-os/access] ${table} read failed:`, detail);
+  return { ok: false, reason: "unavailable" };
+}
+
+export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]>> {
+  try {
+    const rows = await pagedRead<GrantRow>((page) =>
+      graphService()
+        .from("node_grants")
+        .select("id,node_id,grantee_id,grantee_group,role,expires_at")
+        .eq("node_id", nodeId)
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: GrantRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(grantFromRow) };
+  } catch (err) {
+    return unavailable("node_grants", err);
+  }
 }
 
 /** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
-export async function loadViewerGroups(learnerId: string): Promise<string[]> {
-  const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-  if (error || !data) return [];
-  return (data as { class_id: string }[]).map((r) => `class:${r.class_id}`);
+export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
+  try {
+    const rows = await pagedRead<{ class_id: string }>((page) =>
+      graphService()
+        .from("class_members")
+        .select("class_id")
+        .eq("learner_id", learnerId)
+        .order("class_id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { class_id: string }[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map((r) => `class:${r.class_id}`) };
+  } catch (err) {
+    return unavailable("class_members", err);
+  }
 }
 
-export async function loadRequestsForNode(nodeId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("node_id", nodeId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+/**
+ * These three read what /api/research-os/access serves, and each was one
+ * unpaged request answering `[]` on error, under a header saying every
+ * read in this file had stopped doing that.
+ *
+ * Both failures are quiet. A node past a thousand access requests showed
+ * its owner a truncated queue, and `created_at` carries no unique index,
+ * so the truncation point was not even stable between requests. During a
+ * Postgres outage all three rendered "you own nothing, nobody has asked"
+ * behind a 200.
+ *
+ * They page on `(created_at, id)` and `(id)`, and they answer the union
+ * the rest of this file answers.
+ */
+export async function loadRequestsForNode(nodeId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("node_id", nodeId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export async function loadRequestsByRequester(requesterId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("requester_id", requesterId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+export async function loadRequestsByRequester(requesterId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("requester_id", requesterId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export async function loadOwnedNodes(ownerId: string): Promise<{ id: string; slug: string; title: string; visibility: Visibility }[]> {
-  const { data, error } = await graphService().from("nodes").select("id,slug,title,visibility").eq("owner_id", ownerId).order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return data as { id: string; slug: string; title: string; visibility: Visibility }[];
+export async function loadOwnedNodes(ownerId: string): Promise<AccessRead<{ id: string; slug: string; title: string; visibility: Visibility }[]>> {
+  try {
+    const rows = await pagedRead<{ id: string; slug: string; title: string; visibility: Visibility }>((page) =>
+      graphService()
+        .from("nodes")
+        .select("id,slug,title,visibility")
+        .eq("owner_id", ownerId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { id: string; slug: string; title: string; visibility: Visibility }[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows };
+  } catch (err) {
+    return unavailable("nodes", err);
+  }
+}
+
+/**
+ * Pending access requests per node, for a list of nodes, in one paged
+ * read per chunk.
+ *
+ * The owned-nodes view counted these with one request per node inside a
+ * Promise.all, so an owner with 800 nodes opened 800 concurrent
+ * PostgREST connections from a single GET to compute 800 integers.
+ */
+export async function loadPendingCountsForNodes(nodeIds: string[]): Promise<AccessRead<Map<string, number>>> {
+  const counts = new Map<string, number>();
+  if (nodeIds.length === 0) return { ok: true, value: counts };
+  try {
+    const rows = await inChunks<{ node_id: string }>(nodeIds, (chunk, page) =>
+      graphService()
+        .from("access_requests")
+        .select("node_id")
+        .in("node_id", chunk)
+        .eq("status", "pending")
+        .order("node_id")
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string }[] | null; error: { message: string } | null }>,
+    );
+    for (const r of rows) counts.set(r.node_id, (counts.get(r.node_id) ?? 0) + 1);
+    return { ok: true, value: counts };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
 export type AccessResult<T> = { ok: true; value: T } | { ok: false; error: string };

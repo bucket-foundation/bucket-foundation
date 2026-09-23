@@ -36,6 +36,7 @@ export default function ConnectionsPanel() {
         const outageCode = r.ok ? null : await readErrorCode(r);
         setErrorCode(outageCode);
         setStatus(r.status);
+        if (!r.ok) setErrorCode(await readErrorCode(r));
         if (r.ok) setData((await r.json()) as Data);
       })
       .catch(() => alive && setStatus(0));

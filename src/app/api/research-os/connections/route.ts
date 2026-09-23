@@ -18,8 +18,20 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   try {
-    return NextResponse.json(await loadConnections(learnerId), NO_STORE);
-  } catch {
-    return bad(500, "read_failed");
+    const connections = await loadConnections(learnerId);
+    // An access-store failure is an outage: an empty bridge list would read
+    // as a learner with nothing connected.
+    if ("unavailable" in connections && connections.unavailable) {
+      return NextResponse.json({ error: "access_unavailable" }, { status: 503, ...NO_STORE });
+    }
+    return NextResponse.json(connections, NO_STORE);
+  } catch (err) {
+    // 503 with a classified code. A 500 here read as permanent, because
+    // isTransientOutage answers false for any status but 503, so a
+    // paging failure inside loadConnections reached the browser with no
+    // retry while the same read failing through the `unavailable` path
+    // ten lines above got one. One fact, two spellings.
+    console.error("[research-os/connections] read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "access_unavailable");
   }
 }

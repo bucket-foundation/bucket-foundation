@@ -1,0 +1,45 @@
+/**
+ * Every read the allowlist is permitted to name.
+ *
+ * The ceilings count entries and a count cannot tell a repair from a
+ * swap: repairing one trivial lookup paid for one new dropped read in
+ * an authorization path, and every test stayed green. This is the set,
+ * so the list may only shrink against it. Adding a read means editing
+ * this file, which is a deliberate line in a diff whose only purpose is
+ * to be that.
+ */
+export const ALLOWED_BASELINE: readonly string[] = [
+  "src/app/api/academy/credential/verify/route.ts::liveProfile::academy_profiles::data::1",
+  "src/app/api/research-os/hypothesize/route.ts::POST::nodes::node::1",
+  "src/app/api/research-os/node/route.ts::GET::productions::data::1",
+  "src/app/api/research-os/payee/route.ts::load::learner_profiles::data::1",
+  "src/app/api/research-os/probe/route.ts::POST::edges::prereqEdges::1",
+  "src/app/api/research-os/production/route.ts::GET::nodes::nodes::1",
+  "src/app/api/research-os/search/route.ts::GET::learner_node_state::st::1",
+  "src/app/api/research-os/state/route.ts::POST::learner_node_state::existing::1",
+  "src/app/api/research-os/workspace/route.ts::POST::edges::prereqEdges::1",
+  "src/app/api/research-os/workspace/route.ts::POST::learner_node_state::existingState::1",
+  "src/app/api/research-os/workspace/route.ts::POST::nodes::pendingNode::1",
+  "src/app/api/research-os/workspace/route.ts::POST::nodes::sourceNodes::1",
+  "src/app/m/[handle]/page.tsx::fetchPublicProfile::academy_profiles::data::1",
+  "src/lib/academy/credential/store.ts::getCredential::<unknown>::data::1",
+  "src/lib/academy/credential/store.ts::listCredentialsForUser::<unknown>::data::1",
+  "src/lib/auth/identity.ts::getIdentity::identities::data::1",
+  "src/lib/auth/identity.ts::getIdentity::identities::made::1",
+  "src/lib/research-os/check-attempts-db.ts::dbGetPendingAttempt::check_attempts::data::1",
+  "src/lib/research-os/check-attempts-db.ts::dbPurgeExpiredAttempts::purge_expired_check_attempts::data::1",
+  "src/lib/research-os/class-db.ts::isClassStaffAnywhere::class_members::data::1",
+  "src/lib/research-os/classes.ts::joinClass::class_members::existing::1",
+  "src/lib/research-os/db.ts::awardProgress::learner_profiles::exists::1",
+  "src/lib/research-os/db.ts::findNodeById::nodes::data::1",
+  "src/lib/research-os/db.ts::findNodeBySlug::nodes::data::1",
+  "src/lib/research-os/db.ts::loadAncestorRows::prereq_ancestor::data::1",
+  "src/lib/research-os/db.ts::loadForcingEnabledForLearner::class_members::memberRows::1",
+  "src/lib/research-os/db.ts::loadForcingEnabledForLearner::classes::classRows::1",
+  "src/lib/research-os/db.ts::loadGame::learner_profiles::data::1",
+  "src/lib/research-os/db.ts::loadRecentCheckEvents::learner_node_state::data::1",
+  "src/lib/research-os/db.ts::loadSecondSourceRequiredForLearner::class_members::memberRows::1",
+  "src/lib/research-os/db.ts::loadSecondSourceRequiredForLearner::classes::classRows::1",
+  "src/lib/research-os/learn-sync.ts::syncAcademyMastery::learner_node_state::states::1",
+  "src/lib/research-os/production-node.ts::createNodeFromProduction::nodes::node::1",
+];

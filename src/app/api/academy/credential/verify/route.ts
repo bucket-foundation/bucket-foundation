@@ -81,10 +81,19 @@ async function liveProfile(handle: string): Promise<PublicProfile | null> {
     is_public: boolean;
   };
   if (!rec.is_public) return null;
-  const { data: rows } = await svc
+  const { data: rows, error: rowsErr } = await svc
     .from("academy_progress")
     .select("branch,data,updated_at")
     .eq("user_id", rec.user_id);
+  // A failed read used to become an empty progress list, and the
+  // consistency check then compared a real credential against a profile
+  // holding nothing, reporting the credential as inconsistent. null is
+  // already this function's "no profile to check against", which the
+  // caller reaches whenever the credential names no handle.
+  if (rowsErr) {
+    console.error("[academy/credential/verify] academy_progress read failed:", rowsErr.message);
+    return null;
+  }
   return assemblePublicProfile(
     rec.handle,
     rec.display_name,

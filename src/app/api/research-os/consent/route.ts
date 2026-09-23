@@ -27,8 +27,14 @@ function bad(status: number, error: string) {
 }
 const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
+/** The profile, or null when the learner has none. Raises when the read
+ * did not complete: a failed read used to return null here, and three
+ * lines below that null is served as the learner's effective consent,
+ * `{status:"none"}` with HTTP 200, which is a claim about them drawn
+ * from a read that never finished. */
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
-  const { data } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  if (error) throw new Error(`learner_profiles read failed: ${error.message}`);
   if (!data) return null;
   const r = data as { learner_id: string; role: string; birth_year_bucket: string | null; consent_status: string; consent_source: string | null; updated_at: string };
   return {
@@ -45,13 +51,24 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
-  const profile = await loadProfile(learnerId);
-  const effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
-  const { data: reqs } = await graphService()
+  // A consent answer computed from a read that failed is a more
+  // restrictive answer than the truth, delivered as though it were the
+  // truth. Both reads raise instead, and this says so.
+  let effective;
+  let profile: LearnerProfile | null;
+  try {
+    profile = await loadProfile(learnerId);
+    effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
+  } catch (err) {
+    console.error("[research-os/consent] path read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "consent_unavailable");
+  }
+  const { data: reqs, error: reqsErr } = await graphService()
     .from("consent_requests")
     .select("id,vendor,status,vendor_ref,created_at,decided_at")
     .eq("learner_id", learnerId)
     .order("created_at", { ascending: false });
+  if (reqsErr) return bad(503, "consent_unavailable");
   const requests = ((reqs as { id: string; vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null; created_at: string }[]) || []).map((r) => ({
     id: r.id,
     vendor: r.vendor,
@@ -108,7 +125,9 @@ export async function POST(req: NextRequest) {
 
   if (body.action === "record" || body.action === "class_basis") {
     if (!body.classId) return bad(400, "class_required");
-    const staff = await verifyClassStaff(req, body.classId);
+    const staffCheck = await verifyClassStaff(req, body.classId);
+    if (!staffCheck.ok) return bad(503, "class_read_failed");
+    const staff = staffCheck.staff;
     if (!staff || !staff.roles.some((r) => r === "teacher" || r === "librarian")) return bad(403, "forbidden");
 
     if (body.action === "class_basis") {
@@ -121,7 +140,12 @@ export async function POST(req: NextRequest) {
     }
 
     if (!body.learnerId || (body.status !== "verified" && body.status !== "declined")) return bad(400, "learner_and_status_required");
-    const { data: member } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    // A miss and a failure mean opposite things here. This records
+    // verified parental consent, and a dropped error told the teacher
+    // the learner is not in their class, which is a claim about the
+    // roster drawn from a read that never finished.
+    const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    if (memberErr) return bad(503, "class_read_failed");
     if (!member) return bad(404, "not_a_member");
     const now = new Date().toISOString();
     if (body.requestId) {

@@ -77,7 +77,7 @@ test("a single-row read needs no paging", () => {
 });
 
 test("every unpaged read in the tree carries a reason", () => {
-  const found = scanTree(ROOTS).map((f) => `${f.file}:${f.line}`);
+  const found = scanTree(ROOTS).map((f) => f.anchor);
   const listed = new Set(PAGING_EXCEPTIONS.map((e) => e.at));
   const unlisted = found.filter((f) => !listed.has(f));
   assert.deepEqual(
@@ -88,7 +88,7 @@ test("every unpaged read in the tree carries a reason", () => {
 });
 
 test("the list carries no entry for a read that is already fixed", () => {
-  const found = new Set(scanTree(ROOTS).map((f) => `${f.file}:${f.line}`));
+  const found = new Set(scanTree(ROOTS).map((f) => f.anchor));
   const stale = PAGING_EXCEPTIONS.filter((e) => !found.has(e.at)).map((e) => e.at);
   assert.deepEqual(stale, [], `paged or moved, so the entry is stale and should go: ${stale.join(", ")}`);
 });
@@ -100,7 +100,7 @@ test("a reason either names what bounds the read, or says it is untriaged", () =
   // to cite a constraint or an `eq()`, or admit it has not been checked.
   const grounded = /primary key|unique|pinned with eq|by construction/;
   for (const e of PAGING_EXCEPTIONS) {
-    assert.ok(path.isAbsolute(e.at) === false, `${e.at} is a repo-relative path`);
+    assert.ok(e.at.includes("::"), `${e.at} is an anchor, not a line key`);
     assert.ok(
       e.because.startsWith("UNTRIAGED:") || grounded.test(e.because),
       `${e.at} claims a bound without naming one: "${e.because}"`,

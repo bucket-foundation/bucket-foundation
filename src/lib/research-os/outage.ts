@@ -10,8 +10,31 @@
  * (Bucket critic C44, C59, C73).
  *
  * The rule lived in two clients and four more had the defect. It lives
- * here now, and `scripts/test-research-os-outage.ts` asserts every
- * client that renders a 503 reads a code.
+ * here now.
+ *
+ * What the gate in `scripts/test-research-os-outage.ts` covers, and what
+ * it does not. It marks a call whose route emits a transient code from
+ * its own handler, or imports `evidence-errors`, and requires a call to
+ * this rule in the window between that call and the next.
+ *
+ * Counted on this revision: 31 route directories, every one with a
+ * route.ts, of which the rule marks 8 (evidence-search, node, override,
+ * probe, production, review, state, workspace) and leaves 23 unmarked.
+ * Marking every route instead flags 36 calls across 17 files, which is
+ * filed rather than done here.
+ *
+ * Those counts move with the code and have already moved three times
+ * today, so treat them as of this revision rather than as a property of
+ * the design. An earlier version of this paragraph said 28 routes and
+ * 37 calls across 12 files. The 28 was never right. The 12 was the
+ * number of lines I had asked a terminal to print, read back as the
+ * number of files.
+ *
+ * The coverage gap is real whatever the counts are.
+ * `isTransientOutage(503, null)` answers true because a bare 503 comes
+ * from a gateway or a CDN, and a gateway sits in front of every route,
+ * so a client calling any of the 31 can be handed one. A green run says
+ * the marked routes are guarded, and nothing more.
  */
 
 /** The one code that means the deployment has no graph behind it. */
@@ -39,6 +62,7 @@ export const UNCONFIGURED = "research_os_unavailable";
  *                     evidence-errors.ts, which probe, production, state
  *                     and review all answer through.
  *   node_read_failed  node/route.ts, a failed read of one node.
+ *   graph_unavailable import/route.ts, a failed read behind an attach.
  *
  * `scripts/test-research-os-outage.ts` checks the set against the tree
  * in both directions, so a code a route emits and nobody classified
@@ -51,6 +75,27 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // search is off until it does.
   "profile_unavailable",
   "eligibility_unavailable",
+  // fix/ros-dropped-errors and ros-ai-access-read. Each is a read that
+  // did not finish this minute, from a route that used to answer the
+  // same failure with an empty result or with a guess at an allow.
+  // Leaving them unclassified would have LoopPanel, GraphMap,
+  // ClassesPanel and NodeView render them as "Research OS is
+  // unavailable on this deployment", because those four branch on the
+  // status alone: the outage reading as a permanent fact about the
+  // install, which is this file's whole subject.
+  "access_unavailable",
+  "class_read_failed",
+  "consent_unavailable",
+  "graph_read_failed",
+  "loop_unavailable",
+  "stage_read_failed",
+  // A corpus file that could not be read this minute. The corpus that was
+  // never built is corpus_unavailable, below, and that one stays.
+  "corpus_read_failed",
+  // ros-import 2. The import route's graph reads: the import row, its
+  // node, and the file rows. A failed read leaves the uploaded object
+  // where it is, so the same attach works once the graph answers.
+  "graph_unavailable",
 ]);
 
 /**

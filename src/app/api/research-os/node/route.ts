@@ -9,8 +9,9 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
-import { filterSubgraphForViewer, loadGrants, loadNodeAccess, loadViewerGroups } from "@/lib/research-os/access-db";
-import { can, canView, type GrantRole, type Viewer } from "@/lib/research-os/access";
+import { authorizeVerbs } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer, loadNodeAccess } from "@/lib/research-os/access-db";
+import type { GrantRole } from "@/lib/research-os/access";
 import { directionsFrom } from "@/lib/research-os/directions";
 import { learnTargetFor } from "@/lib/research-os/learn-link";
 import { listMyClasses } from "@/lib/research-os/classes";
@@ -43,12 +44,21 @@ export async function GET(req: NextRequest) {
     labels: Record<string, unknown> | null; provenance: Record<string, unknown> | null; worked_example: { text?: string; source?: string } | null;
     visibility: string | null; owner_id: string | null; frontier_flag: string | null; created_at: string;
   };
-  const access = { id: node.id, visibility: ((node.visibility ?? "public") as "public" | "private" | "shared"), ownerId: node.owner_id };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  const grants = access.visibility === "public" ? [] : await loadGrants(node.id);
-  if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
+  // read-access.ts is the one authority for who may read a node
+  // (ros-ai-access). The loaders this used to call answer an empty list on
+  // a store failure, which reads as a denial and hides an outage.
+  const readable = await authorizeVerbs(node.id, { id: viewerId }, ["view", ...VERBS] as Parameters<typeof authorizeVerbs>[2]);
+  if (!readable.ok) {
+    if (readable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "node_not_found");
+  }
+  const access = readable.node;
 
-  const [graph, standingRes, myClasses] = await Promise.all([
+  let graph: Awaited<ReturnType<typeof loadSubgraph>> | { nodes: never[]; edges: never[]; failed: true };
+  let standingRes: { data: unknown; error?: { message: string } | null };
+  let myClasses: Awaited<ReturnType<typeof listMyClasses>>;
+  try {
+    [graph, standingRes, myClasses] = await Promise.all([
     // A failed graph read still serves the node itself, and the reply marks
     // the neighbourhood as unavailable so the page says so.
     loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
@@ -56,9 +66,20 @@ export async function GET(req: NextRequest) {
       return { nodes: [], edges: [], failed: true as const };
     }),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
+    // listMyClasses raises on a failed read now. The whole Promise.all
+    // sits outside a try here, so the raise is caught beside it.
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
-  ]);
-  const visible = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+    ]);
+  } catch (err) {
+    console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "node_read_failed");
+  }
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  // An access-store failure would otherwise serve this node with an empty
+  // neighbourhood and a 200, which tells the reader the node rests on
+  // nothing (Bucket critic C13).
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  const visible = filtered;
   const byId = new Map(visible.nodes.map((n) => [n.id, n]));
   const lite = (id: string) => {
     const n = byId.get(id);
@@ -75,6 +96,13 @@ export async function GET(req: NextRequest) {
   const d = inBranch ? directionsFrom(node.id, visible.nodes, visible.edges) : { dependents: [], frontier: [], openQuestions: [], reach: [] };
   const dlite = (n: { id: string; slug: string; title: string; kind: string; frontierFlag?: string | null }) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, frontierFlag: n.frontierFlag ?? null });
 
+  // The read answers before its data is used. A dropped error here made
+  // a learner who holds the node read as a learner who has never opened
+  // it, which is the standing the whole page is built from.
+  if (standingRes.error) {
+    console.error("[research-os/node] standing read failed:", standingRes.error.message);
+    return bad(503, "node_read_failed");
+  }
   const standingRow = (standingRes as { data: { stage: Stage; evidence: unknown[]; updated_at: string } | null }).data;
   const evidence = Array.isArray(standingRow?.evidence) ? (standingRow!.evidence as Record<string, unknown>[]).slice(-12) : [];
 
@@ -93,9 +121,13 @@ export async function GET(req: NextRequest) {
   let assignments: unknown[] = [];
   let holders: { stage: string; count: number }[] | null = null;
   if (classIds.length) {
+    // One try over the class reads. Each carried its own .catch
+    // returning an empty list, so a failed read showed a learner a node
+    // with no assignment on it, at 200.
+    try {
     const asg = await inChunks<{ id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }>(classIds, (chunk, page) =>
       svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", chunk).is("closed_at", null).order("class_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[] | null; error: { message: string } | null }>,
-    ).catch(() => [] as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]);
+    );
     const nameOf = new Map(myClasses.map((c) => [c.id, c.name]));
     assignments = ((asg as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]) || []).map((a) => ({ id: a.id, classId: a.class_id, className: nameOf.get(a.class_id) ?? "", title: a.title, dueAt: a.due_at, requiresProduction: a.requires_production }));
     const staffClasses = myClasses.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
@@ -104,7 +136,7 @@ export async function GET(req: NextRequest) {
       // ordinary staff class list.
       const members = await inChunks<{ learner_id: string }>(staffClasses, (chunk, page) =>
         svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
-      ).catch(() => [] as { learner_id: string }[]);
+      );
       const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
       if (learnerIds.length) {
         // Paging the member read above removed the bound this one used
@@ -126,6 +158,10 @@ export async function GET(req: NextRequest) {
         const opened = st.length;
         holders = [...["access", "awareness", "understanding", "internalization", "production"].map((s) => ({ stage: s, count: counts.get(s) ?? 0 })), { stage: "unopened", count: Math.max(0, learnerIds.length - opened) }];
       }
+    }
+    } catch (err) {
+      console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "node_read_failed");
     }
   }
 
@@ -153,7 +189,7 @@ export async function GET(req: NextRequest) {
       directions: { dependents: d.dependents.map(dlite), frontier: d.frontier.map(dlite), openQuestions: d.openQuestions.map(dlite), reach: d.reach },
       learn: learnTargetFor({ branch: node.branch, provenance: node.provenance }),
       productions,
-      verbs: Object.fromEntries(VERBS.map((v) => [v, can(access, viewer, v, grants)])),
+      verbs: Object.fromEntries(VERBS.map((v) => [v, readable.allowed[v] === true])),
       classes: myClasses.map((c) => ({ id: c.id, name: c.name, role: c.role })),
       assignments,
       holders,

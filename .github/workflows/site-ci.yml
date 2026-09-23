@@ -83,7 +83,7 @@ jobs:
           fi
           # Every path that writes through the functions, their callers
           # included: the route that calls an RPC is the code under test.
-          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
+          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|scripts/research-os/|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -118,6 +118,27 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-admissions-db.ts
+      - name: connection paging against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-connections-paging.ts
+      - name: access paging against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-access-paging.ts
+      - name: read authorization at the routes
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+          TS_NODE_BASEURL: "./"
+        run: npx ts-node -r tsconfig-paths/register --compiler-options '{"module":"commonjs","baseUrl":"."}' scripts/test-research-os-read-access-routes.ts
+      - name: import files against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-import-files-db.ts
       - name: evidence search route authorization against real accounts
         if: steps.paths.outputs.run == 'true'
         env:

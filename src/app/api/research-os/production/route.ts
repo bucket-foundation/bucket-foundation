@@ -50,7 +50,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { PRODUCTION_KINDS, type ProductionKind } from "@/lib/research-os/production-node";
 import {
   configured,
@@ -65,6 +65,7 @@ import {
   loadLearnerCorroborationEvidence,
 } from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
+import { authorizeNodes } from "@/lib/research-os/read-access";
 import {
   checkSourceProvenance,
   computeDuplicateFlag,
@@ -102,8 +103,14 @@ export async function GET(req: NextRequest) {
   const ids = Array.from(new Set(rows.flatMap((r) => [r.target_node_id, r.related_node_id ?? null, r.node_id ?? null]).filter((x): x is string => Boolean(x))));
   const titles: Record<string, { slug: string; title: string; kind: string }> = {};
   if (ids.length) {
-    const { data: nodes } = await svc.from("nodes").select("id,slug,title,kind").in("id", ids);
-    for (const nd of (nodes || []) as { id: string; slug: string; title: string; kind: string }[]) titles[nd.id] = { slug: nd.slug, title: nd.title, kind: nd.kind };
+    // A row can name a node whose access changed after it was written, so
+    // the titles are filtered on the way out as well.
+    const readable = await authorizeNodes(ids, { id: learnerId }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length) {
+      const { data: nodes } = await svc.from("nodes").select("id,slug,title,kind").in("id", readable.allowed);
+      for (const nd of (nodes || []) as { id: string; slug: string; title: string; kind: string }[]) titles[nd.id] = { slug: nd.slug, title: nd.title, kind: nd.kind };
+    }
   }
   return NextResponse.json({ productions: data || [], nodes: titles }, { headers: { "cache-control": "no-store" } });
 }
@@ -130,13 +137,27 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "production_submit");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   let body: ProductionBody;
   try {
     body = (await req.json()) as ProductionBody;
   } catch {
     return bad(400, "bad_request");
+  }
+  // A production names nodes, and naming one is reading it: without this a
+  // learner who knows a uuid could target a node they may not see and read
+  // its slug, title and kind back from the list (Bucket critic C14).
+  const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
+    (id): id is string => typeof id === "string" && id.length > 0,
+  );
+  if (namedNodes.length) {
+    const readable = await authorizeNodes(namedNodes, { id: learnerId }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length < namedNodes.length) return bad(404, "node_not_found");
   }
   if (!body.id && !body.targetNodeId) return bad(400, "targetNodeId is required for a new production");
   if (body.status && body.status !== "draft" && body.status !== "submitted") {
@@ -182,6 +203,9 @@ export async function POST(req: NextRequest) {
   if (body.status === "submitted") {
     if (!targetNodeId) return bad(400, "targetNodeId is required to submit a production");
     submitFromStage = await loadCurrentStage(learnerId, targetNodeId);
+    // A stage that was not read cannot gate a submission or be written
+    // into an audit event.
+    if (submitFromStage === null) return bad(503, "stage_read_failed");
     counterEvidenceRequired = requiresCounterEvidence(submitFromStage);
     if (counterEvidenceRequired && !hasCounterEvidence(body.counterEvidence)) {
       return bad(400, "counter_evidence is required to submit an internalization-tier production (Osborne 2010)");
@@ -220,6 +244,8 @@ export async function POST(req: NextRequest) {
     updated_at: new Date().toISOString(),
   };
   if (body.id) row.id = body.id;
+
+
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
   if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;
   if (body.relatedNodeId !== undefined) row.related_node_id = body.relatedNodeId;
@@ -240,6 +266,8 @@ export async function POST(req: NextRequest) {
     // once above (submitFromStage) rather than re-fetched here, since
     // nothing between that read and this write can change it.
     const transition = onProductionSubmitted(submitFromStage ?? "access", { sessionId: (body.sessionId || "").trim() || undefined });
+    // submitFromStage is non-null here: the submitted path returns 503
+    // above when the read failed, so the ?? is the no-row default alone.
     try {
       await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
     } catch (err) {

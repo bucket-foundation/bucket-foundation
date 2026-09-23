@@ -17,6 +17,9 @@ import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductio
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 import { applyTransition, type Badge, type GameState } from "./game";
+// A visibility this code cannot read is private. `?? "public"` said the
+// opposite, in the one function whose result the access filter reads.
+import { readVisibility } from "./access";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -243,7 +246,7 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
     workedExample: toWorkedExample(r.worked_example),
-    visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+    visibility: readVisibility(r.visibility),
     ownerId: r.owner_id ?? null,
     frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
   }));
@@ -310,7 +313,7 @@ export async function addExternalFactors(svc: SupabaseClient, branchIds: string[
       labels: r.labels ?? undefined,
       provenance: r.provenance ?? undefined,
       workedExample: toWorkedExample(r.worked_example),
-      visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+      visibility: readVisibility(r.visibility),
       ownerId: r.owner_id ?? null,
       frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
     });
@@ -351,9 +354,18 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
  * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
  * it the same way state/route.ts and workspace/route.ts already do).
  */
-export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage> {
+export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage | null> {
   const svc = graphService();
-  const { data } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  // null when the read failed. No row is a real "access", and a failure
+  // is not: answering "access" for both sent an internalization-tier
+  // submission past requiresCounterEvidence, wrote
+  // counter_evidence_required: false into the row, and recorded an
+  // evidence event claiming the learner moved from a stage nothing read.
+  const { data, error } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  if (error) {
+    console.error("[research-os/db] learner_node_state read failed:", error.message);
+    return null;
+  }
   return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 

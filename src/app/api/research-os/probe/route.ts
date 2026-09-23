@@ -39,8 +39,10 @@ import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
 import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { authorizeNode, authorizeNodes } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 
 export const runtime = "nodejs";
@@ -68,6 +70,14 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
+
+  // The questions and the target come out of this subgraph, so it carries
+  // the same filter every other graph read does: a node the learner may
+  // not see is neither a question nor a target (Bucket critic C19).
+  const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  ({ nodes, edges } = filtered);
+
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 
@@ -101,7 +111,10 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "probe_answer");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   let body: ProbeBody;
   try {
@@ -117,6 +130,17 @@ export async function POST(req: NextRequest) {
   if (answer.length > MAX_ANSWER_CHARS) return bad(400, "answer too long");
 
   const svc = graphService();
+
+  // A probe grounds a model on a node's own summary and writes learner
+  // state against it, so it needs the same authority Check does: continue
+  // on the node, and view on each prerequisite (ros-ai-access). The gate
+  // runs before any text is loaded, so a refusal carries no content.
+  const continuable = await authorizeNode(nodeId, { id: learnerId }, "continue");
+  if (!continuable.ok) {
+    if (continuable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "node_not_found");
+  }
+
   const { data: node, error: nodeErr } = await svc.from("nodes").select("id,title,summary,provenance").eq("id", nodeId).maybeSingle();
   if (nodeErr || !node) return bad(404, "node_not_found");
 
@@ -127,8 +151,17 @@ export async function POST(req: NextRequest) {
   const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
   let prereqSummaries: { title: string; summary: string | null }[] = [];
   if (prereqIds.length) {
-    const { data: prereqNodes } = await svc.from("nodes").select("title,summary").in("id", prereqIds);
-    prereqSummaries = prereqNodes || [];
+    const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
+    if (!readablePrereqs.ok) return bad(503, "access_unavailable");
+    if (readablePrereqs.allowed.length) {
+      const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+      // A read that failed is not a prerequisite the learner may not see.
+      if (prereqErr) return bad(503, "access_unavailable");
+      prereqSummaries = prereqNodes || [];
+    }
+    // Withheld and missing answer the same way, so the reply says nothing
+    // about which it was (Bucket critic C17).
+    if (prereqSummaries.length === 0) return bad(409, "probe_grounding_unavailable");
   }
 
   const provider = selectProvider();

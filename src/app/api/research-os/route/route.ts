@@ -80,7 +80,14 @@ export async function GET(req: NextRequest) {
   // The target names its branch; an explicit ?branch= still wins.
   let branch = (searchParams.get("branch") || "").trim();
   if (!branch) {
-    const { data: t } = await graphService().from("nodes").select("branch").eq("slug", targetSlug).maybeSingle();
+    const { data: t, error: tErr } = await graphService().from("nodes").select("branch").eq("slug", targetSlug).maybeSingle();
+    // A failed lookup used to fall to the default branch, so the route
+    // was computed through a branch the target does not sit in and
+    // served at 200 as though it were the answer.
+    if (tErr) {
+      console.error("[research-os/route] target branch read failed:", tErr.message);
+      return bad(503, "graph_read_failed");
+    }
     branch = ((t as { branch?: string } | null)?.branch || "02-physics").trim();
   }
   if (!targetSlug) return bad(400, "target is required");
@@ -99,7 +106,11 @@ export async function GET(req: NextRequest) {
     ({ nodes, edges } = await loadSubgraph(branch, { externalFactors: true }));
     // ros-31: private and shared regions. Routing runs over the graph this
     // viewer may see; hidden nodes and their edges never enter the walk.
-    ({ nodes, edges } = await filterSubgraphForViewer(nodes, edges, learnerId));
+    const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
+    // An access-store failure is an outage: routing over an empty graph
+    // would answer "no path" to a learner who has one.
+    if (!filtered.ok) return bad(503, "access_unavailable");
+    ({ nodes, edges } = filtered);
   } catch {
     return bad(500, "graph_load_failed");
   }

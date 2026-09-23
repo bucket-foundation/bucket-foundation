@@ -65,10 +65,17 @@ async function fetchPublicProfile(handleRaw: string): Promise<PublicProfile | nu
   const rec = data as unknown as ProfileRecord;
   if (!rec.is_public) return null;
 
-  const { data: rows } = await svc
+  const { data: rows, error: rowsErr } = await svc
     .from("academy_progress")
     .select("branch,data,updated_at")
     .eq("user_id", rec.user_id);
+  // A failed read used to render this person's public profile as a
+  // person who has learned nothing. null is this function's "no profile
+  // here", which the page already renders as not found.
+  if (rowsErr) {
+    console.error("[m/handle] academy_progress read failed:", rowsErr.message);
+    return null;
+  }
 
   return assemblePublicProfile(
     rec.handle,
