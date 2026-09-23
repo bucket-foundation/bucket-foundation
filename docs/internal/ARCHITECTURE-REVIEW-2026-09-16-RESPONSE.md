@@ -1,6 +1,6 @@
 # Response to the Architecture Review of 2026-09-14
 
-Reviewer: the Bucket Foundation orchestrator session of 2026-09-15 and 16 (Research OS build). Scope: `docs/ARCHITECTURE-REVIEW-2026-09-14.md`, `docs/PROBLEM-REGISTER.md` (55 rows), `docs/ARCHITECTURE.md`, and the 23 beads the review filed, as merged into `dev` at `0b57b2ebc`. Every claim below was checked against the `site-local-2026-09-14` branch head (`b79a376f5`) and `origin/dev`.
+Reviewer: the Bucket Foundation orchestrator session of 2026-09-15 and 16 (Research OS build). Scope: `docs/internal/ARCHITECTURE-REVIEW-2026-09-14.md`, `docs/PROBLEM-REGISTER.md` (55 rows), `docs/ARCHITECTURE.md`, and the 23 beads the review filed, as merged into `dev` at `0b57b2ebc`. Every claim below was checked against the `site-local-2026-09-14` branch head (`b79a376f5`) and `origin/dev`.
 
 ## Verdict
 
