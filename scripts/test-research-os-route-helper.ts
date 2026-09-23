@@ -8,7 +8,7 @@ const consent = require("@/lib/research-os/consent") as Record<string, unknown>;
 const helper = require("@/lib/research-os/route") as typeof import("../src/lib/research-os/route");
 /* eslint-enable @typescript-eslint/no-require-imports */
 
-const { withResearchOsRoute, readJson } = helper;
+const { withResearchOsRoute, readJson, readAnyJson } = helper;
 const LEARNER = "00000000-0000-0000-0000-0000000000d1";
 
 let isConfigured = true;
@@ -143,6 +143,15 @@ test("readJson answers 400 for malformed or non-object bodies", async () => {
   }
   const r = await readJson<{ a: number }>(post('{"a":1}'));
   assert.deepEqual(r, { ok: true, value: { a: 1 } });
+});
+
+test("readAnyJson hands back any parsed value and answers 400 only for malformed JSON", async () => {
+  for (const [raw, value] of [["null", null], ["[]", []], ["3", 3], ['{"a":1}', { a: 1 }]] as const) {
+    assert.deepEqual(await readAnyJson(post(raw)), { ok: true, value });
+  }
+  const r = await readAnyJson(post("{"), "bad_request");
+  assert.equal(r.ok, false);
+  if (!r.ok) assert.deepEqual(await read(r.res), { status: 400, cache: "no-store", body: { error: "bad_request" } });
 });
 
 test("consent is only accepted with auth required", () => {

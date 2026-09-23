@@ -61,7 +61,7 @@
     "beads:dispatch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/beads/dispatch-pending.ts",
     "test:polingual-roots": "python3 -m unittest scripts/photon/test_polingual_roots.py",
     "test:tools-ui": "node scripts/research-tools-ui.mjs",
-    "test:nsm-exponents": "python3 -m unittest scripts/research-os/test_nsm_exponents.py",
+    "test:nsm-exponents": "python3 -m unittest scripts/research-os/test_nsm_exponents.py scripts/research-os/test_clics_extract.py",
     "test:beads-dispatch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-beads-dispatch.ts",
     "test:evidence-worker": "cd tools/evidence-search && python3 -m unittest discover -s tests -t .",
     "test:evidence-live": "EVIDENCE_REQUIRE_LIVE=1 npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-research-os-evidence-worker-live.ts",

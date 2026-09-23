@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { bad, ok, withResearchOsRoute } from "@/lib/research-os/route";
 import { loadNsm } from "@/lib/research-os/nsm-db";
-import { HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, parseLang } from "@/lib/research-os/nsm";
+import { CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, parseLang } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION } from "@/lib/research-os/node-words";
 
 export const runtime = "nodejs";
@@ -12,5 +12,5 @@ export const GET = withResearchOsRoute({ auth: "none", failed: () => bad(503, "g
   if (lang === undefined) return bad(400, "lang_invalid");
   const includeHidden = req.nextUrl.searchParams.get("hidden") === "1";
   const primes = await loadNsm({ lang, includeHidden });
-  return ok({ primes, lang, hideBelow: HIDE_BELOW, uncertainBelow: UNCERTAIN_BELOW, includeHidden, citation: NSM_CITATION, attribution: KAIKKI_ATTRIBUTION });
+  return ok({ primes, lang, hideBelow: HIDE_BELOW, uncertainBelow: UNCERTAIN_BELOW, includeHidden, citation: NSM_CITATION, attribution: KAIKKI_ATTRIBUTION, colexAttribution: CLICS_ATTRIBUTION });
 });

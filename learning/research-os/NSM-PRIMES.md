@@ -44,6 +44,22 @@ node_words' resolver splits a phrase on spaces and joins the roots of its parts,
 
 Each row now carries a `root_confidence` apart from `confidence`, and the API and page gate the root on it with the same `HIDE_BELOW` and `UNCERTAIN_BELOW`; below `HIDE_BELOW` the API withholds the root form, language and gloss. A single-word exponent takes the resolver's score for its entry and etymology. A single word that is itself a closed-class form (*je*, *si*, *un*) is capped at 0.6 and shown as uncertain. A phrase gets a root only from its one content word after reflexives, clitics, articles and prepositions are dropped (`CLOSED_CLASS` in the loader), capped at 0.45 and hidden; a phrase with two content words gets none. After the fix 59 multiword rows store a root, and none shows by default.
 
+## Colexification
+
+CLICS 4 (v1.0, Tjuka, Forkel, Rzymski and List 2026, doi:10.5281/zenodo.16900179, CC BY 4.0) records which concepts a language names with one word. `scripts/research-os/clics_extract.py` reads the CLDF release unpacked under `_intake/clics4/` (kept out of git), maps 55 primes to Concepticon ids through `supabase/seed/nsm-concepticon.json` (ten have no CLICS concept), maps a variety to one of 28 of our languages through its ISO 639-3 code, and writes `_intake/clics4/nsm-clics.sqlite` and `graph.nsm_colex`. A pair counts when CLICS finds it in at least 3 language families. When the CLICS word matches the exponent shown for both primes, each of those exponents drops to 0.7, below `UNCERTAIN_BELOW`, keeps its old score in `confidence_before`, and names the other prime in `colex_with`. The page marks the word "one word with" the other prime and lists every counted merge under the prime, including those where CLICS has a word other than ours.
+
+Run of 2026-09-23: 25 prime pairs in our languages, 18 distinct, 15 languages, all 25 with a shared CLICS form.
+
+| Families at least | Pairs counted | Language cells counted | Pairs matching our words | Exponents made uncertain |
+|---|---|---|---|---|
+| 2 | 13 | 20 | 2 | 4 |
+| 3 | 13 | 20 | 2 | 4 |
+| 4 | 9 | 16 | 1 | 2 |
+
+The four at 3 are Portuguese *saber* for CAN and KNOW and Finnish *koska* for BECAUSE and WHEN. The 5 pairs below 2 families are single-family merges such as English HEAR with HERE and Dutch TRUE with WHERE (*waar*), sound alike more than shared sense, and no pair in our languages has exactly 2 families. 3 is the lowest threshold that drops the single-family pairs; 4 would also drop four pairs attested in 3 families, among them Finnish BECAUSE with WHEN, which Finnish *koska* covers. Most counted merges touch a word other than the one shown, so they change no score: Japanese, Chinese and Vietnamese merge FEEL and TOUCH, and our FEEL words there are other verbs.
+
+Rerun after `nsm_exponents.py --apply`, which rewrites the rows: `python3 scripts/research-os/clics_extract.py --apply`. A rerun restores `confidence_before` first, so it converges.
+
 ## Limits
 
 The words come from English Wiktionary translation tables, so an exponent is the translators' word for an English sense and can differ from the word an NSM chart chose. Single-word roots still carry the resolver's homograph errors: Old English *ne* shows *\*neh₂w-* "the deceased, corpse", marked uncertain as a closed-class word. `CLOSED_CLASS` is a hand list for the 35 languages and misses forms outside it.

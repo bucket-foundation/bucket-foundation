@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
-import { byCategory, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
+import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
@@ -19,13 +19,49 @@ function Mark({ text }: { text: string }) {
   return <span className="ml-1 small-caps text-[9px] tracking-[0.12em] text-[color:var(--gold-deep)]">{text}</span>;
 }
 
-function Word({ e }: { e: NsmExponent }) {
+type Labels = Map<string, string>;
+
+function Word({ e, labels }: { e: NsmExponent; labels: Labels }) {
   return (
     <span>
       <span lang={e.lang} dir="auto" className="text-[color:var(--basalt)]">{e.word}</span>
       {e.roman && <span className="text-[color:var(--basalt-3)]"> {e.roman}</span>}
       {e.hidden ? <Mark text="unconfirmed" /> : e.uncertain && <Mark text="uncertain" />}
+      {e.colexWith.length > 0 && (
+        <span className="ml-1 text-[11px] text-[color:var(--basalt-3)]">
+          one word with{" "}
+          {e.colexWith.map((o, i) => (
+            <span key={o}>
+              {i ? ", " : ""}
+              <a href={`#prime-${o}`} className="underline underline-offset-4">
+                {labels.get(o) ?? o}
+              </a>
+            </span>
+          ))}{" "}
+          in CLICS
+        </span>
+      )}
     </span>
+  );
+}
+
+function Merges({ p }: { p: NsmPrime }) {
+  if (p.colex.length === 0) return null;
+  return (
+    <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]">
+      One word carries this prime and another in CLICS:{" "}
+      {p.colex.map((c, i) => (
+        <span key={`${c.other}-${c.lang}`}>
+          {i ? "; " : ""}
+          <a href={`#prime-${c.other}`} className="underline underline-offset-4">
+            {c.otherLabel}
+          </a>{" "}
+          in {c.langName}, <span lang={c.lang}>{c.form}</span>
+          {c.matched ? "" : ", a word other than the one shown here"}
+        </span>
+      ))}
+      .
+    </p>
   );
 }
 
@@ -51,13 +87,13 @@ function Sense({ p }: { p: NsmPrime }) {
   );
 }
 
-function OneLanguage({ p }: { p: NsmPrime }) {
+function OneLanguage({ p, labels }: { p: NsmPrime; labels: Labels }) {
   if (p.exponents.length === 0) return <p className="mt-1 text-[13px] text-[color:var(--basalt-3)]">No exponent in this language.</p>;
   return (
     <ul className="mt-1 space-y-1 text-[13px]">
       {p.exponents.map((e) => (
         <li key={`${e.lang}-${e.word}`} className="flex flex-wrap gap-x-4">
-          <Word e={e} />
+          <Word e={e} labels={labels} />
           <Root e={e} />
         </li>
       ))}
@@ -65,7 +101,7 @@ function OneLanguage({ p }: { p: NsmPrime }) {
   );
 }
 
-function AllLanguages({ p }: { p: NsmPrime }) {
+function AllLanguages({ p, labels }: { p: NsmPrime; labels: Labels }) {
   if (p.exponents.length === 0) return <p className="mt-1 text-[13px] text-[color:var(--basalt-3)]">No exponents.</p>;
   return (
     <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[13px]">
@@ -74,7 +110,7 @@ function AllLanguages({ p }: { p: NsmPrime }) {
         .map((e) => (
           <li key={`${e.lang}-${e.word}`}>
             <span className="small-caps text-[10px] tracking-[0.12em] text-[color:var(--basalt-3)]">{e.langName} </span>
-            <Word e={e} />
+            <Word e={e} labels={labels} />
           </li>
         ))}
     </ul>
@@ -107,6 +143,7 @@ function Picker({ lang, hidden }: { lang: string | null; hidden: boolean }) {
 }
 
 function Table({ primes, lang }: { primes: NsmPrime[]; lang: string | null }) {
+  const labels: Labels = new Map(primes.map((p) => [p.id, p.label]));
   return (
     <>
       {byCategory(primes).map((c) => (
@@ -114,13 +151,14 @@ function Table({ primes, lang }: { primes: NsmPrime[]; lang: string | null }) {
           <h2 className={LABEL}>{c.category}</h2>
           <ol className="mt-2 border-t border-[color:var(--hairline)]">
             {c.primes.map((p) => (
-              <li key={p.id} className="border-b border-[color:var(--hairline)] py-3 md:grid md:grid-cols-[11rem_1fr] md:gap-4">
+              <li key={p.id} id={`prime-${p.id}`} className="border-b border-[color:var(--hairline)] py-3 md:grid md:grid-cols-[11rem_1fr] md:gap-4">
                 <div className="font-display text-[15px] text-[color:var(--basalt)]">{p.label}</div>
                 <div>
                   <p className="text-[12px] text-[color:var(--basalt-3)]">
                     <Sense p={p} />
                   </p>
-                  {lang ? <OneLanguage p={p} /> : <AllLanguages p={p} />}
+                  {lang ? <OneLanguage p={p} labels={labels} /> : <AllLanguages p={p} labels={labels} />}
+                  <Merges p={p} />
                 </div>
               </li>
             ))}
@@ -187,6 +225,17 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
           ,{" "}
           <a href={KAIKKI_ATTRIBUTION.license} className="underline underline-offset-4">
             CC BY-SA 4.0
+          </a>
+          .
+        </p>
+        <p className="mt-1">
+          {CLICS_ATTRIBUTION.text}{" "}
+          <a href={CLICS_ATTRIBUTION.doi} className="underline underline-offset-4">
+            {CLICS_ATTRIBUTION.doi}
+          </a>
+          ,{" "}
+          <a href={CLICS_ATTRIBUTION.license} className="underline underline-offset-4">
+            CC BY 4.0
           </a>
           .
         </p>

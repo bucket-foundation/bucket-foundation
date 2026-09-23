@@ -5,13 +5,33 @@ import { NextRequest } from "next/server";
 export const API_DIR = path.join(__dirname, "..", "..", "src", "app", "api", "research-os");
 export const FIXTURE_DIR = path.join(__dirname, "route-characterization");
 const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
-const LEARNER = "00000000-0000-0000-0000-0000000000e1";
+export const LEARNER = "00000000-0000-0000-0000-0000000000e1";
 const PROBE_TIMEOUT_MS = 10_000;
 
 export type Observed = { status: number; cache: string | null; type: string | null; body: unknown } | { threw: string } | { timeout: true };
 export type Snapshot = Record<string, Observed>;
 
-type Probe = { name: string; configured: boolean; learner: string | null; consent: { allowed: boolean; reason?: string }; body?: string };
+export type Stub = Record<string, Record<string, unknown>>;
+export type Probe = {
+  name: string;
+  configured: boolean;
+  learner: string | null;
+  consent: { allowed: boolean; reason?: string };
+  body?: string;
+  query?: string;
+  methods?: string[];
+  stubs?: () => Stub;
+};
+
+export const REVIEWER: Stub = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: LEARNER }) } };
+export const SIGNED_IN = { configured: true, learner: LEARNER, consent: { allowed: true } } as const;
+
+function folderProbes(folder: string): Probe[] {
+  const file = path.join(FIXTURE_DIR, `${folder}.probes.ts`);
+  if (!fs.existsSync(file)) return [];
+  /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+  return (require(file) as { probes: Probe[] }).probes;
+}
 
 const PROBES: Probe[] = [
   { name: "unconfigured", configured: false, learner: null, consent: { allowed: true } },
@@ -77,12 +97,21 @@ async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response
   db.verifyLearner = async () => probe.learner;
   db.verifyLearnerIdentity = async () => (probe.learner ? { id: probe.learner, email: "learner@bucket.test" } : null);
   consent.requireConsent = async () => probe.consent;
+  const restore: [Record<string, unknown>, string, unknown][] = [];
+  for (const [mod, fns] of Object.entries(probe.stubs?.() ?? {})) {
+    /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+    const target = require(mod) as Record<string, unknown>;
+    for (const [name, fn] of Object.entries(fns)) {
+      restore.push([target, name, target[name]]);
+      target[name] = fn;
+    }
+  }
   const init: { method: string; body?: string; headers?: Record<string, string> } = { method };
   if (method !== "GET" && probe.body !== undefined) {
     init.body = probe.body;
     init.headers = { "content-type": "application/json" };
   }
-  const req = new NextRequest("http://localhost/api/research-os/characterization", init);
+  const req = new NextRequest(`http://localhost/api/research-os/characterization${probe.query ?? ""}`, init);
   const quiet = { error: console.error, warn: console.warn, log: console.log };
   console.error = console.warn = console.log = () => undefined;
   let timer: NodeJS.Timeout | undefined;
@@ -97,6 +126,7 @@ async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response
   } finally {
     if (timer) clearTimeout(timer);
     Object.assign(console, quiet);
+    for (const [target, name, fn] of restore.reverse()) target[name] = fn;
   }
 }
 
@@ -108,8 +138,9 @@ export async function characterize(folder: string): Promise<Snapshot> {
   for (const method of METHODS) {
     const handler = mod[method];
     if (typeof handler !== "function") continue;
-    for (const probe of PROBES) {
+    for (const probe of [...PROBES, ...folderProbes(folder)]) {
       if (method === "GET" && probe.name === "signed in, malformed json") continue;
+      if (probe.methods && !probe.methods.includes(method)) continue;
       out[`${method} ${probe.name}`] = await run(handler as (req: NextRequest, ctx: unknown) => Promise<Response>, method, probe);
     }
   }
