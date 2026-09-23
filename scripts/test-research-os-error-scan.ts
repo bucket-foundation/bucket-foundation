@@ -203,3 +203,35 @@ test("the untriaged count is a ratchet", () => {
     `${untriaged} entries are untriaged, and the ceiling is 38. Triage one and lower this number; never raise it.`,
   );
 });
+
+test("a refusal arm is not an empty result, and an empty one still is", () => {
+  // `{ ok: false }` reads as one property whose value is empty, so the
+  // every-property test called the refusal arm of a result union an
+  // empty result. reviewerScope answers its error that way in two
+  // reads, and both failed this gate while answering the error
+  // it names. A success arm is `{ ok: true, ... }`, so a read that
+  // succeeded cannot produce the refusal and the caller can always tell
+  // them apart.
+  const refusal = scanFile(
+    "f.ts",
+    `const { data, error } = await svc.from("nodes").select("id");
+     if (error) return { ok: false };`,
+  );
+  assert.deepEqual(refusal, [], "a discriminated refusal answers the error");
+
+  // The shape the exemption must not widen into: a failure and a
+  // successful read that found nothing give the same bytes.
+  const hidden = scanFile(
+    "f.ts",
+    `const { data, error } = await svc.from("nodes").select("id");
+     if (error) return { rows: [], total: 0 };`,
+  );
+  assert.equal(hidden.length, 1, "an object whose every value is empty still hides the failure");
+
+  const stillCaught = scanFile(
+    "f.ts",
+    `const { data, error } = await svc.from("nodes").select("id");
+     if (error) return [];`,
+  );
+  assert.equal(stillCaught.length, 1, "and so does an empty list");
+});

@@ -434,7 +434,16 @@ test("every call to a route that can answer busy consults the rule", () => {
 });
 
 test("the permanent copy is written once", () => {
-  const copies = tsxFiles(CLIENTS).filter((f) => /unavailable on this deployment/.test(fs.readFileSync(f, "utf8")));
+  // Comments blanked. The rule's subject is where the sentence is
+  // defined, and a comment naming it is documentation. This file
+  // already holds that a comment cannot answer for code; the same
+  // reason says a comment cannot be accused as code, and the first
+  // version of this rule failed a file whose only match was a comment
+  // explaining the defect it had just fixed.
+  const copies = tsxFiles(CLIENTS).filter((f) => {
+    const src = fs.readFileSync(f, "utf8");
+    return /unavailable on this deployment/.test(withoutComments(src, ts.createSourceFile(f, src, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)));
+  });
   assert.deepEqual(
     copies.map((f) => path.relative(root, f)),
     [],

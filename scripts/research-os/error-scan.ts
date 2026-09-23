@@ -85,11 +85,32 @@ function enclosingFunction(node: ts.Node): ts.Node | null {
   return null;
 }
 
+/**
+ * Whether this object literal is the refusal arm of a result union.
+ *
+ * `{ ok: false }` is the shape this tree refuses with, and its success
+ * arm is `{ ok: true, ... }`, so a read that succeeded cannot produce
+ * it and the caller can always tell the two apart. The every-property
+ * test below reads `ok: false` as one empty property and called the
+ * refusal an empty result, and failed two reads in `reviewerScope`
+ * that answer their error.
+ */
+function isRefusal(e: ts.ObjectLiteralExpression): boolean {
+  return e.properties.some(
+    (prop) =>
+      ts.isPropertyAssignment(prop) &&
+      ts.isIdentifier(prop.name) &&
+      prop.name.text === "ok" &&
+      prop.initializer.kind === ts.SyntaxKind.FalseKeyword,
+  );
+}
+
 /** Whether a return value says "there was nothing", including an object
  * whose every property is itself empty, like `{ rows: [], total: 0 }`. */
 function returnsEmptyish(ret: ts.ReturnStatement): boolean {
   const e = ret.expression;
   if (!e) return false;
+  if (ts.isObjectLiteralExpression(e) && isRefusal(e)) return false;
   if (isEmptyish(e)) return true;
   if (ts.isObjectLiteralExpression(e) && e.properties.length > 0) {
     return e.properties.every((prop) => ts.isPropertyAssignment(prop) && isEmptyish(prop.initializer as ts.Expression));
@@ -257,6 +278,7 @@ function tableOf(node: ts.Node, source: ts.SourceFile): string {
 function allEmptyObject(node: ts.Expression): boolean {
   const e = ts.isParenthesizedExpression(node) ? node.expression : node;
   if (!ts.isObjectLiteralExpression(e) || e.properties.length === 0) return false;
+  if (isRefusal(e)) return false;
   return e.properties.every((prop) => ts.isPropertyAssignment(prop) && isEmptyish(prop.initializer as ts.Expression));
 }
 

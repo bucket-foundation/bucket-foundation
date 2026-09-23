@@ -1,6 +1,6 @@
 "use client";
 
-import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 
 // The Access level on the selected node (ros-21): a visibility badge, the
@@ -29,6 +29,9 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
   // Classes the person belongs to, for sharing a node with a whole class.
   const [classes, setClasses] = useState<{ id: string; name: string; role: string }[]>([]);
   const [classesFailed, setClassesFailed] = useState(false);
+  // A read that failed this minute and a deployment with no Research OS
+  // on it are different facts, and one sentence said both.
+  const [classesTransient, setClassesTransient] = useState(false);
   const [shareClass, setShareClass] = useState("");
 
   useEffect(() => {
@@ -41,13 +44,21 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
         if (!alive) return;
         if (!r.ok) {
           setClassesFailed(true);
+          setClassesTransient(isTransientOutage(r.status, await readErrorCode(r)));
           return;
         }
         const j = (await r.json()) as { classes?: { id: string; name: string; role: string }[] };
         setClassesFailed(false);
+        setClassesTransient(false);
         setClasses(j.classes ?? []);
       })
-      .catch(() => alive && setClassesFailed(true));
+      // A fetch that rejects never reached the server, which a retry may
+      // clear.
+      .catch(() => {
+        if (!alive) return;
+        setClassesFailed(true);
+        setClassesTransient(true);
+      });
     return () => {
       alive = false;
     };
@@ -190,7 +201,7 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
       )}
       {data.isOwner && classesFailed && (
         <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
-          Your classes could not be read this minute, so sharing with a class is unavailable. Reload to try again.
+          {classesTransient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body} Sharing with a class is unavailable until it answers.
         </p>
       )}
       {data.isOwner && classes.length > 0 && (

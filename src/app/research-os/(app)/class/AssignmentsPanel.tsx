@@ -2,7 +2,6 @@
 
 import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
-import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 
 // Assignments for one class (the Class step, decision 6): the teacher or
 // librarian assigns a target from the class path with a title, instructions,

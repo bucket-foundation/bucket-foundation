@@ -103,11 +103,7 @@ export default function TargetPicker() {
       </Panel>
       <div className="grid md:grid-cols-2 gap-6">
         <Panel title="your assignments">
-          {assignmentsFailed ? (
-            <p role="alert" className="text-[13px] text-[color:var(--gold-deep)]">
-              Your assignments could not be read this minute. Reload to try again.
-            </p>
-          ) : assignments === null ? (
+          {assignments === null ? (
             <LoadingState />
           ) : assignments === "outage" ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">{OUTAGE_COPY.body}</p>
