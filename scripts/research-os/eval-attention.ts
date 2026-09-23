@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
-import { attentionIndex, phraseEntries, rankQuery } from "../../src/lib/research-os/attention";
+import { attentionIndex, coneOf, phraseEntries, rankQuery } from "../../src/lib/research-os/attention";
 import { cosine, seeded, tokens } from "../../src/lib/research-os/decompose-further";
 import { normalizeTitle, titleSimilarity } from "../../src/lib/research-os/dedup";
 import { academyNodeSlug } from "../../src/lib/research-os/ingest/academy";
@@ -191,7 +191,11 @@ async function main() {
     settings.map((s) => ({ s, dev: mean(score(dev, make(s)).ndcg) })).sort((a, b) => b.dev - a.dev || a.s.entries - b.s.entries)[0];
   const cones = grid.filter((g) => g.entries === 1 && g.floor === 0.05);
 
-  const evaluate = (baseline: (q: Q) => string[], arms: Record<string, { make: (s: Settings) => (q: Q) => string[]; settings: Settings[] }>) => {
+  const evaluate = (
+    baseline: (q: Q) => string[],
+    masked: (s: Settings) => (q: Q) => string[],
+    arms: Record<string, { make: (s: Settings) => (q: Q) => string[]; settings: Settings[] }>,
+  ) => {
     const base = score(held, baseline);
     const out: Record<string, unknown> = { baseline: { ndcg10: round(mean(base.ndcg)), recall20: round(mean(base.recall)) } };
     for (const [name, arm] of Object.entries(arms)) {
@@ -201,8 +205,16 @@ async function main() {
         const res = score(held, arm.make(best.s));
         const dn = pairedInterval(res.ndcg, base.ndcg, `${name}-${cone}-ndcg`);
         const dr = pairedInterval(res.recall, base.recall, `${name}-${cone}-recall`);
+        const maskedBase = cone === "hide" ? score(held, masked(best.s)) : null;
+        const dm = maskedBase ? pairedInterval(res.ndcg, maskedBase.ndcg, `${name}-masked-ndcg`) : null;
         byCone[cone] = {
           tuned: { ...best.s, dev_ndcg10: round(best.dev) },
+          ...(maskedBase && dm
+            ? {
+                masked_baseline: { ndcg10: round(mean(maskedBase.ndcg)), recall20: round(mean(maskedBase.recall)) },
+                versus_masked_baseline: { ndcg10: { mean: round(dm.mean), interval: dm.interval.map(round) } },
+              }
+            : {}),
           ndcg10: round(mean(res.ndcg)),
           recall20: round(mean(res.recall)),
           empty: res.empty,
@@ -217,11 +229,18 @@ async function main() {
     return out;
   };
 
-  const concepts = evaluate((q) => ranked(q, { ids: [q.source], cone: "show", rank: "vector" }), {
+  const conceptMask = () => (q: Q) => ranked(q, { ids: [q.source], cone: "hide", rank: "vector" });
+  const phraseMask = (s: Settings) => (q: Q) => {
+    const entries = lexicalEntries(q, s).map((e) => e.id);
+    const cone = coneOf(snap.dec, entries);
+    for (const id of entries) cone.add(id);
+    return embedRank(q).filter((id) => !cone.has(id));
+  };
+  const concepts = evaluate((q) => ranked(q, { ids: [q.source], cone: "show", rank: "vector" }), conceptMask, {
     attention: { make: (s) => (q) => ranked(q, { ids: [q.source], cone: s.cone, rank: "attention" }), settings: cones },
     fused: { make: (s) => (q) => ranked(q, { ids: [q.source], cone: s.cone, rank: "fused" }), settings: cones },
   });
-  const phrases = evaluate(embedRank, {
+  const phrases = evaluate(embedRank, phraseMask, {
     attention_lexical: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "attention" }), settings: grid },
     vector_via_lexical_entries: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "vector" }), settings: grid },
     fused_via_lexical_entries: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "fused" }), settings: grid },
