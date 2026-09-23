@@ -462,7 +462,8 @@ export async function POST(req: NextRequest) {
         };
         if (!result.ok) {
           if (result.error === "idempotency_conflict") return bad(409, "quote_receipt_conflict");
-          return bad(404, "node_not_found");
+          if (result.error === "source_gone" || result.error === "target_gone") return bad(404, "node_not_found");
+          return bad(403, "source_not_quotable");
         }
         receipt = {
           id: result.receipt_id as string,

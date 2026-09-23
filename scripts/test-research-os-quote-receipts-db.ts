@@ -51,6 +51,12 @@ test("the receipt contract holds in real Postgres", { skip }, () => {
   assert.equal(run.status, 0, (run.stdout || "") + (run.stderr || ""));
 });
 
+test("a quotation of a source the registry has not admitted is refused", { skip }, () => {
+  const file = path.join(__dirname, "..", "supabase", "tests", "research_os_quote_admission.sql");
+  const run = spawnSync("psql", [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", file], { encoding: "utf8" });
+  assert.equal(run.status, 0, (run.stdout || "") + (run.stderr || ""));
+});
+
 test("the migration leaves exactly one privacy_delete_learner", { skip }, () => {
   // The slice before this one shipped a second overload of
   // graph.review_production and every review answered PGRST203. The same
@@ -77,8 +83,10 @@ test("two requests racing on one idempotency key write one receipt", { skip }, a
   const learner = randomUUID();
   const node = randomUUID();
   const key = `race-${randomUUID()}`;
+  const REV = "f".repeat(64);
   t.after(() => {
     sql(`delete from graph.source_quote_receipts where learner_id = '${learner}';
+         delete from graph.evidence_source_admissions where source_id = 'graph:${node}';
          delete from graph.learner_node_state where learner_id = '${learner}';
          delete from graph.nodes where id = '${node}';
          delete from auth.users where id = '${learner}';`);
@@ -89,11 +97,16 @@ test("two requests racing on one idempotency key write one receipt", { skip }, a
       values ('${learner}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'quote-race-${learner}@bucket.test');
     insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
       values ('${node}', 'quote-race-${node}', 'Quote race fixture', 'concept', 10, '01-mathematics', 'fixture');
+    insert into graph.evidence_source_admissions (source_id, source_revision, scope, node_id, body_hash, original_hash,
+      extraction_revision, corpus_revision, rights_rule, rights_revision, rights_policy_sha256, rights_policy_status,
+      allow_index, allow_quote, status)
+      values ('graph:${node}', '${REV}', 'quote', '${node}', '${REV}', '${REV}', 'curated-passage/1 nfc-lf/1', '${REV}',
+        'fixture', 1, '${REV}', 'draft', false, true, 'active');
     select 'made';`);
   assert.equal(made.status, 0, made.out);
 
   const call = `select graph.record_quote_receipt(
-    '${learner}', '${node}', 'graph:${node}', 'rev-race', '${node}', 'graph:${node}#p1', 'p. 1',
+    '${learner}', '${node}', 'graph:${node}', '${REV}', '${node}', 'graph:${node}#p1', 'p. 1',
     'hash-race', 'session-race', '${key}', 'payload-race', 'understanding',
     '{"kind":"quote","locator":"p. 1"}'::jsonb)`;
 

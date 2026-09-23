@@ -22,6 +22,16 @@ with u as (
 )
 insert into t_ids (learner, source, target) select u.id, s.id, t.id from u, s, t;
 
+insert into graph.evidence_source_admissions (
+  source_id, source_revision, scope, node_id, body_hash, original_hash,
+  extraction_revision, corpus_revision, rights_rule, rights_revision,
+  rights_policy_sha256, rights_policy_status, allow_index, allow_quote, status
+)
+select 'graph:' || source, rev, 'quote', source, repeat('b', 64), repeat('b', 64),
+       'curated-passage/1 nfc-lf/1', repeat('c', 64), 'fixture', 1,
+       repeat('d', 64), 'draft', false, true, 'active'
+from t_ids, (values (repeat('a', 64))) as r(rev);
+
 -- A quotation writes the receipt and the evidence event together.
 do $$
 declare
@@ -30,7 +40,7 @@ begin
   select learner, source, target into l, s, t from t_ids;
 
   r := graph.record_quote_receipt(
-    l, t, 'graph:' || s, 'rev-one', s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
+    l, t, 'graph:' || s, repeat('a', 64), s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
     'session-a', 'key-one', 'payload-one', 'understanding',
     '{"kind":"quote","locator":"p. 1"}'::jsonb);
 
@@ -41,7 +51,7 @@ begin
 
   assert (select count(*) from graph.source_quote_receipts where id = v_receipt) = 1,
     'the receipt row exists';
-  assert (select source_revision from graph.source_quote_receipts where id = v_receipt) = 'rev-one',
+  assert (select source_revision from graph.source_quote_receipts where id = v_receipt) = repeat('a', 64),
     'and it records the revision that was quoted';
 
   -- The evidence event names the receipt, which is what a production's
@@ -63,7 +73,7 @@ begin
   select id into v_first from graph.source_quote_receipts where learner_id = l and idempotency_key = 'key-one';
 
   r := graph.record_quote_receipt(
-    l, t, 'graph:' || s, 'rev-one', s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
+    l, t, 'graph:' || s, repeat('a', 64), s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
     'session-a', 'key-one', 'payload-one', 'understanding',
     '{"kind":"quote","locator":"p. 1"}'::jsonb);
 
@@ -86,14 +96,14 @@ begin
   select learner, source, target into l, s, t from t_ids;
 
   r := graph.record_quote_receipt(
-    l, t, 'graph:' || s, 'rev-two', s, 'graph:' || s || '#p2', 'p. 2', 'hash-two',
+    l, t, 'graph:' || s, repeat('e', 64), s, 'graph:' || s || '#p2', 'p. 2', 'hash-two',
     'session-a', 'key-one', 'payload-DIFFERENT', 'understanding',
     '{"kind":"quote","locator":"p. 2"}'::jsonb);
 
   assert (r->>'ok')::boolean is false, 'a reused key with new content is refused: ' || r::text;
   assert r->>'error' = 'idempotency_conflict', 'and says why: ' || r::text;
   assert (select source_revision from graph.source_quote_receipts where learner_id = l and idempotency_key = 'key-one')
-         = 'rev-one',
+         = repeat('a', 64),
     'the stored receipt was not overwritten';
 end $$;
 
@@ -105,7 +115,7 @@ begin
   select learner, source, target into l, s, t from t_ids;
 
   r := graph.record_quote_receipt(
-    l, t, 'graph:' || s, 'rev-one', s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
+    l, t, 'graph:' || s, repeat('a', 64), s, 'graph:' || s || '#p1', 'p. 1', 'hash-one',
     'session-b', 'key-two', 'payload-one', 'understanding',
     '{"kind":"quote","locator":"p. 1"}'::jsonb);
 
@@ -147,7 +157,7 @@ begin
   select learner, source, target into l, s, t from t_ids;
   begin
     perform graph.record_quote_receipt(
-      l, t, 'graph:' || s, 'rev-one', s, null, 'p. 1', 'hash-one',
+      l, t, 'graph:' || s, repeat('a', 64), s, null, 'p. 1', 'hash-one',
       'session-a', '   ', 'payload-one', 'understanding', '{"kind":"quote"}'::jsonb);
   exception when others then
     v_raised := true;
