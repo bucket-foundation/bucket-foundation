@@ -44,3 +44,14 @@ test("a confidence the database returns as text or not at all reads safely", () 
   assert.equal(toNodeWord(row("en", "w", { confidence: null })).confidence, 0);
   assert.equal(toNodeWord(row("en", "w", { confidence: 7 })).confidence, 1);
 });
+
+test("a root below the threshold is withheld while the word stays, and an uncertain root is marked", () => {
+  const base = { root_lang: "la", root_form: "meum", root_gloss: "an umbelliferous plant", chain: [{ lang: "la", form: "meum", rel: "inh", gloss: "" }] };
+  const hidden = toNodeWord(row("fr", "mien", { ...base, root_confidence: 0.4 }));
+  assert.deepEqual([hidden.rootForm, hidden.rootGloss, hidden.rootLang, hidden.chain.length, hidden.confidence], [null, null, null, 0, 0.95]);
+  assert.equal(shownWords([hidden]).length, 1);
+  const unsure = toNodeWord(row("he", "אובד", { root_lang: "he", root_form: "א־ב־ד", root_gloss: "perish", root_confidence: "0.7", root_source: "oshb" }));
+  assert.deepEqual([unsure.rootForm, unsure.rootUncertain, unsure.rootSource], ["א־ב־ד", true, "oshb"]);
+  const legacy = toNodeWord(row("de", "Kerze", { root_lang: "la", root_form: "cēra", root_gloss: "wax" }));
+  assert.deepEqual([legacy.rootForm, legacy.rootConfidence, legacy.rootUncertain], ["cēra", 0.95, false]);
+});

@@ -215,7 +215,7 @@ class Rerun(unittest.TestCase):
         pid = "zz_test_" + "".join(chr(97 + int(c, 16)) for c in uuid.uuid4().hex[:8])
         prime = {"id": pid, "label": "TEST", "category": "test", "english": ["test"], "sense": None}
         row = {"prime_id": pid, "lang": "la", "word": "videre", "rank": 1, "roman": None, "sense": "s", "sense_match": True,
-               "confidence": 0.6, "root_confidence": 0.0, "root_lang": None, "root_form": None, "root_gloss": None, "source": nsm.SOURCE, "run_id": "r1"}
+               "confidence": 0.6, "root_confidence": 0.0, "root_source": None, "root_lang": None, "root_form": None, "root_gloss": None, "source": nsm.SOURCE, "run_id": "r1"}
         insert_prime = nsm.prime_sql(prime, 199, {"sense": "s", "sense_match": True})
         try:
             self.psql(insert_prime)

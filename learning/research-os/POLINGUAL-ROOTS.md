@@ -33,7 +33,7 @@ For each word it resolves the dictionary entry (diacritics and macrons stripped)
 
 Each row carries a confidence from 0 to 1, the lower of two scores. The sense score says how clear the English sense was: 1 for a single sense, 0.95 when the winning sense matches the node's branch and the runner-up does not, 0.85 or 0.7 by margin, 0.5 for a near tie, 0.3 when a sense matching the branch lost. A word taken from a lower-ranked sense keeps 0.8 of it. The entry score says which dictionary entry the word is: 1 when the headword has one etymology, 0.85 when the English term and sense words match one etymology's glosses and no other, 0.4 when two etymologies tie. Roots and descent come from the chosen etymology alone.
 
-The page hides rows below 0.5 and marks rows from 0.5 to 0.75 "uncertain match". A hand check of 25 random rows per band on 2026-09-23 found 13 of 25 right below 0.5, 20 of 24 right from 0.5 to 0.75, and 24 of 25 right at 0.75 and above.
+The page hides rows below 0.5 and marks rows from 0.5 to 0.75 "uncertain match". A hand check of 25 random rows per band on 2026-09-23 found 13 of 25 right below 0.5, 20 of 24 right from 0.5 to 0.75, and 24 of 25 right at 0.75 and above. Roots v2 reran the check with two models on the same bands; `ROOTS-V2.md` has the counts and gives roots their own `root_confidence`.
 
 ## Counts
 

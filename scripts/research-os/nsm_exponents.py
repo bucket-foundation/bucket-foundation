@@ -33,7 +33,7 @@ CLOSED_CLASS = {
     "du", "di", "da", "do", "del", "della", "dei", "degli", "al", "au", "aux", "à", "in", "of", "to", "zu", "van", "på", "av",
     "ne", "pas", "que", "qu", "che", "ce", "ça", "y", "e", "et", "und", "och", "og", "ja", "ya", "je", "est", "is",
 }
-ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "source", "run_id"]
+ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "root_source", "source", "run_id"]
 
 def load_seed(path=SEED):
     with open(path, encoding="utf-8") as f:
@@ -88,21 +88,23 @@ def content_tokens(word):
     toks = [t for t in re.split(r"[\s'’]+", re.sub(r"\([^)]*\)", " ", word)) if t]
     return [t for t in toks if node_words.word_key(t).strip(".,;:!?-") not in CLOSED_CLASS and re.search(r"\w", t)]
 
-def root_for(lang, word, db, hint):
+def root_for(lang, word, db, hint, pos=None):
     if not re.search(r"\s", word.strip()):
-        resolved, _chain, root, conf, ety = node_words.analyze(lang, word, db, hint)
+        resolved, chain, root, conf, ety = node_words.analyze(lang, word, db, hint, pos)
         if not root[1]:
-            return resolved, ety, root, conf, 0.0
+            return resolved, ety, root, conf, 0.0, chain
+        cap, _flags = node_words.root_check(lang, resolved, ety, chain, root, db, hint, gloss_check=False)
         closed = node_words.word_key(word) in CLOSED_CLASS
-        return resolved, ety, root, conf, (min(conf, CLOSED_CLASS_ROOT) if closed else conf)
-    resolved, _chain, _root, conf, ety = node_words.analyze(lang, word, db, hint)
+        return resolved, ety, root, conf, min(conf, cap, CLOSED_CLASS_ROOT if closed else 1.0), chain
+    resolved, _chain, _root, conf, ety = node_words.analyze(lang, word, db, hint, pos)
     content = content_tokens(word)
     if len(content) != 1:
-        return resolved, ety, (None, None, None), conf, 0.0
-    _r, _c, root, root_conf, _e = node_words.analyze(lang, content[0], db, hint)
+        return resolved, ety, (None, None, None), conf, 0.0, []
+    r2, chain, root, root_conf, e2 = node_words.analyze(lang, content[0], db, hint, pos)
     if not root[1]:
-        return resolved, ety, (None, None, None), conf, 0.0
-    return resolved, ety, root, conf, min(root_conf, MULTIWORD_ROOT)
+        return resolved, ety, (None, None, None), conf, 0.0, []
+    cap, _flags = node_words.root_check(lang, r2, e2, chain, root, db, hint, gloss_check=False)
+    return resolved, ety, root, conf, min(root_conf, cap, MULTIWORD_ROOT), chain
 
 def english_words(prime):
     out = []
@@ -111,7 +113,7 @@ def english_words(prime):
             out.append(w)
     return [{"word": w, "roman": ""} for w in out]
 
-def prime_rows(prime, db, targets, run_id):
+def prime_rows(prime, db, targets, run_id, oshb=None, outcomes=None):
     spec = prime.get("sense")
     if not spec:
         return {"sense": None, "sense_match": None, "langs": 0}, []
@@ -127,7 +129,13 @@ def prime_rows(prime, db, targets, run_id):
     rows = []
     for lang in sorted(picks):
         for rank, w in enumerate(picks[lang], start=1):
-            resolved, ety, (root_lang, root_form, root_gloss), word_conf, root_conf = root_for(lang, w["word"], db, hint)
+            resolved, ety, root, word_conf, root_conf, chain = root_for(lang, w["word"], db, hint, spec["en_pos"])
+            root_source = "wiktionary"
+            if not re.search(r"\s", w["word"].strip()):
+                root, root_conf, root_source, _chain, outcome = node_words.oshb_apply(oshb, lang, w["word"], root, root_conf, chain)
+                if outcomes is not None and outcome:
+                    outcomes[outcome] = outcomes.get(outcome, 0) + 1
+            root_lang, root_form, root_gloss = root
             entry = db.entry(lang, resolved, ety) if resolved else None
             row_conf = conf if lang == "en" else min(conf, word_conf)
             rows.append({
@@ -135,7 +143,7 @@ def prime_rows(prime, db, targets, run_id):
                 "roman": w["roman"] or (entry or {}).get("roman") or None,
                 "sense": chosen["sense"], "sense_match": matched, "confidence": round(row_conf, 3), "root_confidence": round(min(root_conf, row_conf), 3),
                 "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
-                "source": SOURCE, "run_id": run_id,
+                "root_source": root_source if root_form else None, "source": SOURCE, "run_id": run_id,
             })
     return {"sense": chosen["sense"], "sense_match": matched, "langs": len(chosen["langs"])}, rows
 
@@ -180,10 +188,10 @@ def build_sql(seed_primes, results):
 def apply_sql(db_url, sql):
     subprocess.run(["psql", db_url, "-q", "-v", "ON_ERROR_STOP=1", "-f", "-"], input=sql, text=True, check=True)
 
-def run(seed, db, targets, run_id):
+def run(seed, db, targets, run_id, oshb=None, outcomes=None):
     results = {}
     for p in seed["primes"]:
-        results[p["id"]] = prime_rows(p, db, targets, run_id)
+        results[p["id"]] = prime_rows(p, db, targets, run_id, oshb, outcomes)
     return results
 
 def report(seed, results):
@@ -216,8 +224,10 @@ def main(argv=None):
     db = node_words.Roots(a.roots)
     targets = set(db.langs)
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
-    results = run(seed, db, targets, run_id)
+    oshb, outcomes = node_words.oshb_load(), {}
+    results = run(seed, db, targets, run_id, oshb, outcomes)
     report(seed, results)
+    print("oshb", json.dumps(outcomes, sort_keys=True))
     if a.show:
         meta, rows = results[a.show]
         print(json.dumps(meta, ensure_ascii=False))
