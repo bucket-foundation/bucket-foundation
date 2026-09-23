@@ -1,0 +1,170 @@
+{
+  "result": {
+    "job_id": "j_d1cdc1cebbe54348b9d2",
+    "tool": "figureminer",
+    "render": "json",
+    "output": {
+      "method": "text-layer caption extraction + reported-statistics & measurement mining + per-figure linkage",
+      "backend": "raw-text",
+      "demo": true,
+      "n_chars": 287,
+      "n_figures": 2,
+      "n_tables": 1,
+      "captions": [
+        {
+          "kind": "Figure",
+          "number": "1",
+          "caption": "Knockdown reduced expression (n = 12, p < 0.001). Binding affinity was 4.2 µM and the protein ran at 55 kDa."
+        },
+        {
+          "kind": "Figure",
+          "number": "2",
+          "caption": "Modulus increased 3-fold to 12.5 kPa (R^2 = 0.98, r = 0.91). Mean lifetime 8.3 ± 1.2 ms across n = 30 events."
+        },
+        {
+          "kind": "Table",
+          "number": "1",
+          "caption": "Summary statistics (95% CI reported)."
+        }
+      ],
+      "stats": {
+        "p_values": [
+          {
+            "op": "<",
+            "value": "0.001"
+          }
+        ],
+        "sample_sizes": [
+          12,
+          30
+        ],
+        "confidence_intervals_pct": [
+          95
+        ],
+        "r_squared": [
+          0.98
+        ],
+        "correlations_r": [
+          0.91
+        ],
+        "mean_pm_spread": [
+          {
+            "mean": 8.3,
+            "spread": 1.2
+          }
+        ],
+        "fold_changes": [
+          3
+        ],
+        "counts": {
+          "p_values": 1,
+          "sample_sizes": 2,
+          "confidence_intervals": 1,
+          "r_squared": 1,
+          "correlations": 1,
+          "mean_pm_spread": 1,
+          "fold_changes": 1
+        }
+      },
+      "measurements": {
+        "measurements": [
+          {
+            "value": 4.2,
+            "unit": "µM"
+          },
+          {
+            "value": 55,
+            "unit": "kDa"
+          },
+          {
+            "value": 12.5,
+            "unit": "kPa"
+          },
+          {
+            "value": 1.2,
+            "unit": "ms"
+          }
+        ],
+        "n_measurements": 4,
+        "by_unit": {
+          "µM": 1,
+          "kDa": 1,
+          "kPa": 1,
+          "ms": 1
+        }
+      },
+      "per_figure": [
+        {
+          "figure": "Figure 1",
+          "n_stats": 2,
+          "n_measurements": 2,
+          "p_values": [
+            {
+              "op": "<",
+              "value": "0.001"
+            }
+          ],
+          "sample_sizes": [
+            12
+          ],
+          "measurements": [
+            {
+              "value": 4.2,
+              "unit": "µM"
+            },
+            {
+              "value": 55,
+              "unit": "kDa"
+            }
+          ]
+        },
+        {
+          "figure": "Figure 2",
+          "n_stats": 5,
+          "n_measurements": 2,
+          "p_values": [],
+          "sample_sizes": [
+            30
+          ],
+          "measurements": [
+            {
+              "value": 12.5,
+              "unit": "kPa"
+            },
+            {
+              "value": 1.2,
+              "unit": "ms"
+            }
+          ]
+        },
+        {
+          "figure": "Table 1",
+          "n_stats": 1,
+          "n_measurements": 0,
+          "p_values": [],
+          "sample_sizes": [],
+          "measurements": []
+        }
+      ],
+      "note": "DEMO MODE: Real, deterministic text-layer mining: captions, p-values, n=, CIs, R²/r, mean±spread, fold-changes, and unit-bearing measurements, plus which stats live in which figure's caption. Pixel-level plot-point digitization from raster figures needs a vision model, that is the documented GPU/ML extension; the text-mining half here is real and needs no GPU. Text is a known mini-paper (see ground_truth) for verification.",
+      "ground_truth": {
+        "figures": 3,
+        "p_values": 1,
+        "sample_sizes": 2,
+        "fold_changes": 1
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "figureminer",
+        "at": "2026-09-23T03:46:19.182759+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

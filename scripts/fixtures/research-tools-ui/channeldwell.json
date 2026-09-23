@@ -1,0 +1,363 @@
+{
+  "result": {
+    "job_id": "j_beeaa79a98054b889688",
+    "tool": "channeldwell",
+    "render": "json",
+    "output": {
+      "method": "half-amplitude threshold idealization + dwell-time analysis (ML single-exponential τ)",
+      "demo": true,
+      "fs_hz": 10000,
+      "n_samples": 20000,
+      "duration_s": 2,
+      "levels": {
+        "closed": -0.1611,
+        "open": 2.074065,
+        "threshold": 0.956482
+      },
+      "n_events": 64,
+      "n_openings": 32,
+      "n_closings": 32,
+      "p_open": 0.31325,
+      "mean_open_ms": 19.57812,
+      "mean_closed_ms": 42.92188,
+      "tau_open_ms": 19.57812,
+      "tau_closed_ms": 42.92188,
+      "events_preview": [
+        {
+          "state": "closed",
+          "samples": 59,
+          "start": 0
+        },
+        {
+          "state": "open",
+          "samples": 102,
+          "start": 59
+        },
+        {
+          "state": "closed",
+          "samples": 22,
+          "start": 161
+        },
+        {
+          "state": "open",
+          "samples": 224,
+          "start": 183
+        },
+        {
+          "state": "closed",
+          "samples": 406,
+          "start": 407
+        },
+        {
+          "state": "open",
+          "samples": 12,
+          "start": 813
+        },
+        {
+          "state": "closed",
+          "samples": 596,
+          "start": 825
+        },
+        {
+          "state": "open",
+          "samples": 23,
+          "start": 1421
+        },
+        {
+          "state": "closed",
+          "samples": 61,
+          "start": 1444
+        },
+        {
+          "state": "open",
+          "samples": 320,
+          "start": 1505
+        },
+        {
+          "state": "closed",
+          "samples": 682,
+          "start": 1825
+        },
+        {
+          "state": "open",
+          "samples": 419,
+          "start": 2507
+        },
+        {
+          "state": "closed",
+          "samples": 374,
+          "start": 2926
+        },
+        {
+          "state": "open",
+          "samples": 133,
+          "start": 3300
+        },
+        {
+          "state": "closed",
+          "samples": 648,
+          "start": 3433
+        },
+        {
+          "state": "open",
+          "samples": 53,
+          "start": 4081
+        },
+        {
+          "state": "closed",
+          "samples": 118,
+          "start": 4134
+        },
+        {
+          "state": "open",
+          "samples": 42,
+          "start": 4252
+        },
+        {
+          "state": "closed",
+          "samples": 434,
+          "start": 4294
+        },
+        {
+          "state": "open",
+          "samples": 310,
+          "start": 4728
+        },
+        {
+          "state": "closed",
+          "samples": 150,
+          "start": 5038
+        },
+        {
+          "state": "open",
+          "samples": 468,
+          "start": 5188
+        },
+        {
+          "state": "closed",
+          "samples": 231,
+          "start": 5656
+        },
+        {
+          "state": "open",
+          "samples": 24,
+          "start": 5887
+        },
+        {
+          "state": "closed",
+          "samples": 180,
+          "start": 5911
+        },
+        {
+          "state": "open",
+          "samples": 603,
+          "start": 6091
+        },
+        {
+          "state": "closed",
+          "samples": 616,
+          "start": 6694
+        },
+        {
+          "state": "open",
+          "samples": 56,
+          "start": 7310
+        },
+        {
+          "state": "closed",
+          "samples": 45,
+          "start": 7366
+        },
+        {
+          "state": "open",
+          "samples": 29,
+          "start": 7411
+        },
+        {
+          "state": "closed",
+          "samples": 903,
+          "start": 7440
+        },
+        {
+          "state": "open",
+          "samples": 23,
+          "start": 8343
+        },
+        {
+          "state": "closed",
+          "samples": 663,
+          "start": 8366
+        },
+        {
+          "state": "open",
+          "samples": 316,
+          "start": 9029
+        },
+        {
+          "state": "closed",
+          "samples": 627,
+          "start": 9345
+        },
+        {
+          "state": "open",
+          "samples": 314,
+          "start": 9972
+        },
+        {
+          "state": "closed",
+          "samples": 355,
+          "start": 10286
+        },
+        {
+          "state": "open",
+          "samples": 60,
+          "start": 10641
+        },
+        {
+          "state": "closed",
+          "samples": 54,
+          "start": 10701
+        },
+        {
+          "state": "open",
+          "samples": 1067,
+          "start": 10755
+        },
+        {
+          "state": "closed",
+          "samples": 467,
+          "start": 11822
+        },
+        {
+          "state": "open",
+          "samples": 209,
+          "start": 12289
+        },
+        {
+          "state": "closed",
+          "samples": 234,
+          "start": 12498
+        },
+        {
+          "state": "open",
+          "samples": 49,
+          "start": 12732
+        },
+        {
+          "state": "closed",
+          "samples": 906,
+          "start": 12781
+        },
+        {
+          "state": "open",
+          "samples": 30,
+          "start": 13687
+        },
+        {
+          "state": "closed",
+          "samples": 205,
+          "start": 13717
+        },
+        {
+          "state": "open",
+          "samples": 55,
+          "start": 13922
+        },
+        {
+          "state": "closed",
+          "samples": 1449,
+          "start": 13977
+        },
+        {
+          "state": "open",
+          "samples": 318,
+          "start": 15426
+        },
+        {
+          "state": "closed",
+          "samples": 382,
+          "start": 15744
+        },
+        {
+          "state": "open",
+          "samples": 143,
+          "start": 16126
+        },
+        {
+          "state": "closed",
+          "samples": 49,
+          "start": 16269
+        },
+        {
+          "state": "open",
+          "samples": 220,
+          "start": 16318
+        },
+        {
+          "state": "closed",
+          "samples": 587,
+          "start": 16538
+        },
+        {
+          "state": "open",
+          "samples": 275,
+          "start": 17125
+        },
+        {
+          "state": "closed",
+          "samples": 176,
+          "start": 17400
+        },
+        {
+          "state": "open",
+          "samples": 181,
+          "start": 17576
+        },
+        {
+          "state": "closed",
+          "samples": 1002,
+          "start": 17757
+        },
+        {
+          "state": "open",
+          "samples": 18,
+          "start": 18759
+        },
+        {
+          "state": "closed",
+          "samples": 906,
+          "start": 18777
+        },
+        {
+          "state": "open",
+          "samples": 4,
+          "start": 19683
+        },
+        {
+          "state": "closed",
+          "samples": 148,
+          "start": 19687
+        },
+        {
+          "state": "open",
+          "samples": 165,
+          "start": 19835
+        }
+      ],
+      "note": "DEMO MODE: Real single-channel idealization: half-amplitude threshold between the closed/open current levels, segmented into dwell events, with open probability and maximum-likelihood single-exponential dwell constants (τ = mean dwell). A full HMM/QuB multi-state fit is the documented heavier path; this idealization is real and deterministic. Trace is a synthetic two-state Markov record with a known open probability (ground_truth_p_open).",
+      "ground_truth_p_open": 0.31325
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "channeldwell",
+        "at": "2026-09-23T03:45:58.358957+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

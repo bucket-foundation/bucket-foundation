@@ -8,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Caption = { kind: string; number: string; caption: string };
 type PerFigure = {
@@ -58,9 +62,9 @@ export default function FigureMinerClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             paper text (paste the body / figure captions)
-          </span>
+          </FieldLabel>
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -71,21 +75,12 @@ export default function FigureMinerClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || text.trim().length < 20}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || text.trim().length < 20}>
             {busy ? "mining…" : "mine figures"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo paper
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -99,24 +94,17 @@ export default function FigureMinerClient() {
 
 function FMView({ result }: { result: ResultEnvelope }) {
   const out = result.output as FMOutput;
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
         text-layer mining ({out.backend}){out.demo ? " · DEMO" : ""}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("figures", String(out.n_figures))}
-        {stat("tables", String(out.n_tables))}
-        {stat("p-values", String(out.stats.counts.p_values ?? 0))}
-        {stat("measurements", String(out.measurements.n_measurements))}
-      </div>
+      <StatGrid>
+        <Stat label="figures" value={String(out.n_figures)} />
+        <Stat label="tables" value={String(out.n_tables)} />
+        <Stat label="p-values" value={String(out.stats.counts.p_values ?? 0)} />
+        <Stat label="measurements" value={String(out.measurements.n_measurements)} />
+      </StatGrid>
 
       {out.captions.length > 0 && (
         <div className="mt-6">

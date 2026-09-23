@@ -1,0 +1,45 @@
+{
+  "result": {
+    "job_id": "j_fac5d895af6f4b1f9fff",
+    "tool": "powerplan",
+    "render": "json",
+    "output": {
+      "test": "two_sample_t",
+      "solve_for": "n",
+      "alpha": 0.05,
+      "power": 0.8,
+      "effect_size": 0.5,
+      "effect_size_name": "Cohen's d",
+      "tails": 2,
+      "n_meaning": "per-group sample size (group 1)",
+      "allocation_ratio_n2_over_n1": 1,
+      "n": 64,
+      "achieved_power": 0.80146,
+      "total_N": 128,
+      "result": {
+        "n": 64,
+        "achieved_power": 0.80146
+      },
+      "method": "Closed-form power via scipy: noncentral-t for t-tests, noncentral-F for one-way ANOVA (Cohen's f), normal-approximation z-test for two proportions, and the Fisher z-transform for Pearson correlation. The missing quantity is found by monotone bisection on the power function, the same equations as G*Power / statsmodels. Deterministic, no simulation.",
+      "note": "DEMO: the canonical medium-effect two-sample t-test, d=0.5, α=.05 two-tailed, 80% power → 64 per group (the textbook G*Power value). Universal tool (esp. econ-social + biomed): underpowered designs drive the reproducibility crisis. A priori power analysis is funder/IRB-expected. Effect sizes are Cohen conventions where relevant (d: 0.2/0.5/0.8 small/medium/large; f: 0.10/0.25/0.40; r: 0.10/0.30/0.50), justify yours from prior work rather than the convention.",
+      "demo": true,
+      "ground_truth": {
+        "design": "two-sample t-test, Cohen's d = 0.5, α = .05 (two-tailed), power = .80",
+        "expected_n_per_group": 64,
+        "source": "Cohen 1988 / G*Power textbook value"
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "powerplan",
+        "at": "2026-09-23T03:47:11.603898+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

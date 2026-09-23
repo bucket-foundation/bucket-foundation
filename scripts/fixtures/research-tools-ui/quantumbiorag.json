@@ -1,0 +1,86 @@
+{
+  "result": {
+    "job_id": "j_7a32fb59fc3041a8bbed",
+    "tool": "quantumbiorag",
+    "render": "json",
+    "output": {
+      "method": "claim-strength RAG over live OpenAlex (evidence-weighted stance + consensus)",
+      "claim": "Avian magnetoreception relies on radical pairs in cryptochrome",
+      "in_quantum_biology_scope": true,
+      "claim_polarity": "positive",
+      "degraded": false,
+      "verdict": "discussed but only neutral mentions — inconclusive",
+      "synthesis": null,
+      "synthesis_available": false,
+      "support_strength": "weak",
+      "support_score": 0.0,
+      "consensus": 0.0,
+      "counts": {
+        "supports": 0,
+        "contradicts": 0,
+        "neutral": 4
+      },
+      "top_supporting": [],
+      "top_contradicting": [],
+      "neutral": [
+        {
+          "title": "Electron spin relaxation in cryptochrome-based magnetoreception",
+          "venue": "Physical Chemistry Chemical Physics",
+          "year": 2016,
+          "cited_by_count": 132,
+          "url": "https://portal.findresearcher.sdu.dk/files/128503842/Accepted_manuscript_of_Electron_spin_relaxation_in_cryptochrome_based_magnetoreception.pdf",
+          "stance": "neutral",
+          "evidence": "The magnetic compass sense of migratory birds is thought to rely on magnetically sensitive radical pairs formed photochemically in cryptochrome proteins in the retina.",
+          "stance_confidence": 0.7,
+          "evidence_strength": 0.3845
+        },
+        {
+          "title": "European Robin Cryptochrome-4a Associates with Lipid Bilayers in an Ordered Manner, Fulfilling a Molecular-Level Condition for Magnetoreception",
+          "venue": "ACS Chemical Biology",
+          "year": 2025,
+          "cited_by_count": 10,
+          "url": "https://pubs.acs.org/doi/pdf/10.1021/acschembio.4c00576?ref=article_openPDF",
+          "stance": "neutral",
+          "evidence": "European Robin Cryptochrome-4a Associates with Lipid Bilayers in an Ordered Manner, Fulfilling a Molecular-Level Condition for Magnetoreception.",
+          "stance_confidence": 0.4,
+          "evidence_strength": 0.3004
+        },
+        {
+          "title": "Avian Navigation",
+          "venue": "The Auk",
+          "year": 2009,
+          "cited_by_count": 62,
+          "url": "http://www.bioone.org/doi/10.1525/auk.2009.11009",
+          "stance": "neutral",
+          "evidence": "Avian Navigation.",
+          "stance_confidence": 0.4,
+          "evidence_strength": 0.2934
+        },
+        {
+          "title": "Light-dependent magnetoreception in zebra finches : - from behaviour to receptor",
+          "venue": "Lund University Publications (Lund University)",
+          "year": 2018,
+          "cited_by_count": 1,
+          "url": "https://lup.lub.lu.se/record/062db054-904e-49ec-9c26-5bac65100fc1",
+          "stance": "neutral",
+          "evidence": "Taking into account that Cry1 is likelynot involved in magnetoreception, my findings open up the possibility that Cry1 is involved in a different, yetundetermined function in the avian UV/V cones (paper III).",
+          "stance_confidence": 0.55,
+          "evidence_strength": 0.1084
+        }
+      ],
+      "note": "Support strength weights each paper by on-topic overlap, citation uptake, and recency, so a replicated, well-cited result outweighs a fringe mention. Stance is deterministic sentence-level cue analysis (transparent, no LLM involved). This separates evidence from hype, but it is triage: read the cited sentences before concluding."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "quantumbiorag",
+        "at": "2026-09-23T05:20:55.130631+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

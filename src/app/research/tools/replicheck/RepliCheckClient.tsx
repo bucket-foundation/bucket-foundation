@@ -8,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type StatRow = {
   test: string;
@@ -67,9 +71,9 @@ export default function RepliCheckClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             results text (paste reported statistics: t/F/χ²/r + df + p, M/SD/n)
-          </span>
+          </FieldLabel>
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -80,21 +84,12 @@ export default function RepliCheckClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || text.trim().length < 8}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || text.trim().length < 8}>
             {busy ? "checking…" : "check stats"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo Results section
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -108,13 +103,6 @@ export default function RepliCheckClient() {
 
 function RepliView({ result }: { result: ResultEnvelope }) {
   const out = result.output as RepliOutput;
-  const cell = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
@@ -125,12 +113,12 @@ function RepliView({ result }: { result: ResultEnvelope }) {
         {out.reproducibility}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {cell("stats checked", String(out.summary.statistics_checked))}
-        {cell("inconsistent", String(out.summary.inconsistent))}
-        {cell("decision errors", String(out.summary.decision_errors))}
-        {cell("GRIM-impossible", String(out.summary.grim_impossible))}
-      </div>
+      <StatGrid>
+        <Stat label="stats checked" value={String(out.summary.statistics_checked)} />
+        <Stat label="inconsistent" value={String(out.summary.inconsistent)} />
+        <Stat label="decision errors" value={String(out.summary.decision_errors)} />
+        <Stat label="GRIM-impossible" value={String(out.summary.grim_impossible)} />
+      </StatGrid>
 
       {out.statcheck.length > 0 && (
         <div className="mt-8">

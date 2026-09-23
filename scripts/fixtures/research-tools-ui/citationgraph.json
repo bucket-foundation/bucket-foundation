@@ -1,0 +1,221 @@
+{
+  "result": {
+    "job_id": "j_fbe23558cd7e4c3992ab",
+    "tool": "citationgraph",
+    "render": "json",
+    "output": {
+      "method": "live OpenAlex citation graph + degree centrality on the induced 1-hop neighborhood",
+      "input": "10.1038/nature14539",
+      "resolved_as": "doi",
+      "degraded": false,
+      "seed": {
+        "id": "W2919115771",
+        "title": "Deep learning",
+        "year": 2015,
+        "venue": "Nature",
+        "cited_by_count": 84807,
+        "url": "https://hal.science/hal-04206682",
+        "n_references": 53
+      },
+      "neighborhood": {
+        "n_nodes": 13,
+        "n_edges": 16,
+        "n_references_fetched": 6,
+        "n_citations_fetched": 6
+      },
+      "key_related_works": [
+        {
+          "id": "W2257979135",
+          "title": "Mastering the game of Go with deep neural networks and tree search",
+          "year": 2016,
+          "venue": "Nature",
+          "cited_by_count": 16113,
+          "url": "https://doi.org/10.1038/nature16961",
+          "role": "citation",
+          "centrality": 0.3333
+        },
+        {
+          "id": "W2581082771",
+          "title": "Dermatologist-level classification of skin cancer with deep neural networks",
+          "year": 2017,
+          "venue": "Nature",
+          "cited_by_count": 14414,
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8382232",
+          "role": "citation",
+          "centrality": 0.25
+        },
+        {
+          "id": "W2592929672",
+          "title": "A survey on deep learning in medical image analysis",
+          "year": 2017,
+          "venue": "Medical Image Analysis",
+          "cited_by_count": 15294,
+          "url": "https://ars.els-cdn.com/content/image/1-s2.0-S1361841517301135-fx1_lrg.jpg",
+          "role": "citation",
+          "centrality": 0.1667
+        },
+        {
+          "id": "W2766447205",
+          "title": "Mastering the game of Go without human knowledge",
+          "year": 2017,
+          "venue": "Nature",
+          "cited_by_count": 9363,
+          "url": "https://doi.org/10.1038/nature24270",
+          "role": "citation",
+          "centrality": 0.1667
+        },
+        {
+          "id": "W170811313",
+          "title": "17th International Joint Conference on Artificial Intelligence 2001.",
+          "year": 2001,
+          "venue": "K&uuml;nstliche Intell.",
+          "cited_by_count": 138,
+          "url": "https://dblp.uni-trier.de/db/journals/ki/ki15.html#Neumann01",
+          "role": "reference",
+          "centrality": 0.1667
+        },
+        {
+          "id": "W1498436455",
+          "title": "Learning representations by back-propagating errors",
+          "year": 1986,
+          "venue": "Nature",
+          "cited_by_count": 31972,
+          "url": "https://doi.org/10.1038/323533a0",
+          "role": "reference",
+          "centrality": 0.0833
+        }
+      ],
+      "most_central": [
+        {
+          "id": "W2257979135",
+          "title": "Mastering the game of Go with deep neural networks and tree search",
+          "year": 2016,
+          "venue": "Nature",
+          "cited_by_count": 16113,
+          "url": "https://doi.org/10.1038/nature16961",
+          "role": "citation",
+          "centrality": 0.3333
+        },
+        {
+          "id": "W2581082771",
+          "title": "Dermatologist-level classification of skin cancer with deep neural networks",
+          "year": 2017,
+          "venue": "Nature",
+          "cited_by_count": 14414,
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8382232",
+          "role": "citation",
+          "centrality": 0.25
+        },
+        {
+          "id": "W2592929672",
+          "title": "A survey on deep learning in medical image analysis",
+          "year": 2017,
+          "venue": "Medical Image Analysis",
+          "cited_by_count": 15294,
+          "url": "https://ars.els-cdn.com/content/image/1-s2.0-S1361841517301135-fx1_lrg.jpg",
+          "role": "citation",
+          "centrality": 0.1667
+        },
+        {
+          "id": "W2766447205",
+          "title": "Mastering the game of Go without human knowledge",
+          "year": 2017,
+          "venue": "Nature",
+          "cited_by_count": 9363,
+          "url": "https://doi.org/10.1038/nature24270",
+          "role": "citation",
+          "centrality": 0.1667
+        },
+        {
+          "id": "W170811313",
+          "title": "17th International Joint Conference on Artificial Intelligence 2001.",
+          "year": 2001,
+          "venue": "K&uuml;nstliche Intell.",
+          "cited_by_count": 138,
+          "url": "https://dblp.uni-trier.de/db/journals/ki/ki15.html#Neumann01",
+          "role": "reference",
+          "centrality": 0.1667
+        }
+      ],
+      "edges": [
+        {
+          "source": "W2919115771",
+          "target": "W1498436455"
+        },
+        {
+          "source": "W2919115771",
+          "target": "W146900863"
+        },
+        {
+          "source": "W2919115771",
+          "target": "W1573503290"
+        },
+        {
+          "source": "W2919115771",
+          "target": "W170811313"
+        },
+        {
+          "source": "W2919115771",
+          "target": "W1514535095"
+        },
+        {
+          "source": "W2919115771",
+          "target": "W1487583988"
+        },
+        {
+          "source": "W2257979135",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2592929672",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2581082771",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2340897893",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2800392236",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2766447205",
+          "target": "W2919115771"
+        },
+        {
+          "source": "W2257979135",
+          "target": "W170811313"
+        },
+        {
+          "source": "W2592929672",
+          "target": "W2581082771"
+        },
+        {
+          "source": "W2581082771",
+          "target": "W2257979135"
+        },
+        {
+          "source": "W2766447205",
+          "target": "W2257979135"
+        }
+      ],
+      "note": "Edges are real OpenAlex citation relationships (references + cited-by + co-citation within the set). Centrality is degree centrality on the induced 1-hop neighborhood, the most-connected related works rise to the top. A full PageRank over a 2-hop neighborhood is a documented heavier path."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "citationgraph",
+        "at": "2026-09-23T05:20:50.527885+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}
