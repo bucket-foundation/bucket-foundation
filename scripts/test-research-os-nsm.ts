@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
-import { assemble, byCategory, HIDE_BELOW, UNCERTAIN_BELOW, parseLang, toExponent, type NsmExponentRow, type NsmPrimeRow } from "../src/lib/research-os/nsm";
+import { assemble, byCategory, colexFor, HIDE_BELOW, UNCERTAIN_BELOW, parseLang, toExponent, type NsmExponentRow, type NsmPrimeRow } from "../src/lib/research-os/nsm";
 
 const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
 
@@ -54,6 +54,21 @@ test("a root below the threshold is withheld, and one below the uncertain line i
   const sure = toExponent({ ...row, root_confidence: 0.9 });
   assert.deepEqual([sure.rootUncertain, sure.rootForm], [false, "*steh₂-"]);
   assert.equal(toExponent({ ...row, root_confidence: null }).rootForm, null);
+});
+
+test("a colexified word names the other prime, and the merges list both sides", () => {
+  const e = toExponent({ ...exp("can", "pt", "saber", 0.7), colex_with: ["know", 3 as unknown as string] });
+  assert.deepEqual(e.colexWith, ["know"]);
+  assert.equal(e.uncertain, true);
+  assert.deepEqual(toExponent(exp("can", "pt", "poder", 0.9)).colexWith, []);
+  const labels = new Map([["can", "CAN"], ["know", "KNOW"], ["feel", "FEEL"]]);
+  const rows = [
+    { prime_a: "can", prime_b: "know", lang: "pt", form: "saber", family_count: 8, matched: true },
+    { prime_a: "feel", prime_b: "know", lang: "fi", form: "tuntea", family_count: 6, matched: false },
+  ];
+  assert.deepEqual(colexFor("know", rows, labels).map((c) => [c.otherLabel, c.langName, c.matched]), [["CAN", "Portuguese", true], ["FEEL", "Finnish", false]]);
+  const [can] = assemble([prime("can", 1)], [], { colex: rows });
+  assert.deepEqual(can.colex.map((c) => c.other), ["know"]);
 });
 
 test("a prime with no lookup and a fallback sense read as such", () => {
@@ -112,6 +127,11 @@ test("the route answers every prime with the shown words only", { skip }, async 
   assert.ok(primes.filter((p) => p.senseStatus === "none").every((p) => p.exponents.length === 0));
   assert.ok((body.attribution as { license: string }).license.includes("by-sa"));
   assert.ok((body.citation as { text: string }).text.includes("Goddard"));
+  assert.ok((body.colexAttribution as { license: string }).license.includes("by/4.0"));
+  const lowered = Number(sql("select count(*) from graph.nsm_exponents where colex_with is not null and confidence >= 0.5").out);
+  const withColex = shown.filter((e) => (e as unknown as { colexWith: string[] }).colexWith.length > 0);
+  assert.equal(withColex.length, lowered);
+  assert.ok(withColex.every((e) => e.uncertain));
 });
 
 test("?lang= keeps one language and ?hidden=1 adds the hidden words", { skip }, async () => {
