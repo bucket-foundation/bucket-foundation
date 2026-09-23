@@ -1,0 +1,50 @@
+{
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_learner_node_level_required"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_learner_node_level_required"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_learner_node_level_required"
+    }
+  }
+}

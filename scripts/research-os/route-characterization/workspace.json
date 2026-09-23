@@ -1,0 +1,53 @@
+{
+  "POST unconfigured": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "action must be one of locate, quote, check, organize"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "bad_request"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 403,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  }
+}

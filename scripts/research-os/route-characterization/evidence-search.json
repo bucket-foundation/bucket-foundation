@@ -1,0 +1,101 @@
+{
+  "GET unconfigured": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "GET anonymous": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "GET signed in, store down": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST unconfigured": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST anonymous": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST signed in, store down": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "feature_off",
+      "message": "Evidence search is off."
+    }
+  }
+}
