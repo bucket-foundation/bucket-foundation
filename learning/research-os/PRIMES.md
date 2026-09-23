@@ -182,6 +182,33 @@ A reviewer decides each pair on `/research-os/merges`: merge into the suggested 
 
 Bundled names get the same treatment from the other side. A missing idea such as "Vector spaces, bases and inner products" splits on commas and "and", and each part that matches an existing node ("Vector spaces", "Inner product spaces") becomes a factor proposal from that node to every idea that named the bundle, beside the node proposal, which lists the matches as possible duplicates. 19 of the 66 pending node proposals bundle ideas the graph holds, giving 25 factor proposals.
 
+## Cross-branch factors
+
+bkt-ybzm, 2026-09-23. The Academy wrote every `requires` inside one course, so no prime reached another branch, and the frontier's top unexplored pairs all crossed a branch. The queue already held 110 cross-branch pairs from the 18 September run. This slice widens the shortlist toward the foundations, seeds the base ideas the graph lacks, and tests the frontier against a random baseline (`PRIME-ALGEBRA.md`, M5).
+
+**Shortlist.** `shortlist()` takes `foundations`, on by default in the runner and off with `--no-foundations`. It adds every node proposed as a base idea that `matchBase` recognizes, every node that already holds a seeded base idea (Set and Function are held by "Sets and functions", "Sets, relations, and cardinality" and "Sets, functions, and relations"), and every mathematics and information prime when the target sits in another branch. Mathematics and information also give 6 nodes to the per-branch pool for such a target, against 3 for other branches. Every foundation goes through the same `eligible` filter as the other pools, so a foundation that already rests on the target drops out and cannot close a loop; the test "foundations bring base ideas" keeps that. On the local graph the mean shortlist grows from 50.5 to 55.7 candidates, at most 60, and the cross-branch candidates over the 41 targets from 1,606 to 1,820. `--shortlist-sizes` and `--show-shortlist` print them before any model call.
+
+**Base ideas.** `learning/research-os/base-ideas.json` names equality, number, set, function, and measurement, each with a one-sentence definition. `--seed-base-ideas` writes a node proposal for each one no node names by its own word, keyed by `missingKey`, so a rerun updates the same row. Equality, Number and Measurement went in; Set and Function are held. A seeded row names no target, so approval creates the node at the lowest tier among the idea nodes, 4 on the local graph, and queues no factor pair. The next run offers the node to every target as a foundation and asks about it as a target.
+
+**Review.** Nothing in this slice writes `graph.edges`: the graph kept its 2,509 factor edges through the run. The reviewer is assumed to be the founder, as the only address on `RESEARCH_OS_REVIEWER_EMAILS`. He decides the three base ideas and the cross-branch pairs at `/research-os/edges`. "Rests on" writes `derives_from` and leaves grade tiers alone; "learning order" raises them through `graph.enforce_prerequisite_tiers()`.
+
+### Results
+
+Run on 2026-09-23 over the local graph, proposer `claude-sonnet-5`, verifier `claude-opus-5-5`. The verifier id is new, so every blind check was asked again. Report: `scripts/research-os/ingest/out/decompose-further.json`; committed summary in `decompose-further-runs.json` as run v6.
+
+| Measure | Value |
+|---|---|
+| Model calls | 105: 2 probes, 42 Sonnet (40 proposers, 1 replayed from cache, and 2 consolidation batches), 61 Opus (up to 41 blind checks and the checks with the factor named) |
+| Factor proposals | 168: 157 from the proposer, 11 from missing ideas that already had a node |
+| Confirmed by the verifier | 92: 85 checked blind, 7 with the factor named |
+| Across branches | 115, of which 68 confirmed; same branch 53, of which 24 confirmed |
+| Cohen's kappa | 0.53, interval 0.45 to 0.62; across branches 0.59, interval 0.48 to 0.71, over 226 blinded pairs; same branch 0.40, interval 0.27 to 0.57, over 90 |
+| RefD ROC area | proposals 0.60, interval 0.52 to 0.69; across branches 0.56, interval 0.46 to 0.67; same branch 0.67, interval 0.49 to 0.83 |
+| Missing ideas | 78 named; 19 matched a node; 57 node proposals |
+| Queue afterward | 121 pending pairs the verifier confirmed, 94 of them across branches; 119 refuted |
+
+**The verifier agrees more across branches.** Kappa is 0.59 across branches against 0.40 inside one, and the intervals overlap. Wikipedia's links lean the other way, and both intervals include 0.5 or come close. The founder's decisions are the labels that settle it.
+
 ## Next slices
 
 1. **Truth level** (ros-prime 3, with ros-truth). A node's truth level combines its primes' standing and its factor edges' confidence. Independent factors combine as a product; shared primes count once, so two factors that rest on the same prime do not double its weight, the effective-count idea `hte` already uses for evidence. Bootstrap over edge confidences for an interval. Network statistics over the dependency graph: PageRank for load-bearing primes, betweenness for bottlenecks, k-core for the dense center, articulation points for single primes whose failure would disconnect large parts of the graph. How a claim is known, the source levels in ros-truth, sets each prime's starting standing.

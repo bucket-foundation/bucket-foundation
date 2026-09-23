@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
+import { DECOMPOSABLE_KINDS } from "../idea";
 import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
 import { forgetPrimesReport } from "../primes-report";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
@@ -78,6 +79,21 @@ async function knownBranches(svc: SupabaseClient): Promise<Set<string>> {
     for (const r of page) out.add(r.branch);
     if (page.length < 1000) return out;
   }
+}
+
+async function lowestIdeaTier(svc: SupabaseClient): Promise<number | null> {
+  const { data, error } = await svc
+    .from("nodes")
+    .select("tier")
+    .in("kind", Array.from(DECOMPOSABLE_KINDS))
+    .eq("visibility", "public")
+    .is("superseded_by", null)
+    .not("tier", "is", null)
+    .order("tier", { ascending: true })
+    .limit(1);
+  if (error) throw new Error(error.message);
+  const row = ((data as Array<{ tier: number }>) || [])[0];
+  return row ? row.tier : null;
 }
 
 export function priorityOf(p: { verification: ProposalRow["verification"]; agreement: boolean }, impact: number): number {
@@ -366,10 +382,12 @@ export async function decideNode(
   let targets: Map<string, NodeLite>;
   let known: Set<string>;
   let impact: Map<string, number>;
+  let lowestTier: number | null = null;
   try {
     targets = await nodesBySlug(svc, r.named_by);
     known = await knownBranches(svc);
     impact = await dependents(svc, r.named_by);
+    if (!r.named_by.some((s) => targets.has(s))) lowestTier = await lowestIdeaTier(svc);
   } catch {
     return fail(500, "read_failed");
   }
@@ -396,6 +414,7 @@ export async function decideNode(
     tierOf: new Map(namedBy.map((s) => [s, targets.get(s)!.tier])),
     impactOf: impact,
     overrides: input.overrides,
+    lowestTier,
   });
   if (outcome.alreadyDecided) return ok({ decision: outcome.status, alreadyDecided: true });
   if (outcome.error === "summary_required") return fail(400, "a definition is required to create the node");

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { configured, graphService } from "@/lib/research-os/db";
 import { loadPrimesReport, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
+import type { GapClass } from "@/lib/research-os/prime-algebra";
 
 export const metadata: Metadata = { title: "Primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -93,6 +94,8 @@ function Joined({ refs, sep }: { refs: ReportRef[]; sep: string }) {
   );
 }
 
+const GAP_LABEL: Record<GapClass, string> = { real: "candidate real gap", missing_edge: "missing edge", chance: "chance" };
+
 function Algebra({ a }: { a: PrimeAlgebraReport }) {
   const f = a.frontier;
   const maxCount = Math.max(1, ...a.reach.flatMap((r) => r.coefficients));
@@ -116,10 +119,10 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
 
       <Listed
         title="unexplored combinations"
-        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. Ranked by the count chance predicts. ${f.withinBranch} lie inside one branch.`}
+        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. ${f.withinBranch} lie inside one branch. Each set is tested against ${f.gaps.draws} shuffles of the composite-by-prime table that keep every composite's prime count and every prime's reach. ${f.gaps.counts.real} are candidate real gaps, empty more often than the shuffles allow; on the local graph of 2026-09-23 their top 20 kept a median Jaccard overlap of 0.81 over random 90% subsets of the composites, and halves showed none; ${f.gaps.counts.missing_edge} close once the ${f.gaps.counterfactualPairs} pending pairs the verifier confirmed are added; ${f.gaps.counts.chance} are empty by chance. Candidate real gaps come first, each by the count chance predicts.`}
       >
         {f.top.map((x, i) => (
-          <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+          <Row key={i} figure={`${GAP_LABEL[x.gap]}, expected ${x.expected.toFixed(1)}, p ${x.p}`}>
             <Joined refs={x.primes} sep=" + " />
           </Row>
         ))}
@@ -129,7 +132,7 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
           <p className="text-[12px] text-[color:var(--basalt-3)]">Inside one branch:</p>
           <ol className="mt-1 border-t border-[color:var(--hairline)]">
             {f.topWithinBranch.map((x, i) => (
-              <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+              <Row key={i} figure={`${GAP_LABEL[x.gap]}, expected ${x.expected.toFixed(1)}, p ${x.p}`}>
                 <Joined refs={x.primes} sep=" + " />
               </Row>
             ))}

@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
-import { isIdeaNode } from "./idea";
+import { splitBundle } from "./dedup";
+import { BASE_IDEA_SOURCE, isIdeaNode } from "./idea";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
 import { components, contractedFactorEdges, factorMap, type DepEdge, type Decomposition } from "./primes";
 
@@ -163,10 +164,26 @@ export type ShortlistOptions = {
   perBranch?: number;
   semantic?: number;
   lexical?: number;
+  foundations?: boolean;
+  foundationPerBranch?: number;
+  foundationSlugs?: ReadonlySet<string>;
 };
+
+export const FOUNDATION_BRANCHES = new Set(["01-mathematics", "04-information"]);
+export const FOUNDATION_PER_BRANCH = 6;
+
+export function isBaseIdeaNode(c: GraphNode): boolean {
+  return c.provenanceType === BASE_IDEA_SOURCE && matchBase(c.title) !== null;
+}
+
+export function isFoundation(c: Candidate, target: Target, extra: ReadonlySet<string> = new Set()): boolean {
+  return isBaseIdeaNode(c) || extra.has(c.slug) || (c.prime && c.branch !== target.branch && FOUNDATION_BRANCHES.has(c.branch ?? ""));
+}
 
 export function shortlist(target: Target, pool: Candidate[], dec: Map<string, Decomposition>, opts: ShortlistOptions = {}): Candidate[] {
   const perBranch = opts.perBranch ?? 3;
+  const foundationPerBranch = opts.foundations ? (opts.foundationPerBranch ?? FOUNDATION_PER_BRANCH) : perBranch;
+  const quota = (branch: string) => (FOUNDATION_BRANCHES.has(branch) && branch !== (target.branch ?? "none") ? foundationPerBranch : perBranch);
   const semanticN = opts.semantic ?? 25;
   const lexicalN = opts.lexical ?? 10;
   const restsOnTarget = (c: Candidate) => dec.get(c.id)?.signature.has(target.id) ?? false;
@@ -191,8 +208,9 @@ export function shortlist(target: Target, pool: Candidate[], dec: Map<string, De
   }
   for (const list of Array.from(byBranch.values())) {
     list.sort((a, b) => (a.tier ?? 0) - (b.tier ?? 0) || closeness(b) - closeness(a) || a.slug.localeCompare(b.slug));
-    picked.push(...list.slice(0, perBranch));
+    picked.push(...list.slice(0, quota(list[0].branch ?? "none")));
   }
+  if (opts.foundations) picked.push(...eligible.filter((c) => isFoundation(c, target, opts.foundationSlugs)).sort((a, b) => a.slug.localeCompare(b.slug)));
   if (tv) {
     picked.push(
       ...eligible
@@ -502,6 +520,55 @@ export function matchBase(title: string): string | null {
   const head = headNoun(title);
   if (!head) return null;
   return BASE_IDEAS.find((b) => b.heads.some((h) => stem(h) === head))?.key ?? null;
+}
+
+export type BaseIdeaSeed = { title: string; definition: string; branch: string };
+
+export const SEED_MODEL = "seed:base-ideas";
+
+export function baseIdeaHolders(seed: BaseIdeaSeed, nodes: GraphNode[]): string[] {
+  const own = Array.from(tokens(seed.title));
+  if (own.length !== 1 || !matchBase(seed.title)) return [];
+  const names = (t: string) => {
+    const words = Array.from(tokens(t));
+    return words.length === 1 && words[0] === own[0];
+  };
+  return nodes
+    .filter((n) => isIdea(n) && [n.title, ...splitBundle(n.title)].some(names))
+    .map((n) => n.slug)
+    .sort();
+}
+
+export function seedBaseIdeaRows(
+  seeds: BaseIdeaSeed[],
+  nodes: GraphNode[],
+  duplicatesOf: (title: string) => { slug: string; title: string; similarity: number }[],
+): { rows: NodeProposalRow[]; held: { title: string; slugs: string[] }[] } {
+  const rows: NodeProposalRow[] = [];
+  const held: { title: string; slugs: string[] }[] = [];
+  for (const seed of seeds) {
+    const base = matchBase(seed.title);
+    if (!base) throw new Error(`${seed.title} names no base idea`);
+    const slugs = baseIdeaHolders(seed, nodes);
+    if (slugs.length) {
+      held.push({ title: seed.title, slugs });
+      continue;
+    }
+    rows.push({
+      key: missingKey(seed.title),
+      title: seed.title,
+      branch: seed.branch,
+      justification: `A base idea every branch rests on (${base}); the graph has no node for it.`,
+      summary: seed.definition,
+      named_by: [],
+      aliases: [],
+      reasons: {},
+      possible_duplicates: duplicatesOf(seed.title).slice(0, 3),
+      base_match: base,
+      model: SEED_MODEL,
+    });
+  }
+  return { rows, held };
 }
 
 export function missingKey(title: string): string {
