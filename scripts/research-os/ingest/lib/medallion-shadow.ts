@@ -12,13 +12,26 @@ export function shadowRequested(argv: string[] = process.argv): boolean {
   return argv.includes(SHADOW_FLAG);
 }
 
-export async function shadowWrite(label: string, nodes: IngestNodeDraft[]): Promise<void> {
+export interface ShadowOutcome {
+  failures: number;
+}
+
+export async function shadowWrite(label: string, nodes: IngestNodeDraft[]): Promise<ShadowOutcome> {
+  let failures = 0;
+  try {
+    await writeShadow(label, nodes);
+  } catch (err) {
+    failures = 1;
+    console.error(`[${label}] medallion shadow FAILED: ${err instanceof Error ? err.message : String(err)}. Gold writes are unaffected.`);
+  }
+  console.log(`[${label}] medallion shadow failures: ${failures}`);
+  return { failures };
+}
+
+async function writeShadow(label: string, nodes: IngestNodeDraft[]): Promise<void> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    console.error(`[${label}] ${SHADOW_FLAG} needs NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY. Nothing written.`);
-    process.exit(1);
-  }
+  if (!url || !key) throw new Error(`${SHADOW_FLAG} needs NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY; nothing written`);
   const { policy, sha256 } = loadPolicy();
   const plan = planMedallion({
     nodes: nodes.map((n) => ({ slug: n.slug, kind: n.kind, branch: n.branch, title: n.title, provenance: n.provenance })),
@@ -47,7 +60,7 @@ export async function shadowWrite(label: string, nodes: IngestNodeDraft[]): Prom
     if (error) throw new Error(`silver write failed: ${error.message}`);
     silverWritten += ((data as unknown[]) || []).length;
   }
-  const a = admitted as { staged: number; activated: number; unchanged: number; superseded: number };
+  const a = { staged: 0, unchanged: 0, superseded: 0, ...((admitted ?? {}) as { staged?: number; unchanged?: number; superseded?: number }) };
   console.log(
     `[${label}] medallion shadow: ${plan.bronze.length} bronze (${a.staged} new, ${a.unchanged} unchanged, ${a.superseded} superseded, ${refused.size} refused), ` +
       `${silverRows.length} silver (${silverWritten} new), ${nodes.length - plan.silverBySlug.size} gold drafts without silver ` +

@@ -11,6 +11,14 @@ const sha = (v: unknown) => createHash("sha256").update(JSON.stringify(v)).diges
 
 function builder(table: string) {
   return {
+    select(cols: string) {
+      calls.push({ op: "select", table, args: cols });
+      return { in: () => Promise.resolve({ data: [], error: null }) };
+    },
+    update(patch: Row) {
+      calls.push({ op: "update", table, sha: sha(patch) });
+      return { eq: () => Promise.resolve({ data: null, error: null }) };
+    },
     upsert(rows: Row[], opts: unknown) {
       calls.push({ op: "upsert", table, count: rows.length, sha: sha(rows), first: rows[0] ?? null, opts });
       const error = fail === table ? { message: `${table} stub failure` } : null;
@@ -38,7 +46,7 @@ const fakeSupabase = {
       from: (table: string) => builder(table),
       rpc(name: string) {
         calls.push({ op: "rpc", args: name });
-        if (fail === "rpc") return Promise.resolve({ data: null, error: { message: "rpc stub failure" } });
+        if (fail === "rpc" || fail === `rpc:${name}`) return Promise.resolve({ data: null, error: { message: "rpc stub failure" } });
         return Promise.resolve({ data: 3, error: null });
       },
     };

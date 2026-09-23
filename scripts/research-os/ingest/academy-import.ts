@@ -35,14 +35,13 @@ async function main() {
       `${tierViolations.length} tier violations, ${result.reviewList.length} other review items.`,
   );
 
-  if (shadowRequested()) await shadowWrite("academy-import", result.nodes);
-
   if (!APPLY) {
     console.log(`[academy-import] dry run only. Preview: scripts/research-os/ingest/out/academy-preview.json`);
-    return;
+  } else {
+    const written = await upsertGraph(result.nodes, result.edges, { label: "academy-import" });
+    console.log(`[academy-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
   }
-  const written = await upsertGraph(result.nodes, result.edges, { label: "academy-import" });
-  console.log(`[academy-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
+  if (shadowRequested()) await shadowWrite("academy-import", result.nodes);
 }
 
 main().catch((err) => {

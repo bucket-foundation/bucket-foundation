@@ -182,12 +182,12 @@ function main() {
   }
 
   console.log(`[canon-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (shadowRequested()) void shadowWrite("canon-all", nodes).catch((err: Error) => {
-    console.error("[canon-all] medallion shadow FAILED:", err.message);
-    process.exit(1);
-  });
-  if (!APPLY) return;
-  void apply(nodes, edges);
+  void finish(nodes, edges);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
+  if (APPLY) await apply(nodes, edges);
+  if (shadowRequested()) await shadowWrite("canon-all", nodes);
 }
 
 async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {

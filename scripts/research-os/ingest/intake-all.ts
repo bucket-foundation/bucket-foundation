@@ -139,11 +139,12 @@ function main() {
   }
 
   console.log(`[intake-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (shadowRequested()) void shadowWrite("intake-all", nodes).catch((err: Error) => {
-    console.error("[intake-all] medallion shadow FAILED:", err.message);
-    process.exit(1);
-  });
-  if (APPLY) void applyDrafts("intake-all", nodes, edges, flags);
+  void finish(nodes, edges, flags);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[], flags: Parameters<typeof applyDrafts>[3]) {
+  if (APPLY) await applyDrafts("intake-all", nodes, edges, flags);
+  if (shadowRequested()) await shadowWrite("intake-all", nodes);
 }
 
 main();
