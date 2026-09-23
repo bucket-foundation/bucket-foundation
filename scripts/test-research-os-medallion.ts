@@ -11,7 +11,7 @@ import { checkRepoPath, isTranscriptPath } from "../src/lib/research-os/medallio
 import { planMedallion, silverKey, type MedallionIO, type PlanNode } from "../src/lib/research-os/medallion/plan";
 import { edgeCandidates, edgeKey, edgeProposalRow, factorAndDependent, FACTOR_KINDS, nodeProposalRow, queueable, splitImport } from "../src/lib/research-os/medallion/proposals";
 import type { IngestEdgeDraft, IngestNodeDraft } from "../src/lib/research-os/ingest/types";
-import { shadowRequested } from "./research-os/ingest/lib/medallion-shadow";
+import { shadowRequested, strictShadowFails } from "./research-os/ingest/lib/medallion-shadow";
 import { demotionRows } from "../src/lib/research-os/medallion/demotions";
 import { checkPromotion, type GoldTarget } from "../src/lib/research-os/medallion/promote";
 import { publicCitation, publicSilver } from "../src/lib/research-os/medallion/redact";
@@ -431,4 +431,10 @@ test("recasting three leaf tags to cites leaves them unfactored and moves no oth
     assert.equal(after.get(t)!.status, "unfactored");
   }
   for (const a of ["a0", "a1", "a2", "a3"]) assert.equal(after.get(a)!.depth, before.get(a)!.depth, a);
+});
+
+test("--strict-shadow turns a shadow failure into a failed run and leaves a clean run alone", () => {
+  assert.equal(strictShadowFails(["node", "x.ts", "--apply", "--strict-shadow"], 1), true);
+  assert.equal(strictShadowFails(["node", "x.ts", "--apply", "--strict-shadow"], 0), false);
+  assert.equal(strictShadowFails(["node", "x.ts", "--apply"], 1), false);
 });

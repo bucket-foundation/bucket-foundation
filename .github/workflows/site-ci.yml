@@ -175,7 +175,7 @@ jobs:
         run: |
           set -a; . ./.env.local; set +a
           npm run seed:research-os
-          npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply
+          npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply --strict-shadow
       - name: browser
         run: npx playwright install --with-deps chromium
       - name: dev server

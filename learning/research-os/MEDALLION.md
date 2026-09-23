@@ -20,7 +20,7 @@ Withdrawing a bronze source with `graph.withdraw_evidence_source` marks its silv
 
 ## Importers
 
-With `--apply`, all four importers run the medallion leg after their gold write; `--medallion` runs it on a dry run too, and `--no-medallion` restores the stage 1 behavior. The leg writes bronze and silver, logs its failures and never stops the run.
+With `--apply`, all four importers run the medallion leg after their gold write; `--medallion` runs it on a dry run too, and `--no-medallion` restores the stage 1 behavior. The leg writes bronze and silver, logs its failures and never stops the run. `--strict-shadow` makes a run with a shadow failure exit 1 after its gold write; CI and the importer tests pass it, and production runs leave it off.
 
 - `academy-import` and `canon-import` write gold as before, then `promoted_by = importer` lineage.
 - `canon-all` and `intake-all` write gold only for nodes already in the graph and for edges other than `derives_from` and `prerequisite`. A new lexical dependency edge becomes a silver `edge_candidate` and an `edge_proposals` row with `confidence_source = 'medallion_lexical'`, `proposed_kind` and its `silver_item_id`, reviewed at `/research-os/edges`; below 0.5 it stays in silver. A dependency edge already in gold is left as it is. A new node becomes a `node_proposals` row carrying its `draft`, and approving it creates that node with its kind and provenance.
