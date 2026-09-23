@@ -310,6 +310,15 @@ def first_gloss(entry):
     return ""
 
 
+def sense_text(entry):
+    out = []
+    for sense in (entry.get("senses") or [])[:8]:
+        g = clean((sense.get("glosses") or [""])[-1])
+        if g:
+            out.append(g)
+    return "; ".join(out)[:400]
+
+
 def romanization(entry):
     for f in entry.get("forms") or []:
         if "romanization" in (f.get("tags") or []):
@@ -436,6 +445,10 @@ def extract_entry(entry, with_translations):
         deepest = final[-1]
         if is_proto(deepest["lang"]):
             rows["word_root"].append((lang, word, deepest["lang"], deepest["term"], "proto"))
+    ety = entry.get("etymology_number") or 0
+    rows["word"] = [(lang, word, pos, ety, gloss, romanization(entry), first_ipa(entry), sense_text(entry))]
+    rows["etym"] = [r + (ety,) for r in rows["etym"]]
+    rows["word_root"] = [r + (ety,) for r in rows["word_root"]]
     if with_translations:
         tr_seen = set()
         pools = [(-1, None, entry.get("translations") or [])]
@@ -478,10 +491,10 @@ def process_batch(args):
 
 
 SCHEMA = """
-create table if not exists word (lang text, word text, pos text, gloss text, roman text, ipa text, primary key (lang, word, pos));
-create table if not exists etym (lang text, word text, rel text, anc_lang text, anc_form text, anc_gloss text, ord integer, primary key (lang, word, anc_lang, anc_form));
+create table if not exists word (lang text, word text, pos text, ety integer, gloss text, roman text, ipa text, senses text, primary key (lang, word, pos, ety));
+create table if not exists etym (lang text, word text, rel text, anc_lang text, anc_form text, anc_gloss text, ord integer, ety integer, primary key (lang, word, ety, anc_lang, anc_form));
 create table if not exists root (lang text, form text, gloss text, n integer default 1, primary key (lang, form));
-create table if not exists word_root (lang text, word text, root_lang text, root_form text, kind text, primary key (lang, word, root_lang, root_form));
+create table if not exists word_root (lang text, word text, root_lang text, root_form text, kind text, ety integer, primary key (lang, word, ety, root_lang, root_form));
 create table if not exists translation (en_word text, en_pos text, sense text, sense_idx integer, topics text, lang text, word text, roman text);
 create table if not exists text_gloss (form text, gloss text, n integer default 1, primary key (form, gloss));
 create table if not exists progress (file text primary key, offset integer, lines integer, done integer, updated real);
@@ -503,13 +516,13 @@ def open_db(path):
 
 
 def write_rows(db, agg):
-    db.executemany("insert or ignore into word values (?,?,?,?,?,?)", agg["word"])
-    db.executemany("insert or ignore into etym values (?,?,?,?,?,?,?)", agg["etym"])
+    db.executemany("insert or ignore into word values (?,?,?,?,?,?,?,?)", agg["word"])
+    db.executemany("insert or ignore into etym values (?,?,?,?,?,?,?,?)", agg["etym"])
     db.executemany(
         "insert into root (lang, form, gloss) values (?,?,?) on conflict (lang, form) do update set n = n + 1, gloss = case when root.gloss = '' then excluded.gloss else root.gloss end",
         agg["root"],
     )
-    db.executemany("insert or ignore into word_root values (?,?,?,?,?)", agg["word_root"])
+    db.executemany("insert or ignore into word_root values (?,?,?,?,?,?)", agg["word_root"])
     db.executemany("insert into translation values (?,?,?,?,?,?,?,?)", agg["translation"])
     db.executemany("insert into text_gloss (form, gloss) values (?,?) on conflict (form, gloss) do update set n = n + 1", agg["text_gloss"])
 

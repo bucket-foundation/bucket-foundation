@@ -1,7 +1,7 @@
 import { graphService, pagedRead } from "./db";
-import { orderWords, toNodeWord, type NodeWord, type NodeWordRow } from "./node-words";
+import { orderWords, shownWords, toNodeWord, type NodeWord, type NodeWordRow } from "./node-words";
 
-const COLUMNS = "id,lang,word,roman,gloss,root_lang,root_form,root_gloss,chain,root_texts,en_term,sense,source";
+const COLUMNS = "id,lang,word,roman,gloss,root_lang,root_form,root_gloss,chain,root_texts,en_term,sense,confidence,source";
 
 export async function loadNodeWords(nodeId: string): Promise<NodeWord[]> {
   const rows = await pagedRead<NodeWordRow>((page) =>
@@ -12,5 +12,5 @@ export async function loadNodeWords(nodeId: string): Promise<NodeWord[]> {
       .order("id")
       .range(page.from, page.to) as unknown as Promise<{ data: NodeWordRow[] | null; error: { message: string } | null }>,
   );
-  return orderWords(rows.map(toNodeWord));
+  return orderWords(shownWords(rows.map(toNodeWord)));
 }

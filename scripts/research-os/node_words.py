@@ -16,6 +16,7 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 ROOTS_DB = os.path.join(REPO_ROOT, "_intake", "photons", "roots.sqlite")
 QURAN = os.path.join(REPO_ROOT, "_intake", "sacred-history-corpus", "work", "tanzil-quran-simple.txt")
 QURAN_DATA = os.path.join(REPO_ROOT, "_intake", "sacred-history-corpus", "work", "tanzil-quran-data.js")
+UUID_RE = re.compile(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
 DEFAULT_DB_URL = "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
 
 SOURCE = "Wiktionary via Kaikki.org, CC BY-SA 4.0"
@@ -27,8 +28,23 @@ SCIENCE_TOPICS = {
     "physics", "natural-sciences", "physical-sciences", "sciences", "chemistry", "mathematics",
     "biology", "astronomy", "computing", "biochemistry", "geometry", "algebra", "optics",
     "thermodynamics", "mechanics", "electromagnetism", "statistics", "logic", "genetics",
-    "medicine", "neuroscience", "cytology", "computer-science", "quantum-mechanics",
+    "neuroscience", "cytology", "computer-science", "quantum-mechanics", "cosmology", "astrophysics",
 }
+BRANCH_TOPICS = {
+    "01-mathematics": {"mathematics", "geometry", "algebra", "arithmetic", "statistics", "logic", "calculus", "topology", "number-theory", "set-theory"},
+    "02-physics": {"physics", "optics", "mechanics", "thermodynamics", "electromagnetism", "quantum-mechanics", "acoustics", "metrology", "units-of-measure", "physical-sciences"},
+    "03-chemistry": {"chemistry", "biochemistry", "organic-chemistry", "inorganic-chemistry", "physical-chemistry", "physical-sciences"},
+    "04-information": {"computing", "computer-science", "programming", "cryptography", "logic", "mathematics", "information-theory", "statistics"},
+    "05-biophysics": {"biology", "biochemistry", "cytology", "genetics", "physiology", "anatomy", "neuroscience", "physics", "chemistry", "microbiology"},
+    "06-cosmology": {"astronomy", "cosmology", "astrophysics", "physics"},
+    "07-mind": {"psychology", "philosophy", "neuroscience", "linguistics", "logic", "cognitive-science"},
+}
+OFF_TOPICS = {
+    "economics", "business", "finance", "politics", "government", "law", "music", "sports", "games", "video-games",
+    "Christianity", "religion", "fashion", "cooking", "lifestyle", "entertainment", "military", "firearms", "nautical",
+}
+HIDE_BELOW = 0.5
+UNCERTAIN_BELOW = 0.75
 SCIENCE_WORDS = (
     "physic", "chemi", "science", "mathemat", "biolog", "study of", "geometr", "gravitation", "force", "energy",
     "matter", "particle", "radiation", "molecul", "atom", "cell", "electr", "quantum", "wave", "logic",
@@ -134,7 +150,17 @@ def tokens(text):
     return {w for w in re.findall(r"[a-z]+", (text or "").lower()) if len(w) > 2 and w not in STOP}
 
 
-def rank_senses(rows, context):
+def branch_match(sense, branch):
+    topics = BRANCH_TOPICS.get(branch or "", set())
+    if not topics:
+        return False
+    if sense["topics"] & topics:
+        return True
+    low = (sense["sense"] or "").lower()
+    return any(re.search(r"\b" + re.escape(t.replace("-", " ")), low) for t in topics)
+
+
+def rank_senses(rows, context, branch=None):
     ctx = tokens(context)
     senses = {}
     for r in rows:
@@ -146,6 +172,11 @@ def rank_senses(rows, context):
     scored = []
     for s in senses.values():
         score = 0.0
+        s["branch"] = branch_match(s, branch)
+        if s["branch"]:
+            score += 3
+        elif s["topics"] & OFF_TOPICS:
+            score -= 2
         if s["topics"] & SCIENCE_TOPICS:
             score += 2
         if SCIENCE_WORD_RE.search(s["sense"] or ""):
@@ -160,6 +191,24 @@ def rank_senses(rows, context):
     return scored
 
 
+def sense_confidence(ranked):
+    if not ranked:
+        return 0.0
+    if len(ranked) == 1:
+        return 1.0
+    best, second = ranked[0], ranked[1]
+    margin = best["score"] - second["score"]
+    if best.get("branch") and not second.get("branch"):
+        return 0.95
+    if second.get("branch") and not best.get("branch"):
+        return 0.3
+    if margin >= 2:
+        return 0.85
+    if margin >= 1:
+        return 0.7
+    return 0.5
+
+
 def pick_words(ranked, targets):
     if not ranked:
         return {}
@@ -171,7 +220,7 @@ def pick_words(ranked, targets):
         for r in s["rows"]:
             lang = LANG_ALIASES.get(r["lang"], r["lang"])
             if lang in targets and lang not in out:
-                out[lang] = dict(r, lang=lang, sense=s["sense"])
+                out[lang] = dict(r, lang=lang, sense=s["sense"], from_top=s is ranked[0])
     return out
 
 
@@ -239,8 +288,11 @@ FORM_OF_RE = re.compile(
 )
 
 
+INFLECTION_TAG_RE = re.compile(r"^(nominative|genitive|accusative|dative|ablative|vocative|locative|inflection|plural|singular)\b", re.I)
+
+
 def is_form_gloss(g):
-    return bool(g) and bool(FORM_OF_RE.search(g))
+    return bool(g) and bool(FORM_OF_RE.search(g) or INFLECTION_TAG_RE.match(g))
 
 
 CJK_RE = re.compile(r"^[\u3400-\u9fff\uf900-\ufaff]+$")
@@ -277,10 +329,28 @@ class Roots:
         r = self.db.execute("select word from word_key where lang = ? and key = ? limit 1", (lang, word_key(word))).fetchone()
         return r[0] if r else None
 
-    def entry(self, lang, word):
+    def entries(self, lang, word):
+        return [dict(r) for r in self.db.execute("select pos, ety, gloss, senses from word where lang = ? and word = ?", (lang, word))]
+
+    def pick_ety(self, lang, word, hint):
+        entries = [e for e in self.entries(lang, word) if e["pos"] not in ("name", "soft-redirect")] or self.entries(lang, word)
+        entries = [e for e in entries if not is_form_gloss(e["gloss"])] or entries
+        etys = sorted({e["ety"] for e in entries})
+        if len(etys) <= 1:
+            return (etys[0] if etys else 0), 1.0
+        overlap = {}
+        for e in entries:
+            n = len(tokens(" ".join([e["gloss"] or "", e["senses"] or ""])) & hint)
+            overlap[e["ety"]] = max(overlap.get(e["ety"], 0), n)
+        ranked = sorted(etys, key=lambda x: (-overlap[x], x))
+        if overlap[ranked[0]] > 0 and overlap[ranked[0]] > overlap[ranked[1]]:
+            return ranked[0], 0.85
+        return ranked[0], 0.4
+
+    def entry(self, lang, word, ety=None):
         rows = self.db.execute(
-            "select pos, gloss, roman, ipa from word where lang = ? and word = ? order by case pos when 'noun' then 0 when 'character' then 1 when 'verb' then 2 when 'adj' then 3 else 4 end",
-            (lang, word),
+            "select pos, gloss, roman, ipa from word where lang = ? and word = ? and (? is null or ety = ?) order by case pos when 'noun' then 0 when 'character' then 1 when 'verb' then 2 when 'adj' then 3 else 4 end",
+            (lang, word, ety, ety),
         ).fetchall()
         if not rows:
             return None
@@ -308,10 +378,11 @@ class Roots:
                 return e["gloss"]
         return self.text_gloss(form)
 
-    def chain(self, lang, word, depth=0, seen=None):
+    def chain(self, lang, word, ety=None, hint=frozenset(), depth=0, seen=None):
         seen = seen if seen is not None else {(lang, word)}
         steps = []
-        for r in self.db.execute("select rel, anc_lang, anc_form, anc_gloss from etym where lang = ? and word = ? order by ord", (lang, word)):
+        conf = 1.0
+        for r in self.db.execute("select rel, anc_lang, anc_form, anc_gloss from etym where lang = ? and word = ? and (? is null or ety = ?) order by ord", (lang, word, ety, ety)):
             if r["anc_form"].lstrip("*").startswith("-"):
                 break
             key = (r["anc_lang"], r["anc_form"])
@@ -326,11 +397,16 @@ class Roots:
                 resolved = self.resolve(last["lang"], last["form"])
                 if resolved and (last["lang"], resolved) not in seen:
                     seen.add((last["lang"], resolved))
-                    steps.extend(self.chain(last["lang"], resolved, depth + 1, seen))
-        return steps
+                    hop_hint = frozenset(hint | tokens(last["gloss"]))
+                    hop_ety, hop_conf = self.pick_ety(last["lang"], resolved, hop_hint)
+                    more, more_conf = self.chain(last["lang"], resolved, hop_ety, hop_hint, depth + 1, seen)
+                    if more:
+                        steps.extend(more)
+                        conf = min(conf, hop_conf, more_conf)
+        return steps, conf
 
-    def word_roots(self, lang, word):
-        return [dict(r) for r in self.db.execute("select root_lang, root_form, kind from word_root where lang = ? and word = ?", (lang, word))]
+    def word_roots(self, lang, word, ety=None):
+        return [dict(r) for r in self.db.execute("select root_lang, root_form, kind from word_root where lang = ? and word = ? and (? is null or ety = ?)", (lang, word, ety, ety))]
 
 
 def han_parts(word, db):
@@ -385,45 +461,53 @@ def choose_root(lang, word, chain, roots, db):
     return None, None, None
 
 
-def analyze(lang, word, db):
+def analyze(lang, word, db, hint=frozenset()):
     resolved = db.resolve(lang, word)
     if not resolved:
-        return None, [], (None, None, None)
-    chain = db.chain(lang, resolved)
-    roots = db.word_roots(lang, resolved)
+        return None, [], (None, None, None), 1.0, None
+    ety, conf = db.pick_ety(lang, resolved, hint)
+    chain, chain_conf = db.chain(lang, resolved, ety, hint)
+    conf = min(conf, chain_conf)
+    roots = db.word_roots(lang, resolved, ety)
     for c in chain:
         if c["lang"] == lang and not roots:
             base = db.resolve(lang, c["form"])
             if base:
-                roots = db.word_roots(lang, base)
+                base_ety, base_conf = db.pick_ety(lang, base, hint)
+                roots = db.word_roots(lang, base, base_ety)
+                conf = min(conf, base_conf)
     for r in roots:
         if r["kind"] == "root" and r["root_lang"] == lang and lang in ("he", "ar"):
             chain = [{"lang": lang, "form": r["root_form"], "rel": "root", "gloss": db.root_gloss(lang, r["root_form"])}] + chain
             break
     if lang in ("zh", "ja") and CJK_RE.match(resolved):
         chain = chain + han_parts(resolved, db)
-    return resolved, chain, choose_root(lang, resolved, chain, roots, db)
+    root_lang, root_form, root_gloss = choose_root(lang, resolved, chain, roots, db)
+    if is_form_gloss(root_gloss or ""):
+        root_gloss = None
+    return resolved, chain, (root_lang, root_form, root_gloss), conf, ety
 
 
 PHRASE_STOP = {"de", "la", "le", "les", "des", "du", "da", "do", "della", "del", "di", "the", "of", "der", "die", "das", "des", "van", "het", "el", "los", "las", "tou", "ha"}
 
 
-def analyze_word(lang, word, db):
-    resolved, chain, root = analyze(lang, word, db)
+def analyze_word(lang, word, db, hint=frozenset()):
+    resolved, chain, root, conf, ety = analyze(lang, word, db, hint)
     if root[1] or " " not in word.strip():
-        return resolved, chain, root
+        return resolved, chain, root, conf, ety
     parts = []
     for tok in word.split():
         if tok.lower() in PHRASE_STOP or len(word_key(tok)) < 3:
             continue
-        r2, c2, root2 = analyze(lang, tok, db)
+        r2, c2, root2, conf2, _e = analyze(lang, tok, db, hint)
         if root2[1]:
-            parts.append((tok, c2, root2))
+            parts.append((tok, c2, root2, conf2))
     if not parts:
-        return resolved, chain, root
-    chain = chain + [{"lang": lang, "form": tok, "rel": "part", "gloss": "", "chain": c2} for tok, c2, _r in parts]
-    langs = [r[0] for _t, _c, r in parts]
-    return resolved, chain, (langs[0] if len(set(langs)) == 1 else "mixed", " + ".join(r[1] for _t, _c, r in parts), " + ".join(short(r[2]) or "?" for _t, _c, r in parts))
+        return resolved, chain, root, conf, ety
+    chain = chain + [{"lang": lang, "form": tok, "rel": "part", "gloss": "", "chain": c2} for tok, c2, _r, _c in parts]
+    langs = [r[0] for _t, _c, r, _x in parts]
+    conf = min([conf] + [x for _t, _c, _r, x in parts])
+    return resolved, chain, (langs[0] if len(set(langs)) == 1 else "mixed", " + ".join(r[1] for _t, _c, r, _x in parts), " + ".join(short(r[2]) or "?" for _t, _c, r, _x in parts)), conf, ety
 
 
 def display_gloss(entry, t):
@@ -461,16 +545,21 @@ def node_rows(node, db, ayahs, targets):
             break
     else:
         return None, []
-    ranked = rank_senses(trs, context)
+    ranked = rank_senses(trs, context, node.get("branch"))
+    sense_conf = sense_confidence(ranked)
     picks = pick_words(ranked, targets)
     en = db.resolve("en", term)
     if en:
-        picks.setdefault("en", {"lang": "en", "word": en, "roman": "", "sense": ranked[0]["sense"] if ranked else ""})
+        picks.setdefault("en", {"lang": "en", "word": en, "roman": "", "sense": ranked[0]["sense"] if ranked else "", "from_top": True})
     rows = []
     for lang, t in sorted(picks.items()):
         surface = t["word"]
-        resolved, chain, (root_lang, root_form, root_gloss) = analyze_word(lang, surface, db)
-        entry = db.entry(lang, resolved) if resolved else None
+        hint = frozenset(tokens(term) | tokens(t.get("sense")))
+        resolved, chain, (root_lang, root_form, root_gloss), word_conf, ety = analyze_word(lang, surface, db, hint)
+        entry = db.entry(lang, resolved, ety) if resolved else None
+        confidence = sense_conf * (1.0 if t.get("from_top", True) else 0.8)
+        if lang != "en":
+            confidence = min(confidence, word_conf)
         texts = []
         if lang == "ar" and ayahs:
             q = quran_hits(ayahs, surface)
@@ -482,20 +571,21 @@ def node_rows(node, db, ayahs, targets):
             "gloss": display_gloss(entry, t),
             "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
             "chain": chain, "root_texts": texts, "source": SOURCE, "en_term": term, "sense": t.get("sense") or "",
+            "confidence": round(confidence, 3),
         })
     return term, rows
 
 
 def fetch_nodes(db_url):
     sql = (
-        "select coalesce(json_agg(t order by t.slug), '[]'::json) from (select id, slug, title, kind, summary from graph.nodes "
+        "select coalesce(json_agg(t order by t.slug), '[]'::json) from (select id, slug, title, kind, branch, summary from graph.nodes "
         "where visibility = 'public' and superseded_by is null and kind in ('concept','law','derivation')) t"
     )
     out = subprocess.run(["psql", db_url, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout
     return json.loads(out.strip() or "[]")
 
 
-COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense"]
+COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence"]
 
 
 def write_rows(db_url, rows, node_ids):
@@ -504,6 +594,9 @@ def write_rows(db_url, rows, node_ids):
         for r in rows:
             w.writerow([json.dumps(r[c], ensure_ascii=False) if c in ("chain", "root_texts") else ("" if r[c] is None else r[c]) for c in COLUMNS])
         path = f.name
+    bad = [i for i in node_ids if not UUID_RE.fullmatch(str(i))]
+    if bad:
+        raise ValueError(f"not a node id: {bad[:3]}")
     ids = ",".join("'" + i + "'" for i in node_ids) or "null"
     try:
         subprocess.run(

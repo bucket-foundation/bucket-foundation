@@ -28,6 +28,8 @@ export interface NodeWord {
   rootTexts: RootText[];
   enTerm: string | null;
   sense: string | null;
+  confidence: number;
+  uncertain: boolean;
   source: string;
 }
 
@@ -43,8 +45,12 @@ export interface NodeWordRow {
   root_texts: unknown;
   en_term: string | null;
   sense: string | null;
+  confidence: number | string | null;
   source: string;
 }
+
+export const HIDE_BELOW = 0.5;
+export const UNCERTAIN_BELOW = 0.75;
 
 export const LANG_NAMES: Record<string, string> = {
   en: "English", he: "Hebrew", ar: "Arabic", zh: "Chinese", sa: "Sanskrit", la: "Latin", grc: "Ancient Greek",
@@ -75,7 +81,13 @@ function asArray<T>(v: unknown): T[] {
   return Array.isArray(v) ? (v as T[]) : [];
 }
 
+function readConfidence(v: unknown): number {
+  const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
+  return Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
+}
+
 export function toNodeWord(row: NodeWordRow): NodeWord {
+  const confidence = readConfidence(row.confidence);
   return {
     lang: row.lang,
     langName: langName(row.lang),
@@ -90,8 +102,14 @@ export function toNodeWord(row: NodeWordRow): NodeWord {
     rootTexts: asArray<RootText>(row.root_texts).filter((t) => t && Array.isArray(t.samples)),
     enTerm: row.en_term || null,
     sense: row.sense || null,
+    confidence,
+    uncertain: confidence < UNCERTAIN_BELOW,
     source: row.source,
   };
+}
+
+export function shownWords(words: NodeWord[]): NodeWord[] {
+  return words.filter((w) => w.confidence >= HIDE_BELOW);
 }
 
 export function orderWords(words: NodeWord[]): NodeWord[] {

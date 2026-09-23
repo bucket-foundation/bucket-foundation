@@ -43,6 +43,7 @@ function WordRow({ w }: { w: NodeWord }) {
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span lang={w.lang} dir="auto" className="text-[20px] leading-tight text-[color:var(--basalt)] break-words">{w.word}</span>
           {w.roman && <span className="italic text-[13px] text-[color:var(--basalt-2)]">{w.roman}</span>}
+          {w.uncertain && <span className="small-caps text-[10px] tracking-[0.14em] px-1.5 py-0.5 border border-[color:var(--hairline)] rounded-sm text-[color:var(--basalt-3)]">uncertain match</span>}
         </div>
         {w.gloss && <p className="text-[13px] leading-[1.6] text-[color:var(--basalt-2)] max-w-[68ch]">{w.gloss}</p>}
         {w.rootForm && (
@@ -111,9 +112,10 @@ export default function WordsSection({ nodeId }: { nodeId: string }) {
   const term = list.find((w) => w.enTerm)?.enTerm ?? null;
   const shown = all ? list : list.slice(0, FIRST);
   const rooted = list.filter((w) => w.rootForm).length;
+  const uncertain = list.filter((w) => w.uncertain).length;
 
   return (
-    <Section id="words" level="awareness" title="in other languages" meta={list.length ? `${list.length} languages · ${rooted} with a root` : undefined}>
+    <Section id="words" level="awareness" title="in other languages" meta={list.length ? `${list.length} languages · ${rooted} with a root${uncertain ? ` · ${uncertain} uncertain` : ""}` : undefined}>
       {state === "loading" && <p className="text-[13px] text-[color:var(--basalt-3)]">Reading the words.</p>}
       {(state === "error" || state === "outage") && (
         <p className="text-[13px] text-[color:var(--basalt-3)]">

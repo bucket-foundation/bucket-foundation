@@ -79,6 +79,30 @@ ENTRIES = [
         "senses": [{"glosses": ["speed"]}],
     },
     {
+        "word": "mass", "lang": "English", "lang_code": "en", "pos": "noun",
+        "senses": [{"glosses": ["Quantity of matter."], "topics": ["physics"], "translations": [
+            {"lang_code": "he", "word": "מַסָּה", "sense": "quantity of matter"},
+            {"lang_code": "la", "word": "mōlēs", "sense": "quantity of matter"},
+            {"lang_code": "ar", "word": "كُتْلَة", "sense": "quantity of matter"},
+        ]}],
+    },
+    {
+        "word": "inflation", "lang": "English", "lang_code": "en", "pos": "noun",
+        "senses": [
+            {"glosses": ["Rise in prices."], "topics": ["economics", "sciences"], "translations": [
+                {"lang_code": l, "word": w, "sense": "increase in the quantity of money"} for l, w in
+                [("he", "אינפלציה"), ("la", "inflatio"), ("ar", "تَضَخُّم"), ("zh", "通貨膨脹"), ("es", "inflación")]
+            ]},
+            {"glosses": ["Early expansion of the universe."], "topics": ["cosmology"], "translations": [
+                {"lang_code": l, "word": w, "sense": "inflation of the universe"} for l, w in
+                [("he", "התפשטות"), ("la", "inflatio"), ("zh", "暴脹")]
+            ]},
+        ],
+    },
+    {"word": "מסה", "lang": "Hebrew", "lang_code": "he", "pos": "noun", "etymology_number": 1, "senses": [{"glosses": ["mass, bulk"]}]},
+    {"word": "מסה", "lang": "Hebrew", "lang_code": "he", "pos": "name", "etymology_number": 2, "etymology_templates": [{"name": "he-rootbox", "args": {"1": "נ־ס־ה"}}], "senses": [{"glosses": ["Massah, a biblical place"]}]},
+    {"word": "מסה", "lang": "Hebrew", "lang_code": "he", "pos": "verb", "etymology_number": 3, "etymology_templates": [{"name": "he-rootbox", "args": {"1": "מ־ס־ה"}}], "senses": [{"glosses": ["to melt, dissolve"]}]},
+    {
         "word": "سرعة", "lang": "Arabic", "lang_code": "ar", "pos": "noun",
         "senses": [{"glosses": ["verbal noun of سَرُعَ"], "form_of": [{"word": "سَرُعَ"}]}],
     },
@@ -96,7 +120,7 @@ class ExtractTests(unittest.TestCase):
         self.assertEqual(forms[-1], ("ine-pro", "*lewk-"))
         self.assertIn(("ang", "lēoht"), forms)
         self.assertEqual(r["etym"][-1][5], "to shine")
-        self.assertIn(("en", "light", "ine-pro", "*lewk-", "proto"), r["word_root"])
+        self.assertIn(("en", "light", "ine-pro", "*lewk-", "proto", 0), r["word_root"])
 
     def test_translations_include_sense_level_and_split_han(self):
         r = self.rows("light")
@@ -107,7 +131,7 @@ class ExtractTests(unittest.TestCase):
 
     def test_semitic_and_han_roots(self):
         he = self.rows("אור", "he")
-        self.assertIn(("he", "אור", "he", "א־ו־ר", "root"), he["word_root"])
+        self.assertIn(("he", "אור", "he", "א־ו־ר", "root", 0), he["word_root"])
         root = self.rows("א־ו־ר", "he")
         self.assertIn(("he", "א־ו־ר", "related to light, illumination"), root["root"])
         zh = self.rows("光", "zh")
@@ -157,7 +181,7 @@ class NodeWordTests(unittest.TestCase):
     def test_resume_skips_done_files(self):
         rx.main(["--cache", os.path.dirname(self.db_path) + "/cache", "--out", self.db_path, "--workers", "1"])
         n = self.roots.db.execute("select count(*) from translation").fetchone()[0]
-        self.assertEqual(n, 6)
+        self.assertEqual(n, 17)
 
     def test_head_terms(self):
         self.assertEqual(nw.head_terms("Speed Of Light")[0], "speed of light")
@@ -178,6 +202,29 @@ class NodeWordTests(unittest.TestCase):
         self.assertEqual((by["la"]["word"], by["la"]["root_form"]), ("lūx", "*louks"))
         self.assertEqual((by["en"]["root_lang"], by["en"]["root_form"], by["en"]["root_gloss"]), ("ine-pro", "*lewk-", "to shine"))
         self.assertTrue(all(r["source"] == nw.SOURCE for r in rows))
+
+    def test_a_homograph_takes_the_root_of_the_entry_that_means_the_word(self):
+        _t, rows = nw.node_rows({"id": "n3", "title": "Mass", "branch": "02-physics", "summary": ""}, self.roots, [], self.roots.langs)
+        he = {r["lang"]: r for r in rows}["he"]
+        self.assertIsNone(he["root_form"])
+        self.assertEqual(he["gloss"], "mass, bulk")
+        self.assertGreaterEqual(he["confidence"], nw.UNCERTAIN_BELOW)
+
+    def test_the_node_branch_picks_the_sense(self):
+        _t, rows = nw.node_rows({"id": "n4", "title": "Inflation", "branch": "06-cosmology", "summary": ""}, self.roots, [], self.roots.langs)
+        by = {r["lang"]: r for r in rows}
+        self.assertEqual(by["he"]["word"], "התפשטות")
+        self.assertEqual(by["zh"]["word"], "暴脹")
+        self.assertGreaterEqual(by["he"]["confidence"], nw.UNCERTAIN_BELOW)
+        _t, rows = nw.node_rows({"id": "n5", "title": "Inflation", "branch": "07-mind", "summary": ""}, self.roots, [], self.roots.langs)
+        self.assertEqual({r["lang"]: r for r in rows}["he"]["word"], "התפשטות")
+
+    def test_sense_confidence_bands(self):
+        one = [{"score": 3, "branch": False}]
+        self.assertEqual(nw.sense_confidence(one), 1.0)
+        self.assertEqual(nw.sense_confidence([{"score": 5, "branch": True}, {"score": 6, "branch": False}]), 0.95)
+        self.assertEqual(nw.sense_confidence([{"score": 5, "branch": False}, {"score": 4.5, "branch": False}]), 0.5)
+        self.assertEqual(nw.sense_confidence([{"score": 5, "branch": False}, {"score": 4, "branch": True}]), 0.3)
 
     def test_arabic_skeleton_matching(self):
         self.assertEqual(nw.arabic_skeleton("نُورُ"), "نور")

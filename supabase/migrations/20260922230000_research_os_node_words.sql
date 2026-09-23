@@ -12,9 +12,12 @@ create table if not exists graph.node_words (
   root_texts  jsonb       not null default '[]'::jsonb check (jsonb_typeof(root_texts) = 'array'),
   en_term     text,
   sense       text,
+  confidence  real        not null default 1 check (confidence >= 0 and confidence <= 1),
   source      text        not null,
   created_at  timestamptz not null default now()
 );
+
+alter table graph.node_words add column if not exists confidence real not null default 1 check (confidence >= 0 and confidence <= 1);
 
 create unique index if not exists node_words_node_lang_word_uq on graph.node_words (node_id, lang, word);
 create index if not exists node_words_node_idx on graph.node_words (node_id);

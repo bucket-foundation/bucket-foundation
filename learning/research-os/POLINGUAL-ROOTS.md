@@ -12,16 +12,16 @@ Founder direction, 2026-09-22. Beads: "Polingual on the node: meanings in each l
 
 | Table | Rows | Holds |
 |---|---|---|
-| `word` | 7,392,244 | lang, word, pos, first gloss, romanization, IPA |
-| `etym` | 5,905,376 | each word's line of descent, nearest ancestor first, from inh/der/bor templates, the etymology tree inside `etymon`, affix templates, and form-of senses |
+| `word` | 7,473,519 | lang, word, pos, etymology number, first gloss, romanization, IPA, sense glosses |
+| `etym` | 5,914,721 | each word's line of descent, nearest ancestor first, from inh/der/bor templates, the etymology tree inside `etymon`, affix templates, and form-of senses |
 | `root` | 18,086 | a root and its meaning: Hebrew root pages, Sanskrit roots, Han components, and proto-language roots glossed in a template |
-| `word_root` | 123,926 | word to root: Hebrew and Arabic triliteral roots, Sanskrit roots, Han components, and the deepest proto-language ancestor |
+| `word_root` | 124,999 | word to root: Hebrew and Arabic triliteral roots, Sanskrit roots, Han components, and the deepest proto-language ancestor |
 | `translation` | 3,497,115 | English word, sense, target language, word, romanization, from top-level and per-sense translation tables |
 | `text_gloss` | 374,193 | a form and the gloss the etymology prose gives it, such as `*lewk-` "to shine" |
 
 The other silver copies are `_intake/photons/index.sqlite` (209k photons) and the local `bucket-pgvector` table `photons_full` (6.5M rows with LaBSE vectors).
 
-**Gold.** `graph.node_words` in the Research OS database, migration `supabase/migrations/20260922230000_research_os_node_words.sql`. One row per node and language: word, romanization, gloss, root language, root form, root gloss, the descent as `chain` jsonb, `root_texts` jsonb, the English term and sense it came through, and `source`, the CC BY-SA attribution. RLS reads it through the node's visibility; the service role reads it for the app.
+**Gold.** `graph.node_words` in the Research OS database, migration `supabase/migrations/20260922230000_research_os_node_words.sql`. One row per node and language: word, confidence, romanization, gloss, root language, root form, root gloss, the descent as `chain` jsonb, `root_texts` jsonb, the English term and sense it came through, and `source`, the CC BY-SA attribution. RLS reads it through the node's visibility; the service role reads it for the app.
 
 ## Matching
 
@@ -29,9 +29,15 @@ The other silver copies are `_intake/photons/index.sqlite` (209k photons) and th
 
 For each word it resolves the dictionary entry (diacritics and macrons stripped), walks the etymology across languages up to five hops, and picks the root: a Hebrew or Arabic triliteral root (it stays first in the descent when a glossed proto-Semitic root is chosen instead), a Sanskrit root, the deepest glossed proto-language root, the Han characters with their meanings, or the deepest ancestor in another language. For Arabic it strips the word to its consonantal skeleton and counts Quran verses in `_intake/sacred-history-corpus/work/tanzil-quran-simple.txt` that contain it after a clitic prefix (al-, wa-, fa-, bi-, li-) and, for skeletons of four letters or more, a pronoun or plural suffix, with up to three verses quoted verbatim from Tanzil. Homographs share a skeleton, so a count covers every word spelled that way. The ctext files hold structure only, so Chinese has no root-text lines yet.
 
+## Confidence
+
+Each row carries a confidence from 0 to 1, the lower of two scores. The sense score says how clear the English sense was: 1 for a single sense, 0.95 when the winning sense matches the node's branch and the runner-up does not, 0.85 or 0.7 by margin, 0.5 for a near tie, 0.3 when a sense matching the branch lost. A word taken from a lower-ranked sense keeps 0.8 of it. The entry score says which dictionary entry the word is: 1 when the headword has one etymology, 0.85 when the English term and sense words match one etymology's glosses and no other, 0.4 when two etymologies tie. Roots and descent come from the chosen etymology alone.
+
+The page hides rows below 0.5 and marks rows from 0.5 to 0.75 "uncertain match". A hand check of 25 random rows per band on 2026-09-23 found 13 of 25 right below 0.5, 20 of 24 right from 0.5 to 0.75, and 24 of 25 right at 0.75 and above.
+
 ## Counts
 
-Run of 2026-09-22 over the local graph: 670 public idea nodes, 564 linked, 10,805 rows across 35 languages, 7,337 with a root, 6,549 with the root's meaning, 61 Arabic words with Quran verses. Proto-language roots with a gloss in silver: 15,710.
+Run of 2026-09-23 over the local graph: 670 public idea nodes, 564 linked, 10,239 rows across 35 languages. 6,026 rows at 0.75 or above, 3,234 uncertain, 979 hidden; 560 nodes show at least one word outside English. Of the shown rows, 6,135 have a root, 5,513 the root's meaning, and 33 Arabic words carry Quran verses. Proto-language roots with a gloss in silver: 15,710.
 
 ## Rerun
 
