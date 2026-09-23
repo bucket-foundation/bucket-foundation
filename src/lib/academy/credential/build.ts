@@ -1,23 +1,3 @@
-/**
- * src/lib/academy/credential/build.ts (bkt-52p)
- * ----------------------------------------------------------------------------
- * Turn a learner's Mastery Profile (src/lib/academy/profile.ts +
- * mastery.ts) into the achievement[] of an OB3 OpenBadgeCredential.
- *
- * THE ISSUANCE BAR (justified): a concept is credential-eligible only when the
- * learner has demonstrated DEEP, EVIDENCE-BACKED mastery of it:
- * 1. depth reached >= Derive (ConceptSignal.depth ∈ {derive, teach}), AND
- * 2. it counts as mastered (mastery >= 0.70, the app's own ★ threshold), AND
- * 3. there is an evidence trail: at least MIN_REPS spaced re-demonstrations
- * (reps), i.e. it was retrieved-with-feedback over time. Cramming once fails.
- * Rationale: the credential's trust must come from being mechanically tied to
- * doing the real retrieval work. Recall/Apply are real learning but not a
- * recruiter-grade claim; "Derive or Teach-back, mastered, with spaced evidence"
- * is the floor for "this person can do this from foundations."
- *
- * HARD GATE (bkt-4at): we copy NO numeric score into the credential. We carry
- * the depth (an enum), the canon alignment, and an evidence narrative only.
- */
 import type { PublicProfile } from "../profile";
 import type { BranchSummary, ConceptSignal } from "../mastery";
 import { loadCorpusForBranch } from "../corpus";
@@ -33,7 +13,7 @@ import type {
 } from "./types";
 import { OB3_CONTEXT } from "./types";
 
-export const MIN_REPS = 3; // spaced re-demonstration floor (the evidence trail)
+export const MIN_REPS = 3;
 const ELIGIBLE_DEPTHS = new Set(["derive", "teach"]);
 
 const DEPTH_PRETTY: Record<string, string> = {
@@ -49,23 +29,16 @@ export interface EligibleConcept {
   concept: ConceptSignal;
 }
 
-/** Resolve the canonical, resolvable URL for a canon concept (for alignment). */
 function conceptUrl(branch: string, atomId: string): string {
-  // The Academy concept is addressable in-app; we point at the deep-link the
-  // static app understands (branch + atom). Resolvable + stable.
   return `${SITE_ORIGIN}/research-os/learn/${encodeURIComponent(branch)}/${encodeURIComponent(atomId)}`;
 }
 
-/** Pull the canon concept gloss for richer alignment text (best-effort). */
 function conceptGloss(branch: string, atomId: string): string | undefined {
   const corpus = loadCorpusForBranch(branch);
   const atom = corpus?.atoms?.find((a) => a.id === atomId);
   return atom?.gloss || atom?.title;
 }
 
-/**
- * Select the concepts in a profile that clear the issuance bar. Pure + testable.
- */
 export function selectEligible(profile: PublicProfile): EligibleConcept[] {
   const out: EligibleConcept[] = [];
   for (const b of profile.branches as BranchSummary[]) {
@@ -79,7 +52,6 @@ export function selectEligible(profile: PublicProfile): EligibleConcept[] {
       }
     }
   }
-  // deepest-first, then leverage, the most impressive proven concepts lead.
   out.sort(
     (a, b) =>
       depthRank(b.concept.depth) - depthRank(a.concept.depth) ||
@@ -108,7 +80,6 @@ function buildAchievement(e: EligibleConcept): Achievement {
     },
   ];
 
-  // Evidence narrative: mechanical, NO score. Describes WHAT was done.
   const repNote =
     concept.reps >= 6
       ? `${concept.reps} spaced re-demonstrations`
@@ -142,13 +113,8 @@ function buildAchievement(e: EligibleConcept): Achievement {
   };
 }
 
-/**
- * Build the UNSIGNED OB3 OpenBadgeCredential for a learner. `id` is the stable
- * credential id (a uuid the caller persists); the credential's `id` field is the
- * resolvable hosted URL built from it.
- */
 export function buildCredential(args: {
-  credentialId: string; // uuid
+  credentialId: string;
   handle: string;
   displayName: string | null;
   profile: PublicProfile;
@@ -185,7 +151,6 @@ export function buildCredential(args: {
       id: statusUrl,
       type: "BucketRevocationStatus",
     },
-    // bkt-rdg + bkt-4at: provenance/validity statement baked into the VC.
     "https://bucket.foundation/ns#provenance":
       "Issued by Bucket Foundation from the learner's own public Mastery Profile. " +
       "Each achievement attests evidence-backed demonstrated mastery of a single " +

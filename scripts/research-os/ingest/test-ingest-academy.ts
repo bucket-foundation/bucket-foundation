@@ -1,16 +1,3 @@
-/**
- * Unit tests: the Academy corpus importer
- * (src/lib/research-os/ingest/academy.ts, task item 1). A small fixture
- * corpus exercises the depth/tier heuristic, the kind heuristic, a
- * `requires` cycle, and an unresolved `requires` reference; a second block
- * runs the importer against the REAL 487-atom corpus on disk to confirm
- * the shipped data produces zero tier violations and zero orphan edges
- * (task item 3's stability requirement, against real data rather than
- * only a fixture).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-academy.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -28,10 +15,6 @@ import {
 } from "../../../src/lib/research-os/ingest/academy";
 import { checkOrphanEdges, checkTierMonotonicity } from "../../../src/lib/research-os/ingest/validate";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
-
-// ---------------------------------------------------------------------------
-// academyNodeSlug / mapAtomKind
-// ---------------------------------------------------------------------------
 
 test("academyNodeSlug: deterministic on (sourceFile, atomId)", () => {
   const a = academyNodeSlug("learning/app/corpus/02-physics.json", "kinematics");
@@ -58,10 +41,6 @@ test("mapAtomKind: 'law' and 'theorem' map to law, everything else (including mi
   assert.equal(mapAtomKind(null), "concept");
 });
 
-// ---------------------------------------------------------------------------
-// isAcademyCorpusFile
-// ---------------------------------------------------------------------------
-
 test("isAcademyCorpusFile: accepts a branch file, rejects the language/manifest shapes", () => {
   assert.equal(isAcademyCorpusFile({ meta: { branch: "02-physics" }, atoms: [{ id: "a", title: "A" }] }), true);
   assert.equal(isAcademyCorpusFile({ meta: { branch: "lang-core" }, atoms: [{ id: "eight", gloss: "eight (8)" }] }), false, "no title field");
@@ -70,10 +49,6 @@ test("isAcademyCorpusFile: accepts a branch file, rejects the language/manifest 
   assert.equal(isAcademyCorpusFile({ meta: {}, atoms: [] }), false, "empty atoms array");
   assert.equal(isAcademyCorpusFile(null), false);
 });
-
-// ---------------------------------------------------------------------------
-// computeRequiresDepth / tier heuristic
-// ---------------------------------------------------------------------------
 
 function fixtureFile(atoms: AcademyAtom[], sourceFile = "learning/app/corpus/fixture.json", branch = "02-physics"): AcademyCorpusFile {
   return { sourceFile, branch, atoms };
@@ -100,7 +75,7 @@ test("computeRequiresDepth: a diamond takes the LONGER of its two paths (the max
   const atoms: AcademyAtom[] = [
     { id: "a", title: "A", requires: [] },
     { id: "b", title: "B", requires: ["a"] },
-    { id: "c", title: "C", requires: ["a", "b"] }, // depends on both a (depth 0) and b (depth 1)
+    { id: "c", title: "C", requires: ["a", "b"] },
   ];
   const { depth } = computeRequiresDepth(atoms);
   assert.equal(depth.get("c"), 2, "expected 1 + max(depth(a)=0, depth(b)=1) = 2, taking the longer arm through b");
@@ -123,10 +98,6 @@ test("computeRequiresDepth: a requires id absent from the file is reported inste
   assert.deepEqual(unresolved, [["a", "ghost"]]);
   assert.equal(depth.get("a"), 0, "the unresolvable requires contributes nothing, so a reads as a root");
 });
-
-// ---------------------------------------------------------------------------
-// buildAcademyFileImport: tier assignment, edge direction, review items
-// ---------------------------------------------------------------------------
 
 test("buildAcademyFileImport: tier = ACADEMY_TIER_BASE + depth, monotonic by construction", () => {
   const file = fixtureFile([
@@ -182,10 +153,6 @@ test("buildAcademyFileImport: an unresolved requires id produces an unresolved_r
   assert.equal(result.reviewList[0].kind, "unresolved_requires");
 });
 
-// ---------------------------------------------------------------------------
-// Stable / idempotent: same fixture in, byte-identical result out
-// ---------------------------------------------------------------------------
-
 test("buildAcademyImport: identical input produces identical output on a second run (pure function determinism)", () => {
   const files = [
     fixtureFile(
@@ -200,10 +167,6 @@ test("buildAcademyImport: identical input produces identical output on a second 
   const second = buildAcademyImport(files);
   assert.deepEqual(first, second);
 });
-
-// ---------------------------------------------------------------------------
-// Against the real, shipped 487-atom corpus
-// ---------------------------------------------------------------------------
 
 const REPO_ROOT = resolve(__dirname, "..", "..", "..");
 

@@ -41,7 +41,6 @@ const EVIDENCE_LABEL: Record<string, string> = {
   explanation: "wrote an explanation",
 };
 
-/** The node page: one node, the person's standing on it, and every verb of the five levels in place. */
 export default function NodeView({ slug }: { slug: string }) {
   const { accessToken } = useSession();
   const [data, setData] = useState<NodeData | null>(null);
@@ -52,9 +51,6 @@ export default function NodeView({ slug }: { slug: string }) {
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/research-os/node?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
-      // The code is read before any setState, so no render happens
-      // with the status set and the code still null, which showed
-      // one frame of the permanent copy for a passing outage.
       const outageCode = res.ok ? null : await readErrorCode(res);
       setErrorCode(outageCode);
       setStatus(res.status);
@@ -76,7 +72,6 @@ export default function NodeView({ slug }: { slug: string }) {
   if (!data) return <ErrorState body="Could not open the node." retry={() => void load()} />;
 
   const { node, standing } = data;
-  // "Made of" is for ideas on the public graph, the nodes the decomposition covers.
   const provenanceType = typeof node.provenance?.type === "string" ? node.provenance.type : null;
   const showMakeup = node.visibility === "public" && isIdeaNode({ kind: node.kind, provenanceType });
   const showWords = WORD_KINDS.has(node.kind);

@@ -2,15 +2,6 @@
 
 import { Component, type ReactNode } from "react";
 
-/**
- * Error boundary around the WebGL Canvas. If Three.js fails to acquire
- * a context (browser blocks WebGL via fingerprint shields, hardware
- * acceleration off, sandboxed renderer, etc.), the boundary renders
- * empty space where the globe would have been, no visual fallback.
- * The rest of the page keeps working. A console.warn is the only
- * trace, so a failed context shows up in devtools without ever
- * changing what the page looks like.
- */
 export class GlobeErrorBoundary extends Component<
   { children: ReactNode },
   { hasError: boolean }
@@ -18,10 +9,6 @@ export class GlobeErrorBoundary extends Component<
   state = { hasError: false };
   private lastStatus: string | null = null;
 
-  // Chromium puts the driver's reason for refusing a WebGL context in the
-  // event's statusMessage (GPU process disabled, blocklisted adapter, too
-  // many live contexts). The event fires on the canvas before Three.js
-  // throws, so a capturing listener on document sees it first.
   private onCreationError = (event: Event) => {
     const status = (event as WebGLContextEvent).statusMessage || "";
     this.lastStatus = status;

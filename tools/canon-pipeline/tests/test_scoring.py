@@ -1,6 +1,5 @@
 import scoring
 
-
 def test_high_impact_classic():
     rec = {
         "title": "Extraterrestrial Cause for the Cretaceous-Tertiary Extinction",
@@ -15,7 +14,6 @@ def test_high_impact_classic():
     assert s >= 70, (s, reasons)
     assert any("foundational venue" in r for r in reasons)
 
-
 def test_retracted_penalised():
     rec = {"title": "x", "year": 2020, "citation_count": 0, "_crossref_type": "journal-article", "is_retracted": True, "oa_status": {}}
     s, reasons = scoring.score(rec)
@@ -23,7 +21,6 @@ def test_retracted_penalised():
     s_clean, _ = scoring.score(clean)
     assert s_clean - s == 30
     assert any("retracted" in r for r in reasons)
-
 
 def test_branch_hints_biophysics():
     rec = {"title": "Mitochondrial membrane protein folding", "concepts": ["cell biology"]}

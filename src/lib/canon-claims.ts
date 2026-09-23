@@ -1,19 +1,15 @@
-// canon-claims.ts, server-only filesystem scanner for
-// bucket-canon/05-biophysics/sub-claims/ (curated candidate claims with
-// timestamps + source citations).
-
 import fs from "fs";
 import path from "path";
 
 export type ClaimCard = {
-  branch: string;          // "05-biophysics"
-  concept: string;         // "melanin"
-  slug: string;            // "001-fascinated-by-it..."
+  branch: string;
+  concept: string;
+  slug: string;
   title: string;
   excerpt: string;
   videoTitle: string;
   videoSlug: string;
-  url: string;             // YouTube URL with ?t=
+  url: string;
   timestamp: string;
   sec: number;
   score: number;
@@ -24,7 +20,6 @@ export type ClaimCard = {
 
 const REPO_ROOT = path.resolve(process.cwd());
 const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
-// All branch dirs that match `\d{2}-*` and contain a `sub-claims/` folder.
 function getBranchDirs(): { branch: string; root: string }[] {
   if (!fs.existsSync(CANON_ROOT)) return [];
   const out: { branch: string; root: string }[] = [];
@@ -69,7 +64,6 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
     .split(/[,/]\s*/)
     .map((s) => s.trim())
     .filter(Boolean);
-  // Pattern signals come from the same line as Score, split on '·'
   const psLine = (raw.match(/^- \*\*Score\*\*:.*$/m)?.[0] || "");
   const ps = (psLine.split("Pattern signals**:")[1] || "")
     .split(/[,/]\s*/)
@@ -83,7 +77,6 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
 
   const capturedAt = get("Captured");
 
-  // Excerpt: text after "## Excerpt" up to next "## "
   const excerptIdx = raw.indexOf("## Excerpt");
   const provIdx = raw.indexOf("## Provenance", excerptIdx);
   let excerpt = "";
@@ -92,7 +85,6 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
     excerpt = excerpt.replace(/^>\s*/gm, "").trim();
   }
 
-  // Provenance, video slug
   const provSlugMatch = raw.match(/Video slug:\s*`([^`]+)`/);
   const videoSlug = provSlugMatch?.[1] || "";
 
@@ -156,9 +148,6 @@ export function getConcepts(): { concept: string; count: number }[] {
     .sort((a, b) => b.count - a.count);
 }
 
-// Map a `/canon/<slug>` route slug to the on-disk branch directory name.
-// Same mapping as src/lib/canon.ts DIR_TO_SLUG, inverted. Kept as a local
-// copy so this file stays standalone-importable.
 const BRANCH_SLUG_TO_DIR: Record<string, string> = {
   "mathematics":   "01-mathematics",
   "physics":       "02-physics",
@@ -173,7 +162,6 @@ const BRANCH_SLUG_TO_DIR: Record<string, string> = {
   "earth":         "10-earth",
 };
 
-/** Return all claims for one branch (by canon route slug), grouped by concept. */
 export function getClaimsForBranch(branchSlug: string): {
   total: number;
   concepts: { concept: string; claims: ClaimCard[] }[];

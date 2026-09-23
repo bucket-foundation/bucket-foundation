@@ -1,21 +1,3 @@
-/**
- * Files BEADS-PENDING.jsonl rows as beads, duplicate-safe. A dry run
- * unless --apply is given; a dry run sends only GET requests.
- *
- *   npm run beads:dispatch -- --source research-os-ai
- *   npm run beads:dispatch -- --source research-os-ai --apply
- *
- * Auth comes from NUCLEUS_ADMIN_USER and NUCLEUS_ADMIN_PASSWORD. The API
- * is --api, else .beads/remote.json's api_url (gitignored, so absent in a
- * worktree), else the bucket-foundation instance. URLs in
- * forbidden_urls of ~/agfarms/.nucleus/config.json or this repo's
- * .nucleus/config.json are refused.
- *
- * Exit 0: every scoped row is filed with its edges read back, or a dry
- * run found nothing wrong. Exit 1: a row needs attention (see its line).
- * Exit 2: the run stopped early, before any write when the queue could
- * not be listed.
- */
 import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import path from "node:path";
@@ -120,7 +102,6 @@ async function main(): Promise<number> {
   }
   let release = () => {};
   try {
-    // The lock comes before the ledger read, so the ledger is the one the last run left.
     if (args.apply) release = acquireLock(path.join(tmpdir(), "bkt-beads-dispatch.lock"));
     const { rows, problems } = parsePending(readFileSync(args.pending, "utf8"), args.sources);
     for (const p of problems) console.log(`  [pending] ${p}`);

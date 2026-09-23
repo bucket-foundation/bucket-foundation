@@ -30,14 +30,14 @@ P0 identity
 P1 cost
 5. x402 daily spend cap is a module-level variable in a serverless function (`src/app/api/research/route.ts:92`); each warm instance has its own counter.
 
-6. Viatika meter stub returns `balanceUsd: 999` (`src/lib/meter.ts:29-33`); `/api/chat` has a session gate and no per-user limit.
+6. Viatika meter stub returns `balanceUsd: 999` (`src/lib/meter.ts:16-33`); `/api/chat` has a session gate and no per-user limit.
 
 7. hypothesis-engine has no dollar ceiling per campaign, only reactive rate-limit backoff.
 
 P1 reliability
 8. Tutor LLM path and all mirror jobs run on the founder laptop. Laptop sleep = production outage.
 
-9. `academy_profiles` DDL lives in `scripts/sql/`, never in `supabase/migrations/`; a fresh env misses it. Env var drift: `SUPABASE_SERVICE_ROLE_KEY` vs `SUPABASE_SERVICE_KEY` (`tools/hypothesis-engine/hte/corpus/production.py:1089`).
+9. `academy_profiles` DDL lives in `scripts/sql/`, never in `supabase/migrations/`; a fresh env misses it. Env var drift: `SUPABASE_SERVICE_ROLE_KEY` vs `SUPABASE_SERVICE_KEY` (`tools/hypothesis-engine/hte/corpus/production.py:516`).
 
 10. This branch has 2 of 18 migrations; code depending on the `graph` schema ships here anyway.
 

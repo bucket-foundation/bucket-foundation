@@ -19,7 +19,6 @@ interface Data {
 const branchName = (b: string) => b.replace(/^\d+-/, "").replace(/-/g, " ");
 const KIND: Record<string, string> = { derives_from: "derives from", generalizes: "generalizes", example_of: "is an example of", cites: "cites", extends: "extends", replicates: "replicates", answers: "answers", contradicts: "contradicts", reviews: "reviews" };
 
-/** Internalization on home: the connections a person holds across branches, and the bridges one step away. */
 export default function ConnectionsPanel() {
   const [data, setData] = useState<Data | null>(null);
   const [status, setStatus] = useState<number | null>(null);
@@ -30,9 +29,6 @@ export default function ConnectionsPanel() {
     fetch("/api/research-os/connections", { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
-        // The code is read before any setState, so no render happens
-        // with the status set and the code still null, which showed
-        // one frame of the permanent copy for a passing outage.
         const outageCode = r.ok ? null : await readErrorCode(r);
         setErrorCode(outageCode);
         setStatus(r.status);

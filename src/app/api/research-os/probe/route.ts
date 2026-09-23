@@ -1,37 +1,3 @@
-/**
- * /api/research-os/probe, the diagnostic probe (bkt-ros, Phase 1 item 2,
- * closing the Phase 0 PR's stub list item "Diagnostic-probe generalization
- * for cold-start learners"). Fires only for a learner with no state record
- * on any ancestor of the target (src/lib/research-os/probe.ts's probeDue,
- * per RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3 step 5), asking 3-5
- * questions at rising tiers over that ancestor set.
- *
- * GET  ?target=<slug>&branch=<branch>  -> { due, target, questions: [...] }
- *   Auth REQUIRED (unlike GET /api/research-os/route's optional auth): a
- *   probe's due-ness is defined entirely by the caller's own ancestor
- *   state, so there is no meaningful anonymous answer to compute.
- *
- * POST { nodeId, answer } -> grades ONE probe question. Reuses the exact
- *   Check tool grading call (src/lib/research-os/grounding.ts's
- *   gradeExplanation, task item 2's "graded by the existing grounded tutor
- *   Check action") and applies src/lib/research-os/stages.ts's
- *   onProbeCheckResult, which gives a cold-start probe answer a different
- *   stage jump than onCheckResult gives an in-path Check answer. The AI
- *   never writes the learner's answer: gradeExplanation
- *   only ever returns a verdict and feedback, matching the workspace Check
- *   action's own S7 floor.
- *
- * Auth: Authorization: Bearer <supabase access token>, required for both.
- * 401 unauthorized · 400 bad input · 404 target/node not found ·
- * 429/502/503 provider errors · 503 not configured.
- *
- * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST
- * (grading a probe answer) is gated by src/lib/research-os/consent.ts's
- * requireConsent, action "probe_answer", checked right after verifyLearner
- * and before any grading call. GET is not gated: it returns the due-ness
- * check and the question prompts themselves, no learner-authored content.
- * A blocked POST returns 403 with consentBlockedBody(gate) as its body.
- */
 import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { NextRequest, NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
@@ -71,9 +37,6 @@ export async function GET(req: NextRequest) {
     return bad(500, "graph_load_failed");
   }
 
-  // The questions and the target come out of this subgraph, so it carries
-  // the same filter every other graph read does: a node the learner may
-  // not see is neither a question nor a target (Bucket critic C19).
   const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
   if (!filtered.ok) return bad(503, "access_unavailable");
   ({ nodes, edges } = filtered);
@@ -81,10 +44,6 @@ export async function GET(req: NextRequest) {
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 
-  // Phase 0/1: the ancestor set is computed directly from graph.edges
-  // (closure.ts's ancestorsOf), the same dependency-free walk frontier.ts's
-  // fallback path uses, rather than requiring graph.prereq_ancestor to be
-  // populated first.
   const ancestorIds = new Set(ancestorsOf(target.id, edges).keys());
   const states = await loadLearnerStates(learnerId, nodes.map((n) => n.id));
   const probe = buildProbe(nodes, ancestorIds, states);
@@ -131,10 +90,6 @@ export async function POST(req: NextRequest) {
 
   const svc = graphService();
 
-  // A probe grounds a model on a node's own summary and writes learner
-  // state against it, so it needs the same authority Check does: continue
-  // on the node, and view on each prerequisite (ros-ai-access). The gate
-  // runs before any text is loaded, so a refusal carries no content.
   const continuable = await authorizeNode(nodeId, { id: learnerId }, "continue");
   if (!continuable.ok) {
     if (continuable.reason === "unavailable") return bad(503, "access_unavailable");
@@ -144,9 +99,6 @@ export async function POST(req: NextRequest) {
   const { data: node, error: nodeErr } = await svc.from("nodes").select("id,title,summary,provenance").eq("id", nodeId).maybeSingle();
   if (nodeErr || !node) return bad(404, "node_not_found");
 
-  // Same grounding shape Check builds: the node's own summary plus its
-  // prerequisites' summaries, even though a cold-start probe learner has
-  // (by definition) no recorded state on any of them yet.
   const { data: prereqEdges } = await svc.from("edges").select("from_id").eq("to_id", nodeId).eq("kind", "prerequisite");
   const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
   let prereqSummaries: { title: string; summary: string | null }[] = [];
@@ -155,12 +107,9 @@ export async function POST(req: NextRequest) {
     if (!readablePrereqs.ok) return bad(503, "access_unavailable");
     if (readablePrereqs.allowed.length) {
       const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
-      // A read that failed is not a prerequisite the learner may not see.
       if (prereqErr) return bad(503, "access_unavailable");
       prereqSummaries = prereqNodes || [];
     }
-    // Withheld and missing answer the same way, so the reply says nothing
-    // about which it was (Bucket critic C17).
     if (prereqSummaries.length === 0) return bad(409, "probe_grounding_unavailable");
   }
 

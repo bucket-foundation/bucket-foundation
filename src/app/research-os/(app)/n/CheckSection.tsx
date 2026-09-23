@@ -27,7 +27,6 @@ interface CheckResponse {
   needsProfile?: boolean;
 }
 
-/** Understanding, in place: explain the node in your own words and check it against what you quoted. */
 export default function CheckSection({ data, quotes, onChanged }: { data: NodeData; quotes: Quote[]; onChanged: () => void }) {
   const [explanation, setExplanation] = useState("");
   const [verdict, setVerdict] = useState<Verdict>("support");
@@ -45,7 +44,6 @@ export default function CheckSection({ data, quotes, onChanged }: { data: NodeDa
       const res = await fetch("/api/research-os/workspace", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "check", nodeId: data.node.id, ...body }) });
       const j = (await res.json().catch(() => ({}))) as CheckResponse;
       if (!res.ok) {
-        // A lock wait used to reach the learner as the word "busy".
         const text = isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Check failed.");
         setError({ text, profile: Boolean(j.needsProfile) });
         return null;

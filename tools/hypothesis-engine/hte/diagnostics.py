@@ -1,50 +1,3 @@
-"""Why a held-out ground-truth event has no matching placement in the
-population `hte.calibrate` scored it against (`bkt-hte-generation-
-coverage`).
-
-`hte.calibrate.run_holdout`/`holdout_kfold` report `coverage_of_truth`, a
-bare fraction, with no account of WHY the uncovered remainder stayed
-uncovered: a single number cannot tell a reader whether a low score means
-the corpus's own evidence carries nothing to place, an extraction gap, a
-matcher too strict, or a generator dropping a candidate it already built.
-`coverage_report` re-runs the same candidate-building and matching this
-package's calibration path already does (`hte.calibrate._placement_from_
-item`, `._matches_event`, `._interval_overlaps_year`), once per held-out
-event, and for every event that does NOT end up covered, assigns exactly
-one reason from a fixed, small set:
-
-- `"no_evidence_after_holdout"`: nothing left, after removing this
-  fold's (or this cutoff's) own evidence, shares even one resolved
-  concept slot with the event's own item, OR the event's own item
-  itself names no slot at all (a target with nothing to test a
-  candidate against can never be covered, regardless of what remains
-  on file).
-- `"no_placement_generated"`: at least one remaining item shares a
-  slot with the event, but `_placement_from_item` could build no valid
-  placement from any of them (no interval extracted, or a named slot
-  value resolves to no concept id).
-- `"dropped_by_cap"`: a placement was built and would have covered
-  the event, but a generation cap removed it before scoring ever saw
-  it. `hte.calibrate`'s own candidate-building runs no cap at all
-  (`holdout_kfold`'s own module docstring: it deliberately skips `hte.
-  generate.from_evidence`'s sweep for cost reasons), so this reason
-  never fires against a `run_holdout`/`holdout_kfold` result; it stays
-  named here, counted as zero, since the fixed reason set this module
-  reports against is shared with a future generation-pass diagnostic
-  that DOES run a cap, and a caller reading this report deserves that
-  stated plainly instead of a name quietly dropped from the set.
-- `"slot_mismatch"`: the closest candidate this event's own pool
-  produces shares the event's own time window but disagrees on at
-  least one concept slot both sides name a resolved value for.
-- `"interval_mismatch"`: the closest candidate agrees on every
-  concept slot the event names (or says nothing, `OTHER`-filled, on
-  the ones it does not) but its own interval does not reach the
-  event's own time window.
-
-`--diagnose` on `hte calibrate` (`hte.cli._cmd_calibrate`) is this
-module's own CLI entry point; `write_diagnostics` renders this
-function's return value into `DIAGNOSTICS.md`, next to `CALIBRATION.md`.
-"""
 from __future__ import annotations
 
 import copy
@@ -83,29 +36,15 @@ _REASON_PROSE: dict[str, str] = {
     "interval_mismatch": "placement present but interval mismatch",
 }
 
-
 def _present_slots(item: EvidenceItem) -> list:
     return [slot for slot in PLACEMENT_CONCEPT_SLOTS if getattr(item, slot.value) is not None]
 
-
 def _shares_a_slot(target: EvidenceItem, item: EvidenceItem, vocab: Vocabulary, present: Sequence, threshold: float) -> bool:
-    """Whether `item` (a candidate pool member, its own raw, pre-`OTHER`-
-    fill extracted slots) names a value on at least one of `target`'s own
-    `present` slots that clears `slot_match_score` against `target`'s own
-    value there. This is the "does this item say anything at all
-    relevant to this event" test `no_evidence_after_holdout` and
-    `no_placement_generated` below share; it deliberately reads `item`'s
-    own raw fields (`None` when unspecified) instead of a placement
-    built from them (`_placement_from_item`'s `OTHER` filler), since a
-    slot this item never named should not count as "sharing" a slot
-    regardless of
-    what `other_id` happens to render as."""
     return any(
         getattr(item, slot.value) is not None
         and slot_match_score(getattr(target, slot.value), getattr(item, slot.value), vocab, slot) >= threshold
         for slot in present
     )
-
 
 def _classify_uncovered_event(
     target: EvidenceItem,
@@ -118,14 +57,6 @@ def _classify_uncovered_event(
     resolution: Resolution,
     threshold: float,
 ) -> str:
-    """The one reason (`REASONS`) a held-out event, already established
-    as NOT covered by its own candidate pool, failed to be. `pool` is
-    the same kept/pre-cutoff item list the caller's own coverage check
-    ran against; this function re-derives candidates from it rather than
-    taking a pre-built list, so it stays a faithful, standalone replay of
-    `hte.calibrate._placement_from_item`/`._matches_event`/`.
-    _interval_overlaps_year`, the exact three calls a real coverage
-    check makes."""
     present = _present_slots(target)
     if not present:
         return "no_evidence_after_holdout"
@@ -158,7 +89,6 @@ def _classify_uncovered_event(
     if best_mismatch_count == 0 and not best_interval_ok:
         return "interval_mismatch"
     return "slot_mismatch"
-
 
 def _diagnose_kfold(
     corpus: Corpus, *, k: int, seed: int, match_threshold: float,
@@ -203,7 +133,6 @@ def _diagnose_kfold(
             uncovered.append({"event_id": g.id, "event_label": g.label, "event_year": g.year, "fold": fold, "reason": reason})
     return reasons, uncovered, n_holdout, n_covered
 
-
 def _diagnose_discovery_date(
     corpus: Corpus, *, cutoff_years: int, match_threshold: float,
 ) -> tuple[Counter, list[dict[str, Any]], int, int]:
@@ -242,7 +171,6 @@ def _diagnose_discovery_date(
         uncovered.append({"event_id": g.id, "event_label": g.label, "event_year": g.year, "reason": reason})
     return reasons, uncovered, len(post_events), n_covered
 
-
 _CAP_NOTE = (
     "\"dropped_by_cap\" reads zero here by construction: hte.calibrate's own "
     "candidate-building (_placement_from_item, one candidate per kept evidence "
@@ -253,13 +181,7 @@ _CAP_NOTE = (
     "check this function does not perform; see docs/COVERAGE-2026-09-10.md."
 )
 
-
-# Link-shuffle test: is the ranking driven by evidence, or the prior
-# alone? (STATISTICAL-AUDIT-2026-09-15.md, "Link permutation test")
-
-
 def _spearman(a: Sequence[float], b: Sequence[float]) -> float:
-    # Ranks by hand, ties by average rank; 1.0 on no rank variation.
     def ranks(values: Sequence[float]) -> list[float]:
         order = sorted(range(len(values)), key=lambda i: values[i])
         out = [0.0] * len(values)
@@ -283,10 +205,7 @@ def _spearman(a: Sequence[float], b: Sequence[float]) -> float:
     var_b = sum((y - mean_b) ** 2 for y in rb)
     return cov / math.sqrt(var_a * var_b) if var_a and var_b else 1.0
 
-
 def _permute_links(evidence: Sequence[EvidenceItem], rng: random.Random) -> list[EvidenceItem]:
-    # Reshuffles supports/refutes addresses across the population (each
-    # kind its own pool); every item keeps its own link counts.
     supports = [addr for item in evidence for addr in item.supports]
     refutes = [addr for item in evidence for addr in item.refutes]
     rng.shuffle(supports)
@@ -298,16 +217,10 @@ def _permute_links(evidence: Sequence[EvidenceItem], rng: random.Random) -> list
         si, ri = si + n_s, ri + n_r
     return out
 
-
 def link_shuffle_test(
     hypotheses: Sequence[Hypothesis], evidence: Sequence[EvidenceItem], vocab: Vocabulary,
     score_fn: ScoreFn, seed: int, *, n_permutations: int = 20,
 ) -> dict[str, Any]:
-    """Rescores `hypotheses` under `n_permutations` link-shuffled copies
-    of `evidence`. Returns `{"n_permutations", "n_hypotheses",
-    "correlations"` (real ranking vs. each permutation's, Spearman),
-    `"mean_correlation", "prior_only_fraction"}` (share of hypotheses
-    whose score never moved: no link means `P = a` either way)."""
     addresses = [h.address for h in hypotheses]
     real = {a: score_fn(h, evidence, vocab) for a, h in zip(addresses, hypotheses)}
     real_values = [real[a] for a in addresses]
@@ -329,10 +242,7 @@ def link_shuffle_test(
         "prior_only_fraction": sum(unchanged_fractions) / len(unchanged_fractions) if unchanged_fractions else 1.0,
     }
 
-
 def shuffle_report(corpus: Corpus, constants: Constants, *, seed: int = 0, n_permutations: int = 20) -> dict[str, Any]:
-    """`hte calibrate --shuffle`: one candidate per evidence item (same
-    population `_diagnose_kfold` builds), fed to `link_shuffle_test`."""
     span_start, bin_width, _resolution = calibrate._corpus_time_binning(corpus)
     candidates: dict[tuple[int, int, int], Hypothesis] = {}
     for item in corpus.evidence:
@@ -345,30 +255,7 @@ def shuffle_report(corpus: Corpus, constants: Constants, *, seed: int = 0, n_per
 
     return link_shuffle_test(list(candidates.values()), corpus.evidence, corpus.vocab, score_fn, seed, n_permutations=n_permutations)
 
-
 def coverage_report(corpus: Corpus, run_artifacts: Mapping[str, Any]) -> dict[str, Any]:
-    """For every ground-truth event in `corpus` that `run_artifacts` (a
-    `hte.calibrate.run_holdout`/`holdout_kfold`/`run_calibration` result
-    mapping) did not cover, the one reason it was not, from `REASONS`,
-    with counts; covered events contribute to `n_covered_events` alone.
-    Re-derives the candidate pool and match itself (`_diagnose_kfold`/`_
-    diagnose_discovery_date`) rather than trusting `run_artifacts["mode"]`
-    alone to have been produced by a compatible call: `run_artifacts`
-    must carry `"mode"` (`"kfold"` or `"discovery_date"`), plus `"k"`/
-    `"seed"` for kfold or `"cutoff_years"` for discovery_date, and
-    `"match_threshold"`, the same fields `run_calibration`'s own return
-    shape always carries. Raises `KeyError` naming the missing field
-    rather than guessing a default silently, since a diagnostic run
-    against the wrong mode's own parameters would misreport every count.
-
-    Returns `{"mode", "n_holdout_events", "n_covered_events",
-    "coverage_of_truth", "reasons" (every name in `REASONS`, `0` for one
-    that never fired), "uncovered_events" (one entry per uncovered event:
-    `event_id`, `event_label`, `event_year`, `reason`, and `fold` for
-    kfold), "notes"}`. `"notes"` is a list of one-sentence strings
-    explaining any structural reading a bare count cannot carry on its
-    own (today: only `_CAP_NOTE`, always present, since `"dropped_by_cap"`
-    is always zero along this path)."""
     mode = run_artifacts["mode"]
     match_threshold = run_artifacts.get("match_threshold", calibrate.DEFAULT_MATCH_THRESHOLD)
     if mode == "kfold":
@@ -393,15 +280,7 @@ def coverage_report(corpus: Corpus, run_artifacts: Mapping[str, Any]) -> dict[st
         "notes": [_CAP_NOTE],
     }
 
-
 def write_diagnostics(report: Mapping[str, Any], out_dir: str | Path) -> None:
-    """Writes `report` (`coverage_report`'s own return shape) to
-    `out_dir/diagnostics.json` and a human-readable `out_dir/
-    DIAGNOSTICS.md`: a reason table first, then every uncovered event
-    grouped under its own reason, matching `hte.calibrate.
-    write_calibration`'s sibling `CALIBRATION.md`'s own layout
-    conventions (a summary table, then per-item detail) so a reader
-    already used to that file finds this one familiar."""
     import json
 
     out = Path(out_dir)
@@ -444,6 +323,5 @@ def write_diagnostics(report: Mapping[str, Any], out_dir: str | Path) -> None:
         lines.append("")
 
     (out / "DIAGNOSTICS.md").write_text("\n".join(lines) + "\n")
-
 
 __all__ = ["REASONS", "coverage_report", "write_diagnostics", "link_shuffle_test", "shuffle_report"]

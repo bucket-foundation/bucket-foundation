@@ -26,7 +26,6 @@ function rowFor(deck: Deck, s: EngineState, now: number): Row {
   };
 }
 
-/** The Learn module's front: every branch with the person's progress, and the one to continue. */
 export default function LearnHome() {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [error, setError] = useState(false);

@@ -1,8 +1,5 @@
 "use client";
 
-// UnitDimCheck client island, SI dimensional analysis, unit conversion, and
-// equation dimensional-consistency. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -18,20 +15,17 @@ import { SubmitButton } from "../_shared/SubmitButton";
 type UnitOutput = {
   op: string;
   demo: boolean;
-  // check
   consistent?: boolean;
   verdict?: string;
   lhs_dimension?: string;
   rhs_dimension?: string;
   lhs?: string;
   rhs?: string;
-  // convert
   value_from?: number;
   value_to?: number;
   from?: string;
   to?: string;
   dimension?: string;
-  // parse
   unit?: string;
   si_factor?: number;
   dimension_vector?: Record<string, string>;

@@ -1,11 +1,5 @@
 "use client";
 
-// Research-agent client island. Posts a question to /api/research-agent and
-// renders the grounded brief: plan → method match → cited findings →
-// limitations/abstention → full source list → the exact calls made
-// (reproducibility ledger). Reuses the founder-GPU-offline notice from the
-// research-tools shared kit so a 502/503 degrades gracefully instead of erroring.
-
 import { useState } from "react";
 import { ToolOfflineNotice, detectToolOffline } from "../tools/_shared/ToolOfflineNotice";
 
@@ -180,7 +174,6 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 function BriefView({ brief }: { brief: Brief }) {
   return (
     <div className="mt-10">
-      {/* Header: abstain / confidence / provider */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] small-caps tracking-[0.12em]">
         {brief.abstained ? (
           <span className="px-2.5 py-1 border border-[color:var(--gold-deep,var(--basalt-3))] text-[color:var(--gold-deep,var(--basalt-3))]">
@@ -197,7 +190,6 @@ function BriefView({ brief }: { brief: Brief }) {
         <span className="text-[color:var(--basalt-3)]">{brief.sources.length} sources retrieved</span>
       </div>
 
-      {/* PLAN */}
       <Section label="plan">
         <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6">
           <p className="text-[15px] text-[color:var(--basalt)] leading-[1.7]">{brief.plan.restated}</p>
@@ -218,7 +210,6 @@ function BriefView({ brief }: { brief: Brief }) {
         </div>
       </Section>
 
-      {/* METHOD MATCH */}
       {(brief.method_match.recommendation || brief.method_match.tools.length > 0) && (
         <Section label={`instrument match${brief.method_match.degraded ? " · degraded" : ""}`}>
           <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6">
@@ -257,7 +248,6 @@ function BriefView({ brief }: { brief: Brief }) {
         </Section>
       )}
 
-      {/* FINDINGS */}
       {brief.findings.length > 0 ? (
         <Section label="findings — every claim cites a retrieved source">
           <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
@@ -292,7 +282,6 @@ function BriefView({ brief }: { brief: Brief }) {
         </Section>
       )}
 
-      {/* LIMITATIONS */}
       {brief.limitations.length > 0 && (
         <Section label="limitations / abstentions">
           <ul className="list-disc pl-5 text-[14px] text-[color:var(--basalt-2)] space-y-1.5">
@@ -303,7 +292,6 @@ function BriefView({ brief }: { brief: Brief }) {
         </Section>
       )}
 
-      {/* SOURCES */}
       <Section label="sources retrieved (closed citation set)">
         <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
           {brief.sources.map((s) => (
@@ -335,7 +323,6 @@ function BriefView({ brief }: { brief: Brief }) {
         </div>
       </Section>
 
-      {/* REPRODUCIBILITY LEDGER */}
       <Section label="how to reproduce — the exact calls the agent made">
         <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-4 overflow-x-auto">
           <ol className="space-y-2">

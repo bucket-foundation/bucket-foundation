@@ -22,7 +22,6 @@ interface ListResponse {
   prefix: string;
   count: number;
   entries: WaitlistEntry[];
-  /** Signups that filled the hidden honeypot field; held apart for review. */
   suspects?: WaitlistEntry[];
 }
 
@@ -39,7 +38,6 @@ function writeKey(value: string | null) {
     if (value) window.sessionStorage.setItem(STORAGE_KEY, value);
     else window.sessionStorage.removeItem(STORAGE_KEY);
   } catch {
-    // Storage blocked: the key lives for this page view only.
   }
 }
 

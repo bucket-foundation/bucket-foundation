@@ -1,23 +1,8 @@
 "use client";
 
-// ToolOfflineNotice, the friendly "founder's GPU is offline" state.
-//
-// Several advanced tools run on the founder's personal laptop GPU (a local LLM
-// + GPU jobs) reached over a tunnel; when his laptop is closed the upstream is
-// unreachable and the same-origin proxy returns a 503 "tool_offline" envelope.
-// Rather than show a raw error, the affected tools render this block: an
-// explanation, a CONTACT email button, and a DONATE/FUND button → /support.
-//
-// Use detectToolOffline(status, errorMsg) to decide whether to show it.
-
 import Link from "next/link";
 import { TOOL_OFFLINE_MAILTO } from "@/lib/support";
 
-/**
- * Is this error the "founder GPU is offline" case rather than a normal failure?
- * The proxy returns HTTP 503 with code "tool_offline" / "service_unavailable"
- * (or a 502/504 when the tunnel is down). We also match the offline message.
- */
 export function detectToolOffline(status: number | null, msg: string): boolean {
   if (status === 503 || status === 502 || status === 504) return true;
   const m = (msg || "").toLowerCase();

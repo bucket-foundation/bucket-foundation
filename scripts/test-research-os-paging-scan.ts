@@ -1,23 +1,9 @@
-/**
- * Every read that filters on a list of ids either pages, or is listed
- * with a reason it cannot overflow.
- *
- * The earlier text-matching version of this check had three holes a
- * reviewer proved: a sibling read in the same `Promise.all` satisfied
- * the order rule for an unordered one, a builder behind a local function
- * was invisible, and a raw `.in(ids)` using no chunk helper was never
- * looked at. That last one had 36 live instances. This walks the AST
- * instead, so a chain is a chain wherever it sits.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
 import { scanFile, scanTree } from "./research-os/paging-scan";
 import { PAGING_EXCEPTIONS } from "./research-os/paging-allowlist";
 
-// Same roots as scripts/test-research-os-paging-discipline.ts. The two
-// suites read one allowlist, so a root in one and absent from the other
-// makes every entry from the wider tree read as stale.
 const ROOTS = ["src/lib/research-os", "src/app/api/research-os", "scripts/research-os"];
 
 test("the scanner finds a read that pages neither way", () => {
@@ -47,8 +33,6 @@ test("a read that ranges without ordering is still a finding", () => {
 });
 
 test("a sibling read cannot satisfy the rule for an unordered one", () => {
-  // The hole that made the text-matching version pass a real defect: one
-  // `Promise.all` was one statement, and any `.order(` in it counted.
   const src = `
     const [a, b] = await Promise.all([
       svc.from("nodes").select("id").in("id", ids).order("id").range(0, 999),
@@ -94,10 +78,6 @@ test("the list carries no entry for a read that is already fixed", () => {
 });
 
 test("a reason either names what bounds the read, or says it is untriaged", () => {
-  // The first version asserted only that the string was longer than
-  // thirty characters, so a reviewer replaced a true reason with "the
-  // moon is made of cheese" and the suite stayed green. A reason now has
-  // to cite a constraint or an `eq()`, or admit it has not been checked.
   const grounded = /primary key|unique|pinned with eq|by construction/;
   for (const e of PAGING_EXCEPTIONS) {
     assert.ok(e.at.includes("::"), `${e.at} is an anchor, not a line key`);

@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
-"""Embed every photons_full row that still lacks a semantic vector, on the local
-GPU, and write the LaBSE-768 vector back. Resumable: operates on WHERE embedding
-IS NULL via a server-side cursor, so a re-run continues where it stopped.
-
-Run in the background; build the HNSW index separately once this reaches 0 NULLs.
-"""
 import os, sys, time
 import numpy as np
 import psycopg2
 from psycopg2.extras import execute_values
 
 DIM = 768
-BATCH_READ = 8192          # rows pulled from the cursor per round
-ENC_BATCH = 256            # GPU encode batch
+BATCH_READ = 8192
+ENC_BATCH = 256
 DSN = dict(host="127.0.0.1", port=5433, user="bucket", password="bucket", dbname="polingual")
 
 def log(*a):
@@ -29,7 +23,6 @@ def main():
     wconn = psycopg2.connect(**DSN); wconn.autocommit = True
     wcur = wconn.cursor()
 
-    # total remaining (for progress %)
     with rconn.cursor() as c0:
         c0.execute("SELECT count(*) FROM photons_full WHERE embedding IS NULL")
         total = c0.fetchone()[0]
@@ -37,7 +30,7 @@ def main():
     if total == 0:
         log("nothing to do"); return
 
-    cur = rconn.cursor(name="embed_stream")   # server-side cursor (snapshot)
+    cur = rconn.cursor(name="embed_stream")
     cur.itersize = BATCH_READ
     cur.execute("SELECT id, coalesce(nullif(meaning_en,''), surface) "
                 "FROM photons_full WHERE embedding IS NULL ORDER BY id")
@@ -66,7 +59,6 @@ def main():
     cur.close(); rconn.close()
     log(f"DONE embedded {done} in {(time.time()-t0)/3600:.2f}h")
 
-    # sanity
     with wconn.cursor() as c:
         c.execute("SELECT count(*) FROM photons_full WHERE embedding IS NULL")
         log("remaining NULL embeddings:", c.fetchone()[0])

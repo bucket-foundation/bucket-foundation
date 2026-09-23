@@ -1,12 +1,3 @@
-/**
- * ros-import 3's table reader, src/lib/research-os/import-tables.ts.
- * Pure, no database. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-import-tables.ts
- *
- * The cases that matter are the ones where a cheaper implementation is
- * wrong: a quoted newline, a value that only disagrees with the column's
- * type near the end of the file, and a date written in a locale order.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -29,8 +20,6 @@ test("a quoted field keeps its delimiters and its newlines", () => {
     ["a", "b"],
     ["x,y", "line one\nline two"],
   ]);
-  // Splitting on "\n" would report three rows and tear the second one,
-  // which is what happens to any table whose cells carry prose.
   assert.equal(rows.length, 2);
 });
 
@@ -43,9 +32,6 @@ test("a file with no trailing newline still ends on a row", () => {
 });
 
 test("a type widens on the value that disagrees, however late it comes", () => {
-  // 999 integer rows then one that is not. Sampling the head calls this
-  // column integer, the form offers it for arithmetic, and the run
-  // fails on a value the schema said could not be there.
   const rows = ["n"].concat(Array.from({ length: 999 }, (_, i) => String(i + 1))).concat(["n/a but written oddly"]);
   const schema = readTableSchema(rows.join("\n"));
   assert.equal(schema.columns[0].type, "text", "one disagreeing value at the end decides the column");
@@ -62,8 +48,6 @@ test("integer widens to number and nothing else widens", () => {
 });
 
 test("a locale-ordered date is text", () => {
-  // 03/04/2026 is two different days depending on who wrote it, and a
-  // guess here turns a run's answer into a coin flip.
   assert.equal(typeOf("03/04/2026"), "text");
   assert.equal(typeOf("2026-03-04"), "date");
   assert.equal(typeOf("2026-03-04T11:22:33Z"), "date");
@@ -180,9 +164,6 @@ test("a header with no data rows still describes its columns", () => {
 });
 
 test("a CR-only file is read as rows rather than run together", () => {
-  // Excel still writes "CSV (Macintosh)". Dropping CR unconditionally
-  // gave this file one row holding the whole text, columns named
-  // ["a","b1","23","4"], and rows: 0 with nothing to say so.
   const s = readTableSchema("a,b\r1,2\r3,4\r");
   assert.deepEqual(s.columns.map((c) => c.name), ["a", "b"]);
   assert.equal(s.rows, 2);
@@ -200,8 +181,6 @@ test("CRLF and LF read the same as CR", () => {
 });
 
 test("a quoted missing token is a value", () => {
-  // The docstring promised this and the parser threw quotedness away
-  // before the missing rule ran, so the one escape hatch did not exist.
   const s = readTableSchema('v\n"NA"\nx\n');
   assert.equal(s.columns[0].present, 2);
   assert.equal(s.columns[0].missing, 0);
@@ -230,8 +209,6 @@ test("a date that names no day is text", () => {
 });
 
 test("a dash is data", () => {
-  // A column that writes a dash read as entirely empty, and it is the
-  // token most likely to mean something.
   const s = readTableSchema("mark\n-\n--\n-\n");
   assert.equal(s.columns[0].present, 3);
   assert.equal(s.columns[0].missing, 0);
@@ -245,19 +222,12 @@ test("a caller may name its own missing tokens", () => {
 });
 
 test("a file that ends inside a quote says so", () => {
-  // An unescaped quote swallows the rest of the file into one field, so
-  // the rows that come back are a fabrication.
   const bad = readTableSchema('a,b\n"oops,2\n3,4\n');
   assert.equal(bad.malformed, true);
   assert.equal(readTableSchema("a,b\n1,2\n").malformed, false);
 });
 
 test("a date types the same in every timezone", () => {
-  // The first calendar check built a Date and compared its UTC rendering
-  // against the literal, so an offsetless datetime read as local time and
-  // rendered as UTC: 2026-03-04T23:30 was a date in UTC and text in New
-  // York. The same bytes gave two answers by host clock, which is the
-  // failure the date rule exists to prevent.
   const saved = process.env.TZ;
   try {
     for (const tz of ["UTC", "America/New_York", "Pacific/Kiritimati", "Asia/Kolkata"]) {
@@ -269,9 +239,6 @@ test("a date types the same in every timezone", () => {
       assert.equal(typeOf("2026-02-29"), "text", `${tz}: and only in a leap year`);
     }
   } finally {
-    // TZ is unset here and in CI, so `saved` is undefined and assigning
-    // it writes the string "undefined", which names no zone and which
-    // every test below would then run under.
     if (saved === undefined) delete process.env.TZ;
     else process.env.TZ = saved;
   }
@@ -286,11 +253,6 @@ test("an hour or an offset outside its range is text", () => {
 });
 
 test("a quoted empty cell is a row, and an empty value in it", () => {
-  // Two questions, and they have different answers. Whether `""` is a
-  // ROW: yes, the source wrote it, and the blank-row filter ignored
-  // quotedness so a three-row file reported two. Whether it is a
-  // VALUE: no, because a QUOTE_ALL writer quotes every cell and `""`
-  // there carries no intent.
   const s = readTableSchema('v\n1\n""\n2\n');
   assert.equal(s.rows, 3, "the row the source wrote is a row");
   assert.equal(s.columns[0].present, 2, "and its cell is empty, so it is missing");
@@ -299,8 +261,6 @@ test("a quoted empty cell is a row, and an empty value in it", () => {
 });
 
 test("the parse reports an unterminated quote to its caller", () => {
-  // It rode on module state, so an exported parser gave its callers no
-  // way to ask.
   const bad = parseCells('a,b\n1,"unclosed\n2,3\n', ",");
   assert.equal(bad.unterminated, true);
   assert.equal(parseCells("a,b\n1,2\n", ",").unterminated, false);
@@ -308,8 +268,6 @@ test("the parse reports an unterminated quote to its caller", () => {
 });
 
 test("a caller's missing tokens reach the schema", () => {
-  // The comment promised this and only isMissing accepted it, which is
-  // the round-one defect one layer up.
   const s = readTableSchema("mark\n-\n5\n", ",", { missingTokens: ["", "-"] });
   assert.equal(s.columns[0].missing, 1);
   assert.equal(s.columns[0].present, 1);
@@ -317,9 +275,6 @@ test("a caller's missing tokens reach the schema", () => {
 });
 
 test("a ragged table still sniffs its own delimiter", () => {
-  // Unanimity over ten rows meant one short row zeroed a correct
-  // delimiter, and this reader counts ragged rows because it expects
-  // them.
   assert.equal(sniffDelimiter("a\tb\tc\n1\t2\t3\n4\t5\n6\t7\t8\n"), "\t");
   assert.equal(readTableSchema("a\tb\tc\n1\t2\t3\n4\t5\n6\t7\t8\n").columns.length, 3);
   assert.equal(sniffDelimiter("note\none, two, and three\nfour, five\n"), ",", "prose is still one column");
@@ -337,10 +292,6 @@ test("the distinct cap flags only a count that was cut", () => {
 });
 
 test("the agreement threshold is pinned at both sides of its boundary", () => {
-  // Round 3 found the comment saying two thirds over code saying 0.6,
-  // and raising the code to match turned a ragged TSV back into one text
-  // column. 0.6 is the number the reader needs, and these two hold it:
-  // loosening it to 0.2 or tightening it to 2/3 fails one of them.
   const threeOfFive = "a\tb\n1\t2\n3\t4\nplain line\nanother plain\n";
   assert.equal(sniffDelimiter(threeOfFive), "\t", "three rows in five agree, which is exactly the threshold");
 
@@ -349,19 +300,12 @@ test("the agreement threshold is pinned at both sides of its boundary", () => {
 });
 
 test("the header has to be a row of the table", () => {
-  // A CSV whose note column contains a tab gives tab the widths
-  // [1,2,2,2,2]: four rows in five agree, which passes on share alone
-  // and hands the file to the wrong delimiter. The header is width 1
-  // under tab, so tab does not describe this file.
   const csvWithTabs = "id,note\n1,hello, there\tx\n2,hi\ty\n3,yo\tz\n4,hey\tw\n";
   assert.equal(sniffDelimiter(csvWithTabs), ",");
   assert.deepEqual(readTableSchema(csvWithTabs).columns.map((c) => c.name), ["id", "note"]);
 });
 
 test("blank lines between rows do not decide the delimiter", () => {
-  // readTableSchema deletes these before counting; the sniffer counted
-  // them as width-1 rows forty lines away, so this read as one text
-  // column named "a\tb" with ragged 0 and nothing to say why.
   const spaced = "a\tb\n\n1\t2\n\n3\t4\n\n5\t6\n";
   assert.equal(sniffDelimiter(spaced), "\t");
   const s = readTableSchema(spaced);
@@ -370,33 +314,16 @@ test("blank lines between rows do not decide the delimiter", () => {
 });
 
 test("a file cut at the size limit is not a malformed file", () => {
-  // The cut used to land inside a quote at a rate set by how long the
-  // cells are, so a well-formed CSV of quoted prose, which is the shape
-  // the limit exists for, came back malformed.
   assert.equal(cutAtRowBoundary('a,b\n1,"x,y"\n2,3\n', 9, ","), "a,b\n", "the cut backs up to the last boundary outside a quote");
   assert.equal(cutAtRowBoundary("a,b\n1,2\n", 100, ","), "a,b\n1,2\n", "a file under the limit is untouched");
   assert.equal(cutAtRowBoundary("no newline at all", 5, ","), "", "one row longer than the limit yields nothing: a partial row is a fabricated row");
   assert.equal(cutAtRowBoundary("a,b\n1,2\n", -5, ","), "", "and a negative limit never returns more than it was given");
 
-  // The cut and parseCells have to agree about where a quote opens.
-  // parseCells opens one only at the start of a field, and the cutter
-  // toggled on any quote, so one inch mark put it inside a quote for
-  // the rest of the file.
   const inch = 'id,note\n1,5" pipe\n2,row 2\n3,row 3\n4,row 4\n5,row 5\n6,row 6\n';
-  // Boundaries sit at 8, 18, 26, 34 and 42; a limit of 40 cuts at 34.
-  // The old cutter opened a quote at the inch mark and found no
-  // boundary after it, so it returned the header alone and the table
-  // arrived with zero rows.
   assert.equal(readTableSchema(inch, ",", { maxChars: 40 }).rows, 3, "an unpaired quote in a cell body is not an open quote");
 
-  // A newline inside a quoted cell is not a row boundary. The earlier
-  // case put its quoted newline past the limit, so deleting the whole
-  // quote-tracking block left it passing.
   assert.equal(cutAtRowBoundary('a,b\n1,"line one\nline two"\n2,3\n', 20, ","), "a,b\n", "a newline inside a quote ends no row");
 
-  // CR-only files. parseCells carries a comment about Excel's
-  // "CSV (Macintosh)", and the cutter knew only \n, so such a file had
-  // no boundary anywhere and truncation reported it malformed.
   const cr = "a,b\r" + Array.from({ length: 8 }, (_, i) => `${i},"cell ${i}"`).join("\r") + "\r";
   const cut = readTableSchema(cr, ",", { maxChars: 30 });
   assert.equal(cut.malformed, false, "a CR-only file cut at a row boundary is not malformed");
@@ -408,8 +335,6 @@ test("a file cut at the size limit is not a malformed file", () => {
 });
 
 test("1900 is not a leap year and 2000 is", () => {
-  // The century rule had no test, so deleting it left the suite green
-  // while 1900-02-29 typed as a date.
   assert.equal(readTableSchema("d\n1900-02-29\n").columns[0].type, "text");
   assert.equal(readTableSchema("d\n2000-02-29\n").columns[0].type, "date");
   assert.equal(readTableSchema("d\n2024-02-29\n").columns[0].type, "date");
@@ -428,17 +353,12 @@ test("the sample stops at SAMPLE_VALUES", () => {
 });
 
 test("a row with more fields than the header is ragged too", () => {
-  // Only short rows were counted, so a row carrying extra values passed
-  // as well-formed while the extras reached nothing.
   const overWide = readTableSchema("a,b\n1,2,3,4\n5,6\n");
   assert.equal(overWide.ragged, 1, "the long row is ragged");
   assert.deepEqual(overWide.preview[0], ["1", "2"], "and its extra fields are gone, which is what ragged says");
 });
 
 test("a caller's own missing tokens still treat an empty cell as missing", () => {
-  // isMissing took the caller's set whole, so a set written without ""
-  // made every empty cell a present value, against this module's header
-  // and against ColumnSchema.missing.
   const s = readTableSchema("a,b\n,1\n,2\n", ",", { missingTokens: ["-"] });
   assert.equal(s.columns[0].missing, 2, "an empty cell is missing whatever the set says");
   assert.equal(s.columns[0].present, 0);
@@ -448,9 +368,6 @@ test("a caller's own missing tokens still treat an empty cell as missing", () =>
 });
 
 test("past the size limit the schema describes a prefix and says so", () => {
-  // MAX_TEXT_CHARS and `truncated` were exported and imported by
-  // nothing, so removing the truncation entirely left the suite green.
-  // maxChars reaches the same path without building 20 MB.
   const text = "a,b\n1,2\n3,4\n5,6\n7,8\n";
   const whole = readTableSchema(text);
   assert.equal(whole.truncated, false);
@@ -469,11 +386,6 @@ test("the sample keeps the first SAMPLE_VALUES distinct values", () => {
 });
 
 test("a header whose width differs from the body does not lose the delimiter", () => {
-  // The header rule was a veto, and it threw away four real shapes to
-  // fix one. An R export writes `ncol` names over `rownames + ncol`
-  // values, which is the common case, and it came back as a single text
-  // column with ragged 0: the delimiter lost and the only signal that
-  // anything was dropped lost with it.
   const rExport = 'weight\theight\n"1"\t62.1\t170\n"2"\t58.4\t165\n"3"\t71.0\t181\n"4"\t66.2\t174\n';
   const r = readTableSchema(rExport);
   assert.equal(r.delimiter, "\t");
@@ -486,14 +398,10 @@ test("a header whose width differs from the body does not lose the delimiter", (
   const commented = readTableSchema("# exported from lab notebook\nid\tname\tscore\n1\ta\t10\n2\tb\t20\n");
   assert.equal(commented.delimiter, "\t", "so does a comment line above the header");
 
-  // And the case the veto was written for still goes to comma.
   assert.equal(sniffDelimiter("id,note\n1,hello, there\tx\n2,hi\ty\n3,yo\tz\n4,hey\tw\n"), ",");
 });
 
 test("a quoted empty cell is missing, and a quoted token is still data", () => {
-  // Quoting makes a written token data. QUOTE_ALL writers quote every
-  // cell, so `""` carries no intent, and treating it as data made the
-  // same table describe two schemas depending on who wrote it.
   const quoted = readTableSchema('"id","score"\n"1","10"\n"2",""\n"3","30"\n').columns[1];
   const plain = readTableSchema("id,score\n1,10\n2,\n3,30\n").columns[1];
   assert.equal(quoted.type, plain.type, "one table, one type");
@@ -507,9 +415,6 @@ test("a quoted empty cell is missing, and a quoted token is still data", () => {
 });
 
 test("an escaped quote inside a quoted cell keeps the cell open", () => {
-  // `""` is one quote. Reading it as a close and a reopen put
-  // the cutter outside the quote, and the newline in the same cell then
-  // ended a row that had not ended.
   const doubled = 'a,b\n1,"say ""hi"" now\nstill the same cell"\n2,3\n';
   assert.equal(cutAtRowBoundary(doubled, 40, ","), "a,b\n", "the newline inside the cell ends no row");
   const s = readTableSchema(doubled);

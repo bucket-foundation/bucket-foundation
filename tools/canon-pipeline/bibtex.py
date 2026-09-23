@@ -1,11 +1,9 @@
-"""BibTeX emitter."""
 from __future__ import annotations
 import re
 from typing import Iterable
 
 _SAFE = re.compile(r"[^A-Za-z0-9]")
 _STOPWORDS = {"the", "a", "an", "of", "on", "in", "for", "and", "to"}
-
 
 def cite_key(record: dict) -> str:
     authors = record.get("authors") or []
@@ -18,7 +16,6 @@ def cite_key(record: dict) -> str:
     tw = next((w for w in title_words if w.lower() not in _STOPWORDS), title_words[0] if title_words else "untitled")
     return (_SAFE.sub("", last).lower() + year + _SAFE.sub("", tw).lower()) or "unknown"
 
-
 def _fmt_authors(authors) -> str:
     parts = []
     for a in authors or []:
@@ -30,12 +27,10 @@ def _fmt_authors(authors) -> str:
             parts.append(str(a))
     return " and ".join(p for p in parts if p)
 
-
 def _escape(s: str) -> str:
     if s is None:
         return ""
     return s.replace("{", "\\{").replace("}", "\\}").replace("\\", "\\\\").replace("{\\\\}", "\\")
-
 
 def to_bibtex(record: dict) -> str:
     key = cite_key(record)
@@ -60,7 +55,6 @@ def to_bibtex(record: dict) -> str:
             lines.append(f"  {k} = {{{_escape(str(v))}}},")
     lines.append("}")
     return "\n".join(lines)
-
 
 def to_bibfile(records: Iterable[dict]) -> str:
     return "\n\n".join(to_bibtex(r) for r in records) + "\n"

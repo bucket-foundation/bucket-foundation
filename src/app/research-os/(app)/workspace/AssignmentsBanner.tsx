@@ -4,11 +4,6 @@ import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// The learner's open assignments across their classes (the Class step):
-// each links to the workspace with the assignment's target.
-
-// The server type, so a change to what /assignments returns is a compile
-// error here rather than a wrong label on the page (Bucket critic C40).
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
 import { assignmentTargetHref, targetIsLinkable } from "@/lib/research-os/assignments";
 
@@ -22,8 +17,6 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 
 export default function AssignmentsBanner({ token, currentTarget }: { token: string | null; currentTarget: string }) {
   const [rows, setRows] = useState<LearnerAssignment[]>([]);
-  // An outage is its own state. Leaving the banner absent said the
-  // learner has no assignments (Bucket critic C44).
   const [unavailable, setUnavailable] = useState(false);
   const [transient, setTransient] = useState(false);
 
@@ -34,8 +27,6 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
       try {
         const res = await fetch("/api/research-os/assignments?mine=1", { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
         if (!res.ok) {
-          // A read that failed this minute is not a deployment without
-          // assignments, and the banner said the same thing for both.
           const transient = isTransientOutage(res.status, await readErrorCode(res));
           if (!cancelled) {
             setUnavailable(true);
@@ -50,10 +41,6 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
           setRows(j.assignments);
         }
       } catch {
-        // A fetch that rejects never reached the server, which a retry
-        // may clear. Leaving `transient` false rendered "Research OS is
-        // unavailable on this deployment" for a dropped connection: the
-        // outage reading as a permanent fact about the install.
         if (!cancelled) {
           setUnavailable(true);
           setTransient(true);
@@ -87,8 +74,6 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
             <span className="text-[color:var(--basalt-3)]">· {STATUS[a.status]}</span>
             {a.dueAt && <span className="text-[color:var(--basalt-3)]">· due {a.dueAt.slice(0, 10)}</span>}
             {!targetIsLinkable(a) ? (
-              // Labelling a node the learner may not read as "this target"
-              // tells them they are already on it (Bucket critic C38).
               <span className="text-[color:var(--basalt-3)]">· target not shared with you</span>
             ) : href && a.targetSlug !== currentTarget ? (
               <Link href={href} className="underline decoration-[color:var(--gold)] underline-offset-4">

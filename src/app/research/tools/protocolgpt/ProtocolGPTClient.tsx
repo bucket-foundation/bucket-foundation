@@ -1,8 +1,5 @@
 "use client";
 
-// ProtocolGPT client island, freeform methods/SOP → structured protocol via
-// deterministic rule extraction. Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -124,7 +121,6 @@ function ProtocolView({ result }: { result: ResultEnvelope }) {
         </div>
       </div>
 
-      {/* Steps */}
       <div className="mt-6 small-caps tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
         protocol
       </div>
@@ -168,7 +164,6 @@ function ProtocolView({ result }: { result: ResultEnvelope }) {
         ))}
       </ol>
 
-      {/* Reagents */}
       {out.reagents.length > 0 && (
         <>
           <div className="mt-8 small-caps tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
@@ -190,7 +185,6 @@ function ProtocolView({ result }: { result: ResultEnvelope }) {
         </>
       )}
 
-      {/* Safety */}
       {out.safety_flags.length > 0 && (
         <>
           <div className="mt-8 small-caps tracking-[0.14em] text-[color:var(--basalt)] mb-3">

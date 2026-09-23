@@ -1,18 +1,3 @@
-/**
- * bucket.foundation, research-tools registry
- * -------------------------------------------
- * Single source of truth for the 30 research tools served through
- * bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool> proxy →
- * the per-tool UI). This was previously inlined in
- * src/app/research/tools/page.tsx; it now lives here so the same data drives:
- * - the /research/tools directory page
- * - per-tool <generateMetadata> (title + description + canonical + OG)
- * - per-tool SoftwareApplication / WebApplication JSON-LD
- * - the sitemap (one URL per tool)
- *
- * See docs/research-tools/04-implementation-architecture.md.
- */
-
 import type { ToolHosting } from "@/lib/support";
 
 export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META" | "FIELD" | "CLASSIC";
@@ -22,30 +7,8 @@ export type Tool = {
   slug: string;
   name: string;
   blurb: string;
-  // CPU = inline biophysics tool; GPU = synthetic until compute lands;
-  // RAG = live data/agent tool (OpenAlex + grant corpus, real logic);
-  // DNA = DNA/RNA cluster (ViennaRNA + numpy, real algorithms);
-  // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
-  // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph);
-  // IMG = imaging/mechanobiology cluster (scipy + scikit-image signal/image
-  // processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV);
-  // META = all-field horizontal metascience tool (FAIR data management,
-  // statistics reproducibility), serves EVERY discipline.
-  // FIELD = per-field tool for the biggest NON-bio fields (econ-social causal
-  // inference, materials featurization, universal power analysis,
-  // earth-climate series summary, cs-ml reproducibility), REAL CPU
-  // algorithms (networkx do-calculus, Magpie descriptors, scipy power,
-  // Mann-Kendall/Theil-Sen, a deterministic repro rubric).
-  // CLASSIC = per-field exact CLASSICAL algorithms for the biggest CPU-feasible
-  // fields/tasks not yet covered (pairwise sequence alignment, chemical-
-  // equation balancing, SI dimensional analysis, Kaplan-Meier survival,
-  // Holt-Winters forecasting), textbook-exact, no GPU, no heuristics.
   klass: ToolClass;
-  // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
-  // "always-on" = runs on the Hetzner CPU gateway, up 24/7.
-  // "founder-gpu" = runs on the founder's personal laptop GPU over a tunnel, 
-  // unreachable when the laptop is closed.
   hosting: ToolHosting;
 };
 
@@ -107,7 +70,6 @@ export const TOOLS: Tool[] = [
     status: "demo",
     hosting: "founder-gpu",
   },
-  // --- T1 ship-now tools: RAG / agent / data, real logic over live data ---
   {
     slug: "paperradar",
     name: "PaperRadar",
@@ -153,7 +115,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- DNA/RNA cluster: real algorithms over ViennaRNA + numpy (1,105-PI cohort) ---
   {
     slug: "rnastructure",
     name: "RNAStructure",
@@ -181,7 +142,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- Neuroscience cluster: real scipy fits + spike detection (938-PI cohort) ---
   {
     slug: "hhfit",
     name: "HH-FitML",
@@ -200,7 +160,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- gap-research cluster: rule extraction / curated KB / OpenAlex graph ---
   {
     slug: "protocolgpt",
     name: "ProtocolGPT",
@@ -228,7 +187,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- imaging / mechanobiology cluster: real scipy + scikit-image (311M-funding cohort) ---
   {
     slug: "calciumtraceml",
     name: "CalciumTraceML",
@@ -265,7 +223,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- FigureMiner: real text-layer caption + statistics mining (no GPU) ---
   {
     slug: "figureminer",
     name: "FigureMiner",
@@ -275,7 +232,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- genomics / sequence cluster: real interpretable algorithms (no GPU) ---
   {
     slug: "chromatinaccess",
     name: "ChromatinAccess",
@@ -303,8 +259,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- all-field HORIZONTAL metascience tools: serve every discipline (the
-  // 1.17M researchers) across all fields. Funder-mandated (DMSP + reproducibility). ---
   {
     slug: "faircheck",
     name: "FAIRCheck",
@@ -323,9 +277,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- per-field NON-bio tools: the biggest CPU-feasible fields in the atlas
-  // USERS_NEEDS roadmap (econ-social, materials, universal stats,
-  // earth-climate, cs-ml). REAL algorithms, no GPU, always-on. ---
   {
     slug: "causaldesigner",
     name: "CausalDesigner",
@@ -371,11 +322,6 @@ export const TOOLS: Tool[] = [
     status: "live",
     hosting: "always-on",
   },
-  // --- per-field exact CLASSICAL algorithms: the biggest CPU-feasible
-  // fields/tasks in the atlas USERS_NEEDS roadmap not yet covered
-  // (bio sequence alignment, chemistry reaction arithmetic, universal
-  // dimensional analysis, biomed/stats survival, econ/earth forecasting).
-  // REAL textbook-exact algorithms, no GPU, always-on. ---
   {
     slug: "seqalign",
     name: "SeqAlign",
@@ -433,11 +379,6 @@ export function getTool(slug: string): Tool | undefined {
 
 const SITE = "https://www.bucket.foundation";
 
-/**
- * Per-tool metadata for a tool page. Drop into a tool page as:
- * export const metadata = toolMetadata("labbrain");
- * Returns a unique title + description + canonical + OpenGraph/Twitter block.
- */
 export function toolMetadata(slug: string) {
   const t = getTool(slug);
   if (!t) {
@@ -445,7 +386,6 @@ export function toolMetadata(slug: string) {
   }
   const url = `${SITE}/research/tools/${t.slug}`;
   const title = `${t.name} · research tool`;
-  // Trim the blurb to a clean meta-description length.
   const description =
     t.blurb.length > 200 ? `${t.blurb.slice(0, 197)}…` : t.blurb;
   return {
@@ -466,10 +406,6 @@ export function toolMetadata(slug: string) {
   };
 }
 
-/**
- * SoftwareApplication / WebApplication JSON-LD for a tool page.
- * Free to use; runs in the browser against the Bucket research gateway.
- */
 export function toolJsonLd(slug: string): Record<string, unknown> | null {
   const t = getTool(slug);
   if (!t) return null;

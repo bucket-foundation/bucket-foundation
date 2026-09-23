@@ -2,11 +2,6 @@
 
 import Link from "next/link";
 
-// The Map, in place (ros-30): from the selected node, the canon surfaces
-// that hold it. A canon-ingested node (provenance.type "canon_entry",
-// provenance.concept) opens its claims page; every node opens the search
-// globe with its title as the query, its branch page, and the bridges.
-
 export default function MapBlock({
   node,
 }: {

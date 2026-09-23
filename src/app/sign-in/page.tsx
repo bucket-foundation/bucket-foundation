@@ -20,10 +20,6 @@ export function generateMetadata(): Metadata {
 const H1 = "font-display uppercase text-[clamp(1.5rem,4vw,2rem)] leading-[1.1] chisel text-[color:var(--basalt)]";
 const SWITCH = "underline underline-offset-4 text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]";
 
-/**
- * /sign-in. Before launch, production shows the launch list and keeps a
- * sign-in for existing accounts at /sign-in?account=1 (src/lib/launch.ts).
- */
 export default function SignInPage({ searchParams }: { searchParams?: SearchParams }) {
   const next = first(searchParams?.next);
   const nextQuery = next ? `next=${encodeURIComponent(safeNextPath(next))}` : "";

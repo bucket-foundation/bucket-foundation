@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Quick status report for PURSUE mirror. Used by bkt-nuc session start.
 D="$HOME/agfarms/bucket-foundation/_intake/war-gov-pursue-release-01"
 [ -f "$D/urls.tsv" ] || { echo "[pursue] no manifest yet"; exit 0; }
 TOTAL=$(awk -F'\t' '$1!="THUMB" && $1!=""' "$D/urls.tsv" | wc -l)

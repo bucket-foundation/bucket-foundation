@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// The game layer on the profile (ros-33): XP and level, streak, badges.
-// Reads the `game` block GET /api/research-os/profile returns.
-
 interface Game {
   xp: number;
   level: number;
@@ -28,7 +25,6 @@ export default function GameSection({ token }: { token: string | null }) {
         const j = (await res.json()) as { game?: Game };
         if (!cancelled && j.game) setGame(j.game);
       } catch {
-        /* profile unavailable */
       }
     })();
     return () => {

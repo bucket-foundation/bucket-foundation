@@ -1,8 +1,3 @@
-/**
- * The Academy corpus from the browser: the deck index and one branch file
- * at a time, served as static files from /academy-app/corpus (the mirror
- * scripts/sync-academy.mjs keeps of learning/app/corpus).
- */
 "use client";
 
 import { withLeverage, type Atom } from "./engine";
@@ -36,7 +31,6 @@ export function loadDecks(): Promise<Deck[]> {
   return decksPromise;
 }
 
-/** The label a deck shows: the pill with its leading numeral stripped. */
 export function deckLabel(d: Deck): string {
   return (d.pill ?? d.id).replace(/^\S+\s+[·]\s+/, "");
 }

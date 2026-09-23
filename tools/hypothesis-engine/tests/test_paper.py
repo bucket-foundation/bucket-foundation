@@ -15,7 +15,6 @@ requires_real_run = pytest.mark.skipif(
     reason="tools/hypothesis-engine/runs/quantum-history-real/20260910T001819Z is not present in this checkout",
 )
 
-
 def _minimal_run(tmp_path, *, with_calibration: bool = True) -> Path:
     run_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
     run_dir.mkdir(parents=True)
@@ -46,11 +45,6 @@ def _minimal_run(tmp_path, *, with_calibration: bool = True) -> Path:
     }
     (run_dir / "timeline.json").write_text(json.dumps(timeline))
     if with_calibration:
-        # `hte.calibrate.write_calibration`'s own current (post-`bkt-hte-
-        # calibration-redesign`) shape: `n_holdout_events`/
-        # `n_covered_events`, replacing the pre-redesign `n_sources` this
-        # fixture used to carry (`hte.artifacts`'s own module docstring
-        # names that exact drift as this contract's motivating bug).
         calibration = {
             "mode": "discovery_date", "cutoff_years": 1950, "n_holdout_events": 2, "n_covered_events": 2,
             "brier_score": 0.02,
@@ -66,12 +60,10 @@ def _minimal_run(tmp_path, *, with_calibration: bool = True) -> Path:
     (run_dir / "self-report.json").write_text(json.dumps(self_report))
     return run_dir
 
-
 def test_tex_escape_escapes_every_special_character():
     assert paper.tex_escape("a_b & c% $d #e {f} ~g ^h \\i") == (
         r"a\_b \& c\% \$d \#e \{f\} \textasciitilde{}g \textasciicircum{}h \textbackslash{}i"
     )
-
 
 def test_fmt_handles_none_bool_float_int():
     assert paper._fmt(None) == "not recorded"
@@ -81,22 +73,18 @@ def test_fmt_handles_none_bool_float_int():
     assert paper._fmt(0.12345, nd=1) == "0.1"
     assert paper._fmt(7) == "7"
 
-
 def test_title_case_splits_on_hyphen_and_underscore():
     assert paper._title_case("quantum-history-real") == "Quantum History Real"
     assert paper._title_case("a_b-c") == "A B C"
-
 
 def test_run_date_formats_timestamp_and_falls_back():
     assert paper._run_date("20260910T001819Z") == "2026-09-10"
     assert paper._run_date("") == "2026"
     assert paper._run_date("2026") == "2026"
 
-
 def test_load_run_missing_manifest_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         paper.load_run(tmp_path / "no-such-run")
-
 
 def test_load_run_reads_every_artifact(tmp_path):
     run_dir = _minimal_run(tmp_path)
@@ -106,14 +94,12 @@ def test_load_run_reads_every_artifact(tmp_path):
     assert data.calibration.brier_score == 0.02
     assert data.self_report.missing_mass_estimate == 0.1
 
-
 def test_load_run_without_calibration_reads_none(tmp_path):
     run_dir = _minimal_run(tmp_path, with_calibration=False)
     data = paper.load_run(run_dir)
     assert data.calibration is None
 
-
-@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
+@pytest.mark.allow_subprocess
 def test_emit_paper_writes_every_expected_file(tmp_path):
     run_dir = _minimal_run(tmp_path)
     out_dir = tmp_path / "paper"
@@ -130,21 +116,11 @@ def test_emit_paper_writes_every_expected_file(tmp_path):
         assert (out_dir / "figures" / name.replace(".py", ".png")).is_file()
 
     tex = (out_dir / "main.tex").read_text()
-    assert "Camp" in tex  # title-cased campaign name
-    assert "4" in tex  # n_survivors, read straight from the artifact
+    assert "Camp" in tex
+    assert "4" in tex
 
-
-@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
+@pytest.mark.allow_subprocess
 def test_emit_paper_writes_no_absolute_paths_anywhere(tmp_path):
-    """PR #4 review finding: `main.tex`'s `\\addbibresource` and every
-    figure script's `RUN_DIR` used to bake this checkout's own absolute
-    path, home directory and username included, into a file `emit_paper`
-    writes (`COMMON_BIB`'s old `str(COMMON_BIB)` reference; each figure
-    script's old `str(run_dir.resolve())`). A fresh synth run over a
-    fake, tmp-path `run_dir`/`out_dir` (no LLM, no network, this
-    package's own fake-mode fixture) still must not carry `/home/`, this
-    checkout's own `REPO_ROOT`, or either fixture directory's own
-    absolute string into any file this emitter writes."""
     run_dir = _minimal_run(tmp_path)
     out_dir = tmp_path / "paper"
     result = paper.emit_paper(run_dir, out_dir)
@@ -164,15 +140,13 @@ def test_emit_paper_writes_no_absolute_paths_anywhere(tmp_path):
         for needle, label in forbidden.items():
             assert needle not in text, f"{path} carries {label} ({needle!r})"
 
-
-@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
+@pytest.mark.allow_subprocess
 def test_emit_paper_without_calibration_states_that_plainly(tmp_path):
     run_dir = _minimal_run(tmp_path, with_calibration=False)
     out_dir = tmp_path / "paper"
     paper.emit_paper(run_dir, out_dir)
     tex = (out_dir / "main.tex").read_text()
     assert "executed no discovery-date or k-fold holdout" in tex
-
 
 def test_calibration_table_escapes_bin_bracket_so_it_does_not_eat_the_next_row():
     run_dir_data = paper.RunData(
@@ -187,9 +161,8 @@ def test_calibration_table_escapes_bin_bracket_so_it_does_not_eat_the_next_row()
     rendered = paper._calibration(run_dir_data)
     assert "{[}0.7, 0.8{)}" in rendered
 
-
 @requires_real_run
-@pytest.mark.allow_subprocess  # emit_paper's figure renders plus build_pdf's real `make pdf`/pdflatex
+@pytest.mark.allow_subprocess
 def test_emit_paper_and_build_pdf_over_a_real_run():
     dest = SCRATCH_ROOT / f"_test-paper-{uuid.uuid4().hex[:8]}"
     try:

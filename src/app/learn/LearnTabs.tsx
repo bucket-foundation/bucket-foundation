@@ -33,7 +33,6 @@ export default function LearnTabs() {
 
   return (
     <section className="max-w-[1200px] mx-auto px-4 md:px-6 pb-16 md:pb-24">
-      {/* Tab strip */}
       <div
         role="tablist"
         aria-label="Learn tabs"
@@ -69,7 +68,6 @@ export default function LearnTabs() {
   );
 }
 
-// ─────────────────────────── TAB 1: Chat ───────────────────────────
 function ChatPanel() {
   const [apiKey, setApiKey] = useState("");
   const [input, setInput] = useState("");
@@ -80,7 +78,6 @@ function ChatPanel() {
   const docsRef = useRef<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Restore from sessionStorage
   useEffect(() => {
     try {
       const k = sessionStorage.getItem(KEY_STORAGE);
@@ -88,23 +85,19 @@ function ChatPanel() {
       const t = sessionStorage.getItem(THREAD_STORAGE);
       if (t) setMessages(JSON.parse(t));
     } catch {
-      /* noop */
     }
   }, []);
 
-  // Persist
   useEffect(() => {
     try {
       if (apiKey) sessionStorage.setItem(KEY_STORAGE, apiKey);
     } catch {
-      /* noop */
     }
   }, [apiKey]);
   useEffect(() => {
     try {
       sessionStorage.setItem(THREAD_STORAGE, JSON.stringify(messages));
     } catch {
-      /* noop */
     }
   }, [messages]);
 
@@ -136,7 +129,6 @@ function ChatPanel() {
 
     try {
       const docs = await loadDocs();
-      // Lazy import SDK
       const { default: Anthropic } = await import("@anthropic-ai/sdk");
       const client = new Anthropic({
         apiKey,
@@ -182,7 +174,6 @@ function ChatPanel() {
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
       setError(msg);
-      // If stream threw before any assistant text, remove placeholder
       setMessages((m) => {
         const last = m[m.length - 1];
         if (last && last.role === "assistant" && last.content === "") {
@@ -206,11 +197,9 @@ function ChatPanel() {
     try {
       sessionStorage.removeItem(THREAD_STORAGE);
     } catch {
-      /* noop */
     }
   };
 
-  // Export row handlers
   const threadText = messages
     .map((m) => `## ${m.role}\n\n${m.content}`)
     .join("\n\n---\n\n");
@@ -228,7 +217,6 @@ function ChatPanel() {
     try {
       await navigator.clipboard.writeText(threadText);
     } catch {
-      /* noop */
     }
   };
   const email = () => {
@@ -290,7 +278,6 @@ function ChatPanel() {
             </div>
           </div>
 
-          {/* Thread */}
           <div className="mt-6 space-y-5">
             {messages.length === 0 && (
               <div className="text-[13px] text-[color:var(--basalt-3)] italic">
@@ -318,7 +305,6 @@ function ChatPanel() {
             )}
           </div>
 
-          {/* Input */}
           <div className="mt-6">
             <textarea
               value={input}
@@ -371,7 +357,6 @@ function ChatPanel() {
             </div>
           </div>
 
-          {/* Export row */}
           {hasThread && (
             <div className="mt-6 pt-6 border-t border-[color:var(--hairline)]">
               <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)] mb-3">
@@ -388,7 +373,6 @@ function ChatPanel() {
           )}
         </div>
 
-        {/* sidebar, starter lessons */}
         <aside className="col-span-12 md:col-span-4">
           <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)] mb-3">
             § starter lessons
@@ -417,7 +401,6 @@ function ChatPanel() {
 const exportBtn =
   "small-caps text-[11px] tracking-[0.14em] text-[color:var(--basalt)] bg-[color:var(--bone)] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] px-4 py-3 rounded-sm min-h-[44px] transition";
 
-// ─────────────────────────── TAB 2: MCP ───────────────────────────
 function McpPanel() {
   return (
     <div role="tabpanel" id="panel-mcp" aria-labelledby="tab-mcp">
@@ -461,18 +444,8 @@ claude mcp add --scope user --transport stdio bucket \\
   );
 }
 
-// ─────────────────────────── TAB 3: Claude.ai lessons ───────────────────────────
-
-// Hard cap on the encoded-URL query string (claude.ai / chat.openai.com both
-// choke well before the browser's ~8kB limit). We budget 7500 chars for q=...
-// after encodeURIComponent. If we blow past that, we progressively truncate
-// the ground truth, slogans + thesis + envelope + cite-forever are the
-// non-negotiables; canon branches drop first.
 const MAX_ENCODED_Q = 7500;
 
-// Distilled core, kept if we have to truncate. Captures slogans, thesis,
-// envelope, feed402 tiers, cite-forever license. Drops canon branches,
-// nonprofit rationale, and canon thesis flourish.
 const BUCKET_GROUND_TRUTH_CORE = BUCKET_GROUND_TRUTH
   .replace(/\n\nCANON — 7 BRANCHES[\s\S]*?never canon themselves\./g, "")
   .replace(/\n\nWHY NONPROFIT\.[\s\S]*?survives capture\./g, "")
@@ -518,7 +491,6 @@ function ClaudeAiPanel() {
       setCopiedIdx(idx);
       setTimeout(() => setCopiedIdx((c) => (c === idx ? null : c)), 1800);
     } catch {
-      /* noop */
     }
   }, []);
 
@@ -583,7 +555,6 @@ function ClaudeAiPanel() {
   );
 }
 
-// ─────────────────────────── TAB 4: Corpus ───────────────────────────
 function CorpusPanel() {
   const [building, setBuilding] = useState(false);
   const [err, setErr] = useState<string | null>(null);

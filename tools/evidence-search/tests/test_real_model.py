@@ -1,9 +1,3 @@
-"""The pinned checkpoint itself, on this machine: file hashes, a real query
-embedding, and a ranking that differs from keyword ranking on prespecified
-paraphrases. A scripted encoder proves nothing about the model, so these
-run the weights. They skip when the snapshot is not cached;
-EVIDENCE_REQUIRE_MODEL=1 turns that skip into a failure."""
-
 import json
 import os
 import unittest
@@ -20,7 +14,6 @@ _, ENTRY = model_entry()
 CACHED = not verify_model(ENTRY)
 if os.environ.get("EVIDENCE_REQUIRE_MODEL") == "1" and not CACHED:
     raise RuntimeError("EVIDENCE_REQUIRE_MODEL=1 and the pinned model is not cached: " + "; ".join(verify_model(ENTRY)))
-
 
 @unittest.skipUnless(CACHED, "the pinned model is not cached here")
 class RealModel(unittest.TestCase):
@@ -64,7 +57,6 @@ class RealModel(unittest.TestCase):
         with mock.patch.object(registry, "load_models", return_value=bad):
             with self.assertRaises(ModelUnavailable):
                 Encoder()
-
 
 if __name__ == "__main__":
     unittest.main()

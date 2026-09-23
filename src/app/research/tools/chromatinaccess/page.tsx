@@ -6,7 +6,6 @@ export const metadata = toolMetadata("chromatinaccess");
 const _jsonld = toolJsonLd("chromatinaccess");
 import ChromatinAccessClient from "./ChromatinAccessClient";
 
-// ChromatinAccess run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

@@ -4,9 +4,6 @@ import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// The Awareness level, in place (ros-24): from the selected node, where
-// knowledge goes. Reads GET /api/research-os/directions.
-
 interface Lite {
   id: string;
   slug: string;
@@ -40,8 +37,6 @@ export default function DirectionsBlock({
       try {
         const res = await fetch(`/api/research-os/directions?node=${encodeURIComponent(nodeId)}&branch=${encodeURIComponent(branch)}`, { cache: "no-store" });
         if (!res.ok) {
-          // A null view renders nothing, which reads as a node with no
-          // directions rather than a read that did not complete.
           if (!cancelled && isTransientOutage(res.status, await readErrorCode(res))) setNote(OUTAGE_COPY.body);
           return;
         }
@@ -49,7 +44,6 @@ export default function DirectionsBlock({
         const j = (await res.json()) as DirectionsView;
         if (!cancelled) setD(j);
       } catch {
-        /* unavailable */
       }
     })();
     return () => {

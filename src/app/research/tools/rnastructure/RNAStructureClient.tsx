@@ -1,8 +1,5 @@
 "use client";
 
-// RNAStructure client island, RNA secondary-structure prediction via ViennaRNA
-// (REAL MFE fold + partition function). Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -116,7 +113,6 @@ function FoldView({ result }: { result: ResultEnvelope }) {
         {out.input_was_dna ? " · DNA folded as RNA" : ""}
       </div>
 
-      {/* dot-bracket structure aligned under the sequence */}
       <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 overflow-x-auto">
         <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-2">
           MFE structure
@@ -128,7 +124,6 @@ function FoldView({ result }: { result: ResultEnvelope }) {
         </pre>
       </div>
 
-      {/* key thermodynamics */}
       <StatGrid className="mt-6">
         <Stat label="MFE" value={`${out.mfe_kcal_mol ?? "—"} kcal/mol`} />
         <Stat label="ensemble" value={`${out.ensemble_energy_kcal_mol ?? "—"} kcal/mol`} />
@@ -136,7 +131,6 @@ function FoldView({ result }: { result: ResultEnvelope }) {
         <Stat label="mean pair conf" value={out.mean_pair_confidence != null ? out.mean_pair_confidence.toFixed(3) : "—"} />
       </StatGrid>
 
-      {/* structure summary */}
       {out.summary && (
         <StatGrid className="mt-6">
           <Stat label="base pairs" value={String(out.summary.n_base_pairs)} />
@@ -146,7 +140,6 @@ function FoldView({ result }: { result: ResultEnvelope }) {
         </StatGrid>
       )}
 
-      {/* high-confidence pairs */}
       {out.high_confidence_pairs && out.high_confidence_pairs.length > 0 && (
         <div className="mt-6">
           <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">

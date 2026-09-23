@@ -1,9 +1,3 @@
-/**
- * Evidence search as the route serves it (ros-ai-find): the request and
- * response contract, the pilot gate, the profile read, and the server's
- * eligibility, its second look before hydration, and its cards. node:test,
- * no database and no network: the graph client is a stand-in.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, rmSync, utimesSync, writeFileSync } from "node:fs";
@@ -88,7 +82,6 @@ test("the gate takes an adult on the pilot list, and names every other refusal",
   assert.deepEqual([flagOn("1"), flagOn("true"), flagOn("0"), flagOn(undefined)], [true, true, false, false]);
 });
 
-/** A stand-in for the few PostgREST calls the server makes. */
 function fakeDb(opts: { eligible?: { source_id: string; source_revision: string; node_id: string | null }[][]; quotes?: string[]; failEligible?: boolean; profile?: { row?: unknown; error?: string } }) {
   const pages = opts.eligible ?? [];
   let call = 0;
@@ -190,7 +183,6 @@ test("a stale revision, another branch and an unadmitted source stay out", async
 
 test("a source withdrawn while the search ran never reaches the response", async () => {
   const [a, b] = [record(1), record(2)];
-  // The first read admits both; the second, after ranking, admits one.
   const svc = fakeDb({ eligible: [[eligibleRow(a), eligibleRow(b)], [eligibleRow(a)]] });
   const res = await runEvidenceSearch({ corpus: corpusOf([a, b]), svc, worker: null, requestId: "r3" }, ask);
   assert.deepEqual(res.cards.map((c) => c.slug), ["node-1"]);
@@ -236,10 +228,6 @@ test("a corpus directory is read only when it matches its manifest", () => {
     writeFileSync(path.join(one, "manifest.json"), JSON.stringify({ corpusRevision: rev("a") }));
     assert.equal(newestCorpusDir(dir), one);
     assert.equal(newestCorpusDir(path.join(dir, "missing")), null);
-    // A failed build leaves `.tmp-<revision>-<pid>` on disk with its
-    // manifest already written, and it is the newest manifest in the
-    // root. Selecting it would pin the server to artifacts that failed
-    // their own readback, with no request able to clear it.
     const failed = path.join(dir, ".tmp-abcdef123456-4242");
     mkdirSync(failed);
     writeFileSync(path.join(failed, "manifest.json"), JSON.stringify({ corpusRevision: rev("b") }));

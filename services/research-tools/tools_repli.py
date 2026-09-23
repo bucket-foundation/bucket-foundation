@@ -1,47 +1,4 @@
 #!/usr/bin/env python3
-"""
-research-tools, RepliCheck (REAL statistics reproducibility, CPU, no GPU)
-==========================================================================
-
-The second of the two ALL-FIELD horizontal research tools (with FAIRCheck).
-Statistics reproducibility is funder-mandated and journal-mandated across every
-discipline that reports inferential statistics, so RepliCheck serves the whole
-1.17M-researcher corpus across every field.
-
-Given reported statistics (pasted Results text, or explicit fields), RepliCheck
-runs REAL reproducibility checks:
-
- 1. statcheck-style p-value recomputation
- ----------------------------------------------------------------------
- Parse t / F / χ² / r + degrees-of-freedom + reported p from text, recompute
- the p-value from the test statistic and df using scipy.stats, and flag
- INCONSISTENCIES (reported p does not match the statistic) and GROSS errors
- (the inconsistency even flips the significance decision at α). This is the
- algorithm of Nuijten et al. 2016, "The prevalence of statistical reporting
- errors in psychology (1985-2013)", Behav. Res. Methods 48:1205, the
- `statcheck` R package, reimplemented in scipy.
-
- 2. GRIM test (Granularity-Related Inconsistency of Means)
- ----------------------------------------------------------------------
- For a reported mean of integer-valued items over N observations, the mean
- MUST be one of the N+1 achievable values k/N (k = 0..N·range). If the
- reported mean (at its decimal granularity) is not achievable for that N, it
- is mathematically impossible. Brown & Heathers 2017, "The GRIM test", Soc.
- Psychol. Personal. Sci. 8:363. Reimplemented exactly.
-
- 3. Reporting-completeness flags
- ----------------------------------------------------------------------
- Missing multiple-comparison correction (many p-values, no Bonferroni/FDR/
- Holm mentioned), missing confidence intervals / effect sizes, and an
- underpowered-design hint (small N with a "non-significant" framing).
-
-Parsing is regex over the pasted Results text (t/F/χ²/r + df + p). Recomputation
-is real scipy.stats. Everything is deterministic and NEVER crashes on malformed
-input, it returns a structured {"error":...} or reports "no statistics
-found", and skips any single token it cannot parse without aborting the run.
-
-The gateway imports REPLI_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import re
@@ -49,31 +6,23 @@ from typing import Any, Optional
 
 from scipy import stats as _stats
 
-
-# ---------------------------------------------------------------------------
-# 1. statcheck-style parsing + recomputation
-# ---------------------------------------------------------------------------
 _NUM = r"[-+]?\d*\.?\d+"
 
-# t(df) = stat, p (rel|=|<|>) value e.g. t(24) = 2.13, p = .04
 RE_T = re.compile(
     r"\bt\s*\(\s*(?P<df>" + _NUM + r")\s*\)\s*=\s*(?P<stat>" + _NUM + r")"
     r"\s*,?\s*p\s*(?P<rel>[<>=≤≥]+)\s*(?P<p>" + _NUM + r")",
     re.I,
 )
-# F(df1, df2) = stat, p ... e.g. F(2, 36) = 5.40, p = .009
 RE_F = re.compile(
     r"\bF\s*\(\s*(?P<df1>" + _NUM + r")\s*,\s*(?P<df2>" + _NUM + r")\s*\)\s*=\s*(?P<stat>" + _NUM + r")"
     r"\s*,?\s*p\s*(?P<rel>[<>=≤≥]+)\s*(?P<p>" + _NUM + r")",
     re.I,
 )
-# χ²(df[, N=...]) = stat, p ... accepts chi2 / χ2 / X2 ; optional, N = ...
 RE_CHI = re.compile(
     r"(?:χ2|χ²|chi2|chi-?square|x2|X2)\s*\(\s*(?P<df>" + _NUM + r")\s*(?:,\s*N\s*=\s*" + _NUM + r")?\s*\)\s*=\s*(?P<stat>" + _NUM + r")"
     r"\s*,?\s*p\s*(?P<rel>[<>=≤≥]+)\s*(?P<p>" + _NUM + r")",
     re.I,
 )
-# r(df) = stat, p ... e.g. r(48) = .34, p = .017
 RE_R = re.compile(
     r"\br\s*\(\s*(?P<df>" + _NUM + r")\s*\)\s*=\s*(?P<stat>" + _NUM + r")"
     r"\s*,?\s*p\s*(?P<rel>[<>=≤≥]+)\s*(?P<p>" + _NUM + r")",
@@ -82,22 +31,13 @@ RE_R = re.compile(
 
 _REL_NORMAL = {"≤": "<=", "≥": ">=", "<=": "<=", ">=": ">=", "<": "<", ">": ">", "=": "="}
 
-
 def _to_float(s: str) -> Optional[float]:
     try:
         return float(s)
     except Exception:
         return None
 
-
 def recompute_p(test: str, stat: float, df1: float, df2: Optional[float] = None) -> Optional[float]:
-    """Recompute a two-tailed p-value from a test statistic + df. Real scipy.
-
- t : two-tailed Student-t survival, 2 * sf(|t|, df)
- F : upper-tail F survival, sf(F, df1, df2)
- chi: upper-tail chi-square survival, sf(chi2, df)
- r : convert to t = r*sqrt(df/(1-r^2)) then two-tailed t
-    """
     try:
         if test == "t":
             return float(2.0 * _stats.t.sf(abs(stat), df1))
@@ -116,18 +56,9 @@ def recompute_p(test: str, stat: float, df1: float, df2: Optional[float] = None)
         return None
     return None
 
-
 def _decide(rel: str, reported_p: float, computed_p: float, alpha: float = 0.05) -> tuple[bool, bool]:
-    """statcheck consistency rules. Returns (consistent, gross_error).
-
- A result is CONSISTENT if the reported relation holds for the computed p
- (within rounding to the reported precision). GROSS = the (in)consistency
- flips the significance decision at alpha.
-    """
     rel = _REL_NORMAL.get(rel, rel)
-    # round computed to the reported decimals for "=" comparisons
     if rel == "=":
-        # match at the granularity the author reported (e.g. .04 -> 2 dp)
         consistent = round(computed_p, 3) == round(reported_p, 3) or abs(computed_p - reported_p) <= 0.5 * 10 ** (-_decimals(reported_p))
     elif rel == "<":
         consistent = computed_p < reported_p or abs(computed_p - reported_p) <= 1e-4
@@ -139,20 +70,16 @@ def _decide(rel: str, reported_p: float, computed_p: float, alpha: float = 0.05)
         consistent = computed_p >= reported_p - 1e-4
     else:
         consistent = abs(computed_p - reported_p) <= 0.01
-    # gross: significance decision differs
     reported_sig = (reported_p < alpha) if rel in ("=", "<", "<=") else (reported_p <= alpha)
     computed_sig = computed_p < alpha
     gross = (not consistent) and (reported_sig != computed_sig)
     return bool(consistent), bool(gross)
 
-
 def _decimals(x: float) -> int:
     s = repr(x)
     return len(s.split(".")[1]) if "." in s else 0
 
-
 def parse_statistics(text: str) -> list[dict]:
-    """Parse t/F/χ²/r + df + reported p from Results text. Pure, never raises."""
     found: list[dict] = []
     plan = [
         ("t", RE_T, lambda m: (m.group("stat"), m.group("df"), None)),
@@ -180,9 +107,7 @@ def parse_statistics(text: str) -> list[dict]:
             })
     return found
 
-
 def check_statistics(text: str, alpha: float = 0.05) -> list[dict]:
-    """Recompute every parsed statistic and decide consistency. Pure."""
     out: list[dict] = []
     for s in parse_statistics(text):
         computed = recompute_p(s["test"], s["statistic"], s["df1"], s["df2"])
@@ -200,11 +125,6 @@ def check_statistics(text: str, alpha: float = 0.05) -> list[dict]:
         })
     return out
 
-
-# ---------------------------------------------------------------------------
-# 2. GRIM test
-# ---------------------------------------------------------------------------
-# mean(SD)? of an integer-item scale, N = ... e.g. M = 3.45, SD = 1.2, N = 28
 RE_MEAN_N = re.compile(
     r"\b(?:M|mean)\s*=\s*(?P<mean>" + _NUM + r")"
     r"(?:[^.\n]*?(?:SD|sd)\s*=\s*" + _NUM + r")?"
@@ -212,22 +132,13 @@ RE_MEAN_N = re.compile(
     re.I,
 )
 
-
 def grim_consistent(mean: float, n: int, items: int = 1, decimals: Optional[int] = None) -> bool:
-    """GRIM test: is `mean` achievable as (integer sum)/(n*items)?
-
- For integer-valued measurements, the achievable means at granularity 10^-d
- are k/(n*items) rounded to d decimals. The reported mean is GRIM-consistent
- iff some integer numerator reproduces it. Pure, exact (Brown & Heathers 2017).
-    """
     if n <= 0 or items <= 0:
-        return True  # cannot test
+        return True
     d = decimals if decimals is not None else _decimals(mean)
     if d == 0:
-        return True  # no granularity to exploit
+        return True
     denom = n * items
-    # round-half-to-even matches how journals round; test both the
-    # floor and ceil candidate numerators around mean*denom.
     target = round(mean, d)
     base = mean * denom
     for k in (int(base) - 1, int(base), int(base) + 1, round(base)):
@@ -237,9 +148,7 @@ def grim_consistent(mean: float, n: int, items: int = 1, decimals: Optional[int]
             return True
     return False
 
-
 def parse_means(text: str) -> list[dict]:
-    """Parse 'M = x... N = n' patterns for GRIM. Pure, never raises."""
     out: list[dict] = []
     for m in RE_MEAN_N.finditer(text):
         mean = _to_float(m.group("mean"))
@@ -249,13 +158,7 @@ def parse_means(text: str) -> list[dict]:
         out.append({"raw": m.group(0).strip(), "mean": mean, "n": int(n)})
     return out
 
-
 def check_grim(text: str, items: int = 1) -> list[dict]:
-    """Run GRIM over every parsed mean/N pair. Pure.
-
- Only means with at least one decimal of granularity are testable (GRIM has
- no power on whole-number means). `items` = number of integer items averaged
- (1 for a single integer measure)."""
     out: list[dict] = []
     for mp in parse_means(text):
         d = _decimals(mp["mean"])
@@ -273,10 +176,6 @@ def check_grim(text: str, items: int = 1) -> list[dict]:
         })
     return out
 
-
-# ---------------------------------------------------------------------------
-# 3. Reporting-completeness flags
-# ---------------------------------------------------------------------------
 _CORRECTION = re.compile(
     r"\b(bonferroni|holm|hochberg|benjamini|hochberg|fdr|false discovery|"
     r"sidak|šidák|tukey|scheff[eé]|family[\s-]?wise|corrected for multiple|"
@@ -292,9 +191,7 @@ _EFFECT = re.compile(
 )
 _NONSIG = re.compile(r"\b(non[\s-]?significant|not significant|no (?:significant )?(?:difference|effect)|n\.?s\.?)\b", re.I)
 
-
 def completeness_flags(text: str, stats_rows: list[dict], means_rows: list[dict]) -> list[dict]:
-    """Reporting-completeness checks. Pure."""
     flags: list[dict] = []
     n_p = len(stats_rows)
     has_corr = bool(_CORRECTION.search(text))
@@ -316,7 +213,6 @@ def completeness_flags(text: str, stats_rows: list[dict], means_rows: list[dict]
             "severity": "medium",
             "detail": "No standardized effect size (Cohen's d, η², r², odds ratio…) reported alongside the significance tests.",
         })
-    # underpowered hint: a small-N design + a 'non-significant' framing
     small_ns = [m["n"] for m in means_rows if m["n"] < 20] + [
         int(r["df1"]) + 2 for r in stats_rows if r["test"] == "t" and r["df1"] < 18
     ]
@@ -328,21 +224,7 @@ def completeness_flags(text: str, stats_rows: list[dict], means_rows: list[dict]
         })
     return flags
 
-
-# ---------------------------------------------------------------------------
-# orchestration
-# ---------------------------------------------------------------------------
 def _demo_text() -> str:
-    """Known mini Results section with planted reproducibility errors, all
- verifiable by hand (see ground_truth):
- * t(24) = 2.13, p = .002 -> recomputes to p≈.044 : INCONSISTENT (both
- significant, so not a decision error, a reported/recomputed mismatch).
- * χ²(1) = 3.84, p = .049 -> recomputes to p≈.0500 : DECISION ERROR
- (reported significant at α=.05, but non-significant).
- * F(2,36) = 5.40, p = .009 and r(48) = .34, p = .016 -> both CONSISTENT.
- * M = 2.19, n = 10 on an integer 1-5 scale -> 2.19·10 = 21.9 (non-integer):
- GRIM-IMPOSSIBLE.
-    """
     return (
         "Reaction times differed between groups, t(24) = 2.13, p = .002. "
         "A one-way ANOVA showed a main effect, F(2, 36) = 5.40, p = .009. "
@@ -352,14 +234,7 @@ def _demo_text() -> str:
         "whereas the control showed no significant difference (M = 3.00, SD = 1.1, n = 12)."
     )
 
-
 def run_repli_check(payload: dict) -> dict:
-    """payload: { text: <Results text> OR "demo", alpha?: float, items?: int }
-
- Run statcheck-style p-value recomputation, the GRIM test, and reporting-
- completeness flags over reported statistics. Real scipy math; deterministic;
- never crashes on malformed input.
-    """
     raw = payload.get("text")
     demo = isinstance(raw, str) and raw.strip().lower() == "demo"
     if demo:
@@ -394,7 +269,6 @@ def run_repli_check(payload: dict) -> dict:
     n_grim_test = sum(1 for g in grim if g.get("grim_testable"))
     n_grim_fail = sum(1 for g in grim if g.get("grim_consistent") is False)
 
-    # overall reproducibility flag
     if n_gross or n_grim_fail:
         repro = "FAIL — at least one statistic is internally impossible or flips its significance decision"
         level = "fail"
@@ -442,12 +316,6 @@ def run_repli_check(payload: dict) -> dict:
         ),
     }
     if demo:
-        # Ground truth for verification (hand-checked):
-        # t(24)=2.13 recomputes to p≈.044 ≠ reported .002 → INCONSISTENT
-        # (both <.05, so not a decision error).
-        # χ²(1)=3.84 recomputes to p≈.0500 > .05 but reported .049 (sig) →
-        # DECISION ERROR (the only one here).
-        # M=2.19 on an integer 1-5 scale, n=10 → 21.9 non-integer → GRIM-IMPOSSIBLE.
         out["ground_truth"] = {
             "t_24_2p13_is_inconsistent": True,
             "chi2_1_3p84_p049_is_decision_error": True,
@@ -458,8 +326,6 @@ def run_repli_check(payload: dict) -> dict:
         out["note"] = "DEMO: a known Results snippet with a planted statcheck inconsistency, a planted decision error, AND a planted GRIM-impossible mean (see ground_truth). " + out["note"]
     return out
 
-
-# Registry the gateway imports.
 REPLI_RUNNERS = {
     "replicheck": run_repli_check,
 }

@@ -10,14 +10,6 @@ type Step = "email" | "code" | "done";
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
-/**
- * Email, then a one-time code. With `allowNewAccounts` false the form asks
- * Supabase to sign in existing accounts only (`shouldCreateUser` off): the
- * launch-list page uses it so staff and invited testers keep access on
- * production. The flag is a request from the browser. Whether the project
- * accepts new accounts at all is GoTrue's signup setting on the server. The
- * form answers the same for a known and an unknown address.
- */
 export default function SignInForm({ next, allowNewAccounts = true }: { next: string | null; allowNewAccounts?: boolean }) {
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
@@ -31,8 +23,6 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
   const [slow, setSlow] = useState(false);
   const sent = useRef(false);
 
-  // A full navigation, so the middleware and server components read the
-  // fresh session cookies on the first request. Runs once.
   function leave() {
     if (sent.current) return;
     sent.current = true;
@@ -40,13 +30,11 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
     window.location.replace(destination);
   }
 
-  // Already signed in: go where the person was headed.
   useEffect(() => {
     if (!loading && user && step !== "done") leave();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, user, step]);
 
-  // If the browser has not left the page in a few seconds, show the link.
   useEffect(() => {
     if (step !== "done") return;
     const t = window.setTimeout(() => setSlow(true), 3000);
@@ -65,8 +53,6 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
     setError(null);
     const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts } });
     setBusy(false);
-    // Existing-accounts mode moves on for an unknown address too, so the page
-    // never says whether an address has an account.
     const unknownAccount = !allowNewAccounts && Boolean(err?.message.toLowerCase().includes("signups not allowed"));
     if (err && !unknownAccount) {
       setError(friendly(err.message));

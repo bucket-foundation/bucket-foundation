@@ -1,52 +1,6 @@
-// canon-signoff.ts, the web-route side of the canon human sign-off tool
-// (GOVERNANCE.md's "Canon sign-off" section). Shared between GET and POST
-// in src/app/api/canon/signoff/route.ts so the route file itself stays a
-// thin auth-then-dispatch shell, the same separation
-// src/lib/research-os/reviewer.ts + review/route.ts already use.
-//
-// TWO SIGNOFF VOCABULARIES. This module writes and reads the SAME
-// `provenance_signoff` field and "pending: <name>" / "approved: <name>
-// <date>" / "rejected: <name> <date>: <reason>" vocabulary as
-// tools/canon-pipeline/signoff.py (the CLI). That CLI's own
-// signoff_core.py is the reference implementation; canon-signoff.ts
-// re-implements it in TypeScript against the identical on-disk record
-// shape. A Vercel Node function has no Python runtime to shell out to, so
-// it cannot call the Python module directly. `hte.canon_writeback.write_back` (the
-// hypothesis-engine's write path) uses a DIFFERENT field entirely
-// (`signed_off_by: <name>`, no verb, on markdown cards under
-// bucket-canon/<branch>/hypotheses/, never canon_tier: canon) and is out of
-// scope for this module; see tools/canon-pipeline/SIGNOFF.md.
-//
-// NO YAML DEPENDENCY, matching canon-primary.ts's own stated convention:
-// reading reuses that file's tolerant scanner (parseYamlRecords); writing
-// is a surgical single-line replace of the target record's
-// `provenance_signoff:` line, leaving every other byte untouched, exactly
-// mirroring signoff_core.py's own write strategy.
-//
-// OPERATIONAL NOTE: this app deploys to Vercel (package.json's
-// @vercel/analytics, learning/research-os/CHANGE-LEDGER.md's Vercel
-// deployment-check entries). A Vercel Node function's filesystem is
-// read-only at runtime, so a write here will throw (surfaced by the route
-// as a 500) unless the process is running against a writable checkout
-// (local `npm run dev`, or a self-hosted `next start` against a git
-// working tree an operator commits from). tools/canon-pipeline/SIGNOFF.md
-// documents this; the CLI is the durable path until a DB- or
-// GitHub-API-backed write path replaces direct filesystem writes.
-
 import fs from "fs";
 import path from "path";
 import { parseYamlRecords, type PrimaryPaper } from "./canon-primary";
-
-// canon-primary.ts's own findPrimaryFiles is intentionally NOT reused for
-// discovery here: it only walks one level below each branch (branch/
-// concept/primary-papers.yaml), which misses bucket-canon/07-mind/
-// sub-outcomes/education/primary-papers.yaml (two levels down, 11 of the
-// 20 currently-pending records live there). This module needs every
-// pending record regardless of nesting depth, so it walks the tree itself
-// (findAllYamlFiles below). findPrimaryFiles' one-level behavior is left
-// unchanged for loadPrimaryPapers()'s live-serving path; fixing that
-// depth limit would change what /api/research serves and is out of scope
-// here (see SIGNOFF.md).
 
 export type SignoffStatus = "pending" | "approved" | "rejected" | "ungated" | "unknown";
 
@@ -72,13 +26,6 @@ export interface SignoffResult {
 export class SignoffError extends Error {
   constructor(message: string) {
     super(message);
-    // Restores the prototype chain: a class extending the built-in Error
-    // loses `instanceof` under a downlevel compile target (TS's well-known
-    // ES5-and-earlier gotcha) without this. next.config.mjs's own build
-    // target is modern enough not to need it, but scripts/test-canon-
-    // signoff.ts runs through ts-node with no target override (defaults
-    // to ES3), where `instanceof SignoffError` would silently fail without
-    // this line.
     Object.setPrototypeOf(this, SignoffError.prototype);
     this.name = "SignoffError";
   }
@@ -132,10 +79,6 @@ function tierOf(file: string, root: string): "canon" | "outcome" {
   return rel.split(path.sep).includes("sub-outcomes") ? "outcome" : "canon";
 }
 
-// Repo-relative ("bucket-canon/...") in real usage; falls back to
-// relative-to-root's-parent so a test fixture rooted outside the repo still
-// renders the same shape instead of a raw absolute path. Mirrors
-// signoff_core.py's _display_path exactly.
 function displayPath(file: string, root: string): string {
   const rel1 = path.relative(REPO_ROOT, file);
   if (!rel1.startsWith("..") && !path.isAbsolute(rel1)) return rel1;
@@ -187,11 +130,6 @@ function signoffOfBlock(raw: string, block: RecordBlock): string | null {
   return null;
 }
 
-/**
- * Every record under root whose status is in `statuses` (default: just
- * "pending"), sorted by canon_score desc then title, matching signoff_core.
- * py's list_records/list_pending.
- */
 export function listRecords(opts?: { root?: string; statuses?: Set<SignoffStatus> }): PendingRecord[] {
   const root = opts?.root ?? CANON_ROOT;
   const want = opts?.statuses ?? new Set<SignoffStatus>(["pending"]);
@@ -203,9 +141,6 @@ export function listRecords(opts?: { root?: string; statuses?: Set<SignoffStatus
     } catch {
       continue;
     }
-    // branch/concept args are unused by this module (tier is derived from
-    // the file path instead); parseYamlRecords still needs them to tag
-    // each PrimaryPaper, so pass empty strings.
     const records: PrimaryPaper[] = parseYamlRecords(raw, "", "");
     for (const r of records) {
       const status = statusOf(r.provenanceSignoff);
@@ -248,13 +183,6 @@ function loadLocation(file: string, id: string, root: string): RecordLocation {
   return { file, raw, root, startLine: block.start, endLine: block.end, record };
 }
 
-/**
- * Resolve a `record` argument to one on-disk record. Accepted forms: a bare
- * id ("bkt-2f40cfaacd63", matched globally; ids are unique by
- * construction), "<path>#<id>" or "<path>:<id>", or a bare path to a
- * primary-papers.yaml file / its concept directory IF it carries exactly
- * one pending record. Mirrors signoff_core.py's find_record exactly.
- */
 export function findRecord(ref: string, root: string = CANON_ROOT): RecordLocation {
   const trimmed = (ref || "").trim();
   if (!trimmed) throw new SignoffError("a record id is required");
@@ -318,9 +246,6 @@ function writeSignoffLine(loc: RecordLocation, newValue: string): void {
     }
   }
   if (!written) {
-    // Record predates the field (pre-ros-11); not expected to be hit by
-    // approve/reject since listPending only surfaces records that already
-    // carry it. Kept as a safe fallback, mirroring signoff_core.py.
     lines.splice(loc.startLine + 1, 0, `  provenance_signoff: '${newValue}'`);
   }
   fs.writeFileSync(loc.file, lines.join("\n"));

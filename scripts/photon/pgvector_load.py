@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""Load the local photon substrate (sqlite + memmapped LaBSE vectors) into a
-local Postgres+pgvector table, build an HNSW index, and benchmark a query.
-
-This is the LOCAL proof of the pgvector migration path, no prod box, no shared
-multi-tenant DB. Run against the bucket-pgvector docker container.
-
-Env: PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE (defaults target the container).
-"""
 import os, sys, time, csv, tempfile, sqlite3
 import numpy as np
 import psycopg2
@@ -28,7 +20,6 @@ def log(*a):
 
 def main():
     t_all = time.time()
-    # memmap the semantic vectors: row i == semantic_row i
     vecs = np.memmap(SEMBIN, dtype="<f4", mode="r")
     n_vec = vecs.shape[0] // DIM
     vecs = vecs.reshape(n_vec, DIM)
@@ -54,7 +45,6 @@ def main():
  )""")
     log("table created")
 
-    # Write a CSV (proper quoting) then COPY, fastest reliable bulk path.
     t = time.time()
     tmp = tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False,
                                       dir=PH, newline="")
@@ -75,7 +65,6 @@ def main():
     cur.execute("select count(*) from photons")
     log(f"COPY loaded {cur.fetchone()[0]} rows in {time.time()-t:.1f}s")
 
-    # HNSW index (cosine). Bump maintenance_work_mem for a faster build.
     t = time.time()
     cur.execute("SET maintenance_work_mem = '1GB'")
     cur.execute("SET max_parallel_maintenance_workers = 4")
@@ -88,7 +77,6 @@ def main():
     cur.execute("select pg_size_pretty(pg_total_relation_size('photons'))")
     log("table+index size:", cur.fetchone()[0])
 
-    # Benchmark: cross-lingual semantic neighbors of 'entropy' (en)
     srow = db.execute("select semantic_row from photons "
                       "where surface='entropy' and lang='en'").fetchone()[0]
     qv = "[" + ",".join(f"{x:.6g}" for x in vecs[srow].tolist()) + "]"

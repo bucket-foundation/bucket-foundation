@@ -1,13 +1,3 @@
-/**
- * Unit test: mint/verify roundtrip for Kruse access tokens.
- *
- * Run:
- *   npx ts-node scripts/test-kruse-token.ts
- *
- * Uses node:test (built-in, no extra dependency). We set the env vars inline
- * before importing the module so the secret/version/allow-list load.
- */
-
 process.env.BKT_KRUSE_TOKEN_SECRET =
   "test-secret-at-least-32-characters-long-xxxxx";
 process.env.BKT_KRUSE_TOKEN_VERSION = "7";
@@ -38,9 +28,9 @@ test("verify rejects recipients not on allow-list", async () => {
 
 test("verify rejects tokens from a prior version", async () => {
   const token = await mintToken("kruse", 60);
-  process.env.BKT_KRUSE_TOKEN_VERSION = "8"; // rotate
+  process.env.BKT_KRUSE_TOKEN_VERSION = "8";
   assert.equal(await verifyToken(token), null);
-  process.env.BKT_KRUSE_TOKEN_VERSION = "7"; // restore for subsequent tests
+  process.env.BKT_KRUSE_TOKEN_VERSION = "7";
 });
 
 test("verify rejects expired tokens", async () => {

@@ -1,9 +1,5 @@
 "use client";
 
-// ReviewGuard client island, cross-paper supporting vs contradicting evidence
-// for a claim, via deterministic sentence-level stance detection over OpenAlex
-// abstracts. Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,

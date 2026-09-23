@@ -1,13 +1,5 @@
 "use client";
 
-// LabBrain client island, drives the uniform job lifecycle through the
-// same-origin proxy /api/research/labbrain:
-// submit → POST /api/research/labbrain { author, question }
-// poll → GET /api/research/labbrain?job=<id>
-// result → GET /api/research/labbrain?job=<id>&result=1
-// Render is "json" for LabBrain → typed view (answer + "Publish to canon").
-// See docs/research-tools/04-implementation-architecture.md §2 + §7.
-
 import { useCallback, useRef, useState } from "react";
 import { ToolOfflineNotice, detectToolOffline } from "../_shared/ToolOfflineNotice";
 import { FieldLabel } from "../_shared/FieldLabel";
@@ -127,7 +119,6 @@ export default function LabBrainClient() {
         return;
       }
       const data = await r.json();
-      // Fast path: gateway may attach the result on the submit response.
       if (data.status === "succeeded" && data.result) {
         setResult(data.result as ResultEnvelope);
         setPhase("done");
@@ -210,16 +201,6 @@ function ResultView({ result }: { result: ResultEnvelope }) {
   const onPublish = useCallback(async () => {
     setPublishing(true);
     setPublishMsg("");
-    // [PUBLISH-TO-CANON HOOK, TODO backend wiring]
-    // POST the job to the publish endpoint, which renders the canonical
-    // artifact + provenance and registers it with its feed402/0.2 cite-forever
-    // block (free-to-read, paid-to-cite over x402). No minting, no chain. See
-    // docs §5. Endpoint not built in this slice.
-    // await fetch("/api/research/labbrain/publish", {
-    // method: "POST",
-    // headers: { "content-type": "application/json" },
-    // body: JSON.stringify({ job_id: result.job_id }),
-    // });
     setTimeout(() => {
       setPublishing(false);
       setPublishMsg(

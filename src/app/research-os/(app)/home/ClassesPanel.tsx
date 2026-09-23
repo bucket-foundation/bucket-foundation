@@ -15,7 +15,6 @@ interface ClassSummary {
 const ROLE_LABEL: Record<string, string> = { teacher: "teacher", librarian: "librarian", parent: "parent", peer: "peer", reviewer: "reviewer", learner: "learner" };
 const INPUT = "border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 min-w-0";
 
-/** The person's classes, a join-code box, and a create form for anyone who teaches. */
 export default function ClassesPanel() {
   const [rows, setRows] = useState<ClassSummary[] | null>(null);
   const [status, setStatus] = useState<number | null>(null);
@@ -30,9 +29,6 @@ export default function ClassesPanel() {
     try {
       const res = await fetch("/api/research-os/classes", { cache: "no-store" });
       if (!res.ok) {
-        // The code is read before any setState, so no render happens
-        // with the status set and the code still null, which showed
-        // one frame of the permanent copy for a passing outage.
         const outageCode = res.ok ? null : await readErrorCode(res);
         setErrorCode(outageCode);
         setStatus(res.status);

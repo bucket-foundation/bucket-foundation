@@ -1,11 +1,3 @@
-// /sacred-history, the sacred-history corpus surface.
-//
-// A rights-aware, citeable index of cross-tradition sacred figures, a
-// claim-backed sacred timeline, and AI-generated *contestable* cross-tradition
-// correlations. Tier-A (public-domain / open / CC0) only. Local-model pipeline.
-//
-// Build-time static render. Filesystem is the CMS (src/data/sacred-history.json).
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -56,7 +48,6 @@ export default function SacredHistoryPage() {
 
   return (
     <main className="mx-auto max-w-5xl px-5 pb-32 pt-16 md:px-8 md:pt-24">
-      {/* ── Hero ─────────────────────────────────────────────── */}
       <header className="mb-14">
         <p className={`mb-4 ${LABEL}`} style={MONO}>
           Sibling corpus · build the past
@@ -109,7 +100,6 @@ export default function SacredHistoryPage() {
         </p>
       </header>
 
-      {/* ── Rights banner ────────────────────────────────────── */}
       <section
         className="mb-16 rounded-md border border-[color:var(--hairline)] bg-[color:var(--bone-2,transparent)] px-5 py-4"
         aria-label="rights policy"
@@ -122,7 +112,6 @@ export default function SacredHistoryPage() {
         </p>
       </section>
 
-      {/* ── Timeline ─────────────────────────────────────────── */}
       <section className="mb-20">
         <SectionHead
           kicker="Sacred timeline"
@@ -136,7 +125,6 @@ export default function SacredHistoryPage() {
         </ol>
       </section>
 
-      {/* ── Cross-tradition figures ──────────────────────────── */}
       <section className="mb-20">
         <SectionHead
           kicker="Entity graph"
@@ -150,7 +138,6 @@ export default function SacredHistoryPage() {
         </div>
       </section>
 
-      {/* ── Figure-mapping correlations ──────────────────────── */}
       <section className="mb-20">
         <SectionHead
           kicker="Branch analysis · AI claims"
@@ -164,7 +151,6 @@ export default function SacredHistoryPage() {
         </div>
       </section>
 
-      {/* ── Motif-parallel correlations ──────────────────────── */}
       <section className="mb-10">
         <SectionHead
           kicker="Branch analysis · AI claims"
@@ -191,8 +177,6 @@ export default function SacredHistoryPage() {
     </main>
   );
 }
-
-/* ── components ─────────────────────────────────────────────── */
 
 function SectionHead({
   kicker,
@@ -368,7 +352,6 @@ function ClaimCard({ c }: { c: SHCorrelation }) {
         {c.statement || c.label}
       </p>
 
-      {/* sides */}
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs" style={MONO}>
         <SidePill
           tradition={c.sideA.tradition}
@@ -383,7 +366,6 @@ function ClaimCard({ c }: { c: SHCorrelation }) {
         />
       </div>
 
-      {/* evidence */}
       {c.evidence.length > 0 && (
         <details className="mt-4 group">
           <summary
@@ -412,7 +394,6 @@ function ClaimCard({ c }: { c: SHCorrelation }) {
         </details>
       )}
 
-      {/* counter-considerations */}
       {c.counterConsiderations.length > 0 && (
         <div className="mt-4">
           <p className={`mb-1 ${LABEL}`} style={MONO}>
@@ -432,7 +413,6 @@ function ClaimCard({ c }: { c: SHCorrelation }) {
         </div>
       )}
 
-      {/* provenance */}
       <p
         className="mt-4 border-t border-[color:var(--hairline)] pt-3 text-[11px]"
         style={{ ...MONO, color: "var(--parchment-dim)" }}

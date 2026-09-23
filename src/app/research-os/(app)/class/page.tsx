@@ -1,28 +1,5 @@
 "use client";
 
-/**
- * /research-os/class, the teacher class view (bkt-ros, ros-06 item 2).
- * Renders GET /api/research-os/class's already-computed, already-scoped
- * response: a grid of the reviewer's own learners by seed-path node, who
- * is blocked and where, who is ready for a harder target, and a queue of
- * Productions and internalization transfers awaiting judgment. All data
- * loading and every RLS-relevant computation happens server-side, in that
- * route; this page only renders the JSON it returns and links to
- * /research-os/review to act on a queue item (item 3's accept path lives
- * there, in one place).
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/review/page.tsx. Being signed in is necessary but
- * NOT sufficient: the API gates on
- * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
- * so a signed-in non-reviewer sees a 403 here instead of the class list.
- *
- * The grid table can run wider than a phone screen (one column per
- * seed-path node); it scrolls inside its own `overflow-x-auto` container
- * rather than pushing the page wide, the same exception globals.css
- * already carves out for CodeBlock's `<pre overflow-x-auto>` beside the
- * page-wide `overflow-x: hidden` rule.
- */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -73,7 +50,6 @@ interface ClassView {
   id: string;
   name: string;
   learnerIds: string[];
-  /** ros-33: XP per learner, for the class leaderboard. */
   xpByLearner?: Record<string, number>;
   grid: ClassGrid;
   blocked: BlockedLearner[];
@@ -160,15 +136,8 @@ export default function ResearchOsClassPage() {
     setLoadError(null);
     try {
       const res = await fetch("/api/research-os/class", { headers: authHeaders() });
-      // A gateway 503 carries HTML, so parsing it before the ok check
-      // threw and the outer catch reported a network error with no
-      // retry. The rule decides now.
       const body = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ClassResponse & { error?: string };
       if (!res.ok) {
-        // A sentinel, because the slot below is a code inside
-        // parentheses and a sentence read as
-        // "Could not load classes (The server could not finish the
-        // read. Try again in a moment.)."
         setLoadError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? "transient" : body.error || "load_failed");
         setData(null);
         return;
@@ -318,10 +287,6 @@ export default function ResearchOsClassPage() {
                 </div>
               </div>
 
-              {/* Calibration (bkt-ros, PLAN-REVISION-2.md section 2a):
-                  mean confidence against mean source-prediction
-                  correctness, per learner, over forcing-gated Check
-                  attempts only. A learner with none yet has no row here. */}
               <div className="mt-4">
                 <h3 className="text-[12px] small-caps tracking-[0.1em] text-[color:var(--basalt)] mb-2">
                   calibration ({c.calibration.length})

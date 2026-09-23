@@ -1,9 +1,3 @@
-/**
- * Evidence search on the server side (ros-ai-worker): the pinned keyword
- * ranking against scores computed by hand, eligibility applied before
- * scoring, rank fusion, every check on a worker response, and the search's
- * modes and deadlines with a scripted worker. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -27,7 +21,6 @@ test("tokenize: NFC, lower case, letter and digit runs, the pinned stop list", (
 test("BM25 matches scores computed by hand in Python for the same fixture", () => {
   const idx = LexicalIndex.build(TINY);
   const { results } = idx.search("blue light", all(TINY), 10);
-  // Lucene IDF, k1 1.2, b 0.75, distinct query terms; computed independently.
   const want: Record<string, number> = { "doc:a": 0.4900511774126154, "doc:b": 0.8689142725551416, "doc:c": 0.664956903112938 };
   assert.deepEqual(results.map((r) => r.sourceId), ["doc:b", "doc:c", "doc:a"]);
   for (const r of results) assert.ok(Math.abs(r.score - want[r.sourceId]) < 1e-12, `${r.sourceId} ${r.score}`);
@@ -119,8 +112,6 @@ test("the client sends the secret, and maps timeouts, refusals and bad bodies to
   const cfg = { url: "http://127.0.0.1:8431", secret: SECRET };
   assert.deepEqual(await scoreWithWorker(cfg, REQ, reply(503, '{"error":"queue_full"}')), { ok: false, reason: "http", detail: "HTTP 503 queue_full" });
   assert.equal((await scoreWithWorker(cfg, REQ, reply(200, "not json"))).ok, false);
-  // AbortSignal.timeout's timer does not hold the event loop open; a real
-  // socket does, so the stand-in holds a timer until the abort arrives.
   const slow = (async (_u: URL, init: RequestInit) =>
     new Promise((_, reject) => {
       const hold = setTimeout(() => undefined, 5000);

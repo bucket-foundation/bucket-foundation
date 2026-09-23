@@ -1,9 +1,5 @@
 "use client";
 
-// ChromatinAccess client island, DNA accessibility / regulatory potential
-// (REAL interpretable feature model). Render is "json". `sequence` is DNA or
-// "demo".
-
 import { useState } from "react";
 import {
   useToolRun,

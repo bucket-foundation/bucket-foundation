@@ -12,10 +12,8 @@ import node_words as nw
 DB_URL = os.environ.get("NODE_WORDS_DB_URL", nw.DEFAULT_DB_URL)
 REQUIRE = os.environ.get("RESEARCH_OS_REQUIRE_DB") == "1"
 
-
 def psql(sql):
     return subprocess.run(["psql", DB_URL, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout.strip()
-
 
 def reachable():
     try:
@@ -24,14 +22,12 @@ def reachable():
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
 
-
 def row(node_id, lang, word, confidence=0.9):
     return {
         "node_id": node_id, "lang": lang, "word": word, "roman": "", "gloss": "light", "root_lang": "ine-pro",
         "root_form": "*lewk-", "root_gloss": "to shine", "chain": [{"lang": "ine-pro", "form": "*lewk-", "rel": "der", "gloss": "to shine"}],
         "root_texts": [], "source": nw.SOURCE, "en_term": "light", "sense": "visible light", "confidence": confidence,
     }
-
 
 class WriteRowsTests(unittest.TestCase):
     @classmethod
@@ -65,7 +61,6 @@ class WriteRowsTests(unittest.TestCase):
     def test_a_malformed_node_id_is_refused_before_any_sql(self):
         with self.assertRaises(ValueError):
             nw.write_rows(DB_URL, [], ["x') or true --"])
-
 
 if __name__ == "__main__":
     unittest.main()

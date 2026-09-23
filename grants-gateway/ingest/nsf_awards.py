@@ -1,8 +1,3 @@
-"""NSF Awards ingestor (research.gov public awards search API).
-
-GET https://api.nsf.gov/services/v1/awards.json
-Returns up to 25 records / page; use offset to paginate.
-"""
 from __future__ import annotations
 
 import time
@@ -22,7 +17,6 @@ FIELDS = ",".join([
 PAGE = 25
 MAX_RECORDS = 2_000
 SLEEP = 0.2
-
 
 def _to_grant(r: dict) -> dict:
     aid = r.get("id")
@@ -72,7 +66,6 @@ def _to_grant(r: dict) -> dict:
         "canonical_url": f"https://www.nsf.gov/awardsearch/showAward?AWD_ID={aid}",
         "last_seen_at": now_iso(),
     }
-
 
 def fetch(max_records: int = MAX_RECORDS) -> Iterable[dict]:
     start = (datetime.utcnow() - timedelta(days=365 * 3)).strftime("%m/%d/%Y")

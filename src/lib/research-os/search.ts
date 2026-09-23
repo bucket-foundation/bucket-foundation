@@ -1,8 +1,3 @@
-/**
- * One search over the graph: title, summary, and slug matches ranked by
- * where the query lands, filtered to what the viewer may see. Pure ranking
- * here; the route loads candidates.
- */
 export interface SearchNode {
   id: string;
   slug: string;
@@ -23,7 +18,6 @@ export function tokenize(q: string): string[] {
     .filter((t) => t.length > 1);
 }
 
-/** Score a node for a query: whole-phrase title match first, then title tokens, then summary tokens; 0 when nothing matches. */
 export function scoreNode(n: SearchNode, q: string, tokens: string[]): number {
   const title = n.title.toLowerCase();
   const summary = (n.summary ?? "").toLowerCase();

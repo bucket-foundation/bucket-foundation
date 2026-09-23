@@ -1,8 +1,3 @@
-// /earth, the world-indicator data globe + target-ranking tool.
-// Sibling to /canon. The globe paints 211 countries by any of 32 development
-// indicators, or by a weighted composite "target" score; the 5 longevity
-// Blue Zones overlay as biophysics ground-truth.
-
 import Link from "next/link";
 import worldData from "@/data/world-indicators.json";
 import scoringData from "@/data/world-indicators-scoring.json";

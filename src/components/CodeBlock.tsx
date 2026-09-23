@@ -4,9 +4,9 @@ import { useState, useCallback } from "react";
 
 export type CodeBlockProps = {
   code: string;
-  lang?: string;       // displayed label (e.g. "bash", "ts", "json")
-  title?: string;      // small caption above the block
-  lines?: boolean;     // show line numbers (default true)
+  lang?: string;
+  title?: string;
+  lines?: boolean;
 };
 
 export default function CodeBlock({
@@ -34,7 +34,6 @@ export default function CodeBlock({
         setCopied(true);
         setTimeout(() => setCopied(false), 1800);
       } catch {
-        /* ignore */
       }
       document.body.removeChild(ta);
     }
@@ -44,10 +43,8 @@ export default function CodeBlock({
 
   return (
     <div className="group relative mt-4 bg-[#1F1C16] rounded-sm overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.04)]">
-      {/* Header strip */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-[color:rgba(239,232,212,0.08)] bg-[rgba(0,0,0,0.2)]">
         <div className="flex items-center gap-3 min-w-0">
-          {/* traffic-light dots */}
           <span className="flex gap-[5px] shrink-0" aria-hidden>
             <span className="w-[9px] h-[9px] rounded-full bg-[#E06C4C]/70" />
             <span className="w-[9px] h-[9px] rounded-full bg-[#D9A43A]/70" />
@@ -83,7 +80,6 @@ export default function CodeBlock({
         </div>
       </div>
 
-      {/* Code body */}
       <pre className="text-[12px] md:text-[12.5px] leading-[1.65] font-mono-mark overflow-x-auto p-4 text-[color:var(--bone-2)]">
         <code className="grid">
           {rows.map((row, i) => (

@@ -1,50 +1,9 @@
 #!/usr/bin/env python3
-"""
-research-tools, MaterialsFeaturizer (REAL Magpie-style descriptors, CPU)
-=========================================================================
-
-Per-field tool for **materials** (materials, 44,536 profiled researchers).
-"ML in Materials Science" is already a TOP recurring topic in our corpus, so
-demand here is measured. But interatomic-potential pipelines and
-structured materials descriptors are still hand-rolled per group. The standard
-first step of any materials-property ML model is FEATURIZATION: turning a
-chemical composition into a fixed-length vector of physically-meaningful
-descriptors.
-
-MaterialsFeaturizer parses a chemical formula (e.g. "Fe2O3", "Li0.5CoO2",
-"CaTiO3") into fractional element amounts and computes REAL Magpie-style
-composition descriptors (Ward et al. 2016, npj Comput. Mater. 2:16028, the
-canonical "general-purpose machine learning framework for predicting properties
-of inorganic materials"): for each tabulated elemental property it returns the
-composition-weighted mean, the (max−min) range, the average deviation, and the
-fraction-weighted value of the property at the most-prevalent element, plus
-valence-electron statistics. These are the exact descriptor families matminer's
-`ElementProperty(preset="magpie")` produces, computed here from a built-in,
-self-contained periodic-element table (no external data, no GPU).
-
-Input shape (`payload`):
- formula : str, a chemical formula (required; e.g. "Fe2O3", "GaAs",
- "La0.7Sr0.3MnO3"). Parentheses with multipliers are supported,
- e.g. "Mg(OH)2".
-
-The gateway imports MATERIALS_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import re
 from typing import Any, Optional
 
-
-# ---------------------------------------------------------------------------
-# Built-in elemental property table (REAL values). Columns:
-# Z, atomic_weight, electronegativity (Pauling), atomic_radius (pm, empirical),
-# melting_point (K), period, group, n_valence (s+p+d valence electrons),
-# covalent_radius (pm).
-# Values are standard tabulated constants (CRC / IUPAC). Pauling EN and melting
-# point are None for noble gases where undefined; we carry the common set used
-# in inorganic ML. Covers H..Bi + common lanthanides, ample for inorganic ML.
-# ---------------------------------------------------------------------------
-# (symbol): (Z, mass, EN, atomic_radius_pm, melt_K, period, group, n_valence)
 _ELEMENTS: dict[str, tuple] = {
     "H": (1, 1.008, 2.20, 25, 14.01, 1, 1, 1),
     "He": (2, 4.0026, None, 31, 0.95, 1, 18, 2),
@@ -129,7 +88,6 @@ _ELEMENTS: dict[str, tuple] = {
     "Bi": (83, 208.98, 2.02, 160, 544.7, 6, 15, 5),
 }
 
-# Property index in the tuple above.
 _PROP_IDX = {
     "atomic_weight": 1,
     "electronegativity": 2,
@@ -141,17 +99,9 @@ _PROP_IDX = {
     "atomic_number": 0,
 }
 
-
-# ---------------------------------------------------------------------------
-# formula parsing (recursive-descent over element symbols, counts, parentheses)
-# ---------------------------------------------------------------------------
 _TOKEN = re.compile(r"([A-Z][a-z]?)|(\d+\.?\d*)|(\()|(\))")
 
-
 def parse_formula(formula: str) -> dict[str, float]:
-    """Parse a chemical formula into {element: amount}. Supports nested
- parentheses + fractional/decimal subscripts. Never raises, raises ValueError
- only via the caller-guarded wrapper. Returns {} on empty."""
     s = (formula or "").replace(" ", "")
     if not s:
         return {}
@@ -176,7 +126,7 @@ def parse_formula(formula: str) -> dict[str, float]:
                 inner = parse_group()
                 if pos >= len(tokens) or tokens[pos] != ")":
                     raise ValueError("unbalanced parentheses")
-                pos += 1  # consume ")"
+                pos += 1
                 mult = 1.0
                 if pos < len(tokens) and re.fullmatch(r"\d+\.?\d*", tokens[pos]):
                     mult = float(tokens[pos])
@@ -193,7 +143,7 @@ def parse_formula(formula: str) -> dict[str, float]:
                     n = float(tokens[pos])
                     pos += 1
                 counts[el] = counts.get(el, 0.0) + n
-            else:  # a bare number with no preceding element
+            else:
                 raise ValueError(f"misplaced number '{tok}' in formula")
         return counts
 
@@ -202,15 +152,8 @@ def parse_formula(formula: str) -> dict[str, float]:
         raise ValueError("unbalanced parentheses")
     return result
 
-
-# ---------------------------------------------------------------------------
-# Magpie-style descriptors (REAL)
-# ---------------------------------------------------------------------------
 def _stats_for_property(prop: str, fractions: dict[str, float]) -> Optional[dict]:
-    """Composition-weighted mean / range / avg-deviation / mode-value for one
- elemental property over the elements present (skips elements missing the
- property, e.g. EN for noble gases)."""
-    vals: list[tuple[float, float]] = []  # (fraction, value)
+    vals: list[tuple[float, float]] = []
     idx = _PROP_IDX[prop]
     for el, frac in fractions.items():
         rec = _ELEMENTS.get(el)
@@ -225,14 +168,11 @@ def _stats_for_property(prop: str, fractions: dict[str, float]) -> Optional[dict
     fsum = sum(f for f, _ in vals)
     if fsum <= 0:
         return None
-    # renormalize fractions over the elements that HAVE this property
     mean = sum((f / fsum) * v for f, v in vals)
     raw_vals = [v for _, v in vals]
     vmin, vmax = min(raw_vals), max(raw_vals)
     rng = vmax - vmin
-    # Magpie "average deviation" = fraction-weighted mean absolute deviation
     avg_dev = sum((f / fsum) * abs(v - mean) for f, v in vals)
-    # value of the property at the most-prevalent element ("mode")
     mode_el = max(fractions.items(), key=lambda kv: kv[1])[0]
     mode_rec = _ELEMENTS.get(mode_el)
     mode_val = float(mode_rec[idx]) if (mode_rec and mode_rec[idx] is not None) else None
@@ -244,7 +184,6 @@ def _stats_for_property(prop: str, fractions: dict[str, float]) -> Optional[dict
         "avg_deviation": round(avg_dev, 5),
         "mode": (round(mode_val, 5) if mode_val is not None else None),
     }
-
 
 def featurize(formula: str) -> dict:
     counts = parse_formula(formula)
@@ -268,11 +207,9 @@ def featurize(formula: str) -> dict:
         if st is not None:
             descriptors[p] = st
 
-    # molar mass (sum of amount × atomic weight)
     molar_mass = sum(n * _ELEMENTS[el][1] for el, n in counts.items())
     n_elements = len(counts)
 
-    # a flat feature vector (the thing you'd feed an ML model), named.
     feature_vector: dict[str, float] = {}
     for p, st in descriptors.items():
         for stat in ("mean", "range", "avg_deviation"):
@@ -290,15 +227,7 @@ def featurize(formula: str) -> dict:
         "n_features": len(feature_vector),
     }
 
-
 def run_materials_featurizer(payload: dict) -> dict:
-    """payload: { formula: <chemical formula> OR "demo" }
-
- Parse a composition and compute REAL Magpie-style elemental-property
- descriptors (mean/range/avg-deviation/mode of atomic weight, electronegativity,
- radius, melting point, valence, etc.) for materials-property ML. Deterministic;
- never raises on malformed input.
-    """
     raw = payload.get("formula")
     demo = bool(payload.get("demo")) or (isinstance(raw, str) and raw.strip().lower() == "demo")
     if demo:
@@ -337,7 +266,6 @@ def run_materials_featurizer(payload: dict) -> dict:
         "structure and are a documented follow-up."
     )
     if demo:
-        # NaCl: 50/50 Na+Cl. Mean EN = (0.93 + 3.16)/2 = 2.045.
         result["ground_truth"] = {
             "formula": "NaCl",
             "mean_electronegativity": 2.045,
@@ -350,8 +278,6 @@ def run_materials_featurizer(payload: dict) -> dict:
         )
     return result
 
-
-# Registry the gateway imports.
 MATERIALS_RUNNERS = {
     "materialsfeaturizer": run_materials_featurizer,
 }

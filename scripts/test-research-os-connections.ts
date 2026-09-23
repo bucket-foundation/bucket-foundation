@@ -1,4 +1,3 @@
-/** Pure tests for connections.ts: held cross-branch connections and bridges one step away. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { crossBranchConnections } from "../src/lib/research-os/connections";

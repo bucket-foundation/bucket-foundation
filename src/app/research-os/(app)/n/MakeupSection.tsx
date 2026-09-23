@@ -6,7 +6,6 @@ import Section from "./Section";
 import { branchName } from "./types";
 import type { ChainStep, Makeup } from "@/lib/research-os/makeup";
 
-/** " through A, B" for the nodes on a chain; `direct` when there are none. */
 function chainNames(through: ChainStep[] | undefined, direct: string): string {
   return through && through.length ? ` through ${through.map((t) => t.title).join(", ")}` : direct;
 }
@@ -19,11 +18,6 @@ const VERDICT: Record<string, { text: string; className: string }> = {
 
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
-/**
- * "Made of": the node's place in the prime decomposition
- * (learning/research-os/PRIMES.md) and what the decompose-further queue
- * proposes for it, waiting on review.
- */
 export default function MakeupSection({ slug, branch }: { slug: string; branch: string }) {
   const [makeup, setMakeup] = useState<Makeup | null>(null);
   const [canReview, setCanReview] = useState(false);

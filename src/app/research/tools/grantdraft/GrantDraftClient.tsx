@@ -1,9 +1,5 @@
 "use client";
 
-// GrantDraft client island, funder/grant finder + specific-aims drafter,
-// grounded in REAL awarded grants (research-atlas NSF corpus / OpenAlex
-// fallback). Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -94,7 +90,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         {out.degraded ? " · degraded (no live data)" : ""}
       </div>
 
-      {/* Specific aims, grounded in real awards */}
       <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-8">
         <div className="font-display uppercase text-[15px] tracking-[0.06em] text-[color:var(--basalt)] mb-4">
           Specific Aims (draft)
@@ -121,7 +116,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         </div>
       </div>
 
-      {/* Top funders */}
       {out.top_funders.length > 0 && (
         <div className="mt-6">
           <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">
@@ -141,7 +135,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         </div>
       )}
 
-      {/* Matched real grants */}
       <div className="mt-6">
         <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">
           matched awarded grants

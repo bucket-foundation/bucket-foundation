@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""Run all ingestors (or one) into data/grants.db. Idempotent.
-
-Usage:
-    python3 scripts/ingest.py                     # all sources
-    python3 scripts/ingest.py --source=grants_gov # one source
-    python3 scripts/ingest.py --source=nih        # one source
-
-Sources: grants_gov, nih, nsf, usaspending, foundations
-"""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +6,6 @@ import sys
 import time
 from pathlib import Path
 
-# Make `ingest` importable when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from ingest import db as dbmod
@@ -28,7 +18,6 @@ SOURCES = {
     "usaspending":  ("usaspending",    usaspending.fetch),
     "foundations":  ("irs-990pf",      foundations_990.fetch),
 }
-
 
 def run_one(key: str, con) -> tuple[int, float]:
     label, fn = SOURCES[key]
@@ -58,7 +47,6 @@ def run_one(key: str, con) -> tuple[int, float]:
     print(f"  [{label}] done: {n} rows in {dt:.1f}s")
     return n, dt
 
-
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", choices=sorted(SOURCES.keys()), default=None)
@@ -82,7 +70,6 @@ def main() -> int:
     print(f"  db file size: {db_size/1024/1024:.1f} MiB  ({dbmod.DB_PATH})")
     con.close()
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

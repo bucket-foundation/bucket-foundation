@@ -1,5 +1,3 @@
-// /excerpts/[concept], every source excerpt for a concept.
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";

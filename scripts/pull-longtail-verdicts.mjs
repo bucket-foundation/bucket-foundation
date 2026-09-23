@@ -1,17 +1,4 @@
 #!/usr/bin/env node
-// pull-longtail-verdicts.mjs — fetch reviewer taps for a Bucket grant draft
-// previously submitted via submit-to-longtail.mjs.
-//
-// Output: per-axis tally (yes/no/unsure/skip counts), latest tap timestamp,
-// and a "verdict" column that fires when an axis has ≥3 taps with a clear
-// majority.
-//
-// Usage:
-//   node scripts/pull-longtail-verdicts.mjs <draft_id>
-//   node scripts/pull-longtail-verdicts.mjs --all       # last 10 from log
-//   node scripts/pull-longtail-verdicts.mjs --grant sloan-exploratory
-//
-// Env: same as submit-to-longtail.mjs (LONGTAIL_HMAC_SECRET, LONGTAIL_API_URL).
 
 import { readFile } from 'node:fs/promises';
 import { createHmac } from 'node:crypto';
@@ -79,19 +66,12 @@ function verdict(t) {
 async function reportOne(draft) {
   console.log(`\n── ${draft.draft_id}  ${draft.title ?? '(no title)'} ──`);
   console.log(`   submitted: ${draft.ts ?? '?'}  grant: ${draft.grant ?? '—'}`);
-  // Pull all taps via the brain feed (chisel forwards taps to /api/feed
-  // with signal_type=verify_tap and content.atom_id = draft id).
-  // Until the pipeline exposes /api/drafts/{id}/taps natively we read the
-  // hub-local ring buffer via /api/chisel/health which exposes recent taps.
-  // For now: hit the pipeline's expected verdicts path; fall back to
-  // health if absent.
   let taps = [];
   try {
     const r = await signedJson(`/api/drafts/${draft.draft_id}/taps`);
     if (Array.isArray(r)) taps = r;
     else if (r?.items) taps = r.items;
   } catch {
-    // Fallback path TBD — for v0 we just show "no verdict endpoint yet".
     console.log('   (no /api/drafts/<id>/taps endpoint yet — see TODO in script)');
     return;
   }

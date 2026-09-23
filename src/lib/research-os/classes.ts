@@ -1,11 +1,3 @@
-/**
- * Creating and joining classes (the Class step). A teacher creates a class
- * and becomes its first member with the teacher role; the class carries
- * a join code. Anyone with the code joins as a learner; staff change roles
- * afterwards through /api/research-os/members. reviewer_email is set to
- * the creator so the review queue and the class grid, which scope by that
- * column, work for a teacher who never appears on the env allowlist.
- */
 import { graphService } from "./db";
 import type { Role } from "./roles";
 
@@ -37,13 +29,9 @@ export function validClassName(raw: string): string | null {
 
 export type ClassesResult<T> = { ok: true; value: T } | { ok: false; error: "bad_name" | "bad_code" | "not_found" | "write_failed" };
 
-/** Every class the person belongs to, with their role; the join code only for staff. */
 export async function listMyClasses(userId: string): Promise<ClassSummary[]> {
   const svc = graphService();
   const { data: members, error } = await svc.from("class_members").select("class_id,role").eq("learner_id", userId);
-  // An empty list is a learner in no class. The graph route reads this
-  // inside a Promise.all the branch repaired and flattened a failure to
-  // the same empty list, so a teacher lost every class on an outage.
   if (error) throw new Error(`listMyClasses: class_members read failed: ${error.message}`);
   if (!members || members.length === 0) return [];
   const ids = (members as { class_id: string; role: string }[]).map((m) => m.class_id);

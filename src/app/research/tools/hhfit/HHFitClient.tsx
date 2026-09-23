@@ -1,9 +1,5 @@
 "use client";
 
-// HH-FitML client island, passive-membrane (RC) parameter fit to a current-
-// clamp trace via scipy least-squares (REAL numerical fit). Render is "json".
-// `trace` is a numeric array or the string "demo" (synthetic, known ground truth).
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -44,7 +40,6 @@ type HHFitOutput = {
   note?: string;
 };
 
-// parse a pasted trace ("1.2, -3.4 ..." or JSON array) into a number[].
 function parseTrace(raw: string): number[] | null {
   const toks = raw.trim().replace(/^\[|\]$/g, "").split(/[\s,]+/).filter(Boolean);
   const nums = toks.map(Number);

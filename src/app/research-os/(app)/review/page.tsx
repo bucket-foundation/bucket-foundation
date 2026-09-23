@@ -1,40 +1,6 @@
 "use client";
 
 import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
-/**
- * /research-os/review, the teacher review queue (bkt-ros, Phase 1 item 4).
- * Lists every held transfer-item answer and every submitted Production
- * awaiting a decision (GET /api/research-os/review), and lets a signed-in
- * reviewer approve or return each one (POST /api/research-os/review). See
- * src/app/api/research-os/review/route.ts for the full decision rules.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/workspace/page.tsx. Being signed in is necessary but
- * NOT sufficient: the API gates on
- * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
- * so a signed-in non-reviewer sees a 403 here instead of the queue.
- * TODO(Phase 1, review section 4 gap analysis "Role system"): this page has
- * no roster and no class-scoped view -- a reviewer sees every pending item
- * across the whole graph. That is fine at Phase 0/1's single-path scale and
- * stops being fine once a real school's worth of learners and nodes exist.
- * reviewer.ts's own header
- * has the plan to replace the allowlist with a roster-backed role; this
- * page's query (currently "every pending item, no class filter") is the
- * matching TODO on the UI side.
- *
- * Production guard (bkt-ros, production guard bead, task item 5): each
- * queued Production now also shows its guard flags (unverified sources,
- * a duplicate-claim match, missing counter-evidence at the
- * internalization tier, a single-source lateral-reading flag), computed
- * by /api/research-os/production's POST at submit time and read here
- * as-is. Approve is disabled client-side
- * while any source is unverified (the API's own 409 is the enforced
- * gate; this is the same belt-and-suspenders posture the rest of this
- * codebase already keeps between RLS and an application-code check); a
- * "use template" button fills the reason field with
- * production-guard.ts's own unverifiedSourceReturnNote text for a return
- * decision.
- */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -115,20 +81,8 @@ export default function ResearchOsReviewPage() {
     setQueueError(null);
     try {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
-      // A gateway 503 carries HTML, so parsing before the ok check threw,
-      // the outer catch set "network_error", and the reviewer read
-      // "Could not load the queue (network_error)." with no retry. The
-      // rule was never consulted. The line forty-six below this one was
-      // repaired and this one was left, which is the thing this PR
-      // charged its predecessor with.
-      // The guard is for the failure path: a gateway 503 carries HTML.
-      // A 200 whose body is not JSON is a different failure, and letting
-      // it throw keeps the outer catch reporting it rather than handing
-      // the success branch an empty object to read fields off.
       const data = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
-        // A lock wait printed as "Could not load the queue (busy)."
-        // "transient" is rendered as the shared retryable copy below.
         setQueueError(
           res.status === 403 ? "forbidden" : isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed",
         );
@@ -280,9 +234,6 @@ export default function ResearchOsReviewPage() {
                       </div>
                       {p.claim && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">claim: {p.claim}</p>}
 
-                      {/* Production guard flags (task item 5): unverified
-                          sources, a duplicate-claim match, missing
-                          counter-evidence at the internalization tier. */}
                       {(approveBlocked || p.duplicateFlag || p.lateralReadingFlag || p.guardFlags.missingCounterEvidence) && (
                         <div className="mt-2 flex flex-col gap-1">
                           {approveBlocked && (

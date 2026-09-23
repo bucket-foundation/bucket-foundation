@@ -7,10 +7,6 @@ import {
   type EducationDoc,
 } from "@/lib/education";
 
-// /research/education, the education-atlas corpus hub. Bucket Foundation's
-// founding research for its education-reform mission. Stone-bone styling
-// matches /research and /research/papers.
-
 export const metadata: Metadata = {
   title: "Education research · the education-atlas corpus",
   description:
@@ -86,7 +82,6 @@ export default function Page() {
 
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* Flagship */}
         <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § The flagship synthesis
         </div>
@@ -117,7 +112,6 @@ export default function Page() {
           </div>
         </Link>
 
-        {/* Corpus, grouped */}
         {byGroup.map((section) => (
           <div key={section.group}>
             <div className="mt-14 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">

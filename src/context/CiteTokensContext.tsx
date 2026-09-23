@@ -64,7 +64,6 @@ export const CiteTokenProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         return;
       }
 
-      // Optionally, update local state with the new cite token
       setCiteTokens((prev) => (prev ? [...prev, ...data] : data));
     } catch (error) {
       console.error('Error during cite token creation:', error);

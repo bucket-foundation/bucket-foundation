@@ -6,7 +6,6 @@ from hte.corpus import fixtures as fixtures_corpus
 from hte.generate import combinatorial_sample
 from tests.test_runner import _fake_mode_cfg
 
-
 def test_advocate_pool_holds_only_unlinked_items_sharing_a_slot_value():
     corpus = fixtures_corpus.build()
     h = combinatorial_sample(corpus.vocab, [0], max_items=1, seed=0)[0]
@@ -16,7 +15,6 @@ def test_advocate_pool_holds_only_unlinked_items_sharing_a_slot_value():
     pool = roles.advocate_pool(h, corpus.evidence)
     assert corpus.evidence[0] not in pool and len(pool) == len(corpus.evidence) - 1
     assert [e.tier.value for e in pool] == sorted(e.tier.value for e in pool)
-
 
 def test_fake_advocate_names_the_first_candidate_and_the_runner_links_and_rescores(tmp_path, monkeypatch):
     report = _advocate("Argue for this hypothesis.\n\nCandidate items:\n- (textual, T2) 'x' [e-first]\n- (textual, T1) 'y' [e-second]\n\nReturn support", roles.ADVOCATE_SCHEMA)
@@ -33,7 +31,6 @@ def test_fake_advocate_names_the_first_candidate_and_the_runner_links_and_rescor
     argued = [e for e in entries if e["advocate"] is not None]
     assert len(argued) == summary["n_argued"]
     assert all(e["advocate"]["lift_after"] >= e["advocate"]["lift_before"] for e in argued)
-
 
 def test_advocate_off_at_zero(tmp_path, monkeypatch):
     cfg = _fake_mode_cfg(

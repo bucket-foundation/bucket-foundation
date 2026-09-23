@@ -1,7 +1,3 @@
-/**
- * ros-graph-dedup's pure pieces: title matching, the keeper, the verifier's
- * duplicate refusals, and bundled names. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { chooseKeeper, findMergeCandidates, matchBundleParts, normalizeTitle, splitBundle, titleSimilarity, type DedupNode } from "../src/lib/research-os/dedup";
@@ -52,7 +48,6 @@ test("a refusal without duplicate wording is ignored", () => {
 test("near titles pair above the threshold, and one-word titles never do", () => {
   const nodes = [n("a", "Inner product spaces", "01-mathematics"), n("b", "Inner product space", "04-information"), n("c", "Entropy", "02-physics"), n("d", "Entropy production", "05-biophysics")];
   const c = findMergeCandidates(nodes);
-  // Plurals fold in the token overlap, so this pair is near with similarity 1; "Entropy" pairs with nothing.
   assert.deepEqual(c.map((x) => [x.reason, [x.keepSlug, x.dropSlug].sort().join("+"), x.similarity]), [["near_title", "a+b", 1]]);
   const near = findMergeCandidates([n("a", "Gibbs free energy change", "03-chemistry"), n("b", "Gibbs free energy changes", "05-biophysics")]);
   assert.equal(near.length, 1);

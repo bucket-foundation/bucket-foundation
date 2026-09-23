@@ -1,9 +1,3 @@
-/**
- * The pending-bead dispatcher (ros-ai-dispatch) against a fake issues
- * server on loopback: one request per create, a lookup before any resend,
- * no duplicates on rerun, and dependency edges read back before a row
- * retires. node:test, no outside network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import http from "node:http";
@@ -134,7 +128,6 @@ const row = (title: string, description: string, line = 1): PendingRow => ({
   line,
 });
 
-/** An epic, a chain of three under it, and one link out of the batch. */
 function batch(): PendingRow[] {
   return [
     row("ai-x: The epic", "Depends on: none. The plan."),

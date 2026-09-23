@@ -1,18 +1,3 @@
-/**
- * Insight synthesizer, turns (venture, topic, candidate grants) into a
- * fit analysis with rationale + gap detection.
- *
- * Two implementations:
- * - MockSynthesizer: deterministic keyword-overlap. Default. No API key
- * needed; tests/CI use this.
- * - AnthropicSynthesizer: real Claude call via @anthropic-ai/sdk. Selected
- * by INSIGHT_SYNTH=anthropic + ANTHROPIC_API_KEY. Emits a feed402 §3.2
- * sibling `provenance` block on the envelope (model_id, candidates,
- * prompt_sha256, ts) so a downstream agent can audit the synthesis.
- *
- * Bead: bkt-x2b.
- */
-
 import { createHash } from "node:crypto";
 import type {
   Grant,
@@ -23,7 +8,6 @@ import type {
 
 export interface SynthesisResult {
   insight: InsightResponse;
-  /** Optional, only populated by real-model synthesizers. */
   provenance?: SynthesisProvenance;
 }
 
@@ -52,8 +36,6 @@ function daysUntil(iso: string | null): number | null {
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
 
-/** Deterministic keyword-overlap ranker. Used both standalone (Mock) and
- * as the pre-ranker for the LLM (so input tokens stay bounded). */
 function rankByOverlap(req: InsightRequest, candidates: Grant[]) {
   const wantTokens = [...tokens(req.topic), ...tokens(req.venture)];
   return candidates
@@ -107,13 +89,6 @@ export class MockSynthesizer implements Synthesizer {
   }
 }
 
-// ---------- Anthropic ----------
-
-/**
- * Loose typing for the Anthropic SDK so this file type-checks even when the
- * package isn't installed yet (it's a runtime dep). The constructor is given
- * the real type via dynamic import.
- */
 type AnthropicClient = {
   messages: {
     create(args: {
@@ -131,26 +106,16 @@ type AnthropicClient = {
 export interface AnthropicSynthesizerOpts {
   apiKey: string;
   model?: string;
-  /** Top-K candidates to send the model. Hard input-token cap. */
   topK?: number;
-  /** Output token cap. */
   maxOutputTokens?: number;
-  /** Tier price USD; calls projected to exceed 10x this are downgraded. */
   tierPriceUsd?: number;
-  /** Fallback used if budget is exceeded or the API errors. */
   fallback?: Synthesizer;
 }
 
-/**
- * Rough-and-conservative cost model. Claude Sonnet 4.5 list price as of
- * 2026-04: $3 / 1M input tokens, $15 / 1M output tokens. Numbers are
- * intentionally pessimistic, this is a budget guard.
- */
 const COST_PER_INPUT_TOKEN_USD = 3 / 1_000_000;
 const COST_PER_OUTPUT_TOKEN_USD = 15 / 1_000_000;
 
 function estimateTokens(text: string): number {
-  // ~4 chars/token rule-of-thumb, rounded up.
   return Math.ceil(text.length / 4);
 }
 
@@ -196,7 +161,6 @@ interface ModelOutput {
 }
 
 function parseModelJson(text: string): ModelOutput {
-  // Strip code fences if the model adds them despite instructions.
   const cleaned = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "");
   const parsed = JSON.parse(cleaned);
   if (typeof parsed !== "object" || parsed == null) throw new Error("non-object JSON");
@@ -226,7 +190,6 @@ export class AnthropicSynthesizer implements Synthesizer {
 
   private async getClient(): Promise<AnthropicClient> {
     if (this.client) return this.client;
-    // Dynamic import so the package is only required at runtime when used.
     const mod: { default: new (cfg: { apiKey: string }) => AnthropicClient } = await import(
       "@anthropic-ai/sdk"
     );
@@ -235,11 +198,9 @@ export class AnthropicSynthesizer implements Synthesizer {
   }
 
   async synthesize(req: InsightRequest, candidates: Grant[]): Promise<SynthesisResult> {
-    // 1. Pre-rank by keyword overlap and trim to topK to bound input tokens.
     const ranked = rankByOverlap(req, candidates);
     const top = ranked.slice(0, this.topK).map((r) => r.g);
 
-    // No candidates → cheap fallback, no API call.
     if (top.length === 0) {
       return this.fallback.synthesize(req, candidates);
     }
@@ -248,7 +209,6 @@ export class AnthropicSynthesizer implements Synthesizer {
     const promptText = system + "\n\n" + user;
     const promptSha = createHash("sha256").update(promptText).digest("hex");
 
-    // 2. Budget guard. Reject (and downgrade) when projected cost is >10x tier price.
     const inputTokensEst = estimateTokens(promptText);
     const projectedCost =
       inputTokensEst * COST_PER_INPUT_TOKEN_USD +
@@ -262,7 +222,6 @@ export class AnthropicSynthesizer implements Synthesizer {
       return this.fallback.synthesize(req, candidates);
     }
 
-    // 3. Call the model.
     let modelOut: ModelOutput;
     try {
       const client = await this.getClient();
@@ -286,8 +245,6 @@ export class AnthropicSynthesizer implements Synthesizer {
       return this.fallback.synthesize(req, candidates);
     }
 
-    // 4. Assemble InsightResponse, backfill deadline + days_until from the
-    // candidate set. The model can hallucinate ids; filter to known ones.
     const candById = new Map(candidates.map((g) => [g.id, g]));
     const matches = modelOut.matches
       .filter((m) => candById.has(m.grant_id))
@@ -326,7 +283,6 @@ export class AnthropicSynthesizer implements Synthesizer {
   }
 }
 
-/** Selector. Reads INSIGHT_SYNTH (default `mock`). */
 export function synthesizerFromEnv(tierPriceUsd: number): {
   synth: Synthesizer;
   label: string;

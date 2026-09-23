@@ -1,8 +1,3 @@
-/**
- * Tests for the launch list: signup validation, the per-address record,
- * CSV export, the file store, the list key check, and when /sign-in shows
- * the list. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, readdir, rm, writeFile } from "node:fs/promises";
@@ -112,12 +107,10 @@ test("file store round-trips signups, one record per address", async () => {
     const files = await readdir(path.join(root, "waitlist-local"));
     assert.deepEqual(files.sort(), [`${emailKey("ada@example.org")}.json`, `${emailKey("emmy@example.org")}.json`].sort());
 
-    // Suspects live under suspect/ and stay out of the list.
     const held = fileStore(root, "waitlist-local/suspect/");
     await saveSignup(held, { email: "bot@example.org", name: null, role: null, wanted: null }, "2026-09-21T13:00:00.000Z");
     assert.deepEqual((await listSignups(held)).map((e) => e.email), ["bot@example.org"]);
 
-    // Stray and broken files are skipped.
     await writeFile(path.join(root, "waitlist-local", "notes.txt"), "x");
     await writeFile(path.join(root, "waitlist-local", `${"0".repeat(64)}.json`), "{broken");
 

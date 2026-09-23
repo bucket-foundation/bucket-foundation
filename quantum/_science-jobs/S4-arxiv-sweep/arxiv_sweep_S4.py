@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""S4 arXiv sweep — pull last ~90 days of quant-ph + cond-mat.mes-hall,
-cluster by manual node IDs, flag papers that upgrade a T4 vendor claim.
-Regenerates arxiv_sweep_S4.csv. Assessment step uses host.llm inside Claude
-Science; standalone runs produce the candidate pool + metadata only.
-Usage:  python3 arxiv_sweep_S4.py [YYYYMMDD_start] [YYYYMMDD_end]
-"""
 import sys, urllib.request, urllib.parse, time, csv, xml.etree.ElementTree as ET
 
 WIN_START = (sys.argv[1] if len(sys.argv)>1 else "20260410")+"0000"

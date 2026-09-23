@@ -5,11 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
 
-/**
- * The Research OS application frame: a sidebar on wide screens, a tab bar
- * on phones, the person's chip, and one content column. Every app page
- * renders inside it; the landing at /research-os stays outside.
- */
 export interface ShellUser {
   email: string | null;
   handle: string | null;
@@ -70,7 +65,6 @@ export default function AppShell({ user, children }: { user: ShellUser; children
 
   return (
     <div className="stone-bone grain min-h-screen">
-      {/* Phone tab bar */}
       <nav aria-label="Research OS" className="md:hidden sticky top-[58px] z-30 border-b border-[color:var(--hairline)] bg-[color:var(--bone)]/90 backdrop-blur-[2px]">
         <div className="flex items-center gap-1 overflow-x-auto px-2">
           <button type="button" onClick={() => setSearchOpen(true)} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap min-h-[44px] text-[color:var(--basalt-3)]">
@@ -97,7 +91,6 @@ export default function AppShell({ user, children }: { user: ShellUser; children
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
-        {/* Sidebar */}
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
             <button type="button" onClick={() => setSearchOpen(true)} className="w-full mb-3 flex items-center justify-between px-3 py-2 border border-[color:var(--hairline)] rounded-sm text-[12px] text-[color:var(--basalt-3)] hover:bg-[color:var(--bone)] transition">

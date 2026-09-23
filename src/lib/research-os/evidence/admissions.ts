@@ -1,13 +1,3 @@
-/**
- * The rows the admission step sends to graph.admit_evidence_corpus, built
- * from a validated corpus (ros-ai-corpus, the admission registry).
- *
- * Each source record becomes one `index` row under its sourceRevision.
- * Each passage becomes one `quote` row under its quoteRevision, the value
- * a quote receipt records, so a receipt and its admission join on
- * (source_id, source_revision). The permission evidence travels from the
- * policy rule that admitted the row.
- */
 import type { PassageRecord, SourceRecord } from "./corpus";
 import type { RightsPolicy, RightsRule } from "./rights";
 
@@ -37,7 +27,6 @@ export interface AdmissionResult {
 
 const evidence = (rule: RightsRule) => ({ permission: rule.permission, basis: rule.basis, evidence: rule.evidence });
 
-/** One row per source and one per passage. Throws when a record names a rule the policy lacks. */
 export function admissionRows(records: SourceRecord[], passages: PassageRecord[], policy: RightsPolicy): AdmissionRow[] {
   const indexRules = new Map(policy.index.map((r) => [r.id, r]));
   const quoteRules = new Map(policy.quote.map((r) => [r.id, r]));
@@ -84,11 +73,6 @@ export function admissionRows(records: SourceRecord[], passages: PassageRecord[]
   return rows;
 }
 
-/**
- * Why an admission must not run, or null. A draft policy admits only when
- * the caller says this is local development; pilot accounts see results
- * from an approved policy alone.
- */
 export function admitRefusal(policy: RightsPolicy, opts: { allowDraft: boolean; problems: string[] }): string | null {
   if (opts.problems.length) return `the corpus fails validation: ${opts.problems.slice(0, 3).join("; ")}`;
   if (policy.status === "draft" && !opts.allowDraft) {

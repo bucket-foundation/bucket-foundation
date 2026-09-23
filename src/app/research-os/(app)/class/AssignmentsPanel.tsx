@@ -3,10 +3,6 @@
 import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 
-// Assignments for one class (the Class step, decision 6): the teacher or
-// librarian assigns a target from the class path with a title, instructions,
-// a due date, and whether the finished paper (the production) is required.
-
 interface AssignmentRow {
   id: string;
   title: string;
@@ -43,8 +39,6 @@ export default function AssignmentsPanel({
     try {
       const res = await fetch(`/api/research-os/assignments?class=${encodeURIComponent(classId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
-        // Returning here left the panel empty, which is a class with no
-        // assignments in it.
         setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : "Assignments could not be read.");
         return;
       }

@@ -3,11 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 
-// Consent and the payee on the profile (ros-32): where the learner's
-// consent comes from (adult, the school exception, a verified vendor, a
-// recorded parent consent), the path still needed, a way to start it, and
-// for anyone under 18 the guardian or custodial payee with visibility on.
-
 interface ConsentView {
   profile: { birthYearBucket: string | null; consentStatus: string } | null;
   effective: { status: string; source: string | null; path: string };
@@ -63,10 +58,6 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
         setConsent((await c.json()) as ConsentView);
         setLoadNote(null);
       } else {
-        // A failed read left `consent` null, and the early return below
-        // renders null when it is, so the whole consent section vanished
-        // and the learner was told nothing at all. A minor reads that as
-        // a screen with no consent on it.
         setLoadNote(isTransientOutage(c.status, await readErrorCode(c)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
       }
       if (p.ok) {
@@ -75,8 +66,6 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
         if (pv.payeeType) setPayeeType(pv.payeeType);
       }
     } catch {
-      // A fetch that rejects never reached the server, which a retry may
-      // clear. Swallowing it was the same vanishing section.
       setLoadNote(OUTAGE_COPY.body);
     }
   }, [token, headers]);
@@ -133,8 +122,6 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
   }
 
   if (!token) return null;
-  // The note renders above this return. Leaving it below meant a failed
-  // read rendered nothing, which is the whole point of setting it.
   if (!consent)
     return loadNote ? (
       <p role="alert" className="mt-10 text-[13px] text-[color:var(--gold-deep)]">

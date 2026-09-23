@@ -1,5 +1,3 @@
-"""The Python side of nfc-lf/1 against the fixtures the TypeScript side also reads."""
-
 import json
 import unittest
 from pathlib import Path
@@ -7,7 +5,6 @@ from pathlib import Path
 from evidence_search.normalize import NORMALIZATION, OffsetError, byte_slice, char_to_byte, normalize_text, sha256_hex
 
 FIXTURES = Path(__file__).resolve().parents[3] / "src" / "lib" / "research-os" / "evidence" / "normalization-fixtures.json"
-
 
 class NormalizeFixtures(unittest.TestCase):
     def setUp(self):
@@ -45,7 +42,6 @@ class NormalizeFixtures(unittest.TestCase):
                 byte_slice("abc", start, end)
         self.assertEqual(byte_slice("abc", 3, 3), "")
         self.assertEqual(char_to_byte("a\U0001F324b", 2), 5)
-
 
 if __name__ == "__main__":
     unittest.main()

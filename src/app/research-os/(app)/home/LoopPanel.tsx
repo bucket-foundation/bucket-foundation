@@ -6,24 +6,13 @@ import { useEffect, useState } from "react";
 import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
 import { internalizationDetail, internalizationLit, internalizationState, type LoopResponse } from "@/lib/research-os/loop-shape";
 
-// dev's shared shape. The decks count is nullable there now, because a
-// failed Academy read is unknown and the first-run line turns on zero.
 type Loop = LoopResponse;
 
 const n = (v: number, one: string, many = one + "s") => `${v} ${v === 1 ? one : many}`;
 
-/**
- * The five levels as the person's live state, at the top of home. Each
- * column says where they stand and names the one next action for that
- * level, so the loop reads as a loop. A first run shows the way in.
- */
 export default function LoopPanel() {
   const [loop, setLoop] = useState<Loop | null>(null);
   const [status, setStatus] = useState<number | null>(null);
-  // 503 means two things on this route now: a deployment with no graph
-  // behind it, and a read that failed this minute. The body says which,
-  // and reading only the status told a learner their install was broken
-  // (Bucket critic C59).
   const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,9 +20,6 @@ export default function LoopPanel() {
     fetch("/api/research-os/loop", { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
-        // The code is read before any setState, so no render happens
-        // with the status set and the code still null, which showed one
-        // frame of the permanent copy for a passing outage.
         if (r.ok) {
           setLoop((await r.json()) as Loop);
           setStatus(r.status);
@@ -106,8 +92,6 @@ export default function LoopPanel() {
           ? "Learn progress could not be read this minute"
           : `${n(loop.understanding.decksStarted, "deck")} started in Learn`,
       href: "/research-os/learn",
-      // null is falsy, so the panel said "start a deck" beside a line
-      // saying the read had not completed.
       cta:
         loop.understanding.decksStarted === null
           ? "open Learn"

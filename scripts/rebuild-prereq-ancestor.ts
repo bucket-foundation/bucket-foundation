@@ -1,20 +1,3 @@
-/**
- * Research OS for K-12, prereq_ancestor closure table rebuild CLI (bkt-ros,
- * Phase 1 item 1: "migration plus a maintenance function or script that
- * rebuilds it from edges"). Thin wrapper around
- * src/lib/research-os/rebuild-ancestor.ts's `rebuildPrereqAncestorForBranch`
- * (bkt-ros ros-13, factored out so the same rebuild also runs in-process
- * from the /research-os/edges review route's approve action, task item 4)
- * -- this file owns only the CLI's own env-var read and console reporting.
- *
- * Requires the same server-only env vars as scripts/seed-research-os.mjs:
- *   NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/rebuild-prereq-ancestor.ts [branch | --all]
- *   (branch defaults to "02-physics", the only seeded branch in Phase 0;
- *   --all rebuilds every branch the graph holds)
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { rebuildPrereqAncestorForBranch } from "../src/lib/research-os/rebuild-ancestor";
 
@@ -27,12 +10,6 @@ async function main(): Promise<void> {
     console.error("[rebuild-prereq-ancestor] SUPABASE env not set (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY). Nothing written.");
     process.exit(1);
   }
-  // Generics erased back to the default SupabaseClient shape, matching
-  // src/lib/research-os/db.ts's graphService() (same header note there):
-  // createClient narrows its type from `db.schema: "graph"` to a schema
-  // name outside the untyped Database generic, which otherwise cannot
-  // unify with rebuildPrereqAncestorForBranch's plain SupabaseClient
-  // parameter; table/column names below are plain strings either way.
   const svc = createClient(url, serviceKey, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
   if (branch === "--all") {

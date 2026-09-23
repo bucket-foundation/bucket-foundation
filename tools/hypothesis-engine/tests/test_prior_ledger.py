@@ -6,7 +6,6 @@ from hte.concepts import Slot
 from hte.corpus import fixtures as fixtures_corpus
 from tests.test_runner import _fake_mode_cfg
 
-
 def test_outcomes_count_only_scored_survivors_by_the_sign_of_lift():
     corpus = fixtures_corpus.build()
     from hte.generate import combinatorial_sample
@@ -22,8 +21,7 @@ def test_outcomes_count_only_scored_survivors_by_the_sign_of_lift():
     counts = prior_ledger.outcomes([h_win, h_lose, h_unscored], opinions)
     assert counts[("actor", h_win.content.actor)][0] >= 1
     assert counts[("actor", h_lose.content.actor)][1] >= 1
-    assert sum(s + f for s, f in counts.values()) == 10  # two scored survivors, five slots each
-
+    assert sum(s + f for s, f in counts.values()) == 10
 
 def test_apply_moves_a_counted_prior_toward_the_evidence_and_leaves_the_rest(tmp_path):
     corpus = fixtures_corpus.build()
@@ -32,11 +30,10 @@ def test_apply_moves_a_counted_prior_toward_the_evidence_and_leaves_the_rest(tmp
     other = corpus.vocab.get(Slot.ACTOR, "alpha-team").prior_logit
     moved = prior_ledger.apply(corpus.vocab, {("actor", "unverified-observer"): (8, 0)})
     assert moved == 1
-    after = corpus.vocab.get(Slot.ACTOR, "unverified-observer").prior_logit  # a fresh Concept replaced the frozen one
+    after = corpus.vocab.get(Slot.ACTOR, "unverified-observer").prior_logit
     assert after > before
     assert abs(sigmoid(after) - (sigmoid(before) * 4.0 + 8) / (4.0 + 8)) < 1e-9
     assert corpus.vocab.get(Slot.ACTOR, "alpha-team").prior_logit == other
-
 
 def test_append_and_load_round_trip_per_corpus(tmp_path):
     path = tmp_path / "ledger.jsonl"
@@ -47,7 +44,6 @@ def test_append_and_load_round_trip_per_corpus(tmp_path):
     counts, runs = prior_ledger.load_counts(path, corpus="c")
     assert counts == {("actor", "x"): (3, 2)} and runs == 2
     assert prior_ledger.load_counts(tmp_path / "missing.jsonl", corpus="c") == ({}, 0)
-
 
 def test_campaign_appends_then_applies_the_ledger_across_two_runs(tmp_path, monkeypatch):
     ledger = tmp_path / "ledger.jsonl"
