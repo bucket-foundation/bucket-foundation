@@ -94,6 +94,7 @@ shorts-runs/
 # tools (see PHOTON-SPEC.md). The spec + tools + sample photons may be
 # committed, but the full vector matrices are not.
 _intake/photons/index.sqlite
+_intake/photons/roots.sqlite*
 _intake/photons/*.f32.bin
 # Bulk-ingest artifacts: the consolidated CSV + per-language kaikki
 # JSONL cache (10s of GB). Regenerate via photon-kaikki-bulk2.py.

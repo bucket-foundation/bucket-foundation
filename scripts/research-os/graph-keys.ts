@@ -70,6 +70,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   merge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["keep_slug", "drop_slug"], nullable: [] }],
   node_grants: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "grantee_group", "role"], nullable: ["grantee_group"] }, { columns: ["node_id", "grantee_id", "role"], nullable: ["grantee_id"] }],
   node_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["key"], nullable: [] }],
+  node_words: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "lang", "word"], nullable: [] }],
   nodes: [{ columns: ["id"], nullable: [] }, { columns: ["slug"], nullable: [] }],
   prereq_ancestor: [{ columns: ["node_id", "ancestor_id"], nullable: [] }],
   privacy_events: [{ columns: ["id"], nullable: [] }],
