@@ -562,3 +562,140 @@ test("a claim that loses the race reports the status the row holds now", async (
   );
   assert.deepEqual(r4.body, { decision: null, alreadyDecided: true });
 });
+
+function medallionSeed(): Db {
+  const db = seed();
+  db.edge_proposals.push({
+    id: "p-med",
+    from_slug: "derivatives",
+    to_slug: "kinematics",
+    branch: "02-physics",
+    status: "pending",
+    confidence: 0.7,
+    confidence_source: "medallion_lexical",
+    agreement: false,
+    verification: null,
+    origin: null,
+    refd: null,
+    justification: "canon-all word match (concept_lexical): rate.",
+    secondary_justification: null,
+    model: "none",
+    prompt_hash: "h2",
+    created_at: "2026-09-23T00:00:00Z",
+    impact: 0,
+    cross_branch: true,
+    action: "add",
+    proposed_kind: "derives_from",
+    silver_item_id: "s-edge",
+  });
+  db.edge_proposals = db.edge_proposals.filter((p) => p.id === "p-med");
+  db.silver_items = [
+    { id: "s-edge", source_id: `file:${"b".repeat(64)}`, source_revision: "r1", kind: "edge_candidate", locator: "00:01:02.000", text: null, text_hash: "c".repeat(64), confidence: 0.7 },
+    { id: "s-node", source_id: `file:${"d".repeat(64)}`, source_revision: "r2", kind: "claim", locator: null, text: "A claim.", text_hash: "e".repeat(64), confidence: 0.9 },
+  ];
+  db.evidence_source_admissions = [
+    { source_id: `file:${"b".repeat(64)}`, source_revision: "r1", allow_index: false, status: "active" },
+    { source_id: `file:${"d".repeat(64)}`, source_revision: "r2", allow_index: true, status: "active" },
+  ];
+  db.gold_lineage = [];
+  db.node_proposals.push({
+    id: "np-draft",
+    key: "medallion:claim-02-physics-x",
+    title: "A claim",
+    branch: "02-physics",
+    justification: "New excerpt from canon-all, silver confidence 0.9.",
+    summary: "A claim.",
+    named_by: [],
+    aliases: [],
+    reasons: {},
+    possible_duplicates: [],
+    base_match: null,
+    model: "none",
+    status: "pending",
+    created_at: "2026-09-23T00:00:00Z",
+    silver_item_id: "s-node",
+    draft: {
+      slug: "claim-02-physics-x",
+      title: "A claim",
+      kind: "excerpt",
+      tier: 15,
+      branch: "02-physics",
+      summary: "A claim.",
+      labels: { en: { title: "A claim" } },
+      provenance: { type: "source_excerpt", branch: "02-physics", concept: "x", claim_slug: "001-x" },
+    },
+  });
+  return db;
+}
+
+test("the medallion queue lists silver with refused text and locator withheld", async () => {
+  const db = medallionSeed();
+  const r = await listEdgeProposals(fake(db, rpcs()), "medallion_lexical");
+  assert.equal(r.status, 200);
+  const [p] = r.body.proposals as Array<Record<string, any>>;
+  assert.equal(p.id, "p-med");
+  assert.equal(p.action, "add");
+  assert.equal(p.proposedKind, "derives_from");
+  assert.equal(p.silver.sourceId, `file:${"b".repeat(64)}`);
+  assert.equal(p.silver.locator, null);
+  assert.equal(p.silver.text, null);
+  assert.equal(p.silver.redacted, true);
+  assert.equal(p.silver.band, "uncertain");
+});
+
+test("approving a medallion proposal writes its proposed kind and the reviewer's lineage", async () => {
+  const db = medallionSeed();
+  const r = await decideEdge(fake(db, rpcs()), { id: "p-med", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.kind, "derives_from");
+  assert.equal(r.body.warning, undefined);
+  const e = db.edges[0];
+  assert.deepEqual([e.from_id, e.to_id, e.kind], ["n-kin", "n-der", "derives_from"]);
+  assert.deepEqual(
+    db.gold_lineage.map((l) => [l.edge_id, l.silver_item_id, l.promoted_by, l.reviewer_id]),
+    [[e.id, "s-edge", "reviewer", "rev-1"]],
+  );
+});
+
+test("a failed lineage write keeps the approved edge and says so", async () => {
+  const db = medallionSeed();
+  const r = await decideEdge(fake(db, rpcs(), new Set(["gold_lineage:insert"])), { id: "p-med", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(db.edges.length, 1);
+  assert.match(String(r.body.warning), /lineage was not recorded/);
+});
+
+test("approving a medallion node proposal creates the drafted node with its kind and provenance", async () => {
+  const db = medallionSeed();
+  const calls: string[] = [];
+  const r = await decideNode(fake(db, rpcs(), new Set(), calls), { id: "np-draft", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.nodeSlug, "claim-02-physics-x");
+  assert.equal(r.body.queuedEdges, 0);
+  const n = db.nodes.find((x) => x.slug === "claim-02-physics-x")!;
+  assert.equal(n.kind, "excerpt");
+  assert.equal(n.provenance.type, "source_excerpt");
+  assert.deepEqual(db.gold_lineage.map((l) => [l.node_id, l.silver_item_id, l.promoted_by]), [[n.id, "s-node", "reviewer"]]);
+  assert.equal(db.node_proposals.find((x) => x.id === "np-draft")!.created_node_id, n.id);
+  assert.ok(!calls.includes("edge_proposals:upsert"));
+
+  const again = await decideNode(fake(db, rpcs()), { id: "np-draft", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(again.body.alreadyDecided, true);
+});
+
+test("rejecting a medallion node proposal writes no node", async () => {
+  const db = medallionSeed();
+  const before = db.nodes.length;
+  const r = await decideNode(fake(db, rpcs()), { id: "np-draft", decision: "rejected", reason: "a transcript line", reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.decision, "rejected");
+  assert.equal(db.nodes.length, before);
+  assert.equal(db.gold_lineage.length, 0);
+});
+
+test("a failed node insert releases the medallion node proposal", async () => {
+  const db = medallionSeed();
+  const r = await decideNode(fake(db, rpcs(), new Set(["nodes:insert"])), { id: "np-draft", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 500);
+  assert.equal(db.node_proposals.find((x) => x.id === "np-draft")!.status, "pending");
+});

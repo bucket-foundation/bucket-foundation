@@ -242,4 +242,38 @@ begin
   end if;
 end $$;
 
+do $$
+declare
+  a uuid;
+  b uuid;
+begin
+  insert into graph.silver_items (source_id, source_revision, kind, span_start, span_end, text_hash, parser, parser_revision, confidence, subject)
+    values ('file:' || repeat('c', 64), md5(repeat('c', 64)) || md5(repeat('c', 64)), 'edge_candidate', 0, 5, repeat('5', 64), 'test', 'test/1', 0.7, 'atom->tag-a')
+    returning id into a;
+  insert into graph.silver_items (source_id, source_revision, kind, span_start, span_end, text_hash, parser, parser_revision, confidence, subject)
+    values ('file:' || repeat('c', 64), md5(repeat('c', 64)) || md5(repeat('c', 64)), 'edge_candidate', 0, 5, repeat('5', 64), 'test', 'test/1', 0.7, 'atom->tag-b')
+    returning id into b;
+  if a = b then raise exception 'two edge candidates on one span collapsed'; end if;
+
+  insert into graph.edge_proposals (from_slug, to_slug, branch, confidence, confidence_source, agreement, justification, model, prompt_hash, action, proposed_kind, silver_item_id)
+    values ('medallion-atom', 'medallion-tag', '02-physics', 0.7, 'medallion_lexical', false, 'word match', 'none', repeat('0', 64), 'add', 'derives_from', a);
+  begin
+    insert into graph.edge_proposals (from_slug, to_slug, branch, confidence, confidence_source, agreement, justification, model, prompt_hash, action)
+      values ('medallion-atom', 'medallion-tag-2', '02-physics', 0.7, 'medallion_lexical', false, 'word match', 'none', repeat('0', 64), 'remove');
+    raise exception 'an unknown proposal action was accepted';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into graph.edge_proposals (from_slug, to_slug, branch, confidence, confidence_source, agreement, justification, model, prompt_hash, proposed_kind)
+      values ('medallion-atom', 'medallion-tag-3', '02-physics', 0.7, 'medallion_lexical', false, 'word match', 'none', repeat('0', 64), 'cites');
+    raise exception 'a proposal proposed a non-factor kind';
+  exception when check_violation then null;
+  end;
+  if (select action from graph.edge_proposals where from_slug = 'medallion-atom' and to_slug = 'medallion-tag') <> 'add' then
+    raise exception 'the proposal action did not default to add';
+  end if;
+  insert into graph.node_proposals (key, title, branch, justification, model, draft)
+    values ('medallion:test-draft', 'Draft', '02-physics', 'new', 'none', '{"slug":"test-draft","kind":"excerpt"}'::jsonb);
+end $$;
+
 rollback;

@@ -42,6 +42,7 @@ export interface SilverDraft {
   confidence: number;
   confidence_parts: Record<string, number>;
   proposal: SilverProposal;
+  subject: string;
 }
 
 export function locateSpan(text: string, needle: string): { start: number; end: number } | null {
@@ -56,7 +57,7 @@ export function locateSpan(text: string, needle: string): { start: number; end: 
 export function silverItem(
   bronze: BronzeRecord,
   span: { start: number; end: number },
-  opts: { kind: SilverKind; locator: string | null; parser: string; parserRevision: string; confidenceParts: Record<string, number>; proposal: SilverProposal },
+  opts: { kind: SilverKind; locator: string | null; parser: string; parserRevision: string; confidenceParts: Record<string, number>; proposal: SilverProposal; subject?: string },
 ): SilverDraft {
   const slice = byteSlice(bronze.text, span.start, span.end);
   return {
@@ -73,6 +74,7 @@ export function silverItem(
     confidence: combineConfidence(opts.confidenceParts),
     confidence_parts: opts.confidenceParts,
     proposal: opts.proposal,
+    subject: opts.subject ?? "",
   };
 }
 

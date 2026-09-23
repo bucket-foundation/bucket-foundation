@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { IngestNodeDraft } from "../ingest/types";
 import { IN_CHUNK } from "../db";
 import { DECOMPOSABLE_KINDS } from "../idea";
 import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
@@ -7,6 +8,8 @@ import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
 import { recordReviewerLineage } from "../medallion/lineage-write";
+import type { PublicSilver } from "../medallion/redact";
+import { silverForReview } from "../medallion/review-view";
 
 export type ActionResult = { status: number; body: Record<string, unknown> };
 
@@ -19,11 +22,11 @@ async function lostClaim(svc: SupabaseClient, table: string, id: string): Promis
   return ok({ decision: typeof status === "string" ? status : null, alreadyDecided: true });
 }
 
-export const SOURCES = new Set(["inferred_llm", "prime_decompose_llm"]);
+export const SOURCES = new Set(["inferred_llm", "prime_decompose_llm", "medallion_lexical"]);
 export const KINDS = new Set<ApprovedKind>(["prerequisite", "derives_from"]);
 
 const PROPOSAL_COLUMNS =
-  "id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at,impact,cross_branch,verification,origin,refd,in_cycle";
+  "id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at,impact,cross_branch,verification,origin,refd,in_cycle,action,proposed_kind,silver_item_id";
 
 type ProposalRow = {
   id: string;
@@ -45,6 +48,9 @@ type ProposalRow = {
   origin: "proposer" | "missing_matched" | "base_idea" | null;
   refd: number | null;
   in_cycle: boolean | null;
+  action?: "add" | "demote" | null;
+  proposed_kind?: ApprovedKind | null;
+  silver_item_id?: string | null;
 };
 
 type NodeLite = { id: string; slug: string; title: string; branch: string; tier: number | null; summary: string | null };
@@ -118,6 +124,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
   let impact: Map<string, number>;
   let loops: Set<string>;
   let standings: Map<string, PairStanding>;
+  let silver: Map<string, PublicSilver>;
   try {
     nodes = await nodesBySlug(svc, rows.flatMap((p) => [p.from_slug, p.to_slug]));
     impact = await dependents(svc, rows.map((p) => p.to_slug));
@@ -125,6 +132,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
     const snap = await makeupSnapshot(svc);
     loops = liveCycles(snap, pendingAll);
     standings = pairStandings(snap, pendingAll);
+    silver = await silverForReview(svc, rows.map((p) => p.silver_item_id ?? "").filter(Boolean));
   } catch {
     return fail(500, "read_failed");
   }
@@ -160,6 +168,9 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         inCycle: loops.has(`${p.from_slug}->${p.to_slug}`),
         ...(standings.get(`${p.from_slug}->${p.to_slug}`) ?? { graphLoop: false, implied: false, viaPending: false, through: [] }),
         priority: priorityOf(p, live),
+        action: p.action ?? "add",
+        proposedKind: p.proposed_kind ?? null,
+        silver: p.silver_item_id ? (silver.get(p.silver_item_id) ?? null) : null,
       };
     })
     .sort((a, b) => b.priority - a.priority || a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id));
@@ -185,13 +196,13 @@ export async function decideEdge(
 ): Promise<ActionResult> {
   const { data: row, error: readErr } = await svc
     .from("edge_proposals")
-    .select("id,from_slug,to_slug,branch,status,confidence_source,model,verification,origin,silver_item_id")
+    .select("id,from_slug,to_slug,branch,status,confidence_source,model,verification,origin,silver_item_id,action,proposed_kind")
     .eq("id", input.id)
     .maybeSingle();
   if (readErr) return fail(500, "read_failed");
   if (!row) return fail(404, "proposal_not_found");
-  const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin"> & { silver_item_id?: string | null };
-  const kind: ApprovedKind = input.kind ?? (p.confidence_source === "prime_decompose_llm" ? "derives_from" : "prerequisite");
+  const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin" | "silver_item_id" | "action" | "proposed_kind">;
+  const kind: ApprovedKind = input.kind ?? p.proposed_kind ?? (p.confidence_source === "prime_decompose_llm" ? "derives_from" : "prerequisite");
   if (!KINDS.has(kind)) return fail(400, "kind must be prerequisite or derives_from");
   const outcome = decideEdgeProposal({ status: p.status, fromSlug: p.from_slug, toSlug: p.to_slug }, input.decision, kind);
   if (outcome.alreadyDecided) return ok({ decision: outcome.status, alreadyDecided: true });
@@ -320,7 +331,7 @@ export async function decideEdge(
   });
 }
 
-const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at,silver_item_id";
+const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at,silver_item_id,draft";
 
 type NodeProposalRow = {
   id: string;
@@ -338,6 +349,7 @@ type NodeProposalRow = {
   status: "pending" | "approved" | "rejected";
   created_at: string;
   silver_item_id?: string | null;
+  draft?: IngestNodeDraft | null;
 };
 
 export async function listNodeProposals(svc: SupabaseClient): Promise<ActionResult> {
@@ -386,6 +398,7 @@ export async function decideNode(
   if (readErr) return fail(500, "read_failed");
   if (!row) return fail(404, "proposal_not_found");
   const r = row as NodeProposalRow;
+  if (r.draft) return decideDraftNode(svc, r, r.draft, input);
   let targets: Map<string, NodeLite>;
   let known: Set<string>;
   let impact: Map<string, number>;
@@ -490,6 +503,70 @@ export async function decideNode(
     nodeTier: n.tier,
     reused: !created,
     queuedEdges,
+    ...(warnings.length ? { warning: warnings.join("; ") } : {}),
+  });
+}
+
+async function decideDraftNode(
+  svc: SupabaseClient,
+  r: NodeProposalRow,
+  draft: IngestNodeDraft,
+  input: { id: string; decision: "approved" | "rejected"; reason: string | null; reviewerId: string; overrides?: NodeOverrides },
+): Promise<ActionResult> {
+  if (r.status !== "pending") return ok({ decision: r.status, alreadyDecided: true });
+  const branch = input.overrides?.branch?.trim() || draft.branch;
+  if (input.decision === "approved" && input.overrides?.branch) {
+    let known: Set<string>;
+    try {
+      known = await knownBranches(svc);
+    } catch {
+      return fail(500, "read_failed");
+    }
+    if (!known.has(branch)) return fail(400, "unknown branch");
+  }
+  const { data: claimed, error: claimErr } = await svc
+    .from("node_proposals")
+    .update({ status: input.decision, reviewer_id: input.reviewerId, decision_reason: input.reason, decided_at: new Date().toISOString() })
+    .eq("id", r.id)
+    .eq("status", "pending")
+    .select("id");
+  if (claimErr) return fail(500, "decision_write_failed");
+  if (!((claimed as unknown[]) || []).length) return lostClaim(svc, "node_proposals", r.id);
+  if (input.decision === "rejected") return ok({ decision: "rejected", alreadyDecided: false });
+
+  const release = async (): Promise<boolean> => {
+    const { error } = await svc.from("node_proposals").update({ status: "pending", reviewer_id: null, decision_reason: null, decided_at: null }).eq("id", r.id);
+    return !error;
+  };
+  const title = input.overrides?.title?.trim() || draft.title;
+  const summary = input.overrides?.summary?.trim() || draft.summary;
+  const { data: existing, error: existErr } = await svc.from("nodes").select("id").eq("slug", draft.slug).maybeSingle();
+  if (existErr) return fail(500, (await release()) ? "read_failed" : "read_failed_claim_held");
+  let nodeId: string;
+  let created = false;
+  if (existing) nodeId = (existing as { id: string }).id;
+  else {
+    const { data: inserted, error: insErr } = await svc
+      .from("nodes")
+      .insert([{ slug: draft.slug, title, kind: draft.kind, tier: draft.tier, branch, summary, labels: draft.labels, provenance: draft.provenance }])
+      .select("id")
+      .single();
+    if (insErr || !inserted) return fail(500, (await release()) ? "node_write_failed" : "node_write_failed_claim_held");
+    nodeId = (inserted as { id: string }).id;
+    created = true;
+  }
+  forgetMakeupSnapshot();
+  forgetPrimesReport();
+  const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
+  const lineageErr = r.silver_item_id ? await recordReviewerLineage(svc, { nodeId }, r.silver_item_id, input.reviewerId) : null;
+  const warnings = [linkErr ? "the proposal's link to its new node was not saved" : null, lineageErr ? "the node's lineage was not recorded" : null].filter(Boolean);
+  return ok({
+    decision: "approved",
+    alreadyDecided: false,
+    nodeSlug: draft.slug,
+    nodeTier: draft.tier,
+    reused: !created,
+    queuedEdges: 0,
     ...(warnings.length ? { warning: warnings.join("; ") } : {}),
   });
 }
