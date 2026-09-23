@@ -53,7 +53,13 @@ export async function createNodeFromProduction(p: AcceptedProduction): Promise<s
   const svc = graphService();
   const kind = (PRODUCTION_KINDS.includes(p.kind as ProductionKind) ? p.kind : "production") as ProductionKind;
   const relatedId = (kind === "production" ? p.target_node_id : p.related_node_id ?? p.target_node_id) as string;
-  const { data: related } = await svc.from("nodes").select("id,title,branch,tier").eq("id", relatedId).maybeSingle();
+  // The related node decides this node's title, branch and tier. A
+  // dropped error left `rel` null, and the upsert below then wrote
+  // tier 1, branch "00-productions" and a title with no related node in
+  // it: an accepted production filed under the wrong branch, durably,
+  // because a read failed for a second.
+  const { data: related, error: relatedErr } = await svc.from("nodes").select("id,title,branch,tier").eq("id", relatedId).maybeSingle();
+  if (relatedErr) throw new Error(`createNodeFromProduction: related node read failed: ${relatedErr.message}`);
   const rel = related as { id: string; title: string; branch: string; tier: number } | null;
   let nodeId = p.node_id ?? null;
   if (!nodeId) {

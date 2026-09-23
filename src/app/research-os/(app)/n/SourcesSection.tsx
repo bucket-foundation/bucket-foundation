@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState } from "react";
 import Section from "./Section";
 import type { NodeData, Quote } from "./types";
@@ -35,9 +36,9 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
     setError(null);
     try {
       const res = await fetch("/api/research-os/workspace", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "quote", nodeId: data.node.id }) });
-      const j = (await res.json()) as QuoteResponse & { error?: string; message?: string };
+      const j = (await res.json().catch(() => ({}))) as QuoteResponse & { error?: string; message?: string };
       if (!res.ok) {
-        setError(j.message ?? j.error ?? "Could not quote.");
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not quote."));
         return;
       }
       setGot(j);

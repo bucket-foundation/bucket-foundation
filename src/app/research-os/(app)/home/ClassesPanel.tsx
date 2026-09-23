@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState, Panel } from "@/components/ui";
@@ -18,6 +19,7 @@ const INPUT = "border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-wh
 export default function ClassesPanel() {
   const [rows, setRows] = useState<ClassSummary[] | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
   const [creating, setCreating] = useState(false);
@@ -28,7 +30,13 @@ export default function ClassesPanel() {
     try {
       const res = await fetch("/api/research-os/classes", { cache: "no-store" });
       if (!res.ok) {
+        // The code is read before any setState, so no render happens
+        // with the status set and the code still null, which showed
+        // one frame of the permanent copy for a passing outage.
+        const outageCode = res.ok ? null : await readErrorCode(res);
+        setErrorCode(outageCode);
         setStatus(res.status);
+        if (!res.ok) setErrorCode(await readErrorCode(res));
         return;
       }
       setRows(((await res.json()) as { classes: ClassSummary[] }).classes);
@@ -74,8 +82,10 @@ export default function ClassesPanel() {
     <Panel title="your classes" meta={rows ? `${rows.length}` : undefined}>
       {status === null ? (
         <LoadingState />
+      ) : isTransientOutage(status, errorCode) ? (
+        <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />
       ) : status === 503 ? (
-        <ErrorState title="Research OS is unavailable on this deployment" />
+        <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />
       ) : status !== 200 ? (
         <ErrorState body="Could not load your classes." retry={() => void load()} />
       ) : (

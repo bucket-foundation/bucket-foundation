@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import Section from "./Section";
@@ -44,7 +45,9 @@ export default function CheckSection({ data, quotes, onChanged }: { data: NodeDa
       const res = await fetch("/api/research-os/workspace", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "check", nodeId: data.node.id, ...body }) });
       const j = (await res.json().catch(() => ({}))) as CheckResponse;
       if (!res.ok) {
-        setError({ text: j.message ?? j.error ?? "Check failed.", profile: Boolean(j.needsProfile) });
+        // A lock wait used to reach the learner as the word "busy".
+        const text = isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Check failed.");
+        setError({ text, profile: Boolean(j.needsProfile) });
         return null;
       }
       return j;

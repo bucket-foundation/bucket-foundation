@@ -32,7 +32,12 @@ type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: numbe
 async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
   const out: T[] = [];
   for (let from = 0; ; from += 1000) {
-    let q = svc.from(table).select(columns).range(from, from + 999);
+    // Ordered by id, which is the primary key on nodes, edges and
+    // irreducible_proposals. Postgres gives no stable order across LIMIT
+    // and OFFSET without a total order key, so an unordered page boundary
+    // repeats one row and drops another, and the report is wrong with no
+    // sign that it is.
+    let q = svc.from(table).select(columns).order("id").range(from, from + 999);
     if (filter) q = filter(q);
     const { data, error } = await q;
     if (error) throw new Error(`${table}: ${error.message}`);

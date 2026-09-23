@@ -22,7 +22,7 @@
  *
  * The store is injectable so the rules can be tested without a database.
  */
-import { GRANT_ROLES, can, canView, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
+import { can, canView, GRANT_ROLES, live, readVisibility, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
 import { graphService } from "./db";
 
 /** What a read can ask for. `view` is the floor; the rest are grant roles. */
@@ -51,8 +51,6 @@ export type Unavailable = { ok: false; reason: "unavailable"; detail: string };
 
 export type AuthorizeResult = Authorized | Unavailable;
 
-const KNOWN_VISIBILITY: Visibility[] = ["public", "private", "shared"];
-
 const VISIBILITY_RANK: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
 
 /**
@@ -69,21 +67,27 @@ function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
   return byId;
 }
 
-/** A visibility this code does not know is treated as private. */
-export function readVisibility(value: string | null | undefined): Visibility {
-  return KNOWN_VISIBILITY.includes(value as Visibility) ? (value as Visibility) : "private";
-}
+export { readVisibility };
 
 /** A grant whose expiry cannot be read is treated as expired. */
-function liveGrant(grant: NodeGrant, now: Date): boolean {
-  if (!grant.expiresAt) return true;
-  const at = Date.parse(grant.expiresAt);
-  return Number.isFinite(at) && at > now.getTime();
-}
+// The expiry rule lived here and in access.ts, they disagreed, and the
+// repair was to write the same fix into both. One exported function is
+// the repair: `live` comes from access.ts, which this file already
+// imports from.
+const liveGrant = live;
 
 // 100 ids is about 3.7 KB of request line, half the 8 KB a proxy allows by
 // default. 200 measured at 7.5 KB, which a longer host or select clause
 // turns into a 414 (Bucket critic C7).
+/** PostgREST answers at most this many rows per request. */
+const PAGE = 1000;
+/**
+ * A page loop that never terminates is worse than one that truncates,
+ * so both loops below stop here and report an outage. db.ts carries the
+ * same bound for the same reason (Bucket critic C54).
+ */
+const MAX_PAGES = 200;
+
 function chunk<T>(items: T[], size = 100): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
@@ -106,11 +110,22 @@ export const dbAccessStore: AccessStore = {
   async grants(ids) {
     const rows: NodeGrant[] = [];
     for (const part of chunk(ids)) {
+      // Paged. Chunking the ids bounds the request line and says nothing
+      // about PostgREST's thousand-row cap: a hundred nodes averaging ten
+      // grants each overflow it, and the dropped rows come back as a
+      // denial of a live grant with no error at all. Rule 1 in this
+      // file's header forbids exactly that (Bucket critic C41).
+      for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) return { ok: false, error: "grants: a paged read did not terminate" };
+      const from = p * PAGE;
       const { data, error } = await graphService()
         .from("node_grants")
         .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-        .in("node_id", part);
+        .in("node_id", part)
+        .order("id", { ascending: true })
+        .range(from, from + PAGE - 1);
       if (error) return { ok: false, error: `grants: ${error.message}` };
+      const page = (data as unknown[]) || [];
       for (const r of (data as {
         id: string;
         node_id: string;
@@ -136,13 +151,33 @@ export const dbAccessStore: AccessStore = {
           expiresAt: r.expires_at ?? null,
         });
       }
+        if (page.length < PAGE) break;
+      }
     }
     return { ok: true, value: rows };
   },
   async groups(learnerId) {
-    const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-    if (error) return { ok: false, error: `groups: ${error.message}` };
-    return { ok: true, value: ((data as { class_id: string }[]) || []).map((r) => `class:${r.class_id}`) };
+    // Paged and ordered. PostgREST stops at a thousand rows, and a
+    // learner past that would lose the group grants on the classes it
+    // dropped, which reads as a denial rather than as the truncation it
+    // is (Bucket critic C36). `nodes` above needs no page loop: it reads
+    // at most one row per id, and `chunk` already bounds that at 100.
+    const groups: string[] = [];
+    for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) return { ok: false, error: "groups: a paged read did not terminate" };
+      const from = p * PAGE;
+      const { data, error } = await graphService()
+        .from("class_members")
+        .select("class_id")
+        .eq("learner_id", learnerId)
+        .order("class_id", { ascending: true })
+        .range(from, from + PAGE - 1);
+      if (error) return { ok: false, error: `groups: ${error.message}` };
+      const rows = (data as { class_id: string }[]) || [];
+      groups.push(...rows.map((r) => `class:${r.class_id}`));
+      if (rows.length < PAGE) break;
+    }
+    return { ok: true, value: groups };
   },
 };
 

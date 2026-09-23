@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ErrorState, LoadingState, StageChip } from "@/components/ui";
@@ -41,12 +42,19 @@ export default function NodeView({ slug }: { slug: string }) {
   const { accessToken } = useSession();
   const [data, setData] = useState<NodeData | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/research-os/node?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
+      // The code is read before any setState, so no render happens
+      // with the status set and the code still null, which showed
+      // one frame of the permanent copy for a passing outage.
+      const outageCode = res.ok ? null : await readErrorCode(res);
+      setErrorCode(outageCode);
       setStatus(res.status);
+        if (!res.ok) setErrorCode(await readErrorCode(res));
       if (res.ok) setData((await res.json()) as NodeData);
     } catch {
       setStatus(0);
@@ -59,7 +67,8 @@ export default function NodeView({ slug }: { slug: string }) {
 
   if (status === null) return <LoadingState label="Opening the node" />;
   if (status === 404) return <ErrorState title="No such node" body="It may be private, or the slug may have changed." />;
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" />;
+  if (isTransientOutage(status, errorCode)) return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />;
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (!data) return <ErrorState body="Could not open the node." retry={() => void load()} />;
 
   const { node, standing } = data;

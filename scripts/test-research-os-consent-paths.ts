@@ -6,6 +6,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { consentPathFor, effectiveConsent, payeeFor } from "../src/lib/research-os/consent-paths";
+import { consentBlockedBody, consentRefusal, decideConsent, decideWithPaths, type ConsentCheckResult } from "../src/lib/research-os/consent";
 
 const under13 = { birthYearBucket: "under13" as const, consentStatus: "none" as const, consentSource: null };
 const schoolClass = { classId: "c1", consentBasis: "school" as const, consentDocument: "district NDPA exhibit E" };
@@ -48,4 +49,37 @@ test("payee: minors through a guardian or a custodial account only", () => {
   assert.deepEqual(payeeFor({ birthYearBucket: "under13", payeeType: "guardian", guardianContactHash: null }), { ok: false, reason: "guardian_contact_required" });
   assert.deepEqual(payeeFor({ birthYearBucket: "under13", payeeType: "guardian", guardianContactHash: "abc" }), { ok: true, payee: "guardian" });
   assert.deepEqual(payeeFor({ birthYearBucket: "13to17", payeeType: "custodial", guardianContactHash: null }), { ok: true, payee: "custodial" });
+});
+
+test("a consent path read that fails is unavailable, and answers 503", () => {
+  // The repair that made resolveConsentPaths raise left four POST routes
+  // calling requireConsent bare, so a failed read reached the learner as
+  // a 500 with no body. The outcome is named now, and consentRefusal is
+  // the only way a route answers a blocked check, so none of them can
+  // handle the 403 and forget this one.
+  const blocked: ConsentCheckResult = { allowed: false, reason: "unavailable", message: "Consent could not be checked right now." };
+  const refusal = consentRefusal(blocked);
+  assert.equal(refusal.status, 503, "a read that did not complete is not a claim about the learner");
+  assert.equal((refusal.body as { error: string }).error, "consent_unavailable");
+
+  const required: ConsentCheckResult = { allowed: false, reason: "consent_required", message: "needs consent" };
+  assert.equal(consentRefusal(required).status, 403, "a real refusal stays a 403");
+  assert.equal((consentRefusal(required).body as { error: string }).error, "consent_required");
+
+  assert.throws(() => consentBlockedBody(blocked), /consentRefusal/, "the 403 body refuses to shape a 503");
+});
+
+test("requireConsent reports unavailable when a path read raises", async () => {
+  const profile = { learnerId: "l1", role: "student" as const, birthYearBucket: "under13" as const, consentStatus: "none" as const, consentSource: null, updatedAt: "" };
+  const first = decideConsent(profile, "probe_answer");
+  assert.equal(first.reason, "consent_required", "the fixture reaches the path lookup");
+
+  const thrown = await decideWithPaths("l1", profile, "probe_answer", async () => {
+    throw new Error("class_members read failed");
+  }, async () => {});
+  assert.equal(thrown.allowed, false);
+  assert.equal(thrown.reason, "unavailable", "a raise becomes a named outcome rather than a 500");
+
+  const served = await decideWithPaths("l1", profile, "probe_answer", async () => ({ status: "school" as const, source: "district", path: "school" as const }), async () => {});
+  assert.equal(served.allowed, true, "and a path that resolves still admits the learner");
 });

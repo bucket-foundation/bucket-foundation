@@ -21,6 +21,25 @@ import { NextRequest } from "next/server";
 
 const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
 
+/**
+ * Cases here revoke a privilege to simulate an access-store outage, and
+ * restore it in a `finally`. A SIGKILL or a CI timeout skips that
+ * restore, so this refuses to run against anything but loopback (Bucket
+ * critic C43).
+ */
+function requireLoopback(): void {
+  let host: string;
+  try {
+    host = new URL(DB).hostname;
+  } catch {
+    throw new Error("RESEARCH_OS_TEST_DATABASE_URL is not a URL this test can check the host of");
+  }
+  const loopback = host === "127.0.0.1" || host === "localhost" || host === "::1" || host === "[::1]";
+  if (!loopback) {
+    throw new Error(`this suite revokes a database privilege and will only do that on loopback; refusing host ${host}`);
+  }
+}
+
 function sql(statement: string): { status: number; out: string } {
   const run = spawnSync("psql", [DB, "-At", "-v", "ON_ERROR_STOP=1", "-c", statement], { encoding: "utf8" });
   return { status: run.status ?? 1, out: (run.stdout || "").trim() + (run.stderr || "") };
@@ -341,6 +360,7 @@ test("the read gates hold at the routes", { skip }, async (t) => {
   await t.test("an access-store outage answers 503, never an empty result", async () => {
     // The grants read is what fails: revoking select on the table is the
     // outage a learner would see during one.
+    requireLoopback();
     sql(`revoke select on graph.node_grants from service_role;`);
     try {
       const search503 = await get(search.GET, `q=${token}`, grantee.token);
@@ -395,6 +415,616 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.equal(res.status, 200);
     const seen = ((json.results as { title: string }[]) || []).map((r) => r.title);
     assert.deepEqual(seen.sort(), [`${token} public idea`], "a cookie carrying nothing valid sees the public graph alone");
+  });
+
+  await t.test("the review queue and its decisions are scoped to a reviewer's classes", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const review = require("../src/app/api/research-os/review/route") as {
+      GET: (req: NextRequest) => Promise<Response>;
+      POST: (req: NextRequest) => Promise<Response>;
+    };
+
+    const outsider = await makeLearner("outsider");
+    const teacher = await makeLearner("teacher");
+    learners.push(outsider.id, teacher.id);
+    const klass = randomUUID();
+    const insideProduction = randomUUID();
+    const outsideProduction = randomUUID();
+
+    sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Scope fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.productions (id, learner_id, target_node_id, kind, claim, status) values
+        ('${insideProduction}', '${grantee.id}', '${publicNode}', 'production', 'a claim from inside the class', 'submitted'),
+        ('${outsideProduction}', '${outsider.id}', '${publicNode}', 'production', 'a claim from outside it', 'submitted');
+    `);
+
+    const read = async (token: string) => {
+      const res = await review.GET(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        headers: { authorization: `Bearer ${token}` },
+      }));
+      const json = (await res.json()) as { productions?: { id: string }[] };
+      return { status: res.status, ids: (json.productions || []).map((p) => p.id) };
+    };
+
+    try {
+      // The class teacher sees the learner in their class and nobody else.
+      const scoped = await read(teacher.token);
+      assert.equal(scoped.status, 200, `the teacher reads the queue: ${scoped.status}`);
+      assert.ok(scoped.ids.includes(insideProduction), "their own class is in the queue");
+      assert.ok(!scoped.ids.includes(outsideProduction), "another class's learner is not");
+
+      // A decision on a production outside the class answers as missing.
+      const denied = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        method: "POST",
+        headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ kind: "production", productionId: outsideProduction, decision: "approved" }),
+      }));
+      assert.equal(denied.status, 404, `an out-of-scope decision is refused: ${denied.status}`);
+      const untouched = sql(`select status from graph.productions where id = '${outsideProduction}'`);
+      assert.equal(untouched.out, "submitted", "the refused production did not move");
+
+      // The same teacher may decide inside their own class.
+      const allowed = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        method: "POST",
+        headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ kind: "production", productionId: insideProduction, decision: "returned", reason: "revise the second source" }),
+      }));
+      assert.equal(allowed.status, 200, `an in-scope decision lands: ${allowed.status} ${await allowed.text()}`);
+      const moved = sql(`select status from graph.productions where id = '${insideProduction}'`);
+      assert.equal(moved.out, "draft", "the returned production went back to draft");
+    } finally {
+      sql(`delete from graph.teacher_reviews where production_id in ('${insideProduction}', '${outsideProduction}');
+           delete from graph.productions where id in ('${insideProduction}', '${outsideProduction}');
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';
+           delete from graph.learner_node_state where learner_id in ('${outsider.id}', '${teacher.id}');`);
+    }
+  });
+
+  await t.test("a transfer item decision is scoped, and an allowlisted reviewer is not", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const review = require("../src/app/api/research-os/review/route") as { POST: (req: NextRequest) => Promise<Response> };
+
+    const teacher = await makeLearner("ti-teacher");
+    const outsider = await makeLearner("ti-outsider");
+    const allowlisted = await makeLearner("ti-allowlisted");
+    learners.push(teacher.id, outsider.id, allowlisted.id);
+    const klass = randomUUID();
+    const held = JSON.stringify([{ kind: "transfer_item", held: true, at: new Date().toISOString() }]).replace(/'/g, "''");
+
+    const fixture = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Transfer scope fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.learner_node_state (learner_id, node_id, stage, evidence) values
+        ('${grantee.id}', '${publicNode}', 'understanding', '${held}'::jsonb),
+        ('${outsider.id}', '${publicNode}', 'understanding', '${held}'::jsonb)
+        on conflict (learner_id, node_id) do update set stage = 'understanding', evidence = excluded.evidence;
+      select 'made';
+    `);
+    assert.equal(fixture.status, 0, fixture.out);
+
+    const decide = async (token: string, learnerId: string) =>
+      review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        method: "POST",
+        headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
+        body: JSON.stringify({ kind: "transfer_item", learnerId, nodeId: publicNode, decision: "returned", reason: "try the second case" }),
+      }));
+
+    const allowlist = process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    try {
+      // The row exists, so a 404 here is the scope gate rather than a
+      // missing hold. Both answers carry the same code, so the reviewer
+      // cannot tell the two apart (Bucket critic C32, C34).
+      const outOfScope = await decide(teacher.token, outsider.id);
+      assert.equal(outOfScope.status, 404, `a transfer item outside the class is refused: ${outOfScope.status}`);
+      assert.equal(((await outOfScope.json()) as { error?: string }).error, "state_not_found", "and says nothing about which learner exists");
+      const noReview = sql(`select count(*) from graph.teacher_reviews where learner_id = '${outsider.id}' and node_id = '${publicNode}'`);
+      assert.equal(noReview.out, "0", "the refused decision wrote no review row");
+
+      const inScope = await decide(teacher.token, grantee.id);
+      assert.equal(inScope.status, 200, `a transfer item inside the class lands: ${inScope.status} ${await inScope.text()}`);
+      const wrote = sql(`select count(*) from graph.teacher_reviews where learner_id = '${grantee.id}' and node_id = '${publicNode}'`);
+      assert.equal(wrote.out, "1", "the in-scope decision wrote exactly one review row");
+
+      // The graph's own reviewer is scoped to every learner, which is the
+      // `learners === null` branch that class scoping short-circuits.
+      process.env.RESEARCH_OS_REVIEWER_EMAILS = allowlisted.email;
+      const graphWide = await decide(allowlisted.token, outsider.id);
+      assert.equal(graphWide.status, 200, `an allowlisted reviewer decides outside any class: ${graphWide.status} ${await graphWide.text()}`);
+      const wroteWide = sql(`select count(*) from graph.teacher_reviews where reviewer_id = '${allowlisted.id}'`);
+      assert.equal(wroteWide.out, "1", "and that decision was recorded");
+    } finally {
+      if (allowlist === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+      else process.env.RESEARCH_OS_REVIEWER_EMAILS = allowlist;
+      sql(`delete from graph.teacher_reviews where learner_id in ('${grantee.id}', '${outsider.id}');
+           delete from graph.learner_node_state where learner_id in ('${grantee.id}', '${outsider.id}');
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';`);
+    }
+  });
+
+  await t.test("an assignment names a node the learner cannot read without handing over its title", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const assignments = require("../src/app/api/research-os/assignments/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const teacher = await makeLearner("asg-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const visibleAssignment = randomUUID();
+    const hiddenAssignment = randomUUID();
+
+    sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Assignment fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.assignments (id, class_id, target_node_id, assigned_by, title) values
+        ('${visibleAssignment}', '${klass}', '${sharedNode}', '${teacher.id}', 'read the shared one'),
+        ('${hiddenAssignment}', '${klass}', '${privateNode}', '${teacher.id}', 'read the private one');
+    `);
+
+    const mine = async () => {
+      const res = await assignments.GET(new NextRequest("http://127.0.0.1/api/research-os/assignments?mine=1", {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      const json = (await res.json().catch(() => ({}))) as { assignments?: Record<string, unknown>[]; error?: string };
+      return { status: res.status, rows: json.assignments || [], error: json.error };
+    };
+
+    try {
+      const listed = await mine();
+      assert.equal(listed.status, 200, `the learner reads their own assignments: ${listed.status}`);
+      const byId = new Map(listed.rows.map((r) => [r.id as string, r]));
+      const shown = byId.get(visibleAssignment);
+      const withheld = byId.get(hiddenAssignment);
+      assert.ok(shown, "the assignment on a node they were granted is listed");
+      assert.ok(withheld, "the assignment on a node they were not granted is still theirs, so it is listed");
+      assert.equal(shown!.targetHidden, false, "the granted target is not hidden");
+      assert.equal(shown!.targetTitle, `${token} shared idea`, "and it carries its title");
+      assert.equal(withheld!.targetHidden, true, "the ungranted target is marked hidden");
+      assert.equal(withheld!.targetTitle, "", "and carries no title");
+      assert.equal(withheld!.targetSlug, "", "and no slug to follow");
+
+      // An access-store failure is an outage. Answering 200 with every
+      // title blanked would read as "your assignments point nowhere"
+      // (Bucket critic C33). Revoking the grant read is how the route
+      // sees a store it cannot query.
+    requireLoopback();
+    sql(`revoke select on graph.node_grants from service_role;`);
+      const outage = await mine();
+      assert.equal(outage.status, 503, `a store the route cannot read is an outage: ${outage.status}`);
+      assert.equal(outage.error, "access_unavailable");
+    } finally {
+      sql(`grant select on graph.node_grants to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';`);
+    }
+  });
+
+  await t.test("the review queue pages past the row cap rather than truncating", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const review = require("../src/app/api/research-os/review/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const teacher = await makeLearner("page-teacher");
+    const student = await makeLearner("page-student");
+    learners.push(teacher.id, student.id);
+    const klass = randomUUID();
+    const tag = `page-${Date.now().toString(36)}`;
+    // One more than PostgREST answers in a single request. Without a page
+    // loop the queue stops at a thousand and reports no error.
+    const ROWS = 1001;
+
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Paging fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${student.id}', 'learner');
+      insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
+        select gen_random_uuid(), '${tag}-' || g, '${tag} node ' || g, 'concept', 10, '01-mathematics', 'fixture'
+        from generate_series(1, ${ROWS}) g;
+      insert into graph.learner_node_state (learner_id, node_id, stage, evidence)
+        select '${student.id}', id, 'understanding', '[{"kind":"transfer_item","held":true}]'::jsonb
+        from graph.nodes where slug like '${tag}-%';
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const rows = sql(`select count(*) from graph.learner_node_state where learner_id = '${student.id}'`);
+      assert.equal(rows.out, String(ROWS), `the fixture really holds ${ROWS} rows: ${rows.out}`);
+
+      const res = await review.GET(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        headers: { authorization: `Bearer ${teacher.token}` },
+      }));
+      assert.equal(res.status, 200, `the teacher reads the queue: ${res.status}`);
+      const json = (await res.json()) as { transferHolds?: { learnerId: string; nodeId: string }[] };
+      const held = (json.transferHolds || []).filter((h) => h.learnerId === student.id);
+      assert.equal(held.length, ROWS, `every held item is in the queue, not the first thousand: ${held.length}`);
+      assert.equal(new Set(held.map((h) => h.nodeId)).size, ROWS, "and no row is served twice across pages");
+    } finally {
+      sql(`delete from graph.learner_node_state where learner_id = '${student.id}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';
+           delete from graph.edges where from_id in (select id from graph.nodes where slug like '${tag}-%')
+              or to_id in (select id from graph.nodes where slug like '${tag}-%');
+           delete from graph.nodes where slug like '${tag}-%';`);
+    }
+  });
+
+  await t.test("staff assign what they may read, and nothing else", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const classDb = require("../src/lib/research-os/class-db") as {
+      createAssignment: (
+        staff: { id: string; email: string | null; roles: string[] },
+        classId: string,
+        targetSlug: string,
+        input: { title: string },
+      ) => Promise<{ ok: true; value: { id: string } } | { ok: false; error: string }>;
+    };
+
+    const teacher = await makeLearner("create-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const made: string[] = [];
+
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Create fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values ('${klass}', '${teacher.id}', 'teacher');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+    const staff = { id: teacher.id, email: teacher.email, roles: ["teacher"] };
+
+    try {
+      // A public node is assignable.
+      const ok = await classDb.createAssignment(staff, klass, `ra-public-${publicNode}`, { title: "read the public one" });
+      assert.equal(ok.ok, true, `a readable target is assignable: ${JSON.stringify(ok)}`);
+      if (ok.ok) made.push(ok.value.id);
+
+      // Another learner's private node is not, and the refusal says
+      // nothing about whether the slug exists.
+      const denied = await classDb.createAssignment(staff, klass, `ra-private-${privateNode}`, { title: "read the private one" });
+      assert.equal(denied.ok, false, "a target the staff member cannot read is refused");
+      assert.equal(denied.ok === false && denied.error, "target_not_found", "and reads the same as a slug that never existed");
+
+      const missing = await classDb.createAssignment(staff, klass, `ra-nothing-${randomUUID()}`, { title: "read a ghost" });
+      assert.equal(missing.ok === false && missing.error, "target_not_found", "which is what a real miss answers");
+
+      // An access-store outage is an outage, never a denial.
+    requireLoopback();
+    sql(`revoke select on graph.node_grants from service_role;`);
+      const outage = await classDb.createAssignment(staff, klass, `ra-shared-${sharedNode}`, { title: "read the shared one" });
+      assert.equal(outage.ok, false, "an outage does not create an assignment");
+      assert.equal(outage.ok === false && outage.error, "write_failed", "and does not read as a missing target");
+
+      assert.equal(
+        sql(`select count(*) from graph.assignments where class_id = '${klass}'`).out,
+        "1",
+        "exactly one assignment was created across all four calls",
+      );
+    } finally {
+      sql(`grant select on graph.node_grants to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';`);
+    }
+  });
+
+  await t.test("a grant past the row cap still admits", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const nodeRoute = require("../src/app/api/research-os/node/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const crowded = randomUUID();
+    const slug = `ra-crowded-${crowded}`;
+    nodeIds.push(crowded);
+    // One real grant buried under a full page of others on the same node.
+    // Its id sorts last, so a read that stops at the first thousand rows
+    // never sees it and the learner is refused a node they hold a live
+    // grant on (Bucket critic C41, C49).
+    const real = "ffffffff-ffff-4fff-bfff-ffffffffffff";
+    const seeded = sql(`
+      insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility, owner_id)
+        values ('${crowded}', '${slug}', '${token} crowded idea', 'concept', 10, '01-mathematics', 'a crowded summary', 'shared', '${owner.id}');
+      insert into graph.node_grants (id, node_id, grantee_group, role)
+        select ('00000000-0000-4000-8000-' || lpad(g::text, 12, '0'))::uuid, '${crowded}', 'class:noise-' || g, 'view'
+        from generate_series(1, 1000) g;
+      insert into graph.node_grants (id, node_id, grantee_id, role)
+        values ('${real}', '${crowded}', '${grantee.id}', 'view');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const rows = sql(`select count(*) from graph.node_grants where node_id = '${crowded}'`);
+      assert.equal(rows.out, "1001", `the fixture holds one more grant than a page: ${rows.out}`);
+      const last = sql(`select id from graph.node_grants where node_id = '${crowded}' order by id desc limit 1`);
+      assert.equal(last.out, real, "and the learner's own grant is the one that sorts last");
+
+      const res = await nodeRoute.GET(new NextRequest(`http://127.0.0.1/api/research-os/node?slug=${slug}`, {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(res.status, 200, `the grant on page two still admits: ${res.status}`);
+      const json = (await res.json()) as { node?: { slug?: string } };
+      assert.equal(json.node?.slug, slug, "and the node comes back");
+
+      // A learner with no grant on it is still refused, so the case is
+      // not passing because the node became readable to everyone.
+      const stranger = await nodeRoute.GET(new NextRequest(`http://127.0.0.1/api/research-os/node?slug=${slug}`, {
+        headers: { authorization: `Bearer ${viewOnly.token}` },
+      }));
+      assert.equal(stranger.status, 404, `a learner with no grant is refused: ${stranger.status}`);
+    } finally {
+      sql(`delete from graph.node_grants where node_id = '${crowded}';`);
+    }
+  });
+
+  await t.test("a failed read on the loop answers 503 rather than zeros", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const loop = require("../src/app/api/research-os/loop/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const healthy = await loop.GET(new NextRequest("http://127.0.0.1/api/research-os/loop", {
+      headers: { authorization: `Bearer ${grantee.token}` },
+    }));
+    assert.equal(healthy.status, 200, `the loop answers when its reads work: ${healthy.status}`);
+
+    try {
+      // The paged reads throw on a failure. Before they paged, the data
+      // came back null and every counter rendered zero, which told the
+      // learner they had opened nothing (Bucket critic C47).
+      requireLoopback();
+      sql(`revoke select on graph.learner_node_state from service_role;`);
+      const res = await loop.GET(new NextRequest("http://127.0.0.1/api/research-os/loop", {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(res.status, 503, `a read it cannot make is an outage: ${res.status}`);
+      const json = (await res.json().catch(() => ({}))) as { error?: string; awareness?: unknown };
+      assert.equal(json.error, "loop_unavailable", "and it says so rather than answering with zeros");
+      assert.equal(json.awareness, undefined, "no counter is served from a read that failed");
+    } finally {
+      sql(`grant select on graph.learner_node_state to service_role;`);
+    }
+  });
+
+  await t.test("a branch read the graph route cannot make is an outage", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const graph = require("../src/app/api/research-os/graph/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const healthy = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
+      headers: { authorization: `Bearer ${grantee.token}` },
+    }));
+    assert.equal(healthy.status, 200, `the map answers when its reads work: ${healthy.status}`);
+
+    try {
+      // The standing map used to come back empty behind a 200, so every
+      // node showed no stage and the heatmap showed nobody at any level
+      // (Bucket critic C53, C61).
+      requireLoopback();
+      sql(`revoke select on graph.learner_node_state from service_role;`);
+      const res = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(res.status, 503, `a read it cannot make is an outage: ${res.status}`);
+      const json = (await res.json().catch(() => ({}))) as { error?: string; standing?: unknown; nodes?: unknown };
+      assert.equal(json.error, "graph_read_failed");
+      assert.equal(json.standing, undefined, "no standing map is served from a read that failed");
+      assert.equal(json.nodes, undefined, "and no partial graph either");
+    } finally {
+      sql(`grant select on graph.learner_node_state to service_role;`);
+    }
+  });
+
+  await t.test("an assignment list is refused whole when any of its reads fails", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const classDb = require("../src/lib/research-os/class-db") as {
+      listAssignmentsForLearner: (id: string) => Promise<{ ok: true; assignments: unknown[] } | { ok: false; reason: string }>;
+    };
+
+    const teacher = await makeLearner("bulk-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const tag = `bulk-${Date.now().toString(36)}`;
+    // More targets than one request line holds, so the read has to chunk.
+    // Unchunked it answers 414, every title comes back blank, and the row
+    // still claims the target is visible (Bucket critic C50, C61).
+    const TARGETS = 220;
+
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Bulk fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility)
+        select gen_random_uuid(), '${tag}-' || g, '${tag} node ' || g, 'concept', 10, '${branch}', 'fixture', 'public'
+        from generate_series(1, ${TARGETS}) g;
+      insert into graph.assignments (class_id, target_node_id, assigned_by, title)
+        select '${klass}', id, '${teacher.id}', 'read ' || slug from graph.nodes where slug like '${tag}-%';
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const listed = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(listed.ok, true, `the list comes back: ${JSON.stringify(listed).slice(0, 120)}`);
+      if (listed.ok) {
+        const mine = (listed.assignments as { title: string; targetTitle: string; targetHidden: boolean }[]).filter((a) => a.title.startsWith(`read ${tag}-`));
+        assert.equal(mine.length, TARGETS, `every assignment is listed: ${mine.length}`);
+        const blank = mine.filter((a) => !a.targetTitle && !a.targetHidden);
+        assert.deepEqual(blank, [], `no row claims a visible target with no title: ${blank.length} of ${mine.length}`);
+      }
+
+      // A read it cannot make refuses the whole list rather than serving
+      // it with every title stripped.
+      requireLoopback();
+      sql(`revoke select on graph.nodes from service_role;`);
+      const outage = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(outage.ok, false, "an outage is not a list of blank rows");
+      assert.equal(outage.ok === false && outage.reason, "unavailable");
+    } finally {
+      sql(`grant select on graph.nodes to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';
+           delete from graph.edges where from_id in (select id from graph.nodes where slug like '${tag}-%')
+              or to_id in (select id from graph.nodes where slug like '${tag}-%');
+           delete from graph.nodes where slug like '${tag}-%';`);
+    }
+  });
+
+  await t.test("every read behind the loop is an outage when it fails", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const loop = require("../src/app/api/research-os/loop/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const call = async () => {
+      const res = await loop.GET(new NextRequest("http://127.0.0.1/api/research-os/loop", {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      return { status: res.status, json: (await res.json().catch(() => ({}))) as Record<string, unknown> };
+    };
+
+    assert.equal((await call()).status, 200, "the loop answers when its reads work");
+
+    // Seven reads feed this response and each one used to fail its own
+    // way. A head count resolves with {count: null, error} and never
+    // threw; the academy read was caught and answered zero, which also
+    // flipped `empty` and showed the first-run screen to a learner who
+    // had started a deck (Bucket critic C58, C70, C74).
+    const tables = ["graph.access_requests", "graph.imports", "bucket.academy_progress", "graph.productions"];
+    for (const table of tables) {
+      try {
+        requireLoopback();
+        const revoked = sql(`revoke select on ${table} from service_role;`);
+        assert.equal(revoked.status, 0, revoked.out);
+        const res = await call();
+        assert.equal(res.status, 503, `a failed read of ${table} is an outage: ${res.status} ${JSON.stringify(res.json).slice(0, 90)}`);
+        assert.equal(res.json.error, "loop_unavailable", `and ${table} says so`);
+        assert.equal(res.json.empty, undefined, `no first-run screen is served from a failed read of ${table}`);
+      } finally {
+        sql(`grant select on ${table} to service_role;`);
+      }
+    }
+    assert.equal((await call()).status, 200, "and the loop answers again once the reads work");
+  });
+
+  await t.test("an assignment list is refused when the assignments themselves cannot be read", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const classDb = require("../src/lib/research-os/class-db") as {
+      listAssignmentsForLearner: (id: string) => Promise<{ ok: true; assignments: unknown[] } | { ok: false; reason: string }>;
+    };
+
+    const teacher = await makeLearner("asgread-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Assignment read fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.assignments (class_id, target_node_id, assigned_by, title)
+        values ('${klass}', '${publicNode}', '${teacher.id}', 'read the public one');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const listed = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(listed.ok, true, "the list comes back when the read works");
+
+      // The read that feeds the whole function sat six lines above reads
+      // that refuse the list, and it answered an empty list on an
+      // outage: a hidden assignment is a missed obligation
+      // (Bucket critic C71).
+      requireLoopback();
+      sql(`revoke select on graph.assignments from service_role;`);
+      const outage = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(outage.ok, false, "an outage is not a learner with no assignments");
+      assert.equal(outage.ok === false && outage.reason, "unavailable");
+    } finally {
+      sql(`grant select on graph.assignments to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';`);
+    }
+  });
+
+  await t.test("a class grid carries every learner in it, past the chunk bound", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const db = require("../src/lib/research-os/db") as {
+      IN_CHUNK: number;
+      loadLearnerStatesForMany: (learnerIds: string[], nodeIds: string[]) => Promise<Map<string, unknown[]>>;
+    };
+
+    const tag = `grid-${Date.now().toString(36)}`;
+    // One more learner than a chunk holds. Slicing to the first chunk
+    // dropped everyone past it out of the teacher grid while the same
+    // response reported the true total (Bucket critic C63, C72).
+    const COUNT = db.IN_CHUNK + 1;
+    const ids: string[] = [];
+    for (let i = 0; i < COUNT; i += 1) ids.push(randomUUID());
+
+    try {
+      const values = ids.map((id) => `('${id}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', '${tag}-${id}@bucket.test')`).join(",");
+      const seeded = sql(`
+        insert into auth.users (id, instance_id, aud, role, email) values ${values};
+        insert into graph.learner_node_state (learner_id, node_id, stage)
+          select id, '${publicNode}', 'understanding' from auth.users where email like '${tag}-%';
+        select 'seeded';
+      `);
+      assert.equal(seeded.status, 0, seeded.out);
+
+      const grid = await db.loadLearnerStatesForMany(ids, [publicNode]);
+      assert.equal(grid.size, COUNT, `every learner is in the grid, not the first ${db.IN_CHUNK}: ${grid.size}`);
+      for (const id of [ids[0], ids[db.IN_CHUNK - 1], ids[COUNT - 1]]) {
+        assert.equal((grid.get(id) || []).length, 1, `the learner at the boundary carries their state: ${id}`);
+      }
+    } finally {
+      const list = ids.map((id) => `'${id}'`).join(",");
+      sql(`delete from graph.learner_node_state where learner_id in (${list});
+           delete from auth.users where id in (${list});`);
+    }
+  });
+
+  await t.test("a production cannot forward a node its owner may no longer read", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const hypothesize = require("../src/app/api/research-os/hypothesize/route") as { POST: (req: NextRequest) => Promise<Response> };
+
+    const prod = randomUUID();
+    // The learner owns the production and the production names a node
+    // they were never granted. Owning the production is not reading the
+    // node it names: without the gate, its slug, title, tier and branch
+    // go to the engine (Bucket critic C14, A4).
+    const seeded = sql(`
+      insert into graph.productions (id, learner_id, target_node_id, kind, claim, status)
+        values ('${prod}', '${grantee.id}', '${privateNode}', 'production', 'a claim about a node they cannot read', 'draft');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const res = await hypothesize.POST(new NextRequest("http://127.0.0.1/api/research-os/hypothesize", {
+        method: "POST",
+        headers: { authorization: `Bearer ${grantee.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ productionId: prod }),
+      }));
+      assert.equal(res.status, 404, `the node is not theirs to forward: ${res.status}`);
+      const json = (await res.json().catch(() => ({}))) as { error?: string; node?: unknown };
+      assert.equal(json.error, "production_not_found", "and the reply says nothing about which it was");
+      assert.equal(json.node, undefined, "no node field reaches the caller");
+    } finally {
+      sql(`delete from graph.productions where id = '${prod}';`);
+    }
   });
 
   await t.test("an unverified token reads as anonymous rather than as its claim", async () => {

@@ -6,7 +6,8 @@
  * component.
  */
 import type { NextRequest } from "next/server";
-import { awardProgress, graphService, verifyLearnerIdentity } from "./db";
+import { awardProgress, graphService, inChunks, verifyLearnerIdentity } from "./db";
+import { authorizeNode, authorizeNodes } from "./read-access";
 import { canAssign, canManageMembers, canOverride, rolesIn, validateOverride, type Membership, type Role } from "./roles";
 import { assignmentStatus, validateAssignment, type Assignment, type AssignmentStatus, type NewAssignment } from "./assignments";
 import type { Stage } from "./types";
@@ -42,15 +43,24 @@ function assignmentFromRow(r: AssignmentRow): Assignment & { assignedBy: string 
   };
 }
 
+/** Raises when the read did not complete. An empty list is a person in no
+ * class, and verifyClassStaff turns that into "you hold no role here",
+ * so the two have to stay apart: repairing the classes read and leaving
+ * this one still answered an outage with a permissions verdict. */
 export async function loadMemberships(userId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("learner_id", userId);
-  if (error || !data) return [];
+  if (error) throw new Error(`loadMemberships: class_members read failed: ${error.message}`);
+  if (!data) return [];
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
+/** Raises when the read did not complete. An empty list is a class with
+ * nobody in it, and the members route served that at 200 underneath a
+ * staff check that answers 503 for the same outage. */
 export async function loadClassMemberships(classId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("class_id", classId);
-  if (error || !data) return [];
+  if (error) throw new Error(`loadClassMemberships: class_members read failed: ${error.message}`);
+  if (!data) return [];
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
@@ -65,72 +75,170 @@ export interface ClassStaff {
  * identity) or a membership with role teacher or librarian. Returns the
  * caller's roles in the class, or null when they hold none.
  */
-export async function verifyClassStaff(req: NextRequest, classId: string): Promise<ClassStaff | null> {
+/** A staff check, or the fact that it could not be made. The class read
+ * used to return null on failure, and every caller reads null as "you
+ * hold no role in this class", so an outage reached a teacher as a
+ * permissions answer about themselves. */
+export type StaffCheck = { ok: true; staff: ClassStaff | null } | { ok: false; reason: "unavailable" };
+
+export async function verifyClassStaff(req: NextRequest, classId: string): Promise<StaffCheck> {
   const identity = await verifyLearnerIdentity(req);
-  if (!identity) return null;
+  if (!identity) return { ok: true, staff: null };
   const svc = graphService();
-  const { data: cls } = await svc.from("classes").select("id,reviewer_email").eq("id", classId).maybeSingle();
-  if (!cls) return null;
+  const { data: cls, error } = await svc.from("classes").select("id,reviewer_email").eq("id", classId).maybeSingle();
+  if (error) {
+    console.error("[research-os/class] classes read failed:", error.message);
+    return { ok: false, reason: "unavailable" };
+  }
+  if (!cls) return { ok: true, staff: null };
   const roles: Role[] = [];
   if (identity.email && (cls as { reviewer_email: string }).reviewer_email?.toLowerCase() === identity.email.toLowerCase()) roles.push("teacher");
-  const memberships = await loadMemberships(identity.id);
+  let memberships: Membership[];
+  try {
+    memberships = await loadMemberships(identity.id);
+  } catch (err) {
+    console.error("[research-os/class] memberships read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
   for (const r of rolesIn(memberships, classId, identity.id)) if (!roles.includes(r)) roles.push(r);
-  if (roles.length === 0) return null;
-  return { id: identity.id, email: identity.email, roles };
+  if (roles.length === 0) return { ok: true, staff: null };
+  return { ok: true, staff: { id: identity.id, email: identity.email, roles } };
 }
 
-export async function listAssignments(classId: string): Promise<(Assignment & { assignedBy: string | null; createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("assignments")
-    .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
-    .eq("class_id", classId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as AssignmentRow[]).map(assignmentFromRow);
+export type StaffAssignments =
+  | { ok: true; assignments: (Assignment & { assignedBy: string | null; createdAt: string })[] }
+  | { ok: false; reason: "unavailable" };
+
+/**
+ * Every assignment in a class, for the staff who run it.
+ *
+ * The learner-facing sibling of this function was fixed to refuse the
+ * whole list on a failed read; this one, thirty lines above it in the
+ * same file, kept answering an empty list. A teacher then read "no
+ * assignments" during an outage, and lost everything past a thousand in
+ * a class that has them.
+ */
+export async function listAssignments(classId: string): Promise<StaffAssignments> {
+  try {
+    const rows = await inChunks<AssignmentRow>([classId], (chunk, page) =>
+      graphService()
+        .from("assignments")
+        .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
+        .in("class_id", chunk)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: AssignmentRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, assignments: rows.map(assignmentFromRow) };
+  } catch (err) {
+    console.error("[research-os] staff assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
 }
 
 export interface LearnerAssignment extends Assignment {
   className: string;
+  /** Empty when `targetHidden` is true: the learner may not read the node. */
   targetSlug: string;
   targetTitle: string;
+  /** The assignment is theirs, and the node it points at is not readable. */
+  targetHidden: boolean;
   status: AssignmentStatus;
 }
 
-/** Open assignments across every class the learner belongs to, with status. */
-export async function listAssignmentsForLearner(learnerId: string): Promise<LearnerAssignment[]> {
+export type LearnerAssignments = { ok: true; assignments: LearnerAssignment[] } | { ok: false; reason: "unavailable" };
+
+/**
+ * Open assignments across every class the learner belongs to, with status.
+ *
+ * An access-store failure refuses the whole list. Collapsing it to "nothing
+ * is visible" stripped the title and slug off every assignment for every
+ * learner and reported it as a normal answer, which is the failure
+ * read-access.ts exists to stop (Bucket critic C33).
+ */
+export async function listAssignmentsForLearner(learnerId: string): Promise<LearnerAssignments> {
   const svc = graphService();
   const memberships = await loadMemberships(learnerId);
   const classIds = Array.from(new Set(memberships.map((m) => m.classId)));
-  if (classIds.length === 0) return [];
-  const { data: rows } = await svc
-    .from("assignments")
-    .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
-    .in("class_id", classIds)
-    .is("closed_at", null)
-    .order("created_at", { ascending: false });
-  const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
-  if (assignments.length === 0) return [];
+  if (classIds.length === 0) return { ok: true, assignments: [] };
+  // This read feeds the whole function, and it discarded its error and
+  // never paged: an outage rendered "No assignments yet" and a class
+  // past a thousand open assignments lost the remainder, both with no
+  // sign (Bucket critic C71, C77).
+  let rows: AssignmentRow[];
+  try {
+    rows = await inChunks<AssignmentRow>(classIds, (chunk, page) =>
+      svc
+        .from("assignments")
+        .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
+        .in("class_id", chunk)
+        .is("closed_at", null)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: AssignmentRow[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    console.error("[research-os] assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
+  const assignments = rows.map(assignmentFromRow);
+  if (assignments.length === 0) return { ok: true, assignments: [] };
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
-  const [{ data: nodes }, { data: classes }, { data: states }, { data: productions }] = await Promise.all([
-    svc.from("nodes").select("id,slug,title").in("id", nodeIds),
-    svc.from("classes").select("id,name").in("id", classIds),
-    svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", nodeIds),
-    svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", nodeIds),
-  ]);
-  const nodeById = new Map(((nodes as { id: string; slug: string; title: string }[]) || []).map((n) => [n.id, n]));
-  const classById = new Map(((classes as { id: string; name: string }[]) || []).map((c) => [c.id, c.name]));
-  const stageByNode = new Map(((states as { node_id: string; stage: Stage }[]) || []).map((s) => [s.node_id, s.stage]));
+  // Every one of these reads used to discard its error and go unchunked.
+  // Above roughly 200 ids the nodes read answers 414, `nodes` came back
+  // null, and every row was served with a blank title and a blank slug
+  // while targetHidden stayed false, which is the invariant this file
+  // declares on LearnerAssignment and the failure its own header forbids
+  // (Bucket critic C50). inChunks throws on an error, so a failed read
+  // reaches the caller as unavailable.
+  let nodes: { id: string; slug: string; title: string }[];
+  let classes: { id: string; name: string }[];
+  let states: { node_id: string; stage: Stage }[];
+  let productions: { target_node_id: string; status: string }[];
+  try {
+    [nodes, classes, states, productions] = await Promise.all([
+      inChunks<{ id: string; slug: string; title: string }>(nodeIds, (chunk, page) =>
+        svc.from("nodes").select("id,slug,title").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; slug: string; title: string }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ id: string; name: string }>(classIds, (chunk, page) =>
+        svc.from("classes").select("id,name").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; name: string }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ node_id: string; stage: Stage }>(nodeIds, (chunk, page) =>
+        svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: Stage }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ target_node_id: string; status: string }>(nodeIds, (chunk, page) =>
+        svc.from("productions").select("id,target_node_id,status").eq("learner_id", learnerId).in("target_node_id", chunk).order("target_node_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; status: string }[] | null; error: { message: string } | null }>,
+      ),
+    ]);
+  } catch (err) {
+    console.error("[research-os] assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
+  // An assignment names a node, and its title reaches the learner, so a
+  // node they may not read carries no title or slug here (Bucket critic
+  // C27). The assignment itself stays in the list: it is theirs, and the
+  // class staff who set it can see what it points at.
+  const readableTargets = await authorizeNodes(nodeIds, { id: learnerId }, "view");
+  if (!readableTargets.ok) return { ok: false, reason: "unavailable" };
+  const visibleTargets = new Set(readableTargets.allowed);
+  const nodeById = new Map(nodes.filter((n) => visibleTargets.has(n.id)).map((n) => [n.id, n]));
+  const classById = new Map(classes.map((c) => [c.id, c.name]));
+  const stageByNode = new Map(states.map((s) => [s.node_id, s.stage]));
   const prodsByNode = new Map<string, { status: string }[]>();
-  for (const p of (productions as { target_node_id: string; status: string }[]) || []) {
+  for (const p of productions) {
     prodsByNode.set(p.target_node_id, [...(prodsByNode.get(p.target_node_id) ?? []), { status: p.status }]);
   }
-  return assignments.map((a) => ({
-    ...a,
-    className: classById.get(a.classId) ?? "class",
-    targetSlug: nodeById.get(a.targetNodeId)?.slug ?? "",
-    targetTitle: nodeById.get(a.targetNodeId)?.title ?? "",
-    status: assignmentStatus(a, { stage: stageByNode.get(a.targetNodeId) ?? null, productions: prodsByNode.get(a.targetNodeId) ?? [] }),
-  }));
+  return {
+    ok: true,
+    assignments: assignments.map((a) => ({
+      ...a,
+      className: classById.get(a.classId) ?? "class",
+      targetSlug: nodeById.get(a.targetNodeId)?.slug ?? "",
+      targetTitle: nodeById.get(a.targetNodeId)?.title ?? "",
+      targetHidden: !visibleTargets.has(a.targetNodeId),
+      status: assignmentStatus(a, { stage: stageByNode.get(a.targetNodeId) ?? null, productions: prodsByNode.get(a.targetNodeId) ?? [] }),
+    })),
+  };
 }
 
 export type ClassResult<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -140,8 +248,16 @@ export async function createAssignment(staff: ClassStaff, classId: string, targe
   const v = validateAssignment(input);
   if (!v.ok) return { ok: false, error: v.error };
   const svc = graphService();
-  const { data: node } = await svc.from("nodes").select("id").eq("slug", targetSlug).maybeSingle();
+  const { data: node, error: nodeErr } = await svc.from("nodes").select("id").eq("slug", targetSlug).maybeSingle();
+  if (nodeErr) {
+    console.error("[research-os/class] target node read failed:", nodeErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   if (!node) return { ok: false, error: "target_not_found" };
+  // Staff assign what they may read: resolving a slug is a read, and a
+  // node hidden from them cannot become an assignment.
+  const staffMayRead = await authorizeNode((node as { id: string }).id, { id: staff.id }, "view");
+  if (!staffMayRead.ok) return { ok: false, error: staffMayRead.reason === "unavailable" ? "write_failed" : "target_not_found" };
   const { data, error } = await svc
     .from("assignments")
     .insert({
@@ -177,9 +293,23 @@ export async function overrideLevel(
 ): Promise<ClassResult<{ fromStage: Stage | null; toStage: Stage }>> {
   if (!canOverride(staff.roles)) return { ok: false, error: "forbidden" };
   const svc = graphService();
-  const { data: member } = await svc.from("class_members").select("learner_id").eq("class_id", classId).eq("learner_id", learnerId).maybeSingle();
+  // Both reads answer before a durable write. A failed membership read
+  // used to reach the teacher as "not a member", a claim about the
+  // learner, and a failed state read used to become fromStage null,
+  // which validateOverride then judged and graph.override_level then
+  // recorded in its audit row. An audit trail must never hold a stage
+  // the code did not read.
+  const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", classId).eq("learner_id", learnerId).maybeSingle();
+  if (memberErr) {
+    console.error("[research-os/class] class_members read failed:", memberErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   if (!member) return { ok: false, error: "not_a_member" };
-  const { data: state } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  const { data: state, error: stateErr } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  if (stateErr) {
+    console.error("[research-os/class] learner_node_state read failed:", stateErr.message);
+    return { ok: false, error: "unavailable" };
+  }
   const fromStage = ((state as { stage: Stage } | null)?.stage ?? null) as Stage | null;
   const v = validateOverride({ fromStage, toStage, reason });
   if (!v.ok) return { ok: false, error: v.error };

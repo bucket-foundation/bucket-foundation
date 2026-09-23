@@ -128,6 +128,7 @@
  * learning/research-os/LATERAL-READING.md.
  */
 import { NextRequest, NextResponse } from "next/server";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
 import { deterministicCheck, deterministicOrganize, llmEnabled } from "@/lib/research-os/deterministic";
@@ -135,7 +136,7 @@ import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/r
 import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
 import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
@@ -302,7 +303,10 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "workspace_tool");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 
@@ -404,14 +408,6 @@ export async function POST(req: NextRequest) {
       // quotation.
       const passage = getPassage(node.slug);
 
-      // A curated quotation is durable or it is an error. The receipt and
-      // the evidence event that names it are written in one transaction
-      // (graph.record_quote_receipt), so a production's cited source
-      // resolves to a server record rather than to a locator string that
-      // may have no write behind it (ros-ai-access, "Quote contract").
-      //
-      // A summary fallback carries no locator and no receipt: the client
-      // labels it a summary, and production-guard has nothing to match.
       let receipt: { id: string; sourceId: string; sourceRevision: string; createdAt: string; replayed: boolean } | null = null;
       if (passage) {
         const citation = citationLabel({ title: node.title, provenance: p });
@@ -427,6 +423,9 @@ export async function POST(req: NextRequest) {
           sessionId || null,
         );
         const currentStage = await loadCurrentStage(learnerId, nodeId);
+        if (currentStage === null) {
+          return NextResponse.json({ error: "busy" }, { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } });
+        }
         const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
         const { data: written, error: receiptErr } = await svc.rpc("record_quote_receipt", {
           p_learner: learnerId,
@@ -483,8 +482,6 @@ export async function POST(req: NextRequest) {
           locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
           source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
-          // `durable` is the client's signal that this quotation is on
-          // the record and can be cited in a production.
           ...(receipt
             ? {
                 receipt: {
@@ -620,7 +617,17 @@ export async function POST(req: NextRequest) {
             guidanceLevel: revealGuidance,
           },
         );
-        await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        // A retryable lock wait used to leave this handler as an
+        // unhandled throw, so Next answered 500 on the most-used learner
+        // write in the app. evidenceErrorResponse maps it to the 503 with
+        // retry-after that every other write already sends.
+        try {
+          await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
 
         // Corroboration record (task item 3): only when a second source
         // was required AND attached to this attempt, never for an
@@ -636,7 +643,17 @@ export async function POST(req: NextRequest) {
             independenceReason,
             passagesAgree: Boolean(body.passagesAgree),
           });
-          await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          // A retryable lock wait used to leave this handler as an
+          // unhandled throw, so Next answered 500 on the most-used learner
+          // write in the app. evidenceErrorResponse maps it to the 503 with
+          // retry-after that every other write already sends.
+          try {
+            await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          } catch (err) {
+            const mapped = evidenceErrorResponse(err);
+            if (mapped) return mapped;
+            throw err;
+          }
         }
 
         logToolCall("check", learnerId, pending.sessionId, {
@@ -771,7 +788,17 @@ export async function POST(req: NextRequest) {
           { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
           { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false, guidanceLevel: guidance },
         );
-        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        // A retryable lock wait used to leave this handler as an
+        // unhandled throw, so Next answered 500 on the most-used learner
+        // write in the app. evidenceErrorResponse maps it to the 503 with
+        // retry-after that every other write already sends.
+        try {
+          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
         logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false, guidance });
 
         return NextResponse.json(

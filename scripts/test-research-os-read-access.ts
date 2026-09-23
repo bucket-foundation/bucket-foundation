@@ -249,3 +249,91 @@ test("a store that fails is an outage wherever it is read from", async () => {
   assert.equal(pub.ok, true, "a public view survives a grants outage");
   assert.deepEqual(pub.ok ? pub.allowed : [], ["pub"]);
 });
+
+test("an expiry that cannot be parsed is expired, in one place", () => {
+  // The rule lived in access.ts and read-access.ts and they disagreed:
+  // one treated an unparseable expiry as live, so a grant whose expiry
+  // read "next tuesday" never ended. The first repair wrote
+  // the same fix into both files. `live` is now exported and this
+  // asserts both entry points answer through it.
+  const badExpiry: NodeGrant[] = [{ id: "g", nodeId: "shared", granteeId: LEARNER, role: "view", expiresAt: "next tuesday" }];
+  const store: AccessStore = {
+    async nodes(ids) {
+      return { ok: true, value: nodes.filter((n) => ids.includes(n.id)) };
+    },
+    async grants() {
+      return { ok: true, value: badExpiry };
+    },
+    async groups() {
+      return { ok: true, value: [] };
+    },
+  };
+  return authorizeNodes(["shared"], { id: LEARNER }, "view", store, NOW).then((r) => {
+    assert.equal(r.ok, true);
+    assert.deepEqual(r.ok ? r.allowed : ["?"], [], "an unparseable expiry does not admit");
+  });
+});
+
+test("an expiry in the past is expired and one in the future admits", async () => {
+  const withExpiry = (expiresAt: string): AccessStore => ({
+    async nodes(ids) {
+      return { ok: true, value: nodes.filter((n) => ids.includes(n.id)) };
+    },
+    async grants() {
+      return { ok: true, value: [{ id: "g", nodeId: "shared", granteeId: LEARNER, role: "view", expiresAt }] };
+    },
+    async groups() {
+      return { ok: true, value: [] };
+    },
+  });
+  const past = await authorizeNodes(["shared"], { id: LEARNER }, "view", withExpiry("2020-01-01T00:00:00.000Z"), NOW);
+  const future = await authorizeNodes(["shared"], { id: LEARNER }, "view", withExpiry("2099-01-01T00:00:00.000Z"), NOW);
+  assert.deepEqual(past.ok ? past.allowed : ["?"], []);
+  assert.deepEqual(future.ok ? future.allowed : [], ["shared"]);
+});
+
+// filterSubgraphForViewer decides on the nodes its caller hands it, so
+// it belongs to this rule rather than to the database module it lives in.
+import { filterSubgraphForViewer } from "../src/lib/research-os/access-db";
+
+test("a node whose visibility cannot be read is withheld, not published", async () => {
+  // `(n.visibility ?? "public") !== "public"` selected the nodes worth
+  // deciding on. A node carrying no visibility failed that test, so it
+  // was counted public, and where no node carried one the function
+  // returned every node to every viewer without authorizing once. The
+  // type allows it: GraphNode.visibility is optional.
+  const unreadable = [{ id: "priv", ownerId: OWNER }, { id: "own", ownerId: LEARNER }];
+
+  const stranger = await filterSubgraphForViewer(unreadable, [], STRANGER, store());
+  assert.ok(stranger.ok);
+  assert.deepEqual(
+    stranger.nodes.map((n) => n.id),
+    [],
+    "a stranger sees neither, because an unreadable visibility is private",
+  );
+
+  const learner = await filterSubgraphForViewer(unreadable, [], LEARNER, store());
+  assert.ok(learner.ok);
+  assert.deepEqual(learner.nodes.map((n) => n.id), ["own"], "the owner still reads their own node");
+});
+
+test("an edge is dropped with either endpoint the viewer cannot see", async () => {
+  const mixed = [
+    { id: "pub", visibility: "public" as const, ownerId: OWNER },
+    { id: "priv", ownerId: OWNER },
+  ];
+  const edges = [
+    { fromId: "pub", toId: "priv" },
+    { fromId: "pub", toId: "pub" },
+  ];
+  const r = await filterSubgraphForViewer(mixed, edges, STRANGER, store());
+  assert.ok(r.ok);
+  assert.deepEqual(r.nodes.map((n) => n.id), ["pub"]);
+  assert.deepEqual(r.edges, [{ fromId: "pub", toId: "pub" }], "the edge into the hidden node goes with it");
+});
+
+test("an access-store failure is an outage rather than an empty graph", async () => {
+  const r = await filterSubgraphForViewer([{ id: "priv", ownerId: OWNER }], [], LEARNER, store({ failOn: "grants" }));
+  assert.equal(r.ok, false);
+  if (!r.ok) assert.equal(r.reason, "unavailable");
+});

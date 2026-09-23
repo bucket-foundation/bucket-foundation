@@ -37,9 +37,10 @@
  * the same gate /api/research-os/review uses.
  * 403 not a reviewer · 404 target not found · 503 not configured.
  */
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { NextRequest, NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
-import { configured, graphService, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
+import { configured, graphService, inChunks, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "@/lib/research-os/calibration";
 
@@ -91,6 +92,13 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
+  // This route emits node titles in `blocked`, `readyForHarderTarget`,
+  // `transferHolds` and each production's `targetTitle`, and it was the
+  // one reading route that took the branch unfiltered. Being staff in a
+  // class is not a grant on every node in it.
+  const visible = await filterSubgraphForViewer(nodes, edges, reviewer.id);
+  if (!visible.ok) return bad(503, "access_unavailable");
+  ({ nodes, edges } = visible);
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 
@@ -113,16 +121,32 @@ export async function GET(req: NextRequest) {
   // regression than a broken class view).
   let calibrationRows: ReturnType<typeof computeCalibrationSummary> = [];
   if (allLearnerIds.length > 0) {
-    const { data: evidenceRows } = await svc
-      .from("learner_node_state")
-      .select("learner_id,evidence")
-      .in("learner_id", allLearnerIds);
+    // One try over the three roster reads. Each carried its own .catch
+    // returning an empty list, so a failed read showed a teacher a class
+    // where nobody had opened anything, at 200.
+    try {
+    // One row per node each learner has opened, so a class of two
+    // hundred at twenty nodes each is four thousand rows. The id list is
+    // bounded by the roster and the row count is not.
+    const evidenceRows = await inChunks<{ learner_id: string; evidence: CalibrationEvidenceEntry[] | null }>(allLearnerIds, (chunk, page) =>
+      svc
+        .from("learner_node_state")
+        .select("learner_id,evidence")
+        .in("learner_id", chunk)
+        .order("learner_id")
+        .order("node_id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string; evidence: CalibrationEvidenceEntry[] | null }[] | null; error: { message: string } | null }>,
+    );
     const evidenceByLearner = new Map<string, CalibrationEvidenceEntry[]>();
-    for (const r of (evidenceRows as { learner_id: string; evidence: CalibrationEvidenceEntry[] | null }[]) || []) {
+    for (const r of evidenceRows) {
       const existing = evidenceByLearner.get(r.learner_id) ?? [];
       evidenceByLearner.set(r.learner_id, existing.concat(r.evidence || []));
     }
     calibrationRows = computeCalibrationSummary(evidenceByLearner);
+    } catch (err) {
+      console.error("[research-os/class] calibration read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "class_read_failed");
+    }
   }
 
   // ros-33: XP per learner for the class leaderboard (class only, never global).
@@ -147,26 +171,40 @@ export async function GET(req: NextRequest) {
   let transferHolds: ReturnType<typeof buildTransferHolds> = [];
   let productions: Array<Record<string, unknown>> = [];
   if (allLearnerIds.length > 0) {
-    const { data: stateRows } = await svc
-      .from("learner_node_state")
-      .select("learner_id,node_id,stage,evidence,updated_at")
-      .eq("stage", "understanding")
-      .in("learner_id", allLearnerIds);
-    const held = ((stateRows as StateRow[]) || []).filter((r) => {
+    // Same reason as the calibration read above: each of these carried a
+    // .catch returning an empty list.
+    try {
+    const stateRows = await inChunks<StateRow>(allLearnerIds, (chunk, page) =>
+      svc
+        .from("learner_node_state")
+        .select("learner_id,node_id,stage,evidence,updated_at")
+        .eq("stage", "understanding")
+        .in("learner_id", chunk)
+        .order("learner_id")
+        .order("node_id")
+        .range(page.from, page.to) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>,
+    );
+    const held = stateRows.filter((r) => {
       const ev = r.evidence || [];
       const last = ev[ev.length - 1];
       return last && last.kind === "transfer_item" && last.held === true;
     });
     transferHolds = buildTransferHolds(held, nodes);
 
-    const { data: productionRows } = await svc
-      .from("productions")
-      .select("id,learner_id,target_node_id,claim,created_at")
-      .eq("status", "submitted")
-      .in("learner_id", allLearnerIds)
-      .order("created_at", { ascending: true });
+    // The learner is the list here, so nothing pins the row count: a
+    // class can hold many submitted productions per learner.
+    const productionRows = await inChunks<ProductionRow>(allLearnerIds, (chunk, page) =>
+      svc
+        .from("productions")
+        .select("id,learner_id,target_node_id,claim,created_at")
+        .eq("status", "submitted")
+        .in("learner_id", chunk)
+        .order("created_at", { ascending: true })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: ProductionRow[] | null; error: { message: string } | null }>,
+    );
     const titleById = new Map(nodes.map((n) => [n.id, n.title]));
-    productions = ((productionRows as ProductionRow[]) || []).map((p) => ({
+    productions = productionRows.map((p) => ({
       id: p.id,
       learnerId: p.learner_id,
       targetNodeId: p.target_node_id,
@@ -174,6 +212,10 @@ export async function GET(req: NextRequest) {
       claim: p.claim,
       createdAt: p.created_at,
     }));
+    } catch (err) {
+      console.error("[research-os/class] roster read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "class_read_failed");
+    }
   }
 
   return NextResponse.json(

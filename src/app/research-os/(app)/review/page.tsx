@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 /**
  * /research-os/review, the teacher review queue (bkt-ros, Phase 1 item 4).
  * Lists every held transfer-item answer and every submitted Production
@@ -114,9 +115,23 @@ export default function ResearchOsReviewPage() {
     setQueueError(null);
     try {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
-      const data = await res.json();
+      // A gateway 503 carries HTML, so parsing before the ok check threw,
+      // the outer catch set "network_error", and the reviewer read
+      // "Could not load the queue (network_error)." with no retry. The
+      // rule was never consulted. The line forty-six below this one was
+      // repaired and this one was left, which is the thing this PR
+      // charged its predecessor with.
+      // The guard is for the failure path: a gateway 503 carries HTML.
+      // A 200 whose body is not JSON is a different failure, and letting
+      // it throw keeps the outer catch reporting it rather than handing
+      // the success branch an empty object to read fields off.
+      const data = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
-        setQueueError(res.status === 403 ? "forbidden" : data.error || "load_failed");
+        // A lock wait printed as "Could not load the queue (busy)."
+        // "transient" is rendered as the shared retryable copy below.
+        setQueueError(
+          res.status === 403 ? "forbidden" : isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed",
+        );
         setQueue(null);
         return;
       }
@@ -156,8 +171,14 @@ export default function ResearchOsReviewPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
-      const data = await res.json();
-      setNotice(res.ok ? `${decision === "approved" ? "Approved" : "Returned"}.` : data.message || data.error || "decision_failed");
+      const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
+      setNotice(
+        res.ok
+          ? `${decision === "approved" ? "Approved" : "Returned"}.`
+          : isTransientOutage(res.status, data.error ?? null)
+            ? OUTAGE_COPY.body
+            : data.message || data.error || "decision_failed",
+      );
       if (res.ok) loadQueue();
     } finally {
       setBusyKey(null);
@@ -194,7 +215,10 @@ export default function ResearchOsReviewPage() {
             RESEARCH_OS_REVIEWER_EMAILS (see src/lib/research-os/reviewer.ts).
           </p>
         )}
-        {queueError && queueError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>}
+        {queueError === "transient" && <p className="mt-6 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {queueError && queueError !== "forbidden" && queueError !== "transient" && (
+          <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>
+        )}
 
         {queue && (
           <div className="mt-8 flex flex-col gap-10">

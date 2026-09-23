@@ -8,7 +8,7 @@
  * class holders by level. Signed out: public nodes, no standing.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
+import { configured, graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
 import { authorizeVerbs } from "@/lib/research-os/read-access";
 import { filterSubgraphForViewer, loadNodeAccess } from "@/lib/research-os/access-db";
 import type { GrantRole } from "@/lib/research-os/access";
@@ -54,7 +54,11 @@ export async function GET(req: NextRequest) {
   }
   const access = readable.node;
 
-  const [graph, standingRes, myClasses] = await Promise.all([
+  let graph: Awaited<ReturnType<typeof loadSubgraph>> | { nodes: never[]; edges: never[]; failed: true };
+  let standingRes: { data: unknown; error?: { message: string } | null };
+  let myClasses: Awaited<ReturnType<typeof listMyClasses>>;
+  try {
+    [graph, standingRes, myClasses] = await Promise.all([
     // A failed graph read still serves the node itself, and the reply marks
     // the neighbourhood as unavailable so the page says so.
     loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
@@ -62,8 +66,14 @@ export async function GET(req: NextRequest) {
       return { nodes: [], edges: [], failed: true as const };
     }),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
+    // listMyClasses raises on a failed read now. The whole Promise.all
+    // sits outside a try here, so the raise is caught beside it.
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
-  ]);
+    ]);
+  } catch (err) {
+    console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "node_read_failed");
+  }
   const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
   // An access-store failure would otherwise serve this node with an empty
   // neighbourhood and a 200, which tells the reader the node rests on
@@ -86,6 +96,13 @@ export async function GET(req: NextRequest) {
   const d = inBranch ? directionsFrom(node.id, visible.nodes, visible.edges) : { dependents: [], frontier: [], openQuestions: [], reach: [] };
   const dlite = (n: { id: string; slug: string; title: string; kind: string; frontierFlag?: string | null }) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, frontierFlag: n.frontierFlag ?? null });
 
+  // The read answers before its data is used. A dropped error here made
+  // a learner who holds the node read as a learner who has never opened
+  // it, which is the standing the whole page is built from.
+  if (standingRes.error) {
+    console.error("[research-os/node] standing read failed:", standingRes.error.message);
+    return bad(503, "node_read_failed");
+  }
   const standingRow = (standingRes as { data: { stage: Stage; evidence: unknown[]; updated_at: string } | null }).data;
   const evidence = Array.isArray(standingRow?.evidence) ? (standingRow!.evidence as Record<string, unknown>[]).slice(-12) : [];
 
@@ -104,20 +121,47 @@ export async function GET(req: NextRequest) {
   let assignments: unknown[] = [];
   let holders: { stage: string; count: number }[] | null = null;
   if (classIds.length) {
-    const { data: asg } = await svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", classIds).is("closed_at", null);
+    // One try over the class reads. Each carried its own .catch
+    // returning an empty list, so a failed read showed a learner a node
+    // with no assignment on it, at 200.
+    try {
+    const asg = await inChunks<{ id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }>(classIds, (chunk, page) =>
+      svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", chunk).is("closed_at", null).order("class_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[] | null; error: { message: string } | null }>,
+    );
     const nameOf = new Map(myClasses.map((c) => [c.id, c.name]));
     assignments = ((asg as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]) || []).map((a) => ({ id: a.id, classId: a.class_id, className: nameOf.get(a.class_id) ?? "", title: a.title, dueAt: a.due_at, requiresProduction: a.requires_production }));
     const staffClasses = myClasses.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
     if (staffClasses.length) {
-      const { data: members } = await svc.from("class_members").select("learner_id").in("class_id", staffClasses);
-      const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
+      // Many members per class, so this overflows the row cap on an
+      // ordinary staff class list.
+      const members = await inChunks<{ learner_id: string }>(staffClasses, (chunk, page) =>
+        svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+      );
+      const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
       if (learnerIds.length) {
-        const { data: st } = await svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", learnerIds);
+        // Paging the member read above removed the bound this one used
+        // to inherit: PostgREST capped that list at a thousand, so this
+        // `in()` was short by construction. It is not any more, so it
+        // chunks for the request line and pages for the row cap, and a
+        // failure says so rather than counting nobody as opened.
+        let st: { learner_id: string; stage: string }[];
+        try {
+          st = await inChunks<{ learner_id: string; stage: string }>(learnerIds, (chunk, page) =>
+            svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string; stage: string }[] | null; error: { message: string } | null }>,
+          );
+        } catch (err) {
+          console.error("[research-os/node] holder read failed:", err instanceof Error ? err.message : err);
+          return bad(503, "node_read_failed");
+        }
         const counts = new Map<string, number>();
-        ((st as { stage: string }[]) || []).forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
-        const opened = ((st as unknown[]) || []).length;
+        st.forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
+        const opened = st.length;
         holders = [...["access", "awareness", "understanding", "internalization", "production"].map((s) => ({ stage: s, count: counts.get(s) ?? 0 })), { stage: "unopened", count: Math.max(0, learnerIds.length - opened) }];
       }
+    }
+    } catch (err) {
+      console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "node_read_failed");
     }
   }
 

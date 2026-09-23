@@ -17,6 +17,9 @@ import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductio
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 import { applyTransition, type Badge, type GameState } from "./game";
+// A visibility this code cannot read is private. `?? "public"` said the
+// opposite, in the one function whose result the access filter reads.
+import { readVisibility } from "./access";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -130,16 +133,80 @@ interface StateRow {
 
 /** Every node + prerequisite/derivation/citation/canon edge in one branch (Phase 0: '02-physics'). */
 /**
- * PostgREST filters travel in the URL, and a long `in (...)` list of ids
- * fails with "URI too long". Run a query per chunk of ids and merge.
+ * Two different limits bite on a read filtered by a list of ids.
+ *
+ * PostgREST filters travel in the URL, and a long `in (...)` list fails
+ * with "URI too long", so the ids are chunked at IN_CHUNK. PostgREST also
+ * stops at PAGE rows per request, which the chunking says nothing about:
+ * 60 node ids on a dense branch overflow a thousand edges without an
+ * error, and the caller reads the truncation as the whole answer. The
+ * page loop closes that (Bucket critic C42).
+ *
+ * The callback takes the page and must apply both `.range(page.from,
+ * page.to)` and an `.order()`. Postgres gives no stable row order across
+ * LIMIT/OFFSET without one, so an unordered page can repeat a row and
+ * skip another.
  */
 export const IN_CHUNK = 60;
-export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promise<{ data: T[] | null; error: { message: string } | null }>): Promise<T[]> {
+export const PAGE = 1000;
+/**
+ * A callback that forgets `.range()` answers the same full page forever,
+ * so the loop would spin rather than truncate. This turns that mistake
+ * into a loud failure at 200,000 rows.
+ */
+export const MAX_PAGES = 200;
+
+export class PagingError extends Error {
+  constructor(what: string) {
+    super(`${what}: a paged read did not terminate after ${MAX_PAGES} pages. The callback must apply .range(page.from, page.to).`);
+    this.name = "PagingError";
+    // Downlevelled `extends Error` loses the prototype chain, so
+    // `instanceof PagingError` answers false without this.
+    Object.setPrototypeOf(this, PagingError.prototype);
+  }
+}
+
+export interface ChunkPage {
+  from: number;
+  to: number;
+}
+
+/**
+ * One read, paged. For a query with no id list to chunk: the row cap
+ * still applies, so a learner past a thousand rows loses the remainder
+ * with no error (Bucket critic C45). The callback applies
+ * `.range(page.from, page.to)` and an `.order()`.
+ */
+export async function pagedRead<T>(
+  run: (page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+): Promise<T[]> {
+  const out: T[] = [];
+  for (let p = 0; ; p += 1) {
+    if (p >= MAX_PAGES) throw new PagingError("pagedRead");
+    const { data, error } = await run({ from: p * PAGE, to: p * PAGE + PAGE - 1 });
+    if (error) throw new Error(error.message);
+    const page = data || [];
+    out.push(...page);
+    if (page.length < PAGE) break;
+  }
+  return out;
+}
+
+export async function inChunks<T>(
+  ids: string[],
+  run: (chunk: string[], page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+): Promise<T[]> {
   const out: T[] = [];
   for (let i = 0; i < ids.length; i += IN_CHUNK) {
-    const { data, error } = await run(ids.slice(i, i + IN_CHUNK));
-    if (error) throw new Error(error.message);
-    if (data) out.push(...data);
+    const chunk = ids.slice(i, i + IN_CHUNK);
+    for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) throw new PagingError("inChunks");
+      const { data, error } = await run(chunk, { from: p * PAGE, to: p * PAGE + PAGE - 1 });
+      if (error) throw new Error(error.message);
+      const page = data || [];
+      out.push(...page);
+      if (page.length < PAGE) break;
+    }
   }
   return out;
 }
@@ -179,7 +246,7 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
     workedExample: toWorkedExample(r.worked_example),
-    visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+    visibility: readVisibility(r.visibility),
     ownerId: r.owner_id ?? null,
     frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
   }));
@@ -189,7 +256,7 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
 
   let edgeRows: EdgeRow[];
   try {
-    edgeRows = await inChunks<EdgeRow>(ids, (chunk) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
+    edgeRows = await inChunks<EdgeRow>(ids, (chunk, page) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
   } catch (err) {
     throw new Error(`loadSubgraph: edge query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
@@ -220,19 +287,19 @@ const EDGE_COLUMNS = "id,from_id,to_id,kind,weight,confidence,confidence_source"
 export async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
   const inBranch = new Set(branchIds);
   const external = new Set<string>();
-  const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk) =>
-    svc.from("prereq_ancestor").select("ancestor_id").in("node_id", chunk) as unknown as Promise<{ data: { ancestor_id: string }[] | null; error: { message: string } | null }>,
+  const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk, page) =>
+    svc.from("prereq_ancestor").select("ancestor_id").in("node_id", chunk).order("node_id").order("ancestor_id").range(page.from, page.to) as unknown as Promise<{ data: { ancestor_id: string }[] | null; error: { message: string } | null }>,
   );
   for (const a of ancestors) if (!inBranch.has(a.ancestor_id)) external.add(a.ancestor_id);
-  const incoming = await inChunks<EdgeRow>(branchIds, (chunk) =>
-    svc.from("edges").select(EDGE_COLUMNS).in("to_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+  const incoming = await inChunks<EdgeRow>(branchIds, (chunk, page) =>
+    svc.from("edges").select(EDGE_COLUMNS).in("to_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
   );
   for (const e of incoming) if (!inBranch.has(e.from_id) && e.kind === "prerequisite") external.add(e.from_id);
   for (const e of edgeRows) if (e.kind === "derives_from" && !inBranch.has(e.to_id)) external.add(e.to_id);
   if (!external.size) return;
   const ext = Array.from(external);
-  const extRows = await inChunks<NodeRow>(ext, (chunk) =>
-    svc.from("nodes").select(NODE_COLUMNS).in("id", chunk) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
+  const extRows = await inChunks<NodeRow>(ext, (chunk, page) =>
+    svc.from("nodes").select(NODE_COLUMNS).in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
   );
   for (const r of extRows)
     nodes.push({
@@ -246,14 +313,14 @@ export async function addExternalFactors(svc: SupabaseClient, branchIds: string[
       labels: r.labels ?? undefined,
       provenance: r.provenance ?? undefined,
       workedExample: toWorkedExample(r.worked_example),
-      visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+      visibility: readVisibility(r.visibility),
       ownerId: r.owner_id ?? null,
       frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
     });
   const all = new Set(branchIds.concat(extRows.map((r) => r.id)));
   const fromExternal = await inChunks<EdgeRow>(
     extRows.map((r) => r.id),
-    (chunk) => svc.from("edges").select(EDGE_COLUMNS).in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+    (chunk, page) => svc.from("edges").select(EDGE_COLUMNS).in("from_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
   );
   const seen = new Set(edgeRows.map((e) => e.id));
   for (const e of incoming.concat(fromExternal)) {
@@ -268,7 +335,7 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
   const svc = graphService();
   let data: StateRow[];
   try {
-    data = await inChunks<StateRow>(nodeIds, (chunk) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
+    data = await inChunks<StateRow>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
   } catch (err) {
     throw new Error(`loadLearnerStates: query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
@@ -287,9 +354,18 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
  * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
  * it the same way state/route.ts and workspace/route.ts already do).
  */
-export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage> {
+export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage | null> {
   const svc = graphService();
-  const { data } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  // null when the read failed. No row is a real "access", and a failure
+  // is not: answering "access" for both sent an internalization-tier
+  // submission past requiresCounterEvidence, wrote
+  // counter_evidence_required: false into the row, and recorded an
+  // evidence event claiming the learner moved from a stage nothing read.
+  const { data, error } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  if (error) {
+    console.error("[research-os/db] learner_node_state read failed:", error.message);
+    return null;
+  }
   return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 
@@ -306,8 +382,17 @@ export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: st
   const svc = graphService();
   let data: (StateRow & { learner_id: string })[];
   try {
-    const learners = learnerIds.slice(0, IN_CHUNK);
-    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
+    // Both lists are chunked. Taking the first IN_CHUNK learners dropped
+    // everyone past sixty out of the teacher grid with no total to
+    // compare against, which is the defect fixed one file over in
+    // /graph's heatmap and left here (Bucket critic C72).
+    data = [];
+    for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
+      const learners = learnerIds.slice(i, i + IN_CHUNK);
+      data.push(
+        ...(await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>)),
+      );
+    }
   } catch (err) {
     throw new Error(`loadLearnerStatesForMany: query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
@@ -441,14 +526,26 @@ export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<Cl
   const classIds = Array.from(new Set(((memberships as { class_id: string }[]) || []).map((m) => m.class_id)));
   if (classIds.length === 0) return [];
 
-  const { data: peerRows, error: peerErr } = await svc.from("class_members").select("learner_id").in("class_id", classIds);
-  if (peerErr) throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${peerErr.message}`);
-  const peerIds = Array.from(new Set(((peerRows as { learner_id: string }[]) || []).map((r) => r.learner_id))).filter((id) => id !== learnerId);
+  let peerRows: { learner_id: string }[];
+  try {
+    peerRows = await inChunks<{ learner_id: string }>(classIds, (chunk, page) =>
+      svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  const peerIds = Array.from(new Set(peerRows.map((r) => r.learner_id))).filter((id) => id !== learnerId);
   if (peerIds.length === 0) return [];
 
-  const { data: prodRows, error: prodErr } = await svc.from("productions").select("id,claim").in("learner_id", peerIds).eq("status", "accepted");
-  if (prodErr) throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${prodErr.message}`);
-  return ((prodRows as { id: string; claim: string | null }[]) || [])
+  let prodRows: { id: string; claim: string | null }[];
+  try {
+    prodRows = await inChunks<{ id: string; claim: string | null }>(peerIds, (chunk, page) =>
+      svc.from("productions").select("id,claim").in("learner_id", chunk).eq("status", "accepted").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; claim: string | null }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  return prodRows
     .filter((r) => (r.claim || "").trim())
     .map((r) => ({ id: r.id, claim: r.claim as string }));
 }
@@ -458,9 +555,15 @@ export async function loadClassMembers(classIds: string[]): Promise<Map<string, 
   const out = new Map<string, string[]>();
   if (classIds.length === 0) return out;
   const svc = graphService();
-  const { data, error } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
-  if (error) throw new Error(`loadClassMembers: query failed: ${error.message}`);
-  for (const r of (data as { class_id: string; learner_id: string }[]) || []) {
+  let data: { class_id: string; learner_id: string }[];
+  try {
+    data = await inChunks<{ class_id: string; learner_id: string }>(classIds, (chunk, page) =>
+      svc.from("class_members").select("class_id,learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { class_id: string; learner_id: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    throw new Error(`loadClassMembers: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  for (const r of data) {
     if (!out.has(r.class_id)) out.set(r.class_id, []);
     out.get(r.class_id)!.push(r.learner_id);
   }

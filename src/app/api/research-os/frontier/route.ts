@@ -48,7 +48,9 @@ export async function POST(req: NextRequest) {
   if (!body.nodeId) return bad(400, "node_required");
   if (body.flag !== null && body.flag !== undefined && body.flag !== "open_question" && body.flag !== "frontier") return bad(400, "bad_flag");
   const reviewer = await verifyReviewer(req);
-  const staff = body.classId ? await verifyClassStaff(req, body.classId) : null;
+  const staffCheck = body.classId ? await verifyClassStaff(req, body.classId) : null;
+  if (staffCheck && !staffCheck.ok) return bad(503, "class_read_failed");
+  const staff = staffCheck?.ok ? staffCheck.staff : null;
   const allowed = Boolean(reviewer) || Boolean(staff && staff.roles.some((r) => r === "teacher" || r === "librarian" || r === "reviewer"));
   if (!allowed) return bad(403, "forbidden");
   const { error } = await graphService().from("nodes").update({ frontier_flag: body.flag ?? null }).eq("id", body.nodeId);

@@ -32,13 +32,14 @@
  * check and the question prompts themselves, no learner-authored content.
  * A blocked POST returns 403 with consentBlockedBody(gate) as its body.
  */
+import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { NextRequest, NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
 import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
 import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 import { authorizeNode, authorizeNodes } from "@/lib/research-os/read-access";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
@@ -110,7 +111,10 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
 
   const gate = await requireConsent(learnerId, "probe_answer");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+  if (!gate.allowed) {
+    const refusal = consentRefusal(gate);
+    return NextResponse.json(refusal.body, { status: refusal.status });
+  }
 
   let body: ProbeBody;
   try {
@@ -186,14 +190,12 @@ export async function POST(req: NextRequest) {
     throw err;
   }
 
-  return NextResponse.json(
-    {
-      result: graded.result,
-      confidence: graded.confidence,
-      abstained: graded.abstained,
-      feedback: graded.feedback,
-      stage: transition.nextStage,
-    },
-    { headers: { "cache-control": "no-store" } },
-  );
+  const payload: ProbeAnswerResponse = {
+    result: graded.result,
+    confidence: graded.confidence,
+    abstained: graded.abstained,
+    feedback: graded.feedback,
+    stage: transition.nextStage,
+  };
+  return NextResponse.json(payload, { headers: { "cache-control": "no-store" } });
 }

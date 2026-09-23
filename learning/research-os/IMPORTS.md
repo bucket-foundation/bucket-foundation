@@ -28,7 +28,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
 
 ### The write
 
-`createImport` at `src/lib/research-os/access-db.ts:230` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:229-238`:
+`createImport` at `src/lib/research-os/access-db.ts:377` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:389-401`:
 
 ```ts
       title: input.title,
@@ -43,7 +43,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
       visibility: "private",
 ```
 
-Then the import row at `:245`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:113`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
+Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:149`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
 
 Three consequences follow from those lines, and all three matter later.
 
@@ -165,7 +165,7 @@ An import is learner-supplied input that reaches a model and a database. Five ru
 
 ## How an import becomes a node
 
-It already is one. `createImport` at `src/lib/research-os/access-db.ts:230` writes a `graph.nodes` row whose `branch` is `00-imports` at `src/lib/research-os/access-db.ts:232` and whose `visibility` is `private` at `:238`. `learning/research-os/ACCESS.md` states the intent in its model section: an import "creates a private node in branch `00-imports` owned by them".
+It already is one. `createImport` at `src/lib/research-os/access-db.ts:253` writes a `graph.nodes` row whose `branch` is `00-imports` at `src/lib/research-os/access-db.ts:232` and whose `visibility` is `private` at `:238`. `learning/research-os/ACCESS.md` states the intent in its model section: an import "creates a private node in branch `00-imports` owned by them".
 
 The open move is promotion: private to public, `00-imports` to a real branch. The rule is the one the graph already uses for a learner's own work.
 

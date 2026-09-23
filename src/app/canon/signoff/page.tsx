@@ -66,13 +66,13 @@ export default function CanonSignoffPage() {
     setListError(null);
     try {
       const res = await fetch("/api/canon/signoff", { headers: authHeaders() });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string; records?: PendingRecord[] };
       if (!res.ok) {
         setListError(res.status === 403 ? "forbidden" : data.error || "load_failed");
         setRecords(null);
         return;
       }
-      setRecords(data.records);
+      setRecords(data.records ?? null);
     } catch {
       setListError("network_error");
     }
@@ -104,7 +104,10 @@ export default function CanonSignoffPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action, record: `${record.path}#${record.id}`, reason: reason || undefined }),
       });
-      const data = await res.json();
+      // A gateway 503 carries HTML, so an unguarded parse rejects and
+      // this handler unwinds into the finally, leaving a reviewer a
+      // dead approve button.
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
       setNotice(res.ok ? `${action === "approve" ? "Approved" : "Rejected"} ${record.id}.` : data.error || "signoff_failed");
       if (res.ok) loadRecords();
     } finally {

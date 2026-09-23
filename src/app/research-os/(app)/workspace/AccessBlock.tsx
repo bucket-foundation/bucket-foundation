@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 
 // The Access level on the selected node (ros-21): a visibility badge, the
@@ -27,15 +28,37 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
   const [data, setData] = useState<AccessResponse | null>(null);
   // Classes the person belongs to, for sharing a node with a whole class.
   const [classes, setClasses] = useState<{ id: string; name: string; role: string }[]>([]);
+  const [classesFailed, setClassesFailed] = useState(false);
+  // A read that failed this minute and a deployment with no Research OS
+  // on it are different facts, and one sentence said both.
+  const [classesTransient, setClassesTransient] = useState(false);
   const [shareClass, setShareClass] = useState("");
 
   useEffect(() => {
     if (!token) return;
     let alive = true;
+    // An empty class list here makes a share to a class the learner
+    // belongs to unreachable, with no reason given.
     fetch("/api/research-os/classes", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { classes: [] }))
-      .then((j: { classes?: { id: string; name: string; role: string }[] }) => alive && setClasses(j.classes ?? []))
-      .catch(() => {});
+      .then(async (r) => {
+        if (!alive) return;
+        if (!r.ok) {
+          setClassesFailed(true);
+          setClassesTransient(isTransientOutage(r.status, await readErrorCode(r)));
+          return;
+        }
+        const j = (await r.json()) as { classes?: { id: string; name: string; role: string }[] };
+        setClassesFailed(false);
+        setClassesTransient(false);
+        setClasses(j.classes ?? []);
+      })
+      // A fetch that rejects never reached the server, which a retry may
+      // clear.
+      .catch(() => {
+        if (!alive) return;
+        setClassesFailed(true);
+        setClassesTransient(true);
+      });
     return () => {
       alive = false;
     };
@@ -51,13 +74,20 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     try {
       const res = await fetch(`/api/research-os/access?node=${encodeURIComponent(nodeId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
+        // A permanent failure set the error to null, so both arms of
+        // this branch rendered nothing at all.
         setData(null);
+        setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
         return;
       }
       setData((await res.json()) as AccessResponse);
       setError(null);
     } catch {
+      // A fetch that rejects never reached the server, which a retry may
+      // clear. Emptying the data without a word rendered the node with
+      // no access panel on it.
       setData(null);
+      setError(OUTAGE_COPY.body);
     }
   }, [nodeId, headers]);
 
@@ -77,7 +107,7 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? `failed (${res.status})`);
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
       }
       await load();
     } finally {
@@ -85,7 +115,15 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     }
   }
 
-  if (!data) return null;
+  // The error renders above this return. `load` sets it and leaves
+  // `data` null, and nothing else fills `data`, so every failed read
+  // returned null here and the panel vanished with the reason set.
+  if (!data)
+    return error ? (
+      <p role="alert" className="mt-4 border-t border-[color:var(--hairline)] pt-3 text-[12px] text-[color:var(--gold-deep)]">
+        {error}
+      </p>
+    ) : null;
   const missing = PURPOSES.filter((p) => !data.verbs[p]);
   const pendingMine = new Set(data.myRequests.filter((r) => r.status === "pending").map((r) => r.purpose));
   const canRequest = token && !data.isOwner && data.node.visibility !== "public" && missing.length > 0;
@@ -174,6 +212,11 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
             request
           </button>
         </div>
+      )}
+      {data.isOwner && classesFailed && (
+        <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
+          {classesTransient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body} Sharing with a class is unavailable until it answers.
+        </p>
       )}
       {data.isOwner && classes.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
