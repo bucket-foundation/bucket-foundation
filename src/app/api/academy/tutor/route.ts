@@ -1,52 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
-import { selectProvider } from "./provider";
+import { complete, localLlmConfig, selectProvider } from "@/lib/llm/client";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MODEL = "claude-sonnet-4-5";
 
-const LLM_BASE_URL = process.env.LLM_BASE_URL?.replace(/\/+$/, "");
-const LLM_MODEL = process.env.LLM_MODEL || "qwen2.5-coder-7b";
-const LLM_API_KEY = process.env.LLM_API_KEY;
-const LLM_TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_S || 20) * 1000;
-
-async function callLocalLLM(
-  system: string,
-  messages: Array<{ role: "user" | "assistant"; content: string }>,
-): Promise<string> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
-  try {
-    const resp = await fetch(`${LLM_BASE_URL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(LLM_API_KEY ? { Authorization: `Bearer ${LLM_API_KEY}` } : {}),
-      },
-      body: JSON.stringify({
-        model: LLM_MODEL,
-        max_tokens: MAX_TOKENS,
-        temperature: 0.2,
-        stream: false,
-        messages: [{ role: "system", content: system }, ...messages],
-      }),
-      signal: controller.signal,
-    });
-    if (!resp.ok) {
-      const err = new Error(`local LLM HTTP ${resp.status}`) as Error & { status?: number };
-      err.status = resp.status;
-      throw err;
-    }
-    const data = (await resp.json()) as {
-      choices?: Array<{ message?: { content?: string } }>;
-    };
-    return (data.choices?.[0]?.message?.content || "").trim();
-  } finally {
-    clearTimeout(timer);
-  }
-}
+const LOCAL = localLlmConfig(20);
 
 const MAX_TOKENS = 700;
 const MAX_QUESTION_CHARS = 1000;
@@ -274,22 +234,14 @@ export async function POST(req: NextRequest) {
 
   let text = "";
   try {
-    if (provider === "local") {
-      text = await callLocalLLM(SYSTEM, messages);
-    } else {
-      const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-      const resp = await anthropic.messages.create({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        system: SYSTEM,
-        messages: messages as Anthropic.MessageParam[],
-      });
-      text = resp.content
-        .filter((b): b is Anthropic.TextBlock => b.type === "text")
-        .map((b) => b.text)
-        .join("\n")
-        .trim();
-    }
+    ({ text } = await complete({
+      provider,
+      system: SYSTEM,
+      messages,
+      maxTokens: MAX_TOKENS,
+      anthropicModel: MODEL,
+      local: LOCAL,
+    }));
   } catch (e: unknown) {
     const err = e as { status?: number; message?: string; name?: string };
     if (err?.status === 401) return bad(503, "Tutor credentials are invalid on the server.");
