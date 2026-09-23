@@ -650,14 +650,7 @@ function Workspace() {
           { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
           ...prev.filter((q) => q.nodeId !== selected.id),
         ]);
-        // The quote landed and its provenance row did not, so the
-        // production guard will later report this source as unverified.
-        // Saying so now beats returning their work for it.
-        setQuoteNote(
-          (data as { provenanceRecorded?: boolean }).provenanceRecorded === false
-            ? "Quoted. The server could not record that you quoted it, so quote it again before you cite it."
-            : null,
-        );
+        setQuoteNote(null);
       } else {
         // A failed quote left the panel exactly as it was, so the button
         // read as having done nothing at all.
@@ -667,14 +660,6 @@ function Workspace() {
             : "That source could not be quoted.",
         );
       }
-      setQuoteNote(null);
-      setQuote(data);
-      // "sources I have quoted" (canvas item 3): keep the most recent
-      // quote per node, newest node first.
-      setQuotedSources((prev) => [
-        { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
-        ...prev.filter((q) => q.nodeId !== selected.id),
-      ]);
     } finally {
       setBusy(null);
     }
