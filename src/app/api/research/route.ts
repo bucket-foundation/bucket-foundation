@@ -6,9 +6,7 @@ import { rankPrimary, authorsShort, type PrimaryPaper } from "@/lib/canon-primar
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const GATEWAY_URL =
-  process.env.BUCKET_GATEWAY_URL?.replace(/\/$/, "") ??
-  "https://x402-research.agfarms.dev";
+const GATEWAY_URL = process.env.BUCKET_GATEWAY_URL?.replace(/\/$/, "") ?? "";
 const DAILY_CAP_USD = Number(process.env.BUCKET_DAILY_USD_CAP ?? "1.00");
 const UPSTREAM_TIMEOUT_MS = 15_000;
 const WALLET_FUNDED = Boolean(process.env.BUCKET_WALLET_PRIVATE_KEY);
@@ -422,7 +420,7 @@ export async function GET(req: NextRequest) {
     return canonFallback(q, tier);
   }
 
-  if (!WALLET_FUNDED) {
+  if (!WALLET_FUNDED || !GATEWAY_URL) {
     return canonFallback(q, tier);
   }
 
