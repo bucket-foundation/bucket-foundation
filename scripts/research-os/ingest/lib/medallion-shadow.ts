@@ -9,6 +9,11 @@ import { loadPolicy, repoIO, seedSlugs } from "../../medallion/lib/repo-io";
 
 export const SHADOW_FLAG = "--medallion";
 export const OPT_OUT_FLAG = "--no-medallion";
+export const STRICT_SHADOW_FLAG = "--strict-shadow";
+
+export function strictShadowFails(argv: string[], failures: number): boolean {
+  return failures > 0 && argv.includes(STRICT_SHADOW_FLAG);
+}
 export const SHADOW_PARSER = "shadow";
 export const SHADOW_PARSER_REVISION = "shadow/1";
 const CHUNK = 60;
@@ -40,6 +45,10 @@ export async function shadowWrite(label: string, input: IngestNodeDraft[] | Meda
     console.error(`[${label}] medallion shadow FAILED: ${err instanceof Error ? err.message : String(err)}. Gold writes are unaffected.`);
   }
   console.log(`[${label}] medallion shadow failures: ${failures}`);
+  if (strictShadowFails(process.argv, failures)) {
+    console.error(`[${label}] ${STRICT_SHADOW_FLAG}: exit 1 because the medallion shadow write failed.`);
+    process.exitCode = 1;
+  }
   return { failures };
 }
 

@@ -132,3 +132,21 @@ test("canon-all sends nodes absent from gold to the node review", () => {
     restore(saved);
   }
 });
+
+for (const script of ["academy-import.ts", "canon-import.ts", "canon-all.ts", "intake-all.ts"]) {
+  test(`${script}: --strict-shadow exits 1 on a shadow failure, after the gold write`, () => {
+    const saved = snapshot();
+    try {
+      const plain = run(script, ["--apply", "--strict-shadow"], {});
+      const failed = run(script, ["--apply", "--strict-shadow"], { STUB_FAIL: "rpc:admit_bronze_sources" });
+      assert.equal(plain.status, 0, plain.stderr);
+      assert.equal(failed.status, 1, failed.stdout);
+      assert.deepEqual(goldWrites(failed.calls), goldWrites(plain.calls));
+      assert.ok(goldWrites(failed.calls).length > 0);
+      assert.match(failed.stderr, /--strict-shadow: exit 1 because the medallion shadow write failed/);
+      assert.match(failed.stdout, /medallion shadow failures: 1/);
+    } finally {
+      restore(saved);
+    }
+  });
+}
