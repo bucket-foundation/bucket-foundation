@@ -1,29 +1,13 @@
-/**
- * Unit tests: src/lib/research-os/inference/decide.ts's `decideEdgeProposal`
- * (bkt-ros ros-13, task item 3, the /research-os/edges review decision),
- * plus the reviewer gate src/app/api/research-os/edges/route.ts shares
- * with /api/research-os/review. No network, no database: `decideEdgeProposal`
- * is pure, and the reviewer gate is tested the same way
- * scripts/test-research-os-teacher-class.ts already tests it for the
- * sibling review route (isReviewerEmail alone, no token verification).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-edges-review.ts
- */
 import { strict as assert } from "node:assert";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type EdgeProposalRecord } from "../src/lib/research-os/inference/decide";
-import { isReviewerEmail } from "../src/lib/research-os/reviewer";
+import { isGraphReviewer, isReviewerEmail } from "../src/lib/research-os/reviewer";
 
 function pending(): EdgeProposalRecord {
   return { status: "pending", fromSlug: "wavefunction", toSlug: "uncertainty" };
 }
-
-// ---------------------------------------------------------------------------
-// decideEdgeProposal
-// ---------------------------------------------------------------------------
 
 test("decideEdgeProposal: approving a pending proposal writes a teacher-confidence prerequisite edge", () => {
   const outcome = decideEdgeProposal(pending(), "approved");
@@ -74,13 +58,6 @@ test("decideEdgeProposal: an already-rejected proposal cannot be flipped to appr
   assert.equal(outcome.edgeToWrite, null);
 });
 
-// ---------------------------------------------------------------------------
-// Reviewer gate: /api/research-os/edges rejects a non-reviewer with 403
-// (route.ts's verifyReviewer wraps this exact check; see reviewer.ts's own
-// header for why the allowlist alone, with no token verification, is what
-// this repo's tests exercise directly).
-// ---------------------------------------------------------------------------
-
 test("isReviewerEmail: /research-os/edges shares the same allowlist gate as /research-os/review", () => {
   const prior = process.env.RESEARCH_OS_REVIEWER_EMAILS;
   process.env.RESEARCH_OS_REVIEWER_EMAILS = "reviewer@school.example";
@@ -104,14 +81,6 @@ test("isReviewerEmail: an unset allowlist fails closed for the edges route too",
   }
 });
 
-// ---------------------------------------------------------------------------
-// Migration shape (static: this repo runs no test against a live Postgres,
-// matching test-research-os-teacher-class.ts's own "RLS scoping" section).
-// Asserts the migration text declares the queue's own idempotency key,
-// status enum, and RLS posture, catching a regression that silently drops
-// one of them.
-// ---------------------------------------------------------------------------
-
 const EDGE_PROPOSALS_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910050001_research_os_edge_proposals.sql");
 
 test("graph.edge_proposals migration: RLS enabled, pair uniqueness, and a closed status enum", () => {
@@ -122,4 +91,37 @@ test("graph.edge_proposals migration: RLS enabled, pair uniqueness, and a closed
   assert.match(sql, /confidence_source\s+text\s+not null default 'inferred_llm' check \(confidence_source = 'inferred_llm'\)/);
   assert.match(sql, /alter table graph\.edge_proposals enable row level security/);
   assert.doesNotMatch(sql, /create policy .* on graph\.edge_proposals/, "no client-facing policy: every access goes through the service-role client, gated by reviewer.ts");
+});
+
+test("decideEdgeProposal: approving as derives_from runs the edge from the target to the factor", () => {
+  const outcome = decideEdgeProposal(pending(), "approved", "derives_from");
+  const p = pending();
+  assert.equal(outcome.edgeToWrite?.kind, "derives_from");
+  assert.equal(outcome.edgeToWrite?.fromSlug, p.toSlug);
+  assert.equal(outcome.edgeToWrite?.toSlug, p.fromSlug);
+  assert.equal(outcome.edgeToWrite?.confidence, TEACHER_APPROVED_CONFIDENCE);
+});
+
+test("isGraphReviewer: only the allowlist changes the graph, whatever classes the person teaches", () => {
+  const prior = process.env.RESEARCH_OS_REVIEWER_EMAILS;
+  process.env.RESEARCH_OS_REVIEWER_EMAILS = "reviewer@school.example";
+  try {
+    assert.deepEqual(isGraphReviewer({ id: "u1", email: "Reviewer@School.example" }), { id: "u1", email: "Reviewer@School.example" });
+    assert.equal(isGraphReviewer({ id: "u2", email: "teacher@school.example" }), null);
+    assert.equal(isGraphReviewer({ id: "u3", email: null }), null);
+    assert.equal(isGraphReviewer(null), null);
+    delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    assert.equal(isGraphReviewer({ id: "u1", email: "reviewer@school.example" }), null);
+  } finally {
+    if (prior === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    else process.env.RESEARCH_OS_REVIEWER_EMAILS = prior;
+  }
+});
+
+test("every route that changes the graph through review uses the allowlist gate", () => {
+  for (const route of ["edges", "node-proposals", "irreducible", "makeup"]) {
+    const src = readFileSync(join(__dirname, "..", "src", "app", "api", "research-os", route, "route.ts"), "utf8");
+    assert.match(src, /verifyGraphReviewer\(req\)/, `${route} checks the graph reviewer`);
+    assert.doesNotMatch(src, /\bverifyReviewer\(/, `${route} does not use the teacher gate`);
+  }
 });

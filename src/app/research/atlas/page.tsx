@@ -3,11 +3,6 @@ import Script from "next/script";
 import { getManifest } from "@/lib/research-atlas";
 import AtlasExplorer from "./AtlasExplorer";
 
-// /research/atlas, describes the research-atlas graph: the reconciled, normalized
-// graph of the global research economy. Headline scale, the DOI, the GitHub link,
-// links to the open-datasets catalog, and a-marked PLACEHOLDER "query the
-// atlas" panel for the future live API. Stone-bone styling.
-
 export const metadata = {
   title: "research-atlas · the research-economy graph",
   description:
@@ -28,9 +23,6 @@ export const metadata = {
   },
 };
 
-// The full published graph (see github.com/bucket-foundation/research-atlas
-// README). The datasets catalog ships a sampled manifest; these are the
-// full-corpus headline figures.
 const ATLAS = {
   funders: "73",
   grants: "~958k",
@@ -52,7 +44,6 @@ const ENTITIES = [
   { name: "Field", body: "The OpenAlex topic taxonomy, joined to works by work_field edges." },
 ];
 
-// schema.org Dataset JSON-LD for the research-atlas graph.
 const ATLAS_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Dataset",
@@ -125,7 +116,6 @@ export default function Page() {
           open dataset on Bucket.
         </p>
 
-        {/* Headline scale */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <Stat label="funders" value={ATLAS.funders} />
           <Stat label="grants" value={ATLAS.grants} />
@@ -162,7 +152,6 @@ export default function Page() {
 
         <div className="carved-rule max-w-xs mt-12" />
 
-        {/* The six entities */}
         <h2 className="mt-12 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           six entities, one graph
         </h2>
@@ -188,7 +177,6 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Query panel, LIVE interactive explorer */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           query the atlas
         </h2>

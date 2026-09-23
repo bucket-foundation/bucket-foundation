@@ -1,133 +1,5 @@
-/**
- * POST /api/research-os/workspace, the four AI actions Locate, Quote, Check,
- * Organize (bkt-ros, task item 4), scoped to the Phase 0 seeded subgraph.
- * Reuses /api/academy/tutor's pattern (grounded, citation-validated,
- * abstains, provider seam, fail-safe JSON parsing) rather than a fifth
- * integration: see src/lib/research-os/llm.ts.
- *
- * The AI never writes the learner's claim or synthesis (task item 4's hard
- * requirement). This is enforced two ways, matching the tutor's S7 "verified
- * in code, not just the prompt" floor:
- *   1. A closed action allow-list: only "locate" | "quote" | "check" |
- *      "organize" are accepted; anything else is 400, before any model call.
- *   2. Locate and Quote never call a model at all (retrieval only, per
- *      RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3's workspace table). Check
- *      grades the learner's OWN explanation against grounding, it never
- *      emits a corrected version of it (enforced in code by
- *      grounding.ts's sanitizeGradeResult and GradeResult's own type, which
- *      has no field for a rewritten explanation). Organize only relabels
- *      the learner's OWN input into named slots; organize.ts's
- *      groundOrganizeResult drops any item that is not grounded in the
- *      matching input field, enforced in code as a second, independent
- *      check beside the system prompt's own instruction.
- *
- * ros-04 UPDATE ("workspace hardening"): every action now
- *   - carries an optional client-generated `sessionId`, forwarded onto
- *     every evidence event this call produces (EVIDENCE-SCHEMA.md);
- *   - is logged as one structured tool-call line (logToolCall below).
- *     Locate scans a whole branch and Organize works freeform notes, so
- *     neither has a single `graph.nodes` row of its own to attach a DB
- *     evidence event to; this log line stands in for the
- *     `learner_node_state.evidence` append the other two actions get;
- *     Check (node-scoped, produces a stage transition) and Quote (node-
- *     scoped) both also carry the log line, Check on top of its real DB
- *     evidence event. Documented in learning/research-os/WORKSPACE.md.
- *   - is metered against a per-learner daily cap (src/lib/research-os/
- *     rate-limit.ts), separate from the existing per-minute burst limiter
- *     below.
- *   - (Check, Organize) logs a best-effort per-call cost estimate from the
- *     provider's own token usage, when reported (llm.ts's logToolCost).
- *
- * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
- * "check" case computes an authoritative guidance level server-side --
- * never trusts a client-supplied value, matching every other verdict-
- * relevant input in this route -- via guidance.ts's guidanceLevel, scoped
- * to the CURRENT node's own prerequisite chain (computeFrontier with the
- * checked node itself as target, since this route is node-agnostic by
- * design and has no reliable way to know which page-level target a given
- * nodeId session belongs to; see learning/research-os/GUIDANCE.md section
- * 2 for why this scoping choice is equivalent to the page target's own
- * chain on Phase 0's single connected seed path). A class's own
- * research_os_guidance_enabled switch (db.ts's isGuidanceEnabledForLearner)
- * can force the level to "low" regardless of the computed level, the
- * pilot's control-arm gate. The resulting level adapts grounding.ts's
- * Check prompt (guidance.ts's own header, item 3) and is logged on the
- * resulting evidence event (stages.ts's EvidenceEvent.guidanceLevel) and
- * returned in the response so the workspace page's worked-example display
- * stays consistent with what the tutor's own feedback just used.
- *
- * Request: { action, sessionId?, ...action-specific fields }
- *   locate:   { query, branch? }
- *   quote:    { nodeId }
- *   check:    phase 1 { nodeId, explanation }
- *             phase 2 { nodeId, attemptId, learnerConfidence, sourcePrediction }
- *   organize: { claim, evidenceNotes, sourceNotes }
- *
- * Cognitive forcing on Check (bkt-ros, learning/research-os/
- * PLAN-REVISION-2.md section 2a, the design response to Buçinca, Malaya
- * and Gajos 2021, Bansal et al. 2021, and Vaccaro, Almaatouq and Malone
- * 2024): a phase-1 "check" call grades the explanation right away but,
- * unless this learner's own arm has forcing off (src/lib/research-os/
- * forcing.ts's resolveForcingEnabled, the RESEARCH_OS_FORCING_ENABLED /
- * per-class arm switch), the response carries only { attemptId,
- * forcingRequired: true }, no result/confidence/feedback/citations
- * anywhere in it. Revealing the held verdict needs a phase-2 call on the
- * same attemptId carrying BOTH a valid learnerConfidence (forcing.ts's
- * four-point scale) and a non-empty sourcePrediction; a phase-2 call
- * missing either is 400 and the attempt stays held for a retry. The held
- * verdict itself lives in `graph.check_attempts`
- * (src/lib/research-os/check-attempts-db.ts, migration
- * 20260910070000_research_os_check_attempts.sql): a Vercel deploy can run
- * phase 1 and phase 2 on two different instances, so a bare in-memory
- * store would lose the verdict between them. The gate is enforced in
- * code: the client withholding a "reveal" button is a UI convenience, the
- * server-side check is the real one. scripts/test-research-os-forcing.ts feeds
- * forcing.ts's shared decision functions (checkAttemptAccess,
- * finalizeReveal, the same ones check-attempts-db.ts calls) an attempt and
- * asserts no code path returns its grade without both fields present.
- *
- * Auth: Authorization: Bearer <supabase access token>, required for all four
- * (locate/quote are retrieval-only but still identity-scoped for Phase 0
- * simplicity and to keep the same rate-limit boundary as check/organize).
- *
- * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): every
- * action, including Locate and Quote, is gated by src/lib/research-os/
- * consent.ts's requireConsent, checked right after verifyLearner and
- * before the daily/burst rate limiters. A minor with no consent on file
- * cannot search or quote either, not only Check/Organize: COPPA's floor is
- * collecting personal information from a known minor, and a query or a
- * node id already does that once the caller is a signed-in, identified
- * user. A blocked call returns 403 with consentBlockedBody(gate) as its
- * JSON body.
- *
- * Lateral reading (bkt-ros, learning/research-os/PLAN-REVISION-3.md
- * section 2c; src/lib/research-os/lateral-reading.ts): "locate" gains a
- * `mode: "secondSource"` request shape, `{ query, quotedSourceNodeId }`,
- * that calls locate.ts's own findIndependentSources instead of
- * locateHits, retrieval only, the same never-calls-a-model contract this
- * file's header already states for Locate. On "check" phase 2 (the
- * forcing reveal above), once the learner's own stage has reached
- * Understanding and the arm switch (RESEARCH_OS_SECOND_SOURCE_REQUIRED /
- * a per-class override) is on, revealing the held verdict ALSO needs
- * `secondSourceNodeId` in the same request, naming a node this learner
- * carries a real "quote"-kind evidence event for, whose own
- * provenance locate.ts's assessSourceIndependence judges independent of
- * the node under Check. Missing or unverifiable, the request is refused
- * with lateral-reading.ts's own fixed SECOND_SOURCE_MISSING_MESSAGE and
- * the attempt stays held for a retry, the same "there is no separate peek
- * endpoint" floor the forcing gate above already keeps: this check runs
- * on top of the forcing gate. An incomplete forcing commit still reads as
- * the forcing error; the second-source error only fires once that gate
- * has already passed. A real second source clears the gate, records a
- * standalone "corroboration" evidence event (stages.ts's
- * onCorroborationRecorded: the two source ids, why they are independent,
- * and the learner's own agree/disagree
- * mark, `passagesAgree`, never model-judged), and the "check" event
- * itself carries `secondSourceRequired`/`secondSourceNodeId` so analysis
- * can group by arm from the evidence log alone. See
- * learning/research-os/LATERAL-READING.md.
- */
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
 import { deterministicCheck, deterministicOrganize, llmEnabled } from "@/lib/research-os/deterministic";
@@ -135,7 +7,6 @@ import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/r
 import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
 import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
@@ -152,26 +23,23 @@ import {
   loadLearnerStates,
   isGuidanceEnabledForLearner,
 } from "@/lib/research-os/db";
+import { authorizeNode, authorizeNodes, readVisibility, storeWithNodes } from "@/lib/research-os/read-access";
+import { curatedQuotePayload } from "@/lib/research-os/quote-receipt";
+import type { NodeAccess } from "@/lib/research-os/access";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled, finalizeReveal } from "@/lib/research-os/forcing";
-import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt } from "@/lib/research-os/check-attempts-db";
+import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt, dbConsumePendingAttempt } from "@/lib/research-os/check-attempts-db";
 import { checkSecondSourceGate, resolveSecondSourceRequired, secondSourceRequiredAtStage } from "@/lib/research-os/lateral-reading";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 const MAX_ORGANIZE_TOKENS = 500;
 const MAX_EXPLANATION_CHARS = 2000;
 const MAX_SESSION_ID_CHARS = 200;
 
-// Crude in-memory per-user rate limit, mirroring /api/academy/tutor. Best
-// effort only (serverless instances are ephemeral); a durable limiter
-// belongs in the Viatika metering layer (same TODO the tutor route carries).
 const RL_WINDOW_MS = 60_000;
 const RL_MAX = 20;
 const rlBuckets = new Map<string, number[]>();
@@ -183,14 +51,10 @@ function rateLimited(key: string): boolean {
   return hits.length > RL_MAX;
 }
 
-/** One structured log line per workspace tool call (see this file's header
- * for why Locate/Organize have no other evidence record). Never throws:
- * logging must not be able to fail the request it is describing. */
 function logToolCall(tool: string, learnerId: string, sessionId: string | undefined, extra: Record<string, unknown> = {}): void {
   try {
     console.log("[research-os/tool-call]", JSON.stringify({ tool, learnerId, sessionId: sessionId ?? null, at: new Date().toISOString(), ...extra }));
   } catch {
-    /* logging is best-effort, never fails the request */
   }
 }
 
@@ -200,21 +64,6 @@ function sessionIdOf(body: { sessionId?: string }): string | undefined {
   return s.slice(0, MAX_SESSION_ID_CHARS);
 }
 
-/**
- * ros-14: the authoritative guidance level for one Check call, scoped to
- * `nodeId`'s own prerequisite chain (computeFrontier with the checked node
- * itself as target; see this file's header for why). Shared by both Check
- * phases: phase 1 (grading) calls it with the node just graded; phase 2
- * (`dbRevealPendingAttempt`'s reveal branch) calls it again with
- * `pending.nodeId`'s own branch, since a held attempt's own stored shape
- * (`forcing.ts`'s `PendingCheckAttempt`) carries no guidance field --
- * recomputing here at reveal time, rather than extending that store's
- * schema, keeps this bead's own surface self-contained and reflects the
- * learner's guidance level as of the moment the verdict is shown,
- * not as of whenever phase 1 happened to run. Every failure (a fresh
- * environment with no branch subgraph yet, a read error) falls back to
- * "medium," the neutral default, rather than blocking the Check call.
- */
 async function computeGuidanceForNode(learnerId: string, nodeId: string, branch: string): Promise<GuidanceLevel> {
   let guidance: GuidanceLevel = "medium";
   try {
@@ -239,48 +88,50 @@ interface WorkspaceBody {
   claim?: string;
   evidenceNotes?: string;
   sourceNotes?: string;
-  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): a first
-  // "check" call (no attemptId) submits `explanation`; a second call
-  // carries `attemptId` plus the two forcing fields to reveal the held
-  // verdict. See this file's "check" case for the full two-phase contract.
   attemptId?: string;
   learnerConfidence?: string;
   sourcePrediction?: string;
-  // Lateral reading (PLAN-REVISION-3.md section 2c): "locate" with
-  // mode "secondSource" needs quotedSourceNodeId instead of branch; a
-  // "check" reveal (attemptId present) may carry secondSourceNodeId and
-  // the learner's own agree/disagree mark, passagesAgree. See this file's
-  // header.
   mode?: "hits" | "secondSource";
   quotedSourceNodeId?: string;
   secondSourceNodeId?: string;
   passagesAgree?: boolean;
-  /** ros-23, the workspace without a model: the learner's own verdict and
-   * the quotes they attached, graded by deterministic.ts's rubric. */
   verdict?: "support" | "contradiction";
   quotes?: { quotable_span: string | null; citation: string }[];
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+type LocateRow = {
+  id: string;
+  slug: string;
+  title: string;
+  kind: string;
+  tier: number;
+  summary: string | null;
+  provenance: unknown;
+  visibility: string | null;
+  owner_id: string | null;
+};
 
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
+async function readableRows(rows: LocateRow[], learnerId: string): Promise<{ ok: true; rows: LocateRow[] } | { ok: false }> {
+  const access: NodeAccess[] = rows.map((r) => ({
+    id: r.id,
+    visibility: readVisibility(r.visibility),
+    ownerId: r.owner_id ?? null,
+  }));
+  const decision = await authorizeNodes(rows.map((r) => r.id), { id: learnerId }, "view", storeWithNodes(access));
+  if (!decision.ok) return { ok: false };
+  const visible = new Set(decision.allowed);
+  return { ok: true, rows: rows.filter((r) => visible.has(r.id)) };
+}
 
-  const gate = await requireConsent(learnerId, "workspace_tool");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
-
+export const POST = withResearchOsRoute({ auth: "required", consent: "workspace_tool" }, async (req, { learnerId }) => {
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 
   const cap = dailyToolCap();
   if (!recordAndCheck(learnerId, cap).allowed) return bad(429, dailyCapMessage(cap));
 
-  let body: WorkspaceBody;
-  try {
-    body = (await req.json()) as WorkspaceBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as WorkspaceBody;
   const sessionId = sessionIdOf(body);
 
   const svc = graphService();
@@ -290,22 +141,21 @@ export async function POST(req: NextRequest) {
       const query = (body.query || "").trim();
       if (!query) return bad(400, "query is required");
 
-      // Lateral reading, task item 1: Locate's "find another source" mode
-      // (PLAN-REVISION-3.md section 2c). Scans the whole seeded graph,
-      // not one branch, since an independent second source can sit
-      // anywhere; excludes the already-quoted node and every candidate
-      // whose own provenance shares a publisher or domain with it
-      // (locate.ts's assessSourceIndependence), retrieval only, the same
-      // never-calls-a-model contract this file's header states for
-      // Locate.
       if (body.mode === "secondSource") {
         const quotedSourceNodeId = (body.quotedSourceNodeId || "").trim();
         if (!quotedSourceNodeId) return bad(400, "quotedSourceNodeId is required for secondSource mode");
+        const reference = await authorizeNode(quotedSourceNodeId, { id: learnerId }, "view");
+        if (!reference.ok) {
+          if (reference.reason === "unavailable") return bad(503, "access_unavailable");
+          return bad(404, "node_not_found");
+        }
         const { data: quotedNode, error: quotedErr } = await svc.from("nodes").select("id,provenance").eq("id", quotedSourceNodeId).maybeSingle();
         if (quotedErr || !quotedNode) return bad(404, "node_not_found");
-        const { data, error } = await svc.from("nodes").select("id,slug,title,kind,tier,summary,provenance");
+        const { data, error } = await svc.from("nodes").select("id,slug,title,kind,tier,summary,provenance,visibility,owner_id");
         if (error) return bad(500, "locate_failed");
-        const candidates = findIndependentSources((data || []) as Parameters<typeof findIndependentSources>[0], query, {
+        const readable = await readableRows((data || []) as LocateRow[], learnerId);
+        if (!readable.ok) return bad(503, "access_unavailable");
+        const candidates = findIndependentSources(readable.rows as Parameters<typeof findIndependentSources>[0], query, {
           id: quotedNode.id as string,
           provenance: (quotedNode.provenance || undefined) as Provenance | undefined,
         });
@@ -316,10 +166,12 @@ export async function POST(req: NextRequest) {
       const branch = body.branch || "02-physics";
       const { data, error } = await svc
         .from("nodes")
-        .select("id,slug,title,kind,tier,summary,provenance")
+        .select("id,slug,title,kind,tier,summary,provenance,visibility,owner_id")
         .eq("branch", branch);
       if (error) return bad(500, "locate_failed");
-      const hits = locateHits((data || []) as Parameters<typeof locateHits>[0], query);
+      const readableHits = await readableRows((data || []) as LocateRow[], learnerId);
+      if (!readableHits.ok) return bad(503, "access_unavailable");
+      const hits = locateHits(readableHits.rows as Parameters<typeof locateHits>[0], query);
       logToolCall("locate", learnerId, sessionId, { branch, resultCount: hits.length });
       return NextResponse.json({ results: hits }, { headers: { "cache-control": "no-store" } });
     }
@@ -327,6 +179,12 @@ export async function POST(req: NextRequest) {
     case "quote": {
       const nodeId = (body.nodeId || "").trim();
       if (!nodeId) return bad(400, "nodeId is required");
+
+      const citable = await authorizeNode(nodeId, { id: learnerId }, "cite");
+      if (!citable.ok) {
+        if (citable.reason === "unavailable") return bad(503, "access_unavailable");
+        return bad(404, "node_not_found");
+      }
       const { data: node, error } = await svc
         .from("nodes")
         .select("id,slug,title,summary,provenance")
@@ -335,35 +193,72 @@ export async function POST(req: NextRequest) {
       if (error || !node) return bad(404, "node_not_found");
       const p = (node.provenance || {}) as Provenance;
 
-      // Phase 1 (bkt-ros, closing stub list item "full passage-level source
-      // extraction"): a small curated table (src/lib/research-os/passages.ts)
-      // carries a real, under-90-word, verbatim passage with a locator for
-      // every node whose source text we have independently verified --
-      // Tyndall 1869, Rayleigh 1871, NASA Space Place, and the cited
-      // Wikipedia revisions. A node not in that table (no verified full-text
-      // access to its primary source yet, e.g. Rayleigh's third 1871 paper,
-      // or a canon-bridge node with no provenance of its own) falls back to
-      // the node's own seeded summary, labeled "summary" rather than
-      // "quote" so the client never presents a paraphrase as a verbatim
-      // quotation.
       const passage = getPassage(node.slug);
 
-      // Production guard, task item 1: a Production's own cited sources are
-      // only verifiable against a Quote call this learner made. Recorded
-      // only for a real, curated passage (a "quote" result), since the
-      // "summary" fallback carries no locator for production-guard.ts's
-      // checkSourceProvenance to match against.
-      // Best-effort: a write failure here degrades to "this source can't be
-      // verified later," never to a broken Quote response for the learner
-      // in front of it right now.
+      let receipt: { id: string; sourceId: string; sourceRevision: string; createdAt: string; replayed: boolean } | null = null;
       if (passage) {
-        try {
-          const currentStage = await loadCurrentStage(learnerId, nodeId);
-          const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
-          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-        } catch {
-          /* best-effort, see comment above */
+        const citation = citationLabel({ title: node.title, provenance: p });
+        const identity = curatedQuotePayload(
+          {
+            nodeId: node.id as string,
+            slug: node.slug as string,
+            title: node.title as string,
+            text: passage.text,
+            locator: passage.locator,
+            citation,
+          },
+          sessionId || null,
+        );
+        const currentStage = await loadCurrentStage(learnerId, nodeId);
+        if (currentStage === null) {
+          return NextResponse.json({ error: "busy" }, { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } });
         }
+        const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
+        const { data: written, error: receiptErr } = await svc.rpc("record_quote_receipt", {
+          p_learner: learnerId,
+          p_target: nodeId,
+          p_source_id: identity.sourceId,
+          p_source_revision: identity.sourceRevision,
+          p_source_node: identity.sourceNodeId,
+          p_passage_id: identity.passageId,
+          p_locator: identity.locator,
+          p_text_hash: identity.textHash,
+          p_session: sessionId || null,
+          p_idempotency_key: identity.idempotencyKey,
+          p_payload_hash: identity.payloadHash,
+          p_stage: transition.nextStage,
+          p_event: transition.event as unknown as Record<string, unknown>,
+        });
+        if (receiptErr) {
+          const code = (receiptErr as { code?: string }).code ?? null;
+          console.error(`[research-os] quote receipt failed (${code ?? "unknown"}) for learner ${learnerId} node ${nodeId}: ${receiptErr.message}`);
+          if (code === "55P03" || code === "40001" || code === "40P01") {
+            return NextResponse.json(
+              { error: "busy" },
+              { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } },
+            );
+          }
+          return bad(500, "quote_not_recorded");
+        }
+        const result = (written || {}) as {
+          ok?: boolean;
+          error?: string;
+          receipt_id?: string;
+          created_at?: string;
+          replayed?: boolean;
+        };
+        if (!result.ok) {
+          if (result.error === "idempotency_conflict") return bad(409, "quote_receipt_conflict");
+          if (result.error === "source_gone" || result.error === "target_gone") return bad(404, "node_not_found");
+          return bad(403, "source_not_quotable");
+        }
+        receipt = {
+          id: result.receipt_id as string,
+          sourceId: identity.sourceId,
+          sourceRevision: identity.sourceRevision,
+          createdAt: (result.created_at as string) ?? new Date().toISOString(),
+          replayed: result.replayed === true,
+        };
       }
 
       logToolCall("quote", learnerId, sessionId, { nodeId, kind: passage ? "quote" : "summary" });
@@ -375,6 +270,18 @@ export async function POST(req: NextRequest) {
           locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
           source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
+          ...(receipt
+            ? {
+                receipt: {
+                  id: receipt.id,
+                  sourceId: receipt.sourceId,
+                  sourceRevision: receipt.sourceRevision,
+                  createdAt: receipt.createdAt,
+                  replayed: receipt.replayed,
+                },
+                durable: true,
+              }
+            : { durable: false }),
         },
         { headers: { "cache-control": "no-store" } },
       );
@@ -384,33 +291,22 @@ export async function POST(req: NextRequest) {
       const nodeId = (body.nodeId || "").trim();
       const attemptId = (body.attemptId || "").trim();
 
-      // Phase 2: reveal a held verdict. Requires the forcing commit
-      // (confidence + a source prediction) in THIS same request -- there
-      // is no separate "peek" call, so a request carrying only attemptId
-      // can never come back with feedback (scripts/test-research-os-
-      // forcing.ts's "cannot be fetched early" case).
       if (attemptId) {
-        // Read-only lookup first: no consume yet, so a lateral-reading
-        // gate failure below leaves the attempt held for a retry. The
-        // forcing gate runs first, pure, same finalizeReveal function
-        // dbRevealPendingAttempt itself calls below, so a missing
-        // confidence/prediction still reads as the pre-existing forcing
-        // error, never the second-source one (this file's header:
-        // lateral reading composes on top of forcing, never instead of
-        // it).
         const pendingPrecheck = await dbGetPendingAttempt(attemptId, learnerId);
         if (!pendingPrecheck) return bad(404, "check_attempt_not_found");
+
+        const stillContinuable = await authorizeNode(pendingPrecheck.nodeId, { id: learnerId }, "continue");
+        if (!stillContinuable.ok) {
+          if (stillContinuable.reason === "unavailable") return bad(503, "access_unavailable");
+          await dbConsumePendingAttempt(attemptId);
+          return bad(404, "node_not_found");
+        }
 
         const forcingPrecheck = finalizeReveal(pendingPrecheck, body.learnerConfidence, body.sourcePrediction || "");
         if (!forcingPrecheck.ok) {
           return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
         }
 
-        // Lateral reading (PLAN-REVISION-3.md section 2c, task item 2):
-        // at Understanding tier and above, a real, independently-assessed
-        // second Quote must be attached to THIS attempt before it can
-        // reveal. Awareness stays single-source, matching
-        // checkSecondSourceGate's own floor.
         const classSecondSourceOverride = await loadSecondSourceRequiredForLearner(learnerId);
         const secondSourceRequired = resolveSecondSourceRequired(classSecondSourceOverride);
         const secondSourceNodeId = (body.secondSourceNodeId || "").trim();
@@ -418,8 +314,10 @@ export async function POST(req: NextRequest) {
         let secondSourceIndependent = false;
         let independenceReason = "";
         if (secondSourceRequiredAtStage(pendingPrecheck.currentStage, secondSourceRequired) && secondSourceNodeId) {
+          const secondReadable = await authorizeNode(secondSourceNodeId, { id: learnerId }, "view");
+          if (!secondReadable.ok && secondReadable.reason === "unavailable") return bad(503, "access_unavailable");
           const quoteEvidence = await loadLearnerQuoteEvidence(learnerId);
-          secondSourceWasQuoted = quoteEvidence.some((q) => q.nodeId === secondSourceNodeId);
+          secondSourceWasQuoted = secondReadable.ok && quoteEvidence.some((q) => q.nodeId === secondSourceNodeId);
           if (secondSourceWasQuoted) {
             const { data: sourceNodes } = await svc.from("nodes").select("id,provenance").in("id", [pendingPrecheck.nodeId, secondSourceNodeId]);
             const byId = new Map(((sourceNodes || []) as { id: string; provenance: Provenance | null }[]).map((n) => [n.id, n.provenance || undefined]));
@@ -437,17 +335,9 @@ export async function POST(req: NextRequest) {
           secondSourceIndependent,
         });
         if (!secondSourceGate.ok) {
-          // The attempt stays held: neither gate above consumed it, so a
-          // retry on the same attemptId with a real second source
-          // attached can still succeed. The tutor NAMES the gap
-          // (secondSourceGate.message, a fixed code-level string); it
-          // never picks or supplies a source itself.
           return bad(400, secondSourceGate.message);
         }
 
-        // Both gates cleared: the real, consuming reveal. Re-runs the
-        // same forcing check (deterministic, same inputs), then deletes
-        // the row (single-use).
         const reveal = await dbRevealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
         if (!reveal.ok) {
           if (reveal.reason === "not_found") return bad(404, "check_attempt_not_found");
@@ -455,9 +345,6 @@ export async function POST(req: NextRequest) {
         }
         const { attempt: pending, learnerConfidence: learnerConfidenceRaw, sourcePrediction, predictionCorrect } = reveal;
 
-        // ros-14: recomputed at reveal time (this file's computeGuidanceForNode
-        // header explains why). A pending attempt's own node.branch is not
-        // stored on it, so this one extra lookup resolves it first.
         const { data: pendingNode } = await svc.from("nodes").select("branch").eq("id", pending.nodeId).maybeSingle();
         const revealGuidance = pendingNode ? await computeGuidanceForNode(learnerId, pending.nodeId, pendingNode.branch as string) : "medium";
 
@@ -478,14 +365,14 @@ export async function POST(req: NextRequest) {
             guidanceLevel: revealGuidance,
           },
         );
-        await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        try {
+          await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
 
-        // Corroboration record (task item 3): only when a second source
-        // was required AND attached to this attempt, never for an
-        // Awareness-tier attempt or an arm with the switch off, so
-        // production-guard.ts's lateralReadingFlag stays an accurate
-        // "single-source" read for a learner who was never asked to
-        // corroborate.
         if (secondSourceGate.secondSourceRequired && secondSourceNodeId) {
           const corroboration = onCorroborationRecorded(transition.nextStage, {
             sessionId: pending.sessionId,
@@ -494,7 +381,13 @@ export async function POST(req: NextRequest) {
             independenceReason,
             passagesAgree: Boolean(body.passagesAgree),
           });
-          await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          try {
+            await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+          } catch (err) {
+            const mapped = evidenceErrorResponse(err);
+            if (mapped) return mapped;
+            throw err;
+          }
         }
 
         logToolCall("check", learnerId, pending.sessionId, {
@@ -527,15 +420,16 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      // Phase 1: submit the explanation and grade it. The verdict is
-      // computed here but is only ever returned immediately when this
-      // learner's own arm has forcing off; otherwise it is held (see
-      // src/lib/research-os/forcing.ts's module header) until phase 2
-      // above supplies the commit step.
       const explanation = (body.explanation || "").trim();
       if (!nodeId) return bad(400, "nodeId is required");
       if (!explanation) return bad(400, "explanation is required");
       if (explanation.length > MAX_EXPLANATION_CHARS) return bad(400, "explanation too long");
+
+      const continuable = await authorizeNode(nodeId, { id: learnerId }, "continue");
+      if (!continuable.ok) {
+        if (continuable.reason === "unavailable") return bad(503, "access_unavailable");
+        return bad(404, "node_not_found");
+      }
 
       const { data: node, error: nodeErr } = await svc
         .from("nodes")
@@ -548,22 +442,22 @@ export async function POST(req: NextRequest) {
       const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
       let prereqSummaries: { title: string; summary: string | null }[] = [];
       if (prereqIds.length) {
-        const { data: prereqNodes } = await svc.from("nodes").select("title,summary").in("id", prereqIds);
-        prereqSummaries = prereqNodes || [];
+        const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
+        if (!readablePrereqs.ok) return bad(503, "access_unavailable");
+        if (readablePrereqs.allowed.length) {
+          const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+          if (prereqErr) return bad(503, "access_unavailable");
+          prereqSummaries = prereqNodes || [];
+        }
+      }
+      if (prereqIds.length > 0 && prereqSummaries.length === 0) {
+        return bad(409, "check_grounding_unavailable");
       }
 
-      // ros-14: an authoritative guidance level (computeGuidanceForNode
-      // above), reused unchanged for the "check" evidence event and the
-      // response whichever path below is taken (forcing off, or the phase-2
-      // reveal once forcing commits).
       const guidance = await computeGuidanceForNode(learnerId, nodeId, node.branch);
 
       let safe: Awaited<ReturnType<typeof gradeExplanation>>;
       if (!llmEnabled()) {
-        // ros-23: no model. The learner's verdict against their own quotes,
-        // graded by a fixed rubric (deterministic.ts). The quotes come from
-        // the client's evidence list; at least one quote event must exist
-        // on this node in the learner's own evidence log.
         const quoted = (await loadLearnerQuoteEvidence(learnerId)).some((q) => q.nodeId === nodeId);
         const quotes = quoted && Array.isArray(body.quotes) ? body.quotes.filter((q) => q && typeof q.citation === "string") : [];
         safe = { ...deterministicCheck({ explanation, quotes, verdict: body.verdict }), usage: null };
@@ -593,17 +487,18 @@ export async function POST(req: NextRequest) {
       const forcingEnabled = resolveForcingEnabled(classForcingOverride);
 
       if (!forcingEnabled) {
-        // Comparison arm (or RESEARCH_OS_FORCING_ENABLED=false): the
-        // pre-forcing behavior, verdict revealed immediately, logged with
-        // forcingEnabled:false so analysis can tell this arm apart from
-        // the default-on arm using the evidence log alone. guidanceLevel
-        // (ros-14) is independent of forcing and is logged either way.
         const transition = onCheckResult(
           currentStage,
           { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
           { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false, guidanceLevel: guidance },
         );
-        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        try {
+          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch (err) {
+          const mapped = evidenceErrorResponse(err);
+          if (mapped) return mapped;
+          throw err;
+        }
         logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false, guidance });
 
         return NextResponse.json(
@@ -634,12 +529,6 @@ export async function POST(req: NextRequest) {
       });
       logToolCall("check", learnerId, sessionId, { nodeId, forcingEnabled: true, forcingRequired: true, guidance });
 
-      // No result/confidence/feedback/citations key anywhere in this body:
-      // the whole point of the held attempt is that nothing in this
-      // response can be read as the verdict. `guidance` (ros-14) is safe to
-      // include, it is a display-only scaffolding level, never the graded
-      // result; the reveal call above recomputes its own authoritative
-      // value rather than trusting whatever this response said.
       return NextResponse.json({ attemptId: newAttemptId, forcingRequired: true, forcingEnabled: true, guidance }, { headers: { "cache-control": "no-store" } });
     }
 
@@ -650,8 +539,6 @@ export async function POST(req: NextRequest) {
       if (!claim && !evidenceNotes && !sourceNotes) return bad(400, "at least one field is required");
 
       if (!llmEnabled()) {
-        // ros-23: no model. The learner's own notes split into the scaffold,
-        // nothing added (deterministic.ts).
         const safe = deterministicOrganize({ claim, evidenceNotes, sourceNotes });
         logToolCall("organize", learnerId, sessionId, { abstained: false, claimKept: Boolean(safe.claim), evidenceKept: safe.evidence.length, sourcesKept: safe.sources.length, mode: "deterministic" });
         return NextResponse.json(safe, { headers: { "cache-control": "no-store" } });
@@ -693,13 +580,6 @@ Respond with ONLY a JSON object, no markdown fences:
       }
       logToolCost("organize", learnerId, provider, usage);
 
-      // Contract enforcement (task item 2, organize.ts's own header): a
-      // parseable-but-adversarial model response is run through
-      // groundOrganizeResult, which drops any item not grounded in the
-      // matching input field, in code. A totally unparseable response (the
-      // model ignored the "JSON only" instruction) falls back to echoing
-      // the learner's own raw notes verbatim, never to any model text --
-      // the same fail-safe posture parseModelJson documents for Check.
       const parsed = parseModelJson<OrganizeModelOutput>(text);
       const safe = parsed
         ? groundOrganizeResult(parsed, { claim, evidenceNotes, sourceNotes })
@@ -713,4 +593,4 @@ Respond with ONLY a JSON object, no markdown fences:
     default:
       return bad(400, "action must be one of locate, quote, check, organize");
   }
-}
+});

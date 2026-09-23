@@ -1,10 +1,3 @@
-/**
- * "Test yourself", a port of learning/app/js/assess.js: a sealed run of
- * quiz items answered before the answer is shown, graded on the spot where
- * the canonical answer reduces to a number or a short symbolic value, and
- * self-checked otherwise. Internal signal that sharpens the proficiency
- * estimate; never a credential. Pure.
- */
 import type { Atom, Depth } from "./engine";
 import type { Card, Rating } from "./fsrs";
 
@@ -63,7 +56,6 @@ export interface Salient {
   unit: string;
 }
 
-/** The last number (with its unit) after the last "=", or in the whole string. */
 export function extractSalientNumber(str: unknown): Salient | null {
   const s = asciiMath(str);
   const eq = s.lastIndexOf("=");
@@ -100,7 +92,6 @@ export interface Verdict {
   reason: string;
 }
 
-/** Grade typed input against the corpus answer: numeric with tolerance and loose units, short symbolic by normalized equality, else not gradable. */
 export function gradeAnswer(userInput: unknown, canonicalAnswer: unknown, opts: { rel?: number; abs?: number } = {}): Verdict {
   const raw = userInput == null ? "" : String(userInput).trim();
   const canon = canonicalAnswer == null ? "" : String(canonicalAnswer).trim();
@@ -140,7 +131,6 @@ export interface Run {
   createdAt: number;
 }
 
-/** A sealed spread across started (else all) atoms, due ones first, one item per atom then a harder second pass, levels round-robin. */
 export function buildRun(atoms: Atom[], cardFor: (id: string) => Card | null | undefined, opts: { size?: number; conceptIds?: string[]; levels?: Depth[]; rng?: () => number; now?: number } = {}): Run {
   const size = Math.max(ASSESS.MIN_RUN_SIZE, opts.size ?? ASSESS.DEFAULT_RUN_SIZE);
   const rng = opts.rng ?? Math.random;

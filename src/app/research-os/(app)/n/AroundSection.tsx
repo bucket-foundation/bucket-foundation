@@ -21,20 +21,24 @@ function NodeList({ items, empty }: { items: Lite[]; empty: string }) {
   );
 }
 
-/** Awareness, in place: what this node rests on, what rests on it, where it leads, and what it touches across branches. */
 export default function AroundSection({ data }: { data: NodeData }) {
   const { prerequisites, dependents, related, directions } = data;
   const reach = directions.reach.reduce((a, b) => a + b, 0);
   return (
     <Section id="around" level="awareness" title="around" meta={reach ? `${reach} nodes within three steps` : undefined}>
+      {data.graphUnavailable && (
+        <p className="mb-3 text-[13px] text-red-700">The graph around this node did not load. Reload the page; the lists below are empty until it does.</p>
+      )}
       <div className="grid md:grid-cols-2 gap-5">
         <div>
-          <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">rests on</h3>
-          <NodeList items={prerequisites} empty="A root: nothing before it." />
+          <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2" title="Prerequisite edges: what the learning path puts first. What the node is made of is under Made of.">
+            learned after
+          </h3>
+          <NodeList items={prerequisites} empty={data.graphUnavailable ? "Not loaded." : "A starting point: nothing comes before it in learning order."} />
         </div>
         <div>
           <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">unlocks</h3>
-          <NodeList items={dependents} empty="Nothing rests on it yet." />
+          <NodeList items={dependents} empty={data.graphUnavailable ? "Not loaded." : "Nothing comes after it in learning order yet."} />
         </div>
         <div>
           <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">where it leads</h3>

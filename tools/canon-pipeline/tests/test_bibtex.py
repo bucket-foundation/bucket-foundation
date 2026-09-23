@@ -1,15 +1,12 @@
 import bibtex
 
-
 def test_cite_key_basic():
     rec = {"authors": [{"family": "Alvarez", "given": "Luis"}], "year": 1980, "title": "The Chicxulub impact"}
     assert bibtex.cite_key(rec) == "alvarez1980chicxulub"
 
-
 def test_cite_key_stopwords_skipped():
     rec = {"authors": [{"family": "Shannon", "given": "Claude"}], "year": 1948, "title": "A Mathematical Theory of Communication"}
     assert bibtex.cite_key(rec) == "shannon1948mathematical"
-
 
 def test_bibtex_emits_article():
     rec = {

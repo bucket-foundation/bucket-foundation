@@ -1,11 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-
-// Consent and the payee on the profile (ros-32): where the learner's
-// consent comes from (adult, the school exception, a verified vendor, a
-// recorded parent consent), the path still needed, a way to start it, and
-// for anyone under 18 the guardian or custodial payee with visibility on.
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 
 interface ConsentView {
   profile: { birthYearBucket: string | null; consentStatus: string } | null;
@@ -47,6 +43,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
   const [payeeType, setPayeeType] = useState<"self" | "guardian" | "custodial">("guardian");
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [loadNote, setLoadNote] = useState<string | null>(null);
 
   const headers = useCallback((): Record<string, string> => (token ? { Authorization: `Bearer ${token}` } : {}), [token]);
 
@@ -54,17 +51,24 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
     if (!token) return;
     try {
       const [c, p] = await Promise.all([
-        fetch("/api/research-os/consent", { headers: headers(), cache: "no-store" }),
-        fetch("/api/research-os/payee", { headers: headers(), cache: "no-store" }),
+        fetch("/api/research-os/consent", { headers: headers(), cache: "no-store" }).then(async (r) => ({ r, transient: !r.ok && isTransientOutage(r.status, await readErrorCode(r)) })),
+        fetch("/api/research-os/payee", { headers: headers(), cache: "no-store" }).then(async (r) => ({ r, transient: !r.ok && isTransientOutage(r.status, await readErrorCode(r)) })),
       ]);
-      if (c.ok) setConsent((await c.json()) as ConsentView);
-      if (p.ok) {
-        const pv = (await p.json()) as PayeeView;
+      if (c.r.ok) {
+        setConsent((await c.r.json()) as ConsentView);
+        setLoadNote(null);
+      } else {
+        setLoadNote(c.transient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
+      }
+      if (p.r.ok) {
+        const pv = (await p.r.json()) as PayeeView;
         setPayee(pv);
         if (pv.payeeType) setPayeeType(pv.payeeType);
+      } else {
+        setLoadNote(p.transient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
       }
     } catch {
-      /* unavailable */
+      setLoadNote(OUTAGE_COPY.body);
     }
   }, [token, headers]);
 
@@ -82,7 +86,14 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
         body: JSON.stringify({ action: "request", vendor, guardianContact: contact }),
       });
       const j = (await res.json().catch(() => ({}))) as { error?: string; url?: string | null };
-      if (!res.ok) setNote(j.error === "vendor_not_configured" ? "That vendor is not connected yet; ask your teacher to record consent, or pick the manual path." : j.error ?? "failed");
+      if (!res.ok)
+        setNote(
+          isTransientOutage(res.status, j.error ?? null)
+            ? OUTAGE_COPY.body
+            : j.error === "vendor_not_configured"
+              ? "That vendor is not connected yet; ask your teacher to record consent, or pick the manual path."
+              : (j.error ?? "failed"),
+        );
       else setNote(j.url ? `Consent started. A parent completes it at ${j.url}` : "Consent requested. Your teacher or librarian records it once a parent has said yes.");
       setContact("");
       await load();
@@ -102,7 +113,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setNote(j.error ?? "failed");
+        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? "failed"));
       } else {
         setContact("");
       }
@@ -112,11 +123,22 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
     }
   }
 
-  if (!token || !consent) return null;
+  if (!token) return null;
+  if (!consent)
+    return loadNote ? (
+      <p role="alert" className="mt-10 text-[13px] text-[color:var(--gold-deep)]">
+        {loadNote}
+      </p>
+    ) : null;
   const minor = consent.profile?.birthYearBucket === "under13" || consent.profile?.birthYearBucket === "13to17";
 
   return (
     <section className="mt-10 grid gap-6">
+      {loadNote && (
+        <p role="alert" className="text-[13px] text-[color:var(--gold-deep)]">
+          {loadNote}
+        </p>
+      )}
       <div>
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-2">§ consent</div>
         <p className="text-[14px]">

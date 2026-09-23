@@ -1,6 +1,3 @@
-// /canon, the seven-branch grid + interactive armillary globe.
-// Build-time render. The repo IS the CMS.
-
 import Link from "next/link";
 import { getBranches } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
@@ -79,10 +76,10 @@ export default function Page() {
               ⌕  search canon
             </Link>
             <Link
-              href="/canon/claims"
+              href="/excerpts"
               className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
             >
-              ◯  599 claim cards
+              ◯  599 source excerpts
             </Link>
             <Link
               href="/canon/bridges"
@@ -119,11 +116,6 @@ export default function Page() {
             <Stat label="canon entries" value={String(totalEntries)} />
           </div>
 
-          {/* Gap-analysis bar, per-branch claim-count visualisation.
- Coverage relative to the deepest branch (currently 05-biophysics
- at 198 cards). Bars dim when a branch is sparse, full when
- dense. Lets visitors see exactly where the canon is thin
- without clicking each branch. */}
           <div className="mt-10 max-w-3xl">
             <div className="small-caps text-[10px] text-[color:var(--parchment-dim)] mb-3 tracking-[0.2em]">
               live coverage · click any branch for detail
@@ -204,8 +196,6 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-// Branch coverage bar, per-branch claim-count viz. Reads claim cards
-// directly off disk at build time. Bars dim when sparse, gold when dense.
 import fs from "fs";
 import path from "path";
 
@@ -262,7 +252,7 @@ function CoverageBar({ branches }: { branches: BranchLike[] }) {
               key={c.slug}
               href={`/canon/${c.slug}`}
               className="block group"
-              title={`${c.count} claim cards in ${c.name}`}
+              title={`${c.count} source excerpts in ${c.name}`}
             >
               <div className="flex items-center gap-3">
                 <div
@@ -293,7 +283,7 @@ function CoverageBar({ branches }: { branches: BranchLike[] }) {
         })}
       </div>
       <div className="mt-3 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
-        {total} claim cards · {counts.filter((c) => c.count > 0).length} of {counts.length} branches active
+        {total} source excerpts · {counts.filter((c) => c.count > 0).length} of {counts.length} branches active
       </div>
     </div>
   );

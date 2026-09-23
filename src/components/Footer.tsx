@@ -1,7 +1,7 @@
 import Link from "next/link";
 import InverseOmega from "./InverseOmega";
 
-export default function Footer() {
+export default function Footer({ launchList = false }: { launchList?: boolean }) {
   return (
     <footer className="relative z-[2] mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-10 text-[color:var(--bone-3)]">
@@ -44,7 +44,8 @@ export default function Footer() {
             <li><Link href="/canon/bridges" className="hover:text-[color:var(--bone)] transition">Bridges</Link></li>
             <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
             <li><Link href="/canon/timeline" className="hover:text-[color:var(--bone)] transition">Timeline</Link></li>
-            <li><Link href="/canon/claims" className="hover:text-[color:var(--bone)] transition">All claims</Link></li>
+            <li><Link href="/earth" className="hover:text-[color:var(--bone)] transition">Earth data globe</Link></li>
+            <li><Link href="/excerpts" className="hover:text-[color:var(--bone)] transition">Source excerpts</Link></li>
             <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
             <li><Link href="/protocol" className="hover:text-[color:var(--bone)] transition">Protocol, feed402/x402</Link></li>
@@ -59,12 +60,12 @@ export default function Footer() {
             <li><Link href="/mission" className="hover:text-[color:var(--bone)] transition">Mission · reform education</Link></li>
             <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
             <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
-            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Publish research</Link></li>
+            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Research</Link></li>
             <li><Link href="/research/papers" className="hover:text-[color:var(--bone)] transition">Atlas papers</Link></li>
             <li><Link href="/research/education" className="hover:text-[color:var(--bone)] transition">Education research</Link></li>
             <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>
             <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
-            <li><Link href="/sign-in" className="hover:text-[color:var(--bone)] transition">Sign in</Link></li>
+            <li><Link href="/sign-in" className="hover:text-[color:var(--bone)] transition">{launchList ? "Launch list" : "Sign in"}</Link></li>
           </ul>
         </div>
 

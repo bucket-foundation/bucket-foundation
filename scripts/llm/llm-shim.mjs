@@ -1,23 +1,4 @@
 #!/usr/bin/env node
-/**
- * Bucket Academy LLM auth-shim.
- *
- * Sits in front of the local llama.cpp server (127.0.0.1:11435) and is the ONLY
- * thing exposed through the cloudflared tunnel. Raw llama-server has no auth, so
- * we never tunnel it directly. The shim:
- *   - requires `Authorization: Bearer <LLM_SHIM_SECRET>` on /v1/* requests
- *   - forwards approved requests to the upstream llama-server
- *   - only proxies the OpenAI-compatible surface the tutor uses
- *   - exposes an unauthenticated GET /health for the tunnel/uptime checks
- *
- * Zero dependencies (Node built-in http only) so it runs as a plain systemd
- * --user service with no install step.
- *
- * Env:
- *   LLM_SHIM_PORT     (default 11500)  — port the shim listens on
- *   LLM_UPSTREAM      (default http://127.0.0.1:11435) — llama-server base
- *   LLM_SHIM_SECRET   (required)       — bearer token clients must present
- */
 import http from "node:http";
 
 const PORT = Number(process.env.LLM_SHIM_PORT || 11500);
@@ -29,7 +10,6 @@ if (!SECRET) {
   process.exit(1);
 }
 
-// Constant-time-ish compare to avoid trivial timing leaks.
 function tokenOk(header) {
   if (!header) return false;
   const m = /^Bearer\s+(.+)$/i.exec(header.trim());
@@ -42,13 +22,11 @@ function tokenOk(header) {
   return diff === 0;
 }
 
-// Only these upstream paths are reachable through the shim.
 const ALLOW = new Set(["/v1/chat/completions", "/v1/models", "/v1/completions"]);
 
 const server = http.createServer((req, res) => {
   const url = req.url || "/";
 
-  // Unauthenticated liveness probe for the tunnel + uptime checks.
   if (req.method === "GET" && (url === "/health" || url === "/healthz")) {
     res.writeHead(200, { "content-type": "application/json" });
     res.end(JSON.stringify({ status: "ok", upstream: UPSTREAM }));

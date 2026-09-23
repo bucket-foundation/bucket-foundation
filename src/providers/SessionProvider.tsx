@@ -1,12 +1,5 @@
 "use client";
 
-/**
- * The site session for client components. Seeds from the cookie-backed
- * browser client on mount and follows onAuthStateChange, so the header,
- * the Research OS pages, and the Academy bridge all read one state. The
- * root layout mounts it once; no server call is made here, so static pages
- * stay static.
- */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
@@ -17,12 +10,9 @@ export interface SessionUser {
 }
 
 interface SessionState {
-  /** false once the first getSession has resolved. */
   loading: boolean;
-  /** Sign-in is configured on this deployment. */
   enabled: boolean;
   user: SessionUser | null;
-  /** The current access token, for callers that still send a Bearer header. */
   accessToken: string | null;
   signOut: () => Promise<void>;
 }

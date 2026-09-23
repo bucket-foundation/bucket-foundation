@@ -1,0 +1,115 @@
+{
+  "result": {
+    "job_id": "j_247460cad93a4892a57d",
+    "tool": "timeseriesforecast",
+    "render": "json",
+    "output": {
+      "demo": true,
+      "n_points": 48,
+      "seasonal_period": 12,
+      "model": "Holt-Winters additive (triple exponential smoothing)",
+      "smoothing": {
+        "alpha": 0,
+        "beta": 0.0389,
+        "gamma": 1
+      },
+      "in_sample_sse": 5.933997,
+      "forecast_horizon": 12,
+      "forecast": [
+        33.814008,
+        37.089108,
+        38.978808,
+        40.290308,
+        40.187108,
+        38.842908,
+        36.456308,
+        34.846608,
+        33.901308,
+        32.859708,
+        34.751508,
+        36.859608
+      ],
+      "decomposition": {
+        "seasonal_indices": [
+          0.125889,
+          2.590278,
+          4.1283,
+          5.111782,
+          4.311536,
+          2.580986,
+          -0.217376,
+          -2.425241,
+          -4.545058,
+          -5.05208,
+          -4.193082,
+          -2.415934
+        ],
+        "trend_strength": 0.9993,
+        "seasonal_strength": 0.9972
+      },
+      "backtest": {
+        "holdout_size": 12,
+        "params": {
+          "alpha": 0,
+          "beta": 0.0637,
+          "gamma": 1
+        },
+        "MAE": 0.347101,
+        "RMSE": 0.426491,
+        "MAPE_pct": 1.1276,
+        "predicted": [
+          27.870808,
+          30.767708,
+          32.398908,
+          34.162208,
+          34.139408,
+          32.857808,
+          30.364808,
+          28.680508,
+          27.200108,
+          27.081108,
+          28.811908,
+          30.581508
+        ],
+        "actual": [
+          27.9902,
+          31.2653,
+          33.155,
+          34.4665,
+          34.3633,
+          33.0191,
+          30.6325,
+          29.0228,
+          28.0775,
+          27.0359,
+          28.9277,
+          31.0358
+        ],
+        "naive_baseline": {
+          "MAE": 5.9916,
+          "RMSE": 6.479524,
+          "MAPE_pct": 18.9667
+        }
+      },
+      "used_statsmodels": false,
+      "method": "Holt-Winters exponential smoothing (Holt 1957; Winters 1960): level/trend/seasonal recursion with additive seasonality, smoothing parameters α/β/γ fit by minimizing in-sample SSE (grid + scipy Nelder-Mead refinement). Classical additive decomposition via a centered moving average. Accuracy is the holdout backtest (MAE/RMSE/MAPE) on the last points rather than in-sample fit. statsmodels is used for ARIMA/HW if installed; the default numpy implementation is exact and dependency-light.",
+      "note": "DEMO: 48 months of (linear trend + 12-period seasonality + small noise). The seasonal Holt-Winters forecast beats the naive baseline on the 12-month holdout. Universal tool (econ-social, earth-climate, any measured series): the backtest error is the accuracy number; a naive last-value baseline is reported for context, a forecast that does not beat it adds nothing. Confidence intervals + ARIMA model selection are a documented follow-up.",
+      "ground_truth": {
+        "seasonal_period": 12,
+        "hw_beats_naive_on_holdout": true
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "timeseriesforecast",
+        "at": "2026-09-23T03:48:21.730590+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

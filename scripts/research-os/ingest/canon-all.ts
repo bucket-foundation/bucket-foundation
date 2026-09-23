@@ -1,35 +1,14 @@
-/**
- * Everything researched, into one graph (learning/research-os/IDEAL-STATE.md).
- *
- * Reads, from the repo:
- *   claim cards      bucket-canon/<branch>/sub-claims/<concept>/*.md   (src/lib/canon-claims.ts)
- *   primary papers   bucket-canon/**\/primary-papers.yaml               (src/lib/canon-primary.ts)
- *   figures          canon-figures/figures.json
- *   sites, events    src/data/canon-sites.json, src/data/canon-timeline.json
- *   bridges          _intake/embeddings-v2/clusters.json (cross-branch clusters)
- *
- * Writes nodes: one `concept` per claim folder, one `fact` or `law` per
- * claim, one `primary_source` per paper, one `figure`, one `site` per
- * entry, one `concept` per bridge cluster. Edges: claim example_of concept;
- * claim derives_from the Academy atom it rests on (the linker); paper
- * cites the atom it rests on; figure contributes to the concepts of its
- * branches it names; figure authored a paper by author name; bridge
- * bridges each member claim. Idempotent on slug and (from, to, kind).
- *
- * Run from the repo root, after academy-import.ts:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/canon-all.ts
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/canon-all.ts --apply
- */
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { getAllClaims, type ClaimCard } from "../../../src/lib/canon-claims";
 import { loadPrimaryPapers, authorsShort, type PrimaryPaper } from "../../../src/lib/canon-primary";
-import { isLawFolder } from "../../../src/lib/research-os/ingest/canon";
 import { academyNodeSlug } from "../../../src/lib/research-os/ingest/academy";
 import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../../src/lib/research-os/ingest/types";
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
+import { splitImport } from "../../../src/lib/research-os/medallion/proposals";
+import { existingFactorEdges, existingNodeIds, graphClient, shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -88,7 +67,6 @@ function main() {
   const atomTier = new Map(atoms.map((a) => [a.slug, a.tier]));
   const counts = { concepts: 0, claims: 0, claimLinks: 0, papers: 0, paperLinks: 0, figures: 0, figureLinks: 0, sites: 0, bridges: 0, bridgeLinks: 0 };
 
-  // 1. Claims and their concepts.
   const claims = getAllClaims();
   const conceptSlug = (c: ClaimCard) => `canon-${c.branch}-${slugifyPart(c.concept)}`;
   for (const c of claims) {
@@ -104,22 +82,21 @@ function main() {
     push({
       slug,
       title,
-      kind: isLawFolder(c.concept) ? "law" : "fact",
+      kind: "excerpt",
       tier,
       branch: c.branch,
       summary: c.excerpt.slice(0, 600) || null,
       labels: { en: { title } },
-      provenance: { type: "canon_claim", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
+      provenance: { type: "source_excerpt", branch: c.branch, concept: c.concept, claim_slug: c.slug, url: c.url, video: c.videoTitle, timestamp: c.timestamp, score: c.score, cross_concepts: c.crossConcepts, captured_at: c.capturedAt },
     });
     counts.claims++;
     edges.push({ fromSlug: slug, toSlug: cs, kind: "example_of", confidence: 1, confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "claim_in_concept" } });
     for (const h of hits) {
-      edges.push({ fromSlug: slug, toSlug: h.id, kind: "derives_from", confidence: Math.min(0.9, 0.5 + h.score), confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "lexical", score: h.score, shared: h.shared } });
+      edges.push({ fromSlug: slug, toSlug: h.id, kind: "cites", confidence: Math.min(0.9, 0.5 + h.score), confidenceSource: "canon_map", provenance: { type: "canon_all", rule: "lexical", score: h.score, shared: h.shared } });
       counts.claimLinks++;
     }
   }
 
-  // 1b. Concepts to mastery: each claim folder, as one text, to the atoms it rests on.
   const conceptText = new Map<string, string[]>();
   for (const c of claims) {
     const cs = conceptSlug(c);
@@ -134,7 +111,6 @@ function main() {
     }
   });
 
-  // 2. Primary papers from every branch.
   const papers = loadPrimaryPapers();
   const paperSlug = (p: PrimaryPaper) => `paper-${slugifyPart(p.id || p.doi || p.title).slice(0, 80)}`;
   for (const p of papers) {
@@ -159,7 +135,6 @@ function main() {
     }
   }
 
-  // 3. Figures.
   const figures = readJson<{ figures: { id: string; name: string; lifespan?: string; era?: string; region?: string; tradition?: string; branches?: string[]; cross_branches?: string[]; primary_works?: { title: string; year?: string }[]; summary?: string; why_canon?: string }[] }>("canon-figures/figures.json");
   const paperByAuthor = papers.map((p) => ({ slug: paperSlug(p), families: p.authors.map((a) => a.family.toLowerCase()) }));
   for (const f of figures?.figures ?? []) {
@@ -185,14 +160,12 @@ function main() {
     }
   }
 
-  // 4. Sites and events on the globe.
   const sites = readJson<{ sites: { id: string; title: string; lat: number; lng: number; year: number; civilization?: string; wikipedia?: string; unesco?: string; lidar?: string; branch?: string; kind?: string }[] }>("src/data/canon-sites.json");
   for (const s of sites?.sites ?? []) {
     push({ slug: `site-${slugifyPart(s.id)}`, title: s.title, kind: "site", tier: 13, branch: s.branch ? (/^\d{2}-/.test(s.branch) ? s.branch : `08-${s.branch}`) : "08-deep-history", summary: [s.civilization, s.year < 0 ? `${-s.year} BCE` : `${s.year} CE`].filter(Boolean).join(" · "), labels: { en: { title: s.title } }, provenance: { type: "canon_site", site_id: s.id, lat: s.lat, lng: s.lng, year: s.year, wikipedia: s.wikipedia ?? null, unesco: s.unesco ?? null, lidar: s.lidar ?? null } });
     counts.sites++;
   }
 
-  // 5. Bridges: cross-branch clusters over the claims.
   const clusters = readJson<{ clusters: { cluster_id: number; size: number; branches: string[]; bridge_score: number; exemplar: { branch: string; concept: string; title: string }; members: { branch: string; concept: string; title: string }[] }[] }>("_intake/embeddings-v2/clusters.json");
   const claimByKey = new Map(claims.map((c) => [`${c.branch}|${c.concept}|${clean(c.title).slice(0, 180)}`, `claim-${c.branch}-${slugifyPart(c.concept)}-${slugifyPart(c.slug).slice(0, 60)}`]));
   for (const cl of clusters?.clusters ?? []) {
@@ -210,8 +183,28 @@ function main() {
   }
 
   console.log(`[canon-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (!APPLY) return;
-  void apply(nodes, edges);
+  void finish(nodes, edges);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
+  const medallion = shadowRequested();
+  if (!APPLY) {
+    if (medallion) await shadowWrite("canon-all", nodes);
+    return;
+  }
+  if (!medallion) {
+    await apply(nodes, edges);
+    return;
+  }
+  const svc = graphClient("canon-all");
+  const known = await existingNodeIds(svc, nodes.map((n) => n.slug));
+  const split = splitImport(nodes, edges, new Set(known.keys()), await existingFactorEdges(svc, edges));
+  console.log(
+    `[canon-all] medallion split: ${split.goldNodes.length} gold nodes, ${split.proposedNodes.length} new nodes to review, ` +
+      `${split.directEdges.length} direct edges, ${split.factorEdges.length} factor edges to review, ${split.factorEdgesInGold.length} factor edges already in gold left as they are.`,
+  );
+  await apply(split.goldNodes, split.directEdges);
+  await shadowWrite("canon-all", { nodes, factorEdges: split.factorEdges, proposedNodes: split.proposedNodes });
 }
 
 async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
@@ -231,7 +224,8 @@ async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
   }
   const missing = Array.from(new Set(edges.flatMap((e) => [e.fromSlug, e.toSlug]).filter((s) => !idBySlug.has(s))));
   for (let i = 0; i < missing.length; i += 200) {
-    const { data } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 200));
+    const { data, error } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 200));
+    if (error) throw new Error(`slug resolution failed: ${error.message}`);
     ((data as { id: string; slug: string }[]) || []).forEach((r) => idBySlug.set(r.slug, r.id));
   }
   const rows = edges
@@ -243,6 +237,9 @@ async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
     if (error) throw new Error(`edge upsert failed: ${error.message}`);
     written += Math.min(500, rows.length - i);
   }
+  const { data: raised, error: tierErr } = await svc.rpc("enforce_prerequisite_tiers");
+  if (tierErr) throw new Error(`enforce_prerequisite_tiers failed: ${tierErr.message}`);
+  if (typeof raised === "number" && raised > 0) console.log(`raised ${raised} grade tiers to keep learning order monotone`);
   console.log(`[canon-all] wrote ${idBySlug.size >= nodes.length ? nodes.length : idBySlug.size} nodes, ${written} edges (${edges.length - rows.length} skipped).`);
 }
 

@@ -1,15 +1,3 @@
-"""A thread-pool `pmap` for the engine loop's per-hypothesis `claude -p`
-calls (critic, preservation critique, judge), each 20-40 seconds and, in
-`hte.runner.run_campaign` today, called strictly one at a time.
-
-`pmap` maps a function over a list of items through a
-`concurrent.futures.ThreadPoolExecutor`, preserving input order by
-default, retrying a failed item with exponential backoff, and treating
-`RateLimit` (below) as a signal to pause every worker rather than fail
-the one item that raised it. Nothing here calls `hte.llm` or knows what a
-hypothesis is: `hte.runner`/`hte.roles` wire this module in by passing it
-a plain callable, the same shape `map()` itself would take.
-"""
 from __future__ import annotations
 
 import os
@@ -27,34 +15,13 @@ _WORKERS_ENV = "HTE_LLM_WORKERS"
 
 _ON_ERROR_MODES = ("raise", "skip", "default")
 
-
 class RateLimit(Exception):
-    """Raised by `hte.llm.complete` when the `claude` CLI's stdout or
-    stderr carries a 429, "rate limit", "spend limit", or "usage limit"
-    marker. `pmap` catches this exception itself, rather than treating it
-    as an ordinary per-item failure: every worker pauses for the same
-    backoff window before the item that raised it is retried.
-
-    `reset_hint` carries whatever human-readable reset time or window the
-    CLI's own error text named ("retry after 3600 seconds", "resets in 2
-    hours", ...), or `None` when it named none. `hte.llm`'s own detector
-    fills this in when it can; nothing in this module tries to parse a
-    hint out of a message that does not already carry one.
-    """
 
     def __init__(self, message: str, *, reset_hint: str | None = None) -> None:
         super().__init__(message)
         self.reset_hint = reset_hint
 
-
 class RateLimitAborted(RuntimeError):
-    """`pmap` raises this once `max_rate_limit_pauses` CONSECUTIVE pauses
-    (no item's own success in between any of them, `FINDING-2026-09-10-
-    101`'s own fix) have fired inside one call and the rate limit still
-    has not cleared. The message names the pause count and, when the CLI
-    printed one, the reset hint carried on the `RateLimit` that triggered
-    the last pause, so a caller reading this from a log line knows how
-    long to wait before rerunning the campaign."""
 
     def __init__(self, pauses: int, reset_hint: str | None) -> None:
         hint = f" The CLI's own reset hint: {reset_hint}." if reset_hint else ""
@@ -68,40 +35,13 @@ class RateLimitAborted(RuntimeError):
         self.pauses = pauses
         self.reset_hint = reset_hint
 
-
 def configure(workers: int | None = None) -> int:
-    """Resolve a worker count for one `pmap` call. An explicit `workers`
-    argument wins; `None` falls back to the `HTE_LLM_WORKERS` environment
-    variable, then to `DEFAULT_WORKERS`. Every path is clamped to
-    `[1, MAX_WORKERS]`: more than `MAX_WORKERS` concurrent `claude -p`
-    subprocesses is not a configuration this package supports, so a
-    larger request is honored only up to the cap rather than rejected."""
     if workers is None:
         raw = os.environ.get(_WORKERS_ENV)
         workers = int(raw) if raw else DEFAULT_WORKERS
     return max(1, min(MAX_WORKERS, int(workers)))
 
-
 class _RateLimitGate:
-    """State one `pmap` call's workers share to coordinate a global
-    pause: any worker hitting `RateLimit` extends `_paused_until` for
-    every worker, not only itself, and increments the shared pause count.
-    A worker past `max_pauses` is told to abort instead of pausing again.
-
-    Fixed 2026-09-10 (`FINDING-2026-09-10-101`): `_pauses` counts
-    CONSECUTIVE pauses with no progress in between, reset by any success
-    rather than accumulated as a lifetime total across the whole call.
-    `record_success()` resets it to `0` whenever ANY item completes,
-    evidence the account is not currently rate-limited: four different
-    items each hitting `RateLimit`
-    exactly once and succeeding on their own immediate retry no longer
-    exhausts a budget of 3 just by being four separate occurrences: each
-    one's own success resets the counter before the next pause adds to
-    it. A rate limit that never clears (every item keeps failing, no
-    success ever resets the counter) still aborts once `max_pauses`
-    consecutive pauses land with no success between them, `pmap`'s own
-    documented purpose for this budget.
-    """
 
     def __init__(self, backoff: tuple[float, float], max_pauses: int) -> None:
         self._lo, self._hi = backoff
@@ -120,11 +60,6 @@ class _RateLimitGate:
             time.sleep(min(remaining, 1.0))
 
     def pause(self, reset_hint: str | None) -> bool:
-        """Register one `RateLimit` hit. Returns `True` (the caller sleeps
-        then retries the same item) while the CONSECUTIVE pause count
-        (no success anywhere since the last reset) is at or under
-        `max_pauses`; returns `False` once it is exhausted, telling the
-        caller to abort instead."""
         with self._lock:
             self._pauses += 1
             if reset_hint:
@@ -136,11 +71,6 @@ class _RateLimitGate:
             return True
 
     def record_success(self) -> None:
-        """Called once per item that returns without raising, whether
-        or not that item itself was ever paused: any such completion
-        is evidence the shared rate limit is not currently active, so
-        the consecutive-pause counter resets to `0` rather than carrying
-        an unrelated item's earlier pause forward against the budget."""
         with self._lock:
             self._pauses = 0
 
@@ -149,20 +79,14 @@ class _RateLimitGate:
         with self._lock:
             return self._pauses
 
-
 class _Skip:
-    """A sentinel one worker returns for an `on_error="skip"` item, so
-    `pmap`'s own assembly step can drop it from the final list without
-    confusing a legitimate `None` result for a dropped one."""
-
+    pass
 
 _SKIP = _Skip()
-
 
 def _delay_for(backoff: tuple[float, float], attempt: int) -> float:
     lo, hi = backoff
     return min(hi, lo * (2 ** (attempt - 1)))
-
 
 def _run_one(
     fn: Callable[[T], R],
@@ -194,27 +118,12 @@ def _run_one(
                 raise
             if on_error == "skip":
                 return _SKIP
-            # `on_error == "default"`. `default_exceptions`, when given,
-            # narrows which exception types this item's own exhausted
-            # retries are allowed to resolve to `default` for; anything
-            # outside that allowlist propagates instead, same as
-            # `on_error == "raise"`, rather than silently substituting a
-            # default this item's own failure was never one of the caller's
-            # named, expected cases for. `None` (the default) preserves
-            # this function's prior behavior: every exception defaults.
             if default_exceptions is not None and not isinstance(exc, default_exceptions):
                 raise
             return default
         else:
-            # A real `fn(item)` success, first attempt or after a
-            # rate-limit pause: evidence the shared limit has cleared,
-            # `FINDING-2026-09-10-101`'s own fix (`_RateLimitGate.
-            # record_success`). An `on_error="skip"`/`"default"` outcome
-            # above is a failure this item gave up on and does not reach
-            # this branch.
             gate.record_success()
             return result
-
 
 def pmap(
     fn: Callable[[T], R],
@@ -229,57 +138,6 @@ def pmap(
     default_exceptions: tuple[type[BaseException], ...] | None = None,
     max_rate_limit_pauses: int = 3,
 ) -> list[R]:
-    """`fn` mapped over `items`, `workers` at a time (`configure`'s own
-    clamp applies, so a `workers` above `MAX_WORKERS` is silently capped
-    rather than rejected).
-
-    `ordered=True` (the default) returns results in `items`' own order;
-    `ordered=False` returns them in whichever order they finished, useful
-    only when a caller reads the list as an unordered batch and wants to
-    skip the bookkeeping order preservation costs nothing to skip.
-
-    A raised exception other than `RateLimit` gets `retries` more
-    attempts (`retries=2` means up to 3 tries total), waiting
-    `min(backoff[1], backoff[0] * 2**(attempt-1))` seconds between them.
-    An item still failing after every retry is handled by `on_error`:
-    `"raise"` (the default) re-raises the item's own last exception out
-    of `pmap` itself; `"skip"` drops that item from the returned list
-    (which then carries fewer entries than `items`); `"default"` fills
-    `default` in that item's place instead, unless `default_exceptions`
-    says otherwise (below).
-
-    `default_exceptions`, meaningful only alongside `on_error="default"`,
-    narrows which exception types are allowed to resolve to `default`:
-    an item whose exhausted-retries exception is not an instance of one
-    of `default_exceptions` propagates out of `pmap` instead, the same as
-    `on_error="raise"` would for it. This module itself defines no
-    exception types of its own beyond `RateLimit`/`RateLimitAborted` and
-    imports nothing from a caller's own package (see this module's own
-    top docstring), so it cannot know which exceptions a caller considers
-    "an expected, default-worthy case" (`hte.llm.ModelRefusal`/
-    `ModelTruncation`, for `hte.llm.complete_many`'s own caller) versus
-    "a real failure that must not be silently absorbed" (a malformed-JSON
-    parse error, a missing CLI, a plain bug); `default_exceptions` is how
-    a caller states that distinction without this module needing to
-    import the caller's own exception types to enforce it. Leaving it
-    `None` (the default) preserves this function's prior behavior: every
-    exception, of any type, resolves to `default` once retries are
-    exhausted.
-
-    `RateLimit` is not a per-item failure: every worker pauses for a
-    shared backoff window (the same `backoff` bounds, scaled by how many
-    CONSECUTIVE pauses this call has made since its last success) before
-    the item that raised it is retried, uncounted against its own
-    `retries` budget. `max_rate_limit_pauses` counts consecutive pauses
-    with no item's own success in between any of them (`FINDING-2026-09-
-    10-101`'s own fix, 2026-09-10): any item that completes, whether or
-    not it was ever paused itself, resets that count to `0`,
-    since a fresh success is evidence the shared limit is not currently
-    active. Once `max_rate_limit_pauses` such CONSECUTIVE pauses have
-    fired with no success between them and the exception keeps
-    recurring, `pmap` raises `RateLimitAborted` naming the CLI's own
-    reset hint when one was seen.
-    """
     if on_error not in _ON_ERROR_MODES:
         raise ValueError(f"pmap: on_error must be one of {_ON_ERROR_MODES}, got {on_error!r}")
 
@@ -311,7 +169,6 @@ def pmap(
 
     ordered_results = results if ordered else [results[i] for i in completion_order]
     return [r for r in ordered_results if r is not _SKIP]
-
 
 __all__ = [
     "pmap", "configure", "RateLimit", "RateLimitAborted",

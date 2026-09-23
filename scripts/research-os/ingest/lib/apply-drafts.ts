@@ -1,4 +1,3 @@
-/** Upsert node and edge drafts into the graph schema, resolving edge endpoints among existing nodes by slug. Shared by the importers. */
 import { createClient } from "@supabase/supabase-js";
 import type { IngestEdgeDraft, IngestNodeDraft } from "../../../../src/lib/research-os/ingest/types";
 
@@ -19,7 +18,8 @@ export async function applyDrafts(label: string, nodes: IngestNodeDraft[], edges
   }
   const missing = Array.from(new Set(edges.flatMap((e) => [e.fromSlug, e.toSlug]).filter((s) => !idBySlug.has(s))));
   for (let i = 0; i < missing.length; i += 60) {
-    const { data } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 60));
+    const { data, error } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 60));
+    if (error) throw new Error(`slug resolution failed: ${error.message}`);
     ((data as { id: string; slug: string }[]) || []).forEach((r) => idBySlug.set(r.slug, r.id));
   }
   const rows = edges

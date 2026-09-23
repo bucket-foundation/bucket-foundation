@@ -1,9 +1,3 @@
-// /canon/[slug], branch page. Renders README scope + sortable entries table
-// from the filesystem PLUS the figures (from canon-figures/figures.json,
-// wired in src/lib/canon.ts) and per-concept claim cards (from
-// bucket-canon/<num>-<slug>/sub-claims/<concept>/). Falls back to static
-// metadata for legacy slugs.
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBranches, getBranch, getBranchEntries } from "@/lib/canon-fs";
@@ -14,7 +8,6 @@ import BranchEntriesTable from "./BranchEntriesTable";
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  // Union of canonical/disk branches and any static-only legacy slugs
   const fs = getBranches().map((b) => ({ slug: b.slug }));
   const stat = STATIC_BRANCHES.map((b) => ({ slug: b.slug }));
   const seen = new Set<string>();
@@ -57,13 +50,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   const readme = fs?.readme || null;
   const entries = fs ? getBranchEntries(params.slug) : [];
 
-  // NEW: figures (from canon-figures/figures.json via canon.ts) + per-concept
-  // claim cards (from bucket-canon/<num>-<slug>/sub-claims/). These are the
-  // two big "content" lists that were missing from every branch page.
   const figures = stat?.figures ?? [];
   const { total: claimsTotal, concepts: claimsByConcept } = getClaimsForBranch(params.slug);
 
-  // Pull the first 1-3 paragraphs from README as scope summary
   const readmeIntro = readme ? extractIntro(readme) : null;
 
   const isBiophysics = params.slug === "biophysics";
@@ -93,7 +82,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <span className="text-[color:var(--parchment-dim)]">· {figures.length} figures</span>
             )}
             {claimsTotal > 0 && (
-              <span className="text-[color:var(--parchment-dim)]">· {claimsTotal} claim cards</span>
+              <span className="text-[color:var(--parchment-dim)]">· {claimsTotal} source excerpts</span>
             )}
           </div>
           {readmeIntro && (
@@ -110,7 +99,6 @@ export default function Page({ params }: { params: { slug: string } }) {
       </header>
 
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
-        {/* FIGURES ---------------------------------------------------- */}
         {figures.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">
@@ -152,11 +140,10 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
         )}
 
-        {/* CLAIMS BY CONCEPT ----------------------------------------- */}
         {claimsByConcept.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">
-              Claim cards
+              Source excerpts
               <span className="ml-3 small-caps text-[11px] text-[color:var(--parchment-dim)]">
                 · {claimsTotal} across {claimsByConcept.length} concepts
               </span>
@@ -166,7 +153,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <div key={concept}>
                   <h3 className="font-serif-display text-lg text-[color:var(--basalt)] mb-3 capitalize">
                     <Link
-                      href={`/canon/claims/${concept}`}
+                      href={`/excerpts/${concept}`}
                       className="hover:text-[color:var(--gold)]"
                     >
                       {concept.replace(/-/g, " ")}
@@ -179,7 +166,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     {claims.slice(0, 6).map((c) => (
                       <li key={c.slug} className="text-[14px] leading-relaxed">
                         <Link
-                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          href={`/excerpts/${c.concept}/${c.slug}`}
                           className="text-[color:var(--basalt-2)] hover:text-[color:var(--gold)]"
                         >
                           {c.title.length > 110 ? c.title.slice(0, 110) + "…" : c.title}
@@ -189,7 +176,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     {claims.length > 6 && (
                       <li className="text-[11px] small-caps">
                         <Link
-                          href={`/canon/claims/${concept}`}
+                          href={`/excerpts/${concept}`}
                           className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
                         >
                           + {claims.length - 6} more →
@@ -203,7 +190,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
         )}
 
-        {/* CANON_INDEX ENTRIES (existing) ----------------------------- */}
         {entries.length > 0 ? (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">Entries</h2>
@@ -231,7 +217,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
         ) : null}
 
-        {/* SUB-FOLDERS (always shown when present, after figures + claims) */}
         {fs && fs.subfolders.length > 0 && (figures.length > 0 || claimsByConcept.length > 0) && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-4">
@@ -304,7 +289,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 }
 
 function extractIntro(md: string): string | null {
-  // Skip headings, take first paragraph
   const lines = md.split(/\r?\n/);
   const para: string[] = [];
   let started = false;

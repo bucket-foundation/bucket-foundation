@@ -1,0 +1,13 @@
+# Prose files exempted from scripts/check-code-citations.mjs, one path per
+# line, checked as a prefix. The format is file-level: a listed file has
+# every citation in it skipped, including the ones into this repository.
+#
+# Nothing is listed. The two entries that were here, docs/internal/REVIEW_2026-05-03.md
+# and docs/internal/ARCHITECTURE-REVIEW-2026-09-14.md, hid nine dead citations into
+# this repository's own code while exempting the cross-repo ones they were
+# added for. Both files now name cross-repo paths without a file extension,
+# so the checker leaves those alone and checks everything else.
+#
+# Before adding a file here, check whether the citation can be written so it
+# does not parse as a path in this repository. A file-level exemption stops
+# the check finding the defects it exists to find.

@@ -1,34 +1,18 @@
-/**
- * Research OS, consent paths (ros-32).
- *
- * GET  /api/research-os/consent
- *   learner: { profile: {birthYearBucket, consentStatus}, effective: {status, source, path},
- *              pathNeeded: none_needed | school | vendor | ask_age, requests: [...] }
- * POST /api/research-os/consent
- *   { action: "request", vendor: "privo" | "kid" | "manual", guardianContact?: string }
- *     learner starts verified parental consent; the contact is hashed, never stored.
- *   { action: "record", classId, learnerId, requestId?, status: "verified" | "declined", vendorRef? }
- *     class staff records a consent they verified out of band (the manual path).
- *   { action: "class_basis", classId, basis: "none" | "school", document?: string }
- *     class staff sets the school-exception basis on a class.
- */
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { NextResponse } from "next/server";
+import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { verifyClassStaff } from "@/lib/research-os/class-db";
 import { consentPathFor, hashContact, type ConsentRequestRecord } from "@/lib/research-os/consent-paths";
 import { resolveConsentPaths, type BirthYearBucket, type ConsentStatus, type LearnerProfile } from "@/lib/research-os/consent";
 import { vendorByName } from "@/lib/research-os/consent-vendor";
+import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
-  const { data } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  if (error) throw new Error(`learner_profiles read failed: ${error.message}`);
   if (!data) return null;
   const r = data as { learner_id: string; role: string; birth_year_bucket: string | null; consent_status: string; consent_source: string | null; updated_at: string };
   return {
@@ -41,17 +25,22 @@ async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
   };
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-  const profile = await loadProfile(learnerId);
-  const effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
-  const { data: reqs } = await graphService()
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
+  let effective;
+  let profile: LearnerProfile | null;
+  try {
+    profile = await loadProfile(learnerId);
+    effective = profile ? await resolveConsentPaths(learnerId, profile) : { status: "none" as const, source: null, path: "none" as const };
+  } catch (err) {
+    console.error("[research-os/consent] path read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "consent_unavailable");
+  }
+  const { data: reqs, error: reqsErr } = await graphService()
     .from("consent_requests")
     .select("id,vendor,status,vendor_ref,created_at,decided_at")
     .eq("learner_id", learnerId)
     .order("created_at", { ascending: false });
+  if (reqsErr) return bad(503, "consent_unavailable");
   const requests = ((reqs as { id: string; vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null; created_at: string }[]) || []).map((r) => ({
     id: r.id,
     vendor: r.vendor,
@@ -68,21 +57,17 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});
 
 type Body =
   | { action: "request"; vendor: string; guardianContact?: string }
   | { action: "record"; classId: string; learnerId: string; requestId?: string; status: "verified" | "declined"; vendorRef?: string }
   | { action: "class_basis"; classId: string; basis: "none" | "school"; document?: string };
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  let body: Body;
-  try {
-    body = (await req.json()) as Body;
-  } catch {
-    return bad(400, "bad_json");
-  }
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const read = await readAnyJson(req, "bad_json");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as Body;
   const svc = graphService();
 
   if (body.action === "request") {
@@ -108,7 +93,9 @@ export async function POST(req: NextRequest) {
 
   if (body.action === "record" || body.action === "class_basis") {
     if (!body.classId) return bad(400, "class_required");
-    const staff = await verifyClassStaff(req, body.classId);
+    const staffCheck = await verifyClassStaff(req, body.classId);
+    if (!staffCheck.ok) return bad(503, "class_read_failed");
+    const staff = staffCheck.staff;
     if (!staff || !staff.roles.some((r) => r === "teacher" || r === "librarian")) return bad(403, "forbidden");
 
     if (body.action === "class_basis") {
@@ -121,7 +108,8 @@ export async function POST(req: NextRequest) {
     }
 
     if (!body.learnerId || (body.status !== "verified" && body.status !== "declined")) return bad(400, "learner_and_status_required");
-    const { data: member } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
+    if (memberErr) return bad(503, "class_read_failed");
     if (!member) return bad(404, "not_a_member");
     const now = new Date().toISOString();
     if (body.requestId) {
@@ -147,4 +135,4 @@ export async function POST(req: NextRequest) {
   }
 
   return bad(400, "unknown_action");
-}
+});

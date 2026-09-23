@@ -1,11 +1,3 @@
-/**
- * Internalization, seen from the graph: where a person's understood nodes
- * touch across branches. A held connection is an edge other than a
- * prerequisite between two nodes the person has at Understanding or above
- * in two different branches. A bridge one step away is such an edge where
- * only one side is understood; the other side is the transfer target the
- * home page offers next. Pure; the route loads the rows.
- */
 import { stageAtLeast } from "./types";
 import type { Stage } from "./types";
 

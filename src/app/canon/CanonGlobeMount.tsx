@@ -42,11 +42,6 @@ const ALL_SITES = (sitesData.sites as SiteEntry[]).sort((a, b) => a.year - b.yea
 const MIN_YEAR = Math.min(timelineData.min_year as number, ...ALL_SITES.map((s) => s.year));
 const MAX_YEAR = Math.max(timelineData.max_year as number, ...ALL_SITES.map((s) => s.year));
 
-// Map a timeline figure-event id to the corresponding figures.json id when
-// possible. Timeline uses shorter ids that occasionally diverge from
-// figures.json (e.g. `becker-r` → `becker`, `curie-m` → `curie`,
-// `hegel-w` → `hegel`). 21 of 58 figure-births currently map cleanly;
-// the rest fall back to deep-linking via `?marker=<id>` on /canon.
 const FIGURE_IDS = new Set<string>(
   (figuresData as { figures: { id: string }[] }).figures.map((f) => f.id)
 );
@@ -59,20 +54,12 @@ function mapTimelineIdToFigureId(timelineId: string): string | null {
   return null;
 }
 
-/**
- * Best per-marker "open page" URL. Returns null when the marker has no
- * dedicated page yet, UI should fall back to the deep-link
- * `/canon?marker=<id>` so the marker is at least addressable.
- */
 function markerPageUrl(m: CanonMarker): string | null {
   const branchSlug = (m.branch || "").replace(/^\d+-/, "");
-  // figure-birth / figure-death → /canon/<branch>/figures/<figureId>
   if (m.kind === "figure-birth" || m.kind === "figure-death") {
     const figureId = mapTimelineIdToFigureId(m.id);
     if (figureId && branchSlug) return `/canon/${branchSlug}/figures/${figureId}`;
   }
-  // canon-entry markers that came from a search result are wired in the
-  // drawer directly via `_search`, they don't go through this helper.
   return null;
 }
 
@@ -101,12 +88,6 @@ function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
   }));
 }
 
-// Every figure/canon-entry + archaeological-site marker, unfiltered, the
-// same set `InteractiveCanonGlobeMount` shows at its default state (year
-// scrubber at 2020, both layers on, no branch or search filter). Computed
-// once at module load from the same static JSON `InteractiveCanonGlobeMount`
-// reads, so the decorative background globe carries the identical point
-// layer without a data fetch of its own.
 const DECORATIVE_MARKERS: CanonMarker[] = [
   ...eventsAsMarkers(ALL_EVENTS),
   ...sitesAsMarkers(ALL_SITES),
@@ -114,56 +95,19 @@ const DECORATIVE_MARKERS: CanonMarker[] = [
 
 interface Props {
   branches: GlobeBranch[];
-  /** Overrides the collapsed-state root className (default: the max-w-7xl
-   * card both /canon and /canon/search use). The fullscreen/expanded state
-   * always stays a true fixed-inset overlay regardless of this prop. */
   containerClassName?: string;
-  /** Extra classes merged onto the globe canvas's own flex-fill wrapper,
-   * e.g. a negative translate so the globe rises above the panel's top
-   * edge. Ignored in `decorative` mode. */
   globeWrapperClassName?: string;
-  /** Inline style merged onto the same wrapper, e.g. a scroll-driven
-   * translate. Ignored in `decorative` mode. */
   globeWrapperStyle?: CSSProperties;
-  /** Bare-globe mode: renders only the R3F canvas, no search bar, branch
-   * filter chips, layer toggles, time scrubber, expand button, corner
-   * legend, or detail drawer. For a fixed decorative background mount. */
   decorative?: boolean;
-  /** Read every frame by the R3F globe when `decorative` is set: an
-   * external scroll-velocity value that eases auto-rotate speed up and
-   * back down to its base rate. */
   scrollRef?: MutableRefObject<ScrollState>;
-  /** Diagnostic variants for the decorative mount. */
   variant?: DecorativeVariant;
-  /** "home": search bar, layer toggles, and branch chips sit in a left
-   * column over the globe on their own bone-2 card, the detail drawer keeps
-   * its bone surface, and the container between them carries no background.
-   * Interactive mount only. */
   layout?: "default" | "home";
-  /** Inside Research OS: the drawer also offers "work on this", which opens
-   * the workspace with the selected claim or figure as the Find query. */
   workspaceLinks?: boolean;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
   "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 
-/**
- * Bare-globe mode: only the R3F canvas, no search bar, branch filter
- * chips, layer toggles, time scrubber, expand button, corner legend, or
- * detail drawer. Kept as its own component (rather than an early return
- * inside CanonGlobeMount) so neither branch calls hooks conditionally.
- *
- * Renders through the exact same `R3FCanonGlobe` the interactive mount
- * uses (same Earth mesh, same landmask texture, same lighting), with
- * `decorative` only chosen to hide chrome, disable drag/zoom, and turn on
- * autorotate. It carries `DECORATIVE_MARKERS`, the same figure/site point
- * layer the interactive globe shows by default, so the two are not two
- * renderers that happen to look similar, they are one renderer fed the
- * same data. `branches` plays no part in either mount: `R3FCanonGlobe`
- * has no such prop, `InteractiveCanonGlobeMount` receives and ignores it
- * (see `_branches` below), so there is nothing for this mount to forward.
- */
 function DecorativeCanonGlobeMount({
   containerClassName,
   scrollRef,
@@ -232,7 +176,6 @@ function InteractiveCanonGlobeMount({
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const [expanded, setExpanded] = useState(false);
 
-  // Lock body scroll when the tool is in fullscreen so the page behind doesn't move.
   useEffect(() => {
     if (!expanded) return;
     const prev = document.body.style.overflow;
@@ -240,7 +183,6 @@ function InteractiveCanonGlobeMount({
     return () => { document.body.style.overflow = prev; };
   }, [expanded]);
 
-  // Escape exits fullscreen.
   useEffect(() => {
     if (!expanded) return;
     const onKey = (e: KeyboardEvent) => {
@@ -249,26 +191,6 @@ function InteractiveCanonGlobeMount({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [expanded]);
-
-  // ────────────────────────────────────────────────────────────────────
-  // Deep-link: every marker has its own URL via `?marker=<id>`
-  // ────────────────────────────────────────────────────────────────────
-  // - On mount, read `?marker=<id>` from the URL. If present, find that
-  // marker in ALL_EVENTS or ALL_SITES, select it, and bump `year` to
-  // include it (otherwise the time-filter could hide it).
-  // - When `selected` changes (the user clicked a marker or a search
-  // result), push `?marker=<id>` to the URL via replaceState so the
-  // address bar reflects the current focus. When the drawer closes,
-  // strip the param.
-  // - For markers that ALSO have a dedicated page (figures with a
-  // figures.json match), the drawer renders a primary "open page →"
-  // link to the clean URL. For everything else the deep-link form
-  // `/canon?marker=<id>` is the addressable representation.
-  //
-  // Doing this with raw window APIs (not next/navigation's useRouter)
-  // on purpose, useRouter.replace triggers a re-render which would
-  // thrash the R3F canvas. window.history.replaceState updates the URL
-  // silently.
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -299,15 +221,10 @@ function InteractiveCanonGlobeMount({
             ? "figure-birth" : "canon-entry") as CanonMarker["kind"],
         };
     setSelected(m);
-    // Bump the year scrubber so this marker is within the visible time
-    // window (otherwise we'd select a marker that's filtered out).
     setYear((y) => Math.max(y, found.year));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sync the URL when a marker is selected/deselected. Skip the initial
-  // run (the deep-link effect above already handles that), so we don't
-  // race the read with our own write.
   const lastSyncedMarker = useRef<string | null>(null);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -320,16 +237,10 @@ function InteractiveCanonGlobeMount({
     window.history.replaceState(null, "", url.toString());
   }, [selected]);
 
-  // Sidebar is always present on desktop (md+). Mobile: slide-in on select.
-
-  // Time scrub state, always visible, defaults to 2020 CE (= show all)
   const [year, setYear] = useState(2020);
   const [playing, setPlaying] = useState(false);
 
-  // Search + branch filter
   const [q, setQ] = useState("");
-  // Deep link: /canon/search?q=<text> opens with the query filled (the
-  // Research OS Map block sends a node's title here).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const initial = new URLSearchParams(window.location.search).get("q");
@@ -340,38 +251,24 @@ function InteractiveCanonGlobeMount({
   const [searching, setSearching] = useState(false);
   const searchAbort = useRef<AbortController | null>(null);
 
-  // Layer toggles, figures (default on) + archaeological sites (default on).
-  // Lets the user show the material-evidence layer (Giza, Stonehenge, Maya
-  // LiDAR sites, etc.) alongside or instead of the people/works layer.
   const [showFigures, setShowFigures] = useState(true);
   const [showSites, setShowSites] = useState(true);
 
-  // The globe + search were two unconnected views before. Now they share
-  // state, the same filter chips and the same query narrow BOTH the
-  // search result list AND the globe markers, so a query for "topology"
-  // shrinks the globe to mathematics in the same instant the result list
-  // updates.
-
-  // Branches that have at least one current search result, used to
-  // narrow the globe to topic-relevant branches when a query is active.
   const branchesInResults = useMemo(() => {
     if (!q.trim() || results.length === 0) return null;
     return new Set(results.map((r) => r.branch.replace(/^\d+-/, "")));
   }, [q, results]);
 
-  // Active marker for highlight ring on the globe.
   const markers = useMemo(() => {
     const out: CanonMarker[] = [];
     if (showFigures) out.push(...eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year)));
     if (showSites) out.push(...sitesAsMarkers(ALL_SITES.filter((s) => s.year <= year)));
     return out.filter((m) => {
-      // chip filter, mirrors what search uses, so the two stay aligned
       if (branchFilter) {
         const want = branchFilter.replace(/^\d+-/, "");
         const got = m.branch.replace(/^\d+-/, "");
         if (got !== want) return false;
       }
-      // active search narrows by branches that appear in the results
       if (branchesInResults) {
         if (!branchesInResults.has(m.branch.replace(/^\d+-/, ""))) return false;
       }
@@ -385,7 +282,6 @@ function InteractiveCanonGlobeMount({
     return idx >= 0 ? idx : undefined;
   }, [selected, markers]);
 
-  // Playback ticker
   useEffect(() => {
     if (!playing) return;
     const id = setInterval(() => {
@@ -398,7 +294,6 @@ function InteractiveCanonGlobeMount({
     return () => clearInterval(id);
   }, [playing]);
 
-  // Debounced search
   useEffect(() => {
     if (!q.trim()) { setResults([]); return; }
     searchAbort.current?.abort();
@@ -432,7 +327,6 @@ function InteractiveCanonGlobeMount({
           : (containerClassName ?? DEFAULT_CONTAINER_CLASSNAME)
       }
     >
-      {/* Expand / minimize button, top right of the tool card */}
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
@@ -442,7 +336,6 @@ function InteractiveCanonGlobeMount({
         style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
       >
         {expanded ? (
-          // Minimize icon
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="4 14 10 14 10 20" />
             <polyline points="20 10 14 10 14 4" />
@@ -450,7 +343,6 @@ function InteractiveCanonGlobeMount({
             <line x1="3" y1="21" x2="10" y2="14" />
           </svg>
         ) : (
-          // Expand icon
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 3 21 3 21 9" />
             <polyline points="9 21 3 21 3 15" />
@@ -460,7 +352,6 @@ function InteractiveCanonGlobeMount({
         )}
       </button>
 
-      {/* SEARCH BAR, rounded pill at the top of the tool container */}
       <div
         className={
           home && !expanded
@@ -488,7 +379,7 @@ function InteractiveCanonGlobeMount({
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="search canon · 599 claims across 9 branches"
+              placeholder="search 599 source excerpts across 9 branches"
               className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
@@ -521,20 +412,11 @@ function InteractiveCanonGlobeMount({
                   <button
                     key={`${r.concept}/${r.slug}`}
                     onClick={() => {
-                      // Try to map this search result to a real geocoded
-                      // globe marker, that way clicking the result
-                      // moves the globe to a place instead of
-                      // pinning at (0,0). Strategy: find a figure marker
-                      // whose name appears in the claim title (e.g. a
-                      // "Becker" claim picks the Robert O. Becker marker),
-                      // or fall back to the first marker in the same
-                      // branch. Last resort: synthetic 0,0 marker.
                       const lowerTitle = r.title.toLowerCase();
                       const branchSuffix = r.branch.replace(/^\d+-/, "");
                       const eventCandidates = ALL_EVENTS.filter(
                         (e) => e.branch.replace(/^\d+-/, "") === branchSuffix
                       );
-                      // First pass: figure name overlap with the claim title
                       let match = eventCandidates.find((e) => {
                         const surname = e.title
                           .replace(/\(.*?\)/g, "")
@@ -544,8 +426,6 @@ function InteractiveCanonGlobeMount({
                           ?.toLowerCase();
                         return surname && lowerTitle.includes(surname);
                       });
-                      // Second pass: concept name overlap (e.g. "becker"
-                      // claim concept → "Robert O. Becker" event)
                       if (!match) {
                         const concept = r.concept.toLowerCase();
                         match = eventCandidates.find((e) =>
@@ -564,8 +444,6 @@ function InteractiveCanonGlobeMount({
                             kind: "canon-entry",
                           }
                         : {
-                            // No geocoded match, still let the drawer
-                            // render but flag the missing location.
                             id: `claim:${r.claim_id}`,
                             lat: 0,
                             lng: 0,
@@ -573,8 +451,6 @@ function InteractiveCanonGlobeMount({
                             title: r.title,
                             kind: "canon-entry",
                           };
-                      // Always attach the full search result so the drawer
-                      // can render the excerpt + "open full claim" link.
                       (m as unknown as { _search: SearchResult })._search = r;
                       setSelected(m);
                       setQ("");
@@ -604,7 +480,6 @@ function InteractiveCanonGlobeMount({
             )}
         </div>
 
-        {/* Layer toggles, figures vs sites */}
         <div className="w-full max-w-2xl flex items-center justify-center gap-2 mb-1 pointer-events-auto">
           <button
             onClick={() => setShowFigures((v) => !v)}
@@ -632,7 +507,6 @@ function InteractiveCanonGlobeMount({
           </button>
         </div>
 
-        {/* Branch filter chips, one row of 9 toggles below the search */}
         <div className="w-full max-w-2xl flex flex-wrap items-center justify-center gap-1.5 pointer-events-auto">
           <button
             onClick={() => setBranchFilter(null)}
@@ -677,7 +551,6 @@ function InteractiveCanonGlobeMount({
         </div>
       </div>
 
-      {/* GLOBE, fills remaining viewport height on desktop. */}
       <div
         className={`relative w-full mx-auto flex-1 overflow-visible ${globeWrapperClassName}`}
         style={{
@@ -693,7 +566,6 @@ function InteractiveCanonGlobeMount({
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
-        {/* Tiny corner legend, out of the way but always visible */}
         <div
           className="absolute bottom-3 right-3 z-20 pointer-events-none rounded-md px-3 py-2 shadow-sm"
           style={{
@@ -730,13 +602,6 @@ function InteractiveCanonGlobeMount({
         </GlobeErrorBoundary>
       </div>
 
-      {/* TIME SCRUBBER, pinned at the bottom of the tool container.
- Full-width within the tool (the parent container reserves
- `md:pr-[440px]` for the sidebar, so the scrubber naturally
- ends at the sidebar's left edge). The old `max-w-3xl mx-auto`
- made it a centered 768px island with empty bone on both
- sides; this version uses every horizontal pixel the layout
- gives it. */}
       <div className={`w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0 ${home && !expanded ? "md:pr-[464px]" : ""}`}>
         <div
           className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
@@ -806,15 +671,10 @@ function InteractiveCanonGlobeMount({
         </div>
       </div>
 
-      {/* RIGHT-SIDE INFO DRAWER */}
       <Drawer
         selected={selected}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
-          // Same-era / nearby click, find the marker by id in the
-          // pre-loaded event + site lists and select it directly. Bump
-          // the year scrubber if needed so the marker is visible on
-          // the globe at the same moment its drawer fills with detail.
           const ev = ALL_EVENTS.find((e) => e.id === id);
           const site = ev ? null : ALL_SITES.find((s) => s.id === id);
           if (ev) {
@@ -851,29 +711,15 @@ function Drawer({
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
-  /** No surface of its own: the page ground shows through. */
   transparent?: boolean;
-  /** Offer "work on this", which opens the Research OS workspace. */
   workspaceLinks?: boolean;
   onClose: () => void;
-  /** Called when the user clicks a same-era or nearby cross-reference. */
   onSelectMarker?: (id: string) => void;
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
   const branchSlug = selected?.branch?.replace(/^\d+-/, "");
-  // Best per-marker "open page" URL (figures.json-matched figures get
-  // /canon/<branch>/figures/<id>; sites and works return null and fall
-  // back to the copy-share-link button further down).
   const pageUrl = selected ? markerPageUrl(selected) : null;
 
-  // ──────────────────────────────────────────────────────────────────
-  // Cross-references, every marker becomes a hub for "what makes
-  // this what it is": claim cards that mention it, contemporary
-  // figures + sites (±500 years), nearby markers (~5° lat/lng radius),
-  // and outbound research links (Wikipedia, Scholar, Wikidata).
-  // ──────────────────────────────────────────────────────────────────
-
-  // Claims that mention this marker, via the existing canon-search API.
   const [relatedClaims, setRelatedClaims] = useState<SearchResult[]>([]);
   const [relatedLoading, setRelatedLoading] = useState(false);
   const fetchAbort = useRef<AbortController | null>(null);
@@ -882,9 +728,6 @@ function Drawer({
       setRelatedClaims([]);
       return;
     }
-    // Don't re-query when the search-driven _search shim is already there
-    //, that means the user clicked a result, and the excerpt section
-    // already shows the primary match.
     fetchAbort.current?.abort();
     const ac = new AbortController();
     fetchAbort.current = ac;
@@ -896,7 +739,6 @@ function Drawer({
         url.searchParams.set("top_k", "8");
         const r = await fetch(url.toString(), { signal: ac.signal });
         const j = r.ok ? await r.json() : { results: [] };
-        // Skip the same claim the user came from (avoid duplication)
         const out = (j.results || []).filter((x: SearchResult) =>
           !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
         );
@@ -910,8 +752,6 @@ function Drawer({
     return () => { clearTimeout(t); ac.abort(); };
   }, [selected, search]);
 
-  // Same era, events/sites within ±500 years (or ±100 years if the
-  // marker is post-1700 CE, when the canon density is higher).
   const sameEra = useMemo(() => {
     if (!selected || selected.year === undefined) return [];
     const Y = selected.year;
@@ -932,12 +772,9 @@ function Drawer({
     return out.sort((a, b) => Math.abs(a.year - Y) - Math.abs(b.year - Y)).slice(0, 8);
   }, [selected]);
 
-  // Nearby, within ~5° lat/lng of this marker. Cheap great-circle
-  // distance is overkill at this density; a simple bounding box reads
-  // as "broadly the same region" without false positives across hemispheres.
   const nearby = useMemo(() => {
     if (!selected || (selected.lat === 0 && selected.lng === 0)) return [];
-    const RADIUS = 5; // degrees
+    const RADIUS = 5;
     const within = (lat: number, lng: number) =>
       Math.abs(lat - selected.lat) <= RADIUS &&
       Math.abs(lng - selected.lng) <= RADIUS;
@@ -964,9 +801,6 @@ function Drawer({
       .slice(0, 8);
   }, [selected]);
 
-  // Build the outbound research links, Wikipedia first (highest signal),
-  // then Google Scholar, then Wikidata. Site markers come with an
-  // explicit `wikipedia` field; everything else uses a name search.
   const externalLinks = useMemo(() => {
     if (!selected) return [];
     const q = encodeURIComponent(selected.title);
@@ -996,7 +830,6 @@ function Drawer({
     ];
   }, [selected]);
 
-  // Close on Escape, standard UX expectation for drawers/modals
   useEffect(() => {
     if (!selected) return;
     const onKey = (e: KeyboardEvent) => {
@@ -1008,7 +841,6 @@ function Drawer({
 
   return (
     <>
-      {/* mobile-only backdrop when a marker is selected */}
       <div
         onClick={onClose}
         aria-hidden
@@ -1032,8 +864,6 @@ function Drawer({
       >
         {selected && (
           <div>
-            {/* STICKY HEADER + CTA STRIP, stays in view as the user
- scrolls the cross-reference sections below. */}
             <div
               className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
               style={{ background: transparent ? "transparent" : "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
@@ -1070,7 +900,6 @@ function Drawer({
                 {selected.civilization && <> · {selected.civilization}</>}
               </p>
 
-              {/* Primary CTA row, like the branch page's top nav */}
               <div className="flex flex-wrap gap-1.5">
                 {workspaceLinks && (
                   <Link
@@ -1080,10 +909,9 @@ function Drawer({
                     work on this →
                   </Link>
                 )}
-                {/* Open the canonical page when one exists */}
                 {search ? (
                   <Link
-                    href={`/canon/claims/${search.concept}/${search.slug}`}
+                    href={`/excerpts/${search.concept}/${search.slug}`}
                     className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
                   >
                     open full claim →
@@ -1119,11 +947,7 @@ function Drawer({
               </div>
             </div>
 
-            {/* SCROLLABLE BODY, every source/related-material section
- stacks here. Headers are small-caps gold; sections are
- separated by hairline borders so the scroll has rhythm. */}
             <div className="px-6 md:px-8 pt-5 pb-10 space-y-7">
-              {/* Search-driven excerpt (when the user came from a search) */}
               {search && (
                 <section>
                   <h3
@@ -1146,11 +970,6 @@ function Drawer({
                 </section>
               )}
 
-              {/* Source data, every primary place this marker shows up
- on disk. For sites this is wikipedia / unesco / lidar.
- For figures with a figures.json record it's the
- figure-page link (also in the top CTA, repeated here
- with a description). */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3"
@@ -1187,10 +1006,7 @@ function Drawer({
                       📄  Figure page in canon — biography, primary works ↗
                     </Link>
                   )}
-                  {/* Always-available outbound research links */}
                   {externalLinks.map((e) => {
-                    // Skip the Wikipedia entry when we already showed a
-                    // specific wikipedia URL above (avoid duplication).
                     if (e.label === "Wikipedia" && selected.wikipedia) return null;
                     return (
                       <a key={e.label} href={e.href} target="_blank" rel="noreferrer"
@@ -1206,10 +1022,6 @@ function Drawer({
                 </div>
               </section>
 
-              {/* Mentioned in canon, claim cards that match this marker
- by name via the canon search index. Bridges the
- geocoded markers (timeline + sites) into the 599
- curated claim cards. */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3 flex items-baseline justify-between"
@@ -1223,7 +1035,7 @@ function Drawer({
                 {relatedClaims.length === 0 && !relatedLoading && (
                   <p className="text-[12px] leading-relaxed"
                      style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
-                    No claim cards mention &ldquo;{selected.title}&rdquo; yet — try{" "}
+                    No source excerpts mention &ldquo;{selected.title}&rdquo; yet — try{" "}
                     <Link href={`/canon/search?q=${encodeURIComponent(selected.title)}`}
                           className="text-[color:var(--gold)] hover:text-[color:var(--basalt)] underline">
                       full canon search →
@@ -1235,7 +1047,7 @@ function Drawer({
                     {relatedClaims.map((c) => (
                       <li key={`${c.concept}/${c.slug}`}>
                         <Link
-                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          href={`/excerpts/${c.concept}/${c.slug}`}
                           className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
                           style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
                         >
@@ -1251,10 +1063,6 @@ function Drawer({
                 )}
               </section>
 
-              {/* Same era, every other geocoded marker within ±500
- years (±100 if post-1700). Lets the user jump
- directly from Lascaux to Çatalhöyük, from Einstein
- to Hilbert, etc. */}
               {sameEra.length > 0 && (
                 <section>
                   <h3
@@ -1283,8 +1091,6 @@ function Drawer({
                 </section>
               )}
 
-              {/* Nearby, markers in roughly the same region (~5° box).
- Geographic neighbours regardless of era. */}
               {nearby.length > 0 && (
                 <section>
                   <h3
@@ -1313,8 +1119,6 @@ function Drawer({
                 </section>
               )}
 
-              {/* Coordinates, small, dim, last. Site-specific
- civilization field too when present. */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3"
@@ -1348,9 +1152,6 @@ function Drawer({
           </div>
         )}
 
-        {/* Empty state, desktop only, shown when nothing is selected.
- Acts as a persistent research panel: how to use, current corpus
- stats, quick links. */}
         {!selected && (
           <div className="hidden md:block p-6 md:p-8">
             <div
@@ -1390,7 +1191,7 @@ function Drawer({
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 <div className="flex justify-between">
-                  <dt style={{ color: "var(--parchment-dim)" }}>Claim cards</dt>
+                  <dt style={{ color: "var(--parchment-dim)" }}>Source excerpts</dt>
                   <dd>599</dd>
                 </div>
                 <div className="flex justify-between">

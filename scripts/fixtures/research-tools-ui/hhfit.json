@@ -1,0 +1,48 @@
+{
+  "result": {
+    "job_id": "j_ce4f6fa1f4904d8898a2",
+    "tool": "hhfit",
+    "render": "json",
+    "output": {
+      "method": "single-compartment passive-membrane (RC) least-squares fit (scipy)",
+      "model": "V(t) = V0 + I*R*(1 - exp(-(t - t_on)/(R*C)))",
+      "demo": true,
+      "current_pa": 100,
+      "dt_ms": 0.1,
+      "stim_onset_ms": 50,
+      "n_samples": 2000,
+      "fit": {
+        "R_megaohm": 119.728,
+        "R_gigaohm": 0.1197,
+        "C_pf": 249.159,
+        "tau_ms": 29.8315,
+        "V0_mv": -65.01,
+        "r_squared": 0.99623,
+        "rmse_mv": 0.3003,
+        "converged": true,
+        "n_iterations": 5
+      },
+      "fit_quality": "excellent",
+      "spike_count_estimate": 0,
+      "note": "DEMO MODE: Real scipy least-squares fit of membrane R, C, tau, V0 to a current-clamp step. The passive RC model is fit even for spiking traces (sub-threshold region dominates); a full multi-state Hodgkin-Huxley conductance fit is a heavier optimization (documented extension). Trace is synthetic with known params (see ground_truth) so the recovered fit can be verified.",
+      "ground_truth": {
+        "R_gigaohm": 0.12,
+        "C_pf": 250,
+        "tau_ms": 30,
+        "V0_mv": -65
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "hhfit",
+        "at": "2026-09-23T03:46:46.403004+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

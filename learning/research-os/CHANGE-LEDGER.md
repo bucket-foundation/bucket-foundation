@@ -2,6 +2,197 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-roadmap: the staged queue and its page
+
+Every open Research OS item staged MVP, near-term or later, with what it depends on and what it unlocks, on the page the founder reads to set the order.
+
+Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #190 into `dev`. Founder direction: stage the queue before it grows further, and show the work inside Research OS.
+
+### Added
+
+- `src/lib/research-os/roadmap.ts`: the staged queue as data, 42 items with stage, status, cost in loop passes, dependencies, the decisions that block them, and what each unlocks, plus `readyNow()`, `decisionsFor()` and `roadmapProblems()`.
+- `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface for staff, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself.
+- `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, reporting horizontal overflow, for the standing rule that each task shows its work.
+- `docs/FOUNDER-DECISIONS.md`: the eight open decisions that need the founder, each with what it blocks and what the loop does while it waits.
+- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, the scope of the list, what the staging says today, and what the page does not do yet.
+- `src/lib/research-os/staff.ts`: one staff test, read by the app layout and by the roadmap page.
+- `docs/CRITIC-PROTOCOL.md`: the scored critic gate, 9 of 10 on a six-criterion rubric with no open finding above Low, and the rule that each round carries the earlier rounds' verification forward.
+
+### Edited
+
+- `src/app/research-os/(app)/AppShell.tsx`: a Roadmap entry in the teaching nav.
+- `src/app/research-os/(app)/layout.tsx`: the staff test moves into `staff.ts`.
+- `.gitignore`: `ros-shots/` and `session.json`, so a screenshot run leaves no session in the tree.
+- `scripts/vercel-ignore-build.sh` and `scripts/test-vercel-ignore-build.sh`: the fail-open on `dev` and `main` after a canceled deployment, closed by the first-parent base for a merge or a squash merge alone, with six cases over the pair and the refusal. The suite stands at 36 checks.
+- `scripts/pre-push-vercel-check.sh` and `scripts/test-pre-push-vercel-check.sh`: lint and the type check run whenever a push carries code, and the base on `dev` and `main` is the remote's own tip.
+- `scripts/install-git-hooks.sh` and `package.json`: `npm install` wires the pre-push check into this repository's own hooks directory, a worktree's included, and leaves a configured shared directory alone unless `AGF_INSTALL_HOOKS=1` asks. The pre-push suite stands at 26 checks, one of them a worktree install.
+- `docs/VERCEL-BUILDS.md`: what changed on 2026-09-21, with the two deployments that measured it.
+- `docs/PROBLEM-REGISTER.md`: PR-071 for the fail-open, and PR-064 pointing at it.
+- `learning/research-os/PATENTS.md`: `patent` stays out of `WORK_NODE_KINDS`, with the contract that decides it, and the fourteen branches say where they come from.
+- `docs/FEED402_PATENTS.md` and `docs/PATENT_LICENSING.md`: a banner naming the canonical home in the org repositories, and no new serving work here.
+- `src/lib/research-os/directions.ts` and `src/lib/research-os/makeup.ts`: two comments reworded.
+## ros-workbench 1: the research memo and design
+
+The prior work on compute shared across machines, notebooks, Python and R in the browser, statistics, machine learning, and LaTeX, checked against its sources, and a design that joins the node page, productions, imports, and the engine through one new object, the run.
+
+Date 2026-09-21. Branch `feat/ros-workbench-memo`, worktree `.wt-ros-workbench-1`, draft PR #202 into `dev`. Founder direction of 2026-09-18, recorded in the ros-workbench epic: people hook up their own machines as compute for their research, with statistics, machine learning, custom code, and LaTeX on top. The software atlas's directions (ros-workbench 0) are folded into the design.
+
+### Added
+
+- `learning/research-os/WORKBENCH.md`: what the repository holds for the workbench; the survey of volunteer and cluster computing, notebooks, in-browser runtimes, statistics and machine learning packages, LaTeX, sandboxes, and provenance standards, with a primary source beside each claim; the design, with the four integration paths, the run record, reproduction, the security model, failure and the owner's policy, what imports owe the workbench, the engine, the node page section, the atlas's directions, and the build order; and the claims left unverified.
+
+### Edited
+
+None.
+
+### Removed
+
+None.
+
+Critic round 1 at `3083d4e0e` scored 7.0 and failed. The revision corrects the research tools' hosting (one gateway for all forty; `founder-gpu` is a stale label), registers the engine host as a service runner and lets a run name a production input by the hash of its canonical JSON, makes the engine a trusted job kind with its exemptions on the run, marks every run self-reported until others reproduce it, splits the reproducible mark by who can read the inputs, adds confidentiality of inputs to the security model with an output frame and a sanitizer that strips remote URLs, and tests the LaTeX namespace in bubblewrap on this machine. It re-syncs the atlas's directions to its commit `c12a88bf2`.
+
+Round 2 at `7a2cb31c7`, run by bkt-nuc in session at the founder's direction to stop spending tokens on subagents, so it is a review by the coordinating session and no longer independent. It verified the new code names (`authorizeHypothesize`, `can` with `hasRole`, `NodeView`, `ProduceForm`, `createNodeFromProduction`), the four new MDN and GitHub quotations word for word, and reran the bubblewrap test. It found one Medium, a run's strictest-input visibility against the author publishing a run on their own private input, and four Lows: sandbox wording that trusted jobs contradicted, who may replay an engine run, where the engine host is registered on a hosted stack, and two lines stale against the atlas at `dc17e1501`. All five are fixed in the round 2 commit, and the round scores 9.5.
+
+The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it, and the memo sets out the section's layout at 390 pixels. The roadmap row goes into `learning/research-os/ROADMAP.md` when the loop's branch that holds that file merges.
+
+## ros-workbench 0: the software atlas
+
+The software each science uses, open and closed, with its license, what it renders, its formats, and the path by which Research OS meets it, with directions for the workbench design.
+
+Date 2026-09-21. Branch `feat/ros-workbench-atlas`, worktree `.wt-ros-workbench-0`, draft PR #203 into `dev`, merging on hold. Founder direction, 2026-09-18: map the software each science and research area uses, open and closed, including rendering, even where Research OS will not build it.
+
+### Added
+
+- `learning/research-os/SOFTWARE-ATLAS.md`: 64 tools across fifteen fields, each with a first path and a fallback among browser, runner, import, and link, with sources checked on 2026-09-21 under each table and seven claims marked unverified. The Lean section reads the two Lake projects under `papers/` and designs a `lean-check` runner job. The suite section maps the forty `/research/tools` pages. Directions for the workbench closes the memo.
+- `services/research-tools/pyodide/baseline.py` and `check.mjs`: run the 25 suite tools whose imports ship in Pyodide 314.0.7 under Node and compare each to CPython. On 2026-09-21, 25 ran and 24 matched.
+
+### Edited
+
+- `learning/research-os/CHANGE-LEDGER.md`: this entry.
+
+### Removed
+
+None.
+
+### Verified
+
+- Both Lean projects build: the template in 2.0 s, the hypothesis-engine paper in 16.2 s with one `sorry` at `Bucket/Address.lean:57:8`; `lake env lean --json` reports it as `"kind":"hasSorry"`.
+- `python3 -m pytest tests` in `services/research-tools/`: 245 passed.
+- The gateway at `research-tools.agfarms.dev` timed out on `/health`, and the live proxy returned 504.
+- A correction within the run: the "founder GPU" label on three suite tools is a badge only, and all forty go through one gateway, two in synthetic mode.
+
+### Review
+
+Round 1 at `dc17e1501`, run by bkt-nuc in session at the founder's direction to stop spending tokens on subagents, so it is a review by the coordinating session and no longer independent. It verified the Lean section against the repository (six workflows, none running Lake; fifteen theorems in the README table; both pins at v4.33.1; v4.34.0 of 2026-09-14 shipping desktop archives only), the suite map (39 clients on `useToolRun`, LabBrain by hand; five HTML reports in a sandboxed iframe; the publish call commented out), the licenses and latest releases of sixteen viewers and runtimes and five browser ports through the GitHub API and the npm registry, citeproc-js's license file, and Gaussian's price list. Every checked claim holds. It found three Lows, fixed in the round 1 commit: the surface debt was recorded in the PR body alone, the Lean WebAssembly port's last push was missing, and the additions left out went unstated. The round scores 9.5.
+
+## ros-patents 1: the research memo
+
+The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
+
+Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, PR #189 into `dev`. Founder direction: patents are as much a part of discovery and innovation as papers.
+
+### Edited
+
+- `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
+
+### Added
+
+None.
+
+### Removed
+
+None.
+
+## ros-patents 0: the patents gateway and Research OS
+
+Research on patent sources, terms, and x402 sellers; the Research OS side of patents; and the gateway and protocol findings handed to the bucket-foundation org repositories, where that work lives.
+
+Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service; "the x402 feed402 patents work is a different bucket org repo". Issues filed: x402-research-gateway#67 and #68, feed402#12.
+
+### Added
+
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design of Research OS's side: patents imported into the graph from a bulk corpus and linked to the gateway's citeable USPTO records, the readers inside Research OS, the rights it shows, the graph model, the surfaces by level, and three questions for the founder.
+
+### Edited
+
+- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms and free bulk data, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+- `docs/FEED402_PATENTS.md`: a dated corrections block at the top: the v1 corpus is US grants under CC BY 4.0, seven routes, and the local serve script's old `mountPatents` call. The text below it is unchanged.
+- `docs/PROBLEM-REGISTER.md`: PR-067, PR-068, PR-069, PR-070.
+- `_intake/research-os-k12/CHANGELOG.md`: the 2026-09-19 patents entry.
+
+### Removed
+
+None.
+
+## ros-builds: fewer Vercel builds
+
+The Vercel gate compares each push with the last successful deployment, builds on Node 24, and a local check stops a push that would fail on lint or types.
+
+Date 2026-09-19. Branch `feat/ros-loop-builds`, worktree `.wt-ros-loop`, PR #187 into `dev`. Research and design in `docs/VERCEL-BUILDS.md`. Founder direction: fewer Vercel builds, and no failing ones.
+
+### Added
+
+- `scripts/pre-push-vercel-check.sh`: asks the gate whether a push would build and runs lint and the type check first when it would, on the pushed commit alone.
+- `scripts/install-git-hooks.sh`: installs a `pre-push` beside the org's shared `pre-commit` that runs a repository's own check.
+- `scripts/test-pre-push-vercel-check.sh`: 25 cases, the installer among them.
+
+### Edited
+
+- `scripts/vercel-ignore-build.sh`: skip and build tokens count on the commit subject alone; step 3 fetches the trees of the base and the pushed commit at depth 1 into a scratch repository when Vercel's one-commit clone lacks the base, compares a branch with no successful deployment against `dev`, falls back to the pushed commit's first parent on `dev` or `main` with no previous deployment sha, and only for a merge or a squash merge, diffs with `--no-renames`, and matches the allowlist from a here-string; `[skip vercel]` and `[vercel skip]` skip Vercel alone. Old behaviour: skip tokens anywhere in the message, so a squash body could skip a merge; `git diff` against the previous sha, which always failed on Vercel and built; the parent as the base with no previous sha; `echo | grep -q`, which skipped a site change in a diff past 64 KB.
+- `scripts/test-vercel-ignore-build.sh`: 31 checks, 14 in a depth-1 clone with no remote. Old: ten cases in a full clone.
+- `package.json`, `package-lock.json`: `engines.node` 24.x.
+- `.github/workflows/site-ci.yml`: Node 24, the two gate test scripts, and `vercel.json` among the watched paths. Old: Node 20.
+- `docs/VERCEL-BUILDS.md`: measured deployments and failures, the changes, the rule as it now runs, the pre-push check, and the Node version.
+- `docs/PROBLEM-REGISTER.md`: PR-064, PR-065, PR-066.
+
+### Removed
+
+None.
+
+## ros-prime 2: the decompose-further queue
+
+Every prime and unfactored idea gets factors proposed by one model, checked blind by a second and by Wikipedia's links, and decided by a person at `/research-os/edges`.
+
+Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loop`, PR #186 into `dev`. Design and results in `learning/research-os/PRIMES.md`, "Slice 2". Founder direction: decompose concepts and equations into primes, "can this be further", and build it deep, with a critic.
+
+### Added
+
+- `src/lib/research-os/decompose-further.ts`: target selection (idea nodes only), the three-pool shortlist, prompts and parsers for the proposer, the blinded verifier, and consolidation, Cohen's kappa with a target-level bootstrap interval, missing-idea aggregation and base-idea hints, cycle detection over pending pairs.
+- `src/lib/research-os/refd.ts` and `scripts/research-os/wikipedia-links.ts`: RefD over Wikipedia links (Liang and colleagues, 2015), title resolution through redirects, and the ROC area of the score against the verifier's verdicts.
+- `scripts/research-os/decompose-further.ts`, the eight-stage runner; `scripts/research-os/embed-texts.py`, local embeddings with a cache.
+- `src/lib/research-os/inference/decide-node.ts` and `review-actions.ts`: decisions on factor proposals, missing primes, and irreducible verdicts, each claimed before it writes.
+- `src/app/api/research-os/node-proposals/route.ts`, `src/app/api/research-os/irreducible/route.ts`.
+- Migrations `20260918010000_research_os_prime_decompose.sql`, `20260918020000_research_os_prime_decompose_review.sql`, `20260918030000_research_os_irreducible.sql`: `graph.node_proposals`, `graph.irreducible_proposals`, verification state, origin, RefD, and cycle flags on `graph.edge_proposals`, the merge functions, `graph.rests_on`, and an atomic `replace_prereq_ancestor`.
+- `primes.ts` `movesSince`; `primes-report.ts` reports reviewed irreducible primes and what moved since its last run.
+- `src/lib/research-os/makeup.ts`, `src/app/api/research-os/makeup/route.ts`, `src/app/research-os/(app)/n/MakeupSection.tsx`: the node page's "made of" section, a node's place in the decomposition and what waits on review for it (founder direction: the work shows inside Research OS).
+- `supabase/tests/research_os_proposals.sql` with `scripts/test-research-os-proposal-sql.ts`: the merge, reachability, and closure functions in real Postgres, in a transaction that rolls back.
+- Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
+- `src/lib/research-os/idea.ts`: which nodes are ideas, shared by the queue and the node page; the queue and "made of" decompose the idea layer, and facts under an idea show as its evidence.
+- `src/lib/research-os/reviewer.ts` `verifyGraphReviewer`: graph review on the allowlist alone, since a class membership anyone can create opens teacher review.
+- `src/lib/research-os/primes.ts` `contractedFactorEdges`: the idea layer keeps an idea-to-idea edge wherever one idea rests on another through evidence alone, so a paper between two ideas no longer hides the link.
+- `src/lib/research-os/makeup.ts` `pairStandings`: each pending pair is labelled when it loops with the graph, repeats a chain the graph has, or shortcuts a chain other pending pairs make, and names the nodes on the shortest such chain; the review page reloads the labels after every decision, drops a reload an older request started, and reports the status a row holds when someone decided it first.
+- Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
+
+### Edited
+
+- `src/app/research-os/(app)/edges/page.tsx`: sections for irreducible verdicts, missing primes, and factor proposals grouped by target, with the edge kind chosen per proposal.
+- `src/app/api/research-os/edges/route.ts`: a thin wrapper over `review-actions.ts`.
+- `src/lib/research-os/inference/decide.ts`: an approval can write `derives_from` as well as `prerequisite`.
+- `src/lib/research-os/db.ts`, `node/route.ts`, `route/route.ts`: node pages and routing read factors from other branches.
+- `src/lib/research-os/rebuild-ancestor.ts`, `scripts/rebuild-prereq-ancestor.ts`: paged reads, cross-branch edges, one atomic replace.
+- `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
+- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061, PR-062, PR-063.
+- `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict, cross-branch, and shortcut filters, anchors a node page links to, and warnings from approvals.
+- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. The walk visits ideas (idea.ts) and the work built on them, and stops at facts, sources, and grouping nodes. A node flagged as an open question or a frontier is listed whatever its kind and ends the walk unless it is an idea or work: the eight open questions are intake targets, which fail the idea rule, and the idea rule alone hid all of them. Old behaviour: every kind walked from its from end, so extensions never showed where a node leads, and an approved "rests on" edge would have shown the factor as where the target leads.
+- `src/app/research-os/(app)/n/AroundSection.tsx`: the learning-order list is labelled "learned after". Old label: "rests on", which contradicted "made of".
+- `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.
+- `learning/research-os/ROUTING.md`, `learning/research-os/PLAN-REVISION-2.md`, `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: dated corrections beside the passages that cited the same-section finding or "moderate" agreement; the passages themselves stay as written.
+
+### Removed
+
+None.
+
 ## Ranking-holdout scoring
 
 Murphy decomposition, a higher label floor, and an ideation-stage label on novelty scores.
@@ -1220,7 +1411,7 @@ against `main` since the PR's head branch was already deleted).
 - Structure: `_intake/research-os-k12-literature/README.md`'s index table lists all 45 files.
   `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` cites `learning/research-os/RESEARCH-QUESTIONS.md`
   and eleven other repo-relative file paths; all twelve resolve on `main`, including
-  `mcp-server/bucket-mcp.py:246`, which is the `TOOLS = [` line the map describes.
+  `mcp-server/bucket-mcp.py:189`, which is the `TOOLS = [` line the map describes.
 - Gates: `npm ci` and `npm run build` both pass on `main` plus this pass's three-file diff; no
   file under `src/` or `public/` is touched by it.
 
@@ -3811,3 +4002,11 @@ Continued after `origin/docs/ros-plan-revision-4` advanced further (the second r
 - PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
 - `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
 - `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.
+
+## hte-serve as a local user service
+
+Date 2026-09-18. Research OS loop, PR #184. Adds `scripts/systemd/hte-serve.service` and its installer so `/api/research-os/hypothesize` and the MCP `hypothesize` tool reach a running engine on this machine. Updates `CLAUDE.md` (Local First, Engine) and `docs/MCP.md`. Closes PROBLEM-REGISTER PR-019.
+
+## Prime decomposition, slice one
+
+Date 2026-09-18. Research OS loop, PR #185. Adds `learning/research-os/PRIMES.md`, `src/lib/research-os/primes.ts`, its test, and `scripts/research-os/primes-report.ts`. The next slices are the decompose-further queue, the truth level with network statistics, and the node and map surfaces.

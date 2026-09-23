@@ -61,7 +61,6 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
       arr.push(e);
       m.set(k, arr);
     }
-    // Already reverse-chron from caller; preserve order via Map iteration.
     return Array.from(m.entries());
   }, [filtered]);
 

@@ -1,33 +1,11 @@
-/**
- * Retrievers for the Bucket research agent, the RETRIEVE step.
- *
- * Every retriever returns provenance-tagged `Source` records drawn ONLY from
- * public/documented assets we already have:
- *   - canon      : the Bucket canon claim index (runtime, Vercel-shipped via
- *                  `@/lib/canon-search-index` tokenRank, closed-set, real text)
- *   - openalex   : live OpenAlex works API (public, no key)
- *   - pubmed     : live NCBI E-utilities esearch+esummary (public, no key)
- *   - atlas      : the research-atlas read-only query API (atlas-api.agfarms.dev)
- *   - methods    : the live MethodsMatcher tool on the research-tools gateway
- *                  (research-tools.agfarms.dev), picks the right Bucket tool
- *
- * Each `Source` carries `provenance.call`, the EXACT request made, so the
- * brief is reproducible. NO source is fabricated; DOIs/IDs come straight from
- * the upstream payloads. Network failures degrade gracefully (the retriever
- * returns [] + a note), never throw the whole run.
- */
 import { tokenRank } from "@/lib/canon-search-index";
-
-// ---- types ---------------------------------------------------------------
 
 export type SourceKind = "canon" | "openalex" | "pubmed" | "atlas" | "methods";
 
 export type Source = {
-  /** Stable citation key the LLM must copy verbatim into `claims[].citation`. */
   id: string;
   kind: SourceKind;
   title: string;
-  /** The evidence text the synthesizer is allowed to read (snippet/abstract). */
   snippet: string;
   url?: string;
   doi?: string;
@@ -35,7 +13,6 @@ export type Source = {
   meta?: Record<string, unknown>;
   provenance: {
     retriever: SourceKind;
-    /** The exact call made, so a reader can reproduce it. */
     call: string;
   };
 };
@@ -50,10 +27,9 @@ export type RetrievalLog = {
 
 export type RetrievalResult = { sources: Source[]; log: RetrievalLog[] };
 
-const ATLAS_API = (process.env.ATLAS_API_URL ?? "https://atlas-api.agfarms.dev").replace(/\/$/, "");
-const GATEWAY = (process.env.TOOLS_GATEWAY_URL ?? "https://research-tools.agfarms.dev").replace(/\/$/, "");
+const ATLAS_API = process.env.ATLAS_API_URL?.replace(/\/$/, "") ?? "";
+const GATEWAY = process.env.TOOLS_GATEWAY_URL?.replace(/\/$/, "") ?? "";
 const RETR_TIMEOUT_MS = Number(process.env.RESEARCH_AGENT_RETR_TIMEOUT_MS ?? "12000");
-// OpenAlex asks for a mailto in the polite pool. Public, documented, no key.
 const OPENALEX_MAILTO = process.env.OPENALEX_MAILTO ?? "research@bucket.foundation";
 
 function clip(s: string, n = 900): string {
@@ -95,11 +71,6 @@ async function postJson(url: string, body: unknown): Promise<unknown> {
   }
 }
 
-// ---- canon (runtime, Vercel-shipped, closed-set) -------------------------
-
-/** Retrieve from the Bucket canon claim index via lexical tokenRank, entirely
- *  local + deterministic, no network, always reproducible. The text is the
- *  canon excerpt itself (closed-set grounding). */
 export function retrieveCanon(query: string, topK = 4): RetrievalResult {
   const call = `canon-search-index.tokenRank(${JSON.stringify(query)}, topK=${topK})`;
   let ranked: ReturnType<typeof tokenRank> = [];
@@ -120,8 +91,6 @@ export function retrieveCanon(query: string, topK = 4): RetrievalResult {
   return { sources, log: [{ retriever: "canon", call, ok: true, count: sources.length }] };
 }
 
-// ---- OpenAlex (live literature, public) ----------------------------------
-
 type OpenAlexWork = {
   id?: string;
   title?: string | null;
@@ -133,8 +102,6 @@ type OpenAlexWork = {
   primary_location?: { landing_page_url?: string | null; source?: { display_name?: string | null } | null } | null;
 };
 
-/** Reconstruct an abstract from OpenAlex's inverted index (their documented
- *  shape). Returns "" when absent, never fabricates text. */
 function deinvertAbstract(inv?: Record<string, number[]> | null): string {
   if (!inv) return "";
   const slots: string[] = [];
@@ -144,10 +111,6 @@ function deinvertAbstract(inv?: Record<string, number[]> | null): string {
   return slots.filter(Boolean).join(" ");
 }
 
-/** OpenAlex's stemmed `search` treats `*`/`?` as wildcards and 400s on a bare
- *  question mark. Strip wildcard chars + collapse whitespace so a natural
- *  question is a valid full-text search. (Documented behavior, see the API's
- *  "Wildcards require exact search" error.) */
 function sanitizeForSearch(query: string): string {
   return query.replace(/[*?]/g, " ").replace(/\s+/g, " ").trim();
 }
@@ -187,8 +150,6 @@ export async function retrieveOpenAlex(query: string, perPage = 4): Promise<Retr
   }
 }
 
-// ---- PubMed (live literature, public E-utilities) ------------------------
-
 export async function retrievePubMed(query: string, retmax = 4): Promise<RetrievalResult> {
   const eutils = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
   const searchUrl = `${eutils}/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}&term=${encodeURIComponent(query)}`;
@@ -221,8 +182,6 @@ export async function retrievePubMed(query: string, retmax = 4): Promise<Retriev
           id: `pubmed:${d.uid}`,
           kind: "pubmed" as const,
           title: (d.title || "untitled").replace(/\.$/, ""),
-          // esummary gives no abstract; the title + venue is the grounding we
-          // expose. The synthesizer must not invent findings from a bare title.
           snippet: `${d.title || ""} — ${d.fulljournalname || d.source || "journal"} (${d.pubdate || "n.d."}).`,
           url: `https://pubmed.ncbi.nlm.nih.gov/${d.uid}/`,
           doi,
@@ -237,12 +196,10 @@ export async function retrievePubMed(query: string, retmax = 4): Promise<Retriev
   }
 }
 
-// ---- research-atlas (metascience / grant-economy questions) --------------
-
-/** Pull headline stats from the atlas. Cheap, always-available signal that lets
- *  the agent ground metascience claims about the research economy. We only hit
- *  the documented read-only `/stats` + `/metascience` surface. */
 export async function retrieveAtlas(): Promise<RetrievalResult> {
+  if (!ATLAS_API) {
+    return { sources: [], log: [{ retriever: "atlas", call: "(unconfigured)", ok: false, count: 0, note: "ATLAS_API_URL not set" }] };
+  }
   const statsUrl = `${ATLAS_API}/stats`;
   const call = `GET ${statsUrl}`;
   try {
@@ -270,8 +227,6 @@ export async function retrieveAtlas(): Promise<RetrievalResult> {
   }
 }
 
-// ---- MethodsMatcher (route to the right Bucket instrument) ---------------
-
 type MethodsOut = {
   recommended_methods?: Array<{ method: string; papers_in_set: number; total_citations: number }>;
   our_tools?: Array<{ slug: string; name: string; answers: string }>;
@@ -289,11 +244,11 @@ export type MethodsMatch = {
   ok: boolean;
 };
 
-/** Route a sub-question through the live MethodsMatcher tool on the gateway. It
- *  mines recurring methods in the literature and picks which Bucket tool fits.
- *  Returns a structured match + any exemplar papers (which we also fold into
- *  the source set so the brief can cite them). */
 export async function matchMethods(question: string): Promise<{ match: MethodsMatch; sources: Source[]; log: RetrievalLog }> {
+  if (!GATEWAY) {
+    const match: MethodsMatch = { recommendation: "(MethodsMatcher unreachable)", methods: [], tools: [], degraded: true, call: "(unconfigured)", ok: false };
+    return { match, sources: [], log: { retriever: "methods", call: "(unconfigured)", ok: false, count: 0, note: "TOOLS_GATEWAY_URL not set" } };
+  }
   const url = `${GATEWAY}/v1/methodsmatcher/submit`;
   const call = `POST ${url} {"question": ${JSON.stringify(question)}}`;
   try {
@@ -303,7 +258,7 @@ export async function matchMethods(question: string): Promise<{ match: MethodsMa
     const exemplars = output.exemplar_papers ?? [];
     const sources: Source[] = exemplars.slice(0, 3).map((p, i) => ({
       id: `methods-exemplar:${i + 1}:${(p.url || p.title).slice(0, 32)}`,
-      kind: "openalex" as const, // exemplars are OpenAlex works surfaced via the tool
+      kind: "openalex" as const,
       title: p.title,
       snippet: `Exemplar method paper for "${clip(question, 120)}" — ${[p.venue, p.year, `${p.cited_by_count ?? 0} cites`].filter(Boolean).join(", ")}.`,
       url: p.url,

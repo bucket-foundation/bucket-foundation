@@ -1,9 +1,21 @@
 # feed402 Patent Endpoints
 
+> **Canonical home, set 2026-09-19.** The founder's correction: "the x402 feed402 patents work is a different bucket org repo." The serving side of this file, the routes, the pricing and the redistribution terms, belongs to `bucket-foundation/x402-research-gateway` and `bucket-foundation/feed402`, tracked as gateway issues #67 and #68 and feed402 issue #12. This copy stays as the record of what was designed here and takes no new serving work. What Research OS builds from it lives in `learning/research-os/PATENTS.md`.
+
 **Bead:** `bkt-zx6` (route surface) · sibling `bkt-5qg` (USPTO Postgres schema)
-**Spec:** [feed402 `SPEC.md §6.1`](https://github.com/gianyrox/feed402/blob/master/SPEC.md#61-patents-service-reference-implementation-bkt-zx6), *(local-only repo, no public remote yet, see `~/agfarms/feed402/SPEC.md`)*
+**Spec:** feed402 `SPEC.md` section 6.1, in `bucket-foundation/feed402`, where issue #12 carries this route surface.
 **Licensing matrix:** [`PATENT_LICENSING.md`](./PATENT_LICENSING.md)
 **Schema source of truth:** [`/data/patents/uspto/schema/uspto.sql`](../data/patents/uspto/schema/uspto.sql)
+
+## Corrections of 2026-09-19
+
+`learning/research-os/PATENTS.md` records the checks behind these. The text below this block is kept as written.
+
+- The v1 corpus is US records, public domain or CC BY 4.0. EPO data, through OPS or the EPO's free bulk products, waits on the EPO's raw-data terms, and WIPO PATENTSCOPE content needs a paid derivative licence before any tier carries it.
+- The route surface mounts seven routes: the six below and `/citation`.
+- The local serve script `local/patents/scripts/05-serve.ts` calls `mountPatents` with an older signature and needs updating before it serves.
+- The x402 research gateway now serves US patents through its USPTO ODP adapter ([x402-research-gateway#64](https://github.com/bucket-foundation/x402-research-gateway/pull/64)), and the protocol changes these corrections imply are tracked in [feed402#12](https://github.com/bucket-foundation/feed402/issues/12).
+- feed402 has public remotes, `gianyrox/feed402` and `bucket-foundation/feed402` on GitHub; the "local-only repo" note below is out of date.
 
 ## Routes
 

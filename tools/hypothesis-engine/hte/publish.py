@@ -1,23 +1,3 @@
-"""`publish`: commit one campaign run's artifacts and its paper, and
-mirror the built PDF to Google Drive.
-
-Follows `~/agfarms/CLAUDE.md`'s Cloud Share pattern (`rclone` to
-`gdrive:AGFarms/Nucleus/<area>/<project>/`, never `/tmp`, never a `zip`)
-and its own commit rules (a new commit on the current branch, no
-`--amend`, no force push, conventional-commits message). `hte/runs/` is
-this package's own `.gitignore` entry, so this module force-adds the
-handful of top-level artifact files one run produced
-(`hte.runner.run_campaign`'s own layout) instead of the whole `runs/`
-tree, which would also pull in `_llm-cache/` and every other campaign's
-own files.
-
-Never pushes, and never mints: `mint_hook` below is the one step this
-module deliberately does not implement, minting a Story Protocol IP NFT
-needs the founder's own wallet key, which this pipeline does not hold
-and must not be handed (`~/agfarms/CLAUDE.md`'s Viatika/x402 integration
-architecture keeps wallet signing at the vendor or the founder, never
-inside an agent's own process).
-"""
 from __future__ import annotations
 
 import json
@@ -36,22 +16,10 @@ _RUN_ARTIFACT_NAMES = [
     "calibration.json", "CALIBRATION.md", "self-report.json", "run.log",
 ]
 _PAGE_COUNT_RE = re.compile(r"Output written on \S+\.pdf \((\d+) pages?")
-# `PUBLISH.json` is this module's own output (`publish()` below writes it
-# into `paper_dir` on every call, dry-run included); staging it back into
-# a later commit would carry a prior run's own commit sha and share link
-# as if they belonged to this one. `STAGE.json`/`PIPELINE.json` are `hte.
-# pipeline`'s own per-stage and per-run summaries; they live under the
-# pipeline's own stage directories, not `paper_dir`, but are excluded
-# here too, defensively, since nothing stops a future pipeline layout
-# from nesting one under `paper_dir` (PR #4 review finding: `PUBLISH.json`
-# was not excluded and a retried publish over a `paper_dir` carrying one
-# from a prior attempt would git-add it).
 _SKIP_NAMES = {".referee-lint-tmp.md", "PUBLISH.json", "STAGE.json", "PIPELINE.json"}
 
-
 class PublishError(RuntimeError):
-    """Base class for every error this module raises."""
-
+    pass
 
 def _run(cmd: list[str], *, cwd: Path | None = None) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -59,24 +27,10 @@ def _run(cmd: list[str], *, cwd: Path | None = None) -> subprocess.CompletedProc
         encoding="utf-8", errors="replace", check=True,
     )
 
-
 def _run_artifact_files(run_dir: Path) -> list[Path]:
-    """Every top-level artifact `run_dir` wrote, of the names
-    `hte.runner.run_campaign` is known to produce. A run that disabled
-    calibration, say, has fewer of these; nothing here assumes every
-    name is present."""
     return [run_dir / n for n in _RUN_ARTIFACT_NAMES if (run_dir / n).is_file()]
 
-
 def _paper_files(paper_dir: Path) -> list[Path]:
-    """Every file under `paper_dir`, excluding this pipeline's own
-    scratch files (`_llm-cache/`, the referee's temp lint copy), this
-    pipeline's own run/stage bookkeeping (`PUBLISH.json`, `STAGE.json`,
-    `PIPELINE.json`, `_SKIP_NAMES` above), and LaTeX's own build
-    byproducts that add no reviewable content (`.aux`/`.log`/`.bcf`/
-    `.blg`/`.out`/`.run.xml`): the paper's source, its figures, its
-    bibliography, and the built PDF and REVIEW.md are what a reviewer,
-    or a later `git log`, needs."""
     if not paper_dir.is_dir():
         return []
     skip_suffixes = {".aux", ".bcf", ".blg", ".out", ".synctex.gz", ".toc"}
@@ -93,20 +47,12 @@ def _paper_files(paper_dir: Path) -> list[Path]:
         out.append(p)
     return out
 
-
 def _relative_to_repo(path: Path) -> str:
-    """`path`, relative to `REPO_ROOT` when it lives under it (the
-    normal case: `git add` reads a path relative to the repo it runs
-    in), or its own absolute string otherwise (a caller pointing this
-    module at a run or paper directory outside this repository, tests
-    included, still gets a usable, unambiguous path back rather than a
-    crash)."""
     resolved = path.resolve()
     try:
         return str(resolved.relative_to(REPO_ROOT))
     except ValueError:
         return str(resolved)
-
 
 def _page_count(paper_dir: Path) -> int | None:
     log_path = paper_dir / "main.log"
@@ -117,7 +63,6 @@ def _page_count(paper_dir: Path) -> int | None:
         pass
     return int(match.group(1)) if match else None
 
-
 def _commit_message(campaign: str, run_id: str, page_count: int | None) -> str:
     pages = f", {page_count} pages" if page_count else ""
     return (
@@ -126,42 +71,16 @@ def _commit_message(campaign: str, run_id: str, page_count: int | None) -> str:
         "hypothesis, evidence item, score, or paper section."
     )
 
-
 def mint_hook(paper_dir: str | Path) -> None:
-    """Where a future publish step would mint this paper's Story
-    Protocol IP NFT (bucket.foundation's own `publish` terminal action,
-    `~/agfarms/bucket-foundation/CLAUDE.md`'s Canon thesis section).
-    Deliberately unimplemented: minting signs a transaction with the
-    founder's own wallet key, which this automated pipeline never holds.
-    Mint by hand, from the founder's own machine, against
-    `<paper_dir>/main.pdf`, once the founder has reviewed it."""
     raise NotImplementedError(
         "mint_hook: Story Protocol minting needs the founder's own wallet key; "
         "this pipeline never holds one. Mint by hand from "
         f"{Path(paper_dir) / 'main.pdf'} once the founder reviews it."
     )
 
-
 def publish(run_dir: str | Path, paper_dir: str | Path, *, dry_run: bool = True) -> dict[str, Any]:
-    """Commits `run_dir`'s own top-level artifact files and every
-    reviewable file under `paper_dir` on the current branch, then
-    mirrors `paper_dir/main.pdf` to `gdrive:AGFarms/Nucleus/bucket-
-    foundation/papers/<campaign>/<run_id>/` via `rclone` and records the
-    share link. Writes `paper_dir/PUBLISH.json` either way.
-
-    `dry_run=True` (the default) runs no git or rclone command at all:
-    it computes the exact file list and commit message, and returns them
-    under `"actions_planned"`, so a caller can review the plan before
-    anything touches the working tree or a network call goes out.
-    """
     run_dir = Path(run_dir)
     paper_dir = Path(paper_dir)
-    # `load_manifest`, not `load_run`: this function commits whatever
-    # artifact files `run_dir` carries by name alone (`_run_artifact_
-    # files` below), valid JSON or not, and must not fail over one of
-    # THOSE other files' own unrelated bad content the way reading all
-    # four through `load_run` would (`hte.artifacts.load_manifest`'s own
-    # docstring names this exact case).
     try:
         manifest = artifacts_mod.load_manifest(run_dir)
     except FileNotFoundError:
@@ -212,6 +131,5 @@ def publish(run_dir: str | Path, paper_dir: str | Path, *, dry_run: bool = True)
 
     (paper_dir / "PUBLISH.json").write_text(json.dumps(result, indent=2))
     return result
-
 
 __all__ = ["publish", "mint_hook", "PublishError"]

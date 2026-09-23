@@ -1,9 +1,3 @@
-// src/lib/supabase/client.ts
-//
-// Back-compat entry for `import { supabase } from "@/lib/supabase/client"`
-// and `getSupabase()`. Both resolve to the cookie-backed browser client in
-// ./browser, so every caller shares the site session. Instantiation stays
-// lazy: nothing is built until the first method call at runtime.
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getBrowserSupabase } from "./browser";
 

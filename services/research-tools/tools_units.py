@@ -1,61 +1,18 @@
 #!/usr/bin/env python3
-"""
-research-tools, UnitDimCheck (REAL dimensional analysis + unit conversion, CPU)
-================================================================================
-
-UNIVERSAL tool (physics-astro 108,466 PIs + engineering 93,027 + all quantitative
-fields). Dimensional analysis is the single cheapest correctness check in all of
-physical science: an equation that is not dimensionally homogeneous is WRONG,
-full stop, before any number is plugged in. Yet most lab code has no unit layer,
-and "the units didn't match" is a classic, expensive class of error (Mars
-Climate Orbiter). UnitDimCheck gives a scriptable, no-dependency unit engine.
-
-Three REAL operations over the 7 SI base dimensions
-(mass M, length L, time T, electric current I, temperature Θ, amount N,
-luminous intensity J):
-
- 1. Unit parsing + dimension extraction
- ----------------------------------------------------------------------
- Parse a unit expression ("kg*m/s^2", "N", "J/(mol*K)", "m s^-2") into a
- dimension vector (the integer/rational exponents of the 7 base dimensions)
- AND an SI conversion factor. A built-in table of SI base + derived + common
- metric/imperial units, each with (factor-to-SI, dimension-vector), is
- composed multiplicatively.
-
- 2. Unit conversion
- ----------------------------------------------------------------------
- Convert a value between two units IFF their dimension vectors are equal
- (otherwise a structured error naming the mismatch). value_to = value_from *
- factor_from / factor_to. (Affine temperatures °C/°F are handled specially.)
-
- 3. Equation dimensional-consistency check
- ----------------------------------------------------------------------
- Given "LHS = RHS" where each side is a product/quotient of unit symbols,
- check that both sides reduce to the same dimension vector, catching, e.g.,
- F = m*a (consistent: both M·L·T⁻²) vs the wrong F = m*v (M·L·T⁻¹ ≠ M·L·T⁻²).
-
-Everything is exact rational arithmetic over Fractions; deterministic; never
-raises on malformed input (returns a structured {"error": ...}).
-
-The gateway imports UNITS_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import re
 from fractions import Fraction
 from typing import Optional
 
-# 7 SI base dimensions, fixed order.
 _DIMS = ["M", "L", "T", "I", "Theta", "N", "J"]
 _DIM_LABEL = {
     "M": "mass", "L": "length", "T": "time", "I": "current",
     "Theta": "temperature", "N": "amount", "J": "luminous_intensity",
 }
 
-
 def _z() -> dict[str, Fraction]:
     return {d: Fraction(0) for d in _DIMS}
-
 
 def _dim(**kw) -> dict[str, Fraction]:
     v = _z()
@@ -63,11 +20,6 @@ def _dim(**kw) -> dict[str, Fraction]:
         v[k] = Fraction(val)
     return v
 
-
-# ---------------------------------------------------------------------------
-# Unit table: symbol -> (SI factor, dimension vector). Factor converts the unit
-# TO its SI coherent unit. REAL physical constants.
-# ---------------------------------------------------------------------------
 _M = _dim(M=1)
 _L = _dim(L=1)
 _T = _dim(T=1)
@@ -75,16 +27,15 @@ _I = _dim(I=1)
 _TH = _dim(Theta=1)
 _N = _dim(N=1)
 _J = _dim(J=1)
-_FORCE = _dim(M=1, L=1, T=-2)        # N
-_ENERGY = _dim(M=1, L=2, T=-2)       # J
-_POWER = _dim(M=1, L=2, T=-3)        # W
-_PRESSURE = _dim(M=1, L=-1, T=-2)    # Pa
-_CHARGE = _dim(I=1, T=1)             # C
-_VOLT = _dim(M=1, L=2, T=-3, I=-1)   # V
-_FREQ = _dim(T=-1)                   # Hz
+_FORCE = _dim(M=1, L=1, T=-2)
+_ENERGY = _dim(M=1, L=2, T=-2)
+_POWER = _dim(M=1, L=2, T=-3)
+_PRESSURE = _dim(M=1, L=-1, T=-2)
+_CHARGE = _dim(I=1, T=1)
+_VOLT = _dim(M=1, L=2, T=-3, I=-1)
+_FREQ = _dim(T=-1)
 
 _UNITS: dict[str, tuple[float, dict]] = {
-    # base
     "kg": (1.0, _M), "g": (1e-3, _M), "mg": (1e-6, _M), "t": (1000.0, _M),
     "lb": (0.45359237, _M), "oz": (0.028349523, _M),
     "m": (1.0, _L), "cm": (1e-2, _L), "mm": (1e-3, _L), "um": (1e-6, _L),
@@ -97,7 +48,6 @@ _UNITS: dict[str, tuple[float, dict]] = {
     "K": (1.0, _TH),
     "mol": (1.0, _N), "mmol": (1e-3, _N),
     "cd": (1.0, _J),
-    # derived
     "N": (1.0, _FORCE), "kN": (1000.0, _FORCE), "dyn": (1e-5, _FORCE),
     "J": (1.0, _ENERGY), "kJ": (1000.0, _ENERGY), "cal": (4.184, _ENERGY),
     "kcal": (4184.0, _ENERGY), "eV": (1.602176634e-19, _ENERGY),
@@ -113,35 +63,22 @@ _UNITS: dict[str, tuple[float, dict]] = {
     "L": (1e-3, _dim(L=3)), "mL": (1e-6, _dim(L=3)), "uL": (1e-9, _dim(L=3)),
 }
 
-_AFFINE = {  # temperature: (slope to K, offset to K)
+_AFFINE = {
     "degC": (1.0, 273.15), "C_temp": (1.0, 273.15),
     "degF": (5.0 / 9.0, 255.3722222222222),
 }
 
-
 def _norm_token(tok: str) -> str:
-    """Normalize unicode/aliases in a unit token."""
     tok = tok.replace("μ", "u").replace("Å", "angstrom").replace("°", "deg")
     return tok
 
-
 def parse_unit(expr: str) -> tuple[Optional[float], Optional[dict], Optional[str]]:
-    """Parse a unit expression → (SI factor, dimension vector, error).
-
- Grammar: products via '*' or whitespace, division via '/', powers via
- '^n' or 'unit2'/'unit-2' (e.g. 's^-2', 'm2'). '1' is dimensionless. Pure;
- never raises, returns ("error" string) on bad input.
-    """
     s = _norm_token((expr or "").strip())
     if not s:
         return None, None, "empty unit"
     if s in ("1", "dimensionless", "-"):
         return 1.0, _z(), None
-    # split into numerator / denominator around the first top-level '/'
-    # (no parentheses nesting beyond one level supported, which covers the
-    # J/(mol*K) idiom: strip the parens).
     s = s.replace("·", "*").replace(" ", "*")
-    # handle a single division
     if "/" in s:
         num, den = s.split("/", 1)
     else:
@@ -158,7 +95,6 @@ def parse_unit(expr: str) -> tuple[Optional[float], Optional[dict], Optional[str
             raw = raw.strip()
             if not raw or raw == "1":
                 continue
-            # extract trailing exponent: m^-2, m2, m^2, s-1
             mexp = re.match(r"^([A-Za-z]+)(?:\^?(-?\d+(?:\.\d+)?))?$", raw)
             if not mexp:
                 return f"could not parse unit token '{raw}'"
@@ -181,7 +117,6 @@ def parse_unit(expr: str) -> tuple[Optional[float], Optional[dict], Optional[str
             return None, None, err
     return factor, dim, None
 
-
 def _dim_str(dim: dict) -> str:
     parts = []
     for d in _DIMS:
@@ -190,13 +125,10 @@ def _dim_str(dim: dict) -> str:
             parts.append(f"{_DIM_LABEL[d]}^{e}" if e != 1 else _DIM_LABEL[d])
     return " · ".join(parts) if parts else "dimensionless"
 
-
 def _dim_equal(a: dict, b: dict) -> bool:
     return all(a[d] == b[d] for d in _DIMS)
 
-
 def convert(value: float, from_u: str, to_u: str) -> dict:
-    # affine temperature special-case
     fu, tu = _norm_token(from_u.strip()), _norm_token(to_u.strip())
     aff_map = {"degC": "degC", "degF": "degF"}
     if fu in aff_map or tu in aff_map:
@@ -234,7 +166,6 @@ def convert(value: float, from_u: str, to_u: str) -> dict:
     return {"value_to": round(res, 10), "from": from_u, "to": to_u,
             "dimension": _dim_str(fd), "affine": False}
 
-
 def check_equation(eq: str) -> dict:
     eq = eq.replace("=", "\x00").split("\x00")
     if len(eq) != 2:
@@ -255,17 +186,7 @@ def check_equation(eq: str) -> dict:
         "verdict": "DIMENSIONALLY CONSISTENT" if consistent else "DIMENSIONALLY INCONSISTENT",
     }
 
-
 def run_units(payload: dict) -> dict:
-    """payload (one of):
- { op: "convert", value: float, from: str, to: str }
- { op: "check", equation: str } e.g. "N = kg*m/s^2"
- { op: "parse", unit: str } e.g. "J/(mol*K)"
- { demo: true } or { op: "demo" } -> checks F = m*a (consistent)
-
- Real SI dimensional analysis, unit conversion, and equation consistency.
- Exact rational dimension arithmetic; deterministic; never raises.
-    """
     op = (payload.get("op") or "").strip().lower()
     demo = bool(payload.get("demo")) or op == "demo"
     if demo:
@@ -322,7 +243,6 @@ def run_units(payload: dict) -> dict:
 
     return {"error": 'op must be "convert", "check", "parse", or use demo'}
 
-
 _METHOD = (
     "Units are parsed into the 7 SI base dimensions (M, L, T, I, Θ, N, J) with an "
     "exact rational exponent vector plus an SI conversion factor, composed "
@@ -339,8 +259,6 @@ _NOTE = (
     "easy additive extension."
 )
 
-
-# Registry the gateway imports.
 UNITS_RUNNERS = {
     "unitdimcheck": run_units,
 }

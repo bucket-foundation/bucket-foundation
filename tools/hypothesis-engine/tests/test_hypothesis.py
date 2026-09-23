@@ -5,7 +5,6 @@ from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.hypothesis import Hypothesis, Placement, Sequence, prior_logit_of
 from hte.timeline import AllenRelation, Interval
 
-
 def _small_vocab() -> Vocabulary:
     vocab = Vocabulary()
     vocab.add(Concept("farmers", Slot.ACTOR, "Farmers", 2.0, ConsensusStatus.CONSENSUS))
@@ -17,7 +16,6 @@ def _small_vocab() -> Vocabulary:
     vocab.add(Concept("tech", Slot.MECHANISM, "Tech", -2.5, ConsensusStatus.FRINGE))
     return vocab
 
-
 def test_placement_address_matches_manual_slot_tuple():
     vocab = _small_vocab()
     interval = Interval(start=-7000, end=-6901)
@@ -27,7 +25,6 @@ def test_placement_address_matches_manual_slot_tuple():
     t = decode_indices(n)
     assert vocab.concepts(Slot.ACTOR)[t.actor].id == "farmers"
     assert vocab.concepts(Slot.MECHANISM)[t.mechanism].id == "labor"
-
 
 def test_placement_prior_logit_sums_concept_priors_only():
     vocab = _small_vocab()
@@ -39,7 +36,6 @@ def test_placement_prior_logit_sums_concept_priors_only():
     assert farmers.prior_logit(vocab) == pytest.approx(2.5)
     assert aliens.prior_logit(vocab) == pytest.approx(-6.5)
 
-
 def test_placement_json_roundtrip():
     interval = Interval(start=-7000, end=-6901)
     placement = Placement(actor="farmers", action="built", object="shrine", place="site",
@@ -47,7 +43,6 @@ def test_placement_json_roundtrip():
     d = placement.to_dict()
     back = Placement.from_dict(d)
     assert back == placement
-
 
 def test_hypothesis_from_placement_roundtrip(tmp_path):
     vocab = _small_vocab()
@@ -65,7 +60,6 @@ def test_hypothesis_from_placement_roundtrip(tmp_path):
     assert loaded.address == hyp.address
     assert loaded.content == hyp.content
     assert loaded.claims == hyp.claims
-
 
 def test_sequence_address_and_roundtrip():
     vocab = _small_vocab()
@@ -88,7 +82,6 @@ def test_sequence_address_and_roundtrip():
     assert back.address == hyp.address
     assert back.content.relation == AllenRelation.BEFORE
 
-
 def test_sequence_prior_logit_sums_both_placements():
     vocab = _small_vocab()
     interval = Interval(start=-7000, end=-6901)
@@ -98,7 +91,6 @@ def test_sequence_prior_logit_sums_both_placements():
                         mechanism="tech", interval=interval)
     seq = Sequence(first=farmers, relation=AllenRelation.BEFORE, second=aliens)
     assert seq.prior_logit(vocab) == pytest.approx(2.5 + -6.5)
-
 
 def test_prior_logit_of_free_function_matches_method():
     vocab = _small_vocab()

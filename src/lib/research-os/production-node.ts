@@ -1,12 +1,3 @@
-/**
- * An accepted production becomes a node (INTEGRATION-PLAN.md: "accepted
- * student productions become citable nodes"). The node takes the
- * production's kind, the learner as owner and creator, the target's
- * branch, the claim as its summary, and an edge to the node it acts on:
- * derives_from the target for a production, extends / replicates /
- * reviews the related node for the other kinds. Idempotent on
- * productions.node_id.
- */
 import { graphService } from "./db";
 
 export type ProductionKind = "production" | "extension" | "replication" | "peer_review";
@@ -48,12 +39,12 @@ export interface AcceptedProduction {
   node_id?: string | null;
 }
 
-/** Create the node and its edge for an accepted production; returns the node id. Idempotent: an existing node keeps its id and the edge is ensured. */
 export async function createNodeFromProduction(p: AcceptedProduction): Promise<string | null> {
   const svc = graphService();
   const kind = (PRODUCTION_KINDS.includes(p.kind as ProductionKind) ? p.kind : "production") as ProductionKind;
   const relatedId = (kind === "production" ? p.target_node_id : p.related_node_id ?? p.target_node_id) as string;
-  const { data: related } = await svc.from("nodes").select("id,title,branch,tier").eq("id", relatedId).maybeSingle();
+  const { data: related, error: relatedErr } = await svc.from("nodes").select("id,title,branch,tier").eq("id", relatedId).maybeSingle();
+  if (relatedErr) throw new Error(`createNodeFromProduction: related node read failed: ${relatedErr.message}`);
   const rel = related as { id: string; title: string; branch: string; tier: number } | null;
   let nodeId = p.node_id ?? null;
   if (!nodeId) {

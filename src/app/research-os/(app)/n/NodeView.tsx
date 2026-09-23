@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ErrorState, LoadingState, StageChip } from "@/components/ui";
@@ -7,25 +8,32 @@ import type { NodeData, Quote } from "./types";
 import { KIND_LABEL, branchName } from "./types";
 import LearnSection from "./LearnSection";
 import SourcesSection from "./SourcesSection";
+import WordsSection from "./WordsSection";
 import CheckSection from "./CheckSection";
 import TransferSection from "./TransferSection";
 import AroundSection from "./AroundSection";
+import MakeupSection from "./MakeupSection";
 import ProductionsSection from "./ProductionsSection";
 import ClassSection from "./ClassSection";
 import AccessBlock from "../workspace/AccessBlock";
 import Section from "./Section";
 import { useSession } from "@/providers/SessionProvider";
+import { isIdeaNode } from "@/lib/research-os/idea";
 
 const SECTIONS: { id: string; label: string; level: string }[] = [
   { id: "learn", label: "Learn", level: "understanding" },
   { id: "sources", label: "Sources", level: "awareness" },
+  { id: "words", label: "Languages", level: "awareness" },
   { id: "check", label: "Check", level: "understanding" },
   { id: "transfer", label: "Transfer", level: "internalization" },
   { id: "around", label: "Around", level: "awareness" },
+  { id: "makeup", label: "Made of", level: "understanding" },
   { id: "produce", label: "Produce", level: "production" },
   { id: "class", label: "Class", level: "" },
   { id: "access", label: "Access", level: "access" },
 ];
+
+const WORD_KINDS = new Set(["concept", "law", "derivation"]);
 
 const EVIDENCE_LABEL: Record<string, string> = {
   open: "opened it", quote: "quoted a source", check: "checked an explanation", academy_mastery: "mastered it in Learn", transfer_item: "answered a transfer prompt",
@@ -33,17 +41,20 @@ const EVIDENCE_LABEL: Record<string, string> = {
   explanation: "wrote an explanation",
 };
 
-/** The node page: one node, the person's standing on it, and every verb of the five levels in place. */
 export default function NodeView({ slug }: { slug: string }) {
   const { accessToken } = useSession();
   const [data, setData] = useState<NodeData | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/research-os/node?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
+      const outageCode = res.ok ? null : await readErrorCode(res);
+      setErrorCode(outageCode);
       setStatus(res.status);
+        if (!res.ok) setErrorCode(await readErrorCode(res));
       if (res.ok) setData((await res.json()) as NodeData);
     } catch {
       setStatus(0);
@@ -56,10 +67,14 @@ export default function NodeView({ slug }: { slug: string }) {
 
   if (status === null) return <LoadingState label="Opening the node" />;
   if (status === 404) return <ErrorState title="No such node" body="It may be private, or the slug may have changed." />;
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" />;
+  if (isTransientOutage(status, errorCode)) return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />;
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (!data) return <ErrorState body="Could not open the node." retry={() => void load()} />;
 
   const { node, standing } = data;
+  const provenanceType = typeof node.provenance?.type === "string" ? node.provenance.type : null;
+  const showMakeup = node.visibility === "public" && isIdeaNode({ kind: node.kind, provenanceType });
+  const showWords = WORD_KINDS.has(node.kind);
   const last = standing.evidence.length ? standing.evidence[standing.evidence.length - 1] : null;
   const raisedBy = last ? `${EVIDENCE_LABEL[String(last.kind)] ?? String(last.kind)}${last.at ? ` · ${new Date(String(last.at)).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : ""}` : null;
 
@@ -97,7 +112,7 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <nav aria-label="Verbs" className="sticky top-[58px] z-20 -mx-4 md:mx-0 px-4 md:px-0 bg-[color:var(--bone)]/90 backdrop-blur-[2px] border-y border-[color:var(--hairline)]">
         <div className="flex gap-1 overflow-x-auto">
-          {SECTIONS.map((s) => (
+          {SECTIONS.filter((s) => (s.id !== "makeup" || showMakeup) && (s.id !== "words" || showWords)).map((s) => (
             <a key={s.id} href={`#${s.id}`} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] border-b-2 border-transparent hover:border-[color:var(--gold)]">
               {s.label}
             </a>
@@ -107,9 +122,11 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <LearnSection data={data} />
       <SourcesSection data={data} quotes={quotes} onQuote={(q) => setQuotes((prev) => (prev.some((p) => p.citation === q.citation && p.quotable_span === q.quotable_span) ? prev : [...prev, q]))} onChanged={load} />
+      {showWords && <WordsSection nodeId={node.id} />}
       <CheckSection data={data} quotes={quotes} onChanged={load} />
       <TransferSection data={data} onChanged={load} />
       <AroundSection data={data} />
+      {showMakeup && <MakeupSection slug={node.slug} branch={node.branch} />}
       <ProductionsSection data={data} quotes={quotes} onChanged={load} />
       <ClassSection data={data} onChanged={load} />
       <Section id="access" level="access" title="access" meta={node.visibility}>

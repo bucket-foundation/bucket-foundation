@@ -1,0 +1,180 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
+    }
+  },
+  "GET profile read": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": "self",
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "guardian_required"
+      }
+    }
+  },
+  "GET no profile yet": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": null,
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "age_unknown"
+      }
+    }
+  },
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST self, profile read fails": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
+    }
+  },
+  "POST self, saved": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": "self",
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "guardian_required"
+      }
+    }
+  },
+  "POST self, write fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
+    }
+  },
+  "POST self, profile missing": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile"
+    }
+  },
+  "POST self, saved, reread fails": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
+    }
+  }
+}

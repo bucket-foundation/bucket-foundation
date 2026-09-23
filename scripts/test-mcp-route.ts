@@ -1,13 +1,3 @@
-/**
- * Unit test for `src/lib/mcp/server.ts`: the JSON-RPC surface Claude.ai,
- * Claude Desktop, ChatGPT, and `claude mcp add --transport http` speak,
- * against the repo's own canon data, no network (the DOI path is exercised
- * with a plain URL, the engine path with HTE_SERVE_URL unset). node:test
- * plus node:assert, per every other scripts/test-*.ts here.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-mcp-route.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { handleBody, handleMessage, PROTOCOL_VERSION, TOOLS } from "../src/lib/mcp/server";

@@ -5,13 +5,6 @@ import FixedCanonGlobeBackground from "@/components/FixedCanonGlobeBackground";
 import RevealRow from "./RevealRow";
 import "./landing.css";
 
-// /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
-// production-reaching path for the L1 rung of the depth ladder: a student
-// workspace where the AI only finds, quotes, checks, and organizes over the
-// Concept Atom graph; five learner states per atom; frontier-backward routing;
-// a teacher class view; accepted student productions become citable nodes the
-// hypothesis engine can consume. Plan: learning/research-os/PLAN.md.
-
 export const metadata: Metadata = {
   title: "Research OS for K-12 · find, quote, check, organize",
   description:
@@ -32,8 +25,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Five levels of interaction with the graph, each holding the ones before
-// it. Founder's framing, 2026-09-15: learning/research-os/INTEGRATION-PLAN.md.
 const STATES: { name: string; line: string }[] = [
   {
     name: "Access",
@@ -54,11 +45,6 @@ const STATES: { name: string; line: string }[] = [
   },
 ];
 
-// One screenshot per state, same order as STATES, captured live from this
-// dev server. The Supabase-gated routes (class, review) render their own
-// unavailable message with no Supabase keys configured locally; that is
-// a real screenshot of the shipped fallback, labeled as such in the alt
-// text below.
 const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: string }[] = [
   {
     src: "/research-os/state-access.png",
@@ -97,6 +83,9 @@ const TRUST = "Free · no login for the demo · every quote traces to a real sou
 export default function ResearchOsPage() {
   return (
     <>
+      <noscript>
+        <style>{".ros-row .ros-image,.ros-row .ros-text{opacity:1;transform:none;transition:none}"}</style>
+      </noscript>
       <FixedCanonGlobeBackground />
       <main className="stone-bone relative z-10 grain">
         <section className="ros-hero">

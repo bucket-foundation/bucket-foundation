@@ -1,43 +1,4 @@
 #!/usr/bin/env python3
-"""
-feed.py, canon activity feed writer (bkt-feed-02)
-
-Merges JSON-Lines events from stdin into the monthly ledger at
-feed/YYYY-MM.json, then rewrites feed.json and feed.xml from that ledger.
-
-The monthly files under feed/ are the durable record: every event ever
-emitted, forever, append-only. feed.json and feed.xml are a derived,
-rolling window over the latest MAX_EVENTS of that ledger, rebuilt fresh
-on every run. `total_events` in feed.json always counts the full ledger,
-not the window, so it can only grow. The `window` field on feed.json
-says how many of those events the `events` array carries. A
-retraction is its own ledger event (type `retract`, see parse.py); the
-original event is never deleted, and a later re-add is a new event with
-its own id. Nothing is ever removed from the ledger.
-
-Commands:
- update read JSON-lines events on stdin, merge into the ledger
- rebuild --from SHA replay history from SHA..HEAD through parse.py
- validate sanity-check feed.json against the ledger
- check-cards --base REF [--head REF] list canon cards added or
-     promoted between two refs and flag which have no feed event
- emit-for-cards --base REF emit the missing events check-cards
-     found (base..HEAD), one command fixes the gap
-
-Idempotent: events with an id already in the ledger are skipped.
-
-check-cards / emit-for-cards close a gap parse.py leaves open: parse.py
-walks a *commit-by-commit* diff and only recognizes a promotion via a
-rename out of research-landscape/, so a card that lands as new files
-under bucket-canon/ (the normal shape of a canon-intake promotion out
-of _intake/) never gets an event unless a human remembers to run the
-pipeline by hand. check-cards instead diffs two refs directly and
-reads the served layer itself: a card is a new primary-papers.yaml
-record (id-keyed) or a canon_tier change in that dossier's
-CANON_INDEX.md table (DOI-keyed). Event ids come from the card's own
-identity, so the same card always maps to the same event no matter
-which commit or squash carried it.
-"""
 from __future__ import annotations
 
 import argparse
@@ -60,7 +21,6 @@ YAML_BASENAME = "primary-papers.yaml"
 INDEX_BASENAME = "CANON_INDEX.md"
 TIER_RANK = {"draft": 0, "candidate": 1, "canon": 2}
 
-
 def repo_root() -> Path:
     env = os.environ.get("BUCKET_FEED_ROOT")
     if env:
@@ -74,14 +34,12 @@ def repo_root() -> Path:
     except Exception:
         return Path.cwd()
 
-
 def feed_paths(root: Path) -> dict:
     return {
         "json": root / "feed.json",
         "xml": root / "feed.xml",
         "archive_dir": root / "feed",
     }
-
 
 def load_feed(path: Path) -> dict:
     if not path.exists():
@@ -95,7 +53,6 @@ def load_feed(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
-
 def load_archive(path: Path) -> list:
     if not path.exists():
         return []
@@ -108,27 +65,22 @@ def load_archive(path: Path) -> list:
         return data.get("events", [])
     return data
 
-
 def write_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-
 def event_month(ev: dict) -> str:
     ts = ev.get("timestamp") or ""
-    # accept ISO; fallback to "unknown"
     try:
         dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
         return dt.strftime("%Y-%m")
     except Exception:
         return "unknown"
 
-
 def event_sort_key(ev: dict):
     return ev.get("timestamp") or ""
-
 
 def render_atom(feed: dict, root_url: str = "https://bucket.foundation") -> str:
     updated = feed.get("generated") or datetime.now(timezone.utc).isoformat()
@@ -162,9 +114,7 @@ def render_atom(feed: dict, root_url: str = "https://bucket.foundation") -> str:
     lines.append("</feed>")
     return "\n".join(lines) + "\n"
 
-
 def merge_events(existing: list, new_events: list) -> tuple[list, int]:
-    """Return (merged, added_count). Newest first. Dedup by id."""
     seen_ids = {e.get("id") for e in existing if e.get("id")}
     added = 0
     merged = list(existing)
@@ -178,9 +128,7 @@ def merge_events(existing: list, new_events: list) -> tuple[list, int]:
     merged.sort(key=event_sort_key, reverse=True)
     return merged, added
 
-
 def update_archives(new_events: list, archive_dir: Path) -> None:
-    """Append new events to monthly archives, deduped."""
     by_month: dict[str, list] = {}
     for ev in new_events:
         by_month.setdefault(event_month(ev), []).append(ev)
@@ -195,15 +143,7 @@ def update_archives(new_events: list, archive_dir: Path) -> None:
             "events": merged,
         })
 
-
 def load_full_ledger(archive_dir: Path) -> list:
-    """Load every monthly archive and return the deduped union, newest first.
-
-    This is the source of truth for total_events. feed.json only ever
-    holds a rolling window, so its own on-disk state is never enough to
-    compute a correct total, before or after a restart that starts from
-    a fresh checkout with no prior feed.json.
-    """
     if not archive_dir.exists():
         return []
     seen_ids: set = set()
@@ -218,14 +158,7 @@ def load_full_ledger(archive_dir: Path) -> list:
     ledger.sort(key=event_sort_key, reverse=True)
     return ledger
 
-
 def build_feed_output(archive_dir: Path) -> dict:
-    """Build the feed.json/feed.xml payload from the ledger.
-
-    total_events counts the whole ledger. events carries only the
-    latest window many of them; window says how many that is and how
-    many the array holds, so a reader never has to guess.
-    """
     ledger = load_full_ledger(archive_dir)
     window_events = ledger[:MAX_EVENTS]
     return {
@@ -235,7 +168,6 @@ def build_feed_output(archive_dir: Path) -> dict:
         "window": {"size": MAX_EVENTS, "returned": len(window_events)},
         "events": window_events,
     }
-
 
 def cmd_update(events_iter: Iterable[dict], root: Path | None = None) -> int:
     root = root or repo_root()
@@ -252,7 +184,6 @@ def cmd_update(events_iter: Iterable[dict], root: Path | None = None) -> int:
     sys.stderr.write(f"feed: +{added} events (total {feed_out['total_events']})\n")
     return 0
 
-
 def read_stdin_events() -> list[dict]:
     events = []
     for line in sys.stdin:
@@ -265,10 +196,8 @@ def read_stdin_events() -> list[dict]:
             sys.stderr.write(f"warn: skip malformed event: {e}\n")
     return events
 
-
 def cmd_rebuild(sha_from: str) -> int:
     root = repo_root()
-    # Enumerate commits sha_from..HEAD in chronological order
     out = subprocess.run(
         ["git", "rev-list", "--reverse", f"{sha_from}..HEAD"],
         capture_output=True, text=True, check=True, cwd=root,
@@ -278,7 +207,6 @@ def cmd_rebuild(sha_from: str) -> int:
         sys.stderr.write("rebuild: no commits in range\n")
         return 0
 
-    # Reset feed (rebuild from scratch)
     paths = feed_paths(root)
     if paths["json"].exists():
         paths["json"].unlink()
@@ -312,7 +240,6 @@ def cmd_rebuild(sha_from: str) -> int:
             total += len(events)
     sys.stderr.write(f"rebuild: processed {len(commits)} commits, {total} raw events\n")
     return 0
-
 
 def cmd_validate() -> int:
     root = repo_root()
@@ -371,14 +298,12 @@ def cmd_validate() -> int:
     )
     return 0
 
-
 def _ref_ok(ref: str, root: Path) -> bool:
     res = subprocess.run(
         ["git", "rev-parse", "--verify", "--quiet", f"{ref}^{{commit}}"],
         capture_output=True, text=True, cwd=root,
     )
     return res.returncode == 0
-
 
 def ls_tree_paths(ref: str, subpath: str, root: Path) -> list[str]:
     res = subprocess.run(
@@ -389,7 +314,6 @@ def ls_tree_paths(ref: str, subpath: str, root: Path) -> list[str]:
         return []
     return [line for line in res.stdout.splitlines() if line.strip()]
 
-
 def show_at_ref(ref: str, path: str, root: Path) -> Optional[str]:
     res = subprocess.run(
         ["git", "show", f"{ref}:{path}"], capture_output=True, text=True, cwd=root,
@@ -397,7 +321,6 @@ def show_at_ref(ref: str, path: str, root: Path) -> Optional[str]:
     if res.returncode != 0:
         return None
     return res.stdout
-
 
 def last_commit_touching(ref: str, path: str, root: Path) -> dict:
     res = subprocess.run(
@@ -412,10 +335,7 @@ def last_commit_touching(ref: str, path: str, root: Path) -> dict:
         return {}
     return {"sha": parts[0], "author_name": parts[1], "author_email": parts[2], "iso": parts[3]}
 
-
 def resolve_github_handle(name: str, email: str) -> str:
-    # Deliberately duplicated from parse.py: the two CLIs stay independent,
-    # each invoked directly, neither imports the other.
     if email.endswith("@users.noreply.github.com"):
         local = email.split("@", 1)[0]
         if "+" in local:
@@ -424,27 +344,17 @@ def resolve_github_handle(name: str, email: str) -> str:
     slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
     return slug or "unknown"
 
-
 def _unquote_scalar(v: str) -> str:
     v = v.strip()
     if len(v) >= 2 and v[0] == v[-1] and v[0] in "'\"":
         v = v[1:-1]
     return v
 
-
 _RECORD_START_RE = re.compile(r"^-\s+id:\s*(.+?)\s*$")
 _RECORD_FIELD_RE = re.compile(r"^  (\w+):\s*(.*)$")
 _YAML_RECORD_FIELDS = ("title", "doi", "canon_score")
 
-
 def parse_yaml_records(text: Optional[str]) -> list[dict]:
-    """Pull id/title/doi/canon_score out of a primary-papers.yaml body.
-
-    Not a general YAML parser, this repo controls the generator, so a
-    small state machine over the known two-space-indented record shape
-    (see any bucket-canon/**/primary-papers.yaml) is enough, and avoids
-    a PyYAML dependency in a tool the CI job runs with stdlib only.
-    """
     if not text:
         return []
     records: list[dict] = []
@@ -465,18 +375,9 @@ def parse_yaml_records(text: Optional[str]) -> list[dict]:
         records.append(current)
     return records
 
-
 _DOI_CELL_RE = re.compile(r"`([^`]+)`")
 
-
 def parse_canon_index_tiers(text: Optional[str]) -> dict[str, str]:
-    """DOI (lowercased, no backticks) -> tier, from a CANON_INDEX.md table.
-
-    Only the common `| Title | DOI | canon_score | tier | ... |` shape is
-    read. A handful of older chemistry dossiers use a bibkey-based table
-    with no DOI/tier columns; canon_tier tracking does not apply there,
-    so they contribute nothing (not an error).
-    """
     if not text:
         return {}
     lines = text.splitlines()
@@ -502,7 +403,7 @@ def parse_canon_index_tiers(text: Optional[str]) -> dict[str, str]:
         if len(cells) <= max(doi_i, tier_i):
             continue
         if cells[0] and set(cells[0]) <= {"-", ":"}:
-            continue  # markdown header separator row
+            continue
         m = _DOI_CELL_RE.search(cells[doi_i])
         doi = (m.group(1) if m else cells[doi_i]).strip().lower()
         tier = cells[tier_i].strip()
@@ -510,10 +411,7 @@ def parse_canon_index_tiers(text: Optional[str]) -> dict[str, str]:
             out[doi] = tier
     return out
 
-
 def dossier_files_at(ref: str, root: Path) -> dict[str, dict[str, str]]:
-    """dossier dir -> {"yaml": path, "index": path} for every bucket-canon
-    dossier at this ref that has a primary-papers.yaml or CANON_INDEX.md."""
     dossiers: dict[str, dict[str, str]] = {}
     for f in ls_tree_paths(ref, CANON_PREFIX, root):
         base = os.path.basename(f)
@@ -524,20 +422,10 @@ def dossier_files_at(ref: str, root: Path) -> dict[str, dict[str, str]]:
         dossiers.setdefault(d, {})[key] = f
     return dossiers
 
-
 def _tier_rank(tier: str) -> int:
     return TIER_RANK.get(tier.strip().lower(), -1)
 
-
 def find_cards(root: Path, base: str, head: str) -> list[dict]:
-    """Canon cards added or promoted between base and head.
-
-    A card is either a new primary-papers.yaml record (id-keyed, event
-    type add_paper) or a canon_tier change for a record that exists at
-    both refs (DOI-keyed against the dossier's CANON_INDEX.md table,
-    event type promote or demote by tier rank). Sorted deterministically
-    by dossier path, then key, so output and event order are stable.
-    """
     dossiers_base = dossier_files_at(base, root)
     dossiers_head = dossier_files_at(head, root)
     cards: list[dict] = []
@@ -594,18 +482,10 @@ def find_cards(root: Path, base: str, head: str) -> list[dict]:
                 })
     return cards
 
-
 def card_event_id(card_type: str, path: str, key: str) -> str:
-    """Event id for a card, derived from its own identity (type, dossier
-    path, id or doi/transition key), never from a commit sha. That is
-    what makes check-cards's match idempotent across rebases and
-    squashes: the same card always resolves to the same event id no
-    matter which commit or PR carried it.
-    """
     h = hashlib.sha1()
     h.update(f"card|{card_type}|{path}|{key}".encode("utf-8"))
     return h.hexdigest()[:16]
-
 
 def build_card_event(card: dict, root: Path, head: str, pr_number: Optional[int] = None) -> dict:
     meta = last_commit_touching(head, card["path"], root) if card.get("path") else {}
@@ -630,7 +510,6 @@ def build_card_event(card: dict, root: Path, head: str, pr_number: Optional[int]
         "pr_number": pr_number,
         "timestamp": timestamp,
     }
-
 
 def cmd_check_cards(base: str, head: str, root: Optional[Path] = None) -> int:
     root = root or repo_root()
@@ -669,7 +548,6 @@ def cmd_check_cards(base: str, head: str, root: Optional[Path] = None) -> int:
     )
     return 1
 
-
 def cmd_emit_for_cards(base: str, root: Optional[Path] = None) -> int:
     root = root or repo_root()
     head = "HEAD"
@@ -697,7 +575,6 @@ def cmd_emit_for_cards(base: str, root: Optional[Path] = None) -> int:
 
     return cmd_update(events, root=root)
 
-
 def main(argv=None) -> int:
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -723,7 +600,6 @@ def main(argv=None) -> int:
     if args.cmd == "emit-for-cards":
         return cmd_emit_for_cards(args.base)
     return 2
-
 
 if __name__ == "__main__":
     sys.exit(main())

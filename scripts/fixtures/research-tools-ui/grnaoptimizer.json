@@ -1,0 +1,115 @@
+{
+  "result": {
+    "job_id": "j_09f6f64f4ee54a99b119",
+    "tool": "grnaoptimizer",
+    "render": "json",
+    "output": {
+      "method": "SpCas9 PAM scan + heuristic on/off-target scoring",
+      "pam": "NGG",
+      "guide_len": 20,
+      "target_length": 54,
+      "n_candidates": 6,
+      "guides": [
+        {
+          "rank": 1,
+          "protospacer": "CCGATCGATCGTACCGGAAT",
+          "pam": "TGG",
+          "strand": "-",
+          "start": 22,
+          "cut_site": 28,
+          "on_target_score": 0.7,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.7,
+          "gc_fraction": 0.55,
+          "flags": []
+        },
+        {
+          "rank": 2,
+          "protospacer": "GTACGATCGATCGGGAATTC",
+          "pam": "CGG",
+          "strand": "+",
+          "start": 31,
+          "cut_site": 48,
+          "on_target_score": 0.6957,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.6957,
+          "gc_fraction": 0.5,
+          "flags": []
+        },
+        {
+          "rank": 3,
+          "protospacer": "GAATTCCCGATCGATCGTAC",
+          "pam": "CGG",
+          "strand": "-",
+          "start": 28,
+          "cut_site": 34,
+          "on_target_score": 0.6957,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.6957,
+          "gc_fraction": 0.5,
+          "flags": []
+        },
+        {
+          "rank": 4,
+          "protospacer": "CCAATTCCGGTACGATCGAT",
+          "pam": "CGG",
+          "strand": "+",
+          "start": 22,
+          "cut_site": 39,
+          "on_target_score": 0.6357,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.6357,
+          "gc_fraction": 0.5,
+          "flags": []
+        },
+        {
+          "rank": 5,
+          "protospacer": "CAATTCCGGTACGATCGATC",
+          "pam": "GGG",
+          "strand": "+",
+          "start": 23,
+          "cut_site": 40,
+          "on_target_score": 0.6357,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.6357,
+          "gc_fraction": 0.5,
+          "flags": []
+        },
+        {
+          "rank": 6,
+          "protospacer": "TTAGCGATCGGGGCCAATTC",
+          "pam": "CGG",
+          "strand": "+",
+          "start": 9,
+          "cut_site": 26,
+          "on_target_score": 0.625,
+          "off_target_risk": 0,
+          "off_target_level": "low",
+          "composite_score": 0.625,
+          "gc_fraction": 0.55,
+          "flags": [
+            "homopolymer run of 4"
+          ]
+        }
+      ],
+      "note": "On-target uses transparent literature-motivated rules (GC sweet spot, homopolymer/PolIII penalties, position preferences) in place of the proprietary trained Rule Set 2. Off-target is a local seed heuristic."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "grnaoptimizer",
+        "at": "2026-09-23T03:49:49.163830+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

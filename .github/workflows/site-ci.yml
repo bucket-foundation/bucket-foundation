@@ -6,12 +6,14 @@ on:
     paths:
       - "src/**"
       - "scripts/**"
+      - "tools/evidence-search/**"
       - "learning/app/**"
       - "supabase/migrations/**"
       - "tests/**"
       - "package.json"
       - "package-lock.json"
       - "tsconfig.json"
+      - "vercel.json"
       - "next.config.mjs"
       - "playwright.config.ts"
       - ".github/workflows/site-ci.yml"
@@ -31,40 +33,146 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci
       - name: typecheck
         run: npm run typecheck
       - name: lint
         run: npm run lint
+      - name: No code comments
+        run: npm run lint:comments
       - name: unit tests
         run: npm test
       - name: research os tests
         run: npm run test:research-os
+      - name: build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-placeholder-anon-key
+        run: npm run build
+      - name: client bundle secret scan
+        run: node scripts/check-client-bundle-secrets.mjs .next/static
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: evidence worker tests
+        # numpy is all the unit tests need; the model tests skip on a runner
+        # without the pinned snapshot, and run on the machine that serves it.
+        run: |
+          python -m pip install --quiet "numpy>=2,<3"
+          npm run test:evidence-worker
       - name: academy app
         run: bash learning/app/validate.sh
+      - name: vercel build gate and pre-push check
+        run: bash scripts/test-vercel-ignore-build.sh && bash scripts/test-pre-push-vercel-check.sh
 
-  # The loop as a person, over a fresh local stack. On demand: it pulls the
-  # Supabase images and seeds the graph, which is too slow for every pull
-  # request.
+  # The database-backed tests, which skip when no Postgres answers and so
+  # would pass on a runner with none (Bucket critic ROS194-34). This job
+  # starts the local stack and requires them, and it runs when a migration,
+  # a SQL test, or the code that writes through them changes.
+  db:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: paths
+        id: paths
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$base" ]; then base="$(git rev-parse HEAD~1)"; fi
+          # A diff this step cannot compute is not "nothing changed": it runs
+          # the job rather than passing a check nobody performed.
+          if ! changed="$(git diff --name-only "$base"...HEAD)"; then
+            echo "could not diff against $base; running the database tests" >&2
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Every path that writes through the functions, their callers
+          # included: the route that calls an RPC is the code under test.
+          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|scripts/research-os/|scripts/photon/(node_words|test_node_words)|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.paths.outputs.run == 'true'
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+        if: steps.paths.outputs.run == 'true'
+      - name: local supabase
+        if: steps.paths.outputs.run == 'true'
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+      - name: env
+        if: steps.paths.outputs.run == 'true'
+        run: |
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+          } > .env.local
+      - name: database suite against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: node scripts/run-tests.mjs --suite db
+      - name: node words loader against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: |
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          NODE_WORDS_DB_URL="$DB_URL" python3 -m unittest scripts/photon/test_node_words_db.py
+
+  e2e-paths:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.paths.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: paths
+        id: paths
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if ! changed="$(git diff --name-only "$base"...HEAD)"; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if printf '%s\n' "$changed" | grep -qE '^(src/app/research-os/|src/app/api/research-os/|src/lib/research-os/|tests/e2e/|playwright\.config\.ts$|\.github/workflows/site-ci\.yml$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # The loop as a person, over a fresh local stack. On demand, and on pull
+  # requests that touch the Research OS pages, its routes, or the specs.
   e2e:
-    if: github.event_name == 'workflow_dispatch'
+    needs: e2e-paths
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.e2e-paths.outputs.run == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci
       - name: local supabase
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         run: |
-          npx supabase@latest status -o env > .supa.env
-          set -a; . ./.supa.env; set +a
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
@@ -74,11 +182,12 @@ jobs:
         run: |
           set -a; . ./.env.local; set +a
           npm run seed:research-os
-          npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply
+          npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply --strict-shadow
       - name: browser
         run: npx playwright install --with-deps chromium
       - name: dev server
         run: |
+          node scripts/sync-academy.mjs
           (npx next dev -p 3100 > dev.log 2>&1 &)
           for i in $(seq 1 90); do
             if wget -q -O /dev/null http://localhost:3100/sign-in; then break; fi

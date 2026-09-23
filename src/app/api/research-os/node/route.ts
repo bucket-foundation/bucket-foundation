@@ -1,30 +1,20 @@
-/**
- * GET /api/research-os/node?slug=<slug>
- * Everything the node page needs in one read: the node, the viewer's
- * standing and evidence, prerequisites and dependents, directions, the
- * Learn target, productions on the node (the viewer's own and the public
- * nodes that extend, replicate, or review it), the viewer's verbs, the
- * assignments that target it in the viewer's classes, and for staff the
- * class holders by level. Signed out: public nodes, no standing.
- */
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
-import { filterSubgraphForViewer, loadGrants, loadNodeAccess, loadViewerGroups } from "@/lib/research-os/access-db";
-import { can, canView, type GrantRole, type Viewer } from "@/lib/research-os/access";
+import { NextResponse } from "next/server";
+import { graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
+import { authorizeVerbs } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer, loadNodeAccess } from "@/lib/research-os/access-db";
+import type { GrantRole } from "@/lib/research-os/access";
 import { directionsFrom } from "@/lib/research-os/directions";
 import { learnTargetFor } from "@/lib/research-os/learn-link";
 import { listMyClasses } from "@/lib/research-os/classes";
 import type { Stage } from "@/lib/research-os/types";
+import { NO_STORE, bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 const VERBS: GrantRole[] = ["view", "continue", "extend", "cite", "replicate", "review"];
 const ACTING = ["extends", "replicates", "reviews", "answers"];
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const slug = (new URL(req.url).searchParams.get("slug") || "").trim();
   if (!slug || !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/.test(slug)) return bad(400, "slug_required");
   const identity = await verifyLearnerIdentity(req);
@@ -43,17 +33,32 @@ export async function GET(req: NextRequest) {
     labels: Record<string, unknown> | null; provenance: Record<string, unknown> | null; worked_example: { text?: string; source?: string } | null;
     visibility: string | null; owner_id: string | null; frontier_flag: string | null; created_at: string;
   };
-  const access = { id: node.id, visibility: ((node.visibility ?? "public") as "public" | "private" | "shared"), ownerId: node.owner_id };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  const grants = access.visibility === "public" ? [] : await loadGrants(node.id);
-  if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
+  const readable = await authorizeVerbs(node.id, { id: viewerId }, ["view", ...VERBS] as Parameters<typeof authorizeVerbs>[2]);
+  if (!readable.ok) {
+    if (readable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "node_not_found");
+  }
+  const access = readable.node;
 
-  const [graph, standingRes, myClasses] = await Promise.all([
-    loadSubgraph(node.branch).catch(() => ({ nodes: [], edges: [] })),
+  let graph: Awaited<ReturnType<typeof loadSubgraph>> | { nodes: never[]; edges: never[]; failed: true };
+  let standingRes: { data: unknown; error?: { message: string } | null };
+  let myClasses: Awaited<ReturnType<typeof listMyClasses>>;
+  try {
+    [graph, standingRes, myClasses] = await Promise.all([
+    loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
+      console.error("[research-os/node] subgraph load failed:", err instanceof Error ? err.message : err);
+      return { nodes: [], edges: [], failed: true as const };
+    }),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
-  ]);
-  const visible = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+    ]);
+  } catch (err) {
+    console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "node_read_failed");
+  }
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  const visible = filtered;
   const byId = new Map(visible.nodes.map((n) => [n.id, n]));
   const lite = (id: string) => {
     const n = byId.get(id);
@@ -70,6 +75,10 @@ export async function GET(req: NextRequest) {
   const d = inBranch ? directionsFrom(node.id, visible.nodes, visible.edges) : { dependents: [], frontier: [], openQuestions: [], reach: [] };
   const dlite = (n: { id: string; slug: string; title: string; kind: string; frontierFlag?: string | null }) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, frontierFlag: n.frontierFlag ?? null });
 
+  if (standingRes.error) {
+    console.error("[research-os/node] standing read failed:", standingRes.error.message);
+    return bad(503, "node_read_failed");
+  }
   const standingRow = (standingRes as { data: { stage: Stage; evidence: unknown[]; updated_at: string } | null }).data;
   const evidence = Array.isArray(standingRow?.evidence) ? (standingRow!.evidence as Record<string, unknown>[]).slice(-12) : [];
 
@@ -88,20 +97,37 @@ export async function GET(req: NextRequest) {
   let assignments: unknown[] = [];
   let holders: { stage: string; count: number }[] | null = null;
   if (classIds.length) {
-    const { data: asg } = await svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", classIds).is("closed_at", null);
+    try {
+    const asg = await inChunks<{ id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }>(classIds, (chunk, page) =>
+      svc.from("assignments").select("id,class_id,title,due_at,requires_production,closed_at").eq("target_node_id", node.id).in("class_id", chunk).is("closed_at", null).order("class_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[] | null; error: { message: string } | null }>,
+    );
     const nameOf = new Map(myClasses.map((c) => [c.id, c.name]));
     assignments = ((asg as { id: string; class_id: string; title: string; due_at: string | null; requires_production: boolean }[]) || []).map((a) => ({ id: a.id, classId: a.class_id, className: nameOf.get(a.class_id) ?? "", title: a.title, dueAt: a.due_at, requiresProduction: a.requires_production }));
     const staffClasses = myClasses.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
     if (staffClasses.length) {
-      const { data: members } = await svc.from("class_members").select("learner_id").in("class_id", staffClasses);
-      const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
+      const members = await inChunks<{ learner_id: string }>(staffClasses, (chunk, page) =>
+        svc.from("class_members").select("learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+      );
+      const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
       if (learnerIds.length) {
-        const { data: st } = await svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", learnerIds);
+        let st: { learner_id: string; stage: string }[];
+        try {
+          st = await inChunks<{ learner_id: string; stage: string }>(learnerIds, (chunk, page) =>
+            svc.from("learner_node_state").select("learner_id,stage").eq("node_id", node.id).in("learner_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string; stage: string }[] | null; error: { message: string } | null }>,
+          );
+        } catch (err) {
+          console.error("[research-os/node] holder read failed:", err instanceof Error ? err.message : err);
+          return bad(503, "node_read_failed");
+        }
         const counts = new Map<string, number>();
-        ((st as { stage: string }[]) || []).forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
-        const opened = ((st as unknown[]) || []).length;
+        st.forEach((r) => counts.set(r.stage, (counts.get(r.stage) ?? 0) + 1));
+        const opened = st.length;
         holders = [...["access", "awareness", "understanding", "internalization", "production"].map((s) => ({ stage: s, count: counts.get(s) ?? 0 })), { stage: "unopened", count: Math.max(0, learnerIds.length - opened) }];
       }
+    }
+    } catch (err) {
+      console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "node_read_failed");
     }
   }
 
@@ -121,6 +147,7 @@ export async function GET(req: NextRequest) {
         frontierFlag: node.frontier_flag, createdAt: node.created_at,
       },
       standing: standingRow ? { stage: standingRow.stage, updatedAt: standingRow.updated_at, evidence } : { stage: null, updatedAt: null, evidence: [] },
+      ...("failed" in graph ? { graphUnavailable: true } : {}),
       prerequisites,
       dependents,
       related,
@@ -128,7 +155,7 @@ export async function GET(req: NextRequest) {
       directions: { dependents: d.dependents.map(dlite), frontier: d.frontier.map(dlite), openQuestions: d.openQuestions.map(dlite), reach: d.reach },
       learn: learnTargetFor({ branch: node.branch, provenance: node.provenance }),
       productions,
-      verbs: Object.fromEntries(VERBS.map((v) => [v, can(access, viewer, v, grants)])),
+      verbs: Object.fromEntries(VERBS.map((v) => [v, readable.allowed[v] === true])),
       classes: myClasses.map((c) => ({ id: c.id, name: c.name, role: c.role })),
       assignments,
       holders,
@@ -137,4 +164,4 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});

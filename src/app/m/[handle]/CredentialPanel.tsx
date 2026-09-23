@@ -1,23 +1,4 @@
 "use client";
-/**
- * src/app/m/[handle]/CredentialPanel.tsx  (bkt-52p)
- * ----------------------------------------------------------------------------
- * Surfaces the verifiable-credential layer on a public Mastery Profile:
- *
- *   - ALWAYS (every visitor): a "Verify" affordance linking to /verify, the
- *     viral backlink. A recruiter can verify any Bucket credential there.
- *
- *   - PROFILE OWNER ONLY: an "Issue / get verifiable credential" action. We
- *     detect ownership by recovering the Academy's Supabase session from the
- *     SAME-ORIGIN localStorage (storageKey "bucket-academy/auth") and checking
- *     the signed-in handle matches this profile. Issuance POSTs to
- *     /api/academy/credential/issue with the verified bearer token; the server
- *     re-derives identity from the token (never trusts the client), so this is
- *     a convenience surface. The trust boundary lives on the server.
- *
- * Copy stays (bkt-4at): "evidence of demonstrated mastery", never a score.
- * Degrades silently when sign-in is unconfigured or the visitor isn't the owner.
- */
 import { useCallback, useEffect, useState } from "react";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
@@ -42,7 +23,6 @@ function academyClient(): SupabaseClient | null {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      // Same key the static Academy auth uses, so we share the same session.
       storageKey: "bucket-academy/auth",
     },
   });
@@ -57,7 +37,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Recover the academy session (same-origin) and check ownership by handle.
   useEffect(() => {
     const sb = academyClient();
     if (!sb) return;
@@ -66,7 +45,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
       const sess = data.session;
       if (!alive || !sess?.access_token) return;
       setToken(sess.access_token);
-      // Confirm the signed-in user owns THIS profile handle.
       try {
         const res = await fetch("/api/academy/profile?me=1", {
           headers: { Authorization: "Bearer " + sess.access_token },
@@ -75,7 +53,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
         const body = (await res.json()) as { profile?: { handle?: string } };
         if (alive && body.profile?.handle === handle) setIsOwner(true);
       } catch {
-        /* not owner / offline, stay hidden */
       }
     });
     return () => {
@@ -128,7 +105,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
         </div>
       </div>
 
-      {/* Owner: issue */}
       {isOwner && !issued && (
         <div className="cp-owner">
           <p className="cp-copy">
@@ -145,7 +121,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
         </div>
       )}
 
-      {/* Owner: issued result */}
       {isOwner && issued?.ok && (
         <div className="cp-issued">
           <div className="cp-issued-head">
@@ -166,7 +141,6 @@ export default function CredentialPanel({ handle }: { handle: string }) {
         </div>
       )}
 
-      {/* Everyone: verify affordance (the viral backlink) */}
       <div className="cp-verify">
         <a className="cp-verify-link" href="/verify">
           Verify a Bucket credential →

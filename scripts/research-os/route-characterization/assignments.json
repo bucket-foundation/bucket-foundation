@@ -1,0 +1,240 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "GET mine, anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "GET mine, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET mine, listed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "assignments": [
+        {
+          "id": "a1"
+        }
+      ]
+    }
+  },
+  "GET class given, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "GET staff, listed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "assignments": [
+        {
+          "id": "a1"
+        }
+      ],
+      "roles": [
+        "teacher"
+      ]
+    }
+  },
+  "GET staff, list unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET staff check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_required"
+    }
+  },
+  "POST create, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "POST staff, no target": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "target_required"
+    }
+  },
+  "POST staff, created": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "assignment": {
+        "id": "a1",
+        "targetNodeId": "n1"
+      }
+    }
+  },
+  "POST staff, create refused": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "POST staff, close without id": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "assignment_required"
+    }
+  },
+  "POST staff, closed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "ok": true
+    }
+  },
+  "POST staff, unknown action": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_action"
+    }
+  },
+  "POST staff check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  }
+}

@@ -1,13 +1,5 @@
-/**
- * Research OS, the game layer (ros-33). Pure rules for XP, levels, streaks,
- * and badges over the five levels. INTEGRATION-PLAN.md section 6: streaks
- * and daily goals, XP and levels, badges at Internalization and Production,
- * class leaderboards only. Level progress stays the spine; this layer only
- * reads the transitions stages.ts already produces.
- */
 import { STAGE_ORDER, type Stage } from "./types";
 
-/** XP granted the first time a node reaches each level. */
 export const XP_AT_LEVEL: Record<Stage, number> = {
   access: 2,
   awareness: 10,
@@ -16,7 +8,6 @@ export const XP_AT_LEVEL: Record<Stage, number> = {
   production: 100,
 };
 
-/** XP for every level crossed upward between two stages; 0 when no rise. */
 export function xpForTransition(from: Stage | null | undefined, to: Stage): number {
   const fromIdx = from ? STAGE_ORDER.indexOf(from) : -1;
   const toIdx = STAGE_ORDER.indexOf(to);
@@ -26,7 +17,6 @@ export function xpForTransition(from: Stage | null | undefined, to: Stage): numb
   return xp;
 }
 
-/** Level thresholds: level n starts at 50 * n * (n - 1) XP (0, 100, 300, 600, ...). */
 export function levelFromXp(xp: number): number {
   let level = 1;
   while (xpAtLevelStart(level + 1) <= xp) level++;
@@ -44,7 +34,6 @@ export function xpToNextLevel(xp: number): { level: number; into: number; span: 
   return { level, into: xp - start, span: next - start };
 }
 
-/** Streak update on an activity day (YYYY-MM-DD, UTC). */
 export function nextStreak(prev: { streakDays: number; lastActiveDay: string | null }, today: string): { streakDays: number; lastActiveDay: string } {
   if (prev.lastActiveDay === today) return { streakDays: Math.max(1, prev.streakDays), lastActiveDay: today };
   if (prev.lastActiveDay && isYesterday(prev.lastActiveDay, today)) return { streakDays: prev.streakDays + 1, lastActiveDay: today };
@@ -69,7 +58,6 @@ export interface Badge {
   at: string;
 }
 
-/** Badges a transition earns: one per node per kind, never twice. */
 export function badgesFor(existing: Badge[], nodeId: string, from: Stage | null | undefined, to: Stage, now: Date = new Date()): Badge[] {
   const toIdx = STAGE_ORDER.indexOf(to);
   const fromIdx = from ? STAGE_ORDER.indexOf(from) : -1;
@@ -101,7 +89,6 @@ export function summarize(state: GameState): GameSummary {
   return { ...state, ...xpToNextLevel(state.xp) };
 }
 
-/** Apply one recorded transition on one node to the game state. */
 export function applyTransition(state: GameState, nodeId: string, from: Stage | null | undefined, to: Stage, now: Date = new Date()): GameState {
   const gained = xpForTransition(from, to);
   const streak = nextStreak({ streakDays: state.streakDays, lastActiveDay: state.lastActiveDay }, dayOf(now));

@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Generate the manual's figures — matplotlib charts + RDKit molecule structures.
-Outputs SVG (scalable, embeds cleanly in HTML + WeasyPrint) into media/figures/.
-Idempotent: re-run any time. Claude Science can later replace any of these with
-higher-production renders (see _science-jobs/CLAUDE-SCIENCE-ASKS.md).
-
-    python3 reports/gen_figures.py
-"""
 import os, glob, re
 import matplotlib
 matplotlib.use("Agg")

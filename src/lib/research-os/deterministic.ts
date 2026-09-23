@@ -1,25 +1,5 @@
-/**
- * Research OS without a model (ros-23). learning/research-os/INTEGRATION-
- * PLAN.md section 5: the first integrated release runs no model behind any
- * tool. Find and Quote were already retrieval; this file gives Check and
- * Organize deterministic paths, and llmEnabled() is the one switch that
- * routes to the model versions instead.
- *
- * Check, deterministic: the learner records their own verdict (support or
- * contradiction) against the passages they quoted, and a rubric grades the
- * attempt on what can be measured without a model: at least one quote is
- * attached, the explanation is in the learner's own words (it is not a
- * copy of a quote), and the explanation draws on the quoted material (term
- * overlap). Confidence follows the rubric. Feedback names what passed and
- * what is missing. The shape matches grounding.ts's GradeResult so every
- * consumer (stages.ts, the workspace page, the evidence log) is unchanged.
- *
- * Organize, deterministic: the learner's own notes split into a claim,
- * evidence points, and sources by sentence and line, nothing added.
- */
 import type { GradeResult } from "./grounding";
 
-/** RESEARCH_OS_LLM_ENABLED=1|true turns the model paths on. Default off. */
 export function llmEnabled(env: Record<string, string | undefined> = process.env): boolean {
   const v = (env.RESEARCH_OS_LLM_ENABLED || "").trim().toLowerCase();
   return v === "1" || v === "true" || v === "yes" || v === "on";
@@ -44,7 +24,6 @@ export function terms(text: string): Set<string> {
   return out;
 }
 
-/** Fraction of the explanation's terms that appear in the quoted text. */
 export function overlap(explanation: string, quoted: string): number {
   const e = terms(explanation);
   if (e.size === 0) return 0;
@@ -56,7 +35,6 @@ export function overlap(explanation: string, quoted: string): number {
   return hit / e.size;
 }
 
-/** True when the explanation is a copy of a quote: a long common run. */
 export function isCopy(explanation: string, quotes: string[]): boolean {
   const norm = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
   const e = norm(explanation);
@@ -65,7 +43,6 @@ export function isCopy(explanation: string, quotes: string[]): boolean {
     const qq = norm(q);
     if (qq.length < 40) continue;
     if (qq.includes(e) || e.includes(qq)) return true;
-    // any 60-character window of the explanation found verbatim in a quote
     for (let i = 0; i + 60 <= e.length; i += 20) if (qq.includes(e.slice(i, i + 60))) return true;
   }
   return false;

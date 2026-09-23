@@ -59,6 +59,9 @@ on same-section, co-occurrence-versus-prerequisite conflation, as the
 direct precedent for never trusting a single model call's own confidence
 number at face value.
 
+> Correction 2026-09-18: PRET reports fair agreement (Fleiss' kappa 0.385; pairwise Cohen's kappa 0.25 to 0.58, higher for more experienced annotators) and says nothing about same-section conflation; the card now carries the paper's own figures, and learning/research-os/PRIMES.md cites them.
+
+
 An edge with no `confidence_source` (a non-prerequisite edge kind: `cites`,
 `derives_from` outside the canon importer, `generalizes`, `example_of`,
 `contradicts`) keeps the column's own default, 1.0, and carries no ordering
@@ -145,6 +148,9 @@ flagged for a reviewer rather than routed through quietly. This is the
 same same-section-conflation risk Alzetta et al. 2018 documents for human
 annotators, read onto two independent model calls instead of two human
 raters.
+
+> Correction 2026-09-18, to the paragraph above: the risk that paper documents is disagreement between people, larger among its less experienced annotators. PRET reports fair agreement (Fleiss' kappa 0.385; pairwise Cohen's kappa 0.25 to 0.58, higher for more experienced annotators) and says nothing about same-section conflation; the card now carries the paper's own figures, and learning/research-os/PRIMES.md cites them.
+
 
 **Never apply.** This script writes no row to `graph.edges`. Every
 proposal lands on `scripts/research-os/ingest/out/review-list.json` as an

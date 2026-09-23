@@ -10,11 +10,6 @@ import Lesson from "./Lesson";
 import Drill from "./Drill";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 
-/**
- * Today's route, one item at a time: a new atom shows its lesson then the
- * drill; a due review shows the drill with the lesson a tap away. The
- * queue is fixed when the session starts, so grading does not reshuffle it.
- */
 export default function StudySession({ branch }: { branch: string }) {
   const a = useAcademy(branch);
   const [queue, setQueue] = useState<RouteItem[] | null>(null);

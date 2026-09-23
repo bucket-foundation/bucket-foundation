@@ -9,16 +9,6 @@ import {
   mailto,
 } from "@/lib/support";
 
-// /support, the real fundable thing.
-//
-// Bucket's research tools + local-LLM features run partly on the founder's
-// personal laptop GPU; when that machine is closed, those features go dark.
-// This page makes the ask: fund always-on cloud-GPU hosting so the tools
-// (and the local-LLM features behind them) are available to everyone, 24/7.
-// Donation options are real where possible and-labelled-TODO where they
-// need the founder to activate them (GitHub Sponsors). All config, the contact
-// email + the donation links, lives in src/lib/support.ts (one knob).
-
 export const metadata = {
   title: "Support · fund always-on research",
   description:
@@ -69,7 +59,6 @@ export default function Page() {
 
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* What it pays for */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <FundLine
             n="01"
@@ -88,12 +77,10 @@ export default function Page() {
           />
         </div>
 
-        {/* Donation options */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           ways to fund
         </h2>
         <div className="mt-7 flex flex-col gap-px bg-[color:var(--hairline)] grid-hairlines">
-          {/* (a) Crypto, real, public address */}
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
@@ -113,7 +100,6 @@ export default function Page() {
             </code>
           </div>
 
-          {/* (b) GitHub Sponsors, link correct, activation TODO */}
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
@@ -140,7 +126,6 @@ export default function Page() {
             </a>
           </div>
 
-          {/* (c) Email to fund */}
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
               fund directly · talk to us

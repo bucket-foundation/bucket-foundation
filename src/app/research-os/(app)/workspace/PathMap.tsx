@@ -1,10 +1,5 @@
 "use client";
 
-// The path map (ros-33): the routed chain as a winding path of nodes, one
-// per step, colored by the learner's level on it, the target at the end.
-// The Academy languages path generalized to every branch. Pure SVG, sized
-// from the chain, no motion beyond hover.
-
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 
 const FILL: Record<Stage, string> = {

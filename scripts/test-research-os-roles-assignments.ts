@@ -1,12 +1,7 @@
-/**
- * Unit tests: roles as grants and assignments (ros-27, the Class step),
- * src/lib/research-os/roles.ts and assignments.ts. Pure. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-roles-assignments.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { canAssign, canOverride, overrideEvent, reviewsForClass, rolesIn, runsClass, validateOverride, visibleLearnerIds, type Membership } from "../src/lib/research-os/roles";
-import { assignmentStatus, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
+import { assignmentStatus, assignmentTargetHref, firstOpenTarget, targetIsLinkable, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
 
 const learners = ["l1", "l2", "l3"];
 
@@ -69,4 +64,50 @@ test("validateAssignment trims and defaults", () => {
   assert.equal(ok.value.requiresProduction, true);
   assert.equal((validateAssignment({ title: "ab" }) as { error: string }).error, "title_required");
   assert.equal((validateAssignment({ title: "fine", dueAt: "nope" }) as { error: string }).error, "bad_due_at");
+});
+
+test("a hidden target is never the one a surface opens on", () => {
+  const rows = [
+    { id: "a", status: "accepted", targetSlug: "done", targetHidden: false },
+    { id: "b", status: "not_started", targetSlug: "", targetHidden: true },
+    { id: "c", status: "in_progress", targetSlug: "open-me", targetHidden: false },
+  ];
+  const open = firstOpenTarget(rows);
+  assert.equal(open?.id, "c", "the hidden one is skipped and the accepted one is done");
+});
+
+test("an empty slug is skipped even when nothing marked it hidden", () => {
+  const rows = [{ id: "b", status: "not_started", targetSlug: "", targetHidden: false }];
+  assert.equal(firstOpenTarget(rows), null, "nothing to open, so nothing is opened");
+  assert.equal(targetIsLinkable(rows[0]), false, "and nothing links to it");
+});
+
+test("every assignment hidden or blank leaves the surface on its default", () => {
+  assert.equal(firstOpenTarget([]), null);
+  assert.equal(
+    firstOpenTarget([
+      { id: "a", status: "not_started", targetSlug: "", targetHidden: true },
+      { id: "b", status: "overdue", targetSlug: "", targetHidden: true },
+    ]),
+    null,
+    "a learner with only withheld targets is never redirected",
+  );
+});
+
+test("a readable target is linkable and a withheld one is not", () => {
+  assert.equal(targetIsLinkable({ targetSlug: "why-the-sky-is-blue", targetHidden: false }), true);
+  assert.equal(targetIsLinkable({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), false);
+  assert.equal(targetIsLinkable({ targetSlug: "", targetHidden: false }), false);
+  assert.equal(targetIsLinkable({}), false, "a row missing both fields links nowhere");
+});
+
+test("the href carries both halves of the rule, so neither can be dropped", () => {
+  assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: false }), "/research-os/workspace?target=why-the-sky-is-blue");
+  assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), null, "a withheld target gets no link");
+  assert.equal(assignmentTargetHref({ targetSlug: "", targetHidden: false }), null, "and neither does a blank slug");
+  assert.equal(assignmentTargetHref({}), null);
+});
+
+test("the href escapes what it puts in the query", () => {
+  assert.equal(assignmentTargetHref({ targetSlug: "a b&c", targetHidden: false }), "/research-os/workspace?target=a%20b%26c");
 });

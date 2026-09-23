@@ -1,0 +1,55 @@
+{
+  "result": {
+    "job_id": "j_c76ff15683b1415eb740",
+    "tool": "stoichbalance",
+    "render": "json",
+    "output": {
+      "demo": true,
+      "input_equation": "H2 + O2 -> H2O",
+      "balanced_equation": "2 H2 + O2 -> 2 H2O",
+      "reactants": [
+        "H2",
+        "O2"
+      ],
+      "products": [
+        "H2O"
+      ],
+      "coefficients": [
+        2,
+        1,
+        2
+      ],
+      "elements": [
+        "H",
+        "O"
+      ],
+      "molar_masses_g_per_mol": {
+        "H2": 2.016,
+        "O2": 31.998,
+        "H2O": 18.015
+      },
+      "method": "Balanced by computing a basis of the null space of the element matrix A (rows = elements, columns = species, +count for reactants, −count for products) over the rationals via exact fraction Gaussian elimination, then scaled to the smallest positive integers (LCM of denominators / GCD of numerators). The balance is then re-verified element-by-element. No lookup tables, no heuristics.",
+      "note": "DEMO: H2 + O2 -> H2O balances to 2 H2 + O2 -> 2 H2O. Field tool for chemistry: reaction informatics is a named atlas gap. Balancing is exact linear algebra; the limiting-reagent calculation (when amounts are supplied) follows the balanced mole ratios. Redox half-reaction balancing in acidic/basic media is a follow-up.",
+      "ground_truth": {
+        "balanced": "2 H2 + O2 -> 2 H2O",
+        "coefficients": [
+          2,
+          1,
+          2
+        ]
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "stoichbalance",
+        "at": "2026-09-23T03:48:15.296478+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

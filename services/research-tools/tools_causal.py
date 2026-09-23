@@ -1,52 +1,4 @@
 #!/usr/bin/env python3
-"""
-research-tools, CausalDesigner (REAL causal inference, CPU, no GPU, no network)
-================================================================================
-
-Per-field tool for **econ-social** (econ-social, 42,276 profiled researchers in
-the research-atlas corpus). The atlas USERS_NEEDS roadmap names "causal-inference
-tooling" as a top unmet software need for this field, the reproducibility crisis
-is most acute here, and causal-inference best practice (DAGs, do-calculus, valid
-adjustment sets, design choice) is under-adopted because the tooling has a steep
-learning curve (DAGitty, dowhy, etc.).
-
-Given a described study, treatment, outcome, confounders, and the edges of the
-assumed causal graph, CausalDesigner does REAL causal-inference logic:
-
- 1. Builds the causal DAG (networkx DiGraph) and validates it is acyclic.
- 2. Enumerates the BACKDOOR PATHS between treatment and outcome (Pearl's
- back-door criterion: a path with an arrow INTO the treatment).
- 3. Finds a VALID ADJUSTMENT SET that blocks every backdoor path while opening
- no new ones, using the real d-separation machinery (it blocks confounder
- chains/forks, and does NOT condition on colliders or on
- descendants of the treatment, which would *introduce* bias).
- 4. Recommends an estimator (DiD / RDD / IV / matching / regression-adjustment)
- from the declared design features, with the identifying assumptions and the
- concrete threats to validity for that design.
-
-This is real do-calculus basics. The backdoor enumeration and
-the adjustment-set validity test use networkx's d-separation
-(`nx.is_d_separator`) over the moralized/ancestral logic Pearl defines, so the
-returned set is *checked* to satisfy the back-door criterion, not
-heuristically guessed. Deterministic; never crashes on malformed input (returns
-a structured {"error": ...} the gateway turns into a clean 400).
-
-Input shape (`payload`):
- treatment : str, the treatment/exposure variable name (required)
- outcome : str, the outcome variable name (required)
- confounders : list[str] | comma-string, variables that may confound (optional)
- edges : list[[from,to]] | "A->B, C->D" string, the assumed causal
- graph edges (optional; if omitted, each declared confounder is
- assumed to point at BOTH treatment and outcome, the canonical
- confounding triangle)
- design : str, free text describing the study design (used to pick the
- estimator: "difference-in-differences"/"panel", "regression
- discontinuity"/"cutoff", "instrument"/"IV", "RCT"/"randomized",
- "matching"/"propensity", …)
- instrument : str, optional named instrument variable (for IV)
-
-The gateway imports CAUSAL_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import re
@@ -55,10 +7,6 @@ from typing import Any, Optional
 
 import networkx as nx
 
-
-# ---------------------------------------------------------------------------
-# input parsing (tolerant, never raises)
-# ---------------------------------------------------------------------------
 def _as_list(v: Any) -> list[str]:
     if v is None:
         return []
@@ -68,9 +16,7 @@ def _as_list(v: Any) -> list[str]:
         items = re.split(r"[,\n;|]", str(v))
     return [str(x).strip() for x in items if str(x).strip()]
 
-
 def _parse_edges(raw: Any) -> list[tuple[str, str]]:
-    """Parse edges from a list of pairs OR an 'A->B, C->D' style string."""
     edges: list[tuple[str, str]] = []
     if raw is None:
         return edges
@@ -87,47 +33,32 @@ def _parse_edges(raw: Any) -> list[tuple[str, str]]:
         return _parse_edge_string(raw)
     return edges
 
-
 def _parse_edge_string(s: str) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
-    # split on commas/semicolons/newlines, each token is "A -> B" (or →, -->)
     for tok in re.split(r"[,\n;]", s):
         tok = tok.strip()
         if not tok:
             continue
         m = re.split(r"\s*(?:-+>|→|—>)\s*", tok)
-        # chain support: A -> B -> C
         for a, b in zip(m, m[1:]):
             a, b = a.strip(), b.strip()
             if a and b:
                 out.append((a, b))
     return out
 
-
-# ---------------------------------------------------------------------------
-# REAL causal-graph logic (Pearl's back-door criterion via networkx)
-# ---------------------------------------------------------------------------
 def _all_paths_undirected(G: nx.DiGraph, src: str, dst: str, cutoff: int = 12) -> list[list[str]]:
-    """All simple paths in the UNDIRECTED skeleton (paths can traverse edges in
- either direction, this is what 'a path between X and Y' means in Pearl)."""
     U = G.to_undirected()
     try:
         return list(nx.all_simple_paths(U, src, dst, cutoff=cutoff))
     except (nx.NodeNotFound, nx.NetworkXNoPath):
         return []
 
-
 def _is_backdoor_path(G: nx.DiGraph, path: list[str]) -> bool:
-    """A back-door path from treatment T is a path whose first edge points INTO
- T (T <- ...). The directed (front-door) path T -> ... -> Y is NOT a backdoor.
-    """
     if len(path) < 2:
         return False
     t = path[0]
     nxt = path[1]
-    # first edge orientation: backdoor iff the arrow points into T (nxt -> t).
     return G.has_edge(nxt, t)
-
 
 def _path_edge_repr(G: nx.DiGraph, path: list[str]) -> str:
     parts = [path[0]]
@@ -137,29 +68,19 @@ def _path_edge_repr(G: nx.DiGraph, path: list[str]) -> str:
         parts.append(b)
     return " ".join(parts)
 
-
 def find_backdoor_paths(G: nx.DiGraph, treatment: str, outcome: str) -> list[dict]:
-    """Enumerate the back-door paths between treatment and outcome. Real."""
     out: list[dict] = []
     for path in _all_paths_undirected(G, treatment, outcome):
         if _is_backdoor_path(G, path):
             out.append({"path": path, "repr": _path_edge_repr(G, path)})
     return out
 
-
 def _valid_adjustment_set(
     G: nx.DiGraph, treatment: str, outcome: str, candidates: list[str]
 ) -> Optional[list[str]]:
-    """Find a minimal adjustment set Z ⊆ candidates that satisfies the back-door
- criterion (Pearl): (a) no node in Z is a descendant of the treatment, and
- (b) Z d-separates treatment and outcome in the graph with all edges OUT of
- treatment removed. Uses networkx d-separation. Returns the smallest valid Z
- (empty set is valid if there are no open backdoor paths)."""
-    # back-door criterion forbids conditioning on descendants of T.
     descendants = nx.descendants(G, treatment)
     pool = [c for c in candidates if c not in descendants and c != treatment and c != outcome]
 
-    # graph with edges leaving the treatment cut (the "proper back-door graph").
     Gbd = G.copy()
     Gbd.remove_edges_from(list(G.out_edges(treatment)))
 
@@ -169,16 +90,13 @@ def _valid_adjustment_set(
         except Exception:
             return False
 
-    # try increasing sizes; return the first (smallest) valid set.
     for k in range(0, len(pool) + 1):
         for combo in combinations(pool, k):
             if blocks(set(combo)):
                 return list(combo)
     return None
 
-
 def _classify_nodes(G: nx.DiGraph, treatment: str, outcome: str) -> dict:
-    """Tag each non-T/Y node by its causal role relative to (T, Y)."""
     roles: dict[str, str] = {}
     desc_t = nx.descendants(G, treatment)
     for n in G.nodes:
@@ -190,11 +108,10 @@ def _classify_nodes(G: nx.DiGraph, treatment: str, outcome: str) -> dict:
         points_to_y = outcome in children
         on_path_from_t = n in desc_t
         if points_to_t and points_to_y:
-            roles[n] = "confounder"  # common cause of T and Y
+            roles[n] = "confounder"
         elif treatment in parents and outcome in children:
-            roles[n] = "mediator"  # T -> n -> Y
+            roles[n] = "mediator"
         elif treatment in parents or outcome in parents:
-            # collider iff two arrows point INTO it (e.g. T -> n <- Y)
             if len({p for p in parents if p in (treatment, outcome)}) >= 1 and len(parents) >= 2:
                 roles[n] = "collider/descendant"
             elif on_path_from_t:
@@ -211,10 +128,6 @@ def _classify_nodes(G: nx.DiGraph, treatment: str, outcome: str) -> dict:
             roles[n] = "other"
     return roles
 
-
-# ---------------------------------------------------------------------------
-# estimator recommendation (real assumptions + threats per design)
-# ---------------------------------------------------------------------------
 _DESIGN_RULES: list[tuple[str, re.Pattern]] = [
     ("RCT", re.compile(r"\b(rct|randomi[sz]ed|random assignment|randomly assigned|experiment(al)?)\b", re.I)),
     ("IV", re.compile(r"\b(instrument(al)?( variable)?|\biv\b|two[- ]?stage|2sls|exogenous (shock|variation))\b", re.I)),
@@ -319,9 +232,7 @@ _ESTIMATOR_SPEC: dict[str, dict] = {
     },
 }
 
-
 def _recommend_estimator(design: str, has_instrument: bool) -> tuple[str, dict, list[str]]:
-    """Pick the estimator from the described design. Returns (key, spec, notes)."""
     notes: list[str] = []
     text = design or ""
     matched = [key for key, pat in _DESIGN_RULES if pat.search(text)]
@@ -329,7 +240,6 @@ def _recommend_estimator(design: str, has_instrument: bool) -> tuple[str, dict, 
         matched.insert(0, "IV")
         notes.append("An instrument was named, so IV is offered even though the design text did not call it out.")
     if matched:
-        # priority: design with strongest identification first
         for pref in ("RCT", "RDD", "IV", "DiD", "Matching", "RegressionAdjustment"):
             if pref in matched:
                 key = pref
@@ -345,10 +255,6 @@ def _recommend_estimator(design: str, has_instrument: bool) -> tuple[str, dict, 
         )
     return key, _ESTIMATOR_SPEC[key], notes
 
-
-# ---------------------------------------------------------------------------
-# orchestration
-# ---------------------------------------------------------------------------
 def _build_graph(treatment: str, outcome: str, confounders: list[str], edges: list[tuple[str, str]]) -> nx.DiGraph:
     G = nx.DiGraph()
     G.add_node(treatment)
@@ -358,14 +264,12 @@ def _build_graph(treatment: str, outcome: str, confounders: list[str], edges: li
     if edges:
         G.add_edges_from(edges)
     else:
-        # canonical confounding triangle: each confounder -> T and -> Y, plus T -> Y.
         for c in confounders:
             G.add_edge(c, treatment)
             G.add_edge(c, outcome)
     if not G.has_edge(treatment, outcome) and not edges:
         G.add_edge(treatment, outcome)
     return G
-
 
 def design_study(payload: dict) -> dict:
     treatment = (payload.get("treatment") or "").strip()
@@ -379,7 +283,6 @@ def design_study(payload: dict) -> dict:
     edges = _parse_edges(payload.get("edges"))
     instrument = (payload.get("instrument") or "").strip()
     if instrument:
-        # an instrument points at the treatment (and not at the outcome directly).
         edges.append((instrument, treatment))
     design = (payload.get("design") or "").strip()
 
@@ -401,8 +304,6 @@ def design_study(payload: dict) -> dict:
     roles = _classify_nodes(G, treatment, outcome)
     backdoors = find_backdoor_paths(G, treatment, outcome)
 
-    # candidate adjustment pool = every observed non-T/Y node that is not a
-    # descendant of the treatment (the back-door criterion forbids descendants).
     descendants = nx.descendants(G, treatment)
     candidates = [n for n in G.nodes if n not in (treatment, outcome) and n not in descendants]
     adj_set = _valid_adjustment_set(G, treatment, outcome, candidates)
@@ -412,7 +313,6 @@ def design_study(payload: dict) -> dict:
     )
     est_key, est, est_notes = _recommend_estimator(design, has_instrument)
 
-    # identifiability verdict
     if adj_set is not None:
         identifiable = True
         if adj_set:
@@ -430,7 +330,6 @@ def design_study(payload: dict) -> dict:
             "rely on selection-on-observables (IV / RDD / DiD / a randomized experiment)."
         )
 
-    # warn about bad controls the user might be tempted to adjust for
     bad_controls = [n for n, r in roles.items() if r in ("mediator", "collider", "collider/descendant", "descendant of treatment")]
 
     return {
@@ -471,18 +370,7 @@ def design_study(payload: dict) -> dict:
         ),
     }
 
-
 def _demo_payload() -> dict:
-    """Known confounding example with a hand-checkable answer.
-
- Smoking → cancer with a genetic confounder, plus a collider (hospitalization
- caused by both smoking and an unrelated injury) and a mediator (tar).
- gene -> smoking, gene -> cancer (a confounder; backdoor smoking<-gene->cancer)
- smoking -> tar -> cancer (mediator chain; the causal effect)
- smoking -> hospitalized <- injury (hospitalized is a COLLIDER)
- Correct minimal adjustment set = {gene}. tar (mediator), hospitalized
- (collider) and injury must NOT be adjusted for.
-    """
     return {
         "treatment": "smoking",
         "outcome": "cancer",
@@ -497,15 +385,7 @@ def _demo_payload() -> dict:
         "design": "observational cohort, adjust for measured covariates (propensity matching)",
     }
 
-
 def run_causal_designer(payload: dict) -> dict:
-    """payload: study description (treatment, outcome, confounders, edges, design,
- instrument) OR { demo: true } / treatment == "demo".
-
- Build the DAG, identify backdoor paths + a valid adjustment set (real
- do-calculus via networkx d-separation), and recommend an estimator with
- assumptions + threats. Deterministic; never raises on malformed input.
-    """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("treatment"), str)
         and payload.get("treatment", "").strip().lower() == "demo"
@@ -534,8 +414,6 @@ def run_causal_designer(payload: dict) -> dict:
     result.setdefault("demo", False)
     return result
 
-
-# Registry the gateway imports.
 CAUSAL_RUNNERS = {
     "causaldesigner": run_causal_designer,
 }

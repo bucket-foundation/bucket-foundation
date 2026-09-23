@@ -1,4 +1,3 @@
-"""Tiny stdlib HTTP helper with retry + polite UA. No third-party deps."""
 from __future__ import annotations
 
 import gzip
@@ -11,7 +10,6 @@ from typing import Any, Optional
 
 UA = "bucket-foundation-grants-gateway/0.1 (+https://bucket.foundation; ops@bucket.foundation)"
 
-
 def _open(req: urllib.request.Request, timeout: int = 60) -> bytes:
     last: Optional[Exception] = None
     for attempt in range(4):
@@ -22,7 +20,6 @@ def _open(req: urllib.request.Request, timeout: int = 60) -> bytes:
                     raw = gzip.decompress(raw)
                 return raw
         except urllib.error.HTTPError as e:
-            # Don't retry permanent client errors (4xx). Retry 408/429/5xx.
             if e.code in (408, 425, 429) or 500 <= e.code < 600:
                 last = e
                 wait = 2 ** attempt
@@ -35,7 +32,6 @@ def _open(req: urllib.request.Request, timeout: int = 60) -> bytes:
             time.sleep(wait)
     raise RuntimeError(f"HTTP failed after retries: {last}")
 
-
 def get(url: str, *, headers: Optional[dict] = None, timeout: int = 60) -> bytes:
     h = {"User-Agent": UA, "Accept-Encoding": "gzip"}
     if headers:
@@ -43,11 +39,9 @@ def get(url: str, *, headers: Optional[dict] = None, timeout: int = 60) -> bytes
     req = urllib.request.Request(url, headers=h)
     return _open(req, timeout=timeout)
 
-
 def get_json(url: str, *, headers: Optional[dict] = None, timeout: int = 60) -> Any:
     raw = get(url, headers=headers, timeout=timeout)
     return json.loads(raw.decode("utf-8"))
-
 
 def post_json(url: str, body: dict, *, headers: Optional[dict] = None, timeout: int = 120) -> Any:
     h = {

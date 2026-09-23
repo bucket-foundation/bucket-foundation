@@ -4,16 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
-// Canon markers, data points on the globe at lat/lng (+ optional time).
-// Each marker is a small gold sphere. The active one gets a pulsing ring.
-// Hover → tooltip; click → routes to entry detail or branch index.
-
 export type CanonMarkerKind =
   | "canon-entry"
   | "figure-birth"
   | "figure-death"
   | "event"
-  | "archaeological-site";  // material-evidence layer
+  | "archaeological-site"
+  | "world-indicator"
+  | "blue-zone";
 
 export type CanonMarker = {
   id: string;
@@ -23,13 +21,13 @@ export type CanonMarker = {
   branch: string;
   title: string;
   kind: CanonMarkerKind;
-  /** when kind === 'canon-entry', router pushes /canon/<branch>/<href|id>. */
   href?: string;
-  /** archaeological-site extras */
   civilization?: string;
   lidar?: string;
   unesco?: string;
   wikipedia?: string;
+  color?: string;
+  value?: number;
 };
 
 interface CanonMarkersProps {
@@ -37,26 +35,9 @@ interface CanonMarkersProps {
   activeIndex?: number;
   radius: number;
   reducedMotion: boolean;
-  /**
- * Distance from camera to scene origin (Earth center), in scene units
- * where Earth radius = 1. Used for level-of-detail scaling: at far view
- * (~3.4) markers are full size; at close zoom (~1.05) they shrink to
- * ~30% so dense regions (Europe, Asia) visually separate. If omitted,
- * markers use their full size, used by static / non-interactive
- * embeddings of the globe.
-   */
   cameraDistance?: number;
-  /**
- * Camera position in scene coordinates. Used to gate interaction to
- * the front-facing hemisphere, pins on the back of the globe stay
- * visible (dimmed) but don't fire hover or click. Without this, the
- * cursor catches on the invisible hit-target of a marker geometrically
- * behind the globe, opening tooltips for pins the user can't
- * see. If omitted, every marker is treated as interactive.
-   */
   cameraPosition?: [number, number, number];
   onHoverChange?: (m: CanonMarker | null) => void;
-  /** If provided, clicking a marker fires this instead of routing. */
   onSelectChange?: (m: CanonMarker | null) => void;
 }
 
@@ -72,19 +53,16 @@ export function latLngToVec3(lat: number, lng: number, radius: number): THREE.Ve
   );
 }
 
-// Branch → marker color. Each canon branch gets its own hue so the globe
-// reads as a coloured-coded atlas at a glance. Gradient anchored to the
-// bone+gold palette so it stays legible on the dot-pattern earth.
 const BRANCH_COLOR: Record<string, string> = {
-  mathematics:  "#D9A43A", // gold-bright
-  physics:      "#3E6FA8", // aegean
-  chemistry:    "#9B5A2C", // ochre
-  information:  "#557B66", // laurel
-  biophysics:   "#8E3E3E", // terra red
-  cosmology:    "#5B4882", // indigo
-  mind:         "#C2873E", // amber
-  "deep-history": "#7A5D3E", // umber
-  "sacred-texts": "#A0863F", // tarnished gold
+  mathematics:  "#D9A43A",
+  physics:      "#3E6FA8",
+  chemistry:    "#9B5A2C",
+  information:  "#557B66",
+  biophysics:   "#8E3E3E",
+  cosmology:    "#5B4882",
+  mind:         "#C2873E",
+  "deep-history": "#7A5D3E",
+  "sacred-texts": "#A0863F",
   earth:        "#4A6E5E",
   art:          "#A45A4C",
 };
@@ -95,11 +73,12 @@ const KIND_COLOR: Record<CanonMarkerKind, string> = {
   "figure-death": "#8A641A",
   "event":        "#B8861E",
   "archaeological-site": "#6E5840",
+  "world-indicator": "#4A6E5E",
+  "blue-zone":       "#8E3E3E",
 };
 
 function markerColor(m: CanonMarker): string {
-  // Archaeological sites get a stone-grey / aged-bronze tone so they're
-  // visually distinct from the figure/event markers.
+  if (m.color) return m.color;
   if (m.kind === "archaeological-site") return "#6E5840";
   const b = (m.branch || "").replace(/^\d+-/, "");
   return BRANCH_COLOR[b] || KIND_COLOR[m.kind] || "#D9A43A";
@@ -118,10 +97,6 @@ export function CanonMarkers({
   const router = useRouter();
   const [hover, setHover] = useState<number | null>(null);
 
-  // LOD scale: 1.0 at the default camera distance (3.4), 0.30 at the
-  // minimum (~1.04 = surface-skimming). Linear in the middle. Active /
-  // hovered pins ignore this, they always render full size so the
-  // current focus stays visible regardless of zoom level.
   const lodScale = useMemo(() => {
     if (cameraDistance === undefined) return 1;
     const FAR = 3.4;
@@ -131,30 +106,15 @@ export function CanonMarkers({
     return MIN_SCALE + Math.max(0, Math.min(1, t)) * (1 - MIN_SCALE);
   }, [cameraDistance]);
 
-  // Pre-compute per-marker "is on the camera-facing hemisphere" booleans.
-  // Geometry: Earth is a sphere of radius R=1 centered at the origin. A
-  // surface point M is *visible* from camera position C iff
-  //
-  // dot(M, C) > R² ≡ dot(M, C) > 1
-  //
-  // (this is the tangent-plane / horizon condition: a point on the limb
-  // satisfies it with equality, anything further around the globe falls
-  // below 1). When `cameraPosition` is omitted we treat every marker as
-  // visible, the unguarded behaviour from before.
   const visible = useMemo<boolean[]>(() => {
     if (!cameraPosition) return markers.map(() => true);
     const [cx, cy, cz] = cameraPosition;
     return markers.map((m) => {
-      const mp = latLngToVec3(m.lat, m.lng, 1); // unit sphere position
-      // Add a small margin (0.02) so pins right at the limb don't flicker
-      // between interactive / non-interactive as the camera nudges.
+      const mp = latLngToVec3(m.lat, m.lng, 1);
       return mp.x * cx + mp.y * cy + mp.z * cz > 1.02;
     });
   }, [markers, cameraPosition]);
 
-  // If the currently-hovered pin rotates to the back side as the user
-  // drags or zooms, its hit-target unmounts but the React `hover` state
-  // would otherwise stay sticky and keep the tooltip up. Clear it.
   useEffect(() => {
     if (hover !== null && visible[hover] === false) {
       setHover(null);
@@ -162,9 +122,6 @@ export function CanonMarkers({
     }
   }, [hover, visible, onHoverChange]);
 
-  // Bubble hovered marker up so the parent (outside the Canvas) can render a
-  // guaranteed-visible panel, the in-3D Html tooltip alone gets clipped on
-  // some viewports / canvas configurations.
   const reportHover = (idx: number | null) => {
     setHover(idx);
     if (onHoverChange) onHoverChange(idx === null ? null : markers[idx] || null);
@@ -180,8 +137,6 @@ export function CanonMarkers({
       : null;
 
   const handleClick = (m: CanonMarker) => {
-    // If parent provided a select handler, open the side drawer instead of
-    // routing. Routing remains the fallback for legacy embeds.
     if (onSelectChange) {
       onSelectChange(m);
       return;
@@ -200,45 +155,23 @@ export function CanonMarkers({
         const color = markerColor(m);
         const isActive = i === activeIndex;
         const isHover = i === hover;
-        // Front-hemisphere visibility (set by the dot-product check in
-        // the `visible` memo). Back-side markers still render, so the
-        // user can see the globe is populated all the way around, but
-        // they're dimmed and have NO hit target, so the cursor doesn't
-        // catch on a pin geometrically behind 6 000 km of dot-pattern.
         const isFront = visible[i];
 
-        // Mapbox-style pin: head + stem + surface halo.
-        // Scale animates with hover/active, discrete steps (not useFrame)
-        // so we stay frameloop="demand" friendly.
-        //
-        // We multiply the resting size by `lodScale` (driven by camera
-        // distance) so dense regions visually separate when you zoom in.
-        // Hover/active states bypass LOD (kept at the lifted size) so
-        // the user's current focus stays large even at deep zoom.
         const lifted = isHover || isActive;
         const baseHead = lifted ? 0.034 : 0.024 * lodScale;
         const baseStem = lifted ? 0.10 : 0.06 * lodScale;
         const headScale = baseHead;
         const stemLen = baseStem;
         const haloOuter = lifted ? 3.2 : 2.2;
-        // Back-side pins fade out a lot so they don't compete with the
-        // front-side markers visually. ~25% the normal opacity feels
-        // like "echo of what's behind the globe" without being invisible.
         const backOpacity = isFront ? 1 : 0.25;
 
         const normal = p.clone().normalize();
-        // Anchor: where the pin meets the globe surface (just above).
         const anchor = normal.clone().multiplyScalar(radius + 0.001);
-        // Stem center: midpoint between anchor and head.
         const stemMid = normal.clone().multiplyScalar(radius + stemLen / 2);
-        // Head: the dot at the top of the pin.
         const head = normal.clone().multiplyScalar(radius + stemLen + headScale * 0.6);
 
         return (
           <group key={m.id}>
-            {/* Surface halo, a flat disc on the globe, like a drop-shadow.
- Bigger and brighter when hovered/active. Visually attaches
- the pin to the surface. */}
             <mesh
               position={anchor}
               onUpdate={(self) => self.lookAt(anchor.clone().add(normal))}
@@ -254,7 +187,6 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Pin stem, slim cylinder anchoring the head to the surface */}
             <mesh
               position={stemMid}
               onUpdate={(self) => self.lookAt(stemMid.clone().add(normal))}
@@ -268,9 +200,6 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Pin head (outer glow ring on hover), only shown when
- lifted AND on the front face, so back-side markers don't
- phantom-glow from past frames. */}
             {lifted && isFront && (
               <mesh
                 position={head}
@@ -288,7 +217,6 @@ export function CanonMarkers({
               </mesh>
             )}
 
-            {/* Pin head, the visible dot */}
             <mesh position={head}>
               <sphereGeometry args={[headScale, 18, 18]} />
               <meshBasicMaterial
@@ -299,8 +227,6 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Crisp white inner highlight on the head, makes it pop on
- the dot-pattern earth */}
             <mesh position={head.clone().multiplyScalar(1.0008)}>
               <sphereGeometry args={[headScale * 0.45, 12, 12]} />
               <meshBasicMaterial
@@ -311,14 +237,6 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Invisible hit-target. Only rendered for front-facing
- pins, back-side markers stay non-interactive so the
- cursor doesn't catch on a pin behind the globe. At the
- default zoom this is 4× head; at close zoom the head
- shrinks via LOD but we keep the hit target generous
- (≥ 0.04 = ~50px of screen radius at typical fov) so
- tight clusters in Europe / East Asia stay clickable
- without overshooting. */}
             {isFront && (
               <mesh
                 position={head}
@@ -342,7 +260,7 @@ export function CanonMarkers({
                     pointerEvents: "none",
                     minWidth: "140px",
                     maxWidth: "280px",
-                    background: "rgba(239, 232, 212, 0.96)",  // bone @ 96%
+                    background: "rgba(239, 232, 212, 0.96)",
                     color: "var(--basalt)",
                     border: `1px solid ${color}`,
                     borderRadius: "4px",
@@ -360,6 +278,21 @@ export function CanonMarkers({
                   }}
                 >
                   <div style={{ fontWeight: 500 }}>{m.title}</div>
+                  {typeof m.value === "number" && (
+                    <div
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        marginTop: 5,
+                        letterSpacing: "0.06em",
+                        color,
+                      }}
+                    >
+                      {Number.isFinite(m.value)
+                        ? m.value.toLocaleString(undefined, { maximumFractionDigits: 2 })
+                        : "—"}
+                    </div>
+                  )}
                   <div
                     style={{
                       fontSize: 9,
@@ -370,8 +303,27 @@ export function CanonMarkers({
                       color,
                     }}
                   >
-                    {m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}{m.branch}
+                    {m.kind === "blue-zone"
+                      ? "blue zone · longevity"
+                      : m.kind === "world-indicator"
+                      ? "world indicator"
+                      : `${m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}${m.branch}`}
                   </div>
+                  {m.kind === "blue-zone" && m.civilization && (
+                    <div
+                      style={{
+                        fontSize: 9,
+                        opacity: 0.78,
+                        marginTop: 5,
+                        letterSpacing: "0.04em",
+                        textTransform: "none",
+                        fontFamily: "Fraunces, Georgia, serif",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {m.civilization}
+                    </div>
+                  )}
                   <div
                     style={{
                       fontSize: 8,
@@ -381,7 +333,7 @@ export function CanonMarkers({
                       textTransform: "uppercase",
                     }}
                   >
-                    click for details →
+                    {m.kind === "world-indicator" ? "click to rank →" : m.kind === "blue-zone" ? "longevity ground-truth" : "click for details →"}
                   </div>
                 </div>
               </Html>
@@ -390,9 +342,6 @@ export function CanonMarkers({
         );
       })}
 
-      {/* Selected-marker indicator: a wide bright ring on the surface
- + a tiny dot at the centre, marking the chosen anchor. Static
- (no useFrame pulse) to stay friendly with frameloop=demand. */}
       {activePos && (
         <>
           <mesh

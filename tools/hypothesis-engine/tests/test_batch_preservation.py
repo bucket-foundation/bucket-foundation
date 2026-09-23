@@ -2,11 +2,9 @@ from hte import batching, roles
 from hte.corpus import fixtures as fixtures_corpus
 from hte.generate import combinatorial_sample
 
-
 def _hyps(n):
     corpus = fixtures_corpus.build()
     return combinatorial_sample(corpus.vocab, [0], max_items=n, seed=0)[:n]
-
 
 def test_batch_preservation_maps_entries_by_id_and_falls_back_per_missing_id(monkeypatch):
     hyps = _hyps(3)
@@ -31,7 +29,6 @@ def test_batch_preservation_maps_entries_by_id_and_falls_back_per_missing_id(mon
     assert out[0]["detectability_adjustment"] == 1.0 and out[2]["could_have_survived"] is False
     assert fallbacks == [hyps[1].short_id]
     assert len(seen_prompts) == 1 and "id=" + hyps[1].short_id in seen_prompts[0] and "p, k" in seen_prompts[0] or "('p', 'k')" in seen_prompts[0]
-
 
 def test_batch_preservation_fake_mode_falls_back_to_the_single_stand_in(monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")

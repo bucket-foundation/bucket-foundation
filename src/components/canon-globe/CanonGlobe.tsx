@@ -22,14 +22,7 @@ function damp(current: number, target: number, lambda: number, dt: number) {
   return current + (target - current) * (1 - Math.exp(-lambda * dt));
 }
 
-// Decorative mount: the globe spins only when the page scrolls. Scroll
-// position maps to a rotation target (radians per pixel) and the frame
-// loop eases toward it; the particle shell around the globe expands with
-// scroll speed and settles back when scrolling stops.
 export type ScrollState = { y: number; velocity: number };
-/** Diagnostic and tuning switches for the decorative mount, read from the
- * page's query string by FixedCanonGlobeBackground. Numbers override the
- * DECORATIVE_* defaults below. */
 export type DecorativeVariant = {
   noshell?: boolean;
   fulldpr?: boolean;
@@ -44,7 +37,6 @@ export type DecorativeVariant = {
   passes?: number;
   dpr?: number;
 };
-// Axis roll on screen: 35 degrees of tilt, then a quarter turn clockwise.
 const DECORATIVE_TILT = ((35 - 90) * Math.PI) / 180;
 const DECORATIVE_RAD_PER_PX = 0.0022;
 const DECORATIVE_SPIN_EASE = 4;
@@ -53,45 +45,22 @@ const DECORATIVE_VELOCITY_DECAY = 3;
 const DECORATIVE_MAX_EXPANSION = 0.4;
 const DECORATIVE_EXPANSION_PER_VELOCITY = 0.25;
 const SHELL_COUNT = 3200;
-// Decorative transparency lives in the materials, never in CSS opacity:
-// an opacity or mask on the wrapper makes the compositor render the
-// whole 2100px layer offscreen, which hangs the founder's Phoenix iGPU.
 const DECORATIVE_ALPHA = 0.55;
-// Decorative dots stay opaque (transparent instancing plus scroll frames
-// wedged the founder's iGPU); a lighter color carries the "less dark" ask.
 const DECORATIVE_DOT_COLOR = 0x4a4436;
 const DECORATIVE_LIMB_SCALE = 0.3;
-// Candidates on the sphere; about 29% land on continents. Dense so the
-// field reads as soft continents at twice the size, and a touch larger.
 const DECORATIVE_DOT_COUNT = 36000;
 const DECORATIVE_DOT_RADIUS = 0.0075;
 const DECORATIVE_DOT_DETAIL = 6;
-// Scroll-driven frames are capped at this interval (20 per second).
 const DECORATIVE_FRAME_MS = 50;
-// Mount intro for the decorative globe only: it arrives from
-// INTRO_SPIN_RAD to the left and its shell grows from INTRO_SHELL_SCALE,
-// both easing out over INTRO_MS. The interactive globes stay still until
-// dragged.
 const INTRO_MS = 3600;
 const INTRO_SPIN_RAD = 1.1;
 const INTRO_SHELL_SCALE = 0.65;
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-// Decorative render: half-resolution buffer, blurred in two separable
-// passes inside WebGL. A CSS blur on the canvas wrapper hangs the
-// founder's Phoenix iGPU; these passes are tiny fullscreen draws.
 const DECORATIVE_DPR = 0.5;
-// Each pass is a 9-tap kernel stepped this many buffer pixels, so one
-// pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
 const DECORATIVE_BLUR_PX = 0.55;
 const DECORATIVE_BLUR_PASSES = 1;
 
-/**
- * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
- * and the particle shell's scale toward 1 + scroll speed. The canvas runs
- * frameloop="demand": a scroll event requests one frame, and this driver
- * keeps requesting frames until both eases settle.
- */
 function ScrollSpinDriver({
   spinRef,
   shellRef,
@@ -106,7 +75,6 @@ function ScrollSpinDriver({
   const introStart = useRef(performance.now());
   const frame = useRef({ last: 0, timer: 0 as ReturnType<typeof setTimeout> | 0 });
 
-  // Request at most one frame per DECORATIVE_FRAME_MS.
   const requestFrame = useCallback(() => {
     const f = frame.current;
     const now = performance.now();
@@ -160,13 +128,6 @@ function ScrollSpinDriver({
   return null;
 }
 
-/**
- * Near-field particle shell around the decorative globe: gold and basalt
- * points between 1.25 and 2.6 radii, denser near the surface. Scaled and
- * counter-rotated by ScrollSpinDriver.
- */
-// Soft round sprite for the shell points; the default point sprite is a
-// hard square, which reads as pixels at the decorative mount's 0.4 dpr.
 function makeDotSprite(): THREE.Texture | null {
   if (typeof document === "undefined") return null;
   const size = 64;
@@ -212,8 +173,6 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
     geo.setAttribute("aColor", new THREE.BufferAttribute(col, 3));
     return geo;
   }, []);
-  // Points shader with the Halo's radial fade, so the shell dissolves
-  // before the square canvas edge instead of being clipped by it.
   const material = useMemo(
     () =>
       new THREE.ShaderMaterial({
@@ -224,7 +183,7 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
           uScale: { value: 100 },
           uFade: { value: new THREE.Vector2(0.45, 0.9) },
         },
-        vertexShader: /* glsl */ `
+        vertexShader:  `
           uniform float uSize;
           uniform float uScale;
           attribute vec3 aColor;
@@ -238,7 +197,7 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
             vNdc = gl_Position.xy / gl_Position.w;
           }
         `,
-        fragmentShader: /* glsl */ `
+        fragmentShader:  `
           uniform sampler2D uMap;
           uniform float uOpacity;
           uniform vec2 uFade;
@@ -256,7 +215,6 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
       }),
     [sprite]
   );
-  // Point size scales with the drawing buffer height, as PointsMaterial does.
   useFrame((state) => {
     material.uniforms.uScale.value = (state.size.height * state.viewport.dpr) / 2;
   });
@@ -267,11 +225,6 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
   );
 }
 
-/**
- * Takes over rendering for the decorative mount: scene to an RGBA target,
- * then DECORATIVE_BLUR_PASSES pairs of horizontal and vertical blur, the
- * last pass to the screen. The canvas stays transparent.
- */
 function BlurPipeline({ blurPx, passCount }: { blurPx: number; passCount: number }) {
   const gl = useThree((state) => state.gl);
   const scene = useThree((state) => state.scene);
@@ -325,11 +278,6 @@ function BlurPipeline({ blurPx, passCount }: { blurPx: number; passCount: number
   return null;
 }
 
-/**
- * After the browser restores a lost WebGL context (a GPU reset), three.js
- * rebuilds its state but nothing requests a frame under frameloop="demand",
- * so the canvas would stay blank. Request one.
- */
 function ContextRecovery() {
   const gl = useThree((state) => state.gl);
   const invalidate = useThree((state) => state.invalidate);
@@ -342,14 +290,6 @@ function ContextRecovery() {
   return null;
 }
 
-/**
- * Drives camera distance + position into React state via OrbitControls'
- * change event. We're on frameloop="demand" so we can't sample
- * camera.position every frame, but every user zoom/rotate fires
- * `change` on the controls, and we propagate that to setters so marker
- * LOD (size) and front-face filtering (which side of the globe a pin
- * is on) can both react.
- */
 function CameraTracker({
   controlsRef,
   onDistance,
@@ -368,7 +308,7 @@ function CameraTracker({
       onPosition([camera.position.x, camera.position.y, camera.position.z]);
       invalidate();
     };
-    handler(); // seed initial values
+    handler();
     c.addEventListener("change", handler);
     return () => c.removeEventListener("change", handler);
   }, [controlsRef, camera, onDistance, onPosition, invalidate]);
@@ -381,14 +321,8 @@ interface CanonGlobeProps {
   className?: string;
   onHoverChange?: (m: CanonMarker | null) => void;
   onSelectChange?: (m: CanonMarker | null) => void;
-  /** Chromeless background mode: user drag/zoom disabled, a slow base
-   * auto-rotate is enabled instead (skipped under prefers-reduced-motion,
-   * which renders a static globe). */
   decorative?: boolean;
-  /** Read every frame when `decorative` is on: page scroll position and
-   * speed. Position drives the spin, speed drives the particle shell. */
   scrollRef?: MutableRefObject<ScrollState>;
-  /** Diagnostic variants for the decorative mount. */
   variant?: DecorativeVariant;
 }
 
@@ -410,24 +344,14 @@ export default function CanonGlobe({
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const spinRef = useRef<THREE.Group | null>(null);
   const shellRef = useRef<THREE.Group | null>(null);
-  // Camera distance from origin, in scene units (Earth radius = 1).
-  // Seeded to match the camera's starting position (z=3.4 below).
   const [cameraDistance, setCameraDistance] = useState(3.4);
-  // Camera position tuple. Used by CanonMarkers to compute which pins
-  // face the camera (front hemisphere) vs which are occluded by the
-  // globe itself. Hover should only fire on the front side; the back
-  // side stays visible but is non-interactive so the cursor doesn't
-  // catch on a marker that's geometrically behind 6 000 km of rock.
   const [cameraPosition, setCameraPosition] =
     useState<[number, number, number]>([0, 0, 3.4]);
 
-  // Faint background star/dot field, cosmic context behind the globe.
-  // Bone-tinted so it reads on light bg without going black.
   const stars = useMemo(() => {
     const N = 600;
     const pts = new Float32Array(N * 3);
     for (let i = 0; i < N; i++) {
-      // sample on a far sphere, biased away from camera origin
       const u = Math.random() * 2 - 1;
       const t = Math.random() * Math.PI * 2;
       const r = 12 + Math.random() * 6;
@@ -444,24 +368,14 @@ export default function CanonGlobe({
   return (
     <div className={className} style={{ width: "100%", height: "100%" }}>
       <Canvas
-        // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
-        // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
-        // tends to crash with frequent context switches).
         dpr={decorative && !variant?.fulldpr ? variant?.dpr ?? DECORATIVE_DPR : 1}
-        frameloop="demand"  // only render on prop change / camera moves
+        frameloop="demand"
         performance={{ min: 0.5 }}
-        // The outer halo bloom (radius 1.24 at distance 3.4) subtends 21.4
-        // degrees; a 42 degree fov cut its crown and foot flat. 44 keeps
-        // the whole disc inside the canvas on the interactive mounts. The
-        // decorative mount fades its halo in-shader and keeps 42.
         camera={{ position: [0, 0, 3.4], fov: decorative ? 42 : 44 }}
         gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
-        {/* dot-globe is unlit (MeshBasicMaterial), ambient is harmless. */}
         <ambientLight intensity={0.5} />
 
-        {/* far-field starlike dots, gold-flecked; the decorative mount
-            skips them so nothing fills the canvas out to its square edge */}
         {!decorative && <points geometry={stars}>
           <pointsMaterial
             size={0.04}
@@ -478,7 +392,7 @@ export default function CanonGlobe({
         <Suspense fallback={null}>
           <Earth
             targetRotationY={0}
-            reducedMotion={true /* let OrbitControls drive rotation */}
+            reducedMotion={true }
             landmaskUrl={LANDMASK_URL}
             dotOpacity={1}
             dotDetail={decorative ? DECORATIVE_DOT_DETAIL : 8}
@@ -504,31 +418,17 @@ export default function CanonGlobe({
         </group>
         </group>
 
-        {/* Drag to rotate + scroll to zoom. `minDistance` is set tight
- against the Earth surface (radius=1 in scene units) so users
- can drill into dense regions like Europe. The pins scale down
- with cameraDistance via CanonMarkers' LOD so dense clusters
- visually separate at close zoom. `rotateSpeed` is also scaled
- down adaptively, gentle nudges at high zoom let you fly
- along the coastline without overshooting. */}
         <OrbitControls
           ref={controlsRef}
           enableDamping={false}
           enableZoom={!decorative}
           enablePan={false}
           enableRotate={!decorative}
-          // 1.0 is the Earth surface. 1.04 keeps us a hair above it so the
-          // camera never clips through the dot pattern.
           minDistance={1.04}
           maxDistance={6}
           minPolarAngle={0.15}
           maxPolarAngle={Math.PI - 0.15}
-          // Rotate slower the closer you get, at distance 3.4 the speed
-          // is 0.5, at distance 1.05 it's ~0.16. This trick makes drilling
-          // into Europe feel like a real fly-over rather than a snap-spin.
           rotateSpeed={Math.max(0.12, 0.5 * Math.min(1, (cameraDistance - 1) / 2.4))}
-          // Zoom logarithmically, wider steps at far view, finer at
-          // close zoom so the last "click" doesn't overshoot the surface.
           zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
         />
         <CameraTracker

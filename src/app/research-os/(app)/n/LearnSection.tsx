@@ -37,7 +37,6 @@ function AtomLearn({ branch, atomId }: { branch: string; atomId: string }) {
   );
 }
 
-/** Understanding, in place: the lesson and the drill for the atom this node came from, or the node's own text. */
 export default function LearnSection({ data }: { data: NodeData }) {
   const { learn, node } = data;
   return (

@@ -1,19 +1,10 @@
 #!/usr/bin/env python3
-"""
-Build "The Quantum Atlas" as a print book — styled to match the Longevity & Fitness
-Operating Manual: warm cream/gold, serif body + sans headings, dark cover, Parts with
-divider pages, a real TOC with leader dots + page numbers (WeasyPrint target-counter),
-running heads. One self-contained HTML; build_pdf.py runs WeasyPrint over it.
-
-    python3 reports/build_manual.py     -> reports/manual.html
-"""
 import os, re, glob, html, datetime
 import markdown
 import render_math
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# chapter folder -> (number, title)
 CH = {
     "01-foundations":           ("1", "The Physics"),
     "02-hardware":              ("2", "The Machines"),
@@ -24,7 +15,6 @@ CH = {
     "07-history":               ("7", "How We Got Here"),
     "08-frontier-open":         ("8", "The Honest Frontier"),
 }
-# Parts group the chapters (roman, title, [folders])
 PARTS = [
     ("I",   "The Physics and the Machines", ["01-foundations", "02-hardware"]),
     ("II",  "From Qubit to Answer",         ["03-stack-algorithms", "04-adjacent-tech"]),
@@ -51,7 +41,7 @@ def _protect_math(text):
         _MATH["fail"] += 1; return m.group(0)
     def is_math(s):
         s = s.strip()
-        if "\\mathdefault" in s:      # matplotlib axis-label artifact inside figure SVGs
+        if "\\mathdefault" in s:
             return False
         return bool(s) and (len(s) <= 3 or re.search(r"[\\^_{}]", s))
     def inl(m):
@@ -78,7 +68,6 @@ def render(path):
         return render_text(f.read())
 
 def render_strip(path):
-    """Render but drop the file's own leading '# Title' (we supply the section title)."""
     if not os.path.exists(path): return ""
     with open(path, encoding="utf-8") as f:
         return render_text(_strip_lead_heading(f.read()))
@@ -134,7 +123,6 @@ def build():
             index_entries.append((card_title(c), card_id(c), anchor(card_id(c))))
             total += 1
 
-    # front matter + appendices (strip each file's own leading '# Title')
     preface  = render_strip(os.path.join(ROOT, "00-map", "_PREFACE.md"))
     mapmd    = render_strip(os.path.join(ROOT, "00-map", "00-IDEAL-STATE-MAP.md"))
     capmd    = render_strip(os.path.join(ROOT, "00-map", "NETWORK-CAPACITY.md"))
@@ -145,7 +133,6 @@ def build():
     primer   = render_strip(os.path.join(ROOT, "evidence", "MATH-PRIMER.md"))
     lab      = render_strip(os.path.join(ROOT, "evidence", "LAB-TRACK.md"))
 
-    # reference index (compact node cards)
     for folder in CH:
         num, title = CH[folder]
         cards = [c for c in sorted(glob.glob(os.path.join(ROOT, folder, "*.md")))
@@ -154,7 +141,6 @@ def build():
         for c in cards:
             refs_html.append(f'<article class="refcard" id="{anchor(card_id(c))}">{render(c)}</article>')
 
-    # ---- TOC (parts + chapters + appendices, leader dots + page numbers in PDF) ----
     t = ['<nav class="toc" id="contents"><h1>Contents</h1>']
     t.append('<div class="toc-front"><a href="#preface">Preface</a></div>')
     t.append('<div class="toc-front"><a href="#map">The Map</a></div>')
@@ -174,7 +160,6 @@ def build():
     t.append('</nav>')
     toc_html = "".join(t)
 
-    # ---- body: parts with divider pages + chapters ----
     parts_html = []
     for roman, ptitle, folders in PARTS:
         parts_html.append(f'<section class="partdiv"><div class="pd-n">Part {roman}</div>'

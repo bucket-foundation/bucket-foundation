@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Build both HNSW indexes single-threaded (max_parallel_maintenance_workers=0)
-# so the build uses private maintenance_work_mem instead of /dev/shm — the
-# parallel path overflowed the container's 1GB shm. Disk has 253GB free.
 set -uo pipefail
 cd ~/agfarms/bucket-foundation
 pkill -f embed_full.py 2>/dev/null || true

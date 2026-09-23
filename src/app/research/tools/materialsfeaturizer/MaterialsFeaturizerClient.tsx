@@ -1,8 +1,5 @@
 "use client";
 
-// MaterialsFeaturizer client island, Magpie-style composition descriptors from
-// a chemical formula. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -11,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type DescStat = { mean: number; min: number; max: number; range: number; avg_deviation: number; mode: number | null };
 type MaterialsOutput = {
@@ -60,9 +61,9 @@ export default function MaterialsFeaturizerClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             chemical formula
-          </span>
+          </FieldLabel>
           <input
             value={formula}
             onChange={(e) => setFormula(e.target.value)}
@@ -72,21 +73,12 @@ export default function MaterialsFeaturizerClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || !formula.trim()}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || !formula.trim()}>
             {busy ? "featurizing…" : "featurize"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo (NaCl)
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -100,13 +92,6 @@ export default function MaterialsFeaturizerClient() {
 
 function MaterialsView({ result }: { result: ResultEnvelope }) {
   const out = result.output as MaterialsOutput;
-  const cell = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
@@ -114,9 +99,9 @@ function MaterialsView({ result }: { result: ResultEnvelope }) {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[color:var(--hairline)] mb-6">
-        {cell("elements", String(out.n_elements))}
-        {cell("molar mass", `${out.molar_mass_g_per_mol} g/mol`)}
-        {cell("ML features", String(out.n_features))}
+        <Stat label="elements" value={String(out.n_elements)} />
+        <Stat label="molar mass" value={`${out.molar_mass_g_per_mol} g/mol`} />
+        <Stat label="ML features" value={String(out.n_features)} />
       </div>
 
       <div className="mb-6">

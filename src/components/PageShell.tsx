@@ -1,9 +1,5 @@
 import React from "react";
 
-/**
- * Standard reading-width shell for interior pages (manifesto, protocol,
- * governance, about, join, canon/*). Maintains brand typography + spacing.
- */
 export default function PageShell({
   eyebrow,
   title,

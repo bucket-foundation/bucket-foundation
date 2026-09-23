@@ -4,12 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signInUrl } from "@/lib/auth/paths";
 
-/**
- * Shown by a page that needs a session while the client has none yet. The
- * middleware sends anonymous visitors to /sign-in before the page renders,
- * so this appears only in the moment before the browser client hydrates or
- * when cookies are blocked.
- */
 export default function SignInGate({ signedIn, children }: { signedIn: boolean; children?: React.ReactNode }) {
   const pathname = usePathname() || "/";
   if (signedIn) return children ? <>{children}</> : null;

@@ -12,15 +12,6 @@ import {
   ATLAS_CITATION,
 } from "@/lib/contribute";
 
-// /contribute, the open-research counterpart to /support.
-//
-// /support asks for MONEY (fund always-on hosting). /contribute asks for WORK:
-// add primary research to the canon, send a PR to the open-source repos, build
-// or improve a research tool, sharpen a canon branch, or just cite and use the
-// open datasets. Same stone-bone visual structure as /support so the two read
-// as one pair. All links + the contact CTA live in src/lib/contribute.ts (one
-// knob), which reuses the single contact email from src/lib/support.ts.
-
 export const metadata = {
   title: "Contribute · build the canon with us",
   description:
@@ -84,7 +75,6 @@ export default function Page() {
 
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* The five ways, as numbered carved lines (mirrors /support's FundLine grid). */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <Way
             n="01"
@@ -118,7 +108,6 @@ export default function Page() {
           />
         </div>
 
-        {/* (1) Contribute primary research / claims to the canon */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           01 · contribute primary research
         </h2>
@@ -156,7 +145,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* (2) Contribute code, the open-source repos */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           02 · contribute code
         </h2>
@@ -209,7 +197,6 @@ export default function Page() {
           ))}
         </div>
 
-        {/* (3) Add or improve a research tool */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           03 · add or improve a research tool
         </h2>
@@ -243,7 +230,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* (4) Improve the canon, the 7 branches */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           04 · improve the canon
         </h2>
@@ -267,7 +253,6 @@ export default function Page() {
           ))}
         </div>
 
-        {/* (5) Cite & use */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           05 · cite &amp; use
         </h2>
@@ -317,7 +302,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* (6) Get in touch */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           06 · get in touch
         </h2>

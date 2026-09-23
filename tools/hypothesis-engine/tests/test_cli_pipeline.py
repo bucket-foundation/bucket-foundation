@@ -2,7 +2,6 @@ import pytest
 
 from hte import cli_pipeline, pipeline
 
-
 def test_build_parser_run_defaults():
     parser = cli_pipeline.build_parser()
     args = parser.parse_args(["run"])
@@ -18,7 +17,6 @@ def test_build_parser_run_defaults():
     assert args.writeback_floor_p == 0.6
     assert args.writeback_floor_u_max == 0.5
     assert args.skip_publish is False
-
 
 def test_build_parser_run_every_flag():
     parser = cli_pipeline.build_parser()
@@ -44,7 +42,6 @@ def test_build_parser_run_every_flag():
     assert args.writeback_floor_u_max == 0.4
     assert args.skip_publish is True
 
-
 def test_cmd_run_builds_config_and_reports_success(monkeypatch, capsys):
     seen = {}
 
@@ -69,12 +66,11 @@ def test_cmd_run_builds_config_and_reports_success(monkeypatch, capsys):
     assert seen["config"]["corpus"] == "quantum-history"
     assert seen["config"]["dry_run"] is True
     assert seen["config"]["from_run"] == "runs/x/y"
-    assert "campaign" not in seen["config"]  # --campaign not given
+    assert "campaign" not in seen["config"]
 
     out = capsys.readouterr().out
     assert "outcome: ok" in out
     assert "emit_paper: ok" in out
-
 
 def test_cmd_run_builds_config_with_writeback_flags(monkeypatch, capsys):
     seen = {}
@@ -112,12 +108,7 @@ def test_cmd_run_builds_config_with_writeback_flags(monkeypatch, capsys):
     out = capsys.readouterr().out
     assert "writeback: ok" in out
 
-
 def test_cmd_run_requires_branch_with_writeback(capsys):
-    """`bkt-hte-writeback-review` (PR #36's own review): `--writeback`
-    with no `--branch` must fail loudly at the CLI, before `run_pipeline`
-    ever starts, rather than reaching a real `publish` over a writeback
-    that never had a branch to write to."""
     with pytest.raises(SystemExit) as exc_info:
         cli_pipeline.main(["run", "--writeback"])
     assert exc_info.value.code == 2
@@ -125,12 +116,7 @@ def test_cmd_run_requires_branch_with_writeback(capsys):
     assert "usage" in err.lower()
     assert "--branch" in err
 
-
 def test_cmd_run_requires_signoff_with_writeback(capsys):
-    """The same loud, immediate usage error as the missing-branch check,
-    alongside it rather than instead of it: a named human approver is
-    required before any write into bucket-canon/ (PLAN.md section 10,
-    GOVERNANCE.md). `--branch` alone is not enough."""
     with pytest.raises(SystemExit) as exc_info:
         cli_pipeline.main(["run", "--writeback", "--branch", "07-mind"])
     assert exc_info.value.code == 2
@@ -138,11 +124,7 @@ def test_cmd_run_requires_signoff_with_writeback(capsys):
     assert "usage" in err.lower()
     assert "--signoff" in err
 
-
 def test_cmd_run_allows_writeback_with_branch_and_signoff_given(monkeypatch):
-    """The same checks do not fire when both `--branch` and `--signoff`
-    are given alongside `--writeback`: they fire only on the missing
-    combinations above."""
     monkeypatch.setattr(pipeline, "run_pipeline", lambda config: {
         "pipeline_dir": "runs/_pipeline/ts", "outcome": "ok",
         "stages": {"writeback": {"ran": True, "ok": True}},
@@ -150,7 +132,6 @@ def test_cmd_run_allows_writeback_with_branch_and_signoff_given(monkeypatch):
     })
     rc = cli_pipeline.main(["run", "--writeback", "--branch", "07-mind", "--signoff", "jane-reviewer"])
     assert rc == 0
-
 
 def test_cmd_run_reports_failure_exit_code(monkeypatch, capsys):
     def fake_run_pipeline(config):

@@ -1,4 +1,3 @@
-/** The canon-to-mastery linker: terms, IDF weighting, the floors. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Linker, terms } from "../src/lib/research-os/ingest/link";

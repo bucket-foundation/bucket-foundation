@@ -1,5 +1,63 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-20: the patents research memo
+
+What the prior work says about patents in discovery, and what it settles for Research OS.
+
+Branch `feat/ros-loop-patents-memo`, PR #189.
+
+### Added
+
+- The memo in `learning/research-os/PATENTS.md`: patent-to-science citation, claims and obviousness, the classification classes of the first slice, the limits of patent counts, how prior-art search reports its recall, and the place of defensive publication.
+
+## 2026-09-19: patents in Research OS
+
+Patents in Research OS are designed, and the gateway findings went to the org repositories.
+
+Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are focused on scientific research, discovery, and innovation, patents are super important too"; the patents x402 and feed402 work lives in the bucket-foundation org repositories.
+
+### Added
+
+- The design of patents in Research OS: imported into the graph from a bulk corpus, free to read, each linked to the x402 research gateway's citeable USPTO record. The gateway and protocol work lives in the bucket-foundation org repositories, where the findings went as issues.
+
+### Corrected
+
+- The patent licensing matrix of 2026-05-03, against current sources: PatentsView's API is paused, EPO data may not be relayed as it comes, WIPO resale needs a paid licence, and the patent-to-paper citation set is non-commercial, so it stays out of v1.
+
+## 2026-09-19: fewer Vercel builds
+
+Previews build once per task and build green.
+
+Branch `feat/ros-loop-builds`, PR #187. Founder direction: fewer Vercel builds and no failing ones.
+
+### Fixed
+
+- The skip gate compares a push with the last successful deployment on Vercel, where it had failed and built on every push.
+- Builds run on Node 24 ahead of Vercel's 2026-10-01 cutoff for Node 20.
+- A push that would build is checked for lint and type errors on the machine first.
+
+## 2026-09-18: primes and the decompose-further queue
+
+The graph's makeup has a review queue.
+
+Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime decomposition of concepts and equations, "can this be further", done deep and checked by a critic.
+
+### Added
+
+- The decompose-further runner: a proposer names what each prime and unfactored idea rests on, a verifier on another model judges the picks blind among passed-over candidates, and Wikipedia's links score every pair.
+- Missing base ideas merge by meaning and wait at `/research-os/edges` with the targets that named them; approving one creates the node.
+- Irreducible verdicts a reviewer can confirm or send back.
+- The primes report lists what moved since its last run.
+- Every public idea node has a "made of" section: prime or composite, how many layers above its primes, the primes under it, and what waits on review for it, in detail for reviewers and as counts for everyone else.
+- The review queue has a summary, a find box, filters, and a view narrowed to one node from its page.
+- Graph review is open to the reviewer allowlist alone.
+- "Where it leads" on the node page follows each edge kind's direction, and lists open questions and frontier nodes where the walk ends.
+- A pending pair that would shortcut a chain names the chain, and the review queue can show the shortcuts alone.
+
+### Corrected
+
+- The PRET card (Alzetta and colleagues, 2018) said annotators agreed moderately and disagreed most on same-section pairs. The paper reports fair agreement, Fleiss' kappa 38.50%, and has no same-section finding. The card carries the paper's figures; three docs that cited it carry dated corrections.
+
 ## 2026-09-17: one graph of everything researched
 
 The workspace opens over the full scope of that graph.
@@ -3158,3 +3216,20 @@ Uncommitted work from the main checkout and the old worktrees, squashed into one
 - Archive mirror refresh from the main checkout, 65 files, plus the catalog entry for the Feynman Lectures with its in-copyright full text kept off the repo.
 - 29 pending beads that existed only in the main checkout's `BEADS-PENDING.jsonl`.
 - Runner logs, runner status and bead backups untracked; the Academy build loop's runner removed.
+
+## 2026-09-18: hte-serve as a local user service
+
+Research OS loop task, PR #184. Move 4 of `learning/research-os/IDEAL-STATE.md` (engine hypotheses as frontier targets) waited on an engine host, and local first makes that this machine.
+
+- `scripts/systemd/hte-serve.service` and `install-hte-serve.sh`: `hte-serve` on 127.0.0.1:8420 in live mode through the machine's `claude` login. The unit uses `%h`, so it carries no machine path, and loads no `~/.env`.
+- `.env.local` (not tracked) sets `HTE_SERVE_URL` and `HTE_SERVE_TIMEOUT_S=600`.
+- Verified: a fake-mode request through the local MCP `hypothesize` tool returns an engine run, where it answered `engine offline` before.
+- PROBLEM-REGISTER PR-019 fixed.
+
+## 2026-09-18: prime decomposition, slice one
+
+Research OS loop task, PR #185, from the founder's prime-decomposition idea (carries ros-25).
+
+- `src/lib/research-os/primes.ts`: every node is prime, composite or unfactored, with its factors, a prime signature with path multiplicity, depth and tier, and each prime's penetration by composites and branch spread. Cycles collapse through an iterative Tarjan pass.
+- `scripts/research-os/primes-report.ts` runs it over the graph; `scripts/test-research-os-primes.ts` joins `npm run test:research-os` (514 passing).
+- `learning/research-os/PRIMES.md`: terms, algorithm, results on the local graph (41 primes, 626 composites, 1,236 unfactored, depth up to 17), and what they show: the primes are course entry points, no prime crosses a branch, the deepest composites are transcript fragments, and the equals sign has no node yet.

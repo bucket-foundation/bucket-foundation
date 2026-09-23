@@ -2,18 +2,11 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 
-// Atmospheric halo. Adapted from janarosmonaliev/github-globe (MIT), a
-// back-side fresnel sphere that softly tints the silhouette.
-// Tinted with bucket's --gold (#B8861E) at low alpha to bloom into bone.
-
 interface HaloProps {
   radius?: number;
   color?: string;
   enabled?: boolean;
-  /** Multiplies both rims' alpha. */
   alpha?: number;
-  /** Radial fade in normalized device units: alpha falls from 1 at
-   * fade[0] to 0 at fade[1] from the canvas center. Off by default. */
   fade?: [number, number];
 }
 
@@ -24,12 +17,11 @@ export function Halo({
   alpha = 1,
   fade = [10, 11],
 }: HaloProps) {
-  // Inner crisp gold rim, sits just off the surface, sharp fresnel.
   const innerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
         uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha }, uFade: { value: new THREE.Vector2(fade[0], fade[1]) } },
-        vertexShader: /* glsl */ `
+        vertexShader:  `
           varying vec3 vNormal;
           varying vec3 vViewDir;
           varying vec2 vNdc;
@@ -41,7 +33,7 @@ export function Halo({
             vNdc = gl_Position.xy / gl_Position.w;
           }
         `,
-        fragmentShader: /* glsl */ `
+        fragmentShader:  `
           varying vec3 vNormal;
           varying vec3 vViewDir;
           uniform vec3 uColor;
@@ -63,12 +55,11 @@ export function Halo({
     [color, alpha, fade]
   );
 
-  // Outer atmospheric bloom, wider, softer, gives the planet a glow halo.
   const outerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
         uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha }, uFade: { value: new THREE.Vector2(fade[0], fade[1]) } },
-        vertexShader: /* glsl */ `
+        vertexShader:  `
           varying vec3 vNormal;
           varying vec3 vViewDir;
           varying vec2 vNdc;
@@ -80,7 +71,7 @@ export function Halo({
             vNdc = gl_Position.xy / gl_Position.w;
           }
         `,
-        fragmentShader: /* glsl */ `
+        fragmentShader:  `
           varying vec3 vNormal;
           varying vec3 vViewDir;
           uniform vec3 uColor;

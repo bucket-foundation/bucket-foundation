@@ -6,7 +6,6 @@ export const metadata = toolMetadata("figureminer");
 const _jsonld = toolJsonLd("figureminer");
 import FigureMinerClient from "./FigureMinerClient";
 
-// FigureMiner run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

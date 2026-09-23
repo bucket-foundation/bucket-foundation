@@ -1,8 +1,5 @@
 "use client";
 
-// SeqAlign client island, exact pairwise alignment (Needleman-Wunsch global /
-// Smith-Waterman local) with BLOSUM62 / identity scoring. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -11,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type SeqAlignOutput = {
   demo: boolean;
@@ -61,9 +62,9 @@ export default function SeqAlignClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             sequence A
-          </span>
+          </FieldLabel>
           <textarea
             value={seqA}
             onChange={(e) => setSeqA(e.target.value)}
@@ -74,9 +75,9 @@ export default function SeqAlignClient() {
           />
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             sequence B
-          </span>
+          </FieldLabel>
           <textarea
             value={seqB}
             onChange={(e) => setSeqB(e.target.value)}
@@ -88,7 +89,7 @@ export default function SeqAlignClient() {
         </label>
         <div className="flex flex-wrap gap-4">
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">mode</span>
+            <FieldLabel>mode</FieldLabel>
             <select
               value={mode}
               onChange={(e) => setMode(e.target.value)}
@@ -100,7 +101,7 @@ export default function SeqAlignClient() {
             </select>
           </label>
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">matrix</span>
+            <FieldLabel>matrix</FieldLabel>
             <select
               value={matrix}
               onChange={(e) => setMatrix(e.target.value)}
@@ -114,21 +115,12 @@ export default function SeqAlignClient() {
           </label>
         </div>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || !seqA.trim() || !seqB.trim()}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || !seqA.trim() || !seqB.trim()}>
             {busy ? "aligning…" : "align"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -142,13 +134,6 @@ export default function SeqAlignClient() {
 
 function SeqAlignView({ result }: { result: ResultEnvelope }) {
   const out = result.output as SeqAlignOutput;
-  const cell = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
@@ -156,10 +141,10 @@ function SeqAlignView({ result }: { result: ResultEnvelope }) {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)] mb-6">
-        {cell("score", String(out.score))}
-        {cell("identity", `${out.percent_identity}%`)}
-        {cell("length", String(out.alignment_length))}
-        {cell("gaps", String(out.gaps))}
+        <Stat label="score" value={String(out.score)} />
+        <Stat label="identity" value={`${out.percent_identity}%`} />
+        <Stat label="length" value={String(out.alignment_length)} />
+        <Stat label="gaps" value={String(out.gaps)} />
       </div>
 
       <div className="small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-2">alignment</div>

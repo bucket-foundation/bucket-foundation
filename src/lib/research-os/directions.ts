@@ -1,24 +1,26 @@
-/**
- * Research OS, the Awareness level as a view (ros-24): from any node,
- * where knowledge goes. Pure, over the same nodes and edges the router
- * uses. Edge convention (frontier.ts, the workspace route's prerequisite
- * lookup): a prerequisite or derives_from edge runs from the prerequisite
- * to the node that needs it, so "forward" from a node follows edges whose
- * fromId is the node.
- */
+import { isIdeaNode } from "./idea";
 import type { GraphEdge, GraphNode, NodeKind } from "./types";
 
 export const FRONTIER_NODE_KINDS: NodeKind[] = ["hypothesis", "extension", "replication", "peer_review"];
-const FORWARD_KINDS = new Set(["prerequisite", "derives_from", "generalizes", "extends", "replicates", "answers"]);
+const WORK_NODE_KINDS = new Set(["production", "hypothesis", "extension", "replication", "peer_review"]);
+
+function walkable(n: GraphNode): boolean {
+  if (WORK_NODE_KINDS.has(n.kind)) return true;
+  const type = (n.provenance as { type?: unknown } | undefined)?.type;
+  return isIdeaNode({ kind: n.kind, provenanceType: typeof type === "string" ? type : null });
+}
+
+function flagged(n: GraphNode): boolean {
+  return n.frontierFlag === "open_question" || n.frontierFlag === "frontier";
+}
+
+const FORWARD_FROM_KINDS = new Set(["prerequisite"]);
+const FORWARD_TO_KINDS = new Set(["derives_from", "generalizes", "extends", "replicates", "answers"]);
 
 export interface Directions {
-  /** Nodes one step forward: what this node is a prerequisite of. */
   dependents: GraphNode[];
-  /** Frontier-kind nodes and flagged frontier nodes reachable forward within `depth`. */
   frontier: GraphNode[];
-  /** Nodes flagged as open questions reachable forward within `depth`. */
   openQuestions: GraphNode[];
-  /** How many nodes lie at each forward depth, 1..depth. */
   reach: number[];
 }
 
@@ -30,9 +32,12 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
   const byId = new Map(nodes.map((n) => [n.id, n]));
   const forward = new Map<string, string[]>();
   for (const e of edges) {
-    if (!FORWARD_KINDS.has(e.kind)) continue;
     if (!byId.has(e.fromId) || !byId.has(e.toId)) continue;
-    forward.set(e.fromId, [...(forward.get(e.fromId) ?? []), e.toId]);
+    const [a, b] = FORWARD_FROM_KINDS.has(e.kind) ? [e.fromId, e.toId] : FORWARD_TO_KINDS.has(e.kind) ? [e.toId, e.fromId] : [null, null];
+    if (!a || !b) continue;
+    const target = byId.get(b)!;
+    if (!walkable(target) && !flagged(target)) continue;
+    forward.set(a, [...(forward.get(a) ?? []), b]);
   }
   const seen = new Set<string>([nodeId]);
   let layer = [nodeId];
@@ -40,16 +45,18 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
   const reached: GraphNode[] = [];
   for (let d = 1; d <= depth; d++) {
     const next: string[] = [];
+    let found = 0;
     for (const id of layer) {
       for (const to of forward.get(id) ?? []) {
         if (seen.has(to)) continue;
         seen.add(to);
-        next.push(to);
-        const n = byId.get(to);
-        if (n) reached.push(n);
+        found++;
+        const n = byId.get(to)!;
+        reached.push(n);
+        if (walkable(n)) next.push(to);
       }
     }
-    reach.push(next.length);
+    reach.push(found);
     layer = next;
     if (layer.length === 0) {
       while (reach.length < depth) reach.push(0);

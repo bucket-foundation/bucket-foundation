@@ -1,13 +1,5 @@
-"""Fixture works/grants for the no-network research-tools tests.
-
-These are trimmed, realistic OpenAlex-shaped records (normalized to the shape
-tools_rag.normalize_work produces) plus NSF-shaped award dicts. No network is
-ever touched: tests monkeypatch tools_rag.search_works / _iter_atlas_nsf_awards
-to return these.
-"""
 from __future__ import annotations
 
-# --- normalized OpenAlex works (output shape of tools_rag.normalize_work) ----
 WORKS_PROTEIN_DYNAMICS = [
     {
         "id": "https://openalex.org/W1",
@@ -57,7 +49,6 @@ WORKS_PROTEIN_DYNAMICS = [
     },
 ]
 
-# Works whose abstracts carry clear positive / negative stance toward a claim.
 CLAIM = "cold exposure increases mitochondrial uncoupling"
 WORKS_CLAIM = [
     {
@@ -109,7 +100,6 @@ WORKS_CLAIM = [
     },
 ]
 
-# --- QuantumBioRAG: works with clear stance toward a quantum-bio claim --------
 QBIO_CLAIM = "quantum coherence enhances photosynthetic energy transfer"
 WORKS_QBIO = [
     {
@@ -162,7 +152,6 @@ WORKS_QBIO = [
     },
 ]
 
-# A fringe claim: only weak/contradicting evidence in the fixture set.
 QBIO_FRINGE_CLAIM = "quantum entanglement controls human consciousness in microtubules"
 WORKS_QBIO_FRINGE = [
     {
@@ -183,7 +172,6 @@ WORKS_QBIO_FRINGE = [
     },
 ]
 
-# --- ToxinChannelFinder: literature works co-mentioning toxin + channel -------
 WORKS_TOXIN_CONOTOXIN = [
     {
         "id": "https://openalex.org/WT1",
@@ -218,9 +206,6 @@ WORKS_TOXIN_CONOTOXIN = [
     },
 ]
 
-# --- CitationGraph: a seed work + references + citing works (normalized) -------
-# Each carries `referenced_ids` (short OpenAlex ids) so the graph builder can
-# induce co-citation edges with zero network.
 SEED_WORK = {
     "id": "https://openalex.org/W100",
     "title": "A landmark paper on protein folding kinetics",
@@ -234,7 +219,7 @@ SEED_WORK = {
 REFERENCES_WORKS = [
     {"id": "https://openalex.org/W10", "title": "Folding theory I", "publication_year": 2000,
      "venue": "PNAS", "cited_by_count": 300, "oa_url": "https://example.org/w10",
-     "referenced_ids": ["W11"]},  # W10 cites W11 -> neighbor-neighbor edge
+     "referenced_ids": ["W11"]},
     {"id": "https://openalex.org/W11", "title": "Folding theory II", "publication_year": 2001,
      "venue": "PNAS", "cited_by_count": 200, "oa_url": "https://example.org/w11",
      "referenced_ids": []},
@@ -245,10 +230,9 @@ REFERENCES_WORKS = [
 CITING_WORKS = [
     {"id": "https://openalex.org/W200", "title": "Builds on the landmark", "publication_year": 2018,
      "venue": "Cell", "cited_by_count": 30, "oa_url": "https://example.org/w200",
-     "referenced_ids": ["W100", "W10"]},  # cites seed AND W10 -> shared edge
+     "referenced_ids": ["W100", "W10"]},
 ]
 
-# --- raw NSF-shaped awards (input shape of tools_rag._grant_record) ----------
 NSF_AWARDS = [
     {
         "id": "2543297",

@@ -5,11 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
 
-/**
- * The Research OS application frame: a sidebar on wide screens, a tab bar
- * on phones, the person's chip, and one content column. Every app page
- * renders inside it; the landing at /research-os stays outside.
- */
 export interface ShellUser {
   email: string | null;
   handle: string | null;
@@ -27,7 +22,12 @@ const LEARN: Item[] = [
   { href: "/research-os/home", label: "Home", hint: "today, your path, your classes", match: ["/research-os/home"] },
   { href: "/research-os/workspace", label: "Workspace", hint: "any node: find, quote, check, produce", match: ["/research-os/workspace", "/research-os/n"] },
   { href: "/research-os/learn", label: "Learn", hint: "lessons and recall", match: ["/research-os/learn"] },
+  { href: "/research-os/import", label: "Import", hint: "bring a file in", match: ["/research-os/import"] },
   { href: "/research-os/map", label: "Map", hint: "the graph, the globe", match: ["/research-os/map"] },
+  { href: "/research-os/primes", label: "Primes", hint: "what the graph rests on", match: ["/research-os/primes"] },
+  { href: "/research-os/attend", label: "Attention", hint: "rank the graph by shared primes", match: ["/research-os/attend"] },
+  { href: "/research-os/nsm", label: "Semantic primes", hint: "the 65 meanings every language has", match: ["/research-os/nsm"] },
+  { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
 ];
@@ -35,8 +35,13 @@ const LEARN: Item[] = [
 const TEACH: Item[] = [
   { href: "/research-os/class", label: "Class", hint: "learners, assignments, overrides", match: ["/research-os/class"] },
   { href: "/research-os/review", label: "Review", hint: "productions waiting on you", match: ["/research-os/review"] },
+  { href: "/research-os/nsm/review", label: "Semantic links", hint: "science primes to NSM primes", match: ["/research-os/nsm/review"] },
+  { href: "/research-os/merges", label: "Duplicates", hint: "one concept listed twice: merge or keep", match: ["/research-os/merges"] },
   { href: "/research-os/roster", label: "Roster", hint: "members and consent", match: ["/research-os/roster"] },
   { href: "/research-os/edges", label: "Edges", hint: "proposed graph links", match: ["/research-os/edges"] },
+  { href: "/research-os/status", label: "Status", hint: "engine, tutor model, builds", match: ["/research-os/status"] },
+  { href: "/research-os/patents", label: "Patents", hint: "the design and its slices", match: ["/research-os/patents"] },
+  { href: "/research-os/roadmap", label: "Roadmap", hint: "what ships next, and what waits", match: ["/research-os/roadmap"] },
 ];
 
 function isOn(item: Item, pathname: string): boolean {
@@ -63,7 +68,6 @@ export default function AppShell({ user, children }: { user: ShellUser; children
 
   return (
     <div className="stone-bone grain min-h-screen">
-      {/* Phone tab bar */}
       <nav aria-label="Research OS" className="md:hidden sticky top-[58px] z-30 border-b border-[color:var(--hairline)] bg-[color:var(--bone)]/90 backdrop-blur-[2px]">
         <div className="flex items-center gap-1 overflow-x-auto px-2">
           <button type="button" onClick={() => setSearchOpen(true)} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap min-h-[44px] text-[color:var(--basalt-3)]">
@@ -90,7 +94,6 @@ export default function AppShell({ user, children }: { user: ShellUser; children
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
-        {/* Sidebar */}
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
             <button type="button" onClick={() => setSearchOpen(true)} className="w-full mb-3 flex items-center justify-between px-3 py-2 border border-[color:var(--hairline)] rounded-sm text-[12px] text-[color:var(--basalt-3)] hover:bg-[color:var(--bone)] transition">

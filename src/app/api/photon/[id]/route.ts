@@ -1,10 +1,3 @@
-// GET /api/photon/<id>
-// Returns a single photon as JSON. Used by polingual.com and any AI agent
-// that wants to inspect a specific knowledge packet.
-//
-// id format: photon:<kind>:<lang?>:<canonical-id>
-// e.g. photon:word:la:gravitas, photon:claim:einstein-1905-photoelectric
-
 import { getPhoton } from "@/lib/photon-index";
 
 export const runtime = "nodejs";

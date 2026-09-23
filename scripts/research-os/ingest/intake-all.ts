@@ -1,18 +1,3 @@
-/**
- * The research under _intake/, into the graph (IDEAL-STATE.md, "bring
- * together everything researched").
- *
- *   literature cards   _intake/research-os-k12-literature/<area>/*.md   180 papers with DOIs
- *   concept digests    _intake/concept-digests/*.md                     27 concepts with their PubMed hits
- *   concept targets    _intake/concept-*\/README.md                      queued canon targets
- *
- * Writes: one `primary_source` per literature card in branch
- * 10-literature (cites the atoms it names); one `concept` per digest in
- * 05-biophysics (derives_from the atoms it names) with up to fifteen of
- * its cited papers as `primary_source` nodes (example_of the concept); one
- * `concept` per target, flagged open_question, in its canon branch. Run
- * from the repo root; --apply writes.
- */
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, resolve, basename } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -21,6 +6,8 @@ import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../.
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { applyDrafts } from "./lib/apply-drafts";
+import { splitImport } from "../../../src/lib/research-os/medallion/proposals";
+import { existingFactorEdges, existingNodeIds, graphClient, shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -64,7 +51,6 @@ function main() {
   const linker = new Linker(atoms());
   const counts = { literature: 0, litLinks: 0, digests: 0, digestPapers: 0, digestLinks: 0, targets: 0, targetLinks: 0 };
 
-  // 1. Literature cards.
   if (existsSync(LIT)) {
     for (const area of readdirSync(LIT)) {
       const dir = join(LIT, area);
@@ -96,7 +82,6 @@ function main() {
     }
   }
 
-  // 2. Concept digests with their papers.
   if (existsSync(DIGESTS)) {
     for (const f of readdirSync(DIGESTS).filter((x) => x.endsWith(".md"))) {
       const md = readFileSync(join(DIGESTS, f), "utf8");
@@ -111,7 +96,6 @@ function main() {
         edges.push({ fromSlug: slug, toSlug: h.id, kind: "derives_from", confidence: Math.min(0.8, 0.4 + h.score), confidenceSource: "canon_map", provenance: { type: "intake_all", rule: "lexical", score: h.score, shared: h.shared } });
         counts.digestLinks++;
       }
-      // papers: "- **Title.**" then, within a few lines, PMID / DOI.
       const lines = md.split("\n");
       let taken = 0;
       for (let i = 0; i < lines.length && taken < 15; i++) {
@@ -136,7 +120,6 @@ function main() {
     }
   }
 
-  // 3. Concept targets: queued canon entries, flagged as open questions.
   for (const d of readdirSync(INTAKE).filter((x) => x.startsWith("concept-") && x !== "concept-digests")) {
     const readme = join(INTAKE, d, "README.md");
     if (!existsSync(readme)) continue;
@@ -157,7 +140,28 @@ function main() {
   }
 
   console.log(`[intake-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (APPLY) void applyDrafts("intake-all", nodes, edges, flags);
+  void finish(nodes, edges, flags);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[], flags: Parameters<typeof applyDrafts>[3]) {
+  const medallion = shadowRequested();
+  if (!APPLY) {
+    if (medallion) await shadowWrite("intake-all", nodes);
+    return;
+  }
+  if (!medallion) {
+    await applyDrafts("intake-all", nodes, edges, flags);
+    return;
+  }
+  const svc = graphClient("intake-all");
+  const known = await existingNodeIds(svc, nodes.map((n) => n.slug));
+  const split = splitImport(nodes, edges, new Set(known.keys()), await existingFactorEdges(svc, edges));
+  console.log(
+    `[intake-all] medallion split: ${split.goldNodes.length} gold nodes, ${split.proposedNodes.length} new nodes to review, ` +
+      `${split.directEdges.length} direct edges, ${split.factorEdges.length} factor edges to review, ${split.factorEdgesInGold.length} factor edges already in gold left as they are.`,
+  );
+  await applyDrafts("intake-all", split.goldNodes, split.directEdges, flags);
+  await shadowWrite("intake-all", { nodes, factorEdges: split.factorEdges, proposedNodes: split.proposedNodes });
 }
 
 main();

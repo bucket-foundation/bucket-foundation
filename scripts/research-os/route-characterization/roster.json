@@ -1,0 +1,123 @@
+{
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST reviewer, json body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "expected multipart/form-data"
+    }
+  },
+  "POST reviewer, missing field": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "missing_field:users"
+    }
+  },
+  "POST reviewer, preview": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "diff": {
+        "adds": 1
+      },
+      "applied": false
+    }
+  },
+  "POST reviewer, apply": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "diff": {
+        "adds": 1
+      },
+      "applied": true,
+      "result": {
+        "written": 1
+      }
+    }
+  },
+  "POST reviewer, state load fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "state_load_failed"
+    }
+  },
+  "POST reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST reviewer, bundle parse fails": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bundle_parse_failed"
+    }
+  },
+  "POST reviewer, apply fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "apply_failed"
+    }
+  }
+}

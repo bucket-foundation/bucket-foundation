@@ -1,5 +1,7 @@
 # Patent Data Licensing
 
+> **Canonical home, set 2026-09-19.** The founder's correction: "the x402 feed402 patents work is a different bucket org repo." The serving side of this file, the routes, the pricing and the redistribution terms, belongs to `bucket-foundation/x402-research-gateway` and `bucket-foundation/feed402`, tracked as gateway issues #67 and #68 and feed402 issue #12. This copy stays as the record of what was designed here and takes no new serving work. What Research OS builds from it lives in `learning/research-os/PATENTS.md`.
+
 Per-Jurisdiction Redistribution Matrix.
 
 **Bead:** bkt-z6k (parent epic bkt-tfu)
@@ -7,6 +9,18 @@ Per-Jurisdiction Redistribution Matrix.
 **Author:** Operations pillar
 **Date:** 2026-05-03
 **Context:** Bucket Foundation plans to expose a `/patents/*` endpoint family on feed402 (x402 micropayments on Base, raw $0.010 / query $0.005 / insight $0.002 per call). This document determines, per source, whether we can resell content, link out only, or must skip.
+
+## Corrections of 2026-09-19
+
+Checked against the sources in `learning/research-os/PATENTS.md`, "What changed outside since the licensing matrix". The text below this block is kept as written on 2026-05-03.
+
+- **USPTO and PatentsView.** PatentsView moved into the USPTO Open Data Portal on 2026-03-20. Its bulk downloads and data dictionaries are served from ODP; their CC BY 4.0 licence is to be confirmed on the ODP download page, which needs a signed-in account. Its search API is paused with no return date, so the v1 query tier has no live PatentsView API to query. ODP now needs a USPTO.gov account with multi-factor authentication (from 2026-06-18) and an ID.me-verified key: 60 requests a minute, 4 a minute for PDF and ZIP downloads, and a weekly download quota. Row 1's "unlimited download" no longer holds.
+- **EPO OPS.** The OPS terms (version 2.0, 2017) allow OPS data inside a user's own products and services and forbid making "the data as such available to the public". A query-tier passthrough breaks that clause; EP data belongs inside composed answers only. No royalties are due on products built with it.
+- **EPO bulk data.** Since 2025-01-01 the EPO serves DOCDB, INPADOC, and EP full text free from the public area of its Bulk Data Distribution Service, under its raw-data licensing terms, which were not read. EP data stays out of v1 until they are.
+- **WIPO PATENTSCOPE.** Every WIPO licence, the derivative one included, carries a fee (terms updated 2025-11-12). WIPO content is out of v1 until one is bought.
+- **The Lens.** API access past a 14-day trial is paid, for any commercial or integrated use (updated 2026-05-21), as the matrix said.
+- **Reliance on Science.** The patent-to-paper citation set of Marx and Fuegi is CC BY-NC 4.0. Bucket charges citation fees and is not yet a filed nonprofit, so it stays out of v1, Research OS included; patent-to-paper links come from the PatentsView references, CC BY 4.0, matched to OpenAlex.
+- These findings are carried to the gateway's provider registry in [x402-research-gateway#68](https://github.com/bucket-foundation/x402-research-gateway/issues/68).
 
 ---
 

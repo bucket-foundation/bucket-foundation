@@ -1,0 +1,132 @@
+{
+  "result": {
+    "job_id": "j_923a27f471d64728aebd",
+    "tool": "faircheck",
+    "render": "json",
+    "output": {
+      "overall_fair_score": 64.2,
+      "grade": "C",
+      "verdict": "Partially FAIR — several principles need work before deposition.",
+      "subscores": {
+        "Findable": 98.5,
+        "Accessible": 100,
+        "Interoperable": 22.5,
+        "Reusable": 35.8
+      },
+      "sub_principles": {
+        "F1": 1,
+        "F2": 0.95,
+        "F3": 1,
+        "F4": 1,
+        "A1": 1,
+        "A1.1": 1,
+        "A2": 1,
+        "I1": 0.5,
+        "I2": 0,
+        "I3": 0,
+        "R1": 0.95,
+        "R1.1": 0.1,
+        "R1.2": 0.4,
+        "R1.3": 0
+      },
+      "detected": {
+        "persistent_identifier": "DOI",
+        "pid_is_url_only": false,
+        "metadata_fields_present": [
+          "creators",
+          "date",
+          "description",
+          "doi",
+          "license",
+          "subject",
+          "title"
+        ],
+        "missing_core_metadata": [],
+        "recognized_formats": [
+          "xlsx",
+          "pdf"
+        ],
+        "machine_readable_fraction": 0.5,
+        "matched_vocabularies": [],
+        "n_qualified_references": 0,
+        "license_kind": "closed / all-rights-reserved",
+        "license": "All rights reserved",
+        "has_provenance": false
+      },
+      "access_notes": [],
+      "prioritized_gaps": [
+        {
+          "principle": "I2",
+          "letter": "I",
+          "score": 0,
+          "priority": 0.1,
+          "fix": "Annotate (meta)data with FAIR-compliant community vocabularies/ontologies (schema.org, DataCite, Dublin Core, GO, ChEBI, EFO, Darwin Core…)."
+        },
+        {
+          "principle": "R1.1",
+          "letter": "R",
+          "score": 0.1,
+          "priority": 0.09,
+          "fix": "Release under a clear, accessible OPEN data-usage license (CC0 / CC-BY for data; MIT/Apache for code). 'All rights reserved' blocks reuse."
+        },
+        {
+          "principle": "I1",
+          "letter": "I",
+          "score": 0.5,
+          "priority": 0.05625,
+          "fix": "Store data in an open, machine-readable, formal format (CSV/JSON/Parquet/HDF5/NetCDF or a domain standard like NWB/mzML/VCF), not a proprietary one (xlsx/mat/czi)."
+        },
+        {
+          "principle": "I3",
+          "letter": "I",
+          "score": 0,
+          "priority": 0.0375,
+          "fix": "Add qualified references to related (meta)data (cite the protocol, the parent dataset, related records by their identifiers)."
+        },
+        {
+          "principle": "R1.3",
+          "letter": "R",
+          "score": 0,
+          "priority": 0.0375,
+          "fix": "Follow domain-relevant community standards (metadata schemas, minimum-information checklists like MIAME/MIBBI, ISA-Tab)."
+        },
+        {
+          "principle": "R1.2",
+          "letter": "R",
+          "score": 0.4,
+          "priority": 0.03,
+          "fix": "Record detailed provenance (how, by whom, from what, with which instrument/pipeline the data was produced)."
+        },
+        {
+          "principle": "F2",
+          "letter": "F",
+          "score": 0.95,
+          "priority": 0.00375,
+          "fix": "Add rich descriptive metadata: title, description, creators, subject/keywords, dates, version."
+        },
+        {
+          "principle": "R1",
+          "letter": "R",
+          "score": 0.95,
+          "priority": 0.00313,
+          "fix": "Describe the data with a plurality of accurate, domain-relevant attributes so a third party can judge reuse."
+        }
+      ],
+      "demo": true,
+      "method": "FAIR rubric over Wilkinson et al. 2016's 15 sub-principles (F1, F4, A1/A1.1/A2, I1, I3, R1/R1.1, R1.3); each scored by concrete, deterministic checks over the supplied metadata, weighted into per-principle subscores and an overall 0-100 FAIR score, with a priority-ranked fix list.",
+      "note": "DEMO: a deliberately mixed record (strong Findable/Accessible, weak Interoperable/Reusable). Horizontal, all-field tool: FAIR data management is funder-mandated across NIH/NSF/Horizon Europe/Wellcome/Gates (DMSP/DMP). This is a transparent self-assessment + remediation punch-list. A certifying audit comes from depositing in a trusted repository for an authoritative FAIR badge."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "faircheck",
+        "at": "2026-09-23T03:46:16.517960+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

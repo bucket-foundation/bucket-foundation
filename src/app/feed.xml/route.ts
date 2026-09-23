@@ -26,7 +26,7 @@ type Item = {
   title: string;
   path: string;
   desc: string;
-  date: string; // ISO
+  date: string;
 };
 
 function items(): Item[] {

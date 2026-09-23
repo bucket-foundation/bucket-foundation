@@ -1,9 +1,3 @@
-/**
- * Research OS surface primitives. One set of tokens for every page inside
- * the app shell: a page header, a panel, and the three states every data
- * block passes through (loading, empty, error). Colors and type come from
- * globals.css variables so the app matches the rest of the site.
- */
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -77,7 +71,6 @@ export function ErrorState({ title = "Something went wrong", body, retry }: { ti
   );
 }
 
-/** A level chip for the five levels of interaction with the graph. */
 export const STAGE_LABEL: Record<string, string> = {
   access: "Access",
   awareness: "Awareness",

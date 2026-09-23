@@ -1,23 +1,3 @@
-/**
- * bucket.foundation, POST /api/academy/credential/verify (bkt-52p)
- * ----------------------------------------------------------------------------
- * The MACHINE verify endpoint. Public, no auth. Accepts any of:
- * { jwt: "<compact VC-JWT>" }
- * { credential: <id or hosted URL> } // we fetch the stored JWT and verify
- * { json: <credential JSON object> } // negative: unsigned JSON can't
- * // be cryptographically verified
- *
- * Verification (in order):
- * 1. SIGNATURE, EdDSA against the published Bucket issuer key(s),
- * 2. ISSUER, must be Bucket (iss + embedded issuer.id),
- * 3. REVOCATION, live lookup of the credential's status (revoked? -> invalid),
- * 4. CONSISTENCY (bonus), are the asserted concepts still consistent with the
- * learner's live public profile? (reported for context only.)
- *
- * `valid` is true ONLY when signature is valid AND issuer is Bucket AND not
- * revoked. Consistency never flips `valid`, the credential is a signed
- * point-in-time artifact.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { baseVerify, looksLikeJwt } from "@/lib/academy/credential/sign";
@@ -64,7 +44,6 @@ function bucketSvc(): SupabaseClient {
   }) as unknown as SupabaseClient;
 }
 
-/** Load a learner's live public profile by handle (or null). */
 async function liveProfile(handle: string): Promise<PublicProfile | null> {
   if (!dbConfigured()) return null;
   const svc = bucketSvc();
@@ -81,10 +60,14 @@ async function liveProfile(handle: string): Promise<PublicProfile | null> {
     is_public: boolean;
   };
   if (!rec.is_public) return null;
-  const { data: rows } = await svc
+  const { data: rows, error: rowsErr } = await svc
     .from("academy_progress")
     .select("branch,data,updated_at")
     .eq("user_id", rec.user_id);
+  if (rowsErr) {
+    console.error("[academy/credential/verify] academy_progress read failed:", rowsErr.message);
+    return null;
+  }
   return assemblePublicProfile(
     rec.handle,
     rec.display_name,
@@ -92,11 +75,10 @@ async function liveProfile(handle: string): Promise<PublicProfile | null> {
   );
 }
 
-/** Live revocation check for a credential whose hosted id is known. */
 async function checkRevoked(credential: OpenBadgeCredential): Promise<boolean | null> {
   if (!dbConfigured()) return null;
   const row = await getCredentialByUrl(credential.id);
-  if (!row) return null; // unknown to us, can't assert (could be a fixture)
+  if (!row) return null;
   return !!row.revoked_at;
 }
 
@@ -108,7 +90,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json({ error: "bad_request" }, 400);
   }
 
-  // ---- unsigned JSON: negative ------------------------------------
   if (body.json && typeof body.json === "object") {
     const result: VerifyResult = {
       valid: false,
@@ -125,7 +106,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json(result);
   }
 
-  // ---- resolve to a JWT ---------------------------------------------------
   let jwt: string | null = null;
   if (typeof body.jwt === "string" && body.jwt.trim()) {
     jwt = body.jwt.trim();
@@ -151,10 +131,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } satisfies VerifyResult);
   }
 
-  // ---- 1+2: signature + issuer -------------------------------------------
   const result = await baseVerify(jwt);
 
-  // ---- 3: revocation ------------------------------------------------------
   if (result.signatureValid && result.issuerTrusted && result.credential) {
     const revoked = await checkRevoked(result.credential);
     result.revoked = revoked;
@@ -169,14 +147,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // ---- 4: bonus consistency cross-check ---------------------------------
     const handle =
       result.credential.credentialSubject["https://bucket.foundation/ns#handle"];
     const live = handle ? await liveProfile(handle) : null;
     result.consistency = checkConsistency(result.credential, live);
   }
 
-  // ---- finalize `valid` ---------------------------------------------------
   result.valid =
     result.signatureValid && result.issuerTrusted && result.revoked !== true;
 

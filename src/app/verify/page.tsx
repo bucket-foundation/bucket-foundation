@@ -1,23 +1,3 @@
-/**
- * src/app/verify/page.tsx (bkt-52p)
- * ----------------------------------------------------------------------------
- * The PUBLIC verify flow, bucket.foundation/verify. The viral backlink: a
- * recruiter pastes a credential (VC-JWT or credential id/URL) and gets a
- * cryptographic yes/no, explained.
- *
- * Trust model, stated plainly on the page:
- * - We verify an EdDSA (Ed25519) signature against Bucket's PUBLISHED public
- * key (/api/academy/issuer). No blockchain, no account, no trust in us
- * beyond "did the Bucket key sign this exact credential".
- * - We check the credential is not revoked (live status lookup).
- * - We tell you plainly that a credential attests EVIDENCE-BACKED
- * DEMONSTRATED mastery to a depth. It is never a certified score or rating.
- * - Bonus: we cross-check the asserted concepts against the learner's live
- * profile and label it "consistent with current profile" vs "point-in-time".
- *
- * Server shell renders the trust copy (SEO + screenshot-native); a client island
- * does the interactive verify against POST /api/academy/credential/verify.
- */
 import type { Metadata } from "next";
 import VerifyClient from "./VerifyClient";
 

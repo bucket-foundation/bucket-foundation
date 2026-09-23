@@ -1,9 +1,3 @@
-/**
- * bucket.identities, server-only. Same pattern as the Research OS routes:
- * the caller is verified first (cookie session or Bearer token), then a
- * service-role client bound to the private `bucket` schema reads or writes
- * that person's row alone. Never import from a client component.
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { checkHandle } from "./handle";
 
@@ -41,7 +35,6 @@ function fromRow(r: Row): Identity {
 
 const COLS = "user_id,handle,display_name,wallet,wallet_chain,created_at";
 
-/** The person's identity row, created on first read. */
 export async function getIdentity(userId: string): Promise<Identity | null> {
   if (!identityConfigured()) return null;
   const svc = bucketService();
@@ -75,7 +68,6 @@ export async function setDisplayName(userId: string, raw: string): Promise<Ident
 
 const WALLET_RE = /^0x[0-9a-fA-F]{40}$/;
 
-/** Link a wallet the person proved they hold (the canon publish flow verifies the signature before calling this). */
 export async function linkWallet(userId: string, wallet: string | null, chain: string | null): Promise<IdentityResult<Identity>> {
   if (!identityConfigured()) return { ok: false, error: "unavailable" };
   if (wallet !== null && !WALLET_RE.test(wallet)) return { ok: false, error: "invalid_wallet" };

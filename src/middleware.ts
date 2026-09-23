@@ -1,24 +1,9 @@
-/**
- * Site middleware: one session for the whole site, plus the Kruse preview gate.
- *
- * 1. Every matched request refreshes the Supabase session cookies through
- *    @supabase/ssr, so server components and route handlers read a live
- *    session and an expired access token is renewed before the page renders.
- * 2. Paths in src/lib/auth/paths.ts PROTECTED_PREFIXES need a signed-in
- *    person; anonymous requests go to /sign-in?next=<path>.
- * 3. /kruse/search and /api/kruse/* keep their HS256 magic-link cookie gate:
- *    missing or invalid returns 404 so the preview's existence stays private.
- */
-
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
 import { isProtectedPath, signInUrl } from "@/lib/auth/paths";
 import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
 
 export const config = {
-  // Pages and the Kruse API. Skipped: Next internals, the framed Academy
-  // app, static files by extension, and every other /api route (handlers
-  // verify the cookie session themselves through src/lib/auth/verify.ts).
   matcher: [
     "/((?!_next/static|_next/image|academy-app|textures|api/(?!kruse)|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|bin|json|txt|xml|webmanifest|mp4|css|js|map)$).*)",
   ],
@@ -91,7 +76,6 @@ export async function middleware(req: NextRequest) {
 
   if (!signedIn && isProtectedPath(pathname)) {
     const redirect = NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
-    // Carry any refreshed cookies onto the redirect so the sign-in page starts clean.
     res.cookies.getAll().forEach((c) => redirect.cookies.set(c));
     return redirect;
   }

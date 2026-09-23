@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -34,11 +35,11 @@ interface GraphData {
 
 const branchLabel = (id: string) => id.replace(/^\d+-/, "").replace(/-/g, " ");
 
-/** What a node came from, for the stroke and the filter: the Academy, the canon, the person's own work. */
 const SOURCE_OF: Record<string, string> = {
   academy_atom: "atoms",
   seed: "atoms",
-  canon_claim: "claims",
+  source_excerpt: "excerpts",
+  canon_claim: "excerpts",
   canon_concept: "claims",
   canon_bridge: "claims",
   canon_entry: "papers",
@@ -50,7 +51,7 @@ const SOURCE_OF: Record<string, string> = {
   import: "productions",
 };
 const SOURCE_STROKE: Record<string, string> = { atoms: "var(--basalt-3)", claims: "var(--aegean-deep)", papers: "var(--gold-deep)", figures: "var(--laurel-deep)", productions: "var(--crimson)" };
-const SOURCES = ["atoms", "claims", "papers", "figures", "productions"] as const;
+const SOURCES = ["atoms", "claims", "excerpts", "papers", "figures", "productions"] as const;
 const PRODUCTION_KINDS = new Set(["production", "extension", "replication", "peer_review", "hypothesis"]);
 const sourceOf = (n: GNode) => SOURCE_OF[n.source] ?? (PRODUCTION_KINDS.has(n.kind) || n.source === "import" ? "productions" : "atoms");
 
@@ -64,12 +65,6 @@ const STAGE_FILL: Record<string, string> = {
 const RANK: Record<string, number> = { access: 1, awareness: 2, understanding: 3, internalization: 4, production: 5 };
 const R = 6;
 
-/**
- * The map as the graph: one branch laid out by tier, every node a point
- * colored by the viewer's standing, prerequisite edges as lines, the
- * frontier ringed, assignments marked, and for staff a class heatmap.
- * Click a node to open its page; type to find one.
- */
 export default function GraphMap({ initialBranch, initialQuery }: { initialBranch: string; initialQuery: string }) {
   const router = useRouter();
   const [branch, setBranch] = useState(initialBranch);
@@ -80,12 +75,20 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [hover, setHover] = useState<string | null>(null);
   const [branches, setBranches] = useState<{ id: string; nodes: number }[]>([]);
   const [show, setShow] = useState<Set<string>>(() => new Set(SOURCES));
+  const [code, setCode] = useState<string | null>(null);
+  const [branchesUnavailable, setBranchesUnavailable] = useState(false);
+  const [branchesTransient, setBranchesTransient] = useState(false);
 
   useEffect(() => {
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { branches: [] }))
-      .then((j: { branches?: { id: string; nodes: number }[] }) => setBranches(j.branches ?? []))
-      .catch(() => {});
+      .then(async (r) => {
+        if (r.ok) return (await r.json()) as { branches?: { id: string; nodes: number }[] };
+        setBranchesUnavailable(true);
+        setBranchesTransient(isTransientOutage(r.status, await readErrorCode(r)));
+        return { branches: [] };
+      })
+      .then((j) => setBranches(j.branches ?? []))
+      .catch(() => setBranchesUnavailable(true));
   }, []);
 
   useEffect(() => {
@@ -94,8 +97,13 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     fetch(`/api/research-os/graph?branch=${encodeURIComponent(branch)}`, { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
+        if (r.ok) {
+          setData((await r.json()) as GraphData);
+          setStatus(r.status);
+          return;
+        }
+        setCode(await readErrorCode(r));
         setStatus(r.status);
-        if (r.ok) setData((await r.json()) as GraphData);
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -134,6 +142,11 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
+        {branchesUnavailable && (
+          <span className="text-[11px] text-[color:var(--basalt-3)]">
+            {branchesTransient ? "the branch list could not be read, showing this branch alone" : UNCONFIGURED_COPY.body}
+          </span>
+        )}
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
           {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (
             <button
@@ -204,8 +217,10 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
 
       {status === null ? (
         <LoadingState label="Laying out the branch" />
+      ) : isTransientOutage(status, code) ? (
+        <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />
       ) : status === 503 ? (
-        <ErrorState title="Research OS is unavailable on this deployment" />
+        <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />
       ) : !data || !layout ? (
         <ErrorState body="Could not load the branch." />
       ) : (

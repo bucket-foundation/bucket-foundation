@@ -1,11 +1,3 @@
-/**
- * Research OS for K-12, Phase 0, shared types (bkt-ros).
- * Mirrors the graph.* tables in
- * supabase/migrations/20260910000000_research_os_graph.sql. Kept dependency-
- * free (no Supabase types) so src/lib/research-os/frontier.ts stays a pure
- * function, testable with plain objects and no database.
- */
-
 export type NodeKind =
   | "fact"
   | "concept"
@@ -13,16 +5,14 @@ export type NodeKind =
   | "derivation"
   | "primary_source"
   | "artifact"
-  // ros-31, frontier kinds: a hypothesis (engine or human), an extension of
-  // a claim, a replication of a study, a peer review of a production.
   | "hypothesis"
   | "extension"
   | "replication"
   | "peer_review"
-  // an accepted production of a new claim; a canon figure; a site on the globe.
   | "production"
   | "figure"
-  | "site";
+  | "site"
+  | "excerpt";
 
 export type EdgeKind =
   | "prerequisite"
@@ -31,19 +21,14 @@ export type EdgeKind =
   | "generalizes"
   | "example_of"
   | "contradicts"
-  // ros-31: an extension extends a claim, a replication replicates a study,
-  // a peer review reviews a production, a production answers an open question.
   | "extends"
   | "replicates"
   | "reviews"
   | "answers"
-  // canon-all: a figure contributes to a concept, a figure authored a paper,
-  // a bridge cluster bridges its member claims.
   | "contributes"
   | "authored"
   | "bridges";
 
-/** The five levels of interaction, in order; see `Level` below for the current framing. */
 export type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 
 export const STAGE_ORDER: Stage[] = [
@@ -58,26 +43,10 @@ export function stageAtLeast(stage: Stage, min: Stage): boolean {
   return STAGE_ORDER.indexOf(stage) >= STAGE_ORDER.indexOf(min);
 }
 
-/**
- * The five words are levels of interaction with the graph, each holding the
- * ones before it (learning/research-os/INTEGRATION-PLAN.md section 2,
- * 2026-09-15): Access (who can see and use a node), Awareness (where it
- * leads), Understanding (learning it), Internalization (it meets the rest of
- * the graph), Production (a new node). `Stage` stays the column and the
- * older name across the code; new code reads and writes `Level`.
- */
 export type Level = Stage;
 export const LEVEL_ORDER: Level[] = STAGE_ORDER;
 export const levelAtLeast = stageAtLeast;
 
-/** The exact string POST /api/research-os/privacy requires in a delete
- * request's `confirm` field (bkt-ros ros-07 follow-up, task item 2: "the
- * confirm cannot be skipped server-side"). Lives here rather than in
- * privacy.ts, so the client-side workspace page (src/app/research-os/workspace/
- * page.tsx, a "use client" component) can import it without pulling in
- * privacy.ts's service-role Supabase client. The value doubles as the
- * literal text the delete confirmation UI asks a learner to type, so what
- * a learner types is exactly what the server checks. */
 export const DELETE_CONFIRM_TOKEN = "DELETE";
 
 export interface Provenance {
@@ -92,24 +61,10 @@ export interface Provenance {
   [k: string]: unknown;
 }
 
-/** The three faded-guidance levels (bkt-ros ros-14, "faded guidance for
- * low-prior-knowledge learners"): how much scaffolding the workspace shows
- * a learner on a given node, high (most) to low (least). See
- * src/lib/research-os/guidance.ts and learning/research-os/GUIDANCE.md. */
 export type GuidanceLevel = "high" | "medium" | "low";
 
-/** A short, grade-appropriate model explanation of a node's own idea,
- * authored content grounded in the node's existing summary/passage rather
- * than a verbatim quotation (contrast QuotePassage in passages.ts, which IS
- * verbatim). Carried on GraphNode.workedExample; shown to a learner at
- * high or medium guidance before their own explanation box (ros-14 item
- * 2). See src/lib/research-os/worked-examples.ts. */
 export interface WorkedExample {
-  /** The model explanation itself, grade-4 level, 2-4 sentences. */
   text: string;
-  /** The source this explanation rests on, a citation label matching
-   * grounding.ts's citationLabel format (e.g. "NASA Space Place (2024).
-   * Why Is the Sky Blue?."). */
   source: string;
 }
 
@@ -123,56 +78,26 @@ export interface GraphNode {
   summary: string | null;
   labels?: Record<string, { title?: string; summary?: string }>;
   provenance?: Provenance;
-  /** ros-14: present only for a node the seed has authored one for (Phase
-   * 0: the sky-blue path's first six nodes). Absent everywhere else. */
   workedExample?: WorkedExample;
-  /** ros-21: graph.nodes.visibility and owner_id; absent on fixtures and
-   * on rows read before the access migration. */
   visibility?: "public" | "private" | "shared";
   ownerId?: string | null;
-  /** ros-31: graph.nodes.frontier_flag, an open question or the branch frontier. */
   frontierFlag?: "open_question" | "frontier" | null;
 }
 
 export interface GraphEdge {
-  /** graph.edges.id. Optional: fixtures built in tests (slug-doubles-as-id,
-   * no database) never set it, and every consumer that needs it (currently
-   * frontier.ts's low-confidence flag write) treats a missing id as "not
-   * writable to graph.edge_flags," never as an error. */
   id?: string;
   fromId: string;
   toId: string;
   kind: EdgeKind;
   weight?: number | null;
-  /** graph.edges.confidence (bkt-ros ros-03 item 1). Defaults to
-   * DEFAULT_EDGE_CONFIDENCE when absent; read it through edgeConfidence()
-   * below rather than this field directly, so every caller applies the
-   * same default and clamp. */
   confidence?: number | null;
-  /** graph.edges.confidence_source: 'seed' | 'academy_requires' |
-   * 'canon_map' | 'inferred' | 'teacher'. Left as `string` rather than a
-   * union so a row this app has not yet learned a source name for still
-   * round-trips instead of failing to type-check. */
   confidenceSource?: string | null;
 }
 
-/** graph.edges.confidence's own column default (bkt-ros ros-03 item 1):
- * an edge with no recorded confidence is full confidence. */
 export const DEFAULT_EDGE_CONFIDENCE = 1.0;
 
-/** Below this, a router-selected edge is flagged for a teacher rather than
- * routed through silently (learning/research-os/PLAN-REVISION-1.md section
- * 2b, learning/research-os/ROUTING.md). */
 export const LOW_CONFIDENCE_THRESHOLD = 0.6;
 
-/**
- * `edge.confidence`, defaulted and clamped: DEFAULT_EDGE_CONFIDENCE when
- * absent or not a finite number, otherwise clamped to (0, 1] so a bad or
- * zero value from a data-entry mistake never produces an infinite or NaN
- * routing cost (frontier.ts's walk uses -log(confidence)). Every reader of
- * edge confidence (frontier.ts, closure.ts) goes through this function
- * rather than `edge.confidence` directly.
- */
 export function edgeConfidence(edge: GraphEdge): number {
   const raw = typeof edge.confidence === "number" && Number.isFinite(edge.confidence) ? edge.confidence : DEFAULT_EDGE_CONFIDENCE;
   return Math.min(1, Math.max(1e-6, raw));
@@ -185,14 +110,6 @@ export interface LearnerNodeState {
   updatedAt?: string;
 }
 
-/**
- * `hte-serve`'s own `POST /hypothesize` response (`tools/hypothesis-
- * engine/hte/api.py`'s `_build_response`), trimmed to what the workspace
- * UI needs and reshaped to this file's own camelCase convention. Built by
- * `src/app/api/research-os/hypothesize/route.ts` (see that file's own
- * patch, `tools/hypothesis-engine/docs/research-os-hypothesize-route.
- * patch`, not yet applied to this tree).
- */
 export interface HypothesizeCorpusSummary {
   nProductions: number;
   statusMin: string;

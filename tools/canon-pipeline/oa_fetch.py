@@ -1,4 +1,3 @@
-"""Open-access PDF fetcher. OA only, no paywall bypass, no Sci-Hub."""
 from __future__ import annotations
 from pathlib import Path
 from typing import Optional
@@ -14,16 +13,13 @@ except ImportError:
 UA = resolvers.UA
 EMAIL = resolvers.EMAIL
 
-
 def unpaywall(doi: str) -> Optional[dict]:
     doi = resolvers._normalize_doi(doi)
     if not doi:
         return None
     return resolvers._get(f"https://api.unpaywall.org/v2/{doi}", {"email": EMAIL})
 
-
 def best_oa_url(doi: str) -> Optional[dict]:
-    """Return {url, license, repository, version} from Unpaywall if OA."""
     data = unpaywall(doi)
     if not data or not data.get("is_oa"):
         return None
@@ -36,7 +32,6 @@ def best_oa_url(doi: str) -> Optional[dict]:
         "repository": best.get("repository_institution") or best.get("host_type"),
         "version": best.get("version"),
     }
-
 
 def fetch_pdf(url: str, dest: Path) -> bool:
     try:

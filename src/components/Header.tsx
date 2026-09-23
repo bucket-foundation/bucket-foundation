@@ -12,9 +12,6 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
-  // Research OS is the product; every surface lives inside it. Canon is
-  // the substrate underneath. Everything else lives in the Research OS
-  // dropdown, the footer, or the module bar on Research OS pages.
   {
     href: "/research-os",
     label: "Research OS",
@@ -34,14 +31,14 @@ const NAV: NavItem[] = [
     href: "/canon",
     label: "Canon",
     sub: [
-      { href: "/canon/search",   label: "Search",        meta: "599 claims, 9 branches" },
-      { href: "/canon/claims",   label: "All claims",    meta: "browse the cards" },
+      { href: "/canon/search",   label: "Search",        meta: "599 excerpts, 9 branches" },
+      { href: "/excerpts",   label: "Source excerpts", meta: "talks and podcasts, by concept" },
       { href: "/canon/bridges",  label: "Bridges",       meta: "17 multi-branch primitives" },
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
+      { href: "/earth",          label: "Earth data",    meta: "32 indicators, 211 countries" },
       { href: "/access",         label: "Agent access",  meta: "MCP, llms.txt, x402" },
     ],
   },
-  // About → /governance, /manifesto, /contributors, /join.
   { href: "/whats-new",      label: "What's new" },
   { href: "/about",          label: "About" },
 ];
@@ -58,13 +55,12 @@ const CANON = [
 ];
 
 
-export default function Header() {
+export default function Header({ launchList = false }: { launchList?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [openSub, setOpenSub] = useState<string | null>(null); // desktop hover dropdown
+  const [openSub, setOpenSub] = useState<string | null>(null);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const hoverTimer = useRef<number | null>(null);
 
-  // Lock body scroll when drawer open
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -73,8 +69,6 @@ export default function Header() {
 
   const closeDrawer = () => { setOpen(false); setExpandedMobile(null); };
 
-  // Hover handlers: small open delay so cursor swipes don't open randomly;
-  // small close delay so cursor can travel to the dropdown without it flickering shut.
   const openSubmenu = (label: string) => {
     if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
     setOpenSub(label);
@@ -154,7 +148,6 @@ export default function Header() {
                         </li>
                       ))}
                     </ul>
-                    {/* Canon branches sub-grid only for the Canon dropdown */}
                     {n.label === "Canon" && (
                       <>
                         <div className="border-t border-[color:var(--hairline)] mx-2" />
@@ -187,8 +180,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <UserMenu />
-            {/* Hamburger, md:hidden */}
+            <UserMenu launchList={launchList} />
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -217,7 +209,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* === MOBILE DRAWER ============================================ */}
       <div
         id="mobile-drawer"
         role="dialog"
@@ -378,7 +369,7 @@ export default function Header() {
           </nav>
 
           <div className="p-5 border-t border-[color:var(--hairline)] bg-[color:var(--bone-2)]">
-            <UserMenu drawer onNavigate={closeDrawer} />
+            <UserMenu drawer onNavigate={closeDrawer} launchList={launchList} />
             <div className="mt-3 text-center text-[10px] small-caps text-[color:var(--basalt-3)] tracking-[0.15em]">
               free to read · paid to cite
             </div>

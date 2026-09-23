@@ -1,0 +1,85 @@
+{
+  "result": {
+    "job_id": "j_3863d529fa9a4ec4bb35",
+    "tool": "reviewguard",
+    "render": "json",
+    "output": {
+      "claim": "Intermittent fasting improves insulin sensitivity",
+      "claim_polarity": "positive",
+      "degraded": false,
+      "verdict": "CONTESTED — both supporting and contradicting evidence exist",
+      "counts": {
+        "supports": 1,
+        "contradicts": 2,
+        "neutral": 1
+      },
+      "supporting": [
+        {
+          "title": "AASLD Practice Guidance on the clinical assessment and management of nonalcoholic fatty liver disease",
+          "venue": "Hepatology",
+          "year": 2023,
+          "cited_by_count": 2539,
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10735173/pdf/nihms-1948413.pdf",
+          "stance": "supports",
+          "overlap": 1,
+          "evidence": "UPDATE ON EPIDEMIOLOGY AND NATURAL HISTORY The prevalence of NAFLD and NASH is rising worldwide in parallel with increases in the prevalence of obesity and metabolic comorbid disease (insulin resistance, dyslipidemia, central obesity, and hypertension).5,6 The prevalence of NAFLD in adults is estimated to be 25%–30% in the general population7–9 and varies with the clinical setting, race/ethnicity,",
+          "sentence_polarity": 1,
+          "confidence": 0.486
+        }
+      ],
+      "contradicting": [
+        {
+          "title": "Early Time-Restricted Feeding Improves Insulin Sensitivity, Blood Pressure, and Oxidative Stress Even without Weight Loss in Men with Prediabetes",
+          "venue": "Cell Metabolism",
+          "year": 2018,
+          "cited_by_count": 1532,
+          "url": "https://doi.org/10.1016/j.cmet.2018.04.010",
+          "stance": "contradicts",
+          "overlap": 3,
+          "evidence": "Early Time-Restricted Feeding Improves Insulin Sensitivity, Blood Pressure, and Oxidative Stress Even without Weight Loss in Men with Prediabetes.",
+          "sentence_polarity": -1,
+          "confidence": 0.85
+        },
+        {
+          "title": "NANETS Consensus Guidelines for the Diagnosis of Neuroendocrine Tumor",
+          "venue": "Pancreas",
+          "year": 2010,
+          "cited_by_count": 287,
+          "url": "https://doi.org/10.1097/mpa.0b013e3181ebaffd",
+          "stance": "contradicts",
+          "overlap": 1,
+          "evidence": "Neuroendocrine tumors (NETs) are rare, slow-growing neoplasms characterized by their ability to store and secrete different peptides and neuroamines.1 Some of these substances cause specific clinical syndromes,2 whereas other may have elevated plasma or urine levels that are not associated with specific syndromes or symptom complexes Unfortunately, there is no \"ideal neuroendocrine tumor marker,\"3",
+          "sentence_polarity": -1,
+          "confidence": 0.491
+        }
+      ],
+      "neutral": [
+        {
+          "title": "Beneficial effects of intermittent fasting and caloric restriction on the cardiovascular and cerebrovascular systems",
+          "venue": "The Journal of Nutritional Biochemistry",
+          "year": 2005,
+          "cited_by_count": 476,
+          "url": "https://doi.org/10.1016/j.jnutbio.2004.12.007",
+          "stance": "neutral",
+          "overlap": 2,
+          "evidence": "Beneficial effects of intermittent fasting and caloric restriction on the cardiovascular and cerebrovascular systems.",
+          "sentence_polarity": 1,
+          "confidence": 0.55
+        }
+      ],
+      "note": "Stance is from deterministic sentence-level cue analysis over abstracts (transparent, no LLM involved). Treat as triage, then read the cited sentences."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "reviewguard",
+        "at": "2026-09-23T05:20:55.321469+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

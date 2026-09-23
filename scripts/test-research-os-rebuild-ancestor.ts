@@ -1,17 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/rebuild-ancestor.ts's
- * `rebuildPrereqAncestorForBranch` (bkt-ros ros-13, factored out of
- * scripts/rebuild-prereq-ancestor.ts so the /research-os/edges review
- * route's approve action can call it in-process, task item 4). No network:
- * a tiny fluent fake stands in for the Supabase client, covering only the
- * four calls this function makes (`nodes.select.eq`,
- * `edges.select.in.eq`, `prereq_ancestor.delete.in`,
- * `prereq_ancestor.insert`), matching this repo's existing offline,
- * stub-backed research-os test convention.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-rebuild-ancestor.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { rebuildPrereqAncestorForBranch } from "../src/lib/research-os/rebuild-ancestor";
@@ -28,47 +14,42 @@ interface FakeEdgeRow {
   confidence: number | null;
 }
 
-/** A minimal fluent fake matching only the chain shapes
- * rebuildPrereqAncestorForBranch calls; anything else throws so a
- * future change to that function's own query shape fails this test loudly
- * rather than silently returning undefined. */
-function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inserted?: unknown[]; deletedNodeIds?: string[] }) {
+function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inserted?: unknown[]; deletedNodeIds?: string[]; rpcCalls?: number }) {
   return {
     from(table: string) {
       if (table === "nodes") {
         return {
           select: () => ({
-            eq: (_col: string, branch: string) => ({ data: nodes.filter((n) => n.branch === branch), error: null }),
+            eq: (_col: string, branch: string) => ({
+              order: () => ({
+                range: (from: number, to: number) => ({ data: nodes.filter((n) => n.branch === branch).slice(from, to + 1), error: null }),
+              }),
+            }),
           }),
         };
       }
       if (table === "edges") {
         return {
           select: () => ({
-            in: (_col: string, ids: string[]) => ({
-              eq: (_col2: string, kind: string) => ({
-                data: edges.filter((e) => ids.includes(e.from_id) && e.kind === kind),
-                error: null,
+            eq: (_col: string, kind: string) => ({
+              order: () => ({
+                range: (from: number, to: number) => ({
+                  data: edges.filter((e) => e.kind === kind).slice(from, to + 1),
+                  error: null,
+                }),
               }),
             }),
           }),
         };
       }
-      if (table === "prereq_ancestor") {
-        return {
-          delete: () => ({
-            in: (_col: string, ids: string[]) => {
-              calls.deletedNodeIds = ids;
-              return { error: null };
-            },
-          }),
-          insert: (rows: unknown[]) => {
-            calls.inserted = rows;
-            return { error: null };
-          },
-        };
-      }
       throw new Error(`unexpected table in test fake: ${table}`);
+    },
+    rpc(fn: string, args: { p_branch: string; p_node_ids: string[]; p_rows: unknown[] }) {
+      if (fn !== "replace_prereq_ancestor") throw new Error(`unexpected rpc in test fake: ${fn}`);
+      calls.rpcCalls = (calls.rpcCalls ?? 0) + 1;
+      calls.deletedNodeIds = args.p_node_ids;
+      calls.inserted = args.p_rows;
+      return { error: null };
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
@@ -99,7 +80,6 @@ test("rebuildPrereqAncestorForBranch: a linear chain rebuilds its full closure a
 
   assert.equal(result.nodeCount, 3);
   assert.equal(result.edgeCount, 2);
-  // c's ancestors: b (hop 1) and a (hop 2); b's ancestors: a (hop 1). 3 closure rows total.
   assert.equal(result.closureRowCount, 3);
   assert.deepEqual(new Set(calls.deletedNodeIds), new Set(["n-a", "n-b", "n-c"]), "deletes every branch node's own prior rows first");
   assert.equal(calls.inserted?.length, 3);
@@ -108,14 +88,45 @@ test("rebuildPrereqAncestorForBranch: a linear chain rebuilds its full closure a
   assert.equal(byNode.get("n-c:n-a")?.min_confidence, 0.5, "the minimum single-edge confidence along the path, not the product");
 });
 
-test("rebuildPrereqAncestorForBranch: a branch with nodes but no prerequisite edges rebuilds an empty closure without inserting", async () => {
+test("rebuildPrereqAncestorForBranch: a branch with nodes but no prerequisite edges clears its rows in one call and inserts none", async () => {
   const nodes: FakeNodeRow[] = [{ id: "n-a", slug: "a", branch: "02-physics" }];
-  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[]; rpcCalls?: number } = {};
   const svc = fakeSupabase(nodes, [], calls);
 
   const result = await rebuildPrereqAncestorForBranch(svc, "02-physics");
 
   assert.equal(result.closureRowCount, 0);
-  assert.equal(calls.inserted, undefined, "no insert call at all when the closure is empty");
-  assert.deepEqual(calls.deletedNodeIds, ["n-a"], "the delete still runs, clearing any now-stale prior rows");
+  assert.equal(calls.rpcCalls, 1, "one atomic replace");
+  assert.deepEqual(calls.inserted, [], "no rows to insert");
+  assert.deepEqual(calls.deletedNodeIds, ["n-a"], "the replace still clears any now-stale prior rows");
+});
+
+test("rebuildPrereqAncestorForBranch: a factor in another branch joins the closure", async () => {
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const nodes: FakeNodeRow[] = [
+    { id: "phys-kin", slug: "kinematics", branch: "02-physics" },
+    { id: "math-fn", slug: "functions", branch: "01-mathematics" },
+    { id: "math-eq", slug: "equality", branch: "01-mathematics" },
+  ];
+  const edges: FakeEdgeRow[] = [
+    { from_id: "math-eq", to_id: "math-fn", kind: "prerequisite", confidence: 0.95 },
+    { from_id: "math-fn", to_id: "phys-kin", kind: "prerequisite", confidence: 0.95 },
+  ];
+  const svc = fakeSupabase(nodes, edges, calls);
+  const result = await rebuildPrereqAncestorForBranch(svc, "02-physics");
+  assert.deepEqual(calls.deletedNodeIds, ["phys-kin"]);
+  const ancestors = (calls.inserted as Array<{ node_id: string; ancestor_id: string; min_hops: number }>).map((r) => [r.node_id, r.ancestor_id, r.min_hops]);
+  assert.deepEqual(ancestors.sort(), [["phys-kin", "math-eq", 2], ["phys-kin", "math-fn", 1]]);
+  assert.equal(result.edgeCount, 2);
+});
+
+test("rebuildPrereqAncestorForBranch: a large branch deletes in chunks and keeps every closure row", async () => {
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const nodes: FakeNodeRow[] = Array.from({ length: 400 }, (_, i) => ({ id: `n${i}`, slug: `s${i}`, branch: "07-mind" }));
+  const edges: FakeEdgeRow[] = Array.from({ length: 399 }, (_, i) => ({ from_id: `n${i}`, to_id: `n${i + 1}`, kind: "prerequisite", confidence: 1 }));
+  const svc = fakeSupabase(nodes, edges, calls);
+  const result = await rebuildPrereqAncestorForBranch(svc, "07-mind");
+  assert.equal(calls.deletedNodeIds!.length, 400);
+  assert.equal(result.closureRowCount, (399 * 400) / 2);
+  assert.equal((calls.inserted as unknown[]).length, (399 * 400) / 2);
 });

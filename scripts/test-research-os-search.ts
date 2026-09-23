@@ -1,4 +1,3 @@
-/** Pure tests for search.ts ranking. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { rankNodes, tokenize } from "../src/lib/research-os/search";

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "job_id": "j_465b72e3160e40a494fe",
+    "tool": "causaldesigner",
+    "render": "json",
+    "output": {
+      "treatment": "smoking",
+      "outcome": "cancer",
+      "graph": {
+        "nodes": [
+          "cancer",
+          "gene",
+          "hospitalized",
+          "injury",
+          "smoking",
+          "tar"
+        ],
+        "edges": [
+          [
+            "smoking",
+            "tar"
+          ],
+          [
+            "smoking",
+            "hospitalized"
+          ],
+          [
+            "gene",
+            "smoking"
+          ],
+          [
+            "gene",
+            "cancer"
+          ],
+          [
+            "tar",
+            "cancer"
+          ],
+          [
+            "injury",
+            "hospitalized"
+          ]
+        ],
+        "is_dag": true,
+        "node_roles": {
+          "gene": "confounder",
+          "tar": "mediator",
+          "hospitalized": "collider/descendant",
+          "injury": "other"
+        }
+      },
+      "backdoor_paths": [
+        {
+          "path": [
+            "smoking",
+            "gene",
+            "cancer"
+          ],
+          "repr": "smoking <- gene -> cancer"
+        }
+      ],
+      "n_backdoor_paths": 1,
+      "adjustment_set": [
+        "gene"
+      ],
+      "minimal_adjustment_set_size": 1,
+      "identifiable_by_adjustment": true,
+      "identification": "Identifiable by adjustment: conditioning on {gene} blocks all 1 backdoor path(s) and satisfies Pearl's back-door criterion.",
+      "do_not_adjust_for": [
+        "tar",
+        "hospitalized"
+      ],
+      "recommended_estimator": {
+        "key": "Matching",
+        "name": "Matching / propensity-score weighting (selection on observables)",
+        "identifies": "the ATT/ATE under conditional ignorability — adjusting for the measured confounders removes the bias.",
+        "assumptions": [
+          "Conditional ignorability / no unmeasured confounding (the adjustment set blocks all backdoor paths).",
+          "Common support / overlap: treated and control units share covariate space.",
+          "specified propensity / matching model; check covariate balance after matching."
+        ],
+        "threats": [
+          "Unmeasured confounding is the central, untestable threat, run a sensitivity analysis (E-value / Rosenbaum bounds).",
+          "Poor overlap forces extrapolation or discards units.",
+          "Conditioning on a collider or a post-treatment variable REINTRODUCES bias."
+        ],
+        "needs_adjustment": true
+      },
+      "estimator_notes": [],
+      "method": "DAG construction (networkx) → back-door path enumeration (Pearl's back-door criterion) → valid minimal adjustment set via d-separation in the proper back-door graph (nx.is_d_separator) → estimator recommendation (DiD/RDD/IV/matching/regression) with identifying assumptions + threats to validity.",
+      "note": "DEMO: smoking→cancer with a genetic confounder (gene→smoking, gene→cancer), a mediator (smoking→tar→cancer), and a collider (smoking→hospitalized←injury). The correct minimal adjustment set is {gene}; tar, hospitalized and injury must NOT be adjusted for. Field tool for econ-social: causal-inference tooling is a top unmet need (the reproducibility crisis is most acute here). The adjustment set is CHECKED to satisfy the back-door criterion (it blocks confounders and never conditions on colliders/mediators/post-treatment variables, which would introduce bias). It encodes YOUR causal assumptions; the DAG is an assumption, never a finding.",
+      "demo": true,
+      "ground_truth": {
+        "expected_adjustment_set": [
+          "gene"
+        ],
+        "must_not_adjust": [
+          "tar",
+          "hospitalized",
+          "injury"
+        ],
+        "n_backdoor_paths_expected": 1,
+        "identifiable": true
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "causaldesigner",
+        "at": "2026-09-23T03:45:53.004656+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

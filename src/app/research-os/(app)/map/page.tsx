@@ -8,10 +8,6 @@ import GraphMap from "./GraphMap";
 
 export const metadata: Metadata = { title: "Map", robots: { index: false, follow: false } };
 
-// The map is the graph (docs/RESEARCH-OS-APP.md, Map): one branch laid out
-// by tier, colored by the viewer's standing, with the class heatmap for
-// staff. ?view=globe shows the canon's figures, sites, and years on the
-// same component the public /canon/search uses, with "work on this".
 const CONTAINER =
   "relative h-[calc(100vh-11rem)] min-h-[560px] md:pr-[400px] overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 const SLUG = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;

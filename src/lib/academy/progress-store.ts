@@ -1,11 +1,3 @@
-/**
- * Where Academy progress lives in the browser and how it syncs. Local
- * storage keeps the same keys the Academy app used (`bucket-academy/v1/
- * <branch>`), so progress made in the app carries into Research OS. The
- * server copy is one row per person and branch in bucket.academy_progress,
- * reached through /api/academy/progress with the site session cookies;
- * local and server merge with mergeState so every device converges.
- */
 "use client";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
@@ -26,11 +18,9 @@ export function writeLocal(branch: string, state: EngineState): void {
   try {
     localStorage.setItem(`${LS_BASE}/${branch}`, JSON.stringify(state));
   } catch {
-    // Storage full or blocked: the server copy still receives the push.
   }
 }
 
-/** Every branch with local progress on this device. */
 export function localBranches(): string[] {
   const out: string[] = [];
   try {
@@ -39,14 +29,12 @@ export function localBranches(): string[] {
       if (k && k.startsWith(LS_BASE + "/")) out.push(k.slice(LS_BASE.length + 1));
     }
   } catch {
-    // no storage
   }
   return out;
 }
 
 export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
 
-/** The server's copy for the signed-in person, or null when signed out or unavailable. */
 export async function pullServer(): Promise<ServerBranches | null> {
   try {
     const res = await fetch(API, { cache: "no-store" });
@@ -67,10 +55,6 @@ export async function pushBranch(branch: string, state: EngineState): Promise<bo
   }
 }
 
-/**
- * Load one branch: local first, merged with the server copy when there is
- * one. Writes the merged result back to both sides when they differed.
- */
 export async function loadBranch(branch: string, server?: ServerBranches | null): Promise<EngineState> {
   const local = readLocal(branch);
   const remote = server === undefined ? await pullServer() : server;
@@ -85,7 +69,6 @@ export async function loadBranch(branch: string, server?: ServerBranches | null)
 
 const timers = new Map<string, number>();
 
-/** Persist a branch: local at once, server after a short quiet period. */
 export function saveBranch(branch: string, state: EngineState): void {
   writeLocal(branch, state);
   const prev = timers.get(branch);

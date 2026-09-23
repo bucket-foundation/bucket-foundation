@@ -1,0 +1,141 @@
+{
+  "result": {
+    "job_id": "j_d825876367774c82aaaf",
+    "tool": "replicheck",
+    "render": "json",
+    "output": {
+      "method": "statcheck-style p-value recomputation (Nuijten 2016, via scipy.stats) + GRIM test (Brown & Heathers 2017) + reporting-completeness flags",
+      "demo": true,
+      "alpha": 0.05,
+      "scale_items": 1,
+      "summary": {
+        "statistics_checked": 4,
+        "inconsistent": 2,
+        "decision_errors": 1,
+        "means_grim_tested": 2,
+        "grim_impossible": 1,
+        "reporting_flags": 4
+      },
+      "reproducibility": "FAIL — at least one statistic is internally impossible or flips its significance decision",
+      "reproducibility_level": "fail",
+      "statcheck": [
+        {
+          "test": "t",
+          "raw": "t(24) = 2.13, p = .002",
+          "statistic": 2.13,
+          "df1": 24,
+          "df2": null,
+          "rel": "=",
+          "reported_p": 0.002,
+          "computed_p": 0.04362,
+          "consistent": false,
+          "gross_error": false,
+          "verdict": "inconsistent"
+        },
+        {
+          "test": "F",
+          "raw": "F(2, 36) = 5.40, p = .009",
+          "statistic": 5.4,
+          "df1": 2,
+          "df2": 36,
+          "rel": "=",
+          "reported_p": 0.009,
+          "computed_p": 0.00889,
+          "consistent": true,
+          "gross_error": false,
+          "verdict": "consistent"
+        },
+        {
+          "test": "chi",
+          "raw": "χ2(1) = 3.84, p = .049",
+          "statistic": 3.84,
+          "df1": 1,
+          "df2": null,
+          "rel": "=",
+          "reported_p": 0.049,
+          "computed_p": 0.05004,
+          "consistent": false,
+          "gross_error": true,
+          "verdict": "DECISION ERROR"
+        },
+        {
+          "test": "r",
+          "raw": "r(48) = .34, p = .016",
+          "statistic": 0.34,
+          "df1": 48,
+          "df2": null,
+          "rel": "=",
+          "reported_p": 0.016,
+          "computed_p": 0.0157,
+          "consistent": true,
+          "gross_error": false,
+          "verdict": "consistent"
+        }
+      ],
+      "grim": [
+        {
+          "raw": "M = 2.19, SD = 0.8, n = 10",
+          "mean": 2.19,
+          "n": 10,
+          "decimals": 2,
+          "items": 1,
+          "grim_testable": true,
+          "grim_consistent": false,
+          "verdict": "GRIM-IMPOSSIBLE"
+        },
+        {
+          "raw": "M = 3.00, SD = 1.1, n = 12",
+          "mean": 3,
+          "n": 12,
+          "decimals": 1,
+          "items": 1,
+          "grim_testable": true,
+          "grim_consistent": true,
+          "verdict": "consistent"
+        }
+      ],
+      "reporting_flags": [
+        {
+          "flag": "missing_multiple_comparison_correction",
+          "severity": "medium",
+          "detail": "4 inferential p-values reported with no multiple-comparison correction (Bonferroni/Holm/FDR) mentioned."
+        },
+        {
+          "flag": "missing_confidence_intervals",
+          "severity": "medium",
+          "detail": "Test statistics reported without confidence intervals (most journals/funders now require interval estimates)."
+        },
+        {
+          "flag": "missing_effect_sizes",
+          "severity": "medium",
+          "detail": "No standardized effect size (Cohen's d, η², r², odds ratio…) reported alongside the significance tests."
+        },
+        {
+          "flag": "possible_underpowered_design",
+          "severity": "high",
+          "detail": "A non-significant result is reported with a small sample (n≈10); absence of evidence here is likely low power, not evidence of absence."
+        }
+      ],
+      "note": "DEMO: a known Results snippet with a planted statcheck inconsistency, a planted decision error, AND a planted GRIM-impossible mean (see ground_truth). Horizontal, all-field tool: reproducible statistics are mandated by funders and journals across every discipline. p-value recomputation is exact two-tailed scipy.stats; GRIM is exact integer arithmetic. An inconsistency flags a likely typo/rounding or error to verify, it is a triage signal and never an accusation. Reads the reported numbers only (no raw data), so it cannot catch errors that are internally consistent.",
+      "ground_truth": {
+        "t_24_2p13_is_inconsistent": true,
+        "chi2_1_3p84_p049_is_decision_error": true,
+        "mean_2p19_n10_is_grim_impossible": true,
+        "expected_decision_errors": 1,
+        "expected_grim_impossible": 1
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "replicheck",
+        "at": "2026-09-23T03:47:37.516348+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

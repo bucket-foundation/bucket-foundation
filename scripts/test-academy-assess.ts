@@ -1,4 +1,3 @@
-/** The assessment port: the deterministic grader, sealed runs, and summaries. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { buildRun, gradeAnswer, parseNumber, summarize } from "../src/lib/academy/assess";

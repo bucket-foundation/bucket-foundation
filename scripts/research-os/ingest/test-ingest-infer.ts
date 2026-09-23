@@ -1,12 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/ingest/infer.ts's offline prerequisite-
- * edge inference (bkt-ros ros-03 item 4). Pure functions, plain fixtures,
- * no I/O, matching scripts/research-os/ingest/test-ingest-validate.ts's own
- * convention.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-infer.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -24,10 +15,6 @@ import type { IngestNodeDraft } from "../../../src/lib/research-os/ingest/types"
 function node(slug: string, tier: number, summary: string, branch = "02-physics"): IngestNodeDraft {
   return { slug, title: slug, kind: "concept", tier, branch, summary, labels: { en: { title: slug } }, provenance: {} };
 }
-
-// ---------------------------------------------------------------------------
-// tokenize / jaccardOverlap / inferredConfidence
-// ---------------------------------------------------------------------------
 
 test("tokenize: lowercases, strips punctuation, drops short words and stopwords", () => {
   const tokens = tokenize("The Wavefunction and the Born Rule, a first look.");
@@ -62,10 +49,6 @@ test("inferredConfidence: bounded in [INFERRED_CONFIDENCE_MIN, INFERRED_CONFIDEN
   assert.ok(low <= mid && mid <= high, "confidence must rise with overlap");
   assert.ok(high < 0.9, "an inferred proposal must never reach canon_map's own 0.9 confidence");
 });
-
-// ---------------------------------------------------------------------------
-// inferEdges
-// ---------------------------------------------------------------------------
 
 test("inferEdges: proposes a -> b when a.tier < b.tier and summaries overlap above the threshold", () => {
   const nodes = [

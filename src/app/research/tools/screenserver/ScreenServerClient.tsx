@@ -8,6 +8,8 @@ import {
   RunStatus,
   useToolRun,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 export default function ScreenServerClient() {
   const [smiles, setSmiles] = useState("");
@@ -30,9 +32,9 @@ export default function ScreenServerClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             SMILES library {n > 0 && <span className="text-[color:var(--basalt-2)]">· {n} mol</span>}
-          </span>
+          </FieldLabel>
           <textarea
             value={smiles}
             onChange={(e) => setSmiles(e.target.value)}
@@ -42,13 +44,9 @@ export default function ScreenServerClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || n < 1 || n > 200}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || n < 1 || n > 200}>
           {busy ? "running…" : "screen"}
-        </button>
+        </SubmitButton>
         {n > 200 && (
           <p className="text-[13px] text-[color:var(--basalt-2)]">Max 200 molecules per request.</p>
         )}

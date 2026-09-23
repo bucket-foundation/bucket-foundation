@@ -1,7 +1,5 @@
 "use client";
 
-// SurvivalFit client island, Kaplan-Meier + Mantel-Cox log-rank. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -10,6 +8,9 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type KMStep = { time: number; n_risk: number; n_event: number; survival: number; std_err: number };
 type KM = {
@@ -80,9 +81,9 @@ export default function SurvivalFitClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             durations (time to event/censoring)
-          </span>
+          </FieldLabel>
           <input
             value={durations}
             onChange={(e) => setDurations(e.target.value)}
@@ -92,9 +93,9 @@ export default function SurvivalFitClient() {
           />
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             events — 1 = event, 0 = censored (optional; default all 1)
-          </span>
+          </FieldLabel>
           <input
             value={events}
             onChange={(e) => setEvents(e.target.value)}
@@ -104,9 +105,9 @@ export default function SurvivalFitClient() {
           />
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             groups (optional; 2 distinct labels → log-rank test)
-          </span>
+          </FieldLabel>
           <input
             value={groups}
             onChange={(e) => setGroups(e.target.value)}
@@ -116,21 +117,12 @@ export default function SurvivalFitClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || parseNums(durations).length < 2}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || parseNums(durations).length < 2}>
             {busy ? "estimating…" : "estimate"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo (two groups)
-          </button>
+          </DemoButton>
         </div>
       </form>
 
