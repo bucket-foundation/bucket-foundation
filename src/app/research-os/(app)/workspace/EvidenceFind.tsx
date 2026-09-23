@@ -63,6 +63,20 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
     };
   }, [token]);
 
+  // Cards answer the target they were found for. The component stays
+  // mounted while a learner moves along the path, so without this the
+  // previous target's sources sit under the new one, and Quote would
+  // attach them to a target they were never about. A request still in
+  // flight is abandoned, and the sequence moves so its answer is dropped
+  // when it lands.
+  useEffect(() => {
+    inFlight.current?.abort();
+    seq.current += 1;
+    setResult(null);
+    setError(null);
+    setPhase("idle");
+  }, [branch, targetNodeId]);
+
   const run = useCallback(async () => {
     if (!token || !query.trim()) return;
     inFlight.current?.abort();

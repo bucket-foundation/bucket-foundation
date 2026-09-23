@@ -56,15 +56,15 @@ The app's readiness answer names the corpus revision it loaded, how many sources
 
 ## What it costs
 
-Measured on 2026-09-22, in the run recorded in [RUNTIME.md](RUNTIME.md).
+Measured on 2026-09-22 on the founder's machine, a Ryzen 7 7840HS with 60 GiB of RAM, against the 500-source corpus. Memory and threads come from `python3 -m evidence_search probe`; the rest comes from the runs recorded in [RUNTIME.md](RUNTIME.md). Another machine, or a corpus at release scale, moves all of these.
 
-| | Measured | The unit's cap |
-|---|---|---|
-| memory at peak | 3.4 GiB | `MemoryHigh=6G`, `MemoryMax=8G` |
-| threads | 8 | `CPUQuota=800%` |
-| start to first answer | 32 s | none; a start that never finishes shows as a failed unit |
-| a search, warm | 91 ms p95 | the route's own 8-second deadline |
-| vectors on disk | 12 MiB at 500 sources | the 20 GiB new-disk cap in the plan |
+| | Measured | Where | The unit's cap |
+|---|---|---|---|
+| memory at peak | 3.4 GiB | the probe | `MemoryHigh=6G`, `MemoryMax=8G` |
+| threads | 8 | the probe | `CPUQuota=800%` |
+| start to first answer | 22 s to 33 s | two runtime gate runs, 20 restarts each | none; a start that never finishes shows as a failed unit |
+| a search, warm | 91 ms to 97 ms p95 | two runtime gate runs, 200 requests each | the route's own 8-second deadline |
+| vectors on disk | 12 MiB at 500 sources | the build | the 20 GiB new-disk cap in the plan |
 
 `MemoryMax` is what stops a leak taking the machine with it. The worker is one process holding one model; a kill under memory pressure ends the worker and the app keeps answering from keyword ranking.
 
@@ -99,7 +99,18 @@ scripts/systemd/install-evidence-worker.sh local/evidence/vectors/<older revisio
 #    .env.local: RESEARCH_OS_EVIDENCE_DIR=local/evidence/<older revision>
 ```
 
-Between steps 1 and 2 the worker holds a revision the server no longer admits, so every request answers `degraded` on keyword ranking. Nothing serves the withdrawn revision at any point in the sequence, which is the property the rollback exists for.
+Between steps 1 and 2 the worker holds a revision the server no longer admits. Run on 2026-09-22 against a 500-source revision rolling back to a 400-source one, 100 sources retired:
+
+| What | Measured |
+|---|---|
+| requests in the window | every one answered `hybrid` and `ok` |
+| retired sources served | none, across 14 cards from six queries |
+| a query aimed at retired material | returned the one source still admitted, and excluded the two retired |
+| the same query after restoring | returned all three |
+
+So nothing serves a retired revision, which is the property the rollback exists for. It holds for a different reason than this page gave before the run: the server resolves the admitted set from the registry on every request, so a source stops being served the moment its row is retired, with no worker restart and no rebuild.
+
+Search keeps working at full quality in the window, on whatever remains admitted. The worker's staleness check compares the corpus revision the server sends with the one the worker holds, and in this window both are still the newer corpus, so the worker has nothing to refuse. Degradation would need the worker pointed at a revision the server is no longer loading, which is step 2's business.
 
 A failed build leaves `.tmp-<revision>-<pid>` on disk with its manifest written. Selection skips dot-prefixed names, so it cannot become the corpus the server serves; delete it once its problem is read.
 
