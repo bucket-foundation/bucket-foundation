@@ -1,18 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
-import { IN_CHUNK, configured, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
+import { NextResponse } from "next/server";
+import { IN_CHUNK, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
 import { readVisibility } from "@/lib/research-os/access";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { listMyClasses } from "@/lib/research-os/classes";
+import { NO_STORE, bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 const STAGES = ["access", "awareness", "understanding", "internalization", "production"];
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const url = new URL(req.url);
   if (url.searchParams.get("list")) {
     const counts = new Map<string, number>();
@@ -127,4 +125,4 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});
