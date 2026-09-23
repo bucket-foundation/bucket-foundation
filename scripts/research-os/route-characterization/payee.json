@@ -57,6 +57,20 @@
       }
     }
   },
+  "GET profile read": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": "self",
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "guardian_required"
+      }
+    }
+  },
   "POST unconfigured": {
     "status": 503,
     "cache": "no-store",
@@ -103,6 +117,52 @@
     "type": "application/json",
     "body": {
       "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST self, no profile": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile"
+    }
+  },
+  "POST self, saved": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": "self",
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "guardian_required"
+      }
+    }
+  },
+  "POST self, write fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
     }
   }
 }
