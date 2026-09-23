@@ -14,6 +14,8 @@ Two sessions hit this independently on 2026-09-22, in unrelated code, within an 
 
 **A count of a moving artifact, written as a property of the design.** The same docstring said the gate marks "eight of the twenty-eight routes". There were thirty-one. Worse, the related counts moved three times in one day as the code moved: 37 calls across 12 files, then 37 across 18, then 36 across 17. All three were true when measured and all three were written as facts about the system rather than about a revision. The finding underneath held throughout, which is why the moving numbers were not caught: a gateway sits in front of every route, and a bare 503 reaches a client that consults no rule.
 
+**A measurement taken against the wrong environment.** A schema map was generated from a development database and declared keys for `source_quote_receipts`, a table CI does not have. The database had accumulated tables from branches that never merged, so it is a superset of what any one branch builds. The generator ran, the numbers were real, and they described a machine rather than the code. Generate from a database holding only that branch's migrations, and say which.
+
 **A number credited to the wrong run.** `scripts/systemd/evidence-worker.service` said the runtime gate measured 3.4 GiB at peak. The runtime gate measured latency; the 3.4 GiB came from `evidence_search probe`, a different run on a different day. Same file gave a single figure for worker start where two runs of twenty restarts had produced 22 s and 33 s.
 
 ## The rule
@@ -31,6 +33,8 @@ Conditions belong next to the number rather than in the commit that produced it.
 
 A claim that cannot be attributed is an estimate. Write it as one, or measure it.
 
+When a repair changes a mechanism, name every artifact that describes it. The copy is part of the blast radius, and the person who changed the mechanism is the only one who knows it moved. A cap that counted unrecorded objects and now counts every object makes a message about unrecorded ones wrong, and the message lives in a file the repair never touched. Send the list of what the change means, rather than the error code and an assurance that the rest still works.
+
 Check what the command measured, rather than that it ran. A pipeline ending in `head`, `uniq`, a default page size or a truncating viewer answers a question about the display. The number of lines a terminal printed is not the number of things.
 
 Record the checks that pass. A sweep listing only what it broke reads as a confession, and the next person cannot tell which claims were examined and held from the ones nobody looked at. `read-access.ts` says 100 ids build about 3.7 KB of request line and 200 build 7.5 KB, which is what sets the chunk bound; the URLs were built and came back 3.7 KB at 100 and 7.3 KB at 200. That one holds, and saying so is part of the work.
@@ -38,6 +42,12 @@ Record the checks that pass. A sweep listing only what it broke reads as a confe
 ## Where it bites hardest
 
 A number a caller sizes a decision off. Parse cost that a browser path budgets against, a memory figure that sets a cgroup cap, a start time that decides whether a health check runs now or later. Those are the sentences to check first, because a wrong one there is acted on rather than read.
+
+## The seam
+
+Three defects in one day were each found by the session that did not own the code. A route-access suite written for one branch caught a corpus miss answering "try again in a moment" about a deployment that has no corpus, inside the branch whose purpose was to stop retryable answers to permanent facts. A cap's owner reported an error code and an assurance, and the person who owned the message found the regex never matched it.
+
+The pattern is that a defect lives in the arm nobody had reason to doubt. The author tests the path they were thinking about. Someone reading from the other side tests the path they assumed was fine, which is the one that is not. Neither a review nor a gate substitutes for a second person exercising the same code for their own reasons.
 
 ## The related shape
 
