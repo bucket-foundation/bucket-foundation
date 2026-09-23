@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
 import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
 import RootTexts from "../RootTexts";
+import { BABELSTONE_NOTE, UNIHAN_NOTE, type HanChar } from "@/lib/research-os/han-components";
 
 const FIRST = 12;
 
@@ -35,6 +36,28 @@ function Step({ step }: { step: ChainStep }) {
   );
 }
 
+function HanParts({ parts }: { parts: HanChar[] }) {
+  return (
+    <p className="text-[12px] leading-[1.7] text-[color:var(--basalt-2)]">
+      <span className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">components </span>
+      {parts.map((h, i) => (
+        <span key={h.char}>
+          {i ? "; " : ""}
+          <span lang="zh">{h.char}</span> ={" "}
+          {h.parts.map((p, j) => (
+            <span key={j}>
+              {j ? " + " : ""}
+              <span lang="zh">{p.component}</span>
+              {p.meaning ? ` “${p.meaning.split(";")[0]}”` : ""}
+            </span>
+          ))}
+          <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{h.parts.some((p) => p.uncertain) ? "IDS, uncertain" : "IDS, agrees with Wiktionary"}</span>
+        </span>
+      ))}
+    </p>
+  );
+}
+
 function WordRow({ w }: { w: NodeWord }) {
   const texts = w.rootTexts;
   return (
@@ -58,6 +81,7 @@ function WordRow({ w }: { w: NodeWord }) {
             {w.rootUncertain && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">uncertain root</span>}
           </p>
         )}
+        {w.hanParts && w.hanParts.length > 0 && <HanParts parts={w.hanParts} />}
         {w.chain.length > 0 && (
           <details className="text-[12px] leading-[1.7] text-[color:var(--basalt-2)]">
             <summary className="cursor-pointer text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]">descent, {w.chain.length} {w.chain.length === 1 ? "step" : "steps"}</summary>
@@ -142,6 +166,18 @@ export default function WordsSection({ nodeId }: { nodeId: string }) {
             {", "}
             <a href={KAIKKI_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY-SA 4.0</a>
           </p>
+          {list.some((w) => w.hanParts && w.hanParts.length > 0) && (
+            <p className="text-[11px] text-[color:var(--basalt-3)]">
+              {BABELSTONE_NOTE.text}{" "}
+              <a href={BABELSTONE_NOTE.href} target="_blank" rel="noreferrer" className="underline underline-offset-2">BabelStone IDS</a>
+              {list.some((w) => (w.hanParts ?? []).some((h) => h.parts.some((p) => p.meaningSource === "unihan"))) && (
+                <>
+                  {" "}{UNIHAN_NOTE.text}{" "}
+                  <a href={UNIHAN_NOTE.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">Unicode License v3</a>
+                </>
+              )}
+            </p>
+          )}
           {list.some((w) => w.lang === "he") && (
             <p className="text-[11px] text-[color:var(--basalt-3)]">
               Hebrew roots and verses: {OSHB_ATTRIBUTION.text}, under{" "}

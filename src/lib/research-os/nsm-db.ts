@@ -1,4 +1,6 @@
 import { graphService, pagedRead } from "./db";
+import { partsFor } from "./han-components";
+import { loadHanParts } from "./han-components-db";
 import { assemble, HIDE_BELOW, type NsmColexRow, type NsmExponentRow, type NsmPrime, type NsmPrimeRow } from "./nsm";
 
 const PRIME_COLUMNS = "id,label,category,english,ord,en_word,en_pos,sense,sense_match";
@@ -22,5 +24,14 @@ export async function loadNsm(opts: { lang?: string | null; includeHidden?: bool
     if (opts.lang) q = q.eq("lang", opts.lang);
     return q.order("prime_a").order("prime_b").order("lang").range(page.from, page.to) as unknown as Page<NsmColexRow>;
   });
-  return assemble(primes, exponents, { includeHidden: opts.includeHidden, colex });
+  const primesOut = assemble(primes, exponents, { includeHidden: opts.includeHidden, colex });
+  const han = await loadHanParts(primesOut.flatMap((p) => p.exponents));
+  if (han.size === 0) return primesOut;
+  return primesOut.map((p) => ({
+    ...p,
+    exponents: p.exponents.map((e) => {
+      const parts = partsFor(e, han);
+      return parts.length ? { ...e, hanParts: parts } : e;
+    }),
+  }));
 }
