@@ -94,7 +94,7 @@ function Joined({ refs, sep }: { refs: ReportRef[]; sep: string }) {
   );
 }
 
-const GAP_LABEL: Record<GapClass, string> = { real: "real gap", missing_edge: "missing edge", chance: "chance" };
+const GAP_LABEL: Record<GapClass, string> = { real: "candidate real gap", missing_edge: "missing edge", chance: "chance" };
 
 function Algebra({ a }: { a: PrimeAlgebraReport }) {
   const f = a.frontier;
@@ -119,7 +119,7 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
 
       <Listed
         title="unexplored combinations"
-        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. ${f.withinBranch} lie inside one branch. Each set is tested against ${f.gaps.draws} shuffles of the composite-by-prime table that keep every composite's prime count and every prime's reach. ${f.gaps.counts.real} are real gaps, empty far more often than the shuffles allow; ${f.gaps.counts.missing_edge} close once the ${f.gaps.counterfactualPairs} pending pairs the verifier confirmed are added; ${f.gaps.counts.chance} are empty by chance. Real gaps come first, each by the count chance predicts.`}
+        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. ${f.withinBranch} lie inside one branch. Each set is tested against ${f.gaps.draws} shuffles of the composite-by-prime table that keep every composite's prime count and every prime's reach. ${f.gaps.counts.real} are candidate real gaps, empty more often than the shuffles allow; on the local graph of 2026-09-23 their top 20 kept a median Jaccard overlap of 0.81 over random 90% subsets of the composites, and halves showed none; ${f.gaps.counts.missing_edge} close once the ${f.gaps.counterfactualPairs} pending pairs the verifier confirmed are added; ${f.gaps.counts.chance} are empty by chance. Candidate real gaps come first, each by the count chance predicts.`}
       >
         {f.top.map((x, i) => (
           <Row key={i} figure={`${GAP_LABEL[x.gap]}, expected ${x.expected.toFixed(1)}, p ${x.p}`}>

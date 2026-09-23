@@ -92,9 +92,9 @@ Run on 2026-09-23, 510 composites, 731 nonfaces.
 | Confirmed pending pairs in the counterfactual | 98 | 121 |
 | Missing edge | 289 | 331 |
 | Chance | 419 | 378 |
-| Real gap | 23 | 22 |
+| Candidate real gap | 23 | 22, top 20 at a median Jaccard of 0.81 on 90% subsets, none on halves |
 
-After the run, 517 of the 731 nonfaces cross a branch: 231 missing edges, 264 chance, and all 22 real gaps. The top real gap is Boltzmann distribution with the Equivalence principle, expected 8.9, p <0.001, then Boltzmann with the neuron doctrine, 8.5, p <0.001. Eleven of the 22 hold the neuron doctrine and 7 the Equivalence principle. Boltzmann with Kinematics and with Vectors, second and third in M2, are missing edges: confirmed pending pairs would close them.
+After the run, 517 of the 731 nonfaces cross a branch: 231 missing edges, 264 chance, and all 22 candidate real gaps. The top candidate is Boltzmann distribution with the Equivalence principle, expected 8.9, p <0.001, then Boltzmann with the neuron doctrine, 8.5, p <0.001. Eleven of the 22 hold the neuron doctrine and 7 the Equivalence principle. Boltzmann with Kinematics and with Vectors, second and third in M2, are missing edges: confirmed pending pairs would close them.
 
 Subsets of 90% of the composites give a median Jaccard of 0.81 over the top 20 real gaps, from 0 to 1, with 0 to 23 real gaps a subset. Subsets of half give no real gap at all: with half the composites the expected counts halve, the null leaves more sets empty, and no p clears the correction. The real-gap list is stable to losing a tenth of the graph and needs most of it to show at all.
 
