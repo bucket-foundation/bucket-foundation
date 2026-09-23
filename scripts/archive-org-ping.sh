@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# archive.org Wayback save — submit every bucket.foundation URL for archiving.
+# archive.org Wayback save: submit every bucket.foundation URL for archiving.
 # Each archived URL becomes a long-lived citation source that AI search
 # (Claude, Perplexity, Google) can surface.
 #
@@ -21,13 +21,10 @@ urls=(
   "/governance"
   "/about"
   "/join"
-  "/knowledge"
   "/research"
   "/kruse"
   "/kruse/search"
   "/contributors"
-  "/library"
-  "/assets"
   "/whats-new"
   "/llms.txt"
   "/llms-full.txt"
