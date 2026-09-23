@@ -12,6 +12,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
 import { isIdeaNode } from "./idea";
+import { attend, primeBasis, type PrimeBasis } from "./prime-algebra";
 import { contractedFactorEdges, decompose, FACTOR_EDGES, factorMap, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
 export type MakeupNode = { id: string; slug: string; title: string; branch: string; kind?: string; provenanceType?: string | null };
@@ -34,6 +35,7 @@ export type Makeup = {
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];
   irreducible: { status: "pending" | "confirmed" | "rejected"; justification: string } | null;
+  nearest: (MakeupNode & { weight: number; score: number; shared: MakeupNode[] })[];
 };
 
 export type MakeupProposal = {
@@ -75,6 +77,28 @@ export type Snapshot = {
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
 };
+
+const bases = new WeakMap<Map<string, Decomposition>, PrimeBasis>();
+
+function basisOf(dec: Map<string, Decomposition>): PrimeBasis {
+  let b = bases.get(dec);
+  if (!b) {
+    b = primeBasis(dec);
+    bases.set(dec, b);
+  }
+  return b;
+}
+
+export function nearestByMakeup(nodeId: string, snap: Snapshot, k = 8): Makeup["nearest"] {
+  const out: Makeup["nearest"] = [];
+  for (const a of attend(snap.dec, [nodeId], { k, basis: basisOf(snap.dec) })) {
+    const n = snap.byId.get(a.id);
+    if (!n) continue;
+    const shared = a.sharedPrimes.map((p) => snap.byId.get(p)).filter((x): x is MakeupNode => !!x);
+    out.push({ ...n, weight: a.weight, score: a.score, shared });
+  }
+  return out;
+}
 
 const VERDICT_ORDER: Record<string, number> = { confirmed: 0, unchecked: 1, refuted: 2 };
 
@@ -132,6 +156,7 @@ export function buildMakeup(
       .map((m) => ({ key: m.key, title: m.title, summary: m.summary, reason: m.reasons?.[self.slug] ?? null }))
       .sort((a, b) => a.title.localeCompare(b.title)),
     irreducible: pending.irreducible,
+    nearest: nearestByMakeup(nodeId, snap),
   };
 }
 

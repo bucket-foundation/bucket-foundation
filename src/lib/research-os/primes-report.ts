@@ -10,6 +10,7 @@
  * pages without one.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { coverage, depthPolynomials, frontier, implications, leibnizPrimes, pmiPairs, type Nonface } from "./prime-algebra";
 import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
 
 export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
@@ -31,9 +32,26 @@ export interface PrimesReport {
   widest: (ReportRef & { depth: number; primes: number })[];
   confirmedIrreducible: { count: number; of: number; sample: ReportRef[] };
   reviewAgain: ReportRef[];
+  algebra: PrimeAlgebraReport;
+}
+
+export interface PrimeAlgebraReport {
+  coverage: { s: number; coverage: number; supports: number }[];
+  frontier: {
+    pairs: number;
+    triples: number;
+    expectedAtLeastOne: number;
+    withinBranch: number;
+    top: { primes: ReportRef[]; expected: number }[];
+    topWithinBranch: { primes: ReportRef[]; expected: number }[];
+  };
+  together: { a: ReportRef; b: ReportRef; joint: number; pmi: number }[];
+  implied: { node: ReportRef; factor: ReportRef; support: number; mutual: boolean }[];
+  reach: (ReportRef & { coefficients: number[]; meanDepth: number })[];
 }
 
 const TOP = 12;
+const FRONTIER_TOP = 15;
 
 export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[], irreducibleSlugs: Set<string>, now = new Date()): PrimesReport {
   const live = new Set(nodeRows.map((n) => n.id));
@@ -66,6 +84,37 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
   const confirmed = primes.filter((n) => n.slug && irreducibleSlugs.has(n.slug));
   const reviewAgain = nodeRows.filter((n) => n.slug && irreducibleSlugs.has(n.slug) && dec.get(n.id)?.status !== "prime");
 
+  const lp = leibnizPrimes(dec);
+  const branchOfPrime = new Map<string, string>();
+  for (const p of lp) branchOfPrime.set(p.id, byId.get(p.id)?.branch ?? "(none)");
+  const all = frontier(dec);
+  const within = frontier(dec, 3, branchOfPrime);
+  const named = (x: Nonface) => ({ primes: x.primes.map(ref), expected: x.expected });
+  const algebra: PrimeAlgebraReport = {
+    coverage: [1, 2].map((s) => {
+      const c = coverage(dec, s, lp);
+      return { s, coverage: c.coverage, supports: c.supports };
+    }),
+    frontier: {
+      pairs: all.pairs,
+      triples: all.triples,
+      expectedAtLeastOne: all.expectedAtLeastOne,
+      withinBranch: within.nonfaces.length,
+      top: all.nonfaces.slice(0, FRONTIER_TOP).map(named),
+      topWithinBranch: within.nonfaces.slice(0, 5).map(named),
+    },
+    together: pmiPairs(dec)
+      .slice(0, TOP)
+      .map((x) => ({ a: ref(x.a), b: ref(x.b), joint: x.joint, pmi: x.pmi })),
+    implied: implications(dec)
+      .filter((x) => !x.mutual || x.node < x.factor)
+      .slice(0, TOP)
+      .map((x) => ({ node: ref(x.node), factor: ref(x.factor), support: x.support, mutual: x.mutual })),
+    reach: depthPolynomials(dec)
+      .slice(0, TOP)
+      .map((x) => ({ ...ref(x.id), coefficients: x.coefficients, meanDepth: x.meanDepth })),
+  };
+
   return {
     generatedAt: now.toISOString(),
     summary: summarize(dec),
@@ -77,6 +126,7 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
     widest: byWidth.slice(0, TOP).map((d) => ({ ...ref(d.id), depth: d.depth, primes: d.signature.size })),
     confirmedIrreducible: { count: confirmed.length, of: primes.length, sample: confirmed.slice(0, TOP).map((n) => ref(n.id)) },
     reviewAgain: reviewAgain.map((n) => ref(n.id)),
+    algebra,
   };
 }
 

@@ -57,3 +57,21 @@ test("an empty graph gives an empty report", () => {
   assert.equal(r.penetrating.length, 0);
   assert.equal(r.deepest.length, 0);
 });
+
+test("the algebra sections: coverage, unexplored combinations, primes that travel together, implied factors, reach", () => {
+  const r0 = buildPrimesReport(nodes, edges, new Set());
+  assert.deepEqual(r0.algebra.coverage.map((c) => c.s), [1, 2]);
+  assert.ok(Math.abs(r0.algebra.coverage[0].coverage - 1 / 6 / 2) < 1e-12);
+  assert.deepEqual(r0.algebra.reach[0].coefficients, [0, 1, 1]);
+
+  const ns = [node("a"), node("b"), node("c"), node("m", "concept", "01-mathematics"), ...["x", "y", "z", "w", "v"].map((id) => node(id))];
+  const pre = (from: string, to: string): ReportEdge => ({ from_id: from, to_id: to, kind: "prerequisite", confidence: 1 });
+  const es = [...["x", "y", "z"].flatMap((c) => [pre("a", c), pre("b", c)]), pre("c", "w"), pre("m", "v")];
+  const r = buildPrimesReport(ns, es, new Set()).algebra;
+  assert.equal(r.frontier.pairs, 5);
+  assert.equal(r.frontier.withinBranch, 2);
+  assert.deepEqual(r.frontier.topWithinBranch.map((x) => x.primes.map((p) => p.slug).join("+")).sort(), ["a+c", "b+c"]);
+  assert.equal(r.frontier.top.length, 5);
+  assert.deepEqual(r.implied.map((x) => `${x.node.slug}->${x.factor.slug}:${x.mutual}`), ["a->b:true"]);
+  assert.deepEqual(r.together.map((x) => `${x.a.slug}${x.b.slug}`), ["ab"]);
+});

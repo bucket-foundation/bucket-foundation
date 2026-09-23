@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { configured, graphService } from "@/lib/research-os/db";
-import { loadPrimesReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
+import { loadPrimesReport, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
 
 export const metadata: Metadata = { title: "Primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -57,6 +57,125 @@ function Ranked<T extends ReportRef>({ title, hint, rows, figure }: { title: str
   );
 }
 
+function Listed({ title, hint, children, empty }: { title: string; hint: React.ReactNode; children: React.ReactNode[]; empty?: boolean }) {
+  return (
+    <section className="mt-8">
+      <h2 className={LABEL}>{title}</h2>
+      <p className="mt-1 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">{hint}</p>
+      {empty || children.length === 0 ? (
+        <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">None yet.</p>
+      ) : (
+        <ol className="mt-2 border-t border-[color:var(--hairline)]">{children}</ol>
+      )}
+    </section>
+  );
+}
+
+function Row({ figure, children }: { figure: string; children: React.ReactNode }) {
+  return (
+    <li className="border-b border-[color:var(--hairline)] py-2 flex flex-wrap items-baseline gap-x-4 text-[13px] text-[color:var(--basalt)]">
+      <span className="text-[12px] text-[color:var(--basalt-3)] w-full md:w-[190px] shrink-0 tabular-nums">{figure}</span>
+      <span className="flex-1 min-w-[200px]">{children}</span>
+    </li>
+  );
+}
+
+function Joined({ refs, sep }: { refs: ReportRef[]; sep: string }) {
+  return (
+    <>
+      {refs.map((r, i) => (
+        <span key={`${r.slug ?? r.title}-${i}`}>
+          {i > 0 && <span className="text-[color:var(--basalt-3)]">{sep}</span>}
+          <NodeLink r={r} />
+        </span>
+      ))}
+    </>
+  );
+}
+
+function Algebra({ a }: { a: PrimeAlgebraReport }) {
+  const f = a.frontier;
+  const maxCount = Math.max(1, ...a.reach.flatMap((r) => r.coefficients));
+  return (
+    <>
+      <section className="mt-8">
+        <h2 className={LABEL}>coverage</h2>
+        <p className="mt-1 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">
+          Give each prime a prime number, the most penetrating 2, then 3, 5, 7, and a composite the product over its primes. Coverage is the Dirichlet series over the distinct products the graph has built, divided by the Euler product over every combination of primes. A larger s weights the combinations of common primes.
+        </p>
+        <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+          {a.coverage.map((c) => (
+            <div key={c.s} className="border border-[color:var(--hairline)] px-3 py-2">
+              <div className="font-display text-[24px] leading-none text-[color:var(--basalt)] tabular-nums">{c.coverage.toFixed(3)}</div>
+              <div className="mt-1 text-[11px] text-[color:var(--basalt-3)]">at s = {c.s}</div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]">{a.coverage[0]?.supports ?? 0} distinct combinations of primes built so far.</p>
+      </section>
+
+      <Listed
+        title="unexplored combinations"
+        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. If primes met at random, the graph would hold at least one composite for ${f.expectedAtLeastOne} of them. Ranked by the count chance predicts. ${f.withinBranch} lie inside one branch.`}
+      >
+        {f.top.map((x, i) => (
+          <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+            <Joined refs={x.primes} sep=" + " />
+          </Row>
+        ))}
+      </Listed>
+      {f.topWithinBranch.length > 0 && (
+        <div className="mt-3">
+          <p className="text-[12px] text-[color:var(--basalt-3)]">Inside one branch:</p>
+          <ol className="mt-1 border-t border-[color:var(--hairline)]">
+            {f.topWithinBranch.map((x, i) => (
+              <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+                <Joined refs={x.primes} sep=" + " />
+              </Row>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      <Listed title="primes that travel together" hint="Prime pairs found together more often than chance predicts, by pointwise mutual information over composites, among pairs sharing at least 3.">
+        {a.together.map((x, i) => (
+          <Row key={i} figure={`PMI ${x.pmi.toFixed(2)}, together in ${x.joint}`}>
+            <Joined refs={[x.a, x.b]} sep=" and " />
+          </Row>
+        ))}
+      </Listed>
+
+      <Listed title="implied factors" hint="Every composite that holds the first prime also holds the second, over at least 3 composites. Each is a candidate for the decompose-further queue, which a reviewer reads in either direction. Shown here only; nothing is written to the graph.">
+        {a.implied.map((x, i) => (
+          <Row key={i} figure={`${x.support} of ${x.support} composites`}>
+            <Joined refs={[x.node, x.factor]} sep={x.mutual ? " always with " : " may rest on "} />
+          </Row>
+        ))}
+      </Listed>
+
+      <Listed title="reach" hint="For each prime, the composites that hold it at each depth, depth 1 first: the coefficients of its depth polynomial. The sum is its penetration, and the mean is how far up its reach runs.">
+        {a.reach.map((r, i) => (
+          <Row key={i} figure={`mean depth ${r.meanDepth.toFixed(1)}`}>
+            <NodeLink r={r} />
+            <span className="mt-1 flex flex-wrap gap-[2px]" aria-label={`composites per depth: ${r.coefficients.slice(1).join(", ")}`}>
+              {r.coefficients.slice(1).map((n, d) => (
+                <span
+                  key={d}
+                  title={`depth ${d + 1}: ${n}`}
+                  className="w-[22px] text-center text-[10.5px] tabular-nums leading-[18px] border border-[color:var(--hairline)]"
+                  style={{ background: n ? `color-mix(in srgb, var(--gold) ${Math.round(15 + (n / maxCount) * 70)}%, transparent)` : undefined }}
+                >
+                  {n}
+                </span>
+              ))}
+            </span>
+          </Row>
+        ))}
+      </Listed>
+    </>
+  );
+}
+
 function Report({ r }: { r: PrimesReport }) {
   const s = r.summary;
   const maxTier = Math.max(1, ...s.tiers);
@@ -94,6 +213,8 @@ function Report({ r }: { r: PrimesReport }) {
       />
       <Ranked title="deepest composites" hint="The longest chains of factors down to a prime, with the distinct primes each rests on." rows={r.deepest} figure={(d) => `depth ${d.depth}, ${d.primes} ${d.primes === 1 ? "prime" : "primes"}`} />
       <Ranked title="widest composites" hint="The composites that rest on the most distinct primes." rows={r.widest} figure={(d) => `${d.primes} primes, depth ${d.depth}`} />
+
+      <Algebra a={r.algebra} />
 
       <section className="mt-8">
         <h2 className={LABEL}>unfactored by kind</h2>

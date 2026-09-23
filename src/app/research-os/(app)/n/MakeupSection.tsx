@@ -232,6 +232,34 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
 
             </div>
           </div>
+
+          {m.nearest && m.nearest.length > 0 && (
+            <div>
+              <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-1">nearest by makeup</h3>
+              <p className="text-[12px] text-[color:var(--basalt-3)] mb-2 max-w-[68ch]">
+                Ideas built from the same primes, by attention over the primes with rare primes weighted up and ones every idea holds weighted to nothing.
+              </p>
+              <ul className="flex flex-col gap-1.5">
+                {m.nearest.map((n) => (
+                  <li key={n.id} className="text-[13px] leading-[1.45] flex flex-wrap items-baseline gap-x-2">
+                    <span className="w-[42px] shrink-0 text-[11.5px] tabular-nums text-[color:var(--basalt-3)]" title={`cosine ${n.score.toFixed(2)}`}>
+                      {(n.weight * 100).toFixed(0)}%
+                    </span>
+                    <Link href={`/research-os/n/${encodeURIComponent(n.slug)}`} className="text-[color:var(--basalt)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                      {n.title}
+                    </Link>
+                    {n.branch !== branch && <span className="text-[10.5px] small-caps text-[color:var(--gold-deep)]">{branchName(n.branch)}</span>}
+                    {n.shared.length > 0 && (
+                      <span className="text-[11.5px] text-[color:var(--basalt-3)]">
+                        · shares {n.shared.slice(0, 3).map((s) => s.title).join(", ")}
+                        {n.shared.length > 3 ? ` and ${n.shared.length - 3} more` : ""}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </Section>

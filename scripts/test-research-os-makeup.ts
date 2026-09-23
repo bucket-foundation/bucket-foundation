@@ -207,3 +207,10 @@ test("the graph check follows chains through evidence", () => {
   assert.deepEqual(pairInGraph(s2, "idea", "law"), { graphLoop: false, implied: true });
   assert.deepEqual(pairInGraph(s2, "law", "idea"), { graphLoop: true, implied: false });
 });
+
+test("nearest by makeup: attention in the prime basis, where a prime every composite holds weighs nothing", () => {
+  const m = buildMakeup("kin", snap, none)!;
+  assert.deepEqual(m.nearest.map((n) => [n.slug, n.shared.map((s) => s.slug)]), [["dynamics", ["vectors"]]]);
+  assert.equal(m.nearest[0].weight, 1);
+  assert.deepEqual(buildMakeup("lone", snap, none)!.nearest, []);
+});
