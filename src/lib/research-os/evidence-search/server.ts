@@ -22,13 +22,13 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { validateCorpus, type Manifest, type PassageRecord, type SourceRecord } from "../evidence/corpus";
 import { parsePolicy, type RightsPolicy } from "../evidence/rights";
 import { sha256Hex } from "../evidence/text";
+import { inChunks, pagedRead } from "../paging";
 import { eligibleKey, LexicalIndex } from "./lexical";
 import { evidenceSearch } from "./search";
 import type { WorkerConfig } from "./worker-client";
 import { MAX_CARDS, type EvidenceCard, type EvidenceSearchRequest, type EvidenceSearchResponse } from "./types";
 
 export const EVIDENCE_DIR = "RESEARCH_OS_EVIDENCE_DIR";
-const PAGE = 500;
 
 /** A corpus that was never built here, or one whose files do not validate.
  * No retry changes either. */
@@ -159,11 +159,6 @@ export function loadCorpus(env: Record<string, string | undefined> = process.env
   return cached;
 }
 
-/** Forgets the cached corpus, for tests and for a rebuild between requests. */
-export function forgetCorpus(): void {
-  cached = null;
-}
-
 export interface Eligible {
   sourceId: string;
   sourceRevision: string;
@@ -172,24 +167,27 @@ export interface Eligible {
 
 /** The admitted index revisions whose node is public right now. Pages, in a fixed order. */
 export async function eligibleSources(svc: SupabaseClient): Promise<Eligible[]> {
-  const out: Eligible[] = [];
-  for (let from = 0; ; from += PAGE) {
-    const { data, error } = await svc.rpc("eligible_evidence_sources").select("source_id, source_revision, node_id").order("source_id").range(from, from + PAGE - 1);
-    if (error) throw new EligibilityUnavailable(error.message);
-    const rows = (data ?? []) as { source_id: string; source_revision: string; node_id: string | null }[];
-    out.push(...rows.map((r) => ({ sourceId: r.source_id, sourceRevision: r.source_revision, nodeId: r.node_id })));
-    if (rows.length < PAGE) break;
+  let rows: { source_id: string; source_revision: string; node_id: string | null }[];
+  try {
+    rows = await pagedRead<{ source_id: string; source_revision: string; node_id: string | null }>(
+      (page) =>
+        svc.rpc("eligible_evidence_sources").select("source_id, source_revision, node_id").order("source_id").range(page.from, page.to) as unknown as Promise<{
+          data: { source_id: string; source_revision: string; node_id: string | null }[] | null;
+          error: { message: string } | null;
+        }>,
+    );
+  } catch (e) {
+    throw new EligibilityUnavailable(e instanceof Error ? e.message : String(e));
   }
-  return out;
+  return rows.map((r) => ({ sourceId: r.source_id, sourceRevision: r.source_revision, nodeId: r.node_id }));
 }
 
 /** The passage revisions admitted for quoting among `sourceIds`. Reads in pages, in a fixed order. */
-export async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]): Promise<Set<string>> {
-  const out = new Set<string>();
-  for (let i = 0; i < sourceIds.length; i += PAGE) {
-    const chunk = sourceIds.slice(i, i + PAGE);
-    for (let from = 0; ; from += PAGE) {
-      const { data, error } = await svc
+async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]): Promise<Set<string>> {
+  let rows: { source_id: string; source_revision: string }[];
+  try {
+    rows = await inChunks<{ source_id: string; source_revision: string }>(sourceIds, (chunk, page) =>
+      svc
         .from("evidence_source_admissions")
         .select("source_id, source_revision")
         .in("source_id", chunk)
@@ -205,14 +203,12 @@ export async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]
         // being quotable, quietly.
         .order("source_id")
         .order("source_revision")
-        .range(from, from + PAGE - 1);
-      if (error) throw new EligibilityUnavailable(error.message);
-      const rows = (data ?? []) as { source_id: string; source_revision: string }[];
-      for (const r of rows) out.add(r.source_revision);
-      if (rows.length < PAGE) break;
-    }
+        .range(page.from, page.to) as unknown as Promise<{ data: { source_id: string; source_revision: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (e) {
+    throw new EligibilityUnavailable(e instanceof Error ? e.message : String(e));
   }
-  return out;
+  return new Set(rows.map((r) => r.source_revision));
 }
 
 export interface SearchContext {

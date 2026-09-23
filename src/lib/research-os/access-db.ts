@@ -6,7 +6,19 @@
  * write. Never import from a client component.
  */
 import { graphService, inChunks, pagedRead } from "./db";
-import { authorizeNodes, dbAccessStore, readVisibility, storeWithNodes, type AccessStore } from "./read-access";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import {
+  authorizeNodes,
+  dbAccessStore,
+  GRANT_COLUMNS,
+  grantFromRow,
+  readGrants,
+  readVisibility,
+  storeWithNodes,
+  type AccessStore,
+  type GrantRow,
+  type StoreResult,
+} from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
@@ -23,7 +35,6 @@ import {
   type Visibility,
 } from "./access";
 
-type GrantRow = { id: string; node_id: string; grantee_id: string | null; grantee_group: string | null; role: GrantRole; expires_at: string | null };
 type RequestRow = {
   id: string;
   node_id: string;
@@ -36,9 +47,6 @@ type RequestRow = {
   created_at: string;
 };
 
-function grantFromRow(r: GrantRow): NodeGrant {
-  return { id: r.id, nodeId: r.node_id, granteeId: r.grantee_id, granteeGroup: r.grantee_group, role: r.role, expiresAt: r.expires_at };
-}
 function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
   return {
     id: r.id,
@@ -136,20 +144,9 @@ export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAcc
 }
 
 /**
- * Both of these decide access, and both took one unpaged request.
- * PostgREST stops at a thousand rows and reports no error, so the grant
- * that admits you is dropped when you are the 1,001st grantee of a node
- * and the answer reads as a complete list of grants that excludes you.
- * That is the row cap producing a denial rather than a truncation.
- *
- * pagedRead throws where the builder answers an error. A caller of
- * these two reads a union, so the throw is turned back into the
- * unavailable it already knows how to answer.
- */
-/**
  * An outage, said out loud.
  *
- * Both callers answer a union, so the throw becomes the `unavailable`
+ * Every loader here answers a union, so a failure becomes the `unavailable`
  * the route already knows how to turn into a 503. A bare `catch {}`
  * made that silent, and it hides more than an outage: graphService()
  * throwing on an unconfigured stack, a TypeError in the callback, and a
@@ -163,37 +160,15 @@ function unavailable(table: string, err: unknown): { ok: false; reason: "unavail
   return { ok: false, reason: "unavailable" };
 }
 
-export async function loadGrants(nodeId: string): Promise<AccessRead<NodeGrant[]>> {
-  try {
-    const rows = await pagedRead<GrantRow>((page) =>
-      graphService()
-        .from("node_grants")
-        .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-        .eq("node_id", nodeId)
-        .order("id")
-        .range(page.from, page.to) as unknown as Promise<{ data: GrantRow[] | null; error: { message: string } | null }>,
-    );
-    return { ok: true, value: rows.map(grantFromRow) };
-  } catch (err) {
-    return unavailable("node_grants", err);
-  }
+export async function loadGrants(nodeId: string, client: () => SupabaseClient = graphService): Promise<AccessRead<NodeGrant[]>> {
+  const read = await readGrants([nodeId], client);
+  return read.ok ? read : unavailable("node_grants", read.error);
 }
 
 /** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
 export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
-  try {
-    const rows = await pagedRead<{ class_id: string }>((page) =>
-      graphService()
-        .from("class_members")
-        .select("class_id")
-        .eq("learner_id", learnerId)
-        .order("class_id")
-        .range(page.from, page.to) as unknown as Promise<{ data: { class_id: string }[] | null; error: { message: string } | null }>,
-    );
-    return { ok: true, value: rows.map((r) => `class:${r.class_id}`) };
-  } catch (err) {
-    return unavailable("class_members", err);
-  }
+  const read = await dbAccessStore.groups(learnerId);
+  return read.ok ? read : unavailable("class_members", read.error);
 }
 
 /**
@@ -290,9 +265,7 @@ export async function loadPendingCountsForNodes(nodeIds: string[]): Promise<Acce
   }
 }
 
-export type AccessResult<T> = { ok: true; value: T } | { ok: false; error: string };
-
-export async function setVisibility(node: NodeAccess, actor: Viewer, requested: Visibility): Promise<AccessResult<Visibility>> {
+export async function setVisibility(node: NodeAccess, actor: Viewer, requested: Visibility): Promise<StoreResult<Visibility>> {
   const next = nextVisibility(node, actor, requested);
   if (!next) return { ok: false, error: "not_owner" };
   const { error } = await graphService().from("nodes").update({ visibility: next }).eq("id", node.id);
@@ -306,20 +279,22 @@ export async function grantAccess(
   grantee: { id?: string; group?: string },
   role: GrantRole,
   expiresAt?: string | null
-): Promise<AccessResult<NodeGrant>> {
+): Promise<StoreResult<NodeGrant>> {
   if (!grantAllowed(node, actor, role)) return { ok: false, error: "grant_refused" };
   if (Boolean(grantee.id) === Boolean(grantee.group)) return { ok: false, error: "grantee_required" };
   const row = { node_id: node.id, grantee_id: grantee.id ?? null, grantee_group: grantee.group ?? null, role, granted_by: actor.id, expires_at: expiresAt ?? null };
   const { data, error } = await graphService()
     .from("node_grants")
     .upsert(row, { onConflict: grantee.id ? "node_id,grantee_id,role" : "node_id,grantee_group,role" })
-    .select("id,node_id,grantee_id,grantee_group,role,expires_at")
+    .select(GRANT_COLUMNS)
     .single();
   if (error || !data) return { ok: false, error: "write_failed" };
-  return { ok: true, value: grantFromRow(data as GrantRow) };
+  const grant = grantFromRow(data as GrantRow);
+  if (!grant) throw new Error(`node_grants: the row written for ${node.id} fails the grant validity rule`);
+  return { ok: true, value: grant };
 }
 
-export async function revokeGrant(node: NodeAccess, actor: Viewer, grantId: string): Promise<AccessResult<null>> {
+export async function revokeGrant(node: NodeAccess, actor: Viewer, grantId: string): Promise<StoreResult<null>> {
   if (node.ownerId !== actor.id) return { ok: false, error: "not_owner" };
   const { error } = await graphService().from("node_grants").delete().eq("id", grantId).eq("node_id", node.id);
   if (error) return { ok: false, error: "write_failed" };
@@ -332,7 +307,7 @@ export async function createRequest(
   purpose: RequestPurpose,
   message: string | null,
   grants: NodeGrant[]
-): Promise<AccessResult<AccessRequest & { createdAt: string }>> {
+): Promise<StoreResult<AccessRequest & { createdAt: string }>> {
   if (!requestAllowed(node, requester, purpose, grants)) return { ok: false, error: "request_refused" };
   const { data, error } = await graphService()
     .from("access_requests")
@@ -348,7 +323,7 @@ export async function decideAccessRequest(
   actor: Viewer,
   requestId: string,
   decision: "granted" | "denied"
-): Promise<AccessResult<{ request: AccessRequest; grant: NodeGrant | null }>> {
+): Promise<StoreResult<{ request: AccessRequest; grant: NodeGrant | null }>> {
   const svc = graphService();
   const { data: row, error: readErr } = await svc
     .from("access_requests")
@@ -377,7 +352,7 @@ export async function decideAccessRequest(
 export async function createImport(
   ownerId: string,
   input: { kind: "dataset" | "paper" | "notes" | "corpus"; title: string; source?: Record<string, unknown> }
-): Promise<AccessResult<{ importId: string; nodeId: string; fetched: boolean }>> {
+): Promise<StoreResult<{ importId: string; nodeId: string; fetched: boolean }>> {
   const svc = graphService();
   const slug = `import-${ownerId.slice(0, 8)}-${Date.now().toString(36)}`;
   // A source with a public URL is fetched so the node carries its text

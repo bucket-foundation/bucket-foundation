@@ -17,13 +17,15 @@
  *   2. A visibility the code does not know is private. The column is
  *      NOT NULL with a three-value check today, so this is insurance.
  *   3. Reads are batched by kind: the nodes, then their grants, then the
- *      viewer's groups, each in chunks of 100 ids rather than one query
- *      per result.
+ *      viewer's groups, each in chunks of IN_CHUNK ids rather than one
+ *      query per result.
  *
  * The store is injectable so the rules can be tested without a database.
  */
 import { can, canView, GRANT_ROLES, live, readVisibility, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { graphService } from "./db";
+import { inChunks, pagedRead } from "./paging";
 
 /** What a read can ask for. `view` is the floor; the rest are grant roles. */
 export type ReadVerb = GrantRole;
@@ -70,114 +72,80 @@ function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
 export { readVisibility };
 
 /** A grant whose expiry cannot be read is treated as expired. */
-// The expiry rule lived here and in access.ts, they disagreed, and the
-// repair was to write the same fix into both. One exported function is
-// the repair: `live` comes from access.ts, which this file already
-// imports from.
 const liveGrant = live;
 
-// 100 ids is about 3.7 KB of request line, half the 8 KB a proxy allows by
-// default. 200 measured at 7.5 KB, which a longer host or select clause
-// turns into a 414 (Bucket critic C7).
-/** PostgREST answers at most this many rows per request. */
-const PAGE = 1000;
-/**
- * A page loop that never terminates is worse than one that truncates,
- * so both loops below stop here and report an outage. db.ts carries the
- * same bound for the same reason (Bucket critic C54).
- */
-const MAX_PAGES = 200;
+export type GrantRow = {
+  id: string;
+  node_id: string;
+  grantee_id: string | null;
+  grantee_group: string | null;
+  role: string;
+  expires_at: string | null;
+};
 
-function chunk<T>(items: T[], size = 100): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
-  return out;
+export const GRANT_COLUMNS = "id,node_id,grantee_id,grantee_group,role,expires_at";
+
+export function grantFromRow(r: GrantRow): NodeGrant | null {
+  if (!GRANT_ROLES.includes(r.role as GrantRole)) return null;
+  if (r.grantee_id && r.grantee_group) return null;
+  return {
+    id: r.id,
+    nodeId: r.node_id,
+    granteeId: r.grantee_id ?? null,
+    granteeGroup: r.grantee_group ?? null,
+    role: r.role as GrantRole,
+    expiresAt: r.expires_at ?? null,
+  };
+}
+
+type Page<T> = Promise<{ data: T[] | null; error: { message: string } | null }>;
+
+function failure(what: string, err: unknown): { ok: false; error: string } {
+  return { ok: false, error: `${what}: ${err instanceof Error ? err.message : String(err)}` };
+}
+
+export async function readGrants(ids: string[], client: () => SupabaseClient = graphService): Promise<StoreResult<NodeGrant[]>> {
+  try {
+    const rows = await inChunks<GrantRow>(ids, (part, page) =>
+      client().from("node_grants").select(GRANT_COLUMNS).in("node_id", part).order("id", { ascending: true }).range(page.from, page.to) as unknown as Page<GrantRow>,
+    );
+    return { ok: true, value: rows.map(grantFromRow).filter((g): g is NodeGrant => g !== null) };
+  } catch (err) {
+    return failure("grants", err);
+  }
 }
 
 /** The store the routes use: the service-role client, errors preserved. */
 export const dbAccessStore: AccessStore = {
   async nodes(ids) {
-    const rows: NodeAccess[] = [];
-    for (const part of chunk(ids)) {
-      const { data, error } = await graphService().from("nodes").select("id,visibility,owner_id").in("id", part);
-      if (error) return { ok: false, error: `nodes: ${error.message}` };
-      for (const r of (data as { id: string; visibility: string | null; owner_id: string | null }[]) || []) {
-        rows.push({ id: r.id, visibility: readVisibility(r.visibility), ownerId: r.owner_id ?? null });
-      }
+    try {
+      const rows = await inChunks<{ id: string; visibility: string | null; owner_id: string | null }>(ids, (part, page) =>
+        graphService().from("nodes").select("id,visibility,owner_id").in("id", part).order("id", { ascending: true }).range(page.from, page.to) as unknown as Page<{
+          id: string;
+          visibility: string | null;
+          owner_id: string | null;
+        }>,
+      );
+      return { ok: true, value: rows.map((r) => ({ id: r.id, visibility: readVisibility(r.visibility), ownerId: r.owner_id ?? null })) };
+    } catch (err) {
+      return failure("nodes", err);
     }
-    return { ok: true, value: rows };
   },
-  async grants(ids) {
-    const rows: NodeGrant[] = [];
-    for (const part of chunk(ids)) {
-      // Paged. Chunking the ids bounds the request line and says nothing
-      // about PostgREST's thousand-row cap: a hundred nodes averaging ten
-      // grants each overflow it, and the dropped rows come back as a
-      // denial of a live grant with no error at all. Rule 1 in this
-      // file's header forbids exactly that (Bucket critic C41).
-      for (let p = 0; ; p += 1) {
-      if (p >= MAX_PAGES) return { ok: false, error: "grants: a paged read did not terminate" };
-      const from = p * PAGE;
-      const { data, error } = await graphService()
-        .from("node_grants")
-        .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-        .in("node_id", part)
-        .order("id", { ascending: true })
-        .range(from, from + PAGE - 1);
-      if (error) return { ok: false, error: `grants: ${error.message}` };
-      const page = (data as unknown[]) || [];
-      for (const r of (data as {
-        id: string;
-        node_id: string;
-        grantee_id: string | null;
-        grantee_group: string | null;
-        role: string;
-        expires_at: string | null;
-      }[]) || []) {
-        // A role this code does not know grants nothing, the way an
-        // unknown visibility hides a node. The column carries a check
-        // constraint today, so this is the same insurance.
-        if (!GRANT_ROLES.includes(r.role as GrantRole)) continue;
-        // A row naming both a person and a group would admit the whole
-        // group through the person's grant, so it admits nobody until the
-        // row is repaired.
-        if (r.grantee_id && r.grantee_group) continue;
-        rows.push({
-          id: r.id,
-          nodeId: r.node_id,
-          granteeId: r.grantee_id ?? null,
-          granteeGroup: r.grantee_group ?? null,
-          role: r.role as GrantRole,
-          expiresAt: r.expires_at ?? null,
-        });
-      }
-        if (page.length < PAGE) break;
-      }
-    }
-    return { ok: true, value: rows };
-  },
+  grants: (ids) => readGrants(ids),
   async groups(learnerId) {
-    // Paged and ordered. PostgREST stops at a thousand rows, and a
-    // learner past that would lose the group grants on the classes it
-    // dropped, which reads as a denial rather than as the truncation it
-    // is (Bucket critic C36). `nodes` above needs no page loop: it reads
-    // at most one row per id, and `chunk` already bounds that at 100.
-    const groups: string[] = [];
-    for (let p = 0; ; p += 1) {
-      if (p >= MAX_PAGES) return { ok: false, error: "groups: a paged read did not terminate" };
-      const from = p * PAGE;
-      const { data, error } = await graphService()
-        .from("class_members")
-        .select("class_id")
-        .eq("learner_id", learnerId)
-        .order("class_id", { ascending: true })
-        .range(from, from + PAGE - 1);
-      if (error) return { ok: false, error: `groups: ${error.message}` };
-      const rows = (data as { class_id: string }[]) || [];
-      groups.push(...rows.map((r) => `class:${r.class_id}`));
-      if (rows.length < PAGE) break;
+    // Paged and ordered. A learner past a thousand classes would lose the
+    // group grants on the classes it dropped, which reads as a denial
+    // rather than as the truncation it is (Bucket critic C36).
+    try {
+      const rows = await pagedRead<{ class_id: string }>((page) =>
+        graphService().from("class_members").select("class_id").eq("learner_id", learnerId).order("class_id", { ascending: true }).range(page.from, page.to) as unknown as Page<{
+          class_id: string;
+        }>,
+      );
+      return { ok: true, value: rows.map((r) => `class:${r.class_id}`) };
+    } catch (err) {
+      return failure("groups", err);
     }
-    return { ok: true, value: groups };
   },
 };
 

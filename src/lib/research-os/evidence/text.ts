@@ -41,7 +41,7 @@ export function byteLength(text: string): number {
 }
 
 /** True when `offset` starts a code point in `bytes`, or is its end. */
-export function onBoundary(bytes: Uint8Array, offset: number): boolean {
+function onBoundary(bytes: Uint8Array, offset: number): boolean {
   if (!Number.isInteger(offset) || offset < 0 || offset > bytes.length) return false;
   if (offset === bytes.length) return true;
   return (bytes[offset] & 0xc0) !== 0x80;
@@ -68,11 +68,3 @@ export function byteSlice(text: string, start: number, end: number): string {
   return bytes.subarray(start, end).toString("utf8");
 }
 
-/** The byte span of the first occurrence of `needle` in `text`, or null. */
-export function findByteSpan(text: string, needle: string): { start: number; end: number } | null {
-  if (!needle) return null;
-  const at = text.indexOf(needle);
-  if (at === -1) return null;
-  const start = byteLength(text.slice(0, at));
-  return { start, end: start + byteLength(needle) };
-}
