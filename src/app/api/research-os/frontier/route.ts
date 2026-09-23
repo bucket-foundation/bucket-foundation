@@ -1,17 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService } from "@/lib/research-os/db";
+import { graphService } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import { verifyClassStaff } from "@/lib/research-os/class-db";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const branch = (new URL(req.url).searchParams.get("branch") || "02-physics").trim();
   const { data, error } = await graphService()
     .from("nodes")
@@ -22,20 +17,13 @@ export async function GET(req: NextRequest) {
     .order("tier", { ascending: true });
   if (error) return bad(500, "read_failed");
   const rows = (data as { id: string; slug: string; title: string; kind: string; tier: number; frontier_flag: string }[]) || [];
-  return NextResponse.json(
-    { openQuestions: rows.filter((r) => r.frontier_flag === "open_question"), frontier: rows.filter((r) => r.frontier_flag === "frontier") },
-    NO_STORE
-  );
-}
+  return { openQuestions: rows.filter((r) => r.frontier_flag === "open_question"), frontier: rows.filter((r) => r.frontier_flag === "frontier") };
+});
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  let body: { nodeId?: string; flag?: string | null; classId?: string };
-  try {
-    body = await req.json();
-  } catch {
-    return bad(400, "bad_json");
-  }
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const read = await readAnyJson(req);
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as { nodeId?: string; flag?: string | null; classId?: string };
   if (!body.nodeId) return bad(400, "node_required");
   if (body.flag !== null && body.flag !== undefined && body.flag !== "open_question" && body.flag !== "frontier") return bad(400, "bad_flag");
   const reviewer = await verifyReviewer(req);
@@ -46,5 +34,5 @@ export async function POST(req: NextRequest) {
   if (!allowed) return bad(403, "forbidden");
   const { error } = await graphService().from("nodes").update({ frontier_flag: body.flag ?? null }).eq("id", body.nodeId);
   if (error) return bad(500, "write_failed");
-  return NextResponse.json({ ok: true, flag: body.flag ?? null }, NO_STORE);
-}
+  return { ok: true, flag: body.flag ?? null };
+});
