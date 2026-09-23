@@ -1,16 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { NextResponse } from "next/server";
+import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { verifyClassStaff } from "@/lib/research-os/class-db";
 import { consentPathFor, hashContact, type ConsentRequestRecord } from "@/lib/research-os/consent-paths";
 import { resolveConsentPaths, type BirthYearBucket, type ConsentStatus, type LearnerProfile } from "@/lib/research-os/consent";
 import { vendorByName } from "@/lib/research-os/consent-vendor";
+import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
@@ -28,10 +25,7 @@ async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
   };
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   let effective;
   let profile: LearnerProfile | null;
   try {
@@ -63,21 +57,17 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});
 
 type Body =
   | { action: "request"; vendor: string; guardianContact?: string }
   | { action: "record"; classId: string; learnerId: string; requestId?: string; status: "verified" | "declined"; vendorRef?: string }
   | { action: "class_basis"; classId: string; basis: "none" | "school"; document?: string };
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  let body: Body;
-  try {
-    body = (await req.json()) as Body;
-  } catch {
-    return bad(400, "bad_json");
-  }
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const read = await readAnyJson(req, "bad_json");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as Body;
   const svc = graphService();
 
   if (body.action === "request") {
@@ -145,4 +135,4 @@ export async function POST(req: NextRequest) {
   }
 
   return bad(400, "unknown_action");
-}
+});
