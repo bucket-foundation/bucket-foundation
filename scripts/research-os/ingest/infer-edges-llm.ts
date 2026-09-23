@@ -1,35 +1,16 @@
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
+import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { inferEdges } from "../../../src/lib/research-os/ingest/infer";
 import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
-import type { ReviewItem } from "../../../src/lib/research-os/ingest/types";
 import { buildNodePool } from "./lib/build-node-pool";
 import { buildCandidatePairs, proposeLlmEdges, type ModelCaller, type LlmEdgeProposal } from "../../../src/lib/research-os/inference/propose";
 import { callGroundedModelWithUsage, logToolCost, selectProvider, type Provider } from "../../../src/lib/research-os/llm";
 import { configured, graphService } from "../../../src/lib/research-os/db";
+import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 
 const OUT_DIR = join(__dirname, "out");
 const MAX_JUDGMENT_TOKENS = 300;
 const COST_LOG_ACTOR = "system:infer-edges-llm";
-
-function readExistingReviewList(): ReviewItem[] {
-  const p = join(OUT_DIR, "review-list.json");
-  if (!existsSync(p)) return [];
-  try {
-    const parsed = JSON.parse(readFileSync(p, "utf8"));
-    return Array.isArray(parsed?.items) ? parsed.items : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeReviewList(items: ReviewItem[]): void {
-  mkdirSync(OUT_DIR, { recursive: true });
-  writeFileSync(
-    join(OUT_DIR, "review-list.json"),
-    JSON.stringify({ generated_at: new Date().toISOString(), items }, null, 2) + "\n",
-  );
-}
 
 function modelIdFor(provider: Provider): string {
   if (provider === "anthropic") return "claude-sonnet-4-5";
