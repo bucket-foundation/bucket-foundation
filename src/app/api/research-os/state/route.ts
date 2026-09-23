@@ -1,23 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { onNodeOpened, onTransferItemAnswered } from "@/lib/research-os/stages";
 import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { graphService, recordEvidence } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
-
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   const { searchParams } = new URL(req.url);
   const nodeIds = (searchParams.get("nodeIds") || "")
     .split(",")
@@ -41,7 +34,7 @@ export async function GET(req: NextRequest) {
       updatedAt: r.updated_at,
     })),
   });
-}
+});
 
 const MAX_TRANSFER_ANSWER_CHARS = 2000;
 
@@ -53,17 +46,10 @@ interface StateBody {
   sessionId?: string;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  let body: StateBody;
-  try {
-    body = (await req.json()) as StateBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+export const POST = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as StateBody;
   const nodeId = (body.nodeId || "").trim();
   if (!nodeId) return bad(400, "nodeId is required");
   if (body.action !== "open" && body.action !== "transfer_item") return bad(400, "unknown action");
@@ -108,4 +94,4 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ stage: transition.nextStage, event: transition.event }, { headers: { "cache-control": "no-store" } });
-}
+});
