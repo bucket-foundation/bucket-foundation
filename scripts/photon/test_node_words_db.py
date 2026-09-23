@@ -27,6 +27,7 @@ def row(node_id, lang, word, confidence=0.9):
         "node_id": node_id, "lang": lang, "word": word, "roman": "", "gloss": "light", "root_lang": "ine-pro",
         "root_form": "*lewk-", "root_gloss": "to shine", "chain": [{"lang": "ine-pro", "form": "*lewk-", "rel": "der", "gloss": "to shine"}],
         "root_texts": [], "source": nw.SOURCE, "en_term": "light", "sense": "visible light", "confidence": confidence,
+        "root_confidence": confidence, "root_source": "wiktionary",
     }
 
 class WriteRowsTests(unittest.TestCase):
