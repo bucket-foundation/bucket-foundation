@@ -1,9 +1,3 @@
-/**
- * The site's one browser Supabase client. Built with @supabase/ssr so the
- * session lives in cookies the server can read: middleware, server
- * components, and route handlers all see the same sign-in. Memoized so
- * every component shares one auth state.
- */
 "use client";
 
 import { createBrowserClient } from "@supabase/ssr";

@@ -1,10 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
 
-/**
- * The core loop as a person: sign in with a code from the local mail
- * catcher, land on home, open Learn and an atom, open the workspace, open
- * the map, and sign out. Serial: one browser page carries the session.
- */
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const email = `e2e-${Date.now()}@bucket.local`;
 
@@ -94,7 +89,7 @@ test("the workspace and the map render inside the shell", async () => {
   await expect(page.getByRole("heading", { level: 1, name: /why the sky is blue/i })).toBeVisible();
   await page.goto("/research-os/map?view=globe");
   await expect(page.getByRole("heading", { name: /the canon on the globe/i })).toBeVisible();
-  await expect(page.getByPlaceholder(/search canon/i)).toBeVisible();
+  await expect(page.getByPlaceholder(/search \d+ source excerpts/i)).toBeVisible();
 });
 
 test("account and sign out", async () => {

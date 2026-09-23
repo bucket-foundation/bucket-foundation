@@ -11,7 +11,6 @@ import Lesson from "./Lesson";
 import Drill from "./Drill";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState } from "@/components/ui";
 
-/** One atom: the lesson, then retrieval at the depth the person's mastery calls for. */
 export default function AtomView({ branch, atomId }: { branch: string; atomId: string }) {
   const a = useAcademy(branch);
   const router = useRouter();

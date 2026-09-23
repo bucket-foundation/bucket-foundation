@@ -1,26 +1,3 @@
-/**
- * Unit tests: lateral reading (bkt-ros, learning/research-os/
- * PLAN-REVISION-3.md section 2c; Wineburg and McGrew 2019, Breakstone and
- * colleagues 2021). Pure, no I/O, no live Supabase or network, matching
- * this repo's existing research-os test convention (node:test +
- * node:assert, plain fixture objects, injectable stores where a store
- * exists).
- *
- * Covers, across the four files this bead touches:
- *   - src/lib/research-os/locate.ts: assessSourceIndependence,
- *     findIndependentSources ("find another source" mode).
- *   - src/lib/research-os/lateral-reading.ts: the arm switch
- *     (envSecondSourceRequiredDefault/resolveSecondSourceRequired),
- *     secondSourceRequiredAtStage, and checkSecondSourceGate, the exact
- *     gate workspace/route.ts's "check" phase 2 calls.
- *   - src/lib/research-os/production-guard.ts Rule 5: hasCorroboration,
- *     lateralReadingFlag.
- *   - src/lib/research-os/stages.ts: onCorroborationRecorded, and
- *     onCheckResult's secondSourceRequired/secondSourceNodeId threading.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-lateral-reading.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { assessSourceIndependence, findIndependentSources, type IndependentSourceCandidate } from "../src/lib/research-os/locate";
@@ -34,10 +11,6 @@ import {
 import { hasCorroboration, lateralReadingFlag, type CorroborationRecord } from "../src/lib/research-os/production-guard";
 import { onCorroborationRecorded, onCheckResult } from "../src/lib/research-os/stages";
 import type { GraphNode, Provenance, Stage } from "../src/lib/research-os/types";
-
-// ---------------------------------------------------------------------------
-// locate.ts: assessSourceIndependence
-// ---------------------------------------------------------------------------
 
 function prov(overrides: Partial<Provenance> = {}): Provenance {
   return { publisher: "Royal Society", url: "https://royalsocietypublishing.org/doi/10.1098/rspl.1869.0033", ...overrides };
@@ -77,10 +50,6 @@ test("assessSourceIndependence: a malformed url never throws, just carries no do
   const a = assessSourceIndependence({ publisher: "Royal Society", url: "not a url" }, { publisher: "NASA", url: "https://spaceplace.nasa.gov/blue-sky/en/" });
   assert.equal(a.independent, true, "different publisher alone is enough once domain comparison is unavailable on one side");
 });
-
-// ---------------------------------------------------------------------------
-// locate.ts: findIndependentSources, "find another source" mode
-// ---------------------------------------------------------------------------
 
 type FixtureNode = Pick<GraphNode, "id" | "slug" | "title" | "kind" | "tier" | "summary" | "provenance">;
 
@@ -138,10 +107,6 @@ test("findIndependentSources: a blank query returns nothing, never the whole gra
   assert.equal(findIndependentSources(nodes, "   ", QUOTED).length, 0);
 });
 
-// ---------------------------------------------------------------------------
-// lateral-reading.ts: the arm switch
-// ---------------------------------------------------------------------------
-
 test("envSecondSourceRequiredDefault is on unless RESEARCH_OS_SECOND_SOURCE_REQUIRED is exactly false or 0", () => {
   const saved = process.env.RESEARCH_OS_SECOND_SOURCE_REQUIRED;
   try {
@@ -164,7 +129,7 @@ test("envSecondSourceRequiredDefault is on unless RESEARCH_OS_SECOND_SOURCE_REQU
 test("resolveSecondSourceRequired: a class override wins over the env default either direction", () => {
   const saved = process.env.RESEARCH_OS_SECOND_SOURCE_REQUIRED;
   try {
-    delete process.env.RESEARCH_OS_SECOND_SOURCE_REQUIRED; // env default: on
+    delete process.env.RESEARCH_OS_SECOND_SOURCE_REQUIRED;
     assert.equal(resolveSecondSourceRequired(true), true);
     assert.equal(resolveSecondSourceRequired(false), false, "an explicit false override beats the on-by-default env");
     assert.equal(resolveSecondSourceRequired(null), true, "null defers to the env default");
@@ -174,11 +139,6 @@ test("resolveSecondSourceRequired: a class override wins over the env default ei
     else process.env.RESEARCH_OS_SECOND_SOURCE_REQUIRED = saved;
   }
 });
-
-// ---------------------------------------------------------------------------
-// lateral-reading.ts: secondSourceRequiredAtStage, "Awareness stays
-// single-source" floor
-// ---------------------------------------------------------------------------
 
 test("secondSourceRequiredAtStage: off entirely when the switch is off, regardless of stage", () => {
   const stages: Stage[] = ["access", "awareness", "understanding", "internalization", "production"];
@@ -195,11 +155,6 @@ test("secondSourceRequiredAtStage: Understanding and above require a second sour
   assert.equal(secondSourceRequiredAtStage("internalization", true), true);
   assert.equal(secondSourceRequiredAtStage("production", true), true);
 });
-
-// ---------------------------------------------------------------------------
-// lateral-reading.ts: checkSecondSourceGate, the exact gate workspace/
-// route.ts's "check" phase 2 calls
-// ---------------------------------------------------------------------------
 
 test("checkSecondSourceGate: the arm switch off reveals with no second source, at any stage", () => {
   const result = checkSecondSourceGate({ required: false, stage: "understanding", secondSourceWasQuoted: false, secondSourceIndependent: false });
@@ -263,10 +218,6 @@ test("checkSecondSourceGate: Internalization and Production also require the gat
   assert.equal(checkSecondSourceGate({ ...base, stage: "internalization", secondSourceWasQuoted: false }).ok, false);
 });
 
-// ---------------------------------------------------------------------------
-// production-guard.ts Rule 5: hasCorroboration / lateralReadingFlag
-// ---------------------------------------------------------------------------
-
 function corrRecord(overrides: Partial<CorroborationRecord> = {}): CorroborationRecord {
   return { firstSourceId: "n-1", secondSourceId: "n-2", ...overrides };
 }
@@ -291,10 +242,6 @@ test("lateralReadingFlag: a corroboration record for an unrelated node pair leav
   const records = [corrRecord({ firstSourceId: "n-8", secondSourceId: "n-9" })];
   assert.equal(lateralReadingFlag("n-1", records), "single-source");
 });
-
-// ---------------------------------------------------------------------------
-// stages.ts: onCorroborationRecorded
-// ---------------------------------------------------------------------------
 
 test("onCorroborationRecorded: never changes stage, fromStage === toStage === currentStage", () => {
   const t = onCorroborationRecorded("understanding", {
@@ -323,11 +270,6 @@ test("onCorroborationRecorded: persists the two source ids, the independence rea
   assert.equal(t.event.passagesAgree, false);
   assert.equal(t.event.sessionId, "session-1");
 });
-
-// ---------------------------------------------------------------------------
-// stages.ts: onCheckResult, the secondSourceRequired/secondSourceNodeId
-// threading this bead adds
-// ---------------------------------------------------------------------------
 
 test("onCheckResult: secondSourceRequired/secondSourceNodeId persist on the event when supplied", () => {
   const t = onCheckResult(

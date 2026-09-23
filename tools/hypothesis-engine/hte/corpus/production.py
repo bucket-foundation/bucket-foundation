@@ -1,74 +1,3 @@
-"""Ingest K-12 research productions (Research OS's own evidence record,
-`learning/research-os/PLAN.md` §5 on the `feat/research-os-k12` branch) into
-an `hte.corpus.Corpus`, so a production the engine's belief fusion can
-consume does not need a live Research OS deployment to test against.
-
-`docs/RESEARCH-OS-INTEGRATION.md`'s own finding is the reason this module
-exists: the production record is the one real bridge between the two
-research agendas, and seven of `RESEARCH-QUESTIONS.md`'s forty-nine
-questions (19, 21, 22, 24, 25, 26, 27) go from "needs adapter" to runnable
-once a production adapter exists. `docs/PRODUCTION-SCHEMA.md` carries the
-full JSON shape and the rationale for every mapping decision below; this
-module's own docstrings repeat only what a reader needs at the call site.
-
-Two loaders, one shared builder:
-
-- `load(path_or_dir=None, *, status_min="peer-reviewed")` reads production
-  JSON files off disk (one production object per file, or a file/list of
-  files each holding a JSON array); no network.
-- `load_supabase(url=None, key=None, table="productions", *,
-  status_min="peer-reviewed")` reads the same row shape over the Supabase
-  REST API (`03-data-services.md` section J is where a production lives
-  once Research OS ships it), using `SUPABASE_URL` and
-  `SUPABASE_SERVICE_KEY` from the environment when `url`/`key` are `None`.
-  Neither value is ever printed or logged by this module.
-
-Both funnel into `_build_corpus`, which reads `docs/PRODUCTION-SCHEMA.md`'s
-mapping rules: one `Source` per cited source plus one per production; one
-`EvidenceItem` per claim's evidence entry, carrying that claim's own slots;
-one `GroundTruthEvent` per accepted claim with a dated interval, so a
-holdout by review date works the same way `hte.calibrate.
-holdout_by_discovery_date` already works for the two shipped corpora; and a
-stemma edge whenever a production's own evidence cites another
-production's claim directly, so a citation chain of depth two or more
-survives into `Source.stemma_parents`.
-
-Two more mappings close the seam `bucket-foundation` PR #73's own production-
-guard columns opened (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own "PR #73"
-section carries the full field table):
-
-- **Counter-evidence.** `graph.productions.counter_evidence` (`[{text}]`,
-  or a bare newline-string array, mirroring `evidence`'s own dict-or-string
-  duality) becomes its own `ClaimEvidence` entries, appended onto the same
-  claim the row's own `evidence`/`sources` already built (same address,
-  same slots), each one carrying a `stance` override of `"refutes"`
-  (`_stance_to_hte`'s own vocabulary) rather than the claim's default
-  `"supports"`, and an explicit `{"type": "none", "value": "uncited"}`
-  citation: Research OS's own `CounterEvidenceEntry` carries no citation
-  field of its own, so every counter-evidence entry is uncited by
-  construction, and this module says so on the record rather than leaving
-  `citations` silently empty the way an ordinary uncited evidence line
-  does. `_build_corpus` reads each `ClaimEvidence`'s own `stance` override
-  when building its `EvidenceItem`, falling back to the claim's stance
-  when the entry carries none, so a production's own supporting evidence
-  and a learner's own rebuttal notes can now coexist as one claim's mixed-
-  stance evidence, `hte.link.link_evidence` linking the refuting entries
-  into that claim's `refutes` set the same way any other stance-negative
-  item would.
-- **Duplicates.** `graph.productions.duplicate_flag` (`{matchId,
-  matchOrigin, score}` or `null`) or a bare `duplicate_of` id on the row
-  reads onto `Production.duplicate_of`. `_build_corpus` emits a stemma
-  edge from the duplicate's own `Source` to the matched production's
-  (`sources[production.id].stemma_parents.append(duplicate_of)`, the same
-  citer-lists-cited direction the citation-chain stemma edge above
-  already uses) whenever that matched id names another production in the
-  same ingest batch, so `hte.belief.effective_count` folds a near-
-  duplicate submission into its original's connected component instead of
-  counting it as independent corroboration. A `matchOrigin` this batch has
-  no `Source` for yet (`"canon"`, or an original outside this batch) adds
-  no edge; the duplicate row itself is never dropped either way, only its
-  own stemma edge is skipped.
-"""
 from __future__ import annotations
 
 import json
@@ -87,77 +16,20 @@ from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance,
 from ..timeline import Interval
 from . import Corpus, GroundTruthEvent, RetrievalEnvelope
 
-# `tools/hypothesis-engine/hte/corpus/production.py` -> parents[1] is `hte/`,
-# the same one-level-up-from-`corpus/` convention `hte.concepts.
-# SEED_VOCAB_PATH` and `hte.corpus.education_atlas.EDUCATION_VOCAB_PATH` use.
 PRODUCTION_VOCAB_PATH = Path(__file__).resolve().parents[1] / "data" / "vocab-production-seed.json"
 DEFAULT_FIXTURES_DIR = Path(__file__).resolve().parents[1] / "data" / "production-fixtures"
 
-# The four review-maturity statuses this adapter treats as an ordered
-# ladder; `status_min` filters against this order. `"retracted"` is not on
-# the ladder at all (see `_passes_status_min`'s own docstring): a retraction
-# withdraws a claim from the record rather than marking it less mature, so
-# it is never a valid `status_min` and always bypasses whatever `status_min`
-# a caller passed.
 _STATUS_ORDER: tuple[str, ...] = ("draft", "peer-reviewed", "teacher-reviewed", "accepted")
 _ACCEPTED = "accepted"
 _RETRACTED = "retracted"
 _ALL_STATUSES: tuple[str, ...] = _STATUS_ORDER + (_RETRACTED,)
 
-# The fixed per-pipeline provenance tag every `EvidenceItem` this module
-# builds carries, matching the coarse-category convention every other
-# adapter in this package uses (`"fixture"`, `"education-atlas-
-# observation"`, `"education-atlas-doc-paragraph"`): one literal per
-# ingestion pipeline rather than a per-record free-text field. A production's
-# own richer, per-record `provenance` string (which pilot or cohort it claims
-# to come from) stays on the raw `Production` object `load_raw` returns
-# instead of overwriting this coarser tag; see `docs/PRODUCTION-SCHEMA.md`,
-# "Two provenance fields, on purpose."
 EVIDENCE_PROVENANCE_TAG = "k12-production"
 
-# `PLAN.md` §5's own claim-stance vocabulary (`supports | refutes |
-# extends`), mapped onto `hte.evidence.Stance`'s two-way split: `extends`
-# reads as a positive assertion the same way `supports` does, since both
-# claims stand behind their own slot reading rather than denying or
-# downgrading it.
 _STANCE_MAP: dict[str, Stance] = {"supports": Stance.POSITIVE, "extends": Stance.POSITIVE, "refutes": Stance.NEGATIVE}
 
-# The five concept slots a production's own `claims[].slots` block fills
-# (`PLAN.md` §5's `slots:` block, the same five names `hte.concepts.Slot`
-# gives a placement hypothesis before `TIME`/`RELATION`). TIME is read off
-# `claims[].interval` directly, never off a vocabulary lookup, matching
-# every other corpus this package ships.
 _SLOT_KEYS: tuple[Slot, ...] = (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
 
-
-# --------------------------------------------------------------------------
-# Research OS native-shape adapter (bkt-hte, `docs/PRODUCTION-SCHEMA-
-# ALIGNMENT.md` carries the full field-by-field table and the rationale for
-# every default below; this section's own docstrings repeat only what a
-# reader needs at the call site).
-#
-# `graph.productions` (bucket-foundation PR #6,
-# `supabase/migrations/20260910000000_research_os_graph.sql` +
-# `src/lib/research-os/types.ts`) is a flatter, single-claim record with no
-# analog to this module's `claims[].slots`/`stance`/`interval`, no
-# `grade_band`/`school_or_district_id`/`research_question`, and a four-value
-# `status` enum that does not line up with `_STATUS_ORDER`. Rather than push
-# every caller through a hand-written conversion step, `Production.from_dict`
-# detects the shape and normalizes it onto this module's own JSON shape
-# before doing anything else, so `load`, `load_supabase`, and
-# `hte.api.hypothesize` all accept a `graph.productions` row natively.
-# --------------------------------------------------------------------------
-
-# Research OS's four `graph.productions.status` values, mapped onto this
-# module's own five-value ladder. `"submitted"` and `"returned"` both read
-# as `"draft"`: Phase 0 ships no teacher or peer-review layer
-# (`RESEARCH-OS-INTEGRATION.md`'s own "What the engine does not touch"), so
-# a learner clicking submit, or a hold sent back for revision, is not the
-# independent review `_STATUS_ORDER`'s `"peer-reviewed"` rung represents.
-# Mapping either to `"peer-reviewed"` would let unreviewed student work
-# reach belief fusion under this adapter's own default `status_min`, exactly
-# what `PRODUCTION-SCHEMA.md`'s "an unreviewed record has not yet cleared
-# the review... requires" default excludes for the shipped fixture shape.
 RESEARCH_OS_STATUS_MAP: dict[str, str] = {
     "draft": "draft",
     "submitted": "draft",
@@ -165,26 +37,10 @@ RESEARCH_OS_STATUS_MAP: dict[str, str] = {
     "returned": "draft",
 }
 
-
 def is_research_os_record(raw: dict[str, Any]) -> bool:
-    """Whether `raw` is a `graph.productions` row (Research OS's own shape)
-    rather than this module's own `PRODUCTION-SCHEMA.md` shape. Fingerprint:
-    a Research OS row always carries `target_node_id` and never carries
-    `claims`; a `PRODUCTION-SCHEMA.md` record is the reverse. Both fields
-    are required on their own side (`_validate_production_record` requires
-    `claims`' absence to mean nothing here; the SQL migration's `not null`
-    on `target_node_id` means the reverse), so the fingerprint never
-    misclassifies a well-formed record of either shape."""
     return isinstance(raw, dict) and "target_node_id" in raw and "claims" not in raw
 
-
 def _tier_to_grade_band(tier: float | int) -> str:
-    """`graph.nodes.tier`'s own approximate-US-grade-level proxy (the
-    migration's own column comment), bucketed into `PRODUCTION-SCHEMA.md`'s
-    free-text grade bands (the shipped fixtures use `"6-8"`, `"9-10"`,
-    `"11-12"`). `tier >= 90` is the migration's own canon-bridge sentinel,
-    "adult, canon tier, outside any K-12 grade band"; read here as
-    `"canon"` rather than forced into a K-12 band it explicitly is not."""
     if tier >= 90:
         return "canon"
     if tier <= 5:
@@ -195,7 +51,6 @@ def _tier_to_grade_band(tier: float | int) -> str:
         return "9-10"
     return "11-12"
 
-
 def _citation_from_research_os_source(source: dict[str, Any], idx: int) -> dict[str, str]:
     if source.get("doi"):
         return {"type": "doi", "value": source["doi"]}
@@ -203,37 +58,16 @@ def _citation_from_research_os_source(source: dict[str, Any], idx: int) -> dict[
         return {"type": "url", "value": source["url"]}
     return {"type": "url", "value": source.get("label") or f"research-os-source-{idx}"}
 
-
-# The production-form's own author role, `normalize_research_os_record`'s
-# fixed `"student"` (PR #6 has no other author yet). Keyed by role rather
-# than a bare constant so a later, non-student author (a teacher-authored
-# production, Phase 1) has a place to plug in its own default tier without
-# another shape change to `_string_evidence_entries` below.
 _AUTHOR_ROLE_TIER: dict[str, str] = {"student": "T4"}
 _DEFAULT_AUTHOR_ROLE_TIER = "T4"
 
 _DOI_RE = re.compile(r"^(?:doi:\s*)?10\.\d{4,9}/\S+$", re.IGNORECASE)
 _URL_RE = re.compile(r"^https?://\S+$", re.IGNORECASE)
 
-
 def _tier_for_author_role(author_role: str) -> str:
     return _AUTHOR_ROLE_TIER.get(author_role, _DEFAULT_AUTHOR_ROLE_TIER)
 
-
 def _citation_from_source_string(line: str, idx: int) -> tuple[str, dict[str, str]]:
-    """One plain `sources[]` text line (`src/app/research-os/workspace/
-    page.tsx`'s own `sources.split("\\n")`), parsed into `(source_id,
-    citation)`: a DOI-shaped line (`doi:10.x/...` or bare `10.x/...`)
-    becomes `{"type": "doi", ...}`, an `http(s)://` line becomes
-    `{"type": "url", ...}`, anything else is read as a plain label,
-    `{"type": "url", "value": <label>}` (`_citation_from_research_os_source`'s
-    own no-doi-no-url fallback, applied to a bare string instead of a
-    `{label, url?, doi?}` dict). `source_id` is the parsed value itself
-    (the DOI, the URL, or the label), the id `_build_corpus` (`hte.corpus.
-    production`) turns into a real `Source` the first time any evidence
-    entry names it, exactly the mechanism a `sources` line needs to land
-    in the corpus at all: `_build_corpus` never learns of a `sources`
-    entry that no `ClaimEvidence.source_id` ever points at."""
     stripped = line.strip() or f"research-os-source-{idx}"
     if stripped.lower().startswith("doi:"):
         value = stripped[len("doi:"):].strip() or f"research-os-source-{idx}"
@@ -244,33 +78,7 @@ def _citation_from_source_string(line: str, idx: int) -> tuple[str, dict[str, st
         return stripped, {"type": "url", "value": stripped}
     return stripped, {"type": "url", "value": stripped}
 
-
 def _string_evidence_entries(evidence_raw: list[str], author_role: str, production_id: str) -> list[dict[str, Any]]:
-    """The real production-form shape (`src/app/research-os/workspace/
-    page.tsx`'s `evidence.split("\\n").filter(Boolean)`): a plain array of
-    newline-split strings with no `source_id`/`quote`/`locator` structure
-    of its own, unlike the Quote tool's `[{source_id|node_id, quote,
-    locator?}]` dicts `_research_os_evidence` below already handled.
-
-    Each line becomes its own evidence entry, `quote` the line verbatim,
-    `locator` the fixed marker `"(uncited)"`, `tier` by `author_role`
-    (`_tier_for_author_role`, `T4` default), and no `citations`: an
-    evidence line and a `sources` line are two separate, unpaired arrays
-    on the production form (neither names which source, if any, backs a
-    given evidence line), so attaching every source to every evidence
-    line, the way the dict-shaped branch's own closed-citation-set
-    convention does, would fabricate a citation link the learner never
-    made. Tagging the line `"(uncited)"` instead keeps that absence
-    visible rather than silently fusing unpaired evidence and citation
-    text together (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`, "Real
-    production-form shape"). `source_id` is a per-line synthetic id
-    scoped by `production_id` (`f"research-os-evidence-line-{production_
-    id}-{i}"`): two productions in the same batch each writing their own
-    line 0 must not collide onto the same `_build_corpus`-created
-    `Source` node, which a bare `f"...-line-{i}"` id would (`_build_corpus`
-    creates a `Source` the first time any evidence entry names an id, and
-    silently reuses it for a second production's entry naming the same
-    id)."""
     return [
         {
             "source_id": f"research-os-evidence-line-{production_id}-{i}",
@@ -284,14 +92,7 @@ def _string_evidence_entries(evidence_raw: list[str], author_role: str, producti
         if isinstance(line, str) and line.strip()
     ]
 
-
 def _string_source_entries(sources_raw: list[str]) -> list[dict[str, Any]]:
-    """The real production-form shape for `sources[]`: plain newline-split
-    strings, parsed by `_citation_from_source_string`. One citation-only
-    evidence entry per line (no quoted span, matching the dict-shaped
-    branch's own "citation only" fallback below), so every line still
-    resolves to a real `Source` in the corpus even though no evidence
-    line names it."""
     out = []
     for i, line in enumerate(sources_raw):
         if not isinstance(line, str) or not line.strip():
@@ -307,39 +108,9 @@ def _string_source_entries(sources_raw: list[str]) -> list[dict[str, Any]]:
         })
     return out
 
-
 def _research_os_counter_evidence(
     counter_evidence_raw: list[Any], *, author_role: str = "student", production_id: str = "",
 ) -> list[dict[str, Any]]:
-    """`graph.productions.counter_evidence` (`src/lib/research-os/
-    production-guard.ts`'s `CounterEvidenceEntry`, `[{text}]`), folded into
-    evidence entries carrying a `"stance": "refutes"` override (`_build_
-    corpus` reads it in place of the claim's own default `"supports"`, see
-    `_stance_to_hte`). Accepts the same dict-or-string duality
-    `_research_os_evidence` already handles for `evidence`/`sources`, since
-    `normalizeCounterEvidence` (the app-side writer) tolerates a bare
-    string array the same way the real production form's own `evidence`
-    field does:
-
-    - a dict entry (`{"text": "..."}`, `CounterEvidenceEntry`'s own shape)
-      reads `text` directly;
-    - a string entry is the text itself, matching `_string_evidence_
-      entries`'s own newline-split-line reading.
-
-    Every entry is uncited by construction (`CounterEvidenceEntry` carries
-    no citation field of its own, unlike the Quote tool's evidence dicts),
-    so `citations` is always the one-element `[{"type": "none", "value":
-    "uncited"}]` list rather than the empty list an ordinary uncited
-    evidence line gets: a caller reading `citations` downstream can tell
-    "this entry is deliberately uncited rebuttal text" apart from "this
-    entry's citation was never recorded at all." `source_id` is scoped by
-    `production_id` (`f"research-os-counter-line-{production_id}-{i}"`),
-    the same per-production scoping `_string_evidence_entries` uses, so two
-    productions in one ingest batch each writing their own counter-
-    evidence line 0 do not collide onto one `_build_corpus`-created
-    `Source`. `tier` reads `_tier_for_author_role(author_role)`, the same
-    reliability default an ordinary evidence line gets; a rebuttal is not
-    inherently less reliable than the claim it rebuts."""
     out: list[dict[str, Any]] = []
     for i, entry in enumerate(counter_evidence_raw or []):
         if isinstance(entry, str):
@@ -361,36 +132,9 @@ def _research_os_counter_evidence(
         })
     return out
 
-
 def _research_os_evidence(
     evidence_raw: list[Any], sources_raw: list[Any], *, author_role: str = "student", production_id: str = "",
 ) -> list[dict[str, Any]]:
-    """Fold `graph.productions.evidence` and `.sources` into
-    `PRODUCTION-SCHEMA.md` evidence entries, over the two shapes either
-    field can carry:
-
-    - **The Quote tool's shape** (dicts): `evidence` is `[{source_id|
-      node_id, quote, locator?}]`, `sources` is the closed citation set
-      `[{label, url?, license?, doi?}]`. Research OS attaches `sources`
-      to the whole production as one closed set (the migration's own
-      column comment) rather than pairing one source to one quote, so
-      every entry this branch builds carries the *same*, full converted
-      citation list. `tier` is `"T2"` when any cited source carries a
-      `doi` (`PRODUCTION-SCHEMA.md`'s own "a peer-reviewed paper reads
-      T2" example), else `"T4"`.
-    - **The real production form's shape** (plain strings,
-      `src/app/research-os/workspace/page.tsx`'s own `.split("\\n")`,
-      confirmed against `src/app/api/research-os/production/route.ts`'s
-      `evidence?: unknown[]`/`sources?: unknown[]`, which validates
-      neither field's own item shape): handled by
-      `_string_evidence_entries`/`_string_source_entries` above, kept
-      deliberately unpaired rather than fused together.
-
-    A row may mix the two (a caller-supplied dict-shaped fixture
-    alongside a form-shaped one, say): each item in `evidence_raw`/
-    `sources_raw` is dispatched by its own type, dict or string, and
-    either branch's entries can appear in the same output list.
-    """
     dict_evidence = [e for e in (evidence_raw or []) if isinstance(e, dict)]
     dict_sources = [s for s in (sources_raw or []) if isinstance(s, dict)]
     string_evidence = [e for e in (evidence_raw or []) if isinstance(e, str)]
@@ -414,10 +158,6 @@ def _research_os_evidence(
                     "citations": citations,
                 })
         elif citations:
-            # No quoted span captured yet (a citation-only draft): one
-            # evidence entry per source, since `ClaimEvidence.quote` is a
-            # required field with no meaningful blank value
-            # (`PRODUCTION-SCHEMA.md`, "An evidence entry").
             out.extend(
                 {
                     "source_id": s.get("label") or f"research-os-source-{i}",
@@ -434,102 +174,7 @@ def _research_os_evidence(
     out.extend(_string_source_entries(string_sources))
     return out
 
-
 def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
-    """A `graph.productions` row, restructured onto this module's own
-    `PRODUCTION-SCHEMA.md` JSON shape. `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`
-    carries the full field-by-field table; this docstring names only the
-    defaults a caller needs to know about.
-
-    A real caller (`load_supabase`, or a batch a Next.js route posts to
-    `hypothesize`) may enrich a row with an optional `_target_node` object
-    (`{"slug", "title", "tier", "branch"}`, that row's own `graph.nodes`
-    join) before normalizing; this function reads it when present and
-    falls back to the documented defaults below when it is not, so a bare
-    row with no join still normalizes rather than raising:
-
-    - `author_role` is always `"student"`: Phase 0 has no non-student
-      production author (`RESEARCH-OS-INTEGRATION.md`'s own "What the
-      engine needs from Research OS").
-    - `grade_band` is `"unknown"` without `_target_node.tier`, else
-      `_tier_to_grade_band`'s bucketed reading of it.
-    - `school_or_district_id` is the fixed sentinel
-      `"research-os-phase-0"`: Phase 0 has no roster or district concept
-      (task item 6, no roster sync) to carry a real pseudonymous id.
-    - `research_question` folds `target_node_id` (and `_target_node.title`
-      when given) into descriptive free text: `PRODUCTION-SCHEMA.md` has no
-      dedicated "which graph node this argues about" field.
-    - `claims` is empty when the row carries no `claim` text, `evidence`,
-      or `sources` at all (an untouched draft); PRODUCTION-SCHEMA.md
-      explicitly allows an empty `claims` list. Otherwise one claim, with
-      `stance` always `"supports"` (Research OS carries no stance
-      vocabulary; a learner's own production always stands behind its own
-      claim). `evidence`/`sources` are read through `_research_os_evidence`,
-      which accepts either the Quote tool's `[{source_id|node_id, quote,
-      locator?}]`/`[{label, url?, doi?}]` dict shape or the real
-      production form's plain `evidence.split("\n")`/`sources.split("\n")`
-      string-array shape (`src/app/research-os/workspace/page.tsx`; the
-      route itself, `production/route.ts`, types both fields as bare
-      `unknown[]` and validates neither), or a mix of the two. A string
-      evidence line and a string source line are read as two separate,
-      unpaired lists (see `_string_evidence_entries`'s own docstring),
-      never fused into one fabricated citation. `object` reads `target_node_id` itself (`_target_node.slug`
-      when a join is given, the same value either way): the shipped
-      `vocab-production-seed.json` names concepts about the engine's own
-      calibration questions (`tier-assignment`, `hypothesis-ranking`,
-      ...), a meta-vocabulary about the production system rather than a
-      K-12 physics one, so forcing a sky-is-blue claim's OBJECT into THAT
-      vocabulary would misrepresent it; a graph node's own
-      id is a stable, always-available value with no such vocabulary to
-      misrepresent, and `hte.vocab_induce.induce` (wired into
-      `_build_corpus` below) turns it into a real concept rather than
-      requiring one to already exist. `actor`/`action`/`place`/`mechanism`
-      stay `None` ("not asserted"): Research OS carries nothing to read any
-      of the four from without guessing at content this module has no
-      warrant to guess at (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own
-      design-decisions section names this as a founder-confirmable choice).
-    - `claims[].interval` reads the production's own `created_at` year (a
-      real, always-available date) rather than staying `None`: a physics
-      fact has no "the claim's own subject happened in year X" the way a
-      historical claim does, so this is deliberately NOT that, it is the
-      date THIS RECORD entered Bucket's own reviewed corpus, the same
-      "discovery date distinct from subject date" reading `hte.corpus.
-      production`'s own `discovery_year` already gives every other corpus
-      this module builds. Consequence: an `accepted` Research OS production
-      now contributes a `GroundTruthEvent`, dated by when it entered the
-      record rather than by the physics fact's own (nonexistent) date; see
-      `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s design-decisions section for
-      the disclosed tradeoff.
-    - `review.history` is synthesized as a single entry at the row's own
-      `updated_at` (falling back to `created_at`; a row missing both
-      raises, below): Research OS keeps no per-transition review history
-      on `graph.productions` the way `PRODUCTION-SCHEMA.md`'s own
-      `review.history` array does. It stays exact for the one date
-      `_build_corpus` reads, `review.date_of("accepted")`.
-    - `counter_evidence` (PR #73's own column, `[{text}]` or a bare
-      newline-string array) folds into the same claim's `evidence` list
-      via `_research_os_counter_evidence`, each entry carrying its own
-      `"stance": "refutes"` override rather than the claim's default
-      `"supports"`; a row carrying `counter_evidence` but no `claim`/
-      `evidence`/`sources` at all still gets a claim built for it, so the
-      rebuttal is never dropped for lack of a claim to attach to.
-    - `duplicate_of` reads a bare `duplicate_of` id on the row when
-      present, else `duplicate_flag.matchId` (PR #73's own `{matchId,
-      matchOrigin, score}` shape); `None` when neither is present, or when
-      `duplicate_flag` is `null`. `_build_corpus` is what decides whether
-      the matched id resolves to a real `Source` in the same batch; this
-      function only carries the id forward.
-
-    Raises `ValueError` if the row carries no `id`, no `target_node_id`,
-    a `status` outside `RESEARCH_OS_STATUS_MAP`'s own four known values,
-    or neither `updated_at` nor `created_at`: every one of these is a
-    field this function cannot default around without silently
-    corrupting a downstream read (an unrecognized status folding into
-    `"draft"`, which the default `status_min="peer-reviewed"` then drops
-    from the corpus with no trace of why; a missing timestamp folding
-    into the Unix epoch, which `hte.calibrate.holdout_by_discovery_date`
-    would then read as maximally old).
-    """
     if not raw.get("id"):
         raise ValueError("Research OS production row has no 'id'")
     if not raw.get("target_node_id"):
@@ -587,32 +232,11 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
         "duplicate_of": duplicate_of,
     }
 
-
 def load_vocab() -> Vocabulary:
-    """The K-12 production seed vocabulary (`hte/data/vocab-production-
-    seed.json`): six consensus ACTOR roles (student, teacher, peer panel,
-    Bucket Foundation reviewer, district researcher, research agent), five
-    non-consensus ACTOR concepts naming a fringe or contested account of
-    what drives a production's trust (a reviewer's own halo
-    effect, self-citation inflation, blind trust in the engine's own
-    ranking, raw citation count standing in for validity, and payment as
-    the real motive), ten ACTIONs, ten OBJECTs (one per runnable question
-    named in `docs/RESEARCH-OS-INTEGRATION.md`, plus a couple more for
-    combinatorial reach), five PLACEs, and the seven MECHANISM causes the
-    fixture productions name, one per question."""
     return Vocabulary.load(PRODUCTION_VOCAB_PATH)
-
-
-# --------------------------------------------------------------------------
-# raw production shape (lossless; `_build_corpus` below is the lossy
-# projection onto `hte.corpus.Corpus`)
-# --------------------------------------------------------------------------
-
 
 @dataclass(frozen=True)
 class Citation:
-    """One citation on a claim's evidence entry: a DOI, a URL, or a feed402
-    envelope id (`PRODUCTION-SCHEMA.md`'s own three-way citation type)."""
     kind: str
     value: str
 
@@ -623,23 +247,8 @@ class Citation:
     def from_dict(cls, d: dict[str, Any]) -> "Citation":
         return cls(kind=d["type"], value=d["value"])
 
-
 @dataclass(frozen=True)
 class ClaimEvidence:
-    """One evidence entry under a claim: which source it quotes, the
-    quote itself, that source's own `hte.evidence` kind and tier, and its
-    citations. `source_id` is either an external cited source's own id, or
-    another production's id in this same corpus, the second case being
-    what `_build_corpus` reads as a stemma edge.
-
-    `stance` is `None` on every ordinary entry (this claim's own `Claim.
-    stance` is what `_build_corpus` reads instead); a counter-evidence
-    entry (`_research_os_counter_evidence`) sets it to `"refutes"`
-    (`_STANCE_MAP`'s own vocabulary) as a per-entry override, so one
-    claim's evidence list can carry both a supporting stance (the claim's
-    own default) and a refuting one (a learner's own rebuttal notes) side
-    by side, `_build_corpus` reading each entry's own override when
-    present and falling back to the claim's stance otherwise."""
     source_id: str
     locator: str
     quote: str
@@ -667,14 +276,8 @@ class ClaimEvidence:
             stance=d.get("stance"),
         )
 
-
 @dataclass(frozen=True)
 class Claim:
-    """One claim inside a production: its text, its stance toward whatever
-    it argues, its five concept slots (each `None` when the claim names
-    nothing for that slot, the same "not asserted" reading `hte.evidence.
-    EvidenceItem`'s own docstring gives), a dated `interval` when the claim
-    names one, and its evidence entries."""
     text: str
     stance: str
     slots: dict[str, str | None]
@@ -698,11 +301,8 @@ class Claim:
             evidence=tuple(ClaimEvidence.from_dict(e) for e in d.get("evidence", [])),
         )
 
-
 @dataclass(frozen=True)
 class ReviewHistoryEntry:
-    """One status transition: the status a production (or, in a later
-    revision of this schema, a claim) moved to, and the date it did."""
     status: str
     date: str
 
@@ -713,14 +313,8 @@ class ReviewHistoryEntry:
     def from_dict(cls, d: dict[str, Any]) -> "ReviewHistoryEntry":
         return cls(status=d["status"], date=d["date"])
 
-
 @dataclass(frozen=True)
 class Review:
-    """A production's current review status plus its full transition
-    history, so "holdout by review date" has a real date to hold out on:
-    `date_of("accepted")` is what `_build_corpus` reads as a `GroundTruthEvent`'s
-    `discovery_year`, the date the claim entered the citable record, a
-    date distinct from when the underlying research happened."""
     status: str
     history: tuple[ReviewHistoryEntry, ...]
 
@@ -737,22 +331,8 @@ class Review:
     def from_dict(cls, d: dict[str, Any]) -> "Review":
         return cls(status=d["status"], history=tuple(ReviewHistoryEntry.from_dict(h) for h in d.get("history", [])))
 
-
 @dataclass(frozen=True)
 class Production:
-    """One production record, `PRODUCTION-SCHEMA.md`'s own JSON shape
-    parsed losslessly: `load_raw`/`load_supabase` hand these back before
-    `_build_corpus` projects them onto the coarser `Corpus` shape (folding
-    each evidence entry's citations into its `EvidenceSpan.locator`, for
-    one; see that function's own docstring for the rest).
-
-    `duplicate_of` is `None` on every production `PRODUCTION-SCHEMA.md`'s
-    own fixture shape ever carries (that shape has no duplicate-detection
-    concept); a Research OS row's own `duplicate_flag.matchId` (or a bare
-    `duplicate_of`) normalizes onto it (`normalize_research_os_record`).
-    `_build_corpus` reads it to decide whether to emit a stemma edge from
-    this production's own `Source` to the matched one's, see this
-    module's own top docstring, "Duplicates.\""""
     id: str
     created_at: str
     author_role: str
@@ -778,12 +358,6 @@ class Production:
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Production":
-        """Accepts either this module's own `PRODUCTION-SCHEMA.md` shape,
-        or a `graph.productions` row (Research OS's own shape), detected by
-        `is_research_os_record` and normalized by
-        `normalize_research_os_record` before parsing either way. See that
-        function's own docstring, and `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`,
-        for the mapping."""
         if is_research_os_record(d):
             d = normalize_research_os_record(d)
         return cls(
@@ -795,12 +369,6 @@ class Production:
             duplicate_of=d.get("duplicate_of"),
         )
 
-
-# --------------------------------------------------------------------------
-# file loading
-# --------------------------------------------------------------------------
-
-
 def _resolve_fixtures_dir(path_or_dir: str | Path | None) -> Path:
     if path_or_dir is not None:
         return Path(path_or_dir)
@@ -809,18 +377,10 @@ def _resolve_fixtures_dir(path_or_dir: str | Path | None) -> Path:
         return Path(env)
     return DEFAULT_FIXTURES_DIR
 
-
 def _rows_from_json(raw: Any) -> list[dict[str, Any]]:
     return raw if isinstance(raw, list) else [raw]
 
-
 def _iter_production_files(path_or_dir: str | Path | None) -> list[tuple[Production, str]]:
-    """Every production in `path_or_dir`, paired with the path it came
-    from (used only for the `RetrievalEnvelope.source_path` `load()`
-    writes). A directory is read as one JSON file per production (or per
-    batch of productions, if a file holds a JSON array), sorted by
-    filename for a deterministic id order; a single file is read the same
-    way on its own."""
     target = _resolve_fixtures_dir(path_or_dir)
     if target.is_dir():
         paths = sorted(target.glob("*.json"))
@@ -835,19 +395,8 @@ def _iter_production_files(path_or_dir: str | Path | None) -> list[tuple[Product
         return [(Production.from_dict(row), str(target)) for row in _rows_from_json(json.loads(target.read_text()))]
     raise FileNotFoundError(f"production fixtures path not found: {target}")
 
-
 def load_raw(path_or_dir: str | Path | None = None) -> list[Production]:
-    """Every `Production` under `path_or_dir` (default: `$PRODUCTION_
-    FIXTURES_DIR`, else the shipped `hte/data/production-fixtures/`),
-    parsed losslessly and returned in filename order. No filtering by
-    review status; that is `load`'s own job on the way to a `Corpus`."""
     return [production for production, _path in _iter_production_files(path_or_dir)]
-
-
-# --------------------------------------------------------------------------
-# corpus projection
-# --------------------------------------------------------------------------
-
 
 def _check_status_min(status_min: str) -> None:
     if status_min not in _STATUS_ORDER:
@@ -856,21 +405,12 @@ def _check_status_min(status_min: str) -> None:
             f"withdrawal rather than a maturity level, so it can never be a status_min. Got {status_min!r}."
         )
 
-
 def _passes_status_min(status: str, status_min: str) -> bool:
-    """Whether a production at `status` should be ingested at all, given
-    `status_min`. A retracted production always passes, regardless of
-    `status_min`: `_build_corpus` still ingests its claims (as downgraded,
-    `is_absence` evidence, never as ground truth), the same reason
-    `fixtures.py`'s own `gt-gamma-downgrade` card stays in that corpus
-    rather than being dropped outright, so the engine's belief fusion still
-    sees the correction where a withdrawn claim used to stand."""
     if status == _RETRACTED:
         return True
     if status not in _STATUS_ORDER:
         raise ValueError(f"unknown review status {status!r}, expected one of {_ALL_STATUSES!r}")
     return _STATUS_ORDER.index(status) >= _STATUS_ORDER.index(status_min)
-
 
 def _stance_to_hte(stance: str) -> Stance:
     try:
@@ -878,14 +418,11 @@ def _stance_to_hte(stance: str) -> Stance:
     except KeyError as exc:
         raise ValueError(f"unknown claim stance {stance!r}, expected one of {sorted(_STANCE_MAP)!r}") from exc
 
-
 def _truncate(text: str, limit: int = 140) -> str:
     return text if len(text) <= limit else text[: limit - 3].rstrip() + "..."
 
-
 def _year_of(date_str: str) -> int:
     return datetime.fromisoformat(date_str).year
-
 
 def _build_corpus(
     productions: list[Production],
@@ -894,91 +431,6 @@ def _build_corpus(
     retrieval_run_id: str,
     source_path_for: Callable[[Production], str],
 ) -> Corpus:
-    """`PRODUCTION-SCHEMA.md`'s own mapping, shared by `load` and
-    `load_supabase`.
-
-    - **Sources.** One `Source` per production (kind `TEXTUAL`, `date` its
-      own `created_at`), always, regardless of whether that production
-      passes `status_min`, so a citation to a filtered-out production
-      still resolves to a real node rather than a dangling id. One more
-      `Source` per distinct externally-cited `source_id` (kind: the first
-      evidence entry that cites it, first-seen wins), created lazily as
-      claims are read.
-    - **Stemma.** When a claim's own evidence entry names another
-      production's id as its `source_id`, that production's own `Source`
-      gains this one as a `stemma_parents` entry: a citation chain of
-      depth two (`X` cites `Y`, `Y` cites `Z`) is two such edges, `X ->
-      Y` and `Y -> Z`, discovered independently as each production's own
-      claims are read.
-    - **Duplicates.** A production naming another one, already in this
-      same batch, as its own `duplicate_of` gains that production's id as
-      a `stemma_parents` entry too, the same citer-lists-cited direction
-      the citation-chain edge above uses: `sources[duplicate.id].
-      stemma_parents.append(duplicate_of)`. This runs in the first pass
-      below, alongside every production's own unconditional `Source`
-      creation, so it applies regardless of `status_min` the same way that
-      `Source` creation does. A `duplicate_of` naming an id outside this
-      batch (a canon-origin match, or an original a different ingest run
-      already consumed) adds no edge, since there is no `Source` in this
-      batch to point at; the duplicate production itself is never dropped
-      either way, only its own stemma edge is skipped. See this module's
-      own top docstring, "Duplicates," and `hte.belief.effective_count`,
-      the function that discounts the duplicate once this edge is on
-      file.
-    - **EvidenceItems.** One per claim's evidence entry, `id = f"
-      {production.id}-c{claim_index}-e{evidence_index}"`, its slots and
-      interval read off the *claim* (an evidence entry carries no slots of
-      its own; every entry under one claim inherits that claim's single
-      reading), its citations folded into `EvidenceSpan.locator` (`hte.
-      evidence.EvidenceItem` has no dedicated citation-identifier field of
-      its own; see `PRODUCTION-SCHEMA.md`, "Where citations live"). Only
-      productions passing `status_min` (or retracted, which always
-      passes) contribute any `EvidenceItem`s at all.
-    - **Retraction.** A retracted production's own `EvidenceItem`s carry
-      `is_absence=True` and `stance=Stance.NEGATIVE`, overriding whatever
-      the claim's own `stance` field, or any per-entry override below,
-      says. A claim's own `stance` field describes its relation to
-      whatever it argued about; retraction is a separate axis, whether the
-      research record still stands behind the claim at all, so it
-      overrides at ingestion rather than blending with either.
-    - **Per-entry stance override.** A non-retracted claim's own evidence
-      entries default to the claim's own `stance`, but an entry carrying
-      its own `ClaimEvidence.stance` (counter-evidence,
-      `_research_os_counter_evidence`'s `"refutes"`) uses that instead:
-      one claim's evidence list can carry a mix, its own supporting
-      entries at the claim's default stance alongside a learner's own
-      rebuttal entries at `"refutes"`, `hte.link.link_evidence` then
-      linking the refuting entries into that claim's own `refutes` set
-      rather than its `supports` set for whatever hypothesis address they
-      share.
-    - **Ground truth.** One `GroundTruthEvent` per claim whose production
-      is `accepted` and non-retracted, passing `status_min` on its own
-      being insufficient: `teacher-reviewed` evidence still lacks the
-      human sign-off `PLAN.md` §5 requires before a claim counts as
-      settled. Each such claim needs at least one evidence entry and a
-      dated `interval`. Its id is shared with that claim's first
-      `EvidenceItem` (the same one-id-shared-between-both-records
-      convention `hte.corpus.fixtures`/`education_atlas` use); `year` is
-      the claim's own `interval.start`; `discovery_year` is the year the
-      production's review history recorded `"accepted"`, so a caller
-      building `hte.calibrate.holdout_by_discovery_date` against this
-      corpus gets a holdout keyed to the record's own review date rather
-      than to the claim's own subject date.
-
-    **Vocabulary.** Every `EvidenceItem` this function builds carries its
-    claim's own slot values verbatim, whatever they are: an id this
-    module's own `load_vocab()` seed already names, or a fresh one (a
-    Research OS graph-node id, `normalize_research_os_record`'s own
-    `object` reading; `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the
-    null-slot gap on physics productions"). Once every `EvidenceItem` and
-    `GroundTruthEvent` is built, `hte.vocab_induce.induce` runs as a merge
-    step over the seed (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own "wire
-    it... as a merge step when it has one"): every value already on file
-    resolves to a real concept in the returned `Corpus.vocab`, whether the
-    seed already named it or this call is the first to see it, so no slot
-    value this function has already accepted into an `EvidenceItem` can
-    fail to resolve downstream.
-    """
     _check_status_min(status_min)
     seed_vocab = load_vocab()
     production_ids = {p.id for p in productions}
@@ -1044,19 +496,7 @@ def _build_corpus(
     corpus.vocab = vocab_induce.induce(corpus, seed_vocab=seed_vocab)
     return corpus
 
-
-# --------------------------------------------------------------------------
-# public loaders
-# --------------------------------------------------------------------------
-
-
 def load(path_or_dir: str | Path | None = None, *, status_min: str = "peer-reviewed") -> Corpus:
-    """Every production under `path_or_dir` (see `load_raw`), projected
-    onto a `Corpus` per `_build_corpus`. `status_min` (default
-    `"peer-reviewed"`, so a bare `draft` never reaches belief fusion)
-    filters which productions contribute evidence or ground truth; a
-    retracted production always contributes its own downgraded evidence
-    regardless of `status_min`. No network."""
     pairs = _iter_production_files(path_or_dir)
     productions = [p for p, _path in pairs]
     path_by_id = {p.id: path for p, path in pairs}
@@ -1065,7 +505,6 @@ def load(path_or_dir: str | Path | None = None, *, status_min: str = "peer-revie
         source_path_for=lambda p: path_by_id[p.id],
     )
 
-
 def load_supabase(
     url: str | None = None,
     key: str | None = None,
@@ -1073,18 +512,6 @@ def load_supabase(
     *,
     status_min: str = "peer-reviewed",
 ) -> Corpus:
-    """The same shape as `load`, read over the Supabase REST API
-    (`03-data-services.md` section J, the closest infra line this
-    adapter's own corpus has to a real deployment) instead of local JSON
-    files. `url`/`key` default to the `SUPABASE_URL`/`SUPABASE_SERVICE_KEY`
-    environment variables when left `None`; if neither an argument nor
-    the matching environment variable is set, this raises `RuntimeError`
-    before any request is attempted. Neither value is ever printed,
-    logged, or included in a raised error's own message.
-
-    Every row `table` returns is read as one production JSON object (a
-    Supabase `jsonb` column round-trips as native JSON already, so no
-    further parsing is needed beyond the top-level response body)."""
     resolved_url = url if url is not None else os.environ.get("SUPABASE_URL")
     resolved_key = key if key is not None else os.environ.get("SUPABASE_SERVICE_KEY")
     if not resolved_url or not resolved_key:
@@ -1110,7 +537,6 @@ def load_supabase(
         productions, status_min=status_min, retrieval_run_id="production-adapter-supabase-ingest",
         source_path_for=lambda p: f"supabase:{table}/{p.id}",
     )
-
 
 __all__ = [
     "Citation", "ClaimEvidence", "Claim", "ReviewHistoryEntry", "Review", "Production",

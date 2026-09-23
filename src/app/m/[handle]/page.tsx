@@ -1,24 +1,3 @@
-/**
- * src/app/m/[handle]/page.tsx (bkt-coh)
- * ----------------------------------------------------------------------------
- * The PUBLIC Mastery Profile, bucket.foundation/m/<handle>.
- *
- * The headline differentiator of Bucket Academy (learning/EPIC.md §2): the
- * learning map made into a public, shareable "verifiable digital resume". This
- * is the MVP /-signal phase (MASTERY-PROFILE.md §3.1, Phase 1): a clean
- * screenshot-native page showing the concentric-shell map of mastered concepts
- * across canon branches + a per-branch mastery summary (started/mastered
- * depth Recall→Apply→Derive→Teach, recency, with visible uncertainty) + an
- * evidence-framing placeholder + a "Verify" stub.
- *
- * HARD GUARDRAIL (EPIC.md §5): NO certified/precise numeric rating, no claim of
- * credentialed mastery. Framed throughout as "built by learning over time," an
- * evolving record built from proven work.
- *
- * Privacy: server-rendered with the service-role assembler. Rendered ONLY when
- * the learner has opted in (is_public = true); otherwise notFound(). Minimal PII
- * (handle + optional display name; never the email).
- */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
@@ -44,8 +23,6 @@ interface ProfileRecord {
   is_public: boolean;
 }
 
-/** Service-role fetch of a PUBLIC profile by handle, assembled. Returns null if
- * unconfigured, missing, or private (private == invisible). */
 async function fetchPublicProfile(handleRaw: string): Promise<PublicProfile | null> {
   if (!SUPABASE_URL || !SERVICE_ROLE_KEY) return null;
   const handle = handleRaw.trim().toLowerCase();
@@ -65,10 +42,14 @@ async function fetchPublicProfile(handleRaw: string): Promise<PublicProfile | nu
   const rec = data as unknown as ProfileRecord;
   if (!rec.is_public) return null;
 
-  const { data: rows } = await svc
+  const { data: rows, error: rowsErr } = await svc
     .from("academy_progress")
     .select("branch,data,updated_at")
     .eq("user_id", rec.user_id);
+  if (rowsErr) {
+    console.error("[m/handle] academy_progress read failed:", rowsErr.message);
+    return null;
+  }
 
   return assemblePublicProfile(
     rec.handle,
@@ -163,14 +144,10 @@ export default async function MasteryProfilePage({
         </div>
       </header>
 
-      {/* the-signal disclaimer, the EPIC §5 guardrail, made visible */}
       <div className="mp-disclaimer" role="note">
         {profile.framing.disclaimer}
       </div>
 
-      {/* bkt-52p: verifiable-credential surface. Owner sees "issue"; everyone
- sees a "Verify" affordance (the viral backlink). Client island, 
- ownership + issuance are re-verified server-side from the token. */}
       <CredentialPanel handle={profile.handle} />
 
       {profile.branches.length === 0 ? (
@@ -211,7 +188,6 @@ function Stat({
 function BranchCard({ branch }: { branch: BranchSummary }) {
   const pct = Math.round(branch.meanMastery * 100);
   const deepestRank = DEPTH_RANK[branch.deepestDepthLabel] || 0;
-  // top mastered concepts for the evidence-framing teaser
   const topMastered = branch.concepts
     .filter((c) => c.mastered)
     .slice(0, 6);
@@ -245,7 +221,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
             <span>{branch.total} concepts</span>
           </div>
 
-          {/* coarse progress bar, labelled "progress", never "score" */}
           <div className="mp-bar-label">
             Learning progress <span className="mp-pct">{pct}%</span>
           </div>
@@ -254,7 +229,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
           </div>
           <div className="mp-conf-note">{branch.confidenceNote}</div>
 
-          {/* depth ladder reached */}
           <div className="mp-depth">
             <div className="mp-depth-label">Depth reached</div>
             <div className="mp-ladder">
@@ -276,7 +250,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
         </div>
       </div>
 
-      {/* per-shell summary */}
       <div className="mp-shells">
         {branch.shells.map((s) => (
           <div className="mp-shell-row" key={s.shell}>
@@ -294,7 +267,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
         ))}
       </div>
 
-      {/* evidence framing (placeholder) + verify stub */}
       <details className="mp-evidence">
         <summary>
           Evidence — what {branch.title} mastery is built from
@@ -328,7 +300,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
         </div>
       </details>
 
-      {/* screen-reader / inspect list-mode, the same signal, non-visual */}
       <details className="mp-inspect">
         <summary>Concept-by-concept (list view)</summary>
         <ul className="mp-inspect-list">
@@ -350,9 +321,6 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
   );
 }
 
-/* Scoped, self-contained styles in the bucket aesthetic (bone/basalt/aegean/
- * gold/laurel, Cinzel display + Fraunces body, both already loaded by the root
- * layout). Inline so the page is fully standalone + screenshot-native. */
 function Styles() {
   return (
     <style

@@ -1,20 +1,4 @@
-/**
- * Research OS for K-12, roster sync (bkt-ros, ros-06 follow-on). The live
- * Supabase adapter around diff.ts's pure computeRosterDiff: loads the
- * current graph.classes/class_members/reviewer_candidates/learner_profiles
- * state plus a Supabase Auth email index, and, once a reviewer has seen
- * the resulting diff and asked to apply it, writes it. Never imported
- * from a client component, matching src/lib/research-os/db.ts's own rule.
- *
- * Like every other live-Supabase write path in this repo
- * (src/lib/research-os/db.ts's writeProductionOutbox,
- * graph.privacy_delete_learner), this file runs no test against a real
- * Postgres; scripts/test-research-os-roster.ts exercises computeRosterDiff
- * and applyRosterDiffToState (diff.ts) instead, the same "pure logic
- * tested, live adapter reviewed by hand" split TEACHER-LAYER.md's own
- * "what this suite does not cover" section describes.
- */
-import { graphService, publicService } from "../db";
+import { graphService, inChunks, publicService } from "../db";
 import { classMemberKey, type ExistingClass, type ExistingLearnerProfile, type ExistingReviewerCandidate, type RosterDiff, type RosterExistingState } from "./diff";
 
 interface ClassRow {
@@ -41,14 +25,6 @@ interface LearnerProfileRow {
   birth_year_bucket: string | null;
 }
 
-/**
- * Pages through Supabase Auth's admin listUsers to build a lowercased
- * email -> user id index. Phase-1-scale (a pilot's worth of accounts, the
- * same scale ClassRow's own comment in db.ts names for graph.classes);
- * a district-scale deployment would need this replaced with a
- * per-email lookup or a materialized index rather than a full scan on
- * every roster sync, left as a TODO for whichever bead first hits it.
- */
 async function loadAuthUserIdsByEmail(): Promise<Map<string, string>> {
   const svc = publicService();
   const out = new Map<string, string>();
@@ -81,8 +57,14 @@ export async function loadRosterExistingState(): Promise<RosterExistingState> {
   const classMemberKeys = new Set<string>();
   const classIds = classes.map((c) => c.id);
   if (classIds.length > 0) {
-    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
-    if (memberErr) throw new Error(`loadRosterExistingState: class_members query failed: ${memberErr.message}`);
+    let memberRows: { class_id: string; learner_id: string }[];
+    try {
+      memberRows = await inChunks<{ class_id: string; learner_id: string }>(classIds, (chunk, page) =>
+        svc.from("class_members").select("class_id,learner_id").in("class_id", chunk).order("class_id").order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { class_id: string; learner_id: string }[] | null; error: { message: string } | null }>,
+      );
+    } catch (err) {
+      throw new Error(`loadRosterExistingState: class_members query failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
     for (const r of (memberRows as ClassMemberRow[]) || []) classMemberKeys.add(classMemberKey(r.class_id, r.learner_id));
   }
 
@@ -116,25 +98,6 @@ export interface RosterApplyResult {
   learnerProfilesWritten: number;
 }
 
-/**
- * Writes a RosterDiff. Order matters: classes first (class_members needs
- * their real ids), then class_members, then reviewer_candidates and
- * learner_profiles (independent of the other two).
- *
- * reviewer_candidates status is never reset by this function: `create`
- * rows insert with status "pending" (graph.reviewer_candidates' own
- * column default); `update` rows touch only email/name via a plain
- * UPDATE, never an upsert that would carry a "pending" status back over
- * an already-approved or -rejected row. See ROSTER.md, "the approval
- * flow for reviewer candidates."
- *
- * learner_profiles is written in two batches, with and without a
- * resolved birth_year_bucket, so a student whose grades field this sync
- * cannot map to a bucket never has an existing bucket value overwritten
- * with null (an upsert only touches the columns present in its own
- * payload; omitting the column entirely, rather than sending it as null,
- * is what leaves an existing value alone).
- */
 export async function applyRosterImport(diff: RosterDiff): Promise<RosterApplyResult> {
   const svc = graphService();
 
@@ -147,9 +110,6 @@ export async function applyRosterImport(diff: RosterDiff): Promise<RosterApplyRe
     for (const r of (data as { id: string; sourced_id: string }[]) || []) classIdBySourced.set(r.sourced_id, r.id);
   }
 
-  // class_members can also reference a class that already existed before
-  // this sync and was not touched above (its title/teacher were
-  // unchanged); resolve those ids with one extra select.
   const neededSourcedIds = Array.from(new Set(diff.classMembers.create.map((m) => m.classSourcedId))).filter((id) => !classIdBySourced.has(id));
   if (neededSourcedIds.length > 0) {
     const { data, error } = await svc.from("classes").select("id,sourced_id").eq("source_system", diff.sourceSystem).in("sourced_id", neededSourcedIds);

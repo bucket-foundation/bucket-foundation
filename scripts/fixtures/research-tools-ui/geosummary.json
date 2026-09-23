@@ -1,0 +1,94 @@
+{
+  "result": {
+    "job_id": "j_d83717f7a59845b68eae",
+    "tool": "geosummary",
+    "render": "json",
+    "output": {
+      "descriptives": {
+        "n": 120,
+        "n_finite": 118,
+        "n_missing": 2,
+        "missing_fraction": 0.016667,
+        "mean": 16.002798,
+        "std": 4.79718,
+        "min": 5.9,
+        "q25": 12.617468,
+        "median": 16.034936,
+        "q75": 19.382532,
+        "max": 26.1
+      },
+      "trend": {
+        "ols_slope_per_step": 0.09282142,
+        "ols_intercept": 10.445312,
+        "ols_r_squared": 0.454916,
+        "ols_p_value": 0,
+        "theil_sen_slope_per_step": 0.1,
+        "mann_kendall": {
+          "applicable": true,
+          "S": 3339,
+          "z": 7.7639,
+          "p_value": 0,
+          "trend": "increasing",
+          "significant_at_0.05": true
+        }
+      },
+      "lag1_autocorrelation": 0.915467,
+      "seasonality": {
+        "period": 12,
+        "phase_means": [
+          15.4,
+          18,
+          19.930127,
+          20.7,
+          20.130127,
+          18.866667,
+          16,
+          13.6,
+          11.869873,
+          11.3,
+          12.13654,
+          14
+        ],
+        "amplitude": 9.4,
+        "variance_explained_by_season": 0.47796,
+        "peak_phase": 3,
+        "trough_phase": 9
+      },
+      "spatial_extent": {
+        "n_points": 120,
+        "bbox": {
+          "lat_min": -54.8,
+          "lat_max": -53.8,
+          "lon_min": -68.3,
+          "lon_max": -66.8
+        },
+        "centroid": {
+          "lat": -54.3,
+          "lon": -67.55
+        },
+        "bbox_diagonal_km": 147.769
+      },
+      "demo": true,
+      "ground_truth": {
+        "true_trend_slope_per_step": 0.1,
+        "trend_is_increasing_and_significant": true,
+        "seasonal_period": 12,
+        "n_missing_planted": 2
+      },
+      "note": "DEMO: 120-month synthetic series = linear +0.10/step trend + a 12-month seasonal cycle + 2 planted missing values. The OLS/Theil-Sen slope should recover ≈0.10; Mann-Kendall should be increasing; the seasonal cycle explains a large variance share. Field tool for earth-climate: a quick, defensible, reproducible summary of a time/space series for non-specialists. Mann-Kendall is robust to non-normality; check the lag-1 autocorrelation before trusting trend p-values (serial dependence inflates significance).",
+      "method": "numpy descriptives + missing-data accounting; trend via OLS (scipy.linregress) AND the distribution-free Mann-Kendall test + Theil-Sen slope (the standard climatological trend test); lag-1 autocorrelation; per-phase seasonal climatology + variance explained (when a period is given); haversine spatial extent (when lat/lon given). No GPU, no network."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "geosummary",
+        "at": "2026-09-23T03:46:21.854712+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

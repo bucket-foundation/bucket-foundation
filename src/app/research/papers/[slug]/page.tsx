@@ -6,10 +6,6 @@ import { getPaper, listPapers } from "@/lib/papers";
 
 const SITE = "https://www.bucket.foundation";
 
-// /research/papers/[slug] — a single paper: title, abstract, the figures, a
-// link to the PDF, the DOI, and a citation block. Statically generated from
-// src/lib/papers.ts (content vendored from the research-atlas repo).
-
 export function generateStaticParams() {
   return listPapers().map((p) => ({ slug: p.slug }));
 }
@@ -40,7 +36,6 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-// ScholarlyArticle JSON-LD — headline, author, DOI, datePublished, abstract.
 function paperJsonLd(p: NonNullable<ReturnType<typeof getPaper>>) {
   return {
     "@context": "https://schema.org",
@@ -108,7 +103,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           Corpus: {p.corpusLine}
         </p>
 
-        {/* Action row: PDF + DOI + GitHub */}
         <div className="mt-7 flex flex-wrap items-center gap-4">
           <a
             href={p.pdfUrl}
@@ -138,7 +132,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* Abstract */}
         <h2 className="mt-10 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
           Abstract
         </h2>
@@ -153,7 +146,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           ))}
         </div>
 
-        {/* Highlights */}
         {p.highlights.length > 0 && (
           <>
             <h2 className="mt-12 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
@@ -173,7 +165,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           </>
         )}
 
-        {/* Figures */}
         <h2 className="mt-12 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
           Figures
         </h2>
@@ -196,7 +187,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           ))}
         </div>
 
-        {/* Citation */}
         <h2 className="mt-14 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
           Cite this paper
         </h2>

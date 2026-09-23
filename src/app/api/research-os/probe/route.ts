@@ -1,60 +1,22 @@
-/**
- * /api/research-os/probe, the diagnostic probe (bkt-ros, Phase 1 item 2,
- * closing the Phase 0 PR's stub list item "Diagnostic-probe generalization
- * for cold-start learners"). Fires only for a learner with no state record
- * on any ancestor of the target (src/lib/research-os/probe.ts's probeDue,
- * per RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3 step 5), asking 3-5
- * questions at rising tiers over that ancestor set.
- *
- * GET  ?target=<slug>&branch=<branch>  -> { due, target, questions: [...] }
- *   Auth REQUIRED (unlike GET /api/research-os/route's optional auth): a
- *   probe's due-ness is defined entirely by the caller's own ancestor
- *   state, so there is no meaningful anonymous answer to compute.
- *
- * POST { nodeId, answer } -> grades ONE probe question. Reuses the exact
- *   Check tool grading call (src/lib/research-os/grounding.ts's
- *   gradeExplanation, task item 2's "graded by the existing grounded tutor
- *   Check action") and applies src/lib/research-os/stages.ts's
- *   onProbeCheckResult, which gives a cold-start probe answer a different
- *   stage jump than onCheckResult gives an in-path Check answer. The AI
- *   never writes the learner's answer: gradeExplanation
- *   only ever returns a verdict and feedback, matching the workspace Check
- *   action's own S7 floor.
- *
- * Auth: Authorization: Bearer <supabase access token>, required for both.
- * 401 unauthorized · 400 bad input · 404 target/node not found ·
- * 429/502/503 provider errors · 503 not configured.
- *
- * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST
- * (grading a probe answer) is gated by src/lib/research-os/consent.ts's
- * requireConsent, action "probe_answer", checked right after verifyLearner
- * and before any grading call. GET is not gated: it returns the due-ness
- * check and the question prompts themselves, no learner-authored content.
- * A blocked POST returns 403 with consentBlockedBody(gate) as its body.
- */
-import { NextRequest, NextResponse } from "next/server";
+import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
+import { NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
 import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
 import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
-import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { graphService, loadSubgraph, loadLearnerStates, recordEvidence } from "@/lib/research-os/db";
+import { authorizeNode, authorizeNodes } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
-
 const MAX_ANSWER_CHARS = 2000;
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   const { searchParams } = new URL(req.url);
   const targetSlug = (searchParams.get("target") || "why-the-sky-is-blue").trim();
   const branch = (searchParams.get("branch") || "02-physics").trim();
@@ -66,13 +28,14 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
+
+  const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  ({ nodes, edges } = filtered);
+
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 
-  // Phase 0/1: the ancestor set is computed directly from graph.edges
-  // (closure.ts's ancestorsOf), the same dependency-free walk frontier.ts's
-  // fallback path uses, rather than requiring graph.prereq_ancestor to be
-  // populated first.
   const ancestorIds = new Set(ancestorsOf(target.id, edges).keys());
   const states = await loadLearnerStates(learnerId, nodes.map((n) => n.id));
   const probe = buildProbe(nodes, ancestorIds, states);
@@ -85,7 +48,7 @@ export async function GET(req: NextRequest) {
     },
     { headers: { "cache-control": "no-store" } },
   );
-}
+});
 
 interface ProbeBody {
   nodeId?: string;
@@ -93,20 +56,10 @@ interface ProbeBody {
   sessionId?: string;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  const gate = await requireConsent(learnerId, "probe_answer");
-  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
-
-  let body: ProbeBody;
-  try {
-    body = (await req.json()) as ProbeBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+export const POST = withResearchOsRoute({ auth: "required", consent: "probe_answer" }, async (req, { learnerId }) => {
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as ProbeBody;
   const nodeId = (body.nodeId || "").trim();
   const answer = (body.answer || "").trim();
   const sessionId = (body.sessionId || "").trim() || undefined;
@@ -115,18 +68,28 @@ export async function POST(req: NextRequest) {
   if (answer.length > MAX_ANSWER_CHARS) return bad(400, "answer too long");
 
   const svc = graphService();
+
+  const continuable = await authorizeNode(nodeId, { id: learnerId }, "continue");
+  if (!continuable.ok) {
+    if (continuable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "node_not_found");
+  }
+
   const { data: node, error: nodeErr } = await svc.from("nodes").select("id,title,summary,provenance").eq("id", nodeId).maybeSingle();
   if (nodeErr || !node) return bad(404, "node_not_found");
 
-  // Same grounding shape Check builds: the node's own summary plus its
-  // prerequisites' summaries, even though a cold-start probe learner has
-  // (by definition) no recorded state on any of them yet.
   const { data: prereqEdges } = await svc.from("edges").select("from_id").eq("to_id", nodeId).eq("kind", "prerequisite");
   const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
   let prereqSummaries: { title: string; summary: string | null }[] = [];
   if (prereqIds.length) {
-    const { data: prereqNodes } = await svc.from("nodes").select("title,summary").in("id", prereqIds);
-    prereqSummaries = prereqNodes || [];
+    const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
+    if (!readablePrereqs.ok) return bad(503, "access_unavailable");
+    if (readablePrereqs.allowed.length) {
+      const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+      if (prereqErr) return bad(503, "access_unavailable");
+      prereqSummaries = prereqNodes || [];
+    }
+    if (prereqSummaries.length === 0) return bad(409, "probe_grounding_unavailable");
   }
 
   const provider = selectProvider();
@@ -147,16 +110,20 @@ export async function POST(req: NextRequest) {
     { result: graded.result, confidence: graded.confidence, abstained: graded.abstained },
     { learnerText: answer, modelFeedback: graded.feedback, citations: graded.citations, sessionId },
   );
-  await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  try {
+    await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  } catch (err) {
+    const mapped = evidenceErrorResponse(err);
+    if (mapped) return mapped;
+    throw err;
+  }
 
-  return NextResponse.json(
-    {
-      result: graded.result,
-      confidence: graded.confidence,
-      abstained: graded.abstained,
-      feedback: graded.feedback,
-      stage: transition.nextStage,
-    },
-    { headers: { "cache-control": "no-store" } },
-  );
-}
+  const payload: ProbeAnswerResponse = {
+    result: graded.result,
+    confidence: graded.confidence,
+    abstained: graded.abstained,
+    feedback: graded.feedback,
+    stage: transition.nextStage,
+  };
+  return NextResponse.json(payload, { headers: { "cache-control": "no-store" } });
+});

@@ -1,27 +1,6 @@
-/**
- * Research OS, the Access level (ros-21).
- *
- * GET  /api/research-os/access?node=<id>
- *   { node: {id, visibility, ownerId}, isOwner, canView, verbs: {continue,
- *     extend, cite, replicate, review}, grants (owner only), requests (owner
- *     only), myRequests }
- * GET  /api/research-os/access?mine=1
- *   { owned: [{id, slug, title, visibility, pending}], myRequests }
- * POST /api/research-os/access
- *   { action: "set_visibility", nodeId, visibility }
- *   { action: "grant", nodeId, granteeId | granteeGroup, role, expiresAt? }
- *   { action: "revoke", nodeId, grantId }
- *   { action: "request", nodeId, purpose, message? }
- *   { action: "decide", nodeId, requestId, decision: "granted" | "denied" }
- *   { action: "import", kind, title, source? }
- *
- * Auth: Authorization: Bearer <supabase access token>. GET ?node= works
- * signed out for public nodes (verbs computed for an anonymous viewer).
- * Rules: src/lib/research-os/access.ts. Writes: access-db.ts.
- */
 import { NextRequest, NextResponse } from "next/server";
-import { configured, verifyLearner } from "@/lib/research-os/db";
-import { can, canView, isOwner, GRANT_ROLES, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
+import { verifyLearner } from "@/lib/research-os/db";
+import { can, canView, isOwner, GRANT_ROLES, type AccessRequest, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
 import {
   createImport,
   createRequest,
@@ -34,46 +13,65 @@ import {
   loadRequestsForNode,
   loadViewerGroups,
   revokeGrant,
+  loadPendingCountsForNodes,
   setVisibility,
 } from "@/lib/research-os/access-db";
+import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
-
 const VISIBILITIES: Visibility[] = ["public", "private", "shared"];
 const PURPOSES: RequestPurpose[] = ["continue", "extend", "cite", "replicate", "review"];
 
-async function viewerFrom(req: NextRequest): Promise<Viewer> {
+async function viewerFrom(req: NextRequest): Promise<{ ok: true; viewer: Viewer } | { ok: false }> {
   const id = await verifyLearner(req);
-  if (!id) return { id: null, groups: [] };
-  return { id, groups: await loadViewerGroups(id) };
+  if (!id) return { ok: true, viewer: { id: null, groups: [] } };
+  const groups = await loadViewerGroups(id);
+  if (!groups.ok) return { ok: false };
+  return { ok: true, viewer: { id, groups: groups.value } };
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
-  const viewer = await viewerFrom(req);
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
 
   if (searchParams.get("mine")) {
     if (!viewer.id) return bad(401, "unauthorized");
-    const owned = await loadOwnedNodes(viewer.id);
-    const withPending = await Promise.all(
-      owned.map(async (n) => ({ ...n, pending: (await loadRequestsForNode(n.id)).filter((r) => r.status === "pending").length }))
-    );
-    return NextResponse.json({ owned: withPending, myRequests: await loadRequestsByRequester(viewer.id) }, NO_STORE);
+    const ownedRead = await loadOwnedNodes(viewer.id);
+    if (!ownedRead.ok) return bad(503, "access_unavailable");
+    const mineRead = await loadRequestsByRequester(viewer.id);
+    if (!mineRead.ok) return bad(503, "access_unavailable");
+    const pendingRead = await loadPendingCountsForNodes(ownedRead.value.map((n) => n.id));
+    if (!pendingRead.ok) return bad(503, "access_unavailable");
+    const owned = ownedRead.value.map((n) => ({ ...n, pending: pendingRead.value.get(n.id) ?? 0 }));
+    return NextResponse.json({ owned, myRequests: mineRead.value }, NO_STORE);
   }
 
   const nodeId = searchParams.get("node");
   if (!nodeId) return bad(400, "node_required");
-  const node = await loadNodeAccess(nodeId);
+  const nodeRead = await loadNodeAccess(nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
-  const grants = await loadGrants(nodeId);
+  const grantsRead = await loadGrants(nodeId);
+  if (!grantsRead.ok) return bad(503, "access_unavailable");
+  const grants = grantsRead.value;
   const owner = isOwner(node, viewer);
+  let requestsForNode: (AccessRequest & { createdAt: string })[] | undefined;
+  if (owner) {
+    const read = await loadRequestsForNode(nodeId);
+    if (!read.ok) return bad(503, "access_unavailable");
+    requestsForNode = read.value;
+  }
+  let mine: (AccessRequest & { createdAt: string })[] = [];
+  if (viewer.id) {
+    const read = await loadRequestsByRequester(viewer.id);
+    if (!read.ok) return bad(503, "access_unavailable");
+    mine = read.value.filter((r) => r.nodeId === nodeId);
+  }
   const verbs = Object.fromEntries(GRANT_ROLES.filter((r) => r !== "view").map((r) => [r, can(node, viewer, r as GrantRole, grants)]));
   return NextResponse.json(
     {
@@ -82,12 +80,12 @@ export async function GET(req: NextRequest) {
       canView: canView(node, viewer, grants),
       verbs,
       grants: owner ? grants : undefined,
-      requests: owner ? await loadRequestsForNode(nodeId) : undefined,
-      myRequests: viewer.id ? (await loadRequestsByRequester(viewer.id)).filter((r) => r.nodeId === nodeId) : [],
+      requests: owner ? requestsForNode : undefined,
+      myRequests: mine,
     },
     NO_STORE
   );
-}
+});
 
 type Body =
   | { action: "set_visibility"; nodeId: string; visibility: Visibility }
@@ -97,16 +95,14 @@ type Body =
   | { action: "decide"; nodeId: string; requestId: string; decision: "granted" | "denied" }
   | { action: "import"; kind: "dataset" | "paper" | "notes" | "corpus"; title: string; source?: Record<string, unknown> };
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const viewer = await viewerFrom(req);
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
   if (!viewer.id) return bad(401, "unauthorized");
-  let body: Body;
-  try {
-    body = (await req.json()) as Body;
-  } catch {
-    return bad(400, "bad_json");
-  }
+  const read = await readAnyJson(req, "bad_json");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as Body;
   if (!body || typeof body !== "object" || !("action" in body)) return bad(400, "action_required");
 
   if (body.action === "import") {
@@ -115,7 +111,9 @@ export async function POST(req: NextRequest) {
     return r.ok ? NextResponse.json(r.value, NO_STORE) : bad(500, r.error);
   }
 
-  const node = await loadNodeAccess(body.nodeId);
+  const nodeRead = await loadNodeAccess(body.nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
 
   switch (body.action) {
@@ -135,7 +133,9 @@ export async function POST(req: NextRequest) {
     }
     case "request": {
       if (!PURPOSES.includes(body.purpose)) return bad(400, "bad_purpose");
-      const grants = await loadGrants(node.id);
+      const grantsRead = await loadGrants(node.id);
+      if (!grantsRead.ok) return bad(503, "access_unavailable");
+      const grants = grantsRead.value;
       const r = await createRequest(node, viewer, body.purpose, body.message?.trim().slice(0, 1000) || null, grants);
       if (r.ok) return NextResponse.json({ request: r.value }, NO_STORE);
       return bad(r.error === "already_pending" ? 409 : r.error === "request_refused" ? 403 : 500, r.error);
@@ -149,4 +149,4 @@ export async function POST(req: NextRequest) {
     default:
       return bad(400, "unknown_action");
   }
-}
+});

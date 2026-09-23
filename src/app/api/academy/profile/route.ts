@@ -1,45 +1,3 @@
-/**
- * bucket.foundation, /api/academy/profile (bkt-coh)
- * ----------------------------------------------------------------------------
- * The Mastery Profile API: the public, shareable "verifiable digital resume"
- * (MVP /-signal phase, see learning/research/landscape/MASTERY-PROFILE.md
- * Phase 0/1, learning/EPIC.md §2). Two roles, one route:
- *
- * 1. PUBLIC READ (no auth): GET /api/academy/profile?handle=<handle>
- * Resolve handle -> user (service-role) and, IF the profile is public,
- * assemble + return the Mastery Profile (map + per-branch mastery
- * rollup + per-concept depth/recency). 404 if no public profile.
- *
- * 2. OWNER READ (auth): GET /api/academy/profile?me=1
- * Return the caller's OWN profile record (handle, display_name, is_public)
- * plus a preview of their assembled profile, so the in-app share UI can
- * show "your public link" + current visibility.
- *
- * 3. CLAIM/TOGGLE (auth): POST /api/academy/profile
- * body: { handle?, display_name?, is_public? }
- * Claim a handle and/or set display name and/or toggle visibility. The
- * caller is identified ONLY by their verified Supabase access token, 
- * never by a client-supplied id (same discipline as the progress route).
- *
- * SECURITY / PRIVACY (read before changing):
- * - The bucket.academy_profiles + bucket.academy_progress tables live in the
- * PRIVATE `bucket` Postgres schema, which the shared PostgREST does NOT
- * expose. The browser CANNOT read them directly; everything goes through
- * this same-origin Next.js route using a SERVER-ONLY service-role client.
- * - Default private. A profile is rendered publicly ONLY when is_public = true.
- * - Minimal PII: handle + optional display_name. Email is NEVER returned on the
- * public path. The public read does not require or accept a token.
- * - The service-role key bypasses RLS, so per-user ownership for writes is
- * enforced HERE: every upsert forces user_id = the verified token's user.
- *
- * HARD GUARDRAIL (EPIC.md §5): no certified/precise numeric rating is computed
- * or returned. The rollup (src/lib/academy/mastery.ts) emits
- * uncertainty-visible signal only.
- *
- * When SUPABASE_SERVICE_ROLE_KEY is absent the route returns 503 and the in-app
- * share UI silently hides (nothing breaks).
- */
-
 import { NextRequest, NextResponse } from "next/server";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -92,7 +50,6 @@ function service(): SupabaseClient {
   return _svc;
 }
 
-/** Verify the caller's Supabase access token; return their user id or null. */
 async function verifyUser(req: NextRequest): Promise<string | null> {
   const user = await verifyRequestUser(req);
   return user?.id ?? null;
@@ -105,13 +62,13 @@ interface ProfileRecord {
   is_public: boolean;
 }
 
-/** Read all progress rows for a user (service-role, hard per-user filter). */
 async function readProgressRows(uid: string): Promise<ProgressRow[]> {
   const { data, error } = await service()
     .from(PROGRESS)
     .select("branch,data,updated_at")
     .eq("user_id", uid);
-  if (error || !data) return [];
+  if (error) throw new Error(`academy_progress read failed: ${error.message}`);
+  if (!data) return [];
   return data as unknown as ProgressRow[];
 }
 
@@ -122,7 +79,6 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const handleParam = url.searchParams.get("handle");
   const me = url.searchParams.get("me");
 
-  // ---- OWNER READ: the caller's own profile record + preview --------------
   if (me) {
     const uid = await verifyUser(req);
     if (!uid) return json({ error: "unauthorized" }, 401);
@@ -134,10 +90,16 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       .maybeSingle();
     if (error) return json({ error: "read_failed" }, 500);
 
-    if (!data) return json({ profile: null }); // no handle claimed yet
+    if (!data) return json({ profile: null });
 
     const rec = data as unknown as ProfileRecord;
-    const rows = await readProgressRows(uid);
+    let rows: ProgressRow[];
+    try {
+      rows = await readProgressRows(uid);
+    } catch (err) {
+      console.error("[academy/profile] progress read failed:", err instanceof Error ? err.message : err);
+      return json({ error: "sync_unavailable" }, 503);
+    }
     const preview = assemblePublicProfile(rec.handle, rec.display_name, rows);
     return json({
       profile: {
@@ -150,7 +112,6 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     });
   }
 
-  // ---- PUBLIC READ: by handle, only if public ------------------------------
   if (!handleParam) return json({ error: "bad_request" }, 400);
   const handle = normalizeHandle(handleParam);
   if (!handle) return json({ error: "not_found" }, 404);
@@ -164,9 +125,15 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!data) return json({ error: "not_found" }, 404);
 
   const rec = data as unknown as ProfileRecord;
-  if (!rec.is_public) return json({ error: "not_found" }, 404); // private == invisible
+  if (!rec.is_public) return json({ error: "not_found" }, 404);
 
-  const rows = await readProgressRows(rec.user_id);
+  let rows: ProgressRow[];
+  try {
+    rows = await readProgressRows(rec.user_id);
+  } catch (err) {
+    console.error("[academy/profile] progress read failed:", err instanceof Error ? err.message : err);
+    return json({ error: "sync_unavailable" }, 503);
+  }
   const profile = assemblePublicProfile(rec.handle, rec.display_name, rows);
   return json({ profile });
 }
@@ -186,7 +153,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!body || typeof body !== "object") return json({ error: "bad_request" }, 400);
   const b = body as { handle?: unknown; display_name?: unknown; is_public?: unknown };
 
-  // Load any existing record so partial updates (e.g. toggle only) work.
   const { data: existing, error: readErr } = await service()
     .from(PROFILES)
     .select("user_id,handle,display_name,is_public")
@@ -195,7 +161,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (readErr) return json({ error: "read_failed" }, 500);
   const current = (existing as unknown as ProfileRecord) || null;
 
-  // Resolve the next field values from the request, falling back to current.
   let nextHandle = current?.handle;
   if (b.handle !== undefined) {
     const h = normalizeHandle(b.handle);
@@ -232,7 +197,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     nextPublic = b.is_public;
   }
 
-  // Handle uniqueness: if changing handle, ensure no OTHER user owns it.
   if (!current || current.handle !== nextHandle) {
     const { data: taken, error: takenErr } = await service()
       .from(PROFILES)
@@ -246,7 +210,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   const row = {
-    user_id: uid, // FORCE ownership to the verified user
+    user_id: uid,
     handle: nextHandle,
     display_name: nextDisplay,
     is_public: nextPublic,
@@ -256,7 +220,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     .from(PROFILES)
     .upsert(row, { onConflict: "user_id" });
   if (upErr) {
-    // unique-violation on lower(handle) surfaces here as a race with handle_taken
     const msg = (upErr as { message?: string }).message || "";
     if (/duplicate key|unique/i.test(msg)) return json({ error: "handle_taken" }, 409);
     return json({ error: "write_failed" }, 500);

@@ -1,9 +1,3 @@
-/**
- * FSRS-5 spaced-repetition scheduler. A port of learning/app/js/fsrs.js
- * (the same 19 default weights and the same math) so the Research OS Learn
- * module schedules cards the way the Academy app did, and existing
- * progress blobs keep their meaning.
- */
 import type { StoredCard } from "./mastery";
 
 export const FSRS_DEFAULT_W = [
@@ -14,7 +8,6 @@ const DECAY = -0.5;
 const FACTOR = Math.pow(0.9, 1 / DECAY) - 1;
 export const DAY_MS = 86400000;
 
-/** 1 Again, 2 Hard, 3 Good, 4 Easy. */
 export type Rating = 1 | 2 | 3 | 4;
 
 export interface Card extends StoredCard {
@@ -35,13 +28,11 @@ export class FSRS {
     this.w = weights ?? FSRS_DEFAULT_W;
   }
 
-  /** Retrievability after t days at stability S. */
   retrievability(t: number, S: number): number {
     if (S <= 0) return 0;
     return Math.pow(1 + FACTOR * (t / S), DECAY);
   }
 
-  /** Interval in days to the next review at the requested retention. */
   interval(S: number): number {
     const r = this.requestRetention;
     let ivl = (S / FACTOR) * (Math.pow(r, 1 / DECAY) - 1);
@@ -77,7 +68,6 @@ export class FSRS {
     return clampS(Math.min(sf, S));
   }
 
-  /** Apply a rating to a card and return a new card. */
   review(card: Card | null | undefined, g: Rating, now: number = Date.now()): Card {
     const out: Card = { ...(card ?? {}) };
     if (!card || card.state === "new" || card.stability == null) {
@@ -106,7 +96,6 @@ export class FSRS {
     return out;
   }
 
-  /** Mastery proxy in [0,1] from stability in days; about 30 days stable reads as mastered. */
   mastery(card: Card | null | undefined): number {
     if (!card || card.stability == null) return 0;
     const m = 1 - Math.exp(-card.stability / 21);

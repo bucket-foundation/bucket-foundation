@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// The pen (ros-23): free writing on the selected node that no tool and no
-// model ever reads. Stored in this browser only, keyed by node.
-
 function key(nodeId: string) {
   return `ros-pen:${nodeId}`;
 }
@@ -29,7 +26,6 @@ export default function PenBlock({ nodeId }: { nodeId: string }) {
         if (text) localStorage.setItem(key(nodeId), text);
         else localStorage.removeItem(key(nodeId));
       } catch {
-        /* storage unavailable; the text stays on screen */
       }
       setSaved(true);
     }, 400);

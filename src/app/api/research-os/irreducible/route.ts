@@ -1,45 +1,26 @@
-/**
- * /api/research-os/irreducible, the review of nodes the decompose-further
- * queue called irreducible (learning/research-os/PRIMES.md, "Slice 2"): the
- * founder's primes, the ideas that do not break down further. Backs
- * graph.irreducible_proposals. The work lives in
- * src/lib/research-os/inference/review-actions.ts.
- *
- * GET  -> { proposals }: pending verdicts, the nodes most rested on first.
- * POST { id, decision: "confirmed" | "rejected", reason? }. A confirmed node
- *   leaves the decompose-further targets; a rejected one returns to them.
- *
- * Auth and status codes match /api/research-os/edges.
- */
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService } from "@/lib/research-os/db";
+import { graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { decideIrreducible, listIrreducible } from "@/lib/research-os/inference/review-actions";
+import { bad, ok, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const reply = (r: { status: number; body: Record<string, unknown> }) =>
-  NextResponse.json(r.body, { status: r.status, headers: { "cache-control": "no-store" } });
+const reply = (r: { status: number; body: Record<string, unknown> }) => ok(r.body, r.status);
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
-  if (!(await verifyGraphReviewer(req))) return reply({ status: 403, body: { error: "forbidden" } });
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
+  if (!(await verifyGraphReviewer(req))) return bad(403, "forbidden");
   return reply(await listIrreducible(graphService()));
-}
+});
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyGraphReviewer(req);
-  if (!reviewer) return reply({ status: 403, body: { error: "forbidden" } });
-  let body: { id?: string; decision?: string; reason?: string };
-  try {
-    body = await req.json();
-  } catch {
-    return reply({ status: 400, body: { error: "bad_request" } });
-  }
+  if (!reviewer) return bad(403, "forbidden");
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as { id?: string; decision?: string; reason?: string };
   const id = (body.id || "").trim();
-  if (!id) return reply({ status: 400, body: { error: "id is required" } });
-  if (body.decision !== "confirmed" && body.decision !== "rejected") return reply({ status: 400, body: { error: "decision must be confirmed or rejected" } });
+  if (!id) return bad(400, "id is required");
+  if (body.decision !== "confirmed" && body.decision !== "rejected") return bad(400, "decision must be confirmed or rejected");
   return reply(await decideIrreducible(graphService(), { id, decision: body.decision, reason: (body.reason || "").trim() || null, reviewerId: reviewer.id }));
-}
+});

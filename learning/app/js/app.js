@@ -1,7 +1,3 @@
-/* Bucket Academy, UI layer. Apple-grade, content-first. Implements the route loop,
- * the atom screen (functional art + 3-depth progressive disclosure + drill + non-punishing
- * feedback), progress, and the curated concentric-shell nucleus map (never force-directed).
- */
 (function () {
   "use strict";
   const E = new window.Engine();
@@ -15,10 +11,6 @@
   const SHELL_RANK = { prereq: 0, nucleus: 1, frontier: 2 };
   const SHELL_LABEL = { prereq: "Prerequisite", nucleus: "Nucleus", frontier: "Frontier" };
 
-  // Available branches (corpora). The picker is data-driven: built-in decks are
-  // LOADED from corpus/index.json at boot (see loadManifest()). Adding a built-in
-  // deck = drop a corpus file + a manifest entry. BRANCHES is mutable and rebuilt
-  // by refreshBranches(); BUILTIN_FALLBACK is used only if the fetch fails.
   const BRANCH_PREF_KEY = "bucket-academy/branch";
   const DEFAULT_BRANCH = "corpus/biophysics.json";
   const BUILTIN_FALLBACK = [
@@ -32,11 +24,9 @@
     { id: "07-mind", file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
     { id: "lang-core", file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know", kind: "language", languages: ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "ru", "ja", "zh", "el", "fi", "pl"] },
   ];
-  let BUILTINS = BUILTIN_FALLBACK.slice(); // populated from manifest at boot
-  let BRANCHES = BUILTIN_FALLBACK.slice(); // built-ins + user decks; rebuilt by refreshBranches()
+  let BUILTINS = BUILTIN_FALLBACK.slice();
+  let BRANCHES = BUILTIN_FALLBACK.slice();
 
-  // Load the built-in deck manifest. Falls back to the baked-in list on any failure
-  // so the app always boots even offline / if corpus/index.json is missing.
   async function loadManifest() {
     try {
       const res = await fetch("corpus/index.json", { cache: "no-store" });
@@ -49,13 +39,10 @@
     refreshBranches();
   }
 
-  // Rebuild BRANCHES from the built-in deck manifest. (Custom/AI-generated decks were
-  // removed, the Academy ships only curated, foundations-first built-in branches.)
   function refreshBranches() {
     BRANCHES = BUILTINS.slice();
   }
 
-  // Find a branch record by its current selection key (file for built-ins, id for customs).
   function findBranch(key) {
     return BRANCHES.find((b) => (b.file ? b.file === key : b.id === key));
   }
@@ -65,7 +52,6 @@
   function currentBranch() {
     return findBranch(currentBranchFile) || BRANCHES[0];
   }
-  // canon branch slug per corpus → links into bucket.foundation/canon/<slug>
   const CANON_SLUG = {
     "01-mathematics": "mathematics", "02-physics": "physics", "03-chemistry": "chemistry",
     "04-information": "information", "05-biophysics": "biophysics", "06-cosmology": "cosmology",
@@ -89,11 +75,11 @@
     }
   })();
 
-  let session = null; // {queue:[{id,kind}], i, current, level, revealed}
-  let diag = null;    // active placement-diagnostic session ({d, item, revealed})
-  let assess = null;  // active "Test yourself" assessment run (bkt-v7y)
-  let currentScreen = "home"; // last routed screen (for post-sync re-render)
-  let shareProfileHandle = null; // cached {handle,isPublic} for the share action (bkt-vjb)
+  let session = null;
+  let diag = null;
+  let assess = null;
+  let currentScreen = "home";
+  let shareProfileHandle = null;
 
   function katex(root) {
     if (window.renderMathInElement)
@@ -108,13 +94,11 @@
       } catch (e) {}
   }
 
-  // Render a markdown lesson to HTML (marked if loaded; minimal fallback otherwise).
   function mdToHtml(src) {
     src = String(src || "");
     if (window.marked && window.marked.parse) {
       try { return window.marked.parse(src, { breaks: false, mangle: false, headerIds: false }); } catch (e) {}
     }
-    // fallback: headings, bold, lists, paragraphs (math left for KaTeX)
     return src.split(/\n{2,}/).map((blk) => {
       const t = blk.trim();
       const h = t.match(/^#{1,6}\s+(.*)$/);
@@ -124,9 +108,6 @@
     }).join("");
   }
 
-  // Build-time procedural-art cache (art/cache/<branch>.json), loaded per branch.
-  // Deterministic SVG keyed on hash(atomId), the load-bearing-art anchor. We prefer
-  // the cached bytes (inspectable, SVGO'd at build) and fall back to live generation.
   let artCache = {};
   async function loadArtCache() {
     artCache = {};
@@ -145,9 +126,6 @@
   }
 
   function artCard(atom) {
-    // Load-bearing concept anchor: a deterministic, build-time-generated procedural SVG
-    // that DEPICTS the concept (equation → real plotted curve; mechanism/concept →
-    // constrained on-brand schematic). Crisp, tiny, offline, alt-texted. No diffusion.
     const card = el("div", "art has-fig shell-" + atom.shell);
     const fig = artFor(atom);
     let figHtml = "";
@@ -164,34 +142,20 @@
     return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
 
-  /* ---------- language answer checking (bkt-n2v / C3 typed grading) ----------
- * Real recognition-free recall: the learner TYPES the target word and we grade
- * the actual answer (correct / close-typo / wrong), then drive FSRS from the
- * real result instead of self-report. Tolerant of diacritics, case, whitespace,
- * surrounding articles, and a single typo. */
-
-  // Strip diacritics for all 7 deck languages: é→e ñ→n ü→u ç→c ã→a ò→o ï→i ß→ss …
-  // Uses NFD canonical decomposition + combining-mark removal, plus explicit maps
-  // for characters that don't decompose (ß, ø, æ, œ, ð, þ).
   function foldAccents(s) {
     s = String(s == null ? "" : s).toLowerCase().trim();
-    // collapse internal whitespace
     s = s.replace(/\s+/g, " ");
-    // characters with no canonical decomposition → expand explicitly
     s = s
       .replace(/ß/g, "ss")
       .replace(/æ/g, "ae").replace(/œ/g, "oe")
       .replace(/ø/g, "o")
       .replace(/ð/g, "d").replace(/þ/g, "th")
       .replace(/ł/g, "l");
-    // canonical decompose, then drop combining diacritical marks (U+0300, U+036F)
     try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {}
-    // drop apostrophes/hyphens that don't change identity (l'eau → leau, etc.)
     s = s.replace(/[’'`\-]/g, "");
     return s.trim();
   }
 
-  // Articles we accept as optional prefixes for gendered nouns, per language.
   var LANG_ARTICLES = {
     es: ["el", "la", "los", "las", "un", "una"],
     fr: ["le", "la", "les", "l", "un", "une", "des", "du", "de"],
@@ -202,8 +166,6 @@
     en: ["the", "a", "an"],
   };
 
-  // Remove a leading article token (folded) so "el agua"/"la casa"/"der Hund"
-  // match the article-less deck word, and vice-versa.
   function stripArticle(folded, lang) {
     var arts = LANG_ARTICLES[lang] || [];
     var parts = folded.split(" ");
@@ -213,11 +175,6 @@
     return folded;
   }
 
-  // Damerau-Levenshtein edit distance (bounded use: short words only). Counts an
-  // ADJACENT TRANSPOSITION ("agau"→"agua") as a SINGLE edit (cost 1) so a real
-  // typo where two neighbouring letters are swapped grades "close".
-  // (Optimal String Alignment variant: sufficient for single-typo tolerance, and
-  // we keep three rolling rows so the transposition term `prev2[j-2]` is available.)
   function editDistance(a, b) {
     a = a || ""; b = b || "";
     if (a === b) return 0;
@@ -231,7 +188,6 @@
       for (j = 1; j <= lb; j++) {
         var cost = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1;
         var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
-        // adjacent transposition: a[i-1]==b[j-2] && a[i-2]==b[j-1] → one edit
         if (i > 1 && j > 1 &&
             a.charCodeAt(i - 1) === b.charCodeAt(j - 2) &&
             a.charCodeAt(i - 2) === b.charCodeAt(j - 1)) {
@@ -244,19 +200,11 @@
     return prev[lb];
   }
 
-  // Grade a typed answer against the deck's target word.
-  // Returns { verdict: "correct"|"close"|"wrong", accentOnly, expected, dist }.
-  // correct → exact match after case/whitespace/article normalization
-  // (accentOnly flags a right-but-for-diacritics answer, still correct,
-  // we just note it so the reveal can nudge the accent)
-  // close → within 1 edit of the (folded) target = an typo
-  // wrong → otherwise
   function checkLangAnswer(typed, target, lang) {
     var expected = String(target == null ? "" : target).trim();
     var out = { verdict: "wrong", accentOnly: false, expected: expected, dist: 99 };
     if (!typed || !typed.trim()) return out;
 
-    // Tier 1: exact (case + whitespace only), diacritics intact.
     var tRaw = typed.toLowerCase().replace(/\s+/g, " ").trim();
     var eRaw = expected.toLowerCase().replace(/\s+/g, " ").trim();
     var tRawNA = stripRawArticle(tRaw, lang);
@@ -264,27 +212,22 @@
       out.verdict = "correct"; out.dist = 0; return out;
     }
 
-    // Tier 2: accent/diacritic + article folded exact match → still correct,
-    // flag accentOnly so we can show the precise spelling.
     var tf = stripArticle(foldAccents(typed), lang);
     var ef = stripArticle(foldAccents(expected), lang);
     if (tf && tf === ef) {
       out.verdict = "correct"; out.dist = 0;
-      out.accentOnly = (tRawNA !== eRaw); // matched only after folding
+      out.accentOnly = (tRawNA !== eRaw);
       return out;
     }
 
-    // Tier 3: close (single typo) on the folded form.
     var d = editDistance(tf, ef);
     out.dist = d;
-    // 1 edit for short words, allow 2 for longer (>=8 chars) words.
     var tol = ef.length >= 8 ? 2 : 1;
     if (ef.length >= 3 && d <= tol) { out.verdict = "close"; return out; }
 
     return out;
   }
 
-  // Like stripArticle but operates on a raw (un-folded) lowercased string.
   function stripRawArticle(raw, lang) {
     var arts = LANG_ARTICLES[lang] || [];
     var parts = raw.split(" ");
@@ -294,15 +237,12 @@
     return raw;
   }
 
-  /* ---------- screens ---------- */
   function screenHome() {
-    // Languages: force the explicit setup picker before anything (fix #1). No silent
-    // auto-Spanish default, the learner chooses target + known first, once.
     if (isLang() && !langPrefChosen()) return screenLangPicker();
     const s = E.summary();
     const route = E.route();
     const dueReviews = route.filter((r) => r.kind === "review");
-    const next = studyOrder().filter((id) => !E.cardFor(id)); // not-yet-drilled, in order
+    const next = studyOrder().filter((id) => !E.cardFor(id));
     const wrap = el("div", "screen home");
     wrap.appendChild(header());
 
@@ -310,7 +250,6 @@
     const curBranch = currentBranch();
     const branchName = curBranch.pill.replace(/^\S+ · /, "");
     if (isLang()) {
-      // Course-style hero: name the languages, lead with the current level, retrieval-first.
       const ls = langSettings();
       const levels = langLevels();
       const lv = langCurrentLevel(levels);
@@ -321,7 +260,6 @@
       hero.appendChild(el("p", "sub",
         (lv ? "Level " + lv.n + " · " + lv.label + " — " + lv.done + "/" + lv.total + " words" : (s.introduced + " of " + s.total + " words started")) +
         (dueReviews.length ? " · " + dueReviews.length + " to review" : "")));
-      // primary verb = practice (retrieval-first), starting at the current level
       const startCta = el("button", "btn primary", (lv && lv.done ? "Continue level " + lv.n + " →" : "Start level " + (lv ? lv.n : 1) + " →"));
       startCta.onclick = () => {
         const queue = (lv ? lv.ids : next).filter((id) => !E.cardFor(id)).slice(0, LANG_LEVEL_SIZE);
@@ -354,11 +292,8 @@
       }
     }
     wrap.appendChild(hero);
-    // framing right under the hero on the language branch (fix #5)
     if (isLang()) wrap.appendChild(langHonestyBanner());
 
-    // Placement diagnostic entry, most prominent on a fresh branch (nothing started),
-    // but always available. Framing: a starting estimate, fully skippable.
     if (!isLang() && typeof window.Diagnostic === "function" && s.introduced === 0) {
       const cta = el("button", "place-cta",
         '<span class="pc-ico">✶</span>' +
@@ -376,9 +311,6 @@
     stats.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(stats);
 
-    // Discoverable LANGUAGES entry (epic bkt-w0t fix #1, the founder couldn't find
-    // how to pick a language). A prominent card on every NON-language branch home that
-    // jumps straight into the dedicated Duolingo-style language experience.
     if (!isLang()) {
       const langBranch = BRANCHES.find((b) => b.kind === "language" || /lang-core/.test(b.file || ""));
       if (langBranch) {
@@ -393,8 +325,6 @@
       }
     }
 
-    // Languages: a leveled PATH (fix #5) instead of a flat word list, units the
-    // learner can see progress through. Each level tile starts a session of its words.
     if (isLang()) {
       const levels = langLevels();
       const cur = langCurrentLevel(levels);
@@ -412,9 +342,8 @@
           '<span class="lvl-bar"><i style="width:' + pct + '%"></i></span></span>' +
           '<span class="lvl-go">' + (complete ? "↺" : "→") + "</span>";
         tile.onclick = () => {
-          // start with the not-yet-learned words first; if all learned, review them
           let queue = lv.ids.filter((id) => !E.cardFor(id));
-          if (!queue.length) queue = lv.ids; // revisit a completed level
+          if (!queue.length) queue = lv.ids;
           startSession(queue.slice(0, LANG_LEVEL_SIZE).map((id) => ({ id, kind: E.cardFor(id) ? "review" : "new" })));
         };
         path.appendChild(tile);
@@ -425,7 +354,6 @@
       return wrap;
     }
 
-    // Continue learning, next concepts in learning order, NO daily cap. Always something.
     if (next.length) {
       const list = el("div", "route-list");
       list.appendChild(el("div", "section-label", "Continue learning"));
@@ -473,8 +401,6 @@
       cur.pill +
       ' <span class="branch-caret">▾</span></button>';
     h.querySelector("#branchPill").onclick = openBranchPicker;
-    // Optional sign-in / "Save progress" control (bkt-su9). No-op when auth is
-    // disabled (empty auth-config), keeps anonymous local-first use intact.
     if (window.BucketAuthUI) {
       try { window.BucketAuthUI.mountInto(h); } catch (e) {}
     }
@@ -514,8 +440,6 @@
     document.body.appendChild(back);
   }
 
-  // Load a branch by selection key. Built-ins fetch their file; custom decks load
-  // their in-memory corpus via Engine.loadData (no network, namespaced by deck id).
   async function switchBranch(key) {
     const b = findBranch(key);
     currentBranchFile = key;
@@ -532,7 +456,7 @@
         throw new Error("unknown branch " + key);
       }
       normalizeAtoms();
-      syncLangNamespace(); // bkt-h9k: per-language state when entering the lang branch
+      syncLangNamespace();
       await loadArtCache();
     } catch (e) {
       $("#app").innerHTML =
@@ -552,14 +476,12 @@
     return n;
   }
 
-  /* ---------- atom (study) ---------- */
   function openAtom(id, peek) {
     session = session || { queue: [{ id, kind: E.cardFor(id) ? "review" : "new" }], i: 0 };
     renderAtom(id, peek);
   }
 
   function pickLevel(id) {
-    // start coarse (one card/atom). Rotate question depth by mastery (DECISIONS.md#2).
     const m = E.masteryFor(id);
     const a = E.byId[id];
     const have = (a.quiz || []).map((q) => q.level);
@@ -573,30 +495,20 @@
     return !!(E.meta && E.meta.kind === "language");
   }
   function normalizeAtoms() {
-    // language atoms use `gloss`; give them a display title so shared UI works.
     E.atoms.forEach((a) => { if (!a.title) a.title = a.gloss || a.id; });
   }
-  // Read the raw persisted language preference (or {} if none).
   function langPrefRaw() {
     let p = {};
     try { p = JSON.parse(localStorage.getItem(LANG_PREF_KEY)) || {}; } catch (e) {}
     return p && typeof p === "object" ? p : {};
   }
-  // Has the learner ever made an explicit "I want to learn ___ / I already know ___"
-  // choice? Drives the first-run picker (fix #1, explicit setup over defaults).
   function langPrefChosen() {
     const p = langPrefRaw();
     return !!(p && p.chosen && p.target);
   }
-  // Polyglot mode = the advanced "show the word in EVERY language I know" view.
-  // OFF by default (fix #2, beginners see one clean source→target mapping).
   function langPolyglot() {
     return !!langPrefRaw().polyglot;
   }
-  // The languages a learner may pick as the TARGET (the one being learned). This is
-  // meta.languages (guaranteed on every atom) PLUS bonusLanguages (ko/hi/ar, present
-  // on most-but-not-all atoms; well above the ~80-word usability bar). Sorted by code
-  // for a stable order; the picker re-sorts by display name. (bkt-3s9)
   function langDeckLangs() {
     const meta = (E.meta && E.meta.languages) || ["en"];
     const bonus = (E.meta && E.meta.bonusLanguages) || [];
@@ -604,35 +516,23 @@
     [...meta, ...bonus].forEach((l) => { if (l && !seen[l]) { seen[l] = 1; out.push(l); } });
     return out;
   }
-  // How many atoms carry a form in language `l` (for the picker's coverage
-  // filter, only offer languages with a real, learnable amount of content).
   function langCoverage(l) {
     if (!E.atoms) return 0;
     let n = 0; for (const a of E.atoms) if (a.forms && a.forms[l] && a.forms[l].word) n++;
     return n;
   }
   function langSettings() {
-    // target may be any deck language (incl. bonus ko/hi/ar); known (the source you
-    // learn FROM) must be a guaranteed meta language so every atom can anchor it.
     const deckLangs = langDeckLangs();
     const metaLangs = (E.meta && E.meta.languages) || ["en"];
     const langs = deckLangs;
     const p = langPrefRaw();
     let target = p.target && langs.includes(p.target) ? p.target : (langs.find((l) => l !== "en") || langs[0]);
-    // `known` = the languages the learner already knows. We keep the full list (so the
-    // settings UI + advanced polyglot view can use it), but beginners are SHOWN only the
-    // first (the primary source language) unless polyglot mode is on. Default known = [en].
     let known = (Array.isArray(p.known) ? p.known : ["en"]).filter((l) => metaLangs.includes(l) && l !== target);
     if (!known.length) known = (metaLangs.includes("en") && "en" !== target ? ["en"] : metaLangs.filter((l) => l !== target).slice(0, 1));
-    // The single primary source language a beginner learns FROM (fix #2).
     const primaryKnown = p.primaryKnown && known.includes(p.primaryKnown) ? p.primaryKnown : known[0];
-    // What the per-card reference list should show: just the primary by default; all
-    // known languages when polyglot (advanced) mode is on.
     const shown = langPolyglot() ? known : (primaryKnown ? [primaryKnown] : known.slice(0, 1));
     return { target, known, shown, primaryKnown, polyglot: langPolyglot(), langs };
   }
-  // Persist the learner's choice. `opts` may carry { primaryKnown, polyglot, chosen }.
-  // Marks the pref as explicitly chosen so the first-run picker doesn't reappear.
   function setLangPref(target, known, opts) {
     opts = opts || {};
     const prev = langPrefRaw();
@@ -647,26 +547,13 @@
     try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify(rec)); } catch (e) {}
   }
 
-  /* ===================================================================== *
- * MULTI-COURSE LANGUAGES (bkt-h9k)
- * Each target language is a separate course with fully independent engine
- * state (FSRS cards, proficiency, xp, streak), namespaced in the engine as
- * "lang:<target>" (e.g. "lang:es", "lang:ja"). The shared deck (lang-core)
- * provides the atoms/study order; only the PROGRESS is per-language. The
- * canon/science branches keep using their own branch-keyed state untouched.
- * ===================================================================== */
-  // The engine namespace key for a given target language course.
   function langStateKey(target) { return "lang:" + target; }
-  // Point the live engine at the active target's per-language state. No-op off the
-  // language branch (so science branches are never re-namespaced). Idempotent.
   function syncLangNamespace() {
     if (!isLang()) return;
     const target = langSettings().target;
     if (target) E.useNamespace(langStateKey(target));
   }
 
-  // Started-courses registry: the set of target languages the learner has begun a
-  // course in (so "My Languages" knows what to list). Stored as an ordered list.
   const DUO_COURSES_KEY = "bucket-academy/duo-courses";
   function startedCourses() {
     let v = [];
@@ -681,18 +568,12 @@
       try { localStorage.setItem(DUO_COURSES_KEY, JSON.stringify(list)); } catch (e) {}
     }
   }
-  // Per-language stats for the "My Languages" view. Reads the target's OWN namespace
-  // (live engine if it's the active course, otherwise a pure peek) and counts words
-  // learned against the deck's coverage for that target. Never mutates the live engine.
   function courseStats(target) {
     const key = langStateKey(target);
     const active = isLang() && langSettings().target === target;
     const st = active ? E.state : E.peekNamespace(key);
     const cards = (st && st.cards) || {};
     const stats = (st && st.stats) || {};
-    // words "learned" = atoms with a card AND (for the active course) mastery >= .55;
-    // for a peeked (inactive) course we can't cheaply compute fused mastery without
-    // swapping namespaces, so we count introduced cards as the signal there.
     let learned = 0, introduced = 0;
     const total = langCoverage(target);
     Object.keys(cards).forEach((id) => {
@@ -701,7 +582,7 @@
       introduced++;
       if (active) { if (E.masteryFor(id) >= 0.55) learned++; }
     });
-    if (!active) learned = introduced; // peek signal (see note above)
+    if (!active) learned = introduced;
     return {
       target,
       learned,
@@ -713,9 +594,6 @@
     };
   }
 
-  // "Ask the tutor", opens a focused, grounded Socratic chat scoped to this
-  // atom. Degrades silently if the tutor module didn't load (atom screen must
-  // never break). The panel itself handles the not-enabled (503) state.
   function tutorAffordance(a) {
     const wrap = el("div", "tutor-cta");
     const btn = el(
@@ -739,7 +617,6 @@
     return wrap;
   }
 
-  // "Go deeper" (external resources) + "Related in Bucket" (canon links) for any atom.
   function deeperSection(a) {
     const wrap = el("div", "deeper");
     if (a.resources && a.resources.length) {
@@ -770,9 +647,6 @@
     return wrap;
   }
 
-  // Build the per-card cross-language reference rows. By default (beginner) this shows
-  // ONLY the primary source language (fix #2, one clean source→target). When polyglot
-  // (advanced) mode is on, it shows every known language. `langs` = which to render.
   function langRefSection(a, langsToShow) {
     const ref = el("div", "lang-ref");
     ref.appendChild(el("div", "section-label",
@@ -790,7 +664,6 @@
     return ref;
   }
 
-  /* ---------- language atom ---------- */
   function renderLangAtom(id, peek) {
     const a = E.byId[id];
     const ls = langSettings();
@@ -804,11 +677,9 @@
     top.appendChild(el("span", "prog", session ? session.i + 1 + " / " + session.queue.length : ""));
     wrap.appendChild(top);
 
-    // Level badge (fix #5, "where am I"). Small, calm, serif.
     wrap.appendChild(el("div", "lang-level-chip", "Level " + langLevelOf(id) + " · " + (LANG_NAMES[target] || target)));
 
     if (peek) {
-      // ---- PEEK / preview (browsing from the path): reveal the full card, no spoiler worry.
       const card = el("div", "art lang-card shell-" + a.shell);
       card.innerHTML =
         '<div class="art-badge">' + escapeHtml(LANG_NAMES[target] || target) + "</div>" +
@@ -844,10 +715,6 @@
       return;
     }
 
-    // ---- DRILL mode: a sequenced exercise (fix #3). We do NOT reveal the target word
-    // up front (that would defeat recall), instead a prompt asking for the meaning,
-    // then the sequenced exercise stages render below. The full reference card is shown
-    // by each stage AFTER the learner answers.
     const stage = el("div", "lang-stage");
     wrap.appendChild(stage);
     wrap.appendChild(deeperSection(a));
@@ -855,29 +722,18 @@
     langExercise(a, target, known, shown, stage);
   }
 
-  // Sequenced language exercise (fix #3 + #4). Difficulty ramps WITHIN an atom:
-  // (a) image-or-word multiple choice → recognition, can't-fail FIRST exposure
-  // (b) word-bank / tap-the-tokens → assembly with support
-  // (c) typed recall (langDrill) → hardest, last; the single FSRS signal
-  // The stage shown to START at scales with mastery (a brand-new word starts at MC; a
-  // well-known word jumps straight to typed recall, no babying a learner who's got it).
-  // MC + word-bank are warm-ups (gentle amber/green feedback, no FSRS grade); the typed
-  // drill is the one that grades + schedules (and chains the sentence cloze), exactly as
-  // before. So FSRS scheduling is unchanged, we only ADD recognition ramps in front.
   function langExercise(a, target, known, shown, mountEl) {
     const m = E.masteryFor(a.id);
-    // stage order; entry point by mastery
     const stages = ["mc", "bank", "typed"];
     let idx = m >= 0.7 ? 2 : m >= 0.35 ? 1 : 0;
 
     function clear() {
-      // shim-safe: drop all children + any innerHTML so the next stage is the only content
       if (mountEl.children) Array.prototype.slice.call(mountEl.children).forEach((c) => c.remove());
       mountEl.innerHTML = "";
     }
     function advance() {
       idx++;
-      if (idx >= stages.length) return; // typed stage drives next() itself
+      if (idx >= stages.length) return;
       runStage();
     }
     function runStage() {
@@ -885,28 +741,23 @@
       const s = stages[idx];
       if (s === "mc") {
         const node = langMultipleChoice(a, target, known, shown, advance);
-        if (!node) { advance(); return; } // not enough distractors → skip to assembly
+        if (!node) { advance(); return; }
         mountEl.appendChild(node);
       } else if (s === "bank") {
         const node = langWordBank(a, target, known, shown, advance);
-        if (!node) { advance(); return; } // word too short to assemble → skip to typed
+        if (!node) { advance(); return; }
         mountEl.appendChild(node);
       } else {
-        // typed recall, the existing accent/typo-tolerant drill; it grades FSRS and
-        // chains the sentence cloze, then advances the session via next().
         mountEl.appendChild(langDrill(a, target, known));
       }
     }
     runStage();
   }
 
-  // Gather sibling atoms in the SAME category as distractors for multiple choice /
-  // word-bank decoys (fix #3, "distractors drawn from sibling atoms in the same deck").
   function langSiblings(a, target, n) {
     const want = (a.forms[target] || {}).word || "";
     const sameCat = E.atoms.filter((x) =>
       x.id !== a.id && x.category === a.category && x.forms && x.forms[target] && x.forms[target].word && x.forms[target].word !== want);
-    // fall back to any atom if the category is too small
     let pool = sameCat;
     if (pool.length < n) {
       const extra = E.atoms.filter((x) => x.id !== a.id && x.forms && x.forms[target] && x.forms[target].word && x.forms[target].word !== want && pool.indexOf(x) < 0);
@@ -921,27 +772,19 @@
     return arr;
   }
 
-  // Stage (a): multiple-choice recognition, "Which one is '<gloss>'?" → pick the
-  // target word from options. Can't-fail first exposure. Gentle feedback: green Correct
-  // → continue; amber Not-→ reveal the right one + try again. No FSRS grade.
-  // Returns null if there aren't enough distinct options (caller falls through).
   function langMultipleChoice(a, target, known, shown, done) {
     const tf = a.forms[target] || {};
     const correct = tf.word || "";
     if (!correct) return null;
     const distractors = langSiblings(a, target, 2).map((x) => x.forms[target].word);
-    if (distractors.length < 1) return null; // need at least one decoy
+    if (distractors.length < 1) return null;
     const options = shuffle([correct].concat(distractors));
 
     const box = el("div", "drill lang-drill lang-mc");
-    box.dataset.concept = a.id; // lets pic-MC (emoji prompt) be mapped back to its atom
+    box.dataset.concept = a.id;
     box.appendChild(el("div", "drill-label", "Choose · " + (LANG_NAMES[target] || target)));
-    // anchor the meaning via the primary known language (fix #2, one source)
     const hintLang = shown[0] || known[0];
     const hint = hintLang && a.forms[hintLang];
-    // PICTURE multiple-choice (bkt-3s9): when the concept has a curated emoji, show
-    // the emoji as the prompt, a true can't-fail picture choice (the Duolingo hook).
-    // Falls back to the word/gloss prompt for abstract concepts with no picture.
     const emoji = window.LangEmoji && window.LangEmoji.emojiFor(a.id);
     if (emoji) {
       box.classList.add("lang-mc-pic");
@@ -965,7 +808,6 @@
     options.forEach((w) => {
       const o = el("button", "mc-opt", escapeHtml(w));
       o.type = "button";
-      // 🔊 hear the option (recognition is helped by sound)
       if (window.LangAudio && window.LangAudio.supported()) {
         o.appendChild(window.LangAudio.button(w, target, { label: "Hear " + w, cls: "inline" }));
       }
@@ -973,7 +815,6 @@
         if (answered) return;
         const right = w === correct;
         if (!right) {
-          // gentle, non-punishing: amber nudge, mark the wrong choice, let them try again
           if (window.haptic) haptic("wrong");
           o.classList.add("mc-wrong");
           o.disabled = true;
@@ -986,7 +827,6 @@
         opts.querySelectorAll(".mc-opt").forEach((b) => { b.disabled = true; });
         o.classList.add("mc-right");
         const nudge = box.querySelector(".mc-nudge"); if (nudge) nudge.remove();
-        // green "Correct!" + continue (Duolingo/Khan style)
         result.appendChild(el("div", "lr-head correct",
           '<span class="lr-icon">✓</span><span class="lr-label">Correct!</span>'));
         const ans = el("div", "lr-answer");
@@ -1009,11 +849,6 @@
     return box;
   }
 
-  // Stage (b): word-bank / tap-the-tokens assembly, like Duolingo's "Write this in
-  // <lang>" with tappable letter/syllable tiles. The learner builds the target word by
-  // tapping tiles (the correct letters + a few decoy letters), then checks. Reuses the
-  // accent/typo-tolerant grader. Gentle feedback. No FSRS grade (the typed drill does that).
-  // Returns null for short words (≤2 chars) where assembly adds no value.
   function langWordBank(a, target, known, shown, done) {
     const tf = a.forms[target] || {};
     const correct = tf.word || "";
@@ -1028,8 +863,6 @@
       (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
       " in " + escapeHtml(LANG_NAMES[target] || target) + " — tap the tiles in order:"));
 
-    // tokens = the word's characters (spaces kept as a visible gap), plus a few decoy
-    // letters drawn from a sibling word so it isn't a trivial in-order tap.
     const letters = Array.from(correct);
     const sib = langSiblings(a, target, 1)[0];
     const decoySrc = sib ? Array.from(sib.forms[target].word) : [];
@@ -1039,7 +872,7 @@
     const assembled = el("div", "bank-assembled");
     const tray = el("div", "bank-tray");
     const result = el("div", "lang-result hidden");
-    let built = []; // [{ch, tileEl}]
+    let built = [];
     let done2 = false;
 
     function refresh() {
@@ -1069,7 +902,6 @@
       const typed = built.map((b) => b.ch).join("");
       const res = checkLangAnswer(typed, correct, target);
       if (res.verdict === "wrong") {
-        // gentle: amber, reveal, offer "show me" / try again, never harsh (fix #4)
         if (window.haptic) haptic("wrong");
         box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
         result.innerHTML = "";
@@ -1089,7 +921,6 @@
         result.classList.remove("hidden");
         return;
       }
-      // correct (or close-typo) → green, continue
       done2 = true;
       if (window.haptic) haptic("correct");
       result.innerHTML = "";
@@ -1115,12 +946,6 @@
     return box;
   }
 
-  // Typed-recall language drill (bkt-n2v / C3). The learner TYPES the target word;
-  // we check it (accent/case/article/typo-tolerant), show correct ✓ / close / wrong
-  // (amber, never red), reveal the right spelling, and grade FSRS from the ACTUAL
-  // result, Good/Easy on a correct answer (Easy if it was fast & accent-perfect),
-  // Hard on a close typo, Again on wrong. An honesty "I knew it" override
-  // stays available so a learner whose intent was right isn't penalised by a slip.
   function langDrill(a, target, known) {
     const box = el("div", "drill lang-drill");
     box.appendChild(el("div", "drill-label", "Type it · " + (LANG_NAMES[target] || target)));
@@ -1134,7 +959,6 @@
     const tf = a.forms[target] || {};
     const correctWord = tf.word || "";
 
-    // input row
     const form = el("form", "lang-typed");
     const input = el("input", "lang-input");
     input.type = "text";
@@ -1150,7 +974,6 @@
     form.appendChild(submit);
     box.appendChild(form);
 
-    // result + reveal block (hidden until checked)
     const result = el("div", "lang-result hidden");
     box.appendChild(result);
 
@@ -1162,11 +985,6 @@
       graded = true;
       if (window.haptic) haptic(g === 1 ? "wrong" : g >= 3 ? "correct" : "tap");
       E.grade(a.id, g, "recall");
-      // If this atom carries a usable target-language example sentence, follow the
-      // word drill with a short cloze (fill-in-the-blank) sentence drill on the SAME
-      // screen, practising the word IN CONTEXT, before advancing. The cloze is
-      // bonus practice (typed-checked with the same accent-tolerant grader) and does
-      // NOT re-grade FSRS, so the word recall stays the single scheduling signal.
       const cloze = clozeForAtom(a, target);
       if (cloze) { box.appendChild(langSentenceDrill(a, target, known, cloze, next)); }
       else next();
@@ -1178,22 +996,21 @@
       const fast = (Date.now() - started) < 9000;
 
       let cls, icon, label;
-      let g; // FSRS grade derived from the real result
+      let g;
       if (res.verdict === "correct") {
         cls = "correct"; icon = "✓";
         label = res.accentOnly ? "Right — mind the accent" : "Correct";
-        g = (fast && !res.accentOnly) ? 4 : 3; // fast & accent-perfect → Easy, else Good
+        g = (fast && !res.accentOnly) ? 4 : 3;
       } else if (res.verdict === "close") {
-        cls = "close"; icon = "≈"; label = "So close — a typo"; g = 2; // Hard
+        cls = "close"; icon = "≈"; label = "So close — a typo"; g = 2;
       } else {
-        cls = "wrong"; icon = "·"; label = "Not quite"; g = 1; // Again
+        cls = "wrong"; icon = "·"; label = "Not quite"; g = 1;
       }
 
       const head = el("div", "lr-head " + cls,
         '<span class="lr-icon">' + icon + "</span><span class=\"lr-label\">" + label + "</span>");
       result.appendChild(head);
 
-      // always reveal the correct spelling (+ IPA + audio)
       const ans = el("div", "lr-answer");
       ans.innerHTML = '<span class="a-label">Answer</span> ' +
         '<span class="lang-ans">' + escapeHtml(correctWord) +
@@ -1205,13 +1022,11 @@
 
       result.classList.remove("hidden");
 
-      // continue / honesty override
       const actions = el("div", "lr-actions");
       const cont = el("button", "btn primary wide", "Continue →");
       cont.onclick = () => grade(g);
       actions.appendChild(cont);
       if (res.verdict !== "correct") {
-        // honesty: learner's intent was right (slip / different valid form)
         const knew = el("button", "btn ghost wide", "I actually knew it");
         knew.onclick = () => grade(3);
         actions.appendChild(knew);
@@ -1228,7 +1043,6 @@
       reveal(res);
     };
 
-    // "I don't know" → reveal as a miss without forcing a guess.
     const giveUp = el("button", "lang-giveup", "Reveal · I don't know");
     giveUp.type = "button";
     giveUp.onclick = () => { if (graded || input.disabled) return; reveal({ verdict: "wrong", accentOnly: false, expected: correctWord, dist: 99 }); };
@@ -1238,30 +1052,22 @@
     return box;
   }
 
-  // Build a cloze (fill-in-the-blank) task from an atom's target-language example,
-  // by blanking out the target word inside the sentence. Returns null when there's
-  // no example, or the target word doesn't appear verbatim in it (so we never show
-  // a sentence drill we can't check). The hint sentence is a known-language
-  // rendering of the same example when available.
   function clozeForAtom(a, target) {
     const ex = a.example;
     if (!ex || !ex[target]) return null;
     const sentence = String(ex[target]);
     const word = (a.forms[target] || {}).word || "";
     if (!word) return null;
-    // case-insensitive, whole-word match on the target word inside the sentence;
-    // accent-/letter-exact (we blank the literal surface so the answer is unambiguous).
     var re;
     try { re = new RegExp("(^|[^\\p{L}])(" + escapeRegex(word) + ")(?=$|[^\\p{L}])", "iu"); }
     catch (e) { re = new RegExp("(^|[^A-Za-z\\u00C0-\\u024F])(" + escapeRegex(word) + ")(?=$|[^A-Za-z\\u00C0-\\u024F])", "i"); }
     const m = sentence.match(re);
     if (!m) return null;
-    const found = m[2]; // the actual surface as it appears (preserves case)
+    const found = m[2];
     const idx = sentence.indexOf(found, m.index);
     if (idx < 0) return null;
     const before = sentence.slice(0, idx);
     const after = sentence.slice(idx + found.length);
-    // a known-language gloss of the sentence to anchor meaning (first known lang that has it)
     return { sentence, before, after, answer: found, word };
   }
 
@@ -1269,15 +1075,10 @@
     return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  // Sentence/cloze drill: show the target-language example with the word blanked,
-  // ask the learner to TYPE the missing word, check it with the SAME accent/typo-
-  // tolerant grader (checkLangAnswer), reveal the full sentence, then advance via
-  // `done()`. Bonus practice, does not re-grade FSRS (the word drill already did).
   function langSentenceDrill(a, target, known, cloze, done) {
     const box = el("div", "drill lang-drill cloze-drill");
     box.appendChild(el("div", "drill-label", "Use it in a sentence · " + (LANG_NAMES[target] || target)));
 
-    // a known-language rendering of the same example, to anchor meaning
     const hintLang = (known || []).find((l) => a.example && a.example[l]);
     if (hintLang) {
       box.appendChild(el("div", "cloze-hint",
@@ -1285,7 +1086,6 @@
         escapeHtml(a.example[hintLang])));
     }
 
-    // the sentence with a blank where the word goes
     box.appendChild(el("div", "cloze-q",
       escapeHtml(cloze.before) + '<span class="cloze-blank">_____</span>' + escapeHtml(cloze.after)));
 
@@ -1318,7 +1118,6 @@
       if (window.haptic) haptic(res.verdict === "correct" ? "correct" : res.verdict === "close" ? "tap" : "wrong");
       result.appendChild(el("div", "lr-head " + cls,
         '<span class="lr-icon">' + icon + '</span><span class="lr-label">' + label + "</span>"));
-      // reveal the full sentence with the answer filled in
       const full = el("div", "lr-answer");
       full.innerHTML = '<span class="a-label">Sentence</span> ' +
         '<span class="lang-ans">' + escapeHtml(cloze.before) +
@@ -1367,7 +1166,6 @@
 
     wrap.appendChild(artCard(a));
 
-    // 3-depth progressive disclosure
     const body = el("div", "atom-body");
     body.appendChild(el("h2", null, escapeHtml(a.title)));
     const depthTabs = el("div", "depth-tabs");
@@ -1390,13 +1188,10 @@
     body.appendChild(content);
     showDepth("core");
 
-    // source citation
     if (a.sources) body.appendChild(el("div", "cite", "Learn from: " + escapeHtml((a.sources || []).join(" · "))));
-    // Ask the tutor, a grounded, Socratic aid scoped to THIS concept (bkt-5jj).
     body.appendChild(tutorAffordance(a));
     wrap.appendChild(body);
 
-    // drill
     const q = (a.quiz || []).find((x) => x.level === level) || (a.quiz || [])[0];
     if (q && !peek) wrap.appendChild(drill(a, q, level));
     else {
@@ -1405,7 +1200,6 @@
       wrap.appendChild(cont);
     }
 
-    // unlocks line (make leverage visible)
     if (a.unlocks && a.unlocks.length) {
       const u = el("div", "unlocks", "Unlocks → " + a.unlocks.map((x) => (E.byId[x] ? E.byId[x].title : x)).join(", "));
       wrap.appendChild(u);
@@ -1416,7 +1210,6 @@
     katex(wrap);
   }
 
-  // laurel checkmark that draws itself in (transform/opacity-safe stroke animation)
   function checkmarkSVG() {
     return (
       '<svg class="fb-check" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true">' +
@@ -1433,7 +1226,7 @@
     const answer = el("div", "answer hidden");
     answer.innerHTML = "<div class='a-label'>Answer</div><div class='a-text'>" + q.answer + "</div>";
     const reveal = el("button", "btn wide", "Show answer");
-    const feedback = el("div", "fb hidden"); // feedback choreography lands here
+    const feedback = el("div", "fb hidden");
     reveal.onclick = () => {
       answer.classList.remove("hidden");
       reveal.classList.add("hidden");
@@ -1445,8 +1238,6 @@
     [[1, "Again", "again"], [2, "Hard", "hard"], [3, "Good", "good"], [4, "Easy", "easy"]].forEach(([g, lbl, cls]) => {
       const b = el("button", "rbtn " + cls, lbl);
       b.onclick = () => {
-        // Feedback choreography (never red): a low grade = an amber, named nudge + soft
-        // double-tap haptic; a confident grade = a laurel checkmark draw + correct haptic.
         if (g === 1) {
           if (window.haptic) haptic("wrong");
           const note = (atom.note && atom.note.length < 220)
@@ -1458,7 +1249,6 @@
             escapeHtml(note) + "</span>";
           katex(feedback);
           box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
-          // brief beat so the learner reads the nudge, then advance
           setTimeout(() => { E.grade(atom.id, g, level); next(); }, 1150);
         } else {
           if (window.haptic) haptic(g >= 3 ? "correct" : "tap");
@@ -1487,8 +1277,6 @@
     if (!session) return go("home");
     session.i++;
     if (session.i >= session.queue.length) {
-      // stash the highest-leverage atom we just touched so the map can animate its
-      // unlock + draw the leverage edges when the learner taps through to it.
       const studied = session.queue.map((q) => E.byId[q.id]).filter(Boolean);
       const lead = studied.sort((a, b) => (b.leverage || 0) - (a.leverage || 0))[0];
       if (lead && (lead.unlocks || []).length) pendingUnlock = { id: lead.id, unlocks: lead.unlocks.slice(0, 8) };
@@ -1522,10 +1310,8 @@
     return wrap;
   }
 
-  /* ---------- study / read mode (learn the material in order) ---------- */
   let studyDepth = "lesson";
 
-  // Topological learning order (prerequisites first), foundations-weighted.
   function studyOrder() {
     const atoms = E.atoms;
     const shellRank = { prereq: 0, nucleus: 1, frontier: 2 };
@@ -1542,10 +1328,7 @@
       seen.add(id); out.push(id);
       (adj[id] || []).forEach((n) => { indeg[n]--; if (indeg[n] === 0) q.push(n); });
     }
-    atoms.forEach((a) => { if (!seen.has(a.id)) out.push(a.id); }); // any leftovers (cycles)
-    // On a language deck, drop atoms that lack a form in the chosen TARGET language
-    // (relevant for bonus targets like ko/hi/ar, which don't cover every concept) so
-    // the level path + queue never serve an empty/unanswerable card. (bkt-3s9)
+    atoms.forEach((a) => { if (!seen.has(a.id)) out.push(a.id); });
     if (isLang()) {
       const target = langSettings().target;
       return out.filter((id) => { const a = E.byId[id]; return a && a.forms && a.forms[target] && a.forms[target].word; });
@@ -1553,17 +1336,12 @@
     return out;
   }
 
-  // Leveled path for the LANGUAGE deck (fix #5). Chunk the topo study order into
-  // bite-size units (~14 words each) so the learner sees a sequence of levels with a
-  // clear "where am I", instead of one flat 448-word list. Each level is named after
-  // its dominant category. Returns [{ n, label, ids[], total, done, mastered }].
   const LANG_LEVEL_SIZE = 14;
   function langLevels() {
     const order = studyOrder();
     const levels = [];
     for (let i = 0; i < order.length; i += LANG_LEVEL_SIZE) {
       const ids = order.slice(i, i + LANG_LEVEL_SIZE);
-      // name the level by the most common category in the chunk
       const counts = {};
       ids.forEach((id) => { const c = (E.byId[id] || {}).category || "words"; counts[c] = (counts[c] || 0) + 1; });
       const cat = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0] || "words";
@@ -1577,33 +1355,23 @@
     }
     return levels;
   }
-  // The level a given atom id belongs to (1-based), for the atom-screen badge.
   function langLevelOf(id) {
     const order = studyOrder();
     const idx = order.indexOf(id);
     return idx < 0 ? 1 : Math.floor(idx / LANG_LEVEL_SIZE) + 1;
   }
-  // The next not-yet-completed level (or the last one once all are done).
   function langCurrentLevel(levels) {
     levels = levels || langLevels();
     return levels.find((lv) => lv.done < lv.total) || levels[levels.length - 1] || null;
   }
 
-  // ---------- language picker (fix #1: explicit setup over defaults) ----------
-  // The FIRST thing a learner sees on the Languages branch before any drilling:
-  // a clear "I want to learn ___ / I already know ___" choice. Persists via setLangPref
-  // (marking the pref `chosen`) so it appears once. No more silent auto-Spanish.
   function screenLangPicker() {
-    // TARGET options = every deck language with real coverage (≥80 words), sorted by
-    // display name, this is what surfaces the full breadth (14 guaranteed + bonus).
     const metaLangs = (E.meta && E.meta.languages) || ["en"];
     const byName = (a, b) => (LANG_NAMES[a] || a).localeCompare(LANG_NAMES[b] || b);
     const COVER_MIN = 80;
     const targetLangs = langDeckLangs().filter((l) => l !== "en" && langCoverage(l) >= COVER_MIN).sort(byName);
-    // KNOWN (source) options = guaranteed meta languages only, so every atom anchors it.
     const knownLangs = metaLangs.slice().sort(byName);
     const cur = langSettings();
-    // working selection (defaults sensible, but the learner must confirm)
     let pick = {
       target: targetLangs.includes(cur.target) ? cur.target : targetLangs[0],
       known: knownLangs.includes(cur.primaryKnown) ? cur.primaryKnown : (knownLangs.includes("en") ? "en" : knownLangs[0]),
@@ -1623,7 +1391,6 @@
         opt.dataset.l = l;
         opt.onclick = () => {
           setVal(l);
-          // keep target != known
           if (pick.target === pick.known) {
             if (role === "target") pick.known = knownLangs.find((x) => x !== pick.target) || pick.known;
             else pick.target = targetLangs.find((x) => x !== pick.known) || pick.target;
@@ -1658,15 +1425,11 @@
     }
     render();
     card.appendChild(body);
-    // honesty: this is an experiment, set expectations up front
     card.appendChild(langHonestyBanner());
     wrap.appendChild(card);
     return wrap;
   }
 
-  // Honesty banner (fix #5): Languages is an early experiment, still short of a course.
-  // Mirrors CLAUDE.md's "don't oversell" rule (small deck, TTS-not-recorded audio,
-  // residual sense-noise). Reused on the picker, study, and home screens.
   function langHonestyBanner() {
     return el("div", "lang-honesty",
       '<span class="lh-ico">⚗</span>' +
@@ -1683,7 +1446,6 @@
     wrap.appendChild(el("h1", "study-h1", cur.pill.replace(/^\S+ · /, "")));
     wrap.appendChild(el("p", "study-sub", "Read straight through — foundations first. Switch depth any time; tap a concept to drill it."));
 
-    // global depth toggle, full Lesson by default, with quick-blurb depths
     const hasLessons = E.atoms.some((x) => x.lesson);
     const tabs = el("div", "depth-tabs study-depth");
     const opts = hasLessons ? [["lesson", "Lesson"], ["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]] : [["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]];
@@ -1712,7 +1474,6 @@
       if (E.cardFor(id)) head.appendChild(el("span", "sb-mastery" + (m >= 0.7 ? " on" : ""), m >= 0.7 ? "✓ known" : "seen"));
       blk.appendChild(head);
       if (studyDepth === "lesson" && a.lesson) {
-        // full markdown lesson (the thorough read)
         blk.appendChild(el("div", "sb-lesson", mdToHtml(a.lesson)));
       } else {
         const txt = (a.depths && a.depths[studyDepth]) || a.summary || "";
@@ -1720,7 +1481,6 @@
         if (a.equation) { const eq = el("div", "eqbox", "$$" + a.equation + "$$"); blk.appendChild(eq); }
         if (a.note && studyDepth !== "eli5") blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
       }
-      // compact references
       const det = el("details", "sb-more");
       det.appendChild(el("summary", null, "Sources & links"));
       const ll = el("div", "link-list");
@@ -1744,8 +1504,6 @@
     revealAndRender(wrap, ".study-block");
   }
 
-  // Stagger fade-up on scroll reveal + render KaTeX per visible block (once). This is
-  // the app's biggest INP/scroll win: no full-tree KaTeX, no off-screen layout cost.
   function revealAndRender(wrap, sel) {
     const blocks = Array.prototype.slice.call(wrap.querySelectorAll(sel));
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1760,7 +1518,7 @@
         const b = en.target;
         if (!reduce) { b.style.transitionDelay = Math.min(shown, 4) * 40 + "ms"; shown++; }
         b.classList.add("in");
-        if (b.dataset.math) katex(b); // lazy, per-visible-block
+        if (b.dataset.math) katex(b);
         obs.unobserve(b);
       });
     }, { rootMargin: "120px 0px", threshold: 0.01 });
@@ -1778,7 +1536,6 @@
       : "Every word grouped by topic, anchored in " + (LANG_NAMES[ls.primaryKnown] || ls.primaryKnown) + ". Tap to practice."));
     wrap.appendChild(langHonestyBanner());
 
-    // Word explorer entry, the Polingual cross-lingual comparison surface.
     const exploreCta = el("button", "explore-cta reveal-up",
       '<span class="xc-ico">✦</span>' +
       '<span class="xc-copy"><span class="xc-title">Explore words across languages</span>' +
@@ -1811,18 +1568,7 @@
     revealAndRender(wrap, ".study-block");
   }
 
-  /* ---------- Polingual word explorer (bkt-nhy / bkt-2ea) ----------
- * HYBRID five-lens cross-lingual comparison. Each lens tries the LIVE full
- * 45k-photon index first (same-origin proxy `/api/polingual`, via the new
- * Polingual.*Async wrappers) and falls back to the baked ~6.5k-word starter
- * subset when offline / the service is unavailable. Lazy-loads the subset
- * asset on first open (instant default + offline engine). Empty
- * states; async loading states on lookup + lens switch; mobile + keyboard
- * friendly. `ref` identifies a word: a numeric subset row, OR {surface,lang}
- * for a full-index word that isn't in the baked subset.
-   */
   let explorerState = { query: "", lang: "", ref: null, lens: "meaning", source: null };
-  // monotonic token so a slow in-flight lens/lookup can't overwrite a newer one
   let xplToken = 0;
 
   function xplRefKey(ref) {
@@ -1831,7 +1577,6 @@
     return (ref.lang || "") + ":" + (ref.surface != null ? ref.surface : ref.s || "");
   }
 
-  // The "offline, showing starter set" note, shown ONLY on the subset path.
   function xplSourceNote(source) {
     if (source !== "subset") return null;
     return el("div", "xpl-offline-note",
@@ -1847,7 +1592,6 @@
     wrap.appendChild(el("p", "study-sub",
       "Look up a word, then compare it across 27 languages by meaning, sound, spelling and root."));
 
-    // search row
     const form = el("form", "xpl-search");
     form.setAttribute("role", "search");
     const input = el("input", "xpl-input");
@@ -1868,7 +1612,6 @@
     results.setAttribute("aria-live", "polite");
     wrap.appendChild(results);
 
-    // attribution (REQUIRED, visible on the explorer)
     const attrib = el("div", "xpl-attrib",
       'Data: Wiktionary via <a href="https://kaikki.org" target="_blank" rel="noopener">Kaikki</a> ' +
       '(CC-BY-SA 3.0). Short glosses only — full entries at ' +
@@ -1885,7 +1628,6 @@
       runExplorerSearch(results, input.value.trim());
     };
 
-    // boot the engine; show loading state, then either prior result or seed prompt
     results.innerHTML = '<div class="xpl-loading">Loading the word index…</div>';
     if (!window.Polingual) {
       results.innerHTML = '<div class="xpl-empty">Explorer engine unavailable.</div>';
@@ -1899,7 +1641,6 @@
       } else {
         renderExplorerSeed(results, input);
       }
-      // focus input on desktop (skip on touch to avoid keyboard jump)
       if (!("ontouchstart" in window)) setTimeout(() => input.focus(), 40);
     }).catch((err) => {
       results.innerHTML = '<div class="xpl-empty">Couldn\'t load the word index.' +
@@ -1908,7 +1649,6 @@
     });
   }
 
-  // Seed view: a few inviting starter words + the language count.
   function renderExplorerSeed(host, input) {
     const m = window.Polingual.manifest() || {};
     host.innerHTML = "";
@@ -1932,16 +1672,13 @@
     host.appendChild(intro);
   }
 
-  // Run a free-text lookup. Tries the LIVE full index first (so a word NOT in
-  // the baked subset still resolves when online), else the subset's fuzzy
-  // lookup, else empty. Async with a loading state.
   function runExplorerSearch(host, q) {
     if (!q) { renderExplorerSeed(host, null); return; }
     const P = window.Polingual;
     const myToken = ++xplToken;
     host.innerHTML = '<div class="xpl-loading">Looking up <b>' + escapeHtml(q) + '</b>…</div>';
     P.lookupAsync(q).then((res) => {
-      if (myToken !== xplToken) return; // a newer search superseded this one
+      if (myToken !== xplToken) return;
       const rec = res && res.record;
       if (!rec) {
         host.innerHTML =
@@ -1963,8 +1700,6 @@
     });
   }
 
-  // Jump to a word by ref (numeric subset row OR {surface,lang} full-index).
-  // Resolves the headword (live-first) then renders. Async with a loading card.
   function renderExplorerWord(host, ref) {
     const P = window.Polingual;
     const myToken = ++xplToken;
@@ -1982,24 +1717,20 @@
     });
   }
 
-  // The result card + lens sections for one already-resolved word record.
   function renderExplorerWordRec(host, rec, source, attribution) {
     if (!rec) { renderExplorerSeed(host, null); return; }
     const ref = rec.ref != null ? rec.ref : rec.row;
     explorerState.ref = ref;
     host.innerHTML = "";
 
-    // subtle source note (only shown on the offline / subset fallback path)
     const note = xplSourceNote(source);
     if (note) host.appendChild(note);
 
-    // headline card
     const card = el("div", "xpl-card reveal-up");
     const top = el("div", "xpl-card-top");
     top.innerHTML =
       '<span class="xpl-surface">' + escapeHtml(rec.surface) + "</span>" +
       (rec.ipa ? '<span class="xpl-ipa">/' + escapeHtml(rec.ipa) + "/</span>" : "");
-    // 🔊 hear the looked-up word (on-device Web Speech; hidden if unavailable).
     if (rec.surface && rec.lang && window.LangAudio && window.LangAudio.supported()) {
       top.appendChild(window.LangAudio.button(rec.surface, rec.lang, { label: "Hear " + rec.surface + " in " + (rec.langName || rec.lang) }));
     }
@@ -2013,7 +1744,6 @@
     if (rec.gloss) card.appendChild(el("p", "xpl-gloss", escapeHtml(rec.gloss)));
     host.appendChild(card);
 
-    // lens tabs
     const LENSES = [
       ["meaning", "Meaning"],
       ["sound", "Sound"],
@@ -2046,12 +1776,10 @@
     host.appendChild(panel);
     renderExplorerLens(panel, ref, explorerState.lens, rec);
 
-    // a "back to top / new search" affordance lives in the search box above.
     revealAndRender(host, ".xpl-card");
     window.scrollTo(0, 0);
   }
 
-  // A clickable neighbor row (taps jump to that word, full-index aware).
   function explorerNeighborRow(rec, scoreText) {
     const r = el("button", "xpl-row");
     r.type = "button";
@@ -2077,14 +1805,10 @@
     return el("div", "xpl-lens-loading", "Comparing across languages…");
   }
 
-  // Render a lens for a word `ref`, async (live-first, subset fallback). `self`
-  // is the already-resolved headword record (so we know hasPhonetic etc.).
   function renderExplorerLens(panel, ref, lens, self) {
     const P = window.Polingual;
     panel.innerHTML = "";
     const myToken = ++xplToken;
-    // capture which lens this render is for, so a stale resolve can't paint over
-    // a tab the user has since switched away from.
     const myLens = lens;
     const stillCurrent = () => myToken === xplToken && explorerState.lens === myLens;
 
@@ -2167,8 +1891,6 @@
     });
   }
 
-  // Etymology: the Kaikki snippet for this word (live-first), then, on the
-  // subset fallback, a simple root chain across same-concept siblings.
   function renderEtymologyLens(panel, ref, stillCurrent) {
     const P = window.Polingual;
     const ok = stillCurrent || (() => true);
@@ -2190,7 +1912,6 @@
       } else {
         panel.appendChild(explorerEmpty("No etymology recorded for this word."));
       }
-      // sibling roots only make sense on the subset path (concept-anchored).
       if (res && res.source === "subset" && typeof ref === "number") {
         const t = P.translate(ref);
         const sibs = (t.results || []).filter((r) => {
@@ -2224,9 +1945,7 @@
     });
   }
 
-  /* ---------- nucleus map (concentric shells) ---------- */
-  // when a route completes we stash the just-unlocked nodes so the map can animate them
-  let pendingUnlock = null; // { id, unlocks:[ids] }
+  let pendingUnlock = null;
 
   const SVGNS = "http://www.w3.org/2000/svg";
   function svgEl(name, attrs) {
@@ -2256,12 +1975,10 @@
     const holder = el("div", "graph-holder");
     const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, class: "graph" });
 
-    // faint shell rings for structure
     ["prereq", "nucleus", "frontier"].forEach((shell) => {
       svg.appendChild(svgEl("circle", { cx, cy, r: radii[shell], class: "ring-guide" }));
     });
 
-    // edges
     E.atoms.forEach((a) => {
       (a.requires || []).forEach((r) => {
         if (pos[a.id] && pos[r]) {
@@ -2273,7 +1990,6 @@
       });
     });
 
-    // nodes
     E.atoms.forEach((a) => {
       if (!pos[a.id]) return;
       const m = E.masteryFor(a.id);
@@ -2295,7 +2011,6 @@
     wrap.appendChild(holder);
     wrap.appendChild(nav("map"));
 
-    // celebration pass: animate the just-unlocked node + draw edges to what it unlocks
     if (pendingUnlock) {
       const pu = pendingUnlock; pendingUnlock = null;
       requestAnimationFrame(() => animateUnlock(svg, pu, help));
@@ -2303,16 +2018,11 @@
     return wrap;
   }
 
-  /* ---------- share your public Mastery Profile (bkt-coh) ---------- */
-  // Opt-in, signed-in-only. Lets a learner claim a handle, make the profile
-  // public (default private), and copy the public link bucket.foundation/m/<h>.
-  //-signal framing: an evolving learning record. It is not a certified score.
   function shareProfileSection() {
     const box = el("div", "share-profile");
     const Auth = window.BucketAuth;
     box.appendChild(el("div", "section-label", "Share your Mastery Profile"));
 
-    // Auth disabled (no backend), nothing to share.
     if (!Auth || !Auth.enabled) {
       box.appendChild(el("p", "share-hint", "Sign-in isn't configured here, so a public profile isn't available."));
       return box;
@@ -2334,7 +2044,6 @@
       const handle = rec && rec.handle ? rec.handle : "";
       const isPublic = !!(rec && rec.isPublic);
 
-      // handle input + claim/save
       const form = el("form", "share-form");
       const label = el("label", "share-label", handle ? "Your handle" : "Claim a handle");
       const inWrap = el("div", "share-handle-row");
@@ -2374,7 +2083,6 @@
       body.appendChild(form);
 
       if (handle) {
-        // public toggle
         const toggleRow = el("label", "set-row share-toggle", isPublic ? "Public — anyone with the link can view" : "Private — only you");
         const sw = el("input"); sw.type = "checkbox"; sw.checked = isPublic;
         sw.onchange = () => {
@@ -2386,7 +2094,6 @@
         toggleRow.appendChild(sw);
         body.appendChild(toggleRow);
 
-        // public link + copy (only meaningful once public)
         const url = origin + "/m/" + handle;
         const linkRow = el("div", "share-link-row");
         const linkA = el("a", "share-link", url);
@@ -2411,7 +2118,6 @@
     Auth.getProfile()
       .then((res) => {
         const rec = res && res.profile ? res.profile : null;
-        // cache for the global "Share Bucket Academy" action (prefer public profile)
         shareProfileHandle = rec && rec.handle ? { handle: rec.handle, isPublic: !!rec.isPublic } : null;
         render(rec);
       })
@@ -2439,8 +2145,6 @@
     return String(s).replace(/["\\\]]/g, "\\$&");
   }
 
-  // Local-neighborhood view: requires ← node → unlocks, as a small curated 3-column
-  // SVG. Always-useful (never the hairball), smooth transform/opacity entrance.
   function openNeighborhood(id) {
     const a = E.byId[id];
     if (!a) return openAtom(id, true);
@@ -2466,7 +2170,6 @@
     const reqP = place(reqs, colX.req), unlP = place(unlocks, colX.unl);
     const midP = { id, x: colX.mid, y: H / 2 };
 
-    // edges (req → mid, mid → unl) drawn first, behind nodes
     reqP.forEach((p, i) => {
       const e = svgEl("path", { d: curve(p.x, p.y, midP.x, midP.y), class: "edge nb-edge draw" });
       e.style.animationDelay = (i * 60) + "ms"; svg.appendChild(e);
@@ -2499,7 +2202,6 @@
     unlP.forEach((p) => drawNode(p, "unl"));
     drawNode(midP, "center");
 
-    // column captions
     if (reqs.length) svg.appendChild(textLabel(colX.req, 22, "Requires"));
     svg.appendChild(textLabel(colX.mid, 22, "This concept"));
     if (unlocks.length) svg.appendChild(textLabel(colX.unl, 22, "Unlocks →"));
@@ -2508,7 +2210,6 @@
     holder.appendChild(svg);
     wrap.appendChild(holder);
 
-    // surface the leverage line in text too
     if (unlocks.length) {
       wrap.appendChild(el("div", "unlocks", "Unlocks → " + unlocks.map((x) => E.byId[x].title).join(", ")));
     }
@@ -2529,7 +2230,6 @@
     return t;
   }
 
-  /* ---------- progress ---------- */
   function screenProgress() {
     const s = E.summary();
     const wrap = el("div", "screen progress");
@@ -2542,9 +2242,6 @@
     grid.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(grid);
 
-    // "Test yourself", a sealed self-test that sharpens the mastery estimate (bkt-v7y).
-    // Concept branches only (polyglot keeps its own recall drill), and only once the
-    // learner has started something to be tested on. Fully skippable; never blocks Study.
     if (!isLang() && window.Assess && s.introduced > 0) {
       const log = readAssessLog();
       const last = (log.runs || [])[log.runs.length - 1];
@@ -2560,7 +2257,6 @@
       wrap.appendChild(cta);
     }
 
-    // per-shell mastery bars
     ["prereq", "nucleus", "frontier"].forEach((shell) => {
       const items = E.atoms.filter((a) => a.shell === shell);
       if (!items.length) return;
@@ -2574,7 +2270,6 @@
       wrap.appendChild(row);
     });
 
-    // mastery list
     const list = el("div", "mastery-list");
     list.appendChild(el("div", "section-label", "Concepts"));
     E.atoms.slice().sort((a, b) => b.leverage - a.leverage).forEach((a) => {
@@ -2588,7 +2283,6 @@
     });
     wrap.appendChild(list);
 
-    // Share your Mastery Profile (bkt-coh), opt-in public, signed-in only.
     wrap.appendChild(shareProfileSection());
 
     const settings = el("div", "settings");
@@ -2603,7 +2297,6 @@
     sw.onchange = () => { E.state.settings.requestRetention = sw.checked ? 0.95 : 0.9; E.save(); };
     rr.appendChild(sw); settings.appendChild(rr);
 
-    // language branch: choose target + primary source + advanced polyglot toggle
     if (isLang()) {
       const ls = langSettings();
       const target = ls.target, known = ls.known, langs = ls.langs;
@@ -2622,7 +2315,6 @@
       };
       tRow.appendChild(tSel); settings.appendChild(tRow);
 
-      // Primary source language, the ONE language a beginner learns FROM (fix #2).
       const pRow = el("label", "set-row", "I learn from (my main language)");
       const pSel = el("select", "lang-sel");
       langs.filter((l) => l !== target).forEach((l) => {
@@ -2630,7 +2322,6 @@
       });
       pSel.onchange = () => {
         const pk = pSel.value;
-        // ensure the primary is in the known set
         let nk = (langSettings().known || []).slice();
         if (!nk.includes(pk)) nk = [pk].concat(nk);
         setLangPref(target, nk, { primaryKnown: pk, chosen: true });
@@ -2638,14 +2329,11 @@
       };
       pRow.appendChild(pSel); settings.appendChild(pRow);
 
-      // Advanced: polyglot mode, show each word in EVERY language you know at once.
-      // OFF by default (fix #2). A real toggle, kept out of the lead experience.
       const polyRow = el("label", "set-row", "Polyglot mode (advanced — show all my languages)");
       const polySw = el("input"); polySw.type = "checkbox"; polySw.checked = ls.polyglot;
       polySw.onchange = () => { setLangPref(target, langSettings().known, { polyglot: polySw.checked, chosen: true }); go("progress"); };
       polyRow.appendChild(polySw); settings.appendChild(polyRow);
 
-      // The extra languages used by polyglot mode (only meaningful when polyglot is on).
       settings.appendChild(el("div", "set-hint", ls.polyglot
         ? "Languages shown alongside each word in polyglot mode:"
         : "Extra languages you know (only used in polyglot mode):"));
@@ -2656,7 +2344,7 @@
         const chip = el("button", "lang-chip" + (on ? " on" : "") + (isPrimary ? " primary" : ""),
           escapeHtml(LANG_NAMES[l] || l) + (isPrimary ? " ·main" : ""));
         chip.onclick = () => {
-          if (isPrimary) return; // the primary source is always known; change it above
+          if (isPrimary) return;
           let nk = (langSettings().known || []).slice();
           nk = nk.includes(l) ? nk.filter((x) => x !== l) : nk.concat(l);
           if (!nk.includes(ls.primaryKnown)) nk = [ls.primaryKnown].concat(nk);
@@ -2668,20 +2356,17 @@
       });
       settings.appendChild(kWrap);
 
-      // Re-run the explicit course setup picker.
       const redo = el("button", "btn ghost wide", "Redo course setup");
       redo.onclick = () => go("lang-picker");
       settings.appendChild(redo);
     }
 
-    // Re-take placement, re-run the adaptive diagnostic to re-estimate the frontier.
     if (!isLang() && typeof window.Diagnostic === "function") {
       const place = el("button", "btn ghost wide", "Re-take placement");
       place.onclick = () => go("diagnostic");
       settings.appendChild(place);
     }
 
-    // Share the academy (growth loop) + replay the first-run intro.
     const shareBtn = el("button", "btn ghost wide", "↗ Share Bucket Academy");
     shareBtn.onclick = shareAcademy;
     settings.appendChild(shareBtn);
@@ -2704,24 +2389,13 @@
     return wrap;
   }
 
-  /* ---------- placement diagnostic (ALEKS-style binary search over the graph) ----------
- * framing: a STARTING ESTIMATE, never a certified rating (public ratings are
- * gated on bkt-4at). The learner can always study any concept regardless, and the
- * whole flow is skippable. Correct answers credit prerequisites via the encompassing
- * graph; placement seeds modest FSRS state, never "mastered". */
-
-  // Seed engine state for a set of placed-known atoms. We introduce each with
-  // a "Hard" grade (rating 2): present + low-but-real stability + a modest proficiency,
-  // NOT certified-mastered. FIRe/encompassing credit then flows to prerequisites through
-  // the engine's grade() path. This makes the route + "Continue learning" resume past
-  // what the learner already knows while leaving everything overridable.
   function seedPlacement(knownIds) {
     let n = 0;
     knownIds.forEach((id) => {
       if (!E.byId[id]) return;
-      if (E.cardFor(id)) return;       // never clobber real progress
-      const lvl = pickLevel(id);       // honor the atom's available quiz depth
-      E.grade(id, 2, lvl || "recall"); // 2 = "Hard": introduced, modest stability + prof
+      if (E.cardFor(id)) return;
+      const lvl = pickLevel(id);
+      E.grade(id, 2, lvl || "recall");
       n++;
     });
     E.save();
@@ -2757,7 +2431,6 @@
     mount(wrap);
   }
 
-  // Render the current diagnostic question (prompt → reveal → I knew it / I didn't).
   function diagNext() {
     if (!diag) return go("home");
     if (diag.d.done()) return diagFinish();
@@ -2781,7 +2454,6 @@
     top.appendChild(el("span", "diag-step", "Q" + item.qIndex + " · placing"));
     wrap.appendChild(top);
 
-    // progress bar (approximate, diagnostic may early-stop before the cap)
     const bar = el("div", "diag-bar");
     const frac = Math.min(1, item.qIndex / Math.max(1, item.total));
     bar.appendChild(el("i")).style.width = Math.round(frac * 100) + "%";
@@ -2791,8 +2463,6 @@
     box.appendChild(el("div", "dq-label", "Do you know this?"));
     box.appendChild(el("div", "dq-concept", escapeHtml(a.title || a.gloss || item.id)));
 
-    // Build the prompt. Concept atoms use their quiz prompt; language atoms ask for
-    // the target word given the gloss (mirrors the polyglot drill).
     let promptHtml, answerHtml;
     if (item.isLang) {
       const { target, known } = langSettings();
@@ -2833,8 +2503,6 @@
     box.appendChild(choice);
     wrap.appendChild(box);
 
-    // an explicit "haven't learned this yet" supplies clean negative evidence without
-    // forcing a reveal (ADAPTIVE-SOTA §a.3, measurably reduces questions needed).
     const dunno = el("button", "diag-skip", "I haven't learned this yet");
     dunno.onclick = () => diagAnswer(false);
     wrap.appendChild(dunno);
@@ -2847,7 +2515,7 @@
     if (!diag || !diag.item) return;
     diag.d.answer(diag.item.id, correct);
     if (diag.d.done()) return diagFinish();
-    renderDiagPlacing(); // brief "thinking" beat, then the next question
+    renderDiagPlacing();
     setTimeout(diagNext, 360);
   }
 
@@ -2885,7 +2553,6 @@
           "to study whenever you like.") +
       "</p>";
 
-    // "here's where to go next", the next learnable concepts in study order.
     const next = studyOrder().filter((id) => !E.cardFor(id)).slice(0, 5);
     if (next.length) {
       const list = el("div", "route-list dr-next");
@@ -2913,19 +2580,6 @@
     katex(wrap);
   }
 
-  /* ---------- "Test yourself" assessment (bkt-v7y) ----------
- * A SEALED self-test, deliberately separate from practice (Study + drill). Practice is
- * show-answer-then-self-rate (FSRS, retries, farmable by design); an assessment hides
- * the answer until you respond, grades numeric/short-symbolic answers DETERMINISTICALLY
- * (bkt-3so), and falls back to an,-marked self-check for prose (lower
- * trust). Results are stored in a SEPARATE log (the practice/credential firewall
- * STRUCTURE, bkt-dji) and fed into the engine proficiency so the Mastery Profile reflects
- * TESTED proficiency, never a certified or public rating (that's gated on bkt-4at + the
- * AI key: real held-out, freshly-generated transfer items + anti-gaming come later). */
-
-  // Firewall: assessment results live in their OWN localStorage namespace, kept apart from
-  // the engine's practice state (FSRS cards / xp / streak). This is the structural
-  // separation between practice and credential signal (bkt-dji).
   function assessLogKey() {
     const branch = (E.meta && E.meta.branch) || "default";
     return "bucket-academy/assess/" + branch;
@@ -2936,11 +2590,10 @@
   }
   function appendAssessRun(record) {
     const log = readAssessLog();
-    log.runs = (log.runs || []).concat(record).slice(-50); // keep last 50 runs
+    log.runs = (log.runs || []).concat(record).slice(-50);
     try { localStorage.setItem(assessLogKey(), JSON.stringify(log)); } catch (e) {}
   }
 
-  // Entry point: build a sealed run over the current branch (or a chosen concept set).
   function startAssessment(conceptIds) {
     if (!window.Assess || typeof window.Assess.buildRun !== "function") return go("home");
     const graph = { atoms: E.atoms, byId: E.byId, branch: (E.meta && E.meta.branch) || null };
@@ -3011,7 +2664,6 @@
     box.appendChild(el("div", "dq-prompt", item.prompt));
     if (item.eq) box.appendChild(el("div", "q-eq", "$$" + item.eq + "$$"));
 
-    // sealed input, the learner types their answer BEFORE the solution exists on screen.
     const inWrap = el("div", "assess-input-row");
     const input = el("input", "assess-input");
     input.type = "text";
@@ -3033,22 +2685,17 @@
     setTimeout(() => { try { input.focus(); } catch (e) {} }, 40);
   }
 
-  // Grade the submitted answer. Deterministic where possible (laurel ✓ / amber, never
-  // red); otherwise reveal the solution and ask for an self-check (lower trust).
   function assessGrade(item, userInput) {
     const verdict = window.Assess.gradeAnswer(userInput, item.answer);
     const latency = Math.max(0, Date.now() - assess.itemStart);
     if (verdict.gradable) {
-      // deterministic verdict, record + animate, no self-report needed.
       recordAssessItem(item, verdict.correct, true, latency);
-      renderAssessVerdict(item, userInput, verdict, /*auto*/ true);
+      renderAssessVerdict(item, userInput, verdict,  true);
     } else {
-      // fallback: reveal the canonical answer, let the learner self-check.
       renderAssessSelfCheck(item, userInput, latency);
     }
   }
 
-  // Deterministic verdict moment: laurel check for correct, amber nudge for incorrect.
   function renderAssessVerdict(item, userInput, verdict, auto) {
     const wrap = el("div", "screen assess");
     wrap.appendChild(header());
@@ -3085,9 +2732,6 @@
     if (window.haptic) haptic(verdict.correct ? "correct" : "tap");
   }
 
-  // self-check moment for non-auto-gradable (prose) answers. We reveal the
-  // canonical solution and the learner reports, flagged as self-reported, lower
-  // trust, kept apart from the deterministic signal in the firewall log.
   function renderAssessSelfCheck(item, userInput, latency) {
     const wrap = el("div", "screen assess");
     wrap.appendChild(header());
@@ -3125,14 +2769,8 @@
     katex(wrap);
   }
 
-  // Record a graded item: push to the in-memory results AND feed the engine proficiency
-  // through the EXISTING grade() path (so masteryDetail reflects tested proficiency). We
-  // never clobber practice signal dishonestly: a self-reported verdict is flagged so the
-  // firewall log marks it lower-trust. Auto-graded correctness is the trustworthy signal.
   function recordAssessItem(item, correct, autoGraded, latencyMs) {
     assess.results.push({ atomId: item.atomId, level: item.level, correct, autoGraded, latencyMs });
-    // Feed proficiency via the engine grade path. Only an INTRODUCED concept gets a card;
-    // for a not-yet-started concept we still introduce it (a tested concept IS now seen).
     try {
       const rating = window.Assess.ratingFor(correct);
       E.grade(item.atomId, rating, item.level || "recall");
@@ -3148,7 +2786,7 @@
       auto: summary.auto, self: summary.self, byLevel: summary.byLevel,
       weakConcepts: summary.weakConcepts, trust: summary.trust,
     };
-    appendAssessRun(record); // firewall log (separate from practice state)
+    appendAssessRun(record);
     const results = assess.results.slice();
     assess = null;
     renderAssessResults(summary);
@@ -3166,14 +2804,12 @@
       '<div class="ar-score">' + pct + "% on this self-test</div>" +
       '<p class="ar-sub">An honest signal to sharpen your estimate — not a grade or a certificate.</p>';
 
-    // trust split (the firewall, made visible)
     const trust = el("div", "ar-trust");
     trust.innerHTML =
       '<span class="art-pill auto">' + summary.auto.correct + "/" + summary.auto.total + " auto-graded</span>" +
       '<span class="art-pill self">' + summary.self.correct + "/" + summary.self.total + " self-reported</span>";
     box.appendChild(trust);
 
-    // by-level breakdown
     const levels = window.Assess.ASSESS.LEVELS.filter((l) => summary.byLevel[l]);
     if (levels.length) {
       const bl = el("div", "ar-levels");
@@ -3191,7 +2827,6 @@
       box.appendChild(bl);
     }
 
-    // weak concepts → link back to Study
     if (summary.weakConcepts.length) {
       const weak = el("div", "route-list ar-weak");
       weak.appendChild(el("div", "section-label", "Review these"));
@@ -3202,7 +2837,7 @@
         row.appendChild(el("span", "dot shell-dot-" + a.shell));
         row.appendChild(el("span", "rtitle", escapeHtml(a.title)));
         row.appendChild(el("span", "rtag", "study"));
-        row.onclick = () => openAtom(id, true); // back to Study (peek), never blocks
+        row.onclick = () => openAtom(id, true);
         weak.appendChild(row);
       });
       box.appendChild(weak);
@@ -3221,9 +2856,6 @@
     katex(wrap);
   }
 
-  /* ---------- share Bucket Academy (growth loop) ---------- */
-  // Canonical public URL of the academy. Defaults to /academy on the current origin;
-  // no hardcoded production secret.
   function academyUrl() {
     try {
       const o = window.location && window.location.origin && window.location.origin !== "null"
@@ -3231,7 +2863,6 @@
       return o.replace(/\/$/, "") + "/academy";
     } catch (e) { return "https://bucket.foundation/academy"; }
   }
-  // Prefer the learner's PUBLIC Mastery Profile (bkt-coh) when they have a public handle.
   function shareTarget() {
     try {
       const Auth = window.BucketAuth;
@@ -3261,9 +2892,6 @@
     setTimeout(() => { t.classList.remove("on"); setTimeout(() => t.remove(), 300); }, 2600);
   }
 
-  /* ---------- first-run onboarding wiring (bkt-vjb) ---------- */
-  // The best "first real concept": a foundational (prereq) atom with a full lesson,
-  // no prerequisites, highest leverage. Falls back gracefully.
   function firstLessonAtom() {
     const withLesson = E.atoms.filter((a) => a.lesson);
     const pool = withLesson.length ? withLesson : E.atoms;
@@ -3277,7 +2905,6 @@
     if (!window.BucketOnboarding) return onDone();
     window.BucketOnboarding.start({
       E, mount, isLang, firstLessonAtom,
-      // reuse the app's REAL renderers so the lesson + art match Study mode exactly
       mdToHtml, artCard,
       switchBranch: (file) => {
         const m = findBranch(file) || BRANCHES.find((b) => b.file === file);
@@ -3294,13 +2921,10 @@
         return { target, targetName: LANG_NAMES[target] || target, known,
                  gloss: (a && (a.gloss || a.title)) || "", word: tf.word || "", ipa: tf.ipa || "" };
       },
-      // real diagnostic (js/diagnostic.js)
       hasDiagnostic: () => !isLang() && typeof window.Diagnostic === "function",
       startDiagnostic: () => go("diagnostic"),
-      // real auth (js/auth.js + auth-ui.js), feature-detected, never required
       hasAuth: () => !!(window.BucketAuth && window.BucketAuth.enabled),
       signIn: () => new Promise((resolve) => {
-        // open the existing sign-in modal via the topbar pill once the app is mounted
         setTimeout(() => { const pill = document.getElementById("authPill"); if (pill) pill.click(); resolve(); }, 60);
       }),
       share: shareAcademy,
@@ -3311,12 +2935,6 @@
     });
   }
 
-  /* ---------- Cognate + phrase data (bkt-q8e) ----------
- * The polyglott layer: a cognate/etymology index (corpus/lang-cognates.json,
- * built by build-cognates.mjs from the Polingual subset) and a curated phrase
- * deck (corpus/lang-phrases.json, built by build-phrases.mjs). Both are lazy-
- * loaded once, on first use inside the Languages branch, and cached. They are
- * additive data resources living inside Academy, never a separate product. */
   let _cognates = null, _cognatesPromise = null;
   let _phrases = null, _phrasesPromise = null;
   function loadCognates() {
@@ -3337,16 +2955,11 @@
       .catch(() => { _phrases = null; return null; });
     return _phrasesPromise;
   }
-  // Synchronous accessors (return cached data or null if not yet loaded).
   function cognateFor(atomId) {
     return (_cognates && _cognates.concepts && _cognates.concepts[atomId]) || null;
   }
   function allPhrases() { return (_phrases && _phrases.phrases) || []; }
 
-  /* ---------- DuoLang bridge (epic bkt-w0t) ----------
- * Expose exactly the closure-private helpers the dedicated Duolingo-style language
- * UI (js/duo.js) needs, without leaking app internals or forcing a refactor. The
- * canon "atom/study" screens are untouched; only the LANGUAGE branch reroutes here. */
   window.__DuoBridge = {
     E,
     isLang,
@@ -3361,59 +2974,42 @@
     LANG_NAMES,
     mount: (node) => mount(node),
     nav: (active) => nav(active),
-    // bkt-h9k multi-course hooks
     langStateKey,
-    syncLangNamespace,       // re-point the live engine at the active target's state
-    startedCourses,          // [target...] languages the learner has begun
-    markCourseStarted,       // register a target as a started course
-    courseStats,             // per-language { learned, total, xp, streak, active }
-    flag: (l) => l,          // duo.js owns its own flag map; placeholder for parity
-    // bkt-q8e: polyglott cognate/etymology + phrase data (lazy-loaded, cached)
+    syncLangNamespace,
+    startedCourses,
+    markCourseStarted,
+    courseStats,
+    flag: (l) => l,
     loadCognates,
     loadPhrases,
     cognateFor,
     allPhrases,
   };
-  // Does the dedicated Duo language experience own the current view?
   function duoActive() {
     return isLang() && window.DuoLang && window.DuoLang.available();
   }
 
-  /* ---------- router ---------- */
   function mount(node) {
     const root = $("#app");
     root.innerHTML = "";
     root.appendChild(node);
-    // bkt-alw: the bottom tab bar is `position:fixed`, but screens animate with a
-    // `transform` (@keyframes rise), and a transformed ancestor becomes the
-    // containing block for fixed descendants, which pinned the tab bar to the
-    // bottom of the (tall) document instead of the viewport, pushing its tap zone
-    // off-screen so MAP/PROGRESS taps landed on nothing. Hoist any .tabbar out of
-    // the animated .screen up to #app (which never transforms) so it's anchored to
-    // the viewport and its buttons are the real tap target on touch devices.
     const bar = node.querySelector && node.querySelector(".tabbar");
     if (bar) root.appendChild(bar);
   }
   function go(where) {
     currentScreen = where;
-    // LANGUAGE branch → the dedicated Duolingo-style experience (path home + lesson player).
     if (where === "home" && duoActive()) {
-      syncLangNamespace(); // bkt-h9k: load the ACTIVE language's own state before rendering
-      loadCognates(); loadPhrases(); // bkt-q8e: warm the polyglott data caches
+      syncLangNamespace();
+      loadCognates(); loadPhrases();
       if (window.DuoLang.shouldOnboard()) return mount(window.DuoLang.onboarding(() => go("home")));
       return mount(window.DuoLang.path(go));
     }
-    // bkt-h9k: "My Languages" course switcher (Duo-style). Reachable from the flag
-    // pill on the path and from the Progress tab while on the language branch.
     if (where === "languages" && duoActive() && window.DuoLang.myLanguages) {
       return mount(window.DuoLang.myLanguages(go));
     }
-    // bkt-h9k: "+ Add a language", force the onboarding language picker even though a
-    // course already exists, to START a new course (fresh per-language state).
     if (where === "add-language" && duoActive()) {
       return mount(window.DuoLang.onboarding(() => go("home")));
     }
-    // On the language branch the Progress tab IS "My Languages" (course list).
     if (where === "progress" && duoActive() && window.DuoLang.myLanguages) {
       return mount(window.DuoLang.myLanguages(go));
     }
@@ -3429,12 +3025,9 @@
   }
 
   async function boot() {
-    // Load the built-in deck manifest (with fallback) first, so BRANCHES is fully
-    // populated before we resolve the current selection / deep link.
     await loadManifest();
     refreshBranches();
 
-    // optional deep link: ?branch=<id>&atom=<id>
     let params = null;
     try { params = new URLSearchParams(location.search); } catch (e) {}
     if (params) {
@@ -3445,8 +3038,6 @@
       }
     }
 
-    // Make sure the persisted selection still exists (a custom deck may have been deleted
-    // on another device); otherwise fall back to the default built-in branch.
     if (!findBranch(currentBranchFile)) currentBranchFile = DEFAULT_BRANCH;
 
     const cur = findBranch(currentBranchFile) || BRANCHES[0];
@@ -3455,23 +3046,19 @@
       else if (cur && cur.data) E.loadData(cur.data, cur.id);
       else await E.load(DEFAULT_BRANCH);
       normalizeAtoms();
-      syncLangNamespace(); // bkt-h9k: per-language state on boot if starting on lang branch
+      syncLangNamespace();
       await loadArtCache();
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
       return;
     }
-    window.__BA = E; // debug handle
+    window.__BA = E;
 
-    // When an auth sync merges new state into localStorage, reload the active
-    // branch's engine state and re-render the current screen so progress (and
-    // the share-profile section) reflect the merged data (bkt-su9, bkt-coh).
     window.__BA_onAuthSync = function () {
       try { E._loadState && E._loadState(); } catch (e) {}
       go(currentScreen);
     };
 
-    // Deep links (shared atom / view / neighborhood) bypass first-run onboarding.
     const deepLink = params && (params.get("atom") || params.get("nb") ||
       params.get("view") === "study" || params.get("view") === "map" || params.get("onboard") === "0");
     const forceOnboard = params && params.get("onboard") === "1";
@@ -3489,9 +3076,6 @@
       }
     }
 
-    // First-run commitment ladder, only for brand-new visitors (or explicit replay).
-    // EXCEPTION: on the language branch the dedicated Duo experience (go("home") →
-    // DuoLang.onboarding) owns first-run, so we skip the canon onboarding there.
     if (duoActive() && !deepLink) {
       enter();
     } else if (window.BucketOnboarding && !deepLink &&

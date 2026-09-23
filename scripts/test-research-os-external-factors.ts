@@ -1,12 +1,6 @@
-/**
- * A branch's factors from other branches, as node pages and routing load
- * them (src/lib/research-os/db.ts addExternalFactors): closure ancestors,
- * incoming prerequisite edges, and derives_from factors join the subgraph
- * with the edges among them, and nothing unrelated comes along.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { addExternalFactors, type EdgeRow } from "../src/lib/research-os/db";
+import { PAGE, PagingError, addExternalFactors, inChunks, pagedRead, type EdgeRow } from "../src/lib/research-os/db";
 import type { GraphNode } from "../src/lib/research-os/types";
 
 type Row = Record<string, any>;
@@ -15,12 +9,24 @@ function fake(tables: Record<string, Row[]>, failOn?: string) {
   return {
     from(table: string) {
       const filters: ((r: Row) => boolean)[] = [];
+      const sorts: { col: string; asc: boolean }[] = [];
+      let span: { from: number; to: number } | null = null;
       const q = {
         select: () => q,
         in: (c: string, vs: unknown[]) => (filters.push((r) => vs.includes(r[c])), q),
+        eq: (c: string, v: unknown) => (filters.push((r) => r[c] === v), q),
+        neq: (c: string, v: unknown) => (filters.push((r) => r[c] !== v), q),
+        order: (col: string, opts?: { ascending?: boolean }) => (sorts.push({ col, asc: opts?.ascending !== false }), q),
+        range: (from: number, to: number) => ((span = { from, to }), q),
         then(res: (v: { data: Row[] | null; error: { message: string } | null }) => unknown) {
           if (failOn === table) return Promise.resolve({ data: null, error: { message: "down" } }).then(res);
-          return Promise.resolve({ data: (tables[table] ?? []).filter((r) => filters.every((f) => f(r))), error: null }).then(res);
+          let rows = (tables[table] ?? []).filter((r) => filters.every((f) => f(r)));
+          for (const s of [...sorts].reverse()) {
+            rows = [...rows].sort((x, y) => (String(x[s.col]) < String(y[s.col]) ? -1 : String(x[s.col]) > String(y[s.col]) ? 1 : 0) * (s.asc ? 1 : -1));
+          }
+          rows = span ? rows.slice(span.from, span.to + 1) : rows;
+          rows = rows.slice(0, PAGE);
+          return Promise.resolve({ data: rows, error: null }).then(res);
         },
       };
       return q;
@@ -51,4 +57,66 @@ test("factors from other branches join the subgraph with the edges among them", 
 
 test("a failed read surfaces as an error", async () => {
   await assert.rejects(addExternalFactors(fake({ nodes: [], edges: [] }, "prereq_ancestor"), ["b1"], [], []));
+});
+
+test("a chunked read pages past the row cap instead of truncating", async () => {
+  const rows: Row[] = Array.from({ length: PAGE * 2 + 7 }, (_, i) => ({
+    id: String(i).padStart(6, "0"),
+    from_id: "n1",
+  }));
+  const svc = fake({ edges: rows });
+  const got = await inChunks<Row>(["n1"], (chunk, page) =>
+    svc.from("edges").select("id,from_id").in("from_id", chunk).order("id").range(page.from, page.to),
+  );
+  assert.equal(got.length, rows.length, "every row came back, not the first page");
+  assert.equal(new Set(got.map((r) => r.id)).size, rows.length, "and none came back twice");
+});
+
+test("a read that forgets its range fails loudly rather than spinning", async () => {
+  const rows: Row[] = Array.from({ length: PAGE + 1 }, (_, i) => ({ id: String(i), from_id: "n1" }));
+  const svc = fake({ edges: rows });
+  await assert.rejects(
+    () => inChunks<Row>(["n1"], (chunk) => svc.from("edges").select("id,from_id").in("from_id", chunk).order("id")),
+    (err: unknown) => err instanceof PagingError,
+    "an unranged callback answers the same page forever, so the loop has to stop itself",
+  );
+});
+
+test("pagedRead walks every page of a read with no id list to chunk", async () => {
+  const rows: Row[] = Array.from({ length: PAGE * 2 + 9 }, (_, i) => ({ id: String(i).padStart(6, "0"), learner_id: "l1" }));
+  const svc = fake({ learner_node_state: rows });
+  const got = await pagedRead<Row>((page) =>
+    svc.from("learner_node_state").select("id,learner_id").eq("learner_id", "l1").order("id").range(page.from, page.to),
+  );
+  assert.equal(got.length, rows.length, `every row came back, not the first page: ${got.length}`);
+  assert.equal(new Set(got.map((r) => r.id)).size, rows.length, "and none came back twice");
+});
+
+test("pagedRead stops on a short page rather than asking for one more", async () => {
+  const rows: Row[] = Array.from({ length: 3 }, (_, i) => ({ id: String(i), learner_id: "l1" }));
+  let calls = 0;
+  const svc = fake({ learner_node_state: rows });
+  await pagedRead<Row>((page) => {
+    calls += 1;
+    return svc.from("learner_node_state").select("id").eq("learner_id", "l1").order("id").range(page.from, page.to);
+  });
+  assert.equal(calls, 1, "a page shorter than the cap is the last one");
+});
+
+test("pagedRead that forgets its range fails loudly rather than spinning", async () => {
+  const rows: Row[] = Array.from({ length: PAGE + 1 }, (_, i) => ({ id: String(i), learner_id: "l1" }));
+  const svc = fake({ learner_node_state: rows });
+  await assert.rejects(
+    () => pagedRead<Row>(() => svc.from("learner_node_state").select("id").eq("learner_id", "l1").order("id")),
+    (err: unknown) => err instanceof PagingError,
+    "an unranged callback answers the same page forever, so the loop has to stop itself",
+  );
+});
+
+test("pagedRead surfaces a failed read rather than returning what it got", async () => {
+  const svc = fake({ learner_node_state: [] }, "learner_node_state");
+  await assert.rejects(
+    () => pagedRead<Row>((page) => svc.from("learner_node_state").select("id").order("id").range(page.from, page.to)),
+    /down/,
+  );
 });

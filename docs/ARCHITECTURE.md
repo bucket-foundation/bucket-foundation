@@ -1,6 +1,6 @@
 # Architecture
 
-Target design. Updated as rows in `docs/PROBLEM-REGISTER.md` close. Current-state findings live in dated `docs/ARCHITECTURE-REVIEW-*.md`.
+Target design. Updated as rows in `docs/PROBLEM-REGISTER.md` close. Current-state findings live in dated `docs/internal/ARCHITECTURE-REVIEW-*.md`.
 
 ## Product
 

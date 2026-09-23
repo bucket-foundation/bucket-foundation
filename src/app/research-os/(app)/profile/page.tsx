@@ -1,29 +1,11 @@
 "use client";
 
-/**
- * /research-os/profile, the minimal learner profile form (bkt-ros ros-07
- * follow-up, "consent gate wiring"). Two questions, role and a coarse
- * birth-year bucket, nothing else: no birthdate, no name. A learner with
- * no graph.learner_profiles row is blocked from every gated write path
- * (src/lib/research-os/consent.ts's "no_profile" case) and routed here by
- * that gate's response until they answer both.
- *
- * This page never sets consent_status. Answering the age question here
- * does not grant consent for a minor; it only records the coarse fact the
- * gate needs to decide whether consent is required at all. The
- * school/parent consent path that CAN set consent_status
- * (learning/research-os/compliance/README.md part B item 2) stays a TODO,
- * pending the verified-parental-consent vendor choice named there.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/workspace/page.tsx and src/app/research-os/review/
- * page.tsx.
- */
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import { BIRTH_YEAR_BUCKET_LABELS, ROLE_LABELS } from "@/lib/research-os/profile";
 import type { BirthYearBucket, ConsentStatus, LearnerRole } from "@/lib/research-os/consent";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
@@ -72,16 +54,23 @@ export default function ResearchOsProfilePage() {
   useEffect(() => {
     if (!token) return;
     setLoadError(null);
-    fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } })
-      .then((res) => res.json())
-      .then((data: { profile: ProfileResponse | null; error?: string }) => {
+    (async () => {
+      try {
+        const res = await fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } });
+        const data = (await res.json().catch(() => ({}))) as { profile?: ProfileResponse | null; error?: string };
+        if (!res.ok) {
+          setLoadError(isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed");
+          return;
+        }
         if (data.profile) {
           setExisting(data.profile);
           setRole(data.profile.role);
           setBucket(data.profile.birthYearBucket ?? "");
         }
-      })
-      .catch(() => setLoadError("network_error"));
+      } catch {
+        setLoadError("transient");
+      }
+    })();
   }, [token]);
 
 
@@ -103,12 +92,12 @@ export default function ResearchOsProfilePage() {
         headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
         body: JSON.stringify({ role, birthYearBucket: bucket }),
       });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string; profile?: ProfileResponse | null };
       if (!res.ok) {
-        setSaveError(data.error || "save_failed");
+        setSaveError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "save_failed");
         return;
       }
-      setExisting(data.profile);
+      setExisting(data.profile ?? null);
       setSaved(true);
     } catch {
       setSaveError("network_error");
@@ -139,7 +128,8 @@ export default function ResearchOsProfilePage() {
 
         <SignInGate signedIn={Boolean(token)} />
 
-        {loadError && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
+        {loadError === "transient" && <p className="mt-4 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {loadError && loadError !== "transient" && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
 
         {token && (
           <div className="mt-6 p-4 bg-[color:var(--bone)] flex flex-col gap-5">

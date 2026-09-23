@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""Polingual Photon API, pgvector backend (the full-6.5M local version).
-
-Same response shapes + routes as server.py (the file-memmap interim), but every
-axis is a SQL/pgvector query against photons_full in the local Postgres. Point
-the Academy's POLINGUAL_API_URL at this to run the app on the full corpus.
-
-Axes: lookup (SQL) · semantic (HNSW <=>) · phonetic (<=>) · spelling (pg_trgm)
- · etymology (relations jsonb) · translate (relations jsonb + cross-ling)
-Env: PG* (defaults → local bucket-pgvector container), PORT (8090).
-"""
 import os, time
 from contextlib import contextmanager
 from fastapi import FastAPI, Request, Query
@@ -164,7 +154,6 @@ def api_etymology(surface: str, lang: str):
 
 @app.get("/translate")
 def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int = 8):
-    """Cross-lingual: prefer explicit relations, else nearest semantic in target lang."""
     def go():
         with cur() as c:
             qv = _qvec(c, surface, frm, "embedding")

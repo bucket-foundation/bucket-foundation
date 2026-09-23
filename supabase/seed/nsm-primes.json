@@ -1,0 +1,855 @@
+{
+  "citation": "Goddard, C., and Wierzbicka, A. (2014). Words and Meanings: Lexical Semantics Across Domains, Languages, and Cultures. Oxford University Press. Table 2.1. https://doi.org/10.1093/acprof:oso/9780199668434.001.0001",
+  "list_version": "2014",
+  "later_changes": [
+    "BE (SOMEONE)'S became (IS) MINE after 2014 (Goddard and Wierzbicka 2016, It's mine!, Language Sciences)",
+    "TOUCH moved from actions, events, movement, contact to space in later charts (NSM English chart v20, May 2022)"
+  ],
+  "primes": [
+    {
+      "id": "i",
+      "label": "I~ME",
+      "category": "substantives",
+      "english": [
+        "I",
+        "me"
+      ],
+      "sense": {
+        "en_word": "I",
+        "en_pos": "pron",
+        "gloss_pattern": "personal pronoun"
+      }
+    },
+    {
+      "id": "you",
+      "label": "YOU",
+      "category": "substantives",
+      "english": [
+        "you"
+      ],
+      "sense": {
+        "en_word": "you",
+        "en_pos": "pron",
+        "gloss_pattern": "subject pronoun: the person being addressed"
+      }
+    },
+    {
+      "id": "someone",
+      "label": "SOMEONE",
+      "category": "substantives",
+      "english": [
+        "someone"
+      ],
+      "sense": {
+        "en_word": "someone",
+        "en_pos": "pron",
+        "gloss_pattern": "some person"
+      }
+    },
+    {
+      "id": "something",
+      "label": "SOMETHING~THING",
+      "category": "substantives",
+      "english": [
+        "something",
+        "thing"
+      ],
+      "sense": {
+        "en_word": "something",
+        "en_pos": "pron",
+        "gloss_pattern": "unspecified object"
+      }
+    },
+    {
+      "id": "people",
+      "label": "PEOPLE",
+      "category": "substantives",
+      "english": [
+        "people"
+      ],
+      "sense": {
+        "en_word": "people",
+        "en_pos": "noun",
+        "gloss_pattern": "body of human beings"
+      }
+    },
+    {
+      "id": "body",
+      "label": "BODY",
+      "category": "substantives",
+      "english": [
+        "body"
+      ],
+      "sense": {
+        "en_word": "body",
+        "en_pos": "noun",
+        "gloss_pattern": "physical structure of a human or animal"
+      }
+    },
+    {
+      "id": "kind",
+      "label": "KIND",
+      "category": "relational substantives",
+      "english": [
+        "kind"
+      ],
+      "sense": {
+        "en_word": "kind",
+        "en_pos": "noun",
+        "gloss_pattern": "^type, race, category"
+      }
+    },
+    {
+      "id": "part",
+      "label": "PART",
+      "category": "relational substantives",
+      "english": [
+        "part"
+      ],
+      "sense": {
+        "en_word": "part",
+        "en_pos": "noun",
+        "gloss_pattern": "fraction of a whole"
+      }
+    },
+    {
+      "id": "this",
+      "label": "THIS",
+      "category": "determiners",
+      "english": [
+        "this"
+      ],
+      "sense": {
+        "en_word": "this",
+        "en_pos": "det",
+        "gloss_pattern": "\\(thing\\) here"
+      }
+    },
+    {
+      "id": "the_same",
+      "label": "THE SAME",
+      "category": "determiners",
+      "english": [
+        "the same"
+      ],
+      "sense": {
+        "en_word": "same",
+        "en_pos": "adj",
+        "gloss_pattern": "identical"
+      }
+    },
+    {
+      "id": "other",
+      "label": "OTHER~ELSE",
+      "category": "determiners",
+      "english": [
+        "other",
+        "else"
+      ],
+      "sense": {
+        "en_word": "other",
+        "en_pos": "adj",
+        "gloss_pattern": "not the one previously referred to"
+      }
+    },
+    {
+      "id": "one",
+      "label": "ONE",
+      "category": "quantifiers",
+      "english": [
+        "one"
+      ],
+      "sense": {
+        "en_word": "one",
+        "en_pos": "num",
+        "gloss_pattern": "cardinal number 1\\b"
+      }
+    },
+    {
+      "id": "two",
+      "label": "TWO",
+      "category": "quantifiers",
+      "english": [
+        "two"
+      ],
+      "sense": {
+        "en_word": "two",
+        "en_pos": "num",
+        "gloss_pattern": "cardinal number 2\\b"
+      }
+    },
+    {
+      "id": "much_many",
+      "label": "MUCH~MANY",
+      "category": "quantifiers",
+      "english": [
+        "much",
+        "many"
+      ],
+      "sense": {
+        "en_word": "many",
+        "en_pos": "det",
+        "gloss_pattern": "indefinite large number"
+      }
+    },
+    {
+      "id": "little_few",
+      "label": "LITTLE~FEW",
+      "category": "quantifiers",
+      "english": [
+        "little",
+        "few"
+      ],
+      "sense": {
+        "en_word": "few",
+        "en_pos": "det",
+        "gloss_pattern": "small number"
+      }
+    },
+    {
+      "id": "some",
+      "label": "SOME",
+      "category": "quantifiers",
+      "english": [
+        "some"
+      ],
+      "sense": {
+        "en_word": "some",
+        "en_pos": "det",
+        "gloss_pattern": "^unspecified quantity or number of"
+      }
+    },
+    {
+      "id": "all",
+      "label": "ALL",
+      "category": "quantifiers",
+      "english": [
+        "all"
+      ],
+      "sense": {
+        "en_word": "all",
+        "en_pos": "det",
+        "gloss_pattern": "every individual of the given class"
+      }
+    },
+    {
+      "id": "good",
+      "label": "GOOD",
+      "category": "evaluators",
+      "english": [
+        "good"
+      ],
+      "sense": {
+        "en_word": "good",
+        "en_pos": "adj",
+        "gloss_pattern": "interest of good"
+      }
+    },
+    {
+      "id": "bad",
+      "label": "BAD",
+      "category": "evaluators",
+      "english": [
+        "bad"
+      ],
+      "sense": {
+        "en_word": "bad",
+        "en_pos": "adj",
+        "gloss_pattern": "unfavorable; negative"
+      }
+    },
+    {
+      "id": "big",
+      "label": "BIG",
+      "category": "descriptors",
+      "english": [
+        "big"
+      ],
+      "sense": {
+        "en_word": "big",
+        "en_pos": "adj",
+        "gloss_pattern": "great size"
+      }
+    },
+    {
+      "id": "small",
+      "label": "SMALL",
+      "category": "descriptors",
+      "english": [
+        "small"
+      ],
+      "sense": {
+        "en_word": "small",
+        "en_pos": "adj",
+        "gloss_pattern": "^not large"
+      }
+    },
+    {
+      "id": "know",
+      "label": "KNOW",
+      "category": "mental predicates",
+      "english": [
+        "know"
+      ],
+      "sense": {
+        "en_word": "know",
+        "en_pos": "verb",
+        "gloss_pattern": "certain or sure about"
+      }
+    },
+    {
+      "id": "think",
+      "label": "THINK",
+      "category": "mental predicates",
+      "english": [
+        "think"
+      ],
+      "sense": {
+        "en_word": "think",
+        "en_pos": "verb",
+        "gloss_pattern": "communicate to oneself"
+      }
+    },
+    {
+      "id": "want",
+      "label": "WANT",
+      "category": "mental predicates",
+      "english": [
+        "want"
+      ],
+      "sense": {
+        "en_word": "want",
+        "en_pos": "verb",
+        "gloss_pattern": "^to desire$"
+      }
+    },
+    {
+      "id": "dont_want",
+      "label": "DON'T WANT",
+      "category": "mental predicates",
+      "english": [
+        "don't want"
+      ],
+      "sense": null
+    },
+    {
+      "id": "feel",
+      "label": "FEEL",
+      "category": "mental predicates",
+      "english": [
+        "feel"
+      ],
+      "sense": {
+        "en_word": "feel",
+        "en_pos": "verb",
+        "gloss_pattern": "experience an emotion or other mental state"
+      }
+    },
+    {
+      "id": "see",
+      "label": "SEE",
+      "category": "mental predicates",
+      "english": [
+        "see"
+      ],
+      "sense": {
+        "en_word": "see",
+        "en_pos": "verb",
+        "gloss_pattern": "perceive with the eyes"
+      }
+    },
+    {
+      "id": "hear",
+      "label": "HEAR",
+      "category": "mental predicates",
+      "english": [
+        "hear"
+      ],
+      "sense": {
+        "en_word": "hear",
+        "en_pos": "verb",
+        "gloss_pattern": "perceive with the ear|perceive sounds"
+      }
+    },
+    {
+      "id": "say",
+      "label": "SAY",
+      "category": "speech",
+      "english": [
+        "say"
+      ],
+      "sense": {
+        "en_word": "say",
+        "en_pos": "verb",
+        "gloss_pattern": "to say, to tell|communicate verbally"
+      }
+    },
+    {
+      "id": "words",
+      "label": "WORDS",
+      "category": "speech",
+      "english": [
+        "words"
+      ],
+      "sense": {
+        "en_word": "word",
+        "en_pos": "noun",
+        "gloss_pattern": "unit of language"
+      }
+    },
+    {
+      "id": "true",
+      "label": "TRUE",
+      "category": "speech",
+      "english": [
+        "true"
+      ],
+      "sense": {
+        "en_word": "true",
+        "en_pos": "adj",
+        "gloss_pattern": "concurring with a given set of facts"
+      }
+    },
+    {
+      "id": "do",
+      "label": "DO",
+      "category": "actions, events, movement, contact",
+      "english": [
+        "do"
+      ],
+      "sense": {
+        "en_word": "do",
+        "en_pos": "verb",
+        "gloss_pattern": "perform, execute"
+      }
+    },
+    {
+      "id": "happen",
+      "label": "HAPPEN",
+      "category": "actions, events, movement, contact",
+      "english": [
+        "happen"
+      ],
+      "sense": {
+        "en_word": "happen",
+        "en_pos": "verb",
+        "gloss_pattern": "^to occur$"
+      }
+    },
+    {
+      "id": "move",
+      "label": "MOVE",
+      "category": "actions, events, movement, contact",
+      "english": [
+        "move"
+      ],
+      "sense": {
+        "en_word": "move",
+        "en_pos": "verb",
+        "gloss_pattern": "change place or posture; to go"
+      }
+    },
+    {
+      "id": "touch",
+      "label": "TOUCH",
+      "category": "actions, events, movement, contact",
+      "english": [
+        "touch"
+      ],
+      "sense": {
+        "en_word": "touch",
+        "en_pos": "verb",
+        "gloss_pattern": "make physical contact"
+      }
+    },
+    {
+      "id": "be_somewhere",
+      "label": "BE (SOMEWHERE)",
+      "category": "location, existence, possession, specification",
+      "english": [
+        "be somewhere"
+      ],
+      "sense": {
+        "en_word": "be",
+        "en_pos": "verb",
+        "gloss_pattern": "occupy a place"
+      }
+    },
+    {
+      "id": "there_is",
+      "label": "THERE IS",
+      "category": "location, existence, possession, specification",
+      "english": [
+        "there is"
+      ],
+      "sense": {
+        "en_word": "there be",
+        "en_pos": "verb",
+        "gloss_pattern": "^to exist$"
+      }
+    },
+    {
+      "id": "be_someones",
+      "label": "BE (SOMEONE)'S",
+      "category": "location, existence, possession, specification",
+      "english": [
+        "be someone's"
+      ],
+      "sense": {
+        "en_word": "mine",
+        "en_pos": "pron",
+        "gloss_pattern": "belongs to me",
+        "proxy": true
+      }
+    },
+    {
+      "id": "be_someone_something",
+      "label": "BE (SOMEONE/SOMETHING)",
+      "category": "location, existence, possession, specification",
+      "english": [
+        "be someone",
+        "be something"
+      ],
+      "sense": {
+        "en_word": "be",
+        "en_pos": "verb",
+        "gloss_pattern": "subject and object identical or equivalent"
+      }
+    },
+    {
+      "id": "live",
+      "label": "LIVE",
+      "category": "life and death",
+      "english": [
+        "live"
+      ],
+      "sense": {
+        "en_word": "live",
+        "en_pos": "verb",
+        "gloss_pattern": "^be alive"
+      }
+    },
+    {
+      "id": "die",
+      "label": "DIE",
+      "category": "life and death",
+      "english": [
+        "die"
+      ],
+      "sense": {
+        "en_word": "die",
+        "en_pos": "verb",
+        "gloss_pattern": "stop living"
+      }
+    },
+    {
+      "id": "when_time",
+      "label": "WHEN~TIME",
+      "category": "time",
+      "english": [
+        "when",
+        "time"
+      ],
+      "sense": {
+        "en_word": "when",
+        "en_pos": "adv",
+        "gloss_pattern": "at what time"
+      }
+    },
+    {
+      "id": "now",
+      "label": "NOW",
+      "category": "time",
+      "english": [
+        "now"
+      ],
+      "sense": {
+        "en_word": "now",
+        "en_pos": "adv",
+        "gloss_pattern": "at the present time"
+      }
+    },
+    {
+      "id": "before",
+      "label": "BEFORE",
+      "category": "time",
+      "english": [
+        "before"
+      ],
+      "sense": {
+        "en_word": "before",
+        "en_pos": "prep",
+        "gloss_pattern": "earlier than"
+      }
+    },
+    {
+      "id": "after",
+      "label": "AFTER",
+      "category": "time",
+      "english": [
+        "after"
+      ],
+      "sense": {
+        "en_word": "after",
+        "en_pos": "prep",
+        "gloss_pattern": "later than"
+      }
+    },
+    {
+      "id": "a_long_time",
+      "label": "A LONG TIME",
+      "category": "time",
+      "english": [
+        "a long time"
+      ],
+      "sense": null
+    },
+    {
+      "id": "a_short_time",
+      "label": "A SHORT TIME",
+      "category": "time",
+      "english": [
+        "a short time"
+      ],
+      "sense": null
+    },
+    {
+      "id": "for_some_time",
+      "label": "FOR SOME TIME",
+      "category": "time",
+      "english": [
+        "for some time"
+      ],
+      "sense": {
+        "en_word": "while",
+        "en_pos": "noun",
+        "gloss_pattern": "period of time",
+        "proxy": true
+      }
+    },
+    {
+      "id": "moment",
+      "label": "MOMENT",
+      "category": "time",
+      "english": [
+        "moment"
+      ],
+      "sense": {
+        "en_word": "moment",
+        "en_pos": "noun",
+        "gloss_pattern": "very brief period of time"
+      }
+    },
+    {
+      "id": "where_place",
+      "label": "WHERE~PLACE",
+      "category": "space",
+      "english": [
+        "where",
+        "place"
+      ],
+      "sense": {
+        "en_word": "where",
+        "en_pos": "adv",
+        "gloss_pattern": "at what place|at or in which place"
+      }
+    },
+    {
+      "id": "here",
+      "label": "HERE",
+      "category": "space",
+      "english": [
+        "here"
+      ],
+      "sense": {
+        "en_word": "here",
+        "en_pos": "adv",
+        "gloss_pattern": "in, on, or at this place"
+      }
+    },
+    {
+      "id": "above",
+      "label": "ABOVE",
+      "category": "space",
+      "english": [
+        "above"
+      ],
+      "sense": {
+        "en_word": "above",
+        "en_pos": "prep",
+        "gloss_pattern": "higher place|over, on top of"
+      }
+    },
+    {
+      "id": "below",
+      "label": "BELOW",
+      "category": "space",
+      "english": [
+        "below"
+      ],
+      "sense": {
+        "en_word": "below",
+        "en_pos": "prep",
+        "gloss_pattern": "lower in spatial position"
+      }
+    },
+    {
+      "id": "far",
+      "label": "FAR",
+      "category": "space",
+      "english": [
+        "far"
+      ],
+      "sense": {
+        "en_word": "far",
+        "en_pos": "adj",
+        "gloss_pattern": "remote in space"
+      }
+    },
+    {
+      "id": "near",
+      "label": "NEAR",
+      "category": "space",
+      "english": [
+        "near"
+      ],
+      "sense": {
+        "en_word": "near",
+        "en_pos": "adj",
+        "gloss_pattern": "physically close"
+      }
+    },
+    {
+      "id": "side",
+      "label": "SIDE",
+      "category": "space",
+      "english": [
+        "side"
+      ],
+      "sense": {
+        "en_word": "side",
+        "en_pos": "noun",
+        "gloss_pattern": "left or right half"
+      }
+    },
+    {
+      "id": "inside",
+      "label": "INSIDE",
+      "category": "space",
+      "english": [
+        "inside"
+      ],
+      "sense": {
+        "en_word": "inside",
+        "en_pos": "prep",
+        "gloss_pattern": "within the interior"
+      }
+    },
+    {
+      "id": "not",
+      "label": "NOT",
+      "category": "logical concepts",
+      "english": [
+        "not"
+      ],
+      "sense": {
+        "en_word": "not",
+        "en_pos": "adv",
+        "gloss_pattern": "negates meaning"
+      }
+    },
+    {
+      "id": "maybe",
+      "label": "MAYBE",
+      "category": "logical concepts",
+      "english": [
+        "maybe"
+      ],
+      "sense": {
+        "en_word": "maybe",
+        "en_pos": "adv",
+        "gloss_pattern": "lack of certainty"
+      }
+    },
+    {
+      "id": "can",
+      "label": "CAN",
+      "category": "logical concepts",
+      "english": [
+        "can"
+      ],
+      "sense": {
+        "en_word": "can",
+        "en_pos": "verb",
+        "gloss_pattern": "be able to"
+      }
+    },
+    {
+      "id": "because",
+      "label": "BECAUSE",
+      "category": "logical concepts",
+      "english": [
+        "because"
+      ],
+      "sense": {
+        "en_word": "because",
+        "en_pos": "conj",
+        "gloss_pattern": "by or for the cause"
+      }
+    },
+    {
+      "id": "if",
+      "label": "IF",
+      "category": "logical concepts",
+      "english": [
+        "if"
+      ],
+      "sense": {
+        "en_word": "if",
+        "en_pos": "conj",
+        "gloss_pattern": "^supposing that"
+      }
+    },
+    {
+      "id": "very",
+      "label": "VERY",
+      "category": "augmentor, intensifier",
+      "english": [
+        "very"
+      ],
+      "sense": {
+        "en_word": "very",
+        "en_pos": "adv",
+        "gloss_pattern": "to a high degree"
+      }
+    },
+    {
+      "id": "more",
+      "label": "MORE",
+      "category": "augmentor, intensifier",
+      "english": [
+        "more"
+      ],
+      "sense": {
+        "en_word": "more",
+        "en_pos": "adv",
+        "gloss_pattern": "comparative of much"
+      }
+    },
+    {
+      "id": "like",
+      "label": "LIKE~AS~WAY",
+      "category": "similarity",
+      "english": [
+        "like",
+        "as",
+        "way"
+      ],
+      "sense": {
+        "en_word": "like",
+        "en_pos": "prep",
+        "gloss_pattern": "similar to"
+      }
+    }
+  ]
+}

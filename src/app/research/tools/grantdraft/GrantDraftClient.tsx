@@ -1,9 +1,5 @@
 "use client";
 
-// GrantDraft client island, funder/grant finder + specific-aims drafter,
-// grounded in REAL awarded grants (research-atlas NSF corpus / OpenAlex
-// fallback). Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -12,6 +8,8 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Grant = {
   title: string;
@@ -59,9 +57,9 @@ export default function GrantDraftClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             research topic
-          </span>
+          </FieldLabel>
           <input
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -70,13 +68,9 @@ export default function GrantDraftClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || topic.trim().length < 4}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || topic.trim().length < 4}>
           {busy ? "drafting…" : "find funders + draft aims"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />
@@ -96,7 +90,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         {out.degraded ? " · degraded (no live data)" : ""}
       </div>
 
-      {/* Specific aims, grounded in real awards */}
       <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-8">
         <div className="font-display uppercase text-[15px] tracking-[0.06em] text-[color:var(--basalt)] mb-4">
           Specific Aims (draft)
@@ -123,7 +116,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         </div>
       </div>
 
-      {/* Top funders */}
       {out.top_funders.length > 0 && (
         <div className="mt-6">
           <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">
@@ -143,7 +135,6 @@ function DraftView({ result }: { result: ResultEnvelope }) {
         </div>
       )}
 
-      {/* Matched real grants */}
       <div className="mt-6">
         <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">
           matched awarded grants

@@ -18,7 +18,6 @@ const CATEGORY_LABEL: Record<string, string> = {
 function weekKey(date: string): string {
   const d = new Date(date + "T00:00:00Z");
   if (Number.isNaN(d.getTime())) return "unknown";
-  // ISO week start (Monday)
   const day = d.getUTCDay() || 7;
   d.setUTCDate(d.getUTCDate() - day + 1);
   return d.toISOString().slice(0, 10);

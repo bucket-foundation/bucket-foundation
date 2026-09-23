@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState } from "react";
 import Section from "./Section";
 import type { NodeData, Quote } from "./types";
@@ -13,14 +14,13 @@ interface QuoteResponse {
   source: { author?: string; year?: number; title?: string; publisher?: string; doi?: string; url?: string; license?: string };
 }
 
-/** Awareness, in place: the node's provenance and a quote from its source, kept for Check and Produce. */
 export default function SourcesSection({ data, quotes, onQuote, onChanged }: { data: NodeData; quotes: Quote[]; onQuote: (q: Quote) => void; onChanged: () => void }) {
   const [busy, setBusy] = useState(false);
   const [got, setGot] = useState<QuoteResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const p = data.node.provenance ?? {};
   const line =
-    p.type === "canon_claim"
+    p.type === "source_excerpt" || p.type === "canon_claim"
       ? [typeof p.video === "string" ? `From "${p.video}"` : null, typeof p.timestamp === "string" ? `at ${p.timestamp}` : null, typeof p.concept === "string" ? `concept: ${String(p.concept).replace(/-/g, " ")}` : null].filter(Boolean).join(" · ")
       : p.type === "canon_figure"
         ? [typeof p.lifespan === "string" ? p.lifespan : null, Array.isArray(p.works) ? `${(p.works as { title: string }[]).length} primary works` : null].filter(Boolean).join(" · ")
@@ -34,9 +34,9 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
     setError(null);
     try {
       const res = await fetch("/api/research-os/workspace", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "quote", nodeId: data.node.id }) });
-      const j = (await res.json()) as QuoteResponse & { error?: string; message?: string };
+      const j = (await res.json().catch(() => ({}))) as QuoteResponse & { error?: string; message?: string };
       if (!res.ok) {
-        setError(j.message ?? j.error ?? "Could not quote.");
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not quote."));
         return;
       }
       setGot(j);

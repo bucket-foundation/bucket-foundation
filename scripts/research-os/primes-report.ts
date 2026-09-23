@@ -1,17 +1,3 @@
-/**
- * Runs the prime decomposition (src/lib/research-os/primes.ts) over the
- * graph's public, current nodes in Supabase and prints a report: status
- * counts, tiers, the most penetrating primes, the deepest composites,
- * cycles, the nodes that name equality (the worked example in
- * learning/research-os/PRIMES.md), the primes a reviewer confirmed as
- * irreducible, and what moved since the previous report. Writes the full
- * result to scripts/research-os/ingest/out/primes-report.json (ignored by
- * git), which the next run reads as its baseline.
- *
- * Run from the repo root with the local stack's keys in .env.local:
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/primes-report.ts
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -25,20 +11,19 @@ import {
   type PriorStanding,
   type PrimeNodeInput,
 } from "../../src/lib/research-os/primes";
+import { pagedRead } from "../../src/lib/research-os/paging";
 
 type NodeRow = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
 
-async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
-  const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    let q = svc.from(table).select(columns).range(from, from + 999);
+function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
+  return pagedRead<T>((page) => {
+    let q = svc.from(table).select(columns).order("id").range(page.from, page.to);
     if (filter) q = filter(q);
-    const { data, error } = await q;
-    if (error) throw new Error(`${table}: ${error.message}`);
-    out.push(...((data ?? []) as T[]));
-    if (!data || data.length < 1000) return out;
-  }
+    return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
+  }).catch((err: unknown) => {
+    throw new Error(`${table}: ${err instanceof Error ? err.message : String(err)}`);
+  });
 }
 
 async function main() {

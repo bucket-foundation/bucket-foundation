@@ -1,0 +1,134 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_load_failed"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_load_failed"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_load_failed"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_load_failed"
+    }
+  },
+  "GET branch list, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_read_failed"
+    }
+  },
+  "GET branch list": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "branches": []
+    }
+  },
+  "GET bad branch": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_branch"
+    }
+  },
+  "GET anonymous graph": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "branch": "02-physics",
+      "nodes": [
+        {
+          "id": "n1",
+          "slug": "light",
+          "title": "Light",
+          "kind": "concept",
+          "tier": 1,
+          "frontierFlag": null,
+          "visibility": "public",
+          "source": ""
+        }
+      ],
+      "edges": [],
+      "standing": {},
+      "assignments": [],
+      "holders": null,
+      "learners": 0,
+      "signedIn": false
+    }
+  },
+  "GET signed-in graph": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "branch": "02-physics",
+      "nodes": [
+        {
+          "id": "n1",
+          "slug": "light",
+          "title": "Light",
+          "kind": "concept",
+          "tier": 1,
+          "frontierFlag": null,
+          "visibility": "public",
+          "source": ""
+        }
+      ],
+      "edges": [],
+      "standing": {},
+      "assignments": [],
+      "holders": null,
+      "learners": 0,
+      "signedIn": true
+    }
+  },
+  "GET access store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET access filter throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  }
+}

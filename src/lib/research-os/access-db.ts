@@ -1,11 +1,17 @@
-/**
- * Research OS, the Access level, server-only DB access (ros-21). Same
- * contract as db.ts: a route verifies the caller with verifyLearner(), then
- * these wrappers read and write through the service-role client bound to
- * the private `graph` schema, applying the rules in access.ts before any
- * write. Never import from a client component.
- */
-import { graphService } from "./db";
+import { graphService, inChunks, pagedRead } from "./db";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import {
+  authorizeNodes,
+  dbAccessStore,
+  GRANT_COLUMNS,
+  grantFromRow,
+  readGrants,
+  readVisibility,
+  storeWithNodes,
+  type AccessStore,
+  type GrantRow,
+  type StoreResult,
+} from "./read-access";
 import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
@@ -22,7 +28,6 @@ import {
   type Visibility,
 } from "./access";
 
-type GrantRow = { id: string; node_id: string; grantee_id: string | null; grantee_group: string | null; role: GrantRole; expires_at: string | null };
 type RequestRow = {
   id: string;
   node_id: string;
@@ -35,9 +40,6 @@ type RequestRow = {
   created_at: string;
 };
 
-function grantFromRow(r: GrantRow): NodeGrant {
-  return { id: r.id, nodeId: r.node_id, granteeId: r.grantee_id, granteeGroup: r.grantee_group, role: r.role, expiresAt: r.expires_at };
-}
 function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
   return {
     id: r.id,
@@ -52,85 +54,138 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
   };
 }
 
-/**
- * ros-31: the graph a viewer may see. Public nodes always; private and
- * shared nodes when access.ts's canView allows, with the viewer's grants
- * loaded in one query for the branch's non-public nodes. Edges touching a
- * hidden node are dropped, so routing and directions never cross into a
- * node the viewer cannot open.
- */
+export type SubgraphForViewer<N, E> = { ok: true; nodes: N[]; edges: E[] } | { ok: false; reason: "unavailable" };
+
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
-  viewerId: string | null
-): Promise<{ nodes: N[]; edges: E[] }> {
-  const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
-  if (nonPublic.length === 0) return { nodes, edges };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  let grants: NodeGrant[] = [];
-  if (viewerId) {
-    const { data } = await graphService()
-      .from("node_grants")
-      .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-      .in("node_id", nonPublic.map((n) => n.id));
-    grants = ((data as GrantRow[]) || []).map(grantFromRow);
-  }
-  const keep = new Set(
-    nodes
-      .filter((n) => canView({ id: n.id, visibility: n.visibility ?? "public", ownerId: n.ownerId ?? null }, viewer, grants))
-      .map((n) => n.id)
+  viewerId: string | null,
+  store: AccessStore = dbAccessStore,
+): Promise<SubgraphForViewer<N, E>> {
+  const nonPublic = nodes.filter((n) => readVisibility(n.visibility) !== "public");
+  if (nonPublic.length === 0) return { ok: true, nodes, edges };
+
+  const access: NodeAccess[] = nodes.map((n) => ({
+    id: n.id,
+    visibility: readVisibility(n.visibility),
+    ownerId: n.ownerId ?? null,
+  }));
+  const decision = await authorizeNodes(
+    nodes.map((n) => n.id),
+    { id: viewerId },
+    "view",
+    storeWithNodes(access, store),
   );
-  return { nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
+  if (!decision.ok) return { ok: false, reason: "unavailable" };
+  const keep = new Set(decision.allowed);
+  return { ok: true, nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
-export async function loadNodeAccess(nodeId: string): Promise<NodeAccess | null> {
+export type AccessRead<T> = { ok: true; value: T } | { ok: false; reason: "unavailable" };
+
+export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAccess | null>> {
   const { data, error } = await graphService().from("nodes").select("id,visibility,owner_id").eq("id", nodeId).maybeSingle();
-  if (error || !data) return null;
-  return { id: data.id as string, visibility: (data.visibility as Visibility) ?? "public", ownerId: (data.owner_id as string | null) ?? null };
+  if (error) return { ok: false, reason: "unavailable" };
+  if (!data) return { ok: true, value: null };
+  return {
+    ok: true,
+    value: {
+      id: data.id as string,
+      visibility: readVisibility(data.visibility as string | null),
+      ownerId: (data.owner_id as string | null) ?? null,
+    },
+  };
 }
 
-export async function loadGrants(nodeId: string): Promise<NodeGrant[]> {
-  const { data, error } = await graphService().from("node_grants").select("id,node_id,grantee_id,grantee_group,role,expires_at").eq("node_id", nodeId);
-  if (error || !data) return [];
-  return (data as GrantRow[]).map(grantFromRow);
+function unavailable(table: string, err: unknown): { ok: false; reason: "unavailable" } {
+  const detail = err instanceof Error ? err.message : String(err);
+  console.error(`[research-os/access] ${table} read failed:`, detail);
+  return { ok: false, reason: "unavailable" };
 }
 
-/** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
-export async function loadViewerGroups(learnerId: string): Promise<string[]> {
-  const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", learnerId);
-  if (error || !data) return [];
-  return (data as { class_id: string }[]).map((r) => `class:${r.class_id}`);
+export async function loadGrants(nodeId: string, client: () => SupabaseClient = graphService): Promise<AccessRead<NodeGrant[]>> {
+  const read = await readGrants([nodeId], client);
+  return read.ok ? read : unavailable("node_grants", read.error);
 }
 
-export async function loadRequestsForNode(nodeId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("node_id", nodeId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
+  const read = await dbAccessStore.groups(learnerId);
+  return read.ok ? read : unavailable("class_members", read.error);
 }
 
-export async function loadRequestsByRequester(requesterId: string): Promise<(AccessRequest & { createdAt: string })[]> {
-  const { data, error } = await graphService()
-    .from("access_requests")
-    .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
-    .eq("requester_id", requesterId)
-    .order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return (data as RequestRow[]).map(requestFromRow);
+export async function loadRequestsForNode(nodeId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("node_id", nodeId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export async function loadOwnedNodes(ownerId: string): Promise<{ id: string; slug: string; title: string; visibility: Visibility }[]> {
-  const { data, error } = await graphService().from("nodes").select("id,slug,title,visibility").eq("owner_id", ownerId).order("created_at", { ascending: false });
-  if (error || !data) return [];
-  return data as { id: string; slug: string; title: string; visibility: Visibility }[];
+export async function loadRequestsByRequester(requesterId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
+  try {
+    const rows = await pagedRead<RequestRow>((page) =>
+      graphService()
+        .from("access_requests")
+        .select("id,node_id,requester_id,purpose,message,status,decided_by,decided_at,created_at")
+        .eq("requester_id", requesterId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: RequestRow[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows.map(requestFromRow) };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
 }
 
-export type AccessResult<T> = { ok: true; value: T } | { ok: false; error: string };
+export async function loadOwnedNodes(ownerId: string): Promise<AccessRead<{ id: string; slug: string; title: string; visibility: Visibility }[]>> {
+  try {
+    const rows = await pagedRead<{ id: string; slug: string; title: string; visibility: Visibility }>((page) =>
+      graphService()
+        .from("nodes")
+        .select("id,slug,title,visibility")
+        .eq("owner_id", ownerId)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { id: string; slug: string; title: string; visibility: Visibility }[] | null; error: { message: string } | null }>,
+    );
+    return { ok: true, value: rows };
+  } catch (err) {
+    return unavailable("nodes", err);
+  }
+}
 
-export async function setVisibility(node: NodeAccess, actor: Viewer, requested: Visibility): Promise<AccessResult<Visibility>> {
+export async function loadPendingCountsForNodes(nodeIds: string[]): Promise<AccessRead<Map<string, number>>> {
+  const counts = new Map<string, number>();
+  if (nodeIds.length === 0) return { ok: true, value: counts };
+  try {
+    const rows = await inChunks<{ node_id: string }>(nodeIds, (chunk, page) =>
+      graphService()
+        .from("access_requests")
+        .select("node_id")
+        .in("node_id", chunk)
+        .eq("status", "pending")
+        .order("node_id")
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string }[] | null; error: { message: string } | null }>,
+    );
+    for (const r of rows) counts.set(r.node_id, (counts.get(r.node_id) ?? 0) + 1);
+    return { ok: true, value: counts };
+  } catch (err) {
+    return unavailable("access_requests", err);
+  }
+}
+
+export async function setVisibility(node: NodeAccess, actor: Viewer, requested: Visibility): Promise<StoreResult<Visibility>> {
   const next = nextVisibility(node, actor, requested);
   if (!next) return { ok: false, error: "not_owner" };
   const { error } = await graphService().from("nodes").update({ visibility: next }).eq("id", node.id);
@@ -144,20 +199,22 @@ export async function grantAccess(
   grantee: { id?: string; group?: string },
   role: GrantRole,
   expiresAt?: string | null
-): Promise<AccessResult<NodeGrant>> {
+): Promise<StoreResult<NodeGrant>> {
   if (!grantAllowed(node, actor, role)) return { ok: false, error: "grant_refused" };
   if (Boolean(grantee.id) === Boolean(grantee.group)) return { ok: false, error: "grantee_required" };
   const row = { node_id: node.id, grantee_id: grantee.id ?? null, grantee_group: grantee.group ?? null, role, granted_by: actor.id, expires_at: expiresAt ?? null };
   const { data, error } = await graphService()
     .from("node_grants")
     .upsert(row, { onConflict: grantee.id ? "node_id,grantee_id,role" : "node_id,grantee_group,role" })
-    .select("id,node_id,grantee_id,grantee_group,role,expires_at")
+    .select(GRANT_COLUMNS)
     .single();
   if (error || !data) return { ok: false, error: "write_failed" };
-  return { ok: true, value: grantFromRow(data as GrantRow) };
+  const grant = grantFromRow(data as GrantRow);
+  if (!grant) throw new Error(`node_grants: the row written for ${node.id} fails the grant validity rule`);
+  return { ok: true, value: grant };
 }
 
-export async function revokeGrant(node: NodeAccess, actor: Viewer, grantId: string): Promise<AccessResult<null>> {
+export async function revokeGrant(node: NodeAccess, actor: Viewer, grantId: string): Promise<StoreResult<null>> {
   if (node.ownerId !== actor.id) return { ok: false, error: "not_owner" };
   const { error } = await graphService().from("node_grants").delete().eq("id", grantId).eq("node_id", node.id);
   if (error) return { ok: false, error: "write_failed" };
@@ -170,7 +227,7 @@ export async function createRequest(
   purpose: RequestPurpose,
   message: string | null,
   grants: NodeGrant[]
-): Promise<AccessResult<AccessRequest & { createdAt: string }>> {
+): Promise<StoreResult<AccessRequest & { createdAt: string }>> {
   if (!requestAllowed(node, requester, purpose, grants)) return { ok: false, error: "request_refused" };
   const { data, error } = await graphService()
     .from("access_requests")
@@ -186,7 +243,7 @@ export async function decideAccessRequest(
   actor: Viewer,
   requestId: string,
   decision: "granted" | "denied"
-): Promise<AccessResult<{ request: AccessRequest; grant: NodeGrant | null }>> {
+): Promise<StoreResult<{ request: AccessRequest; grant: NodeGrant | null }>> {
   const svc = graphService();
   const { data: row, error: readErr } = await svc
     .from("access_requests")
@@ -215,11 +272,9 @@ export async function decideAccessRequest(
 export async function createImport(
   ownerId: string,
   input: { kind: "dataset" | "paper" | "notes" | "corpus"; title: string; source?: Record<string, unknown> }
-): Promise<AccessResult<{ importId: string; nodeId: string; fetched: boolean }>> {
+): Promise<StoreResult<{ importId: string; nodeId: string; fetched: boolean }>> {
   const svc = graphService();
   const slug = `import-${ownerId.slice(0, 8)}-${Date.now().toString(36)}`;
-  // A source with a public URL is fetched so the node carries its text
-  // (import-fetch.ts); the import stays a title and a link when it fails.
   const url = typeof input.source?.url === "string" ? input.source.url : null;
   const fetched = url ? await fetchTextFromUrl(url) : null;
   const { data: node, error: nodeErr } = await svc

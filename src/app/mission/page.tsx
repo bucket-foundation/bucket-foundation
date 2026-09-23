@@ -23,7 +23,6 @@ export const metadata: Metadata = {
 };
 
 const ATLAS_REPO = "https://github.com/bucket-foundation/education-atlas";
-// On-site education research (the corpus is now fully browsable on bucket.foundation).
 const EDUCATION_HUB = "/research/education";
 const FLAGSHIP = "/research/education/knowledge-access-gradient";
 const REFORM_THESIS = "/research/education/reform-thesis";
@@ -33,7 +32,6 @@ export default function Page() {
   return (
     <main className="stone-bone relative grain">
       <div className="max-w-[900px] mx-auto px-4 md:px-6 py-14 md:py-32">
-        {/* ───────────────────────── header ───────────────────────── */}
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Mission · reform the knowledge layer
         </div>
@@ -66,7 +64,6 @@ export default function Page() {
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* ═══════════════════════ THE PROBLEM ═══════════════════════ */}
         <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § The problem · what the research found
         </div>
@@ -74,7 +71,6 @@ export default function Page() {
           a broad shallow base and a thin, gated, unequal peak.
         </h2>
 
-        {/* Three crises */}
         <p className="mt-8 small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
           three crises, stacked
         </p>
@@ -96,7 +92,6 @@ export default function Page() {
           />
         </div>
 
-        {/* The access cliff */}
         <p className="mt-12 small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
           the access cliff · depth, not age, is the binding constraint
         </p>
@@ -130,7 +125,6 @@ export default function Page() {
           </table>
         </div>
 
-        {/* Consume vs produce */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <Stat
             figure="99.86%"
@@ -190,7 +184,6 @@ export default function Page() {
           </a>
         </div>
 
-        {/* ═══════════════════ HOW BUCKET ADDRESSES IT ═══════════════════ */}
         <div className="carved-rule max-w-xs mt-20" />
         <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § How Bucket addresses it · the knowledge layer
@@ -248,7 +241,6 @@ export default function Page() {
           />
         </div>
 
-        {/* ═══════════════════ THE DEPTH LADDER ═══════════════════ */}
         <div className="carved-rule max-w-xs mt-20" />
         <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § The depth ladder · the on-ramp across the empty cell
@@ -272,7 +264,6 @@ export default function Page() {
           <DepthLadder showThesis={false} missionLink={false} heading="L0 → L5 · the rungs, and the Bucket piece that serves each" />
         </div>
 
-        {/* ═══════════════════ THE BOUNDARY ═══════════════════ */}
         <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § The honest boundary · what Bucket does NOT solve
         </div>
@@ -360,7 +351,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* sources */}
         <p className="mt-12 text-[12px] leading-[1.7] text-[color:var(--basalt-3)]">
           Every figure on this page is drawn from the{" "}
           <a

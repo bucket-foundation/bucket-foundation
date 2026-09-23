@@ -1,0 +1,162 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, store down": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET query, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "search_failed"
+    }
+  },
+  "GET query, anonymous results": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "force",
+      "results": [
+        {
+          "id": "n1",
+          "slug": "force",
+          "title": "Force",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "A push or a pull.",
+          "stage": null
+        },
+        {
+          "id": "n2",
+          "slug": "mass",
+          "title": "Mass",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "Resistance to force.",
+          "stage": null
+        }
+      ]
+    }
+  },
+  "GET query, signed in with standing": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "force",
+      "results": [
+        {
+          "id": "n1",
+          "slug": "force",
+          "title": "Force",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "A push or a pull.",
+          "stage": null
+        },
+        {
+          "id": "n2",
+          "slug": "mass",
+          "title": "Mass",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "Resistance to force.",
+          "stage": null
+        }
+      ]
+    }
+  },
+  "GET query, signed in, consent withheld": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "force",
+      "results": [
+        {
+          "id": "n1",
+          "slug": "force",
+          "title": "Force",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "A push or a pull.",
+          "stage": null
+        },
+        {
+          "id": "n2",
+          "slug": "mass",
+          "title": "Mass",
+          "kind": "concept",
+          "tier": 1,
+          "branch": "02-physics",
+          "summary": "Resistance to force.",
+          "stage": null
+        }
+      ],
+      "standingWithheld": true,
+      "standingReason": "no_profile"
+    }
+  },
+  "GET query, access store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET query, access throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  }
+}

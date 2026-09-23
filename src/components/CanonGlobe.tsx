@@ -1,9 +1,5 @@
 "use client";
 
-// CanonGlobe, interactive armillary. Extends the Globe.tsx design language
-// (basalt sphere, gilt meridians, eight ports). Each port maps to a canon
-// branch; port intensity reflects branch status.
-
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -69,7 +65,6 @@ export default function CanonGlobe({
     };
   });
 
-  // Take up to the first 8 branches as ports (canonical 8-fold layout)
   const portBranches = branches.slice(0, 8);
   const ports = useMemo(() =>
     portBranches.map((b, i) => {
@@ -154,7 +149,6 @@ export default function CanonGlobe({
           const pulse = STATUS_PULSE[p.status];
           return (
             <g key={p.slug} opacity={opacity}>
-              {/* Outer ring */}
               <circle cx={p.x} cy={p.y} r={isHover ? 4.4 : 3.6} fill="var(--basalt)" />
               <circle cx={p.x} cy={p.y} r={isHover ? 3.4 : 2.6} fill={fill}>
                 {pulse && (

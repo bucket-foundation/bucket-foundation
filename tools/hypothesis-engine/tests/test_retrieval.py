@@ -6,25 +6,21 @@ import pytest
 
 from hte import retrieval
 
-
 def test_list_fixtures_finds_the_shipped_pair():
     fixtures = retrieval.list_fixtures()
     assert "quantum-decoherence-review" in fixtures
     assert "younger-dryas-impact-hypothesis" in fixtures
-
 
 def test_is_forbidden_matches_wildcard_pattern():
     patterns = ["*.prod.example.com"]
     assert retrieval.is_forbidden("https://api.prod.example.com/x", patterns)
     assert not retrieval.is_forbidden("https://staging.example.com/x", patterns)
 
-
 def test_is_forbidden_defaults_to_empty_when_no_config_present(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(retrieval.Path, "home", classmethod(lambda cls: tmp_path / "no-such-home"))
     assert retrieval.load_forbidden_patterns() == []
     assert not retrieval.is_forbidden("https://anything.example.com")
-
 
 def test_retrieve_fixture_mode_writes_immutable_envelope(tmp_path):
     out_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
@@ -40,13 +36,11 @@ def test_retrieve_fixture_mode_writes_immutable_envelope(tmp_path):
     assert envelope_path.is_file()
     first_bytes = envelope_path.read_bytes()
 
-    # A second call against the same fixture reuses the identical file.
     envelope2, run2 = retrieval.retrieve(
         mode="fixture", campaign="camp", out_dir=out_dir, fixture_name="quantum-decoherence-review",
     )
     assert run2.envelope_shas == run.envelope_shas
     assert envelope_path.read_bytes() == first_bytes
-
 
 def test_retrieve_fixture_mode_defaults_fixture_name_to_query(tmp_path):
     out_dir = tmp_path / "runs" / "camp" / "ts"
@@ -55,11 +49,9 @@ def test_retrieve_fixture_mode_defaults_fixture_name_to_query(tmp_path):
     )
     assert envelope["data"]["query"] == "decoherence second quantum revolution review"
 
-
 def test_retrieve_fixture_missing_raises():
     with pytest.raises(retrieval.FixtureNotFoundError):
         retrieval._load_fixture("no-such-fixture")
-
 
 def test_retrieve_live_mode_blocked_by_forbidden_url_before_any_request(tmp_path, monkeypatch):
     called = {"n": 0}
@@ -76,7 +68,6 @@ def test_retrieve_live_mode_blocked_by_forbidden_url_before_any_request(tmp_path
             gateway_url="https://blocked.prod.example.com", forbidden_patterns=["*.prod.example.com"],
         )
     assert called["n"] == 0
-
 
 def test_retrieve_live_mode_records_402_challenge_and_stops(tmp_path, monkeypatch):
     class FakeHeaders:
@@ -105,7 +96,6 @@ def test_retrieve_live_mode_records_402_challenge_and_stops(tmp_path, monkeypatc
     run_record = json.loads((out_dir / f"retrieval-{run.run_id}.json").read_text())
     assert run_record["payment_required"] is True
 
-
 def test_retrieve_live_mode_url_error_raises_retrieval_error(tmp_path, monkeypatch):
     def fake_urlopen(request, timeout=15.0):
         raise urllib.error.URLError("no route to host")
@@ -117,7 +107,6 @@ def test_retrieve_live_mode_url_error_raises_retrieval_error(tmp_path, monkeypat
             mode="live", campaign="camp", out_dir=tmp_path / "run", query="q",
             gateway_url="https://gateway.example.com", forbidden_patterns=[],
         )
-
 
 def test_retrieve_rejects_unknown_mode(tmp_path):
     with pytest.raises(ValueError, match="mode must be"):

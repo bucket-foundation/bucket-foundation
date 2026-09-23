@@ -1,26 +1,9 @@
-/**
- * Grants data layer.
- *
- * v0.1 ships an in-memory fixture with 5 plausible-shape (fake-content)
- * grants so all three endpoints work end-to-end. The real ingestion
- * (grants.gov XML extract, NIH RePORTER API, NSF awards, IRS 990-PF
- * "Grants Paid" parse) is bead bkt-ugw (P2).
- *
- * TODO(bkt-ugw): replace MemoryGrantsStore with PostgresGrantsStore,
- * loading from `data/grants/*.parquet` produced by the ingestion pipeline.
- * The interface is the contract, keep it stable.
- */
-
 import type { Grant, GrantQuery } from "../types.js";
 
 export interface GrantsStore {
-  /** Fetch a single grant by stable id; null if not found. */
   getById(id: string): Promise<Grant | null>;
-  /** Structured search. Implementations may use SQL, ES, or in-memory. */
   search(q: GrantQuery): Promise<Grant[]>;
-  /** Iterate all grants, used by /insight to score the full set. */
   all(): Promise<Grant[]>;
-  /** Stable hex SHA-256 of the corpus (for feed402 §4 corpus_sha256). */
   corpusHash(): Promise<string>;
 }
 
@@ -137,7 +120,6 @@ export class MemoryGrantsStore implements GrantsStore {
       if (q.max_amount != null && (g.amount_min_usd ?? Infinity) > q.max_amount) return false;
       if (beforeTs != null) {
         if (g.rolling) {
-          // rolling = always open, counts as "before any date"
         } else if (!g.deadline || Date.parse(g.deadline) > beforeTs) {
           return false;
         }
@@ -149,10 +131,7 @@ export class MemoryGrantsStore implements GrantsStore {
   }
 
   async corpusHash(): Promise<string> {
-    // Lazy: stable hash over sorted ids. Real impl SHA-256s the body too.
     const sorted = [...this.rows].map((g) => g.id).sort();
-    // tiny FNV-1a over the joined string, hex-padded; replaced when we move
-    // to a real persisted corpus.
     let h = 0x811c9dc5;
     const s = sorted.join("\n");
     for (let i = 0; i < s.length; i++) {

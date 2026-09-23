@@ -1,24 +1,11 @@
-/**
- * Research OS, Learn inside the workspace (ros-29). Pure: from a graph
- * node, the Academy lesson it comes from (nodes ingested by
- * src/lib/research-os/ingest/academy.ts carry provenance.type
- * "academy_atom", provenance.source "learning/app/corpus/<branch>.json",
- * provenance.atom_id) and the deep link that opens that lesson in the
- * Academy app. For any other node, the Academy branch that matches the
- * node's canon branch, when one exists.
- */
 import { masteryFromStability, retrievability, type StoredCard } from "../academy/mastery";
 
 export interface LearnTarget {
-  /** Academy corpus file stem, e.g. "02-physics". */
   branchFile: string;
-  /** Atom id inside that file; null when only the branch is known. */
   atomId: string | null;
-  /** Route on this site that opens the lesson (or the branch). */
   href: string;
 }
 
-/** Canon branch slugs that have an Academy corpus file of the same stem. */
 export const ACADEMY_BRANCH_FILES = [
   "00-learning-to-learn",
   "01-mathematics",
@@ -50,19 +37,12 @@ export function learnTargetFor(node: { branch?: string; provenance?: Record<stri
 }
 
 export interface RecallSummary {
-  /** 0..1 probability of recall now, from FSRS stability; null when unseen. */
   retrievability: number | null;
-  /** 0..1 mastery proxy from stability; null when unseen. */
   mastery: number | null;
-  /** Days until the card is due; negative when overdue; null when unseen. */
   dueInDays: number | null;
   seen: boolean;
 }
 
-/**
- * Read one atom's card out of the Academy progress store's branch payload
- * (the engine state the app persists: {cards: {<atomId>: StoredCard}}).
- */
 export function recallFor(branchData: unknown, atomId: string, now: number = Date.now()): RecallSummary {
   const cards = (branchData as { cards?: Record<string, StoredCard> } | null)?.cards;
   const card = cards?.[atomId];

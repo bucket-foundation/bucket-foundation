@@ -1,17 +1,5 @@
 "use client";
 
-/**
- * /research-os/edges, the review of what the graph's makeup should be:
- * proposed prerequisite and rests-on edges from lexical inference and the
- * decompose-further queue, missing base ideas, and nodes called
- * irreducible (learning/research-os/PRIMES.md). The rules live in
- * src/lib/research-os/inference/review-actions.ts behind
- * /api/research-os/edges, /api/research-os/node-proposals, and
- * /api/research-os/irreducible.
- *
- * Signing in is necessary and not sufficient: the APIs gate on
- * src/lib/research-os/reviewer.ts, so a signed-in non-reviewer sees a 403.
- */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -43,13 +31,9 @@ interface EdgeProposal {
   impact: number;
   crossBranch: boolean;
   inCycle: boolean;
-  /** The factor already rests on the target in the graph: approval makes a loop. */
   graphLoop: boolean;
-  /** The target already rests on the factor through other nodes. */
   implied: boolean;
-  /** Other pending proposals already lead from the target to the factor: approving them makes this a shortcut. */
   viaPending: boolean;
-  /** The nodes between target and factor on that chain, target side first. */
   through: { slug: string; title: string }[];
   refd: number | null;
   priority: number;
@@ -89,7 +73,6 @@ const VERIFICATION_TEXT: Record<string, { text: string; className: string }> = {
   unchecked: { text: "not checked by a second model yet", className: "text-[color:var(--basalt-3)]" },
 };
 
-/** How to read a RefD score: which article's neighbourhood leans on the other. */
 const REFD_TEXT = (x: number) =>
   x > 0.02
     ? "the target's linked articles refer to this factor more than the reverse, which supports it"
@@ -110,17 +93,14 @@ async function readJson(res: Response): Promise<Record<string, any>> {
   }
 }
 
-/** " through A, B" for the nodes on a chain, or nothing when the chain is direct. */
 function chainText(through: { title: string }[] | undefined): string {
   return through && through.length ? ` through ${through.map((t) => t.title).join(", ")}` : "";
 }
 
-/** A decision that found the row decided already, by another reviewer or by an earlier try of this one. */
 function alreadyText(title: string, decision: unknown): string {
   return `${title} was already ${typeof decision === "string" && decision !== "pending" ? decision : "decided"}; it has left the queue.`;
 }
 
-/** What a failed save means to the reviewer, and what to do next. */
 function saveError(code: string | undefined, status: number): string {
   switch (code) {
     case "decision_write_failed":
@@ -170,7 +150,6 @@ export default function ResearchOsEdgesPage() {
   const [find, setFind] = useState("");
   const [showAllMissing, setShowAllMissing] = useState(false);
   const [landed, setLanded] = useState<string | null>(null);
-  // The node a node page sent the reviewer to: every list narrows to it.
   const [focus, setFocus] = useState<string | null>(null);
   const [notice, setNotice] = useState<{ id: string | null; text: string } | null>(null);
 
@@ -187,8 +166,6 @@ export default function ResearchOsEdgesPage() {
 
   const authHeaders = useCallback((): Record<string, string> => (token ? { authorization: `Bearer ${token}` } : {}), [token]);
 
-  // Each load takes a number; a response from an older load is dropped, so a
-  // slow reload never overwrites a newer one.
   const loadSeq = useRef(0);
   const loadQueue = useCallback(async () => {
     if (!token) return;
@@ -258,11 +235,9 @@ export default function ResearchOsEdgesPage() {
           id: null,
           text:
             decision === "approved"
-              ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${data.warning ? ` Warning: ${data.warning}.` : ""}`
+              ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${typeof data.tiersRaised === "number" && data.tiersRaised > 0 ? ` Grade tier raised on ${data.tiersRaised} ${data.tiersRaised === 1 ? "idea" : "ideas"}.` : ""}${data.warning ? ` Warning: ${data.warning}.` : ""}`
               : `Rejected: ${p.fromTitle} for ${p.toTitle}.`,
         });
-        // A decision changes which pairs loop, repeat a chain, or shortcut
-        // one; reload so every flag matches the queue as it now stands.
         void loadQueue();
       }
     } finally {
@@ -298,7 +273,6 @@ export default function ResearchOsEdgesPage() {
       } else {
         setNodeProposals((list) => (list ?? []).filter((x) => x.id !== n.id));
         setNotice({ id: null, text: `Rejected: ${n.title}.` });
-        // A reload started before this rejection would bring the row back; a new one supersedes it.
         void loadQueue();
       }
     } finally {
@@ -328,7 +302,6 @@ export default function ResearchOsEdgesPage() {
   const defaultKind = (p: EdgeProposal): Kind => (p.confidenceSource === "prime_decompose_llm" ? "derives_from" : "prerequisite");
   const editOf = (n: NodeProposal) => edits[n.id] ?? { title: n.title, summary: n.summary ?? "", branch: n.branchToCreate };
 
-  // Proposals grouped under the node they decompose, the group with the most at stake first.
   const groups = useMemo(() => {
     const by = new Map<string, { toSlug: string; toTitle: string; branch: string; impact: number; priority: number; items: EdgeProposal[] }>();
     for (const p of proposals ?? []) {
@@ -393,10 +366,7 @@ export default function ResearchOsEdgesPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [proposals]);
 
-  // A node page links here as #target-<slug>: narrow every list to that
-  // node, and go to the first list with something in it once the queue loads.
   useEffect(() => {
-    // Wait for each list to load or fail, then focus on whatever loaded.
     const settled = (list: unknown[] | null) => list !== null || queueError !== null;
     if (!settled(proposals) || !settled(nodeProposals) || !settled(irreducible) || typeof window === "undefined") return;
     const hash = decodeURIComponent(window.location.hash.slice(1));
@@ -767,8 +737,8 @@ export default function ResearchOsEdgesPage() {
                           </label>
                         </fieldset>
                         {kind === "prerequisite" && p.fromTier !== null && p.toTier !== null && p.fromTier > p.toTier && (
-                          <p className="mt-1 text-[12px] text-red-700">
-                            Learning order would put a grade-tier {p.fromTier} idea before a grade-tier {p.toTier} one. Keep it as &ldquo;rests on&rdquo;, or fix the tiers first.
+                          <p className="mt-1 text-[12px] text-[color:var(--gold-deep)]">
+                            Learning order raises this idea from grade tier {p.toTier} to {p.fromTier}, and every idea that follows it in learning order as far as needed. &ldquo;Rests on&rdquo; leaves the tiers as they are.
                           </p>
                         )}
                         {noteInput(p.id)}

@@ -1,20 +1,5 @@
 "use client";
 
-/**
- * /canon/signoff, the human sign-off queue (GOVERNANCE.md's "Canon
- * sign-off" section). Lists every bucket-canon/ record still carrying a
- * `provenance_signoff: "pending: <name>"` value and lets a founder approve
- * or reject each one (GET/POST /api/canon/signoff). See
- * src/app/api/canon/signoff/route.ts for the full decision rules and
- * tools/canon-pipeline/SIGNOFF.md for the CLI counterpart.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/review/page.tsx. Being signed in and a Research OS
- * reviewer is necessary but NOT sufficient: the API stacks a second gate,
- * src/lib/canon-signoff-approvers.ts's CANON_SIGNOFF_APPROVERS, so a
- * signed-in non-founder sees a 403 here instead of the queue, same as a
- * non-reviewer would.
- */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -66,13 +51,13 @@ export default function CanonSignoffPage() {
     setListError(null);
     try {
       const res = await fetch("/api/canon/signoff", { headers: authHeaders() });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string; records?: PendingRecord[] };
       if (!res.ok) {
         setListError(res.status === 403 ? "forbidden" : data.error || "load_failed");
         setRecords(null);
         return;
       }
-      setRecords(data.records);
+      setRecords(data.records ?? null);
     } catch {
       setListError("network_error");
     }
@@ -104,7 +89,7 @@ export default function CanonSignoffPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action, record: `${record.path}#${record.id}`, reason: reason || undefined }),
       });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
       setNotice(res.ok ? `${action === "approve" ? "Approved" : "Rejected"} ${record.id}.` : data.error || "signoff_failed");
       if (res.ok) loadRecords();
     } finally {

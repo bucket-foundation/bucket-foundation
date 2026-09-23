@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/providers/SessionProvider";
@@ -8,13 +9,6 @@ import ClassesPanel from "./ClassesPanel";
 import ConnectionsPanel from "./ConnectionsPanel";
 import LoopPanel from "./LoopPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, StageChip } from "@/components/ui";
-
-/**
- * /research-os/home: where sign-in lands. Level and streak, what to
- * continue, where the person stands on the current chain, the open
- * questions on the branch, and the profile prompt when the two-question
- * profile is missing. Every block loads, empties, and fails on its own.
- */
 
 const DEFAULT_TARGET = "why-the-sky-is-blue";
 const DEFAULT_BRANCH = "02-physics";
@@ -32,16 +26,8 @@ interface ProfileResponse {
   profile: { role: string; birthYearBucket: string | null; consentStatus: string } | null;
   game: Game | null;
 }
-interface LearnerAssignment {
-  id: string;
-  title: string;
-  className: string;
-  targetSlug: string;
-  targetTitle: string;
-  dueAt?: string | null;
-  requiresProduction: boolean;
-  status: "not_started" | "in_progress" | "produced" | "accepted" | "overdue";
-}
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { assignmentTargetHref, firstOpenTarget, targetIsLinkable } from "@/lib/research-os/assignments";
 interface NodeLite {
   id: string;
   slug: string;
@@ -63,7 +49,7 @@ interface RouteResponse {
   llmEnabled: boolean;
 }
 
-type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number };
+type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number; code?: string | null };
 
 const STATUS: Record<LearnerAssignment["status"], string> = {
   not_started: "not started",
@@ -76,15 +62,18 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 async function load<T>(url: string, headers: Record<string, string>): Promise<Load<T>> {
   try {
     const res = await fetch(url, { headers, cache: "no-store" });
-    if (!res.ok) return { state: "error", status: res.status };
+    if (!res.ok) return { state: "error", status: res.status, code: await readErrorCode(res) };
     return { state: "ready", value: (await res.json()) as T };
   } catch {
     return { state: "error", status: 0 };
   }
 }
 
-function Unavailable({ status, retry }: { status: number; retry: () => void }) {
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" body="The graph database is not configured here." />;
+function Unavailable({ status, code, retry }: { status: number; code?: string | null; retry: () => void }) {
+  if (isTransientOutage(status, code ?? null)) {
+    return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={retry} />;
+  }
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (status === 401) return <ErrorState title="Your session ended" body="Sign in again to continue." />;
   return <ErrorState body={status ? `The server answered ${status}.` : "The request did not reach the server."} retry={retry} />;
 }
@@ -124,8 +113,8 @@ export default function HomeClient() {
       if (!alive) return;
       setProfile(p);
       setAssignments(a);
-      const open = a.state === "ready" ? a.value.assignments.find((x) => x.status !== "accepted") : undefined;
-      const target = open?.targetSlug ?? DEFAULT_TARGET;
+      const open = a.state === "ready" ? firstOpenTarget(a.value.assignments) : null;
+      const target = open?.targetSlug || DEFAULT_TARGET;
       const r = await load<RouteResponse>(`/api/research-os/route?target=${encodeURIComponent(target)}&branch=${encodeURIComponent(DEFAULT_BRANCH)}`, headers);
       if (alive) setRoute(r);
     })();
@@ -174,7 +163,6 @@ export default function HomeClient() {
         </Panel>
       )}
 
-      {/* Level strip */}
       <section aria-label="Your level" className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {profile.state === "loading" ? (
           <div className="col-span-2 md:col-span-4">
@@ -182,7 +170,7 @@ export default function HomeClient() {
           </div>
         ) : profile.state === "error" ? (
           <div className="col-span-2 md:col-span-4">
-            <Unavailable status={profile.status} retry={retry} />
+            <Unavailable status={profile.status} code={profile.code} retry={retry} />
           </div>
         ) : (
           <>
@@ -199,7 +187,7 @@ export default function HomeClient() {
           {assignments.state === "loading" ? (
             <LoadingState />
           ) : assignments.state === "error" ? (
-            <Unavailable status={assignments.status} retry={retry} />
+            <Unavailable status={assignments.status} code={assignments.code} retry={retry} />
           ) : assignments.value.assignments.length === 0 ? (
             <EmptyState
               title="No assignments yet"
@@ -208,14 +196,20 @@ export default function HomeClient() {
             />
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
-              {assignments.value.assignments.map((a) => (
+              {assignments.value.assignments.map((a) => {
+                const href = assignmentTargetHref(a);
+                return (
                 <li key={a.id} className="py-3 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
-                      {a.title}
-                    </Link>
+                    {href ? (
+                      <Link href={href} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
+                        {a.title}
+                      </Link>
+                    ) : (
+                      <span className="text-[14px] text-[color:var(--basalt)]">{a.title}</span>
+                    )}
                     <div className="text-[12px] text-[color:var(--basalt-3)]">
-                      {a.className} · {a.targetTitle}
+                      {a.className} · {targetIsLinkable(a) ? a.targetTitle : "target not shared with you"}
                       {a.requiresProduction ? " · paper required" : ""}
                       {due(a.dueAt) ? ` · due ${due(a.dueAt)}` : ""}
                     </div>
@@ -224,7 +218,8 @@ export default function HomeClient() {
                     {STATUS[a.status]}
                   </span>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
         </Panel>
@@ -233,7 +228,7 @@ export default function HomeClient() {
           {route.state === "loading" ? (
             <LoadingState label="Finding your place on the graph" />
           ) : route.state === "error" ? (
-            <Unavailable status={route.status} retry={retry} />
+            <Unavailable status={route.status} code={route.code} retry={retry} />
           ) : (
             <PathList route={route.value} />
           )}

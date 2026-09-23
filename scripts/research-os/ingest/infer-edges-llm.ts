@@ -1,81 +1,17 @@
-/**
- * Research OS for K-12, LLM-assisted prerequisite-edge inference CLI
- * (bkt-ros ros-13, task item 1). Sibling to infer-edges.ts: scans the same
- * node pool (scripts/research-os/ingest/lib/build-node-pool.ts's
- * `buildNodePool`), but for the harder case that script's own lexical
- * Jaccard-overlap method cannot reach, two nodes with no shared vocabulary
- * at all. Every candidate pair (the lexical proposer's own output, plus a
- * sampled set of tier-adjacent pairs, src/lib/research-os/inference/
- * propose.ts's `buildCandidatePairs`) gets a strict yes-or-no prerequisite
- * judgment from TWO independently-phrased prompts (task item 2's
- * agreement check), using the same grounded call pattern
- * src/lib/research-os/llm.ts already gives the workspace tutor: local
- * OpenAI-compatible LLM default, hosted Anthropic fallback, dark (no
- * proposals, exit 0) when neither is configured.
- *
- * NEVER APPLY, same rule as infer-edges.ts: this script writes no row to
- * graph.edges. Every proposal always lands on
- * scripts/research-os/ingest/out/review-list.json (merged with whatever
- * infer-edges.ts already wrote there). When Supabase IS configured, this
- * script ALSO best-effort-queues each proposal into graph.edge_proposals
- * (status 'pending') so the live /research-os/edges review UI has
- * something to list -- queuing a proposal for human review is not
- * applying an edge; only that UI's approve action
- * (src/lib/research-os/inference/decide.ts) ever writes to graph.edges. A
- * missing Supabase config skips the queue step without failing the run;
- * the file-based review-list.json output is unaffected either way.
- *
- * Deterministic given a deterministic model provider: this CLI's own
- * network call is not deterministic (a real model), but every pure step
- * around it (candidate selection, calibration, agreement combination,
- * review-list assembly) is, and is what
- * scripts/research-os/ingest/test-ingest-infer-llm.ts tests directly with
- * a stubbed `ModelCaller`, no network, no key.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/infer-edges-llm.ts
- */
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
+import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { inferEdges } from "../../../src/lib/research-os/ingest/infer";
 import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
-import type { ReviewItem } from "../../../src/lib/research-os/ingest/types";
 import { buildNodePool } from "./lib/build-node-pool";
 import { buildCandidatePairs, proposeLlmEdges, type ModelCaller, type LlmEdgeProposal } from "../../../src/lib/research-os/inference/propose";
 import { callGroundedModelWithUsage, logToolCost, selectProvider, type Provider } from "../../../src/lib/research-os/llm";
 import { configured, graphService } from "../../../src/lib/research-os/db";
+import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 
 const OUT_DIR = join(__dirname, "out");
 const MAX_JUDGMENT_TOKENS = 300;
-// This CLI has no real learner; llm.ts's cost-log function takes a
-// learnerId slot for the tutor's own per-learner accounting, this batch
-// run logs against a fixed system id instead so the same log line shape
-// still carries a cost estimate.
 const COST_LOG_ACTOR = "system:infer-edges-llm";
 
-function readExistingReviewList(): ReviewItem[] {
-  const p = join(OUT_DIR, "review-list.json");
-  if (!existsSync(p)) return [];
-  try {
-    const parsed = JSON.parse(readFileSync(p, "utf8"));
-    return Array.isArray(parsed?.items) ? parsed.items : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeReviewList(items: ReviewItem[]): void {
-  mkdirSync(OUT_DIR, { recursive: true });
-  writeFileSync(
-    join(OUT_DIR, "review-list.json"),
-    JSON.stringify({ generated_at: new Date().toISOString(), items }, null, 2) + "\n",
-  );
-}
-
-/** The model id string recorded on every proposal (task item 1, "model
- * id"). llm.ts has no single exported constant for this across providers
- * (its own MODEL/LLM_MODEL constants are module-private); mirroring its
- * own defaults here rather than exporting them keeps llm.ts untouched. */
 function modelIdFor(provider: Provider): string {
   if (provider === "anthropic") return "claude-sonnet-4-5";
   return process.env.LLM_MODEL || "qwen2.5-coder-7b";
@@ -119,10 +55,6 @@ function toProposalRow(p: LlmEdgeProposal): EdgeProposalRow {
   };
 }
 
-/** Best-effort queue write: never throws, never blocks the file-based
- * review-list.json output above. `ignoreDuplicates` on the
- * (from_slug, to_slug) unique index means a proposal a reviewer already
- * decided is left untouched by a re-run (the migration's own header). */
 async function queueProposals(proposals: LlmEdgeProposal[]): Promise<void> {
   if (!configured()) {
     console.log("[infer-edges-llm] Supabase not configured; skipped queuing to graph.edge_proposals (review-list.json still written).");

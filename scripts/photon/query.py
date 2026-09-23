@@ -38,7 +38,6 @@ from common import (  # noqa: E402
     PHOTONS_DIR, SEMANTIC_BIN, PHONETIC_BIN, SEM_DIM, PHON_DIM, open_db,
 )
 
-# kaikki lang_code -> cache filename (for etymology lookups)
 KAIKKI = {
     "akk": "Akkadian.jsonl", "ang": "Old_English.jsonl", "ar": "Arabic.jsonl",
     "cop": "Coptic.jsonl", "cs": "Czech.jsonl", "de": "German.jsonl",
@@ -54,18 +53,10 @@ KAIKKI = {
     "vi": "Vietnamese.jsonl", "zh": "Chinese.jsonl",
 }
 
-
-# --------------------------------------------------------------------------- #
-# Index (loaded once) #
-# --------------------------------------------------------------------------- #
-# When the user types a bare word with no explicit language, the headword should
-# prefer the language they're most likely querying in. English first (the gloss
-# lingua franca + the explorer's default), then the major Romance/Germanic langs.
 DEFAULT_LANG = "en"
 LANG_PREFERENCE = [
     "en", "es", "fr", "de", "it", "pt", "la", "nl", "sv", "ru", "el", "sa",
 ]
-
 
 class PhotonIndex:
     def __init__(self):
@@ -86,12 +77,9 @@ class PhotonIndex:
         self._payload_raw = [r[9] for r in rows]
         self._payload_cache = {}
         self.n = len(rows)
-        # idx within these arrays == rowid-1 (dense), so row i maps to vec row i
         self._sem = None
         self._pho = None
-        # exact (lang, surface) -> array index
         self.by_key = {}
-        # surface -> all candidate indices (for language-priority headword pick)
         self.by_surface = {}
         self.by_lower = {}
         for i in range(self.n):
@@ -127,13 +115,6 @@ class PhotonIndex:
         return self._pho
 
     def find(self, surface, lang=None):
-        """Array index for a word, language-priority headword resolution.
-
- Exact (lang, surface) wins if an explicit lang is given; otherwise, among
- all photons sharing this surface, pick the one whose language is highest
- in LANG_PREFERENCE (English first). This is what stops English "light"
- from resolving to the Portuguese dietary loanword.
-        """
         if lang and (lang, surface) in self.by_key:
             return self.by_key[(lang, surface)]
         cands = self.by_surface.get(surface) or self.by_lower.get((surface or "").lower())
@@ -152,9 +133,7 @@ class PhotonIndex:
             return (pref, -len(self.senses(i)))
         return min(cands, key=rank)
 
-
 _IDX = None
-
 
 def idx() -> PhotonIndex:
     global _IDX
@@ -162,12 +141,7 @@ def idx() -> PhotonIndex:
         _IDX = PhotonIndex()
     return _IDX
 
-
-# --------------------------------------------------------------------------- #
-# Axes #
-# --------------------------------------------------------------------------- #
 def _cosine_topk(matrix, valid_mask, vec, k, exclude=None):
-    """Brute-force cosine top-k of `vec` against rows of `matrix` (L2-normed)."""
     sims = matrix @ vec.astype("float32")
     sims = np.where(valid_mask, sims, -2.0)
     if exclude is not None:
@@ -179,7 +153,6 @@ def _cosine_topk(matrix, valid_mask, vec, k, exclude=None):
     top = top[np.argsort(-sims[top])]
     return [(int(i), float(sims[i])) for i in top]
 
-
 def _sem_valid(ix):
     m = np.zeros(ix.n, dtype=bool)
     for i in range(ix.n):
@@ -187,7 +160,6 @@ def _sem_valid(ix):
         if r is not None:
             m[i] = True
     return m
-
 
 def _pho_valid(ix):
     m = np.zeros(ix.n, dtype=bool)
@@ -197,26 +169,19 @@ def _pho_valid(ix):
             m[i] = True
     return m
 
-
-# Sense-noise control (the quality knobs, bkt-nhy). With the "surface: gloss"
-# LaBSE embedding, true cross-lingual translations of the SAME sense land high
-# (~0.55-0.90); incompatible senses (low-fat "light", "high") sit below.
 SEM_MIN_COS = 0.50
-SEM_REL_GAP = 0.22       # also drop hits >this far below the best hit
-ONE_PER_LANG = True      # prefer the single best translation per language
-
+SEM_REL_GAP = 0.22
+ONE_PER_LANG = True
 
 def _norm_gloss(g):
     return " ".join((g or "").lower().split())[:50]
 
-
 def _headword(ix, i):
-    """The resolved headword: language-priority + primary-sense gloss + senses."""
     p = ix.payload(i)
     return {
         "surface": ix.surface[i], "lang": ix.lang[i], "pos": ix.pos[i],
         "ipa": ix.ipa[i],
-        "meaning_en": ix.meaning[i],            # PRIMARY sense (core/illumination)
+        "meaning_en": ix.meaning[i],
         "senses": [{"gloss": s.get("gloss"), "pos": s.get("pos"),
                     "tags": s.get("tags", [])} for s in ix.senses(i)[:6]],
         "source": "Wiktionary via Kaikki (CC-BY-SA 4.0)",
@@ -224,17 +189,8 @@ def _headword(ix, i):
                       or f"https://en.wiktionary.org/wiki/{ix.surface[i]}",
     }
 
-
 def semantic_topk(surface, lang=None, k=10, cross_lingual=True,
                   min_cos=SEM_MIN_COS, one_per_lang=ONE_PER_LANG):
-    """Cross-lingual 'means the same' neighbors, sense-consistent.
-
- Filters that cut the cross-sense noise:
- - cosine threshold (drop off-sense hits below `min_cos`) + a relative gap
- below the best hit;
- - one-per-language (one of luz/lumière/luce/Licht per language);
- - dedup near-identical glosses.
-    """
     ix = idx()
     i = ix.find(surface, lang)
     if i is None or ix.sem_row[i] is None:
@@ -251,7 +207,7 @@ def semantic_topk(surface, lang=None, k=10, cross_lingual=True,
     seen_lang, seen_gloss, kept = set(), set(), []
     for j, s in raw:
         if s < floor:
-            break  # sorted desc
+            break
         if one_per_lang and ix.lang[j] in seen_lang:
             continue
         gkey = (ix.lang[j], _norm_gloss(ix.meaning[j]))
@@ -268,7 +224,6 @@ def semantic_topk(surface, lang=None, k=10, cross_lingual=True,
     out["headword"] = _headword(ix, i)
     return out
 
-
 def phonetic_topk(surface, lang=None, k=10):
     ix = idx()
     i = ix.find(surface, lang)
@@ -279,9 +234,7 @@ def phonetic_topk(surface, lang=None, k=10):
     hits = _cosine_topk(ix.pho, mask, vec, k + 1, exclude=i)
     return _fmt(ix, surface, lang, hits[:k])
 
-
 def _norm_edit(a, b):
-    """Normalized Levenshtein distance in [0,1] (0 == identical)."""
     a, b = a.lower(), b.lower()
     if a == b:
         return 0.0
@@ -298,10 +251,8 @@ def _norm_edit(a, b):
         prev = cur
     return prev[lb] / max(la, lb)
 
-
 def spelling_topk(surface, lang=None, k=10):
     ix = idx()
-    # search within same lang if given (spelling is orthography-bound), else all
     cand = range(ix.n)
     scored = []
     for j in cand:
@@ -315,13 +266,7 @@ def spelling_topk(surface, lang=None, k=10):
     scored.sort(key=lambda x: -x[1])
     return _fmt(ix, surface, lang, scored[:k], score_name="similarity")
 
-
 def etymology(surface, lang, max_chars=320):
-    """Pull etymology_text from the Kaikki cache for (lang, surface).
-
- Source: Wiktionary via Kaikki (CC-BY-SA). Returns a short, attributed
- snippet; full entry lives at kaikki.org / en.wiktionary.org.
-    """
     fn = KAIKKI.get(lang)
     if not fn:
         return {"error": f"no kaikki cache for lang {lang!r}"}
@@ -349,27 +294,22 @@ def etymology(surface, lang, max_chars=320):
                     "source_uri": f"https://en.wiktionary.org/wiki/{surface}",
                 }
                 break
-            if best is None:  # remember a match even without etymology
+            if best is None:
                 best = {"surface": surface, "lang": lang,
                         "etymology": None,
                         "source": "Wiktionary via Kaikki (CC-BY-SA)"}
     return best or {"error": f"{surface!r} ({lang}) not found in cache"}
 
-
 def translate(surface, frm, to, k=8):
-    """Cross-lingual translate: exact same meaning_en, then semantic neighbors
- restricted to the target language."""
     ix = idx()
     i = ix.find(surface, frm)
     if i is None:
         return {"error": f"{surface!r} not found in {frm}"}
     src_meaning = ix.meaning[i]
-    # 1) exact-meaning matches in target lang (strongest signal)
     exact = []
     for j in range(ix.n):
         if ix.lang[j] == to and ix.meaning[j] == src_meaning and j != i:
             exact.append((ix.surface[j], ix.meaning[j]))
-    # 2) semantic neighbors restricted to target lang
     sem = []
     if ix.sem_row[i] is not None:
         vec = ix.sem[ix.sem_row[i]]
@@ -386,7 +326,6 @@ def translate(surface, frm, to, k=8):
         "semantic_neighbors": sem,
     }
 
-
 def _fmt(ix, surface, lang, hits, score_name="score"):
     out = []
     for i, s in hits:
@@ -397,13 +336,8 @@ def _fmt(ix, surface, lang, hits, score_name="score"):
         })
     return {"query": surface, "lang": lang, "results": out}
 
-
-# --------------------------------------------------------------------------- #
-# CLI #
-# --------------------------------------------------------------------------- #
 def _print(obj):
     print(json.dumps(obj, ensure_ascii=False, indent=2))
-
 
 def main(argv):
     if len(argv) < 3:
@@ -426,7 +360,6 @@ def main(argv):
         print(f"unknown command {cmd!r}")
         return 1
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv))

@@ -1,7 +1,3 @@
-/**
- * Pure tests for the site session rules: protected paths, the post-sign-in
- * redirect sanitizer, and handle validation. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DEFAULT_AFTER_SIGN_IN, isProtectedPath, safeNextPath, signInUrl } from "../src/lib/auth/paths";

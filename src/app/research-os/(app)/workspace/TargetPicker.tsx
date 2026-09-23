@@ -1,8 +1,11 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY, LoadingState, PageHeader, Panel, STAGE_LABEL } from "@/components/ui";
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { targetIsLinkable } from "@/lib/research-os/assignments";
 
 interface Hit {
   id: string;
@@ -13,27 +16,23 @@ interface Hit {
   summary: string | null;
   stage: string | null;
 }
-interface Assignment {
-  id: string;
-  title: string;
-  className: string;
-  targetSlug: string;
-  targetTitle: string;
-  status: string;
-}
+type Assignment = LearnerAssignment;
 
-/** The workspace with no target: pick any node on the graph to work toward. */
 export default function TargetPicker() {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
+  const [searchNote, setSearchNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [assignments, setAssignments] = useState<Assignment[] | null>(null);
+  const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | "outage" | null>(null);
 
   useEffect(() => {
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: Assignment[] }) => setAssignments(j.assignments ?? []))
-      .catch(() => setAssignments([]));
+      .then(async (r) => {
+        if (!r.ok) return { unavailable: true as const, transient: isTransientOutage(r.status, await readErrorCode(r)) };
+        return (await r.json()) as { assignments?: Assignment[] };
+      })
+      .then((j) => ("unavailable" in j ? setAssignments(j.transient ? "outage" : "unavailable") : setAssignments(j.assignments ?? [])))
+      .catch(() => setAssignments("outage"));
   }, []);
 
   useEffect(() => {
@@ -45,7 +44,13 @@ export default function TargetPicker() {
       setBusy(true);
       try {
         const r = await fetch(`/api/research-os/search?q=${encodeURIComponent(q)}&limit=12`, { cache: "no-store" });
-        if (r.ok) setHits(((await r.json()) as { results: Hit[] }).results);
+        if (r.ok) {
+          setSearchNote(null);
+          setHits(((await r.json()) as { results: Hit[] }).results);
+        } else {
+          setSearchNote(isTransientOutage(r.status, await readErrorCode(r)) ? OUTAGE_COPY.body : null);
+          setHits([]);
+        }
       } finally {
         setBusy(false);
       }
@@ -61,6 +66,11 @@ export default function TargetPicker() {
       <Panel title="find a target">
         <input id="target-search" autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="a law, a claim, a concept, a paper, a figure" className="w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/60" />
         {busy && <LoadingState label="Searching the graph" />}
+        {searchNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {searchNote}
+          </p>
+        )}
         {hits.length > 0 && (
           <ul className="mt-3 flex flex-col divide-y divide-[color:var(--hairline)]">
             {hits.map((h) => (
@@ -82,13 +92,21 @@ export default function TargetPicker() {
         <Panel title="your assignments">
           {assignments === null ? (
             <LoadingState />
+          ) : assignments === "outage" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">{OUTAGE_COPY.body}</p>
+          ) : assignments === "unavailable" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">Assignments could not be read right now.</p>
           ) : assignments.length === 0 ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">None open.</p>
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
               {assignments.map((a) => (
                 <li key={a.id} className="py-2">
-                  <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  {!targetIsLinkable(a) ? (
+                    <span className="text-[14px] text-[color:var(--basalt-3)]">target not shared with you</span>
+                  ) : (
+                    <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  )}
                   <div className="text-[11px] text-[color:var(--basalt-3)]">{a.title} · {a.className} · {a.status.replace("_", " ")}</div>
                 </li>
               ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { STAGE_LABEL } from "@/components/ui";
@@ -15,11 +16,11 @@ interface Hit {
   stage: string | null;
 }
 
-/** One search, everywhere: Ctrl or Cmd K opens it; Enter opens the node. */
 export default function SearchPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
+  const [note, setNote] = useState<string | null>(null);
   const [sel, setSel] = useState(0);
   const [busy, setBusy] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,8 +48,12 @@ export default function SearchPalette({ open, onClose }: { open: boolean; onClos
         const res = await fetch(`/api/research-os/search?q=${encodeURIComponent(q)}&limit=12`, { cache: "no-store" });
         if (res.ok) {
           const j = (await res.json()) as { results: Hit[] };
+          setNote(null);
           setHits(j.results);
           setSel(0);
+        } else {
+          setNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
+          setHits([]);
         }
       } finally {
         setBusy(false);
@@ -101,7 +106,8 @@ export default function SearchPalette({ open, onClose }: { open: boolean; onClos
               </button>
             </li>
           ))}
-          {!busy && q.trim() && hits.length === 0 && <li className="px-4 py-3 text-[13px] text-[color:var(--basalt-3)]">Nothing on the graph matches.</li>}
+          {note && <li role="alert" className="px-4 py-3 text-[13px] text-[color:var(--gold-deep)]">{note}</li>}
+          {!busy && !note && q.trim() && hits.length === 0 && <li className="px-4 py-3 text-[13px] text-[color:var(--basalt-3)]">Nothing on the graph matches.</li>}
         </ul>
         <div className="px-4 py-2 border-t border-[color:var(--hairline)] text-[11px] text-[color:var(--basalt-3)] flex justify-between">
           <span>↑ ↓ to move · Enter to open · Esc to close</span>

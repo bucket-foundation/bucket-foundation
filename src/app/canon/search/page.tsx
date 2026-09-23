@@ -1,14 +1,10 @@
-// /canon/search, uses the same integrated canon-tool component as the
-// main /canon page. One tool, both surfaces share it. Search box + globe
-// + sidebar + time scrubber + filter chips, all wired.
-
 import CanonGlobeMount from "../CanonGlobeMount";
 import { getBranches } from "@/lib/canon-fs";
 import type { GlobeBranch } from "@/components/CanonGlobe";
 
 export const metadata = {
   title: "Search canon · bucket.foundation",
-  description: "Search 599 curated canon claim cards across 9 branches. Filter by branch. Click a marker or result to inspect.",
+  description: "Search 599 source excerpts from talks and podcasts across 9 branches. Filter by branch. Click a marker or result to inspect.",
 };
 export const dynamic = "force-static";
 
@@ -42,7 +38,7 @@ export default function Page() {
             style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
           >
             Type a question, filter by branch, click a marker or result.
-            The sidebar shows the full claim card with branch · year ·
+            The sidebar shows the full excerpt with branch · year ·
             excerpt · link to the full record.
           </p>
         </div>

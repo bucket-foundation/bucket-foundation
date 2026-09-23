@@ -1,4 +1,3 @@
-/** Missing-prime decisions: slug, branch and tier choice, approve, reject, idempotence, overrides. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { confidenceFor } from "../src/lib/research-os/decompose-further";

@@ -1,0 +1,66 @@
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+
+type Call = { op: string; table?: string; count?: number; sha?: string; first?: unknown; opts?: unknown; args?: unknown };
+type Row = Record<string, unknown>;
+
+const calls: Call[] = [];
+const fail = process.env.STUB_FAIL ?? "";
+
+const sha = (v: unknown) => createHash("sha256").update(JSON.stringify(v)).digest("hex").slice(0, 16);
+
+function builder(table: string) {
+  return {
+    upsert(rows: Row[], opts: unknown) {
+      calls.push({ op: "upsert", table, count: rows.length, sha: sha(rows), first: rows[0] ?? null, opts });
+      const error = fail === table ? { message: `${table} stub failure` } : null;
+      const result = { data: null, error };
+      return {
+        select(cols: string) {
+          calls.push({ op: "select", table, args: cols });
+          return Promise.resolve({
+            data: error ? null : rows.map((r) => ({ id: `id:${String(r.slug)}`, slug: r.slug })),
+            error,
+          });
+        },
+        then(resolve: (v: typeof result) => unknown, reject?: (e: unknown) => unknown) {
+          return Promise.resolve(result).then(resolve, reject);
+        },
+      };
+    },
+  };
+}
+
+const fakeSupabase = {
+  createClient(url: string, key: string, opts: unknown) {
+    calls.push({ op: "createClient", args: { url, key, opts } });
+    return {
+      from: (table: string) => builder(table),
+      rpc(name: string) {
+        calls.push({ op: "rpc", args: name });
+        if (fail === "rpc") return Promise.resolve({ data: null, error: { message: "rpc stub failure" } });
+        return Promise.resolve({ data: 3, error: null });
+      },
+    };
+  },
+};
+
+const supabasePath = require.resolve("@supabase/supabase-js");
+const ModuleCtor = module.constructor as new (id: string) => NodeModule;
+const stubModule = new ModuleCtor(supabasePath);
+stubModule.exports = fakeSupabase;
+stubModule.loaded = true;
+require.cache[supabasePath] = stubModule;
+
+if (process.env.STUB_LLM === "1") {
+  globalThis.fetch = (async (input: RequestInfo | URL, init: RequestInit = {}) => {
+    calls.push({ op: "fetch", args: { url: String(input), sha: sha(init.body ?? null) } });
+    const content = JSON.stringify({ prerequisite: true, confidence: 0.8, justification: "stub" });
+    return new Response(JSON.stringify({ choices: [{ message: { content } }], usage: { prompt_tokens: 1, completion_tokens: 1 } }), { status: 200 });
+  }) as typeof fetch;
+}
+
+process.on("exit", () => {
+  const out = process.env.STUB_LOG;
+  if (out) fs.writeFileSync(out, JSON.stringify(calls));
+});

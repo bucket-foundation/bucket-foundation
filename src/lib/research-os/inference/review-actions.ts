@@ -1,20 +1,7 @@
-/**
- * The review actions behind /api/research-os/edges and
- * /api/research-os/node-proposals (ros-prime 2, learning/research-os/
- * PRIMES.md "Slice 2"). Each takes the service client as a parameter, so
- * scripts/test-research-os-review-actions.ts runs them against an in-memory
- * fake; the routes add only the reviewer gate and the JSON response.
- *
- * Every decision is claimed first with an update that only matches a
- * pending row, so two reviewers acting at once cannot both decide one
- * proposal. The edge or node is written after the claim, and the claim is
- * released if that write fails. When the release or the cleanup itself
- * fails, the error code says so ("..._claim_held", "..._node_left"), so a
- * half-applied decision reads as half-applied.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
 import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
+import { forgetPrimesReport } from "../primes-report";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -24,11 +11,6 @@ export type ActionResult = { status: number; body: Record<string, unknown> };
 const ok = (body: Record<string, unknown>): ActionResult => ({ status: 200, body });
 const fail = (status: number, error: string): ActionResult => ({ status, body: { error } });
 
-/**
- * A claim that matched no pending row lost to another decision, or repeats
- * this reviewer's own. Report the status the row holds now, or a null
- * decision when that read fails.
- */
 async function lostClaim(svc: SupabaseClient, table: string, id: string): Promise<ActionResult> {
   const { data, error } = await svc.from(table).select("status").eq("id", id).maybeSingle();
   const status = !error && data ? ((data as { status?: unknown }).status ?? null) : null;
@@ -65,7 +47,6 @@ type ProposalRow = {
 
 type NodeLite = { id: string; slug: string; title: string; branch: string; tier: number | null; summary: string | null };
 
-/** Rows for a list of values, a chunk at a time, checking every error. */
 async function chunked<T>(values: string[], run: (chunk: string[]) => PromiseLike<{ data: unknown; error: { message: string } | null }>): Promise<T[]> {
   const out: T[] = [];
   for (let i = 0; i < values.length; i += IN_CHUNK) {
@@ -81,7 +62,6 @@ async function nodesBySlug(svc: SupabaseClient, slugs: string[]): Promise<Map<st
   return new Map(rows.map((r) => [r.slug, r]));
 }
 
-/** Idea nodes resting on each slug (graph.idea_dependents), counted now. */
 async function dependents(svc: SupabaseClient, slugs: string[]): Promise<Map<string, number>> {
   if (!slugs.length) return new Map();
   const { data, error } = await svc.rpc("idea_dependents", { p_slugs: Array.from(new Set(slugs)) });
@@ -100,12 +80,6 @@ async function knownBranches(svc: SupabaseClient): Promise<Set<string>> {
   }
 }
 
-/**
- * How much a reviewer's decision is worth now. Liang and colleagues (2018)
- * found a labeler's effort goes furthest on the pairs the models are least
- * sure of; weighting by the decompositions a pair reaches puts the
- * uncertain, far-reaching pairs first.
- */
 export function priorityOf(p: { verification: ProposalRow["verification"]; agreement: boolean }, impact: number): number {
   const uncertainty = p.verification === "refuted" ? 1 : p.verification === "unchecked" ? 0.9 : p.verification === "confirmed" ? 0.6 : p.agreement ? 0.6 : 1;
   return Math.round((1 + Math.log2(1 + Math.max(0, impact))) * uncertainty * 1000) / 1000;
@@ -130,8 +104,6 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
   try {
     nodes = await nodesBySlug(svc, rows.flatMap((p) => [p.from_slug, p.to_slug]));
     impact = await dependents(svc, rows.map((p) => p.to_slug));
-    // Loops are computed over every pending pair and the graph as they
-    // stand now, so a decision clears or adds a flag at once.
     const pendingAll = source ? await allPendingPairs(svc) : rows;
     const snap = await makeupSnapshot(svc);
     loops = liveCycles(snap, pendingAll);
@@ -202,8 +174,6 @@ export async function decideEdge(
   if (readErr) return fail(500, "read_failed");
   if (!row) return fail(404, "proposal_not_found");
   const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin">;
-  // Decomposition proposals say what a node rests on, so they default to
-  // derives_from; lexical inference proposes learning order.
   const kind: ApprovedKind = input.kind ?? (p.confidence_source === "prime_decompose_llm" ? "derives_from" : "prerequisite");
   if (!KINDS.has(kind)) return fail(400, "kind must be prerequisite or derives_from");
   const outcome = decideEdgeProposal({ status: p.status, fromSlug: p.from_slug, toSlug: p.to_slug }, input.decision, kind);
@@ -243,8 +213,6 @@ export async function decideEdge(
     return fail(500, "read_failed");
   }
   if (!factor || !target) return fail(404, "node_not_found");
-  // The factor already resting on the target, through any prerequisite or
-  // derives_from chain, would make this edge close a cycle.
   const { data: loop, error: loopErr } = await svc.rpc("rests_on", { p_node: factor.id, p_factor: target.id });
   if (loopErr) return fail(500, "read_failed");
   if (factor.id === target.id || loop === true) return fail(409, "would_close_cycle");
@@ -255,9 +223,6 @@ export async function decideEdge(
   } catch {
     return fail(500, "decision_write_failed");
   }
-  // A concurrent approval of the reverse pair can land between the check
-  // above and the claim; checking again after the claim narrows that window
-  // to the edge write itself.
   const { data: loopAfter, error: loopAfterErr } = await svc.rpc("rests_on", { p_node: factor.id, p_factor: target.id });
   if (loopAfterErr || loopAfter === true) {
     const released = await release();
@@ -291,14 +256,19 @@ export async function decideEdge(
     { onConflict: "from_id,to_id,kind", ignoreDuplicates: true },
   );
   if (edgeErr) return fail(500, (await release()) ? "edge_write_failed" : "edge_write_failed_claim_held");
-  // A prerequisite edge changes the ancestor closure of the target's branch
-  // and of every branch holding a node that rests on the target; a
-  // derives_from edge leaves learning order, and the closure, alone.
   forgetMakeupSnapshot();
-  // The edge stands either way; a failed rebuild leaves routing stale, so
-  // the reply carries a warning the page shows.
+  forgetPrimesReport();
   const stale: string[] = [];
+  let tiersRaised: number | null = null;
   if (e.kind === "prerequisite") {
+    try {
+      const { data, error } = await svc.rpc("enforce_prerequisite_tiers");
+      if (error) throw new Error(error.message);
+      tiersRaised = typeof data === "number" ? data : null;
+    } catch (err) {
+      stale.push("grade tiers");
+      console.error("[research-os/edges] enforce_prerequisite_tiers failed:", (err as Error).message);
+    }
     const branches = new Set<string>([target.branch]);
     let lookupFailed = false;
     try {
@@ -321,8 +291,9 @@ export async function decideEdge(
     decision: "approved",
     alreadyDecided: false,
     kind,
+    ...(tiersRaised !== null ? { tiersRaised } : {}),
     ...(stale.length
-      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all` }
+      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all and select graph.enforce_prerequisite_tiers()` }
       : {}),
   });
 }
@@ -482,24 +453,21 @@ export async function decideNode(
     }
   }
   forgetMakeupSnapshot();
+  forgetPrimesReport();
   const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
   return ok({
     decision: "approved",
     alreadyDecided: false,
     nodeSlug: n.slug,
     nodeTier: n.tier,
-    // True when a node with this slug existed and the approval linked to it.
     reused: !created,
     queuedEdges,
-    // The node and its proposals exist; only the back link failed, so a
-    // later run cannot queue new pairs from this node until it is set.
     ...(linkErr ? { warning: "the proposal's link to its new node was not saved" } : {}),
   });
 }
 
 type IrreducibleRow = { id: string; node_slug: string; justification: string; model: string; status: "pending" | "confirmed" | "rejected"; created_at: string };
 
-/** Nodes the proposer called irreducible, waiting on a reviewer, the ones most rested on first. */
 export async function listIrreducible(svc: SupabaseClient): Promise<ActionResult> {
   const rows: IrreducibleRow[] = [];
   for (let from = 0; ; from += 1000) {
@@ -533,11 +501,6 @@ export async function listIrreducible(svc: SupabaseClient): Promise<ActionResult
   });
 }
 
-/**
- * Confirm or reject an irreducible verdict. A confirmed node is a prime by
- * review: the decompose-further queue leaves it out of its targets. A
- * rejected one returns to the queue on the next run.
- */
 export async function decideIrreducible(
   svc: SupabaseClient,
   input: { id: string; decision: "confirmed" | "rejected"; reason: string | null; reviewerId: string },

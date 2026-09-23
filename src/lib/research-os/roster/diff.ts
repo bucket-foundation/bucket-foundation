@@ -1,18 +1,3 @@
-/**
- * Research OS for K-12, roster sync (bkt-ros, ros-06 follow-on). The pure
- * diff engine: takes one parsed RosterBundle (oneroster.ts, or a future
- * Clever/ClassLink adapter, see sources.ts) plus a snapshot of what
- * already exists, and returns what would change, with no I/O. Matches
- * this repo's own convention (src/lib/research-os/class-view.ts,
- * src/lib/research-os/privacy.ts's simulateLearnerDelete) of keeping the
- * decision logic testable against plain fixture arrays; src/lib/research-
- * os/roster/apply.ts is the thin, untested-by-unit-test Supabase adapter
- * that loads a real RosterExistingState, calls computeRosterDiff, and
- * writes the result.
- *
- * See ROSTER.md for the full field-mapping table, what gets discarded,
- * and the idempotency keys named here.
- */
 import type { BirthYearBucket } from "../consent";
 import { gradeToBirthYearBucket } from "./grade";
 import type { RosterBundle, RosterUser } from "./types";
@@ -37,14 +22,6 @@ export interface ExistingLearnerProfile {
   birthYearBucket: string | null;
 }
 
-/** Everything computeRosterDiff needs to know about the current database
- * state. src/lib/research-os/roster/apply.ts's loadRosterExistingState
- * builds this from Supabase; scripts/test-research-os-roster.ts builds it
- * from plain fixture arrays. authUserIdByEmail is the one deliberate
- * boundary this importer respects: a student or teacher with no matching
- * Supabase Auth account is never created here (see ROSTER.md, "what is
- * discarded") -- this map is the only way a roster row ever resolves to a
- * real learner_id. */
 export interface RosterExistingState {
   classes: ExistingClass[];
   classMemberKeys: Set<string>;
@@ -129,9 +106,6 @@ function fullName(u: { givenName: string; familyName: string }): string {
   return [u.givenName, u.familyName].filter(Boolean).join(" ").trim();
 }
 
-/** For a given class sourcedId, the teacher enrollment that resolves its
- * reviewer_email: a primary=true teacher enrollment wins over any other;
- * failing that, the first teacher enrollment found (bundle order). */
 function resolveClassTeacherEmail(
   classSourcedId: string,
   bundle: RosterBundle,
@@ -144,14 +118,6 @@ function resolveClassTeacherEmail(
   return user?.email ?? null;
 }
 
-/**
- * Computes the diff. No I/O, no throw: every row-level problem this
- * function finds (an enrollment against an unrecognized class, a student
- * with no matching Supabase Auth account yet) becomes an entry in the
- * relevant `skipped`/`unresolved` list plus a `warnings` line, never an
- * exception -- the caller (the API route) always gets a full diff back to
- * show a reviewer, dry run or not.
- */
 export function computeRosterDiff(bundle: RosterBundle, existing: RosterExistingState): RosterDiff {
   const warnings: string[] = [];
   const usersBySourcedId = new Map(bundle.users.map((u) => [u.sourcedId, u]));
@@ -163,7 +129,6 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
   );
   const existingProfileByLearnerId = new Map(existing.learnerProfiles.map((p) => [p.learnerId, p]));
 
-  // ---- classes ----------------------------------------------------------
   const classCreate: ClassUpsert[] = [];
   const classUpdate: ClassUpsert[] = [];
   const classUnresolved: ClassUnresolved[] = [];
@@ -174,10 +139,6 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
     const existingRow = existingClassBySourced.get(c.sourcedId);
     if (!reviewerEmail) {
       if (existingRow) {
-        // Already synced once with a resolvable teacher; a bundle that
-        // now omits every teacher enrollment for it does not un-teach the
-        // class. Keep it resolvable (existing reviewer_email stands) and
-        // only flag if the title changed.
         resolvableClassSourcedIds.add(c.sourcedId);
         if (existingRow.name !== c.title) classUpdate.push({ sourcedId: c.sourcedId, name: c.title, reviewerEmail: existingRow.reviewerEmail });
         continue;
@@ -194,7 +155,6 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
     }
   }
 
-  // ---- reviewer candidates (teachers) ------------------------------------
   const candidateCreate: ReviewerCandidateUpsert[] = [];
   const candidateUpdate: ReviewerCandidateUpsert[] = [];
   const seenTeacherSourcedIds = new Set<string>();
@@ -210,7 +170,6 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
     }
   }
 
-  // ---- learner profiles (students) --------------------------------------
   const profileCreate: LearnerProfileUpsert[] = [];
   const profileUpdate: LearnerProfileUpsert[] = [];
   const profileSkipped: LearnerProfileSkipped[] = [];
@@ -241,15 +200,14 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
     }
   }
 
-  // ---- class members (enrollments) ---------------------------------------
   const memberCreate: ClassMemberCreate[] = [];
   const memberSkipped: ClassMemberSkipped[] = [];
   let memberAlreadyPresent = 0;
   const seenMemberPairs = new Set<string>();
   for (const e of bundle.enrollments) {
-    if (e.role !== "student") continue; // a teacher enrollment feeds reviewer_candidates instead, above
+    if (e.role !== "student") continue;
     const pairKey = `${e.classSourcedId}::${e.userSourcedId}`;
-    if (seenMemberPairs.has(pairKey)) continue; // duplicate enrollment row for the same (class, user)
+    if (seenMemberPairs.has(pairKey)) continue;
     seenMemberPairs.add(pairKey);
 
     if (!resolvableClassSourcedIds.has(e.classSourcedId)) {
@@ -298,19 +256,6 @@ export function computeRosterDiff(bundle: RosterBundle, existing: RosterExisting
   };
 }
 
-/**
- * A pure, offline mirror of what src/lib/research-os/roster/apply.ts does
- * to the database, folding one already-computed RosterDiff into a
- * RosterExistingState to produce the state a second dry run would see --
- * the same "offline-testable mirror" pattern src/lib/research-os/
- * privacy.ts's simulateLearnerDelete already uses for a live SQL function
- * this repo's test suite cannot reach. scripts/test-research-os-roster.ts
- * uses this to assert "apply twice yields no change" with no database.
- * Fabricates a synthetic class id (`class:<sourcedId>`) for a newly
- * created class -- opaque and stable across a test's two calls, which is
- * all this function's own callers need from it; the real apply.ts uses
- * Supabase's own generated uuid instead.
- */
 export function applyRosterDiffToState(existing: RosterExistingState, diff: RosterDiff): RosterExistingState {
   const classes = existing.classes.map((c) => ({ ...c }));
   const classIdBySourced = new Map(classes.filter((c) => c.sourceSystem === diff.sourceSystem && c.sourcedId).map((c) => [c.sourcedId as string, c]));
@@ -346,7 +291,6 @@ export function applyRosterDiffToState(existing: RosterExistingState, diff: Rost
     if (row) {
       row.email = c.email;
       row.name = c.name;
-      // status is deliberately untouched, matching apply.ts's own rule.
     }
   }
 

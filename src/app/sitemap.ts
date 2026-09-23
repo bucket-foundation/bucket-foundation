@@ -6,17 +6,6 @@ import { listDatasets, datasetSlug } from "@/lib/research-atlas";
 
 const BASE = "https://www.bucket.foundation";
 
-/**
- * Unified sitemap. Every real Next.js page under src/app/**\/page.tsx is
- * included here. Priority / changeFrequency chosen per-page:
- * 1.0 homepage
- * 0.9 canon · learn · build · protocol (top discovery surfaces)
- * 0.8 manifesto · envelope · cite-forever license
- * 0.7 governance · about · join · contributors
- * 0.6 knowledge · research · library · kruse · assets · whats-new
- *
- * Keep in sync with /api/indexnow/ping and scripts/archive-org-ping.sh.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -26,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/canon/search",       pri: 0.9,  freq: "daily"   as const },
     { p: "/canon/bridges",      pri: 0.9,  freq: "weekly"  as const },
     { p: "/canon/graph",        pri: 0.85, freq: "weekly"  as const },
-    { p: "/canon/claims",       pri: 0.9,  freq: "weekly"  as const },
+    { p: "/excerpts",       pri: 0.9,  freq: "weekly"  as const },
     { p: "/access",             pri: 0.9,  freq: "weekly"  as const },
     { p: "/learn",              pri: 0.9,  freq: "weekly"  as const },
     { p: "/build",              pri: 0.9,  freq: "weekly"  as const },
@@ -48,9 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/support",            pri: 0.7,  freq: "monthly" as const },
     { p: "/contribute",         pri: 0.75, freq: "monthly" as const },
     { p: "/research-os/learn",  pri: 0.7,  freq: "weekly"  as const },
-    { p: "/knowledge",          pri: 0.6,  freq: "weekly"  as const },
-    { p: "/library",            pri: 0.6,  freq: "weekly"  as const },
-    { p: "/assets",             pri: 0.6,  freq: "monthly" as const },
     { p: "/whats-new",          pri: 0.6,  freq: "daily"   as const },
     { p: "/kruse",              pri: 0.6,  freq: "weekly"  as const },
     { p: "/kruse/search",       pri: 0.5,  freq: "weekly"  as const },
@@ -77,7 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // The 20 research tools, one URL each.
   const toolRoutes = TOOLS.map((t) => ({
     url: `${BASE}/research/tools/${t.slug}`,
     lastModified: now,
@@ -85,7 +70,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Published papers.
   const paperRoutes = listPapers().map((p) => ({
     url: `${BASE}/research/papers/${p.slug}`,
     lastModified: now,
@@ -93,7 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  // Open datasets (research-atlas).
   const datasetRoutes = listDatasets().map((d) => ({
     url: `${BASE}/research/datasets/${datasetSlug(d)}`,
     lastModified: now,

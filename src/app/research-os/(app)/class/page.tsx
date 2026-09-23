@@ -1,33 +1,11 @@
 "use client";
 
-/**
- * /research-os/class, the teacher class view (bkt-ros, ros-06 item 2).
- * Renders GET /api/research-os/class's already-computed, already-scoped
- * response: a grid of the reviewer's own learners by seed-path node, who
- * is blocked and where, who is ready for a harder target, and a queue of
- * Productions and internalization transfers awaiting judgment. All data
- * loading and every RLS-relevant computation happens server-side, in that
- * route; this page only renders the JSON it returns and links to
- * /research-os/review to act on a queue item (item 3's accept path lives
- * there, in one place).
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/review/page.tsx. Being signed in is necessary but
- * NOT sufficient: the API gates on
- * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
- * so a signed-in non-reviewer sees a 403 here instead of the class list.
- *
- * The grid table can run wider than a phone screen (one column per
- * seed-path node); it scrolls inside its own `overflow-x-auto` container
- * rather than pushing the page wide, the same exception globals.css
- * already carves out for CodeBlock's `<pre overflow-x-auto>` beside the
- * page-wide `overflow-x: hidden` rule.
- */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import AssignmentsPanel from "./AssignmentsPanel";
 import OverrideControl from "./OverrideControl";
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import SignInGate from "@/components/auth/SignInGate";
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
@@ -72,7 +50,6 @@ interface ClassView {
   id: string;
   name: string;
   learnerIds: string[];
-  /** ros-33: XP per learner, for the class leaderboard. */
   xpByLearner?: Record<string, number>;
   grid: ClassGrid;
   blocked: BlockedLearner[];
@@ -159,9 +136,9 @@ export default function ResearchOsClassPage() {
     setLoadError(null);
     try {
       const res = await fetch("/api/research-os/class", { headers: authHeaders() });
-      const body = await res.json();
+      const body = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ClassResponse & { error?: string };
       if (!res.ok) {
-        setLoadError(res.status === 403 ? "forbidden" : body.error || "load_failed");
+        setLoadError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? "transient" : body.error || "load_failed");
         setData(null);
         return;
       }
@@ -212,7 +189,8 @@ export default function ResearchOsClassPage() {
             RESEARCH_OS_REVIEWER_EMAILS (see src/lib/research-os/reviewer.ts).
           </p>
         )}
-        {loadError && loadError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load classes ({loadError}).</p>}
+        {loadError === "transient" && <p className="mt-6 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {loadError && loadError !== "forbidden" && loadError !== "transient" && <p className="mt-6 text-[13px] text-red-700">Could not load classes ({loadError}).</p>}
 
         {data && data.classes.length === 0 && (
           <p className="mt-8 text-[13px] text-[color:var(--basalt-2)]">
@@ -309,10 +287,6 @@ export default function ResearchOsClassPage() {
                 </div>
               </div>
 
-              {/* Calibration (bkt-ros, PLAN-REVISION-2.md section 2a):
-                  mean confidence against mean source-prediction
-                  correctness, per learner, over forcing-gated Check
-                  attempts only. A learner with none yet has no row here. */}
               <div className="mt-4">
                 <h3 className="text-[12px] small-caps tracking-[0.1em] text-[color:var(--basalt)] mb-2">
                   calibration ({c.calibration.length})

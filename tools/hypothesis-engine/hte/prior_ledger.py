@@ -1,11 +1,3 @@
-"""A Beta prior on every concept's base rate, updated across campaigns
-(`STATISTICAL-AUDIT-2026-09-15.md`, Priors: a distribution on the prior,
-moved by data). The vocabulary's `prior_logit` is the label's starting
-mean; each campaign appends, per concept, how many scored survivors
-naming it carried positive evidence-only lift (`Opinion.lift > 0`) and
-how many carried negative lift, and the next campaign reads the ledger
-back into the vocabulary before generation. `lift` reads no prior, so the
-counts never feed the label back into itself."""
 from __future__ import annotations
 
 import dataclasses
@@ -18,20 +10,14 @@ from .belief import Opinion, sigmoid
 from .concepts import Slot, Vocabulary
 from .hypothesis import CONCEPT_SLOT_ORDER, Hypothesis
 
-DEFAULT_STRENGTH = 4.0  # the label counts as this many evidence-bound hypotheses
+DEFAULT_STRENGTH = 4.0
 Counts = dict[tuple[str, str], tuple[int, int]]
-
 
 def logit(p: float) -> float:
     p = min(1.0 - 1e-9, max(1e-9, p))
     return math.log(p / (1.0 - p))
 
-
 def outcomes(hypotheses: Sequence[Hypothesis], opinions: Mapping[int, Opinion]) -> Counts:
-    """Per (slot, concept id): successes and failures over every scored
-    survivor naming the concept, a success being positive lift and a
-    failure negative lift; unscored survivors and zero lift count for
-    nothing."""
     counts: Counts = {}
     for h in hypotheses:
         opinion = opinions.get(h.address)
@@ -40,16 +26,14 @@ def outcomes(hypotheses: Sequence[Hypothesis], opinions: Mapping[int, Opinion]) 
         won = opinion.lift() > 0.0
         for slot in CONCEPT_SLOT_ORDER:
             concept_id = getattr(h.content, slot.value.lower(), None)
-            if concept_id is None:  # a sequence hypothesis carries a pair, no slots of its own
+            if concept_id is None:
                 continue
             key = (slot.value, concept_id)
             s, f = counts.get(key, (0, 0))
             counts[key] = (s + won, f + (not won))
     return counts
 
-
 def append(path: str | Path, *, run_id: str, corpus: str, counts: Counts) -> int:
-    """One JSON line per concept with any count; returns the rows written."""
     rows = [
         {"run_id": run_id, "corpus": corpus, "slot": slot, "concept": cid, "successes": s, "failures": f}
         for (slot, cid), (s, f) in sorted(counts.items()) if s or f
@@ -61,10 +45,7 @@ def append(path: str | Path, *, run_id: str, corpus: str, counts: Counts) -> int
             fh.write(json.dumps(row) + "\n")
     return len(rows)
 
-
 def load_counts(path: str | Path, *, corpus: str) -> tuple[Counts, int]:
-    """Counts summed over every ledger row for `corpus`, and the number of
-    distinct runs they came from; empty when the file is absent."""
     p = Path(path)
     counts: Counts = {}
     runs: set[str] = set()
@@ -82,13 +63,7 @@ def load_counts(path: str | Path, *, corpus: str) -> tuple[Counts, int]:
         runs.add(row["run_id"])
     return counts, len(runs)
 
-
 def apply(vocab: Vocabulary, counts: Counts, *, strength: float = DEFAULT_STRENGTH) -> int:
-    """Moves each counted concept's `prior_logit` to the logit of its Beta
-    posterior mean: the label's mean `m = sigmoid(prior_logit)` with
-    `strength` pseudo-observations, plus the ledger's successes and
-    failures, so `(m*strength + s) / (strength + s + f)`. Uncounted
-    concepts keep the label. Returns the number moved."""
     moved = 0
     for (slot_value, cid), (s, f) in counts.items():
         slot = Slot(slot_value)
@@ -98,7 +73,6 @@ def apply(vocab: Vocabulary, counts: Counts, *, strength: float = DEFAULT_STRENG
             continue
         concept = bucket[index]
         m = sigmoid(concept.prior_logit)
-        # `Concept` is frozen; replacing in place keeps the bucket's order, and so every address, unchanged.
         bucket[index] = dataclasses.replace(concept, prior_logit=logit((m * strength + s) / (strength + s + f)))
         moved += 1
     return moved

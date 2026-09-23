@@ -42,7 +42,6 @@ export default function Page({ params }: { params: { handle: string } }) {
       })
     : "—";
 
-  // group events by day (events are already reverse-chron)
   const grouped = new Map<string, typeof stats.events>();
   for (const e of stats.events) {
     const k = dayKey(e.timestamp);
@@ -59,7 +58,6 @@ export default function Page({ params }: { params: { handle: string } }) {
       title={`@${stats.handle}`}
       subtitle={subtitle}
     >
-      {/* TODO(founder): look up Dynamic wallet address via Supabase by github handle */}
 
       <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[color:var(--hairline)]">
         <Stat label="canon events" value={stats.canonEvents} />

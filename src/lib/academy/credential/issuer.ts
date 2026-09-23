@@ -27,15 +27,12 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import type { JWK } from "jose";
 
-/** Canonical public site origin (matches src/app/layout.tsx SITE_URL). */
 export const SITE_ORIGIN = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.bucket.foundation"
 ).replace(/\/$/, "");
 
-/** Stable issuer id, a resolvable https URL (the issuer profile document). */
 export const ISSUER_ID = `${SITE_ORIGIN}/api/academy/issuer`;
 
-/** Stable verificationMethod id, the issuer key, addressable as a fragment. */
 export function verificationMethodId(kid: string): string {
   return `${ISSUER_ID}#${kid}`;
 }
@@ -45,15 +42,6 @@ export const ISSUER_DESCRIPTION =
   "Bucket Foundation — Bucket Academy. Issuer of evidence-backed, " +
   "demonstrated-mastery credentials for canon concepts. build the past. build history.";
 
-/**
- * The PUBLIC JWK for the current issuer key. This is PUBLISHABLE (it is the
- * verification key only) and is baked in so verification works
- * without any secret. It MUST match the public half of ACADEMY_ISSUER_PRIVATE_JWK.
- *
- * Rotation: to rotate, generate a new keypair, bump `kid`, move the current
- * entry into PUBLIC_JWKS_HISTORY (so historical credentials still verify), and
- * make the new key the primary. Verifiers try every published JWK.
- */
 export const PUBLIC_JWK: JWK = {
   kty: "OKP",
   crv: "Ed25519",
@@ -63,20 +51,12 @@ export const PUBLIC_JWK: JWK = {
   kid: "8a0035b8c6cc722d",
 };
 
-/** Retired-but-still-valid public keys, for verifying historical credentials. */
 export const PUBLIC_JWKS_HISTORY: JWK[] = [];
 
-/** Every public JWK a verifier should try (current + retired). */
 export function publicJwks(): JWK[] {
   return [PUBLIC_JWK, ...PUBLIC_JWKS_HISTORY];
 }
 
-/**
- * Load the issuer PRIVATE JWK from a server-only source. Order:
- * 1. env ACADEMY_ISSUER_PRIVATE_JWK (the production path, set in Vercel),
- * 2. a gitignored local dev file private/academy/issuer-key.json.
- * Returns null when no key is configured (issuance then degrades to 503).
- */
 export function loadPrivateJwk(): (JWK & { kid: string }) | null {
   const raw = process.env.ACADEMY_ISSUER_PRIVATE_JWK?.trim();
   if (raw) {
@@ -86,10 +66,8 @@ export function loadPrivateJwk(): (JWK & { kid: string }) | null {
         return ensureKid(jwk);
       }
     } catch {
-      /* fall through to the dev file */
     }
   }
-  // Dev fallback: the gitignored local key file.
   try {
     const p = join(process.cwd(), "private", "academy", "issuer-key.json");
     if (existsSync(p)) {
@@ -100,7 +78,6 @@ export function loadPrivateJwk(): (JWK & { kid: string }) | null {
       }
     }
   } catch {
-    /* no key available */
   }
   return null;
 }
@@ -110,16 +87,10 @@ function ensureKid(jwk: JWK): JWK & { kid: string } {
   return { ...jwk, alg: "EdDSA", kid };
 }
 
-/** True when issuance is possible (a private key is configured). */
 export function canIssue(): boolean {
   return loadPrivateJwk() !== null;
 }
 
-/**
- * The issuer profile document, served at ISSUER_ID. This is the OB3 `Profile` /
- * W3C VC `issuer` object plus a JWK-based verificationMethod a verifier resolves
- * the public key from. No secrets, only the PUBLIC key(s).
- */
 export function issuerProfile(): Record<string, unknown> {
   return {
     "@context": [
@@ -131,7 +102,6 @@ export function issuerProfile(): Record<string, unknown> {
     name: ISSUER_NAME,
     description: ISSUER_DESCRIPTION,
     url: SITE_ORIGIN,
-    // JsonWebKey verification methods (W3C VC-JOSE-COSE), one per published key.
     verificationMethod: publicJwks().map((jwk) => ({
       id: verificationMethodId(jwk.kid || "default"),
       type: "JsonWebKey",

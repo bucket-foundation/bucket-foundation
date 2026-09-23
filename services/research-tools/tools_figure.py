@@ -1,37 +1,10 @@
 #!/usr/bin/env python3
-"""
-research-tools, FigureMiner (REAL logic, CPU, no GPU)
-=====================================================
-
-A FUNCTIONAL backend for FigureMiner (54-tool needs map: "extracts data
-points/numbers/structures FROM figures in PDFs into a queryable DB"). This v1
-mines a paper's *text layer*, figure/table captions, reported statistics, and
-numeric data, with real parsing, no network and no GPU.
-
-Honesty note (matches the project's pattern): the CSV flags FigureMiner as
-gpu_needed=y because *pixel-level* plot-point extraction from raster figures
-needs a vision model. That vision stage is a documented GPU/ML extension. What
-ships here is the REAL, non-GPU, high-value half that is fully deterministic:
-
- * caption extraction, "Figure N." / "Table N." blocks with their text
- * reported-statistics miner, p-values, n=, CI, r/R²/ρ, ± SD/SE, %, fold-change
- * numeric-data miner, measurements with units (nm, kDa, µM, ms, °C, …)
- * per-figure stat linkage, which stats co-occur in which figure's caption
-
-Input is a PDF (when PyMuPDF/pypdf is available) OR raw pasted text, so the v1
-JSON contract holds and the same logic unit-tests on a known string with zero
-dependencies on a PDF being present.
-
-The gateway imports FIGURE_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import re
 from collections import Counter
 from typing import Any, Optional
 
-# PDF text extraction is optional; raw-text input always works. PyMuPDF (fitz)
-# preferred, pypdf fallback. Reported in the output.
 try:
     import fitz  # type: ignore # PyMuPDF
 
@@ -45,8 +18,6 @@ try:
 except Exception:  # pragma: no cover - import guard
     _PYPDF_OK = False
 
-
-# --- regex library (real, tested patterns) ---------------------------------
 _UNIT = r"(?:nm|µm|um|mm|cm|Å|kDa|Da|kbp|bp|µM|uM|nM|mM|pM|M|ms|µs|us|ns|s|min|h|Hz|kHz|°C|K|kcal/mol|kJ/mol|pN|nN|kPa|MPa|GPa|%)"
 _NUM = r"[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?"
 
@@ -60,9 +31,7 @@ RE_PM = re.compile(r"(" + _NUM + r")\s*(?:±|\+/-|\+-)\s*(" + _NUM + r")")
 RE_FOLD = re.compile(r"(" + _NUM + r")\s*[- ]?fold", re.I)
 RE_MEASURE = re.compile(r"(" + _NUM + r")\s*(" + _UNIT + r")\b")
 
-
 def extract_text_from_pdf(path: str) -> tuple[Optional[str], str]:
-    """Extract the text layer of a PDF. Returns (text, backend)."""
     if _FITZ_OK:
         try:
             doc = fitz.open(path)
@@ -80,13 +49,7 @@ def extract_text_from_pdf(path: str) -> tuple[Optional[str], str]:
             return None, f"pypdf-failed:{str(e)[:60]}"
     return None, "no-pdf-backend"
 
-
 def mine_captions(text: str) -> list[dict]:
-    """Extract Figure/Table/Scheme caption blocks. Pure.
-
- A caption runs from the label to the next blank-line-separated paragraph or
- the next figure label, whichever comes first.
-    """
     out: list[dict] = []
     matches = list(RE_FIGURE.finditer(text))
     for i, m in enumerate(matches):
@@ -97,15 +60,12 @@ def mine_captions(text: str) -> list[dict]:
         start = m.end()
         end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
         body = text[start:end].strip()
-        # cap caption length (a caption rarely runs >800 chars before the next para)
         para = re.split(r"\n\s*\n", body, maxsplit=1)[0].strip()
         caption = (para or body)[:800]
         out.append({"kind": kind, "number": num, "caption": caption})
     return out
 
-
 def mine_stats(text: str) -> dict:
-    """Mine reported statistics from text. Pure. Returns counts + samples."""
     pvals = [{"op": op, "value": val} for op, val in RE_PVALUE.findall(text)]
     ns = [int(x) for x in RE_N.findall(text)]
     cis = [int(x) for x in RE_CI.findall(text)]
@@ -132,9 +92,7 @@ def mine_stats(text: str) -> dict:
         },
     }
 
-
 def mine_measurements(text: str) -> dict:
-    """Mine numeric measurements with units. Pure. Groups by unit."""
     rows = [{"value": float(v), "unit": u} for v, u in RE_MEASURE.findall(text)]
     by_unit = Counter(r["unit"] for r in rows)
     return {
@@ -143,9 +101,7 @@ def mine_measurements(text: str) -> dict:
         "by_unit": dict(by_unit.most_common()),
     }
 
-
 def link_stats_to_figures(captions: list[dict]) -> list[dict]:
-    """For each caption, mine the stats it contains (the queryable linkage). Pure."""
     out: list[dict] = []
     for c in captions:
         s = mine_stats(c["caption"])
@@ -163,14 +119,7 @@ def link_stats_to_figures(captions: list[dict]) -> list[dict]:
             )
     return out
 
-
 def run_figure_miner(payload: dict) -> dict:
-    """payload: { text: <paper text> OR file_path: <abs PDF path> OR "demo" }
-
- Extract figure/table captions, mined reported statistics, numeric
- measurements with units, and a per-figure stat linkage. Real deterministic
- parsing. demo = a known mini-paper text with a verifiable stat count.
-    """
     backend = "raw-text"
     demo = isinstance(payload.get("text"), str) and payload["text"].strip().lower() == "demo"
     expected = None
@@ -182,7 +131,6 @@ def run_figure_miner(payload: dict) -> dict:
             "Mean lifetime 8.3 ± 1.2 ms across n = 30 events.\n\n"
             "Table 1. Summary statistics (95% CI reported)."
         )
-        # known: 2 p? -> only one explicit p<0.001; n= appears twice; folds=1; etc.
         expected = {"figures": 3, "p_values": 1, "sample_sizes": 2, "fold_changes": 1}
     elif payload.get("file_path"):
         text, backend = extract_text_from_pdf(payload["file_path"])
@@ -225,8 +173,6 @@ def run_figure_miner(payload: dict) -> dict:
         out["note"] = "DEMO MODE: " + out["note"] + " Text is a known mini-paper (see ground_truth) for verification."
     return out
 
-
-# Registry the gateway imports.
 FIGURE_RUNNERS = {
     "figureminer": run_figure_miner,
 }

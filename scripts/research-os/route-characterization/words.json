@@ -1,0 +1,101 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id_required"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id_required"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id_required"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id_required"
+    }
+  },
+  "GET id given, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET bad id": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id_required"
+    }
+  },
+  "GET id given, hidden": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "node_not_found"
+    }
+  },
+  "GET id given, words listed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "words": [
+        {
+          "lang": "en",
+          "word": "force"
+        }
+      ],
+      "attribution": {
+        "text": "Words, meanings and etymologies from Wiktionary, via Kaikki.org, under CC BY-SA 4.0.",
+        "wiktionary": "https://en.wiktionary.org/",
+        "kaikki": "https://kaikki.org/",
+        "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    }
+  },
+  "GET id given, words read throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_read_failed"
+    }
+  },
+  "GET id given, authorize throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  }
+}

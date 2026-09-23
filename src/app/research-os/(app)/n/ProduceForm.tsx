@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import type { Quote } from "./types";
@@ -9,7 +10,6 @@ export type ProduceKind = "production" | "extension" | "replication" | "peer_rev
 const KIND_LABEL: Record<ProduceKind, string> = { production: "production", extension: "extension", replication: "replication", peer_review: "peer review" };
 const INPUT = "border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 w-full";
 
-/** The one production form: a claim from quotes and sources, a transfer proof, counter-evidence, saved as a draft or submitted for review. */
 export default function ProduceForm({
   kind,
   targetId,
@@ -60,7 +60,8 @@ export default function ProduceForm({
       });
       const j = (await res.json().catch(() => ({}))) as { production?: { id: string; status: string }; error?: string; message?: string; needsProfile?: boolean };
       if (!res.ok) {
-        setNote({ text: j.message ?? j.error ?? "Could not save.", profile: Boolean(j.needsProfile) });
+        const text = isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not save.");
+        setNote({ text, profile: Boolean(j.needsProfile) });
         return;
       }
       setSavedId(j.production?.id ?? savedId);

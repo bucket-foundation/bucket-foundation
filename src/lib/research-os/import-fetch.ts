@@ -1,17 +1,8 @@
-/**
- * Fetch the text of an imported source so the import is a node with
- * content, and the workspace's quote and check tools have something to
- * read. Server-only. Public http(s) hosts only; a short timeout and a
- * size cap; HTML stripped to text. Best-effort: a failed fetch leaves the
- * import as a title and a link.
- */
-
 const MAX_BYTES = 1_000_000;
 const TIMEOUT_MS = 8000;
 export const EXCERPT_CHARS = 6000;
 export const SUMMARY_CHARS = 600;
 
-/** http or https, a hostname that is not a loopback, link-local, or private address. */
 export function isPublicHttpUrl(raw: string): boolean {
   let u: URL;
   try {
@@ -30,7 +21,6 @@ export function isPublicHttpUrl(raw: string): boolean {
   return true;
 }
 
-/** HTML to readable text: scripts, styles, and tags removed, entities decoded, whitespace collapsed. */
 export function htmlToText(html: string): string {
   let s = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<!--[\s\S]*?-->/g, " ");
   s = s.replace(/<\/(p|div|h[1-6]|li|tr|br|section|article|blockquote|pre|title|head|header|footer|nav|table)>/gi, "\n").replace(/<br\s*\/?>/gi, "\n");
@@ -51,13 +41,38 @@ export interface FetchedSource {
   bytes: number;
 }
 
+export const MAX_REDIRECTS = 5;
+
+export async function fetchFollowingChecked(
+  raw: string,
+  init: RequestInit,
+  isAllowed: (url: string) => boolean = isPublicHttpUrl,
+): Promise<Response | null> {
+  let url = raw;
+  for (let hop = 0; hop <= MAX_REDIRECTS; hop += 1) {
+    if (!isAllowed(url)) return null;
+    const res = await fetch(url, { ...init, redirect: "manual" });
+    if (res.status < 300 || res.status > 399) return res;
+    const location = res.headers.get("location");
+    if (!location) return res;
+    let next: URL;
+    try {
+      next = new URL(location, url);
+    } catch {
+      return null;
+    }
+    url = next.toString();
+  }
+  return null;
+}
+
 export async function fetchTextFromUrl(raw: string): Promise<FetchedSource | null> {
   if (!isPublicHttpUrl(raw)) return null;
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
-    const res = await fetch(raw, { signal: ctrl.signal, redirect: "follow", headers: { accept: "text/html,text/plain;q=0.9,*/*;q=0.1", "user-agent": "bucket-foundation-research-os/1 (+https://www.bucket.foundation)" } });
-    if (!res.ok) return null;
+    const res = await fetchFollowingChecked(raw, { signal: ctrl.signal, headers: { accept: "text/html,text/plain;q=0.9,*/*;q=0.1", "user-agent": "bucket-foundation-research-os/1 (+https://www.bucket.foundation)" } });
+    if (!res || !res.ok) return null;
     const contentType = (res.headers.get("content-type") || "").toLowerCase();
     if (!contentType.includes("text/html") && !contentType.includes("text/plain") && !contentType.includes("application/xhtml")) return null;
     const buf = Buffer.from(await res.arrayBuffer());

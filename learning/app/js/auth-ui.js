@@ -1,13 +1,3 @@
-/* Bucket Academy, sign-in affordance + modal (bkt-su9).
- *
- * Renders a small "Save progress" control into the app topbar and a minimal
- * email-OTP modal styled to match the bucket aesthetic (bone/basalt ground,
- * aegean/gold/laurel accents, Cinzel + Fraunces type). Anonymous use is fully
- * intact, this only ADDS an optional sign-in.
- *
- * app.js calls `window.BucketAuthUI.mountInto(topbarEl)` from header(); this
- * module owns everything else (modal, state, re-render on auth change).
- */
 (function (global) {
   "use strict";
 
@@ -21,11 +11,8 @@
     return n;
   }
 
-  /* ---------- topbar control ---------- */
-
-  // Inject the control as the LAST child of the given topbar element.
   function mountInto(topbar) {
-    if (!Auth || !Auth.enabled) return; // auth disabled → render nothing
+    if (!Auth || !Auth.enabled) return;
     var s = Auth.state();
     var btn = el("button", "auth-pill", controlLabel(s));
     btn.id = "authPill";
@@ -40,7 +27,6 @@
     return '<span class="auth-dot"></span> Save progress';
   }
 
-  // Re-render any live topbar pill when auth state changes.
   function refreshPill(s) {
     var pill = document.getElementById("authPill");
     if (pill) {
@@ -51,9 +37,7 @@
     }
   }
 
-  /* ---------- modal ---------- */
-
-  var pending = { email: null, stage: "email" }; // email | code | done
+  var pending = { email: null, stage: "email" };
 
   function openModal() {
     var s = Auth.state();
@@ -69,8 +53,6 @@
 
   function renderEmail(card, back) {
     pending.stage = "email";
-    // Framed under bucket.foundation: the site owns the session, so send
-    // the person to the site's sign-in and let the parent post it back in.
     if (Auth.state().framed) {
       card.innerHTML =
         '<div class="auth-title">Save your progress</div>' +
@@ -219,7 +201,6 @@
 
   function showErr(node, ex) {
     var msg = (ex && (ex.message || ex.error_description)) || "Something went wrong. Try again.";
-    // Friendlier copy for the common Supabase cases.
     if (/rate|too many|429/i.test(msg)) msg = "Too many requests — wait a minute and try again.";
     else if (/invalid|expired|token/i.test(msg)) msg = "That code looks wrong or expired. Request a new one.";
     node.textContent = msg;
@@ -232,14 +213,10 @@
     });
   }
 
-  /* ---------- wire up ---------- */
-
   if (Auth) {
     Auth.onChange(function (s) {
       lastState = s;
       refreshPill(s);
-      // If a screen is showing and a sync just merged new state in, let the app
-      // know so it can re-render from the merged localStorage.
       if (global.__BA_onAuthSync) {
         try { global.__BA_onAuthSync(s); } catch (e) {}
       }

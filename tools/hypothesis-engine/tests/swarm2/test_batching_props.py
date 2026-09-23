@@ -1,8 +1,3 @@
-"""`hte.batching.batch_critique`/`batch_judge`: exactly one result per
-input, in order, for a range of batch sizes; a duplicated id in the
-model's own batch reply falls back to a single-item call for that one id;
-and an empty input returns an empty list.
-"""
 from __future__ import annotations
 
 import json
@@ -19,22 +14,9 @@ from hte.generate import combinatorial_sample
 
 _BATCH_SIZES = (1, 7, 8, 9, 64)
 
-
 @pytest.fixture(autouse=True)
 def _real_llm_mode(monkeypatch):
-    """`test_batch_critique_duplicated_id_falls_back_for_only_that_id`
-    and `test_batch_judge_duplicated_id_falls_back_for_only_that_id`
-    below exercise the real (non-fake) batch path through their own
-    `SimpleNamespace(run=...)` stand-in for `llm.subprocess`; `llm.
-    complete` checks `HTE_LLM_MODE` before ever consulting that stand-in,
-    so an ambient `HTE_LLM_MODE=fake` would silently reroute both to
-    `hte.fakellm` instead, ignoring their own queued responses. Pinning
-    it unset here (harmless for this file's other, explicitly fake-mode
-    tests, which each call their own `mp.setenv("HTE_LLM_MODE", "fake")`
-    on top of this) keeps this file correct under `env -u HTE_LLM_MODE
-    make test` and `HTE_LLM_MODE=fake make test` alike."""
     monkeypatch.delenv("HTE_LLM_MODE", raising=False)
-
 
 def _hypotheses(n: int, seed: int = 0):
     corpus = fixtures.build()
@@ -42,10 +24,8 @@ def _hypotheses(n: int, seed: int = 0):
     assert len(hyps) >= n, f"fixtures corpus only produced {len(hyps)} hypotheses, need {n}"
     return corpus, hyps[:n]
 
-
 def _envelope(structured: dict) -> str:
     return json.dumps({"is_error": False, "structured_output": structured})
-
 
 def _fake_run(responses: list[tuple[int, str]]):
     calls: list[list[str]] = []
@@ -59,16 +39,6 @@ def _fake_run(responses: list[tuple[int, str]]):
 
     run.calls = calls
     return run
-
-
-# --------------------------------------------------------------------------
-# One entry per input, in order, across batch sizes 1, 7, 8, 9, 64
-# (fake mode: hte.fakellm has no batch stand-in, so every chunk falls back
-# to single-item calls, still served by fakellm's own per-role stand-ins;
-# this is the documented fake-mode contract, tests/test_batching.py's own
-# precedent, generalized here across every requested batch size).
-# --------------------------------------------------------------------------
-
 
 @given(batch_size=st.sampled_from(_BATCH_SIZES))
 @settings(max_examples=300)
@@ -84,7 +54,6 @@ def test_batch_critique_one_result_per_input_in_order(tmp_path_factory, batch_si
 
     assert len(batched) == n
     assert batched == serial
-
 
 @given(batch_size=st.sampled_from(_BATCH_SIZES))
 @settings(max_examples=300)
@@ -104,26 +73,11 @@ def test_batch_judge_one_result_per_input_in_order(tmp_path_factory, batch_size)
     assert len(batched) == n
     assert batched == serial
 
-
-# --------------------------------------------------------------------------
-# Empty input returns an empty list
-# --------------------------------------------------------------------------
-
-
 def test_batch_critique_empty_input_returns_empty_list(tmp_path):
     assert batching.batch_critique([], [], batch_size=8, cache_dir=tmp_path, replay_only=False) == []
 
-
 def test_batch_judge_empty_input_returns_empty_list(tmp_path):
     assert batching.batch_judge([], batch_size=8, cache_dir=tmp_path, replay_only=False) == []
-
-
-# --------------------------------------------------------------------------
-# A duplicated id in the model's own batch reply falls back to a
-# single-item call for that one id alone; every other id in the same
-# chunk still trusts its own batch answer.
-# --------------------------------------------------------------------------
-
 
 @given(data=st.data(), n=st.integers(min_value=2, max_value=6))
 @settings(max_examples=300)
@@ -136,9 +90,6 @@ def test_batch_critique_duplicated_id_falls_back_for_only_that_id(tmp_path_facto
         entry = {"id": h.short_id, "keep": (i % 2 == 0), "issues": [], "rationale": f"batch-{i}"}
         batch_results.append(entry)
         if i == dup_index:
-            # A second entry for the same id, differing content: this must
-            # make BOTH occurrences untrusted (`_validated_entries`' own
-            # "repeated in it" rule), not just silently pick one.
             batch_results.append({"id": h.short_id, "keep": not entry["keep"], "issues": ["dup"], "rationale": "dup-entry"})
 
     fallback_rationale = "single-item-fallback"
@@ -157,8 +108,7 @@ def test_batch_critique_duplicated_id_falls_back_for_only_that_id(tmp_path_facto
             assert result["rationale"] == fallback_rationale
         else:
             assert result["rationale"] == f"batch-{i}"
-    assert len(fake.calls) == 2  # one batch call, one single-item fallback
-
+    assert len(fake.calls) == 2
 
 @given(data=st.data(), n=st.integers(min_value=2, max_value=6))
 @settings(max_examples=300)

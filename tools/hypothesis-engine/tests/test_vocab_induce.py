@@ -1,8 +1,3 @@
-"""`hte.vocab_induce`: building a `Vocabulary` off a corpus's own evidence,
-with no hand-written seed (the default case) or merged on top of one
-(`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "wire it as the default... and as
-a merge step" framing).
-"""
 from __future__ import annotations
 
 from hte import vocab_induce
@@ -10,7 +5,6 @@ from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary, other_id
 from hte.corpus import Corpus, GroundTruthEvent
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from hte.timeline import Interval
-
 
 def _item(item_id: str, **slots: str | None) -> EvidenceItem:
     quote = f"evidence for {item_id}"
@@ -22,34 +16,23 @@ def _item(item_id: str, **slots: str | None) -> EvidenceItem:
         place=slots.get("place"), mechanism=slots.get("mechanism"), interval=Interval(start=2020, end=2020),
     )
 
-
 def _corpus(items: list[EvidenceItem], *, ground_truth: list[GroundTruthEvent] | None = None) -> Corpus:
     sources = {e.source_id: Source(id=e.source_id, kind=e.kind) for e in items}
     return Corpus(sources=sources, evidence=items, ground_truth=ground_truth or [], provenance=[], vocab=Vocabulary())
 
-
-# --------------------------------------------------------------------------
-# no-seed default
-# --------------------------------------------------------------------------
-
-
 def test_no_seed_induces_a_concept_per_distinct_raw_value():
     items = [
         _item("e0", actor="Tyndall (1869), On the blue colour of the sky", object="why-the-sky-is-blue"),
-        _item("e1", actor="Tyndall (1869), On the blue colour of the sky"),  # same actor again, no new concept
+        _item("e1", actor="Tyndall (1869), On the blue colour of the sky"),
     ]
     vocab = vocab_induce.induce(_corpus(items))
     actors = {c.id: c for c in vocab.concepts(Slot.ACTOR)}
     objects = {c.id: c for c in vocab.concepts(Slot.OBJECT)}
-    # a raw label gets a slugified id...
     assert "tyndall-1869-on-the-blue-colour-of-the-sky" in actors
     assert actors["tyndall-1869-on-the-blue-colour-of-the-sky"].label == "Tyndall (1869), On the blue colour of the sky"
-    # only one concept for the two evidence items that name the identical label
     assert sum(1 for c in vocab.concepts(Slot.ACTOR) if "tyndall" in c.id) == 1
-    # ...an already id-shaped value is kept verbatim, humanized into a label
     assert "why-the-sky-is-blue" in objects
     assert objects["why-the-sky-is-blue"].label == "Why The Sky Is Blue"
-
 
 def test_no_seed_still_carries_other_and_five_non_consensus_actors():
     vocab = vocab_induce.induce(_corpus([_item("e0", actor="some-actor")]))
@@ -58,24 +41,16 @@ def test_no_seed_still_carries_other_and_five_non_consensus_actors():
     non_consensus = [c for c in vocab.concepts(Slot.ACTOR) if c.consensus_status != ConsensusStatus.CONSENSUS and c.consensus_status != ConsensusStatus.OTHER]
     assert len(non_consensus) == vocab_induce.N_EXOTIC_ACTORS == 5
 
-
 def test_empty_corpus_still_returns_a_working_vocabulary():
     vocab = vocab_induce.induce(_corpus([]))
-    assert len(vocab.concepts(Slot.ACTOR)) == 1 + vocab_induce.N_EXOTIC_ACTORS  # OTHER + 5
+    assert len(vocab.concepts(Slot.ACTOR)) == 1 + vocab_induce.N_EXOTIC_ACTORS
     for slot in (Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM):
-        assert len(vocab.concepts(slot)) == 1  # OTHER only
-
+        assert len(vocab.concepts(slot)) == 1
 
 def test_none_and_other_values_are_never_induced():
     items = [_item("e0", actor=None, object=other_id(Slot.OBJECT))]
     vocab = vocab_induce.induce(_corpus(items))
-    assert len(vocab.concepts(Slot.OBJECT)) == 1  # OTHER only, kept as the single existing concept
-
-
-# --------------------------------------------------------------------------
-# min_count denoising
-# --------------------------------------------------------------------------
-
+    assert len(vocab.concepts(Slot.OBJECT)) == 1
 
 def test_min_count_drops_values_under_threshold():
     items = [_item("e0", mechanism="rare-mechanism"), _item("e1", mechanism="common-mechanism"), _item("e2", mechanism="common-mechanism")]
@@ -84,17 +59,10 @@ def test_min_count_drops_values_under_threshold():
     assert "common-mechanism" in ids
     assert "rare-mechanism" not in ids
 
-
 def test_min_count_one_drops_nothing():
     items = [_item("e0", mechanism="only-once")]
     vocab = vocab_induce.induce(_corpus(items), min_count=1)
     assert "only-once" in {c.id for c in vocab.concepts(Slot.MECHANISM)}
-
-
-# --------------------------------------------------------------------------
-# stable_id
-# --------------------------------------------------------------------------
-
 
 def test_stable_id_is_deterministic_and_slug_shaped():
     import re
@@ -104,23 +72,14 @@ def test_stable_id_is_deterministic_and_slug_shaped():
     assert a == b
     assert re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", a)
 
-
 def test_stable_id_strips_diacritics():
     assert vocab_induce.stable_id("Schrödinger") == "schrodinger"
 
-
 def test_collision_disambiguated_with_numeric_suffix():
-    # "A/B" and "A B" both slugify to "a-b"; the second occurrence gets -2.
     items = [_item("e0", place="A/B"), _item("e1", place="A B")]
     vocab = vocab_induce.induce(_corpus(items))
     ids = sorted(c.id for c in vocab.concepts(Slot.PLACE) if c.id != other_id(Slot.PLACE))
     assert ids == ["a-b", "a-b-2"]
-
-
-# --------------------------------------------------------------------------
-# merge with a seed
-# --------------------------------------------------------------------------
-
 
 def _seed() -> Vocabulary:
     by_slot = {
@@ -136,7 +95,6 @@ def _seed() -> Vocabulary:
     }
     return Vocabulary(by_slot=by_slot)
 
-
 def test_seed_concepts_are_kept_verbatim_and_first():
     vocab = vocab_induce.induce(_corpus([_item("e0", actor="known-actor")]), seed_vocab=_seed())
     actors = vocab.concepts(Slot.ACTOR)
@@ -144,9 +102,7 @@ def test_seed_concepts_are_kept_verbatim_and_first():
     assert known.label == "Known Actor"
     assert known.prior_logit == 0.5
     assert known.consensus_status == ConsensusStatus.CONSENSUS
-    # index 0 in the induced vocabulary too: seed order preserved
     assert vocab.vocab_index(Slot.ACTOR, "known-actor") == 0
-
 
 def test_seed_already_carrying_five_non_consensus_actors_gets_no_extra():
     vocab = vocab_induce.induce(_corpus([_item("e0", actor="known-actor")]), seed_vocab=_seed())
@@ -154,18 +110,15 @@ def test_seed_already_carrying_five_non_consensus_actors_gets_no_extra():
     assert len(non_consensus) == 5
     assert {c.id for c in non_consensus} == {"seed-fringe", "seed-contested", "seed-fringe-2", "seed-contested-2", "seed-fringe-3"}
 
-
 def test_new_value_not_in_seed_is_appended():
     vocab = vocab_induce.induce(_corpus([_item("e0", object="a brand new finding")]), seed_vocab=_seed())
     objects = vocab.concepts(Slot.OBJECT)
-    assert objects[0].id == "known-object"  # seed stays first
+    assert objects[0].id == "known-object"
     assert any(c.label == "a brand new finding" for c in objects)
-
 
 def test_value_already_a_known_seed_id_is_not_duplicated():
     vocab = vocab_induce.induce(_corpus([_item("e0", object="known-object")]), seed_vocab=_seed())
     assert sum(1 for c in vocab.concepts(Slot.OBJECT) if c.id == "known-object") == 1
-
 
 def test_seed_alpha_and_default_alpha_carried_through():
     seed = _seed()

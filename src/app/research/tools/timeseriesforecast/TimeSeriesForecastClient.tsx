@@ -1,8 +1,5 @@
 "use client";
 
-// TimeSeriesForecast client island, Holt-Winters decompose + forecast +
-// holdout backtest. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -11,6 +8,9 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Errors = { MAE: number; RMSE: number; MAPE_pct: number | null };
 type Backtest = Errors & {
@@ -72,9 +72,9 @@ export default function TimeSeriesForecastClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             series values (comma- or space-separated)
-          </span>
+          </FieldLabel>
           <textarea
             value={values}
             onChange={(e) => setValues(e.target.value)}
@@ -86,9 +86,9 @@ export default function TimeSeriesForecastClient() {
         </label>
         <div className="flex flex-wrap gap-3">
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+            <FieldLabel>
               seasonal period (0 = none)
-            </span>
+            </FieldLabel>
             <input
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
@@ -98,7 +98,7 @@ export default function TimeSeriesForecastClient() {
             />
           </label>
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">horizon</span>
+            <FieldLabel>horizon</FieldLabel>
             <input
               value={horizon}
               onChange={(e) => setHorizon(e.target.value)}
@@ -109,21 +109,12 @@ export default function TimeSeriesForecastClient() {
           </label>
         </div>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || parseNums(values).length < 4}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || parseNums(values).length < 4}>
             {busy ? "forecasting…" : "forecast"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo (seasonal)
-          </button>
+          </DemoButton>
         </div>
       </form>
 

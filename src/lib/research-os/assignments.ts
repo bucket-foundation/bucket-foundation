@@ -1,10 +1,3 @@
-/**
- * Research OS, assignments (the Class step of INTEGRATION-PLAN.md section
- * 10; decision 6): a teacher or librarian assigns a frontier target to a
- * class; the finished paper is the production and can be required; a
- * production's acceptance into the public graph is never required.
- * Pure rules, no I/O.
- */
 import { STAGE_ORDER, type Stage } from "./types";
 
 export interface Assignment {
@@ -22,9 +15,7 @@ export interface Assignment {
 export type AssignmentStatus = "not_started" | "in_progress" | "produced" | "accepted" | "overdue";
 
 export interface LearnerProgressInput {
-  /** The learner's level on the target node, if any. */
   stage: Stage | null;
-  /** Productions the learner has on the target node. */
   productions: { status: string }[];
 }
 
@@ -62,4 +53,23 @@ export function validateAssignment(input: NewAssignment): { ok: true; value: Req
       requiresProduction: input.requiresProduction ?? true,
     },
   };
+}
+
+export function isOpenTarget(a: { status: AssignmentStatus | string; targetSlug?: string; targetHidden?: boolean }): boolean {
+  return a.status !== "accepted" && !a.targetHidden && Boolean(a.targetSlug);
+}
+
+export function firstOpenTarget<T extends { status: AssignmentStatus | string; targetSlug?: string; targetHidden?: boolean }>(
+  assignments: T[],
+): T | null {
+  return assignments.find(isOpenTarget) ?? null;
+}
+
+export function targetIsLinkable(a: { targetSlug?: string; targetHidden?: boolean }): boolean {
+  return !a.targetHidden && Boolean(a.targetSlug);
+}
+
+export function assignmentTargetHref(a: { targetSlug?: string; targetHidden?: boolean }): string | null {
+  if (!targetIsLinkable(a)) return null;
+  return `/research-os/workspace?target=${encodeURIComponent(a.targetSlug as string)}`;
 }

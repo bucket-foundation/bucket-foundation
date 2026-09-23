@@ -1,10 +1,3 @@
-/**
- * Unit tests: the Access level rules (ros-21), src/lib/research-os/access.ts.
- * Pure, no I/O, no live Supabase; node:test + node:assert, plain fixtures.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-access.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {

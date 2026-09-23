@@ -6,7 +6,6 @@ export const metadata = toolMetadata("afmcurveml");
 const _jsonld = toolJsonLd("afmcurveml");
 import AFMCurveClient from "./AFMCurveClient";
 
-// AFM-CurveML run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

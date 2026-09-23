@@ -1,11 +1,3 @@
-// Distilled ground-truth context for bucket.foundation, embedded inline in
-// Tab 3 lesson prompts so Claude.ai can answer without needing to web-fetch
-// bucket URLs (critical pre-indexing, Claude's fetch tool refuses unknown
-// URLs, so we carry the canon with us). Keep this under ~2500 chars.
-//
-// If you edit this, also run `npm run build` and eyeball the encoded URL size
-// in the browser (see LearnTabs.tsx URL-length guard).
-
 export const BUCKET_GROUND_TRUTH = `bucket.foundation — "build the past. build history. bucket is the new renaissance."
 
 THESIS. A nonprofit reference implementation of feed402, an open protocol for paid, citeable research endpoints. One sentence: pay once per paper, cite it forever, fees route to the original author — not the publisher — over the x402 rail on Base (USDC). The gated-journal model is structurally extractive: authors pay to publish, readers pay to read, publishers own the citation. Bucket inverts this: free to read, paid to cite.

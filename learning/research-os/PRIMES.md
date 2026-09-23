@@ -4,7 +4,7 @@ The founder's rule: a node's tier follows how prime it is. A number breaks down 
 
 The decomposition gives the graph three things. A dependency structure with irreducible ideas at the bottom. A tier for every node, set by how many layers of combination sit between it and its primes. The input for a truth level: a node built from many uncertain factors is less likely to hold than one built from a few certain ones.
 
-Code: `src/lib/research-os/primes.ts`. Tests: `scripts/test-research-os-primes.ts`. Report over the live graph: `scripts/research-os/primes-report.ts`. Beads: the ros-prime epic in `BEADS-PENDING.jsonl`, which carries ros-25.
+Code: `src/lib/research-os/primes.ts`. Tests: `scripts/test-research-os-primes.ts`. Report over the live graph: `scripts/research-os/primes-report.ts`. Beads: the ros-prime epic in `BEADS-PENDING.jsonl`, which carries ros-25. Attention, coverage, the frontier and depth polynomials over the primes: `PRIME-ALGEBRA.md`.
 
 ## Prior work
 
@@ -150,6 +150,37 @@ Run on 2026-09-18 over the local graph's idea layer, proposer `claude-sonnet-5`,
 **Duplicates across branches show up as refusals.** The cosmology node "Equivalence principle" was proposed to rest on the physics node of the same name, and the verifier refused it as one concept listed twice. Such pairs point at nodes to merge, which the graph cleanup bead ros-graph-dedup takes up.
 
 The first run, before the target and blinding rules, asked about 166 targets and produced 716 proposals with no blinded check; its report is kept as `decompose-further-baseline-v1.json`. Two runs before model ids were resolved gave 148 and 147 proposals, a kappa of 0.54, and one irreducible verdict; their recorded model ids are unreliable. The run over every public node gave 151 proposals and a kappa of 0.59 on 40 targets.
+
+## Grade tiers and reversals
+
+ros-tier-fix, 2026-09-21, on the local stack after the excerpt reclassification (migration `20260921050000`).
+
+**The invariant.** `tier` is a difficulty and ordering axis (`TRUTH-TIERS.md`, "What `tier` means today"), and `checkTierMonotonicity` in `src/lib/research-os/ingest/validate.ts` states the rule: a prerequisite never carries a higher tier than its dependent. The 841 prerequisite edges in the graph break it nowhere, since each sits inside one Academy course, where the importer sets tiers by depth. It breaks when a reviewer approves a cross-course factor as learning order: 61 of the 98 confirmed decompose-further pairs have the factor above its target, "Spin and the Pauli exclusion principle" at 28 under "Van der Waals forces" at 13.
+
+**The fix.** `graph.enforce_prerequisite_tiers()` (migration `20260921060000`) raises every target to the highest tier among its prerequisites and repeats until nothing moves. `decideEdge` calls it after writing a prerequisite edge, before the `prereq_ancestor` rebuild, and returns the count as `tiersRaised`. The three importers that upsert nodes (`academy-import.ts`, `canon-import.ts`, `canon-all.ts`) call it after their writes, since a re-import resets tiers to the importer's own values. The review page says what approving as learning order does to the tiers. Approving the Van der Waals pair, tried inside a transaction that was rolled back, raised 38 nodes and left no inversion.
+
+**The eight reversal candidates.** The v5 run's `reversal_candidates` are matches whose factor already rests on the target. Each existing edge stays:
+
+| Existing learning order | The model's reading | Verdict |
+|---|---|---|
+| How learning works before spacing, retrieval practice, and the fluency illusion | the overview is made of the three | The course's order is right for teaching; the model reads makeup |
+| The ideal chain before Flory scaling | Flory scaling under the ideal chain | The model reads it backward: Flory's excluded-volume exponent builds on the ideal chain's statistics |
+| The radius of gyration before Flory scaling | Flory scaling under the radius of gyration | The model reads it backward: the radius of gyration is the measure Flory scaling predicts |
+| The central limit theorem before the random walk | the random walk under the central limit theorem | The model reads it backward: the walk's Gaussian limit is a case of the theorem |
+| Fick's law before the random walk | the random walk under Fick's law | The course teaches Fick first; as makeup the model is right, since Fick's law is the continuum limit of many walks |
+| The structure hierarchy before the Ramachandran plot | the plot under the hierarchy | The course teaches the hierarchy first; as makeup the model is right, since the plot's angles constrain secondary structure |
+
+Three are model errors and five are makeup readings of learning-order edges. A makeup edge beside a learning-order edge on the same pair would close a loop, because the decomposition counts both kinds as factor edges (`FACTOR_EDGES` in `src/lib/research-os/primes.ts`), so none is added.
+
+**The sky-blue seed.** `supabase/seed/research-os-sky-blue.json` had Rayleigh's 1871 papers derive from the scattering law, which reads as the papers resting on the law, and beside the papers-to-law prerequisite it formed a two-node loop. The law now derives from the papers, in the seed and in the local graph. The rest of the seed's order is a grade-by-grade lesson sequence, phenomena at grade 3 up to "light as a wave" at grade 7, and it reads as makeup only because the decomposition counts prerequisite edges as factors. Whether learning order should count as makeup at all is the question these reversals and the seed share, and it belongs to the next ros-prime slice.
+
+## Duplicates across branches
+
+ros-graph-dedup, 2026-09-21. The decompose-further verifier refused cosmology's "Equivalence principle" as resting on physics' "Equivalence principle": one concept listed twice. `scripts/research-os/find-duplicates.ts` looks for such pairs among the public ideas (concept, law, derivation; bridge clusters left out) three ways, using `src/lib/research-os/dedup.ts`: a verifier refusal that calls a pair a duplicate, an equal title once case, accents, punctuation and parentheticals fold away, and near titles that share at least 80% of their content words. On the local stack it found 17 pairs: 12 same titles, 4 near titles, and the refused equivalence principle.
+
+A reviewer decides each pair on `/research-os/merges`: merge into the suggested keeper (more edges, then the lower grade tier), merge the other way, or keep both. `graph.merge_nodes` (migration `20260921070000`) moves every edge of the dropped node to the kept one, drops an edge the keeper already has or one that would join it to itself, supersedes the dropped node, and enforces grade tiers again, so the links from both branches stay on one node. Rows elsewhere that point at the dropped node keep pointing at it, and its `superseded_by` leads to the keeper.
+
+Bundled names get the same treatment from the other side. A missing idea such as "Vector spaces, bases and inner products" splits on commas and "and", and each part that matches an existing node ("Vector spaces", "Inner product spaces") becomes a factor proposal from that node to every idea that named the bundle, beside the node proposal, which lists the matches as possible duplicates. 19 of the 66 pending node proposals bundle ideas the graph holds, giving 25 factor proposals.
 
 ## Next slices
 

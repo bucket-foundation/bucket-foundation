@@ -1,9 +1,5 @@
 "use client";
 
-// FAIRCheck client island, FAIR (Findable/Accessible/Interoperable/Reusable)
-// rubric over a dataset metadata record. Render is "json". `record` is a JSON
-// object/string of metadata fields, or "demo".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -12,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Gap = { principle: string; letter: string; score: number; priority: number; fix: string };
 type FAIROutput = {
@@ -66,9 +66,9 @@ export default function FAIRCheckClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             dataset metadata (JSON object of fields)
-          </span>
+          </FieldLabel>
           <textarea
             value={record}
             onChange={(e) => setRecord(e.target.value)}
@@ -79,21 +79,12 @@ export default function FAIRCheckClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || record.trim().length < 2}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || record.trim().length < 2}>
             {busy ? "scoring…" : "score FAIR"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo record
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -107,13 +98,6 @@ export default function FAIRCheckClient() {
 
 function FAIRView({ result }: { result: ResultEnvelope }) {
   const out = result.output as FAIROutput;
-  const cell = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
@@ -131,12 +115,12 @@ function FAIRView({ result }: { result: ResultEnvelope }) {
         <p className="mt-3 text-[14px] text-[color:var(--basalt-2)]">{out.verdict}</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {cell("findable", String(out.subscores.Findable))}
-        {cell("accessible", String(out.subscores.Accessible))}
-        {cell("interoperable", String(out.subscores.Interoperable))}
-        {cell("reusable", String(out.subscores.Reusable))}
-      </div>
+      <StatGrid>
+        <Stat label="findable" value={String(out.subscores.Findable)} />
+        <Stat label="accessible" value={String(out.subscores.Accessible)} />
+        <Stat label="interoperable" value={String(out.subscores.Interoperable)} />
+        <Stat label="reusable" value={String(out.subscores.Reusable)} />
+      </StatGrid>
 
       <div className="mt-6 flex flex-wrap gap-2 text-[12px]">
         <span className="border border-[color:var(--hairline)] bg-[color:var(--bone)] px-2 py-1">

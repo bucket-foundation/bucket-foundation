@@ -1,19 +1,3 @@
-/**
- * grants-gateway, feed402 v0.2 paid grants-search merchant.
- *
- * Endpoints (see SPEC.md §5 tiers):
- * GET /grants/raw?id=... $0.010 / row
- * GET /grants/query?topic=&deadline_before=&... $0.005 / call
- * GET /grants/insight?venture=&topic= $0.002 / call
- *
- * All endpoints return a feed402 §3 envelope with a mandatory citation
- * block (canonical_url -> grants.gov / NIH RePORTER / NSF / ProPublica
- * 990-PF page). Payment verification is STUBBED, see src/x402.ts.
- *
- * Run: npm run dev
- * Curl: see README.md
- */
-
 import { Hono } from "hono";
 import type { Context } from "hono";
 import {
@@ -33,8 +17,6 @@ import { synthesizerFromEnv, type Synthesizer } from "./insight/synthesizer.js";
 import { meterFromEnv, type ViatikaMeter } from "./metering/viatika.js";
 import { nowIso, traceId, verifyPayment, verifyConfigFromEnv, x402Challenge } from "./x402.js";
 
-// ---------- Config ----------
-
 const PROVIDER_NAME = process.env.PROVIDER_NAME ?? "bucket-grants-gateway";
 const PROVIDER_VERSION = "0.1.0-alpha.1";
 const PROVIDER_DOMAIN = process.env.PROVIDER_DOMAIN ?? "grants.bucket.foundation";
@@ -47,8 +29,6 @@ const TIERS: Record<TierName, TierSpec> = {
   query:   { path: "/grants/query",   price_usd: 0.005, unit: "call" },
   insight: { path: "/grants/insight", price_usd: 0.002, unit: "call" },
 };
-
-// ---------- Wiring ----------
 
 function makeStore(): GrantsStore {
   const which = (process.env.GRANTS_STORE ?? "memory").toLowerCase();
@@ -72,8 +52,6 @@ console.log(`[grants-gateway] insight_synth=${synthLabel}`);
 const _synthTypeCheck: Synthesizer = synthesizer;
 void _synthTypeCheck;
 const meter: ViatikaMeter = meterFromEnv();
-
-// ---------- Helpers ----------
 
 function makeReceipt(tier: TierName, tx: string): Receipt {
   return {
@@ -132,14 +110,10 @@ async function chargeOrFail(
   return { ok: true, tx: pay.tx };
 }
 
-// ---------- App ----------
-
 const app = new Hono();
 
-// Liveness probe, cheap, no I/O
 app.get("/health", (c) => c.json({ ok: true, ts: nowIso() }));
 
-// §1 Discovery manifest
 app.get("/.well-known/feed402.json", async (c) => {
   const all = await store.all();
   const index: IndexManifest = {
@@ -165,7 +139,6 @@ app.get("/.well-known/feed402.json", async (c) => {
   return c.json(manifest);
 });
 
-// /grants/raw, single full record by id
 app.get("/grants/raw", async (c) => {
   const id = c.req.query("id");
   if (!id) {
@@ -198,7 +171,6 @@ app.get("/grants/raw", async (c) => {
   return c.json(env, 200);
 });
 
-// /grants/query, structured search
 app.get("/grants/query", async (c) => {
   const charge = await chargeOrFail(c, "query");
   if (!charge.ok) return charge.resp;
@@ -235,7 +207,6 @@ app.get("/grants/query", async (c) => {
   return c.json(env, 200);
 });
 
-// /grants/insight, venture-fit synthesis
 app.get("/grants/insight", async (c) => {
   const venture = c.req.query("venture");
   const topic = c.req.query("topic");
@@ -252,7 +223,6 @@ app.get("/grants/insight", async (c) => {
   const candidates = await store.all();
   const { insight, provenance } = await synthesizer.synthesize({ venture, topic }, candidates);
 
-  // Cite the top match (or the first candidate if no match)
   const topId = insight.matches[0]?.grant_id ?? candidates[0]?.id;
   const top = topId ? await store.getById(topId) : null;
   const citation = top
@@ -290,8 +260,6 @@ function numQ(v: string | undefined): number | undefined {
   const n = Number(v);
   return Number.isFinite(n) ? n : undefined;
 }
-
-// ---------- Entrypoint ----------
 
 const port = Number(process.env.PORT ?? 8789);
 

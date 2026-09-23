@@ -1,0 +1,234 @@
+{
+  "result": {
+    "job_id": "j_9744aac774844ab6a2d8",
+    "tool": "survivalfit",
+    "render": "json",
+    "output": {
+      "demo": true,
+      "overall": {
+        "n_subjects": 14,
+        "n_events": 14,
+        "n_censored": 0,
+        "median_survival": 6,
+        "steps": [
+          {
+            "time": 1,
+            "n_risk": 14,
+            "n_event": 2,
+            "survival": 0.857143,
+            "std_err": 0.093522
+          },
+          {
+            "time": 2,
+            "n_risk": 12,
+            "n_event": 2,
+            "survival": 0.714286,
+            "std_err": 0.120736
+          },
+          {
+            "time": 3,
+            "n_risk": 10,
+            "n_event": 1,
+            "survival": 0.642857,
+            "std_err": 0.12806
+          },
+          {
+            "time": 4,
+            "n_risk": 9,
+            "n_event": 1,
+            "survival": 0.571429,
+            "std_err": 0.13226
+          },
+          {
+            "time": 5,
+            "n_risk": 8,
+            "n_event": 1,
+            "survival": 0.5,
+            "std_err": 0.133631
+          },
+          {
+            "time": 6,
+            "n_risk": 7,
+            "n_event": 1,
+            "survival": 0.428571,
+            "std_err": 0.13226
+          },
+          {
+            "time": 7,
+            "n_risk": 6,
+            "n_event": 1,
+            "survival": 0.357143,
+            "std_err": 0.12806
+          },
+          {
+            "time": 10,
+            "n_risk": 5,
+            "n_event": 1,
+            "survival": 0.285714,
+            "std_err": 0.120736
+          },
+          {
+            "time": 13,
+            "n_risk": 4,
+            "n_event": 1,
+            "survival": 0.214286,
+            "std_err": 0.109664
+          },
+          {
+            "time": 16,
+            "n_risk": 3,
+            "n_event": 1,
+            "survival": 0.142857,
+            "std_err": 0.093522
+          },
+          {
+            "time": 22,
+            "n_risk": 2,
+            "n_event": 1,
+            "survival": 0.071429,
+            "std_err": 0.06883
+          },
+          {
+            "time": 23,
+            "n_risk": 1,
+            "n_event": 1,
+            "survival": 0,
+            "std_err": 0
+          }
+        ]
+      },
+      "method": "Kaplan-Meier product-limit estimator (Kaplan & Meier 1958) with Greenwood's variance; median = smallest time with S(t) ≤ 0.5. Two-group comparison uses the exact Mantel-Cox log-rank test (hypergeometric expected/variance at each event time, χ² on 1 df via scipy.stats). lifelines is used if installed, else the identical math is computed in-house. CPU-only, no GPU.",
+      "note": "DEMO: two-separated groups (A survives much longer than B). Group A median = 13, group B median = 2; the log-rank test is significant (p < 0.05). Field tool for biomed-bio + econ-social: time-to-event analysis is the workhorse of trials, epidemiology, reliability, and event-history models. This is the exact non-parametric estimator + the standard two-group test. Cox proportional-hazards regression (covariate adjustment) is a documented follow-up.",
+      "per_group": {
+        "A": {
+          "n_subjects": 7,
+          "n_events": 7,
+          "n_censored": 0,
+          "median_survival": 13,
+          "steps": [
+            {
+              "time": 6,
+              "n_risk": 7,
+              "n_event": 1,
+              "survival": 0.857143,
+              "std_err": 0.13226
+            },
+            {
+              "time": 7,
+              "n_risk": 6,
+              "n_event": 1,
+              "survival": 0.714286,
+              "std_err": 0.170747
+            },
+            {
+              "time": 10,
+              "n_risk": 5,
+              "n_event": 1,
+              "survival": 0.571429,
+              "std_err": 0.187044
+            },
+            {
+              "time": 13,
+              "n_risk": 4,
+              "n_event": 1,
+              "survival": 0.428571,
+              "std_err": 0.187044
+            },
+            {
+              "time": 16,
+              "n_risk": 3,
+              "n_event": 1,
+              "survival": 0.285714,
+              "std_err": 0.170747
+            },
+            {
+              "time": 22,
+              "n_risk": 2,
+              "n_event": 1,
+              "survival": 0.142857,
+              "std_err": 0.13226
+            },
+            {
+              "time": 23,
+              "n_risk": 1,
+              "n_event": 1,
+              "survival": 0,
+              "std_err": 0
+            }
+          ]
+        },
+        "B": {
+          "n_subjects": 7,
+          "n_events": 7,
+          "n_censored": 0,
+          "median_survival": 2,
+          "steps": [
+            {
+              "time": 1,
+              "n_risk": 7,
+              "n_event": 2,
+              "survival": 0.714286,
+              "std_err": 0.170747
+            },
+            {
+              "time": 2,
+              "n_risk": 5,
+              "n_event": 2,
+              "survival": 0.428571,
+              "std_err": 0.187044
+            },
+            {
+              "time": 3,
+              "n_risk": 3,
+              "n_event": 1,
+              "survival": 0.285714,
+              "std_err": 0.170747
+            },
+            {
+              "time": 4,
+              "n_risk": 2,
+              "n_event": 1,
+              "survival": 0.142857,
+              "std_err": 0.13226
+            },
+            {
+              "time": 5,
+              "n_risk": 1,
+              "n_event": 1,
+              "survival": 0,
+              "std_err": 0
+            }
+          ]
+        }
+      },
+      "logrank": {
+        "observed_group1": 6,
+        "expected_group1": 10.5194,
+        "variance": 1.3957,
+        "chi_square": 14.6348,
+        "df": 1,
+        "p_value": 0.00013,
+        "significant_at_0.05": true,
+        "group1": "A",
+        "group2": "B"
+      },
+      "ground_truth": {
+        "group_A_median": 13,
+        "group_B_median": 2,
+        "logrank_significant": true
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "survivalfit",
+        "at": "2026-09-23T03:48:19.261813+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

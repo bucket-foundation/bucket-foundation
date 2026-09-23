@@ -1,39 +1,6 @@
 "use client";
 
-/**
- * /research-os/review, the teacher review queue (bkt-ros, Phase 1 item 4).
- * Lists every held transfer-item answer and every submitted Production
- * awaiting a decision (GET /api/research-os/review), and lets a signed-in
- * reviewer approve or return each one (POST /api/research-os/review). See
- * src/app/api/research-os/review/route.ts for the full decision rules.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/workspace/page.tsx. Being signed in is necessary but
- * NOT sufficient: the API gates on
- * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
- * so a signed-in non-reviewer sees a 403 here instead of the queue.
- * TODO(Phase 1, review section 4 gap analysis "Role system"): this page has
- * no roster and no class-scoped view -- a reviewer sees every pending item
- * across the whole graph. That is fine at Phase 0/1's single-path scale and
- * stops being fine once a real school's worth of learners and nodes exist.
- * reviewer.ts's own header
- * has the plan to replace the allowlist with a roster-backed role; this
- * page's query (currently "every pending item, no class filter") is the
- * matching TODO on the UI side.
- *
- * Production guard (bkt-ros, production guard bead, task item 5): each
- * queued Production now also shows its guard flags (unverified sources,
- * a duplicate-claim match, missing counter-evidence at the
- * internalization tier, a single-source lateral-reading flag), computed
- * by /api/research-os/production's POST at submit time and read here
- * as-is. Approve is disabled client-side
- * while any source is unverified (the API's own 409 is the enforced
- * gate; this is the same belt-and-suspenders posture the rest of this
- * codebase already keeps between RLS and an application-code check); a
- * "use template" button fills the reason field with
- * production-guard.ts's own unverifiedSourceReturnNote text for a return
- * decision.
- */
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -114,9 +81,11 @@ export default function ResearchOsReviewPage() {
     setQueueError(null);
     try {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
-      const data = await res.json();
+      const data = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
-        setQueueError(res.status === 403 ? "forbidden" : data.error || "load_failed");
+        setQueueError(
+          res.status === 403 ? "forbidden" : isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed",
+        );
         setQueue(null);
         return;
       }
@@ -156,8 +125,14 @@ export default function ResearchOsReviewPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
-      const data = await res.json();
-      setNotice(res.ok ? `${decision === "approved" ? "Approved" : "Returned"}.` : data.message || data.error || "decision_failed");
+      const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
+      setNotice(
+        res.ok
+          ? `${decision === "approved" ? "Approved" : "Returned"}.`
+          : isTransientOutage(res.status, data.error ?? null)
+            ? OUTAGE_COPY.body
+            : data.message || data.error || "decision_failed",
+      );
       if (res.ok) loadQueue();
     } finally {
       setBusyKey(null);
@@ -194,7 +169,10 @@ export default function ResearchOsReviewPage() {
             RESEARCH_OS_REVIEWER_EMAILS (see src/lib/research-os/reviewer.ts).
           </p>
         )}
-        {queueError && queueError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>}
+        {queueError === "transient" && <p className="mt-6 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
+        {queueError && queueError !== "forbidden" && queueError !== "transient" && (
+          <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({queueError}).</p>
+        )}
 
         {queue && (
           <div className="mt-8 flex flex-col gap-10">
@@ -256,9 +234,6 @@ export default function ResearchOsReviewPage() {
                       </div>
                       {p.claim && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">claim: {p.claim}</p>}
 
-                      {/* Production guard flags (task item 5): unverified
-                          sources, a duplicate-claim match, missing
-                          counter-evidence at the internalization tier. */}
                       {(approveBlocked || p.duplicateFlag || p.lateralReadingFlag || p.guardFlags.missingCounterEvidence) && (
                         <div className="mt-2 flex flex-col gap-1">
                           {approveBlocked && (

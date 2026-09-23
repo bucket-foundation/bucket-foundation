@@ -21,7 +21,6 @@ function NodeList({ items, empty }: { items: Lite[]; empty: string }) {
   );
 }
 
-/** Awareness, in place: what comes before and after this node in learning order, where it leads, and what it touches across branches. */
 export default function AroundSection({ data }: { data: NodeData }) {
   const { prerequisites, dependents, related, directions } = data;
   const reach = directions.reach.reduce((a, b) => a + b, 0);

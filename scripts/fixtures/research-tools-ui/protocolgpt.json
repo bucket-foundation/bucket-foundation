@@ -1,0 +1,166 @@
+{
+  "result": {
+    "job_id": "j_511e2e50f9c04c678848",
+    "tool": "protocolgpt",
+    "render": "json",
+    "output": {
+      "method": "deterministic rule/template extraction over a methods knowledge base",
+      "llm_cleanup_available": false,
+      "llm_cleanup_applied": false,
+      "title": "Protocol: Prepare mL culture in LB medium with ml",
+      "n_steps": 5,
+      "steps": [
+        {
+          "n": 1,
+          "action": "Prepare a 50 mL culture in LB medium with 100 µg/ml ampicillin.",
+          "durations": [],
+          "temperatures": [],
+          "speeds": [],
+          "volumes": [
+            "50 mL"
+          ],
+          "masses": [
+            "100 µg"
+          ],
+          "concentrations": [
+            "100 µg/ml"
+          ],
+          "reagents": [
+            "LB",
+            "medium",
+            "ampicillin"
+          ],
+          "safety_flags": []
+        },
+        {
+          "n": 2,
+          "action": "Inoculate with a single colony and grow overnight at 37°C with shaking.",
+          "durations": [],
+          "temperatures": [
+            "37°C"
+          ],
+          "speeds": [],
+          "volumes": [],
+          "masses": [],
+          "concentrations": [],
+          "reagents": [],
+          "safety_flags": []
+        },
+        {
+          "n": 3,
+          "action": "Harvest the cells by centrifugation at 4000 rpm for 10 min.",
+          "durations": [
+            "10 min"
+          ],
+          "temperatures": [],
+          "speeds": [
+            "4000 rpm"
+          ],
+          "volumes": [],
+          "masses": [],
+          "concentrations": [],
+          "reagents": [],
+          "safety_flags": [
+            "high-speed centrifugation"
+          ]
+        },
+        {
+          "n": 4,
+          "action": "Resuspend the pellet in 5 mL lysis buffer containing 1 mM EDTA and 10 mM Tris.",
+          "durations": [],
+          "temperatures": [],
+          "speeds": [],
+          "volumes": [
+            "5 mL"
+          ],
+          "masses": [],
+          "concentrations": [
+            "1 mM",
+            "10 mM"
+          ],
+          "reagents": [
+            "buffer",
+            "EDTA",
+            "Tris"
+          ],
+          "safety_flags": []
+        },
+        {
+          "n": 5,
+          "action": "Sonicate on ice for 2 min.",
+          "durations": [
+            "2 min"
+          ],
+          "temperatures": [
+            "on ice"
+          ],
+          "speeds": [],
+          "volumes": [],
+          "masses": [],
+          "concentrations": [],
+          "reagents": [],
+          "safety_flags": []
+        }
+      ],
+      "reagents": [
+        {
+          "name": "ampicillin",
+          "amount": "",
+          "concentration": "100 µg/ml"
+        },
+        {
+          "name": "buffer",
+          "amount": "",
+          "concentration": "1 mM"
+        },
+        {
+          "name": "EDTA",
+          "amount": "",
+          "concentration": "1 mM"
+        },
+        {
+          "name": "LB",
+          "amount": "",
+          "concentration": "100 µg/ml"
+        },
+        {
+          "name": "medium",
+          "amount": "",
+          "concentration": "100 µg/ml"
+        },
+        {
+          "name": "Tris",
+          "amount": "",
+          "concentration": "1 mM"
+        }
+      ],
+      "safety_flags": [
+        {
+          "flag": "high-speed centrifugation",
+          "triggers": [
+            "centrifugation"
+          ],
+          "guidance": "Balance the rotor; never open while spinning; respect the rotor's max RCF."
+        }
+      ],
+      "summary": {
+        "n_reagents": 6,
+        "n_safety_flags": 1,
+        "n_timed_steps": 3
+      },
+      "note": "Steps, reagents, timings, temperatures, volumes, and safety flags are parsed from your actual prose by a deterministic rule extractor over a built-in methods knowledge base (action verbs, units, reagent cues, a hazard lexicon). With an LLM API key set, an optional cleanup pass refines wording within the SAME validated schema; with no key (default) the rule extraction IS the product. Always review before bench use."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "protocolgpt",
+        "at": "2026-09-23T05:20:55.838158+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

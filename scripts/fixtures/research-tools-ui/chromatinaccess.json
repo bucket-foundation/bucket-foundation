@@ -1,0 +1,149 @@
+{
+  "result": {
+    "job_id": "j_fa8e8af77cfa4447b231",
+    "tool": "chromatinaccess",
+    "render": "json",
+    "output": {
+      "method": "interpretable sequence-feature accessibility model (GC + CpG islands + core-promoter motifs)",
+      "demo": true,
+      "length_nt": 533,
+      "gc_content": 0.9869,
+      "cpg_islands": [
+        {
+          "start": 0,
+          "end": 200,
+          "gc": 1,
+          "obs_exp_cpg": 1.98
+        },
+        {
+          "start": 20,
+          "end": 220,
+          "gc": 1,
+          "obs_exp_cpg": 1.98
+        },
+        {
+          "start": 40,
+          "end": 240,
+          "gc": 1,
+          "obs_exp_cpg": 1.98
+        },
+        {
+          "start": 60,
+          "end": 260,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 80,
+          "end": 280,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 100,
+          "end": 300,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 120,
+          "end": 320,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 140,
+          "end": 340,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 160,
+          "end": 360,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.04
+        },
+        {
+          "start": 180,
+          "end": 380,
+          "gc": 0.965,
+          "obs_exp_cpg": 1.999
+        },
+        {
+          "start": 200,
+          "end": 400,
+          "gc": 0.965,
+          "obs_exp_cpg": 1.999
+        },
+        {
+          "start": 220,
+          "end": 420,
+          "gc": 0.965,
+          "obs_exp_cpg": 1.999
+        },
+        {
+          "start": 240,
+          "end": 440,
+          "gc": 0.965,
+          "obs_exp_cpg": 2.02
+        },
+        {
+          "start": 260,
+          "end": 460,
+          "gc": 1,
+          "obs_exp_cpg": 1.942
+        },
+        {
+          "start": 280,
+          "end": 480,
+          "gc": 1,
+          "obs_exp_cpg": 1.942
+        },
+        {
+          "start": 300,
+          "end": 500,
+          "gc": 1,
+          "obs_exp_cpg": 1.942
+        },
+        {
+          "start": 320,
+          "end": 520,
+          "gc": 1,
+          "obs_exp_cpg": 1.942
+        }
+      ],
+      "n_cpg_islands": 17,
+      "promoter_motifs": {
+        "TATA_box": [
+          240
+        ],
+        "GC_box": [
+          367
+        ],
+        "CAAT_box": [],
+        "Initiator": []
+      },
+      "n_promoter_motifs": 2,
+      "accessibility_score": 0.9501,
+      "call": "open/accessible (regulatory-rich)",
+      "note": "Real, interpretable accessibility model: GC content, Gardiner-Garden CpG islands, and core-promoter motif scan combined into a 0-1 accessibility score. A deep DNA language model (Enformer/Evo) that predicts actual ATAC/DNase signal is the documented GPU extension; this feature model is real, deterministic, and explainable.",
+      "ground_truth": {
+        "has_cpg_island": true,
+        "has_tata": true,
+        "expected_call": "open/accessible (regulatory-rich)"
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "chromatinaccess",
+        "at": "2026-09-23T03:46:01.124156+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

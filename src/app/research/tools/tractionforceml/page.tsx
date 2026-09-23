@@ -6,7 +6,6 @@ export const metadata = toolMetadata("tractionforceml");
 const _jsonld = toolJsonLd("tractionforceml");
 import TractionForceClient from "./TractionForceClient";
 
-// TractionForceML run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

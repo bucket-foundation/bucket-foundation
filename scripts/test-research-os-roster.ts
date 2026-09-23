@@ -1,16 +1,3 @@
-/**
- * Unit tests: OneRoster 1.2 CSV roster sync (bkt-ros, ros-06 follow-on),
- * src/lib/research-os/roster/{csv,grade,oneroster,diff,sources}.ts. No
- * database: matching every other scripts/test-research-os-*.ts file's
- * convention (node:test + node:assert), the CSV parser, the diff engine,
- * and the grade-to-bucket mapping run against plain fixture strings and
- * arrays. src/lib/research-os/roster/apply.ts (the live Supabase adapter)
- * is out of reach of this suite, same as every other DB-touching function
- * in this repo; see ROSTER.md, "what this suite does not cover."
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-roster.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -21,10 +8,6 @@ import { parseOneRosterBundle } from "../src/lib/research-os/roster/oneroster";
 import { applyRosterDiffToState, computeRosterDiff, emptyRosterState, type RosterExistingState } from "../src/lib/research-os/roster/diff";
 import { CleverSource, ClassLinkSource, OneRosterCsvSource } from "../src/lib/research-os/roster/sources";
 import type { RosterBundle } from "../src/lib/research-os/roster/types";
-
-// ---------------------------------------------------------------------------
-// csv.ts
-// ---------------------------------------------------------------------------
 
 test("parseCsv: quoted fields, embedded commas, and doubled-quote escaping", () => {
   const text = 'sourcedId,title,note\nc1,"Grade 5, Science",plain\nc2,plain2,"He said ""hi"""\n';
@@ -40,10 +23,6 @@ test("parseCsv: short row pads missing trailing columns with an empty string", (
   assert.equal(rows[0].b, "2");
   assert.equal(rows[0].c, "");
 });
-
-// ---------------------------------------------------------------------------
-// grade.ts
-// ---------------------------------------------------------------------------
 
 test("gradeToBirthYearBucket: grades 07 and below map to under13, 08-12 to 13to17", () => {
   assert.equal(gradeToBirthYearBucket(["KG"]), "under13");
@@ -69,10 +48,6 @@ test("splitGradesField: comma- or semicolon-joined codes", () => {
   assert.deepEqual(splitGradesField("06;07"), ["06", "07"]);
   assert.deepEqual(splitGradesField(""), []);
 });
-
-// ---------------------------------------------------------------------------
-// Fixture bundle: 2 classes, 1 teacher, 5 students
-// ---------------------------------------------------------------------------
 
 const ORGS_CSV = ["sourcedId,name,type", "org-district-1,Example District,district", "org-school-1,Example School,school"].join("\n");
 
@@ -121,10 +96,6 @@ test("parseOneRosterBundle: teacher resolved from enrollments.csv role, not user
   assert.equal(student!.role, "student");
 });
 
-// ---------------------------------------------------------------------------
-// Dry-run diff counts
-// ---------------------------------------------------------------------------
-
 test("computeRosterDiff: dry-run counts for the fixture bundle", () => {
   const bundle = buildBundle();
   const diff = computeRosterDiff(bundle, stateWithAuthUsers());
@@ -157,10 +128,6 @@ test("computeRosterDiff: a class with no teacher enrollment at all is unresolved
   assert.equal(diff.classMembers.skipped[0].reason, "unknown_class");
 });
 
-// ---------------------------------------------------------------------------
-// Idempotency: apply twice yields no change
-// ---------------------------------------------------------------------------
-
 test("apply twice yields no change: second dry run against the post-apply state has zero creates/updates", () => {
   const bundle = buildBundle();
   const state0 = stateWithAuthUsers();
@@ -177,8 +144,6 @@ test("apply twice yields no change: second dry run against the post-apply state 
   assert.equal(diff2.counts.reviewerCandidatesToUpdate, 0);
   assert.equal(diff2.counts.learnerProfilesToCreate, 0);
   assert.equal(diff2.counts.learnerProfilesToUpdate, 0);
-  // The malformed enrollment is reported every run; idempotency does not
-  // make a structurally unresolved row disappear.
   assert.equal(diff2.counts.classMembersSkipped, 1);
 
   const state2 = applyRosterDiffToState(state1, diff2);
@@ -199,10 +164,6 @@ test("applying a re-sync never resets an approved reviewer_candidates status", (
   const state2 = applyRosterDiffToState(state1, diff2);
   assert.equal(state2.reviewerCandidates[0].status, "approved");
 });
-
-// ---------------------------------------------------------------------------
-// Data minimization: extra PII columns dropped at parse time
-// ---------------------------------------------------------------------------
 
 test("extra PII columns (address, phone) are dropped at parse time, never persisted", () => {
   const bundle = buildBundle(usersCsv(",address,phone", ",123 Main St,555-0100"));
@@ -233,15 +194,9 @@ test("adversarial: a birthdate column is dropped at parse time and never reaches
   for (const serialized of [serializedProfiles, serializedCandidates, serializedMembers, serializedWarnings]) {
     assert.ok(!serialized.includes("2015-04-12"), "a birthdate value must never reach a write payload or a warning line");
   }
-  // The grade-derived bucket still resolves normally; a birthdate column
-  // present alongside grades never overrides or blocks that mapping.
   const student1Profile = diff.learnerProfiles.create.find((p) => p.sourcedId === "student-1");
   assert.equal(student1Profile?.birthYearBucket, "under13");
 });
-
-// ---------------------------------------------------------------------------
-// Malformed enrollment: unknown class reported and skipped
-// ---------------------------------------------------------------------------
 
 test("an enrollment referencing an unknown class is reported and skipped", () => {
   const bundle = buildBundle();
@@ -255,10 +210,6 @@ test("an enrollment referencing an unknown class is reported and skipped", () =>
   );
 });
 
-// ---------------------------------------------------------------------------
-// Vendor adapters: RosterSource interface
-// ---------------------------------------------------------------------------
-
 test("OneRosterCsvSource.fetchBundle parses the same way parseOneRosterBundle does", async () => {
   const source = new OneRosterCsvSource({ orgsCsv: ORGS_CSV, usersCsv: usersCsv(), classesCsv: CLASSES_CSV, enrollmentsCsv: ENROLLMENTS_CSV });
   const bundle = await source.fetchBundle();
@@ -270,11 +221,6 @@ test("CleverSource and ClassLinkSource throw 'not configured' until a district p
   await assert.rejects(() => new CleverSource().fetchBundle(), /not configured/);
   await assert.rejects(() => new ClassLinkSource().fetchBundle(), /not configured/);
 });
-
-// ---------------------------------------------------------------------------
-// Migration text (static: no live Postgres in this suite, matching
-// scripts/test-research-os-teacher-class.ts's own precedent).
-// ---------------------------------------------------------------------------
 
 const ROSTER_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910050000_research_os_roster.sql");
 
@@ -289,33 +235,12 @@ test("migration: graph.classes and graph.learner_profiles gain source_system/sou
   assert.match(sql, /status\s+text\s+not null default 'pending'/);
 });
 
-// ---------------------------------------------------------------------------
-// Privacy delete regression: the existing delete function still covers
-// graph.learner_profiles now that this bead adds columns to it. No live
-// Postgres to run graph.privacy_delete_learner against (same limit as
-// every other migration-backed function in this suite), so this is a
-// static read of its own SQL text, the same technique the RLS check
-// above and TEACHER-LAYER.md's own migration test use.
-// ---------------------------------------------------------------------------
-
 const PRIVACY_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910040000_research_os_privacy_consent.sql");
 
 test("privacy delete regression: graph.privacy_delete_learner still deletes graph.learner_profiles rows", () => {
   const sql = readFileSync(PRIVACY_MIGRATION, "utf8");
   assert.match(sql, /delete from graph\.learner_profiles where learner_id = p_learner_id/);
 });
-
-// ---------------------------------------------------------------------------
-// Reviewer gate: the roster route checks verifyReviewer before it ever
-// parses the request body. "@/lib/research-os/db" imports its Supabase
-// client at module load, so importing route.ts directly under plain
-// ts-node (no path-alias loader wired into this suite) is not the reach a
-// unit test can take; a static read of the route's own source, the same
-// technique the migration checks above use, is what confirms the ordering
-// this bead's own docstring claims: an unauthenticated POST is refused
-// with 403 before its multipart body (which could carry a birthdate
-// column) is ever read.
-// ---------------------------------------------------------------------------
 
 const ROSTER_ROUTE = join(__dirname, "..", "src", "app", "api", "research-os", "roster", "route.ts");
 

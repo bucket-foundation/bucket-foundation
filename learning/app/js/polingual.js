@@ -1,46 +1,13 @@
-/* polingual.js, Polingual word explorer engine (dependency-free).
- *
- * HYBRID index (bkt-2ea / bkt-nhy): each lens tries the LIVE full-index API
- * first (same-origin Next proxy `/api/polingual?op=…`, which forwards to the
- * 45k-photon / 27-lang Hetzner service) and, on failure / timeout / offline,
- * falls back to the baked STARTER-TIER subset computed entirely in the browser.
- *
- * The synchronous *TopK / translate / etymology / lookup functions are the
- * subset engine and are unchanged, they remain the offline fallback and are
- * what the headless DOM-shim test exercises (no network in the shim). The new
- * *Async wrappers are what the explorer UI calls; they return
- * { records|result, source: "live" | "subset", attribution }
- * so the UI can render provenance and surface an "offline, starter set"
- * note only on the fallback path.
- *
- * lookupAsync(surface, lang) exact (or fuzzy) word record
- * semanticAsync(ref, k) words that MEAN the same, cross-lingual
- * phoneticAsync(ref, k) words that SOUND the same
- * spellingAsync(ref, k) words SPELLED similarly
- * translateAsync(ref) the same core concept across languages
- * etymologyAsync(ref) the Kaikki etymology snippet (CC-BY-SA)
- *
- * The baked subset is ~4.5k×768 int8 rows, cosine is a trivial dot-product
- * loop in JS (<5 ms). The full 45k index lives behind the proxy on Hetzner.
- *
- * Data: Wiktionary via Kaikki (CC-BY-SA). Attribution is REQUIRED, see .attribution.
- */
 (function () {
   "use strict";
 
   var ASSET_BASE = "polingual/";
 
-  /* ---- LIVE full-index proxy ------------------------------------------ */
-  // Same-origin Next route → polingual.agfarms.dev (45k photons, 27 langs).
   var PROXY_BASE = "/api/polingual";
   var PROXY_TIMEOUT_MS = 6000;
-  // Once the proxy is known to be unreachable we stop hammering it for a short
-  // window so lens switches stay snappy (purely a UX optimization; re-probes).
   var liveCooldownUntil = 0;
   var LIVE_COOLDOWN_MS = 30000;
 
-  // ISO-639-1 names for the full-index languages the API can return (27 of
-  // them). The subset manifest's language_names take precedence when present.
   var LANG_NAMES_FULL = {
     ar: "Arabic", cs: "Czech", de: "German", el: "Greek", en: "English",
     es: "Spanish", fa: "Persian", fi: "Finnish", fr: "French", he: "Hebrew",
@@ -49,17 +16,11 @@
     sa: "Sanskrit", sv: "Swedish", ta: "Tamil", th: "Thai", tr: "Turkish",
     vi: "Vietnamese", zh: "Chinese",
   };
-  // Vector dims come from the manifest (the substrate moved to LaBSE 768-d for
-  // bkt-nhy); these are defaults until subset.json is read.
   var SEM_DIM = 768;
   var PHON_DIM = 64;
-  var ROW = SEM_DIM + PHON_DIM; // int8 per word
+  var ROW = SEM_DIM + PHON_DIM;
 
-  // Headword language-priority (mirror scripts/photon/query.py): prefer the
-  // queried language (English first) so "light" resolves to the en illumination
-  // noun ahead of a same-spelled foreign loanword.
   var LANG_PREF = ["en", "es", "fr", "de", "it", "pt", "la", "nl", "sv", "ru", "el", "sa"];
-  // Sense-noise control for the MEANING lens.
   var MIN_COS = 0.5;
   var REL_GAP = 0.22;
   function prefRank(lang) {
@@ -69,20 +30,19 @@
 
   var state = {
     loaded: false,
-    loading: null, // in-flight Promise (dedupe concurrent opens)
-    words: null, // [{s,l,g,p,ipa,hv,c?,e?}]
+    loading: null,
+    words: null,
     manifest: null,
     attribution: null,
-    conceptIndex: null, // concept -> [rowIdx...]
-    sem: null, // Float32Array, normalized, length = N*SEM_DIM
-    pho: null, // Float32Array, normalized, length = N*PHON_DIM
-    phoNorm: null, // per-row phonetic L2 norm (0 = no vector)
-    byKey: null, // "lang surface" -> rowIdx ; also "surface" -> rowIdx
-    bySurface: null, // surface -> [rowIdx...] for language-priority headword
+    conceptIndex: null,
+    sem: null,
+    pho: null,
+    phoNorm: null,
+    byKey: null,
+    bySurface: null,
     n: 0,
   };
 
-  /* ---- loading -------------------------------------------------------- */
   function load() {
     if (state.loaded) return Promise.resolve(state);
     if (state.loading) return state.loading;
@@ -118,8 +78,6 @@
     var n = W.length;
     state.n = n;
 
-    // Vector geometry comes from the manifest so the client tracks the substrate
-    // (LaBSE 768-d for bkt-nhy). Falls back to the module defaults.
     if (state.manifest.sem_dim) SEM_DIM = state.manifest.sem_dim | 0;
     if (state.manifest.phon_dim) PHON_DIM = state.manifest.phon_dim | 0;
     ROW = SEM_DIM + PHON_DIM;
@@ -127,14 +85,12 @@
     if (typeof state.manifest.rel_gap === "number") REL_GAP = state.manifest.rel_gap;
     if (Array.isArray(state.manifest.lang_preference)) LANG_PREF = state.manifest.lang_preference;
 
-    // Reconstruct + L2-normalize the int8 vectors once, up front.
-    var raw = new Int8Array(vecBuf); // n * ROW
+    var raw = new Int8Array(vecBuf);
     var sem = new Float32Array(n * SEM_DIM);
     var pho = new Float32Array(n * PHON_DIM);
     var phoNorm = new Float32Array(n);
     for (var i = 0; i < n; i++) {
       var base = i * ROW;
-      // semantic: already unit-norm at build time; reconstruct + renormalize
       var so = i * SEM_DIM, ss = 0;
       for (var d = 0; d < SEM_DIM; d++) {
         var v = raw[base + d] / 127;
@@ -143,7 +99,6 @@
       }
       var sn = Math.sqrt(ss) || 1;
       for (d = 0; d < SEM_DIM; d++) sem[so + d] /= sn;
-      // phonetic
       var po = i * PHON_DIM, ps = 0;
       for (d = 0; d < PHON_DIM; d++) {
         var pv = raw[base + SEM_DIM + d] / 127;
@@ -158,8 +113,6 @@
     state.pho = pho;
     state.phoNorm = phoNorm;
 
-    // index: (lang,surface) exact, plus surface-only fallback (first wins),
-    // plus surface -> ALL candidates so the headword can be language-prioritized.
     var byKey = new Map();
     var bySurface = new Map();
     for (i = 0; i < n; i++) {
@@ -168,7 +121,7 @@
       if (!byKey.has(k)) byKey.set(k, i);
       if (!byKey.has(w.s)) byKey.set(w.s, i);
       var lk = w.s.toLowerCase();
-      if (!byKey.has("~" + lk)) byKey.set("~" + lk, i); // case-insensitive fallback
+      if (!byKey.has("~" + lk)) byKey.set("~" + lk, i);
       if (!bySurface.has(w.s)) bySurface.set(w.s, []);
       bySurface.get(w.s).push(i);
       var lkey = "~" + lk;
@@ -179,7 +132,6 @@
     state.bySurface = bySurface;
   }
 
-  /* ---- helpers -------------------------------------------------------- */
   function ready() {
     return state.loaded;
   }
@@ -201,7 +153,6 @@
     return state.words[rowIdx];
   }
 
-  // Resolve a reference to a row index. ref = rowIdx | {row} | {surface,lang} | "surface"
   function resolve(ref, lang) {
     if (ref == null) return -1;
     if (typeof ref === "number") return ref;
@@ -216,9 +167,6 @@
     }
     var bk = state.byKey;
     if (lg && bk.has(lg + " " + surface)) return bk.get(lg + " " + surface);
-    // language-priority headword: among ALL photons sharing this surface, pick
-    // the one whose language is highest in LANG_PREF (English first). This stops
-    // "light" from resolving to a same-spelled foreign loanword.
     var cands = (state.bySurface && state.bySurface.get(surface)) ||
       (state.bySurface && state.bySurface.get("~" + String(surface).toLowerCase()));
     if (cands && cands.length) {
@@ -238,12 +186,10 @@
     return ci == null ? -1 : ci;
   }
 
-  // Open lookup: exact, then case-insensitive, then best spelling match.
   function lookup(surface, lang) {
     if (!surface) return null;
     var i = resolve(surface, lang);
     if (i >= 0) return record(i);
-    // fall back to closest spelling (any lang)
     var best = spellingTopK({ s: surface, l: lang || "" }, 1, { allowMissingRow: true });
     return best.length ? best[0] : null;
   }
@@ -269,10 +215,6 @@
     return String(g || "").toLowerCase().split(/\s+/).join(" ").slice(0, 50);
   }
 
-  /* ---- lens 1: semantic (cross-lingual meaning), SENSE-CONSISTENT ----- */
-  // Filters that cut the cross-sense noise (bkt-nhy): an absolute cosine floor
-  // (MIN_COS) plus a relative gap below the best hit (REL_GAP), one-per-language
-  // (luz/lumière/luce/Licht, one per language), and near-identical-gloss dedup.
   function semanticTopK(ref, k, opts) {
     opts = opts || {};
     k = k || 8;
@@ -314,7 +256,6 @@
     return out;
   }
 
-  /* ---- lens 2: phonetic (sound) --------------------------------------- */
   function phoneticTopK(ref, k) {
     var i = resolve(ref);
     if (i < 0 || state.phoNorm[i] === 0) return [];
@@ -332,7 +273,6 @@
     return topRecords(out, k || 8, "score");
   }
 
-  /* ---- lens 3: spelling (normalized edit distance) -------------------- */
   function normEdit(a, b) {
     a = a.toLowerCase();
     b = b.toLowerCase();
@@ -381,14 +321,12 @@
     var W = state.words;
     for (var j = 0; j < state.n; j++) {
       if (j === selfRow) continue;
-      // same-script bias: compare within source lang if known, else everything
       var d = normEdit(surface, W[j].s);
       if (d < 1) out.push([j, 1 - d]);
     }
     return topRecords(out, k || 8, "similarity");
   }
 
-  /* ---- lens 4: translate (same concept across languages) -------------- */
   function translate(ref) {
     var i = resolve(ref);
     if (i < 0) return { concept: null, results: [] };
@@ -406,7 +344,6 @@
         results.push(record(r));
       });
     }
-    // group by language for a clean translation table, source lang last
     results.sort(function (a, b) {
       if (a.lang === w.l) return 1;
       if (b.lang === w.l) return -1;
@@ -415,7 +352,6 @@
     return { concept: concept, source: record(i), results: results };
   }
 
-  /* ---- lens 5: etymology --------------------------------------------- */
   function etymology(ref) {
     var i = resolve(ref);
     if (i < 0) return null;
@@ -431,7 +367,6 @@
     };
   }
 
-  /* ---- shared top-k ---------------------------------------------------- */
   function topRecords(pairs, k, scoreName) {
     pairs.sort(function (a, b) {
       return b[1] - a[1];
@@ -445,13 +380,6 @@
     return out;
   }
 
-  /* ==================================================================== *
- * LIVE full-index layer (proxy-first, subset fallback) *
- * ==================================================================== */
-
-  // A neighbor/headword record from the LIVE API, shaped to MATCH record() so
-  // the renderer treats live + subset rows identically. There is no numeric
-  // `row` for full-index words, navigation uses `ref:{surface,lang}` instead.
   function liveRecord(o, scoreField) {
     if (!o) return null;
     var lang = o.lang || o.l || "";
@@ -476,8 +404,6 @@
     return rec;
   }
 
-  // Normalize a provenance blob (per-result or service-level) into a small
-  // attribution object the UI can render.
   function liveAttribution(prov) {
     var p = prov || {};
     if (typeof p === "string") return { source: p, license: "CC-BY-SA" };
@@ -494,9 +420,6 @@
     return true;
   }
 
-  // GET the proxy with a short timeout. Resolves the parsed JSON on a 2xx that
-  // is NOT a proxy fallback note (503 upstream_unreachable/timeout). Rejects on
-  // anything else so the caller drops to the subset.
   function proxyGet(op, params) {
     if (!liveAvailable()) return Promise.reject(new Error("live-unavailable"));
     var qs = "op=" + encodeURIComponent(op);
@@ -510,7 +433,6 @@
     return fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
       .then(function (r) {
         if (timer) clearTimeout(timer);
-        // 503 = the proxy's graceful "upstream down" fallback note → go subset.
         if (r.status === 503) {
           liveCooldownUntil = Date.now() + LIVE_COOLDOWN_MS;
           return Promise.reject(new Error("upstream-down"));
@@ -524,7 +446,6 @@
       })
       .catch(function (e) {
         if (timer) clearTimeout(timer);
-        // Network failure / offline / abort → cool down briefly, fail over.
         if (e && (e.name === "AbortError" || /Failed to fetch|NetworkError|live-unavailable|upstream-down/i.test(String(e.message || e)))) {
           if (Date.now() >= liveCooldownUntil) liveCooldownUntil = Date.now() + LIVE_COOLDOWN_MS;
         }
@@ -532,13 +453,9 @@
       });
   }
 
-  // Headword lookup. ref = "surface" | {surface,lang} | rowIdx (subset).
-  // Tries the live index first; falls back to the subset lookup() (which itself
-  // does fuzzy spelling resolution). Always resolves with { record, source }.
   function lookupAsync(ref, lang) {
     var surface, lg;
     if (typeof ref === "number") {
-      // already a subset row, no need to hit the network
       return Promise.resolve({ record: record(ref), source: "subset", attribution: state.attribution });
     } else if (ref && typeof ref === "object") {
       surface = ref.surface != null ? ref.surface : ref.s;
@@ -559,8 +476,6 @@
       .catch(function () { return subsetFallback(); });
   }
 
-  // Resolve the {surface,lang} for any ref (subset row OR live ref) so the
-  // neighbor lenses can be driven off a stable identity.
   function refSurfaceLang(ref) {
     if (ref && typeof ref === "object" && ref.surface != null) return { surface: ref.surface, lang: ref.lang || "" };
     if (typeof ref === "number") {
@@ -573,7 +488,6 @@
     return null;
   }
 
-  // Generic neighbor-lens runner: live proxy → mapped records, else subset fn.
   function neighborAsync(op, ref, k, subsetFn, extraParams) {
     var sl = refSurfaceLang(ref);
     var subsetFallback = function () {
@@ -608,9 +522,6 @@
     return neighborAsync("spelling", ref, k, spellingTopK);
   }
 
-  // Translation lens. The API returns exact_meaning_matches + semantic_neighbors
-  // (all in the target lang); the subset returns a concept-grouped table. We
-  // normalize both to { concept, source, results, source:"live"|"subset" }.
   function translateAsync(ref) {
     var sl = refSurfaceLang(ref);
     var subsetFallback = function () {
@@ -625,7 +536,6 @@
         var toLang = (j && j.to) || "";
         var arr = ex.concat(nb);
         var results = arr.map(function (o) {
-          // these carry no `lang` field, they're all in the target language
           var oo = { surface: o.surface, lang: o.lang || toLang, meaning_en: o.meaning_en, ipa: o.ipa, pos: o.pos };
           var rec = liveRecord(oo, "score");
           return rec;
@@ -669,7 +579,6 @@
       .catch(function () { return subsetFallback(); });
   }
 
-  /* ---- public API ----------------------------------------------------- */
   window.Polingual = {
     load: load,
     ready: ready,
@@ -686,7 +595,6 @@
     spellingTopK: spellingTopK,
     translate: translate,
     etymology: etymology,
-    // hybrid live-first async layer (subset fallback), what the explorer uses
     lookupAsync: lookupAsync,
     semanticAsync: semanticAsync,
     phoneticAsync: phoneticAsync,

@@ -1,12 +1,12 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import Section from "./Section";
 import type { NodeData } from "./types";
 import { BTN_PRIMARY } from "@/components/ui";
 
-/** Internalization, in place: carry the node somewhere it was not taught. Held for a teacher's decision. */
 export default function TransferSection({ data, onChanged }: { data: NodeData; onChanged: () => void }) {
   const [answer, setAnswer] = useState("");
   const [busy, setBusy] = useState(false);
@@ -24,7 +24,8 @@ export default function TransferSection({ data, onChanged }: { data: NodeData; o
       const res = await fetch("/api/research-os/state", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "transfer_item", nodeId: data.node.id, itemId: data.transfer.itemId, answer }) });
       const j = (await res.json().catch(() => ({}))) as { stage?: string; event?: { held?: boolean }; error?: string; message?: string; needsProfile?: boolean };
       if (!res.ok) {
-        setError({ text: j.message ?? j.error ?? "Could not record the transfer.", profile: Boolean(j.needsProfile) });
+        const text = isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.message ?? j.error ?? "Could not record the transfer.");
+        setError({ text, profile: Boolean(j.needsProfile) });
         return;
       }
       setDone(j.event?.held ? "Recorded and held for your teacher's decision." : `Recorded. Standing: ${j.stage ?? stage}.`);

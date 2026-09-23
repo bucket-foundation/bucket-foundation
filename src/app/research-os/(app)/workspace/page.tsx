@@ -1,89 +1,13 @@
 "use client";
 
-/**
- * /research-os/workspace, the Phase 0 student workspace (bkt-ros, task item
- * 4). Shows the target node, the frontier-backward chain as a vertical map
- * with stage indicators, the four AI tools (Locate, Quote, Check, Organize),
- * and a Production form that saves as a draft. See
- * _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section 8 for the
- * Phase 0 slice this implements, and src/app/api/research-os/* for the
- * routes this page calls.
- *
- * Auth reuses the SAME Supabase project and email-OTP flow the vanilla-JS
- * Academy app already uses (learning/app/js/auth.js), through the shared
- * `@/lib/supabase/client` the rest of the Next.js site already imports (see
- * src/context/AuthorContext.tsx). This reuses the existing Supabase Auth
- * project the rest of the site already relies on, reached here from React
- * instead of the static app. The review's auth-reconciliation gap (section
- * 2, "Auth surface") stays a Phase 0 open item, untouched by this page.
- *
- * Scope: no teacher layer, no roster, single locale (English), matching
- * task item 6. TODO(Phase 1, review section 4 gap analysis "Role system"):
- * still no roster-backed role.
- *
- * ros-07 UPDATE ("consent gate wiring"): every gated write (a tool call, a
- * probe answer, a transfer answer, a Production save) can return a 403
- * consent block (src/lib/research-os/consent.ts's requireConsent); this
- * page surfaces that as a banner via handleConsentResponse below, with a
- * link to /research-os/profile when the block is "no_profile". The footer
- * also adds self-service "export my data" / "delete my data" actions
- * against POST /api/research-os/privacy (PR #35), with a typed confirm
- * step before delete. Guardian-verified consent itself (COPPA's VPC
- * requirement) is not built here: compliance/README.md part B item 2
- * names the vendor choice that still blocks it.
- *
- * ros-04 UPDATE ("workspace hardening, Phase 1 canvas item 3"): a
- * two-column layout replaces the single vertical chain list -- the left
- * column is the routed chain (unchanged in substance, now carrying a
- * low-confidence badge from `route.lowConfidenceFlags`, PR #27/ros-03's
- * confidence-weighted routing), the right column is the learner's own
- * workspace (the four tools, a notes scratchpad, the running "sources I
- * have quoted" list built from Quote calls, and the Production form). No
- * drag-and-drop: see learning/research-os/WORKSPACE.md for what this
- * Phase 1 canvas adds and what it deliberately does not. Every request
- * this page makes now also carries a client-generated `sessionId`
- * (EVIDENCE-SCHEMA.md's session grouping), created once per browser tab
- * and kept in sessionStorage so a reload mid-sitting keeps the same id.
- *
- * Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): clicking
- * "check my explanation" no longer shows feedback right away. runCheck
- * grades the explanation and, unless the server says this learner's own
- * arm has forcing off (`forcingEnabled: false` in its response), gets
- * back only an `attemptId`: the Check card then shows the confidence and
- * source-prediction questions instead of a verdict. runCheckReveal sends
- * both answers on the same attemptId; the server holds the real verdict
- * until they arrive (workspace/route.ts's own two-phase "check" contract)
- * and, once revealed, the learner's prediction renders beside the
- * tutor's own citation.
- *
- * Lateral reading on Check (PLAN-REVISION-3.md section 2c,
- * learning/research-os/LATERAL-READING.md): the reveal step gains a third
- * question, "Find a second place that says this." runFindSecondSource
- * calls Locate's `mode: "secondSource"`; picking a candidate calls Quote
- * on it (runQuoteSecondSource, the same Quote action every other source
- * uses, so it leaves a real evidence record); an agree/disagree mark
- * follows. runCheckReveal forwards `secondSourceNodeId`/`passagesAgree`
- * on the same request. The server decides whether a second source is
- * required for this learner's own stage; this page always shows the
- * question and lets the server's own 400 (`checkForcingError`) name a
- * missing requirement, it never guesses the requirement client-side.
- *
- * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
- * route response gains `guidance` (`GuidanceLevel | null`,
- * src/lib/research-os/guidance.ts), read here as `route.guidance ??
- * "medium"` wherever it is used, the same neutral default the server
- * itself falls back to for a fresh/anonymous read. Above the Check textarea,
- * the selected node's own worked example (`GraphNodeLite.workedExample`,
- * seeded on the sky-blue path's first six nodes) shows in full at "high,"
- * its first half at "medium" (worked-examples.ts's
- * firstHalfOfWorkedExample), and not at all at "low." The level itself
- * comes back from the server on every Check response too, so it stays
- * consistent with whatever guidance level shaped the tutor's own
- * feedback; loadRoute() (already called after every successful Check)
- * refreshes it here. See learning/research-os/GUIDANCE.md.
- */
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { firstOpenTarget } from "@/lib/research-os/assignments";
+import EvidenceFind from "./EvidenceFind";
+import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
 import TargetPicker from "./TargetPicker";
@@ -107,30 +31,12 @@ import AssignmentsBanner from "./AssignmentsBanner";
 import DirectionsBlock from "./DirectionsBlock";
 
 const DEFAULT_TARGET_SLUG = "why-the-sky-is-blue";
-// The routed target: ?target=<slug> (an assignment's deep link) or the
-// Phase 0 default. Read once at module load in the browser; the server
-// render uses the default and the client re-renders with the same value.
-const HAS_TARGET = typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("target")?.trim());
-const TARGET_SLUG =
-  typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("target")?.trim() || DEFAULT_TARGET_SLUG : DEFAULT_TARGET_SLUG;
 
-// Phase 0 has no sealed, held-out transfer-item pool (LEARNER-STATE-MODEL.md
-// section 4's "Transfer-task construction rule" names the real pool as
-// Phase 2 work); this fixed id stands in for the one hardcoded transfer
-// prompt below so the evidence log at least records WHICH item was
-// answered, forwarded verbatim rather than checked against a pool table
-// that does not exist yet.
-const TRANSFER_ITEM_ID = `${TARGET_SLUG}::transfer-v1`;
+const transferItemIdFor = (targetSlug: string) => `${targetSlug}::transfer-v1`;
 
 const SESSION_STORAGE_KEY = "research-os-session-id";
-const NOTES_STORAGE_KEY = `research-os-notes:${TARGET_SLUG}`;
+const notesStorageKeyFor = (targetSlug: string) => `research-os-notes:${targetSlug}`;
 
-/** One session id per browser tab, per EVIDENCE-SCHEMA.md ("client-generated
- * ... so a session id is stable across a reconnect"). sessionStorage (not
- * localStorage) so a fresh tab starts a fresh sitting, matching "one
- * session groups every tool call and evidence event from one workspace
- * sitting." Falls back to a timestamp+random id when crypto.randomUUID is
- * unavailable (an older browser, or a non-secure context). */
 function readOrCreateSessionId(): string {
   try {
     const existing = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
@@ -139,17 +45,11 @@ function readOrCreateSessionId(): string {
     window.sessionStorage.setItem(SESSION_STORAGE_KEY, id);
     return id;
   } catch {
-    // sessionStorage unavailable (private mode, SSR): a per-render id still
-    // lets every call in THIS request carry a session id, just not one
-    // stable across a reload.
     return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   }
 }
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
-/** ros-14: src/lib/research-os/types.ts's GuidanceLevel, mirrored here the
- * same way this file already mirrors Stage rather than importing a
- * server-facing module. */
 type GuidanceLevel = "high" | "medium" | "low";
 
 interface GraphNodeLite {
@@ -161,7 +61,6 @@ interface GraphNodeLite {
   summary: string | null;
   branch?: string;
   provenance?: { author?: string; year?: number; title?: string; publisher?: string; url?: string; doi?: string; [k: string]: unknown };
-  /** ros-14: present only for a node the seed has authored one for. */
   workedExample?: { text: string; source: string };
 }
 interface ChainStep {
@@ -176,10 +75,6 @@ interface EngineFrontierCandidate {
   totalCount: number;
   heldFraction: number;
 }
-/** One edge on the returned chain flagged below the confidence floor
- * (ros-03's LOW_CONFIDENCE_THRESHOLD): the route still walked through it,
- * a teacher should confirm it. Matches src/lib/research-os/frontier.ts's
- * LowConfidenceFlag. */
 interface LowConfidenceFlag {
   edgeId?: string;
   fromNodeId: string;
@@ -188,32 +83,18 @@ interface LowConfidenceFlag {
 }
 
 interface RouteResponse {
-  /** ros-23: false when the workspace runs without a model. */
   llmEnabled?: boolean;
   target: GraphNodeLite;
   frontier: GraphNodeLite[];
   chain: ChainStep[];
   gap: GraphNodeLite[];
-  /** ros-03 item 2/3: every low-confidence edge on the returned chain (PR
-   * #27). Matched against a chain step by `fromNodeId === step.node.id`
-   * (frontier.ts's parentEdge runs ancestor -> its parent toward the
-   * target, so a step's own outgoing edge is keyed by its own node id). */
   lowConfidenceFlags: LowConfidenceFlag[];
-  /** Engine bridge task item 2: engine-generated candidate targets this
-   * learner is close to being ready for, empty until one has been ingested
-   * (src/lib/research-os/engine-bridge.ts) into this branch. */
   engineFrontier: EngineFrontierCandidate[];
-  /** ros-14: this learner's current faded-guidance level, null for an
-   * anonymous request (no learner state to compute one from). */
   guidance: GuidanceLevel | null;
   learner: "self" | "anonymous";
   error?: string;
 }
 
-// Phase 1 (bkt-ros item 2): the diagnostic probe, fired for a signed-in
-// learner with no state on any ancestor of the target
-// (src/lib/research-os/probe.ts's probeDue). See
-// src/app/api/research-os/probe/route.ts.
 interface ProbeQuestion {
   nodeId: string;
   nodeSlug: string;
@@ -226,11 +107,9 @@ interface ProbeResponse {
   questions: ProbeQuestion[];
   error?: string;
 }
-interface ProbeAnswerResult {
-  result: string;
-  feedback: string;
-  stage: string;
-}
+type ProbeAnswerResult =
+  | ({ ok: true } & Pick<ProbeAnswerResponse, "result" | "feedback" | "stage">)
+  | { ok: false; feedback: string };
 
 const STAGE_LABEL: Record<Stage, string> = {
   access: "Access",
@@ -256,10 +135,6 @@ function StageBadge({ stage }: { stage: Stage }) {
   );
 }
 
-/** ros-14, GUIDANCE.md section 2: the selected node's own worked example,
- * shown before the Check explanation box -- full text at "high," the
- * first half at "medium," nothing at "low." Renders nothing at all when
- * the node has no authored worked example, regardless of guidance level. */
 function WorkedExampleBlock({ node, guidance }: { node: GraphNodeLite; guidance: GuidanceLevel }) {
   if (!node.workedExample || guidance === "low") return null;
   const text = guidance === "medium" ? firstHalfOfWorkedExample(node.workedExample.text) : node.workedExample.text;
@@ -272,7 +147,14 @@ function WorkedExampleBlock({ node, guidance }: { node: GraphNodeLite; guidance:
   );
 }
 
-export default function ResearchOsWorkspacePage() {
+function Workspace() {
+  const searchParams = useSearchParams();
+  const targetParam = searchParams.get("target")?.trim() ?? "";
+  const queryParam = searchParams.get("q")?.trim() ?? "";
+  const hasTarget = Boolean(targetParam);
+  const targetSlug = targetParam || DEFAULT_TARGET_SLUG;
+  const transferItemId = transferItemIdFor(targetSlug);
+  const notesStorageKey = notesStorageKeyFor(targetSlug);
   const supabase = useMemo(() => {
     try {
       return getSupabase();
@@ -287,42 +169,29 @@ export default function ResearchOsWorkspacePage() {
   const [routeError, setRouteError] = useState<string | null>(null);
   const [selected, setSelected] = useState<GraphNodeLite | null>(null);
 
-  // ros-04: one session id per tab (EVIDENCE-SCHEMA.md), created lazily so
-  // it never runs during SSR (window is unavailable there).
   const [sessionId, setSessionId] = useState<string>("");
   useEffect(() => {
     setSessionId(readOrCreateSessionId());
   }, []);
 
-  // ?q=<query> (from the map's "work on this") pre-fills Find and runs it once signed in.
-  const [locateQuery, setLocateQuery] = useState(() =>
-    typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("q")?.trim() ?? "" : ""
-  );
-  // No ?target: open on the person's first open assignment. A full load, so
-  // the module-level TARGET_SLUG picks it up.
+  const [locateQuery, setLocateQuery] = useState(queryParam);
   useEffect(() => {
-    if (!token || new URLSearchParams(window.location.search).get("target")) return;
+    if (!token || hasTarget) return;
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {
-        const open = (j.assignments ?? []).find((a) => a.status !== "accepted");
-        if (open && open.targetSlug !== TARGET_SLUG) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+      .then((j: { assignments?: LearnerAssignment[] }) => {
+        const open = firstOpenTarget(j.assignments ?? []);
+        if (open?.targetSlug && open.targetSlug !== targetSlug) {
+          window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+        }
       })
       .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
-  const locateFromUrl = useRef(typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("q")?.trim()));
+  }, [token, hasTarget, targetSlug]);
+  const locateFromUrl = useRef(Boolean(queryParam));
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
   const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
-  // ros-04, canvas item 3: "sources I have quoted", every distinct Quote
-  // result this sitting, most recent first. Client-side only (no new
-  // backend route): Quote is already logged server-side per tool call
-  // (workspace/route.ts's logToolCall), this list is the learner's own
-  // working view of what they have pulled so far.
   const [quotedSources, setQuotedSources] = useState<Array<{ nodeId: string; nodeTitle: string; kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string }>>([]);
-  // Cognitive forcing's source-prediction picker (PLAN-REVISION-2.md
-  // section 2a): the distinct citations the learner has quoted this
-  // sitting, most recently quoted first, matching quotedSources' own order.
   const quotedCitationOptions = useMemo(() => Array.from(new Set(quotedSources.map((q) => q.citation))), [quotedSources]);
   const [explanation, setExplanation] = useState("");
   const [checkResult, setCheckResult] = useState<{
@@ -333,23 +202,11 @@ export default function ResearchOsWorkspacePage() {
     sourcePrediction?: string;
     predictionCorrect?: boolean;
   } | null>(null);
-  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): a held
-  // attempt sits between "explanation submitted" and "verdict revealed".
-  // checkAttemptId set + checkResult null means the confidence/prediction
-  // questions are showing; both null means the Check form itself is
-  // showing; checkResult set means the verdict (with the forcing arm on,
-  // alongside the learner's own answers) is showing.
   const [checkAttemptId, setCheckAttemptId] = useState<string | null>(null);
   const [checkConfidence, setCheckConfidence] = useState<LearnerConfidence | "">("");
   const [checkSourcePrediction, setCheckSourcePrediction] = useState("");
-  // ros-23: the learner's own verdict, sent when the workspace runs without a model.
   const [checkVerdict, setCheckVerdict] = useState<"support" | "contradiction" | "">("");
   const [checkForcingError, setCheckForcingError] = useState<string | null>(null);
-  // Lateral reading (PLAN-REVISION-3.md section 2c): the reveal step's
-  // third question, a candidate search plus an agree/disagree mark. The
-  // server decides whether a second source is required for this
-  // learner's own stage (secondSourceRequired in the reveal response);
-  // this state only tracks what the learner has picked so far.
   const [secondSourceQuery, setSecondSourceQuery] = useState("");
   const [secondSourceCandidates, setSecondSourceCandidates] = useState<Array<{ nodeId: string; title: string; citation: string; independenceReason: string }>>([]);
   const [secondSourceNodeId, setSecondSourceNodeId] = useState("");
@@ -362,43 +219,38 @@ export default function ResearchOsWorkspacePage() {
   const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[]; abstained?: boolean } | null>(null);
   const [transferAnswer, setTransferAnswer] = useState("");
   const [transferSaved, setTransferSaved] = useState(false);
+  const [transferNote, setTransferNote] = useState<string | null>(null);
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "", counterEvidence: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
-  // The kind of production the form saves (ProduceBlock): a plain production
-  // of the target, or an extension / replication / peer review of a node.
   const [productionKind, setProductionKind] = useState<"production" | ProduceKind>("production");
   const [relatedNode, setRelatedNode] = useState<GraphNodeLite | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
-  // ros-04, canvas item 3: a free scratch notes area in the right column,
-  // persisted per-target to localStorage only (no backend route; a
-  // scratchpad the Production form below stays independent of -- that
-  // form is where a learner's real claim/evidence/sources save server-side).
   const [notes, setNotes] = useState("");
   useEffect(() => {
     try {
-      setNotes(window.localStorage.getItem(NOTES_STORAGE_KEY) || "");
+      setNotes(window.localStorage.getItem(notesStorageKey) || "");
     } catch {
-      /* localStorage unavailable; notes just stay session-local via state */
     }
-  }, []);
+  }, [notesStorageKey]);
   useEffect(() => {
     try {
-      window.localStorage.setItem(NOTES_STORAGE_KEY, notes);
+      window.localStorage.setItem(notesStorageKey, notes);
     } catch {
-      /* best effort */
     }
-  }, [notes]);
+  }, [notes, notesStorageKey]);
 
-  // Phase 1 (bkt-ros item 2): diagnostic probe state.
   const [probe, setProbe] = useState<ProbeResponse | null>(null);
+  const [probeNote, setProbeNote] = useState<string | null>(null);
+  const [openNote, setOpenNote] = useState<string | null>(null);
+  const [locateNote, setLocateNote] = useState<string | null>(null);
+  const [quoteNote, setQuoteNote] = useState<string | null>(null);
+  const [secondSourceNote, setSecondSourceNote] = useState<string | null>(null);
+  const [organizeNote, setOrganizeNote] = useState<string | null>(null);
   const [probeAnswers, setProbeAnswers] = useState<Record<string, string>>({});
   const [probeResults, setProbeResults] = useState<Record<string, ProbeAnswerResult>>({});
   const [probeBusy, setProbeBusy] = useState<string | null>(null);
 
-  // ros-07 ("consent gate wiring"): a banner shown whenever any gated
-  // write below comes back 403 consent-blocked, and the footer state for
-  // the self-service export/delete actions (PR #35's privacy route).
   const [consentNotice, setConsentNotice] = useState<{ message: string; needsProfile: boolean } | null>(null);
   const [privacyBusy, setPrivacyBusy] = useState<"export" | "delete" | null>(null);
   const [privacyNotice, setPrivacyNotice] = useState<string | null>(null);
@@ -418,14 +270,14 @@ export default function ResearchOsWorkspacePage() {
 
   const authHeaders = useCallback((): Record<string, string> => (token ? { authorization: `Bearer ${token}` } : {}), [token]);
 
-  // ros-07: recognizes the consent gate's 403 body
-  // (src/lib/research-os/consent.ts's consentBlockedBody: {error:
-  // "no_profile"|"consent_required", message, needsProfile}) from any
-  // gated fetch below and surfaces it as a banner instead of a raw error
-  // string. Returns true when the response WAS a consent block, so the
-  // caller can stop treating it as an ordinary success/failure; every
-  // other error shape is untouched.
   const handleConsentResponse = useCallback((res: Response, data: { error?: string; message?: string; needsProfile?: boolean }): boolean => {
+    if (res.status === 503 && data?.error === "consent_unavailable") {
+      setConsentNotice({
+        message: data.message || "Consent could not be checked right now. Try again in a moment.",
+        needsProfile: false,
+      });
+      return true;
+    }
     if (res.status !== 403 || (data?.error !== "no_profile" && data?.error !== "consent_required")) return false;
     setConsentNotice({
       message: data.message || "This feature needs consent on file before it can be used.",
@@ -437,10 +289,10 @@ export default function ResearchOsWorkspacePage() {
   const loadRoute = useCallback(async () => {
     setRouteError(null);
     try {
-      const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as RouteResponse;
+      const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(targetSlug)}`, { headers: authHeaders() });
+      const data = (await res.json().catch(() => ({}))) as RouteResponse;
       if (!res.ok) {
-        setRouteError(data.error || "route_failed");
+        setRouteError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "route_failed");
         return;
       }
       setRoute(data);
@@ -449,27 +301,26 @@ export default function ResearchOsWorkspacePage() {
       setRouteError("network_error");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authHeaders]);
+  }, [authHeaders, targetSlug]);
 
   useEffect(() => {
     loadRoute();
   }, [loadRoute]);
 
-  // Only a signed-in learner has ancestor state to probe against, so this
-  // only fires once token is set (an anonymous visitor never sees a probe).
   const loadProbe = useCallback(async () => {
     if (!token) {
       setProbe(null);
       return;
     }
     try {
-      const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
-      const data = (await res.json()) as ProbeResponse;
+      const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(targetSlug)}`, { headers: authHeaders() });
+      const data = (await res.json().catch(() => ({}))) as ProbeResponse;
+      setProbeNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setProbe(res.ok ? data : null);
     } catch {
       setProbe(null);
     }
-  }, [token, authHeaders]);
+  }, [token, authHeaders, targetSlug]);
 
   useEffect(() => {
     loadProbe();
@@ -485,17 +336,17 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId, answer, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
-        setProbeResults((r) => ({ ...r, [nodeId]: data }));
-        // Answering even one question resolves the cold-start condition
-        // (probeDue requires NO ancestor state at all), so both the probe
-        // panel and the route/frontier can change; reload both.
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: true, ...data } }));
         loadProbe();
         loadRoute();
       } else {
-        setProbeResults((r) => ({ ...r, [nodeId]: { result: "error", feedback: data.error || "Probe grading failed.", stage: "" } }));
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Probe grading failed.";
+        setProbeResults((r) => ({ ...r, [nodeId]: { ok: false, feedback } }));
       }
     } finally {
       setProbeBusy(null);
@@ -519,16 +370,16 @@ export default function ResearchOsWorkspacePage() {
     setCheckForcingError(null);
     setLocateResults([]);
     setOrganized(null);
-    if (!token) return; // anonymous browsing is fine; only a signed-in learner logs progress
+    if (!token) return;
     try {
-      await fetch("/api/research-os/state", {
+      const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId: node.id, action: "open", sessionId }),
       });
+      setOpenNote(!res.ok && isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
       loadRoute();
     } catch {
-      /* best-effort; the map still renders from the last known state */
     }
   }
 
@@ -549,11 +400,12 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "locate", query: locateQuery, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setLocateResults([]);
         return;
       }
+      setLocateNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setLocateResults(res.ok ? data.results : []);
     } finally {
       setBusy(null);
@@ -569,16 +421,21 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId: selected.id, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuote(data);
-        // "sources I have quoted" (canvas item 3): keep the most recent
-        // quote per node, newest node first.
         setQuotedSources((prev) => [
           { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
           ...prev.filter((q) => q.nodeId !== selected.id),
         ]);
+        setQuoteNote(null);
+      } else {
+        setQuoteNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That source could not be quoted.",
+        );
       }
     } finally {
       setBusy(null);
@@ -611,20 +468,18 @@ export default function ResearchOsWorkspacePage() {
           quotes: quotedSources.map((q) => ({ quotable_span: q.quotable_span, citation: q.citation })),
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (!res.ok) {
-        setCheckResult({ result: "error", feedback: data.error || "Check failed.", citations: [] });
+        const feedback = isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+          ? OUTAGE_COPY.body
+          : data.error || "Check failed.";
+        setCheckResult({ result: "error", feedback, citations: [] });
         return;
       }
       if (data.forcingRequired) {
-        // Cognitive forcing on (default arm): the verdict is held until
-        // the questions below are answered. No feedback/result/citations
-        // key exists in `data` at all in this branch.
         setCheckAttemptId(data.attemptId);
       } else {
-        // This learner's own arm has forcing off: same immediate reveal
-        // as before this pass.
         setCheckResult(data);
         loadRoute();
       }
@@ -633,10 +488,6 @@ export default function ResearchOsWorkspacePage() {
     }
   }
 
-  /** Cognitive forcing's reveal step (PLAN-REVISION-2.md section 2a): sends
-   * the held-back confidence rating and source prediction on the same
-   * attemptId runCheck received; the server will not return the tutor's
-   * verdict without both (workspace/route.ts's "check" phase 2). */
   async function runCheckReveal() {
     if (!token || !selected || !checkAttemptId || !checkConfidence || !checkSourcePrediction) return;
     setBusy("check_reveal");
@@ -658,23 +509,24 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setCheckResult(data);
         setCheckAttemptId(null);
         loadRoute();
       } else {
-        setCheckForcingError(data.error || "Could not show your results yet.");
+        setCheckForcingError(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "Could not show your results yet.",
+        );
       }
     } finally {
       setBusy(null);
     }
   }
 
-  /** Lateral reading's Locate mode (PLAN-REVISION-3.md section 2c):
-   * surfaces up to three candidate independent sources for the node under
-   * Check. Retrieval only, no evidence write of its own. */
   async function runFindSecondSource() {
     if (!token || !selected) return;
     setSecondSourceBusy(true);
@@ -690,21 +542,18 @@ export default function ResearchOsWorkspacePage() {
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setSecondSourceCandidates([]);
         return;
       }
+      setSecondSourceNote(!res.ok && isTransientOutage(res.status, (data as { error?: string }).error ?? null) ? OUTAGE_COPY.body : null);
       setSecondSourceCandidates(res.ok ? data.results : []);
     } finally {
       setSecondSourceBusy(false);
     }
   }
 
-  /** Picking a candidate calls Quote on it, the same action every other
-   * source uses, so it leaves a real "quote" evidence event the server's
-   * own second-source gate can check against (a node id alone, with no
-   * real Quote call behind it, never satisfies that gate). */
   async function runQuoteSecondSource(nodeId: string, nodeTitle: string) {
     if (!token) return;
     setSecondSourceBusy(true);
@@ -714,7 +563,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "quote", nodeId, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuotedSources((prev) => [
@@ -723,6 +572,13 @@ export default function ResearchOsWorkspacePage() {
         ]);
         setSecondSourceNodeId(nodeId);
         setSecondSourceQuoted(true);
+        setSecondSourceNote(null);
+      } else {
+        setSecondSourceNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That second source could not be quoted.",
+        );
       }
     } finally {
       setSecondSourceBusy(false);
@@ -738,11 +594,18 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources, sessionId }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setOrganized(data);
         setProduction((p) => ({ ...p, claim: data.claim || p.claim, evidence: (data.evidence || []).join("\n"), sources: (data.sources || []).join("\n") }));
+        setOrganizeNote(null);
+      } else {
+        setOrganizeNote(
+          isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : "That could not be organized.",
+        );
       }
     } finally {
       setBusy(null);
@@ -753,25 +616,21 @@ export default function ResearchOsWorkspacePage() {
     if (!token || !selected || !transferAnswer.trim()) return;
     setBusy("transfer");
     try {
-      // ros-04 fix: this call used to send only {nodeId, action}, never the
-      // learner's own answer text -- EVIDENCE-SCHEMA.md's "no stored ...
-      // transfer-item answer" gap. `answer` and `itemId` now round-trip
-      // onto the evidence event (stages.ts's onTransferItemAnswered).
       const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: TRANSFER_ITEM_ID, sessionId }),
+        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: transferItemId, sessionId }),
       });
-      // ros-07: this call ignored its own response status before this pass
-      // (a consent block used to look identical to a successful save).
-      // Checking res.ok here closes a real gap without expanding scope: it
-      // is the only way to tell a blocked write from a saved one.
       const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data as { error?: string; message?: string; needsProfile?: boolean })) return;
       if (res.ok) {
+        setTransferNote(null);
         setTransferSaved(true);
         loadRoute();
+        return;
       }
+      const code = (data as { error?: string }).error ?? null;
+      setTransferNote(isTransientOutage(res.status, code) ? OUTAGE_COPY.body : "That answer was not recorded.");
     } finally {
       setBusy(null);
     }
@@ -792,22 +651,23 @@ export default function ResearchOsWorkspacePage() {
           evidence: production.evidence.split("\n").filter(Boolean),
           sources: production.sources.split("\n").filter(Boolean),
           transferProof: { text: production.transferProof },
-          // Production guard, task item 3: optional in Phase 0, required
-          // at submission for an internalization-tier claim
-          // (production-guard.ts's requiresCounterEvidence); the route
-          // itself enforces that, this just always forwards what is
-          // here, same discipline claim/evidence/sources already keep.
           counterEvidence: production.counterEvidence.split("\n").filter(Boolean),
           status,
           sessionId,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (handleConsentResponse(res, data)) {
         setProductionStatus(null);
         return;
       }
-      setProductionStatus(res.ok ? `${status} saved` : data.error || "save_failed");
+      setProductionStatus(
+        res.ok
+          ? `${status} saved`
+          : isTransientOutage(res.status, (data as { error?: string }).error ?? null)
+            ? OUTAGE_COPY.body
+            : data.error || "save_failed",
+      );
       if (res.ok) loadRoute();
     } finally {
       setBusy(null);
@@ -824,13 +684,11 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "export" }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "export_failed");
         return;
       }
-      // Client-side download only; nothing here is a second copy on any
-      // server this app controls beyond the response itself.
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -849,10 +707,6 @@ export default function ResearchOsWorkspacePage() {
   }
 
   async function deleteMyData() {
-    // Server-side enforced too (POST /api/research-os/privacy checks
-    // isDeleteConfirmed before anything else runs): this client-side check
-    // only keeps the button disabled until the typed text matches, it is
-    // not the real gate.
     if (!token || deleteConfirmText.trim() !== DELETE_CONFIRM_TOKEN) return;
     setPrivacyBusy("delete");
     setPrivacyNotice(null);
@@ -862,7 +716,7 @@ export default function ResearchOsWorkspacePage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ action: "delete", confirm: DELETE_CONFIRM_TOKEN }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
       if (!res.ok) {
         setPrivacyNotice(data.error || "delete_failed");
         return;
@@ -878,7 +732,7 @@ export default function ResearchOsWorkspacePage() {
     }
   }
 
-  if (!HAS_TARGET) return <TargetPicker />;
+  if (!hasTarget) return <TargetPicker />;
 
   return (
     <main>
@@ -908,10 +762,8 @@ export default function ResearchOsWorkspacePage() {
           )}
         </p>
 
-        {/* Auth panel */}
         <SignInGate signedIn={Boolean(token)} />
 
-        {/* ros-07: any gated write's 403 consent block surfaces here. */}
         {consentNotice && (
           <div className="mt-6 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
             <p className="text-[13px] text-[color:var(--basalt)]">{consentNotice.message}</p>
@@ -933,8 +785,36 @@ export default function ResearchOsWorkspacePage() {
           </p>
         )}
 
-        {/* Phase 1 (bkt-ros item 2): diagnostic probe, shown only when the
-            signed-in learner has no state on any ancestor of the target. */}
+        {probeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {probeNote}
+          </p>
+        )}
+        {openNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {openNote}
+          </p>
+        )}
+        {locateNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {locateNote}
+          </p>
+        )}
+        {quoteNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {quoteNote}
+          </p>
+        )}
+        {secondSourceNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {secondSourceNote}
+          </p>
+        )}
+        {organizeNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {organizeNote}
+          </p>
+        )}
         {probe?.due && probe.questions.length > 0 && (
           <div className="mt-8 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
             <div className="font-display uppercase text-[14px] mb-1">quick check first</div>
@@ -962,7 +842,13 @@ export default function ResearchOsWorkspacePage() {
                     </button>
                     {result && (
                       <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">
-                        <strong>{result.result}</strong>: {result.feedback}
+                        {result.ok ? (
+                          <>
+                            <strong>{result.result}</strong>: {result.feedback}
+                          </>
+                        ) : (
+                          <>{result.feedback}</>
+                        )}
                       </p>
                     )}
                   </div>
@@ -974,15 +860,8 @@ export default function ResearchOsWorkspacePage() {
 
         {route && (
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-            {/* Left column: the routed chain, one stop per prerequisite
-                node between the learner's frontier and the target
-                (ros-04 canvas item 3). Stage badges as before; a
-                low-confidence badge (ros-03/PR #27's lowConfidenceFlags)
-                now marks a step whose own edge toward the target fell
-                below the routing confidence floor and should have a
-                teacher's eyes on it. */}
             <div className="flex flex-col gap-4">
-              <AssignmentsBanner token={token} currentTarget={TARGET_SLUG} />
+              <AssignmentsBanner token={token} currentTarget={targetSlug} />
               <PathMap
                 steps={route.chain.map((s) => ({ id: s.node.id, title: s.node.title, stage: s.stage, isFrontier: s.isFrontier }))}
                 selectedId={selected?.id ?? null}
@@ -1018,9 +897,6 @@ export default function ResearchOsWorkspacePage() {
                 })}
               </div>
 
-              {/* Engine bridge task item 2: engine-generated candidates this
-                  learner is close to being ready for. Empty and hidden until
-                  an engine hypothesis has been ingested into this branch. */}
               {route.engineFrontier.length > 0 && (
                 <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
                   <div className="bg-[color:var(--bone)] p-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--aegean-deep)]">
@@ -1043,7 +919,6 @@ export default function ResearchOsWorkspacePage() {
               )}
             </div>
 
-            {/* Selected node + tools */}
             <div className="flex flex-col gap-6">
               {selected && (
                 <div className="p-5 bg-[color:var(--bone)]">
@@ -1076,7 +951,6 @@ export default function ResearchOsWorkspacePage() {
                 </div>
               )}
 
-              {/* Four tools */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)]">
                 <div className="bg-[color:var(--bone)] p-4">
                   <div className="font-display uppercase text-[14px] mb-2">locate</div>
@@ -1094,6 +968,7 @@ export default function ResearchOsWorkspacePage() {
                       <li key={r.nodeId}>{r.title}: {r.citation}</li>
                     ))}
                   </ul>
+                  <EvidenceFind token={token} branch={selected?.branch ?? "02-physics"} targetNodeId={selected?.id ?? null} />
                 </div>
 
                 <div className="bg-[color:var(--bone)] p-4">
@@ -1101,6 +976,7 @@ export default function ResearchOsWorkspacePage() {
                   <button onClick={runQuote} disabled={!token || !selected || busy === "quote"} className="text-[12px] small-caps underline">
                     {busy === "quote" ? "fetching…" : "quote this node's source"}
                   </button>
+                  {quoteNote && <p className="mt-2 text-[12px] text-red-700">{quoteNote}</p>}
                   {quote && (
                     <div className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
                       {quote.kind === "summary" && (
@@ -1119,8 +995,6 @@ export default function ResearchOsWorkspacePage() {
                 <div className="bg-[color:var(--bone)] p-4">
                   <div className="font-display uppercase text-[14px] mb-2">check</div>
 
-                  {/* Phase 0: write the explanation. Hides once a held
-                      attempt or a revealed result exists. */}
                   {!checkAttemptId && !checkResult && (
                     <>
                       {selected && <WorkedExampleBlock node={selected} guidance={route.guidance ?? "medium"} />}
@@ -1152,12 +1026,6 @@ export default function ResearchOsWorkspacePage() {
                     </>
                   )}
 
-                  {/* Phase 1, cognitive forcing (PLAN-REVISION-2.md section
-                      2a): a held attempt with no reveal yet. Both
-                      questions must be answered before the tutor's
-                      feedback shows, enforced server-side (workspace/
-                      route.ts's "check" phase 2, forcing.ts's held-attempt
-                      store). */}
                   {checkAttemptId && !checkResult && (
                     <div className="flex flex-col gap-4">
                       <p className="text-[12px] text-[color:var(--basalt-2)]">
@@ -1208,12 +1076,6 @@ export default function ResearchOsWorkspacePage() {
                         )}
                       </fieldset>
 
-                      {/* Lateral reading (PLAN-REVISION-3.md section 2c):
-                          "find another source" plus an agree/disagree
-                          mark. Shown for every reveal; the server decides
-                          whether this learner's own stage needs it and
-                          names a missing one in checkForcingError below
-                          rather than this page guessing the rule. */}
                       <fieldset className="flex flex-col gap-2">
                         <legend className="text-[11px] small-caps text-[color:var(--aegean-deep)] mb-1">{SECOND_SOURCE_QUESTION_COPY}</legend>
                         <p className="text-[12px] text-[color:var(--basalt-2)]">A different place. A different author than the one you already used.</p>
@@ -1288,7 +1150,6 @@ export default function ResearchOsWorkspacePage() {
                     </div>
                   )}
 
-                  {/* Phase 2: revealed. */}
                   {checkResult && (
                     <div className="flex flex-col gap-2">
                       <p className="text-[12px] text-[color:var(--basalt-2)]">
@@ -1344,9 +1205,6 @@ export default function ResearchOsWorkspacePage() {
                 </div>
               </div>
 
-              {/* Right column, "the learner's workspace" (ros-04 canvas item
-                  3): a free scratch notes area, separate from the graded
-                  Production form below it. */}
               <div className="p-4 bg-[color:var(--bone)]">
                 <label htmlFor="research-os-notes" className="font-display uppercase text-[14px] mb-2 block">
                   notes
@@ -1360,9 +1218,6 @@ export default function ResearchOsWorkspacePage() {
                 />
               </div>
 
-              {/* "sources I have quoted" (ros-04 canvas item 3): every
-                  distinct Quote result this sitting, client-accumulated
-                  from runQuote's own response. */}
               {quotedSources.length > 0 && (
                 <div className="p-4 bg-[color:var(--bone)]">
                   <div className="font-display uppercase text-[14px] mb-2">sources i have quoted</div>
@@ -1374,12 +1229,6 @@ export default function ResearchOsWorkspacePage() {
                           &ldquo;{q.quotable_span}&rdquo;, {q.citation}
                           {q.locator ? ` (${q.locator})` : ""}
                         </p>
-                        {/* Production guard, task item 1: a source only
-                            verifies against a real Quote call when its own
-                            text carries that call's locator. Adding this
-                            exact line to the sources field below is what
-                            makes the source verifiable; typing it from
-                            memory is not. */}
                         <button
                           onClick={() => {
                             const line = `${q.citation}${q.locator ? ` (${q.locator})` : ""}`;
@@ -1395,12 +1244,11 @@ export default function ResearchOsWorkspacePage() {
                 </div>
               )}
 
-              {/* Transfer item, only meaningful on the target once Understanding is reached */}
               {selected?.id === route.target.id && (
                 <div className="p-4 bg-[color:var(--bone)]">
                   <div className="font-display uppercase text-[14px] mb-2">transfer item</div>
                   <p className="text-[12px] text-[color:var(--basalt-2)] mb-2">
-                    {TARGET_SLUG === DEFAULT_TARGET_SLUG
+                    {targetSlug === DEFAULT_TARGET_SLUG
                       ? "A sunset looks red. Using the lambda^-4 law, explain why the SAME scattering that makes the daytime sky blue makes a sunset red instead."
                       : `Take "${route?.target?.title ?? "this target"}" somewhere it was not taught: a case, a field, or a question outside this branch. Where does it hold, and where does it stop applying?`}
                   </p>
@@ -1418,10 +1266,14 @@ export default function ResearchOsWorkspacePage() {
                       src/lib/research-os/stages.ts).
                     </p>
                   )}
+                  {transferNote && (
+                    <p role="alert" className="mt-2 text-[11px] text-[color:var(--gold-deep)]">
+                      {transferNote}
+                    </p>
+                  )}
                 </div>
               )}
 
-              {/* Production form */}
               <div id="production" />
               {productionKind !== "production" && relatedNode && (
                 <p className="mb-2 text-[12px] text-[color:var(--basalt-2)]">
@@ -1464,9 +1316,6 @@ export default function ResearchOsWorkspacePage() {
           </div>
         )}
 
-        {/* ros-07 ("consent gate wiring"): self-service export/delete
-            against POST /api/research-os/privacy (PR #35). Shown only
-            signed in, matching that route's own self-gated posture. */}
         {token && (
           <footer className="mt-14 pt-6 border-t border-[color:var(--hairline)] flex flex-col gap-3">
             <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">§ your data</div>
@@ -1524,5 +1373,13 @@ export default function ResearchOsWorkspacePage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function ResearchOsWorkspacePage() {
+  return (
+    <Suspense fallback={null}>
+      <Workspace />
+    </Suspense>
   );
 }

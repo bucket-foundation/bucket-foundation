@@ -1,12 +1,12 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState, type FormEvent } from "react";
 import Section from "./Section";
 import type { NodeData } from "./types";
 import { BTN_PRIMARY, STAGE_LABEL } from "@/components/ui";
 import ReviewOnNode from "./ReviewOnNode";
 
-/** The class on this node: assignments that target it, and for staff, who in the class holds it at which level, with assign in place. */
 export default function ClassSection({ data, onChanged }: { data: NodeData; onChanged: () => void }) {
   const staffClasses = data.classes.filter((c) => c.role === "teacher" || c.role === "librarian");
   const [classId, setClassId] = useState(staffClasses[0]?.id ?? "");
@@ -29,7 +29,13 @@ export default function ClassSection({ data, onChanged }: { data: NodeData; onCh
       });
       const j = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
-        setNote(j.error === "forbidden" ? "You are not staff in that class." : "Could not assign.");
+        setNote(
+          isTransientOutage(res.status, j.error ?? null)
+            ? OUTAGE_COPY.body
+            : j.error === "forbidden"
+              ? "You are not staff in that class."
+              : "Could not assign.",
+        );
         return;
       }
       setNote("Assigned.");
