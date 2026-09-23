@@ -204,6 +204,7 @@ export async function decideEdge(
   const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin" | "silver_item_id" | "action" | "proposed_kind">;
   const kind: ApprovedKind = input.kind ?? p.proposed_kind ?? (p.confidence_source === "prime_decompose_llm" ? "derives_from" : "prerequisite");
   if (!KINDS.has(kind)) return fail(400, "kind must be prerequisite or derives_from");
+  if (p.action === "demote") return decideDemotion(svc, p, input);
   const outcome = decideEdgeProposal({ status: p.status, fromSlug: p.from_slug, toSlug: p.to_slug }, input.decision, kind);
   if (outcome.alreadyDecided) return ok({ decision: outcome.status, alreadyDecided: true });
 
@@ -505,6 +506,52 @@ export async function decideNode(
     queuedEdges,
     ...(warnings.length ? { warning: warnings.join("; ") } : {}),
   });
+}
+
+type DemotionRow = Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "status" | "silver_item_id">;
+
+async function decideDemotion(
+  svc: SupabaseClient,
+  p: DemotionRow,
+  input: { id: string; decision: "approved" | "rejected"; reason: string | null; reviewerId: string },
+): Promise<ActionResult> {
+  if (p.status !== "pending") return ok({ decision: p.status, alreadyDecided: true });
+  if (input.decision === "rejected") {
+    const { data, error } = await svc.rpc("recast_edge_to_cites", { p_proposal: p.id, p_reviewer: input.reviewerId, p_reason: input.reason });
+    if (error) return fail(500, "decision_write_failed");
+    const res = (data ?? {}) as { ok?: boolean; error?: string; status?: string; cites_inserted?: boolean };
+    if (res.error === "already_decided") return ok({ decision: res.status ?? null, alreadyDecided: true });
+    if (res.error === "edge_gone") return fail(409, "edge_gone");
+    if (!res.ok) return fail(500, res.error ?? "decision_write_failed");
+    forgetMakeupSnapshot();
+    forgetPrimesReport();
+    return ok({ decision: "rejected", alreadyDecided: false, recastTo: "cites" });
+  }
+  let factor: NodeLite | undefined;
+  let dependent: NodeLite | undefined;
+  try {
+    const found = await nodesBySlug(svc, [p.from_slug, p.to_slug]);
+    factor = found.get(p.from_slug);
+    dependent = found.get(p.to_slug);
+  } catch {
+    return fail(500, "read_failed");
+  }
+  if (!factor || !dependent) return fail(404, "node_not_found");
+  const { data: edge, error: edgeErr } = await svc.from("edges").select("id").eq("from_id", dependent.id).eq("to_id", factor.id).eq("kind", "derives_from").maybeSingle();
+  if (edgeErr) return fail(500, "read_failed");
+  if (!edge) return fail(409, "edge_gone");
+  const { data: claimed, error: claimErr } = await svc
+    .from("edge_proposals")
+    .update({ status: "approved", decided_kind: "derives_from", reviewer_id: input.reviewerId, decision_reason: input.reason, decided_at: new Date().toISOString() })
+    .eq("id", p.id)
+    .eq("status", "pending")
+    .select("id");
+  if (claimErr) return fail(500, "decision_write_failed");
+  if (!((claimed as unknown[]) || []).length) return lostClaim(svc, "edge_proposals", p.id);
+  const lineageErr = p.silver_item_id
+    ? await recordReviewerLineage(svc, { edge: { fromId: dependent.id, toId: factor.id, kind: "derives_from" } }, p.silver_item_id, input.reviewerId)
+    : null;
+  return ok({ decision: "approved", alreadyDecided: false, kind: "derives_from", kept: true, ...(lineageErr ? { warning: "the edge's lineage was not recorded" } : {}) });
 }
 
 async function decideDraftNode(

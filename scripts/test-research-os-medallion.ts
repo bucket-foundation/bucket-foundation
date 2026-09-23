@@ -12,6 +12,7 @@ import { planMedallion, silverKey, type MedallionIO, type PlanNode } from "../sr
 import { edgeCandidates, edgeKey, edgeProposalRow, factorAndDependent, FACTOR_KINDS, nodeProposalRow, queueable, splitImport } from "../src/lib/research-os/medallion/proposals";
 import type { IngestEdgeDraft, IngestNodeDraft } from "../src/lib/research-os/ingest/types";
 import { shadowRequested } from "./research-os/ingest/lib/medallion-shadow";
+import { demotionRows } from "../src/lib/research-os/medallion/demotions";
 import { checkPromotion, type GoldTarget } from "../src/lib/research-os/medallion/promote";
 import { publicCitation, publicSilver } from "../src/lib/research-os/medallion/redact";
 import { summarizeBackfill } from "../src/lib/research-os/medallion/report";
@@ -397,4 +398,37 @@ test("the medallion leg runs by default with --apply and stops for --no-medallio
   assert.equal(shadowRequested(["node", "x.ts", "--apply"]), true);
   assert.equal(shadowRequested(["node", "x.ts", "--apply", "--no-medallion"]), false);
   assert.equal(shadowRequested(["node", "x.ts", "--medallion", "--no-medallion"]), false);
+});
+
+test("each demotion names the atom as factor and the tag as dependent, ordered by tag", () => {
+  const rows = demotionRows([
+    { tagSlug: "canon-06-cosmology-hubble", tagBranch: "06-cosmology", atomSlug: "academy-06-cosmology-redshift", confidence: 0.8, provenance: { rule: "concept_lexical", shared: ["redshift"] }, silverItemId: "s1" },
+    { tagSlug: "canon-02-physics-heisenberg", tagBranch: "02-physics", atomSlug: "academy-02-physics-waves", confidence: 0.6, provenance: { rule: "concept_lexical" }, silverItemId: null },
+  ]);
+  assert.deepEqual(rows.map((r) => [r.from_slug, r.to_slug, r.action, r.proposed_kind, r.branch]), [
+    ["academy-02-physics-waves", "canon-02-physics-heisenberg", "demote", "derives_from", "02-physics"],
+    ["academy-06-cosmology-redshift", "canon-06-cosmology-hubble", "demote", "derives_from", "06-cosmology"],
+  ]);
+});
+
+test("recasting three leaf tags to cites leaves them unfactored and moves no other depth", () => {
+  const nodes = ["a0", "a1", "a2", "a3", "t1", "t2", "t3"].map((id) => ({ id, slug: id, title: id, kind: "concept", branch: "02-physics" }));
+  const base = [
+    { fromId: "a0", toId: "a1", kind: "prerequisite", confidence: 1 },
+    { fromId: "a1", toId: "a2", kind: "prerequisite", confidence: 1 },
+    { fromId: "a2", toId: "a3", kind: "prerequisite", confidence: 1 },
+  ];
+  const tagEdges = [
+    { fromId: "t1", toId: "a3", kind: "derives_from", confidence: 0.7 },
+    { fromId: "t2", toId: "a2", kind: "derives_from", confidence: 0.6 },
+    { fromId: "t3", toId: "a1", kind: "derives_from", confidence: 0.9 },
+  ];
+  const before = decompose(nodes, [...base, ...tagEdges]);
+  const after = decompose(nodes, [...base, ...tagEdges.map((e) => ({ ...e, kind: "cites" }))]);
+  assert.equal(before.get("t1")!.depth, 4);
+  for (const t of ["t1", "t2", "t3"]) {
+    assert.equal(before.get(t)!.status, "composite");
+    assert.equal(after.get(t)!.status, "unfactored");
+  }
+  for (const a of ["a0", "a1", "a2", "a3"]) assert.equal(after.get(a)!.depth, before.get(a)!.depth, a);
 });

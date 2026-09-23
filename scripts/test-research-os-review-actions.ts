@@ -699,3 +699,81 @@ test("a failed node insert releases the medallion node proposal", async () => {
   assert.equal(r.status, 500);
   assert.equal(db.node_proposals.find((x) => x.id === "np-draft")!.status, "pending");
 });
+
+function demotionSeed(): Db {
+  const db = medallionSeed();
+  db.edge_proposals = [
+    {
+      ...db.edge_proposals[0],
+      id: "p-dem",
+      from_slug: "derivatives",
+      to_slug: "kinematics",
+      action: "demote",
+      proposed_kind: "derives_from",
+      silver_item_id: "s-edge",
+    },
+  ];
+  db.edges = [{ id: "e-lex", from_id: "n-kin", to_id: "n-der", kind: "derives_from", confidence: 0.7, provenance: { rule: "concept_lexical" } }];
+  return db;
+}
+
+test("keeping a demoted edge writes no edge and records the reviewer's lineage", async () => {
+  const db = demotionSeed();
+  const calls: string[] = [];
+  const r = await decideEdge(fake(db, rpcs(), new Set(), calls), { id: "p-dem", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.kept, true);
+  assert.deepEqual(db.edges.map((e) => [e.id, e.kind]), [["e-lex", "derives_from"]]);
+  assert.ok(!calls.includes("edges:upsert"));
+  assert.deepEqual(db.gold_lineage.map((l) => [l.edge_id, l.promoted_by, l.reviewer_id]), [["e-lex", "reviewer", "rev-1"]]);
+  const p = db.edge_proposals[0];
+  assert.deepEqual([p.status, p.decided_kind, p.reviewer_id], ["approved", "derives_from", "rev-1"]);
+});
+
+test("rejecting a demoted edge recasts it through the locked database function", async () => {
+  const db = demotionSeed();
+  const seen: unknown[] = [];
+  const r = await decideEdge(
+    fake(db, { ...rpcs(), recast_edge_to_cites: (a: unknown) => (seen.push(a), { data: { ok: true, cites_inserted: true }, error: null }) }),
+    { id: "p-dem", decision: "rejected", reason: "a word match", reviewerId: "rev-1" },
+  );
+  assert.equal(r.status, 200);
+  assert.deepEqual(r.body, { decision: "rejected", alreadyDecided: false, recastTo: "cites" });
+  assert.deepEqual(seen, [{ p_proposal: "p-dem", p_reviewer: "rev-1", p_reason: "a word match" }]);
+});
+
+test("a recast reports a decided proposal, a vanished edge and a failed call", async () => {
+  const decided = await decideEdge(fake(demotionSeed(), { ...rpcs(), recast_edge_to_cites: () => ({ data: { ok: false, error: "already_decided", status: "approved" }, error: null }) }), {
+    id: "p-dem",
+    decision: "rejected",
+    reason: null,
+    reviewerId: "rev-1",
+  });
+  assert.deepEqual(decided.body, { decision: "approved", alreadyDecided: true });
+  const gone = await decideEdge(fake(demotionSeed(), { ...rpcs(), recast_edge_to_cites: () => ({ data: { ok: false, error: "edge_gone" }, error: null }) }), {
+    id: "p-dem",
+    decision: "rejected",
+    reason: null,
+    reviewerId: "rev-1",
+  });
+  assert.equal(gone.status, 409);
+  const broken = await decideEdge(fake(demotionSeed(), { ...rpcs(), recast_edge_to_cites: () => ({ data: null, error: { message: "boom" } }) }), {
+    id: "p-dem",
+    decision: "rejected",
+    reason: null,
+    reviewerId: "rev-1",
+  });
+  assert.equal(broken.status, 500);
+});
+
+test("keeping a demoted edge that is gone is refused and the proposal stays pending", async () => {
+  const db = demotionSeed();
+  db.edges = [];
+  const r = await decideEdge(fake(db, rpcs()), { id: "p-dem", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 409);
+  assert.equal(db.edge_proposals[0].status, "pending");
+  const done = demotionSeed();
+  done.edge_proposals[0].status = "rejected";
+  const again = await decideEdge(fake(done, rpcs()), { id: "p-dem", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.deepEqual(again.body, { decision: "rejected", alreadyDecided: true });
+});

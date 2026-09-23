@@ -28,6 +28,10 @@ With `--apply`, all four importers run the medallion leg after their gold write;
 
 Before stage 2 a run of `canon-all` wrote 50 lexical `derives_from` edges and `intake-all` 44; after it both write 0.
 
+## Demotions
+
+`enqueue-demotions.ts --apply` queues each `concept_lexical` `derives_from` edge from a canon concept tag as an `edge_proposals` row with `action = 'demote'`, the atom as factor and the tag's backfill silver item. On the local graph that is 50 edges on 28 tags, decided by the founder under bead bkt-cc3t. At `/research-os/edges`, approve keeps the edge and writes reviewer lineage. Reject calls `graph.recast_edge_to_cites`, which in one transaction locks the proposal and the edge by its (from, to, kind) key, adds a `cites` edge carrying the old provenance, moves learner flags to it, deletes the `derives_from` row and stores it as `prior_edge`. The function refuses a null reviewer and is granted to the service role alone; the route checks `RESEARCH_OS_REVIEWER_EMAILS` first. `restore-recast.ts --apply --proposal=<id>` or `--all` calls `graph.restore_recast_edge`, which puts the edge back with its id, returns the flags, removes only a `cites` edge the recast added, and reopens the proposal.
+
 ## Backfill Dry Run
 
 Run of 2026-09-23 on the local graph, 1,924 gold nodes:
