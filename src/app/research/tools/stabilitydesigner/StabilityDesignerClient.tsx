@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { PublishToCanon, RunError, RunStatus, useToolRun } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Mode = "predict" | "scan";
 type PredictOut = {
@@ -40,9 +42,9 @@ export default function StabilityDesignerClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             sequence
-          </span>
+          </FieldLabel>
           <textarea
             value={sequence}
             onChange={(e) => setSequence(e.target.value)}
@@ -73,9 +75,9 @@ export default function StabilityDesignerClient() {
 
         {mode === "predict" ? (
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+            <FieldLabel>
               mutation (e.g. A23V)
-            </span>
+            </FieldLabel>
             <input
               value={mutation}
               onChange={(e) => setMutation(e.target.value)}
@@ -86,9 +88,9 @@ export default function StabilityDesignerClient() {
           </label>
         ) : (
           <label className="flex flex-col gap-2">
-            <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+            <FieldLabel>
               position (1-based)
-            </span>
+            </FieldLabel>
             <input
               value={position}
               onChange={(e) => setPosition(e.target.value.replace(/[^0-9]/g, ""))}
@@ -99,13 +101,9 @@ export default function StabilityDesignerClient() {
           </label>
         )}
 
-        <button
-          type="submit"
-          disabled={busy || !valid}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || !valid}>
           {busy ? "running…" : mode === "scan" ? "scan" : "predict"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

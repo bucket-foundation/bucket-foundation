@@ -8,6 +8,8 @@ import {
   RunStatus,
   useToolRun,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Demo = "md" | "static";
 
@@ -28,9 +30,9 @@ export default function TrajMineClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             demo trajectory
-          </span>
+          </FieldLabel>
           <div className="flex gap-4">
             <button
               type="button"
@@ -58,13 +60,9 @@ export default function TrajMineClient() {
             </button>
           </div>
         </div>
-        <button
-          type="submit"
-          disabled={busy}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy}>
           {busy ? "running…" : "run demo"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

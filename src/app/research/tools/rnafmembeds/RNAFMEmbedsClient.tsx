@@ -12,6 +12,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type StructuralFeatures = {
   gc_fraction: number;
@@ -52,9 +56,9 @@ export default function RNAFMEmbedsClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             RNA / DNA sequence
-          </span>
+          </FieldLabel>
           <textarea
             value={sequence}
             onChange={(e) => setSequence(e.target.value)}
@@ -65,21 +69,12 @@ export default function RNAFMEmbedsClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || sequence.trim().replace(/\s/g, "").length < 4}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || sequence.trim().replace(/\s/g, "").length < 4}>
             {busy ? "embedding…" : "embed sequence"}
-          </button>
-          <button
-            type="button"
-            onClick={() => setSequence(EXAMPLE)}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={() => setSequence(EXAMPLE)} disabled={busy}>
             use an example
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -95,15 +90,6 @@ function EmbedView({ result }: { result: ResultEnvelope }) {
   const out = result.output as EmbedOutput;
   const f = out.structural_features;
   const preview = out.embedding.slice(0, 16);
-
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">
-        {label}
-      </div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
 
   return (
     <div className="mt-10">
@@ -126,17 +112,17 @@ function EmbedView({ result }: { result: ResultEnvelope }) {
         </pre>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("length", `${out.length} nt`)}
-        {stat("GC", `${(f.gc_fraction * 100).toFixed(0)}%`)}
-        {stat("purine", `${(f.purine_fraction * 100).toFixed(0)}%`)}
-        {stat("entropy", `${f.dinucleotide_entropy_bits.toFixed(2)} bits`)}
-      </div>
+      <StatGrid className="mt-6">
+        <Stat label="length" value={`${out.length} nt`} />
+        <Stat label="GC" value={`${(f.gc_fraction * 100).toFixed(0)}%`} />
+        <Stat label="purine" value={`${(f.purine_fraction * 100).toFixed(0)}%`} />
+        <Stat label="entropy" value={`${f.dinucleotide_entropy_bits.toFixed(2)} bits`} />
+      </StatGrid>
       {f.mfe_per_nt_kcal_mol != null && (
-        <div className="mt-px grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-          {stat("MFE / nt", `${f.mfe_per_nt_kcal_mol} kcal/mol`)}
-          {stat("longest run", String(f.longest_homopolymer))}
-        </div>
+        <StatGrid className="mt-px">
+          <Stat label="MFE / nt" value={`${f.mfe_per_nt_kcal_mol} kcal/mol`} />
+          <Stat label="longest run" value={String(f.longest_homopolymer)} />
+        </StatGrid>
       )}
 
       {out.note && (

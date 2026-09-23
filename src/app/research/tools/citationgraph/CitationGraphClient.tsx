@@ -11,6 +11,8 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Node = {
   id: string;
@@ -66,9 +68,9 @@ export default function CitationGraphClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             DOI · OpenAlex ID · or paper title
-          </span>
+          </FieldLabel>
           <input
             value={paper}
             onChange={(e) => setPaper(e.target.value)}
@@ -77,13 +79,9 @@ export default function CitationGraphClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || paper.trim().length < 4}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || paper.trim().length < 4}>
           {busy ? "building…" : "build neighborhood"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

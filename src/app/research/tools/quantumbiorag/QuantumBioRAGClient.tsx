@@ -11,6 +11,8 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Row = {
   title: string;
@@ -57,9 +59,9 @@ export default function QuantumBioRAGClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             quantum-biology claim
-          </span>
+          </FieldLabel>
           <textarea
             value={claim}
             onChange={(e) => setClaim(e.target.value)}
@@ -69,13 +71,9 @@ export default function QuantumBioRAGClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || claim.trim().length < 8}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || claim.trim().length < 8}>
           {busy ? "weighing…" : "score the claim"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

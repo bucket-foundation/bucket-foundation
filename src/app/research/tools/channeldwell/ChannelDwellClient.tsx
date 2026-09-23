@@ -12,6 +12,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type CDOutput = {
   method: string;
@@ -67,9 +71,9 @@ export default function ChannelDwellClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             single-channel current (pA samples — comma / space separated)
-          </span>
+          </FieldLabel>
           <textarea
             value={traceText}
             onChange={(e) => setTraceText(e.target.value)}
@@ -80,9 +84,9 @@ export default function ChannelDwellClient() {
           />
         </label>
         <label className="flex flex-col gap-2 max-w-[180px]">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             sample rate (Hz)
-          </span>
+          </FieldLabel>
           <input
             value={fs}
             onChange={(e) => setFs(e.target.value)}
@@ -91,21 +95,12 @@ export default function ChannelDwellClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || !parseTrace(traceText)}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || !parseTrace(traceText)}>
             {busy ? "idealizing…" : "idealize record"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo record (known Pₒ)
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -119,30 +114,23 @@ export default function ChannelDwellClient() {
 
 function CDView({ result }: { result: ResultEnvelope }) {
   const out = result.output as CDOutput;
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
         single-channel idealization{out.demo ? " · DEMO (two-state Markov)" : ""} · {out.duration_s}s @ {out.fs_hz} Hz
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("P open", out.p_open.toFixed(4))}
-        {stat("openings", String(out.n_openings))}
-        {stat("τ open", out.tau_open_ms != null ? `${out.tau_open_ms.toFixed(3)} ms` : "—")}
-        {stat("τ closed", out.tau_closed_ms != null ? `${out.tau_closed_ms.toFixed(3)} ms` : "—")}
-      </div>
-      <div className="mt-px grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("open level", `${out.levels.open.toFixed(2)} pA`)}
-        {stat("closed level", `${out.levels.closed.toFixed(2)} pA`)}
-        {stat("threshold", `${out.levels.threshold.toFixed(2)} pA`)}
-        {stat("mean open", out.mean_open_ms != null ? `${out.mean_open_ms.toFixed(2)} ms` : "—")}
-      </div>
+      <StatGrid>
+        <Stat label="P open" value={out.p_open.toFixed(4)} />
+        <Stat label="openings" value={String(out.n_openings)} />
+        <Stat label="τ open" value={out.tau_open_ms != null ? `${out.tau_open_ms.toFixed(3)} ms` : "—"} />
+        <Stat label="τ closed" value={out.tau_closed_ms != null ? `${out.tau_closed_ms.toFixed(3)} ms` : "—"} />
+      </StatGrid>
+      <StatGrid className="mt-px">
+        <Stat label="open level" value={`${out.levels.open.toFixed(2)} pA`} />
+        <Stat label="closed level" value={`${out.levels.closed.toFixed(2)} pA`} />
+        <Stat label="threshold" value={`${out.levels.threshold.toFixed(2)} pA`} />
+        <Stat label="mean open" value={out.mean_open_ms != null ? `${out.mean_open_ms.toFixed(2)} ms` : "—"} />
+      </StatGrid>
 
       {out.ground_truth_p_open != null && (
         <div className="mt-6 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-4 text-[14px] text-[color:var(--aegean-deep)]">

@@ -8,6 +8,8 @@ import {
   RunStatus,
   useToolRun,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 export default function ProteinScoutClient() {
   const [input, setInput] = useState("");
@@ -28,9 +30,9 @@ export default function ProteinScoutClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             sequence or UniProt accession
-          </span>
+          </FieldLabel>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -40,13 +42,9 @@ export default function ProteinScoutClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || input.trim().length < 1}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || input.trim().length < 1}>
           {busy ? "running…" : "analyze"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

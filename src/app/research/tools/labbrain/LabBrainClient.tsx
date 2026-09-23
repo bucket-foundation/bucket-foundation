@@ -10,6 +10,8 @@
 
 import { useCallback, useRef, useState } from "react";
 import { ToolOfflineNotice, detectToolOffline } from "../_shared/ToolOfflineNotice";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Phase = "idle" | "submitting" | "running" | "done" | "error";
 
@@ -145,9 +147,9 @@ export default function LabBrainClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             research PI
-          </span>
+          </FieldLabel>
           <input
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
@@ -157,9 +159,9 @@ export default function LabBrainClient() {
           />
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             question
-          </span>
+          </FieldLabel>
           <textarea
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
@@ -169,13 +171,9 @@ export default function LabBrainClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || author.trim().length < 2 || question.trim().length < 5}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || author.trim().length < 2 || question.trim().length < 5}>
           {busy ? "running…" : "ask the corpus"}
-        </button>
+        </SubmitButton>
       </form>
 
       {busy && (
@@ -250,9 +248,9 @@ function ResultView({ result }: { result: ResultEnvelope }) {
           {publishing ? "publishing…" : "publish to canon"}
         </button>
         {result.canon_tier && (
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             tier: {result.canon_tier}
-          </span>
+          </FieldLabel>
         )}
       </div>
       {publishMsg && (

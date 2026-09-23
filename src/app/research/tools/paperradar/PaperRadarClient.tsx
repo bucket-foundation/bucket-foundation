@@ -12,6 +12,8 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type FeedItem = {
   title: string;
@@ -55,9 +57,9 @@ export default function PaperRadarClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             your topics / keywords (comma or newline separated)
-          </span>
+          </FieldLabel>
           <textarea
             value={interests}
             onChange={(e) => setInterests(e.target.value)}
@@ -67,13 +69,9 @@ export default function PaperRadarClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy || interests.trim().length < 3}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy || interests.trim().length < 3}>
           {busy ? "scanning…" : "build my radar"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

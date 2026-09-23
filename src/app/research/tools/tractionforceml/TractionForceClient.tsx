@@ -12,6 +12,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type TFOutput = {
   method: string;
@@ -74,9 +78,9 @@ export default function TractionForceClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             reference (relaxed) bead image — rows, or JSON 2-D array
-          </span>
+          </FieldLabel>
           <textarea
             value={refText}
             onChange={(e) => setRefText(e.target.value)}
@@ -86,9 +90,9 @@ export default function TractionForceClient() {
           />
         </label>
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             deformed bead image — same shape
-          </span>
+          </FieldLabel>
           <textarea
             value={defText}
             onChange={(e) => setDefText(e.target.value)}
@@ -98,21 +102,12 @@ export default function TractionForceClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || !parseImage(refText) || !parseImage(defText)}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || !parseImage(refText) || !parseImage(defText)}>
             {busy ? "computing…" : "compute PIV field"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo (known shift)
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -125,14 +120,7 @@ export default function TractionForceClient() {
 }
 
 function TFView({ result }: { result: ResultEnvelope }) {
-  const out = result.output as TFOutput;
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-  const gtMatch =
+  const out = result.output as TFOutput;  const gtMatch =
     out.ground_truth_shift_px &&
     out.dominant_shift_px.u === out.ground_truth_shift_px.u &&
     out.dominant_shift_px.v === out.ground_truth_shift_px.v;
@@ -142,14 +130,14 @@ function TFView({ result }: { result: ResultEnvelope }) {
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
         block-matching PIV{out.demo ? " · DEMO (synthetic beads)" : ""} · {out.image_shape[0]}×{out.image_shape[1]}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("vectors", String(out.n_vectors))}
-        {stat("mean |u|", `${out.mean_displacement_px.toFixed(2)} px`)}
-        {stat("max |u|", `${out.max_displacement_px.toFixed(2)} px`)}
-        {stat("dominant", `u=${out.dominant_shift_px.u}, v=${out.dominant_shift_px.v}`)}
-      </div>
+      <StatGrid>
+        <Stat label="vectors" value={String(out.n_vectors)} />
+        <Stat label="mean |u|" value={`${out.mean_displacement_px.toFixed(2)} px`} />
+        <Stat label="max |u|" value={`${out.max_displacement_px.toFixed(2)} px`} />
+        <Stat label="dominant" value={`u=${out.dominant_shift_px.u}, v=${out.dominant_shift_px.v}`} />
+      </StatGrid>
       <div className="mt-px grid grid-cols-1 gap-px bg-[color:var(--hairline)]">
-        {stat("strain-energy proxy (Σ|u|²)", out.strain_energy_proxy.toFixed(2))}
+        <Stat label="strain-energy proxy (Σ|u|²)" value={out.strain_energy_proxy.toFixed(2)} />
       </div>
 
       {out.ground_truth_shift_px && (

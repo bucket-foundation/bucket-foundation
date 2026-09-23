@@ -11,6 +11,9 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Guide = {
   rank: number;
@@ -65,9 +68,9 @@ export default function GRNAOptimizerClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             target DNA
-          </span>
+          </FieldLabel>
           <textarea
             value={sequence}
             onChange={(e) => setSequence(e.target.value)}
@@ -78,9 +81,9 @@ export default function GRNAOptimizerClient() {
           />
         </label>
         <label className="flex flex-col gap-2 max-w-[180px]">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             PAM (IUPAC)
-          </span>
+          </FieldLabel>
           <input
             value={pam}
             onChange={(e) => setPam(e.target.value.toUpperCase())}
@@ -90,21 +93,12 @@ export default function GRNAOptimizerClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || sequence.trim().replace(/\s/g, "").length < 23}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || sequence.trim().replace(/\s/g, "").length < 23}>
             {busy ? "designing…" : "design guides"}
-          </button>
-          <button
-            type="button"
-            onClick={() => setSequence(EXAMPLE)}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={() => setSequence(EXAMPLE)} disabled={busy}>
             use an example target
-          </button>
+          </DemoButton>
         </div>
       </form>
 
