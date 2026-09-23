@@ -93,7 +93,7 @@ def root_for(lang, word, db, hint, pos=None):
         resolved, chain, root, conf, ety = node_words.analyze(lang, word, db, hint, pos)
         if not root[1]:
             return resolved, ety, root, conf, 0.0, chain
-        cap, _flags = node_words.root_check(lang, resolved, ety, chain, root, db, hint, pos)
+        cap, _flags = node_words.root_check(lang, resolved, ety, chain, root, db, hint, gloss_check=False)
         closed = node_words.word_key(word) in CLOSED_CLASS
         return resolved, ety, root, conf, min(conf, cap, CLOSED_CLASS_ROOT if closed else 1.0), chain
     resolved, _chain, _root, conf, ety = node_words.analyze(lang, word, db, hint, pos)
@@ -103,7 +103,7 @@ def root_for(lang, word, db, hint, pos=None):
     r2, chain, root, root_conf, e2 = node_words.analyze(lang, content[0], db, hint, pos)
     if not root[1]:
         return resolved, ety, (None, None, None), conf, 0.0, []
-    cap, _flags = node_words.root_check(lang, r2, e2, chain, root, db, hint, pos)
+    cap, _flags = node_words.root_check(lang, r2, e2, chain, root, db, hint, gloss_check=False)
     return resolved, ety, root, conf, min(root_conf, cap, MULTIWORD_ROOT), chain
 
 def english_words(prime):

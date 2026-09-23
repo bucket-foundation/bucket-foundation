@@ -71,6 +71,13 @@ class Resolver(unittest.TestCase):
         self.assertIn("gloss", flags)
         self.assertLess(cap, nw.HIDE_BELOW)
 
+    def test_nsm_exponents_skip_the_gloss_cap(self):
+        h = frozenset(nw.tokens("oneself self reflexive"))
+        resolved, chain, root, _conf, ety = nw.analyze("pl", "się", self.db, h, "pron")
+        _cap, flags = nw.root_check("pl", resolved, ety, chain, root, self.db, h, "pron", gloss_check=False)
+        self.assertNotIn("gloss", flags)
+        self.assertIn("pos", flags)
+
     def test_a_content_word_keeps_a_root_whose_gloss_differs(self):
         root, (cap, flags) = self.check("de", "Kerze", "candle", "noun")
         self.assertEqual((root[1], cap, flags), ("cēra", 1.0, []))

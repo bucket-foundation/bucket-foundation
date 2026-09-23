@@ -500,7 +500,7 @@ def choose_root(lang, word, chain, roots, db):
         return c["lang"], c["form"], c["gloss"]
     return None, None, None
 
-def root_check(lang, resolved, ety, chain, root, db, hint, pos=None):
+def root_check(lang, resolved, ety, chain, root, db, hint, pos=None, gloss_check=True):
     root_lang, root_form, root_gloss = root
     if not root_form:
         return 0.0, []
@@ -511,7 +511,7 @@ def root_check(lang, resolved, ety, chain, root, db, hint, pos=None):
     if word_pos and rpos and pos_clash(word_pos, rpos):
         cap = min(cap, POS_MISMATCH_ROOT)
         flags.append("pos")
-    if pos_side(word_pos) == "function" and not (root_lang == "zh" and " + " in (root_form or "")):
+    if gloss_check and pos_side(word_pos) == "function" and not (root_lang == "zh" and " + " in (root_form or "")):
         own = " ".join(e["gloss"] or "" for e in db.entries(lang, resolved)) if resolved else ""
         ok = any_overlap(chain, root_gloss, frozenset({stem(t) for t in hint}) | stems(own))
         if ok is False:
