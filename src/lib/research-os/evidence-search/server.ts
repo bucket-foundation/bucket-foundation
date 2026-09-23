@@ -137,6 +137,16 @@ let cached: Corpus | null = null;
 export function loadCorpus(env: Record<string, string | undefined> = process.env, root = path.join(process.cwd(), "local", "evidence")): Corpus {
   const directory = env.RESEARCH_OS_EVIDENCE_DIR || newestCorpusDir(root);
   if (!directory) throw new CorpusUnavailable(`no built corpus under ${root}; set ${EVIDENCE_DIR}`);
+  // A directory that was named and is not there is a fact about this
+  // deployment, the same as none being built. Only the unnamed path
+  // checked that, so a stale or mistyped EVIDENCE_DIR fell through to
+  // readCorpus and came back as a read that failed this minute, which
+  // tells a person to retry something no retry fixes. That is the
+  // inversion this file's two classes exist to prevent, so it is the
+  // one place to get it right.
+  if (!existsSync(path.join(directory, "manifest.json"))) {
+    throw new CorpusUnavailable(`no corpus at ${directory}; ${EVIDENCE_DIR} names a directory with no manifest.json`);
+  }
   if (cached && cached.directory === directory) return cached;
   const policyPath = path.join(process.cwd(), "learning", "research-os", "ai", "rights-policy.json");
   let raw: Buffer;

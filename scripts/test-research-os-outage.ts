@@ -450,3 +450,35 @@ test("nothing parses a body and then asks whether the request succeeded", () => 
     `these parse the body before checking the status, so a gateway 503 throws and the rule never runs. Add .catch(() => ({})): ${offenders.join(", ")}`,
   );
 });
+
+test("a corpus that was named and is not there is permanent", () => {
+  // The two classes invert if this is wrong, which is the whole subject
+  // of this file. Only the unnamed path checked that a corpus exists, so
+  // a stale or mistyped RESEARCH_OS_EVIDENCE_DIR fell through to the
+  // reader and came back as corpus_read_failed: a retryable answer to a
+  // deployment fact, telling a person to retry what no retry fixes. The
+  // peer's route-access suite caught it on a directory it creates and
+  // never builds.
+  /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+  const { loadCorpus, CorpusReadFailed, CorpusUnavailable } = require("../src/lib/research-os/evidence-search/server") as {
+    loadCorpus: (env: Record<string, string | undefined>, root: string) => unknown;
+    CorpusReadFailed: new (m: string) => Error;
+    CorpusUnavailable: new (m: string) => Error;
+  };
+  const absent = path.join("/tmp", `no-corpus-${Date.now()}-${process.pid}`);
+
+  for (const [what, env] of [
+    ["a named directory that is not there", { RESEARCH_OS_EVIDENCE_DIR: absent }],
+    ["nothing named and nothing built", {}],
+  ] as [string, Record<string, string | undefined>][]) {
+    let thrown: unknown;
+    try {
+      loadCorpus(env, absent);
+    } catch (e) {
+      thrown = e;
+    }
+    assert.ok(thrown instanceof CorpusUnavailable, `${what} raises CorpusUnavailable`);
+    assert.ok(!(thrown instanceof CorpusReadFailed), `${what} is not a read that failed this minute`);
+    assert.equal(isTransientOutage(503, "corpus_unavailable"), false, "and that code earns no retry");
+  }
+});
