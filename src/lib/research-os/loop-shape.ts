@@ -5,7 +5,7 @@ export interface LoopInternalization {
   nextBridge: { slug: string; title: string } | null;
 }
 
-export interface LoopResponse {
+export type LoopResponse = {
   access: { owned: number; imports: number; pendingRequests: number };
   awareness: { opened: number; atLeastAwareness: number };
   understanding: { nodes: number; decksStarted: number | null };
@@ -19,7 +19,7 @@ export interface LoopResponse {
     latest: { id: string; status: string; kind: string; claim: string | null } | null;
   };
   empty: boolean;
-}
+};
 
 export function internalizationState(internalization: LoopInternalization): string {
   if (internalization.held === null) return "connections unavailable";
