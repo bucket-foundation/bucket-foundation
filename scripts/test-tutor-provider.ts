@@ -1,4 +1,4 @@
-import { selectProvider } from "../src/app/api/academy/tutor/provider";
+import { selectProvider } from "../src/lib/llm/provider";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown) {

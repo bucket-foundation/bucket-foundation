@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { selectProvider } from "./provider";
+import { selectProvider } from "@/lib/llm/provider";
 import { runResearchAgent } from "./agent";
 
 export const runtime = "nodejs";
