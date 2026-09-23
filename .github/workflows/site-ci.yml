@@ -123,11 +123,34 @@ jobs:
           set -a; . "$RUNNER_TEMP/supa.env"; set +a
           NODE_WORDS_DB_URL="$DB_URL" python3 -m unittest scripts/photon/test_node_words_db.py
 
-  # The loop as a person, over a fresh local stack. On demand: it pulls the
-  # Supabase images and seeds the graph, which is too slow for every pull
-  # request.
+  e2e-paths:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.paths.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: paths
+        id: paths
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if ! changed="$(git diff --name-only "$base"...HEAD)"; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if printf '%s\n' "$changed" | grep -qE '^(src/app/research-os/|src/app/api/research-os/|tests/e2e/|playwright\.config\.ts$|\.github/workflows/site-ci\.yml$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  # The loop as a person, over a fresh local stack. On demand, and on pull
+  # requests that touch the Research OS pages, its routes, or the specs.
   e2e:
-    if: github.event_name == 'workflow_dispatch'
+    needs: e2e-paths
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.e2e-paths.outputs.run == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -157,6 +180,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: dev server
         run: |
+          node scripts/sync-academy.mjs
           (npx next dev -p 3100 > dev.log 2>&1 &)
           for i in $(seq 1 90); do
             if wget -q -O /dev/null http://localhost:3100/sign-in; then break; fi
