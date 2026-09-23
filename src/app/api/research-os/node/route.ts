@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
+import { NextResponse } from "next/server";
+import { graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
 import { authorizeVerbs } from "@/lib/research-os/read-access";
 import { filterSubgraphForViewer, loadNodeAccess } from "@/lib/research-os/access-db";
 import type { GrantRole } from "@/lib/research-os/access";
@@ -7,16 +7,14 @@ import { directionsFrom } from "@/lib/research-os/directions";
 import { learnTargetFor } from "@/lib/research-os/learn-link";
 import { listMyClasses } from "@/lib/research-os/classes";
 import type { Stage } from "@/lib/research-os/types";
+import { NO_STORE, bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 const VERBS: GrantRole[] = ["view", "continue", "extend", "cite", "replicate", "review"];
 const ACTING = ["extends", "replicates", "reviews", "answers"];
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const slug = (new URL(req.url).searchParams.get("slug") || "").trim();
   if (!slug || !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/.test(slug)) return bad(400, "slug_required");
   const identity = await verifyLearnerIdentity(req);
@@ -166,4 +164,4 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});

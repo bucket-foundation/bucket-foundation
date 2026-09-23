@@ -51,6 +51,16 @@ test("sign in and open the import page", async () => {
   await expect(page.getByRole("heading", { name: /bring a file in/i })).toBeVisible();
 });
 
+test("the age check is on file before a file can be recorded", async () => {
+  await page.goto("/research-os/profile");
+  await page.getByLabel("independent adult learner").check();
+  await page.getByLabel("18 or older").check();
+  await page.getByRole("button", { name: "save profile" }).click();
+  await expect(page.getByText(/Profile saved\./)).toBeVisible();
+  await page.goto("/research-os/import");
+  await expect(page.getByRole("heading", { name: /bring a file in/i })).toBeVisible();
+});
+
 test("a chosen file shows what kind it is before anything is sent", async () => {
   await page.setInputFiles("#import-files", file);
   await expect(page.getByText("rows.csv")).toBeVisible();

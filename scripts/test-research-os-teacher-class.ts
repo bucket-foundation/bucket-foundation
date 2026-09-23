@@ -8,27 +8,7 @@ import { isReviewerEmail } from "../src/lib/research-os/reviewer";
 import { filterClassesForReviewer } from "../src/lib/research-os/db";
 import { onProductionReview, onProductionReturned } from "../src/lib/research-os/stages";
 import { buildProductionOutboxRow, type GraphProductionRow } from "../src/lib/research-os/engine-bridge";
-
-const SEED_PATH = join(__dirname, "..", "supabase", "seed", "research-os-sky-blue.json");
-
-interface SeedNode {
-  slug: string;
-  title: string;
-  kind: GraphNode["kind"];
-  tier: number;
-  branch: string;
-  summary: string;
-}
-interface SeedEdge {
-  from: string;
-  to: string;
-  kind: GraphEdge["kind"];
-}
-interface Seed {
-  target_slug: string;
-  nodes: SeedNode[];
-  edges: SeedEdge[];
-}
+import { SEED_PATH, type Seed } from "./lib/test-harness";
 
 function loadSeedGraph(): { nodes: GraphNode[]; edges: GraphEdge[]; targetId: string } {
   const seed = JSON.parse(readFileSync(SEED_PATH, "utf8")) as Seed;

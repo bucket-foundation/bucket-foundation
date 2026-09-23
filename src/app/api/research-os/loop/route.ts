@@ -1,15 +1,13 @@
 import type { LoopResponse } from "@/lib/research-os/loop-shape";
-import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { configured, graphService, pagedRead, verifyLearner } from "@/lib/research-os/db";
+import { graphService, pagedRead } from "@/lib/research-os/db";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 import { loadConnections } from "@/lib/research-os/connections-db";
 import { stageAtLeast } from "@/lib/research-os/types";
 import type { Stage } from "@/lib/research-os/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 
 async function learnDecksStarted(userId: string): Promise<number> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -28,10 +26,7 @@ async function counted(query: PromiseLike<{ count: number | null; error: { messa
   return count ?? 0;
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
+export const GET = withResearchOsRoute({ auth: "required" }, async (_req, { learnerId }) => {
   const svc = graphService();
   let reads;
   try {
@@ -77,5 +72,5 @@ export async function GET(req: NextRequest) {
       },
       empty: states.length === 0 && productions.length === 0 && ownedRes === 0 && decks === 0,
   };
-  return NextResponse.json(payload, NO_STORE);
-}
+  return payload;
+});

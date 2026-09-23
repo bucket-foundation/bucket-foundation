@@ -1,7 +1,7 @@
 {
   "GET unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "GET anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -17,7 +17,7 @@
   },
   "GET signed in, store down": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "read_failed"
@@ -25,7 +25,7 @@
   },
   "GET signed in, consent unavailable": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "read_failed"
@@ -33,15 +33,38 @@
   },
   "GET signed in, consent refused": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "read_failed"
     }
   },
+  "GET profile read": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "profile": {
+        "role": "student",
+        "birthYearBucket": "18plus",
+        "consentStatus": "not_required",
+        "updatedAt": "<time>"
+      },
+      "game": null
+    }
+  },
+  "GET no profile yet": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "profile": null,
+      "game": null
+    }
+  },
   "POST unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -49,7 +72,7 @@
   },
   "POST anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -57,7 +80,7 @@
   },
   "POST signed in, store down": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "role must be one of student, teacher, independent"
@@ -65,7 +88,7 @@
   },
   "POST signed in, malformed json": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "bad_request"
@@ -73,7 +96,7 @@
   },
   "POST signed in, consent unavailable": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "role must be one of student, teacher, independent"
@@ -81,10 +104,55 @@
   },
   "POST signed in, consent refused": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "role must be one of student, teacher, independent"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "role must be one of student, teacher, independent"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "role must be one of student, teacher, independent"
+    }
+  },
+  "POST bad role": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "role must be one of student, teacher, independent"
+    }
+  },
+  "POST valid, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
+    }
+  },
+  "POST valid, saved": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "profile": {
+        "role": "student",
+        "birthYearBucket": "18plus",
+        "consentStatus": "not_required",
+        "updatedAt": "<time>"
+      }
     }
   }
 }

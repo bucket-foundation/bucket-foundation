@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
 import { isIdeaNode } from "./idea";
+import { attend, primeBasis, type PrimeBasis } from "./prime-algebra";
 import { contractedFactorEdges, decompose, FACTOR_EDGES, factorMap, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
 export type MakeupNode = { id: string; slug: string; title: string; branch: string; kind?: string; provenanceType?: string | null };
@@ -17,6 +18,7 @@ export type Makeup = {
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];
   irreducible: { status: "pending" | "confirmed" | "rejected"; justification: string } | null;
+  nearest: (MakeupNode & { score: number; shared: MakeupNode[]; sameMakeup: number })[];
 };
 
 export type MakeupProposal = {
@@ -52,6 +54,42 @@ export type Snapshot = {
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
 };
+
+const bases = new WeakMap<Map<string, Decomposition>, PrimeBasis>();
+
+function basisOf(dec: Map<string, Decomposition>): PrimeBasis {
+  let b = bases.get(dec);
+  if (!b) {
+    b = primeBasis(dec);
+    bases.set(dec, b);
+  }
+  return b;
+}
+
+export function nearestByMakeup(nodeId: string, snap: Snapshot, k = 8): Makeup["nearest"] {
+  const title = (id: string) => snap.byId.get(id)?.title ?? id;
+  const depth = (id: string) => snap.dec.get(id)?.depth ?? 0;
+  const hits = attend(snap.dec, [nodeId], {
+    k: Number.MAX_SAFE_INTEGER,
+    basis: basisOf(snap.dec),
+    tieBreak: (a, b) => depth(a) - depth(b) || title(a).localeCompare(title(b)) || a.localeCompare(b),
+  });
+  const groups = new Map<string, Makeup["nearest"][number]>();
+  for (const a of hits) {
+    const n = snap.byId.get(a.id);
+    if (!n) continue;
+    const key = Array.from(snap.dec.get(a.id)?.signature.keys() ?? []).sort().join("\u0000");
+    const seen = groups.get(key);
+    if (seen) {
+      seen.sameMakeup++;
+      continue;
+    }
+    if (groups.size >= k) continue;
+    const shared = a.sharedPrimes.map((p) => snap.byId.get(p)).filter((x): x is MakeupNode => !!x);
+    groups.set(key, { ...n, score: a.score, shared, sameMakeup: 0 });
+  }
+  return Array.from(groups.values());
+}
 
 const VERDICT_ORDER: Record<string, number> = { confirmed: 0, unchecked: 1, refuted: 2 };
 
@@ -109,6 +147,7 @@ export function buildMakeup(
       .map((m) => ({ key: m.key, title: m.title, summary: m.summary, reason: m.reasons?.[self.slug] ?? null }))
       .sort((a, b) => a.title.localeCompare(b.title)),
     irreducible: pending.irreducible,
+    nearest: nearestByMakeup(nodeId, snap),
   };
 }
 

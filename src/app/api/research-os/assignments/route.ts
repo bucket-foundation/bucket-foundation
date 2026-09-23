@@ -1,24 +1,19 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, verifyLearner } from "@/lib/research-os/db";
+import { verifyLearner } from "@/lib/research-os/db";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 import { closeAssignment, createAssignment, listAssignments, listAssignmentsForLearner, verifyClassStaff } from "@/lib/research-os/class-db";
 import { grantAccess, loadNodeAccess } from "@/lib/research-os/access-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
   if (searchParams.get("mine")) {
     const learnerId = await verifyLearner(req);
     if (!learnerId) return bad(401, "unauthorized");
     const mine = await listAssignmentsForLearner(learnerId);
     if (!mine.ok) return bad(503, "access_unavailable");
-    return NextResponse.json({ assignments: mine.assignments }, NO_STORE);
+    return { assignments: mine.assignments };
   }
   const classId = searchParams.get("class");
   if (!classId) return bad(400, "class_required");
@@ -28,21 +23,17 @@ export async function GET(req: NextRequest) {
   if (!staff) return bad(403, "forbidden");
   const staffList = await listAssignments(classId);
   if (!staffList.ok) return bad(503, "access_unavailable");
-  return NextResponse.json({ assignments: staffList.assignments, roles: staff.roles }, NO_STORE);
-}
+  return { assignments: staffList.assignments, roles: staff.roles };
+});
 
 type Body =
   | { action: "create"; classId: string; targetSlug: string; title: string; instructions?: string; dueAt?: string; required?: boolean; requiresProduction?: boolean }
   | { action: "close"; classId: string; assignmentId: string };
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  let body: Body;
-  try {
-    body = (await req.json()) as Body;
-  } catch {
-    return bad(400, "bad_json");
-  }
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const read = await readAnyJson(req);
+  if (!read.ok) return read.res;
+  const body = read.value as Body | null;
   if (!body?.classId) return bad(400, "class_required");
   const staffCheck = await verifyClassStaff(req, body.classId);
   if (!staffCheck.ok) return bad(503, "class_read_failed");
@@ -61,12 +52,12 @@ export async function POST(req: NextRequest) {
       }
     } catch {
     }
-    return NextResponse.json({ assignment: r.value }, NO_STORE);
+    return { assignment: r.value };
   }
   if (body.action === "close") {
     if (!body.assignmentId) return bad(400, "assignment_required");
     const r = await closeAssignment(staff, body.classId, body.assignmentId);
-    return r.ok ? NextResponse.json({ ok: true }, NO_STORE) : bad(r.error === "forbidden" ? 403 : 500, r.error);
+    return r.ok ? { ok: true } : bad(r.error === "forbidden" ? 403 : 500, r.error);
   }
   return bad(400, "unknown_action");
-}
+});
