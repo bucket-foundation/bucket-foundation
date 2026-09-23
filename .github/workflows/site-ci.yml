@@ -46,6 +46,13 @@ jobs:
         run: npm test
       - name: research os tests
         run: npm run test:research-os
+      - name: build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-placeholder-anon-key
+        run: npm run build
+      - name: client bundle secret scan
+        run: node scripts/check-client-bundle-secrets.mjs .next/static
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
