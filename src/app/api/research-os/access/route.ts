@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { configured, verifyLearner } from "@/lib/research-os/db";
+import { verifyLearner } from "@/lib/research-os/db";
 import { can, canView, isOwner, GRANT_ROLES, type AccessRequest, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
 import {
   createImport,
@@ -16,14 +16,10 @@ import {
   loadPendingCountsForNodes,
   setVisibility,
 } from "@/lib/research-os/access-db";
+import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 
 const VISIBILITIES: Visibility[] = ["public", "private", "shared"];
 const PURPOSES: RequestPurpose[] = ["continue", "extend", "cite", "replicate", "review"];
@@ -36,8 +32,7 @@ async function viewerFrom(req: NextRequest): Promise<{ ok: true; viewer: Viewer 
   return { ok: true, viewer: { id, groups: groups.value } };
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
   const viewerRead = await viewerFrom(req);
   if (!viewerRead.ok) return bad(503, "access_unavailable");
@@ -90,7 +85,7 @@ export async function GET(req: NextRequest) {
     },
     NO_STORE
   );
-}
+});
 
 type Body =
   | { action: "set_visibility"; nodeId: string; visibility: Visibility }
@@ -100,18 +95,14 @@ type Body =
   | { action: "decide"; nodeId: string; requestId: string; decision: "granted" | "denied" }
   | { action: "import"; kind: "dataset" | "paper" | "notes" | "corpus"; title: string; source?: Record<string, unknown> };
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const viewerRead = await viewerFrom(req);
   if (!viewerRead.ok) return bad(503, "access_unavailable");
   const viewer = viewerRead.viewer;
   if (!viewer.id) return bad(401, "unauthorized");
-  let body: Body;
-  try {
-    body = (await req.json()) as Body;
-  } catch {
-    return bad(400, "bad_json");
-  }
+  const read = await readAnyJson(req, "bad_json");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as Body;
   if (!body || typeof body !== "object" || !("action" in body)) return bad(400, "action_required");
 
   if (body.action === "import") {
@@ -158,4 +149,4 @@ export async function POST(req: NextRequest) {
     default:
       return bad(400, "unknown_action");
   }
-}
+});
