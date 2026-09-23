@@ -51,19 +51,21 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
     if (!token) return;
     try {
       const [c, p] = await Promise.all([
-        fetch("/api/research-os/consent", { headers: headers(), cache: "no-store" }),
-        fetch("/api/research-os/payee", { headers: headers(), cache: "no-store" }),
+        fetch("/api/research-os/consent", { headers: headers(), cache: "no-store" }).then(async (r) => ({ r, transient: !r.ok && isTransientOutage(r.status, await readErrorCode(r)) })),
+        fetch("/api/research-os/payee", { headers: headers(), cache: "no-store" }).then(async (r) => ({ r, transient: !r.ok && isTransientOutage(r.status, await readErrorCode(r)) })),
       ]);
-      if (c.ok) {
-        setConsent((await c.json()) as ConsentView);
+      if (c.r.ok) {
+        setConsent((await c.r.json()) as ConsentView);
         setLoadNote(null);
       } else {
-        setLoadNote(isTransientOutage(c.status, await readErrorCode(c)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
+        setLoadNote(c.transient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
       }
-      if (p.ok) {
-        const pv = (await p.json()) as PayeeView;
+      if (p.r.ok) {
+        const pv = (await p.r.json()) as PayeeView;
         setPayee(pv);
         if (pv.payeeType) setPayeeType(pv.payeeType);
+      } else {
+        setLoadNote(p.transient ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
       }
     } catch {
       setLoadNote(OUTAGE_COPY.body);
@@ -111,7 +113,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setNote(j.error ?? "failed");
+        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? "failed"));
       } else {
         setContact("");
       }
