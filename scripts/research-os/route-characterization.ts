@@ -8,7 +8,7 @@ const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
 export const LEARNER = "00000000-0000-0000-0000-0000000000e1";
 const PROBE_TIMEOUT_MS = 10_000;
 
-export type Observed = { status: number; cache: string | null; type: string | null; body: unknown } | { threw: string } | { timeout: true };
+export type Observed = { status: number; cache: string | null; type: string | null; retryAfter?: string; body: unknown } | { threw: string } | { timeout: true };
 export type Snapshot = Record<string, Observed>;
 
 export type Stub = Record<string, Record<string, unknown>>;
@@ -88,7 +88,8 @@ async function observe(res: Response): Promise<Observed> {
     body = text;
   }
   const type = res.headers.get("content-type");
-  return { status: res.status, cache: res.headers.get("cache-control"), type: type ? type.split(";")[0] : null, body };
+  const retryAfter = res.headers.get("retry-after");
+  return { status: res.status, cache: res.headers.get("cache-control"), type: type ? type.split(";")[0] : null, ...(retryAfter ? { retryAfter } : {}), body };
 }
 
 async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response>, method: string, probe: Probe): Promise<Observed> {

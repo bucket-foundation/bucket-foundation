@@ -46,5 +46,86 @@
     "body": {
       "error": "class_learner_node_level_required"
     }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_learner_node_level_required"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_learner_node_level_required"
+    }
+  },
+  "POST bad level": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_level"
+    }
+  },
+  "POST valid body, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "POST valid body, not staff": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST staff, override applied": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "stage": "awareness"
+    }
+  },
+  "POST staff, busy": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "retryAfter": "1",
+    "body": {
+      "error": "busy"
+    }
+  },
+  "POST staff, unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "POST staff, not a member": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_a_member"
+    }
+  },
+  "POST staff, override throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
   }
 }
