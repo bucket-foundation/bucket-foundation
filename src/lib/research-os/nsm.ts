@@ -32,6 +32,7 @@ export interface NsmExponentRow {
   root_lang: string | null;
   root_form: string | null;
   root_gloss: string | null;
+  colex_with?: string[] | null;
 }
 
 export interface NsmExponent {
@@ -50,6 +51,7 @@ export interface NsmExponent {
   rootLangName: string | null;
   rootForm: string | null;
   rootGloss: string | null;
+  colexWith: string[];
 }
 
 export type SenseStatus = "matched" | "fallback" | "none";
@@ -64,6 +66,7 @@ export interface NsmPrime {
   sense: string | null;
   senseStatus: SenseStatus;
   exponents: NsmExponent[];
+  colex: NsmColex[];
 }
 
 export interface NsmCategory {
@@ -105,7 +108,43 @@ export function toExponent(row: NsmExponentRow, opts: { includeHidden?: boolean 
     rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
     rootForm: keepRoot ? row.root_form || null : null,
     rootGloss: keepRoot ? row.root_gloss || null : null,
+    colexWith: Array.isArray(row.colex_with) ? row.colex_with.filter((x): x is string => typeof x === "string") : [],
   };
+}
+
+export const CLICS_ATTRIBUTION = {
+  text: "Colexifications from CLICS 4, Tjuka, Forkel, Rzymski and List (2026), under CC BY 4.0.",
+  doi: "https://doi.org/10.5281/zenodo.16900179",
+  license: "https://creativecommons.org/licenses/by/4.0/",
+};
+
+export interface NsmColexRow {
+  prime_a: string;
+  prime_b: string;
+  lang: string;
+  form: string;
+  family_count: number;
+  matched: boolean;
+}
+
+export interface NsmColex {
+  other: string;
+  otherLabel: string;
+  lang: string;
+  langName: string;
+  form: string;
+  families: number;
+  matched: boolean;
+}
+
+export function colexFor(primeId: string, rows: NsmColexRow[], labels: Map<string, string>): NsmColex[] {
+  return rows
+    .filter((r) => r.prime_a === primeId || r.prime_b === primeId)
+    .map((r) => {
+      const other = r.prime_a === primeId ? r.prime_b : r.prime_a;
+      return { other, otherLabel: labels.get(other) ?? other, lang: r.lang, langName: langName(r.lang), form: r.form, families: r.family_count, matched: r.matched };
+    })
+    .sort((a, b) => a.otherLabel.localeCompare(b.otherLabel) || a.langName.localeCompare(b.langName));
 }
 
 export function senseStatus(row: NsmPrimeRow): SenseStatus {
@@ -113,13 +152,14 @@ export function senseStatus(row: NsmPrimeRow): SenseStatus {
   return row.sense_match ? "matched" : "fallback";
 }
 
-export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opts: { includeHidden?: boolean } = {}): NsmPrime[] {
+export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opts: { includeHidden?: boolean; colex?: NsmColexRow[] } = {}): NsmPrime[] {
   const byPrime = new Map<string, NsmExponent[]>();
   for (const row of exponents) {
     const e = toExponent(row, opts);
     if (!opts.includeHidden && e.hidden) continue;
     byPrime.set(row.prime_id, (byPrime.get(row.prime_id) ?? []).concat(e));
   }
+  const labels = new Map(primes.map((p) => [p.id, p.label]));
   return primes
     .slice()
     .sort((a, b) => a.ord - b.ord)
@@ -133,6 +173,7 @@ export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opt
       sense: p.sense || null,
       senseStatus: senseStatus(p),
       exponents: (byPrime.get(p.id) ?? []).sort((a, b) => a.langName.localeCompare(b.langName) || a.rank - b.rank),
+      colex: colexFor(p.id, opts.colex ?? [], labels),
     }));
 }
 
