@@ -24,7 +24,7 @@ create table if not exists graph.imports (
 );
 ```
 
-The `source` comment names four keys. `license` is declared on the `Provenance` interface at `src/lib/research-os/types.ts:91` and no code in the import path reads or writes it; `sha256` has no declaration and no reader anywhere in `src/` or `scripts/`. Row-level security is owner-only, `select using (auth.uid() = owner_id)` at `:88`, and `GET /api/research-os/loop` counts a learner's own rows at `src/app/api/research-os/loop/route.ts:41`.
+The `source` comment names four keys. `license` is declared on the `Provenance` interface at `src/lib/research-os/types.ts:91` and no code in the import path reads or writes it; `sha256` has no declaration and no reader anywhere in `src/` or `scripts/`. Row-level security is owner-only, `select using (auth.uid() = owner_id)` at `:88`, and `GET /api/research-os/loop` counts a learner's own rows at `src/app/api/research-os/loop/route.ts:38`.
 
 ### The write
 
