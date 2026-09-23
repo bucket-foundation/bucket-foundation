@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
 import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
+import { forgetPrimesReport } from "../primes-report";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -256,6 +257,7 @@ export async function decideEdge(
   );
   if (edgeErr) return fail(500, (await release()) ? "edge_write_failed" : "edge_write_failed_claim_held");
   forgetMakeupSnapshot();
+  forgetPrimesReport();
   const stale: string[] = [];
   let tiersRaised: number | null = null;
   if (e.kind === "prerequisite") {
@@ -451,6 +453,7 @@ export async function decideNode(
     }
   }
   forgetMakeupSnapshot();
+  forgetPrimesReport();
   const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
   return ok({
     decision: "approved",

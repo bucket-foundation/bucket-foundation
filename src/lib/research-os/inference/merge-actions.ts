@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { forgetMakeupSnapshot } from "../makeup";
+import { forgetPrimesReport } from "../primes-report";
 
 export type ActionResult = { status: number; body: Record<string, unknown> };
 const ok = (body: Record<string, unknown>): ActionResult => ({ status: 200, body });
@@ -109,6 +110,7 @@ export async function decideMerge(svc: SupabaseClient, input: MergeDecision): Pr
   const { data: result, error: me } = await svc.rpc("merge_nodes", { p_keep: keep.id, p_drop: drop.id });
   if (me) return fail(500, (await release()) ? "merge_failed" : "merge_failed_claim_held");
   forgetMakeupSnapshot();
+  forgetPrimesReport();
 
   const stale: string[] = [];
   for (const b of Array.from(new Set([keep.branch, drop.branch].filter((x): x is string => Boolean(x))))) {
