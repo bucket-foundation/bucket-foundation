@@ -11,11 +11,17 @@
 
 export interface LoopInternalization {
   nodes: number;
-  /** null when the connection read failed: unknown rather than zero. */
+  /**
+   * null when the connection read failed: unknown, and not zero.
+   *
+   * These nulls are the whole signal. A `connectionsUnavailable: true`
+   * rode alongside them saying the same thing a second way, and every
+   * reader here branched on the nulls, so nothing consumed it and the
+   * two could drift apart without a test noticing.
+   */
   held: number | null;
   bridges: number | null;
   nextBridge: { slug: string; title: string } | null;
-  connectionsUnavailable?: boolean;
 }
 
 export interface LoopResponse {

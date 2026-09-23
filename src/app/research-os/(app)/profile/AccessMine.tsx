@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -15,6 +16,7 @@ interface Mine {
 
 export default function AccessMine({ token }: { token: string | null }) {
   const [mine, setMine] = useState<Mine | null>(null);
+  const [listNote, setListNote] = useState<string | null>(null);
   const [kind, setKind] = useState<"dataset" | "paper" | "notes" | "corpus">("notes");
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -25,7 +27,13 @@ export default function AccessMine({ token }: { token: string | null }) {
     if (!token) return;
     try {
       const res = await fetch("/api/research-os/access?mine=1", { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
-      if (res.ok) setMine((await res.json()) as Mine);
+      if (res.ok) {
+        setListNote(null);
+        setMine((await res.json()) as Mine);
+      } else {
+        // A learner with imports read as a learner with none.
+        setListNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
+      }
     } catch {
       setMine(null);
     }
@@ -47,7 +55,7 @@ export default function AccessMine({ token }: { token: string | null }) {
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? `failed (${res.status})`);
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
       } else {
         setTitle("");
         setUrl("");
@@ -64,6 +72,11 @@ export default function AccessMine({ token }: { token: string | null }) {
     <section className="mt-10">
       <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-3">§ access · your nodes</div>
 
+      {listNote && (
+        <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+          {listNote}
+        </p>
+      )}
       {mine && mine.owned.length > 0 ? (
         <ul className="grid gap-1 text-[14px]">
           {mine.owned.map((n) => (

@@ -36,6 +36,7 @@ export default function ClassesPanel() {
         const outageCode = res.ok ? null : await readErrorCode(res);
         setErrorCode(outageCode);
         setStatus(res.status);
+        if (!res.ok) setErrorCode(await readErrorCode(res));
         return;
       }
       setRows(((await res.json()) as { classes: ClassSummary[] }).classes);

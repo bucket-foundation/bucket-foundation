@@ -54,6 +54,7 @@ export default function NodeView({ slug }: { slug: string }) {
       const outageCode = res.ok ? null : await readErrorCode(res);
       setErrorCode(outageCode);
       setStatus(res.status);
+        if (!res.ok) setErrorCode(await readErrorCode(res));
       if (res.ok) setData((await res.json()) as NodeData);
     } catch {
       setStatus(0);

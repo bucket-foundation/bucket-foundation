@@ -1,5 +1,7 @@
 /** Load a person's cross-branch connections (connections.ts) from the graph. Server-only. */
 import { graphService, inChunks, pagedRead } from "./db";
+import { authorizeNodes, readVisibility, storeWithNodes } from "./read-access";
+import type { NodeAccess } from "./access";
 import { crossBranchConnections, type ConnEdge, type ConnNode } from "./connections";
 import type { Stage } from "./types";
 
@@ -16,6 +18,9 @@ type EdgeRow = { id: string; from_id: string; to_id: string; kind: string };
  * both in `ids` comes back from both reads, so the results merge by that
  * same key. Nothing downstream deduplicates: a repeat inflates a held
  * count and a skip loses a connection.
+ *
+ * Exported for `scripts/test-research-os-connections-paging.ts`, which
+ * seeds past the row cap and checks both properties.
  */
 export async function loadTouchingEdges(ids: string[]): Promise<ConnEdge[]> {
   const svc = graphService();
@@ -48,7 +53,23 @@ export async function loadConnections(learnerId: string) {
   const edges: ConnEdge[] = await loadTouchingEdges(ids);
   const nodeIds = Array.from(new Set(edges.flatMap((e) => [e.fromId, e.toId])));
   if (nodeIds.length === 0) return { held: [], bridges: [] };
-  const nodeRows = await inChunks<ConnNode>(nodeIds, (chunk, page) => svc.from("nodes").select("id,slug,title,branch,kind").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: ConnNode[] | null; error: { message: string } | null }>);
-  const nodes: ConnNode[] = nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, branch: n.branch, kind: n.kind }));
-  return crossBranchConnections(states, nodes, edges);
+  // A bridge points at a node the learner holds no state on, which is
+  // exactly the node they may have no right to see, so the titles are
+  // filtered before they are joined (Bucket critic C20). The select
+  // carries visibility and owner, so the decision costs no extra read.
+  type NodeRow = ConnNode & { visibility: string | null; owner_id: string | null };
+  const nodeRows = await inChunks<NodeRow>(nodeIds, (chunk, page) => svc.from("nodes").select("id,slug,title,branch,kind,visibility,owner_id").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>);
+  const access: NodeAccess[] = nodeRows.map((n) => ({
+    id: n.id,
+    visibility: readVisibility(n.visibility),
+    ownerId: n.owner_id ?? null,
+  }));
+  const decision = await authorizeNodes(nodeRows.map((n) => n.id), { id: learnerId }, "view", storeWithNodes(access));
+  if (!decision.ok) return { held: [], bridges: [], unavailable: true };
+  const visible = new Set(decision.allowed);
+  const nodes: ConnNode[] = nodeRows
+    .filter((n) => visible.has(n.id))
+    .map((n) => ({ id: n.id, slug: n.slug, title: n.title, branch: n.branch, kind: n.kind }));
+  const readableEdges = edges.filter((e) => visible.has(e.fromId) && visible.has(e.toId));
+  return crossBranchConnections(states, nodes, readableEdges);
 }

@@ -17,6 +17,9 @@ import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductio
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 import { applyTransition, type Badge, type GameState } from "./game";
+// A visibility this code cannot read is private. `?? "public"` said the
+// opposite, in the one function whose result the access filter reads.
+import { readVisibility } from "./access";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -243,7 +246,7 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
     workedExample: toWorkedExample(r.worked_example),
-    visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+    visibility: readVisibility(r.visibility),
     ownerId: r.owner_id ?? null,
     frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
   }));
@@ -310,7 +313,7 @@ export async function addExternalFactors(svc: SupabaseClient, branchIds: string[
       labels: r.labels ?? undefined,
       provenance: r.provenance ?? undefined,
       workedExample: toWorkedExample(r.worked_example),
-      visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+      visibility: readVisibility(r.visibility),
       ownerId: r.owner_id ?? null,
       frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
     });

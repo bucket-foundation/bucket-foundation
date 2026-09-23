@@ -13,6 +13,18 @@
 
 export type Visibility = "public" | "private" | "shared";
 
+const KNOWN_VISIBILITY: Visibility[] = ["public", "private", "shared"];
+
+/**
+ * A visibility this code does not know is treated as private.
+ *
+ * It lives here rather than in read-access.ts because db.ts needs it
+ * too, and read-access.ts imports db.ts. access.ts imports nothing.
+ */
+export function readVisibility(value: string | null | undefined): Visibility {
+  return KNOWN_VISIBILITY.includes(value as Visibility) ? (value as Visibility) : "private";
+}
+
 /** What a grant lets a person do. `view` reads; the rest each imply view. */
 export type GrantRole = "view" | "continue" | "extend" | "cite" | "replicate" | "review";
 
@@ -57,10 +69,16 @@ export interface Viewer {
   groups?: string[];
 }
 
-function live(grant: NodeGrant, now: Date): boolean {
+/**
+ * A grant with no expiry never expires. An expiry this code cannot read is
+ * treated as expired: read-access.ts judged it that way and this file
+ * judged it live, so the same row admitted a learner on one route and
+ * denied them on another (Bucket critic C2).
+ */
+export function live(grant: NodeGrant, now: Date): boolean {
   if (!grant.expiresAt) return true;
   const t = Date.parse(grant.expiresAt);
-  return Number.isNaN(t) || t > now.getTime();
+  return Number.isFinite(t) && t > now.getTime();
 }
 
 function grantsFor(viewer: Viewer, grants: NodeGrant[], nodeId: string, now: Date): NodeGrant[] {

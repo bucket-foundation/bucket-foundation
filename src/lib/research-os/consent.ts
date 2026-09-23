@@ -79,7 +79,14 @@ export interface LearnerProfile {
  * nothing. decideConsent's rule does not vary by action today; the label
  * exists for logging and for the day a rule DOES need to differ by call
  * site. */
-export type ConsentAction = "workspace_tool" | "probe_answer" | "transfer_answer" | "production_submit";
+/**
+ * `search_standing` is reading a learner's own recorded stage beside a
+ * search result. It is its own action because a learner blocked from the
+ * workspace tools has not thereby been blocked from seeing where they
+ * stand, and borrowing `workspace_tool` for it coupled two unrelated
+ * gates (Bucket critic C4).
+ */
+export type ConsentAction = "workspace_tool" | "probe_answer" | "transfer_answer" | "production_submit" | "search_standing";
 
 export interface ConsentCheckResult {
   allowed: boolean;

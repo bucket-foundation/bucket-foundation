@@ -78,6 +78,13 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // A corpus file that could not be read this minute. The corpus that was
   // never built is corpus_unavailable, below, and that one stays.
   "corpus_read_failed",
+  // ros-ai-access-read. Each says a read behind an authorization
+  // decision, the graph walk, or the loop counters did not complete this
+  // minute. The routes answer them rather than guessing an allow or a
+  // deny, which is the whole point of that change.
+  "access_unavailable",
+  "graph_read_failed",
+  "loop_unavailable",
   // ros-import 2. The import route's graph reads: the import row, its
   // node, and the file rows. A failed read leaves the uploaded object
   // where it is, so the same attach works once the graph answers.

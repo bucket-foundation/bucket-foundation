@@ -195,6 +195,15 @@ export async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]
         .in("source_id", chunk)
         .eq("scope", "quote")
         .eq("status", "active")
+        // The key is (source_id, source_revision) and source_id is
+        // handed a list, so source_revision alone is an order the
+        // database may satisfy either way. sourceRevisionOf hashes
+        // sourceId with the body, which makes a shared revision need a
+        // SHA-256 collision, and that is one function's property rather
+        // than a constraint. One sort key buys independence from it. A
+        // dropped row here stops a passage cleared for quoting from
+        // being quotable, quietly.
+        .order("source_id")
         .order("source_revision")
         .range(from, from + PAGE - 1);
       if (error) throw new EligibilityUnavailable(error.message);
