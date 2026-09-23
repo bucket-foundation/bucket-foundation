@@ -13,7 +13,7 @@ const BASE = "https://www.bucket.foundation";
  * 0.9 canon · learn · build · protocol (top discovery surfaces)
  * 0.8 manifesto · envelope · cite-forever license
  * 0.7 governance · about · join · contributors
- * 0.6 knowledge · research · library · kruse · assets · whats-new
+ * 0.6 research · kruse · whats-new
  *
  * Keep in sync with /api/indexnow/ping and scripts/archive-org-ping.sh.
  */
@@ -48,9 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/support",            pri: 0.7,  freq: "monthly" as const },
     { p: "/contribute",         pri: 0.75, freq: "monthly" as const },
     { p: "/research-os/learn",  pri: 0.7,  freq: "weekly"  as const },
-    { p: "/knowledge",          pri: 0.6,  freq: "weekly"  as const },
-    { p: "/library",            pri: 0.6,  freq: "weekly"  as const },
-    { p: "/assets",             pri: 0.6,  freq: "monthly" as const },
     { p: "/whats-new",          pri: 0.6,  freq: "daily"   as const },
     { p: "/kruse",              pri: 0.6,  freq: "weekly"  as const },
     { p: "/kruse/search",       pri: 0.5,  freq: "weekly"  as const },
