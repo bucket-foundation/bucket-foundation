@@ -55,6 +55,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   edges: [{ columns: ["id"], nullable: [] }, { columns: ["from_id", "to_id", "kind"], nullable: [] }],
   evidence_source_admissions: [{ columns: ["source_id", "source_revision"], nullable: [] }],
   import_files: [{ columns: ["id"], nullable: [] }, { columns: ["import_id", "sha256"], nullable: [] }],
+  import_quota: [{ columns: ["owner_id"], nullable: [] }],
   imports: [{ columns: ["id"], nullable: [] }],
   irreducible_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_slug"], nullable: [] }],
   learner_node_state: [{ columns: ["learner_id", "node_id"], nullable: [] }],
