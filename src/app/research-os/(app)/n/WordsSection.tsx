@@ -51,7 +51,7 @@ function HanParts({ parts }: { parts: HanChar[] }) {
               {p.meaning ? ` “${p.meaning.split(";")[0]}”` : ""}
             </span>
           ))}
-          {h.parts.some((p) => p.uncertain) && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">IDS, uncertain</span>}
+          <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{h.parts.some((p) => p.uncertain) ? "IDS, uncertain" : "IDS, agrees with Wiktionary"}</span>
         </span>
       ))}
     </p>

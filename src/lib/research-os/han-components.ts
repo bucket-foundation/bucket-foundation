@@ -21,6 +21,7 @@ export interface HanPart {
   meaningLicense: string | null;
   confidence: number;
   uncertain: boolean;
+  agreesWithWiktionary: boolean | null;
   source: string;
 }
 
@@ -79,7 +80,7 @@ export function shownParts(rows: HanComponentRow[]): Map<string, HanChar> {
   const out = new Map<string, HanChar>();
   for (const r of rows.slice().sort((a, b) => a.char.localeCompare(b.char) || a.ord - b.ord)) {
     const confidence = readConfidence(r.confidence);
-    if (r.agrees_with_wiktionary !== null || confidence < HIDE_BELOW) continue;
+    if (confidence < HIDE_BELOW) continue;
     const entry = out.get(r.char) ?? { char: r.char, ids: r.ids, parts: [] };
     entry.parts.push({
       component: r.component,
@@ -88,6 +89,7 @@ export function shownParts(rows: HanComponentRow[]): Map<string, HanChar> {
       meaningLicense: r.meaning_license || null,
       confidence,
       uncertain: confidence < UNCERTAIN_BELOW,
+      agreesWithWiktionary: r.agrees_with_wiktionary,
       source: r.source,
     });
     out.set(r.char, entry);

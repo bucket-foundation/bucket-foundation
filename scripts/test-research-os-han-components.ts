@@ -22,7 +22,7 @@ const row = (char: string, ord: number, component: string, extra: Partial<HanCom
   agrees_with_wiktionary: null, decomposition_license: "none claimed", meaning_license: null, ...extra,
 });
 
-test("only characters Wiktionary leaves bare show components, marked uncertain", () => {
+test("every band at or above the threshold shows: agreement settled, disagreement and no check uncertain", () => {
   const map = shownParts([
     row("宇", 2, "于", { meaning: "at", meaning_source: "wiktionary-zh", meaning_license: "CC BY-SA 4.0" }),
     row("宇", 1, "宀", { meaning: "roof", meaning_source: "unihan", meaning_license: "Unicode-3.0" }),
@@ -30,8 +30,11 @@ test("only characters Wiktionary leaves bare show components, marked uncertain",
     row("証", 1, "訁", { agrees_with_wiktionary: false }),
     row("宙", 1, "宀", { confidence: 0.3 }),
   ]);
-  assert.deepEqual(Array.from(map.keys()), ["宇"]);
-  assert.deepEqual(map.get("宇")!.parts.map((p) => [p.component, p.uncertain, p.meaningSource]), [["宀", true, "unihan"], ["于", true, "wiktionary-zh"]]);
+  assert.deepEqual(Array.from(map.keys()).sort(), ["宇", "等", "証"].sort());
+  assert.deepEqual(map.get("等")!.parts.map((p) => [p.component, p.uncertain, p.agreesWithWiktionary]), [["竹", false, true]]);
+  assert.deepEqual(map.get("証")!.parts.map((p) => [p.component, p.uncertain, p.agreesWithWiktionary]), [["訁", true, false]]);
+  assert.deepEqual(map.get("宇")!.parts.map((p) => [p.component, p.uncertain, p.meaningSource, p.agreesWithWiktionary]), [["宀", true, "unihan", null], ["于", true, "wiktionary-zh", null]]);
+  assert.equal(map.has("宙"), false);
   assert.deepEqual(partsFor({ lang: "zh", word: "宇宙" }, map).map((h) => h.char), ["宇"]);
   assert.deepEqual(partsFor({ lang: "fr", word: "宇" }, map), []);
   assert.deepEqual(hanChars([{ lang: "ja", word: "宇宙" }, { lang: "zh", word: "abc" }, { lang: "zh", word: "𠀋" }]), ["宇", "宙", "𠀋"].sort());

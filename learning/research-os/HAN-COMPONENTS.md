@@ -1,6 +1,6 @@
 # Han Components
 
-Chinese and Japanese words on the node page and on `/research-os/nsm` show each character with its meaning, and the components Wiktionary gives for it. Where Wiktionary gives none, the components now come from BabelStone IDS (Andrew West), stored in `graph.han_components` and marked "IDS, uncertain".
+Chinese and Japanese words on the node page and on `/research-os/nsm` show each character with its meaning and the components Wiktionary gives for it, and now the components BabelStone IDS (Andrew West) gives, stored in `graph.han_components`, for every character that has them.
 
 ## Source
 
@@ -8,11 +8,11 @@ BabelStone `IDS.TXT` (Unicode 16.0, file date 2025-06-27, 97,680 entries). Its h
 
 ## Rows
 
-`scripts/research-os/han_ids.py` takes the first IDS of every character in the zh and ja rows of node_words and nsm_exponents, one level deep, and writes one row per component with its meaning (Wiktionary `zh`, then `ja`, then Unihan `kDefinition`) and a `confidence` on the shared thresholds: 0.9 when the component set agrees with Wiktionary's after the variant mapping, 0.6 when Wiktionary has none or disagrees. The pages show components only for characters Wiktionary leaves bare, so every one shown is at 0.6 and marked uncertain. Each row carries `decomposition_license` (the BabelStone waiver) and `meaning_license` (CC BY-SA 4.0 for Wiktionary, Unicode-3.0 for Unihan).
+`scripts/research-os/han_ids.py` takes the first IDS of every character in the zh and ja rows of node_words and nsm_exponents, one level deep, and writes one row per component with its meaning (Wiktionary `zh`, then `ja`, then Unihan `kDefinition`) and a `confidence` on the shared thresholds: 0.9 when the component set agrees with Wiktionary's after the variant mapping, 0.6 when Wiktionary has none or disagrees. The pages show every row at 0.5 or above: components that agree with Wiktionary as settled, marked "IDS, agrees with Wiktionary", and the rest marked "IDS, uncertain". Each row carries `decomposition_license` (the BabelStone waiver) and `meaning_license` (CC BY-SA 4.0 for Wiktionary, Unicode-3.0 for Unihan).
 
 ## Counts
 
-Run of 2026-09-23: 522 characters, 516 decomposed, 1,060 component rows. Characters by band: 245 at 0.9 agreeing with Wiktionary, 132 at 0.6 disagreeing, 139 at 0.6 with no Wiktionary components. Meanings: 685 Wiktionary `zh`, 126 Wiktionary `ja`, 159 Unihan, 90 none. Of 986 shown zh and ja rows, 371 gain at least one decomposed character, 37.6%, against the 20% go line.
+Run of 2026-09-23: 522 characters, 516 decomposed, 1,060 component rows. Characters shown by band: 245 at 0.9 agreeing with Wiktionary, 132 at 0.6 disagreeing, 139 at 0.6 with no Wiktionary components; none falls below 0.5. Meanings: 685 Wiktionary `zh`, 126 Wiktionary `ja`, 159 Unihan, 90 none. Of 986 shown zh and ja rows, 371 gain at least one character Wiktionary leaves bare, 37.6%, against the 20% go line.
 
 ## Export
 

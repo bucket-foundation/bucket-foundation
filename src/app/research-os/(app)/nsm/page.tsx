@@ -77,7 +77,7 @@ function Han({ e }: { e: NsmExponent }) {
           <span lang="zh">{h.char}</span> = {h.parts.map((p) => p.component).join(" + ")}
         </span>
       ))}
-      <Mark text="IDS, uncertain" />
+      <Mark text={e.hanParts.some((h) => h.parts.some((p) => p.uncertain)) ? "IDS, uncertain" : "IDS"} />
     </span>
   );
 }
