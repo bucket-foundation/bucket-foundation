@@ -75,16 +75,23 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // search is off until it does.
   "profile_unavailable",
   "eligibility_unavailable",
+  // fix/ros-dropped-errors and ros-ai-access-read. Each is a read that
+  // did not finish this minute, from a route that used to answer the
+  // same failure with an empty result or with a guess at an allow.
+  // Leaving them unclassified would have LoopPanel, GraphMap,
+  // ClassesPanel and NodeView render them as "Research OS is
+  // unavailable on this deployment", because those four branch on the
+  // status alone: the outage reading as a permanent fact about the
+  // install, which is this file's whole subject.
+  "access_unavailable",
+  "class_read_failed",
+  "consent_unavailable",
+  "graph_read_failed",
+  "loop_unavailable",
+  "stage_read_failed",
   // A corpus file that could not be read this minute. The corpus that was
   // never built is corpus_unavailable, below, and that one stays.
   "corpus_read_failed",
-  // ros-ai-access-read. Each says a read behind an authorization
-  // decision, the graph walk, or the loop counters did not complete this
-  // minute. The routes answer them rather than guessing an allow or a
-  // deny, which is the whole point of that change.
-  "access_unavailable",
-  "graph_read_failed",
-  "loop_unavailable",
   // ros-import 2. The import route's graph reads: the import row, its
   // node, and the file rows. A failed read leaves the uploaded object
   // where it is, so the same attach works once the graph answers.

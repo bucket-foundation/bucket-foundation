@@ -12,7 +12,7 @@
  * stays out of logs and out of the URL.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { dailyToolCap, dailyCapMessage, recordAndCheck } from "@/lib/research-os/rate-limit";
 import { decideGate, flagOn, pilotIds, ProfileUnavailable, readBirthYearBucket } from "@/lib/research-os/evidence-search/gate";
@@ -35,7 +35,15 @@ async function gate(req: NextRequest): Promise<{ ok: true; learnerId: string } |
   const learnerId = await verifyLearner(req);
   if (!learnerId) return { ok: false, res: answer(401, { error: "no_session", message: "Sign in to search public evidence." }) };
   const consent = await requireConsent(learnerId, "workspace_tool");
-  if (!consent.allowed) return { ok: false, res: answer(403, consentBlockedBody(consent) as unknown as Record<string, unknown>) };
+  if (!consent.allowed) {
+    // Through consentRefusal, because requireConsent can now report that
+    // the consent read did not complete, and consentBlockedBody throws
+    // on that rather than shaping a 403 body for it. Calling it directly
+    // turned a consent outage into a bodiless 500 in an authorization
+    // gate.
+    const refusal = consentRefusal(consent);
+    return { ok: false, res: answer(refusal.status, refusal.body as unknown as Record<string, unknown>) };
+  }
   let band;
   try {
     band = await readBirthYearBucket(graphService(), learnerId);

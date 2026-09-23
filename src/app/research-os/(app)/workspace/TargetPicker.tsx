@@ -32,6 +32,9 @@ export default function TargetPicker() {
   const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | "outage" | null>(null);
 
   useEffect(() => {
+    // The server answers 503 on a failed read now, and turning that back
+    // into an empty list here put the defect one layer out: a learner
+    // with assignments saw the same picker as a learner with none.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then(async (r) => {
         // An outage answers 503. Rendering "None open." would tell the

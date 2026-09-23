@@ -35,11 +35,17 @@ export default function Page() {
       // Open the file in a new window
       window.open(blobUrl, '_blank');
 
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('ip_metadata')
         .select()
         .eq('research_id', id);
 
+      // A failed read used to look the same as a research item with no
+      // metadata, and the read mint was skipped with nothing said.
+      if (error) {
+        console.error('[knowledge] ip_metadata read failed:', error.message);
+        return;
+      }
       if (data && data.length > 0) {
         await mintReadNFT(data[0]);
       }

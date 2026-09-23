@@ -44,8 +44,9 @@
  *   - src/app/api/research-os/production/route.ts POST (action
  *     "production_submit"), in front of the whole handler (draft saves
  *     and submits both carry learner-authored content).
- * Every gated route returns consentBlockedBody(gate) as its JSON body on a
- * blocked call, status 403. Review and class routes (teacher-facing) are
+ * Every gated route answers a blocked call through consentRefusal(gate),
+ * which carries the 403 for a real refusal and the 503 for a consent
+ * read that did not complete. Review and class routes (teacher-facing) are
  * deliberately untouched: verifyReviewer already gates them, and a
  * teacher's own age/consent status is not the thing being asked about.
  *
@@ -94,8 +95,12 @@ export interface ConsentCheckResult {
    * never answered the age question at all, the strictest case (see
    * decideConsent's own comment for why this fails closed rather than
    * open). 'consent_required': the age question has been answered, the
-   * learner is under 18, and no consent has been recorded yet. */
-  reason?: "no_profile" | "consent_required";
+   * learner is under 18, and no consent has been recorded yet.
+   * 'unavailable': a read behind the decision did not complete, so no
+   * answer was reached. It carries a 503. Telling a learner they need
+   * parental consent states something about them, and this states that
+   * the server could not finish a read. */
+  reason?: "no_profile" | "consent_required" | "unavailable";
   /** A caller-facing message, safe to return directly in an API response. */
   message?: string;
 }
@@ -104,6 +109,7 @@ const NO_PROFILE_MESSAGE =
   "This account has not completed the age check yet. Ask a teacher or parent to complete it before using this feature.";
 const CONSENT_REQUIRED_MESSAGE =
   "This feature needs parent or school consent on file before a learner under 18 can use it. Ask a teacher or parent to complete consent.";
+const UNAVAILABLE_MESSAGE = "Consent could not be checked right now. Try again in a moment.";
 
 /**
  * The decision rule, pure and dependency-free so it is unit-testable with
@@ -170,41 +176,93 @@ function toLearnerProfile(r: LearnerProfileRow): LearnerProfile {
  * A read error (missing table on a fresh environment, network blip) is
  * treated the same as "no profile row": fails closed, never open, matching
  * every other fail-open-vs-closed choice this file documents. */
-export async function requireConsent(learnerId: string, action: ConsentAction): Promise<ConsentCheckResult> {
-  const svc = graphService();
-  const { data, error } = await svc.from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
-  if (error || !data) return decideConsent(null, action);
-  const profile = toLearnerProfile(data as LearnerProfileRow);
-  const first = decideConsent(profile, action);
-  if (first.allowed || first.reason !== "consent_required") return first;
+export type ConsentPathResolver = (learnerId: string, profile: LearnerProfile) => Promise<EffectiveConsent>;
+/** Writes a resolved consent back to the profile. Injected so the decision
+ * can be tested without a database. */
+export type ConsentWriteThrough = (learnerId: string, effective: EffectiveConsent) => Promise<void>;
 
-  // ros-32: the consent paths beyond the profile column. A rostered learner
-  // in a class under the school exception, or a verified vendor request,
-  // reads as consent; the result is written through to the profile so the
-  // next check is one read.
-  const effective = await resolveConsentPaths(learnerId, profile);
-  if (effective.status === "none") return first;
-  await svc
+const writeConsentThrough: ConsentWriteThrough = async (learnerId, effective) => {
+  await graphService()
     .from("learner_profiles")
     .update({ consent_status: effective.status, consent_source: effective.source, updated_at: new Date().toISOString() })
     .eq("learner_id", learnerId);
+};
+
+/**
+ * The decision once the profile is in hand: the profile column first, then
+ * ros-32's school and vendor paths for a minor with nothing recorded. Split
+ * out of requireConsent so the raise and the write-through are reachable
+ * from a test with no database behind it.
+ */
+export async function decideWithPaths(
+  learnerId: string,
+  profile: LearnerProfile,
+  action: ConsentAction,
+  resolve: ConsentPathResolver = resolveConsentPaths,
+  writeThrough: ConsentWriteThrough = writeConsentThrough,
+): Promise<ConsentCheckResult> {
+  const first = decideConsent(profile, action);
+  if (first.allowed || first.reason !== "consent_required") return first;
+
+  // A rostered learner in a class under the school exception, or a
+  // verified vendor request, reads as consent, and the result is written
+  // through so the next check is one read.
+  //
+  // resolveConsentPaths raises when one of its three reads fails. A raise
+  // here used to leave this function, pass through four POST routes that
+  // call it bare, and reach the learner as a 500 with no body. The
+  // outcome is named instead, so every caller has to answer it.
+  let effective: EffectiveConsent;
+  try {
+    effective = await resolve(learnerId, profile);
+  } catch (err) {
+    console.error("[research-os/consent] consent paths unavailable:", err instanceof Error ? err.message : err);
+    return { allowed: false, reason: "unavailable", message: UNAVAILABLE_MESSAGE };
+  }
+  if (effective.status === "none") return first;
+  await writeThrough(learnerId, effective);
   return decideConsent({ ...profile, consentStatus: effective.status, consentSource: effective.source }, action);
 }
 
-/** The school-exception and vendor paths for one learner (consent-paths.ts). */
+export async function requireConsent(learnerId: string, action: ConsentAction): Promise<ConsentCheckResult> {
+  const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  // A failed profile read used to become "no profile", which tells a
+  // learner to complete an age check they may already have completed.
+  // That is a claim about them made from a read that did not finish.
+  if (error) {
+    console.error("[research-os/consent] learner_profiles read failed:", error.message);
+    return { allowed: false, reason: "unavailable", message: UNAVAILABLE_MESSAGE };
+  }
+  if (!data) return decideConsent(null, action);
+  return decideWithPaths(learnerId, toLearnerProfile(data as LearnerProfileRow), action);
+}
+
+/**
+ * The school-exception and vendor paths for one learner (consent-paths.ts).
+ *
+ * All three reads dropped their error, and each one fails toward a more
+ * restrictive answer: a failed `class_members` read is a learner in no
+ * class, which is a learner with no school exception, which blocks them.
+ * Fail-closed is the right direction and a silent definite answer is
+ * still the wrong report, so a read that could not complete raises and
+ * the caller decides.
+ */
 export async function resolveConsentPaths(learnerId: string, profile: LearnerProfile): Promise<EffectiveConsent> {
   const svc = graphService();
-  const { data: members } = await svc.from("class_members").select("class_id,role").eq("learner_id", learnerId);
+  const { data: members, error: membersErr } = await svc.from("class_members").select("class_id,role").eq("learner_id", learnerId);
+  if (membersErr) throw new Error(`resolveConsentPaths: class_members read failed: ${membersErr.message}`);
   const memberships = ((members as { class_id: string; role: string | null }[]) || []).map((m) => ({ classId: m.class_id, role: m.role || "learner" }));
   const classIds = memberships.map((m) => m.classId);
   const classes: ClassConsent[] = [];
   if (classIds.length) {
-    const { data: rows } = await svc.from("classes").select("id,consent_basis,consent_document").in("id", classIds);
+    const { data: rows, error: rowsErr } = await svc.from("classes").select("id,consent_basis,consent_document").in("id", classIds);
+    if (rowsErr) throw new Error(`resolveConsentPaths: classes read failed: ${rowsErr.message}`);
     for (const c of (rows as { id: string; consent_basis: string | null; consent_document: string | null }[]) || []) {
       classes.push({ classId: c.id, consentBasis: c.consent_basis === "school" ? "school" : "none", consentDocument: c.consent_document });
     }
   }
-  const { data: reqs } = await svc.from("consent_requests").select("vendor,status,vendor_ref").eq("learner_id", learnerId);
+  const { data: reqs, error: reqsErr } = await svc.from("consent_requests").select("vendor,status,vendor_ref").eq("learner_id", learnerId);
+  if (reqsErr) throw new Error(`resolveConsentPaths: consent_requests read failed: ${reqsErr.message}`);
   const requests: ConsentRequestRecord[] = ((reqs as { vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null }[]) || []).map((r) => ({
     vendor: r.vendor,
     status: r.status,
@@ -237,5 +295,20 @@ export function consentBlockedBody(result: ConsentCheckResult): ConsentBlockedBo
   if (result.allowed || !result.reason) {
     throw new Error("consentBlockedBody: called with an allowed ConsentCheckResult");
   }
+  if (result.reason === "unavailable") {
+    throw new Error("consentBlockedBody: 'unavailable' is a 503, use consentRefusal");
+  }
   return { error: result.reason, message: result.message ?? "", needsProfile: result.reason === "no_profile" };
+}
+
+/**
+ * The status and body a route answers for a blocked check, both kinds in
+ * one call so a route cannot handle the 403 and forget the 503. Every
+ * gated route calls this rather than consentBlockedBody directly.
+ */
+export function consentRefusal(result: ConsentCheckResult): { status: 403 | 503; body: ConsentBlockedBody | { error: "consent_unavailable"; message: string } } {
+  if (result.reason === "unavailable") {
+    return { status: 503, body: { error: "consent_unavailable", message: result.message ?? UNAVAILABLE_MESSAGE } };
+  }
+  return { status: 403, body: consentBlockedBody(result) };
 }

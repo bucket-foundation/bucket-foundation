@@ -92,6 +92,8 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [branchesTransient, setBranchesTransient] = useState(false);
 
   useEffect(() => {
+    // A 503 used to read as a graph with no branches in it, which is the
+    // fourth defect the scanner's own header names as its motivation.
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
       // C62: a failed branch count rendered as a graph with no branches
       // in it, which is the outage reading as an answer.

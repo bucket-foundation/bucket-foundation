@@ -53,7 +53,7 @@ export default function AssignmentsPanel({
       setRows(j.assignments);
       setCanAssign(j.roles.some((r) => r === "teacher" || r === "librarian"));
     } catch {
-      /* unavailable */
+      setError(OUTAGE_COPY.body);
     }
   }, [classId, token, headers]);
 

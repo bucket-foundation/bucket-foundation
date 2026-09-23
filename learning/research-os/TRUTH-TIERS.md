@@ -268,7 +268,7 @@ export function isGroundedCheck(check: { result: "support" | "contradiction" | "
 
 The node's own footing is a second input this function does not have. Adding it is a real behavior change and belongs in `ros-truth 2` with its own tests.
 
-**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:197`, `computeDuplicateFlag` at `:202` and `lateralReadingFlag` at `:208` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
+**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:204`, `computeDuplicateFlag` at `:202` and `lateralReadingFlag` at `:208` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
 
 ## What a citation carries
 

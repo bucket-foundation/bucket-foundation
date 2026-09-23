@@ -314,6 +314,8 @@ function Workspace() {
   useEffect(() => {
     // hasTarget, from dev: the same value on the server and after
     // hydration, where reading window.location here gave two answers.
+    // A failed read leaves the learner where they are, and
+    // AssignmentsBanner reports the failure on the same screen.
     if (!token || hasTarget) return;
     // A failed read leaves the learner where they are. Redirecting on a
     // guess is worse than standing still, and the rule's answer was
@@ -454,14 +456,30 @@ function Workspace() {
 
   const authHeaders = useCallback((): Record<string, string> => (token ? { authorization: `Bearer ${token}` } : {}), [token]);
 
-  // ros-07: recognizes the consent gate's 403 body
-  // (src/lib/research-os/consent.ts's consentBlockedBody: {error:
-  // "no_profile"|"consent_required", message, needsProfile}) from any
-  // gated fetch below and surfaces it as a banner instead of a raw error
-  // string. Returns true when the response WAS a consent block, so the
-  // caller can stop treating it as an ordinary success/failure; every
-  // other error shape is untouched.
+  // ros-07: recognizes the consent gate's answers from any gated fetch
+  // below and surfaces them as a banner, so no caller renders them as an
+  // ordinary failure. Two shapes, both from
+  // src/lib/research-os/consent.ts's consentRefusal:
+  //
+  //   403 {error: "no_profile"|"consent_required", message, needsProfile}
+  //   503 {error: "consent_unavailable", message}
+  //
+  // The 503 is the one this component used to drop. Giving the consent
+  // read a third outcome put a status here that matched neither arm of
+  // the 403 test, so it fell through to `res.ok ? data.results : []` and
+  // the learner saw an empty result list for a read that never ran. That
+  // is the defect this whole branch is about, one layer above the read.
+  //
+  // Returns true when the response WAS a consent answer, so the caller
+  // stops; every other error shape is untouched.
   const handleConsentResponse = useCallback((res: Response, data: { error?: string; message?: string; needsProfile?: boolean }): boolean => {
+    if (res.status === 503 && data?.error === "consent_unavailable") {
+      setConsentNotice({
+        message: data.message || "Consent could not be checked right now. Try again in a moment.",
+        needsProfile: false,
+      });
+      return true;
+    }
     if (res.status !== 403 || (data?.error !== "no_profile" && data?.error !== "consent_required")) return false;
     setConsentNotice({
       message: data.message || "This feature needs consent on file before it can be used.",
@@ -649,6 +667,14 @@ function Workspace() {
             : "That source could not be quoted.",
         );
       }
+      setQuoteNote(null);
+      setQuote(data);
+      // "sources I have quoted" (canvas item 3): keep the most recent
+      // quote per node, newest node first.
+      setQuotedSources((prev) => [
+        { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
+        ...prev.filter((q) => q.nodeId !== selected.id),
+      ]);
     } finally {
       setBusy(null);
     }
@@ -1254,6 +1280,7 @@ function Workspace() {
                   <button onClick={runQuote} disabled={!token || !selected || busy === "quote"} className="text-[12px] small-caps underline">
                     {busy === "quote" ? "fetching…" : "quote this node's source"}
                   </button>
+                  {quoteNote && <p className="mt-2 text-[12px] text-red-700">{quoteNote}</p>}
                   {quote && (
                     <div className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
                       {quote.kind === "summary" && (

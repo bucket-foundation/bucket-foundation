@@ -27,7 +27,9 @@ export interface LoopInternalization {
 export interface LoopResponse {
   access: { owned: number; imports: number; pendingRequests: number };
   awareness: { opened: number; atLeastAwareness: number };
-  understanding: { nodes: number; decksStarted: number };
+  // null when the Academy read did not complete. Zero is the first-run
+  // line, so an unknown count and a count of none stay distinguishable.
+  understanding: { nodes: number; decksStarted: number | null };
   internalization: LoopInternalization;
   production: {
     drafts: number;

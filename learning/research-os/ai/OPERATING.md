@@ -110,7 +110,9 @@ Between steps 1 and 2 the worker holds a revision the server no longer admits. R
 
 So nothing serves a retired revision, which is the property the rollback exists for. It holds for a different reason than this page gave before the run: the server resolves the admitted set from the registry on every request, so a source stops being served the moment its row is retired, with no worker restart and no rebuild.
 
-Search keeps working at full quality in the window, on whatever remains admitted. The worker's staleness check compares the corpus revision the server sends with the one the worker holds, and in this window both are still the newer corpus, so the worker has nothing to refuse. Degradation would need the worker pointed at a revision the server is no longer loading, which is step 2's business.
+Search keeps working at full quality in the window, on whatever remains admitted. The worker's staleness check compares the corpus revision the server sends with the one the worker holds, and in this window both are still the newer corpus, so the worker has nothing to refuse. Step 2, the worker restarted onto the older revision's vectors while the server still loads the newer corpus, was run on 2026-09-23 and behaves as designed. The worker refused every request with `stale_corpus`, its counters showing 3 stale and 0 scored, and each answer came back `lexical` and `degraded` with a null model revision and five cards from checked keyword ranking. Nobody saw an error, and the admitted set was never touched.
+
+So the two windows differ, and the runbook's order is what puts the harmless one first. Admitting the older revision narrows eligibility and keeps full quality. Restarting the worker onto older vectors drops the whole deployment to keyword ranking until the server is pointed at the same revision, which is step 3.
 
 A failed build leaves `.tmp-<revision>-<pid>` on disk with its manifest written. Selection skips dot-prefixed names, so it cannot become the corpus the server serves; delete it once its problem is read.
 

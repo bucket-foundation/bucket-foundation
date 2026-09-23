@@ -31,7 +31,13 @@ export async function GET(req: NextRequest) {
       // Ordered, because an unordered page can serve one node twice and
       // skip another, and these rows are counted.
       const { data, error } = await graphService().from("nodes").select("id,branch").eq("visibility", "public").order("id").range(from, from + 999);
-      if (error) return bad(503, "graph_read_failed");
+      // A failed page used to end the walk and serve the count reached
+      // so far, which reads as a graph with no branches in it, or worse,
+      // a plausible smaller one nobody can tell from the truth.
+      if (error) {
+        console.error("[research-os/graph] branch count read failed:", error.message);
+        return bad(503, "graph_read_failed");
+      }
       const rows = (data as { id: string; branch: string }[]) || [];
       rows.forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
       if (rows.length < 1000) break;
@@ -77,6 +83,11 @@ export async function GET(req: NextRequest) {
     }
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
+    // One try over the class reads below. Each used to carry its own
+    // .catch returning an empty list, so a failed assignment read showed
+    // a learner no assignments and a failed member read showed a teacher
+    // a class with nobody in it, both at 200.
+    try {
     if (classIds.length) {
       // Chunked and paged, which dev had and this merge dropped when it
       // took the branch's side of the whole block. A class list of any
@@ -129,6 +140,9 @@ export async function GET(req: NextRequest) {
               );
             }
           } catch (err) {
+            // A failed page here dropped those learners from the holder
+            // counts, which a teacher reads as nobody holding the node
+            // rather than as a read that did not finish.
             console.error("[research-os/graph] heatmap read failed:", err instanceof Error ? err.message : err);
             return bad(503, "graph_read_failed");
           }
@@ -139,6 +153,10 @@ export async function GET(req: NextRequest) {
           });
         }
       }
+    }
+    } catch (err) {
+      console.error("[research-os/graph] class read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "graph_read_failed");
     }
   }
   return NextResponse.json(

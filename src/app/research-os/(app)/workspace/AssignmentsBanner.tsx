@@ -44,9 +44,20 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
           return;
         }
         const j = (await res.json()) as { assignments: LearnerAssignment[] };
-        if (!cancelled) setRows(j.assignments);
+        if (!cancelled) {
+          setUnavailable(false);
+          setTransient(false);
+          setRows(j.assignments);
+        }
       } catch {
-        if (!cancelled) setUnavailable(true);
+        // A fetch that rejects never reached the server, which a retry
+        // may clear. Leaving `transient` false rendered "Research OS is
+        // unavailable on this deployment" for a dropped connection: the
+        // outage reading as a permanent fact about the install.
+        if (!cancelled) {
+          setUnavailable(true);
+          setTransient(true);
+        }
       }
     })();
     return () => {

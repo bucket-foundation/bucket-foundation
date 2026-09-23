@@ -21,6 +21,7 @@ import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
 import { OUTAGE_COPY, PERMANENT_CODES, PERMANENT_MESSAGE, TRANSIENT_CODES, UNCONFIGURED, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "../src/lib/research-os/outage";
+import { scan as scanRenderOrder } from "./research-os/render-order";
 
 const root = path.join(__dirname, "..");
 const CLIENTS = path.join(root, "src/app/research-os");
@@ -434,7 +435,16 @@ test("every call to a route that can answer busy consults the rule", () => {
 });
 
 test("the permanent copy is written once", () => {
-  const copies = tsxFiles(CLIENTS).filter((f) => /unavailable on this deployment/.test(fs.readFileSync(f, "utf8")));
+  // Comments blanked. The rule's subject is where the sentence is
+  // defined, and a comment naming it is documentation. This file
+  // already holds that a comment cannot answer for code; the same
+  // reason says a comment cannot be accused as code, and the first
+  // version of this rule failed a file whose only match was a comment
+  // explaining the defect it had just fixed.
+  const copies = tsxFiles(CLIENTS).filter((f) => {
+    const src = fs.readFileSync(f, "utf8");
+    return /unavailable on this deployment/.test(withoutComments(src, ts.createSourceFile(f, src, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)));
+  });
   assert.deepEqual(
     copies.map((f) => path.relative(root, f)),
     [],
@@ -607,4 +617,95 @@ test("a corpus that was named and is not there is permanent", () => {
     assert.ok(!(thrown instanceof CorpusReadFailed), `${what} is not a read that failed this minute`);
     assert.equal(isTransientOutage(503, "corpus_unavailable"), false, "and that code earns no retry");
   }
+});
+
+test("a note a failed read sets is rendered above the return that can hide it", () => {
+  const offenders: string[] = [];
+  for (const f of tsxFiles(CLIENTS)) {
+    for (const o of scanRenderOrder(f, fs.readFileSync(f, "utf8"))) {
+      offenders.push(`${path.relative(root, o.file)}: ${o.note} ${o.because}${o.returnLine ? ` (return line ${o.returnLine}, render line ${o.noteLine})` : ""}`);
+    }
+  }
+  assert.deepEqual(
+    offenders.sort(),
+    [],
+    `these set an outage note that the person never reads. Render it above the return, or inside it: ${offenders.join("; ")}`,
+  );
+});
+
+test("the render rule fires on the shape it was written for, and spares the three that look like it", () => {
+  // Guarding the call and rendering the note are separate things, and
+  // every rule above this one checks the first. Without this case the
+  // rule could narrow to nothing and no run would say so.
+  const bad = scanRenderOrder(
+    "f.tsx",
+    `export default function C() {
+       const [rows, setRows] = useState<string[] | null>(null);
+       const [note, setNote] = useState<string | null>(null);
+       const load = async () => {
+         const res = await fetch("/api/research-os/review");
+         if (!res.ok) { setNote(OUTAGE_COPY.body); setRows([]); return; }
+         setRows(["a"]);
+       };
+       if (rows === null) return <p>loading</p>;
+       if (rows.length === 0) return <p>Nothing waits on you.</p>;
+       return <div>{note}{rows}</div>;
+     }`,
+  );
+  assert.equal(bad.length, 1, "the empty-state return above the note is the defect");
+  assert.match(bad[0].because, /rows\.length === 0/);
+
+  // The same component with the note rendered first.
+  const fixed = scanRenderOrder(
+    "f.tsx",
+    `export default function C() {
+       const [rows, setRows] = useState<string[] | null>(null);
+       const [note, setNote] = useState<string | null>(null);
+       const load = async () => {
+         const res = await fetch("/api/research-os/review");
+         if (!res.ok) { setNote(OUTAGE_COPY.body); setRows([]); return; }
+         setRows(["a"]);
+       };
+       if (rows === null) return <p>loading</p>;
+       if (note) return <p>{note}</p>;
+       if (rows.length === 0) return <p>Nothing waits on you.</p>;
+       return <div>{rows}</div>;
+     }`,
+  );
+  assert.deepEqual(fixed, [], "a note rendered above the empty state is the repair");
+
+  // A guard the person has already made false: they opened the panel
+  // before the submit could fail.
+  const opened = scanRenderOrder(
+    "f.tsx",
+    `export default function C() {
+       const [open, setOpen] = useState(false);
+       const [note, setNote] = useState<string | null>(null);
+       const submit = async () => {
+         const res = await fetch("/api/research-os/review", { method: "POST" });
+         if (!res.ok) { setNote(OUTAGE_COPY.body); return; }
+         setOpen(false);
+       };
+       if (!open) return <button onClick={() => setOpen(true)}>open</button>;
+       return <div>{note}</div>;
+     }`,
+  );
+  assert.deepEqual(opened, [], "a guard something else can turn off does not hide the note");
+
+  // A precondition guard in a handler renders nothing, so it hides
+  // nothing.
+  const guard = scanRenderOrder(
+    "f.tsx",
+    `export default function C() {
+       const [rows, setRows] = useState<string[] | null>(null);
+       const [note, setNote] = useState<string | null>(null);
+       const send = async (token: string | null) => {
+         if (!token || rows === null) return;
+         const res = await fetch("/api/research-os/review", { method: "POST" });
+         if (!res.ok) { setNote(OUTAGE_COPY.body); setRows([]); return; }
+       };
+       return <div>{note}{rows}</div>;
+     }`,
+  );
+  assert.deepEqual(guard, [], "a bare return in a handler is a precondition, not a screen");
 });
