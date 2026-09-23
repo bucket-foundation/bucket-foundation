@@ -171,7 +171,9 @@ Sizes: S under half a day, M one to two days, L three to five days. Beads carry 
 
 The pending edge and NSM review queues feed staff-only surfaces and wait until after wave 1.
 
-Rollback: `BUCKET_SIGNIN_OPEN=0` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts; removing the key returns the tutor to its 503 fail-safe (`tutor/route.ts:221`).
+Rollback: `BUCKET_SIGNIN_OPEN=0` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
+
+Removing the tutor key returns the tutor to its 503 fail-safe (`tutor/route.ts:221`, "Tutor isn't enabled yet").
 
 ### Founder Decisions
 
