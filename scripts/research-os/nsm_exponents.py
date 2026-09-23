@@ -24,7 +24,16 @@ PROXY = 0.6
 FALLBACK = 0.4
 THIN_FALLBACK = 0.2
 THIN_LANGS = 10
-ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_lang", "root_form", "root_gloss", "source", "run_id"]
+MULTIWORD_ROOT = 0.45
+CLOSED_CLASS_ROOT = 0.6
+CLOSED_CLASS = {
+    "se", "si", "sich", "sig", "sie", "sia", "sebe", "sobie", "zich", "ся", "себя", "σε", "να",
+    "le", "la", "les", "l", "lo", "il", "i", "gli", "el", "los", "las", "un", "une", "uno", "una", "a", "an", "the",
+    "o", "os", "as", "der", "die", "das", "den", "dem", "des", "de", "het", "een", "en", "ett", "ο", "η", "το", "ὁ", "ἡ", "τό", "τὸ",
+    "du", "di", "da", "do", "del", "della", "dei", "degli", "al", "au", "aux", "à", "in", "of", "to", "zu", "van", "på", "av",
+    "ne", "pas", "que", "qu", "che", "ce", "ça", "y", "e", "et", "und", "och", "og", "ja", "ya", "je", "est", "is",
+}
+ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "source", "run_id"]
 
 
 def load_seed(path=SEED):
@@ -82,6 +91,28 @@ def pick_words(sense):
     return out
 
 
+def content_tokens(word):
+    toks = [t for t in re.split(r"[\s'’]+", re.sub(r"\([^)]*\)", " ", word)) if t]
+    return [t for t in toks if node_words.word_key(t).strip(".,;:!?-") not in CLOSED_CLASS and re.search(r"\w", t)]
+
+
+def root_for(lang, word, db, hint):
+    if not re.search(r"\s", word.strip()):
+        resolved, _chain, root, conf, ety = node_words.analyze(lang, word, db, hint)
+        if not root[1]:
+            return resolved, ety, root, conf, 0.0
+        closed = node_words.word_key(word) in CLOSED_CLASS
+        return resolved, ety, root, conf, (min(conf, CLOSED_CLASS_ROOT) if closed else conf)
+    resolved, _chain, _root, conf, ety = node_words.analyze(lang, word, db, hint)
+    content = content_tokens(word)
+    if len(content) != 1:
+        return resolved, ety, (None, None, None), conf, 0.0
+    _r, _c, root, root_conf, _e = node_words.analyze(lang, content[0], db, hint)
+    if not root[1]:
+        return resolved, ety, (None, None, None), conf, 0.0
+    return resolved, ety, root, conf, min(root_conf, MULTIWORD_ROOT)
+
+
 def english_words(prime):
     out = []
     for w in prime["english"]:
@@ -106,13 +137,13 @@ def prime_rows(prime, db, targets, run_id):
     rows = []
     for lang in sorted(picks):
         for rank, w in enumerate(picks[lang], start=1):
-            resolved, _chain, (root_lang, root_form, root_gloss), word_conf, ety = node_words.analyze_word(lang, w["word"], db, hint)
+            resolved, ety, (root_lang, root_form, root_gloss), word_conf, root_conf = root_for(lang, w["word"], db, hint)
             entry = db.entry(lang, resolved, ety) if resolved else None
             row_conf = conf if lang == "en" else min(conf, word_conf)
             rows.append({
                 "prime_id": prime["id"], "lang": lang, "word": w["word"], "rank": rank,
                 "roman": w["roman"] or (entry or {}).get("roman") or None,
-                "sense": chosen["sense"], "sense_match": matched, "confidence": round(row_conf, 3),
+                "sense": chosen["sense"], "sense_match": matched, "confidence": round(row_conf, 3), "root_confidence": round(min(root_conf, row_conf), 3),
                 "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
                 "source": SOURCE, "run_id": run_id,
             })
@@ -181,7 +212,10 @@ def report(seed, results):
     print(f"primes {len(seed['primes'])} with exponents {sum(1 for _m, rs in results.values() if rs)} rows {len(rows)}")
     print("rows by lang", dict(sorted(by_lang.items(), key=lambda x: (-x[1], x[0]))))
     print("rows by confidence", dict(sorted({c: sum(1 for r in rows if r["confidence"] == c) for c in {r["confidence"] for r in rows}}.items())))
-    print("with root", sum(1 for r in rows if r["root_form"]), "with root gloss", sum(1 for r in rows if r["root_gloss"]))
+    shown = [r for r in rows if r["root_form"] and r["root_confidence"] >= HIDE_BELOW]
+    multi = [r for r in rows if re.search(r"\s", r["word"].strip())]
+    print("with root", sum(1 for r in rows if r["root_form"]), "with root gloss", sum(1 for r in rows if r["root_gloss"]), "root shown", len(shown))
+    print("multiword rows", len(multi), "with root", sum(1 for r in multi if r["root_form"]), "root shown", sum(1 for r in multi if r["root_form"] and r["root_confidence"] >= HIDE_BELOW))
     print("no sense match", no_match)
     print("no wiktionary lookup", no_lookup)
     return {"rows": len(rows), "by_lang": by_lang, "no_match": no_match, "no_lookup": no_lookup}

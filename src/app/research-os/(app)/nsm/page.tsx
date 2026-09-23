@@ -30,12 +30,13 @@ function Word({ e }: { e: NsmExponent }) {
 }
 
 function Root({ e }: { e: NsmExponent }) {
-  if (!e.rootForm) return <span className="text-[color:var(--basalt-3)]">no root recorded</span>;
+  if (!e.rootForm) return <span className="text-[color:var(--basalt-3)]">no root shown</span>;
   return (
     <span>
       <span className="small-caps text-[10px] tracking-[0.12em] text-[color:var(--basalt-3)]">{e.rootLangName} </span>
       <span lang={(e.rootLang || "").split("-")[0]} dir="auto">{e.rootForm}</span>
       {e.rootGloss && <span className="text-[color:var(--basalt-3)]"> “{e.rootGloss}”</span>}
+      {e.rootHidden ? <Mark text="root unconfirmed" /> : e.rootUncertain && <Mark text="root uncertain" />}
     </span>
   );
 }
@@ -152,7 +153,7 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
         The 65 meanings that the Natural Semantic Metalanguage finds in every language studied, each with the words that carry it in the languages Polingual reads, and the root each word grew from. Every word comes from the one Wiktionary sense named beside it.
       </p>
       <p className="mt-2 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">
-        A word shows when its confidence is {HIDE_BELOW} or above, and is marked uncertain below {UNCERTAIN_BELOW}. Words from a fallback sense score lower, are marked unconfirmed, and stay hidden until you ask for them.
+        A word shows when its confidence is {HIDE_BELOW} or above, and is marked uncertain below {UNCERTAIN_BELOW}. A root has its own confidence under the same thresholds; a root read from one word of a phrase stays hidden. Words from a fallback sense score lower, are marked unconfirmed, and stay hidden until you ask for them.
       </p>
       <Picker lang={lang} hidden={hidden} />
       {parsed === undefined && <p className="mt-3 text-[13px] text-[color:var(--gold-deep)]">That language code is not one this page reads, so every language is shown.</p>}

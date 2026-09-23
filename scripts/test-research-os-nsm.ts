@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
-import { assemble, byCategory, HIDE_BELOW, UNCERTAIN_BELOW, parseLang, type NsmExponentRow, type NsmPrimeRow } from "../src/lib/research-os/nsm";
+import { assemble, byCategory, HIDE_BELOW, UNCERTAIN_BELOW, parseLang, toExponent, type NsmExponentRow, type NsmPrimeRow } from "../src/lib/research-os/nsm";
 
 const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
 
@@ -28,7 +28,7 @@ const prime = (id: string, ord: number, extra: Partial<NsmPrimeRow> = {}): NsmPr
 });
 const exp = (prime_id: string, lang: string, word: string, confidence: number | string | null, rank = 1): NsmExponentRow => ({
   prime_id, lang, word, rank, roman: null, sense: "a sense", sense_match: Number(confidence) >= HIDE_BELOW, confidence,
-  root_lang: null, root_form: null, root_gloss: null,
+  root_confidence: null, root_lang: null, root_form: null, root_gloss: null,
 });
 
 test("hidden words stay out unless asked for, and uncertain ones are marked", () => {
@@ -41,6 +41,19 @@ test("hidden words stay out unless asked for, and uncertain ones are marked", ()
   const all = assemble(primes, rows, { includeHidden: true });
   assert.deepEqual(all[0].exponents.map((e) => [e.word, e.hidden]), [["je", false], ["ich", true], ["ego", false]]);
   assert.deepEqual(all[1].exponents.map((e) => [e.word, e.confidence]), [["du", 0], ["tu", 0.2]]);
+});
+
+test("a root below the threshold is withheld, and one below the uncertain line is marked", () => {
+  const row = { ...exp("happen", "pl", "stać się", 0.9), root_lang: "ine-pro", root_form: "*steh₂-", root_gloss: "to stand" };
+  const hidden = toExponent({ ...row, root_confidence: 0.45 });
+  assert.deepEqual([hidden.rootHidden, hidden.rootForm, hidden.rootGloss, hidden.rootLang], [true, null, null, null]);
+  const asked = toExponent({ ...row, root_confidence: "0.45" }, { includeHidden: true });
+  assert.deepEqual([asked.rootHidden, asked.rootForm], [true, "*steh₂-"]);
+  const uncertain = toExponent({ ...row, root_confidence: 0.6 });
+  assert.deepEqual([uncertain.rootHidden, uncertain.rootUncertain, uncertain.rootGloss], [false, true, "to stand"]);
+  const sure = toExponent({ ...row, root_confidence: 0.9 });
+  assert.deepEqual([sure.rootUncertain, sure.rootForm], [false, "*steh₂-"]);
+  assert.equal(toExponent({ ...row, root_confidence: null }).rootForm, null);
 });
 
 test("a prime with no lookup and a fallback sense read as such", () => {
@@ -82,7 +95,7 @@ async function get(query: string): Promise<{ status: number; body: Record<string
   return { status: res.status, body: (await res.json()) as Record<string, unknown> };
 }
 
-interface ApiPrime { id: string; label: string; senseStatus: string; exponents: { lang: string; hidden: boolean; uncertain: boolean; confidence: number }[] }
+interface ApiPrime { id: string; label: string; senseStatus: string; exponents: { lang: string; word: string; hidden: boolean; uncertain: boolean; confidence: number; rootForm: string | null; rootGloss: string | null; rootConfidence: number }[] }
 
 test("the route answers every prime with the shown words only", { skip }, async () => {
   const { status, body } = await get("");
@@ -92,6 +105,10 @@ test("the route answers every prime with the shown words only", { skip }, async 
   assert.deepEqual([body.hideBelow, body.uncertainBelow], [HIDE_BELOW, UNCERTAIN_BELOW]);
   assert.ok(primes.some((p) => p.exponents.length > 0));
   assert.ok(primes.every((p) => p.exponents.every((e) => !e.hidden && e.confidence >= HIDE_BELOW && e.uncertain === e.confidence < UNCERTAIN_BELOW)));
+  const shown = primes.flatMap((p) => p.exponents);
+  assert.ok(shown.every((e) => (e.rootForm === null && e.rootGloss === null) || e.rootConfidence >= HIDE_BELOW));
+  assert.ok(shown.filter((e) => /\s/.test(e.word.trim())).every((e) => e.rootForm === null));
+  assert.ok(shown.some((e) => e.rootForm !== null));
   assert.ok(primes.filter((p) => p.senseStatus === "none").every((p) => p.exponents.length === 0));
   assert.ok((body.attribution as { license: string }).license.includes("by-sa"));
   assert.ok((body.citation as { text: string }).text.includes("Goddard"));

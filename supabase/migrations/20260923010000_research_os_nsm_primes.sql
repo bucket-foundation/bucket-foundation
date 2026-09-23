@@ -22,6 +22,7 @@ create table if not exists graph.nsm_exponents (
   sense        text,
   sense_match  boolean     not null,
   confidence   real        not null default 1 check (confidence >= 0 and confidence <= 1),
+  root_confidence real     not null default 0 check (root_confidence >= 0 and root_confidence <= 1),
   root_lang    text,
   root_form    text,
   root_gloss   text,
@@ -30,6 +31,8 @@ create table if not exists graph.nsm_exponents (
   created_at   timestamptz not null default now(),
   primary key (prime_id, lang, word)
 );
+
+alter table graph.nsm_exponents add column if not exists root_confidence real not null default 0 check (root_confidence >= 0 and root_confidence <= 1);
 
 create index if not exists nsm_exponents_lang_idx on graph.nsm_exponents (lang);
 

@@ -28,6 +28,7 @@ export interface NsmExponentRow {
   sense: string | null;
   sense_match: boolean;
   confidence: number | string | null;
+  root_confidence: number | string | null;
   root_lang: string | null;
   root_form: string | null;
   root_gloss: string | null;
@@ -42,6 +43,9 @@ export interface NsmExponent {
   confidence: number;
   hidden: boolean;
   uncertain: boolean;
+  rootConfidence: number;
+  rootHidden: boolean;
+  rootUncertain: boolean;
   rootLang: string | null;
   rootLangName: string | null;
   rootForm: string | null;
@@ -75,9 +79,16 @@ export function parseLang(v: string | null): string | null | undefined {
   return LANG.test(s) ? s : undefined;
 }
 
-export function toExponent(row: NsmExponentRow): NsmExponent {
-  const n = typeof row.confidence === "number" ? row.confidence : typeof row.confidence === "string" ? Number(row.confidence) : NaN;
-  const c = Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
+function readConfidence(v: unknown): number {
+  const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
+  return Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
+}
+
+export function toExponent(row: NsmExponentRow, opts: { includeHidden?: boolean } = {}): NsmExponent {
+  const c = readConfidence(row.confidence);
+  const rc = row.root_form ? readConfidence(row.root_confidence) : 0;
+  const rootHidden = rc < HIDE_BELOW;
+  const keepRoot = Boolean(row.root_form) && (!rootHidden || Boolean(opts.includeHidden));
   return {
     lang: row.lang,
     langName: langName(row.lang),
@@ -87,10 +98,13 @@ export function toExponent(row: NsmExponentRow): NsmExponent {
     confidence: c,
     hidden: c < HIDE_BELOW,
     uncertain: c < UNCERTAIN_BELOW,
-    rootLang: row.root_lang || null,
-    rootLangName: row.root_lang ? langName(row.root_lang) : null,
-    rootForm: row.root_form || null,
-    rootGloss: row.root_gloss || null,
+    rootConfidence: rc,
+    rootHidden,
+    rootUncertain: rc < UNCERTAIN_BELOW,
+    rootLang: keepRoot ? row.root_lang || null : null,
+    rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
+    rootForm: keepRoot ? row.root_form || null : null,
+    rootGloss: keepRoot ? row.root_gloss || null : null,
   };
 }
 
@@ -102,7 +116,7 @@ export function senseStatus(row: NsmPrimeRow): SenseStatus {
 export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opts: { includeHidden?: boolean } = {}): NsmPrime[] {
   const byPrime = new Map<string, NsmExponent[]>();
   for (const row of exponents) {
-    const e = toExponent(row);
+    const e = toExponent(row, opts);
     if (!opts.includeHidden && e.hidden) continue;
     byPrime.set(row.prime_id, (byPrime.get(row.prime_id) ?? []).concat(e));
   }

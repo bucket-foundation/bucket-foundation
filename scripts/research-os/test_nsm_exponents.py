@@ -30,7 +30,13 @@ TRANSLATIONS = [
     ("see", "verb", "understand", 4, "fr", "comprendre", ""),
     ("see", "noun", "diocese", 0, "la", "dioecesis", ""),
     ("see", "verb", "perceive with the eyes", -1, "xx", "zzz", ""),
+    ("happen", "verb", "to occur", 0, "pl", "stać się", ""),
+    ("happen", "verb", "to occur", 0, "fr", "se produire", ""),
+    ("happen", "verb", "to occur", 0, "de", "vor sich gehen", ""),
+    ("happen", "verb", "to occur", 0, "es", "si", ""),
 ]
+HAPPEN = {"id": "happen", "label": "HAPPEN", "category": "actions", "english": ["happen"],
+          "sense": {"en_word": "happen", "en_pos": "verb", "gloss_pattern": "^to occur$"}}
 PRIME = {"id": "see", "label": "SEE", "category": "mental predicates", "english": ["see"],
          "sense": {"en_word": "see", "en_pos": "verb", "gloss_pattern": "perceive with the eyes"}}
 
@@ -44,9 +50,14 @@ def fixture():
     db.executemany("insert into word (lang, word, pos, ety, gloss, roman) values (?,?,?,0,?,?)", [
         ("la", "videre", "verb", "to see", ""), ("de", "sehen", "verb", "to see", ""), ("ru", "видеть", "verb", "to see", "videtʹ"),
         ("en", "see", "verb", "to perceive with the eyes", ""), ("fr", "comprendre", "verb", "to understand", ""),
+        ("pl", "stać", "verb", "to stand", ""), ("pl", "się", "pron", "oneself", ""), ("fr", "produire", "verb", "to produce", ""),
+        ("de", "gehen", "verb", "to go", ""), ("de", "sich", "pron", "oneself", ""), ("es", "si", "conj", "if", ""),
     ])
     db.executemany("insert into etym (lang, word, rel, anc_lang, anc_form, anc_gloss, ord, ety) values (?,?,?,?,?,?,?,0)", [
         ("la", "videre", "inh", "itc-pro", "*weidēō", "", 0), ("la", "videre", "inh", "ine-pro", "*weyd-", "to see", 1),
+        ("pl", "stać", "inh", "ine-pro", "*steh₂-", "to stand", 0), ("pl", "się", "inh", "ine-pro", "*s(w)e-", "to get married", 0),
+        ("fr", "produire", "bor", "la", "prōdūcō", "to lead forth", 0), ("de", "gehen", "inh", "ine-pro", "*ǵʰeh₁-", "to go", 0),
+        ("de", "sich", "inh", "ine-pro", "*s(w)e-", "to get married", 0), ("es", "si", "inh", "la", "sī", "if", 0),
     ])
     db.commit()
     db.close()
@@ -58,7 +69,7 @@ class SenseSelection(unittest.TestCase):
     def setUpClass(cls):
         cls.path = fixture()
         cls.db = nw.Roots(cls.path)
-        cls.targets = {"la", "de", "ru", "fr", "en"}
+        cls.targets = {"la", "de", "ru", "fr", "en", "pl", "es"}
 
     @classmethod
     def tearDownClass(cls):
@@ -118,6 +129,37 @@ class SenseSelection(unittest.TestCase):
         meta, rows = nsm.prime_rows(prime, self.db, self.targets, "run-1")
         self.assertFalse(meta["sense_match"])
         self.assertTrue(rows and all(not r["sense_match"] and r["confidence"] <= nsm.THIN_FALLBACK for r in rows))
+
+    def test_phrase_roots_come_from_the_content_word_and_stay_hidden(self):
+        _meta, rows = nsm.prime_rows(HAPPEN, self.db, self.targets, "run-1")
+        by = {r["lang"]: r for r in rows}
+        self.assertEqual(by["pl"]["root_form"], "*steh₂-")
+        self.assertEqual(by["fr"]["root_form"], "prōdūcō")
+        for lang in ("pl", "fr"):
+            self.assertLessEqual(by[lang]["root_confidence"], nsm.MULTIWORD_ROOT)
+            self.assertLess(by[lang]["root_confidence"], nsm.HIDE_BELOW)
+            self.assertNotEqual(by[lang]["root_gloss"], "to get married")
+        self.assertEqual((by["de"]["root_form"], by["de"]["root_confidence"]), (None, 0.0))
+
+    def test_a_closed_class_word_alone_keeps_its_root_marked_uncertain(self):
+        _meta, rows = nsm.prime_rows(HAPPEN, self.db, self.targets, "run-1")
+        es = next(r for r in rows if r["lang"] == "es")
+        self.assertEqual(es["root_form"], "sī")
+        self.assertTrue(nsm.HIDE_BELOW <= es["root_confidence"] <= nsm.CLOSED_CLASS_ROOT < nsm.UNCERTAIN_BELOW)
+
+    def test_content_tokens_drop_reflexives_articles_and_clitics(self):
+        self.assertEqual(nsm.content_tokens("stać się"), ["stać"])
+        self.assertEqual(nsm.content_tokens("tous les"), ["tous"])
+        self.assertEqual(nsm.content_tokens("ὁ αὐτός"), ["αὐτός"])
+        self.assertEqual(nsm.content_tokens("y avoir (il y a)"), ["avoir"])
+        self.assertEqual(nsm.content_tokens("vor sich gehen"), ["vor", "gehen"])
+        self.assertEqual(nsm.content_tokens("sig"), [])
+
+    def test_single_word_root_takes_the_entry_score(self):
+        _meta, rows = nsm.prime_rows(PRIME, self.db, self.targets, "run-1")
+        la = next(r for r in rows if r["lang"] == "la" and r["word"] == "videre")
+        self.assertGreaterEqual(la["root_confidence"], nsm.HIDE_BELOW)
+        self.assertEqual(next(r for r in rows if r["lang"] == "de")["root_confidence"], 0.0)
 
     def test_prime_with_no_lookup_has_no_rows(self):
         meta, rows = nsm.prime_rows(dict(PRIME, sense=None), self.db, self.targets, "run-1")
@@ -179,7 +221,7 @@ class Rerun(unittest.TestCase):
         pid = "zz_test_" + "".join(chr(97 + int(c, 16)) for c in uuid.uuid4().hex[:8])
         prime = {"id": pid, "label": "TEST", "category": "test", "english": ["test"], "sense": None}
         row = {"prime_id": pid, "lang": "la", "word": "videre", "rank": 1, "roman": None, "sense": "s", "sense_match": True,
-               "confidence": 0.6, "root_lang": None, "root_form": None, "root_gloss": None, "source": nsm.SOURCE, "run_id": "r1"}
+               "confidence": 0.6, "root_confidence": 0.0, "root_lang": None, "root_form": None, "root_gloss": None, "source": nsm.SOURCE, "run_id": "r1"}
         insert_prime = nsm.prime_sql(prime, 199, {"sense": "s", "sense_match": True})
         try:
             self.psql(insert_prime)

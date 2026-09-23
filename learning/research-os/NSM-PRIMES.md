@@ -14,7 +14,7 @@ Bead: "ros-nsm 1: NSM semantic primes as the cross-lingual bottom layer" in `BEA
 
 ## Matching
 
-`scripts/research-os/nsm_exponents.py` reads the `translation` rows for each prime's English word and part of speech, groups them by sense text (the dump uses -1 as a sense index sentinel, so the index is ignored), and takes the sense whose text matches the seed's pattern, the widest such sense when several match. With no match it takes the sense most languages translate and marks it `sense_match = false`. Each language keeps its first two words in that sense, and roots come from node_words' resolver.
+`scripts/research-os/nsm_exponents.py` reads the `translation` rows for each prime's English word and part of speech, groups them by sense text (the dump uses -1 as a sense index sentinel, so the index is ignored), and takes the sense whose text matches the seed's pattern, the widest such sense when several match. With no match it takes the sense most languages translate and marks it `sense_match = false`. Each language keeps its first two words in that sense, and roots come from node_words' resolver under the rules in Roots.
 
 Every row carries a `confidence`, the sense score capped by node_words' score for the word's dictionary entry and etymology: 0.9 when the pattern matched, 0.6 for a stand-in lookup, 0.4 on a fallback sense, 0.2 on a fallback sense fewer than 10 languages translate. The API and the page use node_words' thresholds from `src/lib/research-os/node-words.ts`: rows below `HIDE_BELOW` (0.5) stay hidden, and rows below `UNCERTAIN_BELOW` (0.75) are marked uncertain. `?hidden=1` adds the hidden rows, and the page marks each of them unconfirmed.
 
@@ -22,7 +22,7 @@ Two primes use a stand-in lookup and load at 0.6, shown as uncertain: BE (SOMEON
 
 ## Counts
 
-Run of 2026-09-23 on the local stack: 65 primes, 62 with exponents, 2,663 rows across 35 languages: 2,221 at 0.9, 274 at 0.85, 70 at 0.6 and 98 at 0.4 (hidden, all from a low entry score), with 1,959 carrying a root and 1,515 the root's meaning. Each of the 62 seed patterns found its sense.
+Run of 2026-09-23 on the local stack: 65 primes, 62 with exponents, 2,663 rows across 35 languages: 2,243 at 0.9, 259 at 0.85, 70 at 0.6 and 91 at 0.4 (hidden, all from a low entry score). 1,887 rows store a root, and 1,758 show one at `root_confidence` 0.5 or above, 57 of them marked uncertain. Each of the 62 seed patterns found its sense.
 
 ## Spot-check
 
@@ -38,9 +38,15 @@ Misses by category, French: quantifiers 2 (*quelque*, *tous les*), evaluators 2 
 
 Spanish, Russian, Mandarin and Polish were not checked: `nsm-approach.net/resources` listed no chart for them on 2026-09-23, and the 2014 book is paywalled. No claim is made for any language outside the three in the table.
 
+## Roots
+
+node_words' resolver splits a phrase on spaces and joins the roots of its parts, and it keeps reflexives, clitics and articles as parts. For NSM exponents this failed across the board: 167 of the 2,663 exponents are phrases (*stać się*, *tous les*, *ὁ αὐτός*), and the resolver glossed the closed-class part as if it carried the meaning. The first load stored a root on 131 of 167 multiword rows and showed 122 of them at 0.85 or 0.9 with no mark, among them Polish *się* as "to get married" under HAPPEN and MOVE, Swedish *sig* as "this", French *tous les* through *toz* "dust", and Greek *ὁ αὐτός* as "again, away from".
+
+Each row now carries a `root_confidence` apart from `confidence`, and the API and page gate the root on it with the same `HIDE_BELOW` and `UNCERTAIN_BELOW`; below `HIDE_BELOW` the API withholds the root form, language and gloss. A single-word exponent takes the resolver's score for its entry and etymology. A single word that is itself a closed-class form (*je*, *si*, *un*) is capped at 0.6 and shown as uncertain. A phrase gets a root only from its one content word after reflexives, clitics, articles and prepositions are dropped (`CLOSED_CLASS` in the loader), capped at 0.45 and hidden; a phrase with two content words gets none. After the fix 59 multiword rows store a root, and none shows by default.
+
 ## Limits
 
-Roots come from node_words' resolver unchanged, and its phrase split can pick a wrong root for a multiword exponent: French *le mien* resolves through *mien* to Latin *meum*, glossed as a plant. The words come from English Wiktionary translation tables, so an exponent is the translators' word for an English sense and can differ from the word an NSM chart chose.
+The words come from English Wiktionary translation tables, so an exponent is the translators' word for an English sense and can differ from the word an NSM chart chose. Single-word roots still carry the resolver's homograph errors: Old English *ne* shows *\*neh₂w-* "the deceased, corpse", marked uncertain as a closed-class word. `CLOSED_CLASS` is a hand list for the 35 languages and misses forms outside it.
 
 ## Rerun
 
