@@ -7,6 +7,7 @@ import { academyNodeSlug } from "../../../src/lib/research-os/ingest/academy";
 import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../../src/lib/research-os/ingest/types";
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
+import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -181,8 +182,12 @@ function main() {
   }
 
   console.log(`[canon-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (!APPLY) return;
-  void apply(nodes, edges);
+  void finish(nodes, edges);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {
+  if (APPLY) await apply(nodes, edges);
+  if (shadowRequested()) await shadowWrite("canon-all", nodes);
 }
 
 async function apply(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[]) {

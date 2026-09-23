@@ -8,6 +8,7 @@ import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 import { upsertGraph } from "./lib/upsert-graph";
+import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(__dirname, "..", "..", "..");
 const OUT_DIR = join(__dirname, "out");
@@ -87,10 +88,11 @@ async function main() {
 
   if (!APPLY) {
     console.log(`[canon-import] dry run only. Preview: scripts/research-os/ingest/out/canon-preview.json`);
-    return;
+  } else {
+    const written = await upsertGraph(result.nodes, result.edges, { label: "canon-import", skippedEdgeHint: "target node not yet in the graph (run academy-import.ts first?)." });
+    console.log(`[canon-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
   }
-  const written = await upsertGraph(result.nodes, result.edges, { label: "canon-import", skippedEdgeHint: "target node not yet in the graph (run academy-import.ts first?)." });
-  console.log(`[canon-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
+  if (shadowRequested()) await shadowWrite("canon-import", result.nodes);
 }
 
 main().catch((err) => {
