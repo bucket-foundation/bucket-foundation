@@ -39,6 +39,7 @@ export const UNCONFIGURED = "research_os_unavailable";
  *                     evidence-errors.ts, which probe, production, state
  *                     and review all answer through.
  *   node_read_failed  node/route.ts, a failed read of one node.
+ *   graph_unavailable import/route.ts, a failed read behind an attach.
  *
  * `scripts/test-research-os-outage.ts` checks the set against the tree
  * in both directions, so a code a route emits and nobody classified
@@ -51,6 +52,10 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // search is off until it does.
   "profile_unavailable",
   "eligibility_unavailable",
+  // ros-import 2. The import route's graph reads: the import row, its
+  // node, and the file rows. A failed read leaves the uploaded object
+  // where it is, so the same attach works once the graph answers.
+  "graph_unavailable",
 ]);
 
 /**
