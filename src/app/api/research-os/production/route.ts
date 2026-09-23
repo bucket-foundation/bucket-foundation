@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { PRODUCTION_KINDS, type ProductionKind } from "@/lib/research-os/production-node";
 import {
   configured,
@@ -26,19 +25,12 @@ import {
   type DuplicateCandidate,
 } from "@/lib/research-os/production-guard";
 import { canonClaimsAsDuplicateCandidates } from "@/lib/research-os/canon-link";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
-
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   const { searchParams } = new URL(req.url);
   const targetNodeId = searchParams.get("targetNodeId");
 
@@ -59,7 +51,7 @@ export async function GET(req: NextRequest) {
     }
   }
   return NextResponse.json({ productions: data || [], nodes: titles }, { headers: { "cache-control": "no-store" } });
-}
+});
 
 interface ProductionBody {
   id?: string;
@@ -75,23 +67,10 @@ interface ProductionBody {
   sessionId?: string;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  const gate = await requireConsent(learnerId, "production_submit");
-  if (!gate.allowed) {
-    const refusal = consentRefusal(gate);
-    return NextResponse.json(refusal.body, { status: refusal.status });
-  }
-
-  let body: ProductionBody;
-  try {
-    body = (await req.json()) as ProductionBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+export const POST = withResearchOsRoute({ auth: "required", consent: "production_submit" }, async (req, { learnerId }) => {
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as ProductionBody;
   const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
     (id): id is string => typeof id === "string" && id.length > 0,
   );
@@ -202,4 +181,4 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ production: data }, { headers: { "cache-control": "no-store" } });
-}
+});
