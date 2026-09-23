@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { NextResponse } from "next/server";
+import { graphService } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
 import { authorizeHypothesize } from "@/lib/research-os/hypothesize-auth";
 import type { HypothesizeResult } from "@/lib/research-os/types";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,9 +11,6 @@ export const dynamic = "force-dynamic";
 const HTE_SERVE_URL = (process.env.HTE_SERVE_URL ?? "http://127.0.0.1:8420").replace(/\/+$/, "");
 const HTE_TIMEOUT_MS = Number(process.env.HTE_SERVE_TIMEOUT_S ?? 20) * 1000;
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 interface HypothesizeBody {
   productionId?: string;
@@ -34,17 +32,10 @@ interface HteServeResponse {
   calibration?: { mode: string | null; brier_score: number | null; coverage_of_truth: number | null } | null;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  let body: HypothesizeBody;
-  try {
-    body = (await req.json()) as HypothesizeBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+export const POST = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as HypothesizeBody;
   const productionId = (body.productionId || "").trim();
   if (!productionId) return bad(400, "productionId is required");
 
@@ -123,4 +114,4 @@ export async function POST(req: NextRequest) {
   };
 
   return NextResponse.json({ result }, { headers: { "cache-control": "no-store" } });
-}
+});
