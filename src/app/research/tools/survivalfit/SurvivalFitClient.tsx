@@ -1,7 +1,5 @@
 "use client";
 
-// SurvivalFit client island, Kaplan-Meier + Mantel-Cox log-rank. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

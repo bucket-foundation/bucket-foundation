@@ -1,4 +1,3 @@
-/** Decompose-further queue: targets, shortlist, prompt, parsing, proposals. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, type DepEdge } from "../src/lib/research-os/primes";
@@ -360,7 +359,6 @@ test("consolidate turns a matched group into factors and the rest into missing p
     { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null, definition: "One event bringing about another." },
     { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], sameAs: "academy-01-mathematics-vector-space", definition: null },
   ];
-  // The fake keeps the top one after exclusion, as the runner keeps the top three.
   const pool = [
     { slug: "kinematics", title: "Kinematics, describing motion", similarity: 0.78 },
     { slug: "cause-node", title: "Cause and effect", similarity: 0.77 },
@@ -389,7 +387,6 @@ test("two groups merged under one key rank duplicates again, so a naming node fr
     { canonical: "Causation", branch: "04-information", members: ["causation"], sameAs: null, definition: null },
     { canonical: "Causation", branch: "04-information", members: ["causality"], sameAs: null, definition: null },
   ];
-  // The second target ranks first; the first group's list keeps it, since only the first target named that group.
   const pool = [
     { slug: t[1].slug, title: t[1].title, similarity: 0.9 },
     { slug: "cause-node", title: "Cause and effect", similarity: 0.8 },
@@ -515,7 +512,6 @@ test("the idea layer keeps idea-to-idea paths through evidence and drops the evi
     node("lonely-law", "02-physics", "law", "A law on a fact"),
     node("fact", "02-physics", "fact", "The sky is blue at noon", "canon_claim"),
   ];
-  // law rests on the paper, which rests on wave optics; lonely-law rests only on a fact.
   const es: DepEdge[] = [
     { fromId: "law", toId: "paper", kind: "derives_from" },
     pre("wave", "paper"),

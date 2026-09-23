@@ -11,7 +11,6 @@ export default function ResearchError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Surface the digest to the browser console for easy Vercel log correlation.
     // eslint-disable-next-line no-console
     console.error("/research error:", error);
   }, [error]);

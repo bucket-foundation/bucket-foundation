@@ -1,21 +1,3 @@
-// Pyodide check of the research tools (ros-workbench 0).
-//
-// Loads Pyodide under Node, installs the packages the candidate tools import,
-// copies the tool modules into Pyodide's file system, replays every payload in
-// the baseline from baseline.py, and compares each result to the CPython one.
-//
-// Setup, in any scratch directory outside this repository:
-//
-//   npm install pyodide@314.0.7
-//
-// Run from services/research-tools/:
-//
-//   python3 pyodide/baseline.py /path/to/baseline.json
-//   node pyodide/check.mjs /path/to/node_modules/pyodide /path/to/baseline.json
-//
-// Pyodide reads each package wheel from the pyodide directory when the file is
-// there and from its CDN otherwise. Exits 1 when any tool fails to run.
-
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";

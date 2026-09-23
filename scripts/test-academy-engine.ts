@@ -1,8 +1,3 @@
-/**
- * Pure tests for the Academy engine port: FSRS scheduling, leverage, the
- * daily route, grading with proficiency and streaks, level rotation, and
- * the cross-device merge. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { FSRS, DAY_MS } from "../src/lib/academy/fsrs";

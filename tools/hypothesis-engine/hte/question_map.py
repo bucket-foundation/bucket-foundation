@@ -1,32 +1,3 @@
-"""Generate `docs/RESEARCH-OS-INTEGRATION.md`'s "## Question map" section
-from `learning/research-os/RESEARCH-QUESTIONS.md` plus the hand-maintained
-registry at `hte/data/question-map.json`, so a Research OS plan revision
-(`PLAN-REVISION-N.md`) needs no hand pass over that section to stay current.
-
-The plan file states the questions; the registry states the engine's own
-read of each one (`status`, `corpora`, `slot_frame`, `adapter_needed`,
-`note`), since deciding whether a question is runnable, needs a new
-adapter, or sits outside a slot-filled address space is a judgment call no
-parser makes on its own. `compute_diff` cross-checks the two: a live
-question with no registry entry, a registry entry whose question vanished
-from the plan, a question whose text changed at the same id (reworded),
-one that reappeared at a different id with the same text (renumbered), and
-a registry corpus name absent from the live `hte.cli._CORPUS_LOADERS`
-registry. `hte question-map --check` (`cli.py`) exits non-zero when any of
-those five conditions holds; `--write` renders the section regardless,
-folding the same findings into a changelog block so a stale registry is
-visible in the doc itself rather than only in a CI failure.
-
-Renumbering detection matches by question text alone: `RESEARCH-QUESTIONS.
-md`'s own numbered list order plays no part in it, so a question that
-moves from id 12 to id 30 is read identically to one that stays put,
-provided its text does not change in the same revision. A question whose
-text changes at the same time it moves reads as a new question, the same
-ambiguity a human reviewer would face; `--check`'s report names it as
-`new` and `vanished` in that case, leaving `renumbered` for the
-unambiguous match, and the registry keeps its old entry until a person or
-the next agent session resolves which is which.
-"""
 from __future__ import annotations
 
 import argparse
@@ -51,9 +22,6 @@ BEGIN_MARKER = (
 )
 END_MARKER = "<!-- END GENERATED hte.question_map -->"
 
-# The heading `_replace_legacy_section` looks for on a doc that has never
-# been written by this module before: the hand-written revision-1 pass
-# (PR #39) starts its own question map here and ends it at the next H2.
 _LEGACY_SECTION_HEADING = "## Question map"
 
 _STATUS_LABELS = {
@@ -64,42 +32,17 @@ _STATUS_LABELS = {
 
 _SLOT_ORDER = ("actor", "action", "object", "place", "mechanism", "time")
 
-
-# --------------------------------------------------------------------------
-# Parsing `RESEARCH-QUESTIONS.md`
-# --------------------------------------------------------------------------
-
-
 @dataclass(frozen=True)
 class Question:
-    """One numbered question, as `RESEARCH-QUESTIONS.md` states it: `id` is
-    the question's own number (a string, so a registry lookup needs no
-    int/str coercion at the call site), `text` is the line following
-    `"N. "` verbatim, and `section` is the nearest `## ` heading above it.
-    A `*Pre-registered as of ...*` annotation line some questions carry
-    directly beneath them is not part of `text`; it never matches the
-    numbered-line pattern below, so it is skipped rather than merged in.
-    """
 
     id: str
     text: str
     section: str
 
-
 _HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
 _ITEM_RE = re.compile(r"^(\d+)\.\s+(.+?)\s*$")
 
-
 def parse_questions(text: str) -> list[Question]:
-    """Every numbered question in `text`, in file order. A line is a
-    section heading when it starts with exactly `## ` (the file's own H1
-    title and any `### ` subheading are both left alone); a line is a
-    question when it starts with one or more digits, a period, and a
-    space, and a heading has already been seen above it. A question found
-    before any heading is dropped rather than filed under an empty
-    section, which cannot happen in a well-formed plan file and signals a
-    parsing assumption worth revisiting if it ever does.
-    """
     section: str | None = None
     questions: list[Question] = []
     for line in text.splitlines():
@@ -113,32 +56,13 @@ def parse_questions(text: str) -> list[Question]:
             questions.append(Question(id=item.group(1), text=item.group(2), section=section))
     return questions
 
-
 def _normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
-
-# --------------------------------------------------------------------------
-# The registry
-# --------------------------------------------------------------------------
-
-
 def load_registry(path: str | Path) -> tuple[dict, dict[str, dict]]:
-    """`(meta, entries)`: `data["_meta"]` (or `{}` when absent) and every
-    other top-level key, each a question id mapping to its own registry
-    entry. Question ids are the registry's only ordinary keys, matching
-    `hte/data/question-map.json`'s own "keyed by question id" contract;
-    `_meta` is the one reserved key a numeric id never collides with.
-    """
     data = json.loads(Path(path).read_text())
     meta = data.pop("_meta", {})
     return meta, data
-
-
-# --------------------------------------------------------------------------
-# Diffing the plan against the registry
-# --------------------------------------------------------------------------
-
 
 @dataclass
 class DiffReport:
@@ -169,14 +93,7 @@ class DiffReport:
             out.append(f"registry question {qid} names corpus {corpus!r}, missing from the live corpus registry.")
         return out
 
-
 def compute_diff(questions: Sequence[Question], registry: dict[str, dict], corpus_names: Iterable[str]) -> DiffReport:
-    """Cross-check `questions` (the live plan) against `registry` (the
-    hand-maintained map) and `corpus_names` (the live `_CORPUS_LOADERS`
-    keys). See the module docstring for what each of the five findings
-    means and how a renumbering is told apart from a new question sharing
-    an old id's text.
-    """
     live_by_id = {q.id: q for q in questions}
     corpus_set = set(corpus_names)
 
@@ -222,15 +139,7 @@ def compute_diff(questions: Sequence[Question], registry: dict[str, dict], corpu
         unregistered_corpora=unregistered_corpora,
     )
 
-
-# --------------------------------------------------------------------------
-# Rendering
-# --------------------------------------------------------------------------
-
-
 def _format_id_ranges(ids: Sequence[str]) -> str:
-    """`["1","2","3","5"]` reads as `"1-3, 5"`: a compact range list for the
-    Count block, the same shape a person would write by hand."""
     nums = sorted(int(i) for i in ids)
     if not nums:
         return "(none)"
@@ -245,7 +154,6 @@ def _format_id_ranges(ids: Sequence[str]) -> str:
     ranges.append(str(start) if start == prev else f"{start}-{prev}")
     return ", ".join(ranges)
 
-
 def _class_cell(entry: dict | None) -> str:
     if entry is None:
         return "unregistered"
@@ -256,12 +164,10 @@ def _class_cell(entry: dict | None) -> str:
         return f"{label} ({joined})"
     return label
 
-
 def _slot_frame_cell(slot_frame: dict | None) -> str | None:
     if not slot_frame:
         return None
     return "; ".join(f"{key.upper()} = {slot_frame[key]}" for key in _SLOT_ORDER if key in slot_frame)
-
 
 def _render_table(questions: Sequence[Question], registry: dict[str, dict]) -> str:
     has_slots = any((registry.get(q.id) or {}).get("slot_frame") for q in questions)
@@ -273,10 +179,6 @@ def _render_table(questions: Sequence[Question], registry: dict[str, dict]) -> s
         "|" + "|".join("---" for _ in header) + "|",
     ]
     for question in questions:
-        # `entry` is `None` for a question `--check` already reports as
-        # `new`: `render_section` still owes this row a table line (the
-        # doc must stay a complete, well-formed table even mid-drift), so
-        # it renders as "unregistered" rather than raising.
         entry = registry.get(question.id)
         note = entry.get("note", "") if entry is not None else "Not yet in hte/data/question-map.json; run `hte question-map --check`."
         cells = [question.id, question.text, _class_cell(entry), note]
@@ -286,20 +188,13 @@ def _render_table(questions: Sequence[Question], registry: dict[str, dict]) -> s
         lines.append("| " + " | ".join(cells) + " |")
     return "\n".join(lines)
 
-
 def _section_order(questions: Sequence[Question]) -> list[str]:
     seen: dict[str, None] = {}
     for q in questions:
         seen.setdefault(q.section, None)
     return list(seen)
 
-
 def render_section(questions: Sequence[Question], registry: dict[str, dict], diff: DiffReport) -> str:
-    """The full "## Question map" section body: intro, classification key,
-    a changelog block, one table per plan section in the plan's own
-    order, and a generated Count summary. Does not include the
-    surrounding marker comments; `apply_to_doc` adds those.
-    """
     by_section: dict[str, list[Question]] = {}
     for q in questions:
         by_section.setdefault(q.section, []).append(q)
@@ -359,25 +254,7 @@ def render_section(questions: Sequence[Question], registry: dict[str, dict], dif
     )
     return "\n".join(parts).rstrip("\n") + "\n"
 
-
 def apply_to_doc(doc_text: str, section_text: str) -> str:
-    """`doc_text` with its question-map section replaced by
-    `section_text`, wrapped in `BEGIN_MARKER`/`END_MARKER`. A doc that
-    already carries the markers (every run after the first) has only the
-    text between them replaced; a doc that does not yet (the hand-written
-    revision-1 pass) has its `## Question map` ... next-`## ` span
-    replaced instead, markers included from that point on.
-
-    `after` (whatever text originally followed the replaced span) has its
-    own leading newlines stripped and exactly one blank line put back
-    before it: a fixed rule, independent of however many blank lines
-    `doc_text` happened to carry in. Reusing that incoming count instead
-    would grow it by one blank line on every `partition`/re-insert cycle,
-    since inserting a fixed-length block ahead of an `after` that already
-    starts with a blank line adds another. `--write` run twice in a row
-    must produce byte-identical output, the idempotency this function
-    exists to keep.
-    """
     block = f"{BEGIN_MARKER}\n{section_text.strip(chr(10))}\n{END_MARKER}\n"
     if BEGIN_MARKER in doc_text and END_MARKER in doc_text:
         before, _, rest = doc_text.partition(BEGIN_MARKER)
@@ -402,21 +279,10 @@ def apply_to_doc(doc_text: str, section_text: str) -> str:
     tail = f"\n{after_stripped}" if after_stripped else ""
     return before + block + tail
 
-
-# --------------------------------------------------------------------------
-# Building a report and the two CLI verbs
-# --------------------------------------------------------------------------
-
-
 def _live_corpus_names() -> set[str]:
-    # Deferred import: `cli.py` imports this module at its own top level,
-    # so importing `cli` back from here at module scope would cycle.
-    # Calling this only from inside a function, after both modules have
-    # already finished loading, avoids that.
     from .cli import _CORPUS_LOADERS
 
     return set(_CORPUS_LOADERS)
-
 
 def build_report(
     *,
@@ -431,7 +297,6 @@ def build_report(
     names = set(corpus_names) if corpus_names is not None else _live_corpus_names()
     diff = compute_diff(questions, registry, names)
     return questions, registry, diff
-
 
 def cmd_check(
     *,
@@ -449,7 +314,6 @@ def cmd_check(
     for line in diff.lines():
         print(f"  - {line}", file=sys.stderr)
     return 1
-
 
 def cmd_write(
     *,
@@ -474,7 +338,6 @@ def cmd_write(
             print(f"  - {line}", file=sys.stderr)
     return 0
 
-
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="hte question-map")
     group = parser.add_mutually_exclusive_group()
@@ -485,10 +348,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_write()
     return cmd_check()
 
-
 if __name__ == "__main__":
     raise SystemExit(main())
-
 
 __all__ = [
     "Question",

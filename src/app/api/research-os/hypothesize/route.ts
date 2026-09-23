@@ -1,35 +1,3 @@
-/**
- * POST /api/research-os/hypothesize, forwards one production to the
- * hypothesis engine's `hte-serve` HTTP face (bkt-hte; see
- * tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md and this
- * file's own patch, tools/hypothesis-engine/docs/research-os-hypothesize-
- * route.patch, where this file lives before landing as its own PR).
- *
- * Loads the caller's own production row (and, best-effort, its target
- * node's `slug`/`title`/`tier`/`branch`, so `hte.corpus.production.
- * normalize_research_os_record`'s optional `_target_node` enrichment
- * resolves a real `grade_band` instead of `"unknown"`), then POSTs that
- * row as-is to `hte-serve`, which auto-detects and normalizes the
- * Research OS shape (`production.is_research_os_record` /
- * `normalize_research_os_record`, `PRODUCTION-SCHEMA-ALIGNMENT.md`'s own
- * field-by-field table). No local shape conversion happens in this file.
- *
- * `hte/serve.py` carries no authentication of its own (its own header
- * comment says so): it binds to `127.0.0.1` and trusts whatever process
- * starts it alongside this app. This route is that trusted caller; never
- * expose `hte-serve`'s own port outside localhost, and never forward a
- * production this route has not first verified the caller owns
- * (`authorizeHypothesize` below closes the same ownership gap PR #6's own
- * `production/route.ts` POST handler left open, flagged in that PR's
- * review; kept as a named, unit-tested function rather than folded only
- * into the query filter, ros-13's own review item).
- *
- * Auth: Authorization: Bearer <supabase access token>, required, same as
- * every other `/api/research-os/*` route (`src/lib/research-os/db.ts`).
- *
- * Env: `HTE_SERVE_URL` (default `http://127.0.0.1:8420`),
- * `HTE_SERVE_TIMEOUT_S` (default `20`).
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
@@ -82,11 +50,6 @@ export async function POST(req: NextRequest) {
 
   const svc = graphService();
 
-  // Ownership check before anything leaves this process: never forward a
-  // production this caller does not own, service-role bypasses RLS so
-  // `authorizeHypothesize` below is the only boundary
-  // (docs/PRODUCTION-SCHEMA-ALIGNMENT.md, and the PR #6 review this patch
-  // responds to).
   const { data: production, error: prodErr } = await svc
     .from("productions")
     .select("*")
@@ -95,9 +58,6 @@ export async function POST(req: NextRequest) {
   if (prodErr) return bad(500, "read_failed");
   if (!authorizeHypothesize(production, learnerId)) return bad(404, "production_not_found");
 
-  // Owning the production is not reading the node it names: a production
-  // written before a node was hidden would otherwise forward its slug,
-  // title, tier and branch to the engine (Bucket critic C14).
   const readable = await authorizeNode(production.target_node_id as string, { id: learnerId }, "view");
   if (!readable.ok) {
     if (readable.reason === "unavailable") return bad(503, "access_unavailable");

@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""
-Build reports/manual.pdf from reports/manual.html via WeasyPrint.
-All page styling (cover, running heads, TOC leader dots + page numbers, part
-dividers) lives in the document's stylesheet, matching the Longevity & Fitness
-manual. Run reports/build_manual.py first.
-"""
 import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML = os.path.join(ROOT, "reports", "manual.html")

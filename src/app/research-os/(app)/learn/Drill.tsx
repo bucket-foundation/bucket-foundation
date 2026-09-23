@@ -15,11 +15,6 @@ const RATINGS: { g: Rating; label: string; hint: string }[] = [
   { g: 4, label: "Easy", hint: "had it at once" },
 ];
 
-/**
- * Retrieval practice for one atom: the prompt at the chosen depth, a
- * revealed answer, and the four FSRS ratings. The feedback line names the
- * result; the rating goes to the engine after a short beat.
- */
 export default function Drill({ atom, level, onRate, onSkip }: { atom: Atom; level: Depth; onRate: (rating: Rating, level: Depth) => void; onSkip?: () => void }) {
   const q: QuizItem | undefined = (atom.quiz ?? []).find((x) => x.level === level) ?? atom.quiz?.[0];
   const [revealed, setRevealed] = useState(false);

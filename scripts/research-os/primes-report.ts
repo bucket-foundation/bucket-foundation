@@ -1,17 +1,3 @@
-/**
- * Runs the prime decomposition (src/lib/research-os/primes.ts) over the
- * graph's public, current nodes in Supabase and prints a report: status
- * counts, tiers, the most penetrating primes, the deepest composites,
- * cycles, the nodes that name equality (the worked example in
- * learning/research-os/PRIMES.md), the primes a reviewer confirmed as
- * irreducible, and what moved since the previous report. Writes the full
- * result to scripts/research-os/ingest/out/primes-report.json (ignored by
- * git), which the next run reads as its baseline.
- *
- * Run from the repo root with the local stack's keys in .env.local:
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/primes-report.ts
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -31,11 +17,6 @@ type NodeRow = { id: string; slug: string | null; title: string | null; kind: st
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
 
 function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
-  // Ordered by id, which is the primary key on nodes, edges and
-  // irreducible_proposals. Postgres gives no stable order across LIMIT
-  // and OFFSET without a total order key, so an unordered page boundary
-  // repeats one row and drops another, and the report is wrong with no
-  // sign that it is.
   return pagedRead<T>((page) => {
     let q = svc.from(table).select(columns).order("id").range(page.from, page.to);
     if (filter) q = filter(q);

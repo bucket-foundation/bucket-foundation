@@ -1,13 +1,3 @@
-/**
- * Unit tests: the minors compliance pack's export/delete logic (bkt-ros
- * ros-07 task item 2), src/lib/research-os/privacy.ts. Every function under
- * test is pure (no I/O, no live Supabase), matching scripts/test-research-
- * os-engine-bridge.ts's own convention: node:test + node:assert, plain
- * fixture objects, no framework configured in this repo.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-privacy.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync, readdirSync } from "node:fs";
@@ -21,10 +11,6 @@ import {
   type FixtureStore,
 } from "../src/lib/research-os/privacy";
 import { DELETE_CONFIRM_TOKEN } from "../src/lib/research-os/types";
-
-// ---------------------------------------------------------------------------
-// hashLearnerId
-// ---------------------------------------------------------------------------
 
 test("hashLearnerId: deterministic for the same input", () => {
   const a = hashLearnerId("11111111-1111-1111-1111-111111111111");
@@ -44,10 +30,6 @@ test("hashLearnerId: output is a 64-char hex sha256 digest, never the raw id", (
   assert.match(h, /^[0-9a-f]{64}$/);
   assert.notEqual(h, id);
 });
-
-// ---------------------------------------------------------------------------
-// buildExportEnvelope: "export returns only the caller's rows"
-// ---------------------------------------------------------------------------
 
 const LEARNER_A = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa";
 const LEARNER_B = "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb";
@@ -82,9 +64,6 @@ test("buildExportEnvelope: every PRIVACY_TABLES label is present even when the i
 });
 
 test("buildExportEnvelope: a row keyed by the wrong learner column value is dropped even if the caller forgot to filter upstream", () => {
-  // Simulates a defense-in-depth scenario: the DB query's own .eq() filter
-  // is assumed to have failed or been forgotten; the pure function must
-  // still not leak the other learner's row.
   const rowsByLabel = {
     edge_flags: [
       { learner_id: LEARNER_A, edge_id: "e1" },
@@ -97,11 +76,6 @@ test("buildExportEnvelope: a row keyed by the wrong learner column value is drop
     ["e1"],
   );
 });
-
-// ---------------------------------------------------------------------------
-// simulateLearnerDelete: "delete leaves zero rows for that learner and one
-// audit row; another learner's rows untouched"
-// ---------------------------------------------------------------------------
 
 function fixtureStore(): FixtureStore {
   return {
@@ -211,16 +185,7 @@ test("simulateLearnerDelete: deleting a learner with no rows anywhere is a no-op
   assert.equal(result.auditRowsWritten, 1, "an audit row is still written even for a no-op delete");
 });
 
-// ---------------------------------------------------------------------------
-// Drift check: PRIVACY_TABLES stays in sync with the real SQL function.
-// ---------------------------------------------------------------------------
-
 test("PRIVACY_TABLES: every graph/bucket table appears as a delete statement across the migrations graph.privacy_delete_learner is defined and extended in", () => {
-  // graph.privacy_delete_learner is first defined in the privacy/consent
-  // migration and later extended with `create or replace function` (e.g.
-  // 20260910070000_research_os_check_attempts.sql adds check_attempts), so
-  // this reads every migration file rather than one hardcoded name, the
-  // same reason a single filename would have missed the extension.
   const migrationsDir = join(__dirname, "..", "supabase", "migrations");
   const sql = readdirSync(migrationsDir)
     .filter((f) => f.endsWith(".sql"))
@@ -236,13 +201,6 @@ test("PRIVACY_TABLES: every label is unique", () => {
   const labels = PRIVACY_TABLES.map((c) => c.label);
   assert.equal(new Set(labels).size, labels.length);
 });
-
-// ---------------------------------------------------------------------------
-// isDeleteConfirmed: the delete route's "confirm cannot be skipped
-// server-side" gate (ros-07 follow-up, task item 2). Pure, so this is the
-// real coverage for that requirement; the route itself is a thin wrapper
-// that calls this before doing anything else (see route.ts).
-// ---------------------------------------------------------------------------
 
 test("isDeleteConfirmed: exact token match is confirmed", () => {
   assert.equal(isDeleteConfirmed({ confirm: DELETE_CONFIRM_TOKEN }), true);

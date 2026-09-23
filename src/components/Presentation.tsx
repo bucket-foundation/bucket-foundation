@@ -45,11 +45,7 @@ export default function Presentation() {
 
   return (
     <main className="min-h-screen stone-bone">
-      {/* ════════════════════════════════════════════════════════════ */}
-      {/* HERO · the inscription                                        */}
-      {/* ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden grain min-h-[78vh] flex flex-col justify-center">
-        {/* Ambient patina */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-80"
@@ -59,8 +55,6 @@ export default function Presentation() {
           }}
         />
 
-        {/* z-20 on the content alone: the section's patina stays below the
-            home globe that rises into the hero, so the halo shows no seam. */}
         <div className="relative z-20 max-w-2xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
           <div className="carve-in font-mono-mark uppercase text-[10px] tracking-[0.4em] text-[color:var(--basalt-2)] mb-10 flex items-center justify-center gap-2">
             <span className="text-[color:var(--crimson)]">◆</span>
@@ -94,16 +88,9 @@ export default function Presentation() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════ */}
-      {/* CANON SEARCH PANEL · full viewport, globe rises above the hero */}
-      {/* above it; the real search bar and branch filter chips ship     */}
-      {/* inside CanonGlobeMount itself, no separate outer nav here.     */}
-      {/* ════════════════════════════════════════════════════════════ */}
       <CanonSearchPanel branches={globeBranches} />
 
     </main>
   );
 }
-
-/* ───────────── helpers ───────────── */
 

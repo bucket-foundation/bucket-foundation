@@ -1,9 +1,5 @@
 "use client";
 
-// MethodsMatcher client island, "which method (and which Bucket tool) answers
-// this question?" Methods mined from the live OpenAlex literature; tool match
-// from Bucket's own catalog. Render is "json" → typed view.
-
 import { useState } from "react";
 import {
   useToolRun,

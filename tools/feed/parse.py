@@ -1,27 +1,4 @@
 #!/usr/bin/env python3
-"""
-parse.py, canon activity feed event parser (bkt-feed-01)
-
-Reads a git diff between two SHAs (or a single commit) and emits JSON Lines
-events to stdout. One line per event. No external deps; stdlib only.
-
-Event types:
- add_paper, add_figure, add_branch, add_canon_entry, add_landscape,
- update_dossier, promote, demote, retract
-
-A promotion out of _intake/ lands as a new or extended
-primary-papers.yaml under bucket-canon/. Each new record in it gets
-its own add_paper event, keyed by the record's own id (see
-card_event_id below) rather than by this diff's commit sha, so it
-lines up with the id feed.py's check-cards/emit-for-cards would derive
-for the same card. That is what lets the push job on main emit the
-event on its own; check-cards stays the guard for anything this still
-misses.
-
-Usage:
- python3 tools/feed/parse.py --from <sha> --to <sha> [--pr <num>]
- python3 tools/feed/parse.py --commit <sha>
-"""
 from __future__ import annotations
 
 import argparse
@@ -47,16 +24,9 @@ DOSSIER_BASENAMES = {
 BIB_ENTRY_RE = re.compile(r"^@\w+\{([^,\s]+)\s*,", re.MULTILINE)
 FIELD_RE = re.compile(r"^\s*(\w+)\s*=\s*[{\"](.+?)[}\"]\s*,?\s*$", re.MULTILINE)
 
-# primary-papers.yaml record scan. Deliberately duplicated from feed.py's
-# parse_yaml_records/card_event_id: the two CLIs stay independent, each
-# invoked directly, neither imports the other (same convention feed.py
-# uses for its own duplicated resolve_github_handle).
 _YAML_RECORD_START_RE = re.compile(r"^-\s+id:\s*(.+?)\s*$")
 _YAML_RECORD_FIELD_RE = re.compile(r"^  (\w+):\s*(.*)$")
 _YAML_RECORD_FIELDS = ("title", "doi", "canon_score")
-
-
-# ---------- git helpers ------------------------------------------------------
 
 def git(*args: str, check: bool = True, cwd: Optional[str] = None) -> str:
     res = subprocess.run(
@@ -66,9 +36,7 @@ def git(*args: str, check: bool = True, cwd: Optional[str] = None) -> str:
         raise RuntimeError(f"git {' '.join(args)} failed: {res.stderr.strip()}")
     return res.stdout
 
-
 def git_show_file(sha: str, path: str) -> Optional[str]:
-    """Return file content at sha, or None if missing."""
     res = subprocess.run(
         ["git", "show", f"{sha}:{path}"], capture_output=True, text=True,
     )
@@ -76,13 +44,7 @@ def git_show_file(sha: str, path: str) -> Optional[str]:
         return None
     return res.stdout
 
-
 def git_name_status(sha_from: str, sha_to: str) -> list[tuple[str, str, Optional[str]]]:
-    """Return list of (status, path, old_path_or_None).
-
- status is A/M/D/R/C (for renames R contains similarity like R100, we
- normalize to R).
-    """
     out = git(
         "diff", "--name-status", "-M", "--find-renames=50%",
         f"{sha_from}..{sha_to}",
@@ -93,13 +55,12 @@ def git_name_status(sha_from: str, sha_to: str) -> list[tuple[str, str, Optional
         if not parts:
             continue
         status_raw = parts[0]
-        status = status_raw[0]  # strip similarity suffix
+        status = status_raw[0]
         if status == "R" and len(parts) == 3:
             results.append(("R", parts[2], parts[1]))
         elif len(parts) >= 2:
             results.append((status, parts[1], None))
     return results
-
 
 def git_commit_meta(sha: str) -> dict:
     out = git("show", "-s", "--format=%H%x1f%an%x1f%ae%x1f%aI%x1f%B", sha)
@@ -115,23 +76,16 @@ def git_commit_meta(sha: str) -> dict:
         "msg": parts[4],
     }
 
-
 def resolve_github_handle(name: str, email: str) -> str:
     if email.endswith("@users.noreply.github.com"):
         local = email.split("@", 1)[0]
-        # formats: "12345+handle" or "handle"
         if "+" in local:
             return local.split("+", 1)[1]
         return local
-    # fallback: slugify name
     slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
     return slug or "unknown"
 
-
-# ---------- path classification ---------------------------------------------
-
 def classify_canon_path(path: str) -> Optional[dict]:
-    """Return dict(branch, topic, basename) if path is in bucket-canon/, else None."""
     if not path.startswith(CANON_PREFIX):
         return None
     rest = path[len(CANON_PREFIX):]
@@ -141,19 +95,13 @@ def classify_canon_path(path: str) -> Optional[dict]:
     basename = segs[-1]
     return {"branch": branch, "topic": topic, "basename": basename, "rest": rest}
 
-
-# ---------- bibtex diffing ---------------------------------------------------
-
 def parse_bib_entries(text: Optional[str]) -> dict[str, dict]:
-    """cite_key -> {title, doi}"""
     if not text:
         return {}
     entries: dict[str, dict] = {}
-    # Split into records by @TYPE{key,
     for m in BIB_ENTRY_RE.finditer(text):
         key = m.group(1)
         start = m.end()
-        # find matching closing brace naively by scanning balance
         depth = 1
         i = start
         while i < len(text) and depth > 0:
@@ -173,9 +121,6 @@ def parse_bib_entries(text: Optional[str]) -> dict[str, dict]:
         }
     return entries
 
-
-# ---------- figures.json diffing --------------------------------------------
-
 def load_figures(text: Optional[str]) -> dict[str, dict]:
     if not text:
         return {}
@@ -190,18 +135,7 @@ def load_figures(text: Optional[str]) -> dict[str, dict]:
             out[fid] = fig
     return out
 
-
-# ---------- primary-papers.yaml diffing --------------------------------------
-
 def parse_yaml_records(text: Optional[str]) -> list[dict]:
-    """Pull id/title/doi/canon_score out of a primary-papers.yaml body.
-
-    Not a general YAML parser: this repo controls the generator, so a
-    small state machine over the known two-space-indented record shape
-    (see any bucket-canon/**/primary-papers.yaml) is enough, and it
-    matches feed.py's parse_yaml_records exactly so a record diffed
-    here and a record diffed there always land on the same id.
-    """
     if not text:
         return []
     records: list[dict] = []
@@ -222,34 +156,17 @@ def parse_yaml_records(text: Optional[str]) -> list[dict]:
         records.append(current)
     return records
 
-
-# ---------- event construction ----------------------------------------------
-
 def event_id(type_: str, path: str, sha: str, extra: str = "") -> str:
     h = hashlib.sha1()
     h.update(f"{type_}|{path}|{sha}|{extra}".encode("utf-8"))
     return h.hexdigest()[:16]
 
-
 def card_event_id(card_type: str, path: str, key: str) -> str:
-    """Event id for a promoted card, matching feed.py's card_event_id.
-
-    A card promoted straight from _intake/ lands as a new or extended
-    file, so the commit-keyed event_id() above (which folds in this
-    diff's own commit sha) would never line up with the id
-    check-cards/emit-for-cards derive from the card's own identity.
-    Sharing this derivation is what lets a push emit the event on its
-    own while check-cards recognizes it as already present, rather
-    than reporting a gap emit-for-cards would only re-emit as a
-    duplicate.
-    """
     h = hashlib.sha1()
     h.update(f"card|{card_type}|{path}|{key}".encode("utf-8"))
     return h.hexdigest()[:16]
 
-
 def make_card_event(card_type: str, path: str, key: str, **kw) -> dict:
-    # required kwargs: commit_sha, timestamp
     return {
         "id": card_event_id(card_type, path, key),
         "type": card_type,
@@ -265,9 +182,7 @@ def make_card_event(card_type: str, path: str, key: str, **kw) -> dict:
         "timestamp": kw["timestamp"],
     }
 
-
 def make_event(**kw) -> dict:
-    # required: type, path, commit_sha
     base = {
         "id": event_id(kw["type"], kw["path"], kw["commit_sha"], kw.get("_extra", "")),
         "type": kw["type"],
@@ -284,9 +199,6 @@ def make_event(**kw) -> dict:
     }
     return base
 
-
-# ---------- top-level diff processing ---------------------------------------
-
 def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict]:
     meta = git_commit_meta(sha_to)
     author_name = meta["author_name"]
@@ -302,10 +214,8 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
 
     changes = git_name_status(sha_from, sha_to)
 
-    # Track new branches (for dedup)
     seen_branches: set[str] = set()
 
-    # detect promote/demote via renames first
     for status, path, old_path in changes:
         if status == "R" and old_path:
             old_in_canon = old_path.startswith(CANON_PREFIX)
@@ -331,7 +241,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                 )
 
     for status, path, old_path in changes:
-        # figures.json, handle separately (A or M)
         if path == FIGURES_JSON:
             old_txt = git_show_file(sha_from, path) if status != "A" else None
             new_txt = git_show_file(sha_to, path) if status != "D" else None
@@ -351,7 +260,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
 
         info = classify_canon_path(path)
 
-        # Canon paths
         if info is not None:
             branch = info["branch"]
             topic = info["topic"]
@@ -359,16 +267,11 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
             rest_segs = info["rest"].split("/")
 
             if status == "A":
-                # new branch? only emit once per branch
                 if branch and branch not in seen_branches:
-                    # check if branch dir is itself new (parent didn't exist at sha_from)
                     probe = git_show_file(
                         sha_from, f"{CANON_PREFIX}{branch}/README.md"
                     )
-                    # also probe a common file; if none of these exist in sha_from
-                    # and we see a new file inside, call it a new branch.
                     if probe is None:
-                        # confirm via ls-tree
                         res = subprocess.run(
                             ["git", "ls-tree", sha_from, f"{CANON_PREFIX}{branch}"],
                             capture_output=True, text=True,
@@ -382,10 +285,9 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                                 _extra=branch, **base_kw,
                             )
                             seen_branches.add(branch)
-                seen_branches.add(branch)  # dedup within this run
+                seen_branches.add(branch)
 
                 if basename.endswith(".bib"):
-                    # new .bib file: every entry is an add_paper
                     new_txt = git_show_file(sha_to, path) or ""
                     for key, entry in parse_bib_entries(new_txt).items():
                         yield make_event(
@@ -396,9 +298,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                             _extra=key, **base_kw,
                         )
                 elif basename == YAML_BASENAME:
-                    # new primary-papers.yaml: every record it carries is a
-                    # promotion straight from _intake/, the normal shape a
-                    # canon card lands in (see card_event_id above).
                     new_txt = git_show_file(sha_to, path) or ""
                     for rec in parse_yaml_records(new_txt):
                         rid = rec.get("id")
@@ -425,7 +324,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                         title=basename,
                         **base_kw,
                     )
-                # other file types (images, data), skip silently
 
             elif status == "M":
                 if basename.endswith(".bib"):
@@ -441,9 +339,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                             _extra=key, **base_kw,
                         )
                 elif basename == YAML_BASENAME:
-                    # existing dossier gained a new record (an append to
-                    # primary-papers.yaml): same card-identity id as the
-                    # brand-new-file case above.
                     old_recs = {
                         r["id"] for r in parse_yaml_records(git_show_file(sha_from, path))
                         if r.get("id")
@@ -474,7 +369,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                 )
             continue
 
-        # Landscape paths
         if path.startswith(LANDSCAPE_PREFIX):
             if status == "A" and path.endswith(".md"):
                 rest = path[len(LANDSCAPE_PREFIX):]
@@ -485,9 +379,6 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                     **base_kw,
                 )
             continue
-
-
-# ---------- CLI --------------------------------------------------------------
 
 def main(argv: Optional[list[str]] = None) -> int:
     p = argparse.ArgumentParser(description="Canon feed event parser")
@@ -510,7 +401,6 @@ def main(argv: Optional[list[str]] = None) -> int:
     for ev in process_diff(sha_from, sha_to, args.pr):
         sys.stdout.write(json.dumps(ev, ensure_ascii=False) + "\n")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

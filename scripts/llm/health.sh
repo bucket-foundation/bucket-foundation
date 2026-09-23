@@ -1,21 +1,4 @@
 #!/usr/bin/env bash
-# Local LLM tier health: the discrete GPU, Ollama, the llama.cpp server, and
-# its auth shim. Prints one status line, then one "fix:" line per problem.
-# Exit 0 ok, 1 degraded, 2 down.
-#
-#   bash scripts/llm/health.sh          # fast: sysfs and three HTTP pings, ~10 ms
-#   bash scripts/llm/health.sh --deep   # adds a one-token chat through Ollama and
-#                                       # llama.cpp, this boot's kernel log, and the
-#                                       # public endpoint on the Hetzner box
-#
-# Why the GPU check comes first: the RX 7700S (gfx1102) sits in the Framework
-# Laptop 16 expansion bay, and on 2026-09-13 it dropped off the PCIe bus across
-# a suspend and resume ("amdgpu 0000:03:00.0: device lost from bus!"). Ollama
-# had enumerated GPUs at startup, so from then on every runner opened ROCm
-# device 0, which was now the Radeon 780M iGPU (gfx1103). Ollama's rocBLAS
-# ships no gfx1103 kernels, so each model load aborted ("Cannot read
-# TensileLibrary.dat ... for GPU arch : gfx1103", then "llama runner
-# terminated: signal: aborted (core dumped)"). A reboot brings the dGPU back.
 set -uo pipefail
 
 DGPU_ID="${LLM_DGPU_PCI_ID:-0x7480}"     # Navi 33, the RX 7700S
@@ -34,7 +17,6 @@ parts=()
 fixes=()
 raise() { [ "$1" -gt "$level" ] && level=$1; }
 
-# The discrete GPU: present on the bus and bound to amdgpu.
 slot=""
 for d in /sys/bus/pci/devices/*; do
   if [ "$(cat "$d/vendor" 2>/dev/null)" = "0x1002" ] && [ "$(cat "$d/device" 2>/dev/null)" = "$DGPU_ID" ]; then

@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""Build a printable PDF executive brief for the AGFarms grants portfolio.
-
-Outputs:
- grants-targets/BRIEF.pdf (public, print-ready)
-
-Toolchain: matplotlib (charts) + weasyprint (HTML → PDF).
-Run: python3 scripts/build-grants-brief-pdf.py
-"""
 from __future__ import annotations
 import base64, io, pathlib, datetime as dt
 
@@ -21,20 +13,19 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT_PDF = ROOT / "grants-targets" / "BRIEF.pdf"
 TODAY = dt.date(2026, 5, 5)
 
-# Bucket palette, chalkboard / stone register
 PALETTE = {
     "ink":     "#0E1116",
     "paper":   "#FAFAF7",
     "rule":    "#1F2937",
-    "accent":  "#D97706",   # amber
+    "accent":  "#D97706",
     "warm":    "#B45309",
-    "ok":      "#15803D",   # green
-    "warn":    "#B91C1C",   # red
+    "ok":      "#15803D",
+    "warn":    "#B91C1C",
     "neutral": "#475569",
-    "lane1":   "#1D4ED8",   # blue, fed
-    "lane2":   "#7C3AED",   # purple, foundation
-    "lane3":   "#0891B2",   # cyan, crypto
-    "lane4":   "#BE185D",   # pink, direct services
+    "lane1":   "#1D4ED8",
+    "lane2":   "#7C3AED",
+    "lane3":   "#0891B2",
+    "lane4":   "#BE185D",
 }
 
 plt.rcParams.update({
@@ -49,7 +40,6 @@ plt.rcParams.update({
     "axes.facecolor": PALETTE["paper"],
 })
 
-
 def fig_to_data_uri(fig) -> str:
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=180, bbox_inches="tight",
@@ -57,12 +47,8 @@ def fig_to_data_uri(fig) -> str:
     plt.close(fig)
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
 
-
-# ------------------------------- CHART 1 ------------------------------------
 def chart_timeline() -> str:
-    """Submission gantt, top 5 grants on a calendar."""
     items = [
-        # name, start, end, lane, ask_label
         ("Gitcoin OSS GG-round",        TODAY,                 dt.date(2026,5,12),  "lane3", "$5–50K"),
         ("HCB sponsorship",             dt.date(2026,5,6),     dt.date(2026,5,13),  "ok",    "—"),
         ("SAM.gov ×3 (AGF, MTT, Bkt)",  dt.date(2026,5,5),     dt.date(2026,7,1),   "warm",  "gate"),
@@ -83,7 +69,6 @@ def chart_timeline() -> str:
         ax.text((e - TODAY).days + 4, i, ask, va="center", fontsize=8.5, color=PALETTE["neutral"])
     ax.set_yticks(range(len(items)))
     ax.set_yticklabels([x[0] for x in items], fontsize=9)
-    # month gridlines
     for m in range(0, 12):
         d = dt.date(2026, 5, 1) + dt.timedelta(days=m * 30)
         ax.axvline((d - TODAY).days, color=PALETTE["rule"], alpha=0.08, linewidth=0.6)
@@ -106,12 +91,8 @@ def chart_timeline() -> str:
     plt.tight_layout()
     return fig_to_data_uri(fig)
 
-
-# ------------------------------- CHART 2 ------------------------------------
 def chart_ask_vs_gate() -> str:
-    """Bubble chart: $ ask vs gating risk. Bubble size = readiness."""
     pts = [
-        # name, ask_max_k, gate (0=none .. 4=long), readiness (0..1), entity, lane
         ("Gitcoin",          50,   0, 0.95, "Bucket",       "lane3"),
         ("EF ESP",           300,  1, 0.80, "Bucket",       "lane3"),
         ("Sloan LOI",        250,  2, 0.75, "Bucket(HCB)",  "lane2"),
@@ -143,10 +124,7 @@ def chart_ask_vs_gate() -> str:
     plt.tight_layout()
     return fig_to_data_uri(fig)
 
-
-# ------------------------------- CHART 3 ------------------------------------
 def chart_pillar_radar() -> str:
-    """Cross-pillar readiness radar."""
     pillars = ["Product", "Engineering", "Revenue/GTM", "Data", "Operations", "People"]
     bucket =    [0.85, 0.95, 0.55, 0.80, 0.40, 0.50]
     derbyfish = [0.80, 0.75, 0.70, 0.65, 0.45, 0.60]
@@ -174,10 +152,7 @@ def chart_pillar_radar() -> str:
     plt.tight_layout()
     return fig_to_data_uri(fig)
 
-
-# ------------------------------- CHART 4 ------------------------------------
 def chart_funnel() -> str:
-    """52 surveyed → 10 prioritized → 5 submit-now → expected wins."""
     stages = ["Surveyed", "Prioritized", "Submit ≤90d", "Expected wins (12mo)"]
     counts = [52, 10, 5, 2]
     colors = [PALETTE["neutral"], PALETTE["lane1"], PALETTE["accent"], PALETTE["ok"]]
@@ -200,8 +175,6 @@ def chart_funnel() -> str:
     plt.tight_layout()
     return fig_to_data_uri(fig)
 
-
-# --------------------------------- HTML -------------------------------------
 def html(c1, c2, c3, c4) -> str:
     css = f"""
  @page {{ size: Letter; margin: 0.55in 0.55in 0.6in 0.55in; }}
@@ -404,7 +377,6 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 </body></html>
 """
 
-
 def main():
     print("[1/3] generating charts…")
     c1 = chart_timeline()
@@ -418,7 +390,6 @@ def main():
     from weasyprint import HTML
     HTML(string=doc, base_url=str(ROOT)).write_pdf(str(OUT_PDF))
     print(f"OK · {OUT_PDF.stat().st_size//1024} KiB")
-
 
 if __name__ == "__main__":
     main()

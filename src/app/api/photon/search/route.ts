@@ -1,7 +1,3 @@
-// GET /api/photon/search?q=<word>&lang=<code>&kind=<kind>&top_k=20
-// Lexical search across photons. Semantic search via the vector files
-// will land in a follow-up route once we ship the embedding-server.
-
 import { NextRequest } from "next/server";
 import { searchPhotons, photonStats } from "@/lib/photon-index";
 

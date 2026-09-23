@@ -114,7 +114,6 @@ export default function KruseSearch() {
     [],
   );
 
-  // Debounced search on input/mode/limit change.
   useEffect(() => {
     const h = setTimeout(() => runSearch(query, mode, limit), 220);
     return () => clearTimeout(h);

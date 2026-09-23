@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# Exercises scripts/pre-push-vercel-check.sh against a throwaway fixture repo
-# whose lint and typecheck scripts record that they ran and pass or fail on
-# demand. No dependencies beyond bash, git, and npm.
-# Run: bash scripts/test-pre-push-vercel-check.sh
 
 set -uo pipefail
 
@@ -40,7 +36,6 @@ BASE="$(git -C "$REPO" rev-parse HEAD)"
 git -C "$REPO" update-ref refs/remotes/origin/dev "$BASE"
 
 commit_on() {
-  # commit_on <branch> <path> <message>: prints the new sha.
   git -C "$REPO" checkout -q -B "$1" "$BASE"
   mkdir -p "$REPO/$(dirname "$2")"
   echo "change" >>"$REPO/$2"
@@ -60,9 +55,6 @@ git -C "$REPO" commit -q -m "docs: notes after a site change"
 SITE_THEN_DOCS="$(git -C "$REPO" rev-parse HEAD)"
 
 run_case() {
-  # run_case <name> <expect exit> <expect lint ran: yes|no> <stdin line> [VAR=val]...
-  # The checkout moves to the pushed commit first, as when pushing the
-  # current branch; AT=<sha> checks out another commit instead.
   local name="$1" expect="$2" ran="$3" line="$4"
   shift 4
   rm -f "$REPO"/ran-* "$REPO"/*-fails
@@ -106,11 +98,9 @@ ref() { echo "refs/heads/$1 $2 refs/heads/$1 $3"; }
 run_case "a site change runs lint and types, and passes" 0 yes "$(ref feat/site "$SITE" "$ZERO")"
 run_case "a lint error refuses the push" 1 yes "$(ref feat/site "$SITE" "$ZERO")" FAIL_LINT=1
 run_case "a type error refuses the push" 1 yes "$(ref feat/site "$SITE" "$ZERO")" FAIL_TYPES=1
-# [skip ci] holds back a build, and code still gets checked.
 run_case "[skip ci] on code still runs the check" 1 yes "$(ref feat/wip "$SITE_WIP" "$ZERO")" FAIL_LINT=1
 run_case "[skip ci] on code passes when the code is clean" 0 yes "$(ref feat/wip "$SITE_WIP" "$ZERO")"
 run_case "a docs-only branch pushes without a check" 0 no "$(ref feat/docs "$DOCS" "$ZERO")" FAIL_LINT=1
-# An engine branch skips the build and still has to compile.
 run_case "an engine branch with code still runs the check" 1 yes "$(ref feat/hte-run "$ENGINE" "$ZERO")" FAIL_LINT=1
 run_case "docs on top of a branch's site change still checks" 1 yes "$(ref feat/two "$SITE_THEN_DOCS" "$SITE")" FAIL_LINT=1
 run_case "deleting a branch pushes without a check" 0 no "(delete) $ZERO refs/heads/feat/site $SITE" FAIL_LINT=1
@@ -119,23 +109,19 @@ run_case "a push from another checkout is refused" 1 no "$(ref feat/site "$SITE"
 run_case "an uncommitted change to a checked file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" DIRTY=1
 run_case "an untracked .ts file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" UNTRACKED=1
 run_case "missing node_modules is refused with the reason" 1 no "$(ref feat/site "$SITE" "$ZERO")" NO_MODULES=1
-# A docs-only push to dev skips the build and carries no code to check.
 run_case "a docs-only push to dev needs no check" 0 no "$(ref dev "$DOCS" "$BASE")" FAIL_LINT=1
 run_case "a code push to dev runs the check" 1 yes "$(ref dev "$SITE" "$BASE")" FAIL_LINT=1
 run_case "[skip ci] on dev still runs the check on code" 1 yes "$(ref dev "$SITE_WIP" "$BASE")" FAIL_LINT=1
 run_case "a tag push has no check" 0 no "refs/tags/v1 $SITE refs/tags/v1 $ZERO" FAIL_LINT=1
-# A gate that crashes answers build on Vercel, so the check must run.
 cp "$REPO/scripts/vercel-ignore-build.sh" "$WORKDIR/gate.keep"
 printf '#!/usr/bin/env bash\nset -u\necho "$UNBOUND_FOR_THE_TEST"\n' >"$REPO/scripts/vercel-ignore-build.sh"
 run_case "a gate that crashes counts as build and the check runs" 1 yes "$(ref feat/docs "$DOCS" "$ZERO")" FAIL_LINT=1
 cp "$WORKDIR/gate.keep" "$REPO/scripts/vercel-ignore-build.sh"
 
-# --- the installer --------------------------------------------------------
 HOOKS="$WORKDIR/hooks"
 git -C "$REPO" config core.hooksPath "$HOOKS"
 cp "$HERE/install-git-hooks.sh" "$REPO/scripts/"
 install_case() {
-  # install_case <name> <expect exit>
   local status
   (cd "$REPO" && bash scripts/install-git-hooks.sh >/dev/null 2>&1)
   status=$?
@@ -160,8 +146,6 @@ else
   FAIL=$((FAIL + 1)); echo "FAIL  the installed hook did not run lint on a building push"
   sed "s/^/      /" "$WORKDIR/hook.out"
 fi
-# A worktree's own hooks directory sits in the main checkout, so the shared
-# test must not read it as somebody else's.
 WT="$WORKDIR/worktree"
 git -C "$REPO" worktree add -q --detach "$WT" HEAD 2>/dev/null
 cp "$HERE/install-git-hooks.sh" "$HERE/pre-push-vercel-check.sh" "$HERE/vercel-ignore-build.sh" "$WT/scripts/" 2>/dev/null

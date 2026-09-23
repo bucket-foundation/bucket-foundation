@@ -67,7 +67,6 @@ export default function LearnPage() {
         }}
       />
 
-      {/* thin strip */}
       <div className="w-full border-b border-[color:var(--hairline)] bg-[color:var(--bone-2)]/80">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-2)]">
           <span className="text-[color:var(--gold-deep)]">§</span> reformative

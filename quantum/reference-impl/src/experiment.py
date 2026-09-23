@@ -1,22 +1,3 @@
-"""End-to-end experiment: estimate cosine similarity + a kernel matrix on a
-quantum backend, and benchmark against the classical ground truth.
-
-Backends (all optional at import time so the module never hard-fails):
-  - "aer"      : Qiskit Aer simulator (default; noiseless, fast).
-  - "aer_noisy": Aer with a simple depolarizing noise model (mimics hardware).
-  - "ibm"      : real IBM Quantum hardware (needs an IBM Quantum API token).
-  - "braket"   : real IonQ/Rigetti hardware via Amazon Braket (needs AWS creds).
-
-USAGE
------
-    python -m src.experiment                 # noiseless simulator demo
-    python -m src.experiment --backend aer_noisy
-    python -m src.experiment --backend ibm --shots 4096
-
-The --backend ibm / braket paths are staged behind credentials the user supplies
-(see README, "Running on real hardware"). Everything below the credential line is
-provider-agnostic: the same swap-test / Hadamard-test circuits run everywhere.
-"""
 from __future__ import annotations
 import argparse
 import numpy as np
@@ -27,10 +8,6 @@ from .swap_test import (swap_test_circuit, overlap_sq_from_counts,
 from .hadamard_test import hadamard_test_circuit, signed_inner_from_counts
 from .kernel import quantum_kernel_matrix, kernel_error
 
-
-# --------------------------------------------------------------------------
-# backend: returns a function run(circuit, shots) -> counts dict
-# --------------------------------------------------------------------------
 def get_runner(backend: str = "aer"):
     if backend in ("aer", "aer_noisy"):
         from qiskit_aer import AerSimulator
@@ -39,8 +16,6 @@ def get_runner(backend: str = "aer"):
         if backend == "aer_noisy":
             from qiskit_aer.noise import NoiseModel, depolarizing_error
             nm = NoiseModel()
-            # 1q error on single-qubit gates; 2q error on cx (cswap/other multi-qubit
-            # gates decompose to cx during transpile, so this covers them).
             nm.add_all_qubit_quantum_error(depolarizing_error(0.002, 1), ["u", "h", "x", "sdg", "rz", "sx"])
             nm.add_all_qubit_quantum_error(depolarizing_error(0.02, 2), ["cx", "cz", "ecr"])
             noise_model = nm
@@ -53,11 +28,9 @@ def get_runner(backend: str = "aer"):
         return run
 
     if backend == "ibm":
-        # Real IBM hardware. Requires: pip install qiskit-ibm-runtime and a saved
-        # token (see README). We pick the least-busy real device.
         from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2
         from qiskit import transpile
-        service = QiskitRuntimeService()          # reads saved account
+        service = QiskitRuntimeService()
         backend_obj = service.least_busy(operational=True, simulator=False)
 
         def run(circuit, shots):
@@ -69,12 +42,10 @@ def get_runner(backend: str = "aer"):
         return run
 
     if backend == "braket":
-        # Real IonQ/Rigetti via Amazon Braket. Requires AWS creds + the
-        # qiskit-braket-provider (see README).
         from qiskit_braket_provider import BraketProvider
         from qiskit import transpile
         provider = BraketProvider()
-        backend_obj = provider.get_backend("SV1")  # swap for a QPU ARN for HW
+        backend_obj = provider.get_backend("SV1")
         def run(circuit, shots):
             tqc = transpile(circuit, backend_obj)
             job = backend_obj.run(tqc, shots=shots)
@@ -83,10 +54,6 @@ def get_runner(backend: str = "aer"):
 
     raise ValueError(f"unknown backend {backend!r}")
 
-
-# --------------------------------------------------------------------------
-# estimators (bound to a runner)
-# --------------------------------------------------------------------------
 def make_estimators(runner):
     def swap_estimator(u, v, shots=4096):
         counts = runner(swap_test_circuit(u, v), shots)
@@ -97,10 +64,6 @@ def make_estimators(runner):
         return signed_inner_from_counts(counts, shots)
     return swap_estimator, hadamard_estimator
 
-
-# --------------------------------------------------------------------------
-# demo
-# --------------------------------------------------------------------------
 def demo(backend="aer", shots=4096, seed=7, n_pairs=5, do_kernel=True, dim=4):
     rng = np.random.default_rng(seed)
     runner = get_runner(backend)
@@ -109,11 +72,11 @@ def demo(backend="aer", shots=4096, seed=7, n_pairs=5, do_kernel=True, dim=4):
     print(f"\n=== single-pair similarity  (backend={backend}, shots={shots}, pairs={n_pairs}) ===")
     print(f"{'pair':<10}{'classical':>11}{'swap|.|':>11}{'hadamard':>11}{'|err|':>9}")
     for k in range(n_pairs):
-        d = dim                                  # dim -> log2(dim) data qubits (dim=2 -> 1 qubit, the low-depth hardware circuit)
+        d = dim
         u = rng.normal(size=d); v = rng.normal(size=d)
         c = cosine_similarity(u, v)
-        s = swap_est(u, v, shots)                # magnitude (2 jobs w/ hadamard below)
-        h = hada_est(u, v, shots)                # signed
+        s = swap_est(u, v, shots)
+        h = hada_est(u, v, shots)
         print(f"pair {k:<5}{c:>11.3f}{s:>11.3f}{h:>11.3f}{abs(h-c):>9.3f}")
 
     if not do_kernel:
@@ -129,12 +92,7 @@ def demo(backend="aer", shots=4096, seed=7, n_pairs=5, do_kernel=True, dim=4):
     print("error summary:", {k: round(v, 4) for k, v in err.items()})
     return err
 
-
 def preflight(shots=4096):
-    """QPU-FREE preflight for the IBM backend. Authenticates, selects the
-    least-busy real device, transpiles our circuits to its native gate set, and
-    reports cost. Submits NO job -- uses only free metadata + local compilation.
-    """
     import numpy as np
     from qiskit import transpile
     from qiskit_ibm_runtime import QiskitRuntimeService
@@ -142,9 +100,9 @@ def preflight(shots=4096):
     from .hadamard_test import hadamard_test_circuit
 
     print("=== IBM preflight (NO job submitted) ===")
-    service = QiskitRuntimeService()                       # free: reads saved account
+    service = QiskitRuntimeService()
     print("auth: OK (account loaded)")
-    backend = service.least_busy(operational=True, simulator=False)  # free: metadata
+    backend = service.least_busy(operational=True, simulator=False)
     st = backend.status()
     print(f"selected device : {backend.name}")
     print(f"  qubits        : {backend.num_qubits}")
@@ -152,10 +110,10 @@ def preflight(shots=4096):
     print(f"  basis gates   : {getattr(backend, 'basis_gates', '?')}")
 
     rng = np.random.default_rng(0)
-    u, v = rng.normal(size=4), rng.normal(size=4)          # 4-dim -> 2-qubit encodings
+    u, v = rng.normal(size=4), rng.normal(size=4)
     for name, qc in [("hadamard_test", hadamard_test_circuit(u, v)),
                      ("swap_test", swap_test_circuit(u, v))]:
-        tqc = transpile(qc, backend, optimization_level=3)  # LOCAL compile, free
+        tqc = transpile(qc, backend, optimization_level=3)
         ops = tqc.count_ops()
         twoq = sum(c for g, c in ops.items() if g in ("cx", "cz", "ecr"))
         print(f"\n{name} transpiled to {backend.name}:")
@@ -166,7 +124,6 @@ def preflight(shots=4096):
     print(f"\nshots per job   : {shots}")
     print("cost note: 1 job per pair. A single pair = 1 tiny job (seconds of QPU).")
     print("Nothing was submitted. To actually run: --backend ibm --run --pairs 1")
-
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
@@ -192,25 +149,11 @@ if __name__ == "__main__":
         print("Refusing to submit a hardware job without --run. "
               "Use --check for a free preflight, or add --run to execute.")
     else:
-        # on real hardware, --pairs 1 does exactly one pair and skips the
-        # multi-job kernel; the kernel only runs on simulators or when pairs>=5.
         hw = args.backend in ("ibm", "braket")
         demo(args.backend, args.shots, args.seed, n_pairs=args.pairs,
              do_kernel=(not hw) or args.pairs >= 5, dim=args.dim)
 
-
-# --------------------------------------------------------------------------
-# noise-model-bound runner (added for the error-mitigation studies)
-# --------------------------------------------------------------------------
 def make_aer_runner(noise_model=None, seed=None):
-    """Return a run(circuit, shots) -> counts bound to a specific Aer noise model.
-
-    Unlike get_runner("aer_noisy") (which hard-codes one gate-only model), this
-    takes any NoiseModel (e.g. from src.noise_models, including readout error),
-    so the mitigation code can run the estimator circuits, the readout-calibration
-    preparation circuits, and the ZNE-folded circuits all under the SAME model.
-    noise_model=None gives the noiseless simulator.
-    """
     from qiskit_aer import AerSimulator
     from qiskit import transpile
     sim = AerSimulator(noise_model=noise_model, seed_simulator=seed)

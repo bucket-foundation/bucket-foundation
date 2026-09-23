@@ -45,7 +45,6 @@ export default function HomePage() {
   const abortRef = useRef<AbortController | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // Stats on mount (the search bar's footer line)
   useEffect(() => {
     fetch("/api/photon/search?q=___NEVER___")
       .then((r) => r.json())
@@ -59,7 +58,6 @@ export default function HomePage() {
       .catch(() => {});
   }, []);
 
-  // Debounced search
   useEffect(() => {
     if (!q.trim()) { setResults([]); return; }
     abortRef.current?.abort();
@@ -82,7 +80,6 @@ export default function HomePage() {
     return () => clearTimeout(t);
   }, [q]);
 
-  // Keyboard: '/' focuses search
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
@@ -94,7 +91,6 @@ export default function HomePage() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Group results by lang for cleaner reading
   const grouped = (() => {
     const m = new Map<string, Photon[]>();
     for (const p of results) {
@@ -106,11 +102,9 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen relative">
-      {/* Hero band with subtle blue glow */}
       <section className="relative">
         <div className="hero-glow absolute inset-0 pointer-events-none" />
         <div className="relative max-w-4xl mx-auto px-5 md:px-8 pt-10 md:pt-16 pb-6 text-center">
-          {/* Logo */}
           <div className="flex justify-center mb-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -145,7 +139,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Search */}
       <section className="relative max-w-2xl mx-auto px-5 md:px-8 pb-2">
         <div
           className="rounded-full bg-white shadow-md transition-all duration-200 ring-1 focus-within:ring-2"
@@ -201,7 +194,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Try-pills, only visible when search is empty */}
         {!q && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             <span
@@ -234,7 +226,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Status strip */}
         <p
           className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em]"
           style={{ color: "var(--ink-faint)" }}
@@ -249,7 +240,6 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Results, grouped by language */}
       <section className="max-w-3xl mx-auto px-5 md:px-8 pb-24 mt-6">
         {grouped.map(([lang, items]) => (
           <div key={lang} className="mb-8 fade-in">
@@ -321,7 +311,6 @@ export default function HomePage() {
           </div>
         ))}
 
-        {/* Empty state, onboarding */}
         {!q && !results.length && (
           <div className="mt-12 max-w-xl mx-auto text-center">
             <div

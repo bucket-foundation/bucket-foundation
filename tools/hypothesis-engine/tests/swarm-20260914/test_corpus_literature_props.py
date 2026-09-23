@@ -1,14 +1,3 @@
-"""Property tests for `hte.corpus.literature`, the only module on
-`tests/COVERAGE.md`'s least-covered list with no swarm file of its own
-across every round to date (`swarm`, `swarm2`, `swarm3`,
-`swarm-20260910`, `swarm-20260911`, `swarm-20260914`). `tests/
-test_corpus_literature.py` already covers the module's real-fixture
-happy paths end to end; this file targets the pure parsing and
-classification helpers directly, with generated inputs, since those are
-the functions most likely to regress silently as new card batches land
-with formatting this module's own hand-written regexes were not tested
-against.
-"""
 from __future__ import annotations
 
 import string
@@ -26,19 +15,13 @@ _no_backslash_quote_text = st.text(
     alphabet=st.characters(blacklist_characters='\\"', blacklist_categories=("Cs",)), max_size=40,
 )
 
-
 @given(text=_no_backslash_quote_text)
 @_GIVEN
 def test_unescape_is_identity_when_no_escaped_quote_is_present(text):
-    # `_unescape` documents exactly one substitution, `\"` -> `"`; any
-    # text carrying neither a backslash nor a bare quote should pass
-    # through unchanged.
     assert literature._unescape(text) == text
-
 
 def test_unescape_resolves_the_one_documented_escape():
     assert literature._unescape('a \\"quoted\\" word') == 'a "quoted" word'
-
 
 @given(
     lines=st.lists(
@@ -50,16 +33,10 @@ def test_unescape_resolves_the_one_documented_escape():
 def test_iter_lines_with_offsets_reconstructs_the_original_text_exactly(lines):
     raw = "".join(lines)
     out = literature._iter_lines_with_offsets(raw)
-    # Concatenating every returned line, in order, reproduces `raw` byte
-    # for byte: no line is dropped, merged, or reordered.
     assert "".join(line for _, _, line in out) == raw
-    # Every offset names its own line's real start position in `raw`.
     for lineno, offset, line in out:
         assert raw[offset : offset + len(line)] == line
-    # Line numbers are exactly 1..N in order, one per line the split
-    # produced.
     assert [lineno for lineno, _, _ in out] == list(range(1, len(out) + 1))
-
 
 def test_split_frontmatter_fields_every_group_starts_with_its_own_key_line():
     fm_text = 'title: "A"\nauthors:\n  - "Alice"\n  - "Bob"\nyear: 2020\n'
@@ -67,26 +44,17 @@ def test_split_frontmatter_fields_every_group_starts_with_its_own_key_line():
     fields = literature._split_frontmatter_fields(fm_lines)
     keys = [key for key, _ in fields]
     assert keys == ["title", "authors", "year"]
-    # Every group's own first line is the one that opened it, matching
-    # `^(\\w+):`.
     for key, group_lines in fields:
         _, _, first_line = group_lines[0]
         assert first_line.startswith(f"{key}:")
-    # The `authors` field's own continuation lines (the two `  - "..."`
-    # entries) all land inside that one group.
     authors_group = dict(fields)["authors"]
     assert len(authors_group) == 3
-
 
 def test_split_frontmatter_fields_keeps_a_blank_line_inside_the_open_field():
     fm_text = 'why_it_matters: >\n  line one\n\n  line two\nyear: 2020\n'
     fields = dict(literature._split_frontmatter_fields(literature._iter_lines_with_offsets(fm_text)))
-    # The blank line between "line one" and "line two" belongs to
-    # `why_it_matters`'s own 4-line group: opener, 2 continuation lines,
-    # 1 blank.
     assert len(fields["why_it_matters"]) == 4
     assert len(fields["year"]) == 1
-
 
 def test_parse_scalar_reads_quoted_bare_and_null_forms():
     quoted = literature._iter_lines_with_offsets('title: "Hello"\n')
@@ -96,20 +64,15 @@ def test_parse_scalar_reads_quoted_bare_and_null_forms():
     assert literature._parse_scalar(bare) == "2020"
     assert literature._parse_scalar(null) is None
 
-
 def test_parse_list_skips_lines_that_do_not_match_the_list_item_shape():
     fm_lines = literature._iter_lines_with_offsets(
         'authors:\n  - "Alice"\n  not a list item\n  - "Bob"\n',
     )
     assert literature._parse_list(fm_lines) == ["Alice", "Bob"]
 
-
 @given(word=st.text(alphabet=string.ascii_lowercase, min_size=1, max_size=10))
 @_GIVEN
 def test_parse_claims_char_offsets_locate_the_exact_text_in_the_original_line(word):
-    # With no backslash-escaped quote in the claim text, `_unescape` is
-    # the identity, so the recorded `char_start`/`char_end` range should
-    # slice `raw` back to exactly `word`.
     raw = f'key_claims:\n  - "{word}"\n'
     fm_lines = literature._iter_lines_with_offsets(raw)
     claims = literature._parse_claims(fm_lines)
@@ -119,11 +82,9 @@ def test_parse_claims_char_offsets_locate_the_exact_text_in_the_original_line(wo
     assert raw[claim.char_start : claim.char_end] == word
     assert claim.line_start == claim.line_end == 2
 
-
 def test_parse_block_scalar_folds_continuation_lines_with_single_spaces():
     fm_lines = literature._iter_lines_with_offsets("how_it_bears_on_research_os: >\n  first part\n  second part\n")
     assert literature._parse_block_scalar(fm_lines) == "first part second part"
-
 
 def test_evidence_tier_preprint_prefix_wins_even_over_a_report_venue_keyword():
     card = literature.Card(
@@ -133,7 +94,6 @@ def test_evidence_tier_preprint_prefix_wins_even_over_a_report_venue_keyword():
     )
     assert literature._evidence_tier(card) == Tier.T3
 
-
 def test_evidence_tier_commentary_prefix_reads_t4_with_no_other_signal():
     card = literature.Card(
         doi="10.1038/d41586-000-00000-0", title="t", authors=("A",), year=2021,
@@ -142,7 +102,6 @@ def test_evidence_tier_commentary_prefix_reads_t4_with_no_other_signal():
     )
     assert literature._evidence_tier(card) == Tier.T4
 
-
 def test_evidence_tier_falls_back_to_t2_with_no_special_signal():
     card = literature.Card(
         doi="10.1000/plain", title="t", authors=("A",), year=2021,
@@ -150,7 +109,6 @@ def test_evidence_tier_falls_back_to_t2_with_no_special_signal():
         key_claims=(), research_questions=(), how_it_bears_on_research_os="h",
     )
     assert literature._evidence_tier(card) == Tier.T2
-
 
 @given(digit=st.integers(min_value=0, max_value=9))
 @_GIVEN
@@ -162,39 +120,29 @@ def test_has_effect_size_requires_both_a_marker_and_a_digit(digit):
     assert literature._has_effect_size(digit_only) is False
     assert literature._has_effect_size(both) is True
 
-
 def test_is_ground_truth_meta_analysis_is_always_true_regardless_of_text():
     assert literature._is_ground_truth("meta-analysis", "no numbers or markers here at all") is True
-
 
 def test_is_ground_truth_requires_replication_word_and_effect_size_for_non_meta_analysis():
     assert literature._is_ground_truth("rct", "a direct replication found a 20 percent gain") is True
     assert literature._is_ground_truth("rct", "a direct replication with no quantified size") is False
     assert literature._is_ground_truth("rct", "an effect size of 20 percent with no repeat study") is False
 
-
 def test_classify_action_reads_mixed_when_both_keyword_classes_are_present():
     text = "scores improved on one measure but were lower on another"
     assert literature._classify_action(text) == "mixed"
 
-
 def test_classify_action_reads_no_effect_with_neither_keyword_class():
     assert literature._classify_action("the study found nothing notable either way") == "no-effect"
-
 
 @given(text=st.text(max_size=30))
 @_GIVEN
 def test_detect_helpers_fall_back_to_other_id_with_no_lexicon_match(text):
-    # A string built only from digits and punctuation matches none of
-    # this module's own hand-written keyword lexicons (all lowercase
-    # English words), so every `_detect_*` helper should fall back to
-    # its own slot's `OTHER` id rather than raising or returning `None`.
     noise = "".join(ch for ch in text if not ch.isalpha())
     assert literature._detect_actor(noise) == other_id(Slot.ACTOR)
     assert literature._detect_mechanism(noise) == other_id(Slot.MECHANISM)
     assert literature._detect_object(noise) == other_id(Slot.OBJECT)
     assert literature._detect_place(noise) == other_id(Slot.PLACE)
-
 
 @given(text=st.text(max_size=200), limit=st.integers(min_value=4, max_value=100))
 @_GIVEN
@@ -207,10 +155,8 @@ def test_truncate_never_exceeds_the_limit_and_is_identity_under_it(text, limit):
         assert len(result) <= limit
         assert result.endswith("...")
 
-
 def test_discover_card_roots_returns_empty_list_with_no_intake_directory(tmp_path):
     assert literature.discover_card_roots(base=tmp_path) == []
-
 
 def test_discover_card_roots_finds_matching_globs_in_sorted_order(tmp_path):
     intake = tmp_path / "_intake"
@@ -221,7 +167,6 @@ def test_discover_card_roots_finds_matching_globs_in_sorted_order(tmp_path):
     assert roots == sorted(roots)
     assert {p.name for p in roots} == {"research-os-k12-literature", "research-os-k12-literature-2"}
 
-
 def test_declared_batch_subfolders_reads_the_readme_marker_and_skips_a_stale_one(tmp_path):
     card_root = tmp_path / "research-os-k12-literature"
     nested = card_root / "batch-three"
@@ -231,11 +176,7 @@ def test_declared_batch_subfolders_reads_the_readme_marker_and_skips_a_stale_one
         encoding="utf-8",
     )
     found = literature._declared_batch_subfolders(card_root)
-    # The real, existing subfolder is returned, resolved; the stale
-    # reference to a nonexistent path is silently skipped, per this
-    # function's own documented best-effort contract.
     assert found == [nested.resolve()]
-
 
 def test_declared_batch_subfolders_with_no_readme_returns_empty_list(tmp_path):
     card_root = tmp_path / "root-with-no-readme"

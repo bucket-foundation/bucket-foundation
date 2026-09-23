@@ -40,6 +40,8 @@ jobs:
         run: npm run typecheck
       - name: lint
         run: npm run lint
+      - name: No code comments
+        run: npm run lint:comments
       - name: unit tests
         run: npm test
       - name: research os tests

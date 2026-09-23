@@ -1,41 +1,20 @@
-/**
- * bucket.foundation, contribute config
- * -------------------------------------
- * SINGLE SOURCE OF TRUTH for the /contribute page: the open-source repos, the
- * canon branches, the citation handles, and the contact CTA. Sibling to
- * src/lib/support.ts (which owns the *funding* knobs), this file owns the
- * *contributing* knobs. The contact email + GitHub org URL are reused from
- * support.ts so there is still exactly one contact knob.
- *
- * No secrets here, every value is a public URL, a DOI, or a license name.
- */
-
 import { GITHUB_ORG_URL, CONTACT_EMAIL, mailto } from "./support";
 
 export { GITHUB_ORG_URL, CONTACT_EMAIL };
 
-/** The canonical Zenodo DOI for the research-atlas corpus + the first paper. */
 export const ZENODO_DOI = "10.5281/zenodo.20774322";
 export const ZENODO_DOI_URL = `https://doi.org/${ZENODO_DOI}`;
 
-/** The open data + content license surfaced for citation/reuse. */
 export const DATA_LICENSE = "CC-BY-4.0";
 export const DATA_LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
 
-/** Code license (the repos) + intent license (the protocol spec). */
 export const CODE_LICENSE = "MIT";
 export const INTENT_LICENSE = "CC0";
 
-/**
- * The open-source repos under github.com/bucket-foundation. `firstIssues` deep-
- * links the "good first issue" label filter so a newcomer lands on tractable
- * work; `prs` is the bare repo for opening a PR.
- */
 export type Repo = {
   name: string;
   url: string;
   blurb: string;
-  /** Deep link to the repo's "good first issue" label, ready to triage. */
   firstIssues: string;
 };
 
@@ -81,11 +60,6 @@ export const REPOS: Repo[] = [
   },
 ];
 
-/**
- * The seven canon branches (the contribute page links each one so a domain
- * expert can jump straight to the branch they can improve). `roman` matches the
- * canon UI numbering; `slug` is the route under /canon/<slug>.
- */
 export type CanonBranch = { roman: string; slug: string; name: string };
 
 export const CANON_BRANCHES: CanonBranch[] = [
@@ -98,7 +72,6 @@ export const CANON_BRANCHES: CanonBranch[] = [
   { roman: "VII", slug: "mind", name: "mind" },
 ];
 
-/** Prefilled "I'd like to contribute" email CTA (reuses the one contact knob). */
 export const CONTRIBUTE_MAILTO = mailto(
   "Contributing to bucket.foundation",
   "Hi, I'd like to contribute to bucket.foundation.\n\n" +
@@ -108,7 +81,6 @@ export const CONTRIBUTE_MAILTO = mailto(
     "A bit about me:\n",
 );
 
-/** The "cite this" snippet shown on the page (kept in config so it stays in sync). */
 export const ATLAS_CITATION =
   "Dichio, G. (Bucket Foundation). research-atlas: the global research-economy graph. " +
   `Zenodo. ${ZENODO_DOI_URL}`;

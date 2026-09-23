@@ -7,41 +7,37 @@ export type IP = {
   nft_txn_hash: string;
 }
 
-// Type representing a record in the author table
 export type Author = {
-  id: number; // or bigint
-  created_at: Date; // or string if you prefer
+  id: number;
+  created_at: Date;
   wallet_address?: string | null;
   first_name?: string | null;
   last_name?: string | null;
 };
 
 
-// Type representing the data needed to create a new Author
 export type AuthorCreate = {
   wallet_address?: string | null;
   first_name?: string | null;
   last_name?: string | null;
 };
 
-// Type representing a record in the ip_metadata table
 export type IpMetadataType = {
-  id: number; // or bigint
-  created_at: Date; // or string if you prefer
+  id: number;
+  created_at: Date;
   ip_blob_id?: string | null;
   ip_txn_hash?: string | null;
   nft_blob_id?: string | null;
   nft_txn_hash?: string | null;
-  research_id: number; // or bigint
+  research_id: number;
 };
 
-// Type representing the data needed to create a new IpMetadata
 export type IpMetadataCreate = {
   ip_blob_id?: string | null;
   ip_txn_hash?: string | null;
   nft_blob_id?: string | null;
   nft_txn_hash?: string | null;
-  research_id: number; // or bigint
+  research_id: number;
 };
 
 
@@ -53,28 +49,28 @@ export type IPCreate = {
 }
 
 export type Research = {
-  id: number;            // bigint in PostgreSQL corresponds to number in TypeScript
-  createdAt: string;    // timestamp with time zone corresponds to string
-  title: string;        // text corresponds to string
-  description: string;  // text corresponds to string
-  blob_id: string;       // text corresponds to string
-  txn_hash: string;      // text corresponds to string
+  id: number;
+  createdAt: string;
+  title: string;
+  description: string;
+  blob_id: string;
+  txn_hash: string;
   ip_id: string;
   author_id: number;
 };
 
 export type ResearchCreate = {
-  title: string;        // text corresponds to string
-  description: string;  // text corresponds to string
-  blob_id: string;       // text corresponds to string
-  txn_hash: string;      // text corresponds to string
+  title: string;
+  description: string;
+  blob_id: string;
+  txn_hash: string;
   ip_id: string;
   author_id: number;
 };
 
 export type CiteToken = {
-  id: number; // or bigint
-  created_at: Date; // or string if you prefer
+  id: number;
+  created_at: Date;
   research_id?: number | null;
   author_id?: number | null;
   txn_hash?: string | null

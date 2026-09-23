@@ -7,7 +7,6 @@ import type { NodeData } from "./types";
 import { BTN_PRIMARY, STAGE_LABEL } from "@/components/ui";
 import ReviewOnNode from "./ReviewOnNode";
 
-/** The class on this node: assignments that target it, and for staff, who in the class holds it at which level, with assign in place. */
 export default function ClassSection({ data, onChanged }: { data: NodeData; onChanged: () => void }) {
   const staffClasses = data.classes.filter((c) => c.role === "teacher" || c.role === "librarian");
   const [classId, setClassId] = useState(staffClasses[0]?.id ?? "");

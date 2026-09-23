@@ -1,42 +1,4 @@
 #!/usr/bin/env python3
-"""
-research-tools, GeoSummary (REAL geospatial/time-series stats, CPU, no GPU)
-============================================================================
-
-Per-field tool for **earth-climate** (earth-climate, 116,840 profiled
-researchers, the second-largest field in the corpus). The atlas USERS_NEEDS
-roadmap flags reproducible geospatial/time-series workflows as a structural pain:
-EO/climate data is huge and heterogeneous, and a non-specialist has no quick way
-to get a defensible summary (trend, seasonality, missing-data, spatial extent)
-out of a series without writing custom code.
-
-GeoSummary takes a time series (a list of values, optionally with timestamps and
-lat/lon coordinates) and computes REAL statistics:
-
- 1. Descriptives + missing-data accounting (count, mean, std, quantiles, % NaN).
- 2. TREND, ordinary-least-squares slope over the time index AND the resilient,
- distribution-free Mann-Kendall trend test + Theil-Sen slope estimator
- (the standard climatological trend test; Mann 1945, Kendall 1975, Sen 1968).
- 3. SEASONALITY, if a `period` is given (e.g. 12 for monthly data), the
- per-phase climatology (group means by phase), the seasonal amplitude, and
- the fraction of variance explained by the seasonal cycle.
- 4. AUTOCORRELATION, lag-1 autocorrelation (a serial-dependence / red-noise
- check that matters for trend significance).
- 5. SPATIAL EXTENT, if lat/lon are supplied: bounding box, centroid, and the
- great-circle (haversine) span of the points.
-
-All math is numpy + scipy (linregress, kendalltau, theilslopes), no GPU, no
-network. Deterministic; never crashes on malformed input (returns a structured
-{"error": ...}).
-
-Input shape (`payload`):
- values : list[float], the series (required; NaN/None allowed → missing)
- times : list, optional timestamps/labels (parallel to values)
- period : int, optional seasonal period (e.g. 12 monthly, 4 quarterly)
- lat, lon : list[float], optional coordinates (parallel to values)
-
-The gateway imports GEO_RUNNERS from here.
-"""
 from __future__ import annotations
 
 import math
@@ -44,7 +6,6 @@ from typing import Any, Optional
 
 import numpy as np
 from scipy import stats as _stats
-
 
 def _to_float_array(v: Any) -> Optional[np.ndarray]:
     if not isinstance(v, (list, tuple)):
@@ -60,11 +21,7 @@ def _to_float_array(v: Any) -> Optional[np.ndarray]:
             out.append(np.nan)
     return np.asarray(out, dtype=float)
 
-
 def _mann_kendall(x: np.ndarray) -> dict:
-    """Mann-Kendall trend test (no-tie normal approximation with tie correction).
- Returns S, the variance-corrected z, two-sided p, and the trend direction.
- Operates on the finite values in index order."""
     n = len(x)
     if n < 4:
         return {"applicable": False, "reason": "need >= 4 finite points"}
@@ -72,7 +29,6 @@ def _mann_kendall(x: np.ndarray) -> dict:
     for k in range(n - 1):
         s += np.sum(np.sign(x[k + 1:] - x[k]))
     s = float(s)
-    # variance with tie correction
     unique, counts = np.unique(x, return_counts=True)
     tie_term = np.sum(counts * (counts - 1) * (2 * counts + 5))
     var_s = (n * (n - 1) * (2 * n + 5) - tie_term) / 18.0
@@ -95,16 +51,13 @@ def _mann_kendall(x: np.ndarray) -> dict:
         "significant_at_0.05": bool(p < 0.05),
     }
 
-
 def _haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    """Great-circle distance in km between two lat/lon points."""
     R = 6371.0088
     p1, p2 = math.radians(lat1), math.radians(lat2)
     dphi = math.radians(lat2 - lat1)
     dlmb = math.radians(lon2 - lon1)
     a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dlmb / 2) ** 2
     return 2 * R * math.asin(min(1.0, math.sqrt(a)))
-
 
 def summarize(values: list, times: Any = None, period: Optional[int] = None,
               lat: Any = None, lon: Any = None) -> dict:
@@ -133,7 +86,6 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
         "max": round(float(np.max(finite)), 6),
     }
 
-    # ----- trend (OLS over the integer time index of finite points) -----
     idx = np.arange(n_total, dtype=float)[finite_mask]
     trend: dict[str, Any] = {}
     if n_finite >= 3:
@@ -150,7 +102,6 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
     else:
         trend = {"applicable": False, "reason": "need >= 3 finite points for a trend"}
 
-    # ----- autocorrelation (lag-1, on the finite series in order) -----
     autocorr = None
     if n_finite >= 3:
         a0 = finite[:-1] - np.mean(finite)
@@ -158,7 +109,6 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
         denom = np.sum((finite - np.mean(finite)) ** 2)
         autocorr = round(float(np.sum(a0 * a1) / denom), 6) if denom > 0 else 0.0
 
-    # ----- seasonality (only if a period is given) -----
     seasonality: Optional[dict] = None
     if period and isinstance(period, int) and 1 < period <= n_total // 2:
         phase = np.arange(n_total) % period
@@ -171,7 +121,6 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
         pm = np.array(phase_means, dtype=float)
         valid_pm = pm[np.isfinite(pm)]
         amplitude = float(np.nanmax(pm) - np.nanmin(pm)) if valid_pm.size else 0.0
-        # variance explained by the seasonal climatology
         clim = np.array([phase_means[p] for p in phase], dtype=float)
         resid = arr - clim
         total_var = float(np.nanvar(arr[finite_mask]))
@@ -186,7 +135,6 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
             "trough_phase": int(np.nanargmin(pm)) if valid_pm.size else None,
         }
 
-    # ----- spatial extent (only if lat/lon supplied) -----
     spatial: Optional[dict] = None
     la = _to_float_array(lat) if lat is not None else None
     lo = _to_float_array(lon) if lon is not None else None
@@ -213,32 +161,19 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
         "spatial_extent": spatial,
     }
 
-
 def _demo_series() -> dict:
-    """A known synthetic monthly series (period=12): a clear positive linear
- trend of +0.10/step on top of a sinusoidal seasonal cycle, plus a couple of
- missing values. The trend is strong and increasing (Mann-Kendall significant);
- the seasonal cycle explains a large share of the variance."""
-    n = 120  # 10 years monthly
+    n = 120
     rng = np.arange(n)
     trend = 0.10 * rng
     season = 5.0 * np.sin(2 * math.pi * rng / 12.0)
     series = (10.0 + trend + season).tolist()
-    # plant two missing values
     series[17] = None
     series[58] = None
-    lat = [(-54.8 + (i % 3) * 0.5) for i in range(n)]  # ~Punta Arenas region
+    lat = [(-54.8 + (i % 3) * 0.5) for i in range(n)]
     lon = [(-68.3 + (i % 4) * 0.5) for i in range(n)]
     return {"values": series, "period": 12, "lat": lat, "lon": lon}
 
-
 def run_geo_summary(payload: dict) -> dict:
-    """payload: { values: [...], times?, period?, lat?, lon? } OR { demo: true }.
-
- Summarize a geospatial/time-series dataset: descriptives + missing data,
- OLS + Mann-Kendall/Theil-Sen trend, seasonal climatology, lag-1
- autocorrelation, and spatial extent. Real numpy/scipy; never raises.
-    """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("values"), str) and payload.get("values", "").strip().lower() == "demo"
     )
@@ -296,8 +231,6 @@ def run_geo_summary(payload: dict) -> dict:
     )
     return result
 
-
-# Registry the gateway imports.
 GEO_RUNNERS = {
     "geosummary": run_geo_summary,
 }

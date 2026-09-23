@@ -1,42 +1,3 @@
-/**
- * /api/research-os/class, the teacher class view (bkt-ros, ros-06 item 2).
- * Everything a reviewer needs to see about the learners they are
- * responsible for, scoped to graph.classes/graph.class_members (migration
- * 20260910030000_research_os_classes.sql) rather than the whole graph the
- * general /research-os/review queue reads.
- *
- * GET ?branch=<slug>&target=<node slug>&staleDays=<n>
- *   -> { classes: [{ id, name, learnerIds, grid, blocked, readyForHarderTarget, calibration }],
- *        queue: { transferHolds: [...], productions: [...] } }
- *   `branch` defaults to "02-physics", `target` to "why-the-sky-is-blue"
- *   (the same defaults GET /api/research-os/route uses), `staleDays`
- *   defaults to 3. `grid`/`blocked`/`readyForHarderTarget` are computed by
- *   src/lib/research-os/class-view.ts's pure functions over the branch's
- *   full subgraph; `queue` is scoped to the union of every learner across
- *   every class this reviewer owns (teacher_reviews carries no class_id,
- *   so a class-by-class queue split is not meaningful yet). `calibration`
- *   (bkt-ros, PLAN-REVISION-2.md section 2a) is per learner, mean
- *   confidence against mean source-prediction correctness over every
- *   forcing-gated "check" event on any node, computed by
- *   src/lib/research-os/calibration.ts's computeCalibrationSummary; a
- *   learner with no forcing-gated Check attempts yet is absent from the
- *   array; a zeroed row never appears.
- *
- * Data loading happens entirely here, server-side: the client page never
- * queries graph.* directly, only this route's already-computed,
- * already-scoped JSON (no raw per-learner rows cross the wire beyond what
- * the grid needs). "No client exposure of other learners' data beyond the
- * reviewer's own classes" is enforced twice: RLS on graph.classes/
- * graph.class_members (defense in depth, the service-role client below
- * bypasses it) and, the real gate today, db.ts's loadClassesForReviewer
- * filtering on the caller's own verified email, never a client-supplied
- * one.
- *
- * Auth: Authorization: Bearer <supabase access token>, verified against
- * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
- * the same gate /api/research-os/review uses.
- * 403 not a reviewer · 404 target not found · 503 not configured.
- */
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { NextRequest, NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
@@ -92,10 +53,6 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
-  // This route emits node titles in `blocked`, `readyForHarderTarget`,
-  // `transferHolds` and each production's `targetTitle`, and it was the
-  // one reading route that took the branch unfiltered. Being staff in a
-  // class is not a grant on every node in it.
   const visible = await filterSubgraphForViewer(nodes, edges, reviewer.id);
   if (!visible.ok) return bad(503, "access_unavailable");
   ({ nodes, edges } = visible);
@@ -106,28 +63,11 @@ export async function GET(req: NextRequest) {
   const statesByLearner = await loadLearnerStatesForMany(allLearnerIds, nodes.map((n) => n.id));
   const now = new Date();
 
-  // Queue and calibration both read graph.learner_node_state directly
-  // (loadLearnerStatesForMany's own LearnerNodeState type carries no
-  // evidence array, class-view.ts's grid/blocked/ready computations never
-  // needed one), so the service client is created here rather than below.
   const svc = graphService();
 
-  // Calibration summary (bkt-ros, PLAN-REVISION-2.md section 2a's
-  // calibration record): every learner_node_state row across every node,
-  // for every learner across every class this reviewer owns, evidence
-  // arrays merged per learner and handed to calibration.ts's pure
-  // computeCalibrationSummary. Read failure fails open to an empty
-  // summary (a class view with no calibration section is a smaller
-  // regression than a broken class view).
   let calibrationRows: ReturnType<typeof computeCalibrationSummary> = [];
   if (allLearnerIds.length > 0) {
-    // One try over the three roster reads. Each carried its own .catch
-    // returning an empty list, so a failed read showed a teacher a class
-    // where nobody had opened anything, at 200.
     try {
-    // One row per node each learner has opened, so a class of two
-    // hundred at twenty nodes each is four thousand rows. The id list is
-    // bounded by the roster and the row count is not.
     const evidenceRows = await inChunks<{ learner_id: string; evidence: CalibrationEvidenceEntry[] | null }>(allLearnerIds, (chunk, page) =>
       svc
         .from("learner_node_state")
@@ -149,7 +89,6 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // ros-33: XP per learner for the class leaderboard (class only, never global).
   const xpByLearner = await loadXpForLearners(Array.from(new Set(Array.from(membersByClass.values()).flat())));
   const classViews = classes.map((c) => {
     const learnerIds = membersByClass.get(c.id) ?? [];
@@ -166,13 +105,9 @@ export async function GET(req: NextRequest) {
     };
   });
 
-  // Queue: the same two "pending" reads /api/research-os/review's own GET
-  // performs, scoped to the union of this reviewer's own classes' learners.
   let transferHolds: ReturnType<typeof buildTransferHolds> = [];
   let productions: Array<Record<string, unknown>> = [];
   if (allLearnerIds.length > 0) {
-    // Same reason as the calibration read above: each of these carried a
-    // .catch returning an empty list.
     try {
     const stateRows = await inChunks<StateRow>(allLearnerIds, (chunk, page) =>
       svc
@@ -191,8 +126,6 @@ export async function GET(req: NextRequest) {
     });
     transferHolds = buildTransferHolds(held, nodes);
 
-    // The learner is the list here, so nothing pins the row count: a
-    // class can hold many submitted productions per learner.
     const productionRows = await inChunks<ProductionRow>(allLearnerIds, (chunk, page) =>
       svc
         .from("productions")

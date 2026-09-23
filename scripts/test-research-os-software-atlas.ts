@@ -1,8 +1,3 @@
-/**
- * The Software page's data and filters (ros-frontend 1). The JSON must match
- * the atlas memo it is built from, and the filters must narrow the way the
- * page promises. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";

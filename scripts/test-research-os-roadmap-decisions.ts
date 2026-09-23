@@ -1,17 +1,3 @@
-/**
- * The roadmap's decision list and `docs/FOUNDER-DECISIONS.md` name the
- * same rows.
- *
- * Declaring one list twice is the first defect in
- * `docs/internal/CRITIC-PROTOCOL.md`, and this pair caught it: the memo gained
- * three rows and `roadmap.ts` did not, so the roadmap reported real
- * decisions as rows that do not exist, and the page showed MVP work as
- * unblocked while the founder's own file said three decisions blocked it.
- *
- * The same defect has two more places to hide: the counts that
- * learning/research-os/ROADMAP.md states, and the AI rows, whose
- * dependencies are also written in their BEADS-PENDING.jsonl records.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -20,7 +6,6 @@ import { countsByStage, DECISIONS, ROADMAP, roadmapProblems } from "../src/lib/r
 
 const MEMO = path.join(__dirname, "..", "docs", "FOUNDER-DECISIONS.md");
 
-/** The FD ids the memo carries, in the order it lists them. */
 function memoIds(): string[] {
   const text = fs.readFileSync(MEMO, "utf8");
   const out: string[] = [];
@@ -87,7 +72,6 @@ test("each AI row depends on what its pending bead record names", () => {
     const o = JSON.parse(line) as { source?: string; title?: string; description?: string };
     if (o.source !== "research-os-ai" || !o.title) continue;
     const key = o.title.split(": ")[0];
-    // The epic is the row's epic field, and ros-ai-roadmap is this list itself.
     if (key === "ros-ai" || key === "ros-ai-roadmap") continue;
     const m = /(?:^|\s)Depends on:\s*(.+?)\.(?:\s|$)/.exec(o.description ?? "");
     const deps = (m ? m[1].split(",") : []).map((d) => d.trim()).filter((d) => d && d !== "none" && !/^PR #\d+/.test(d));

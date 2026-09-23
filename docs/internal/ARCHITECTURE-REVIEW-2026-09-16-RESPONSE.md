@@ -15,7 +15,7 @@ The register is the best systems audit this repo has had: specific files and lin
 | PR-003 CORS `*` on API proxies, `canon/search` claims a limit it lacks | Confirmed | `src/lib/research-tools/proxy.ts:46` sets `access-control-allow-origin: *` (lowercase, which a case-sensitive grep misses); `canon/search/route.ts:11` says "rate-limited via standard ip" and no limiter exists. |
 | PR-004 three disconnected identity rows | Confirmed and understated | See "Findings the review missed" below: there are three sign-in stacks, and seven pages carry their own sign-in form. |
 | PR-002 research-tools gateway open | Not re-verified here (service code outside this branch's scope); the fix is right. |
-| PR-022 no real x402 payment | Confirmed | `src/lib/x402-pay.ts:52,76` return `null`; `feed402-client.ts:84` emits `stub-signed` or `unsigned`. |
+| PR-022 no real x402 payment | Confirmed | `src/lib/x402-pay.ts:15,76` return `null`; `feed402-client.ts:84` emits `stub-signed` or `unsigned`. |
 
 ## Rows that are stale against dev
 

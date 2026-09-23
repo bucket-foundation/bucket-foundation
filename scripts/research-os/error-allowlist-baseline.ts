@@ -1,13 +1,3 @@
-/**
- * Every read the allowlist is permitted to name.
- *
- * The ceilings count entries and a count cannot tell a repair from a
- * swap: repairing one trivial lookup paid for one new dropped read in
- * an authorization path, and every test stayed green. This is the set,
- * so the list may only shrink against it. Adding a read means editing
- * this file, which is a deliberate line in a diff whose only purpose is
- * to be that.
- */
 export const ALLOWED_BASELINE: readonly string[] = [
   "src/app/api/academy/credential/verify/route.ts::liveProfile::academy_profiles::data::1",
   "src/app/api/research-os/hypothesize/route.ts::POST::nodes::node::1",

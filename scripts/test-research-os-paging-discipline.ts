@@ -1,33 +1,11 @@
-/**
- * Two paging rules for a read filtered by a list of ids, checked against
- * the source so they hold for reads no test happens to exercise. No
- * database needed.
- *
- * These rules cover the reads they can see. A raw `.in(ids)` read that
- * uses no chunk helper is invisible to both of them, and so is a builder
- * hidden behind a local function. A green run is the absence of these
- * two shapes, and nothing more.
- *
- * 1. A read that pages carries an order. Postgres gives no stable row
- *    order across LIMIT and OFFSET without one, so a page boundary
- *    landing inside a tie group can repeat one row and skip another.
- * 2. A read filtered by a chunked id list pages. Chunking bounds the
- *    request line and says nothing about PostgREST's thousand-row cap,
- *    so an unpaged chunked read returns a prefix with no error.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-// One copy of the rule. This file carried its own, character for
-// character, beside the one in scan-source.ts.
 import { stripComments } from "./research-os/scan-source";
 import { GRAPH_UNIQUE_KEYS, orderIsTotal } from "./research-os/graph-keys";
 
 const root = path.join(__dirname, "..");
-// The ingest scripts write the graph the routes then read, so a read
-// there that stops at the row cap corrupts what every route serves. They
-// are inside the gate for that reason.
 const ROOTS = [path.join(root, "src/lib/research-os"), path.join(root, "src/app/api/research-os"), path.join(root, "scripts/research-os")];
 
 function sources(dir: string): string[] {
@@ -42,16 +20,8 @@ function sources(dir: string): string[] {
 }
 
 
-/**
- * The statements in a file, as single lines. A PostgREST builder chain
- * can wrap across lines, so the file is flattened first and then split
- * on `;`, which is where one chain ends.
- */
 function statements(src: string, options: { keepStrings?: boolean } = {}): { text: string; line: number }[] {
   const out: { text: string; line: number }[] = [];
-  // A comment may describe these rules or break them, and a
-  // docstring naming `.range(` is not a read. They are blanked, keeping
-  // the line count so a report still points at the right line.
   const lines = stripComments(src, options).split("\n");
   let buf = "";
   let start = 1;
@@ -91,7 +61,6 @@ test("every paged read carries an order", () => {
   );
 });
 
-/** Each call to one of the page helpers, as its whole balanced-paren call. */
 function pagedCalls(src: string): { text: string; line: number }[] {
   const out: { text: string; line: number }[] = [];
   const call = /\b(inChunks|inLearnerChunks|pagedRead)\s*[<(]/g;
@@ -114,9 +83,6 @@ function pagedCalls(src: string): { text: string; line: number }[] {
 }
 
 test("every read filtered by a chunked id list pages", () => {
-  // A chunk callback holds several statements, so the whole call is read
-  // as one region: the `.from(` and the `.range(` can sit in different
-  // statements inside the same callback.
   const offenders: string[] = [];
   for (const file of files) {
     for (const c of pagedCalls(stripComments(fs.readFileSync(file, "utf8")))) {
@@ -128,23 +94,6 @@ test("every read filtered by a chunked id list pages", () => {
   assert.deepEqual(offenders, [], `these chunked reads never page: ${offenders.join(", ")}`);
 });
 
-/**
- * Every paged read of a `graph` table, with the table it reads, the
- * columns it orders on, and the columns it pins to a single value.
- *
- * A statement is the unit here because one PostgREST chain is one
- * statement. `eq()` pins a column to one value, so that column cannot
- * vary across the result and contributes to the order for free.
- * `in()` hands a list, which pins nothing.
- *
- * Column and table names match `[a-z0-9_]+`. An earlier version wrote
- * `[a-z_]+`, which cannot match a digit, so `listImportFiles` read as
- * ordered on `created_at` alone and its `.order("sha256")` tiebreaker
- * was invisible: a total order failed this rule. The same gap ran the
- * other way on `.from()`, where a table whose name carries a digit
- * would not match at all and its paged read would leave the rule
- * without failing it.
- */
 function pagedReads(src: string): { table: string; ordered: string[]; pinned: string[]; line: number }[] {
   const out: { table: string; ordered: string[]; pinned: string[]; line: number }[] = [];
   for (const s of statements(src, { keepStrings: true })) {
@@ -162,17 +111,9 @@ function pagedReads(src: string): { table: string; ordered: string[]; pinned: st
 }
 
 test("every paged read of a known table carries a total order", () => {
-  // Rule 1 above asks only that an order exists. An order that is not
-  // total passes it and still repeats and skips rows: graph/route.ts
-  // read class_members with `.in("class_id", chunk).order("learner_id")`
-  // and satisfied rule 1 while leaving every learner enrolled in two
-  // classes of the chunk in a tie group with another. class_members'
-  // primary key is (class_id, learner_id).
   const offenders: string[] = [];
   const checked: string[] = [];
   for (const file of files) {
-      // keepStrings, because this rule reads which table and which
-      // columns the call names.
       for (const r of pagedReads(fs.readFileSync(file, "utf8"))) {
       if (!GRAPH_UNIQUE_KEYS[r.table]) continue;
       checked.push(`${r.table}@${path.relative(root, file)}:${r.line}`);
@@ -191,8 +132,6 @@ test("every paged read of a known table carries a total order", () => {
 });
 
 test("the rule counts an eq-pinned key column and refuses an in-list one", () => {
-  // learner_node_state is (learner_id, node_id). Pinning the learner
-  // leaves node_id total; handing a list of learners does not.
   assert.equal(orderIsTotal("learner_node_state", ["node_id"], ["learner_id"]), true);
   assert.equal(orderIsTotal("learner_node_state", ["node_id"], []), false);
   assert.equal(orderIsTotal("class_members", ["learner_id"], []), false, "the shape graph/route.ts shipped");
@@ -201,19 +140,12 @@ test("the rule counts an eq-pinned key column and refuses an in-list one", () =>
   assert.equal(orderIsTotal("edges", ["from_id"], []), false);
   assert.equal(orderIsTotal("some_table_nobody_declared", [], []), true, "an unknown table is out of scope, not a failure");
 
-  // NULLS DISTINCT: a unique index over a nullable column admits any
-  // number of rows sharing the non-null part. Every group grant has a
-  // null grantee_id, so a thousand of them on one node with role 'view'
-  // are one tie group under (node_id, grantee_id, role).
   assert.equal(orderIsTotal("node_grants", ["node_id", "grantee_id", "role"], []), false, "ordering on a nullable column leaves the nulls in one tie group");
   assert.equal(orderIsTotal("node_grants", ["node_id", "role"], ["grantee_id"]), true, "pinning it with eq excludes the nulls");
   assert.equal(orderIsTotal("node_grants", ["id"], []), true, "and the primary key is total either way");
 });
 
 test("the parser reads a column name that carries a digit", () => {
-  // listImportFiles orders on created_at then sha256. Under `[a-z_]+`
-  // the tiebreaker did not match, the read looked ordered on
-  // created_at alone, and rule 2 failed a read that was already total.
   const one = pagedReads(`
     await svc.from("import_files").select("id").eq("import_id", id).order("created_at").order("sha256").range(0, 99);
   `);
@@ -222,9 +154,6 @@ test("the parser reads a column name that carries a digit", () => {
   assert.deepEqual(one[0].pinned, ["import_id"]);
   assert.equal(orderIsTotal(one[0].table, one[0].ordered, one[0].pinned), true);
 
-  // And the direction that hides a read rather than failing it: a
-  // table name with a digit has to be seen, or its paged read leaves
-  // the rule silently.
   const two = pagedReads(`await svc.from("sha256_blobs").select("id").range(0, 99);`);
   assert.equal(two.length, 1, "a table whose name carries a digit is in scope");
   assert.equal(two[0].table, "sha256_blobs");

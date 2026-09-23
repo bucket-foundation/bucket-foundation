@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Baseline for the Pyodide check of the research tools (ros-workbench 0).
-
-Builds each browser-candidate tool's payload through the gateway's own submit
-handler, runs the tool's registry function in CPython, and writes the payloads
-and normalized results to a JSON file that `check.mjs` replays inside Pyodide.
-
-Run from services/research-tools/:
-
-    python3 pyodide/baseline.py pyodide-baseline.json
-
-Floats are rounded to six significant digits and timing fields dropped, so the
-comparison reads the science and ignores the clock. Exits 1 if any tool fails
-to produce a baseline.
-"""
 from __future__ import annotations
 
 import importlib
@@ -26,8 +12,6 @@ sys.path.insert(0, str(HERE))
 
 import gateway as g  # noqa: E402
 
-# The 25 tools whose required imports all ship in Pyodide 314.0.7 and that make
-# no network call. Each maps to its gateway submit model.
 CANDIDATES = {
     "seqalign": g.SeqAlignSubmit,
     "stoichbalance": g.StoichBalanceSubmit,
@@ -56,8 +40,6 @@ CANDIDATES = {
     "protocolgpt": g.ProtocolGPTSubmit,
 }
 
-# Models with a required field get an explicit input; the rest use the
-# model's defaults, which select each tool's demo input.
 EXPLICIT = {
     "chromatinaccess": {"sequence": "demo"},
     "aggregatepredict": {"sequence": "demo"},
@@ -77,9 +59,7 @@ MODULES = [
 
 CLOCK_FIELDS = {"elapsed_ms", "runtime_ms", "generated_at", "timestamp"}
 
-
 def norm(x):
-    """Round floats to six significant digits and drop clock fields."""
     if isinstance(x, float):
         return None if math.isnan(x) else float(f"{x:.6g}")
     if isinstance(x, dict):
@@ -88,9 +68,7 @@ def norm(x):
         return [norm(v) for v in x]
     return x
 
-
 def registry() -> dict[str, tuple[str, str]]:
-    """Map each tool slug to (module, function) from the modules' *_RUNNERS dicts."""
     out: dict[str, tuple[str, str]] = {}
     for name in MODULES:
         mod = importlib.import_module(name)
@@ -100,9 +78,7 @@ def registry() -> dict[str, tuple[str, str]]:
                     out[tool] = (name, fn.__name__)
     return out
 
-
 def payload_for(tool: str) -> dict:
-    """The payload the gateway would hand the runner for this tool's default submit."""
     if tool in EXPLICIT:
         return EXPLICIT[tool]
     seen: dict[str, dict] = {}
@@ -118,7 +94,6 @@ def payload_for(tool: str) -> dict:
     finally:
         g._dispatch = original
     return seen[tool]
-
 
 def main(dest: str) -> int:
     reg = registry()
@@ -138,7 +113,6 @@ def main(dest: str) -> int:
     for line in failed:
         print("no baseline:", line)
     return 1 if failed else 0
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

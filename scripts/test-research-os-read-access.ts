@@ -1,9 +1,3 @@
-/**
- * The read-authorization adapter's rules, against a store that answers
- * from fixtures (ros-ai-access, src/lib/research-os/read-access.ts). No
- * database: this file pins the decisions, and the queries are covered at
- * the routes.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -37,7 +31,6 @@ const grants: NodeGrant[] = [
   { id: "g5", nodeId: "shared", granteeId: LEARNER, role: "extend", expiresAt: "not a date" },
 ];
 
-/** A store that answers from the fixtures, and fails where a test asks it to. */
 function store(options: { failOn?: "nodes" | "grants" | "groups"; groups?: string[] } = {}): AccessStore {
   const fail = <T,>(what: string): StoreResult<T> => ({ ok: false, error: `${what} unavailable` });
   return {
@@ -235,27 +228,18 @@ test("both entry points resolve a duplicate id to the stricter row", async () =>
 });
 
 test("a store that fails is an outage wherever it is read from", async () => {
-  // storeWithNodes serves rows a caller already read and passes grants and
-  // groups through, which is how the routes and filterSubgraphForViewer
-  // avoid a second read. A failure underneath still has to surface.
   const failing = storeWithNodes(nodes, store({ failOn: "grants" }));
   const shared = await authorizeNodes(["shared"], { id: LEARNER }, "view", failing, NOW);
   assert.equal(shared.ok, false, "a grants failure under the passthrough is an outage");
   if (shared.ok) return;
   assert.equal(shared.reason, "unavailable");
 
-  // A public-only read needs no grants, so it answers from the rows alone.
   const pub = await authorizeNodes(["pub"], { id: LEARNER }, "view", failing, NOW);
   assert.equal(pub.ok, true, "a public view survives a grants outage");
   assert.deepEqual(pub.ok ? pub.allowed : [], ["pub"]);
 });
 
 test("an expiry that cannot be parsed is expired, in one place", () => {
-  // The rule lived in access.ts and read-access.ts and they disagreed:
-  // one treated an unparseable expiry as live, so a grant whose expiry
-  // read "next tuesday" never ended. The first repair wrote
-  // the same fix into both files. `live` is now exported and this
-  // asserts both entry points answer through it.
   const badExpiry: NodeGrant[] = [{ id: "g", nodeId: "shared", granteeId: LEARNER, role: "view", expiresAt: "next tuesday" }];
   const store: AccessStore = {
     async nodes(ids) {
@@ -292,16 +276,9 @@ test("an expiry in the past is expired and one in the future admits", async () =
   assert.deepEqual(future.ok ? future.allowed : [], ["shared"]);
 });
 
-// filterSubgraphForViewer decides on the nodes its caller hands it, so
-// it belongs to this rule rather than to the database module it lives in.
 import { filterSubgraphForViewer } from "../src/lib/research-os/access-db";
 
 test("a node whose visibility cannot be read is withheld, not published", async () => {
-  // `(n.visibility ?? "public") !== "public"` selected the nodes worth
-  // deciding on. A node carrying no visibility failed that test, so it
-  // was counted public, and where no node carried one the function
-  // returned every node to every viewer without authorizing once. The
-  // type allows it: GraphNode.visibility is optional.
   const unreadable = [{ id: "priv", ownerId: OWNER }, { id: "own", ownerId: LEARNER }];
 
   const stranger = await filterSubgraphForViewer(unreadable, [], STRANGER, store());

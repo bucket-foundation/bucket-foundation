@@ -1,21 +1,5 @@
 "use client";
 
-/**
- * /research-os/roster, the OneRoster 1.2 CSV roster sync upload page
- * (bkt-ros, ros-06 follow-on). Reads the four CSV files POST
- * /api/research-os/roster accepts, runs a dry-run diff by default, and
- * shows what a reviewer's own "apply" click would create, update, or
- * skip. All parsing and diffing happens server-side in that route; this
- * page only renders the JSON it returns, matching /research-os/class's
- * own "the client never queries graph.* directly" posture.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/class/page.tsx and src/app/research-os/review/
- * page.tsx. Being signed in is necessary but NOT sufficient: the API
- * gates on src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS
- * allowlist, so a signed-in non-reviewer sees a 403 here instead of a
- * diff.
- */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -118,9 +102,6 @@ export default function ResearchOsRosterPage() {
       for (const f of FIELDS) form.set(f, files[f] as File);
       form.set("apply", apply ? "true" : "false");
       const res = await fetch("/api/research-os/roster", { method: "POST", headers: authHeaders(), body: form });
-      // A gateway 503 carries HTML, so parsing it before the ok check
-      // threw and the outer catch reported a network error with no
-      // retry. The rule decides now.
       const body = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
         setError(res.status === 403 ? "forbidden" : isTransientOutage(res.status, body.error ?? null) ? OUTAGE_COPY.body : body.error || "sync_failed");

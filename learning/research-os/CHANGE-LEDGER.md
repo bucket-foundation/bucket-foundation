@@ -1411,7 +1411,7 @@ against `main` since the PR's head branch was already deleted).
 - Structure: `_intake/research-os-k12-literature/README.md`'s index table lists all 45 files.
   `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` cites `learning/research-os/RESEARCH-QUESTIONS.md`
   and eleven other repo-relative file paths; all twelve resolve on `main`, including
-  `mcp-server/bucket-mcp.py:246`, which is the `TOOLS = [` line the map describes.
+  `mcp-server/bucket-mcp.py:189`, which is the `TOOLS = [` line the map describes.
 - Gates: `npm ci` and `npm run build` both pass on `main` plus this pass's three-file diff; no
   file under `src/` or `public/` is touched by it.
 

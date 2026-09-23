@@ -1,15 +1,3 @@
-"""Tests for feed.py check-cards / emit-for-cards.
-
-These are the mechanical fix for a real failure mode: three promotion
-passes in a row (PRs #9, #45, #129) shipped canon cards, reviewed and
-checklist-ticked, with no matching feed event. parse.py's commit-by-commit
-diff only recognizes a promotion via a rename out of research-landscape/,
-so a card landing as new files under bucket-canon/ (the normal shape of a
-promotion out of _intake/) never got an event unless someone remembered
-to run the pipeline by hand. check-cards diffs two refs directly against
-the served layer (primary-papers.yaml records, CANON_INDEX.md tier column)
-so a promoter has one command to see the gap and one to close it.
-"""
 from __future__ import annotations
 
 import json
@@ -63,7 +51,6 @@ MELANIN_YAML_TWO = """records:
 
 DOSSIER = "bucket-canon/05-biophysics/melanin"
 
-
 def run_feed(cwd: Path, args: list[str]) -> subprocess.CompletedProcess:
     env = os.environ.copy()
     env["BUCKET_FEED_ROOT"] = str(cwd)
@@ -72,11 +59,7 @@ def run_feed(cwd: Path, args: list[str]) -> subprocess.CompletedProcess:
         cwd=cwd, capture_output=True, text=True, env=env,
     )
 
-
 def seed_and_promote(repo: Path) -> tuple[str, str]:
-    """Base commit: one record, tier CANDIDATE. Head commit: a second
-    record added and the first record promoted to CANON. Neither commit
-    ever touches feed.py, exactly the gap a forgetful promoter leaves."""
     write(repo, f"{DOSSIER}/CANON_INDEX.md", MELANIN_INDEX_CANDIDATE)
     write(repo, f"{DOSSIER}/primary-papers.yaml", MELANIN_YAML_ONE)
     base_sha = commit(repo, "seed melanin dossier")
@@ -85,7 +68,6 @@ def seed_and_promote(repo: Path) -> tuple[str, str]:
     write(repo, f"{DOSSIER}/primary-papers.yaml", MELANIN_YAML_TWO)
     commit(repo, "promote second paper, tier-bump first")
     return base_sha, "HEAD"
-
 
 class CheckCardsTests(unittest.TestCase):
     def setUp(self):
@@ -153,7 +135,6 @@ class CheckCardsTests(unittest.TestCase):
         res = run_feed(self.repo, ["check-cards", "--base", "not-a-real-ref"])
         self.assertEqual(res.returncode, 2)
         self.assertIn("does not resolve", res.stderr)
-
 
 if __name__ == "__main__":
     unittest.main()

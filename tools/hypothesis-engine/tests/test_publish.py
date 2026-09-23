@@ -5,7 +5,6 @@ import pytest
 
 from hte import publish
 
-
 def _run_dir(tmp_path) -> Path:
     run_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
     run_dir.mkdir(parents=True)
@@ -13,7 +12,6 @@ def _run_dir(tmp_path) -> Path:
     (run_dir / "timeline.json").write_text("{}")
     (run_dir / "run.log").write_text("log\n")
     return run_dir
-
 
 def _paper_dir(tmp_path, *, with_pdf: bool) -> Path:
     paper_dir = tmp_path / "paper"
@@ -28,7 +26,6 @@ def _paper_dir(tmp_path, *, with_pdf: bool) -> Path:
         (paper_dir / "main.pdf").write_bytes(b"%PDF-fake")
         (paper_dir / "main.log").write_text("Output written on main.pdf (3 pages, 100 bytes).\n")
     return paper_dir
-
 
 def test_publish_dry_run_makes_no_git_or_rclone_call(tmp_path, monkeypatch):
     run_dir = _run_dir(tmp_path)
@@ -51,7 +48,6 @@ def test_publish_dry_run_makes_no_git_or_rclone_call(tmp_path, monkeypatch):
     published_json = json.loads((paper_dir / "PUBLISH.json").read_text())
     assert published_json["dry_run"] is True
 
-
 def test_publish_excludes_scratch_files_from_the_file_list(tmp_path):
     run_dir = _run_dir(tmp_path)
     paper_dir = _paper_dir(tmp_path, with_pdf=False)
@@ -66,14 +62,12 @@ def test_publish_excludes_scratch_files_from_the_file_list(tmp_path):
     assert result["pdf_exists"] is False
     assert result["page_count"] is None
 
-
 def test_publish_missing_manifest_raises(tmp_path):
     run_dir = tmp_path / "runs" / "camp" / "ts"
     run_dir.mkdir(parents=True)
     paper_dir = _paper_dir(tmp_path, with_pdf=False)
     with pytest.raises(publish.PublishError, match="no MANIFEST.json"):
         publish.publish(run_dir, paper_dir, dry_run=True)
-
 
 def test_publish_live_mode_calls_git_and_rclone_in_order(tmp_path, monkeypatch):
     run_dir = _run_dir(tmp_path)
@@ -105,7 +99,6 @@ def test_publish_live_mode_calls_git_and_rclone_in_order(tmp_path, monkeypatch):
     assert calls[4][:2] == ["rclone", "copy"]
     assert calls[5][:2] == ["rclone", "link"]
 
-
 def test_publish_live_mode_no_pdf_skips_rclone(tmp_path, monkeypatch):
     run_dir = _run_dir(tmp_path)
     paper_dir = _paper_dir(tmp_path, with_pdf=False)
@@ -128,14 +121,7 @@ def test_publish_live_mode_no_pdf_skips_rclone(tmp_path, monkeypatch):
     assert result["share_link"] is None
     assert all(c[0] != "rclone" for c in calls)
 
-
 def test_publish_excludes_a_decoy_publish_json_from_git_add(tmp_path, monkeypatch):
-    """A `paper_dir` already carrying a `PUBLISH.json` from a prior
-    attempt (a dry-run, or a live publish retried after a partial
-    failure) must not have that leftover file swept into `git add -f`:
-    it carries the prior attempt's own commit sha and share link, not
-    this one's (PR #4 review finding, `_paper_files()` did not exclude
-    `PUBLISH.json` the way it already excluded `main.log`)."""
     run_dir = _run_dir(tmp_path)
     paper_dir = _paper_dir(tmp_path, with_pdf=True)
     (paper_dir / "PUBLISH.json").write_text(
@@ -164,7 +150,6 @@ def test_publish_excludes_a_decoy_publish_json_from_git_add(tmp_path, monkeypatc
     assert git_add_call[:2] == ["git", "add"]
     assert not any(arg.endswith("PUBLISH.json") for arg in git_add_call), git_add_call
     assert not any("PUBLISH.json" in f for f in result["files"])
-
 
 def test_mint_hook_always_raises(tmp_path):
     with pytest.raises(NotImplementedError, match="wallet key"):

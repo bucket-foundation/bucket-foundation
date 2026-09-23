@@ -1,17 +1,3 @@
-"""A tiny synthetic corpus, the same shape as `hte.corpus.quantum_history`,
-for tests that should not depend on that chapter's exact prose.
-
-Three sources, six evidence items with valid spans anchored into a
-`FIXTURE_DOCS` dict of fabricated source text, and a ground-truth list
-straddling a discovery-date cutoff, small enough that `hte.runner.
-run_campaign` against it needs only a handful of distinct LLM calls to
-seed a replay-only test fixture cache. The toy subject is an astronomical
-sighting (a comet), deliberately picked over the package's own earlier
-draft (a chemical-compound synthesis, dropped 2026-09-09 after it drew a
-live safety refusal from the preservation-critic role on one combinatorial
-placement): astronomy carries no dual-use reading, so every one of this
-corpus's slot combinations reaches every role cleanly.
-"""
 from __future__ import annotations
 
 from ..concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -36,7 +22,6 @@ FIXTURE_DOCS: dict[str, str] = {
         "confirmation and downgraded the claim to unconfirmed."
     ),
 }
-
 
 def _vocab() -> Vocabulary:
     by_slot = {
@@ -63,20 +48,7 @@ def _vocab() -> Vocabulary:
     }
     return Vocabulary(by_slot=by_slot)
 
-
 def build() -> Corpus:
-    """The fixture corpus: three `Source`s (`doc-alpha`, `doc-beta`,
-    `doc-gamma`), each with milestone-style evidence anchored into
-    `FIXTURE_DOCS`, and a matching `GroundTruthEvent` per evidence item,
-    sharing that item's own id (the same 1:1 correspondence `hte.corpus.
-    quantum_history` gets for free from its card format, built by hand
-    here). `doc-alpha` and `doc-gamma` each straddle the year-1960
-    discovery-date cutoff `tests/test_calibrate.py` exercises, with
-    opposite outcomes: `doc-alpha`'s post-cutoff item corroborates its
-    pre-cutoff claim, `doc-gamma`'s post-cutoff item (`is_absence=True`)
-    downgrades it. `doc-beta` sits entirely after the cutoff and is not
-    split-worthy at it, exercising `holdout_by_discovery_date`'s own
-    "no split" case."""
     sources = {
         "doc-alpha": Source(id="doc-alpha", kind=EvidenceKind.TEXTUAL, date="1950", stemma_parents=[]),
         "doc-beta": Source(id="doc-beta", kind=EvidenceKind.TEXTUAL, date="2010", stemma_parents=["doc-alpha"]),
@@ -139,6 +111,5 @@ def build() -> Corpus:
     ]
 
     return Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=_vocab())
-
 
 __all__ = ["build", "FIXTURE_DOCS"]

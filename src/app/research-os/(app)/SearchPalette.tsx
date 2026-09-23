@@ -16,7 +16,6 @@ interface Hit {
   stage: string | null;
 }
 
-/** One search, everywhere: Ctrl or Cmd K opens it; Enter opens the node. */
 export default function SearchPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
   const [q, setQ] = useState("");
@@ -53,7 +52,6 @@ export default function SearchPalette({ open, onClose }: { open: boolean; onClos
           setHits(j.results);
           setSel(0);
         } else {
-          // No hits and a failed read rendered the same empty list.
           setNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
           setHits([]);
         }

@@ -1,4 +1,3 @@
-/** Load a person's cross-branch connections (connections.ts) from the graph. Server-only. */
 import { graphService, inChunks, pagedRead } from "./db";
 import { authorizeNodes, readVisibility, storeWithNodes } from "./read-access";
 import type { NodeAccess } from "./access";
@@ -7,21 +6,6 @@ import type { Stage } from "./types";
 
 type EdgeRow = { id: string; from_id: string; to_id: string; kind: string };
 
-/**
- * Every non-prerequisite edge touching one of these nodes, each exactly
- * once.
- *
- * Two things make that true. `id` is the final sort key on both reads,
- * because a page boundary landing inside a group of edges sharing a pair
- * would otherwise repeat one and skip another, and `id` is the primary
- * key so the order it completes is total. And an edge whose two ends are
- * both in `ids` comes back from both reads, so the results merge by that
- * same key. Nothing downstream deduplicates: a repeat inflates a held
- * count and a skip loses a connection.
- *
- * Exported for `scripts/test-research-os-connections-paging.ts`, which
- * seeds past the row cap and checks both properties.
- */
 export async function loadTouchingEdges(ids: string[]): Promise<ConnEdge[]> {
   const svc = graphService();
   const [out, inn] = await Promise.all([
@@ -35,9 +19,6 @@ export async function loadTouchingEdges(ids: string[]): Promise<ConnEdge[]> {
 
 export async function loadConnections(learnerId: string) {
   const svc = graphService();
-  // This read feeds every id below it, and it was neither ordered nor
-  // paged, so the connection counters capped at a thousand states
-  // whatever the reads under them did.
   const stateRows = await pagedRead<{ node_id: string; stage: Stage }>((page) =>
     svc
       .from("learner_node_state")
@@ -53,10 +34,6 @@ export async function loadConnections(learnerId: string) {
   const edges: ConnEdge[] = await loadTouchingEdges(ids);
   const nodeIds = Array.from(new Set(edges.flatMap((e) => [e.fromId, e.toId])));
   if (nodeIds.length === 0) return { held: [], bridges: [] };
-  // A bridge points at a node the learner holds no state on, which is
-  // exactly the node they may have no right to see, so the titles are
-  // filtered before they are joined (Bucket critic C20). The select
-  // carries visibility and owner, so the decision costs no extra read.
   type NodeRow = ConnNode & { visibility: string | null; owner_id: string | null };
   const nodeRows = await inChunks<NodeRow>(nodeIds, (chunk, page) => svc.from("nodes").select("id,slug,title,branch,kind,visibility,owner_id").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>);
   const access: NodeAccess[] = nodeRows.map((n) => ({

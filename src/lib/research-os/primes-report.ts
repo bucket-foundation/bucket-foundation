@@ -1,14 +1,3 @@
-/**
- * The prime report as data for a page (ros-frontend 1): what
- * scripts/research-os/primes-report.ts prints, computed from the graph's
- * public current nodes and their factor edges. `buildPrimesReport` is pure
- * and tested in scripts/test-research-os-primes-report.ts; `loadPrimesReport`
- * reads the graph.
- *
- * Every read pages with `.range()` under an `.order("id")`, since PostgREST
- * caps a response at 1,000 rows and Postgres keeps no stable order across
- * pages without one.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { pagedRead } from "./paging";
 import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
@@ -93,7 +82,6 @@ function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy
   });
 }
 
-/** Reads the graph and builds the report. Throws when a read fails, so the page can say the graph did not answer. */
 export async function loadPrimesReport(svc: SupabaseClient): Promise<PrimesReport> {
   const [nodeRows, edgeRows, reviewed] = await Promise.all([
     readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null)),

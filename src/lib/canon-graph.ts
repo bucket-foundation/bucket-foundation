@@ -1,5 +1,3 @@
-// canon-graph.ts, server-only loader for the canon collaboration graph.
-
 import fs from "fs";
 import path from "path";
 
@@ -22,7 +20,6 @@ export function getCanonGraph(): CanonGraph {
     ? (JSON.parse(fs.readFileSync(centPath, "utf-8")) as { degree: Record<string, number>; weighted: Record<string, number> })
     : { degree: {}, weighted: {} };
 
-  // Filter nodes to only those that participate in edges
   const inEdge = new Set<string>();
   for (const e of graph.edges) {
     inEdge.add(e.source);

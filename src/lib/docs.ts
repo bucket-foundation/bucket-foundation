@@ -1,7 +1,3 @@
-/**
- * Server-side doc loader. Reads strategic markdown docs from the repo root
- * at build time. No deps.
- */
 import fs from "fs";
 import path from "path";
 

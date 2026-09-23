@@ -1,9 +1,5 @@
 "use client";
 
-// CellSegTrack client island, cell segmentation (cellpose if installed, else a
-// real Otsu + distance-transform watershed). Render is "json". `image` is a
-// 2-D numeric array (rows) or "demo".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -36,9 +32,7 @@ function parseImage(raw: string): number[][] | null {
       if (rows.every((r) => r.every((x) => Number.isFinite(Number(x))))) return rows;
     }
   } catch {
-    /* fall through to line parser */
   }
-  // line-per-row, space/comma separated
   const lines = t.split(/\n/).map((l) => l.trim()).filter(Boolean);
   if (lines.length < 2) return null;
   const rows = lines.map((l) => l.split(/[\s,]+/).map(Number));

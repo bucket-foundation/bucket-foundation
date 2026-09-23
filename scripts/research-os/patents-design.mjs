@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-/**
- * Builds src/lib/research-os/patents-design-data.json from
- * learning/research-os/PATENTS.md and the ros-patents rows queued in
- * BEADS-PENDING.jsonl, for the Patents page in Research OS.
- *
- *   node scripts/research-os/patents-design.mjs          # write the JSON
- *   node scripts/research-os/patents-design.mjs --check  # exit 1 when the JSON is stale
- */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -46,7 +38,6 @@ for (const l of fs.readFileSync(BEADS, "utf8").split("\n")) {
   if (!l.trim()) continue;
   const b = JSON.parse(l);
   const m = String(b.title ?? "").match(/^ros-patents (\d+): (.+)$/);
-  // A slice has shipped when the memo carries its section.
   if (m) slices.push({ n: Number(m[1]), title: m[2], shipped: lines.some((x) => x.startsWith(`## Slice ${m[1]}:`)) });
 }
 const seen = new Set();

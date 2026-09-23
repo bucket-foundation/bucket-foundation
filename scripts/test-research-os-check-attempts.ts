@@ -1,21 +1,3 @@
-/**
- * Unit tests: the persisted held-attempt store's pure pieces
- * (src/lib/research-os/check-attempts-db.ts), the production twin of
- * forcing.ts's in-memory Map (bkt-ros, learning/research-os/
- * PLAN-REVISION-2.md section 2a). Matches this repo's established
- * convention for a DB-touching module (see privacy.ts's own header): the
- * functions that call Supabase go untested directly; every non-trivial
- * decision they make is factored into pure functions instead, which ARE
- * tested here: mapCheckAttemptRow (row -> PendingCheckAttempt) and
- * isPastHardExpiry (the 24-hour hard-expiry check), plus a full
- * store-and-reveal walk built from forcing.ts's own checkAttemptAccess and
- * finalizeReveal, the exact functions dbGetPendingAttempt and
- * dbRevealPendingAttempt call, so this test exercises the real gate logic
- * the persisted store runs, rather than a parallel reimplementation of it.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-check-attempts.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { mapCheckAttemptRow, isPastHardExpiry, HARD_EXPIRY_MS } from "../src/lib/research-os/check-attempts-db";
@@ -49,19 +31,10 @@ function row(overrides: Partial<Parameters<typeof mapCheckAttemptRow>[0]> = {}) 
   };
 }
 
-// ---------------------------------------------------------------------------
-// HARD_EXPIRY_MS: the outer, 24-hour bound (distinct from forcing.ts's
-// 30-minute ATTEMPT_TTL_MS commit window).
-// ---------------------------------------------------------------------------
-
 test("HARD_EXPIRY_MS is exactly 24 hours, and strictly longer than the 30-minute commit window", () => {
   assert.equal(HARD_EXPIRY_MS, 24 * 60 * 60 * 1000);
   assert.ok(HARD_EXPIRY_MS > ATTEMPT_TTL_MS, "the hard expiry is an outer bound, not a replacement for the commit window");
 });
-
-// ---------------------------------------------------------------------------
-// mapCheckAttemptRow: a Supabase row -> forcing.ts's PendingCheckAttempt
-// ---------------------------------------------------------------------------
 
 test("mapCheckAttemptRow: carries every field through, including the createdAt timestamp conversion", () => {
   const createdAtIso = new Date(1_700_000_000_000).toISOString();
@@ -82,26 +55,16 @@ test("mapCheckAttemptRow: a null session_id becomes undefined, matching an in-me
   assert.equal(pending.sessionId, undefined);
 });
 
-// ---------------------------------------------------------------------------
-// isPastHardExpiry: the 24-hour outer bound
-// ---------------------------------------------------------------------------
-
 test("isPastHardExpiry: false just under 24 hours, true just past it", () => {
   const createdAtIso = new Date(1_000_000).toISOString();
   assert.equal(isPastHardExpiry(createdAtIso, 1_000_000 + HARD_EXPIRY_MS - 1), false);
   assert.equal(isPastHardExpiry(createdAtIso, 1_000_000 + HARD_EXPIRY_MS + 1), true);
 });
 
-// ---------------------------------------------------------------------------
-// The full persisted-store walk, built from forcing.ts's own shared gate
-// functions: this is what dbGetPendingAttempt and dbRevealPendingAttempt
-// run, minus the Supabase I/O.
-// ---------------------------------------------------------------------------
-
 test("persisted store walk: a fresh row within both TTLs is accessible and reveals with both forcing fields", () => {
   const createdAt = 1_000_000;
   const dbRow = row({ created_at: new Date(createdAt).toISOString() });
-  const now = createdAt + 5 * 60 * 1000; // 5 minutes later
+  const now = createdAt + 5 * 60 * 1000;
   assert.equal(isPastHardExpiry(dbRow.created_at, now), false);
   const pending = mapCheckAttemptRow(dbRow);
   const access = checkAttemptAccess(pending, "learner-1", now, ATTEMPT_TTL_MS);

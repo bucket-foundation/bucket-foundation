@@ -1,8 +1,3 @@
-/**
- * A layered layout for a branch of the graph: columns by tier, rows by a
- * barycenter ordering over prerequisite edges so chains read left to
- * right with few crossings. Pure; the map draws the result.
- */
 export interface LayoutNode {
   id: string;
   tier: number;
@@ -62,7 +57,6 @@ export function layoutGraph(nodes: LayoutNode[], edges: LayoutEdge[]): Layout {
   }
   const rows = Math.max(1, ...byCol.map((c) => c.length));
   const placed: Placed[] = [];
-  // Columns align to the top, so the first screen of a tall branch shows nodes.
   byCol.forEach((c, ci) => {
     c.forEach((n, ri) => placed.push({ id: n.id, col: ci, row: ri, x: PAD_X + ci * COL_W, y: PAD_Y + ri * ROW_H }));
   });

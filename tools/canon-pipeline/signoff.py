@@ -1,36 +1,4 @@
 #!/usr/bin/env python3
-"""Human sign-off CLI for bucket-canon/ canon records.
-
-GOVERNANCE.md's "Canon sign-off" section requires a named human to approve
-every record `tools/canon-pipeline/intake.py` lands with a
-`provenance_signoff: "pending: <name>"` field before that record counts as
-approved canon; `src/lib/canon-primary.ts`'s `isPendingSignoff` gate is the
-read side that enforces it. This is the write side: the only sanctioned way
-to move a record's `provenance_signoff` out of "pending".
-
-See `tools/canon-pipeline/SIGNOFF.md` for the full policy, the two env
-allowlists behind the web page (`/canon/signoff`), and a founder runbook for
-the records pending sign-off right now. See `signoff_core.py`'s own top
-docstring for the write strategy and the "two signoff vocabularies" note
-(this tool vs. the hypothesis engine's `signed_off_by` write-back path).
-
-Usage:
-    python3 tools/canon-pipeline/signoff.py list [--json]
-    python3 tools/canon-pipeline/signoff.py approve <record> --by <name> [--offline] [--json]
-    python3 tools/canon-pipeline/signoff.py reject <record> --by <name> --reason <text> [--json]
-    python3 tools/canon-pipeline/signoff.py audit [--json]
-
-<record> is a record id (e.g. bkt-2f40cfaacd63), "<path>#<id>", or a bare
-path to a primary-papers.yaml file / its concept directory when it carries
-exactly one pending record. `list` prints the exact "<path>#<id>" form
-every row's own reference argument.
-
-approve refuses (exit 1) if the record's DOI does not resolve via a HEAD
-request; pass --offline to skip that check (required if the record has no
-DOI at all). Both approve and reject are idempotent: repeating the same
-verb on an already-approved / already-rejected record is a no-op that
-prints a message and exits 0.
-"""
 from __future__ import annotations
 
 import argparse
@@ -44,10 +12,8 @@ if __package__ in (None, ""):
 else:
     from . import signoff_core as core  # type: ignore
 
-
 def _record_ref(root: Path, r: "core.PendingRecord") -> str:
     return f"{r.path}#{r.id}"
-
 
 def cmd_list(args) -> int:
     records = core.list_pending()
@@ -64,7 +30,6 @@ def cmd_list(args) -> int:
     print(f"\n{len(records)} pending record(s)")
     return 0
 
-
 def cmd_approve(args) -> int:
     try:
         result = core.approve(args.record, args.by, offline=args.offline)
@@ -79,7 +44,6 @@ def cmd_approve(args) -> int:
         print(f"approved {result['id']} ({result['path']}) by {args.by}: {result['value']}")
     return 0
 
-
 def cmd_reject(args) -> int:
     try:
         result = core.reject(args.record, args.by, args.reason)
@@ -93,7 +57,6 @@ def cmd_reject(args) -> int:
     else:
         print(f"rejected {result['id']} ({result['path']}) by {args.by}: {result['value']}")
     return 0
-
 
 def cmd_audit(args) -> int:
     result = core.audit()
@@ -114,7 +77,6 @@ def cmd_audit(args) -> int:
         for e in result.engine_events:
             print(f"  {e['date'] or '(unknown date)'}  signed off by {e['by']}")
     return 0
-
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(
@@ -147,7 +109,6 @@ def main(argv=None) -> int:
 
     args = p.parse_args(argv)
     return args.func(args)
-
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -1,8 +1,3 @@
-/**
- * The Runtime and Model gate arithmetic (ros-ai-find): percentiles by
- * nearest rank, the summaries a load run produces, and the two verdicts,
- * including the runs that have to fail. node:test, no network, no stack.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -280,7 +275,6 @@ test("the fixtures are well formed, and each query avoids its target's own words
     ids.add(c.id);
     assert.match(c.branch, /^\d{2}-[a-z][a-z-]*$/, `case ${c.id} names a branch`);
     assert.ok(c.query.length <= 512, `case ${c.id} is inside the query bound`);
-    // The slug's own words are what keyword search would match on.
     const words = new Set(c.query.toLowerCase().match(/[a-z]+/g) ?? []);
     const shared = c.expect
       .split("-")
@@ -317,8 +311,6 @@ test("saturationVerdict: queue refusals that become degraded answers pass", () =
 });
 
 test("saturationVerdict: a degraded answer no counter explains fails", () => {
-  // The worker refused nothing, so the dense ranking was lost somewhere
-  // the worker never saw, and the caller still read a working search.
   const degraded = [
     ...Array.from({ length: 30 }, () => ok(300)),
     ...Array.from({ length: 10 }, () => ({ ms: 300, status: 200, mode: "lexical" as const, result: "degraded" as const })),

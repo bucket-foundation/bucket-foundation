@@ -1,76 +1,3 @@
-"""Turn a completed `hte.runner.run_campaign` run into canon-facing
-material: this package's own path from engine output to `bucket-canon/`,
-the write-back half of the *build-history* campaign (`docs/BUILD-
-HISTORY.md`).
-
-A run directory on disk (`MANIFEST.json`, `timeline.json`, `calibration.
-json`, `self-report.json`, `hte.artifacts.load_run`'s own contract)
-carries every survivor's short id, address, slots, projected posterior,
-full opinion, and Elo (`timeline.json`'s own `bins[].ranked_hypotheses`,
-its `opinion` field since `bkt-hte-timeline-opinion-export`), but not its
-linked evidence or its exact dated interval: `hte.export.timeline_views`
-prunes to exactly the fields `TIMELINE.md` displays plus that opinion,
-keeping only which time BIN a hypothesis fell in
-(`time_bin_index(interval.start, ...)`), never its own interval's real
-start and end. `write_back` recovers the rest by re-ingesting the run's
-own corpus (a pure, deterministic, no-LLM call for every corpus this
-package ships, `hte.corpus.quantum_history`/`sacred_history`'s own
-module docstrings) and re-running `hte.link.link_evidence` and `hte.
-belief.score` over a `Placement` rebuilt from each survivor's own
-persisted slots and time bin, its own interval reconstructed as that
-bin's own full span (`hte.generate._interval_for_bin`'s own convention,
-exactly matching every `combinatorial_sample`-generated hypothesis, the
-majority of a typical frontier); this recomputed opinion, never the
-persisted one, is what every `Candidate` below carries, so a reconstruction
-difference (this same docstring, two paragraphs down) still applies to it
-exactly as before.
-
-`hte.link.link_evidence`'s own per-pair decision depends only on `(item,
-hypothesis, vocab, threshold)`, never on which other hypotheses share
-the call, so relinking against just the survivor population this module
-reconstructs reproduces, for each address, the same supports/refutes
-reading the original run's own full-frontier link pass gave it, for
-every SLOT match; the one place this reconstruction can diverge from the
-original in-memory run is a hypothesis whose own interval `hte.generate.
-from_evidence` or an LLM-proposed hypothesis narrowed below its bin's
-full span, since that narrower interval is exactly what this module
-cannot recover from `timeline.json` alone. Checked empirically against
-`runs/quantum-history/20260910T085020Z` (2026-09-10): every hypothesis
-whose own origin was `combinatorial_sample` reproduces its persisted
-posterior exactly; a hypothesis from `from_evidence` or the generator
-role can differ, since its own interval was narrower than this
-reconstruction's bin-span default. This module's own opinions are still
-real, internally consistent computations over real linked evidence
-under the run's own vocabulary and constants; a difference from the
-persisted number is this reconstruction's own documented approximation,
-since the original run's own transient in-memory number was itself
-never persisted in full.
-
-`write_back` never promotes a card past `canon_tier: candidate`: per
-`GOVERNANCE.md`, promotion to `canon` stays a human step. A card above
-this module's own credence floor is candidate material, a step short of
-a canon verdict.
-
-`write_back` also never writes a file under `bucket-canon/` unattended:
-per `learning/research-os/PLAN.md` section 10 ("a named human sign-off
-on every hypothesis that crosses into canon, alongside the judge score")
-and `GOVERNANCE.md`, every write is gated on `signoff`, a named human
-approver string. A missing or blank `signoff` is a hard refusal
-(`ValueError`) before any file touches disk; a present `signoff` is
-recorded in every card's provenance section, the envelope's per-item
-provenance, and the `CANON-INGESTION-INDEX.md` addendum, so the approver
-is legible from the entry itself, not just from the PR that shipped it.
-
-`write_back` carries three more `PLAN.md` section 10 gates
-(`bkt-hte-ros-11-review-items`), each a module of its own this file
-imports: `hte.holdout_ledger` (a persisted, append-only ranking track
-record; every card's Elo carries `hte.holdout_ledger.ranking_status`'s
-own current label instead of a fixed "unvalidated" string), `hte.novelty`
-(a lexical novelty score against `bucket-canon/`, recorded but not
-gating), and `hte.roles.understanding` (a plain-language explanation per
-candidate, gating: a blank explanation for even one candidate refuses
-the whole write, the same no-partial-state guarantee `signoff` gets).
-"""
 from __future__ import annotations
 
 import json
@@ -98,10 +25,6 @@ from .timeline import Interval
 
 logger = logging.getLogger("hte.canon_writeback")
 
-# `tools/hypothesis-engine/hte/canon_writeback.py` -> parents[3] is the
-# repo root (`bucket-foundation/`), one level shallower than `hte.corpus.
-# sacred_history`'s own `parents[4]` since this file sits directly under
-# `hte/` rather than under `hte/corpus/`.
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FEED_TOOL_DIR = REPO_ROOT / "tools" / "feed"
 
@@ -111,18 +34,11 @@ _SLOT_BY_NAME: dict[str, Slot] = {
     "PLACE": Slot.PLACE, "MECHANISM": Slot.MECHANISM,
 }
 
-CANON_TIER = "candidate"  # write_back never writes "canon"; see GOVERNANCE.md
-# `bkt-hte-retraction-propagation`: the tier a card gets when its own
-# support routed through a node this run's own cascade retracted
-# (`hte.propagate.CascadeReport.addresses`), in place of `CANON_TIER`.
+CANON_TIER = "candidate"
 CONTESTED_TIER = "contested"
-
 
 @dataclass
 class Candidate:
-    """One reconstructed survivor: the rebuilt `Hypothesis`, its re-scored
-    `Opinion`, its persisted Elo, its slots and interval, and the
-    evidence items that support or refute its own address."""
     hypothesis: Hypothesis
     opinion: Opinion
     elo: float | None
@@ -142,33 +58,8 @@ class Candidate:
     def short_id(self) -> str:
         return self.hypothesis.short_id
 
-
 @dataclass
 class RunContext:
-    """The manifest, corpus, and vocabulary a run's own candidates were
-    reconstructed against, carried alongside `list[Candidate]` so a
-    caller needs no second `load_run`/re-ingest to render a card.
-
-    `unrecoverable_survivor_ids` (`bkt-hte-writeback-review`, PR #36's
-    own review): every short id `run_dir`'s own `timeline.json` names as
-    a real survivor (`event_views`, which partitions every placement-
-    type survivor by its own (OBJECT, PLACE) pair, `hte.export.
-    timeline_views`'s own construction, exhaustively) but that carries
-    no entry in any `bins[].ranked_hypotheses` (`hte.runner.
-    _time_bins_for`'s own declared bin set not covering that survivor's
-    real time bin, `docs/BUILD-HISTORY.md`'s own "262 of 299" finding on
-    the sacred-history run) -- `reconstruct_candidates` has no persisted
-    slots or address to rebuild an id like that from `timeline.json`
-    alone, so it is left out of `list[Candidate]` rather than fabricated.
-    This tuple is where that gap goes instead of only a `logger.warning`
-    line: `len(candidates) + len(unrecoverable_survivor_ids)` is the
-    full survivor population `timeline.json` names, so a caller (or a
-    test) can assert real reconstruction coverage rather than read a
-    `select_above_floor` result assuming it saw every survivor when it
-    structurally could not have. Closing this gap for real (recovering
-    an unrecoverable id's own slots) needs a fix inside `hte.export`/
-    `hte.runner` (carrying an address into every `event_views` entry
-    too), out of this module's own file scope on this branch."""
     run_dir: Path
     manifest: artifacts_mod.ManifestArtifact
     corpus: Corpus
@@ -176,22 +67,9 @@ class RunContext:
 
     @property
     def run_id(self) -> str:
-        """`hte.api._build_response`'s own `run_id` convention
-        (`f"{campaign}-{timestamp}"`), reused here so a run has exactly
-        one id across every surface that names it."""
         return f"{self.manifest.campaign}-{self.manifest.timestamp}"
 
-
 def _replay_vocab_growth(vocab: Vocabulary, vocab_added: list[dict[str, Any]]) -> None:
-    """A fresh `hte.corpus.<name>.ingest()`/`.load()` call returns a
-    corpus built from its own static seed vocabulary, missing any
-    concept `hte.runner.run_campaign`'s own `_grow_vocab` (the unknown-
-    unknown role) appended to the in-memory vocab at run time. `MANIFEST.
-    json["counts"]["vocab_added"]` (`hte.artifacts.RunCounts.vocab_added`)
-    is that run's own append log; replaying it here is what lets a
-    survivor whose own address names one of those grown concepts decode
-    and re-encode at all, since `hte.hypothesis.Placement.address` raises
-    `KeyError` over any concept id its own vocabulary does not carry."""
     for growth in vocab_added:
         try:
             slot = Slot(growth["slot"])
@@ -206,42 +84,13 @@ def _replay_vocab_growth(vocab: Vocabulary, vocab_added: list[dict[str, Any]]) -
             prior_logit=0.0, consensus_status=ConsensusStatus.CONTESTED,
         ))
 
-
 def _corpus_loader(corpus_name: str):
-    from .runner import _CORPUS_LOADERS  # imported lazily: avoids a hte.runner <-> hte.canon_writeback import cycle
+    from .runner import _CORPUS_LOADERS
     if corpus_name not in _CORPUS_LOADERS:
         raise ValueError(f"hte.canon_writeback: unknown corpus {corpus_name!r}, expected one of {sorted(_CORPUS_LOADERS)}")
     return _CORPUS_LOADERS[corpus_name]
 
-
 def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunContext]:
-    """Every survivor `run_dir` carries in `timeline.json`, reconstructed
-    into a `Candidate` with a real `(b, d, u, a)` opinion, dated interval,
-    and linked evidence, plus the `RunContext` (manifest, corpus) it was
-    reconstructed against. See this module's own top docstring for why
-    this reconstruction reproduces the original run's own scoring
-    exactly.
-
-    A short id named in `timeline.json`'s own `event_views` but absent
-    from every `bins[].ranked_hypotheses` entry (a hypothesis generated
-    at a time bin `hte.runner._time_bins_for` did not include in the
-    run's own declared `time_bins`; real on the sacred-history run,
-    `docs/BUILD-HISTORY.md`'s own "262 of 299" finding) carries no
-    persisted slots to reconstruct from; it is logged AND carried by
-    name on the returned `RunContext.unrecoverable_survivor_ids`
-    (`bkt-hte-writeback-review`), rather than only logged and silently
-    absent from the returned `list[Candidate]` the way it read before.
-    `event_views` partitions every placement-type survivor by its own
-    (OBJECT, PLACE) pair exhaustively (`hte.export.timeline_views`'s own
-    construction: every placement lands in exactly one event), so the
-    union of every `event_views[].competing_placements` entry is the
-    full survivor population this run's own artifacts name, `bins[]`
-    entries alone are not; using that union (rather than `bins[]`'s own
-    narrower coverage) as the population this function checks completeness
-    against is what lets a caller (or `select_above_floor`'s own caller)
-    tell "every survivor accounted for" from "quietly missing some" by
-    reading `RunContext` alone.
-    """
     run_dir = Path(run_dir)
     run = artifacts_mod.load_run(run_dir)
     manifest = run.manifest
@@ -267,14 +116,6 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
             if hid and hid not in by_short_id:
                 by_short_id[hid] = {"entry": entry, "time_bin": tbin, "bin_label": bin_label}
 
-    # `named_elsewhere`: the union of every `event_views[].
-    # competing_placements` entry, the full placement-type survivor
-    # population `timeline.json` names (`event_views` partitions every
-    # placement exhaustively by its own (OBJECT, PLACE) pair, `hte.
-    # export.timeline_views`'s own construction; see this function's own
-    # docstring). `by_short_id` alone, sourced only from `bins[]`, is
-    # `hte.runner._time_bins_for`'s own declared-bin subset of that same
-    # population, real ground the "262 of 299" finding measured.
     named_elsewhere = {sid for ev in run.timeline.event_views for sid in ev.get("competing_placements", [])}
     unrecoverable: list[str] = sorted(named_elsewhere - set(by_short_id))
     if unrecoverable:
@@ -312,12 +153,6 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
     table = load_detectability_table()
     constants = Constants()
 
-    # No `sources=`/`stemma_edge_weights=` here: `hte.runner.run_campaign`'s
-    # own `belief_score` call (the one this reconstruction must match)
-    # passes neither, so `pooled_weight`'s stemma discount falls back to a
-    # raw per-kind item count on both sides, matching that original call
-    # exactly rather than adding a discount the run being reconstructed
-    # never applied.
     def score_fn(hh: Hypothesis, evidence, vocab: Vocabulary) -> Opinion:
         return belief_score(hh, evidence, vocab, table, constants=constants)
 
@@ -342,38 +177,12 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
         unrecoverable_survivor_ids=tuple(sorted(set(unrecoverable))),
     )
 
-
-# --------------------------------------------------------------------------
-# Lift-rank cutoff (STATISTICAL-AUDIT-2026-09-15.md item 5): a single
-# fixed floor over a population the size of a real campaign's candidate
-# pool mismarks both directions. The Benjamini-Hochberg step-up shape is
-# run over `1 - lift`, a score with no null distribution, so the rate it
-# controls is nominal: a permutation or placebo test (the link-shuffle
-# diagnostic in `hte.diagnostics` is the start) is what would license
-# reading it as a false discovery rate. It sits on top of, never in
-# place of, the P/u/lift floor above.
-# --------------------------------------------------------------------------
-
-_LIFT_P_FLOOR = 1e-9  # keeps the clamp's open lower bound (0, ...] strictly above 0
-
+_LIFT_P_FLOOR = 1e-9
 
 def _lift_p_value(opinion: Opinion) -> float:
-    """`1 - lift` clamped to `(0, 1]`, the score the step-up cutoff
-    ranks; it is no p-value, since `lift` has no null distribution here.
-    Built from `lift` and never from `P_uniform` (`P` at a flat `a=0.5`):
-    `lift` reads no prior at all, the property the audit's Younger Dryas
-    finding needed, while `P_uniform` still rewards an unexamined
-    hypothesis through `a * u`."""
     return min(1.0, max(_LIFT_P_FLOOR, 1.0 - opinion.lift()))
 
-
 def _benjamini_hochberg(p_values: Sequence[float], q: float) -> tuple[float | None, list[bool]]:
-    """The BH step-up procedure: the largest rank `k` with the `k`-th
-    smallest p-value `<= (k/m)*q` sets the kept set (ranks `1..k`) and
-    the threshold (that p-value; `None` if no rank clears the bar).
-    `q >= 1.0` always keeps everything, since every score here is
-    already `<= 1.0` and so clears `p_(m) <= (m/m)*q` at the last rank;
-    the same "disable" convention `lift_floor=-1.0` already uses."""
     m = len(p_values)
     if m == 0:
         return None, []
@@ -389,14 +198,8 @@ def _benjamini_hochberg(p_values: Sequence[float], q: float) -> tuple[float | No
         kept[idx] = True
     return threshold, kept
 
-
 @dataclass(frozen=True)
 class FDRSummary:
-    """Step-up cutoff accounting for one `select_above_floor` call.
-    `n_rejected = n_tested - n_kept`, the plain-English "excluded by this
-    gate" count an index reader wants (the statistical "null rejected"
-    sense is `n_kept` instead, since keeping a candidate rejects its own
-    null of "no real evidence edge"; this field names the one used here)."""
     q: float
     threshold: float | None
     n_tested: int
@@ -406,41 +209,15 @@ class FDRSummary:
     def n_rejected(self) -> int:
         return self.n_tested - self.n_kept
 
-
 def fdr_summary(candidates: list[Candidate], *, fdr_q: float = 1.0) -> FDRSummary:
-    """`_benjamini_hochberg` over every candidate's `_lift_p_value`, the
-    same population `select_above_floor` gates on, packaged for
-    reporting rather than filtering."""
     p_values = [_lift_p_value(c.opinion) for c in candidates]
     threshold, kept = _benjamini_hochberg(p_values, fdr_q)
     return FDRSummary(q=fdr_q, threshold=threshold, n_tested=len(candidates), n_kept=sum(kept))
-
 
 def select_above_floor(
     candidates: list[Candidate], *, floor_P: float, floor_u_max: float, lift_floor: float = 0.25,
     fdr_q: float = 1.0,
 ) -> list[Candidate]:
-    """Every candidate at or above the credence floor: `P(h) >= floor_P`,
-    `u <= floor_u_max`, AND evidence-only lift `b - d >= lift_floor`
-    (default `0.25`). All three must hold: the `P`/`u` pair alone lets a
-    claim clear the gate on its prior `a` (`hte.belief.Opinion`'s own
-    docstring), the exact gap the Younger Dryas live run exposed (0.941
-    vs 0.562 off identical evidence, `STATISTICAL-AUDIT-2026-09-15.md`).
-    `lift_floor` reads none of `a`, so admission always needs evidence
-    mass of its own. Delegates to `hte.belief.opinion_clears_floor`, the
-    one predicate `hte.bridge_export.export_for_bridge`'s own `accepted`
-    flag shares, so the two surfaces never drift apart.
-
-    A fourth gate, on top of the floor: `fdr_q` (default `1.0`, off, item 5)
-    runs the BH step-up cutoff over the FULL `candidates` list, never only
-    the floor's own survivors, reported as a lift-rank cutoff and never as
-    a calibrated false discovery rate (`_lift_p_value`). Off by default
-    until a permutation null licenses a rate: at `q=0.10` over a real
-    campaign's hundreds of candidates the first rank needs a score below
-    `q/m`, a lift above 0.99, which no evidence-bound hypothesis reaches. `fdr_q=1.0` disables it, the same
-    convention `lift_floor=-1.0` already uses; a caller isolating the
-    P/u/lift floor passes it explicitly, as existing callers already do
-    for `lift_floor=-1.0`."""
     p_values = [_lift_p_value(c.opinion) for c in candidates]
     _, bh_kept = _benjamini_hochberg(p_values, fdr_q)
     return [
@@ -448,19 +225,12 @@ def select_above_floor(
         if kept and opinion_clears_floor(c.opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
     ]
 
-
-# --------------------------------------------------------------------------
-# Card rendering
-# --------------------------------------------------------------------------
-
-
 def _label_of(corpus: Corpus, slot_name: str, concept_id: str | None) -> str:
     if concept_id is None:
         return "(unset)"
     slot = _SLOT_BY_NAME[slot_name]
     concept = corpus.vocab.get(slot, concept_id)
     return concept.label if concept is not None else concept_id
-
 
 def _statement(corpus: Corpus, candidate: Candidate) -> str:
     slots = candidate.slots
@@ -471,18 +241,7 @@ def _statement(corpus: Corpus, candidate: Candidate) -> str:
     mechanism = _label_of(corpus, "MECHANISM", slots.get("MECHANISM"))
     return f"{actor} {action} {obj}, in the context of {place}, via {mechanism}."
 
-
 def _evidence_line(item: EvidenceItem) -> str:
-    """`bkt-hte-full-document-evidence`: carries the field-level grounding
-    `hte.evidence.EvidenceSpan` already stores (`doc_id`, `locator`,
-    `char_start`, `char_end`), not only the quote, so a claim's own
-    evidence is auditable from the card alone. `PLAN.md` section 10 asks
-    for full-document context over an isolated snippet; `doc_id` plus
-    `locator` is the full-text pointer a reader follows back to that
-    document, and `char_start`/`char_end` is the exact passage span this
-    item's own quote was drawn from within it, so a reviewer (or a later
-    audit) can re-locate the claim's own source material precisely,
-    never only trust the quoted string in isolation."""
     quote = item.span.quote.strip()
     if len(quote) > 220:
         quote = quote[:217].rstrip() + "..."
@@ -492,55 +251,21 @@ def _evidence_line(item: EvidenceItem) -> str:
         f"\"{quote}\" -- {span.locator} (doc `{span.doc_id}`, chars {span.char_start}-{span.char_end})"
     )
 
-
 def _evidence_detail(item: EvidenceItem) -> dict[str, Any]:
-    """The envelope's own auditable form of `_evidence_line`: one dict
-    per linked evidence item, `doc_id`/`locator`/`char_start`/`char_end`
-    alongside the quote, tier, source, and stance. `build_envelope`
-    carries this in a new `supports_detail`/`refutes_detail` pair,
-    additive next to the existing `supports`/`refutes` id lists, so an
-    existing reader of those two id lists sees no shape change."""
     return {
         "id": item.id, "tier": item.tier.value, "source_id": item.source_id, "stance": item.stance.value,
         "quote": item.span.quote, "doc_id": item.span.doc_id, "locator": item.span.locator,
         "char_start": item.span.char_start, "char_end": item.span.char_end,
     }
 
-
 def _fmt_opt(value: float | None, decimals: int = 3) -> str:
-    """`bkt-hte-retraction-propagation`: `render_card`'s own display
-    rounding for a `CascadeEntry.old_p` that can read `None` (a
-    candidate this run's cascade touched but that carried no opinion
-    before this run at all, `hte.propagate.propagate`'s own documented
-    case for a `changed` address absent from the given `opinions`)."""
     return f"{value:.{decimals}f}" if value is not None else "(none)"
-
 
 def render_card(
     candidate: Candidate, ctx: RunContext, *, branch: str, signoff: str,
     understanding: str, novelty: novelty_mod.NoveltyResult, elo_label: str | None = None,
     canon_tier: str = CANON_TIER, cascade_entry: "propagate_mod.CascadeEntry | None" = None,
 ) -> str:
-    """`understanding` is the plain-language explanation `hte.canon_
-    writeback.write_back` generates through `hte.roles.understanding`
-    before calling this function; `write_back` refuses to write any card
-    at all when that text comes back blank (`bkt-hte-understanding-
-    artifact`, `PLAN.md` section 10). `novelty` is this candidate's own
-    `hte.novelty.check_novelty` result against `bucket-canon/`, computed
-    the same way. `elo_label` is the ranking-holdout disclaimer sentence
-    `hte.holdout_ledger.ranking_status` produced for this write-back pass
-    (`None` defaults to that module's own unvalidated-state text, so a
-    caller with no ledger state on hand still gets a correct card).
-
-    `canon_tier` defaults to the module constant (`CANON_TIER`,
-    `"candidate"`); `write_back` passes `"contested"` instead
-    (`bkt-hte-retraction-propagation`) for a candidate whose own address
-    appears in `cascade_entry` (`hte.propagate.CascadeReport.entries`,
-    meaning this candidate's own support routed through a node this
-    run's own cascade retracted). `cascade_entry` given (only under
-    `canon_tier == "contested"`) adds a "Retraction cascade" section
-    naming the old and new projected probability, hop count, and
-    routed share this candidate's own address carried in that cascade."""
     corpus = ctx.corpus
     manifest = ctx.manifest
     opinion = candidate.opinion
@@ -663,10 +388,7 @@ def render_card(
     ]
     return "\n".join(lines) + "\n"
 
-
 def _fdr_header_line(fdr: "FDRSummary") -> str:
-    """The write-back index header's cutoff line (item 5): the step-up
-    threshold and reject count (`FDRSummary.n_rejected`'s own docstring)."""
     if fdr.q >= 1.0:
         return f"Lift-rank cutoff off (q={fdr.q:.2f}): all {fdr.n_tested} candidate(s) pass this gate."
     if fdr.threshold is None:
@@ -678,7 +400,6 @@ def _fdr_header_line(fdr: "FDRSummary") -> str:
         f"Lift-rank cutoff (BH step-up, q={fdr.q:.2f}): threshold score<={fdr.threshold:.3f}; "
         f"{fdr.n_rejected} of {fdr.n_tested} candidate(s) rejected."
     )
-
 
 def render_index(
     cards: list[tuple[Candidate, Path]], *, branch: str, elo_label: str | None = None,
@@ -708,12 +429,6 @@ def render_index(
     lines.append("")
     return "\n".join(lines)
 
-
-# --------------------------------------------------------------------------
-# CANON-INGESTION-INDEX.md addendum
-# --------------------------------------------------------------------------
-
-
 def _ingestion_index_addendum(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, signoff: str) -> str:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = [
@@ -736,22 +451,12 @@ def _ingestion_index_addendum(cards: list[tuple[Candidate, Path]], *, branch: st
     lines.append("")
     return "\n".join(lines)
 
-
 def _append_ingestion_index(addendum: str) -> Path:
     path = REPO_ROOT / "CANON-INGESTION-INDEX.md"
     existing = path.read_text(encoding="utf-8") if path.is_file() else ""
     separator = "\n" if existing.endswith("\n") else "\n\n"
     path.write_text(existing + separator + addendum, encoding="utf-8")
     return path
-
-
-# --------------------------------------------------------------------------
-# feed events (`tools/feed/feed.py`'s own API; see this module's top
-# docstring and `CANON-CONTRIBUTIONS-2026-09-10.md` Part 4 for the same
-# convention a prior canon-ingestion pass over this package's own output
-# used)
-# --------------------------------------------------------------------------
-
 
 def _current_commit_sha() -> str:
     try:
@@ -763,22 +468,11 @@ def _current_commit_sha() -> str:
     except Exception:  # noqa: BLE001 - a missing git binary or a non-repo cwd both fall back to the same placeholder
         return "uncommitted"
 
-
 def _feed_events_for_cards(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext) -> list[dict[str, Any]]:
-    """One `add_canon_entry` feed event per card plus one for the
-    branch's own `hypotheses/INDEX.md`, built through `tools/feed/
-    parse.py`'s own `event_id`/`make_event` (imported, never
-    reimplemented, per this module's own top docstring). `commit_sha`
-    reads the current `HEAD` short sha as a placeholder, the same
-    convention `CANON-CONTRIBUTIONS-2026-09-10.md` Part 4 documents for
-    a pass that writes files ahead of its own commit: a later `tools/
-    feed/feed.py rebuild --from <pre-this-pass-sha>` backfills the
-    authoritative shas once these files land in a real commit.
-    """
     import sys
     if str(FEED_TOOL_DIR) not in sys.path:
         sys.path.insert(0, str(FEED_TOOL_DIR))
-    import parse as feed_parse  # tools/feed/parse.py
+    import parse as feed_parse
 
     commit_sha = _current_commit_sha()
     timestamp = datetime.now(timezone.utc).isoformat()
@@ -797,21 +491,14 @@ def _feed_events_for_cards(cards: list[tuple[Candidate, Path]], *, branch: str, 
         ))
     return events
 
-
 def _emit_feed_events(events: list[dict[str, Any]]) -> int:
     if not events:
         return 0
     import sys
     if str(FEED_TOOL_DIR) not in sys.path:
         sys.path.insert(0, str(FEED_TOOL_DIR))
-    import feed as feed_tool  # tools/feed/feed.py
+    import feed as feed_tool
     return feed_tool.cmd_update(events)
-
-
-# --------------------------------------------------------------------------
-# feed402 envelope (`public/research/hypotheses/<run-id>.json`)
-# --------------------------------------------------------------------------
-
 
 def _cite_block() -> dict[str, Any]:
     return {
@@ -822,7 +509,6 @@ def _cite_block() -> dict[str, Any]:
         "license": "bucket.foundation/cite-forever/v0.1",
     }
 
-
 def build_envelope(
     cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, floor_P: float, floor_u_max: float,
     lift_floor: float = 0.25,
@@ -831,26 +517,6 @@ def build_envelope(
     ranking: holdout_ledger.RankingStatus | None = None,
     cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> dict[str, Any]:
-    """The static form of the proposed `/api/research/hypotheses` route
-    (`CANON-CONTRIBUTIONS-2026-09-10.md` Part 3, priority 1): one
-    feed402-shaped envelope per written card, matching `PROTOCOL.md`
-    §4's sidecar fields (`canon_tier`, `foundation_branches`,
-    `provenance`) and `src/app/api/research/route.ts`'s own live-response
-    shape (`data`/`citation`/`receipt`/`cite`/`tags`, `agent_action_
-    required: false`, `payment_required_from_you: false`), the pattern
-    every caller-facing envelope on this site already follows. `receipt`
-    is a placeholder: no x402 settlement has happened over this run's own
-    output yet, `price_usd: 0` throughout, per this task's own "receipt
-    placeholder" instruction.
-
-    `understanding_by_id`/`novelty_by_id` (keyed by `candidate.short_id`,
-    both default `{}` when not given, `write_back`'s own dry-run path has
-    neither yet computed) and `ranking` (defaults to `hte.holdout_ledger.
-    ranking_status()`'s current on-disk state) fill the `understanding`,
-    `novelty`, and `elo_status` fields below; see `render_card`'s own
-    docstring for what each one is and why `write_back` refuses to write
-    a card at all when `understanding_by_id` carries no text for it.
-    """
     understanding_by_id = understanding_by_id or {}
     novelty_by_id = novelty_by_id or {}
     if ranking is None:
@@ -935,12 +601,6 @@ def build_envelope(
         "hypotheses": items,
     }
 
-
-# --------------------------------------------------------------------------
-# write_back
-# --------------------------------------------------------------------------
-
-
 def write_back(
     run_dir: str | Path,
     *,
@@ -957,87 +617,6 @@ def write_back(
     ledger_path: str | Path | None = None,
     cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> list[Path]:
-    """Turn the completed run at `run_dir` into canon-facing material:
-    one card per surviving hypothesis at or above the credence floor,
-    the evidence-mass floor, and the FDR gate (`select_above_floor`'s
-    `floor_P`/`floor_u_max`/`lift_floor`/`fdr_q`) under `<out_root>/
-    <branch>/hypotheses/<address-short>.md`, that branch's own
-    `hypotheses/INDEX.md` (whose header reports the BH threshold and
-    reject count over the full candidate population, `fdr_summary`), a
-    dated addendum block appended to `CANON-INGESTION-INDEX.md`, one feed
-    event per card plus the index (`tools/feed/feed.py`'s own API), and a
-    feed402-shaped envelope at `public/research/hypotheses/<run-id>.json`
-    (`build_envelope`).
-
-    `cascade_report` (`bkt-hte-retraction-propagation`, `docs/
-    PROPAGATION.md`), when given, is `run_dir`'s own `cascade.json`
-    (`hte.propagate.CascadeReport`, read back through `hte.artifacts.
-    load_run` or passed straight through from the same `run_campaign`
-    call that produced it): every SELECTED candidate whose own address
-    appears in `cascade_report.entries` gets `canon_tier: "contested"`
-    (`CONTESTED_TIER`) instead of `CANON_TIER`, with that entry's own
-    old/new projected probability, hop count, and routed share attached
-    to its card (`render_card`'s own "Retraction cascade" section) and
-    to the envelope's per-item `data.cascade`. One additional feed event
-    (`type="retract"`, the same type `tools/feed/parse.py` already uses
-    for a canon file's own deletion, read here as "this claim's own
-    standing was retracted") is emitted per contested card, alongside
-    the ordinary `add_canon_entry` event every card gets regardless.
-
-    `signoff` is a named human approver, an identity (e.g. `"gianyrox"`),
-    and is required: a missing or blank `signoff` is a hard refusal
-    (`ValueError`), raised before `reconstruct_candidates` even runs, so
-    no partial state and no file ever gets written without one.
-    This is the gate `learning/research-os/PLAN.md` section 10 and
-    `GOVERNANCE.md` ask for: no unattended write into `bucket-canon/`,
-    regardless of `canon_tier`. `signoff` is recorded in every card's
-    provenance section, the envelope's per-item provenance and top-level
-    `signed_off_by`, and the `CANON-INGESTION-INDEX.md` addendum, so the
-    approver is legible from the entry itself.
-
-    `dry_run=True` lists every path this call WOULD write (as a caller-
-    facing plan) and touches no file on disk at all, `hte.pipeline.
-    run_pipeline`'s own dry-run convention for `hte.publish.publish`
-    extended to this stage. `signoff` is still required under `dry_run`:
-    a plan naming what would be written under whose approval is itself
-    part of the approval record. `dry_run` does NOT run the understanding
-    or novelty checks below (no LLM call, no corpus scan): those cost
-    real work and belong to the commit path, a path-listing preview stays
-    free.
-    Returns the list of paths written (or, under `dry_run`, the list of
-    paths that would be written), in the same order every time for one
-    run and one set of floors: the cards first, ranked by descending
-    posterior, then the branch index, then the ingestion-index file, then
-    the envelope.
-
-    `cache_dir` (default: `<run_dir>/_writeback-llm-cache`, a dedicated
-    subdirectory of the run being written back rather than the run's own
-    campaign cache, so a re-entrant write-back call never contends with
-    a live campaign's own cache writes) and `replay_only` (default
-    `False`) are passed straight through to `hte.roles.understanding`,
-    the one LLM-backed call this function makes. Set `HTE_LLM_MODE=fake`
-    (or pass `cache_dir` pointing at a committed fixture cache) for a
-    deterministic, no-network write-back, the same convention every
-    other role-calling test in this package already follows.
-
-    `ledger_path` (default: `hte.holdout_ledger.DEFAULT_LEDGER_PATH`, the
-    committed repo ledger) overrides where this call reads the current
-    ranking-holdout state from and appends this run's own new entries
-    to; a test redirects it at a `tmp_path` file so running the suite
-    never mutates the real committed ledger.
-
-    `bkt-hte-understanding-artifact` (`PLAN.md` section 10's
-    understanding axis, Messeri and Crockett 2024, Krenn and others
-    2022): every selected candidate's own plain-language explanation is
-    generated before ANY file is written, and a blank explanation for
-    even one candidate is a hard refusal (`ValueError`), the same
-    no-partial-state guarantee `signoff` already gets, because a card
-    with no understanding artifact is exactly the write-back gate this
-    bead exists to close.
-
-    Never writes `canon_tier: canon`: see this module's own top
-    docstring and `GOVERNANCE.md`.
-    """
     if not branch:
         raise ValueError("hte.canon_writeback.write_back: branch is required")
     if not signoff or not signoff.strip():
@@ -1126,13 +705,6 @@ def write_back(
         len(added_entries), ctx.run_id,
     )
 
-    # `bkt-hte-retraction-propagation`: every SELECTED candidate whose
-    # own address this run's own cascade moved gets `canon_tier:
-    # "contested"` in place of `CANON_TIER`, its own `CascadeEntry`
-    # attached to its card and to the envelope. `cascade_report is None`
-    # (no retraction on file, or a caller that has not wired this
-    # parameter through yet) reads every candidate as ordinary
-    # `CANON_TIER` material, this function's own pre-existing behavior.
     cascade_by_address = {e.address: e for e in cascade_report.entries} if cascade_report is not None else {}
 
     hypotheses_dir.mkdir(parents=True, exist_ok=True)
@@ -1155,16 +727,10 @@ def write_back(
 
     events = _feed_events_for_cards(card_paths, branch=branch, ctx=ctx)
     if contested_cards:
-        # A retraction feed event alongside the ordinary `add_canon_entry`
-        # every card gets above: `type="retract"`, the same type `tools/
-        # feed/parse.py` already emits for a canon file's own deletion,
-        # read here as "this claim's own standing was retracted" rather
-        # than the file having been removed (it has not: `write_back`
-        # never deletes a card, per this module's own top docstring).
         import sys
         if str(FEED_TOOL_DIR) not in sys.path:
             sys.path.insert(0, str(FEED_TOOL_DIR))
-        import parse as feed_parse  # tools/feed/parse.py
+        import parse as feed_parse
         commit_sha = _current_commit_sha()
         ts = datetime.now(timezone.utc).isoformat()
         for candidate, path in contested_cards:
@@ -1196,7 +762,6 @@ def write_back(
     )
 
     return written
-
 
 __all__ = [
     "Candidate", "RunContext", "CANON_TIER", "CONTESTED_TIER",

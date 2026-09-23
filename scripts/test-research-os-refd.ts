@@ -1,4 +1,3 @@
-/** Wikipedia link evidence: title parsing, the restricted RefD score, and its agreement tally. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { knownLinks, refd, refdAgreement, refdAucInterval, resolveTitles, scorePairs, wikiTitleFromUrl, type LinkIndex } from "../src/lib/research-os/refd";
@@ -13,7 +12,6 @@ test("titles come out of Wikipedia URLs with spaces and decoded characters", () 
 const idx = (o: Record<string, string[]>): LinkIndex => new Map(Object.entries(o).map(([k, v]) => [k, new Set(v)]));
 
 test("a factor the target's neighbourhood leans on scores positive, and the reverse scores negative", () => {
-  // Kinematics links to Derivative and Velocity; Velocity links to Derivative; Derivative links to Limit only.
   const links = idx({
     Kinematics: ["Derivative", "Velocity"],
     Velocity: ["Derivative", "Kinematics"],
@@ -45,7 +43,6 @@ test("the agreement tally counts only scored, decided pairs and ranks confirmed 
   assert.equal(t.pairs, 4);
   assert.deepEqual(t.confirmed, { positive: 1, zero: 0, negative: 1, mean: 0.05 });
   assert.deepEqual(t.refuted, { positive: 1, zero: 1, negative: 0, mean: 0.05 });
-  // 0.2 beats both refuted scores, -0.1 beats neither: 2 of 4 comparisons.
   assert.equal(t.auc, 0.5);
   assert.equal(refdAgreement([{ refd: 0.2, verification: "confirmed" }]).auc, null);
   assert.equal(refdAgreement([{ refd: 0.2, verification: "confirmed" }, { refd: 0.2, verification: "refuted" }]).auc, 0.5);
@@ -117,7 +114,6 @@ test("the ROC area gets a target-level interval that repeats run to run and does
   assert.ok(a.auc !== null && a.interval !== null);
   assert.ok(a.interval![0] <= a.auc! && a.auc! <= a.interval![1]);
   assert.deepEqual(refdAucInterval([{ target: "t", refd: 0.1, verification: "confirmed" }]), { auc: null, interval: null, targets: 1, confirmed: 1, refuted: 0 });
-  // Three confirmed pairs: an area, and no interval.
   const few = refdAucInterval(rows.filter((r) => r.verification === "refuted" || ["t1", "t2", "t3"].includes(r.target)));
   assert.ok(few.auc !== null);
   assert.equal(few.interval, null);

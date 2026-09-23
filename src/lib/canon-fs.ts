@@ -1,6 +1,3 @@
-// canon-fs.ts, server-only filesystem scanner for bucket-canon/.
-// The repo is the CMS. No DB. Read at build time from src/app server components.
-
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
@@ -13,28 +10,24 @@ export type BranchStatus =
   | "complete";
 
 export type CanonRow = {
-  // raw values pulled from a CANON_INDEX.md table row
   cells: string[];
-  // best-guess title (first non-empty cell)
   title: string;
-  // best-guess year (first 4-digit token)
   year: string | null;
   subfolder: string;
   branch: string;
-  // a stable bibkey-ish slug
   bibkey: string;
 };
 
 export type Branch = {
-  num: string;          // "01", "02", "03"…
-  numeral: string;      // "I", "II"…
-  slug: string;         // "mathematics"
-  dir: string;          // "01-mathematics"
-  name: string;         // display name
+  num: string;
+  numeral: string;
+  slug: string;
+  dir: string;
+  name: string;
   exists: boolean;
   status: BranchStatus;
   entryCount: number;
-  lastUpdated: string | null; // ISO date
+  lastUpdated: string | null;
   readme: string | null;
   topEntries: CanonRow[];
   subfolders: string[];
@@ -75,7 +68,6 @@ function listDirs(p: string): string[] {
   } catch { return []; }
 }
 
-// Parse markdown tables. Returns an array of tables, each table = rows of cells.
 export function parseMarkdownTables(md: string): string[][][] {
   const lines = md.split(/\r?\n/);
   const tables: string[][][] = [];
@@ -115,13 +107,11 @@ function extractRowsFromIndex(md: string, branchDir: string, subfolder: string):
   const rows: CanonRow[] = [];
   for (const t of tables) {
     if (t.length < 2) continue;
-    // skip header
     for (let i = 1; i < t.length; i++) {
       const cells: string[] = t[i];
       if (cells.length < 2) continue;
       const firstReal = cells.find((c) => c.length > 0) || "";
       if (!firstReal) continue;
-      // Heuristic: skip rows that are not entries (e.g., "Sub-folder | Scope | Index" master list)
       const yearMatch = cells.join(" ").match(/\b(1[5-9]\d{2}|20\d{2})\b/);
       rows.push({
         cells,
@@ -180,7 +170,6 @@ export function getBranches(): Branch[] {
   const seen = new Set<string>();
   const result: Branch[] = [];
 
-  // First, every disk branch
   for (const dir of onDisk) {
     const num = dir.slice(0, 2);
     const slug = dir.slice(3);
@@ -188,7 +177,6 @@ export function getBranches(): Branch[] {
     result.push(buildBranch(num, slug, dir));
   }
 
-  // Then any canonical branches not on disk
   for (const c of CANONICAL_BRANCHES) {
     const dir = `${c.num}-${c.slug}`;
     if (seen.has(dir)) continue;
@@ -208,7 +196,6 @@ export function getBranches(): Branch[] {
     });
   }
 
-  // Sort by num then slug
   result.sort((a, b) => a.num.localeCompare(b.num) || a.slug.localeCompare(b.slug));
   return result;
 }
@@ -221,7 +208,6 @@ function buildBranch(num: string, slug: string, dir: string): Branch {
   const readme = safeRead(path.join(abs, "README.md"));
   const lastUpdated = gitLastUpdated(abs);
 
-  // Walk every CANON_INDEX.md across sub-folders to count entries and grab top-3
   const allRows: CanonRow[] = [];
   const masterIdx = safeRead(path.join(abs, "CANON_INDEX.md"));
   if (masterIdx) {
@@ -234,11 +220,8 @@ function buildBranch(num: string, slug: string, dir: string): Branch {
     }
   }
 
-  // Heuristic: drop rows whose first cell looks like a sub-folder pointer
-  // (master CANON_INDEX has a "Sub-folder | Scope | Index" table)
   const filtered = allRows.filter((r) => !/^[`]?[a-z0-9_-]+\/[`]?$/i.test(r.title));
 
-  // Display name: prefer slug→title-case
   const displayName = slug.replace(/-/g, " ");
 
   return {

@@ -1,29 +1,4 @@
 #!/usr/bin/env bash
-# deploy.sh — one-command deploy of grants-gateway to the agfarms-k3s cluster
-# (Hetzner CPX42, K3s in a Docker container named agfarms-k3s).
-#
-# Mirrors ~/agfarms/kruse/deploy.sh — the AGFarms reference feed402 deploy.
-#
-# Requires:
-#   - docker (build + push image locally)
-#   - sshpass (non-interactive SSH to the K3s host)
-#   - env: DEPLOY_SERVER=<hetzner ip>  SERVER_PASS=<ssh pass>
-#   - (first deploy) FEED402_WALLET=0x...  ANTHROPIC_API_KEY=sk-ant-...
-#
-# Usage:
-#   ./deploy.sh                      # build, push, apply manifest, rollout
-#   ./deploy.sh --skip-build         # already pushed → just apply/rollout
-#   ./deploy.sh --seed-secret        # also (re)create grants-env secret
-#   ./deploy.sh --dry-run            # show commands without running
-#
-# First deploy:
-#   FEED402_WALLET=0xYOUR_BASE_WALLET \
-#   ANTHROPIC_API_KEY=sk-ant-xxx \
-#   ./deploy.sh --seed-secret
-#
-# IMPORTANT: ./data/grants.db must exist locally before this script runs
-# (the corpus is baked into the image). Produce it with:
-#   python3 scripts/ingest.py        # ~10 min, idempotent
 
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -63,7 +38,6 @@ ssh_run() {
 
 echo "-> target: ${SERVER_USER}@${SERVER}  ns=${NS}  image=${IMAGE}:${TAG}"
 
-# --- 0. Pre-flight: corpus must exist (baked into image) --------------------
 if ! $SKIP_BUILD; then
   if [[ ! -f data/grants.db ]]; then
     echo "x data/grants.db missing — run: python3 scripts/ingest.py" >&2
@@ -73,7 +47,6 @@ if ! $SKIP_BUILD; then
   echo "-> corpus: data/grants.db (${DB_SIZE})"
 fi
 
-# --- 1. Build + push --------------------------------------------------------
 if ! $SKIP_BUILD; then
   echo "-> building image"
   run docker build -t "${IMAGE}:${TAG}" .
@@ -83,11 +56,9 @@ else
   echo "-> skip build (--skip-build)"
 fi
 
-# --- 2. Ensure namespace ----------------------------------------------------
 echo "-> ensuring namespace ${NS}"
 ssh_run "docker exec agfarms-k3s kubectl get ns ${NS} >/dev/null 2>&1 || docker exec agfarms-k3s kubectl create ns ${NS}"
 
-# --- 3. Seed secret ---------------------------------------------------------
 if $SEED_SECRET; then
   : "${FEED402_WALLET:?Set FEED402_WALLET for --seed-secret (Base wallet 0x...)}"
   : "${ANTHROPIC_API_KEY:?Set ANTHROPIC_API_KEY for --seed-secret}"
@@ -106,7 +77,6 @@ if $SEED_SECRET; then
     --from-literal=INSIGHT_SYNTH='${SYNTH}'"
 fi
 
-# --- 4. Apply manifest ------------------------------------------------------
 echo "-> applying deploy/k8s.yaml"
 if ! $DRY_RUN; then
   sshpass -p "$SERVER_PASS" scp -o StrictHostKeyChecking=no deploy/k8s.yaml \
@@ -115,13 +85,11 @@ if ! $DRY_RUN; then
            docker exec agfarms-k3s kubectl apply -f /tmp/grants-k8s.yaml"
 fi
 
-# --- 5. Rollout -------------------------------------------------------------
 echo "-> rolling deployment"
 ssh_run "docker exec agfarms-k3s kubectl -n ${NS} set image deploy/grants-gateway server=${IMAGE}:${TAG} --record=false || true"
 ssh_run "docker exec agfarms-k3s kubectl -n ${NS} rollout restart deploy/grants-gateway"
 ssh_run "docker exec agfarms-k3s kubectl -n ${NS} rollout status deploy/grants-gateway --timeout=180s"
 
-# --- 6. Verify --------------------------------------------------------------
 echo "-> sanity check (ClusterIP /health)"
 ssh_run "docker exec agfarms-k3s kubectl -n ${NS} run grants-check --rm -i --restart=Never --image=curlimages/curl -- curl -sf http://grants-gateway/health" || true
 

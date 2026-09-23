@@ -1,64 +1,20 @@
-/**
- * src/lib/academy/mastery.ts (bkt-coh)
- * ------------------------------------------------------------------
- * Server-side "mastery" rollup for the public Mastery Profile.
- *
- * This is a faithful TS port of the EXACT mastery math the in-app engine uses
- * (learning/app/js/fsrs.js + engine.js), so a profile shows the same numbers a
- * learner sees in the Academy. We deliberately re-implement rather than import
- * the static app's vanilla JS, that file ships to the browser and has no module
- * boundary; keeping a small typed copy here is safer and self-documenting.
- *
- * HARD GUARDRAIL (EPIC.md §5, MASTERY-PROFILE.md Phase 0/1):
- * This module produces an, uncertainty-visible signal ONLY. It does
- * NOT compute or expose a certified/precise numeric "rating" or any claim of
- * credentialed mastery, that is gated on a later bead (validation vs. real
- * exams, bkt-4at). Everything here is framed as "built by learning over time":
- * concepts started, concepts mastered, depth reached, and recency, each with
- * visible confidence/uncertainty. No overclaiming.
- *
- * The numbers we DO surface:
- * - started / mastered counts (mastered = the same 0.70 stability threshold
- * the app uses for its "★ mastered" stat).
- * - per-shell + overall mastery as a coarse percentage (a learning-progress
- * readout expressed as coverage), with a `confidence` band derived from evidence
- * volume (reps) + recency, high coverage with thin/old evidence reads as
- * "still proving it", never as a hidden high score.
- * - depth reached on the Recall -> Apply -> Derive -> Teach ladder, inferred
- * from each concept's current mastery and the quiz levels that exist for it
- * (mirrors engine `pickLevel`), so depth points at understanding, not
- * card-flipping.
- * - recency: live FSRS retrievability right now (the forgetting-curve readout)
- * and days-since-last-review.
- */
-
-/* ----------------------------- FSRS constants ----------------------------- */
-// Mirror fsrs.js exactly.
 const DECAY = -0.5;
-const FACTOR = Math.pow(0.9, 1 / DECAY) - 1; // 0.2345679...
+const FACTOR = Math.pow(0.9, 1 / DECAY) - 1;
 const DAY = 86400000;
 
-/** Retrievability after `tDays` at stability `S` (fsrs.js retrievability). */
 export function retrievability(tDays: number, S: number): number {
   if (!S || S <= 0) return 0;
   return Math.pow(1 + FACTOR * (tDays / S), DECAY);
 }
 
-/** Mastery proxy in [0,1] from stability in days (fsrs.js `mastery`). */
 export function masteryFromStability(stability: number | null | undefined): number {
   if (stability == null) return 0;
   const m = 1 - Math.exp(-stability / 21);
   return Math.max(0, Math.min(1, m));
 }
 
-// engine.js summary(): a concept counts as "mastered" at mastery >= 0.70.
 export const MASTERED_THRESHOLD = 0.7;
 
-/* ---------------- bkt-uzx: proficiency x retention fusion ------------------ */
-// These MUST mirror learning/app/js/adaptive.js EXACTLY so the public profile
-// shows the same fused mastery a learner sees in the Academy. (No import: that
-// file is browser-vanilla-JS; this typed copy is the server port, same as the
-// FSRS constants above.)
 const ADAPTIVE = {
   PROF_SLOPE: 1.0,
   PROF_DEPTH_B: { recall: -0.8, apply: -0.2, derive: 0.6, teach: 1.2 } as Record<string, number>,
@@ -74,26 +30,21 @@ function sigmoid(x: number): number {
   return 1 / (1 + Math.exp(-x));
 }
 
-/** Per-concept proficiency state as engine.js persists it in state.prof[id]. */
 export interface ProficiencyState {
   theta?: number;
   n?: number;
 }
 
-/** Proficiency as a 0..1 readout at a reference difficulty (the `apply` depth).
- * Mirrors adaptive.js `proficiencyScore`. No graded evidence => 0 (). */
 export function proficiencyScore(prof: ProficiencyState | null | undefined): number {
   if (!prof || typeof prof.theta !== "number" || !prof.n) return 0;
   return clamp01(sigmoid(ADAPTIVE.PROF_SLOPE * (prof.theta - ADAPTIVE.PROF_DEPTH_B.apply)));
 }
 
-/** FSRS retrievability at the credential horizon T (90d). Mirrors adaptive.js. */
 export function retentionAtHorizon(stability: number | null | undefined): number {
   if (!stability || stability <= 0) return 0;
   return clamp01(retrievability(ADAPTIVE.RETENTION_HORIZON_DAYS, stability));
 }
 
-/** M = P^alpha * R^beta. Mirrors adaptive.js `fuseMastery`. */
 export function fuseMastery(P: number, R: number): number {
   P = clamp01(P);
   R = clamp01(R);
@@ -101,13 +52,6 @@ export function fuseMastery(P: number, R: number): number {
   return clamp01(Math.pow(P, ADAPTIVE.MASTERY_ALPHA) * Math.pow(R, ADAPTIVE.MASTERY_BETA));
 }
 
-/**
- * The fused mastery for one concept, mirroring engine.masteryFor():
- * - if there is graded proficiency evidence, return P^alpha * R^beta;
- * - otherwise fall back to the legacy stability proxy (cold-start / pre-P1
- * state) so we never report a dishonest 0.
- * Returns { mastery, proficiency|null, retention|null }.
- */
 export function fusedConceptMastery(
   card: StoredCard | undefined,
   prof: ProficiencyState | undefined
@@ -115,7 +59,6 @@ export function fusedConceptMastery(
   if (!card) return { mastery: 0, proficiency: null, retention: null };
   const stability = card.stability ?? null;
   if (!prof || !prof.n) {
-    // No proficiency evidence yet, legacy proxy (matches engine fallback).
     return { mastery: masteryFromStability(stability), proficiency: null, retention: null };
   }
   const P = proficiencyScore(prof);
@@ -123,9 +66,6 @@ export function fusedConceptMastery(
   return { mastery: fuseMastery(P, R), proficiency: P, retention: R };
 }
 
-/* ------------------------------- shapes ----------------------------------- */
-
-/** One FSRS card as engine.js persists it (only the fields we read). */
 export interface StoredCard {
   state?: string;
   stability?: number | null;
@@ -136,11 +76,8 @@ export interface StoredCard {
   lapses?: number;
 }
 
-/** The per-branch engine state blob stored in bucket.academy_progress.data. */
 export interface StoredEngineState {
   cards?: Record<string, StoredCard>;
-  // bkt-uzx: per-concept Elo-lite proficiency. Absent in pre-P1 state (we then
-  // fall back to the stability proxy per concept, graceful migration).
   prof?: Record<string, ProficiencyState>;
   settings?: Record<string, unknown>;
   stats?: {
@@ -151,7 +88,6 @@ export interface StoredEngineState {
   };
 }
 
-/** Minimal atom shape we need from a corpus to roll up mastery. */
 export interface CorpusAtom {
   id: string;
   title?: string;
@@ -182,23 +118,20 @@ const DEPTH_LABEL: Record<Depth, string> = {
   teach: "Teach-back",
 };
 
-/** Per-concept signal for the inspect layer. */
 export interface ConceptSignal {
   id: string;
   title: string;
   shell: string;
   leverage: number;
   started: boolean;
-  mastery: number; // 0..1 fused learning-progress proxy (NOT a certified score)
-  mastered: boolean; // mastery >= 0.70
-  // bkt-uzx fused-mastery components (null until there's graded proficiency
-  // evidence; then mastery == proficiency^alpha * retention^beta).
-  proficiency: number | null; // Elo-lite ability readout at the `apply` depth
-  retention: number | null; // FSRS retrievability at the 90-day horizon
-  attempts: number; // graded proficiency attempts (evidence volume)
-  depth: Depth; // highest depth reached (inferred)
+  mastery: number;
+  mastered: boolean;
+  proficiency: number | null;
+  retention: number | null;
+  attempts: number;
+  depth: Depth;
   depthLabel: string;
-  retrievability: number | null; // live FSRS retrievability now (recency readout)
+  retrievability: number | null;
   daysSinceReview: number | null;
   reps: number;
 }
@@ -209,27 +142,26 @@ export interface ShellSummary {
   total: number;
   started: number;
   mastered: number;
-  meanMastery: number; // coarse progress % (a coverage readout)
+  meanMastery: number;
 }
 
-/** A qualitative confidence band, how *proven* this branch's signal is. */
 export type Confidence = "emerging" | "developing" | "established";
 
 export interface BranchSummary {
-  branch: string; // e.g. "01-mathematics"
+  branch: string;
   title: string;
   kind?: string;
   total: number;
   started: number;
   mastered: number;
-  meanMastery: number; // overall coarse progress (0..1)
-  deepestDepth: Depth; // highest depth reached anywhere in the branch
+  meanMastery: number;
+  deepestDepth: Depth;
   deepestDepthLabel: string;
-  confidence: Confidence; // evidence-volume + recency band (uncertainty, visible)
-  confidenceNote: string; // plain-language framing of the band
-  lastActivity: string | null; // ISO of most recent review across the branch
+  confidence: Confidence;
+  confidenceNote: string;
+  lastActivity: string | null;
   shells: ShellSummary[];
-  concepts: ConceptSignal[]; // sorted by leverage desc (the map order)
+  concepts: ConceptSignal[];
   xp: number;
   streak: number;
 }
@@ -240,23 +172,12 @@ const SHELL_LABEL: Record<string, string> = {
   frontier: "Frontier",
 };
 
-/**
- * Infer the highest depth a learner has demonstrated on a concept. We have no
- * stored "level reached" field (engine.js stores only FSRS state), so we infer
- * it the same way the app *targets* questions in `pickLevel`: by mastery, capped
- * to the depth levels that exist for the atom. This is intentionally
- * conservative, it reports the deepest level the learner is at the difficulty
- * for AND that the concept can test, never an unproven claim.
- */
 function inferDepth(mastery: number, atom: CorpusAtom): Depth {
   const have = new Set((atom.quiz || []).map((q) => q.level).filter(Boolean) as string[]);
-  // target ladder identical to engine.pickLevel thresholds
   const target: Depth =
     mastery < 0.25 ? "recall" : mastery < 0.5 ? "apply" : mastery < 0.75 ? "derive" : "teach";
-  // walk down from target to the deepest level the atom can test
   for (let k = DEPTH_ORDER.indexOf(target); k >= 0; k--) {
     const lvl = DEPTH_ORDER[k];
-    // if the atom has no quiz metadata at all, fall back to the mastery target
     if (have.size === 0 || have.has(lvl)) return lvl;
   }
   return "recall";
@@ -268,10 +189,6 @@ function maxDepth(a: Depth, b: Depth): Depth {
   return DEPTH_ORDER.indexOf(a) >= DEPTH_ORDER.indexOf(b) ? a : b;
 }
 
-/**
- * Roll a stored engine state + its corpus into an BranchSummary.
- * `now` is injectable for deterministic tests.
- */
 export function rollupBranch(
   branchKey: string,
   corpus: Corpus,
@@ -291,13 +208,11 @@ export function rollupBranch(
   let deepest: Depth = "none";
   let lastReviewMs = 0;
   let totalReps = 0;
-  let recentReps = 0; // reps within the last 90 days (recency-weighted evidence)
+  let recentReps = 0;
 
   for (const atom of atoms) {
     const card = cards[atom.id];
     const started = !!card;
-    // bkt-uzx: fused mastery (proficiency x retention) with legacy fallback,
-    // identical to engine.masteryFor() so the profile matches the app exactly.
     const fused = fusedConceptMastery(card, prof[atom.id]);
     const mastery = fused.mastery;
     const mastered = mastery >= MASTERED_THRESHOLD;
@@ -356,10 +271,6 @@ export function rollupBranch(
   const total = atoms.length;
   const meanMastery = total ? masterySum / total : 0;
 
-  // Confidence band: how *proven* is this branch's signal? Driven by evidence
-  // VOLUME (recent reps) and BREADTH (mastered count), never hidden, always
-  // shown to the viewer. This is the uncertainty term, deliberately coarse and
-  // qualitative (NOT a Glicko RD number, that's a later, validated bead).
   const confidence = confidenceBand(masteredTotal, recentReps, totalReps);
 
   const shells: ShellSummary[] = Object.keys(shellAgg)
@@ -390,7 +301,7 @@ export function rollupBranch(
     confidenceNote: confidence.note,
     lastActivity: lastReviewMs ? new Date(lastReviewMs).toISOString() : null,
     shells,
-    concepts: isLang ? concepts : concepts, // same handling; kept explicit for clarity
+    concepts: isLang ? concepts : concepts,
     xp: state?.stats?.xp || 0,
     streak: state?.stats?.streak || 0,
   };
@@ -405,9 +316,6 @@ function confidenceBand(
   recentReps: number,
   totalReps: number
 ): { band: Confidence; note: string } {
-  // Thin or stale evidence => "emerging" (explicitly under-proven). Lots of
-  // recent retrievals across many concepts => "established". Everything between
-  // is "developing". The viewer always sees this band next to any progress %.
   if (mastered >= 12 && recentReps >= 40) {
     return {
       band: "established",

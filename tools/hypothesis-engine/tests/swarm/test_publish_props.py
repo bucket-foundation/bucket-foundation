@@ -1,5 +1,3 @@
-"""Property tests over `hte.publish`: `dry_run=True` never shells out to
-git or rclone, over a swarm of run/paper directory shapes."""
 from __future__ import annotations
 
 import json
@@ -16,14 +14,10 @@ from hte import publish
 
 campaign_names = st.text(alphabet="abcdefghijklmnopqrstuvwxyz-", min_size=1, max_size=20)
 extra_run_artifacts = st.lists(
-    # MANIFEST.json is excluded: _make_run_dir already writes it with real
-    # JSON content below, and this list stands for the OTHER artifact
-    # files a run directory may or may not carry alongside it.
     st.sampled_from(["timeline.json", "TIMELINE.md", "calibration.json", "CALIBRATION.md", "self-report.json", "run.log"]),
     min_size=0, max_size=6, unique=True,
 )
 has_pdf_st = st.booleans()
-
 
 def _make_run_dir(root: Path, campaign: str, extra: list[str]) -> Path:
     run_dir = root / "runs" / campaign / "20260101T000000Z"
@@ -33,7 +27,6 @@ def _make_run_dir(root: Path, campaign: str, extra: list[str]) -> Path:
         (run_dir / name).write_text("x")
     return run_dir
 
-
 def _make_paper_dir(root: Path, *, with_pdf: bool) -> Path:
     paper_dir = root / "paper"
     paper_dir.mkdir()
@@ -42,7 +35,6 @@ def _make_paper_dir(root: Path, *, with_pdf: bool) -> Path:
     if with_pdf:
         (paper_dir / "main.pdf").write_bytes(b"%PDF-fake")
     return paper_dir
-
 
 @given(campaign_names, extra_run_artifacts, has_pdf_st)
 def test_publish_dry_run_never_calls_subprocess_run(campaign, extra, with_pdf):
@@ -63,12 +55,7 @@ def test_publish_dry_run_never_calls_subprocess_run(campaign, extra, with_pdf):
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-
 def test_publish_dry_run_never_calls_publish_module_run_helper():
-    """A second, independent guard on the same property: `publish._run`
-    (the module's own thin subprocess.run wrapper) is monkeypatched
-    directly, in case `publish.py` ever routes a git/rclone call through
-    something other than the top-level `subprocess.run` re-export."""
     tmp = tempfile.mkdtemp()
 
     def fail(*a, **k):

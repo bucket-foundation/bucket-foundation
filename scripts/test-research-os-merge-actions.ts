@@ -1,8 +1,3 @@
-/**
- * The duplicate queue's actions (ros-graph-dedup) against a fake graph
- * client: listing, merging either way round, keeping both, a pair already
- * decided, a node that has gone, and a failed merge that releases its claim.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import type { SupabaseClient } from "@supabase/supabase-js";
@@ -11,7 +6,6 @@ import { decideMerge, listMergeProposals } from "../src/lib/research-os/inferenc
 type Row = Record<string, unknown>;
 type Db = Record<string, Row[]>;
 
-/** A chainable stand-in for the few PostgREST calls the actions make. */
 function fake(db: Db, opts: { mergeFails?: boolean; calls?: string[] } = {}) {
   const calls = opts.calls ?? [];
   const from = (table: string) => {

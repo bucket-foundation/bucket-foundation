@@ -7,7 +7,6 @@ import Section from "./Section";
 import type { NodeData } from "./types";
 import { BTN_PRIMARY } from "@/components/ui";
 
-/** Internalization, in place: carry the node somewhere it was not taught. Held for a teacher's decision. */
 export default function TransferSection({ data, onChanged }: { data: NodeData; onChanged: () => void }) {
   const [answer, setAnswer] = useState("");
   const [busy, setBusy] = useState(false);

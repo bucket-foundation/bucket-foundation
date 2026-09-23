@@ -1,16 +1,3 @@
-"""Property/behavior tests over `hte.corpus.sacred_history`'s own narrow
-helper functions, the branches `tests/test_corpus_sacred_history.py`'s
-own real-bundle-only tests never reach because the shipped `src/data/
-sacred-history.json` (as of 2026-09-10) never exercises them: `_locate`'s
-not-found path, `_tradition_spans`'s undated-event skip, `_correlation_
-interval`'s one-span-known and neither-known branches, and `_build_
-sources`'s tradition-missing skip and directed-edge branches (every
-correlation in the real bundle is undirected, so `direction: "a→b"`/
-`"b→a"` never fire against real data). `tests/COVERAGE.md`'s 2026-09-14
-run lists this module at 88.6% with exactly these lines uncovered (349,
-370, 413-417, 443, 452, 454); no dedicated swarm file existed for it
-before this one.
-"""
 from __future__ import annotations
 
 import sys
@@ -32,11 +19,9 @@ from hte.corpus.sacred_history import (
 from hte.evidence import Source, EvidenceKind
 from hte.timeline import UncertaintyKind
 
-
 def test_locate_raises_valueerror_when_needle_not_found():
     with pytest.raises(ValueError, match="not found verbatim"):
         _locate("the quick brown fox", "a needle nowhere in this text")
-
 
 @given(st.text(min_size=1, max_size=40).filter(lambda s: s.strip()))
 def test_locate_finds_a_needle_present_verbatim(needle):
@@ -45,18 +30,14 @@ def test_locate_finds_a_needle_present_verbatim(needle):
     assert raw[start:end] == needle
     assert 0 <= start < end <= len(raw)
 
-
 def test_tradition_spans_skips_events_with_no_year():
     timeline = [
         {"year": None, "traditions": ["judaism"]},
         {"year": 500, "traditions": ["judaism"]},
     ]
     spans, anchored = _tradition_spans(timeline)
-    # The undated event contributes nothing; the span reflects only the
-    # one dated event.
     assert spans["judaism"] == (500, 500)
     assert "judaism" not in anchored
-
 
 @given(st.integers(min_value=-3000, max_value=3000), st.integers(min_value=-3000, max_value=3000))
 def test_tradition_spans_widens_to_min_and_max_across_dated_events(y1, y2):
@@ -70,13 +51,11 @@ def test_tradition_spans_widens_to_min_and_max_across_dated_events(y1, y2):
     assert hi == max(y1, y2)
     assert "islam" not in anchored
 
-
 def test_tradition_spans_falls_back_to_external_anchor_when_never_dated():
     spans, anchored = _tradition_spans(timeline=[])
     assert anchored == frozenset({"mesopotamian", "greek"})
     assert spans["mesopotamian"] == (-1200, -1200)
     assert spans["greek"] == (-700, -700)
-
 
 def test_correlation_interval_only_a_known_reads_as_anchor():
     interval, is_overlap, rule = _correlation_interval((100, 200), None)
@@ -85,17 +64,14 @@ def test_correlation_interval_only_a_known_reads_as_anchor():
     assert is_overlap is None
     assert rule == "anchor"
 
-
 def test_correlation_interval_only_b_known_reads_as_anchor():
     interval, is_overlap, rule = _correlation_interval(None, (-50, 50))
     assert interval.start == -50 and interval.end == 50
     assert is_overlap is None
     assert rule == "anchor"
 
-
 def test_correlation_interval_neither_known_is_all_none():
     assert _correlation_interval(None, None) == (None, None, None)
-
 
 @given(st.integers(min_value=-2000, max_value=0), st.integers(min_value=0, max_value=2000))
 def test_correlation_interval_single_span_is_returned_verbatim_regardless_of_side(lo, hi):
@@ -106,10 +82,8 @@ def test_correlation_interval_single_span_is_returned_verbatim_regardless_of_sid
     assert (interval2.start, interval2.end) == (lo, hi)
     assert rule2 == "anchor"
 
-
 def _sources(*ids: str) -> dict[str, Source]:
     return {tid: Source(id=tid, kind=EvidenceKind.TEXTUAL, date=None) for tid in ids}
-
 
 def test_build_sources_skips_correlation_missing_side_a_tradition():
     sources = _build_sources(["judaism", "islam"], {}, [
@@ -118,7 +92,6 @@ def test_build_sources_skips_correlation_missing_side_a_tradition():
     assert sources["judaism"].stemma_parents == []
     assert sources["islam"].stemma_parents == []
 
-
 def test_build_sources_skips_correlation_missing_side_b_tradition():
     sources = _build_sources(["judaism", "islam"], {}, [
         {"sideA": {"tradition": "judaism"}, "sideB": {}},
@@ -126,13 +99,11 @@ def test_build_sources_skips_correlation_missing_side_b_tradition():
     assert sources["judaism"].stemma_parents == []
     assert sources["islam"].stemma_parents == []
 
-
 def test_build_sources_skips_correlation_with_identical_traditions_on_both_sides():
     sources = _build_sources(["judaism"], {}, [
         {"sideA": {"tradition": "judaism"}, "sideB": {"tradition": "judaism"}},
     ])
     assert sources["judaism"].stemma_parents == []
-
 
 def test_build_sources_skips_correlation_naming_a_tradition_not_in_the_corpus():
     sources = _build_sources(["judaism"], {}, [
@@ -140,19 +111,12 @@ def test_build_sources_skips_correlation_naming_a_tradition_not_in_the_corpus():
     ])
     assert sources["judaism"].stemma_parents == []
 
-
 def test_build_sources_directed_a_to_b_adds_a_single_directed_edge():
-    """A future edition of the bundle populating `direction: "a→b"`:
-    `ENTITY-MODEL.md` §6 reads this as "a transmits to b," so only b's own
-    `Source` should list a as a stemma parent, never the reverse (unlike
-    the mutual pair every real, undirected correlation in the 2026-09-10
-    bundle produces)."""
     sources = _build_sources(["judaism", "christianity"], {}, [
         {"sideA": {"tradition": "judaism"}, "sideB": {"tradition": "christianity"}, "direction": "a→b"},
     ])
     assert sources["christianity"].stemma_parents == ["judaism"]
     assert sources["judaism"].stemma_parents == []
-
 
 def test_build_sources_directed_b_to_a_adds_a_single_directed_edge():
     sources = _build_sources(["judaism", "christianity"], {}, [
@@ -161,14 +125,12 @@ def test_build_sources_directed_b_to_a_adds_a_single_directed_edge():
     assert sources["judaism"].stemma_parents == ["christianity"]
     assert sources["christianity"].stemma_parents == []
 
-
 def test_build_sources_undirected_falls_back_to_mutual_pair():
     sources = _build_sources(["judaism", "christianity"], {}, [
         {"sideA": {"tradition": "judaism"}, "sideB": {"tradition": "christianity"}, "direction": "undirected"},
     ])
     assert sources["christianity"].stemma_parents == ["judaism"]
     assert sources["judaism"].stemma_parents == ["christianity"]
-
 
 def test_add_stemma_parent_is_idempotent():
     source = Source(id="a", kind=EvidenceKind.TEXTUAL, date=None)

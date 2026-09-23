@@ -108,7 +108,6 @@ ENTRIES = [
     },
 ]
 
-
 class ExtractTests(unittest.TestCase):
     def rows(self, word, lang="en"):
         e = next(x for x in ENTRIES if x["word"] == word and x["lang_code"] == lang)
@@ -153,7 +152,6 @@ class ExtractTests(unittest.TestCase):
         self.assertTrue(rx.is_affix("-om", "ine-pro"))
         self.assertFalse(rx.is_affix("*werǵ-", "ine-pro"))
         self.assertTrue(rx.is_affix("ἐν-", "grc"))
-
 
 class NodeWordTests(unittest.TestCase):
     @classmethod
@@ -239,7 +237,6 @@ class NodeWordTests(unittest.TestCase):
         term, rows = nw.node_rows({"id": "n2", "title": "Zzyzx", "summary": ""}, self.roots, [], self.roots.langs)
         self.assertIsNone(term)
         self.assertEqual(rows, [])
-
 
 if __name__ == "__main__":
     unittest.main()

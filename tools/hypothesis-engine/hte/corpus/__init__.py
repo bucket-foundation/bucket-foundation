@@ -1,12 +1,3 @@
-"""Corpus ingestion: `Source`/`EvidenceItem` sets ready for `hte.belief`,
-plus the ground-truth events `hte.calibrate` tests against and the
-retrieval-provenance record `main.tex` §8 asks every fetch to carry.
-
-`hte.corpus.quantum_history` ingests `quantum/07-history/*.md` (this
-repo's own quantum-computing history atlas chapter). `hte.corpus.fixtures`
-builds a tiny synthetic corpus of the same shape for tests that should not
-depend on that chapter's exact prose.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -16,28 +7,13 @@ from typing import Any
 from ..concepts import Vocabulary
 from ..evidence import EvidenceItem, Source
 
-
 @dataclass(frozen=True)
 class GroundTruthEvent:
-    """One dated event a corpus asserts happened, for
-    `hte.calibrate`'s holdout tests. `discovery_year` is the astronomical
-    year the claim entered the written record the corpus draws on; for
-    `hte.corpus.quantum_history` this is documented as equal to the
-    event's own headline year (`quantum_history.py`'s own module
-    docstring), since the corpus's card format states an event's year and
-    its citation's publication year in the same bullet and the two
-    coincide in every card this ingestion reads: a card citing a later
-    retrospective source for an earlier event would need a real
-    discovery-date extraction this package does not build."""
     id: str
     label: str
     year: int
     doc_id: str
     discovery_year: int
-    # `hte.calibrate.run_vindication`: the year the claim became mainstream
-    # (a vindicated alternative, scored on lift before that year), and
-    # whether the event is an exploded claim kept as a negative control
-    # (scored on lift staying low once every item is in).
     acceptance_year: int | None = None
     control: bool = False
 
@@ -56,20 +32,8 @@ class GroundTruthEvent:
             acceptance_year=int(acceptance) if acceptance is not None else None, control=bool(d.get("control", False)),
         )
 
-
 @dataclass(frozen=True)
 class RetrievalEnvelope:
-    """One immutable per-fetch provenance record (`main.tex` §8's
-    retrieval envelope), linked to a `retrieval_run_id`.
-    `bkt-hte-retrieval-provenance` ships fixture mode only in this pass:
-    every envelope this package writes carries `fixture=True` and no
-    network call backs it, so `manifest_fingerprint`, `protocol_version`,
-    `citation_count`, and `lineage_count` are `None` or a best-effort
-    local count rather than the x402-research-gateway's own manifest
-    data. Once a mirror job routes a source through that gateway, the
-    same fields fill in from its real manifest without changing this
-    record's shape.
-    """
     retrieval_run_id: str
     doc_id: str
     source_path: str
@@ -98,13 +62,8 @@ class RetrievalEnvelope:
             citation_count=d.get("citation_count"), lineage_count=d.get("lineage_count"),
         )
 
-
 @dataclass
 class Corpus:
-    """A whole ingested corpus: every `Source`, every `EvidenceItem`, the
-    ground-truth events for calibration, the retrieval-provenance record
-    per source, and the vocabulary the corpus's generator and scorer run
-    against."""
     sources: dict[str, Source] = field(default_factory=dict)
     evidence: list[EvidenceItem] = field(default_factory=list)
     ground_truth: list[GroundTruthEvent] = field(default_factory=list)
@@ -138,6 +97,5 @@ class Corpus:
     def load(cls, path: str | Path) -> "Corpus":
         import json
         return cls.from_dict(json.loads(Path(path).read_text()))
-
 
 __all__ = ["Corpus", "GroundTruthEvent", "RetrievalEnvelope"]

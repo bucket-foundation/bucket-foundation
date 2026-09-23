@@ -1,53 +1,3 @@
-/**
- * /api/research-os/production, the Production form (bkt-ros, task item 4:
- * "a Production form (claim, evidence, sources, transfer proof) that saves
- * as draft") and the final stage rule (task item 5: "production (submitted
- * Production)"). Backs graph.productions.
- *
- * GET  ?targetNodeId=<id>  -> { productions: [...] } (the learner's own, newest first)
- * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, counterEvidence?, status?, sessionId? }
- *      -> upserts a draft (status defaults to "draft"); pass status:"submitted"
- *         to submit, which raises the target node's learner_node_state.stage
- *         to "production" (src/lib/research-os/stages.ts onProductionSubmitted).
- *         Phase 0 has no review queue, so "accepted"/"returned" are not
- *         settable here (task item 6, no teacher layer).
- *
- * Production guard (bkt-ros, production guard bead), computed only when
- * `status: "submitted"` (a draft save skips every check below, so a
- * learner can save partial, unverified work with no guard noise): the
- * submission is refused with 400 when an internalization-tier claim (
- * production-guard.ts's requiresCounterEvidence against the learner's own
- * fromStage) carries no counter_evidence, per Osborne 2010's
- * argumentation case (task item 3). Otherwise, `source_provenance` (task
- * item 1, checkSourceProvenance against this learner's own "quote"-kind
- * evidence events), `duplicate_flag` (task item 2, computeDuplicateFlag
- * against this learner's own prior claims, class peers' accepted claims,
- * and canon claim texts), and `lateral_reading_flag` (lateral reading,
- * PLAN-REVISION-3.md section 2c, production-guard.ts's lateralReadingFlag
- * against this learner's own "corroboration"-kind evidence events) are
- * computed and stored on the row; none of the three ever blocks
- * submission on its own. Full rule set:
- * learning/research-os/PRODUCTION-GUARD.md.
- *
- * Engine bridge task item 3: whenever a write here leaves a production at
- * status "accepted", its row is emitted to `public.research_os_
- * productions_outbox` (db.ts's emitProductionOutboxIfAccepted, shared with
- * /api/research-os/review's own accept path, ros-06). This route's own
- * status validation above never lets a learner set "accepted" directly;
- * the accept path lives in the review route once a teacher approves. See
- * learning/research-os/ENGINE-BRIDGE.md.
- *
- * Auth: Authorization: Bearer <supabase access token>, required.
- *
- * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST is
- * gated by src/lib/research-os/consent.ts's requireConsent, action
- * "production_submit", checked right after verifyLearner and before the
- * body is even parsed. This covers a draft save as well as a submit: both
- * carry the learner's own claim/evidence/sources/transfer-proof text. GET
- * (reading back the learner's own already-saved productions) is not
- * gated. A blocked POST returns 403 with consentBlockedBody(gate) as its
- * body.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
 import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
@@ -97,14 +47,10 @@ export async function GET(req: NextRequest) {
   if (targetNodeId) q = q.eq("target_node_id", targetNodeId);
   const { data, error } = await q;
   if (error) return bad(500, "read_failed");
-  // Titles for the target and the node an accepted production became, so a
-  // list can read without a second round trip.
   const rows = (data || []) as { target_node_id: string; related_node_id?: string | null; node_id?: string | null }[];
   const ids = Array.from(new Set(rows.flatMap((r) => [r.target_node_id, r.related_node_id ?? null, r.node_id ?? null]).filter((x): x is string => Boolean(x))));
   const titles: Record<string, { slug: string; title: string; kind: string }> = {};
   if (ids.length) {
-    // A row can name a node whose access changed after it was written, so
-    // the titles are filtered on the way out as well.
     const readable = await authorizeNodes(ids, { id: learnerId }, "view");
     if (!readable.ok) return bad(503, "access_unavailable");
     if (readable.allowed.length) {
@@ -118,9 +64,7 @@ export async function GET(req: NextRequest) {
 interface ProductionBody {
   id?: string;
   targetNodeId?: string;
-  /** production (default), extension, replication, or peer_review. */
   kind?: string;
-  /** The node an extension, replication, or peer review acts on. */
   relatedNodeId?: string | null;
   claim?: string;
   evidence?: unknown[];
@@ -148,9 +92,6 @@ export async function POST(req: NextRequest) {
   } catch {
     return bad(400, "bad_request");
   }
-  // A production names nodes, and naming one is reading it: without this a
-  // learner who knows a uuid could target a node they may not see and read
-  // its slug, title and kind back from the list (Bucket critic C14).
   const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
     (id): id is string => typeof id === "string" && id.length > 0,
   );
@@ -166,15 +107,6 @@ export async function POST(req: NextRequest) {
 
   const svc = graphService();
 
-  // Ownership check: the service-role client bypasses RLS, so an update-by-id
-  // must verify the existing row belongs to this learner here, in application
-  // code, before the upsert -- otherwise a learner who knows or guesses
-  // another learner's production id could overwrite that row and reassign it
-  // to themselves (the RLS own_update policy would block this on a direct
-  // client, but this route never uses that path). Also carries target_node_id
-  // forward: a resubmit's own POST body may omit targetNodeId (it cannot
-  // change), but the production guard below needs it to look up this
-  // learner's current stage before the row is even written.
   let existingTargetNodeId: string | undefined;
   if (body.id) {
     const { data: owned, error: ownErr } = await svc
@@ -189,12 +121,6 @@ export async function POST(req: NextRequest) {
   }
   const targetNodeId = body.targetNodeId || existingTargetNodeId;
 
-  // Production guard (bkt-ros, production guard bead): computed only on a
-  // real submission, never on a draft save (this file's own header, "a
-  // learner can save partial, unverified work with no guard noise").
-  // `submitFromStage` is fetched once here and reused below for
-  // onProductionSubmitted's own `fromStage` (ros-04's existing rule), so
-  // a submit only ever reads the learner's current stage once.
   let sourceProvenance: ReturnType<typeof checkSourceProvenance> | undefined;
   let duplicateFlag: ReturnType<typeof computeDuplicateFlag> | undefined;
   let lateralFlag: ReturnType<typeof lateralReadingFlag> | undefined;
@@ -203,8 +129,6 @@ export async function POST(req: NextRequest) {
   if (body.status === "submitted") {
     if (!targetNodeId) return bad(400, "targetNodeId is required to submit a production");
     submitFromStage = await loadCurrentStage(learnerId, targetNodeId);
-    // A stage that was not read cannot gate a submission or be written
-    // into an audit event.
     if (submitFromStage === null) return bad(503, "stage_read_failed");
     counterEvidenceRequired = requiresCounterEvidence(submitFromStage);
     if (counterEvidenceRequired && !hasCounterEvidence(body.counterEvidence)) {
@@ -226,10 +150,6 @@ export async function POST(req: NextRequest) {
       ...canonClaimsAsDuplicateCandidates(),
     ];
     duplicateFlag = computeDuplicateFlag(claimText, candidates);
-    // Lateral reading (PLAN-REVISION-3.md section 2c, task item 3):
-    // informational only, the same "never blocks submission" posture
-    // duplicate detection already carries; targetNodeId is confirmed set
-    // above (the same guard that gated submitFromStage's own lookup).
     lateralFlag = lateralReadingFlag(targetNodeId, corroborationEvidence);
   }
 
@@ -249,10 +169,6 @@ export async function POST(req: NextRequest) {
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
   if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;
   if (body.relatedNodeId !== undefined) row.related_node_id = body.relatedNodeId;
-  // source_provenance/duplicate_flag/counter_evidence_required are guard
-  // output, only ever recomputed on a real submission (see above); a draft
-  // save omits these keys so a prior submission's own guard results are
-  // left untouched in the row rather than blanked out by a later edit.
   if (sourceProvenance !== undefined) row.source_provenance = sourceProvenance;
   if (duplicateFlag !== undefined) row.duplicate_flag = duplicateFlag;
   if (lateralFlag !== undefined) row.lateral_reading_flag = lateralFlag;
@@ -262,12 +178,7 @@ export async function POST(req: NextRequest) {
   if (error) return bad(500, "write_failed");
 
   if (body.status === "submitted" && data?.target_node_id) {
-    // ros-04: `fromStage` reflects the learner's real prior stage, read
-    // once above (submitFromStage) rather than re-fetched here, since
-    // nothing between that read and this write can change it.
     const transition = onProductionSubmitted(submitFromStage ?? "access", { sessionId: (body.sessionId || "").trim() || undefined });
-    // submitFromStage is non-null here: the submitted path returns 503
-    // above when the read failed, so the ?? is the no-row default alone.
     try {
       await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
     } catch (err) {
@@ -277,12 +188,6 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Engine bridge task item 3: an accepted production is the engine's own
-  // evidence item. Unreachable today (the status validation above never lets
-  // a learner set "accepted"), wired for Phase 1's teacher-accept path
-  // (bkt-ros ros-06, /api/research-os/review's POST), which shares this
-  // exact emit function rather than duplicating it. See db.ts's
-  // emitProductionOutboxIfAccepted for the best-effort posture.
   if (data) {
     await emitProductionOutboxIfAccepted({
       id: data.id as string,

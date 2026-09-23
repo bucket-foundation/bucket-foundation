@@ -6,7 +6,6 @@ export const metadata = toolMetadata("channeldwell");
 const _jsonld = toolJsonLd("channeldwell");
 import ChannelDwellClient from "./ChannelDwellClient";
 
-// ChannelDwell run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

@@ -1,12 +1,3 @@
-/**
- * The code-citation checker's own rules
- * (scripts/check-code-citations.mjs), against fixtures written to a
- * temporary tree.
- *
- * A checker with a hole is worse than no checker, because it licenses
- * the belief that a class of defect is closed. Each case here is a wrong
- * citation the checker has to catch, or a right one it must leave alone.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
@@ -16,7 +7,6 @@ import path from "node:path";
 
 const CHECKER = path.join(process.cwd(), "scripts/check-code-citations.mjs");
 
-/** A throwaway repo with one source file and one prose file. */
 function repo(prose, source = SOURCE, extra = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), "cite-"));
   mkdirSync(path.join(dir, "src/lib"), { recursive: true });
@@ -31,24 +21,24 @@ function repo(prose, source = SOURCE, extra = {}) {
 }
 
 const SOURCE = [
-  "export const FIRST = 1;", // 1
-  "", // 2
-  "export function makeWidget() {", // 3
-  "  return { id: 1 };", // 4
-  "}", // 5
-  "", // 6
-  "", // 7
-  "", // 8
-  "", // 9
-  "", // 10
-  "", // 11
-  "", // 12
-  "", // 13
-  "", // 14
-  "", // 15
-  "export function farAway() {", // 16
-  "  return 2;", // 17
-  "}", // 18
+  "export const FIRST = 1;",
+  "",
+  "export function makeWidget() {",
+  "  return { id: 1 };",
+  "}",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "export function farAway() {",
+  "  return 2;",
+  "}",
 ].join("\n");
 
 function run(dir) {
@@ -117,17 +107,12 @@ test("a wrong citation in a table cell is still caught", () => {
 });
 
 test("a second path on the line does not excuse a wrong single citation", () => {
-  // The symbol check stands down when a line cites more than one path,
-  // because the mapping is ambiguous. The line and file checks do not.
   const r = run(repo("Both `src/lib/widget.ts:400` and `src/lib/other.ts` matter.\n"));
   assert.equal(r.code, 1, `an out-of-range line is caught whatever else the line mentions: ${r.out}`);
   assert.match(r.out, /out-of-range/);
 });
 
 test("a symbol on the line above the citation is still checked", () => {
-  // The scope is the paragraph. On the physical line alone this check
-  // reached one citation in forty-one across the live corpus while the
-  // run reported all forty-one as resolving (Bucket critic F-1).
   const prose = "The `farAway` helper does the second thing,\nand it lives at `src/lib/widget.ts:3`.\n";
   const r = run(repo(prose));
   assert.equal(r.code, 1, `a wrong citation is caught with the symbol one line up: ${r.out}`);
@@ -135,9 +120,6 @@ test("a symbol on the line above the citation is still checked", () => {
 });
 
 test("a fence left open is its own finding", () => {
-  // A bare toggle let a `~~~` line inside a backtick block close it, so
-  // every citation below was skipped and the run printed success having
-  // checked nothing (Bucket critic F-2).
   const prose = "```\nnot closed\n\nSee `src/lib/widget.ts:400`.\n";
   const r = run(repo(prose));
   assert.equal(r.code, 1, r.out);
@@ -159,8 +141,6 @@ test("a basename matching two files is a finding", () => {
 });
 
 test("a name shorter than three characters is not hunted for", () => {
-  // `id` appears in half the lines of any file, so looking for it makes
-  // every citation pass.
   const prose = "The `id` field is at `src/lib/widget.ts:16`.\n";
   const r = run(repo(prose));
   assert.equal(r.code, 0, `a two-letter name names nothing in particular: ${r.out}`);
@@ -175,8 +155,6 @@ test("a word backticked all over the repo is not hunted for", () => {
 });
 
 test("a dotted name is matched on its head", () => {
-  // `provenance.canon_score` is how prose names a field, and the head is
-  // what appears in the source.
   const prose = "The `makeWidget.id` field is at `src/lib/widget.ts:3`.\n";
   const r = run(repo(prose));
   assert.equal(r.code, 0, `the head of a dotted name is found: ${r.out}`);
@@ -184,8 +162,6 @@ test("a dotted name is matched on its head", () => {
 });
 
 test("a backticked path is not mistaken for a symbol", () => {
-  // Taking the leading identifier of a backticked span made `src` the
-  // name to hunt for, and it is in no file.
   const prose = "See `src/lib/widget.ts` at `src/lib/widget.ts:16`.\n";
   const r = run(repo(prose));
   assert.equal(r.code, 0, r.out);

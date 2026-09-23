@@ -1,9 +1,3 @@
-/**
- * The person's classes.
- * GET  /api/research-os/classes            -> { classes: ClassSummary[] }
- * POST /api/research-os/classes { action: "create", name } -> { class }
- * POST /api/research-os/classes { action: "join", code }   -> { class }
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, verifyLearnerIdentity } from "@/lib/research-os/db";
 import { createClass, joinClass, listMyClasses } from "@/lib/research-os/classes";

@@ -1,7 +1,3 @@
-/**
- * The status checks (ros-frontend 1) tell four outcomes apart: up,
- * unhealthy, no answer, and no address. node:test with a fake fetch.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { checkEngine, checkModel, fetchRuns, latestRuns, type Fetcher } from "../src/lib/research-os/status";

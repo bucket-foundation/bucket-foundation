@@ -1,25 +1,3 @@
-/**
- * Unit tests: the teacher class view and the Production accept path
- * (bkt-ros, ros-06), src/lib/research-os/class-view.ts,
- * src/lib/research-os/reviewer.ts's isReviewerEmail,
- * src/lib/research-os/db.ts's filterClassesForReviewer (the class-scoping
- * decision: a reviewer for one class never reads another reviewer's), and
- * src/lib/research-os/stages.ts's onProductionReview composed with the
- * real (unmodified) src/lib/research-os/engine-bridge.ts's
- * buildProductionOutboxRow. No database: matching every other
- * scripts/test-research-os-*.ts file's convention (node:test +
- * node:assert, no framework configured in this repo), the class grid and
- * blocked/ready computations run against plain fixture arrays, and the
- * "accept path reaches the outbox" test proves the *shape* the accept path
- * produces is exactly what the real, unmodified outbox builder accepts --
- * writeProductionOutbox itself (a live Supabase upsert) is out of reach of
- * this no-DB test suite, same as every other DB-touching function in this
- * repo; see learning/research-os/TEACHER-LAYER.md, "What this suite does
- * not cover."
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-teacher-class.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -30,10 +8,6 @@ import { isReviewerEmail } from "../src/lib/research-os/reviewer";
 import { filterClassesForReviewer } from "../src/lib/research-os/db";
 import { onProductionReview, onProductionReturned } from "../src/lib/research-os/stages";
 import { buildProductionOutboxRow, type GraphProductionRow } from "../src/lib/research-os/engine-bridge";
-
-// ---------------------------------------------------------------------------
-// Fixtures
-// ---------------------------------------------------------------------------
 
 const SEED_PATH = join(__dirname, "..", "supabase", "seed", "research-os-sky-blue.json");
 
@@ -67,8 +41,6 @@ function state(nodeId: string, stage: Stage, updatedAt?: string): LearnerNodeSta
   return { nodeId, stage, updatedAt };
 }
 
-// A small hand-traceable graph for the blocked/ready computations: A and Y
-// are roots; B depends on A; Z depends on both X and Y; W depends on Z.
 function synthNode(id: string, title = id): GraphNode {
   return { id, slug: id, title, kind: "concept", tier: 5, branch: "test", summary: null };
 }
@@ -86,10 +58,6 @@ function daysAgo(n: number): string {
   return new Date(NOW.getTime() - n * 24 * 60 * 60 * 1000).toISOString();
 }
 
-// ---------------------------------------------------------------------------
-// A fixture class of three learners on the real seed path
-// ---------------------------------------------------------------------------
-
 test("seedPathOrder: the real seed path has 19 K-12 nodes (the canon-bridge tier-90 nodes are not prerequisite-reachable from the target)", () => {
   const { nodes, edges, targetId } = loadSeedGraph();
   const path = seedPathOrder(nodes, edges, targetId);
@@ -103,9 +71,9 @@ test("buildClassGrid: a fixture class of three learners on the seed path", () =>
   const path = seedPathOrder(nodes, edges, targetId);
 
   const statesByLearner = new Map<string, LearnerNodeState[]>([
-    ["learner-fresh", []], // no records at all
+    ["learner-fresh", []],
     ["learner-midpath", [state("light-travels-in-straight-lines", "internalization", daysAgo(30)), state("light-can-scatter-off-small-things", "awareness", daysAgo(10))]],
-    ["learner-near-done", path.slice(0, -1).map((n) => state(n.id, "internalization", daysAgo(1)))], // everything but the target itself
+    ["learner-near-done", path.slice(0, -1).map((n) => state(n.id, "internalization", daysAgo(1)))],
   ]);
 
   const grid = buildClassGrid(path, ["learner-fresh", "learner-midpath", "learner-near-done"], statesByLearner);
@@ -125,10 +93,6 @@ test("buildClassGrid: a fixture class of three learners on the seed path", () =>
   assert.equal(nearDone.cells.find((c) => c.nodeId === "why-the-sky-is-blue")!.stage, "access", "the target itself was left unstarted on purpose");
 });
 
-// ---------------------------------------------------------------------------
-// Blocked
-// ---------------------------------------------------------------------------
-
 test("findBlockedLearners: a below-Understanding node stale past the threshold is blocked", () => {
   const states: LearnerNodeState[] = [state("A", "understanding", daysAgo(60)), state("B", "awareness", daysAgo(10))];
   const byLearner = new Map([["l1", states]]);
@@ -147,7 +111,7 @@ test("findBlockedLearners: the same node NOT yet stale past the threshold is not
 });
 
 test("findBlockedLearners: a next node with NO record at all is 'not started', not blocked, even with an old `now`", () => {
-  const states: LearnerNodeState[] = [state("A", "understanding", daysAgo(60))]; // B has no record
+  const states: LearnerNodeState[] = [state("A", "understanding", daysAgo(60))];
   const byLearner = new Map([["l1", states]]);
   const out = findBlockedLearners(SYNTH_NODES, SYNTH_EDGES, "C", ["l1"], byLearner, NOW, 3);
   assert.equal(out.length, 0);
@@ -159,10 +123,6 @@ test("findBlockedLearners: a node already at Understanding or above is never blo
   const out = findBlockedLearners(SYNTH_NODES, SYNTH_EDGES, "C", ["l1"], byLearner, NOW, 3);
   assert.equal(out.length, 0);
 });
-
-// ---------------------------------------------------------------------------
-// Ready for a harder target
-// ---------------------------------------------------------------------------
 
 test("findReadyForHarderTarget: every prerequisite at internalization, node unstarted -> ready", () => {
   const states: LearnerNodeState[] = [state("X", "internalization"), state("Y", "internalization")];
@@ -194,10 +154,6 @@ test("findReadyForHarderTarget: a root node never qualifies (nothing to have alr
   assert.ok(!out.some((r) => r.nodeId === "A" || r.nodeId === "X" || r.nodeId === "Y"));
 });
 
-// ---------------------------------------------------------------------------
-// Class scoping: a reviewer never reads a class they do not own
-// ---------------------------------------------------------------------------
-
 const CLASS_A = { id: "class-a", name: "Period 1", reviewer_email: "teacher-a@school.example", created_at: "2026-09-01T00:00:00Z" };
 const CLASS_B = { id: "class-b", name: "Period 2", reviewer_email: "teacher-b@school.example", created_at: "2026-09-01T00:00:00Z" };
 
@@ -219,10 +175,6 @@ test("filterClassesForReviewer: case- and whitespace-insensitive against reviewe
   assert.equal(out.length, 1);
   assert.equal(out[0].id, "class-a");
 });
-
-// ---------------------------------------------------------------------------
-// Reviewer gate rejects a non-reviewer
-// ---------------------------------------------------------------------------
 
 test("isReviewerEmail: allows an address on RESEARCH_OS_REVIEWER_EMAILS, rejects one that is not", () => {
   const prior = process.env.RESEARCH_OS_REVIEWER_EMAILS;
@@ -248,10 +200,6 @@ test("isReviewerEmail: an unset or empty allowlist rejects every email (fails cl
     else process.env.RESEARCH_OS_REVIEWER_EMAILS = prior;
   }
 });
-
-// ---------------------------------------------------------------------------
-// Accept path end to end through the outbox row
-// ---------------------------------------------------------------------------
 
 test("onProductionReview: an approval re-affirms `production` and logs a teacher_review evidence event, with fromStage/toStage/reviewId", () => {
   const transition = onProductionReview("reviewer-1", "clean write-up, cites the law correctly", "review-1");
@@ -282,7 +230,7 @@ test("accept path: a production the review route just flipped to 'accepted' pass
     claim: "The sky is blue because short wavelengths scatter more.",
     evidence: [{ nodeId: "rayleigh-scattering-law", quote: "..." }],
     sources: [{ label: "Rayleigh 1871" }],
-    status: "accepted", // the review route's own decision sets this field, ahead of this test
+    status: "accepted",
     created_at: "2026-09-01T00:00:00Z",
     updated_at: "2026-09-10T00:00:00Z",
   };
@@ -301,18 +249,11 @@ test("accept path: a RETURNED production (status back to 'draft') never reaches 
     claim: "draft claim",
     evidence: [],
     sources: [],
-    status: "draft", // the review route's own "returned -> draft" contract
+    status: "draft",
     created_at: "2026-09-01T00:00:00Z",
   };
   assert.throws(() => buildProductionOutboxRow(returnedRow, null), /not accepted/);
 });
-
-// ---------------------------------------------------------------------------
-// RLS scoping (static: this repo runs no test against a live Postgres; see
-// the file header. This asserts the migration text declares the scoping
-// this PR's own header describes, catching a regression that silently
-// drops a policy or RLS itself.)
-// ---------------------------------------------------------------------------
 
 const CLASSES_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910030000_research_os_classes.sql");
 

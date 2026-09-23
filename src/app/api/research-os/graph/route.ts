@@ -1,10 +1,3 @@
-/**
- * GET /api/research-os/graph?branch=<slug>
- * One branch of the graph for the map: the nodes the viewer may see, the
- * edges among them, the viewer's standing per node, the assignments in
- * the viewer's classes that target them, and for staff the class holders
- * per node by level (the heatmap). Signed out: public nodes, no standing.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { IN_CHUNK, configured, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { authorizeNode } from "@/lib/research-os/read-access";
@@ -22,18 +15,9 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const url = new URL(req.url);
   if (url.searchParams.get("list")) {
-    // PostgREST pages at 1,000 rows; walk the pages.
     const counts = new Map<string, number>();
     for (let from = 0; ; from += 1000) {
-      // This answers before identity, so it counts the public graph
-      // alone: a private node's existence is not a branch statistic
-      // (Bucket critic C23).
-      // Ordered, because an unordered page can serve one node twice and
-      // skip another, and these rows are counted.
       const { data, error } = await graphService().from("nodes").select("id,branch").eq("visibility", "public").order("id").range(from, from + 999);
-      // A failed page used to end the walk and serve the count reached
-      // so far, which reads as a graph with no branches in it, or worse,
-      // a plausible smaller one nobody can tell from the truth.
       if (error) {
         console.error("[research-os/graph] branch count read failed:", error.message);
         return bad(503, "graph_read_failed");
@@ -55,8 +39,6 @@ export async function GET(req: NextRequest) {
     return bad(500, "graph_load_failed");
   }
   const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
-  // An access-store failure is an outage: serving an empty graph would
-  // tell a learner their branch has nothing in it.
   if (!filtered.ok) return bad(503, "access_unavailable");
   const { nodes, edges } = filtered;
   const ids = nodes.map((n) => n.id);
@@ -66,10 +48,6 @@ export async function GET(req: NextRequest) {
   let holders: Record<string, Record<string, number>> | null = null;
   let learners = 0;
   if (viewerId && ids.length) {
-    // A read that failed is not a learner who has opened nothing. Serving
-    // an empty standing map behind a 200 told them exactly that, and it
-    // now also swallowed the PagingError the page guard raises (Bucket
-    // critic C53).
     let st: { node_id: string; stage: string }[];
     let classes: Awaited<ReturnType<typeof listMyClasses>>;
     try {
@@ -83,16 +61,8 @@ export async function GET(req: NextRequest) {
     }
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
-    // One try over the class reads below. Each used to carry its own
-    // .catch returning an empty list, so a failed assignment read showed
-    // a learner no assignments and a failed member read showed a teacher
-    // a class with nobody in it, both at 200.
     try {
     if (classIds.length) {
-      // Chunked and paged, which dev had and this merge dropped when it
-      // took the branch's side of the whole block. A class list of any
-      // size puts more than a thousand assignments here, and the limit
-      // above truncated them silently.
       let asg: { target_node_id: string; title: string; class_id: string; due_at: string | null }[];
       try {
         asg = await inChunks<{ target_node_id: string; title: string; class_id: string; due_at: string | null }>(classIds, (chunk, page) =>
@@ -107,13 +77,6 @@ export async function GET(req: NextRequest) {
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
       const staffIds = classes.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
       if (staffIds.length) {
-        // Many members per class, so this overflows the row cap on an
-        // ordinary staff class list, and the order has to be total.
-        // class_members' primary key is (class_id, learner_id), so one
-        // learner enrolled in two classes of the chunk appears twice and
-        // learner_id alone leaves a tie group. A page boundary landing
-        // inside one repeats a row and skips another, and the skipped
-        // learner is missing from the roster count with no error.
         let members: { learner_id: string }[];
         try {
           members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
@@ -128,11 +91,6 @@ export async function GET(req: NextRequest) {
         if (learnerIds.length) {
           const rows: { node_id: string; stage: string }[] = [];
           try {
-            // Both lists are chunked. Taking the first IN_CHUNK learners
-            // counted a heatmap over 60 of them while `learners` above
-            // reported the true total, so the map under-reported every
-            // stage for any class past that with no sign it had
-            // (Bucket critic C63).
             for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
               const someLearners = learnerIds.slice(i, i + IN_CHUNK);
               rows.push(
@@ -140,9 +98,6 @@ export async function GET(req: NextRequest) {
               );
             }
           } catch (err) {
-            // A failed page here dropped those learners from the holder
-            // counts, which a teacher reads as nobody holding the node
-            // rather than as a read that did not finish.
             console.error("[research-os/graph] heatmap read failed:", err instanceof Error ? err.message : err);
             return bad(503, "graph_read_failed");
           }

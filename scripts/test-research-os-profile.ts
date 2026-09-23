@@ -1,14 +1,3 @@
-/**
- * Unit tests: the learner profile form's input validation (bkt-ros ros-07
- * follow-up, "consent gate wiring"), src/lib/research-os/profile.ts's
- * validateProfileInput. Pure, no I/O, no live Supabase, matching this
- * repo's decideConsent/isDeleteConfirmed convention: the decision logic is
- * tested directly with fixture objects; the route
- * (src/app/api/research-os/profile/route.ts) is a thin wrapper around it.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-profile.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { isValidBirthYearBucket, isValidRole, validateProfileInput } from "../src/lib/research-os/profile";
@@ -69,11 +58,6 @@ test("validateProfileInput: an empty body fails on the role check first", () => 
   if (!result.ok) assert.match(result.error, /role/);
 });
 
-// A consent_status field, if a caller sends one, is silently ignored: the
-// return type has no slot for it, and the route this validator backs never
-// reads body.consentStatus at all. This is a type-level guarantee more than
-// a runtime one, so the test asserts the shape of a successful result
-// carries only the two accepted fields.
 test("validateProfileInput: a successful result carries only role and birthYearBucket", () => {
   const result = validateProfileInput({ role: "student", birthYearBucket: "under13", consentStatus: "self" } as never);
   assert.equal(result.ok, true);

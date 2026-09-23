@@ -1,24 +1,3 @@
-/**
- * Research OS, the Access level (ros-21).
- *
- * GET  /api/research-os/access?node=<id>
- *   { node: {id, visibility, ownerId}, isOwner, canView, verbs: {continue,
- *     extend, cite, replicate, review}, grants (owner only), requests (owner
- *     only), myRequests }
- * GET  /api/research-os/access?mine=1
- *   { owned: [{id, slug, title, visibility, pending}], myRequests }
- * POST /api/research-os/access
- *   { action: "set_visibility", nodeId, visibility }
- *   { action: "grant", nodeId, granteeId | granteeGroup, role, expiresAt? }
- *   { action: "revoke", nodeId, grantId }
- *   { action: "request", nodeId, purpose, message? }
- *   { action: "decide", nodeId, requestId, decision: "granted" | "denied" }
- *   { action: "import", kind, title, source? }
- *
- * Auth: Authorization: Bearer <supabase access token>. GET ?node= works
- * signed out for public nodes (verbs computed for an anonymous viewer).
- * Rules: src/lib/research-os/access.ts. Writes: access-db.ts.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, verifyLearner } from "@/lib/research-os/db";
 import { can, canView, isOwner, GRANT_ROLES, type AccessRequest, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
@@ -53,8 +32,6 @@ async function viewerFrom(req: NextRequest): Promise<{ ok: true; viewer: Viewer 
   const id = await verifyLearner(req);
   if (!id) return { ok: true, viewer: { id: null, groups: [] } };
   const groups = await loadViewerGroups(id);
-  // A failed groups read is not a learner in no class. Answering one
-  // tells a group grantee they have no access, behind a 200.
   if (!groups.ok) return { ok: false };
   return { ok: true, viewer: { id, groups: groups.value } };
 }
@@ -68,16 +45,10 @@ export async function GET(req: NextRequest) {
 
   if (searchParams.get("mine")) {
     if (!viewer.id) return bad(401, "unauthorized");
-    // loadOwnedNodes is pinned to the caller. This branch does read node
-    // content, which the read-authorization gate's exemption for this
-    // route now says out loud and pins on this line.
     const ownedRead = await loadOwnedNodes(viewer.id);
     if (!ownedRead.ok) return bad(503, "access_unavailable");
     const mineRead = await loadRequestsByRequester(viewer.id);
     if (!mineRead.ok) return bad(503, "access_unavailable");
-    // One read for every node's pending count. This was one request per
-    // owned node inside a Promise.all, so an owner with 800 nodes fired
-    // 800 concurrent PostgREST requests from a single GET.
     const pendingRead = await loadPendingCountsForNodes(ownedRead.value.map((n) => n.id));
     if (!pendingRead.ok) return bad(503, "access_unavailable");
     const owned = ownedRead.value.map((n) => ({ ...n, pending: pendingRead.value.get(n.id) ?? 0 }));
@@ -94,8 +65,6 @@ export async function GET(req: NextRequest) {
   if (!grantsRead.ok) return bad(503, "access_unavailable");
   const grants = grantsRead.value;
   const owner = isOwner(node, viewer);
-  // Both reads answer a union, so an outage is a 503 here instead of an
-  // owner being told nobody has asked for access.
   let requestsForNode: (AccessRequest & { createdAt: string })[] | undefined;
   if (owner) {
     const read = await loadRequestsForNode(nodeId);

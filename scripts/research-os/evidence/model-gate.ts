@@ -1,28 +1,3 @@
-/**
- * The Model gate for evidence search (IMPLEMENTATION.md, "Verification
- * and release"): the pinned weights embed a query and change ranking on
- * paraphrase fixtures written before any result was seen.
- *
- *   set -a; . ./.env.local; set +a
- *   RESEARCH_OS_AI_SEARCH=1 EVIDENCE_WORKER_URL=http://127.0.0.1:8431 \
- *   EVIDENCE_WORKER_SECRET=... npm run dev        # in one shell
- *
- *   BENCH_EMAIL=you@example.test \
- *   npx ts-node --compiler-options '{"module":"commonjs"}' \
- *     scripts/research-os/evidence/model-gate.ts --vectors local/evidence/vectors
- *
- * Each case runs twice against the same server and the same admitted
- * corpus: once with the worker stopped, where the route falls back to
- * keyword search, and once with it running. The difference between those
- * two card lists is what the gate measures.
- *
- * Mock results fail: the worker's own scored counter has to rise by one
- * per case, and the model revision the route reports has to be the one
- * models.json pins.
- *
- * Exit 0: every check passes. Exit 1: a check fails. Exit 2: the run
- * could not start.
- */
 import { spawn, type ChildProcess } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -150,7 +125,6 @@ async function main(): Promise<number> {
   console.log(`[model-gate] ${session.email}, ${fixtures.cases.length} cases, pinned ${pinned.slice(0, 12)}`);
 
   try {
-    // Keyword only: the worker is down, so the route falls back and says so.
     const lexical = new Map<string, SearchBody>();
     for (const c of fixtures.cases) {
       const body = await search(base, session.accessToken, c);

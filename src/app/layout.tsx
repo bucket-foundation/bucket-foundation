@@ -86,14 +86,12 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
     locale: "en_US",
-    // opengraph-image.png at src/app/ is auto-wired by Next.js file convention
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
     creator: "@gianyrox",
-    // twitter-image.png at src/app/ is auto-wired by Next.js file convention
   },
   robots: {
     index: true,
@@ -118,16 +116,9 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
   },
   manifest: "/manifest.webmanifest",
-  // Search-engine / agent-index verification tokens. Drop real tokens here
-  // once issued (Anthropic search indexer, Google Search Console, Bing, OAI).
-  // Robots.txt + sitemap.xml + JSON-LD already ship; this is a reminder hook.
   verification: {
     google: "VoXPR3QPeKevM6ueMEWoDnoZyQmj1UYzzNYx7X33HWM",
-    // yandex: "<YANDEX_VERIFICATION_TOKEN>",
     other: {
-      // "anthropic-search-verification": "<ANTHROPIC_TOKEN>",
-      // "openai-search-verification": "<OPENAI_TOKEN>",
-      // "msvalidate.01": "<BING_VERIFICATION_TOKEN>",
     },
   },
   other: {
@@ -136,7 +127,6 @@ export const metadata: Metadata = {
     "license:intent": "CC0",
     "canon:branches": "8",
     "protocol": "feed402 / x402 / Base",
-    // Machine-readable agent hints
     "ai:protocol": "feed402/0.2",
     "ai:discovery": "/.well-known/feed402.json",
     "ai:llms": "/llms.txt",
@@ -146,7 +136,6 @@ export const metadata: Metadata = {
   },
 };
 
-// schema.org JSON-LD, Organization + WebSite + CreativeWork (the canon)
 const JSON_LD = {
   "@context": "https://schema.org",
   "@graph": [
@@ -261,10 +250,6 @@ export default function RootLayout({
           <Header launchList={!signInOpen()} />
           {children}
           <Footer launchList={!signInOpen()} />
-          {/* Vercel data tracking. Web Analytics must be enabled in the Vercel
- dashboard (Project → Analytics → Enable) for events to be recorded;
- Speed Insights (Core Web Vitals) works once the project is deployed
- on Vercel. Both are no-ops in local dev. */}
           <Analytics />
           <SpeedInsights />
         </SessionProvider>

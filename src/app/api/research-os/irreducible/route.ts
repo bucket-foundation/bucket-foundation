@@ -1,16 +1,3 @@
-/**
- * /api/research-os/irreducible, the review of nodes the decompose-further
- * queue called irreducible (learning/research-os/PRIMES.md, "Slice 2"): the
- * founder's primes, the ideas that do not break down further. Backs
- * graph.irreducible_proposals. The work lives in
- * src/lib/research-os/inference/review-actions.ts.
- *
- * GET  -> { proposals }: pending verdicts, the nodes most rested on first.
- * POST { id, decision: "confirmed" | "rejected", reason? }. A confirmed node
- *   leaves the decompose-further targets; a rejected one returns to them.
- *
- * Auth and status codes match /api/research-os/edges.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";

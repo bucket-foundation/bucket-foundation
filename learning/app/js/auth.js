@@ -1,34 +1,3 @@
-/* Bucket Academy, optional sign-in + cross-device progress sync (bkt-su9).
- *
- * Passwordless EMAIL OTP via Supabase Auth. Anonymous local-first use keeps
- * working with NO sign-in, this module only ADDS cross-device save/sync.
- *
- * Design:
- * - Loads the Supabase JS client from CDN (the anon key is public by design;
- * Row-Level Security is the real boundary, a user can only read/write their
- * own rows in public.academy_progress).
- * - Public config (URL + anon key) is injected at build time by
- * scripts/sync-academy.mjs into js/auth-config.js (window.__BUCKET_SUPABASE).
- * When that config is absent (no env), auth disables itself silently and the
- * app stays purely anonymous + local.
- * - Progress lives in localStorage under `bucket-academy/v1/<branch>` exactly
- * as engine.js writes it. On sign-in we MERGE local⇄server per-card by the
- * most recent review (`lastReview`), then push the merged blob up and write
- * it back down, so every device converges.
- *
- * Storage transport (bkt-aja): the cross-device rows live in `bucket.academy_progress`
- * on a MULTI-TENANT self-hosted Supabase whose shared PostgREST does NOT expose
- * the `bucket` schema. So progress reads/writes do NOT go through supabase-js
- * `.from()` / PostgREST, they go through the same-origin Next.js API route
- * `/api/academy/progress`, which verifies this user's access token server-side
- * and uses a service-role client to touch ONLY that user's rows. Authentication
- * (email-OTP) still uses gotrue directly via the supabase-js client (the auth
- * endpoints ARE exposed); only the table I/O is proxied. This keeps the `bucket`
- * schema private and requires zero shared-infra changes.
- *
- * This module is intentionally framework-free and self-contained, mirroring the
- * rest of the static app. It exposes `window.BucketAuth`.
- */
 (function (global) {
   "use strict";
 
@@ -39,29 +8,18 @@
   var cfg = global.__BUCKET_SUPABASE || null;
   var enabled = !!(cfg && cfg.url && cfg.anonKey);
 
-  // Progress I/O goes through the same-origin Next.js API route (see header).
-  // When the Academy is served under the Next.js site it lives at /academy-app,
-  // so a root-relative path resolves to the right origin. An explicit override
-  // (cfg.apiBase) is honored for standalone hosting.
   var API_BASE =
     cfg && cfg.apiBase ? String(cfg.apiBase).replace(/\/$/, "") : "";
   var API_PROGRESS = API_BASE + "/api/academy/progress";
-  // bkt-coh, the public Mastery Profile API (claim handle + toggle visibility).
   var API_PROFILE = API_BASE + "/api/academy/profile";
 
-  var sb = null; // Supabase client (lazy)
-  // Framed under the site (src/app/academy/AcademyFrame.tsx): the parent
-  // posts its session in and this client adopts it, so one sign-in covers
-  // the site and the app. Same origin only.
+  var sb = null;
   var framed = false;
   try { framed = global.parent && global.parent !== global; } catch (e) { framed = false; }
-  var session = null; // current Supabase session (or null)
-  var listeners = []; // onChange subscribers
+  var session = null;
+  var listeners = [];
   var syncing = false;
 
-  /* ---------- localStorage helpers (the same keys engine.js uses) ---------- */
-
-  // All branch blobs currently on this device → { branch: stateObj }
   function readAllLocal() {
     var out = {};
     try {
@@ -72,7 +30,6 @@
           try {
             out[branch] = JSON.parse(localStorage.getItem(k)) || null;
           } catch (e) {
-            /* skip corrupt blob */
           }
         }
       }
@@ -94,12 +51,6 @@
     } catch (e) {}
   }
 
-  /* ---------- merge (commutative, idempotent, convergent) ---------- */
-
-  // Merge two engine states for the SAME branch. Cards merge per-id by the most
-  // recent `lastReview`; stats take the monotonic max; history unions by day;
-  // settings come from whichever blob was touched last (the caller decides
-  // ordering, `b` is treated as "newer or equal" on exact ties).
   function mergeState(a, b) {
     if (!a) return b ? JSON.parse(JSON.stringify(b)) : a;
     if (!b) return JSON.parse(JSON.stringify(a));
@@ -110,7 +61,6 @@
       stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} },
     };
 
-    // cards: union of ids, keep the most-recently-reviewed version
     var ids = {};
     Object.keys((a.cards || {})).forEach(function (id) { ids[id] = 1; });
     Object.keys((b.cards || {})).forEach(function (id) { ids[id] = 1; });
@@ -124,8 +74,6 @@
       out.cards[id] = lb >= la ? cb : ca;
     });
 
-    // stats: xp is monotonic non-decreasing → max; streak → max; lastStudyDay →
-    // lexically/temporally latest; history → union with max counts per day.
     var sa = a.stats || {};
     var sb2 = b.stats || {};
     out.stats.xp = Math.max(sa.xp || 0, sb2.xp || 0);
@@ -151,11 +99,8 @@
   function latestDay(a, b) {
     if (!a) return b || null;
     if (!b) return a || null;
-    // day keys are "YYYY-M-D"; compare by real date.
     return new Date(a).getTime() >= new Date(b).getTime() ? a : b;
   }
-
-  /* ---------- Supabase plumbing ---------- */
 
   function ensureClient() {
     if (sb) return Promise.resolve(sb);
@@ -169,12 +114,10 @@
           storageKey: "bucket-academy/auth",
         },
       });
-      // Track auth state for the lifetime of the page.
       sb.auth.onAuthStateChange(function (_event, s) {
         var was = !!session;
         session = s || null;
         if (!was && session) {
-          // Just signed in → sync once.
           syncAll().catch(function () {});
         }
         emit();
@@ -187,14 +130,10 @@
     });
   }
 
-  // The current session's access token, used to authenticate API-route calls.
   function accessToken() {
     return session && session.access_token ? session.access_token : null;
   }
 
-  // Pull every server row → { branch: { data, updated_at } } via the API route.
-  // The route verifies the bearer token server-side and returns only this
-  // user's rows (the `bucket` schema is never exposed to the browser).
   function pullServer() {
     var tok = accessToken();
     if (!tok) return Promise.resolve({});
@@ -210,9 +149,6 @@
     });
   }
 
-  // Upsert one branch blob via the API route. `uid` is accepted for call-site
-  // compatibility but intentionally NOT trusted, the route forces ownership to
-  // the verified token's user, so a client can never write another user's rows.
   function pushBranch(uid, branch, state) {
     var tok = accessToken();
     if (!tok) return Promise.resolve(false);
@@ -230,10 +166,6 @@
     });
   }
 
-  /* ---------- the merge/sync orchestration ---------- */
-
-  // Merge local ⇄ server across all branches, write the merged result back to
-  // localStorage AND to the server, then refresh the running engine if present.
   function syncAll() {
     if (!session || !session.user) return Promise.resolve(false);
     if (syncing) return Promise.resolve(false);
@@ -253,16 +185,14 @@
           var serverState = serverAll[b] ? serverAll[b].data : null;
           var merged = mergeState(localState, serverState);
           if (!merged) return;
-          // write merged back to this device
           writeLocal(b, merged);
-          // push merged up (idempotent upsert)
           pushes.push(pushBranch(uid, b, merged));
         });
         return Promise.all(pushes);
       })
       .then(function () {
         syncing = false;
-        emit(); // let the app refresh the current screen from merged state
+        emit();
         return true;
       })
       .catch(function (err) {
@@ -272,7 +202,6 @@
       });
   }
 
-  // Push only the active branch (called after a study action when signed in).
   function pushActive(branch) {
     if (!enabled || !session || !session.user) return Promise.resolve(false);
     var state = readLocal(branch);
@@ -281,8 +210,6 @@
       return false;
     });
   }
-
-  /* ---------- listeners ---------- */
 
   function emit() {
     listeners.slice().forEach(function (fn) {
@@ -305,9 +232,6 @@
     };
   }
 
-  /* ---------- public API ---------- */
-
-  // Send a 6-digit OTP (and magic link) to `email`.
   function requestCode(email) {
     return ensureClient().then(function () {
       return sb.auth
@@ -326,7 +250,6 @@
     });
   }
 
-  // Verify the 6-digit `token` for `email`.
   function verifyCode(email, token) {
     return ensureClient().then(function () {
       return sb.auth
@@ -348,11 +271,6 @@
     });
   }
 
-  /* ---------- public Mastery Profile (bkt-coh) ---------- */
-
-  // Fetch the signed-in user's own profile record + assembled preview.
-  // Resolves { profile: {handle,displayName,isPublic,url}|null, preview } or
-  // null when sync isn't configured / not signed in.
   function getProfile() {
     var tok = accessToken();
     if (!enabled || !tok) return Promise.resolve(null);
@@ -361,16 +279,12 @@
       headers: { Authorization: "Bearer " + tok },
       credentials: "omit",
     }).then(function (res) {
-      if (res.status === 503) return null; // sync unavailable
+      if (res.status === 503) return null;
       if (!res.ok) throw new Error("profile fetch failed: " + res.status);
       return res.json();
     });
   }
 
-  // Claim a handle and/or set display name and/or toggle visibility.
-  // `patch` = { handle?, display_name?, is_public? }. Resolves the API JSON
-  // (which includes { ok, profile } on success) or rejects with a typed error
-  // whose `.code` is the API error string (e.g. "handle_taken").
   function setProfile(patch) {
     var tok = accessToken();
     if (!enabled || !tok) return Promise.reject(new Error("not signed in"));
@@ -394,9 +308,6 @@
     });
   }
 
-  // Adopt a session posted by the parent page, or drop ours when the parent
-  // signed out. Tokens are only accepted from the parent window on the same
-  // origin.
   function adoptSession(s) {
     return ensureClient().then(function () {
       if (s && s.access_token && s.refresh_token) {
@@ -420,8 +331,6 @@
     } catch (e) {}
   }
 
-  // Best-effort: if a magic-link redirect lands us here already signed in,
-  // ensureClient() picks up the session and fires onAuthStateChange.
   function init() {
     if (!enabled) { emit(); return; }
     ensureClient().catch(function () {});
@@ -441,7 +350,6 @@
     pushActive: pushActive,
     getProfile: getProfile,
     setProfile: setProfile,
-    // exposed for tests
     _mergeState: mergeState,
   };
 })(typeof window !== "undefined" ? window : globalThis);
