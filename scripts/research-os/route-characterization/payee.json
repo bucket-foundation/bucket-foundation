@@ -1,0 +1,108 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": null,
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "age_unknown"
+      }
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": null,
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "age_unknown"
+      }
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": null,
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "age_unknown"
+      }
+    }
+  },
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_payee_type"
+    }
+  }
+}
