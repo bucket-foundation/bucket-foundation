@@ -29,7 +29,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.beads/
+.beads/*
+!.beads/issues.jsonl
 # gtm video build artifacts (binaries, mirror to gdrive instead)
 gtm/video-v*/
 # local GPU LLM endpoint (auth-shim secret, runtime logs, tunnel URL): never commit
