@@ -11,7 +11,46 @@ const PROBE_TIMEOUT_MS = 10_000;
 export type Observed = { status: number; cache: string | null; type: string | null; body: unknown } | { threw: string } | { timeout: true };
 export type Snapshot = Record<string, Observed>;
 
-type Probe = { name: string; configured: boolean; learner: string | null; consent: { allowed: boolean; reason?: string }; body?: string };
+type Stub = Record<string, Record<string, unknown>>;
+type Probe = {
+  name: string;
+  configured: boolean;
+  learner: string | null;
+  consent: { allowed: boolean; reason?: string };
+  body?: string;
+  query?: string;
+  methods?: string[];
+  stubs?: () => Stub;
+};
+
+const REVIEWER = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: LEARNER }) } };
+const signedIn = { configured: true, learner: LEARNER, consent: { allowed: true } };
+
+const FOLDER_PROBES: Record<string, Probe[]> = {
+  irreducible: [
+    { ...signedIn, name: "reviewer, store down", body: "{}", stubs: () => REVIEWER },
+    { ...signedIn, name: "reviewer, malformed json", methods: ["POST"], body: "{", stubs: () => REVIEWER },
+    { ...signedIn, name: "reviewer, null body", methods: ["POST"], body: "null", stubs: () => REVIEWER },
+    { ...signedIn, name: "reviewer, array body", methods: ["POST"], body: "[]", stubs: () => REVIEWER },
+    { ...signedIn, name: "reviewer, number body", methods: ["POST"], body: "3", stubs: () => REVIEWER },
+    { ...signedIn, name: "reviewer, no decision", methods: ["POST"], body: '{"id":"p1"}', stubs: () => REVIEWER },
+  ],
+  directions: [
+    {
+      ...signedIn,
+      name: "node given, access filter throws",
+      query: "?node=n1",
+      stubs: () => ({
+        "@/lib/research-os/db": { loadSubgraph: async () => ({ nodes: [{ id: "n1", visibility: "private" }], edges: [] }) },
+        "@/lib/research-os/access-db": {
+          filterSubgraphForViewer: async () => {
+            throw new Error("access store down");
+          },
+        },
+      }),
+    },
+  ],
+};
 
 const PROBES: Probe[] = [
   { name: "unconfigured", configured: false, learner: null, consent: { allowed: true } },
@@ -77,12 +116,21 @@ async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response
   db.verifyLearner = async () => probe.learner;
   db.verifyLearnerIdentity = async () => (probe.learner ? { id: probe.learner, email: "learner@bucket.test" } : null);
   consent.requireConsent = async () => probe.consent;
+  const restore: [Record<string, unknown>, string, unknown][] = [];
+  for (const [mod, fns] of Object.entries(probe.stubs?.() ?? {})) {
+    /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+    const target = require(mod) as Record<string, unknown>;
+    for (const [name, fn] of Object.entries(fns)) {
+      restore.push([target, name, target[name]]);
+      target[name] = fn;
+    }
+  }
   const init: { method: string; body?: string; headers?: Record<string, string> } = { method };
   if (method !== "GET" && probe.body !== undefined) {
     init.body = probe.body;
     init.headers = { "content-type": "application/json" };
   }
-  const req = new NextRequest("http://localhost/api/research-os/characterization", init);
+  const req = new NextRequest(`http://localhost/api/research-os/characterization${probe.query ?? ""}`, init);
   const quiet = { error: console.error, warn: console.warn, log: console.log };
   console.error = console.warn = console.log = () => undefined;
   let timer: NodeJS.Timeout | undefined;
@@ -97,6 +145,7 @@ async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response
   } finally {
     if (timer) clearTimeout(timer);
     Object.assign(console, quiet);
+    for (const [target, name, fn] of restore.reverse()) target[name] = fn;
   }
 }
 
@@ -108,8 +157,9 @@ export async function characterize(folder: string): Promise<Snapshot> {
   for (const method of METHODS) {
     const handler = mod[method];
     if (typeof handler !== "function") continue;
-    for (const probe of PROBES) {
+    for (const probe of [...PROBES, ...(FOLDER_PROBES[folder] ?? [])]) {
       if (method === "GET" && probe.name === "signed in, malformed json") continue;
+      if (probe.methods && !probe.methods.includes(method)) continue;
       out[`${method} ${probe.name}`] = await run(handler as (req: NextRequest, ctx: unknown) => Promise<Response>, method, probe);
     }
   }

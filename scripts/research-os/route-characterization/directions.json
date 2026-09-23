@@ -38,5 +38,13 @@
     "body": {
       "error": "node_required"
     }
+  },
+  "GET node given, access filter throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
   }
 }

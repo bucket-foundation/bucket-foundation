@@ -39,6 +39,14 @@
       "error": "forbidden"
     }
   },
+  "GET reviewer, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
   "POST unconfigured": {
     "status": 503,
     "cache": "no-store",
@@ -85,6 +93,54 @@
     "type": "application/json",
     "body": {
       "error": "forbidden"
+    }
+  },
+  "POST reviewer, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id is required"
+    }
+  },
+  "POST reviewer, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_request"
+    }
+  },
+  "POST reviewer, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id is required"
+    }
+  },
+  "POST reviewer, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id is required"
+    }
+  },
+  "POST reviewer, number body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "id is required"
+    }
+  },
+  "POST reviewer, no decision": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "decision must be confirmed or rejected"
     }
   }
 }

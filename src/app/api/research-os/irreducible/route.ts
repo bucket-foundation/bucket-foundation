@@ -1,7 +1,7 @@
 import { graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { decideIrreducible, listIrreducible } from "@/lib/research-os/inference/review-actions";
-import { bad, ok, readJson, withResearchOsRoute } from "@/lib/research-os/route";
+import { bad, ok, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,9 +16,9 @@ export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
 export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
-  const read = await readJson<{ id?: string; decision?: string; reason?: string }>(req, "bad_request");
+  const read = await readAnyJson(req, "bad_request");
   if (!read.ok) return read.res;
-  const body = read.value;
+  const body = (read.value ?? {}) as { id?: string; decision?: string; reason?: string };
   const id = (body.id || "").trim();
   if (!id) return bad(400, "id is required");
   if (body.decision !== "confirmed" && body.decision !== "rejected") return bad(400, "decision must be confirmed or rejected");
