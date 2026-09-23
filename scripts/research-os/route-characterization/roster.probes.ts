@@ -50,4 +50,33 @@ export const probes: Probe[] = [
       },
     }),
   },
+  {
+    ...SIGNED_IN,
+    name: "reviewer, bundle parse fails",
+    body: multipart(FILES),
+    headers: MULTIPART,
+    stubs: parsed({
+      "@/lib/research-os/roster/sources": {
+        OneRosterCsvSource: class {
+          async fetchBundle(): Promise<never> {
+            throw new Error("users.csv row 3: missing sourcedId");
+          }
+        },
+      },
+    }),
+  },
+  {
+    ...SIGNED_IN,
+    name: "reviewer, apply fails",
+    body: multipart({ ...FILES, apply: "true" }),
+    headers: MULTIPART,
+    stubs: parsed({
+      "@/lib/research-os/roster/apply": {
+        loadRosterExistingState: async () => ({}),
+        applyRosterImport: async () => {
+          throw new Error("relation graph.classes violates constraint");
+        },
+      },
+    }),
+  },
 ];
