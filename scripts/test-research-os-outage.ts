@@ -383,6 +383,20 @@ test("a corpus read failure is its own class and is retryable", async () => {
   assert.equal(isTransientOutage(503, "corpus_unavailable"), false, "a deployment with no corpus does not");
 });
 
+/**
+ * `if (!<name>.ok)` as this statement's own condition.
+ *
+ * The first version of the rule below tested each following
+ * statement's whole subtree text, so an ok check on any other response
+ * anywhere later in the block answered for this one. The import page
+ * parses `created` after returning on `!created.ok`, and the
+ * `if (!attached.ok)` nested in the loop below it matched, which read a
+ * correct sequence as the defect.
+ */
+function ownOkCheck(s: ts.Statement, name: string, source: ts.SourceFile): boolean {
+  return ts.isIfStatement(s) && new RegExp(`!\\s*${name}\\.ok\\b`).test(s.expression.getText(source));
+}
+
 test("nothing parses a body and then asks whether the request succeeded", () => {
   // `const data = await res.json(); if (!res.ok) { ...data.error... }`
   // reads naturally and cannot work: a gateway 503 carries HTML, so the
@@ -401,6 +415,9 @@ test("nothing parses a body and then asks whether the request succeeded", () => 
     const source = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true);
     const visit = (n: ts.Node): void => {
       if (ts.isCallExpression(n) && ts.isPropertyAccessExpression(n.expression) && n.expression.name.text === "json" && n.arguments.length === 0) {
+        // The response this parse reads, so the status check that
+        // answers for it has to be a check of the same one.
+        const receiver = ts.isIdentifier(n.expression.expression) ? n.expression.expression.text : null;
         let top: ts.Node = n;
         while (
           top.parent &&
@@ -426,11 +443,14 @@ test("nothing parses a body and then asks whether the request succeeded", () => 
           let stmt: ts.Node = n;
           while (stmt.parent && !ts.isStatement(stmt)) stmt = stmt.parent;
           const block = stmt.parent;
-          if (block && "statements" in block) {
+          if (receiver && block && "statements" in block) {
             const list = (block as ts.Block).statements;
             const i = list.indexOf(stmt as ts.Statement);
-            for (let k = i + 1; k < list.length; k += 1) {
-              if (/if\s*\(\s*!\s*\w+\.ok\b/.test(list[k].getText(source))) {
+            // A status already decided before the parse is the order
+            // this rule wants, so the parse only ever sees a 200 body.
+            const decidedFirst = list.slice(0, i).some((st) => ownOkCheck(st, receiver, source));
+            for (let k = i + 1; !decidedFirst && k < list.length; k += 1) {
+              if (ownOkCheck(list[k], receiver, source)) {
                 const { line } = source.getLineAndCharacterOfPosition(n.getStart(source));
                 offenders.push(`${path.relative(root, file)}:${line + 1}`);
                 break;
