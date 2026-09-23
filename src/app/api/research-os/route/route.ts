@@ -1,22 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { llmEnabled } from "@/lib/research-os/deterministic";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
 import { guidanceLevel } from "@/lib/research-os/guidance";
 import type { GuidanceLevel } from "@/lib/research-os/types";
-import { configured, loadSubgraph, loadLearnerStates, loadAncestorRows, writeEdgeFlags, verifyLearner, isGuidanceEnabledForLearner, graphService } from "@/lib/research-os/db";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
+import { loadSubgraph, loadLearnerStates, loadAncestorRows, writeEdgeFlags, verifyLearner, isGuidanceEnabledForLearner, graphService } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
-
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
   const targetSlug = (searchParams.get("target") || "why-the-sky-is-blue").trim();
   let branch = (searchParams.get("branch") || "").trim();
@@ -73,19 +67,16 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  return NextResponse.json(
-    {
-      target: result.target,
-      frontier: result.frontier,
-      chain: result.chain,
-      gap: result.gap,
-      lowConfidenceFlags: result.lowConfidenceFlags,
-      engineFrontier,
-      openQuestions: nodes.filter((n) => n.frontierFlag === "open_question").map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier })),
-      guidance,
-      llmEnabled: llmEnabled(),
-      learner: learnerId ? "self" : "anonymous",
-    },
-    { headers: { "cache-control": "no-store" } },
-  );
-}
+  return {
+    target: result.target,
+    frontier: result.frontier,
+    chain: result.chain,
+    gap: result.gap,
+    lowConfidenceFlags: result.lowConfidenceFlags,
+    engineFrontier,
+    openQuestions: nodes.filter((n) => n.frontierFlag === "open_question").map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier })),
+    guidance,
+    llmEnabled: llmEnabled(),
+    learner: learnerId ? "self" : "anonymous",
+  };
+});
