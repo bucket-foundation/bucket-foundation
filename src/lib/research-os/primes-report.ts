@@ -10,6 +10,7 @@
  * pages without one.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { pagedRead } from "./paging";
 import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
 
 export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
@@ -82,17 +83,14 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
 
 type Query = ReturnType<ReturnType<SupabaseClient["from"]>["select"]>;
 
-async function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: Query) => Query): Promise<T[]> {
-  const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(from, from + 999) as unknown as Query;
+function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: Query) => Query): Promise<T[]> {
+  return pagedRead<T>((page) => {
+    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(page.from, page.to) as unknown as Query;
     if (filter) q = filter(q);
-    const { data, error } = await q;
-    if (error) throw new Error(`${table}: ${error.message}`);
-    const rows = (data ?? []) as unknown as T[];
-    out.push(...rows);
-    if (rows.length < 1000) return out;
-  }
+    return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
+  }).catch((err: unknown) => {
+    throw new Error(`${table}: ${err instanceof Error ? err.message : String(err)}`);
+  });
 }
 
 /** Reads the graph and builds the report. Throws when a read fails, so the page can say the graph did not answer. */

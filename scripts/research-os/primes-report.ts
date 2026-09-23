@@ -25,25 +25,24 @@ import {
   type PriorStanding,
   type PrimeNodeInput,
 } from "../../src/lib/research-os/primes";
+import { pagedRead } from "../../src/lib/research-os/paging";
 
 type NodeRow = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
 
-async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
-  const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    // Ordered by id, which is the primary key on nodes, edges and
-    // irreducible_proposals. Postgres gives no stable order across LIMIT
-    // and OFFSET without a total order key, so an unordered page boundary
-    // repeats one row and drops another, and the report is wrong with no
-    // sign that it is.
-    let q = svc.from(table).select(columns).order("id").range(from, from + 999);
+function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
+  // Ordered by id, which is the primary key on nodes, edges and
+  // irreducible_proposals. Postgres gives no stable order across LIMIT
+  // and OFFSET without a total order key, so an unordered page boundary
+  // repeats one row and drops another, and the report is wrong with no
+  // sign that it is.
+  return pagedRead<T>((page) => {
+    let q = svc.from(table).select(columns).order("id").range(page.from, page.to);
     if (filter) q = filter(q);
-    const { data, error } = await q;
-    if (error) throw new Error(`${table}: ${error.message}`);
-    out.push(...((data ?? []) as T[]));
-    if (!data || data.length < 1000) return out;
-  }
+    return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
+  }).catch((err: unknown) => {
+    throw new Error(`${table}: ${err instanceof Error ? err.message : String(err)}`);
+  });
 }
 
 async function main() {
