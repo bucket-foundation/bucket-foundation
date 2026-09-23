@@ -61,6 +61,14 @@ No test on either branch could have caught it, because the defect is in the comb
 
 So a merge conflict is a prompt rather than a chore. The lines two branches both touched are the lines most likely to hold something neither branch could see, and resolving by taking a side ends the conflict without answering the question.
 
+## A guard can be applied and never reach the person
+
+`ReviewOnNode.tsx` set its outage note and then early-returned on an empty list, above the line that renders it. Every outage showed "Nothing on this node waits on you." The call was guarded, the gate that checks guarding was green, and the sentence the guard exists to prevent shipped anyway.
+
+Seven rules in that suite prove a client consults the rule. None proves the note is rendered. So the gate measures the mechanism and the person meets the outcome, and those came apart at an early return that neither the author nor the gate had reason to look past.
+
+The check is: for each state a surface can be in, find the line that renders it and the returns above that line. Both surfaces in the evidence work were read this way. `EvidenceFind` returns early only when the mode is unavailable, which is before a search can set an error, and its error renders unconditionally below. The import page renders each file's message whenever any file is picked, so a run that records two of three still shows why the third failed. Both hold, which is worth the same line as a failure would be.
+
 ## The related shape
 
 A check that cannot fail reads as coverage. A `SEALED` assertion matching a string that is always present, and a browser test clicking the element that was already selected, both pass for reasons unrelated to what they claim to prove. The habit that catches both: run the check against the unfixed code and watch it fail before trusting that it passed.
