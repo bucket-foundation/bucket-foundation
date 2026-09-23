@@ -128,6 +128,11 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-access-paging.ts
+      - name: quote receipts against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-quote-receipts-db.ts
       - name: read authorization at the routes
         if: steps.paths.outputs.run == 'true'
         env:
