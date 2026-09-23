@@ -127,13 +127,13 @@ test("both access reads carry a total order", () => {
   // order for these plans and an unordered read passed them. The rule
   // is the negative one, that LIMIT and OFFSET may repeat and skip
   // without a total sort key, so it is checked where it is written.
-  const src = fs.readFileSync(path.join(__dirname, "..", "src/lib/research-os/access-db.ts"), "utf8");
+  const src = fs.readFileSync(path.join(__dirname, "..", "src/lib/research-os/read-access.ts"), "utf8");
   for (const table of ["node_grants", "class_members"]) {
     const start = src.indexOf(`.from("${table}")`);
-    assert.ok(start > 0, `${table} is read in access-db.ts`);
+    assert.ok(start > 0, `${table} is read in read-access.ts`);
     const chain = src.slice(start, src.indexOf(";", start));
     assert.match(chain, /\.range\(/, `the ${table} read pages`);
-    assert.match(chain, /\.order\("(id|class_id)"\)/, `the ${table} read orders on a unique column`);
+    assert.match(chain, /\.order\("(id|class_id)"/, `the ${table} read orders on a unique column`);
   }
 });
 

@@ -18,7 +18,7 @@ import { isMediaType } from "./import-storage";
 
 export type StructuredType = "text" | "document" | "web" | "table" | "data" | "image" | "audio" | "video" | "archive" | "other";
 
-export const EXTRACTABLE: ReadonlySet<StructuredType> = new Set<StructuredType>(["text", "document", "web", "table", "data"]);
+const EXTRACTABLE: ReadonlySet<StructuredType> = new Set<StructuredType>(["text", "document", "web", "table", "data"]);
 
 export const OCTET_STREAM = "application/octet-stream";
 export const MAX_FILENAME = 255;
@@ -31,7 +31,7 @@ interface Known {
 }
 
 /** Extension to the media type Research OS records, and the type it reads it as. */
-export const BY_EXTENSION: Readonly<Record<string, Known>> = {
+const BY_EXTENSION: Readonly<Record<string, Known>> = {
   txt: { media: "text/plain", structured: "text" },
   text: { media: "text/plain", structured: "text" },
   md: { media: "text/markdown", structured: "text" },
