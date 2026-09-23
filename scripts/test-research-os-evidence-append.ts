@@ -66,6 +66,12 @@ const skip = reachable ? false : "no local database reachable";
 const skipApplied =
   !reachable ? "no local database reachable" : migrated.out === "t" ? false : "the evidence-append migration is not applied";
 
+const supabaseEnv = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+if (REQUIRED && !supabaseEnv) {
+  throw new Error("RESEARCH_OS_REQUIRE_DB=1 and NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is unset");
+}
+const skipSupabase = skipApplied || (supabaseEnv ? false : "no Supabase URL and service key in the environment or .env.local");
+
 test("the append contract holds in real Postgres", { skip: skipApplied }, () => {
   const file = path.join(__dirname, "..", "supabase", "tests", "research_os_evidence_append.sql");
   const run = spawnSync("psql", [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", file], { encoding: "utf8" });
@@ -155,7 +161,7 @@ test("two writers racing on one row keep both events", { skip: skipApplied }, as
   assert.equal(lost.out, "1", `the replaced shape loses an event on the same path, got ${lost.out}`);
 });
 
-test("a teacher override lowers the stage through overrideLevel", { skip: skipApplied }, async (t) => {
+test("a teacher override lowers the stage through overrideLevel", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -279,7 +285,7 @@ test("the writers of learner_node_state are the ones we know about", { skip: ski
   );
 });
 
-test("a same-stage event keeps a streak alive and awards nothing", { skip: skipApplied }, async (t) => {
+test("a same-stage event keeps a streak alive and awards nothing", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const node = randomUUID();
 
@@ -317,7 +323,7 @@ test("a same-stage event keeps a streak alive and awards nothing", { skip: skipA
   assert.notEqual(day, "2020-01-01", `the day the learner was last active moves, got ${day}`);
 });
 
-test("a demote and a re-promote award no XP twice", { skip: skipApplied }, async (t) => {
+test("a demote and a re-promote award no XP twice", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -420,16 +426,10 @@ test("a failed audit row leaves the stage where it was", { skip: skipApplied }, 
 // The route calls graph.review_production through PostgREST, so the
 // argument names are a contract between TypeScript and SQL. A rename on
 // either side passes every psql test and fails in production.
-test("review_production accepts the route's own argument object", { skip: skipApplied }, async (t) => {
+test("review_production accepts the route's own argument object", { skip: skipSupabase }, async (t) => {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    if (REQUIRED) {
-      throw new Error("RESEARCH_OS_REQUIRE_DB=1 and .env.local carries no Supabase URL and service key");
-    }
-    t.skip("no local Supabase URL and service key in .env.local");
-    return;
-  }
+  if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
 
   const learner = randomUUID();
   const teacher = randomUUID();
