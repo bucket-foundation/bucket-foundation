@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { publicFactorIds, type EdgeRow, type PrivateLookup } from "./attention";
+import { EMBED_MODEL, publicFactorIds, type EdgeRow, type NodeVectors, type PrivateLookup } from "./attention";
 import type { Snapshot } from "./makeup";
 import { pagedRead } from "./paging";
 import { FACTOR_EDGES } from "./primes";
@@ -36,4 +36,21 @@ export async function privateQueryFactors(svc: SupabaseClient, slugs: string[], 
     out.factors.push(publicFactorIds(id, edges, snap));
   }
   return out;
+}
+
+let cachedVectors: { at: number; vectors: NodeVectors } | null = null;
+
+export async function loadNodeVectors(svc: SupabaseClient, ttlMs = 600_000): Promise<NodeVectors> {
+  if (cachedVectors && Date.now() - cachedVectors.at < ttlMs) return cachedVectors.vectors;
+  const rows = await pagedRead<{ node_id: string; vector: number[] }>((page) =>
+    svc
+      .from("node_embeddings")
+      .select("node_id,vector")
+      .eq("model", EMBED_MODEL)
+      .order("node_id", { ascending: true })
+      .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; vector: number[] }[] | null; error: { message: string } | null }>,
+  );
+  const vectors: NodeVectors = new Map(rows.map((r) => [r.node_id, r.vector]));
+  cachedVectors = { at: Date.now(), vectors };
+  return vectors;
 }

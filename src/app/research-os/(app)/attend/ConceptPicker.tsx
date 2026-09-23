@@ -35,7 +35,7 @@ export default function ConceptPicker({ ids, q, cone }: { ids: string[]; q: stri
     const next = Array.from(new Set(ids.concat(slug))).slice(0, 8);
     const sp = new URLSearchParams({ ids: next.join(",") });
     if (q) sp.set("q", q);
-    if (cone === "show") sp.set("cone", "show");
+    if (cone === "hide") sp.set("cone", "hide");
     setText("");
     setHits([]);
     router.push(`/research-os/attend?${sp.toString()}`);

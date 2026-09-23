@@ -1,5 +1,5 @@
 import { answerAttend, parseAttendParams } from "@/lib/research-os/attention";
-import { privateQueryFactors } from "@/lib/research-os/attention-db";
+import { loadNodeVectors, privateQueryFactors } from "@/lib/research-os/attention-db";
 import { graphService } from "@/lib/research-os/db";
 import { makeupSnapshot } from "@/lib/research-os/makeup";
 import { bad, withResearchOsRoute } from "@/lib/research-os/route";
@@ -13,6 +13,11 @@ export const GET = withResearchOsRoute({ auth: "optional" }, async (req, ctx) =>
   const svc = graphService();
   const out = await answerAttend(params, ctx.learnerId, {
     snapshot: () => makeupSnapshot(svc),
+    vectors: () =>
+      loadNodeVectors(svc).catch((err) => {
+        console.error("[research-os/attend] vectors unavailable:", err instanceof Error ? err.message : err);
+        throw err;
+      }),
     privateFactors: (slugs, snap, learnerId) => privateQueryFactors(svc, slugs, snap, learnerId),
   });
   if ("error" in out) return bad(out.status, out.error);

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
-import { attentionIndex, phraseEntries, rankByAttention, type Entry } from "../../src/lib/research-os/attention";
+import { attentionIndex, phraseEntries, rankQuery } from "../../src/lib/research-os/attention";
 import { cosine, seeded, tokens } from "../../src/lib/research-os/decompose-further";
 import { normalizeTitle, titleSimilarity } from "../../src/lib/research-os/dedup";
 import { academyNodeSlug } from "../../src/lib/research-os/ingest/academy";
@@ -80,7 +80,7 @@ export function pairedInterval(a: number[], b: number[], seed: string, resamples
 
 type Settings = { entries: number; floor: number; cone: "hide" | "show" };
 
-async function main() {
+export async function prepare() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
@@ -148,80 +148,96 @@ async function main() {
   const qVec = embed(queries.map((q, i) => ({ id: String(i), text: q.text })));
   const vecOf = new Map(queries.map((q, i) => [q, qVec.get(String(i))!]));
 
-  const embedRank = (q: (typeof queries)[number]) =>
+  type Q = (typeof queries)[number];
+  const vectors = new Map(ideas.filter((n) => nodeVec.has(n.id)).map((n) => [n.id, nodeVec.get(n.id)!]));
+  const embedRank = (q: Q) =>
     ideas
       .filter((n) => !q.excluded.has(n.id) && nodeVec.has(n.id))
       .map((n) => ({ id: n.id, s: cosine(vecOf.get(q)!, nodeVec.get(n.id)!) }))
       .sort((a, b) => b.s - a.s || a.id.localeCompare(b.id))
       .map((x) => x.id);
-  const attentionRank = (q: (typeof queries)[number], entries: Entry[], cone: "hide" | "show") =>
-    rankByAttention(snap, { entries, k: 50, cone })
+  const ranked = (q: Q, query: Parameters<typeof rankQuery>[2]) =>
+    rankQuery(snap, vectors, { ...query, k: 50 })
       .hits.map((h) => h.id)
       .filter((id) => !q.excluded.has(id));
-  const lexicalEntries = (q: (typeof queries)[number], s: Settings) => phraseEntries(q.text, index, { entries: s.entries, floor: s.floor, exclude: q.excluded });
-  const embeddingEntries = (q: (typeof queries)[number], s: Settings) =>
-    embedRank(q)
-      .slice(0, s.entries)
-      .map((id) => ({ id, score: cosine(vecOf.get(q)!, nodeVec.get(id)!) }))
-      .filter((e) => e.score >= 0.5);
+  const lexicalEntries = (q: Q, s: Settings) => phraseEntries(q.text, index, { entries: s.entries, floor: s.floor, exclude: q.excluded });
+  return { snap, index, ideas, atoms, candidates, queries, dev, held, vectors, embedRank, ranked, lexicalEntries };
+}
 
-  const arms = (s: Settings, sEmb: Settings) => ({
-    embedding: (q: (typeof queries)[number]) => embedRank(q),
-    attention_lexical: (q: (typeof queries)[number]) => attentionRank(q, lexicalEntries(q, s), s.cone),
-    attention_embedding_entry: (q: (typeof queries)[number]) => attentionRank(q, embeddingEntries(q, sEmb), sEmb.cone),
-    fused: (q: (typeof queries)[number]) => fuse([embedRank(q).slice(0, 50), attentionRank(q, lexicalEntries(q, s), s.cone)]),
-  });
-  const score = (set: typeof queries, rank: (q: (typeof queries)[number]) => string[]) => {
+export type Prepared = Awaited<ReturnType<typeof prepare>>;
+export type EvalQuery = Prepared["queries"][number];
+
+async function main() {
+  const { snap, index, ideas, atoms, candidates, queries, dev, held, vectors, embedRank, ranked, lexicalEntries } = await prepare();
+  type Q = EvalQuery;
+  const score = (set: Q[], rank: (q: Q) => string[]) => {
     const n: number[] = [];
     const r: number[] = [];
     let empty = 0;
     for (const q of set) {
-      const ranked = rank(q);
-      if (!ranked.length) empty++;
-      n.push(ndcgAt(ranked, q.relevant, 10));
-      r.push(recallAt(ranked, q.relevant, 20));
+      const list = rank(q);
+      if (!list.length) empty++;
+      n.push(ndcgAt(list, q.relevant, 10));
+      r.push(recallAt(list, q.relevant, 20));
     }
     return { ndcg: n, recall: r, empty };
   };
   const mean = (x: number[]) => x.reduce((a, b) => a + b, 0) / Math.max(1, x.length);
+  const round = (x: number) => Math.round(x * 1000) / 1000;
 
   const grid: Settings[] = [];
   for (const entries of [1, 3, 5]) for (const floor of [0.05, 0.1, 0.2]) for (const cone of ["hide", "show"] as const) grid.push({ entries, floor, cone });
-  const tune = (make: (s: Settings) => (q: (typeof queries)[number]) => string[]) =>
-    grid.map((s) => ({ s, dev: mean(score(dev, make(s)).ndcg) })).sort((a, b) => b.dev - a.dev || a.s.entries - b.s.entries)[0];
-  const bestLex = tune((s) => (q) => attentionRank(q, lexicalEntries(q, s), s.cone));
-  const bestEmb = tune((s) => (q) => attentionRank(q, embeddingEntries(q, s), s.cone));
+  const tune = (make: (s: Settings) => (q: Q) => string[], settings = grid) =>
+    settings.map((s) => ({ s, dev: mean(score(dev, make(s)).ndcg) })).sort((a, b) => b.dev - a.dev || a.s.entries - b.s.entries)[0];
+  const cones = grid.filter((g) => g.entries === 1 && g.floor === 0.05);
 
-  const chosen = arms(bestLex.s, bestEmb.s);
-  const results: Record<string, { ndcg10: number; recall20: number; empty: number }> = {};
-  const raw: Record<string, ReturnType<typeof score>> = {};
-  for (const [name, rank] of Object.entries(chosen)) {
-    raw[name] = score(held, rank);
-    results[name] = { ndcg10: mean(raw[name].ndcg), recall20: mean(raw[name].recall), empty: raw[name].empty };
-  }
-  const versus: Record<string, { ndcg10: ReturnType<typeof pairedInterval>; recall20: ReturnType<typeof pairedInterval> }> = {};
-  for (const name of Object.keys(chosen).filter((n) => n !== "embedding"))
-    versus[name] = {
-      ndcg10: pairedInterval(raw[name].ndcg, raw.embedding.ndcg, `${name}-ndcg`),
-      recall20: pairedInterval(raw[name].recall, raw.embedding.recall, `${name}-recall`),
-    };
+  const evaluate = (baseline: (q: Q) => string[], arms: Record<string, { make: (s: Settings) => (q: Q) => string[]; settings: Settings[] }>) => {
+    const base = score(held, baseline);
+    const out: Record<string, unknown> = { baseline: { ndcg10: round(mean(base.ndcg)), recall20: round(mean(base.recall)) } };
+    for (const [name, arm] of Object.entries(arms)) {
+      const best = tune(arm.make, arm.settings);
+      const res = score(held, arm.make(best.s));
+      const dn = pairedInterval(res.ndcg, base.ndcg, `${name}-ndcg`);
+      const dr = pairedInterval(res.recall, base.recall, `${name}-recall`);
+      out[name] = {
+        tuned: { ...best.s, dev_ndcg10: round(best.dev) },
+        ndcg10: round(mean(res.ndcg)),
+        recall20: round(mean(res.recall)),
+        empty: res.empty,
+        versus_baseline: {
+          ndcg10: { mean: round(dn.mean), interval: dn.interval.map(round) },
+          recall20: { mean: round(dr.mean), interval: dr.interval.map(round) },
+        },
+      };
+    }
+    return out;
+  };
 
-  const bench = { lexical_entry_ms: [] as number[], attention_ms: [] as number[] };
+  const concepts = evaluate((q) => ranked(q, { ids: [q.source], cone: "show", rank: "vector" }), {
+    attention: { make: (s) => (q) => ranked(q, { ids: [q.source], cone: s.cone, rank: "attention" }), settings: cones },
+    fused: { make: (s) => (q) => ranked(q, { ids: [q.source], cone: s.cone, rank: "fused" }), settings: cones },
+  });
+  const phrases = evaluate(embedRank, {
+    attention_lexical: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "attention" }), settings: grid },
+    vector_via_lexical_entries: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "vector" }), settings: grid },
+    fused_via_lexical_entries: { make: (s) => (q) => ranked(q, { entries: lexicalEntries(q, s), cone: s.cone, rank: "fused" }), settings: grid },
+  });
+
+  const bench = { lexical_entry_ms: [] as number[], rank_ms: [] as number[] };
   for (let i = 0; i < 200; i++) {
     const q = queries[i % queries.length];
     const t0 = performance.now();
-    const e = phraseEntries(q.text, index, { entries: bestLex.s.entries, floor: bestLex.s.floor });
+    const e = phraseEntries(q.text, index);
     const t1 = performance.now();
-    rankByAttention(snap, { entries: e, k: 20, cone: bestLex.s.cone });
+    rankQuery(snap, vectors, { entries: e, k: 20, rank: "fused" });
     const t2 = performance.now();
     bench.lexical_entry_ms.push(t1 - t0);
-    bench.attention_ms.push(t2 - t1);
+    bench.rank_ms.push(t2 - t1);
   }
   const pct = (x: number[], p: number) => {
-    const s = x.slice().sort((a, b) => a - b);
-    return Math.round(s[Math.min(s.length - 1, Math.floor(p * s.length))] * 100) / 100;
+    const sorted = x.slice().sort((a, b) => a - b);
+    return Math.round(sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))] * 100) / 100;
   };
-  const round = (x: number) => Math.round(x * 1000) / 1000;
   const report = {
     generated_at: new Date().toISOString(),
     ideas: ideas.length,
@@ -229,20 +245,11 @@ async function main() {
     queries: { candidates: candidates.length, used: queries.length, dev: dev.length, held_out: held.length },
     relevance: "idea nodes whose mapped Wikipedia article links to or from the source atom's article, the source and its near duplicates removed",
     near_duplicates: { title_similarity: NEAR_TITLE, embedding_cosine: NEAR_VECTOR, same_article: true },
-    tuned_on_dev: { attention_lexical: { ...bestLex.s, ndcg10: round(bestLex.dev) }, attention_embedding_entry: { ...bestEmb.s, ndcg10: round(bestEmb.dev) } },
-    held_out: Object.fromEntries(Object.entries(results).map(([k, v]) => [k, { ndcg10: round(v.ndcg10), recall20: round(v.recall20), empty: v.empty }])),
-    versus_embedding: Object.fromEntries(
-      Object.entries(versus).map(([k, v]) => [
-        k,
-        {
-          ndcg10: { mean: round(v.ndcg10.mean), interval: v.ndcg10.interval.map(round) },
-          recall20: { mean: round(v.recall20.mean), interval: v.recall20.interval.map(round) },
-        },
-      ]),
-    ),
+    concepts: { baseline: "bge-small kNN from the picked node's vector", ...concepts },
+    phrases: { baseline: "bge-small kNN from the phrase's own embedding, which needs bkt-ig20", ...phrases },
     bench_ms: {
       lexical_entry: { p50: pct(bench.lexical_entry_ms, 0.5), p95: pct(bench.lexical_entry_ms, 0.95) },
-      attention: { p50: pct(bench.attention_ms, 0.5), p95: pct(bench.attention_ms, 0.95) },
+      fused_rank: { p50: pct(bench.rank_ms, 0.5), p95: pct(bench.rank_ms, 0.95) },
     },
   };
   mkdirSync(OUT, { recursive: true });

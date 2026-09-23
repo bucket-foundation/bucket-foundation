@@ -8,9 +8,54 @@ export const MAX_IDS = 8;
 export const MAX_PHRASE = 200;
 export const MAX_K = 50;
 export const DEFAULT_K = 20;
-export const PHRASE_ENTRIES = 3;
-export const LEXICAL_FLOOR = 0.1;
+export const PHRASE_ENTRIES = 1;
+export const LEXICAL_FLOOR = 0.05;
 export const TAU = 0.1;
+export const EMBED_MODEL = "BAAI/bge-small-en-v1.5";
+export const FUSE_K = 60;
+export const VECTOR_POOL = 50;
+
+export type RankMode = "fused" | "attention" | "vector";
+export const RANK_MODES: RankMode[] = ["fused", "attention", "vector"];
+export const DEFAULT_RANK: { concepts: RankMode; phrase: RankMode } = { concepts: "fused", phrase: "vector" };
+
+export type NodeVectors = Map<string, number[]>;
+
+export function embedText(title: string, summary: string | null | undefined): string {
+  return `${title}. ${summary ?? ""}`.trim();
+}
+
+export function centroid(vectors: NodeVectors, items: { id: string; weight?: number }[]): number[] | null {
+  let out: number[] | null = null;
+  for (const { id, weight = 1 } of items) {
+    const v = vectors.get(id);
+    if (!v) continue;
+    if (!out) out = new Array(v.length).fill(0);
+    for (let i = 0; i < v.length; i++) out[i] += weight * v[i];
+  }
+  if (!out) return null;
+  const n = Math.sqrt(out.reduce((a, x) => a + x * x, 0));
+  return n ? out.map((x) => x / n) : null;
+}
+
+export function nearestByVector(vectors: NodeVectors, q: number[], exclude: ReadonlySet<string>, n = VECTOR_POOL): Entry[] {
+  const out: Entry[] = [];
+  for (const [id, v] of Array.from(vectors)) {
+    if (exclude.has(id)) continue;
+    let dot = 0;
+    for (let i = 0; i < v.length; i++) dot += q[i] * v[i];
+    out.push({ id, score: dot });
+  }
+  return out.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id)).slice(0, n);
+}
+
+export function fuseRanks(lists: string[][], k = FUSE_K): Entry[] {
+  const score = new Map<string, number>();
+  for (const list of lists) list.forEach((id, i) => score.set(id, (score.get(id) ?? 0) + 1 / (k + i + 1)));
+  return Array.from(score)
+    .map(([id, sc]) => ({ id, score: sc }))
+    .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+}
 
 export type AttentionIndex = {
   basis: PrimeBasis;
@@ -96,6 +141,13 @@ export type AttendHit = MakeupNode & {
   terms: (MakeupNode & { term: number })[];
 };
 
+export type RankedHit = MakeupNode & {
+  score: number;
+  attention: number | null;
+  embedding: number | null;
+  terms: (MakeupNode & { term: number })[];
+};
+
 export type AttendQuery = {
   ids?: string[];
   entries?: Entry[];
@@ -105,6 +157,52 @@ export type AttendQuery = {
 };
 
 export type AttendResult = { hits: AttendHit[]; masked: number; queryPrimes: number };
+
+export type RankResult = { hits: RankedHit[]; masked: number; queryPrimes: number; rank: RankMode; vectors: boolean };
+
+export function rankQuery(snap: Snapshot, vectors: NodeVectors, query: AttendQuery & { rank: RankMode }): RankResult {
+  const k = Math.min(MAX_K, Math.max(1, query.k ?? DEFAULT_K));
+  const att = rankByAttention(snap, { ...query, k: MAX_K });
+  const seeds = (query.ids ?? []).concat((query.entries ?? []).map((e) => e.id));
+  const privates = (query.privateFactors ?? []).flat();
+  const exclude = new Set<string>(seeds.concat(privates));
+  if (query.cone !== "show") {
+    for (const id of Array.from(coneOf(snap.dec, seeds))) exclude.add(id);
+    for (const id of Array.from(coneOf(snap.dec, privates, false))) exclude.add(id);
+  }
+  const qv = centroid(vectors, [
+    ...(query.ids ?? []).map((id) => ({ id })),
+    ...(query.entries ?? []).map((e) => ({ id: e.id, weight: e.score })),
+    ...privates.map((id) => ({ id })),
+  ]);
+  const near = qv ? nearestByVector(vectors, qv, exclude) : [];
+  const attOf = new Map(att.hits.map((h) => [h.id, h]));
+  const embOf = new Map(near.map((e) => [e.id, e.score]));
+  const node = (id: string): MakeupNode => snap.byId.get(id) ?? { id, slug: id, title: id, branch: "" };
+  const order: Entry[] =
+    query.rank === "attention"
+      ? att.hits.map((h) => ({ id: h.id, score: h.score }))
+      : query.rank === "vector"
+        ? near
+        : fuseRanks([near.map((e) => e.id), att.hits.map((h) => h.id)]);
+  const hits = order
+    .filter((e) => snap.byId.has(e.id))
+    .slice(0, k)
+    .map((e) => ({
+      ...node(e.id),
+      score: e.score,
+      attention: attOf.get(e.id)?.score ?? null,
+      embedding: embOf.get(e.id) ?? (qv && vectors.has(e.id) ? dotOf(qv, vectors.get(e.id)!) : null),
+      terms: attOf.get(e.id)?.terms ?? [],
+    }));
+  return { hits, masked: att.masked, queryPrimes: att.queryPrimes, rank: query.rank, vectors: qv !== null };
+}
+
+function dotOf(a: number[], b: number[]): number {
+  let d = 0;
+  for (let i = 0; i < a.length; i++) d += a[i] * b[i];
+  return d;
+}
 
 export function rankByAttention(snap: Snapshot, query: AttendQuery): AttendResult {
   const index = attentionIndex(snap);
@@ -139,10 +237,11 @@ export type PrivateLookup = { factors: string[][]; denied: number; missing: numb
 
 export type AttendDeps = {
   snapshot: () => Promise<Snapshot>;
+  vectors: () => Promise<NodeVectors>;
   privateFactors: (slugs: string[], snap: Snapshot, learnerId: string | null) => Promise<PrivateLookup>;
 };
 
-export type AttendParams = { ids: string[]; q: string; k: number; cone: "hide" | "show" };
+export type AttendParams = { ids: string[]; q: string; k: number; cone: "hide" | "show"; rank: RankMode | null };
 
 export type AttendError = { error: string; status: 400 | 404 | 503 };
 
@@ -155,17 +254,20 @@ export function parseAttendParams(sp: URLSearchParams): AttendParams | AttendErr
   const kRaw = sp.get("k");
   const k = kRaw === null ? DEFAULT_K : Number(kRaw);
   if (!Number.isInteger(k) || k < 1 || k > MAX_K) return { error: `k runs from 1 to ${MAX_K}`, status: 400 };
-  const cone = sp.get("cone") ?? "hide";
+  const cone = sp.get("cone") ?? "show";
   if (cone !== "hide" && cone !== "show") return { error: "cone is hide or show", status: 400 };
-  return { ids, q, k, cone };
+  const rankRaw = sp.get("rank");
+  if (rankRaw !== null && !RANK_MODES.includes(rankRaw as RankMode)) return { error: `rank is one of ${RANK_MODES.join(", ")}`, status: 400 };
+  return { ids, q, k, cone, rank: (rankRaw as RankMode | null) ?? null };
 }
 
-export type AttendResponse = AttendResult & {
+export type AttendResponse = RankResult & {
   query: MakeupNode[];
   entries: (MakeupNode & { score: number })[];
   entry: "lexical" | null;
   denied: number;
   missing: number;
+  vectorsUnavailable: boolean;
 };
 
 export async function answerAttend(params: AttendParams, learnerId: string | null, deps: AttendDeps): Promise<AttendResponse | AttendError> {
@@ -188,7 +290,15 @@ export async function answerAttend(params: AttendParams, learnerId: string | nul
   const index = attentionIndex(snap);
   const entries = params.q ? phraseEntries(params.q, index) : [];
   if (!publicIds.length && !entries.length && !priv.factors.some((f) => f.length)) return { error: "no query node resolved", status: 404 };
-  const result = rankByAttention(snap, { ids: publicIds, entries, privateFactors: priv.factors, k: params.k, cone: params.cone });
+  let vectors: NodeVectors = new Map();
+  let vectorsUnavailable = false;
+  try {
+    vectors = await deps.vectors();
+  } catch {
+    vectorsUnavailable = true;
+  }
+  const rank = params.rank ?? (publicIds.length || priv.factors.length ? DEFAULT_RANK.concepts : DEFAULT_RANK.phrase);
+  const result = rankQuery(snap, vectors, { ids: publicIds, entries, privateFactors: priv.factors, k: params.k, cone: params.cone, rank });
   return {
     ...result,
     query: publicIds.map((id) => snap.byId.get(id)!),
@@ -196,5 +306,6 @@ export async function answerAttend(params: AttendParams, learnerId: string | nul
     entry: params.q ? "lexical" : null,
     denied: priv.denied,
     missing: priv.missing,
+    vectorsUnavailable,
   };
 }

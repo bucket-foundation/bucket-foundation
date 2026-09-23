@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { answerAttend, parseAttendParams, type AttendResponse } from "@/lib/research-os/attention";
+import { answerAttend, parseAttendParams, RANK_MODES, type AttendResponse, type RankMode } from "@/lib/research-os/attention";
+import { loadNodeVectors } from "@/lib/research-os/attention-db";
 import { configured, graphService } from "@/lib/research-os/db";
 import { makeupSnapshot } from "@/lib/research-os/makeup";
 import ConceptPicker from "./ConceptPicker";
@@ -11,13 +12,20 @@ export const dynamic = "force-dynamic";
 const LABEL = "small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]";
 const H1 = "font-display uppercase text-[clamp(1.5rem,4vw,2rem)] leading-[1.1] chisel text-[color:var(--basalt)]";
 
-type Search = { ids?: string; q?: string; cone?: string; k?: string };
+type Search = { ids?: string; q?: string; cone?: string; k?: string; rank?: string };
 
-function href(ids: string[], q: string, cone: string): string {
+const RANK_TEXT: Record<RankMode, string> = {
+  fused: "Text neighbours and shared primes, fused by rank.",
+  attention: "Shared primes alone.",
+  vector: "Text neighbours alone.",
+};
+
+function href(ids: string[], q: string, cone: string, rank: RankMode | null = null): string {
   const sp = new URLSearchParams();
   if (ids.length) sp.set("ids", ids.join(","));
   if (q) sp.set("q", q);
-  if (cone === "show") sp.set("cone", "show");
+  if (cone === "hide") sp.set("cone", "hide");
+  if (rank) sp.set("rank", rank);
   const s = sp.toString();
   return `/research-os/attend${s ? `?${s}` : ""}`;
 }
@@ -25,13 +33,22 @@ function href(ids: string[], q: string, cone: string): string {
 function Results({ r, cone, ids, q }: { r: AttendResponse; cone: string; ids: string[]; q: string }) {
   return (
     <section className="mt-8">
-      <h2 className={LABEL}>ranked by shared primes</h2>
+      <h2 className={LABEL}>ranked</h2>
       <p className="mt-1 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">
-        Each score is the cosine between the query and the idea in the prime basis, from 0 to 1. The primes listed beside it are its terms of that cosine, and they add up to the score.{" "}
+        {RANK_TEXT[r.rank]}{" "}
+        {RANK_MODES.filter((m) => m !== r.rank).map((m) => (
+          <span key={m}>
+            <Link href={href(ids, q, cone, m)} className="underline underline-offset-4">
+              {m === "attention" ? "Primes only" : m === "vector" ? "Text only" : "Fused"}
+            </Link>{" "}
+          </span>
+        ))}
+        · Each idea shows its prime cosine, from 0 to 1, split into the primes it shares with the query; the parts add up to the cosine. Text is the bge-small cosine to the query&apos;s nodes.
+        {r.vectorsUnavailable && " Text neighbours were unavailable this minute."}{" "}
         {cone === "show" ? (
           <>
             The query&apos;s own factors and dependents are included.{" "}
-            <Link href={href(ids, q, "hide")} className="underline underline-offset-4">
+            <Link href={href(ids, q, "hide", r.rank)} className="underline underline-offset-4">
               Hide them
             </Link>
             .
@@ -39,7 +56,7 @@ function Results({ r, cone, ids, q }: { r: AttendResponse; cone: string; ids: st
         ) : (
           <>
             {r.masked} ideas in the query&apos;s own factors and dependents are hidden.{" "}
-            <Link href={href(ids, q, "show")} className="underline underline-offset-4">
+            <Link href={href(ids, q, "show", r.rank)} className="underline underline-offset-4">
               Show them
             </Link>
             .
@@ -47,21 +64,23 @@ function Results({ r, cone, ids, q }: { r: AttendResponse; cone: string; ids: st
         )}
       </p>
       {r.hits.length === 0 ? (
-        <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">No idea shares a prime with this query.</p>
+        <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">Nothing ranked for this query.</p>
       ) : (
         <ol className="mt-2 border-t border-[color:var(--hairline)]">
           {r.hits.map((h) => (
             <li key={h.id} className="border-b border-[color:var(--hairline)] py-2 text-[13px] text-[color:var(--basalt)]">
               <div className="flex flex-wrap items-baseline gap-x-3">
-                <span className="w-[42px] shrink-0 text-[11.5px] tabular-nums text-[color:var(--basalt-3)]">{h.score.toFixed(2)}</span>
                 <Link href={`/research-os/n/${encodeURIComponent(h.slug)}`} className="hover:underline underline-offset-4">
                   {h.title}
                 </Link>
                 <span className="text-[11px] text-[color:var(--basalt-3)]">{h.branch}</span>
+                <span className="text-[11px] tabular-nums text-[color:var(--basalt-3)]">
+                  primes {h.attention === null ? "none shared" : h.attention.toFixed(2)} · text {h.embedding === null ? "n/a" : h.embedding.toFixed(2)}
+                </span>
               </div>
-              <div className="mt-1 ml-[54px] flex flex-wrap gap-1.5">
+              <div className="mt-1 flex flex-wrap gap-1.5">
                 {h.terms.map((t) => (
-                  <span key={t.id} className="border border-[color:var(--hairline)] px-1.5 py-0.5 text-[11.5px] text-[color:var(--basalt-2)]" title={`${t.term.toFixed(3)} of ${h.score.toFixed(3)}`}>
+                  <span key={t.id} className="border border-[color:var(--hairline)] px-1.5 py-0.5 text-[11.5px] text-[color:var(--basalt-2)]" title={`${t.term.toFixed(3)} of ${(h.attention ?? 0).toFixed(3)}`}>
                     {t.title} <span className="tabular-nums text-[color:var(--basalt-3)]">{t.term.toFixed(2)}</span>
                   </span>
                 ))}
@@ -81,12 +100,14 @@ export default async function AttendPage({ searchParams }: { searchParams: Searc
   const parsed = asked ? parseAttendParams(sp) : null;
   const ids = parsed && !("error" in parsed) ? parsed.ids : [];
   const q = parsed && !("error" in parsed) ? parsed.q : (searchParams.q ?? "");
-  const cone = parsed && !("error" in parsed) ? parsed.cone : "hide";
+  const cone = parsed && !("error" in parsed) ? parsed.cone : "show";
+  const rank = parsed && !("error" in parsed) ? parsed.rank : null;
   let out: Awaited<ReturnType<typeof answerAttend>> | null = null;
   if (configured() && parsed && !("error" in parsed)) {
     const svc = graphService();
     out = await answerAttend(parsed, null, {
       snapshot: () => makeupSnapshot(svc),
+      vectors: () => loadNodeVectors(svc),
       privateFactors: async (slugs) => ({ factors: [], denied: slugs.length, missing: 0 }),
     });
   }
@@ -103,7 +124,8 @@ export default async function AttendPage({ searchParams }: { searchParams: Searc
         <ConceptPicker ids={ids} q={q} cone={cone} />
         <form action="/research-os/attend" method="get">
           {ids.length > 0 && <input type="hidden" name="ids" value={ids.join(",")} />}
-          {cone === "show" && <input type="hidden" name="cone" value="show" />}
+          {cone === "hide" && <input type="hidden" name="cone" value="hide" />}
+          {rank && <input type="hidden" name="rank" value={rank} />}
           <label className="block text-[12px] text-[color:var(--basalt-3)]">
             Or a phrase
             <input
@@ -120,7 +142,7 @@ export default async function AttendPage({ searchParams }: { searchParams: Searc
           {ids.map((s) => (
             <li key={s} className="border border-[color:var(--hairline)] px-2 py-0.5 text-[12px]">
               {titleOf(s)}{" "}
-              <Link href={href(ids.filter((x) => x !== s), q, cone)} aria-label={`Remove ${titleOf(s)}`} className="text-[color:var(--basalt-3)]">
+              <Link href={href(ids.filter((x) => x !== s), q, cone, rank)} aria-label={`Remove ${titleOf(s)}`} className="text-[color:var(--basalt-3)]">
                 ×
               </Link>
             </li>

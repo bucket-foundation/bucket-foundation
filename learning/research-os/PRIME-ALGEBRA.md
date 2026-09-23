@@ -20,18 +20,28 @@ The node page shows the cosine, since a softmax weight depends on how many candi
 
 bkt-jl1v. `/research-os/attend` and `GET /api/research-os/attend` rank the idea layer against concepts a user picks (`ids`, up to 8) or a phrase (`q`, up to 200 characters). Code: `src/lib/research-os/attention.ts`; tests: `scripts/test-research-os-attention.ts`.
 
-Each hit carries its shared primes with their terms, x_q(p) * x_v(p) / (|x_q| |x_v|). The route divides every exposed term by qn * vn, so the terms sum to the cosine the hit is ranked by. A phrase enters through the 3 ideas with the highest IDF-weighted word overlap (`lexicalScore`) at 0.1 or more, each weighted by its overlap, and their vectors are summed. It runs in pure JavaScript. By default the query nodes' factor cone is hidden: every idea above or below them in the factor graph. `cone=show` lifts that. For a private node, the cone is its public factors and everything under them. Results come from the public snapshot. A signed-in user may name a private node; `authorizeNode` must allow it, and its vector is the sum of its public factors' vectors, with a fact contracted to the ideas under it. It never comes back as a result.
+Each hit carries its prime cosine and the shared primes behind it, each with its term x_q(p) * x_v(p) / (|x_q| |x_v|). The route divides every exposed term by qn * vn, so the terms sum to the prime cosine. The ranking itself comes in three modes, chosen with `rank`:
+- **fused**, the default for concepts: reciprocal rank fusion (k = 60) of bge-small neighbours of the query nodes' precomputed vectors and the prime-basis ranking.
+- **vector**, the default for phrases: a phrase enters through the idea with the highest IDF-weighted word overlap (`lexicalScore`, floor 0.05), and the ranking is that idea's bge-small neighbours. No model runs at request time.
+- **attention**: the prime-basis ranking alone, behind the flag.
 
-**Against embedding search.** `scripts/research-os/eval-attention.ts` takes 120 Academy atoms at random from 469 with a Wikipedia mapping. Each query is the first lesson sentence that shares no word with the atom's title. The atoms split 60 for tuning and 60 held out. A node counts as relevant when its Wikipedia article links to or from the source atom's article. The source atom and its near duplicates are removed from the entries, the candidates and the relevant set: same title, title overlap of 0.8 or more, same article, or a bge-small cosine of 0.93 or more. The held-out results over 497 idea nodes, with paired bootstrap intervals over queries:
+`scripts/research-os/embed-nodes.ts` writes the node vectors to `graph.node_embeddings`, readable by the service role alone, and re-embeds a node when its text changes. The route caches them for 10 minutes. When they cannot be read, it ranks by primes and says so. Embedding a phrase at request time waits on bkt-ig20. The factor cone is shown by default, since tuning preferred it in every arm; `cone=hide` removes every idea above or below the query nodes from both lists. Results come from the public snapshot. A signed-in user may name a private node; `authorizeNode` must allow it, its prime vector sums its public factors' vectors, and its text vector is their centroid. It never comes back as a result.
 
-| Arm | nDCG@10 | recall@20 | nDCG@10 against embedding |
+**Against embedding search.** `scripts/research-os/eval-attention.ts` takes 120 Academy atoms at random from 469 with a Wikipedia mapping, split 60 for tuning and 60 held out. A phrase query is the first lesson sentence that shares no word with the atom's title; a concept query is the atom's own node. A node counts as relevant when its Wikipedia article links to or from the source atom's article. The source atom and its near duplicates are removed from the entries, the candidates and the relevant set: same title, title overlap of 0.8 or more, same article, or a bge-small cosine of 0.93 or more. Held out, over 497 idea nodes, with paired bootstrap intervals over queries:
+
+| Mode | Arm | nDCG@10 | against the baseline |
 |---|---|---|---|
-| Embedding search, bge-small | 0.285 | 0.238 | |
-| Attention, lexical entry | 0.156 | 0.141 | -0.129, interval -0.201 to -0.051 |
-| Attention, embedding entry | 0.202 | 0.167 | -0.083, interval -0.152 to -0.018 |
-| Rank fusion of embedding and lexical attention | 0.237 | 0.226 | -0.049, interval -0.113 to 0.014 |
+| Concepts | bge-small neighbours of the node, the baseline | 0.511 | |
+| Concepts | Attention | 0.384 | -0.127, interval -0.205 to -0.061 |
+| Concepts | Fused, the default | 0.489 | -0.022, interval -0.086 to 0.032 |
+| Phrases | bge-small embedding of the phrase, the baseline | 0.285 | |
+| Phrases | Attention through the lexical entry | 0.156 | -0.129, interval -0.201 to -0.051 |
+| Phrases | Neighbours of the lexical entry, the default | 0.198 | -0.088, interval -0.156 to -0.019 |
+| Phrases | Fused through the lexical entry | 0.189 | -0.096, interval -0.166 to -0.024 |
 
-Plain embedding search wins on this relevance. Attention ranks composites alone, and it spreads a query over everything that shares its primes, while Wikipedia's links reward neighbours by topic. Tuning picked 1 lexical entry with the cone shown. The page serves to explain makeup, with the primes as the reasons for each rank. Rank fusion comes closest, and its interval includes 0. On the local stack, lexical entry takes 3.9 ms at the median and 5.3 ms at p95, and the attention pass 0.4 ms and 0.9 ms. The founder labels 20 held-out queries blind as a second check.
+For concepts, fusion sits within noise of plain embedding search and adds the primes as the reason for each rank. For phrases, every arm without a request-time embedding trails the baseline; the lexical entry is the bottleneck, and bkt-ig20 carries the numbers. Tuning chose neighbours of the lexical entry over fusion by 0.002 on the tuning half. Lexical entry takes 4.0 ms at the median and 5.1 ms at p95; the fused rank 0.8 ms and 1.3 ms.
+
+Wikipedia-link relevance rewards topical co-mention: two articles link when one names the other. It may undercount the structural, cross-branch neighbours attention is built to find, such as an idea in biophysics that rests on the same primes as one in cosmology without either article naming the other. `scripts/research-os/export-attention-labels.ts` writes 20 held-out phrase queries with the top 10 of both phrase arms merged, shuffled and unlabelled, plus a separate key; the founder's labels (bkt-hz38) are the second check.
 
 ## M2: Leibniz Numbers and the Euler Gap
 

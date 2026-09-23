@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { answerAttend, attentionIndex, coneOf, parseAttendParams, phraseEntries, publicFactorIds, rankByAttention, type AttendDeps } from "../src/lib/research-os/attention";
+import { answerAttend, attentionIndex, centroid, coneOf, fuseRanks, nearestByVector, parseAttendParams, phraseEntries, publicFactorIds, rankByAttention, rankQuery, type AttendDeps, type NodeVectors } from "../src/lib/research-os/attention";
 import { snapshotFrom, type MakeupNode } from "../src/lib/research-os/makeup";
 import { queryVectorOf } from "../src/lib/research-os/prime-algebra";
 import type { DepEdge } from "../src/lib/research-os/primes";
@@ -81,7 +81,8 @@ test("a phrase enters through the ideas whose words it shares, weighted by the o
   const index = attentionIndex(snap);
   const entries = phraseEntries("probability over many particles", index);
   assert.equal(entries[0].id, "stat");
-  assert.ok(entries.every((e) => e.score >= 0.1));
+  assert.ok(entries.every((e) => e.score >= 0.05));
+  assert.equal(entries.length, 1);
   assert.deepEqual(phraseEntries("zzz qqq", index), []);
   assert.ok(!phraseEntries("probability over many particles", index, { exclude: new Set(["stat"]) }).some((e) => e.id === "stat"));
   const one = rankByAttention(snap, { entries: [{ id: "stat", score: 0.5 }], cone: "show" });
@@ -113,6 +114,7 @@ test("a private node's vector comes from its factor edges into public ideas", ()
 
 const deps = (over: Partial<AttendDeps> = {}): AttendDeps => ({
   snapshot: async () => snap,
+  vectors: async () => new Map(),
   privateFactors: async (slugs, _s, learnerId) => (learnerId ? { factors: [["prob", "vec"]], denied: 0, missing: 0 } : { factors: [], denied: slugs.length, missing: 0 }),
   ...over,
 });
@@ -128,7 +130,9 @@ test("parameters are capped and checked", () => {
   assert.equal((parseAttendParams(new URLSearchParams(`q=${"x".repeat(201)}`)) as { status: number }).status, 400);
   assert.equal((parseAttendParams(new URLSearchParams("q=x&k=51")) as { status: number }).status, 400);
   assert.equal((parseAttendParams(new URLSearchParams("q=x&cone=all")) as { status: number }).status, 400);
-  assert.deepEqual(params("ids=kin,kin,dyn&k=5"), { ids: ["kin", "dyn"], q: "", k: 5, cone: "hide" });
+  assert.deepEqual(params("ids=kin,kin,dyn&k=5"), { ids: ["kin", "dyn"], q: "", k: 5, cone: "show", rank: null });
+  assert.equal(params("ids=kin&rank=attention").rank, "attention");
+  assert.equal((parseAttendParams(new URLSearchParams("ids=kin&rank=best")) as { status: number }).status, 400);
 });
 
 test("an anonymous caller gets public results and a denied count for a private id", async () => {
@@ -173,4 +177,65 @@ test("the evaluation's measures and query picker hold on hand-worked cases", asy
   const same = pairedInterval([0.5, 0.2], [0.5, 0.2], "s", 50);
   assert.deepEqual(same, { mean: 0, interval: [0, 0] });
   assert.equal(queryFor("Kinematics", "### Intuition\n\nKinematics names motion in six words here. Picture a sprinter filmed from the side at speed."), "Picture a sprinter filmed from the side at speed.");
+});
+
+const unit = (xs: number[]) => {
+  const n = Math.sqrt(xs.reduce((a, x) => a + x * x, 0));
+  return xs.map((x) => x / n);
+};
+const vecs: NodeVectors = new Map([
+  ["kin", unit([1, 0, 0])],
+  ["dyn", unit([0.9, 0.1, 0])],
+  ["osc", unit([0.2, 1, 0])],
+  ["gas", unit([0, 0.3, 1])],
+  ["stat", unit([0, 0, 1])],
+  ["heat", unit([0.1, 0, 0.9])],
+  ["vec", unit([0.8, 0.2, 0])],
+]);
+
+test("centroids, vector neighbours and rank fusion behave on a small case", () => {
+  assert.deepEqual(centroid(vecs, [{ id: "kin" }, { id: "missing" }]), [1, 0, 0]);
+  assert.equal(centroid(vecs, [{ id: "missing" }]), null);
+  assert.deepEqual(nearestByVector(vecs, [1, 0, 0], new Set(["kin"]), 2).map((e) => e.id), ["dyn", "vec"]);
+  assert.deepEqual(fuseRanks([["a", "b"], ["b", "c"]]).map((e) => e.id), ["b", "a", "c"]);
+});
+
+test("each rank mode orders by its own signal and keeps the prime terms as the reason", () => {
+  const att = rankQuery(snap, vecs, { ids: ["kin"], cone: "show", rank: "attention" });
+  assert.deepEqual(att.hits.map((h) => h.id), rankByAttention(snap, { ids: ["kin"], cone: "show", k: 50 }).hits.map((h) => h.id));
+  const vec = rankQuery(snap, vecs, { ids: ["kin"], cone: "show", rank: "vector" });
+  assert.deepEqual(vec.hits.slice(0, 2).map((h) => h.id), ["dyn", "vec"]);
+  assert.ok(vec.hits.every((h, i) => i === 0 || vec.hits[i - 1].embedding! >= h.embedding!));
+  const fused = rankQuery(snap, vecs, { ids: ["kin"], cone: "show", rank: "fused" });
+  assert.equal(fused.hits[0].id, "dyn", "first in both lists");
+  for (const h of fused.hits) {
+    const sum = h.terms.reduce((a, t) => a + t.term, 0);
+    if (h.attention !== null) assert.ok(Math.abs(sum - h.attention) < 1e-12);
+    else assert.deepEqual(h.terms, []);
+  }
+  const hidden = rankQuery(snap, vecs, { ids: ["kin"], cone: "hide", rank: "vector" });
+  assert.ok(!hidden.hits.some((h) => ["dyn", "vec", "der"].includes(h.id)), "the cone leaves the vector list too");
+  assert.equal(rankQuery(snap, new Map(), { ids: ["kin"], rank: "vector" }).vectors, false);
+});
+
+test("concepts rank fused and phrases rank by entry vectors unless the caller asks", async () => {
+  const d = deps({ vectors: async () => vecs });
+  const concept = await answerAttend(params("ids=kin"), null, d);
+  const phrase = await answerAttend(params("q=probability over many particles"), null, d);
+  const flagged = await answerAttend(params("ids=kin&rank=attention"), null, d);
+  assert.ok(!("error" in concept) && !("error" in phrase) && !("error" in flagged));
+  if ("error" in concept || "error" in phrase || "error" in flagged) return;
+  assert.equal(concept.rank, "fused");
+  assert.equal(phrase.rank, "vector");
+  assert.equal(flagged.rank, "attention");
+  const down = await answerAttend(params("ids=kin"), null, deps({ vectors: async () => Promise.reject(new Error("down")) }));
+  assert.ok(!("error" in down) && down.vectorsUnavailable && down.hits.length > 0);
+});
+
+test("the blind sheet merges both arms, drops arm labels and shuffles by seed", async () => {
+  const { blindRows } = await import("./research-os/export-attention-labels");
+  const a = blindRows({ embedding: ["x", "y"], product: ["y", "z"] }, "s");
+  assert.deepEqual(a.items.slice().sort(), ["x", "y", "z"]);
+  assert.deepEqual(a.from.y.sort(), ["embedding", "product"]);
+  assert.deepEqual(blindRows({ embedding: ["x", "y"], product: ["y", "z"] }, "s").items, a.items);
 });
