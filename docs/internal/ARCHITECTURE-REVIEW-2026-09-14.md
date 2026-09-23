@@ -20,7 +20,7 @@ Scope: full repo on branch `run/quantum-history-001` (127 ahead / 8 behind `orig
 ## Problems ranked
 
 P0 security
-1. `public.author`, `research`, `cite_tokens`, `ip_metadata`, `research_cite`: no migration, no RLS, browser inserts with anon key (`src/context/AuthorContext.tsx:40-47`, `CiteTokensContext.tsx:58`, `src/lib/story/index.ts:179-229`). Any visitor can write rows.
+1. `public.author`, `research`, `cite_tokens`, `ip_metadata`, `research_cite`: no migration, no RLS, browser inserts with anon key (`src/context/AuthorContext:40-47`, `CiteTokensContext:58`, `src/lib/story/index:179-229`). Any visitor can write rows.
 2. `research-tools.agfarms.dev` accepts unauthenticated compute jobs from anyone; the Next.js proxies add only a static `x-bucket-proxy: v1` header. No nginx `limit_req`.
 3. 54 API routes set `access-control-allow-origin: *` with no auth and no throttle. `canon/search` claims a rate limit in its comment and has none.
 
