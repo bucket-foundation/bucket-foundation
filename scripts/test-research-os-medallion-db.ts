@@ -45,6 +45,8 @@ test("the path CHECK and checkRepoPath agree", { skip }, () => {
     "_intake/concept-digests/a.md",
     "bucket-canon/02-physics/sub-claims/x/",
     "src/data/canon-sites.json",
+    "archaeology/pleiades/579885/place.json",
+    "archaeologyx/a.json",
     "/srv/abs/agfarms/_intake/a.md",
     "~/a.md",
     "_intake/../x",

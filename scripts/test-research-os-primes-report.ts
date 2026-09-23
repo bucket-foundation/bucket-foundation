@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, pendingPairIds, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
+import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, pendingPairIds, readPrimesInputs, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
 
 const node = (id: string, kind = "concept", branch = "02-physics"): ReportNode => ({ id, slug: id, title: id.toUpperCase(), kind, branch });
 
@@ -117,4 +117,38 @@ test("confirmed pending pairs mark the nonfaces they would close as missing edge
   assert.equal(withPairs.gaps.counterfactualPairs, 1);
   assert.equal(withPairs.top[0].gap, "missing_edge");
   assert.match(withPairs.top[0].p, /^(<0\.02|[01]\.\d+)$/);
+});
+
+type Row = Record<string, unknown>;
+
+class FakeQuery {
+  private preds: ((r: Row) => boolean)[] = [];
+  private slice: [number, number] = [0, Number.MAX_SAFE_INTEGER];
+  constructor(private rows: Row[]) {}
+  select() { return this; }
+  order() { return this; }
+  range(from: number, to: number) { this.slice = [from, to]; return this; }
+  eq(col: string, v: unknown) { this.preds.push((r) => r[col] === v); return this; }
+  neq(col: string, v: unknown) { this.preds.push((r) => r[col] !== v); return this; }
+  is(col: string, v: unknown) { this.preds.push((r) => (r[col] ?? null) === v); return this; }
+  in(col: string, vs: unknown[]) { this.preds.push((r) => vs.includes(r[col])); return this; }
+  then<R>(done: (v: { data: Row[]; error: null }) => R) {
+    const data = this.rows.filter((r) => this.preds.every((p) => p(r))).slice(this.slice[0], this.slice[1] + 1);
+    return Promise.resolve({ data, error: null }).then(done);
+  }
+}
+
+test("an event node never enters the primes inputs, so unfactoredByKind is unchanged", async () => {
+  const tables: Record<string, Row[]> = {
+    nodes: [...nodes, node("battle-of-marathon", "event", "00-history")].map((n) => ({ ...n, visibility: "public", superseded_by: null })),
+    edges: edges.map((e, i) => ({ id: `e${i}`, ...e })),
+    irreducible_proposals: [],
+    edge_proposals: [],
+  };
+  const svc = { from: (t: string) => new FakeQuery(tables[t] ?? []) } as unknown as Parameters<typeof readPrimesInputs>[0];
+  const x = await readPrimesInputs(svc);
+  assert.ok(!x.nodeRows.some((n) => n.kind === "event"));
+  const r = buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible);
+  assert.equal(r.summary.nodes, 5);
+  assert.deepEqual(r.unfactoredByKind, [{ kind: "artifact", count: 1 }]);
 });

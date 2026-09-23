@@ -61,6 +61,24 @@ export function parsePolicy(value: unknown): RightsPolicy {
   return p;
 }
 
+export function seedIds(file: string, raw: string): Set<string> {
+  if (file.endsWith(".jsonl")) {
+    const ids = raw
+      .split("\n")
+      .filter((line) => line.trim() !== "")
+      .map((line, i) => {
+        const row = JSON.parse(line) as { id?: unknown };
+        if (typeof row.id !== "string") throw new Error(`${file}:${i + 1} has no string id`);
+        return row.id;
+      });
+    return new Set(ids);
+  }
+  const seed = JSON.parse(raw) as { nodes?: { slug?: unknown }[]; events?: { id?: unknown }[] };
+  if (Array.isArray(seed.nodes)) return new Set(seed.nodes.map((n) => n.slug).filter((s): s is string => typeof s === "string"));
+  if (Array.isArray(seed.events)) return new Set(seed.events.map((e) => e.id).filter((s): s is string => typeof s === "string"));
+  throw new Error(`${file} has no nodes or events list`);
+}
+
 export interface RightsSubject {
   slug: string;
   provenanceType: string | null;
