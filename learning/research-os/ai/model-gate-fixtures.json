@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "writtenAt": "2026-09-22",
+  "note": "Written against the node titles in the admitted corpus, before any result was measured. Each query asks its question in words the target's own title does not use, so a hit is retrieval by meaning rather than by shared tokens. Editing a case after seeing its result voids the gate: write a new fixture file and say why.",
+  "thresholds": {
+    "minReordered": 6,
+    "minRecovered": 3
+  },
+  "cases": [
+    {
+      "id": "sky-purple",
+      "query": "if the shortest wavelengths scatter the most, why does the daytime sky not look purple",
+      "branch": "02-physics",
+      "expect": "sky-is-blue-not-violet",
+      "why": "The question is about the violet gap; the target's title says violet, the query says purple."
+    },
+    {
+      "id": "colour-dependence",
+      "query": "how steeply does scattering strength rise as the colour of light shifts toward the short end",
+      "branch": "02-physics",
+      "expect": "lambda-minus-4-law",
+      "why": "Names the fourth-power dependence without writing lambda, power, or law."
+    },
+    {
+      "id": "who-derived-sky",
+      "query": "who first worked out the mathematics behind the colour of the daytime sky",
+      "branch": "02-physics",
+      "expect": "rayleigh-1871-sky-color-papers",
+      "why": "Asks for the primary derivation without naming Rayleigh or a year."
+    },
+    {
+      "id": "halting",
+      "query": "can one program decide ahead of time whether another program will ever stop running",
+      "branch": "01-mathematics",
+      "expect": "academy-01-mathematics-computability",
+      "why": "States the halting problem in plain words, avoiding halting and computability."
+    },
+    {
+      "id": "bell-shape",
+      "query": "why do averages of many independent measurements pile up into a bell shape",
+      "branch": "01-mathematics",
+      "expect": "academy-01-mathematics-central-limit-theorem",
+      "why": "Describes the central limit theorem without any of its three words."
+    },
+    {
+      "id": "rare-condition",
+      "query": "a screening result came back positive for something rare, how much should that move my belief",
+      "branch": "01-mathematics",
+      "expect": "academy-01-mathematics-bayes-theorem",
+      "why": "The base-rate question, with no Bayes, conditional, or probability."
+    },
+    {
+      "id": "flipped-bit",
+      "query": "how can a message be sent so that a bit flipped in transit is caught and repaired",
+      "branch": "04-information",
+      "expect": "academy-04-information-error-correcting-codes",
+      "why": "Describes error correction without error, correcting, code, or Hamming."
+    },
+    {
+      "id": "shared-secret",
+      "query": "two strangers agree on a shared secret while everyone listening hears every word they exchange",
+      "branch": "04-information",
+      "expect": "academy-04-information-diffie-hellman",
+      "why": "Describes key exchange without naming either author or the word key."
+    },
+    {
+      "id": "how-much-fits",
+      "query": "what limits how much can be pushed down a noisy line before mistakes are unavoidable",
+      "branch": "04-information",
+      "expect": "academy-04-information-channel-capacity",
+      "why": "Asks for capacity without capacity, channel, or coding theorem."
+    },
+    {
+      "id": "chain-decides-shape",
+      "query": "does the order of a protein's building blocks hold everything needed to reach its final shape",
+      "branch": "05-biophysics",
+      "expect": "academy-biophysics-anfinsen",
+      "why": "The thermodynamic hypothesis, asked without Anfinsen, thermodynamic, or folding."
+    },
+    {
+      "id": "cell-turbine",
+      "query": "which molecular machine spins like a turbine to make the cell's energy currency",
+      "branch": "05-biophysics",
+      "expect": "academy-biophysics-atp-synthase",
+      "why": "Names the rotary motor without ATP or synthase."
+    },
+    {
+      "id": "why-membranes-form",
+      "query": "why do fatty molecules arrange themselves into a two-layer sheet in water with nothing directing them",
+      "branch": "05-biophysics",
+      "expect": "academy-biophysics-bilayer",
+      "why": "Self-assembly asked without bilayer, lipid, or assembly."
+    }
+  ]
+}

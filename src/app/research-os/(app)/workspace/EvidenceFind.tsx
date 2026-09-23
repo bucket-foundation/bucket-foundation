@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { isSearchResponse, MAX_CARDS, type EvidenceCard, type EvidenceSearchResponse } from "@/lib/research-os/evidence-search/types";
@@ -28,6 +29,7 @@ type Phase = "idle" | "searching" | "done" | "error";
 
 export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFindProps) {
   const [available, setAvailable] = useState<{ corpusRevision: string; sources: number } | null>(null);
+  const [probeFailed, setProbeFailed] = useState(false);
   const [query, setQuery] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
   const [result, setResult] = useState<EvidenceSearchResponse | null>(null);
@@ -41,7 +43,15 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
     void (async () => {
       try {
         const res = await fetch("/api/research-os/evidence-search", { headers: { authorization: `Bearer ${token}` } });
-        if (!live || !res.ok) return;
+        if (!live) return;
+        if (!res.ok) {
+          // A read that did not complete is not a feature that is off.
+          // Hiding the mode for both told a learner the search does not
+          // exist here whenever their profile read failed.
+          if (isTransientOutage(res.status, await readErrorCode(res))) setProbeFailed(true);
+          return;
+        }
+        setProbeFailed(false);
         const body = (await res.json()) as { available?: boolean; corpusRevision?: string; sources?: number };
         if (body.available && typeof body.corpusRevision === "string") setAvailable({ corpusRevision: body.corpusRevision, sources: body.sources ?? 0 });
       } catch {
@@ -52,6 +62,20 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
       live = false;
     };
   }, [token]);
+
+  // Cards answer the target they were found for. The component stays
+  // mounted while a learner moves along the path, so without this the
+  // previous target's sources sit under the new one, and Quote would
+  // attach them to a target they were never about. A request still in
+  // flight is abandoned, and the sequence moves so its answer is dropped
+  // when it lands.
+  useEffect(() => {
+    inFlight.current?.abort();
+    seq.current += 1;
+    setResult(null);
+    setError(null);
+    setPhase("idle");
+  }, [branch, targetNodeId]);
 
   const run = useCallback(async () => {
     if (!token || !query.trim()) return;
@@ -71,9 +95,10 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
       const body: unknown = await res.json().catch(() => null);
       if (mine !== seq.current) return;
       if (!res.ok) {
+        const code = (body as { error?: string })?.error ?? null;
         const message = (body as { message?: string })?.message;
         setResult(null);
-        setError(message || `The search answered ${res.status}.`);
+        setError(isTransientOutage(res.status, code) ? OUTAGE_COPY.body : message || `The search answered ${res.status}.`);
         setPhase("error");
         return;
       }
@@ -93,7 +118,15 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
     }
   }, [token, query, branch, targetNodeId]);
 
-  if (!available) return null;
+  if (!available) {
+    // One line on a failed probe, so a learner can tell a read that did
+    // not complete from a deployment that never carried the corpus.
+    return probeFailed ? (
+      <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+        {OUTAGE_COPY.body}
+      </p>
+    ) : null;
+  }
 
   const cards: EvidenceCard[] = result?.cards ?? [];
   const announcement =

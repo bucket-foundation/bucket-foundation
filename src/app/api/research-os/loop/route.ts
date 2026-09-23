@@ -5,6 +5,7 @@
  * hold (Understanding), what connects across branches (Internalization),
  * and what they have produced and what it became (Production).
  */
+import type { LoopResponse } from "@/lib/research-os/loop-shape";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
@@ -41,19 +42,26 @@ export async function GET(req: NextRequest) {
     svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
     svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }),
     svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
-    loadConnections(learnerId).catch(() => ({ held: [], bridges: [] })),
+    // A failed connection read is not a learner with no connections.
+    // Flattening it to zero is the defect the nullable shape exists for,
+    // so the flag travels and the panel says the count is unknown.
+    loadConnections(learnerId).catch(() => ({ held: [], bridges: [], unavailable: true as const })),
     learnDecksStarted(learnerId),
   ]);
   const states = ((statesRes.data as { node_id: string; stage: Stage }[]) || []);
   const atLeast = (s: Stage) => states.filter((r) => stageAtLeast(r.stage, s)).length;
   const productions = ((prodRes.data as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || []);
   const byStatus = (st: string) => productions.filter((p) => p.status === st).length;
-  return NextResponse.json(
-    {
+  const payload: LoopResponse = {
       access: { owned: ownedRes.count ?? 0, imports: importsRes.count ?? 0, pendingRequests: requestsRes.count ?? 0 },
       awareness: { opened: states.length, atLeastAwareness: atLeast("awareness") },
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
-      internalization: { nodes: atLeast("internalization"), held: connections.held.length, bridges: connections.bridges.length, nextBridge: connections.bridges[0]?.next ?? null },
+      internalization: {
+        nodes: atLeast("internalization"),
+        ...("unavailable" in connections && connections.unavailable
+          ? { held: null, bridges: null, nextBridge: null, connectionsUnavailable: true }
+          : { held: connections.held.length, bridges: connections.bridges.length, nextBridge: connections.bridges[0]?.next ?? null }),
+      },
       production: {
         drafts: byStatus("draft"),
         submitted: byStatus("submitted"),
@@ -63,7 +71,6 @@ export async function GET(req: NextRequest) {
         latest: productions[0] ?? null,
       },
       empty: states.length === 0 && productions.length === 0 && (ownedRes.count ?? 0) === 0 && decks === 0,
-    },
-    NO_STORE
-  );
+  };
+  return NextResponse.json(payload, NO_STORE);
 }

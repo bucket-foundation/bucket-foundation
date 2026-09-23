@@ -1,0 +1,43 @@
+# evidence-worker: the encoder for evidence search, on 127.0.0.1:8431. The
+# server sends a query and the source ids it resolved; the worker returns
+# ranked ids and no text. Install with
+# scripts/systemd/install-evidence-worker.sh, which also writes the
+# environment file this reads.
+#
+# The secret and the vectors directory come from %h/.config/evidence-worker.env,
+# which is outside the repository and readable only by its owner. %h is the
+# home directory, so this file holds no machine path.
+#
+# The caps come from IMPLEMENTATION.md, "Operating envelope", against two
+# measurements taken separately: `evidence_search probe` reported 3.4 GiB
+# at peak on eight threads, and the runtime gate's 20 restarts put the
+# start between 22 and 33 seconds across two runs on this machine.
+# MemoryMax stops a leak taking the machine with it, and the resource
+# reserve means a kill here never reaches the app or the database.
+[Unit]
+Description=Bucket Foundation evidence-search encoder on 127.0.0.1:8431
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/agfarms/bucket-foundation/tools/evidence-search
+EnvironmentFile=%h/.config/evidence-worker.env
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=OMP_NUM_THREADS=8
+Environment=TOKENIZERS_PARALLELISM=false
+ExecStart=/usr/bin/env python3 -m evidence_search serve --vectors ${EVIDENCE_VECTORS_DIR} --host 127.0.0.1 --port ${EVIDENCE_WORKER_PORT}
+Restart=on-failure
+RestartSec=10
+Nice=5
+MemoryMax=8G
+MemoryHigh=6G
+CPUQuota=800%
+# The weights load from a local snapshot and the socket is loopback, so
+# the worker needs no network and no write access outside its own tree.
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

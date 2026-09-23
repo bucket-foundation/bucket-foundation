@@ -33,15 +33,22 @@ const size = (bytes: number) => (bytes < KB ? `${bytes} B` : bytes < KB * KB ? `
 /**
  * What to say when storage refuses the upload itself.
  *
- * The bucket's insert policy caps how many uploaded objects an owner may
- * hold that no import row records, so a person who uploaded files that
- * never finished recording meets that cap here. Postgres answers with its
- * own sentence about row-level security, which names nothing a person can
- * act on. Any other refusal keeps the message storage gave.
+ * The bucket's insert trigger caps how many objects and how many bytes
+ * one owner holds, and raises its own sentence carrying the limit. That
+ * sentence is kept: the number stays right when the limit moves, and the
+ * trigger cannot know what a person should do about it, which is the
+ * part added here. Deleting an import returns its allowance, so removing
+ * one is the action that works.
+ *
+ * Any other refusal keeps the message storage gave, since passing a real
+ * error through beats guessing at it.
  */
 function uploadRefusal(message: string): string {
-  if (/row-level security|violates|not authorized|unauthorized/i.test(message)) {
-    return "Storage refused this file. Files that were uploaded but never recorded count against a limit; open your imports and finish or remove those first.";
+  if (/import quota/i.test(message)) {
+    return `${message}. Every file you have imported counts toward it, so remove an import you no longer need and the room comes back.`;
+  }
+  if (/row-level security|not authorized|unauthorized/i.test(message)) {
+    return "Storage refused this file for this account. Sign in again, and if it keeps happening the file is being written under a path that is not yours.";
   }
   return message;
 }

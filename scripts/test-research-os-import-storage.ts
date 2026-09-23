@@ -100,3 +100,24 @@ test("the bucket name is the one the migration creates", () => {
   assert.equal(IMPORT_BUCKET, "research-os-imports");
   assert.equal(MAX_IMPORT_BYTES, 52_428_800, "50 MiB, the bucket's file_size_limit and the local stack's");
 });
+
+test("an owner id that is not canonical is refused", () => {
+  // Postgres renders uuid::text lowercase and storage_path is generated
+  // from it, so an uppercase owner id built one key while the row named
+  // another. The object and the row then diverge with nothing to say so.
+  assert.deepEqual(storagePathFor(OWNER.toUpperCase(), HASH), { ok: false, error: "owner_not_a_uuid" });
+  assert.equal(parseStoragePath(`${OWNER.toUpperCase()}/${HASH}`), null);
+  assert.ok(storagePathFor(OWNER, HASH).ok, "the canonical form still works");
+});
+
+test("the key rule the insert policy enforces is the one this builds", () => {
+  // The policy anchors on ^<uid>/[0-9a-f]{64}$. Anything this module can
+  // emit has to match it, and the shapes it refuses are the ones the
+  // policy refuses.
+  const made = storagePathFor(OWNER, HASH);
+  assert.ok(made.ok);
+  const rule = new RegExp(`^${OWNER}/[0-9a-f]{64}$`);
+  assert.match(made.value, rule);
+  assert.ok(!rule.test(`${OWNER}/sub/${HASH}`), "a nested key is outside the rule");
+  assert.ok(!rule.test(`${OWNER}/NOTAHASH`), "so is a non-hash second segment");
+});
