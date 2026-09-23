@@ -1,7 +1,7 @@
 {
   "POST unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "POST anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -17,7 +17,7 @@
   },
   "POST signed in, store down": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "productionId is required"
@@ -25,7 +25,7 @@
   },
   "POST signed in, malformed json": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "bad_request"
@@ -33,7 +33,7 @@
   },
   "POST signed in, consent unavailable": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "productionId is required"
@@ -41,10 +41,58 @@
   },
   "POST signed in, consent refused": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "productionId is required"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "productionId is required"
+    }
+  },
+  "POST production given, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
+  "POST someone else's production": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "production_not_found"
+    }
+  },
+  "POST target hidden": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "production_not_found"
+    }
+  },
+  "POST engine unreachable": {
+    "status": 502,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "hte_serve_unreachable"
+    }
+  },
+  "POST authorize throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }
