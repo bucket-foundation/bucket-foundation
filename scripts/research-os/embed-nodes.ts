@@ -1,8 +1,8 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { spawnSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import path from "node:path";
 import { EMBED_MODEL, embedText } from "../../src/lib/research-os/attention";
+import { embeddingTextHash } from "../../src/lib/research-os/attention-db";
 import { isIdeaNode } from "../../src/lib/research-os/idea";
 import { pagedRead } from "../../src/lib/research-os/paging";
 
@@ -39,7 +39,7 @@ async function main() {
       .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; text_hash: string }[] | null; error: { message: string } | null }>,
   );
   const have = new Map(stored.map((s) => [s.node_id, s.text_hash]));
-  const hash = (t: string) => createHash("sha256").update(`${EMBED_MODEL}\n${t}`).digest("hex").slice(0, 32);
+  const hash = embeddingTextHash;
   const todo = ideas.map((r) => ({ id: r.id, text: embedText(r.title, r.summary) })).filter((x) => have.get(x.id) !== hash(x.text));
   const vectors = embed(todo);
   for (let i = 0; i < todo.length; i += 200) {
@@ -47,7 +47,8 @@ async function main() {
     const { error } = await svc.from("node_embeddings").upsert(chunk, { onConflict: "node_id,model" });
     if (error) throw new Error(`node_embeddings: ${error.message}`);
   }
-  console.log(`[embed-nodes] ${ideas.length} public ideas, ${todo.length} embedded, ${ideas.length - todo.length} unchanged`);
+  const refreshed = todo.filter((x) => have.has(x.id)).length;
+  console.log(`[embed-nodes] ${ideas.length} public ideas, ${todo.length - refreshed} new, ${refreshed} stale refreshed, ${ideas.length - todo.length} unchanged`);
 }
 
 main().catch((err) => {

@@ -114,7 +114,7 @@ test("a private node's vector comes from its factor edges into public ideas", ()
 
 const deps = (over: Partial<AttendDeps> = {}): AttendDeps => ({
   snapshot: async () => snap,
-  vectors: async () => new Map(),
+  vectors: async () => ({ vectors: new Map(), stale: 0 }),
   privateFactors: async (slugs, _s, learnerId) => (learnerId ? { factors: [["prob", "vec"]], denied: 0, missing: 0 } : { factors: [], denied: slugs.length, missing: 0 }),
   ...over,
 });
@@ -130,7 +130,7 @@ test("parameters are capped and checked", () => {
   assert.equal((parseAttendParams(new URLSearchParams(`q=${"x".repeat(201)}`)) as { status: number }).status, 400);
   assert.equal((parseAttendParams(new URLSearchParams("q=x&k=51")) as { status: number }).status, 400);
   assert.equal((parseAttendParams(new URLSearchParams("q=x&cone=all")) as { status: number }).status, 400);
-  assert.deepEqual(params("ids=kin,kin,dyn&k=5"), { ids: ["kin", "dyn"], q: "", k: 5, cone: "show", rank: null });
+  assert.deepEqual(params("ids=kin,kin,dyn&k=5"), { ids: ["kin", "dyn"], q: "", k: 5, cone: "hide", rank: null });
   assert.equal(params("ids=kin&rank=attention").rank, "attention");
   assert.equal((parseAttendParams(new URLSearchParams("ids=kin&rank=best")) as { status: number }).status, 400);
 });
@@ -218,15 +218,15 @@ test("each rank mode orders by its own signal and keeps the prime terms as the r
   assert.equal(rankQuery(snap, new Map(), { ids: ["kin"], rank: "vector" }).vectors, false);
 });
 
-test("concepts rank fused and phrases rank by entry vectors unless the caller asks", async () => {
-  const d = deps({ vectors: async () => vecs });
+test("concepts and phrases rank fused unless the caller asks", async () => {
+  const d = deps({ vectors: async () => ({ vectors: vecs, stale: 0 }) });
   const concept = await answerAttend(params("ids=kin"), null, d);
   const phrase = await answerAttend(params("q=probability over many particles"), null, d);
   const flagged = await answerAttend(params("ids=kin&rank=attention"), null, d);
   assert.ok(!("error" in concept) && !("error" in phrase) && !("error" in flagged));
   if ("error" in concept || "error" in phrase || "error" in flagged) return;
   assert.equal(concept.rank, "fused");
-  assert.equal(phrase.rank, "vector");
+  assert.equal(phrase.rank, "fused");
   assert.equal(flagged.rank, "attention");
   const down = await answerAttend(params("ids=kin"), null, deps({ vectors: async () => Promise.reject(new Error("down")) }));
   assert.ok(!("error" in down) && down.vectorsUnavailable && down.hits.length > 0);
@@ -238,4 +238,23 @@ test("the blind sheet merges both arms, drops arm labels and shuffles by seed", 
   assert.deepEqual(a.items.slice().sort(), ["x", "y", "z"]);
   assert.deepEqual(a.from.y.sort(), ["embedding", "product"]);
   assert.deepEqual(blindRows({ embedding: ["x", "y"], product: ["y", "z"] }, "s").items, a.items);
+});
+
+test("a stored vector whose text changed is skipped and counted as stale", async () => {
+  const { embeddingTextHash, freshVectors } = await import("../src/lib/research-os/attention-db");
+  const { embedText } = await import("../src/lib/research-os/attention");
+  const current = (id: string) => embeddingTextHash(embedText(snap.byId.get(id)!.title, snap.summaries.get(id)));
+  const rows = [
+    { node_id: "kin", text_hash: current("kin"), vector: [1, 0, 0] },
+    { node_id: "dyn", text_hash: embeddingTextHash(embedText("Dynamics", "an older summary")), vector: [0, 1, 0] },
+    { node_id: "gone", text_hash: "x", vector: [0, 0, 1] },
+  ];
+  const { vectors, stale } = freshVectors(rows, snap);
+  assert.deepEqual(Array.from(vectors.keys()), ["kin"]);
+  assert.equal(stale, 1);
+  const out = await answerAttend(params("ids=kin"), null, deps({ vectors: async (s) => freshVectors(rows, s) }));
+  assert.ok(!("error" in out));
+  if ("error" in out) return;
+  assert.equal(out.staleVectors, 1);
+  assert.ok(out.hits.every((h) => h.id !== "dyn" || h.embedding === null), "a stale node carries no text score");
 });

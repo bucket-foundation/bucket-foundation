@@ -195,20 +195,24 @@ async function main() {
     const base = score(held, baseline);
     const out: Record<string, unknown> = { baseline: { ndcg10: round(mean(base.ndcg)), recall20: round(mean(base.recall)) } };
     for (const [name, arm] of Object.entries(arms)) {
-      const best = tune(arm.make, arm.settings);
-      const res = score(held, arm.make(best.s));
-      const dn = pairedInterval(res.ndcg, base.ndcg, `${name}-ndcg`);
-      const dr = pairedInterval(res.recall, base.recall, `${name}-recall`);
-      out[name] = {
-        tuned: { ...best.s, dev_ndcg10: round(best.dev) },
-        ndcg10: round(mean(res.ndcg)),
-        recall20: round(mean(res.recall)),
-        empty: res.empty,
-        versus_baseline: {
-          ndcg10: { mean: round(dn.mean), interval: dn.interval.map(round) },
-          recall20: { mean: round(dr.mean), interval: dr.interval.map(round) },
-        },
-      };
+      const byCone: Record<string, unknown> = {};
+      for (const cone of ["hide", "show"] as const) {
+        const best = tune(arm.make, arm.settings.filter((x) => x.cone === cone));
+        const res = score(held, arm.make(best.s));
+        const dn = pairedInterval(res.ndcg, base.ndcg, `${name}-${cone}-ndcg`);
+        const dr = pairedInterval(res.recall, base.recall, `${name}-${cone}-recall`);
+        byCone[cone] = {
+          tuned: { ...best.s, dev_ndcg10: round(best.dev) },
+          ndcg10: round(mean(res.ndcg)),
+          recall20: round(mean(res.recall)),
+          empty: res.empty,
+          versus_baseline: {
+            ndcg10: { mean: round(dn.mean), interval: dn.interval.map(round) },
+            recall20: { mean: round(dr.mean), interval: dr.interval.map(round) },
+          },
+        };
+      }
+      out[name] = byCone;
     }
     return out;
   };

@@ -24,7 +24,7 @@ function href(ids: string[], q: string, cone: string, rank: RankMode | null = nu
   const sp = new URLSearchParams();
   if (ids.length) sp.set("ids", ids.join(","));
   if (q) sp.set("q", q);
-  if (cone === "hide") sp.set("cone", "hide");
+  if (cone === "show") sp.set("cone", "show");
   if (rank) sp.set("rank", rank);
   const s = sp.toString();
   return `/research-os/attend${s ? `?${s}` : ""}`;
@@ -44,7 +44,8 @@ function Results({ r, cone, ids, q }: { r: AttendResponse; cone: string; ids: st
           </span>
         ))}
         · Each idea shows its prime cosine, from 0 to 1, split into the primes it shares with the query; the parts add up to the cosine. Text is the bge-small cosine to the query&apos;s nodes.
-        {r.vectorsUnavailable && " Text neighbours were unavailable this minute."}{" "}
+        {r.vectorsUnavailable && " Text neighbours were unavailable this minute."}
+        {r.staleVectors > 0 && ` ${r.staleVectors} ideas changed since their text vectors were computed and rank by primes alone until they are refreshed.`}{" "}
         {cone === "show" ? (
           <>
             The query&apos;s own factors and dependents are included.{" "}
@@ -100,14 +101,14 @@ export default async function AttendPage({ searchParams }: { searchParams: Searc
   const parsed = asked ? parseAttendParams(sp) : null;
   const ids = parsed && !("error" in parsed) ? parsed.ids : [];
   const q = parsed && !("error" in parsed) ? parsed.q : (searchParams.q ?? "");
-  const cone = parsed && !("error" in parsed) ? parsed.cone : "show";
+  const cone = parsed && !("error" in parsed) ? parsed.cone : "hide";
   const rank = parsed && !("error" in parsed) ? parsed.rank : null;
   let out: Awaited<ReturnType<typeof answerAttend>> | null = null;
   if (configured() && parsed && !("error" in parsed)) {
     const svc = graphService();
     out = await answerAttend(parsed, null, {
       snapshot: () => makeupSnapshot(svc),
-      vectors: () => loadNodeVectors(svc),
+      vectors: (snap) => loadNodeVectors(svc, snap),
       privateFactors: async (slugs) => ({ factors: [], denied: slugs.length, missing: 0 }),
     });
   }
@@ -124,7 +125,7 @@ export default async function AttendPage({ searchParams }: { searchParams: Searc
         <ConceptPicker ids={ids} q={q} cone={cone} />
         <form action="/research-os/attend" method="get">
           {ids.length > 0 && <input type="hidden" name="ids" value={ids.join(",")} />}
-          {cone === "hide" && <input type="hidden" name="cone" value="hide" />}
+          {cone === "show" && <input type="hidden" name="cone" value="show" />}
           {rank && <input type="hidden" name="rank" value={rank} />}
           <label className="block text-[12px] text-[color:var(--basalt-3)]">
             Or a phrase

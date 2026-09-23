@@ -17,7 +17,7 @@ export const VECTOR_POOL = 50;
 
 export type RankMode = "fused" | "attention" | "vector";
 export const RANK_MODES: RankMode[] = ["fused", "attention", "vector"];
-export const DEFAULT_RANK: { concepts: RankMode; phrase: RankMode } = { concepts: "fused", phrase: "vector" };
+export const DEFAULT_RANK: { concepts: RankMode; phrase: RankMode } = { concepts: "fused", phrase: "fused" };
 
 export type NodeVectors = Map<string, number[]>;
 
@@ -237,7 +237,7 @@ export type PrivateLookup = { factors: string[][]; denied: number; missing: numb
 
 export type AttendDeps = {
   snapshot: () => Promise<Snapshot>;
-  vectors: () => Promise<NodeVectors>;
+  vectors: (snap: Snapshot) => Promise<{ vectors: NodeVectors; stale: number }>;
   privateFactors: (slugs: string[], snap: Snapshot, learnerId: string | null) => Promise<PrivateLookup>;
 };
 
@@ -254,7 +254,7 @@ export function parseAttendParams(sp: URLSearchParams): AttendParams | AttendErr
   const kRaw = sp.get("k");
   const k = kRaw === null ? DEFAULT_K : Number(kRaw);
   if (!Number.isInteger(k) || k < 1 || k > MAX_K) return { error: `k runs from 1 to ${MAX_K}`, status: 400 };
-  const cone = sp.get("cone") ?? "show";
+  const cone = sp.get("cone") ?? "hide";
   if (cone !== "hide" && cone !== "show") return { error: "cone is hide or show", status: 400 };
   const rankRaw = sp.get("rank");
   if (rankRaw !== null && !RANK_MODES.includes(rankRaw as RankMode)) return { error: `rank is one of ${RANK_MODES.join(", ")}`, status: 400 };
@@ -268,6 +268,7 @@ export type AttendResponse = RankResult & {
   denied: number;
   missing: number;
   vectorsUnavailable: boolean;
+  staleVectors: number;
 };
 
 export async function answerAttend(params: AttendParams, learnerId: string | null, deps: AttendDeps): Promise<AttendResponse | AttendError> {
@@ -291,9 +292,12 @@ export async function answerAttend(params: AttendParams, learnerId: string | nul
   const entries = params.q ? phraseEntries(params.q, index) : [];
   if (!publicIds.length && !entries.length && !priv.factors.some((f) => f.length)) return { error: "no query node resolved", status: 404 };
   let vectors: NodeVectors = new Map();
+  let staleVectors = 0;
   let vectorsUnavailable = false;
   try {
-    vectors = await deps.vectors();
+    const loaded = await deps.vectors(snap);
+    vectors = loaded.vectors;
+    staleVectors = loaded.stale;
   } catch {
     vectorsUnavailable = true;
   }
@@ -307,5 +311,6 @@ export async function answerAttend(params: AttendParams, learnerId: string | nul
     denied: priv.denied,
     missing: priv.missing,
     vectorsUnavailable,
+    staleVectors,
   };
 }

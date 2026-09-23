@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { EMBED_MODEL, publicFactorIds, type EdgeRow, type NodeVectors, type PrivateLookup } from "./attention";
+import { createHash } from "node:crypto";
+import { EMBED_MODEL, embedText, publicFactorIds, type EdgeRow, type NodeVectors, type PrivateLookup } from "./attention";
 import type { Snapshot } from "./makeup";
 import { pagedRead } from "./paging";
 import { FACTOR_EDGES } from "./primes";
@@ -38,19 +39,40 @@ export async function privateQueryFactors(svc: SupabaseClient, slugs: string[], 
   return out;
 }
 
-let cachedVectors: { at: number; vectors: NodeVectors } | null = null;
+export function embeddingTextHash(text: string): string {
+  return createHash("sha256").update(`${EMBED_MODEL}\n${text}`).digest("hex").slice(0, 32);
+}
 
-export async function loadNodeVectors(svc: SupabaseClient, ttlMs = 600_000): Promise<NodeVectors> {
-  if (cachedVectors && Date.now() - cachedVectors.at < ttlMs) return cachedVectors.vectors;
-  const rows = await pagedRead<{ node_id: string; vector: number[] }>((page) =>
-    svc
-      .from("node_embeddings")
-      .select("node_id,vector")
-      .eq("model", EMBED_MODEL)
-      .order("node_id", { ascending: true })
-      .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; vector: number[] }[] | null; error: { message: string } | null }>,
-  );
-  const vectors: NodeVectors = new Map(rows.map((r) => [r.node_id, r.vector]));
-  cachedVectors = { at: Date.now(), vectors };
-  return vectors;
+export type StoredVector = { node_id: string; text_hash: string; vector: number[] };
+
+export function freshVectors(rows: StoredVector[], snap: Snapshot): { vectors: NodeVectors; stale: number } {
+  const vectors: NodeVectors = new Map();
+  let stale = 0;
+  for (const r of rows) {
+    const n = snap.byId.get(r.node_id);
+    if (!n) continue;
+    if (r.text_hash !== embeddingTextHash(embedText(n.title, snap.summaries.get(n.id)))) {
+      stale++;
+      continue;
+    }
+    vectors.set(r.node_id, r.vector);
+  }
+  return { vectors, stale };
+}
+
+let cachedRows: { at: number; rows: StoredVector[] } | null = null;
+
+export async function loadNodeVectors(svc: SupabaseClient, snap: Snapshot, ttlMs = 600_000): Promise<{ vectors: NodeVectors; stale: number }> {
+  if (!cachedRows || Date.now() - cachedRows.at >= ttlMs) {
+    const rows = await pagedRead<StoredVector>((page) =>
+      svc
+        .from("node_embeddings")
+        .select("node_id,text_hash,vector")
+        .eq("model", EMBED_MODEL)
+        .order("node_id", { ascending: true })
+        .range(page.from, page.to) as unknown as Promise<{ data: StoredVector[] | null; error: { message: string } | null }>,
+    );
+    cachedRows = { at: Date.now(), rows };
+  }
+  return freshVectors(cachedRows.rows, snap);
 }

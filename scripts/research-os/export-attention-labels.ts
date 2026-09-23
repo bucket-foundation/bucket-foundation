@@ -28,7 +28,7 @@ async function main() {
     const j = Math.floor(rand() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  const settings = { entries: PHRASE_ENTRIES, floor: LEXICAL_FLOOR, cone: "show" as const };
+  const settings = { entries: PHRASE_ENTRIES, floor: LEXICAL_FLOOR, cone: "hide" as const };
   const sheet: { query: number; text: string; items: { item: number; title: string; slug: string }[] }[] = [];
   const key: { query: number; source: string; items: { item: number; slug: string; arms: string[] }[] }[] = [];
   pool.slice(0, COUNT).forEach((q, n) => {

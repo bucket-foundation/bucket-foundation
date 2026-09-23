@@ -13,8 +13,8 @@ export const GET = withResearchOsRoute({ auth: "optional" }, async (req, ctx) =>
   const svc = graphService();
   const out = await answerAttend(params, ctx.learnerId, {
     snapshot: () => makeupSnapshot(svc),
-    vectors: () =>
-      loadNodeVectors(svc).catch((err) => {
+    vectors: (snap) =>
+      loadNodeVectors(svc, snap).catch((err) => {
         console.error("[research-os/attend] vectors unavailable:", err instanceof Error ? err.message : err);
         throw err;
       }),
