@@ -49,6 +49,10 @@ Three defects in one day were each found by the session that did not own the cod
 
 The pattern is that a defect lives in the arm nobody had reason to doubt. The author tests the path they were thinking about. Someone reading from the other side tests the path they assumed was fine, which is the one that is not. Neither a review nor a gate substitutes for a second person exercising the same code for their own reasons.
 
+The same seam produces false accusations, at a rate worth naming. Three gates fired on one branch's merge and two were defects in the gates. A paging rule matched identifiers with `[a-z_]+`, so a read ordered on `created_at` then `sha256` looked like it had no tiebreaker, and a correct total order failed. A parse-order rule searched a whole following subtree for `if (!x.ok)` without binding it to the response under test, so a correct sequence matched on a nested block below it and read as the defect. The same character class ran the other way too: a table whose name carries a digit would never match, and its read would leave the rule without ever failing it.
+
+So a gate firing on someone else's work is a claim about their work, and the gate's author is the one person positioned to check it before reporting it. Both accusations collapsed on reading the accused code. The failure to do that, earlier the same day, is how one session told the other that a refusal message still worked when its pattern had never matched the new text.
+
 ## The related shape
 
 A check that cannot fail reads as coverage. A `SEALED` assertion matching a string that is always present, and a browser test clicking the element that was already selected, both pass for reasons unrelated to what they claim to prove. The habit that catches both: run the check against the unfixed code and watch it fail before trusting that it passed.
