@@ -278,3 +278,62 @@ export function checksTable(checks: readonly Check[]): string {
   const rows = checks.map((c) => `| ${c.pass ? "pass" : "FAIL"} | ${c.name} | ${round(c.value)} | ${c.rule === "at_most" ? "at most" : "at least"} ${round(c.limit)} |`);
   return ["| Result | Check | Measured | Threshold |", "|---|---|---|---|", ...rows].join("\n");
 }
+
+/**
+ * One concurrency level of a saturation run.
+ *
+ * The worker holds one computation and four waiting requests
+ * (`MAX_ACTIVE` and `MAX_WAITING` in worker.py). Past five in flight it
+ * answers 503 `queue_full`, and a request that waits past its deadline
+ * answers 503 `deadline`. Both are refusals the server expects: it drops
+ * the dense ranking and answers from checked keyword ranking, marked
+ * degraded. Nothing about that reaches the caller as an error.
+ *
+ * The counters come from the worker's own health route, read before and
+ * after each level, so a degraded answer can be attributed to the refusal
+ * that caused it.
+ */
+export interface SaturationPhase {
+  lanes: number;
+  summary: Summary;
+  /** Worker counter deltas across this level. */
+  scored: number;
+  queueFull: number;
+  deadline: number;
+}
+
+export interface SaturationThresholds {
+  maxErrorRate: number;
+  minNeuralShareAlone: number;
+  deadlineMs: number;
+}
+
+export const SATURATION_THRESHOLDS: SaturationThresholds = {
+  maxErrorRate: 0,
+  minNeuralShareAlone: 0.99,
+  deadlineMs: HARD_DEADLINE_MS,
+};
+
+/**
+ * Whether saturation stays graceful. The check that matters is the last
+ * one: a degraded answer the worker's counters cannot account for came
+ * from something other than a queue refusal, and a transport failure that
+ * reads as a working search is the shape this run exists to catch.
+ */
+export function saturationVerdict(
+  phases: readonly SaturationPhase[],
+  t: SaturationThresholds = SATURATION_THRESHOLDS,
+): { pass: boolean; checks: Check[] } {
+  const checks: Check[] = [atLeast("concurrency levels", phases.length, 2)];
+  const alone = phases.find((p) => p.lanes === 1);
+  if (alone) checks.push(atLeast("neural share with one request in flight", alone.summary.neuralShare, t.minNeuralShareAlone));
+  for (const p of phases) {
+    checks.push(atMost(`errors at concurrency ${p.lanes}`, p.summary.errorRate, t.maxErrorRate));
+    checks.push(atMost(`past the hard deadline at concurrency ${p.lanes}`, p.summary.overDeadline, 0));
+    // A refusal the worker counted explains a degraded answer. One it did
+    // not count means the worker was never reached, or answered something
+    // the client discarded, and the caller still saw a working search.
+    checks.push(atMost(`degraded answers the worker cannot account for at concurrency ${p.lanes}`, Math.max(0, p.summary.degraded - (p.queueFull + p.deadline)), 0));
+  }
+  return { pass: checks.every((c) => c.pass), checks };
+}

@@ -65,8 +65,10 @@ echo "Put these in .env.local, with the secret copied from $ENV_FILE:"
 echo "  EVIDENCE_WORKER_URL=http://127.0.0.1:$PORT"
 echo "  EVIDENCE_WORKER_SECRET=<the value in $ENV_FILE>"
 echo
-# The weights take around half a minute to load, so a health check run
-# now would answer nothing and read as a broken install.
-echo "It answers once the weights load, around 35 seconds. Then:"
+# The weights take tens of seconds to load, so a health check run now
+# would answer nothing and read as a broken install. The range is what 40
+# restarts measured on the machine this was written on, so treat it as an
+# order of magnitude rather than a number for this machine.
+echo "It answers once the weights load, 22 to 33 seconds when this was measured. Then:"
 echo "  curl -sf -H \"x-evidence-worker-key: \$EVIDENCE_WORKER_SECRET\" http://127.0.0.1:$PORT/health"
 systemctl --user --no-pager status evidence-worker.service | head -5 || true
