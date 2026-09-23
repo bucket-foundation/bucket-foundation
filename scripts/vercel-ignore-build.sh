@@ -113,8 +113,8 @@ for token in "[skip ci]" "[skip vercel]" "[vercel skip]"; do
 done
 
 # --- step 2: branch-prefix skip signals ----------------------------------
-if [[ "$REF" =~ ^(run|intake|data|hte)/ ]]; then
-  skip "branch '$REF' matches a whole-prefix engine pattern (run|intake|data|hte)/*"
+if [[ "$REF" =~ ^(run|intake|data|hte|ops|gate|measure)/ ]]; then
+  skip "branch '$REF' matches a whole-prefix engine pattern (run|intake|data|hte|ops|gate|measure)/*"
 fi
 if [[ "$REF" =~ ^[^/]+/(hte|feed|canon|paper)- ]]; then
   skip "branch '$REF' matches an engine-topic pattern */(hte|feed|canon|paper)-*"

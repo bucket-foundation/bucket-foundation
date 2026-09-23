@@ -3,7 +3,7 @@
  * same rows.
  *
  * Declaring one list twice is the first defect in
- * `docs/CRITIC-PROTOCOL.md`, and this pair caught it: the memo gained
+ * `docs/internal/CRITIC-PROTOCOL.md`, and this pair caught it: the memo gained
  * three rows and `roadmap.ts` did not, so the roadmap reported real
  * decisions as rows that do not exist, and the page showed MVP work as
  * unblocked while the founder's own file said three decisions blocked it.
