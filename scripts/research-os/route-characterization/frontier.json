@@ -39,6 +39,33 @@
       "error": "read_failed"
     }
   },
+  "GET flags listed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "openQuestions": [
+        {
+          "id": "n1",
+          "slug": "a",
+          "title": "A",
+          "kind": "concept",
+          "tier": 1,
+          "frontier_flag": "open_question"
+        }
+      ],
+      "frontier": [
+        {
+          "id": "n2",
+          "slug": "b",
+          "title": "B",
+          "kind": "concept",
+          "tier": 2,
+          "frontier_flag": "frontier"
+        }
+      ]
+    }
+  },
   "POST unconfigured": {
     "status": 503,
     "cache": "no-store",
@@ -85,6 +112,71 @@
     "type": "application/json",
     "body": {
       "error": "node_required"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "node_required"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "node_required"
+    }
+  },
+  "POST bad flag": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_flag"
+    }
+  },
+  "POST not allowed": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST class given, staff read fails": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "class_read_failed"
+    }
+  },
+  "POST reviewer, write fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
+    }
+  },
+  "POST reviewer, flag written": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "ok": true,
+      "flag": null
+    }
+  },
+  "POST reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }
