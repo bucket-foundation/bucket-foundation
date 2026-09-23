@@ -67,7 +67,7 @@ curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundati
 
 ## Retired
 
-NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/knowledge`, `/library`, `/research`, and `/assets` (the bucket 1.0 publish path); a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
+NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/research`, the bucket 1.0 publish path; a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
 
 ## Register
 
