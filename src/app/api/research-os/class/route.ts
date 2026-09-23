@@ -37,6 +37,7 @@
  * the same gate /api/research-os/review uses.
  * 403 not a reviewer · 404 target not found · 503 not configured.
  */
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { NextRequest, NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
 import { configured, graphService, inChunks, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
@@ -91,6 +92,13 @@ export async function GET(req: NextRequest) {
   } catch {
     return bad(500, "graph_load_failed");
   }
+  // This route emits node titles in `blocked`, `readyForHarderTarget`,
+  // `transferHolds` and each production's `targetTitle`, and it was the
+  // one reading route that took the branch unfiltered. Being staff in a
+  // class is not a grant on every node in it.
+  const visible = await filterSubgraphForViewer(nodes, edges, reviewer.id);
+  if (!visible.ok) return bad(503, "access_unavailable");
+  ({ nodes, edges } = visible);
   const target = nodes.find((n) => n.slug === targetSlug);
   if (!target) return bad(404, "target_not_found");
 

@@ -153,10 +153,12 @@ import {
   loadLearnerStates,
   isGuidanceEnabledForLearner,
 } from "@/lib/research-os/db";
+import { authorizeNode, authorizeNodes, readVisibility, storeWithNodes } from "@/lib/research-os/read-access";
+import type { NodeAccess } from "@/lib/research-os/access";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled, finalizeReveal } from "@/lib/research-os/forcing";
-import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt } from "@/lib/research-os/check-attempts-db";
+import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt, dbConsumePendingAttempt } from "@/lib/research-os/check-attempts-db";
 import { checkSecondSourceGate, resolveSecondSourceRequired, secondSourceRequiredAtStage } from "@/lib/research-os/lateral-reading";
 
 export const runtime = "nodejs";
@@ -262,6 +264,37 @@ interface WorkspaceBody {
   quotes?: { quotable_span: string | null; citation: string }[];
 }
 
+/** A node row as the locate queries read it, with what access needs. */
+type LocateRow = {
+  id: string;
+  slug: string;
+  title: string;
+  kind: string;
+  tier: number;
+  summary: string | null;
+  provenance: unknown;
+  visibility: string | null;
+  owner_id: string | null;
+};
+
+/**
+ * The rows this learner may read, judged from the columns the query
+ * already carries (ros-ai-access). An access-store failure answers
+ * unavailable rather than an empty result, so an outage cannot read as a
+ * graph with nothing in it.
+ */
+async function readableRows(rows: LocateRow[], learnerId: string): Promise<{ ok: true; rows: LocateRow[] } | { ok: false }> {
+  const access: NodeAccess[] = rows.map((r) => ({
+    id: r.id,
+    visibility: readVisibility(r.visibility),
+    ownerId: r.owner_id ?? null,
+  }));
+  const decision = await authorizeNodes(rows.map((r) => r.id), { id: learnerId }, "view", storeWithNodes(access));
+  if (!decision.ok) return { ok: false };
+  const visible = new Set(decision.allowed);
+  return { ok: true, rows: rows.filter((r) => visible.has(r.id)) };
+}
+
 export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
 
@@ -305,11 +338,21 @@ export async function POST(req: NextRequest) {
       if (body.mode === "secondSource") {
         const quotedSourceNodeId = (body.quotedSourceNodeId || "").trim();
         if (!quotedSourceNodeId) return bad(400, "quotedSourceNodeId is required for secondSource mode");
+        // The reference is read only after the learner is allowed to read
+        // it: a hidden node answers as missing, with no provenance in the
+        // response to say it exists (ros-ai-access).
+        const reference = await authorizeNode(quotedSourceNodeId, { id: learnerId }, "view");
+        if (!reference.ok) {
+          if (reference.reason === "unavailable") return bad(503, "access_unavailable");
+          return bad(404, "node_not_found");
+        }
         const { data: quotedNode, error: quotedErr } = await svc.from("nodes").select("id,provenance").eq("id", quotedSourceNodeId).maybeSingle();
         if (quotedErr || !quotedNode) return bad(404, "node_not_found");
-        const { data, error } = await svc.from("nodes").select("id,slug,title,kind,tier,summary,provenance");
+        const { data, error } = await svc.from("nodes").select("id,slug,title,kind,tier,summary,provenance,visibility,owner_id");
         if (error) return bad(500, "locate_failed");
-        const candidates = findIndependentSources((data || []) as Parameters<typeof findIndependentSources>[0], query, {
+        const readable = await readableRows((data || []) as LocateRow[], learnerId);
+        if (!readable.ok) return bad(503, "access_unavailable");
+        const candidates = findIndependentSources(readable.rows as Parameters<typeof findIndependentSources>[0], query, {
           id: quotedNode.id as string,
           provenance: (quotedNode.provenance || undefined) as Provenance | undefined,
         });
@@ -320,10 +363,12 @@ export async function POST(req: NextRequest) {
       const branch = body.branch || "02-physics";
       const { data, error } = await svc
         .from("nodes")
-        .select("id,slug,title,kind,tier,summary,provenance")
+        .select("id,slug,title,kind,tier,summary,provenance,visibility,owner_id")
         .eq("branch", branch);
       if (error) return bad(500, "locate_failed");
-      const hits = locateHits((data || []) as Parameters<typeof locateHits>[0], query);
+      const readableHits = await readableRows((data || []) as LocateRow[], learnerId);
+      if (!readableHits.ok) return bad(503, "access_unavailable");
+      const hits = locateHits(readableHits.rows as Parameters<typeof locateHits>[0], query);
       logToolCall("locate", learnerId, sessionId, { branch, resultCount: hits.length });
       return NextResponse.json({ results: hits }, { headers: { "cache-control": "no-store" } });
     }
@@ -331,6 +376,16 @@ export async function POST(req: NextRequest) {
     case "quote": {
       const nodeId = (body.nodeId || "").trim();
       if (!nodeId) return bad(400, "nodeId is required");
+
+      // Quoting is citing, which is its own grant role: a node shared for
+      // reading alone cannot be quoted, and a public node needs no grant
+      // (ros-ai-access, "Authorization boundary"). A denied node answers
+      // the same 404 a missing one does.
+      const citable = await authorizeNode(nodeId, { id: learnerId }, "cite");
+      if (!citable.ok) {
+        if (citable.reason === "unavailable") return bad(503, "access_unavailable");
+        return bad(404, "node_not_found");
+      }
       const { data: node, error } = await svc
         .from("nodes")
         .select("id,slug,title,summary,provenance")
@@ -427,6 +482,22 @@ export async function POST(req: NextRequest) {
         const pendingPrecheck = await dbGetPendingAttempt(attemptId, learnerId);
         if (!pendingPrecheck) return bad(404, "check_attempt_not_found");
 
+        // The verdict was held while the learner was allowed to continue
+        // on this node. Access can change in between, so the reveal
+        // re-reads it: a revoked grant denies the held verdict, and the
+        // attempt stays held rather than being spent on a refusal
+        // (ros-ai-access, "Authorization boundary").
+        const stillContinuable = await authorizeNode(pendingPrecheck.nodeId, { id: learnerId }, "continue");
+        if (!stillContinuable.ok) {
+          if (stillContinuable.reason === "unavailable") return bad(503, "access_unavailable");
+          // The verdict is denied and the attempt is spent: a held attempt
+          // the learner can never reveal would sit there until it expired,
+          // with no way to start another on that node. The plan's rule is
+          // that a revoked input requires a new attempt.
+          await dbConsumePendingAttempt(attemptId);
+          return bad(404, "node_not_found");
+        }
+
         const forcingPrecheck = finalizeReveal(pendingPrecheck, body.learnerConfidence, body.sourcePrediction || "");
         if (!forcingPrecheck.ok) {
           return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
@@ -444,8 +515,12 @@ export async function POST(req: NextRequest) {
         let secondSourceIndependent = false;
         let independenceReason = "";
         if (secondSourceRequiredAtStage(pendingPrecheck.currentStage, secondSourceRequired) && secondSourceNodeId) {
+          // A second source the learner can no longer read cannot carry
+          // the gate, whatever the quote log says.
+          const secondReadable = await authorizeNode(secondSourceNodeId, { id: learnerId }, "view");
+          if (!secondReadable.ok && secondReadable.reason === "unavailable") return bad(503, "access_unavailable");
           const quoteEvidence = await loadLearnerQuoteEvidence(learnerId);
-          secondSourceWasQuoted = quoteEvidence.some((q) => q.nodeId === secondSourceNodeId);
+          secondSourceWasQuoted = secondReadable.ok && quoteEvidence.some((q) => q.nodeId === secondSourceNodeId);
           if (secondSourceWasQuoted) {
             const { data: sourceNodes } = await svc.from("nodes").select("id,provenance").in("id", [pendingPrecheck.nodeId, secondSourceNodeId]);
             const byId = new Map(((sourceNodes || []) as { id: string; provenance: Provenance | null }[]).map((n) => [n.id, n.provenance || undefined]));
@@ -583,6 +658,15 @@ export async function POST(req: NextRequest) {
       if (!explanation) return bad(400, "explanation is required");
       if (explanation.length > MAX_EXPLANATION_CHARS) return bad(400, "explanation too long");
 
+      // Checking a node is continuing on it, which is its own grant role
+      // (ros-ai-access, "Authorization boundary"). The check runs before
+      // the node's own text is read, so a denial carries no content.
+      const continuable = await authorizeNode(nodeId, { id: learnerId }, "continue");
+      if (!continuable.ok) {
+        if (continuable.reason === "unavailable") return bad(503, "access_unavailable");
+        return bad(404, "node_not_found");
+      }
+
       const { data: node, error: nodeErr } = await svc
         .from("nodes")
         .select("id,slug,branch,title,summary,provenance")
@@ -594,8 +678,25 @@ export async function POST(req: NextRequest) {
       const prereqIds = (prereqEdges || []).map((e: { from_id: string }) => e.from_id);
       let prereqSummaries: { title: string; summary: string | null }[] = [];
       if (prereqIds.length) {
-        const { data: prereqNodes } = await svc.from("nodes").select("title,summary").in("id", prereqIds);
-        prereqSummaries = prereqNodes || [];
+        // A prerequisite the learner may not read stays out of the
+        // grounding rather than reaching the model through it. The count
+        // is kept so a check with nothing left to stand on abstains.
+        const readablePrereqs = await authorizeNodes(prereqIds, { id: learnerId }, "view");
+        if (!readablePrereqs.ok) return bad(503, "access_unavailable");
+        if (readablePrereqs.allowed.length) {
+          const { data: prereqNodes, error: prereqErr } = await svc.from("nodes").select("title,summary").in("id", readablePrereqs.allowed);
+          // A read that failed leaves no grounding either, and grading an
+          // explanation against nothing is worse than saying so.
+          if (prereqErr) return bad(503, "access_unavailable");
+          prereqSummaries = prereqNodes || [];
+        }
+      }
+      // A node with prerequisites and no readable grounding abstains,
+      // whether the rows are withheld or missing. Answering differently
+      // would tell a learner that a prerequisite they cannot see exists
+      // (Bucket critic C17).
+      if (prereqIds.length > 0 && prereqSummaries.length === 0) {
+        return bad(409, "check_grounding_unavailable");
       }
 
       // ros-14: an authoritative guidance level (computeGuidanceForNode

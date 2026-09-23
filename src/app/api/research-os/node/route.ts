@@ -9,8 +9,9 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, inChunks, loadSubgraph, verifyLearnerIdentity } from "@/lib/research-os/db";
-import { filterSubgraphForViewer, loadGrants, loadNodeAccess, loadViewerGroups } from "@/lib/research-os/access-db";
-import { can, canView, type GrantRole, type Viewer } from "@/lib/research-os/access";
+import { authorizeVerbs } from "@/lib/research-os/read-access";
+import { filterSubgraphForViewer, loadNodeAccess } from "@/lib/research-os/access-db";
+import type { GrantRole } from "@/lib/research-os/access";
 import { directionsFrom } from "@/lib/research-os/directions";
 import { learnTargetFor } from "@/lib/research-os/learn-link";
 import { listMyClasses } from "@/lib/research-os/classes";
@@ -43,10 +44,15 @@ export async function GET(req: NextRequest) {
     labels: Record<string, unknown> | null; provenance: Record<string, unknown> | null; worked_example: { text?: string; source?: string } | null;
     visibility: string | null; owner_id: string | null; frontier_flag: string | null; created_at: string;
   };
-  const access = { id: node.id, visibility: ((node.visibility ?? "public") as "public" | "private" | "shared"), ownerId: node.owner_id };
-  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
-  const grants = access.visibility === "public" ? [] : await loadGrants(node.id);
-  if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
+  // read-access.ts is the one authority for who may read a node
+  // (ros-ai-access). The loaders this used to call answer an empty list on
+  // a store failure, which reads as a denial and hides an outage.
+  const readable = await authorizeVerbs(node.id, { id: viewerId }, ["view", ...VERBS] as Parameters<typeof authorizeVerbs>[2]);
+  if (!readable.ok) {
+    if (readable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "node_not_found");
+  }
+  const access = readable.node;
 
   let graph: Awaited<ReturnType<typeof loadSubgraph>> | { nodes: never[]; edges: never[]; failed: true };
   let standingRes: { data: unknown; error?: { message: string } | null };
@@ -68,7 +74,12 @@ export async function GET(req: NextRequest) {
     console.error("[research-os/node] class read failed:", err instanceof Error ? err.message : err);
     return bad(503, "node_read_failed");
   }
-  const visible = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  // An access-store failure would otherwise serve this node with an empty
+  // neighbourhood and a 200, which tells the reader the node rests on
+  // nothing (Bucket critic C13).
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  const visible = filtered;
   const byId = new Map(visible.nodes.map((n) => [n.id, n]));
   const lite = (id: string) => {
     const n = byId.get(id);
@@ -178,7 +189,7 @@ export async function GET(req: NextRequest) {
       directions: { dependents: d.dependents.map(dlite), frontier: d.frontier.map(dlite), openQuestions: d.openQuestions.map(dlite), reach: d.reach },
       learn: learnTargetFor({ branch: node.branch, provenance: node.provenance }),
       productions,
-      verbs: Object.fromEntries(VERBS.map((v) => [v, can(access, viewer, v, grants)])),
+      verbs: Object.fromEntries(VERBS.map((v) => [v, readable.allowed[v] === true])),
       classes: myClasses.map((c) => ({ id: c.id, name: c.name, role: c.role })),
       assignments,
       holders,

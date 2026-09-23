@@ -1,8 +1,11 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY, LoadingState, PageHeader, Panel, STAGE_LABEL } from "@/components/ui";
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { targetIsLinkable } from "@/lib/research-os/assignments";
 
 interface Hit {
   id: string;
@@ -13,22 +16,20 @@ interface Hit {
   summary: string | null;
   stage: string | null;
 }
-interface Assignment {
-  id: string;
-  title: string;
-  className: string;
-  targetSlug: string;
-  targetTitle: string;
-  status: string;
-}
+// The server type, so a change to what /assignments returns is a compile
+// error here rather than a blank link on the page (Bucket critic C40).
+type Assignment = LearnerAssignment;
 
 /** The workspace with no target: pick any node on the graph to work toward. */
 export default function TargetPicker() {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
+  const [searchNote, setSearchNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [assignments, setAssignments] = useState<Assignment[] | null>(null);
-  const [assignmentsFailed, setAssignmentsFailed] = useState(false);
+  // "outage" is a read a retry may clear; "unavailable" is one it will
+  // not. The rule was asked and its answer thrown away here, so both
+  // rendered the same dead end.
+  const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | "outage" | null>(null);
 
   useEffect(() => {
     // The server answers 503 on a failed read now, and turning that back
@@ -36,15 +37,15 @@ export default function TargetPicker() {
     // with assignments saw the same picker as a learner with none.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then(async (r) => {
-        if (!r.ok) {
-          setAssignmentsFailed(true);
-          return;
-        }
-        const j = (await r.json()) as { assignments?: Assignment[] };
-        setAssignmentsFailed(false);
-        setAssignments(j.assignments ?? []);
+        // An outage answers 503. Rendering "None open." would tell the
+        // learner they have no assignments (Bucket critic C44).
+        if (!r.ok) return { unavailable: true as const, transient: isTransientOutage(r.status, await readErrorCode(r)) };
+        return (await r.json()) as { assignments?: Assignment[] };
       })
-      .catch(() => setAssignmentsFailed(true));
+      .then((j) => ("unavailable" in j ? setAssignments(j.transient ? "outage" : "unavailable") : setAssignments(j.assignments ?? [])))
+      // A fetch that rejects never reached the server, which a retry may
+      // clear.
+      .catch(() => setAssignments("outage"));
   }, []);
 
   useEffect(() => {
@@ -56,7 +57,13 @@ export default function TargetPicker() {
       setBusy(true);
       try {
         const r = await fetch(`/api/research-os/search?q=${encodeURIComponent(q)}&limit=12`, { cache: "no-store" });
-        if (r.ok) setHits(((await r.json()) as { results: Hit[] }).results);
+        if (r.ok) {
+          setSearchNote(null);
+          setHits(((await r.json()) as { results: Hit[] }).results);
+        } else {
+          setSearchNote(isTransientOutage(r.status, await readErrorCode(r)) ? OUTAGE_COPY.body : null);
+          setHits([]);
+        }
       } finally {
         setBusy(false);
       }
@@ -72,6 +79,11 @@ export default function TargetPicker() {
       <Panel title="find a target">
         <input id="target-search" autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="a law, a claim, a concept, a paper, a figure" className="w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/60" />
         {busy && <LoadingState label="Searching the graph" />}
+        {searchNote && (
+          <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+            {searchNote}
+          </p>
+        )}
         {hits.length > 0 && (
           <ul className="mt-3 flex flex-col divide-y divide-[color:var(--hairline)]">
             {hits.map((h) => (
@@ -97,13 +109,21 @@ export default function TargetPicker() {
             </p>
           ) : assignments === null ? (
             <LoadingState />
+          ) : assignments === "outage" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">{OUTAGE_COPY.body}</p>
+          ) : assignments === "unavailable" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">Assignments could not be read right now.</p>
           ) : assignments.length === 0 ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">None open.</p>
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
               {assignments.map((a) => (
                 <li key={a.id} className="py-2">
-                  <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  {!targetIsLinkable(a) ? (
+                    <span className="text-[14px] text-[color:var(--basalt-3)]">target not shared with you</span>
+                  ) : (
+                    <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  )}
                   <div className="text-[11px] text-[color:var(--basalt-3)]">{a.title} · {a.className} · {a.status.replace("_", " ")}</div>
                 </li>
               ))}

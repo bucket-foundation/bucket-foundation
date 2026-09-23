@@ -21,7 +21,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, verifyLearner } from "@/lib/research-os/db";
-import { can, canView, isOwner, GRANT_ROLES, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
+import { can, canView, isOwner, GRANT_ROLES, type AccessRequest, type GrantRole, type RequestPurpose, type Viewer, type Visibility } from "@/lib/research-os/access";
 import {
   createImport,
   createRequest,
@@ -34,6 +34,7 @@ import {
   loadRequestsForNode,
   loadViewerGroups,
   revokeGrant,
+  loadPendingCountsForNodes,
   setVisibility,
 } from "@/lib/research-os/access-db";
 
@@ -48,32 +49,65 @@ function bad(status: number, error: string) {
 const VISIBILITIES: Visibility[] = ["public", "private", "shared"];
 const PURPOSES: RequestPurpose[] = ["continue", "extend", "cite", "replicate", "review"];
 
-async function viewerFrom(req: NextRequest): Promise<Viewer> {
+async function viewerFrom(req: NextRequest): Promise<{ ok: true; viewer: Viewer } | { ok: false }> {
   const id = await verifyLearner(req);
-  if (!id) return { id: null, groups: [] };
-  return { id, groups: await loadViewerGroups(id) };
+  if (!id) return { ok: true, viewer: { id: null, groups: [] } };
+  const groups = await loadViewerGroups(id);
+  // A failed groups read is not a learner in no class. Answering one
+  // tells a group grantee they have no access, behind a 200.
+  if (!groups.ok) return { ok: false };
+  return { ok: true, viewer: { id, groups: groups.value } };
 }
 
 export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const { searchParams } = new URL(req.url);
-  const viewer = await viewerFrom(req);
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
 
   if (searchParams.get("mine")) {
     if (!viewer.id) return bad(401, "unauthorized");
-    const owned = await loadOwnedNodes(viewer.id);
-    const withPending = await Promise.all(
-      owned.map(async (n) => ({ ...n, pending: (await loadRequestsForNode(n.id)).filter((r) => r.status === "pending").length }))
-    );
-    return NextResponse.json({ owned: withPending, myRequests: await loadRequestsByRequester(viewer.id) }, NO_STORE);
+    // loadOwnedNodes is pinned to the caller. This branch does read node
+    // content, which the read-authorization gate's exemption for this
+    // route now says out loud and pins on this line.
+    const ownedRead = await loadOwnedNodes(viewer.id);
+    if (!ownedRead.ok) return bad(503, "access_unavailable");
+    const mineRead = await loadRequestsByRequester(viewer.id);
+    if (!mineRead.ok) return bad(503, "access_unavailable");
+    // One read for every node's pending count. This was one request per
+    // owned node inside a Promise.all, so an owner with 800 nodes fired
+    // 800 concurrent PostgREST requests from a single GET.
+    const pendingRead = await loadPendingCountsForNodes(ownedRead.value.map((n) => n.id));
+    if (!pendingRead.ok) return bad(503, "access_unavailable");
+    const owned = ownedRead.value.map((n) => ({ ...n, pending: pendingRead.value.get(n.id) ?? 0 }));
+    return NextResponse.json({ owned, myRequests: mineRead.value }, NO_STORE);
   }
 
   const nodeId = searchParams.get("node");
   if (!nodeId) return bad(400, "node_required");
-  const node = await loadNodeAccess(nodeId);
+  const nodeRead = await loadNodeAccess(nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
-  const grants = await loadGrants(nodeId);
+  const grantsRead = await loadGrants(nodeId);
+  if (!grantsRead.ok) return bad(503, "access_unavailable");
+  const grants = grantsRead.value;
   const owner = isOwner(node, viewer);
+  // Both reads answer a union, so an outage is a 503 here instead of an
+  // owner being told nobody has asked for access.
+  let requestsForNode: (AccessRequest & { createdAt: string })[] | undefined;
+  if (owner) {
+    const read = await loadRequestsForNode(nodeId);
+    if (!read.ok) return bad(503, "access_unavailable");
+    requestsForNode = read.value;
+  }
+  let mine: (AccessRequest & { createdAt: string })[] = [];
+  if (viewer.id) {
+    const read = await loadRequestsByRequester(viewer.id);
+    if (!read.ok) return bad(503, "access_unavailable");
+    mine = read.value.filter((r) => r.nodeId === nodeId);
+  }
   const verbs = Object.fromEntries(GRANT_ROLES.filter((r) => r !== "view").map((r) => [r, can(node, viewer, r as GrantRole, grants)]));
   return NextResponse.json(
     {
@@ -82,8 +116,8 @@ export async function GET(req: NextRequest) {
       canView: canView(node, viewer, grants),
       verbs,
       grants: owner ? grants : undefined,
-      requests: owner ? await loadRequestsForNode(nodeId) : undefined,
-      myRequests: viewer.id ? (await loadRequestsByRequester(viewer.id)).filter((r) => r.nodeId === nodeId) : [],
+      requests: owner ? requestsForNode : undefined,
+      myRequests: mine,
     },
     NO_STORE
   );
@@ -99,7 +133,9 @@ type Body =
 
 export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
-  const viewer = await viewerFrom(req);
+  const viewerRead = await viewerFrom(req);
+  if (!viewerRead.ok) return bad(503, "access_unavailable");
+  const viewer = viewerRead.viewer;
   if (!viewer.id) return bad(401, "unauthorized");
   let body: Body;
   try {
@@ -115,7 +151,9 @@ export async function POST(req: NextRequest) {
     return r.ok ? NextResponse.json(r.value, NO_STORE) : bad(500, r.error);
   }
 
-  const node = await loadNodeAccess(body.nodeId);
+  const nodeRead = await loadNodeAccess(body.nodeId);
+  if (!nodeRead.ok) return bad(503, "access_unavailable");
+  const node = nodeRead.value;
   if (!node) return bad(404, "not_found");
 
   switch (body.action) {
@@ -135,7 +173,9 @@ export async function POST(req: NextRequest) {
     }
     case "request": {
       if (!PURPOSES.includes(body.purpose)) return bad(400, "bad_purpose");
-      const grants = await loadGrants(node.id);
+      const grantsRead = await loadGrants(node.id);
+      if (!grantsRead.ok) return bad(503, "access_unavailable");
+      const grants = grantsRead.value;
       const r = await createRequest(node, viewer, body.purpose, body.message?.trim().slice(0, 1000) || null, grants);
       if (r.ok) return NextResponse.json({ request: r.value }, NO_STORE);
       return bad(r.error === "already_pending" ? 409 : r.error === "request_refused" ? 403 : 500, r.error);

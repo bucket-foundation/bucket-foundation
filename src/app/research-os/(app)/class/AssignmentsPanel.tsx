@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 
@@ -43,11 +44,9 @@ export default function AssignmentsPanel({
     try {
       const res = await fetch(`/api/research-os/assignments?class=${encodeURIComponent(classId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
-        // Returning here left the panel showing the assignments it had,
-        // or none at all, for a read that never finished. This route
-        // answers class_read_failed now, so the failure has a name.
-        const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : "Assignments could not be read.");
+        // Returning here left the panel empty, which is a class with no
+        // assignments in it.
+        setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : "Assignments could not be read.");
         return;
       }
       setError(null);

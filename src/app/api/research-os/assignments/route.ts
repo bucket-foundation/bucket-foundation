@@ -28,14 +28,11 @@ export async function GET(req: NextRequest) {
   if (searchParams.get("mine")) {
     const learnerId = await verifyLearner(req);
     if (!learnerId) return bad(401, "unauthorized");
-    // The five reads behind this raise rather than flattening to an
-    // empty list, so a failed one answers here.
-    try {
-      return NextResponse.json({ assignments: await listAssignmentsForLearner(learnerId) }, NO_STORE);
-    } catch (err) {
-      console.error("[research-os/assignments] read failed:", err instanceof Error ? err.message : err);
-      return bad(503, "class_read_failed");
-    }
+    // An access-store outage is an outage. Serving the list with every
+    // title blanked would read as "your assignments point nowhere".
+    const mine = await listAssignmentsForLearner(learnerId);
+    if (!mine.ok) return bad(503, "access_unavailable");
+    return NextResponse.json({ assignments: mine.assignments }, NO_STORE);
   }
   const classId = searchParams.get("class");
   if (!classId) return bad(400, "class_required");
@@ -43,12 +40,9 @@ export async function GET(req: NextRequest) {
   if (!staffCheck.ok) return bad(503, "class_read_failed");
   const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
-  try {
-    return NextResponse.json({ assignments: await listAssignments(classId), roles: staff.roles }, NO_STORE);
-  } catch (err) {
-    console.error("[research-os/assignments] class read failed:", err instanceof Error ? err.message : err);
-    return bad(503, "class_read_failed");
-  }
+  const staffList = await listAssignments(classId);
+  if (!staffList.ok) return bad(503, "access_unavailable");
+  return NextResponse.json({ assignments: staffList.assignments, roles: staff.roles }, NO_STORE);
 }
 
 type Body =
@@ -79,7 +73,8 @@ export async function POST(req: NextRequest) {
     // A class is a region: a private or shared node the assigner owns becomes
     // visible to the class it is assigned to (IDEAL-STATE.md, Access × class).
     try {
-      const node = await loadNodeAccess(r.value.targetNodeId);
+      const nodeRead = await loadNodeAccess(r.value.targetNodeId);
+      const node = nodeRead.ok ? nodeRead.value : null;
       if (node && node.visibility !== "public" && node.ownerId === staff.id) {
         await grantAccess(node, { id: staff.id, groups: [] }, { group: `class:${body.classId}` }, "view");
       }

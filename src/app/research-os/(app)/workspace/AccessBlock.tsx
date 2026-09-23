@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 
 // The Access level on the selected node (ros-21): a visibility badge, the
@@ -63,6 +64,7 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
       const res = await fetch(`/api/research-os/access?node=${encodeURIComponent(nodeId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
         setData(null);
+        setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
         return;
       }
       setData((await res.json()) as AccessResponse);
@@ -88,7 +90,7 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? `failed (${res.status})`);
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
       }
       await load();
     } finally {

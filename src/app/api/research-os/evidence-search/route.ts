@@ -16,7 +16,7 @@ import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { dailyToolCap, dailyCapMessage, recordAndCheck } from "@/lib/research-os/rate-limit";
 import { decideGate, flagOn, pilotIds, ProfileUnavailable, readBirthYearBucket } from "@/lib/research-os/evidence-search/gate";
-import { CorpusUnavailable, EligibilityUnavailable, loadCorpus, runEvidenceSearch, workerFromEnv } from "@/lib/research-os/evidence-search/server";
+import { CorpusReadFailed, CorpusUnavailable, EligibilityUnavailable, loadCorpus, runEvidenceSearch, workerFromEnv } from "@/lib/research-os/evidence-search/server";
 import { MAX_BODY_BYTES, parseSearchRequest } from "@/lib/research-os/evidence-search/types";
 
 export const dynamic = "force-dynamic";
@@ -72,6 +72,7 @@ export async function GET(req: NextRequest) {
     const corpus = loadCorpus();
     return answer(200, { available: true, corpusRevision: corpus.revision, sources: corpus.records.size, worker: workerFromEnv() !== null });
   } catch (e) {
+    if (e instanceof CorpusReadFailed) return answer(503, { error: "corpus_read_failed", message: "The evidence corpus could not be read this minute. Try again in a moment." });
     if (e instanceof CorpusUnavailable) return answer(503, { error: "corpus_unavailable", message: "The evidence corpus is not ready on this server." });
     throw e;
   }
@@ -104,6 +105,7 @@ export async function POST(req: NextRequest) {
     const response = await runEvidenceSearch({ corpus, svc: graphService(), worker: workerFromEnv(), requestId }, parsed.value);
     return answer(200, response as unknown as Record<string, unknown>);
   } catch (e) {
+    if (e instanceof CorpusReadFailed) return answer(503, { error: "corpus_read_failed", message: "The evidence corpus could not be read this minute. Try again in a moment." });
     if (e instanceof CorpusUnavailable) return answer(503, { error: "corpus_unavailable", message: "The evidence corpus is not ready on this server." });
     if (e instanceof EligibilityUnavailable) return answer(503, { error: "eligibility_unavailable", message: "The list of admitted sources could not be read; search is off for the moment." });
     throw e;

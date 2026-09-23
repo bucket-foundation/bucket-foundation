@@ -39,7 +39,12 @@ const branchLabel = (id: string) => id.replace(/^\d+-/, "").replace(/-/g, " ");
 const SOURCE_OF: Record<string, string> = {
   academy_atom: "atoms",
   seed: "atoms",
-  canon_claim: "claims",
+  // A transcript card is a source excerpt, out of canon by the founder's
+  // decision of 2026-09-21, so it gets its own filter rather than sitting
+  // under claims. `canon_claim` stays until the hosted graph takes the
+  // migration that renames it, and both answer the same group.
+  source_excerpt: "excerpts",
+  canon_claim: "excerpts",
   canon_concept: "claims",
   canon_bridge: "claims",
   canon_entry: "papers",
@@ -51,7 +56,7 @@ const SOURCE_OF: Record<string, string> = {
   import: "productions",
 };
 const SOURCE_STROKE: Record<string, string> = { atoms: "var(--basalt-3)", claims: "var(--aegean-deep)", papers: "var(--gold-deep)", figures: "var(--laurel-deep)", productions: "var(--crimson)" };
-const SOURCES = ["atoms", "claims", "papers", "figures", "productions"] as const;
+const SOURCES = ["atoms", "claims", "excerpts", "papers", "figures", "productions"] as const;
 const PRODUCTION_KINDS = new Set(["production", "extension", "replication", "peer_review", "hypothesis"]);
 const sourceOf = (n: GNode) => SOURCE_OF[n.source] ?? (PRODUCTION_KINDS.has(n.kind) || n.source === "import" ? "productions" : "atoms");
 
@@ -84,6 +89,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   // Two meanings behind one 503, told apart by the body (Bucket critic C59).
   const [code, setCode] = useState<string | null>(null);
   const [branchesUnavailable, setBranchesUnavailable] = useState(false);
+  const [branchesTransient, setBranchesTransient] = useState(false);
 
   useEffect(() => {
     // A 503 used to read as a graph with no branches in it, which is the
@@ -94,6 +100,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
       .then(async (r) => {
         if (r.ok) return (await r.json()) as { branches?: { id: string; nodes: number }[] };
         setBranchesUnavailable(true);
+        setBranchesTransient(isTransientOutage(r.status, await readErrorCode(r)));
         return { branches: [] };
       })
       .then((j) => setBranches(j.branches ?? []))
@@ -155,7 +162,9 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
         {branchesUnavailable && (
-          <span className="text-[11px] text-[color:var(--basalt-3)]">the branch list could not be read, showing this branch alone</span>
+          <span className="text-[11px] text-[color:var(--basalt-3)]">
+            {branchesTransient ? "the branch list could not be read, showing this branch alone" : UNCONFIGURED_COPY.body}
+          </span>
         )}
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
           {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (

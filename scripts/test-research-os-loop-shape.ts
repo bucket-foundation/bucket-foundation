@@ -16,7 +16,7 @@ test("a known count reads as a count, singular and plural", () => {
 });
 
 test("an unknown count says unknown, and never prints the null", () => {
-  const out = internalizationState({ ...base, held: null, bridges: null, connectionsUnavailable: true });
+  const out = internalizationState({ ...base, held: null, bridges: null });
   assert.equal(out, "connections unavailable");
   assert.ok(!out.includes("null"), "the literal null never reaches the learner");
   assert.ok(!/\bNaN\b/.test(out));
