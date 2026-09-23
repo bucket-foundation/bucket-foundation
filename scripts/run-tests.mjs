@@ -16,7 +16,7 @@ const SUITES = {
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
       "scripts/test-waitlist.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client}.ts",
       "scripts/test-research-agent-route.ts",
       "scripts/test-llm-daily-limit.ts",
       "scripts/test-canon-allbranch-index.ts",
