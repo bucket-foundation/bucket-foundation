@@ -8,6 +8,8 @@ import {
   RunStatus,
   useToolRun,
 } from "../_shared/runner";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 export default function CryoTriageClient() {
   const [file, setFile] = useState<File | null>(null);
@@ -28,9 +30,9 @@ export default function CryoTriageClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             micrograph (.png / .mrc) — optional, leave blank for a synthetic session
-          </span>
+          </FieldLabel>
           <input
             type="file"
             accept=".png,.jpg,.jpeg,.mrc,.tif,.tiff"
@@ -39,13 +41,9 @@ export default function CryoTriageClient() {
             disabled={busy}
           />
         </label>
-        <button
-          type="submit"
-          disabled={busy}
-          className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-        >
+        <SubmitButton disabled={busy}>
           {busy ? "running…" : file ? "triage micrograph" : "run synthetic session"}
-        </button>
+        </SubmitButton>
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />

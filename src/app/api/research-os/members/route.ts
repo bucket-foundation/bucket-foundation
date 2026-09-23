@@ -1,39 +1,24 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured } from "@/lib/research-os/db";
 import { listMembers, setMemberRole, verifyClassStaff } from "@/lib/research-os/class-db";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 import { ROLES, type Role } from "@/lib/research-os/roles";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none", failed: () => bad(503, "class_read_failed") }, async (req) => {
   const classId = new URL(req.url).searchParams.get("class");
   if (!classId) return bad(400, "class_required");
   const staffCheck = await verifyClassStaff(req, classId);
   if (!staffCheck.ok) return bad(503, "class_read_failed");
   const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
-  try {
-    return NextResponse.json({ members: await listMembers(classId), roles: staff.roles }, NO_STORE);
-  } catch (err) {
-    console.error("[research-os/members] read failed:", err instanceof Error ? err.message : err);
-    return bad(503, "class_read_failed");
-  }
-}
+  return { members: await listMembers(classId), roles: staff.roles };
+});
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  let body: { classId?: string; userId?: string; role?: string; relatedLearnerId?: string | null };
-  try {
-    body = await req.json();
-  } catch {
-    return bad(400, "bad_json");
-  }
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
+  const read = await readAnyJson(req);
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as { classId?: string; userId?: string; role?: string; relatedLearnerId?: string | null };
   if (!body.classId || !body.userId || !body.role) return bad(400, "class_user_role_required");
   if (!ROLES.includes(body.role as Role)) return bad(400, "bad_role");
   const staffCheck = await verifyClassStaff(req, body.classId);
@@ -41,5 +26,5 @@ export async function POST(req: NextRequest) {
   const staff = staffCheck.staff;
   if (!staff) return bad(403, "forbidden");
   const r = await setMemberRole(staff, body.classId, body.userId, body.role as Role, body.relatedLearnerId);
-  return r.ok ? NextResponse.json({ member: r.value }, NO_STORE) : bad(r.error === "forbidden" ? 403 : 500, r.error);
-}
+  return r.ok ? { member: r.value } : bad(r.error === "forbidden" ? 403 : 500, r.error);
+});

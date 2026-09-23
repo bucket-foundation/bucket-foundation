@@ -8,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Summary = {
   n_base_pairs: number;
@@ -58,9 +62,9 @@ export default function RNAStructureClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             RNA / DNA sequence
-          </span>
+          </FieldLabel>
           <textarea
             value={sequence}
             onChange={(e) => setSequence(e.target.value)}
@@ -71,21 +75,12 @@ export default function RNAStructureClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || sequence.trim().replace(/\s/g, "").length < 4}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || sequence.trim().replace(/\s/g, "").length < 4}>
             {busy ? "folding…" : "fold sequence"}
-          </button>
-          <button
-            type="button"
-            onClick={() => setSequence(EXAMPLE)}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={() => setSequence(EXAMPLE)} disabled={busy}>
             use a hairpin example
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -111,15 +106,6 @@ function FoldView({ result }: { result: ResultEnvelope }) {
     );
   }
 
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">
-        {label}
-      </div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
@@ -138,20 +124,20 @@ function FoldView({ result }: { result: ResultEnvelope }) {
         </pre>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("MFE", `${out.mfe_kcal_mol ?? "—"} kcal/mol`)}
-        {stat("ensemble", `${out.ensemble_energy_kcal_mol ?? "—"} kcal/mol`)}
-        {stat("MFE freq", out.mfe_ensemble_frequency != null ? out.mfe_ensemble_frequency.toFixed(3) : "—")}
-        {stat("mean pair conf", out.mean_pair_confidence != null ? out.mean_pair_confidence.toFixed(3) : "—")}
-      </div>
+      <StatGrid className="mt-6">
+        <Stat label="MFE" value={`${out.mfe_kcal_mol ?? "—"} kcal/mol`} />
+        <Stat label="ensemble" value={`${out.ensemble_energy_kcal_mol ?? "—"} kcal/mol`} />
+        <Stat label="MFE freq" value={out.mfe_ensemble_frequency != null ? out.mfe_ensemble_frequency.toFixed(3) : "—"} />
+        <Stat label="mean pair conf" value={out.mean_pair_confidence != null ? out.mean_pair_confidence.toFixed(3) : "—"} />
+      </StatGrid>
 
       {out.summary && (
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-          {stat("base pairs", String(out.summary.n_base_pairs))}
-          {stat("helices", String(out.summary.n_helices))}
-          {stat("paired", `${(out.summary.paired_fraction * 100).toFixed(0)}%`)}
-          {stat("GC", `${out.gc_fraction != null ? (out.gc_fraction * 100).toFixed(0) : "—"}%`)}
-        </div>
+        <StatGrid className="mt-6">
+          <Stat label="base pairs" value={String(out.summary.n_base_pairs)} />
+          <Stat label="helices" value={String(out.summary.n_helices)} />
+          <Stat label="paired" value={`${(out.summary.paired_fraction * 100).toFixed(0)}%`} />
+          <Stat label="GC" value={`${out.gc_fraction != null ? (out.gc_fraction * 100).toFixed(0) : "—"}%`} />
+        </StatGrid>
       )}
 
       {out.high_confidence_pairs && out.high_confidence_pairs.length > 0 && (

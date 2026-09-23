@@ -1,0 +1,124 @@
+{
+  "result": {
+    "job_id": "j_4201e33abf344b6a81a8",
+    "tool": "cellsegtrack",
+    "render": "json",
+    "output": {
+      "method": "Otsu + distance-transform seeded watershed (scikit-image)",
+      "backend": "classical (cellpose not installed)",
+      "cellpose_available": false,
+      "demo": true,
+      "image_shape": [
+        128,
+        128
+      ],
+      "n_cells": 6,
+      "area_px": {
+        "mean": 356.5,
+        "median": 356.5,
+        "min": 353,
+        "max": 360
+      },
+      "cells": [
+        {
+          "id": 1,
+          "area_px": 360,
+          "centroid": [
+            25.06,
+            29.96
+          ],
+          "bbox": [
+            15,
+            20,
+            35,
+            40
+          ]
+        },
+        {
+          "id": 2,
+          "area_px": 356,
+          "centroid": [
+            59.94,
+            109.98
+          ],
+          "bbox": [
+            50,
+            100,
+            70,
+            120
+          ]
+        },
+        {
+          "id": 3,
+          "area_px": 354,
+          "centroid": [
+            69.97,
+            24.93
+          ],
+          "bbox": [
+            60,
+            15,
+            80,
+            35
+          ]
+        },
+        {
+          "id": 4,
+          "area_px": 359,
+          "centroid": [
+            75.08,
+            75.08
+          ],
+          "bbox": [
+            65,
+            65,
+            85,
+            85
+          ]
+        },
+        {
+          "id": 5,
+          "area_px": 353,
+          "centroid": [
+            100.04,
+            100
+          ],
+          "bbox": [
+            90,
+            90,
+            110,
+            110
+          ]
+        },
+        {
+          "id": 6,
+          "area_px": 357,
+          "centroid": [
+            27.97,
+            89.98
+          ],
+          "bbox": [
+            18,
+            80,
+            38,
+            100
+          ]
+        }
+      ],
+      "note": "DEMO MODE: Real segmentation. Classical path = Otsu threshold + distance-transform seeded watershed (the standard model-free splitter). When Cellpose is installed it runs on CPU instead (reported). Multi-frame tracking (linking labels across time) is the documented extension; single-frame segmentation + per-object metrics are real here. Image is synthetic with a known cell count (ground_truth_n_cells).",
+      "ground_truth_n_cells": 6
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "cellsegtrack",
+        "at": "2026-09-23T03:45:56.023829+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}
