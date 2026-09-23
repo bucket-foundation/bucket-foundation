@@ -22,13 +22,18 @@ export function bad(status: number, error: string, extra?: Body): NextResponse {
 
 export type JsonRead<T> = { ok: true; value: T } | { ok: false; res: NextResponse };
 
-export async function readJson<T = Body>(req: NextRequest, error = "bad_json"): Promise<JsonRead<T>> {
-  let value: unknown;
+export async function readAnyJson(req: NextRequest, error = "bad_json"): Promise<JsonRead<unknown>> {
   try {
-    value = await req.json();
+    return { ok: true, value: await req.json() };
   } catch {
     return { ok: false, res: bad(400, error) };
   }
+}
+
+export async function readJson<T = Body>(req: NextRequest, error = "bad_json"): Promise<JsonRead<T>> {
+  const read = await readAnyJson(req, error);
+  if (!read.ok) return read;
+  const value = read.value;
   if (value === null || typeof value !== "object" || Array.isArray(value)) return { ok: false, res: bad(400, error) };
   return { ok: true, value: value as T };
 }
