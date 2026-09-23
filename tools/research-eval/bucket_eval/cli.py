@@ -17,6 +17,8 @@ def main(argv: list[str] | None = None) -> int:
     pilot = sub.add_parser("openalex-pilot")
     pilot.add_argument("--stride", type=int, default=100)
     pilot.add_argument("--out", type=Path, default=RUNS / "d2-pilot.json")
+    full = sub.add_parser("openalex-slice")
+    full.add_argument("--override-reason", default=None)
     args = parser.parse_args(argv)
     if args.command == "science4cast-pull":
         doc = science4cast.pull()
@@ -24,6 +26,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "science4cast-verify":
         print(json.dumps(science4cast.verify(), indent=2))
+        return 0
+    if args.command == "openalex-slice":
+        print(json.dumps(openalex_slice.full_slice(override_reason=args.override_reason), indent=2, sort_keys=True))
         return 0
     result = openalex_slice.pilot(stride=args.stride)
     args.out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
