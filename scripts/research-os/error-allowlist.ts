@@ -28,7 +28,6 @@ export const ERROR_EXCEPTIONS: ErrorException[] = [
   { at: "src/lib/research-os/production-node.ts::createNodeFromProduction::nodes::node::1", because: "a maybeSingle lookup whose miss and whose failure both mean carry on without it" },
   { at: "src/app/api/research-os/hypothesize/route.ts::POST::nodes::node::1", because: "not yet triaged: a failed read here answers an empty collection, and nothing has checked what that reaches" },
   { at: "src/app/api/research-os/node/route.ts::GET::productions::data::1", because: "not yet triaged: a failed read here answers an empty collection, and nothing has checked what that reaches" },
-  { at: "src/app/api/research-os/payee/route.ts::load::learner_profiles::data::1", because: "a maybeSingle lookup whose miss and whose failure both mean carry on without it" },
   { at: "src/app/api/research-os/probe/route.ts::POST::edges::prereqEdges::1", because: "not yet triaged: a failed read here answers an empty collection, and nothing has checked what that reaches" },
   { at: "src/app/api/research-os/production/route.ts::GET::nodes::nodes::1", because: "not yet triaged: a failed read here answers an empty collection, and nothing has checked what that reaches" },
   { at: "src/app/api/research-os/search/route.ts::GET::learner_node_state::st::1", because: "not yet triaged: a failed read here answers an empty collection, and nothing has checked what that reaches" },
