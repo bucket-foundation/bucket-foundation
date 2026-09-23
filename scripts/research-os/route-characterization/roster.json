@@ -93,7 +93,7 @@
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "state_load_failed:roster store down"
+      "error": "state_load_failed"
     }
   },
   "POST reviewer check throws": {
@@ -102,6 +102,22 @@
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
+    }
+  },
+  "POST reviewer, bundle parse fails": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bundle_parse_failed"
+    }
+  },
+  "POST reviewer, apply fails": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "apply_failed"
     }
   }
 }

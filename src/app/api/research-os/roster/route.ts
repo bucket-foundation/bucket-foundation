@@ -8,6 +8,11 @@ import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+function failed(status: number, error: string, e: unknown) {
+  console.error(`[research-os/roster] ${error}:`, e instanceof Error ? e.message : String(e));
+  return bad(status, error);
+}
+
 const REQUIRED_FIELDS = ["orgs", "users", "classes", "enrollments"] as const;
 
 async function readCsvField(form: FormData, field: string): Promise<string | null> {
@@ -46,14 +51,14 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   try {
     bundle = await source.fetchBundle();
   } catch (e) {
-    return bad(400, `bundle_parse_failed:${e instanceof Error ? e.message : String(e)}`);
+    return failed(400, "bundle_parse_failed", e);
   }
 
   let existing;
   try {
     existing = await loadRosterExistingState();
   } catch (e) {
-    return bad(500, `state_load_failed:${e instanceof Error ? e.message : String(e)}`);
+    return failed(500, "state_load_failed", e);
   }
 
   const diff = computeRosterDiff(bundle, existing);
@@ -67,6 +72,6 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
     const result = await applyRosterImport(diff);
     return NextResponse.json({ diff, applied: true, result }, { headers: { "cache-control": "no-store" } });
   } catch (e) {
-    return bad(500, `apply_failed:${e instanceof Error ? e.message : String(e)}`);
+    return failed(500, "apply_failed", e);
   }
 });
