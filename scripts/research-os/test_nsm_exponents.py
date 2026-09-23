@@ -10,19 +10,14 @@ from urllib.parse import urlparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, "..", "photon"))
 
 import node_words as nw  # noqa: E402
+import roots_extract  # noqa: E402
 import nsm_exponents as nsm  # noqa: E402
 import nsm_spotcheck as spot  # noqa: E402
 
 DB_URL = os.environ.get("RESEARCH_OS_TEST_DATABASE_URL", nw.DEFAULT_DB_URL)
-SCHEMA = [
-    "create table word (lang text, word text, pos text, gloss text, roman text, ipa text, primary key (lang, word, pos))",
-    "create table etym (lang text, word text, rel text, anc_lang text, anc_form text, anc_gloss text, ord integer, primary key (lang, word, anc_lang, anc_form))",
-    "create table root (lang text, form text, gloss text, n integer default 1, primary key (lang, form))",
-    "create table word_root (lang text, word text, root_lang text, root_form text, kind text, primary key (lang, word, root_lang, root_form))",
-    "create table translation (en_word text, en_pos text, sense text, sense_idx integer, topics text, lang text, word text, roman text)",
-]
 TRANSLATIONS = [
     ("see", "verb", "perceive with the eyes", -1, "la", "videre", ""),
     ("see", "verb", "perceive with the eyes", -1, "la", "cernere", ""),
@@ -44,14 +39,13 @@ def fixture():
     fd, path = tempfile.mkstemp(suffix=".sqlite")
     os.close(fd)
     db = sqlite3.connect(path)
-    for s in SCHEMA:
-        db.execute(s)
+    db.executescript(roots_extract.SCHEMA)
     db.executemany("insert into translation (en_word, en_pos, sense, sense_idx, lang, word, roman) values (?,?,?,?,?,?,?)", TRANSLATIONS)
-    db.executemany("insert into word (lang, word, pos, gloss, roman) values (?,?,?,?,?)", [
+    db.executemany("insert into word (lang, word, pos, ety, gloss, roman) values (?,?,?,0,?,?)", [
         ("la", "videre", "verb", "to see", ""), ("de", "sehen", "verb", "to see", ""), ("ru", "видеть", "verb", "to see", "videtʹ"),
         ("en", "see", "verb", "to perceive with the eyes", ""), ("fr", "comprendre", "verb", "to understand", ""),
     ])
-    db.executemany("insert into etym (lang, word, rel, anc_lang, anc_form, anc_gloss, ord) values (?,?,?,?,?,?,?)", [
+    db.executemany("insert into etym (lang, word, rel, anc_lang, anc_form, anc_gloss, ord, ety) values (?,?,?,?,?,?,?,0)", [
         ("la", "videre", "inh", "itc-pro", "*weidēō", "", 0), ("la", "videre", "inh", "ine-pro", "*weyd-", "to see", 1),
     ])
     db.commit()
@@ -100,11 +94,13 @@ class SenseSelection(unittest.TestCase):
 
     def test_confidence_by_sense_and_breadth(self):
         self.assertEqual(nsm.confidence_for(True, 30), nsm.MATCHED)
-        self.assertEqual(nsm.confidence_for(True, 30, proxy=True), nsm.FALLBACK)
+        self.assertEqual(nsm.confidence_for(True, 30, proxy=True), nsm.PROXY)
         self.assertEqual(nsm.confidence_for(False, 30), nsm.FALLBACK)
         self.assertEqual(nsm.confidence_for(False, 3), nsm.THIN_FALLBACK)
-        self.assertLess(nsm.FALLBACK, 0.5)
-        self.assertGreaterEqual(nsm.MATCHED, 0.5)
+        self.assertGreaterEqual(nsm.MATCHED, nsm.UNCERTAIN_BELOW)
+        self.assertTrue(nsm.HIDE_BELOW <= nsm.PROXY < nsm.UNCERTAIN_BELOW)
+        self.assertLess(nsm.FALLBACK, nsm.HIDE_BELOW)
+        self.assertEqual((nsm.HIDE_BELOW, nsm.UNCERTAIN_BELOW), (nw.HIDE_BELOW, nw.UNCERTAIN_BELOW))
 
     def test_rows_carry_rank_root_and_english(self):
         meta, rows = nsm.prime_rows(PRIME, self.db, self.targets, "run-1")
@@ -114,13 +110,14 @@ class SenseSelection(unittest.TestCase):
         self.assertEqual((la[0]["root_lang"], la[0]["root_form"], la[0]["root_gloss"]), ("ine-pro", "*weyd-", "to see"))
         self.assertEqual(next(r for r in rows if r["lang"] == "ru")["roman"], "videtʹ")
         self.assertEqual([r["word"] for r in rows if r["lang"] == "en"], ["see"])
-        self.assertTrue(all(r["confidence"] == nsm.MATCHED and r["run_id"] == "run-1" for r in rows))
+        self.assertTrue(all(r["confidence"] <= nsm.MATCHED and r["run_id"] == "run-1" for r in rows))
+        self.assertEqual(next(r for r in rows if r["lang"] == "en")["confidence"], nsm.MATCHED)
 
     def test_fallback_rows_are_marked(self):
         prime = dict(PRIME, sense=dict(PRIME["sense"], gloss_pattern="no such gloss"))
         meta, rows = nsm.prime_rows(prime, self.db, self.targets, "run-1")
         self.assertFalse(meta["sense_match"])
-        self.assertTrue(rows and all(not r["sense_match"] and r["confidence"] == nsm.THIN_FALLBACK for r in rows))
+        self.assertTrue(rows and all(not r["sense_match"] and r["confidence"] <= nsm.THIN_FALLBACK for r in rows))
 
     def test_prime_with_no_lookup_has_no_rows(self):
         meta, rows = nsm.prime_rows(dict(PRIME, sense=None), self.db, self.targets, "run-1")
@@ -145,7 +142,8 @@ class Seed(unittest.TestCase):
 
     def test_every_chart_names_every_prime(self):
         ids = {p["id"] for p in nsm.load_seed()["primes"]}
-        charts = json.load(open(spot.CHARTS, encoding="utf-8"))
+        with open(spot.CHARTS, encoding="utf-8") as f:
+            charts = json.load(f)
         for lang, c in charts["charts"].items():
             self.assertEqual(set(c["exponents"]), ids, lang)
 

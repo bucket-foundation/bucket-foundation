@@ -21,7 +21,7 @@ create table if not exists graph.nsm_exponents (
   roman        text,
   sense        text,
   sense_match  boolean     not null,
-  confidence   numeric     not null check (confidence >= 0 and confidence <= 1),
+  confidence   real        not null default 1 check (confidence >= 0 and confidence <= 1),
   root_lang    text,
   root_form    text,
   root_gloss   text,

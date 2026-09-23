@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
-import { byCategory, MIN_CONFIDENCE, NSM_CITATION, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
+import { byCategory, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
@@ -15,8 +15,8 @@ function one(v: string | string[] | undefined): string | null {
   return Array.isArray(v) ? v[0] ?? null : v ?? null;
 }
 
-function Unconfirmed() {
-  return <span className="ml-1 small-caps text-[9px] tracking-[0.12em] text-[color:var(--gold-deep)]">unconfirmed</span>;
+function Mark({ text }: { text: string }) {
+  return <span className="ml-1 small-caps text-[9px] tracking-[0.12em] text-[color:var(--gold-deep)]">{text}</span>;
 }
 
 function Word({ e }: { e: NsmExponent }) {
@@ -24,7 +24,7 @@ function Word({ e }: { e: NsmExponent }) {
     <span>
       <span lang={e.lang} dir="auto" className="text-[color:var(--basalt)]">{e.word}</span>
       {e.roman && <span className="text-[color:var(--basalt-3)]"> {e.roman}</span>}
-      {!e.confirmed && <Unconfirmed />}
+      {e.hidden ? <Mark text="unconfirmed" /> : e.uncertain && <Mark text="uncertain" />}
     </span>
   );
 }
@@ -45,7 +45,7 @@ function Sense({ p }: { p: NsmPrime }) {
   return (
     <span>
       Wiktionary sense of {p.lookup}: “{p.sense}”
-      {p.senseStatus === "fallback" && <Unconfirmed />}
+      {p.senseStatus === "fallback" && <Mark text="unconfirmed" />}
     </span>
   );
 }
@@ -80,7 +80,7 @@ function AllLanguages({ p }: { p: NsmPrime }) {
   );
 }
 
-function Picker({ lang, unconfirmed }: { lang: string | null; unconfirmed: boolean }) {
+function Picker({ lang, hidden }: { lang: string | null; hidden: boolean }) {
   return (
     <form method="get" action="/research-os/nsm" className="mt-6 flex flex-wrap items-center gap-3 text-[13px] text-[color:var(--basalt-2)]">
       <label className="flex items-center gap-2">
@@ -95,7 +95,7 @@ function Picker({ lang, unconfirmed }: { lang: string | null; unconfirmed: boole
         </select>
       </label>
       <label className="flex items-center gap-2">
-        <input type="checkbox" name="unconfirmed" value="1" defaultChecked={unconfirmed} />
+        <input type="checkbox" name="hidden" value="1" defaultChecked={hidden} />
         <span>show unconfirmed words</span>
       </label>
       <button type="submit" className="border border-[color:var(--hairline)] px-3 py-1 hover:underline underline-offset-4">
@@ -133,12 +133,12 @@ function Table({ primes, lang }: { primes: NsmPrime[]; lang: string | null }) {
 export default async function NsmPage({ searchParams }: { searchParams?: Record<string, string | string[] | undefined> }) {
   const parsed = parseLang(one(searchParams?.lang));
   const lang = parsed ?? null;
-  const unconfirmed = one(searchParams?.unconfirmed) === "1";
+  const hidden = one(searchParams?.hidden) === "1";
   let primes: NsmPrime[] | null = null;
   let failed = false;
   if (configured()) {
     try {
-      primes = await loadNsm({ lang, includeUnconfirmed: unconfirmed });
+      primes = await loadNsm({ lang, includeHidden: hidden });
     } catch (err) {
       console.error("[nsm] read failed:", err instanceof Error ? err.message : err);
       failed = true;
@@ -152,9 +152,9 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
         The 65 meanings that the Natural Semantic Metalanguage finds in every language studied, each with the words that carry it in the languages Polingual reads, and the root each word grew from. Every word comes from the one Wiktionary sense named beside it.
       </p>
       <p className="mt-2 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">
-        A word shows by default when its sense matched the prime at confidence {MIN_CONFIDENCE} or above. Words from a stand-in sense are marked unconfirmed and stay hidden until you ask for them.
+        A word shows when its confidence is {HIDE_BELOW} or above, and is marked uncertain below {UNCERTAIN_BELOW}. Words from a fallback sense score lower, are marked unconfirmed, and stay hidden until you ask for them.
       </p>
-      <Picker lang={lang} unconfirmed={unconfirmed} />
+      <Picker lang={lang} hidden={hidden} />
       {parsed === undefined && <p className="mt-3 text-[13px] text-[color:var(--gold-deep)]">That language code is not one this page reads, so every language is shown.</p>}
       {!configured() ? (
         <p className="mt-6 text-[13px] text-[color:var(--basalt-2)]">This deployment has no graph connected, so there are no primes to show.</p>

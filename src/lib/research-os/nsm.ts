@@ -1,6 +1,6 @@
-import { langName } from "./node-words";
+import { HIDE_BELOW, UNCERTAIN_BELOW, langName } from "./node-words";
 
-export const MIN_CONFIDENCE = 0.5;
+export { HIDE_BELOW, UNCERTAIN_BELOW };
 
 export const NSM_CITATION = {
   text: "Semantic primes and their categories from Goddard, C., and Wierzbicka, A. (2014). Words and Meanings. Oxford University Press, Table 2.1.",
@@ -27,7 +27,7 @@ export interface NsmExponentRow {
   roman: string | null;
   sense: string | null;
   sense_match: boolean;
-  confidence: number | string;
+  confidence: number | string | null;
   root_lang: string | null;
   root_form: string | null;
   root_gloss: string | null;
@@ -40,7 +40,8 @@ export interface NsmExponent {
   rank: number;
   roman: string | null;
   confidence: number;
-  confirmed: boolean;
+  hidden: boolean;
+  uncertain: boolean;
   rootLang: string | null;
   rootLangName: string | null;
   rootForm: string | null;
@@ -75,8 +76,8 @@ export function parseLang(v: string | null): string | null | undefined {
 }
 
 export function toExponent(row: NsmExponentRow): NsmExponent {
-  const confidence = Number(row.confidence);
-  const c = Number.isFinite(confidence) ? confidence : 0;
+  const n = typeof row.confidence === "number" ? row.confidence : typeof row.confidence === "string" ? Number(row.confidence) : NaN;
+  const c = Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
   return {
     lang: row.lang,
     langName: langName(row.lang),
@@ -84,7 +85,8 @@ export function toExponent(row: NsmExponentRow): NsmExponent {
     rank: row.rank,
     roman: row.roman || null,
     confidence: c,
-    confirmed: c >= MIN_CONFIDENCE,
+    hidden: c < HIDE_BELOW,
+    uncertain: c < UNCERTAIN_BELOW,
     rootLang: row.root_lang || null,
     rootLangName: row.root_lang ? langName(row.root_lang) : null,
     rootForm: row.root_form || null,
@@ -97,11 +99,11 @@ export function senseStatus(row: NsmPrimeRow): SenseStatus {
   return row.sense_match ? "matched" : "fallback";
 }
 
-export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opts: { includeUnconfirmed?: boolean } = {}): NsmPrime[] {
+export function assemble(primes: NsmPrimeRow[], exponents: NsmExponentRow[], opts: { includeHidden?: boolean } = {}): NsmPrime[] {
   const byPrime = new Map<string, NsmExponent[]>();
   for (const row of exponents) {
     const e = toExponent(row);
-    if (!opts.includeUnconfirmed && !e.confirmed) continue;
+    if (!opts.includeHidden && e.hidden) continue;
     byPrime.set(row.prime_id, (byPrime.get(row.prime_id) ?? []).concat(e));
   }
   return primes

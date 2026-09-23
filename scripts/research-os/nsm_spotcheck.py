@@ -90,7 +90,8 @@ def main(argv=None):
     ap.add_argument("--db-url", default=os.environ.get("NODE_WORDS_DB_URL", nsm_exponents.node_words.DEFAULT_DB_URL))
     a = ap.parse_args(argv)
     seed = nsm_exponents.load_seed(a.seed)
-    charts = json.load(open(a.charts, encoding="utf-8"))
+    with open(a.charts, encoding="utf-8") as f:
+        charts = json.load(f)
     for lang, c in charts["charts"].items():
         by_cat, misses = check(seed, c["exponents"], first_exponents(a.db_url, lang))
         n = sum(v["n"] for v in by_cat.values())

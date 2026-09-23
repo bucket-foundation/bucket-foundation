@@ -16,17 +16,17 @@ Bead: "ros-nsm 1: NSM semantic primes as the cross-lingual bottom layer" in `BEA
 
 `scripts/research-os/nsm_exponents.py` reads the `translation` rows for each prime's English word and part of speech, groups them by sense text (the dump uses -1 as a sense index sentinel, so the index is ignored), and takes the sense whose text matches the seed's pattern, the widest such sense when several match. With no match it takes the sense most languages translate and marks it `sense_match = false`. Each language keeps its first two words in that sense, and roots come from node_words' resolver.
 
-Every row carries a `confidence`: 0.6 when the pattern matched, 0.4 on a fallback sense or a stand-in lookup, 0.2 on a fallback sense fewer than 10 languages translate. The API and the page show rows at `MIN_CONFIDENCE` (0.5, `src/lib/research-os/nsm.ts`) or above. `?unconfirmed=1` adds the rest, and the page labels each of them unconfirmed.
+Every row carries a `confidence`, the sense score capped by node_words' score for the word's dictionary entry and etymology: 0.9 when the pattern matched, 0.6 for a stand-in lookup, 0.4 on a fallback sense, 0.2 on a fallback sense fewer than 10 languages translate. The API and the page use node_words' thresholds from `src/lib/research-os/node-words.ts`: rows below `HIDE_BELOW` (0.5) stay hidden, and rows below `UNCERTAIN_BELOW` (0.75) are marked uncertain. `?hidden=1` adds the hidden rows, and the page marks each of them unconfirmed.
 
-Two primes use a stand-in lookup and load at 0.4: BE (SOMEONE)'S reads the translations of the pronoun *mine*, and FOR SOME TIME reads the noun *while*. Three primes have no Wiktionary entry to read and no exponents: DON'T WANT, A LONG TIME and A SHORT TIME.
+Two primes use a stand-in lookup and load at 0.6, shown as uncertain: BE (SOMEONE)'S reads the translations of the pronoun *mine*, and FOR SOME TIME reads the noun *while*. Three primes have no Wiktionary entry to read and no exponents: DON'T WANT, A LONG TIME and A SHORT TIME.
 
 ## Counts
 
-Run of 2026-09-23 on the local stack: 65 primes, 62 with exponents, 2,663 rows across 35 languages, 2,592 at 0.6 and 71 at 0.4, 1,997 with a root and 1,542 with the root's meaning. Each of the 62 seed patterns found its sense.
+Run of 2026-09-23 on the local stack: 65 primes, 62 with exponents, 2,663 rows across 35 languages: 2,221 at 0.9, 274 at 0.85, 70 at 0.6 and 98 at 0.4 (hidden, all from a low entry score), with 1,959 carrying a root and 1,515 the root's meaning. Each of the 62 seed patterns found its sense.
 
 ## Spot-check
 
-`scripts/research-os/nsm_spotcheck.py` compares the first exponent per prime with a published chart, counting a match when the word equals the chart's exponent or an allolex after case, parentheses, and a leading article or trailing preposition are set aside. Charts are transcribed in `supabase/seed/nsm-chart-exponents.json`. Charts later than 2014 map BE (SOMEONE)'S to their possession prime.
+`scripts/research-os/nsm_spotcheck.py` compares the first exponent per prime, hidden or shown, with a published chart, counting a match when the word equals the chart's exponent or an allolex after case, parentheses, and a leading article or trailing preposition are set aside. Charts are transcribed in `supabase/seed/nsm-chart-exponents.json`. Charts later than 2014 map BE (SOMEONE)'S to their possession prime.
 
 | Language | Chart | n | Match | No exponent | Miss |
 |---|---|---|---|---|---|
@@ -52,4 +52,4 @@ python3 scripts/research-os/nsm_spotcheck.py
 npm run test:nsm-exponents
 ```
 
-The loader reads the database URL from `NODE_WORDS_DB_URL`, default the local stack on port 54322. API: `GET /api/research-os/nsm`, optional `?lang=` and `?unconfirmed=1`.
+The loader reads the database URL from `NODE_WORDS_DB_URL`, default the local stack on port 54322. API: `GET /api/research-os/nsm`, optional `?lang=` and `?hidden=1`.

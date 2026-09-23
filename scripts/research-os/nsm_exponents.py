@@ -17,7 +17,10 @@ REPO_ROOT = node_words.REPO_ROOT
 SEED = os.path.join(REPO_ROOT, "supabase", "seed", "nsm-primes.json")
 SOURCE = node_words.SOURCE
 MAX_WORDS = 2
-MATCHED = 0.6
+HIDE_BELOW = node_words.HIDE_BELOW
+UNCERTAIN_BELOW = node_words.UNCERTAIN_BELOW
+MATCHED = 0.9
+PROXY = 0.6
 FALLBACK = 0.4
 THIN_FALLBACK = 0.2
 THIN_LANGS = 10
@@ -64,8 +67,8 @@ def select_sense(senses, pattern):
 
 
 def confidence_for(matched, langs, proxy=False):
-    if matched and not proxy:
-        return MATCHED
+    if matched:
+        return PROXY if proxy else MATCHED
     return FALLBACK if langs >= THIN_LANGS else THIN_FALLBACK
 
 
@@ -99,15 +102,17 @@ def prime_rows(prime, db, targets, run_id):
     picks = pick_words(chosen)
     if "en" in targets and "en" not in picks:
         picks["en"] = english_words(prime)
+    hint = frozenset(node_words.tokens(spec["en_word"]) | node_words.tokens(chosen["sense"]))
     rows = []
     for lang in sorted(picks):
         for rank, w in enumerate(picks[lang], start=1):
-            resolved, _chain, (root_lang, root_form, root_gloss) = node_words.analyze_word(lang, w["word"], db)
-            entry = db.entry(lang, resolved) if resolved else None
+            resolved, _chain, (root_lang, root_form, root_gloss), word_conf, ety = node_words.analyze_word(lang, w["word"], db, hint)
+            entry = db.entry(lang, resolved, ety) if resolved else None
+            row_conf = conf if lang == "en" else min(conf, word_conf)
             rows.append({
                 "prime_id": prime["id"], "lang": lang, "word": w["word"], "rank": rank,
                 "roman": w["roman"] or (entry or {}).get("roman") or None,
-                "sense": chosen["sense"], "sense_match": matched, "confidence": conf,
+                "sense": chosen["sense"], "sense_match": matched, "confidence": round(row_conf, 3),
                 "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
                 "source": SOURCE, "run_id": run_id,
             })
