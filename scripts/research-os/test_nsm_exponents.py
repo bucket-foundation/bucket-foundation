@@ -40,7 +40,6 @@ HAPPEN = {"id": "happen", "label": "HAPPEN", "category": "actions", "english": [
 PRIME = {"id": "see", "label": "SEE", "category": "mental predicates", "english": ["see"],
          "sense": {"en_word": "see", "en_pos": "verb", "gloss_pattern": "perceive with the eyes"}}
 
-
 def fixture():
     fd, path = tempfile.mkstemp(suffix=".sqlite")
     os.close(fd)
@@ -62,7 +61,6 @@ def fixture():
     db.commit()
     db.close()
     return path
-
 
 class SenseSelection(unittest.TestCase):
     @classmethod
@@ -171,7 +169,6 @@ class SenseSelection(unittest.TestCase):
         self.assertEqual(nsm.lit([]), "'{}'::text[]")
         self.assertEqual((nsm.lit(None), nsm.lit(True), nsm.lit(0.6)), ("null", "true", "0.6"))
 
-
 class Seed(unittest.TestCase):
     def test_the_seed_holds_the_65_primes_of_2014(self):
         seed = nsm.load_seed()
@@ -189,7 +186,6 @@ class Seed(unittest.TestCase):
         for lang, c in charts["charts"].items():
             self.assertEqual(set(c["exponents"]), ids, lang)
 
-
 class Spotcheck(unittest.TestCase):
     def test_allolexes_parentheses_and_function_words(self):
         self.assertTrue(spot.matches("moi", "JE~ME~MOI"))
@@ -201,7 +197,6 @@ class Spotcheck(unittest.TestCase):
         self.assertFalse(spot.matches("genre", "TYPE"))
         self.assertFalse(spot.matches("", "TYPE"))
 
-
 def db_ready():
     if urlparse(DB_URL).hostname not in ("127.0.0.1", "localhost", "::1"):
         return False
@@ -210,7 +205,6 @@ def db_ready():
     except (OSError, subprocess.TimeoutExpired):
         return False
     return r.returncode == 0 and r.stdout.strip() == "t"
-
 
 @unittest.skipUnless(db_ready() or os.environ.get("RESEARCH_OS_REQUIRE_DB") == "1", "no local stack with graph.nsm_exponents")
 class Rerun(unittest.TestCase):
@@ -242,7 +236,6 @@ class Rerun(unittest.TestCase):
         if n == "0":
             self.skipTest("the loader has not run against this stack")
         self.assertEqual(n, "65")
-
 
 if __name__ == "__main__":
     unittest.main()

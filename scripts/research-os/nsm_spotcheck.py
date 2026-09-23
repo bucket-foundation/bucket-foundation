@@ -17,13 +17,11 @@ PREFIXES = ("se ", "si ", "le ", "la ", "il ", "lo ")
 SUFFIXES = (" de", " à", " di", " a", " da")
 CHARTS = os.path.join(nsm_exponents.REPO_ROOT, "supabase", "seed", "nsm-chart-exponents.json")
 
-
 def norm(s):
     s = unicodedata.normalize("NFC", (s or "").lower()).replace("’", "'").replace("...", "…")
     s = "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn" or c in "̌́̀̂̈̊")
     s = re.sub(r"\s*…\s*", "…", unicodedata.normalize("NFC", s))
     return re.sub(r"\s+", " ", s).strip()
-
 
 def forms(chart_value):
     out = set()
@@ -37,7 +35,6 @@ def forms(chart_value):
             out.add(norm(re.sub(r"\([^)]*\)", "", part)))
     return {g for f in out if f for g in word_forms(f)}
 
-
 def word_forms(word):
     w = norm(word)
     out = {w, norm(re.sub(r"\([^)]*\)", "", word))}
@@ -50,12 +47,10 @@ def word_forms(word):
                 out.add(f[: -len(suf)])
     return {f for f in out if f}
 
-
 def matches(word, chart_value):
     if not word:
         return False
     return bool(word_forms(word) & forms(chart_value))
-
 
 def first_exponents(db_url, lang):
     sql = (
@@ -64,7 +59,6 @@ def first_exponents(db_url, lang):
     )
     out = subprocess.run(["psql", db_url, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout
     return json.loads(out.strip() or "{}")
-
 
 def check(seed, chart, ours):
     by_cat = {}
@@ -81,7 +75,6 @@ def check(seed, chart, ours):
         else:
             misses.append({"prime": p["id"], "ours": got["word"], "chart": chart[p["id"]]})
     return by_cat, misses
-
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -106,7 +99,6 @@ def main(argv=None):
     for lang, why in charts.get("unreachable", {}).items():
         print(f"{lang} not checked: {why}")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

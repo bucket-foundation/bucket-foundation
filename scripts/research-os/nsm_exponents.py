@@ -35,7 +35,6 @@ CLOSED_CLASS = {
 }
 ROW_COLUMNS = ["prime_id", "lang", "word", "rank", "roman", "sense", "sense_match", "confidence", "root_confidence", "root_lang", "root_form", "root_gloss", "source", "run_id"]
 
-
 def load_seed(path=SEED):
     with open(path, encoding="utf-8") as f:
         seed = json.load(f)
@@ -45,12 +44,10 @@ def load_seed(path=SEED):
         raise ValueError("duplicate prime id in seed")
     return seed
 
-
 def translation_rows(db, en_word, en_pos):
     return [dict(r) for r in db.db.execute(
         "select sense, lang, word, roman from translation where en_word = ? and en_pos = ? order by rowid", (en_word, en_pos)
     )]
-
 
 def group_senses(rows, targets):
     senses = {}
@@ -63,7 +60,6 @@ def group_senses(rows, targets):
         s["langs"].add(lang)
     return list(senses.values())
 
-
 def select_sense(senses, pattern):
     if not senses:
         return None, False
@@ -74,12 +70,10 @@ def select_sense(senses, pattern):
         return widest(hits), True
     return widest(senses), False
 
-
 def confidence_for(matched, langs, proxy=False):
     if matched:
         return PROXY if proxy else MATCHED
     return FALLBACK if langs >= THIN_LANGS else THIN_FALLBACK
-
 
 def pick_words(sense):
     out = {}
@@ -90,11 +84,9 @@ def pick_words(sense):
             words.append({"word": w, "roman": (r.get("roman") or "").strip()})
     return out
 
-
 def content_tokens(word):
     toks = [t for t in re.split(r"[\s'’]+", re.sub(r"\([^)]*\)", " ", word)) if t]
     return [t for t in toks if node_words.word_key(t).strip(".,;:!?-") not in CLOSED_CLASS and re.search(r"\w", t)]
-
 
 def root_for(lang, word, db, hint):
     if not re.search(r"\s", word.strip()):
@@ -112,14 +104,12 @@ def root_for(lang, word, db, hint):
         return resolved, ety, (None, None, None), conf, 0.0
     return resolved, ety, root, conf, min(root_conf, MULTIWORD_ROOT)
 
-
 def english_words(prime):
     out = []
     for w in prime["english"]:
         if len(out) < MAX_WORDS and w not in out:
             out.append(w)
     return [{"word": w, "roman": ""} for w in out]
-
 
 def prime_rows(prime, db, targets, run_id):
     spec = prime.get("sense")
@@ -149,7 +139,6 @@ def prime_rows(prime, db, targets, run_id):
             })
     return {"sense": chosen["sense"], "sense_match": matched, "langs": len(chosen["langs"])}, rows
 
-
 def lit(v):
     if v is None:
         return "null"
@@ -161,7 +150,6 @@ def lit(v):
         return "array[" + ",".join(lit(x) for x in v) + "]::text[]" if v else "'{}'::text[]"
     return "'" + str(v).replace("'", "''") + "'"
 
-
 def prime_sql(prime, ord_, meta):
     spec = prime.get("sense") or {}
     vals = [prime["id"], prime["label"], prime["category"], prime["english"], ord_, spec.get("en_word"), spec.get("en_pos"), meta["sense"], meta["sense_match"]]
@@ -171,7 +159,6 @@ def prime_sql(prime, ord_, meta):
         + ") on conflict (id) do update set label = excluded.label, category = excluded.category, english = excluded.english, ord = excluded.ord,"
         " en_word = excluded.en_word, en_pos = excluded.en_pos, sense = excluded.sense, sense_match = excluded.sense_match;"
     )
-
 
 def build_sql(seed_primes, results):
     ids = [p["id"] for p in seed_primes]
@@ -190,17 +177,14 @@ def build_sql(seed_primes, results):
         out.append("commit;")
     return "\n".join(out) + "\n"
 
-
 def apply_sql(db_url, sql):
     subprocess.run(["psql", db_url, "-q", "-v", "ON_ERROR_STOP=1", "-f", "-"], input=sql, text=True, check=True)
-
 
 def run(seed, db, targets, run_id):
     results = {}
     for p in seed["primes"]:
         results[p["id"]] = prime_rows(p, db, targets, run_id)
     return results
-
 
 def report(seed, results):
     rows = [r for _m, rs in results.values() for r in rs]
@@ -219,7 +203,6 @@ def report(seed, results):
     print("no sense match", no_match)
     print("no wiktionary lookup", no_lookup)
     return {"rows": len(rows), "by_lang": by_lang, "no_match": no_match, "no_lookup": no_lookup}
-
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -246,7 +229,6 @@ def main(argv=None):
     else:
         print("dry run, pass --apply to write")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())
