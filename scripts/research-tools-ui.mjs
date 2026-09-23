@@ -50,21 +50,23 @@ async function snapshot(page) {
   });
 }
 
-async function settle(page) {
-  try {
-    await page.waitForFunction(
+async function settle(page, tool) {
+  const outcome = await page
+    .waitForFunction(
       () => {
         const t = document.body.innerText.toLowerCase();
-        return t.includes("publish to canon") || t.includes("could not complete") || t.includes("offline");
+        if (t.includes("could not complete")) return "error";
+        if (t.includes("offline right now")) return "offline";
+        if (t.includes("publish to canon")) return "result";
+        return false;
       },
       null,
       { timeout: 8000 },
-    );
-  } catch {
-    return;
-  } finally {
-    await sleep(400);
-  }
+    )
+    .then((h) => h.jsonValue())
+    .catch(() => "timeout");
+  if (outcome !== "result") throw new Error(`${tool}: the page showed ${outcome} where a result view was expected`);
+  await sleep(400);
 }
 
 async function openTool(context, base, tool, requests) {
@@ -105,7 +107,7 @@ async function recordDemo(context, base, tool) {
       rec.demoSubmitted = true;
       await submit.click();
     }
-    await settle(page);
+    await settle(page, tool);
     rec.demo = { requests, after: await snapshot(page) };
   }
   await page.close();
@@ -150,7 +152,7 @@ async function recordForm(context, base, tool) {
     form.beforeSubmit = await snapshot(page);
     if (!form.submitDisabled) {
       await submit.click();
-      await settle(page);
+      await settle(page, tool);
     }
   }
   form.requests = requests;
