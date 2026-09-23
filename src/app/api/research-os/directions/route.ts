@@ -1,20 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
+import { loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { directionsFrom } from "@/lib/research-os/directions";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 import type { GraphNode } from "@/lib/research-os/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status, ...NO_STORE });
-}
 
 const lite = (n: GraphNode) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, frontierFlag: n.frontierFlag ?? null });
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
   const nodeId = (searchParams.get("node") || "").trim();
   const branch = (searchParams.get("branch") || "02-physics").trim();
@@ -31,8 +26,5 @@ export async function GET(req: NextRequest) {
   const { nodes, edges } = filtered;
   if (!nodes.some((n) => n.id === nodeId)) return bad(404, "node_not_found");
   const d = directionsFrom(nodeId, nodes, edges);
-  return NextResponse.json(
-    { dependents: d.dependents.map(lite), frontier: d.frontier.map(lite), openQuestions: d.openQuestions.map(lite), reach: d.reach },
-    NO_STORE
-  );
-}
+  return { dependents: d.dependents.map(lite), frontier: d.frontier.map(lite), openQuestions: d.openQuestions.map(lite), reach: d.reach };
+});

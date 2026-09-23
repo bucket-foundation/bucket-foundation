@@ -1,0 +1,100 @@
+{
+  "result": {
+    "job_id": "j_748ae1f4c1084cc9a6f7",
+    "tool": "aggregatepredict",
+    "render": "json",
+    "output": {
+      "method": "windowed aggregation propensity (Chou-Fasman β-propensity + Kyte-Doolittle hydropathy − net charge)",
+      "demo": true,
+      "length_aa": 50,
+      "mean_score": -0.0558,
+      "max_score": 0.697,
+      "n_hotspots": 2,
+      "hotspots": [
+        {
+          "start": 12,
+          "end": 20,
+          "length": 9,
+          "peak_score": 0.697,
+          "segment": "IILVFLVIF"
+        },
+        {
+          "start": 33,
+          "end": 38,
+          "length": 6,
+          "peak_score": 0.697,
+          "segment": "VIVFLL"
+        }
+      ],
+      "scores_preview": [
+        -0.5625,
+        -0.5478,
+        -0.4206,
+        -0.3911,
+        -0.4224,
+        -0.7144,
+        -0.7144,
+        -0.3673,
+        -0.2046,
+        0.1361,
+        0.2484,
+        0.3626,
+        0.3647,
+        0.697,
+        0.697,
+        0.697,
+        0.6543,
+        0.5483,
+        0.4011,
+        0.3053,
+        0.193,
+        -0.1621,
+        -0.5269,
+        -0.529,
+        -0.4312,
+        -0.449,
+        -0.6754,
+        -0.5631,
+        -0.2429,
+        -0.1757,
+        0.169,
+        0.2121,
+        0.3321,
+        0.6644,
+        0.6644,
+        0.697,
+        0.697,
+        0.5343,
+        0.1671,
+        0.0649,
+        -0.0144,
+        -0.0266,
+        -0.3793,
+        -0.4224,
+        -0.6245,
+        -0.6044,
+        -0.5402,
+        -0.6081,
+        -0.437,
+        -0.5415
+      ],
+      "aggregation_prone": true,
+      "note": "Real, interpretable aggregation model: β-sheet propensity + hydrophobicity penalized by net charge over a sliding window, flagging contiguous high-score stretches (the amyloid hot-spots TANGO/CamSol target). Deterministic and explainable; a learned predictor is the documented heavier path.",
+      "ground_truth": {
+        "expect_hotspot": true
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "aggregatepredict",
+        "at": "2026-09-23T03:45:47.586012+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

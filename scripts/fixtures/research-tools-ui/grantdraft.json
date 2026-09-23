@@ -1,0 +1,33 @@
+{
+  "result": {
+    "job_id": "j_84f51d9578d2427abc30",
+    "tool": "grantdraft",
+    "render": "json",
+    "output": {
+      "topic": "ACDEFGHIKLMNPQRSTVWYACGT",
+      "source": "research-atlas/nsf",
+      "degraded": false,
+      "matched_grants": [],
+      "top_funders": [],
+      "specific_aims": [
+        {
+          "aim": "Aim 1",
+          "text": "Establish the foundational measurements needed to study ACDEFGHIKLMNPQRSTVWYACGT. No closely-matched awarded grant was found in the corpus; consider framing this as a high-risk/high-reward exploratory aim.",
+          "grounded_in": null
+        }
+      ]
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "grantdraft",
+        "at": "2026-09-23T03:46:53.438779+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

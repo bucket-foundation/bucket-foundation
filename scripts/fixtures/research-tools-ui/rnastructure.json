@@ -1,0 +1,94 @@
+{
+  "result": {
+    "job_id": "j_f97c77e25b77455888bc",
+    "tool": "rnastructure",
+    "render": "json",
+    "output": {
+      "library": "ViennaRNA",
+      "vienna_version": "2.7.2",
+      "input_was_dna": false,
+      "sequence": "GGGGAAAACCCC",
+      "length": 12,
+      "gc_fraction": 0.6667,
+      "mfe_structure": "((((....))))",
+      "mfe_kcal_mol": -5.4,
+      "ensemble_energy_kcal_mol": -5.507,
+      "mfe_ensemble_frequency": 0.84,
+      "mean_pair_confidence": 0.8633,
+      "summary": {
+        "n_base_pairs": 4,
+        "paired_bases": 8,
+        "unpaired_bases": 4,
+        "paired_fraction": 0.6667,
+        "n_helices": 1
+      },
+      "base_pairs": [
+        {
+          "i": 1,
+          "j": 12
+        },
+        {
+          "i": 2,
+          "j": 11
+        },
+        {
+          "i": 3,
+          "j": 10
+        },
+        {
+          "i": 4,
+          "j": 9
+        }
+      ],
+      "high_confidence_pairs": [
+        {
+          "i": 2,
+          "j": 11,
+          "prob": 0.8711
+        },
+        {
+          "i": 3,
+          "j": 10,
+          "prob": 0.8711
+        },
+        {
+          "i": 4,
+          "j": 9,
+          "prob": 0.8604
+        },
+        {
+          "i": 1,
+          "j": 12,
+          "prob": 0.8508
+        }
+      ],
+      "per_base_max_prob": [
+        0.8508,
+        0.8711,
+        0.8711,
+        0.8604,
+        0,
+        0,
+        0,
+        0,
+        0.8604,
+        0.8711,
+        0.8711,
+        0.8508
+      ],
+      "note": "MFE structure + base-pair probabilities are real ViennaRNA output (partition function). DNA input is folded as RNA (T->U)."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "rnastructure",
+        "at": "2026-09-23T03:50:53.838014+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "result": {
+    "job_id": "j_bf20997039d34dd4b153",
+    "tool": "mlreprocard",
+    "render": "json",
+    "output": {
+      "reproducibility_score": 58,
+      "reproducibility_level": "R1",
+      "level_name": "Replicable-in-principle — described, but neither code nor full detail is provided",
+      "dimension_subscores": {
+        "Data": 52,
+        "Code & Method": 100,
+        "Training": 63.6,
+        "Evaluation": 64.7,
+        "Compute": 0,
+        "Sharing & Environment": 20
+      },
+      "checks": [
+        {
+          "check": "dataset_named",
+          "dimension": "data",
+          "weight": 6,
+          "present": true,
+          "value": "ImageNet"
+        },
+        {
+          "check": "dataset_versioned",
+          "dimension": "data",
+          "weight": 7,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "splits_specified",
+          "dimension": "data",
+          "weight": 7,
+          "present": true,
+          "value": "standard train/val (1.28M / 50k)"
+        },
+        {
+          "check": "preprocessing",
+          "dimension": "data",
+          "weight": 5,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "code_released",
+          "dimension": "code",
+          "weight": 10,
+          "present": true,
+          "value": "https://github.com/example/resnet-repro"
+        },
+        {
+          "check": "model_specified",
+          "dimension": "code",
+          "weight": 8,
+          "present": true,
+          "value": "ResNet-50 (torchvision variant)"
+        },
+        {
+          "check": "seed_set",
+          "dimension": "training",
+          "weight": 8,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "hyperparameters",
+          "dimension": "training",
+          "weight": 8,
+          "present": true,
+          "value": "lr=0.1; batch_size=256; optimizer=SGD; epochs=90; weight_decay=0.0001"
+        },
+        {
+          "check": "training_procedure",
+          "dimension": "training",
+          "weight": 6,
+          "present": true,
+          "value": "SGD with step LR decay at epochs 30/60/80, momentum 0.9"
+        },
+        {
+          "check": "metrics",
+          "dimension": "evaluation",
+          "weight": 7,
+          "present": true,
+          "value": "top-1 accuracy 76.1%, top-5 92.9% on val"
+        },
+        {
+          "check": "baselines",
+          "dimension": "evaluation",
+          "weight": 4,
+          "present": true,
+          "value": "AlexNet, VGG-16"
+        },
+        {
+          "check": "multiple_runs",
+          "dimension": "evaluation",
+          "weight": 3,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "variance_reported",
+          "dimension": "evaluation",
+          "weight": 3,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "hardware",
+          "dimension": "compute",
+          "weight": 4,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "compute_budget",
+          "dimension": "compute",
+          "weight": 4,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "environment",
+          "dimension": "sharing",
+          "weight": 5,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "weights_released",
+          "dimension": "sharing",
+          "weight": 3,
+          "present": false,
+          "value": ""
+        },
+        {
+          "check": "license",
+          "dimension": "sharing",
+          "weight": 2,
+          "present": true,
+          "value": "MIT"
+        }
+      ],
+      "prioritized_gaps": [
+        {
+          "check": "seed_set",
+          "dimension": "training",
+          "weight": 8,
+          "fix": "Set and report the RNG seed(s), without a seed, results are not bit-reproducible."
+        },
+        {
+          "check": "dataset_versioned",
+          "dimension": "data",
+          "weight": 7,
+          "fix": "Pin the exact dataset version (a version tag, DOI, or content hash), 'ImageNet' is not reproducible, 'ImageNet-1k ILSVRC2012' is."
+        },
+        {
+          "check": "preprocessing",
+          "dimension": "data",
+          "weight": 5,
+          "fix": "Document preprocessing / augmentation / tokenization (these silently change results)."
+        },
+        {
+          "check": "environment",
+          "dimension": "sharing",
+          "weight": 5,
+          "fix": "Pin the software environment (requirements.txt / conda env / Dockerfile + framework version)."
+        },
+        {
+          "check": "hardware",
+          "dimension": "compute",
+          "weight": 4,
+          "fix": "State the compute used (GPU/TPU/CPU model + count), needed to judge cost and to reproduce timing."
+        },
+        {
+          "check": "compute_budget",
+          "dimension": "compute",
+          "weight": 4,
+          "fix": "Report the compute budget (wall-clock / GPU-hours / FLOPs) for transparency and carbon accounting."
+        },
+        {
+          "check": "multiple_runs",
+          "dimension": "evaluation",
+          "weight": 3,
+          "fix": "Run multiple seeds and report how many, single-run numbers are not robust."
+        },
+        {
+          "check": "variance_reported",
+          "dimension": "evaluation",
+          "weight": 3,
+          "fix": "Report variance across runs (std / CI / error bars), not just a point estimate."
+        },
+        {
+          "check": "weights_released",
+          "dimension": "sharing",
+          "weight": 3,
+          "fix": "Release trained weights / a checkpoint so results can be reproduced without retraining."
+        }
+      ],
+      "n_gaps": 9,
+      "model_card": {
+        "model_details": {
+          "model": "ResNet-50 (torchvision variant)",
+          "task": "image classification",
+          "framework": "pytorch 2.5",
+          "license": "MIT"
+        },
+        "training_data": {
+          "dataset": "ImageNet",
+          "version": "",
+          "splits": "standard train/val (1.28M / 50k)"
+        },
+        "training": {
+          "hyperparameters": "lr=0.1; batch_size=256; optimizer=SGD; epochs=90; weight_decay=0.0001",
+          "procedure": "SGD with step LR decay at epochs 30/60/80, momentum 0.9",
+          "seed": "",
+          "hardware": "",
+          "compute_budget": ""
+        },
+        "evaluation": {
+          "metrics": "top-1 accuracy 76.1%, top-5 92.9% on val",
+          "baselines": "AlexNet, VGG-16",
+          "runs": "",
+          "variance": ""
+        },
+        "availability": {
+          "code": "https://github.com/example/resnet-repro",
+          "weights": "",
+          "environment": ""
+        }
+      },
+      "demo": true,
+      "method": "Deterministic reproducibility rubric (18 weighted checks across data, code/method, training, evaluation, compute, and sharing) grounded in the ML reproducibility-checklist literature (NeurIPS/ICML checklists, Mitchell et al. 2019 Model Cards, Gundersen & Kjensmo reproducibility taxonomy). Flags missing repro elements, scores each dimension + an overall 0-100 score, assigns an R0, R3 level, and emits a normalized model card. No LLM, no network, no GPU.",
+      "note": "DEMO: a ResNet-50/ImageNet experiment that is strong on code+eval but MISSING a seed, a pinned dataset version, an environment spec, and compute reporting, the rubric surfaces exactly those gaps. Field tool for cs-ml: research MLOps is weak, provenance is a spreadsheet. This is a transparent self-assessment + a fill-in model card, not a certifying audit. The fastest score gains are: pin the dataset version, set + report a seed, and release code with a pinned environment.",
+      "ground_truth": {
+        "missing_must_include": [
+          "seed_set",
+          "dataset_versioned",
+          "environment",
+          "hardware"
+        ],
+        "code_released_present": true,
+        "expected_level_in": [
+          "R1",
+          "R2"
+        ]
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "mlreprocard",
+        "at": "2026-09-23T03:46:56.465413+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

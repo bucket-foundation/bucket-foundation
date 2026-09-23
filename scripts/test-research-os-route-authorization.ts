@@ -91,6 +91,11 @@ const EXEMPT: { route: string; because: string; proof: RegExp[]; alsoIn?: { file
     proof: [/verifyGraphReviewer\s*\(/],
   },
   {
+    route: "nsm-links/route.ts",
+    because: "every handler returns 403 before reading unless verifyGraphReviewer passes, and a graph reviewer's remit is the proposal queue itself rather than one learner's view of it",
+    proof: [/verifyGraphReviewer\s*\(/],
+  },
+  {
     route: "node-proposals/route.ts",
     because: "every handler returns 403 before reading unless verifyGraphReviewer passes, and a graph reviewer's remit is the proposal queue itself rather than one learner's view of it",
     proof: [/verifyGraphReviewer\s*\(/],

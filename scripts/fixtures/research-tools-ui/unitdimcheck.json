@@ -1,0 +1,35 @@
+{
+  "result": {
+    "job_id": "j_b7854935a5404c92a410",
+    "tool": "unitdimcheck",
+    "render": "json",
+    "output": {
+      "lhs": "N",
+      "rhs": "kg*m/s^2",
+      "lhs_dimension": "mass · length · time^-2",
+      "rhs_dimension": "mass · length · time^-2",
+      "consistent": true,
+      "verdict": "DIMENSIONALLY CONSISTENT",
+      "demo": true,
+      "op": "check",
+      "method": "Units are parsed into the 7 SI base dimensions (M, L, T, I, Θ, N, J) with an exact rational exponent vector plus an SI conversion factor, composed multiplicatively over a built-in table of base/derived/metric/imperial units. Conversion requires equal dimension vectors; consistency checking compares the reduced dimension vectors of both sides of an equation. Affine temperatures (°C/°F) are handled separately. No external libraries.",
+      "note": "DEMO: 'N = kg*m/s^2' (Newton's second law, F = m·a). Both sides reduce to mass·length·time^-2 → DIMENSIONALLY CONSISTENT. By contrast 'N = kg*m/s' (F = m·v) reduces to mass·length·time^-1 and is flagged inconsistent. Universal tool (physics, engineering, every quantitative field): dimensional homogeneity is the cheapest correctness check there is, an equation that is not dimensionally consistent is wrong before any number is computed. The table covers the common SI/derived/imperial units; uncommon units are an easy additive extension.",
+      "ground_truth": {
+        "F_eq_ma_consistent": true,
+        "F_eq_mv_consistent": false
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "unitdimcheck",
+        "at": "2026-09-23T03:48:39.479989+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

@@ -8,6 +8,10 @@ import {
   PublishToCanon,
   type ResultEnvelope,
 } from "../_shared/runner";
+import { DemoButton } from "../_shared/DemoButton";
+import { FieldLabel } from "../_shared/FieldLabel";
+import { Stat, StatGrid } from "../_shared/Stat";
+import { SubmitButton } from "../_shared/SubmitButton";
 
 type Island = { start: number; end: number; gc: number; obs_exp_cpg: number };
 type CAOutput = {
@@ -48,9 +52,9 @@ export default function ChromatinAccessClient() {
     <div>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <FieldLabel>
             DNA sequence (FASTA or raw, ≥ 20 nt)
-          </span>
+          </FieldLabel>
           <textarea
             value={seq}
             onChange={(e) => setSeq(e.target.value)}
@@ -61,21 +65,12 @@ export default function ChromatinAccessClient() {
           />
         </label>
         <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={busy || clean.length < 20}
-            className="self-start font-display uppercase text-[14px] tracking-[0.06em] px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] disabled:opacity-50 hover:bg-[color:var(--aegean-deep)] transition-colors"
-          >
+          <SubmitButton disabled={busy || clean.length < 20}>
             {busy ? "scoring…" : "score accessibility"}
-          </button>
-          <button
-            type="button"
-            onClick={runDemo}
-            disabled={busy}
-            className="text-[12px] small-caps tracking-[0.12em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
-          >
+          </SubmitButton>
+          <DemoButton onClick={runDemo} disabled={busy}>
             run a demo promoter
-          </button>
+          </DemoButton>
         </div>
       </form>
 
@@ -89,24 +84,17 @@ export default function ChromatinAccessClient() {
 
 function CAView({ result }: { result: ResultEnvelope }) {
   const out = result.output as CAOutput;
-  const stat = (label: string, value: string) => (
-    <div className="bg-[color:var(--bone)] p-5">
-      <div className="text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-1">{label}</div>
-      <div className="text-[18px] font-display text-[color:var(--basalt)]">{value}</div>
-    </div>
-  );
-
   return (
     <div className="mt-10">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-4">
         accessibility model{out.demo ? " · DEMO" : ""} · {out.length_nt} nt · {out.call}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--hairline)]">
-        {stat("accessibility", out.accessibility_score.toFixed(3))}
-        {stat("GC content", `${(out.gc_content * 100).toFixed(1)}%`)}
-        {stat("CpG islands", String(out.n_cpg_islands))}
-        {stat("promoter motifs", String(out.n_promoter_motifs))}
-      </div>
+      <StatGrid>
+        <Stat label="accessibility" value={out.accessibility_score.toFixed(3)} />
+        <Stat label="GC content" value={`${(out.gc_content * 100).toFixed(1)}%`} />
+        <Stat label="CpG islands" value={String(out.n_cpg_islands)} />
+        <Stat label="promoter motifs" value={String(out.n_promoter_motifs)} />
+      </StatGrid>
 
       {Object.entries(out.promoter_motifs).some(([, v]) => v.length > 0) && (
         <div className="mt-6">
