@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService } from "@/lib/research-os/db";
+import { graphService } from "@/lib/research-os/db";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { isIdeaNode } from "@/lib/research-os/idea";
 import { allPendingPairs, buildMakeup, liveCycles, makeupForViewer, makeupSnapshot, pairStandings, type PairStanding, type ProposalRowLite } from "@/lib/research-os/makeup";
@@ -10,19 +10,16 @@ export const dynamic = "force-dynamic";
 const PROPOSAL_CAP = 200;
 const MISSING_CAP = 100;
 
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-
-export async function GET(req: NextRequest) {
-  if (!configured()) return NextResponse.json({ error: "research_os_unavailable" }, { status: 503, ...NO_STORE });
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const slug = (req.nextUrl.searchParams.get("slug") || "").trim();
-  if (!slug) return NextResponse.json({ error: "slug is required" }, { status: 400, ...NO_STORE });
+  if (!slug) return bad(400, "slug is required");
   const svc = graphService();
   try {
     const snap = await makeupSnapshot(svc);
     const node = snap.bySlug.get(slug);
-    if (!node) return NextResponse.json({ error: "node_not_found" }, { status: 404, ...NO_STORE });
+    if (!node) return bad(404, "node_not_found");
     if (!isIdeaNode({ kind: node.kind ?? "", provenanceType: node.provenanceType ?? null }))
-      return NextResponse.json({ error: "not_an_idea" }, { status: 404, ...NO_STORE });
+      return bad(404, "not_an_idea");
     const [proposals, missing, irreducible, reviewer] = await Promise.all([
       svc
         .from("edge_proposals")
@@ -53,7 +50,7 @@ export async function GET(req: NextRequest) {
     const missingRows = (missing.data as { key: string; title: string; summary: string | null; reasons: Record<string, string> | null }[]) || [];
     const irr = (irreducible.data as { status: "pending" | "confirmed" | "rejected"; justification: string } | null) ?? null;
     const makeup = buildMakeup(node.id, snap, { proposals: rows, missing: missingRows, irreducible: irr });
-    if (!makeup) return NextResponse.json({ error: "node_not_found" }, { status: 404, ...NO_STORE });
+    if (!makeup) return bad(404, "node_not_found");
     if (reviewer) for (const p of makeup.proposals) Object.assign(p, standings.get(`${p.factor.slug}->${slug}`) ?? {});
     const pending = {
       proposals: rows.length,
@@ -61,9 +58,9 @@ export async function GET(req: NextRequest) {
       irreducible: irr?.status === "pending",
       truncated: rows.length === PROPOSAL_CAP || missingRows.length === MISSING_CAP,
     };
-    return NextResponse.json(makeupForViewer(makeup, pending, !!reviewer), NO_STORE);
+    return makeupForViewer(makeup, pending, !!reviewer);
   } catch (err) {
     console.error("[research-os/makeup] read failed:", err instanceof Error ? err.message : err);
-    return NextResponse.json({ error: "read_failed" }, { status: 500, ...NO_STORE });
+    return bad(500, "read_failed");
   }
-}
+});

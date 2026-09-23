@@ -19,6 +19,7 @@ export type Probe = {
   consent: { allowed: boolean; reason?: string };
   body?: string;
   query?: string;
+  headers?: Record<string, string>;
   methods?: string[];
   stubs?: () => Stub;
 };
@@ -112,6 +113,7 @@ async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response
     init.body = probe.body;
     init.headers = { "content-type": "application/json" };
   }
+  if (probe.headers) init.headers = { ...(init.headers ?? {}), ...probe.headers };
   const req = new NextRequest(`http://localhost/api/research-os/characterization${probe.query ?? ""}`, init);
   const quiet = { error: console.error, warn: console.warn, log: console.log };
   console.error = console.warn = console.log = () => undefined;
