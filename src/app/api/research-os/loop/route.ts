@@ -30,6 +30,8 @@ const bad = (status: number, error: string) => NextResponse.json({ error }, { st
 async function learnDecksStarted(userId: string): Promise<number> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  // No Academy stack behind this deployment is a real zero. The learner
+  // has started no decks because there are none to start.
   if (!url || !key) return 0;
   const svc = createClient(url, key, { db: { schema: "bucket" }, auth: { persistSession: false, autoRefreshToken: false } });
   const rows = await pagedRead<{ data: { cards?: Record<string, unknown> } }>((page) =>

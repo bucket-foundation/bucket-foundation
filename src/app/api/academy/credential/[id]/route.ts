@@ -116,8 +116,12 @@ export async function DELETE(
     /* no body is fine */
   }
 
-  const ok = await revokeCredential(id, uid, reason);
-  if (!ok) {
+  const outcome = await revokeCredential(id, uid, reason);
+  // A write that never ran is not a refusal. Both answered false before,
+  // so an issuer revoking a leaked credential during an outage was told
+  // the credential was not theirs and the credential stayed live.
+  if (outcome === "unavailable") return json({ error: "revoke_unavailable" }, 503);
+  if (outcome === "no_row") {
     // Either not owned by this user, already revoked, or not found, all opaque.
     return json({ error: "revoke_failed" }, 409);
   }

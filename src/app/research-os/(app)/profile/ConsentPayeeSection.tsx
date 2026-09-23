@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 
 // Consent and the payee on the profile (ros-32): where the learner's
 // consent comes from (adult, the school exception, a verified vendor, a
@@ -47,6 +48,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
   const [payeeType, setPayeeType] = useState<"self" | "guardian" | "custodial">("guardian");
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [loadNote, setLoadNote] = useState<string | null>(null);
 
   const headers = useCallback((): Record<string, string> => (token ? { Authorization: `Bearer ${token}` } : {}), [token]);
 
@@ -57,14 +59,25 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
         fetch("/api/research-os/consent", { headers: headers(), cache: "no-store" }),
         fetch("/api/research-os/payee", { headers: headers(), cache: "no-store" }),
       ]);
-      if (c.ok) setConsent((await c.json()) as ConsentView);
+      if (c.ok) {
+        setConsent((await c.json()) as ConsentView);
+        setLoadNote(null);
+      } else {
+        // A failed read left `consent` null, and the early return below
+        // renders null when it is, so the whole consent section vanished
+        // and the learner was told nothing at all. A minor reads that as
+        // a screen with no consent on it.
+        setLoadNote(isTransientOutage(c.status, await readErrorCode(c)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
+      }
       if (p.ok) {
         const pv = (await p.json()) as PayeeView;
         setPayee(pv);
         if (pv.payeeType) setPayeeType(pv.payeeType);
       }
     } catch {
-      /* unavailable */
+      // A fetch that rejects never reached the server, which a retry may
+      // clear. Swallowing it was the same vanishing section.
+      setLoadNote(OUTAGE_COPY.body);
     }
   }, [token, headers]);
 
@@ -82,7 +95,14 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
         body: JSON.stringify({ action: "request", vendor, guardianContact: contact }),
       });
       const j = (await res.json().catch(() => ({}))) as { error?: string; url?: string | null };
-      if (!res.ok) setNote(j.error === "vendor_not_configured" ? "That vendor is not connected yet; ask your teacher to record consent, or pick the manual path." : j.error ?? "failed");
+      if (!res.ok)
+        setNote(
+          isTransientOutage(res.status, j.error ?? null)
+            ? OUTAGE_COPY.body
+            : j.error === "vendor_not_configured"
+              ? "That vendor is not connected yet; ask your teacher to record consent, or pick the manual path."
+              : (j.error ?? "failed"),
+        );
       else setNote(j.url ? `Consent started. A parent completes it at ${j.url}` : "Consent requested. Your teacher or librarian records it once a parent has said yes.");
       setContact("");
       await load();
@@ -112,11 +132,24 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
     }
   }
 
-  if (!token || !consent) return null;
+  if (!token) return null;
+  // The note renders above this return. Leaving it below meant a failed
+  // read rendered nothing, which is the whole point of setting it.
+  if (!consent)
+    return loadNote ? (
+      <p role="alert" className="mt-10 text-[13px] text-[color:var(--gold-deep)]">
+        {loadNote}
+      </p>
+    ) : null;
   const minor = consent.profile?.birthYearBucket === "under13" || consent.profile?.birthYearBucket === "13to17";
 
   return (
     <section className="mt-10 grid gap-6">
+      {loadNote && (
+        <p role="alert" className="text-[13px] text-[color:var(--gold-deep)]">
+          {loadNote}
+        </p>
+      )}
       <div>
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-2">§ consent</div>
         <p className="text-[14px]">

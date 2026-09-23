@@ -19,7 +19,12 @@ export async function applyDrafts(label: string, nodes: IngestNodeDraft[], edges
   }
   const missing = Array.from(new Set(edges.flatMap((e) => [e.fromSlug, e.toSlug]).filter((s) => !idBySlug.has(s))));
   for (let i = 0; i < missing.length; i += 60) {
-    const { data } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 60));
+    // Raises, because the surrounding upserts do. A dropped error here
+    // leaves those slugs unresolved, the edges that name them fail the
+    // from_id and to_id guard below, and the run prints them in its
+    // skipped count as though the graph had never held them.
+    const { data, error } = await svc.from("nodes").select("id,slug").in("slug", missing.slice(i, i + 60));
+    if (error) throw new Error(`slug resolution failed: ${error.message}`);
     ((data as { id: string; slug: string }[]) || []).forEach((r) => idBySlug.set(r.slug, r.id));
   }
   const rows = edges

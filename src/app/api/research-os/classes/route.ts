@@ -17,7 +17,12 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const user = await verifyLearnerIdentity(req);
   if (!user) return bad(401, "unauthorized");
-  return NextResponse.json({ classes: await listMyClasses(user.id) }, NO_STORE);
+  try {
+    return NextResponse.json({ classes: await listMyClasses(user.id) }, NO_STORE);
+  } catch (err) {
+    console.error("[research-os/classes] read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "class_read_failed");
+  }
 }
 
 export async function POST(req: NextRequest) {

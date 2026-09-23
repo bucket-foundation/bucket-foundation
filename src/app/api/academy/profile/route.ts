@@ -105,13 +105,18 @@ interface ProfileRecord {
   is_public: boolean;
 }
 
-/** Read all progress rows for a user (service-role, hard per-user filter). */
+/** Read all progress rows for a user (service-role, hard per-user filter).
+ * Raises when the read did not complete: an empty list is a learner who
+ * has done nothing, and this is the read that serves a learner their own
+ * progress. The same read is repaired in credential/verify and in
+ * /m/<handle>; this was the third call site. */
 async function readProgressRows(uid: string): Promise<ProgressRow[]> {
   const { data, error } = await service()
     .from(PROGRESS)
     .select("branch,data,updated_at")
     .eq("user_id", uid);
-  if (error || !data) return [];
+  if (error) throw new Error(`academy_progress read failed: ${error.message}`);
+  if (!data) return [];
   return data as unknown as ProgressRow[];
 }
 
@@ -137,7 +142,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     if (!data) return json({ profile: null }); // no handle claimed yet
 
     const rec = data as unknown as ProfileRecord;
-    const rows = await readProgressRows(uid);
+    let rows: ProgressRow[];
+    try {
+      rows = await readProgressRows(uid);
+    } catch (err) {
+      console.error("[academy/profile] progress read failed:", err instanceof Error ? err.message : err);
+      return json({ error: "sync_unavailable" }, 503);
+    }
     const preview = assemblePublicProfile(rec.handle, rec.display_name, rows);
     return json({
       profile: {
@@ -166,7 +177,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const rec = data as unknown as ProfileRecord;
   if (!rec.is_public) return json({ error: "not_found" }, 404); // private == invisible
 
-  const rows = await readProgressRows(rec.user_id);
+  let rows: ProgressRow[];
+  try {
+    rows = await readProgressRows(rec.user_id);
+  } catch (err) {
+    console.error("[academy/profile] progress read failed:", err instanceof Error ? err.message : err);
+    return json({ error: "sync_unavailable" }, 503);
+  }
   const profile = assemblePublicProfile(rec.handle, rec.display_name, rows);
   return json({ profile });
 }
