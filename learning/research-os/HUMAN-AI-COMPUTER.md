@@ -264,7 +264,7 @@ Not built. Closes G5. `WorkedExample` at `src/lib/research-os/types.ts:66` alrea
 Not built. Closes G18. `src/app/whats-new/types.ts` already carries a typed `FeedEventType` union and a commit SHA per event. Adding `model_change` and `prompt_change` to that union, emitted when `MODEL` in `src/lib/research-os/llm.ts:22` or `CHECK_SYSTEM_PROMPT` in `grounding.ts:107` changes, puts the model on the same public record as the canon. Bead: `ros-ai model change feed`.
 
 **Rule 10. Every model call is attributable after the fact.**
-Partly built. `logToolCall` at `src/app/api/research-os/workspace/route.ts:189` and `logToolCost` at `src/lib/research-os/llm.ts:47` write structured console lines, and no durable store exists yet. Falsified by: a model call that leaves no record of tool, learner, provider and token count. The durable sink is the open half. Bead: the Viatika metering hook.
+Partly built. `logToolCall` at `src/app/api/research-os/workspace/route.ts:173` and `logToolCost` at `src/lib/research-os/llm.ts:47` write structured console lines, and no durable store exists yet. Falsified by: a model call that leaves no record of tool, learner, provider and token count. The durable sink is the open half. Bead: the Viatika metering hook.
 
 ## What this settles about the frame
 

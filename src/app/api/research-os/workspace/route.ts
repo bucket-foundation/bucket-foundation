@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
@@ -7,7 +7,6 @@ import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/r
 import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
-import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
 import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
@@ -32,13 +31,10 @@ import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled, finalizeReveal } from "@/lib/research-os/forcing";
 import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt, dbConsumePendingAttempt } from "@/lib/research-os/check-attempts-db";
 import { checkSecondSourceGate, resolveSecondSourceRequired, secondSourceRequiredAtStage } from "@/lib/research-os/lateral-reading";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 const MAX_ORGANIZE_TOKENS = 500;
 const MAX_EXPLANATION_CHARS = 2000;
@@ -127,29 +123,15 @@ async function readableRows(rows: LocateRow[], learnerId: string): Promise<{ ok:
   return { ok: true, rows: rows.filter((r) => visible.has(r.id)) };
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  const gate = await requireConsent(learnerId, "workspace_tool");
-  if (!gate.allowed) {
-    const refusal = consentRefusal(gate);
-    return NextResponse.json(refusal.body, { status: refusal.status });
-  }
-
+export const POST = withResearchOsRoute({ auth: "required", consent: "workspace_tool" }, async (req, { learnerId }) => {
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 
   const cap = dailyToolCap();
   if (!recordAndCheck(learnerId, cap).allowed) return bad(429, dailyCapMessage(cap));
 
-  let body: WorkspaceBody;
-  try {
-    body = (await req.json()) as WorkspaceBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as WorkspaceBody;
   const sessionId = sessionIdOf(body);
 
   const svc = graphService();
@@ -611,4 +593,4 @@ Respond with ONLY a JSON object, no markdown fences:
     default:
       return bad(400, "action must be one of locate, quote, check, organize");
   }
-}
+});

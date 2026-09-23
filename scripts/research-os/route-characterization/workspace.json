@@ -1,7 +1,7 @@
 {
   "POST unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "POST anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -17,7 +17,7 @@
   },
   "POST signed in, store down": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "action must be one of locate, quote, check, organize"
@@ -25,7 +25,7 @@
   },
   "POST signed in, malformed json": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "bad_request"
@@ -33,7 +33,7 @@
   },
   "POST signed in, consent unavailable": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "consent_unavailable",
@@ -42,12 +42,68 @@
   },
   "POST signed in, consent refused": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "no_profile",
       "message": "",
       "needsProfile": true
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "action must be one of locate, quote, check, organize"
+    }
+  },
+  "POST locate, no query": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "query is required"
+    }
+  },
+  "POST locate, second source without node": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "quotedSourceNodeId is required for secondSource mode"
+    }
+  },
+  "POST quote, no node": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "nodeId is required"
+    }
+  },
+  "POST quote, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST organize, empty": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "at least one field is required"
+    }
+  },
+  "POST quote, authorize throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }
