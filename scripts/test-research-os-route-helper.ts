@@ -154,6 +154,17 @@ test("readAnyJson hands back any parsed value and answers 400 only for malformed
   if (!r.ok) assert.deepEqual(await read(r.res), { status: 400, cache: "no-store", body: { error: "bad_request" } });
 });
 
+test("a handler result is a plain JSON object, array or Response", () => {
+  // @ts-expect-error a Map serializes to {}
+  withResearchOsRoute({ auth: "none" }, () => new Map([["a", 1]]));
+  // @ts-expect-error a Set serializes to {}
+  withResearchOsRoute({ auth: "none" }, () => new Set([1]));
+  // @ts-expect-error a function is no JSON body
+  withResearchOsRoute({ auth: "none" }, () => () => 1);
+  withResearchOsRoute({ auth: "none" }, () => ({ a: 1 }));
+  withResearchOsRoute({ auth: "none" }, () => [1, 2]);
+});
+
 test("consent is only accepted with auth required", () => {
   // @ts-expect-error consent needs a signed-in learner
   withResearchOsRoute({ auth: "optional", consent: "workspace_tool" }, () => ({}));
