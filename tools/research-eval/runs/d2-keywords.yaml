@@ -1,0 +1,11 @@
+name: d2-keywords
+dataset: openalex-works
+vertices: keywords
+cutoffs: [2012, 2015, 2018]
+horizons: [3, 5]
+m: [1, 3]
+min_works: 20
+seed: 7
+bootstrap_reps: 2000
+aggregations: [min, geomean, product]
+full_bootstrap_check: {cutoff: 2012, reps: 200}
