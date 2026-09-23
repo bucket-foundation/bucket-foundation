@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { graphService, verifyLearner } from "@/lib/research-os/db";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 import { authorizeNodes, readVisibility, storeWithNodes } from "@/lib/research-os/read-access";
 import { requireConsent } from "@/lib/research-os/consent";
 import type { NodeAccess } from "@/lib/research-os/access";
@@ -7,16 +7,13 @@ import { rankNodes, tokenize, type SearchNode } from "@/lib/research-os/search";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const NO_STORE = { headers: { "cache-control": "no-store" } };
-const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim().slice(0, 120);
   const branch = (searchParams.get("branch") || "").trim();
   const limit = Math.min(50, Math.max(1, Number(searchParams.get("limit") || 20)));
-  if (!q || tokenize(q).length === 0) return NextResponse.json({ q, results: [] }, NO_STORE);
+  if (!q || tokenize(q).length === 0) return { q, results: [] };
   const viewerId = req.headers.get("authorization") || req.cookies.getAll().length ? await verifyLearner(req) : null;
   const svc = graphService();
   const tokens = tokenize(q);
@@ -54,12 +51,9 @@ export async function GET(req: NextRequest) {
     const { data: st } = await svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", ranked.map((r) => r.id));
     standing = Object.fromEntries(((st as { node_id: string; stage: string }[]) || []).map((r) => [r.node_id, r.stage]));
   }
-  return NextResponse.json(
-    {
-      q,
-      results: ranked.map((r) => ({ id: r.id, slug: r.slug, title: r.title, kind: r.kind, tier: r.tier, branch: r.branch, summary: r.summary ? r.summary.slice(0, 160) : null, stage: standing[r.id] ?? null })),
-      ...(standingWithheld ? { standingWithheld: true, standingReason: consent?.reason ?? "consent_required" } : {}),
-    },
-    NO_STORE
-  );
-}
+  return {
+    q,
+    results: ranked.map((r) => ({ id: r.id, slug: r.slug, title: r.title, kind: r.kind, tier: r.tier, branch: r.branch, summary: r.summary ? r.summary.slice(0, 160) : null, stage: standing[r.id] ?? null })),
+    ...(standingWithheld ? { standingWithheld: true, standingReason: consent?.reason ?? "consent_required" } : {}),
+  };
+});
