@@ -147,7 +147,7 @@ Model elements, "Outline semantic representation of the model", items 3c, 2a and
 
 The failure mode the paper is built against, Background: "Greenberg conducted a citation network analysis of over 300 publications on a single neuromuscular disorder, and found extensive progressive distortion of citations, to the extent that reviews in reputable journals presented statements as 'facts', which were ultimately based on no evidence at all". And the fix, Discussion: "Because it is far too laborious to check each and every cited document, searching for the relevant Claim, citable Claims are proposed here as a method to dramatically reduce the labor cost of checking a Claim's support."<!-- voice-ignore-line: verbatim quotations from Clark et al. 2014 -->
 
-What it settles: a footing belongs to a claim with its support graph attached, and the support graph has to reach data rather than stopping at a citation. Bucket already enforces this for a student production. `hasUnverifiedSource` at `src/lib/research-os/production-guard.ts:64` blocks acceptance when any source line failed to match a recorded quote locator, and `src/app/api/research-os/review/route.ts:343-354` returns `409 unverified_sources_block_accept`. The proposal below extends that rule from productions to canon nodes.
+What it settles: a footing belongs to a claim with its support graph attached, and the support graph has to reach data rather than stopping at a citation. Bucket already enforces this for a student production. `hasUnverifiedSource` at `src/lib/research-os/production-guard.ts:64` blocks acceptance when any source line failed to match a recorded quote locator, and `src/app/api/research-os/review/route.ts:335-346` returns `409 unverified_sources_block_accept`. The proposal below extends that rule from productions to canon nodes.
 
 ## The proposed schema
 
@@ -268,7 +268,7 @@ export function isGroundedCheck(check: { result: "support" | "contradiction" | "
 
 The node's own footing is a second input this function does not have. Adding it is a real behavior change and belongs in `ros-truth 2` with its own tests.
 
-**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:130`, `computeDuplicateFlag` at `:202` and `lateralReadingFlag` at `:208` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
+**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:125`, `computeDuplicateFlag` at `:131` and `lateralReadingFlag` at `:132` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
 
 ## What a citation carries
 

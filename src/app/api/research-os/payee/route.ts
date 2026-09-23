@@ -9,10 +9,18 @@ const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABA
 
 type Row = { birth_year_bucket: string | null; payee_type: PayeeType | null; guardian_contact_hash: string | null; payee_visibility: boolean | null };
 
-async function load(learnerId: string): Promise<Row | null> {
-  const { data } = await graphService().from("learner_profiles").select("birth_year_bucket,payee_type,guardian_contact_hash,payee_visibility").eq("learner_id", learnerId).maybeSingle();
-  return (data as Row | null) ?? null;
+type Loaded = { ok: true; row: Row | null } | { ok: false };
+
+async function load(learnerId: string): Promise<Loaded> {
+  const { data, error } = await graphService().from("learner_profiles").select("birth_year_bucket,payee_type,guardian_contact_hash,payee_visibility").eq("learner_id", learnerId).maybeSingle();
+  if (error) {
+    console.error("[research-os/payee] learner_profiles read failed:", error.message);
+    return { ok: false };
+  }
+  return { ok: true, row: (data as Row | null) ?? null };
 }
+
+const unavailable = () => bad(503, "profile_unavailable");
 
 function shape(row: Row | null) {
   const decision = payeeFor({
@@ -23,7 +31,10 @@ function shape(row: Row | null) {
   return { payeeType: row?.payee_type ?? null, hasGuardianContact: Boolean(row?.guardian_contact_hash), visibility: row?.payee_visibility ?? true, decision };
 }
 
-export const GET = withResearchOsRoute({ auth: "required" }, async (_req, { learnerId }) => shape(await load(learnerId)));
+export const GET = withResearchOsRoute({ auth: "required" }, async (_req, { learnerId }) => {
+  const loaded = await load(learnerId);
+  return loaded.ok ? shape(loaded.row) : unavailable();
+});
 
 export const POST = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   const read = await readAnyJson(req);
@@ -31,11 +42,13 @@ export const POST = withResearchOsRoute({ auth: "required" }, async (req, { lear
   const body = (read.value ?? {}) as { payeeType?: string; guardianContact?: string; visibility?: boolean };
   if (!["self", "guardian", "custodial"].includes(body.payeeType || "")) return bad(400, "bad_payee_type");
   const existing = await load(learnerId);
-  if (!existing) return bad(404, "no_profile");
+  if (!existing.ok) return unavailable();
+  if (!existing.row) return bad(404, "no_profile");
   const update: Record<string, unknown> = { payee_type: body.payeeType, updated_at: new Date().toISOString() };
   if (typeof body.visibility === "boolean") update.payee_visibility = body.visibility;
   if (body.guardianContact?.trim()) update.guardian_contact_hash = await hashContact(body.guardianContact, SALT);
   const { error } = await graphService().from("learner_profiles").update(update).eq("learner_id", learnerId);
   if (error) return bad(500, "write_failed");
-  return shape(await load(learnerId));
+  const saved = await load(learnerId);
+  return saved.ok ? shape(saved.row) : unavailable();
 });
