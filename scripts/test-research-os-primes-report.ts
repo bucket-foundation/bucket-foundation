@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
+import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, pendingPairIds, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
 
 const node = (id: string, kind = "concept", branch = "02-physics"): ReportNode => ({ id, slug: id, title: id.toUpperCase(), kind, branch });
 
@@ -15,7 +15,7 @@ const edges: ReportEdge[] = [
 ];
 
 test("counts primes, composites and unfactored nodes", () => {
-  const r = buildPrimesReport(nodes, edges, new Set(), new Date("2026-09-21T00:00:00Z"));
+  const r = buildPrimesReport(nodes, edges, new Set(), { now: new Date("2026-09-21T00:00:00Z") });
   assert.equal(r.summary.nodes, 5);
   assert.equal(r.summary.prime, 2);
   assert.equal(r.summary.composite, 2);
@@ -97,4 +97,24 @@ test("the report is read once a minute, shared by concurrent loads, and forgotte
   await loadPrimesReport(svc, 60_000, read);
   assert.equal(reads, 2);
   forgetPrimesReport();
+});
+
+test("confirmed pending pairs mark the nonfaces they would close as missing edges", () => {
+  const ns = [node("a"), node("b", "concept", "01-mathematics"), node("x"), node("y")];
+  const pre = (from: string, to: string): ReportEdge => ({ from_id: from, to_id: to, kind: "prerequisite", confidence: 1 });
+  const es = [pre("a", "x"), pre("b", "y")];
+  const without = buildPrimesReport(ns, es, new Set(), { nullDraws: 50 }).algebra.frontier;
+  assert.deepEqual(without.gaps.counts, { missing_edge: 0, chance: 1, real: 0 });
+  assert.equal(without.top[0].gap, "chance");
+  assert.equal(without.gaps.draws, 50);
+  const pending = pendingPairIds(ns, [
+    { from_slug: "b", to_slug: "a" },
+    { from_slug: "b", to_slug: "gone" },
+  ]);
+  assert.deepEqual(pending, [{ from_id: "b", to_id: "a" }]);
+  const withPairs = buildPrimesReport(ns, es, new Set(), { nullDraws: 50, pendingConfirmed: pending }).algebra.frontier;
+  assert.deepEqual(withPairs.gaps.counts, { missing_edge: 1, chance: 0, real: 0 });
+  assert.equal(withPairs.gaps.counterfactualPairs, 1);
+  assert.equal(withPairs.top[0].gap, "missing_edge");
+  assert.match(withPairs.top[0].p, /^(<0\.02|[01]\.\d+)$/);
 });

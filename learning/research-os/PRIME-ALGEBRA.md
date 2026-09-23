@@ -70,6 +70,34 @@ Implied factors: 26 implications, 10 of them mutual. Kinematics and Vectors hold
 
 Reach: Boltzmann's coefficients run 10, 27, 22, 8, 4 by depth 1 to 5, mean depth 2.6. Equivalence principle spreads from depth 1 to 16, mean 9.6. Kinematics and Vectors share one polynomial.
 
+## M5: A Random Baseline
+
+The count in M2 assumes primes fall on composites independently, and ignores that a composite on 12 primes has more room than one on 2. `nullFrontier` draws tables from the curveball chain (Strona et al., 2014): each trade swaps the primes two composites do not share, so every composite keeps its prime count and every prime its df. 5N trades burn in, N trades separate draws, and 1,000 draws run from a fixed seed. A nonface's p is (empty + 1) / (draws + 1), where empty counts the draws in which no composite holds the whole set; at 1,000 draws the floor is 1/1,001 and the page prints it as "<0.001". Benjamini-Hochberg at 0.05 runs over every nonface tested.
+
+`classifyFrontier` gives each nonface one class:
+- **Missing edge**: a node reaches every prime in the set once the pending pairs the verifier confirmed are added to the graph (`primeReach` over the counterfactual decomposition).
+- **Real gap**: it survives that and passes Benjamini-Hochberg: the shuffles almost always combine it and the graph never does.
+- **Chance**: the rest.
+
+The primes page lists real gaps first and prints the class and p beside each row; the report counts all three. The chain runs in about 370 ms on the local graph, inside the page's one-minute cache.
+
+**Stability.** Sourav et al. (arXiv:2605.27176) report that random and topology-based subsets of a knowledge graph recover much of the full graph's signal for hypothesis generation; one read of the abstract on 2026-09-23 is the whole basis for citing it here, and the paper tests hypothesis generation by a model, which differs from this frontier. `scripts/research-os/frontier-baseline.ts` draws 100 random subsets of the composites, classifies each against the same counterfactual, and reports the Jaccard overlap of its top 20 real gaps with the full graph's.
+
+### On the Local Graph
+
+Run on 2026-09-23, 510 composites, 731 nonfaces.
+
+| Measure | Before the v6 run | After |
+|---|---|---|
+| Confirmed pending pairs in the counterfactual | 98 | 121 |
+| Missing edge | 289 | 331 |
+| Chance | 419 | 378 |
+| Real gap | 23 | 22 |
+
+After the run, 517 of the 731 nonfaces cross a branch: 231 missing edges, 264 chance, and all 22 real gaps. The top real gap is Boltzmann distribution with the Equivalence principle, expected 8.9, p <0.001, then Boltzmann with the neuron doctrine, 8.5, p <0.001. Eleven of the 22 hold the neuron doctrine and 7 the Equivalence principle. Boltzmann with Kinematics and with Vectors, second and third in M2, are missing edges: confirmed pending pairs would close them.
+
+Subsets of 90% of the composites give a median Jaccard of 0.81 over the top 20 real gaps, from 0 to 1, with 0 to 23 real gaps a subset. Subsets of half give no real gap at all: with half the composites the expected counts halve, the null leaves more sets empty, and no p clears the correction. The real-gap list is stable to losing a tenth of the graph and needs most of it to show at all.
+
 ## References
 
 - Sparck Jones, K. (1972). A statistical interpretation of term specificity. *Journal of Documentation*. https://doi.org/10.1108/eb026526
@@ -90,6 +118,9 @@ Reach: Boltzmann's coefficients run 10, 27, 22, 8, 4 by depth 1 to 5, mean depth
 - Sourati, J., Evans, J. (2023). Accelerating science with human-aware artificial intelligence. *Nature Human Behaviour*. https://doi.org/10.1038/s41562-023-01648-z
 - Wu, T., et al. (2022). ZeroC. *NeurIPS*. arXiv:2206.15049
 - Ellis, K., et al. (2021). DreamCoder. *PLDI*. https://doi.org/10.1145/3453483.3454080
+- Strona, G., Nappo, D., Boccacci, F., Fattorini, S., San-Miguel-Ayanz, J. (2014). A fast and unbiased procedure to randomize ecological binary matrices with fixed row and column totals. *Nature Communications*. https://doi.org/10.1038/ncomms5114
+- Benjamini, Y., Hochberg, Y. (1995). Controlling the False Discovery Rate. *JRSS B*. https://doi.org/10.1111/j.2517-6161.1995.tb02031.x
+- Sourav, S., et al. (2026). The Compressive Knowledge Graph Hypothesis. arXiv:2605.27176
 
 ## Novelty
 

@@ -54,9 +54,10 @@ export function chooseBranch(proposed: string, knownBranches: Set<string>, targe
   return best ? best[0] : "01-mathematics";
 }
 
-export function chooseTier(targetTiers: (number | null | undefined)[]): number {
+export function chooseTier(targetTiers: (number | null | undefined)[], lowestTier?: number | null): number {
   const known = targetTiers.filter((t): t is number => typeof t === "number" && Number.isFinite(t));
-  return known.length ? Math.min(...known) : DEFAULT_TIER;
+  if (known.length) return Math.min(...known);
+  return typeof lowestTier === "number" && Number.isFinite(lowestTier) ? lowestTier : DEFAULT_TIER;
 }
 
 export function decideNodeProposal(
@@ -69,6 +70,7 @@ export function decideNodeProposal(
     tierOf: Map<string, number | null>;
     impactOf?: Map<string, number>;
     overrides?: NodeOverrides;
+    lowestTier?: number | null;
   },
 ): NodeDecision {
   if (record.status !== "pending") return { status: record.status, alreadyDecided: true };
@@ -82,7 +84,7 @@ export function decideNodeProposal(
     slug,
     title,
     kind: "concept",
-    tier: chooseTier(record.namedBy.map((t) => ctx.tierOf.get(t))),
+    tier: chooseTier(record.namedBy.map((t) => ctx.tierOf.get(t)), ctx.lowestTier),
     branch,
     summary,
     labels: { en: { title, summary } },

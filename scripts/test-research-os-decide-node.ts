@@ -92,3 +92,13 @@ test("an approval needs a definition: the reviewer's, else the consolidation pas
   assert.equal(decideNodeProposal(record, "approved", ctx).nodeToCreate?.summary, "Two expressions are equal when they name the same value.");
   assert.equal(decideNodeProposal(bare, "rejected", ctx).error, undefined);
 });
+
+test("a seeded base idea named by no target takes the lowest idea tier in the graph", () => {
+  assert.equal(chooseTier([], 4), 4);
+  assert.equal(chooseTier([14], 4), 14);
+  assert.equal(chooseTier([], null), DEFAULT_TIER);
+  const seeded = { ...record, namedBy: [], reasons: {} };
+  const d = decideNodeProposal(seeded, "approved", { ...ctx, lowestTier: 4 });
+  assert.equal(d.nodeToCreate?.tier, 4);
+  assert.deepEqual(d.edgeProposals, []);
+});
