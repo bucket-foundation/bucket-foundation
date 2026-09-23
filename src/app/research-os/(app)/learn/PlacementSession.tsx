@@ -14,13 +14,6 @@ import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState } from "@/componen
 const SLOW_MS = 45_000;
 type Step = "intro" | "ask" | "done";
 
-/**
- * Placement for a deck: ten to twenty open questions that find what a
- * person already knows, so an expert starts mid-graph and a beginner at
- * the foundations. Known atoms are seeded as introduced with a modest
- * schedule (a "Hard" grade), the way the Academy app did; nothing is
- * marked mastered.
- */
 export default function PlacementSession({ branch }: { branch: string }) {
   const a = useAcademy(branch);
   const [step, setStep] = useState<Step>("intro");

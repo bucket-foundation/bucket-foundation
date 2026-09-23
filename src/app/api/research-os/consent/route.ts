@@ -1,17 +1,3 @@
-/**
- * Research OS, consent paths (ros-32).
- *
- * GET  /api/research-os/consent
- *   learner: { profile: {birthYearBucket, consentStatus}, effective: {status, source, path},
- *              pathNeeded: none_needed | school | vendor | ask_age, requests: [...] }
- * POST /api/research-os/consent
- *   { action: "request", vendor: "privo" | "kid" | "manual", guardianContact?: string }
- *     learner starts verified parental consent; the contact is hashed, never stored.
- *   { action: "record", classId, learnerId, requestId?, status: "verified" | "declined", vendorRef? }
- *     class staff records a consent they verified out of band (the manual path).
- *   { action: "class_basis", classId, basis: "none" | "school", document?: string }
- *     class staff sets the school-exception basis on a class.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
 import { verifyClassStaff } from "@/lib/research-os/class-db";
@@ -27,11 +13,6 @@ function bad(status: number, error: string) {
 }
 const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
-/** The profile, or null when the learner has none. Raises when the read
- * did not complete: a failed read used to return null here, and three
- * lines below that null is served as the learner's effective consent,
- * `{status:"none"}` with HTTP 200, which is a claim about them drawn
- * from a read that never finished. */
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
   const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
   if (error) throw new Error(`learner_profiles read failed: ${error.message}`);
@@ -51,9 +32,6 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
-  // A consent answer computed from a read that failed is a more
-  // restrictive answer than the truth, delivered as though it were the
-  // truth. Both reads raise instead, and this says so.
   let effective;
   let profile: LearnerProfile | null;
   try {
@@ -140,10 +118,6 @@ export async function POST(req: NextRequest) {
     }
 
     if (!body.learnerId || (body.status !== "verified" && body.status !== "declined")) return bad(400, "learner_and_status_required");
-    // A miss and a failure mean opposite things here. This records
-    // verified parental consent, and a dropped error told the teacher
-    // the learner is not in their class, which is a claim about the
-    // roster drawn from a read that never finished.
     const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", body.classId).eq("learner_id", body.learnerId).maybeSingle();
     if (memberErr) return bad(503, "class_read_failed");
     if (!member) return bad(404, "not_a_member");

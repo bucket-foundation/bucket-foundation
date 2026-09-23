@@ -1,16 +1,3 @@
-/**
- * Mint a Kruse-Index access token.
- *
- * Usage:
- *   BKT_KRUSE_TOKEN_SECRET=... npx ts-node scripts/mint-kruse-token.ts <recipient> [ttl_days]
- *
- * Example:
- *   BKT_KRUSE_TOKEN_SECRET=... npx ts-node scripts/mint-kruse-token.ts kruse 90
- *
- * Prints a single line: the signed JWT. Drop it into a magic-link URL:
- *   https://bucket.foundation/kruse?t=<TOKEN>
- */
-
 import { mintToken } from "../src/lib/kruse-token";
 
 async function main(): Promise<void> {

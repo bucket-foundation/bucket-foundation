@@ -1,19 +1,5 @@
 "use client";
 
-// AtlasExplorer, the live, interactive explorer for the research-atlas graph.
-// Drives the same-origin proxy /api/research/atlas (which forwards to the
-// read-only atlas API on the Hetzner box). NO arbitrary SQL: it only calls the
-// vetted endpoints (stats, search, funder portfolio, field top-funders/works,
-// org summary, metascience). Stone-bone styling, graceful offline fallback.
-//
-// /api/research/atlas?op=stats
-// /api/research/atlas?op=search&q=&kind=&limit=
-// /api/research/atlas?op=portfolio&id=<funder>&limit=
-// /api/research/atlas?op=field-funders&id=<field>&limit=
-// /api/research/atlas?op=field-works&id=<field>&limit=
-// /api/research/atlas?op=org&ror=<ror>
-// /api/research/atlas?op=metascience&name=&...
-
 import { useCallback, useEffect, useState } from "react";
 
 type SearchHit = {
@@ -73,7 +59,6 @@ export default function AtlasExplorer() {
   const [loadingDetail, setLoadingDetail] = useState(false);
   const [err, setErr] = useState<string>("");
 
-  // Headline stats on mount (proves the API is live).
   useEffect(() => {
     let cancel = false;
     api<Stats>({ op: "stats" })
@@ -161,7 +146,6 @@ export default function AtlasExplorer() {
 
   return (
     <div className="mt-6">
-      {/* Live stats strip (proves the API is live) */}
       {stats && (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines mb-8">
           <MiniStat label="funders" value={fmtInt(stats.funders)} />
@@ -173,7 +157,6 @@ export default function AtlasExplorer() {
         </div>
       )}
 
-      {/* Search */}
       <div className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-7">
         <div className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-3">
           ask the graph — search funders, fields, organizations
@@ -239,7 +222,6 @@ export default function AtlasExplorer() {
         )}
       </div>
 
-      {/* Detail panel */}
       {selected && (
         <div className="mt-6 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-7">
           <div className="flex items-center gap-3">
@@ -272,10 +254,6 @@ export default function AtlasExplorer() {
     </div>
   );
 }
-
-// --------------------------------------------------------------------------- //
-// Detail renderers //
-// --------------------------------------------------------------------------- //
 
 type PortfolioRow = { field: string; works: number; grants: number };
 type FunderRow = { funder: string; short_name: string | null; country_code: string | null; works: number; grants: number };

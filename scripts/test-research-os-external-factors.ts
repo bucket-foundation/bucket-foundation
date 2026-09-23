@@ -1,9 +1,3 @@
-/**
- * A branch's factors from other branches, as node pages and routing load
- * them (src/lib/research-os/db.ts addExternalFactors): closure ancestors,
- * incoming prerequisite edges, and derives_from factors join the subgraph
- * with the edges among them, and nothing unrelated comes along.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { PAGE, PagingError, addExternalFactors, inChunks, pagedRead, type EdgeRow } from "../src/lib/research-os/db";
@@ -11,13 +5,6 @@ import type { GraphNode } from "../src/lib/research-os/types";
 
 type Row = Record<string, any>;
 
-/**
- * A stand-in for the PostgREST builder that honours `order` and `range`
- * rather than ignoring them, and caps an unranged read at PAGE rows the
- * way the server does. A caller that forgets `.range()` therefore reads
- * the same full page forever here too, which is what the paging guard in
- * db.ts exists to catch (Bucket critic C42).
- */
 function fake(tables: Record<string, Row[]>, failOn?: string) {
   return {
     from(table: string) {
@@ -37,8 +24,6 @@ function fake(tables: Record<string, Row[]>, failOn?: string) {
           for (const s of [...sorts].reverse()) {
             rows = [...rows].sort((x, y) => (String(x[s.col]) < String(y[s.col]) ? -1 : String(x[s.col]) > String(y[s.col]) ? 1 : 0) * (s.asc ? 1 : -1));
           }
-          // PostgREST answers at most PAGE rows whether or not a range
-          // was asked for.
           rows = span ? rows.slice(span.from, span.to + 1) : rows;
           rows = rows.slice(0, PAGE);
           return Promise.resolve({ data: rows, error: null }).then(res);
@@ -75,10 +60,6 @@ test("a failed read surfaces as an error", async () => {
 });
 
 test("a chunked read pages past the row cap instead of truncating", async () => {
-  // PostgREST answers at most PAGE rows. Chunking the id list bounds the
-  // request line and says nothing about that, so a read without a page
-  // loop returns the first thousand and reads as the whole answer
-  // (Bucket critic C42).
   const rows: Row[] = Array.from({ length: PAGE * 2 + 7 }, (_, i) => ({
     id: String(i).padStart(6, "0"),
     from_id: "n1",
@@ -102,8 +83,6 @@ test("a read that forgets its range fails loudly rather than spinning", async ()
 });
 
 test("pagedRead walks every page of a read with no id list to chunk", async () => {
-  // The helper this branch is named for had no executed test: making it
-  // stop after the first page left the whole suite green.
   const rows: Row[] = Array.from({ length: PAGE * 2 + 9 }, (_, i) => ({ id: String(i).padStart(6, "0"), learner_id: "l1" }));
   const svc = fake({ learner_node_state: rows });
   const got = await pagedRead<Row>((page) =>

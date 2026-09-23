@@ -1,4 +1,3 @@
-/** Pure tests for import-fetch.ts: the public-URL guard and the HTML stripper. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { htmlToText, isPublicHttpUrl } from "../src/lib/research-os/import-fetch";

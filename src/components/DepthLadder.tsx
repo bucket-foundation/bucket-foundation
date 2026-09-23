@@ -1,19 +1,3 @@
-/**
- * src/components/DepthLadder.tsx (bkt-a7v)
- * ------------------------------------------------------------------
- * The continuous L0→L5 depth ladder, rendered. Maps the pieces Bucket already
- * shipped onto a single visible, navigable climb:
- * Academy mastery (L1, L2) → Canon (L3, L4) → tools + research agent (L4, L5).
- *
- * Pure server component (no client state needed) using the site's stone/bone/
- * gold/aegean design tokens. Data + rung labels come from
- * src/lib/depth-ladder.ts (which vendors scale.py's L0, L5). The research agent
- * is the terminal rung, we LINK into it (/research/agent), never rebuild it.
- *
- * Props let a caller (e.g. the Academy mastery surface) pass the learner's
- * current rung to highlight their position and the on-ramp UP. Omitting it
- * renders the canonical, position-free ladder (e.g. on /mission).
- */
 import Link from "next/link";
 import {
   DEPTH_LADDER,
@@ -29,7 +13,6 @@ const MODE_LABEL: Record<LadderMode, string> = {
   produce: "produce",
 };
 
-// Tone per side of the consume↔produce divide, using existing CSS vars.
 const MODE_ACCENT: Record<LadderMode, string> = {
   consume: "var(--aegean-deep)",
   frontier: "var(--gold-deep)",
@@ -37,13 +20,9 @@ const MODE_ACCENT: Record<LadderMode, string> = {
 };
 
 export interface DepthLadderProps {
-  /** highlight the learner's current rung + the next rung up, if known */
   currentLevel?: DepthLevel;
-  /** show the one-paragraph mission thesis under the heading */
   showThesis?: boolean;
-  /** show the cross-link to /mission */
   missionLink?: boolean;
-  /** heading override (defaults to the canonical title) */
   heading?: string;
 }
 

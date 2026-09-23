@@ -17,7 +17,6 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-# Support running as a script (python3 canon.py) or as a module.
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import resolvers, scoring, bibtex, oa_fetch  # type: ignore
@@ -29,17 +28,13 @@ try:
 except ImportError:
     yaml = None
 
-
 def _now() -> str:
     return dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-
 
 def _yaml_dump(obj) -> str:
     if yaml is not None:
         return yaml.safe_dump(obj, sort_keys=False, allow_unicode=True, width=100)
-    # stdlib fallback
     return _naive_yaml(obj, 0)
-
 
 def _naive_yaml(obj, indent: int) -> str:
     pad = "  " * indent
@@ -69,7 +64,6 @@ def _naive_yaml(obj, indent: int) -> str:
         return "\n".join(out)
     return f"{pad}{_scalar(obj)}"
 
-
 def _scalar(v) -> str:
     if v is None:
         return "null"
@@ -82,13 +76,9 @@ def _scalar(v) -> str:
         return json.dumps(s, ensure_ascii=False)
     return s
 
-
 def _stable_id(record: dict) -> str:
     basis = record.get("doi") or record.get("canonical_url") or record.get("title") or ""
     return "bkt-" + hashlib.sha1(basis.encode("utf-8")).hexdigest()[:12]
-
-
-# ---------- resolve pipeline ----------
 
 def resolve(target: str) -> Optional[dict]:
     kind, val = resolvers.classify_input(target)
@@ -132,7 +122,6 @@ def resolve(target: str) -> Optional[dict]:
 
     return _merge(doi, openalex, crossref, pubmed_rec, arxiv_rec, biorxiv_rec, sources)
 
-
 def _merge(doi, oa, cr, pm, ax, bx, sources) -> dict:
     title = None
     year = None
@@ -169,7 +158,7 @@ def _merge(doi, oa, cr, pm, ax, bx, sources) -> dict:
             "repository": ((oa.get("primary_location") or {}).get("source") or {}).get("host_organization_name") if oa.get("primary_location") else None,
         }
         is_retracted = bool(oa.get("is_retracted"))
-        cr_type = oa.get("type_crossref")  # let Crossref fill type; OpenAlex's "article" is too coarse
+        cr_type = oa.get("type_crossref")
         doi = doi or resolvers._normalize_doi(oa.get("doi") or "")
 
     if cr:
@@ -233,11 +222,9 @@ def _merge(doi, oa, cr, pm, ax, bx, sources) -> dict:
     record["canon_score"] = s
     record["canon_score_reasons"] = reasons
     record["canon_branch_hints"] = scoring.branch_hints(record)
-    # strip private
     record.pop("_crossref_type", None)
     record.pop("is_retracted", None)
     return record
-
 
 def _split_name(name: str) -> tuple[str, str]:
     name = (name or "").strip()
@@ -249,9 +236,6 @@ def _split_name(name: str) -> tuple[str, str]:
         return parts[0], ""
     return parts[-1], " ".join(parts[:-1])
 
-
-# ---------- subcommands ----------
-
 def cmd_resolve(args) -> int:
     rec = resolve(args.target)
     if not rec:
@@ -259,7 +243,6 @@ def cmd_resolve(args) -> int:
         return 2
     print(_yaml_dump(rec))
     return 0
-
 
 def cmd_bib(args) -> int:
     path = Path(args.input)
@@ -279,7 +262,6 @@ def cmd_bib(args) -> int:
     print(f"wrote {bib_path} ({len(records)} records)")
     print(f"wrote {yaml_path}")
     return 0
-
 
 def cmd_dossier(args) -> int:
     folder = Path(args.folder)
@@ -306,7 +288,6 @@ def cmd_dossier(args) -> int:
         idx.write_text(txt)
     print(f"dossier: {len(records)} records written to {folder}")
     return 0
-
 
 def cmd_fetch(args) -> int:
     doi = resolvers._normalize_doi(args.doi)
@@ -335,7 +316,6 @@ def cmd_fetch(args) -> int:
     print(f"no OA PDF available; wrote citation note: {cite_path}")
     return 0
 
-
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="canon.py", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -345,7 +325,6 @@ def main(argv=None) -> int:
     f = sub.add_parser("fetch"); f.add_argument("doi"); f.set_defaults(fn=cmd_fetch)
     args = p.parse_args(argv)
     return args.fn(args)
-
 
 if __name__ == "__main__":
     sys.exit(main())

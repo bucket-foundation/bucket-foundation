@@ -1,9 +1,3 @@
-/**
- * POST /api/mcp, the hosted MCP endpoint (Streamable HTTP, stateless JSON
- * responses): `src/lib/mcp/server.ts` holds the dispatch and the tools.
- * GET returns 405 (no server-initiated stream), DELETE returns 405 (no
- * session to end), OPTIONS answers CORS preflight for browser clients.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { handleBody } from "@/lib/mcp/server";
 

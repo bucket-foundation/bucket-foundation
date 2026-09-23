@@ -12,14 +12,6 @@ import {
   type AtlasDataset,
 } from "@/lib/research-atlas";
 
-// Open-data catalog. Reads the VENDORED research-atlas manifest
-// (src/data/research-atlas-manifest.json, synced from the research-atlas repo by
-// scripts/sync-research-atlas-manifest.mjs) at build time and lists every
-// published dataset. research-atlas is the canonical research-economy graph
-// (Funder→Grant→Organization→Person→Work→Field); each row carries provenance and
-// an as_of timestamp, and each dataset is born citeable here. Stone-bone styling
-// matches /research and /research/tools. See docs/research-tools/05-open-datasets.md.
-
 export const metadata = {
   title: "Open datasets · research-atlas",
   description:
@@ -45,7 +37,6 @@ export default function Page() {
   const datasets = listDatasets();
   const totalRows = m.totals?.rows ?? datasets.reduce((s, d) => s + d.row_count, 0);
 
-  // DataCatalog JSON-LD: the catalog + one Dataset node per published table.
   const catalogJsonLd = {
     "@context": "https://schema.org",
     "@type": "DataCatalog",

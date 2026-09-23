@@ -1,27 +1,10 @@
-/**
- * Canon branch metadata. Source of truth for /canon, /canon/<slug>, footer,
- * and landing grid.
- *
- * **Figures are loaded at module-init time from `canon-figures/figures.json`**
- *, the canonical 99-figure index across 10 branches. Don't hand-edit the
- * `figures: []` arrays in BRANCHES below; edit `canon-figures/figures.json`
- * and the changes flow through on the next build. The hand-coded entries
- * below are leftover seeds that the loader overwrites.
- *
- * Artifact counts in `sources:` reflect the initial canon seed
- * (2026-04-23). The numbers were generated when there was a separate
- * `bucket-research` repo; that repo has since been retired and all canon
- * content was consolidated into `bucket-canon/` and `canon-figures/` in
- * *this* repo (2026-05-15).
- */
-
 import canonFiguresJson from "../../canon-figures/figures.json";
 
 export type FigureSummary = {
   slug: string;
   name: string;
-  note: string;       // "lifespan · region · tradition" or similar
-  works: number;      // OpenAlex authored-works count (0 until wired)
+  note: string;
+  works: number;
   lifespan?: string;
   era?: string;
   region?: string;
@@ -41,10 +24,6 @@ export type Branch = {
   figures: FigureSummary[];
 };
 
-// ----------------------------------------------------------------- figures
-// figures.json branches use the directory naming `01-mathematics`,
-// `08-tradition`, `10-earth`. Our BRANCHES use slug `mathematics`,
-// `deep-history`, etc. Map dir → slug:
 const DIR_TO_SLUG: Record<string, string> = {
   "01-mathematics": "mathematics",
   "02-physics":     "physics",
@@ -56,7 +35,6 @@ const DIR_TO_SLUG: Record<string, string> = {
   "08-tradition":   "deep-history",
   "09-art":         "art",
   "10-earth":       "earth",
-  // "09b sacred-texts" has no figures in figures.json yet
 };
 
 type RawFigure = {
@@ -77,7 +55,6 @@ function figuresFromJson(): Map<string, FigureSummary[]> {
   const data = canonFiguresJson as unknown as { figures: RawFigure[] };
   const out = new Map<string, FigureSummary[]>();
   for (const fig of data.figures) {
-    // a figure belongs to its primary branch (first in `branches`) for routing
     const primaryDir = fig.branches[0];
     const slug = DIR_TO_SLUG[primaryDir];
     if (!slug) continue;
@@ -213,10 +190,6 @@ export const BRANCHES: Branch[] = [
   },
 ];
 
-// Overwrite the hand-coded `figures: []` arrays with the canonical
-// 99-figure list loaded from `canon-figures/figures.json`. The previous
-// Einstein-only seed is preserved by figures.json (it has an `einstein`
-// figure with name "Albert Einstein"), so nothing is lost.
 for (const b of BRANCHES) {
   const loaded = FIGURES_BY_SLUG.get(b.slug);
   if (loaded && loaded.length > 0) b.figures = loaded;
@@ -231,12 +204,7 @@ export function getFigure(branchSlug: string, figureSlug: string) {
   return b?.figures.find((f) => f.slug === figureSlug);
 }
 
-// Canonical repo tree URL, every link that says "open on GitHub" or
-// "edit on GitHub" from /canon/* points here. Was previously the stale
-// `bucket-research` repo (deleted 2026-05-15); everything that mattered
-// already lives in this repo under `bucket-canon/` and `canon-figures/`.
 export const REPO_TREE = "https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon";
 
-// Where the canonical figure metadata + bios live in *this* repo.
 export const FIGURES_TREE = "https://github.com/bucket-foundation/bucket-foundation/tree/main/canon-figures";
 export const DRIVE_URL = "https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B";

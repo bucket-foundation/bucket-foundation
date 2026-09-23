@@ -1,4 +1,3 @@
-/** The placement diagnostic port: closures, the ask order, closure inference, and placement. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Diagnostic, buildClosures } from "../src/lib/academy/diagnostic";

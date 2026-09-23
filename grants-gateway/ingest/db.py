@@ -1,8 +1,3 @@
-"""Shared SQLite schema + idempotent upsert for the grants corpus.
-
-Schema is the column-projection of the TS `Grant` interface in
-../src/types.ts. Keep them aligned by hand for now; v0.2 can codegen.
-"""
 from __future__ import annotations
 
 import json
@@ -66,10 +61,8 @@ VALUES (:id,:title,:summary,:topics_text,:funder,:eligibility);
 
 FTS_DELETE_SQL = "DELETE FROM grants_fts WHERE id = :id;"
 
-
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
 
 def connect(path: Optional[Path] = None) -> sqlite3.Connection:
     p = path or DB_PATH
@@ -80,12 +73,7 @@ def connect(path: Optional[Path] = None) -> sqlite3.Connection:
     con.executescript(DDL)
     return con
 
-
 def upsert(con: sqlite3.Connection, rows: Iterable[dict]) -> int:
-    """Idempotent upsert. Each row dict matches the Grant schema.
-
-    Returns the number of rows touched.
-    """
     n = 0
     cur = con.cursor()
     for r in rows:
@@ -116,7 +104,6 @@ def upsert(con: sqlite3.Connection, rows: Iterable[dict]) -> int:
             con.commit()
     con.commit()
     return n
-
 
 def count(con: sqlite3.Connection, source: Optional[str] = None) -> int:
     if source:

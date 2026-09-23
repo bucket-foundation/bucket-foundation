@@ -1,14 +1,3 @@
-"""Evidence items, field-level spans, and evidence sources.
-
-`main.tex`'s `def:evidence` gives an evidence item no independent Lean type
-of its own in this pass: its definitional weight, kind, tier, and strength
-is exactly what `Eq. cluster-weight`'s `s_i = k(theta_i) * e_i` reduces it to
-before it reaches `hte.belief.score`'s pooled `r`/`s`. This module carries
-that plain-data shape, plus the field-level `EvidenceSpan`
-(`bkt-hte-evidence-span`, `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §3) and the
-`Source` node a stemma (`bkt-hte-stemma-dependence`, `def:stemma`) is built
-over in `hte.belief`.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -16,12 +5,7 @@ from enum import Enum
 
 from .timeline import Interval
 
-
 class EvidenceKind(str, Enum):
-    """The nine independent evidence modalities (`main.tex` §Belief model).
-    `MODEL_PRIOR` is the generating model's own trained-in sense of a period,
-    tracked as one low-tier kind among the nine rather than an unaccounted
-    background assumption (`main.tex` §Engine loop, §Limitations)."""
     MATERIAL = "material"
     TEXTUAL = "textual"
     GENETIC = "genetic"
@@ -32,15 +16,10 @@ class EvidenceKind(str, Enum):
     ICONOGRAPHIC = "iconographic"
     MODEL_PRIOR = "model_prior"
 
-
 class EvidenceFamily(str, Enum):
-    """The three families `kind_distance` (`Eq. cross-kind`) groups the nine
-    kinds into: a pair drawn from two different families counts 1; a pair
-    from the same family counts 0."""
     MATERIAL_TRACE = "material_trace"
     TEXTUAL_TRACE = "textual_trace"
     INFERENCE = "inference"
-
 
 KIND_FAMILY: dict[EvidenceKind, EvidenceFamily] = {
     EvidenceKind.MATERIAL: EvidenceFamily.MATERIAL_TRACE,
@@ -54,9 +33,7 @@ KIND_FAMILY: dict[EvidenceKind, EvidenceFamily] = {
     EvidenceKind.MODEL_PRIOR: EvidenceFamily.INFERENCE,
 }
 
-
 class Tier(str, Enum):
-    """The six source-reliability tiers (`def:evidence`, `evidence-tier`)."""
     T1 = "T1"
     T2 = "T2"
     T3 = "T3"
@@ -64,42 +41,16 @@ class Tier(str, Enum):
     T5 = "T5"
     T6 = "T6"
 
-
 TIER_WEIGHT: dict[Tier, float] = {
     Tier.T1: 2.0, Tier.T2: 1.5, Tier.T3: 1.0, Tier.T4: 0.5, Tier.T5: 0.25, Tier.T6: 0.1,
 }
 
-
 class Stance(str, Enum):
-    """Whether an evidence item asserts its own extracted slot values as
-    true (`POSITIVE`, the default) or denies/downgrades them (`NEGATIVE`,
-    a corrected claim, a downgraded confirmation, a "not X but Y" line).
-    `hte.link.link_evidence` reads this to decide between a support and a
-    refute reading when an item's slots match a hypothesis on all but
-    one, per `bkt-hte-evidence-slots`."""
     POSITIVE = "positive"
     NEGATIVE = "negative"
 
-
 @dataclass(frozen=True)
 class EvidenceSpan:
-    """The field-level grounding for one evidence item (`bkt-hte-evidence-
-    span`, `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §3's per-field addition): the
-    document it comes from, a human-readable locator inside that document,
-    the quoted text, and the exact character range the quote occupies at
-    that locator.
-
-    `doc_length` (`bkt-hte-evidence-span-doc-length`, filed as a PR #60
-    review follow-up in `BEADS-PENDING.jsonl`) is the full length of
-    `doc_id`'s own document text, set by the caller whenever that text is
-    on hand at construction time: every corpus adapter under `hte.corpus`
-    and the `hte.roles` LLM-extraction path pass it, each from the same
-    string `char_start`/`char_end` were located against. `None` when the
-    caller has no document text to measure, an ingestion path this module
-    does not control. A span whose `char_end` reads past its own
-    `doc_length` is refused at construction, catching a hallucinated or
-    mis-tracked offset (the LLM-extraction path is the case most exposed
-    to this) before it reaches `hte.belief.score`."""
     doc_id: str
     locator: str
     quote: str
@@ -137,39 +88,14 @@ class EvidenceSpan:
             doc_length=d.get("doc_length"),
         )
 
-
 @dataclass
 class Source:
-    """One evidence source and its position in the stemma (`bkt-hte-stemma-
-    dependence`, `def:stemma`): `stemma_parents` names the sources this one
-    copies from or shares an archetype with, each edge's copy-confidence
-    weight carried separately (`hte.belief.effective_count`).
-
-    `batches` is opt-in, multi-batch-corpus metadata: which named ingest
-    batch (or batches, for a source a later batch's own dedup pass finds
-    already present under an earlier batch's DOI) contributed this source.
-    Empty for every adapter that ingests its corpus in one pass; `hte.
-    corpus.literature` is the first populated case (`bkt-hte-literature-
-    batch-two`), reads a caller-supplied list of card roots and tags each
-    root's own cards with that root's position, `"batch-1"`/`"batch-2"`/....
-
-    `retracted_by` (`bkt-hte-retraction-propagation`) names the id of
-    whatever retraction superseded this source, `None` while it stands.
-    A retraction is an event, never a deletion (`hte.propagate.apply_
-    retraction`'s own docstring): this field is an ADDITIONAL marker
-    alongside every other field here, never a rewrite of what this
-    source originally was.
-    """
     id: str
     kind: EvidenceKind
     date: str | None = None
     stemma_parents: list[str] = field(default_factory=list)
     batches: list[str] = field(default_factory=list)
     retracted_by: str | None = None
-    # Dependence edges beyond the stemma (`STATISTICAL-AUDIT-2026-09-15.md`,
-    # Evidence: shared authorship, lab, or method are not independent
-    # trials): `hte.belief.effective_count` unions two sources that share
-    # an author, a lab, or a method at full weight.
     authors: list[str] = field(default_factory=list)
     lab: str | None = None
     method: str | None = None
@@ -187,48 +113,8 @@ class Source:
                     stemma_parents=list(d.get("stemma_parents", [])), batches=list(d.get("batches", [])),
                     retracted_by=d.get("retracted_by"))
 
-
 @dataclass
 class EvidenceItem:
-    """One evidence item (`def:evidence`): a kind, tier, source, field-level
-    grounding span, provenance pointer, the hypothesis addresses it supports
-    or refutes, and its similarity views.
-
-    `views` carries zero or more of `"blended_a"` (the corpus's original
-    formula, `main.tex` §Belief model's `e_i_blended_A`), `"cosine"`,
-    `"fuzzy"`, `"motif"` (the multiview split, `bkt-hte-multiview-evidence`),
-    or any later view a new extractor contributes, each a plain
-    `str -> float` entry; `hte.belief.edge_strength` reads it.
-
-    `is_absence` marks an item asserting the absence of evidence rather than
-    its presence, so `hte.belief.cluster_weight` knows to scale it by
-    detectability (`Eq. detectability`) instead of treating it as an
-    ordinary find.
-
-    `actor`/`action`/`object`/`place`/`mechanism`/`interval` are this
-    item's own extracted slot values (`bkt-hte-evidence-slots`), the
-    field `hte.link.link_evidence` reads to decide which hypothesis
-    addresses belong in `supports`/`refutes`: `main.tex` §9 assumes a
-    prior generation pass has already linked evidence to hypothesis
-    addresses, and nothing upstream of this field did that before it was
-    added. Each concept slot is `None` when this item's own text names
-    nothing for that slot (`hte.corpus.quantum_history`'s milestone and
-    claim bullets rarely name all five), read as "not asserted" rather
-    than "asserted as OTHER"; a concept id when a vocabulary lookup or a
-    fuzzy label match resolved one, a raw label string otherwise, for
-    `link_evidence`'s own fuzzy fallback to resolve at match time.
-    `interval` is the dated span this item's own text names, `None` when
-    it names no date at all. `stance` marks whether this item asserts its
-    own slot values as true or denies/downgrades them.
-
-    `retracted_by` (`bkt-hte-retraction-propagation`) names the id of
-    whatever retraction superseded this item, `None` while it stands
-    (the ordinary case). `hte.propagate.apply_retraction` is the one
-    place that sets it, on every existing item naming the retracted
-    address; the item's own `supports`/`refutes`/`stance` never change,
-    since a retraction is an event layered on top of the record, never
-    an edit to what this item originally claimed.
-    """
     id: str
     kind: EvidenceKind
     tier: Tier

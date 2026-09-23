@@ -6,7 +6,6 @@ export const metadata = toolMetadata("reviewguard");
 const _jsonld = toolJsonLd("reviewguard");
 import ReviewGuardClient from "./ReviewGuardClient";
 
-// ReviewGuard run page, cross-paper supporting vs contradicting evidence.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

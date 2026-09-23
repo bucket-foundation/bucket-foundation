@@ -6,7 +6,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** The launch list for the founder: every signup, and a CSV download. Gated by WAITLIST_ADMIN_KEY. */
 export default function WaitlistAdminPage() {
   return (
     <main className="px-4 md:px-6 pt-10 md:pt-16 pb-16">

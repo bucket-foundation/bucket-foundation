@@ -1,37 +1,3 @@
-/**
- * /api/canon/signoff, the human sign-off tool's web route (GOVERNANCE.md's
- * "Canon sign-off" section; CLI counterpart at
- * tools/canon-pipeline/signoff.py). Reuses src/lib/canon-signoff.ts, the
- * shared module GET and POST both call so the approve/reject logic lives
- * in exactly one place in this app.
- *
- * Auth stacks two allowlists: `Authorization: Bearer <supabase access
- * token>` verified against src/lib/research-os/reviewer.ts's
- * RESEARCH_OS_REVIEWER_EMAILS (the existing reviewer gate), AND the
- * caller's email on src/lib/canon-signoff-approvers.ts's
- * CANON_SIGNOFF_APPROVERS. A Research OS teacher reviewer who is not on
- * the second, narrower allowlist gets 403 here even though the first gate
- * passes: reviewer status alone never authorizes a canon approval.
- * Neither allowlist's membership is ever returned to the client; a caller
- * who fails either gate sees the same {error:"forbidden"} 403 either way.
- *
- * GET  -> { records: PendingRecord[] }, every pending record, sorted by
- *   canon_score desc.
- * POST { action: "approve", record } | { action: "reject", record, reason }
- *   -> { ok: true, result }. `record` is a record id, "<path>#<id>", or a
- *   path with exactly one pending record (see canon-signoff.ts's
- *   findRecord). The approver identity is always the verified reviewer's
- *   own email, never a client-supplied field, so attribution cannot be
- *   spoofed. approve always runs the live DOI HEAD-request check (no
- *   client-settable bypass here; the CLI's --offline is CLI-only, for the
- *   no-DOI/offline cases a human operator judges directly).
- *
- * 403 not a reviewer, or a reviewer not on CANON_SIGNOFF_APPROVERS
- *   (also covers an unset/empty allowlist, fail closed) - 400 bad input -
- *   500 the underlying write failed (e.g. a read-only deployment
- *   filesystem; see canon-signoff.ts's own top docstring "OPERATIONAL
- *   NOTE").
- */
 import { NextRequest, NextResponse } from "next/server";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import { isCanonSignoffApprover } from "@/lib/canon-signoff-approvers";

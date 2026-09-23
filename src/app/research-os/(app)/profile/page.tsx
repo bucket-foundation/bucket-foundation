@@ -1,24 +1,5 @@
 "use client";
 
-/**
- * /research-os/profile, the minimal learner profile form (bkt-ros ros-07
- * follow-up, "consent gate wiring"). Two questions, role and a coarse
- * birth-year bucket, nothing else: no birthdate, no name. A learner with
- * no graph.learner_profiles row is blocked from every gated write path
- * (src/lib/research-os/consent.ts's "no_profile" case) and routed here by
- * that gate's response until they answer both.
- *
- * This page never sets consent_status. Answering the age question here
- * does not grant consent for a minor; it only records the coarse fact the
- * gate needs to decide whether consent is required at all. The
- * school/parent consent path that CAN set consent_status
- * (learning/research-os/compliance/README.md part B item 2) stays a TODO,
- * pending the verified-parental-consent vendor choice named there.
- *
- * Auth reuses the same Supabase email-OTP flow as
- * src/app/research-os/workspace/page.tsx and src/app/research-os/review/
- * page.tsx.
- */
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -73,12 +54,6 @@ export default function ResearchOsProfilePage() {
   useEffect(() => {
     if (!token) return;
     setLoadError(null);
-    // This read had no status check anywhere. A 503 carrying JSON parsed
-    // fine, `profile` was undefined, nothing was set, and the learner
-    // saw the empty form a person with no profile sees. Re-entering and
-    // saving then upserts role and birth_year_bucket over the stored
-    // row, and birth_year_bucket is what gates consent, so a read that
-    // failed for a second became a durable write of re-entered values.
     (async () => {
       try {
         const res = await fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } });
@@ -117,9 +92,6 @@ export default function ResearchOsProfilePage() {
         headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
         body: JSON.stringify({ role, birthYearBucket: bucket }),
       });
-      // A gateway 503 carries HTML, so parsing it before the ok check
-      // threw and the outer catch reported a network error with no
-      // retry. The rule decides now.
       const data = (await res.json().catch(() => ({}))) as { error?: string; profile?: ProfileResponse | null };
       if (!res.ok) {
         setSaveError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "save_failed");

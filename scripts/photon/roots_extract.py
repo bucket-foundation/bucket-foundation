@@ -43,12 +43,10 @@ AFFIX_TEMPLATES = {"af", "affix", "suf", "suffix", "pre", "prefix", "com", "comp
 TEXT_GLOSS_RE = re.compile(r"(\*?[^\s,;:()“”]+) \((?:[^()“”]*?, )?“([^”]+)”\)")
 SEMITIC_ROOT_TEMPLATES = {"he-rootbox": "he", "he-root": "he", "he-root-link": "he", "ar-rootbox": "ar", "ar-root": "ar"}
 
-
 def clean(s):
     if not isinstance(s, str):
         return ""
     return s.strip()
-
 
 def template_gloss(args, pos_key="5"):
     for k in ("t", "gloss", pos_key):
@@ -57,17 +55,14 @@ def template_gloss(args, pos_key="5"):
             return v
     return ""
 
-
 def is_proto(lang):
     return lang.endswith("-pro")
-
 
 def is_affix(term, lang):
     t = term.lstrip("*")
     if t.startswith("-"):
         return True
     return t.endswith("-") and not is_proto(lang)
-
 
 def parse_etymon_spec(spec):
     out = []
@@ -133,9 +128,7 @@ def parse_etymon_spec(spec):
             break
     return out
 
-
 TOKEN_RE = re.compile(r'"((?:[^"\\]|\\.)*)"|([\[\]{}:,])|(-?\d+(?:\.\d+)?|true|false|null)|(\s+)')
-
 
 def tolerant_tree(fragment):
     start = fragment.find('"terms" : [')
@@ -202,20 +195,17 @@ def tolerant_tree(fragment):
                 break
     return last_root
 
-
 def groups_of(node):
     ch = node.get("children")
     if ch is None:
         ch = node.get("_list")
     return [g for g in ch or [] if isinstance(g, dict)]
 
-
 def terms_of(group):
     t = group.get("terms")
     if t is None:
         t = group.get("_list")
     return [x for x in t or [] if isinstance(x, dict)]
-
 
 def subtree_depth(term, seen=0):
     if seen > 40:
@@ -226,7 +216,6 @@ def subtree_depth(term, seen=0):
             if isinstance(t, dict):
                 best = max(best, 1 + subtree_depth(t, seen + 1))
     return best
-
 
 def tree_main_chain(root):
     chain = []
@@ -252,7 +241,6 @@ def tree_main_chain(root):
         node = t
     return chain
 
-
 def spec_main_chain(nodes):
     chain = []
     cur = nodes
@@ -269,7 +257,6 @@ def spec_main_chain(nodes):
         chain.append({"lang": pick["lang"], "term": pick["term"], "rel": pick["rel"] or "der", "gloss": pick.get("gloss") or pick.get("id", "")})
         cur = pick["parents"]
     return chain
-
 
 def affix_step(name, args):
     lang = clean(args.get("1"))
@@ -290,7 +277,6 @@ def affix_step(name, args):
             return {"lang": clang, "term": form, "rel": "af", "gloss": gloss}
     return None
 
-
 def text_glosses(text):
     out = {}
     for m in TEXT_GLOSS_RE.finditer(text or ""):
@@ -298,7 +284,6 @@ def text_glosses(text):
         if form not in out and gloss and len(gloss) < 120:
             out[form] = gloss
     return out
-
 
 def first_gloss(entry):
     for s in entry.get("senses") or []:
@@ -309,7 +294,6 @@ def first_gloss(entry):
                 return g
     return ""
 
-
 def sense_text(entry):
     out = []
     for sense in (entry.get("senses") or [])[:8]:
@@ -317,7 +301,6 @@ def sense_text(entry):
         if g:
             out.append(g)
     return "; ".join(out)[:400]
-
 
 def romanization(entry):
     for f in entry.get("forms") or []:
@@ -329,17 +312,14 @@ def romanization(entry):
             return tr
     return ""
 
-
 def first_ipa(entry):
     for s in entry.get("sounds") or []:
         if s.get("ipa"):
             return clean(s["ipa"])
     return ""
 
-
 def split_zh(word):
     return clean(word.split(" /")[0].split("／")[0])
-
 
 def extract_entry(entry, with_translations):
     lang = clean(entry.get("lang_code"))
@@ -471,7 +451,6 @@ def extract_entry(entry, with_translations):
                 rows["translation"].append((word, pos, sense, idx, topics or "", tl, tw, clean(tr.get("roman"))))
     return rows
 
-
 def process_batch(args):
     lines, with_translations = args
     agg = {"word": [], "etym": [], "root": [], "word_root": [], "translation": [], "text_gloss": []}
@@ -489,7 +468,6 @@ def process_batch(args):
             agg[k].extend(v)
     return agg, bad
 
-
 SCHEMA = """
 create table if not exists word (lang text, word text, pos text, ety integer, gloss text, roman text, ipa text, senses text, primary key (lang, word, pos, ety));
 create table if not exists etym (lang text, word text, rel text, anc_lang text, anc_form text, anc_gloss text, ord integer, ety integer, primary key (lang, word, ety, anc_lang, anc_form));
@@ -506,14 +484,12 @@ create index if not exists word_root_root on word_root (root_lang, root_form);
 create index if not exists etym_anc on etym (anc_lang, anc_form);
 """
 
-
 def open_db(path):
     db = sqlite3.connect(path)
     db.execute("pragma journal_mode=wal")
     db.execute("pragma synchronous=normal")
     db.executescript(SCHEMA)
     return db
-
 
 def write_rows(db, agg):
     db.executemany("insert or ignore into word values (?,?,?,?,?,?,?,?)", agg["word"])
@@ -525,7 +501,6 @@ def write_rows(db, agg):
     db.executemany("insert or ignore into word_root values (?,?,?,?,?,?)", agg["word_root"])
     db.executemany("insert into translation values (?,?,?,?,?,?,?,?)", agg["translation"])
     db.executemany("insert into text_gloss (form, gloss) values (?,?) on conflict (form, gloss) do update set n = n + 1", agg["text_gloss"])
-
 
 def run_file(db, pool, path, workers, batch_bytes, translations):
     name = os.path.basename(path)
@@ -564,7 +539,6 @@ def run_file(db, pool, path, workers, batch_bytes, translations):
         db.execute("update progress set done = 1 where file = ?", (name,))
     print(f"{name}: done, {nlines} lines in {time.time() - t0:.0f}s", flush=True)
 
-
 def iter_batches(fh, max_bytes):
     while True:
         lines = []
@@ -578,7 +552,6 @@ def iter_batches(fh, max_bytes):
         if not lines:
             return
         yield lines, fh.tell()
-
 
 def print_counts(db):
     print("lang      words    etym   roots  word_root  translations_to")
@@ -594,7 +567,6 @@ def print_counts(db):
     print("proto roots with gloss:", proto)
     for t in ("word", "etym", "root", "word_root", "translation", "text_gloss"):
         print(t, db.execute(f"select count(*) from {t}").fetchone()[0])
-
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -621,7 +593,6 @@ def main(argv=None):
     db.executescript(INDEXES)
     print_counts(db)
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

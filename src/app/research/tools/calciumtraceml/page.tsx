@@ -6,7 +6,6 @@ export const metadata = toolMetadata("calciumtraceml");
 const _jsonld = toolJsonLd("calciumtraceml");
 import CalciumTraceClient from "./CalciumTraceClient";
 
-// CalciumTraceML run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

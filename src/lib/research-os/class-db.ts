@@ -1,10 +1,3 @@
-/**
- * Research OS, class layer DB access (ros-27, the Class step): memberships
- * with roles, assignments, level overrides. Same contract as db.ts: routes
- * verify the caller, these wrappers read and write through the service-role
- * client bound to the private `graph` schema. Never import from a client
- * component.
- */
 import type { NextRequest } from "next/server";
 import { awardProgress, graphService, inChunks, verifyLearnerIdentity } from "./db";
 import { authorizeNode, authorizeNodes } from "./read-access";
@@ -43,10 +36,6 @@ function assignmentFromRow(r: AssignmentRow): Assignment & { assignedBy: string 
   };
 }
 
-/** Raises when the read did not complete. An empty list is a person in no
- * class, and verifyClassStaff turns that into "you hold no role here",
- * so the two have to stay apart: repairing the classes read and leaving
- * this one still answered an outage with a permissions verdict. */
 export async function loadMemberships(userId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("learner_id", userId);
   if (error) throw new Error(`loadMemberships: class_members read failed: ${error.message}`);
@@ -54,9 +43,6 @@ export async function loadMemberships(userId: string): Promise<Membership[]> {
   return (data as MemberRow[]).map((r) => ({ classId: r.class_id, userId: r.learner_id, role: (r.role || "learner") as Role, relatedLearnerId: r.related_learner_id }));
 }
 
-/** Raises when the read did not complete. An empty list is a class with
- * nobody in it, and the members route served that at 200 underneath a
- * staff check that answers 503 for the same outage. */
 export async function loadClassMemberships(classId: string): Promise<Membership[]> {
   const { data, error } = await graphService().from("class_members").select("class_id,learner_id,role,related_learner_id").eq("class_id", classId);
   if (error) throw new Error(`loadClassMemberships: class_members read failed: ${error.message}`);
@@ -70,15 +56,6 @@ export interface ClassStaff {
   roles: Role[];
 }
 
-/**
- * Who runs a class: the class's reviewer_email (the Phase 0 teacher
- * identity) or a membership with role teacher or librarian. Returns the
- * caller's roles in the class, or null when they hold none.
- */
-/** A staff check, or the fact that it could not be made. The class read
- * used to return null on failure, and every caller reads null as "you
- * hold no role in this class", so an outage reached a teacher as a
- * permissions answer about themselves. */
 export type StaffCheck = { ok: true; staff: ClassStaff | null } | { ok: false; reason: "unavailable" };
 
 export async function verifyClassStaff(req: NextRequest, classId: string): Promise<StaffCheck> {
@@ -109,15 +86,6 @@ export type StaffAssignments =
   | { ok: true; assignments: (Assignment & { assignedBy: string | null; createdAt: string })[] }
   | { ok: false; reason: "unavailable" };
 
-/**
- * Every assignment in a class, for the staff who run it.
- *
- * The learner-facing sibling of this function was fixed to refuse the
- * whole list on a failed read; this one, thirty lines above it in the
- * same file, kept answering an empty list. A teacher then read "no
- * assignments" during an outage, and lost everything past a thousand in
- * a class that has them.
- */
 export async function listAssignments(classId: string): Promise<StaffAssignments> {
   try {
     const rows = await inChunks<AssignmentRow>([classId], (chunk, page) =>
@@ -138,33 +106,19 @@ export async function listAssignments(classId: string): Promise<StaffAssignments
 
 export interface LearnerAssignment extends Assignment {
   className: string;
-  /** Empty when `targetHidden` is true: the learner may not read the node. */
   targetSlug: string;
   targetTitle: string;
-  /** The assignment is theirs, and the node it points at is not readable. */
   targetHidden: boolean;
   status: AssignmentStatus;
 }
 
 export type LearnerAssignments = { ok: true; assignments: LearnerAssignment[] } | { ok: false; reason: "unavailable" };
 
-/**
- * Open assignments across every class the learner belongs to, with status.
- *
- * An access-store failure refuses the whole list. Collapsing it to "nothing
- * is visible" stripped the title and slug off every assignment for every
- * learner and reported it as a normal answer, which is the failure
- * read-access.ts exists to stop (Bucket critic C33).
- */
 export async function listAssignmentsForLearner(learnerId: string): Promise<LearnerAssignments> {
   const svc = graphService();
   const memberships = await loadMemberships(learnerId);
   const classIds = Array.from(new Set(memberships.map((m) => m.classId)));
   if (classIds.length === 0) return { ok: true, assignments: [] };
-  // This read feeds the whole function, and it discarded its error and
-  // never paged: an outage rendered "No assignments yet" and a class
-  // past a thousand open assignments lost the remainder, both with no
-  // sign (Bucket critic C71, C77).
   let rows: AssignmentRow[];
   try {
     rows = await inChunks<AssignmentRow>(classIds, (chunk, page) =>
@@ -184,13 +138,6 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const assignments = rows.map(assignmentFromRow);
   if (assignments.length === 0) return { ok: true, assignments: [] };
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
-  // Every one of these reads used to discard its error and go unchunked.
-  // Above roughly 200 ids the nodes read answers 414, `nodes` came back
-  // null, and every row was served with a blank title and a blank slug
-  // while targetHidden stayed false, which is the invariant this file
-  // declares on LearnerAssignment and the failure its own header forbids
-  // (Bucket critic C50). inChunks throws on an error, so a failed read
-  // reaches the caller as unavailable.
   let nodes: { id: string; slug: string; title: string }[];
   let classes: { id: string; name: string }[];
   let states: { node_id: string; stage: Stage }[];
@@ -214,10 +161,6 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
     console.error("[research-os] assignment read failed:", err instanceof Error ? err.message : err);
     return { ok: false, reason: "unavailable" };
   }
-  // An assignment names a node, and its title reaches the learner, so a
-  // node they may not read carries no title or slug here (Bucket critic
-  // C27). The assignment itself stays in the list: it is theirs, and the
-  // class staff who set it can see what it points at.
   const readableTargets = await authorizeNodes(nodeIds, { id: learnerId }, "view");
   if (!readableTargets.ok) return { ok: false, reason: "unavailable" };
   const visibleTargets = new Set(readableTargets.allowed);
@@ -254,8 +197,6 @@ export async function createAssignment(staff: ClassStaff, classId: string, targe
     return { ok: false, error: "unavailable" };
   }
   if (!node) return { ok: false, error: "target_not_found" };
-  // Staff assign what they may read: resolving a slug is a read, and a
-  // node hidden from them cannot become an assignment.
   const staffMayRead = await authorizeNode((node as { id: string }).id, { id: staff.id }, "view");
   if (!staffMayRead.ok) return { ok: false, error: staffMayRead.reason === "unavailable" ? "write_failed" : "target_not_found" };
   const { data, error } = await svc
@@ -293,12 +234,6 @@ export async function overrideLevel(
 ): Promise<ClassResult<{ fromStage: Stage | null; toStage: Stage }>> {
   if (!canOverride(staff.roles)) return { ok: false, error: "forbidden" };
   const svc = graphService();
-  // Both reads answer before a durable write. A failed membership read
-  // used to reach the teacher as "not a member", a claim about the
-  // learner, and a failed state read used to become fromStage null,
-  // which validateOverride then judged and graph.override_level then
-  // recorded in its audit row. An audit trail must never hold a stage
-  // the code did not read.
   const { data: member, error: memberErr } = await svc.from("class_members").select("learner_id").eq("class_id", classId).eq("learner_id", learnerId).maybeSingle();
   if (memberErr) {
     console.error("[research-os/class] class_members read failed:", memberErr.message);
@@ -313,11 +248,6 @@ export async function overrideLevel(
   const fromStage = ((state as { stage: Stage } | null)?.stage ?? null) as Stage | null;
   const v = validateOverride({ fromStage, toStage, reason });
   if (!v.ok) return { ok: false, error: v.error };
-  // A teacher override is the one write that lowers a stage, and its two
-  // writes belong together: graph.override_level locks the state row,
-  // appends the evidence event built from the stage it locked, and writes
-  // the audit row in the same transaction. An audit insert that failed
-  // after a committed append left a demotion nobody could account for.
   const { data, error } = await svc.rpc("override_level", {
     p_learner: learnerId,
     p_node: nodeId,
@@ -328,8 +258,6 @@ export async function overrideLevel(
   });
   if (error) {
     const code = (error as { code?: string }).code ?? null;
-    // A lock wait or a serialization failure is worth another attempt from
-    // the caller; anything else is a refusal.
     if (code === "55P03" || code === "40001" || code === "40P01") return { ok: false, error: "busy" };
     return { ok: false, error: "write_failed" };
   }
@@ -343,9 +271,6 @@ export async function overrideLevel(
   };
   if (!applied.ok) return { ok: false, error: applied.error === "same_level" ? "same_level" : "write_failed" };
 
-  // The append's award rule runs here, since the RPC wrote the row: the
-  // teacher's action keeps the learner's activity current, and XP follows
-  // the node's high-water mark, which a demotion does not move.
   if (applied.stage) {
     try {
       await awardProgress(learnerId, nodeId, applied.award_from ?? null, applied.stage, { xp: applied.awards === true });
@@ -379,7 +304,6 @@ export async function setMemberRole(
 
 export { loadClassMemberships as listMembers };
 
-/** True when the person holds a staff role (teacher or librarian) in any class; the app shell shows the Teach group on it. */
 export async function isClassStaffAnywhere(userId: string): Promise<boolean> {
   try {
     const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", userId).in("role", ["teacher", "librarian"]).limit(1);

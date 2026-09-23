@@ -6,7 +6,6 @@ export const metadata = toolMetadata("cellsegtrack");
 const _jsonld = toolJsonLd("cellsegtrack");
 import CellSegClient from "./CellSegClient";
 
-// CellSegTrack run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

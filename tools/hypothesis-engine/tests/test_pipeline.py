@@ -15,7 +15,6 @@ requires_real_run = pytest.mark.skipif(
     reason="tools/hypothesis-engine/runs/quantum-history-real/20260910T001819Z is not present in this checkout",
 )
 
-
 def test_from_run_skips_choose_period_and_run_campaign(tmp_path, monkeypatch):
     run_dir = tmp_path / "an-existing-run"
     run_dir.mkdir()
@@ -42,26 +41,20 @@ def test_from_run_skips_choose_period_and_run_campaign(tmp_path, monkeypatch):
     pipeline_json = json.loads((Path(tmp_path / "pipeline-out") / "PIPELINE.json").read_text())
     assert pipeline_json["outcome"] == "ok"
 
-
 def test_missing_manifest_in_from_run_skips_downstream_stages(tmp_path):
     run_dir = tmp_path / "empty-run"
-    run_dir.mkdir()  # no MANIFEST.json
+    run_dir.mkdir()
 
     summary = pipeline.run_pipeline({
         "from_run": str(run_dir), "out_dir": str(tmp_path / "runs"),
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
     })
 
-    # tests/swarm/FINDINGS-2026-09-10.md, FINDING-2026-09-10-005b: a
-    # from_run naming a directory with no MANIFEST.json is a real
-    # failure now, surfaced as such - emit_paper fails outright and
-    # referee/publish cascade-skip off that failure.
     assert summary["outcome"] == "error"
     for name in ("emit_paper", "referee", "publish"):
         assert summary["stages"][name]["ran"] is False
     assert summary["stages"]["emit_paper"]["ok"] is False
     assert summary["paper_dir"] is None
-
 
 def test_emit_paper_failure_skips_referee_and_publish(tmp_path, monkeypatch):
     run_dir = tmp_path / "an-existing-run"
@@ -84,15 +77,9 @@ def test_emit_paper_failure_skips_referee_and_publish(tmp_path, monkeypatch):
     assert summary["stages"]["emit_paper"]["ok"] is False
     assert "emit_paper exploded" in summary["stages"]["emit_paper"]["error"]
     assert summary["stages"]["referee"]["ran"] is False
-    assert not referee_calls  # referee.referee was never called
-
+    assert not referee_calls
 
 def test_emit_paper_failure_still_runs_writeback_but_skips_referee_and_publish(tmp_path, monkeypatch):
-    """`bkt-hte-writeback-review` (PR #36's own review): `writeback`
-    reads only `run_dir`, real regardless of whether `emit_paper` itself
-    succeeded, so an `emit_paper` failure must not cascade to it the way
-    it does to `referee`/`publish` (both of which need the paper
-    `emit_paper` writes)."""
     run_dir = tmp_path / "an-existing-run"
     run_dir.mkdir()
     (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "c", "counts": {}}))
@@ -137,13 +124,7 @@ def test_emit_paper_failure_still_runs_writeback_but_skips_referee_and_publish(t
     assert summary["stages"]["writeback"]["outcome"] == "ok"
     assert writeback_calls == [1]
 
-
 def test_writeback_failure_never_skips_publish(tmp_path, monkeypatch):
-    """The other half of the same cascade rule: `publish` needs only
-    `emit_paper`'s own paper, never `writeback`'s own outcome, so a
-    failed `writeback` (here, a missing `writeback_branch`) never skips
-    `publish`. `PIPELINE.json["outcome"]` still reads `"failed"`
-    overall, since `writeback` itself did not come back `ok`."""
     run_dir = tmp_path / "an-existing-run"
     run_dir.mkdir()
     (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "c", "counts": {}}))
@@ -156,7 +137,7 @@ def test_writeback_failure_never_skips_publish(tmp_path, monkeypatch):
     summary = pipeline.run_pipeline({
         "from_run": str(run_dir), "out_dir": str(tmp_path / "runs"),
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
-        "writeback": True, "writeback_branch": None,  # missing -> writeback fails its own precondition
+        "writeback": True, "writeback_branch": None,
     })
 
     assert summary["stages"]["writeback"]["ran"] is False
@@ -167,19 +148,9 @@ def test_writeback_failure_never_skips_publish(tmp_path, monkeypatch):
     assert summary["stages"]["publish"]["ok"] is True
     assert publish_calls == [1]
 
-    # The overall pipeline still reads "failed": writeback was a required
-    # stage (writeback=True) that did not come back ok, even though the
-    # stage it never gates (publish) succeeded on its own.
     assert summary["outcome"] == "failed"
 
-
 def test_writeback_requires_signoff_even_with_a_branch(tmp_path, monkeypatch):
-    """PLAN.md section 10 and GOVERNANCE.md: a named human sign-off is
-    required before any write into bucket-canon/, so `writeback_branch`
-    alone is not enough. A missing `writeback_signoff` fails the stage
-    with its own documented reason, distinct from the missing-branch
-    failure above, and never reaches `hte.canon_writeback.write_back` at
-    all (no card, no file, no partial write)."""
     run_dir = tmp_path / "an-existing-run"
     run_dir.mkdir()
     (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "c", "counts": {}}))
@@ -201,16 +172,11 @@ def test_writeback_requires_signoff_even_with_a_branch(tmp_path, monkeypatch):
     assert summary["stages"]["writeback"]["ok"] is False
     assert summary["stages"]["writeback"]["outcome"] == "failed"
     assert "writeback_signoff" in summary["stages"]["writeback"]["error"]
-    assert not write_back_calls  # write_back itself was never reached
+    assert not write_back_calls
 
     assert summary["outcome"] == "failed"
 
-
 def test_writeback_not_requested_is_a_skip_not_a_failure(tmp_path, monkeypatch):
-    """The default `writeback=False` path stays a deliberate,
-    non-failing skip (`STAGE.json["outcome"] == "skipped"`), distinct
-    from `writeback=True` with a missing branch (`"failed"`, the
-    previous test)."""
     run_dir = tmp_path / "an-existing-run"
     run_dir.mkdir()
     (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "c", "counts": {}}))
@@ -231,11 +197,7 @@ def test_writeback_not_requested_is_a_skip_not_a_failure(tmp_path, monkeypatch):
     assert written_stage["outcome"] == "skipped"
     assert "not requested" in written_stage["output"]["skipped"]
 
-
 def test_pinned_corpus_runs_choose_period_when_not_from_run(tmp_path, monkeypatch):
-    """`quantum-history` names a real `hte.periods` candidate, so a fresh
-    (non-`from_run`) pipeline call ranks it against the other candidates
-    instead of skipping straight to `run_campaign`."""
     monkeypatch.setattr(
         "hte.runner.run_campaign",
         lambda cfg: (_ for _ in ()).throw(RuntimeError("run_campaign should not run in this test")),
@@ -269,7 +231,6 @@ def test_pinned_corpus_runs_choose_period_when_not_from_run(tmp_path, monkeypatc
     assert called["cfg"]["corpus"] == "quantum-history"
     assert summary["outcome"] == "ok"
 
-
 def test_unranked_corpus_skips_choose_period_but_still_runs_campaign(tmp_path, monkeypatch):
     import hte.runner as runner_mod
 
@@ -296,7 +257,6 @@ def test_unranked_corpus_skips_choose_period_but_still_runs_campaign(tmp_path, m
     assert summary["stages"]["run_campaign"]["ran"] is True
     assert summary["outcome"] == "ok"
 
-
 @requires_real_run
 def test_run_pipeline_end_to_end_from_a_real_run_dry_run():
     dest = SCRATCH_ROOT / f"_test-pipeline-{uuid.uuid4().hex[:8]}"
@@ -317,27 +277,8 @@ def test_run_pipeline_end_to_end_from_a_real_run_dry_run():
     finally:
         shutil.rmtree(dest, ignore_errors=True)
 
-
-# --------------------------------------------------------------------------
-# `bkt-hte-writeback-review` (PR #36's own review, Medium finding): the
-# `writeback` stage itself, over a real (fake-mode, `hte-synth`-shaped)
-# campaign run rather than a hand-built manifest, so `hte.canon_writeback.
-# write_back`'s own corpus re-ingest has a real corpus loader to resolve.
-# `emit_paper`/`referee`/`publish` stay monkeypatched, same as every
-# other test in this file: this section's own job is the `writeback`
-# stage alone, exercised end to end already by `tests/
-# test_canon_writeback.py`'s own `write_back` tests.
-# --------------------------------------------------------------------------
-
-
 @pytest.fixture(scope="module")
 def synth_run_dir_for_writeback(tmp_path_factory):
-    """One real, small campaign run directory, `hte.cli_synth.
-    run_one_seed`'s own recipe (`tests/test_artifacts.py`'s own
-    `fresh_synth_run`) minus its own `finally: _CORPUS_LOADERS.pop(...)`:
-    `hte.canon_writeback.write_back` re-resolves `run_dir`'s own corpus
-    by name AFTER the campaign completes, so the loader this fixture
-    registers must outlive `run_campaign`'s own call, not just it."""
     from hte import cli_synth
     from hte import runner as runner_mod
     from hte import synth as synth_mod
@@ -353,18 +294,12 @@ def synth_run_dir_for_writeback(tmp_path_factory):
     finally:
         runner_mod._CORPUS_LOADERS.pop(corpus_name, None)
 
-
 def _mock_paper_referee_publish(monkeypatch) -> None:
     monkeypatch.setattr(pipeline.paper_mod, "emit_paper", lambda run_dir, out_dir: {"paper_dir": str(out_dir)})
     monkeypatch.setattr(pipeline.referee_mod, "referee", lambda paper_dir, **k: {"latex_clean": True, "voice_clean": True, "findings": []})
     monkeypatch.setattr(pipeline.publish_mod, "publish", lambda run_dir, paper_dir, **k: {"dry_run": True})
 
-
 def test_fresh_run_hashes_the_gate_the_writeback_stage_applies(tmp_path, monkeypatch):
-    """Preregistration (item 5): the pipeline's write-back floors flow into
-    the fresh run's config, so `MANIFEST.json["prereg"]["criteria"]` and
-    the values `write_back` receives are the same numbers, and the stage
-    reports no `prereg_mismatch`."""
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     _mock_paper_referee_publish(monkeypatch)
     received: dict = {}
@@ -395,7 +330,6 @@ def test_fresh_run_hashes_the_gate_the_writeback_stage_applies(tmp_path, monkeyp
     criteria = manifest["prereg"]["criteria"]
     assert (criteria["floor_P"], criteria["floor_u"], criteria["lift_floor"], criteria["fdr_q"]) == (0.7, 0.4, 0.4, 0.2)
 
-
 def test_from_run_regated_under_other_floors_records_the_prereg_mismatch(tmp_path, monkeypatch, synth_run_dir_for_writeback):
     _mock_paper_referee_publish(monkeypatch)
     summary = pipeline.run_pipeline({
@@ -407,7 +341,6 @@ def test_from_run_regated_under_other_floors_records_the_prereg_mismatch(tmp_pat
     })
     assert summary["stages"]["writeback"]["ok"] is True
     assert summary["stages"]["writeback"]["prereg_mismatch"] == ["floor_P", "floor_u"]
-
 
 def test_writeback_stage_dry_run_writes_nothing(tmp_path, monkeypatch, synth_run_dir_for_writeback):
     _mock_paper_referee_publish(monkeypatch)
@@ -422,9 +355,8 @@ def test_writeback_stage_dry_run_writes_nothing(tmp_path, monkeypatch, synth_run
     })
 
     assert summary["stages"]["writeback"]["ok"] is True
-    assert summary["stages"]["writeback"]["output"]  # the paths write_back WOULD write
+    assert summary["stages"]["writeback"]["output"]
     assert not out_root.exists()
-
 
 def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_next_to_envelope(tmp_path, monkeypatch, synth_run_dir_for_writeback):
     from hte import canon_writeback
@@ -435,10 +367,6 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
     fake_repo_root.mkdir()
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     out_root = fake_repo_root / "bucket-canon"
-    # A real (`dry_run=False`) writeback stage reaches the LLM-backed
-    # `hte.roles.understanding` call inside `write_back`; fake mode keeps
-    # it deterministic and network-free, the same convention every other
-    # real-write-back test in this package follows.
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
 
     summary = pipeline.run_pipeline({
@@ -446,7 +374,7 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
         "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
         "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
-        "writeback_fdr_q": 1.0,  # disables the FDR gate (item 5), out of scope here
+        "writeback_fdr_q": 1.0,
         "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
         "dry_run": False, "skip_publish": True,
     })
@@ -458,43 +386,16 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
         assert path.is_file(), path
 
     card_paths = [p for p in written if p.parent == out_root / "07-mind" / "hypotheses" and p.name != "INDEX.md"]
-    assert card_paths  # at least one survivor cleared the floor=0.0/u_max=1.0 selection
+    assert card_paths
 
-    # `write_back`'s own return order (its docstring): cards, then the
-    # branch index, then the ingestion-index file, then the envelope --
-    # the last path written is always the envelope.
     envelope_path = written[-1]
     assert envelope_path.parent == fake_repo_root / "public" / "research" / "hypotheses"
     bridge_path = envelope_path.with_name(envelope_path.stem + ".bridge.json")
     assert bridge_path.is_file()
 
-    assert summary["stages"]["publish"]["ran"] is False  # skip_publish=True
-
-
-# --------------------------------------------------------------------------
-# PR #62 review: the two `write_back`-own no-partial-state refusals
-# (`signoff`, PR #36's own review; `understanding`, `bkt-hte-
-# understanding-artifact`/PR #60's own review) already have a combined
-# test at the `write_back` layer (`tests/test_canon_writeback.py::
-# test_write_back_refuses_without_signoff_or_understanding`), but neither
-# had one that goes through `run_pipeline` (the layer `hte.cli_pipeline`
-# itself calls), where `_time_stage`'s own broad except is what stands
-# between a refusal and an unhandled exception. `pipeline.run_pipeline`'s
-# own `writeback_signoff` precondition only rejects a *falsy* value
-# (`cfg["writeback_signoff"]` unset or `""`), so a whitespace-only
-# signoff passes that check and reaches `write_back`'s own `.strip()`
-# refusal instead, real ground for exercising it at this layer rather
-# than only at `write_back`'s own.
-# --------------------------------------------------------------------------
-
+    assert summary["stages"]["publish"]["ran"] is False
 
 def test_writeback_stage_reports_write_backs_own_signoff_refusal_as_a_failed_stage(tmp_path, monkeypatch, synth_run_dir_for_writeback):
-    """A whitespace-only `writeback_signoff` is truthy, so `run_pipeline`'s
-    own precondition (`cfg["writeback_signoff"]` unset or `""`) lets it
-    through; `write_back`'s own `.strip()` refusal (PLAN.md section 10,
-    GOVERNANCE.md) is what catches it. The refusal must surface as a
-    failed `writeback` stage: `_time_stage`'s own broad except turns it
-    into a `StageResult`, and no card or envelope may exist afterward."""
     _mock_paper_referee_publish(monkeypatch)
     out_root = tmp_path / "canon-out"
 
@@ -514,16 +415,7 @@ def test_writeback_stage_reports_write_backs_own_signoff_refusal_as_a_failed_sta
     assert not out_root.exists()
     assert summary["outcome"] == "failed"
 
-
 def test_writeback_stage_reports_write_backs_own_understanding_refusal_as_a_failed_stage(tmp_path, monkeypatch, synth_run_dir_for_writeback):
-    """`bkt-hte-understanding-artifact` (PR #60's own review): a blank
-    plain-language explanation for even one selected candidate is a hard
-    `write_back` refusal, reachable only by running the (here mocked)
-    `hte.roles.understanding` call for real, since `run_pipeline`'s own
-    precondition has no way to check this ahead of time. The refusal
-    must surface as a failed `writeback` stage: `_time_stage`'s own
-    broad except turns it into a `StageResult`, and no card or envelope
-    may exist afterward."""
     from hte import canon_writeback
 
     _mock_paper_referee_publish(monkeypatch)
@@ -538,7 +430,7 @@ def test_writeback_stage_reports_write_backs_own_understanding_refusal_as_a_fail
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
         "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
         "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
-        "writeback_fdr_q": 1.0,  # a candidate must clear the gate to reach the refusal below
+        "writeback_fdr_q": 1.0,
         "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
         "dry_run": False, "skip_publish": True,
     })

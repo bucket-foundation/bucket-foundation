@@ -1,12 +1,4 @@
 "use client";
-/**
- * src/app/verify/VerifyClient.tsx  (bkt-52p)
- * ----------------------------------------------------------------------------
- * Interactive verify island. Posts the pasted credential (JWT or id/URL, or a
- * JSON object) to POST /api/academy/credential/verify and renders the
- * result: signature / issuer / revocation checks, the asserted concepts, and the
- * live-consistency cross-check. Pure fetch, no secrets, works for anyone.
- */
 import { useCallback, useEffect, useState } from "react";
 
 interface PerConcept {
@@ -55,7 +47,6 @@ export default function VerifyClient({ initial }: { initial: string }) {
     setErr(null);
     setResult(null);
     try {
-      // Decide the body shape: JWT-ish / id-or-URL / JSON object.
       let body: Record<string, unknown>;
       if (/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(value)) {
         body = { jwt: value };
@@ -93,7 +84,6 @@ export default function VerifyClient({ initial }: { initial: string }) {
     }
   }, []);
 
-  // Auto-run when arriving with ?c=/?id= prefilled.
   useEffect(() => {
     if (initial) run(initial);
   }, [initial, run]);

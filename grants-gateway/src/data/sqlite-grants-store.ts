@@ -1,14 +1,3 @@
-/**
- * SqliteGrantsStore, production-shape backing for the GrantsStore
- * interface. Reads from data/grants.db produced by `scripts/ingest.py`.
- *
- * Schema is owned by ingest/db.py; this module only reads + projects
- * rows back to the Grant interface in ../types.ts. Keep them aligned.
- *
- * Activate via:  GRANTS_STORE=sqlite npm run dev
- * Default is `memory` so existing tests/CI still pass without a DB file.
- */
-
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -53,9 +42,7 @@ function rowToGrant(r: Row): Grant {
 }
 
 export interface SqliteGrantsStoreOpts {
-  /** Path to grants.db. Defaults to <repo>/data/grants.db. */
   path?: string;
-  /** Hard cap on rows returned by all(), protects /insight from OOM. */
   insightCap?: number;
 }
 
@@ -63,7 +50,6 @@ export class SqliteGrantsStore implements GrantsStore {
   private readonly db: DbT;
   private readonly insightCap: number;
 
-  // Cached prepared statements
   private readonly stmtById;
   private readonly stmtAll;
   private readonly stmtCount;
@@ -100,7 +86,6 @@ export class SqliteGrantsStore implements GrantsStore {
     const where: string[] = [];
     const params: unknown[] = [];
 
-    // FTS5 path when topic is a non-trivial keyword
     let useFts = false;
     if (q.topic && q.topic.trim().length >= 2) {
       useFts = true;
@@ -131,7 +116,6 @@ export class SqliteGrantsStore implements GrantsStore {
 
     let sql: string;
     if (useFts) {
-      // Sanitize: FTS5 chokes on punctuation. Fall back to simple AND-of-prefix tokens.
       const tokens = (q.topic as string)
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, " ")
@@ -158,7 +142,6 @@ export class SqliteGrantsStore implements GrantsStore {
   }
 
   async corpusHash(): Promise<string> {
-    // Stable SHA-256 over (id, last_seen_at) sorted by id. Fast for ~150k rows.
     const rows = this.db
       .prepare("SELECT id, last_seen_at FROM grants ORDER BY id")
       .all() as Array<{ id: string; last_seen_at: string }>;

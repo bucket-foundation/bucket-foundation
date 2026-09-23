@@ -1,24 +1,3 @@
-/**
- * Who the evidence search route answers, against the local stack
- * (ros-ai-find, the Access gate in IMPLEMENTATION.md, "Verification and
- * release": "Existing pure tests cannot prove route authorization").
- *
- * The gate decision is pure and covered elsewhere. What is covered here
- * is the route: real accounts, real tokens, the handlers called the way
- * Next calls them. Each account differs from the allowed one in one way,
- * so a refusal names the reason it refused rather than passing by
- * accident. Direct callers meet the same gates as the browser, which is
- * what the bearer path in the plan's UI row asks for.
- *
- * Every refusal happens before the corpus is read, so these need no built
- * corpus. What a refusal may say is checked too: a body that named a
- * revision or a count would tell an account outside the pilot what the
- * pilot holds.
- *
- * With no database the tests skip and say so. RESEARCH_OS_REQUIRE_DB=1
- * turns that skip into a failure, which is how the database job in CI
- * proves these ran.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -35,7 +14,6 @@ function sql(statement: string): { status: number; out: string } {
   return { status: run.status ?? 1, out: (run.stdout || "").trim() + (run.stderr || "") };
 }
 
-/** The local stack's keys live in .env.local, which ts-node does not read. */
 function loadLocalEnv(): void {
   const file = path.join(__dirname, "..", ".env.local");
   if (!existsSync(file)) return;
@@ -72,7 +50,6 @@ interface Account {
   token: string;
 }
 
-/** Service role, reading the graph schema the way the routes do. */
 function admin() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL as string, process.env.SUPABASE_SERVICE_ROLE_KEY as string, {
     auth: { persistSession: false, autoRefreshToken: false },
@@ -80,11 +57,6 @@ function admin() {
   });
 }
 
-/**
- * Creates one account, gives it a profile unless `profile` is null, and
- * signs it in. The id joins `registry` as soon as the account exists, so
- * a setup that fails halfway still leaves an id to clean up.
- */
 async function account(registry: string[], name: string, profile: { band: string | null; consent: string } | null): Promise<Account> {
   const svc = admin();
   const email = `ros-access-${RUN}-${name}@bucket.test`;
@@ -130,7 +102,6 @@ interface Answer {
 }
 
 async function call(method: "GET" | "POST", token: string | null, body?: unknown): Promise<Answer> {
-  // Imported here so the module reads the environment these tests set.
   const route = await import("../src/app/api/research-os/evidence-search/route");
   const headers: Record<string, string> = {};
   if (token) headers.authorization = `Bearer ${token}`;
@@ -142,7 +113,6 @@ async function call(method: "GET" | "POST", token: string | null, body?: unknown
   return { status: res.status, body: (await res.json()) as Record<string, unknown>, cacheControl: res.headers.get("cache-control") };
 }
 
-/** Nothing about the pilot's contents may reach a caller the gate refused. */
 function saysNothing(answer: Answer, where: string): void {
   const text = JSON.stringify(answer.body);
   for (const leak of ["corpusRevision", "modelRevision", "sources", "cards", "requestId"]) {
@@ -159,13 +129,9 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
     const adult = await account(made, "adult", { band: "18plus", consent: "self" });
     const minor = await account(made, "minor", { band: "13to17", consent: "self" });
     const ageless = await account(made, "ageless", { band: null, consent: "self" });
-    // An adult self-consents whatever the column says (consent.ts,
-    // decideConsent), so a consent refusal needs a minor who has none.
     const unconsented = await account(made, "unconsented", { band: "13to17", consent: "none" });
     const profileless = await account(made, "profileless", null);
     const offlist = await account(made, "offlist", { band: "18plus", consent: "self" });
-    // Every account but the last one differs from the allowed account in
-    // exactly one way, so a refusal is attributable to that one way.
     process.env.RESEARCH_OS_AI_SEARCH_PILOT_IDS = [adult.id, minor.id, ageless.id, unconsented.id, profileless.id].join(",");
 
     await t.test("no session is 401, on both methods", async () => {
@@ -203,9 +169,6 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
     });
 
     await t.test("the allowed account passes every gate and stops at the corpus", async () => {
-      // Without this the refusals above prove nothing: a route closed to
-      // everybody would answer them all. The gate admits this account,
-      // and the first thing past the gate is the corpus read.
       const before = process.env.RESEARCH_OS_EVIDENCE_DIR;
       process.env.RESEARCH_OS_EVIDENCE_DIR = path.join(__dirname, "..", `no-corpus-${RUN}`);
       try {
@@ -290,8 +253,6 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
 test("a refused caller is refused before the corpus is read", { skip }, async () => {
   process.env.RESEARCH_OS_AI_SEARCH = "1";
   const before = process.env.RESEARCH_OS_EVIDENCE_DIR;
-  // A directory that holds no corpus. Reaching it would raise, and the
-  // route would answer 503 rather than the gate's own refusal.
   process.env.RESEARCH_OS_EVIDENCE_DIR = path.join(__dirname, "..", "no-corpus-here");
   try {
     const answer = await call("GET", null);

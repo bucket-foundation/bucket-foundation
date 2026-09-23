@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# install-services.sh — stand up the whole local-GPU LLM stack on a fresh machine
-# from the repo alone. Idempotent: re-running just re-syncs + restarts.
-#
-#   bkt-llm-server   llama.cpp on the dGPU (Vulkan)   127.0.0.1:11435
-#     -> bkt-llm-shim       bearer-auth proxy          127.0.0.1:11500
-#          -> bkt-llm-revtunnel  reverse SSH tunnel    Hetzner 127.0.0.1:18011
-#
-# Run:  bash scripts/llm/install-services.sh
 set -euo pipefail
 DIR="$(cd "$(dirname "$0")" && pwd)"
 UNITDIR="$HOME/.config/systemd/user"

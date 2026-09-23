@@ -1,13 +1,9 @@
-// /word/<photon-id>, single photon detail page. Light-blue redesign.
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
 
 export const dynamic = "force-dynamic";
 
-// Server-side fetch against polingual.photons on db.agfarms.dev (via the
-// shared client in src/lib/photon-db.ts). No more bucket.foundation hop.
 async function fetchPhoton(id: string): Promise<Photon | null> {
   try {
     return await getPhoton(id);
@@ -35,7 +31,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
   return (
     <main className="min-h-screen">
       <div className="max-w-3xl mx-auto px-5 md:px-8 py-10 md:py-14">
-        {/* Back chip with Po mark */}
         <Link
           href="/"
           className="inline-flex items-center gap-3 group"
@@ -51,7 +46,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </span>
         </Link>
 
-        {/* Header card */}
         <header
           className="mt-6 rounded-2xl bg-white p-6 md:p-8"
           style={{
@@ -97,7 +91,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           )}
         </header>
 
-        {/* Meaning */}
         <section className="mt-8">
           <h2
             className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
@@ -113,7 +106,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </p>
         </section>
 
-        {/* Relations */}
         {photon.relations && photon.relations.length > 0 && (
           <section className="mt-10">
             <h2
@@ -150,7 +142,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </section>
         )}
 
-        {/* Branch chips */}
         {photon.branch && photon.branch.length > 0 && (
           <section className="mt-10">
             <h2
@@ -177,7 +168,6 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </section>
         )}
 
-        {/* Provenance */}
         {photon.provenance && (
           <section className="mt-10 pb-12">
             <h2

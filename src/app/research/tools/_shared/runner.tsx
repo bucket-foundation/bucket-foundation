@@ -1,14 +1,5 @@
 "use client";
 
-// Shared run-UI primitives for the research-tools client islands. Every tool
-// page drives the same uniform job lifecycle through its same-origin proxy
-// /api/research/<tool>:
-// submit → POST /api/research/<tool> (json OR FormData body)
-// poll → GET /api/research/<tool>?job=<id>
-// result → GET /api/research/<tool>?job=<id>&result=1
-// Render is "json" → typed view; "html" → sandboxed iframe of a self-contained
-// report. See docs/research-tools/04-implementation-architecture.md §2.
-
 import { useCallback, useRef, useState } from "react";
 import { ToolOfflineNotice, detectToolOffline } from "./ToolOfflineNotice";
 
@@ -28,17 +19,13 @@ export type ResultEnvelope = {
 const POLL_FAST_MS = 1000;
 const POLL_SLOW_MS = 3000;
 const POLL_FAST_WINDOW_MS = 10_000;
-const POLL_CAP_MS = 600_000; // heavy/demo tools (trajmine, cryotriage) can be slow
+const POLL_CAP_MS = 600_000;
 
-// useToolRun, wires the submit/poll/result lifecycle for one tool. The caller
-// supplies the proxy path and a function that builds the submit fetch init
-// (json or multipart). Returns the current phase + result + a submit() trigger.
 export function useToolRun(tool: string) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [statusText, setStatusText] = useState("");
   const [result, setResult] = useState<ResultEnvelope | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
-  // HTTP status of the last failing call (drives the founder-GPU-offline UI).
   const [errorStatus, setErrorStatus] = useState<number | null>(null);
   const startedRef = useRef(0);
 
@@ -103,7 +90,6 @@ export function useToolRun(tool: string) {
     [base, fetchResult],
   );
 
-  // submit, `init` is a standard fetch RequestInit (json body or FormData).
   const submit = useCallback(
     async (init: RequestInit, runningText = "Running…") => {
       setResult(null);
@@ -130,7 +116,6 @@ export function useToolRun(tool: string) {
         return;
       }
       const data = await r.json();
-      // Fast path: gateway may attach the result on the submit response.
       if (data.status === "succeeded" && data.result) {
         setResult(data.result as ResultEnvelope);
         setPhase("done");
@@ -153,8 +138,6 @@ export function useToolRun(tool: string) {
   return { phase, busy, statusText, result, errorMsg, errorStatus, submit };
 }
 
-// --- presentational primitives (stone-bone styling, matches /research) -----
-
 export function RunStatus({ busy, statusText }: { busy: boolean; statusText: string }) {
   if (!busy) return null;
   return (
@@ -175,8 +158,6 @@ export function RunError({
   phase: Phase;
   errorMsg: string;
   errorStatus?: number | null;
-  // When true, an offline/unreachable error renders the friendly
-  // "founder's GPU is offline → fund it" notice instead of a raw error.
   founderGpu?: boolean;
   toolName?: string;
 }) {
@@ -194,8 +175,6 @@ export function RunError({
   );
 }
 
-// Sandboxed render of a self-contained HTML report (assets already base64-inlined
-// by the gateway; the sandbox is belt-and-suspenders). See docs §2.4.
 export function HtmlReport({ html }: { html: string }) {
   return (
     <iframe
@@ -207,10 +186,6 @@ export function HtmlReport({ html }: { html: string }) {
   );
 }
 
-// "Publish to canon" stub, identical hook across every tool. Registers the run
-// artifact + its feed402/0.2 cite-forever block (free-to-read, paid-to-cite over
-// feed402/x402). NO blockchain, NO Story Protocol, NO IP-NFT, credentials, if
-// any, use Open Badges 3.0 / W3C VC (issuer-signed). See docs §5.
 export function PublishToCanon({ result }: { result: ResultEnvelope }) {
   const [publishing, setPublishing] = useState(false);
   const [publishMsg, setPublishMsg] = useState("");
@@ -218,22 +193,12 @@ export function PublishToCanon({ result }: { result: ResultEnvelope }) {
   const onPublish = useCallback(async () => {
     setPublishing(true);
     setPublishMsg("");
-    // [PUBLISH-TO-CANON HOOK, TODO(deploy) backend wiring]
-    // POST the job to the publish endpoint, which renders the canonical artifact
-    // + provenance and registers it with its feed402/0.2 cite-forever block
-    // (free-to-read, paid-to-cite over x402). No minting, no chain. See docs §5.
-    // Endpoint not built in this slice.
-    // await fetch(`/api/research/${result.tool}/publish`, {
-    // method: "POST", headers: { "content-type": "application/json" },
-    // body: JSON.stringify({ job_id: result.job_id }),
-    // });
     setTimeout(() => {
       setPublishing(false);
       setPublishMsg(
         "Publish-to-canon registers the artifact + its feed402 cite-forever block — backend hook lands with the full gateway.",
       );
     }, 400);
-    // result.tool is only read by the (TODO) publish fetch above; no live dep.
   }, []);
 
   return (

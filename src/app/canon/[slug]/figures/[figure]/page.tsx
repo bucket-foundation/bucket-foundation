@@ -1,12 +1,3 @@
-// /canon/<slug>/figures/<figure>, single figure page.
-//
-// Renders the canonical record for one of the 99 canon-figures from
-// `canon-figures/figures.json`, plus (when present) the hand-written
-// bio markdown from `canon-figures/bios/<id>.md`. External links go to
-// real sources (Wikipedia, Wikidata, OpenAlex, Google Scholar) by name
-// search, *not* to the stale bucket-research repo that used to host
-// per-figure subdirectories that never got built out.
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BRANCHES, getBranch, getFigure, FIGURES_TREE } from "@/lib/canon";
@@ -24,9 +15,6 @@ export function generateMetadata({ params }: { params: { slug: string; figure: s
   return { title: `${f.name} — canon · bucket.foundation`, description: f.note };
 }
 
-// External-research links. Each is a real URL that resolves; nothing is
-// promised that doesn't exist. Wikipedia / Wikidata / OpenAlex / Google
-// Scholar all accept name-search queries directly via URL.
 function externalLinks(name: string) {
   const q = encodeURIComponent(name);
   return [
@@ -81,7 +69,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           {f.note && (
             <div className="mt-4 text-lg text-[color:var(--parchment-dim)]">{f.note}</div>
           )}
-          {/* Tag chips */}
           {f.tags && f.tags.length > 0 && (
             <div className="mt-6 flex flex-wrap gap-1.5">
               {f.tags.map((t) => (
@@ -98,7 +85,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
       </header>
 
       <section className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
-        {/* Primary works, pulled from figures.json. Real, citable. */}
         {f.primary_works && f.primary_works.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
@@ -130,7 +116,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           </div>
         )}
 
-        {/* Cross-branch chips */}
         {f.cross_branches && f.cross_branches.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
@@ -138,7 +123,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
             </h2>
             <div className="flex flex-wrap gap-2">
               {f.cross_branches.map((cb) => {
-                // cb is the directory name like "06-cosmology", strip the prefix
                 const slug = cb.replace(/^\d+-/, "");
                 return (
                   <Link
@@ -154,7 +138,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           </div>
         )}
 
-        {/* Bio markdown (if present) */}
         {bioHtml && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
@@ -200,7 +183,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           </div>
         )}
 
-        {/* External research links, all real, all by name search. */}
         <div>
           <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
             Sources
@@ -224,7 +206,6 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           </ul>
         </div>
 
-        {/* Edit / contribute */}
         <div className="border-t hairline pt-8 flex flex-wrap gap-4 small-caps text-[11px]">
           <a
             href={figEditUrl}

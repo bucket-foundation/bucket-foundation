@@ -3,7 +3,6 @@ import json
 from hte import runner
 from hte.corpus import sacred_history_texts as sht
 
-
 def test_slice_one_loads_with_its_recorded_counts_and_no_absolute_paths():
     corpus = sht.load_slice_one()
     assert len(corpus.evidence) == 917

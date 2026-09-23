@@ -1,19 +1,3 @@
-/**
- * Unit tests: cognitive forcing on Check (bkt-ros, learning/research-os/
- * PLAN-REVISION-2.md section 2a), src/lib/research-os/forcing.ts. Pure, no
- * I/O, no live Supabase or network, matching this repo's existing
- * research-os test convention (node:test + node:assert, plain fixture
- * objects, injectable stores).
- *
- * The headline case ("a test proves the feedback cannot be fetched
- * early") exercises revealPendingAttempt directly, the exact function
- * src/app/api/research-os/workspace/route.ts's "check" phase 2 calls, so
- * this test covers production code rather than a parallel
- * reimplementation of the same gate.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-forcing.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -59,10 +43,6 @@ function attempt(overrides: Partial<PendingCheckAttempt> = {}): PendingCheckAtte
   };
 }
 
-// ---------------------------------------------------------------------------
-// The 4-point confidence item
-// ---------------------------------------------------------------------------
-
 test("isValidLearnerConfidence accepts exactly the four schema values", () => {
   for (const v of LEARNER_CONFIDENCE_VALUES) assert.equal(isValidLearnerConfidence(v), true);
   assert.equal(isValidLearnerConfidence("very_sure"), false);
@@ -78,20 +58,12 @@ test("learnerConfidenceScore is a stable 1-4 ordinal, lowest to highest", () => 
   assert.equal(learnerConfidenceScore("certain"), 4);
 });
 
-// ---------------------------------------------------------------------------
-// Source prediction correctness: computed in code, never from the model
-// ---------------------------------------------------------------------------
-
 test("computePredictionCorrect matches only the exact allowed label", () => {
   assert.equal(computePredictionCorrect("Rayleigh, Lord (1871).", "Rayleigh, Lord (1871)."), true);
   assert.equal(computePredictionCorrect("  Rayleigh, Lord (1871).  ", "Rayleigh, Lord (1871)."), true, "trims both sides before comparing");
   assert.equal(computePredictionCorrect("Tyndall, John (1869).", "Rayleigh, Lord (1871)."), false);
   assert.equal(computePredictionCorrect("", "Rayleigh, Lord (1871)."), false, "an empty prediction is never correct");
 });
-
-// ---------------------------------------------------------------------------
-// The arm switch
-// ---------------------------------------------------------------------------
 
 test("envForcingDefault is on unless RESEARCH_OS_FORCING_ENABLED is exactly false or 0", () => {
   const saved = process.env.RESEARCH_OS_FORCING_ENABLED;
@@ -117,7 +89,7 @@ test("envForcingDefault is on unless RESEARCH_OS_FORCING_ENABLED is exactly fals
 test("resolveForcingEnabled: a class override wins over the env default either direction", () => {
   const saved = process.env.RESEARCH_OS_FORCING_ENABLED;
   try {
-    delete process.env.RESEARCH_OS_FORCING_ENABLED; // env default: on
+    delete process.env.RESEARCH_OS_FORCING_ENABLED;
     assert.equal(resolveForcingEnabled(true), true);
     assert.equal(resolveForcingEnabled(false), false, "an explicit false override beats the on-by-default env");
     assert.equal(resolveForcingEnabled(null), true, "null defers to the env default");
@@ -127,10 +99,6 @@ test("resolveForcingEnabled: a class override wins over the env default either d
     else process.env.RESEARCH_OS_FORCING_ENABLED = saved;
   }
 });
-
-// ---------------------------------------------------------------------------
-// The held-attempt store
-// ---------------------------------------------------------------------------
 
 test("storePendingAttempt + getPendingAttempt: round-trips for the same learner", () => {
   const store = new Map<string, PendingCheckAttempt>();
@@ -179,11 +147,6 @@ test("pruneExpiredAttempts removes only expired entries and reports the count", 
   assert.ok(store.has("fresh-1"));
 });
 
-// ---------------------------------------------------------------------------
-// revealPendingAttempt: the exact gate workspace/route.ts's "check" phase
-// 2 calls. This is the "feedback cannot be fetched early" contract.
-// ---------------------------------------------------------------------------
-
 test("revealPendingAttempt: attemptId alone (no confidence, no prediction) never returns the grade", () => {
   const store = new Map<string, PendingCheckAttempt>();
   const id = storePendingAttempt(attempt(), store, "attempt-1");
@@ -191,13 +154,8 @@ test("revealPendingAttempt: attemptId alone (no confidence, no prediction) never
   const result = revealPendingAttempt(id, "learner-1", undefined, "", store);
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.reason, "forcing_incomplete");
-  // No "grade", "attempt", "feedback", or "citations" key exists on the
-  // false branch's type at all -- this is enforced by RevealResult's own
-  // discriminated union, not only by this assertion -- but assert the
-  // shape directly too, so a future refactor cannot quietly widen it.
   assert.equal(Object.prototype.hasOwnProperty.call(result, "attempt"), false);
 
-  // The attempt is untouched: a caller can retry with the missing field.
   assert.ok(getPendingAttempt(id, "learner-1", store), "attempt stays held, not consumed, on an incomplete reveal");
 });
 

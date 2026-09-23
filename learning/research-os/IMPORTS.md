@@ -28,7 +28,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
 
 ### The write
 
-`createImport` at `src/lib/research-os/access-db.ts:377` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:389-401`:
+`createImport` at `src/lib/research-os/access-db.ts:295` takes a kind, a title and an optional `source` object, and writes two rows. The node first, `:389-401`:
 
 ```ts
       title: input.title,
@@ -43,7 +43,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
       visibility: "private",
 ```
 
-Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:149`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
+Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:118`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
 
 Three consequences follow from those lines, and all three matter later.
 
@@ -55,12 +55,12 @@ The node is `visibility: "private"` at `:238`, so `graph.nodes`'s `visible_selec
 
 ### The fetch
 
-`fetchTextFromUrl` at `src/lib/research-os/import-fetch.ts:103` is the only network call in the path. It is already careful in four ways.
+`fetchTextFromUrl` at `src/lib/research-os/import-fetch.ts:69` is the only network call in the path. It is already careful in four ways.
 
 | Control | Value | Where |
 |---|---|---|
-| Scheme and host allowlist | http and https, no loopback, link-local, private range, or bracketed IPv6 | `isPublicHttpUrl`, `src/lib/research-os/import-fetch.ts:15`, with the literal checks at `:24`, `:27` and `:29` |
-| Wall-clock bound | 8,000 ms through an `AbortController` | `TIMEOUT_MS`, `src/lib/research-os/import-fetch.ts:10` |
+| Scheme and host allowlist | http and https, no loopback, link-local, private range, or bracketed IPv6 | `isPublicHttpUrl`, `src/lib/research-os/import-fetch.ts:6`, with the literal checks at `:24`, `:27` and `:29` |
+| Wall-clock bound | 8,000 ms through an `AbortController` | `TIMEOUT_MS`, `src/lib/research-os/import-fetch.ts:2` |
 | Byte bound | 1,000,000 bytes read, 6,000 characters kept | `MAX_BYTES` at `src/lib/research-os/import-fetch.ts:9`, `EXCERPT_CHARS` at `:11` |
 | Content-type allowlist | `text/html`, `text/plain`, `application/xhtml` only | `src/lib/research-os/import-fetch.ts:62` |
 
@@ -72,7 +72,7 @@ Four things it does not do.
 
 **Nothing reads the origin's `robots.txt`.** The repository serves its own at `src/app/robots.ts` and reads nobody else's.
 
-**The byte cap truncates rather than refuses.** `src/lib/research-os/import-fetch.ts:113` slices the buffer at `MAX_BYTES` and parses whatever that produced, so a 4 MB page yields the first megabyte cut mid-tag. The text is then cut again to 6,000 characters at `:67`.
+**The byte cap truncates rather than refuses.** `src/lib/research-os/import-fetch.ts:79` slices the buffer at `MAX_BYTES` and parses whatever that produced, so a 4 MB page yields the first megabyte cut mid-tag. The text is then cut again to 6,000 characters at `:67`.
 
 **Nothing is fetched twice.** `provenance.fetched_at` is stamped once in `createImport` and no job re-reads the URL, so a source that changes, moves or dies leaves the node holding a copy nobody has compared to anything since.
 
@@ -84,7 +84,7 @@ That branch's `graph.source_quote_receipts` already reserves room for this work.
 
 An imported passage differs from a curated one on two axes, and both have consequences.
 
-**Who can change the text.** A curated passage lives in `PASSAGES` at `src/lib/research-os/passages.ts:40`, a table in this repository, and its file header says every entry "was checked against the live source at the URL given, character for character, before being added here". A revision change on a curated source is a Bucket edit, visible in a diff, attributable to a commit. An imported passage lives on someone else's server. A revision change is a fact about the world that Bucket learns late or never.
+**Who can change the text.** A curated passage lives in `PASSAGES` at `src/lib/research-os/passages.ts:9`, a table in this repository, and its file header says every entry "was checked against the live source at the URL given, character for character, before being added here". A revision change on a curated source is a Bucket edit, visible in a diff, attributable to a commit. An imported passage lives on someone else's server. A revision change is a fact about the world that Bucket learns late or never.
 
 **What a revision change means for a citation.** For a curated source, the old revision still exists in git, so a receipt naming it can always be resolved. For an imported source, the old revision may be gone. The receipt's `text_hash`, line 31 of that migration, then proves what the learner read and proves nothing about what a later reader will find.
 

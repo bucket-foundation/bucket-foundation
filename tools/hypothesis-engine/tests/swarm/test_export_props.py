@@ -1,5 +1,3 @@
-"""Property tests over `hte.export`: `timeline_views`'s JSON round trip
-and `write_views`'s output stability across repeated calls."""
 from __future__ import annotations
 
 import json
@@ -18,11 +16,9 @@ from hte.timeline import Interval
 DEFAULT_SPAN_START = -20_000
 DEFAULT_BIN_WIDTH = 100
 
-
 def _placement_hypothesis(address: int, *, actor="a", action="b", obj="c", place="d", mechanism="e", start=0) -> Hypothesis:
     p = Placement(actor=actor, action=action, object=obj, place=place, mechanism=mechanism, interval=Interval(start, start))
     return Hypothesis(address=address, content=p)
-
 
 @given(
     st.lists(st.integers(min_value=1, max_value=5000), min_size=0, max_size=6, unique=True),
@@ -37,12 +33,10 @@ def test_timeline_views_json_round_trips_through_json_dumps(addresses, start):
     dumped = json.dumps(views)
     assert json.loads(dumped) == views
 
-
 def test_timeline_views_handles_empty_input():
     views = timeline_views([], {}, {}, [])
     assert views == {"bins": [], "event_views": [], "pair_views": []}
     assert json.loads(json.dumps(views)) == views
-
 
 def test_write_views_output_is_stable_across_two_calls(tmp_path):
     hyps = [_placement_hypothesis(1), _placement_hypothesis(2)]
@@ -57,7 +51,6 @@ def test_write_views_output_is_stable_across_two_calls(tmp_path):
 
     assert (out1 / "timeline.json").read_text() == (out2 / "timeline.json").read_text()
     assert (out1 / "TIMELINE.md").read_text() == (out2 / "TIMELINE.md").read_text()
-
 
 def test_write_views_rewriting_the_same_dir_is_stable():
     hyps = [_placement_hypothesis(3)]
@@ -75,10 +68,8 @@ def test_write_views_rewriting_the_same_dir_is_stable():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-
 def tbin_of(start: int) -> int:
     return (start - DEFAULT_SPAN_START) // DEFAULT_BIN_WIDTH
-
 
 def test_rank_key_sorts_unscored_hypotheses_after_scored_ones_at_the_same_tier():
     from hte.export import _rank_key
@@ -90,7 +81,6 @@ def test_rank_key_sorts_unscored_hypotheses_after_scored_ones_at_the_same_tier()
     key_scored = _rank_key(scored, opinions, elos)
     key_unscored = _rank_key(unscored, opinions, elos)
     assert key_scored > key_unscored
-
 
 def test_event_views_groups_placements_sharing_object_and_place():
     h1 = _placement_hypothesis(1, obj="pyramid", place="giza")

@@ -1,4 +1,3 @@
-"""Tests for parse.py event emission."""
 from __future__ import annotations
 
 import json
@@ -16,7 +15,6 @@ PARSE = REPO / "tools" / "feed" / "parse.py"
 sys.path.insert(0, str(HERE))
 from helpers import make_tmp_repo, write, commit, remove, move  # noqa: E402
 
-
 def run_parse(cwd: Path, sha_from: str, sha_to: str) -> list[dict]:
     res = subprocess.run(
         [sys.executable, str(PARSE), "--from", sha_from, "--to", sha_to],
@@ -29,7 +27,6 @@ def run_parse(cwd: Path, sha_from: str, sha_to: str) -> list[dict]:
         if line.strip():
             events.append(json.loads(line))
     return events
-
 
 BIB_SAMPLE = """@article{foo2020bar,
   title = {A Paper About Foo},
@@ -56,7 +53,6 @@ BIB_ADDED = BIB_SAMPLE + """
 }
 """
 
-
 class ParseTests(unittest.TestCase):
     def setUp(self):
         self.repo = make_tmp_repo()
@@ -79,7 +75,6 @@ class ParseTests(unittest.TestCase):
         for p in papers:
             self.assertEqual(p["branch"], "05-biophysics")
             self.assertEqual(p["topic"], "melanin")
-        # DOI captured
         dois = {p["doi"] for p in papers}
         self.assertIn("10.1234/foo.bar", dois)
 
@@ -117,7 +112,6 @@ class ParseTests(unittest.TestCase):
         sha1 = commit(self.repo, "dossier + note")
         events = run_parse(self.repo, self.sha0, sha1)
         types = sorted(e["type"] for e in events)
-        # new branch + dossier + entry
         self.assertIn("add_canon_entry", types)
         self.assertIn("update_dossier", types)
         self.assertIn("add_branch", types)
@@ -132,7 +126,6 @@ class ParseTests(unittest.TestCase):
     def test_promote_rename(self):
         write(self.repo, "research-landscape/melanin.md", "# draft\n" * 20)
         sha1 = commit(self.repo, "landscape draft")
-        # rename into canon
         os.makedirs(self.repo / "bucket-canon/05-biophysics/melanin", exist_ok=True)
         move(self.repo, "research-landscape/melanin.md",
              "bucket-canon/05-biophysics/melanin/DOSSIER.md")
@@ -157,7 +150,6 @@ class ParseTests(unittest.TestCase):
         e2 = run_parse(self.repo, self.sha0, sha1)
         self.assertEqual([e["id"] for e in e1], [e["id"] for e in e2])
 
-
 YAML_ONE_RECORD = """records:
 - id: bkt-aaa111
   title: A paper.
@@ -173,7 +165,6 @@ YAML_TWO_RECORDS = YAML_ONE_RECORD + """- id: bkt-bbb222
 
 FEED = REPO / "tools" / "feed" / "feed.py"
 
-
 def run_feed_update(cwd: Path, events: list[dict]) -> subprocess.CompletedProcess:
     env = os.environ.copy()
     env["BUCKET_FEED_ROOT"] = str(cwd)
@@ -183,15 +174,7 @@ def run_feed_update(cwd: Path, events: list[dict]) -> subprocess.CompletedProces
         cwd=cwd, input=stdin, capture_output=True, text=True, env=env,
     )
 
-
 class YamlPromotionTests(unittest.TestCase):
-    """A promotion out of _intake/ lands as a new or extended
-    primary-papers.yaml, never a rename, the real shape PRs #9, #45, and
-    #129 shipped with no feed event. These cover the fix: a brand-new
-    dossier file and an appended record each resolve to exactly one
-    add_paper event, keyed by the record's own id (card_event_id), so a
-    second run over the same range adds nothing to the ledger.
-    """
 
     def setUp(self):
         self.repo = make_tmp_repo()
@@ -202,8 +185,6 @@ class YamlPromotionTests(unittest.TestCase):
         shutil.rmtree(self.repo, ignore_errors=True)
 
     def test_new_file_promotion_yields_one_event(self):
-        # seed the branch first so add_branch doesn't also fire in the
-        # range under test, isolating the yaml-promotion behavior.
         write(self.repo, "bucket-canon/07-mind/existing-topic/README.md", "# existing\n")
         sha1 = commit(self.repo, "seed 07-mind branch")
         write(
@@ -241,9 +222,6 @@ class YamlPromotionTests(unittest.TestCase):
         self.assertEqual(ev["doi"], "10.1/bbb")
 
     def test_yaml_promotion_id_matches_feed_card_event_id(self):
-        """The id parse.py derives for a new-file promotion must equal
-        the id feed.py's check-cards/emit-for-cards would derive for the
-        same card, or the two paths would double-emit the same event."""
         sys.path.insert(0, str(FEED.parent))
         from feed import card_event_id as feed_card_event_id  # noqa: E402
 
@@ -272,15 +250,12 @@ class YamlPromotionTests(unittest.TestCase):
         self.assertEqual(first.returncode, 0, first.stderr)
         self.assertIn("+1 events", first.stderr)
 
-        # same commit range parsed and fed again: the ledger already has
-        # this card's event id, so nothing new is added.
         second = run_feed_update(self.repo, run_parse(self.repo, sha1, sha2))
         self.assertEqual(second.returncode, 0, second.stderr)
         self.assertIn("+0 events", second.stderr)
 
         feed = json.loads((self.repo / "feed.json").read_text())
         self.assertEqual(feed["total_events"], 1)
-
 
 if __name__ == "__main__":
     unittest.main()

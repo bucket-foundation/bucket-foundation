@@ -1,9 +1,5 @@
 "use client";
 
-// FigureMiner client island, text-layer caption + statistics + measurement
-// mining (REAL deterministic parsing). Render is "json". `text` is paper text
-// or "demo".
-
 import { useState } from "react";
 import {
   useToolRun,

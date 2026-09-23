@@ -1,18 +1,5 @@
-/**
- * bucket.foundation, research papers index
- * -----------------------------------------
- * The first Bucket-published paper is the research-atlas funding-landscape
- * preprint. Its content (abstract, figures, PDF) is vendored into
- * public/papers/<slug>/ so the site is self-contained. Add future papers by
- * appending to PAPERS.
- *
- * Source of truth for paper 01: ~/agfarms/research-atlas/docs/papers/
- * 01-funding-landscape/{paper.md, paper.pdf} + analysis/figures/*.png,
- * DOI 10.5281/zenodo.20774322 (concept).
- */
-
 export type Figure = {
-  src: string; // path under /public
+  src: string;
   alt: string;
   caption: string;
 };
@@ -22,19 +9,18 @@ export type Paper = {
   title: string;
   authors: string;
   affiliation: string;
-  date: string; // ISO-ish display date
+  date: string;
   version: string;
-  venue: string; // e.g. "preprint"
-  doi: string; // bare DOI, e.g. "10.5281/zenodo.20774322"
+  venue: string;
+  doi: string;
   doiUrl: string;
-  pdfUrl: string; // under /public
+  pdfUrl: string;
   githubUrl: string;
   license: string;
   corpusLine: string;
-  abstract: string[]; // paragraphs
-  highlights: string[]; // headline findings
+  abstract: string[];
+  highlights: string[];
   figures: Figure[];
-  /** A BibTeX citation block. */
   bibtex: string;
 };
 

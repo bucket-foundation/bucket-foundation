@@ -1,15 +1,3 @@
-/**
- * Copying rights for the evidence corpus, read from
- * learning/research-os/ai/rights-policy.json.
- *
- * Two questions, answered by two rule lists. `index` asks whether a node's
- * own text (title and summary) may be copied into the local search
- * artifacts; it turns on who wrote that text. `quote` asks whether a
- * curated passage may be quoted; it turns on the license of the page the
- * passage comes from. The first matching rule answers. A node or passage
- * no rule matches has unknown copying rights and stays out of the corpus.
- */
-
 export interface RightsRule {
   id: string;
   allow: boolean;
@@ -41,7 +29,6 @@ export type RightsDecision =
   | { status: "denied"; rule: RightsRule; reason: string }
   | { status: "unknown"; reason: string };
 
-/** Checks the policy's shape, so a malformed rule fails the build instead of matching nothing. */
 export function parsePolicy(value: unknown): RightsPolicy {
   const p = value as RightsPolicy;
   const fail = (m: string): never => {
@@ -79,7 +66,6 @@ export interface RightsSubject {
   provenanceType: string | null;
 }
 
-/** Whether a node's own text may enter the index. `seedSlugs` maps a seed file to the slugs it defines. */
 export function indexRights(policy: RightsPolicy, node: RightsSubject, seedSlugs: Map<string, Set<string>>): RightsDecision {
   for (const rule of policy.index) {
     const m = rule.match;
@@ -92,7 +78,6 @@ export function indexRights(policy: RightsPolicy, node: RightsSubject, seedSlugs
   return { status: "unknown", reason: `unknown copying rights for provenance type ${node.provenanceType ?? "(none)"}` };
 }
 
-/** Whether a curated passage from `url` may be quoted. */
 export function quoteRights(policy: RightsPolicy, url: string): RightsDecision {
   for (const rule of policy.quote) {
     if (!url.startsWith(rule.urlPrefix)) continue;

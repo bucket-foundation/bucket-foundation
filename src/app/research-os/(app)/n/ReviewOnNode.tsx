@@ -25,7 +25,6 @@ interface QueuedProduction {
   unverifiedSourceNoteTemplate: string;
 }
 
-/** Review in place, for staff: the transfer holds and the productions on this node waiting on a decision. */
 export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; onChanged: () => void }) {
   const [holds, setHolds] = useState<Hold[] | null>(null);
   const [productions, setProductions] = useState<QueuedProduction[] | null>(null);
@@ -37,8 +36,6 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
     try {
       const res = await fetch("/api/research-os/review", { cache: "no-store" });
       if (!res.ok) {
-        // An empty queue and a failed read looked the same, so a lock
-        // wait told a reviewer this node had nothing waiting on it.
         setQueueNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
         setHolds([]);
         setProductions([]);
@@ -49,10 +46,6 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
       setHolds(j.transferHolds.filter((h) => h.nodeId === nodeId));
       setProductions(j.productions.filter((p) => p.targetNodeId === nodeId || p.relatedNodeId === nodeId));
     } catch {
-      // A fetch that rejects never reached the server. Emptying the
-      // lists without a note rendered "Nothing on this node waits on
-      // you." for every offline reload, which is the sentence this
-      // whole repair exists to stop.
       setQueueNote(OUTAGE_COPY.body);
       setHolds([]);
       setProductions([]);
@@ -82,11 +75,6 @@ export default function ReviewOnNode({ nodeId, onChanged }: { nodeId: string; on
   }
 
   if (holds === null || productions === null) return <LoadingState label="Reading the queue" />;
-  // The note comes before the empty state. A failed read sets it and
-  // empties both lists, so the early return below fired on exactly the
-  // path the note exists for and the reviewer read "Nothing on this node
-  // waits on you." for every outage, which is the sentence the comment
-  // in load() claims to have fixed.
   if (queueNote) {
     return (
       <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">

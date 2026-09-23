@@ -1,10 +1,3 @@
-"""Property tests for two pure digest helpers in `hte.paper`:
-`_deduped_posteriors` and `_robustness_rows`. `tests/swarm/test_paper_props.py`
-already swarms `emit_paper` end to end (a real `pdflatex`-adjacent build over
-a handful of examples, kept light since it shells out); these two helpers
-are plain data transforms with no subprocess of their own, so they take a
-much larger example budget at no extra cost.
-"""
 from __future__ import annotations
 
 from types import SimpleNamespace
@@ -20,10 +13,8 @@ _ENTRY = st.fixed_dictionaries({
     "posterior": st.one_of(st.none(), st.floats(min_value=0.0, max_value=1.0, allow_nan=False, allow_infinity=False)),
 })
 
-
 def _timeline(bins_of_entries: list[list[dict]]) -> TimelineArtifact:
     return TimelineArtifact(bins=[{"ranked_hypotheses": entries} for entries in bins_of_entries])
-
 
 @given(bins_of_entries=st.lists(st.lists(_ENTRY, max_size=5), max_size=5))
 @settings(max_examples=150)
@@ -32,7 +23,6 @@ def test_deduped_posteriors_only_keeps_entries_with_both_fields(bins_of_entries)
     all_entries = [e for bin_entries in bins_of_entries for e in bin_entries]
     well_formed_ids = {e["hypothesis_id"] for e in all_entries if e["hypothesis_id"] is not None and e["posterior"] is not None}
     assert set(out.keys()) == well_formed_ids
-
 
 @given(bins_of_entries=st.lists(st.lists(_ENTRY, max_size=5), max_size=5))
 @settings(max_examples=150)
@@ -45,7 +35,6 @@ def test_deduped_posteriors_first_occurrence_wins(bins_of_entries):
             if hid is not None and posterior is not None and hid not in first_seen:
                 first_seen[hid] = posterior
     assert out == first_seen
-
 
 @given(
     hid=st.text(min_size=1, max_size=6, alphabet="abc"),
@@ -60,11 +49,9 @@ def test_deduped_posteriors_repeat_id_across_bins_keeps_the_earlier_bins_value(h
     ])
     assert paper._deduped_posteriors(timeline) == {hid: first_posterior}
 
-
 def _run_data(*, n_survivors, robustness_stable_fraction):
     counts = RunCounts(n_survivors=n_survivors, robustness_stable_fraction=robustness_stable_fraction)
     return SimpleNamespace(counts=counts)
-
 
 @given(n_survivors=st.one_of(st.none(), st.integers(min_value=0, max_value=1000)))
 @settings(max_examples=40)
@@ -73,14 +60,12 @@ def test_robustness_rows_reads_n_a_when_fraction_is_none(n_survivors):
     assert "n/a" in row
     assert paper._fmt(n_survivors or 0) in row
 
-
 @given(fraction=st.floats(min_value=0.0, max_value=1.0, allow_nan=False, allow_infinity=False))
 @settings(max_examples=40)
 def test_robustness_rows_reads_n_a_when_n_survivors_is_zero_or_none(fraction):
     for n_survivors in (None, 0):
         row = paper._robustness_rows(_run_data(n_survivors=n_survivors, robustness_stable_fraction=fraction))
         assert row == "Stable & n/a \\\\\n    Unstable & n/a \\\\\n    Total & 0 \\\\"
-
 
 @given(
     n_survivors=st.integers(min_value=1, max_value=1000),

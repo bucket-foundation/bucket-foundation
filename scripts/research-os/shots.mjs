@@ -1,21 +1,3 @@
-/**
- * Screenshots of a Research OS page at desktop and phone width, signed in
- * against the local Supabase stack, for the standing rule that every loop
- * task shows its work on the frontend (BEADS-PENDING, ros-frontend).
- *
- * The session is an email one-time code read from the local mail catcher
- * (Mailpit on 54324), so it needs the local stack and a dev server, and it
- * touches nothing hosted. The session is saved and reused until it expires.
- *
- *   node scripts/research-os/shots.mjs /research-os/roadmap [more paths...]
- *
- * A staff-gated path needs SHOTS_EMAIL on RESEARCH_OS_REVIEWER_EMAILS in
- * .env.local, or the run screenshots a 404. Any page that answers outside
- * the 200s stops the run.
- *
- * Env: SHOTS_BASE (default http://127.0.0.1:3140), SHOTS_MAIL
- * (default http://127.0.0.1:54324), SHOTS_EMAIL, SHOTS_OUT.
- */
 import { chromium } from "playwright";
 import { mkdirSync, existsSync } from "node:fs";
 
@@ -49,8 +31,6 @@ async function open(page, url) {
       `${url} answered ${status}. A staff-gated path needs SHOTS_EMAIL (${EMAIL}) on RESEARCH_OS_REVIEWER_EMAILS.`,
     );
   }
-  // A redirect to the sign-in page answers 200 at another path, so a
-  // screenshot of the wrong page would pass the status check alone.
   const asked = new URL(url).pathname;
   const landed = new URL(res.url()).pathname;
   if (landed !== asked) {
@@ -61,16 +41,6 @@ async function open(page, url) {
   return res;
 }
 
-/**
- * Scroll the whole page once, then return to the top.
- *
- * Anything revealed by an IntersectionObserver starts at opacity 0 and
- * only becomes visible when it enters the viewport. A fullPage screenshot
- * does not scroll, so those sections photograph as blank bands: the
- * Research OS landing page came back with a thousand empty pixels under
- * "Five States" and the capture still reported ok. Evidence that cannot
- * show the page is worse than no evidence.
- */
 async function revealAll(page) {
   await page.evaluate(async () => {
     const step = Math.floor(window.innerHeight * 0.8);
@@ -83,10 +53,6 @@ async function revealAll(page) {
     window.scrollTo(0, 0);
     await new Promise((r) => setTimeout(r, 200));
   });
-  // A fixed wait is not a property of the transition: a five-row page
-  // left two rows unrevealed at 900ms and a twelve-row page left none,
-  // so the outcome does not even rise with length. Poll until the count
-  // of still-hidden elements stops shrinking, or a deadline passes.
   let previous = Infinity;
   for (let i = 0; i < 12; i += 1) {
     await page.waitForTimeout(250);
@@ -96,27 +62,15 @@ async function revealAll(page) {
   }
 }
 
-/**
- * Anything still transparent after a full scroll is content a reader
- * cannot see. A page that hides its own body behind a script is a finding,
- * so the run says which elements and stops being silent about it.
- */
 async function hiddenAfterReveal(page) {
   return page.evaluate(() => {
     const out = [];
-    // The whole document, since a hero or a footer outside `main` is
-    // still content a reader cannot see. `display:none` and
-    // `visibility:hidden` are deliberate hiding and stay out of it; a
-    // transparent element is the accident this looks for.
     for (const el of Array.from(document.querySelectorAll("body *"))) {
       const style = window.getComputedStyle(el);
       if (parseFloat(style.opacity) > 0.05) continue;
       if (style.display === "none" || style.visibility === "hidden") continue;
       const box = el.getBoundingClientRect();
-      // Small enough to be an icon or a rule rather than content.
       if (box.width < 24 || box.height < 24) continue;
-      // A transparent parent makes every child transparent, so only the
-      // outermost one is reported.
       if (out.some((o) => o.el.contains(el))) continue;
       out.push({ el, label: `${el.tagName.toLowerCase()}.${String(el.className || "").split(" ")[0]} ${Math.round(box.width)}x${Math.round(box.height)}` });
     }
@@ -135,8 +89,6 @@ async function mail(path) {
 }
 
 async function latestCode(address, after) {
-  // Mailpit, which the local Supabase stack runs on 54324: a list endpoint
-  // and one message by id.
   for (let i = 0; i < 30; i += 1) {
     const res = await mail("/api/v1/messages?limit=20");
     if (res.ok) {
@@ -162,7 +114,6 @@ async function signIn(context) {
   const page = await context.newPage();
   await open(page, `${BASE}/sign-in`);
   const sent = Date.now();
-  // Type after hydration, since a fill before it is lost when React mounts.
   await page.locator("#sign-in-email").click();
   await page.locator("#sign-in-email").pressSequentially(EMAIL, { delay: 15 });
   await page.locator("button[type=submit]:not([disabled])").click({ timeout: 30000 });
@@ -215,9 +166,6 @@ try {
       await page.close();
     }
   }
-  // A surface a reader cannot see fails the run. Reporting it and
-  // exiting 0 is the third defect in this repo's own protocol: a fault
-  // rendered with no consequence.
   if (hidden > 0) console.log(`${hidden} element(s) were still transparent after a full scroll`);
   process.exitCode = overflow > 0 || hidden > 0 ? 1 : 0;
 } finally {

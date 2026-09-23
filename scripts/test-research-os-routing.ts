@@ -1,14 +1,3 @@
-/**
- * Unit tests: the Phase 0 seed path's integrity, and frontier-backward
- * routing (src/lib/research-os/frontier.ts) against three synthetic learner
- * states plus one edge case, per task item 3 ("unit-tested with the seed
- * path and three synthetic learner states").
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-routing.ts
- * (matches scripts/test-kruse-token.ts's invocation; no test framework is
- * configured in this repo, node:test + node:assert is the existing pattern.)
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -41,7 +30,6 @@ function loadSeed(): Seed {
   return JSON.parse(readFileSync(SEED_PATH, "utf8")) as Seed;
 }
 
-/** Turn the slug-keyed seed fixture into id-keyed GraphNode/GraphEdge arrays (slug doubles as id, tests don't touch a database). */
 function toGraph(seed: Seed): { nodes: GraphNode[]; edges: GraphEdge[]; bySlug: Map<string, GraphNode> } {
   const nodes: GraphNode[] = seed.nodes.map((n) => ({
     id: n.slug,
@@ -60,10 +48,6 @@ function toGraph(seed: Seed): { nodes: GraphNode[]; edges: GraphEdge[]; bySlug: 
 function state(nodeId: string, stage: Stage): LearnerNodeState {
   return { nodeId, stage };
 }
-
-// ---------------------------------------------------------------------------
-// Seed integrity
-// ---------------------------------------------------------------------------
 
 test("seed path has 15-25 nodes, unique slugs, and the target exists", () => {
   const seed = loadSeed();
@@ -87,14 +71,10 @@ test("every node has a real citation (author/publisher + year, or a DOI/url)", (
   for (const n of seed.nodes) {
     const p = n.provenance;
     assert.ok(p, `node ${n.slug} has no provenance`);
-    const hasCitation = !!(p!.doi || p!.url || (p!.author && p!.year) || p!.source /* canon-bridge mirror */);
+    const hasCitation = !!(p!.doi || p!.url || (p!.author && p!.year) || p!.source );
     assert.ok(hasCitation, `node ${n.slug} provenance has no doi/url/author+year/mirror source`);
   }
 });
-
-// ---------------------------------------------------------------------------
-// Frontier-backward routing, three synthetic learner states + one edge case
-// ---------------------------------------------------------------------------
 
 test("fresh learner (no state records at all): frontier is exactly the prerequisite roots", () => {
   const { nodes, edges, bySlug } = toGraph(loadSeed());
@@ -104,9 +84,6 @@ test("fresh learner (no state records at all): frontier is exactly the prerequis
   const hasIncoming = new Set(edges.filter((e) => e.kind === "prerequisite").map((e) => e.toId));
   const expectedRoots = nodes.filter((n) => !hasIncoming.has(n.id) && n.id !== target.id).map((n) => n.slug);
   const frontierSlugs = result.frontier.map((n) => n.slug).sort();
-  // Only roots that are real ancestors of the target should appear (the
-  // canon-bridge nodes are also rootless but are not prerequisite-ancestors
-  // of the target, so they must NOT show up in the frontier).
   for (const slug of frontierSlugs) {
     assert.ok(expectedRoots.includes(slug), `${slug} unexpectedly in frontier`);
   }
@@ -135,13 +112,10 @@ test("mid-path learner: everything through tier 5 at understanding, frontier sit
   const result = computeFrontier(nodes, edges, states, target.id);
 
   const frontierSlugs = result.frontier.map((n) => n.slug).sort();
-  // The frontier should be exactly the mastered nodes with no un-mastered
-  // node between them and a root (i.e. the outermost mastered boundary).
   assert.ok(frontierSlugs.includes("light-as-a-wave") === false, "light-as-a-wave is not mastered, should not be frontier");
   assert.ok(frontierSlugs.every((s) => masteredSlugs.includes(s)), `frontier contains an un-mastered node: ${frontierSlugs}`);
   assert.ok(frontierSlugs.length > 0, "expected a non-empty frontier");
 
-  // The gap (still to do) must not include anything already mastered.
   const gapSlugs = result.gap.map((n) => n.slug);
   for (const s of masteredSlugs) assert.ok(!gapSlugs.includes(s), `${s} is mastered but appears in gap`);
   assert.ok(gapSlugs.includes("rayleigh-scattering-law"), "rayleigh-scattering-law should still be in the gap");
@@ -164,16 +138,12 @@ test("near-target learner: both direct prerequisites of the target at understand
 test("a stage below understanding (awareness) does not count as mastered", () => {
   const { nodes, edges, bySlug } = toGraph(loadSeed());
   const target = bySlug.get("why-the-sky-is-blue")!;
-  // Put "understanding" one step past a root so the routing must check the
-  // stage threshold rather than stopping at the root anyway.
   const states: LearnerNodeState[] = [state(bySlug.get("light-can-scatter-off-small-things")!.id, "awareness")];
   const result = computeFrontier(nodes, edges, states, target.id);
 
   const step = result.chain.find((s) => s.node.slug === "light-can-scatter-off-small-things")!;
   assert.equal(step.stage, "awareness", "the chain must report the learner's recorded stage as-is");
   assert.equal(step.isFrontier, false, "awareness must not be treated as mastered (frontier requires >= understanding)");
-  // Its own prerequisites (roots) must still have been walked to, since
-  // awareness didn't stop the backward walk.
   const frontierSlugs = result.frontier.map((n) => n.slug);
   assert.ok(frontierSlugs.includes("light-travels-in-straight-lines"));
   assert.ok(frontierSlugs.includes("air-is-made-of-tiny-particles"));

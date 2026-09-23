@@ -1,10 +1,3 @@
-"""Timeline substrate: astronomical-year intervals and Allen's interval algebra.
-
-Mirrors `Bucket.Timeline` (`papers/history-hypothesis-engine/lean/Bucket/Timeline.lean`)
-and `TIMELINE-AND-COMBINATORICS-SPEC.md` §1: a signed integer year axis with no
-BCE/CE gap, an uncertainty tag per interval, the thirteen Allen relations, and
-the resolution ladder that buckets a point on the axis at five widths.
-"""
 from __future__ import annotations
 
 import logging
@@ -16,33 +9,7 @@ from typing import Any, Sequence
 
 logger = logging.getLogger("hte.timeline")
 
-
-# --------------------------------------------------------------------------
-# `time_bin_index` clamp log (`FINDING-2026-09-10-103`, silent-failures
-# review #2): a year clamped to bin 0 is the one new "this happened, and
-# it might mean the data is wrong" event `bkt-hte-binning-clamp` added
-# with no persisted trace of its own, unlike `hte.roles`'s sibling
-# refusal-tracking work, which gets a `run.log` line and a `MANIFEST.
-# json` tally for the same kind of "absorbed rather than raised" event.
-# No CLI entry point in this package (`hte.cli`/`hte.cli_pipeline`/`hte.
-# serve`) ever calls `logging.basicConfig` or attaches a handler, so the
-# `logger.warning` call below reaches only Python's own bare handler of
-# last resort in a real run; `_CLAMP_LOG` is this module's own record of
-# the same events, mirroring `hte.roles._REFUSAL_LOG`'s shape exactly so
-# `hte.runner.run_campaign` can read it back the same way: one `run.log`
-# line per clamp, folded into `MANIFEST.json["clamped_years"]`.
-# --------------------------------------------------------------------------
-
-
 class _ClampLog:
-    """Thread-safe record of every `time_bin_index` clamp so far this
-    process. Lives in this module, the same layering `hte.roles.
-    _REFUSAL_LOG` uses for the same reason: `hte.timeline` is a
-    substrate module several packages import (`hte.address`, `hte.
-    generate`, `hte.calibrate`, ...), so it cannot import `hte.runner`
-    (which itself imports `hte.timeline`) without a cycle; `hte.runner`
-    reads this log back instead, the same direction it already reads
-    `hte.roles.refusal_log()`."""
 
     def __init__(self) -> None:
         self._lock = threading.Lock()
@@ -60,92 +27,43 @@ class _ClampLog:
         with self._lock:
             self._events.clear()
 
-
 _CLAMP_LOG = _ClampLog()
 
-
 def clamp_log() -> list[dict[str, int]]:
-    """`[{"year": ..., "span_start": ...}, ...]`, one entry per
-    `time_bin_index` clamp so far this process, oldest first. Safe to
-    write verbatim into `MANIFEST.json` or `run.log`: every field is a
-    plain integer year, never prompt text or evidence content."""
     return _CLAMP_LOG.snapshot()
 
-
 def reset_clamp_log() -> None:
-    """Clear `clamp_log()`'s own record. `hte.runner.run_campaign` calls
-    this alongside `hte.roles.reset_refusal_log()` at the start of a
-    run, so each run's own manifest reports only that run's own
-    clamps."""
     _CLAMP_LOG.reset()
 
-# --------------------------------------------------------------------------
-# Calendar mapping
-# --------------------------------------------------------------------------
-#
-# `main.tex` §Timeline model: "A historical year n BCE maps to astronomical
-# year -(n-1); n CE maps to astronomical year n." Astronomical year 0 is
-# 1 BCE; there is no astronomical year between 0 and 1, matching the historical
-# count having no year between 1 BCE and 1 CE.
-
-
 def bce_to_astronomical(n: int) -> int:
-    """`n` BCE as an astronomical year. `bce_to_astronomical(1) == 0`."""
     if n < 1:
         raise ValueError("a BCE year is counted from 1, not 0 or negative")
     return -(n - 1)
 
-
 def ce_to_astronomical(n: int) -> int:
-    """`n` CE as an astronomical year. `ce_to_astronomical(1) == 1`."""
     if n < 1:
         raise ValueError("a CE year is counted from 1, not 0 or negative")
     return n
 
-
 def astronomical_to_calendar(year: int) -> tuple[int, str]:
-    """The inverse of `bce_to_astronomical`/`ce_to_astronomical`: an
-    astronomical year as a `(calendar_year, "BCE" | "CE")` pair."""
     if year >= 1:
         return year, "CE"
     return 1 - year, "BCE"
 
-
 def bp_to_astronomical(bp: float, base_year: int = 1950) -> float:
-    """A "years Before Present" date as an astronomical year, using the
-    radiocarbon convention's 1950 CE baseline for "present"."""
     return base_year - bp
 
-
 def ka_to_astronomical(ka: float, base_year: int = 1950) -> float:
-    """A "ka" (kiloannum before present) date as an astronomical year, per
-    `bp_to_astronomical` at the same 1950 baseline (`tab:pilot-periods`'s
-    Younger Dryas range, "12.9 to 11.7 ka")."""
     return bp_to_astronomical(ka * 1000.0, base_year)
 
-
-# --------------------------------------------------------------------------
-# Uncertainty and Interval
-# --------------------------------------------------------------------------
-
-
 class UncertaintyKind(str, Enum):
-    """The four-way split `TIMELINE-AND-COMBINATORICS-SPEC.md` §1's
-    `uncertainty.distribution` field draws. `SAMPLED` stands in for the
-    spec's `oxcal-posterior` case, whose payload is a sampled posterior curve
-    rather than a closed-form distribution (`Bucket.Timeline.Uncertainty`)."""
     POINT = "point"
     UNIFORM = "uniform"
     NORMAL = "normal"
     SAMPLED = "sampled"
 
-
 @dataclass(frozen=True)
 class Uncertainty:
-    """How an interval's boundary is known (`def:interval`). `params` carries
-    the shape's own numbers: empty for `POINT`, `{"min", "max"}` for
-    `UNIFORM`, `{"mu", "sigma"}` for `NORMAL`, `{"pdf"}` (a list of
-    `(year, density)` pairs) for `SAMPLED`."""
     kind: UncertaintyKind = UncertaintyKind.POINT
     params: dict[str, Any] = field(default_factory=dict)
 
@@ -176,12 +94,8 @@ class Uncertainty:
     def from_dict(cls, d: dict) -> "Uncertainty":
         return cls(kind=UncertaintyKind(d["kind"]), params=dict(d.get("params", {})))
 
-
 @dataclass(frozen=True)
 class Interval:
-    """A dated interval on the astronomical-year axis (`def:interval`,
-    `Bucket.Timeline.Interval`). `start <= end` is checked at construction,
-    matching the guarantee the Lean structure's `le` proof field carries."""
     start: int
     end: int
     uncertainty: Uncertainty = field(default_factory=Uncertainty.point)
@@ -198,18 +112,7 @@ class Interval:
         unc = Uncertainty.from_dict(d["uncertainty"]) if "uncertainty" in d else Uncertainty.point()
         return cls(start=d["start"], end=d["end"], uncertainty=unc)
 
-
-# --------------------------------------------------------------------------
-# Allen's interval algebra
-# --------------------------------------------------------------------------
-
-
 class AllenRelation(str, Enum):
-    """Allen's thirteen qualitative interval relations (`def:allen`,
-    `Bucket.Timeline.AllenRelation`), the relation vocabulary for every
-    sequence hypothesis and every edge between two dated nodes. Declaration
-    order here is the fixed vocabulary-index order `hte.address` uses to
-    encode the RELATION slot of a sequence address."""
     BEFORE = "before"
     AFTER = "after"
     MEETS = "meets"
@@ -223,7 +126,6 @@ class AllenRelation(str, Enum):
     OVERLAPS = "overlaps"
     OVERLAPPED_BY = "overlapped-by"
     EQUAL = "equal"
-
 
 _CONVERSE: dict[AllenRelation, AllenRelation] = {
     AllenRelation.BEFORE: AllenRelation.AFTER,
@@ -241,41 +143,10 @@ _CONVERSE: dict[AllenRelation, AllenRelation] = {
     AllenRelation.EQUAL: AllenRelation.EQUAL,
 }
 
-
 def converse(relation: AllenRelation) -> AllenRelation:
-    """The relation that holds between `b` and `a` whenever `relation` holds
-    between `a` and `b`. `relate(a, b) == before` iff `relate(b, a) ==
-    after`, and so on for each of the thirteen relations
-    (`relate_converse_before_after`, `relate_converse_meets_metBy`); `equal`
-    converses to itself."""
     return _CONVERSE[relation]
 
-
 def relate(a: Interval, b: Interval) -> AllenRelation:
-    """Decide which of the thirteen Allen relations holds between `a` and
-    `b` (`Bucket.Timeline.relate`). The branches below are checked in the
-    exact order the Lean source fixes them, each falling through to the
-    next, so exactly one branch fires for any pair of intervals: this is
-    `relate_total` (trivially, since this is an ordinary function) plus
-    `relate_before_iff` through `relate_metBy_iff`'s closed-arithmetic
-    characterization of the first four branches, carried over unchanged.
-
-    One special case sits ahead of that inherited order: the Lean
-    `relate` (`Bucket.Timeline.relate`) checks `meets`/`metBy` before
-    `equal` too, so two zero-length intervals collapsed onto the same
-    point (`a.start = a.stop = b.start = b.stop`) satisfy the `meets`
-    condition first there as well; `relate_converse_meets_metBy`'s own
-    `hnondeg` hypothesis exists precisely to exclude that one collision
-    from the converse-symmetry proof, rather than to declare `meets` the
-    intended answer for it (FINDING-2026-09-10-001,
-    `tests/swarm/FINDINGS-2026-09-10.md`). This function special-cases
-    exactly that collision to `equal` up front, restoring `relate`'s own
-    reflexivity (`relate(a, a) == equal` for every `a`, zero-length
-    included) and converse symmetry for every pair with no exclusion.
-    The general order below is otherwise unchanged from the Lean source:
-    this is a narrowly-scoped, Python-only divergence added ahead of the
-    inherited branch chain, which itself keeps its original order.
-    """
     if a.start == a.end and b.start == b.end and a.start == b.start:
         return AllenRelation.EQUAL
     if a.end < b.start:
@@ -304,69 +175,33 @@ def relate(a: Interval, b: Interval) -> AllenRelation:
         return AllenRelation.OVERLAPS
     return AllenRelation.OVERLAPPED_BY
 
-
-# --------------------------------------------------------------------------
-# Resolution ladder
-# --------------------------------------------------------------------------
-
-
 class Resolution(str, Enum):
-    """The five bucket widths a dated point on the axis can carry
-    (`TIMELINE-AND-COMBINATORICS-SPEC.md` §1). `ERA` sits above `MILLENNIUM`
-    as the widest rung; unlike the other four, the source material fixes no
-    numeric width for it (`period.level`'s era/period/event/year nesting is
-    a node hierarchy, a separate axis from this precision ladder), so
-    `ERA_WIDTH_YEARS` below is a documented placeholder rather than a value
-    read off any spec."""
     YEAR = "year"
     DECADE = "decade"
     CENTURY = "century"
     MILLENNIUM = "millennium"
     ERA = "era"
 
-
 RESOLUTION_WIDTH_YEARS: dict[Resolution, int] = {
     Resolution.YEAR: 1,
     Resolution.DECADE: 10,
     Resolution.CENTURY: 100,
     Resolution.MILLENNIUM: 1000,
-    Resolution.ERA: 10_000,  # placeholder: no fixed era width is stated in the source material
+    Resolution.ERA: 10_000,
 }
 
-
 def bin_bounds(year: int, resolution: Resolution) -> tuple[int, int]:
-    """The `[start, end)`-style inclusive bucket of width `resolution` that
-    contains `year`, floor-dividing the axis at that width from year 0."""
     width = RESOLUTION_WIDTH_YEARS[resolution]
     bucket = math.floor(year / width)
     start = bucket * width
     return start, start + width - 1
 
-
 def bin(interval: Interval, resolution: Resolution) -> Interval:
-    """The resolution-ladder bucket covering `interval` (`TIMELINE-AND-
-    COMBINATORICS-SPEC.md` §1): the bucket of the given width containing
-    `interval.start`, returned as a point-uncertainty `Interval`. An
-    interval that spans more than one bucket at this resolution is bucketed
-    by its start, the interval's own anchor into the ladder, rather than
-    split across every bucket it touches."""
     start, end = bin_bounds(interval.start, resolution)
     return Interval(start=start, end=end)
 
-
-# --------------------------------------------------------------------------
-# Century time bins for the combinatorial address scheme
-# --------------------------------------------------------------------------
-#
-# `main.tex` §Combinatorics fixes TIME_BIN at 200 century bins across a
-# 20,000-year span for its own vocabulary sizing; `DEFAULT_SPAN_START` and
-# `DEFAULT_BIN_WIDTH` below reproduce exactly that span and width, so a
-# default-configured `hte.address` encoding matches the paper's own
-# `|H|` calculation.
-
 DEFAULT_SPAN_START = -20_000
 DEFAULT_BIN_WIDTH = 100
-
 
 def auto_resolution(
     intervals: Sequence[Interval],
@@ -374,28 +209,6 @@ def auto_resolution(
     min_bins: int = 8,
     max_bins: int = 40,
 ) -> Resolution:
-    """The finest resolution-ladder rung giving between `min_bins` and
-    `max_bins` bins over the span `intervals` covers (`bkt-hte-auto-
-    resolution`): `hte.runner.run_campaign`'s own default for a
-    campaign config that leaves `resolution` unset, so a 126-year corpus
-    (quantum-history) gets decade bins instead of the two century bins
-    its own span rounds down to under the paper's fixed 20,000-year/
-    century default.
-
-    Iterates the ladder finest-to-coarsest (`Resolution`'s own
-    declaration order) and returns the first rung whose bin count over
-    `[start, end]` (the min start and max end across every interval)
-    lands in `[min_bins, max_bins]`, preferring the finest rung that
-    fits. When no rung's bin count falls in that window at all (a span
-    far narrower or wider than the ladder's five widths can resolve into
-    that range), returns whichever rung's own bin count sits closest to
-    the window instead of raising: this function's own read of `main.
-    tex`'s combinatorics section leaves this case unaddressed, so the
-    closest rung is this package's own defensible fallback rather than an
-    arbitrary one. An empty `intervals` returns `Resolution.CENTURY`,
-    matching this module's own century default everywhere else a span
-    cannot be read off any data.
-    """
     if not intervals:
         return Resolution.CENTURY
     start = min(iv.start for iv in intervals)
@@ -419,48 +232,12 @@ def auto_resolution(
             best = (resolution, n)
     return best[0]
 
-
 def bin_label(bin_start: int, resolution: Resolution) -> str:
-    """The bin label the runner exports (`1900s`, `1910s`, ...) in place
-    of a bare numeric bin index (`bkt-hte-auto-resolution`): the bin's
-    own start year, suffixed `s` at every rung except `YEAR` (a single
-    year reads as itself, "1925", not "1925s")."""
     if RESOLUTION_WIDTH_YEARS[resolution] == 1:
         return str(bin_start)
     return f"{bin_start}s"
 
-
 def time_bin_index(year: int, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH) -> int:
-    """The 0-based century-bin index of `year` within a fixed span starting
-    at `span_start` (`TIME_BIN`, `main.tex` §Combinatorics). `TIME_BIN` is a
-    numeric axis rather than a named concept vocabulary, so this function,
-    not `hte.concepts.Vocabulary`, is what `hte.address.encode` calls to
-    resolve a placement's time slot.
-
-    A `year` before `span_start` clamps to bin 0 rather than raising
-    (`bkt-hte-binning-clamp`, 2026-09-10: an `education-atlas` campaign
-    died here, `ValueError: year 2000 sits before the span start 2002`,
-    over a generator-role proposal whose own `time_hint` named a year
-    this run's own span, built before that proposal ever existed, had
-    not been widened to cover). `hte.address.encode_indices` needs a
-    non-negative `TIME_BIN` index for its own Gödel-prime encoding
-    (`idx < 0` raises there), so "extend the ladder leftward" is not
-    available to this function on its own; clamping to the span's own
-    earliest bin, with one warning logged naming the shortfall, is the
-    fallback this function owns. `hte.runner._resolve_time_binning`'s own
-    span, built from the union of every ground-truth date and every
-    evidence item's own interval, is the primary defense that keeps this
-    branch rare; this is the backstop for whatever that union still does
-    not cover (a hallucinated year naming no evidence item at all).
-
-    Every clamp also lands in `clamp_log()` (`_CLAMP_LOG`, this module's
-    own record, `hte.roles.refusal_log()`'s own shape), which `hte.
-    runner.run_campaign` reads back into `run.log` and `MANIFEST.
-    json["clamped_years"]`: the `logger.warning` call below reaches only
-    stderr's bare handler of last resort in a real run (no CLI entry
-    point in this package ever configures one), so `clamp_log()` is the
-    one persisted trace a reader of a run's own artifacts can check
-    without a handler attached."""
     if year < span_start:
         logger.warning(
             "hte.timeline.time_bin_index: year %d sits %d year(s) before span_start %d; "
@@ -470,28 +247,14 @@ def time_bin_index(year: int, span_start: int = DEFAULT_SPAN_START, bin_width: i
         return 0
     return (year - span_start) // bin_width
 
-
-# --------------------------------------------------------------------------
-# Period nodes (bkt-hte-period-model)
-# --------------------------------------------------------------------------
-
-
 class NodeLevel(str, Enum):
-    """The four levels a timeline node nests at (`main.tex` §Timeline model:
-    "Nodes nest four levels deep, era, period, event, year"). This is a node-
-    hierarchy axis, distinct from `Resolution`'s precision-width axis even
-    though both name `year` and `era`."""
     ERA = "era"
     PERIOD = "period"
     EVENT = "event"
     YEAR = "year"
 
-
 @dataclass
 class DatePosterior:
-    """A period's date posterior summary (`HISTORY-HYPOTHESIS-ENGINE-SPEC.md`
-    §4): a mean astronomical year and its 68%/95% highest-density intervals,
-    tagged with the model that produced them."""
     mean: float
     hpd_68: tuple[float, float]
     hpd_95: tuple[float, float]
@@ -504,27 +267,11 @@ class DatePosterior:
     def from_dict(cls, d: dict) -> "DatePosterior":
         return cls(mean=d["mean"], hpd_68=tuple(d["hpd_68"]), hpd_95=tuple(d["hpd_95"]), model=d["model"])
 
-
 def combine_date_observations(observations: list[tuple[float, float]], model: str = "gaussian-precision-v0") -> DatePosterior:
-    """A period's date posterior from a list of `(mean, sigma)` dated
-    observations, by inverse-variance-weighted Gaussian pooling.
-
-    This stands in for the OxCal-style Gibbs-sampled phase model
-    `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §4 and `main.tex`'s `retrieval-
-    envelope` provenance paragraph describe: that sampler is a substantial
-    piece of statistical machinery in its own right and is out of scope for
-    this core package (no generator, tournament, or calibration run is
-    built here either). This function gives the period node the same
-    `DatePosterior` shape a real phase model would populate, computed by
-    the simplest defensible combination rule, so `hte.timeline.Period` has
-    something to hold before the real sampler lands.
-    """
     if not observations:
         raise ValueError("combine_date_observations needs at least one observation")
     weights = [1.0 / (sigma ** 2) if sigma > 0 else float("inf") for _, sigma in observations]
     if any(math.isinf(w) for w in weights):
-        # A zero-sigma observation is exact: it alone fixes the mean, and
-        # every finite-sigma observation contributes no further information.
         exact_means = [mean for (mean, sigma), w in zip(observations, weights) if math.isinf(w)]
         mean = sum(exact_means) / len(exact_means)
         return DatePosterior(mean=mean, hpd_68=(mean, mean), hpd_95=(mean, mean), model=model)
@@ -538,13 +285,8 @@ def combine_date_observations(observations: list[tuple[float, float]], model: st
         model=model,
     )
 
-
 @dataclass
 class Period:
-    """A timeline node at one of the four `NodeLevel`s (`HISTORY-HYPOTHESIS-
-    ENGINE-SPEC.md` §4). `parents` is a list rather than one pointer, since a
-    period can sit under two eras at once when a regional and a global
-    chronology frame it differently."""
     id: str
     level: NodeLevel
     interval: Interval

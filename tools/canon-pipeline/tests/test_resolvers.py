@@ -1,30 +1,23 @@
 import resolvers
 
-
 def test_classify_doi():
     assert resolvers.classify_input("10.1126/science.208.4448.1095") == ("doi", "10.1126/science.208.4448.1095")
-
 
 def test_classify_doi_url():
     assert resolvers.classify_input("https://doi.org/10.1038/nature12373")[0] == "doi"
 
-
 def test_classify_arxiv_prefix():
     assert resolvers.classify_input("arxiv:2405.14909") == ("arxiv", "2405.14909")
 
-
 def test_classify_pmid_prefix():
     assert resolvers.classify_input("pmid:17426811") == ("pmid", "17426811")
-
 
 def test_classify_query():
     kind, _ = resolvers.classify_input("mitochondrial free radical theory of aging")
     assert kind == "query"
 
-
 def test_normalize_doi_strips_url():
     assert resolvers._normalize_doi("https://doi.org/10.1038/nature12373") == "10.1038/nature12373"
-
 
 def test_parse_arxiv_atom_minimal():
     xml = """<?xml version="1.0" encoding="UTF-8"?>

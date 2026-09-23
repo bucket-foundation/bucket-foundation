@@ -1,8 +1,3 @@
-/**
- * Unit tests: the workspace without a model (ros-23),
- * src/lib/research-os/deterministic.ts. Pure, no I/O. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-deterministic.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { deterministicCheck, deterministicOrganize, isCopy, llmEnabled, overlap } from "../src/lib/research-os/deterministic";

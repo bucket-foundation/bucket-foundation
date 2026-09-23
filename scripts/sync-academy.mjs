@@ -1,7 +1,3 @@
-/* Sync the Bucket Academy app (source of truth: learning/app) into public/academy-app
- * so the Next.js site serves it at /academy-app and the /academy route can frame it.
- * Runs automatically via the predev/prebuild npm hooks, and can be run by hand.
- * Excludes dev-only files (serve.sh, validate.sh, README, vercel.json, node_modules). */
 import { cpSync, rmSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,19 +7,18 @@ const src = join(root, "learning", "app");
 const dest = join(root, "public", "academy-app");
 const EXCLUDE = new Set([
   "serve.sh", "validate.sh", "README.md", "vercel.json", "node_modules", ".vercel",
-  "test-adaptive.js", // dev-only engine test (bkt-jh0); never ship to /academy-app
-  "test-diagnostic.mjs", "test-headless-flow.mjs", // dev-only diagnostic tests (bkt-efk)
-  "test-assess.mjs", "test-assess-flow.mjs", // dev-only assessment tests (bkt-v7y / bkt-3so)
-  "test-explorer.mjs", // dev-only Polingual explorer smoke test (bkt-nhy)
-  "test-lang-flow.mjs", // dev-only language word+cloze drill smoke test (bkt-m9j)
-  // build-time art/icon generators are dev-only; the committed cache + PNGs ship instead
+  "test-adaptive.js",
+  "test-diagnostic.mjs", "test-headless-flow.mjs",
+  "test-assess.mjs", "test-assess-flow.mjs",
+  "test-explorer.mjs",
+  "test-lang-flow.mjs",
   "build-art.mjs", "build-icons.mjs", "icon-maskable.svg",
-  "_build", // dev-only corpus builders (e.g. corpus/_build/build-lang-core.py); never ship
+  "_build",
 ]);
 
 if (!existsSync(src)) {
   console.error("[sync-academy] source not found:", src);
-  process.exit(0); // don't break the build if the app folder isn't present
+  process.exit(0);
 }
 rmSync(dest, { recursive: true, force: true });
 mkdirSync(dest, { recursive: true });
@@ -33,12 +28,6 @@ cpSync(src, dest, {
 });
 console.log("[sync-academy] copied learning/app → public/academy-app");
 
-/* Inject PUBLIC Supabase config for the Academy's optional sign-in (bkt-su9).
- * Both values are public by design (the anon key is meant to ship to browsers;
- * Row-Level Security is the real boundary). We read process.env first, then
- * fall back to parsing .env.local / .env so the prebuild hook works even when
- * it runs before Next loads its env. When both are absent, we write an EMPTY
- * config → auth disables itself and the app stays anonymous + local-first. */
 function readEnvFiles() {
   const out = {};
   for (const f of [".env.local", ".env"]) {
@@ -50,7 +39,7 @@ function readEnvFiles() {
       let v = m[2].trim();
       if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")))
         v = v.slice(1, -1);
-      if (out[m[1]] === undefined) out[m[1]] = v; // first file wins (.env.local > .env)
+      if (out[m[1]] === undefined) out[m[1]] = v;
     }
   }
   return out;

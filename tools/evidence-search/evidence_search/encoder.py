@@ -1,10 +1,3 @@
-"""The pinned encoder, loaded from the local cache with remote code off.
-
-The offline switches go into the environment before the libraries load,
-so a missing file is an error and never a download. Embeddings are
-L2-normalized float32, so a dot product is the cosine the registry names.
-"""
-
 from __future__ import annotations
 
 import os
@@ -13,10 +6,8 @@ from .registry import model_entry, snapshot_dir, verify_model, verify_runtime
 
 MAX_THREADS = 8
 
-
 class ModelUnavailable(RuntimeError):
-    """The pinned model or runtime failed verification."""
-
+    pass
 
 class Encoder:
     def __init__(self, model_id: str | None = None, threads: int = MAX_THREADS, device: str = "cpu"):
@@ -35,8 +26,6 @@ class Encoder:
         self.device = device
         self.model = SentenceTransformer(str(snap), device=device, trust_remote_code=False, local_files_only=True)
         self.tokenizer = Tokenizer.from_file(str(snap / "tokenizer.json"))
-        # Chunking counts every word piece of a body; the model's own
-        # truncation applies later, per chunk, inside encode().
         self.tokenizer.no_truncation()
         self.tokenizer.no_padding()
         self.dimension = int(self.entry["dimension"])

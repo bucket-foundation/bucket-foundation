@@ -1,10 +1,3 @@
-/**
- * Which paths need a signed-in person, and where to send them after
- * sign-in. Pure so the middleware's rules are unit-tested without a server
- * (scripts/test-auth-paths.ts).
- */
-
-/** Paths under which every route needs a session. The Research OS landing at /research-os stays public. */
 export const PROTECTED_PREFIXES = [
   "/research-os/home",
   "/research-os/workspace",
@@ -29,11 +22,6 @@ function hasControlChars(s: string): boolean {
   return false;
 }
 
-/**
- * A safe post-sign-in destination: a same-origin absolute path only. Rejects
- * protocol-relative URLs (//evil), absolute URLs, and anything with a
- * scheme, so the `next` query parameter can never bounce a person off-site.
- */
 export function safeNextPath(raw: string | null | undefined): string {
   if (!raw) return DEFAULT_AFTER_SIGN_IN;
   const s = raw.trim();

@@ -55,11 +55,7 @@ from hte.llm import stats as llm_stats  # noqa: E402
 
 Triple = tuple[str, str, str]
 
-
 def attested_subset() -> list[Triple]:
-    """Every `(text_id, passage_id, passage_text)` triple this module's own
-    filter (this file's own top docstring) keeps, in `TEXT_RECORDS` then
-    passage order."""
     figures = json.loads(DEFAULT_CORPUS_PATH.read_text())["figures"]
     by_tradition: dict[str, list[dict]] = {}
     for fig in figures:
@@ -77,7 +73,6 @@ def attested_subset() -> list[Triple]:
             if any(p.search(passage_text) for p in patterns):
                 triples.append((record.text_id, passage_id, passage_text))
     return triples
-
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
@@ -125,7 +120,6 @@ def main(argv: list[str] | None = None) -> int:
     corpus.save(args.out)
     print(f"DONE done={len(done)}/{len(window)} out={args.out} stats={llm_stats()}", flush=True)
     return 0 if len(done) == len(window) else 2
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Create the bkt-epic-shorts epic + 15 child beads in Bucket Foundation.
 set -euo pipefail
 API="https://bucket-foundation.nucleus.agfarms.dev/issues"
 AUTH="-u $NUCLEUS_ADMIN_USER:$NUCLEUS_ADMIN_PASSWORD"

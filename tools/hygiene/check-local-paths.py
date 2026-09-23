@@ -35,16 +35,7 @@ REPO_ROOT = Path(
 )
 ALLOWLIST_PATH = REPO_ROOT / "tools" / "hygiene" / ".local-path-allowlist"
 
-# Matches /home/<user>/... for any username on any machine.
-# The (?<!\w) guard rejects a URL path segment that contains the
-# literal text "/home/" (e.g. https://iai.tv/home/speakers-and-authors/...,
-# https://persee.fr/web/revues/home/prescript/...), common across this
-# repo's scraped bibliographic corpora (archaeology/, openalex*/, arxiv/,
-# yt/, blog/, pubmed/), and still matches a real absolute path, always
-# preceded by whitespace, a quote, a shell operator, or the start of the
-# line, never by a word character from a domain name.
 PATH_RE = re.compile(r"(?<!\w)/home/[A-Za-z0-9_][A-Za-z0-9_.-]*(?:/[^\s\"'`)]*)?")
-
 
 def load_allowlist() -> set[str]:
     if not ALLOWLIST_PATH.exists():
@@ -57,7 +48,6 @@ def load_allowlist() -> set[str]:
         entries.add(line)
     return entries
 
-
 def staged_files() -> list[str]:
     out = subprocess.run(
         ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
@@ -65,16 +55,13 @@ def staged_files() -> list[str]:
     ).stdout
     return [line for line in out.splitlines() if line]
 
-
 def all_tracked_files() -> list[str]:
     out = subprocess.run(
         ["git", "ls-files"], capture_output=True, text=True, check=True, cwd=REPO_ROOT,
     ).stdout
     return [line for line in out.splitlines() if line]
 
-
 def read_text(rel_path: str) -> str | None:
-    """Return file text, or None if the file is missing/binary."""
     p = REPO_ROOT / rel_path
     if not p.is_file():
         return None
@@ -82,7 +69,6 @@ def read_text(rel_path: str) -> str | None:
         return p.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):
         return None
-
 
 def check_files(paths: list[str], allowlist: set[str]) -> int:
     hits = 0
@@ -98,7 +84,6 @@ def check_files(paths: list[str], allowlist: set[str]) -> int:
                 print(f"{rel_path}:{lineno}: forbidden local path: {m.group(0)}")
                 hits += 1
     return hits
-
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
@@ -128,7 +113,6 @@ def main() -> int:
         )
         return 1
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

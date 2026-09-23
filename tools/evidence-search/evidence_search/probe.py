@@ -1,13 +1,3 @@
-"""The runtime probe from IMPLEMENTATION.md, "Operating envelope".
-
-It records what the worker would run on: CPU count, available memory and
-disk against the reserves (10 GiB of RAM, 50 GiB of disk), the model's
-files on disk, whether torch sees a GPU from this environment, the load
-time, and encode throughput at three batch sizes on CPU. It picks the
-batch size with the best throughput and reports whether peak memory stayed
-inside the 8 GiB the plan allows the worker. Nothing is downloaded.
-"""
-
 from __future__ import annotations
 
 import os
@@ -24,7 +14,6 @@ RAM_RESERVE = 10 * GIB
 DISK_RESERVE = 50 * GIB
 WORKER_RAM_CAP = 8 * GIB
 
-
 def meminfo() -> dict[str, int]:
     out: dict[str, int] = {}
     try:
@@ -34,7 +23,6 @@ def meminfo() -> dict[str, int]:
     except OSError:
         pass
     return out
-
 
 def probe(model_id: str | None = None, sample: list[str] | None = None, disk_path: str = ".") -> dict:
     mid, entry = model_entry(model_id)

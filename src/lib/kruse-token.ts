@@ -1,24 +1,10 @@
-/**
- * HS256-signed access tokens for the private /kruse preview.
- *
- * Intentionally minimal. No auth library, no DB lookups. The secret and
- * version live in env; the allow-list of recipients is env-driven too.
- *
- * Used in three places:
- *  - `src/middleware.ts`, verifies on every /kruse request
- *  - `src/app/api/kruse/search/route.ts`, verifies on every proxy call
- *  - `scripts/mint-kruse-token.ts`, mints new tokens
- */
-
 import { SignJWT, jwtVerify } from "jose";
 
 export const COOKIE_NAME = "bkt_kruse_access";
-export const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 90; // 90 days
+export const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 90;
 
 export type TokenPayload = {
-  /** recipient id, e.g. "kruse" */
   r: string;
-  /** token version, bump BKT_KRUSE_TOKEN_VERSION to revoke all prior tokens */
   v: number;
   iat: number;
   exp: number;

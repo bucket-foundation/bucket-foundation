@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Idempotent AARO archive mirror via Wayback. Skip if file already present.
 set -u
 DEST=$HOME/agfarms/bucket-foundation/_intake/aaro-mil-archive
 URLS=/tmp/aaro-urls.txt

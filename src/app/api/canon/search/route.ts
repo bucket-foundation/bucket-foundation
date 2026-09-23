@@ -1,54 +1,3 @@
-/**
- * bucket.foundation, /api/canon/search
- * --------------------------------------
- * Semantic + lexical search across the 599 source excerpts (bucket-canon/<branch>/sub-claims/)
- * and 18 detected multi-branch primitive bridges.
- *
- * This is the **AI-agent-facing canon API**. Both humans (via the
- * /canon/search UI) and AI agents (via direct calls or the
- * bucket-foundation MCP server at /mcp) consume this endpoint.
- *
- * Auth: anonymous (rate-limited via standard ip).
- *
- * Query params:
- * q (required, string) natural-language query
- * top_k (optional, 1-50, default 10) results count
- * tier (optional, enum) filter by predicted tier:
- * nucleus | functional | edge | all (default all)
- * branch (optional, string) filter by branch slug (e.g. "01-mathematics")
- * mode (optional, enum) "semantic" | "lexical" | "hybrid" (default hybrid)
- *
- * Response (200):
- * {
- * "query": "...",
- * "top_k": 10,
- * "mode": "lexical", // or "semantic" once query-embedding wired
- * "results": [
- * {
- * "claim_id": 0,
- * "branch": "01-mathematics",
- * "concept": "topology",
- * "slug": "001-...",
- * "title": "Claim...",
- * "score": 12.0,
- * "tier": "nucleus",
- * "url": "https://bucket.foundation/excerpts/topology/001-...",
- * "excerpt": "...",
- * "evidence_count": 10
- * },
- * ...
- * ],
- * "took_ms": 12
- * }
- *
- * Note on embedding inference:
- * Server-side query embedding is not yet wired in this Vercel route.
- * Until ONNX/Transformers.js is added, the route uses BM25-style
- * token overlap. The /canon/search HTML page can additionally embed
- * queries client-side via @xenova/transformers and POST the vector
- * here as `?qvec=<base64>` for true semantic search.
- */
-
 import { NextRequest } from "next/server";
 import { buildIndex, cosineRank, tokenRank, getIndexDim } from "@/lib/canon-search-index";
 import { getEvidenceFor } from "@/lib/canon-evidence";
@@ -103,20 +52,13 @@ export async function GET(req: NextRequest) {
     }
   }
   if (results.length === 0) {
-    // lexical fallback / hybrid
     results = tokenRank(q || "", topK * 3);
     mode = modeParam === "semantic" ? "semantic_fallback_lexical" : "lexical";
   }
 
-  // Apply branch filter
   if (branchFilter) {
     results = results.filter((r) => r.entry.branch === branchFilter);
   }
-  // TODO: tier filter, needs tier-predictions.jsonl loaded into the index
-  if (tier !== "all") {
-    // placeholder: noop until tier wired
-  }
-
   const out = results.slice(0, topK).map((r) => {
     const ev = getEvidenceFor(r.entry.concept, r.entry.slug);
     return {

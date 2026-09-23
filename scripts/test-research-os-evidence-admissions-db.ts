@@ -1,16 +1,3 @@
-/**
- * graph.evidence_source_admissions against real Postgres (ros-ai-corpus,
- * the admission registry). The contract file
- * supabase/tests/research_os_evidence_admissions.sql runs in one
- * rolled-back transaction; the lock race below needs two connections, so
- * it lives here and cleans up after itself. Nothing here calls
- * admit_evidence_corpus outside a transaction that rolls back, because an
- * admission replaces the active set.
- *
- * With no database the tests skip and say so. RESEARCH_OS_REQUIRE_DB=1
- * turns that skip into a failure, which is how the database job in CI
- * proves these ran.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
@@ -61,8 +48,6 @@ test("a withdrawal waits for a Quote transaction holding the admission, then lan
   const source = `graph:${randomUUID()}`;
   const revision = randomUUID().replace(/-/g, "").padEnd(64, "0");
   const h = "a".repeat(64);
-  // The superuser writes the fixture row directly: the service role cannot,
-  // and admit_evidence_corpus would replace the active set.
   const seeded = sql(`insert into graph.evidence_source_admissions (source_id, source_revision, scope, body_hash, original_hash,
       extraction_revision, corpus_revision, rights_rule, rights_revision, rights_policy_sha256, rights_policy_status,
       allow_index, allow_quote, status, activated_at)

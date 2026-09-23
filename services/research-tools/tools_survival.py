@@ -1,46 +1,10 @@
 #!/usr/bin/env python3
-"""
-research-tools, SurvivalFit (REAL Kaplan-Meier + log-rank, CPU, no GPU)
-========================================================================
-
-Per-field tool for **biomed-bio** (689,684 PIs) and **econ-social** (42,276), 
-time-to-event / survival analysis is the workhorse of clinical trials,
-epidemiology, reliability engineering, and event-history social science. The
-two canonical operations are the Kaplan-Meier estimator and the log-rank test;
-both are exact, closed-form, CPU-only, and serve a field where reproducible
-stats are most-mandated.
-
-REAL algorithms (numpy + scipy.stats; lifelines used ONLY if present, else the
-identical math is computed in-house, verified equal on a textbook case):
-
- 1. Kaplan-Meier product-limit estimator (Kaplan & Meier 1958)
- ----------------------------------------------------------------------
- At each distinct event time t_i with d_i events and n_i at risk,
- S(t_i) = S(t_{i-1}) · (1 − d_i / n_i)
- Censored observations remain at risk up to their censoring time then leave.
- Greenwood's formula gives the variance of S(t). Median survival = the
- smallest t with S(t) ≤ 0.5.
-
- 2. Log-rank test (Mantel-Cox) between two groups
- ----------------------------------------------------------------------
- At each event time, the expected events in group 1 under H0 (equal hazards)
- are E_1i = d_i · n_1i / n_i with hypergeometric variance V_i. The statistic
- χ² = (Σ(O_1i − E_1i))² / ΣV_i ~ χ²(1)
- gives the p-value via scipy.stats.chi2. This is the exact Mantel-Cox test.
-
-Input is durations + event indicators (1 = event, 0 = censored), optionally a
-group label per subject for the two-group log-rank. Deterministic; never raises
-on malformed input (returns a structured {"error": ...}).
-
-The gateway imports SURVIVAL_RUNNERS from here.
-"""
 from __future__ import annotations
 
 from typing import Any, Optional
 
 import numpy as np
 from scipy import stats as _stats
-
 
 def _as_float_list(x: Any) -> Optional[list[float]]:
     if not isinstance(x, (list, tuple)):
@@ -53,9 +17,7 @@ def _as_float_list(x: Any) -> Optional[list[float]]:
             return None
     return out
 
-
 def _as_int01_list(x: Any, n: int) -> Optional[list[int]]:
-    """Event indicators → list of 0/1. None → all events (1)."""
     if x is None:
         return [1] * n
     if not isinstance(x, (list, tuple)):
@@ -69,17 +31,15 @@ def _as_int01_list(x: Any, n: int) -> Optional[list[int]]:
         out.append(1 if iv != 0 else 0)
     return out
 
-
 def kaplan_meier(durations: list[float], events: list[int]) -> dict:
-    """Exact KM product-limit estimate + Greenwood SE + median. Pure numpy."""
     d = np.asarray(durations, dtype=float)
     e = np.asarray(events, dtype=int)
     order = np.argsort(d, kind="mergesort")
     d, e = d[order], e[order]
     n_total = len(d)
-    times = np.unique(d[e == 1])  # distinct EVENT times only
+    times = np.unique(d[e == 1])
     surv = 1.0
-    var_sum = 0.0  # Greenwood cumulative sum term
+    var_sum = 0.0
     rows = []
     median = None
     for t in times:
@@ -104,13 +64,11 @@ def kaplan_meier(durations: list[float], events: list[int]) -> dict:
         "n_subjects": n_total,
         "n_events": int(np.sum(e == 1)),
         "n_censored": int(np.sum(e == 0)),
-        "median_survival": median,  # None = not reached (S never drops to 0.5)
+        "median_survival": median,
         "steps": rows,
     }
 
-
 def logrank_test(d1, e1, d2, e2) -> dict:
-    """Exact Mantel-Cox two-group log-rank test. scipy.stats for the p-value."""
     d1 = np.asarray(d1, float); e1 = np.asarray(e1, int)
     d2 = np.asarray(d2, float); e2 = np.asarray(e2, int)
     all_event_times = np.unique(
@@ -127,7 +85,6 @@ def logrank_test(d1, e1, d2, e2) -> dict:
         if n <= 1 or dt == 0:
             continue
         e1t = dt * n1 / n
-        # hypergeometric variance
         vt = dt * (n1 / n) * (n2 / n) * (n - dt) / (n - 1.0)
         O1 += d1t
         E1 += e1t
@@ -146,15 +103,7 @@ def logrank_test(d1, e1, d2, e2) -> dict:
         "significant_at_0.05": bool(p < 0.05),
     }
 
-
 def _demo() -> dict:
-    """A small, hand-verifiable two-group dataset (classic teaching example).
-
- Group A (treatment): times [6, 6, 6, 7, 10], events [1,1,1,1,1] (one of the
- 6s censored in the real Freireich set, but we keep it simple & exact here).
- We use the textbook all-events case so the KM curve and median are exact.
-    """
-    # Group 1 longer survival, group 2 shorter, log-rank should separate them.
     g1_dur = [6, 7, 10, 13, 16, 22, 23]
     g1_evt = [1, 1, 1, 1, 1, 1, 1]
     g2_dur = [1, 1, 2, 2, 3, 4, 5]
@@ -165,18 +114,7 @@ def _demo() -> dict:
         "groups": ["A"] * len(g1_dur) + ["B"] * len(g2_dur),
     }
 
-
 def run_survival(payload: dict) -> dict:
-    """payload: {
- durations: [float...] (time to event/censoring),
- events: [0/1...] (1=event, 0=censored; default all 1),
- groups: [label...] (optional; exactly two distinct labels → log-rank)
- } OR {"demo": true}
-
- Kaplan-Meier survival estimate (+ Greenwood SE + median) for the whole
- sample and per group, plus the Mantel-Cox log-rank test when two groups are
- given. Real numpy/scipy; deterministic; never raises on malformed input.
-    """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("durations"), str)
         and payload["durations"].strip().lower() == "demo"
@@ -247,8 +185,6 @@ def run_survival(payload: dict) -> dict:
 
     if demo:
         out["ground_truth"] = {
-            # group A median = 13 (S drops to 0.5 at the 4th of 7 event times);
-            # group B median = 2; groups separated → log-rank p < 0.05.
             "group_A_median": 13.0,
             "group_B_median": 2.0,
             "logrank_significant": True,
@@ -260,8 +196,6 @@ def run_survival(payload: dict) -> dict:
         )
     return out
 
-
-# Registry the gateway imports.
 SURVIVAL_RUNNERS = {
     "survivalfit": run_survival,
 }

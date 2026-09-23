@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# Pull the full 6.5M polingual.photons metadata from prod -> local CSV.gz.
-# Read-only COPY TO STDOUT (brief AccessShare lock); gzip on the remote so only
-# compressed bytes cross the wire. Columns needed for all 5 axes; skips the big
-# provenance/payload jsonb and the generated tsvectors (rebuilt locally).
 set -uo pipefail
 cd ~/agfarms/bucket-foundation
 OUT=_intake/photons/polingual_full.csv.gz

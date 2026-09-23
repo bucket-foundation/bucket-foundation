@@ -1,31 +1,11 @@
-/**
- * bucket.foundation, education-atlas corpus
- * ------------------------------------------
- * The education-atlas is Bucket Foundation's founding research for its
- * education-reform mission (see /mission and REFORM_THESIS). It is the newest
- * and largest body of Bucket research and is surfaced here as a browsable,
- * on-site corpus of working papers.
- *
- * Source repo: ~/agfarms/education-atlas (github.com/bucket-foundation/education-atlas).
- * The flagship "The Knowledge-Access Gradient" PDF + the 16 landscape figures are
- * vendored into public/education/; the 19 markdown docs are vendored into
- * src/content/education/ and rendered on-site with the shared long-form renderer.
- *
- * NOTE ON DOI: the flagship "The Knowledge-Access Gradient" PDF has a minted
- * Zenodo DOI (10.5281/zenodo.22083720, published 2026-08-24). The root
- * education-atlas corpus (.zenodo.json at the repo root) is a separate,
- * still-unminted deposition for the whole dataset.
- */
 import fs from "fs";
 import path from "path";
 
 export const EDUCATION_GITHUB =
   "https://github.com/bucket-foundation/education-atlas";
 
-/** The flagship synthesis, presented as a first-class paper-like page. */
 export const FLAGSHIP = {
   slug: "knowledge-access-gradient",
-  /** the vendored markdown, relative to src/content/education/ */
   doc: "THE-KNOWLEDGE-ACCESS-GRADIENT.md",
   title: "The Knowledge-Access Gradient",
   subtitle:
@@ -55,7 +35,6 @@ export const FLAGSHIP = {
     "The frontier is a near-monopoly: top-10 countries hold 69.3% of estimated researcher capacity, 35% of countries (75/217) have no researcher datapoint, researcher-intensity Gini 0.646.",
     "The 5,000-year arc: every knowledge technology widened access to consume, none widened access to produce, AI is the first open question.",
   ],
-  /** Figures shown on the flagship landing (subset of the 16 vendored). */
   figures: [
     {
       src: "/education/figures/fig_access_vs_age.png",
@@ -90,15 +69,13 @@ export const FLAGSHIP = {
   ],
 };
 
-/** A corpus document rendered on-site from vendored markdown. */
 export type EducationDoc = {
-  slug: string; // route segment under /research/education/
-  doc: string; // path relative to src/content/education/
+  slug: string;
+  doc: string;
   title: string;
   group: "flagship" | "atlas" | "thesis" | "foundations" | "deep" | "landscape";
   groupLabel: string;
   blurb: string;
-  /** optional source markdown link on GitHub */
   githubUrl?: string;
 };
 
@@ -126,7 +103,6 @@ export const EDUCATION_DOCS: EducationDoc[] = [
       "The bridge from diagnosis to mission: given the actual problems, where does Bucket's open-knowledge thesis measurably move the needle, and where does it not? Honesty about the second half makes the first half credible.",
     githubUrl: `${GH}/REFORM_THESIS.md`,
   },
-  // foundations 01-04
   {
     slug: "foundations-01-what-it-means-to-be-educated",
     doc: "foundations/01-what-it-means-to-be-educated.md",
@@ -167,7 +143,6 @@ export const EDUCATION_DOCS: EducationDoc[] = [
       "AI as the first technology in the 5,000-year arc for which the consume-versus-produce verdict is not yet written.",
     githubUrl: `${GH}/foundations/04-ai-and-the-future-of-education.md`,
   },
-  // deep 01-04
   {
     slug: "deep-01-us-education-and-innovation",
     doc: "deep/01-us-education-and-innovation.md",
@@ -208,7 +183,6 @@ export const EDUCATION_DOCS: EducationDoc[] = [
       "Sleep, light, movement, and nutrition are large, well-evidenced levers on cognition the factory schedule structurally violates, and the system caps the top while failing the bottom.",
     githubUrl: `${GH}/deep/04-health-learning-and-the-ceiling.md`,
   },
-  // landscape 01-07
   {
     slug: "landscape-01-solution-landscape",
     doc: "landscape/01-solution-landscape.md",
@@ -290,12 +264,7 @@ export function getEducationDoc(slug: string): EducationDoc | undefined {
 
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content", "education");
 
-/**
- * Read a vendored education-corpus markdown doc by its relative path.
- * Path traversal is blocked: only `[a-z0-9-]/...md` under the content root.
- */
 export function readEducationDoc(relPath: string): string {
-  // allow subdir segments + .md; strip anything dangerous
   const safe = relPath
     .split("/")
     .map((seg) => seg.replace(/[^A-Za-z0-9._-]/g, ""))
@@ -306,9 +275,6 @@ export function readEducationDoc(relPath: string): string {
     return `# Document not found\n\n_Invalid path._`;
   }
   try {
-    // The docs link figures by their path inside the education-atlas repo
-    // (../analysis/landscape/figures/X.png). On the site the PNGs live at
-    // /education/figures/X.png.
     return fs
       .readFileSync(full, "utf-8")
       .replace(/\((?:\.\.\/)+analysis\/landscape\/figures\//g, "(/education/figures/");

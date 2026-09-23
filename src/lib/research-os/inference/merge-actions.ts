@@ -1,10 +1,3 @@
-/**
- * ros-graph-dedup: the merge queue a reviewer works on /research-os/merges.
- * scripts/research-os/find-duplicates.ts fills graph.merge_proposals;
- * decideMerge merges a pair through graph.merge_nodes (migration
- * 20260921070000), either way round, or keeps both. Tested with a fake
- * client in scripts/test-research-os-merge-actions.ts.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { forgetMakeupSnapshot } from "../makeup";
@@ -43,7 +36,6 @@ async function edgeCount(svc: SupabaseClient, id: string): Promise<number> {
   return (out.count ?? 0) + (inn.count ?? 0);
 }
 
-/** Pending pairs with both nodes, oldest first. A pair whose node has since gone is left out. */
 export async function listMergeProposals(svc: SupabaseClient): Promise<ActionResult> {
   const { data, error } = await svc
     .from("merge_proposals")
@@ -83,13 +75,6 @@ export interface MergeDecision {
   reviewerId: string;
 }
 
-/**
- * Merges the pair, the queued way round or swapped, or keeps both. The
- * proposal is claimed first, so two reviewers cannot both act on it; a
- * failed merge releases the claim. A merge moves edges, so learning order
- * is rebuilt for both nodes' branches; a failed rebuild keeps the merge and
- * warns.
- */
 export async function decideMerge(svc: SupabaseClient, input: MergeDecision): Promise<ActionResult> {
   const { data: pd, error: pe } = await svc.from("merge_proposals").select("id,keep_slug,drop_slug,status").eq("id", input.id).maybeSingle();
   if (pe) return fail(500, "read_failed");

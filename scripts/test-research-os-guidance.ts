@@ -1,26 +1,9 @@
-/**
- * Unit tests: faded guidance for low-prior-knowledge learners (bkt-ros
- * ros-14). Covers src/lib/research-os/guidance.ts's two pure rules
- * (computeGuidanceLevel, the base level; nextGuidanceLevel, the fading
- * schedule; classifyCheckOutcome), src/lib/research-os/db.ts's
- * decideGuidanceEnabled (the class arm-switch combination rule), and
- * src/lib/research-os/worked-examples.ts's firstHalfOfWorkedExample. No
- * network call, no database, matching this repo's existing research-os
- * test convention: every function under test here is pure.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-guidance.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { computeGuidanceLevel, nextGuidanceLevel, classifyCheckOutcome, type CheckOutcome } from "../src/lib/research-os/guidance";
 import { decideGuidanceEnabled } from "../src/lib/research-os/db";
 import { firstHalfOfWorkedExample } from "../src/lib/research-os/worked-examples";
 import type { GuidanceLevel, Stage } from "../src/lib/research-os/types";
-
-// ---------------------------------------------------------------------------
-// computeGuidanceLevel: the base level from the chain's first two nodes
-// ---------------------------------------------------------------------------
 
 test("computeGuidanceLevel: both nodes below Understanding -> high", () => {
   const belowPairs: Stage[][] = [
@@ -71,10 +54,6 @@ test("computeGuidanceLevel: exactly one entry -> medium if below Understanding, 
   assert.equal(computeGuidanceLevel(["production"]), "low");
 });
 
-// ---------------------------------------------------------------------------
-// classifyCheckOutcome
-// ---------------------------------------------------------------------------
-
 test("classifyCheckOutcome: support, not abstained, not low confidence -> pass", () => {
   assert.equal(classifyCheckOutcome({ result: "support", confidence: "high", abstained: false }), "pass");
   assert.equal(classifyCheckOutcome({ result: "support", confidence: "medium", abstained: false }), "pass");
@@ -86,10 +65,6 @@ test("classifyCheckOutcome: everything else -> fail", () => {
   assert.equal(classifyCheckOutcome({ result: "contradiction", confidence: "high", abstained: false }), "fail");
   assert.equal(classifyCheckOutcome({ result: "unknown", confidence: "low", abstained: true }), "fail");
 });
-
-// ---------------------------------------------------------------------------
-// nextGuidanceLevel: the fading schedule
-// ---------------------------------------------------------------------------
 
 test("nextGuidanceLevel: two passes in a row drops one level", () => {
   assert.equal(nextGuidanceLevel("high", ["pass", "pass"]), "medium");
@@ -129,16 +104,9 @@ test("nextGuidanceLevel: fewer than two outcomes on record leaves the base level
 });
 
 test("nextGuidanceLevel: only the two most recent outcomes matter, a longer streak with an older break still reads as a two-in-a-row streak", () => {
-  // oldest-first input, per this function's own header: a fail followed by
-  // two passes still reads as "the last two were both pass."
   assert.equal(nextGuidanceLevel("high", ["fail", "pass", "pass"]), "medium");
   assert.equal(nextGuidanceLevel("low", ["pass", "fail", "fail"]), "medium");
 });
-
-// ---------------------------------------------------------------------------
-// decideGuidanceEnabled (src/lib/research-os/db.ts): the class arm-switch
-// combination rule
-// ---------------------------------------------------------------------------
 
 test("decideGuidanceEnabled: no class rows at all (no membership, or every membership dangling) -> enabled", () => {
   assert.equal(decideGuidanceEnabled([]), true);
@@ -175,10 +143,6 @@ test("decideGuidanceEnabled: at least one class on among several -> enabled (OR,
 test("decideGuidanceEnabled: a null switch value (pre-migration row) reads as on", () => {
   assert.equal(decideGuidanceEnabled([{ id: "c1", research_os_guidance_enabled: null }]), true);
 });
-
-// ---------------------------------------------------------------------------
-// firstHalfOfWorkedExample (src/lib/research-os/worked-examples.ts)
-// ---------------------------------------------------------------------------
 
 test("firstHalfOfWorkedExample: a 3-sentence example returns the first 2 (rounds up)", () => {
   const text = "First sentence. Second sentence. Third sentence.";

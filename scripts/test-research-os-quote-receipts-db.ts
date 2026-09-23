@@ -1,13 +1,3 @@
-/**
- * graph.record_quote_receipt against real Postgres (ros-ai-access, third
- * slice). The contract file supabase/tests/research_os_quote_receipts.sql
- * runs in one rolled-back transaction; the race below needs two
- * connections, so it lives here and cleans up after itself.
- *
- * With no database the tests skip and say so. RESEARCH_OS_REQUIRE_DB=1
- * turns that skip into a failure, which is how the database job in CI
- * proves these ran.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
@@ -58,9 +48,6 @@ test("a quotation of a source the registry has not admitted is refused", { skip 
 });
 
 test("the migration leaves exactly one privacy_delete_learner", { skip }, () => {
-  // The slice before this one shipped a second overload of
-  // graph.review_production and every review answered PGRST203. The same
-  // mistake here would break the privacy delete instead.
   const overloads = sql(`select count(*) from pg_proc p join pg_namespace n on n.oid = p.pronamespace
                          where n.nspname = 'graph' and p.proname = 'privacy_delete_learner'`);
   assert.equal(overloads.out, "1", `one signature, found: ${overloads.out}`);
@@ -71,8 +58,6 @@ test("the migration leaves exactly one privacy_delete_learner", { skip }, () => 
 });
 
 test("the privacy delete can call digest, on a database that keeps pgcrypto elsewhere", { skip }, () => {
-  // pgcrypto lives in `extensions` on Supabase. Without that schema on the
-  // function's search_path the whole delete raises rather than deleting.
   const config = sql(`select array_to_string(p.proconfig, ' ') from pg_proc p
                       join pg_namespace n on n.oid = p.pronamespace
                       where n.nspname = 'graph' and p.proname = 'privacy_delete_learner'`);

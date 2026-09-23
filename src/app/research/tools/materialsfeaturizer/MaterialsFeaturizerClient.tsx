@@ -1,8 +1,5 @@
 "use client";
 
-// MaterialsFeaturizer client island, Magpie-style composition descriptors from
-// a chemical formula. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

@@ -1,12 +1,3 @@
-/**
- * The Academy learning engine as pure functions over the stored state blob
- * (`bucket-academy/v1/<branch>` in the browser, `bucket.academy_progress`
- * on the server). A port of learning/app/js/engine.js and the parts of
- * adaptive.js it calls: leverage, the encompassing map, the daily route,
- * grading with proficiency and FIRe credit, streaks, summaries, and the
- * cross-device merge from auth.js. No DOM, no storage: the store lives in
- * ./progress-store.ts.
- */
 import { FSRS, DAY_MS, type Card, type Rating } from "./fsrs";
 import { fusedConceptMastery, type ProficiencyState, type StoredEngineState } from "./mastery";
 
@@ -72,7 +63,6 @@ export function emptyState(): EngineState {
   };
 }
 
-/** Normalize a stored blob (any age) into a full EngineState. */
 export function normalizeState(raw: unknown): EngineState {
   const s = (raw && typeof raw === "object" ? raw : {}) as Partial<EngineState>;
   const base = emptyState();
@@ -94,7 +84,6 @@ export function dayKey(now: number = Date.now()): string {
   return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 }
 
-/** Fill `unlocks` and `leverage` from `requires`, the way engine._computeLeverage did. Returns a new array. */
 export function withLeverage(atoms: Atom[]): Atom[] {
   const out = atoms.map((a) => ({ ...a, unlocks: [] as string[] }));
   const byId = new Map(out.map((a) => [a.id, a]));
@@ -134,7 +123,6 @@ export interface EncEdge {
   dist: number;
 }
 
-/** The encompassing layer: each atom's prerequisite closure with distance-decayed weights. */
 export function buildEncompassingMap(atoms: Atom[]): Record<string, EncEdge[]> {
   const byId = new Map(atoms.map((a) => [a.id, a]));
   const map: Record<string, EncEdge[]> = {};
@@ -169,7 +157,6 @@ export function buildEncompassingMap(atoms: Atom[]): Record<string, EncEdge[]> {
 
 const sigmoid = (x: number) => 1 / (1 + Math.exp(-x));
 
-/** Elo-lite online IRT update from a graded score in [0,1] at a depth. */
 export function updateProficiency(prof: ProficiencyState | undefined, depth: string, score: number): ProficiencyState {
   const p = prof && typeof prof.theta === "number" ? { theta: prof.theta, n: prof.n ?? 0 } : { theta: ADAPTIVE.PROF_INIT, n: 0 };
   const b = ADAPTIVE.PROF_DEPTH_B[depth] ?? 0;
@@ -186,7 +173,6 @@ export interface FirePatch {
   weight: number;
 }
 
-/** Bounded implicit credit to started, still-retained prerequisites of a successful review. */
 export function fireCredits(edges: EncEdge[], cards: Record<string, Card>, fsrs: FSRS, now: number, ratingScore: number): FirePatch[] {
   const patches: FirePatch[] = [];
   edges.forEach((e) => {
@@ -218,7 +204,6 @@ function unlocked(atom: Atom, cards: Record<string, Card>): boolean {
   return (atom.requires ?? []).every((r) => Boolean(cards[r]));
 }
 
-/** Due reviews first (most overdue first), then up to newPerDay unlocked new atoms by shell and leverage. */
 export function route(state: EngineState, atoms: Atom[], now: number = Date.now()): RouteItem[] {
   const byId = new Set(atoms.map((a) => a.id));
   const due: RouteItem[] = [];
@@ -242,7 +227,6 @@ export function makeFsrs(state: EngineState): FSRS {
   return f;
 }
 
-/** Record a graded answer. Returns the new state; the input is not mutated. */
 export function grade(
   state: EngineState,
   atoms: Atom[],
@@ -283,12 +267,10 @@ export function grade(
   return next;
 }
 
-/** Fused mastery in [0,1] for one atom, the way engine.masteryFor read it. */
 export function masteryFor(state: EngineState, id: string): number {
   return fusedConceptMastery(state.cards[id], state.prof[id]).mastery;
 }
 
-/** The quiz depth to ask at, from mastery, the way the app rotated it: recall below 0.25, apply below 0.5, derive below 0.75, else teach; falls back to the nearest depth the atom has. */
 export function pickLevel(state: EngineState, atom: Atom): Depth {
   const m = masteryFor(state, atom.id);
   const have = (atom.quiz ?? []).map((q) => q.level);
@@ -327,7 +309,6 @@ function latestDay(a: string | null, b: string | null): string | null {
   return new Date(a).getTime() >= new Date(b).getTime() ? a : b;
 }
 
-/** Merge two states for one branch: cards by most recent review, stats by max, history by union, `b` wins settings. Commutative on cards and stats. */
 export function mergeState(a: EngineState | null, b: EngineState | null): EngineState {
   if (!a) return normalizeState(b);
   if (!b) return normalizeState(a);

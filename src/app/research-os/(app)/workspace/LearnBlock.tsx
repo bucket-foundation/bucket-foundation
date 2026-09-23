@@ -5,11 +5,6 @@ import { useEffect, useState } from "react";
 import { learnTargetFor, recallFor, type RecallSummary } from "@/lib/research-os/learn-link";
 import { MASTERED_THRESHOLD } from "@/lib/academy/mastery";
 
-// The Understanding level, in place (ros-29): from the selected node, the
-// Academy lesson that teaches it, and the learner's live recall from the
-// Academy progress store when signed in. The lesson opens in the Academy
-// app through /academy?branch=&atom=.
-
 export default function LearnBlock({
   node,
   token,
@@ -32,7 +27,6 @@ export default function LearnBlock({
         const branch = j.branches?.[target.branchFile] ?? j.branches?.[`${target.branchFile}.json`];
         if (!cancelled) setRecall(recallFor(branch?.data ?? null, target.atomId as string));
       } catch {
-        /* progress store unavailable; the lesson link still works */
       }
     })();
     return () => {

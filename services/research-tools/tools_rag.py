@@ -1,42 +1,4 @@
 #!/usr/bin/env python3
-"""
-research-tools, Tier-1 RAG / agent / data tools (REAL logic, no GPU)
-=====================================================================
-
-This module implements the FUNCTIONAL backend for the T1 ship-now
-tools from docs/research-tools/02-tool-roadmap.md §3. They are pure
-full-stack + data + agent tools: no GPU, no model weights, no subprocess to a
-sibling repo. Each runs real logic against real public data:
-
- PaperRadar, personalized recent-paper feed from the live OpenAlex API
- GrantDraft, funder/grant finder + specific-aims drafter grounded in
- real awarded grants (research-atlas NSF corpus, OpenAlex
- fallback)
- MethodsMatcher, "which method (and which of OUR tools) answers this?"
- grounded in the OpenAlex methods literature
- ReviewGuard, cross-paper supporting-vs-contradicting evidence finder
- over an OpenAlex paper set
-
-Design rules that make this REAL and not a stub:
- * Live HTTP to OpenAlex (https://api.openalex.org, polite pool via
- ?mailto=gianyrox@gmail.com). No key needed.
- * Every external call is cached on disk (TOOLS_CACHE_DIR, default
- ~/.cache/bucket-research-tools) so re-runs and tests are fast + offline-able.
- * Graceful fallback: if the network is unavailable, the functions return a
- structured `degraded` envelope instead of raising, the gateway turns that
- into a normal (non-crashing) result so the UI is never stranded.
- * Pure functions for all ranking / scoring / matching logic so they can be
- unit-tested with fixtures and ZERO network (see tests/).
-
-The gateway (gateway.py) imports `run_<tool>(payload) -> dict` from here and
-wraps the dict in the v1 job-result envelope. These functions return the
-`output` payload only; the gateway owns job lifecycle + provenance.
-
-TODO(deploy): the OpenAlex client uses the public anonymous pool. On the box,
-set OPENALEX_MAILTO from a secret and (optionally) front it with a small Redis
-cache shared across workers instead of the per-process disk cache. Neither
-blocks the logic here.
-"""
 from __future__ import annotations
 
 import hashlib
@@ -52,12 +14,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
-try:  # the shared LLM seam (optional synthesis only; never required)
+try:
     import llm_client
 except Exception:  # pragma: no cover - import guard
     llm_client = None  # type: ignore
 
-# --- config ----------------------------------------------------------------
 OPENALEX = "https://api.openalex.org"
 MAILTO = os.environ.get("OPENALEX_MAILTO", "gianyrox@gmail.com")
 USER_AGENT = f"bucket-research-tools/1.0 (mailto:{MAILTO})"
@@ -66,36 +27,22 @@ CACHE_DIR = Path(
     os.environ.get("TOOLS_CACHE_DIR", str(Path.home() / ".cache" / "bucket-research-tools"))
 )
 CACHE_TTL_S = float(os.environ.get("TOOLS_CACHE_TTL_S", str(7 * 24 * 3600)))
-# Set TOOLS_OFFLINE=1 to forbid network entirely (tests rely on cache/fixtures).
 OFFLINE = os.environ.get("TOOLS_OFFLINE", "") in ("1", "true", "yes")
-# research-atlas raw NSF corpus (real awarded grants), read-only.
 ATLAS_DIR = Path(
     os.environ.get("RESEARCH_ATLAS_DIR", str(Path.home() / "agfarms" / "research-atlas"))
 )
 
-
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
-
-# --- cached HTTP GET (JSON) -------------------------------------------------
 class NetworkUnavailable(Exception):
-    """Raised internally when a live fetch is needed but cannot be made."""
-
+    pass
 
 def _cache_path(url: str) -> Path:
     h = hashlib.sha256(url.encode("utf-8")).hexdigest()[:32]
     return CACHE_DIR / f"{h}.json"
 
-
 def cached_get_json(url: str, *, ttl_s: float = CACHE_TTL_S) -> Any:
-    """GET a URL, returning parsed JSON. Disk-cached by URL.
-
- Order of resolution:
- 1. fresh cache hit -> return cached
- 2. OFFLINE/network -> stale cache hit if any, else NetworkUnavailable
- 3. live fetch -> store + return; on failure fall back to stale cache
-    """
     cp = _cache_path(url)
     fresh = None
     stale = None
@@ -127,15 +74,11 @@ def cached_get_json(url: str, *, ttl_s: float = CACHE_TTL_S) -> Any:
             return stale
         raise NetworkUnavailable(str(e))
 
-
-# --- OpenAlex helpers -------------------------------------------------------
 def _oa_url(path: str, params: dict[str, Any]) -> str:
     params = {**params, "mailto": MAILTO}
     return f"{OPENALEX}{path}?" + urllib.parse.urlencode(params, safe=":,")
 
-
 def reconstruct_abstract(inv: Optional[dict[str, list[int]]]) -> str:
-    """Rebuild OpenAlex abstract from its inverted index. Pure function."""
     if not inv:
         return ""
     positions: list[tuple[int, str]] = []
@@ -145,9 +88,7 @@ def reconstruct_abstract(inv: Optional[dict[str, list[int]]]) -> str:
     positions.sort(key=lambda t: t[0])
     return " ".join(w for _, w in positions)
 
-
 def normalize_work(w: dict) -> dict:
-    """Flatten an OpenAlex work into the fields our tools use. Pure function."""
     loc = w.get("primary_location") or {}
     src = loc.get("source") or {}
     authors = [
@@ -170,15 +111,12 @@ def normalize_work(w: dict) -> dict:
         "doi": w.get("doi") or "",
         "authors": [a for a in authors if a],
         "concepts": [c.get("display_name", "") for c in (w.get("concepts") or [])][:6],
-        # specific concepts only (level >= 2): drops root noise like
-        # "Biology"/"Chemistry" (level 0) so method mining stays meaningful.
         "specific_concepts": [
             c.get("display_name", "")
             for c in (w.get("concepts") or [])
             if (c.get("level") or 0) >= 2 and (c.get("score") or 0) >= 0.2
         ][:8],
     }
-
 
 def search_works(
     query: str,
@@ -188,8 +126,6 @@ def search_works(
     sort: Optional[str] = None,
     extra_filters: Optional[list[str]] = None,
 ) -> list[dict]:
-    """Live OpenAlex search → normalized works. Cached. Raises NetworkUnavailable
- only if there is no live network AND no cache."""
     filters = [f"title_and_abstract.search:{query}"] if query else []
     if from_date:
         filters.append(f"from_publication_date:{from_date}")
@@ -203,10 +139,6 @@ def search_works(
     body = cached_get_json(_oa_url("/works", params))
     return [normalize_work(w) for w in body.get("results", [])]
 
-
-# ===========================================================================
-# Shared text utilities (pure)
-# ===========================================================================
 _STOP = set(
     "the a an of to in for and or on with by from as is are was were be been being "
     "this that these those at into over under between within across via using used "
@@ -215,20 +147,13 @@ _STOP = set(
     "models analysis show shows shown found find using based new novel".split()
 )
 _WORD = re.compile(r"[a-zA-Z][a-zA-Z\-]{2,}")
-# extra interrogative/filler words to drop when building a SEARCH query (not when
-# scoring overlap, there we keep more signal).
 _QUERY_DROP = set(
     "how what which why when where who does do did how-to predict identify "
     "find determine measure best should many much most given any some".split()
 )
 
-
 def search_query(text: str) -> str:
-    """Turn a natural-language question into a clean OpenAlex keyword query.
- Strips punctuation (OpenAlex rejects '?'), stopwords, and interrogatives.
- Pure function."""
     toks = [t for t in tokenize(text) if t not in _QUERY_DROP]
-    # keep order, dedupe, cap length so the search filter stays well-formed
     seen: set[str] = set()
     out: list[str] = []
     for t in toks:
@@ -237,20 +162,16 @@ def search_query(text: str) -> str:
             out.append(t)
     return " ".join(out[:10]) or re.sub(r"[^A-Za-z0-9 ]", " ", text).strip()
 
-
 def tokenize(text: str) -> list[str]:
     return [t.lower() for t in _WORD.findall(text or "") if t.lower() not in _STOP]
 
-
 def keyword_set(text: str) -> set[str]:
     return set(tokenize(text))
-
 
 def jaccard(a: set[str], b: set[str]) -> float:
     if not a or not b:
         return 0.0
     return len(a & b) / len(a | b)
-
 
 def cosine_counts(a: dict[str, int], b: dict[str, int]) -> float:
     if not a or not b:
@@ -261,17 +182,12 @@ def cosine_counts(a: dict[str, int], b: dict[str, int]) -> float:
     nb = math.sqrt(sum(v * v for v in b.values()))
     return dot / (na * nb) if na and nb else 0.0
 
-
 def term_counts(text: str) -> dict[str, int]:
     c: dict[str, int] = {}
     for t in tokenize(text):
         c[t] = c.get(t, 0) + 1
     return c
 
-
-# ===========================================================================
-# 1. PaperRadar, personalized recent-paper feed
-# ===========================================================================
 def _years_since(date_str: str) -> float:
     try:
         d = datetime.fromisoformat(date_str)
@@ -280,15 +196,7 @@ def _years_since(date_str: str) -> float:
     delta = datetime.now(timezone.utc) - d.replace(tzinfo=timezone.utc)
     return max(delta.days / 365.25, 0.0)
 
-
 def score_paper_radar(work: dict, interest_tokens: set[str], now_year: int) -> dict:
-    """Score one work for a researcher's interests. Pure function.
-
- relevance = jaccard(title+abstract+concepts tokens, interest tokens)
- recency = exp(-age_years / 1.5) (newer = higher)
- velocity = citations / max(age_years, 0.25) (citation velocity)
- score = 0.5*relevance + 0.3*recency + 0.2*norm(velocity)
-    """
     text = f"{work.get('title','')} {work.get('abstract','')} {' '.join(work.get('concepts',[]))}"
     rel = jaccard(keyword_set(text), interest_tokens)
     age = _years_since(work.get("publication_date", "")) or (
@@ -296,7 +204,7 @@ def score_paper_radar(work: dict, interest_tokens: set[str], now_year: int) -> d
     )
     recency = math.exp(-age / 1.5)
     velocity = work.get("cited_by_count", 0) / max(age, 0.25)
-    vel_norm = velocity / (velocity + 5.0)  # squashes to (0,1), 5 cites/yr ~ 0.5
+    vel_norm = velocity / (velocity + 5.0)
     score = 0.5 * rel + 0.3 * recency + 0.2 * vel_norm
     return {
         "relevance": round(rel, 4),
@@ -304,7 +212,6 @@ def score_paper_radar(work: dict, interest_tokens: set[str], now_year: int) -> d
         "citation_velocity": round(velocity, 2),
         "score": round(score, 4),
     }
-
 
 def _why_it_matters(work: dict, interest_tokens: set[str]) -> str:
     text = f"{work.get('title','')} {work.get('abstract','')} {' '.join(work.get('concepts',[]))}"
@@ -326,9 +233,7 @@ def _why_it_matters(work: dict, interest_tokens: set[str]) -> str:
         traj = "with steady uptake"
     return f"This {rel} {traj}."
 
-
 def run_paper_radar(payload: dict) -> dict:
-    """payload: { interests: str (comma/line topics), since_days?: int, limit?: int }"""
     interests = (payload.get("interests") or "").strip()
     if len(interests) < 3:
         return {"error": "interests required (a few topics/keywords)"}
@@ -343,7 +248,6 @@ def run_paper_radar(payload: dict) -> dict:
     now_year = datetime.now(timezone.utc).year
     pool: dict[str, dict] = {}
     degraded = False
-    # Query OpenAlex per topic (most-recent first) and merge; cap topics queried.
     for topic in topics[:4] or [interests]:
         try:
             works = search_works(
@@ -393,13 +297,7 @@ def run_paper_radar(payload: dict) -> dict:
         ],
     }
 
-
-# ===========================================================================
-# 2. GrantDraft, funder/grant finder + specific-aims drafter
-# ===========================================================================
 def _iter_atlas_nsf_awards() -> Iterable[dict]:
-    """Yield real awarded NSF grants from the research-atlas raw corpus.
- Read-only; stdlib json only (no parquet/pandas dependency)."""
     nsf_dir = ATLAS_DIR / "data" / "raw" / "nsf"
     if not nsf_dir.is_dir():
         return
@@ -410,7 +308,6 @@ def _iter_atlas_nsf_awards() -> Iterable[dict]:
             continue
         for a in (d.get("response", {}) or {}).get("award", []) or []:
             yield a
-
 
 def _grant_record(a: dict) -> dict:
     amt = a.get("fundsObligatedAmt") or a.get("estimatedTotalAmt") or "0"
@@ -432,9 +329,7 @@ def _grant_record(a: dict) -> dict:
         "url": f"https://www.nsf.gov/awardsearch/showAward?AWD_ID={a.get('id','')}",
     }
 
-
 def rank_grants(topic: str, grants: list[dict], limit: int = 8) -> list[dict]:
-    """Rank real awarded grants by relevance to a topic. Pure function."""
     q = term_counts(topic)
     scored = []
     for g in grants:
@@ -446,24 +341,17 @@ def rank_grants(topic: str, grants: list[dict], limit: int = 8) -> list[dict]:
     scored.sort(key=lambda g: (g["relevance"], g["amount_usd"]), reverse=True)
     return scored[:limit]
 
-
 def draft_specific_aims(topic: str, grants: list[dict]) -> list[dict]:
-    """Draft specific-aims bullets GROUNDED in real awarded grants. Pure function.
-
- Each aim is anchored to a real funded program/grant so the draft is
- defensible ("aligned with NSF award #X, program Y") rather than generic."""
     aims: list[dict] = []
     verbs = [
         "Characterize the molecular determinants of",
         "Develop a quantitative, predictive model of",
         "Validate, in a controlled system, the mechanism of",
     ]
-    # NSF title boilerplate that is not a science anchor.
     _boiler = {"career", "collaborative", "research", "rui", "eager", "rapid",
                "conference", "workshop", "doctoral", "dissertation", "support",
                "award", "project", "study", "investigation", "towards", "toward"}
     for i, g in enumerate(grants[:3]):
-        # Pull a concrete noun-phrase signal from the grant's own language.
         topic_toks = keyword_set(topic)
         toks = [
             tk for tk in tokenize(g.get("title", ""))
@@ -503,11 +391,7 @@ def draft_specific_aims(topic: str, grants: list[dict]) -> list[dict]:
         )
     return aims
 
-
 def run_grant_draft(payload: dict) -> dict:
-    """payload: { topic: str, limit?: int }
- Funder/grant finder grounded in real NSF awards (research-atlas), with an
- OpenAlex literature fallback when the atlas corpus is unavailable."""
     topic = (payload.get("topic") or "").strip()
     if len(topic) < 4:
         return {"error": "topic required"}
@@ -517,7 +401,6 @@ def run_grant_draft(payload: dict) -> dict:
     source = "research-atlas/nsf"
     degraded = False
     if not grants:
-        # Fallback: OpenAlex funded/grant-bearing works for the topic.
         source = "openalex"
         try:
             works = search_works(search_query(topic), per_page=25, sort="cited_by_count:desc")
@@ -543,7 +426,6 @@ def run_grant_draft(payload: dict) -> dict:
     ranked = rank_grants(topic, grants, limit=limit)
     aims = draft_specific_aims(topic, ranked)
 
-    # Aggregate funder picture from the matched grants.
     funders: dict[str, dict] = {}
     for g in ranked:
         key = g.get("program") or g.get("agency", "?")
@@ -573,12 +455,6 @@ def run_grant_draft(payload: dict) -> dict:
         "specific_aims": aims,
     }
 
-
-# ===========================================================================
-# 3. MethodsMatcher, which method (+ which of OUR tools) answers this?
-# ===========================================================================
-# OUR tool catalog, with the question-shapes each one answers. The matcher maps
-# a research question to methods grounded in the literature AND to a Bucket tool.
 OUR_TOOLS: list[dict] = [
     {
         "slug": "stabilitydesigner",
@@ -624,22 +500,18 @@ OUR_TOOLS: list[dict] = [
     },
 ]
 
-
 def _expand_tokens(text: str) -> set[str]:
-    """Token set tolerant of hyphens and simple plurals, for signal matching."""
     base = keyword_set(text)
     out: set[str] = set(base)
     for t in base:
-        out.update(t.split("-"))  # patch-clamp -> patch, clamp
+        out.update(t.split("-"))
         if t.endswith("s") and len(t) > 4:
-            out.add(t[:-1])  # currents -> current, recordings? -> recording
+            out.add(t[:-1])
         if t.endswith("ies") and len(t) > 5:
             out.add(t[:-3] + "y")
     return {x for x in out if len(x) >= 2}
 
-
 def match_our_tools(question: str) -> list[dict]:
-    """Score each Bucket tool against the question. Pure function."""
     q = _expand_tokens(question)
     out = []
     for t in OUR_TOOLS:
@@ -653,17 +525,14 @@ def match_our_tools(question: str) -> list[dict]:
     out.sort(key=lambda x: x["score"], reverse=True)
     return out
 
-
 def derive_methods_from_literature(works: list[dict], question: str) -> list[dict]:
-    """Mine recurring method-like concepts from the literature for the question.
- Pure function over already-fetched works."""
     q = keyword_set(question)
     concept_freq: dict[str, int] = {}
     concept_cites: dict[str, int] = {}
     for w in works:
         for c in w.get("specific_concepts") or w.get("concepts", []):
             cl = c.lower()
-            if cl in q:  # skip the question's own topic words
+            if cl in q:
                 continue
             concept_freq[c] = concept_freq.get(c, 0) + 1
             concept_cites[c] = concept_cites.get(c, 0) + w.get("cited_by_count", 0)
@@ -677,9 +546,7 @@ def derive_methods_from_literature(works: list[dict], question: str) -> list[dic
         for name, n in ranked[:8]
     ]
 
-
 def run_methods_matcher(payload: dict) -> dict:
-    """payload: { question: str }"""
     question = (payload.get("question") or "").strip()
     if len(question) < 8:
         return {"error": "ask a research question (>= 8 chars)"}
@@ -718,15 +585,6 @@ def run_methods_matcher(payload: dict) -> dict:
         "recommendation": recommendation,
     }
 
-
-# ===========================================================================
-# 4. ReviewGuard, cross-paper supporting vs contradicting evidence
-# ===========================================================================
-# Lexicon-driven stance detection. Not an LLM/NLI model (none available
-# offline), but a real, deterministic, sentence-level signal: it locates the
-# sentences in each paper's abstract that mention the claim's key terms, then
-# scores their polarity against the claim's own polarity. Transparent and
-# testable; the gateway labels it accordingly.
 _NEG_CUES = {
     "no", "not", "non", "without", "fail", "failed", "fails", "unable", "lack",
     "lacks", "lacking", "absence", "absent", "negligible", "insignificant",
@@ -748,17 +606,13 @@ _POS_CUES = {
 }
 _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+")
 
-
 def _claim_polarity(claim: str) -> int:
     toks = set(tokenize(claim)) | set(re.findall(r"[a-z]+", claim.lower()))
     pos = len(toks & _POS_CUES)
     neg = len(toks & _NEG_CUES)
     return 1 if pos >= neg else -1
 
-
 def stance_for_paper(claim: str, claim_terms: set[str], claim_pol: int, work: dict) -> dict:
-    """Decide whether a paper supports / contradicts / is-neutral on the claim.
- Pure function. Returns stance + the evidence sentence + scores."""
     text = f"{work.get('title','')}. {work.get('abstract','')}"
     sentences = [s for s in _SENT_SPLIT.split(text) if s.strip()]
     best = None
@@ -776,7 +630,6 @@ def stance_for_paper(claim: str, claim_terms: set[str], claim_pol: int, work: di
     s_neg = len(stoks & _NEG_CUES)
     sent_pol = 1 if s_pos >= s_neg else -1
     polarity_agree = sent_pol == claim_pol
-    # Confidence rises with term overlap and cue signal.
     cue_signal = (s_pos + s_neg) / (len(stoks) or 1)
     confidence = round(min(1.0, 0.25 + 0.15 * best_overlap + cue_signal), 3)
     if s_pos == 0 and s_neg == 0:
@@ -791,12 +644,7 @@ def stance_for_paper(claim: str, claim_terms: set[str], claim_pol: int, work: di
         "confidence": confidence,
     }
 
-
 def run_review_guard(payload: dict) -> dict:
-    """payload: { claim: str, papers?: [str ids/titles], limit?: int }
-
- If `papers` is omitted, ReviewGuard pulls a candidate set from OpenAlex on
- the claim's terms, then runs stance detection over each."""
     claim = (payload.get("claim") or "").strip()
     if len(claim) < 8:
         return {"error": "claim required (>= 8 chars)"}
@@ -808,7 +656,6 @@ def run_review_guard(payload: dict) -> dict:
     works: list[dict] = []
     provided = [p.strip() for p in (payload.get("papers") or []) if str(p).strip()]
     if provided:
-        # Resolve each provided id/title against OpenAlex (cached).
         for p in provided[:limit]:
             try:
                 if p.lower().startswith(("w", "https://openalex.org/w")):
@@ -871,20 +718,6 @@ def run_review_guard(payload: dict) -> dict:
         ),
     }
 
-
-# ===========================================================================
-# 5. QuantumBioRAG, claim-strength RAG for quantum-biology / biophysics claims
-# ===========================================================================
-# Quantum biology is a high-signal-to-noise field: the literature mixes rigorous
-# results with hype. QuantumBioRAG retrieves the live OpenAlex evidence for a
-# claim, then scores SUPPORT STRENGTH (not just "does a paper mention it") and
-# CONSENSUS, with citeable sources. It reuses the deterministic stance detector
-# (stance_for_paper), supports/contradicts/neutral, and adds an evidence-
-# quality weighting (venue uptake via citations + recency + on-topic overlap) so
-# a well-supported, well-cited, replicated claim scores higher than a fringe one.
-
-# A small domain vocabulary used to (a) detect whether a claim is in-scope for
-# quantum biology and (b) bias retrieval toward the right corpus.
 _QBIO_TERMS = {
     "quantum", "coherence", "coherent", "tunneling", "tunnelling", "entanglement",
     "spin", "radical", "pair", "magnetoreception", "cryptochrome", "photosynthesis",
@@ -892,22 +725,14 @@ _QBIO_TERMS = {
     "biophoton", "superposition", "qubit", "nontrivial", "phonon", "isotope",
 }
 
-
 def evidence_strength(work: dict, claim_terms: set[str], now_year: int) -> float:
-    """Per-paper evidence weight for claim-strength scoring. Pure function.
-
- Combines on-topic overlap, citation uptake (log-damped), and recency. A
--cited, on-topic, recent paper carries more evidentiary weight than a
- fringe, uncited mention, this is what separates evidence from hype.
-    """
     text = f"{work.get('title','')} {work.get('abstract','')} {' '.join(work.get('concepts',[]))}"
     overlap = jaccard(keyword_set(text), claim_terms)
     cites = work.get("cited_by_count", 0)
-    uptake = math.log1p(cites) / math.log1p(200.0)  # ~1.0 at 200 cites
+    uptake = math.log1p(cites) / math.log1p(200.0)
     age = max(now_year - (work.get("publication_year") or now_year), 0)
-    recency = math.exp(-age / 8.0)  # gentle: old landmark papers still count
+    recency = math.exp(-age / 8.0)
     return round(min(1.0, 0.5 * overlap + 0.35 * min(uptake, 1.0) + 0.15 * recency), 4)
-
 
 _QBIO_SYNTH_SYSTEM = (
     "You are a careful biophysics evidence summarizer. You are given a CLAIM, a "
@@ -920,13 +745,9 @@ _QBIO_SYNTH_SYSTEM = (
     "No markdown, no citations beyond paper titles already given. Plain prose."
 )
 
-
 def _synthesize_qbio_with_llm(
     claim: str, verdict: str, support: list[dict], contra: list[dict], neutral: list[dict]
 ) -> Optional[str]:
-    """Optional grounded synthesis of the retrieved evidence. Returns a short
- paragraph, or None if the LLM seam is unconfigured / unreachable / empty.
- The deterministic verdict + scores remain the product regardless."""
     if llm_client is None or not llm_client.enabled():
         return None
     if not (support or contra or neutral):
@@ -956,14 +777,7 @@ def _synthesize_qbio_with_llm(
         return None
     return out.strip()[:2000]
 
-
 def run_quantum_bio_rag(payload: dict) -> dict:
-    """payload: { claim: str, limit?: int }
-
- Claim-strength RAG over the live quantum-biology literature. Retrieves real
- OpenAlex evidence, scores support strength + consensus with a deterministic
- stance + evidence-quality model, and cites sources. Evidence throughout.
-    """
     claim = (payload.get("claim") or "").strip()
     if len(claim) < 8:
         return {"error": "state a quantum-biology claim (>= 8 chars)"}
@@ -972,9 +786,7 @@ def run_quantum_bio_rag(payload: dict) -> dict:
     claim_pol = _claim_polarity(claim)
     now_year = datetime.now(timezone.utc).year
 
-    # is the claim plausibly in quantum-biology scope? (informational only)
     in_scope = bool(claim_terms & _QBIO_TERMS)
-    # bias retrieval toward the domain when the claim itself is sparse on QB terms
     query = search_query(claim)
     if not in_scope:
         query = (query + " quantum biology").strip()
@@ -1009,12 +821,10 @@ def run_quantum_bio_rag(payload: dict) -> dict:
     contra = [r for r in rows if r["stance"] == "contradicts"]
     neutral = [r for r in rows if r["stance"] == "neutral"]
 
-    # weighted support / consensus: weight each paper by its evidence strength.
     w_sup = sum(r["evidence_strength"] for r in support)
     w_con = sum(r["evidence_strength"] for r in contra)
     w_tot = w_sup + w_con
     support_score = round(w_sup / w_tot, 3) if w_tot > 0 else 0.0
-    # consensus = how lopsided the weighted evidence is (1 = unanimous one way)
     consensus = round(abs(w_sup - w_con) / w_tot, 3) if w_tot > 0 else 0.0
 
     if not rows:
@@ -1036,9 +846,6 @@ def run_quantum_bio_rag(payload: dict) -> dict:
         verdict = "CONTESTED — supporting and contradicting evidence are balanced"
         strength_label = "contested"
 
-    # Optional grounded synthesis over the retrieved rows. Additive only, the
-    # deterministic verdict/scores above are the product; this is a readable
-    # summary of the SAME evidence, and is omitted entirely if the LLM is down.
     synthesis = _synthesize_qbio_with_llm(claim, verdict, support, contra, neutral)
 
     return {
@@ -1048,11 +855,11 @@ def run_quantum_bio_rag(payload: dict) -> dict:
         "claim_polarity": "positive" if claim_pol > 0 else "negative",
         "degraded": degraded,
         "verdict": verdict,
-        "synthesis": synthesis,                 # LLM summary of evidence, or None
+        "synthesis": synthesis,
         "synthesis_available": bool(llm_client and llm_client.enabled()),
         "support_strength": strength_label,
-        "support_score": support_score,        # weighted fraction supporting (0..1)
-        "consensus": consensus,                # 0 = split, 1 = unanimous
+        "support_score": support_score,
+        "consensus": consensus,
         "counts": {"supports": len(support), "contradicts": len(contra), "neutral": len(neutral)},
         "top_supporting": support[:6],
         "top_contradicting": contra[:6],
@@ -1066,8 +873,6 @@ def run_quantum_bio_rag(payload: dict) -> dict:
         ),
     }
 
-
-# Registry the gateway imports.
 RAG_RUNNERS = {
     "paperradar": run_paper_radar,
     "grantdraft": run_grant_draft,

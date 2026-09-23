@@ -1,9 +1,3 @@
-// canon-detected-bridges.ts, server-only loader for LLM-named
-// multi-branch primitive bridges discovered via embedding clustering.
-//
-// Data lives at bucket-canon/_bridges/detected/<NN-slug>/README.md
-// produced by `agf-bridge-name`.
-
 import fs from "fs";
 import path from "path";
 
@@ -57,15 +51,12 @@ function parseDetected(dir: string, fullSlug: string): DetectedBridge | null {
     raw.match(/\*\*Confidence\*\*[:\s]*([\d.]+)/)?.[1] || "0",
   );
 
-  // Canonical form: quote block after ## Canonical form
   const cfMatch = raw.match(/## Canonical form\s*\n+>\s*(.+?)\n/);
   const canonicalForm = cfMatch?.[1].trim() || "";
 
-  // Description: paragraph after ## Description
   const descSect = raw.split("## Description")[1]?.split("\n## ")[0] || "";
   const description = descSect.trim();
 
-  // Vocabulary map
   const vocabSect = raw.split("## Vocabulary across branches")[1]?.split("\n## ")[0] || "";
   const vocabularyMap: DetectedBridge["vocabularyMap"] = [];
   for (const line of vocabSect.split("\n")) {
@@ -73,7 +64,6 @@ function parseDetected(dir: string, fullSlug: string): DetectedBridge | null {
     if (v) vocabularyMap.push({ branch: v[1].trim(), term: v[2].trim(), role: v[3].trim() });
   }
 
-  // Supporting authors
   const authSect = raw.split("## Supporting authors")[1]?.split("\n## ")[0] || "";
   const supportingAuthors = authSect
     .split("\n")
@@ -81,11 +71,9 @@ function parseDetected(dir: string, fullSlug: string): DetectedBridge | null {
     .map((l) => l.replace(/^-\s*/, "").trim())
     .filter(Boolean);
 
-  // Test / falsifiability
   const tfSect = raw.split("## Test / falsifiability")[1]?.split("\n## ")[0] || "";
   const testFalsifiability = tfSect.trim();
 
-  // Member claims
   const memSect = raw.split("## Source claims (cluster members)")[1] || "";
   const memberClaims: DetectedBridge["memberClaims"] = [];
   for (const line of memSect.split("\n")) {

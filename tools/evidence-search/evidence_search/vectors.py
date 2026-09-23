@@ -1,19 +1,3 @@
-"""Chunk vectors for a built corpus, and the index the worker serves.
-
-`build_vectors` reads a corpus directory from scripts/research-os/evidence/
-build-corpus.ts, checks sources.jsonl against its manifest, chunks every
-body with the model's tokenizer, embeds the chunks and writes
-
-    <out>/<corpusRevision>/<modelId>/
-        matrix.f32     rows x dimension, little-endian float32, L2-normalized
-        chunks.jsonl   one line per row: sourceId, sourceRevision, byte span
-        manifest.json  corpus and model revisions, chunking, file hashes,
-                       runtime versions, build time and peak memory
-
-through a temporary directory and one rename. `VectorIndex.load` checks
-every hash before the worker serves a row, and a mismatch refuses to load.
-"""
-
 from __future__ import annotations
 
 import json
@@ -30,10 +14,8 @@ from .registry import runtime_versions
 
 SCHEMA_VERSION = 1
 
-
 class ArtifactError(RuntimeError):
-    """An artifact that does not match its manifest."""
-
+    pass
 
 def _read_corpus(corpus_dir: Path) -> tuple[dict, list[dict]]:
     manifest = json.loads((corpus_dir / "manifest.json").read_text(encoding="utf-8"))
@@ -46,10 +28,8 @@ def _read_corpus(corpus_dir: Path) -> tuple[dict, list[dict]]:
             raise ArtifactError(f"{r['slug']}: text is not the normalized body its bodyHash names")
     return manifest, records
 
-
 def peak_rss_mib() -> float:
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
-
 
 def build_vectors(corpus_dir: Path, out_root: Path, encoder, batch_size: int = 16) -> Path:
     import numpy as np
@@ -103,7 +83,6 @@ def build_vectors(corpus_dir: Path, out_root: Path, encoder, batch_size: int = 1
     VectorIndex.load(tmp)
     os.replace(tmp, final)
     return final
-
 
 @dataclass
 class VectorIndex:

@@ -1,8 +1,3 @@
-/**
- * One test for who counts as staff in Research OS: an email on the reviewer
- * allowlist, or a person who teaches a class. The app layout and every
- * staff-only page read it here so the two cannot drift.
- */
 import { isReviewerEmail } from "./reviewer";
 import { isClassStaffAnywhere } from "./class-db";
 

@@ -1,9 +1,3 @@
-/**
- * The identity of one curated quotation
- * (src/lib/research-os/quote-receipt.ts). These values decide when a
- * retry is the same quotation and when an edit to the source makes the
- * stored receipt stale, so they are pinned here.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import {

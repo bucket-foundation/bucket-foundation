@@ -1,24 +1,5 @@
-/**
- * Reads that drop their error, and why each is tolerated for now.
- *
- * A PostgREST call resolves with `{ data, error }`. Destructuring only
- * `data` turns a failed read into an empty result, and the surface then
- * reports that emptiness as fact. This repository has shipped that four
- * times: an assignment list that rendered "No assignments yet" on an
- * outage, a loop panel that showed the first-run screen to a learner
- * with a started deck, a graph route that served an empty standing map,
- * and a branch counter that answered a graph with no branches in it.
- *
- * An entry is tolerable when the answer is the same either way. A
- * `maybeSingle()` lookup whose miss and whose failure both mean "carry
- * on without it" is one. A read whose emptiness reaches a person as a
- * statement about their own work is not, and none of those belong here.
- */
-
 export interface ErrorException {
-  /** `path:line` as `error-scan` reports it. */
   at: string;
-  /** Why a failed read and an empty result mean the same thing here. */
   because: string;
 }
 

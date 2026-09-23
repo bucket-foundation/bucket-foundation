@@ -1,21 +1,6 @@
-/**
- * Basic smoke tests for /api/research.
- *
- * Intentionally dependency-free, run with:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' \
- *     scripts/test-research-route.ts
- *
- * These assert the public contract documented in route.ts:
- *   - missing `q`    -> 400 bad_request
- *   - unknown tier   -> 400 bad_request
- *   - upstream down  -> 502 with stub envelope (data:null, receipt.status: "upstream_unavailable")
- *   - CORS headers present on every response
- */
-
 import { NextRequest } from "next/server";
 
-// Force upstream to an address that never resolves so we exercise the stub path.
-process.env.BUCKET_GATEWAY_URL = "http://127.0.0.1:1"; // unroutable
+process.env.BUCKET_GATEWAY_URL = "http://127.0.0.1:1";
 process.env.BUCKET_DAILY_USD_CAP = "1.00";
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
@@ -43,7 +28,6 @@ function expectHeader(res: Response, name: string, label: string) {
 }
 
 async function main() {
-  // 1. missing q -> 400
   {
     const res = await GET(mkReq(""));
     await expectStatus(res, 400, "missing q returns 400");
@@ -55,7 +39,6 @@ async function main() {
     }
   }
 
-  // 2. unknown tier -> 400
   {
     const res = await GET(mkReq("?q=test&tier=invalid"));
     await expectStatus(res, 400, "unknown tier returns 400");
@@ -65,7 +48,6 @@ async function main() {
     }
   }
 
-  // 3. upstream unavailable -> 502 stub envelope
   {
     const res = await GET(mkReq("?q=mitochondria"));
     await expectStatus(res, 502, "upstream unavailable returns 502 stub");

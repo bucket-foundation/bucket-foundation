@@ -1,30 +1,5 @@
-/**
- * research-atlas, the open-data publishing surface's read layer.
- *
- * research-atlas (github.com/bucket-foundation/research-atlas) is the canonical
- * research-economy graph: Funder → Grant → Organization → Person → Work → Field,
- * published as parquet datasets with an authoritative data/MANIFEST.json
- * (path, schema_version, row_count, as_of, sources per dataset).
- *
- * This module reads a VENDORED copy of that manifest
- * (src/data/research-atlas-manifest.json, synced by
- * scripts/sync-research-atlas-manifest.mjs) and exposes typed helpers the
- * catalog (/research/datasets), the dataset pages (/research/datasets/[slug]),
- * and the API (/api/research/datasets) all share.
- *
- * Bucket's mission: open research that's free-to-read / paid-to-cite. Each
- * dataset listed here is born citeable, the dataset page emits the same
- * feed402/0.2 cite-forever envelope shape the rest of Bucket uses, so a
- * downstream publisher knows exactly what it would owe to re-publish over
- * feed402/x402.
- *
- * Permanence is a real DOI (via Zenodo), marked as a-labelled seam where
- * it is referenced, NO blockchain, NO Story Protocol, NO IP-NFT. The DOI is
- * NOT required to read, list, or cite a dataset.
- */
 import manifestJson from "@/data/research-atlas-manifest.json";
 
-/** Per-dataset entry exactly as research-atlas/data/MANIFEST.json emits it. */
 export type AtlasDataset = {
   table: string;
   kind: "entity" | "edge";
@@ -55,23 +30,19 @@ export type AtlasManifest = {
 
 const manifest = manifestJson as AtlasManifest;
 
-/** The vendored manifest, as-is. */
 export function getManifest(): AtlasManifest {
   return manifest;
 }
 
-/** URL-safe slug for a dataset (the table name is already slug-safe). */
 export function datasetSlug(d: AtlasDataset): string {
   return d.table.replace(/_/g, "-");
 }
 
-/** Reverse of datasetSlug, find a dataset by its slug. */
 export function getDatasetBySlug(slug: string): AtlasDataset | null {
   const table = slug.replace(/-/g, "_");
   return manifest.datasets.find((d) => d.table === table) ?? null;
 }
 
-/** All datasets, entities first then edges, each alphabetical. */
 export function listDatasets(): AtlasDataset[] {
   const order = (k: AtlasDataset["kind"]) => (k === "entity" ? 0 : 1);
   return [...manifest.datasets].sort(
@@ -79,7 +50,6 @@ export function listDatasets(): AtlasDataset[] {
   );
 }
 
-/** Human title for a dataset table. */
 const TITLES: Record<string, string> = {
   funder: "Funders",
   grant: "Grants / Awards",
@@ -99,7 +69,6 @@ export function datasetTitle(d: AtlasDataset): string {
   return TITLES[d.table] ?? d.table;
 }
 
-/** One-line description per dataset table (from docs/SCHEMA.md). */
 const DESCRIPTIONS: Record<string, string> = {
   funder:
     "Funding bodies — government, private, nonprofit, corporate, supranational. Keyed on Crossref Funder id / ROR where resolvable.",
@@ -127,10 +96,8 @@ export function datasetDescription(d: AtlasDataset): string {
   );
 }
 
-/** The entity types a dataset touches, for the catalog chips. */
 export function datasetEntityTypes(d: AtlasDataset): string[] {
   if (d.kind === "entity") return [datasetTitle(d)];
-  // Edge tables connect two entity types; derive from the table name.
   const map: Record<string, string> = {
     funder: "Funder",
     grant: "Grant",
@@ -142,21 +109,12 @@ export function datasetEntityTypes(d: AtlasDataset): string[] {
   return d.table.split("_").map((p) => map[p] ?? p);
 }
 
-/**
- * Where a dataset's parquet/CSV can be downloaded.
- *
- * research-atlas commits a small real sample slice under data/processed/sample/.
- * Until a hosted DOI'd release is built (// TODO(publish): hosted release + DOI),
- * the canonical download is the parquet in the research-atlas repo on GitHub.
- */
 export const ATLAS_REPO = "https://github.com/bucket-foundation/research-atlas";
 export const ATLAS_RAW_BASE =
   "https://raw.githubusercontent.com/bucket-foundation/research-atlas/main";
 
 export function datasetDownload(d: AtlasDataset): {
   parquet_url: string;
-  // TODO(publish): a generated CSV mirror + a hosted, DOI'd, content-addressed
-  // release. Today the canonical artifact is the parquet committed in the repo.
   csv_url: string | null;
 } {
   return {
@@ -165,26 +123,14 @@ export function datasetDownload(d: AtlasDataset): {
   };
 }
 
-/** cite-forever / feed402 license constants, mirrored from /api/research. */
 export const CITE_LICENSE = "bucket.foundation/cite-forever/v0.1";
 export const DATA_LICENSE = "CC-BY-4.0";
 export const PAYOUT_WALLET =
   process.env.BUCKET_PAYOUT_WALLET ??
   "0xa91115B1AB8412f380Fd62446F523559F668b96B";
 
-/**
- * The price (USD) a downstream PUBLISHER would owe to re-publish a citation of a
- * dataset in a paid work. Passive, forward-looking license metadata, the reader
- * owes nothing. Mirrors the tier pricing model in /api/research; datasets cite at
- * the "source" rate.
- */
 export const DATASET_CITE_PRICE_USD = 0.05;
 
-/**
- * Build the feed402/0.2 citation block for a dataset. This is the same shape
- * /api/research emits, so a dataset is born citeable in the exact protocol the
- * rest of Bucket speaks.
- */
 export function datasetCitation(d: AtlasDataset, now = new Date().toISOString()) {
   const slug = datasetSlug(d);
   return {
@@ -204,7 +150,6 @@ export function datasetCitation(d: AtlasDataset, now = new Date().toISOString())
   };
 }
 
-/** The passive, forward-looking cite block (what a re-publisher would owe). */
 export function datasetCiteBlock() {
   return {
     applies_to: "downstream_republication_in_a_paid_work",
@@ -215,7 +160,6 @@ export function datasetCiteBlock() {
   };
 }
 
-/** Provenance chain entry, mirroring /api/research's provenanceStep shape. */
 export function datasetProvenance(d: AtlasDataset) {
   return [
     {

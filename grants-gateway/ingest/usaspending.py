@@ -1,9 +1,3 @@
-"""USAspending.gov ingestor (federal award history).
-
-Uses the public spending_by_award endpoint. We pull the top research-grant
-awards (award_type_codes = "02","03","04","05" = grants) for the last 3
-fiscal years, capped to MAX_RECORDS to keep the corpus reasonable.
-"""
 from __future__ import annotations
 
 import time
@@ -17,7 +11,6 @@ URL = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
 PAGE = 100
 MAX_RECORDS = 5_000
 SLEEP = 0.3
-
 
 def _to_grant(r: dict) -> dict:
     award_id = r.get("Award ID") or r.get("generated_internal_id") or r.get("internal_id")
@@ -64,7 +57,6 @@ def _to_grant(r: dict) -> dict:
         "canonical_url": canonical,
         "last_seen_at": now_iso(),
     }
-
 
 def fetch(max_records: int = MAX_RECORDS) -> Iterable[dict]:
     end_dt = datetime.utcnow().date()
