@@ -140,7 +140,7 @@ export interface BuildInput {
 }
 
 /** JSON with keys sorted at every depth, so a hash over it is stable. */
-export function canonicalJson(value: unknown): string {
+function canonicalJson(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
   if (value && typeof value === "object") {
     const o = value as Record<string, unknown>;
@@ -163,7 +163,7 @@ export function curatedQuoteRevision(input: { nodeId: string; text: string; loca
   return sha256Hex(JSON.stringify({ v: 1, nodeId: input.nodeId, text: input.text, locator: input.locator, citation: input.citation }));
 }
 
-export function citationOf(node: Pick<GraphNodeRow, "title" | "provenance">): Citation {
+function citationOf(node: Pick<GraphNodeRow, "title" | "provenance">): Citation {
   const p = node.provenance ?? {};
   const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim() : undefined);
   const doi = str(p.doi);
@@ -300,12 +300,12 @@ function shared(records: SourceRecord[], key: (r: SourceRecord) => string[], wha
 }
 
 /** Identity conflicts: two records with one source id, or one DOI alias. Any conflict fails the build. */
-export function findConflicts(records: SourceRecord[]): string[] {
+function findConflicts(records: SourceRecord[]): string[] {
   return [...shared(records, (r) => [r.sourceId], "source id"), ...shared(records, (r) => r.aliases, "alias")];
 }
 
 /** Nodes whose bodies are identical: duplicates for ros-graph-dedup to merge, listed in the manifest. */
-export function duplicateBodies(records: SourceRecord[]): string[][] {
+function duplicateBodies(records: SourceRecord[]): string[][] {
   const by = new Map<string, string[]>();
   for (const r of records) by.set(r.bodyHash, [...(by.get(r.bodyHash) ?? []), r.slug]);
   return Array.from(by.values()).filter((slugs) => slugs.length > 1).map((slugs) => slugs.sort());

@@ -75,7 +75,7 @@ export interface ToolFilter {
 
 export const NO_FILTER: ToolFilter = { q: "", field: null, license: "any", path: null };
 
-export function segText(segs: Segment[]): string {
+function segText(segs: Segment[]): string {
   return segs.map((s) => s.v).join("");
 }
 

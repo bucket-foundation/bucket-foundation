@@ -38,7 +38,6 @@ export interface PagingException {
 }
 
 export const PAGING_EXCEPTIONS: PagingException[] = [
-  { at: "src/lib/research-os/read-access.ts::nodes::nodes::1", because: "nodes.id is the primary key, so one row per id, and the loop hands in() one chunk at a time" },
   { at: "src/lib/research-os/inference/merge-actions.ts::listMergeProposals::nodes::1", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 100 slugs a call" },
   { at: "scripts/research-os/ingest/canon-all.ts::apply::nodes::1", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 200 slugs a call" },
   { at: "scripts/research-os/ingest/lib/apply-drafts.ts::applyDrafts::nodes::1", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 60 slugs a call" },
