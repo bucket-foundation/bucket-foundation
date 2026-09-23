@@ -199,10 +199,10 @@ test("a decision is claimed once, and the queue hides where a pair came from", {
 });
 
 test("the review route refuses a caller who is not a graph reviewer", { skip }, async () => {
-  const { GET, POST } = await import("../src/app/api/research-os/nsm/links/route");
+  const { GET, POST } = await import("../src/app/api/research-os/nsm-links/route");
   const { NextRequest } = await import("next/server");
-  const get = await GET(new NextRequest("http://localhost/api/research-os/nsm/links"));
+  const get = await GET(new NextRequest("http://localhost/api/research-os/nsm-links"), undefined);
   assert.equal(get.status, 403);
-  const post = await POST(new NextRequest("http://localhost/api/research-os/nsm/links", { method: "POST", body: JSON.stringify({ id: randomUUID(), decision: "approved" }) }));
+  const post = await POST(new NextRequest("http://localhost/api/research-os/nsm-links", { method: "POST", body: JSON.stringify({ id: randomUUID(), decision: "approved" }) }), undefined);
   assert.equal(post.status, 403);
 });

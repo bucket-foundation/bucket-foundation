@@ -24,7 +24,7 @@ export default function NsmReviewPage() {
   const load = useCallback(async () => {
     setState("loading");
     try {
-      const res = await fetch("/api/research-os/nsm/links", { cache: "no-store" });
+      const res = await fetch("/api/research-os/nsm-links", { cache: "no-store" });
       const data = (await res.json().catch(() => ({}))) as { proposals?: Item[]; error?: string };
       if (res.status === 403) return setState("forbidden");
       if (isTransientOutage(res.status, data.error ?? null)) return setState("failed");
@@ -45,7 +45,7 @@ export default function NsmReviewPage() {
     setBusy(item.id);
     setNotice(null);
     try {
-      const res = await fetch("/api/research-os/nsm/links", {
+      const res = await fetch("/api/research-os/nsm-links", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id: item.id, decision, reason: reasons[item.id] || undefined }),

@@ -1,0 +1,46 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, store down": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "q": "",
+      "results": []
+    }
+  }
+}

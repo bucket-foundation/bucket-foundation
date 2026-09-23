@@ -1,0 +1,90 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "node_required"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  }
+}

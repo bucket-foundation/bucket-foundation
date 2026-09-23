@@ -91,7 +91,7 @@ const skip = ready ? false : "no local stack with the NSM primes loaded";
 async function get(query: string): Promise<{ status: number; body: Record<string, unknown> }> {
   const { GET } = await import("../src/app/api/research-os/nsm/route");
   const { NextRequest } = await import("next/server");
-  const res = await GET(new NextRequest(`http://localhost/api/research-os/nsm${query}`));
+  const res = await GET(new NextRequest(`http://localhost/api/research-os/nsm${query}`), undefined);
   return { status: res.status, body: (await res.json()) as Record<string, unknown> };
 }
 
