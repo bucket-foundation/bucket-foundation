@@ -1,9 +1,3 @@
-/**
- * The daily AI watch's ledger (ros-ai-watch): the item contract, dedup by
- * source and revision, a new revision reopening its source, the run
- * limits, one selection per milestone, and a report that stays quiet when
- * nothing material changed. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";

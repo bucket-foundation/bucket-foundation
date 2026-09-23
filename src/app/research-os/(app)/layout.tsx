@@ -6,9 +6,6 @@ import { signInUrl, DEFAULT_AFTER_SIGN_IN } from "@/lib/auth/paths";
 import { isStaff } from "@/lib/research-os/staff";
 import AppShell from "./AppShell";
 
-// Every page in this group needs a session (src/middleware.ts redirects
-// before we get here; this is the second check) and renders inside the
-// application frame.
 export const dynamic = "force-dynamic";
 
 export default async function ResearchOsAppLayout({ children }: { children: ReactNode }) {

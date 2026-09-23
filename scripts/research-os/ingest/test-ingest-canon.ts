@@ -1,19 +1,3 @@
-/**
- * Unit tests: the canon entry importer
- * (src/lib/research-os/ingest/canon.ts, task item 2). Fixtures cover both
- * kind branches (a law-folder dossier and a plain primary_source dossier),
- * both match paths (an exact slug match and a canon-atom-map.json
- * override), an unresolved map entry, and an entry with no match at all
- * (the review-list path). A second block runs the importer against the
- * REAL bucket-canon/02-physics/ dossiers and the real Academy corpus, and
- * asserts the exact 2-law/4-source split and 5-matched/1-unmatched split
- * this repo's current six dossiers and canon-atom-map.json produce (bkt-ros
- * ros-03 item 4 resolved three of the four review-list entries the
- * previous, canon-only-ingestion pass left unmatched).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-canon.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -50,10 +34,6 @@ function paper(overrides: Partial<CanonPaperLike> = {}): CanonPaperLike {
     ...overrides,
   };
 }
-
-// ---------------------------------------------------------------------------
-// isLawFolder / kind heuristic
-// ---------------------------------------------------------------------------
 
 test("isLawFolder: matches a dossier slug naming a theorem, principle, or law; not a bare field name", () => {
   assert.equal(isLawFolder("bell-theorem"), true);
@@ -95,10 +75,6 @@ test("buildCanonSourceNode / buildCanonCitesEdge: only emitted for a law-folder 
   assert.equal(buildCanonCitesEdge(sourcePaper), null);
 });
 
-// ---------------------------------------------------------------------------
-// matchAcademyAtom
-// ---------------------------------------------------------------------------
-
 const atomIndex: AcademyAtomRef[] = [
   { branch: "02-physics", sourceFile: "learning/app/corpus/02-physics.json", atomId: "special-relativity", title: "Special relativity" },
   { branch: "02-physics", sourceFile: "learning/app/corpus/02-physics.json", atomId: "standard-model", title: "The Standard Model" },
@@ -138,10 +114,6 @@ test("matchAcademyAtom: an override takes precedence even when a slug match also
   assert.equal(match.ref.atomId, "standard-model");
 });
 
-// ---------------------------------------------------------------------------
-// buildCanonImport: end to end on a small fixture
-// ---------------------------------------------------------------------------
-
 test("buildCanonImport: matched entry gets a derives_from edge, unmatched entry lands on the review list", () => {
   const papers = [paper({ id: "bkt-1", concept: "special-relativity" }), paper({ id: "bkt-2", concept: "bell-theorem", title: "Bell 1964" })];
   const result = buildCanonImport({
@@ -169,10 +141,6 @@ test("buildCanonImport: is idempotent on repeat input (pure function determinism
   assert.deepEqual(buildCanonImport(input), buildCanonImport(input));
 });
 
-// ---------------------------------------------------------------------------
-// Against the real bucket-canon/02-physics/ dossiers and the real corpus
-// ---------------------------------------------------------------------------
-
 const REPO_ROOT = resolve(__dirname, "..", "..", "..");
 
 test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exactly the 2-law/4-source, 5-matched/1-unmatched split", () => {
@@ -186,7 +154,7 @@ test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exact
   const rawOverrideMap: Record<string, unknown> = JSON.parse(readFileSync(join(__dirname, "canon-atom-map.json"), "utf8"));
   const overrideMap: CanonAtomMap = {};
   for (const [key, value] of Object.entries(rawOverrideMap)) {
-    if (key.startsWith("_")) continue; // every "_comment"-style annotation key, matching canon-import.ts's own loadOverrideMap
+    if (key.startsWith("_")) continue;
     overrideMap[key] = value as CanonAtomMap[string];
   }
 
@@ -198,11 +166,6 @@ test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exact
   assert.equal(sourceNodes.length, 2, "one bibliographic source node per law entry");
   assert.equal(result.nodes.length, 8, "6 entry nodes + 2 source nodes");
 
-  // bkt-ros ros-03 item 4 resolved three of the four review-list entries
-  // this test originally found unmatched (bell-theorem, quantum-field-
-  // theory, quantum-mechanics), adding explicit canon-atom-map.json rows;
-  // gauge-principle stays unmatched (no Academy atom covers gauge
-  // invariance or Yang-Mills theory).
   const derivesFrom = result.edges.filter((e) => e.kind === "derives_from");
   assert.equal(
     derivesFrom.length,

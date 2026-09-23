@@ -22,14 +22,6 @@ import {
 
 export const metadata: Metadata = { title: "Roadmap", robots: { index: false, follow: false } };
 
-// The staged queue (learning/research-os/ROADMAP.md). The list itself is
-// src/lib/research-os/roadmap.ts, so the page and the memo cannot drift.
-// ?stage= shows one stage, ?epic= one epic.
-//
-// Staff only, the same test the shell uses to show the teaching nav: this
-// is the internal order of the work, and it names the decisions waiting on
-// the founder. A signed-in learner gets a 404.
-
 export const dynamic = "force-dynamic";
 
 const CARD =

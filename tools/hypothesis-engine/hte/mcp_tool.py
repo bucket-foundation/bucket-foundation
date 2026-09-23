@@ -1,40 +1,3 @@
-"""The `hypothesize` MCP tool definition: what `bucket-mcp` (or another MCP
-host) registers to expose `hte.api.hypothesize` over `hte-serve`'s
-`POST /hypothesize` endpoint (`hte/serve.py`), matching `docs/
-K12-INTEGRATION.md`'s own tool shape, expanded for the production-adapter
-request and response `hte.api.hypothesize` reads and writes (`hte/api.py`'s
-own module docstring names every field).
-
-This module defines no server of its own and imports nothing from
-`bucket-mcp`: per `docs/RESEARCH-OS-INTEGRATION.md`'s own "this section
-names the seam, it does not cut it" rule, wiring `TOOL_DEFINITION` into a
-live `bucket-mcp.py` tool handler stays bucket-mcp's own change to make.
-
-TypeScript registration sketch, for a bucket-mcp tool handler that speaks
-JSON-RPC/stdio and calls this package's own HTTP surface over `hte-serve`:
-
-    import { TOOL_DEFINITION } from "./hypothesize-tool.json"; // this module's TOOL_DEFINITION, exported once as JSON
-
-    const HTE_SERVE_URL = process.env.HTE_SERVE_URL ?? "http://127.0.0.1:8420";
-
-    server.registerTool(TOOL_DEFINITION.name, TOOL_DEFINITION, async (input) => {
-      const res = await fetch(`${HTE_SERVE_URL}/hypothesize`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(input),
-      });
-      const body = await res.json();
-      if (!res.ok || body.ok === false) {
-        return { isError: true, content: [{ type: "text", text: body.error ?? `hte-serve returned ${res.status}` }] };
-      }
-      return { content: [{ type: "text", text: JSON.stringify(body) }] };
-    });
-
-`hte-serve` binds to localhost with no authentication of its own
-(`hte/serve.py`'s own module docstring): this handler, and whatever
-process starts `hte-serve` alongside `bucket-mcp`, carry the whole trust
-boundary between them.
-"""
 from __future__ import annotations
 
 from typing import Any
@@ -263,7 +226,6 @@ TOOL_DEFINITION: dict[str, Any] = {
                 "type": "object",
                 "properties": {
                     "observed": {"type": "integer"},
-                    # None below the seed floor or at f2=0 (hte.unknowns.coverage_interval).
                     "chao1_estimate": {"type": ["number", "null"]},
                     "chao1_note": {"type": ["string", "null"]},
                     "missing_mass": {"type": "number"},

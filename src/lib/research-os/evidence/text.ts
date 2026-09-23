@@ -1,23 +1,5 @@
-/**
- * Text normalization, byte offsets and hashes for the evidence corpus
- * (ros-ai-corpus, learning/research-os/ai/IMPLEMENTATION.md, "Source
- * identities").
- *
- * Every retained text is normalized once, by NORMALIZATION: a leading
- * byte-order mark dropped, CRLF and lone CR turned into LF, then Unicode
- * NFC. Spans are half-open [start, end) byte offsets into the UTF-8
- * encoding of that normalized text. An offset that lands inside a
- * multibyte character is refused, so a span always decodes to whole code
- * points. The encoder worker is Python; normalization-fixtures.json holds
- * cases both sides must agree on.
- *
- * Two hashes travel together: one over the original bytes as they came,
- * one over the normalized text. A span checked against the normalized hash
- * is never presented as an exact copy of the original bytes.
- */
 import { createHash } from "node:crypto";
 
-/** The pinned algorithm name, recorded in every manifest and record. */
 export const NORMALIZATION = "nfc-lf/1";
 
 export function normalizeText(raw: string): string {
@@ -40,8 +22,7 @@ export function byteLength(text: string): number {
   return Buffer.byteLength(text, "utf8");
 }
 
-/** True when `offset` starts a code point in `bytes`, or is its end. */
-export function onBoundary(bytes: Uint8Array, offset: number): boolean {
+function onBoundary(bytes: Uint8Array, offset: number): boolean {
   if (!Number.isInteger(offset) || offset < 0 || offset > bytes.length) return false;
   if (offset === bytes.length) return true;
   return (bytes[offset] & 0xc0) !== 0x80;
@@ -51,13 +32,10 @@ export class OffsetError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "OffsetError";
-    // An ES5 build drops a subclass of Error from its prototype chain, and
-    // instanceof would then miss every OffsetError.
     Object.setPrototypeOf(this, OffsetError.prototype);
   }
 }
 
-/** The text of the half-open byte span [start, end). Refuses a split character. */
 export function byteSlice(text: string, start: number, end: number): string {
   const bytes = utf8(text);
   if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end > bytes.length || start > end) {
@@ -68,11 +46,3 @@ export function byteSlice(text: string, start: number, end: number): string {
   return bytes.subarray(start, end).toString("utf8");
 }
 
-/** The byte span of the first occurrence of `needle` in `text`, or null. */
-export function findByteSpan(text: string, needle: string): { start: number; end: number } | null {
-  if (!needle) return null;
-  const at = text.indexOf(needle);
-  if (at === -1) return null;
-  const start = byteLength(text.slice(0, at));
-  return { start, end: start + byteLength(needle) };
-}

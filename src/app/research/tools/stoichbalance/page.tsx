@@ -6,7 +6,6 @@ export const metadata = toolMetadata("stoichbalance");
 const _jsonld = toolJsonLd("stoichbalance");
 import StoichBalanceClient from "./StoichBalanceClient";
 
-// StoichBalance run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("stoichbalance");
   return (

@@ -15,7 +15,6 @@ from hte.generate import (
 from hte.hypothesis import Hypothesis, Placement, Sequence
 from hte.timeline import AllenRelation, Interval, Resolution, relate
 
-
 def _small_vocab() -> Vocabulary:
     vocab = Vocabulary()
     vocab.add(Concept("farmers", Slot.ACTOR, "Farmers", 2.0, ConsensusStatus.CONSENSUS))
@@ -27,20 +26,12 @@ def _small_vocab() -> Vocabulary:
     vocab.add(Concept("tech", Slot.MECHANISM, "Tech", -2.5, ConsensusStatus.FRINGE))
     return vocab
 
-
 def _interval() -> Interval:
     return Interval(start=-7000, end=-6901)
-
 
 def _placement(vocab: Vocabulary, actor="farmers", mechanism="labor", interval=None) -> Placement:
     return Placement(actor=actor, action="built", object="shrine", place="site",
                       mechanism=mechanism, interval=interval or _interval())
-
-
-# --------------------------------------------------------------------------
-# enumerate_placements
-# --------------------------------------------------------------------------
-
 
 def test_enumerate_placements_includes_other_in_every_slot():
     vocab = _small_vocab()
@@ -59,15 +50,13 @@ def test_enumerate_placements_includes_other_in_every_slot():
         other_ids = {c.id for c in vocab.concepts(slot) if c.consensus_status == ConsensusStatus.OTHER}
         assert other_ids <= seen[slot]
 
-
 def test_enumerate_placements_is_deterministic():
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
     first = [h.address for h in enumerate_placements(vocab, [tbin])]
     second = [h.address for h in enumerate_placements(vocab, [tbin])]
     assert first == second
-    assert len(first) == len(set(first))  # every combo addresses uniquely
-
+    assert len(first) == len(set(first))
 
 def test_enumerate_placements_size_matches_product_of_vocab_sizes():
     vocab = _small_vocab()
@@ -77,7 +66,6 @@ def test_enumerate_placements_size_matches_product_of_vocab_sizes():
     for slot in PLACEMENT_CONCEPT_SLOTS:
         expected *= len(vocab.concepts(slot))
     assert len(hyps) == expected
-
 
 def test_enumerate_placements_exclude_other():
     vocab = _small_vocab()
@@ -90,25 +78,17 @@ def test_enumerate_placements_exclude_other():
                      Slot.MECHANISM: h.content.mechanism}[slot]
             assert not value.startswith("other-")
 
-
 def test_enumerate_placements_respects_max_items():
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
     hyps = list(enumerate_placements(vocab, [tbin], max_items=5))
     assert len(hyps) == 5
 
-
-# --------------------------------------------------------------------------
-# combinatorial_sample
-# --------------------------------------------------------------------------
-
-
 def test_combinatorial_sample_respects_max_items():
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
     hyps = combinatorial_sample(vocab, [tbin], max_items=5, seed=0)
     assert len(hyps) == 5
-
 
 def test_combinatorial_sample_is_deterministic_given_seed():
     vocab = _small_vocab()
@@ -117,7 +97,6 @@ def test_combinatorial_sample_is_deterministic_given_seed():
     second = [h.address for h in combinatorial_sample(vocab, [tbin], max_items=6, seed=3)]
     assert first == second
 
-
 def test_combinatorial_sample_different_seeds_can_differ():
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
@@ -125,21 +104,12 @@ def test_combinatorial_sample_different_seeds_can_differ():
     b = {h.address for h in combinatorial_sample(vocab, [tbin], max_items=4, seed=1)}
     assert a != b
 
-
 def test_combinatorial_sample_does_not_pin_every_draw_to_the_first_actor():
-    # The failure this function replaces `enumerate_placements` for: a
-    # cap far smaller than the full space never advanced ACTOR past its
-    # first vocabulary entry (`enumerate_placements`'s own fixed
-    # left-to-right order). A random sample large enough relative to
-    # this tiny 2-actor vocabulary should see both actors.
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
     hyps = combinatorial_sample(vocab, [tbin], max_items=20, seed=0)
     actors_seen = {h.content.actor for h in hyps}
-    # `_small_vocab()`'s 2 named actors plus `Vocabulary`'s own
-    # auto-appended `other-actor` placeholder (`hasOther`, every slot).
     assert actors_seen == {"farmers", "aliens", "other-actor"}
-
 
 def test_combinatorial_sample_never_exceeds_the_full_space_size():
     vocab = _small_vocab()
@@ -151,31 +121,23 @@ def test_combinatorial_sample_never_exceeds_the_full_space_size():
     assert len(hyps) == full
     assert len({h.address for h in hyps}) == full
 
-
 def test_combinatorial_sample_returns_empty_list_for_zero_max_items():
     vocab = _small_vocab()
     tbin = time_bin_index(_interval().start)
     assert combinatorial_sample(vocab, [tbin], max_items=0, seed=0) == []
 
-
 def test_combinatorial_sample_returns_empty_list_for_no_time_bins():
     vocab = _small_vocab()
     assert combinatorial_sample(vocab, [], max_items=5, seed=0) == []
 
-
 def _status_skewed_vocab() -> Vocabulary:
-    """One CONSENSUS actor, four FRINGE actors, plus `Vocabulary`'s own
-    auto-appended `other-actor` (OTHER): three status classes, one of
-    them (FRINGE) four times the headcount of the other two, the exact
-    skew `combinatorial_sample`'s `status_balanced` knob corrects."""
     vocab = _small_vocab()
     vocab.by_slot[Slot.ACTOR] = [
         Concept("consensus-actor", Slot.ACTOR, "C", 0.0, ConsensusStatus.CONSENSUS),
         *(Concept(f"fringe-{i}", Slot.ACTOR, f"F{i}", 0.0, ConsensusStatus.FRINGE) for i in range(4)),
     ]
-    vocab.__post_init__()  # re-append the OTHER placeholder this replacement dropped
+    vocab.__post_init__()
     return vocab
-
 
 def test_combinatorial_sample_status_balanced_gives_each_status_class_an_equal_share():
     vocab = _status_skewed_vocab()
@@ -190,32 +152,14 @@ def test_combinatorial_sample_status_balanced_gives_each_status_class_an_equal_s
         return counts
 
     balanced = class_counts(True)
-    # Balanced draws the class first, so consensus (1 actor), fringe (4
-    # actors), and other (1 actor) each land near n/3, regardless of
-    # fringe's own headcount. `_status_skewed_vocab` names no CONTESTED
-    # actor at all, so only these three classes ever draw.
     for status in (ConsensusStatus.CONSENSUS, ConsensusStatus.FRINGE, ConsensusStatus.OTHER):
         assert n / 3 * 0.6 <= balanced[status] <= n / 3 * 1.4
 
     flat = class_counts(False)
-    # Flat draws per actor, so fringe (4 of 6 actors) draws about 4x
-    # either singleton class, the skew `status_balanced=True` replaces.
     assert flat[ConsensusStatus.FRINGE] > 2 * flat[ConsensusStatus.CONSENSUS]
     assert flat[ConsensusStatus.FRINGE] > 2 * flat[ConsensusStatus.OTHER]
 
-
-# --------------------------------------------------------------------------
-# stratified_sample
-# --------------------------------------------------------------------------
-
-
 def _dominated_pool(vocab: Vocabulary) -> list[Hypothesis]:
-    """100 hypotheses over `_status_skewed_vocab()`'s own actors: 90 for
-    `consensus-actor` at the lowest addresses, 5 each for two of the
-    fringe actors at addresses far above them, the exact shape
-    `STATISTICAL-AUDIT-2026-09-15.md` item 1 names, address order
-    tracking one actor's own volume rather than the corpus's evidence.
-    """
     def hyp(address: int, actor: str) -> Hypothesis:
         return Hypothesis(address=address, content=_placement(vocab, actor=actor))
 
@@ -225,25 +169,16 @@ def _dominated_pool(vocab: Vocabulary) -> list[Hypothesis]:
         + [hyp(2000 + i, "fringe-1") for i in range(5)]
     )
 
-
 def test_stratified_sample_keeps_every_stratum_non_empty_against_a_dominant_actor():
     vocab = _status_skewed_vocab()
     pool = _dominated_pool(vocab)
     kept, frame = stratified_sample(pool, vocab, cap=30, seed=0)
     by_actor = Counter(h.content.actor for h in kept)
 
-    # The address-sorted top 30 this replaces is 30 `consensus-actor`
-    # hypotheses and zero of either fringe actor (the live incident:
-    # `runner.py`'s own `sorted(...)[:cap]`, addresses 0-29 all below
-    # fringe's 1000+). Both fringe strata are too small (5) to ever need
-    # downsampling, so they come through whole.
     assert by_actor["fringe-0"] == 5
     assert by_actor["fringe-1"] == 5
-    # `consensus-actor` still keeps the largest share (its own 90 of 100
-    # hypotheses), short of the 30/30 the old truncation gave it.
     assert 15 <= by_actor["consensus-actor"] <= 25
     assert len(kept) == 30
-
 
 def test_stratified_sample_is_deterministic_given_seed():
     vocab = _status_skewed_vocab()
@@ -252,14 +187,12 @@ def test_stratified_sample_is_deterministic_given_seed():
     second = [h.address for h in stratified_sample(pool, vocab, cap=12, seed=7)[0]]
     assert first == second
 
-
 def test_stratified_sample_never_exceeds_the_requested_cap():
     vocab = _status_skewed_vocab()
     pool = _dominated_pool(vocab)
     for cap in (0, 1, 5, 12, 30, 55, 100, 500):
         kept, _frame = stratified_sample(pool, vocab, cap=cap, seed=0)
         assert len(kept) == min(cap, len(pool))
-
 
 def test_stratified_sample_frame_sums_match_cap_and_pool():
     vocab = _status_skewed_vocab()
@@ -270,13 +203,11 @@ def test_stratified_sample_frame_sums_match_cap_and_pool():
     assert sum(s["kept"] for s in frame["strata"].values()) == len(kept)
     assert sum(s["generated"] for s in frame["strata"].values()) == len(pool)
 
-
 def test_stratified_sample_returns_empty_frame_for_zero_cap():
     vocab = _status_skewed_vocab()
     kept, frame = stratified_sample(_dominated_pool(vocab), vocab, cap=0, seed=0)
     assert kept == []
     assert frame == {"cap": 0, "n_strata": 0, "strata": {}}
-
 
 def test_stratified_sample_gives_sequences_their_own_stratum():
     vocab = _status_skewed_vocab()
@@ -289,27 +220,19 @@ def test_stratified_sample_gives_sequences_their_own_stratum():
     assert frame["strata"]["sequence"] == {"generated": 1, "kept": 1}
     assert seq in kept
 
-
-# --------------------------------------------------------------------------
-# neighbors
-# --------------------------------------------------------------------------
-
-
 def test_neighbors_count_matches_expected_sum_mid_span():
     vocab = _small_vocab()
-    placement = _placement(vocab)  # interval start=-7000, bin idx=130: both shifts valid
+    placement = _placement(vocab)
     h = Hypothesis.from_placement(placement, vocab)
     expected = sum(len(vocab.concepts(s)) - 1 for s in PLACEMENT_CONCEPT_SLOTS) + 2
     assert len(list(neighbors(h, vocab))) == expected
 
-
 def test_neighbors_count_at_span_start_has_one_time_shift():
     vocab = _small_vocab()
-    interval0 = Interval(start=-20000, end=-19901)  # bin idx=0: only +1 shift is valid
+    interval0 = Interval(start=-20000, end=-19901)
     h = Hypothesis.from_placement(_placement(vocab, interval=interval0), vocab)
     expected = sum(len(vocab.concepts(s)) - 1 for s in PLACEMENT_CONCEPT_SLOTS) + 1
     assert len(list(neighbors(h, vocab))) == expected
-
 
 def test_neighbors_are_all_distinct_addresses():
     vocab = _small_vocab()
@@ -317,7 +240,6 @@ def test_neighbors_are_all_distinct_addresses():
     addresses = [n.address for n in neighbors(h, vocab)]
     assert h.address not in addresses
     assert len(addresses) == len(set(addresses))
-
 
 def test_neighbors_of_sequence_includes_relation_changes():
     vocab = _small_vocab()
@@ -328,12 +250,6 @@ def test_neighbors_of_sequence_includes_relation_changes():
     relation_neighbors = [n for n in neighbors(h, vocab) if n.content.relation != seq.relation
                            and n.content.first == first and n.content.second == second]
     assert len(relation_neighbors) == len(list(AllenRelation)) - 1
-
-
-# --------------------------------------------------------------------------
-# from_evidence: the four evidence-driven generators
-# --------------------------------------------------------------------------
-
 
 def _evidence_fixture(vocab: Vocabulary):
     near = _placement(vocab, actor="farmers", mechanism="labor")
@@ -353,7 +269,6 @@ def _evidence_fixture(vocab: Vocabulary):
                                       span=span, provenance="manual", supports=[h_far.address])
     return [cluster_item, contradiction_item, cross_period_item]
 
-
 def test_from_evidence_each_generator_yields_at_least_one_hypothesis():
     vocab = _small_vocab()
     items = _evidence_fixture(vocab)
@@ -367,7 +282,6 @@ def test_from_evidence_each_generator_yields_at_least_one_hypothesis():
         assert name in by_generator
         assert len(by_generator[name]) >= 1
 
-
 def test_from_evidence_claim_gap_sweeps_full_vocab_including_other():
     vocab = _small_vocab()
     items = _evidence_fixture(vocab)
@@ -375,7 +289,6 @@ def test_from_evidence_claim_gap_sweeps_full_vocab_including_other():
     gap_hyps = [h for h in generated if h.meta.get("generator") == "claim-gap"]
     mechanisms_seen = {h.content.mechanism for h in gap_hyps if h.meta.get("gap_slot") == "mechanism"}
     assert "other-mechanism" in mechanisms_seen
-
 
 def test_from_evidence_contradiction_yields_both_readings():
     vocab = _small_vocab()
@@ -385,7 +298,6 @@ def test_from_evidence_contradiction_yields_both_readings():
     readings = {h.meta.get("reading") for h in contra_hyps}
     assert readings == {"supported", "refuted"}
 
-
 def test_from_evidence_is_deterministic_given_seed():
     vocab = _small_vocab()
     items = _evidence_fixture(vocab)
@@ -393,34 +305,20 @@ def test_from_evidence_is_deterministic_given_seed():
     second = [(h.address, h.meta) for h in from_evidence(items, vocab, Resolution.CENTURY, seed=3)]
     assert first == second
 
-
 def test_from_evidence_ignores_undecodable_addresses():
     vocab = _small_vocab()
     span = EvidenceSpan("doc", "loc", "quote", 0, 5)
     bad_item = EvidenceItem(id="ev-bad", kind=EvidenceKind.MATERIAL, tier=Tier.T1, source_id="s1",
                              span=span, provenance="manual", supports=[999_999_999_999_999_999])
-    # Should not raise, and contributes nothing.
     generated = from_evidence([bad_item], vocab, Resolution.CENTURY)
     assert generated == []
 
-
-# --------------------------------------------------------------------------
-# from_evidence: generation off an item's own extracted slots, no prior
-# link required (`bkt-hte-evidence-slots`'s own generation-coverage fix)
-# --------------------------------------------------------------------------
-
-
 def _unlinked_item(vocab: Vocabulary, **slots) -> EvidenceItem:
-    """An evidence item carrying only its own best-effort extracted
-    slots, `supports`/`refutes` both empty: the shape `hte.corpus.
-    quantum_history` and `hte.roles.extract` hand generation before any
-    linking pass has run."""
     span = EvidenceSpan("doc", "loc", "quote", 0, 5)
     return EvidenceItem(
         id=slots.pop("id", "ev-unlinked"), kind=EvidenceKind.TEXTUAL, tier=Tier.T2,
         source_id="s1", span=span, provenance="manual", **slots,
     )
-
 
 def test_evidence_cluster_emits_a_placement_for_an_unlinked_item_with_slots():
     vocab = _small_vocab()
@@ -429,10 +327,8 @@ def test_evidence_cluster_emits_a_placement_for_an_unlinked_item_with_slots():
     cluster_hyps = [h for h in generated if h.meta.get("generator") == "evidence-cluster"]
     assert any(h.content.actor == "farmers" and h.content.action == "built" for h in cluster_hyps)
 
-
 def test_evidence_cluster_fills_a_missing_slot_with_other_not_an_arbitrary_concept():
     vocab = _small_vocab()
-    # Names only actor; object/place/mechanism/action are all unasserted.
     item = _unlinked_item(vocab, actor="farmers", interval=_interval())
     generated = from_evidence([item], vocab, Resolution.CENTURY)
     [cluster_hyp] = [h for h in generated if h.meta.get("generator") == "evidence-cluster"]
@@ -442,27 +338,17 @@ def test_evidence_cluster_fills_a_missing_slot_with_other_not_an_arbitrary_conce
     assert cluster_hyp.content.place == "other-place"
     assert cluster_hyp.content.mechanism == "other-mechanism"
 
-
 def test_evidence_cluster_item_with_no_interval_contributes_no_own_placement():
     vocab = _small_vocab()
-    item = _unlinked_item(vocab, actor="farmers")  # no interval at all
+    item = _unlinked_item(vocab, actor="farmers")
     generated = from_evidence([item], vocab, Resolution.CENTURY)
     assert generated == []
 
-
 def test_evidence_cluster_clamps_an_interval_before_the_run_span():
-    # A bullet mentioning an incidental earlier year can widen an item's
-    # own extracted interval past the run's own TIME_BIN span start.
-    # `hte.timeline.time_bin_index` clamps that to bin 0 rather than
-    # raising (`bkt-hte-binning-clamp`, 2026-09-10), so this item's own
-    # placement is kept, landing in the span's own earliest bin, instead
-    # of being dropped the way an unresolved-vocabulary `KeyError` still
-    # is.
     vocab = _small_vocab()
     item = _unlinked_item(vocab, actor="farmers", interval=Interval(start=-25000, end=-24999))
     generated = from_evidence([item], vocab, Resolution.CENTURY, span_start=-20000, bin_width=100)
     assert generated != []
-
 
 def test_claim_gap_sweeps_around_an_unlinked_item_too():
     vocab = _small_vocab()
@@ -472,7 +358,6 @@ def test_claim_gap_sweeps_around_an_unlinked_item_too():
     mechanisms_seen = {h.content.mechanism for h in gap_hyps if h.meta.get("gap_slot") == "mechanism"}
     assert {"labor", "tech", "other-mechanism"} <= mechanisms_seen
 
-
 def test_cross_period_copies_an_unlinked_item_into_another_attested_bin():
     vocab = _small_vocab()
     near = _unlinked_item(vocab, id="ev-near", actor="farmers", interval=_interval())
@@ -481,12 +366,6 @@ def test_cross_period_copies_an_unlinked_item_into_another_attested_bin():
     generated = from_evidence([near, far], vocab, Resolution.CENTURY, seed=0)
     cross_hyps = [h for h in generated if h.meta.get("generator") == "cross-period-analogy"]
     assert len(cross_hyps) >= 2
-
-
-# --------------------------------------------------------------------------
-# sequences_from
-# --------------------------------------------------------------------------
-
 
 def test_sequences_from_computes_allen_relation_from_intervals():
     vocab = _small_vocab()
@@ -501,7 +380,6 @@ def test_sequences_from_computes_allen_relation_from_intervals():
     assert seq_hyp.content.first == early
     assert seq_hyp.content.second == late
 
-
 def test_sequences_from_respects_max_pairs():
     vocab = _small_vocab()
     placements = [
@@ -510,7 +388,6 @@ def test_sequences_from_respects_max_pairs():
     ]
     pairs = list(sequences_from(placements, max_pairs=2))
     assert len(pairs) == 2
-
 
 def test_sequences_from_address_matches_decode_sequence_indices():
     from hte.address import decode_sequence_indices
@@ -526,7 +403,6 @@ def test_sequences_from_address_matches_decode_sequence_indices():
     assert decoded_first == early.slot_tuple(vocab)
     assert decoded_second == late.slot_tuple(vocab)
 
-
 def test_sequences_from_needs_no_vocabulary_argument():
     import inspect
 
@@ -534,11 +410,7 @@ def test_sequences_from_needs_no_vocabulary_argument():
     assert "vocab" not in params
     assert "vocabulary" not in params
 
-
 def test_stratified_sample_floor_holds_per_stratum_when_cap_covers_the_strata():
-    """Every stratum keeps `min(size, ceil(cap / n_strata))` once `cap`
-    covers the stratum count; below it the total is still exactly `cap`
-    and the docstring promises nothing per stratum."""
     import math
     vocab = _status_skewed_vocab()
     pool = _dominated_pool(vocab)

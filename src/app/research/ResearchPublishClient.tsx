@@ -2,17 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Wallet-gated interactive island.
- *
- * In production, NEXT_PUBLIC_DYNAMIC_ENV_ID is sometimes unset, in which case
- * Web3Providers renders bare and the Author/CiteToken contexts do not exist.
- * The previous implementation called `useAuthor()` unconditionally and crashed
- * the whole /research route with a 500. This island graceful-degrades:
- *
- *   - Providers missing  -> stone-bone "connect to publish" panel, no crash.
- *   - Providers present  -> lazy-import the real form.
- */
 export default function ResearchPublishClient() {
   const [ready, setReady] = useState(false);
   const [hasProviders, setHasProviders] = useState<boolean | null>(null);
@@ -26,7 +15,6 @@ export default function ResearchPublishClient() {
       return;
     }
     setHasProviders(true);
-    // Lazy import so a missing provider never pulls the module into SSR.
     import("./PublishForm")
       .then((mod) => setFormComp(() => mod.default))
       .catch(() => setHasProviders(false));

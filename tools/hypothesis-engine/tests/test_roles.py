@@ -7,22 +7,13 @@ from hte.evidence import EvidenceKind, Stance, Tier
 from hte.hypothesis import Hypothesis, Placement
 from hte.timeline import Interval
 
-
 def _corpus():
     return fixtures.build()
-
 
 def _patch(monkeypatch, fn):
     monkeypatch.setattr(roles.llm, "complete", fn)
 
-
 def _refuse_role(target_role: str, *, truncation_reason: str | None = None):
-    """A `roles.llm.complete` stand-in for `bkt-hte-refusal-handling`'s
-    own tests: raises `hte.llm.ModelRefusal` (or, when `truncation_reason`
-    is given, `hte.llm.ModelTruncation`) for every call whose `role`
-    matches `target_role`, and fails loudly for any other role, so a
-    test using this catches a call it did not expect to reach `complete()`
-    at all."""
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         if role != target_role:
             raise AssertionError(f"unexpected role {role!r} reached complete() in this test")
@@ -34,14 +25,12 @@ def _refuse_role(target_role: str, *, truncation_reason: str | None = None):
         raise roles.llm.ModelRefusal(role=role, prompt_sha256="a" * 64, cost_usd=0.01, envelope=envelope)
     return fake
 
-
 def _hyp(corpus, actor="alpha-team"):
     p = Placement(
         actor=actor, action="sighted", object="comet-q", place="alpha-observatory",
         mechanism="transit-timing-method", interval=Interval(start=1950, end=1950),
     )
     return Hypothesis.from_placement(p, corpus.vocab, claims=["gt-alpha"])
-
 
 def test_generate_grounds_prompt_in_vocab_and_parses_response(monkeypatch):
     corpus = _corpus()
@@ -63,7 +52,6 @@ def test_generate_grounds_prompt_in_vocab_and_parses_response(monkeypatch):
     assert "alpha-team" in seen["prompt"]
     assert result["proposals"][0]["actor"] == "alpha-team"
 
-
 def test_critique_only_shows_related_evidence(monkeypatch):
     corpus = _corpus()
     h = _hyp(corpus)
@@ -81,7 +69,6 @@ def test_critique_only_shows_related_evidence(monkeypatch):
     assert result["keep"] is True
     assert corpus.evidence[0].span.quote in seen["prompt"]
 
-
 def test_unknown_unknown_lists_existing_vocab(monkeypatch):
     corpus = _corpus()
 
@@ -93,7 +80,6 @@ def test_unknown_unknown_lists_existing_vocab(monkeypatch):
     _patch(monkeypatch, fake)
     result = roles.unknown_unknown(corpus.vocab, corpus.evidence, cache_dir="/tmp/hte-test-cache")
     assert result["proposals"][0]["label"] == "Gamma Team"
-
 
 def test_preservation_critique_reads_table(monkeypatch):
     corpus = _corpus()
@@ -108,11 +94,7 @@ def test_preservation_critique_reads_table(monkeypatch):
     assert result["could_have_survived"] is True
     assert result["detectability_adjustment"] == 0.8
 
-
 def _distinct_hyps(corpus, n: int) -> list[Hypothesis]:
-    """`n` hypotheses over the fixture vocab's own 3 actors x 2
-    mechanisms (6 distinct addresses, `_corpus()`'s own full slot pool),
-    each carrying a distinguishable `short_id` for order-checking."""
     combos = [(a, m) for a in ("alpha-team", "beta-team", "unverified-observer")
               for m in ("transit-timing-method", "photometric-method")]
     return [_hyp(corpus, actor=a) if m == "transit-timing-method" else Hypothesis.from_placement(
@@ -121,12 +103,7 @@ def _distinct_hyps(corpus, n: int) -> list[Hypothesis]:
         corpus.vocab,
     ) for a, m in combos[:n]]
 
-
 def test_preservation_critique_many_matches_serial_calls_in_order(monkeypatch, tmp_path):
-    """`bkt-hte-throughput`: `preservation_critique_many` over N
-    hypotheses must return the identical per-hypothesis results
-    `preservation_critique` would, one call at a time, in the same
-    order, whichever worker finished first."""
     corpus = _corpus()
     hyps = _distinct_hyps(corpus, 6)
     table = {"material": 0.8}
@@ -152,7 +129,6 @@ def test_preservation_critique_many_matches_serial_calls_in_order(monkeypatch, t
     assert [r["rationale"] for r in many] == [h.short_id for h in hyps]
     assert [r["rationale"] for r in many] == [r["rationale"] for r in serial]
 
-
 def test_judge_returns_clipped_float(monkeypatch):
     corpus = _corpus()
     a = _hyp(corpus, actor="alpha-team")
@@ -165,8 +141,7 @@ def test_judge_returns_clipped_float(monkeypatch):
     _patch(monkeypatch, fake)
     p = roles.judge(a, b, {"opinions": {}}, cache_dir="/tmp/hte-test-cache")
     assert isinstance(p, float)
-    assert p == 1.0  # clipped into [0, 1]
-
+    assert p == 1.0
 
 def test_meta_review_summarizes_population(monkeypatch):
     corpus = _corpus()
@@ -179,7 +154,6 @@ def test_meta_review_summarizes_population(monkeypatch):
     _patch(monkeypatch, fake)
     result = roles.meta_review(pop, {}, cache_dir="/tmp/hte-test-cache")
     assert result["summary"] == "two consensus readings"
-
 
 def test_self_report_returns_required_fields(monkeypatch):
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
@@ -195,7 +169,6 @@ def test_self_report_returns_required_fields(monkeypatch):
     assert result["missing_mass_estimate"] == 0.2
     assert result["target_blind_steady"] is True
 
-
 def test_understanding_returns_explanation(monkeypatch):
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
         assert role == "understanding"
@@ -209,7 +182,6 @@ def test_understanding_returns_explanation(monkeypatch):
     )
     assert result["explanation"] == "Alpha team spotted a comet; the record backs it up."
 
-
 def test_understanding_refusal_names_refusal_count(monkeypatch):
     roles.llm.reset_stats()
     roles.reset_refusal_log()
@@ -218,7 +190,6 @@ def test_understanding_refusal_names_refusal_count(monkeypatch):
     result = roles.understanding("a claim", "no evidence", cache_dir="/tmp/hte-test-cache")
     assert "1 refusal/truncation event" in result["explanation"]
     assert roles.refusal_log()["understanding"] == ["(unlabeled)"]
-
 
 def test_extract_high_agreement_no_escalation(monkeypatch):
     corpus = _corpus()
@@ -244,7 +215,6 @@ def test_extract_high_agreement_no_escalation(monkeypatch):
     assert text[item.span.char_start:item.span.char_end] == quote
     assert item.kind == EvidenceKind.TEXTUAL
     assert item.tier == Tier.T2
-
 
 def test_extract_low_agreement_escalates(monkeypatch):
     corpus = _corpus()
@@ -274,7 +244,6 @@ def test_extract_low_agreement_escalates(monkeypatch):
     assert len(result.items) == 1
     assert result.items[0].provenance == "llm-extraction-escalated"
 
-
 def test_extract_carries_slot_fields_through_when_the_model_names_them(monkeypatch):
     corpus = _corpus()
     doc_id = "doc-alpha"
@@ -297,7 +266,6 @@ def test_extract_carries_slot_fields_through_when_the_model_names_them(monkeypat
     assert item.interval == Interval(start=1950, end=1950)
     assert item.stance == Stance.POSITIVE
 
-
 def test_extract_leaves_slots_none_when_the_model_omits_them(monkeypatch):
     corpus = _corpus()
     doc_id = "doc-alpha"
@@ -314,7 +282,6 @@ def test_extract_leaves_slots_none_when_the_model_omits_them(monkeypatch):
     assert item.interval is None
     assert item.stance == Stance.POSITIVE
 
-
 def test_extract_drops_items_whose_quote_is_not_found_verbatim(monkeypatch):
     corpus = _corpus()
     doc_id = "doc-alpha"
@@ -327,12 +294,6 @@ def test_extract_drops_items_whose_quote_is_not_found_verbatim(monkeypatch):
     result = roles.extract(text, corpus.vocab, doc_id=doc_id, cache_dir="/tmp/hte-test-cache")
     assert result.items == []
 
-
-# --------------------------------------------------------------------------
-# refusal/truncation defaults (`bkt-hte-refusal-handling`, 2026-09-10)
-# --------------------------------------------------------------------------
-
-
 def test_generate_refusal_defaults_to_empty_proposals(monkeypatch):
     corpus = _corpus()
     roles.reset_refusal_log()
@@ -341,7 +302,6 @@ def test_generate_refusal_defaults_to_empty_proposals(monkeypatch):
     assert result == roles.GENERATE_DEFAULT
     assert result["proposals"] == []
     assert roles.refusal_log()["generator"] == ["(unlabeled)"]
-
 
 def test_critique_refusal_defaults_to_reject(monkeypatch):
     corpus = _corpus()
@@ -354,7 +314,6 @@ def test_critique_refusal_defaults_to_reject(monkeypatch):
     assert "model refused" in result["rationale"]
     assert roles.refusal_log()["critic"] == [h.short_id]
 
-
 def test_critique_truncation_also_defaults_to_reject(monkeypatch):
     corpus = _corpus()
     h = _hyp(corpus)
@@ -364,14 +323,12 @@ def test_critique_truncation_also_defaults_to_reject(monkeypatch):
     assert result == roles.CRITIQUE_DEFAULT
     assert roles.refusal_log()["critic"] == [h.short_id]
 
-
 def test_unknown_unknown_refusal_defaults_to_empty(monkeypatch):
     corpus = _corpus()
     roles.reset_refusal_log()
     _patch(monkeypatch, _refuse_role("unknown_unknown"))
     result = roles.unknown_unknown(corpus.vocab, corpus.evidence, cache_dir="/tmp/hte-test-cache")
     assert result == roles.UNKNOWN_UNKNOWN_DEFAULT
-
 
 def test_preservation_critique_refusal_defaults_to_neutral(monkeypatch):
     corpus = _corpus()
@@ -383,18 +340,13 @@ def test_preservation_critique_refusal_defaults_to_neutral(monkeypatch):
     assert result["detectability_adjustment"] == 0.5
     assert roles.refusal_log()["preservation_critic"] == [h.short_id]
 
-
 def test_preservation_critique_many_one_refusal_defaults_and_completes(monkeypatch, tmp_path):
-    """`bkt-hte-refusal-handling`: one of N hypotheses refuses on every
-    attempt; the campaign-facing contract (N results, in order) still
-    holds, N-1 real and one substituted `PRESERVATION_CRITIQUE_DEFAULT`,
-    logged under `refusal_log()["preservation_critic"]`."""
     corpus = _corpus()
     hyps = _distinct_hyps(corpus, 4)
     table = {"material": 0.8}
     refuse_short_id = hyps[2].short_id
     roles.reset_refusal_log()
-    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)  # skip pmap's own retry backoff
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)
 
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "preservation_critic"
@@ -421,21 +373,13 @@ def test_preservation_critique_many_one_refusal_defaults_and_completes(monkeypat
             assert by_short_id[h.short_id]["rationale"] == h.short_id
     assert roles.refusal_log()["preservation_critic"] == [refuse_short_id]
 
-
 def test_preservation_critique_many_non_refusal_failure_propagates_instead_of_defaulting(monkeypatch, tmp_path):
-    """Silent-failures review finding 1: a failure other than
-    `ModelRefusal`/`ModelTruncation` (here, `LLMInvalidResponseError`,
-    the shape a systematic malformed-JSON bug would also take) must
-    propagate out of `preservation_critique_many` instead of being
-    silently absorbed into `PRESERVATION_CRITIQUE_DEFAULT` and logged as
-    an ordinary refusal, `hte.parallel.pmap`'s own `default_exceptions`
-    wiring (`hte.llm.complete_many`) now enforces."""
     corpus = _corpus()
     hyps = _distinct_hyps(corpus, 4)
     table = {"material": 0.8}
     fail_short_id = hyps[2].short_id
     roles.reset_refusal_log()
-    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)  # skip pmap's own retry backoff
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)
 
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "preservation_critic"
@@ -453,11 +397,7 @@ def test_preservation_critique_many_non_refusal_failure_propagates_instead_of_de
     with pytest.raises(roles.llm.LLMInvalidResponseError, match="malformed JSON"):
         roles.preservation_critique_many(hyps, table, cache_dir=str(tmp_path), workers=4)
 
-    # nothing was defaulted or mislabeled as a refusal: the call raised
-    # before `preservation_critique_many`'s own refusal-logging loop
-    # ever ran over its (never produced) results
     assert roles.refusal_log() == {}
-
 
 def test_judge_refusal_defaults_to_coin_flip(monkeypatch):
     corpus = _corpus()
@@ -469,7 +409,6 @@ def test_judge_refusal_defaults_to_coin_flip(monkeypatch):
     assert p == 0.5
     assert roles.refusal_log()["judge"] == [f"{a.short_id}-v-{b.short_id}"]
 
-
 def test_judge_truncation_defaults_to_coin_flip(monkeypatch):
     corpus = _corpus()
     a = _hyp(corpus, actor="alpha-team")
@@ -479,21 +418,17 @@ def test_judge_truncation_defaults_to_coin_flip(monkeypatch):
     p = roles.judge(a, b, {"opinions": {}}, cache_dir="/tmp/hte-test-cache")
     assert p == 0.5
 
-
 def test_meta_review_refusal_names_refusal_count(monkeypatch):
     corpus = _corpus()
     pop = [_hyp(corpus, actor="alpha-team"), _hyp(corpus, actor="beta-team")]
     roles.llm.reset_stats()
     roles.reset_refusal_log()
-    # One prior refusal recorded in `llm.stats()`, so the default below
-    # has a nonzero count to name.
     roles.llm._STATS.record_refusal("critic", wall_time_s=0.0)
     _patch(monkeypatch, _refuse_role("meta_review"))
     result = roles.meta_review(pop, {}, cache_dir="/tmp/hte-test-cache")
     assert result["flags"] == ["model-refusal"]
     assert "1 refusal/truncation event" in result["summary"]
     assert roles.refusal_log()["meta_review"] == ["(unlabeled)"]
-
 
 def test_self_report_refusal_names_refusal_count(monkeypatch):
     roles.llm.reset_stats()
@@ -505,7 +440,6 @@ def test_self_report_refusal_names_refusal_count(monkeypatch):
     assert result["target_blind_steady"] is False
     assert "2 refusal/truncation event" in result["assumptions"][0]
     assert "2 refusal/truncation event" in result["calibration_summary"]
-
 
 def test_extract_refusal_pass_defaults_to_empty_items_and_logs(monkeypatch):
     corpus = _corpus()
@@ -524,12 +458,9 @@ def test_extract_refusal_pass_defaults_to_empty_items_and_logs(monkeypatch):
 
     _patch(monkeypatch, fake)
     result = roles.extract(text, corpus.vocab, doc_id=doc_id, cache_dir="/tmp/hte-test-cache")
-    # 2 of 3 passes agree on `quote` (pass 2's refusal contributed
-    # nothing, read as ordinary low agreement rather than aborting).
     assert result.agreement == 1.0
     assert len(result.items) == 1
     assert roles.refusal_log()["extractor"] == [f"{doc_id}-pass1"]
-
 
 def test_extract_escalation_refusal_defaults_to_empty_extraction(monkeypatch):
     corpus = _corpus()
@@ -539,8 +470,6 @@ def test_extract_escalation_refusal_defaults_to_empty_extraction(monkeypatch):
 
     def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         if role == "extractor":
-            # Three passes that share no quote at all: agreement stays 0,
-            # forcing escalation.
             quotes = [
                 "A contested 2015 press release claimed a further tenfold extension",
                 "independent confirmation as of",
@@ -558,7 +487,6 @@ def test_extract_escalation_refusal_defaults_to_empty_extraction(monkeypatch):
     assert result.escalated is True
     assert result.items == []
     assert roles.refusal_log()["escalation"] == [doc_id]
-
 
 def test_refusal_log_reset_clears_prior_run(monkeypatch):
     corpus = _corpus()

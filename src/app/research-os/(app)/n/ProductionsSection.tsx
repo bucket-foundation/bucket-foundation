@@ -16,7 +16,6 @@ const VERB: { kind: ProduceKind; label: string; hint: string; needs?: string }[]
   { kind: "peer_review", label: "review this", hint: "assess a production", needs: "review" },
 ];
 
-/** Production, in place: what has been produced on this node, and the four ways to produce from it. */
 export default function ProductionsSection({ data, quotes, onChanged }: { data: NodeData; quotes: Quote[]; onChanged: () => void }) {
   const [open, setOpen] = useState<ProduceKind | null>(null);
   const mine = data.productions;

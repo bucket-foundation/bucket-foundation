@@ -1,15 +1,3 @@
-/**
- * bucket.foundation, dual-write orchestrator
- * --------------------------------------------
- * permanentize(envelope):
- *   1. upload full envelope JSON to Irys/Arweave → arweaveTxId
- *   2. attest (hash + metadata + arweaveTxId) on EAS → uid
- *   3. enrich envelope.provenance[] with both receipts
- *   4. return { attestationUid, arweaveTxId, enriched }
- *
- * Order matters: Arweave first so the attestation can reference the tx id.
- */
-
 import type { CitationEnvelope } from "./eas";
 
 export type PermanenceReceipt = {
@@ -32,13 +20,10 @@ export async function permanentize(
     ? (envelope.provenance as unknown[])
     : [];
 
-  // 1. Store the full envelope on Arweave (via Irys)
   const irys = await uploadEnvelopeToIrys(envelope);
 
-  // 2. Attest the hash + arweaveTxId on EAS
   const att = await attestCitation(envelope, { arweaveTxId: irys.arweaveTxId });
 
-  // 3. Enrich provenance
   const enriched: CitationEnvelope = {
     ...envelope,
     provenance: [

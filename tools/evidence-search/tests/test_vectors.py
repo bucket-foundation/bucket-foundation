@@ -1,8 +1,3 @@
-"""Chunking and the vector build with a scripted tokenizer and encoder:
-window arithmetic, byte spans, the corpus checks, the index checks, and a
-rebuild that finds its revision already built. The real tokenizer runs when
-the pinned snapshot is cached."""
-
 import hashlib
 import json
 import tempfile
@@ -16,14 +11,11 @@ from evidence_search.normalize import byte_slice, sha256_hex
 from evidence_search.registry import model_entry, snapshot_dir
 from evidence_search.vectors import ArtifactError, VectorIndex, build_vectors
 
-
 class Enc:
     def __init__(self, offsets):
         self.offsets = offsets
 
-
 class SpaceTokenizer:
-    """One word piece per whitespace-separated word."""
 
     def encode(self, text, add_special_tokens=False):
         offsets, i = [], 0
@@ -32,7 +24,6 @@ class SpaceTokenizer:
             offsets.append((start, start + len(word)))
             i = start + len(word)
         return Enc(offsets)
-
 
 class FakeEncoder:
     model_id = "fake"
@@ -53,7 +44,6 @@ class FakeEncoder:
             rows.append(v / np.linalg.norm(v))
         return np.asarray(rows, dtype="<f4")
 
-
 def corpus(tmp: Path, texts: list[str], revision: str = "c" * 64) -> Path:
     lines = []
     for i, text in enumerate(texts):
@@ -64,7 +54,6 @@ def corpus(tmp: Path, texts: list[str], revision: str = "c" * 64) -> Path:
     (d / "sources.jsonl").write_text(raw, encoding="utf-8")
     (d / "manifest.json").write_text(json.dumps({"corpusRevision": revision, "files": {"sources.jsonl": {"sha256": sha256_hex(raw)}}}), encoding="utf-8")
     return d
-
 
 class Chunking(unittest.TestCase):
     def test_windows_and_overlap(self):
@@ -103,7 +92,6 @@ class Chunking(unittest.TestCase):
         self.assertTrue(all(c.tokens <= 192 for c in chunks))
         for c in chunks:
             byte_slice(text, c.start, c.end)
-
 
 class Build(unittest.TestCase):
     def test_build_load_and_rebuild(self):
@@ -147,7 +135,6 @@ class Build(unittest.TestCase):
             tmp = Path(t)
             with self.assertRaises(ArtifactError):
                 build_vectors(corpus(tmp, ["line one\r\nline two"]), tmp / "vec", FakeEncoder())
-
 
 if __name__ == "__main__":
     unittest.main()

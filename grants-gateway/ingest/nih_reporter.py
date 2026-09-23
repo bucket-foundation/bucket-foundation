@@ -1,8 +1,3 @@
-"""NIH RePORTER ingestor.
-
-Public REST API: https://api.reporter.nih.gov/
-Awards over the last 3 fiscal years, capped to MAX_RECORDS.
-"""
 from __future__ import annotations
 
 import time
@@ -17,7 +12,6 @@ URL = "https://api.reporter.nih.gov/v2/projects/search"
 PAGE_SIZE   = 500
 MAX_RECORDS = 10_000
 SLEEP       = 0.3
-
 
 def _to_grant(p: dict) -> dict:
     project_num = p.get("project_num") or p.get("core_project_num") or p.get("appl_id")
@@ -87,7 +81,6 @@ def _to_grant(p: dict) -> dict:
         "last_seen_at": now_iso(),
     }
 
-
 def fetch(max_records: int = MAX_RECORDS) -> Iterable[dict]:
     this_year = datetime.utcnow().year
     fiscal_years = [this_year, this_year - 1, this_year - 2]
@@ -111,9 +104,7 @@ def fetch(max_records: int = MAX_RECORDS) -> Iterable[dict]:
             yielded += 1
             if yielded >= max_records:
                 break
-        # NIH RePORTER caps offset at 14_999, paginate via an iter token
         offset += len(results)
         if offset >= 14_999:
-            # NIH cap; we got all we can from this offset path
             break
         time.sleep(SLEEP)

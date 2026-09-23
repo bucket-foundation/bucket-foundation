@@ -1,9 +1,3 @@
-/**
- * The import upload (ros-import 2): what kind of file arrived, the
- * metadata rules, and recording a file against the bytes storage holds.
- * node:test, no database and no network: the storage and graph clients
- * are stand-ins.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -16,7 +10,6 @@ const OWNER = "0f8e6c1a-2b3d-4e5f-8a9b-0c1d2e3f4a5b";
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 
 test("the extension decides the type, and repairs the media type the browser reported", () => {
-  // The same .csv arrives under three media types across machines.
   for (const reported of ["text/csv", "application/vnd.ms-excel", OCTET_STREAM, "", null]) {
     assert.deepEqual(detectType("rows.csv", reported), { mediaType: "text/csv", structured: "table", extractable: true, from: "extension" }, String(reported));
   }
@@ -68,7 +61,6 @@ test("the metadata form's rules", () => {
   assert.deepEqual(validateFilename(42), { ok: false, error: "filename_missing" });
 });
 
-/** A storage stand-in holding one object's bytes. */
 function reader(objects: Record<string, string>, fail?: "throw"): ObjectReader {
   return {
     async download(path: string) {
@@ -102,7 +94,6 @@ test("bytes that are not the ones the path names record nothing", async () => {
   const record = recordFor(text);
   assert.equal((await verifyUpload(reader({ [record.storagePath]: text }), record)).ok, true);
 
-  // The client claims one file's hash and uploads another's bytes.
   const lying = { ...record, sha256: sha("other bytes"), storagePath: `${OWNER}/${sha("other bytes")}` };
   const swapped = await verifyUpload(reader({ [lying.storagePath]: text }), lying);
   assert.deepEqual(swapped.ok ? null : swapped.error, "hash_mismatch");
@@ -127,7 +118,6 @@ interface Table {
   error?: string;
 }
 
-/** A graph stand-in for the reads and the one insert this file makes. */
 function fakeGraph(tables: Record<string, Table>, inserted: Record<string, unknown>[] = []) {
   const make = (name: string) => {
     const table = tables[name] ?? { rows: [] };

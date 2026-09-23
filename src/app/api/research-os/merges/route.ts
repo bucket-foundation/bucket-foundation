@@ -1,11 +1,3 @@
-/**
- * /api/research-os/merges: the duplicate-node queue (ros-graph-dedup).
- *
- * GET lists pending pairs with both nodes; POST { id, decision:
- * "merge" | "merge_swapped" | "reject", reason? } merges the pair, either
- * way round, or keeps both. Graph reviewers only (verifyGraphReviewer, the
- * same gate as /api/research-os/edges).
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";

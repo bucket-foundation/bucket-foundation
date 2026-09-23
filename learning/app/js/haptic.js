@@ -1,16 +1,3 @@
-/* Bucket Academy, cross-platform haptics.
- *
- * Android Chrome exposes navigator.vibrate(); iOS Safari exposes NO Vibration API.
- * The working iOS trick (Safari 17.4+, GRAPHICS-RENDERING.md §3.6): a
- * <input type="checkbox" switch> fires a SYSTEM haptic when toggled, so we create
- * one off-screen, toggle it, and reuse it. Everything degrades to a silent no-op.
- *
- * Public:  window.haptic(kind)  where kind ∈
- *   "tap" | "correct" | "wrong" | "unlock" | "celebrate" | "select"
- *
- * Honors prefers-reduced-motion (treats it as a "reduce feedback" signal too) and a
- * one-time capability probe so we never spam.
- */
 (function (root) {
   "use strict";
 
@@ -21,17 +8,14 @@
 
   var canVibrate = typeof navigator !== "undefined" && typeof navigator.vibrate === "function";
 
-  // iOS switch-haptic element, lazily created on first use (after a user gesture).
   var iosSwitch = null;
-  var iosSupported = null; // null = untested
+  var iosSupported = null;
   function iosHapticSupported() {
     if (iosSupported !== null) return iosSupported;
     try {
       var i = document.createElement("input");
       i.setAttribute("type", "checkbox");
-      // `switch` is the iOS-only attribute that turns a checkbox into a haptic switch
       i.setAttribute("switch", "");
-      // feature-detect: Safari reflects the switch attribute; others ignore it
       iosSupported = "popover" in HTMLElement.prototype && /iphone|ipad|ipod/i.test(navigator.userAgent || "");
     } catch (e) {
       iosSupported = false;
@@ -53,12 +37,10 @@
   function iosTick() {
     try {
       var sw = ensureIosSwitch();
-      sw.checked = !sw.checked; // toggling fires the system haptic
+      sw.checked = !sw.checked;
     } catch (e) {}
   }
 
-  // vibration patterns per kind (ms). Short + crisp; "never red"/non-punishing ethos:
-  // wrong is a gentle double-tap.
   var PATTERNS = {
     tap: 8,
     select: 12,
@@ -78,7 +60,6 @@
       } catch (e) {}
     }
     if (iosHapticSupported()) {
-      // iOS can only do single ticks; emit one (or two for emphatic kinds)
       iosTick();
       if (kind === "unlock" || kind === "celebrate" || kind === "wrong") setTimeout(iosTick, 70);
     }

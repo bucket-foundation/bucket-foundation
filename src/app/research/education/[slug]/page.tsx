@@ -11,11 +11,6 @@ import {
 
 const SITE = "https://www.bucket.foundation";
 
-// /research/education/[slug], a single education-atlas corpus document,
-// rendered on-site from vendored markdown with the shared long-form renderer.
-// The flagship lives at its own static route; this handles the rest of the
-// corpus (atlas, thesis, foundations, deep, landscape).
-
 export function generateStaticParams() {
   return listEducationDocs().map((d) => ({ slug: d.slug }));
 }

@@ -1,21 +1,3 @@
-/**
- * Recording an uploaded file against its bytes (ros-import 2).
- *
- * The browser hashes a file, uploads it to `<owner>/<sha256>` under its
- * own session, and asks the route to record it. Storage stores whatever
- * bytes it is handed, so a client could upload one file and claim the
- * hash of another. The route reads the object back and hashes it before
- * the row exists: a mismatch records nothing, and the object keeps the
- * name its own bytes give it.
- *
- * The hash runs over the stream, so a 50 MiB file costs one chunk of
- * memory at a time rather than a second copy of itself.
- *
- * A file attached twice to one import is one row: the unique index is
- * `(import_id, sha256)`, and a repeat returns the row already there. One
- * object serves every row that names it, so a row going away leaves the
- * bytes alone for the owner's other imports.
- */
 import { createHash } from "node:crypto";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IMPORT_BUCKET, type ImportFileRecord } from "./import-storage";
@@ -31,7 +13,6 @@ export interface StoredObject {
 
 export type VerifyResult = { ok: true; value: StoredObject } | { ok: false; error: VerifyFailure; detail: string };
 
-/** A storage client narrowed to what this file uses, so tests can stand one in. */
 export interface ObjectReader {
   download(path: string): Promise<{ data: Blob | null; error: { message: string } | null }>;
 }
@@ -40,7 +21,6 @@ export function bucketFrom(svc: SupabaseClient): ObjectReader {
   return svc.storage.from(IMPORT_BUCKET) as unknown as ObjectReader;
 }
 
-/** Reads the object at `path` and answers what its bytes are, by hashing them. */
 export async function readObject(reader: ObjectReader, path: string): Promise<VerifyResult> {
   let data: Blob | null;
   try {
@@ -64,7 +44,6 @@ export async function readObject(reader: ObjectReader, path: string): Promise<Ve
   return { ok: true, value: { bytes, sha256: hash.digest("hex") } };
 }
 
-/** Whether the object at the record's path holds the bytes the record claims. */
 export async function verifyUpload(reader: ObjectReader, record: ImportFileRecord): Promise<VerifyResult> {
   const stored = await readObject(reader, record.storagePath);
   if (!stored.ok) return stored;
@@ -90,7 +69,6 @@ export interface ImportFileRow {
 
 export type RecordResult = { ok: true; value: ImportFileRow; repeat: boolean } | { ok: false; error: "import_not_found" | "write_failed"; detail: string };
 
-/** The import, when this owner has one by that id, with its node's slug. */
 export async function ownedImport(svc: SupabaseClient, importId: string, ownerId: string): Promise<{ id: string; nodeId: string | null; nodeSlug: string | null } | null> {
   const { data, error } = await svc.from("imports").select("id, node_id").eq("id", importId).eq("owner_id", ownerId).maybeSingle();
   if (error) throw new Error(`reading the import: ${error.message}`);
@@ -102,7 +80,6 @@ export async function ownedImport(svc: SupabaseClient, importId: string, ownerId
   return { id: row.id, nodeId: row.node_id, nodeSlug: ((node.data as { slug?: string } | null)?.slug ?? null) };
 }
 
-/** Writes the row for one uploaded file, or returns the row already recorded. */
 export async function recordImportFile(svc: SupabaseClient, importId: string, record: ImportFileRecord): Promise<RecordResult> {
   const existing = await svc
     .from("import_files")
@@ -129,7 +106,6 @@ export async function recordImportFile(svc: SupabaseClient, importId: string, re
   return { ok: true, value: data as ImportFileRow, repeat: false };
 }
 
-/** Every file of one import, oldest first. Pages, in a fixed order. */
 export async function listImportFiles(svc: SupabaseClient, importId: string): Promise<ImportFileRow[]> {
   const out: ImportFileRow[] = [];
   for (let from = 0; ; from += PAGE) {

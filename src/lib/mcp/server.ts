@@ -1,21 +1,3 @@
-/**
- * bucket.foundation's hosted MCP server: JSON-RPC 2.0 dispatch and the tool
- * registry, pure and testable (`scripts/test-mcp-route.ts`), with the HTTP
- * face in `src/app/api/mcp/route.ts`. Speaks the Streamable HTTP transport
- * in its stateless form: every request is one POST carrying one JSON-RPC
- * message or a batch, every response is `application/json`, no session id,
- * no server-initiated stream, so Claude.ai, Claude Desktop, ChatGPT, and
- * `claude mcp add --transport http` connect with a URL and nothing else.
- *
- * Tools read the canon from the repo's own libraries (`src/lib/canon*.ts`,
- * the same data `/api/canon/search` serves), cite through doi.org, and
- * forward `hypothesize` to the hypothesis engine's `hte-serve` at
- * `HTE_SERVE_URL` (`tools/hypothesis-engine/hte/serve.py`), the seam
- * `tools/hypothesis-engine/hte/mcp_tool.py` names. No tool writes to the
- * database; the write side (productions, canon sign-off) stays behind the
- * signed-in routes until the agent key in `docs/ARCHITECTURE.md`'s account
- * model exists.
- */
 import { BRANCHES } from "../canon";
 import { getAllBridges, getBridge } from "../canon-bridges";
 import { getClaim } from "../canon-claims";
@@ -24,8 +6,6 @@ import { buildIndex, tokenRank } from "../canon-search-index";
 
 export const PROTOCOL_VERSION = "2025-06-18";
 export const SERVER_INFO = { name: "bucket-foundation", version: "0.2.0" };
-// The Hobby plan caps a function at 60 s (route.ts maxDuration). The engine
-// call gives up at 55 s so the tool returns an error the client can read.
 const HTE_TIMEOUT_MS = 55_000;
 
 type Json = Record<string, unknown>;
@@ -210,7 +190,6 @@ function fail(id: unknown, code: number, message: string, data?: unknown): RpcRe
   return { jsonrpc: "2.0", id: id ?? null, error: { code, message, ...(data === undefined ? {} : { data }) } };
 }
 
-/** One JSON-RPC message in, one response out; `null` for a notification. */
 export async function handleMessage(msg: RpcRequest): Promise<RpcResponse | null> {
   const { id, method, params } = msg;
   if (msg.jsonrpc !== "2.0" || typeof method !== "string") return fail(id, -32600, "invalid request");
@@ -247,7 +226,6 @@ export async function handleMessage(msg: RpcRequest): Promise<RpcResponse | null
   }
 }
 
-/** The body of one POST: a single message or a batch; the responses to send, or none for notifications only. */
 export async function handleBody(body: unknown): Promise<RpcResponse[] | RpcResponse | null> {
   if (Array.isArray(body)) {
     const out = (await Promise.all(body.map((m) => handleMessage(m as RpcRequest)))).filter((r): r is RpcResponse => r !== null);

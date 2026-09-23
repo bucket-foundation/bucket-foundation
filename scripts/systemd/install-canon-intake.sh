@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# Install (or refresh) the canon-intake systemd --user service + timer.
-# Idempotent: re-running just re-links + reloads. Same pattern the pursue
-# mirror used (units installed under ~/.config/systemd/user/, repo holds the
-# durable templates so a fresh machine can reinstall).
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEST="$HOME/.config/systemd/user"

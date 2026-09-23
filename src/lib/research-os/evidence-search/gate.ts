@@ -1,21 +1,8 @@
-/**
- * Who may reach evidence search while it is a development pilot
- * (ros-ai-find, IMPLEMENTATION.md, "Authorization boundary").
- *
- * Four conditions, each checked on the server: the feature flag is on,
- * the caller has a session, consent covers the workspace tools, the
- * profile says `18plus`, and the user id is on the server-side pilot
- * list. A reviewer or staff role grants nothing here, and a consented
- * minor or an unanswered age question fails. Age is self-reported and
- * serves as an operational filter; a child-facing launch needs its own
- * age assurance.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { BirthYearBucket } from "../consent";
 
 export interface GateInput {
   flagOn: boolean;
-  /** The ids RESEARCH_OS_AI_SEARCH_PILOT_IDS names, as the server reads them. */
   pilotIds: string[];
   learnerId: string | null;
   consentAllowed: boolean;
@@ -39,7 +26,6 @@ export function decideGate(input: GateInput): GateDecision {
   return { ok: true };
 }
 
-/** The pilot list from its environment variable: ids separated by commas or spaces. */
 export function pilotIds(raw: string | undefined): string[] {
   return (raw ?? "")
     .split(/[\s,]+/)
@@ -59,11 +45,6 @@ export class ProfileUnavailable extends Error {
   }
 }
 
-/**
- * The learner's age band, or null when they have answered no age question.
- * A failed read raises: an unreadable profile is an outage, and answering
- * it as "no band" would read to the learner as a refusal they cannot fix.
- */
 export async function readBirthYearBucket(svc: SupabaseClient, learnerId: string): Promise<BirthYearBucket | null> {
   const { data, error } = await svc.from("learner_profiles").select("birth_year_bucket").eq("learner_id", learnerId).maybeSingle();
   if (error) throw new ProfileUnavailable(error.message);

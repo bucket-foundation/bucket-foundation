@@ -1,10 +1,3 @@
-/**
- * Who is calling a route handler. Two credentials, checked in this order:
- * an `Authorization: Bearer <access token>` header (agents, the framed
- * Academy app, scripts) and the site's cookie session (every page after
- * /sign-in). Both go to gotrue's getUser, so a client-supplied id is never
- * trusted. Every user-data route in the site verifies through here.
- */
 import { createClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import { getRequestSupabase } from "../supabase/server";

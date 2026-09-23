@@ -1,14 +1,3 @@
-"""The pinned model and runtime.
-
-models.json names each model by repository and immutable revision, with a
-SHA-256 for every file in its snapshot and the license its README declares
-at that revision. runtime.lock.json names the exact package versions the
-worker was built and measured against. `verify_model` and `verify_runtime`
-return problems; the worker and the vector builder refuse to start while
-either list is non-empty. Nothing here downloads: a model absent from the
-local cache is a problem to report.
-"""
-
 from __future__ import annotations
 
 import hashlib
@@ -22,10 +11,8 @@ PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 MODELS_FILE = PACKAGE_ROOT / "models.json"
 RUNTIME_LOCK = PACKAGE_ROOT / "runtime.lock.json"
 
-
 def load_models() -> dict:
     return json.loads(MODELS_FILE.read_text(encoding="utf-8"))
-
 
 def model_entry(model_id: str | None = None) -> tuple[str, dict]:
     reg = load_models()
@@ -34,7 +21,6 @@ def model_entry(model_id: str | None = None) -> tuple[str, dict]:
         raise KeyError(f"model {mid} is not in {MODELS_FILE.name}")
     return mid, reg["models"][mid]
 
-
 def hub_cache() -> Path:
     if os.environ.get("HF_HUB_CACHE"):
         return Path(os.environ["HF_HUB_CACHE"])
@@ -42,10 +28,8 @@ def hub_cache() -> Path:
         return Path(os.environ["HF_HOME"]) / "hub"
     return Path.home() / ".cache" / "huggingface" / "hub"
 
-
 def snapshot_dir(entry: dict) -> Path:
     return hub_cache() / ("models--" + entry["repo"].replace("/", "--")) / "snapshots" / entry["revision"]
-
 
 def _declared_license(readme: Path) -> str | None:
     text = readme.read_text(encoding="utf-8", errors="replace")
@@ -56,7 +40,6 @@ def _declared_license(readme: Path) -> str | None:
         if line.strip().startswith("license:"):
             return line.split(":", 1)[1].strip()
     return None
-
 
 def verify_model(entry: dict) -> list[str]:
     snap = snapshot_dir(entry)
@@ -76,7 +59,6 @@ def verify_model(entry: dict) -> list[str]:
         problems.append(f"the README declares license {_declared_license(readme)}, the registry says {entry['license']}")
     return problems
 
-
 def runtime_versions(names: list[str]) -> dict[str, str | None]:
     out: dict[str, str | None] = {}
     for name in names:
@@ -85,7 +67,6 @@ def runtime_versions(names: list[str]) -> dict[str, str | None]:
         except importlib.metadata.PackageNotFoundError:
             out[name] = None
     return out
-
 
 def verify_runtime() -> list[str]:
     lock = json.loads(RUNTIME_LOCK.read_text(encoding="utf-8"))

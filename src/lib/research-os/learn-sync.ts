@@ -1,16 +1,8 @@
-/**
- * Learn to graph: when a person's mastery of an Academy atom crosses the
- * mastered threshold, the graph node ingested from that atom (provenance
- * type "academy_atom") moves to Understanding. Runs after every progress
- * write in /api/academy/progress, best-effort, so the Learn module and
- * the workspace read one state of the person.
- */
 import { MASTERED_THRESHOLD, fusedConceptMastery, type StoredEngineState } from "../academy/mastery";
 import { graphService, recordEvidence } from "./db";
 import { onAcademyMastery } from "./stages";
 import type { Stage } from "./types";
 
-/** Atom ids whose fused mastery meets the threshold, from a stored progress blob. Pure. */
 export function masteredAtomIds(data: unknown, threshold: number = MASTERED_THRESHOLD): { id: string; mastery: number }[] {
   const s = (data && typeof data === "object" ? data : {}) as StoredEngineState;
   const cards = s.cards ?? {};
@@ -57,7 +49,6 @@ export async function syncAcademyMastery(userId: string, branch: string, data: u
       await recordEvidence(userId, n.id, t.nextStage, t.event as unknown as Record<string, unknown>);
       advanced++;
     } catch {
-      // A failed write on one node never blocks the rest.
     }
   }
   return { considered: mastered.length, advanced };

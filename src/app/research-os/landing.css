@@ -1,5 +1,3 @@
-/* Research OS landing: hero, five-state rows with scroll reveal, final CTA. */
-
 .ros-wrap {
   max-width: 1240px;
   margin: 0 auto;
@@ -167,10 +165,6 @@
     transform: none;
   }
 }
-/* The reveal is driven by an IntersectionObserver in RevealRow.tsx, which
-   adds `is-visible`. With scripting off nothing ever adds it, so the five
-   states, the whole body of this page, stayed at opacity 0 forever. The
-   animation is decoration; the copy under it is the page. */
 @media (scripting: none) {
   .ros-row .ros-image,
   .ros-row .ros-text {

@@ -1,11 +1,3 @@
-/**
- * Research OS, the Awareness view (ros-24): from a node, where knowledge
- * goes. GET /api/research-os/directions?node=<id>&branch=<slug>
- *   -> { dependents, frontier, openQuestions, reach }, nodes as
- *      { id, slug, title, kind, tier, frontierFlag }.
- * Optional auth: signed in, private and shared nodes the viewer may see are
- * included; signed out, public nodes only.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";

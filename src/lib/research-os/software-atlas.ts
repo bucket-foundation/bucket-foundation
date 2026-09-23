@@ -1,10 +1,3 @@
-/**
- * Types and filters for the software atlas data, which
- * scripts/research-os/software-atlas.mjs builds from
- * learning/research-os/SOFTWARE-ATLAS.md into software-atlas-data.json. Pure, so
- * scripts/test-research-os-software-atlas.ts tests the filters without a page.
- */
-
 export const PATHS = ["browser", "runner", "import", "link"] as const;
 export type AtlasPath = (typeof PATHS)[number];
 
@@ -75,11 +68,10 @@ export interface ToolFilter {
 
 export const NO_FILTER: ToolFilter = { q: "", field: null, license: "any", path: null };
 
-export function segText(segs: Segment[]): string {
+function segText(segs: Segment[]): string {
   return segs.map((s) => s.v).join("");
 }
 
-/** A tool passes when it matches every set part of the filter; a path matches the first path or the fallback. */
 export function filterTools(tools: AtlasTool[], f: ToolFilter): AtlasTool[] {
   const q = f.q.trim().toLowerCase();
   return tools.filter((t) => {
@@ -93,12 +85,10 @@ export function filterTools(tools: AtlasTool[], f: ToolFilter): AtlasTool[] {
   });
 }
 
-/** How many tools take each path first. */
 export function firstPathCounts(tools: AtlasTool[]): Record<AtlasPath, number> {
   const out: Record<AtlasPath, number> = { browser: 0, runner: 0, import: 0, link: 0 };
   for (const t of tools) out[t.first] += 1;
   return out;
 }
 
-/** The atlas memo on the repository's dev branch. */
 export const MEMO_URL = "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/research-os/SOFTWARE-ATLAS.md";

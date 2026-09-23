@@ -4,30 +4,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { loadLandmask } from "./landmaskFromImage";
 
-// github-globe-style dot earth. The visible "skin" is ~15k tiny basalt
-// spheres placed where the daymap says there is land; the underlying sphere
-// is near-transparent so the dots ARE the planet.
-//
-// Inspired by janarosmonaliev/github-globe (MIT) but implemented directly on
-// R3F + three.js, no external globe library.
-
 interface EarthProps {
   targetRotationY: number;
   reducedMotion: boolean;
   landmaskUrl: string;
-  /** Dot material opacity; below 1 the dots render transparent. */
   dotOpacity?: number;
-  /** Sphere segments per dot; 8 is the interactive globe, 4 is a cheap disc. */
   dotDetail?: number;
-  /** Dot color. */
   dotColor?: number;
-  /** Scale of a dot seen edge-on at the sphere's limb, 1 leaves dots as
-   * they are; below 1 thins the dark rim that stacked dots form there. */
   limbScale?: number;
   children?: React.ReactNode;
-  /** number of fibonacci candidate points; ~15000 is the sweet spot. */
   sampleCount?: number;
-  /** dot radius in scene units (sphere radius is 1). */
   dotRadius?: number;
 }
 
@@ -37,12 +23,11 @@ function damp(current: number, target: number, lambda: number, dt: number) {
   return current + (target - current) * (1 - Math.exp(-lambda * dt));
 }
 
-// Fibonacci sphere, even angular distribution.
 function fibonacciPoints(n: number): Array<{ lat: number; lng: number }> {
   const out: Array<{ lat: number; lng: number }> = [];
-  const phi = Math.PI * (Math.sqrt(5) - 1); // golden angle
+  const phi = Math.PI * (Math.sqrt(5) - 1);
   for (let i = 0; i < n; i++) {
-    const y = 1 - (i / (n - 1)) * 2; // y in [-1,1]
+    const y = 1 - (i / (n - 1)) * 2;
     const r = Math.sqrt(1 - y * y);
     const theta = phi * i;
     const x = Math.cos(theta) * r;
@@ -69,12 +54,8 @@ export function Earth({
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const [count, setCount] = useState(0);
-  // The canvas runs frameloop="demand": a mutation made outside React's
-  // render (this effect resolves a promise) draws nothing until something
-  // asks for a frame. Ask for one once the dots are placed.
   const invalidate = useThree((state) => state.invalidate);
 
-  // Build a stable buffer of dot transforms once the landmask is loaded.
   const transforms = useMemo(
     () => ({
       matrices: new Float32Array(sampleCount * 16),
@@ -86,8 +67,8 @@ export function Earth({
   useEffect(() => {
     let cancelled = false;
     const dummy = new THREE.Object3D();
-    const baseColor = new THREE.Color("#1F1C16"); // --basalt
-    const warm = new THREE.Color("#3A3529");      // --basalt-3 (subtle equator tint)
+    const baseColor = new THREE.Color("#1F1C16");
+    const warm = new THREE.Color("#3A3529");
 
     loadLandmask(landmaskUrl).then((mask) => {
       if (cancelled) return;
@@ -105,12 +86,10 @@ export function Earth({
         const y = surface * Math.cos(phi);
         const z = surface * Math.sin(phi) * Math.cos(theta);
         dummy.position.set(x, y, z);
-        // Orient each dot so its disc faces outward.
         dummy.lookAt(x * 2, y * 2, z * 2);
         dummy.updateMatrix();
         dummy.matrix.toArray(transforms.matrices, kept * 16);
 
-        // Warm equator tint: weight basalt → basalt-3 by |cos(lat)|.
         const w = Math.pow(Math.cos(lat * (Math.PI / 180)), 2);
         tmpColor.copy(baseColor).lerp(warm, w * 0.45);
         tmpColor.toArray(transforms.colors, kept * 3);
@@ -121,7 +100,6 @@ export function Earth({
       if (cancelled) return;
       const mesh = meshRef.current;
       if (!mesh) return;
-      // Allocate per-instance colors lazily.
       if (!mesh.instanceColor) {
         mesh.instanceColor = new THREE.InstancedBufferAttribute(
           new Float32Array(sampleCount * 3),
@@ -142,7 +120,6 @@ export function Earth({
       setCount(kept);
       invalidate();
     }).catch((err) => {
-      // Non-fatal: globe will render as the faint sphere alone.
       console.warn("[CanonGlobe] landmask load failed:", err);
     });
 
@@ -165,7 +142,6 @@ export function Earth({
     }
   });
 
-  // Shared geometry for instanced dots, small, low-poly disc-like sphere.
   const dotGeo = useMemo(
     () => new THREE.SphereGeometry(dotRadius, dotDetail, Math.max(3, Math.round(dotDetail / 2))),
     [dotRadius, dotDetail]
@@ -178,9 +154,6 @@ export function Earth({
       opacity: dotOpacity,
     });
     if (limbScale < 1) {
-      // Shrink each instance by how far it faces away from the camera:
-      // the instance's local +z is its outward normal (Earth orients
-      // every dot with lookAt).
       mat.onBeforeCompile = (shader) => {
         shader.uniforms.uLimbScale = { value: limbScale };
         shader.vertexShader =
@@ -203,7 +176,6 @@ export function Earth({
 
   return (
     <group ref={groupRef} rotation={[0.35, 0, 0]}>
-      {/* Faint underlying sphere, ghost of the planet, lets dots feel like skin. */}
       <mesh>
         <sphereGeometry args={[RADIUS * 0.998, 64, 64]} />
         <meshBasicMaterial
@@ -220,7 +192,6 @@ export function Earth({
         frustumCulled={false}
       />
 
-      {/* expose count for debug; React ignores 0 children */}
       {count === 0 ? null : null}
       {children}
     </group>

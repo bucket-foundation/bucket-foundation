@@ -1,17 +1,8 @@
-/**
- * Fetch the text of an imported source so the import is a node with
- * content, and the workspace's quote and check tools have something to
- * read. Server-only. Public http(s) hosts only; a short timeout and a
- * size cap; HTML stripped to text. Best-effort: a failed fetch leaves the
- * import as a title and a link.
- */
-
 const MAX_BYTES = 1_000_000;
 const TIMEOUT_MS = 8000;
 export const EXCERPT_CHARS = 6000;
 export const SUMMARY_CHARS = 600;
 
-/** http or https, a hostname that is not a loopback, link-local, or private address. */
 export function isPublicHttpUrl(raw: string): boolean {
   let u: URL;
   try {
@@ -30,7 +21,6 @@ export function isPublicHttpUrl(raw: string): boolean {
   return true;
 }
 
-/** HTML to readable text: scripts, styles, and tags removed, entities decoded, whitespace collapsed. */
 export function htmlToText(html: string): string {
   let s = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<!--[\s\S]*?-->/g, " ");
   s = s.replace(/<\/(p|div|h[1-6]|li|tr|br|section|article|blockquote|pre|title|head|header|footer|nav|table)>/gi, "\n").replace(/<br\s*\/?>/gi, "\n");
@@ -51,35 +41,11 @@ export interface FetchedSource {
   bytes: number;
 }
 
-/** How many redirects a fetch will follow before giving up. */
 export const MAX_REDIRECTS = 5;
 
-/**
- * Follow a redirect chain, checking every hop.
- *
- * `redirect: "follow"` let the runtime do this, and the host check ran
- * once, against the URL the learner typed. A public host answering 302
- * with a `Location` of `http://169.254.169.254/latest/meta-data/` was
- * fetched by the server, and the reply reached the learner as the body
- * of their import. Any signed-in learner could ask for it: the route at
- * `src/app/api/research-os/access/route.ts:112` takes an arbitrary URL
- * behind nothing but a session.
- *
- * Each hop is checked with the same rule the first one is, and a
- * relative `Location` resolves against the URL that sent it.
- *
- * Residual, and written down rather than implied away: a hostname that
- * resolves to a private address defeats this, because the check reads
- * the URL and not the socket. Closing that needs the address pinned
- * between the lookup and the connection, which this runtime's fetch
- * does not expose.
- */
 export async function fetchFollowingChecked(
   raw: string,
   init: RequestInit,
-  // Injectable so a test can allow its own loopback fixture as the first
-  // hop and still refuse the address the redirect aims at. Every caller
-  // in the application uses the default.
   isAllowed: (url: string) => boolean = isPublicHttpUrl,
 ): Promise<Response | null> {
   let url = raw;

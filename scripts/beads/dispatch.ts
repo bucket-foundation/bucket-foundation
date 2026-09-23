@@ -1,19 +1,3 @@
-/**
- * Duplicate-safe dispatch of BEADS-PENDING.jsonl rows to the Nucleus
- * issues API (ros-ai-dispatch).
- *
- * Every create is one HTTP request, and its status and body come from
- * that one response. An outcome the client cannot know (a timeout, a
- * dropped connection, a 5xx from a proxy) is looked up by exact title
- * before anything is sent again. Dependency edges are added after every
- * row in the batch has an id, then read back from the server; a row is
- * retired only when that read-back shows every edge it names.
- *
- * BEADS-PENDING.jsonl is append-only and union-merged across branches,
- * so a deleted line would come back on the next merge. Retiring a row
- * writes a ledger entry to BEADS-DISPATCHED.jsonl instead, and the
- * latest entry per source and title is the row's state.
- */
 import { closeSync, openSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 
 export interface PendingRow {
@@ -22,16 +6,12 @@ export interface PendingRow {
   description: string;
   issue_type: string;
   priority: number;
-  /** 1-based line in the pending file, for messages. */
   line: number;
 }
 
 export interface Links {
-  /** The title key of the parent epic, from "Parent: <key>." */
   parent: string | null;
-  /** Title keys this row waits on, from "Depends on: a, b." */
   dependsOn: string[];
-  /** Named conditions that are not beads, such as "PR #190 merge". */
   conditions: string[];
 }
 
@@ -51,7 +31,6 @@ export type CreateOutcome =
   | { kind: "rejected"; status: number; error: string }
   | { kind: "uncertain"; status: number | null; error: string };
 
-/** The four calls the reconciler makes. One HTTP request each. */
 export interface IssuesApi {
   list(): Promise<RemoteIssue[]>;
   create(body: CreateBody): Promise<CreateOutcome>;
@@ -82,7 +61,6 @@ export interface LedgerEntry {
   note?: string;
 }
 
-/** The text before the first ": ", which names the bead in other rows. */
 export function titleKey(title: string): string {
   const i = title.indexOf(": ");
   return (i === -1 ? title : title.slice(0, i)).trim();
@@ -90,7 +68,6 @@ export function titleKey(title: string): string {
 
 const CONDITION = /^PR #\d+\b/i;
 
-/** Reads "Parent: x." and "Depends on: a, b." out of a description. */
 export function parseLinks(description: string): Links {
   const parentMatch = /(?:^|\s)Parent:\s*(.+?)\.(?:\s|$)/.exec(description);
   const dependsMatch = /(?:^|\s)Depends on:\s*(.+?)\.(?:\s|$)/.exec(description);
@@ -108,7 +85,6 @@ export function parseLinks(description: string): Links {
   return { parent: parent && parent.toLowerCase() !== "none" ? parent : null, dependsOn, conditions };
 }
 
-/** Parses the pending file, keeping rows whose source is in scope. */
 export function parsePending(text: string, sources: string[]): { rows: PendingRow[]; problems: string[] } {
   const rows: PendingRow[] = [];
   const problems: string[] = [];
@@ -150,7 +126,6 @@ export function parsePending(text: string, sources: string[]): { rows: PendingRo
   return { rows, problems };
 }
 
-/** The latest ledger entry for each source and title. */
 export function latestEntries(text: string): Map<string, LedgerEntry> {
   const out = new Map<string, LedgerEntry>();
   for (const line of text.split("\n")) {
@@ -161,13 +136,11 @@ export function latestEntries(text: string): Map<string, LedgerEntry> {
         out.set(`${e.source}\u0000${e.title}`, e);
       }
     } catch {
-      // A torn last line from an interrupted write carries no state.
     }
   }
   return out;
 }
 
-/** Finds a cycle among in-batch links, or null. */
 export function findCycle(rows: PendingRow[]): string[] | null {
   const keys = new Set(rows.map((r) => titleKey(r.title)));
   const next = new Map<string, string[]>();
@@ -197,7 +170,6 @@ export function findCycle(rows: PendingRow[]): string[] | null {
   return null;
 }
 
-/** What phase 1 did for a row. */
 export type Outcome =
   | "created"
   | "adopted"
@@ -208,7 +180,6 @@ export type Outcome =
   | "ambiguous"
   | "missing";
 
-/** Where a row's edges stand after phase 2. */
 export type EdgeState = "retired" | "waiting" | "unchecked" | "none";
 
 export interface RowReport {
@@ -223,14 +194,12 @@ export interface RowReport {
 export interface Report {
   rows: RowReport[];
   conditions: { title: string; condition: string }[];
-  /** Create requests sent. A rerun that finds everything sends none. */
   posts: number;
 }
 
 export interface ReconcileOptions {
   apply: boolean;
   now?: () => string;
-  /** Called with each ledger entry as it happens, so a crash keeps every id already created. */
   record: (e: LedgerEntry) => void | Promise<void>;
 }
 
@@ -247,10 +216,6 @@ function group<T>(items: T[], by: (t: T) => string): Map<string, T[]> {
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 
-/**
- * Brings the remote queue in line with the scoped pending rows. Without
- * `apply` it only reads, and reports what it would create.
- */
 export async function reconcile(
   rows: PendingRow[],
   ledger: Map<string, LedgerEntry>,
@@ -284,7 +249,6 @@ export async function reconcile(
     });
   };
 
-  // Phase 1: every row gets an id, from the ledger, an exact-title match, or one create.
   const byRow = new Map<PendingRow, RowReport>();
   const ids = new Map<string, string>();
   for (const row of rows) {
@@ -346,7 +310,6 @@ export async function reconcile(
       await note(row, "failed", null, out.status, out.error);
       continue;
     }
-    // The server may have written the row. Look before anything is sent again.
     let found: RemoteIssue[] = [];
     try {
       await refresh();
@@ -367,11 +330,8 @@ export async function reconcile(
     }
   }
 
-  // Phase 2: edges, then a read-back. Only rows with an id reach here.
   const byKey = group(remote, (x) => titleKey(x.title));
   const batchKeys = new Set(rows.map((x) => titleKey(x.title)));
-  // A key in this batch resolves only to the id this batch holds for it, so
-  // a row that failed to file never borrows an older issue with its key.
   const resolveKey = (k: string): string | null => {
     if (batchKeys.has(k)) return ids.get(k) ?? null;
     const m = byKey.get(k) ?? [];
@@ -424,11 +384,6 @@ export async function reconcile(
   return report;
 }
 
-/**
- * Takes a machine-wide lock for an applying run, so two checkouts cannot
- * both list, miss, and create the same title. A lock left by a process
- * that has exited is taken over. Returns the release function.
- */
 export function acquireLock(file: string): () => void {
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
@@ -439,7 +394,6 @@ export function acquireLock(file: string): () => void {
         try {
           unlinkSync(file);
         } catch {
-          // Already gone: nothing holds it.
         }
       };
     } catch (e) {
@@ -461,7 +415,6 @@ function pidAlive(pid: number): boolean {
   }
 }
 
-/** An IssuesApi over fetch: one request per call, status and body from the same response. */
 export function httpApi(baseUrl: string, auth: { user: string; password: string }, timeoutMs = 30_000, fetchImpl: typeof fetch = fetch): IssuesApi {
   const base = baseUrl.replace(/\/+$/, "");
   const headers = {
@@ -504,7 +457,6 @@ export function httpApi(baseUrl: string, auth: { user: string; password: string 
       const j = (r.json ?? {}) as { id?: unknown; error?: unknown };
       if (r.status >= 200 && r.status < 300 && typeof j.id === "string" && j.id) return { kind: "created", id: j.id, status: r.status };
       const error = typeof j.error === "string" ? j.error : r.text.slice(0, 200) || "no id in the response";
-      // A 5xx can come from a proxy after the server wrote the row.
       if (r.status >= 500) return { kind: "uncertain", status: r.status, error };
       return { kind: "rejected", status: r.status, error };
     },

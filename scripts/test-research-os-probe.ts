@@ -1,13 +1,3 @@
-/**
- * Unit tests: the diagnostic probe (src/lib/research-os/probe.ts), bkt-ros
- * Phase 1 item 2 ("tests").
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-probe.ts
- * (same invocation as scripts/test-research-os-routing.ts; no test
- * framework configured in this repo, node:test + node:assert is the
- * existing pattern.)
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -67,10 +57,6 @@ function targetAncestorIds(nodes: GraphNode[], edges: GraphEdge[], targetSlug: s
   return new Set(ancestorsOf(target.id, edges).keys());
 }
 
-// ---------------------------------------------------------------------------
-// probeDue
-// ---------------------------------------------------------------------------
-
 test("probeDue: fresh learner, no state at all -> due", () => {
   const { nodes, edges } = toGraph(loadSeed());
   const ancestorIds = targetAncestorIds(nodes, edges, "why-the-sky-is-blue");
@@ -98,10 +84,6 @@ test("probeDue: empty ancestor set (a root target) is never due", () => {
   assert.equal(probeDue(new Set(), []), false);
   assert.equal(probeDue(new Set(), [state("anything", "awareness")]), false);
 });
-
-// ---------------------------------------------------------------------------
-// selectProbeNodes
-// ---------------------------------------------------------------------------
 
 test("selectProbeNodes: a small ancestor set (<= 5) returns every candidate, sorted by rising tier", () => {
   const { nodes, edges, bySlug } = toGraph(loadSeed());
@@ -138,10 +120,6 @@ test("selectProbeNodes: only samples nodes inside ancestorIds, never the target 
   assert.ok(!selected.some((n) => n.id === target.id));
 });
 
-// ---------------------------------------------------------------------------
-// probeQuestion / buildProbe
-// ---------------------------------------------------------------------------
-
 test("probeQuestion: prompt references the node's own title and never leaks its summary", () => {
   const { bySlug } = toGraph(loadSeed());
   const node = bySlug.get("light-travels-in-straight-lines")!;
@@ -166,10 +144,6 @@ test("buildProbe: not due -> no questions; due -> 3-5 questions, every one insid
   assert.ok(due.questions.length >= 1 && due.questions.length <= MAX_PROBE_QUESTIONS);
   for (const q of due.questions) assert.ok(ancestorIds.has(q.nodeId));
 });
-
-// ---------------------------------------------------------------------------
-// onProbeCheckResult (src/lib/research-os/stages.ts)
-// ---------------------------------------------------------------------------
 
 test("onProbeCheckResult: strongly grounded support jumps straight to understanding (skips awareness)", () => {
   const t = onProbeCheckResult({ result: "support", confidence: "high", abstained: false });

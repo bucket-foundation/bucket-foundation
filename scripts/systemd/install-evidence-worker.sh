@@ -1,15 +1,4 @@
 #!/usr/bin/env bash
-# Install (or refresh) the evidence-search encoder as a systemd --user
-# service. Idempotent: re-running copies the unit, reloads, and restarts.
-#
-#   scripts/systemd/install-evidence-worker.sh <vectors directory> [port]
-#
-# The vectors directory is the one `python3 -m evidence_search build-vectors`
-# wrote, the level that holds manifest.json. On a first run this mints the
-# shared secret into ~/.config/evidence-worker.env, chmod 600, and prints
-# nothing of it; a later run keeps the secret already there. Put the same
-# secret and address in .env.local as EVIDENCE_WORKER_SECRET and
-# EVIDENCE_WORKER_URL so the app can reach it.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -37,8 +26,6 @@ if [ -f "$ENV_FILE" ] && grep -q '^EVIDENCE_WORKER_SECRET=.\{32,\}$' "$ENV_FILE"
   SECRET="$(sed -n 's/^EVIDENCE_WORKER_SECRET=//p' "$ENV_FILE")"
   echo "keeping the secret already in $ENV_FILE"
 else
-  # 48 base64 characters from the kernel. Minted here and never printed:
-  # a secret that reaches a terminal reaches its scrollback.
   SECRET="$(head -c 36 /dev/urandom | base64 | tr -d '\n/+=' | cut -c1-48)"
   echo "minted a new secret in $ENV_FILE"
 fi
@@ -65,10 +52,6 @@ echo "Put these in .env.local, with the secret copied from $ENV_FILE:"
 echo "  EVIDENCE_WORKER_URL=http://127.0.0.1:$PORT"
 echo "  EVIDENCE_WORKER_SECRET=<the value in $ENV_FILE>"
 echo
-# The weights take tens of seconds to load, so a health check run now
-# would answer nothing and read as a broken install. The range is what 40
-# restarts measured on the machine this was written on, so treat it as an
-# order of magnitude rather than a number for this machine.
 echo "It answers once the weights load, 22 to 33 seconds when this was measured. Then:"
 echo "  curl -sf -H \"x-evidence-worker-key: \$EVIDENCE_WORKER_SECRET\" http://127.0.0.1:$PORT/health"
 systemctl --user --no-pager status evidence-worker.service | head -5 || true

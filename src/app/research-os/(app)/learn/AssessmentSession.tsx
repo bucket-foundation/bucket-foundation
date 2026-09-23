@@ -13,13 +13,6 @@ import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 type Step = "intro" | "answer" | "verdict" | "selfcheck" | "done";
 
-/**
- * Test yourself: a sealed run over the deck. Each item is answered before
- * the answer shows. A numeric or short symbolic answer is graded on the
- * spot; anything else reveals the answer for a self-check at lower trust.
- * Every verdict feeds the scheduler at the item's depth, so tested
- * proficiency shows in mastery. Internal signal, never a credential.
- */
 export default function AssessmentSession({ branch }: { branch: string }) {
   const a = useAcademy(branch);
   const [run, setRun] = useState<Run | null>(null);

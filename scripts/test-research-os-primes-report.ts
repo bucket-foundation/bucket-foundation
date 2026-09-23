@@ -1,14 +1,9 @@
-/**
- * The prime report page's data (ros-frontend 1) over a hand-built graph.
- * node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
 
 const node = (id: string, kind = "concept", branch = "02-physics"): ReportNode => ({ id, slug: id, title: id.toUpperCase(), kind, branch });
 
-// p1 and p2 are primes; c rests on both; top rests on c and p2; u has no edges.
 const nodes = [node("p1"), node("p2", "concept", "01-mathematics"), node("c"), node("top"), node("u", "artifact")];
 const edges: ReportEdge[] = [
   { from_id: "p1", to_id: "c", kind: "prerequisite", confidence: 0.9 },

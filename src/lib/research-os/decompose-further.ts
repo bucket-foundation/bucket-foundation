@@ -1,17 +1,3 @@
-/**
- * The decompose-further queue (ros-prime 2). learning/research-os/PRIMES.md
- * found the graph's 41 primes are course entry points and many ideas carry
- * no dependency edge at all. For each prime and unfactored idea, a model
- * names what the node rests on, chosen from a shortlist of existing nodes
- * in every branch, and names base ideas the graph lacks. Proposals land in
- * graph.edge_proposals as pending pairs for the /research-os/edges review,
- * where the reviewer writes each one as `derives_from` (rests on) or
- * `prerequisite` (learning order); only that review writes graph.edges.
- *
- * Pure: the script in scripts/research-os/decompose-further.ts does the
- * database reads, the model calls, and the writes. Tests in
- * scripts/test-research-os-decompose-further.ts.
- */
 import { createHash } from "node:crypto";
 import { isIdeaNode } from "./idea";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
@@ -24,7 +10,6 @@ export type GraphNode = {
   kind: string;
   branch: string | null;
   summary?: string | null;
-  /** graph.nodes.provenance.type: where the node came from. */
   provenanceType?: string | null;
 };
 
@@ -34,7 +19,6 @@ export type Candidate = GraphNode & { tier: number | null; prime: boolean };
 
 export type Answer = {
   irreducible: boolean;
-  /** The proposer's reason when it calls the node irreducible. */
   irreducibleWhy?: string;
   factors: { slug: string; why: string }[];
   missing: { title: string; branch: string; why: string }[];
@@ -62,9 +46,7 @@ export type ProposalRow = {
 
 export type Verdict = { holds: boolean; why: string };
 
-/** The second model's verdict on a pair: it confirmed it, refuted it, or has not seen it yet. */
 export type Verification = "confirmed" | "refuted" | "unchecked";
-/** Where a decomposition proposal came from. */
 export type Origin = "proposer" | "missing_matched" | "base_idea";
 
 export type NodeProposalRow = {
@@ -72,13 +54,10 @@ export type NodeProposalRow = {
   title: string;
   branch: string;
   justification: string;
-  /** A one-sentence definition from the consolidation pass: the created node's summary. */
   summary: string | null;
   named_by: string[];
   aliases: string[];
-  /** Each naming node's own reason, by slug. */
   reasons: Record<string, string>;
-  /** Existing nodes the idea may duplicate, nearest first. */
   possible_duplicates: { slug: string; title: string; similarity: number }[];
   base_match: string | null;
   model: string;
@@ -90,17 +69,10 @@ export function isIdea(n: GraphNode): boolean {
   return isIdeaNode(n);
 }
 
-/** Candidates and targets come from the same set. */
 export function isCandidateIdea(n: GraphNode): boolean {
   return isIdeaNode(n);
 }
 
-/**
- * Confidence on the scale both proposers share (inference/calibration.ts):
- * a pair the second model confirmed sits at the inferred ceiling, a refuted
- * pair at the fixed disagreement value, an unchecked pair at the floor. All
- * three sit under the 0.95 a reviewer's approval writes.
- */
 export function confidenceFor(v: Verification): number {
   return v === "confirmed" ? INFERRED_CONFIDENCE_MAX : v === "refuted" ? DISAGREEMENT_CONFIDENCE : INFERRED_CONFIDENCE_MIN;
 }
@@ -124,7 +96,6 @@ const STOP = new Set(
   ),
 );
 
-/** A light suffix stripper: plurals, -ing, -ed. Enough to match "vectors" with "vector". */
 export function stem(word: string): string {
   let w = word.toLowerCase();
   if (w.length > 4 && w.endsWith("ies")) return w.slice(0, -3) + "y";
@@ -148,7 +119,6 @@ export function tokens(s: string): Set<string> {
 
 const textOf = (n: { title: string; summary?: string | null }) => `${n.title} ${n.summary ?? ""}`;
 
-/** Inverse document frequency of each stemmed token across a pool of nodes. */
 export function idfOf(pool: { title: string; summary?: string | null }[]): Map<string, number> {
   const df = new Map<string, number>();
   for (const n of pool) for (const t of Array.from(tokens(textOf(n)))) df.set(t, (df.get(t) ?? 0) + 1);
@@ -157,7 +127,6 @@ export function idfOf(pool: { title: string; summary?: string | null }[]): Map<s
   return out;
 }
 
-/** Cosine of two stemmed token sets weighted by IDF, so shared rare words count and shared common ones barely do. */
 export function lexicalScore(a: string, b: string, idf: Map<string, number>): number {
   const ta = tokens(a);
   const tb = tokens(b);
@@ -189,22 +158,13 @@ export function cosine(a: ArrayLike<number>, b: ArrayLike<number>): number {
 }
 
 export type ShortlistOptions = {
-  /** Unit vectors by slug (scripts/research-os/embed-texts.py); without them the semantic part is skipped. */
   vectors?: Map<string, number[]>;
   idf?: Map<string, number>;
-  /** Lowest-depth nodes offered from every branch, so each branch's base layer is always in view. */
   perBranch?: number;
   semantic?: number;
   lexical?: number;
 };
 
-/**
- * The candidates offered for one target, from every public idea node:
- * each branch's lowest-depth nodes (the base layer, ordered by closeness to
- * the target), the nearest nodes by embedding, and the best stemmed IDF
- * matches. Nodes that already rest on the target are left out, so no
- * single proposal can close a cycle with the edges already in the graph.
- */
 export function shortlist(target: Target, pool: Candidate[], dec: Map<string, Decomposition>, opts: ShortlistOptions = {}): Candidate[] {
   const perBranch = opts.perBranch ?? 3;
   const semanticN = opts.semantic ?? 25;
@@ -257,12 +217,6 @@ export function shortlist(target: Target, pool: Candidate[], dec: Map<string, De
   return out.sort((a, b) => (a.branch ?? "").localeCompare(b.branch ?? "") || a.slug.localeCompare(b.slug));
 }
 
-/**
- * The proposer's prompt. When a reviewer rejected an earlier irreducible
- * verdict on this node, the prompt says so and carries the reviewer's
- * reason, which also changes the prompt hash, so the cached verdict is
- * never replayed.
- */
 export function buildPrompt(target: Target, candidates: Candidate[], opts: { rejectedIrreducible?: string | null } = {}): string {
   const lines = candidates.map((c) => `- ${c.slug} | ${c.branch ?? "none"} | ${c.title}`).join("\n");
   const rejected =
@@ -295,11 +249,6 @@ export function promptHash(prompt: string): string {
   return createHash("sha256").update(prompt).digest("hex").slice(0, 16);
 }
 
-/**
- * Model text held to n characters. A longer text ends at its last full
- * sentence inside the limit, or failing that at a word, marked with an
- * ellipsis, so a reviewer never reads a reason cut mid-word.
- */
 export function clipText(s: unknown, n: number): string {
   if (typeof s !== "string") return "";
   const t = s.trim();
@@ -311,7 +260,6 @@ export function clipText(s: unknown, n: number): string {
   return `${(word > 0 ? head.slice(0, word) : head.slice(0, n - 1)).replace(/[\s,;:]+$/, "")}…`;
 }
 
-/** Pull the first JSON object out of a model reply and keep only valid parts. */
 export function parseAnswer(text: string, allowed: Set<string>, targetSlug: string): Answer | { error: string } {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -343,7 +291,6 @@ export function parseAnswer(text: string, allowed: Set<string>, targetSlug: stri
   return { irreducible, irreducibleWhy: irreducible ? clip(raw?.irreducible_why, 800) : undefined, factors, missing };
 }
 
-/** Nodes resting on the target: how many decompositions an approved factor reaches. */
 export function impactOf(targetId: string, dec: Map<string, Decomposition>): number {
   let n = 0;
   for (const d of Array.from(dec.values())) if (d.id !== targetId && d.signature.has(targetId)) n++;
@@ -368,7 +315,6 @@ export function buildVerifyPrompt(target: Target, factors: Candidate[]): string 
     .join("\n");
 }
 
-/** Verdicts by slug for the slugs asked about; anything else in the reply is ignored. */
 export function parseVerdicts(text: string, asked: Set<string>): Map<string, Verdict> | { error: string } {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -397,7 +343,6 @@ export type ProposalContext = {
   impact: number;
   branchOf: Map<string, string | null>;
   origin?: Origin;
-  /** Per-factor reason when the factor came from a matched missing idea. */
   reasons?: Map<string, string>;
 };
 
@@ -432,7 +377,6 @@ export function toProposals(target: Target, answer: Answer, ctx: ProposalContext
   });
 }
 
-/** Deterministic pseudo-random numbers from a string seed (mulberry32 over a hash). */
 export function seeded(seed: string): () => number {
   let h = parseInt(createHash("sha256").update(seed).digest("hex").slice(0, 8), 16) >>> 0;
   return () => {
@@ -444,13 +388,6 @@ export function seeded(seed: string): () => number {
   };
 }
 
-/**
- * The verifier's list for one target: the proposer's picks mixed with as
- * many shortlist candidates it passed over (at least two), shuffled, with
- * nothing marking which is which. The verifier's answers on the passed-over
- * ones are the true negatives an agreement statistic needs. Seeded by the
- * target, so a rerun asks the same question and hits the cache.
- */
 export function blindSet(target: Target, picks: Candidate[], shortlisted: Candidate[]): { items: Candidate[]; picked: Set<string> } {
   const picked = new Set(picks.map((p) => p.slug));
   const rand = seeded(`blind:${target.slug}`);
@@ -467,11 +404,9 @@ export type AgreementRow = { target: string; slug?: string; picked: boolean; hol
 export type AgreementStats = {
   pairs: number;
   targets: number;
-  /** picked and confirmed, picked and refuted, passed over and confirmed, passed over and refuted */
   table: { pickedHolds: number; pickedNot: number; passedHolds: number; passedNot: number };
   observed: number;
   kappa: number | null;
-  /** 95% percentile interval from resampling targets with replacement. */
   kappaInterval: [number, number] | null;
 };
 
@@ -491,11 +426,6 @@ function kappaOf(rows: AgreementRow[]): number | null {
   return pe >= 1 ? null : (po - pe) / (1 - pe);
 }
 
-/**
- * Cohen's kappa (1960) between the proposer's pick and the verifier's
- * verdict over blinded sets, with a bootstrap interval (Efron 1979) that
- * resamples whole targets, since pairs within a target share a context.
- */
 export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "kappa"): AgreementStats {
   const table = { pickedHolds: 0, pickedNot: 0, passedHolds: 0, passedNot: 0 };
   for (const r of rows) {
@@ -509,8 +439,6 @@ export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "k
     if (!byTarget.has(r.target)) byTarget.set(r.target, []);
     byTarget.get(r.target)!.push(r);
   }
-  // Targets in a fixed order, so the seeded resample does not depend on the
-  // order the parallel workers finished in.
   const groups = Array.from(byTarget.entries())
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, g]) => g);
@@ -538,12 +466,6 @@ export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "k
   };
 }
 
-/**
- * Base ideas from the semantic primes (Wierzbicka 1996; Goddard and
- * Wierzbicka 2014) and the foundations of mathematics, matched on the head
- * noun of a title's first phrase. A lexical hint for the reviewer: it says a
- * title reads like a base idea; whether the idea is one stays the reviewer's call.
- */
 export const BASE_IDEAS: { key: string; heads: string[] }[] = [
   { key: "THE SAME (equality)", heads: ["equality", "equivalence", "identity", "sameness"] },
   { key: "ONE, TWO (number)", heads: ["number", "numeral", "counting", "cardinality", "integer"] },
@@ -561,20 +483,11 @@ export const BASE_IDEAS: { key: string; heads: string[] }[] = [
   { key: "measurement", heads: ["measurement", "measure", "unit"] },
 ];
 
-/** Words that name a kind of statement; in "law of X" the idea is X. */
 const CONTAINERS = new Set(["law", "principle", "theory", "concept", "notion", "idea", "axiom", "rule", "postulate"]);
 
-/**
- * The last word of a title's first phrase, stemmed: "Physical quantity and
- * measurement" gives "quantity". "X as Y" reads as X, and "the law of X" as
- * X when X is one word.
- */
 export function headNoun(title: string): string {
-  // "X as Y" is about X; "the law of X" is about X.
   let t = title.split(/\s+as\s+/i)[0];
   const ofMatch = /^(?:the\s+)?(\w+)\s+of\s+(?:(?:the|a|an)\s+)?(.+)$/i.exec(t.trim());
-  // Only when one word follows: "the law of bivalence" is about bivalence,
-  // "the law of large numbers" is a law in its own right.
   if (ofMatch && CONTAINERS.has(ofMatch[1].toLowerCase()) && /^[\w-]+$/.test(ofMatch[2].split(/\s*\(|,|:/)[0].trim())) t = ofMatch[2];
   const phrase = t.split(/\s\/\s|\s*\(|,|\s+and\s+|\s+of\s+|:|\s-\s/i)[0];
   const words = phrase
@@ -591,11 +504,6 @@ export function matchBase(title: string): string | null {
   return BASE_IDEAS.find((b) => b.heads.some((h) => stem(h) === head))?.key ?? null;
 }
 
-/**
- * Merge key for a missing base idea: the title before any slash-separated
- * synonym or parenthetical, lowercased, without a leading article. "Equality
- * / equivalence" and "Equality" share the key "equality".
- */
 export function missingKey(title: string): string {
   return title
     .split(/\s\/\s|\s*\(/)[0]
@@ -605,7 +513,6 @@ export function missingKey(title: string): string {
     .trim();
 }
 
-/** One missing base idea as the proposer named it, merged by key across targets. */
 export type MissingPrime = {
   key: string;
   title: string;
@@ -615,7 +522,6 @@ export type MissingPrime = {
   reasons: Record<string, string>;
 };
 
-/** Tally the base ideas the proposer says the graph lacks, merged by key, targets and branches sorted. */
 export function aggregateMissing(results: { target: Target; answer: Answer }[]): MissingPrime[] {
   const by = new Map<string, MissingPrime>();
   const ordered = results.slice().sort((a, b) => a.target.slug.localeCompare(b.target.slug));
@@ -634,7 +540,6 @@ export function aggregateMissing(results: { target: Target; answer: Answer }[]):
   return Array.from(by.values()).sort((a, b) => b.targets.length - a.targets.length || a.key.localeCompare(b.key));
 }
 
-/** The branch most of the proposer's namings used, ties broken by name. */
 export function topBranch(branches: Record<string, number>): string | null {
   const best = Object.entries(branches).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
   return best ? best[0] : null;
@@ -643,11 +548,6 @@ export function topBranch(branches: Record<string, number>): string | null {
 export type ConsolidateItem = { id: string; title: string; branch: string | null; nearest: { slug: string; title: string }[] };
 export type ConsolidatedGroup = { canonical: string; branch: string; members: string[]; sameAs: string | null; definition: string | null };
 
-/**
- * One model call over many missing ideas: group the ones that name the same
- * idea under one short canonical title, and say when a group is the same
- * idea as one of its members' nearest existing nodes (found by embedding).
- */
 export function buildConsolidatePrompt(items: ConsolidateItem[]): string {
   const lines = items.map((it) => {
     const near = it.nearest.map((n) => `${n.slug} = ${n.title}`).join("; ");
@@ -667,7 +567,6 @@ export function buildConsolidatePrompt(items: ConsolidateItem[]): string {
   ].join("\n");
 }
 
-/** Keep valid groups, give each id exactly one group, and accept same_as only from the members' own nearest nodes. */
 export function parseConsolidation(text: string, items: ConsolidateItem[]): ConsolidatedGroup[] | { error: string } {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -700,17 +599,14 @@ export function parseConsolidation(text: string, items: ConsolidateItem[]): Cons
 }
 
 export type ConsolidationOutcome = {
-  /** Groups that are an existing node: that node becomes a proposed factor of each naming target. */
   matched: { slug: string; targets: string[]; reasons: Record<string, string>; titles: string[] }[];
   nodeProposals: NodeProposalRow[];
 };
 
-/** Turn groups of missing ideas into matched factors and missing-prime rows. */
 export function consolidate(
   groups: ConsolidatedGroup[],
   missing: MissingPrime[],
   model: string,
-  /** Nearest existing nodes to a title, skipping `exclude`, so the cut to the top few happens after the naming nodes leave. */
   duplicatesOf: (title: string, exclude: ReadonlySet<string>) => { slug: string; title: string; similarity: number }[],
 ): ConsolidationOutcome {
   const byKey = new Map(missing.map((m) => [m.key, m]));
@@ -738,13 +634,11 @@ export function consolidate(
       named_by: targets,
       aliases: titles.filter((t) => t !== g.canonical),
       reasons,
-      // A node that named the idea is where it was found missing; it is left out of the duplicates.
       possible_duplicates: duplicatesOf(g.canonical, new Set(targets)).filter((d) => !targets.includes(d.slug)),
       base_match: matchBase(g.canonical),
       model,
     });
   }
-  // Two groups can share a canonical key; merge them rather than let the database keep one.
   const merged = new Map<string, NodeProposalRow>();
   for (const r of rows) {
     const e = merged.get(r.key);
@@ -760,11 +654,6 @@ export function consolidate(
   return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };
 }
 
-/**
- * Proposed pairs that sit in a cycle once every pending proposal is counted
- * as a factor edge beside the graph's own: approving all of them would close
- * it. Keys are "factor->target" slugs.
- */
 export function cyclicPairs(edges: DepEdge[], proposals: { from_slug: string; to_slug: string }[], idOf: Map<string, string>): Set<string> {
   const all: DepEdge[] = edges.slice();
   for (const p of proposals) {
@@ -788,12 +677,6 @@ export function cyclicPairs(edges: DepEdge[], proposals: { from_slug: string; to
   return out;
 }
 
-/**
- * The model that wrote a `claude -p` answer, from the reply's `modelUsage`.
- * The CLI also makes a small side call on another model, and that entry can
- * come first, so the model with the most output tokens is the answer's
- * model. Falls back to the requested alias when usage is missing.
- */
 export function answeringModel(modelUsage: unknown, requested: string): string {
   if (!modelUsage || typeof modelUsage !== "object") return requested;
   let best: string | null = null;
@@ -808,11 +691,6 @@ export function answeringModel(modelUsage: unknown, requested: string): string {
   return best ?? requested;
 }
 
-/**
- * Stage 5's write-back: a verdict from the unblinded check of a pair still
- * unchecked sets its verification, confidence, agreement, and second
- * reason. Pairs with no verdict stay unchecked.
- */
 export function applyVerdicts(rows: ProposalRow[], verdicts: Map<string, Verdict>, verifyModel: string, hash: string): number {
   let n = 0;
   for (const p of rows) {
@@ -829,12 +707,6 @@ export function applyVerdicts(rows: ProposalRow[], verdicts: Map<string, Verdict
   return n;
 }
 
-/**
- * A new missing prime that names the same idea as one from an earlier run
- * takes that run's key and title, keeping its own title as an alias, so the
- * database merges them into one row. `similarity` compares titles by
- * embedding; a key already in use is kept as is.
- */
 export function reuseEarlierKeys(
   rows: NodeProposalRow[],
   earlier: { key: string; title: string }[],
@@ -864,12 +736,6 @@ export function reuseEarlierKeys(
   return reused;
 }
 
-/**
- * What an irreducible verdict does to the review table. A new node gets a
- * row. A node a reviewer rejected reopens as pending with the new reason
- * and the reviewer's, and the old decision fields clear, since the row is
- * undecided again. Pending and confirmed rows stay as they are.
- */
 export function irreducibleAction(
   prior: { status: string; decision_reason: string | null } | null,
   why: string,
@@ -888,20 +754,11 @@ export function irreducibleAction(
   };
 }
 
-/**
- * The idea layer of the graph: idea nodes, with an edge from B to A
- * whenever A rests on B directly or through facts, sources, or other
- * evidence alone (contractedFactorEdges). The queue and the node page's
- * "made of" decompose this layer, so a prime is an idea with no idea under
- * it. An idea that rests only on facts is a prime of the idea layer, which
- * the queue asks to decompose further; the facts show as its evidence.
- */
 export function ideaLayer<N extends GraphNode>(nodes: N[], edges: DepEdge[]): { nodes: N[]; edges: DepEdge[] } {
   const ideas = nodes.filter((n) => isIdea(n));
   return { nodes: ideas, edges: contractedFactorEdges(new Set(ideas.map((n) => n.id)), edges) };
 }
 
-/** A family alias ("sonnet") must resolve inside its family; a full model id must resolve to itself. */
 export function modelMatchesAlias(alias: string, modelId: string): boolean {
   const family = ["haiku", "sonnet", "opus"].find((f) => alias === f);
   return family ? modelId.includes(family) : modelId === alias;

@@ -1,10 +1,5 @@
 "use client";
 
-// Production, in place: from the selected node, start an extension, a
-// replication, or a peer review of it. Each becomes a production draft of
-// that kind (graph.productions.kind, related_node_id) in the form below;
-// accepted, it becomes a node with the matching edge (FRONTIER.md).
-
 export type ProduceKind = "extension" | "replication" | "peer_review";
 
 const KINDS: { kind: ProduceKind; label: string; hint: string }[] = [

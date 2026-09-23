@@ -3,15 +3,6 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
-/**
- * Bringing a file in as a person (ros-import 2): sign in, drop a file on
- * the import page, and see it recorded. The second run of the same bytes
- * says the object was already in storage, which is the path being the
- * hash of the file.
- *
- * Needs the local stack with the import migration applied, and a dev
- * server. E2E_IMPORT_EMAIL names the account.
- */
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const EMAIL = process.env.E2E_IMPORT_EMAIL || "ros-shots@bucket.test";
 const SHOTS = process.env.E2E_IMPORT_SHOTS;

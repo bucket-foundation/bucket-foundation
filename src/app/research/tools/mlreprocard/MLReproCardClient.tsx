@@ -1,8 +1,5 @@
 "use client";
 
-// MLReproCard client island, reproducibility rubric + model card over a
-// described ML experiment. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

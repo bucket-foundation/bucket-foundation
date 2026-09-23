@@ -1,16 +1,6 @@
-/**
- * The prime report as data for a page (ros-frontend 1): what
- * scripts/research-os/primes-report.ts prints, computed from the graph's
- * public current nodes and their factor edges. `buildPrimesReport` is pure
- * and tested in scripts/test-research-os-primes-report.ts; `loadPrimesReport`
- * reads the graph.
- *
- * Every read pages with `.range()` under an `.order("id")`, since PostgREST
- * caps a response at 1,000 rows and Postgres keeps no stable order across
- * pages without one.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { coverage, depthPolynomials, frontier, implications, leibnizPrimes, pmiPairs, withinGroup, type Nonface } from "./prime-algebra";
+import { pagedRead } from "./paging";
 import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
 
 export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
@@ -134,20 +124,16 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
 
 type Query = ReturnType<ReturnType<SupabaseClient["from"]>["select"]>;
 
-async function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: Query) => Query): Promise<T[]> {
-  const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(from, from + 999) as unknown as Query;
+function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: Query) => Query): Promise<T[]> {
+  return pagedRead<T>((page) => {
+    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(page.from, page.to) as unknown as Query;
     if (filter) q = filter(q);
-    const { data, error } = await q;
-    if (error) throw new Error(`${table}: ${error.message}`);
-    const rows = (data ?? []) as unknown as T[];
-    out.push(...rows);
-    if (rows.length < 1000) return out;
-  }
+    return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
+  }).catch((err: unknown) => {
+    throw new Error(`${table}: ${err instanceof Error ? err.message : String(err)}`);
+  });
 }
 
-/** Reads the graph and builds the report. Throws when a read fails, so the page can say the graph did not answer. */
 let cachedReport: { at: number; report: PrimesReport } | null = null;
 let inflightReport: { gen: number; promise: Promise<PrimesReport> } | null = null;
 let reportGeneration = 0;

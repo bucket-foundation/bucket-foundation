@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-# setup.sh — idempotent install of the local-LLM exposure stack:
-#   1. generate a strong LLM_GATEWAY_SECRET (once; preserved on re-run)
-#   2. write the env file to ~/.config/research-tools-llm/llm-shim.env (chmod 600,
-#      OUTSIDE the git repo — the secret is NEVER committed)
-#   3. install + enable + (re)start the llm-shim and llm-tunnel --user services
-#   4. verify: 401 without bearer, 200 with bearer through the shim
-#
-# Re-running is safe: existing secret kept, units overwritten, services restarted.
-# Ollama itself is assumed already running (system `ollama.service` — verified up).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -18,7 +9,6 @@ SHIM_PORT="${LLM_SHIM_PORT:-8011}"
 
 echo "==> research-tools local-LLM exposure setup"
 
-# --- 1+2. secret + env file (idempotent: keep existing secret) ---------------
 mkdir -p "${CFG_DIR}"
 chmod 700 "${CFG_DIR}"
 
@@ -36,7 +26,7 @@ fi
 
 umask 077
 cat > "${ENV_FILE}" <<EOF
-# research-tools LLM exposure — SECRET. chmod 600, NOT in git. Do not commit.
+# research-tools LLM exposure: SECRET. chmod 600, kept out of git. Do not commit.
 LLM_GATEWAY_SECRET=${SECRET}
 LLM_SHIM_HOST=127.0.0.1
 LLM_SHIM_PORT=${SHIM_PORT}
@@ -48,7 +38,6 @@ EOF
 chmod 600 "${ENV_FILE}"
 echo "    wrote ${ENV_FILE} (chmod 600)"
 
-# --- 3. install + enable + restart units -------------------------------------
 mkdir -p "${UNIT_DIR}"
 cp -f "${HERE}/llm-shim.service"   "${UNIT_DIR}/llm-shim.service"
 cp -f "${HERE}/llm-tunnel.service" "${UNIT_DIR}/llm-tunnel.service"
@@ -58,7 +47,6 @@ systemctl --user enable --now llm-shim.service
 systemctl --user enable --now llm-tunnel.service
 echo "    enabled+started llm-shim.service and llm-tunnel.service"
 
-# --- 4. verify ---------------------------------------------------------------
 sleep 2
 base="http://127.0.0.1:${SHIM_PORT}"
 echo "==> verify"

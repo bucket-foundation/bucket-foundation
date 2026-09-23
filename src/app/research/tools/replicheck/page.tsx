@@ -6,7 +6,6 @@ export const metadata = toolMetadata("replicheck");
 const _jsonld = toolJsonLd("replicheck");
 import RepliCheckClient from "./RepliCheckClient";
 
-// RepliCheck run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

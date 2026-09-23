@@ -1,29 +1,5 @@
-/**
- * Wikipedia link evidence for a proposed factor: a reference-distance score
- * after RefD (Liang, Wu, Huang, and Giles 2015, "Measuring Prerequisite
- * Relations Among Concepts", EMNLP, https://doi.org/10.18653/v1/d15-1193).
- * It is the decompose-further queue's judge outside the Claude models
- * (learning/research-os/PRIMES.md).
- *
- * RefD says B is a prerequisite of A when the articles A links to refer to
- * B more than the articles B links to refer to A. For a factor F of a
- * target T:
- *
- *   refd(F, T) = mean over x in L(T) of r(x, F)  -  mean over y in L(F) of r(y, T)
- *
- * where L(a) is the set of articles a links to and r(x, a) is 1 when x is a
- * or links to it. Positive means T's neighbourhood leans on F more than F's
- * leans on T, which reads as F before T.
- *
- * This is a restricted variant: r(x, a) needs x's own links, and only the
- * articles the graph maps to have been fetched, so the means run over the
- * linked articles inside that set (scripts/research-os/wikipedia-links.ts).
- * A pair gets null when neither article links to a fetched one, and 0 when
- * they do but neither side refers to the other.
- */
 import { seeded } from "./decompose-further";
 
-/** The article title in a Wikipedia URL, each "_" read as a space. */
 export function wikiTitleFromUrl(url: string): string | null {
   const m = /^https?:\/\/en\.(?:m\.)?wikipedia\.org\/wiki\/([^#?]+)/.exec(url.trim());
   if (!m) return null;
@@ -34,14 +10,12 @@ export function wikiTitleFromUrl(url: string): string | null {
   }
 }
 
-/** Link sets keyed by canonical article title. */
 export type LinkIndex = Map<string, Set<string>>;
 
 function refers(links: LinkIndex, x: string, a: string): boolean {
   return x === a || (links.get(x)?.has(a) ?? false);
 }
 
-/** refd(F, T) over the fetched articles, or null when either side has no fetched neighbour. */
 export function refd(factor: string, target: string, links: LinkIndex): number | null {
   const lf = links.get(factor);
   const lt = links.get(target);
@@ -56,15 +30,9 @@ export function refd(factor: string, target: string, links: LinkIndex): number |
 
 type SignCounts = { positive: number; zero: number; negative: number; mean: number | null };
 export type RefdAgreement = {
-  /** Scored pairs the verifier confirmed or refuted. */
   pairs: number;
   confirmed: SignCounts;
   refuted: SignCounts;
-  /**
-   * Chance that a confirmed pair scores above a refuted one, ties counted
-   * half (the Mann-Whitney form of the ROC area). 0.5 means the link
-   * evidence cannot tell the verifier's two verdicts apart.
-   */
   auc: number | null;
 };
 
@@ -84,14 +52,6 @@ function aucOf(yes: number[], no: number[]): number | null {
   return wins / (yes.length * no.length);
 }
 
-/**
- * The ROC area with a 95% percentile interval from resampling whole targets
- * with replacement (Efron 1979), since pairs under one target share its
- * articles. Targets resample in a fixed order under a seed, so the interval
- * repeats run to run. With fewer than `minEach` confirmed or refuted pairs
- * the interval is left out, since a handful of positives makes a resampled
- * area look certain.
- */
 export function refdAucInterval(
   rows: { target: string; refd: number | null; verification: string }[],
   resamples = 1000,
@@ -132,7 +92,6 @@ export function refdAucInterval(
 
 const round3 = (x: number) => Math.round(x * 1000) / 1000;
 
-/** How the link evidence lines up with the second model's verdicts. */
 export function refdAgreement(rows: { refd: number | null; verification: string }[]): RefdAgreement {
   const yes = rows.filter((r) => r.refd !== null && r.verification === "confirmed").map((r) => r.refd!);
   const no = rows.filter((r) => r.refd !== null && r.verification === "refuted").map((r) => r.refd!);
@@ -140,18 +99,12 @@ export function refdAgreement(rows: { refd: number | null; verification: string 
   return { pairs: yes.length + no.length, confirmed: counts(yes), refuted: counts(no), auc: a === null ? null : round3(a) };
 }
 
-/** The parts of a MediaWiki `action=query` reply (formatversion=2) that title resolution reads. */
 export type WikiQuery = {
   normalized?: { from: string; to: string }[];
   redirects?: { from: string; to: string }[];
   pages?: { title: string; missing?: boolean; invalid?: boolean; pageprops?: Record<string, unknown> }[];
 };
 
-/**
- * Each asked title's canonical article: case and spacing normalised, then
- * redirects followed. Missing pages and disambiguation pages resolve to
- * null, since neither names one concept.
- */
 export function resolveTitles(asked: string[], q: WikiQuery): Map<string, string | null> {
   const norm = new Map((q.normalized ?? []).map((n) => [n.from, n.to]));
   const redirect = new Map((q.redirects ?? []).map((r) => [r.from, r.to]));
@@ -167,11 +120,6 @@ export function resolveTitles(asked: string[], q: WikiQuery): Map<string, string
   return out;
 }
 
-/**
- * Link sets over the known articles: each article's raw links mapped
- * through the alias table (redirect title to canonical title) and kept
- * when they land on a known article other than itself.
- */
 export function knownLinks(raw: Map<string, string[]>, aliasOf: Map<string, string>): LinkIndex {
   const known = new Set(raw.keys());
   const out: LinkIndex = new Map();
@@ -186,7 +134,6 @@ export function knownLinks(raw: Map<string, string[]>, aliasOf: Map<string, stri
   return out;
 }
 
-/** RefD for each factor pair whose two ends both map to a fetched article. */
 export function scorePairs<T extends { from_slug: string; to_slug: string }>(
   rows: T[],
   titleOf: Map<string, string>,

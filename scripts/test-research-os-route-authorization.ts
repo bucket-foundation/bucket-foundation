@@ -1,36 +1,3 @@
-/**
- * Every Research OS route that can put node or edge content in a reply
- * either decides who may see it, or is named here with the reason it
- * does not have to.
- *
- * `class/route.ts` took `loadSubgraph(branch)` unfiltered and emitted
- * node titles from it, for nine review rounds, while
- * `directions/route.ts` beside it filtered. Nothing caught that,
- * because the only structural gate in the repo covers writes. This is
- * the read equivalent: a route added tomorrow that reads the graph and
- * authorizes nobody fails here rather than waiting for a reviewer.
- *
- * The first version of this gate named two helpers, `loadSubgraph` and
- * `loadNodeAccess`, and matched them with a regex over raw source. It
- * saw neither of the two ways a route reaches the graph in this repo.
- * A route that calls `loadConnections` or `listNodeProposals` reads
- * node rows through a helper the list never mentioned, and a route
- * whose comment spelled `authorizeNode()` satisfied the authorization
- * regex without calling anything. Both are closed here: the helpers
- * are discovered from the library itself, and every match is an AST
- * call site, so no comment and no string can answer for code.
- *
- * What a green run means, and what it does not. The gate sees a route
- * that selects from `nodes` or `edges` in a chain it can resolve, and a
- * route that calls a library function which does, through an import
- * alias or one level of property access. It does not follow a helper
- * defined in another route file, a call made through a value it cannot
- * name, or SQL inside an RPC: `svc.rpc("idea_dependents", ...)` joins
- * graph.nodes in its body and reads here as nothing. A chain whose
- * `.select()` it cannot find counts as a read, so the unresolved cases
- * fail loudly, and that is the whole of the guarantee. A green run is
- * the absence of these shapes, and nothing more.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -41,22 +8,10 @@ import { calleeNames, callsAny, functionsIn, importAliases, parse, readsContentF
 const ROOT = path.join(__dirname, "..", "src/app/api/research-os");
 const LIB = path.join(__dirname, "..", "src/lib/research-os");
 
-/** The tables whose rows carry content a viewer might not be allowed to see. */
 const GRAPH_TABLES = ["nodes", "edges"] as const;
 
-/** Anything that decides who may see a node. */
 const AUTHORIZES = ["authorizeNode", "authorizeNodes", "authorizeVerbs", "filterSubgraphForViewer", "storeWithNodes"] as const;
 
-/**
- * The library functions that can put a node or edge field in their
- * result, found rather than listed.
- *
- * A function qualifies when it selects from `nodes` or `edges`, or
- * calls something that does. A function that authorizes inside itself
- * is sealed: `loadConnections` filters the titles it joins before it
- * returns them, so a route calling it has already had the decision
- * made and needs no second one.
- */
 function graphReaders(): { readers: Set<string>; sealed: Set<string>; scanned: number } {
   interface Def { reads: boolean; seals: boolean; calls: Set<string> }
   const defs = new Map<string, Def>();
@@ -71,8 +26,6 @@ function graphReaders(): { readers: Set<string>; sealed: Set<string>; scanned: n
         ts.forEachChild(n, collect);
       };
       collect(fn.body);
-      // A name declared twice in the library keeps the reading copy,
-      // because a route calling that name might reach either.
       const prior = defs.get(fn.name);
       const merged = new Set<string>();
       if (prior) prior.calls.forEach((c) => merged.add(c));
@@ -91,7 +44,6 @@ function graphReaders(): { readers: Set<string>; sealed: Set<string>; scanned: n
     if (d.seals) sealed.add(name);
     else if (d.reads) readers.add(name);
   });
-  // A caller of a reader is a reader, unless it seals the decision itself.
   for (let changed = true; changed; ) {
     changed = false;
     defs.forEach((d, name) => {
@@ -104,38 +56,6 @@ function graphReaders(): { readers: Set<string>; sealed: Set<string>; scanned: n
   return { readers, sealed, scanned: files.length };
 }
 
-/**
- * Routes that can emit graph content without authorizing, and why that
- * is right.
- *
- * A reason has to say what bounds the exposure, and `proof` has to
- * match the route's own code, so a route that loses the bound fails
- * here rather than keeping the excuse. "It is only used internally" is
- * not a reason, because the reply reaches a browser.
- */
-/**
- * `proof` patterns run over the route with its comments and string
- * bodies blanked.
- *
- * The first version matched raw source, which is the hole the AST test
- * below was written against, reintroduced on the path seven routes take
- * to pass. Deleting the frontier query's public pin and leaving a
- * comment naming it kept the gate green, and the GET takes no auth at
- * all, so that comment was worth every private flagged node in a branch.
- *
- * A route with two branches carries two patterns, and all of them have
- * to match.
- */
-/**
- * A route that reads the graph and authorizes nobody in its own body,
- * with the reason it does not have to and the code that bound it.
- *
- * `proof` is matched against the route. `alsoIn` is matched against
- * another file, for the case where the bound is a filter inside the
- * helper the route calls: without it, an entry for such a route can
- * rest on nothing stronger than the helper's name, and a name is what
- * this gate exists to stop standing in for a filter.
- */
 const EXEMPT: { route: string; because: string; proof: RegExp[]; alsoIn?: { file: string; proof: RegExp[] }[] }[] = [
   {
     route: "access/route.ts",
@@ -189,19 +109,6 @@ const EXEMPT: { route: string; because: string; proof: RegExp[]; alsoIn?: { file
   },
 ];
 
-/**
- * The library readers that decide for their callers, and how the
- * decision reaches what they return.
- *
- * A function was sealed by calling an authorizer anywhere in its body,
- * and nothing checked that the answer gated the result. Keeping
- * `authorizeNodes` and its `allowed` set in `loadConnections` while
- * deleting the two `.filter` calls that use it left this gate green and
- * put every bridge title in front of a learner who may not read them.
- *
- * So each one is named here with the line that applies the decision,
- * and a route trusting the seal is trusting something checked.
- */
 const SEALED: { fn: string; file: string; because: string; proof: RegExp[] }[] = [
   {
     fn: "loadConnections",
@@ -226,8 +133,6 @@ const SEALED: { fn: string; file: string; because: string; proof: RegExp[] }[] =
 test("every sealed reader shows where its decision gates the result", () => {
   const { sealed, readers } = graphReaders();
   const sealedReaders = Array.from(sealed).filter((name) => {
-    // A function that authorizes and reads nothing seals nothing worth
-    // checking; authorizeNode itself is in that set.
     return SEALED.some((e) => e.fn === name) || readers.has(name);
   });
   for (const name of sealedReaders) {
@@ -249,12 +154,6 @@ function routeFiles(): string[] {
   return tsFiles(ROOT).filter((f) => path.basename(f) === "route.ts");
 }
 
-/**
- * What a route reads, and through what.
- *
- * Calls resolve through the file's imports, so a helper brought in as
- * `import { loadSubgraph as graphOf }` is still the reader it is.
- */
 function readsOf(file: string, readers: Set<string>): { direct: boolean; via: string[] } {
   const sf = parse(fs.readFileSync(file, "utf8"), file);
   const direct = readsContentFrom(sf, sf, GRAPH_TABLES);
@@ -263,8 +162,6 @@ function readsOf(file: string, readers: Set<string>): { direct: boolean; via: st
   const resolved = new Set<string>();
   called.forEach((name) => {
     resolved.add(aliases.get(name) ?? name);
-    // `store.method()` is recorded whole and by its method name, and a
-    // reader may be declared under either.
     const dot = name.indexOf(".");
     if (dot > 0) resolved.add(name.slice(dot + 1));
   });
@@ -277,9 +174,6 @@ test("the gate is looking at the routes and at the library", () => {
   assert.ok(files.length > 15, `found ${files.length} route handlers`);
   const { readers, sealed, scanned } = graphReaders();
   assert.ok(scanned > 30, `scanned ${scanned} library sources`);
-  // A scanner that finds nothing passes every route. These three are
-  // the shapes it has to see: a direct branch read, a read behind a
-  // helper, and a helper that authorizes for its callers.
   assert.ok(readers.has("loadSubgraph"), "loadSubgraph reads the graph");
   assert.ok(readers.has("listNodeProposals"), "listNodeProposals reads node rows through a helper the first version of this gate never named");
   assert.ok(sealed.has("loadConnections"), "loadConnections authorizes the titles it joins, so its callers inherit the decision");
@@ -313,18 +207,10 @@ test("an exemption names a route that still exists, still reads, and still holds
     const { direct, via } = readsOf(full, readers);
     assert.ok(direct || via.length > 0, `${e.route} is exempt and reads nothing; drop the entry`);
     assert.ok(e.because.length > 25, `${e.route} needs a real reason`);
-    // The reason names a bound; this is the bound, in the code, with
-    // comments and string bodies blanked so none of them can stand in
-    // for it.
-    // keepStrings, because a proof names the table or column the bound
-    // turns on. Comments go, which is the hole this closes: a comment
-    // naming the frontier query's public pin stood in for the pin.
     const code = stripComments(src, { keepStrings: true });
     for (const proof of e.proof) {
       assert.match(code, proof, `${e.route} no longer matches the bound its exemption rests on: ${proof}`);
     }
-    // A bound that lives in the helper the route calls, checked in that
-    // helper's file rather than taken on the helper's name.
     for (const other of e.alsoIn ?? []) {
       const otherFull = path.join(__dirname, "..", other.file);
       assert.ok(fs.existsSync(otherFull), `${e.route} rests on ${other.file}, which does not exist`);
@@ -337,9 +223,6 @@ test("an exemption names a route that still exists, still reads, and still holds
 });
 
 test("a comment cannot authorize a route", () => {
-  // The first version of this gate ran its regexes over raw source, so
-  // a route could satisfy the authorization check with a comment and
-  // read the graph freely. Both sides are AST call sites now.
   const pretend = parse(`
     // authorizeNodes(ids, viewer, "view", store)
     const sql = "filterSubgraphForViewer(nodes, edges, viewer)";

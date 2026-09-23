@@ -1,24 +1,8 @@
-/**
- * What kind of file an import holds (ros-import 2).
- *
- * A browser reports a media type from the operating system's own table,
- * and that table disagrees with itself across machines: the same .csv
- * arrives as `text/csv`, `application/vnd.ms-excel`, or
- * `application/octet-stream`, and a file with no extension arrives as an
- * empty string. The extension is the more reliable signal for the formats
- * Research OS reads, so the extension decides the structured type and the
- * media type is repaired to match. A type nothing here knows keeps its
- * bytes and its metadata, and says so.
- *
- * `structured` is what the rest of the loop switches on. `extractable`
- * says whether ros-import 3 has a reader for it; the others stay
- * metadata and bytes until one exists.
- */
 import { isMediaType } from "./import-storage";
 
 export type StructuredType = "text" | "document" | "web" | "table" | "data" | "image" | "audio" | "video" | "archive" | "other";
 
-export const EXTRACTABLE: ReadonlySet<StructuredType> = new Set<StructuredType>(["text", "document", "web", "table", "data"]);
+const EXTRACTABLE: ReadonlySet<StructuredType> = new Set<StructuredType>(["text", "document", "web", "table", "data"]);
 
 export const OCTET_STREAM = "application/octet-stream";
 export const MAX_FILENAME = 255;
@@ -30,8 +14,7 @@ interface Known {
   structured: StructuredType;
 }
 
-/** Extension to the media type Research OS records, and the type it reads it as. */
-export const BY_EXTENSION: Readonly<Record<string, Known>> = {
+const BY_EXTENSION: Readonly<Record<string, Known>> = {
   txt: { media: "text/plain", structured: "text" },
   text: { media: "text/plain", structured: "text" },
   md: { media: "text/markdown", structured: "text" },
@@ -76,7 +59,6 @@ export const BY_EXTENSION: Readonly<Record<string, Known>> = {
   "7z": { media: "application/x-7z-compressed", structured: "archive" },
 };
 
-/** The structured type a media type alone implies, for a file with no extension. */
 const BY_PREFIX: [string, StructuredType][] = [
   ["text/html", "web"],
   ["text/csv", "table"],
@@ -94,15 +76,12 @@ const BY_PREFIX: [string, StructuredType][] = [
 ];
 
 export interface DetectedType {
-  /** The media type the row records, one `type/subtype` with no parameters. */
   mediaType: string;
   structured: StructuredType;
   extractable: boolean;
-  /** Which signal decided: the file's extension, the browser's media type, or neither. */
   from: "extension" | "media-type" | "fallback";
 }
 
-/** The extension of `filename`, lower case and without its dot, or null. */
 export function extensionOf(filename: string): string | null {
   const base = filename.split(/[\\/]/).pop() ?? "";
   const dot = base.lastIndexOf(".");
@@ -111,7 +90,6 @@ export function extensionOf(filename: string): string | null {
   return /^[a-z0-9]{1,12}$/.test(ext) ? ext : null;
 }
 
-/** One `type/subtype`, lower case, with any parameter such as `; charset=utf-8` removed. */
 export function normalizeMediaType(raw: string | null | undefined): string | null {
   if (typeof raw !== "string") return null;
   const bare = raw.split(";")[0].trim().toLowerCase();
@@ -141,7 +119,6 @@ export interface ImportMetadata {
   note: string | null;
 }
 
-/** The metadata form's rules, shared by the page and the route. */
 export function validateMetadata(input: { kind?: unknown; title?: unknown; note?: unknown }): { ok: true; value: ImportMetadata } | { ok: false; error: MetadataError } {
   if (!IMPORT_KINDS.includes(input.kind as ImportKind)) return { ok: false, error: "kind_unknown" };
   const title = typeof input.title === "string" ? input.title.trim() : "";
@@ -152,7 +129,6 @@ export function validateMetadata(input: { kind?: unknown; title?: unknown; note?
   return { ok: true, value: { kind: input.kind as ImportKind, title, note: note || null } };
 }
 
-/** A filename the row may record: one path segment, bounded, with no separators. */
 export function validateFilename(raw: unknown): { ok: true; value: string } | { ok: false; error: MetadataError } {
   const name = typeof raw === "string" ? raw.trim().replace(/[\\/]/g, "") : "";
   if (!name) return { ok: false, error: "filename_missing" };

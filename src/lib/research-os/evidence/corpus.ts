@@ -1,25 +1,3 @@
-/**
- * The admitted public-source corpus for evidence search (ros-ai-corpus,
- * learning/research-os/ai/IMPLEMENTATION.md, "Source identities").
- *
- * `buildCorpus` turns graph node rows, their curated passages and the
- * rights policy into three artifacts: sources.jsonl, one record per
- * admitted node; passages.jsonl, one record per quotable curated passage;
- * and manifest.json, which pins both by hash. It reads and never writes
- * the graph. `validateCorpus` recomputes every hash and revision from the
- * stored text, so an edited or truncated artifact fails before an encoder
- * or a Quote call trusts it. `staleSources` compares a built corpus with
- * the live graph.
- *
- * Revisions. A source's `sourceRevision` hashes its normalized body, its
- * citation, the extraction and normalization it went through, and the
- * revision of every curated passage it carries, so any edit to what search
- * shows or Quote returns makes a new revision. A passage's
- * `quoteRevision` is the revision graph.source_quote_receipts records for
- * that quotation (curatedSourceRevision on the receipts branch): the same
- * hash over the node id, the passage text as served, its locator and its
- * citation line. Admissions and receipts therefore join on one column.
- */
 import { citationLabel } from "../grounding";
 import type { Provenance } from "../types";
 import { doiSourceId, graphSourceId, parseSourceId } from "./identity";
@@ -27,12 +5,9 @@ import { indexRights, quoteRights, type RightsDecision, type RightsPolicy } from
 import { byteLength, byteSlice, normalizeText, NORMALIZATION, OffsetError, sha256Hex } from "./text";
 
 export const SCHEMA_VERSION = 1;
-/** Title, then summary, then the curated passage, each separated by a blank line. */
 export const EXTRACTION = "graph-node/1";
-/** The development cap from IMPLEMENTATION.md: debug with up to 500 permitted records. */
 export const DEBUG_LIMIT = 500;
 
-/** Kinds that never enter this corpus whatever the rights say. */
 const EXCLUDED_KINDS: Record<string, string> = {
   excerpt: "a source excerpt, out of canon since 2026-09-21",
   production: "a learner's production, whose rights are its author's",
@@ -83,10 +58,8 @@ export interface SourceRecord {
   kind: string;
   aliases: string[];
   citation: Citation;
-  /** Normalized body: title, summary, and the curated passage when there is one. */
   text: string;
   bodyHash: string;
-  /** Hash of the body before normalization. */
   originalHash: string;
   normalization: string;
   extraction: string;
@@ -98,12 +71,9 @@ export interface PassageRecord {
   schemaVersion: 1;
   sourceId: string;
   passageId: string;
-  /** The receipt-side revision of this quotation. */
   quoteRevision: string;
-  /** Half-open UTF-8 byte span of the passage inside its source's `text`. */
   start: number;
   end: number;
-  /** The passage exactly as Quote serves it. */
   original: string;
   originalHash: string;
   textHash: string;
@@ -123,9 +93,7 @@ export interface BuildResult {
   records: SourceRecord[];
   passages: PassageRecord[];
   rejected: Rejection[];
-  /** Identity conflicts. Any conflict fails the build. */
   conflicts: string[];
-  /** Slug groups with one body. Reported; they index as separate sources. */
   duplicates: string[][];
   considered: number;
   truncatedFrom: number | null;
@@ -139,8 +107,7 @@ export interface BuildInput {
   limit?: number;
 }
 
-/** JSON with keys sorted at every depth, so a hash over it is stable. */
-export function canonicalJson(value: unknown): string {
+function canonicalJson(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
   if (value && typeof value === "object") {
     const o = value as Record<string, unknown>;
@@ -153,17 +120,11 @@ export function canonicalJson(value: unknown): string {
   return JSON.stringify(value);
 }
 
-/**
- * The revision graph.source_quote_receipts records for a curated
- * quotation. Kept byte for byte with curatedSourceRevision on the receipts
- * branch (#196): plain JSON.stringify in that key order, over the passage
- * as served.
- */
 export function curatedQuoteRevision(input: { nodeId: string; text: string; locator: string; citation: string }): string {
   return sha256Hex(JSON.stringify({ v: 1, nodeId: input.nodeId, text: input.text, locator: input.locator, citation: input.citation }));
 }
 
-export function citationOf(node: Pick<GraphNodeRow, "title" | "provenance">): Citation {
+function citationOf(node: Pick<GraphNodeRow, "title" | "provenance">): Citation {
   const p = node.provenance ?? {};
   const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim() : undefined);
   const doi = str(p.doi);
@@ -199,7 +160,6 @@ export function sourceRevisionOf(r: Pick<SourceRecord, "sourceId" | "bodyHash" |
   );
 }
 
-/** One node's record and passages, or why it stays out. Pure. */
 export function recordFor(
   node: GraphNodeRow,
   passage: CuratedPassage | null,
@@ -247,7 +207,6 @@ export function recordFor(
   const passages: PassageRecord[] = [];
   if (quoted && quoteRef) {
     const normalized = normalizeText(quoted.text);
-    // The passage sits last in the body, so its span is the final occurrence.
     const at = normalized ? text.lastIndexOf(normalized) : -1;
     if (at === -1) {
       rejected.push({ slug: node.slug, sourceId, scope: "quote", reason: "the passage is not in the body built from it" });
@@ -270,9 +229,6 @@ export function recordFor(
     }
   }
 
-  // A provenance DOI names the paper a node rests on. It is the node's own
-  // identity only when the node is that paper; a law and a fact citing one
-  // paper are two sources.
   const doi = node.kind === "primary_source" ? doiSourceId(citation.doi ?? "") : null;
   const record: SourceRecord = {
     schemaVersion: 1,
@@ -299,13 +255,11 @@ function shared(records: SourceRecord[], key: (r: SourceRecord) => string[], wha
     .map(([k, slugs]) => `${what} ${k} is held by ${slugs.join(", ")}`);
 }
 
-/** Identity conflicts: two records with one source id, or one DOI alias. Any conflict fails the build. */
-export function findConflicts(records: SourceRecord[]): string[] {
+function findConflicts(records: SourceRecord[]): string[] {
   return [...shared(records, (r) => [r.sourceId], "source id"), ...shared(records, (r) => r.aliases, "alias")];
 }
 
-/** Nodes whose bodies are identical: duplicates for ros-graph-dedup to merge, listed in the manifest. */
-export function duplicateBodies(records: SourceRecord[]): string[][] {
+function duplicateBodies(records: SourceRecord[]): string[][] {
   const by = new Map<string, string[]>();
   for (const r of records) by.set(r.bodyHash, [...(by.get(r.bodyHash) ?? []), r.slug]);
   return Array.from(by.values()).filter((slugs) => slugs.length > 1).map((slugs) => slugs.sort());
@@ -323,8 +277,6 @@ export function buildCorpus(input: BuildInput): BuildResult {
       passages.push(...r.passages);
     }
   }
-  // Quotable sources first, then in the policy's rule order, then by slug,
-  // so a capped build keeps the records the first Find-to-Quote walk needs.
   const rank = new Map(input.policy.index.map((r, i) => [r.id, i]));
   records.sort(
     (a, b) =>
@@ -369,7 +321,6 @@ export interface Manifest {
 
 const jsonl = (rows: unknown[]) => rows.map((r) => canonicalJson(r)).join("\n") + (rows.length ? "\n" : "");
 
-/** The two data files and the manifest that pins them. Same input, same revision. */
 export function writeArtifacts(
   result: BuildResult,
   meta: { createdAt: string; commit: string; policy: RightsPolicy; policySha256: string; limit: number },
@@ -417,10 +368,6 @@ function parseLines<T>(text: string, name: string, problems: string[]): T[] {
   return out;
 }
 
-/**
- * Every check a consumer relies on, recomputed from the stored text.
- * Returns the problems; an empty list means the artifacts are sound.
- */
 export function validateCorpus(manifest: Manifest, files: ArtifactFiles, policy: RightsPolicy, policySha256: string): string[] {
   const problems: string[] = [];
   if (manifest.schemaVersion !== 1) problems.push(`manifest schemaVersion ${manifest.schemaVersion} is not 1`);
@@ -451,8 +398,6 @@ export function validateCorpus(manifest: Manifest, files: ArtifactFiles, policy:
     const r = v as RightsRef | undefined;
     return Boolean(r) && isStr(r!.rule) && Number.isInteger(r!.rightsRevision);
   };
-  // A record missing a field it is checked on is reported and set aside,
-  // so one malformed line cannot stop the rest from being checked.
   const records = parseLines<SourceRecord>(files["sources.jsonl"], "sources.jsonl", problems).filter((r, i) => {
     const ok =
       r && ["sourceId", "sourceRevision", "nodeId", "slug", "text", "bodyHash", "originalHash", "normalization", "extraction"].every((k) => isStr((r as unknown as Record<string, unknown>)[k])) &&
@@ -512,10 +457,6 @@ export function validateCorpus(manifest: Manifest, files: ArtifactFiles, policy:
   return problems;
 }
 
-/**
- * Sources whose live node no longer produces the record the corpus holds.
- * A stale source is withdrawn from search until the corpus is rebuilt.
- */
 export function staleSources(
   records: SourceRecord[],
   live: Map<string, GraphNodeRow>,

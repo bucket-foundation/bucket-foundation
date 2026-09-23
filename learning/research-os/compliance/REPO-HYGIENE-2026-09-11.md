@@ -120,7 +120,7 @@ Beyond `/home/gian`, this pass grepped for `sk-ant-`/`sk-proj-`/`sk-live-`/
   is replaced with `?REDACTED-presigned-aws-url` in both files; both
   remain valid JSON.
 - **`eyJ...` JWT-shaped strings:** one real hit,
-  `polingual/src/lib/photon-db.ts:19`, a self-hosted Supabase local `anon`
+  `polingual/src/lib/photon-db.ts:5`, a self-hosted Supabase local `anon`
   role token (`{"role":"anon","iss":"supabase"}`, no service-role claim).
   The line's own comment says "restricted at the DB level. Override via
   env in production." An `anon` key is meant to ship in client code, RLS

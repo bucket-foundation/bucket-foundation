@@ -26,7 +26,6 @@ const walrusPublisherUrls = [
 
 ];
 
-// Function to upload a file to Walrus
 export const uploadFileToWalrus = async (file: File): Promise<any> => {
   for (const url of walrusPublisherUrls) {
     try {
@@ -38,12 +37,12 @@ export const uploadFileToWalrus = async (file: File): Promise<any> => {
       if (!response.ok) {
         const errorMessage = await response.text();
         console.error(`Failed to upload file to ${url}: ${response.statusText} - ${errorMessage}`);
-        continue; // Try the next URL
+        continue;
       }
 
       const data = await response.json();
       console.log(`File uploaded successfully to ${url}:`, data);
-      return data; // Return after successful upload
+      return data;
     } catch (error) {
       console.error(`Error uploading file to ${url}:`, error);
     }
@@ -51,7 +50,6 @@ export const uploadFileToWalrus = async (file: File): Promise<any> => {
   throw new Error('All upload attempts failed.');
 };
 
-// Function to upload JSON metadata to Walrus
 export const uploadJSONToWalrus = async (jsonmetadata: Record<string, any>): Promise<any> => {
   for (const url of walrusPublisherUrls) {
     try {
@@ -66,12 +64,12 @@ export const uploadJSONToWalrus = async (jsonmetadata: Record<string, any>): Pro
       if (!response.ok) {
         const errorMessage = await response.text();
         console.error(`Failed to upload JSON metadata to ${url}: ${response.statusText} - ${errorMessage}`);
-        continue; // Try the next URL
+        continue;
       }
 
       const data = await response.json();
       console.log(`JSON metadata uploaded successfully to ${url}:`, data);
-      return data; // Return after successful upload
+      return data;
     } catch (error) {
       console.error(`Error uploading JSON metadata to ${url}:`, error);
     }

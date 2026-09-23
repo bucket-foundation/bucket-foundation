@@ -1,46 +1,12 @@
 #!/usr/bin/env python3
-"""
-bucket-mcp, single Model Context Protocol server for bucket.foundation.
-
-Replaces the old split (bucket-canon-mcp + standalone bucket-mcp repo).
-One server. All tools. This file is canonical, the standalone bucket-mcp
-GitHub repo is being archived.
-
-Tools:
- CANON (local filesystem, fast, no network):
- - canon_search search 599 claim cards by query
- - canon_get_claim fetch a single claim card
- - canon_list_branches list 9 canon branches with counts
- - canon_list_bridges list detected multi-branch primitives
- - canon_get_bridge fetch a detected bridge by slug
-
- RESEARCH RAIL (hits bucket.foundation HTTPS API):
- - bucket_research paid research via feed402/0.2 envelopes
- - bucket_cite CSL-JSON citation from DOI or URL
-
-Transport: stdio JSON-RPC 2.0.
-
-Register in Claude Code:
- claude mcp add --scope user --transport stdio bucket \\
- -- python3 ~/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
-
-Register in Claude Desktop (config.json):
- "bucket": {
- "command": "python3",
- "args": ["/path/to/bucket-mcp.py"]
- }
-"""
 from __future__ import annotations
 import json, sys, pathlib, re, urllib.request, urllib.error
 from typing import Any
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent
-BUCKET_API = "https://bucket.foundation/api/canon"  # used if env BUCKET_USE_API=1
+BUCKET_API = "https://bucket.foundation/api/canon"
 USE_API = bool(__import__('os').environ.get('BUCKET_USE_API'))
-
-
-# ---------- canon data loading (local filesystem mode) ----------
 
 def parse_claim_md(file: pathlib.Path) -> dict | None:
     try:
@@ -55,7 +21,6 @@ def parse_claim_md(file: pathlib.Path) -> dict | None:
     excerpt = (m.group(1) if m else '').strip()
     excerpt = re.sub(r'^>\s*', '', excerpt, flags=re.M).strip()
     return {'title': title, 'excerpt': excerpt, 'raw': raw}
-
 
 def list_claims() -> list[dict]:
     out = []
@@ -78,7 +43,6 @@ def list_claims() -> list[dict]:
                 })
     return out
 
-
 def token_rank(query: str, items: list[dict], top_k: int = 10) -> list[dict]:
     qw = set(w.lower() for w in re.findall(r'[a-zA-Z][a-zA-Z\-]{2,}', query))
     if not qw: return []
@@ -93,11 +57,7 @@ def token_rank(query: str, items: list[dict], top_k: int = 10) -> list[dict]:
     scored.sort(key=lambda x: -x['score'])
     return scored[:top_k]
 
-
-# ---------- MCP tools ----------
-
 def tool_canon_search(q: str, top_k: int = 10, branch: str | None = None, tier: str | None = None) -> dict:
-    """Search canon claims by query."""
     if USE_API:
         try:
             url = f"{BUCKET_API}/search?q={urllib.request.quote(q)}&top_k={top_k}"
@@ -122,9 +82,6 @@ def tool_canon_search(q: str, top_k: int = 10, branch: str | None = None, tier: 
         } for r in results],
     }
 
-
-
-
 def tool_canon_get_claim(concept: str, slug: str) -> dict:
     for it in list_claims():
         if it['concept'] == concept and it['slug'] == slug:
@@ -135,7 +92,6 @@ def tool_canon_get_claim(concept: str, slug: str) -> dict:
                 'source_path': it['path'],
             }
     return {'error': 'not_found'}
-
 
 def tool_canon_list_branches() -> dict:
     items = list_claims()
@@ -149,7 +105,6 @@ def tool_canon_list_branches() -> dict:
         ],
         'total_claims': len(items),
     }
-
 
 def tool_canon_list_bridges() -> dict:
     root = REPO / 'bucket-canon/_bridges/detected'
@@ -173,7 +128,6 @@ def tool_canon_list_bridges() -> dict:
             })
     return {'bridges': bridges, 'count': len(bridges)}
 
-
 def tool_canon_get_bridge(slug: str) -> dict:
     root = REPO / 'bucket-canon/_bridges/detected'
     for d in root.iterdir() if root.exists() else []:
@@ -183,17 +137,12 @@ def tool_canon_get_bridge(slug: str) -> dict:
                 return {'slug': d.name, 'body': r.read_text(errors='replace')}
     return {'error': 'not_found'}
 
-
-# ---------- Research rail tools (merged from standalone bucket-mcp) ----------
-
 BUCKET_BASE = __import__('os').environ.get('BUCKET_BASE', 'https://www.bucket.foundation')
 RESEARCH_PATH = '/api/research'
 DOI_RE = re.compile(r"10\.\d{4,9}/[^\s]+", re.IGNORECASE)
 HTTP_TIMEOUT = 20
 
-
 def _post_json(url: str, body: dict) -> dict:
-    """POST JSON, return {ok, status, body|error}."""
     data = json.dumps(body).encode()
     req = urllib.request.Request(url, data=data, headers={
         'Content-Type': 'application/json', 'Accept': 'application/json',
@@ -209,7 +158,6 @@ def _post_json(url: str, body: dict) -> dict:
     except Exception as e:
         return {'ok': False, 'status': 0, 'error': f'{type(e).__name__}: {e}'}
 
-
 def tool_bucket_research(query: str, tier: str = 'insight') -> dict:
     if tier not in ('raw', 'query', 'insight'):
         return {'error': "tier must be one of: raw, query, insight"}
@@ -219,7 +167,6 @@ def tool_bucket_research(query: str, tier: str = 'insight') -> dict:
         return {'ok': False, 'error': r.get('error'), 'upstream_status': r.get('status'),
                 'hint': 'paid research route; may require x402 challenge payment'}
     return {'ok': True, 'tier': tier, 'query': query, 'envelope': r['body']}
-
 
 def tool_bucket_cite(doi_or_url: str) -> dict:
     doi_match = DOI_RE.search(doi_or_url)
@@ -235,13 +182,9 @@ def tool_bucket_cite(doi_or_url: str) -> dict:
                 return {'ok': True, 'doi': doi, 'csl_json': json.loads(r.read().decode())}
         except Exception as e:
             return {'ok': False, 'doi': doi, 'error': f'{type(e).__name__}: {e}'}
-    # Non-DOI URL → minimal webpage CSL stub
     return {'ok': True, 'csl_json': {
         'type': 'webpage', 'URL': doi_or_url, 'id': doi_or_url
     }, 'note': 'no DOI detected; returned minimal webpage CSL stub'}
-
-
-# ---------- MCP JSON-RPC 2.0 stdio loop ----------
 
 TOOLS = [
     {
@@ -312,7 +255,6 @@ TOOLS = [
     },
 ]
 
-
 def handle_request(req: dict) -> dict:
     method = req.get('method', '')
     id_ = req.get('id')
@@ -328,7 +270,7 @@ def handle_request(req: dict) -> dict:
             },
         }
     if method == 'notifications/initialized':
-        return {}  # no response
+        return {}
 
     if method == 'tools/list':
         return {'jsonrpc': '2.0', 'id': id_, 'result': {'tools': TOOLS}}
@@ -364,7 +306,6 @@ def handle_request(req: dict) -> dict:
     return {'jsonrpc': '2.0', 'id': id_,
             'error': {'code': -32601, 'message': f'unknown method: {method}'}}
 
-
 def main():
     for line in sys.stdin:
         line = line.strip()
@@ -377,7 +318,6 @@ def main():
         if resp:
             sys.stdout.write(json.dumps(resp) + '\n')
             sys.stdout.flush()
-
 
 if __name__ == '__main__':
     main()

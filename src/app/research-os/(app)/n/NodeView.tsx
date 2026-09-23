@@ -8,6 +8,7 @@ import type { NodeData, Quote } from "./types";
 import { KIND_LABEL, branchName } from "./types";
 import LearnSection from "./LearnSection";
 import SourcesSection from "./SourcesSection";
+import WordsSection from "./WordsSection";
 import CheckSection from "./CheckSection";
 import TransferSection from "./TransferSection";
 import AroundSection from "./AroundSection";
@@ -22,6 +23,7 @@ import { isIdeaNode } from "@/lib/research-os/idea";
 const SECTIONS: { id: string; label: string; level: string }[] = [
   { id: "learn", label: "Learn", level: "understanding" },
   { id: "sources", label: "Sources", level: "awareness" },
+  { id: "words", label: "Languages", level: "awareness" },
   { id: "check", label: "Check", level: "understanding" },
   { id: "transfer", label: "Transfer", level: "internalization" },
   { id: "around", label: "Around", level: "awareness" },
@@ -31,13 +33,14 @@ const SECTIONS: { id: string; label: string; level: string }[] = [
   { id: "access", label: "Access", level: "access" },
 ];
 
+const WORD_KINDS = new Set(["concept", "law", "derivation"]);
+
 const EVIDENCE_LABEL: Record<string, string> = {
   open: "opened it", quote: "quoted a source", check: "checked an explanation", academy_mastery: "mastered it in Learn", transfer_item: "answered a transfer prompt",
   corroboration: "corroborated two sources", production_submitted: "submitted a production", production_returned: "had a production returned", teacher_review: "a teacher reviewed",
   explanation: "wrote an explanation",
 };
 
-/** The node page: one node, the person's standing on it, and every verb of the five levels in place. */
 export default function NodeView({ slug }: { slug: string }) {
   const { accessToken } = useSession();
   const [data, setData] = useState<NodeData | null>(null);
@@ -48,9 +51,6 @@ export default function NodeView({ slug }: { slug: string }) {
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/research-os/node?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
-      // The code is read before any setState, so no render happens
-      // with the status set and the code still null, which showed
-      // one frame of the permanent copy for a passing outage.
       const outageCode = res.ok ? null : await readErrorCode(res);
       setErrorCode(outageCode);
       setStatus(res.status);
@@ -72,9 +72,9 @@ export default function NodeView({ slug }: { slug: string }) {
   if (!data) return <ErrorState body="Could not open the node." retry={() => void load()} />;
 
   const { node, standing } = data;
-  // "Made of" is for ideas on the public graph, the nodes the decomposition covers.
   const provenanceType = typeof node.provenance?.type === "string" ? node.provenance.type : null;
   const showMakeup = node.visibility === "public" && isIdeaNode({ kind: node.kind, provenanceType });
+  const showWords = WORD_KINDS.has(node.kind);
   const last = standing.evidence.length ? standing.evidence[standing.evidence.length - 1] : null;
   const raisedBy = last ? `${EVIDENCE_LABEL[String(last.kind)] ?? String(last.kind)}${last.at ? ` · ${new Date(String(last.at)).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : ""}` : null;
 
@@ -112,7 +112,7 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <nav aria-label="Verbs" className="sticky top-[58px] z-20 -mx-4 md:mx-0 px-4 md:px-0 bg-[color:var(--bone)]/90 backdrop-blur-[2px] border-y border-[color:var(--hairline)]">
         <div className="flex gap-1 overflow-x-auto">
-          {SECTIONS.filter((s) => s.id !== "makeup" || showMakeup).map((s) => (
+          {SECTIONS.filter((s) => (s.id !== "makeup" || showMakeup) && (s.id !== "words" || showWords)).map((s) => (
             <a key={s.id} href={`#${s.id}`} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] border-b-2 border-transparent hover:border-[color:var(--gold)]">
               {s.label}
             </a>
@@ -122,6 +122,7 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <LearnSection data={data} />
       <SourcesSection data={data} quotes={quotes} onQuote={(q) => setQuotes((prev) => (prev.some((p) => p.citation === q.citation && p.quotable_span === q.quotable_span) ? prev : [...prev, q]))} onChanged={load} />
+      {showWords && <WordsSection nodeId={node.id} />}
       <CheckSection data={data} quotes={quotes} onChanged={load} />
       <TransferSection data={data} onChanged={load} />
       <AroundSection data={data} />

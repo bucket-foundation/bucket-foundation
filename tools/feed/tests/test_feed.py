@@ -1,4 +1,3 @@
-"""Tests for feed.py merge, idempotency, archives, atom."""
 from __future__ import annotations
 
 import json
@@ -18,7 +17,6 @@ FEED = REPO / "tools" / "feed" / "feed.py"
 sys.path.insert(0, str(FEED.parent))
 from feed import MAX_EVENTS  # noqa: E402
 
-
 def run_feed(cwd: Path, args: list[str], stdin: str = "") -> subprocess.CompletedProcess:
     env = os.environ.copy()
     env["BUCKET_FEED_ROOT"] = str(cwd)
@@ -26,7 +24,6 @@ def run_feed(cwd: Path, args: list[str], stdin: str = "") -> subprocess.Complete
         [sys.executable, str(FEED), *args],
         cwd=cwd, input=stdin, capture_output=True, text=True, env=env,
     )
-
 
 def ev(eid: str, ts: str, type_: str = "add_paper", **extra) -> dict:
     base = {
@@ -37,7 +34,6 @@ def ev(eid: str, ts: str, type_: str = "add_paper", **extra) -> dict:
     }
     base.update(extra)
     return base
-
 
 class FeedTests(unittest.TestCase):
     def setUp(self):
@@ -56,7 +52,6 @@ class FeedTests(unittest.TestCase):
         self.assertEqual(res.returncode, 0, res.stderr)
         data = json.loads((self.root / "feed.json").read_text())
         self.assertEqual(data["total_events"], 2)
-        # newest first
         self.assertEqual(data["events"][0]["id"], "b")
 
     def test_idempotent(self):
@@ -106,9 +101,7 @@ class FeedTests(unittest.TestCase):
         data = json.loads((self.root / "feed.json").read_text())
         self.assertEqual([e["id"] for e in data["events"]], ["new", "mid", "old"])
 
-
 def bulk_events(n: int, start: int = 0) -> list[dict]:
-    """n distinct events, one per hour starting 2026-01-01T00:00Z + start hours."""
     out = []
     for i in range(n):
         hour = start + i
@@ -116,14 +109,7 @@ def bulk_events(n: int, start: int = 0) -> list[dict]:
         out.append(ev(f"bulk-{start + i}", ts))
     return out
 
-
 class LedgerTests(unittest.TestCase):
-    """total_events, the window field, and retract/re-add semantics.
-
-    These pin down bkt-feed-02's counting rule: total_events counts the
-    full monthly ledger under feed/, never feed.json's own rolling
-    window, and can only grow as events are added.
-    """
 
     def setUp(self):
         self.root = Path(tempfile.mkdtemp(prefix="feedledger-"))
@@ -154,12 +140,6 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(len(data["events"]), 5)
 
     def test_total_events_never_drops_as_window_slides(self):
-        """Adding events past the window must never move total_events backward.
-
-        This is the exact regression from PR #55: total_events moved
-        222 -> 206 after adding events, because it was computed from
-        feed.json's own capped list instead of the ledger.
-        """
         seen_total = 0
         for batch in range(5):
             events = bulk_events(60, start=batch * 60)
@@ -171,12 +151,6 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(seen_total, 300)
 
     def test_total_events_survives_a_feed_json_only_checkout(self):
-        """The ledger under feed/ alone must reconstitute the true total.
-
-        Mirrors the real failure mode: a CI runner checks out a fresh
-        clone. If feed.json is missing but the tracked monthly ledger
-        is present, the next update must still report the full count.
-        """
         events = bulk_events(30)
         stdin = "\n".join(json.dumps(e) for e in events)
         run_feed(self.root, ["update"], stdin=stdin)
@@ -201,7 +175,6 @@ class LedgerTests(unittest.TestCase):
         data = self._feed()
         self.assertEqual(data["total_events"], 3)
         ids = {e["id"] for e in data["events"]}
-        # the retracted original is still on the ledger, never deleted
         self.assertEqual(ids, {"paper-a", "paper-a-retract", "paper-a-v2"})
         types = {e["id"]: e["type"] for e in data["events"]}
         self.assertEqual(types["paper-a-retract"], "retract")
@@ -216,13 +189,12 @@ class LedgerTests(unittest.TestCase):
         run_feed(self.root, ["update"], stdin=stdin)
 
         data = self._feed()
-        data["total_events"] = 5  # corrupt it, simulating the old drift bug
+        data["total_events"] = 5
         (self.root / "feed.json").write_text(json.dumps(data))
 
         res = run_feed(self.root, ["validate"])
         self.assertNotEqual(res.returncode, 0)
         self.assertIn("ledger count", res.stderr)
-
 
 if __name__ == "__main__":
     unittest.main()

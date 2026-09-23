@@ -1,20 +1,3 @@
-/**
- * Unit tests: the evidence-emission contract (bkt-ros ros-04, "workspace
- * hardening" item 1). Asserts src/lib/research-os/stages.ts's transition
- * functions close every gap src/lib/research-os/EVIDENCE-SCHEMA.md's
- * "Current schema against that plan" section lists: a before/after stage
- * pair on every event, the learner's own text and item id on a
- * transfer_item, the model's abstain flag/feedback/citations on a check,
- * a session id threading through every event, and the new
- * "production_returned" corrective event. Also covers
- * src/lib/research-os/rate-limit.ts's daily tool-call cap.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence.ts
- * (same invocation as scripts/test-research-os-routing.ts; no test
- * framework configured in this repo, node:test + node:assert is the
- * existing pattern.)
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -27,10 +10,6 @@ import {
   onTeacherReview,
 } from "../src/lib/research-os/stages";
 import { dailyKeyFor, recordAndCheck, dailyToolCap } from "../src/lib/research-os/rate-limit";
-
-// ---------------------------------------------------------------------------
-// fromStage/toStage on every transition (EVIDENCE-SCHEMA.md gap 1)
-// ---------------------------------------------------------------------------
 
 test("onNodeOpened: event carries fromStage/toStage, access -> awareness", () => {
   const t = onNodeOpened("access");
@@ -71,10 +50,6 @@ test("onProductionSubmitted: fromStage is the caller-supplied current stage, toS
   assert.equal(t.nextStage, "production");
 });
 
-// ---------------------------------------------------------------------------
-// Learner's own text + item id on transfer_item (gap 2)
-// ---------------------------------------------------------------------------
-
 test("onTransferItemAnswered: learnerText and itemId round-trip onto the event, stage never advances", () => {
   const t = onTransferItemAnswered("understanding", { learnerText: "sunsets scatter more red light", itemId: "sky-blue::sunset-1" });
   assert.equal(t.nextStage, "understanding");
@@ -91,10 +66,6 @@ test("onTransferItemAnswered: context is optional, an event with no context stil
   assert.equal(t.event.toStage, "understanding");
 });
 
-// ---------------------------------------------------------------------------
-// abstained persisted, model feedback/citations stored (gap 3)
-// ---------------------------------------------------------------------------
-
 test("onCheckResult: abstained is persisted on the event, not just used to decide the transition", () => {
   const t = onCheckResult(
     "awareness",
@@ -106,11 +77,6 @@ test("onCheckResult: abstained is persisted on the event, not just used to decid
   assert.equal(t.event.modelFeedback, "could not ground this");
   assert.deepEqual(t.event.citations, []);
 });
-
-// ---------------------------------------------------------------------------
-// Cognitive forcing on Check: learnerConfidence, sourcePrediction,
-// predictionCorrect, forcingEnabled (PLAN-REVISION-2.md section 2a)
-// ---------------------------------------------------------------------------
 
 test("onCheckResult: learnerConfidence, sourcePrediction, predictionCorrect, forcingEnabled all persist on the event", () => {
   const t = onCheckResult(
@@ -171,14 +137,7 @@ test("onProbeCheckResult: abstained, learnerText, modelFeedback, and citations a
   assert.equal(t.nextStage, "understanding");
 });
 
-// ---------------------------------------------------------------------------
-// Session grouping (gap 5)
-// ---------------------------------------------------------------------------
-
 test("every learner-authored transition function forwards sessionId onto its event when supplied", () => {
-  // onProductionReturned is teacher-authored (reviewerId/reason/reviewId,
-  // no EvidenceContext, no learner sitting to group), so it carries no
-  // sessionId at all; covered separately below.
   const sessionId = "session-abc";
   assert.equal(onNodeOpened("access", { sessionId }).event.sessionId, sessionId);
   assert.equal(onCheckResult("awareness", { result: "support", confidence: "high", abstained: false }, { sessionId }).event.sessionId, sessionId);
@@ -191,10 +150,6 @@ test("sessionId is undefined, not a placeholder string, when no context is suppl
   const t = onNodeOpened("access");
   assert.equal(t.event.sessionId, undefined);
 });
-
-// ---------------------------------------------------------------------------
-// The production_returned corrective event (gap 6)
-// ---------------------------------------------------------------------------
 
 test("onProductionReturned: fromStage and toStage are both production, stage never moves backward", () => {
   const t = onProductionReturned("reviewer-1", "missing a source for the second claim", "review-row-1");
@@ -213,10 +168,6 @@ test("onProductionReturned: reviewId and reason are optional", () => {
   assert.equal(t.event.note, undefined);
   assert.equal(t.event.reviewId, undefined);
 });
-
-// ---------------------------------------------------------------------------
-// Rate/cost guard: the daily tool-call cap (rate-limit.ts)
-// ---------------------------------------------------------------------------
 
 test("dailyToolCap: defaults to 200 when RESEARCH_OS_DAILY_TOOL_CAP is unset", () => {
   delete process.env.RESEARCH_OS_DAILY_TOOL_CAP;

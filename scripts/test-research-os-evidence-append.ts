@@ -1,16 +1,3 @@
-/**
- * graph.append_evidence against real Postgres: the contract file in one
- * rolled-back transaction, and two concurrent writers on one learner-node
- * row (ros-ai-access, learning/research-os/ai/IMPLEMENTATION.md, "Quote
- * contract").
- *
- * The concurrency case carries its own control: the read-modify-write shape
- * the RPC replaces loses an event under the same timing, so a fixture that
- * cannot see the bug fails here rather than passing quietly.
- *
- * Needs the local stack with this migration applied; with no database the
- * tests skip and say so.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
@@ -35,7 +22,6 @@ function sqlAsync(statement: string): Promise<{ status: number; out: string }> {
   });
 }
 
-/** The local stack's keys live in .env.local, which ts-node does not read. */
 function loadLocalEnv(): void {
   const file = path.join(__dirname, "..", ".env.local");
   if (!fs.existsSync(file)) return;
@@ -46,14 +32,10 @@ function loadLocalEnv(): void {
 }
 loadLocalEnv();
 
-// The connection is what these tests need. Probing for the function would
-// skip the fresh-apply replay on exactly the database it exists to cover.
 const probe = sql("select 1");
 const reachable = probe.status === 0 && probe.out === "1";
 const migrated = sql("select to_regprocedure('graph.append_evidence(uuid,uuid,text,jsonb,boolean)') is not null");
 
-// A skipped test reads as a pass. RESEARCH_OS_REQUIRE_DB=1 turns the skip
-// into a failure, which is how the database job in CI proves these ran.
 const REQUIRED = process.env.RESEARCH_OS_REQUIRE_DB === "1";
 if (REQUIRED && !reachable) {
   throw new Error(`RESEARCH_OS_REQUIRE_DB=1 and no database answered at ${DB}: ${probe.out}`);
@@ -66,15 +48,18 @@ const skip = reachable ? false : "no local database reachable";
 const skipApplied =
   !reachable ? "no local database reachable" : migrated.out === "t" ? false : "the evidence-append migration is not applied";
 
+const supabaseEnv = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+if (REQUIRED && !supabaseEnv) {
+  throw new Error("RESEARCH_OS_REQUIRE_DB=1 and NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is unset");
+}
+const skipSupabase = skipApplied || (supabaseEnv ? false : "no Supabase URL and service key in the environment or .env.local");
+
 test("the append contract holds in real Postgres", { skip: skipApplied }, () => {
   const file = path.join(__dirname, "..", "supabase", "tests", "research_os_evidence_append.sql");
   const run = spawnSync("psql", [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", file], { encoding: "utf8" });
   assert.equal(run.status, 0, run.stderr || run.stdout);
 });
 
-// A database migrated one statement at a time can hide an ordering fault,
-// since an earlier pass left the object a later statement needs. This
-// replays the migration over a dropped copy of everything it creates.
 test("the migration applies to a database that has never seen it", { skip }, () => {
   const root = path.join(__dirname, "..");
   const run = spawnSync(
@@ -106,8 +91,6 @@ test("two writers racing on one row keep both events", { skip: skipApplied }, as
          delete from auth.users where id = '${learner}';`);
   });
 
-  // A shared start time is a rendezvous two processes can keep, where a
-  // fixed sleep only overlaps when both shells start together.
   const startAt = new Date(Date.now() + 1200).toISOString();
   const appendAtStart = (kind: string) => sqlAsync(`
     begin;
@@ -129,9 +112,6 @@ test("two writers racing on one row keep both events", { skip: skipApplied }, as
                      where learner_id = '${learner}' and node_id = '${node}'`);
   assert.equal(kinds.out, "first,second", `both events are readable, got ${kinds.out}`);
 
-  // The control: the read-modify-write shape this RPC replaces, on the same
-  // new row and the same rendezvous, keeps one event. A fixture that cannot
-  // see that cannot prove the RPC fixed anything.
   sql(`delete from graph.learner_node_state where learner_id = '${learner}' and node_id = '${node}'`);
   const controlAt = new Date(Date.now() + 1200).toISOString();
   const readModifyWrite = (kind: string) => sqlAsync(`
@@ -155,7 +135,7 @@ test("two writers racing on one row keep both events", { skip: skipApplied }, as
   assert.equal(lost.out, "1", `the replaced shape loses an event on the same path, got ${lost.out}`);
 });
 
-test("a teacher override lowers the stage through overrideLevel", { skip: skipApplied }, async (t) => {
+test("a teacher override lowers the stage through overrideLevel", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -208,12 +188,6 @@ test("a teacher override lowers the stage through overrideLevel", { skip: skipAp
   assert.equal(events.out, "1", `the override appends one evidence event, got ${events.out}`);
 });
 
-// Every writer of the row, from the database's own catalog. A regex over
-// src/ cannot see a Postgres function, and graph.privacy_delete_learner is
-// one, so the invariant is stated where it can be checked: the application
-// writes through db.ts, and the functions that write the table are the ones
-// named here. graph.override_level is absent on purpose: it locks the row
-// and appends through append_evidence, so it writes no statement of its own.
 test("the writers of learner_node_state are the ones we know about", { skip: skipApplied }, () => {
   const functions = sql(`
     select string_agg(p.proname, ',' order by p.proname)
@@ -230,9 +204,6 @@ test("the writers of learner_node_state are the ones we know about", { skip: ski
     `an unknown function writes learner_node_state: ${functions.out}`,
   );
 
-  // The application writes through the functions above. A PostgREST chain
-  // that names the table and then writes is read statement by statement, so
-  // a file that only reads it, or writes another table, is not flagged.
   const offenders: string[] = [];
   const walk = (dir: string): void => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -252,9 +223,6 @@ test("the writers of learner_node_state are the ones we know about", { skip: ski
   walk(path.join(__dirname, "..", "src"));
   assert.deepEqual(offenders, [], `these write learner_node_state directly: ${offenders.join(", ")}`);
 
-  // The scan above is advisory: a table name held in a variable or a write
-  // from outside src/ would pass it. The grant is what enforces the
-  // invariant, so it is asserted here.
   const writes = sql(`
     select string_agg(priv, ',' order by priv) from (
       select unnest(array['INSERT','UPDATE','DELETE','TRUNCATE','TRIGGER','REFERENCES']) as priv
@@ -279,7 +247,7 @@ test("the writers of learner_node_state are the ones we know about", { skip: ski
   );
 });
 
-test("a same-stage event keeps a streak alive and awards nothing", { skip: skipApplied }, async (t) => {
+test("a same-stage event keeps a streak alive and awards nothing", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const node = randomUUID();
 
@@ -317,7 +285,7 @@ test("a same-stage event keeps a streak alive and awards nothing", { skip: skipA
   assert.notEqual(day, "2020-01-01", `the day the learner was last active moves, got ${day}`);
 });
 
-test("a demote and a re-promote award no XP twice", { skip: skipApplied }, async (t) => {
+test("a demote and a re-promote award no XP twice", { skip: skipSupabase }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -401,8 +369,6 @@ test("a failed audit row leaves the stage where it was", { skip: skipApplied }, 
          delete from auth.users where id in ('${learner}', '${teacher}');`);
   });
 
-  // The audit insert fails on its class foreign key, which is the failure
-  // that used to leave a committed demotion with nothing to explain it.
   const attempt = sql(`select graph.override_level('${learner}', '${node}', '${teacher}', '${missingClass}', 'awareness', 'no such class')`);
   assert.notEqual(attempt.status, 0, "an unknown class refuses the override");
 
@@ -417,19 +383,10 @@ test("a failed audit row leaves the stage where it was", { skip: skipApplied }, 
   assert.equal(audits.out, "0", `no audit row was written, got ${audits.out}`);
 });
 
-// The route calls graph.review_production through PostgREST, so the
-// argument names are a contract between TypeScript and SQL. A rename on
-// either side passes every psql test and fails in production.
-test("review_production accepts the route's own argument object", { skip: skipApplied }, async (t) => {
+test("review_production accepts the route's own argument object", { skip: skipSupabase }, async (t) => {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    if (REQUIRED) {
-      throw new Error("RESEARCH_OS_REQUIRE_DB=1 and .env.local carries no Supabase URL and service key");
-    }
-    t.skip("no local Supabase URL and service key in .env.local");
-    return;
-  }
+  if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
 
   const learner = randomUUID();
   const teacher = randomUUID();
@@ -457,7 +414,6 @@ test("review_production accepts the route's own argument object", { skip: skipAp
          delete from auth.users where id in ('${learner}', '${teacher}');`);
   });
 
-  // The same keys the route sends, in the same shape.
   const args = {
     p_production: production,
     p_review_id: reviewId,

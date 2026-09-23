@@ -1,21 +1,3 @@
-/**
- * /api/research-os/node-proposals, the missing-prime review (ros-prime 2,
- * learning/research-os/PRIMES.md "Slice 2"). Backs graph.node_proposals,
- * filled by scripts/research-os/decompose-further.ts. The work lives in
- * src/lib/research-os/inference/review-actions.ts.
- *
- * GET  -> { branches, proposals }: every pending row, the most-named first,
- *   with each naming node's title and reason, the aliases merged into it,
- *   the existing nodes it may duplicate, and the branch approval would use.
- *
- * POST { id, decision: "approved" | "rejected", reason?, title?, summary?, branch? }
- *   Approving creates the concept node with the reviewer's title, summary,
- *   and branch (defaults from the proposal), at the lowest grade tier among
- *   the naming nodes, and queues an unchecked proposal from it to each of
- *   them. A decided proposal returns alreadyDecided and writes nothing.
- *
- * Auth and status codes match /api/research-os/edges.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";

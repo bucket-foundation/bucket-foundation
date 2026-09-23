@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-proof.py, end-to-end demonstration of all five Polingual query axes on the
-real 45k-word photon substrate. Prints a short report + per-axis examples and
-measures query latency. Run: python3 scripts/photon/proof.py
-"""
 from __future__ import annotations
 
 import os
@@ -13,12 +8,10 @@ import time
 sys.path.insert(0, os.path.dirname(__file__))
 import query as Q  # noqa: E402
 
-
 def hr(t):
     print("\n" + "=" * 72)
     print(t)
     print("=" * 72)
-
 
 def show(res, limit=6):
     if "error" in res:
@@ -30,9 +23,8 @@ def show(res, limit=6):
         print(f"  {sc:>6}  {r['lang']:<3} {r['surface']:<22} {ipa:<18} "
               f"{(r['meaning_en'] or '')[:38]}")
 
-
 def main():
-    ix = Q.idx()  # warm the index
+    ix = Q.idx()
     hr("PHOTON SUBSTRATE — Polingual multi-axis query proof")
     print(f"rows: {ix.n}   "
           f"semantic vecs: {sum(1 for r in ix.sem_row if r is not None)}   "
@@ -41,9 +33,6 @@ def main():
 
     timings = []
 
-    # ---- EXPLORER QUALITY PROOF (bkt-nhy) ----
-    # The fix: headword = queried language + PRIMARY/core sense; neighbors =
-    # sense-consistent cross-lingual translations (NOT the dietary/weight/high mix).
     hr("EXPLORER QUALITY — headword (lang-priority + primary sense) + clean neighbors")
     for w in ["light", "water", "love", "free"]:
         t = time.time(); res = Q.semantic_topk(w, "en", k=8); dt = (time.time()-t)*1000
@@ -55,7 +44,6 @@ def main():
         print(f"    MEANS THE SAME: " +
               ", ".join(f"{r['lang']}:{r['surface']}" for r in res.get("results", [])))
 
-    # ---- SEMANTIC (cross-lingual) ----
     hr("AXIS 1 — SEMANTIC neighbors (cross-lingual, by meaning)")
     for w, lg in [("love", "en"), ("book", "en"), ("free", "en")]:
         t = time.time(); res = Q.semantic_topk(w, lg, k=8); dt = (time.time()-t)*1000
@@ -63,7 +51,6 @@ def main():
         print(f"\n  semantic_topk({w!r}, {lg!r})   [{dt:.1f} ms]")
         show(res)
 
-    # ---- PHONETIC ----
     hr("AXIS 2 — PHONETIC neighbors (by sound, language-agnostic)")
     for w, lg in [("night", "en"), ("star", "en"), ("liber", "la")]:
         t = time.time(); res = Q.phonetic_topk(w, lg, k=8); dt = (time.time()-t)*1000
@@ -71,7 +58,6 @@ def main():
         print(f"\n  phonetic_topk({w!r}, {lg!r})   [{dt:.1f} ms]")
         show(res)
 
-    # ---- SPELLING ----
     hr("AXIS 3 — SPELLING neighbors (normalized edit distance)")
     for w, lg in [("encyclopedia", "en"), ("night", "en")]:
         t = time.time(); res = Q.spelling_topk(w, lg, k=8); dt = (time.time()-t)*1000
@@ -79,7 +65,6 @@ def main():
         print(f"\n  spelling_topk({w!r}, {lg!r})   [{dt:.1f} ms]")
         show(res)
 
-    # ---- ETYMOLOGY ----
     hr("AXIS 4 — ETYMOLOGY (Wiktionary/Kaikki, CC-BY-SA)")
     for w, lg in [("liber", "la"), ("stella", "la"), ("star", "en")]:
         t = time.time(); res = Q.etymology(w, lg); dt = (time.time()-t)*1000
@@ -88,7 +73,6 @@ def main():
         print(f"\n  etymology({w!r}, {lg!r})   [{dt:.0f} ms]")
         print(f"    {et if et else '(' + str(res.get('error') or 'no etymology') + ')'}")
 
-    # ---- TRANSLATE ----
     hr("AXIS 5 — TRANSLATE (cross-lingual: same meaning + semantic neighbors)")
     for w, frm, to in [("love", "en", "es"), ("book", "en", "fr"), ("free", "en", "de")]:
         t = time.time(); res = Q.translate(w, frm, to, k=6); dt = (time.time()-t)*1000
@@ -108,7 +92,6 @@ def main():
           f"max {max(vec_axes):.1f}  mean {sum(vec_axes)/len(vec_axes):.1f}")
     print("  (semantic/phonetic = brute-force numpy matmul over 45k rows;")
     print("   spelling = full edit-distance scan; etymology = streamed JSONL grep)")
-
 
 if __name__ == "__main__":
     main()

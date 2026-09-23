@@ -1,8 +1,3 @@
-// /excerpts, source excerpts by concept: passages from talks and podcasts,
-// each with its video and timestamp. They sat at /canon/claims until the
-// founder's decision of 2026-09-21 moved them out of canon.
-// Build-time render. Filesystem is the CMS.
-
 import Link from "next/link";
 import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
 

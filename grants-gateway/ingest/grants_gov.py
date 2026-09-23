@@ -1,16 +1,3 @@
-"""grants.gov ingestor.
-
-Uses the public search2 JSON endpoint (the same one grants.gov's website
-uses). No auth, no API key. Free. Rate-limited politely (1 req / 0.4s).
-
-Pulls all currently posted + forecasted opportunities (a few thousand
-records). Each one is then enriched with the detail endpoint to grab
-the synopsis text + eligibility + amount fields.
-
-For volume-control we fetch the list pages, then enrich up to
-DETAIL_BUDGET records per run (default 1500). Re-runs upsert and pick
-up new opps idempotently.
-"""
 from __future__ import annotations
 
 import time
@@ -28,16 +15,13 @@ DETAIL_BUDGET  = 500
 SLEEP_LIST     = 0.3
 SLEEP_DETAIL   = 0.15
 
-
 def _fmt_date(s: str | None) -> str | None:
     if not s:
         return None
-    # grants.gov returns "MM/DD/YYYY"
     try:
         return datetime.strptime(s, "%m/%d/%Y").date().isoformat()
     except Exception:
         return None
-
 
 def _list_page(start: int) -> dict:
     body = {
@@ -48,14 +32,12 @@ def _list_page(start: int) -> dict:
     }
     return post_json(LIST_URL, body, timeout=60).get("data", {})
 
-
 def _detail(opp_id: str) -> dict:
     body = {"opportunityId": int(opp_id)}
     try:
         return post_json(DETAIL_URL, body, timeout=60).get("data", {}) or {}
     except Exception:
         return {}
-
 
 def _to_grant(opp: dict, detail: dict) -> dict:
     syn = detail.get("synopsis") or {}
@@ -99,7 +81,6 @@ def _to_grant(opp: dict, detail: dict) -> dict:
         "canonical_url": canon,
         "last_seen_at": now_iso(),
     }
-
 
 def fetch(detail_budget: int = DETAIL_BUDGET) -> Iterable[dict]:
     start = 1

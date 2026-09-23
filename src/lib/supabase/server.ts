@@ -1,8 +1,3 @@
-/**
- * Server-side Supabase clients bound to the request's cookies. One session
- * for the whole site: middleware refreshes it, server components and route
- * handlers read it, and the browser client in ./browser writes it.
- */
 import { cookies } from "next/headers";
 import type { NextRequest, NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
@@ -15,7 +10,6 @@ export function authConfigured(): boolean {
   return Boolean(URL && ANON);
 }
 
-/** For server components and route handlers: reads the session from the request cookies. */
 export function getServerSupabase(): SupabaseClient {
   const store = cookies();
   return createServerClient(URL as string, ANON as string, {
@@ -27,21 +21,18 @@ export function getServerSupabase(): SupabaseClient {
         try {
           store.set({ name, value, ...options });
         } catch {
-          // Server components cannot write cookies; middleware refreshes them.
         }
       },
       remove(name: string, options: CookieOptions) {
         try {
           store.set({ name, value: "", ...options });
         } catch {
-          // Same as above.
         }
       },
     },
   });
 }
 
-/** For a route handler that received a NextRequest: reads the session from that request's cookies. */
 export function getRequestSupabase(req: NextRequest): SupabaseClient {
   return createServerClient(URL as string, ANON as string, {
     cookies: {
@@ -49,14 +40,12 @@ export function getRequestSupabase(req: NextRequest): SupabaseClient {
         return req.cookies.get(name)?.value;
       },
       set() {
-        // Route handlers do not refresh cookies; middleware does.
       },
       remove() {},
     },
   });
 }
 
-/** For middleware: reads from the request and writes refreshed cookies onto the response. */
 export function getMiddlewareSupabase(req: NextRequest, res: NextResponse): SupabaseClient {
   return createServerClient(URL as string, ANON as string, {
     cookies: {
@@ -80,11 +69,6 @@ export interface SessionUser {
   email: string | null;
 }
 
-/**
- * The signed-in person for the current server request, or null. Uses
- * getUser (verified against gotrue) rather than getSession (cookie contents
- * only), so a forged cookie never becomes a user.
- */
 export async function getSessionUser(): Promise<SessionUser | null> {
   if (!authConfigured()) return null;
   try {

@@ -1,20 +1,5 @@
-/**
- * The import upload route (ros-import 2).
- *
- * `POST { action: "attach" }` records one uploaded file against an import
- * the caller owns. The browser hashes the file, uploads it to
- * `<owner>/<sha256>` under its own session, and calls this; the route
- * reads the object back, hashes it, and writes the row when the bytes
- * are the ones the path names. Nothing here uploads, and nothing trusts
- * the client's hash.
- *
- * `GET ?import=<id>` lists the files of an import the caller owns.
- *
- * The import itself is created by `/api/research-os/access` with
- * `{ action: "import" }`, which writes the private node beside it.
- */
 import { NextRequest, NextResponse } from "next/server";
-import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { validateImportFile, MAX_IMPORT_BYTES } from "@/lib/research-os/import-storage";
 import { detectType, validateFilename } from "@/lib/research-os/import-types";
@@ -31,8 +16,16 @@ async function caller(req: NextRequest): Promise<{ ok: true; learnerId: string }
   const learnerId = await verifyLearner(req);
   if (!learnerId) return { ok: false, res: answer(401, { error: "unauthorized", message: "Sign in to import a file." }) };
   const consent = await requireConsent(learnerId, "workspace_tool");
-  if (!consent.allowed) return { ok: false, res: answer(403, consentBlockedBody(consent) as unknown as Record<string, unknown>) };
+  if (!consent.allowed) {
+    const refusal = consentRefusal(consent);
+    return { ok: false, res: answer(refusal.status, refusal.body as unknown as Record<string, unknown>) };
+  }
   return { ok: true, learnerId };
+}
+
+function graphUnavailable(e: unknown): NextResponse {
+  console.error("[research-os/import] graph read failed:", e instanceof Error ? e.message : String(e));
+  return answer(503, { error: "graph_unavailable", message: "The graph could not be read." });
 }
 
 export async function GET(req: NextRequest) {
@@ -46,7 +39,7 @@ export async function GET(req: NextRequest) {
     const files = await listImportFiles(graphService(), importId);
     return answer(200, { importId, files: files.map(shape) });
   } catch (e) {
-    return answer(503, { error: "graph_unavailable", message: e instanceof Error ? e.message : "The graph could not be read." });
+    return graphUnavailable(e);
   }
 }
 
@@ -135,6 +128,6 @@ export async function POST(req: NextRequest) {
       nodeSlug: imp.nodeSlug,
     });
   } catch (e) {
-    return answer(503, { error: "graph_unavailable", message: e instanceof Error ? e.message : "The graph could not be read." });
+    return graphUnavailable(e);
   }
 }

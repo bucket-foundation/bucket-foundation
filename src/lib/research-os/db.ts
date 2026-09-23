@@ -1,14 +1,3 @@
-/**
- * Research OS for K-12, Phase 0, server-only DB access (bkt-ros).
- * Same shape as /api/academy/progress (src/app/api/academy/progress/route.ts):
- * the `graph` schema is private, outside the shared PostgREST's
- * PGRST_DB_SCHEMAS allow-list, so every API route under /api/research-os/*
- * verifies the caller's Supabase access token with the public anon key, then
- * uses a server-only service-role client to read/write ONLY that verified
- * user's rows. The service-role key bypasses RLS; the per-user boundary is
- * enforced here, in application code, with the migration's RLS policies as
- * defense in depth. Never import this module from a client component.
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import { verifyRequestUser } from "../auth/verify";
@@ -17,9 +6,8 @@ import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductio
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 import { applyTransition, type Badge, type GameState } from "./game";
-// A visibility this code cannot read is private. `?? "public"` said the
-// opposite, in the one function whose result the access filter reads.
 import { readVisibility } from "./access";
+import { IN_CHUNK, inChunks, pagedRead } from "./paging";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -30,12 +18,6 @@ export function configured(): boolean {
 }
 
 let _svc: SupabaseClient | null = null;
-/** Service-role client bound to the private `graph` schema (memoized).
- * createClient narrows its type from the `db.schema` option to a schema name
- * that isn't in the (untyped) Database generic, so we erase the generics
- * back to the default SupabaseClient shape (same fix as
- * /api/academy/progress's `service()`); table/column names are plain
- * strings here, so nothing downstream needs the narrowed schema type. */
 export function graphService(): SupabaseClient {
   if (_svc) return _svc;
   _svc = createClient(SUPABASE_URL as string, SERVICE_ROLE_KEY as string, {
@@ -46,16 +28,6 @@ export function graphService(): SupabaseClient {
 }
 
 let _pub: SupabaseClient | null = null;
-/**
- * Service-role client bound to the default `public` schema (memoized),
- * distinct from `graphService()`'s private `graph` schema. Engine bridge
- * task item 3's `research_os_productions_outbox` table lives in `public` on
- * purpose: `hte.corpus.production.load_supabase` reads a Supabase table over
- * plain PostgREST with no `Accept-Profile` header, so only the schema
- * PostgREST serves by default is reachable from the engine's own Python
- * loader without a code change there. See learning/research-os/ENGINE-
- * BRIDGE.md, "Why the outbox lives in `public`."
- */
 export function publicService(): SupabaseClient {
   if (_pub) return _pub;
   _pub = createClient(SUPABASE_URL as string, SERVICE_ROLE_KEY as string, {
@@ -69,23 +41,15 @@ export interface VerifiedIdentity {
   email: string | null;
 }
 
-/**
- * Verify the caller (Bearer token or the site cookie session, see
- * src/lib/auth/verify.ts) and return their id + email, or null. Shared by
- * verifyLearner below and reviewer.ts's verifyReviewer, which additionally
- * checks the email against its allowlist.
- */
 async function verifyToken(req: NextRequest): Promise<VerifiedIdentity | null> {
   return verifyRequestUser(req);
 }
 
-/** Verify the caller's token and return their user id, or null. */
 export async function verifyLearner(req: NextRequest): Promise<string | null> {
   const identity = await verifyToken(req);
   return identity?.id ?? null;
 }
 
-/** Verify the caller's token and return their full identity (id + email), or null. */
 export async function verifyLearnerIdentity(req: NextRequest): Promise<VerifiedIdentity | null> {
   return verifyToken(req);
 }
@@ -106,11 +70,6 @@ interface NodeRow {
   frontier_flag?: string | null;
 }
 
-/** graph.nodes.worked_example -> GraphNode.workedExample (bkt-ros ros-14).
- * A malformed or partial row (missing `text` or `source`) is treated as
- * absent rather than surfaced half-built: every reader of `workedExample`
- * downstream (the workspace UI, grounding.ts's guidance pointer) can
- * assume a present value is always both fields, never one alone. */
 function toWorkedExample(raw: NodeRow["worked_example"]): { text: string; source: string } | undefined {
   if (!raw || typeof raw.text !== "string" || typeof raw.source !== "string" || !raw.text.trim() || !raw.source.trim()) return undefined;
   return { text: raw.text, source: raw.source };
@@ -131,97 +90,10 @@ interface StateRow {
   updated_at: string;
 }
 
-/** Every node + prerequisite/derivation/citation/canon edge in one branch (Phase 0: '02-physics'). */
-/**
- * Two different limits bite on a read filtered by a list of ids.
- *
- * PostgREST filters travel in the URL, and a long `in (...)` list fails
- * with "URI too long", so the ids are chunked at IN_CHUNK. PostgREST also
- * stops at PAGE rows per request, which the chunking says nothing about:
- * 60 node ids on a dense branch overflow a thousand edges without an
- * error, and the caller reads the truncation as the whole answer. The
- * page loop closes that (Bucket critic C42).
- *
- * The callback takes the page and must apply both `.range(page.from,
- * page.to)` and an `.order()`. Postgres gives no stable row order across
- * LIMIT/OFFSET without one, so an unordered page can repeat a row and
- * skip another.
- */
-export const IN_CHUNK = 60;
-export const PAGE = 1000;
-/**
- * A callback that forgets `.range()` answers the same full page forever,
- * so the loop would spin rather than truncate. This turns that mistake
- * into a loud failure at 200,000 rows.
- */
-export const MAX_PAGES = 200;
+export { IN_CHUNK, MAX_PAGES, PAGE, PagingError, inChunks, pagedRead, type ChunkPage } from "./paging";
 
-export class PagingError extends Error {
-  constructor(what: string) {
-    super(`${what}: a paged read did not terminate after ${MAX_PAGES} pages. The callback must apply .range(page.from, page.to).`);
-    this.name = "PagingError";
-    // Downlevelled `extends Error` loses the prototype chain, so
-    // `instanceof PagingError` answers false without this.
-    Object.setPrototypeOf(this, PagingError.prototype);
-  }
-}
-
-export interface ChunkPage {
-  from: number;
-  to: number;
-}
-
-/**
- * One read, paged. For a query with no id list to chunk: the row cap
- * still applies, so a learner past a thousand rows loses the remainder
- * with no error (Bucket critic C45). The callback applies
- * `.range(page.from, page.to)` and an `.order()`.
- */
-export async function pagedRead<T>(
-  run: (page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
-): Promise<T[]> {
-  const out: T[] = [];
-  for (let p = 0; ; p += 1) {
-    if (p >= MAX_PAGES) throw new PagingError("pagedRead");
-    const { data, error } = await run({ from: p * PAGE, to: p * PAGE + PAGE - 1 });
-    if (error) throw new Error(error.message);
-    const page = data || [];
-    out.push(...page);
-    if (page.length < PAGE) break;
-  }
-  return out;
-}
-
-export async function inChunks<T>(
-  ids: string[],
-  run: (chunk: string[], page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
-): Promise<T[]> {
-  const out: T[] = [];
-  for (let i = 0; i < ids.length; i += IN_CHUNK) {
-    const chunk = ids.slice(i, i + IN_CHUNK);
-    for (let p = 0; ; p += 1) {
-      if (p >= MAX_PAGES) throw new PagingError("inChunks");
-      const { data, error } = await run(chunk, { from: p * PAGE, to: p * PAGE + PAGE - 1 });
-      if (error) throw new Error(error.message);
-      const page = data || [];
-      out.push(...page);
-      if (page.length < PAGE) break;
-    }
-  }
-  return out;
-}
-
-/**
- * A branch's nodes and the edges leaving them. With `externalFactors`, also
- * what the branch rests on in other branches (learning/research-os/
- * PRIMES.md): every prereq_ancestor ancestor outside the branch, every
- * derives_from factor outside it, the prerequisite edges coming in, and the
- * edges among those nodes, so a node page shows a cross-branch factor and
- * routing can walk into another branch.
- */
 export async function loadSubgraph(branch: string, opts: { externalFactors?: boolean } = {}): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
   const svc = graphService();
-  // PostgREST pages at 1,000 rows; a branch can hold more.
   const nodeRows: NodeRow[] = [];
   for (let from = 0; ; from += 1000) {
     const { data, error: nodeErr } = await svc
@@ -283,7 +155,6 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
 const NODE_COLUMNS = "id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag";
 const EDGE_COLUMNS = "id,from_id,to_id,kind,weight,confidence,confidence_source";
 
-/** Mutates `nodes` and `edgeRows`: adds the branch's factors from other branches and the edges among them. */
 export async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
   const inBranch = new Set(branchIds);
   const external = new Set<string>();
@@ -347,20 +218,8 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
   }));
 }
 
-/**
- * The learner's current stage on one node, or "access" when no row exists
- * yet (the same "no record as access" default every route already applies
- * inline; centralized here, bkt-ros ros-04, so a transition that needs
- * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
- * it the same way state/route.ts and workspace/route.ts already do).
- */
 export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage | null> {
   const svc = graphService();
-  // null when the read failed. No row is a real "access", and a failure
-  // is not: answering "access" for both sent an internalization-tier
-  // submission past requiresCounterEvidence, wrote
-  // counter_evidence_required: false into the row, and recorded an
-  // evidence event claiming the learner moved from a stage nothing read.
   const { data, error } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
   if (error) {
     console.error("[research-os/db] learner_node_state read failed:", error.message);
@@ -369,23 +228,12 @@ export async function loadCurrentStage(learnerId: string, nodeId: string): Promi
   return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 
-/**
- * Same query as loadLearnerStates, batched over every learner in one class
- * grid load (bkt-ros, ros-06 item 2) instead of one round trip per
- * learner. Grouped by learner id; a learner with no rows at all gets no
- * map entry (src/lib/research-os/class-view.ts's own functions already
- * treat "no entry" the same as "no record" for a given node).
- */
 export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: string[]): Promise<Map<string, LearnerNodeState[]>> {
   const out = new Map<string, LearnerNodeState[]>();
   if (learnerIds.length === 0 || nodeIds.length === 0) return out;
   const svc = graphService();
   let data: (StateRow & { learner_id: string })[];
   try {
-    // Both lists are chunked. Taking the first IN_CHUNK learners dropped
-    // everyone past sixty out of the teacher grid with no total to
-    // compare against, which is the defect fixed one file over in
-    // /graph's heatmap and left here (Bucket critic C72).
     data = [];
     for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
       const learners = learnerIds.slice(i, i + IN_CHUNK);
@@ -411,21 +259,6 @@ export interface ClassRow {
   createdAt: string;
 }
 
-/**
- * Every graph.classes row a reviewer owns (bkt-ros, ros-06 item 2), scoped
- * server-side to the verified reviewer identity (never a client-supplied
- * value) -- the "server check" half of "RLS plus server check" the class
- * route's own header names, matching the ownership check
- * /api/research-os/production's POST already performs against
- * `learner_id` the same way. Case-insensitive against reviewer_email,
- * matching reviewer.ts's own allowlist comparison. Filtered in application
- * code rather than a SQL `ILIKE`: a verified email can contain `_` or `%`,
- * both ILIKE wildcards, so building a pattern from it risks matching more
- * than the exact address. graph.classes is a small, Phase-1-scale table
- * (a handful of rows per reviewer), so reading all rows and filtering in
- * JS costs nothing today and stays correct regardless of what characters
- * an email contains.
- */
 interface RawClassRow {
   id: string;
   name: string;
@@ -433,14 +266,6 @@ interface RawClassRow {
   created_at: string;
 }
 
-/**
- * The scoping decision alone, no I/O -- split out from loadClassesForReviewer
- * so the "a reviewer for class A never sees class B" guarantee is
- * unit-testable with no network call (scripts/test-research-os-teacher-class.ts,
- * "class scoping"), the same reason isReviewerEmail was split out of
- * verifyReviewer. Case-insensitive, matching reviewer.ts's own allowlist
- * comparison.
- */
 export function filterClassesForReviewer(rows: RawClassRow[], reviewerEmail: string): ClassRow[] {
   const wanted = reviewerEmail.trim().toLowerCase();
   return rows
@@ -455,15 +280,6 @@ export async function loadClassesForReviewer(reviewerEmail: string): Promise<Cla
   return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
 }
 
-/**
- * Every "quote"-kind evidence entry across every node this learner holds a
- * state row for (bkt-ros, production guard bead, task item 1). One
- * learner_node_state row per node, so this is one query over the
- * learner's whole graph rather than a per-node fetch; a Phase 0-scale
- * learner holds at most a few dozen rows. src/lib/research-os/
- * production-guard.ts's checkSourceProvenance is the pure function that
- * reads this list; this function only assembles it.
- */
 export interface QuoteEvidenceRecord {
   nodeId: string;
   locator: string;
@@ -490,13 +306,6 @@ export interface ClaimCandidateRow {
   claim: string;
 }
 
-/**
- * This learner's own prior Production claims, every status, excluding
- * `excludeId` (the production being submitted right now, on a resubmit)
- * -- production guard, task item 2's first duplicate-detection
- * population, "this learner's prior Productions." A row with a blank or
- * null claim is dropped: there is nothing to compare tokens against.
- */
 export async function loadOwnPriorClaims(learnerId: string, excludeId?: string): Promise<ClaimCandidateRow[]> {
   const svc = graphService();
   let q = svc.from("productions").select("id,claim").eq("learner_id", learnerId);
@@ -508,17 +317,6 @@ export async function loadOwnPriorClaims(learnerId: string, excludeId?: string):
     .map((r) => ({ id: r.id, claim: r.claim as string }));
 }
 
-/**
- * Every OTHER learner's accepted Production claims, scoped to a class
- * this learner shares with them -- production guard, task item 2's
- * second duplicate-detection population, "other learners' accepted
- * Productions in the same class." Reuses `class_members` the same way
- * `loadClassMembers` above already does (own class ids, then every
- * member of those classes); a learner in no class at all gets an empty
- * list rather than a query error, matching this bead's "never blocks
- * submission" posture -- a missing roster is not a reason to skip
- * duplicate detection for the populations that ARE available.
- */
 export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<ClaimCandidateRow[]> {
   const svc = graphService();
   const { data: memberships, error: memErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
@@ -550,7 +348,6 @@ export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<Cl
     .map((r) => ({ id: r.id, claim: r.claim as string }));
 }
 
-/** Every graph.class_members row for the given classes, as classId -> learnerIds. */
 export async function loadClassMembers(classIds: string[]): Promise<Map<string, string[]>> {
   const out = new Map<string, string[]>();
   if (classIds.length === 0) return out;
@@ -570,21 +367,6 @@ export async function loadClassMembers(classIds: string[]): Promise<Map<string, 
   return out;
 }
 
-/**
- * The per-class Check cognitive-forcing override (bkt-ros, PLAN-REVISION-2.md
- * section 2a; `graph.classes.forcing_enabled`, migration
- * 20260910060000_research_os_forcing.sql). Returns `null` on "no override
- * on file", which is also what a learner in no class, or any query
- * failure, returns: `src/lib/research-os/forcing.ts`'s
- * resolveForcingEnabled reads `null` as "defer to the
- * RESEARCH_OS_FORCING_ENABLED env default," the same fail-open posture
- * loadAncestorRows uses above, so this optional lookup can never break a
- * Check call, including in an environment where this migration has not
- * run yet. A learner in more than one class (not a shape the manual seed
- * or the roster sync produces today) reads the first class row with a
- * non-null override; Phase 1's pilot assigns one class per arm, so this is
- * documented rather than enforced.
- */
 export async function loadForcingEnabledForLearner(learnerId: string): Promise<boolean | null> {
   try {
     const svc = graphService();
@@ -600,18 +382,6 @@ export async function loadForcingEnabledForLearner(learnerId: string): Promise<b
   }
 }
 
-/**
- * The per-class lateral-reading second-source override (bkt-ros,
- * PLAN-REVISION-3.md section 2c; `graph.classes.second_source_required`,
- * migration 20260910080001_research_os_lateral_reading.sql). Same shape
- * and same fail-open posture as loadForcingEnabledForLearner right above:
- * `null` on "no override on file", on a learner in no class, or on any
- * query failure, all three of which `src/lib/research-os/lateral-
- * reading.ts`'s resolveSecondSourceRequired reads as "defer to the
- * RESEARCH_OS_SECOND_SOURCE_REQUIRED env default," so this optional
- * lookup can never break a Check call, including in an environment where
- * this migration has not run yet.
- */
 export async function loadSecondSourceRequiredForLearner(learnerId: string): Promise<boolean | null> {
   try {
     const svc = graphService();
@@ -627,15 +397,6 @@ export async function loadSecondSourceRequiredForLearner(learnerId: string): Pro
   }
 }
 
-/**
- * Every "corroboration"-kind evidence entry across every node this
- * learner holds a state row for (bkt-ros, PLAN-REVISION-3.md section 2c;
- * production-guard.ts's lateralReadingFlag is the pure function that
- * reads this list, the same "assemble here, decide in production-
- * guard.ts" split loadLearnerQuoteEvidence right above already keeps for
- * "quote"-kind events). One learner_node_state row per node, so this is
- * one query over the learner's whole graph rather than a per-node fetch.
- */
 export interface CorroborationEvidenceRecord {
   firstSourceId: string;
   secondSourceId: string;
@@ -672,14 +433,6 @@ interface AncestorRow {
   min_confidence: number;
 }
 
-/**
- * Every graph.prereq_ancestor row for `targetId` (bkt-ros, Phase 1 item 1).
- * Fails open to an empty array on any read error (missing table on a
- * fresh environment that has not run scripts/rebuild-prereq-ancestor.ts
- * yet, a network blip, etc.) instead of throwing, matching the
- * migration's documented fallback: an empty result makes
- * frontier.ts's computeFrontier fall back to its original full-graph walk.
- */
 export async function loadAncestorRows(targetId: string): Promise<PrereqAncestorRow[]> {
   const svc = graphService();
   try {
@@ -699,17 +452,6 @@ export async function loadAncestorRows(targetId: string): Promise<PrereqAncestor
   }
 }
 
-/**
- * Upsert a low-confidence-edge flag for one (edge, learner) pair (bkt-ros
- * ros-03 item 3: "low-confidence edges on a returned chain are written to a
- * graph.edge_flags table ... so ros-06's class view can surface them").
- * `onConflict: "edge_id,learner_id"` plus `ignoreDuplicates` makes a repeat
- * route call for the same learner over the same weak edge a no-op rather
- * than a growing row-per-request log: `created_at` records when the flag
- * was FIRST raised. Flags with no `edgeId` (a fixture edge, never a live
- * database row) are silently skipped rather than erroring: there is
- * nothing in graph.edges for them to reference.
- */
 export async function writeEdgeFlags(
   learnerId: string,
   targetNodeId: string,
@@ -770,31 +512,17 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
   };
 }
 
-/** Append one evidence event and, if `nextStage` differs, raise `stage`. Upserts the row if absent. */
-/** What the append left behind, for a caller that has to report durability. */
 export interface EvidenceAppend {
-  /** The stage the row held when the append locked it, null when this call created it. */
   priorStage: Stage | null;
-  /** The stage the row holds now. */
   stage: Stage;
-  /** True when this call created the learner's row for that node. */
   created: boolean;
-  /**
-   * The stage XP is awarded from, which is the highest stage already
-   * credited for this node, or null on a first award. Equal to `stage` when
-   * the node has been credited this high before, so nothing is awarded.
-   */
   awardFrom: Stage | null;
-  /** True when this append raised the node's high-water mark. */
   awards: boolean;
-  /** How many events the log holds after this one. */
   eventCount: number;
 }
 
-/** Postgres codes worth one more attempt: lock timeout, serialization, deadlock. */
 const RETRYABLE_SQLSTATES = new Set(["55P03", "40001", "40P01"]);
 
-/** An append that failed, carrying the SQLSTATE so a caller can tell a wait from a refusal. */
 export class EvidenceAppendError extends Error {
   readonly code: string | null;
   readonly retryable: boolean;
@@ -806,21 +534,6 @@ export class EvidenceAppendError extends Error {
   }
 }
 
-/**
- * Appends one evidence event to a learner's node state inside the
- * graph.append_evidence transaction (ros-ai-access, migration
- * 20260921010000). The function locks or creates the row, so two writers on
- * the same learner and node keep both events; the read-then-upsert this
- * replaced let the second writer erase the first.
- *
- * Stage is monotone by default, matching stages.ts, where a transition
- * never moves a learner backward. A teacher override is the one caller that
- * lowers a stage on purpose and passes `monotone: false`.
- *
- * A lock wait raises a retryable error, which this retries once before it
- * throws. A caller that reports a durable result to the person in front of
- * it has to let that throw reach them.
- */
 export async function recordEvidence(
   learnerId: string,
   nodeId: string,
@@ -856,17 +569,12 @@ export async function recordEvidence(
       break;
     }
     const code = (error as { code?: string }).code ?? null;
-    // PGRST202 and 42883 both mean the function is missing, which happens
-    // when a deploy lands before its migration. Say so, since the fix is to
-    // apply the migration rather than to retry.
     if (code === "PGRST202" || code === "42883") {
       throw new EvidenceAppendError(
         "recordEvidence: graph.append_evidence is missing; apply supabase/migrations/20260921010000_research_os_evidence_append.sql before deploying this build",
         code,
       );
     }
-    // The database's message can carry the function body, so the error the
-    // caller sees names the code and the first line alone.
     const first = (error.message || "append failed").split("\n")[0].slice(0, 200);
     last = new EvidenceAppendError(`recordEvidence: append failed (${code ?? "unknown"}): ${first}`, code);
     if (!last.retryable) break;
@@ -890,16 +598,9 @@ export async function recordEvidence(
     eventCount: row?.event_count ?? 0,
   };
 
-  // ros-33: the game layer reads every recorded transition here. Activity
-  // follows every event, so a check or a quote keeps a streak alive. XP and
-  // badges follow the node's high-water mark, so a teacher demotion and the
-  // re-climb after it award nothing already credited. Awarding never fails
-  // the evidence write.
   try {
     await awardProgress(learnerId, nodeId, result.awardFrom, result.stage, { xp: result.awards });
   } catch (err) {
-    // A missing profile row is ordinary. Anything else loses a learner's
-    // XP or streak quietly, so it says so.
     const message = err instanceof Error ? err.message : String(err);
     if (!message.includes("update failed")) {
       console.warn(`[research-os] awardProgress failed for learner ${learnerId} node ${nodeId}: ${message}`);
@@ -907,10 +608,6 @@ export async function recordEvidence(
   }
   return result;
 }
-
-// ---------------------------------------------------------------------------
-// The game layer (bkt-ros ros-33). Rules in src/lib/research-os/game.ts.
-// ---------------------------------------------------------------------------
 
 export async function loadGame(learnerId: string): Promise<GameState | null> {
   const { data, error } = await graphService()
@@ -923,15 +620,6 @@ export async function loadGame(learnerId: string): Promise<GameState | null> {
   return { xp: row.xp ?? 0, streakDays: row.streak_days ?? 0, lastActiveDay: row.last_active_day, badges: Array.isArray(row.badges) ? row.badges : [] };
 }
 
-/**
- * Adds one transition's XP, streak and badges to a learner's profile.
- *
- * The read and the write are separate statements, so the update names the
- * xp it read and retries when another award moved it first. Without that,
- * two evidence events landing together each read the same xp and one award
- * is lost, which is the same shape the evidence append itself fixed one
- * layer down (Bucket critic ROS194-14).
- */
 export async function awardProgress(
   learnerId: string,
   nodeId: string,
@@ -943,7 +631,6 @@ export async function awardProgress(
   for (let attempt = 0; attempt < 4; attempt += 1) {
     const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
     const moved = applyTransition(current, nodeId, from, to);
-    // An event that credits nothing still says the learner was here today.
     const next = withXp ? moved : { ...moved, xp: current.xp, badges: current.badges };
     const { data, error } = await graphService()
       .from("learner_profiles")
@@ -954,8 +641,6 @@ export async function awardProgress(
       .select("learner_id");
     if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
     if ((data || []).length > 0) return;
-    // No row matched: either the profile is missing, or another award moved
-    // xp between the read and the write. Tell those apart before retrying.
     const { data: exists } = await graphService()
       .from("learner_profiles")
       .select("learner_id")
@@ -966,7 +651,6 @@ export async function awardProgress(
   throw new Error("awardProgress: xp moved under four attempts");
 }
 
-/** XP per learner for a class leaderboard; missing profiles read as 0. */
 export async function loadXpForLearners(learnerIds: string[]): Promise<Map<string, number>> {
   const out = new Map<string, number>();
   if (learnerIds.length === 0) return out;
@@ -976,12 +660,6 @@ export async function loadXpForLearners(learnerIds: string[]): Promise<Map<strin
   return out;
 }
 
-// ---------------------------------------------------------------------------
-// Faded guidance (bkt-ros ros-14). See src/lib/research-os/guidance.ts for
-// the pure rules these two reads feed; both fail open (empty/false) rather
-// than throwing, so a guidance-level read never fails the request it backs.
-// ---------------------------------------------------------------------------
-
 export interface RecentCheckEvent {
   at: string;
   nodeId: string;
@@ -990,24 +668,6 @@ export interface RecentCheckEvent {
   abstained: boolean;
 }
 
-/**
- * Every "check" evidence event across every node this learner has any
- * state row for, diagnostic-probe checks excluded (their own evidence
- * carries `note: "diagnostic_probe"`; probe.ts's header already
- * establishes a cold-start probe answer measures something different from
- * an in-path Check, so it should not feed the in-path fading schedule),
- * sorted newest first, capped at `limit`.
- *
- * Phase 0 scale (a handful of learner_node_state rows per learner): reads
- * every row for this learner and filters/sorts in JS rather than a
- * per-event SQL query against a jsonb array column, matching this file's
- * own loadClassesForReviewer precedent for a Phase-1-scale table. A read
- * error (missing table, network blip) fails open to an empty array, the
- * same posture loadAncestorRows already documents: guidance.ts's
- * nextGuidanceLevel treats "fewer than two outcomes" as "leave the base
- * level unchanged," so an empty result here degrades to no adjustment
- * rather than a failed request.
- */
 export async function loadRecentCheckEvents(learnerId: string, limit: number): Promise<RecentCheckEvent[]> {
   const svc = graphService();
   try {
@@ -1039,35 +699,11 @@ interface ClassGuidanceRow {
   research_os_guidance_enabled: boolean | null;
 }
 
-/**
- * The class-switch OR rule alone, pure and dependency-free so it is
- * unit-testable with plain fixture rows (scripts/test-research-os-guidance.ts,
- * matching this file's own filterClassesForReviewer precedent for
- * splitting a scoping/combination decision out of its DB-reading wrapper):
- * true unless `rows` is non-empty AND every row's switch reads false.
- * `null` (a class row from before this column existed on a fresh
- * environment mid-migration) is treated as "on," the column's own SQL
- * default. An empty `rows` array -- no membership, or every membership
- * dangling -- reads as enabled, the base product behavior for a learner
- * outside any pilot class.
- */
 export function decideGuidanceEnabled(rows: ClassGuidanceRow[]): boolean {
   if (rows.length === 0) return true;
   return rows.some((r) => r.research_os_guidance_enabled !== false);
 }
 
-/**
- * The per-class `research_os_guidance_enabled` arm switch (bkt-ros ros-14
- * item 4, mirroring PR #63's cognitive-forcing switch): the DB-reading
- * wrapper around decideGuidanceEnabled above. A learner enrolled in more
- * than one class is enabled if ANY of them has the switch on, since a
- * pilot's own control-arm assignment is a property of a specific class
- * roster: one shared class should never be able to silently veto
- * guidance for every other class this learner is also in. Fails open to `true` on
- * a read error, matching every other best-effort read in this file: a
- * broken class join should never silently strip a learner's own
- * scaffolding.
- */
 export async function isGuidanceEnabledForLearner(learnerId: string): Promise<boolean> {
   const svc = graphService();
   try {
@@ -1084,18 +720,6 @@ export async function isGuidanceEnabledForLearner(learnerId: string): Promise<bo
   }
 }
 
-// ---------------------------------------------------------------------------
-// Engine bridge (bkt-ros, engine bridge task). See src/lib/research-os/
-// engine-bridge.ts for the pure envelope-mapping functions these write.
-// ---------------------------------------------------------------------------
-
-/**
- * Upsert an accepted engine hypothesis as a `graph.nodes` row (task item 1).
- * Idempotent on `graph.nodes.slug`'s own unique constraint: `draft.slug` is
- * deterministic on `(engine, runId, hypothesisId)` (`engine-bridge.ts`'s
- * `engineNodeSlug`), so a repeat call with the same three values updates the
- * same row's `id` rather than inserting a duplicate.
- */
 export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promise<GraphNode> {
   const svc = graphService();
   const { data, error } = await svc
@@ -1130,14 +754,6 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
   };
 }
 
-/**
- * A campaign's own gap node (ros-12 item 4, `engine-bridge.ts`'s
- * `buildGapNode`) as a `graph.nodes` row. Same upsert shape as
- * `upsertEngineHypothesisNode` above (kept as its own function rather than
- * a shared generic one, so a future change to either write path never
- * risks the other): idempotent on `slug`, `engine-bridge.ts`'s
- * `gapNodeSlug` is deterministic on `(engine, runId, gapId)`.
- */
 export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
   const svc = graphService();
   const { data, error } = await svc
@@ -1172,8 +788,6 @@ export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
   };
 }
 
-/** Every `graph.nodes.id` for a given list of slugs, as a slug -> id map. A
- * slug absent from the graph is absent from the returned map. */
 export async function resolveNodeIdsBySlug(slugs: string[]): Promise<Map<string, string>> {
   const out = new Map<string, string>();
   const unique = Array.from(new Set(slugs.filter(Boolean)));
@@ -1185,18 +799,6 @@ export async function resolveNodeIdsBySlug(slugs: string[]): Promise<Map<string,
   return out;
 }
 
-/**
- * Write every edge an engine hypothesis node wants (task item 1's `cites`
- * and `derives_from` edges), resolving each target slug to a live node id
- * first. A target slug that resolves to nothing is skipped rather than
- * raised, `graph.edges`'s foreign key requires both ends to exist, and the
- * raw ref already lives losslessly on the node's own `provenance.
- * evidence_refs` (`engine-bridge.ts`'s `buildEngineNode`), so nothing is
- * lost, the edge is only deferred until that node exists. Idempotent: the
- * bridge's own migration adds a `(from_id,to_id,kind)` unique constraint to
- * `graph.edges`, so `ignoreDuplicates` makes a repeat write a no-op rather
- * than a duplicate row.
- */
 export async function writeEngineEdges(
   fromId: string,
   edges: { toSlug: string; kind: EdgeKind }[],
@@ -1220,13 +822,6 @@ export async function writeEngineEdges(
   return { written: rows.length, skipped };
 }
 
-/**
- * Write an accepted production's row to `public.research_os_
- * productions_outbox` (task item 3). Idempotent on `id`'s own primary key
- * (the bridge's own migration, `graph.productions.id` reused verbatim):
- * re-emitting the same production updates its one outbox row instead of
- * inserting a second one.
- */
 export async function writeProductionOutbox(row: ProductionOutboxRow): Promise<void> {
   const svc = publicService();
   const { error } = await svc.from("research_os_productions_outbox").upsert(
@@ -1247,21 +842,6 @@ export async function writeProductionOutbox(row: ProductionOutboxRow): Promise<v
   if (error) throw new Error(`writeProductionOutbox: upsert failed: ${error.message}`);
 }
 
-/**
- * Best-effort: given a `graph.productions` row that was just written with
- * `status: "accepted"`, resolve its target node and emit the outbox row
- * (task item 3, buildProductionOutboxRow + writeProductionOutbox above --
- * neither is reimplemented here, only composed). No-op for any other
- * status. Shared by /api/research-os/production's own POST (a
- * learner-context write; unreachable today, that route still rejects a
- * client-supplied "accepted") and /api/research-os/review's POST (bkt-ros,
- * ros-06's teacher-accept path, the first caller that reaches "accepted"
- * on a real, live write), so both entry points emit through the exact same function
- * rather than two copies of the same three calls. A failed emit never
- * fails the caller's own write, matching academy's own mirror-job
- * best-effort posture (the original inline comment this was extracted
- * from, preserved in _intake/research-os-k12/DELETIONS.md).
- */
 export async function emitProductionOutboxIfAccepted(production: GraphProductionRow): Promise<void> {
   if (production.status !== "accepted") return;
   try {
@@ -1272,6 +852,5 @@ export async function emitProductionOutboxIfAccepted(production: GraphProduction
     );
     await writeProductionOutbox(row);
   } catch {
-    // best effort, see comment above
   }
 }

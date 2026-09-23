@@ -1,19 +1,3 @@
-/**
- * src/lib/academy/credential/store.ts (bkt-52p)
- * ----------------------------------------------------------------------------
- * Persistence for issued credentials, using the EXACT service-role pattern as
- * src/app/api/academy/{progress,profile}/route.ts: the bucket.academy_credentials
- * table lives in the PRIVATE `bucket` Postgres schema (NOT PostgREST-exposed),
- * reached ONLY through a server-only service-role client from Next routes. The
- * browser never touches it directly.
- *
- * A row is the point-in-time, stable artifact a recruiter relies on:
- * id (uuid, == the hosted credential id), user_id (owner), handle, jwt
- * (the signed VC-JWT), credential (the unsigned VC JSON, for cheap reads),
- * issued_at, revoked_at (null = live), revocation_reason.
- *
- * Revocation = setting revoked_at. Verification re-checks this live.
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { OpenBadgeCredential } from "./types";
 
@@ -38,7 +22,6 @@ export function service(): SupabaseClient {
   return _svc;
 }
 
-/** Verify the caller's Supabase access token → user id, or null. */
 export async function verifyUserToken(token: string | null): Promise<string | null> {
   if (!token || !SUPABASE_URL || !ANON_KEY) return null;
   try {
@@ -95,7 +78,6 @@ export async function getCredential(id: string): Promise<CredentialRow | null> {
   return data as unknown as CredentialRow;
 }
 
-/** Look up a credential by its hosted URL == credential.id (for verify-by-id). */
 export async function getCredentialByUrl(urlOrId: string): Promise<CredentialRow | null> {
   const m = urlOrId.match(/credential\/([0-9a-fA-F-]{8,})/);
   const id = m ? m[1] : urlOrId.trim();
@@ -103,7 +85,6 @@ export async function getCredentialByUrl(urlOrId: string): Promise<CredentialRow
   return getCredential(id);
 }
 
-/** All credentials a user has issued, newest first. */
 export async function listCredentialsForUser(uid: string): Promise<CredentialRow[]> {
   const { data, error } = await service()
     .from(TABLE)
@@ -114,17 +95,6 @@ export async function listCredentialsForUser(uid: string): Promise<CredentialRow
   return data as unknown as CredentialRow[];
 }
 
-/** Revoke a credential, owner-scoped. Returns true if a row was revoked. */
-/**
- * The outcome of a revocation, in three parts.
- *
- * A boolean could not carry them. `false` meant "no row matched", which
- * the route renders as 409 with the message that the credential is not
- * yours, already revoked, or missing. A failed write answered the same
- * `false`, so an issuer revoking a leaked credential was told the
- * request was refused for a reason that was not the reason, while the
- * credential stayed live.
- */
 export type RevokeResult = "revoked" | "no_row" | "unavailable";
 
 export async function revokeCredential(
@@ -139,7 +109,7 @@ export async function revokeCredential(
       revocation_reason: reason || "Revoked by issuer/owner.",
     })
     .eq("id", id)
-    .eq("user_id", uid) // hard owner scope, never revoke another user's credential
+    .eq("user_id", uid)
     .is("revoked_at", null)
     .select("id");
   if (error) return "unavailable";

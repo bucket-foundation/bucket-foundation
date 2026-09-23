@@ -1,8 +1,5 @@
 "use client";
 
-// StoichBalance client island, exact null-space equation balancing + limiting
-// reagent. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

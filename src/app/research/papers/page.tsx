@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { listPapers } from "@/lib/papers";
 
-// /research/papers — the Bucket-published papers index. First paper: the
-// research-atlas funding-landscape preprint. Stone-bone styling matches
-// /research, /research/tools and /research/datasets.
-
 export const metadata = {
   title: "Papers · primary research",
   description:

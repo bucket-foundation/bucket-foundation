@@ -1,12 +1,3 @@
-/**
- * Research OS, frontier flags (ros-31): mark a node as an open question or
- * as the frontier of its branch, or clear the flag. Class staff (a teacher
- * or librarian membership, or the class's reviewer email) and reviewer
- * emails may set it.
- *
- * GET  /api/research-os/frontier?branch=<slug>  -> { openQuestions: [...], frontier: [...] } (public)
- * POST /api/research-os/frontier { nodeId, flag: "open_question" | "frontier" | null, classId? }
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";

@@ -1,26 +1,3 @@
-"""`emit_paper`: a LaTeX paper built from one run's own artifacts.
-
-Reads `MANIFEST.json`, `timeline.json`, `calibration.json` (when the run
-executed one), and `self-report.json` from a run directory
-(`hte.runner.run_campaign`'s own layout) and writes a paper into
-`out_dir` that follows `papers/PAPER-STANDARDS.md`: `papers/template/`'s
-`main.tex`/`bucket.sty`/`Makefile` copied as the starting point, a
-paper-local `refs.bib` citing the design paper
-(`papers/history-hypothesis-engine/main.tex`) and Josang's subjective-
-logic monograph, and three deterministic matplotlib figure scripts under
-`out_dir/figures/`.
-
-Every number the body states is read out of the run's own artifact files
-at emit time; nothing here is typed as a literal. Two figures the task
-asks for, a per-hypothesis robustness table and a surprise-event list,
-have no persisted per-item form in this package's current artifacts
-(`hte.runner.run_campaign` keeps `robustness_results` and
-`surprise_items` in memory and writes only their aggregate
-`robustness_stable_fraction` and `surprise_rate` into `MANIFEST.json`);
-this module states that gap in the Limitations section rather than
-inventing rows no file backs, and renders the two aggregates it does
-have.
-"""
 from __future__ import annotations
 
 import json
@@ -53,20 +30,10 @@ _TEX_SPECIAL = {
     "\\": r"\textbackslash{}",
 }
 
-
 def tex_escape(value: Any) -> str:
-    """Every LaTeX special character in `str(value)` escaped, so a
-    hypothesis id, a slot label, or a campaign name lifted straight out
-    of an artifact file never breaks the build."""
     return "".join(_TEX_SPECIAL.get(ch, ch) for ch in str(value))
 
-
 def _fmt(value: Any, nd: int = 3) -> str:
-    """A LaTeX-safe rendering of one artifact value: `None` (`hte.
-    artifacts`'s own fallback for a field a run's own artifact files
-    left out, module docstring) reads `not recorded`, a bool reads
-    `true`/`false`, a float rounds to `nd` places, everything else is
-    escaped and stringified."""
     if value is None:
         return "not recorded"
     if isinstance(value, bool):
@@ -77,47 +44,16 @@ def _fmt(value: Any, nd: int = 3) -> str:
         return str(value)
     return tex_escape(value)
 
-
 def _run_date(timestamp: str) -> str:
-    """`"20260910T001819Z"` (`hte.runner.run_campaign`'s own timestamp
-    format) as `"2026-09-10"`, or `"2026"` when `timestamp` is too short
-    to hold a full date (an empty or malformed manifest field)."""
     if len(timestamp) < 8:
         return "2026"
     return f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}"
-
 
 def _title_case(campaign: str) -> str:
     words = [w for w in re.split(r"[-_]+", campaign) if w]
     return " ".join(w if w.isupper() else w.capitalize() for w in words)
 
-
-# `RunData`/`load_run` are `hte.artifacts`'s own contract, re-exported
-# here (rather than redefined) so every number this module prints reads
-# through the one loader `hte.runner.run_campaign` writes against
-# (`hte.artifacts`'s own module docstring names the drift this closes:
-# `hte.paper` used to carry its own copy of this dataclass and a direct
-# `data.calibration['n_sources']` index that crashed the moment `hte.
-# calibrate`'s own output shape moved out from under it, with nothing
-# catching the two falling out of sync). `hte/paper.py`'s public API
-# keeps both names so `from hte import paper; paper.load_run(...)` and
-# `paper.RunData(...)` still work for every existing caller and test.
-
-
-# --------------------------------------------------------------------------
-# Data digests shared between the LaTeX body and the figure scripts
-# --------------------------------------------------------------------------
-
-
 def _deduped_posteriors(timeline: TimelineArtifact) -> dict[str, float]:
-    """Every distinct hypothesis id's own posterior, read off
-    `timeline.bins[*]["ranked_hypotheses"]` (the only place a run's
-    per-hypothesis posterior survives to disk), first occurrence wins.
-    The same hypothesis can appear in more than one bin's top-`k` list
-    only if its own interval spans that bin's own start, which none of
-    this package's shipped generators produce; de-duplication is kept
-    here anyway, as a documented defensive read rather than an assumed
-    invariant."""
     out: dict[str, float] = {}
     for b in timeline.bins:
         for entry in b.get("ranked_hypotheses", []):
@@ -126,7 +62,6 @@ def _deduped_posteriors(timeline: TimelineArtifact) -> dict[str, float]:
             if hid is not None and posterior is not None and hid not in out:
                 out[hid] = posterior
     return out
-
 
 def _bin_rows(timeline: TimelineArtifact) -> list[dict[str, Any]]:
     rows = []
@@ -141,12 +76,6 @@ def _bin_rows(timeline: TimelineArtifact) -> list[dict[str, Any]]:
             "top_elo": top["elo"] if top else None,
         })
     return rows
-
-
-# --------------------------------------------------------------------------
-# Figure scripts (written into out_dir/figures/, run once at emit time and
-# again by `make figures`)
-# --------------------------------------------------------------------------
 
 _FIG_HEADER = '''"""Deterministic figure for {label}, generated from `{source}`.
 
@@ -187,7 +116,6 @@ OUT = HERE / "{stem}.png"
 RUN_DIR = (PAPER_DIR / {run_dir_rel!r}).resolve()
 '''
 
-
 def _fig_opinion_histogram_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
         label="the survivor opinion distribution", source="timeline.json",
@@ -216,12 +144,10 @@ def main() -> None:
     plt.close(fig)
     print(f"wrote {OUT}")
 
-
 if __name__ == "__main__":
     main()
 '''
     return body
-
 
 def _fig_bin_topk_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
@@ -249,12 +175,10 @@ def main() -> None:
     plt.close(fig)
     print(f"wrote {OUT}")
 
-
 if __name__ == "__main__":
     main()
 '''
     return body
-
 
 def _fig_calibration_curve_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
@@ -289,22 +213,14 @@ def main() -> None:
     plt.close(fig)
     print(f"wrote {OUT}")
 
-
 if __name__ == "__main__":
     main()
 '''
     return body
 
-
 def _write_figures(out_dir: Path, run_dir: Path) -> list[str]:
     figures_dir = out_dir / "figures"
     figures_dir.mkdir(parents=True, exist_ok=True)
-    # Relative to `out_dir` (this paper's own directory, one level above
-    # each figure script's own `HERE`): a committed figure script's
-    # `RUN_DIR` must carry no absolute path (PR #4 review finding,
-    # `main.tex`/figure-script `/home/...` leak). `out_dir` is the one
-    # anchor every figure script recovers on its own at runtime, via
-    # `Path(__file__).resolve().parent.parent`.
     run_dir_rel = os.path.relpath(run_dir.resolve(), out_dir.resolve())
     scripts = {
         "fig_opinion_histogram.py": _fig_opinion_histogram_script(run_dir_rel),
@@ -315,27 +231,12 @@ def _write_figures(out_dir: Path, run_dir: Path) -> list[str]:
         (figures_dir / name).write_text(content)
     return sorted(scripts)
 
-
 def run_figure_scripts(out_dir: Path) -> None:
-    """Runs every `figures/fig_*.py` script under `out_dir`, in name
-    order, the same work `make figures` does (`papers/template/
-    Makefile`'s own `figures` target, one `python3` invocation per
-    script)."""
     figures_dir = out_dir / "figures"
     for script in sorted(figures_dir.glob("fig_*.py")):
-        # `script` is resolved to an absolute path before the subprocess
-        # call: a relative `script` combined with `cwd=out_dir` would be
-        # re-resolved against `out_dir` a second time (out_dir was
-        # already folded into `script` by the glob above), pointing at a
-        # path that does not exist.
         subprocess.run(
             ["python3", str(script.resolve())], cwd=out_dir, check=True, capture_output=True, text=True,
         )
-
-
-# --------------------------------------------------------------------------
-# refs.bib, bucket.sty, Makefile
-# --------------------------------------------------------------------------
 
 _REFS_BIB = '''% refs.bib: paper-specific references for this generated campaign report.
 %
@@ -360,29 +261,14 @@ _REFS_BIB = '''% refs.bib: paper-specific references for this generated campaign
 }
 '''
 
-
 def _write_refs_bib(out_dir: Path) -> None:
     (out_dir / "refs.bib").write_text(_REFS_BIB)
-
 
 def _write_bucket_sty(out_dir: Path) -> None:
     shutil.copyfile(TEMPLATE_DIR / "bucket.sty", out_dir / "bucket.sty")
 
-
 def _write_common_bib(out_dir: Path) -> None:
-    """Copies `papers/bib/common.bib` into `out_dir` so `main.tex` can
-    `\\addbibresource` it by basename. `out_dir` can be any directory a
-    caller picks (`hte.pipeline` alone writes three different depths:
-    a bare campaign paper, a `--from-run` replay, and a pipeline run's
-    own `<pipeline_dir>/paper/`), so a path relative to `REPO_ROOT` or to
-    `out_dir` itself would need re-deriving per caller; a paper-local
-    copy needs no path math at all and keeps the paper directory
-    self-contained the same way `refs.bib` and `bucket.sty` already are
-    (PR #4 review finding: the old `str(COMMON_BIB)` reference baked
-    this checkout's own absolute path, home directory included, into a
-    committed `main.tex`)."""
     shutil.copyfile(COMMON_BIB, out_dir / COMMON_BIB.name)
-
 
 _MAKEFILE = '''# Makefile: generated campaign-report paper, copied from
 # papers/template/Makefile (see papers/PAPER-STANDARDS.md). Only PAPER and
@@ -419,15 +305,8 @@ clean:
 \trm -f figures/*.png
 '''
 
-
 def _write_makefile(out_dir: Path) -> None:
     (out_dir / "Makefile").write_text(_MAKEFILE)
-
-
-# --------------------------------------------------------------------------
-# main.tex body
-# --------------------------------------------------------------------------
-
 
 def _glossary_entries() -> str:
     entries = [
@@ -442,7 +321,6 @@ def _glossary_entries() -> str:
         url = f"https://github.com/AGFarms/bucket-foundation/blob/master/tools/hypothesis-engine/{path}"
         out.append(f"\\glossentry{{{key}}}{{{term}}}%\n  {{{url}}}%\n  {{{definition}}}")
     return "\n\n".join(out)
-
 
 def _abstract(data: RunData) -> str:
     counts = data.counts
@@ -476,7 +354,6 @@ def _abstract(data: RunData) -> str:
         f"artifacts stop short of a full per-hypothesis accounting in \\Cref{{sec:limitations}}."
     )
 
-
 def _method(data: RunData) -> str:
     cfg = data.manifest.config
     extraction = data.manifest.extraction
@@ -505,14 +382,12 @@ def _method(data: RunData) -> str:
         f"resolution. \\Cref{{tab:models}} lists which model backed each engine-loop role for this run."
     )
 
-
 def _models_table(data: RunData) -> str:
     models = data.manifest.models.get("roles", {})
     rows = "\n    ".join(
         f"{tex_escape(role)} & \\texttt{{{tex_escape(model)}}} \\\\" for role, model in sorted(models.items())
     )
     return rows
-
 
 def _bins_table_rows(data: RunData) -> str:
     rows = _bin_rows(data.timeline)
@@ -523,7 +398,6 @@ def _bins_table_rows(data: RunData) -> str:
         top_id = f"\\texttt{{{tex_escape(r['top_id'])}}}" if r["top_id"] else "n/a"
         lines.append(f"{r['index']} & {r['n']} & {top_id} & {_fmt(r['top_posterior'])} \\\\")
     return "\n    ".join(lines)
-
 
 def _results(data: RunData) -> str:
     counts = data.counts
@@ -572,7 +446,6 @@ def _results(data: RunData) -> str:
         f"\\begin{{quote}}\\small\n\\begin{{verbatim}}\n{meta_review_block}\n\\end{{verbatim}}\n\\end{{quote}}"
     )
 
-
 def _robustness_rows(data: RunData) -> str:
     counts = data.counts
     n = counts.n_survivors or 0
@@ -582,7 +455,6 @@ def _robustness_rows(data: RunData) -> str:
     stable = round(fraction * n)
     unstable = n - stable
     return f"Stable & {stable} \\\\\n    Unstable & {unstable} \\\\\n    Total & {n} \\\\"
-
 
 def _calibration(data: RunData) -> str:
     if not data.calibration:
@@ -598,21 +470,11 @@ def _calibration(data: RunData) -> str:
     for b in cal.calibration_curve:
         if b.get("count", 0) == 0:
             continue
-        # The bin label is wrapped in a brace group: a bare `[` right
-        # after a table row's own `\\` parses as that command's optional
-        # `\\[<dimension>]` row-spacing argument instead of table text,
-        # which is exactly what happened here before this fix (a
-        # "Runaway argument" fatal error from `pdflatex`).
         rows.append(
             f"{{[}}{b['bin_low']:.1f}, {b['bin_high']:.1f}{{)}} & {b['count']} & {_fmt(b['mean_predicted'])} & {_fmt(b['mean_observed'])} \\\\"
         )
     rows_text = "\n    ".join(rows) if rows else "\\multicolumn{4}{c}{no non-empty calibration bins} \\\\"
     constants = cal.constants
-    # `cal.mode` reads `None` for a run written before `hte.calibrate`'s
-    # own `bkt-hte-calibration-redesign` (`hte.artifacts`'s own module
-    # docstring), every one of which ran discovery-date holdout, the only
-    # mode that predates the field; `"discovery_date"` and `None` are
-    # read the same way here for that reason.
     mode_line = (
         f"This run held out sources by discovery date at a cutoff of {_fmt(cal.cutoff_years)}"
         if cal.mode in (None, "discovery_date") else
@@ -631,7 +493,6 @@ def _calibration(data: RunData) -> str:
         f"    \\bottomrule\n  \\end{{tabular}}\n\\end{{table}}"
     )
 
-
 def _limitations(data: RunData) -> str:
     sr_block = json.dumps(asdict(data.self_report), indent=2)
     return (
@@ -647,7 +508,6 @@ def _limitations(data: RunData) -> str:
         f"% voice-ignore-next 60\n"
         f"\\begin{{quote}}\\small\n\\begin{{verbatim}}\n{sr_block}\n\\end{{verbatim}}\n\\end{{quote}}"
     )
-
 
 _MAIN_TEX = r"""% main.tex: generated campaign report, {campaign}, run {run_id}.
 %
@@ -821,13 +681,7 @@ non-consensus proposal rate against the run before it.
 \end{{document}}
 """
 
-
 def _render_main_tex(data: RunData, run_id: str, out_dir: Path) -> str:
-    # Relative to `out_dir` (this paper's own directory), the same
-    # anchor `_write_figures` uses for each figure script's own
-    # `RUN_DIR`. The header comment below is committed prose, read by a
-    # person rather than resolved by code at runtime, and must carry no
-    # absolute path either (PR #4 review finding).
     run_dir_display = os.path.relpath(data.run_dir.resolve(), out_dir.resolve())
     return _MAIN_TEX.format(
         campaign=data.campaign,
@@ -848,23 +702,7 @@ def _render_main_tex(data: RunData, run_id: str, out_dir: Path) -> str:
         limitations=_limitations(data),
     )
 
-
 def emit_paper(run_dir: str | Path, out_dir: str | Path) -> dict[str, Any]:
-    """Writes a full paper directory at `out_dir` from `run_dir`'s own
-    artifacts: `main.tex`, `bucket.sty` (copied from `papers/template/`),
-    a paper-local `refs.bib`, a paper-local copy of `papers/bib/
-    common.bib`, a `Makefile` copied from the template pattern, and
-    three figure scripts under `out_dir/figures/`, then runs those
-    figure scripts once so `out_dir` is ready for `make pdf` (`hte.
-    paper.build_pdf` runs that build; `hte.referee.referee` is the
-    caller that owns the rebuild loop). Every path this module writes
-    into `out_dir`'s own files, `common.bib`'s reference and each figure
-    script's `RUN_DIR`, is relative to `out_dir` itself, never absolute:
-    a committed paper carries no machine-specific path (PR #4 review
-    finding).
-
-    Returns `{"paper_dir", "run_id", "campaign", "figures"}`.
-    """
     run_dir = Path(run_dir)
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -887,31 +725,16 @@ def emit_paper(run_dir: str | Path, out_dir: str | Path) -> dict[str, Any]:
         "figures": figures,
     }
 
-
-# --------------------------------------------------------------------------
-# PDF build, shared with hte.referee's own rebuild loop
-# --------------------------------------------------------------------------
-
 _PAGE_COUNT_RE = re.compile(r"Output written on \S+\.pdf \((\d+) pages?")
-
 
 @dataclass
 class BuildResult:
-    """One `make pdf` invocation's outcome."""
     ok: bool
     page_count: int | None
     log: str
     returncode: int
 
-
 def build_pdf(paper_dir: str | Path) -> BuildResult:
-    """Runs `make pdf` in `paper_dir` (the `pdflatex`/`biber`/`pdflatex`/
-    `pdflatex` sequence `papers/template/Makefile` documents; `latexmk`
-    is not installed on this toolchain, see `papers/PAPER-STANDARDS.md`'s
-    Toolchain notes). Returns a `BuildResult` whose `page_count` is read
-    from the final `pdflatex` pass's own `main.log` ("Output written on
-    main.pdf (N pages...)"), `None` when the build failed before writing
-    that line."""
     paper_dir = Path(paper_dir)
     proc = subprocess.run(
         ["make", "pdf"], cwd=paper_dir, capture_output=True, text=True, timeout=300,
@@ -923,9 +746,8 @@ def build_pdf(paper_dir: str | Path) -> BuildResult:
         log_text += "\n" + log_path.read_text(errors="replace")
     match = None
     for match in _PAGE_COUNT_RE.finditer(log_text):
-        pass  # the last match is the final pdflatex pass's own count
+        pass
     page_count = int(match.group(1)) if match else None
     return BuildResult(ok=(proc.returncode == 0), page_count=page_count, log=log_text, returncode=proc.returncode)
-
 
 __all__ = ["emit_paper", "load_run", "RunData", "build_pdf", "BuildResult", "tex_escape", "run_figure_scripts"]

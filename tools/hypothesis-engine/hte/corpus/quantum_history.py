@@ -1,38 +1,3 @@
-"""Ingest `quantum/07-history/*.md` into an `hte.corpus.Corpus`.
-
-That chapter is this repo's own quantum-computing history atlas: 15 `T-*.md`
-milestone cards plus one `_CHAPTER.md` narrative, each card carrying a
-`## Milestone timeline` list (a dated event, its actor, its significance,
-and a `T1`-`T6` tier citation) and a `## Key graded claims` list (an
-undated claim at its own tier) in the exact same evidence-schema style
-`main.tex` and this package's own `hte.evidence` module use. That
-structure is parsed directly by the regular expressions below; no LLM call
-reads this corpus, since the card format already states kind-adjacent tier
-and citation data no extraction pass would improve on.
-
-Every card's own `date` in `## Milestone timeline` doubles as both the
-event's year and, per this module's own documented simplification, the
-year its evidence entered the written record (`GroundTruthEvent.
-discovery_year` in `hte.corpus`): the card format states an event's year
-and its citation's publication year in the same bullet, and the two
-coincide in every card this ingestion reads.
-
-No network call is made anywhere in this module (`bkt-hte-retrieval-
-provenance`, fixture mode only): every `RetrievalEnvelope` this function
-writes carries `fixture=True`, timestamped at ingestion time rather than
-at any fetch time, since there was no fetch.
-
-Every parsed bullet also gets a best-effort slot extraction
-(`bkt-hte-evidence-slots`, `_extract_slots` below): a bullet's own free
-text is scored against every concept label already in the quantum-
-history vocabulary by word-overlap, no LLM call and no network access,
-matching this module's own "no extraction pass would improve on reading
-the card's structure directly" for the fields the card format states
-outright. Slot extraction is a different question from those fields: a
-milestone bullet states its own date and tier directly, but names its
-actor, mechanism, and the rest only in prose, so this is where reading
-that prose earns its keep. `hte.link.link_evidence` is the reader.
-"""
 from __future__ import annotations
 
 import logging
@@ -61,32 +26,12 @@ _BULLET_RE = re.compile(r"^-\s+(.+)$")
 _CROSS_REF_RE = re.compile(r"\bT-[a-z0-9]+\b")
 _WORD_RE = re.compile(r"[a-z0-9]+")
 
-# Stopwords excluded from the word-overlap match below: generic enough
-# (an article, a conjunction, a preposition) that sharing one with a
-# vocabulary label says nothing about whether a bullet names that
-# concept. `"quantum"` joins this list for a domain-specific reason
-# rather than a grammatical one: this corpus is a history of quantum
-# physics, so nearly every bullet contains the word, and a short label
-# built from it (`"IBM Quantum"`, two content words) cleared
-# `_SLOT_MATCH_MIN_SCORE` against bullets naming Yuri Manin, Wootters
-# and Zurek, and other actors with no connection to IBM at all, purely
-# because both the bullet and the label say "quantum" (confirmed empirically:
-# `_best_concept_match` was attaching `ibm-quantum` to more than a
-# third of this corpus's pre-1993 milestone bullets before this fix).
-# A word this common across both a corpus's own bullets and its own
-# vocabulary labels carries the same zero discriminative signal a
-# grammatical stopword does, for this corpus's own domain.
 _STOPWORDS = frozenset({
     "a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "for",
     "with", "by", "its", "is", "was", "are", "were", "be", "as", "that",
     "quantum",
 })
 
-# The word-overlap fraction (of a label's own content words found in the
-# bullet) a slot match needs to clear. Set low enough that a bullet
-# naming only one of a joint actor's names ("Heisenberg" alone, for
-# "Heisenberg and Schrödinger") still matches, high enough that sharing
-# one incidental word does not.
 _SLOT_MATCH_MIN_SCORE = 0.4
 
 _NEGATION_CUES = (
@@ -95,23 +40,14 @@ _NEGATION_CUES = (
     "did not", "failed to", "contested", "disproven", "ruled out",
 )
 
-
 def _normalize_text(text: str) -> str:
     stripped = unicodedata.normalize("NFKD", text)
     return "".join(ch for ch in stripped if not unicodedata.combining(ch)).lower()
 
-
 def _words(text: str) -> set[str]:
     return set(_WORD_RE.findall(_normalize_text(text))) - _STOPWORDS
 
-
 def _best_concept_match(bullet_words: set[str], vocab: Vocabulary, slot: Slot) -> str | None:
-    """The concept in `slot` whose own label shares the largest fraction
-    of its content words with `bullet_words`, at or above
-    `_SLOT_MATCH_MIN_SCORE`; `None` when no concept clears it. `OTHER` is
-    never a candidate: this keeps an unmatched slot read as "not
-    asserted" (`hte.evidence.EvidenceItem`'s own docstring) rather than
-    as an explicit open-world claim."""
     best_id, best_score = None, 0.0
     for concept in vocab.concepts(slot):
         if concept.consensus_status == ConsensusStatus.OTHER:
@@ -124,46 +60,24 @@ def _best_concept_match(bullet_words: set[str], vocab: Vocabulary, slot: Slot) -
             best_score, best_id = overlap, concept.id
     return best_id if best_score >= _SLOT_MATCH_MIN_SCORE else None
 
-
 def _extract_interval(text: str) -> Interval | None:
-    """The dated span `text` names: the min and max of every year it
-    mentions (a lone year reads as a point interval; a range like
-    "1980-1994" or "1980s-1990s" reads as spanning both ends), or `None`
-    when it names no year at all."""
     years = [int(y) for y in _YEAR_RE.findall(text)]
     if not years:
         return None
     return Interval(start=min(years), end=max(years))
 
-
 def _infer_stance(text: str) -> Stance:
-    """`NEGATIVE` when `text` contains one of this module's own negation
-    cues (a downgrade, a dispute, a failed confirmation); `POSITIVE`
-    otherwise. A milestone or claim bullet is a positive assertion by
-    default; the corpus's own "Key graded claims" status field
-    ("contested", "unconfirmed", ...) and its downgrade-style milestone
-    prose are the two places this reads as denying rather than
-    asserting its own slot values."""
     lowered = _normalize_text(text)
     return Stance.NEGATIVE if any(cue in lowered for cue in _NEGATION_CUES) else Stance.POSITIVE
 
-
 def _extract_slots(text: str, vocab: Vocabulary) -> dict[str, object]:
-    """Best-effort `actor`/`action`/`object`/`place`/`mechanism`/
-    `interval`/`stance` for one bullet's own text (`bkt-hte-evidence-
-    slots`), read by `EvidenceItem(**_extract_slots(...))`. Each concept
-    slot is `None` when nothing in `vocab` clears `_best_concept_match`'s
-    own threshold against this text; `hte.link.link_evidence` reads a
-    `None` slot as unasserted rather than as a claim of `OTHER`."""
     words = _words(text)
     slots = {slot.value: _best_concept_match(words, vocab, slot) for slot in PLACEMENT_CONCEPT_SLOTS}
     slots["interval"] = _extract_interval(text)
     slots["stance"] = _infer_stance(text)
     return slots
 
-
 def _split_sections(text: str) -> dict[str, list[str]]:
-    """`{heading -> [line, ...]}` for every `## heading` block in `text`."""
     sections: dict[str, list[str]] = {}
     current: str | None = None
     for line in text.splitlines():
@@ -176,7 +90,6 @@ def _split_sections(text: str) -> dict[str, list[str]]:
             sections[current].append(line)
     return sections
 
-
 def _bullets(lines: Iterable[str]) -> list[str]:
     out = []
     for line in lines:
@@ -185,16 +98,13 @@ def _bullets(lines: Iterable[str]) -> list[str]:
             out.append(m.group(1).strip())
     return out
 
-
 def _parse_tier(text: str, default: Tier = Tier.T4) -> Tier:
     m = _TIER_RE.search(text)
     return Tier(f"T{m.group(1)}") if m else default
 
-
 def _parse_year(text: str) -> int | None:
     m = _YEAR_RE.search(text)
     return int(m.group(1)) if m else None
-
 
 def _locate(raw_text: str, needle: str) -> tuple[int, int]:
     idx = raw_text.find(needle)
@@ -202,13 +112,7 @@ def _locate(raw_text: str, needle: str) -> tuple[int, int]:
         raise ValueError(f"bullet text not found verbatim in its own source file: {needle[:80]!r}")
     return idx, idx + len(needle)
 
-
 def _parse_card(path: Path, vocab: Vocabulary) -> tuple[Source, list[EvidenceItem], list[GroundTruthEvent], int]:
-    """One `T-*.md` card into its `Source`, the evidence items its two
-    bulleted sections carry, the ground-truth events its milestone bullets
-    carry, and a citation count (the `## Sources` section's own bullet
-    count) for that card's `RetrievalEnvelope`. `vocab` is the vocabulary
-    each bullet's own slot extraction (`_extract_slots`) is read against."""
     raw = path.read_text()
     lines = raw.splitlines()
     title_match = _TITLE_RE.match(lines[0]) if lines else None
@@ -254,16 +158,9 @@ def _parse_card(path: Path, vocab: Vocabulary) -> tuple[Source, list[EvidenceIte
 
     return source, evidence, ground_truth, len(_bullets(sources_lines))
 
-
 _BLOCKQUOTE_BULLET_RE = re.compile(r"^>\s*-\s+(.+)$")
 
-
 def _parse_chapter(path: Path, vocab: Vocabulary) -> tuple[Source, list[EvidenceItem]]:
-    """`_CHAPTER.md`'s own `> **Key takeaways**` blockquote bullets, the
-    one place the narrative chapter states graded-feeling claims as a
-    bulleted list rather than as flowing prose. Tiered at `T3`
-    (chapter-level synthesis, no per-claim tier of its own) since the
-    chapter names no tier explicitly."""
     raw = path.read_text()
     doc_id = "_CHAPTER"
     bullets = [m.group(1).strip() for m in (_BLOCKQUOTE_BULLET_RE.match(line) for line in raw.splitlines()) if m]
@@ -278,32 +175,10 @@ def _parse_chapter(path: Path, vocab: Vocabulary) -> tuple[Source, list[Evidence
         ))
     return Source(id=doc_id, kind=EvidenceKind.TEXTUAL, date=None, stemma_parents=[]), evidence
 
-
 def load_vocab() -> Vocabulary:
-    """The quantum-history seed vocabulary (`hte/data/vocab-seed-quantum-
-    history.json`), a domain-matched counterpart to `hte.concepts.
-    load_seed_vocabulary`'s ancient-history vocabulary: this corpus's
-    actors are physicists and labs, so it needs its own slot vocabulary
-    rather than reusing the shipped default's Neolithic farmers."""
     return Vocabulary.load(QUANTUM_VOCAB_PATH)
 
-
 def _drop_dangling_stemma_parents(sources: dict[str, Source]) -> None:
-    """`FINDING-2026-09-10-102`: a card's `## Sources` cross-references
-    are matched by regex alone (`_CROSS_REF_RE`), against no check that
-    the matched id names a card this ingest read (a typo'd or
-    renamed id, or an ingest over a partial subdirectory of the corpus,
-    each leaves a `stemma_parents` entry naming no `Source` this `Corpus`
-    carries). Mutates every `Source` in `sources` in place (`Source` is
-    not frozen), dropping any `stemma_parents` entry absent from
-    `sources`' own keys and logging one warning line per drop, the same
-    "resolves, or is excluded" contract `hte.corpus.education_atlas`'s
-    own OWID-stemma rule already applies at construction time. Must run
-    only after every card (and the chapter) has been parsed and added to
-    `sources`: a card can cite a SIBLING card `card_paths`' own sort order
-    has not reached yet, a forward reference that is not dangling once
-    the whole directory is read, so resolving against a partial `sources`
-    dict mid-loop would misclassify it."""
     for key, source in sources.items():
         resolved = [p for p in source.stemma_parents if p in sources]
         dangling = [p for p in source.stemma_parents if p not in sources]
@@ -314,24 +189,7 @@ def _drop_dangling_stemma_parents(sources: dict[str, Source]) -> None:
             )
         source.stemma_parents = resolved
 
-
 def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fixture-quantum-history-ingest") -> Corpus:
-    """Parse every `T-*.md` card and `_CHAPTER.md` under `corpus_dir`
-    (default `DEFAULT_CORPUS_DIR`) into a `Corpus`: one `Source` per file,
-    one `EvidenceItem` per milestone or claim bullet, one `GroundTruthEvent`
-    per dated milestone bullet, and one fixture `RetrievalEnvelope` per
-    file. Raises `FileNotFoundError` if `corpus_dir` does not exist, rather
-    than returning a silently empty corpus.
-
-    Every parsed card's own `stemma_parents` is resolved against the full
-    set of sources this call ingests once every card is read
-    (`_drop_dangling_stemma_parents`, `FINDING-2026-09-10-102`): a
-    cross-reference naming no card present in `corpus_dir` is dropped,
-    with a warning logged, rather than left dangling in the returned
-    `Corpus`. `RetrievalEnvelope.lineage_count` is computed from each
-    source's own POST-filter `stemma_parents`, so it always agrees with
-    the edges the returned `Corpus` carries.
-    """
     directory = Path(corpus_dir) if corpus_dir is not None else DEFAULT_CORPUS_DIR
     if not directory.is_dir():
         raise FileNotFoundError(f"quantum-history corpus directory not found: {directory}")
@@ -341,8 +199,6 @@ def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fix
     sources: dict[str, Source] = {}
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
-    # `(doc_id, source_path, citation_count)` per file, envelopes built
-    # after stemma filtering so `lineage_count` reads the filtered count.
     envelope_specs: list[tuple[str, str, int]] = []
 
     card_paths = sorted(p for p in directory.glob("T-*.md"))
@@ -372,6 +228,5 @@ def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fix
     ]
 
     return Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=vocab)
-
 
 __all__ = ["ingest", "load_vocab", "DEFAULT_CORPUS_DIR"]

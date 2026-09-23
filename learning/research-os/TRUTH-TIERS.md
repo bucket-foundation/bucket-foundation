@@ -27,15 +27,15 @@ The `tier` column is declared at `supabase/migrations/20260910000000_research_os
 |---|---|---|
 | Seed path nodes | 3, 4, 5, 7, 8, 9, 10, a US grade level | `supabase/seed/research-os-sky-blue.json`; the column comment's stated range is 3 to 12 |
 | Canon-bridge mirrors and canon entries | 90 | seed, and `CANON_TOP_TIER` at `src/lib/research-os/ingest/canon.ts:61` |
-| Engine hypotheses | 1 to 6, source reliability | `engineTierToGraphTier`, `src/lib/research-os/engine-bridge.ts:35` |
-| Engine gap artifacts | fixed 6 | `buildGapNode`, `src/lib/research-os/engine-bridge.ts:262`, value at `:272` |
-| Academy atoms | 13 plus DAG depth | `ACADEMY_TIER_BASE`, `src/lib/research-os/ingest/academy.ts:74` |
+| Engine hypotheses | 1 to 6, source reliability | `engineTierToGraphTier`, `src/lib/research-os/engine-bridge.ts:7` |
+| Engine gap artifacts | fixed 6 | `buildGapNode`, `src/lib/research-os/engine-bridge.ts:155`, value at `:272` |
+| Academy atoms | 13 plus DAG depth | `ACADEMY_TIER_BASE`, `src/lib/research-os/ingest/academy.ts:34` |
 | Bulk imports, fixed by node class | `canon_concept` 12, `canon_figure` 13, `canon_site` 13, `canon_bridge` 16 | `scripts/research-os/ingest/canon-all.ts:97`, `:169`, `:191`, `:202` |
 | Bulk imports, fixed by node class | `literature_paper` 14, `intake_digest` 12, `intake_paper` 14, `intake_target` 15 | `scripts/research-os/ingest/intake-all.ts:84`, `:108`, `:131`, `:150` |
 | Canon claims, computed | `max(linked atom depth) + 1`, range 1 to 17, or the sentinel `CLAIM_TIER_UNLINKED = 15` | `scripts/research-os/ingest/canon-all.ts:103`, sentinel at `:36` |
-| Imported private nodes | 0 | `createImport`, `src/lib/research-os/access-db.ts:377`, value at `:400` |
+| Imported private nodes | 0 | `createImport`, `src/lib/research-os/access-db.ts:272`, value at `:368` |
 | Accepted productions | the target's tier plus 1 | `createNodeFromProduction`, `src/lib/research-os/production-node.ts:52`, value at `:67` |
-| Decomposition depth, a separate field of the same name | 0 for a prime, one per layer of combination | `Decomposition` at `src/lib/research-os/primes.ts:44`, its `tier` field at `:55-56`, set at `:273` |
+| Decomposition depth, a separate field of the same name | 0 for a prime, one per layer of combination | `Decomposition` at `src/lib/research-os/primes.ts:18`, its `tier` field at `:55-56`, set at `:273` |
 
 The collision is already documented in the code. `src/lib/research-os/engine-bridge.ts:24-34` says so in the adapter's own header:
 
@@ -56,7 +56,7 @@ Four readers interpret the column, and each reads it as difficulty:
 - `layoutGraph` at `src/lib/research-os/graph-layout.ts:35`, at `:36-39`, sorts distinct tiers and uses the rank as an x-axis column index. A T1 engine hypothesis and a grade-1 node land in the same column.
 - `scoreNode` at `src/lib/research-os/search.ts:27` adds `Math.max(0, 6 - n.tier)` to a hit's score at `src/lib/research-os/search.ts:40`, so a low tier raises relevance.
 - `checkTierMonotonicity` at `src/lib/research-os/ingest/validate.ts:28-39` enforces tier monotonicity on `prerequisite` edges, and its doc comment at `src/lib/research-os/ingest/validate.ts:22-27` states that the other five edge kinds "carry no such ordering claim", the quoted phrase sitting at `:26`.<!-- voice-ignore-line: verbatim quotation from validate.ts -->
-- `inferEdges` at `src/lib/research-os/ingest/infer.ts:131` skips a candidate pair when the two tiers are equal, at `src/lib/research-os/ingest/infer.ts:146`, with the comment `no ordering signal`.
+- `inferEdges` at `src/lib/research-os/ingest/infer.ts:67` skips a candidate pair when the two tiers are equal, at `src/lib/research-os/ingest/infer.ts:83`, with the comment `no ordering signal`.
 
 `learning/research-os/IDEAL-STATE.md` lists `tier` in the node header a reader sees, beside title, kind, branch and owner. Adding another meaning to the column would put an evidence grade in a field the map already paints as difficulty.
 
@@ -72,11 +72,11 @@ Nine signals exist. One of them is a column on `graph.nodes`, and it is the only
 | `graph.irreducible_proposals.status` | `pending`, `confirmed`, `rejected` | `supabase/migrations/20260918030000_research_os_irreducible.sql:15` |
 | `graph.nodes.frontier_flag` | `open_question`, `frontier`, null | `supabase/migrations/20260915040000_research_os_frontier_kinds.sql:27` |
 | `provenance.canon_score` | number | written at `src/lib/research-os/ingest/canon.ts:110`. The floor of 70 is `bucket-canon`'s own upstream promotion rubric, described in prose at `learning/research-os/INGESTION.md:68` and enforced nowhere in `src/` or `scripts/` |
-| `provenance_signoff` | free text, `approved: <name>` or `pending: <name>` | read by `lookupCanonSignoff`, `src/lib/research-os/canon-link.ts:93` |
+| `provenance_signoff` | free text, `approved: <name>` or `pending: <name>` | read by `lookupCanonSignoff`, `src/lib/research-os/canon-link.ts:46` |
 | literature card `provenance.tier` | `canon`, `candidate`, `outcome` | copied at `scripts/research-os/ingest/intake-all.ts:88` |
 | envelope `canon_tier` | `canon`, `candidate` | `src/app/api/research/route.ts:380` and `:433` |
 
-Two of these grade an edge rather than a claim. `graph.edges.confidence` answers "is this a real prerequisite relationship". `edgeConfidence` at `src/lib/research-os/types.ts:176` clamps it, the comment at `src/lib/research-os/types.ts:172` names the use, and the routing cost is computed in `computeFrontier` at `src/lib/research-os/frontier.ts:215`, `const candidateCost = cost.get(cur!)! + -Math.log(edgeConfidence(e));`. One of them, the literature card's `provenance.tier` copied at `scripts/research-os/ingest/intake-all.ts:88`, is an unconstrained string inside a `jsonb` blob. `canon_score` is a number in the same blob, `provenance_signoff` is YAML on disk, and `canon_tier` is a response field built per request. One, `frontier_flag`, is the only epistemic mark on a node today, and `POST /api/research-os/frontier` writes it as a bare column update with no reason, no author and no timestamp (`src/app/api/research-os/frontier/route.ts:54`).
+Two of these grade an edge rather than a claim. `graph.edges.confidence` answers "is this a real prerequisite relationship". `edgeConfidence` at `src/lib/research-os/types.ts:101` clamps it, the comment at `src/lib/research-os/types.ts:101` names the use, and the routing cost is computed in `computeFrontier` at `src/lib/research-os/frontier.ts:106`, `const candidateCost = cost.get(cur!)! + -Math.log(edgeConfidence(e));`. One of them, the literature card's `provenance.tier` copied at `scripts/research-os/ingest/intake-all.ts:88`, is an unconstrained string inside a `jsonb` blob. `canon_score` is a number in the same blob, `provenance_signoff` is YAML on disk, and `canon_tier` is a response field built per request. One, `frontier_flag`, is the only epistemic mark on a node today, and `POST /api/research-os/frontier` writes it as a bare column update with no reason, no author and no timestamp (`src/app/api/research-os/frontier/route.ts:45`).
 
 The one typed evidence verdict that already travels to an outside caller is `CitationVDS.verification.status`, `PASS | FAIL | INCONCLUSIVE` with a numeric `confidence`, at `src/lib/feed402-client.ts:40-55`. Nothing in the repo constructs one.
 
@@ -155,9 +155,9 @@ Two axes, because how a claim is known and how well it is established are differ
 
 ### Why the axis is called `footing`
 
-The first draft called it `standing`. That word fails this memo's own test. A grep over `src/`, `scripts/`, `supabase/`, `learning/research-os/` and `docs/` returns 81 hits carrying three separate meanings: a learner's stage on a node (`learning/research-os/IDEAL-STATE.md:14`, "a standing per node (stage and evidence)"), the client-visible response field built from `r.stage` at `src/app/api/research-os/graph/route.ts:46` and returned at `:83`, and `PairStanding` at `src/lib/research-os/makeup.ts:301`, the review standing of a factor-proposal pair. Naming a fourth thing `standing` would repeat what `tier` did.
+The first draft called it `standing`. That word fails this memo's own test. A grep over `src/`, `scripts/`, `supabase/`, `learning/research-os/` and `docs/` returns 81 hits carrying three separate meanings: a learner's stage on a node (`learning/research-os/IDEAL-STATE.md:14`, "a standing per node (stage and evidence)"), the client-visible response field built from `r.stage` at `src/app/api/research-os/graph/route.ts:46` and returned at `:83`, and `PairStanding` at `src/lib/research-os/makeup.ts:248`, the review standing of a factor-proposal pair. Naming a fourth thing `standing` would repeat what `tier` did.
 
-Three other candidates were tested the same way. `warrant` collides twice: `learning/research-os/PLAN.md:40` already uses it for the organize tool's "claim, evidence, and warrant scaffolds", and Clark, Ciccarese and Goble use it fifteen times in Toulmin's sense, "In Toulmin's terminology, the warrant is a purported summary of the backing", which is an inference licence rather than a degree of establishment.<!-- voice-ignore-line: verbatim quotation from Clark et al. 2014 --> `establishment` would name the axis with the same word as its own top value `established`. `evidence_grade` would put "evidence" into a third sense beside `graph.learner_node_state.evidence` and `EvidenceKind` at `src/lib/research-os/stages.ts:68`, both of which grade the learner.
+Three other candidates were tested the same way. `warrant` collides twice: `learning/research-os/PLAN.md:40` already uses it for the organize tool's "claim, evidence, and warrant scaffolds", and Clark, Ciccarese and Goble use it fifteen times in Toulmin's sense, "In Toulmin's terminology, the warrant is a purported summary of the backing", which is an inference licence rather than a degree of establishment.<!-- voice-ignore-line: verbatim quotation from Clark et al. 2014 --> `establishment` would name the axis with the same word as its own top value `established`. `evidence_grade` would put "evidence" into a third sense beside `graph.learner_node_state.evidence` and `EvidenceKind` at `src/lib/research-os/stages.ts:5`, both of which grade the learner.
 
 `footing` returns two hits across the same trees, both ordinary English inside prose, and none an identifier. It carries no competing sense in the literature this memo rests on, and it keeps the register of the founder's own phrasing in the `ros-truth` epic. A node's footing is what it stands on.
 
@@ -190,7 +190,7 @@ Ordinal, four graded values plus null. Stevens Table 1 applies: order, median an
 | `corroborated` | Two supporting sources that pass the independence test, or one `replicates` edge from an accepted replication node. Every `contradicts` edge on the node has a recorded response |
 | `established` | For a derivational branch, `knowing = proved`. For an empirical branch, `corroborated` plus a named human sign-off and no unanswered `contradicts` edge |
 
-The independence test already has a shipped home: `checkSecondSourceGate` at `src/lib/research-os/lateral-reading.ts:132`, with the learner-facing copy `SECOND_SOURCE_QUESTION_COPY` at line 81. The corroboration evidence kind `"corroboration"` is already in `EvidenceKind` at `src/lib/research-os/stages.ts:78`, inside the union opening at `:68`, carrying `firstSourceId`, `secondSourceId`, `independenceReason` and `passagesAgree` per `src/lib/research-os/EVIDENCE-SCHEMA.md`.
+The independence test already has a shipped home: `checkSecondSourceGate` at `src/lib/research-os/lateral-reading.ts:35`, with the learner-facing copy `SECOND_SOURCE_QUESTION_COPY` at line 81. The corroboration evidence kind `"corroboration"` is already in `EvidenceKind` at `src/lib/research-os/stages.ts:78`, inside the union opening at `:68`, carrying `firstSourceId`, `secondSourceId`, `independenceReason` and `passagesAgree` per `src/lib/research-os/EVIDENCE-SCHEMA.md`.
 
 ### Move-down reasons
 
@@ -199,7 +199,7 @@ GRADE §5.2 lists five factors that rate evidence down. Four reasons below are w
 | Reason | Trigger | GRADE origin |
 |---|---|---|
 | `contradicted` | A live `contradicts` edge with no recorded response | Bucket's own |
-| `unverified_source` | A `cites` target whose locator does not resolve. Same rule as `hasUnverifiedSource`, `src/lib/research-os/production-guard.ts:64` | Bucket's own |
+| `unverified_source` | A `cites` target whose locator does not resolve. Same rule as `hasUnverifiedSource`, `src/lib/research-os/production-guard.ts:32` | Bucket's own |
 | `source_distance` | Every supporting source has `knowing = secondhand` or `read` | Bucket's own, nearest to §5.2.3 indirectness |
 | `imprecise` | A quantitative claim with no interval and no sample size recorded | §5.2.4 imprecision |
 
@@ -242,7 +242,7 @@ After PROV-O §3.1 and §3.3, every footing assignment records the agent, the ac
 
 `learning/research-os/INTEGRATION-PLAN.md` §3 already decided the governance for tiers: "**Who sets a tier**: the engine score proposes, a named human signs off, as the canon writeback works today."<!-- voice-ignore-line: verbatim quotation from INTEGRATION-PLAN.md --> Footing reuses it.
 
-The proposal queue mirrors `graph.edge_proposals`. The gate is `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:76`, the environment allowlist alone, because that function's own header says it is "The gate for changing the graph itself".<!-- voice-ignore-line: verbatim quotation from reviewer.ts --> A class teacher can set footing on a node inside their own class region, which matches the same memo's "Teachers can add class-tier nodes below canon for their own classes."<!-- voice-ignore-line: verbatim quotation from INTEGRATION-PLAN.md -->
+The proposal queue mirrors `graph.edge_proposals`. The gate is `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:31`, the environment allowlist alone, because that function's own header says it is "The gate for changing the graph itself".<!-- voice-ignore-line: verbatim quotation from reviewer.ts --> A class teacher can set footing on a node inside their own class region, which matches the same memo's "Teachers can add class-tier nodes below canon for their own classes."<!-- voice-ignore-line: verbatim quotation from INTEGRATION-PLAN.md -->
 
 Three assignment paths:
 
@@ -258,7 +258,7 @@ Four surfaces, each keyed to what footing changes for the reader.
 
 **Map.** `src/lib/research-os/graph-layout.ts` keeps tier as the x-axis. Footing becomes a fill: ungraded hollow, `conjectured` outlined, `supported` and `corroborated` filled at two weights, `established` solid. `frontier_flag` keeps its gold ring, which stays orthogonal because an open question can sit at any footing.
 
-**Check.** A node at `conjectured` or below cannot serve as the grounding that advances a learner from awareness to understanding. That rule lands in `isGroundedCheck` at `src/lib/research-os/stages.ts:268`, which today reads only the model's verdict:
+**Check.** A node at `conjectured` or below cannot serve as the grounding that advances a learner from awareness to understanding. That rule lands in `isGroundedCheck` at `src/lib/research-os/stages.ts:104`, which today reads only the model's verdict:
 
 ```ts
 export function isGroundedCheck(check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean }): boolean {
@@ -268,7 +268,7 @@ export function isGroundedCheck(check: { result: "support" | "contradiction" | "
 
 The node's own footing is a second input this function does not have. Adding it is a real behavior change and belongs in `ros-truth 2` with its own tests.
 
-**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:204`, `computeDuplicateFlag` at `:202` and `lateralReadingFlag` at `:208` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
+**Production.** A production citing a node below `supported` says so in the review queue, beside the existing `duplicate_flag` and `lateral_reading_flag` that `checkSourceProvenance` at `src/app/api/research-os/production/route.ts:130`, `computeDuplicateFlag` at `:202` and `lateralReadingFlag` at `:208` already compute at submit. Following `learning/research-os/PRODUCTION-GUARD.md` §2, "Duplicate detection", which states at `:17` that "Duplicate detection never blocks submission", this flag is informational.<!-- voice-ignore-line: verbatim quotation from PRODUCTION-GUARD.md -->
 
 ## What a citation carries
 
@@ -410,7 +410,7 @@ grant all on graph.footing_proposals to service_role;
 
 Two code edits fall out of the migration before any of it reaches a client. `NODE_COLUMNS` at `src/lib/research-os/db.ts:216` is an explicit column list, `"id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag"`, and the new fields have to join it. `GraphNode` at `src/lib/research-os/types.ts:121` and `NodeRow` at `src/lib/research-os/db.ts:95` have to carry them. Without both, the columns exist and no reader sees them.
 
-The backfill is two passes, and only one of them is SQL. `provenance_signoff` is never a field on `graph.nodes`: it lives in `bucket-canon` `primary-papers.yaml` files on disk, read by `lookupCanonSignoff` at `src/lib/research-os/canon-link.ts:93` with `fs.readFileSync` and parsed at `src/lib/canon-primary.ts:189`. Rows 1 and 2 below therefore need a repo-side pass that joins those files to nodes on `provenance->>'paper_id'`. `canon_score` is a number inside the `provenance` jsonb written only for `canon_entry` and `primary_source` by `canonProvenance` at `src/lib/research-os/ingest/canon.ts:99-111`, so the cast needs a null guard. Everything else is a single idempotent `update`.
+The backfill is two passes, and only one of them is SQL. `provenance_signoff` is never a field on `graph.nodes`: it lives in `bucket-canon` `primary-papers.yaml` files on disk, read by `lookupCanonSignoff` at `src/lib/research-os/canon-link.ts:46` with `fs.readFileSync` and parsed at `src/lib/canon-primary.ts:189`. Rows 1 and 2 below therefore need a repo-side pass that joins those files to nodes on `provenance->>'paper_id'`. `canon_score` is a number inside the `provenance` jsonb written only for `canon_entry` and `primary_source` by `canonProvenance` at `src/lib/research-os/ingest/canon.ts:99-111`, so the cast needs a null guard. Everything else is a single idempotent `update`.
 
 Every provenance type any writer produces gets a row. Null is an answer, and the rows that take it say why.
 
@@ -442,7 +442,7 @@ These need a decision from you. I have not answered them.
 
 2. **Is `footing` ordinal or interval?** Michell 1997 §1.4 says treating it as a quantity is a claim you owe evidence for. PRIMES.md §"Next slices" item 1 proposes multiplying what it calls a node's standing, which needs interval or ratio semantics. Either commit to the scientific task of showing the scale is quantitative, or restrict the combination to order statistics. This memo assumes order statistics until you say otherwise.
 
-3. **Who can move a node to `established`?** The gate is `RESEARCH_OS_REVIEWER_EMAILS`, read by `isReviewerEmail` at `src/lib/research-os/reviewer.ts:48`. No value is committed and the variable is absent from `.env.example`, so this memo does not know how many people hold it. An `established` claim in the canon is the strongest thing Bucket says, and the x402 rail prices citations to it. How many hold that gate today, and does it need a second signer, a waiting period, or a public comment window?
+3. **Who can move a node to `established`?** The gate is `RESEARCH_OS_REVIEWER_EMAILS`, read by `isReviewerEmail` at `src/lib/research-os/reviewer.ts:18`. No value is committed and the variable is absent from `.env.example`, so this memo does not know how many people hold it. An `established` claim in the canon is the strongest thing Bucket says, and the x402 rail prices citations to it. How many hold that gate today, and does it need a second signer, a waiting period, or a public comment window?
 
 4. **What is `established` in a branch that has no axioms?** `knowing = proved` works for mathematics and for the parts of physics with a derivation chain. Branch `07-mind` has neither axioms nor replicable experiments in most of its material. Either that branch tops out at `corroborated`, or `established` means something different there, which would break the ordering across branches.
 

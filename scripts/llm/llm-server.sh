@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-# Bucket Academy local GPU LLM: llama.cpp server on the AMD RX 7700S (gfx1102).
-#
-# llama.cpp built WITH the Vulkan backend (libggml-vulkan.so) offloads to the
-# discrete GPU: measured ~13 tok/s on GPU vs ~5.4 tok/s on CPU, rocm-smi GPU use
-# 95-97%. The system Ollama also runs on this GPU through ROCm (see README.md,
-# "Why llama.cpp over the system Ollama"); the tutor stays on this server.
-#
-# Device selection: GGML_VK_VISIBLE_DEVICES=1 isolates the RX 7700S (RADV NAVI33).
-# Vulkan enumerates 0=Radeon 780M iGPU (gfx1103), 1=RX 7700S dGPU (gfx1102).
-# After filtering, the dGPU becomes the only device (Vulkan0) and gets full
-# offload. HSA_OVERRIDE_GFX_VERSION is set for parity with the rest of the box's
-# ROCm tooling; the Vulkan backend doesn't require it, but it's harmless.
-#
-# OpenAI-compatible: serves /v1/chat/completions (+ /v1/models, /health) so the
-# tutor's existing callLocalLLM() seam works unchanged.
 set -euo pipefail
 
 MODEL="${LLM_GGUF:-$HOME/models/Qwen2.5-Coder-7B-Instruct-Q4_K_M.gguf}"

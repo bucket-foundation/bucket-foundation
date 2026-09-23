@@ -40,6 +40,8 @@ jobs:
         run: npm run typecheck
       - name: lint
         run: npm run lint
+      - name: No code comments
+        run: npm run lint:comments
       - name: unit tests
         run: npm test
       - name: research os tests
@@ -83,7 +85,7 @@ jobs:
           fi
           # Every path that writes through the functions, their callers
           # included: the route that calls an RPC is the code under test.
-          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|scripts/research-os/|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
+          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|scripts/research-os/|scripts/photon/(node_words|test_node_words)|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -128,6 +130,11 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-access-paging.ts
+      - name: quote receipts against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-quote-receipts-db.ts
       - name: read authorization at the routes
         if: steps.paths.outputs.run == 'true'
         env:
@@ -139,6 +146,13 @@ jobs:
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
         run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-import-files-db.ts
+      - name: node words loader against real Postgres
+        if: steps.paths.outputs.run == 'true'
+        env:
+          RESEARCH_OS_REQUIRE_DB: "1"
+        run: |
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          NODE_WORDS_DB_URL="$DB_URL" python3 -m unittest scripts/photon/test_node_words_db.py
       - name: evidence search route authorization against real accounts
         if: steps.paths.outputs.run == 'true'
         env:

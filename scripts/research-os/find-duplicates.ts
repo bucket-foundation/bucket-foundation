@@ -1,40 +1,18 @@
-/**
- * ros-graph-dedup: queues nodes that name one concept for a reviewer, and
- * offers the parts of bundled missing ideas as factors.
- *
- * Reads the graph's public, current ideas (concept, law, derivation; bridge
- * clusters left out), their edge counts, and the decompose-further
- * verifier's refusals, and finds merge candidates with
- * src/lib/research-os/dedup.ts. For each pending node proposal whose name
- * bundles ideas the graph already holds ("Vector spaces, bases and inner
- * products"), it proposes each matched part as a factor of every idea that
- * named the bundle, and lists the parts on the proposal as possible
- * duplicates.
- *
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/find-duplicates.ts          # report only
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/find-duplicates.ts --apply  # write the queues
- *
- * Every read pages with .range() under .order(), past the 1,000-row cap.
- * Writes skip rows that exist, so a rerun converges.
- */
 import { createHash } from "node:crypto";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { pagedRead } from "../../src/lib/research-os/paging";
 import { findMergeCandidates, matchBundleParts, type DedupNode, type Refusal } from "../../src/lib/research-os/dedup";
 
 const IDEA_KINDS = ["concept", "law", "derivation"];
 
-async function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: any) => any): Promise<T[]> {
-  const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(from, from + 999);
+function readAll<T>(svc: SupabaseClient, table: string, columns: string, orderBy: string, filter?: (q: any) => any): Promise<T[]> {
+  return pagedRead<T>((page) => {
+    let q = svc.from(table).select(columns).order(orderBy, { ascending: true }).range(page.from, page.to);
     if (filter) q = filter(q);
-    const { data, error } = await q;
-    if (error) throw new Error(`${table}: ${error.message}`);
-    const rows = (data ?? []) as T[];
-    out.push(...rows);
-    if (rows.length < 1000) return out;
-  }
+    return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
+  }).catch((err: unknown) => {
+    throw new Error(`${table}: ${err instanceof Error ? err.message : String(err)}`);
+  });
 }
 
 async function main() {

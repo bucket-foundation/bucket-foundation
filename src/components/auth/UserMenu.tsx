@@ -10,13 +10,6 @@ const BUTTON =
 const DRAWER_BUTTON =
   "block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]";
 
-/**
- * The header's account control. Signed out: the Sign in button. Signed in:
- * the person's name (to /account) and a sign-out form. `drawer` renders
- * the phone-menu variant. With `launchList` (production before launch,
- * src/lib/launch.ts) the signed-out button reads "Notify me" and opens the
- * launch list at /sign-in.
- */
 export default function UserMenu({ drawer = false, onNavigate, launchList = false }: { drawer?: boolean; onNavigate?: () => void; launchList?: boolean }) {
   const { loading, user } = useSession();
   const pathname = usePathname() || "/";
@@ -24,7 +17,6 @@ export default function UserMenu({ drawer = false, onNavigate, launchList = fals
 
   if (!user) {
     const cta = launchList ? "Notify me" : "Sign in";
-    // The launch list records `wanted` only for pages a person was blocked from.
     const href = launchList ? "/sign-in" : signIn;
     if (drawer) {
       return (

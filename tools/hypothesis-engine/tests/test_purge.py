@@ -1,19 +1,3 @@
-"""`hte.purge`: end to end over a fake-mode research-os outbox campaign
-(`docs/PRIVACY.md`).
-
-The campaign itself runs in fake mode (`HTE_LLM_MODE=fake`, no network, no
-`claude` CLI), matching `tests/test_campaign_research_os.py`'s own
-pattern; fake mode never touches `cache_dir` (a documented, tested
-contract, see `hte.llm.complete`'s own fake-mode branch), so the LLM
-cache/`index.jsonl` half of this test seeds a real `cache_dir` through the
-non-fake `hte.llm.complete` path with a monkeypatched `subprocess.run`
-instead, `tests/test_llm.py`'s own pattern. The bridge-export and
-feed402-envelope files are synthetic fixtures standing in for `hte.
-bridge_export`/`hte.canon_writeback` output (PR #36, unmerged as this
-test lands): they exercise `hte.purge`'s own generic JSON-shape matcher
-against the two shapes the PR #35 seam check named, `evidenceCitations[].
-source_id` and a top-level `citation.source_id`.
-"""
 from __future__ import annotations
 
 import json
@@ -39,11 +23,9 @@ FAST_CONFIG = {
     "max_time_bins": 3,
 }
 
-
 @pytest.fixture(autouse=True)
 def _fake_llm_mode(monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
-
 
 @pytest.fixture(autouse=True)
 def _restore_corpus_loaders():
@@ -51,7 +33,6 @@ def _restore_corpus_loaders():
     yield
     runner._CORPUS_LOADERS.clear()
     runner._CORPUS_LOADERS.update(before)
-
 
 def _two_learner_rows() -> list[dict]:
     return [
@@ -71,17 +52,14 @@ def _two_learner_rows() -> list[dict]:
         },
     ]
 
-
 def _run_campaign(tmp_path, rows, **overrides):
     corpus, good_ids, skipped = research_os_outbox._build(rows, research_os_outbox.DEFAULT_TABLE, "draft")
     cfg = {**FAST_CONFIG, "out_dir": str(tmp_path / "runs"), "cache_dir": str(tmp_path / "runs-cache"), **overrides}
     payload = cro.run(corpus, config_overrides=cfg, skipped_rows=skipped)
     return payload, corpus
 
-
 def _envelope_for(structured_output):
     return json.dumps({"is_error": False, "structured_output": structured_output})
-
 
 def _fake_subprocess_run(responses):
     calls = []
@@ -94,12 +72,7 @@ def _fake_subprocess_run(responses):
     run.calls = calls
     return run
 
-
 def _seed_cache(cache_dir: Path, monkeypatch, *, prompt: str, production_id: str, learner_id: str) -> None:
-    """One real (non-fake) `hte.llm.complete` call, populating `cache_dir`
-    with a real cache file and an `index.jsonl` line for `production_id`
-    (`tests/test_llm.py`'s own monkeypatched-`subprocess.run` pattern):
-    the piece a fake-mode campaign never produces on its own."""
     schema = {"type": "object", "properties": {"keep": {"type": "boolean"}}, "required": ["keep"]}
     fake = _fake_subprocess_run([(0, _envelope_for({"keep": True}))])
     monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
@@ -107,7 +80,6 @@ def _seed_cache(cache_dir: Path, monkeypatch, *, prompt: str, production_id: str
         prompt, role="critic", schema=schema, model="sonnet", cache_dir=cache_dir, mode="real",
         provenance={"source_ids": [f"src-{production_id}"], "production_ids": [production_id], "learner_ids": [learner_id]},
     )
-
 
 def _write_bridge_export(runs_root: Path) -> Path:
     path = runs_root / "research-os.bridge.json"
@@ -125,7 +97,6 @@ def _write_bridge_export(runs_root: Path) -> Path:
     }, indent=2))
     return path
 
-
 def _write_envelopes(public_root: Path) -> tuple[Path, Path]:
     public_root.mkdir(parents=True, exist_ok=True)
     aaa = public_root / "run-aaa.json"
@@ -133,7 +104,6 @@ def _write_envelopes(public_root: Path) -> tuple[Path, Path]:
     bbb = public_root / "run-bbb.json"
     bbb.write_text(json.dumps({"citation": {"source_id": "https://example.edu/photosynthesis"}, "data": {"statement": "s"}}, indent=2))
     return aaa, bbb
-
 
 def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monkeypatch):
     rows = _two_learner_rows()
@@ -148,13 +118,12 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     index_lines_before = cache_dir.joinpath("index.jsonl").read_text().splitlines()
     assert len(index_lines_before) == 2
 
-    runs_root = run_dir.parents[1]  # tmp_path/runs
+    runs_root = run_dir.parents[1]
     assert runs_root == tmp_path / "runs"
     bridge_path = _write_bridge_export(runs_root)
     public_root = tmp_path / "public"
     envelope_aaa, envelope_bbb = _write_envelopes(public_root)
 
-    # --- dry run: nothing on disk changes ---
     before_snapshot = {
         p: p.read_text() for p in [run_dir / "MANIFEST.json", bridge_path, envelope_aaa, envelope_bbb]
         if p.is_file()
@@ -172,7 +141,6 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     assert cache_dir.joinpath("index.jsonl").read_text().splitlines() == index_lines_before
     assert run_dir.is_dir()
 
-    # --- real purge ---
     report = purge.purge(
         "prod-aaa", learner_id="learner-1", runs_root=runs_root, cache_dir=cache_dir, public_root=public_root, dry_run=False,
     )
@@ -180,7 +148,6 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     assert "report_path" in report
     assert Path(report["report_path"]).is_file()
 
-    # run directory: redacted in place (prod-bbb's data still lives there)
     assert run_dir.is_dir()
     manifest_after = json.loads((run_dir / "MANIFEST.json").read_text())
     assert manifest_after["provenance"]["production_ids"] == ["prod-bbb"]
@@ -198,10 +165,9 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     run_log_text = (run_dir / "run.log").read_text()
     for text in (self_report_text, timeline_text, run_log_text):
         assert "Rayleigh scattering bends blue light more than red." not in text
-        json.loads(self_report_text)  # still valid JSON
+        json.loads(self_report_text)
         json.loads(timeline_text)
 
-    # LLM cache: prod-aaa's entry and index line gone, prod-bbb's intact
     remaining_lines = [
         json.loads(line) for line in cache_dir.joinpath("index.jsonl").read_text().splitlines() if line.strip()
     ]
@@ -211,17 +177,14 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     assert len(remaining_cache_files) == 1
     assert remaining_cache_files[0] == f"{remaining_lines[0]['cache_key']}.json"
 
-    # bridge export: prod-aaa's hypothesis dropped, prod-bbb's kept, file stays valid
     bridge_after = json.loads(bridge_path.read_text())
     ids = {h["id"] for h in bridge_after["hypotheses"]}
     assert ids == {"h-bbb"}
 
-    # envelopes: prod-aaa's file deleted outright, prod-bbb's untouched
     assert not envelope_aaa.exists()
     assert envelope_bbb.is_file()
     assert json.loads(envelope_bbb.read_text())["citation"]["source_id"] == "https://example.edu/photosynthesis"
 
-    # --- idempotency: a second purge reports nothing left ---
     second = purge.purge(
         "prod-aaa", learner_id="learner-1", runs_root=runs_root, cache_dir=cache_dir, public_root=public_root, dry_run=False,
     )
@@ -232,11 +195,9 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
     assert second["envelopes"] == []
     assert second["not_found"]
 
-    # prod-bbb's own artifacts are still exactly as they were
     assert json.loads((run_dir / "MANIFEST.json").read_text())["provenance"]["production_ids"] == ["prod-bbb"]
     assert envelope_bbb.is_file()
     assert json.loads(bridge_path.read_text())["hypotheses"][0]["id"] == "h-bbb"
-
 
 def test_purge_deletes_a_single_production_run_directory(tmp_path):
     rows = [_two_learner_rows()[0]]
@@ -248,7 +209,6 @@ def test_purge_deletes_a_single_production_run_directory(tmp_path):
     assert report["runs"] == [{"run_dir": str(run_dir), "action": "deleted", "dry_run": False}]
     assert not run_dir.exists()
 
-
 def test_purge_dry_run_on_a_single_production_run_does_not_delete_it(tmp_path):
     rows = [_two_learner_rows()[0]]
     payload, _corpus = _run_campaign(tmp_path, rows)
@@ -259,12 +219,10 @@ def test_purge_dry_run_on_a_single_production_run_does_not_delete_it(tmp_path):
     assert report["runs"][0]["dry_run"] is True
     assert run_dir.exists()
 
-
 def test_purge_reports_not_found_for_an_unknown_production_id(tmp_path):
     report = purge.purge("no-such-production", runs_root=tmp_path / "runs", dry_run=True)
     assert report["runs"] == []
     assert report["not_found"]
-
 
 def test_purge_learner_mismatch_is_flagged_not_fatal(tmp_path):
     rows = [_two_learner_rows()[0]]
@@ -273,12 +231,7 @@ def test_purge_learner_mismatch_is_flagged_not_fatal(tmp_path):
     assert report["learner_id_mismatch"] is True
     assert report["runs"], "a learner mismatch never blocks the purge itself"
 
-
 def test_purge_flags_an_unreadable_manifest_rather_than_treating_it_as_nothing_to_purge(tmp_path):
-    """A `MANIFEST.json` this module cannot parse is never indistinguishable
-    from "never named this production": `hte.purge.purge` cannot rule out
-    that the corrupt file names `production_id`, so it lands in
-    `report["unreadable"]` and the purge is not reported complete."""
     runs_root = tmp_path / "runs"
     run_dir = runs_root / "quantum-history" / "20260101T000000Z"
     run_dir.mkdir(parents=True)
@@ -296,18 +249,7 @@ def test_purge_flags_an_unreadable_manifest_rather_than_treating_it_as_nothing_t
     )
     assert report["warning"]
 
-
 def test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it(tmp_path):
-    """`_redact_file` refusing to write a redaction that would leave
-    `timeline.json` invalid JSON (`docs/PRIVACY.md`'s "refuse rather than
-    corrupt" rule) must land in `report["redaction_refused"]`, not just
-    silently drop the file out of `files_redacted` with no other trace.
-    Plants a run directory directly (rather than a fake-mode campaign,
-    whose own `FAST_CONFIG` produces no ranked hypotheses and so no quote
-    text in `timeline.json` to redact in the first place), so the
-    manifest's own `by_production` entry and the pre-corrupted
-    `timeline.json` are guaranteed to share the one quote this test cares
-    about."""
     runs_root = tmp_path / "runs"
     run_dir = runs_root / "campaign" / "20260101T000000Z"
     run_dir.mkdir(parents=True)
@@ -324,9 +266,6 @@ def test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it(tmp_path
         },
     }
     (run_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2))
-    # Deliberately invalid JSON (a truncated object, missing its closing
-    # brace) that still carries prod-aaa's own quote: a redaction match
-    # happens, but the post-redaction text still cannot parse.
     corrupted_timeline = '{"timeline": "%s"' % quote
     (run_dir / "timeline.json").write_text(corrupted_timeline)
     (run_dir / "self-report.json").write_text("{}")
@@ -340,21 +279,10 @@ def test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it(tmp_path
         for entry in report["redaction_refused"]
     )
     assert (run_dir / "timeline.json").read_text() == corrupted_timeline, "a refused redaction must leave the file exactly as it was"
-    # run.log has no JSON to protect, so the same quote there is redacted
-    # normally: the refusal is specific to the one file it would corrupt.
     assert quote not in (run_dir / "run.log").read_text()
     assert report["warning"]
 
-
 def test_purge_redacts_survivors_json_the_same_quote_it_redacts_from_timeline_json(tmp_path):
-    """`survivors.json` (`bkt-hte-survivors-artifact`) carries the same
-    per-hypothesis slot labels and preservation-critique text
-    `timeline.json` does, so a production purge must reach it too, not
-    stop at the three files `docs/PRIVACY.md` named before this artifact
-    existed. Plants a run directory directly, the same pattern
-    `test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it`
-    uses, with two productions so the run is redacted in place rather
-    than deleted whole."""
     runs_root = tmp_path / "runs"
     run_dir = runs_root / "campaign" / "20260101T000000Z"
     run_dir.mkdir(parents=True)
@@ -389,4 +317,4 @@ def test_purge_redacts_survivors_json_the_same_quote_it_redacts_from_timeline_js
         text = (run_dir / name).read_text()
         assert quote not in text
         assert "[redacted:prod-aaa]" in text
-        json.loads(text)  # still valid JSON
+        json.loads(text)

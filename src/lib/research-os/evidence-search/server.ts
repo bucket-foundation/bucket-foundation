@@ -1,37 +1,17 @@
-/**
- * One evidence search on the server (ros-ai-find): the eligible set, the
- * ranking, and the cards.
- *
- * The corpus artifacts are read from disk once per process and checked
- * against their manifest. Eligibility comes from the database, the
- * admitted index revisions whose node is public and unmerged right now,
- * and is narrowed to the request's branch. It masks keyword scoring and
- * bounds what the worker may score. After ranking, eligibility is read
- * again and any source that left the set in the meantime is dropped
- * before its text is hydrated. A failure to read eligibility answers 503
- * rather than a search over a stale snapshot.
- *
- * A card's text comes from the corpus, never from the worker, which
- * returns ids and scores. `quoteAvailable` needs an active quote
- * admission for the passage's own revision, so a withdrawn quotation
- * stops offering itself.
- */
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { validateCorpus, type Manifest, type PassageRecord, type SourceRecord } from "../evidence/corpus";
 import { parsePolicy, type RightsPolicy } from "../evidence/rights";
 import { sha256Hex } from "../evidence/text";
+import { inChunks, pagedRead } from "../paging";
 import { eligibleKey, LexicalIndex } from "./lexical";
 import { evidenceSearch } from "./search";
 import type { WorkerConfig } from "./worker-client";
 import { MAX_CARDS, type EvidenceCard, type EvidenceSearchRequest, type EvidenceSearchResponse } from "./types";
 
 export const EVIDENCE_DIR = "RESEARCH_OS_EVIDENCE_DIR";
-const PAGE = 500;
 
-/** A corpus that was never built here, or one whose files do not validate.
- * No retry changes either. */
 export class CorpusUnavailable extends Error {
   constructor(message: string) {
     super(message);
@@ -40,22 +20,6 @@ export class CorpusUnavailable extends Error {
   }
 }
 
-/**
- * A corpus read that did not complete this minute, which a retry may
- * clear. It extends CorpusUnavailable because it is one: every caller
- * that already treats a corpus as absent stays correct, and the route
- * checks this one first to offer the retry.
- *
- * The cases are a permission error, an I/O error, and a directory named
- * by RESEARCH_OS_EVIDENCE_DIR that has gone. Each may clear without a
- * rebuild, so each earns a retry.
- *
- * Not a rebuild race: build-corpus.ts writes the jsonl files first and
- * manifest.json last into .tmp-<rev>-<pid>, validates the readback, then
- * renames, and newestCorpusDir only selects a directory that already
- * carries a manifest. The first version of this comment claimed that
- * race and no build path produces it.
- */
 export class CorpusReadFailed extends CorpusUnavailable {
   constructor(message: string) {
     super(message);
@@ -80,17 +44,9 @@ export interface Corpus {
   lexical: LexicalIndex;
 }
 
-/** The newest built corpus under `root`, by the time its manifest was written. */
 export function newestCorpusDir(root: string): string | null {
   if (!existsSync(root)) return null;
   const dirs = readdirSync(root)
-    // A dot-prefixed name is a build's working state, never a promoted
-    // corpus. The builder writes into `.tmp-<revision>-<pid>` and renames
-    // it into place, and on a failed readback it leaves that directory,
-    // manifest and all, for a person to inspect. Selecting by manifest
-    // mtime would pick exactly that directory, and the server would then
-    // answer `corpus_unavailable` on every request until someone deleted
-    // it by hand.
     .filter((name) => !name.startsWith("."))
     .map((name) => path.join(root, name))
     .filter((dir) => existsSync(path.join(dir, "manifest.json")))
@@ -98,7 +54,6 @@ export function newestCorpusDir(root: string): string | null {
   return dirs[0] ?? null;
 }
 
-/** Reads and checks a corpus directory. Throws CorpusUnavailable when it cannot be trusted. */
 export function readCorpus(directory: string, policy: RightsPolicy, policySha256: string): Corpus {
   let manifest: Manifest;
   let files: { "sources.jsonl": string; "passages.jsonl": string };
@@ -109,10 +64,6 @@ export function readCorpus(directory: string, policy: RightsPolicy, policySha256
       "passages.jsonl": readFileSync(path.join(directory, "passages.jsonl"), "utf8"),
     };
   } catch (e) {
-    // A read that did not complete: a permission error, an I/O error, or
-    // a directory named by the environment that has gone. Reporting one
-    // of those as a corpus that was never built refuses a retry that
-    // would work.
     throw new CorpusReadFailed(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
   }
   const problems = validateCorpus(manifest, files, policy, policySha256);
@@ -133,17 +84,9 @@ export function readCorpus(directory: string, policy: RightsPolicy, policySha256
 
 let cached: Corpus | null = null;
 
-/** The process's corpus, read once. `RESEARCH_OS_EVIDENCE_DIR` names it, or the newest build under local/evidence. */
 export function loadCorpus(env: Record<string, string | undefined> = process.env, root = path.join(process.cwd(), "local", "evidence")): Corpus {
   const directory = env.RESEARCH_OS_EVIDENCE_DIR || newestCorpusDir(root);
   if (!directory) throw new CorpusUnavailable(`no built corpus under ${root}; set ${EVIDENCE_DIR}`);
-  // A directory that was named and is not there is a fact about this
-  // deployment, the same as none being built. Only the unnamed path
-  // checked that, so a stale or mistyped EVIDENCE_DIR fell through to
-  // readCorpus and came back as a read that failed this minute, which
-  // tells a person to retry something no retry fixes. That is the
-  // inversion this file's two classes exist to prevent, so it is the
-  // one place to get it right.
   if (!existsSync(path.join(directory, "manifest.json"))) {
     throw new CorpusUnavailable(`no corpus at ${directory}; ${EVIDENCE_DIR} names a directory with no manifest.json`);
   }
@@ -159,60 +102,46 @@ export function loadCorpus(env: Record<string, string | undefined> = process.env
   return cached;
 }
 
-/** Forgets the cached corpus, for tests and for a rebuild between requests. */
-export function forgetCorpus(): void {
-  cached = null;
-}
-
 export interface Eligible {
   sourceId: string;
   sourceRevision: string;
   nodeId: string | null;
 }
 
-/** The admitted index revisions whose node is public right now. Pages, in a fixed order. */
 export async function eligibleSources(svc: SupabaseClient): Promise<Eligible[]> {
-  const out: Eligible[] = [];
-  for (let from = 0; ; from += PAGE) {
-    const { data, error } = await svc.rpc("eligible_evidence_sources").select("source_id, source_revision, node_id").order("source_id").range(from, from + PAGE - 1);
-    if (error) throw new EligibilityUnavailable(error.message);
-    const rows = (data ?? []) as { source_id: string; source_revision: string; node_id: string | null }[];
-    out.push(...rows.map((r) => ({ sourceId: r.source_id, sourceRevision: r.source_revision, nodeId: r.node_id })));
-    if (rows.length < PAGE) break;
+  let rows: { source_id: string; source_revision: string; node_id: string | null }[];
+  try {
+    rows = await pagedRead<{ source_id: string; source_revision: string; node_id: string | null }>(
+      (page) =>
+        svc.rpc("eligible_evidence_sources").select("source_id, source_revision, node_id").order("source_id").range(page.from, page.to) as unknown as Promise<{
+          data: { source_id: string; source_revision: string; node_id: string | null }[] | null;
+          error: { message: string } | null;
+        }>,
+    );
+  } catch (e) {
+    throw new EligibilityUnavailable(e instanceof Error ? e.message : String(e));
   }
-  return out;
+  return rows.map((r) => ({ sourceId: r.source_id, sourceRevision: r.source_revision, nodeId: r.node_id }));
 }
 
-/** The passage revisions admitted for quoting among `sourceIds`. Reads in pages, in a fixed order. */
-export async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]): Promise<Set<string>> {
-  const out = new Set<string>();
-  for (let i = 0; i < sourceIds.length; i += PAGE) {
-    const chunk = sourceIds.slice(i, i + PAGE);
-    for (let from = 0; ; from += PAGE) {
-      const { data, error } = await svc
+async function quotableRevisions(svc: SupabaseClient, sourceIds: string[]): Promise<Set<string>> {
+  let rows: { source_id: string; source_revision: string }[];
+  try {
+    rows = await inChunks<{ source_id: string; source_revision: string }>(sourceIds, (chunk, page) =>
+      svc
         .from("evidence_source_admissions")
         .select("source_id, source_revision")
         .in("source_id", chunk)
         .eq("scope", "quote")
         .eq("status", "active")
-        // The key is (source_id, source_revision) and source_id is
-        // handed a list, so source_revision alone is an order the
-        // database may satisfy either way. sourceRevisionOf hashes
-        // sourceId with the body, which makes a shared revision need a
-        // SHA-256 collision, and that is one function's property rather
-        // than a constraint. One sort key buys independence from it. A
-        // dropped row here stops a passage cleared for quoting from
-        // being quotable, quietly.
         .order("source_id")
         .order("source_revision")
-        .range(from, from + PAGE - 1);
-      if (error) throw new EligibilityUnavailable(error.message);
-      const rows = (data ?? []) as { source_id: string; source_revision: string }[];
-      for (const r of rows) out.add(r.source_revision);
-      if (rows.length < PAGE) break;
-    }
+        .range(page.from, page.to) as unknown as Promise<{ data: { source_id: string; source_revision: string }[] | null; error: { message: string } | null }>,
+    );
+  } catch (e) {
+    throw new EligibilityUnavailable(e instanceof Error ? e.message : String(e));
   }
-  return out;
+  return new Set(rows.map((r) => r.source_revision));
 }
 
 export interface SearchContext {
@@ -222,7 +151,6 @@ export interface SearchContext {
   requestId: string;
 }
 
-/** A card's excerpt: the curated passage when it is admitted, otherwise the node's own summary. */
 export function cardFor(record: SourceRecord, passage: PassageRecord | null, quotable: boolean): EvidenceCard {
   const summary = record.text.slice(record.title.length).trim();
   const usePassage = Boolean(passage && quotable);
@@ -247,7 +175,6 @@ export async function runEvidenceSearch(ctx: SearchContext, request: EvidenceSea
   const current = async () =>
     (await eligibleSources(svc)).filter((e) => {
       const record = corpus.records.get(e.sourceId);
-      // A revision the corpus does not hold is stale on one side or the other.
       return Boolean(record && record.sourceRevision === e.sourceRevision && record.branch === request.branch);
     });
 
@@ -262,8 +189,6 @@ export async function runEvidenceSearch(ctx: SearchContext, request: EvidenceSea
     worker: ctx.worker,
   });
 
-  // Read eligibility again: a source withdrawn while the search ran never
-  // reaches the response, even though it was scored.
   const still = new Set((await current()).map((e) => eligibleKey(e.sourceId, e.sourceRevision)));
   const ranked = result.results.filter((r) => still.has(eligibleKey(r.sourceId, r.sourceRevision)) && inBranch(r.sourceId));
   const quotable = await quotableRevisions(svc, ranked.map((r) => r.sourceId));
@@ -284,7 +209,6 @@ export async function runEvidenceSearch(ctx: SearchContext, request: EvidenceSea
   };
 }
 
-/** The worker this process talks to, or null when none is configured. */
 export function workerFromEnv(env: Record<string, string | undefined> = process.env): WorkerConfig | null {
   const url = env.EVIDENCE_WORKER_URL;
   const secret = env.EVIDENCE_WORKER_SECRET;
