@@ -174,6 +174,16 @@ function enclosingName(node: ts.Node): string {
     if ((ts.isArrowFunction(cur) || ts.isFunctionExpression(cur)) && cur.parent && ts.isVariableDeclaration(cur.parent) && ts.isIdentifier(cur.parent.name)) {
       return cur.parent.name.text;
     }
+    if (
+      (ts.isArrowFunction(cur) || ts.isFunctionExpression(cur)) &&
+      cur.parent &&
+      ts.isCallExpression(cur.parent) &&
+      cur.parent.parent &&
+      ts.isVariableDeclaration(cur.parent.parent) &&
+      ts.isIdentifier(cur.parent.parent.name)
+    ) {
+      return cur.parent.parent.name.text;
+    }
     cur = cur.parent;
   }
   return "<module>";
