@@ -83,6 +83,8 @@ import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os
  * feedback; loadRoute() (already called after every successful Check)
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { firstOpenTarget } from "@/lib/research-os/assignments";
 import EvidenceFind from "./EvidenceFind";
 import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -310,12 +312,26 @@ function Workspace() {
   // No ?target: open on the person's first open assignment, through a full
   // load so the page reads the new target from its own URL.
   useEffect(() => {
+    // hasTarget, from dev: the same value on the server and after
+    // hydration, where reading window.location here gave two answers.
     if (!token || hasTarget) return;
+    // A failed read leaves the learner where they are. Redirecting on a
+    // guess is worse than standing still, and the rule's answer was
+    // being computed here into a field nothing read, which satisfied the
+    // outage gate over a silent screen. AssignmentsBanner reports the
+    // failure on the same screen.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {
-        const open = (j.assignments ?? []).find((a) => a.status !== "accepted");
-        if (open && open.targetSlug !== targetSlug) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+      .then((j: { assignments?: LearnerAssignment[] }) => {
+        // A target the learner may not read carries no slug. Redirecting
+        // to `?target=` would land back here with an empty value, which
+        // the guard above reads as no target and fires again, forever
+        // (Bucket critic C38). firstOpenTarget holds that rule;
+        // `.find(a => a.status !== "accepted")` does not.
+        const open = firstOpenTarget(j.assignments ?? []);
+        if (open?.targetSlug && open.targetSlug !== targetSlug) {
+          window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+        }
       })
       .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -460,7 +476,7 @@ function Workspace() {
       const res = await fetch(`/api/research-os/route?target=${encodeURIComponent(targetSlug)}`, { headers: authHeaders() });
       const data = (await res.json().catch(() => ({}))) as RouteResponse;
       if (!res.ok) {
-        setRouteError(data.error || "route_failed");
+        setRouteError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "route_failed");
         return;
       }
       setRoute(data);

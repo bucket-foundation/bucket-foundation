@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState, type FormEvent } from "react";
 import Section from "./Section";
 import type { NodeData } from "./types";
@@ -29,7 +30,13 @@ export default function ClassSection({ data, onChanged }: { data: NodeData; onCh
       });
       const j = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
-        setNote(j.error === "forbidden" ? "You are not staff in that class." : "Could not assign.");
+        setNote(
+          isTransientOutage(res.status, j.error ?? null)
+            ? OUTAGE_COPY.body
+            : j.error === "forbidden"
+              ? "You are not staff in that class."
+              : "Could not assign.",
+        );
         return;
       }
       setNote("Assigned.");

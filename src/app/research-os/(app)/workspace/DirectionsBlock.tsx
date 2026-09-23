@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -30,6 +31,7 @@ export default function DirectionsBlock({
   onSelect: (node: Lite) => void;
 }) {
   const [d, setD] = useState<DirectionsView | null>(null);
+  const [note, setNote] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -37,7 +39,13 @@ export default function DirectionsBlock({
     (async () => {
       try {
         const res = await fetch(`/api/research-os/directions?node=${encodeURIComponent(nodeId)}&branch=${encodeURIComponent(branch)}`, { cache: "no-store" });
-        if (!res.ok) return;
+        if (!res.ok) {
+          // A null view renders nothing, which reads as a node with no
+          // directions rather than a read that did not complete.
+          if (!cancelled && isTransientOutage(res.status, await readErrorCode(res))) setNote(OUTAGE_COPY.body);
+          return;
+        }
+        if (!cancelled) setNote(null);
         const j = (await res.json()) as DirectionsView;
         if (!cancelled) setD(j);
       } catch {
@@ -49,7 +57,13 @@ export default function DirectionsBlock({
     };
   }, [nodeId, branch]);
 
-  if (!d) return null;
+  if (!d) {
+    return note ? (
+      <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
+        {note}
+      </p>
+    ) : null;
+  }
   const total = d.reach.reduce((a, b) => a + b, 0);
   const chip = (n: Lite, tone: string) => (
     <button
