@@ -47,8 +47,10 @@ function locatorFor(n: PlanNode): string | null {
   return typeof ts === "string" && ts.length > 0 ? ts : null;
 }
 
-export function silverKey(s: Pick<SilverDraft, "source_id" | "source_revision" | "parser" | "parser_revision" | "kind" | "span_start" | "span_end">): string {
-  return [s.source_id, s.source_revision, s.parser, s.parser_revision, s.kind, s.span_start, s.span_end].join(" ");
+export const SILVER_CONFLICT = "source_id,source_revision,parser,parser_revision,kind,span_start,span_end,subject";
+
+export function silverKey(s: Pick<SilverDraft, "source_id" | "source_revision" | "parser" | "parser_revision" | "kind" | "span_start" | "span_end" | "subject">): string {
+  return [s.source_id, s.source_revision, s.parser, s.parser_revision, s.kind, s.span_start, s.span_end, s.subject].join(" ");
 }
 
 export function planMedallion(input: PlanInput): MedallionPlan {

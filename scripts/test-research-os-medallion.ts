@@ -8,7 +8,11 @@ import { byteLength, sha256Hex } from "../src/lib/research-os/evidence/text";
 import { admissionRow, bronzeRecord, directoryManifest, rightsForTypes, runRevision, UNKNOWN_RIGHTS } from "../src/lib/research-os/medallion/bronze";
 import { lineageFor, type LineageNode } from "../src/lib/research-os/medallion/lineage";
 import { checkRepoPath, isTranscriptPath } from "../src/lib/research-os/medallion/paths";
-import { planMedallion, type MedallionIO, type PlanNode } from "../src/lib/research-os/medallion/plan";
+import { planMedallion, silverKey, type MedallionIO, type PlanNode } from "../src/lib/research-os/medallion/plan";
+import { edgeCandidates, edgeKey, edgeProposalRow, factorAndDependent, FACTOR_KINDS, nodeProposalRow, queueable, splitImport } from "../src/lib/research-os/medallion/proposals";
+import type { IngestEdgeDraft, IngestNodeDraft } from "../src/lib/research-os/ingest/types";
+import { shadowRequested } from "./research-os/ingest/lib/medallion-shadow";
+import { demotionRows } from "../src/lib/research-os/medallion/demotions";
 import { checkPromotion, type GoldTarget } from "../src/lib/research-os/medallion/promote";
 import { publicCitation, publicSilver } from "../src/lib/research-os/medallion/redact";
 import { summarizeBackfill } from "../src/lib/research-os/medallion/report";
@@ -322,4 +326,109 @@ test("the backfill report counts lineage and the transcript nodes on dependency 
 
   const noFile = summarizeBackfill({ nodes: reportNodes, plan, decomposition: dec, uploadNodesWithFile: new Set() });
   assert.equal(noFile.lineage.unknownByType["import without a file"], 1);
+});
+
+const draft = (slug: string, kind = "concept"): IngestNodeDraft => ({ slug, title: slug, kind: kind as IngestNodeDraft["kind"], tier: 12, branch: "02-physics", summary: null, labels: {}, provenance: { type: "canon_concept" } });
+
+test("the import split keeps factor edges and new nodes out of the gold write", () => {
+  const nodes = [draft("tag"), draft("claim", "excerpt"), draft("atom")];
+  const edges: IngestEdgeDraft[] = [
+    { fromSlug: "tag", toSlug: "atom", kind: "derives_from", confidence: 0.7, provenance: { rule: "concept_lexical", shared: ["rate"] } },
+    { fromSlug: "atom", toSlug: "tag", kind: "prerequisite", confidence: 0.6 },
+    { fromSlug: "claim", toSlug: "atom", kind: "cites", confidence: 0.8 },
+    { fromSlug: "claim", toSlug: "tag", kind: "example_of", confidence: 1 },
+  ];
+  const split = splitImport(nodes, edges, new Set(["tag", "atom"]), new Set([edgeKey(edges[1])]));
+  assert.deepEqual(split.goldNodes.map((n) => n.slug), ["tag", "atom"]);
+  assert.deepEqual(split.proposedNodes.map((n) => n.slug), ["claim"]);
+  assert.deepEqual(split.directEdges.map((e) => e.kind), ["cites", "example_of"]);
+  assert.deepEqual(split.factorEdges.map((e) => e.kind), ["derives_from"]);
+  assert.deepEqual(split.factorEdgesInGold.map((e) => e.kind), ["prerequisite"]);
+  assert.ok(Array.from(FACTOR_KINDS).every((k) => !split.directEdges.some((e) => e.kind === k)));
+});
+
+test("a proposal names the factor first, whatever the edge kind", () => {
+  assert.deepEqual(factorAndDependent({ fromSlug: "tag", toSlug: "atom", kind: "derives_from" }), { factor: "atom", dependent: "tag" });
+  assert.deepEqual(factorAndDependent({ fromSlug: "atom", toSlug: "tag", kind: "prerequisite" }), { factor: "atom", dependent: "tag" });
+  const row = edgeProposalRow("canon-all", { fromSlug: "tag", toSlug: "atom", kind: "derives_from", confidence: 0.7, provenance: { rule: "concept_lexical", shared: ["rate", "motion"] } }, "s1", "02-physics");
+  assert.equal(row.from_slug, "atom");
+  assert.equal(row.to_slug, "tag");
+  assert.equal(row.proposed_kind, "derives_from");
+  assert.equal(row.confidence_source, "medallion_lexical");
+  assert.equal(row.action, "add");
+  assert.equal(row.silver_item_id, "s1");
+  assert.equal(row.justification, "canon-all word match (concept_lexical): rate, motion.");
+  assert.match(row.prompt_hash, /^[0-9a-f]{64}$/);
+  assert.equal(edgeProposalRow("canon-all", { fromSlug: "tag", toSlug: "atom", kind: "derives_from", confidence: 0 }, null, "b").confidence, 0.5);
+});
+
+test("an edge candidate is its own silver item on the dependent's source, at the lower confidence", () => {
+  const plan = planMedallion({ nodes: PLAN_NODES, io: PLAN_IO, policy: POLICY, seedSlugs: SEEDS, parser: "shadow", parserRevision: "shadow/1" });
+  const edges: IngestEdgeDraft[] = [
+    { fromSlug: "canon-05-biophysics-emf", toSlug: "academy-02-physics-kinematics", kind: "derives_from", confidence: 0.62 },
+    { fromSlug: "canon-05-biophysics-emf", toSlug: "academy-02-physics-vectors", kind: "derives_from", confidence: 0.9 },
+    { fromSlug: "nobody", toSlug: "academy-02-physics-vectors", kind: "derives_from", confidence: 0.9 },
+  ];
+  const { candidates, unsilvered } = edgeCandidates(edges, plan.silverBySlug, "shadow", "shadow/1");
+  assert.equal(candidates.length, 2);
+  assert.deepEqual(unsilvered.map((e) => e.fromSlug), ["nobody"]);
+  const [a, b] = candidates.map((c) => c.silver);
+  const base = plan.silverBySlug.get("canon-05-biophysics-emf")!;
+  assert.equal(a.kind, "edge_candidate");
+  assert.equal(a.source_id, base.source_id);
+  assert.equal(a.subject, "academy-02-physics-kinematics->canon-05-biophysics-emf");
+  assert.notEqual(silverKey(a), silverKey(b));
+  assert.equal(a.confidence, 0.5);
+  assert.equal(b.confidence, 0.5);
+  assert.equal(queueable(a), true);
+  assert.equal(queueable({ confidence: 0.49 }), false);
+});
+
+test("a node proposal carries the draft under a medallion key", () => {
+  const row = nodeProposalRow("canon-all", draft("claim-x", "excerpt"), { confidence: 0.9 }, "s2");
+  assert.equal(row.key, "medallion:claim-x");
+  assert.equal(row.draft.kind, "excerpt");
+  assert.equal(row.silver_item_id, "s2");
+  assert.equal(row.model, "none");
+});
+
+test("the medallion leg runs by default with --apply and stops for --no-medallion", () => {
+  assert.equal(shadowRequested(["node", "x.ts"]), false);
+  assert.equal(shadowRequested(["node", "x.ts", "--medallion"]), true);
+  assert.equal(shadowRequested(["node", "x.ts", "--apply"]), true);
+  assert.equal(shadowRequested(["node", "x.ts", "--apply", "--no-medallion"]), false);
+  assert.equal(shadowRequested(["node", "x.ts", "--medallion", "--no-medallion"]), false);
+});
+
+test("each demotion names the atom as factor and the tag as dependent, ordered by tag", () => {
+  const rows = demotionRows([
+    { tagSlug: "canon-06-cosmology-hubble", tagBranch: "06-cosmology", atomSlug: "academy-06-cosmology-redshift", confidence: 0.8, provenance: { rule: "concept_lexical", shared: ["redshift"] }, silverItemId: "s1" },
+    { tagSlug: "canon-02-physics-heisenberg", tagBranch: "02-physics", atomSlug: "academy-02-physics-waves", confidence: 0.6, provenance: { rule: "concept_lexical" }, silverItemId: null },
+  ]);
+  assert.deepEqual(rows.map((r) => [r.from_slug, r.to_slug, r.action, r.proposed_kind, r.branch]), [
+    ["academy-02-physics-waves", "canon-02-physics-heisenberg", "demote", "derives_from", "02-physics"],
+    ["academy-06-cosmology-redshift", "canon-06-cosmology-hubble", "demote", "derives_from", "06-cosmology"],
+  ]);
+});
+
+test("recasting three leaf tags to cites leaves them unfactored and moves no other depth", () => {
+  const nodes = ["a0", "a1", "a2", "a3", "t1", "t2", "t3"].map((id) => ({ id, slug: id, title: id, kind: "concept", branch: "02-physics" }));
+  const base = [
+    { fromId: "a0", toId: "a1", kind: "prerequisite", confidence: 1 },
+    { fromId: "a1", toId: "a2", kind: "prerequisite", confidence: 1 },
+    { fromId: "a2", toId: "a3", kind: "prerequisite", confidence: 1 },
+  ];
+  const tagEdges = [
+    { fromId: "t1", toId: "a3", kind: "derives_from", confidence: 0.7 },
+    { fromId: "t2", toId: "a2", kind: "derives_from", confidence: 0.6 },
+    { fromId: "t3", toId: "a1", kind: "derives_from", confidence: 0.9 },
+  ];
+  const before = decompose(nodes, [...base, ...tagEdges]);
+  const after = decompose(nodes, [...base, ...tagEdges.map((e) => ({ ...e, kind: "cites" }))]);
+  assert.equal(before.get("t1")!.depth, 4);
+  for (const t of ["t1", "t2", "t3"]) {
+    assert.equal(before.get(t)!.status, "composite");
+    assert.equal(after.get(t)!.status, "unfactored");
+  }
+  for (const a of ["a0", "a1", "a2", "a3"]) assert.equal(after.get(a)!.depth, before.get(a)!.depth, a);
 });

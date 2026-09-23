@@ -41,7 +41,7 @@ async function main() {
     const written = await upsertGraph(result.nodes, result.edges, { label: "academy-import" });
     console.log(`[academy-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
   }
-  if (shadowRequested()) await shadowWrite("academy-import", result.nodes);
+  if (shadowRequested()) await shadowWrite("academy-import", { nodes: result.nodes, importer: "academy-import" });
 }
 
 main().catch((err) => {

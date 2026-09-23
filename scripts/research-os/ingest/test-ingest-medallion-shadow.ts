@@ -12,7 +12,7 @@ const GENERATED = ["academy-preview.json", "canon-preview.json", "review-list.js
 const DB_ENV = { NEXT_PUBLIC_SUPABASE_URL: "http://supabase.test", SUPABASE_SERVICE_ROLE_KEY: "service-key" };
 const GOLD_TABLES = new Set(["nodes", "edges"]);
 
-type Call = { op: string; table?: string; sha?: string; args?: unknown };
+type Call = { op: string; table?: string; sha?: string; args?: unknown; kinds?: Record<string, number> };
 type Run = { status: number | null; stdout: string; stderr: string; calls: Call[] };
 
 function snapshot(): Map<string, string | null> {
@@ -32,7 +32,7 @@ function restore(saved: Map<string, string | null>): void {
 
 function run(script: string, args: string[], extraEnv: Record<string, string>): Run {
   const log = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "ingest-shadow-")), "calls.json");
-  const env: NodeJS.ProcessEnv = { ...process.env, ...DB_ENV, ...extraEnv, STUB_LOG: log, TS_NODE_BASEURL: "./" };
+  const env: NodeJS.ProcessEnv = { ...process.env, ...DB_ENV, STUB_KNOWN_SLUGS: "1", ...extraEnv, STUB_LOG: log, TS_NODE_BASEURL: "./" };
   const r = spawnSync(
     process.execPath,
     [
@@ -77,7 +77,7 @@ for (const script of ["academy-import.ts", "canon-import.ts", "canon-all.ts", "i
 
       assert.match(shadowed.stderr, /medallion shadow FAILED: bronze admission failed: rpc stub failure/);
       assert.match(shadowed.stdout, /medallion shadow failures: 1/);
-      assert.doesNotMatch(plain.stdout, /medallion shadow/);
+      assert.match(plain.stdout, /medallion shadow failures: 0/);
     } finally {
       restore(saved);
     }
@@ -91,6 +91,43 @@ test("a shadow write with no database settings reports a failure and exits zero"
     assert.equal(r.status, 0, r.stderr);
     assert.match(r.stderr, /medallion shadow FAILED/);
     assert.match(r.stdout, /medallion shadow failures: 1/);
+  } finally {
+    restore(saved);
+  }
+});
+
+function factorWrites(calls: Call[]): number {
+  return calls.filter((c) => c.op === "upsert" && c.table === "edges").reduce((n, c) => n + (c.kinds?.derives_from ?? 0) + (c.kinds?.prerequisite ?? 0), 0);
+}
+
+for (const script of ["canon-all.ts", "intake-all.ts"]) {
+  test(`${script}: factor edges go to review, and --no-medallion writes them directly`, () => {
+    const saved = snapshot();
+    try {
+      const staged = run(script, ["--apply"], {});
+      const direct = run(script, ["--apply", "--no-medallion"], {});
+      assert.equal(staged.status, 0, staged.stderr);
+      assert.equal(direct.status, 0, direct.stderr);
+      assert.equal(factorWrites(staged.calls), 0);
+      assert.ok(factorWrites(direct.calls) > 0, "the opt-out wrote no factor edges");
+      const proposals = staged.calls.filter((c) => c.op === "upsert" && c.table === "edge_proposals");
+      assert.ok(proposals.length > 0, "no edge proposals were written");
+      assert.match(staged.stdout, /medallion split: \d+ gold nodes, 0 new nodes to review, \d+ direct edges, [1-9]\d* factor edges to review/);
+      assert.ok(!direct.calls.some((c) => c.op === "rpc" && c.args === "admit_bronze_sources"));
+    } finally {
+      restore(saved);
+    }
+  });
+}
+
+test("canon-all sends nodes absent from gold to the node review", () => {
+  const saved = snapshot();
+  try {
+    const r = run("canon-all.ts", ["--apply"], { STUB_KNOWN_SLUGS: "0" });
+    assert.equal(r.status, 0, r.stderr);
+    assert.equal(r.calls.filter((c) => c.op === "upsert" && c.table === "nodes").length, 0);
+    assert.ok(r.calls.some((c) => c.op === "upsert" && c.table === "node_proposals"));
+    assert.match(r.stdout, /medallion split: 0 gold nodes, [1-9]\d* new nodes to review/);
   } finally {
     restore(saved);
   }

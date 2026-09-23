@@ -92,7 +92,7 @@ async function main() {
     const written = await upsertGraph(result.nodes, result.edges, { label: "canon-import", skippedEdgeHint: "target node not yet in the graph (run academy-import.ts first?)." });
     console.log(`[canon-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
   }
-  if (shadowRequested()) await shadowWrite("canon-import", result.nodes);
+  if (shadowRequested()) await shadowWrite("canon-import", { nodes: result.nodes, importer: "canon-import" });
 }
 
 main().catch((err) => {

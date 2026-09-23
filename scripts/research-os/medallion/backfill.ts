@@ -3,7 +3,12 @@ import { pagedRead } from "../../../src/lib/research-os/paging";
 import { decompose, FACTOR_EDGES, type DepEdge } from "../../../src/lib/research-os/primes";
 import { planMedallion, type PlanNode } from "../../../src/lib/research-os/medallion/plan";
 import { summarizeBackfill } from "../../../src/lib/research-os/medallion/report";
+import { admissionRow, runRevision } from "../../../src/lib/research-os/medallion/bronze";
+import { SILVER_CONFLICT, silverKey } from "../../../src/lib/research-os/medallion/plan";
+import { insertNodeLineage, silverIds } from "../ingest/lib/medallion-shadow";
 import { loadPolicy, repoIO, seedSlugs } from "./lib/repo-io";
+
+const APPLY = process.argv.includes("--apply");
 
 type NodeRow = { id: string; slug: string; title: string; kind: string; branch: string; provenance: Record<string, unknown>; visibility: string; superseded_by: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -17,10 +22,6 @@ function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q
 }
 
 async function main() {
-  if (process.argv.includes("--apply")) {
-    console.error("[medallion-backfill] this runner is a dry run; the apply step lands with rollout stage 2.");
-    process.exit(1);
-  }
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
@@ -31,7 +32,7 @@ async function main() {
   const imports = await all<{ id: string; node_id: string | null }>(svc, "imports", "id, node_id");
   const files = await all<{ id: string; import_id: string }>(svc, "import_files", "id, import_id");
 
-  const { policy } = loadPolicy();
+  const { policy, sha256 } = loadPolicy();
   const plan = planMedallion({
     nodes: nodes.map((n): PlanNode => ({ slug: n.slug, title: n.title, kind: n.kind, branch: n.branch, provenance: n.provenance ?? {} })),
     io: repoIO,
@@ -65,8 +66,32 @@ async function main() {
     `[medallion-backfill] dry run: ${report.nodes} gold nodes, lineage known ${report.lineage.known} ` +
       `(${report.lineage.file} file, ${report.lineage.directory} directory, ${report.lineage.upload} upload), unknown ${report.lineage.unknown}. ` +
       `${report.bronze.sources} bronze sources (${report.bronze.textWithheld} with text withheld), ${report.silver.items} silver items. ` +
-      `Transcript-lineage nodes ${report.transcript.nodes}, on a dependency path ${report.transcript.onDependencyPath}, deepest layer ${report.transcript.deepest}. Nothing written.`,
+      `Transcript-lineage nodes ${report.transcript.nodes}, on a dependency path ${report.transcript.onDependencyPath}, deepest layer ${report.transcript.deepest}.` +
+      (APPLY ? "" : " Dry run, nothing written."),
   );
+  if (!APPLY) return;
+
+  const { data: admitted, error: admitErr } = await svc.rpc("admit_bronze_sources", {
+    p_run_revision: runRevision(plan.bronze),
+    p_policy_sha256: sha256,
+    p_policy_status: policy.status,
+    p_rows: plan.bronze.map(admissionRow),
+  });
+  if (admitErr) throw new Error(`bronze admission failed: ${admitErr.message}`);
+  const refused = new Set(((admitted as { refused?: { source_id: string }[] })?.refused ?? []).map((r) => r.source_id));
+  const silverRows = plan.silver.filter((s) => !refused.has(s.source_id));
+  for (let i = 0; i < silverRows.length; i += 500) {
+    const { error } = await svc.from("silver_items").upsert(silverRows.slice(i, i + 500), { onConflict: SILVER_CONFLICT, ignoreDuplicates: true });
+    if (error) throw new Error(`silver write failed: ${error.message}`);
+  }
+  const ids = await silverIds(svc, silverRows);
+  const pairs = nodes.flatMap((n) => {
+    const s = plan.silverBySlug.get(n.slug);
+    const silverId = s && !refused.has(s.source_id) ? ids.get(silverKey(s)) : undefined;
+    return silverId ? [{ nodeId: n.id, silverId }] : [];
+  });
+  const written = await insertNodeLineage(svc, pairs, { promoted_by: "backfill" });
+  console.log(`[medallion-backfill] applied: ${plan.bronze.length - refused.size} bronze, ${silverRows.length} silver, ${written} new lineage rows of ${pairs.length} mapped nodes, ${refused.size} bronze refused.`);
 }
 
 main().catch((err) => {

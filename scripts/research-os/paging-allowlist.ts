@@ -25,4 +25,8 @@ export const PAGING_EXCEPTIONS: PagingException[] = [
   { at: "src/app/api/research-os/search/route.ts::GET::learner_node_state::1", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
   { at: "src/app/api/research-os/state/route.ts::GET::learner_node_state::1", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
   { at: "src/app/api/research-os/workspace/route.ts::POST::nodes::1", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
+  { at: "src/lib/research-os/medallion/review-view.ts::silverForReview::silver_items::1", because: "silver_items.id is the primary key, so one row per id, and the loop hands in() at most 40 ids a call" },
+  { at: "scripts/research-os/ingest/lib/medallion-shadow.ts::existingNodeIds::nodes::1", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 60 slugs a call" },
+  { at: "scripts/research-os/ingest/lib/medallion-shadow.ts::writeImporterLineage::nodes::1", because: "graph.nodes.slug is not null unique, so one row per slug, and the loop hands in() at most 60 slugs a call" },
+  { at: "scripts/research-os/medallion/enqueue-demotions.ts::main::nodes::1", because: "nodes.id is the primary key, so one row per id, and the loop hands in() at most 100 ids a call" },
 ];
