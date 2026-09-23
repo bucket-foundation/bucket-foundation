@@ -3,7 +3,7 @@ import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
-import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName } from "@/lib/research-os/node-words";
 import RootTexts from "../RootTexts";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
@@ -73,6 +73,7 @@ function Root({ e }: { e: NsmExponent }) {
       <span className="small-caps text-[10px] tracking-[0.12em] text-[color:var(--basalt-3)]">{e.rootLangName} </span>
       <span lang={(e.rootLang || "").split("-")[0]} dir="auto">{e.rootForm}</span>
       {e.rootGloss && <span className="text-[color:var(--basalt-3)]"> “{e.rootGloss}”</span>}
+      {e.rootGlossForm && <Mark text={glossFormLabel(e.rootGlossForm) ?? ""} />}
       {e.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
       {e.rootHidden ? <Mark text="root unconfirmed" /> : e.rootUncertain && <Mark text="root uncertain" />}
     </span>

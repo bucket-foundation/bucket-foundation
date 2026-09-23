@@ -44,6 +44,10 @@ OFF_TOPICS = {
     "Christianity", "religion", "fashion", "cooking", "lifestyle", "entertainment", "military", "firearms", "nautical",
 }
 HIDE_BELOW = 0.5
+AR_DERIVED_GLOSS = 0.7
+AR_LETTERS = re.compile("[\u0621-\u064a]")
+AR_HAMZA = str.maketrans("أإؤئآ", "ءءءءء")
+AR_BASE_FORMS = {"I", "Iq"}
 UNCERTAIN_BELOW = 0.75
 SCIENCE_WORDS = (
     "physic", "chemi", "science", "mathemat", "biolog", "study of", "geometr", "gravitation", "force", "energy",
@@ -336,6 +340,7 @@ class Roots:
         self.db.row_factory = sqlite3.Row
         self.langs = {r[0] for r in self.db.execute("select distinct lang from word")}
         self.has_text_gloss = bool(self.db.execute("select name from sqlite_master where name = 'text_gloss'").fetchone())
+        self.has_ar_root_gloss = bool(self.db.execute("select name from sqlite_master where name = 'ar_root_gloss'").fetchone())
         self.ensure_keys()
 
     def ensure_keys(self):
@@ -349,6 +354,13 @@ class Roots:
             self.db.execute("create index if not exists word_lw on word (lang, word)")
             self.db.execute("create index if not exists etym_lw on etym (lang, word)")
             self.db.execute("create index if not exists word_root_lw on word_root (lang, word)")
+
+    def ar_root_gloss(self, root_form):
+        if not self.has_ar_root_gloss:
+            return None
+        key = "".join(AR_LETTERS.findall(root_form or "")).translate(AR_HAMZA)
+        r = self.db.execute("select form, gloss from ar_root_gloss where root = ?", (key,)).fetchone() if key else None
+        return (r[0], r[1]) if r else None
 
     def translations(self, en_word):
         return [dict(r) for r in self.db.execute("select * from translation where en_word = ? order by rowid", (en_word,))]
@@ -582,6 +594,17 @@ def oshb_apply(o, lang, word, root, root_conf, chain):
     import oshb
     return oshb.apply(o, lang, word, root, root_conf, chain)
 
+def ar_gloss(db, root_lang, root_form, root_gloss, root_conf):
+    if root_lang != "ar" or not root_form or (root_gloss or "").strip() not in ("", "?"):
+        return root_gloss, None, None
+    hit = db.ar_root_gloss(root_form) if hasattr(db, "ar_root_gloss") else None
+    if not hit:
+        return None, None, None
+    form, gloss = hit
+    if form in AR_BASE_FORMS:
+        return gloss, None, round(root_conf, 3)
+    return gloss, form, round(min(root_conf, AR_DERIVED_GLOSS), 3)
+
 def display_gloss(entry, t):
     g = (entry or {}).get("gloss") or ""
     if g and not is_form_gloss(g):
@@ -650,6 +673,7 @@ def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None, hebrew=None):
         if outcomes is not None and outcome:
             outcomes[outcome] = outcomes.get(outcome, 0) + 1
         root_lang, root_form, root_gloss = root
+        root_gloss, gloss_form, gloss_conf = ar_gloss(db, root_lang, root_form, root_gloss, root_conf)
         texts = []
         if lang == "ar" and ayahs:
             q = quran_hits(ayahs, surface)
@@ -665,6 +689,7 @@ def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None, hebrew=None):
             "root_lang": root_lang, "root_form": root_form, "root_gloss": root_gloss or None,
             "chain": chain, "root_texts": texts, "source": SOURCE, "en_term": term, "sense": t.get("sense") or "",
             "confidence": round(confidence, 3), "root_confidence": round(root_conf, 3), "root_source": root_source if root_form else None,
+            "root_gloss_form": gloss_form, "root_gloss_confidence": gloss_conf,
         })
     return term, rows
 
@@ -688,7 +713,18 @@ def verse_bands(rows, conf_key):
         out["verses_at_075" if band >= UNCERTAIN_BELOW else "verses_050_075"] += 1
     return out
 
-COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence", "root_confidence", "root_source"]
+def gloss_gain(rows, conf_key):
+    out = {"shown_arabic": 0, "form_I": 0, "derived": 0}
+    for r in rows:
+        if r["lang"] != "ar" or r[conf_key] < HIDE_BELOW:
+            continue
+        out["shown_arabic"] += 1
+        if r.get("root_gloss_confidence") is None or r["root_confidence"] < HIDE_BELOW:
+            continue
+        out["derived" if r.get("root_gloss_form") else "form_I"] += 1
+    return out
+
+COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence", "root_confidence", "root_source", "root_gloss_form", "root_gloss_confidence"]
 
 def write_rows(db_url, rows, node_ids):
     with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False, encoding="utf-8", newline="") as f:
@@ -744,6 +780,7 @@ def main(argv=None):
     print("rows by lang", dict(sorted(by_lang.items(), key=lambda x: -x[1])))
     print("with root", sum(1 for r in all_rows if r["root_form"]), "with root gloss", sum(1 for r in all_rows if r["root_gloss"]), "with quran", sum(1 for r in all_rows if any(t.get("corpus") == "Quran" for t in r["root_texts"])))
     print("with hebrew bible", json.dumps(verse_bands(all_rows, "confidence")))
+    print("arabic root meaning", json.dumps(gloss_gain(all_rows, "confidence")))
     print("root shown", sum(1 for r in all_rows if r["root_form"] and r["confidence"] >= HIDE_BELOW and r["root_confidence"] >= HIDE_BELOW), "oshb", json.dumps(outcomes, sort_keys=True))
     if a.show:
         for r in all_rows:

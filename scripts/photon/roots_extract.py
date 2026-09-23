@@ -476,6 +476,7 @@ create table if not exists word_root (lang text, word text, root_lang text, root
 create table if not exists translation (en_word text, en_pos text, sense text, sense_idx integer, topics text, lang text, word text, roman text);
 create table if not exists text_gloss (form text, gloss text, n integer default 1, primary key (form, gloss));
 create table if not exists progress (file text primary key, offset integer, lines integer, done integer, updated real);
+create table if not exists ar_root_gloss (root text primary key, form text, gloss text, entry text);
 """
 INDEXES = """
 create index if not exists translation_en on translation (en_word);
@@ -568,6 +569,75 @@ def print_counts(db):
     for t in ("word", "etym", "root", "word_root", "translation", "text_gloss"):
         print(t, db.execute(f"select count(*) from {t}").fetchone()[0])
 
+AR_LETTERS = re.compile("[\u0621-\u064a]")
+AR_FORMS = ["I", "Iq", "II", "IIq", "III", "IIIq", "IV", "IVq", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"]
+AR_BASE_FORMS = {"I", "Iq"}
+AR_HAMZA = str.maketrans("أإؤئآ", "ءءءءء")
+AR_GLOSS_SKIP = ("form ", "verbal noun of", "alternative form", "alternative spelling", "active participle of", "passive participle of")
+AR_GLOSS_CAP = 60
+
+def ar_root_key(text):
+    return "".join(AR_LETTERS.findall(text or "")).translate(AR_HAMZA)
+
+def ar_verb_root(entry):
+    for t in entry.get("etymology_templates", []) + entry.get("head_templates", []):
+        args = t.get("args", {}) or {}
+        if t.get("name") in ("ar-rootbox", "ar-root"):
+            key = ar_root_key("".join(args.get(k, "") for k in ("1", "2", "3", "4")))
+            if key:
+                return key
+        if t.get("name") == "etymon":
+            for v in args.values():
+                if isinstance(v, str) and "<id:root>" in v:
+                    key = ar_root_key(v.split("<")[0])
+                    if key:
+                        return key
+    return ""
+
+def ar_verb_form(entry):
+    for t in entry.get("head_templates", []):
+        if t.get("name") == "ar-verb":
+            head = ((t.get("args", {}) or {}).get("1", "") or "").split("/")[0].split(".")[0].split("-")[0].strip()
+            return head if head in AR_FORMS else ""
+    return ""
+
+def ar_short_gloss(gloss):
+    g = re.sub(r"\s*\([^)]*\)", "", gloss or "").strip()
+    g = g.split(";")[0]
+    parts = [p.strip() for p in g.split(",") if p.strip()]
+    return ", ".join(parts[:2])[:AR_GLOSS_CAP].rstrip(" ,")
+
+def ar_first_gloss(entry):
+    for sense in entry.get("senses", []):
+        for g in (sense.get("glosses") or [])[:1]:
+            if g and not g.lower().startswith(AR_GLOSS_SKIP):
+                short = ar_short_gloss(g)
+                if short:
+                    return short
+    return ""
+
+def ar_root_glosses(lines):
+    best = {}
+    for line in lines:
+        if '"pos": "verb"' not in line:
+            continue
+        entry = json.loads(line)
+        if entry.get("pos") != "verb":
+            continue
+        root, form = ar_verb_root(entry), ar_verb_form(entry)
+        gloss = ar_first_gloss(entry) if root and form else ""
+        if not gloss:
+            continue
+        rank = 0 if form in AR_BASE_FORMS else AR_FORMS.index(form)
+        if root not in best or rank < best[root][0]:
+            best[root] = (rank, form, gloss, entry.get("word", ""))
+    return {root: (form, gloss, word) for root, (_r, form, gloss, word) in best.items()}
+
+def write_ar_root_gloss(db, glosses):
+    with db:
+        db.execute("delete from ar_root_gloss")
+        db.executemany("insert into ar_root_gloss values (?,?,?,?)", [(r, f, g, w) for r, (f, g, w) in sorted(glosses.items())])
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--cache", default=CACHE_DIR)
@@ -576,8 +646,15 @@ def main(argv=None):
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--batch-mb", type=float, default=4)
     ap.add_argument("--counts", action="store_true")
+    ap.add_argument("--ar-root-gloss", action="store_true")
     a = ap.parse_args(argv)
     db = open_db(a.out)
+    if a.ar_root_gloss:
+        with open(os.path.join(a.cache, "Arabic.jsonl"), encoding="utf-8") as fh:
+            glosses = ar_root_glosses(fh)
+        write_ar_root_gloss(db, glosses)
+        print(json.dumps({"roots": len(glosses), "base_form": sum(1 for f, _g, _w in glosses.values() if f in AR_BASE_FORMS)}))
+        return 0
     if a.counts:
         print_counts(db)
         return 0

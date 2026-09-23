@@ -3,7 +3,7 @@
 import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
-import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
 import RootTexts from "../RootTexts";
 
 const FIRST = 12;
@@ -53,6 +53,7 @@ function WordRow({ w }: { w: NodeWord }) {
             <span lang={(w.rootLang ?? "").split("-")[0] || undefined} dir="auto" className="text-[15px] text-[color:var(--basalt)]">{w.rootForm}</span>
             {w.rootLangName && <span className="text-[color:var(--basalt-3)]"> · {w.rootLangName}</span>}
             {w.rootGloss && <span> · “{w.rootGloss}”</span>}
+            {w.rootGlossForm && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{glossFormLabel(w.rootGlossForm)}</span>}
             {w.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
             {w.rootUncertain && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">uncertain root</span>}
           </p>
