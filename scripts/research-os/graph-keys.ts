@@ -27,6 +27,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   node_words: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "lang", "word"], nullable: [] }],
   nodes: [{ columns: ["id"], nullable: [] }, { columns: ["slug"], nullable: [] }],
   nsm_exponents: [{ columns: ["prime_id", "lang", "word"], nullable: [] }],
+  nsm_links: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "prime_id"], nullable: [] }],
   nsm_primes: [{ columns: ["id"], nullable: [] }, { columns: ["ord"], nullable: [] }],
   prereq_ancestor: [{ columns: ["node_id", "ancestor_id"], nullable: [] }],
   privacy_events: [{ columns: ["id"], nullable: [] }],
