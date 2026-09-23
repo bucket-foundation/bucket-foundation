@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
-import { parsePolicy, type RightsPolicy } from "../../../../src/lib/research-os/evidence/rights";
+import { parsePolicy, seedIds, type RightsPolicy } from "../../../../src/lib/research-os/evidence/rights";
 import { sha256Hex } from "../../../../src/lib/research-os/evidence/text";
 import { checkRepoPath } from "../../../../src/lib/research-os/medallion/paths";
 import type { MedallionIO } from "../../../../src/lib/research-os/medallion/plan";
@@ -37,9 +37,7 @@ export function seedSlugs(policy: RightsPolicy): Map<string, Set<string>> {
   for (const rule of policy.index) {
     const file = rule.match.seedFile;
     if (!file || out.has(file)) continue;
-    const seed = JSON.parse(readFileSync(path.join(ROOT, file), "utf8")) as { nodes?: { slug?: string }[] };
-    if (!Array.isArray(seed.nodes)) throw new Error(`${file} has no nodes list`);
-    out.set(file, new Set(seed.nodes.map((n) => n.slug).filter((s): s is string => typeof s === "string")));
+    out.set(file, seedIds(file, readFileSync(path.join(ROOT, file), "utf8")));
   }
   return out;
 }

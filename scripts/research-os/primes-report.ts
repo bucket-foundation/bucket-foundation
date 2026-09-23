@@ -34,7 +34,7 @@ async function main() {
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null));
+  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null).neq("kind", "event"));
   const live = new Set(nodeRows.map((n) => n.id));
   const edgeRows = (await all<EdgeRow>(svc, "edges", "from_id, to_id, kind, confidence", (q) => q.in("kind", Object.keys(FACTOR_EDGES)))).filter(
     (e) => live.has(e.from_id) && live.has(e.to_id),

@@ -206,7 +206,7 @@ export type PrimesInputs = { nodeRows: ReportNode[]; edgeRows: ReportEdge[]; irr
 
 export async function readPrimesInputs(svc: SupabaseClient): Promise<PrimesInputs> {
   const [nodeRows, edgeRows, reviewed, pending] = await Promise.all([
-    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null)),
+    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null).neq("kind", "event")),
     readAll<ReportEdge>(svc, "edges", "id, from_id, to_id, kind, confidence", "id", (q) => q.in("kind", Object.keys(FACTOR_EDGES))),
     readAll<{ node_slug: string; status: string }>(svc, "irreducible_proposals", "id, node_slug, status", "id"),
     readAll<{ from_slug: string; to_slug: string }>(svc, "edge_proposals", "id, from_slug, to_slug", "id", (q) =>

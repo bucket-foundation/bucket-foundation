@@ -10,8 +10,8 @@ The register is the best systems audit this repo has had: specific files and lin
 
 | Row | Verified | Evidence on the branch head |
 |---|---|---|
-| PR-021 Story signing key in a client-imported module, logged | Confirmed | `src/lib/story/index.ts:17` logs `NEXT_PUBLIC_WALLET_PRIVATE_KEY`, line 22 logs the key again; imported by `src/app/research/PublishForm.tsx` and `src/app/knowledge/page.tsx`. First fix of the drain. |
-| PR-001 anon-key browser writes to `public.*` | Confirmed | `src/context/AuthorContext.tsx:27,41` and `CiteTokensContext.tsx:25,58` write through the anon client. |
+| PR-021 Story signing key in a client-imported module, logged | Confirmed | `src/lib/story/index:17` logs `NEXT_PUBLIC_WALLET_PRIVATE_KEY`, line 22 logs the key again; imported by `src/app/research/PublishForm.tsx` and `src/app/knowledge/page.tsx`. First fix of the drain. |
+| PR-001 anon-key browser writes to `public.*` | Confirmed | `src/context/AuthorContext:27,41` and `CiteTokensContext:25,58` write through the anon client. |
 | PR-003 CORS `*` on API proxies, `canon/search` claims a limit it lacks | Confirmed | `src/lib/research-tools/proxy.ts:46` sets `access-control-allow-origin: *` (lowercase, which a case-sensitive grep misses); `canon/search/route.ts:11` says "rate-limited via standard ip" and no limiter exists. |
 | PR-004 three disconnected identity rows | Confirmed and understated | See "Findings the review missed" below: there are three sign-in stacks, and seven pages carry their own sign-in form. |
 | PR-002 research-tools gateway open | Not re-verified here (service code outside this branch's scope); the fix is right. |
