@@ -6,22 +6,8 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sql, TEST_DB as DB, loadLocalEnv } from "./lib/test-harness";
 
-const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
-
-function sql(statement: string): { status: number; out: string } {
-  const run = spawnSync("psql", [DB, "-At", "-v", "ON_ERROR_STOP=1", "-c", statement], { encoding: "utf8" });
-  return { status: run.status ?? 1, out: (run.stdout || "").trim() + (run.stderr || "") };
-}
-
-function loadLocalEnv(): void {
-  const file = path.join(__dirname, "..", ".env.local");
-  if (!existsSync(file)) return;
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
-    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
-  }
-}
 loadLocalEnv();
 
 const probe = sql("select 1");
