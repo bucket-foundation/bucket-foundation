@@ -1,6 +1,5 @@
 "use client";
 
-import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 /**
  * /research-os/class, the teacher class view (bkt-ros, ros-06 item 2).
  * Renders GET /api/research-os/class's already-computed, already-scoped
