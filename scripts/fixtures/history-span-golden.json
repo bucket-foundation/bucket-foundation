@@ -1,0 +1,7178 @@
+{
+  "schema": "history-span-golden/1",
+  "edtf_pattern": "^(Y-?[1-9][0-9]{4,8}|-?[0-9]{4}(-[0-9]{2}){0,2}|-?[0-9]{2}([0-9]X|XX))[?~%]?(/(Y-?[1-9][0-9]{4,8}|-?[0-9]{4}(-[0-9]{2}){0,2}|-?[0-9]{2}([0-9]X|XX))[?~%]?)?$",
+  "cases": [
+    {
+      "id": "edtf:1777:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1777",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1777",
+          "start_year": 1777,
+          "end_year": 1777,
+          "start_min": 1777,
+          "start_max": 1777,
+          "end_min": 1777,
+          "end_max": 1777,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:-0569:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "-0569",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0569",
+          "start_year": -569,
+          "end_year": -569,
+          "start_min": -569,
+          "start_max": -569,
+          "end_min": -569,
+          "end_max": -569,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:0000:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "0000",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0000",
+          "start_year": 0,
+          "end_year": 0,
+          "start_min": 0,
+          "start_max": 0,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1643-01-04:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1643-01-04",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1643-01-04",
+          "start_year": 1643,
+          "end_year": 1643,
+          "start_min": 1643,
+          "start_max": 1643,
+          "end_min": 1643,
+          "end_max": 1643,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1727-03:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1727-03",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1727-03",
+          "start_year": 1727,
+          "end_year": 1727,
+          "start_min": 1727,
+          "start_max": 1727,
+          "end_min": 1727,
+          "end_max": 1727,
+          "precision": "month",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:05XX:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "05XX",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "05XX",
+          "start_year": 500,
+          "end_year": 599,
+          "start_min": 500,
+          "start_max": 599,
+          "end_min": 500,
+          "end_max": 599,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 500,
+              "max": 599,
+              "endpoints": {
+                "start": [
+                  500,
+                  599
+                ],
+                "end": [
+                  500,
+                  599
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:-05XX:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "-05XX",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-05XX",
+          "start_year": -599,
+          "end_year": -500,
+          "start_min": -599,
+          "start_max": -500,
+          "end_min": -599,
+          "end_max": -500,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -599,
+              "max": -500,
+              "endpoints": {
+                "start": [
+                  -599,
+                  -500
+                ],
+                "end": [
+                  -599,
+                  -500
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:195X:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "195X",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "195X",
+          "start_year": 1950,
+          "end_year": 1959,
+          "start_min": 1950,
+          "start_max": 1959,
+          "end_min": 1950,
+          "end_max": 1959,
+          "precision": "decade",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1950,
+              "max": 1959,
+              "endpoints": {
+                "start": [
+                  1950,
+                  1959
+                ],
+                "end": [
+                  1950,
+                  1959
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:-195X:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "-195X",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-195X",
+          "start_year": -1959,
+          "end_year": -1950,
+          "start_min": -1959,
+          "start_max": -1950,
+          "end_min": -1959,
+          "end_max": -1950,
+          "precision": "decade",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -1959,
+              "max": -1950,
+              "endpoints": {
+                "start": [
+                  -1959,
+                  -1950
+                ],
+                "end": [
+                  -1959,
+                  -1950
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:Y-16999:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "Y-16999",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-16999",
+          "start_year": -16999,
+          "end_year": -16999,
+          "start_min": -16999,
+          "start_max": -16999,
+          "end_min": -16999,
+          "end_max": -16999,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:Y170000:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "Y170000",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y170000",
+          "start_year": 170000,
+          "end_year": 170000,
+          "start_min": 170000,
+          "start_max": 170000,
+          "end_min": 170000,
+          "end_max": 170000,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1900/1950:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1900/1950",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1900/1950",
+          "start_year": 1900,
+          "end_year": 1950,
+          "start_min": 1900,
+          "start_max": 1900,
+          "end_min": 1950,
+          "end_max": 1950,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:-0324~:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "-0324~",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0324~",
+          "start_year": -324,
+          "end_year": -324,
+          "start_min": -334,
+          "start_max": -314,
+          "end_min": -334,
+          "end_max": -314,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -334,
+              "max": -314,
+              "endpoints": {
+                "start": [
+                  -334,
+                  -314
+                ],
+                "end": [
+                  -334,
+                  -314
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1850?:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1850?",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1850?",
+          "start_year": 1850,
+          "end_year": 1850,
+          "start_min": 1850,
+          "start_max": 1850,
+          "end_min": 1850,
+          "end_max": 1850,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "uncertain",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1850%:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1850%",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1850%",
+          "start_year": 1850,
+          "end_year": 1850,
+          "start_min": 1840,
+          "start_max": 1860,
+          "end_min": 1840,
+          "end_max": 1860,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "both",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1840,
+              "max": 1860,
+              "endpoints": {
+                "start": [
+                  1840,
+                  1860
+                ],
+                "end": [
+                  1840,
+                  1860
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:0501/0600:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "0501/0600",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0501/0600",
+          "start_year": 501,
+          "end_year": 600,
+          "start_min": 501,
+          "start_max": 501,
+          "end_min": 600,
+          "end_max": 600,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1850~/1900?:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1850~/1900?",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1850~/1900?",
+          "start_year": 1850,
+          "end_year": 1900,
+          "start_min": 1840,
+          "start_max": 1860,
+          "end_min": 1900,
+          "end_max": 1900,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "both",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1840,
+              "max": 1900,
+              "endpoints": {
+                "start": [
+                  1840,
+                  1860
+                ],
+                "end": [
+                  1900,
+                  1900
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:2020-02-29:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "2020-02-29",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "2020-02-29",
+          "start_year": 2020,
+          "end_year": 2020,
+          "start_min": 2020,
+          "start_max": 2020,
+          "end_min": 2020,
+          "end_max": 2020,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:2000-02-29:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "2000-02-29",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "2000-02-29",
+          "start_year": 2000,
+          "end_year": 2000,
+          "start_min": 2000,
+          "start_max": 2000,
+          "end_min": 2000,
+          "end_max": 2000,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:-0099/0000:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "-0099/0000",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0099/0000",
+          "start_year": -99,
+          "end_year": 0,
+          "start_min": -99,
+          "start_max": -99,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:18XX/1950:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "18XX/1950",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "18XX/1950",
+          "start_year": 1800,
+          "end_year": 1950,
+          "start_min": 1800,
+          "start_max": 1899,
+          "end_min": 1950,
+          "end_max": 1950,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1800,
+              "max": 1950,
+              "endpoints": {
+                "start": [
+                  1800,
+                  1899
+                ],
+                "end": [
+                  1950,
+                  1950
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:1850-06~:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "1850-06~",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1850-06~",
+          "start_year": 1850,
+          "end_year": 1850,
+          "start_min": 1849,
+          "start_max": 1851,
+          "end_min": 1849,
+          "end_max": 1851,
+          "precision": "month",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1849,
+              "max": 1851,
+              "endpoints": {
+                "start": [
+                  1849,
+                  1851
+                ],
+                "end": [
+                  1849,
+                  1851
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edtf:Y-16999~:gregorian",
+      "category": "edtf",
+      "call": "edtf",
+      "input": "Y-16999~",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-16999~",
+          "start_year": -16999,
+          "end_year": -16999,
+          "start_min": -17009,
+          "start_max": -16989,
+          "end_min": -17009,
+          "end_max": -16989,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -17009,
+              "max": -16989,
+              "endpoints": {
+                "start": [
+                  -17009,
+                  -16989
+                ],
+                "end": [
+                  -17009,
+                  -16989
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:1923-06-01:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "1923-06-01",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1923-06-01",
+          "start_year": 1923,
+          "end_year": 1923,
+          "start_min": 1923,
+          "start_max": 1923,
+          "end_min": 1923,
+          "end_max": 1923,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:1922-12-25:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "1922-12-25",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1922-12-25",
+          "start_year": 1922,
+          "end_year": 1922,
+          "start_min": 1922,
+          "start_max": 1923,
+          "end_min": 1922,
+          "end_max": 1923,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1922,
+              "max": 1923,
+              "endpoints": {
+                "start": [
+                  1922,
+                  1923
+                ],
+                "end": [
+                  1922,
+                  1923
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:1642-12-25:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "1642-12-25",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642-12-25",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1643,
+          "end_min": 1642,
+          "end_max": 1643,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1642,
+              "max": 1643,
+              "endpoints": {
+                "start": [
+                  1642,
+                  1643
+                ],
+                "end": [
+                  1642,
+                  1643
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:1642-06-15:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "1642-06-15",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642-06-15",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1642,
+          "end_min": 1642,
+          "end_max": 1642,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:-5399-01-01:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "-5399-01-01",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-5399-01-01",
+          "start_year": -5399,
+          "end_year": -5399,
+          "start_min": -5400,
+          "start_max": -5399,
+          "end_min": -5400,
+          "end_max": -5399,
+          "precision": "day",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -5400,
+              "max": -5399,
+              "endpoints": {
+                "start": [
+                  -5400,
+                  -5399
+                ],
+                "end": [
+                  -5400,
+                  -5399
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unknown-calendar:1642:unknown",
+      "category": "unknown-calendar",
+      "call": "edtf",
+      "input": "1642",
+      "options": {
+        "calendar": "unknown"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1642,
+          "end_min": 1642,
+          "end_max": 1642,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "rejected:2020-13-45:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "2020-13-45",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:2021-02-29:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "2021-02-29",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:1900-02-29:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1900-02-29",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:2020-04-31:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "2020-04-31",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:2020-00:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "2020-00",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:2020-01-00:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "2020-01-00",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:1900/..:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1900/..",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "open-interval"
+      }
+    },
+    {
+      "id": "rejected:../1900:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "../1900",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "open-interval"
+      }
+    },
+    {
+      "id": "rejected:1900/:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1900/",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "open-interval"
+      }
+    },
+    {
+      "id": "rejected:/1900:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "/1900",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "open-interval"
+      }
+    },
+    {
+      "id": "rejected:1950/1900:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1950/1900",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "reversed"
+      }
+    },
+    {
+      "id": "rejected:Y1234:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "Y1234",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:Y1234567890:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "Y1234567890",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:Y012345:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "Y012345",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:1XXX:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1XXX",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:18XX-05:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "18XX-05",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:-0000:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "-0000",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:19:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "19",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:1850~?:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1850~?",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected::gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:1900/1950/2000:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1900/1950/2000",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:1900-1950:gregorian",
+      "category": "rejected",
+      "call": "edtf",
+      "input": "1900-1950",
+      "options": {
+        "calendar": "gregorian"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:0th century",
+      "category": "rejected",
+      "call": "span",
+      "input": "0th century",
+      "expect": {
+        "refusal": "out-of-range"
+      }
+    },
+    {
+      "id": "rejected:2th century",
+      "category": "rejected",
+      "call": "span",
+      "input": "2th century",
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:0 BCE",
+      "category": "rejected",
+      "call": "span",
+      "input": "0 BCE",
+      "expect": {
+        "refusal": "out-of-range"
+      }
+    },
+    {
+      "id": "rejected:25 Mar 1760 OS",
+      "category": "rejected",
+      "call": "span",
+      "input": "25 Mar 1760 OS",
+      "expect": {
+        "refusal": "calendar"
+      }
+    },
+    {
+      "id": "rejected:3 Sep 1752 OS",
+      "category": "rejected",
+      "call": "span",
+      "input": "3 Sep 1752 OS",
+      "expect": {
+        "refusal": "calendar"
+      }
+    },
+    {
+      "id": "rejected:20 Apr 1726/27",
+      "category": "rejected",
+      "call": "span",
+      "input": "20 Apr 1726/27",
+      "expect": {
+        "refusal": "calendar"
+      }
+    },
+    {
+      "id": "rejected:20 Mar 1726/28",
+      "category": "rejected",
+      "call": "span",
+      "input": "20 Mar 1726/28",
+      "expect": {
+        "refusal": "inconsistent"
+      }
+    },
+    {
+      "id": "rejected:c.",
+      "category": "rejected",
+      "call": "span",
+      "input": "c.",
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:31 Foo 1700",
+      "category": "rejected",
+      "call": "span",
+      "input": "31 Foo 1700",
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:30 Feb 1700 OS",
+      "category": "rejected",
+      "call": "span",
+      "input": "30 Feb 1700 OS",
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "rejected:Watson 1928-, Crick 1916-2004",
+      "category": "rejected",
+      "call": "lifespan",
+      "input": "Watson 1928-, Crick 1916-2004",
+      "expect": {
+        "refusal": "composite"
+      }
+    },
+    {
+      "id": "rejected:1900-1850",
+      "category": "rejected",
+      "call": "lifespan",
+      "input": "1900-1850",
+      "expect": {
+        "refusal": "reversed"
+      }
+    },
+    {
+      "id": "rejected:c.300 BCE",
+      "category": "rejected",
+      "call": "lifespan",
+      "input": "c.300 BCE",
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:-1850",
+      "category": "rejected",
+      "call": "lifespan",
+      "input": "-1850",
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:0:historical",
+      "category": "rejected",
+      "call": "year",
+      "input": 0,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "refusal": "out-of-range"
+      }
+    },
+    {
+      "id": "rejected:1.5:astronomical",
+      "category": "rejected",
+      "call": "year",
+      "input": 1.5,
+      "options": {
+        "convention": "astronomical"
+      },
+      "expect": {
+        "refusal": "syntax"
+      }
+    },
+    {
+      "id": "rejected:-1000000001:historical",
+      "category": "rejected",
+      "call": "year",
+      "input": -1000000001,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "refusal": "out-of-range"
+      }
+    },
+    {
+      "id": "integer-year:-570:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -570,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0569",
+          "start_year": -569,
+          "end_year": -569,
+          "start_min": -569,
+          "start_max": -569,
+          "end_min": -569,
+          "end_max": -569,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-17000:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -17000,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-16999",
+          "start_year": -16999,
+          "end_year": -16999,
+          "start_min": -16999,
+          "start_max": -16999,
+          "end_min": -16999,
+          "end_max": -16999,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-2560:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -2560,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-2559",
+          "start_year": -2559,
+          "end_year": -2559,
+          "start_min": -2559,
+          "start_max": -2559,
+          "end_min": -2559,
+          "end_max": -2559,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-1:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -1,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0000",
+          "start_year": 0,
+          "end_year": 0,
+          "start_min": 0,
+          "start_max": 0,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:1:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": 1,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0001",
+          "start_year": 1,
+          "end_year": 1,
+          "start_min": 1,
+          "start_max": 1,
+          "end_min": 1,
+          "end_max": 1,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:2020:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": 2020,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "2020",
+          "start_year": 2020,
+          "end_year": 2020,
+          "start_min": 2020,
+          "start_max": 2020,
+          "end_min": 2020,
+          "end_max": 2020,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-10000:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -10000,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-9999",
+          "start_year": -9999,
+          "end_year": -9999,
+          "start_min": -9999,
+          "start_max": -9999,
+          "end_min": -9999,
+          "end_max": -9999,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-10001:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -10001,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-10000",
+          "start_year": -10000,
+          "end_year": -10000,
+          "start_min": -10000,
+          "start_max": -10000,
+          "end_min": -10000,
+          "end_max": -10000,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-5400:historical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -5400,
+      "options": {
+        "convention": "historical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-5399",
+          "start_year": -5399,
+          "end_year": -5399,
+          "start_min": -5399,
+          "start_max": -5399,
+          "end_min": -5399,
+          "end_max": -5399,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:-5400:astronomical",
+      "category": "integer-year",
+      "call": "year",
+      "input": -5400,
+      "options": {
+        "convention": "astronomical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-5400",
+          "start_year": -5400,
+          "end_year": -5400,
+          "start_min": -5400,
+          "start_max": -5400,
+          "end_min": -5400,
+          "end_max": -5400,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-year:0:astronomical",
+      "category": "integer-year",
+      "call": "year",
+      "input": 0,
+      "options": {
+        "convention": "astronomical"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0000",
+          "start_year": 0,
+          "end_year": 0,
+          "start_min": 0,
+          "start_max": 0,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:c.300 BCE",
+      "category": "era-text",
+      "call": "span",
+      "input": "c.300 BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0299~",
+          "start_year": -299,
+          "end_year": -299,
+          "start_min": -309,
+          "start_max": -289,
+          "end_min": -309,
+          "end_max": -289,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -309,
+              "max": -289,
+              "endpoints": {
+                "start": [
+                  -309,
+                  -289
+                ],
+                "end": [
+                  -309,
+                  -289
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:598 CE",
+      "category": "era-text",
+      "call": "span",
+      "input": "598 CE",
+      "expect": {
+        "span": {
+          "edtf": "0598",
+          "start_year": 598,
+          "end_year": 598,
+          "start_min": 598,
+          "start_max": 598,
+          "end_min": 598,
+          "end_max": 598,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:AD 800",
+      "category": "era-text",
+      "call": "span",
+      "input": "AD 800",
+      "expect": {
+        "span": {
+          "edtf": "0800",
+          "start_year": 800,
+          "end_year": 800,
+          "start_min": 800,
+          "start_max": 800,
+          "end_min": 800,
+          "end_max": 800,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:c.1040",
+      "category": "era-text",
+      "call": "span",
+      "input": "c.1040",
+      "expect": {
+        "span": {
+          "edtf": "1040~",
+          "start_year": 1040,
+          "end_year": 1040,
+          "start_min": 1030,
+          "start_max": 1050,
+          "end_min": 1030,
+          "end_max": 1050,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1030,
+              "max": 1050,
+              "endpoints": {
+                "start": [
+                  1030,
+                  1050
+                ],
+                "end": [
+                  1030,
+                  1050
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:300 BC",
+      "category": "era-text",
+      "call": "span",
+      "input": "300 BC",
+      "expect": {
+        "span": {
+          "edtf": "-0299",
+          "start_year": -299,
+          "end_year": -299,
+          "start_min": -299,
+          "start_max": -299,
+          "end_min": -299,
+          "end_max": -299,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:1 BCE",
+      "category": "era-text",
+      "call": "span",
+      "input": "1 BCE",
+      "expect": {
+        "span": {
+          "edtf": "0000",
+          "start_year": 0,
+          "end_year": 0,
+          "start_min": 0,
+          "start_max": 0,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:trad. 1200 BCE",
+      "category": "era-text",
+      "call": "span",
+      "input": "trad. 1200 BCE",
+      "expect": {
+        "span": {
+          "edtf": "-1199?",
+          "start_year": -1199,
+          "end_year": -1199,
+          "start_min": -1199,
+          "start_max": -1199,
+          "end_min": -1199,
+          "end_max": -1199,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "uncertain",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "era-text:c.17000 BCE",
+      "category": "era-text",
+      "call": "span",
+      "input": "c.17000 BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-16999~",
+          "start_year": -16999,
+          "end_year": -16999,
+          "start_min": -17009,
+          "start_max": -16989,
+          "end_min": -17009,
+          "end_max": -16989,
+          "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -17009,
+              "max": -16989,
+              "endpoints": {
+                "start": [
+                  -17009,
+                  -16989
+                ],
+                "end": [
+                  -17009,
+                  -16989
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "century:6th century",
+      "category": "century",
+      "call": "span",
+      "input": "6th century",
+      "expect": {
+        "span": {
+          "edtf": "0501/0600",
+          "start_year": 501,
+          "end_year": 600,
+          "start_min": 501,
+          "start_max": 501,
+          "end_min": 600,
+          "end_max": 600,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:6th century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "6th century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0599/-0500",
+          "start_year": -599,
+          "end_year": -500,
+          "start_min": -599,
+          "start_max": -599,
+          "end_min": -500,
+          "end_max": -500,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:1st century",
+      "category": "century",
+      "call": "span",
+      "input": "1st century",
+      "expect": {
+        "span": {
+          "edtf": "0001/0100",
+          "start_year": 1,
+          "end_year": 100,
+          "start_min": 1,
+          "start_max": 1,
+          "end_min": 100,
+          "end_max": 100,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:1st century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "1st century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0099/0000",
+          "start_year": -99,
+          "end_year": 0,
+          "start_min": -99,
+          "start_max": -99,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:21st century",
+      "category": "century",
+      "call": "span",
+      "input": "21st century",
+      "expect": {
+        "span": {
+          "edtf": "2001/2100",
+          "start_year": 2001,
+          "end_year": 2100,
+          "start_min": 2001,
+          "start_max": 2001,
+          "end_min": 2100,
+          "end_max": 2100,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:10th century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "10th century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0999/-0900",
+          "start_year": -999,
+          "end_year": -900,
+          "start_min": -999,
+          "start_max": -999,
+          "end_min": -900,
+          "end_max": -900,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:12th century CE",
+      "category": "century",
+      "call": "span",
+      "input": "12th century CE",
+      "expect": {
+        "span": {
+          "edtf": "1101/1200",
+          "start_year": 1101,
+          "end_year": 1200,
+          "start_min": 1101,
+          "start_max": 1101,
+          "end_min": 1200,
+          "end_max": 1200,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:2nd century",
+      "category": "century",
+      "call": "span",
+      "input": "2nd century",
+      "expect": {
+        "span": {
+          "edtf": "0101/0200",
+          "start_year": 101,
+          "end_year": 200,
+          "start_min": 101,
+          "start_max": 101,
+          "end_min": 200,
+          "end_max": 200,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:3rd century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "3rd century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0299/-0200",
+          "start_year": -299,
+          "end_year": -200,
+          "start_min": -299,
+          "start_max": -299,
+          "end_min": -200,
+          "end_max": -200,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:11th century",
+      "category": "century",
+      "call": "span",
+      "input": "11th century",
+      "expect": {
+        "span": {
+          "edtf": "1001/1100",
+          "start_year": 1001,
+          "end_year": 1100,
+          "start_min": 1001,
+          "start_max": 1001,
+          "end_min": 1100,
+          "end_max": 1100,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "century:c.8th century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "c.8th century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0799~/-0700~",
+          "start_year": -799,
+          "end_year": -700,
+          "start_min": -809,
+          "start_max": -789,
+          "end_min": -710,
+          "end_max": -690,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "approximate",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -809,
+              "max": -690,
+              "endpoints": {
+                "start": [
+                  -809,
+                  -789
+                ],
+                "end": [
+                  -710,
+                  -690
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "century:trad. 6th century BCE",
+      "category": "century",
+      "call": "span",
+      "input": "trad. 6th century BCE",
+      "expect": {
+        "span": {
+          "edtf": "-0599?/-0500?",
+          "start_year": -599,
+          "end_year": -500,
+          "start_min": -599,
+          "start_max": -599,
+          "end_min": -500,
+          "end_max": -500,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "uncertain",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "julian:1582-10-04:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1582-10-04",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1582-10-14",
+          "start_year": 1582,
+          "end_year": 1582,
+          "start_min": 1582,
+          "start_max": 1582,
+          "end_min": 1582,
+          "end_max": 1582,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 10
+    },
+    {
+      "id": "julian:1582-10-05:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1582-10-05",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1582-10-15",
+          "start_year": 1582,
+          "end_year": 1582,
+          "start_min": 1582,
+          "start_max": 1582,
+          "end_min": 1582,
+          "end_max": 1582,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 10
+    },
+    {
+      "id": "julian:1900-12-25:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1900-12-25",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1901-01-07",
+          "start_year": 1901,
+          "end_year": 1901,
+          "start_min": 1901,
+          "start_max": 1901,
+          "end_min": 1901,
+          "end_max": 1901,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 13
+    },
+    {
+      "id": "julian:-5399-01-01:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "-5399-01-01",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-5400-11-20",
+          "start_year": -5400,
+          "end_year": -5400,
+          "start_min": -5400,
+          "start_max": -5400,
+          "end_min": -5400,
+          "end_max": -5400,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": -42
+    },
+    {
+      "id": "julian:1700-02-29:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1700-02-29",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1700-03-11",
+          "start_year": 1700,
+          "end_year": 1700,
+          "start_min": 1700,
+          "start_max": 1700,
+          "end_min": 1700,
+          "end_max": 1700,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 10
+    },
+    {
+      "id": "julian:1752-09-02:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1752-09-02",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1752-09-13",
+          "start_year": 1752,
+          "end_year": 1752,
+          "start_min": 1752,
+          "start_max": 1752,
+          "end_min": 1752,
+          "end_max": 1752,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 11
+    },
+    {
+      "id": "julian:0001-01-01:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "0001-01-01",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0000-12-30",
+          "start_year": 0,
+          "end_year": 0,
+          "start_min": 0,
+          "start_max": 0,
+          "end_min": 0,
+          "end_max": 0,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": -2
+    },
+    {
+      "id": "julian:0200-03-01:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "0200-03-01",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0200-03-01",
+          "start_year": 200,
+          "end_year": 200,
+          "start_min": 200,
+          "start_max": 200,
+          "end_min": 200,
+          "end_max": 200,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 0
+    },
+    {
+      "id": "julian:1900-02-29:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1900-02-29",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1900-03-13",
+          "start_year": 1900,
+          "end_year": 1900,
+          "start_min": 1900,
+          "start_max": 1900,
+          "end_min": 1900,
+          "end_max": 1900,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      },
+      "offset_days": 12
+    },
+    {
+      "id": "julian:1642:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1642",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1643,
+          "end_min": 1642,
+          "end_max": 1643,
+          "precision": "year",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1642,
+              "max": 1643,
+              "endpoints": {
+                "start": [
+                  1642,
+                  1643
+                ],
+                "end": [
+                  1642,
+                  1643
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "julian:1642-06:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1642-06",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642-06",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1642,
+          "end_min": 1642,
+          "end_max": 1642,
+          "precision": "month",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "julian:1642-12:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "1642-12",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1642-12",
+          "start_year": 1642,
+          "end_year": 1642,
+          "start_min": 1642,
+          "start_max": 1643,
+          "end_min": 1642,
+          "end_max": 1643,
+          "precision": "month",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1642,
+              "max": 1643,
+              "endpoints": {
+                "start": [
+                  1642,
+                  1643
+                ],
+                "end": [
+                  1642,
+                  1643
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "julian:-5399:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "-5399",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-5399",
+          "start_year": -5399,
+          "end_year": -5399,
+          "start_min": -5400,
+          "start_max": -5399,
+          "end_min": -5400,
+          "end_max": -5399,
+          "precision": "year",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": -5400,
+              "max": -5399,
+              "endpoints": {
+                "start": [
+                  -5400,
+                  -5399
+                ],
+                "end": [
+                  -5400,
+                  -5399
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "julian:2021-02-29:julian",
+      "category": "julian",
+      "call": "edtf",
+      "input": "2021-02-29",
+      "options": {
+        "calendar": "julian"
+      },
+      "expect": {
+        "refusal": "impossible-date"
+      }
+    },
+    {
+      "id": "old-style:25 Dec 1642 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "25 Dec 1642 OS",
+      "expect": {
+        "span": {
+          "edtf": "1643-01-04",
+          "start_year": 1643,
+          "end_year": 1643,
+          "start_min": 1642,
+          "start_max": 1643,
+          "end_min": 1642,
+          "end_max": 1643,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1642,
+              "max": 1643,
+              "endpoints": {
+                "start": [
+                  1642,
+                  1643
+                ],
+                "end": [
+                  1642,
+                  1643
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:20 Mar 1727 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "20 Mar 1727 OS",
+      "expect": {
+        "span": {
+          "edtf": "1727-03-31",
+          "start_year": 1727,
+          "end_year": 1727,
+          "start_min": 1727,
+          "start_max": 1728,
+          "end_min": 1727,
+          "end_max": 1728,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1727,
+              "max": 1728,
+              "endpoints": {
+                "start": [
+                  1727,
+                  1728
+                ],
+                "end": [
+                  1727,
+                  1728
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:20 Mar 1726/27",
+      "category": "old-style",
+      "call": "span",
+      "input": "20 Mar 1726/27",
+      "expect": {
+        "span": {
+          "edtf": "1727-03-31",
+          "start_year": 1727,
+          "end_year": 1727,
+          "start_min": 1727,
+          "start_max": 1727,
+          "end_min": 1727,
+          "end_max": 1727,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:1 Jan 1700 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "1 Jan 1700 OS",
+      "expect": {
+        "span": {
+          "edtf": "1700-01-11",
+          "start_year": 1700,
+          "end_year": 1700,
+          "start_min": 1700,
+          "start_max": 1701,
+          "end_min": 1700,
+          "end_max": 1701,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1700,
+              "max": 1701,
+              "endpoints": {
+                "start": [
+                  1700,
+                  1701
+                ],
+                "end": [
+                  1700,
+                  1701
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:24 Mar 1700 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "24 Mar 1700 OS",
+      "expect": {
+        "span": {
+          "edtf": "1700-04-04",
+          "start_year": 1700,
+          "end_year": 1700,
+          "start_min": 1700,
+          "start_max": 1701,
+          "end_min": 1700,
+          "end_max": 1701,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1700,
+              "max": 1701,
+              "endpoints": {
+                "start": [
+                  1700,
+                  1701
+                ],
+                "end": [
+                  1700,
+                  1701
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:25 Mar 1700 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "25 Mar 1700 OS",
+      "expect": {
+        "span": {
+          "edtf": "1700-04-05",
+          "start_year": 1700,
+          "end_year": 1700,
+          "start_min": 1700,
+          "start_max": 1700,
+          "end_min": 1700,
+          "end_max": 1700,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:11 Feb 1731/32",
+      "category": "old-style",
+      "call": "span",
+      "input": "11 Feb 1731/32",
+      "expect": {
+        "span": {
+          "edtf": "1732-02-22",
+          "start_year": 1732,
+          "end_year": 1732,
+          "start_min": 1732,
+          "start_max": 1732,
+          "end_min": 1732,
+          "end_max": 1732,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:2 Sep 1752 OS",
+      "category": "old-style",
+      "call": "span",
+      "input": "2 Sep 1752 OS",
+      "expect": {
+        "span": {
+          "edtf": "1752-09-13",
+          "start_year": 1752,
+          "end_year": 1752,
+          "start_min": 1752,
+          "start_max": 1752,
+          "end_min": 1752,
+          "end_max": 1752,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:29 Feb 1699/00",
+      "category": "old-style",
+      "call": "span",
+      "input": "29 Feb 1699/00",
+      "expect": {
+        "span": {
+          "edtf": "1700-03-11",
+          "start_year": 1700,
+          "end_year": 1700,
+          "start_min": 1700,
+          "start_max": 1700,
+          "end_min": 1700,
+          "end_max": 1700,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "old-style:1642-12-25:julian-os",
+      "category": "old-style",
+      "call": "edtf",
+      "input": "1642-12-25",
+      "options": {
+        "calendar": "julian-os"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1643-01-04",
+          "start_year": 1643,
+          "end_year": 1643,
+          "start_min": 1642,
+          "start_max": 1643,
+          "end_min": 1642,
+          "end_max": 1643,
+          "precision": "day",
+          "calendar": "julian-os",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "uniform",
+            "params": {
+              "min": 1642,
+              "max": 1643,
+              "endpoints": {
+                "start": [
+                  1642,
+                  1643
+                ],
+                "end": [
+                  1642,
+                  1643
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:euclid",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.325-c.265 BCE",
+      "subject": "euclid",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0324~",
+            "start_year": -324,
+            "end_year": -324,
+            "start_min": -334,
+            "start_max": -314,
+            "end_min": -334,
+            "end_max": -314,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -334,
+                "max": -314,
+                "endpoints": {
+                  "start": [
+                    -334,
+                    -314
+                  ],
+                  "end": [
+                    -334,
+                    -314
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "-0264~",
+            "start_year": -264,
+            "end_year": -264,
+            "start_min": -274,
+            "start_max": -254,
+            "end_min": -274,
+            "end_max": -254,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -274,
+                "max": -254,
+                "endpoints": {
+                  "start": [
+                    -274,
+                    -254
+                  ],
+                  "end": [
+                    -274,
+                    -254
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:archimedes",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.287-c.212 BCE",
+      "subject": "archimedes",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0286~",
+            "start_year": -286,
+            "end_year": -286,
+            "start_min": -296,
+            "start_max": -276,
+            "end_min": -296,
+            "end_max": -276,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -296,
+                "max": -276,
+                "endpoints": {
+                  "start": [
+                    -296,
+                    -276
+                  ],
+                  "end": [
+                    -296,
+                    -276
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "-0211~",
+            "start_year": -211,
+            "end_year": -211,
+            "start_min": -221,
+            "start_max": -201,
+            "end_min": -221,
+            "end_max": -201,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -221,
+                "max": -201,
+                "endpoints": {
+                  "start": [
+                    -221,
+                    -201
+                  ],
+                  "end": [
+                    -221,
+                    -201
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:brahmagupta",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "598-668 CE",
+      "subject": "brahmagupta",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0598",
+            "start_year": 598,
+            "end_year": 598,
+            "start_min": 598,
+            "start_max": 598,
+            "end_min": 598,
+            "end_max": 598,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "0668",
+            "start_year": 668,
+            "end_year": 668,
+            "start_min": 668,
+            "start_max": 668,
+            "end_min": 668,
+            "end_max": 668,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:al-khwarizmi",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.780-c.850 CE",
+      "subject": "al-khwarizmi",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0780~",
+            "start_year": 780,
+            "end_year": 780,
+            "start_min": 770,
+            "start_max": 790,
+            "end_min": 770,
+            "end_max": 790,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 770,
+                "max": 790,
+                "endpoints": {
+                  "start": [
+                    770,
+                    790
+                  ],
+                  "end": [
+                    770,
+                    790
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "0850~",
+            "start_year": 850,
+            "end_year": 850,
+            "start_min": 840,
+            "start_max": 860,
+            "end_min": 840,
+            "end_max": 860,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 840,
+                "max": 860,
+                "endpoints": {
+                  "start": [
+                    840,
+                    860
+                  ],
+                  "end": [
+                    840,
+                    860
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:gauss",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1777-1855",
+      "subject": "gauss",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1777",
+            "start_year": 1777,
+            "end_year": 1777,
+            "start_min": 1777,
+            "start_max": 1777,
+            "end_min": 1777,
+            "end_max": 1777,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1855",
+            "start_year": 1855,
+            "end_year": 1855,
+            "start_min": 1855,
+            "start_max": 1855,
+            "end_min": 1855,
+            "end_max": 1855,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:galois",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1811-1832",
+      "subject": "galois",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1811",
+            "start_year": 1811,
+            "end_year": 1811,
+            "start_min": 1811,
+            "start_max": 1811,
+            "end_min": 1811,
+            "end_max": 1811,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1832",
+            "start_year": 1832,
+            "end_year": 1832,
+            "start_min": 1832,
+            "start_max": 1832,
+            "end_min": 1832,
+            "end_max": 1832,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:riemann",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1826-1866",
+      "subject": "riemann",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1826",
+            "start_year": 1826,
+            "end_year": 1826,
+            "start_min": 1826,
+            "start_max": 1826,
+            "end_min": 1826,
+            "end_max": 1826,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1866",
+            "start_year": 1866,
+            "end_year": 1866,
+            "start_min": 1866,
+            "start_max": 1866,
+            "end_min": 1866,
+            "end_max": 1866,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:cantor",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1845-1918",
+      "subject": "cantor",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1845",
+            "start_year": 1845,
+            "end_year": 1845,
+            "start_min": 1845,
+            "start_max": 1845,
+            "end_min": 1845,
+            "end_max": 1845,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1918",
+            "start_year": 1918,
+            "end_year": 1918,
+            "start_min": 1918,
+            "start_max": 1918,
+            "end_min": 1918,
+            "end_max": 1918,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:hilbert",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1862-1943",
+      "subject": "hilbert",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1862",
+            "start_year": 1862,
+            "end_year": 1862,
+            "start_min": 1862,
+            "start_max": 1862,
+            "end_min": 1862,
+            "end_max": 1862,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1943",
+            "start_year": 1943,
+            "end_year": 1943,
+            "start_min": 1943,
+            "start_max": 1943,
+            "end_min": 1943,
+            "end_max": 1943,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:godel",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1906-1978",
+      "subject": "godel",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1906",
+            "start_year": 1906,
+            "end_year": 1906,
+            "start_min": 1906,
+            "start_max": 1906,
+            "end_min": 1906,
+            "end_max": 1906,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1978",
+            "start_year": 1978,
+            "end_year": 1978,
+            "start_min": 1978,
+            "start_max": 1978,
+            "end_min": 1978,
+            "end_max": 1978,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:ibn-al-haytham",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.965-c.1040",
+      "subject": "ibn-al-haytham",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0965~",
+            "start_year": 965,
+            "end_year": 965,
+            "start_min": 955,
+            "start_max": 975,
+            "end_min": 955,
+            "end_max": 975,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 955,
+                "max": 975,
+                "endpoints": {
+                  "start": [
+                    955,
+                    975
+                  ],
+                  "end": [
+                    955,
+                    975
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "1040~",
+            "start_year": 1040,
+            "end_year": 1040,
+            "start_min": 1030,
+            "start_max": 1050,
+            "end_min": 1030,
+            "end_max": 1050,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 1030,
+                "max": 1050,
+                "endpoints": {
+                  "start": [
+                    1030,
+                    1050
+                  ],
+                  "end": [
+                    1030,
+                    1050
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:galileo",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1564-1642",
+      "subject": "galileo",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1564",
+            "start_year": 1564,
+            "end_year": 1564,
+            "start_min": 1564,
+            "start_max": 1564,
+            "end_min": 1564,
+            "end_max": 1564,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1642",
+            "start_year": 1642,
+            "end_year": 1642,
+            "start_min": 1642,
+            "start_max": 1642,
+            "end_min": 1642,
+            "end_max": 1642,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:newton",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1642-1727 (25 Dec 1642 OS \u2013 20 Mar 1727 OS)",
+      "subject": "newton",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1643-01-04",
+            "start_year": 1643,
+            "end_year": 1643,
+            "start_min": 1642,
+            "start_max": 1643,
+            "end_min": 1642,
+            "end_max": 1643,
+            "precision": "day",
+            "calendar": "julian-os",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 1642,
+                "max": 1643,
+                "endpoints": {
+                  "start": [
+                    1642,
+                    1643
+                  ],
+                  "end": [
+                    1642,
+                    1643
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "1727-03-31",
+            "start_year": 1727,
+            "end_year": 1727,
+            "start_min": 1727,
+            "start_max": 1728,
+            "end_min": 1727,
+            "end_max": 1728,
+            "precision": "day",
+            "calendar": "julian-os",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 1727,
+                "max": 1728,
+                "endpoints": {
+                  "start": [
+                    1727,
+                    1728
+                  ],
+                  "end": [
+                    1727,
+                    1728
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:du-chatelet",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1706-1749",
+      "subject": "du-chatelet",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1706",
+            "start_year": 1706,
+            "end_year": 1706,
+            "start_min": 1706,
+            "start_max": 1706,
+            "end_min": 1706,
+            "end_max": 1706,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1749",
+            "start_year": 1749,
+            "end_year": 1749,
+            "start_min": 1749,
+            "start_max": 1749,
+            "end_min": 1749,
+            "end_max": 1749,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:maxwell",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1831-1879",
+      "subject": "maxwell",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1831",
+            "start_year": 1831,
+            "end_year": 1831,
+            "start_min": 1831,
+            "start_max": 1831,
+            "end_min": 1831,
+            "end_max": 1831,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1879",
+            "start_year": 1879,
+            "end_year": 1879,
+            "start_min": 1879,
+            "start_max": 1879,
+            "end_min": 1879,
+            "end_max": 1879,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:boltzmann",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1844-1906",
+      "subject": "boltzmann",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1844",
+            "start_year": 1844,
+            "end_year": 1844,
+            "start_min": 1844,
+            "start_max": 1844,
+            "end_min": 1844,
+            "end_max": 1844,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1906",
+            "start_year": 1906,
+            "end_year": 1906,
+            "start_min": 1906,
+            "start_max": 1906,
+            "end_min": 1906,
+            "end_max": 1906,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:einstein",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1879-1955",
+      "subject": "einstein",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1879",
+            "start_year": 1879,
+            "end_year": 1879,
+            "start_min": 1879,
+            "start_max": 1879,
+            "end_min": 1879,
+            "end_max": 1879,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1955",
+            "start_year": 1955,
+            "end_year": 1955,
+            "start_min": 1955,
+            "start_max": 1955,
+            "end_min": 1955,
+            "end_max": 1955,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:noether",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1882-1935",
+      "subject": "noether",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1882",
+            "start_year": 1882,
+            "end_year": 1882,
+            "start_min": 1882,
+            "start_max": 1882,
+            "end_min": 1882,
+            "end_max": 1882,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1935",
+            "start_year": 1935,
+            "end_year": 1935,
+            "start_min": 1935,
+            "start_max": 1935,
+            "end_min": 1935,
+            "end_max": 1935,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:bohr",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1885-1962",
+      "subject": "bohr",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1885",
+            "start_year": 1885,
+            "end_year": 1885,
+            "start_min": 1885,
+            "start_max": 1885,
+            "end_min": 1885,
+            "end_max": 1885,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1962",
+            "start_year": 1962,
+            "end_year": 1962,
+            "start_min": 1962,
+            "start_max": 1962,
+            "end_min": 1962,
+            "end_max": 1962,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:dirac",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1902-1984",
+      "subject": "dirac",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1902",
+            "start_year": 1902,
+            "end_year": 1902,
+            "start_min": 1902,
+            "start_max": 1902,
+            "end_min": 1902,
+            "end_max": 1902,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1984",
+            "start_year": 1984,
+            "end_year": 1984,
+            "start_min": 1984,
+            "start_max": 1984,
+            "end_min": 1984,
+            "end_max": 1984,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:lavoisier",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1743-1794",
+      "subject": "lavoisier",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1743",
+            "start_year": 1743,
+            "end_year": 1743,
+            "start_min": 1743,
+            "start_max": 1743,
+            "end_min": 1743,
+            "end_max": 1743,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1794",
+            "start_year": 1794,
+            "end_year": 1794,
+            "start_min": 1794,
+            "start_max": 1794,
+            "end_min": 1794,
+            "end_max": 1794,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:dalton",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1766-1844",
+      "subject": "dalton",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1766",
+            "start_year": 1766,
+            "end_year": 1766,
+            "start_min": 1766,
+            "start_max": 1766,
+            "end_min": 1766,
+            "end_max": 1766,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1844",
+            "start_year": 1844,
+            "end_year": 1844,
+            "start_min": 1844,
+            "start_max": 1844,
+            "end_min": 1844,
+            "end_max": 1844,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:mendeleev",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1834-1907",
+      "subject": "mendeleev",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1834",
+            "start_year": 1834,
+            "end_year": 1834,
+            "start_min": 1834,
+            "start_max": 1834,
+            "end_min": 1834,
+            "end_max": 1834,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1907",
+            "start_year": 1907,
+            "end_year": 1907,
+            "start_min": 1907,
+            "start_max": 1907,
+            "end_min": 1907,
+            "end_max": 1907,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:curie",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1867-1934",
+      "subject": "curie",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1867",
+            "start_year": 1867,
+            "end_year": 1867,
+            "start_min": 1867,
+            "start_max": 1867,
+            "end_min": 1867,
+            "end_max": 1867,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1934",
+            "start_year": 1934,
+            "end_year": 1934,
+            "start_min": 1934,
+            "start_max": 1934,
+            "end_min": 1934,
+            "end_max": 1934,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:pauling",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1901-1994",
+      "subject": "pauling",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1901",
+            "start_year": 1901,
+            "end_year": 1901,
+            "start_min": 1901,
+            "start_max": 1901,
+            "end_min": 1901,
+            "end_max": 1901,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1994",
+            "start_year": 1994,
+            "end_year": 1994,
+            "start_min": 1994,
+            "start_max": 1994,
+            "end_min": 1994,
+            "end_max": 1994,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:sanger",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1918-2013",
+      "subject": "sanger",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1918",
+            "start_year": 1918,
+            "end_year": 1918,
+            "start_min": 1918,
+            "start_max": 1918,
+            "end_min": 1918,
+            "end_max": 1918,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2013",
+            "start_year": 2013,
+            "end_year": 2013,
+            "start_min": 2013,
+            "start_max": 2013,
+            "end_min": 2013,
+            "end_max": 2013,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:boole",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1815-1864",
+      "subject": "boole",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1815",
+            "start_year": 1815,
+            "end_year": 1815,
+            "start_min": 1815,
+            "start_max": 1815,
+            "end_min": 1815,
+            "end_max": 1815,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1864",
+            "start_year": 1864,
+            "end_year": 1864,
+            "start_min": 1864,
+            "start_max": 1864,
+            "end_min": 1864,
+            "end_max": 1864,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:frege",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1848-1925",
+      "subject": "frege",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1848",
+            "start_year": 1848,
+            "end_year": 1848,
+            "start_min": 1848,
+            "start_max": 1848,
+            "end_min": 1848,
+            "end_max": 1848,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1925",
+            "start_year": 1925,
+            "end_year": 1925,
+            "start_min": 1925,
+            "start_max": 1925,
+            "end_min": 1925,
+            "end_max": 1925,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:turing",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1912-1954",
+      "subject": "turing",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1912",
+            "start_year": 1912,
+            "end_year": 1912,
+            "start_min": 1912,
+            "start_max": 1912,
+            "end_min": 1912,
+            "end_max": 1912,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1954",
+            "start_year": 1954,
+            "end_year": 1954,
+            "start_min": 1954,
+            "start_max": 1954,
+            "end_min": 1954,
+            "end_max": 1954,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:church",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1903-1995",
+      "subject": "church",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1903",
+            "start_year": 1903,
+            "end_year": 1903,
+            "start_min": 1903,
+            "start_max": 1903,
+            "end_min": 1903,
+            "end_max": 1903,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1995",
+            "start_year": 1995,
+            "end_year": 1995,
+            "start_min": 1995,
+            "start_max": 1995,
+            "end_min": 1995,
+            "end_max": 1995,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:shannon",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1916-2001",
+      "subject": "shannon",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1916",
+            "start_year": 1916,
+            "end_year": 1916,
+            "start_min": 1916,
+            "start_max": 1916,
+            "end_min": 1916,
+            "end_max": 1916,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2001",
+            "start_year": 2001,
+            "end_year": 2001,
+            "start_min": 2001,
+            "start_max": 2001,
+            "end_min": 2001,
+            "end_max": 2001,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:von-neumann",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1903-1957",
+      "subject": "von-neumann",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1903",
+            "start_year": 1903,
+            "end_year": 1903,
+            "start_min": 1903,
+            "start_max": 1903,
+            "end_min": 1903,
+            "end_max": 1903,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1957",
+            "start_year": 1957,
+            "end_year": 1957,
+            "start_min": 1957,
+            "start_max": 1957,
+            "end_min": 1957,
+            "end_max": 1957,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:kolmogorov",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1903-1987",
+      "subject": "kolmogorov",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1903",
+            "start_year": 1903,
+            "end_year": 1903,
+            "start_min": 1903,
+            "start_max": 1903,
+            "end_min": 1903,
+            "end_max": 1903,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1987",
+            "start_year": 1987,
+            "end_year": 1987,
+            "start_min": 1987,
+            "start_max": 1987,
+            "end_min": 1987,
+            "end_max": 1987,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:mendel",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1822-1884",
+      "subject": "mendel",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1822",
+            "start_year": 1822,
+            "end_year": 1822,
+            "start_min": 1822,
+            "start_max": 1822,
+            "end_min": 1822,
+            "end_max": 1822,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1884",
+            "start_year": 1884,
+            "end_year": 1884,
+            "start_min": 1884,
+            "start_max": 1884,
+            "end_min": 1884,
+            "end_max": 1884,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:pasteur",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1822-1895",
+      "subject": "pasteur",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1822",
+            "start_year": 1822,
+            "end_year": 1822,
+            "start_min": 1822,
+            "start_max": 1822,
+            "end_min": 1822,
+            "end_max": 1822,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1895",
+            "start_year": 1895,
+            "end_year": 1895,
+            "start_min": 1895,
+            "start_max": 1895,
+            "end_min": 1895,
+            "end_max": 1895,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:franklin",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1920-1958",
+      "subject": "franklin",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1920",
+            "start_year": 1920,
+            "end_year": 1920,
+            "start_min": 1920,
+            "start_max": 1920,
+            "end_min": 1920,
+            "end_max": 1920,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1958",
+            "start_year": 1958,
+            "end_year": 1958,
+            "start_min": 1958,
+            "start_max": 1958,
+            "end_min": 1958,
+            "end_max": 1958,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:watson-crick",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "Watson 1928-, Crick 1916-2004",
+      "subject": "watson-crick",
+      "expect": {
+        "refusal": "composite"
+      }
+    },
+    {
+      "id": "figure:hodgkin-huxley",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "Hodgkin 1914-1998, Huxley 1917-2012",
+      "subject": "hodgkin-huxley",
+      "expect": {
+        "refusal": "composite"
+      }
+    },
+    {
+      "id": "figure:mitchell",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1920-1992",
+      "subject": "mitchell",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1920",
+            "start_year": 1920,
+            "end_year": 1920,
+            "start_min": 1920,
+            "start_max": 1920,
+            "end_min": 1920,
+            "end_max": 1920,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1992",
+            "start_year": 1992,
+            "end_year": 1992,
+            "start_min": 1992,
+            "start_max": 1992,
+            "end_min": 1992,
+            "end_max": 1992,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:margulis",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1938-2011",
+      "subject": "margulis",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1938",
+            "start_year": 1938,
+            "end_year": 1938,
+            "start_min": 1938,
+            "start_max": 1938,
+            "end_min": 1938,
+            "end_max": 1938,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2011",
+            "start_year": 2011,
+            "end_year": 2011,
+            "start_min": 2011,
+            "start_max": 2011,
+            "end_min": 2011,
+            "end_max": 2011,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:aristarchus",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.310-c.230 BCE",
+      "subject": "aristarchus",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0309~",
+            "start_year": -309,
+            "end_year": -309,
+            "start_min": -319,
+            "start_max": -299,
+            "end_min": -319,
+            "end_max": -299,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -319,
+                "max": -299,
+                "endpoints": {
+                  "start": [
+                    -319,
+                    -299
+                  ],
+                  "end": [
+                    -319,
+                    -299
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "-0229~",
+            "start_year": -229,
+            "end_year": -229,
+            "start_min": -239,
+            "start_max": -219,
+            "end_min": -239,
+            "end_max": -219,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -239,
+                "max": -219,
+                "endpoints": {
+                  "start": [
+                    -239,
+                    -219
+                  ],
+                  "end": [
+                    -239,
+                    -219
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:ptolemy",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.100-c.170 CE",
+      "subject": "ptolemy",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0100~",
+            "start_year": 100,
+            "end_year": 100,
+            "start_min": 90,
+            "start_max": 110,
+            "end_min": 90,
+            "end_max": 110,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 90,
+                "max": 110,
+                "endpoints": {
+                  "start": [
+                    90,
+                    110
+                  ],
+                  "end": [
+                    90,
+                    110
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "0170~",
+            "start_year": 170,
+            "end_year": 170,
+            "start_min": 160,
+            "start_max": 180,
+            "end_min": 160,
+            "end_max": 180,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": 160,
+                "max": 180,
+                "endpoints": {
+                  "start": [
+                    160,
+                    180
+                  ],
+                  "end": [
+                    160,
+                    180
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:aryabhata",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "476-550 CE",
+      "subject": "aryabhata",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0476",
+            "start_year": 476,
+            "end_year": 476,
+            "start_min": 476,
+            "start_max": 476,
+            "end_min": 476,
+            "end_max": 476,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "0550",
+            "start_year": 550,
+            "end_year": 550,
+            "start_min": 550,
+            "start_max": 550,
+            "end_min": 550,
+            "end_max": 550,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:copernicus",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1473-1543",
+      "subject": "copernicus",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1473",
+            "start_year": 1473,
+            "end_year": 1473,
+            "start_min": 1473,
+            "start_max": 1473,
+            "end_min": 1473,
+            "end_max": 1473,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1543",
+            "start_year": 1543,
+            "end_year": 1543,
+            "start_min": 1543,
+            "start_max": 1543,
+            "end_min": 1543,
+            "end_max": 1543,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:kepler",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1571-1630",
+      "subject": "kepler",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1571",
+            "start_year": 1571,
+            "end_year": 1571,
+            "start_min": 1571,
+            "start_max": 1571,
+            "end_min": 1571,
+            "end_max": 1571,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1630",
+            "start_year": 1630,
+            "end_year": 1630,
+            "start_min": 1630,
+            "start_max": 1630,
+            "end_min": 1630,
+            "end_max": 1630,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:hubble",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1889-1953",
+      "subject": "hubble",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1889",
+            "start_year": 1889,
+            "end_year": 1889,
+            "start_min": 1889,
+            "start_max": 1889,
+            "end_min": 1889,
+            "end_max": 1889,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1953",
+            "start_year": 1953,
+            "end_year": 1953,
+            "start_min": 1953,
+            "start_max": 1953,
+            "end_min": 1953,
+            "end_max": 1953,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:lemaitre",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1894-1966",
+      "subject": "lemaitre",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1894",
+            "start_year": 1894,
+            "end_year": 1894,
+            "start_min": 1894,
+            "start_max": 1894,
+            "end_min": 1894,
+            "end_max": 1894,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1966",
+            "start_year": 1966,
+            "end_year": 1966,
+            "start_min": 1966,
+            "start_max": 1966,
+            "end_min": 1966,
+            "end_max": 1966,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:rubin",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1928-2016",
+      "subject": "rubin",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1928",
+            "start_year": 1928,
+            "end_year": 1928,
+            "start_min": 1928,
+            "start_max": 1928,
+            "end_min": 1928,
+            "end_max": 1928,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2016",
+            "start_year": 2016,
+            "end_year": 2016,
+            "start_min": 2016,
+            "start_max": 2016,
+            "end_min": 2016,
+            "end_max": 2016,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:aristotle",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "384-322 BCE",
+      "subject": "aristotle",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0383",
+            "start_year": -383,
+            "end_year": -383,
+            "start_min": -383,
+            "start_max": -383,
+            "end_min": -383,
+            "end_max": -383,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "-0321",
+            "start_year": -321,
+            "end_year": -321,
+            "start_min": -321,
+            "start_max": -321,
+            "end_min": -321,
+            "end_max": -321,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:descartes",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1596-1650",
+      "subject": "descartes",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1596",
+            "start_year": 1596,
+            "end_year": 1596,
+            "start_min": 1596,
+            "start_max": 1596,
+            "end_min": 1596,
+            "end_max": 1596,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1650",
+            "start_year": 1650,
+            "end_year": 1650,
+            "start_min": 1650,
+            "start_max": 1650,
+            "end_min": 1650,
+            "end_max": 1650,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:kant",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1724-1804",
+      "subject": "kant",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1724",
+            "start_year": 1724,
+            "end_year": 1724,
+            "start_min": 1724,
+            "start_max": 1724,
+            "end_min": 1724,
+            "end_max": 1724,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1804",
+            "start_year": 1804,
+            "end_year": 1804,
+            "start_min": 1804,
+            "start_max": 1804,
+            "end_min": 1804,
+            "end_max": 1804,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:james",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1842-1910",
+      "subject": "james",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1842",
+            "start_year": 1842,
+            "end_year": 1842,
+            "start_min": 1842,
+            "start_max": 1842,
+            "end_min": 1842,
+            "end_max": 1842,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1910",
+            "start_year": 1910,
+            "end_year": 1910,
+            "start_min": 1910,
+            "start_max": 1910,
+            "end_min": 1910,
+            "end_max": 1910,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:wittgenstein",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1889-1951",
+      "subject": "wittgenstein",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1889",
+            "start_year": 1889,
+            "end_year": 1889,
+            "start_min": 1889,
+            "start_max": 1889,
+            "end_min": 1889,
+            "end_max": 1889,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1951",
+            "start_year": 1951,
+            "end_year": 1951,
+            "start_min": 1951,
+            "start_max": 1951,
+            "end_min": 1951,
+            "end_max": 1951,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:chomsky",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1928-",
+      "subject": "chomsky",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1928",
+            "start_year": 1928,
+            "end_year": 1928,
+            "start_min": 1928,
+            "start_max": 1928,
+            "end_min": 1928,
+            "end_max": 1928,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:marr",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1945-1980",
+      "subject": "marr",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1945",
+            "start_year": 1945,
+            "end_year": 1945,
+            "start_min": 1945,
+            "start_max": 1945,
+            "end_min": 1945,
+            "end_max": 1945,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1980",
+            "start_year": 1980,
+            "end_year": 1980,
+            "start_min": 1980,
+            "start_max": 1980,
+            "end_min": 1980,
+            "end_max": 1980,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:laozi",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "trad. 6th century BCE",
+      "subject": "laozi",
+      "expect": {
+        "roles": {
+          "flourished": {
+            "edtf": "-0599?/-0500?",
+            "start_year": -599,
+            "end_year": -500,
+            "start_min": -599,
+            "start_max": -599,
+            "end_min": -500,
+            "end_max": -500,
+            "precision": "century",
+            "calendar": "gregorian",
+            "qualifier": "uncertain",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:confucius",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "551-479 BCE",
+      "subject": "confucius",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0550",
+            "start_year": -550,
+            "end_year": -550,
+            "start_min": -550,
+            "start_max": -550,
+            "end_min": -550,
+            "end_max": -550,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "-0478",
+            "start_year": -478,
+            "end_year": -478,
+            "start_min": -478,
+            "start_max": -478,
+            "end_min": -478,
+            "end_max": -478,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:buddha",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "trad. c.563-c.483 BCE",
+      "subject": "buddha",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0562%",
+            "start_year": -562,
+            "end_year": -562,
+            "start_min": -572,
+            "start_max": -552,
+            "end_min": -572,
+            "end_max": -552,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "both",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -572,
+                "max": -552,
+                "endpoints": {
+                  "start": [
+                    -572,
+                    -552
+                  ],
+                  "end": [
+                    -572,
+                    -552
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "-0482%",
+            "start_year": -482,
+            "end_year": -482,
+            "start_min": -492,
+            "start_max": -472,
+            "end_min": -492,
+            "end_max": -472,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "both",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -492,
+                "max": -472,
+                "endpoints": {
+                  "start": [
+                    -492,
+                    -472
+                  ],
+                  "end": [
+                    -492,
+                    -472
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:augustine",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "354-430 CE",
+      "subject": "augustine",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0354",
+            "start_year": 354,
+            "end_year": 354,
+            "start_min": 354,
+            "start_max": 354,
+            "end_min": 354,
+            "end_max": 354,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "0430",
+            "start_year": 430,
+            "end_year": 430,
+            "start_min": 430,
+            "start_max": 430,
+            "end_min": 430,
+            "end_max": 430,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:maimonides",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1138-1204",
+      "subject": "maimonides",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1138",
+            "start_year": 1138,
+            "end_year": 1138,
+            "start_min": 1138,
+            "start_max": 1138,
+            "end_min": 1138,
+            "end_max": 1138,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1204",
+            "start_year": 1204,
+            "end_year": 1204,
+            "start_min": 1204,
+            "start_max": 1204,
+            "end_min": 1204,
+            "end_max": 1204,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:al-ghazali",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1058-1111",
+      "subject": "al-ghazali",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1058",
+            "start_year": 1058,
+            "end_year": 1058,
+            "start_min": 1058,
+            "start_max": 1058,
+            "end_min": 1058,
+            "end_max": 1058,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1111",
+            "start_year": 1111,
+            "end_year": 1111,
+            "start_min": 1111,
+            "start_max": 1111,
+            "end_min": 1111,
+            "end_max": 1111,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:aquinas",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1225-1274",
+      "subject": "aquinas",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1225",
+            "start_year": 1225,
+            "end_year": 1225,
+            "start_min": 1225,
+            "start_max": 1225,
+            "end_min": 1225,
+            "end_max": 1225,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1274",
+            "start_year": 1274,
+            "end_year": 1274,
+            "start_min": 1274,
+            "start_max": 1274,
+            "end_min": 1274,
+            "end_max": 1274,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:homer",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.8th century BCE",
+      "subject": "homer",
+      "expect": {
+        "roles": {
+          "flourished": {
+            "edtf": "-0799~/-0700~",
+            "start_year": -799,
+            "end_year": -700,
+            "start_min": -809,
+            "start_max": -789,
+            "end_min": -710,
+            "end_max": -690,
+            "precision": "century",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -809,
+                "max": -690,
+                "endpoints": {
+                  "start": [
+                    -809,
+                    -789
+                  ],
+                  "end": [
+                    -710,
+                    -690
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:sappho",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "c.630-c.570 BCE",
+      "subject": "sappho",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "-0629~",
+            "start_year": -629,
+            "end_year": -629,
+            "start_min": -639,
+            "start_max": -619,
+            "end_min": -639,
+            "end_max": -619,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -639,
+                "max": -619,
+                "endpoints": {
+                  "start": [
+                    -639,
+                    -619
+                  ],
+                  "end": [
+                    -639,
+                    -619
+                  ]
+                }
+              }
+            }
+          },
+          "died": {
+            "edtf": "-0569~",
+            "start_year": -569,
+            "end_year": -569,
+            "start_min": -579,
+            "start_max": -559,
+            "end_min": -579,
+            "end_max": -559,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "approximate",
+            "uncertainty": {
+              "kind": "uniform",
+              "params": {
+                "min": -579,
+                "max": -559,
+                "endpoints": {
+                  "start": [
+                    -579,
+                    -559
+                  ],
+                  "end": [
+                    -579,
+                    -559
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:du-fu",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "712-770 CE",
+      "subject": "du-fu",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "0712",
+            "start_year": 712,
+            "end_year": 712,
+            "start_min": 712,
+            "start_max": 712,
+            "end_min": 712,
+            "end_max": 712,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "0770",
+            "start_year": 770,
+            "end_year": 770,
+            "start_min": 770,
+            "start_max": 770,
+            "end_min": 770,
+            "end_max": 770,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:dante",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1265-1321",
+      "subject": "dante",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1265",
+            "start_year": 1265,
+            "end_year": 1265,
+            "start_min": 1265,
+            "start_max": 1265,
+            "end_min": 1265,
+            "end_max": 1265,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1321",
+            "start_year": 1321,
+            "end_year": 1321,
+            "start_min": 1321,
+            "start_max": 1321,
+            "end_min": 1321,
+            "end_max": 1321,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:shakespeare",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1564-1616",
+      "subject": "shakespeare",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1564",
+            "start_year": 1564,
+            "end_year": 1564,
+            "start_min": 1564,
+            "start_max": 1564,
+            "end_min": 1564,
+            "end_max": 1564,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1616",
+            "start_year": 1616,
+            "end_year": 1616,
+            "start_min": 1616,
+            "start_max": 1616,
+            "end_min": 1616,
+            "end_max": 1616,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:bach",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1685-1750",
+      "subject": "bach",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1685",
+            "start_year": 1685,
+            "end_year": 1685,
+            "start_min": 1685,
+            "start_max": 1685,
+            "end_min": 1685,
+            "end_max": 1685,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1750",
+            "start_year": 1750,
+            "end_year": 1750,
+            "start_min": 1750,
+            "start_max": 1750,
+            "end_min": 1750,
+            "end_max": 1750,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:hokusai",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1760-1849",
+      "subject": "hokusai",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1760",
+            "start_year": 1760,
+            "end_year": 1760,
+            "start_min": 1760,
+            "start_max": 1760,
+            "end_min": 1760,
+            "end_max": 1760,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1849",
+            "start_year": 1849,
+            "end_year": 1849,
+            "start_min": 1849,
+            "start_max": 1849,
+            "end_min": 1849,
+            "end_max": 1849,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:borges",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1899-1986",
+      "subject": "borges",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1899",
+            "start_year": 1899,
+            "end_year": 1899,
+            "start_min": 1899,
+            "start_max": 1899,
+            "end_min": 1899,
+            "end_max": 1899,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1986",
+            "start_year": 1986,
+            "end_year": 1986,
+            "start_min": 1986,
+            "start_max": 1986,
+            "end_min": 1986,
+            "end_max": 1986,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:steno",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1638-1686",
+      "subject": "steno",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1638",
+            "start_year": 1638,
+            "end_year": 1638,
+            "start_min": 1638,
+            "start_max": 1638,
+            "end_min": 1638,
+            "end_max": 1638,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1686",
+            "start_year": 1686,
+            "end_year": 1686,
+            "start_min": 1686,
+            "start_max": 1686,
+            "end_min": 1686,
+            "end_max": 1686,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:hutton",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1726-1797",
+      "subject": "hutton",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1726",
+            "start_year": 1726,
+            "end_year": 1726,
+            "start_min": 1726,
+            "start_max": 1726,
+            "end_min": 1726,
+            "end_max": 1726,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1797",
+            "start_year": 1797,
+            "end_year": 1797,
+            "start_min": 1797,
+            "start_max": 1797,
+            "end_min": 1797,
+            "end_max": 1797,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:lyell",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1797-1875",
+      "subject": "lyell",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1797",
+            "start_year": 1797,
+            "end_year": 1797,
+            "start_min": 1797,
+            "start_max": 1797,
+            "end_min": 1797,
+            "end_max": 1797,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1875",
+            "start_year": 1875,
+            "end_year": 1875,
+            "start_min": 1875,
+            "start_max": 1875,
+            "end_min": 1875,
+            "end_max": 1875,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:wegener",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1880-1930",
+      "subject": "wegener",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1880",
+            "start_year": 1880,
+            "end_year": 1880,
+            "start_min": 1880,
+            "start_max": 1880,
+            "end_min": 1880,
+            "end_max": 1880,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1930",
+            "start_year": 1930,
+            "end_year": 1930,
+            "start_min": 1930,
+            "start_max": 1930,
+            "end_min": 1930,
+            "end_max": 1930,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:milankovic",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1879-1958",
+      "subject": "milankovic",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1879",
+            "start_year": 1879,
+            "end_year": 1879,
+            "start_min": 1879,
+            "start_max": 1879,
+            "end_min": 1879,
+            "end_max": 1879,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1958",
+            "start_year": 1958,
+            "end_year": 1958,
+            "start_min": 1958,
+            "start_max": 1958,
+            "end_min": 1958,
+            "end_max": 1958,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:tharp",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1920-2006",
+      "subject": "tharp",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1920",
+            "start_year": 1920,
+            "end_year": 1920,
+            "start_min": 1920,
+            "start_max": 1920,
+            "end_min": 1920,
+            "end_max": 1920,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2006",
+            "start_year": 2006,
+            "end_year": 2006,
+            "start_min": 2006,
+            "start_max": 2006,
+            "end_min": 2006,
+            "end_max": 2006,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:wiener",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1894-1964",
+      "subject": "wiener",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1894",
+            "start_year": 1894,
+            "end_year": 1894,
+            "start_min": 1894,
+            "start_max": 1894,
+            "end_min": 1894,
+            "end_max": 1894,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1964",
+            "start_year": 1964,
+            "end_year": 1964,
+            "start_min": 1964,
+            "start_max": 1964,
+            "end_min": 1964,
+            "end_max": 1964,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:szent-gyorgyi",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1893-1986",
+      "subject": "szent-gyorgyi",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1893",
+            "start_year": 1893,
+            "end_year": 1893,
+            "start_min": 1893,
+            "start_max": 1893,
+            "end_min": 1893,
+            "end_max": 1893,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1986",
+            "start_year": 1986,
+            "end_year": 1986,
+            "start_min": 1986,
+            "start_max": 1986,
+            "end_min": 1986,
+            "end_max": 1986,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:burr",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1889-1973",
+      "subject": "burr",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1889",
+            "start_year": 1889,
+            "end_year": 1889,
+            "start_min": 1889,
+            "start_max": 1889,
+            "end_min": 1889,
+            "end_max": 1889,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1973",
+            "start_year": 1973,
+            "end_year": 1973,
+            "start_min": 1973,
+            "start_max": 1973,
+            "end_min": 1973,
+            "end_max": 1973,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:becker",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1923-2008",
+      "subject": "becker",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1923",
+            "start_year": 1923,
+            "end_year": 1923,
+            "start_min": 1923,
+            "start_max": 1923,
+            "end_min": 1923,
+            "end_max": 1923,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2008",
+            "start_year": 2008,
+            "end_year": 2008,
+            "start_min": 2008,
+            "start_max": 2008,
+            "end_min": 2008,
+            "end_max": 2008,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:marino",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1939-",
+      "subject": "marino",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1939",
+            "start_year": 1939,
+            "end_year": 1939,
+            "start_min": 1939,
+            "start_max": 1939,
+            "end_min": 1939,
+            "end_max": 1939,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:ling",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1919-2019",
+      "subject": "ling",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1919",
+            "start_year": 1919,
+            "end_year": 1919,
+            "start_min": 1919,
+            "start_max": 1919,
+            "end_min": 1919,
+            "end_max": 1919,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2019",
+            "start_year": 2019,
+            "end_year": 2019,
+            "start_min": 2019,
+            "start_max": 2019,
+            "end_min": 2019,
+            "end_max": 2019,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:pollack",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1939-",
+      "subject": "pollack",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1939",
+            "start_year": 1939,
+            "end_year": 1939,
+            "start_min": 1939,
+            "start_max": 1939,
+            "end_min": 1939,
+            "end_max": 1939,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:popp",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1938-2018",
+      "subject": "popp",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1938",
+            "start_year": 1938,
+            "end_year": 1938,
+            "start_min": 1938,
+            "start_max": 1938,
+            "end_min": 1938,
+            "end_max": 1938,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2018",
+            "start_year": 2018,
+            "end_year": 2018,
+            "start_min": 2018,
+            "start_max": 2018,
+            "end_min": 2018,
+            "end_max": 2018,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:levin",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1969-",
+      "subject": "levin",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1969",
+            "start_year": 1969,
+            "end_year": 1969,
+            "start_min": 1969,
+            "start_max": 1969,
+            "end_min": 1969,
+            "end_max": 1969,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:wallace-doug",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1946-",
+      "subject": "wallace-doug",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1946",
+            "start_year": 1946,
+            "end_year": 1946,
+            "start_min": 1946,
+            "start_max": 1946,
+            "end_min": 1946,
+            "end_max": 1946,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:lane",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1967-",
+      "subject": "lane",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1967",
+            "start_year": 1967,
+            "end_year": 1967,
+            "start_min": 1967,
+            "start_max": 1967,
+            "end_min": 1967,
+            "end_max": 1967,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:solis-herrera",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1950-",
+      "subject": "solis-herrera",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1950",
+            "start_year": 1950,
+            "end_year": 1950,
+            "start_min": 1950,
+            "start_max": 1950,
+            "end_min": 1950,
+            "end_max": 1950,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:khavinson",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1946-",
+      "subject": "khavinson",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1946",
+            "start_year": 1946,
+            "end_year": 1946,
+            "start_min": 1946,
+            "start_max": 1946,
+            "end_min": 1946,
+            "end_max": 1946,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:hildegard",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1098-1179",
+      "subject": "hildegard",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1098",
+            "start_year": 1098,
+            "end_year": 1098,
+            "start_min": 1098,
+            "start_max": 1098,
+            "end_min": 1098,
+            "end_max": 1098,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1179",
+            "start_year": 1179,
+            "end_year": 1179,
+            "start_min": 1179,
+            "start_max": 1179,
+            "end_min": 1179,
+            "end_max": 1179,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:champollion",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1790-1832",
+      "subject": "champollion",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1790",
+            "start_year": 1790,
+            "end_year": 1790,
+            "start_min": 1790,
+            "start_max": 1790,
+            "end_min": 1790,
+            "end_max": 1790,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1832",
+            "start_year": 1832,
+            "end_year": 1832,
+            "start_min": 1832,
+            "start_max": 1832,
+            "end_min": 1832,
+            "end_max": 1832,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:william-jones",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1746-1794",
+      "subject": "william-jones",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1746",
+            "start_year": 1746,
+            "end_year": 1746,
+            "start_min": 1746,
+            "start_max": 1746,
+            "end_min": 1746,
+            "end_max": 1746,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1794",
+            "start_year": 1794,
+            "end_year": 1794,
+            "start_min": 1794,
+            "start_max": 1794,
+            "end_min": 1794,
+            "end_max": 1794,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:ventris",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1922-1956",
+      "subject": "ventris",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1922",
+            "start_year": 1922,
+            "end_year": 1922,
+            "start_min": 1922,
+            "start_max": 1922,
+            "end_min": 1922,
+            "end_max": 1922,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1956",
+            "start_year": 1956,
+            "end_year": 1956,
+            "start_min": 1956,
+            "start_max": 1956,
+            "end_min": 1956,
+            "end_max": 1956,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:leonardo",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1452-1519",
+      "subject": "leonardo",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1452",
+            "start_year": 1452,
+            "end_year": 1452,
+            "start_min": 1452,
+            "start_max": 1452,
+            "end_min": 1452,
+            "end_max": 1452,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1519",
+            "start_year": 1519,
+            "end_year": 1519,
+            "start_min": 1519,
+            "start_max": 1519,
+            "end_min": 1519,
+            "end_max": 1519,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:tolkien",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1892-1973",
+      "subject": "tolkien",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1892",
+            "start_year": 1892,
+            "end_year": 1892,
+            "start_min": 1892,
+            "start_max": 1892,
+            "end_min": 1892,
+            "end_max": 1892,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "1973",
+            "start_year": 1973,
+            "end_year": 1973,
+            "start_min": 1973,
+            "start_max": 1973,
+            "end_min": 1973,
+            "end_max": 1973,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:schmidt-klaus",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1953-2014",
+      "subject": "schmidt-klaus",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1953",
+            "start_year": 1953,
+            "end_year": 1953,
+            "start_min": 1953,
+            "start_max": 1953,
+            "end_min": 1953,
+            "end_max": 1953,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2014",
+            "start_year": 2014,
+            "end_year": 2014,
+            "start_min": 2014,
+            "start_max": 2014,
+            "end_min": 2014,
+            "end_max": 2014,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:schoch",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1957-",
+      "subject": "schoch",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1957",
+            "start_year": 1957,
+            "end_year": 1957,
+            "start_min": 1957,
+            "start_max": 1957,
+            "end_min": 1957,
+            "end_max": 1957,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:west-jaw",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1932-2018",
+      "subject": "west-jaw",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1932",
+            "start_year": 1932,
+            "end_year": 1932,
+            "start_min": 1932,
+            "start_max": 1932,
+            "end_min": 1932,
+            "end_max": 1932,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          },
+          "died": {
+            "edtf": "2018",
+            "start_year": 2018,
+            "end_year": 2018,
+            "start_min": 2018,
+            "start_max": 2018,
+            "end_min": 2018,
+            "end_max": 2018,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "figure:carlson-randall",
+      "category": "figure",
+      "call": "lifespan",
+      "input": "1951-",
+      "subject": "carlson-randall",
+      "expect": {
+        "roles": {
+          "born": {
+            "edtf": "1951",
+            "start_year": 1951,
+            "end_year": 1951,
+            "start_min": 1951,
+            "start_max": 1951,
+            "end_min": 1951,
+            "end_max": 1951,
+            "precision": "year",
+            "calendar": "gregorian",
+            "qualifier": "none",
+            "uncertainty": {
+              "kind": "point",
+              "params": {}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -47,6 +47,7 @@ const SUITES = {
       ["node", "scripts/check-code-citations.mjs"],
       ["npm", "run", "test:polingual-roots"],
       ["npm", "run", "test:nsm-exponents"],
+      ["python3", "-m", "unittest", "scripts/research-os/test_history_span_golden.py"],
     ],
   },
 };
