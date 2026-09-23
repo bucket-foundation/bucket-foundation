@@ -43,7 +43,7 @@ The `source` comment names four keys. `license` is declared on the `Provenance` 
       visibility: "private",
 ```
 
-Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:118`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
+Then the import row at `:406`, carrying `source: input.source ?? {}` unchanged. The route is `POST /api/research-os/access` with `action: "import"`, and its whole validation is one line at `src/app/api/research-os/access/route.ts:109`: the kind must be one of the four and the title must be non-empty, trimmed and cut to 200 characters. `source` is passed through untouched.
 
 Three consequences follow from those lines, and all three matter later.
 
