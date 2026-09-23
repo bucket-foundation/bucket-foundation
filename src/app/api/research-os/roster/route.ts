@@ -1,16 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { computeRosterDiff } from "@/lib/research-os/roster/diff";
-import { configured } from "@/lib/research-os/db";
 import { loadRosterExistingState, applyRosterImport } from "@/lib/research-os/roster/apply";
 import { OneRosterCsvSource } from "@/lib/research-os/roster/sources";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 const REQUIRED_FIELDS = ["orgs", "users", "classes", "enrollments"] as const;
 
@@ -21,8 +17,7 @@ async function readCsvField(form: FormData, field: string): Promise<string | nul
   return await value.text();
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
@@ -74,4 +69,4 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     return bad(500, `apply_failed:${e instanceof Error ? e.message : String(e)}`);
   }
-}
+});
