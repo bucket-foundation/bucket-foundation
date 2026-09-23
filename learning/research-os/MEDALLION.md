@@ -32,6 +32,14 @@ Before stage 2 a run of `canon-all` wrote 50 lexical `derives_from` edges and `i
 
 `enqueue-demotions.ts --apply` queues each `concept_lexical` `derives_from` edge from a canon concept tag as an `edge_proposals` row with `action = 'demote'`, the atom as factor and the tag's backfill silver item. On the local graph that is 50 edges on 28 tags, decided by the founder under bead bkt-cc3t. At `/research-os/edges`, approve keeps the edge and writes reviewer lineage. Reject calls `graph.recast_edge_to_cites`, which in one transaction locks the proposal and the edge by its (from, to, kind) key, adds a `cites` edge carrying the old provenance, moves learner flags to it, deletes the `derives_from` row and stores it as `prior_edge`. The function refuses a null reviewer and is granted to the service role alone; the route checks `RESEARCH_OS_REVIEWER_EMAILS` first. `restore-recast.ts --apply --proposal=<id>` or `--all` calls `graph.restore_recast_edge`, which puts the edge back with its id, returns the flags, removes only a `cites` edge the recast added, and reopens the proposal.
 
+## Withdrawal
+
+`withdraw.ts --source=file:<sha256>` or `--path=<repo path>`, with a required `--reason`, is a dry run by default. A path resolves to every source it has held. The run lists the source ids and their admission status, how many silver items would go withdrawn, and the node slugs that would go private or keep another source; it prints no path. `--apply` calls `graph.withdraw_evidence_source` once per source id. `--queue` lists the withdrawn nodes waiting for a reviewer. `--restore=<slug> --reviewer=<email> --apply` calls `graph.restore_withdrawn_node` for a reviewer on `RESEARCH_OS_REVIEWER_EMAILS`; it refuses while the source is withdrawn, and after a readmission under a newer rights revision it restores the node's prior visibility and revives the silver items of the active revision.
+
+## Lineage Report
+
+`/research-os/primes` and `scripts/research-os/primes-report.ts` show a lineage block: public nodes with backfill, importer and reviewer lineage, nodes with none before and after the first backfill, transcript-lineage nodes on a dependency path with the deepest layer, and pending review work. It shows counts and slugs, and a failed read of it leaves the rest of the report. Local graph, 2026-09-23: backfill 1,900, importer 494, reviewer 0, none 4 and 0; 28 of 734 transcript-lineage nodes on a dependency path, all canon concept tags, reaching layer 16; 50 demotions pending.
+
 ## Backfill Dry Run
 
 Run of 2026-09-23 on the local graph, 1,924 gold nodes:

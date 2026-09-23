@@ -2,7 +2,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { classifyFrontier, coverage, depthPolynomials, formatP, frontier, implications, leibnizPrimes, pmiPairs, withinGroup, type GapClass, type Nonface } from "./prime-algebra";
 import { CONFIDENCE_SOURCE } from "./decompose-further";
 import { pagedRead } from "./paging";
-import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
+import { decompose, FACTOR_EDGES, penetration, summarize, type Decomposition, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
+import { readLineageSummary } from "./medallion/lineage-read";
+import type { LineageSummary } from "./medallion/report";
 
 export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 export type ReportEdge = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -24,7 +26,10 @@ export interface PrimesReport {
   confirmedIrreducible: { count: number; of: number; sample: ReportRef[] };
   reviewAgain: ReportRef[];
   algebra: PrimeAlgebraReport;
+  lineage?: LineageBlock;
 }
+
+export type LineageBlock = { ok: true; summary: LineageSummary } | { ok: false; unavailable: string };
 
 export interface PrimeAlgebraReport {
   coverage: { s: number; coverage: number; supports: number }[];
@@ -53,13 +58,25 @@ export const NULL_DRAWS = 1000;
 const TOP = 12;
 const ALGEBRA_ROWS = 5;
 
+function factorInputs(nodeRows: ReportNode[], edgeRows: ReportEdge[]): { nodes: PrimeNodeInput[]; edges: DepEdge[] } {
+  const live = new Set(nodeRows.map((n) => n.id));
+  return {
+    nodes: nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch })),
+    edges: edgeRows
+      .filter((e) => e.kind in FACTOR_EDGES && live.has(e.from_id) && live.has(e.to_id))
+      .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence })),
+  };
+}
+
+export function decomposeRows(nodeRows: ReportNode[], edgeRows: ReportEdge[]): Map<string, Decomposition> {
+  const { nodes, edges } = factorInputs(nodeRows, edgeRows);
+  return decompose(nodes, edges);
+}
+
 export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[], irreducibleSlugs: Set<string>, options: ReportOptions = {}): PrimesReport {
   const now = options.now ?? new Date();
+  const { nodes, edges } = factorInputs(nodeRows, edgeRows);
   const live = new Set(nodeRows.map((n) => n.id));
-  const nodes: PrimeNodeInput[] = nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch }));
-  const edges: DepEdge[] = edgeRows
-    .filter((e) => e.kind in FACTOR_EDGES && live.has(e.from_id) && live.has(e.to_id))
-    .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
 
   const dec = decompose(nodes, edges);
   const pen = penetration(nodes, dec);
@@ -200,7 +217,18 @@ export async function readPrimesInputs(svc: SupabaseClient): Promise<PrimesInput
   return { nodeRows, edgeRows, irreducible, pendingConfirmed: pendingPairIds(nodeRows, pending) };
 }
 
+export async function readLineageBlock(svc: SupabaseClient, nodeRows: ReportNode[], edgeRows: ReportEdge[]): Promise<LineageBlock> {
+  try {
+    return { ok: true, summary: await readLineageSummary(svc, decomposeRows(nodeRows, edgeRows)) };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[primes] lineage block failed:", message);
+    return { ok: false, unavailable: message };
+  }
+}
+
 async function readPrimesReport(svc: SupabaseClient): Promise<PrimesReport> {
   const x = await readPrimesInputs(svc);
-  return buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible, { pendingConfirmed: x.pendingConfirmed });
+  const report = buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible, { pendingConfirmed: x.pendingConfirmed });
+  return { ...report, lineage: await readLineageBlock(svc, x.nodeRows, x.edgeRows) };
 }

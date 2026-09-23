@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { configured, graphService } from "@/lib/research-os/db";
-import { loadPrimesReport, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
+import { loadPrimesReport, type LineageBlock, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
 import type { GapClass } from "@/lib/research-os/prime-algebra";
 
 export const metadata: Metadata = { title: "Primes", robots: { index: false, follow: false } };
@@ -247,8 +247,52 @@ function Report({ r }: { r: PrimesReport }) {
         )}
       </section>
 
+      {r.lineage && <Lineage block={r.lineage} />}
+
       <Algebra a={r.algebra} />
     </>
+  );
+}
+
+function Lineage({ block }: { block: LineageBlock }) {
+  if (!block.ok) {
+    return (
+      <section className="mt-8">
+        <h2 className={LABEL}>lineage</h2>
+        <p role="alert" className="mt-1 text-[12px] text-[color:var(--gold-deep)]">
+          Lineage was not read this minute.
+        </p>
+      </section>
+    );
+  }
+  const l = block.summary;
+  const types = Object.entries(l.transcript.byType).sort((a, b) => b[1].onDependencyPath - a[1].onDependencyPath || a[0].localeCompare(b[0]));
+  return (
+    <section className="mt-8">
+      <h2 className={LABEL}>lineage</h2>
+      <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">Where each public node came from: a backfilled source, a curated importer, or a reviewer&apos;s decision.</p>
+      <ul className="mt-2 flex flex-wrap gap-2 text-[12px] text-[color:var(--basalt-2)]">
+        <li className="border border-[color:var(--hairline)] px-2 py-1">backfill {l.byPromotedBy.backfill}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">importer {l.byPromotedBy.importer}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">reviewer {l.byPromotedBy.reviewer}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">none, older {l.none.beforeStage2}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">none, since review began {l.none.afterStage2}</li>
+      </ul>
+      <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]">
+        {l.transcript.onDependencyPath} of {l.transcript.nodes} nodes that came from transcripts sit on a dependency path
+        {l.transcript.onDependencyPath > 0 ? `, reaching layer ${l.transcript.deepest}.` : "."} Pending review: {l.review.demotePending} demotions, {l.review.addPending} new
+        dependency edges, {l.review.withdrawnQueue} withdrawn nodes.
+      </p>
+      {types.length > 0 && (
+        <ul className="mt-2 text-[12px] space-y-1 text-[color:var(--basalt-2)]">
+          {types.map(([type, t]) => (
+            <li key={type}>
+              {type}: {t.onDependencyPath} of {t.nodes} on a path{t.onDependencyPath > 0 ? `, deepest layer ${t.deepest}` : ""}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }
 
