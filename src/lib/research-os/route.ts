@@ -7,7 +7,8 @@ export const NO_STORE = { headers: { "cache-control": "no-store" } } as const;
 export type Body = Record<string, unknown>;
 
 export function withNoStore(res: Response): Response {
-  res.headers.set("cache-control", "no-store");
+  const current = res.headers.get("cache-control");
+  if (!current || !/(^|,)\s*no-store\s*(,|$)/i.test(current)) res.headers.set("cache-control", "no-store");
   return res;
 }
 

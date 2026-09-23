@@ -13,6 +13,14 @@ for (const folder of only.length ? only : folders()) {
   test(`api/research-os/${folder} answers what its fixture pins`, async () => {
     const pinned = readFixture(folder);
     assert.ok(pinned, `no fixture at ${fixturePath(folder)}`);
-    assert.deepEqual(await characterize(folder), pinned);
+    const now = await characterize(folder);
+    const changed = Array.from(new Set([...Object.keys(now), ...Object.keys(pinned)]))
+      .filter((k) => JSON.stringify(now[k]) !== JSON.stringify(pinned[k]))
+      .sort();
+    assert.deepEqual(
+      changed,
+      [],
+      `${folder} moved off its fixture. An intended change is a declared diff: run scripts/research-os/route-characterization.ts --update ${folder} and list each case in the PR body.`,
+    );
   });
 }

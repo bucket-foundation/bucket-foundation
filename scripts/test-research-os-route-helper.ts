@@ -109,6 +109,14 @@ test("a Response the handler returns passes through with no-store added", async 
   assert.equal(await res.text(), "a,b\n1,2\n");
 });
 
+test("a Response that already says no-store keeps its own cache-control", async () => {
+  reset();
+  const route = withResearchOsRoute({ auth: "none" }, () => NextResponse.json({}, { headers: { "cache-control": "private, no-store" } }));
+  assert.equal((await route(get(), undefined)).headers.get("cache-control"), "private, no-store");
+  const cached = withResearchOsRoute({ auth: "none" }, () => NextResponse.json({}, { headers: { "cache-control": "public, max-age=60" } }));
+  assert.equal((await cached(get(), undefined)).headers.get("cache-control"), "no-store");
+});
+
 test("a throw is logged and answers a fixed 503 with no detail", async () => {
   reset();
   const route = withResearchOsRoute({ auth: "none" }, () => {
