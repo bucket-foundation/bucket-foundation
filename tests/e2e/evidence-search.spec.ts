@@ -26,6 +26,7 @@ async function codeFor(address: string): Promise<string> {
 
 test.describe.configure({ mode: "serial" });
 let page: Page;
+let available = false;
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
@@ -47,7 +48,8 @@ test("sign in as the pilot account", async () => {
 
 test("the mode appears only when the server allows this account", async () => {
   const res = await page.request.get("/api/research-os/evidence-search");
-  test.skip(!res.ok(), `evidence search is unavailable here: ${res.status()}`);
+  available = res.ok();
+  test.skip(!available, `evidence search is unavailable here: ${res.status()}`);
   const body = (await res.json()) as { available: boolean; corpusRevision: string; sources: number };
   expect(body.available).toBe(true);
   expect(body.sources).toBeGreaterThan(0);
@@ -55,6 +57,7 @@ test("the mode appears only when the server allows this account", async () => {
 });
 
 test("a question in other words returns sources, and one opens", async () => {
+  test.skip(!available, "evidence search is unavailable here");
   await page.fill("#evidence-query", QUERY);
   await page.getByRole("button", { name: "search sources" }).click();
   const cards = page.locator("#evidence-query").locator("xpath=../..").locator("li");
@@ -77,6 +80,7 @@ test("a question in other words returns sources, and one opens", async () => {
 });
 
 test("an empty answer says so rather than showing the last one", async () => {
+  test.skip(!available, "evidence search is unavailable here");
   await page.goto(WORKSPACE);
   await page.fill("#evidence-query", "zzzz nonexistent subject qqqq");
   await page.getByRole("button", { name: "search sources" }).click();
@@ -84,6 +88,7 @@ test("an empty answer says so rather than showing the last one", async () => {
 });
 
 test("changing the step being worked on takes the previous step's sources away", async () => {
+  test.skip(!available, "evidence search is unavailable here");
   await page.goto(WORKSPACE);
   await page.fill("#evidence-query", QUERY);
   await page.getByRole("button", { name: "search sources" }).click();
