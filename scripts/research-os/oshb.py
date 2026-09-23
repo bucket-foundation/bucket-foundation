@@ -38,6 +38,8 @@ def parse(path=INDEX):
         et = e.find(NS + "etym")
         d = e.find(NS + "def")
         pos = e.find(NS + "pos")
+        xref = e.find(NS + "xref")
+        strong = xref.get("strong") if xref is not None else None
         entries[e.get("id")] = {
             "id": e.get("id"),
             "headword": (w.text or "") if w is not None else "",
@@ -46,6 +48,7 @@ def parse(path=INDEX):
             "etym_type": et.get("type") if et is not None else None,
             "etym_root": et.get("root") if et is not None else None,
             "parent": (et.text or "").split(",")[0].strip() if et is not None and et.get("type") == "sub" and et.text else None,
+            "strong": str(int(strong)) if strong and strong.isdigit() else None,
         }
     return entries
 

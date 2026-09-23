@@ -4,6 +4,7 @@ import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
+import RootTexts from "../RootTexts";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -96,6 +97,11 @@ function OneLanguage({ p, labels }: { p: NsmPrime; labels: Labels }) {
         <li key={`${e.lang}-${e.word}`} className="flex flex-wrap gap-x-4">
           <Word e={e} labels={labels} />
           <Root e={e} />
+          {e.rootTexts.length > 0 && (
+            <div className="basis-full">
+              <RootTexts texts={e.rootTexts} lang={e.lang} uncertain={e.uncertain} rootUncertain={e.rootUncertain} />
+            </div>
+          )}
         </li>
       ))}
     </ul>
@@ -230,15 +236,11 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
           .
         </p>
         <p className="mt-1">
-          {OSHB_ATTRIBUTION.text}{" "}
-          <a href={OSHB_ATTRIBUTION.href} className="underline underline-offset-4">
-            hb.openscriptures.org
-          </a>
-          ,{" "}
+          Hebrew roots and verses: {OSHB_ATTRIBUTION.text}, under{" "}
           <a href={OSHB_ATTRIBUTION.license} className="underline underline-offset-4">
             CC BY 4.0
           </a>
-          .
+          . {OSHB_ATTRIBUTION.wlc}
         </p>
         <p className="mt-1">
           {CLICS_ATTRIBUTION.text}{" "}

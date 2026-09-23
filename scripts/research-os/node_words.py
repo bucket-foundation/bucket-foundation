@@ -604,7 +604,21 @@ def translations_for(term, db, targets):
     langs = {LANG_ALIASES.get(t["lang"], t["lang"]) for t in trs} & targets
     return trs if len(langs) >= MIN_LANGS else []
 
-def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None):
+def hebrew_load():
+    try:
+        import oshb_verses
+    except ImportError:
+        return None
+    return oshb_verses.Verses.load()
+
+def hebrew_hits(verses, lang, word, root_lang, root_form, confidence, root_confidence):
+    if verses is None or lang != "he" or root_lang != "he" or not root_form:
+        return None
+    if confidence < HIDE_BELOW or root_confidence < HIDE_BELOW:
+        return None
+    return verses.hits(word, root_form)
+
+def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None, hebrew=None):
     context = " ".join([node.get("title") or "", node.get("summary") or ""])
     if is_name_title(node.get("title"), db):
         return None, []
@@ -641,6 +655,9 @@ def node_rows(node, db, ayahs, targets, oshb=None, outcomes=None):
             q = quran_hits(ayahs, surface)
             if q:
                 texts.append(q)
+        h = hebrew_hits(hebrew, lang, surface, root_lang, root_form, confidence, root_conf)
+        if h:
+            texts.append(h)
         rows.append({
             "node_id": node["id"], "lang": lang, "word": surface,
             "roman": t.get("roman") or (entry or {}).get("roman") or "",
@@ -658,6 +675,18 @@ def fetch_nodes(db_url):
     )
     out = subprocess.run(["psql", db_url, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout
     return json.loads(out.strip() or "[]")
+
+def verse_bands(rows, conf_key):
+    out = {"shown": 0, "verses_at_075": 0, "verses_050_075": 0}
+    for r in rows:
+        if r["lang"] != "he" or r[conf_key] < HIDE_BELOW:
+            continue
+        out["shown"] += 1
+        if not any(t.get("corpus") == "Hebrew Bible" for t in r.get("root_texts") or []):
+            continue
+        band = min(r[conf_key], r["root_confidence"])
+        out["verses_at_075" if band >= UNCERTAIN_BELOW else "verses_050_075"] += 1
+    return out
 
 COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence", "root_confidence", "root_source"]
 
@@ -695,6 +724,7 @@ def main(argv=None):
     targets = set(db.langs)
     ayahs = load_quran(a.quran, a.quran_data) if os.path.exists(a.quran) and os.path.exists(a.quran_data) else []
     oshb = oshb_load()
+    hebrew = hebrew_load()
     nodes = fetch_nodes(a.db_url)
     if a.show:
         nodes = [n for n in nodes if a.show.lower() in (n["title"] or "").lower()]
@@ -702,7 +732,7 @@ def main(argv=None):
         nodes = nodes[: a.limit]
     all_rows, linked, terms, outcomes = [], [], {}, {}
     for n in nodes:
-        term, rows = node_rows(n, db, ayahs, targets, oshb, outcomes)
+        term, rows = node_rows(n, db, ayahs, targets, oshb, outcomes, hebrew)
         if rows:
             linked.append(n["id"])
             terms[n["title"]] = term
@@ -712,13 +742,14 @@ def main(argv=None):
         by_lang[r["lang"]] = by_lang.get(r["lang"], 0) + 1
     print(f"nodes {len(nodes)} linked {len(linked)} rows {len(all_rows)}")
     print("rows by lang", dict(sorted(by_lang.items(), key=lambda x: -x[1])))
-    print("with root", sum(1 for r in all_rows if r["root_form"]), "with root gloss", sum(1 for r in all_rows if r["root_gloss"]), "with quran", sum(1 for r in all_rows if r["root_texts"]))
+    print("with root", sum(1 for r in all_rows if r["root_form"]), "with root gloss", sum(1 for r in all_rows if r["root_gloss"]), "with quran", sum(1 for r in all_rows if any(t.get("corpus") == "Quran" for t in r["root_texts"])))
+    print("with hebrew bible", json.dumps(verse_bands(all_rows, "confidence")))
     print("root shown", sum(1 for r in all_rows if r["root_form"] and r["confidence"] >= HIDE_BELOW and r["root_confidence"] >= HIDE_BELOW), "oshb", json.dumps(outcomes, sort_keys=True))
     if a.show:
         for r in all_rows:
             print(json.dumps({k: r[k] for k in ("lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss")}, ensure_ascii=False))
-            if r["root_texts"]:
-                print("   quran", r["root_texts"][0]["count"], [s["ref"] for s in r["root_texts"][0]["samples"]])
+            for t in r["root_texts"]:
+                print("  ", t["corpus"], t["count"], [x["ref"] for x in t["samples"]])
     if not a.dry_run:
         write_rows(a.db_url, all_rows, [n["id"] for n in nodes])
         print("written")

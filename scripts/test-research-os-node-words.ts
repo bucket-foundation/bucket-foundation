@@ -55,3 +55,29 @@ test("a root below the threshold is withheld while the word stays, and an uncert
   const legacy = toNodeWord(row("de", "Kerze", { root_lang: "la", root_form: "cēra", root_gloss: "wax" }));
   assert.deepEqual([legacy.rootForm, legacy.rootConfidence, legacy.rootUncertain], ["cēra", 0.95, false]);
 });
+
+const verses = { corpus: "Hebrew Bible", source: "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb", count: 179, samples: [{ ref: "Genesis 1:3", text: "יְהִי אוֹר" }] };
+
+test("Hebrew Bible verses ride on a shown root and carry the uncertain label below 0.75", async () => {
+  const { rootTextLine, rootTextUncertain } = await import("../src/lib/research-os/node-words");
+  const sure = toNodeWord(row("he", "אוֹר", { root_lang: "he", root_form: "א־ו־ר", root_confidence: 0.8, root_texts: [verses] }));
+  assert.equal(sure.rootTexts.length, 1);
+  assert.equal(rootTextLine(sure.rootTexts[0]), "In the Hebrew Bible: 179 verses carry this root.");
+  assert.equal(rootTextUncertain(sure.rootTexts[0], sure), false);
+  const shaky = toNodeWord(row("he", "אוֹר", { root_lang: "he", root_form: "א־ו־ר", root_confidence: 0.7, root_texts: [verses] }));
+  assert.equal(rootTextUncertain(shaky.rootTexts[0], shaky), true);
+  const hidden = toNodeWord(row("he", "אוֹר", { root_lang: "he", root_form: "א־ו־ר", root_confidence: 0.4, root_texts: [verses] }));
+  assert.deepEqual(hidden.rootTexts, []);
+  const quran = { corpus: "Quran", source: "Tanzil", count: 1, samples: [{ ref: "24:35", text: "نور" }] };
+  const ar = toNodeWord(row("ar", "نور", { confidence: 0.6, root_texts: [quran] }));
+  assert.equal(ar.rootTexts.length, 1);
+  assert.equal(rootTextLine(ar.rootTexts[0]), "In the Quran: 1 verse carries this word.");
+  assert.equal(rootTextUncertain(ar.rootTexts[0], ar), false);
+});
+
+test("the OSHB credit quotes morphhb's license word for word", async () => {
+  const { OSHB_ATTRIBUTION } = await import("../src/lib/research-os/node-words");
+  assert.equal(OSHB_ATTRIBUTION.text, "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb");
+  assert.equal(OSHB_ATTRIBUTION.href, "https://github.com/openscriptures/morphhb");
+  assert.match(OSHB_ATTRIBUTION.wlc, /Westminster Leningrad Codex, which is in the public domain/);
+});
