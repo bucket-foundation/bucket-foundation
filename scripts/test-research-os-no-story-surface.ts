@@ -20,6 +20,10 @@ test("no source file reads a wallet private key through a public env name", () =
   assert.deepEqual(grep("NEXT_PUBLIC_[A-Z_]*PRIVATE_KEY", ["src", "apps", "next.config.mjs"]), []);
 });
 
+test("no source file reads or writes the five legacy public tables", () => {
+  assert.deepEqual(grep("\\.from\\(['\"](author|cite_tokens|ip_metadata|research|research_cite)['\"]\\)", ["src", "apps"]), []);
+});
+
 test("package.json carries no Story dependency or script", () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
   const deps = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
