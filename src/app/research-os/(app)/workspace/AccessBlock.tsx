@@ -74,14 +74,20 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     try {
       const res = await fetch(`/api/research-os/access?node=${encodeURIComponent(nodeId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
+        // A permanent failure set the error to null, so both arms of
+        // this branch rendered nothing at all.
         setData(null);
-        setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
+        setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
         return;
       }
       setData((await res.json()) as AccessResponse);
       setError(null);
     } catch {
+      // A fetch that rejects never reached the server, which a retry may
+      // clear. Emptying the data without a word rendered the node with
+      // no access panel on it.
       setData(null);
+      setError(OUTAGE_COPY.body);
     }
   }, [nodeId, headers]);
 
@@ -109,7 +115,15 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     }
   }
 
-  if (!data) return null;
+  // The error renders above this return. `load` sets it and leaves
+  // `data` null, and nothing else fills `data`, so every failed read
+  // returned null here and the panel vanished with the reason set.
+  if (!data)
+    return error ? (
+      <p role="alert" className="mt-4 border-t border-[color:var(--hairline)] pt-3 text-[12px] text-[color:var(--gold-deep)]">
+        {error}
+      </p>
+    ) : null;
   const missing = PURPOSES.filter((p) => !data.verbs[p]);
   const pendingMine = new Set(data.myRequests.filter((r) => r.status === "pending").map((r) => r.purpose));
   const canRequest = token && !data.isOwner && data.node.visibility !== "public" && missing.length > 0;
