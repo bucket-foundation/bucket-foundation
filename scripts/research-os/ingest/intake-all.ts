@@ -6,6 +6,7 @@ import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../.
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { applyDrafts } from "./lib/apply-drafts";
+import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -138,6 +139,10 @@ function main() {
   }
 
   console.log(`[intake-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
+  if (shadowRequested()) void shadowWrite("intake-all", nodes).catch((err: Error) => {
+    console.error("[intake-all] medallion shadow FAILED:", err.message);
+    process.exit(1);
+  });
   if (APPLY) void applyDrafts("intake-all", nodes, edges, flags);
 }
 

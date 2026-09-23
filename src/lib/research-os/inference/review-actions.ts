@@ -5,6 +5,7 @@ import { forgetPrimesReport } from "../primes-report";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
+import { recordReviewerLineage } from "../medallion/lineage-write";
 
 export type ActionResult = { status: number; body: Record<string, unknown> };
 
@@ -168,12 +169,12 @@ export async function decideEdge(
 ): Promise<ActionResult> {
   const { data: row, error: readErr } = await svc
     .from("edge_proposals")
-    .select("id,from_slug,to_slug,branch,status,confidence_source,model,verification,origin")
+    .select("id,from_slug,to_slug,branch,status,confidence_source,model,verification,origin,silver_item_id")
     .eq("id", input.id)
     .maybeSingle();
   if (readErr) return fail(500, "read_failed");
   if (!row) return fail(404, "proposal_not_found");
-  const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin">;
+  const p = row as Pick<ProposalRow, "id" | "from_slug" | "to_slug" | "branch" | "status" | "confidence_source" | "model" | "verification" | "origin"> & { silver_item_id?: string | null };
   const kind: ApprovedKind = input.kind ?? (p.confidence_source === "prime_decompose_llm" ? "derives_from" : "prerequisite");
   if (!KINDS.has(kind)) return fail(400, "kind must be prerequisite or derives_from");
   const outcome = decideEdgeProposal({ status: p.status, fromSlug: p.from_slug, toSlug: p.to_slug }, input.decision, kind);
@@ -256,6 +257,9 @@ export async function decideEdge(
     { onConflict: "from_id,to_id,kind", ignoreDuplicates: true },
   );
   if (edgeErr) return fail(500, (await release()) ? "edge_write_failed" : "edge_write_failed_claim_held");
+  const lineageErr = p.silver_item_id
+    ? await recordReviewerLineage(svc, { edge: { fromId: bySlug.get(e.fromSlug)!.id, toId: bySlug.get(e.toSlug)!.id, kind: e.kind } }, p.silver_item_id, input.reviewerId)
+    : null;
   forgetMakeupSnapshot();
   forgetPrimesReport();
   const stale: string[] = [];
@@ -287,18 +291,20 @@ export async function decideEdge(
     }
     if (lookupFailed) stale.push("branches resting on the target");
   }
+  const edgeWarnings = [
+    stale.length ? `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all and select graph.enforce_prerequisite_tiers()` : null,
+    lineageErr ? "the edge's lineage was not recorded" : null,
+  ].filter(Boolean);
   return ok({
     decision: "approved",
     alreadyDecided: false,
     kind,
     ...(tiersRaised !== null ? { tiersRaised } : {}),
-    ...(stale.length
-      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all and select graph.enforce_prerequisite_tiers()` }
-      : {}),
+    ...(edgeWarnings.length ? { warning: edgeWarnings.join("; ") } : {}),
   });
 }
 
-const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at";
+const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at,silver_item_id";
 
 type NodeProposalRow = {
   id: string;
@@ -315,6 +321,7 @@ type NodeProposalRow = {
   model: string;
   status: "pending" | "approved" | "rejected";
   created_at: string;
+  silver_item_id?: string | null;
 };
 
 export async function listNodeProposals(svc: SupabaseClient): Promise<ActionResult> {
@@ -455,6 +462,8 @@ export async function decideNode(
   forgetMakeupSnapshot();
   forgetPrimesReport();
   const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
+  const lineageErr = r.silver_item_id ? await recordReviewerLineage(svc, { nodeId }, r.silver_item_id, input.reviewerId) : null;
+  const warnings = [linkErr ? "the proposal's link to its new node was not saved" : null, lineageErr ? "the node's lineage was not recorded" : null].filter(Boolean);
   return ok({
     decision: "approved",
     alreadyDecided: false,
@@ -462,7 +471,7 @@ export async function decideNode(
     nodeTier: n.tier,
     reused: !created,
     queuedEdges,
-    ...(linkErr ? { warning: "the proposal's link to its new node was not saved" } : {}),
+    ...(warnings.length ? { warning: warnings.join("; ") } : {}),
   });
 }
 

@@ -8,6 +8,7 @@ import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 import { upsertGraph } from "./lib/upsert-graph";
+import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(__dirname, "..", "..", "..");
 const OUT_DIR = join(__dirname, "out");
@@ -84,6 +85,8 @@ async function main() {
     `[canon-import] ${papers.length} canon entries (${BRANCH}), ${result.nodes.length} nodes, ${result.edges.length} edges, ` +
       `${result.reviewList.length} review items.`,
   );
+
+  if (shadowRequested()) await shadowWrite("canon-import", result.nodes);
 
   if (!APPLY) {
     console.log(`[canon-import] dry run only. Preview: scripts/research-os/ingest/out/canon-preview.json`);

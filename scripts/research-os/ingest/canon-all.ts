@@ -7,6 +7,7 @@ import { academyNodeSlug } from "../../../src/lib/research-os/ingest/academy";
 import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../../src/lib/research-os/ingest/types";
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
+import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -181,6 +182,10 @@ function main() {
   }
 
   console.log(`[canon-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
+  if (shadowRequested()) void shadowWrite("canon-all", nodes).catch((err: Error) => {
+    console.error("[canon-all] medallion shadow FAILED:", err.message);
+    process.exit(1);
+  });
   if (!APPLY) return;
   void apply(nodes, edges);
 }
