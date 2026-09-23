@@ -1,7 +1,7 @@
 {
   "GET unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "GET anonymous": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_read_failed"
@@ -17,7 +17,7 @@
   },
   "GET signed in, store down": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_read_failed"
@@ -25,7 +25,7 @@
   },
   "GET signed in, consent unavailable": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_read_failed"
@@ -33,10 +33,101 @@
   },
   "GET signed in, consent refused": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_read_failed"
+    }
+  },
+  "GET branch given, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_load_failed"
+    }
+  },
+  "GET bearer, no session": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "GET anonymous frontier": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "target": {
+        "id": "n2",
+        "slug": "why-the-sky-is-blue",
+        "title": "Why the sky is blue",
+        "kind": "concept",
+        "tier": 3,
+        "branch": "02-physics",
+        "visibility": "public"
+      },
+      "frontier": [
+        {
+          "id": "n2",
+          "slug": "why-the-sky-is-blue",
+          "title": "Why the sky is blue",
+          "kind": "concept",
+          "tier": 3,
+          "branch": "02-physics",
+          "visibility": "public"
+        }
+      ],
+      "chain": [
+        {
+          "node": {
+            "id": "n2",
+            "slug": "why-the-sky-is-blue",
+            "title": "Why the sky is blue",
+            "kind": "concept",
+            "tier": 3,
+            "branch": "02-physics",
+            "visibility": "public"
+          },
+          "stage": "access",
+          "hops": 0,
+          "isFrontier": true,
+          "pathConfidence": 1
+        }
+      ],
+      "gap": [],
+      "lowConfidenceFlags": [],
+      "engineFrontier": [],
+      "openQuestions": [],
+      "guidance": null,
+      "llmEnabled": false,
+      "learner": "anonymous"
+    }
+  },
+  "GET unknown target": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "target_not_found"
+    }
+  },
+  "GET access store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "GET ancestor read throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }
