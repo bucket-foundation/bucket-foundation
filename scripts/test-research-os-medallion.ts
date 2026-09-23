@@ -37,7 +37,7 @@ test("a file source id names bytes and parses back", () => {
   const id = fileSourceId(HASH.toUpperCase());
   assert.equal(id, `file:${HASH}`);
   assert.deepEqual(parseSourceId(id), { kind: "file", id, sha256: HASH });
-  for (const bad of ["file:", "file:abc", `file:${HASH}0`, "file:bucket-canon/x.md", `file:/home/gian/${HASH}`]) assert.equal(parseSourceId(bad), null, bad);
+  for (const bad of ["file:", "file:abc", `file:${HASH}0`, "file:bucket-canon/x.md", `file:/srv/abs/${HASH}`]) assert.equal(parseSourceId(bad), null, bad);
   assert.throws(() => fileSourceId("not-a-hash"));
 });
 
@@ -47,7 +47,7 @@ test("repo paths are relative and inside the allowed roots", () => {
   }
   const cases: [string, string][] = [
     ["", "empty"],
-    ["/home/gian/agfarms/bucket-foundation/_intake/a.md", "absolute"],
+    ["/srv/abs/agfarms/bucket-foundation/_intake/a.md", "absolute"],
     ["~/agfarms/_intake/a.md", "home"],
     ["_intake/../.env.local", "dot_segment"],
     ["_intake/./a.md", "dot_segment"],
@@ -84,7 +84,7 @@ test("bronze ids depend on bytes alone, and a rerun converges", () => {
   const changed = bronzeRecord("_intake/a.md", Buffer.from("line one\n"), ALLOWED);
   assert.notEqual(changed.sourceId, a.sourceId);
   assert.equal(runRevision([a, changed]), runRevision([changed, a]));
-  assert.throws(() => bronzeRecord("/home/gian/_intake/a.md", bytes, ALLOWED), /absolute/);
+  assert.throws(() => bronzeRecord("/srv/abs/_intake/a.md", bytes, ALLOWED), /absolute/);
   assert.throws(() => bronzeRecord("_intake/../x", bytes, ALLOWED), /dot_segment/);
 });
 
@@ -237,7 +237,7 @@ test("each provenance type maps to its bronze file", () => {
   assert.deepEqual(lineageFor(node("u", { type: "import" }, "artifact"), SEEDS), { status: "upload" });
   assert.equal(lineageFor(node("q", { type: "production" }), SEEDS).status, "unknown");
   assert.equal(lineageFor(node("q", {}), SEEDS).status, "unknown");
-  assert.deepEqual(lineageFor(node("z", { type: "intake_digest", file: "/home/gian/secret.md" }), SEEDS), { status: "unknown", reason: "path refused: absolute" });
+  assert.deepEqual(lineageFor(node("z", { type: "intake_digest", file: "/srv/abs/secret.md" }), SEEDS), { status: "unknown", reason: "path refused: absolute" });
   assert.deepEqual(lineageFor(node("z", { type: "literature_paper", file: "_intake/../../.ssh/id" }), SEEDS), { status: "unknown", reason: "path refused: dot_segment" });
 });
 

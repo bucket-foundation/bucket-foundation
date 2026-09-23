@@ -89,7 +89,7 @@ begin
   end;
 
   foreach res in array array[
-    pg_temp.bronze(repeat('9', 64), '/home/gian/agfarms/bucket-foundation/_intake/a.md', true),
+    pg_temp.bronze(repeat('9', 64), '/srv/abs/agfarms/bucket-foundation/_intake/a.md', true),
     pg_temp.bronze(repeat('9', 64), '_intake/../.env.local', true),
     pg_temp.bronze(repeat('9', 64), '_intake/./a.md', true),
     pg_temp.bronze(repeat('9', 64), '~/a.md', true),
