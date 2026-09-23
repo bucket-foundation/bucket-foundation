@@ -10,8 +10,31 @@
  * (Bucket critic C44, C59, C73).
  *
  * The rule lived in two clients and four more had the defect. It lives
- * here now, and `scripts/test-research-os-outage.ts` asserts every
- * client that renders a 503 reads a code.
+ * here now.
+ *
+ * What the gate in `scripts/test-research-os-outage.ts` covers, and what
+ * it does not. It marks a call whose route emits a transient code from
+ * its own handler, or imports `evidence-errors`, and requires a call to
+ * this rule in the window between that call and the next.
+ *
+ * Counted on this revision: 31 route directories, every one with a
+ * route.ts, of which the rule marks 8 (evidence-search, node, override,
+ * probe, production, review, state, workspace) and leaves 23 unmarked.
+ * Marking every route instead flags 36 calls across 17 files, which is
+ * filed rather than done here.
+ *
+ * Those counts move with the code and have already moved three times
+ * today, so treat them as of this revision rather than as a property of
+ * the design. An earlier version of this paragraph said 28 routes and
+ * 37 calls across 12 files. The 28 was never right. The 12 was the
+ * number of lines I had asked a terminal to print, read back as the
+ * number of files.
+ *
+ * The coverage gap is real whatever the counts are.
+ * `isTransientOutage(503, null)` answers true because a bare 503 comes
+ * from a gateway or a CDN, and a gateway sits in front of every route,
+ * so a client calling any of the 31 can be handed one. A green run says
+ * the marked routes are guarded, and nothing more.
  */
 
 /** The one code that means the deployment has no graph behind it. */
@@ -52,6 +75,9 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   // search is off until it does.
   "profile_unavailable",
   "eligibility_unavailable",
+  // A corpus file that could not be read this minute. The corpus that was
+  // never built is corpus_unavailable, below, and that one stays.
+  "corpus_read_failed",
   // ros-ai-access-read. Each says a read behind an authorization
   // decision, the graph walk, or the loop counters did not complete this
   // minute. The routes answer them rather than guessing an allow or a

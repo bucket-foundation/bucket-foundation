@@ -30,11 +30,37 @@ import { MAX_CARDS, type EvidenceCard, type EvidenceSearchRequest, type Evidence
 export const EVIDENCE_DIR = "RESEARCH_OS_EVIDENCE_DIR";
 const PAGE = 500;
 
+/** A corpus that was never built here, or one whose files do not validate.
+ * No retry changes either. */
 export class CorpusUnavailable extends Error {
   constructor(message: string) {
     super(message);
     this.name = "CorpusUnavailable";
     Object.setPrototypeOf(this, CorpusUnavailable.prototype);
+  }
+}
+
+/**
+ * A corpus read that did not complete this minute, which a retry may
+ * clear. It extends CorpusUnavailable because it is one: every caller
+ * that already treats a corpus as absent stays correct, and the route
+ * checks this one first to offer the retry.
+ *
+ * The cases are a permission error, an I/O error, and a directory named
+ * by RESEARCH_OS_EVIDENCE_DIR that has gone. Each may clear without a
+ * rebuild, so each earns a retry.
+ *
+ * Not a rebuild race: build-corpus.ts writes the jsonl files first and
+ * manifest.json last into .tmp-<rev>-<pid>, validates the readback, then
+ * renames, and newestCorpusDir only selects a directory that already
+ * carries a manifest. The first version of this comment claimed that
+ * race and no build path produces it.
+ */
+export class CorpusReadFailed extends CorpusUnavailable {
+  constructor(message: string) {
+    super(message);
+    this.name = "CorpusReadFailed";
+    Object.setPrototypeOf(this, CorpusReadFailed.prototype);
   }
 }
 
@@ -83,7 +109,11 @@ export function readCorpus(directory: string, policy: RightsPolicy, policySha256
       "passages.jsonl": readFileSync(path.join(directory, "passages.jsonl"), "utf8"),
     };
   } catch (e) {
-    throw new CorpusUnavailable(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
+    // A read that did not complete: a permission error, an I/O error, or
+    // a directory named by the environment that has gone. Reporting one
+    // of those as a corpus that was never built refuses a retry that
+    // would work.
+    throw new CorpusReadFailed(`${directory}: ${e instanceof Error ? e.message : String(e)}`);
   }
   const problems = validateCorpus(manifest, files, policy, policySha256);
   if (problems.length) throw new CorpusUnavailable(`${directory}: ${problems.slice(0, 3).join("; ")}`);
@@ -107,9 +137,24 @@ let cached: Corpus | null = null;
 export function loadCorpus(env: Record<string, string | undefined> = process.env, root = path.join(process.cwd(), "local", "evidence")): Corpus {
   const directory = env.RESEARCH_OS_EVIDENCE_DIR || newestCorpusDir(root);
   if (!directory) throw new CorpusUnavailable(`no built corpus under ${root}; set ${EVIDENCE_DIR}`);
+  // A directory that was named and is not there is a fact about this
+  // deployment, the same as none being built. Only the unnamed path
+  // checked that, so a stale or mistyped EVIDENCE_DIR fell through to
+  // readCorpus and came back as a read that failed this minute, which
+  // tells a person to retry something no retry fixes. That is the
+  // inversion this file's two classes exist to prevent, so it is the
+  // one place to get it right.
+  if (!existsSync(path.join(directory, "manifest.json"))) {
+    throw new CorpusUnavailable(`no corpus at ${directory}; ${EVIDENCE_DIR} names a directory with no manifest.json`);
+  }
   if (cached && cached.directory === directory) return cached;
   const policyPath = path.join(process.cwd(), "learning", "research-os", "ai", "rights-policy.json");
-  const raw = readFileSync(policyPath);
+  let raw: Buffer;
+  try {
+    raw = readFileSync(policyPath);
+  } catch (e) {
+    throw new CorpusReadFailed(`${policyPath}: ${e instanceof Error ? e.message : String(e)}`);
+  }
   cached = readCorpus(directory, parsePolicy(JSON.parse(raw.toString("utf8"))), sha256Hex(raw));
   return cached;
 }

@@ -115,7 +115,17 @@ export default function ResearchOsReviewPage() {
     setQueueError(null);
     try {
       const res = await fetch("/api/research-os/review", { headers: authHeaders() });
-      const data = await res.json();
+      // A gateway 503 carries HTML, so parsing before the ok check threw,
+      // the outer catch set "network_error", and the reviewer read
+      // "Could not load the queue (network_error)." with no retry. The
+      // rule was never consulted. The line forty-six below this one was
+      // repaired and this one was left, which is the thing this PR
+      // charged its predecessor with.
+      // The guard is for the failure path: a gateway 503 carries HTML.
+      // A 200 whose body is not JSON is a different failure, and letting
+      // it throw keeps the outer catch reporting it rather than handing
+      // the success branch an empty object to read fields off.
+      const data = (res.ok ? await res.json() : await res.json().catch(() => ({}))) as ReviewQueue & { error?: string };
       if (!res.ok) {
         // A lock wait printed as "Could not load the queue (busy)."
         // "transient" is rendered as the shared retryable copy below.
@@ -161,7 +171,7 @@ export default function ResearchOsReviewPage() {
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
       setNotice(
         res.ok
           ? `${decision === "approved" ? "Approved" : "Returned"}.`
