@@ -5,6 +5,7 @@ import { loadNsm } from "@/lib/research-os/nsm-db";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
 import RootTexts from "../RootTexts";
+import { BABELSTONE_NOTE, UNIHAN_NOTE } from "@/lib/research-os/han-components";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -66,6 +67,21 @@ function Merges({ p }: { p: NsmPrime }) {
   );
 }
 
+function Han({ e }: { e: NsmExponent }) {
+  if (!e.hanParts || e.hanParts.length === 0) return null;
+  return (
+    <span className="text-[12px] text-[color:var(--basalt-3)]">
+      {e.hanParts.map((h, i) => (
+        <span key={h.char}>
+          {i ? "; " : ""}
+          <span lang="zh">{h.char}</span> = {h.parts.map((p) => p.component).join(" + ")}
+        </span>
+      ))}
+      <Mark text="IDS, uncertain" />
+    </span>
+  );
+}
+
 function Root({ e }: { e: NsmExponent }) {
   if (!e.rootForm) return <span className="text-[color:var(--basalt-3)]">no root shown</span>;
   return (
@@ -102,6 +118,7 @@ function OneLanguage({ p, labels }: { p: NsmPrime; labels: Labels }) {
               <RootTexts texts={e.rootTexts} lang={e.lang} uncertain={e.uncertain} rootUncertain={e.rootUncertain} />
             </div>
           )}
+          <Han e={e} />
         </li>
       ))}
     </ul>
@@ -232,6 +249,17 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
           ,{" "}
           <a href={KAIKKI_ATTRIBUTION.license} className="underline underline-offset-4">
             CC BY-SA 4.0
+          </a>
+          .
+        </p>
+        <p className="mt-1">
+          {BABELSTONE_NOTE.text}{" "}
+          <a href={BABELSTONE_NOTE.href} className="underline underline-offset-4">
+            BabelStone IDS
+          </a>
+          . {UNIHAN_NOTE.text}{" "}
+          <a href={UNIHAN_NOTE.license} className="underline underline-offset-4">
+            Unicode License v3
           </a>
           .
         </p>

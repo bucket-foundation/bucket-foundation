@@ -33,6 +33,7 @@ export interface NodeWord {
   rootConfidence: number;
   rootUncertain: boolean;
   rootSource: string | null;
+  hanParts?: import("./han-components").HanChar[];
   source: string;
 }
 

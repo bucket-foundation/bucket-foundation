@@ -1,0 +1,118 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "files": [
+        {
+          "part": "decompositions",
+          "file": "han-components-decompositions.csv",
+          "license": "Han character components from BabelStone IDS by Andrew West, who waives copyright in the data and asks for no attribution; the credit is given as thanks. Source: https://www.babelstone.co.uk/CJK/IDS.HTML",
+          "href": "/api/research-os/han-components/export?part=decompositions"
+        },
+        {
+          "part": "meanings-wiktionary",
+          "file": "han-components-meanings-wiktionary.csv",
+          "license": "Component meanings from Wiktionary via Kaikki.org, under CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/",
+          "href": "/api/research-os/han-components/export?part=meanings-wiktionary"
+        },
+        {
+          "part": "meanings-unihan",
+          "file": "han-components-meanings-unihan.csv",
+          "license": "Some component meanings from the Unicode Han Database (Unihan), Copyright Unicode, Inc., under the Unicode License v3. License: https://www.unicode.org/license.txt",
+          "href": "/api/research-os/han-components/export?part=meanings-unihan"
+        }
+      ]
+    }
+  },
+  "GET signed in, store down": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "files": [
+        {
+          "part": "decompositions",
+          "file": "han-components-decompositions.csv",
+          "license": "Han character components from BabelStone IDS by Andrew West, who waives copyright in the data and asks for no attribution; the credit is given as thanks. Source: https://www.babelstone.co.uk/CJK/IDS.HTML",
+          "href": "/api/research-os/han-components/export?part=decompositions"
+        },
+        {
+          "part": "meanings-wiktionary",
+          "file": "han-components-meanings-wiktionary.csv",
+          "license": "Component meanings from Wiktionary via Kaikki.org, under CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/",
+          "href": "/api/research-os/han-components/export?part=meanings-wiktionary"
+        },
+        {
+          "part": "meanings-unihan",
+          "file": "han-components-meanings-unihan.csv",
+          "license": "Some component meanings from the Unicode Han Database (Unihan), Copyright Unicode, Inc., under the Unicode License v3. License: https://www.unicode.org/license.txt",
+          "href": "/api/research-os/han-components/export?part=meanings-unihan"
+        }
+      ]
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "files": [
+        {
+          "part": "decompositions",
+          "file": "han-components-decompositions.csv",
+          "license": "Han character components from BabelStone IDS by Andrew West, who waives copyright in the data and asks for no attribution; the credit is given as thanks. Source: https://www.babelstone.co.uk/CJK/IDS.HTML",
+          "href": "/api/research-os/han-components/export?part=decompositions"
+        },
+        {
+          "part": "meanings-wiktionary",
+          "file": "han-components-meanings-wiktionary.csv",
+          "license": "Component meanings from Wiktionary via Kaikki.org, under CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/",
+          "href": "/api/research-os/han-components/export?part=meanings-wiktionary"
+        },
+        {
+          "part": "meanings-unihan",
+          "file": "han-components-meanings-unihan.csv",
+          "license": "Some component meanings from the Unicode Han Database (Unihan), Copyright Unicode, Inc., under the Unicode License v3. License: https://www.unicode.org/license.txt",
+          "href": "/api/research-os/han-components/export?part=meanings-unihan"
+        }
+      ]
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "files": [
+        {
+          "part": "decompositions",
+          "file": "han-components-decompositions.csv",
+          "license": "Han character components from BabelStone IDS by Andrew West, who waives copyright in the data and asks for no attribution; the credit is given as thanks. Source: https://www.babelstone.co.uk/CJK/IDS.HTML",
+          "href": "/api/research-os/han-components/export?part=decompositions"
+        },
+        {
+          "part": "meanings-wiktionary",
+          "file": "han-components-meanings-wiktionary.csv",
+          "license": "Component meanings from Wiktionary via Kaikki.org, under CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/",
+          "href": "/api/research-os/han-components/export?part=meanings-wiktionary"
+        },
+        {
+          "part": "meanings-unihan",
+          "file": "han-components-meanings-unihan.csv",
+          "license": "Some component meanings from the Unicode Han Database (Unihan), Copyright Unicode, Inc., under the Unicode License v3. License: https://www.unicode.org/license.txt",
+          "href": "/api/research-os/han-components/export?part=meanings-unihan"
+        }
+      ]
+    }
+  }
+}

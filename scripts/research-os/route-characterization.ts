@@ -65,12 +65,15 @@ function install(): Stubs {
   return stubs;
 }
 
-export function folders(): string[] {
-  return fs
-    .readdirSync(API_DIR, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && fs.existsSync(path.join(API_DIR, d.name, "route.ts")))
-    .map((d) => d.name)
-    .sort();
+export function folders(dir = API_DIR, prefix = ""): string[] {
+  const out: string[] = [];
+  for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!d.isDirectory()) continue;
+    const rel = prefix ? `${prefix}/${d.name}` : d.name;
+    if (fs.existsSync(path.join(dir, d.name, "route.ts"))) out.push(rel);
+    out.push(...folders(path.join(dir, d.name), rel));
+  }
+  return out.sort();
 }
 
 const UUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
@@ -151,7 +154,7 @@ export async function characterize(folder: string): Promise<Snapshot> {
 }
 
 export function fixturePath(folder: string): string {
-  return path.join(FIXTURE_DIR, `${folder}.json`);
+  return path.join(FIXTURE_DIR, `${folder.split("/").join("--")}.json`);
 }
 
 export function readFixture(folder: string): Snapshot | null {

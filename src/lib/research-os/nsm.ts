@@ -54,6 +54,7 @@ export interface NsmExponent {
   rootForm: string | null;
   rootGloss: string | null;
   colexWith: string[];
+  hanParts?: import("./han-components").HanChar[];
   rootSource: string | null;
   rootTexts: RootText[];
 }
