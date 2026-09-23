@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { IMPORT_BUCKET, MAX_IMPORT_BYTES, sha256Hex, storagePathFor } from "@/lib/research-os/import-storage";
 import { detectType, IMPORT_KINDS, MAX_NOTE, MAX_TITLE, validateMetadata, type ImportKind } from "@/lib/research-os/import-types";
+import { isTransientOutage, OUTAGE_COPY } from "@/lib/research-os/outage";
 
 /**
  * Bring a file in (ros-import 2). Drop files, name the import, and each
@@ -155,8 +156,17 @@ export default function ImportPage() {
           body: JSON.stringify({ action: "attach", importId, filename: item.file.name, mediaType: detected.mediaType, bytes: item.file.size, sha256 }),
         });
         if (!attached.ok) {
-          const body = (await attached.json().catch(() => null)) as { message?: string } | null;
-          update(index, { stage: "failed", message: body?.message ?? `The file could not be recorded (${attached.status}).` });
+          const body = (await attached.json().catch(() => null)) as { message?: string; error?: string } | null;
+          // The bytes are in storage either way. A read that did not
+          // complete says to try the same file again; anything else is
+          // this file being refused, and says why.
+          const retryable = isTransientOutage(attached.status, body?.error ?? null);
+          update(index, {
+            stage: "failed",
+            message: retryable
+              ? `${OUTAGE_COPY.body} The file is uploaded, so importing it again records it.`
+              : (body?.message ?? `The file could not be recorded (${attached.status}).`),
+          });
           continue;
         }
         const body = (await attached.json().catch(() => null)) as { nodeSlug?: string | null } | null;
