@@ -1,7 +1,7 @@
 {
   "GET unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "GET anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -17,7 +17,7 @@
   },
   "GET signed in, store down": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_load_failed"
@@ -25,7 +25,7 @@
   },
   "GET signed in, consent unavailable": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_load_failed"
@@ -33,15 +33,53 @@
   },
   "GET signed in, consent refused": {
     "status": 500,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "graph_load_failed"
     }
   },
+  "GET probe built": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "target": {
+        "id": "n2",
+        "slug": "why-the-sky-is-blue",
+        "title": "Why the sky is blue"
+      },
+      "due": true,
+      "questions": [
+        {
+          "nodeId": "n1",
+          "nodeSlug": "light",
+          "nodeTitle": "Light",
+          "tier": 1,
+          "prompt": "In your own words, what do you already know about \"Light\"?"
+        }
+      ]
+    }
+  },
+  "GET unknown target": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "target_not_found"
+    }
+  },
+  "GET access filter throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
   "POST unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -49,7 +87,7 @@
   },
   "POST anonymous": {
     "status": 401,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "unauthorized"
@@ -57,7 +95,7 @@
   },
   "POST signed in, store down": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "nodeId is required"
@@ -65,7 +103,7 @@
   },
   "POST signed in, malformed json": {
     "status": 400,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "bad_request"
@@ -73,7 +111,7 @@
   },
   "POST signed in, consent unavailable": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "consent_unavailable",
@@ -82,12 +120,44 @@
   },
   "POST signed in, consent refused": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "no_profile",
       "message": "",
       "needsProfile": true
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "nodeId is required"
+    }
+  },
+  "POST no answer": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "answer is required"
+    }
+  },
+  "POST answer, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "access_unavailable"
+    }
+  },
+  "POST answer, no grader configured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "The diagnostic probe isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY)."
     }
   }
 }

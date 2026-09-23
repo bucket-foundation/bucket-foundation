@@ -1,30 +1,22 @@
 import type { ProbeAnswerResponse } from "@/lib/research-os/api-shapes";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
 import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
 import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
-import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
-import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { graphService, loadSubgraph, loadLearnerStates, recordEvidence } from "@/lib/research-os/db";
 import { authorizeNode, authorizeNodes } from "@/lib/research-os/read-access";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
-
 const MAX_ANSWER_CHARS = 2000;
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
+export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   const { searchParams } = new URL(req.url);
   const targetSlug = (searchParams.get("target") || "why-the-sky-is-blue").trim();
   const branch = (searchParams.get("branch") || "02-physics").trim();
@@ -56,7 +48,7 @@ export async function GET(req: NextRequest) {
     },
     { headers: { "cache-control": "no-store" } },
   );
-}
+});
 
 interface ProbeBody {
   nodeId?: string;
@@ -64,23 +56,10 @@ interface ProbeBody {
   sessionId?: string;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
-  const learnerId = await verifyLearner(req);
-  if (!learnerId) return bad(401, "unauthorized");
-
-  const gate = await requireConsent(learnerId, "probe_answer");
-  if (!gate.allowed) {
-    const refusal = consentRefusal(gate);
-    return NextResponse.json(refusal.body, { status: refusal.status });
-  }
-
-  let body: ProbeBody;
-  try {
-    body = (await req.json()) as ProbeBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+export const POST = withResearchOsRoute({ auth: "required", consent: "probe_answer" }, async (req, { learnerId }) => {
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as ProbeBody;
   const nodeId = (body.nodeId || "").trim();
   const answer = (body.answer || "").trim();
   const sessionId = (body.sessionId || "").trim() || undefined;
@@ -147,4 +126,4 @@ export async function POST(req: NextRequest) {
     stage: transition.nextStage,
   };
   return NextResponse.json(payload, { headers: { "cache-control": "no-store" } });
-}
+});
