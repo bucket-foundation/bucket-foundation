@@ -140,7 +140,7 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if printf '%s\n' "$changed" | grep -qE '^(src/app/research-os/|src/app/api/research-os/|tests/e2e/|playwright\.config\.ts$|\.github/workflows/site-ci\.yml$)'; then
+          if printf '%s\n' "$changed" | grep -qE '^(src/app/research-os/|src/app/api/research-os/|src/lib/research-os/|tests/e2e/|playwright\.config\.ts$|\.github/workflows/site-ci\.yml$)'; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
