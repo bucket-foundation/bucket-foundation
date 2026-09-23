@@ -27,7 +27,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db}.ts"],
+    files: ["scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db}.ts"],
   },
   "research-os": {
     files: [
@@ -41,7 +41,7 @@ const SUITES = {
     ],
     exclude: [
       "scripts/test-research-os-{dedup,merge-actions}.ts",
-      "scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db}.ts",
+      "scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db}.ts",
     ],
     commands: [
       ["node", "scripts/check-code-citations.mjs"],

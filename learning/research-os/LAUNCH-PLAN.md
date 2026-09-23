@@ -61,7 +61,7 @@ Tutor gaps block the tutor, which is outside the day-one loop:
 
 Free-plan terms: 500 MB database, 50,000 monthly active users, 1 GB file storage, 5 GB egress, two free projects per organization (supabase.com/pricing). A free project pauses after seven days of low activity and can be restored for 90 days (supabase.com/docs/guides/platform/free-project-pausing). The Free plan carries no automated backups (pricing page, UNVERIFIED this session), so an ops job runs a nightly `pg_dump`. 
 
-Migration replay: 53 files in `supabase/migrations`. CI already replays all of them on a fresh stack (`.github/workflows/site-ci.yml:100-102`), so `npx supabase link` then `npx supabase db push` is the path (`docs/AUTH.md:48`). Add `graph` and `bucket` to exposed schemas in Settings, API.
+Migration replay: 53 files in `supabase/migrations`. CI already replays all of them on a fresh stack (`.github/workflows/site-ci.yml:107-109`), so `npx supabase link` then `npx supabase db push` is the path (`docs/AUTH.md:48`). Add `graph` and `bucket` to exposed schemas in Settings, API.
 
 Auth email: the default sender delivers only to the organization's team members; any other address fails with "Email address not authorized". After custom SMTP is saved, Auth sends at 30 messages an hour until raised (supabase.com/docs/guides/auth/auth-smtp). Resend's free tier lists 3,000 a month and 100 a day (resend.com/pricing, UNVERIFIED this session). At 100 a day, waves stay at 50 invites so returning sign-ins fit. Paste `supabase/templates/magic-link.html`, which uses `{{ .Token }}`, and add an invite template. Site URL `https://www.bucket.foundation`, redirect `https://www.bucket.foundation/**`.
 
