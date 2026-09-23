@@ -126,7 +126,17 @@ function graphReaders(): { readers: Set<string>; sealed: Set<string>; scanned: n
  * A route with two branches carries two patterns, and all of them have
  * to match.
  */
-const EXEMPT: { route: string; because: string; proof: RegExp[] }[] = [
+/**
+ * A route that reads the graph and authorizes nobody in its own body,
+ * with the reason it does not have to and the code that bound it.
+ *
+ * `proof` is matched against the route. `alsoIn` is matched against
+ * another file, for the case where the bound is a filter inside the
+ * helper the route calls: without it, an entry for such a route can
+ * rest on nothing stronger than the helper's name, and a name is what
+ * this gate exists to stop standing in for a filter.
+ */
+const EXEMPT: { route: string; because: string; proof: RegExp[]; alsoIn?: { file: string; proof: RegExp[] }[] }[] = [
   {
     route: "access/route.ts",
     because:
@@ -164,6 +174,18 @@ const EXEMPT: { route: string; because: string; proof: RegExp[] }[] = [
     route: "node-proposals/route.ts",
     because: "every handler returns 403 before reading unless verifyGraphReviewer passes, and a graph reviewer's remit is the proposal queue itself rather than one learner's view of it",
     proof: [/verifyGraphReviewer\s*\(/],
+  },
+  {
+    route: "import/route.ts",
+    because:
+      "both handlers read one import by id and the caller's own learner id, and refuse with 404 when that pair matches no row, so a stranger's import id reads as absent rather than forbidden. The node content is the POST's nodeId and nodeSlug, reached in ownedImport from the node_id of the owner-matched import row, so the caller reads the slug of a node their own import points at. The GET emits file rows and no node field",
+    proof: [/ownedImport\([^)]*who\.learnerId\)/, /if \(!imp\) return answer\(404,/],
+    alsoIn: [
+      {
+        file: "src/lib/research-os/import-upload.ts",
+        proof: [/\.from\("imports"\)[\s\S]{0,120}?\.eq\("owner_id", ownerId\)/, /\.from\("nodes"\)[\s\S]{0,80}?\.eq\("id", row\.node_id\)/],
+      },
+    ],
   },
 ];
 
@@ -300,6 +322,16 @@ test("an exemption names a route that still exists, still reads, and still holds
     const code = stripComments(src, { keepStrings: true });
     for (const proof of e.proof) {
       assert.match(code, proof, `${e.route} no longer matches the bound its exemption rests on: ${proof}`);
+    }
+    // A bound that lives in the helper the route calls, checked in that
+    // helper's file rather than taken on the helper's name.
+    for (const other of e.alsoIn ?? []) {
+      const otherFull = path.join(__dirname, "..", other.file);
+      assert.ok(fs.existsSync(otherFull), `${e.route} rests on ${other.file}, which does not exist`);
+      const otherCode = stripComments(fs.readFileSync(otherFull, "utf8"), { keepStrings: true });
+      for (const proof of other.proof) {
+        assert.match(otherCode, proof, `${e.route} rests on a bound in ${other.file} that no longer matches: ${proof}`);
+      }
     }
   }
 });

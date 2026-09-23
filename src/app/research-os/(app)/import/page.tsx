@@ -118,7 +118,13 @@ export default function ImportPage() {
         body: JSON.stringify({ action: "import", kind: meta.value.kind, title: meta.value.title, source: { note: meta.value.note, files: usable.length } }),
       });
       if (!created.ok) {
-        setProblem("The import could not be created.");
+        // Creating the import reads the graph, so this call can answer a
+        // retryable 503. Reporting every failure as a refusal told a
+        // learner their import could not be created during a read that
+        // was going to complete on the next try, and nothing was
+        // written, so the same drop works again.
+        const body = (await created.json().catch(() => null)) as { error?: string } | null;
+        setProblem(isTransientOutage(created.status, body?.error ?? null) ? OUTAGE_COPY.body : "The import could not be created.");
         setBusy(false);
         return;
       }

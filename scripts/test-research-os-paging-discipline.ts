@@ -136,17 +136,25 @@ test("every read filtered by a chunked id list pages", () => {
  * statement. `eq()` pins a column to one value, so that column cannot
  * vary across the result and contributes to the order for free.
  * `in()` hands a list, which pins nothing.
+ *
+ * Column and table names match `[a-z0-9_]+`. An earlier version wrote
+ * `[a-z_]+`, which cannot match a digit, so `listImportFiles` read as
+ * ordered on `created_at` alone and its `.order("sha256")` tiebreaker
+ * was invisible: a total order failed this rule. The same gap ran the
+ * other way on `.from()`, where a table whose name carries a digit
+ * would not match at all and its paged read would leave the rule
+ * without failing it.
  */
 function pagedReads(src: string): { table: string; ordered: string[]; pinned: string[]; line: number }[] {
   const out: { table: string; ordered: string[]; pinned: string[]; line: number }[] = [];
   for (const s of statements(src, { keepStrings: true })) {
     if (!/\.range\(/.test(s.text)) continue;
-    const table = s.text.match(/\.from\(\s*["']([a-z_]+)["']\s*\)/);
+    const table = s.text.match(/\.from\(\s*["']([a-z0-9_]+)["']\s*\)/);
     if (!table) continue;
     out.push({
       table: table[1],
-      ordered: Array.from(s.text.matchAll(/\.order\(\s*["']([a-z_]+)["']/g)).map((m) => m[1]),
-      pinned: Array.from(s.text.matchAll(/\.eq\(\s*["']([a-z_]+)["']/g)).map((m) => m[1]),
+      ordered: Array.from(s.text.matchAll(/\.order\(\s*["']([a-z0-9_]+)["']/g)).map((m) => m[1]),
+      pinned: Array.from(s.text.matchAll(/\.eq\(\s*["']([a-z0-9_]+)["']/g)).map((m) => m[1]),
       line: s.line,
     });
   }
@@ -200,4 +208,24 @@ test("the rule counts an eq-pinned key column and refuses an in-list one", () =>
   assert.equal(orderIsTotal("node_grants", ["node_id", "grantee_id", "role"], []), false, "ordering on a nullable column leaves the nulls in one tie group");
   assert.equal(orderIsTotal("node_grants", ["node_id", "role"], ["grantee_id"]), true, "pinning it with eq excludes the nulls");
   assert.equal(orderIsTotal("node_grants", ["id"], []), true, "and the primary key is total either way");
+});
+
+test("the parser reads a column name that carries a digit", () => {
+  // listImportFiles orders on created_at then sha256. Under `[a-z_]+`
+  // the tiebreaker did not match, the read looked ordered on
+  // created_at alone, and rule 2 failed a read that was already total.
+  const one = pagedReads(`
+    await svc.from("import_files").select("id").eq("import_id", id).order("created_at").order("sha256").range(0, 99);
+  `);
+  assert.equal(one.length, 1, "a paged read of a table whose name has a digit is still found");
+  assert.deepEqual(one[0].ordered, ["created_at", "sha256"]);
+  assert.deepEqual(one[0].pinned, ["import_id"]);
+  assert.equal(orderIsTotal(one[0].table, one[0].ordered, one[0].pinned), true);
+
+  // And the direction that hides a read rather than failing it: a
+  // table name with a digit has to be seen, or its paged read leaves
+  // the rule silently.
+  const two = pagedReads(`await svc.from("sha256_blobs").select("id").range(0, 99);`);
+  assert.equal(two.length, 1, "a table whose name carries a digit is in scope");
+  assert.equal(two[0].table, "sha256_blobs");
 });
