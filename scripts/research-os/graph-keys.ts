@@ -35,7 +35,13 @@
  * `scripts/test-research-os-access-paging.ts` checks this map against
  * the live catalog, columns and nullability both, so a migration that
  * changes a key fails a test instead of silently widening what the gate
- * accepts.
+ * accepts. It checks both directions, and both have fired: CI carried
+ * keys this map lacked when the map was generated before a migration
+ * landed, and this map carried `source_quote_receipts` keys CI did not
+ * have, because a development database accumulates tables from branches
+ * that never merged and is a superset of what any one branch builds.
+ * Generate this from a database holding only this branch's migrations,
+ * or check every table here against them.
  */
 export interface UniqueKey {
   readonly columns: readonly string[];
@@ -69,7 +75,6 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   privacy_events: [{ columns: ["id"], nullable: [] }],
   productions: [{ columns: ["id"], nullable: [] }],
   reviewer_candidates: [{ columns: ["id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: [] }],
-  source_quote_receipts: [{ columns: ["id"], nullable: [] }, { columns: ["learner_id", "idempotency_key"], nullable: [] }],
   teacher_reviews: [{ columns: ["id"], nullable: [] }],
 };
 

@@ -142,6 +142,14 @@ test("the declared unique keys are the ones the database has", { skip }, () => {
   // it runs without a database. A migration that adds or drops a unique
   // key would leave it stale, and a stale map excuses a read it should
   // refuse. This is the only place the two meet.
+  //
+  // Scoped to the tables this branch's migrations create, because the
+  // database it runs against is not always the schema it is judging. CI
+  // builds one from these migrations alone; a development machine
+  // accumulates tables from branches that never merged and is a
+  // superset. Comparing against everything present made this fail on CI
+  // for keys of a table another branch owns, and fail locally for the
+  // same table once they were removed.
   /* eslint-disable-next-line @typescript-eslint/no-var-requires */
   const { GRAPH_UNIQUE_KEYS } = require("./research-os/graph-keys") as {
     GRAPH_UNIQUE_KEYS: Record<string, readonly { columns: readonly string[]; nullable: readonly string[] }[]>;
@@ -168,7 +176,21 @@ test("the declared unique keys are the ones the database has", { skip }, () => {
   `);
   assert.equal(live.status, 0, live.out);
 
-  const fromDb = new Set(live.out.split("\n").filter(Boolean));
+  // The graph tables this branch defines.
+  const migrationDir = path.join(__dirname, "..", "supabase", "migrations");
+  // migrationSql, because `sql` is the query helper above.
+  const migrationSql: string = fs
+    .readdirSync(migrationDir)
+    .filter((f) => f.endsWith(".sql"))
+    .map((f) => fs.readFileSync(path.join(migrationDir, f), "utf8"))
+    .join("\n");
+  const ours = new Set<string>();
+  const tableRe = /create table (?:if not exists )?graph\.([a-z_]+)/g;
+  for (let m = tableRe.exec(migrationSql); m !== null; m = tableRe.exec(migrationSql)) ours.add(m[1]);
+  assert.ok(ours.size > 20, `found ${ours.size} graph tables in this branch's migrations`);
+  const mine = (key: string): boolean => ours.has(key.slice(0, key.indexOf(":")));
+
+  const fromDb = new Set(live.out.split("\n").filter(Boolean).filter(mine));
   const declared = new Set<string>();
   for (const table of Object.keys(GRAPH_UNIQUE_KEYS)) {
     for (const key of GRAPH_UNIQUE_KEYS[table]) declared.add(`${table}:${key.columns.join(",")}|${key.nullable.join(",")}`);
@@ -176,6 +198,8 @@ test("the declared unique keys are the ones the database has", { skip }, () => {
 
   const missing = Array.from(fromDb).filter((k) => !declared.has(k)).sort();
   const extra = Array.from(declared).filter((k) => !fromDb.has(k)).sort();
+  const foreign = Array.from(declared).filter((k) => !mine(k)).sort();
+  assert.deepEqual(foreign, [], `graph-keys.ts declares keys for tables this branch does not create: ${foreign.join("; ")}`);
   assert.deepEqual(missing, [], `the database has unique keys graph-keys.ts does not declare: ${missing.join("; ")}`);
   assert.deepEqual(extra, [], `graph-keys.ts declares unique keys the database does not have, which excuses reads it should refuse: ${extra.join("; ")}`);
 });
