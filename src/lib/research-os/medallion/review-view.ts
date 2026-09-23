@@ -19,13 +19,18 @@ export async function silverForReview(svc: SupabaseClient, ids: string[]): Promi
   const sources = Array.from(new Set(rows.map((r) => r.source_id)));
   const admissions = new Map<string, { allow_index: boolean; status: string }>();
   for (let i = 0; i < sources.length; i += CHUNK) {
-    const { data, error } = await svc
-      .from("evidence_source_admissions")
-      .select("source_id,source_revision,allow_index,status")
-      .in("source_id", sources.slice(i, i + CHUNK));
-    if (error) throw new Error(error.message);
-    for (const a of (data as { source_id: string; source_revision: string; allow_index: boolean; status: string }[]) || []) {
-      admissions.set(`${a.source_id} ${a.source_revision}`, { allow_index: a.allow_index, status: a.status });
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await svc
+        .from("evidence_source_admissions")
+        .select("source_id,source_revision,allow_index,status")
+        .in("source_id", sources.slice(i, i + CHUNK))
+        .order("source_id")
+        .order("source_revision")
+        .range(from, from + 999);
+      if (error) throw new Error(error.message);
+      const page = (data as { source_id: string; source_revision: string; allow_index: boolean; status: string }[]) || [];
+      for (const a of page) admissions.set(`${a.source_id} ${a.source_revision}`, { allow_index: a.allow_index, status: a.status });
+      if (page.length < 1000) break;
     }
   }
   for (const r of rows) out.set(r.id, publicSilver(r, admissions.get(`${r.source_id} ${r.source_revision}`) ?? null));

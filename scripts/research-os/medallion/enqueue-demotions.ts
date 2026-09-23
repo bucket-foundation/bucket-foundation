@@ -33,9 +33,8 @@ async function main() {
   const lineage = new Map<string, string>();
   const tagIds = Array.from(new Set(edges.map((e) => e.from_id)));
   for (let i = 0; i < tagIds.length; i += 100) {
-    const { data, error } = await svc.from("gold_lineage").select("node_id,silver_item_id,promoted_by").in("node_id", tagIds.slice(i, i + 100));
-    if (error) throw new Error(`lineage lookup failed: ${error.message}`);
-    ((data as { node_id: string; silver_item_id: string }[]) || []).forEach((r) => lineage.set(r.node_id, r.silver_item_id));
+    const rows = await all<{ node_id: string; silver_item_id: string }>(svc, "gold_lineage", "id,node_id,silver_item_id", (q) => q.in("node_id", tagIds.slice(i, i + 100)).eq("promoted_by", "backfill"));
+    rows.forEach((r) => lineage.set(r.node_id, r.silver_item_id));
   }
   const demotions: DemotionEdge[] = edges.flatMap((e) => {
     const tag = byId.get(e.from_id);
