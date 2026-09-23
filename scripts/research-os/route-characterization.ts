@@ -5,14 +5,14 @@ import { NextRequest } from "next/server";
 export const API_DIR = path.join(__dirname, "..", "..", "src", "app", "api", "research-os");
 export const FIXTURE_DIR = path.join(__dirname, "route-characterization");
 const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
-const LEARNER = "00000000-0000-0000-0000-0000000000e1";
+export const LEARNER = "00000000-0000-0000-0000-0000000000e1";
 const PROBE_TIMEOUT_MS = 10_000;
 
 export type Observed = { status: number; cache: string | null; type: string | null; body: unknown } | { threw: string } | { timeout: true };
 export type Snapshot = Record<string, Observed>;
 
-type Stub = Record<string, Record<string, unknown>>;
-type Probe = {
+export type Stub = Record<string, Record<string, unknown>>;
+export type Probe = {
   name: string;
   configured: boolean;
   learner: string | null;
@@ -23,34 +23,15 @@ type Probe = {
   stubs?: () => Stub;
 };
 
-const REVIEWER = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: LEARNER }) } };
-const signedIn = { configured: true, learner: LEARNER, consent: { allowed: true } };
+export const REVIEWER: Stub = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: LEARNER }) } };
+export const SIGNED_IN = { configured: true, learner: LEARNER, consent: { allowed: true } } as const;
 
-const FOLDER_PROBES: Record<string, Probe[]> = {
-  irreducible: [
-    { ...signedIn, name: "reviewer, store down", body: "{}", stubs: () => REVIEWER },
-    { ...signedIn, name: "reviewer, malformed json", methods: ["POST"], body: "{", stubs: () => REVIEWER },
-    { ...signedIn, name: "reviewer, null body", methods: ["POST"], body: "null", stubs: () => REVIEWER },
-    { ...signedIn, name: "reviewer, array body", methods: ["POST"], body: "[]", stubs: () => REVIEWER },
-    { ...signedIn, name: "reviewer, number body", methods: ["POST"], body: "3", stubs: () => REVIEWER },
-    { ...signedIn, name: "reviewer, no decision", methods: ["POST"], body: '{"id":"p1"}', stubs: () => REVIEWER },
-  ],
-  directions: [
-    {
-      ...signedIn,
-      name: "node given, access filter throws",
-      query: "?node=n1",
-      stubs: () => ({
-        "@/lib/research-os/db": { loadSubgraph: async () => ({ nodes: [{ id: "n1", visibility: "private" }], edges: [] }) },
-        "@/lib/research-os/access-db": {
-          filterSubgraphForViewer: async () => {
-            throw new Error("access store down");
-          },
-        },
-      }),
-    },
-  ],
-};
+function folderProbes(folder: string): Probe[] {
+  const file = path.join(FIXTURE_DIR, `${folder}.probes.ts`);
+  if (!fs.existsSync(file)) return [];
+  /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+  return (require(file) as { probes: Probe[] }).probes;
+}
 
 const PROBES: Probe[] = [
   { name: "unconfigured", configured: false, learner: null, consent: { allowed: true } },
@@ -157,7 +138,7 @@ export async function characterize(folder: string): Promise<Snapshot> {
   for (const method of METHODS) {
     const handler = mod[method];
     if (typeof handler !== "function") continue;
-    for (const probe of [...PROBES, ...(FOLDER_PROBES[folder] ?? [])]) {
+    for (const probe of [...PROBES, ...folderProbes(folder)]) {
       if (method === "GET" && probe.name === "signed in, malformed json") continue;
       if (probe.methods && !probe.methods.includes(method)) continue;
       out[`${method} ${probe.name}`] = await run(handler as (req: NextRequest, ctx: unknown) => Promise<Response>, method, probe);
