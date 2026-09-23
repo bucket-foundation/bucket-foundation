@@ -16,6 +16,34 @@ A query of several nodes sums their vectors. Candidates are composites sharing a
 
 The node page shows the cosine, since a softmax weight depends on how many candidates there are. Composites with the same set of primes collapse into one row, the shallowest and then the first by title shown, with "and N more with the same primes". Over the idea layer, Folding funnel's nearest row is Two-state folding equilibrium at cosine 1, with 3 more on the same primes (Anfinsen's hypothesis among them), then Contact order and folding rate at 0.96.
 
+### Attention as a Tool
+
+bkt-jl1v. `/research-os/attend` and `GET /api/research-os/attend` rank the idea layer against concepts a user picks (`ids`, up to 8) or a phrase (`q`, up to 200 characters). Code: `src/lib/research-os/attention.ts`; tests: `scripts/test-research-os-attention.ts`.
+
+Each hit carries its prime cosine and the shared primes behind it, each with its term x_q(p) * x_v(p) / (|x_q| |x_v|). The route divides every exposed term by qn * vn, so the terms sum to the prime cosine. The ranking itself comes in three modes, chosen with `rank`:
+- **fused**, the default for concepts: reciprocal rank fusion (k = 60) of bge-small neighbours of the query nodes' precomputed vectors and the prime-basis ranking.
+- **fused**, also the default for phrases: a phrase enters through the idea with the highest IDF-weighted word overlap (`lexicalScore`, floor 0.05), and that idea's bge-small neighbours are fused with the prime ranking from it. No model runs at request time.
+- **vector**: bge-small neighbours alone.
+- **attention**: the prime-basis ranking alone, behind the flag.
+
+`scripts/research-os/embed-nodes.ts` writes the node vectors to `graph.node_embeddings` with a hash of the text each came from, readable by the service role alone. At read time `loadNodeVectors` hashes each node's current title and summary. A row whose hash differs is stale: it is skipped and counted, the node ranks by primes alone, and the page says how many. Rerunning `embed-nodes.ts` re-embeds exactly those rows. The route caches the rows for 10 minutes and checks the hashes on every request. When the rows cannot be read, it ranks by primes and says so. Embedding a phrase at request time waits on bkt-ig20. The factor cone is hidden by default: every idea above or below the query nodes leaves both lists, and `cone=show` brings them back. Results come from the public snapshot. A signed-in user may name a private node; `authorizeNode` must allow it, its prime vector sums its public factors' vectors, and its text vector is their centroid. It never comes back as a result.
+
+**Against embedding search.** `scripts/research-os/eval-attention.ts` takes 120 Academy atoms at random from 469 with a Wikipedia mapping, split 60 for tuning and 60 held out. A phrase query is the first lesson sentence that shares no word with the atom's title; a concept query is the atom's own node. A node counts as relevant when its Wikipedia article links to or from the source atom's article. The source atom and its near duplicates are removed from the entries, the candidates and the relevant set: same title, title overlap of 0.8 or more, same article, or a bge-small cosine of 0.93 or more. Held out, over 497 idea nodes, with paired bootstrap intervals over queries:
+
+| Mode | Arm | nDCG@10, cone hidden | against the baseline | nDCG@10, cone shown | against the baseline |
+|---|---|---|---|---|---|
+| Concepts | bge-small neighbours of the node, the baseline | 0.511 | | 0.511 | |
+| Concepts | Attention | 0.225 | -0.286, interval -0.361 to -0.208 | 0.384 | -0.127, interval -0.202 to -0.047 |
+| Concepts | Fused, the default | 0.359 | -0.152, interval -0.220 to -0.087 | 0.489 | -0.022, interval -0.082 to 0.036 |
+| Phrases | bge-small embedding of the phrase, the baseline | 0.285 | | 0.285 | |
+| Phrases | Attention through the lexical entry | 0.114 | -0.171, interval -0.237 to -0.097 | 0.156 | -0.129, interval -0.202 to -0.061 |
+| Phrases | Neighbours of the lexical entry | 0.180 | -0.106, interval -0.171 to -0.039 | 0.198 | -0.088, interval -0.157 to -0.017 |
+| Phrases | Fused through the lexical entry, the default | 0.154 | -0.131, interval -0.210 to -0.064 | 0.189 | -0.096, interval -0.164 to -0.032 |
+
+The baseline is plain embedding search and never hides a cone. The cone holds the query's own factors and dependents, and those are the nodes a Wikipedia article is most likely to link, so showing them lifts every arm on this measure and says little about what the tool adds. The default hides them: a reader who picked Kinematics already knows it rests on Vectors, and the list is for what they have not seen. With the cone hidden, tuning picked fusion for both modes (on the tuning half, 0.409 against 0.280 for attention on concepts, and 0.228 against 0.216 for neighbours on phrases). Every arm trails the unmasked baseline. The same embedding search with the same cone removed (bkt-rptv) scores 0.390 on concepts and 0.233 on phrases. Against it, fusion on concepts is within noise, -0.031 with interval -0.093 to 0.031, and attention trails, -0.165 with interval -0.238 to -0.095. On phrases, neighbours of the lexical entry trail by -0.053, interval -0.117 to 0.010, fusion by -0.079, interval -0.146 to -0.017, and attention by -0.118, interval -0.187 to -0.054. For phrases, the lexical entry is the bottleneck, and bkt-ig20 carries the numbers. Lexical entry takes 3.8 ms at the median and 5.0 ms at p95; the fused rank 0.7 ms and 1.0 ms.
+
+Wikipedia-link relevance rewards topical co-mention: two articles link when one names the other. It may undercount the structural, cross-branch neighbours attention is built to find, such as an idea in biophysics that rests on the same primes as one in cosmology without either article naming the other. `scripts/research-os/export-attention-labels.ts` writes 20 held-out phrase queries with the top 10 of both phrase arms merged, shuffled and unlabelled, plus a separate key; the founder's labels (bkt-hz38) are the second check.
+
 ## M2: Leibniz Numbers and the Euler Gap
 
 Rank primes by penetration and give them 2, 3, 5, 7 in order. A node's Leibniz number is n(v) = product of q_i over i in S(v), squarefree. Divisibility is containment.

@@ -51,25 +51,39 @@ export function primeBasis(dec: Map<string, Decomposition>): PrimeBasis {
   return { composites: n, df, idf, vectors, norms };
 }
 
-export type AttendOptions = { k?: number; tau?: number; basis?: PrimeBasis; tieBreak?: (a: string, b: string) => number };
+export type AttendOptions = {
+  k?: number;
+  tau?: number;
+  basis?: PrimeBasis;
+  tieBreak?: (a: string, b: string) => number;
+  mask?: ReadonlySet<string>;
+  queryVector?: Map<string, number>;
+};
 
-export type Attention = { id: string; score: number; weight: number; sharedPrimes: string[] };
+export type PrimeTerm = { prime: string; term: number };
+
+export type Attention = { id: string; score: number; weight: number; sharedPrimes: string[]; terms: PrimeTerm[] };
+
+export function queryVectorOf(basis: PrimeBasis, ids: { id: string; weight?: number }[]): Map<string, number> {
+  const q = new Map<string, number>();
+  for (const { id, weight = 1 } of ids) for (const [p, w] of Array.from(basis.vectors.get(id) ?? new Map<string, number>())) q.set(p, (q.get(p) ?? 0) + weight * w);
+  return q;
+}
 
 export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts: AttendOptions = {}): Attention[] {
   const k = opts.k ?? 8;
   const tau = opts.tau ?? 0.1;
   const basis = opts.basis ?? primeBasis(dec);
   const tieBreak = opts.tieBreak ?? ((a: string, b: string) => (dec.get(a)?.depth ?? 0) - (dec.get(b)?.depth ?? 0) || a.localeCompare(b));
-  const q = new Map<string, number>();
-  for (const id of queryIds) for (const [p, w] of Array.from(basis.vectors.get(id) ?? new Map<string, number>())) q.set(p, (q.get(p) ?? 0) + w);
+  const q = opts.queryVector ?? queryVectorOf(basis, queryIds.map((id) => ({ id })));
   let qsq = 0;
   for (const w of Array.from(q.values())) qsq += w * w;
   const qn = Math.sqrt(qsq);
   if (qn === 0) return [];
   const seeds = new Set(queryIds);
-  const scored: { id: string; score: number; shared: { p: string; c: number }[] }[] = [];
+  const scored: { id: string; score: number; norm: number; shared: { p: string; c: number }[] }[] = [];
   for (const [id, x] of Array.from(basis.vectors)) {
-    if (seeds.has(id) || dec.get(id)?.status !== "composite") continue;
+    if (seeds.has(id) || opts.mask?.has(id) || dec.get(id)?.status !== "composite") continue;
     const vn = basis.norms.get(id) ?? 0;
     if (vn === 0) continue;
     let dot = 0;
@@ -80,7 +94,7 @@ export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts
       dot += qw * w;
       shared.push({ p, c: qw * w });
     }
-    if (dot > 0) scored.push({ id, score: dot / (qn * vn), shared });
+    if (dot > 0) scored.push({ id, score: dot / (qn * vn), norm: qn * vn, shared });
   }
   if (!scored.length) return [];
   const top = Math.max(...scored.map((s) => s.score));
@@ -92,6 +106,7 @@ export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts
       score: s.score,
       weight: Math.exp((s.score - top) / tau) / z,
       sharedPrimes: s.shared.sort((a, b) => b.c - a.c || a.p.localeCompare(b.p)).map((x) => x.p),
+      terms: s.shared.map((x) => ({ prime: x.p, term: x.c / s.norm })),
     }))
     .sort((a, b) => b.score - a.score || tieBreak(a.id, b.id))
     .slice(0, k);

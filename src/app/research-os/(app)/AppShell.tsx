@@ -25,6 +25,7 @@ const LEARN: Item[] = [
   { href: "/research-os/import", label: "Import", hint: "bring a file in", match: ["/research-os/import"] },
   { href: "/research-os/map", label: "Map", hint: "the graph, the globe", match: ["/research-os/map"] },
   { href: "/research-os/primes", label: "Primes", hint: "what the graph rests on", match: ["/research-os/primes"] },
+  { href: "/research-os/attend", label: "Attention", hint: "rank the graph by shared primes", match: ["/research-os/attend"] },
   { href: "/research-os/nsm", label: "Semantic primes", hint: "the 65 meanings every language has", match: ["/research-os/nsm"] },
   { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
