@@ -16,45 +16,27 @@
     }
   },
   "GET signed in, store down": {
-    "status": 200,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "payeeType": null,
-      "hasGuardianContact": false,
-      "visibility": true,
-      "decision": {
-        "ok": false,
-        "reason": "age_unknown"
-      }
+      "error": "profile_unavailable"
     }
   },
   "GET signed in, consent unavailable": {
-    "status": 200,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "payeeType": null,
-      "hasGuardianContact": false,
-      "visibility": true,
-      "decision": {
-        "ok": false,
-        "reason": "age_unknown"
-      }
+      "error": "profile_unavailable"
     }
   },
   "GET signed in, consent refused": {
-    "status": 200,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "payeeType": null,
-      "hasGuardianContact": false,
-      "visibility": true,
-      "decision": {
-        "ok": false,
-        "reason": "age_unknown"
-      }
+      "error": "profile_unavailable"
     }
   },
   "GET profile read": {
@@ -68,6 +50,20 @@
       "decision": {
         "ok": false,
         "reason": "guardian_required"
+      }
+    }
+  },
+  "GET no profile yet": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "payeeType": null,
+      "hasGuardianContact": false,
+      "visibility": true,
+      "decision": {
+        "ok": false,
+        "reason": "age_unknown"
       }
     }
   },
@@ -135,12 +131,12 @@
       "error": "bad_payee_type"
     }
   },
-  "POST self, no profile": {
-    "status": 404,
+  "POST self, profile read fails": {
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "no_profile"
+      "error": "profile_unavailable"
     }
   },
   "POST self, saved": {
@@ -163,6 +159,22 @@
     "type": "application/json",
     "body": {
       "error": "write_failed"
+    }
+  },
+  "POST self, profile missing": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile"
+    }
+  },
+  "POST self, saved, reread fails": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "profile_unavailable"
     }
   }
 }

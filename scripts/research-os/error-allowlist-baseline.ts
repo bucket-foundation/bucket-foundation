@@ -2,7 +2,6 @@ export const ALLOWED_BASELINE: readonly string[] = [
   "src/app/api/academy/credential/verify/route.ts::liveProfile::academy_profiles::data::1",
   "src/app/api/research-os/hypothesize/route.ts::POST::nodes::node::1",
   "src/app/api/research-os/node/route.ts::GET::productions::data::1",
-  "src/app/api/research-os/payee/route.ts::load::learner_profiles::data::1",
   "src/app/api/research-os/probe/route.ts::POST::edges::prereqEdges::1",
   "src/app/api/research-os/production/route.ts::GET::nodes::nodes::1",
   "src/app/api/research-os/search/route.ts::GET::learner_node_state::st::1",

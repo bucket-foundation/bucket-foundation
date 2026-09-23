@@ -1,7 +1,7 @@
 {
   "GET unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -9,7 +9,7 @@
   },
   "GET anonymous": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -17,7 +17,7 @@
   },
   "GET signed in, store down": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -25,7 +25,7 @@
   },
   "GET signed in, consent unavailable": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -33,15 +33,31 @@
   },
   "GET signed in, consent refused": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
     }
   },
+  "GET reviewer, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
+  "GET reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
   "POST unconfigured": {
     "status": 503,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "research_os_unavailable"
@@ -49,7 +65,7 @@
   },
   "POST anonymous": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -57,7 +73,7 @@
   },
   "POST signed in, store down": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -65,7 +81,7 @@
   },
   "POST signed in, malformed json": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -73,7 +89,7 @@
   },
   "POST signed in, consent unavailable": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
@@ -81,10 +97,50 @@
   },
   "POST signed in, consent refused": {
     "status": 403,
-    "cache": null,
+    "cache": "no-store",
     "type": "application/json",
     "body": {
       "error": "forbidden"
+    }
+  },
+  "POST reviewer, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
+  "POST reviewer, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "kind must be transfer_item or production"
+    }
+  },
+  "POST reviewer, bad kind": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "kind must be transfer_item or production"
+    }
+  },
+  "POST reviewer, return without reason": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "a one-line reason is required to return an item"
+    }
+  },
+  "POST reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }

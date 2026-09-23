@@ -1,16 +1,13 @@
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
-import { configured, graphService, inChunks, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
+import { graphService, inChunks, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "@/lib/research-os/calibration";
+import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 interface StateRow {
   learner_id: string;
@@ -27,8 +24,7 @@ interface ProductionRow {
   created_at: string;
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
@@ -155,7 +151,7 @@ export async function GET(req: NextRequest) {
     { classes: classViews, queue: { transferHolds, productions } },
     { headers: { "cache-control": "no-store" } },
   );
-}
+});
 
 function buildTransferHolds(held: StateRow[], nodes: Array<{ id: string; title: string }>) {
   const titleById = new Map(nodes.map((n) => [n.id, n.title]));

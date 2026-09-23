@@ -1,6 +1,6 @@
 import { authorizeNodes } from "@/lib/research-os/read-access";
 import { randomUUID } from "node:crypto";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { createNodeFromProduction } from "@/lib/research-os/production-node";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
@@ -17,13 +17,10 @@ import {
   type LateralReadingFlag,
 } from "@/lib/research-os/production-guard";
 import { lookupCanonSignoff } from "@/lib/research-os/canon-link";
+import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function bad(status: number, error: string) {
-  return NextResponse.json({ error }, { status });
-}
 
 const STALE_SOURCE_NOTE =
   "Returned: this production's sources were never checked against a Quote call (submitted before the provenance guard shipped). " +
@@ -60,8 +57,7 @@ function sourceLinesOf(sources: unknown[] | null | undefined): string[] {
   return ((sources ?? []) as unknown[]).map((s) => String(s));
 }
 
-export async function GET(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
@@ -176,7 +172,7 @@ export async function GET(req: NextRequest) {
     },
     { headers: { "cache-control": "no-store" } },
   );
-}
+});
 
 async function reviewerScope(reviewer: { id: string; email: string | null }): Promise<{ ok: true; learners: string[] | null } | { ok: false }> {
   if (reviewer.email && isReviewerEmail(reviewer.email)) return { ok: true, learners: null };
@@ -253,17 +249,13 @@ interface ReviewBody {
   reason?: string;
 }
 
-export async function POST(req: NextRequest) {
-  if (!configured()) return bad(503, "research_os_unavailable");
+export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const reviewer = await verifyReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
-  let body: ReviewBody;
-  try {
-    body = (await req.json()) as ReviewBody;
-  } catch {
-    return bad(400, "bad_request");
-  }
+  const read = await readAnyJson(req, "bad_request");
+  if (!read.ok) return read.res;
+  const body = (read.value ?? {}) as ReviewBody;
 
   if (body.kind !== "transfer_item" && body.kind !== "production") return bad(400, "kind must be transfer_item or production");
   if (body.decision !== "approved" && body.decision !== "returned") return bad(400, "decision must be approved or returned");
@@ -459,4 +451,4 @@ export async function POST(req: NextRequest) {
     { decision: body.decision, status: newStatus, productionIncentiveEligible: incentiveEligible },
     { headers: { "cache-control": "no-store" } },
   );
-}
+});
