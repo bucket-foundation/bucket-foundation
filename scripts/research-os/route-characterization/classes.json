@@ -39,6 +39,19 @@
       "error": "class_read_failed"
     }
   },
+  "GET classes listed": {
+    "status": 200,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "classes": [
+        {
+          "id": "c1",
+          "name": "Physics 1"
+        }
+      ]
+    }
+  },
   "POST unconfigured": {
     "status": 503,
     "cache": "no-store",
@@ -85,6 +98,62 @@
     "type": "application/json",
     "body": {
       "error": "bad_action"
+    }
+  },
+  "POST signed in, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_action"
+    }
+  },
+  "POST signed in, array body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_action"
+    }
+  },
+  "POST create, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
+    }
+  },
+  "POST create, bad name": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_name"
+    }
+  },
+  "POST join, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "write_failed"
+    }
+  },
+  "POST join, bad code": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_code"
+    }
+  },
+  "POST create throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
     }
   }
 }
