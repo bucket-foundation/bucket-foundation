@@ -1,8 +1,3 @@
-/**
- * Unit tests: Learn inside the workspace (ros-29), src/lib/research-os/learn-link.ts.
- * Pure, no I/O. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-learn-link.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { academyHref, learnTargetFor, recallFor } from "../src/lib/research-os/learn-link";

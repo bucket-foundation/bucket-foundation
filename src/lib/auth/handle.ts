@@ -1,8 +1,3 @@
-/**
- * Handle rules for bucket.identities.handle: 3 to 24 characters, lowercase
- * letters, digits, and single hyphens between them. Pure; tested in
- * scripts/test-auth-paths.ts.
- */
 export const HANDLE_RE = /^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){2,23}$/;
 
 const RESERVED = new Set(["admin", "root", "system", "bucket", "canon", "api", "me", "null", "undefined", "sign-in", "account"]);

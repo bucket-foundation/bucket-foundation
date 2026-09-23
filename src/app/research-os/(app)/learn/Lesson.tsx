@@ -33,7 +33,6 @@ export function Equation({ tex }: { tex: string }) {
   return <div className="overflow-x-auto py-2" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-/** One atom's teaching text: the three depths, the full lesson, the note, sources, and resources. */
 export default function Lesson({ atom, full = true }: { atom: Atom; full?: boolean }) {
   const [depth, setDepth] = useState("core");
   const hasDepths = atom.depths && !Array.isArray(atom.depths);

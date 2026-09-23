@@ -1,9 +1,3 @@
-"""A four-document corpus for `hte.calibrate.run_vindication`: one
-claim that was fringe at discovery and mainstream twenty years later
-(`acceptance_year`), and one claim that looked supported at first and
-was refuted (`control=True`). Every evidence item is also a ground-truth
-row, since `run_vindication` reads an event's evidence slice by
-`discovery_year`. Synthetic; the real cases are a queued bead."""
 from __future__ import annotations
 
 from ..concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -19,7 +13,6 @@ DOCS = {
     "c-support": "A 1962 note from Alpha Observatory repeated the 1960 report without a plate.",
     "c-refute": "A 1975 re-examination found no comet Q on any Alpha Observatory plate from 1960.",
 }
-
 
 def _vocab() -> Vocabulary:
     c = ConsensusStatus
@@ -37,7 +30,6 @@ def _vocab() -> Vocabulary:
         Slot.MECHANISM: [Concept(id="photometric-method", slot=Slot.MECHANISM, label="Photometric method", prior_logit=0.0, consensus_status=c.CONSENSUS)],
     })
 
-
 def _item(doc: str, tier: Tier, place: str, year: int, *, stance: Stance = Stance.POSITIVE, kind: EvidenceKind = EvidenceKind.TEXTUAL) -> EvidenceItem:
     text = DOCS[doc]
     return EvidenceItem(
@@ -46,7 +38,6 @@ def _item(doc: str, tier: Tier, place: str, year: int, *, stance: Stance = Stanc
         actor="unverified-observer", action="sighted", object="comet-q", place=place, mechanism="photometric-method",
         interval=Interval(start=year, end=year),
     )
-
 
 def build() -> Corpus:
     sources = {doc: Source(id=doc, kind=EvidenceKind.TEXTUAL, date=str(y), stemma_parents=[])

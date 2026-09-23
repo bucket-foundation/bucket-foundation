@@ -1,6 +1,3 @@
-"""Property tests over `hte.paper`: `emit_paper` on a fixture run dir
-produces a `main.tex` whose every reference (`\\ref`/`\\Cref`/`\\cref`)
-resolves to a matching `\\label`, over a swarm of run-artifact shapes."""
 from __future__ import annotations
 
 import json
@@ -15,22 +12,12 @@ from hypothesis import strategies as st
 
 from hte import paper
 
-# Both tests below call `emit_paper`, which shells out to a real
-# `python3 figures/fig_*.py` render (see this module's own comment two
-# lines down); opts the whole file out of `tests/conftest.py`'s autouse
-# subprocess guard.
 pytestmark = pytest.mark.allow_subprocess
 
-# emit_paper shells out to `python3 figures/fig_*.py` three times per call
-# (real matplotlib renders): the shared "swarm" profile's 300
-# examples would make this file alone take minutes. A handful of examples
-# is enough to exercise the property (different bin counts, campaign
-# names, and calibration on/off) without that cost.
 _light = settings(max_examples=8, deadline=None)
 
 _REF_RE = re.compile(r"\\(?:[Cc]ref)\{([^}]*)\}")
 _LABEL_RE = re.compile(r"\\label\{([^}]*)\}")
-
 
 def _write_run_dir(root: Path, *, campaign: str, n_bins: int, with_calibration: bool) -> Path:
     run_dir = root / "runs" / campaign / "20260101T000000Z"
@@ -70,7 +57,6 @@ def _write_run_dir(root: Path, *, campaign: str, n_bins: int, with_calibration: 
     (run_dir / "self-report.json").write_text(json.dumps({"note": "s"}))
     return run_dir
 
-
 @_light
 @given(
     st.text(alphabet="abcdefghijklmnop-", min_size=1, max_size=12),
@@ -92,7 +78,6 @@ def test_emit_paper_produces_a_tex_with_no_dangling_reference(campaign, n_bins, 
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-
 def test_emit_paper_glossary_terms_are_all_referenced_and_defined():
     tmp = tempfile.mkdtemp()
     try:
@@ -100,8 +85,6 @@ def test_emit_paper_glossary_terms_are_all_referenced_and_defined():
         out_dir = Path(tmp) / "paper"
         paper.emit_paper(run_dir, out_dir)
         tex = (out_dir / "main.tex").read_text()
-        # Every \term{key}{...} used in the body has a matching
-        # \glossentry{key}{...} defined near the top.
         term_keys = set(re.findall(r"\\term\{([^}]*)\}", tex))
         glossentry_keys = set(re.findall(r"\\glossentry\{([^}]*)\}", tex))
         assert term_keys <= glossentry_keys

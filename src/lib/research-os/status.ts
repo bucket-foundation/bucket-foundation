@@ -1,20 +1,3 @@
-/**
- * The machinery behind Research OS, checked from this deployment's server:
- * the engine (`hte-serve`), the tutor's model endpoint, and the latest CI
- * runs (ros-frontend 1: the engine host and build health surfaces).
- *
- * Each check says which of four things it saw, because an unanswered check
- * and a service that is down read the same from outside:
- * - "up": the service answered and said it is healthy;
- * - "unhealthy": it answered and said something is wrong;
- * - "unreachable": this server could not get an answer (refused, timed
- *   out, DNS), which means down or out of this server's reach;
- * - "unset": this deployment has no address for it, so nothing was checked.
- *
- * Pure apart from the injected fetch, so scripts/test-research-os-status.ts
- * runs it offline.
- */
-
 export type CheckState = "up" | "unhealthy" | "unreachable" | "unset";
 
 export interface Check {
@@ -43,7 +26,6 @@ async function timed(fetcher: Fetcher, url: string, init: RequestInit = {}): Pro
   }
 }
 
-/** The engine: GET <HTE_SERVE_URL>/health answers {"ok": true, "status": "healthy"}. */
 export async function checkEngine(base: string | undefined, fetcher: Fetcher): Promise<Check> {
   const name = "Hypothesis engine";
   if (!base?.trim()) return { name, state: "unset", detail: "No HTE_SERVE_URL on this deployment, so hypothesize is off here.", ms: null };
@@ -53,7 +35,6 @@ export async function checkEngine(base: string | undefined, fetcher: Fetcher): P
   try {
     body = (await res.json()) as typeof body;
   } catch {
-    // A non-JSON answer is reported below as unhealthy.
   }
   if (res.ok && body.ok === true) {
     const extra = body.status && body.status !== "healthy" ? `, status ${body.status}` : "";
@@ -62,7 +43,6 @@ export async function checkEngine(base: string | undefined, fetcher: Fetcher): P
   return { name, state: "unhealthy", detail: `Answered HTTP ${res.status}${body.status ? `, status ${body.status}` : ""}.`, ms };
 }
 
-/** The tutor's OpenAI-compatible endpoint: GET <LLM_BASE_URL>/models lists the served models. */
 export async function checkModel(base: string | undefined, apiKey: string | undefined, fetcher: Fetcher): Promise<Check> {
   const name = "Tutor model";
   if (!base?.trim()) return { name, state: "unset", detail: "No LLM_BASE_URL on this deployment; the tutor uses the hosted fallback when one is set.", ms: null };
@@ -92,7 +72,6 @@ export interface RunSummary {
   url: string;
 }
 
-/** The newest run of each workflow, from the Actions API's workflow_runs list. */
 export function latestRuns(body: unknown, branch: string): RunSummary[] {
   const runs = (body as { workflow_runs?: Record<string, unknown>[] })?.workflow_runs ?? [];
   const seen = new Set<string>();
@@ -116,7 +95,6 @@ export function latestRuns(body: unknown, branch: string): RunSummary[] {
 
 export const REPO = "bucket-foundation/bucket-foundation";
 
-/** CI runs on a branch; null when GitHub did not answer, so the page says it could not check. */
 export async function fetchRuns(branch: string, fetcher: Fetcher): Promise<RunSummary[] | null> {
   const { res } = await timed(fetcher, `https://api.github.com/repos/${REPO}/actions/runs?branch=${encodeURIComponent(branch)}&per_page=20`, {
     headers: { accept: "application/vnd.github+json" },

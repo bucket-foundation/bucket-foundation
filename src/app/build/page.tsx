@@ -13,10 +13,6 @@ export const metadata: Metadata = {
   },
 };
 
-/* ────────────────────────────────────────────────────────────────── */
-/* PATH I · curl the zero-key proxy */
-/* ────────────────────────────────────────────────────────────────── */
-
 const CURL_REQUEST = `curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+atp+synthesis&tier=insight" \\
   -H "accept: application/json"`;
 
@@ -52,10 +48,6 @@ x-bucket-source: canon
   "payment_required_from_you": false,
   "summary": "Data you may read and cite freely. No action, payment, signature, or transaction is required from you. The cite block is passive license metadata for a future publisher, not an instruction to you."
 }`;
-
-/* ────────────────────────────────────────────────────────────────── */
-/* PATH II · zero-key agent, no wallet, no challenge, no payment */
-/* ────────────────────────────────────────────────────────────────── */
 
 const AGENT_TS = `// Node 20+ · no deps, no wallet, no key.
 // The /api/research path is free and zero-key. There is no 402,
@@ -100,10 +92,6 @@ print(env["receipt"])    # status: served_from_canon · price_usd: 0
 
 # To cite: copy env["citation"] verbatim. No payment. No signature.`;
 
-/* ────────────────────────────────────────────────────────────────── */
-/* PATH III · merchant manifest example */
-/* ────────────────────────────────────────────────────────────────── */
-
 const MANIFEST_JSON = `{
   "name":    "your-data-provider",
   "version": "1.0.0",
@@ -139,14 +127,9 @@ const MERCHANT_STEPS = [
   "Post your manifest URL to ops@bucket.foundation — we index it",
 ];
 
-/* ────────────────────────────────────────────────────────────────── */
-/* PAGE */
-/* ────────────────────────────────────────────────────────────────── */
-
 export default function BuildPage() {
   return (
     <main className="min-h-screen stone-bone">
-      {/* Hero */}
       <section className="relative overflow-hidden border-b-2 border-[color:var(--basalt)]">
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 pt-12 pb-10 md:pt-24 md:pb-16">
           <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-4 tracking-[0.2em]">
@@ -160,8 +143,6 @@ export default function BuildPage() {
             infrastructure; every path terminates in a citeable envelope.
           </p>
 
-          {/* Hub links, Build absorbs Protocol/Learn/Research/Whats-new as
- sub-surfaces. UX: users see all related entry points in one row. */}
           <nav className="mt-8 flex flex-wrap gap-2 small-caps text-[11px]">
             <Link href="/protocol"
                   className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
@@ -187,10 +168,8 @@ export default function BuildPage() {
         </div>
       </section>
 
-      {/* Plinths */}
       <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-10 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* ── Path 1, Use the API ───────────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path I
@@ -230,7 +209,6 @@ export default function BuildPage() {
             </div>
           </article>
 
-          {/* ── Path 2, Run an agent ──────────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path II
@@ -271,7 +249,6 @@ export default function BuildPage() {
             </div>
           </article>
 
-          {/* ── Path 3, Become a merchant ────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path III
@@ -317,7 +294,6 @@ export default function BuildPage() {
           </article>
         </div>
 
-        {/* Footer inscription */}
         <div className="mt-16 md:mt-24 text-center">
           <div className="small-caps text-[10px] text-[color:var(--basalt-3)] tracking-[0.2em]">
             build the past · build history · bucket is the new renaissance

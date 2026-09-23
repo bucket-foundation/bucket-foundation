@@ -1,7 +1,3 @@
-"""`hte.llm.complete`'s fake-mode dispatch: never a subprocess call,
-never a cache read or write, and every role returns a dict matching its
-own schema's required keys.
-"""
 from __future__ import annotations
 
 import pytest
@@ -19,10 +15,8 @@ from hte.roles import (
     UNKNOWN_UNKNOWN_SCHEMA,
 )
 
-
 def _explode(*args, **kwargs):
     raise AssertionError("fake mode must never shell out to `claude -p`")
-
 
 def test_complete_mode_fake_never_calls_subprocess(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "subprocess", type("S", (), {"run": staticmethod(_explode)}))
@@ -31,7 +25,6 @@ def test_complete_mode_fake_never_calls_subprocess(monkeypatch, tmp_path):
         cache_dir=str(tmp_path / "cache"), mode="fake",
     )
     assert response["could_have_survived"] is True
-
 
 def test_complete_env_var_fake_never_calls_subprocess(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "subprocess", type("S", (), {"run": staticmethod(_explode)}))
@@ -42,7 +35,6 @@ def test_complete_env_var_fake_never_calls_subprocess(monkeypatch, tmp_path):
     )
     assert isinstance(response["summary"], str)
 
-
 def test_complete_mode_fake_does_not_touch_cache_dir(tmp_path):
     cache_dir = tmp_path / "cache-untouched"
     llm.complete(
@@ -51,23 +43,14 @@ def test_complete_mode_fake_does_not_touch_cache_dir(tmp_path):
     )
     assert not cache_dir.exists()
 
-
-@pytest.mark.allow_subprocess  # deliberately takes the real `claude -p` path, bounded by timeout=1.0
+@pytest.mark.allow_subprocess
 def test_complete_mode_fake_ignored_when_not_set(monkeypatch, tmp_path):
-    """Without `mode="fake"` and no `HTE_LLM_MODE` set, `complete()` still
-    takes the real `claude -p` path (and so still raises on a cache
-    miss with no `replay_only`, exercised elsewhere); this just confirms
-    the env var is read fresh on every call. `timeout=1.0` bounds the
-    real subprocess call this deliberately makes to a `FileNotFoundError`
-    or a fast `TimeoutExpired`, either of which `_invoke_cli` turns into
-    the `LLMInvocationError` asserted below, never a hang."""
     monkeypatch.delenv("HTE_LLM_MODE", raising=False)
     with pytest.raises(llm.LLMInvocationError):
         llm.complete(
             "irrelevant prompt", role="critic", schema=CRITIQUE_SCHEMA,
             cache_dir=str(tmp_path / "cache"), replay_only=False, timeout=1.0,
         )
-
 
 @pytest.mark.parametrize(
     "role,schema",
@@ -89,11 +72,9 @@ def test_fakellm_covers_every_role_with_required_keys(role, schema):
     for key in schema["required"]:
         assert key in response, f"role={role!r} missing required key {key!r}"
 
-
 def test_fakellm_unknown_role_raises():
     with pytest.raises(KeyError):
         fakellm.complete("prompt", role="not-a-real-role", schema={"required": []})
-
 
 def test_fakellm_generator_echoes_evidence_slots_and_id():
     prompt = (
@@ -118,7 +99,6 @@ def test_fakellm_generator_echoes_evidence_slots_and_id():
     assert proposal["action"] == "action-1"
     assert proposal["supporting_evidence_ids"] == ["evt-3"]
 
-
 def test_fakellm_critic_keeps_when_supporting_evidence_present():
     prompt = (
         "Critique this hypothesis against the evidence naming it.\n\n"
@@ -130,7 +110,6 @@ def test_fakellm_critic_keeps_when_supporting_evidence_present():
     )
     response = fakellm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA)
     assert response["keep"] is True
-
 
 def test_fakellm_critic_rejects_when_no_supporting_evidence():
     prompt = (
@@ -144,11 +123,7 @@ def test_fakellm_critic_rejects_when_no_supporting_evidence():
     response = fakellm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA)
     assert response["keep"] is False
 
-
 def test_fakellm_judge_is_sigmoid_of_linked_evidence_balance():
-    """`bkt-hte-blind-roles`: the fake judge reads each side's own
-    supports/refutes count off `hte.roles.judge`'s own evidence-block
-    line, never an `Opinion` (the prompt carries none)."""
     from hte.belief import sigmoid
 
     prompt = (
@@ -160,12 +135,10 @@ def test_fakellm_judge_is_sigmoid_of_linked_evidence_balance():
     expected = sigmoid((2 - 0) - (0 - 1))
     assert response["p_a_wins"] == pytest.approx(expected)
 
-
 def test_fakellm_judge_draws_when_neither_side_has_linked_evidence():
     prompt = "Hypothesis A: ...\nA: no linked evidence.\n\nHypothesis B: ...\nB: no linked evidence.\n\nReturn p_a_wins..."
     response = fakellm.complete(prompt, role="judge", schema=JUDGE_SCHEMA)
     assert response["p_a_wins"] == pytest.approx(0.5)
-
 
 def test_fakellm_understanding_echoes_statement():
     prompt = (
@@ -176,18 +149,15 @@ def test_fakellm_understanding_echoes_statement():
     response = fakellm.complete(prompt, role="understanding", schema=UNDERSTANDING_SCHEMA)
     assert "alpha-team sighted comet-q" in response["explanation"]
 
-
 def test_fakellm_understanding_never_blank():
     response = fakellm.complete("no hypothesis line at all", role="understanding", schema=UNDERSTANDING_SCHEMA)
     assert response["explanation"].strip() != ""
-
 
 def test_fakellm_is_deterministic_across_calls():
     prompt = "Propose exactly 3 distinct placements.\n\nEvidence:\n(no evidence supplied)\n\n"
     r1 = fakellm.complete(prompt, role="generator", schema=GENERATE_SCHEMA)
     r2 = fakellm.complete(prompt, role="generator", schema=GENERATE_SCHEMA)
     assert r1 == r2
-
 
 def test_fake_critic_rates_every_listed_item_and_roles_maps_the_ratings_to_ratios():
     from hte import roles

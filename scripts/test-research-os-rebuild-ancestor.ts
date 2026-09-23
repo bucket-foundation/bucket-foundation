@@ -1,17 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/rebuild-ancestor.ts's
- * `rebuildPrereqAncestorForBranch` (bkt-ros ros-13, factored out of
- * scripts/rebuild-prereq-ancestor.ts so the /research-os/edges review
- * route's approve action can call it in-process, task item 4). No network:
- * a tiny fluent fake stands in for the Supabase client, covering only the
- * four calls this function makes (`nodes.select.eq`,
- * `edges.select.in.eq`, `prereq_ancestor.delete.in`,
- * `prereq_ancestor.insert`), matching this repo's existing offline,
- * stub-backed research-os test convention.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-rebuild-ancestor.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { rebuildPrereqAncestorForBranch } from "../src/lib/research-os/rebuild-ancestor";
@@ -28,10 +14,6 @@ interface FakeEdgeRow {
   confidence: number | null;
 }
 
-/** A minimal fluent fake matching only the chain shapes
- * rebuildPrereqAncestorForBranch calls; anything else throws so a
- * future change to that function's own query shape fails this test loudly
- * rather than silently returning undefined. */
 function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inserted?: unknown[]; deletedNodeIds?: string[]; rpcCalls?: number }) {
   return {
     from(table: string) {
@@ -98,7 +80,6 @@ test("rebuildPrereqAncestorForBranch: a linear chain rebuilds its full closure a
 
   assert.equal(result.nodeCount, 3);
   assert.equal(result.edgeCount, 2);
-  // c's ancestors: b (hop 1) and a (hop 2); b's ancestors: a (hop 1). 3 closure rows total.
   assert.equal(result.closureRowCount, 3);
   assert.deepEqual(new Set(calls.deletedNodeIds), new Set(["n-a", "n-b", "n-c"]), "deletes every branch node's own prior rows first");
   assert.equal(calls.inserted?.length, 3);

@@ -1,18 +1,3 @@
-/**
- * The import upload route (ros-import 2).
- *
- * `POST { action: "attach" }` records one uploaded file against an import
- * the caller owns. The browser hashes the file, uploads it to
- * `<owner>/<sha256>` under its own session, and calls this; the route
- * reads the object back, hashes it, and writes the row when the bytes
- * are the ones the path names. Nothing here uploads, and nothing trusts
- * the client's hash.
- *
- * `GET ?import=<id>` lists the files of an import the caller owns.
- *
- * The import itself is created by `/api/research-os/access` with
- * `{ action: "import" }`, which writes the private node beside it.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { graphService, verifyLearner } from "@/lib/research-os/db";

@@ -1,12 +1,3 @@
-/**
- * The launch list: people who asked to hear when Research OS opens.
- *
- * Pure pieces only, so the client form and the unit tests
- * (scripts/test-waitlist.ts) import them without a server. Storage lives in
- * ./store.ts. One record per email address; a repeat signup updates the
- * record and keeps the first signup time.
- */
-
 import { safeNextPath } from "../auth/paths";
 
 export const WAITLIST_ROLES = ["student", "teacher", "researcher", "parent", "other"] as const;
@@ -17,15 +8,12 @@ export const WANTED_MAX = 200;
 const EMAIL_MAX = 254;
 
 export interface WaitlistEntry {
-  /** Trimmed and lowercased, the record's identity. */
   email: string;
   name: string | null;
   role: WaitlistRole | null;
-  /** The page the person was trying to open when they reached /sign-in. */
   wanted: string | null;
   created_at: string;
   updated_at: string;
-  /** How many times this address joined. */
   signups: number;
 }
 
@@ -66,12 +54,6 @@ function normalizeWanted(raw: unknown): string | null {
   return safeNextPath(s) === s ? s : null;
 }
 
-/**
- * Validates a signup body. `website` is a honeypot field the form hides from
- * people. A value there marks the signup `suspect`: bots fill every input, and
- * so can a password manager filling a real person's details. The route keeps
- * suspects apart from the list for review and answers the same either way.
- */
 export function parseSignup(body: unknown): ParsedSignup {
   const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
   const suspect = clean(b.website) !== "";
@@ -83,7 +65,6 @@ export function parseSignup(body: unknown): ParsedSignup {
   return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted) }, suspect };
 }
 
-/** The record after a signup: first signup time kept, newer answers win. */
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {
   if (!existing) {
     return { ...input, created_at: now, updated_at: now, signups: 1 };
@@ -99,7 +80,6 @@ export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, n
   };
 }
 
-/** A stored record read back, or null when it does not have the shape. */
 export function parseEntry(raw: unknown): WaitlistEntry | null {
   if (!raw || typeof raw !== "object") return null;
   const r = raw as Record<string, unknown>;
@@ -117,18 +97,12 @@ export function parseEntry(raw: unknown): WaitlistEntry | null {
   };
 }
 
-/** Newest signup first. */
 export function sortEntries(entries: WaitlistEntry[]): WaitlistEntry[] {
   return [...entries].sort((a, b) => (a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : a.email.localeCompare(b.email)));
 }
 
 export const CSV_COLUMNS = ["email", "name", "role", "wanted", "created_at", "updated_at", "signups"] as const;
 
-/**
- * One cell, quoted. A leading = + - @ tab or carriage return gets an
- * apostrophe so a spreadsheet opens the value as text and never runs it as a
- * formula.
- */
 export function csvCell(value: string | number | null): string {
   let s = value === null ? "" : String(value);
   if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;

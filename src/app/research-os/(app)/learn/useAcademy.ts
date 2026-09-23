@@ -20,7 +20,6 @@ export interface Academy {
   gradeAtom: (id: string, rating: Rating, level: Depth) => void;
 }
 
-/** One branch of the Academy: corpus, the person's state (local merged with server), and the actions on it. */
 export function useAcademy(branch: string): Academy {
   const [status, setStatus] = useState<AcademyStatus>("loading");
   const [corpus, setCorpus] = useState<LoadedCorpus | null>(null);

@@ -1,10 +1,3 @@
-/**
- * The admitted public-source corpus (ros-ai-corpus): normalization and
- * byte offsets against fixtures Python generated, source identities, the
- * rights policy, the builder's admission rules, revision behavior, the
- * validator against tampered artifacts, staleness against a changed graph,
- * and the rows the admission step sends. node:test, no database, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -188,7 +181,6 @@ test("a passage's span holds its text, and its quote revision is the one the rec
   const [p] = result.passages;
   assert.equal(byteSlice(r.text, p.start, p.end), passage.text);
   assert.equal(p.passageId, `${r.sourceId}#${passage.locator}`);
-  // Computed with curatedSourceRevision on feat/ros-ai-receipts (#196) for this exact input.
   assert.equal(p.quoteRevision, "62853120a5ccdd51ca8cc1479a38b9c7a1f77d016aa28be4f9692b65dc65024a");
   assert.equal(r.citation.label, "NASA Space Place (2024). Why Is the Sky Blue?.");
   assert.equal(
@@ -259,7 +251,6 @@ test("the validator accepts sound artifacts and names each kind of tampering", (
   const { files, manifest } = artifactsOf([node(1, { slug: "seeded" }), node(2, { summary: "Sky \u{1F324} blue." })], { seeded: WIKI });
   assert.deepEqual(validateCorpus(manifest, files, POLICY, POLICY_SHA), []);
 
-  // Rewrites one file and repins it, so each check is reached on its own.
   const repin = (name: "sources.jsonl" | "passages.jsonl", edit: (rows: Record<string, unknown>[]) => void) => {
     const rows = files[name].split("\n").filter(Boolean).map((l) => JSON.parse(l));
     edit(rows);

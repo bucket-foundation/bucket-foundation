@@ -10,7 +10,6 @@ export type ProduceKind = "production" | "extension" | "replication" | "peer_rev
 const KIND_LABEL: Record<ProduceKind, string> = { production: "production", extension: "extension", replication: "replication", peer_review: "peer review" };
 const INPUT = "border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 w-full";
 
-/** The one production form: a claim from quotes and sources, a transfer proof, counter-evidence, saved as a draft or submitted for review. */
 export default function ProduceForm({
   kind,
   targetId,

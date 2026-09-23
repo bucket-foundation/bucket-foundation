@@ -1,38 +1,12 @@
-/**
- * One read-authorization adapter for Research OS, over the rules in
- * access.ts and the rows in access-db.ts (ros-ai-access,
- * learning/research-os/ai/IMPLEMENTATION.md, "Authorization boundary").
- *
- * The routes that read graph rows through the service-role client each
- * carried their own check, or none: GET search filtered on public-or-owner
- * and never loaded a grant, so a node shared with a learner was invisible
- * to them and a revoked grant was indistinguishable from a live one.
- * Quote, Locate and the Check phases read whatever id they were handed.
- *
- * Three rules this adapter keeps that the loaders under it do not:
- *
- *   1. An access-store failure is `unavailable`, never "no grants". The
- *      helpers in access-db.ts collapse an error into an empty list, which
- *      reads as a denial and hides an outage.
- *   2. A visibility the code does not know is private. The column is
- *      NOT NULL with a three-value check today, so this is insurance.
- *   3. Reads are batched by kind: the nodes, then their grants, then the
- *      viewer's groups, each in chunks of IN_CHUNK ids rather than one
- *      query per result.
- *
- * The store is injectable so the rules can be tested without a database.
- */
 import { can, canView, GRANT_ROLES, live, readVisibility, type GrantRole, type NodeAccess, type NodeGrant, type Viewer, type Visibility } from "./access";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { graphService } from "./db";
 import { inChunks, pagedRead } from "./paging";
 
-/** What a read can ask for. `view` is the floor; the rest are grant roles. */
 export type ReadVerb = GrantRole;
 
 export type StoreResult<T> = { ok: true; value: T } | { ok: false; error: string };
 
-/** The rows the adapter needs, each read as a whole or reported as a failure. */
 export interface AccessStore {
   nodes(ids: string[]): Promise<StoreResult<NodeAccess[]>>;
   grants(ids: string[]): Promise<StoreResult<NodeGrant[]>>;
@@ -41,11 +15,8 @@ export interface AccessStore {
 
 export type Authorized = {
   ok: true;
-  /** The ids the viewer may act on with the verb asked for, in input order. */
   allowed: string[];
-  /** Every id that exists, with the access row it was judged on. */
   nodes: Map<string, NodeAccess>;
-  /** The ids that no node row matched. */
   missing: string[];
 };
 
@@ -55,11 +26,6 @@ export type AuthorizeResult = Authorized | Unavailable;
 
 const VISIBILITY_RANK: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
 
-/**
- * A store answering with the same id twice resolves to the stricter row,
- * since nothing in the interface promises an order. Both entry points read
- * their nodes through this, so they cannot disagree.
- */
 function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
   const byId = new Map<string, NodeAccess>();
   for (const node of nodes) {
@@ -71,7 +37,6 @@ function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
 
 export { readVisibility };
 
-/** A grant whose expiry cannot be read is treated as expired. */
 const liveGrant = live;
 
 export type GrantRow = {
@@ -115,7 +80,6 @@ export async function readGrants(ids: string[], client: () => SupabaseClient = g
   }
 }
 
-/** The store the routes use: the service-role client, errors preserved. */
 export const dbAccessStore: AccessStore = {
   async nodes(ids) {
     try {
@@ -133,9 +97,6 @@ export const dbAccessStore: AccessStore = {
   },
   grants: (ids) => readGrants(ids),
   async groups(learnerId) {
-    // Paged and ordered. A learner past a thousand classes would lose the
-    // group grants on the classes it dropped, which reads as a denial
-    // rather than as the truncation it is (Bucket critic C36).
     try {
       const rows = await pagedRead<{ class_id: string }>((page) =>
         graphService().from("class_members").select("class_id").eq("learner_id", learnerId).order("class_id", { ascending: true }).range(page.from, page.to) as unknown as Page<{
@@ -149,13 +110,6 @@ export const dbAccessStore: AccessStore = {
   },
 };
 
-/**
- * Whether a viewer may act on each of these nodes with one verb.
- *
- * An id the store has no row for lands in `missing` rather than in
- * `allowed`, so a caller can tell a hidden node from one that never
- * existed without telling the viewer which it was.
- */
 export async function authorizeNodes(
   ids: string[],
   viewer: Viewer,
@@ -172,8 +126,6 @@ export async function authorizeNodes(
   const byId = strictestById(nodes.value);
   const missing = unique.filter((id) => !byId.has(id));
 
-  // A `view` over public rows needs no grant and no group, so it costs one
-  // read. Any other verb, or any row that is not public, loads both.
   const needsGrants = nodes.value.some((n) => n.visibility !== "public") || verb !== "view";
   let grants: NodeGrant[] = [];
   let groups: string[] = [];
@@ -188,8 +140,6 @@ export async function authorizeNodes(
     }
   }
 
-  // A caller's groups add to the ones on file. Replacing them would let a
-  // caller passing an empty list revoke a class grant by accident.
   const subject: Viewer = { id: viewer.id, groups: Array.from(new Set([...(viewer.groups ?? []), ...groups])) };
   const allowed = unique.filter((id) => {
     const node = byId.get(id);
@@ -200,11 +150,6 @@ export async function authorizeNodes(
   return { ok: true, allowed, nodes: byId, missing };
 }
 
-/**
- * A store that answers `nodes` from rows a caller already read, and passes
- * grants and groups through. A route that selected visibility and owner
- * with its own query authorizes without reading those rows twice.
- */
 export function storeWithNodes(rows: NodeAccess[], base: AccessStore = dbAccessStore): AccessStore {
   const byId = new Map(rows.map((n) => [n.id, n]));
   return {
@@ -220,11 +165,6 @@ export type VerbsResult =
   | { ok: true; node: NodeAccess; allowed: Record<ReadVerb, boolean> }
   | { ok: false; reason: "denied" | "not_found" | "unavailable"; detail?: string };
 
-/**
- * Every verb for one node, from a single load. A page that shows which
- * actions a viewer has would otherwise authorize once per verb, and each
- * call would read the node, its grants and the viewer's classes again.
- */
 export async function authorizeVerbs(
   id: string,
   viewer: Viewer,
@@ -237,8 +177,6 @@ export async function authorizeVerbs(
   const node = strictestById(nodes.value).get(id);
   if (!node) return { ok: false, reason: "not_found" };
 
-  // A public node read for `view` alone needs neither, the same saving
-  // authorizeNodes makes.
   const onlyView = node.visibility === "public" && verbs.every((v) => v === "view");
   let grants: NodeGrant[] = [];
   let groups: string[] = [];
@@ -258,8 +196,6 @@ export async function authorizeVerbs(
   for (const verb of verbs) {
     allowed[verb] = verb === "view" ? canView(node, subject, grants, now) : can(node, subject, verb, grants, now);
   }
-  // A caller that cannot view the node reads a denial, so a verb map can
-  // never be handed out for a node the viewer cannot see.
   if (!allowed.view && verbs.includes("view")) return { ok: false, reason: "denied" };
   return { ok: true, node, allowed };
 }
@@ -268,11 +204,6 @@ export type OneResult =
   | { ok: true; node: NodeAccess }
   | { ok: false; reason: "denied" | "not_found" | "unavailable"; detail?: string };
 
-/**
- * One node, one verb. `denied` and `not_found` are separate here so a
- * route can log which it was; both answer 404 to the caller, so a hidden
- * node cannot be told from one that does not exist.
- */
 export async function authorizeNode(
   id: string,
   viewer: Viewer,

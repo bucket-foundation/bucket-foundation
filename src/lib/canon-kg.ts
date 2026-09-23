@@ -1,26 +1,19 @@
-// canon-kg.ts, server-only loader for the full canon knowledge graph
-// summary (1,133 nodes: 599 claims + 105 concepts + 27 bridges +
-// 402 authors). Powers /canon/graph (full KG view).
-
 import fs from "fs";
 import path from "path";
 
 export type KGNode = {
   id: string;
   kind: "claim" | "concept" | "bridge" | "author";
-  // claim
   branch?: string;
   concept?: string;
   slug?: string;
   title?: string;
   predicted_tier?: string;
   confidence_nucleus?: number;
-  // bridge
   cluster_id?: number;
   branches?: string[];
   size?: number;
   exemplar?: string;
-  // author
   display_name?: string;
   cited_by_count?: number;
   works_count?: number;
@@ -51,8 +44,6 @@ export function getKGSummary(): KGSummary {
   return cached;
 }
 
-// Centrality markdown was emitted by agf-build-knowledge-graph;
-// parse top-15 author entries by PageRank for the "intellectual hubs" panel.
 export function getCentralityTopAuthors(): { name: string; pagerank: number; hIndex: number; citedBy: number }[] {
   if (!fs.existsSync(CENTRALITY_PATH)) return [];
   const raw = fs.readFileSync(CENTRALITY_PATH, "utf-8");

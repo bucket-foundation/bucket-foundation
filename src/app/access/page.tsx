@@ -1,7 +1,3 @@
-// /access, single source of truth for "how do I use bucket.foundation?"
-// Maps every surface: website routes, GitHub repos, MCP server, API,
-// research drive. No confusion.
-
 import Link from "next/link";
 
 export const metadata = {

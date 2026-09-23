@@ -1,48 +1,3 @@
-/**
- * The decompose-further queue (ros-prime 2, learning/research-os/PRIMES.md
- * "Slice 2"): for every prime and every unfactored idea, a proposer names
- * what the node rests on and a second model checks the pairs blind; the
- * results queue for review at /research-os/edges. Pure logic lives in
- * src/lib/research-os/decompose-further.ts.
- *
- * Stages, in order:
- *   1. Load public, current nodes and the factor edges; decompose the idea
- *      layer (idea nodes and the edges between them, ideaLayer); embed
- *      every idea node with a local model (embed-texts.py).
- *   2. For each target: the proposer (Sonnet) picks factors from a
- *      shortlist and names missing base ideas; the verifier (Opus) judges
- *      the picks mixed with passed-over candidates, unlabelled.
- *   3. Consolidate the missing ideas: one model pass groups synonyms and
- *      spots ideas that already have a node; earlier runs' keys are reused.
- *   4. A missing idea that already has a node becomes a factor proposal.
- *   5. Verify every pair still unchecked, including pending pairs queued
- *      from approved base ideas. These checks name the factor, since no
- *      pick exists to hide; the report counts them apart from blind ones.
- *   6. Flag pairs that would close a cycle with other pending proposals.
- *   7. Score every pair with Wikipedia link evidence (RefD, Liang et al.
- *      2015; scripts/research-os/wikipedia-links.ts), a judge outside the
- *      Claude models, and report its ROC area against the verifier's
- *      verdicts with target-level intervals.
- *   8. Merge everything into graph.edge_proposals, graph.node_proposals,
- *      and graph.irreducible_proposals; decided rows stay as reviewed, and
- *      every pair the merge leaves alone is listed with what holds it.
- *
- * Model calls go through `claude -p` under this machine's login with the
- * hypothesis engine's flags; ANTHROPIC_API_KEY is removed from the child
- * environment. Each model alias resolves to a model id with a one-line
- * probe at the start of a run. A reply is cached after it parses, keyed by
- * the resolved id and the prompt, in
- * scripts/research-os/ingest/out/decompose-cache/, so reruns converge and
- * a new model never replays an old one's answers.
- *
- * Run from the repo root with the local stack's keys in .env.local:
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/decompose-further.ts [flags]
- *
- * Flags: --limit N, --concurrency 4, --model sonnet, --verify-model opus,
- * --dry-run (asks and reports, queues nothing), --show-shortlist <slug>,
- * --offline-wiki (RefD from the cached Wikipedia replies only).
- */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -96,11 +51,8 @@ import {
 
 const OUT = path.join(__dirname, "ingest", "out");
 const CACHE = path.join(OUT, "decompose-cache");
-/** Items per consolidation call. */
 const CONSOLIDATE_BATCH = 60;
-/** A missing idea's possible duplicates: existing nodes at least this close by embedding. */
 const DUPLICATE_SIMILARITY = 0.75;
-/** An earlier run's missing idea whose title sits this close reuses its key. */
 const SAME_PROPOSAL_SIMILARITY = 0.93;
 
 const VERIFY_SCHEMA = {
@@ -150,7 +102,6 @@ const CONSOLIDATE_SCHEMA = {
   required: ["groups"],
 };
 
-/** Unit vectors for each id's text from scripts/research-os/embed-texts.py (local model, cached). */
 export function embed(items: { id: string; text: string }[]): Map<string, number[]> {
   if (!items.length) return new Map();
   const res = spawnSync("python3", [path.join(__dirname, "embed-texts.py")], {
@@ -179,7 +130,6 @@ async function all<T>(svc: SupabaseClient, table: string, columns: string, filte
   }
 }
 
-/** One `claude -p` call; resolves to the reply text and the resolved model id, or throws with a short reason. */
 function askClaude(prompt: string, model: string, timeoutMs: number, schema: object): Promise<{ text: string; modelId: string }> {
   const env = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
@@ -237,10 +187,6 @@ async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  // The CLI takes aliases, and an alias moves when a new model ships. Each
-  // alias resolves once per run with a one-line probe; the cache is keyed
-  // by the resolved id, so a new model never replays an old model's
-  // answers, and every row records the id that answered.
   async function resolveModel(alias: string): Promise<string> {
     const probe = await askClaude("Reply with the single word ok.", alias, 120_000, { type: "object", properties: { ok: { type: "string" } }, required: ["ok"] });
     if (!modelMatchesAlias(alias, probe.modelId))
@@ -249,10 +195,8 @@ async function main() {
   }
   const model = await resolveModel(proposerAlias);
   const verifyModel = await resolveModel(verifierAlias);
-  // Replies whose own usage names a model other than the resolved one.
   const mismatched: { hash: string; expected: string; answered: string }[] = [];
 
-  // Ask once per prompt; a reply is cached only after `accept` parses it.
   async function cachedAsk<T>(prompt: string, m: string, schema: object, accept: (reply: string) => T | { error: string }): Promise<Cached<T>> {
     const hash = promptHash(`${m}\n${prompt}`);
     const cacheFile = path.join(CACHE, `${hash}.txt`);
@@ -260,8 +204,6 @@ async function main() {
     if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
     const res = await askClaude(prompt, m, 300_000, schema);
     if (res.modelId !== m) {
-      // A reply from another model would carry the wrong id on its rows,
-      // so it is neither cached nor used; the call counts as a failure.
       mismatched.push({ hash, expected: m, answered: res.modelId });
       return { value: { error: `answered by ${res.modelId}, expected ${m}` } as T | { error: string }, hash, cached: false };
     }
@@ -273,20 +215,16 @@ async function main() {
     return { value, hash, cached: false };
   }
 
-  // Stage 1: the graph, its decomposition, and embeddings.
   const rows = await all<GraphNode & { id: string }>(svc, "nodes", "id, slug, title, kind, branch, summary, provenanceType:provenance->>type", (q) =>
     q.eq("visibility", "public").is("superseded_by", null),
   );
   const edgeRows = await all<{ id: string; from_id: string; to_id: string; kind: string; confidence: number | null }>(svc, "edges", "id, from_id, to_id, kind, confidence", (q) =>
     q.in("kind", Object.keys(FACTOR_EDGES)),
   );
-  // Only edges between public, current nodes: the node page's snapshot reads the same set.
   const liveIds = new Set(rows.map((n) => n.id));
   const edges: DepEdge[] = edgeRows
     .filter((e) => liveIds.has(e.from_id) && liveIds.has(e.to_id))
     .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
-  // Decompose the idea layer: facts and sources under an idea are its
-  // evidence, and an idea resting only on them is a prime to decompose.
   const layer = ideaLayer(rows, edges);
   const dec = decompose(layer.nodes, layer.edges);
   const pool: Candidate[] = rows.map((n) => {
@@ -304,8 +242,6 @@ async function main() {
     "irreducible_proposals",
     "id, node_slug, status, decision_reason",
   );
-  // Pending and confirmed verdicts stay out of the run; a rejected one
-  // comes back with the reviewer's reason in its prompt.
   const settled = new Set(irreducibleRows.filter((r) => r.status !== "rejected").map((r) => r.node_slug));
   const rejectedWhy = new Map(irreducibleRows.filter((r) => r.status === "rejected").map((r) => [r.node_slug, r.decision_reason ?? ""]));
   let targets = selectTargets(rows, dec).filter((t) => !settled.has(t.slug));
@@ -321,7 +257,6 @@ async function main() {
   mkdirSync(CACHE, { recursive: true });
   console.log(`[decompose-further] ${targets.length} targets (${settled.size} left out as irreducible), proposer ${model}, verifier ${verifyModel}${dryRun ? ", dry run" : ""}`);
 
-  // Stage 2: proposer, then the blinded verifier, per target.
   type Result = { target: Target; answer: Answer; hash: string; cached: boolean; verdicts: Map<string, Verdict>; verifyHash: string | null };
   const results: Result[] = [];
   const agreement: AgreementRow[] = [];
@@ -372,7 +307,6 @@ async function main() {
   await Promise.all(Array.from({ length: concurrency }, () => worker()));
   results.sort((a, b) => a.target.slug.localeCompare(b.target.slug));
 
-  // Stage 3: consolidate the missing ideas.
   const missing = aggregateMissing(results);
   const nearestOf = (v: number[] | undefined, n: number, floor: number) =>
     !v
@@ -389,7 +323,6 @@ async function main() {
     branch: Object.keys(m.branches)[0] ?? null,
     nearest: nearestOf(missingVectors.get(m.key), 3, 0).map((x) => ({ slug: x.c.slug, title: x.c.title })),
   }));
-  // Items near the same existing node share a batch, so their synonyms meet.
   items.sort((a, b) => (a.nearest[0]?.slug ?? "").localeCompare(b.nearest[0]?.slug ?? "") || a.id.localeCompare(b.id));
   const groups: ConsolidatedGroup[] = [];
   const singletons = (batch: ConsolidateItem[]) => batch.map((it) => ({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null, definition: null }));
@@ -419,7 +352,6 @@ async function main() {
       }));
   const outcome = consolidate(groups, missing, model, duplicatesOf);
 
-  // Earlier runs' missing ideas: reuse a key when the idea is the same.
   const earlier = await all<{ id: string; key: string; title: string; status: string; created_node_id: string | null }>(
     svc,
     "node_proposals",
@@ -438,7 +370,6 @@ async function main() {
     SAME_PROPOSAL_SIMILARITY,
   );
 
-  // Stage 4: proposals from the proposer and from matched missing ideas.
   const branchOf = new Map<string, string | null>(rows.map((n) => [n.slug, n.branch]));
   const proposals: ProposalRow[] = results.flatMap((r) =>
     toProposals(r.target, r.answer, {
@@ -453,9 +384,6 @@ async function main() {
   );
   const proposed = new Set(proposals.map((p) => `${p.from_slug}->${p.to_slug}`));
   const targetBySlug = new Map(results.map((r) => [r.target.slug, r.target]));
-  // Matched ideas that cannot become a pair, with the reason, so the report
-  // accounts for every match. A match that already rests on its target is
-  // the model reading an existing edge backward: a reversal to review.
   const matchedDropped: { factor: string; target: string; reason: "is_the_target" | "rests_on_target" | "already_proposed" | "not_a_target" | "no_node" }[] = [];
   for (const m of outcome.matched) {
     const factor = bySlug.get(m.slug);
@@ -499,7 +427,6 @@ async function main() {
     }
   }
 
-  // Stage 5: verify every pair still unchecked, including queued base-idea pairs.
   const pendingUnchecked = dryRun
     ? []
     : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug", (q) =>
@@ -513,7 +440,6 @@ async function main() {
   for (const p of proposals) if (p.verification === "unchecked") slot(p.to_slug).fresh.push(p);
   for (const r of pendingUnchecked) if (!proposed.has(`${r.from_slug}->${r.to_slug}`)) slot(r.to_slug).queued.push(r);
   const dbVerdicts: { id: string; verdict: Verdict; hash: string }[] = [];
-  // Pairs whose verdict came from this stage, where the factor is named.
   const checkedNamed = new Set<string>();
   for (const [to, s] of Array.from(byTarget)) {
     const target = bySlug.get(to);
@@ -538,7 +464,6 @@ async function main() {
     }
   }
 
-  // Stage 6: cycles among the proposals and the graph's own factor edges.
   const pendingAll = dryRun
     ? []
     : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug, refd, in_cycle", (q) => q.eq("status", "pending").eq("confidence_source", CONFIDENCE_SOURCE));
@@ -549,8 +474,6 @@ async function main() {
 
   const irreducible = results.filter((r) => r.answer.irreducible);
 
-  // Stage 7: Wikipedia link evidence for every pair, the proposals, the
-  // older pending pairs, and the blinded set alike.
   const blindPairs = agreement.filter((a) => a.slug).map((a) => ({ from_slug: a.slug!, to_slug: a.target }));
   let refdOf = (_from: string, _to: string): number | null => null;
   let wiki: { articles: number; mapped: number; via_corpus: number; requests: number; error: string | null } = {
@@ -589,10 +512,6 @@ async function main() {
     .filter((a) => a.slug)
     .map((a) => ({ target: a.target, picked: a.picked, refd: refdOf(a.slug!, a.target), verification: a.holds ? "confirmed" : "refuted" }));
   const refdBlind = refdAgreement(blindScored);
-  // The blinded set mixes picks and passed-over candidates, and the
-  // verifier confirms almost only picks, so an area over the whole set
-  // partly measures pick status; the split areas and the target-level
-  // intervals say how much the links add inside each group.
   const refdAuc = {
     proposals: refdAucInterval(withCycle.map((p) => ({ target: p.to_slug, refd: p.refd, verification: p.verification }))),
     blinded: refdAucInterval(blindScored),
@@ -600,7 +519,6 @@ async function main() {
     blinded_passed_over: refdAucInterval(blindScored.filter((b) => !b.picked)),
   };
 
-  // Stage 8: merge into the review tables.
   const queued = {
     edge_proposals: 0,
     node_proposals: 0,
@@ -613,8 +531,6 @@ async function main() {
     edge_rows_skipped: 0,
     older_pairs_out_of_cycle: 0,
   };
-  // Pairs the merge left alone: decided by a reviewer, or held by a pending
-  // proposal from another source.
   const skipped: { from: string; to: string; status: string | null; source: string | null }[] = [];
   function tallyMerge(rowsOut: MergeRow[] | null, countWritten = true): number {
     let written = 0;
@@ -657,8 +573,6 @@ async function main() {
       if (error) throw new Error(`edge_proposals refd: ${error.message}`);
       queued.older_pairs_scored++;
     }
-    // Stored flags follow the pending set both ways; the review page and
-    // the node page compute them live, and the stored copy feeds reports.
     for (const r of olderPending) {
       const now = inCycle(r);
       if (Boolean(r.in_cycle) === now) continue;
@@ -672,7 +586,6 @@ async function main() {
       const { data, error } = await svc.rpc("merge_node_proposals", { p_rows: chunk });
       if (error) throw new Error(`merge_node_proposals: ${error.message}`);
       queued.node_proposals += chunk.length;
-      // A key approved in an earlier run: queue proposals from its node to the targets that newly named it.
       for (const row of (data as Array<{ key: string; status: string; created_node_id: string | null }>) || []) {
         if (row.status !== "approved" || !row.created_node_id) continue;
         const nodeSlug = rows.find((n) => n.id === row.created_node_id)?.slug;
@@ -681,7 +594,6 @@ async function main() {
         const extra: ProposalRow[] = [];
         for (const t of src.named_by) {
           const target = targetBySlug.get(t);
-          // A node is never queued as its own factor, nor as a factor of an idea it rests on.
           if (!target || t === nodeSlug || proposed.has(`${nodeSlug}->${t}`)) continue;
           if (dec.get(row.created_node_id)?.signature.has(target.id)) continue;
           extra.push(
@@ -705,9 +617,6 @@ async function main() {
         }
       }
     }
-    // A new verdict is inserted; one on a node a reviewer rejected reopens
-    // that row as pending with the new reason and the reviewer's, so the
-    // reviewer sees it again; pending and confirmed rows are left alone.
     const existingIrr = new Map(irreducibleRows.map((r) => [r.node_slug, r]));
     for (const r of irreducible) {
       const prior = existingIrr.get(r.target.slug);
@@ -739,8 +648,6 @@ async function main() {
       proposer: proposals.filter((p) => p.origin === "proposer").length,
       missing_matched: proposals.filter((p) => p.origin === "missing_matched").length,
     },
-    // Proposer pairs were checked blind; matched missing ideas were checked
-    // in stage 5 with the factor named, since no pick exists to hide.
     confirmed_blind: proposals.filter((p) => p.verification === "confirmed" && !checkedNamed.has(`${p.from_slug}->${p.to_slug}`)).length,
     confirmed_unblinded: proposals.filter((p) => p.verification === "confirmed" && checkedNamed.has(`${p.from_slug}->${p.to_slug}`)).length,
     cross_branch_proposals: proposals.filter((p) => p.cross_branch).length,

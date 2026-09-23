@@ -1,16 +1,6 @@
-/**
- * One-off audit rig (bkt canon-integrity bead): exercise the live GET
- * handler on the canon-fallback path (wallet unfunded, exactly prod) for the
- * flagship query and print the caller-facing answer + citation + tier.
- *
- * npx ts-node --compiler-options '{"module":"commonjs"}' \
- * scripts/audit-research-beforeafter.ts
- */
 import { NextRequest } from "next/server";
 import * as path from "path";
 
-// Resolve the "@/..." alias the same way next/tsconfig does (./src/*) so this
-// standalone rig can require the route module directly.
 /* eslint-disable @typescript-eslint/no-require-imports */
 const Mod = require("module");
 const origResolve = Mod._resolveFilename;
@@ -22,7 +12,7 @@ Mod._resolveFilename = function (request: string, ...rest: unknown[]) {
 };
 /* eslint-enable @typescript-eslint/no-require-imports */
 
-delete process.env.BUCKET_WALLET_PRIVATE_KEY; // force zero-key canon fallback
+delete process.env.BUCKET_WALLET_PRIVATE_KEY;
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { GET } = require("../src/app/api/research/route");
@@ -57,11 +47,7 @@ async function run(q: string, tier = "insight") {
   await run("mitochondrial ATP synthesis", "insight");
   await run("Bell inequality quantum entanglement", "insight");
   await run("Mitchell chemiosmotic coupling", "query");
-  await run("how do I tan my skin in France", "insight"); // expect no primary
-  // --- canon-intake vertical slice: previously-EMPTY branches now served ---
-  // Pre-pipeline these abstained (01-math/02-physics had ZERO primary-papers
-  //, AUDIT.md §1.5). canon-intake populated them; /api/research serves real
-  // DOI-backed canon for them now via the SAME prod GET path.
-  await run("On Computable Numbers Entscheidungsproblem", "insight"); // 01-math
-  await run("Einstein Podolsky Rosen paradox", "query"); // 02-physics
+  await run("how do I tan my skin in France", "insight");
+  await run("On Computable Numbers Entscheidungsproblem", "insight");
+  await run("Einstein Podolsky Rosen paradox", "query");
 })();

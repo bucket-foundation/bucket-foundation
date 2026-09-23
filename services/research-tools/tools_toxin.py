@@ -1,56 +1,12 @@
 #!/usr/bin/env python3
-"""
-research-tools, ToxinChannelFinder (REAL logic, CPU, live OpenAlex)
-====================================================================
-
-FUNCTIONAL backend for ToxinChannelFinder (docs/research-tools/
-02-tool-roadmap.md §T1, opp #8, 73.8, the $1,032M membrane/ion-channel
-sub-area). Given a toxin / peptide (by NAME or by amino-acid SEQUENCE), it maps
-it to its likely ion-channel target(s) by two REAL, complementary signals:
-
- 1. KNOWN toxin→channel pharmacology (a curated knowledge base of the major
- venom-peptide families and their canonical channel targets, real,
- literature-established mappings: e.g. ω-conotoxins → Cav, charybdotoxin →
- Kv/BK, μ-conotoxins/TTX → Nav, apamin → SK, ProTx-II → Nav1.7, etc.).
- Sequence input is classified to a family by cysteine-framework / motif
- pattern + family keyword signatures.
-
- 2. LITERATURE CO-OCCURRENCE on the live OpenAlex API: how the toxin
- name appears together with each ion-channel family in titles/abstracts.
- This is a real, data-driven signal that ranks targets and supplies
- citeable exemplar papers.
-
-The two signals are fused into a ranked target table with an confidence
-(curated-KB hits are high-confidence; literature-only hits are flagged as such).
-
-Design rules (match tools_rag.py / tools_dnarna.py):
- * Reuses the OpenAlex client + text utilities from tools_rag (live HTTP, disk
- cached, graceful `degraded` fallback when offline).
- * Pure functions for classification + fusion so they unit-test with fixtures,
- ZERO network, ZERO GPU (see tests/).
- * run_toxin_channel_finder(payload) -> dict returns the `output` payload only;
- the gateway wraps it in the v1 job-result envelope + provenance.
-
-The gateway imports TOXIN_RUNNERS from here.
-
-TODO(deploy): a true sequence-similarity search (BLAST against a venom-peptide
-DB / UniProt animal-toxin annotation) is a documented heavier seam; the shipped
-classifier uses real cysteine-framework + motif rules, which is deterministic
-and needs no DB. Adding a similarity index is a deploy.
-"""
 from __future__ import annotations
 
 import math
 import re
 from typing import Any, Optional
 
-# Reuse the live-OpenAlex client + pure text utils from the RAG backend.
 import tools_rag as _rag
 
-
-# ===========================================================================
-# Ion-channel families (the target vocabulary), real channel classes.
-# ===========================================================================
 CHANNEL_FAMILIES: dict[str, dict] = {
     "Nav": {"name": "Voltage-gated sodium channel (Nav)",
             "aliases": ["sodium channel", "nav1", "voltage-gated sodium", "scn"]},
@@ -74,19 +30,12 @@ CHANNEL_FAMILIES: dict[str, dict] = {
             "aliases": ["inward rectifier", "kir", "girk"]},
 }
 
-
-# ===========================================================================
-# Curated toxin-family knowledge base (real venom-peptide pharmacology).
-# Each entry: family signature keywords + canonical channel targets (with the
-# literature-established confidence) + a cysteine/motif hint for sequence input.
-# ===========================================================================
 TOXIN_FAMILIES: list[dict] = [
     {
         "family": "omega-conotoxin",
         "keywords": ["omega-conotoxin", "ω-conotoxin", "mviia", "ziconotide", "gvia", "cviid"],
         "targets": [("Cav", 0.95)],
         "source": "Cav2.2 (N-type) blocker — e.g. ω-conotoxin MVIIA / ziconotide",
-        # 6-Cys, framework VI/VII (C-C-CC-C-C), inhibitor cystine knot
         "cys_count": 6, "motif": r"C.{1,6}C.{1,8}CC.{1,8}C.{1,8}C",
     },
     {
@@ -115,7 +64,7 @@ TOXIN_FAMILIES: list[dict] = [
         "keywords": ["tetrodotoxin", "ttx", "saxitoxin", "stx"],
         "targets": [("Nav", 0.97)],
         "source": "Nav pore blocker — tetrodotoxin / saxitoxin (guanidinium toxins)",
-        "cys_count": 0, "motif": "",  # small-molecule alkaloid
+        "cys_count": 0, "motif": "",
     },
     {
         "family": "ProTx",
@@ -170,12 +119,7 @@ TOXIN_FAMILIES: list[dict] = [
 
 _AA = set("ACDEFGHIKLMNPQRSTVWY")
 
-
-# ===========================================================================
-# Pure classification + fusion
-# ===========================================================================
 def is_sequence(s: str) -> bool:
-    """Heuristic: is the input an amino-acid sequence (not a name)? Pure."""
     s = re.sub(r"\s+", "", s or "").upper()
     if s.startswith(">"):
         return True
@@ -183,10 +127,7 @@ def is_sequence(s: str) -> bool:
     if len(letters) < 8:
         return False
     aa_frac = sum(1 for c in letters if c in _AA) / len(letters)
-    # a name has spaces/digits/hyphens and few-ish residues; a sequence is a long
-    # run of AA letters with no spaces.
     return aa_frac > 0.9 and " " not in (s) and len(letters) >= 8
-
 
 def clean_sequence(s: str) -> str:
     s = (s or "").strip()
@@ -194,10 +135,7 @@ def clean_sequence(s: str) -> str:
         s = "".join(s.splitlines()[1:])
     return re.sub(r"[^A-Za-z]", "", s).upper()
 
-
 def classify_by_name(name: str) -> list[dict]:
-    """Match an input NAME against the curated toxin-family KB. Pure function.
- Returns matched families (possibly several) with their channel targets."""
     nl = (name or "").lower()
     hits: list[dict] = []
     for fam in TOXIN_FAMILIES:
@@ -205,11 +143,7 @@ def classify_by_name(name: str) -> list[dict]:
             hits.append(fam)
     return hits
 
-
 def classify_by_sequence(seq: str) -> list[dict]:
-    """Classify a peptide SEQUENCE to candidate toxin families by cysteine count
- + cysteine-framework motif. Pure function. Real (if coarse) structural logic:
- venom peptides are defined by their disulfide framework."""
     seq = clean_sequence(seq)
     if not seq:
         return []
@@ -217,12 +151,10 @@ def classify_by_sequence(seq: str) -> list[dict]:
     cands: list[dict] = []
     for fam in TOXIN_FAMILIES:
         if not fam["motif"]:
-            continue  # small-molecule families can't be matched from a peptide seq
+            continue
         score = 0.0
-        # cysteine count agreement
         if fam["cys_count"] and abs(n_cys - fam["cys_count"]) <= 1:
             score += 0.5
-        # cysteine-framework motif present
         if re.search(fam["motif"], seq):
             score += 0.5
         if score > 0:
@@ -230,18 +162,10 @@ def classify_by_sequence(seq: str) -> list[dict]:
     cands.sort(key=lambda f: f["_seq_score"], reverse=True)
     return cands
 
-
 def fuse_targets(
     kb_families: list[dict], lit_counts: dict[str, dict], *, seq_mode: bool = False
 ) -> list[dict]:
-    """Fuse curated-KB targets with literature co-occurrence into a ranked table.
- Pure function.
-
- confidence = curated KB target weight (if any), boosted by literature support;
- literature-only families get a lower,-flagged confidence.
-    """
     targets: dict[str, dict] = {}
-    # 1. curated KB targets
     for fam in kb_families:
         kb_weight = float(fam.get("_seq_score", 1.0)) if seq_mode else 1.0
         for ch, w in fam["targets"]:
@@ -256,7 +180,6 @@ def fuse_targets(
             t["kb_confidence"] = max(t["kb_confidence"], round(w * kb_weight, 3))
             if fam["family"] not in t["from_families"]:
                 t["from_families"].append(fam["family"])
-    # 2. literature co-occurrence
     for ch, info in lit_counts.items():
         t = targets.setdefault(ch, {
             "channel": ch,
@@ -274,11 +197,9 @@ def fuse_targets(
     for t in targets.values():
         lit_norm = t["literature_mentions"] / max_lit
         if t["kb_confidence"] > 0:
-            # KB-grounded: high base, literature nudges it up
             conf = min(1.0, 0.6 * t["kb_confidence"] + 0.4 * (0.5 + 0.5 * lit_norm))
             basis = "curated pharmacology + literature" if t["literature_mentions"] else "curated pharmacology"
         else:
-            # literature-only: capped, flagged
             conf = round(0.45 * lit_norm, 3)
             basis = "literature co-occurrence only"
         if conf <= 0:
@@ -287,13 +208,7 @@ def fuse_targets(
     rows.sort(key=lambda r: (r["confidence"], r["literature_mentions"]), reverse=True)
     return rows
 
-
-# ===========================================================================
-# Literature co-occurrence (live OpenAlex; pure scorer over fetched works)
-# ===========================================================================
 def count_channel_cooccurrence(works: list[dict]) -> dict[str, dict]:
-    """Count how each channel family co-occurs with the toxin in a fetched
- work set, and keep an exemplar paper per channel. Pure function over works."""
     out: dict[str, dict] = {}
     for w in works:
         text = f"{w.get('title','')} {w.get('abstract','')} {' '.join(w.get('concepts',[]))}".lower()
@@ -311,17 +226,7 @@ def count_channel_cooccurrence(works: list[dict]) -> dict[str, dict]:
                     })
     return out
 
-
-# ===========================================================================
-# Public runner
-# ===========================================================================
 def run_toxin_channel_finder(payload: dict) -> dict:
-    """payload: { toxin: str (name OR amino-acid sequence), limit?: int }
-
- Maps a toxin/peptide to likely ion-channel targets via curated venom-peptide
- pharmacology + live OpenAlex literature co-occurrence. Returns a ranked
- target table with confidence + citeable exemplar papers.
-    """
     raw = (payload.get("toxin") or payload.get("input") or "").strip()
     if len(raw) < 3:
         return {"error": "enter a toxin/peptide name or an amino-acid sequence (>= 3 chars)"}
@@ -338,14 +243,13 @@ def run_toxin_channel_finder(payload: dict) -> dict:
         if bad:
             return {"error": f"non-amino-acid characters in sequence: {''.join(sorted(bad))}"}
         kb_families = classify_by_sequence(seq)
-        query_term = "venom peptide ion channel"  # generic literature anchor for unknown seq
+        query_term = "venom peptide ion channel"
         identity = {"mode": "sequence", "length": len(seq), "cysteine_count": seq.count("C")}
     else:
         kb_families = classify_by_name(raw)
         query_term = raw
         identity = {"mode": "name", "name": raw}
 
-    # literature co-occurrence (live OpenAlex; cached; degrade gracefully)
     degraded = False
     works: list[dict] = []
     try:
@@ -409,8 +313,6 @@ def run_toxin_channel_finder(payload: dict) -> dict:
         ),
     }
 
-
-# Registry the gateway imports.
 TOXIN_RUNNERS = {
     "toxinchannelfinder": run_toxin_channel_finder,
 }

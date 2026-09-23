@@ -1,23 +1,3 @@
-"""One function per engine-loop role, each an `hte.llm.complete()` call.
-
-Mirrors `main.tex` §8 (Engine loop) and `IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
-§7 (The model accounting for itself): the generator, critic, ranking
-judge, evolver's meta-reviewer, the two roles §7 adds over the base engine
-loop (`unknown_unknown`, `preservation_critique`), the per-run
-`self_report`, the ensemble `extract` role
-(`bkt-hte-extraction-ensemble`), and `understanding`
-(`bkt-hte-understanding-artifact`, `hte.canon_writeback.write_back`'s own
-plain-language explanation gate). Every prompt here is plain, dry
-instruction text; the shared low-tier-recall instruction lives once, in
-`hte.llm.SYSTEM_PROMPT`, rather than being repeated per role.
-
-Every function takes plain data (dicts, `Hypothesis`, `EvidenceItem`,
-`Vocabulary`) and returns plain data: a parsed JSON dict for every role
-except `judge` (a `float`) and `extract` (a `list[EvidenceItem]`, built
-from parsed JSON plus a span re-anchored against the source text, since an
-LLM's own character offsets are not trustworthy enough to hand straight to
-`EvidenceSpan`).
-"""
 from __future__ import annotations
 
 import logging
@@ -35,33 +15,7 @@ from .timeline import Interval
 
 logger = logging.getLogger("hte.roles")
 
-
-# --------------------------------------------------------------------------
-# Refusal/truncation defaults (`bkt-hte-refusal-handling`, 2026-09-10)
-# --------------------------------------------------------------------------
-#
-# Every role below has a documented, schema-valid default it falls back to
-# when `hte.llm.complete`/`complete_many` raises `ModelRefusal` or
-# `ModelTruncation`: the model declined or was cut off, and one such call,
-# out of the hundreds a real campaign makes, must never abort the whole
-# run (`hte.runner.run_campaign`'s own motivating incident, a `production`
-# campaign that died on exactly one refused critic call among hundreds).
-#
-# `_REFUSAL_LOG` is the process-wide record of every `(role, id)` pair a
-# default was substituted for: `hte.runner.run_campaign` reads it back
-# into `MANIFEST.json["refusals"]` and `run.log`, and `self_report`'s own
-# default reads its running count. It carries only the caller-supplied
-# `log_id` (a hypothesis short id, a judge pair id, a document id), never
-# prompt text or anything from the exception's own envelope.
-
-
 class _RefusalLog:
-    """Thread-safe `{role: [affected ids]}`, appended to by
-    `_with_refusal_default` and by `preservation_critique_many`'s own
-    identity check against `PRESERVATION_CRITIQUE_DEFAULT` (that path
-    substitutes a default inside `hte.llm.complete_many`'s own `pmap`
-    call, one level below where `_with_refusal_default` could catch it,
-    so it records here directly instead)."""
 
     def __init__(self) -> None:
         self._lock = threading.Lock()
@@ -79,51 +33,20 @@ class _RefusalLog:
         with self._lock:
             self._by_role.clear()
 
-
 _REFUSAL_LOG = _RefusalLog()
 
-
 def refusal_log() -> dict[str, list[str]]:
-    """`{role: [affected ids]}` for every default substituted so far in
-    this process. Safe to write verbatim into `MANIFEST.json` or
-    `run.log`: every id is whatever `log_id` the call site passed, never
-    prompt text or an exception's own envelope."""
     return _REFUSAL_LOG.snapshot()
 
-
 def reset_refusal_log() -> None:
-    """Clear `refusal_log()`'s own record. `hte.runner.run_campaign`
-    calls this alongside `hte.llm.reset_stats()` at the start of a run,
-    so each run's own manifest reports only that run's own refusals."""
     _REFUSAL_LOG.reset()
 
-
 def _refusal_count() -> int:
-    """Total refusal-plus-truncation events `hte.llm.stats()` has
-    recorded so far this process, across every role: the one number
-    `meta_review`'s and `self_report`'s own defaults name, so a minimal
-    fallback response still tells a downstream reader something without
-    re-deriving it from `MANIFEST.json` itself."""
     return sum(row.get("refusals", 0) + row.get("truncations", 0) for row in llm.stats().values())
-
 
 def _with_refusal_default(
     fn: Callable[[], dict[str, Any]], *, role: str, default: Any, log_id: str = "",
 ) -> dict[str, Any]:
-    """Call `fn()` (a zero-argument thunk wrapping one `hte.llm.complete`
-    call), returning `default` in place of raising when the model
-    refused or was truncated (`hte.llm.ModelRefusal`/`ModelTruncation`).
-    `default` may be a plain dict (most roles) or a zero-argument
-    callable (`meta_review`/`self_report`, whose own default needs
-    `_refusal_count()`'s current value, read only once the refusal has
-    happened rather than pre-computed before `fn()` even ran).
-    Logs one warning naming `role` and, when given, `log_id` (a
-    hypothesis short id, a judge pair id, a document id): never the
-    prompt text, matching `hte.llm.ModelRefusal`/`ModelTruncation`'s own
-    rule that nothing here carries prompt content or an unsanitized
-    envelope. Every other exception (`hte.llm.LLMInvalidResponseError`,
-    `hte.parallel.RateLimit`, ...) passes through unchanged; only a
-    refusal or truncation gets absorbed."""
     try:
         return fn()
     except (llm.ModelRefusal, llm.ModelTruncation) as exc:
@@ -134,10 +57,6 @@ def _with_refusal_default(
         )
         _REFUSAL_LOG.record(role, log_id)
         return default() if callable(default) else default
-
-# --------------------------------------------------------------------------
-# generate
-# --------------------------------------------------------------------------
 
 GENERATE_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -164,38 +83,15 @@ GENERATE_SCHEMA: dict[str, Any] = {
     "required": ["proposals"],
 }
 
-# `generator` refused/truncated default (`bkt-hte-refusal-handling`):
-# an empty proposal list, so this generation round contributes nothing
-# rather than aborting the campaign; the next round or seed still runs.
 GENERATE_DEFAULT: dict[str, Any] = {"proposals": []}
-
 
 def _vocab_slot_options(vocab: Vocabulary, slot: Slot) -> list[dict[str, str]]:
     return [{"id": c.id, "label": c.label} for c in vocab.concepts(slot)]
 
-
 def _evidence_line(item: EvidenceItem) -> str:
     return f"- ({item.kind.value}, {item.tier.value}) {item.span.quote!r} [{item.id}]"
 
-
 def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
-    """The generator role (`main.tex` §8's evidence-cluster generator kind,
-    read against `context`'s evidence rather than the full combinatorial
-    sweep `hte.generate.enumerate_placements` runs without an LLM).
-
-    `context` carries `"vocab"` (a `Vocabulary`), `"evidence"` (a sequence
-    of `EvidenceItem`), an optional `"n"` proposal count (default 5), and
-    an optional `"period_hint"` string. A proposal may name a concept
-    outside the vocabulary for a slot by writing `other-<slot>` as that
-    slot's value and adding a one-line reason to `other_labels[slot]`,
-    per `hte.concepts.other_id`'s open-world placeholder.
-
-    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
-    `provenance=` (`docs/PRIVACY.md`): whatever production/learner ids
-    the evidence in play carries, so `hte.purge` can find this call's own
-    cached response later, keyed off `<cache_dir>/index.jsonl` rather
-    than the prompt text.
-    """
     vocab: Vocabulary = context["vocab"]
     evidence: Sequence[EvidenceItem] = context.get("evidence", [])
     n = context.get("n", 5)
@@ -227,11 +123,6 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
         role="generator", default=GENERATE_DEFAULT,
     )
 
-
-# --------------------------------------------------------------------------
-# critique
-# --------------------------------------------------------------------------
-
 DISCRIMINATION_SCHEMA: dict[str, Any] = {
     "type": "object",
     "additionalProperties": {"type": "string", "enum": ["strong", "moderate", "weak", "none"]},
@@ -253,24 +144,13 @@ CRITIQUE_SCHEMA: dict[str, Any] = {
     "required": ["keep", "issues", "rationale"],
 }
 
-
 def likelihood_ratios(report: Mapping[str, Any]) -> dict[str, float]:
-    """The critic's `discrimination` ratings, keyed by evidence id, as
-    likelihood ratios (`hte.belief.DISCRIMINATION_LR`); an unknown label
-    or a missing map rates nothing, so those items keep their tier-only
-    weight."""
     ratings = report.get("discrimination") or {}
     return {eid: DISCRIMINATION_LR[label] for eid, label in ratings.items() if label in DISCRIMINATION_LR}
 
-# `critic` refused/truncated default (`bkt-hte-refusal-handling`): reject
-# the hypothesis rather than keep it, since `keep=True` on no real
-# critique would silently launder an unexamined hypothesis through to
-# scoring; `keep=False` is the conservative reading, matching a
-# hypothesis a real critique found a contradiction in.
 CRITIQUE_DEFAULT: dict[str, Any] = {
     "keep": False, "issues": ["model refused or was truncated"], "rationale": "model refused or was truncated",
 }
-
 
 def _describe_hypothesis(h: Hypothesis) -> str:
     if isinstance(h.content, Placement):
@@ -282,23 +162,10 @@ def _describe_hypothesis(h: Hypothesis) -> str:
     s = h.content
     return f"sequence: first=({_describe_hypothesis_content(s.first)}) {s.relation.value} second=({_describe_hypothesis_content(s.second)})"
 
-
 def _describe_hypothesis_content(p: Placement) -> str:
     return f"actor={p.actor!r} action={p.action!r} object={p.object!r} place={p.place!r} mechanism={p.mechanism!r}"
 
-
 def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
-    """The critic role (`main.tex` §8's "rule-and-model pass"): rejects a
-    hypothesis the evidence on file contradicts, before it reaches
-    scoring. `evidence` should be the items naming `h.address` in
-    `supports` or `refutes`; the critic reads only what it is handed, per
-    target-blind generation's rule that the same evidence produces the
-    same critique regardless of which reading it favors.
-
-    Passes `hte.provenance.collect(support + refute)` as `hte.llm.
-    complete`'s own `provenance=` (`docs/PRIVACY.md`): only the evidence
-    this one call quotes in its own prompt; the full `evidence` sequence
-    handed in may itself name items unrelated to `h`."""
     support = [e for e in evidence if h.address in e.supports]
     refute = [e for e in evidence if h.address in e.refutes]
     prompt = (
@@ -323,11 +190,6 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         role="critic", default=CRITIQUE_DEFAULT, log_id=h.short_id,
     )
 
-
-# --------------------------------------------------------------------------
-# unknown_unknown
-# --------------------------------------------------------------------------
-
 UNKNOWN_UNKNOWN_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -347,20 +209,9 @@ UNKNOWN_UNKNOWN_SCHEMA: dict[str, Any] = {
     "required": ["proposals"],
 }
 
-# `unknown_unknown` refused/truncated default: an empty proposal list,
-# same reasoning as `GENERATE_DEFAULT` above.
 UNKNOWN_UNKNOWN_DEFAULT: dict[str, Any] = {"proposals": []}
 
-
 def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
-    """The unknown-unknown generator (`IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
-    §7): proposes slot values outside the current vocabulary, feeding
-    `hte.concepts.Vocabulary`'s open-world `OTHER` mass directly. It never
-    scores a hypothesis, only names candidates a later `Vocabulary.add`
-    call may or may not accept.
-
-    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
-    `provenance=` (`docs/PRIVACY.md`), same as `generate`."""
     existing = "\n".join(
         f"{slot.value}: {[c.label for c in vocab.concepts(slot)]}" for slot in
         (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
@@ -385,11 +236,6 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
         role="unknown_unknown", default=UNKNOWN_UNKNOWN_DEFAULT,
     )
 
-
-# --------------------------------------------------------------------------
-# preservation_critique
-# --------------------------------------------------------------------------
-
 PRESERVATION_CRITIQUE_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -401,17 +247,12 @@ PRESERVATION_CRITIQUE_SCHEMA: dict[str, Any] = {
     "required": ["expected_evidence", "could_have_survived", "detectability_adjustment", "rationale"],
 }
 
-# `preservation_critic` refused/truncated default: a neutral
-# `detectability_adjustment` (the midpoint of `[0, 1]`) and
-# `could_have_survived=True`, the permissive reading that does not, on
-# its own, penalize a hypothesis a real critique never assessed.
 PRESERVATION_CRITIQUE_DEFAULT: dict[str, Any] = {
     "expected_evidence": [],
     "could_have_survived": True,
     "detectability_adjustment": 0.5,
     "rationale": "model refused or was truncated; defaulted to a neutral detectability adjustment",
 }
-
 
 def _preservation_critique_prompt(h: Hypothesis, table: Mapping[Any, float], period: str | None) -> str:
     rows = [f"{k}: {v}" for k, v in table.items()] if table else ["(no detectability table supplied)"]
@@ -430,7 +271,6 @@ def _preservation_critique_prompt(h: Hypothesis, table: Mapping[Any, float], per
         "kinds."
     )
 
-
 def preservation_critique(
     h: Hypothesis,
     table: Mapping[Any, float],
@@ -439,18 +279,6 @@ def preservation_critique(
     cache_dir: str,
     replay_only: bool = False,
 ) -> dict[str, Any]:
-    """The preservation critic (`IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7,
-    `main.tex` §8): for a surviving hypothesis, what evidence would exist
-    if it were true, and whether that evidence could have survived to be
-    found. Reads `table` (`hte.belief.load_detectability_table`'s
-    `(period, kind) -> delta` mapping, or any period-keyed slice of it)
-    before recommending rejection, so a low detectability score explains
-    an absence before falsity does. `detectability_adjustment` is the
-    critic's own suggested delta for this hypothesis's period and the
-    evidence kinds it names, in `[0, 1]`, for a caller that wants to
-    override the table's stored value with the critic's read rather than
-    accepting it as-is.
-    """
     prompt = _preservation_critique_prompt(h, table, period)
     return _with_refusal_default(
         lambda: llm.complete(
@@ -459,7 +287,6 @@ def preservation_critique(
         ),
         role="preservation_critic", default=PRESERVATION_CRITIQUE_DEFAULT, log_id=h.short_id,
     )
-
 
 def preservation_critique_many(
     hypotheses: Sequence[Hypothesis],
@@ -470,28 +297,6 @@ def preservation_critique_many(
     replay_only: bool = False,
     workers: int | None = None,
 ) -> list[dict[str, Any]]:
-    """`preservation_critique`'s own contract, one dict per hypothesis in
-    `hypotheses`, in the same order, run through `hte.llm.complete_many`
-    (`hte.parallel.pmap` underneath, `workers` at a time, `hte.parallel.
-    configure`'s own default and `HTE_LLM_WORKERS` env read applied when
-    `workers` is left `None`) instead of one `hte.llm.complete` call at a
-    time (`docs/THROUGHPUT.md`'s own wiring recipe for this role: unlike
-    the critic and judge, a preservation critique has no natural batched-
-    array shape of its own, since each hypothesis needs its own full
-    prompt against the same table; parallelizing the per-item calls
-    still turns `N` sequential 20-40s subprocess calls into `N / workers`
-    wall-clock time).
-
-    A refused or truncated call for one hypothesis resolves to
-    `PRESERVATION_CRITIQUE_DEFAULT` in its place (`hte.llm.complete_many`'s
-    own `default=` wiring) rather than aborting every other hypothesis in
-    `hypotheses` alongside it; each such substitution is logged and
-    recorded into `refusal_log()` under `"preservation_critic"`, by
-    identity against `PRESERVATION_CRITIQUE_DEFAULT` since the default is
-    substituted one level below `_with_refusal_default` (inside `hte.
-    llm.complete_many`'s own `pmap` call), where the triggering exception
-    itself is no longer in scope to catch directly.
-    """
     prompts = [_preservation_critique_prompt(h, table, period) for h in hypotheses]
     responses = llm.complete_many(
         prompts, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
@@ -507,11 +312,6 @@ def preservation_critique_many(
             _REFUSAL_LOG.record("preservation_critic", h.short_id)
     return list(responses)
 
-
-# --------------------------------------------------------------------------
-# judge
-# --------------------------------------------------------------------------
-
 JUDGE_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -521,37 +321,17 @@ JUDGE_SCHEMA: dict[str, Any] = {
     "required": ["p_a_wins", "rationale"],
 }
 
-# `judge` refused/truncated default: `p_a_wins=0.5`, a coin flip, the
-# only reading that carries no directional opinion either hypothesis
-# could exploit.
 JUDGE_DEFAULT: dict[str, Any] = {
     "p_a_wins": 0.5, "rationale": "model refused or was truncated; defaulted to a coin-flip p_a_wins",
 }
 
-
 def _judge_evidence_block(label: str, support: Sequence[EvidenceItem], refute: Sequence[EvidenceItem]) -> str:
-    """`label`'s own linked evidence (`EvidenceItem.supports`/`refutes`),
-    quoted by id and span, plus a supports/refutes count: what a judge
-    compares instead of an `Opinion`, prior, or Elo (`bkt-hte-blind-
-    roles`)."""
     lines = [_evidence_line(e) for e in (*support, *refute)]
     if not lines:
         return f"{label}: no linked evidence."
     return f"{label} (supports={len(support)}, refutes={len(refute)}):\n" + "\n".join(lines)
 
-
 def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> float:
-    """The tournament's pairwise debate judge (`main.tex` §8's ranking
-    tournament): given two hypotheses and their own linked evidence
-    (`context["evidence"]`, filtered here to each side's own `supports`/
-    `refutes`), returns `P(a beats b)` in `[0, 1]`. Blind by construction
-    (`bkt-hte-blind-roles`: the live Younger Dryas run's top ten by Elo
-    were nine unbound consensus hypotheses, traced to this prompt once
-    embedding each side's `Opinion`, `a` included). `hte.tournament.run`
-    randomizes which side lands in the A slot per pair and maps the
-    result back; `judge` itself is expected to be called symmetrically
-    or as `1 - judge(b, a, ...)`, a guarantee it makes no attempt to
-    enforce across two separate calls."""
     evidence: Sequence[EvidenceItem] = context.get("evidence", [])
     support_a = [e for e in evidence if a.address in e.supports]
     refute_a = [e for e in evidence if a.address in e.refutes]
@@ -581,15 +361,6 @@ def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir
     )
     return max(0.0, min(1.0, float(response["p_a_wins"])))
 
-
-# --------------------------------------------------------------------------
-# meta_review
-# --------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------
-# advocate
-# --------------------------------------------------------------------------
-
 ADVOCATE_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -606,13 +377,9 @@ ADVOCATE_SCHEMA: dict[str, Any] = {
     "required": ["support", "decisive_test"],
 }
 ADVOCATE_DEFAULT: dict[str, Any] = {"support": [], "decisive_test": "model refused or was truncated"}
-ADVOCATE_POOL = 24  # candidate items shown per call: those sharing a slot value with the hypothesis, unlinked to it
-
+ADVOCATE_POOL = 24
 
 def advocate_pool(h: Hypothesis, evidence: Sequence[EvidenceItem], *, limit: int = ADVOCATE_POOL) -> list[EvidenceItem]:
-    """The items the advocate may claim: not yet linked to `h` either way,
-    sharing at least one named slot value with it, highest tier first,
-    at most `limit`."""
     p = h.content
     slots = {p.actor, p.action, p.object, p.place, p.mechanism}
     pool = [
@@ -623,17 +390,9 @@ def advocate_pool(h: Hypothesis, evidence: Sequence[EvidenceItem], *, limit: int
     pool.sort(key=lambda e: (e.tier.value, e.id))
     return pool[:limit]
 
-
 def advocate(
     h: Hypothesis, pool: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False,
 ) -> dict[str, Any]:
-    """The devil's advocate (`STATISTICAL-AUDIT-2026-09-15.md`, Model
-    roles): every other role is asked to be right; this one is asked to
-    argue for a low-prior hypothesis and is scored on the evidence it
-    finds. It sees only `pool` (`advocate_pool`: items not yet linked to
-    `h`) and names the ones that support `h` with a reason each, plus the
-    observation that would settle the question. The runner links what it
-    names, rescores, and records the lift gained."""
     prompt = (
         "Argue for this hypothesis. Your job is to find support the linker "
         "missed, from the candidate items below only; name every item that "
@@ -650,7 +409,6 @@ def advocate(
         role="advocate", default=ADVOCATE_DEFAULT, log_id=h.short_id,
     )
 
-
 META_REVIEW_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -661,11 +419,7 @@ META_REVIEW_SCHEMA: dict[str, Any] = {
     "required": ["summary", "flags", "recommended_actions"],
 }
 
-
 def _meta_review_default() -> dict[str, Any]:
-    """`meta_review` refused/truncated default: a minimal valid response
-    that names the current refusal/truncation count (`_refusal_count()`)
-    rather than fabricating a review of a frontier the model never saw."""
     n = _refusal_count()
     return {
         "summary": (
@@ -676,7 +430,6 @@ def _meta_review_default() -> dict[str, Any]:
         "recommended_actions": ["rerun meta_review once the refusal or truncation clears"],
     }
 
-
 def meta_review(
     population: Sequence[Hypothesis],
     opinions: Mapping[int, Any],
@@ -684,10 +437,6 @@ def meta_review(
     cache_dir: str,
     replay_only: bool = False,
 ) -> dict[str, Any]:
-    """The evolver's meta-review pass (`main.tex` §8): reads the whole
-    frontier's opinions at once and flags what a per-hypothesis critic
-    would not catch on its own, an over-narrow cluster, a slot the
-    population never varies, a period with no dissenting reading."""
     lines = []
     for h in population:
         op = opinions.get(h.address)
@@ -708,11 +457,6 @@ def meta_review(
         role="meta_review", default=_meta_review_default,
     )
 
-
-# --------------------------------------------------------------------------
-# self_report
-# --------------------------------------------------------------------------
-
 SELF_REPORT_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -729,14 +473,7 @@ SELF_REPORT_SCHEMA: dict[str, Any] = {
     ],
 }
 
-
 def _self_report_default() -> dict[str, Any]:
-    """`self_report` refused/truncated default: a minimal valid response
-    naming the current refusal/truncation count, rather than fabricating
-    a self-assessment the model never produced. `hte.runner.run_campaign`
-    appends its own summary line to `assumptions` on top of whatever this
-    default (or a real response) already carries, so the run's own
-    refusal tally is never only visible here."""
     n = _refusal_count()
     note = (
         f"self-report unavailable: the model refused or was truncated "
@@ -751,20 +488,7 @@ def _self_report_default() -> dict[str, Any]:
         "target_blind_note": note,
     }
 
-
 def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
-    """The per-run self-report (`main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-
-    SPEC.md` §7): this run's own assumptions, which slot vocabularies it
-    judged incomplete, its missing-mass estimate, a calibration summary
-    against the holdout tests (`hte.calibrate`), and the target-blind
-    check, whether the generator's non-consensus ACTOR/MECHANISM proposal
-    rate held steady against the run before it.
-
-    `run` carries whatever `hte.runner.run_campaign` has on hand: hypothesis
-    and evidence counts, the vocab-growth log, the coverage interval per
-    bin, the calibration Brier score, and the current and prior run's
-    non-consensus proposal rate.
-    """
     prompt = (
         "Write this run's self-report from the run data below. State your "
         "assumptions, which slot vocabularies you judge incomplete given "
@@ -782,13 +506,6 @@ def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = F
         role="self_report", default=_self_report_default,
     )
 
-
-# --------------------------------------------------------------------------
-# understanding (`bkt-hte-understanding-artifact`, `PLAN.md` section 10's
-# understanding axis, Krenn and others 2022, doi:10.1038/s42254-022-00518-3;
-# Messeri and Crockett 2024, doi:10.1038/s41586-024-07146-0)
-# --------------------------------------------------------------------------
-
 UNDERSTANDING_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -797,14 +514,7 @@ UNDERSTANDING_SCHEMA: dict[str, Any] = {
     "required": ["explanation"],
 }
 
-
 def _understanding_default() -> dict[str, Any]:
-    """`understanding` refused/truncated default: a minimal valid response
-    that names the refusal rather than fabricating an explanation nobody
-    wrote. `hte.canon_writeback.write_back`'s own gate still treats this
-    string as present (non-blank), since the refusal itself is disclosed
-    text a reviewer can act on; only a blank response refuses the
-    write."""
     n = _refusal_count()
     return {
         "explanation": (
@@ -813,27 +523,7 @@ def _understanding_default() -> dict[str, Any]:
         ),
     }
 
-
 def understanding(statement: str, evidence_summary: str, *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
-    """A plain-language restatement of one hypothesis (`PLAN.md` section
-    10's understanding axis): two to four sentences a non-specialist
-    could restate in their own words, no jargon, no slot ids, naming
-    what the claim says and the one or two pieces of evidence it rests
-    on. This is the artifact `hte.canon_writeback.write_back` requires
-    before writing a card (`bkt-hte-understanding-artifact`), marked
-    `generated_by: model` everywhere it is stored: Messeri and Crockett
-    (2024)'s illusion of explanatory depth is the risk of a person
-    mistaking an AI explanation for their own understanding, and the
-    fix this function takes is disclosure: every explanation this
-    function returns is marked `generated_by: model` everywhere it is
-    stored. It never claims a human wrote or verified the explanation,
-    only that the engine produced one and a reviewer can read it before
-    signing off. Krenn and others (2022) treats compression and
-    generalization, beyond correctness alone, as what "understanding"
-    means for a model's own output; the prompt below asks for a
-    restatable summary, the same target, instead of a restatement of
-    the raw opinion numbers.
-    """
     prompt = (
         "Explain the following historical hypothesis in plain language a "
         "non-specialist could restate in their own words. Two to four "
@@ -848,11 +538,6 @@ def understanding(statement: str, evidence_summary: str, *, cache_dir: str, repl
         role="understanding", default=_understanding_default,
     )
 
-
-# --------------------------------------------------------------------------
-# extract (ensemble of 3, agreement scoring, escalation)
-# --------------------------------------------------------------------------
-
 EXTRACT_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -865,14 +550,6 @@ EXTRACT_SCHEMA: dict[str, Any] = {
                     "tier": {"type": "string"},
                     "quote": {"type": "string"},
                     "claim": {"type": "string"},
-                    # Additive, optional slot fields (`bkt-hte-evidence-slots`): a
-                    # free-text label per concept-bearing slot the quote names
-                    # (empty when it names none), the astronomical year it dates
-                    # to if any, and whether the quote asserts or denies its own
-                    # slot values. None of these join `required` below, so a
-                    # cached response written before this schema grew still
-                    # parses; `hte.roles.extract` reads a missing key as "not
-                    # named" rather than raising.
                     "actor": {"type": "string"},
                     "action": {"type": "string"},
                     "object": {"type": "string"},
@@ -888,12 +565,6 @@ EXTRACT_SCHEMA: dict[str, Any] = {
     "required": ["items"],
 }
 
-# `extractor` (and its `escalation` adjudicator) refused/truncated
-# default: an empty extraction, since there is no safe non-empty
-# fallback for "what did this document say" the way a keep/reject or a
-# 0.5 midpoint exists for the other roles; the ensemble's own agreement
-# scoring already treats a pass contributing nothing as ordinary
-# low-agreement input rather than a special case.
 EXTRACT_EMPTY_DEFAULT: dict[str, Any] = {"items": []}
 
 EXTRACT_ENSEMBLE_SIZE = 3
@@ -905,7 +576,6 @@ _EXTRACT_PASS_ANGLES = (
     "Focus on dates and mechanisms: extract every claim tying a date to a physical or "
     "mathematical mechanism.",
 )
-
 
 def _extract_prompt(document_text: str, vocab: Vocabulary, pass_index: int) -> str:
     kinds = [k.value for k in EvidenceKind]
@@ -925,31 +595,20 @@ def _extract_prompt(document_text: str, vocab: Vocabulary, pass_index: int) -> s
         f"Document:\n{document_text}"
     )
 
-
 @dataclass(frozen=True)
 class ExtractionResult:
-    """The outcome of one `extract()` call: the final evidence items, the
-    ensemble's agreement score, and whether escalation fired."""
     items: list[EvidenceItem]
     agreement: float
     escalated: bool
 
-
 def _normalize_quote(q: str) -> str:
     return " ".join(q.split()).strip().lower()
 
-
 def _slot_label(raw: dict[str, Any], key: str) -> str | None:
-    """`raw[key]` as a non-empty stripped label, or `None` when the model
-    left it blank or omitted it (a cached response written before this
-    schema grew a slot field, or a pass that named nothing for it):
-    `hte.evidence.EvidenceItem`'s own contract reads a `None` slot as
-    "not asserted," matching either case."""
     value = raw.get(key)
     if isinstance(value, str) and value.strip():
         return value.strip()
     return None
-
 
 def _locate_span(document_text: str, quote: str) -> tuple[int, int] | None:
     idx = document_text.find(quote)
@@ -962,7 +621,6 @@ def _locate_span(document_text: str, quote: str) -> tuple[int, int] | None:
             return idx, idx + len(stripped)
     return None
 
-
 def extract(
     document_text: str,
     vocab: Vocabulary,
@@ -971,21 +629,6 @@ def extract(
     cache_dir: str,
     replay_only: bool = False,
 ) -> ExtractionResult:
-    """`bkt-hte-extraction-ensemble`: three independent extraction passes
-    over `document_text` (the `extractor` model, low tier per
-    `hte/data/model-policy.json`), agreement-scored by exact-quote overlap
-    across passes, majority-voted when agreement clears
-    `EXTRACT_AGREEMENT_THRESHOLD`, escalated to the `escalation` model
-    (opus) for adjudication when it does not.
-
-    Every kept item's span is re-anchored against `document_text` itself
-    (`_locate_span`) rather than trusting any character offset the model
-    reports: an LLM's own character counting is not reliable enough to
-    hand straight to `EvidenceSpan`'s `char_start`/`char_end`, but its
-    quoted text can be searched for verbatim. An item whose quote cannot
-    be found verbatim in `document_text` (paraphrased rather than quoted)
-    is dropped rather than given a fabricated span.
-    """
     passes: list[list[dict[str, Any]]] = []
     for i in range(EXTRACT_ENSEMBLE_SIZE):
         prompt = _extract_prompt(document_text, vocab, i)
@@ -1067,7 +710,6 @@ def extract(
         ))
 
     return ExtractionResult(items=items, agreement=agreement, escalated=escalated)
-
 
 __all__ = [
     "generate", "critique", "unknown_unknown", "preservation_critique",

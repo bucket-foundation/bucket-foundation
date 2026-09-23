@@ -1,38 +1,15 @@
-/**
- * The staged Research OS queue: every open item with a stage, what it
- * depends on, and what it unlocks, plus the shipped items that carry the
- * dependencies. Read at /research-os/roadmap.
- *
- * Scope: every open Research OS bead in BEADS-PENDING.jsonl, and the
- * shipped beads other rows depend on. A shipped bead that carries no
- * dependency is left out, so the page stays the order of the work ahead.
- *
- * The staging test lives in learning/research-os/ROADMAP.md:
- *   mvp   one researcher runs a whole loop on one machine
- *   near  a second person joins, or the work reaches the public site
- *   later many people, money, or compute somebody else owns
- *
- * An item whose decision is open in docs/FOUNDER-DECISIONS.md cannot sit
- * in mvp, so `blockedBy` never appears on an mvp row. `roadmapProblems`
- * checks both rules, and the page shows what it finds.
- */
-
 export type Stage = "mvp" | "near" | "later";
 export type Status = "shipped" | "partial" | "open";
-/** Loop passes: s is one or two, m is up to six, l is more. */
 export type Cost = "s" | "m" | "l";
 
 export interface RoadmapItem {
-  /** The bead name, which is also the id other rows depend on. */
   id: string;
   epic: string;
-  /** What the item delivers, in one line. */
   title: string;
   stage: Stage;
   status: Status;
   cost: Cost;
   dependsOn: string[];
-  /** Rows of docs/FOUNDER-DECISIONS.md that have to close first. */
   blockedBy?: string[];
   unlocks: string;
 }
@@ -56,7 +33,6 @@ export const COST_LABEL: Record<Cost, string> = {
 };
 
 export const ROADMAP: RoadmapItem[] = [
-  // ---- shipped, and carrying the dependencies below -------------------
   {
     id: "ros-prime 1",
     epic: "primes",
@@ -128,7 +104,6 @@ export const ROADMAP: RoadmapItem[] = [
     unlocks: "Hypotheses as frontier targets without a hosted engine",
   },
 
-  // ---- MVP, open -------------------------------------------------------
   {
     id: "ros-truth 1",
     epic: "truth",
@@ -240,9 +215,6 @@ export const ROADMAP: RoadmapItem[] = [
     unlocks: "The work of 2026-09-18 and 2026-09-19 becomes readable where people work",
   },
 
-  // AI evidence search, from learning/research-os/ai/IMPLEMENTATION.md. The
-  // local pilot is one researcher on this machine, so its slices sit here;
-  // the release to other pilot accounts is near-term.
   {
     id: "ros-ai-access",
     epic: "ai",
@@ -304,7 +276,6 @@ export const ROADMAP: RoadmapItem[] = [
     unlocks: "Material a researcher brings in becomes quotable evidence",
   },
 
-  // ---- near-term -------------------------------------------------------
   {
     id: "ros-patents 2",
     epic: "patents",
@@ -346,7 +317,6 @@ export const ROADMAP: RoadmapItem[] = [
     dependsOn: ["ros-workbench 0"],
     unlocks: "The whole tools half of Research OS",
   },
-  // The surfaces the two memos owe under the critic protocol's surface gate.
   {
     id: "ros-workbench 0 surface",
     epic: "workbench",
@@ -542,7 +512,6 @@ export const ROADMAP: RoadmapItem[] = [
     unlocks: "Model and method changes reach the plan through a review",
   },
 
-  // ---- later -----------------------------------------------------------
   {
     id: "ros-workbench 2",
     epic: "workbench",
@@ -618,15 +587,6 @@ export const ROADMAP: RoadmapItem[] = [
 
 export const STAGES: Stage[] = ["mvp", "near", "later"];
 
-/**
- * The rows of `docs/FOUNDER-DECISIONS.md` a `blockedBy` may name.
- *
- * Declared here and in that file, which is one shape declared twice: the
- * memo gained FD-9 to FD-11 and this list did not, so the roadmap
- * reported three real decisions as rows that do not exist
- * (Bucket critic F-4). `scripts/test-research-os-roadmap-decisions.ts`
- * parses the ids out of the memo and fails on any divergence.
- */
 export const DECISIONS = ["FD-1", "FD-2", "FD-3", "FD-4", "FD-5", "FD-6", "FD-7", "FD-8", "FD-9", "FD-10", "FD-11"];
 
 const STAGE_ORDER: Record<Stage, number> = { mvp: 0, near: 1, later: 2 };
@@ -648,11 +608,6 @@ export function countsByStage(items: RoadmapItem[] = ROADMAP): Record<Stage, { o
   return out;
 }
 
-/**
- * Items with nothing open in front of them, in stage order. `items` is what
- * to return, and `universe` is where a dependency's status is read, so a
- * filtered view does not read a dependency outside it as unshipped.
- */
 export function readyNow(items: RoadmapItem[] = ROADMAP, universe: RoadmapItem[] = ROADMAP): RoadmapItem[] {
   const status = new Map(universe.map((i) => [i.id, i.status]));
   return items
@@ -661,10 +616,6 @@ export function readyNow(items: RoadmapItem[] = ROADMAP, universe: RoadmapItem[]
     .sort((a, b) => STAGE_ORDER[a.stage] - STAGE_ORDER[b.stage]);
 }
 
-/**
- * Every decision standing between an item and its start: its own, and the
- * ones blocking the unshipped items it rests on.
- */
 export function decisionsFor(item: RoadmapItem, items: RoadmapItem[] = ROADMAP): string[] {
   const byId = new Map(items.map((i) => [i.id, i]));
   const found = new Set<string>();
@@ -682,7 +633,6 @@ export function decisionsFor(item: RoadmapItem, items: RoadmapItem[] = ROADMAP):
   return Array.from(found).sort();
 }
 
-/** Rules the list has to keep: named dependencies, no blocked MVP row, no cycles. */
 export function roadmapProblems(items: RoadmapItem[] = ROADMAP): string[] {
   const ids = new Set(items.map((i) => i.id));
   const problems: string[] = [];

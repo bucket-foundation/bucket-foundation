@@ -14,14 +14,12 @@ interface QuoteResponse {
   source: { author?: string; year?: number; title?: string; publisher?: string; doi?: string; url?: string; license?: string };
 }
 
-/** Awareness, in place: the node's provenance and a quote from its source, kept for Check and Produce. */
 export default function SourcesSection({ data, quotes, onQuote, onChanged }: { data: NodeData; quotes: Quote[]; onQuote: (q: Quote) => void; onChanged: () => void }) {
   const [busy, setBusy] = useState(false);
   const [got, setGot] = useState<QuoteResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const p = data.node.provenance ?? {};
   const line =
-    // `canon_claim` is the type before migration 20260921050000 renamed it.
     p.type === "source_excerpt" || p.type === "canon_claim"
       ? [typeof p.video === "string" ? `From "${p.video}"` : null, typeof p.timestamp === "string" ? `at ${p.timestamp}` : null, typeof p.concept === "string" ? `concept: ${String(p.concept).replace(/-/g, " ")}` : null].filter(Boolean).join(" · ")
       : p.type === "canon_figure"

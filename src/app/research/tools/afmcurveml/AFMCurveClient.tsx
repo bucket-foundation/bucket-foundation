@@ -1,9 +1,5 @@
 "use client";
 
-// AFM-CurveML client island, contact-point detection + Hertz/Sneddon Young's
-// modulus fit (REAL scipy). Render is "json". Inputs: z[nm] + force[nN] arrays,
-// or "demo".
-
 import { useState } from "react";
 import {
   useToolRun,

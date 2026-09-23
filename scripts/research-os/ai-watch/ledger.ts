@@ -1,27 +1,8 @@
-/**
- * The daily AI watch's ledger (ros-ai-watch, learning/research-os/ai/
- * EVALUATION.md, "Industry news and plan updates").
- *
- * The watch already runs once a day as the operator's scheduled task. It
- * appends to an operator-local JSONL ledger, and this module holds the
- * ledger to the plan's rules: every assessed item carries its primary
- * sources, mechanism, evidence level, closest work, Bucket component,
- * rights and compute, a falsifiable test and a disposition; items are
- * deduplicated by source URL plus model or code revision, and a new
- * revision reopens its source; every run records what it checked and what
- * failed, so an unavailable feed never reads as an all-clear; and a
- * milestone takes at most one proposed amendment.
- *
- * A line is an `item`, a `run` or a `selection`. Lines are append-only;
- * the latest line for an item key is its current assessment and the
- * earlier ones are its history.
- */
 import { createHash } from "node:crypto";
 
 export const EVIDENCE_LEVELS = ["vendor-claim", "preprint", "peer-reviewed", "independent-benchmark", "reproduced-here"] as const;
 export const DISPOSITIONS = ["ignore", "prior-art", "evaluate", "propose-amendment"] as const;
 export const COMPONENTS = ["evidence-search", "encoder", "reranker", "passage-extraction", "tutor", "engine", "graph", "imports", "none"] as const;
-/** EVALUATION.md: up to twelve candidates a run, then at most four deep reads. */
 export const MAX_CANDIDATES = 12;
 export const MAX_DEEP_READS = 4;
 
@@ -32,7 +13,6 @@ export type Component = (typeof COMPONENTS)[number];
 export interface ItemLine {
   kind: "item";
   sourceUrl: string;
-  /** A model, code or document revision; empty for an announcement with none. */
   revision: string;
   title: string;
   releasedAt: string;
@@ -74,7 +54,6 @@ const DATE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2})?(\.\d+)?Z)?$/;
 const isDate = (v: unknown) => typeof v === "string" && DATE.test(v) && !Number.isNaN(Date.parse(v));
 const text = (v: unknown, min = 1) => typeof v === "string" && v.trim().length >= min;
 
-/** An https URL without fragment or trailing slash, so one page is one key. */
 export function canonicalUrl(raw: string): string | null {
   try {
     const u = new URL(raw.trim());
@@ -88,13 +67,11 @@ export function canonicalUrl(raw: string): string | null {
   }
 }
 
-/** The dedup key: the source and the revision it describes. */
 export function itemKey(item: Pick<ItemLine, "sourceUrl" | "revision">): string {
   const url = canonicalUrl(item.sourceUrl) ?? item.sourceUrl;
   return createHash("sha256").update(`${url}\u0000${item.revision.trim()}`).digest("hex").slice(0, 16);
 }
 
-/** Every rule one line breaks. An empty list means the line is sound. */
 export function lineProblems(line: unknown): string[] {
   const l = line as Record<string, unknown>;
   if (!l || typeof l !== "object") return ["not an object"];
@@ -119,7 +96,6 @@ export function lineProblems(line: unknown): string[] {
     }
     if (!text(i.test, 20)) p.push("test states a falsifiable experiment");
     if (!DISPOSITIONS.includes(i.disposition)) p.push(`disposition is one of ${DISPOSITIONS.join(", ")}`);
-    // The allowance for paid calls is zero, so paid work is a proposal with a budget.
     if (rc?.paid && i.disposition === "evaluate") p.push("paid work cannot be evaluated within the current scope; propose an amendment with a budget");
   } else if (l.kind === "run") {
     const r = l as unknown as RunLine;
@@ -144,14 +120,12 @@ export function lineProblems(line: unknown): string[] {
 }
 
 export interface Ledger {
-  /** The latest assessment per item key, with how many versions it has. */
   items: Map<string, { current: ItemLine; versions: number; reopens: string | null }>;
   runs: RunLine[];
   selections: SelectionLine[];
   problems: string[];
 }
 
-/** Reads and checks a ledger file's text. */
 export function readLedger(textIn: string): Ledger {
   const items: Ledger["items"] = new Map();
   const runs: RunLine[] = [];
@@ -176,7 +150,6 @@ export function readLedger(textIn: string): Ledger {
       const key = itemKey(line);
       const prev = items.get(key);
       const url = canonicalUrl(line.sourceUrl)!;
-      // A new revision of a source already assessed reopens it under a new key.
       const earlier = bySource.get(url);
       const reopens = prev ? prev.reopens : earlier && earlier !== key ? earlier : null;
       items.set(key, { current: line, versions: (prev?.versions ?? 0) + 1, reopens });
@@ -196,7 +169,6 @@ export function readLedger(textIn: string): Ledger {
   return { items, runs, selections, problems };
 }
 
-/** Whether an appended item line adds anything: new key, or a changed assessment. */
 export function isDuplicate(ledger: Ledger, item: ItemLine): boolean {
   const cur = ledger.items.get(itemKey(item))?.current;
   if (!cur) return false;
@@ -213,11 +185,6 @@ export interface Report {
   openProposals: { key: string; title: string; component: Component }[];
 }
 
-/**
- * What changed since `since`. Quiet when nothing material happened; loud
- * on a failed source, an item to evaluate, a proposed amendment, or a day
- * with no run at all.
- */
 export function report(ledger: Ledger, since: string, now: string): Report {
   const t = Date.parse(since);
   const newSince = Array.from(ledger.items.values())

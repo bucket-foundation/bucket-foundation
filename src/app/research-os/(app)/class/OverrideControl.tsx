@@ -3,9 +3,6 @@
 import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import { useState } from "react";
 
-// Override a learner's level on one node with a recorded reason (the Class
-// step): a small inline form on a class grid row. POST /api/research-os/override.
-
 const LEVELS = ["access", "awareness", "understanding", "internalization", "production"] as const;
 
 export default function OverrideControl({
@@ -40,7 +37,6 @@ export default function OverrideControl({
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        // A lock wait used to reach the teacher as the bare word "busy".
         setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
         return;
       }

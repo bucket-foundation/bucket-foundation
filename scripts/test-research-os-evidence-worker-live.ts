@@ -1,13 +1,3 @@
-/**
- * Evidence search end to end on this machine (ros-ai-worker): the real
- * Python worker serving the pinned model over the local corpus's vectors,
- * the server's keyword ranking and fusion, eligibility enforced on both
- * sides, and keyword search still answering once the worker is killed.
- *
- * Needs a built corpus under local/evidence/ and its vectors under
- * local/evidence/vectors/, with the pinned model cached. Without them the
- * tests skip and say so; EVIDENCE_REQUIRE_LIVE=1 makes that a failure.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";

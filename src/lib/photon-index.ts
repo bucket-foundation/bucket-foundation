@@ -1,13 +1,3 @@
-// photon-index.ts, server-only access to the photon graph.
-//
-// Reads _intake/photons/all.json (a snapshot of every photon as a flat
-// array). Loaded once per Node process, indexed in memory. Fast enough
-// for 45K records (linear scan is ~10-30ms; precomputed indices for
-// id/lang make lookups O(1) and per-lang filtered O(k)).
-//
-// We use JSON not sqlite so the function is portable (no native deps
-// like better-sqlite3) and the data is part of the build artifact.
-
 import fs from "fs";
 import path from "path";
 
@@ -76,14 +66,12 @@ export function searchPhotons(query: string, lang?: string, kind?: string, topK 
   if (!idx) return [];
   const q = query.toLowerCase().trim();
   if (!q) return [];
-  // Pick pool: filtered by lang if provided, else the whole set
   const pool = lang ? idx.byLang.get(lang) || [] : idx.all;
   const scored: { p: Photon; s: number }[] = [];
   for (const p of pool) {
     if (kind && p.kind !== kind) continue;
     const surface = (p.surface || "").toLowerCase();
     const meaning = (p.meaning_en || "").toLowerCase();
-    // Score: exact surface match > surface contains > meaning contains
     let s = 0;
     if (surface === q) s = 1000;
     else if (surface.startsWith(q)) s = 500;

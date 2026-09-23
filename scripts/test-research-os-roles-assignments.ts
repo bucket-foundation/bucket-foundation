@@ -1,8 +1,3 @@
-/**
- * Unit tests: roles as grants and assignments (ros-27, the Class step),
- * src/lib/research-os/roles.ts and assignments.ts. Pure. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-roles-assignments.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { canAssign, canOverride, overrideEvent, reviewsForClass, rolesIn, runsClass, validateOverride, visibleLearnerIds, type Membership } from "../src/lib/research-os/roles";
@@ -71,13 +66,6 @@ test("validateAssignment trims and defaults", () => {
   assert.equal((validateAssignment({ title: "fine", dueAt: "nope" }) as { error: string }).error, "bad_due_at");
 });
 
-/**
- * Which assignment a surface opens on, and which it may link to
- * (src/lib/research-os/assignments.ts). A learner who may not read a
- * target gets no slug for it, and the workspace used to redirect to
- * `?target=` on that empty value, read the empty value as no target, and
- * fire again on every load (Bucket critic C38, C49).
- */
 test("a hidden target is never the one a surface opens on", () => {
   const rows = [
     { id: "a", status: "accepted", targetSlug: "done", targetHidden: false },
@@ -89,8 +77,6 @@ test("a hidden target is never the one a surface opens on", () => {
 });
 
 test("an empty slug is skipped even when nothing marked it hidden", () => {
-  // A blanked slug can arrive from a failed read as well as a denial, so
-  // the predicate checks the slug rather than trusting the flag alone.
   const rows = [{ id: "b", status: "not_started", targetSlug: "", targetHidden: false }];
   assert.equal(firstOpenTarget(rows), null, "nothing to open, so nothing is opened");
   assert.equal(targetIsLinkable(rows[0]), false, "and nothing links to it");
@@ -116,9 +102,6 @@ test("a readable target is linkable and a withheld one is not", () => {
 });
 
 test("the href carries both halves of the rule, so neither can be dropped", () => {
-  // targetIsLinkable and assignmentTargetHref are separate exports, and
-  // a mutation of the href's own check restored the full withheld-target
-  // link with every predicate test still green (Bucket critic C74).
   assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: false }), "/research-os/workspace?target=why-the-sky-is-blue");
   assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), null, "a withheld target gets no link");
   assert.equal(assignmentTargetHref({ targetSlug: "", targetHidden: false }), null, "and neither does a blank slug");

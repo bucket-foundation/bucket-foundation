@@ -1,25 +1,3 @@
-/**
- * Research OS for K-12, Academy corpus importer CLI (bkt-ros, ingestion
- * slice, task item 1). Reads every importable learning/app/corpus/*.json
- * file, maps each atom to a graph.nodes draft and each `requires` edge to
- * a `prerequisite` graph.edges draft (src/lib/research-os/ingest/
- * academy.ts), validates the result (no orphan edges, tier monotonicity),
- * and either previews it (default) or upserts it into Supabase (--apply).
- *
- * Dry run (default): validates, writes a JSON preview to
- * scripts/research-os/ingest/out/academy-preview.json, merges any review
- * items into scripts/research-os/ingest/out/review-list.json, prints a
- * one-line summary. No network.
- *
- * Apply: also upserts nodes (onConflict: "slug", matching this importer's
- * own idempotency key) and edges (onConflict: "from_id,to_id,kind",
- * ignoreDuplicates) through the graph-schema service-role client, the same
- * construction scripts/seed-research-os.mjs uses.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply
- */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
@@ -90,8 +68,6 @@ async function applyToSupabase(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[
     const { error: edgeErr } = await svc.from("edges").upsert(edgeRows, { onConflict: "from_id,to_id,kind", ignoreDuplicates: true });
     if (edgeErr) throw new Error(`edge upsert failed: ${edgeErr.message}`);
   }
-  // Re-importing resets tiers to this importer's own values; learning order
-  // across courses raises them again (ros-tier-fix).
   const { data: raised, error: tierErr } = await svc.rpc("enforce_prerequisite_tiers");
   if (tierErr) throw new Error(`enforce_prerequisite_tiers failed: ${tierErr.message}`);
   if (typeof raised === "number" && raised > 0) console.log(`raised ${raised} grade tiers to keep learning order monotone`);
@@ -104,9 +80,6 @@ async function main() {
 
   const orphans = checkOrphanEdges(result.nodes, result.edges);
   if (orphans.length > 0) {
-    // A structural bug in the importer itself: a data-quality issue stays
-    // on the review list for a human, but every edge this importer emits
-    // must resolve within its own node set.
     throw new Error(`academy-import: ${orphans.length} orphan edge(s) produced, e.g. ${orphans[0].fromSlug} -> ${orphans[0].toSlug}`);
   }
   const tierViolations = checkTierMonotonicity(result.nodes, result.edges);

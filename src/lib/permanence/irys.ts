@@ -1,23 +1,3 @@
-/**
- * bucket.foundation, Irys (Arweave) permanent storage helper
- * ------------------------------------------------------------
- * Uploads a citation envelope as JSON to Irys, which bundles it onto Arweave
- * for pay-once-store-forever semantics. Returns the Arweave tx id + gateway
- * URL.
- *
- * We use Irys over raw Arweave because:
- *   - supports Base (USDC / ETH) payment, same wallet as x402 rail
- *   - programmable tags + instant finality receipts
- *   - ~20x cheaper than raw Arweave bundlers (see BLOCKCHAIN_LANDSCAPE.md §B)
- *
- * Env:
- *   BUCKET_WALLET_PRIVATE_KEY   funded Base / Base Sepolia key
- *   IRYS_NODE_URL               default "https://devnet.irys.xyz" (devnet)
- *                                      "https://node1.irys.xyz"  (mainnet)
- *   IRYS_TOKEN                  default "base-eth" (mainnet)
- *                                       "base-ethereum"  (devnet naming varies)
- */
-
 export type IrysUploadResult = {
   arweaveTxId: string;
   url: string;
@@ -34,14 +14,8 @@ export async function uploadEnvelopeToIrys(
   const node = process.env.IRYS_NODE_URL ?? "https://devnet.irys.xyz";
   const token = process.env.IRYS_TOKEN ?? "base-eth";
 
-  // Dynamic import so the @irys/sdk doesn't land in the default bundle.
-  // NOTE: package is not yet in deps; add `@irys/sdk` or `@irys/upload` when
-  // enabling the feature flag in prod.
   let IrysCtor: unknown;
   try {
-    // Indirect import string keeps TS from resolving the module at build time,
-    // so the app builds without @irys/sdk installed. Install before enabling
-    // the feature flag: `npm i @irys/sdk`.
     const modName = "@irys/sdk";
     // eslint-disable-next-line @typescript-eslint/no-implied-eval, no-new-func
     const dyn = new Function("m", "return import(m)") as (

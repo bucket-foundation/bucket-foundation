@@ -1,10 +1,3 @@
-/**
- * ros-graph-dedup: finding one concept listed as several nodes, and bundled
- * names that join ideas the graph already holds. Pure, tested in
- * scripts/test-research-os-dedup.ts; scripts/research-os/find-duplicates.ts
- * reads the graph and writes what this returns.
- */
-
 export type DedupNode = { id: string; slug: string; title: string; branch: string; kind: string; tier: number; degree: number };
 export type Refusal = { fromSlug: string; toSlug: string; text: string };
 
@@ -20,7 +13,6 @@ export interface MergeCandidate {
 
 const STOP = new Set(["the", "a", "an", "of", "and", "in", "on", "for", "to", "its", "with"]);
 
-/** Lowercase, drop parentheticals and punctuation, fold accents, collapse spaces. */
 export function normalizeTitle(title: string): string {
   return title
     .normalize("NFKD")
@@ -41,7 +33,6 @@ function tokens(title: string): Set<string> {
   );
 }
 
-/** Jaccard overlap of content tokens, plurals folded. */
 export function titleSimilarity(a: string, b: string): number {
   const x = tokens(a);
   const y = tokens(b);
@@ -53,7 +44,6 @@ export function titleSimilarity(a: string, b: string): number {
   return inter / (x.size + y.size - inter);
 }
 
-/** The node that stays: more edges, then the lower grade tier, then the earlier slug. */
 export function chooseKeeper(a: DedupNode, b: DedupNode): [DedupNode, DedupNode] {
   if (a.degree !== b.degree) return a.degree > b.degree ? [a, b] : [b, a];
   if (a.tier !== b.tier) return a.tier < b.tier ? [a, b] : [b, a];
@@ -64,13 +54,6 @@ const DUPLICATE_WORDS = /\b(same (concept|idea|statement|principle|thing)|duplic
 
 export const NEAR_TITLE_MIN = 0.8;
 
-/**
- * Pairs to merge, one per unordered pair, the strongest reason first: a
- * verifier refusal that calls the pair a duplicate, an equal normalized
- * title, or near titles (token overlap at NEAR_TITLE_MIN or more with at
- * least two content tokens each, so "Entropy" never pairs with "Entropy
- * production").
- */
 export function findMergeCandidates(nodes: DedupNode[], refusals: Refusal[] = []): MergeCandidate[] {
   const bySlug = new Map(nodes.map((n) => [n.slug, n]));
   const out = new Map<string, MergeCandidate>();
@@ -114,11 +97,6 @@ export function findMergeCandidates(nodes: DedupNode[], refusals: Refusal[] = []
   return Array.from(out.values()).sort((x, y) => y.similarity - x.similarity || x.keepSlug.localeCompare(y.keepSlug));
 }
 
-/**
- * The parts of a bundled name, split on commas and "and": "Vector spaces,
- * bases and inner products" gives three parts. A name with one part is no
- * bundle and returns [].
- */
 export function splitBundle(title: string): string[] {
   const parts = title
     .replace(/\([^)]*\)/g, " ")
@@ -130,7 +108,6 @@ export function splitBundle(title: string): string[] {
 
 export const PART_MATCH_MIN = 0.5;
 
-/** Each part of a bundle matched to the node whose title it fits best, when the fit reaches PART_MATCH_MIN. */
 export function matchBundleParts(title: string, nodes: DedupNode[]): { part: string; slug: string; nodeTitle: string; similarity: number }[] {
   const out: { part: string; slug: string; nodeTitle: string; similarity: number }[] = [];
   for (const part of splitBundle(title)) {

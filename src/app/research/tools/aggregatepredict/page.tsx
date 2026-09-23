@@ -6,7 +6,6 @@ export const metadata = toolMetadata("aggregatepredict");
 const _jsonld = toolJsonLd("aggregatepredict");
 import AggregatePredictClient from "./AggregatePredictClient";
 
-// AggregatePredict run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

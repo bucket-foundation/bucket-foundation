@@ -1,8 +1,3 @@
-"""The worker with a hand-built index and a scripted encoder: masking before
-scoring, ranking, the request contract, the bounded queue, deadlines, and
-the HTTP surface with its secret and loopback rule. No model, no network
-beyond loopback."""
-
 import json
 import threading
 import time
@@ -18,7 +13,6 @@ from evidence_search.worker import RequestError, Worker, make_server, rank, requ
 REV = "e" * 64
 SECRET = "k" * 40
 
-
 def index() -> VectorIndex:
     matrix = np.array([[1, 0, 0], [0, 1, 0], [0.9, 0.1, 0], [0, 0, 1]], dtype="<f4")
     chunks = [("graph:a", "ra"), ("graph:b", "rb"), ("graph:a", "ra"), ("graph:c", "rc")]
@@ -27,19 +21,15 @@ def index() -> VectorIndex:
         by.setdefault(k, []).append(i)
     return VectorIndex(REV, "m" * 40, "fake", 3, matrix, chunks, by)
 
-
 VECTORS = {"toward a": [1.0, 0.0, 0.0], "toward b": [0.0, 1.0, 0.0], "toward c": [0.0, 0.0, 1.0], "between": [0.6, 0.6, 0.0]}
-
 
 def encode(q):
     return np.asarray(VECTORS[q], dtype="<f4")
-
 
 def request(**over):
     body = {"requestId": "r1", "query": "toward a", "corpusRevision": REV, "eligible": [["graph:a", "ra"], ["graph:b", "rb"], ["graph:c", "rc"]], "limit": 10, "deadlineMs": 2000}
     body.update(over)
     return body
-
 
 class Ranking(unittest.TestCase):
     def test_only_eligible_rows_are_scored(self):
@@ -59,7 +49,6 @@ class Ranking(unittest.TestCase):
         results, _ = rank(index(), encode("between"), {("graph:a", "ra"), ("graph:b", "rb"), ("graph:c", "rc")}, 2)
         self.assertEqual([r["sourceId"] for r in results], ["graph:a", "graph:b"])
         self.assertAlmostEqual(results[0]["score"], 0.6, places=5)
-
 
 class Contract(unittest.TestCase):
     def test_valid(self):
@@ -91,7 +80,6 @@ class Contract(unittest.TestCase):
             w.score(request(corpusRevision="f" * 64))
         self.assertEqual((ctx.exception.status, ctx.exception.code), (409, "stale_corpus"))
         self.assertEqual(w.counters["stale"], 1)
-
 
 class Queue(unittest.TestCase):
     def slow(self, seconds):
@@ -134,7 +122,6 @@ class Queue(unittest.TestCase):
         with self.assertRaises(RequestError) as ctx:
             w.score(request(deadlineMs=50))
         self.assertEqual(ctx.exception.code, "deadline")
-
 
 class Http(unittest.TestCase):
     def setUp(self):
@@ -181,8 +168,6 @@ class Http(unittest.TestCase):
         self.assertEqual(self.oversize(), 413)
 
     def oversize(self):
-        # The length header alone decides: sending the full body would race the
-        # server's early answer into a broken pipe.
         import http.client
 
         conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=5)
@@ -195,7 +180,6 @@ class Http(unittest.TestCase):
         conn.close()
         return status
 
-
 class Binding(unittest.TestCase):
     def test_loopback_only(self):
         for host in ["0.0.0.0", "192.168.1.2", "example.org", ""]:
@@ -207,7 +191,6 @@ class Binding(unittest.TestCase):
     def test_secret_length(self):
         with self.assertRaises(ValueError):
             make_server(Worker(index(), encode, "m"), "short")
-
 
 if __name__ == "__main__":
     unittest.main()

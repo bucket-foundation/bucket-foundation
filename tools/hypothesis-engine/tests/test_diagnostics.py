@@ -1,17 +1,3 @@
-"""`hte.diagnostics.coverage_report`: a per-reason breakdown of every
-ground-truth event `hte.calibrate` did not cover (`bkt-hte-generation-
-coverage`).
-
-One hand-built corpus, `_reasons_corpus`, carries exactly one event per
-reason `REASONS` names (`no_evidence_after_holdout` twice, once for a
-target naming no slot at all and once for a target naming a slot no
-other item shares) plus one covered event for contrast, `k` set
-to the corpus's own evidence count so `hte.calibrate._stratified_folds`
-deals every item its own unique fold: whichever fold holds out a given
-event's own item, every OTHER item (its companion included) stays kept,
-with no need to know or control the stratification RNG's own shuffle
-order.
-"""
 from __future__ import annotations
 
 import json
@@ -27,7 +13,6 @@ from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.hypothesis import Hypothesis, Placement
 from hte.timeline import Interval
 
-
 def _vocab() -> Vocabulary:
     vocab = Vocabulary()
     for slot, ids in (
@@ -40,10 +25,8 @@ def _vocab() -> Vocabulary:
         vocab.add(Concept(f"{slot.value}-x", slot, f"{slot.value.capitalize()} X", 0.0, ConsensusStatus.CONSENSUS))
     return vocab
 
-
 def _span(doc_id: str) -> EvidenceSpan:
     return EvidenceSpan(doc_id=doc_id, locator="l", quote="q", char_start=0, char_end=1)
-
 
 def _item(item_id: str, *, interval: Interval | None, **slots) -> EvidenceItem:
     return EvidenceItem(
@@ -51,30 +34,16 @@ def _item(item_id: str, *, interval: Interval | None, **slots) -> EvidenceItem:
         span=_span(item_id), provenance="test", interval=interval, **slots,
     )
 
-
 def _reasons_corpus() -> Corpus:
     evidence = [
-        # no_evidence_after_holdout: target names no slot at all.
         _item("zero-slots", interval=Interval(2000, 2000)),
-        # no_evidence_after_holdout: target names a slot (alice) no other
-        # item in the corpus ever shares.
         _item("lonely", interval=Interval(2001, 2001), actor="alice"),
-        # no_placement_generated: a companion shares the target's own
-        # actor (bob) but carries no interval, so no valid placement can
-        # be built from it; no other item names bob at all.
         _item("no-interval-target", interval=Interval(2002, 2002), actor="bob"),
         _item("no-interval-companion", interval=None, actor="bob"),
-        # slot_mismatch: a companion shares the target's own actor
-        # (carol) and interval but disagrees on action.
         _item("mismatch-target", interval=Interval(2003, 2003), actor="carol", action="acted"),
         _item("mismatch-companion", interval=Interval(2003, 2003), actor="carol", action="reacted"),
-        # interval_mismatch: a companion shares the target's own actor
-        # (dave) and disagrees on nothing else, but its own interval sits
-        # decades away.
         _item("interval-target", interval=Interval(2004, 2004), actor="dave"),
         _item("interval-companion", interval=Interval(1980, 1980), actor="dave"),
-        # covered: a companion shares the target's own actor (erin) and
-        # interval outright.
         _item("covered-target", interval=Interval(2005, 2005), actor="erin"),
         _item("covered-companion", interval=Interval(2005, 2005), actor="erin"),
     ]
@@ -88,10 +57,8 @@ def _reasons_corpus() -> Corpus:
     ]
     return Corpus(sources={}, evidence=evidence, ground_truth=ground_truth, provenance=[], vocab=_vocab())
 
-
 def _run_calibration(corpus: Corpus):
     return calibrate.run_calibration(corpus, Constants(), k=len(corpus.evidence), seed=0)
-
 
 def test_coverage_report_requires_a_mode_field():
     corpus = _reasons_corpus()
@@ -102,7 +69,6 @@ def test_coverage_report_requires_a_mode_field():
     else:
         raise AssertionError("coverage_report should raise KeyError with no 'mode' in run_artifacts")
 
-
 def test_coverage_report_rejects_an_unknown_mode():
     corpus = _reasons_corpus()
     try:
@@ -112,7 +78,6 @@ def test_coverage_report_rejects_an_unknown_mode():
     else:
         raise AssertionError("coverage_report should raise ValueError on an unrecognized mode")
 
-
 def test_coverage_report_reasons_sum_to_the_uncovered_count():
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
@@ -120,13 +85,11 @@ def test_coverage_report_reasons_sum_to_the_uncovered_count():
     assert sum(report["reasons"].values()) == report["n_holdout_events"] - report["n_covered_events"]
     assert report["coverage_of_truth"] == report["n_covered_events"] / report["n_holdout_events"]
 
-
 def test_coverage_report_every_fixed_reason_is_present_even_at_zero():
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
     report = diagnostics.coverage_report(corpus, result)
     assert set(report["reasons"]) == set(diagnostics.REASONS)
-
 
 def _reason_for(report, event_id: str) -> str | None:
     for entry in report["uncovered_events"]:
@@ -134,13 +97,11 @@ def _reason_for(report, event_id: str) -> str | None:
             return entry["reason"]
     return None
 
-
 def test_target_naming_no_slot_reads_no_evidence_after_holdout():
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
     report = diagnostics.coverage_report(corpus, result)
     assert _reason_for(report, "zero-slots") == "no_evidence_after_holdout"
-
 
 def test_target_with_no_sharing_evidence_reads_no_evidence_after_holdout():
     corpus = _reasons_corpus()
@@ -148,13 +109,11 @@ def test_target_with_no_sharing_evidence_reads_no_evidence_after_holdout():
     report = diagnostics.coverage_report(corpus, result)
     assert _reason_for(report, "lonely") == "no_evidence_after_holdout"
 
-
 def test_a_shared_slot_with_no_interval_reads_no_placement_generated():
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
     report = diagnostics.coverage_report(corpus, result)
     assert _reason_for(report, "no-interval-target") == "no_placement_generated"
-
 
 def test_a_disagreeing_real_slot_reads_slot_mismatch():
     corpus = _reasons_corpus()
@@ -162,13 +121,11 @@ def test_a_disagreeing_real_slot_reads_slot_mismatch():
     report = diagnostics.coverage_report(corpus, result)
     assert _reason_for(report, "mismatch-target") == "slot_mismatch"
 
-
 def test_a_distant_date_reads_interval_mismatch():
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
     report = diagnostics.coverage_report(corpus, result)
     assert _reason_for(report, "interval-target") == "interval_mismatch"
-
 
 def test_a_matching_companion_covers_its_target():
     corpus = _reasons_corpus()
@@ -177,24 +134,15 @@ def test_a_matching_companion_covers_its_target():
     assert _reason_for(report, "covered-target") is None
     assert report["n_covered_events"] >= 1
 
-
 def test_dropped_by_cap_is_always_zero_along_this_path():
-    """`hte.calibrate`'s own candidate-building applies no cap at all
-    (`_diagnose_kfold`/`_diagnose_discovery_date`'s shared docstring
-    note); this reason existing in `REASONS` at all, and reading zero
-    here, is the plain, stated report `bkt-hte-generation-coverage`
-    asks for when a hypothesis the task brief names does not apply."""
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
     report = diagnostics.coverage_report(corpus, result)
     assert report["reasons"]["dropped_by_cap"] == 0
     assert report["notes"]
 
-
 def test_coverage_report_works_against_discovery_date_mode():
     corpus = _reasons_corpus()
-    # Force a real discovery lag so `choose_holdout_mode` picks
-    # discovery_date instead of kfold.
     lagged = list(corpus.ground_truth)
     lagged[0] = GroundTruthEvent(
         id=lagged[0].id, label=lagged[0].label, year=lagged[0].year,
@@ -207,7 +155,6 @@ def test_coverage_report_works_against_discovery_date_mode():
     assert report["mode"] == "discovery_date"
     assert sum(report["reasons"].values()) == report["n_holdout_events"] - report["n_covered_events"]
 
-
 def test_write_diagnostics_produces_files(tmp_path):
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
@@ -219,7 +166,6 @@ def test_write_diagnostics_produces_files(tmp_path):
     assert "no evidence after holdout" in md
     assert json.loads((tmp_path / "diagnostics.json").read_text())["mode"] == "kfold"
 
-
 def test_write_diagnostics_lists_uncovered_events_under_their_own_reason(tmp_path):
     corpus = _reasons_corpus()
     result = _run_calibration(corpus)
@@ -229,17 +175,12 @@ def test_write_diagnostics_lists_uncovered_events_under_their_own_reason(tmp_pat
     assert "mismatch-target" in md
     assert "interval-target" in md
 
-
-# link_shuffle_test (STATISTICAL-AUDIT-2026-09-15.md, "Link permutation test")
-
 _SCORE = lambda h, ev, vocab: belief.score(h, ev, vocab).project()  # noqa: E731
-
 
 def _placement_hyp(actor: str) -> Hypothesis:
     p = Placement(actor=actor, action="acted", object="object-x", place="place-x",
                   mechanism="mechanism-x", interval=Interval(2000, 2000))
     return Hypothesis.from_placement(p, _vocab())
-
 
 def test_link_shuffle_test_with_no_evidence_is_entirely_prior_only():
     hyps = [_placement_hyp(a) for a in ("alice", "bob", "carol", "dave")]
@@ -247,12 +188,7 @@ def test_link_shuffle_test_with_no_evidence_is_entirely_prior_only():
     assert result["prior_only_fraction"] == 1.0
     assert result["mean_correlation"] == pytest.approx(1.0)
 
-
 def test_link_shuffle_test_with_signal_only_in_links_drops_correlation():
-    # Flat, identical prior; one item each, tiers T1..T6 (decreasing
-    # weight) bound one-to-one to an address, so ranking comes entirely
-    # from WHICH tier lands on WHICH address, exactly what a shuffle
-    # scrambles (link COUNT per address can't move under a shuffle).
     hyps = [_placement_hyp(a) for a in ("alice", "bob", "carol", "dave")]
     evidence = []
     for h, tier in zip(hyps, (Tier.T1, Tier.T2, Tier.T4, Tier.T6)):

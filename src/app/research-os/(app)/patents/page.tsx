@@ -49,13 +49,6 @@ const TONE = {
   no: "text-[color:var(--crimson)]",
 };
 
-/**
- * The patents design (learning/research-os/PATENTS.md, ros-patents 0 and 1)
- * where people work: which patent sources Research OS may show, the first
- * corpus by branch, what the memo settles, and the slices still queued. No
- * patent record is in the graph yet. Data built by
- * scripts/research-os/patents-design.mjs.
- */
 export default function PatentsPage() {
   const shipped = design.slices.filter((s) => s.shipped).length;
   return (

@@ -20,7 +20,6 @@ function MasteryBar({ value }: { value: number }) {
   );
 }
 
-/** One branch: the summary, today's route, and every atom by shell. */
 export default function BranchView({ branch }: { branch: string }) {
   const a = useAcademy(branch);
   const [q, setQ] = useState("");

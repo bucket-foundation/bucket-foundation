@@ -1,8 +1,3 @@
-/**
- * Unit tests: the game layer (ros-33), src/lib/research-os/game.ts. Pure.
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-game.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { applyTransition, badgesFor, levelFromXp, nextStreak, xpForTransition, xpToNextLevel } from "../src/lib/research-os/game";

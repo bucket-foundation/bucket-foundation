@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 
 const BASE = "https://www.bucket.foundation";
 
-// Every agent allowed. Free to read, paid to cite.
 const AI_AGENTS = [
   "Googlebot",
   "Googlebot-Image",

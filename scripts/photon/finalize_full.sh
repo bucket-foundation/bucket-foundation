@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Run when the semantic embed finishes: fill phonetic vectors, build both HNSW
-# indexes, ANALYZE, and report. Waits for the embed PID, then finalizes — the
-# last step to "full final state" on the local 6.5M pgvector corpus.
 set -uo pipefail
 cd ~/agfarms/bucket-foundation
 EMB_PID="${1:-937779}"

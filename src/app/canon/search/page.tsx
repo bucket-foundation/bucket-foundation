@@ -1,7 +1,3 @@
-// /canon/search, uses the same integrated canon-tool component as the
-// main /canon page. One tool, both surfaces share it. Search box + globe
-// + sidebar + time scrubber + filter chips, all wired.
-
 import CanonGlobeMount from "../CanonGlobeMount";
 import { getBranches } from "@/lib/canon-fs";
 import type { GlobeBranch } from "@/components/CanonGlobe";

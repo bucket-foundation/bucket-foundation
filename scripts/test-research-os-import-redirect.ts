@@ -1,19 +1,8 @@
-/**
- * A redirect cannot carry an import fetch somewhere the first hop was
- * refused (src/lib/research-os/import-fetch.ts).
- *
- * `isPublicHttpUrl` ran once, against the URL the learner typed, and
- * the fetch then followed redirects itself. A public host answering 302
- * with a `Location` of `http://169.254.169.254/latest/meta-data/` was
- * fetched by the server and its reply reached the learner as the body
- * of their import. The route needs nothing but a session.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import http from "node:http";
 import { fetchFollowingChecked, fetchTextFromUrl, isPublicHttpUrl, MAX_REDIRECTS } from "../src/lib/research-os/import-fetch";
 
-/** A server that answers each path from a script. */
 function serve(routes: Record<string, (res: http.ServerResponse) => void>): Promise<{ port: number; close: () => Promise<void>; hits: string[] }> {
   const hits: string[] = [];
   const server = http.createServer((req, res) => {
@@ -60,8 +49,6 @@ test("a redirect to a refused address is not followed", async () => {
       res.writeHead(302, { location: `http://127.0.0.1:${target.port}/secret` }).end();
     },
   });
-  // The first hop stands in for a public host the learner may name; the
-  // redirect target stands in for the address the guard exists to refuse.
   const allow = (url: string) => url.includes(`:${hop.port}/`);
   try {
     const got = await fetchFollowingChecked(`http://127.0.0.1:${hop.port}/paper`, {}, allow);

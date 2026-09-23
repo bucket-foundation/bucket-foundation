@@ -1,23 +1,3 @@
-/* Bucket Academy, Socratic tutor panel (client).
- * Grounded + safe by construction: the panel ONLY ever sends the current atom's
- * own verified material as `grounding`, and renders the tutor's reply with the
- * grounding made visible and citations linked from the server-validated set.
- *
- * Safety surfaced in UX (mirrors the S1, S7 server floor):
- * - the concept it's grounded in is shown in the header AND in a standing
- * disclaimer ("grounded to this concept's material"), so the learner knows
- * its scope (S1).
- * - abstention ("outside this concept") is rendered as a calm, expected state,
- * never an error (S2/S4).
- * - confidence is shown (high/medium/low) (S4).
- * - citations are rendered ONLY from the server-validated `citations` array, 
- * the client never parses links out of the model's prose (S3).
- * - a 503 / not_configured response degrades to a graceful "tutor not enabled
- * yet" card; the atom screen keeps working (never breaks the lesson).
- *
- * The tutor never replaces the retrieval loop, it's an optional aid attached
- * to the concept the learner is already studying.
- */
 (function (global) {
   "use strict";
 
@@ -35,8 +15,6 @@
     });
   }
 
-  // Build the grounding payload from an atom + the titles of its neighbours.
-  // byId maps atom id -> atom (so we can resolve requires/unlocks to titles).
   function buildGrounding(atom, byId) {
     function titles(ids) {
       return (ids || [])
@@ -65,12 +43,11 @@
     "What should I understand first?",
   ];
 
-  // Open the focused tutor panel for one atom. opts: { atom, branch, byId }.
   function open(opts) {
     var atom = opts.atom;
     var byId = opts.byId || {};
     var grounding = buildGrounding(atom, byId);
-    var history = []; // [{role:'user'|'tutor', content}]
+    var history = [];
 
     var back = el("div", "tutor-back");
     var panel = el("div", "tutor-panel");
@@ -78,7 +55,6 @@
     panel.setAttribute("aria-modal", "true");
     panel.setAttribute("aria-label", "Tutor for " + (atom.title || "this concept"));
 
-    // header
     var head = el("div", "tutor-head");
     head.appendChild(
       el(
@@ -96,7 +72,6 @@
     head.appendChild(close);
     panel.appendChild(head);
 
-    // standing disclaimer (grounding made visible, S1)
     panel.appendChild(
       el(
         "div",
@@ -107,12 +82,10 @@
       )
     );
 
-    // conversation log
     var log = el("div", "tutor-log");
     log.setAttribute("aria-live", "polite");
     panel.appendChild(log);
 
-    // suggested questions (shown until first ask)
     var suggWrap = el("div", "tutor-sugg");
     suggWrap.appendChild(el("div", "tutor-sugg-label", "Try asking"));
     var suggRow = el("div", "tutor-sugg-row");
@@ -127,7 +100,6 @@
     suggWrap.appendChild(suggRow);
     panel.appendChild(suggWrap);
 
-    // composer
     var form = el("form", "tutor-form");
     var input = document.createElement("input");
     input.className = "tutor-input";
@@ -149,7 +121,6 @@
     back.onclick = function (e) {
       if (e.target === back) dismiss();
     };
-    // keyboard: Escape closes
     function onKey(e) {
       if (e.key === "Escape") dismiss();
     }
@@ -170,7 +141,6 @@
       } catch (e) {}
     }, 60);
 
-    // ---- message rendering ----
     function addUser(text) {
       var m = el("div", "tutor-msg user");
       m.appendChild(el("div", "tutor-bubble", esc(text)));
@@ -198,13 +168,11 @@
       }
       bubble.appendChild(el("div", "tutor-reply", esc(data.reply || "")));
 
-      // confidence chip (uncertainty signalling, S4)
       var conf = (data.confidence || "medium").toLowerCase();
       var confLabel = { high: "grounded", medium: "partly grounded", low: "low certainty" }[conf] || "partly grounded";
       var meta = el("div", "tutor-meta");
       meta.appendChild(el("span", "tutor-conf conf-" + conf, "● " + confLabel));
 
-      // citations, rendered ONLY from the server-validated closed set (S3)
       if (data.citations && data.citations.length) {
         var cites = el("div", "tutor-cites");
         cites.appendChild(el("span", "tutor-cites-label", "From:"));

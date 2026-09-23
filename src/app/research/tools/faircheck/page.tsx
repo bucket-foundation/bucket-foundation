@@ -6,7 +6,6 @@ export const metadata = toolMetadata("faircheck");
 const _jsonld = toolJsonLd("faircheck");
 import FAIRCheckClient from "./FAIRCheckClient";
 
-// FAIRCheck run page.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

@@ -70,24 +70,10 @@ DEFAULT_CAMPAIGN = "research-os"
 DEFAULT_BRANCH = "02-physics"
 DEFAULT_ENGINE = "hte"
 
-
 def _register_corpus(name: str, corpus: Corpus) -> None:
-    """Registers `corpus` into `hte.runner`'s own `_CORPUS_LOADERS` at call
-    time, so `run_campaign({"corpus": name, ...})` resolves it. See this
-    module's own header comment, item 2, for why this is a runtime
-    registration rather than a `hte/runner.py` edit."""
     runner._CORPUS_LOADERS[name] = lambda: corpus
 
-
 def _hypothesis_slots(h: Hypothesis, vocab: Vocabulary) -> dict[str, str | None]:
-    """Every one of the five placement slot ids `h` carries, resolved to a
-    human-readable label through `vocab.get(slot, raw_id).label` when the
-    vocabulary has one, else left as the raw id. `hte.api._slot_labels`
-    reads the same pattern for `hte-serve`'s own `/hypothesize` response;
-    this function keeps its own copy, since `hte/api.py` is under active
-    review as this script lands (see this module's own header comment). A
-    sequence hypothesis (`h.is_sequence`) carries no placement slots, so it
-    reads as `{}`."""
     if h.is_sequence:
         return {}
     content = h.content
@@ -101,41 +87,16 @@ def _hypothesis_slots(h: Hypothesis, vocab: Vocabulary) -> dict[str, str | None]
         out[name] = concept.label if concept is not None else raw_id
     return out
 
-
 def _hypothesis_title(slots: dict[str, str | None], short_id: str) -> str:
-    """A human-readable sentence from `slots`' own label values, "actor
-    action object place mechanism" in slot order, skipping any slot with
-    no value. Falls back to `f"Hypothesis {short_id}"` when every slot is
-    empty (a sequence hypothesis, or one whose own vocabulary resolved no
-    label at all): `buildEngineNode` (`engine-bridge.ts`) requires a
-    non-empty `title`, so this never returns an empty string."""
     parts = [slots.get(name) for name in ("actor", "action", "object", "place", "mechanism") if slots.get(name)]
     return " ".join(str(p) for p in parts) if parts else f"Hypothesis {short_id}"
 
-
 def _evidence_refs(h: Hypothesis, evidence_items) -> list[str]:
-    """Every evidence item id naming `h`'s own address in `supports` or
-    `refutes`, sorted for a deterministic export. `buildEngineEdges`
-    (`engine-bridge.ts`) turns each into a `cites` edge, resolved to a
-    graph node id (or skipped, `writeEngineEdges`'s own documented
-    behavior) at write time."""
     return sorted({item.id for item in evidence_items if h.address in item.supports or h.address in item.refutes})
-
 
 def export_accepted_hypotheses(
     artifacts: "runner.RunArtifacts", *, engine: str, run_id: str, campaign: str, branch: str,
 ) -> list[dict[str, Any]]:
-    """Every survivor `artifacts.hypotheses` carries (the critic-filtered,
-    tournament-scored population `hte.runner.run_campaign` returns as
-    `RunArtifacts.hypotheses`, `learning/research-os/ENGINE-BRIDGE.md`'s
-    own "an accepted engine hypothesis" for task item 1), shaped as one
-    `EngineHypothesisInput` (`src/lib/research-os/engine-bridge.ts`) each,
-    camelCase keys so `apply-engine-campaign.ts` reads this export with no
-    field renaming of its own. `tierAssigned` is left unset on purpose:
-    `docs/RESEARCH-OS-INTEGRATION.md`'s own "hypothesize_result" section
-    names real tier assignment as unbuilt wiring outside this script's own
-    scope; `engineTierToGraphTier`'s own documented default (T6, the
-    engine's least-reliable rung) applies until it lands."""
     vocab = artifacts.corpus.vocab
     out = []
     for h in artifacts.hypotheses:
@@ -156,20 +117,9 @@ def export_accepted_hypotheses(
         })
     return out
 
-
 def export_gap_nodes(
     artifacts: "runner.RunArtifacts", *, engine: str, run_id: str, campaign: str, branch: str, limit: int = 25,
 ) -> list[dict[str, Any]]:
-    """The run's own gap-node queue (ros-12 item 4): `hte.unknowns.
-    unresolved_slot_gaps` against the same survivor population and
-    opinions this run scored, shaped for `apply-engine-campaign.ts`'s own
-    gap-node write path (a `graph.nodes` row of kind `artifact`,
-    provenance `type: "gap"`, one `cites` edge per concerned hypothesis
-    node). `concernsHypothesisIds` names raw hypothesis ids rather than
-    pre-computed slugs on purpose: `engineNodeSlug` (`engine-bridge.ts`)
-    is the one place that slug format is defined, so the TS side computes
-    it itself instead of this script duplicating (and risking drifting
-    from) that logic."""
     gaps = unknowns.unresolved_slot_gaps(artifacts.corpus.evidence, artifacts.hypotheses, artifacts.opinions, limit=limit)
     out = []
     for gap in gaps:
@@ -187,7 +137,6 @@ def export_gap_nodes(
         })
     return out
 
-
 def run(
     corpus: Corpus,
     *,
@@ -198,27 +147,6 @@ def run(
     gap_limit: int = 25,
     skipped_rows: list[dict[str, str]] | None = None,
 ) -> dict[str, Any]:
-    """Runs one `hte.runner.run_campaign` over `corpus` and returns the
-    export payload `apply-engine-campaign.ts` applies:
-    `{"runId", "engine", "campaign", "branch", "accepted": [...], "gaps":
-    [...]}`. No Supabase access happens here, only `main()` (the outbox
-    read and the consumed-marking write) touches the network; a test calls
-    `run()` directly with a small fixture `Corpus` and `HTE_LLM_MODE=fake`,
-    exactly `tests/test_campaign_research_os.py`'s own pattern.
-
-    Once `run_campaign` returns, patches `artifacts.run_dir/MANIFEST.json`
-    with `hte.provenance.stamp_manifest(artifacts.run_dir, corpus,
-    skipped_rows=skipped_rows)` (`docs/PRIVACY.md`): a `provenance` block
-    (which production/learner ids `corpus` carries, `hte.corpus.
-    research_os_outbox._stamp_corpus_provenance`'s own stamp read back)
-    and, when `skipped_rows` is given, the `{"production_id", "reason"}`
-    list for every outbox row `_build` could not normalize (PR #37's own
-    seam finding). `hte.runner.run_campaign` is not this change's file to
-    edit (see this module's own header comment on why), so this patches
-    the manifest after the fact rather than the runner writing either
-    block itself; every call to `run()` gets this patch, not only
-    `main()`'s own outbox path, so a test calling `run()` directly still
-    gets a stamped manifest to purge against."""
     _register_corpus(campaign, corpus)
     config = {"corpus": campaign, "campaign": campaign, **(config_overrides or {})}
     artifacts = runner.run_campaign(config)
@@ -232,7 +160,6 @@ def run(
         "accepted": export_accepted_hypotheses(artifacts, engine=engine, run_id=run_id, campaign=campaign, branch=branch),
         "gaps": export_gap_nodes(artifacts, engine=engine, run_id=run_id, campaign=campaign, branch=branch, limit=gap_limit),
     }
-
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -266,7 +193,6 @@ def main(argv: list[str] | None = None) -> int:
         research_os_outbox.mark_consumed(row_ids, table=args.table)
         print(f"marked {len(row_ids)} outbox row(s) consumed")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

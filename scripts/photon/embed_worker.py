@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-"""Parallel CPU embed worker, runs ALONGSIDE the main GPU embed_full.py without
-pausing it. Each worker owns a disjoint hash partition of the still-NULL rows and
-scans DESC (the main job scans ASC), so they fill from opposite ends and barely
-overlap. Resumable. Stop them once NULL count hits 0.
-
- embed_worker.py --slots 4 --slot 0 [--order desc] [--threads 3]
-"""
 import os, sys, time, argparse
 
 ap = argparse.ArgumentParser()
@@ -16,7 +9,6 @@ ap.add_argument("--threads", type=int, default=3)
 ap.add_argument("--batch", type=int, default=2048)
 A = ap.parse_args()
 
-# force CPU + bound threads BEFORE importing torch (GPU VRAM is full)
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ["HIP_VISIBLE_DEVICES"] = ""
 os.environ["OMP_NUM_THREADS"] = str(A.threads)

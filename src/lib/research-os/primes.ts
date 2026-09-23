@@ -1,29 +1,3 @@
-/**
- * Prime decomposition of the Research OS graph (ros-prime 1, carries ros-25).
- *
- * A node's factors are the nodes it rests on: the `from` side of a
- * `prerequisite` edge that points at it, and the `to` side of a
- * `derives_from` edge that leaves it. Decomposing a node means following
- * factors until nothing splits further. The nodes at the bottom are primes:
- * the equals sign is the worked example, a prime that a large share of
- * mathematics and physics contains.
- *
- * Three states, because the graph is incomplete:
- * - composite: the node has at least one factor.
- * - prime: no factors, and at least one node rests on it. Irreducible in the
- *   graph as it stands; the decompose-further queue (ros-prime 2) confirms
- *   or splits it.
- * - unfactored: no dependency edge in either direction, so the graph says
- *   nothing about its makeup yet.
- *
- * A prime signature maps each prime under a node to the number of distinct
- * factor paths that reach it, the multiplicity. Dependency cycles collapse
- * into one unit whose members share a signature. Pure and dependency-free:
- * the script in scripts/research-os/primes-report.ts feeds it rows from the
- * local graph, and scripts/test-research-os-primes.ts tests it with plain
- * objects. Definitions and results: learning/research-os/PRIMES.md.
- */
-
 export type DepEdge = {
   fromId: string;
   toId: string;
@@ -44,40 +18,28 @@ export type PrimeStatus = "prime" | "composite" | "unfactored";
 export type Decomposition = {
   id: string;
   status: PrimeStatus;
-  /** Direct factors with the highest edge confidence seen for each. */
   factors: { id: string; confidence: number }[];
-  /** Direct dependents: the nodes that list this one as a factor. */
   dependents: string[];
-  /** Prime id to the number of distinct factor paths reaching it. */
   signature: Map<string, number>;
-  /** Longest factor path down to a prime; 0 for a prime or unfactored node. */
   depth: number;
-  /** Tier by primality: primes sit at 0, and each step up combines lower tiers. */
   tier: number;
-  /** True when the node sits in a dependency cycle with another node. */
   inCycle: boolean;
 };
 
 export type PrimePenetration = {
   id: string;
-  /** Composites whose signature contains this prime. */
   composites: number;
-  /** Distinct branches among those composites. */
   branches: number;
-  /** Shannon entropy of the branch mix, 0 to 1, normalized by log(branches seen graph-wide). */
   spread: number;
 };
 
-/** Edge kinds that carry a factor, and which end holds the factor. */
 export const FACTOR_EDGES: Record<string, "from" | "to"> = {
   prerequisite: "from",
   derives_from: "to",
 };
 
-/** Multiplicities above this are clamped, so a dense graph cannot overflow. */
 export const MULTIPLICITY_CAP = 1e12;
 
-/** Node id to its direct factors, each with its highest edge confidence. */
 export function factorMap(edges: DepEdge[]): Map<string, Map<string, number>> {
   const out = new Map<string, Map<string, number>>();
   for (const e of edges) {
@@ -93,19 +55,10 @@ export function factorMap(edges: DepEdge[]): Map<string, Map<string, number>> {
   return out;
 }
 
-/**
- * Factor edges among the nodes in `keep`, with every path through other
- * nodes contracted: A rests on B here when a factor path runs from A to B
- * and every node between them lies outside `keep`. The idea layer uses it
- * so an idea that rests on another through a fact or a paper still rests
- * on it. Each contracted edge is written as a prerequisite edge from the
- * factor to the node, carrying the lowest confidence along the path.
- */
 export function contractedFactorEdges(keep: Set<string>, edges: DepEdge[]): DepEdge[] {
   const factors = factorMap(edges);
   const out = new Map<string, number>();
   for (const start of Array.from(keep)) {
-    // Walk down through nodes outside `keep`; stop at the first kept node on each path.
     const best = new Map<string, number>();
     const stack: [string, number][] = Array.from(factors.get(start) ?? new Map<string, number>()).map(([f, c]) => [f, c] as [string, number]);
     const seen = new Map<string, number>();
@@ -131,7 +84,6 @@ export function contractedFactorEdges(keep: Set<string>, edges: DepEdge[]): DepE
   });
 }
 
-/** Tarjan's strongly connected components over node to factor links, iterative. Component ids run in reverse topological order: factors first. */
 export function components(ids: string[], factors: Map<string, Map<string, number>>): Map<string, number> {
   const index = new Map<string, number>();
   const low = new Map<string, number>();
@@ -180,7 +132,6 @@ export function components(ids: string[], factors: Map<string, Map<string, numbe
   return comp;
 }
 
-/** Decompose every node. Nodes named only by edges are included too. */
 export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string, Decomposition> {
   const factors = factorMap(edges);
   const idSet = new Set<string>(nodes.map((n) => n.id));
@@ -197,7 +148,6 @@ export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string
     }
   }
 
-  // Collapse cycles: each component is one unit on a DAG of components.
   const comp = components(ids, factors);
   const members = new Map<number, string[]>();
   for (const id of ids) {
@@ -217,9 +167,6 @@ export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string
     compFactors.set(c, cf);
   }
 
-  // Tarjan numbers components in reverse topological order over factor links:
-  // a component's factors always get lower ids, so ascending order visits
-  // factors before the nodes that rest on them.
   const order = Array.from(members.keys()).sort((a, b) => a - b);
   const compSig = new Map<number, Map<string, number>>();
   const compDepth = new Map<number, number>();
@@ -229,8 +176,6 @@ export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string
       const ms = members.get(c)!;
       const hasDependents = ms.some((m) => (dependents.get(m) ?? []).some((d) => comp.get(d) !== c));
       const isCycle = ms.length > 1;
-      // A factorless unit is prime when something rests on it or it is a cycle
-      // of mutual factors; each member stands for itself in the signature.
       const sig = new Map<string, number>();
       if (hasDependents || isCycle) for (const m of ms) sig.set(m, 1);
       compSig.set(c, sig);
@@ -277,7 +222,6 @@ export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string
   return out;
 }
 
-/** How far each prime reaches: composites containing it and their branch mix. */
 export function penetration(nodes: PrimeNodeInput[], dec: Map<string, Decomposition>): PrimePenetration[] {
   const branchOf = new Map<string, string>();
   for (const n of nodes) if (n.branch) branchOf.set(n.id, n.branch);
@@ -317,7 +261,6 @@ export type PrimeSummary = {
   unfactored: number;
   inCycle: number;
   maxDepth: number;
-  /** Nodes per tier, tier 0 first, composites and primes only. */
   tiers: number[];
 };
 
@@ -334,22 +277,16 @@ export function summarize(dec: Map<string, Decomposition>): PrimeSummary {
   return s;
 }
 
-/** One node's standing in an earlier decomposition, as primes-report.json records it. */
 export type PriorStanding = { id: string; status: PrimeStatus; depth: number };
 
 export type PrimeMoves = {
-  /** Primes that gained factors: the base layer moved below them. */
   decomposed: string[];
-  /** Unfactored nodes that joined the dependency graph. */
   joined: string[];
-  /** Nodes that are prime now and were not before, new base ideas among them. */
   newPrimes: string[];
-  /** Nodes whose depth changed while their status held. */
   deeper: number;
   shallower: number;
 };
 
-/** What changed between an earlier decomposition and this one. Nodes new since then count as joined when they have edges. */
 export function movesSince(prior: PriorStanding[], dec: Map<string, Decomposition>): PrimeMoves {
   const before = new Map(prior.map((p) => [p.id, p]));
   const out: PrimeMoves = { decomposed: [], joined: [], newPrimes: [], deeper: 0, shallower: 0 };

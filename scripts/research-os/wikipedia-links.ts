@@ -1,20 +1,3 @@
-/**
- * Wikipedia articles and links for the graph's idea nodes, the input to
- * the RefD judge in src/lib/research-os/refd.ts.
- *
- * An Academy atom maps to the first Wikipedia article in its corpus
- * `resources` (learning/app/corpus/*.json). Any other idea node, and an
- * atom without one, maps to the article whose title matches the node's
- * title, when that article exists and is not a disambiguation page.
- * Titles resolve through redirects to one canonical title.
- *
- * Three kinds of MediaWiki API calls, all read-only, serial, with maxlag
- * set and a project user agent: title resolution, each article's
- * redirects (so a link written as an alias still counts), and each
- * article's outgoing links. Replies are kept in
- * scripts/research-os/ingest/out/wikipedia-links.json, so a rerun asks
- * only for titles it has not seen.
- */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { academyNodeSlug } from "../../src/lib/research-os/ingest/academy";
@@ -24,7 +7,6 @@ const API = "https://en.wikipedia.org/w/api.php";
 const USER_AGENT = "BucketFoundation-ResearchOS/0.2 (https://bucket.foundation; prerequisite research)";
 const CACHE_FILE = path.join(__dirname, "ingest", "out", "wikipedia-links.json");
 const REPO = path.join(__dirname, "..", "..");
-/** Titles per request; the API allows 50. */
 const BATCH = 50;
 const PAUSE_MS = 150;
 
@@ -36,15 +18,12 @@ type Cache = {
 };
 
 export type WikiIndex = {
-  /** Canonical article title by node slug. */
   titleOf: Map<string, string>;
-  /** How each slug got its article. */
   via: Map<string, "corpus" | "title">;
   links: LinkIndex;
   requests: number;
 };
 
-/** First Wikipedia article in each Academy atom's resources, by node slug. */
 export function corpusTitles(repoRoot = REPO): Map<string, string> {
   const dir = path.join(repoRoot, "learning", "app", "corpus");
   const out = new Map<string, string>();
@@ -77,7 +56,6 @@ function loadCache(): Cache {
       const c = JSON.parse(readFileSync(CACHE_FILE, "utf8"));
       if (c?.version === 1) return c as Cache;
     } catch {
-      // A torn cache file is rebuilt from the API.
     }
   }
   return { version: 1, resolved: {}, aliases: {}, links: {} };
@@ -112,7 +90,6 @@ export async function wikipediaIndex(nodes: { slug: string; title: string }[], o
     throw new Error("Wikipedia API: gave up after 5 attempts");
   }
 
-  // Every page of a prop query, following `continue`.
   async function pages(params: Record<string, string>, onPage: (q: any) => void) {
     let cont: Record<string, string> = {};
     for (;;) {
@@ -133,7 +110,6 @@ export async function wikipediaIndex(nodes: { slug: string; title: string }[], o
     raw.set(n.slug, choices);
   }
 
-  // 1. Resolve every asked title to its canonical article.
   const unresolved = Array.from(new Set(Array.from(raw.values()).flat().map((c) => c.title))).filter((t) => !(t in cache.resolved));
   if (!opts.offline) {
     for (let i = 0; i < unresolved.length; i += BATCH) {
@@ -161,7 +137,6 @@ export async function wikipediaIndex(nodes: { slug: string; title: string }[], o
     }
   }
 
-  // 2 and 3. Redirects into, and links out of, each article not yet fetched.
   const articles = Array.from(new Set(Array.from(titleOf.values())));
   if (!opts.offline) {
     const needAliases = articles.filter((t) => !(t in cache.aliases));

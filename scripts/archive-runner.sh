@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Idempotent archive.org puller. Re-runnable; skips already-fetched files.
 set -u
 LIST="$HOME/agfarms/bucket-foundation/_intake/.archive-targets.txt"
 LOG="$HOME/agfarms/bucket-foundation/_intake/.archive-runner.log"

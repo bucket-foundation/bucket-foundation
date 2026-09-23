@@ -1,24 +1,3 @@
-"""The loopback encoder worker (ros-ai-worker).
-
-The server sends a bounded query, the corpus revision it expects, and the
-eligible (sourceId, sourceRevision) pairs it resolved at request start.
-The worker masks the index to those pairs before any score is computed,
-embeds the query, and returns ranked ids with finite scores. It returns no
-text: the server hydrates text from the corpus after its own live checks.
-
-Limits, from IMPLEMENTATION.md, "API and worker contracts": one model
-computation at a time, four requests waiting, at most eight CPU threads,
-a deadline the server sets inside its six-second worker budget, and at
-most 100 results. A full queue answers 503 at once. The deadline is
-checked on entering the queue and between stages, and a request past it
-answers 503 without its result.
-
-The socket binds to loopback only, and every request carries the shared
-secret from EVIDENCE_WORKER_SECRET, compared in constant time. A field the
-contract does not name is refused, so a caller cannot change a worker
-option through the body.
-"""
-
 from __future__ import annotations
 
 import hmac
@@ -43,13 +22,11 @@ MIN_SECRET = 32
 SCORE_FIELDS = {"requestId", "query", "corpusRevision", "eligible", "limit", "deadlineMs"}
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
-
 class RequestError(Exception):
     def __init__(self, status: int, code: str, message: str):
         super().__init__(message)
         self.status = status
         self.code = code
-
 
 def validate_score_request(body: object) -> dict:
     if not isinstance(body, dict):
@@ -84,9 +61,7 @@ def validate_score_request(body: object) -> dict:
         raise RequestError(400, "invalid_request", f"deadlineMs is 1 to {MAX_DEADLINE_MS}")
     return {"requestId": rid, "query": query.strip(), "corpusRevision": body["corpusRevision"], "eligible": pairs, "limit": limit, "deadlineMs": deadline}
 
-
 def rank(index: VectorIndex, query_vector, eligible: set[tuple[str, str]], limit: int) -> tuple[list[dict], int]:
-    """Scores only the eligible rows. Returns the ranked sources and the number of rows scored."""
     import numpy as np
 
     rows: list[int] = []
@@ -106,9 +81,7 @@ def rank(index: VectorIndex, query_vector, eligible: set[tuple[str, str]], limit
     ordered = sorted(best.items(), key=lambda kv: (-kv[1], kv[0][0]))[:limit]
     return [{"sourceId": k[0], "sourceRevision": k[1], "score": round(v, 6)} for k, v in ordered], len(rows)
 
-
 class Worker:
-    """Scoring with a bounded queue. Transport-free, so tests drive it directly."""
 
     def __init__(self, index: VectorIndex, encode_query, model_revision: str, max_active: int = MAX_ACTIVE, max_waiting: int = MAX_WAITING):
         self.index = index
@@ -167,7 +140,6 @@ class Worker:
             "ms": round((time.monotonic() - started) * 1000, 1),
         }
 
-
 def require_loopback(host: str) -> None:
     try:
         if ipaddress.ip_address(host).is_loopback:
@@ -175,7 +147,6 @@ def require_loopback(host: str) -> None:
     except ValueError:
         pass
     raise ValueError(f"the worker binds to loopback only; {host!r} is not a loopback address")
-
 
 def make_server(worker: Worker, secret: str, host: str = "127.0.0.1", port: int = 0) -> ThreadingHTTPServer:
     require_loopback(host)
@@ -186,7 +157,7 @@ def make_server(worker: Worker, secret: str, host: str = "127.0.0.1", port: int 
     class Handler(BaseHTTPRequestHandler):
         server_version = "evidence-worker/1"
 
-        def log_message(self, fmt, *args):  # Query text never reaches a log line.
+        def log_message(self, fmt, *args):
             return
 
         def _send(self, status: int, body: dict) -> None:

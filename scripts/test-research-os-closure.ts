@@ -1,15 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/closure.ts's ancestor closure, and
- * equivalence between computeFrontier's full-graph walk and its
- * closure-pruned walk (bkt-ros, Phase 1 item 1: "equivalence tests on the
- * seed graph").
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-closure.ts
- * (same invocation as scripts/test-research-os-routing.ts; no test
- * framework configured in this repo, node:test + node:assert is the
- * existing pattern.)
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -43,7 +31,6 @@ function loadSeed(): Seed {
   return JSON.parse(readFileSync(SEED_PATH, "utf8")) as Seed;
 }
 
-/** Same slug-doubles-as-id fixture conversion as test-research-os-routing.ts. */
 function toGraph(seed: Seed): { nodes: GraphNode[]; edges: GraphEdge[]; bySlug: Map<string, GraphNode> } {
   const nodes: GraphNode[] = seed.nodes.map((n) => ({
     id: n.slug,
@@ -63,10 +50,6 @@ function state(nodeId: string, stage: Stage): LearnerNodeState {
   return { nodeId, stage };
 }
 
-// ---------------------------------------------------------------------------
-// closure.ts: ancestorsOf / computeAncestorClosure
-// ---------------------------------------------------------------------------
-
 test("ancestorsOf: the target's own direct prerequisites are hop 1, and it never includes the target itself", () => {
   const { edges, bySlug } = toGraph(loadSeed());
   const target = bySlug.get("why-the-sky-is-blue")!;
@@ -77,8 +60,6 @@ test("ancestorsOf: the target's own direct prerequisites are hop 1, and it never
   for (const p of directPrereqs) {
     assert.equal(ancestors.get(p)?.hops, 1, `direct prerequisite ${p} should be at hop 1`);
   }
-  // Every node reachable backward should have a strictly positive hop count
-  // and a confidence in (0, 1] (every seed edge defaults to full confidence).
   ancestors.forEach((info) => {
     assert.ok(info.hops >= 1);
     assert.ok(info.minConfidence > 0 && info.minConfidence <= 1);
@@ -95,8 +76,6 @@ test("ancestorsOf: takes the MINIMUM hop count when a node is reachable by more 
   const { nodes, edges } = toGraph(loadSeed());
   const target = nodes.find((n) => n.slug === "why-the-sky-is-blue")!;
   const ancestors = ancestorsOf(target.id, edges);
-  // Sanity: recompute with a brute-force BFS restricted to prerequisite
-  // edges and compare every hop count exactly.
   const backward = new Map<string, string[]>();
   for (const e of edges) {
     if (e.kind !== "prerequisite") continue;
@@ -146,9 +125,6 @@ test("computeAncestorClosure: produces a row for every (node, ancestor) pair anc
     }
   }
 
-  // The target's closure must include every node on the seeded path's
-  // prerequisite backbone, and never include the canon-bridge nodes (they
-  // hang off `generalizes`/`example_of` edges, not `prerequisite`).
   const target = nodes.find((n) => n.slug === "why-the-sky-is-blue")!;
   const targetRows = byNode.get(target.id) ?? [];
   const ancestorSlugs = new Set(targetRows.map((r) => bySlugId.get(r.ancestorId)!.slug));
@@ -157,11 +133,6 @@ test("computeAncestorClosure: produces a row for every (node, ancestor) pair anc
   assert.ok(!ancestorSlugs.has("canon-waves"), "canon-bridge node must not appear in a prerequisite-only closure");
 });
 
-// ---------------------------------------------------------------------------
-// computeFrontier equivalence: full-graph walk vs. closure-pruned walk
-// ---------------------------------------------------------------------------
-
-/** Every closure row for one target, in the shape computeFrontier's `ancestorRows` param expects. */
 function ancestorRowsFor(targetId: string, edges: GraphEdge[]): PrereqAncestorRow[] {
   const info = ancestorsOf(targetId, edges);
   return Array.from(info.entries()).map(([ancestorId, { hops, minConfidence }]) => ({
@@ -240,8 +211,6 @@ test("equivalence: already-mastered target routes to just itself either way", ()
   const states: LearnerNodeState[] = [state(target.id, "production")];
   assertEquivalent(nodes, edges, states, target.id, "mastered target");
 
-  // Both paths must independently produce the single-node chain, not just
-  // agree with each other by coincidence.
   const pruned = computeFrontier(nodes, edges, states, target.id, ancestorRowsFor(target.id, edges));
   assert.equal(pruned.chain.length, 1);
   assert.equal(pruned.chain[0].node.slug, "why-the-sky-is-blue");

@@ -1,25 +1,3 @@
-/**
- * The Runtime gate for evidence search (IMPLEMENTATION.md, "Verification
- * and release").
- *
- *   set -a; . ./.env.local; set +a
- *   RESEARCH_OS_AI_SEARCH=1 RESEARCH_OS_DAILY_TOOL_CAP=5000 \
- *   EVIDENCE_WORKER_URL=http://127.0.0.1:8431 EVIDENCE_WORKER_SECRET=... \
- *   npm run dev          # in one shell
- *
- *   BENCH_EMAIL=you@example.test \
- *   npx ts-node --compiler-options '{"module":"commonjs"}' \
- *     scripts/research-os/evidence/bench.ts --vectors local/evidence/vectors
- *
- * The run measures 200 warm requests at concurrency one, 200 at
- * concurrency two, and 20 cold starts, then reports each threshold with
- * the number it was measured against. It owns the worker process for the
- * whole run, so the cold phase can stop and start it and the worker's own
- * counters describe this run alone.
- *
- * Exit 0: every check passes. Exit 1: a check fails, and the report says
- * which. Exit 2: the run could not start.
- */
 import { spawn, type ChildProcess } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -70,7 +48,6 @@ class Worker {
     return Number(new URL(this.url).port || 80);
   }
 
-  /** True when a worker answers, whoever started it. */
   async healthy(): Promise<boolean> {
     try {
       const res = await fetch(`${this.url}/health`, { headers: { "x-evidence-worker-key": this.secret } });
@@ -87,7 +64,6 @@ class Worker {
     return body.counters?.scored ?? 0;
   }
 
-  /** Starts the worker and waits for it to answer. Returns the wait in ms. */
   async start(timeoutMs = 60_000): Promise<number> {
     if (this.child) throw new Error("the worker is already running");
     const started = performance.now();
@@ -135,7 +111,6 @@ async function searchOnce(base: string, token: string, q: Query): Promise<Sample
   }
 }
 
-/** Runs `count` requests with `lanes` of them in flight at a time. */
 async function phase(base: string, token: string, qs: Query[], count: number, lanes: number): Promise<Sample[]> {
   const out: Sample[] = new Array(count);
   let next = 0;
@@ -188,8 +163,6 @@ async function main(): Promise<number> {
     const warmOne = summarize(await phase(base, session.accessToken, qs, warmCount, 1));
     console.log(`[bench] ${warmCount} warm requests at concurrency two`);
     const warmTwo = summarize(await phase(base, session.accessToken, qs, warmCount, 2));
-    // Read before the cold phase: a restart resets the worker's counters,
-    // so a reading taken after it would describe the last worker alone.
     const warmScored = (await worker.scored()) - scoredBefore;
 
     console.log(`[bench] ${coldCount} cold starts`);

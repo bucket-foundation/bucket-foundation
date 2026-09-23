@@ -1,22 +1,3 @@
-/**
- * bucket.foundation, EAS (Ethereum Attestation Service) helper
- * --------------------------------------------------------------
- * Takes a citation envelope, computes an artifactHash (keccak256 of canonical
- * JSON), and writes an on-chain attestation via EAS on Base / Base Sepolia.
- *
- * Deps are dynamically imported so that the feature-flagged OFF path doesn't
- * pull EAS SDK into the default Next.js bundle.
- *
- * Env:
- * BUCKET_WALLET_PRIVATE_KEY 0x-prefixed hex private key (NOT committed)
- * EAS_CONTRACT_BASE EAS contract addr on the target chain
- * Base mainnet: 0x4200000000000000000000000000000000000021
- * Base Sepolia: 0x4200000000000000000000000000000000000021
- * (canonical predeploy; verify at easscan.org)
- * EAS_SCHEMA_UID schema UID registered via register-eas-schema.ts
- * EAS_CHAIN "base" | "base-sepolia" (default base-sepolia)
- */
-
 export type CitationEnvelope = Record<string, unknown> & {
   citation?: {
     canonical_url?: string;
@@ -38,7 +19,6 @@ export type AttestResult = {
   scanner: string;
 };
 
-/** Stable canonical JSON (sorted keys, no insignificant whitespace). */
 export function canonicalize(value: unknown): string {
   const sortKeys = (v: unknown): unknown => {
     if (Array.isArray(v)) return v.map(sortKeys);
@@ -54,20 +34,12 @@ export function canonicalize(value: unknown): string {
   return JSON.stringify(sortKeys(value));
 }
 
-/** keccak256 hash of canonical JSON, returned as 0x-prefixed hex. */
 export async function artifactHash(envelope: unknown): Promise<`0x${string}`> {
   const { keccak256, toHex } = await import("viem");
   const canon = canonicalize(envelope);
   return keccak256(toHex(canon));
 }
 
-/**
- * Attest a citation envelope on EAS. Returns the attestation UID + tx hash.
- *
- * The envelope is NOT stored on-chain; only the hash + metadata fields are.
- * Pair with `irys.ts` to keep the full blob permanent and referenced by
- * arweaveTxId.
- */
 export async function attestCitation(
   envelope: CitationEnvelope,
   opts: { arweaveTxId: string },
@@ -116,7 +88,6 @@ export async function attestCitation(
   const canonTier = envelope.canon_tier ?? "candidate";
   const publishedAt = BigInt(Math.floor(Date.now() / 1000));
 
-  // BucketCitation schema encoding, must match scripts/register-eas-schema.ts
   const encodedData = encodeAbiParameters(
     [
       { name: "artifactHash", type: "bytes32" },
@@ -142,7 +113,6 @@ export async function attestCitation(
     ],
   );
 
-  // Minimal EAS attest ABI
   const easAbi = [
     {
       name: "attest",
@@ -195,9 +165,6 @@ export async function attestCitation(
 
   const receipt = await publicClient.waitForTransactionReceipt({ hash: txHash });
 
-  // EAS emits Attested(address,address,bytes32,bytes32); the UID is in the log.
-  // For a lightweight read, we fall back to the first log's topics[1] which is
-  // the attestation UID in the canonical EAS event layout.
   const uid =
     (receipt.logs[0]?.topics?.[1] as `0x${string}` | undefined) ??
     ("0x" + "0".repeat(64));

@@ -1,15 +1,3 @@
-/**
- * Unit tests: the canon human sign-off tool's TypeScript side
- * (src/lib/canon-signoff.ts, the module behind
- * src/app/api/canon/signoff/route.ts) and its second allowlist gate
- * (src/lib/canon-signoff-approvers.ts). GOVERNANCE.md's "Canon sign-off"
- * section; CLI counterpart tested at tools/canon-pipeline/tests/
- * test_signoff.py, same fixture-tree approach (a temp bucket-canon/ tree
- * per test, no real repo file touched, no network).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-canon-signoff.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { mkdtempSync, writeFileSync, mkdirSync, readFileSync, rmSync } from "node:fs";
@@ -29,10 +17,6 @@ import {
 import { isCanonApprover, isCanonSignoffApprover } from "../src/lib/canon-signoff-approvers";
 import { isPendingSignoff } from "../src/lib/canon-primary";
 
-// ---------------------------------------------------------------------------
-// fixture tree
-// ---------------------------------------------------------------------------
-
 function rec(id: string, title: string, opts: { score?: number; doi?: string | null; signoff?: string | null } = {}) {
   const score = opts.score ?? 70;
   const doi = opts.doi === undefined ? "10.1/x" : opts.doi;
@@ -46,10 +30,6 @@ function rec(id: string, title: string, opts: { score?: number; doi?: string | n
     `  year: 2020`,
     `  venue:`,
     `    name: Nature`,
-    // A record with no DOI omits the key entirely (matching what
-    // canon-primary.ts's scanner treats as "" / falsy). A literal YAML
-    // "null" would parse as the four-character string "null" (truthy),
-    // so this builder never emits that.
     ...(doi ? [`  doi: '${doi}'`, `  canonical_url: 'https://doi.org/${doi}'`] : []),
     `  citation_count: 10`,
     `  concepts:`,
@@ -90,15 +70,6 @@ function makeTree() {
 function cleanup(base: string) {
   rmSync(base, { recursive: true, force: true });
 }
-
-// ---------------------------------------------------------------------------
-// Cross-language contract: signoff_core.py (the actual module the CLI
-// calls) writes a value; isPendingSignoff (src/lib/canon-primary.ts, the
-// web route's own read-side gate) reads it back. This runs the real Python
-// module via subprocess rather than re-typing its output format in TS, so
-// a future vocabulary change in one side shows up here instead of two
-// implementations quietly drifting apart.
-// ---------------------------------------------------------------------------
 
 const REPO_ROOT = join(__dirname, "..");
 const CANON_PIPELINE_DIR = join(REPO_ROOT, "tools", "canon-pipeline");
@@ -155,10 +126,6 @@ test("engine gate separation: hte.canon_writeback never references provenance_si
   assert.equal(src.includes("provenance_signoff"), false);
 });
 
-// ---------------------------------------------------------------------------
-// listPending / listRecords
-// ---------------------------------------------------------------------------
-
 test("listPending: finds every nested record, excludes already-approved", () => {
   const { base, root } = makeTree();
   try {
@@ -192,10 +159,6 @@ test("listPending: sorted by canon_score desc", () => {
     cleanup(base);
   }
 });
-
-// ---------------------------------------------------------------------------
-// findRecord resolution
-// ---------------------------------------------------------------------------
 
 test("findRecord: by bare id", () => {
   const { base, root } = makeTree();
@@ -235,10 +198,6 @@ test("findRecord: not found raises SignoffError", () => {
     cleanup(base);
   }
 });
-
-// ---------------------------------------------------------------------------
-// approve
-// ---------------------------------------------------------------------------
 
 test("approve offline: writes 'approved: <name> <date>' touching only that record's line", async () => {
   const { base, root, index } = makeTree();
@@ -308,10 +267,6 @@ test("approve without offline refuses a record with no DOI", async () => {
   }
 });
 
-// ---------------------------------------------------------------------------
-// reject
-// ---------------------------------------------------------------------------
-
 test("reject: writes 'rejected: <name> <date>: <reason>' and excludes the record from listPending", async () => {
   const { base, root, index } = makeTree();
   try {
@@ -357,10 +312,6 @@ test("reject then approve transition is allowed", async () => {
   }
 });
 
-// ---------------------------------------------------------------------------
-// statusOf
-// ---------------------------------------------------------------------------
-
 test("statusOf: vocabulary", () => {
   assert.equal(statusOf("pending: gianyrox"), "pending");
   assert.equal(statusOf("Pending: gianyrox"), "pending");
@@ -369,13 +320,6 @@ test("statusOf: vocabulary", () => {
   assert.equal(statusOf(null), "ungated");
   assert.equal(statusOf("garbage"), "unknown");
 });
-
-// ---------------------------------------------------------------------------
-// isCanonApprover / isCanonSignoffApprover, the route's 403 gate
-// (src/app/api/canon/signoff/route.ts's authorize()). Same env-allowlist
-// pattern and test style as scripts/test-research-os-teacher-class.ts's
-// isReviewerEmail coverage.
-// ---------------------------------------------------------------------------
 
 test("isCanonApprover: fails closed when CANON_SIGNOFF_APPROVERS is unset", () => {
   const prev = process.env.CANON_SIGNOFF_APPROVERS;
@@ -404,10 +348,6 @@ test("isCanonSignoffApprover: 403 case -- a Research OS reviewer who is not a ca
   const prev = process.env.CANON_SIGNOFF_APPROVERS;
   process.env.CANON_SIGNOFF_APPROVERS = "founder@bucket.foundation";
   try {
-    // isReviewer=true (passed the FIRST gate, RESEARCH_OS_REVIEWER_EMAILS)
-    // but this email is not on the SECOND, narrower allowlist: must still
-    // be refused. This is the exact scenario the route's two-allowlist
-    // stack exists for.
     assert.equal(isCanonSignoffApprover(true, "teacher@school.example"), false);
     assert.equal(isCanonSignoffApprover(true, "founder@bucket.foundation"), true);
   } finally {

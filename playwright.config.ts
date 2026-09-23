@@ -1,8 +1,5 @@
 import { defineConfig } from "@playwright/test";
 
-// End-to-end flows over the local stack: the dev server on :3100 and the
-// local Supabase (npm run db:local) with its mail catcher on :54324.
-// Run: npm run e2e. CI skips these unless E2E=1 with the stack available.
 export default defineConfig({
   testDir: "tests/e2e",
   timeout: 120_000,

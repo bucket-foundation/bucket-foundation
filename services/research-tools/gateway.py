@@ -1,48 +1,4 @@
 #!/usr/bin/env python3
-"""
-research-tools gateway, UNIFIED, all 7 tools
-=============================================
-
-Implements the v1 research-tools job contract (see
-bucket-foundation/docs/research-tools/04-implementation-architecture.md §2) for
-ALL seven biophysics tools, so the full submit -> poll -> result -> publish path
-works uniformly across the whole suite from one process.
-
-This is the full-gateway successor to the LabBrain first slice
-(`labbrain_gateway.py`, kept for reference). It ports the EXACT validation +
-subprocess logic from the existing all-tools wrapper
-(`biophysics-phd-review/tools_api/app.py`) into the uniform job lifecycle every
-tool shares:
-
- POST /v1/<tool>/submit -> { job_id, status, mode, price, [result] }
- GET /v1/jobs/<job_id> -> status envelope
- GET /v1/jobs/<job_id>/result -> { render: "json"|"html", output... }
- GET /health -> { ok, tools, version }
-
-Run (matches the Polingual API pattern, systemd --user on the box, nginx + TLS
-in front at research-tools.agfarms.dev):
-
- uvicorn gateway:app --host 127.0.0.1 --port 8732
-
-Tool classes
-------------
-CPU tools run INLINE (the submit handler runs them in a worker thread and, if
-they finish within the inline budget, attaches the result to the submit
-response so the UI can skip polling):
-
- labbrain, proteinscout, stabilitydesigner, screenserver, patchseqml
-
-GPU / long tools run in DEMO / SYNTHETIC mode (the Hetzner CPX42 has no GPU; the
-async contract is built so flipping on a real GPU worker is a plain deploy with
-no redesign). They go through the same job table but are flagged mode="async" and
-demo=True:
-
- trajmine (CPU demo-md trajectory; real MD needs a GPU/long worker)
- cryotriage (synthetic micrographs; real cryo-EM triage needs a GPU worker)
-
-TODO(deploy): everything below marked TODO(deploy) is a backend/infra seam that
-lands when the gateway is stood up on Hetzner. None of it blocks the contract.
-"""
 from __future__ import annotations
 
 import base64
@@ -64,98 +20,34 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-# --- paths / config (mirrors tools_api/app.py) -----------------------------
-# This file lives at bucket-foundation/services/research-tools/; the tools live
-# in the sibling biophysics-phd-review checkout. Override with TOOLS_REPO_DIR.
 BASE = Path(
     os.environ.get(
         "TOOLS_REPO_DIR",
         str(Path.home() / "agfarms" / "biophysics-phd-review"),
     )
 ).resolve()
-# ScreenServer ships outside the review repo (matches tools_api/app.py).
-# TODO(deploy): vendor screenserver into the gateway image / a known path.
 SCREENSERVER = Path(os.environ.get("SCREENSERVER_DIR", str(Path.home() / "screenserver")))
 PY = sys.executable
 AA = set("ACDEFGHIKLMNPQRSTVWY")
-# ROCm hang guard: tools embed/run on CPU by default (see labbrain/README.md).
 ENV = {**os.environ, "HSA_OVERRIDE_GFX_VERSION": "11.0.0"}
 
-# Inline-vs-async threshold. A fast tool completes well under this; if a job is
-# still running after the budget we report mode="async" and the client polls.
 INLINE_BUDGET_S = float(os.environ.get("TOOLS_INLINE_BUDGET_S", "30"))
 
-# Tool registry: the server-side allow-list. The Next proxy validates <tool>
-# against this same set before forwarding.
 CPU_TOOLS = ["labbrain", "proteinscout", "stabilitydesigner", "screenserver", "patchseqml"]
 DEMO_TOOLS = ["trajmine", "cryotriage"]
-# T1 RAG/agent/data tools, REAL logic over live OpenAlex + the research-atlas
-# grant corpus (services/research-tools/tools_rag.py). CPU/inline, no GPU, no
-# subprocess. They render "json" typed views.
 RAG_TOOLS = ["paperradar", "grantdraft", "methodsmatcher", "reviewguard"]
-# DNA/RNA cluster (services/research-tools/tools_dnarna.py), REAL algorithms
-# over ViennaRNA + numpy. CPU/inline, no subprocess, render "json".
 DNARNA_TOOLS = ["rnastructure", "grnaoptimizer", "rnafmembeds"]
-# Neuroscience cluster (services/research-tools/tools_neuro.py), REAL scipy
-# numerical fits + spike detection. CPU/inline, render "json".
 NEURO_TOOLS = ["hhfit", "spikefeatures"]
-# QuantumBioRAG lives in tools_rag.py (claim-strength RAG over live OpenAlex);
-# it shares the RAG backend + registry, so it is added to RAG_TOOLS above.
 RAG_TOOLS.append("quantumbiorag")
-# ProtocolGPT (services/research-tools/tools_protocol.py), REAL rule/template
-# extraction over a methods knowledge base. CPU/inline, no network, render "json".
 PROTOCOL_TOOLS = ["protocolgpt"]
-# ToxinChannelFinder (services/research-tools/tools_toxin.py), REAL curated
-# venom-peptide pharmacology KB + live OpenAlex co-occurrence. CPU/inline.
 TOXIN_TOOLS = ["toxinchannelfinder"]
-# CitationGraph (services/research-tools/tools_citation.py), REAL OpenAlex
-# citation-neighborhood graph + degree centrality. CPU/inline.
 CITATION_TOOLS = ["citationgraph"]
-# Imaging / mechanobiology cluster (services/research-tools/tools_imaging.py), 
-# REAL scipy + scikit-image signal/image processing. CPU/inline, no GPU.
-# calciumtraceml, ΔF/F + transient detection (signal processing)
-# cellsegtrack, cell segmentation (cellpose if installed, else watershed)
-# afmcurveml, AFM force-curve Hertz/Sneddon modulus fit
-# tractionforceml, block-matching PIV displacement field (classical)
 IMAGING_TOOLS = ["calciumtraceml", "cellsegtrack", "afmcurveml", "tractionforceml"]
-# FigureMiner (services/research-tools/tools_figure.py), REAL text-layer caption
-# + statistics + measurement mining (PDF via PyMuPDF/pypdf, or raw text). The
-# pixel-level plot-digitization stage is a documented GPU/vision extension.
 FIGURE_TOOLS = ["figureminer"]
-# Genomics / sequence cluster (services/research-tools/tools_genomics.py), REAL
-# interpretable sequence + signal algorithms. CPU/inline, no GPU.
-# chromatinaccess, accessibility/regulatory potential from DNA (feature model)
-# aggregatepredict, amyloid/aggregation propensity from a protein sequence
-# channeldwell, single-channel idealization + dwell-time analysis
 GENOMICS_TOOLS = ["chromatinaccess", "aggregatepredict", "channeldwell"]
-# All-field HORIZONTAL tools (services/research-tools/tools_fair.py +
-# tools_repli.py), serve EVERY discipline (the 1.17M researchers) across all
-# fields. FAIR data management + statistics reproducibility are funder-mandated
-# across NIH/NSF/Horizon/Wellcome/Gates. REAL deterministic rubric + scipy math,
-# CPU/inline, no network, no GPU, render "json".
-# faircheck, FAIR (Findable/Accessible/Interoperable/Reusable) rubric
-# replicheck, statcheck p-value recomputation + GRIM test + reporting flags
 HORIZONTAL_TOOLS = ["faircheck", "replicheck"]
-# Per-field NON-bio cluster (services/research-tools/tools_{causal,materials,power,
-# geo,mlrepro}.py), REAL algorithms for the biggest CPU-feasible non-bio fields
-# named in research-atlas/docs/USERS_NEEDS.md. CPU/inline, no GPU, render "json".
-# causaldesigner, econ-social: DAG + backdoor/adjustment set (networkx do-calc)
-# materialsfeaturizer, materials: Magpie-style composition descriptors (element KB)
-# powerplan, universal/stats: power & sample-size (scipy noncentral dists)
-# geosummary, earth-climate: trend (Mann-Kendall/Theil-Sen) + seasonality
-# mlreprocard, cs-ml: ML reproducibility rubric + model card (deterministic)
 FIELD_TOOLS = ["causaldesigner", "materialsfeaturizer", "powerplan", "geosummary", "mlreprocard"]
-# Per-field CLASSICAL-algorithm cluster (services/research-tools/tools_{seqalign,
-# stoich,units,survival,forecast}.py), REAL exact algorithms for the biggest
-# CPU-feasible fields/tasks in research-atlas/docs/USERS_NEEDS.md not yet covered.
-# CPU/inline, no GPU, no subprocess, render "json".
-# seqalign, bio/genomics: Needleman-Wunsch + Smith-Waterman (BLOSUM62)
-# stoichbalance, chemistry: equation balancing (null-space) + limiting reagent
-# unitdimcheck, physics/universal: SI dimensional analysis + unit conversion
-# survivalfit, biomed/stats: Kaplan-Meier + median + log-rank test
-# timeseriesforecast, econ/earth/universal: Holt-Winters decompose + forecast + backtest
 CLASSIC_TOOLS = ["seqalign", "stoichbalance", "unitdimcheck", "survivalfit", "timeseriesforecast"]
-# REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
 PURE_TOOLS = (
     RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS
     + CITATION_TOOLS + IMAGING_TOOLS + FIGURE_TOOLS + GENOMICS_TOOLS
@@ -163,8 +55,6 @@ PURE_TOOLS = (
 )
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
-# price block travels from day one (zeroed). Metering seam lives in the Next
-# proxy; the gateway itself stays payment-agnostic. See doc §6.
 PRICE: dict[str, dict[str, Any]] = {
     "labbrain": {"tier": "ask", "usd": 0.0, "metered": False},
     "proteinscout": {"tier": "analyze", "usd": 0.0, "metered": False},
@@ -208,7 +98,6 @@ PRICE: dict[str, dict[str, Any]] = {
     "timeseriesforecast": {"tier": "forecast", "usd": 0.0, "metered": False},
 }
 
-# import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
 try:
     import tools_rag  # type: ignore
     _RAG_OK = True
@@ -218,7 +107,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _RAG_OK = False
     _RAG_IMPORT_ERR = str(_e)
 
-# import the REAL DNA/RNA backend (ViennaRNA + numpy).
 try:
     import tools_dnarna  # type: ignore
     _DNARNA_OK = True
@@ -228,7 +116,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _DNARNA_OK = False
     _DNARNA_IMPORT_ERR = str(_e)
 
-# import the REAL neuroscience backend (scipy fits + spike detection).
 try:
     import tools_neuro  # type: ignore
     _NEURO_OK = True
@@ -238,7 +125,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _NEURO_OK = False
     _NEURO_IMPORT_ERR = str(_e)
 
-# import the REAL ProtocolGPT backend (rule/template extraction, no network).
 try:
     import tools_protocol  # type: ignore
     _PROTOCOL_OK = True
@@ -248,7 +134,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _PROTOCOL_OK = False
     _PROTOCOL_IMPORT_ERR = str(_e)
 
-# import the REAL ToxinChannelFinder backend (curated KB + live OpenAlex).
 try:
     import tools_toxin  # type: ignore
     _TOXIN_OK = True
@@ -258,7 +143,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _TOXIN_OK = False
     _TOXIN_IMPORT_ERR = str(_e)
 
-# import the REAL CitationGraph backend (live OpenAlex citation graph).
 try:
     import tools_citation  # type: ignore
     _CITATION_OK = True
@@ -268,7 +152,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _CITATION_OK = False
     _CITATION_IMPORT_ERR = str(_e)
 
-# import the REAL imaging/mechanobiology backend (scipy + scikit-image).
 try:
     import tools_imaging  # type: ignore
     _IMAGING_OK = True
@@ -278,7 +161,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _IMAGING_OK = False
     _IMAGING_IMPORT_ERR = str(_e)
 
-# import the REAL FigureMiner backend (PDF/text caption + statistics mining).
 try:
     import tools_figure  # type: ignore
     _FIGURE_OK = True
@@ -288,7 +170,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _FIGURE_OK = False
     _FIGURE_IMPORT_ERR = str(_e)
 
-# import the REAL genomics/sequence backend (interpretable sequence algorithms).
 try:
     import tools_genomics  # type: ignore
     _GENOMICS_OK = True
@@ -298,7 +179,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _GENOMICS_OK = False
     _GENOMICS_IMPORT_ERR = str(_e)
 
-# import the REAL FAIRCheck backend (Wilkinson-2016 FAIR rubric, no network).
 try:
     import tools_fair  # type: ignore
     _FAIR_OK = True
@@ -308,7 +188,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _FAIR_OK = False
     _FAIR_IMPORT_ERR = str(_e)
 
-# import the REAL RepliCheck backend (statcheck + GRIM via scipy.stats).
 try:
     import tools_repli  # type: ignore
     _REPLI_OK = True
@@ -318,7 +197,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _REPLI_OK = False
     _REPLI_IMPORT_ERR = str(_e)
 
-# import the REAL per-field NON-bio backends (one module per field cluster).
 try:
     import tools_causal  # type: ignore
     _CAUSAL_OK = True
@@ -364,7 +242,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _MLREPRO_OK = False
     _MLREPRO_IMPORT_ERR = str(_e)
 
-# import the REAL per-field CLASSICAL-algorithm backends (one module each).
 try:
     import tools_seqalign  # type: ignore
     _SEQALIGN_OK = True
@@ -411,10 +288,6 @@ except Exception as _e:  # pragma: no cover - import guard
     _FORECAST_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
-# CORS allow-list. The intended caller is the same-origin Bucket Next proxy
-# (server->server, no browser CORS at all), so this is defense-in-depth for any
-# direct browser hit. Defaults to bucket.foundation + localhost dev; override
-# with TOOLS_CORS_ORIGINS (comma-separated) without a code change.
 _DEFAULT_CORS = [
     "https://bucket.foundation",
     "https://www.bucket.foundation",
@@ -433,12 +306,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
-
-# --- shared subprocess helpers (ported verbatim from tools_api/app.py) -----
 def _run(cwd: Any, args: list[str], timeout: int = 300) -> subprocess.CompletedProcess:
     cwd = Path(cwd)
     if not cwd.is_absolute():
@@ -447,11 +317,9 @@ def _run(cwd: Any, args: list[str], timeout: int = 300) -> subprocess.CompletedP
         [PY, *args], cwd=str(cwd), capture_output=True, text=True, timeout=timeout, env=ENV
     )
 
-
 def _jtail(s: str) -> Optional[dict]:
     m = re.search(r"\{.*\}", s, re.S)
     return json.loads(m.group()) if m else None
-
 
 def _seq(s: Optional[str]) -> str:
     s = (s or "").strip()
@@ -459,9 +327,7 @@ def _seq(s: Optional[str]) -> str:
         s = "".join(s.splitlines()[1:])
     return re.sub(r"[^A-Za-z]", "", s).upper()
 
-
 def _inline_assets(html: str, base_dir: Path) -> str:
-    """Make a report self-contained: base64-embed local images, inline local css."""
 
     def datauri(p: Path) -> str:
         mt = mimetypes.guess_type(str(p))[0] or "application/octet-stream"
@@ -492,7 +358,6 @@ def _inline_assets(html: str, base_dir: Path) -> str:
     html = re.sub(r'<link[^>]*href="([^"]+\.css)"[^>]*>', css, html)
     return html
 
-
 def _find_report(out: Path) -> Optional[Path]:
     for name in ("report.html", "index.html"):
         if (out / name).exists():
@@ -500,8 +365,6 @@ def _find_report(out: Path) -> Optional[Path]:
     hs = list(out.glob("*.html"))
     return hs[0] if hs else None
 
-
-# --- job table (in-memory; TODO(deploy) Redis/RQ + Supabase mirror) --------
 class Job:
     __slots__ = (
         "id", "tool", "status", "submitted_at", "started_at", "finished_at",
@@ -511,20 +374,18 @@ class Job:
     def __init__(self, job_id: str, tool: str, demo: bool = False) -> None:
         self.id = job_id
         self.tool = tool
-        self.status = "queued"  # queued | running | succeeded | failed
+        self.status = "queued"
         self.submitted_at = _now()
         self.started_at: Optional[str] = None
         self.finished_at: Optional[str] = None
         self.log_tail: str = ""
         self.error: Optional[dict] = None
         self.result: Optional[dict] = None
-        self.mode = "inline"  # inline | async
+        self.mode = "inline"
         self.demo = demo
-
 
 JOBS: dict[str, Job] = {}
 _LOCK = threading.Lock()
-
 
 def _new_job(tool: str, demo: bool = False) -> Job:
     job_id = "j_" + uuid.uuid4().hex[:20]
@@ -533,7 +394,6 @@ def _new_job(tool: str, demo: bool = False) -> Job:
         JOBS[job_id] = job
     return job
 
-
 def _get_job(job_id: str) -> Job:
     with _LOCK:
         job = JOBS.get(job_id)
@@ -541,9 +401,7 @@ def _get_job(job_id: str) -> Job:
         raise HTTPException(404, "unknown job_id")
     return job
 
-
 def _ok(job: Job, render: str, output: Any, artifacts: Optional[list] = None) -> None:
-    """Mark a job succeeded with a contract-shaped result envelope."""
     job.result = {
         "job_id": job.id,
         "tool": job.tool,
@@ -553,8 +411,6 @@ def _ok(job: Job, render: str, output: Any, artifacts: Optional[list] = None) ->
         "provenance": [
             {"action": "run", "tool": job.tool, "at": _now(), "by": "tools-gateway/v1"}
         ],
-        # Tool output is a DERIVED analysis (downstream application) rather than a
-        # canon axiom, publishable, but tagged derived. See doc §5.
         "canon_candidate": True,
         "canon_tier": "derived",
         "demo": job.demo,
@@ -562,14 +418,11 @@ def _ok(job: Job, render: str, output: Any, artifacts: Optional[list] = None) ->
     job.status = "succeeded"
     job.finished_at = _now()
 
-
 def _fail(job: Job, code: str, message: str) -> None:
     job.status = "failed"
     job.error = {"code": code, "message": message}
     job.finished_at = _now()
 
-
-# --- per-tool runners (each ports the matching tools_api/app.py handler) ----
 def _run_labbrain(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
     author = (payload.get("author") or "").strip()
@@ -597,16 +450,15 @@ def _run_labbrain(job: Job, payload: dict) -> None:
         _ok(job, "json", {"author": author, "question": question, "answer": a.stdout.strip()})
     except subprocess.TimeoutExpired:
         _fail(job, "timeout", "labbrain run exceeded its time budget")
-    except Exception as e:  # never leave a job stuck running
+    except Exception as e:
         _fail(job, "internal", str(e)[:200])
-
 
 def _run_proteinscout(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
     inp = (payload.get("input") or "").strip()
     try:
         if re.fullmatch(r"[A-Za-z]\d[A-Za-z0-9]+", inp) and len(inp) <= 12:
-            arg = f"uniprot:{inp}"  # looks like an accession
+            arg = f"uniprot:{inp}"
         else:
             arg = _seq(inp)
             if len(arg) < 5:
@@ -618,7 +470,6 @@ def _run_proteinscout(job: Job, payload: dict) -> None:
         _fail(job, "timeout", "proteinscout run exceeded its time budget")
     except Exception as e:
         _fail(job, "internal", str(e)[:200])
-
 
 def _run_stabilitydesigner(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
@@ -648,7 +499,6 @@ def _run_stabilitydesigner(job: Job, payload: dict) -> None:
             rows.sort(key=lambda x: x["ddG"])
             _ok(job, "json", {"mode": "scan", "wt": wt, "position": pos, "results": rows})
             return
-        # default: single-mutation predict
         mut = (payload.get("mutation") or "").strip().upper()
         if not re.fullmatch(r"[A-Z]\d+[A-Z]", mut):
             return _fail(job, "bad_request", "mutation must look like A23V")
@@ -670,7 +520,6 @@ def _run_stabilitydesigner(job: Job, payload: dict) -> None:
         _fail(job, "timeout", "stabilitydesigner run exceeded its time budget")
     except Exception as e:
         _fail(job, "internal", str(e)[:200])
-
 
 def _run_screenserver(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
@@ -697,9 +546,7 @@ def _run_screenserver(job: Job, payload: dict) -> None:
     finally:
         shutil.rmtree(out, ignore_errors=True)
 
-
 def _run_patchseqml(job: Job, payload: dict) -> None:
-    """payload: { mode: "sim" | "file", file_path?: <abs path to staged upload> }."""
     job.status, job.started_at = "running", _now()
     out = Path(tempfile.mkdtemp(prefix="pc_"))
     try:
@@ -717,12 +564,6 @@ def _run_patchseqml(job: Job, payload: dict) -> None:
     finally:
         shutil.rmtree(out, ignore_errors=True)
 
-
-# --- demo-mode runners for GPU / long tools --------------------------------
-# TODO(deploy): real GPU worker plane. trajmine real MD and cryotriage real
-# cryo-EM triage require a GPU node + a Redis/RQ queue (doc §4). Until a GPU
-# plan lands these run the synthetic/demo path tools_api/app.py already ships,
-# flagged demo=True so the UI labels them.
 def _run_trajmine(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
     out = Path(tempfile.mkdtemp(prefix="tm_"))
@@ -742,9 +583,7 @@ def _run_trajmine(job: Job, payload: dict) -> None:
     finally:
         shutil.rmtree(out, ignore_errors=True)
 
-
 def _run_cryotriage(job: Job, payload: dict) -> None:
-    """payload: { file_path?: <abs path to staged micrograph> } else synthetic."""
     job.status, job.started_at = "running", _now()
     work = Path(tempfile.mkdtemp(prefix="cy_"))
     mics = work / "mics"
@@ -769,13 +608,7 @@ def _run_cryotriage(job: Job, payload: dict) -> None:
     finally:
         shutil.rmtree(work, ignore_errors=True)
 
-
 def _tool_report(job: Job, cwd: Any, args: list[str], timeout: int) -> Optional[str]:
-    """Run a tool that writes an HTML report into a temp --out dir; return inlined HTML.
-
- Mirrors tools_api/app.py:tool_report but fails the job (returns None) instead
- of raising, so the job lifecycle stays clean.
-    """
     out = Path(tempfile.mkdtemp(prefix="rt_"))
     try:
         r = _run(cwd, args + ["--out", str(out)], timeout=timeout)
@@ -792,15 +625,6 @@ def _tool_report(job: Job, cwd: Any, args: list[str], timeout: int) -> Optional[
     finally:
         shutil.rmtree(out, ignore_errors=True)
 
-
-# --- T1 RAG/agent/data runners (REAL logic; no subprocess, no GPU) ----------
-# Each wraps a pure-ish function from tools_rag.py (live OpenAlex + the
-# research-atlas grant corpus, disk-cached) in the uniform job lifecycle. They
-# emit render="json" typed views, exactly like labbrain/stabilitydesigner.
-# Each pure-logic tool shares ONE runner shape: look up run_<tool>(payload) in
-# its module's registry, call it, wrap the returned dict in the v1 envelope.
-# `ok`/`err`/`registry_fn` are bound per backend so DNA/RNA + neuro reuse the
-# exact RAG pattern without copy-paste.
 def _make_pure_runner(
     tool: str,
     backend_ok: bool,
@@ -820,21 +644,17 @@ def _make_pure_runner(
             out = fn(payload)
             if isinstance(out, dict) and out.get("error"):
                 return _fail(job, "bad_request", out["error"])
-            # `degraded` (e.g. ViennaRNA missing, network down) is a successful
-            # but partial result, the UI shows a banner, never crashes.
             _ok(job, "json", out)
-        except Exception as e:  # never leave a job stuck running
+        except Exception as e:
             _fail(job, "internal", str(e)[:200])
 
     return runner
-
 
 def _make_rag_runner(tool: str) -> Callable[[Job, dict], None]:
     return _make_pure_runner(
         tool, _RAG_OK, _RAG_IMPORT_ERR,
         tools_rag.RAG_RUNNERS if tools_rag is not None else None, "tools_rag",
     )
-
 
 RUNNERS: dict[str, Callable[[Job, dict], None]] = {
     "labbrain": _run_labbrain,
@@ -959,10 +779,7 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
     ),
 }
 
-
-# --- the generic submit / status / result lifecycle ------------------------
 def _dispatch(tool: str, payload: dict) -> dict:
-    """Shared submit logic: spawn the runner, return the contract submit envelope."""
     if tool not in RUNNERS:
         raise HTTPException(404, f"unknown tool: {tool}")
     demo = tool in DEMO_TOOLS
@@ -983,72 +800,55 @@ def _dispatch(tool: str, payload: dict) -> dict:
     }
     job.mode = resp["mode"]
     if not t.is_alive() and job.status == "succeeded":
-        resp["result"] = job.result  # fast path: UI can skip polling
+        resp["result"] = job.result
     return resp
 
-
 def _stage_upload(file: UploadFile) -> Optional[str]:
-    """Persist an uploaded file to a temp path the runner can read; return path."""
     if file is None:
         return None
     d = Path(tempfile.mkdtemp(prefix="up_"))
     p = d / (file.filename or "upload.bin")
     p.write_bytes(file.file.read())
-    # NOTE: the per-job tempdir cleanup leaves this staging dir; in v1 it is
-    # small and short-lived. TODO(deploy): tie staging-dir lifetime to job TTL.
     return str(p)
 
-
-# --- request models (JSON submit bodies) -----------------------------------
 class LabBrainSubmit(BaseModel):
     author: str
     question: str
 
-
 class ProteinScoutSubmit(BaseModel):
     input: str
 
-
 class StabilitySubmit(BaseModel):
     sequence: str
-    mode: str = "predict"          # "predict" | "scan"
-    mutation: Optional[str] = None  # required for predict
-    position: Optional[int] = None  # required for scan
-
+    mode: str = "predict"
+    mutation: Optional[str] = None
+    position: Optional[int] = None
 
 class ScreenServerSubmit(BaseModel):
     smiles: str
 
-
 class TrajMineSubmit(BaseModel):
-    demo: str = "md"  # "md" | "static"
-
+    demo: str = "md"
 
 class PaperRadarSubmit(BaseModel):
     interests: str
     since_days: int = 540
     limit: int = 12
 
-
 class GrantDraftSubmit(BaseModel):
     topic: str
     limit: int = 8
 
-
 class MethodsMatcherSubmit(BaseModel):
     question: str
-
 
 class ReviewGuardSubmit(BaseModel):
     claim: str
     papers: Optional[list[str]] = None
     limit: int = 12
 
-
-# --- DNA/RNA cluster submit bodies ---
 class RNAStructureSubmit(BaseModel):
     sequence: str
-
 
 class GRNAOptimizerSubmit(BaseModel):
     sequence: str
@@ -1056,136 +856,98 @@ class GRNAOptimizerSubmit(BaseModel):
     guide_len: int = 20
     limit: int = 20
 
-
 class RNAFMEmbedsSubmit(BaseModel):
     sequence: str
     k: int = 3
 
-
-# --- Neuroscience cluster submit bodies ---
 class HHFitSubmit(BaseModel):
-    # trace: JSON list of mV samples, or the string "demo" for a synthetic trace.
     trace: Any = "demo"
     current_pa: float = 100.0
     dt_ms: float = 0.1
     stim_onset_ms: Optional[float] = None
 
-
 class SpikeFeaturesSubmit(BaseModel):
-    # trace: JSON list of samples, or the string "demo" for a synthetic train.
     trace: Any = "demo"
     fs_hz: float = 30000.0
     thresh_mad: float = 5.0
 
-
-# --- gap-research cluster submit bodies (ProtocolGPT / QuantumBioRAG /
-# ToxinChannelFinder / CitationGraph) ---
 class ProtocolGPTSubmit(BaseModel):
     methods: str
     title: Optional[str] = None
-
 
 class QuantumBioRAGSubmit(BaseModel):
     claim: str
     limit: int = 15
 
-
 class ToxinChannelSubmit(BaseModel):
     toxin: str
     limit: int = 10
-
 
 class CitationGraphSubmit(BaseModel):
     paper: str
     limit: int = 15
 
-
-# --- imaging / mechanobiology cluster submit bodies ---
 class CalciumTraceSubmit(BaseModel):
-    # trace: JSON list of fluorescence samples, or "demo".
     trace: Any = "demo"
     fs_hz: float = 30.0
     baseline_window_s: float = 3.0
     thresh_mad: float = 3.0
 
-
 class CellSegSubmit(BaseModel):
-    # image: 2-D list-of-rows, or "demo".
     image: Any = "demo"
     min_distance: int = 5
     sigma: float = 1.0
 
-
 class AFMCurveSubmit(BaseModel):
-    # z + force: JSON lists (same length); or z="demo".
     z: Any = "demo"
     force: Optional[list[float]] = None
     radius_nm: float = 1000.0
-    geometry: str = "sphere"  # "sphere" | "cone"
-
+    geometry: str = "sphere"
 
 class TractionForceSubmit(BaseModel):
-    # reference + deformed: 2-D lists (same shape); or reference="demo".
     reference: Any = "demo"
     deformed: Optional[list[list[float]]] = None
     window: int = 16
     step: int = 8
     search: int = 8
 
-
-# --- FigureMiner submit body ---
 class FigureMinerSubmit(BaseModel):
-    # text: paper text, or "demo".
     text: str = "demo"
 
-
-# --- genomics / sequence cluster submit bodies ---
 class ChromatinAccessSubmit(BaseModel):
     sequence: str
-
 
 class AggregatePredictSubmit(BaseModel):
     sequence: str
 
-
 class ChannelDwellSubmit(BaseModel):
-    # trace: JSON list of pA samples, or "demo".
     trace: Any = "demo"
     fs_hz: float = 10000.0
 
-
-# --- all-field horizontal cluster submit bodies (FAIRCheck / RepliCheck) ---
 class FAIRCheckSubmit(BaseModel):
-    # record: a dict of metadata fields, a JSON string of the same, or "demo".
     record: Any = "demo"
 
-
 class RepliCheckSubmit(BaseModel):
-    # text: a Results section (string), or "demo".
     text: str = "demo"
     alpha: float = 0.05
-    items: int = 1  # integer items averaged per mean (GRIM scale granularity)
+    items: int = 1
 
-
-# --- per-field NON-bio cluster submit bodies ---
 class CausalDesignerSubmit(BaseModel):
     treatment: str = "demo"
     outcome: Optional[str] = None
-    confounders: Any = None           # list[str] or comma string
-    edges: Any = None                 # list[[from,to]] or "A->B, C->D" string
+    confounders: Any = None
+    edges: Any = None
     design: Optional[str] = None
     instrument: Optional[str] = None
     demo: bool = False
 
-
 class MaterialsFeaturizerSubmit(BaseModel):
-    formula: str = "demo"             # e.g. "Fe2O3", or "demo"
+    formula: str = "demo"
     demo: bool = False
 
-
 class PowerPlanSubmit(BaseModel):
-    test: str = "two_sample_t"        # two_sample_t|one_sample_t|anova|two_proportion|correlation
-    solve_for: str = "n"              # n|power|effect_size|alpha
+    test: str = "two_sample_t"
+    solve_for: str = "n"
     effect_size: Optional[float] = None
     alpha: float = 0.05
     power: float = 0.80
@@ -1197,44 +959,36 @@ class PowerPlanSubmit(BaseModel):
     ratio: float = 1.0
     demo: bool = False
 
-
 class GeoSummarySubmit(BaseModel):
-    values: Any = "demo"              # list[float] (NaN/None allowed) or "demo"
+    values: Any = "demo"
     times: Optional[list] = None
     period: Optional[int] = None
     lat: Optional[list[float]] = None
     lon: Optional[list[float]] = None
     demo: bool = False
 
-
 class MLReproCardSubmit(BaseModel):
-    # record: a dict of experiment fields, a JSON string, or "demo".
     record: Any = "demo"
     demo: bool = False
 
-
-# --- per-field CLASSICAL-algorithm cluster submit bodies -------------------
 class SeqAlignSubmit(BaseModel):
     seq_a: str = "demo"
     seq_b: Optional[str] = None
-    mode: str = "global"            # "global" | "local"
-    matrix: str = "auto"            # "blosum62" | "identity" | "auto"
+    mode: str = "global"
+    matrix: str = "auto"
     gap: Optional[int] = None
     match: int = 1
     mismatch: int = -1
 
-
 class StoichBalanceSubmit(BaseModel):
-    equation: str = "demo"          # e.g. "H2 + O2 -> H2O", or "demo"
-    amounts: Optional[dict] = None  # {species: moles}
-    amounts_g: Optional[dict] = None  # {species: grams}
+    equation: str = "demo"
+    amounts: Optional[dict] = None
+    amounts_g: Optional[dict] = None
     demo: bool = False
 
-
 class UnitDimCheckSubmit(BaseModel):
-    # `from` is a Python keyword; accept it from JSON via a field alias.
     model_config = {"populate_by_name": True}
-    op: str = "demo"                # "convert" | "check" | "parse" | "demo"
+    op: str = "demo"
     value: Optional[float] = None
     from_unit: Optional[str] = Field(default=None, alias="from")
     to: Optional[str] = None
@@ -1242,23 +996,19 @@ class UnitDimCheckSubmit(BaseModel):
     unit: Optional[str] = None
     demo: bool = False
 
-
 class SurvivalFitSubmit(BaseModel):
-    durations: Any = "demo"         # list[float], or "demo"
-    events: Optional[list] = None   # 0/1 list (default all events)
-    groups: Optional[list] = None   # optional group labels (2 → log-rank)
+    durations: Any = "demo"
+    events: Optional[list] = None
+    groups: Optional[list] = None
     demo: bool = False
-
 
 class TimeSeriesForecastSubmit(BaseModel):
-    values: Any = "demo"            # list[float], or "demo"
-    period: int = 0                 # seasonal period (0 = none)
+    values: Any = "demo"
+    period: int = 0
     horizon: int = 6
-    test: Optional[int] = None      # backtest holdout size
+    test: Optional[int] = None
     demo: bool = False
 
-
-# --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
     return {
@@ -1302,7 +1052,6 @@ def health() -> dict:
         "version": "v1",
     }
 
-
 @app.post("/v1/labbrain/submit")
 def submit_labbrain(r: LabBrainSubmit) -> dict:
     if len((r.author or "").strip()) < 2:
@@ -1311,13 +1060,11 @@ def submit_labbrain(r: LabBrainSubmit) -> dict:
         raise HTTPException(400, "question too short")
     return _dispatch("labbrain", {"author": r.author.strip(), "question": r.question.strip()})
 
-
 @app.post("/v1/proteinscout/submit")
 def submit_proteinscout(r: ProteinScoutSubmit) -> dict:
     if not (r.input or "").strip():
         raise HTTPException(400, "input required (sequence or UniProt accession)")
     return _dispatch("proteinscout", {"input": r.input.strip()})
-
 
 @app.post("/v1/stabilitydesigner/submit")
 def submit_stabilitydesigner(r: StabilitySubmit) -> dict:
@@ -1332,36 +1079,26 @@ def submit_stabilitydesigner(r: StabilitySubmit) -> dict:
         "mutation": r.mutation, "position": r.position,
     })
 
-
 @app.post("/v1/screenserver/submit")
 def submit_screenserver(r: ScreenServerSubmit) -> dict:
     if not (r.smiles or "").strip():
         raise HTTPException(400, "enter at least one SMILES")
     return _dispatch("screenserver", {"smiles": r.smiles})
 
-
 @app.post("/v1/patchseqml/submit")
 async def submit_patchseqml(file: UploadFile = File(None), mode: str = Form("sim")) -> dict:
-    # multipart: optional ABF/NWB upload; default Hodgkin-Huxley simulation.
     file_path = _stage_upload(file) if file is not None else None
     return _dispatch("patchseqml", {"mode": mode, "file_path": file_path})
 
-
 @app.post("/v1/trajmine/submit")
 def submit_trajmine(r: TrajMineSubmit) -> dict:
-    # DEMO ONLY (no GPU). TODO(deploy): real MD via GPU worker + uploaded traj.
     return _dispatch("trajmine", {"demo": r.demo})
-
 
 @app.post("/v1/cryotriage/submit")
 async def submit_cryotriage(file: UploadFile = File(None)) -> dict:
-    # DEMO/synthetic by default (no GPU). An uploaded micrograph still runs the
-    # CPU triage path. TODO(deploy): real GPU cryo-EM triage worker.
     file_path = _stage_upload(file) if file is not None else None
     return _dispatch("cryotriage", {"file_path": file_path})
 
-
-# --- T1 RAG/agent/data submit endpoints ------------------------------------
 @app.post("/v1/paperradar/submit")
 def submit_paperradar(r: PaperRadarSubmit) -> dict:
     if len((r.interests or "").strip()) < 3:
@@ -1370,20 +1107,17 @@ def submit_paperradar(r: PaperRadarSubmit) -> dict:
         "interests": r.interests.strip(), "since_days": r.since_days, "limit": r.limit,
     })
 
-
 @app.post("/v1/grantdraft/submit")
 def submit_grantdraft(r: GrantDraftSubmit) -> dict:
     if len((r.topic or "").strip()) < 4:
         raise HTTPException(400, "topic required")
     return _dispatch("grantdraft", {"topic": r.topic.strip(), "limit": r.limit})
 
-
 @app.post("/v1/methodsmatcher/submit")
 def submit_methodsmatcher(r: MethodsMatcherSubmit) -> dict:
     if len((r.question or "").strip()) < 8:
         raise HTTPException(400, "ask a research question (>= 8 chars)")
     return _dispatch("methodsmatcher", {"question": r.question.strip()})
-
 
 @app.post("/v1/reviewguard/submit")
 def submit_reviewguard(r: ReviewGuardSubmit) -> dict:
@@ -1393,14 +1127,11 @@ def submit_reviewguard(r: ReviewGuardSubmit) -> dict:
         "claim": r.claim.strip(), "papers": r.papers or [], "limit": r.limit,
     })
 
-
-# --- DNA/RNA cluster submit endpoints --------------------------------------
 @app.post("/v1/rnastructure/submit")
 def submit_rnastructure(r: RNAStructureSubmit) -> dict:
     if len((r.sequence or "").strip()) < 4:
         raise HTTPException(400, "sequence required (>= 4 nt)")
     return _dispatch("rnastructure", {"sequence": r.sequence})
-
 
 @app.post("/v1/grnaoptimizer/submit")
 def submit_grnaoptimizer(r: GRNAOptimizerSubmit) -> dict:
@@ -1410,15 +1141,12 @@ def submit_grnaoptimizer(r: GRNAOptimizerSubmit) -> dict:
         "sequence": r.sequence, "pam": r.pam, "guide_len": r.guide_len, "limit": r.limit,
     })
 
-
 @app.post("/v1/rnafmembeds/submit")
 def submit_rnafmembeds(r: RNAFMEmbedsSubmit) -> dict:
     if len((r.sequence or "").strip()) < 4:
         raise HTTPException(400, "sequence required (>= 4 nt)")
     return _dispatch("rnafmembeds", {"sequence": r.sequence, "k": r.k})
 
-
-# --- Neuroscience cluster submit endpoints ---------------------------------
 @app.post("/v1/hhfit/submit")
 def submit_hhfit(r: HHFitSubmit) -> dict:
     return _dispatch("hhfit", {
@@ -1426,21 +1154,17 @@ def submit_hhfit(r: HHFitSubmit) -> dict:
         "dt_ms": r.dt_ms, "stim_onset_ms": r.stim_onset_ms,
     })
 
-
 @app.post("/v1/spikefeatures/submit")
 def submit_spikefeatures(r: SpikeFeaturesSubmit) -> dict:
     return _dispatch("spikefeatures", {
         "trace": r.trace, "fs_hz": r.fs_hz, "thresh_mad": r.thresh_mad,
     })
 
-
-# --- gap-research cluster submit endpoints ---------------------------------
 @app.post("/v1/protocolgpt/submit")
 def submit_protocolgpt(r: ProtocolGPTSubmit) -> dict:
     if len((r.methods or "").strip()) < 15:
         raise HTTPException(400, "paste a methods/SOP description (>= 15 chars)")
     return _dispatch("protocolgpt", {"methods": r.methods.strip(), "title": (r.title or "").strip()})
-
 
 @app.post("/v1/quantumbiorag/submit")
 def submit_quantumbiorag(r: QuantumBioRAGSubmit) -> dict:
@@ -1448,13 +1172,11 @@ def submit_quantumbiorag(r: QuantumBioRAGSubmit) -> dict:
         raise HTTPException(400, "state a quantum-biology claim (>= 8 chars)")
     return _dispatch("quantumbiorag", {"claim": r.claim.strip(), "limit": r.limit})
 
-
 @app.post("/v1/toxinchannelfinder/submit")
 def submit_toxinchannelfinder(r: ToxinChannelSubmit) -> dict:
     if len((r.toxin or "").strip()) < 3:
         raise HTTPException(400, "enter a toxin/peptide name or sequence (>= 3 chars)")
     return _dispatch("toxinchannelfinder", {"toxin": r.toxin.strip(), "limit": r.limit})
-
 
 @app.post("/v1/citationgraph/submit")
 def submit_citationgraph(r: CitationGraphSubmit) -> dict:
@@ -1462,11 +1184,8 @@ def submit_citationgraph(r: CitationGraphSubmit) -> dict:
         raise HTTPException(400, "enter a DOI, OpenAlex ID, or paper title")
     return _dispatch("citationgraph", {"paper": r.paper.strip(), "limit": r.limit})
 
-
-# --- imaging / mechanobiology cluster submit endpoints ---------------------
 def _is_demo(v: Any) -> bool:
     return isinstance(v, str) and v.strip().lower() == "demo"
-
 
 @app.post("/v1/calciumtraceml/submit")
 def submit_calciumtraceml(r: CalciumTraceSubmit) -> dict:
@@ -1477,7 +1196,6 @@ def submit_calciumtraceml(r: CalciumTraceSubmit) -> dict:
         "baseline_window_s": r.baseline_window_s, "thresh_mad": r.thresh_mad,
     })
 
-
 @app.post("/v1/cellsegtrack/submit")
 def submit_cellsegtrack(r: CellSegSubmit) -> dict:
     if not _is_demo(r.image) and not (isinstance(r.image, (list, tuple)) and len(r.image) > 0):
@@ -1485,7 +1203,6 @@ def submit_cellsegtrack(r: CellSegSubmit) -> dict:
     return _dispatch("cellsegtrack", {
         "image": r.image, "min_distance": r.min_distance, "sigma": r.sigma,
     })
-
 
 @app.post("/v1/afmcurveml/submit")
 def submit_afmcurveml(r: AFMCurveSubmit) -> dict:
@@ -1498,7 +1215,6 @@ def submit_afmcurveml(r: AFMCurveSubmit) -> dict:
         "z": r.z, "force": r.force, "radius_nm": r.radius_nm, "geometry": r.geometry,
     })
 
-
 @app.post("/v1/tractionforceml/submit")
 def submit_tractionforceml(r: TractionForceSubmit) -> dict:
     if not _is_demo(r.reference):
@@ -1509,22 +1225,17 @@ def submit_tractionforceml(r: TractionForceSubmit) -> dict:
         "window": r.window, "step": r.step, "search": r.search,
     })
 
-
-# --- FigureMiner submit endpoint -------------------------------------------
 @app.post("/v1/figureminer/submit")
 def submit_figureminer(r: FigureMinerSubmit) -> dict:
     if not _is_demo(r.text) and len((r.text or "").strip()) < 20:
         raise HTTPException(400, 'paste paper text (>= 20 chars) or use "demo"')
     return _dispatch("figureminer", {"text": r.text})
 
-
-# --- genomics / sequence cluster submit endpoints --------------------------
 @app.post("/v1/chromatinaccess/submit")
 def submit_chromatinaccess(r: ChromatinAccessSubmit) -> dict:
     if not _is_demo(r.sequence) and len(_seq(r.sequence)) < 20:
         raise HTTPException(400, 'enter a DNA sequence (>= 20 nt) or "demo"')
     return _dispatch("chromatinaccess", {"sequence": r.sequence})
-
 
 @app.post("/v1/aggregatepredict/submit")
 def submit_aggregatepredict(r: AggregatePredictSubmit) -> dict:
@@ -1532,15 +1243,12 @@ def submit_aggregatepredict(r: AggregatePredictSubmit) -> dict:
         raise HTTPException(400, 'enter a protein sequence (>= 7 aa) or "demo"')
     return _dispatch("aggregatepredict", {"sequence": r.sequence})
 
-
 @app.post("/v1/channeldwell/submit")
 def submit_channeldwell(r: ChannelDwellSubmit) -> dict:
     if not _is_demo(r.trace) and not (isinstance(r.trace, (list, tuple)) and len(r.trace) > 0):
         raise HTTPException(400, 'trace must be a numeric array or the string "demo"')
     return _dispatch("channeldwell", {"trace": r.trace, "fs_hz": r.fs_hz})
 
-
-# --- all-field horizontal cluster submit endpoints (FAIRCheck / RepliCheck) -
 @app.post("/v1/faircheck/submit")
 def submit_faircheck(r: FAIRCheckSubmit) -> dict:
     rec = r.record
@@ -1556,15 +1264,12 @@ def submit_faircheck(r: FAIRCheckSubmit) -> dict:
         return _dispatch("faircheck", {"record": rec})
     raise HTTPException(400, 'record must be a metadata object, a JSON string, or "demo"')
 
-
 @app.post("/v1/replicheck/submit")
 def submit_replicheck(r: RepliCheckSubmit) -> dict:
     if not _is_demo(r.text) and len((r.text or "").strip()) < 8:
         raise HTTPException(400, 'paste a Results section with reported statistics, or use "demo"')
     return _dispatch("replicheck", {"text": r.text, "alpha": r.alpha, "items": r.items})
 
-
-# --- per-field NON-bio cluster submit endpoints ----------------------------
 @app.post("/v1/causaldesigner/submit")
 def submit_causaldesigner(r: CausalDesignerSubmit) -> dict:
     demo = r.demo or _is_demo(r.treatment)
@@ -1576,14 +1281,12 @@ def submit_causaldesigner(r: CausalDesignerSubmit) -> dict:
         "edges": r.edges, "design": r.design, "instrument": r.instrument, "demo": demo,
     })
 
-
 @app.post("/v1/materialsfeaturizer/submit")
 def submit_materialsfeaturizer(r: MaterialsFeaturizerSubmit) -> dict:
     demo = r.demo or _is_demo(r.formula)
     if not demo and len((r.formula or "").strip()) < 1:
         raise HTTPException(400, 'enter a chemical formula (e.g. "Fe2O3"), or use demo')
     return _dispatch("materialsfeaturizer", {"formula": r.formula, "demo": demo})
-
 
 @app.post("/v1/powerplan/submit")
 def submit_powerplan(r: PowerPlanSubmit) -> dict:
@@ -1594,7 +1297,6 @@ def submit_powerplan(r: PowerPlanSubmit) -> dict:
         "k_groups": r.k_groups, "p1": r.p1, "p2": r.p2, "ratio": r.ratio, "demo": demo,
     })
 
-
 @app.post("/v1/geosummary/submit")
 def submit_geosummary(r: GeoSummarySubmit) -> dict:
     demo = r.demo or _is_demo(r.values)
@@ -1604,7 +1306,6 @@ def submit_geosummary(r: GeoSummarySubmit) -> dict:
         "values": r.values, "times": r.times, "period": r.period,
         "lat": r.lat, "lon": r.lon, "demo": demo,
     })
-
 
 @app.post("/v1/mlreprocard/submit")
 def submit_mlreprocard(r: MLReproCardSubmit) -> dict:
@@ -1621,8 +1322,6 @@ def submit_mlreprocard(r: MLReproCardSubmit) -> dict:
             raise HTTPException(400, 'record must be an experiment object, a JSON string, or "demo"')
     return _dispatch("mlreprocard", {"record": rec, "demo": demo})
 
-
-# --- per-field CLASSICAL-algorithm cluster submit endpoints ----------------
 @app.post("/v1/seqalign/submit")
 def submit_seqalign(r: SeqAlignSubmit) -> dict:
     demo = _is_demo(r.seq_a)
@@ -1634,7 +1333,6 @@ def submit_seqalign(r: SeqAlignSubmit) -> dict:
         "gap": r.gap, "match": r.match, "mismatch": r.mismatch,
     })
 
-
 @app.post("/v1/stoichbalance/submit")
 def submit_stoichbalance(r: StoichBalanceSubmit) -> dict:
     demo = r.demo or _is_demo(r.equation)
@@ -1643,7 +1341,6 @@ def submit_stoichbalance(r: StoichBalanceSubmit) -> dict:
     return _dispatch("stoichbalance", {
         "equation": r.equation, "amounts": r.amounts, "amounts_g": r.amounts_g, "demo": demo,
     })
-
 
 @app.post("/v1/unitdimcheck/submit")
 def submit_unitdimcheck(r: UnitDimCheckSubmit) -> dict:
@@ -1663,7 +1360,6 @@ def submit_unitdimcheck(r: UnitDimCheckSubmit) -> dict:
         "equation": r.equation, "unit": r.unit, "demo": demo,
     })
 
-
 @app.post("/v1/survivalfit/submit")
 def submit_survivalfit(r: SurvivalFitSubmit) -> dict:
     demo = r.demo or _is_demo(r.durations)
@@ -1672,7 +1368,6 @@ def submit_survivalfit(r: SurvivalFitSubmit) -> dict:
     return _dispatch("survivalfit", {
         "durations": r.durations, "events": r.events, "groups": r.groups, "demo": demo,
     })
-
 
 @app.post("/v1/timeseriesforecast/submit")
 def submit_timeseriesforecast(r: TimeSeriesForecastSubmit) -> dict:
@@ -1683,13 +1378,12 @@ def submit_timeseriesforecast(r: TimeSeriesForecastSubmit) -> dict:
         "values": r.values, "period": r.period, "horizon": r.horizon, "test": r.test, "demo": demo,
     })
 
-
 def _status_envelope(job: Job) -> dict:
     return {
         "job_id": job.id,
         "tool": job.tool,
         "status": job.status,
-        "progress": None,  # best-effort; tools have no fine-grained progress
+        "progress": None,
         "queue_position": None,
         "demo": job.demo,
         "submitted_at": job.submitted_at,
@@ -1699,11 +1393,9 @@ def _status_envelope(job: Job) -> dict:
         "error": job.error,
     }
 
-
 @app.get("/v1/jobs/{job_id}")
 def job_status(job_id: str) -> dict:
     return _status_envelope(_get_job(job_id))
-
 
 @app.get("/v1/jobs/{job_id}/result")
 def job_result(job_id: str) -> dict:

@@ -1,28 +1,3 @@
-"""Cleaned-vs-raw error budget: how much does each mitigation lever buy?
-
-Runs the Hadamard-test cosine estimator through FIVE conditions and reports the
-mean |cos error| for each, so the value of readout calibration and ZNE is a
-number, not a claim:
-
-  1. noiseless floor       -- shot noise only (the best achievable at these shots)
-  2. raw noisy             -- gate + readout error, no mitigation
-  3. + readout calibration -- invert the measured confusion matrix
-  4. + ZNE                 -- global folding + extrapolation (gate noise only)
-  5. + both                -- readout calibration inside the ZNE observable
-
-Two measurements:
-  - a set of ~30 random 4-D pairs (single-pair error);
-  - a 5x5 kernel matrix (RMSE vs the exact Gram matrix, the ML-relevant object).
-
-Two figures:
-  - results/error_budget.png    grouped bars, one group per condition;
-  - results/mitigation_sweep.png a signed-cosine angle sweep (dim=2) showing raw
-    noisy vs fully-mitigated vs ideal across the full [+1, -1] range.
-
-Run:  python -m src.error_budget
-All numbers come from the gate+readout noise model in src.noise_models with its
-default (modeled, not device-fit) rates. No hardware, no speedup claims.
-"""
 from __future__ import annotations
 import json
 import os
@@ -43,13 +18,10 @@ N_PAIRS = 30
 DIM = 4
 SCALES = (1, 3, 5)
 
-
 def _p0(counts, shots):
     return counts.get("0", 0) / shots
 
-
 def _make_estimators(run_noisy, run_clean, A):
-    """Return the five per-pair cosine estimators sharing a calibration matrix A."""
     def noiseless(u, v):
         c = run_clean(hadamard_test_circuit(u, v), SHOTS)
         return 2 * _p0(c, SHOTS) - 1
@@ -80,7 +52,6 @@ def _make_estimators(run_noisy, run_clean, A):
     return {"noiseless floor": noiseless, "raw noisy": raw,
             "+readout cal": readout_cal, "+ZNE": zne_only, "+both": both}
 
-
 def single_pair_budget(seed=11):
     rng = np.random.default_rng(seed)
     pairs = [(rng.normal(size=DIM), rng.normal(size=DIM)) for _ in range(N_PAIRS)]
@@ -100,9 +71,7 @@ def single_pair_budget(seed=11):
         print(f"  {name:<16} mean|err| = {np.mean(errs):.4f}")
     return out, A, run_noisy, run_clean
 
-
 def kernel_budget(A, run_noisy, run_clean, seed=3):
-    """5x5 kernel-matrix RMSE vs exact, for raw and fully-mitigated."""
     rng = np.random.default_rng(seed)
     X = rng.normal(size=(5, DIM))
     K_exact = kernel_matrix(X)
@@ -126,9 +95,7 @@ def kernel_budget(A, run_noisy, run_clean, seed=3):
         print(f"  kernel RMSE {name:<12} = {rmse:.4f}")
     return out
 
-
 def mitigation_sweep(A, run_noisy, run_clean, n=7, shots=20000):
-    """Signed-cosine angle sweep (dim=2): raw noisy vs +both vs ideal."""
     from .mitigation import correct_counts, zne_estimate
     OFFSET, MAX_DEG = 0.4, 160.0
     thetas = np.linspace(0.0, np.deg2rad(MAX_DEG), n)
@@ -151,7 +118,6 @@ def mitigation_sweep(A, run_noisy, run_clean, n=7, shots=20000):
         rows.append({"true": float(true), "raw": float(raw), "both": float(both)})
     return rows
 
-
 def make_plots(pair_budget, sweep_rows):
     import matplotlib
     matplotlib.use("Agg")
@@ -161,7 +127,6 @@ def make_plots(pair_budget, sweep_rows):
     except NameError:
         pass
 
-    # --- grouped bars ---
     names = list(pair_budget.keys())
     means = [pair_budget[n]["mean_abs_error"] for n in names]
     stds = [pair_budget[n]["std_abs_error"] for n in names]
@@ -179,7 +144,6 @@ def make_plots(pair_budget, sweep_rows):
     fig.tight_layout()
     fig.savefig(os.path.join(RESULTS, "error_budget.png"), dpi=140)
 
-    # --- angle sweep ---
     t = [r["true"] for r in sweep_rows]
     fig2, ax2 = plt.subplots(figsize=(5.6, 4.2))
     ax2.plot([-1, 1], [-1, 1], "--", color="gray", label="ideal (measured = true)")
@@ -193,7 +157,6 @@ def make_plots(pair_budget, sweep_rows):
     fig2.savefig(os.path.join(RESULTS, "mitigation_sweep.png"), dpi=140)
     print(f"  wrote error_budget.png + mitigation_sweep.png")
 
-
 def main():
     print("=== single-pair error budget (30 pairs, dim=4, gate+readout) ===")
     pair_budget, A, run_noisy, run_clean = single_pair_budget()
@@ -202,7 +165,6 @@ def main():
     print("=== signed-cosine angle sweep (dim=2) ===")
     sweep = mitigation_sweep(A, run_noisy, run_clean)
 
-    # fractional reductions vs raw
     raw = pair_budget["raw noisy"]["mean_abs_error"]
     floor = pair_budget["noiseless floor"]["mean_abs_error"]
     reductions = {}
@@ -219,7 +181,6 @@ def main():
     make_plots(pair_budget, sweep)
     print(f"wrote {RESULTS}/error_budget.json")
     return pair_budget, reductions
-
 
 if __name__ == "__main__":
     main()

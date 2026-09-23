@@ -1,10 +1,3 @@
-/**
- * Research OS, the Access level, server-only DB access (ros-21). Same
- * contract as db.ts: a route verifies the caller with verifyLearner(), then
- * these wrappers read and write through the service-role client bound to
- * the private `graph` schema, applying the rules in access.ts before any
- * write. Never import from a client component.
- */
 import { graphService, inChunks, pagedRead } from "./db";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import {
@@ -61,40 +54,14 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
   };
 }
 
-/**
- * ros-31: the graph a viewer may see. Public nodes always; private and
- * shared nodes when access.ts's canView allows, with the viewer's grants
- * loaded in one query for the branch's non-public nodes. Edges touching a
- * hidden node are dropped, so routing and directions never cross into a
- * node the viewer cannot open.
- */
-/**
- * The nodes and edges a viewer may see. Reads through read-access.ts, so
- * an access-store failure is an outage rather than an empty grant list:
- * this function used to read the groups and the grants directly, both of
- * which answer `[]` on error, and an outage then hid every shared node
- * behind a 404 (Bucket critic C2).
- *
- * The result is a union, so a caller cannot read the nodes without
- * deciding what an outage means. An optional `unavailable` flag let one of
- * the four callers serve an empty neighbourhood with a 200 (Bucket critic
- * C13); the compiler now names every caller that has to choose.
- */
 export type SubgraphForViewer<N, E> = { ok: true; nodes: N[]; edges: E[] } | { ok: false; reason: "unavailable" };
 
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
   viewerId: string | null,
-  // The grants and groups come from here. It is the database in every
-  // caller; a test supplies its own so the rule below can be checked
-  // without one.
   store: AccessStore = dbAccessStore,
 ): Promise<SubgraphForViewer<N, E>> {
-  // readVisibility, so a node whose visibility this code cannot read is
-  // non-public and goes through the decision below. `?? "public"` let a
-  // node with no visibility skip authorization, and a caller that built
-  // its nodes by hand got every one of them back.
   const nonPublic = nodes.filter((n) => readVisibility(n.visibility) !== "public");
   if (nonPublic.length === 0) return { ok: true, nodes, edges };
 
@@ -114,17 +81,6 @@ export async function filterSubgraphForViewer<N extends { id: string; visibility
   return { ok: true, nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
-/**
- * These three read what `/api/research-os/access` decides on, and all
- * three broke the two rules `read-access.ts` exists to enforce. An
- * unknown or null visibility became `public`, which is the inverse of
- * "a visibility this code does not know is private". A failed grants or
- * groups read became an empty list, which is the inverse of "an
- * access-store failure is unavailable, never no grants".
- *
- * Each now answers a result, so the route has to decide what an outage
- * means rather than being handed a denial that looks like an answer.
- */
 export type AccessRead<T> = { ok: true; value: T } | { ok: false; reason: "unavailable" };
 
 export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAccess | null>> {
@@ -135,25 +91,12 @@ export async function loadNodeAccess(nodeId: string): Promise<AccessRead<NodeAcc
     ok: true,
     value: {
       id: data.id as string,
-      // readVisibility, so a visibility this code does not know is
-      // private. `?? "public"` made an unknown value world-readable.
       visibility: readVisibility(data.visibility as string | null),
       ownerId: (data.owner_id as string | null) ?? null,
     },
   };
 }
 
-/**
- * An outage, said out loud.
- *
- * Every loader here answers a union, so a failure becomes the `unavailable`
- * the route already knows how to turn into a 503. A bare `catch {}`
- * made that silent, and it hides more than an outage: graphService()
- * throwing on an unconfigured stack, a TypeError in the callback, and a
- * PagingError, which means 200,000 rows of database work ran without
- * terminating and every retry the 503 invites runs them again. The log
- * is the only place that distinction survives.
- */
 function unavailable(table: string, err: unknown): { ok: false; reason: "unavailable" } {
   const detail = err instanceof Error ? err.message : String(err);
   console.error(`[research-os/access] ${table} read failed:`, detail);
@@ -165,26 +108,11 @@ export async function loadGrants(nodeId: string, client: () => SupabaseClient = 
   return read.ok ? read : unavailable("node_grants", read.error);
 }
 
-/** The class groups a learner belongs to, as 'class:<id>' strings, for group grants. */
 export async function loadViewerGroups(learnerId: string): Promise<AccessRead<string[]>> {
   const read = await dbAccessStore.groups(learnerId);
   return read.ok ? read : unavailable("class_members", read.error);
 }
 
-/**
- * These three read what /api/research-os/access serves, and each was one
- * unpaged request answering `[]` on error, under a header saying every
- * read in this file had stopped doing that.
- *
- * Both failures are quiet. A node past a thousand access requests showed
- * its owner a truncated queue, and `created_at` carries no unique index,
- * so the truncation point was not even stable between requests. During a
- * Postgres outage all three rendered "you own nothing, nobody has asked"
- * behind a 200.
- *
- * They page on `(created_at, id)` and `(id)`, and they answer the union
- * the rest of this file answers.
- */
 export async function loadRequestsForNode(nodeId: string): Promise<AccessRead<(AccessRequest & { createdAt: string })[]>> {
   try {
     const rows = await pagedRead<RequestRow>((page) =>
@@ -236,14 +164,6 @@ export async function loadOwnedNodes(ownerId: string): Promise<AccessRead<{ id: 
   }
 }
 
-/**
- * Pending access requests per node, for a list of nodes, in one paged
- * read per chunk.
- *
- * The owned-nodes view counted these with one request per node inside a
- * Promise.all, so an owner with 800 nodes opened 800 concurrent
- * PostgREST connections from a single GET to compute 800 integers.
- */
 export async function loadPendingCountsForNodes(nodeIds: string[]): Promise<AccessRead<Map<string, number>>> {
   const counts = new Map<string, number>();
   if (nodeIds.length === 0) return { ok: true, value: counts };
@@ -355,8 +275,6 @@ export async function createImport(
 ): Promise<StoreResult<{ importId: string; nodeId: string; fetched: boolean }>> {
   const svc = graphService();
   const slug = `import-${ownerId.slice(0, 8)}-${Date.now().toString(36)}`;
-  // A source with a public URL is fetched so the node carries its text
-  // (import-fetch.ts); the import stays a title and a link when it fails.
   const url = typeof input.source?.url === "string" ? input.source.url : null;
   const fetched = url ? await fetchTextFromUrl(url) : null;
   const { data: node, error: nodeErr } = await svc

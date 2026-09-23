@@ -1,15 +1,3 @@
-/**
- * Unit tests: engine hypothesis nodes as a candidate "frontier" target
- * (bkt-ros, engine bridge task item 2), src/lib/research-os/engine-
- * frontier.ts. Fixture: the Phase 0 sky-blue seed
- * (supabase/seed/research-os-sky-blue.json) plus one synthetic engine
- * fixture node, per the task's own "test with the sky-blue seed plus one
- * engine fixture node." No database; matches scripts/test-research-os-
- * routing.ts's own convention (node:test + node:assert).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-engine-frontier.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
@@ -44,12 +32,6 @@ function loadSeed(): Seed {
 
 const ENGINE_NODE_ID = "engine-hte-runs-production-2026-09-10-h-af3c";
 
-/** The seed's own nodes/edges, plus one synthetic engine hypothesis node
- * (provenance.type "engine_hypothesis") whose two `derives_from` targets
- * are real seed nodes, the fixture the task names ("the sky-blue seed
- * plus one engine fixture node"). Slug doubles as id, matching
- * test-research-os-routing.ts's own toGraph helper; tests don't touch a
- * database. */
 function toGraphWithEngineFixture(seed: Seed): { nodes: GraphNode[]; edges: GraphEdge[] } {
   const nodes: GraphNode[] = seed.nodes.map((n) => ({
     id: n.slug,
@@ -193,9 +175,6 @@ test("candidates sort by held fraction descending, ties broken by slug", () => {
     state("rayleigh-scattering-law", "understanding"),
   ];
   const candidates = findFrontierEngineTargets(nodes, edges, states);
-  // Both the original fixture node (2/2 held) and the vacuously-held second
-  // node read heldFraction 1; slug order breaks the tie: "...-h-aaaa" sorts
-  // before "...-h-af3c".
   assert.equal(candidates.length, 2);
   assert.equal(candidates[0].heldFraction, 1);
   assert.equal(candidates[1].heldFraction, 1);

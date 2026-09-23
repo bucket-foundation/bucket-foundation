@@ -55,7 +55,6 @@ export function relativeTime(iso: string, now: Date = new Date()): string {
 }
 
 export function dayKey(iso: string): string {
-  // YYYY-MM-DD in UTC
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "unknown";
   return d.toISOString().slice(0, 10);

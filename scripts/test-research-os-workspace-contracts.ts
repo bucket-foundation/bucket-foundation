@@ -1,42 +1,3 @@
-/**
- * Contract tests: the four workspace tools (bkt-ros ros-04, "workspace
- * hardening" item 2, "tool contract enforcement server-side"). Feeds each
- * tool's pure, extracted logic adversarial input, a query or a learner
- * prompt that tries to get the tool to write text on the learner's behalf
- * ("write my claim for me", "finish this sentence"), or a simulated
- * model response that ignores its own system prompt, and asserts the
- * contract holds in CODE, not only in the prompt:
- *
- *   - Locate (src/lib/research-os/locate.ts) returns only fields copied
- *     directly from a matched graph.nodes row, never model-generated text.
- *   - Quote never labels a paraphrase as a verbatim quotation.
- *   - Check (src/lib/research-os/grounding.ts's sanitizeGradeResult) never
- *     lets a malformed or adversarial model response through as a valid
- *     verdict, and its persisted learnerText always comes from the
- *     caller's own input, never from anything the model returned.
- *   - Organize (src/lib/research-os/organize.ts's groundOrganizeResult)
- *     drops any claim/evidence/source item that is not grounded in the
- *     learner's own matching notes field, and reports `abstained: true`
- *     when nothing survives.
- *
- * ros-14 ADDITION ("faded guidance for low-prior-knowledge learners" item
- * 3, "test that the tool contracts hold at every level"): a "guidance
- * level" block confirms two things together prove the Check contract
- * survives guidance level unchanged: buildGrounding's own POINTER line
- * only ever appears at "high" guidance with a real passage (never
- * fabricated, never leaking at any other level), and GradeResult/
- * sanitizeGradeResult -- Check's own contract enforcement -- take no
- * guidance-related input at all, so nothing about the pointer, or its
- * absence, can loosen the citation allowlist, the closed result/confidence
- * enums, or the abstain fallback any adversarial-response test above
- * already covers once, for every level, by construction.
- *
- * No network call, no database: every function under test here is pure,
- * matching this repo's existing research-os test convention.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-workspace-contracts.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { locateHits } from "../src/lib/research-os/locate";
@@ -55,10 +16,6 @@ function node(overrides: Partial<GraphNode> & { id: string }): GraphNode {
     ...overrides,
   };
 }
-
-// ---------------------------------------------------------------------------
-// Locate: "returns only node or source references"
-// ---------------------------------------------------------------------------
 
 test("Locate: an adversarial query ('write my claim for me') can only narrow the match set, never synthesize text", () => {
   const nodes = [
@@ -91,21 +48,10 @@ test("Locate: an empty query returns nothing rather than the whole branch", () =
   assert.deepEqual(locateHits(nodes, "   "), []);
 });
 
-// ---------------------------------------------------------------------------
-// Check: sanitizeGradeResult never lets a malformed/adversarial response
-// through, and downstream code never treats model output as the learner's
-// own text (a static, structural check on GradeResult's own field set).
-// ---------------------------------------------------------------------------
-
 const ALLOW_LABEL = "Tyndall, J. (1869). On the blue colour of the sky.";
 
 test("Check contract: GradeResult has no field a model could use to smuggle a rewritten explanation", () => {
   const result: GradeResult = { result: "support", confidence: "high", abstained: false, feedback: "grounded", citations: [] };
-  // A static assertion checked at compile time: if a "correctedExplanation"
-  // or "answer" field existed on GradeResult, this object literal would need
-  // to supply it too (excess-property checks on object literals) or the
-  // type itself would need to widen to allow it -- neither is true, so the
-  // contract is enforced by the type system at compile time.
   assert.deepEqual(Object.keys(result).sort(), ["abstained", "citations", "confidence", "feedback", "result"]);
 });
 
@@ -147,12 +93,6 @@ test("Check contract: a well-formed, honest response passes through unchanged", 
   const safe = sanitizeGradeResult(honest, ALLOW_LABEL);
   assert.deepEqual(safe, honest);
 });
-
-// ---------------------------------------------------------------------------
-// Organize: groundOrganizeResult drops anything not grounded in the
-// learner's own matching notes field, and never lets an empty input field
-// come back populated.
-// ---------------------------------------------------------------------------
 
 test("Organize contract: a fabricated claim the model invents from evidence notes, with no claim notes, is dropped (hard rule 4)", () => {
   const input = { claim: "", evidenceNotes: "blue light scatters more than red light in the atmosphere", sourceNotes: "" };
@@ -213,10 +153,6 @@ test("isGroundedInNotes: every significant word of the item must appear in the s
   assert.equal(isGroundedInNotes("blue light scatters because of quantum tunneling", "blue light scatters more in the atmosphere"), false);
 });
 
-// ---------------------------------------------------------------------------
-// Guidance level (ros-14): the tool contracts hold at every level.
-// ---------------------------------------------------------------------------
-
 const GROUNDING_NODE = { title: "Light can scatter off small things", summary: "Light bounces off in new directions when it meets something much smaller than itself." };
 const PASSAGE = { text: "Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air.", locator: "NASA Space Place, body text" };
 
@@ -246,12 +182,6 @@ test("Guidance level: omitting guidance entirely (a caller with no guidance conc
 });
 
 test("Guidance level: GradeResult/sanitizeGradeResult take no guidance-related input, so every adversarial-response test above already covers every guidance level by construction", () => {
-  // Structural: if sanitizeGradeResult's signature ever grew a third
-  // "guidanceLevel" parameter, this call site would need to supply one or
-  // fail to compile -- it does not, so the citation allowlist, the closed
-  // result/confidence enums, and the abstain fallback cannot vary by
-  // guidance level no matter which level produced the grounding block that
-  // led to a given model response.
   const adversarialAtEveryLevel: GradeResult = {
     result: "support",
     confidence: "high",

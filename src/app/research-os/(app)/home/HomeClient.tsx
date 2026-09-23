@@ -10,13 +10,6 @@ import ConnectionsPanel from "./ConnectionsPanel";
 import LoopPanel from "./LoopPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, StageChip } from "@/components/ui";
 
-/**
- * /research-os/home: where sign-in lands. Level and streak, what to
- * continue, where the person stands on the current chain, the open
- * questions on the branch, and the profile prompt when the two-question
- * profile is missing. Every block loads, empties, and fails on its own.
- */
-
 const DEFAULT_TARGET = "why-the-sky-is-blue";
 const DEFAULT_BRANCH = "02-physics";
 
@@ -33,9 +26,6 @@ interface ProfileResponse {
   profile: { role: string; birthYearBucket: string | null; consentStatus: string } | null;
   game: Game | null;
 }
-// The server type, so a change to what /assignments returns is a compile
-// error here rather than a wrong string on the page. `import type` is
-// erased, so none of class-db's server-only imports reach the client.
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
 import { assignmentTargetHref, firstOpenTarget, targetIsLinkable } from "@/lib/research-os/assignments";
 interface NodeLite {
@@ -173,7 +163,6 @@ export default function HomeClient() {
         </Panel>
       )}
 
-      {/* Level strip */}
       <section aria-label="Your level" className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {profile.state === "loading" ? (
           <div className="col-span-2 md:col-span-4">
@@ -208,10 +197,6 @@ export default function HomeClient() {
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
               {assignments.value.assignments.map((a) => {
-                // Held in a const so the null case narrows. A boolean and
-                // a hand-built href let this block swap its branches and
-                // link every withheld target while `tsc` passed
-                // (Bucket critic C57).
                 const href = assignmentTargetHref(a);
                 return (
                 <li key={a.id} className="py-3 flex flex-wrap items-center justify-between gap-2">

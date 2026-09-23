@@ -7,11 +7,6 @@ import { FLAGSHIP, readEducationDoc } from "@/lib/education";
 
 const SITE = "https://www.bucket.foundation";
 
-// /research/education/knowledge-access-gradient, the flagship education-atlas
-// synthesis, rendered on-site as a first-class paper-like page from the
-// vendored markdown (src/content/education/THE-KNOWLEDGE-ACCESS-GRADIENT.md).
-// Minted DOI 10.5281/zenodo.22083720, presented as a Bucket Foundation working paper.
-
 export const metadata: Metadata = {
   title: `${FLAGSHIP.title} · education research`,
   description: FLAGSHIP.abstract[0].slice(0, 180),
@@ -81,7 +76,6 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
       />
 
-      {/* Meta + action row */}
       <div className="mb-8 p-5 border hairline bg-[color:var(--bone-3)] text-sm text-[color:var(--parchment-dim)]">
         <div className="flex flex-wrap gap-x-5 gap-y-1 small-caps text-[11px] text-[color:var(--gold)] mb-3">
           <span>{FLAGSHIP.authors}</span>

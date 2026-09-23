@@ -1,16 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
 
-/**
- * Find by meaning as a person (ros-ai-find): sign in as a pilot account,
- * ask in words the sources do not use, read the cards, open one, and see
- * its Quote action. The workspace offers the mode only after the server
- * says this account may use it, so the run skips when the flag is off,
- * the corpus is missing, or the account is outside the pilot.
- *
- * Needs the local stack, a dev server, a built corpus, and an account
- * that is 18plus, consented, and on RESEARCH_OS_AI_SEARCH_PILOT_IDS.
- * E2E_EVIDENCE_EMAIL names it.
- */
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const EMAIL = process.env.E2E_EVIDENCE_EMAIL || "ros-shots@bucket.test";
 const QUERY = process.env.E2E_EVIDENCE_QUERY || "what makes the heavens look azure during daytime";
@@ -101,16 +90,10 @@ test("changing the step being worked on takes the previous step's sources away",
   const cards = page.locator("#evidence-query").locator("xpath=../..").locator("li");
   await expect(cards.first()).toBeVisible({ timeout: 30_000 });
 
-  // The path's steps are buttons carrying their node's title. Moving to
-  // another one changes the target Quote would attach a source to, so
-  // sources found for the step before it cannot stay on screen.
   const steps = page.locator("button").filter({ hasText: /\S/ });
   const before = await cards.count();
   expect(before).toBeGreaterThan(0);
 
-  // The last step is the target, which is already the one being worked
-  // on, so moving to it would change nothing. The first step is the
-  // furthest prerequisite and is never the one selected on arrival.
   const path = page.locator("div.flex.flex-col.gap-px > button");
   const total = await path.count();
   test.skip(total < 2, `the path has ${total} steps, so there is no other step to move to`);

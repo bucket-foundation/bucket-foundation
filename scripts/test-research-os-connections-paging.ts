@@ -1,17 +1,3 @@
-/**
- * Every non-prerequisite edge touching a learner's nodes comes back
- * exactly once, past the row cap
- * (src/lib/research-os/connections-db.ts's loadTouchingEdges).
- *
- * Two ways that can fail. A page boundary landing inside a group of
- * edges that share a pair repeats one and skips another unless the sort
- * key is total, and an edge whose ends are both held is returned by both
- * reads. A repeat inflates a held count and a skip loses a connection,
- * and nothing downstream deduplicates.
- *
- * Needs the local stack. RESEARCH_OS_REQUIRE_DB=1 turns a skip into a
- * failure.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -51,9 +37,6 @@ test("every touching edge comes back once, past the row cap", { skip }, async (t
 
   const tag = `conn-${Date.now().toString(36)}`;
   const held = [randomUUID(), randomUUID()];
-  // One more edge than a single response carries, so the read has to
-  // page, and every edge shares its `from_id` so the first sort key ties
-  // across the whole set.
   const FAR = 1100;
 
   t.after(() => {
@@ -86,21 +69,11 @@ test("every touching edge comes back once, past the row cap", { skip }, async (t
   const seen = new Set(edges.map((e) => `${e.fromId}->${e.toId}:${e.kind}`));
   assert.equal(seen.size, edges.length, "and none came back twice");
 
-  // The one edge with both ends held is returned by both reads, so it is
-  // the case the merge exists for.
   const both = edges.filter((e) => e.fromId === held[0] && e.toId === held[1]);
   assert.equal(both.length, 1, `the edge readable from both directions appears once: ${both.length}`);
 });
 
 test("both edge reads end on the primary key", () => {
-  // The row-count case above cannot prove this. Postgres is free to
-  // return a stable order for a tie group, and it does for this
-  // plan, so deleting the tiebreak passed that case. The guarantee
-  // being relied on is the negative one: without a total order, LIMIT
-  // and OFFSET may repeat and skip, and `(from_id, to_id)` is not
-  // unique on graph.edges, which carries a unique index on
-  // `(from_id, to_id, kind)` and a primary key on `id`. So the rule is
-  // checked where it is written.
   const src = fs.readFileSync(path.join(__dirname, "..", "src/lib/research-os/connections-db.ts"), "utf8");
   const reads = src.split("\n").filter((l) => l.includes('.from("edges")'));
   assert.equal(reads.length, 2, `two edge reads, found ${reads.length}`);

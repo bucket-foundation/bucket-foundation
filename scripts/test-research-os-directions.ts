@@ -1,8 +1,3 @@
-/**
- * Unit tests: the Awareness view (ros-24), src/lib/research-os/directions.ts.
- * Pure. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-directions.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { directionsFrom, isFrontierNode } from "../src/lib/research-os/directions";
@@ -11,8 +6,6 @@ import type { GraphEdge, GraphNode } from "../src/lib/research-os/types";
 const n = (id: string, extra: Partial<GraphNode> = {}): GraphNode => ({ id, slug: id, title: id, kind: "concept", tier: 0, branch: "02-physics", summary: null, provenance: { type: "reference" }, ...extra });
 const e = (from: string, to: string, kind: GraphEdge["kind"] = "prerequisite"): GraphEdge => ({ fromId: from, toId: to, kind });
 
-// light -> scattering -> {rayleigh -> sky-blue-hypothesis, sunset}
-//                     -> why-red (open question)
 const nodes = [n("light"), n("scattering"), n("rayleigh"), n("sunset"), n("sky-blue-hypothesis", { kind: "hypothesis" }), n("why-red", { frontierFlag: "open_question" }), n("unrelated")];
 const edges = [e("light", "scattering"), e("scattering", "rayleigh"), e("scattering", "sunset"), e("sky-blue-hypothesis", "rayleigh", "extends"), e("scattering", "why-red"), e("sunset", "light", "cites")];
 
@@ -45,7 +38,6 @@ test("cites edges do not count as forward and cycles do not loop", () => {
 });
 
 test("derives_from and extends run from the newer node to its base, so forward goes base to newer, and stops at evidence", () => {
-  // "fact" derives from "kinematics"; "ext" extends "kinematics"; "dyn" derives from "kinematics".
   const ns = [n("kinematics"), n("fact", { kind: "fact" }), n("ext", { kind: "extension" }), n("dyn"), n("vectors")];
   const es = [
     e("fact", "kinematics", "derives_from"),
@@ -66,7 +58,6 @@ test("grouping nodes such as canon tags stay out of where knowledge leads", () =
 });
 
 test("open questions from intake show as endpoints and the walk ends at them", () => {
-  // The eight open questions in the graph are intake targets, which fail the idea rule, and derive from academy concepts.
   const ns = [
     n("chemiosmosis"),
     n("why-atp", { provenance: { type: "intake_target" }, frontierFlag: "open_question" }),

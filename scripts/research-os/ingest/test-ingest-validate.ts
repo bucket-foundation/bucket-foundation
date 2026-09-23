@@ -1,12 +1,3 @@
-/**
- * Unit tests: the ingestion slice's shared validators
- * (src/lib/research-os/ingest/validate.ts) and the review-list merge
- * helper (.../review.ts). Pure functions, plain fixtures, no I/O, matching
- * scripts/test-research-os-engine-bridge.ts's own convention.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-validate.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { checkOrphanEdges, checkTierMonotonicity, tierViolationsToReviewItems } from "../../../src/lib/research-os/ingest/validate";
@@ -20,10 +11,6 @@ function node(slug: string, tier: number): IngestNodeDraft {
 function edge(fromSlug: string, toSlug: string, kind: IngestEdgeDraft["kind"] = "prerequisite"): IngestEdgeDraft {
   return { fromSlug, toSlug, kind, weight: kind === "prerequisite" ? 1.0 : null };
 }
-
-// ---------------------------------------------------------------------------
-// checkOrphanEdges
-// ---------------------------------------------------------------------------
 
 test("checkOrphanEdges: every endpoint resolves -> no orphans", () => {
   const nodes = [node("a", 1), node("b", 2)];
@@ -46,10 +33,6 @@ test("checkOrphanEdges: a missing source is reported", () => {
   assert.equal(orphans.length, 1);
   assert.equal(orphans[0].fromSlug, "does-not-exist");
 });
-
-// ---------------------------------------------------------------------------
-// checkTierMonotonicity
-// ---------------------------------------------------------------------------
 
 test("checkTierMonotonicity: prerequisite tier <= dependent tier -> no violations", () => {
   const nodes = [node("a", 3), node("b", 5), node("c", 5)];
@@ -84,10 +67,6 @@ test("tierViolationsToReviewItems: maps to a stable, human-readable review item"
   assert.equal(items[0].id, "tier_violation:a:b");
   assert.match(items[0].note, /higher source tier \(9\) than target tier \(4\)/);
 });
-
-// ---------------------------------------------------------------------------
-// mergeReviewList
-// ---------------------------------------------------------------------------
 
 function reviewItem(id: string, note = id): ReviewItem {
   return { id, kind: "unmatched_derives_from", note, detail: {} };

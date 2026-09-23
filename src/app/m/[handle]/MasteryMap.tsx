@@ -1,23 +1,9 @@
-/**
- * src/app/m/[handle]/MasteryMap.tsx  (bkt-coh)
- * ------------------------------------------------------------------
- * Server-rendered concentric-shell "nucleus" map, the public face of the
- * in-app map (learning/app/js/app.js screenMap). Same visual grammar:
- *   ring   = shell   (prereq outer · nucleus mid · frontier inner)
- *   size   = leverage (centrality)
- *   fill   = mastery  (how lit the node is)
- *   color  = shell    (aegean / gold / laurel, the bucket palette)
- *
- * Pure SVG, no client JS. Accessibility: an aria-label summary + a screen-reader
- * list-mode (rendered by the page) gives non-visual viewers the same signal
- * (MASTERY-PROFILE.md §1.1 accessibility gate).
- */
 import type { BranchSummary, ConceptSignal } from "@/lib/academy/mastery";
 
 const SHELL_COLOR: Record<string, string> = {
-  prereq: "#2E6B6B", // aegean
-  nucleus: "#B8861E", // gold
-  frontier: "#5A7A3A", // laurel
+  prereq: "#2E6B6B",
+  nucleus: "#B8861E",
+  frontier: "#5A7A3A",
 };
 const SHELL_RADIUS: Record<string, number> = {
   prereq: 0.42,
@@ -38,7 +24,6 @@ export default function MasteryMap({ branch }: { branch: BranchSummary }) {
   const cy = H / 2;
   const base = Math.min(W, H);
 
-  // group concepts by shell, order by leverage (same as the app)
   const byShell: Record<string, ConceptSignal[]> = {};
   for (const c of branch.concepts) {
     (byShell[c.shell] = byShell[c.shell] || []).push(c);
@@ -75,7 +60,6 @@ export default function MasteryMap({ branch }: { branch: BranchSummary }) {
       aria-label={label}
       style={{ display: "block", maxWidth: 420, margin: "0 auto" }}
     >
-      {/* shell guide rings */}
       {["prereq", "nucleus", "frontier"].map((shell) => (
         <circle
           key={"ring-" + shell}
@@ -87,7 +71,6 @@ export default function MasteryMap({ branch }: { branch: BranchSummary }) {
           strokeWidth={1}
         />
       ))}
-      {/* nodes */}
       {placed.map((p) => {
         const color = SHELL_COLOR[p.shell] || "#B8861E";
         const fillR = p.r * Math.max(0.12, p.mastery);

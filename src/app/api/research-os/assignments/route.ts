@@ -1,15 +1,3 @@
-/**
- * Research OS, assignments (the Class step, decision 6).
- *
- * GET  /api/research-os/assignments?class=<id>   staff: every assignment in the class
- * GET  /api/research-os/assignments?mine=1       learner: open assignments across their classes, with status
- * POST /api/research-os/assignments
- *   { action: "create", classId, targetSlug, title, instructions?, dueAt?, required?, requiresProduction? }
- *   { action: "close",  classId, assignmentId }
- *
- * Auth: Authorization: Bearer <supabase access token>. Staff = the class's
- * reviewer_email or a teacher or librarian membership (class-db.ts).
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, verifyLearner } from "@/lib/research-os/db";
 import { closeAssignment, createAssignment, listAssignments, listAssignmentsForLearner, verifyClassStaff } from "@/lib/research-os/class-db";
@@ -28,8 +16,6 @@ export async function GET(req: NextRequest) {
   if (searchParams.get("mine")) {
     const learnerId = await verifyLearner(req);
     if (!learnerId) return bad(401, "unauthorized");
-    // An access-store outage is an outage. Serving the list with every
-    // title blanked would read as "your assignments point nowhere".
     const mine = await listAssignmentsForLearner(learnerId);
     if (!mine.ok) return bad(503, "access_unavailable");
     return NextResponse.json({ assignments: mine.assignments }, NO_STORE);
@@ -65,13 +51,8 @@ export async function POST(req: NextRequest) {
   if (body.action === "create") {
     if (!body.targetSlug?.trim()) return bad(400, "target_required");
     const r = await createAssignment(staff, body.classId, body.targetSlug.trim(), body);
-    // A read that did not complete is the server's problem. It used to
-    // fall to the 400 every unlisted code took, which named the
-    // teacher's own input as the thing that was wrong.
     if (!r.ok && r.error === "unavailable") return bad(503, "class_read_failed");
     if (!r.ok) return bad(r.error === "forbidden" ? 403 : r.error === "write_failed" ? 500 : 400, r.error);
-    // A class is a region: a private or shared node the assigner owns becomes
-    // visible to the class it is assigned to (IDEAL-STATE.md, Access × class).
     try {
       const nodeRead = await loadNodeAccess(r.value.targetNodeId);
       const node = nodeRead.ok ? nodeRead.value : null;
@@ -79,7 +60,6 @@ export async function POST(req: NextRequest) {
         await grantAccess(node, { id: staff.id, groups: [] }, { group: `class:${body.classId}` }, "view");
       }
     } catch {
-      /* the assignment stands; sharing is best-effort */
     }
     return NextResponse.json({ assignment: r.value }, NO_STORE);
   }

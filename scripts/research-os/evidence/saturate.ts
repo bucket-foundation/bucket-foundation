@@ -1,23 +1,3 @@
-/**
- * What evidence search does with more requests in flight than the worker
- * will hold (IMPLEMENTATION.md, "API and worker contracts": one model
- * computation, four waiting, "Queue overflow returns a checked lexical
- * result or 503 if the remaining deadline cannot support it").
- *
- *   set -a; . ./.env.local; set +a
- *   BENCH_EMAIL=you@example.test \
- *   npx ts-node --compiler-options '{"module":"commonjs"}' \
- *     scripts/research-os/evidence/saturate.ts --vectors <dir> [--lanes 1,4,8,16] [--each 40]
- *
- * Each level runs the same requests with more of them in flight, and the
- * worker's own counters are read either side of it, so a degraded answer
- * can be attributed to the refusal that caused it. A degraded answer no
- * counter explains is the finding this run exists for: the caller saw a
- * working search, and the worker never refused anything.
- *
- * Exit 0: saturation stays graceful. Exit 1: a check fails. Exit 2: the
- * run could not start.
- */
 import { spawn, type ChildProcess } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -129,7 +109,6 @@ async function searchOnce(base: string, token: string, q: Query): Promise<Sample
   }
 }
 
-/** `count` requests with `lanes` of them in flight at a time. */
 async function level(base: string, token: string, qs: Query[], count: number, lanes: number): Promise<(Sample & { code: string | null })[]> {
   const out: (Sample & { code: string | null })[] = new Array(count);
   let next = 0;

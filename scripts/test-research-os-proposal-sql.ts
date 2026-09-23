@@ -1,10 +1,3 @@
-/**
- * The ros-prime 2 review functions (merge_edge_proposals,
- * merge_node_proposals, rests_on, replace_prereq_ancestor) in real Postgres:
- * supabase/tests/research_os_proposals.sql runs in one transaction that
- * rolls back. Needs the local stack; with no database reachable the test is
- * skipped and says so.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";

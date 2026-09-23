@@ -15,7 +15,6 @@ export interface NodeData {
     visibility: "public" | "private" | "shared"; ownerId: string | null; isOwner: boolean; frontierFlag: string | null; createdAt: string;
   };
   standing: { stage: string | null; updatedAt: string | null; evidence: Record<string, unknown>[] };
-  /** True when the graph read failed: the lists below are empty for that reason. */
   graphUnavailable?: boolean;
   prerequisites: Lite[];
   dependents: Lite[];

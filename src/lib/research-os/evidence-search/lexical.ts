@@ -1,24 +1,6 @@
-/**
- * Server-owned keyword search and rank fusion for evidence search
- * (ros-ai-worker, learning/research-os/ai/IMPLEMENTATION.md, "API and
- * worker contracts").
- *
- * BM25 runs in this process over the corpus the worker was built from, so
- * keyword search answers when the worker is down, and one implementation
- * serves the live API and the evaluation. The eligible set is applied
- * before any document is scored: a posting for an ineligible source is
- * skipped, never scored and filtered later.
- *
- * Pinned: tokenization (NFC, lower case, letter-and-digit runs, a fixed
- * stop list), k1 = 1.2, b = 0.75, the Lucene form of IDF over the whole
- * artifact, each distinct query term counted once, and ties broken by
- * source id. Changing any of these changes LEXICAL.
- */
-
 export const LEXICAL = "bm25-okapi/1";
 export const K1 = 1.2;
 export const B = 0.75;
-/** Reciprocal rank fusion constant, from Cormack, Clarke and Buettcher (SIGIR 2009). */
 export const RRF_K = 60;
 
 export const STOPWORDS: ReadonlySet<string> = new Set([
@@ -26,7 +8,6 @@ export const STOPWORDS: ReadonlySet<string> = new Set([
   "of", "on", "or", "that", "the", "this", "to", "was", "were", "with",
 ]);
 
-// Built from a string: the ES5 compile target rejects a literal with the u flag.
 const TOKEN_SOURCE = "[\\p{L}\\p{M}\\p{N}]+";
 
 export function tokenize(text: string): string[] {
@@ -90,10 +71,6 @@ export class LexicalIndex {
     return Math.log(1 + (this.docs.length - df + 0.5) / (df + 0.5));
   }
 
-  /**
-   * The top `limit` eligible documents for `query`. `scored` counts the
-   * documents that received a score, all of them eligible.
-   */
   search(query: string, eligible: ReadonlySet<string>, limit: number): { results: Ranked[]; scored: number } {
     const terms = Array.from(new Set(tokenize(query)));
     const scores = new Map<number, number>();
@@ -124,11 +101,6 @@ export interface Fused {
   denseRank: number | null;
 }
 
-/**
- * Reciprocal rank fusion of the keyword and dense rankings: each list adds
- * 1 / (RRF_K + rank) for a source it holds, ranks counted from 1. Ties go
- * to the better single rank, then the source id.
- */
 export function fuse(lexical: Ranked[], dense: Ranked[], limit: number): Fused[] {
   const out = new Map<string, Fused>();
   const add = (list: Ranked[], which: "lexicalRank" | "denseRank") =>

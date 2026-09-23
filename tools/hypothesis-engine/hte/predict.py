@@ -1,64 +1,3 @@
-"""The prediction register: dated, forward-looking forecasts off a
-completed `hte.runner.run_campaign` run, and their later resolution.
-
-Every calibration pass this package runs so far (`hte.calibrate.
-run_holdout`/`holdout_kfold`) scores the graph against evidence it
-already has: a discovery-date or k-fold split of a corpus that already
-exists. That tests whether the belief model reads existing evidence
-well. It does not test whether the graph's own prior, the part carried
-by `Hypothesis.prior_logit` and the four `hte.unknowns.prior_profiles`,
-says anything real about the world before the evidence arrives.
-
-`register` closes that gap: it turns one completed run's own survivors
-and structural gaps into dated, timestamped forecasts, committed to an
-append-only ledger before anyone knows the answer. `resolve` scores
-those forecasts, later, against whatever evidence corpus stands in for
-"the world as of" a given date, the same way `hte.calibrate` scores a
-holdout, using the identical slot-and-interval matcher (`hte.calibrate.
-_matches_event`, imported directly). A graph whose forward
-predictions come back well calibrated (low Brier, a reliability curve
-near the diagonal) has a prior worth trusting; one that does not, does
-not, and this module is the one place that distinction gets measured on
-the record rather than argued about.
-
-Three kinds of prediction:
-
-- **claim**: a placement hypothesis reconstructed from the run
-  (`hte.canon_writeback.reconstruct_candidates`'s own technique,
-  reimplemented here as `_reconstruct`, since that module is under
-  concurrent edit on another branch), examined enough to make a real
-  call (`u <= u_max`) and confident enough to be worth registering
-  (`|P - a| >= 0.15`, `_CLAIM_CONFIDENCE_MIN`): "this actor performed
-  this action, dated to this interval, will be attested by new
-  evidence by the horizon."
-- **discovery**: the highest value-of-information gap nodes (`hte.
-  unknowns.unresolved_slot_gaps`, imported directly): "evidence of this
-  kind, naming this evidence item's own missing slots, will be found by
-  the horizon," staked at the gap's own VOI.
-- **sequence**: an Allen-relation claim between two reconstructed
-  placements (`hte.generate.sequences_from`), scored on its own address
-  the same way a claim is: "this relation holds between these two
-  events, and will be attested by evidence by the horizon."
-
-Every `Prediction`, regardless of kind, carries the same top-level
-shape (`id`, `made_at`, `resolves_at`, `statement`, `P`, `u`, `a`,
-`evidence_ids`, `run_id`, `artifact_version`, `profile_spread`,
-`envelope`) plus a kind-specific `meta` dict carrying exactly the
-structured fields `resolve` needs to rebuild the underlying placement,
-sequence, or gap from the ledger alone: the ledger is the only durable
-record of a forecast, so nothing resolution depends on lives only in
-memory. `meta` never carries a filesystem path (`run_id` is a label,
-`f"{campaign}-{timestamp}"`, `hte.canon_writeback.RunContext.run_id`'s
-own convention), so the ledger stays portable across checkouts.
-
-`envelope` is a feed402-shaped citeable record (`PROTOCOL.md` §4,
-`CLAUDE.md`'s own feed402 forward-compat hook: `citation.type` is an
-additive extension point, and `"prediction"` is this module's own new
-value for it, sibling to DerbyFish's `derbyfish.bhrv.v2`). `receipt` is
-a placeholder throughout: no x402 settlement has happened over a
-forecast, `price_usd: 0`, `status: "forecast_registered_not_yet_
-resolved"`.
-"""
 from __future__ import annotations
 
 import hashlib
@@ -85,14 +24,6 @@ from .unknowns import GapNode, prior_profiles, robustness, unresolved_slot_gaps,
 
 logger = logging.getLogger("hte.predict")
 
-# Duplicated from `hte.cli._CORPUS_LOADERS`/`hte.runner._CORPUS_LOADERS`
-# rather than imported: both of those modules already keep their own
-# copy for the same reason stated in `hte/cli.py`'s own comment on it
-# (`hte.runner` carries `research-os` only at call time), and importing
-# either here would pull in a module `feat/hte-propagation` is editing
-# concurrently on its own branch. A corpus loader mapping is a fixed,
-# small piece of wiring; three copies of it costs less than a coupling
-# to a module under active, concurrent rewrite.
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
     "fixtures": fixtures_corpus.build,
@@ -103,9 +34,6 @@ _CORPUS_LOADERS = {
     "sacred-history": sacred_history.ingest,
 }
 
-# `tools/hypothesis-engine/hte/predict.py` -> parents[3] is the repo
-# root (`bucket-foundation/`), matching `hte.canon_writeback.REPO_ROOT`'s
-# own depth (same directory level, one file over).
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FEED_TOOL_DIR = REPO_ROOT / "tools" / "feed"
 
@@ -114,23 +42,8 @@ DEFAULT_FLOOR_U = 0.9
 DEFAULT_U_MAX = 0.5
 DEFAULT_OUT_DIR = "predictions"
 
-# A claim's own P and its base rate a must sit at least this far apart
-# to count as a real call (`_claim_predictions`): `u <= u_max` alone
-# admits a hypothesis whose evidence pulled b and d to near-equal
-# values around the same a, examined but undecided, the same kind of
-# open bet an unexamined one is. `0.15` is a chosen floor, this
-# module's own pick rather than a number the source material states;
-# `hte.belief.Opinion`'s own worked examples (`tests/test_belief.py`)
-# clear it with room to spare, and it excludes a near-coin-flip reading.
 _CLAIM_CONFIDENCE_MIN = 0.15
 
-# How many of each kind one `register` call writes at most, ranked by
-# confidence (claim), uncertainty (sequence), or value of information
-# (discovery) so a capped run still keeps its most interesting bets.
-# Not caller-tunable in this pass: `register`'s own signature (this
-# task's contract) takes `kinds`/`floor_u`/`u_max`, and these three
-# numbers are small enough that raising them is a one-line change here,
-# ahead of a real need for a fourth parameter.
 _MAX_CLAIM_PREDICTIONS = 25
 _MAX_DISCOVERY_PREDICTIONS = 15
 _MAX_SEQUENCE_PREDICTIONS = 10
@@ -141,18 +54,10 @@ _UNRESOLVED_SLOT_FIELDS: tuple[tuple[str, Slot], ...] = (
     ("place", Slot.PLACE), ("mechanism", Slot.MECHANISM),
 )
 
-
-# --------------------------------------------------------------------------
-# Prediction
-# --------------------------------------------------------------------------
-
-
 @dataclass
 class Prediction:
-    """One dated forward forecast. See this module's own top docstring
-    for the field-by-field rationale and each kind's own `meta` shape."""
     id: str
-    kind: str  # "claim" | "discovery" | "sequence"
+    kind: str
     made_at: str
     resolves_at: str
     statement: str
@@ -185,23 +90,11 @@ class Prediction:
             envelope=dict(d.get("envelope", {})), meta=dict(d.get("meta", {})),
         )
 
-
 def _prediction_id(kind: str, run_id: str, natural_key: str, made_at: str) -> str:
-    """A short, deterministic id: two `register` calls made at the same
-    `made_at` over the same run produce the identical id for the
-    identical prediction (`natural_key` is a hypothesis address or a gap
-    id), the property `tests/test_predict.py`'s own determinism test
-    checks. Content-hashed rather than a random UUID for exactly that
-    reason, matching `tools/feed/parse.py`'s own `event_id` convention."""
     h = hashlib.sha1(f"{kind}|{run_id}|{natural_key}|{made_at}".encode("utf-8"))
     return h.hexdigest()[:16]
 
-
 def _cite_block() -> dict[str, Any]:
-    """`PROTOCOL.md` §4's `cite` block, passive and forward-looking, the
-    same reading `hte.canon_writeback._cite_block` gives it for a
-    hypothesis card: a forecast costs its reader nothing to read or
-    cite, per `PROTOCOL.md` §3.1's agent-trust rule."""
     return {
         "applies_to": "downstream_republication_in_a_paid_work",
         "reader_owes": 0,
@@ -210,16 +103,10 @@ def _cite_block() -> dict[str, Any]:
         "license": "bucket.foundation/cite-forever/v0.1",
     }
 
-
 def _envelope(
     *, pred_id: str, kind: str, run_id: str, statement: str, made_at: str, resolves_at: str,
     P: float, u: float, a: float, profile_spread: float | None, evidence_ids: list[str],
 ) -> dict[str, Any]:
-    """A feed402-shaped, citeable envelope for one prediction
-    (`PROTOCOL.md` §4, `citation.type: "prediction"`, this module's own
-    new value for that additive extension point, `CLAUDE.md`'s feed402
-    forward-compat hook). `receipt` is a placeholder: no x402 settlement
-    has happened over a forecast that has not resolved yet."""
     return {
         "version": "bucket.foundation/v0.1",
         "run_id": run_id,
@@ -255,20 +142,7 @@ def _envelope(
         "evidence_ids": list(evidence_ids),
     }
 
-
-# --------------------------------------------------------------------------
-# Reconstruction: run_dir -> real placements, opinions, and evidence
-# --------------------------------------------------------------------------
-
-
 def _replay_vocab_growth(vocab: Vocabulary, vocab_added: list[dict[str, Any]]) -> None:
-    """Appends every concept `MANIFEST.json["counts"]["vocab_added"]`
-    (`hte.artifacts.RunCounts.vocab_added`) names to `vocab` in place, so
-    a survivor whose own address names a run-time-grown concept decodes
-    and re-encodes at all. The same observable behavior `hte.
-    canon_writeback._replay_vocab_growth` gives a run, reimplemented here
-    (not imported: that module is under concurrent edit on `feat/hte-
-    propagation`) over the same public `Concept`/`Vocabulary` surface."""
     for growth in vocab_added:
         try:
             slot = Slot(growth["slot"])
@@ -283,7 +157,6 @@ def _replay_vocab_growth(vocab: Vocabulary, vocab_added: list[dict[str, Any]]) -
             prior_logit=0.0, consensus_status=ConsensusStatus.CONTESTED,
         ))
 
-
 @dataclass
 class _Reconstruction:
     run_id: str
@@ -295,16 +168,7 @@ class _Reconstruction:
     score_fn: Any
     missing_mass: float | None
 
-
 def _reconstruct(run_dir: str | Path) -> _Reconstruction:
-    """Every placement survivor `run_dir` names in `timeline.json`,
-    reconstructed into a real, re-scored `Opinion`, over a corpus
-    re-ingested and evidence-linked the same way `hte.canon_writeback.
-    reconstruct_candidates` does. See that function's own docstring
-    (`hte/canon_writeback.py`) for why relinking against just this
-    population reproduces the original run's own scoring for every
-    hypothesis whose interval is a full time-bin span, the case every
-    `combinatorial_sample`-generated survivor is."""
     from . import artifacts as artifacts_mod
 
     run = artifacts_mod.load_run(run_dir)
@@ -343,21 +207,6 @@ def _reconstruct(run_dir: str | Path) -> _Reconstruction:
                 continue
             placements.append(h)
 
-    # `hte.link.link_evidence` links an item carrying a dated `interval`
-    # but no extracted slot at all against every placement sharing that
-    # date (its own docstring: "at least one extracted slot value OR a
-    # dated interval"), since every present-slot comparison is vacuously
-    # true with no slots to mismatch on. That is real signal for the
-    # original engine loop's own use of it (a bare-dated item still
-    # narrows which bin a claim belongs to), but it means every such item
-    # links to the WHOLE placement population at once, collapsing every
-    # survivor's own `u` toward the same low floor regardless of how much
-    # real, slot-specific evidence backs it, exactly the confound `floor_u`
-    # exists to select against. Linking only the slot-bearing items keeps
-    # `u` reading real per-hypothesis examination; `belief.score` below
-    # still scores every item in `corpus.evidence` (`pooled_weight` reads
-    # `item.supports`/`refutes` directly, so a slotless item never
-    # entered either list and contributes zero weight either way).
     slotted_evidence = [item for item in corpus.evidence if any(
         getattr(item, slot.value) is not None for slot in (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
     )]
@@ -379,18 +228,11 @@ def _reconstruct(run_dir: str | Path) -> _Reconstruction:
         profiles=profiles, score_fn=score_fn, missing_mass=missing_mass,
     )
 
-
-# --------------------------------------------------------------------------
-# Statement rendering
-# --------------------------------------------------------------------------
-
-
 def _label(vocab: Vocabulary, slot: Slot, concept_id: str | None) -> str:
     if concept_id is None:
         return "(unset)"
     concept = vocab.get(slot, concept_id)
     return concept.label if concept is not None else concept_id
-
 
 def _gist(placement: Placement, vocab: Vocabulary) -> str:
     actor = _label(vocab, Slot.ACTOR, placement.actor)
@@ -400,10 +242,8 @@ def _gist(placement: Placement, vocab: Vocabulary) -> str:
     mechanism = _label(vocab, Slot.MECHANISM, placement.mechanism)
     return f"{actor} {action} {obj}, in the context of {place}, via {mechanism}"
 
-
 def _resolves_at_date(resolves_at: str) -> str:
     return resolves_at[:10]
-
 
 def _placement_meta(placement: Placement) -> dict[str, Any]:
     return {
@@ -414,7 +254,6 @@ def _placement_meta(placement: Placement) -> dict[str, Any]:
         "interval": {"start": placement.interval.start, "end": placement.interval.end},
     }
 
-
 def _placement_from_meta(meta: Mapping[str, Any]) -> Placement:
     slots = meta["slots"]
     interval = meta["interval"]
@@ -423,12 +262,6 @@ def _placement_from_meta(meta: Mapping[str, Any]) -> Placement:
         place=slots.get("PLACE"), mechanism=slots.get("MECHANISM"),
         interval=Interval(start=interval["start"], end=interval["end"]),
     )
-
-
-# --------------------------------------------------------------------------
-# register
-# --------------------------------------------------------------------------
-
 
 def register(
     run_dir: str | Path,
@@ -441,39 +274,6 @@ def register(
     made_at: str | datetime | None = None,
     feed_root: str | Path | None = None,
 ) -> list[Prediction]:
-    """Turns the completed run at `run_dir` into dated forward
-    predictions, appends them to `<out>/ledger.jsonl`, and emits one
-    feed event through `tools/feed/feed.py`'s own `cmd_update` (`type:
-    "predict_register"`). Returns exactly the predictions this call
-    appended.
-
-    `horizon` is a whole number of days: `resolves_at = made_at +
-    horizon` days. A claim prediction registers a hypothesis examined
-    enough to make a real call, `u <= u_max` (default `0.5`), and
-    confident enough to be worth a ledger line, `|P - a| >= 0.15`
-    (`_claim_predictions`, `_CLAIM_CONFIDENCE_MIN`): `u` alone, read the
-    other way (`u >= floor_u`, a first pass this task revised), instead
-    selects the LEAST-examined hypotheses, mostly the ones a tournament
-    and critique pass already pruned to zero survivors before
-    `timeline.json` ever names them, an empty ledger on a typical real
-    run rather than the engine's own confident calls. `floor_u` (default
-    `0.9`) keeps that earlier, opposite reading for `sequence`
-    predictions, whose own `u` reads `1.0` unconditionally (`hte.link.
-    link_evidence` never links a sequence address, `_sequence_
-    predictions`'s own docstring), so `floor_u`'s check there is a no-op
-    today, kept for the day a future pass links evidence to sequence
-    addresses too. Discovery predictions carry no single hypothesis-
-    level `u` to gate on and are limited by count alone (`hte.unknowns.
-    unresolved_slot_gaps`'s own value-of-information ranking).
-
-    `made_at` pins the forecast timestamp (default: now, UTC); a caller
-    wanting two `register` calls over the same run to produce byte-
-    identical predictions (`tests/test_predict.py`'s own determinism
-    test) passes the same `made_at` to both. `feed_root` overrides where
-    the feed event lands (default: this repository's own root); a test
-    passes a `tmp_path` so it never touches the real `tools/feed/`
-    ledger.
-    """
     if isinstance(made_at, datetime):
         made_at_dt = made_at if made_at.tzinfo else made_at.replace(tzinfo=timezone.utc)
     elif isinstance(made_at, str):
@@ -498,26 +298,10 @@ def register(
     _emit_feed_event(predictions, run_id=rec.run_id, made_at=made_at_iso, out_dir=out_dir, feed_root=feed_root)
     return predictions
 
-
 def _confidence(opinion: Opinion) -> float:
-    """How far a hypothesis's own projected `P` sits from its bare prior
-    `a`: `0` for a hypothesis evidence has not moved at all (`u = 1`,
-    `P = a` exactly), rising as evidence pulls `P` away from where the
-    prior alone would put it. The second half of `_claim_predictions`'s
-    own two-part admission test, alongside `u <= u_max`."""
     return abs(opinion.project() - opinion.a)
 
-
 def _claim_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, u_max: float) -> list[Prediction]:
-    """Claim predictions register the engine's own confident calls: a
-    hypothesis examined enough that its own uncertainty mass has
-    dropped to `u <= u_max` (real evidence has weighed in, past a bare,
-    unexamined prior sitting at `u = 1`), AND confident
-    enough that `P` has moved a real distance from `a`
-    (`_confidence(opinion) >= _CLAIM_CONFIDENCE_MIN`), catching an
-    examined-but-undecided hypothesis whose supporting and refuting
-    weight canceled out near its own prior. Ranked by confidence,
-    highest first, so a capped run keeps its strongest calls."""
     candidates = [
         h for h in rec.placements
         if rec.opinions[h.address].u <= u_max and _confidence(rec.opinions[h.address]) >= _CLAIM_CONFIDENCE_MIN
@@ -544,7 +328,6 @@ def _claim_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, u_m
             meta={"address": h.address, **_placement_meta(placement)},
         ))
     return out
-
 
 def _discovery_predictions(rec: _Reconstruction, made_at: str, resolves_at: str) -> list[Prediction]:
     gaps: list[GapNode] = unresolved_slot_gaps(rec.corpus.evidence, rec.placements, rec.opinions, limit=_MAX_DISCOVERY_PREDICTIONS)
@@ -580,7 +363,6 @@ def _discovery_predictions(rec: _Reconstruction, made_at: str, resolves_at: str)
             },
         ))
     return out
-
 
 def _sequence_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, floor_u: float) -> list[Prediction]:
     pool = sorted(rec.placements, key=lambda h: (-rec.opinions[h.address].u, h.address))[:_SEQUENCE_POOL_SIZE]
@@ -619,28 +401,11 @@ def _sequence_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, 
         ))
     return out
 
-
 def _member_addresses(seq_address: int) -> tuple[int, int]:
-    """The two member placement addresses a sequence address was built
-    from (`hte.address.encode_sequence_indices`'s own inverse), so a
-    sequence prediction's `evidence_ids` reads the evidence already
-    linked to either dated event, without needing the corpus's own
-    `span_start`/`bin_width` again (`Placement.address` would, and
-    re-deriving it here from the wrong default span would silently
-    recompute a different int than the one `hte.link.link_evidence`
-    linked against)."""
     first_tuple, _relation_index, second_tuple = decode_sequence_indices(seq_address)
     return (encode_indices(first_tuple), encode_indices(second_tuple))
 
-
-# --------------------------------------------------------------------------
-# The ledger
-# --------------------------------------------------------------------------
-
-
 def load_ledger(path: str | Path) -> list[Prediction]:
-    """Every prediction currently on disk, in file order (oldest first).
-    An absent file reads as an empty ledger."""
     path = Path(path)
     if not path.is_file():
         return []
@@ -652,15 +417,7 @@ def load_ledger(path: str | Path) -> list[Prediction]:
         out.append(Prediction.from_dict(json.loads(line)))
     return out
 
-
 def _append_ledger(new_predictions: Sequence[Prediction], path: Path) -> list[Prediction]:
-    """Appends `new_predictions` to the ledger at `path`, keyed on
-    `id`, deduplicated against whatever is already on disk. Every
-    existing line is written back byte-for-byte the same (`sort_keys=
-    True`, the same deterministic-rewrite convention `hte.
-    holdout_ledger.append_entries` uses for its own append-only ledger),
-    so a second `register` call never alters an earlier entry's own
-    content, only ever adds lines after it."""
     existing = load_ledger(path)
     known = {p.id for p in existing}
     to_add = [p for p in new_predictions if p.id not in known]
@@ -670,12 +427,6 @@ def _append_ledger(new_predictions: Sequence[Prediction], path: Path) -> list[Pr
     text = "".join(json.dumps(p.to_dict(), sort_keys=True) + "\n" for p in list(existing) + to_add)
     path.write_text(text, encoding="utf-8")
     return to_add
-
-
-# --------------------------------------------------------------------------
-# feed402 activity feed (`tools/feed/feed.py`'s own API, read only)
-# --------------------------------------------------------------------------
-
 
 def _current_commit_sha() -> str:
     import subprocess
@@ -688,7 +439,6 @@ def _current_commit_sha() -> str:
     except Exception:  # noqa: BLE001 - a missing git binary, a non-repo cwd, or the test suite's own subprocess guard all fall back the same way
         return "uncommitted"
 
-
 def _emit_feed_event(
     predictions: Sequence[Prediction], *, run_id: str, made_at: str, out_dir: Path, feed_root: str | Path | None,
 ) -> int:
@@ -696,7 +446,7 @@ def _emit_feed_event(
         return 0
     if str(FEED_TOOL_DIR) not in sys.path:
         sys.path.insert(0, str(FEED_TOOL_DIR))
-    import feed as feed_tool  # tools/feed/feed.py
+    import feed as feed_tool
 
     root = Path(feed_root) if feed_root is not None else REPO_ROOT
     try:
@@ -723,20 +473,13 @@ def _emit_feed_event(
     }
     return feed_tool.cmd_update([event], root=root)
 
-
-# --------------------------------------------------------------------------
-# resolve
-# --------------------------------------------------------------------------
-
-
 _DISJOINT_RELATIONS = frozenset({AllenRelation.BEFORE, AllenRelation.AFTER})
-
 
 @dataclass
 class ResolutionOutcome:
     prediction_id: str
     kind: str
-    outcome: str  # "attested" | "refuted" | "unresolved"
+    outcome: str
     predicted_P: float
     observed: float | None
     brier: float | None
@@ -750,7 +493,6 @@ class ResolutionOutcome:
             "predicted_P": self.predicted_P, "observed": self.observed, "brier": self.brier,
             "made_at": self.made_at, "resolves_at": self.resolves_at, "statement": self.statement,
         }
-
 
 @dataclass
 class ResolutionReport:
@@ -773,7 +515,6 @@ class ResolutionReport:
             "by_kind": self.by_kind, "outcomes": [o.to_dict() for o in self.outcomes],
         }
 
-
 def _decide_claim_like(placement: Placement, corpus: Corpus, *, as_of: datetime, resolves_at: datetime) -> tuple[str, float | None]:
     if as_of < resolves_at:
         return "unresolved", None
@@ -791,7 +532,6 @@ def _decide_claim_like(placement: Placement, corpus: Corpus, *, as_of: datetime,
     if wrong_match:
         return "refuted", 0.0
     return "unresolved", None
-
 
 def _decide_sequence(seq_meta: Mapping[str, Any], corpus: Corpus, *, as_of: datetime, resolves_at: datetime) -> tuple[str, float | None]:
     if as_of < resolves_at:
@@ -812,7 +552,6 @@ def _decide_sequence(seq_meta: Mapping[str, Any], corpus: Corpus, *, as_of: date
     actual = {relate(f.interval, s.interval) for f in first_matches for s in second_matches}
     return ("attested", 1.0) if predicted in actual else ("refuted", 0.0)
 
-
 def _decide_discovery(meta: Mapping[str, Any], corpus: Corpus, *, as_of: datetime, resolves_at: datetime) -> tuple[str, float | None]:
     if as_of < resolves_at:
         return "unresolved", None
@@ -826,7 +565,6 @@ def _decide_discovery(meta: Mapping[str, Any], corpus: Corpus, *, as_of: datetim
     )
     return ("attested", 1.0) if found else ("refuted", 0.0)
 
-
 def resolve(
     ledger: str | Path | Sequence[Prediction],
     *,
@@ -834,22 +572,6 @@ def resolve(
     as_of: str | datetime,
     out: str | Path | None = None,
 ) -> ResolutionReport:
-    """Scores every prediction in `ledger` whose `resolves_at` is at or
-    before `as_of` against `evidence_corpus`, using the same slot-and-
-    interval matcher `hte.calibrate.run_holdout` uses (`_matches_event`,
-    imported). Writes `<out>/RESOLUTIONS.md` (default: `ledger`'s own
-    parent directory) and returns the `ResolutionReport`; never mutates
-    `ledger` itself, resolution is a read-only pass over the append-only
-    prediction record.
-
-    A claim or sequence prediction with no matching evidence at all
-    stays `"unresolved"` even past its own `resolves_at`: silence is not
-    proof of refutation, only `hte.calibrate.run_holdout`'s own "covered"
-    reading, extended to a forward bet. A discovery prediction has no
-    third reading available: "evidence of this kind will be found by the
-    horizon" either happened by `as_of` or it did not, so past its own
-    date it resolves `"attested"` or `"refuted"`, never `"unresolved"`.
-    """
     predictions = ledger if isinstance(ledger, Sequence) and not isinstance(ledger, (str, Path)) else load_ledger(ledger)
     as_of_dt = as_of if isinstance(as_of, datetime) else datetime.fromisoformat(as_of)
     if as_of_dt.tzinfo is None:
@@ -876,7 +598,6 @@ def resolve(
     out_dir = Path(out) if out is not None else (Path(ledger).parent if isinstance(ledger, (str, Path)) else Path(DEFAULT_OUT_DIR))
     _write_resolutions_md(report, out_dir / "RESOLUTIONS.md")
     return report
-
 
 def _build_report(as_of: str, outcomes: list[ResolutionOutcome]) -> ResolutionReport:
     from .calibrate import calibration_curve as _calibration_curve
@@ -915,7 +636,6 @@ def _build_report(as_of: str, outcomes: list[ResolutionOutcome]) -> ResolutionRe
         by_kind=by_kind, outcomes=outcomes,
     )
 
-
 def _write_resolutions_md(report: ResolutionReport, path: Path) -> None:
     lines = [
         "# Prediction resolutions",
@@ -944,7 +664,6 @@ def _write_resolutions_md(report: ResolutionReport, path: Path) -> None:
 
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 __all__ = [
     "Prediction", "ResolutionOutcome", "ResolutionReport",

@@ -1,14 +1,3 @@
-// GET /api/photon/search?q=...&lang=...&kind=...&top_k=30
-//
-// Wraps searchPhotons() from src/lib/photon-db.ts and returns a stable
-// shape matching what the homepage UI expects:
-//
-//   { query, n_results, results: Photon[], took_ms, stats? }
-//
-// stats is included so the empty-query call (`q=___NEVER___`) can populate
-// the header with "45,000+ photons · 27 languages" without a second
-// roundtrip.
-
 import { NextResponse } from "next/server";
 import { searchPhotons, photonStats } from "@/lib/photon-db";
 
@@ -25,8 +14,6 @@ export async function GET(req: Request) {
     100
   );
 
-  // Sentinel used by the homepage on mount to pull stats without
-  // committing to a real search.
   const isSentinel = q === "___NEVER___" || q === "";
 
   if (isSentinel) {

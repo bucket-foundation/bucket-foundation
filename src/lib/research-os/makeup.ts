@@ -1,14 +1,3 @@
-/**
- * A node's makeup for the node page's "made of" section
- * (learning/research-os/PRIMES.md): its place in the prime decomposition,
- * the primes under it, what it rests on directly, and the decompose-further
- * work waiting on review for it: proposed factors, missing base ideas named
- * for it, and an irreducible verdict.
- *
- * `buildMakeup` is pure and tested in scripts/test-research-os-makeup.ts.
- * `makeupSnapshot` decomposes the public graph once and keeps the result
- * for a minute, so opening node after node does not re-read the graph.
- */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
 import { isIdeaNode } from "./idea";
@@ -18,18 +7,12 @@ export type MakeupNode = { id: string; slug: string; title: string; branch: stri
 
 export type Makeup = {
   status: PrimeStatus;
-  /** Layers of combination above the node's primes: 0 for a prime. Distinct from the grade tier on the node. */
   tier: number;
   inCycle: boolean;
-  /** Distinct primes under the node. */
   primeCount: number;
-  /** The primes under it, the most-reached first, at most `limit`. */
   primes: (MakeupNode & { paths: number })[];
-  /** The ideas the node rests on one step down in the idea layer, each marked when the link runs through evidence such as a paper or a fact. */
   factors: (MakeupNode & { throughEvidence: boolean })[];
-  /** For a prime: how many idea composites contain it, across how many branches. */
   reach: { composites: number; branches: number } | null;
-  /** The non-idea nodes an idea rests on directly, facts and sources among them: its evidence, apart from its makeup. */
   evidence: { count: number; items: MakeupNode[] };
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];
@@ -43,11 +26,9 @@ export type MakeupProposal = {
   refd: number | null;
   crossBranch: boolean;
   inCycle: boolean;
-  /** Set for reviewers: the factor already rests on the node in the graph, or the node already rests on the factor. */
   graphLoop?: boolean;
   implied?: boolean;
   viaPending?: boolean;
-  /** Set for reviewers: the nodes on the chain behind `implied` or `viaPending`. */
   through?: ChainStep[];
   source: string;
 };
@@ -63,13 +44,9 @@ export type ProposalRowLite = {
 };
 
 export type Snapshot = {
-  /** The decomposition of the idea layer: idea nodes, with paths through evidence contracted into idea-to-idea edges. */
   dec: Map<string, Decomposition>;
-  /** Every factor edge on the public graph, for loop checks that may pass through evidence. */
   edges: DepEdge[];
-  /** Each idea's direct non-idea factors. */
   evidence: Map<string, MakeupNode[]>;
-  /** Node id to its direct factors over every public factor edge. */
   factors: Map<string, Map<string, number>>;
   byId: Map<string, MakeupNode>;
   bySlug: Map<string, MakeupNode>;
@@ -159,13 +136,6 @@ async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   );
 }
 
-/**
- * The snapshot from public nodes and factor edges: the idea layer, as the
- * queue decomposes it (decompose-further.ts ideaLayer), with paths through
- * evidence contracted into idea-to-idea edges; each idea's direct non-idea
- * factors as its evidence; and every public factor edge kept for loop
- * checks, which may pass through evidence.
- */
 export function snapshotFrom(rows: MakeupNode[], allEdges: DepEdge[]): Snapshot {
   const live = new Set(rows.map((n) => n.id));
   const edges = allEdges.filter((e) => live.has(e.fromId) && live.has(e.toId));
@@ -196,14 +166,8 @@ export function snapshotFrom(rows: MakeupNode[], allEdges: DepEdge[]): Snapshot 
 
 let cached: { at: number; snap: Snapshot } | null = null;
 let inflight: { gen: number; promise: Promise<Snapshot> } | null = null;
-/** Bumped when an approval changes the graph; a read started before the bump is never stored. */
 let generation = 0;
 
-/**
- * The public graph's decomposition, reused for `ttlMs` so node pages stay
- * fast. Requests that arrive while a read is running share it, and a read
- * that an approval overtook is served once and never cached.
- */
 export async function makeupSnapshot(svc: SupabaseClient, ttlMs = 60_000, read: (svc: SupabaseClient) => Promise<Snapshot> = readSnapshot): Promise<Snapshot> {
   if (cached && Date.now() - cached.at < ttlMs) return cached.snap;
   if (inflight && inflight.gen === generation) return inflight.promise;
@@ -220,24 +184,17 @@ export async function makeupSnapshot(svc: SupabaseClient, ttlMs = 60_000, read: 
   return promise;
 }
 
-/**
- * Pending pairs that close a loop with the graph's factor edges and the
- * other pending pairs right now, keyed "factor->target". Computed on read,
- * so a decision elsewhere clears or adds a flag at once.
- */
 export function liveCycles(snap: Snapshot, pending: { from_slug: string; to_slug: string }[]): Set<string> {
   const idOf = new Map(Array.from(snap.bySlug.entries()).map(([slug, n]) => [slug, n.id]));
   return cyclicPairs(snap.edges, pending, idOf);
 }
 
-/** Every pending proposal pair with its verdict, paged past PostgREST's 1,000-row cap. */
 export async function allPendingPairs(svc: SupabaseClient): Promise<{ from_slug: string; to_slug: string; verification: string | null }[]> {
   return paged<{ from_slug: string; to_slug: string; verification: string | null }>((from) =>
     svc.from("edge_proposals").select("from_slug,to_slug,verification").eq("status", "pending").order("id").range(from, from + 999),
   );
 }
 
-/** Drop the cached decomposition, so the next read sees a just-approved edge. */
 export function forgetMakeupSnapshot(): void {
   cached = null;
   generation++;
@@ -245,11 +202,6 @@ export function forgetMakeupSnapshot(): void {
 
 export type PendingCounts = { proposals: number; missing: number; irreducible: boolean; truncated: boolean };
 
-/**
- * What a viewer gets. The decomposition is public; what waits on review is
- * reviewer data, so everyone else gets the counts and only a confirmed
- * irreducible verdict, which is a review outcome.
- */
 export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReviewer: boolean): { makeup: Makeup; pending: PendingCounts; canReview: boolean } {
   if (isReviewer) return { makeup, pending, canReview: true };
   return {
@@ -259,10 +211,6 @@ export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReview
   };
 }
 
-/**
- * The shortest chain from `nodeId` down to `factorId` over `factors`, both
- * ends included, or null when there is none. `skip` ignores one direct link.
- */
 function chainTo(factors: (id: string) => Iterable<string>, nodeId: string, factorId: string, skip?: [string, string]): string[] | null {
   if (nodeId === factorId) return null;
   const parent = new Map<string, string>();
@@ -291,7 +239,6 @@ function chainTo(factors: (id: string) => Iterable<string>, nodeId: string, fact
 
 const graphFactors = (snap: Snapshot) => (id: string) => snap.factors.get(id)?.keys() ?? [];
 
-/** True when `nodeId` rests on `factorId` through any chain of public factor edges. */
 export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string): boolean {
   return chainTo(graphFactors(snap), nodeId, factorId) !== null;
 }
@@ -299,26 +246,16 @@ export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string)
 export type ChainStep = { slug: string; title: string };
 
 export type PairStanding = {
-  /** The factor already rests on the target in the graph: approval makes a loop, and the review refuses it. */
   graphLoop: boolean;
-  /** The target already rests on the factor through other nodes: approval adds a direct link to a chain. */
   implied: boolean;
-  /** Other pending proposals the second model confirmed, with the graph, already lead from the target to the factor: approving them makes this pair a shortcut. */
   viaPending: boolean;
-  /** For `implied` or `viaPending`, the nodes between target and factor on the shortest such chain, target side first. Empty otherwise. */
   through: ChainStep[];
 };
 
-/**
- * How each pending pair meets the graph and the rest of the queue. Pairs
- * are keyed "factor->target" by slug. One pass per list, so the reachability
- * walks share the combined factor map.
- */
 export function pairStandings(snap: Snapshot, pending: { from_slug: string; to_slug: string; verification?: string | null }[]): Map<string, PairStanding> {
   const idOf = (slug: string) => snap.bySlug.get(slug)?.id;
   const withPending = new Map<string, Set<string>>();
   for (const [node, fs] of Array.from(snap.factors.entries())) withPending.set(node, new Set(fs.keys()));
-  // Chains count only pairs likely to be approved: the ones the second model confirmed.
   for (const p of pending) {
     if (p.verification !== "confirmed") continue;
     const f = idOf(p.from_slug);
@@ -354,7 +291,6 @@ export function pairStandings(snap: Snapshot, pending: { from_slug: string; to_s
   return out;
 }
 
-/** One pair against the graph alone, as `pairStandings` reads it with nothing else pending. */
 export function pairInGraph(snap: Snapshot, factorSlug: string, targetSlug: string): { graphLoop: boolean; implied: boolean } {
   const s = pairStandings(snap, [{ from_slug: factorSlug, to_slug: targetSlug }]).get(`${factorSlug}->${targetSlug}`)!;
   return { graphLoop: s.graphLoop, implied: s.implied };

@@ -4,7 +4,6 @@ from hte.periods import Period, choose_period, load_periods
 from hte.timeline import Interval
 from hte.unknowns import GapNode
 
-
 def test_load_periods_returns_four_seed_candidates():
     periods = load_periods()
     ids = {p.id for p in periods}
@@ -15,7 +14,6 @@ def test_load_periods_returns_four_seed_candidates():
         assert period.start_year <= period.end_year
         assert period.expected_evidence_kinds
         assert period.gaps
-
 
 def test_load_periods_resolves_calendars_to_astronomical_years():
     periods = {p.id: p for p in load_periods()}
@@ -37,7 +35,6 @@ def test_load_periods_resolves_calendars_to_astronomical_years():
     assert qh.end_year == 2026
     assert qh.corpus == "quantum-history"
 
-
 def test_load_periods_unknown_calendar_kind_raises(tmp_path):
     import json
 
@@ -49,7 +46,6 @@ def test_load_periods_unknown_calendar_kind_raises(tmp_path):
     with pytest.raises(ValueError, match="unknown calendar kind"):
         load_periods(bad_path)
 
-
 def _period(id_, gaps, factors=None):
     return Period(
         id=id_, label=id_, corpus=None, start_year=0, end_year=1,
@@ -57,7 +53,6 @@ def _period(id_, gaps, factors=None):
         factors=factors or {"uncertainty": 1.0, "novelty": 0.0, "coverage_gap": 0.0, "historical_gap": 0.0, "disagreement": 0.0},
         gaps=gaps,
     )
-
 
 def test_choose_period_prefers_higher_priority_candidate_by_default():
     high = _period("high", [GapNode(id="g1", kind="unexcavated-site", description="d", period_id="high", cost=1.0)],
@@ -71,7 +66,6 @@ def test_choose_period_prefers_higher_priority_candidate_by_default():
     assert result["candidates"][0]["id"] == "high"
     assert result["candidates"][0]["score"] > result["candidates"][1]["score"]
 
-
 def test_choose_period_respects_budget_and_skips_unaffordable_gaps():
     period = _period("p", [
         GapNode(id="cheap", kind="unexcavated-site", description="d", period_id="p", cost=1.0),
@@ -83,7 +77,6 @@ def test_choose_period_respects_budget_and_skips_unaffordable_gaps():
     assert entry["spent"] == 1.0
     assert entry["gap_count"] == 1
     assert entry["of_total_gaps"] == 2
-
 
 def test_choose_period_folds_in_value_of_information_when_given_opinions():
     from hte.concepts import Slot, Vocabulary, other_id
@@ -103,9 +96,8 @@ def test_choose_period_folds_in_value_of_information_when_given_opinions():
     with_voi = choose_period([period], budget=5, hypotheses=[hyp], opinions=opinions)
 
     assert no_voi["candidates"][0]["voi_total"] == 0.0
-    assert with_voi["candidates"][0]["voi_total"] == 1.0  # u^2 = 1.0^2
+    assert with_voi["candidates"][0]["voi_total"] == 1.0
     assert with_voi["candidates"][0]["score"] > no_voi["candidates"][0]["score"]
-
 
 def test_choose_period_empty_candidates_chooses_none():
     result = choose_period([], budget=10)

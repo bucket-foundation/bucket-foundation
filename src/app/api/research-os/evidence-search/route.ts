@@ -1,16 +1,3 @@
-/**
- * POST /api/research-os/evidence-search, the development pilot's search
- * over admitted public sources (ros-ai-find).
- *
- * The gates run before anything is read: the flag, a verified session,
- * consent, an adult profile, and the server's pilot list. The same gates
- * answer GET, which the workspace uses to decide whether to offer the
- * mode at all, so a client cannot reach results by skipping the page.
- *
- * The response carries source cards and never a score. It is
- * `private, no-store`: the pilot keeps no result cache, and query text
- * stays out of logs and out of the URL.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { consentRefusal, requireConsent } from "@/lib/research-os/consent";
 import { graphService, verifyLearner } from "@/lib/research-os/db";
@@ -27,7 +14,6 @@ function answer(status: number, body: Record<string, unknown>): NextResponse {
   return NextResponse.json(body, { status, headers: NO_STORE });
 }
 
-/** The gates, in order, for both methods. */
 async function gate(req: NextRequest): Promise<{ ok: true; learnerId: string } | { ok: false; res: NextResponse }> {
   if (!flagOn(process.env.RESEARCH_OS_AI_SEARCH)) {
     return { ok: false, res: answer(404, { error: "feature_off", message: "Evidence search is off." }) };
@@ -36,11 +22,6 @@ async function gate(req: NextRequest): Promise<{ ok: true; learnerId: string } |
   if (!learnerId) return { ok: false, res: answer(401, { error: "no_session", message: "Sign in to search public evidence." }) };
   const consent = await requireConsent(learnerId, "workspace_tool");
   if (!consent.allowed) {
-    // Through consentRefusal, because requireConsent can now report that
-    // the consent read did not complete, and consentBlockedBody throws
-    // on that rather than shaping a 403 body for it. Calling it directly
-    // turned a consent outage into a bodiless 500 in an authorization
-    // gate.
     const refusal = consentRefusal(consent);
     return { ok: false, res: answer(refusal.status, refusal.body as unknown as Record<string, unknown>) };
   }
@@ -64,7 +45,6 @@ async function gate(req: NextRequest): Promise<{ ok: true; learnerId: string } |
   return { ok: true, learnerId };
 }
 
-/** Whether this account may use the mode, and which corpus answers it. */
 export async function GET(req: NextRequest) {
   const allowed = await gate(req);
   if (!allowed.ok) return allowed.res;

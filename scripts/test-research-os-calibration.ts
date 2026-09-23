@@ -1,13 +1,3 @@
-/**
- * Unit tests: the per-learner calibration summary (bkt-ros, learning/
- * research-os/PLAN-REVISION-2.md section 2a), src/lib/research-os/
- * calibration.ts's computeCalibrationSummary. Pure, no I/O, matching
- * class-view.ts's own test convention (scripts/test-research-os-teacher-
- * class.ts): plain evidence-array fixtures, no database.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-calibration.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "../src/lib/research-os/calibration";
@@ -21,19 +11,19 @@ test("a learner with one forcing-gated check attempt gets one row", () => {
   assert.equal(rows.length, 1);
   assert.equal(rows[0].learnerId, "learner-1");
   assert.equal(rows[0].n, 1);
-  assert.equal(rows[0].meanConfidence, 3); // "fairly" = 3
+  assert.equal(rows[0].meanConfidence, 3);
   assert.equal(rows[0].meanCorrectness, 1);
 });
 
 test("meanConfidence and meanCorrectness average across multiple attempts", () => {
   const evidence = [
-    checkEvent({ learnerConfidence: "not_sure", predictionCorrect: false }), // 1, wrong
-    checkEvent({ learnerConfidence: "certain", predictionCorrect: true }), // 4, right
+    checkEvent({ learnerConfidence: "not_sure", predictionCorrect: false }),
+    checkEvent({ learnerConfidence: "certain", predictionCorrect: true }),
   ];
   const rows = computeCalibrationSummary(new Map([["learner-1", evidence]]));
   assert.equal(rows[0].n, 2);
-  assert.equal(rows[0].meanConfidence, 2.5); // (1 + 4) / 2
-  assert.equal(rows[0].meanCorrectness, 0.5); // 1 of 2 correct
+  assert.equal(rows[0].meanConfidence, 2.5);
+  assert.equal(rows[0].meanCorrectness, 0.5);
 });
 
 test("a learner with zero qualifying events is omitted, not returned as a zeroed row", () => {

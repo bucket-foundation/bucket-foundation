@@ -1,5 +1,3 @@
-"""Property tests over `hte.hypothesis`: Placement/Sequence addressing,
-prior_logit summation, and Hypothesis JSON round trips."""
 from __future__ import annotations
 
 import pytest
@@ -12,7 +10,6 @@ from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.hypothesis import Hypothesis, Placement, Sequence
 from hte.timeline import AllenRelation, Interval
 
-
 def _vocab_with_priors(priors: dict[str, float]) -> Vocabulary:
     vocab = Vocabulary()
     for slot in CONCEPT_SLOT_ORDER:
@@ -22,12 +19,10 @@ def _vocab_with_priors(priors: dict[str, float]) -> Vocabulary:
         ))
     return vocab
 
-
 priors_dict = st.fixed_dictionaries({
     slot.value: st.floats(min_value=-20.0, max_value=20.0, allow_nan=False, allow_infinity=False)
     for slot in CONCEPT_SLOT_ORDER
 })
-
 
 def _placement(priors: dict[str, float], start: int = 100, end: int = 100) -> Placement:
     return Placement(
@@ -35,24 +30,11 @@ def _placement(priors: dict[str, float], start: int = 100, end: int = 100) -> Pl
         mechanism="mechanism-p", interval=Interval(start=start, end=end),
     )
 
-
-# --------------------------------------------------------------------------
-# prior_logit sums exactly the five concept-bearing slots; TIME_BIN never
-# contributes
-# --------------------------------------------------------------------------
-
-
 @given(priors_dict)
 def test_placement_prior_logit_equals_sum_of_its_five_slots(priors):
     vocab = _vocab_with_priors(priors)
     placement = _placement(priors)
-    # Both sides sum the same five floats in a different order (dict
-    # insertion order here vs. hte.hypothesis's own CONCEPT_SLOT_ORDER
-    # iteration), so an exact `==` is a float-summation-order trap in this
-    # test, unrelated to the code under test; approx equality is the
-    # right check here.
     assert placement.prior_logit(vocab) == pytest.approx(sum(priors.values()), abs=1e-9)
-
 
 @given(priors_dict, st.integers(min_value=-5000, max_value=5000), st.integers(min_value=-5000, max_value=5000))
 def test_placement_prior_logit_is_unaffected_by_time_bin(priors, start1, offset):
@@ -63,12 +45,9 @@ def test_placement_prior_logit_is_unaffected_by_time_bin(priors, start1, offset)
     p2 = _placement(priors, start=start1, end=end2)
     assert p1.prior_logit(vocab) == p2.prior_logit(vocab)
 
-
 @given(priors_dict, priors_dict)
 def test_sequence_prior_logit_is_sum_of_both_placements(priors_a, priors_b):
     vocab_a = _vocab_with_priors(priors_a)
-    # Sequence.prior_logit resolves both placements against the SAME
-    # vocabulary, so build one vocab whose ids disambiguate the two members.
     vocab = Vocabulary()
     for slot in CONCEPT_SLOT_ORDER:
         vocab.add(Concept(id=f"{slot.value}-first", slot=slot, label="f", prior_logit=priors_a[slot.value], consensus_status=ConsensusStatus.CONSENSUS))
@@ -77,12 +56,6 @@ def test_sequence_prior_logit_is_sum_of_both_placements(priors_a, priors_b):
     second = Placement(actor="actor-second", action="action-second", object="object-second", place="place-second", mechanism="mechanism-second", interval=Interval(10, 10))
     seq = Sequence(first=first, relation=AllenRelation.BEFORE, second=second)
     assert seq.prior_logit(vocab) == pytest.approx(sum(priors_a.values()) + sum(priors_b.values()), abs=1e-9)
-
-
-# --------------------------------------------------------------------------
-# JSON round trip: Hypothesis.to_dict / from_dict, placement and sequence
-# --------------------------------------------------------------------------
-
 
 @given(
     unicode_nonempty_labels, unicode_nonempty_labels, unicode_nonempty_labels,
@@ -110,7 +83,6 @@ def test_placement_hypothesis_to_dict_from_dict_round_trips(actor, action, obj, 
     assert restored.is_sequence is False
     assert restored.short_id == h.short_id
 
-
 def test_sequence_hypothesis_to_dict_from_dict_round_trips():
     vocab = Vocabulary()
     for slot in CONCEPT_SLOT_ORDER:
@@ -125,12 +97,10 @@ def test_sequence_hypothesis_to_dict_from_dict_round_trips():
     assert restored.address == h.address
     assert restored.content == h.content
 
-
 def test_hypothesis_from_dict_rejects_unknown_kind():
     import pytest
     with pytest.raises(ValueError):
         Hypothesis.from_dict({"address": 1, "kind": "not-a-kind", "content": {}})
-
 
 def test_hypothesis_default_meta_is_empty_dict():
     vocab = Vocabulary()

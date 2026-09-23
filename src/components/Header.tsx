@@ -12,9 +12,6 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
-  // Research OS is the product; every surface lives inside it. Canon is
-  // the substrate underneath. Everything else lives in the Research OS
-  // dropdown, the footer, or the module bar on Research OS pages.
   {
     href: "/research-os",
     label: "Research OS",
@@ -42,7 +39,6 @@ const NAV: NavItem[] = [
       { href: "/access",         label: "Agent access",  meta: "MCP, llms.txt, x402" },
     ],
   },
-  // About → /governance, /manifesto, /contributors, /join.
   { href: "/whats-new",      label: "What's new" },
   { href: "/about",          label: "About" },
 ];
@@ -61,11 +57,10 @@ const CANON = [
 
 export default function Header({ launchList = false }: { launchList?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [openSub, setOpenSub] = useState<string | null>(null); // desktop hover dropdown
+  const [openSub, setOpenSub] = useState<string | null>(null);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const hoverTimer = useRef<number | null>(null);
 
-  // Lock body scroll when drawer open
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -74,8 +69,6 @@ export default function Header({ launchList = false }: { launchList?: boolean })
 
   const closeDrawer = () => { setOpen(false); setExpandedMobile(null); };
 
-  // Hover handlers: small open delay so cursor swipes don't open randomly;
-  // small close delay so cursor can travel to the dropdown without it flickering shut.
   const openSubmenu = (label: string) => {
     if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
     setOpenSub(label);
@@ -155,7 +148,6 @@ export default function Header({ launchList = false }: { launchList?: boolean })
                         </li>
                       ))}
                     </ul>
-                    {/* Canon branches sub-grid only for the Canon dropdown */}
                     {n.label === "Canon" && (
                       <>
                         <div className="border-t border-[color:var(--hairline)] mx-2" />
@@ -189,7 +181,6 @@ export default function Header({ launchList = false }: { launchList?: boolean })
 
           <div className="flex items-center gap-2">
             <UserMenu launchList={launchList} />
-            {/* Hamburger, md:hidden */}
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -218,7 +209,6 @@ export default function Header({ launchList = false }: { launchList?: boolean })
         </div>
       </header>
 
-      {/* === MOBILE DRAWER ============================================ */}
       <div
         id="mobile-drawer"
         role="dialog"

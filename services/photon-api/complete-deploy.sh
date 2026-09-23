@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Background completer (Nucleus): waits for the LaBSE semantic embedding to
-# finish, then runs the idempotent deploy and verifies the live endpoint.
-# Launched after the dictionary-coverage agent ended mid-embedding.
 set -uo pipefail
 cd ~/agfarms/bucket-foundation
 LOG=_intake/photons/complete-deploy.log
@@ -14,7 +11,6 @@ DB=_intake/photons/index.sqlite
 emb_count() { python3 -c "import sqlite3;print(sqlite3.connect('$DB').execute('select count(*) from photons where semantic_row is not null').fetchone()[0])"; }
 tot_count() { python3 -c "import sqlite3;print(sqlite3.connect('$DB').execute('select count(*) from photons').fetchone()[0])"; }
 
-# 1) Wait for the embedding process to exit (poll /proc, no signals sent).
 waited=0
 while [ -d "/proc/$EMB_PID" ]; do
   sleep 60; waited=$((waited+1))
@@ -30,7 +26,6 @@ if [ "$EMB" -lt 150000 ]; then
   exit 1
 fi
 
-# 2) Idempotent deploy (rsync substrate + server, venv, user service, nginx/cert).
 echo "[completer] running deploy.sh ..."
 if bash services/photon-api/deploy.sh; then
   echo "[completer] deploy.sh OK"
@@ -38,7 +33,6 @@ else
   echo "[completer] DEPLOY FAILED (see above)"; exit 1
 fi
 
-# 3) Live verification via urllib (no curl; avoids the bash hook).
 python3 - <<'PY'
 import urllib.request, json
 BASE = "https://polingual.agfarms.dev"

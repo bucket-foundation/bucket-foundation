@@ -1,20 +1,3 @@
-/**
- * bucket.foundation, GET/DELETE /api/academy/credential/[id] (bkt-52p)
- * ----------------------------------------------------------------------------
- * The HOSTED credential, a stable, resolvable artifact a third party fetches
- * and verifies.
- *
- * GET /api/academy/credential/<id>
- * Default: returns the signed VC-JWT as text (Content-Type matches the
- * VC-JWT media type). `?format=json` returns the embedded credential JSON
- * (handy to read), `?format=jwt` forces the JWS. Public, no auth.
- * If revoked, still served but with revocation metadata + 200 (the
- * artifact persists; revocation is a separate, verifiable status).
- *
- * DELETE /api/academy/credential/<id> (auth, owner-only)
- * Revoke the credential. Identity from the verified token; never trusts
- * client-supplied ids of ownership. Returns the new revoked status.
- */
 import { NextRequest, NextResponse } from "next/server";
 import {
   dbConfigured,
@@ -65,7 +48,6 @@ export async function GET(
   const format = url.searchParams.get("format");
 
   if (format === "json") {
-    // The embedded credential JSON + status (for humans / quick inspection).
     return new NextResponse(
       JSON.stringify(
         {
@@ -83,11 +65,9 @@ export async function GET(
     );
   }
 
-  // Default + ?format=jwt: serve the signed VC-JWT (the verifiable artifact).
   return new NextResponse(row.jwt, {
     status: 200,
     headers: {
-      // VC-JWT media type per W3C VC-JOSE-COSE; text-friendly so curl shows it.
       "content-type": "application/vc+jwt",
       "x-credential-revoked": row.revoked_at ? "true" : "false",
       "access-control-allow-origin": "*",
@@ -113,16 +93,11 @@ export async function DELETE(
     const body = (await req.json()) as { reason?: unknown };
     if (typeof body?.reason === "string") reason = body.reason.slice(0, 200);
   } catch {
-    /* no body is fine */
   }
 
   const outcome = await revokeCredential(id, uid, reason);
-  // A write that never ran is not a refusal. Both answered false before,
-  // so an issuer revoking a leaked credential during an outage was told
-  // the credential was not theirs and the credential stayed live.
   if (outcome === "unavailable") return json({ error: "revoke_unavailable" }, 503);
   if (outcome === "no_row") {
-    // Either not owned by this user, already revoked, or not found, all opaque.
     return json({ error: "revoke_failed" }, 409);
   }
   return json({ ok: true, id, revoked: true });

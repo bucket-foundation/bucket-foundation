@@ -1,7 +1,3 @@
-// canon-evidence.ts, server-only loader for per-claim corpus evidence
-// passages. Data comes from _intake/embeddings/claim-evidence.jsonl
-// produced by agf-claim-evidence.
-
 import fs from "fs";
 import path from "path";
 
@@ -48,14 +44,12 @@ export function getEvidenceFor(concept: string, slug: string): ClaimEvidence | n
   return cache.get(`${concept}::${slug}`) || null;
 }
 
-// Format a source path for display, strip the repo prefix
 export function prettySourcePath(p: string): string {
   return p.replace(/^.*?\/bucket-foundation\//, "");
 }
 
-// Categorize source by its path prefix
 export function sourceKind(p: string): string {
   const m = p.match(/bucket-foundation\/([^/]+)/);
   if (!m) return "other";
-  return m[1]; // yt, pubmed, archive, openalex, blog, _intake, etc.
+  return m[1];
 }

@@ -1,17 +1,3 @@
-/**
- * src/lib/academy/credential/consistency.ts  (bkt-52p)
- * ----------------------------------------------------------------------------
- * Bonus verify step: cross-check that the concepts a credential asserts are
- * STILL consistent with the learner's live public Mastery Profile.
- *
- * This is explicitly framed (in copy + in the result) as a live convenience, NOT
- * the trust anchor: the credential is a signed, point-in-time artifact and stays
- * valid unless revoked even if the live profile later drifts. We report
- * "claims consistent with current profile" vs "credential is point-in-time".
- *
- * We re-derive eligibility from the live profile and check each asserted concept
- * still clears the SAME issuance bar (build.selectEligible).
- */
 import type { PublicProfile } from "../profile";
 import { selectEligible } from "./build";
 import type { OpenBadgeCredential, VerifyResult } from "./types";
@@ -34,7 +20,6 @@ export function checkConsistency(
     };
   }
 
-  // The set of canon codes the live profile would STILL issue today.
   const liveCodes = new Set(
     selectEligible(liveProfile).map((e) => `${e.branch}/${e.concept.id}`)
   );

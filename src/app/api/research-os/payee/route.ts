@@ -1,11 +1,3 @@
-/**
- * Research OS, the payee (ros-32). A contributor under 18 is paid through a
- * guardian or a custodial account; the guardian sees every payment.
- *
- * GET  /api/research-os/payee  -> { payeeType, hasGuardianContact, visibility, decision }
- * POST /api/research-os/payee  { payeeType: "self" | "guardian" | "custodial", guardianContact?: string, visibility?: boolean }
- *   The contact is hashed with RESEARCH_OS_HASH_SALT and never stored in clear.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
 import { hashContact, payeeFor, type PayeeType } from "@/lib/research-os/consent-paths";

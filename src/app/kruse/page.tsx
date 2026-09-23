@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-// Public preview. The gated interactive search lives at /kruse/search and is
-// only reachable with a valid HS256 magic-link cookie (see middleware.ts).
 export const dynamic = "force-static";
 
 export default function KrusePage() {

@@ -127,12 +127,6 @@ function Report({ r }: { r: PrimesReport }) {
   );
 }
 
-/**
- * The prime report (ros-prime 1, scripts/research-os/primes-report.ts) where
- * people work: what the graph's public nodes rest on, computed on each load.
- * A deployment with no graph and a read that failed this minute say
- * different things, and neither reads as an empty graph.
- */
 export default async function PrimesPage() {
   let report: PrimesReport | null = null;
   let failed = false;

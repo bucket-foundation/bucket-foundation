@@ -1,12 +1,3 @@
-/**
- * Minimal, zero-dependency Markdown → React renderer.
- * Handles: # h1, h6, paragraphs, ul/ol, bold, italic, inline code, fenced code,
- * links, images, GitHub-style tables, blockquotes, horizontal rule.
- * Designed for bucket.foundation's strategic docs (MANIFESTO, PROTOCOL,
- * GOVERNANCE) and the long-form research corpora (research-atlas papers,
- * education-atlas) which use a small, disciplined subset of markdown plus
- * tables and figures.
- */
 import React from "react";
 
 type Block =
@@ -20,14 +11,11 @@ type Block =
   | { t: "img"; src: string; alt: string }
   | { t: "hr" };
 
-// A line that is *only* an image: ![alt](url)
 const IMG_ONLY = /^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$/;
-// A table row: starts and ends (after trim) with a pipe and has at least one more.
 function isTableRow(line: string): boolean {
   const t = line.trim();
   return t.startsWith("|") && t.indexOf("|", 1) > 0;
 }
-// The separator row under a table header: | --- | :--: | etc.
 function isTableSep(line: string): boolean {
   const t = line.trim();
   if (!t.startsWith("|")) return false;
@@ -47,7 +35,6 @@ function parse(md: string): Block[] {
   while (i < lines.length) {
     const line = lines[i];
 
-    // fenced code
     if (/^```/.test(line)) {
       const lang = line.replace(/^```/, "").trim();
       i++;
@@ -56,37 +43,32 @@ function parse(md: string): Block[] {
         buf.push(lines[i]);
         i++;
       }
-      i++; // consume closing
+      i++;
       blocks.push({ t: "code", lang, body: buf.join("\n") });
       continue;
     }
 
-    // blank
     if (/^\s*$/.test(line)) { i++; continue; }
 
-    // hr
     if (/^\s*---+\s*$/.test(line) || /^\s*\*\*\*+\s*$/.test(line)) {
       blocks.push({ t: "hr" }); i++; continue;
     }
 
-    // headings (1-6)
     const h = /^(#{1,6})\s+(.*)$/.exec(line);
     if (h) {
       blocks.push({ t: "h", level: h[1].length as 1 | 2 | 3 | 4 | 5 | 6, text: h[2].trim() });
       i++; continue;
     }
 
-    // image-only line → block-level figure
     const im = IMG_ONLY.exec(line);
     if (im) {
       blocks.push({ t: "img", alt: im[1].trim(), src: im[2].trim() });
       i++; continue;
     }
 
-    // GitHub-style table: a header row followed by a separator row
     if (isTableRow(line) && i + 1 < lines.length && isTableSep(lines[i + 1])) {
       const header = splitRow(line);
-      i += 2; // consume header + separator
+      i += 2;
       const rows: string[][] = [];
       while (i < lines.length && isTableRow(lines[i]) && !isTableSep(lines[i])) {
         rows.push(splitRow(lines[i]));
@@ -96,7 +78,6 @@ function parse(md: string): Block[] {
       continue;
     }
 
-    // blockquote
     if (/^>\s?/.test(line)) {
       const buf: string[] = [];
       while (i < lines.length && /^>\s?/.test(lines[i])) {
@@ -107,7 +88,6 @@ function parse(md: string): Block[] {
       continue;
     }
 
-    // unordered list
     if (/^\s*[-*+]\s+/.test(line)) {
       const items: string[] = [];
       while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i])) {
@@ -118,7 +98,6 @@ function parse(md: string): Block[] {
       continue;
     }
 
-    // ordered list
     if (/^\s*\d+\.\s+/.test(line)) {
       const items: string[] = [];
       while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
@@ -129,7 +108,6 @@ function parse(md: string): Block[] {
       continue;
     }
 
-    // paragraph (collect until blank / block boundary)
     const buf: string[] = [line];
     i++;
     while (
@@ -151,7 +129,6 @@ function parse(md: string): Block[] {
   return blocks;
 }
 
-// Inline renderer, bold **x**, italic *x*/_x_, inline code `x`, links [t](u)
 function inline(text: string, key: string): React.ReactNode {
   const out: React.ReactNode[] = [];
   let rest = text;

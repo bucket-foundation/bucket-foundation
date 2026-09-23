@@ -1,24 +1,3 @@
-/**
- * x402 payment middleware.
- *
- * Two modes, selected via FEED402_VERIFY_MODE:
- * - "stub" → presence of any non-empty `x-payment` header is treated
- * as valid. Local dev / demos only.
- * - "facilitator" → POST the payment header to an x402 facilitator's
- * /verify endpoint and trust its verdict. Production.
- *
- * Mirrors the production pattern in `~/agfarms/kruse/server.ts` (the
- * AGFarms reference feed402 merchant). The two invariants the facilitator
- * MUST establish for feed402 compliance are:
- *
- * 1. The signature resolves to a real on-chain payment to the merchant
- * wallet (`expectedRecipient`) on the configured chain.
- * 2. The amount paid is ≥ the tier's listed `price_usd`.
- *
- * If the facilitator API shape differs from `{valid, tx, reason}`, adjust
- * the response parsing, but do NOT relax invariants 1+2.
- */
-
 import type { Context } from "hono";
 import type { ErrorBody, TierName, TierSpec } from "./types.js";
 
@@ -63,7 +42,6 @@ export async function verifyPayment(
     return { ok: true, tx: `stub:${header.slice(0, 16)}` };
   }
 
-  // Facilitator mode, production.
   try {
     const res = await fetch(`${cfg.facilitatorUrl}/verify`, {
       method: "POST",

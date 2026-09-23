@@ -1,43 +1,4 @@
 #!/usr/bin/env node
-// submit-to-longtail.mjs — push a Bucket Foundation grant draft (or any
-// markdown artifact) into the Longtail content-review queue at
-// https://longtail.agfarms.dev/chisel.
-//
-// Why this exists:
-//   Bucket is working on grant applications (NSF SBIR, Sloan exploratory,
-//   Gitcoin GG, EF ESP, HCB packet, etc.). These need a fast yes/no/unsure
-//   review pass on dimensions like "is the mission clear", "is the budget
-//   specific", "did I get confused while reading". The Longtail chisel
-//   queue is exactly that workflow — Cost-Weighted Thompson Sampling over
-//   (atom × axis) pairs, deployed at longtail.agfarms.dev. Reusing it
-//   instead of building a Bucket-specific reviewer UI.
-//
-// What it does:
-//   1. Reads a markdown file
-//   2. Signs an HMAC request
-//   3. POST /api/drafts on longtail-pipeline (creates the draft shell)
-//   4. POST /api/drafts/{id}/revisions (uploads the body)
-//   5. Logs the (draft_id, file, ts) to grants-targets/.longtail-submissions.jsonl
-//   6. Prints a chisel review URL
-//
-// Usage:
-//   node scripts/submit-to-longtail.mjs grants-targets/drafts/sloan-exploratory-loi.md \
-//        --title "Sloan Foundation — exploratory LoI v3" \
-//        --grant sloan-exploratory \
-//        [--kind article]                 # default 'article'; longtail
-//                                          # only accepts a fixed set, see VALID_KINDS
-//        [--dry-run]                       # print payload, do not POST
-//
-// Env required (put in ~/.env or grants-targets/.env, NOT committed):
-//   LONGTAIL_HMAC_SECRET   = HMAC secret. CRITICAL: use the value from
-//                            prod-hetzner-1 ~/longtail-mono/longtail-hub/.env
-//                            (the *hub* secret), NOT the one in
-//                            ~/longtail/longtail-pipeline/.env. Those two
-//                            files have drifted and the running pipeline
-//                            verifies against the hub's secret. See
-//                            BEAD_BACKLOG.md or bead bkt-* for the cleanup.
-//   LONGTAIL_API_URL       = https://longtail-reviews.agfarms.dev (default)
-//   GIT_AUTHOR             = email to record as the revision author
 
 import { readFile, appendFile, mkdir } from 'node:fs/promises';
 import { dirname, basename, resolve } from 'node:path';
@@ -50,13 +11,9 @@ const HUB_URL = process.env.LONGTAIL_HUB_URL ?? 'https://longtail.agfarms.dev';
 
 const SUB_LOG = 'grants-targets/.longtail-submissions.jsonl';
 
-// Longtail's valid `kind` enum (from longtail-pipeline/src/api/content.ts).
-// Grant applications get filed under 'article' — closest fit.
 const VALID_KINDS = new Set([
   'book', 'article', 'template', 'video', 'carousel', '3d_asset', 'audio',
 ]);
-
-// ── arg parsing ───────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = { positional: [] };
@@ -71,8 +28,6 @@ function parseArgs(argv) {
 
 function fail(msg) { console.error(`error: ${msg}`); process.exit(1); }
 
-// ── HMAC signing (matches longtail-pipeline/src/api/middleware/hmac-auth.ts) ──
-
 function sign(method, path) {
   if (!SECRET) fail('LONGTAIL_HMAC_SECRET not set in env');
   const ts = Math.floor(Date.now() / 1000).toString();
@@ -83,9 +38,6 @@ function sign(method, path) {
 
 async function signedFetch(method, path, body) {
   const { ts, sig } = sign(method, path);
-  // longtail-pipeline middleware expects:
-  //   Authorization: Bearer <hex-sha256>
-  //   X-Longtail-Timestamp: <unix-seconds>
   const r = await fetch(`${API}${path}`, {
     method,
     headers: {
@@ -97,14 +49,12 @@ async function signedFetch(method, path, body) {
   });
   const text = await r.text();
   let json = null;
-  try { json = text ? JSON.parse(text) : null; } catch { /* keep text */ }
+  try { json = text ? JSON.parse(text) : null; } catch {  }
   if (!r.ok) {
     fail(`${method} ${path} → ${r.status} ${text.slice(0, 300)}`);
   }
   return json;
 }
-
-// ── main ──────────────────────────────────────────────────────────────
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -153,7 +103,6 @@ async function main() {
   });
   console.log(`  revision: rev=${rev?.rev ?? '?'}  bytes=${body.length}`);
 
-  // Log submission for idempotency tracking + later verdict pulls.
   await mkdir(dirname(SUB_LOG), { recursive: true });
   await appendFile(SUB_LOG, JSON.stringify({
     ts: new Date().toISOString(),
