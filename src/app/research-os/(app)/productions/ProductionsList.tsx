@@ -25,7 +25,6 @@ const STATUS: Record<Production["status"], string> = { draft: "draft", submitted
 const KIND: Record<string, string> = { production: "production", extension: "extension", replication: "replication", peer_review: "peer review" };
 const ORDER: Production["status"][] = ["returned", "submitted", "draft", "accepted"];
 
-/** Everything the person has produced: what it is, what it acts on, where it stands, and the node it became. */
 export default function ProductionsList() {
   const [data, setData] = useState<Data | null>(null);
   const [status, setStatus] = useState<number | null>(null);
@@ -36,9 +35,6 @@ export default function ProductionsList() {
     fetch("/api/research-os/production", { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
-        // The code is read before any setState, so no render happens
-        // with the status set and the code still null, which showed
-        // one frame of the permanent copy for a passing outage.
         const outageCode = r.ok ? null : await readErrorCode(r);
         setErrorCode(outageCode);
         setStatus(r.status);

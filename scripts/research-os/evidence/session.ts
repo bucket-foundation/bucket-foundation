@@ -1,14 +1,3 @@
-/**
- * A bearer token for one local account, for the two gate runs.
- *
- * The route accepts a bearer token and verifies it against Supabase, the
- * same path the browser's session takes. Rather than drive the sign-in
- * form, this asks the local stack's admin API for a one-time link and
- * redeems it, which needs the service-role key and works offline.
- *
- * Local stacks only. The service-role key belongs to the operator's
- * machine, and this refuses any Supabase URL that is not loopback.
- */
 import { createClient } from "@supabase/supabase-js";
 
 export interface Session {
@@ -26,10 +15,6 @@ function loopback(url: string): boolean {
   }
 }
 
-/**
- * Signs `email` in and returns its id and access token. The account has to
- * exist: this creates nobody, so a gate run cannot invent a pilot member.
- */
 export async function signIn(email: string, env: NodeJS.ProcessEnv = process.env): Promise<Session> {
   const url = env.NEXT_PUBLIC_SUPABASE_URL ?? "";
   const anon = env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";

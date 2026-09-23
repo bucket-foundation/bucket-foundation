@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Embed short texts with a locally cached sentence-embedding model.
-
-Reads a JSON array of {"id": str, "text": str} on stdin and writes a JSON
-object {id: [float, ...]} of unit-length vectors on stdout. Used by
-scripts/research-os/decompose-further.ts for shortlist retrieval and for
-matching missing base ideas against existing nodes.
-
-Runs offline against the Hugging Face cache (HF_HUB_OFFLINE=1): the model
-must already be downloaded. Vectors are cached by a hash of the model name
-and the text in scripts/research-os/ingest/out/embeddings-cache.json, so a
-rerun only embeds what changed.
-
-    echo '[{"id":"a","text":"Vectors"}]' | python3 scripts/research-os/embed-texts.py
-"""
 from __future__ import annotations
 
 import hashlib
@@ -24,10 +10,8 @@ from pathlib import Path
 MODEL = os.environ.get("EMBED_MODEL", "BAAI/bge-small-en-v1.5")
 CACHE = Path(__file__).resolve().parent / "ingest" / "out" / "embeddings-cache.json"
 
-
 def key(text: str) -> str:
     return hashlib.sha256(f"{MODEL}\n{text}".encode()).hexdigest()[:24]
-
 
 def main() -> int:
     items = json.load(sys.stdin)
@@ -56,7 +40,6 @@ def main() -> int:
         tmp.replace(CACHE)
     json.dump({it["id"]: cache[key(it["text"])] for it in items}, sys.stdout)
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

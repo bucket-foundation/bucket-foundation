@@ -1,7 +1,3 @@
-/**
- * The Patents page's data (ros-frontend 1) matches PATENTS.md and the queued
- * ros-patents slices. node:test, no network.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";

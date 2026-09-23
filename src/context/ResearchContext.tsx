@@ -11,21 +11,20 @@ export interface CiteResearch {
 interface ResearchContextType {
   loading: boolean;
   research: Research[] | null;
-  citations: CiteResearch[] | null; // Add citations as a separate field
+  citations: CiteResearch[] | null;
 }
 
 const ResearchContext = createContext<ResearchContextType | undefined>(undefined);
 
 export const ResearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [research, setResearch] = useState<Research[] | null>(null);
-  const [citations, setCitations] = useState<CiteResearch[] | null>(null); // State for citations
+  const [citations, setCitations] = useState<CiteResearch[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchResearch = async () => {
       setLoading(true);
       try {
-        // Fetch research data
         const { data: researchData, error: researchError } = await supabase
           .from('research')
           .select('*');
@@ -37,7 +36,6 @@ export const ResearchProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           setResearch(researchData);
         }
 
-        // Fetch research citations
         const { data: citationsData, error: citationsError } = await supabase
           .from('research_cite')
           .select('*');

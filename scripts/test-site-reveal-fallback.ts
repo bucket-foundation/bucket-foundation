@@ -1,14 +1,3 @@
-/**
- * A page may not hide its own body behind a script.
- *
- * The Research OS landing page reveals each of its five states with an
- * IntersectionObserver that adds `is-visible`. The CSS starts those rows
- * at `opacity: 0`, so with scripting off nothing ever adds the class and
- * the whole body of the page stays invisible: measured at 10 of 10
- * reveal elements transparent before the fallback landed.
- *
- * This reads the stylesheet, so it needs no browser and runs anywhere.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -18,7 +7,6 @@ const root = path.join(__dirname, "..");
 const CSS = path.join(root, "src/app/research-os/landing.css");
 const PAGE = path.join(root, "src/app/research-os/page.tsx");
 
-/** The selectors a block sets `opacity: 0` on. */
 function hiddenSelectors(css: string): string[] {
   const out: string[] = [];
   const rule = /([^{}]+)\{([^}]*)\}/g;
@@ -33,7 +21,6 @@ function hiddenSelectors(css: string): string[] {
   return out;
 }
 
-/** The selectors a block sets `opacity: 1` on. */
 function shownSelectors(css: string): string[] {
   const out: string[] = [];
   const rule = /([^{}]+)\{([^}]*)\}/g;
@@ -48,7 +35,6 @@ function shownSelectors(css: string): string[] {
   return out;
 }
 
-/** The body of a media query, by its condition. */
 function mediaBody(css: string, condition: string): string {
   const at = css.indexOf(`@media ${condition}`);
   if (at === -1) return "";
@@ -68,8 +54,6 @@ test("nothing the landing page hides stays hidden when scripting is off", () => 
   const fallback = mediaBody(css, "(scripting: none)");
   assert.notEqual(fallback, "", "landing.css carries a @media (scripting: none) block");
 
-  // The fallback's own rules are the cure, so they are read separately
-  // from the rest of the file rather than counted as more hiding.
   const hidden = hiddenSelectors(css.split(fallback).join(""));
   const restored = shownSelectors(fallback);
 

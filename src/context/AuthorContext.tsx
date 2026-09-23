@@ -22,7 +22,6 @@ export const AuthorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         setLoading(true);
 
         try {
-          // Check if the author already exists
           const { data: existingAuthors, error: fetchError } = await supabase
             .from('author')
             .select('*')
@@ -33,10 +32,8 @@ export const AuthorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             console.error(fetchError);
             setAuthor(null);
           } else if (existingAuthors) {
-            // Author exists, set it
             setAuthor(existingAuthors);
           } else {
-            // Author does not exist, create a new one
             const { data: createdAuthor, error: createError } = await supabase
               .from('author')
               .upsert(

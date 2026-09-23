@@ -1,8 +1,5 @@
 "use client";
 
-// SeqAlign client island, exact pairwise alignment (Needleman-Wunsch global /
-// Smith-Waterman local) with BLOSUM62 / identity scoring. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

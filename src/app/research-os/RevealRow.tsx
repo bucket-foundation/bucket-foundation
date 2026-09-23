@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
-// Adds `is-visible` once the row enters the viewport (22% visible, with an
-// 8% bottom margin), which landing.css turns into the slide and fade.
-// Under prefers-reduced-motion the class lands at mount.
 export default function RevealRow({
   reverse,
   children,

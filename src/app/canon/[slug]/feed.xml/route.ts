@@ -1,5 +1,3 @@
-// /canon/[slug]/feed.xml, Atom 1.0 feed of milestones filtered by branch.
-
 import whatsNewData from "../../../../../data/whats-new.json";
 import { getBranches } from "@/lib/canon-fs";
 

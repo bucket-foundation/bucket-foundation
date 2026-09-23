@@ -1,9 +1,3 @@
-/**
- * The signed-in person's account.
- * GET  /api/account -> { user: { id, email }, identity }
- * POST /api/account { handle?, displayName? } -> { identity }
- * Auth: the site cookie session or a Bearer token (verifyLearnerIdentity).
- */
 import { NextRequest, NextResponse } from "next/server";
 import { verifyLearnerIdentity } from "@/lib/research-os/db";
 import { getIdentity, setDisplayName, setHandle } from "@/lib/auth/identity";

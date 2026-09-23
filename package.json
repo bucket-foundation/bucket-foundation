@@ -29,6 +29,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:comments": "node scripts/comments.mjs check",
     "test": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-kruse-token.ts && npm run test:auth && npm run test:waitlist && npm run test:academy && npm run test:mcp && npm run test:dedup && npm run test:beads-dispatch",
     "test:mcp": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-mcp-route.ts",
     "test:auth": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-auth-paths.ts",

@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# Expose the local full-6.5M Polingual API (127.0.0.1:8090) over a Cloudflare
-# quick tunnel so the DEPLOYED app can reach it. Set Vercel POLINGUAL_API_URL to
-# the printed URL; the proxy auto-falls-back to polingual.agfarms.dev (209k) and
-# then the baked offline subset when this box/tunnel is unreachable.
-#
-# NOTE: the quick-tunnel URL is EPHEMERAL (changes each restart). For a stable
-# hostname run a NAMED tunnel: `cloudflared tunnel login` (one browser auth) then
-# `cloudflared tunnel create polingual-local` + route DNS to polingual-local.agfarms.dev.
 cd ~/agfarms/bucket-foundation
 mkdir -p _intake/photons/logs
 pkill -f "cloudflared tunnel --url http://127.0.0.1:8090" 2>/dev/null || true

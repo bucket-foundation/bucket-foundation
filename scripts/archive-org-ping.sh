@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-# archive.org Wayback save: submit every bucket.foundation URL for archiving.
-# Each archived URL becomes a long-lived citation source that AI search
-# (Claude, Perplexity, Google) can surface.
-#
-# Rate-limited to 1 req / 2s to avoid throttling.
 
 set -u
 BASE="${BUCKET_BASE:-https://www.bucket.foundation}"

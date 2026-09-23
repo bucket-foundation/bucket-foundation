@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-# tunnel.sh — expose the bearer-gated LLM shim (NOT raw Ollama) via cloudflared.
-#
-#   tunnel.sh run        # foreground (used by the systemd unit). Named tunnel if
-#                        #   CF_TUNNEL_NAME is set + configured, else quick tunnel.
-#   tunnel.sh url        # print the current public URL (quick-tunnel mode)
-#   tunnel.sh stop       # kill any cloudflared started for this shim
-#
-# The shim binds 127.0.0.1:${LLM_SHIM_PORT:-8011}. We tunnel THAT — clients still
-# must present Authorization: Bearer <LLM_GATEWAY_SECRET>, so the public URL is
-# useless without the secret. NEVER point a tunnel at :11434 (raw Ollama).
 set -euo pipefail
 
 PORT="${LLM_SHIM_PORT:-8011}"

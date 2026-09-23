@@ -1,35 +1,10 @@
-// canon-primary.ts, server-only loader for the CURATED primary-research
-// layer: bucket-canon/<branch>/<concept>/primary-papers.yaml.
-//
-// WHY THIS EXISTS
-// ---------------
-// /api/research previously answered ONLY from bucket-canon/*/sub-claims/**.md
-//, auto-segmented YouTube transcript chunks (599 of them, ~219 of which are
-// Jack Kruse podcasts), and served them as `canon_tier` with CC-BY
-// canonical_urls. That is the inverse of the Bucket thesis: canon = real
-// axioms / laws / primary derivations; a podcast transcript is at best ONE
-// PARTIAL SOURCE, never the headline.
-//
-// The real primary-research layer already exists on disk as machine-generated
-// `primary-papers.yaml` records (title, authors, year, DOI, real doi.org
-// canonical_url, citation_count, canon_score, canon_score_reasons). Nothing at
-// runtime read it. This module loads it so the API can rank and serve a real
-// paper, e.g. Mitchell 1961 "Coupling of Phosphorylation ... by a
-// Chemi-Osmotic type of Mechanism", DOI 10.1038/191144a0, canon_score 85, as
-// the authoritative answer + citation.
-//
-// NO YAML DEPENDENCY. The files are uniform, machine-emitted, 2-space-indent
-// YAML with a fixed shape (see bucket-canon/05-biophysics/mitochondria/
-// primary-papers.yaml). We parse exactly that shape with a tiny tolerant
-// scanner. If a file deviates we skip the offending record rather than throw.
-
 import fs from "fs";
 import path from "path";
 
 export type PrimaryPaper = {
  id: string;
- branch: string; // "05-biophysics"
- concept: string; // "mitochondria"
+ branch: string;
+ concept: string;
  title: string;
  authors: { family: string; given: string }[];
  year: number | null;
@@ -40,29 +15,10 @@ export type PrimaryPaper = {
  canonScore: number;
  canonScoreReasons: string[];
  concepts: string[];
- // Raw `provenance_signoff` value, e.g. `pending: gianyrox`, or null when the
- // record predates the ros-11 named-human-signoff rule. See isPendingSignoff.
  provenanceSignoff: string | null;
- // "title + venue + concepts", the text tokens we rank queries against.
  text: string;
 };
 
-/**
- * ros-11 governance gate: a record whose `provenance_signoff` starts with
- * "pending" or "rejected" has not been approved by a named human. Neither
- * counts as approved canon: "pending" is awaiting a decision, "rejected" is
- * a decision that came back negative. Both must never be served as an
- * approved, citeable-for-pay canon entry. A record with no
- * `provenance_signoff` field at all predates the ros-11 rule and is treated
- * as already-vetted (the rule is not retroactive); only an explicit
- * "pending: ..." or "rejected: ..." value gates a record out. See
- * `tools/canon-pipeline/SIGNOFF.md` for the tool that writes "approved: "
- * and "rejected: " values.
- *
- * Single source of truth: loadPrimaryPapers() below applies this before
- * caching, so every consumer (the /api/research paid-cite envelope and the
- * Research OS canon importer) is gated the same way with no extra call site.
- */
 export function isPendingSignoff(signoff: string | null | undefined): boolean {
  return typeof signoff === "string" && /^\s*(pending|rejected)\b/i.test(signoff);
 }
@@ -72,10 +28,6 @@ const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
 
 let cache: PrimaryPaper[] | null = null;
 
-// Exported for tools/canon-pipeline's TS-side counterpart
-// (src/lib/canon-signoff.ts): the sign-off tool needs the UNFILTERED
-// records (including pending/rejected ones) plus the raw file path, which
-// loadPrimaryPapers()'s cached, gate-applied output does not carry.
 export function findPrimaryFiles(
  root: string = CANON_ROOT,
 ): { branch: string; concept: string; file: string }[] {
@@ -99,13 +51,6 @@ export function findPrimaryFiles(
  return out;
 }
 
-// Tolerant scanner for the fixed machine-emitted shape. Each record starts at a
-// top-level "- id:" line. Scalars we care about are at 2-space indent
-// (" key: value"); authors live under a " authors:" block as " - family:"
-// / " given:" pairs; canon_score_reasons / concepts are " - " list items.
-// Exported for src/lib/canon-signoff.ts, which needs the unfiltered records
-// (a pending or rejected provenanceSignoff included) that loadPrimaryPapers()
-// below deliberately excludes.
 export function parseYamlRecords(
  raw: string,
  branch: string,
@@ -114,7 +59,6 @@ export function parseYamlRecords(
  const lines = raw.split("\n");
  const papers: PrimaryPaper[] = [];
 
- // Indices where a new record begins.
  const starts: number[] = [];
  for (let i = 0; i < lines.length; i++) {
  if (/^- id:\s*\S/.test(lines[i])) starts.push(i);
@@ -155,7 +99,6 @@ export function parseYamlRecords(
         continue;
       }
 
-      // Top-level (2-space) keys reset the active section.
       const top = line.match(/^ {2}([a-z_]+):\s*(.*)$/);
       if (top) {
         const key = top[1];
@@ -222,7 +165,6 @@ export function parseYamlRecords(
           curAuthor.given = unquote(giv[1]);
           continue;
         }
-        // orcid / other 4-space keys ignored.
         continue;
       }
 
@@ -243,11 +185,10 @@ export function parseYamlRecords(
         if (it) concepts.push(unquote(it[1]));
         continue;
       }
-      // section === "oa" or "", skip nested lines.
     }
     if (curAuthor) authors.push(curAuthor);
 
-    if (!id || !title) continue; // malformed record, skip, don't throw.
+    if (!id || !title) continue;
 
     const text = [title, venueName, concepts.join(" ")]
       .filter(Boolean)
@@ -286,8 +227,6 @@ export function loadPrimaryPapers(): PrimaryPaper[] {
     }
     out.push(...parseYamlRecords(raw, branch, concept));
   }
-  // ros-11 gate: never serve a record pending named-human signoff as an
-  // approved canon entry. See isPendingSignoff above.
   cache = out.filter((p) => !isPendingSignoff(p.provenanceSignoff));
   return cache;
 }
@@ -300,15 +239,6 @@ export function authorsShort(p: PrimaryPaper): string {
   return `${fams[0]} et al.`;
 }
 
-/**
- * Rank curated primary papers against a free-text query.
- *
- * Token-overlap on title + venue + concepts (same family of cheap ranking the
- * existing canon-search tokenRank uses), then tie-broken by canon_score and
- * citation_count so that, all else equal, the higher-authority paper wins.
- * Mitchell 1961 (the chemiosmosis axiom) outranks a peripheral review for
- * "mitochondrial ATP synthesis".
- */
 export function rankPrimary(
   query: string,
   topK = 6,
@@ -347,20 +277,11 @@ export function rankPrimary(
   };
 
   const scored = papers.map((p) => {
-    // Title matches are worth far more than concept-tag matches; concept tags
-    // are noisy (OpenAlex auto-tags like "Chemistry", "Biology") and were
-    // letting an off-topic paper that shares a generic tag outrank the
-    // foundational paper whose TITLE is on-point.
     const t = countWords(titleOf(p));
     const c = countWords(conceptsOf(p));
-    // distinctTitle = how many *distinct* query terms appear in the title, 
-    // the strongest relevance signal we have without embeddings.
     const distinctTitle = t.distinct;
     const lexical = t.hits * 12 + c.hits * 2;
     if (lexical === 0) return { paper: p, score: 0, distinctTitle: 0 };
-    // canon_score / citations are gentle authority priors so that, given
-    // comparable lexical relevance, the foundational high-citation axiom
-    // (Mitchell 1961, 4599 cites, score 85) beats a peripheral hit.
     const score =
       lexical +
       distinctTitle * 8 +
@@ -369,13 +290,6 @@ export function rankPrimary(
     return { paper: p, score, distinctTitle };
   });
 
-  // Abstention gate: the primary layer only covers 4 biophysics concepts
-  // (no math/physics/chemistry/cosmology primary-papers.yaml yet). Without a
-  // floor, ANY query (incl. "Bell inequality") gets force-mapped onto a
-  // biophysics paper that shares a stray token. Require at least one
-  // distinct query term in the TITLE of the top hit; otherwise return [] so
-  // the route falls through to the explicit "no curated canon match" path
-  // instead of fabricating a citation.
   const ranked = scored
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score);

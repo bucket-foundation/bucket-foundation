@@ -1,13 +1,3 @@
-/**
- * The server's side of the loopback encoder worker (tools/evidence-search).
- *
- * One request per search, with the query, the corpus revision the server
- * expects and the eligible pairs it resolved. The response is trusted only
- * after it is checked: the request id and corpus revision echo, every
- * result is an eligible pair seen once, every score is a finite number,
- * and there are no more results than asked. Anything else counts as a
- * worker failure and the search falls back to keyword ranking.
- */
 import type { Ranked } from "./lexical";
 import { eligibleKey } from "./lexical";
 
@@ -31,7 +21,6 @@ export type WorkerOutcome =
 
 const LOOPBACK = new Set(["127.0.0.1", "[::1]", "localhost"]);
 
-/** Refuses any worker address off this machine before a request is built. */
 export function loopbackUrl(url: string): URL | null {
   try {
     const u = new URL(url);
@@ -72,7 +61,6 @@ export async function scoreWithWorker(cfg: WorkerConfig, req: WorkerRequest, fet
   return checkResponse(body, req);
 }
 
-/** The response checks, apart from transport, so tests reach each one. */
 export function checkResponse(body: unknown, req: WorkerRequest): WorkerOutcome {
   const bad = (detail: string): WorkerOutcome => ({ ok: false, reason: "malformed", detail });
   const b = body as { requestId?: unknown; corpusRevision?: unknown; modelRevision?: unknown; results?: unknown };

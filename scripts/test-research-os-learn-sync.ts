@@ -1,4 +1,3 @@
-/** Learn to graph: the pure parts of src/lib/research-os/learn-sync.ts and the stage rule. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { masteredAtomIds } from "../src/lib/research-os/learn-sync";

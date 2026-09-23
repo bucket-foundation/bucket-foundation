@@ -1,10 +1,3 @@
-"""`hte` console script: `campaign run`/`results`, `calibrate`, `views`,
-`holdout-ledger report`/`verify`, `question-map`, `purge`,
-`predict register`/`resolve`/`report`.
-
-stdlib `argparse` only, matching this package's own no-dependencies
-contract (`pyproject.toml`).
-"""
 from __future__ import annotations
 
 import argparse
@@ -26,43 +19,15 @@ _CORPUS_LOADERS = {
     "vindication-fixture": vindication_fixture.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
-    # ros-12 item 2: `public.research_os_productions_outbox`, read (not
-    # marked consumed) through the existing normalizer. `hte.runner.
-    # run_campaign` has its own separate `_CORPUS_LOADERS` (`hte/runner.py`)
-    # this dict does not feed; `scripts/campaign_research_os.py` registers
-    # this same loader there at call time for a real campaign run, see that
-    # script's own header comment.
     "research-os": research_os_outbox.load,
-    # `literature.load_default`: both literature fixture batches combined
-    # (`bkt-hte-literature-batch-two`), no network, deterministic; see
-    # that function's own docstring for why it does not read the real
-    # 82-card `LOCAL_INTAKE_DIR` tree yet.
     "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
-    # Passage-level extraction over the primary texts this repo mirrors
-    # for 6 of `sacred-history`'s 13 traditions (`hte.corpus.
-    # sacred_history_texts`'s own module docstring, `docs/SACRED-HISTORY-
-    # TEXTS.md`); `sacred_history.ingest(with_texts=True)` is the merged
-    # reading, this entry is the bare texts-only corpus on its own.
     "sacred-history-texts": sacred_history_texts.load,
     "sacred-history-texts-slice-1": sacred_history_texts.load_slice_one,
-    # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
-    # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
-    # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
-    # younger_dryas`'s own module docstring.
     "younger-dryas": younger_dryas.load,
 }
 
-
 def _cmd_campaign_run(args: argparse.Namespace) -> int:
-    # `--campaign` defaults to `None` (`build_parser`'s own default), read
-    # here as "name this campaign after its own corpus": a `runs/default/`
-    # folder gave no hint which corpus a stray run directory came from
-    # once more than one corpus had ever been run, and every campaign
-    # this package ships runs exactly one corpus for its whole life, so
-    # the corpus name is already the campaign's own natural identity.
-    # `--campaign` still overrides it for a caller running the same
-    # corpus under two named campaigns side by side.
     config = {
         "campaign": args.campaign or args.corpus,
         "corpus": args.corpus,
@@ -89,25 +54,13 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
     print(json.dumps(run_artifacts.manifest["counts"], indent=2, default=str))
     return 0
 
-
 def _actor_of(entry: dict[str, Any]) -> str | None:
-    """`entry["slots"]["ACTOR"]` for a placement survivor, `None` for a
-    sequence survivor: `hte.runner._survivor_slots` nests a sequence's
-    two placements under `slots["first"/"second"]` instead of a
-    top-level `ACTOR`, out of scope for this flat per-actor summary."""
     actor = (entry.get("slots") or {}).get("ACTOR")
     return actor if isinstance(actor, str) else None
-
 
 def _per_actor_summary(
     survivors: list[dict[str, Any]], share_by_id: Mapping[str, float] | None = None,
 ) -> dict[str, dict[str, Any]]:
-    """One row per ACTOR slot value named by a placement survivor in
-    `survivors`: highest projected credence, lowest uncertainty mass,
-    highest evidence-only lift (`b - d`), best-Elo survivor's rating and
-    four profile projections, survivor count, and `best_share`, the
-    largest explanandum-partition share (`hte.partition.partition_odds`'s
-    `share`, via `share_by_id`) any survivor naming that actor holds."""
     rows: dict[str, dict[str, Any]] = {}
     best_elo_entry: dict[str, dict[str, Any]] = {}
     for entry in survivors:
@@ -142,10 +95,7 @@ def _per_actor_summary(
         row["profile_projections"] = ((best.get("robustness") or {}).get("projections") or {}) if best else {}
     return rows
 
-
 def _share_by_hypothesis_id(views: dict[str, Any]) -> dict[str, float]:
-    """`hypothesis_id -> partition share`, off `timeline.json`'s
-    `event_views`/`pair_views`. Empty for a run with no `timeline.json`."""
     entries = [e for ev in views.get("event_views", []) for e in ev.get("ranked_placements", [])]
     entries += [e for p in views.get("pair_views", []) for e in p.get("competing_sequences", [])]
     return {
@@ -153,18 +103,7 @@ def _share_by_hypothesis_id(views: dict[str, Any]) -> dict[str, float]:
         for e in entries if e.get("partition") and e["partition"].get("share") is not None
     }
 
-
 def _cmd_campaign_results(args: argparse.Namespace) -> int:
-    """One flat, no-absolute-path JSON summary of a completed
-    `campaign run`: `MANIFEST.json`'s own counts, a per-actor rollup
-    over `survivors.json`, the ten survivors ranked by lift then Elo in
-    full (`hte.export._rank_key`'s own ordering), a
-    curated slice of `calibration.json` (when the run had ground truth
-    to hold out against), and `self-report.json` verbatim. Every file
-    this command reads is optional except `MANIFEST.json` itself
-    (`artifacts.load_manifest`'s own contract): a run missing
-    `survivors.json`, `timeline.json`, `calibration.json`, or
-    `self-report.json` still gets a result, that section read as empty."""
     run_dir = Path(args.run_dir)
     manifest = artifacts.load_manifest(run_dir)
 
@@ -191,10 +130,6 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
             "n_holdout_events": raw.get("n_holdout_events"),
             "n_covered_events": raw.get("n_covered_events"),
         }
-        # `hte.diagnostics.write_diagnostics`'s own `diagnostics.json`,
-        # written by `hte calibrate --diagnose`: read only when a
-        # caller placed one in the same run directory, per this
-        # command's own "if present" contract for uncovered reasons.
         diagnostics_path = run_dir / "diagnostics.json"
         if diagnostics_path.is_file():
             reasons = json.loads(diagnostics_path.read_text()).get("reasons")
@@ -228,7 +163,6 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
     print(f"campaign results written to {out_path}")
     return 0
 
-
 def _cmd_calibrate(args: argparse.Namespace) -> int:
     if args.corpus not in _CORPUS_LOADERS:
         print(f"unknown corpus {args.corpus!r}, expected one of {list(_CORPUS_LOADERS)}", file=sys.stderr)
@@ -238,22 +172,9 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         print("corpus has no ground-truth events to hold out against", file=sys.stderr)
         return 1
 
-    # An explicit `--cutoff-years` pins discovery-date holdout at that
-    # cutoff, this command's own original, unconditional behavior,
-    # unchanged (`hte.calibrate.fit_constants`'s own identical
-    # explicit-cutoff-bypasses-auto-mode contract). With no cutoff given,
-    # `run_calibration`'s own auto-picked mode (`choose_holdout_mode`)
-    # decides instead: k-fold for a corpus with no real discovery lag
-    # (quantum-history, education-atlas, fixtures, every `hte.synth`
-    # world), discovery-date for one that has it (`production`). Bare
-    # `run_holdout` used to run unconditionally here regardless of which
-    # mode a corpus's own ground truth calls for, reading as
-    # `coverage_of_truth: 0.0`-or-near-it on every corpus that never
-    # exercised discovery-date holdout in the first place (`bkt-hte-
-    # generation-coverage`).
     if args.cutoff_years is not None:
         result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
-        result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
+        result.setdefault("mode", "discovery_date")
     else:
         result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
     if args.fit:
@@ -292,15 +213,7 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         )
     return 0
 
-
 def _cmd_holdout_ledger_report(args: argparse.Namespace) -> int:
-    """The hit-rate script `PLAN.md` section 10 asks for: the current
-    ranking-holdout status (`hte.holdout_ledger.ranking_status`) over the
-    ledger at `args.path`, plus Murphy (1973)'s reliability/resolution/
-    uncertainty partition of that same verified population (`hte.
-    holdout_ledger.murphy_decomposition`, PLAN-REVISION-4.md section 2b),
-    printed as one JSON object to stdout under a `murphy` key alongside
-    the existing ranking-status fields."""
     status = holdout_ledger.ranking_status(path=args.path, min_verified=args.min_verified)
     entries = holdout_ledger.load_ledger(args.path)
     murphy = holdout_ledger.murphy_decomposition(entries)
@@ -308,7 +221,6 @@ def _cmd_holdout_ledger_report(args: argparse.Namespace) -> int:
     report["murphy"] = murphy.to_dict()
     print(json.dumps(report, indent=2))
     return 0
-
 
 def _cmd_holdout_ledger_verify(args: argparse.Namespace) -> int:
     try:
@@ -321,16 +233,11 @@ def _cmd_holdout_ledger_verify(args: argparse.Namespace) -> int:
     print(json.dumps(entry.to_dict(), indent=2))
     return 0
 
-
 def _cmd_question_map(args: argparse.Namespace) -> int:
-    # `_CORPUS_LOADERS` here (not `runner`'s own copy) is the more complete
-    # registry: it carries `research-os` too, registered only at call time
-    # in `runner`'s own dict per that dict's own comment above.
     corpus_names = set(_CORPUS_LOADERS)
     if args.write:
         return question_map.cmd_write(corpus_names=corpus_names)
     return question_map.cmd_check(corpus_names=corpus_names)
-
 
 def _cmd_views(args: argparse.Namespace) -> int:
     run_dir = Path(args.run_dir)
@@ -342,7 +249,6 @@ def _cmd_views(args: argparse.Namespace) -> int:
     export.write_views(views, run_dir)
     print((run_dir / "TIMELINE.md").read_text())
     return 0
-
 
 def _cmd_purge(args: argparse.Namespace) -> int:
     report = purge_mod.purge(
@@ -359,7 +265,6 @@ def _cmd_purge(args: argparse.Namespace) -> int:
         return 1
     return 0
 
-
 def _cmd_predict_register(args: argparse.Namespace) -> int:
     kinds = tuple(k.strip() for k in args.kinds.split(",") if k.strip())
     predictions = predict.register(args.run_dir, horizon=args.horizon_days, kinds=kinds, floor_u=args.floor_u, u_max=args.u_max, out=args.out)
@@ -368,7 +273,6 @@ def _cmd_predict_register(args: argparse.Namespace) -> int:
         by_kind[p.kind] = by_kind.get(p.kind, 0) + 1
     print(f"{len(predictions)} prediction(s) registered to {Path(args.out) / 'ledger.jsonl'}: {by_kind}")
     return 0
-
 
 def _cmd_predict_resolve(args: argparse.Namespace) -> int:
     if args.corpus not in _CORPUS_LOADERS:
@@ -382,7 +286,6 @@ def _cmd_predict_resolve(args: argparse.Namespace) -> int:
     ))
     return 0
 
-
 def _cmd_predict_report(args: argparse.Namespace) -> int:
     if args.corpus not in _CORPUS_LOADERS:
         print(f"unknown corpus {args.corpus!r}, expected one of {list(_CORPUS_LOADERS)}", file=sys.stderr)
@@ -392,7 +295,6 @@ def _cmd_predict_report(args: argparse.Namespace) -> int:
     resolutions_path = Path(args.ledger).parent / "RESOLUTIONS.md"
     print(resolutions_path.read_text())
     return 0
-
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="hte", description="History Hypothesis Engine")
@@ -517,12 +419,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     return parser
 
-
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
     return args.func(args)
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

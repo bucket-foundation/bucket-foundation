@@ -1,22 +1,3 @@
-/**
- * Every PostgREST read in Research OS that filters on a list of ids,
- * found by parsing rather than by matching text.
- *
- * The first version of this check split files on `;` and matched with
- * regexes. A reviewer proved three holes in it: a sibling read inside
- * the same `Promise.all` satisfied the order rule for an unordered one,
- * a builder behind a local function was invisible, and a raw `.in(ids)`
- * that used no chunk helper was never looked at. The third had live
- * instances. Narrowing the docstring to claim less was the wrong answer.
- *
- * This walks the TypeScript AST, so a chain is a chain wherever it sits:
- * inside an array literal, behind a helper, or returned from an arrow.
- *
- * A read is at risk when it filters with `.in(column, list)` where the
- * list is an identifier rather than a literal array. A literal list is
- * bounded by the source, so `.in("role", ["teacher", "librarian"])`
- * needs nothing.
- */
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,15 +7,9 @@ export interface PagingFinding {
   line: number;
   chain: string;
   reasons: string[];
-  /** A key that survives an edit above the read: the file, the enclosing
-   * function, the table, and which read of that table in that function
-   * this is. The sibling error allowlist moved five times in one branch
-   * on line keys alone, and every move failed a gate on entries that
-   * were right about the code. */
   anchor: string;
 }
 
-/** The nearest named function, or the file's top level. */
 function enclosingName(node: ts.Node): string {
   let cur: ts.Node | undefined = node;
   while (cur) {
@@ -47,13 +22,11 @@ function enclosingName(node: ts.Node): string {
   return "<module>";
 }
 
-/** The table or routine a read chain names. */
 function tableOf(node: ts.Node, source: ts.SourceFile): string {
   const m = node.getText(source).match(/\.(?:from|rpc)\(\s*["'`]([^"'`]+)["'`]/);
   return m ? m[1] : "<unknown>";
 }
 
-/** The method names in one builder chain, innermost first. */
 function chainOf(node: ts.CallExpression): { names: string[]; calls: ts.CallExpression[] } {
   const names: string[] = [];
   const calls: ts.CallExpression[] = [];
@@ -66,16 +39,11 @@ function chainOf(node: ts.CallExpression): { names: string[]; calls: ts.CallExpr
   return { names: names.reverse(), calls };
 }
 
-/** Whether an `.in()` call's second argument is a literal list. */
 function isLiteralList(call: ts.CallExpression): boolean {
   const arg = call.arguments[1];
   return Boolean(arg && ts.isArrayLiteralExpression(arg));
 }
 
-/**
- * Local functions whose body returns a builder chain, so a call to one
- * counts as the chain it returns.
- */
 function chainReturningLocals(source: ts.SourceFile): Set<string> {
   const out = new Set<string>();
   const visit = (node: ts.Node): void => {
@@ -113,7 +81,6 @@ export function scanFile(file: string, text: string): PagingFinding[] {
       const { names, calls } = chainOf(node);
       const fromAt = names.indexOf("from");
       if (fromAt !== -1 && !seen.has(node)) {
-        // Mark the whole chain seen, so only the outermost call reports.
         for (const c of calls) seen.add(c);
         const inCalls = calls.filter((c) => ts.isPropertyAccessExpression(c.expression) && c.expression.name.text === "in");
         const unbounded = inCalls.filter((c) => !isLiteralList(c));
@@ -139,9 +106,6 @@ export function scanFile(file: string, text: string): PagingFinding[] {
   };
   ts.forEachChild(source, visit);
 
-  // A call to a local that returns a chain inherits that chain's verdict,
-  // which the chain itself already reported, so nothing extra is needed
-  // here. The set is exported through the finding's chain text instead.
   void locals;
   return findings;
 }

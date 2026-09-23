@@ -1,38 +1,3 @@
-"""Batched critic and judge calls: one `claude -p` call covering several
-hypotheses (or pairs) instead of one call per item.
-
-`hte.roles.critique`/`hte.roles.judge` are this module's reference for
-prompt wording and schema fields; `batch_critique`/`batch_judge` request
-a JSON array with one entry per input, each entry carrying that input's
-own id, instead of one JSON object per call. This module keeps its own
-copy of the hypothesis/evidence rendering `hte.roles` uses (rather than
-importing its private `_describe_hypothesis`/`_evidence_line` helpers,
-which that module's owner may still be revising); the fallback path
-below calls `hte.roles.critique`/`hte.roles.judge` directly, since those
-are public functions and a batch call degrading to exactly the single-
-item behavior a caller already trusts is the point of the fallback.
-
-A batch response is validated id by id: an id absent from the response,
-repeated in it, or carrying an entry short a required key is not trusted
-for that one hypothesis or pair, which falls back to its own single-item
-call rather than the whole batch retrying or raising. `HTE_LLM_MODE=fake`
-has no batch-shaped stand-in in `hte.fakellm` (`hte.llm.complete(...,
-mode="fake")` only ever returns one role's fixed single-item schema), so
-every batch call made in fake mode fails this validation for every id in
-it and falls back to single-item calls across the board, each still
-served by `hte.fakellm`'s existing per-role stand-ins. This is the
-documented behavior in fake mode: `tests/test_batching.py`'s own
-fake-mode test asserts the final per-item results match a fully serial
-run, the point it checks rather than whether the batch request itself
-succeeded.
-
-Cache semantics carry over unchanged: `hte.llm.complete` caches by
-sha256 of `(model, prompt)`, and a batch prompt's text (several
-hypotheses or pairs joined into one request) is never identical to any
-single-item prompt's text, so a batched call and the single-item calls
-it might fall back to always land on distinct cache keys, never
-colliding or double-paying for the same question.
-"""
 from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
@@ -41,11 +6,6 @@ from . import llm, roles
 from .evidence import EvidenceItem
 from .hypothesis import Hypothesis, Placement
 from .parallel import pmap
-
-# --------------------------------------------------------------------------
-# Shared rendering (this module's own copy; see the module docstring)
-# --------------------------------------------------------------------------
-
 
 def _describe_hypothesis(h: Hypothesis) -> str:
     if isinstance(h.content, Placement):
@@ -62,31 +22,13 @@ def _describe_hypothesis(h: Hypothesis) -> str:
         f"object={s.second.object!r} place={s.second.place!r} mechanism={s.second.mechanism!r})"
     )
 
-
 def _evidence_line(item: EvidenceItem) -> str:
     return f"- ({item.kind.value}, {item.tier.value}) {item.span.quote!r} [{item.id}]"
-
-
-# --------------------------------------------------------------------------
-# Batch validation and the shared "run one batched call" helper
-# --------------------------------------------------------------------------
-
 
 def _chunks(seq: Sequence[Any], size: int) -> list[list[Any]]:
     return [list(seq[i:i + size]) for i in range(0, len(seq), size)]
 
-
 def _run_batch(prompt: str, *, role: str, schema: dict[str, Any], cache_dir: str, replay_only: bool) -> list[Any]:
-    """The parsed `"results"` array from one batched `hte.llm.complete`
-    call, or an empty list for anything short of a well-formed array: a
-    completely missing key, a non-list value (`hte.llm.complete` only
-    checks that a required key is present, never its type), or a fake-
-    mode response, which carries no `"results"` key at all since
-    `hte.fakellm` has no batch-shaped stand-in. An empty list here reads
-    the identical way to every caller in this module: every id in this
-    chunk needs its own single-item fallback call. `hte.parallel.
-    RateLimit` is not caught here, it propagates to the caller unchanged.
-    """
     try:
         response = llm.complete(prompt, role=role, schema=schema, cache_dir=cache_dir, replay_only=replay_only)
     except llm.LLMError:
@@ -94,15 +36,7 @@ def _run_batch(prompt: str, *, role: str, schema: dict[str, Any], cache_dir: str
     results = response.get("results")
     return results if isinstance(results, list) else []
 
-
 def _validated_entries(entries: list[Any], required: Sequence[str]) -> dict[str, dict[str, Any]]:
-    """`{id: entry}` for every entry in `entries` that is a dict, carries
-    a non-empty string `"id"` seen exactly once across the whole array,
-    and names every key `required` lists. An id repeated in the array, or
-    an entry missing a required key, is dropped from the result
-    entirely (not just its second occurrence), so a caller reads its
-    absence the same way it reads a missing id: one single-item fallback
-    call for that id alone."""
     counts: dict[str, int] = {}
     candidates: dict[str, dict[str, Any]] = {}
     for entry in entries:
@@ -115,11 +49,6 @@ def _validated_entries(entries: list[Any], required: Sequence[str]) -> dict[str,
         if all(k in entry for k in required):
             candidates[entry_id] = entry
     return {k: v for k, v in candidates.items() if counts[k] == 1}
-
-
-# --------------------------------------------------------------------------
-# batch_critique
-# --------------------------------------------------------------------------
 
 CRITIQUE_BATCH_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -143,7 +72,6 @@ CRITIQUE_BATCH_SCHEMA: dict[str, Any] = {
 }
 
 _CRITIQUE_REQUIRED = ("id", "keep", "issues", "rationale")
-
 
 def _critique_batch_prompt(batch: Sequence[Hypothesis], evidence: Sequence[EvidenceItem]) -> str:
     blocks = []
@@ -174,7 +102,6 @@ def _critique_batch_prompt(batch: Sequence[Hypothesis], evidence: Sequence[Evide
         "return the entries in."
     )
 
-
 def batch_critique(
     hypotheses: Sequence[Hypothesis],
     evidence: Sequence[EvidenceItem],
@@ -184,28 +111,6 @@ def batch_critique(
     replay_only: bool = False,
     workers: int | None = None,
 ) -> list[dict[str, Any]]:
-    """`hte.roles.critique`'s own `keep`/`issues`/`rationale` contract,
-    one dict per hypothesis in `hypotheses`, in the same order,
-    `batch_size` hypotheses per `claude -p` call instead of one call per
-    hypothesis, `workers` chunks in flight at a time (`hte.parallel.pmap`,
-    `hte.parallel.configure`'s own default and `HTE_LLM_WORKERS` env read
-    applied when `workers` is left `None`): `docs/THROUGHPUT.md`'s own
-    "batching and parallelism compound" reading, `batch_size` cutting the
-    call count and `workers` running the resulting chunks concurrently,
-    rather than batching alone leaving the reduced chunk count to run
-    one at a time. `evidence` is the full evidence sequence (matching
-    `hte.roles.critique`'s own signature), filtered per hypothesis the
-    same way that function filters it.
-
-    Any hypothesis the batch response's own array is missing, repeats,
-    or leaves short a required key falls back to one direct `hte.roles.
-    critique` call for that hypothesis alone (run serially, after every
-    chunk's own batch call has returned); a whole chunk whose response
-    fails outright (`hte.llm.LLMError`) falls back the same way for
-    every hypothesis in it. `hte.parallel.RateLimit` propagates out of
-    `pmap` unchanged; `pmap` itself is what pauses every in-flight chunk
-    for it rather than treating it as one chunk's own failure.
-    """
     chunks = _chunks(list(hypotheses), batch_size)
     if not chunks:
         return []
@@ -233,15 +138,6 @@ def batch_critique(
                 results_by_id[h.short_id] = roles.critique(h, evidence, cache_dir=cache_dir, replay_only=replay_only)
     return [results_by_id[h.short_id] for h in hypotheses]
 
-
-# --------------------------------------------------------------------------
-# batch_judge
-# --------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------
-# batch_preservation
-# --------------------------------------------------------------------------
-
 PRESERVATION_BATCH_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -264,7 +160,6 @@ PRESERVATION_BATCH_SCHEMA: dict[str, Any] = {
 }
 _PRESERVATION_REQUIRED = ("id", "expected_evidence", "could_have_survived", "detectability_adjustment", "rationale")
 
-
 def _preservation_batch_prompt(batch: Sequence[Hypothesis], table: Mapping[Any, float], period: str | None) -> str:
     rows = [f"{k}: {v}" for k, v in table.items()] if table else ["(no detectability table supplied)"]
     blocks = [f"Hypothesis id={h.short_id}: {_describe_hypothesis(h)}" for h in batch]
@@ -282,7 +177,6 @@ def _preservation_batch_prompt(batch: Sequence[Hypothesis], table: Mapping[Any, 
         "could_have_survived, detectability_adjustment in [0, 1], and rationale."
     )
 
-
 def batch_preservation(
     hypotheses: Sequence[Hypothesis],
     table: Mapping[Any, float],
@@ -293,13 +187,6 @@ def batch_preservation(
     replay_only: bool = False,
     workers: int | None = None,
 ) -> list[dict[str, Any]]:
-    """`hte.roles.preservation_critique`'s own contract, one dict per
-    hypothesis in order, `batch_size` hypotheses per call against the
-    shared detectability table, `workers` chunks in flight; any entry the
-    batch drops, repeats, or leaves short falls back to one direct
-    `hte.roles.preservation_critique` call, the same recovery
-    `batch_critique` uses. On the live Younger Dryas run this role was
-    360 of 467 calls, one per survivor."""
     chunks = _chunks(list(hypotheses), batch_size)
     if not chunks:
         return []
@@ -329,7 +216,6 @@ def batch_preservation(
                 )
     return [results_by_id[h.short_id] for h in hypotheses]
 
-
 JUDGE_BATCH_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
@@ -353,15 +239,11 @@ _JUDGE_REQUIRED = ("id", "p_a_wins", "rationale")
 
 JudgePair = tuple[Hypothesis, Hypothesis, Mapping[str, Any]]
 
-
 def _judge_evidence_block(label: str, support: Sequence[EvidenceItem], refute: Sequence[EvidenceItem]) -> str:
-    """`hte.roles._judge_evidence_block`'s own contract, this module's
-    own copy (see the module docstring)."""
     lines = [_evidence_line(e) for e in (*support, *refute)]
     if not lines:
         return f"{label}: no linked evidence."
     return f"{label} (supports={len(support)}, refutes={len(refute)}):\n" + "\n".join(lines)
-
 
 def _judge_batch_prompt(batch: Sequence[tuple[str, Hypothesis, Hypothesis, Mapping[str, Any]]]) -> str:
     blocks = []
@@ -394,7 +276,6 @@ def _judge_batch_prompt(batch: Sequence[tuple[str, Hypothesis, Hypothesis, Mappi
         "of which one seems more familiar or better established."
     )
 
-
 def batch_judge(
     pairs: Sequence[JudgePair],
     *,
@@ -403,24 +284,6 @@ def batch_judge(
     replay_only: bool = False,
     workers: int | None = None,
 ) -> list[float]:
-    """`hte.roles.judge`'s own `P(a beats b)` contract, one float per
-    `(a, b, context)` triple in `pairs`, in the same order, `batch_size`
-    pairs per `claude -p` call instead of one call per pair, `workers`
-    chunks in flight at a time (`hte.parallel.pmap`, `hte.parallel.
-    configure`'s own default and `HTE_LLM_WORKERS` env read applied when
-    `workers` is left `None`), the same batching-and-parallelism
-    compounding `batch_critique` documents.
-
-    Any pair the batch response's own array is missing, repeats, or
-    leaves short a required key falls back to one direct `hte.roles.
-    judge` call for that pair alone (serial, after every chunk's own
-    batch call has returned), the same fallback contract `batch_critique`
-    follows. Pair ids are assigned per chunk (`"0"`, `"1"`, ...) rather
-    than derived from the two hypotheses, since a tournament may judge
-    the same ordered pair more than once across different rounds; the id
-    only ever needs to be unique inside its own chunk's prompt and
-    response.
-    """
     chunk_starts = list(range(0, len(pairs), batch_size))
     chunks = [list(pairs[start:start + batch_size]) for start in chunk_starts]
     if not chunks:
@@ -444,7 +307,6 @@ def batch_judge(
             else:
                 out[start + int(lid)] = roles.judge(a, b, ctx, cache_dir=cache_dir, replay_only=replay_only)
     return out
-
 
 __all__ = [
     "batch_critique", "batch_judge", "JudgePair",

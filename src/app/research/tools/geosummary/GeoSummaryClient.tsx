@@ -1,8 +1,5 @@
 "use client";
 
-// GeoSummary client island, descriptives + trend (Mann-Kendall/Theil-Sen) +
-// seasonality + spatial extent over a time/space series. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

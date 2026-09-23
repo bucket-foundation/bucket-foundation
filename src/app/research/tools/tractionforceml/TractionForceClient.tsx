@@ -1,9 +1,5 @@
 "use client";
 
-// TractionForceML client island, block-matching PIV displacement field (REAL
-// normalized cross-correlation). Render is "json". Inputs: reference + deformed
-// 2-D arrays, or "demo".
-
 import { useState } from "react";
 import {
   useToolRun,
@@ -36,7 +32,6 @@ function parseImage(raw: string): number[][] | null {
       if (rows.every((r) => r.every((x) => Number.isFinite(Number(x))))) return rows;
     }
   } catch {
-    /* fall through */
   }
   const lines = t.split(/\n/).map((l) => l.trim()).filter(Boolean);
   if (lines.length < 2) return null;

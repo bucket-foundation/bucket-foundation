@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Exercises scripts/vercel-ignore-build.sh against a throwaway fixture repo.
-# No dependencies beyond bash + git. Run: bash scripts/test-vercel-ignore-build.sh
 
 set -uo pipefail
 
@@ -14,7 +12,6 @@ PASS=0
 FAIL=0
 
 commit_file() {
-  # commit_file <relpath> <message>
   local rel="$1" msg="$2"
   mkdir -p "$REPO/$(dirname "$rel")"
   echo "content for $rel" >> "$REPO/$rel"
@@ -25,8 +22,6 @@ commit_file() {
 sha_of() { git -C "$REPO" rev-parse "$1"; }
 
 run_case() {
-  # run_case <name> <expect: build|skip> <VAR=val>...
-  # Runs in $RUN_IN, the fixture repo unless a case points it at a clone.
   local name="$1" expect="$2"
   shift 2
   local out status got
@@ -54,7 +49,6 @@ run_case() {
   fi
 }
 
-# --- fixture repo: three commits (base -> docs-only -> site) -----------
 git init -q "$REPO"
 git -C "$REPO" config user.email "test@bucket.foundation"
 git -C "$REPO" config user.name "vercel-ignore-build test"
@@ -74,8 +68,6 @@ git -C "$REPO" commit -q -m "chore: move a file"
 SHA_MOVE="$(sha_of HEAD)"
 git -C "$REPO" reset -q --hard "$SHA_SITE"
 
-# 4,000 paths under yt/ (about 150 KB of names, past the 64 KB pipe buffer)
-# beside one src/ change, which sorts first in the diff.
 mkdir -p "$REPO/yt"
 for i in $(seq 1 4000); do echo "$i" >"$REPO/yt/transcript-$(printf '%05d' "$i")-of-a-long-video-title.txt"; done
 echo "big" >>"$REPO/src/app/page.tsx"
@@ -91,8 +83,6 @@ fi
 
 echo "fixture: base=$SHA_BASE docs=$SHA_DOCS site=$SHA_SITE move=$SHA_MOVE"
 echo
-
-# --- cases ----------------------------------------------------------------
 
 run_case "engine branch skips (diff touches src/)" skip \
   "VERCEL_GIT_COMMIT_REF=feat/hte-outbox-seam" \
@@ -142,8 +132,6 @@ run_case "dev with no previous sha builds a site squash merge from the clone" bu
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
-# One parent covers one commit, so a plain push to dev, which can carry
-# several, builds instead of trusting it.
 run_case "dev with no previous sha builds a plain docs commit" build \
   "VERCEL_GIT_COMMIT_REF=dev" \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
@@ -230,11 +218,6 @@ run_case "[vercel build] forces a build over an engine branch + docs diff" build
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
-# --- a clone like Vercel's -------------------------------------------------
-# Vercel's build clone holds the pushed commit alone and has no remote
-# (docs/VERCEL-BUILDS.md, measured 2026-09-18). Each case below clones one
-# commit of the fixture at depth 1, drops the remote, and lets the script
-# fetch its base from VERCEL_IGNORE_FETCH_URL.
 git -C "$REPO" config uploadpack.allowReachableSHA1InWant true
 git -C "$REPO" config uploadpack.allowFilter true
 git -C "$REPO" branch -q -f dev "$SHA_DOCS"
@@ -248,7 +231,6 @@ SHA_FEAT_LATE_DOCS="$(sha_of HEAD)"
 git -C "$REPO" checkout -q -
 
 shallow_clone() {
-  # shallow_clone <sha>: a depth-1 clone of one commit with no remote, in $RUN_IN.
   RUN_IN="$WORKDIR/clone-$1"
   rm -rf "$RUN_IN"
   git init -q "$RUN_IN"
@@ -268,7 +250,6 @@ run_case "shallow clone: base fetched, docs-only diff skips" skip \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
-# The fetch asks for trees alone: a blob only the base holds stays unfetched.
 git -C "$REPO" checkout -q -b feat/blob-check "$SHA_DOCS"
 commit_file "papers/only-in-base.md" "docs: a file the next commit removes"
 SHA_BLOB_BASE="$(sha_of HEAD)"
@@ -286,8 +267,6 @@ run_case "shallow clone: a removed docs file skips" skip \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: remove it" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BLOB_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_BLOB_CUR"
-# Object listing works on every git version and never fetches: the base's
-# own blob must be absent from the scratch repository.
 BLOB="$(git -C "$REPO" rev-parse "$SHA_BLOB_BASE:papers/only-in-base.md")"
 if git --git-dir="$KEPT" cat-file --batch-all-objects --batch-check 2>/dev/null | grep -q "^$BLOB "; then
   FAIL=$((FAIL + 1))
@@ -350,9 +329,6 @@ run_case "shallow clone: first deployment, a site change beside dev, builds" bui
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_LATE_DOCS"
 
-# Vercel stops supplying a previous sha after a canceled deployment, which
-# is what a skip produces, so the every-other-merge case is the one that
-# leaked before 2026-09-21: the gate falls back to the commit's own parent.
 shallow_clone "$SHA_DOCS"
 run_case "shallow clone: dev with no previous sha skips a docs-only squash merge" skip \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
@@ -381,7 +357,6 @@ run_case "shallow clone: owner and slug form the GitHub URL, unreachable here, s
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 RUN_IN=""
 
-# The scratch repository is removed when the gate exits.
 PRIVATE_TMP="$WORKDIR/private-tmp"
 mkdir -p "$PRIVATE_TMP"
 shallow_clone "$SHA_DOCS"

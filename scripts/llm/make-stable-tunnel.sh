@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-# make-stable-tunnel.sh — convert the EPHEMERAL trycloudflare quick tunnel into a
-# STABLE NAMED cloudflared tunnel at llm.agfarms.dev, so the deployed tutor +
-# research agent point at one URL forever and Vercel never needs re-setting.
-#
-# ONE founder step first (cloudflared needs a browser login to your Cloudflare
-# account — I can't do this for you):
-#
-#     cloudflared tunnel login        # opens a browser → pick the agfarms.dev zone
-#
-# That writes ~/.cloudflared/cert.pem. THEN just run this script:
-#
-#     bash scripts/llm/make-stable-tunnel.sh
-#
-# It is idempotent — safe to re-run. It does NOT touch the GPU server or the
-# auth-shim; it only swaps the public hop from quick-tunnel → named tunnel.
 set -euo pipefail
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -26,7 +11,6 @@ UNIT="$HOME/.config/systemd/user/bkt-llm-tunnel.service"
 
 say () { printf '\n\033[1m%s\033[0m\n' "$*"; }
 
-# 0. preflight ---------------------------------------------------------------
 if [ ! -f "$CFDIR/cert.pem" ]; then
   echo "ERROR: $CFDIR/cert.pem not found."
   echo "Run the one founder step first:   $CF tunnel login"
@@ -34,7 +18,6 @@ if [ ! -f "$CFDIR/cert.pem" ]; then
   exit 1
 fi
 
-# 1. create the named tunnel (idempotent) ------------------------------------
 say "1. Ensuring named tunnel '$TUNNEL_NAME' exists"
 if "$CF" tunnel list 2>/dev/null | awk '{print $2}' | grep -qx "$TUNNEL_NAME"; then
   echo "   tunnel '$TUNNEL_NAME' already exists — reusing"
@@ -45,7 +28,6 @@ UUID="$("$CF" tunnel list 2>/dev/null | awk -v n="$TUNNEL_NAME" '$2==n{print $1}
 [ -n "$UUID" ] || { echo "ERROR: could not resolve tunnel UUID"; exit 1; }
 echo "   UUID=$UUID"
 
-# 2. write ingress config ----------------------------------------------------
 say "2. Writing $CFDIR/config.yml (ingress → shim on :$SHIM_PORT)"
 cat > "$CFDIR/config.yml" <<YAML
 tunnel: $UUID
@@ -57,12 +39,10 @@ ingress:
 YAML
 cat "$CFDIR/config.yml"
 
-# 3. DNS route (idempotent) --------------------------------------------------
 say "3. Routing DNS $HOSTNAME_FQDN → tunnel"
 "$CF" tunnel route dns "$TUNNEL_NAME" "$HOSTNAME_FQDN" 2>&1 | sed 's/^/   /' || \
   echo "   (route may already exist — continuing)"
 
-# 4. repoint the systemd unit at the named tunnel ----------------------------
 say "4. Repointing $UNIT at the named tunnel"
 cat > "$UNIT" <<UNITEOF
 [Unit]
@@ -85,7 +65,6 @@ UNITEOF
 systemctl --user daemon-reload
 systemctl --user restart bkt-llm-tunnel
 
-# 5. verify ------------------------------------------------------------------
 say "5. Verifying https://$HOSTNAME_FQDN/health"
 echo "https://$HOSTNAME_FQDN" > "$DIR/.tunnel-url"
 ok=""

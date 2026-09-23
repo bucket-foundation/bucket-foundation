@@ -1,14 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/inference/{calibration,prompts,propose}.ts,
- * the LLM-assisted prerequisite-edge proposer (bkt-ros ros-13, task items 1
- * and 2). Every model call goes through a stubbed `ModelCaller`, no
- * network, no key, matching this repo's existing offline research-os test
- * convention (scripts/research-os/ingest/test-ingest-infer.ts is the exact
- * sibling for the lexical proposer this module extends).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-infer-llm.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -42,10 +31,6 @@ function judgment(answer: "yes" | "no", confidence: number, justification = "bec
   return { answer, confidence, justification };
 }
 
-// ---------------------------------------------------------------------------
-// calibration.ts: llmSelfReportedToConfidence
-// ---------------------------------------------------------------------------
-
 test("llmSelfReportedToConfidence: bounded in [INFERRED_CONFIDENCE_MIN, INFERRED_CONFIDENCE_MAX], monotonic", () => {
   const low = llmSelfReportedToConfidence(0);
   const mid = llmSelfReportedToConfidence(0.5);
@@ -63,14 +48,6 @@ test("llmSelfReportedToConfidence: clamps out-of-range or non-finite input rathe
 });
 
 test("llmSelfReportedToConfidence: bounded in [0.3, 0.65] over a swept range of inputs, including adversarial and malformed values", () => {
-  // Property-style sweep over the full domain a real or adversarial model
-  // response could produce; every one must land in the inferred band.
-  // Covers the in-range interval densely, plus every
-  // out-of-range and non-finite shape sanitizeJudgment's own caller could
-  // pass through (a raw self-reported confidence never goes through
-  // sanitizeJudgment's type guard directly -- only combineAgreement does
-  // -- so this also stands in as the "malformed model output" case for
-  // the raw shrink function itself).
   const swept: number[] = [];
   for (let x = -2; x <= 2; x += 0.01) swept.push(x);
   const adversarial = [NaN, Infinity, -Infinity, -0, 1e300, -1e300, Number.MAX_VALUE, Number.MIN_VALUE, Number.EPSILON];
@@ -82,10 +59,6 @@ test("llmSelfReportedToConfidence: bounded in [0.3, 0.65] over a swept range of 
     );
   }
 });
-
-// ---------------------------------------------------------------------------
-// calibration.ts: combineAgreement
-// ---------------------------------------------------------------------------
 
 test("combineAgreement: both prompts say no -> nothing proposed", () => {
   const result = combineAgreement(judgment("no", 0.9), judgment("no", 0.8));
@@ -115,10 +88,6 @@ test("combineAgreement: disagreement in the other direction (no, then yes) is sy
   assert.equal(result.confidence, DISAGREEMENT_CONFIDENCE);
 });
 
-// ---------------------------------------------------------------------------
-// prompts.ts
-// ---------------------------------------------------------------------------
-
 const PROMPT_INPUT = {
   fromTitle: "Wavefunction",
   fromSummary: "Describes a quantum system's probability amplitude.",
@@ -145,10 +114,6 @@ test("promptHash: deterministic for identical prompt text, distinct for differen
   assert.equal(promptHash(a).length, 16);
 });
 
-// ---------------------------------------------------------------------------
-// propose.ts: sanitizeJudgment
-// ---------------------------------------------------------------------------
-
 test("sanitizeJudgment: a well-formed yes/no response passes through unchanged", () => {
   const parsed = { answer: "yes", justification: "X is used to define Y.", confidence: 0.7 };
   assert.deepEqual(sanitizeJudgment(parsed), { answer: "yes", justification: "X is used to define Y.", confidence: 0.7 });
@@ -164,12 +129,6 @@ test("sanitizeJudgment: null, missing fields, wrong types, or an answer outside 
 });
 
 test("sanitizeJudgment -> combineAgreement: bounded end to end over a wide sweep of malformed and adversarial raw model output, never throws", () => {
-  // Task item 2's bound is a property of the whole pipeline a malformed
-  // response travels through (parseModelJson's own shape, one step
-  // upstream of the shrink function alone): sweep a grid of confidence values
-  // and answer/justification shapes on BOTH prompts, confirm every
-  // combination either proposes nothing or a confidence in bounds, and
-  // never throws.
   const confidences = [-1e6, -1, -0.001, 0, 0.001, 0.3, 0.65, 0.999, 1, 1.001, 5, 1e6, NaN, Infinity, -Infinity];
   const shapes: Array<{ answer?: unknown; justification?: unknown; confidence?: unknown }> = [];
   for (const answer of ["yes", "no", "maybe", undefined, 42]) {
@@ -193,10 +152,6 @@ test("sanitizeJudgment -> combineAgreement: bounded end to end over a wide sweep
     }
   }
 });
-
-// ---------------------------------------------------------------------------
-// propose.ts: sampleTierAdjacentPairs
-// ---------------------------------------------------------------------------
 
 test("sampleTierAdjacentPairs: only exactly-adjacent tiers within a branch are candidates", () => {
   const nodes = [node("a", 1, "s"), node("b", 2, "s"), node("c", 4, "s")];
@@ -229,10 +184,6 @@ test("sampleTierAdjacentPairs: deterministic ordering and respects a limit", () 
   assert.equal(once[0].fromSlug, "a", "sorted by (fromSlug, toSlug) before truncating");
 });
 
-// ---------------------------------------------------------------------------
-// propose.ts: buildCandidatePairs
-// ---------------------------------------------------------------------------
-
 test("buildCandidatePairs: carries the lexical proposer's own overlapRatio through, and adds sampled pairs with null overlap", () => {
   const nodes = [node("a", 1, "alpha"), node("b", 2, "beta")];
   const lexical: InferredEdgeProposal[] = [{ fromSlug: "a", toSlug: "b", overlapRatio: 0.42, confidence: 0.5 }];
@@ -247,10 +198,6 @@ test("buildCandidatePairs: sampleSize 0 disables tier-adjacent sampling, lexical
   const pairs = buildCandidatePairs(nodes, lexical, new Set(), 0);
   assert.deepEqual(pairs.map((p) => [p.fromSlug, p.toSlug]), [["a", "b"]]);
 });
-
-// ---------------------------------------------------------------------------
-// propose.ts: judgePair / proposeLlmEdges (stubbed model, no network)
-// ---------------------------------------------------------------------------
 
 const PAIR: EdgeCandidatePair = {
   fromSlug: "wavefunction",

@@ -10,7 +10,6 @@ const BUTTON =
 const LABEL =
   "small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]";
 
-/** The launch-list form shown at /sign-in until Research OS opens. */
 export default function WaitlistForm({ wanted }: { wanted: string | null }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -21,8 +20,6 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
   const [joined, setJoined] = useState<string | null>(null);
   const doneRef = useRef<HTMLDivElement>(null);
 
-  // The form unmounts on success; move focus to the confirmation so keyboard
-  // and screen-reader users land on it.
   useEffect(() => {
     if (joined) doneRef.current?.focus();
   }, [joined]);
@@ -134,7 +131,6 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
           ))}
         </select>
 
-        {/* Hidden from people and from assistive tech; bots fill it. */}
         <div
           aria-hidden="true"
           className="absolute -left-[10000px] w-px h-px overflow-hidden"

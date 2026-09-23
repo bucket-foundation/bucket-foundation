@@ -1,8 +1,3 @@
-/**
- * Unit tests: the under-13 gates and the guardian payee (ros-32),
- * src/lib/research-os/consent-paths.ts. Pure. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-consent-paths.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { consentPathFor, effectiveConsent, payeeFor } from "../src/lib/research-os/consent-paths";
@@ -52,11 +47,6 @@ test("payee: minors through a guardian or a custodial account only", () => {
 });
 
 test("a consent path read that fails is unavailable, and answers 503", () => {
-  // The repair that made resolveConsentPaths raise left four POST routes
-  // calling requireConsent bare, so a failed read reached the learner as
-  // a 500 with no body. The outcome is named now, and consentRefusal is
-  // the only way a route answers a blocked check, so none of them can
-  // handle the 403 and forget this one.
   const blocked: ConsentCheckResult = { allowed: false, reason: "unavailable", message: "Consent could not be checked right now." };
   const refusal = consentRefusal(blocked);
   assert.equal(refusal.status, 503, "a read that did not complete is not a claim about the learner");

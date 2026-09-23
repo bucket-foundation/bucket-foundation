@@ -5,20 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { isSearchResponse, MAX_CARDS, type EvidenceCard, type EvidenceSearchResponse } from "@/lib/research-os/evidence-search/types";
 
-/**
- * Find by meaning over admitted public sources (ros-ai-find). The server
- * decides whether this account may use it, so the mode appears only after
- * a GET says yes and a corpus is loaded.
- *
- * Opening a card goes to that source's node page. It leaves the research
- * target alone: a source found here becomes evidence only when the person
- * quotes it from that page.
- *
- * A newer query abandons the one before it, and a late answer to an
- * abandoned query is dropped, so stale cards never read as the current
- * answer. Keyword ranking says so in the results, and an error clears the
- * cards it replaces.
- */
 export interface EvidenceFindProps {
   token: string | null;
   branch: string;
@@ -45,9 +31,6 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
         const res = await fetch("/api/research-os/evidence-search", { headers: { authorization: `Bearer ${token}` } });
         if (!live) return;
         if (!res.ok) {
-          // A read that did not complete is not a feature that is off.
-          // Hiding the mode for both told a learner the search does not
-          // exist here whenever their profile read failed.
           if (isTransientOutage(res.status, await readErrorCode(res))) setProbeFailed(true);
           return;
         }
@@ -55,7 +38,6 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
         const body = (await res.json()) as { available?: boolean; corpusRevision?: string; sources?: number };
         if (body.available && typeof body.corpusRevision === "string") setAvailable({ corpusRevision: body.corpusRevision, sources: body.sources ?? 0 });
       } catch {
-        // The mode stays hidden when the server does not answer.
       }
     })();
     return () => {
@@ -63,12 +45,6 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
     };
   }, [token]);
 
-  // Cards answer the target they were found for. The component stays
-  // mounted while a learner moves along the path, so without this the
-  // previous target's sources sit under the new one, and Quote would
-  // attach them to a target they were never about. A request still in
-  // flight is abandoned, and the sequence moves so its answer is dropped
-  // when it lands.
   useEffect(() => {
     inFlight.current?.abort();
     seq.current += 1;
@@ -119,8 +95,6 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
   }, [token, query, branch, targetNodeId]);
 
   if (!available) {
-    // One line on a failed probe, so a learner can tell a read that did
-    // not complete from a deployment that never carried the corpus.
     return probeFailed ? (
       <p role="alert" className="text-[11px] text-[color:var(--gold-deep)]">
         {OUTAGE_COPY.body}
@@ -186,7 +160,6 @@ export default function EvidenceFind({ token, branch, targetNodeId }: EvidenceFi
               {c.kind === "passage" ? <>&ldquo;{c.excerpt}&rdquo;</> : c.excerpt}
             </p>
             <div className="mt-0.5 text-[11px] text-[color:var(--basalt-3)]">
-              {/* The citation ends in a period of its own; a locator continues the same line. */}
               {c.locator ? `${c.citation.replace(/\.\s*$/, "")}, ${c.locator}` : c.citation}
             </div>
             <div className="mt-1 flex items-center gap-3">

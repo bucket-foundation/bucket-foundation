@@ -1,10 +1,3 @@
-/**
- * GET /api/research-os/loop -> the person's five levels as live state.
- * One read for the home page's loop block: what they can see and own
- * (Access), what they have opened and where it leads (Awareness), what they
- * hold (Understanding), what connects across branches (Internalization),
- * and what they have produced and what it became (Production).
- */
 import type { LoopResponse } from "@/lib/research-os/loop-shape";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
@@ -18,20 +11,9 @@ export const dynamic = "force-dynamic";
 const NO_STORE = { headers: { "cache-control": "no-store" } };
 const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 
-/**
- * Decks the learner has started, from the Academy schema.
- *
- * The error was discarded and the catch answered 0, so a failed read
- * reported no decks and flipped `empty`, showing the first-run screen to
- * a learner whose only work is a started deck (Bucket critic C70). A
- * stack with no Academy configured is a different fact and still
- * answers 0.
- */
 async function learnDecksStarted(userId: string): Promise<number> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  // No Academy stack behind this deployment is a real zero. The learner
-  // has started no decks because there are none to start.
   if (!url || !key) return 0;
   const svc = createClient(url, key, { db: { schema: "bucket" }, auth: { persistSession: false, autoRefreshToken: false } });
   const rows = await pagedRead<{ data: { cards?: Record<string, unknown> } }>((page) =>
@@ -40,12 +22,6 @@ async function learnDecksStarted(userId: string): Promise<number> {
   return rows.filter((r) => Object.keys(r.data?.cards ?? {}).length > 0).length;
 }
 
-/**
- * A head count that fails is an outage, the way a paged read that fails
- * is one. A head count resolves with `{count: null, error}` and never
- * throws, so `?? 0` reported a failed read as a learner who owns
- * nothing (Bucket critic C58).
- */
 async function counted(query: PromiseLike<{ count: number | null; error: { message: string } | null }>, what: string): Promise<number> {
   const { count, error } = await query;
   if (error) throw new Error(`${what}: ${error.message}`);
@@ -57,11 +33,6 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   const svc = graphService();
-  // A read that fails is an outage. Before these reads paged, a failure
-  // left the data null and every counter rendered zero, which told the
-  // learner they had opened nothing. pagedRead and counted() throw
-  // instead, and the throw becomes a 503 here rather than an unhandled
-  // rejection.
   let reads;
   try {
     reads = await Promise.all([
@@ -90,12 +61,6 @@ export async function GET(req: NextRequest) {
       access: { owned: ownedRes, imports: importsRes, pendingRequests: requestsRes },
       awareness: { opened: states.length, atLeastAwareness: atLeast("awareness") },
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
-      // An access-store failure leaves the connection counts unknown. Zero
-      // would read as a learner with nothing connected (Bucket critic C25).
-      // The nulls carry that: internalizationState renders "connections
-      // unavailable" off `held === null` and internalizationDetail
-      // renders "bridges unavailable" off `bridges === null`, so the
-      // learner is told the read did not finish.
       internalization: {
         nodes: atLeast("internalization"),
         ...("unavailable" in connections && connections.unavailable

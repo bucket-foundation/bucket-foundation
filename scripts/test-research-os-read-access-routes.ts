@@ -1,16 +1,3 @@
-/**
- * The read-authorization gates at the routes themselves, against the local
- * stack (ros-ai-access, learning/research-os/ai/IMPLEMENTATION.md,
- * "Verification and release": a pure test cannot prove route
- * authorization).
- *
- * Each case signs a real learner in through the local auth server and
- * calls the route handler with that session, so the decision comes from
- * the same verifyLearner path production uses.
- *
- * Needs the local stack. With no database the tests skip and say so;
- * RESEARCH_OS_REQUIRE_DB=1 turns that skip into a failure.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -21,12 +8,6 @@ import { NextRequest } from "next/server";
 
 const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
 
-/**
- * Cases here revoke a privilege to simulate an access-store outage, and
- * restore it in a `finally`. A SIGKILL or a CI timeout skips that
- * restore, so this refuses to run against anything but loopback (Bucket
- * critic C43).
- */
 function requireLoopback(): void {
   let host: string;
   try {
@@ -65,7 +46,6 @@ if (REQUIRED && !ready) {
 }
 const skip = ready ? false : "no local stack with a Supabase URL and service key";
 
-/** A signed-in learner, made through the local auth server. */
 async function makeLearner(label: string): Promise<{ id: string; email: string; token: string }> {
   const email = `read-access-${label}-${randomUUID()}@bucket.test`;
   const password = `pw-${randomUUID()}`;
@@ -83,7 +63,6 @@ async function makeLearner(label: string): Promise<{ id: string; email: string; 
   });
   const session = (await signedIn.json()) as { access_token?: string };
   assert.ok(session.access_token, `could not sign ${label} in`);
-  // Consent, so the workspace's own gate is not what refuses these cases.
   sql(`insert into graph.learner_profiles (learner_id, consent_status, birth_year_bucket)
        values ('${user.id}', 'self', '18plus')
        on conflict (learner_id) do update set consent_status = 'self', birth_year_bucket = '18plus';`);
@@ -97,7 +76,6 @@ async function removeLearner(id: string): Promise<void> {
   });
 }
 
-/** POST to a route handler with a learner's session, as the browser would. */
 async function post(handler: (req: NextRequest) => Promise<Response>, body: unknown, token?: string): Promise<{ status: number; json: Record<string, unknown> }> {
   const headers: Record<string, string> = { "content-type": "application/json" };
   if (token) headers.authorization = `Bearer ${token}`;
@@ -115,8 +93,6 @@ async function get(handler: (req: NextRequest) => Promise<Response>, query: stri
 }
 
 test("the read gates hold at the routes", { skip }, async (t) => {
-  // Registered before anything exists, so a throw while creating fixtures
-  // still cleans up what was made (Bucket critic C8).
   const learners: string[] = [];
   const nodeIds: string[] = [];
   t.after(async () => {
@@ -220,7 +196,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.equal(denied.status, 404, `a private node answers 404: ${JSON.stringify(denied.json)}`);
     assert.equal(JSON.stringify(denied.json).includes("private summary"), false, "no content in the refusal");
 
-    // A view grant is not a cite grant.
     const viewOnly = await post(workspace.POST, { action: "quote", nodeId: sharedNode, sessionId: randomUUID() }, grantee.token);
     assert.equal(viewOnly.status, 404, `view alone cannot quote: ${JSON.stringify(viewOnly.json)}`);
 
@@ -266,8 +241,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     const state = sql(`select count(*) from graph.learner_node_state where learner_id = '${stranger.id}' and node_id = '${privateNode}'`);
     assert.equal(state.out, "0", "a refused probe writes no learner state");
 
-    // A learner holding view and nothing else tells the two verbs apart: a
-    // probe needs continue, so view alone is refused (Bucket critic C15).
     const res2 = await post(probe.POST, { nodeId: sharedNode, answer: "an answer long enough to be graded", sessionId: randomUUID() }, viewOnly.token);
     assert.equal(res2.status, 404, `view alone cannot probe: ${JSON.stringify(res2.json)}`);
 
@@ -292,8 +265,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
   });
 
   await t.test("check abstains when every prerequisite is withheld", async () => {
-    // The public node now rests on the private one, which this learner may
-    // not read, so there is nothing left to ground a verdict on.
     sql(`insert into graph.edges (from_id, to_id, kind) values ('${privateNode}', '${publicNode}', 'prerequisite')
          on conflict do nothing;`);
     try {
@@ -358,8 +329,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
   });
 
   await t.test("an access-store outage answers 503, never an empty result", async () => {
-    // The grants read is what fails: revoking select on the table is the
-    // outage a learner would see during one.
     requireLoopback();
     sql(`revoke select on graph.node_grants from service_role;`);
     try {
@@ -369,9 +338,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const quote503 = await post(workspace.POST, { action: "quote", nodeId: sharedNode, sessionId: randomUUID() }, grantee.token);
       assert.equal(quote503.status, 503, `quote says the store is down: ${JSON.stringify(quote503.json)}`);
 
-      // Every route that reads the graph through the adapter answers the
-      // same way, including the node page, whose empty neighbourhood used
-      // to read as a node that rests on nothing.
       /* eslint-disable @typescript-eslint/no-var-requires */
       const node = require("../src/app/api/research-os/node/route") as { GET: (req: NextRequest) => Promise<Response> };
       const graph = require("../src/app/api/research-os/graph/route") as { GET: (req: NextRequest) => Promise<Response> };
@@ -385,9 +351,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       }));
       assert.equal(graphRes.status, 503, "the graph says the store is down");
 
-      // The node page answers 503 from its own gate before the
-      // neighbourhood is filtered, so the filter's contract is asserted
-      // where it lives: an outage is a refusal, never an empty subgraph.
       /* eslint-disable-next-line @typescript-eslint/no-var-requires */
       const { filterSubgraphForViewer } = require("../src/lib/research-os/access-db") as typeof import("../src/lib/research-os/access-db");
       const filtered = await filterSubgraphForViewer(
@@ -451,13 +414,11 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     };
 
     try {
-      // The class teacher sees the learner in their class and nobody else.
       const scoped = await read(teacher.token);
       assert.equal(scoped.status, 200, `the teacher reads the queue: ${scoped.status}`);
       assert.ok(scoped.ids.includes(insideProduction), "their own class is in the queue");
       assert.ok(!scoped.ids.includes(outsideProduction), "another class's learner is not");
 
-      // A decision on a production outside the class answers as missing.
       const denied = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
         method: "POST",
         headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
@@ -467,7 +428,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const untouched = sql(`select status from graph.productions where id = '${outsideProduction}'`);
       assert.equal(untouched.out, "submitted", "the refused production did not move");
 
-      // The same teacher may decide inside their own class.
       const allowed = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
         method: "POST",
         headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
@@ -519,9 +479,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
 
     const allowlist = process.env.RESEARCH_OS_REVIEWER_EMAILS;
     try {
-      // The row exists, so a 404 here is the scope gate rather than a
-      // missing hold. Both answers carry the same code, so the reviewer
-      // cannot tell the two apart (Bucket critic C32, C34).
       const outOfScope = await decide(teacher.token, outsider.id);
       assert.equal(outOfScope.status, 404, `a transfer item outside the class is refused: ${outOfScope.status}`);
       assert.equal(((await outOfScope.json()) as { error?: string }).error, "state_not_found", "and says nothing about which learner exists");
@@ -533,8 +490,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const wrote = sql(`select count(*) from graph.teacher_reviews where learner_id = '${grantee.id}' and node_id = '${publicNode}'`);
       assert.equal(wrote.out, "1", "the in-scope decision wrote exactly one review row");
 
-      // The graph's own reviewer is scoped to every learner, which is the
-      // `learners === null` branch that class scoping short-circuits.
       process.env.RESEARCH_OS_REVIEWER_EMAILS = allowlisted.email;
       const graphWide = await decide(allowlisted.token, outsider.id);
       assert.equal(graphWide.status, 200, `an allowlisted reviewer decides outside any class: ${graphWide.status} ${await graphWide.text()}`);
@@ -593,10 +548,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       assert.equal(withheld!.targetTitle, "", "and carries no title");
       assert.equal(withheld!.targetSlug, "", "and no slug to follow");
 
-      // An access-store failure is an outage. Answering 200 with every
-      // title blanked would read as "your assignments point nowhere"
-      // (Bucket critic C33). Revoking the grant read is how the route
-      // sees a store it cannot query.
     requireLoopback();
     sql(`revoke select on graph.node_grants from service_role;`);
       const outage = await mine();
@@ -619,8 +570,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     learners.push(teacher.id, student.id);
     const klass = randomUUID();
     const tag = `page-${Date.now().toString(36)}`;
-    // One more than PostgREST answers in a single request. Without a page
-    // loop the queue stops at a thousand and reports no error.
     const ROWS = 1001;
 
     const seeded = sql(`
@@ -687,13 +636,10 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     const staff = { id: teacher.id, email: teacher.email, roles: ["teacher"] };
 
     try {
-      // A public node is assignable.
       const ok = await classDb.createAssignment(staff, klass, `ra-public-${publicNode}`, { title: "read the public one" });
       assert.equal(ok.ok, true, `a readable target is assignable: ${JSON.stringify(ok)}`);
       if (ok.ok) made.push(ok.value.id);
 
-      // Another learner's private node is not, and the refusal says
-      // nothing about whether the slug exists.
       const denied = await classDb.createAssignment(staff, klass, `ra-private-${privateNode}`, { title: "read the private one" });
       assert.equal(denied.ok, false, "a target the staff member cannot read is refused");
       assert.equal(denied.ok === false && denied.error, "target_not_found", "and reads the same as a slug that never existed");
@@ -701,7 +647,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const missing = await classDb.createAssignment(staff, klass, `ra-nothing-${randomUUID()}`, { title: "read a ghost" });
       assert.equal(missing.ok === false && missing.error, "target_not_found", "which is what a real miss answers");
 
-      // An access-store outage is an outage, never a denial.
     requireLoopback();
     sql(`revoke select on graph.node_grants from service_role;`);
       const outage = await classDb.createAssignment(staff, klass, `ra-shared-${sharedNode}`, { title: "read the shared one" });
@@ -728,10 +673,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     const crowded = randomUUID();
     const slug = `ra-crowded-${crowded}`;
     nodeIds.push(crowded);
-    // One real grant buried under a full page of others on the same node.
-    // Its id sorts last, so a read that stops at the first thousand rows
-    // never sees it and the learner is refused a node they hold a live
-    // grant on (Bucket critic C41, C49).
     const real = "ffffffff-ffff-4fff-bfff-ffffffffffff";
     const seeded = sql(`
       insert into graph.nodes (id, slug, title, kind, tier, branch, summary, visibility, owner_id)
@@ -758,8 +699,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const json = (await res.json()) as { node?: { slug?: string } };
       assert.equal(json.node?.slug, slug, "and the node comes back");
 
-      // A learner with no grant on it is still refused, so the case is
-      // not passing because the node became readable to everyone.
       const stranger = await nodeRoute.GET(new NextRequest(`http://127.0.0.1/api/research-os/node?slug=${slug}`, {
         headers: { authorization: `Bearer ${viewOnly.token}` },
       }));
@@ -779,9 +718,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.equal(healthy.status, 200, `the loop answers when its reads work: ${healthy.status}`);
 
     try {
-      // The paged reads throw on a failure. Before they paged, the data
-      // came back null and every counter rendered zero, which told the
-      // learner they had opened nothing (Bucket critic C47).
       requireLoopback();
       sql(`revoke select on graph.learner_node_state from service_role;`);
       const res = await loop.GET(new NextRequest("http://127.0.0.1/api/research-os/loop", {
@@ -806,9 +742,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.equal(healthy.status, 200, `the map answers when its reads work: ${healthy.status}`);
 
     try {
-      // The standing map used to come back empty behind a 200, so every
-      // node showed no stage and the heatmap showed nobody at any level
-      // (Bucket critic C53, C61).
       requireLoopback();
       sql(`revoke select on graph.learner_node_state from service_role;`);
       const res = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
@@ -834,9 +767,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     learners.push(teacher.id);
     const klass = randomUUID();
     const tag = `bulk-${Date.now().toString(36)}`;
-    // More targets than one request line holds, so the read has to chunk.
-    // Unchunked it answers 414, every title comes back blank, and the row
-    // still claims the target is visible (Bucket critic C50, C61).
     const TARGETS = 220;
 
     const seeded = sql(`
@@ -864,8 +794,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
         assert.deepEqual(blank, [], `no row claims a visible target with no title: ${blank.length} of ${mine.length}`);
       }
 
-      // A read it cannot make refuses the whole list rather than serving
-      // it with every title stripped.
       requireLoopback();
       sql(`revoke select on graph.nodes from service_role;`);
       const outage = await classDb.listAssignmentsForLearner(grantee.id);
@@ -895,11 +823,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
 
     assert.equal((await call()).status, 200, "the loop answers when its reads work");
 
-    // Seven reads feed this response and each one used to fail its own
-    // way. A head count resolves with {count: null, error} and never
-    // threw; the academy read was caught and answered zero, which also
-    // flipped `empty` and showed the first-run screen to a learner who
-    // had started a deck (Bucket critic C58, C70, C74).
     const tables = ["graph.access_requests", "graph.imports", "bucket.academy_progress", "graph.productions"];
     for (const table of tables) {
       try {
@@ -942,10 +865,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       const listed = await classDb.listAssignmentsForLearner(grantee.id);
       assert.equal(listed.ok, true, "the list comes back when the read works");
 
-      // The read that feeds the whole function sat six lines above reads
-      // that refuse the list, and it answered an empty list on an
-      // outage: a hidden assignment is a missed obligation
-      // (Bucket critic C71).
       requireLoopback();
       sql(`revoke select on graph.assignments from service_role;`);
       const outage = await classDb.listAssignmentsForLearner(grantee.id);
@@ -967,9 +886,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     };
 
     const tag = `grid-${Date.now().toString(36)}`;
-    // One more learner than a chunk holds. Slicing to the first chunk
-    // dropped everyone past it out of the teacher grid while the same
-    // response reported the true total (Bucket critic C63, C72).
     const COUNT = db.IN_CHUNK + 1;
     const ids: string[] = [];
     for (let i = 0; i < COUNT; i += 1) ids.push(randomUUID());
@@ -1001,10 +917,6 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     const hypothesize = require("../src/app/api/research-os/hypothesize/route") as { POST: (req: NextRequest) => Promise<Response> };
 
     const prod = randomUUID();
-    // The learner owns the production and the production names a node
-    // they were never granted. Owning the production is not reading the
-    // node it names: without the gate, its slug, title, tier and branch
-    // go to the engine (Bucket critic C14, A4).
     const seeded = sql(`
       insert into graph.productions (id, learner_id, target_node_id, kind, claim, status)
         values ('${prod}', '${grantee.id}', '${privateNode}', 'production', 'a claim about a node they cannot read', 'draft');

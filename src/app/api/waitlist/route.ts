@@ -1,31 +1,13 @@
-/**
- * The launch list.
- *
- * POST { email, name?, role?, wanted? } adds an address or updates its
- * record. The answer is the same for a new and a known address, so the form
- * never tells a visitor who else signed up. A filled honeypot field saves the
- * signup under suspect/ for review. 503 when no store is connected, so
- * nothing is accepted and then lost.
- *
- * GET with `Authorization: Bearer <WAITLIST_ADMIN_KEY>` returns every entry
- * and the suspects as JSON, or the list as a CSV download with `?format=csv`.
- * 404 without the key.
- */
-
 import { NextRequest, NextResponse } from "next/server";
 import { parseSignup, toCsv } from "@/lib/waitlist/core";
 import { adminKeyMatches, getWaitlistStore, listSignups, saveSignup } from "@/lib/waitlist/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-// Listing reads one object per signup; room for a few thousand.
 export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "no-store" };
 
-// Best-effort burst guard per client address, in memory like the Research OS
-// limiter: a cold start resets it. Ten signups a minute is far above what a
-// person sends.
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 10;
 const hits = new Map<string, number[]>();

@@ -1,13 +1,3 @@
-/**
- * ros-import 1's path rule and its bounds, src/lib/research-os/import-storage.ts.
- * Pure, no database. Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-import-storage.ts
- *
- * The property that matters is the one the workbench leans on: bytes a
- * run recorded by their hash are still there afterwards. That holds
- * because the path is derived from the hash, so the tests below check
- * the derivation rather than any storage call.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -26,9 +16,6 @@ const OTHER = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
 const HASH = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
 test("the empty string hashes to the published SHA-256 vector", async () => {
-  // e3b0c442... is the standard digest of zero bytes. A client and a
-  // route both call this, so an implementation that drifts would name
-  // two different paths for one file.
   assert.equal(await sha256Hex(new Uint8Array()), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
   assert.equal(await sha256Hex(new TextEncoder().encode("abc")), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 });
@@ -102,18 +89,12 @@ test("the bucket name is the one the migration creates", () => {
 });
 
 test("an owner id that is not canonical is refused", () => {
-  // Postgres renders uuid::text lowercase and storage_path is generated
-  // from it, so an uppercase owner id built one key while the row named
-  // another. The object and the row then diverge with nothing to say so.
   assert.deepEqual(storagePathFor(OWNER.toUpperCase(), HASH), { ok: false, error: "owner_not_a_uuid" });
   assert.equal(parseStoragePath(`${OWNER.toUpperCase()}/${HASH}`), null);
   assert.ok(storagePathFor(OWNER, HASH).ok, "the canonical form still works");
 });
 
 test("the key rule the insert policy enforces is the one this builds", () => {
-  // The policy anchors on ^<uid>/[0-9a-f]{64}$. Anything this module can
-  // emit has to match it, and the shapes it refuses are the ones the
-  // policy refuses.
   const made = storagePathFor(OWNER, HASH);
   assert.ok(made.ok);
   const rule = new RegExp(`^${OWNER}/[0-9a-f]{64}$`);

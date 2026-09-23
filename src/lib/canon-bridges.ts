@@ -1,4 +1,3 @@
-// canon-bridges.ts, server-only filesystem scanner for bucket-canon/_bridges/
 import fs from "fs";
 import path from "path";
 
@@ -31,7 +30,6 @@ function parseBridge(file: string, slug: string): BridgeEntry | null {
   const mass = parseInt((get("FTS mass") || "0").replace(/[^\d]/g, ""), 10) || 0;
   const spans = parseInt((get("Spans") || "0").match(/\d+/)?.[0] || "0", 10);
 
-  // Branches it touches: bullet list under "## Branches it touches"
   const branchSect = raw.split("## Branches it touches")[1]?.split("\n## ")[0] || "";
   const branches: { branch: string; description: string }[] = [];
   for (const line of branchSect.split("\n")) {

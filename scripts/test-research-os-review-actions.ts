@@ -1,9 +1,3 @@
-/**
- * The review actions behind /api/research-os/edges and node-proposals,
- * run against an in-memory stand-in for the Supabase client: ordering,
- * the edge kind, the cycle guard, claims, releases on a failed write, and
- * missing-prime approval.
- */
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -24,12 +18,6 @@ type Rpc = (args: any) => { data: unknown; error: { message: string } | null };
 let nextId = 1;
 const newId = () => `id-${nextId++}`;
 
-/**
- * The query chains review-actions uses, over plain arrays. `fail` names
- * "table:op" pairs that always error, or "table:op#n" for only the nth call.
- * `before` runs a change to the data just before the named "table:op#n"
- * call, as another reviewer's write landing in between would.
- */
 function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), calls: string[] = [], before: Record<string, () => void> = {}) {
   const seen = new Map<string, number>();
   class Q {
@@ -139,7 +127,6 @@ function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), 
             written.push(added);
           }
         }
-        // Like PostgREST: with ignoreDuplicates, only inserted rows come back.
         data = this.returning ? written.map((r) => ({ id: r.id })) : null;
       }
       if (this.one) {
@@ -532,8 +519,6 @@ test("the list names the chain a pair would shortcut, and the names follow each 
   forgetMakeupSnapshot();
   const db = seed();
   for (const n of db.nodes) n.visibility = "public";
-  // Pending and agreed: kinematics rests on derivatives (p-conf), derivatives rests on sets (p-chain).
-  // So sets for kinematics (p-ref) is a shortcut past derivatives.
   db.edge_proposals.push({ ...db.edge_proposals[0], id: "p-chain", from_slug: "sets", to_slug: "derivatives", branch: "01-mathematics", created_at: "2026-09-18T00:00:03Z" });
   const standing = async () => {
     const ps = (await listEdgeProposals(fake(db, rpcs()), null)).body.proposals as Array<Record<string, any>>;
@@ -552,13 +537,11 @@ test("the list names the chain a pair would shortcut, and the names follow each 
 
 test("a claim that loses the race reports the status the row holds now", async () => {
   const db = seed();
-  // Reviewer A reads p-ref as pending; reviewer B approves it before A's reject claims the row.
   const raced = () => {
     db.edge_proposals.find((x) => x.id === "p-ref")!.status = "approved";
   };
   const r = await decideEdge(fake(db, rpcs(), new Set(), [], { "edge_proposals:update#1": raced }), { id: "p-ref", decision: "rejected", reason: null, reviewerId: "rev-a" });
   assert.deepEqual(r.body, { decision: "approved", alreadyDecided: true });
-  // The same for a missing idea and an irreducible verdict.
   const np = db.node_proposals[0];
   const r2 = await decideNode(
     fake(db, rpcs(), new Set(), [], { "node_proposals:update#1": () => (np.status = "rejected") }),
@@ -572,7 +555,6 @@ test("a claim that loses the race reports the status the row holds now", async (
     { id: ir.id as string, decision: "rejected", reason: null, reviewerId: "rev-a" },
   );
   assert.deepEqual(r3.body, { decision: "confirmed", alreadyDecided: true });
-  // When the re-read fails, the decision is unknown, and the page words it as decided.
   const db2 = seed();
   const r4 = await decideEdge(
     fake(db2, rpcs(), new Set(["edge_proposals:select#2"]), [], { "edge_proposals:update#1": () => (db2.edge_proposals.find((x) => x.id === "p-ref")!.status = "approved") }),

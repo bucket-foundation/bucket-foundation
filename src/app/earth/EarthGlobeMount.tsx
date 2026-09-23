@@ -20,8 +20,6 @@ import {
   type ScoredCountry,
 } from "@/lib/earth-scoring";
 
-// Mirror /canon's mount pattern exactly: the R3F globe is the same component,
-// loaded ssr:false with a static fallback while three.js boots.
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
   loading: () => (
@@ -31,7 +29,6 @@ const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ),
 });
 
-// ── Typed views over the (read-only) data files ─────────────────────────────
 type Country = {
   id: string;
   title: string;
@@ -58,8 +55,6 @@ type BlueZone = {
   centenarian_signal?: string;
 };
 
-// JSON modules infer narrow literal types; cast through `unknown` to our
-// runtime shapes. The data files are final + match these shapes exactly.
 const COUNTRIES = (worldData as unknown as { countries: Country[] }).countries;
 const INDICATORS = Object.keys(
   (worldData as unknown as { indicators: Record<string, string> }).indicators
@@ -76,7 +71,6 @@ function fmtNum(v: number | null | undefined): string {
   return v.toLocaleString(undefined, { maximumFractionDigits: 2 });
 }
 
-// Short label for the legend / table headers, strip the parenthetical unit.
 function shortLabel(label: string): string {
   return label.replace(/\s*\(.*?\)\s*$/, "").trim();
 }
@@ -91,7 +85,6 @@ export default function EarthGlobeMount() {
   );
   const [showBlueZones, setShowBlueZones] = useState(true);
 
-  // Ranking weights, seeded from the first preset, editable via sliders.
   const [activePreset, setActivePreset] = useState<string>(PRESETS[0]?.id ?? "");
   const [weights, setWeights] = useState<Record<string, number>>(
     () => ({ ...(PRESETS[0]?.weights ?? {}) })
@@ -104,7 +97,6 @@ export default function EarthGlobeMount() {
     setWeights({ ...p.weights });
   };
 
-  // ── EXPLORE: per-country colour for the active indicator ──────────────────
   const exploreColors = useMemo(() => {
     const vals = COUNTRIES.map((c) => c.values[indicator]);
     const stats = indicatorStats(vals, GLOBAL_AVG[indicator]);
@@ -117,16 +109,11 @@ export default function EarthGlobeMount() {
         continue;
       }
       let t = normalize(raw, stats.min, stats.max);
-      // For explore mode we keep the colour mapped to the RAW magnitude
-      // (low value = bone, high = teal) regardless of direction, the legend
-      // shows min/max so it stays unambiguous. Direction only matters in
-      // ranking mode.
       colorById[c.id] = { color: rampColor(t), value: raw };
     }
     return { stats, direction, colorById };
   }, [indicator]);
 
-  // ── RANK: composite 0..100 score per country ──────────────────────────────
   const ranked = useMemo<ScoredCountry[]>(() => {
     const scored = computeScores({
       countries: COUNTRIES.map((c) => ({
@@ -155,7 +142,6 @@ export default function EarthGlobeMount() {
     return m;
   }, [ranked]);
 
-  // ── Build the markers handed to the globe ─────────────────────────────────
   const markers = useMemo<CanonMarker[]>(() => {
     const paint = mode === "explore" ? exploreColors.colorById : rankColorById;
     const dataMarkers: CanonMarker[] = COUNTRIES.map((c) => {
@@ -181,9 +167,6 @@ export default function EarthGlobeMount() {
           title: z.title,
           kind: "blue-zone",
           color: BLUE_ZONE_COLOR,
-          // stash the longevity note in `civilization` so the shared tooltip
-          // (which already renders that field) surfaces it without a schema
-          // change to CanonMarker.
           civilization: z.longevity_note,
         });
       }
@@ -197,7 +180,6 @@ export default function EarthGlobeMount() {
     return idx >= 0 ? idx : undefined;
   }, [selected, markers]);
 
-  // ── Stats readout ─────────────────────────────────────────────────────────
   const top10 = useMemo(
     () => ranked.filter((r) => Number.isFinite(r.score)).slice(0, 10),
     [ranked]
@@ -213,7 +195,6 @@ export default function EarthGlobeMount() {
     return idx >= 0 ? { rank: idx + 1, of: finite.length, row: finite[idx] } : null;
   }, [ranked]);
 
-  // Table sorting
   const [sortKey, setSortKey] = useState<"rank" | "name" | "score">("rank");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const tableRows = useMemo(() => {
@@ -249,9 +230,7 @@ export default function EarthGlobeMount() {
     <div
       className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[920px] md:pr-[420px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
     >
-      {/* MODE SWITCH + INDICATOR / PRESET PICKER */}
       <div className="z-30 w-full pt-4 md:pt-6 flex flex-col items-center gap-3 flex-shrink-0">
-        {/* mode toggle */}
         <div className="flex items-center gap-2">
           {(
             [
@@ -304,7 +283,6 @@ export default function EarthGlobeMount() {
               ))}
             </select>
 
-            {/* Legend: ramp + min / global-avg tick / max */}
             <Legend
               min={exploreColors.stats.min}
               max={exploreColors.stats.max}
@@ -348,7 +326,6 @@ export default function EarthGlobeMount() {
           </div>
         )}
 
-        {/* Blue Zones toggle */}
         <button
           onClick={() => setShowBlueZones((v) => !v)}
           className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
@@ -364,7 +341,6 @@ export default function EarthGlobeMount() {
         </button>
       </div>
 
-      {/* GLOBE */}
       <div className="relative w-full mx-auto flex-1" style={{ minHeight: "440px" }}>
         <div
           aria-hidden
@@ -374,7 +350,6 @@ export default function EarthGlobeMount() {
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
-        {/* corner controls legend */}
         <div
           className="absolute bottom-3 right-3 z-20 pointer-events-none rounded-md px-3 py-2 shadow-sm"
           style={{
@@ -404,7 +379,6 @@ export default function EarthGlobeMount() {
         </GlobeErrorBoundary>
       </div>
 
-      {/* STATS READOUT, under the globe */}
       <div className="w-full mt-3 px-1 md:px-2 md:pb-4 flex-shrink-0">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-[11px]">
           <Citizenship label="🇺🇸 USA rank" rank={usaRank} />
@@ -441,7 +415,6 @@ export default function EarthGlobeMount() {
           </div>
         </div>
 
-        {/* Top 10 chips */}
         <div className="mt-2 flex flex-wrap gap-1.5">
           {top10.map((r, i) => (
             <button
@@ -462,7 +435,6 @@ export default function EarthGlobeMount() {
         </div>
       </div>
 
-      {/* RIGHT SIDE PANEL, weight sliders (rank) or hovered/selected detail */}
       <SidePanel
         mode={mode}
         weights={weights}
@@ -482,7 +454,6 @@ export default function EarthGlobeMount() {
   );
 }
 
-// ── Legend ───────────────────────────────────────────────────────────────────
 function Legend({
   min,
   max,
@@ -554,7 +525,6 @@ function Citizenship({
   );
 }
 
-// ── Side panel (weight sliders + ranked table, or detail) ─────────────────────
 function SidePanel({
   mode,
   weights,
@@ -604,7 +574,6 @@ function SidePanel({
           {mode === "explore" ? "Earth · indicator atlas" : "Earth · target ranking"}
         </div>
 
-        {/* Hovered preview */}
         {hovered && (
           <div
             className="rounded-md px-3 py-2"
@@ -627,7 +596,6 @@ function SidePanel({
           </div>
         )}
 
-        {/* RANK MODE: weight sliders + ranked table */}
         {mode === "rank" && (
           <>
             <div>
@@ -730,7 +698,6 @@ function SidePanel({
                   );
                 })}
               </div>
-              {/* selected row's top weighted readings */}
               {selectedId && (() => {
                 const row = tableRows.find((r) => r.id === selectedId);
                 if (!row || row.top.length === 0) return null;
@@ -756,7 +723,6 @@ function SidePanel({
           </>
         )}
 
-        {/* EXPLORE MODE: hint */}
         {mode === "explore" && !hovered && (
           <p className="text-sm leading-relaxed" style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
             Each pin is one of 211 countries, coloured by the selected indicator

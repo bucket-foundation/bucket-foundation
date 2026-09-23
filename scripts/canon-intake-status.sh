@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# One-line canon-intake status. Mirrors pursue-status.sh; used by bkt-nuc
-# session start. Reports branch coverage (the audit's headline metric).
 S="$HOME/agfarms/bucket-foundation/_intake/canon-intake/.status.json"
 TIMER=$(systemctl --user is-active canon-intake.timer 2>/dev/null || echo "inactive")
 if [ ! -f "$S" ]; then

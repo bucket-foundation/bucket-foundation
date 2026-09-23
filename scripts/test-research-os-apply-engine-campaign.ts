@@ -1,16 +1,3 @@
-/**
- * Unit tests: the export-mapping functions in scripts/research-os/apply-
- * engine-campaign.ts (ros-12 item 3's write side), `toEngineHypothesisInput`/
- * `toGapNodeInput`. Both are pure (no I/O), so each test runs against a
- * plain fixture object with no database, matching scripts/test-research-
- * os-engine-bridge.ts's own convention (node:test + node:assert, no
- * framework configured in this repo). `applyEngineCampaign` itself (the
- * part that calls Supabase through db.ts) is exercised only by a live run,
- * see that file's own header comment for why.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-apply-engine-campaign.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {

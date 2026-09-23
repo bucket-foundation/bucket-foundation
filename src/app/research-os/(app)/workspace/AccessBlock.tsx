@@ -3,11 +3,6 @@
 import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 
-// The Access level on the selected node (ros-21): a visibility badge, the
-// verbs the caller holds, a request control when a verb is missing on a
-// shared or private node, and for the owner the visibility switch and the
-// pending requests. Talks to /api/research-os/access.
-
 type Visibility = "public" | "private" | "shared";
 type Purpose = "continue" | "extend" | "cite" | "replicate" | "review";
 
@@ -26,19 +21,14 @@ const LABEL: Record<Visibility, string> = { public: "public", private: "private"
 
 export default function AccessBlock({ nodeId, token }: { nodeId: string; token: string | null }) {
   const [data, setData] = useState<AccessResponse | null>(null);
-  // Classes the person belongs to, for sharing a node with a whole class.
   const [classes, setClasses] = useState<{ id: string; name: string; role: string }[]>([]);
   const [classesFailed, setClassesFailed] = useState(false);
-  // A read that failed this minute and a deployment with no Research OS
-  // on it are different facts, and one sentence said both.
   const [classesTransient, setClassesTransient] = useState(false);
   const [shareClass, setShareClass] = useState("");
 
   useEffect(() => {
     if (!token) return;
     let alive = true;
-    // An empty class list here makes a share to a class the learner
-    // belongs to unreachable, with no reason given.
     fetch("/api/research-os/classes", { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
@@ -52,8 +42,6 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
         setClassesTransient(false);
         setClasses(j.classes ?? []);
       })
-      // A fetch that rejects never reached the server, which a retry may
-      // clear.
       .catch(() => {
         if (!alive) return;
         setClassesFailed(true);
@@ -74,8 +62,6 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     try {
       const res = await fetch(`/api/research-os/access?node=${encodeURIComponent(nodeId)}`, { headers: headers(), cache: "no-store" });
       if (!res.ok) {
-        // A permanent failure set the error to null, so both arms of
-        // this branch rendered nothing at all.
         setData(null);
         setError(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : UNCONFIGURED_COPY.body);
         return;
@@ -83,9 +69,6 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
       setData((await res.json()) as AccessResponse);
       setError(null);
     } catch {
-      // A fetch that rejects never reached the server, which a retry may
-      // clear. Emptying the data without a word rendered the node with
-      // no access panel on it.
       setData(null);
       setError(OUTAGE_COPY.body);
     }
@@ -115,9 +98,6 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
     }
   }
 
-  // The error renders above this return. `load` sets it and leaves
-  // `data` null, and nothing else fills `data`, so every failed read
-  // returned null here and the panel vanished with the reason set.
   if (!data)
     return error ? (
       <p role="alert" className="mt-4 border-t border-[color:var(--hairline)] pt-3 text-[12px] text-[color:var(--gold-deep)]">

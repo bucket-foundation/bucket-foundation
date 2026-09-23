@@ -1,14 +1,3 @@
-/**
- * Research OS, level overrides (the Class step): a teacher or librarian
- * sets a learner's level on a node with a recorded reason.
- *
- * POST /api/research-os/override { classId, learnerId, nodeId, toStage, reason }
- *   -> { fromStage, toStage }
- *
- * Writes graph.level_overrides and an "override" evidence event on the
- * learner's node state (graph.override_level), so the game layer and the class
- * view read it like any other transition.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured } from "@/lib/research-os/db";
 import { overrideLevel, verifyClassStaff } from "@/lib/research-os/class-db";
@@ -38,15 +27,12 @@ export async function POST(req: NextRequest) {
   if (!staff) return bad(403, "forbidden");
   const r = await overrideLevel(staff, classId, learnerId, nodeId, toStage as Stage, reason || "");
   if (r.ok) return NextResponse.json(r.value, NO_STORE);
-  // A lock wait is a wait: the teacher can send the same override again.
   if (r.error === "busy") {
     return NextResponse.json(
       { error: "busy" },
       { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } },
     );
   }
-  // A read that did not complete is the server's problem, so it answers
-  // 503 rather than falling to the 400 every unlisted code used to take.
   if (r.error === "unavailable") return bad(503, "class_read_failed");
   const status = r.error === "forbidden" ? 403 : r.error === "not_a_member" ? 404 : r.error === "write_failed" ? 500 : 400;
   return bad(status, r.error);

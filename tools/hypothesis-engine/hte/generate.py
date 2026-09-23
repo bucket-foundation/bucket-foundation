@@ -1,20 +1,3 @@
-"""Hypothesis generation: lazy enumeration, neighbor mutation, the four
-evidence-driven generators, and sequence pairing.
-
-Mirrors `main.tex` §Combinatorial hypothesis space's lazy-enumeration rule
-(`lem:size`, `def:neighbors`) and `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §5's
-four generator kinds, evidence cluster, claim gap, contradiction,
-cross-period analogy, as re-grounded on the combinatorial address scheme by
-`TIMELINE-AND-COMBINATORICS-SPEC.md` §3 and §6. This module has no Lean
-counterpart: the generator is explicitly out of scope for `Bucket.*`
-(`README.md`'s own module-map note), so every design choice below is this
-package's own, documented in place rather than read off a proof.
-
-No function here scores or prunes. A hypothesis this module yields still
-needs `hte.belief.score` before it means anything; generation is complete
-and address-carrying the moment a slot assignment exists, per `main.tex`'s
-own "scoring and display prune the result; generation does not."
-"""
 from __future__ import annotations
 
 import itertools
@@ -38,34 +21,19 @@ from .temporal_consistency import flag_hypothesis
 from .timeline import Interval, Resolution, relate
 from .timeline import bin as timeline_bin
 
-# The five concept-bearing placement slots, in `hte.address.CONCEPT_SLOT_ORDER`
-# order. `Slot.value` for each of these names the matching `Placement`
-# attribute exactly (`Slot.ACTOR.value == "actor"`, and so on), which is
-# what lets `_with_slot` below set a field by name without a lookup table.
 PLACEMENT_CONCEPT_SLOTS: tuple[Slot, ...] = (
     Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM,
 )
-
 
 def _interval_for_bin(
     bin_index: int,
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> Interval:
-    """The representative `Interval` for century-bin `bin_index`, the
-    inverse of `hte.timeline.time_bin_index` at the same default span and
-    width `hte.address.encode`/`Hypothesis.address` resolve TIME_BIN
-    through. Every generator in this module builds a placement's interval
-    through this one function, so a bin index round-trips through
-    `time_bin_index` back to itself."""
     start = span_start + bin_index * bin_width
     return Interval(start=start, end=start + bin_width - 1)
 
-
 def _with_slot(placement: Placement, slot: Slot, concept_id: str) -> Placement:
-    """A copy of `placement` with one concept slot replaced by
-    `concept_id`; every other field, interval and `period_id` included,
-    stays fixed."""
     fields = {
         "actor": placement.actor, "action": placement.action, "object": placement.object,
         "place": placement.place, "mechanism": placement.mechanism,
@@ -73,18 +41,11 @@ def _with_slot(placement: Placement, slot: Slot, concept_id: str) -> Placement:
     fields[slot.value] = concept_id
     return Placement(interval=placement.interval, period_id=placement.period_id, **fields)
 
-
 def _slot_value(placement: Placement, slot: Slot) -> str:
     return {
         Slot.ACTOR: placement.actor, Slot.ACTION: placement.action, Slot.OBJECT: placement.object,
         Slot.PLACE: placement.place, Slot.MECHANISM: placement.mechanism,
     }[slot]
-
-
-# --------------------------------------------------------------------------
-# Lazy enumeration (`main.tex` §Combinatorial hypothesis space)
-# --------------------------------------------------------------------------
-
 
 def enumerate_placements(
     vocab: Vocabulary,
@@ -95,28 +56,6 @@ def enumerate_placements(
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> Iterator[Hypothesis]:
-    """The lazy product over `H = ACTOR x ACTION x OBJECT x PLACE x
-    TIME_BIN x MECHANISM` (`Eq. placement-space`), never materializing the
-    full `|H|` `lem:size` bounds. `time_bins` gives the century-bin
-    indices to sweep, in `hte.timeline.time_bin_index` units; each combo's
-    representative interval comes from `_interval_for_bin`. Iteration order
-    is fixed: ACTOR varies slowest, TIME_BIN fastest, matching
-    `itertools.product`'s own left-to-right nesting, so two calls over the
-    same arguments yield the identical sequence.
-
-    Every slot's vocabulary already carries its `OTHER` placeholder
-    (`hte.concepts.Vocabulary`'s own contract), so `include_other=True`
-    (the default) means OTHER is swept like any other concept, in its
-    vocabulary-index position, with no special casing. `include_other=False`
-    drops OTHER from every slot's axis before taking the product, for a
-    caller that wants a tighter, closed-vocabulary-only sweep. `max_items`
-    caps the total number of hypotheses yielded, cutting the lazy product
-    short rather than filtering it after the fact. `span_start`/`bin_width`
-    override this module's own fixed 20,000-year/century default
-    (`hte.runner.run_campaign` passes the run's own corpus-anchored span
-    and rung here, so every hypothesis this function yields addresses
-    under the same TIME_BIN axis as the rest of that run).
-    """
     def axis(slot: Slot) -> list:
         concepts = vocab.concepts(slot)
         if not include_other:
@@ -143,7 +82,6 @@ def enumerate_placements(
         yield Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
         count += 1
 
-
 def combinatorial_sample(
     vocab: Vocabulary,
     time_bins: Iterable[int],
@@ -154,52 +92,6 @@ def combinatorial_sample(
     bin_width: int = DEFAULT_BIN_WIDTH,
     status_balanced: bool = True,
 ) -> list[Hypothesis]:
-    """A bounded, seeded random sample of up to `max_items` distinct
-    placements drawn from the same `ACTOR x ACTION x OBJECT x PLACE x
-    TIME_BIN x MECHANISM` space `enumerate_placements` enumerates in
-    full, `OTHER` included on every axis like any other concept.
-
-    `enumerate_placements(..., max_items=n)` truncates its own lazy
-    `itertools.product`, which varies TIME_BIN fastest and ACTOR
-    slowest (that function's own docstring): a small `n` against a
-    corpus-sized vocabulary never advances ACTOR, ACTION, OBJECT, or
-    PLACE past their first vocabulary entry at all, so every
-    "combinatorial" hypothesis a small cap keeps names the same one
-    actor/action/object/place combo, differing only in mechanism and
-    time bin. This is a concrete, confirmed failure this function
-    exists to fix: a 20-item cap over the quantum-history vocabulary
-    reproduced the corpus's own first actor, "Max Planck," on every
-    combinatorial hypothesis the cap let through, and reproduced it
-    identically across every repeated seed, since `enumerate_
-    placements` itself never varies with one.
-
-    This function instead draws each of its `max_items` placements
-    independently (`random.Random(seed).choice` per axis), so every
-    concept on every axis, `OTHER` included, gets a fair chance of
-    appearing regardless of how small `max_items` is relative to the
-    full space. The same `seed` over the same vocabulary and time bins
-    always draws the same sample; a different `seed` draws a different
-    one, so `hte.runner.run_campaign`'s own repeated-seed loop sees a
-    different combinatorial slice on every seed instead of
-    re-enumerating the identical prefix each time. Draws that
-    collide on an already-sampled address are retried, up to a bounded
-    number of attempts, rather than returned as duplicates; a `max_
-    items` at or above the full space's own size returns that whole
-    space (bounded attempts still terminate: every draw eventually
-    lands on one of the few addresses not yet seen).
-
-    `status_balanced` (default `True`, `hte.runner.DEFAULT_CONFIG`'s own
-    `combinatorial_status_balanced` knob) changes only the ACTOR draw: a
-    flat `rng.choice` over every actor (`False`) hands each
-    `ConsensusStatus` class as many draws as it has actors, so a corpus
-    naming three fringe alternatives against thirty consensus figures
-    spends ten times the budget on the consensus side
-    (`STATISTICAL-AUDIT-2026-09-15.md`'s "actors the literature names
-    less get few draws"). `True` draws the class first, uniformly over
-    whichever of consensus/contested/fringe/other the ACTOR slot
-    populates, then draws the actor uniformly within it, so a
-    one-member class draws as much as a hundred-member one.
-    """
     axes = {slot: vocab.concepts(slot) for slot in PLACEMENT_CONCEPT_SLOTS}
     bins = list(time_bins)
     if not bins or any(not concepts for concepts in axes.values()) or max_items <= 0:
@@ -215,7 +107,7 @@ def combinatorial_sample(
     if status_balanced:
         for concept in axes[Slot.ACTOR]:
             actor_by_status.setdefault(concept.consensus_status, []).append(concept)
-    status_keys = sorted(actor_by_status)  # fixed order: draw order stays seed-reproducible
+    status_keys = sorted(actor_by_status)
 
     def draw_actor():
         if not status_keys:
@@ -243,13 +135,7 @@ def combinatorial_sample(
         out.append(hyp)
     return out
 
-
 def _stratum_label(h: Hypothesis, vocab: Vocabulary) -> str:
-    """`stratified_sample`'s own stratum key: one shared label for every
-    sequence (its address names no single ACTOR slot), else the
-    placement's ACTOR concept id paired with that actor's own
-    `ConsensusStatus` (`OTHER` if `vocab` no longer resolves the id,
-    rather than raising)."""
     if h.is_sequence:
         return "sequence"
     actor_id = h.content.actor
@@ -257,14 +143,7 @@ def _stratum_label(h: Hypothesis, vocab: Vocabulary) -> str:
     status = concept.consensus_status if concept is not None else ConsensusStatus.OTHER
     return f"actor:{actor_id}|status:{status.value}"
 
-
 def _apportion(capacities: dict[str, int], total: int) -> dict[str, int]:
-    """Largest-remainder apportionment of `total` indivisible units
-    across `capacities`, each label capped at its own capacity. The
-    whole `total` is placed unless `capacities`' own sum is smaller, in
-    which case every capacity is exhausted instead. Remainder ties
-    break on the label itself, so two calls over the same arguments
-    always return the same allocation."""
     total = max(0, min(total, sum(capacities.values())))
     alloc = {label: 0 for label in capacities}
     if total == 0 or not capacities:
@@ -285,9 +164,8 @@ def _apportion(capacities: dict[str, int], total: int) -> dict[str, int]:
                 remainder -= 1
                 placed = True
         if not placed:
-            break  # every capacity exhausted; the `total` cap above makes this unreachable
+            break
     return alloc
-
 
 def stratified_sample(
     hypotheses: Iterable[Hypothesis],
@@ -296,35 +174,6 @@ def stratified_sample(
     cap: int,
     seed: int = 0,
 ) -> tuple[list[Hypothesis], dict[str, Any]]:
-    """A stratified, seeded random sample of up to `cap` hypotheses, in
-    place of `sorted(by_address.values(), key=lambda h: h.address)[:
-    cap]` (`STATISTICAL-AUDIT-2026-09-15.md` hypothesis-space item 1):
-    address-sort-and-slice always kept the lowest Gödel numbers, so the
-    vocabulary's own listing order, never evidence or plausibility,
-    decided which generated hypotheses ever reached the critic (the
-    live Younger Dryas run: 3,205 distinct addresses, 400 kept, every
-    one the earliest-indexed actor the TIME_BIN prime could reach).
-
-    Strata are `_stratum_label`'s own key. Each stratum keeps at least
-    `min(its own size, ceil(cap / n_strata))` while `cap` covers those
-    floors (`cap >= n_strata`), so a literature-thin actor is never
-    emptied by a popular one's volume; below that, `_apportion` places
-    the whole `cap` largest-remainder first and some strata keep
-    nothing. Whatever of `cap` remains once every floor is met goes to
-    largest-remainder
-    apportionment (`_apportion`) proportional to each stratum's
-    remaining room, so a dominant stratum still keeps close to its own
-    share. Within a stratum the kept hypotheses are a
-    `random.Random(seed)` sample, never the lowest addresses; the
-    returned list is sorted by address regardless, for a stable
-    ordering rather than the draw order. The same `seed` over the same
-    input always returns the same sample; `cap` at or above the input's
-    own size returns everything, one full stratum each, unsampled.
-
-    Returns `(kept, frame)`. `frame` is `{"cap", "n_strata", "strata":
-    {label: {"generated", "kept"}, ...}}`, folded verbatim into
-    `MANIFEST.json["counts"]["sampling"]` by `hte.runner.run_campaign`.
-    """
     pool = list(hypotheses)
     if cap <= 0 or not pool:
         return [], {"cap": cap, "n_strata": 0, "strata": {}}
@@ -344,10 +193,6 @@ def stratified_sample(
         floor_target = math.ceil(cap / n_strata)
         floor_counts = {label: min(sizes[label], floor_target) for label in labels}
         if sum(floor_counts.values()) > cap:
-            # Every stratum reached the ceiling floor (possible whenever
-            # `cap % n_strata != 0`): apportion `cap` itself across the
-            # floors rather than the raw sizes, so the shrink lands
-            # proportionally instead of on whichever stratum sorts first.
             floor_counts = _apportion(floor_counts, cap)
         kept_counts = dict(floor_counts)
         remaining = cap - sum(kept_counts.values())
@@ -370,20 +215,7 @@ def stratified_sample(
     kept.sort(key=lambda h: h.address)
     return kept, {"cap": cap, "n_strata": n_strata, "strata": frame_strata}
 
-
-# --------------------------------------------------------------------------
-# Neighbor mutation (`def:neighbors`, `Eq. neighbors`)
-# --------------------------------------------------------------------------
-
-
 def _placement_neighbors(placement: Placement, vocab: Vocabulary) -> Iterator[Placement]:
-    """One-slot concept mutations of `placement` over every concept-bearing
-    slot's full vocabulary (`Eq. neighbors`), plus the placement's own
-    one-bin time shift: the two adjacent century bins its own interval's
-    start does not already occupy. A shift below bin 0 (`time_bin_index`'s
-    own floor) is dropped instead of yielded, so a placement already at
-    the start of the span gets one time-shift neighbor instead of two.
-    """
     for slot in PLACEMENT_CONCEPT_SLOTS:
         current = _slot_value(placement, slot)
         for concept in vocab.concepts(slot):
@@ -401,14 +233,7 @@ def _placement_neighbors(placement: Placement, vocab: Vocabulary) -> Iterator[Pl
             interval=_interval_for_bin(neighbor_idx), period_id=placement.period_id,
         )
 
-
 def neighbors(h: Hypothesis, vocab: Vocabulary) -> Iterator[Hypothesis]:
-    """The evolver's smallest move (`def:neighbors`): every one-slot
-    concept mutation of `h`, its one-bin time shift(s), and, when `h` is a
-    sequence, every other Allen relation with both member placements held
-    fixed. A sequence also gets each member placement's own slot and
-    time-shift neighbors in turn, the other member fixed.
-    """
     if not h.is_sequence:
         for mutated in _placement_neighbors(h.content, vocab):
             yield Hypothesis.from_placement(mutated, vocab)
@@ -422,27 +247,10 @@ def neighbors(h: Hypothesis, vocab: Vocabulary) -> Iterator[Hypothesis]:
     for relation in ALLEN_RELATION_ORDER:
         if relation == seq.relation:
             continue
-        # `hte.temporal_consistency.flag_hypothesis`: holding both
-        # placements' own intervals fixed while varying only the claimed
-        # relation means every alternate here but the one `hte.timeline.
-        # relate` would itself derive is inconsistent with those
-        # intervals by construction (PLAN.md section 10 item 7); flagged
-        # on the hypothesis, so the tournament can still weigh an
-        # alternate-ordering claim on its evidence merit while a
-        # downstream reader can see it disagrees with the dates.
         yield flag_hypothesis(Hypothesis.from_sequence(Sequence(first=seq.first, relation=relation, second=seq.second), vocab))
 
-
-# --------------------------------------------------------------------------
-# Evidence-driven generators (`HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §5)
-# --------------------------------------------------------------------------
-
-
 def _referenced_addresses(item: EvidenceItem) -> list[int]:
-    """Every hypothesis address `item` names, `supports` then `refutes`,
-    order preserved and deduplicated."""
     return list(dict.fromkeys(list(item.supports) + list(item.refutes)))
-
 
 def _hypothesis_from_address(
     address: int,
@@ -451,17 +259,6 @@ def _hypothesis_from_address(
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> Hypothesis | None:
-    """Rebuild a `Hypothesis` from a bare address, trying a placement
-    reading first and a sequence reading second. Returns `None` for an
-    address this `vocab` cannot decode, leftover prime factors, or a
-    vocabulary index past the end of a slot's list, instead of raising, so
-    one malformed evidence pointer does not abort a whole generation pass
-    over the rest of the evidence set. `span_start`/`bin_width` must match
-    whatever the address was originally encoded under (`hte.runner.
-    run_campaign`'s own run-wide span and rung) for the rebuilt
-    hypothesis's interval, and so its re-encoded address, to round-trip
-    back to the same integer `address` names.
-    """
     try:
         slots, tbin = decode(address, vocab, sequence=False)
     except (ValueError, KeyError, IndexError):
@@ -493,7 +290,6 @@ def _hypothesis_from_address(
         span_start=span_start, bin_width=bin_width,
     )
 
-
 def _hypothesis_from_evidence_slots(
     item: EvidenceItem,
     vocab: Vocabulary,
@@ -501,52 +297,6 @@ def _hypothesis_from_evidence_slots(
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> Hypothesis | None:
-    """The placement hypothesis `item` itself claims, straight off its own
-    best-effort extracted slots (`hte.evidence.EvidenceItem.actor`/.../
-    `interval`, `bkt-hte-evidence-slots`), rather than off any address it
-    happens to already point at (`_referenced_addresses`, which needs a
-    prior linking pass, `hte.link.link_evidence`, that has not run yet at
-    generation time). This is the same reading `hte.calibrate.
-    _placement_from_item` gives an item for the discovery-date holdout.
-    The two functions stay separate: `hte.calibrate` already imports
-    from this module, and importing back would cycle.
-
-    Every concept-bearing slot `item` names nothing for reads as `OTHER`
-    (`hte.concepts.other_id`), never an arbitrary vocabulary entry: a
-    placement built by falling back to vocabulary order instead (its
-    first concept, or whichever slot a caller happened to hold fixed)
-    would silently misattribute a real actor, place, or mechanism to an
-    item that never named one.
-
-    Returns `None` when `item` names no interval at all (nothing to
-    place on the TIME_BIN axis, the same rule `hte.calibrate.
-    _placement_from_item` already applies), or when a named slot value
-    is a raw, vocabulary-unresolved label (`Hypothesis.from_placement`'s
-    own `KeyError`, left by an extraction pass, `hte.roles.extract`'s
-    ensemble, whose free-text slot no fuzzy match has resolved to a
-    concept id yet) instead of a known concept id. Either failure drops
-    just this one item's own direct placement and leaves the generation
-    pass over the rest of the evidence set to continue, matching
-    `_hypothesis_from_address`'s own decode-failure contract above.
-
-    An item's own interval starting before this run's own TIME_BIN span
-    (a bullet's incidental mention of an earlier year, "since Newton's
-    1687 Principia," pulled into `hte.corpus.quantum_history.
-    _extract_interval`'s min/max span alongside the bullet's real,
-    in-span date) no longer drops the item here: `hte.timeline.
-    time_bin_index` clamps such a year to bin 0 rather than raising
-    (`bkt-hte-binning-clamp`, 2026-09-10), so this function still
-    returns a `Hypothesis`, placed in the run's own earliest bin rather
-    than dropped. The `except (KeyError, ValueError)` below still guards
-    a placement whose own `hte.address.encode_indices` call hits a
-    negative slot index for an unrelated reason (not this one, since a
-    time-bin index can no longer go negative for this cause); a caller
-    reading this function's `None`/`Hypothesis` result cannot itself
-    tell a too-early-year clamp apart from a real placement, but
-    `hte.timeline.clamp_log()` records every clamp `hte.runner.
-    run_campaign` hits, surfaced in `MANIFEST.json['clamped_years']` and
-    `run.log`.
-    """
     if item.interval is None:
         return None
     values: dict[str, str] = {}
@@ -559,29 +309,10 @@ def _hypothesis_from_evidence_slots(
     except (KeyError, ValueError):
         return None
 
-
 def _evidence_cluster_hypotheses(
     evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, resolution: Resolution,
     *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
-    """Groups the placements evidence names by shared `EvidenceKind` and by
-    overlapping interval, read here as sharing one `hte.timeline.bin` at
-    `resolution`, then re-emits each cluster's own placements
-    (`HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §5's "enumerate ... from the
-    cluster's own claims"). Sequence readings are left to the other three
-    generators and to `sequences_from`.
-
-    Every item's cluster also gains the placement `item` itself claims
-    (`_hypothesis_from_evidence_slots`), not only whatever placements it
-    already points at through `supports`/`refutes`: those need a prior
-    linking pass this generator runs before, so an unlinked item (every
-    item, the first time a corpus generates) contributed nothing at all
-    before this was added, the root cause behind a population that never
-    grew past the handful of items an earlier `generate()` role call
-    happened to link. This is what guarantees "at least one placement
-    per evidence item that carries a slot," `bkt-hte-evidence-slots`'s
-    own coverage requirement for this generator.
-    """
     hyps_by_key: dict[tuple, dict[int, Hypothesis]] = {}
     ids_by_key: dict[tuple, set[str]] = {}
 
@@ -610,34 +341,10 @@ def _evidence_cluster_hypotheses(
             out.append(hyp)
     return out
 
-
 def _claim_gap_hypotheses(
     evidence_items: Iterable[EvidenceItem], vocab: Vocabulary,
     *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
-    """Reads every evidence-named placement as a claim with one slot
-    treated, in turn, as the missing predicate `HISTORY-HYPOTHESIS-
-    ENGINE-SPEC.md` §5 calls a claim gap: for each of the five
-    concept-bearing slots, the other four plus TIME_BIN stay fixed at the
-    evidence's own attested values while that one slot sweeps its full
-    vocabulary, `OTHER` included, per `IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
-    §6a.
-
-    A base to sweep comes from two places: any placement `item` already
-    points at through `supports`/`refutes` (`_referenced_addresses`, as
-    before), and the placement `item` itself claims straight off its own
-    extracted slots (`_hypothesis_from_evidence_slots`, `OTHER` filling
-    any slot it names nothing for rather than an arbitrary vocabulary
-    entry). The second source is what keeps this generator's neighbors
-    anchored on an item's own attested actor/action/object/place/
-    mechanism instead of on whatever slot value a different, unrelated
-    generator or role happened to fill in first; sweeping the gap slot
-    away from a real value and toward `OTHER` (or any other named
-    concept) turns each alternative into its own hypothesis, letting the
-    tournament separate them by the evidence on file, weighing each
-    slot value on its own terms instead of on which one the base
-    placement was built from.
-    """
     out: list[Hypothesis] = []
     seen: set[tuple[int, str, str]] = set()
     for item in evidence_items:
@@ -664,19 +371,10 @@ def _claim_gap_hypotheses(
                     out.append(mutated_hyp)
     return out
 
-
 def _contradiction_hypotheses(
     evidence_items: Iterable[EvidenceItem], vocab: Vocabulary,
     *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
-    """An item whose `supports` and `refutes` disagree, both non-empty, is
-    a single piece of evidence carrying two opposed claims at once. Both
-    readings are materialized and tagged (`HISTORY-HYPOTHESIS-ENGINE-
-    SPEC.md` §5's "two claims with comparable priors that conflict yield a
-    hypothesis reconciling or arbitrating them"): a caller's critic or
-    tournament decides between them, this generator only puts both on the
-    frontier.
-    """
     out: list[Hypothesis] = []
     for item in evidence_items:
         if not item.supports or not item.refutes:
@@ -690,27 +388,10 @@ def _contradiction_hypotheses(
                 out.append(hyp)
     return out
 
-
 def _cross_period_hypotheses(
     evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, seed: int,
     *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
-    """Copies each evidence-named placement into another time bin already
-    attested elsewhere in this same evidence set (`HISTORY-HYPOTHESIS-
-    ENGINE-SPEC.md` §5's cross-period analogy: "a motif recurring in
-    claims from distant periods yields a hypothesis testing common cause
-    against independent recurrence"). When more than one other bin is on
-    file, `seed` picks a fixed one deterministically rather than copying
-    into every one of them, keeping this generator's output one analogy
-    per source placement instead of a combinatorial fan-out.
-
-    A source placement comes from the same two places `_evidence_
-    cluster_hypotheses` and `_claim_gap_hypotheses` read: any address
-    `item` already points at (`_referenced_addresses`), and the
-    placement `item` itself claims off its own extracted slots
-    (`_hypothesis_from_evidence_slots`), so an item that carries a slot
-    but no link yet still gets a cross-period neighbor.
-    """
     named: list[tuple[EvidenceItem, int, Placement]] = []
     bins: set[int] = set()
     for item in evidence_items:
@@ -748,7 +429,6 @@ def _cross_period_hypotheses(
         out.append(hyp)
     return out
 
-
 def from_evidence(
     evidence_items: Iterable[EvidenceItem],
     vocab: Vocabulary,
@@ -758,20 +438,6 @@ def from_evidence(
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
-    """The four evidence-driven generators of `HISTORY-HYPOTHESIS-ENGINE-
-    SPEC.md` §5, run over `evidence_items` and pooled into one list:
-    evidence-cluster, claim-gap, contradiction, and cross-period-analogy.
-    Every hypothesis this function returns carries `hyp.meta["generator"]`
-    naming which of the four produced it and `hyp.meta["evidence"]`, the
-    evidence item ids behind it, this package's own `meta` field standing
-    in for the paper's `provenance.derived_by.generator` shape (`hte.
-    hypothesis.Hypothesis`). `span_start`/`bin_width` must match the run's
-    own TIME_BIN axis (`enumerate_placements`'s own parameters of the
-    same name): every address this function decodes off `evidence_items`
-    was itself encoded under some span and rung, and rebuilding it under
-    a different one would silently read a different hypothesis off the
-    same integer.
-    """
     out: list[Hypothesis] = []
     out.extend(_evidence_cluster_hypotheses(evidence_items, vocab, resolution, span_start=span_start, bin_width=bin_width))
     out.extend(_claim_gap_hypotheses(evidence_items, vocab, span_start=span_start, bin_width=bin_width))
@@ -779,22 +445,7 @@ def from_evidence(
     out.extend(_cross_period_hypotheses(evidence_items, vocab, seed, span_start=span_start, bin_width=bin_width))
     return out
 
-
-# --------------------------------------------------------------------------
-# Sequence pairing (`Eq. sequence-space`)
-# --------------------------------------------------------------------------
-
-
 def sequences_from(placements: Iterable[Hypothesis], *, max_pairs: int) -> Iterator[Hypothesis]:
-    """Every ordered pair of placement hypotheses in `placements`, joined
-    by the Allen relation their own intervals hold (`hte.timeline.relate`),
-    up to `max_pairs` pairs, in the input's own order (`i` before `j`
-    whenever `i` precedes `j` in `placements`). A placement hypothesis's
-    own address already carries its resolved slot-index tuple
-    (`hte.address.decode_indices` recovers it from the address alone), so a
-    pair's sequence address is built directly from the two placements'
-    addresses and the relation index; no `Vocabulary` is needed at this
-    step, matching this function's own signature."""
     items = list(placements)
     count = 0
     for i in range(len(items)):
@@ -811,7 +462,6 @@ def sequences_from(placements: Iterable[Hypothesis], *, max_pairs: int) -> Itera
             seq = Sequence(first=first.content, relation=relation, second=second.content)
             yield Hypothesis(address=seq_address, content=seq)
             count += 1
-
 
 __all__ = [
     "PLACEMENT_CONCEPT_SLOTS",

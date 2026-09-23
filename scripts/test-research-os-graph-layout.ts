@@ -1,4 +1,3 @@
-/** The layered layout: columns by tier, chains aligned, sizes. */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { layoutGraph, COL_W } from "../src/lib/research-os/graph-layout";

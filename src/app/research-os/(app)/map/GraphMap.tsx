@@ -35,14 +35,9 @@ interface GraphData {
 
 const branchLabel = (id: string) => id.replace(/^\d+-/, "").replace(/-/g, " ");
 
-/** What a node came from, for the stroke and the filter: the Academy, the canon, the person's own work. */
 const SOURCE_OF: Record<string, string> = {
   academy_atom: "atoms",
   seed: "atoms",
-  // A transcript card is a source excerpt, out of canon by the founder's
-  // decision of 2026-09-21, so it gets its own filter rather than sitting
-  // under claims. `canon_claim` stays until the hosted graph takes the
-  // migration that renames it, and both answer the same group.
   source_excerpt: "excerpts",
   canon_claim: "excerpts",
   canon_concept: "claims",
@@ -70,12 +65,6 @@ const STAGE_FILL: Record<string, string> = {
 const RANK: Record<string, number> = { access: 1, awareness: 2, understanding: 3, internalization: 4, production: 5 };
 const R = 6;
 
-/**
- * The map as the graph: one branch laid out by tier, every node a point
- * colored by the viewer's standing, prerequisite edges as lines, the
- * frontier ringed, assignments marked, and for staff a class heatmap.
- * Click a node to open its page; type to find one.
- */
 export default function GraphMap({ initialBranch, initialQuery }: { initialBranch: string; initialQuery: string }) {
   const router = useRouter();
   const [branch, setBranch] = useState(initialBranch);
@@ -86,17 +75,12 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [hover, setHover] = useState<string | null>(null);
   const [branches, setBranches] = useState<{ id: string; nodes: number }[]>([]);
   const [show, setShow] = useState<Set<string>>(() => new Set(SOURCES));
-  // Two meanings behind one 503, told apart by the body (Bucket critic C59).
   const [code, setCode] = useState<string | null>(null);
   const [branchesUnavailable, setBranchesUnavailable] = useState(false);
   const [branchesTransient, setBranchesTransient] = useState(false);
 
   useEffect(() => {
-    // A 503 used to read as a graph with no branches in it, which is the
-    // fourth defect the scanner's own header names as its motivation.
     fetch("/api/research-os/graph?list=1", { cache: "no-store" })
-      // C62: a failed branch count rendered as a graph with no branches
-      // in it, which is the outage reading as an answer.
       .then(async (r) => {
         if (r.ok) return (await r.json()) as { branches?: { id: string; nodes: number }[] };
         setBranchesUnavailable(true);
@@ -113,9 +97,6 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     fetch(`/api/research-os/graph?branch=${encodeURIComponent(branch)}`, { cache: "no-store" })
       .then(async (r) => {
         if (!alive) return;
-        // The code is read before any setState, so no render happens
-        // with the status set and the code still null, which showed one
-        // frame of the permanent copy for a passing outage.
         if (r.ok) {
           setData((await r.json()) as GraphData);
           setStatus(r.status);

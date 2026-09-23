@@ -7,18 +7,6 @@ import { IMPORT_BUCKET, MAX_IMPORT_BYTES, sha256Hex, storagePathFor } from "@/li
 import { detectType, IMPORT_KINDS, MAX_NOTE, MAX_TITLE, validateMetadata, type ImportKind } from "@/lib/research-os/import-types";
 import { isTransientOutage, OUTAGE_COPY } from "@/lib/research-os/outage";
 
-/**
- * Bring a file in (ros-import 2). Drop files, name the import, and each
- * one is hashed here, uploaded to storage under this account, and
- * recorded by the route once it has read the bytes back.
- *
- * The hash is computed before the upload because the object's path is
- * that hash: the same file uploaded twice is one object, and a second
- * upload answers that the object is already there, which is success.
- *
- * Nothing is extracted yet. A file keeps its bytes and its metadata, and
- * the page says which types a later slice will read.
- */
 type Stage = "waiting" | "hashing" | "uploading" | "recording" | "done" | "failed";
 
 interface Picked {
@@ -31,19 +19,6 @@ interface Picked {
 const KB = 1024;
 const size = (bytes: number) => (bytes < KB ? `${bytes} B` : bytes < KB * KB ? `${(bytes / KB).toFixed(0)} KB` : `${(bytes / KB / KB).toFixed(1)} MB`);
 
-/**
- * What to say when storage refuses the upload itself.
- *
- * The bucket's insert trigger caps how many objects and how many bytes
- * one owner holds, and raises its own sentence carrying the limit. That
- * sentence is kept: the number stays right when the limit moves, and the
- * trigger cannot know what a person should do about it, which is the
- * part added here. Deleting an import returns its allowance, so removing
- * one is the action that works.
- *
- * Any other refusal keeps the message storage gave, since passing a real
- * error through beats guessing at it.
- */
 function uploadRefusal(message: string): string {
   if (/import quota/i.test(message)) {
     return `${message}. Every file you have imported counts toward it, so remove an import you no longer need and the room comes back.`;
@@ -118,11 +93,6 @@ export default function ImportPage() {
         body: JSON.stringify({ action: "import", kind: meta.value.kind, title: meta.value.title, source: { note: meta.value.note, files: usable.length } }),
       });
       if (!created.ok) {
-        // Creating the import reads the graph, so this call can answer a
-        // retryable 503. Reporting every failure as a refusal told a
-        // learner their import could not be created during a read that
-        // was going to complete on the next try, and nothing was
-        // written, so the same drop works again.
         const body = (await created.json().catch(() => null)) as { error?: string } | null;
         setProblem(isTransientOutage(created.status, body?.error ?? null) ? OUTAGE_COPY.body : "The import could not be created.");
         setBusy(false);
@@ -148,8 +118,6 @@ export default function ImportPage() {
         const detected = detectType(item.file.name, item.file.type);
         update(index, { sha256, stage: "uploading" });
         const upload = await supabase.storage.from(IMPORT_BUCKET).upload(path.value, item.file, { upsert: false, contentType: detected.mediaType });
-        // The path is the hash of the bytes, so an object already there
-        // holds this file. A conflict is the file arriving twice.
         const already = Boolean(upload.error && /exists/i.test(upload.error.message));
         if (upload.error && !already) {
           update(index, { stage: "failed", message: uploadRefusal(upload.error.message) });
@@ -163,9 +131,6 @@ export default function ImportPage() {
         });
         if (!attached.ok) {
           const body = (await attached.json().catch(() => null)) as { message?: string; error?: string } | null;
-          // The bytes are in storage either way. A read that did not
-          // complete says to try the same file again; anything else is
-          // this file being refused, and says why.
           const retryable = isTransientOutage(attached.status, body?.error ?? null);
           update(index, {
             stage: "failed",

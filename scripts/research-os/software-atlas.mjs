@@ -1,16 +1,4 @@
 #!/usr/bin/env node
-/**
- * Builds src/lib/research-os/software-atlas-data.json from the tables in
- * learning/research-os/SOFTWARE-ATLAS.md, so the Software page in Research OS
- * reads the atlas without a markdown parser in the bundle.
- *
- *   node scripts/research-os/software-atlas.mjs          # write the JSON
- *   node scripts/research-os/software-atlas.mjs --check  # exit 1 when the JSON is stale
- *
- * Cells keep their inline markdown as segments: text, code, and links. A
- * citation marker such as [12] becomes a source reference, resolved against
- * the numbered source lists, which share one numbering across the memo.
- */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,7 +24,6 @@ function parse(md) {
   const directionsStart = at("## Directions for the workbench");
   if ([atlasStart, suiteStart, unverifiedStart, directionsStart].some((i) => i < 0)) throw new Error("atlas headings moved");
 
-  // The index: first path and fallback for every tool.
   const index = {};
   for (let i = atlasStart; i < suiteStart; i++) {
     const c = cells(lines[i]);

@@ -1,8 +1,3 @@
-// /canon/graph, the canon collaboration network.
-// Renders as a sortable table at build time + the raw graph JSON as a download.
-// (No client JS dep; an interactive force-directed view can be added later
-// if we pull in d3-force.)
-
 import Link from "next/link";
 import { getCanonGraph } from "@/lib/canon-graph";
 import {
@@ -21,7 +16,6 @@ export default function Page() {
   const topConcepts = getCentralityTopConcepts();
   const sortedNodes = [...g.nodes].sort((a, b) => b.centrality - a.centrality);
 
-  // Build cluster map: each connected component
   const clusters = computeClusters(g);
 
   return (
@@ -289,7 +283,6 @@ export default function Page() {
   );
 }
 
-// Connected components via union-find
 function computeClusters(g: { nodes: { id: string; name: string }[]; edges: { source: string; target: string }[] }) {
   const parent = new Map<string, string>();
   for (const n of g.nodes) parent.set(n.id, n.id);

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Restart the pgvector query API with a fresh connection pool.
 cd ~/agfarms/bucket-foundation
 pkill -f "uvicorn.*server_pg" 2>/dev/null || true
 sleep 2

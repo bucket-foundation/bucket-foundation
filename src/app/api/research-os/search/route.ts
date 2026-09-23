@@ -1,16 +1,3 @@
-/**
- * GET /api/research-os/search?q=<query>&branch=<slug?>&limit=20
- * One search for the whole app: graph nodes the viewer may see, ranked by
- * title, slug, and summary (src/lib/research-os/search.ts), each with the
- * viewer's standing when signed in. Signed out, public nodes only.
- *
- * Who may see a row is read-access.ts's decision (ros-ai-access). This
- * route used to filter on public-or-owner and never load a grant, so a
- * node shared with a learner was invisible to them and an expired grant
- * was indistinguishable from a live one. An access-store failure answers
- * 503 rather than an empty result, and a signed-in viewer's standing is
- * read after consent.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
 import { authorizeNodes, readVisibility, storeWithNodes } from "@/lib/research-os/read-access";
@@ -44,9 +31,6 @@ export async function GET(req: NextRequest) {
   if (error) return bad(500, "search_failed");
   const candidates = (data as { id: string; slug: string; title: string; kind: string; tier: number; branch: string; summary: string | null; visibility: string | null; owner_id: string | null }[]) || [];
 
-  // The rows this query already read carry visibility and owner, so the
-  // adapter judges them without reading the nodes again; it loads grants
-  // and the viewer's classes only when a candidate is not public.
   const access: NodeAccess[] = candidates.map((n) => ({
     id: n.id,
     visibility: readVisibility(n.visibility),
@@ -63,10 +47,6 @@ export async function GET(req: NextRequest) {
   const rows = candidates.filter((n) => visible.has(n.id));
   const nodes: SearchNode[] = rows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, branch: n.branch, summary: n.summary, visibility: n.visibility, ownerId: n.owner_id }));
   const ranked = rankNodes(nodes, q, limit);
-  // Personal standing is personal data: a signed-in viewer reads it after
-  // consent, and a viewer without consent still gets the search. The
-  // response says when standing was withheld, so an empty map cannot be
-  // read as "nothing recorded" (Bucket critic C4).
   let standing: Record<string, string> = {};
   const consent = viewerId ? await requireConsent(viewerId, "search_standing") : null;
   const standingWithheld = Boolean(viewerId) && consent !== null && !consent.allowed;

@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Load the full 6.56M polingual metadata into local pgvector, add vector columns
-# (filled later by embed_full.py), and build the SQL-axis indexes so lookup /
-# spelling / FTS work immediately on the full corpus.
 set -euo pipefail
 cd ~/agfarms/bucket-foundation
 PG=(env PGPASSWORD=bucket psql -h 127.0.0.1 -p 5433 -U bucket -d polingual -v ON_ERROR_STOP=1)

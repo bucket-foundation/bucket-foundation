@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-"""Fill photons_full.phonetic (64-d) for every row with an IPA, using the
-deterministic IPA->articulatory featurizer from phonetic_build.py. CPU-only,
-resumable (WHERE phonetic IS NULL AND ipa present)."""
 import os, sys, time
 import psycopg2
 from psycopg2.extras import execute_values

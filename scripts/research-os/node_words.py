@@ -63,21 +63,17 @@ STOP = {
 ARABIC_PREFIXES = ("وال", "فال", "بال", "لل", "ال", "و", "ف", "ب", "ل")
 ARABIC_SUFFIXES = ("", "ا", "ه", "ها", "هم", "هن", "كم", "نا", "ات", "ين", "ون", "ي", "ك")
 
-
 def strip_marks(s):
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
-
 
 def word_key(s):
     k = strip_marks(s).replace("ـ", "").lower().strip()
     return unicodedata.normalize("NFC", k)
 
-
 def arabic_skeleton(s):
     k = re.sub("[\u064b-\u065f\u0670\u06d6-\u06ed\u0640]", "", unicodedata.normalize("NFC", s))
     k = k.replace("\u0671", "\u0627")
     return re.sub("[^\u0621-\u064a]", "", k)
-
 
 def singular(w):
     out = [w]
@@ -92,7 +88,6 @@ def singular(w):
     if w.endswith("a") and len(w) > 4:
         out.append(w[:-1] + "um")
     return out
-
 
 def head_terms(title):
     t = re.sub(r"\s+", " ", title or "").strip()
@@ -145,10 +140,8 @@ def head_terms(title):
             add(s)
     return cands
 
-
 def tokens(text):
     return {w for w in re.findall(r"[a-z]+", (text or "").lower()) if len(w) > 2 and w not in STOP}
-
 
 def branch_match(sense, branch):
     topics = BRANCH_TOPICS.get(branch or "", set())
@@ -158,7 +151,6 @@ def branch_match(sense, branch):
         return True
     low = (sense["sense"] or "").lower()
     return any(re.search(r"\b" + re.escape(t.replace("-", " ")), low) for t in topics)
-
 
 def rank_senses(rows, context, branch=None):
     ctx = tokens(context)
@@ -190,7 +182,6 @@ def rank_senses(rows, context, branch=None):
     scored.sort(key=lambda s: (-s["score"], s["idx"] if s["idx"] >= 0 else 99))
     return scored
 
-
 def sense_confidence(ranked):
     if not ranked:
         return 0.0
@@ -208,7 +199,6 @@ def sense_confidence(ranked):
         return 0.7
     return 0.5
 
-
 def pick_words(ranked, targets):
     if not ranked:
         return {}
@@ -223,7 +213,6 @@ def pick_words(ranked, targets):
                 out[lang] = dict(r, lang=lang, sense=s["sense"], from_top=s is ranked[0])
     return out
 
-
 def quran_refs(data_path):
     text = open(data_path, encoding="utf-8").read()
     block = text[text.index("QuranData.Sura"):]
@@ -234,7 +223,6 @@ def quran_refs(data_path):
         for a in range(1, ayas + 1):
             refs.append((sura, a))
     return refs
-
 
 def load_quran(path, data_path):
     refs = quran_refs(data_path)
@@ -248,7 +236,6 @@ def load_quran(path, data_path):
             ayahs.append((f"{refs[i][0]}:{refs[i][1]}", line, sk))
     return ayahs
 
-
 def token_matches(tok, skel):
     for p in ("",) + ARABIC_PREFIXES:
         if p and not tok.startswith(p):
@@ -261,7 +248,6 @@ def token_matches(tok, skel):
             if stem == skel:
                 return True
     return False
-
 
 def quran_hits(ayahs, word, limit=3):
     skel = arabic_skeleton(word)
@@ -279,7 +265,6 @@ def quran_hits(ayahs, word, limit=3):
     top.sort(key=lambda h: order[h[1]])
     return {"corpus": "Quran", "source": QURAN_SOURCE, "skeleton": skel, "count": len(hits), "samples": [{"ref": r, "text": l} for _n, r, l in top]}
 
-
 FORM_OF_RE = re.compile(
     r"\b(singular|plural|nominative|genitive|accusative|dative|ablative|vocative|locative|instrumental|inflection|participle|"
     r"spelling|clipping|romanization|abbreviation|superlative|comparative|verbal noun|diminutive|alternative form|"
@@ -287,16 +272,12 @@ FORM_OF_RE = re.compile(
     re.I,
 )
 
-
 INFLECTION_TAG_RE = re.compile(r"^(nominative|genitive|accusative|dative|ablative|vocative|locative|inflection|plural|singular)\b", re.I)
-
 
 def is_form_gloss(g):
     return bool(g) and bool(FORM_OF_RE.search(g) or INFLECTION_TAG_RE.match(g))
 
-
 CJK_RE = re.compile(r"^[\u3400-\u9fff\uf900-\ufaff]+$")
-
 
 class Roots:
     def __init__(self, path):
@@ -408,7 +389,6 @@ class Roots:
     def word_roots(self, lang, word, ety=None):
         return [dict(r) for r in self.db.execute("select root_lang, root_form, kind from word_root where lang = ? and word = ? and (? is null or ety = ?)", (lang, word, ety, ety))]
 
-
 def han_parts(word, db):
     out = []
     for ch in word:
@@ -417,11 +397,9 @@ def han_parts(word, db):
         out.append({"lang": "zh", "form": ch, "rel": "character", "gloss": gloss, "components": [{"form": c, "gloss": db.root_gloss("zh", c)} for c in comps]})
     return out
 
-
 def short(g):
     g = (g or "").split(";")[0].split(":")[0].strip()
     return g[:60]
-
 
 def choose_root(lang, word, chain, roots, db):
     protos = [c for c in chain if c["lang"].endswith("-pro") and not c["form"].lstrip("*").startswith("-")]
@@ -460,7 +438,6 @@ def choose_root(lang, word, chain, roots, db):
         return c["lang"], c["form"], c["gloss"]
     return None, None, None
 
-
 def analyze(lang, word, db, hint=frozenset()):
     resolved = db.resolve(lang, word)
     if not resolved:
@@ -487,9 +464,7 @@ def analyze(lang, word, db, hint=frozenset()):
         root_gloss = None
     return resolved, chain, (root_lang, root_form, root_gloss), conf, ety
 
-
 PHRASE_STOP = {"de", "la", "le", "les", "des", "du", "da", "do", "della", "del", "di", "the", "of", "der", "die", "das", "des", "van", "het", "el", "los", "las", "tou", "ha"}
-
 
 def analyze_word(lang, word, db, hint=frozenset()):
     resolved, chain, root, conf, ety = analyze(lang, word, db, hint)
@@ -509,20 +484,17 @@ def analyze_word(lang, word, db, hint=frozenset()):
     conf = min([conf] + [x for _t, _c, _r, x in parts])
     return resolved, chain, (langs[0] if len(set(langs)) == 1 else "mixed", " + ".join(r[1] for _t, _c, r, _x in parts), " + ".join(short(r[2]) or "?" for _t, _c, r, _x in parts)), conf, ety
 
-
 def display_gloss(entry, t):
     g = (entry or {}).get("gloss") or ""
     if g and not is_form_gloss(g):
         return g
     return t.get("sense") or g
 
-
 def is_name_title(title, db):
     t = (title or "").strip()
     if not re.fullmatch(r"[A-Z][a-zà-ÿ]+", t):
         return False
     return bool(db.db.execute("select 1 from word where lang = 'en' and word = ? and pos = 'name' limit 1", (t,)).fetchone())
-
 
 def translations_for(term, db, targets):
     trs = db.translations(term)
@@ -533,7 +505,6 @@ def translations_for(term, db, targets):
         trs = nouns
     langs = {LANG_ALIASES.get(t["lang"], t["lang"]) for t in trs} & targets
     return trs if len(langs) >= MIN_LANGS else []
-
 
 def node_rows(node, db, ayahs, targets):
     context = " ".join([node.get("title") or "", node.get("summary") or ""])
@@ -575,7 +546,6 @@ def node_rows(node, db, ayahs, targets):
         })
     return term, rows
 
-
 def fetch_nodes(db_url):
     sql = (
         "select coalesce(json_agg(t order by t.slug), '[]'::json) from (select id, slug, title, kind, branch, summary from graph.nodes "
@@ -584,9 +554,7 @@ def fetch_nodes(db_url):
     out = subprocess.run(["psql", db_url, "-At", "-v", "ON_ERROR_STOP=1", "-c", sql], check=True, capture_output=True, text=True).stdout
     return json.loads(out.strip() or "[]")
 
-
 COLUMNS = ["node_id", "lang", "word", "roman", "gloss", "root_lang", "root_form", "root_gloss", "chain", "root_texts", "source", "en_term", "sense", "confidence"]
-
 
 def write_rows(db_url, rows, node_ids):
     with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False, encoding="utf-8", newline="") as f:
@@ -607,7 +575,6 @@ def write_rows(db_url, rows, node_ids):
         )
     finally:
         os.unlink(path)
-
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -649,7 +616,6 @@ def main(argv=None):
         write_rows(a.db_url, all_rows, [n["id"] for n in nodes])
         print("written")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

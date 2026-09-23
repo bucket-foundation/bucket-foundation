@@ -1,23 +1,4 @@
 #!/usr/bin/env python3
-r"""
-render_math — turn LaTeX math and mhchem chemistry into cached inline SVG.
-
-Renders once per unique snippet via  latex → dvi → dvisvgm  (Computer Modern,
-paths not fonts, so the SVG is self-contained and CSP-safe: works in the browser,
-the Artifact, and WeasyPrint identically). Results cached in media/math/<hash>.svg.
-
-Supports:
-  $ ... $        inline math
-  $$ ... $$      display math
-  \ce{ ... }     chemistry (mhchem v4) — write inside math or bare
-
-Public API:
-  svg = render_snippet(latex, display=False)      -> inline SVG string (or None on failure)
-  html = mathify(text)                             -> text with $...$/$$...$$/\ce{} swapped to <svg>
-
-Idempotent. If latex/dvisvgm fail on a snippet, the raw source is kept in a
-<code class="math-raw"> span and the failure logged to media/math/FAILURES.log.
-"""
 import os, re, hashlib, subprocess, tempfile, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,8 +32,6 @@ def render_snippet(src, display=False):
     if os.path.exists(out):
         with open(out, encoding="utf-8") as f:
             return f.read()
-    # display math via inline mode + \displaystyle — the standalone class emits
-    # "No pages of output" for \[...\], so we never use it. Renders reliably.
     body = (r"$\displaystyle %s$" % src) if display else ("$%s$" % src)
     with tempfile.TemporaryDirectory() as d:
         tex = os.path.join(d, "m.tex")
@@ -73,7 +52,6 @@ def render_snippet(src, display=False):
             with open(os.path.join(CACHE, "FAILURES.log"), "a", encoding="utf-8") as lg:
                 lg.write(f"[{'disp' if display else 'inl'}] {src!r} :: {e}\n")
             return None
-    # strip xml prolog, tag for styling + baseline alignment
     s = re.sub(r"<\?xml[^>]*\?>", "", s)
     s = re.sub(r"<!DOCTYPE[^>]*>", "", s)
     cls = "math-display" if display else "math-inline"
@@ -83,7 +61,6 @@ def render_snippet(src, display=False):
         f.write(s)
     return s
 
-# token patterns
 RE_DISPLAY = re.compile(r"(?<!\\)\$\$(.+?)(?<!\\)\$\$", re.S)
 RE_CE      = re.compile(r"\\ce\{((?:[^{}]|\{[^{}]*\})*)\}")
 RE_INLINE  = re.compile(r"(?<!\\)\$(?!\$)(.+?)(?<!\\)\$")
@@ -92,8 +69,6 @@ def _raw(src):
     return f'<code class="math-raw">{html.escape(src)}</code>'
 
 def mathify(text):
-    """Swap math/chem tokens in a text/markdown string for inline SVG.
-    Run BEFORE markdown conversion so the SVG survives as raw HTML."""
     def disp(m):
         svg = render_snippet(m.group(1), display=True)
         return f'<div class="math-block">{svg}</div>' if svg else _raw(m.group(0))
@@ -109,7 +84,6 @@ def mathify(text):
     return text
 
 if __name__ == "__main__":
-    # self-test
     tests = [r"|\psi\rangle = \alpha|0\rangle + \beta|1\rangle",
              r"S \le 2\sqrt{2}",
              r"\ce{N2 + 3H2 -> 2NH3}"]

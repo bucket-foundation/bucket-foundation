@@ -16,35 +16,22 @@ interface Hit {
   summary: string | null;
   stage: string | null;
 }
-// The server type, so a change to what /assignments returns is a compile
-// error here rather than a blank link on the page (Bucket critic C40).
 type Assignment = LearnerAssignment;
 
-/** The workspace with no target: pick any node on the graph to work toward. */
 export default function TargetPicker() {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
   const [searchNote, setSearchNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  // "outage" is a read a retry may clear; "unavailable" is one it will
-  // not. The rule was asked and its answer thrown away here, so both
-  // rendered the same dead end.
   const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | "outage" | null>(null);
 
   useEffect(() => {
-    // The server answers 503 on a failed read now, and turning that back
-    // into an empty list here put the defect one layer out: a learner
-    // with assignments saw the same picker as a learner with none.
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then(async (r) => {
-        // An outage answers 503. Rendering "None open." would tell the
-        // learner they have no assignments (Bucket critic C44).
         if (!r.ok) return { unavailable: true as const, transient: isTransientOutage(r.status, await readErrorCode(r)) };
         return (await r.json()) as { assignments?: Assignment[] };
       })
       .then((j) => ("unavailable" in j ? setAssignments(j.transient ? "outage" : "unavailable") : setAssignments(j.assignments ?? [])))
-      // A fetch that rejects never reached the server, which a retry may
-      // clear.
       .catch(() => setAssignments("outage"));
   }, []);
 

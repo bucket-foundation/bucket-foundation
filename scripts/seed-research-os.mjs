@@ -1,31 +1,4 @@
 #!/usr/bin/env node
-/* Research OS for K-12, Phase 0 seed loader (bkt-ros).
- *
- * Loads supabase/seed/research-os-sky-blue.json (the "why is the sky blue"
- * path, see _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section
- * 8) into graph.nodes / graph.edges. Mirrors the Academy corpus loading
- * pattern (a static JSON source of truth, a small script that pushes it to
- * where the app reads it), with Postgres as the destination: the graph is
- * server-queried at request time.
- *
- * Idempotent: nodes upsert on `slug` (onConflict), edges are deleted and
- * re-inserted for exactly the (from,to,kind) triples this seed defines, so
- * re-running converges to the same graph and never leaves stale edges behind
- * from a prior version of the seed file.
- *
- * Validates the fixture before writing anything (integrity checks matching
- * learning/app/validate.sh's spirit): unique slugs, every edge endpoint
- * resolves to a defined node, the prerequisite subgraph has no cycles, and
- * the target node is reachable from at least one prerequisite-root node.
- *
- * Requires the same server-only env vars as /api/academy/progress:
- *   NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY (unused here but
- *   validated for parity), SUPABASE_SERVICE_ROLE_KEY.
- *
- * Run:
- *   node scripts/seed-research-os.mjs            # validate + write
- *   node scripts/seed-research-os.mjs --check     # validate only, no network
- */
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -65,11 +38,6 @@ function validate(seed) {
     if (!EDGE_KIND_OK.has(e.kind)) throw new Error(`edge ${e.from}->${e.to}: bad kind "${e.kind}"`);
   }
 
-  // bkt-ros ros-14: worked_example is optional, but a node that HAS one
-  // must have both fields non-empty -- a half-built example (a text with
-  // no source, or vice versa) is worse than none, so this fails the whole
-  // seed rather than writing a malformed row (db.ts's toWorkedExample
-  // would silently drop it, hiding the authoring mistake).
   let workedExampleCount = 0;
   for (const n of seed.nodes) {
     if (n.worked_example === undefined) continue;
@@ -80,9 +48,8 @@ function validate(seed) {
     workedExampleCount++;
   }
 
-  // Cycle check on the prerequisite subgraph only (that's what routing walks).
   const prereq = seed.edges.filter((e) => e.kind === "prerequisite");
-  const forward = new Map(); // slug -> [slug...]
+  const forward = new Map();
   for (const s of slugs) forward.set(s, []);
   for (const e of prereq) forward.get(e.from).push(e.to);
 
@@ -107,9 +74,6 @@ function validate(seed) {
     throw new Error(`target_slug "${seed.target_slug}" is not a defined node`);
   }
 
-  // Reachability: the target must be reachable, walking prerequisite edges
-  // BACKWARD, from at least one root (a node with no incoming prerequisite
-  // edge) -- otherwise frontier-backward routing has nothing to backward-walk to.
   const hasIncoming = new Set(prereq.map((e) => e.to));
   const roots = slugs.filter((s) => !hasIncoming.has(s));
   if (roots.length === 0) throw new Error("prerequisite subgraph has no root nodes (every node has a prerequisite)");
@@ -149,9 +113,6 @@ async function write(seed) {
     summary: n.summary ?? null,
     labels: n.labels ?? { en: { title: n.title, summary: n.summary ?? "" } },
     provenance: n.provenance ?? {},
-    // bkt-ros ros-14: null (not omitted) when absent, so a re-run that
-    // removes a worked_example from the seed file clears the column on
-    // upsert rather than leaving a stale value from a prior seed version.
     worked_example: n.worked_example ?? null,
   }));
   const { data: upserted, error: nodeErr } = await svc
@@ -162,8 +123,6 @@ async function write(seed) {
 
   const idBySlug = new Map(upserted.map((r) => [r.slug, r.id]));
 
-  // Idempotent edges: delete exactly the seed's (from,to,kind) triples, then
-  // reinsert. Cheap at this graph size and avoids drift from a prior seed run.
   for (const e of seed.edges) {
     const fromId = idBySlug.get(e.from);
     const toId = idBySlug.get(e.to);
@@ -176,8 +135,6 @@ async function write(seed) {
     kind: e.kind,
     weight: e.weight ?? null,
     provenance: e.provenance ?? {},
-    // bkt-ros ros-03 item 1's backfill rule: every hand-authored seed edge
-    // is full confidence, source 'seed'.
     confidence: e.confidence ?? 1.0,
     confidence_source: e.confidence_source ?? "seed",
   }));

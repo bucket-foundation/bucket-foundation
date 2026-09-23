@@ -1,10 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
 
-/**
- * The core loop as a person: sign in with a code from the local mail
- * catcher, land on home, open Learn and an atom, open the workspace, open
- * the map, and sign out. Serial: one browser page carries the session.
- */
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const email = `e2e-${Date.now()}@bucket.local`;
 

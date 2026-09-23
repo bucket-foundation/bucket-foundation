@@ -65,12 +65,6 @@ function RunList({ branch, runs }: { branch: string; runs: RunSummary[] | null }
   );
 }
 
-/**
- * The engine, the tutor's model, and CI, checked from this deployment's
- * server each time the page loads (src/lib/research-os/status.ts). A check
- * that gets no answer says so, and a check with no address says nothing was
- * checked, so an unreachable check never reads as "everything is down".
- */
 export default async function StatusPage() {
   const [engine, model, dev, main] = await Promise.all([
     checkEngine(process.env.HTE_SERVE_URL, fetch),

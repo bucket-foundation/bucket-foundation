@@ -1,14 +1,3 @@
-/**
- * Unit tests: src/lib/research-os/production-guard.ts's pure functions
- * (bkt-ros, production guard bead) plus src/lib/research-os/canon-link.ts's
- * fs-backed canon-claims loader against the committed
- * scripts/research-os/ingest/out/sample-canon-claims.json (no network, no
- * Supabase: canon-link.ts's own loaders are the only I/O here, both plain
- * filesystem reads of a file this repo already commits).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-production-guard.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -29,10 +18,6 @@ import {
   type QuoteEvidenceRecord,
 } from "../src/lib/research-os/production-guard";
 import { loadCanonClaims, canonClaimsAsDuplicateCandidates, lookupCanonSignoff } from "../src/lib/research-os/canon-link";
-
-// ---------------------------------------------------------------------------
-// Rule 1: quote-locator source verification
-// ---------------------------------------------------------------------------
 
 function quoteEv(locator: string): QuoteEvidenceRecord {
   return { nodeId: "n1", locator, at: "2026-09-10T00:00:00.000Z" };
@@ -87,11 +72,6 @@ test("unverifiedSourceReturnNote: empty string when nothing is unverified, a rea
 });
 
 test("isSourceProvenanceStale: a migration-default '[]' against real sources is stale", () => {
-  // The exact shape a production submitted before this guard existed
-  // reads as, once its source_provenance column backfills to the
-  // migration's own default: sources non-empty, source_provenance empty.
-  // The review route's approve gate treats this the same as unverified
-  // (a source that was never checked cannot reach accepted either).
   assert.equal(isSourceProvenanceStale(["a real cited source"], []), true);
 });
 
@@ -103,10 +83,6 @@ test("isSourceProvenanceStale: false once every source line has a matching check
 test("isSourceProvenanceStale: false with no sources cited at all (nothing to have checked)", () => {
   assert.equal(isSourceProvenanceStale([], []), false);
 });
-
-// ---------------------------------------------------------------------------
-// Rule 2: duplicate detection, normalized token overlap
-// ---------------------------------------------------------------------------
 
 test("tokenize: lowercases and extracts alphanumeric tokens, drops no stop words", () => {
   const tokens = tokenize("The sky is Blue, the SKY is blue!");
@@ -160,10 +136,6 @@ test("computeDuplicateFlag: picks the highest-scoring candidate across mixed ori
   assert.equal(flag!.matchOrigin, "class_peer");
 });
 
-// ---------------------------------------------------------------------------
-// Rule 3: counter-evidence
-// ---------------------------------------------------------------------------
-
 test("requiresCounterEvidence: true at internalization and production, false earlier", () => {
   assert.equal(requiresCounterEvidence("access"), false);
   assert.equal(requiresCounterEvidence("awareness"), false);
@@ -186,10 +158,6 @@ test("hasCounterEvidence: true only when normalization leaves at least one entry
   assert.equal(hasCounterEvidence(null), false);
 });
 
-// ---------------------------------------------------------------------------
-// Rule 4: citation-incentive eligibility
-// ---------------------------------------------------------------------------
-
 test("computeIncentiveEligible: true only for an accepted status with a signoff starting 'approved'", () => {
   assert.equal(computeIncentiveEligible("accepted", "approved: gianyrox 2026-09-10"), true);
   assert.equal(computeIncentiveEligible("accepted", "  approved: gianyrox 2026-09-10"), true);
@@ -207,16 +175,10 @@ test("computeIncentiveEligible: false for any non-accepted status regardless of 
   assert.equal(computeIncentiveEligible("draft", "approved: gianyrox 2026-09-10"), false);
 });
 
-// ---------------------------------------------------------------------------
-// canon-link.ts: fs-backed loaders against the committed sample
-// ---------------------------------------------------------------------------
-
 test("loadCanonClaims: every committed sample id is present (whichever file, sample or a real generated run, is the one loaded)", () => {
   const claims = loadCanonClaims();
   assert.ok(claims.length > 0, "expected at least the committed sample");
   const ids = new Set(claims.map((c) => c.id));
-  // The committed sample was drawn from a real generator run, so every one
-  // of its ids is a real canon record id either way this loader resolves.
   assert.ok(ids.has("bkt-d8a749ee80a7"), "expected the bell-theorem sample entry");
   assert.ok(ids.has("bkt-13cda172e614"), "expected the godel sample entry");
 });

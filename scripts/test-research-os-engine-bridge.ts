@@ -1,14 +1,3 @@
-/**
- * Unit tests: the engine <-> Research OS graph bridge (bkt-ros, engine
- * bridge task items 1 and 3, ros-12 item 4's GapNode wiring),
- * src/lib/research-os/engine-bridge.ts. Every function under test is pure
- * (no I/O), so each test runs against a plain fixture object with no
- * database, matching scripts/test-research-os-routing.ts's own convention
- * (node:test + node:assert, no framework configured in this repo).
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-engine-bridge.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import {
@@ -24,10 +13,6 @@ import {
   type GapNodeInput,
   type GraphProductionRow,
 } from "../src/lib/research-os/engine-bridge";
-
-// ---------------------------------------------------------------------------
-// Task item 1: engine hypothesis -> graph.nodes / graph.edges
-// ---------------------------------------------------------------------------
 
 test("engineTierToGraphTier: T1..T6 map straight onto their own smallint", () => {
   assert.equal(engineTierToGraphTier("T1"), 1);
@@ -121,10 +106,6 @@ test("buildEngineEdges: no refs at all yields no edges", () => {
   assert.deepEqual(edges, []);
 });
 
-// ---------------------------------------------------------------------------
-// Task item 3: an accepted production -> the engine outbox row
-// ---------------------------------------------------------------------------
-
 function fixtureProduction(overrides: Partial<GraphProductionRow> = {}): GraphProductionRow {
   return {
     id: "3f8f1e2a-6b4d-4c7f-9a1e-8d2c5b0a9f11",
@@ -184,10 +165,6 @@ test("buildProductionOutboxRow: non-array evidence/sources coerce to empty array
   assert.deepEqual(row.evidence, []);
   assert.deepEqual(row.sources, []);
 });
-
-// ---------------------------------------------------------------------------
-// ros-12 item 4: a campaign's own gap node -> a graph.nodes/graph.edges pair
-// ---------------------------------------------------------------------------
 
 function fixtureGap(overrides: Partial<GapNodeInput> = {}): GapNodeInput {
   return {

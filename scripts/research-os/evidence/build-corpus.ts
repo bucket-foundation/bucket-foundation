@@ -1,33 +1,3 @@
-/**
- * Builds and checks the admitted public-source corpus (ros-ai-corpus).
- * Reads graph.nodes, writes nothing to the database.
- *
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts build [--limit 500] [--out local/evidence]
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts check local/evidence/<revision>
- *
- * `build` writes manifest.json, sources.jsonl and passages.jsonl into
- * <out>/<corpusRevision>/ through a temporary directory and one rename, then
- * reads them back through the validator. The same graph and policy give the
- * same revision, so a rebuild with nothing changed writes nothing. Any
- * identity conflict stops the build before a file is written. It refuses
- * to run with less than 50 GiB free on the output disk, the reserve in
- * IMPLEMENTATION.md, "Operating envelope".
- *
- * `check` validates a built corpus and compares it with the live graph.
- *
- * `admit <dir>` records a validated corpus in graph.evidence_source_admissions
- * and makes it the active set, in one transaction. A draft rights policy
- * admits only with --allow-draft, which is for local development.
- * `withdraw <sourceId> --reason <text>` withdraws every revision of one
- * source; admitting it again needs a newer rights revision.
- *
- * Exit 0: done, sound and current. Exit 1: problems, stale or refused
- * sources, listed. Exit 2: the run could not start.
- *
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts admit local/evidence/<revision> --allow-draft
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/evidence/build-corpus.ts withdraw graph:<uuid> --reason "permission withdrawn"
- */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statfsSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -81,7 +51,6 @@ function graphDb() {
 async function loadNodes(): Promise<GraphNodeRow[]> {
   const db = graphDb();
   const rows: GraphNodeRow[] = [];
-  // PostgREST answers at most 1000 rows, so page in a fixed order.
   for (let from = 0; ; from += PAGE) {
     const { data, error } = await db
       .from("nodes")

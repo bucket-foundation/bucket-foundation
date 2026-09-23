@@ -1,13 +1,3 @@
-/**
- * Adaptive placement, a port of learning/app/js/diagnostic.js. In ten to
- * twenty open questions it estimates what a person already knows so an
- * expert starts mid-graph and a beginner at the foundations. A per-atom
- * log-odds belief; each step asks the atom nearest 0.5, tie-broken toward
- * central atoms; "I knew it" floors the whole prerequisite closure to
- * confident-known, "I didn't" floors the dependent closure to
- * confident-unknown; stop at the cap or when no atom is uncertain. The
- * result is a starting estimate, never a rating.
- */
 import type { Atom, Depth, QuizItem } from "./engine";
 
 const W_CORRECT = 1.55;
@@ -32,7 +22,6 @@ interface Closures {
   between: Map<string, number>;
 }
 
-/** Transitive prerequisite and dependent closures, and a centrality proxy in [0,1]. */
 export function buildClosures(atoms: Atom[]): Closures {
   const byId = new Map(atoms.map((a) => [a.id, a]));
   const reqC = new Map<string, Set<string>>();
@@ -136,7 +125,6 @@ export class Diagnostic {
     });
   }
 
-  /** The most informative unasked atom, or null when done. */
   next(): DiagnosticItem | null {
     if (this.done()) return null;
     const proven = this.asked.some((a) => a.correct);
@@ -176,7 +164,6 @@ export class Diagnostic {
     };
   }
 
-  /** Record "I knew it" (correct, optionally slow) or "I didn't", and propagate. Idempotent per atom. */
   answer(id: string, correct: boolean, meta: { slow?: boolean } = {}): void {
     if (this.askedSet.has(id) || !this.logodds.has(id)) return;
     this.askedSet.add(id);
@@ -218,7 +205,6 @@ export class Diagnostic {
     });
   }
 
-  /** The atoms to mark known (P at or above the threshold), the frontier among them, and the detail. */
   result(threshold: number = KNOWN_THRESHOLD): Placement {
     const known: string[] = [];
     const detail: Record<string, number> = {};
@@ -233,7 +219,6 @@ export class Diagnostic {
     return { known, frontier, detail, asked: this.asked.slice(), questionsAsked: this.asked.length, placedCount: known.length, total: this.atoms.length };
   }
 
-  /** Run to completion with a responder; for tests and simulations. */
   simulate(responder: (item: DiagnosticItem) => { correct: boolean; slow?: boolean }): Placement {
     this.start();
     while (!this.done()) {

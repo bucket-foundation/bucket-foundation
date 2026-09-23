@@ -1,6 +1,3 @@
-// /excerpts/[concept]/[slug], one source excerpt: a passage from a talk or
-// podcast with its video, its timestamp, and the evidence it names.
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getClaim, getClaimsByConcept } from "@/lib/canon-claims";
@@ -20,9 +17,6 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { concept: string; slug: string } }) {
   const c = getClaim(params.concept, params.slug);
   if (!c) return { title: "Source excerpt · bucket.foundation" };
-  // The title names the source, and the excerpt stays out of it, so a
-  // search result shows a passage from a talk as one (a fix the other
-  // session found in PR #207).
   return {
     title: `Excerpt from ${c.videoTitle} at ${c.timestamp} · ${c.concept} · bucket.foundation`,
     description: `A passage from ${c.videoTitle}, ${c.timestamp}, tagged ${c.concept}. A source excerpt, outside the canon.`,

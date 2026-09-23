@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-/** One level's section on the node page: an anchor, the level it serves, a title, and its body. */
 export default function Section({ id, level, title, meta, children }: { id: string; level?: string; title: string; meta?: ReactNode; children: ReactNode }) {
   return (
     <section id={id} className="scroll-mt-28 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)] p-4 md:p-5">

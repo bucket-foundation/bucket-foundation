@@ -1,34 +1,3 @@
-/**
- * /api/research-os/edges, the proposed-edge review queue: lexical
- * inference (scripts/research-os/ingest/infer-edges-llm.ts) and the
- * decompose-further queue (scripts/research-os/decompose-further.ts,
- * learning/research-os/PRIMES.md). The work lives in
- * src/lib/research-os/inference/review-actions.ts; this route adds the
- * reviewer gate and the JSON response.
- *
- * GET  ?source=inferred_llm|prime_decompose_llm (optional)
- *   -> { proposals }: every pending row, highest priority first. Priority
- *   weighs how uncertain the models were by how many idea nodes rest on the
- *   target, counted now (graph.idea_dependents).
- *
- * POST { id, decision: "approved" | "rejected", kind?, reason? }
- *   kind is "prerequisite" (learning order, feeds K-12 routing) or
- *   "derives_from" (the target rests on the factor). Decomposition
- *   proposals default to derives_from, lexical ones to prerequisite. An
- *   approval writes the edge at confidence 0.95, source "teacher", with
- *   provenance naming the proposal; a prerequisite approval rebuilds the
- *   ancestor closure of every branch it touches.
- *
- * Auth: Authorization: Bearer <supabase access token>, checked by
- * src/lib/research-os/reviewer.ts verifyGraphReviewer: the
- * RESEARCH_OS_REVIEWER_EMAILS allowlist alone, since a class membership
- * anyone can create opens teacher review. 403 not a graph reviewer (also an
- * unset allowlist, fail closed) · 400 bad input · 404 proposal or node not found
- * · 409 approving would close a cycle (the proposal stays pending) · 500 a
- * read or write failed (the proposal stays pending) · 503 not configured.
- * Deciding an already-decided proposal returns alreadyDecided and writes
- * nothing.
- */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";

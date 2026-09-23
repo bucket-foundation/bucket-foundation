@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# Adds a /llm/ location to the atlas-api.agfarms.dev vhost that proxies to the
-# reverse-tunnelled home GPU shim on 127.0.0.1:18011. Idempotent + safe:
-# backs up, validates with `nginx -t`, and ROLLS BACK if validation fails.
-# Run on prod-hetzner-1:   sudo bash /tmp/setup-llm-nginx.sh
 set -euo pipefail
 
 VHOST=/etc/nginx/sites-enabled/atlas-api.agfarms.dev
@@ -18,7 +14,7 @@ else
   echo "backed up -> $BAK"
 
   BLOCK=$(cat <<'NGINX'
-    # Bucket Academy LLM — reverse-tunnel to Gian's home GPU shim (bearer-auth at the shim).
+    # Bucket Academy LLM: reverse-tunnel to Gian's home GPU shim (bearer-auth at the shim).
     location /llm/ {
         proxy_pass http://127.0.0.1:18011/;
         proxy_http_version 1.1;
@@ -33,7 +29,6 @@ else
 
 NGINX
 )
-  # insert the block immediately before the first "location / {"
   awk -v block="$BLOCK" '
     !done && /location \/ \{/ { print block; done=1 }
     { print }

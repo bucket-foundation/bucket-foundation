@@ -31,12 +31,6 @@ function SideCard({ s, role }: { s: Side; role: string }) {
   );
 }
 
-/**
- * ros-graph-dedup's review queue: nodes that name one concept, found by
- * scripts/research-os/find-duplicates.ts. Merging moves every edge of the
- * dropped node to the kept one and supersedes it, so both branches' links
- * survive on one node.
- */
 export default function MergesPage() {
   const [items, setItems] = useState<Proposal[] | null>(null);
   const [state, setState] = useState<"loading" | "ready" | "forbidden" | "no_graph" | "failed">("loading");
@@ -49,9 +43,6 @@ export default function MergesPage() {
       const res = await fetch("/api/research-os/merges", { cache: "no-store" });
       const data = (await res.json().catch(() => ({}))) as { proposals?: Proposal[]; error?: string };
       if (res.status === 403) return setState("forbidden");
-      // Through isTransientOutage, so this page and every other client
-      // answer an unrecognized 503 code the same way. For the two codes
-      // this page already handled the branch is unchanged.
       if (isTransientOutage(res.status, data.error ?? null)) return setState("failed");
       if (res.status === 503) return setState("no_graph");
       if (!res.ok || !Array.isArray(data.proposals)) return setState("failed");

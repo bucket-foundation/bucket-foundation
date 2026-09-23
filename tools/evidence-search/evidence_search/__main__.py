@@ -1,14 +1,3 @@
-"""Command line for the evidence-search worker.
-
-    python3 -m evidence_search verify
-    python3 -m evidence_search probe [--out probe.json]
-    python3 -m evidence_search build-vectors <corpus dir> [--out <dir>] [--batch N]
-    python3 -m evidence_search serve --vectors <dir> [--host 127.0.0.1] [--port 8431]
-
-Run from tools/evidence-search. `serve` reads EVIDENCE_WORKER_SECRET from
-the environment and refuses a non-loopback host.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -23,7 +12,6 @@ from .registry import model_entry, verify_model, verify_runtime
 REPO = Path(__file__).resolve().parents[3]
 DEFAULT_VECTORS = REPO / "local" / "evidence" / "vectors"
 DISK_RESERVE = 50 * 1024**3
-
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="evidence_search")
@@ -94,7 +82,6 @@ def main(argv: list[str] | None = None) -> int:
             server.server_close()
         return 0
     return 2
-
 
 if __name__ == "__main__":
     sys.exit(main())

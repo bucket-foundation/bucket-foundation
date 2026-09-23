@@ -1,24 +1,3 @@
-/**
- * Unit tests: the age and consent gate (bkt-ros ros-07 task item 3, wired
- * to its call sites by the ros-07 follow-up), src/lib/research-os/
- * consent.ts's decideConsent and consentBlockedBody. Pure, no I/O, no
- * live Supabase, matching scripts/test-research-os-engine-bridge.ts's own
- * convention: node:test + node:assert, plain fixture objects.
- *
- * requireConsent itself (the thin DB-reading wrapper around decideConsent)
- * is not tested here, matching this repo's convention that a function
- * touching a live Supabase client is not directly unit tested (see
- * src/lib/research-os/db.ts, none of its exports have a test file either);
- * every decision requireConsent makes is factored into decideConsent,
- * which is fully covered below. The "per route" block further down runs
- * decideConsent's rule over all four ConsentAction values, one per wired
- * call site (src/app/api/research-os/workspace/route.ts, probe/route.ts,
- * state/route.ts's transfer_item action, production/route.ts), including
- * the no-profile case for each.
- *
- * Run:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-consent.ts
- */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { consentBlockedBody, decideConsent, type ConsentAction, type LearnerProfile } from "../src/lib/research-os/consent";
@@ -43,17 +22,6 @@ test("decideConsent: no profile at all is blocked with reason no_profile", () =>
 });
 
 test("decideConsent: a profile with no birth_year_bucket yet (age question unanswered) and consent none is blocked", () => {
-  // birthYearBucket null, consentStatus 'none': not an explicit under-13/
-  // 13-17 bucket, but also not 18plus, so the minor branch's condition is
-  // false and this falls through to the default allowed=true UNLESS the
-  // caller treats "unknown bucket" as a minor for gating purposes. This
-  // test pins the actual rule: only an EXPLICIT under13/13to17 bucket
-  // triggers the consent_required block; a null bucket with no profile at
-  // all is the case no_profile already covers above (no row means no
-  // bucket AND no consent_status either). A row that exists but has not
-  // recorded a bucket yet is allowed through this specific check (it is
-  // still gated by the no_profile branch until a bucket IS recorded, since
-  // requireConsent reads the row that has to exist first).
   const result = decideConsent(profile({ birthYearBucket: null, consentStatus: "none" }), "workspace_tool");
   assert.equal(result.allowed, true);
 });
@@ -96,17 +64,6 @@ test("decideConsent: the gate applies the same rule to both named actions", () =
   assert.equal(decideConsent(allowed, "production_submit").allowed, true);
 });
 
-// ---------------------------------------------------------------------------
-// ros-07 follow-up ("consent gate wiring"): one test per wired call site,
-// including the no-profile case, over all four ConsentAction values now
-// that requireConsent backs src/app/api/research-os/workspace/route.ts,
-// probe/route.ts, state/route.ts (action "transfer_item"), and
-// production/route.ts. decideConsent's own rule does not vary by action
-// (see its header), so these tests pin that every route's action label
-// gets the exact same blocked/allowed outcome today, guarding the shared
-// rule against a silent per-call-site drift later.
-// ---------------------------------------------------------------------------
-
 const ALL_ACTIONS: ConsentAction[] = ["workspace_tool", "probe_answer", "transfer_answer", "production_submit"];
 
 test("decideConsent: no profile at all is blocked with reason no_profile, per route", () => {
@@ -140,10 +97,6 @@ test("decideConsent: a minor with consent on file is allowed on every route's ow
     assert.equal(decideConsent(consented, action).allowed, true, `${action} should allow a consented minor`);
   }
 });
-
-// ---------------------------------------------------------------------------
-// consentBlockedBody: the JSON shape every gated route returns on its 403.
-// ---------------------------------------------------------------------------
 
 test("consentBlockedBody: no_profile carries needsProfile true", () => {
   const gate = decideConsent(null, "workspace_tool");

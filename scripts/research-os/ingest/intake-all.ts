@@ -1,18 +1,3 @@
-/**
- * The research under _intake/, into the graph (IDEAL-STATE.md, "bring
- * together everything researched").
- *
- *   literature cards   _intake/research-os-k12-literature/<area>/*.md   180 papers with DOIs
- *   concept digests    _intake/concept-digests/*.md                     27 concepts with their PubMed hits
- *   concept targets    _intake/concept-*\/README.md                      queued canon targets
- *
- * Writes: one `primary_source` per literature card in branch
- * 10-literature (cites the atoms it names); one `concept` per digest in
- * 05-biophysics (derives_from the atoms it names) with up to fifteen of
- * its cited papers as `primary_source` nodes (example_of the concept); one
- * `concept` per target, flagged open_question, in its canon branch. Run
- * from the repo root; --apply writes.
- */
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, resolve, basename } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -64,7 +49,6 @@ function main() {
   const linker = new Linker(atoms());
   const counts = { literature: 0, litLinks: 0, digests: 0, digestPapers: 0, digestLinks: 0, targets: 0, targetLinks: 0 };
 
-  // 1. Literature cards.
   if (existsSync(LIT)) {
     for (const area of readdirSync(LIT)) {
       const dir = join(LIT, area);
@@ -96,7 +80,6 @@ function main() {
     }
   }
 
-  // 2. Concept digests with their papers.
   if (existsSync(DIGESTS)) {
     for (const f of readdirSync(DIGESTS).filter((x) => x.endsWith(".md"))) {
       const md = readFileSync(join(DIGESTS, f), "utf8");
@@ -111,7 +94,6 @@ function main() {
         edges.push({ fromSlug: slug, toSlug: h.id, kind: "derives_from", confidence: Math.min(0.8, 0.4 + h.score), confidenceSource: "canon_map", provenance: { type: "intake_all", rule: "lexical", score: h.score, shared: h.shared } });
         counts.digestLinks++;
       }
-      // papers: "- **Title.**" then, within a few lines, PMID / DOI.
       const lines = md.split("\n");
       let taken = 0;
       for (let i = 0; i < lines.length && taken < 15; i++) {
@@ -136,7 +118,6 @@ function main() {
     }
   }
 
-  // 3. Concept targets: queued canon entries, flagged as open questions.
   for (const d of readdirSync(INTAKE).filter((x) => x.startsWith("concept-") && x !== "concept-digests")) {
     const readme = join(INTAKE, d, "README.md");
     if (!existsSync(readme)) continue;

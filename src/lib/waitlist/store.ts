@@ -1,18 +1,3 @@
-/**
- * Where launch-list signups are kept. Server only.
- *
- * On Vercel: a private Vercel Blob store connected to the project, one JSON
- * object per address at `<prefix><sha256(email)>.json`. The store is durable
- * object storage and keeps every object until someone deletes it. Private
- * means every read needs the store's credentials, so no URL exposes an
- * address. Each Vercel environment writes under its own prefix, so preview
- * tests never mix into the production list. Signups that filled the honeypot
- * field go under `<prefix>suspect/`, which the list's key filter skips.
- *
- * Off Vercel with no Blob credentials: the same layout as files under
- * `.data/waitlist-local/`, so the form works in local dev.
- */
-
 import { createHash, timingSafeEqual } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -33,7 +18,6 @@ export function emailKey(email: string): string {
   return createHash("sha256").update(email).digest("hex");
 }
 
-/** `waitlist/` on production; `waitlist-preview/`, `waitlist-development/` or `waitlist-local/` elsewhere. */
 export function waitlistPrefix(env: Env = process.env): string {
   const target = env.VERCEL_ENV?.trim();
   return target === "production" ? "waitlist/" : `waitlist-${target || "local"}/`;
@@ -120,11 +104,6 @@ export function fileStore(root: string, prefix: string): WaitlistStore {
   };
 }
 
-/**
- * The store for this deployment, or null when a Vercel deployment has no
- * Blob store connected. The route answers 503 then, so a signup is never
- * accepted and dropped.
- */
 export function getWaitlistStore(env: Env = process.env, part: "list" | "suspect" = "list"): WaitlistStore | null {
   const prefix = waitlistPrefix(env) + (part === "suspect" ? "suspect/" : "");
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobStore(prefix);
@@ -132,7 +111,6 @@ export function getWaitlistStore(env: Env = process.env, part: "list" | "suspect
   return null;
 }
 
-/** Saves a signup. Returns true when the address is new to the list. */
 export async function saveSignup(store: WaitlistStore, input: SignupInput, now = new Date().toISOString()): Promise<boolean> {
   const key = emailKey(input.email);
   const existing = await store.read(key);
@@ -142,7 +120,6 @@ export async function saveSignup(store: WaitlistStore, input: SignupInput, now =
 
 const READ_BATCH = 32;
 
-/** Every entry, newest first. Reads 32 records at a time. */
 export async function listSignups(store: WaitlistStore): Promise<WaitlistEntry[]> {
   const keys = await store.keys();
   const out: WaitlistEntry[] = [];
@@ -155,10 +132,6 @@ export async function listSignups(store: WaitlistStore): Promise<WaitlistEntry[]
 
 export const ADMIN_KEY_MIN = 16;
 
-/**
- * Constant-time check of the list key against WAITLIST_ADMIN_KEY. An unset
- * or short configured key turns the list off.
- */
 export function adminKeyMatches(given: string | null | undefined, expected: string | undefined): boolean {
   const want = expected?.trim() ?? "";
   if (want.length < ADMIN_KEY_MIN || !given) return false;

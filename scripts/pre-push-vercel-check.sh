@@ -1,33 +1,4 @@
 #!/usr/bin/env bash
-# Pre-push check for bucket.foundation: a push that Vercel would build must
-# pass lint and the type check first, since `next build` fails on either and
-# a failed preview costs a deployment (docs/VERCEL-BUILDS.md, "Changes on
-# 2026-09-18"). A push Vercel would skip passes straight through.
-#
-# Git runs it as a pre-push hook: arguments <remote name> <remote url>, and
-# one line per ref on stdin: <local ref> <local sha> <remote ref> <remote sha>.
-# scripts/install-git-hooks.sh wires it into the hooks directory.
-#
-# Whether a push would build is the gate's own answer
-# (scripts/vercel-ignore-build.sh), asked with the branch, the message of
-# the commit being pushed, and a base. On a feature branch the base is its
-# merge base with origin/dev, so every site change the branch carries counts:
-# Vercel compares with the last successful deployment, which after a failed
-# build lies further back than the remote's tip. On dev and main the base is
-# the remote's current tip, which is what the push adds to; on a first push
-# of those branches there is none, and the gate falls back to the pushed
-# commit's first parent when that commit is a merge or a squash merge.
-#
-# Lint and the type check read the working tree, so they vouch for the
-# pushed commit only when HEAD is that commit and no file they read differs
-# from it. Otherwise the push is refused with the reason.
-#
-# A push that Vercel would skip still gets the check when it carries code
-# lint or the type checker reads. [skip ci] holds back a build; it says
-# nothing about whether the code compiles, and a branch whose last push
-# carried [skip ci] reaches a pull request unchecked otherwise.
-#
-# Bypass: AGF_PREPUSH_SKIP=1 git push ...
 
 set -uo pipefail
 
@@ -47,15 +18,11 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   branch="${remote_ref#refs/heads/}"
   message="$(git log -1 --format=%B "$local_sha")"
   if [[ "$branch" == "dev" || "$branch" == "main" ]]; then
-    # The remote's current tip is exactly what this push adds to, which is
-    # a better base than the gate's own fallback and is known here.
     base=""
     [[ "$remote_sha" != "$ZERO" ]] && base="$remote_sha"
   else
     base="$(git merge-base "$local_sha" origin/dev 2>/dev/null || true)"
   fi
-  # The gate's exit status is its answer, as Vercel reads it: 0 skips, and
-  # anything else builds, a crash included.
   gate_out="$(
     cd "$TOP" &&
       VERCEL_GIT_COMMIT_REF="$branch" \
@@ -79,8 +46,6 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     needs_check="yes"
     pushed_shas="$pushed_shas $local_sha"
   else
-    # The gate skips the build. Run the check anyway when the push carries
-    # code the linter and the type checker read.
     code="$(git diff --name-only "${base:-$local_sha^}" "$local_sha" -- \
       '*.ts' '*.tsx' '*.js' '*.jsx' '*.mjs' '*.cjs' 'package.json' 2>/dev/null | head -1)"
     if [[ -n "$code" ]]; then

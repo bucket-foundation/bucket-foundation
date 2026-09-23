@@ -1,8 +1,5 @@
 "use client";
 
-// CausalDesigner client island, build a causal DAG, identify backdoor paths +
-// a valid adjustment set (real do-calculus), recommend an estimator. Render "json".
-
 import { useState } from "react";
 import {
   useToolRun,

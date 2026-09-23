@@ -1,11 +1,3 @@
-"""Tests for `hte.predict`: the prediction register and its resolution.
-
-Builds its own tiny run directory by hand (`hte.artifacts`'s own
-`MANIFEST.json`/`timeline.json` contract), the same pattern `tests/
-test_canon_writeback.py`'s `linking_run` fixture uses, over `hte.corpus.
-fixtures`'s seed vocabulary: no LLM call, no network, `HTE_LLM_MODE`
-never read.
-"""
 from __future__ import annotations
 
 import json
@@ -30,26 +22,7 @@ INTERVAL_B = Interval(start=START_B, end=START_B + DEFAULT_BIN_WIDTH - 1)
 
 MADE_AT = "2026-01-01T00:00:00+00:00"
 
-
 def _predict_corpus() -> Corpus:
-    """`hte.corpus.fixtures`'s own vocabulary, with:
-
-    - `ev-examined`, one full-slot item examining `h_examined` (its own
-      `u` drops to ~0.37, `|P - a|` ~0.18, a confident call with room to
-      spare over `_CLAIM_CONFIDENCE_MIN`);
-    - `ev-sup2`/`ev-sup3`/`ev-sup4`/`ev-sup5`, four independent full-slot
-      items examining `h_confident`, driving its own `u` to ~0.13 and
-      `P` to ~0.98. The fourth item is what keeps `|P - a|` (~0.159)
-      clear of `_CLAIM_CONFIDENCE_MIN` (0.15) now that item 6 removed
-      the cross-kind bonus three items used to lean on for that margin;
-    - `ev-gap`, naming only `ACTOR`, leaving `ACTION`/`OBJECT`/`PLACE`/
-      `MECHANISM` unresolved for `hte.unknowns.unresolved_slot_gaps` to
-      find, and linking (weakly) only to `h_examined`, never to either
-      vacuous placement or `h_confident`.
-
-    `h_vacuous_1`/`h_vacuous_2` (built in `synth_run` below) match none
-    of these items at all, so they stay at `u = 1.0`, `hte.predict`'s own
-    unexamined reading."""
     base = fixtures.build()
     examined = EvidenceItem(
         id="ev-examined", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="src-1",
@@ -96,19 +69,12 @@ def _predict_corpus() -> Corpus:
         evidence=[examined, sup2, sup3, sup4, sup5, gap], ground_truth=[], provenance=[], vocab=base.vocab,
     )
 
-
 def _placement(actor, action, obj, place, mechanism, interval) -> Placement:
     return Placement(actor=actor, action=action, object=obj, place=place, mechanism=mechanism, interval=interval)
-
 
 def _hyp(placement: Placement, vocab) -> Hypothesis:
     return Hypothesis.from_placement(placement, vocab)
 
-
-# One (Hypothesis, slots, time_bin_index, elo) row per survivor
-# `_write_run` persists. `h_examined` and `h_confident` are both
-# examined and confident (`_predict_corpus`'s own docstring); `h_vacuous_1`/
-# `h_vacuous_2` match no evidence at all and stay at `u = 1.0`.
 def _rows(h_examined, h_confident, h_vacuous_1, h_vacuous_2):
     return [
         (h_examined, {"ACTOR": "alpha-team", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, TBIN_A, 1550.0),
@@ -116,7 +82,6 @@ def _rows(h_examined, h_confident, h_vacuous_1, h_vacuous_2):
         (h_vacuous_1, {"ACTOR": "beta-team", "ACTION": "extended", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, TBIN_A, 1490.0),
         (h_vacuous_2, {"ACTOR": "unverified-observer", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "photometric-method"}, TBIN_B, 1480.0),
     ]
-
 
 def _write_run(run_dir: Path, h_examined: Hypothesis, h_confident: Hypothesis, h_vacuous_1: Hypothesis, h_vacuous_2: Hypothesis, *, timestamp: str = "20260101T000000Z") -> None:
     run_dir.mkdir(parents=True)
@@ -137,7 +102,6 @@ def _write_run(run_dir: Path, h_examined: Hypothesis, h_confident: Hypothesis, h
     }
     (run_dir / "timeline.json").write_text(json.dumps(timeline))
 
-
 def _build_placements(corpus: Corpus) -> dict[str, Hypothesis]:
     return {
         "h_examined": _hyp(_placement("alpha-team", "sighted", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab),
@@ -145,7 +109,6 @@ def _build_placements(corpus: Corpus) -> dict[str, Hypothesis]:
         "h_vacuous_1": _hyp(_placement("beta-team", "extended", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab),
         "h_vacuous_2": _hyp(_placement("unverified-observer", "sighted", "comet-q", "alpha-observatory", "photometric-method", INTERVAL_B), corpus.vocab),
     }
-
 
 @pytest.fixture()
 def synth_run(tmp_path, monkeypatch):
@@ -160,17 +123,10 @@ def synth_run(tmp_path, monkeypatch):
         **h,
     }
 
-
 def _register(ctx, **kw):
     return predict.register(
         ctx["run_dir"], horizon=365, out=ctx["out"], feed_root=ctx["feed_root"], made_at=MADE_AT, **kw,
     )
-
-
-# --------------------------------------------------------------------------
-# register
-# --------------------------------------------------------------------------
-
 
 def test_register_yields_all_three_kinds_with_well_formed_envelopes(synth_run):
     predictions = _register(synth_run)
@@ -194,15 +150,7 @@ def test_register_yields_all_three_kinds_with_well_formed_envelopes(synth_run):
         assert env["receipt"]["price_usd"] == 0
         assert env["receipt"]["status"] == "forecast_registered_not_yet_resolved"
 
-
 def test_claim_predictions_keep_only_confident_examined_hypotheses(synth_run):
-    """A claim registers when it is examined enough to make a real call
-    (`u <= u_max`) and confident enough to be worth one (`|P - a| >=
-    0.15`): `h_examined` and `h_confident` both clear that bar, while
-    `h_vacuous_1`/`h_vacuous_2` (no linked evidence at all, `u = 1.0`)
-    do not, the flip of this task's own first pass, which selected the
-    vacuous placements (`u >= floor_u`) and registered none on a real
-    run."""
     predictions = _register(synth_run)
     claims = [p for p in predictions if p.kind == "claim"]
     claim_addresses = {p.meta["address"] for p in claims}
@@ -214,7 +162,6 @@ def test_claim_predictions_keep_only_confident_examined_hypotheses(synth_run):
         assert p.u <= predict.DEFAULT_U_MAX
         assert abs(p.P - p.a) >= 0.15
 
-
 def test_discovery_prediction_names_the_gaps_own_evidence_item(synth_run):
     predictions = _register(synth_run)
     discoveries = [p for p in predictions if p.kind == "discovery"]
@@ -225,7 +172,6 @@ def test_discovery_prediction_names_the_gaps_own_evidence_item(synth_run):
     assert d.meta["evidence_kind"] == "textual"
     assert d.evidence_ids == ["ev-gap"]
 
-
 def test_sequence_prediction_names_an_allen_relation_between_two_members(synth_run):
     predictions = _register(synth_run)
     sequences = [p for p in predictions if p.kind == "sequence"]
@@ -234,14 +180,11 @@ def test_sequence_prediction_names_an_allen_relation_between_two_members(synth_r
         assert p.meta["relation"] in {r.value for r in AllenRelation}
         assert "first" in p.meta and "second" in p.meta
 
-
 def test_ledger_is_append_only_across_two_register_calls(synth_run):
     first = _register(synth_run)
     ledger_path = synth_run["out"] / "ledger.jsonl"
     lines_after_first = ledger_path.read_text().splitlines()
 
-    # A second run directory (a distinct campaign timestamp) registered
-    # into the SAME ledger must never alter the first call's own lines.
     run_dir_2 = synth_run["run_dir"].parent / "20260102T000000Z"
     h = _build_placements(_predict_corpus())
     _write_run(run_dir_2, h["h_examined"], h["h_confident"], h["h_vacuous_1"], h["h_vacuous_2"], timestamp="20260102T000000Z")
@@ -255,7 +198,6 @@ def test_ledger_is_append_only_across_two_register_calls(synth_run):
     assert len(lines_after_second) > len(lines_after_first)
     assert first and second
 
-
 def test_register_is_deterministic_under_a_fixed_made_at(synth_run):
     out_a = synth_run["out"]
     out_b = synth_run["feed_root"].parent / "predictions-b"
@@ -267,7 +209,6 @@ def test_register_is_deterministic_under_a_fixed_made_at(synth_run):
 
     assert to_dict_sorted(preds_a) == to_dict_sorted(preds_b)
 
-
 def test_ledger_carries_no_absolute_paths(synth_run):
     _register(synth_run)
     ledger_text = (synth_run["out"] / "ledger.jsonl").read_text()
@@ -277,12 +218,6 @@ def test_ledger_carries_no_absolute_paths(synth_run):
         blob = json.dumps(json.loads(line))
         assert not blob.startswith('"/') and "/tmp/" not in blob and str(Path.cwd()) not in blob
 
-
-# --------------------------------------------------------------------------
-# resolve
-# --------------------------------------------------------------------------
-
-
 def _resolves_at(predictions, kind, **meta_filters):
     for p in predictions:
         if p.kind != kind:
@@ -290,7 +225,6 @@ def _resolves_at(predictions, kind, **meta_filters):
         if all(p.meta.get(k) == v for k, v in meta_filters.items()):
             return p
     raise AssertionError(f"no {kind} prediction matching {meta_filters}")
-
 
 def test_unresolved_stays_unresolved_before_the_resolution_date(synth_run):
     predictions = _register(synth_run)
@@ -302,21 +236,12 @@ def test_unresolved_stays_unresolved_before_the_resolution_date(synth_run):
     assert report.n_refuted == 0
     assert report.brier is None
 
-
 def test_resolve_scores_attested_low_and_refuted_high_brier(synth_run):
     predictions = _register(synth_run)
-    # `h_examined` (P ~0.70) and `h_confident` (P ~0.98) are the two
-    # claims this fixture registers (`test_claim_predictions_keep_only_
-    # confident_examined_hypotheses`): attesting the one confirms a
-    # moderate call (low Brier), refuting the other contradicts a
-    # near-certain one (high Brier).
     claim = _resolves_at(predictions, "claim", address=synth_run["h_examined"].address)
     other_claim = _resolves_at(predictions, "claim", address=synth_run["h_confident"].address)
     assert claim.P > 0.6 and other_claim.P > 0.6
 
-    # The planted "future" world: attesting evidence for `claim` (exact
-    # slot-and-date match to `h_examined`), refuting evidence for
-    # `other_claim` (`h_confident`'s own slots, a disjoint later date).
     attesting = EvidenceItem(
         id="future-attest", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="src-1",
         span=EvidenceSpan(doc_id="doc-2", locator="l1", quote="alpha team sighted comet q again", char_start=0, char_end=5),
@@ -347,7 +272,6 @@ def test_resolve_scores_attested_low_and_refuted_high_brier(synth_run):
     assert refuted_outcome.brier > 0.5
     assert (synth_run["out"] / "RESOLUTIONS.md").is_file()
     assert len(report.calibration_curve) == 10
-
 
 def test_resolve_report_writes_resolutions_markdown(synth_run):
     predictions = _register(synth_run)

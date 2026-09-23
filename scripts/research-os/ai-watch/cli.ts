@@ -1,20 +1,3 @@
-/**
- * The daily AI watch's ledger from a shell (ros-ai-watch). The scheduled
- * watch writes through `add`, so every line is checked and deduplicated
- * before it lands; the other commands read.
- *
- *   npm run ai-watch -- add < line.json        append one item or run line
- *   npm run ai-watch -- check                  every contract problem in the ledger
- *   npm run ai-watch -- report [--since DATE]  what changed; first line NOTIFY or QUIET
- *   npm run ai-watch -- select --milestone M --item KEY --replaces ARM --by NAME
- *
- * The ledger is operator-local: AI_WATCH_LEDGER, or
- * ~/.local/share/bucket/ai-watch/ledger.jsonl. It holds no secrets and no
- * personal data, and it stays off the repository.
- *
- * Exit 0: done. Exit 1: a refused line or a ledger with problems. Exit 2:
- * the command could not run.
- */
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";

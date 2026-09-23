@@ -1,23 +1,3 @@
-/**
- * ros-graph-dedup: queues nodes that name one concept for a reviewer, and
- * offers the parts of bundled missing ideas as factors.
- *
- * Reads the graph's public, current ideas (concept, law, derivation; bridge
- * clusters left out), their edge counts, and the decompose-further
- * verifier's refusals, and finds merge candidates with
- * src/lib/research-os/dedup.ts. For each pending node proposal whose name
- * bundles ideas the graph already holds ("Vector spaces, bases and inner
- * products"), it proposes each matched part as a factor of every idea that
- * named the bundle, and lists the parts on the proposal as possible
- * duplicates.
- *
- *   set -a; . ./.env.local; set +a
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/find-duplicates.ts          # report only
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/find-duplicates.ts --apply  # write the queues
- *
- * Every read pages with .range() under .order(), past the 1,000-row cap.
- * Writes skip rows that exist, so a rerun converges.
- */
 import { createHash } from "node:crypto";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { pagedRead } from "../../src/lib/research-os/paging";

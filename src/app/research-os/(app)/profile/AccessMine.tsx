@@ -4,10 +4,6 @@ import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
-// The person's side of the Access level (ros-21): the nodes they own with
-// pending request counts, the requests they have made, and an import form
-// that creates a private node from a dataset, paper, notes, or corpus.
-
 type Visibility = "public" | "private" | "shared";
 interface Mine {
   owned: { id: string; slug: string; title: string; visibility: Visibility; pending: number }[];
@@ -31,7 +27,6 @@ export default function AccessMine({ token }: { token: string | null }) {
         setListNote(null);
         setMine((await res.json()) as Mine);
       } else {
-        // A learner with imports read as a learner with none.
         setListNote(isTransientOutage(res.status, await readErrorCode(res)) ? OUTAGE_COPY.body : null);
       }
     } catch {

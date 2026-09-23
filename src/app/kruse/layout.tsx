@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
 
-// The /kruse path has two faces:
-//   - /kruse         : public stone-bone preview (inherits root layout fully).
-//   - /kruse/search  : gated interactive app (applies its own dark overlay).
-// This layout is deliberately minimal so the public preview sits in the same
-// chrome as the rest of the site.
-
 export const metadata: Metadata = {
   title: "The Kruse Index",
   description:

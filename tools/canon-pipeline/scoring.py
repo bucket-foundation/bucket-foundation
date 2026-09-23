@@ -1,4 +1,3 @@
-"""Canon scoring: simple, explainable heuristic."""
 from __future__ import annotations
 from datetime import datetime
 
@@ -21,9 +20,7 @@ BRANCH_KEYWORDS = {
     "07-mind": ["consciousness", "cognition", "perception", "neural", "brain", "mind", "psycholog"],
 }
 
-
 def score(record: dict) -> tuple[int, list[str]]:
-    """Return (score 0-100, reasons[])."""
     reasons: list[str] = []
     s = 0
 
@@ -67,7 +64,6 @@ def score(record: dict) -> tuple[int, list[str]]:
 
     s = max(0, min(100, s))
     return s, reasons
-
 
 def branch_hints(record: dict) -> list[str]:
     text = " ".join([
