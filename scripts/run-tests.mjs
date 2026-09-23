@@ -19,6 +19,7 @@ const SUITES = {
       "scripts/test-academy-{engine,diagnostic,assess,mastery}.ts",
       "scripts/test-canon-allbranch-index.ts",
       "scripts/test-tutor-provider.ts",
+      "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
       "scripts/test-research-os-{dedup,merge-actions}.ts",
       "scripts/test-beads-dispatch.ts",
