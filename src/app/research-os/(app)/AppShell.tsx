@@ -34,6 +34,7 @@ const LEARN: Item[] = [
 const TEACH: Item[] = [
   { href: "/research-os/class", label: "Class", hint: "learners, assignments, overrides", match: ["/research-os/class"] },
   { href: "/research-os/review", label: "Review", hint: "productions waiting on you", match: ["/research-os/review"] },
+  { href: "/research-os/nsm/review", label: "Semantic links", hint: "science primes to NSM primes", match: ["/research-os/nsm/review"] },
   { href: "/research-os/merges", label: "Duplicates", hint: "one concept listed twice: merge or keep", match: ["/research-os/merges"] },
   { href: "/research-os/roster", label: "Roster", hint: "members and consent", match: ["/research-os/roster"] },
   { href: "/research-os/edges", label: "Edges", hint: "proposed graph links", match: ["/research-os/edges"] },
