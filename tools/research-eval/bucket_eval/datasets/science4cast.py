@@ -75,7 +75,6 @@ def pull(bronze: Path = BRONZE, manifest: Path = MANIFEST, opener: Opener = _ope
     pin(manifest, doc, ("url", "license", "size", "md5", "sha256", "members"))
     return doc
 
-
 def verify(bronze: Path = BRONZE, manifest: Path = MANIFEST) -> dict:
     held = read_manifest(manifest)
     if held is None:

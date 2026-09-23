@@ -39,3 +39,10 @@ def test_unpaired_rankers_are_refused():
     b = counts_for(base[:-1], labels[:-1])
     with pytest.raises(ValueError):
         paired_positive_bootstrap(m, b, ["all"] * 50, 10, seed=1)
+
+def test_intervals_of_equal_width_must_also_overlap_and_share_a_centre():
+    a = {"low": 0.10, "high": 0.20}
+    assert intervals_agree(a, {"low": 0.105, "high": 0.205})
+    assert not intervals_agree(a, {"low": 0.30, "high": 0.40})
+    assert not intervals_agree(a, {"low": 0.15, "high": 0.25})
+    assert not intervals_agree(a, {"low": 0.10, "high": 0.30})

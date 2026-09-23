@@ -102,7 +102,10 @@ def full_poisson_bootstrap_auc_difference(
 def intervals_agree(a: dict[str, float], b: dict[str, float], tolerance: float = 0.10) -> bool:
     wa = a["high"] - a["low"]
     wb = b["high"] - b["low"]
-    return abs(wa - wb) <= tolerance * max(wa, wb)
+    widest = max(wa, wb)
+    overlap = min(a["high"], b["high"]) - max(a["low"], b["low"])
+    centres = abs((a["high"] + a["low"]) / 2 - (b["high"] + b["low"]) / 2)
+    return abs(wa - wb) <= tolerance * widest and overlap >= 0 and centres <= tolerance * widest
 
 def independent_residual(a: np.ndarray, b: np.ndarray) -> dict[str, float]:
     d = np.asarray(a) - np.asarray(b)

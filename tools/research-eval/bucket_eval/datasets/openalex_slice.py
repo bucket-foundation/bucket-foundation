@@ -17,6 +17,7 @@ from .common import BRONZE, MANIFESTS, digest, pin, require_free
 BUCKET_ROOT = "openalex/data/parquet"
 LICENSE = "CC0-1.0"
 MAX_YEAR = 2023
+SLICE_VERSION = "v2-primary-topic"
 COLUMNS = ["id", "publication_year", "topics.list.element.id", "keywords.list.element.id", "primary_topic.field.id"]
 READ_LIMIT = 150 * 1024**3
 OUTPUT_LIMIT = 15 * 1024**3
@@ -94,7 +95,8 @@ def _ids(lists: pa.ChunkedArray, prefix: str, kind: pa.DataType | None) -> pa.Li
     return pa.ListArray.from_arrays(offsets, pc.cast(values, kind) if kind is not None else values)
 
 def transform(table: pa.Table) -> pa.Table:
-    table = table.filter(pc.less_equal(table["publication_year"], MAX_YEAR))
+    field_id = pc.struct_field(pc.struct_field(table["primary_topic"], [0]), [0])
+    table = table.filter(pc.and_(pc.less_equal(table["publication_year"], MAX_YEAR), pc.is_valid(field_id)))
     if table.num_rows == 0:
         return SCHEMA.empty_table()
     field = pc.struct_field(pc.struct_field(table["primary_topic"], [0]), [0])
@@ -144,7 +146,7 @@ def slice_files(fs: pafs.FileSystem, root: str, files: list[dict[str, Any]], out
 def pilot(fs: pafs.FileSystem | None = None, root: str = BUCKET_ROOT, bronze: Path = BRONZE, manifest: Path = MANIFEST, stride: int = 100, min_free: int | None = None) -> dict[str, Any]:
     fs = fs or s3()
     snap = fetch_manifest(fs, root, bronze)
-    out_dir = bronze / "openalex" / snap.date / "pilot"
+    out_dir = bronze / "openalex" / snap.date / "pilot" / SLICE_VERSION
     if min_free is None:
         require_free(out_dir)
     else:
@@ -168,12 +170,15 @@ def pilot(fs: pafs.FileSystem | None = None, root: str = BUCKET_ROOT, bronze: Pa
             "files": len(snap.files),
             "columns": COLUMNS,
             "max_year": MAX_YEAR,
+            "slice_version": SLICE_VERSION,
+            "rows_kept": "publication_year <= max_year, a primary topic with a field, and at least one topic",
         },
         ("snapshot_date", "manifest_sha256", "record_count", "content_length"),
     )
     return {
         "snapshot_date": snap.date,
         "manifest_sha256": snap.manifest_sha256,
+        "slice_version": SLICE_VERSION,
         "stride": stride,
         "files_sampled": len(chosen),
         "files_total": len(snap.files),

@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import warnings
 from collections import Counter
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from bucket_eval.curveball import curveball_trade, scramble, scramble_within, se
 
 FIXTURE = Path(__file__).parent / "fixtures" / "curveball-parity.json"
 REPO = Path(__file__).resolve().parents[3]
+PARITY_SKIPS: list[str] = []
 
 def columns(rows):
     return Counter(x for r in rows for x in r)
@@ -49,7 +51,10 @@ def test_python_port_matches_the_frozen_typescript_output():
 def test_typescript_source_still_produces_the_fixture():
     source = Path(os.environ.get("CURVEBALL_TS_SOURCE", REPO / "src" / "lib" / "research-os" / "prime-algebra.ts"))
     if not source.exists():
-        pytest.skip(f"{source} is absent on this branch; set CURVEBALL_TS_SOURCE to a checkout that has it")
+        message = f"CURVEBALL PARITY NOT RUN: {source} is absent; set CURVEBALL_TS_SOURCE to a checkout of prime-algebra.ts"
+        PARITY_SKIPS.append(message)
+        warnings.warn(message, UserWarning)
+        pytest.skip(message)
     doc = json.loads(FIXTURE.read_text())
     blob = subprocess.run(["git", "hash-object", str(source)], capture_output=True, text=True, check=True).stdout.strip()
     run = subprocess.run(

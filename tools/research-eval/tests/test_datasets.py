@@ -39,26 +39,26 @@ def works_table(rows):
             "publication_year": pa.array([r[1] for r in rows], pa.int32()),
             "topics": pa.array([[{"id": f"https://openalex.org/T{t}", "display_name": "t", "score": 1.0, "field": {"id": "https://openalex.org/fields/12", "display_name": "f"}} for t in r[2]] for r in rows], pa.list_(topic)),
             "keywords": pa.array([[{"id": f"https://openalex.org/keywords/{k}", "display_name": k, "score": 0.5} for k in r[3]] for r in rows], pa.list_(keyword)),
-            "primary_topic": pa.array([{"id": "x", "field": {"id": "https://openalex.org/fields/12", "display_name": "f"}} if r[2] else None for r in rows], primary),
+            "primary_topic": pa.array([{"id": "x", "field": {"id": "https://openalex.org/fields/12", "display_name": "f"}} if r[2] and (len(r) < 5 or r[4]) else None for r in rows], primary),
         }
     )
 
 def test_openalex_pilot_slices_projects_and_resumes(tmp_path):
     root = tmp_path / "s3" / "openalex" / "data" / "parquet"
     files = []
-    for part, rows in enumerate([[(1, 2010, [10, 11], ["geography"]), (2, 2024, [10], [])], [(3, 2015, [], ["x"]), (4, 2019, [12], ["physics", "optics"])]]):
+    for part, rows in enumerate([[(1, 2010, [10, 11], ["geography"]), (2, 2024, [10], []), (5, 2012, [13], ["y"], False)], [(3, 2015, [], ["x"]), (4, 2019, [12], ["physics", "optics"])]]):
         path = root / "works" / f"updated_date=2026-01-0{part + 1}" / "part_0000.parquet"
         path.parent.mkdir(parents=True)
         pq.write_table(works_table(rows), path)
         files.append({"url": f"s3://openalex/data/parquet/works/updated_date=2026-01-0{part + 1}/part_0000.parquet", "meta": {"content_length": path.stat().st_size, "record_count": len(rows)}})
     total = sum(f["meta"]["content_length"] for f in files)
-    (root / "works" / "manifest.json").write_text(json.dumps({"date": "2026-09-23", "record_count": 4, "content_length": total, "files": files}))
+    (root / "works" / "manifest.json").write_text(json.dumps({"date": "2026-09-23", "record_count": 5, "content_length": total, "files": files}))
     fs = pafs.LocalFileSystem()
     kwargs = dict(fs=fs, root=str(root), bronze=tmp_path / "bronze", manifest=tmp_path / "openalex.json", stride=1, min_free=0)
     first = openalex_slice.pilot(**kwargs)
-    assert (first["files"], first["rows_in"], first["rows_out"]) == (2, 4, 2)
+    assert (first["files"], first["rows_in"], first["rows_out"]) == (2, 5, 2)
     assert first["projected_full_read_bytes"] == first["bytes_read"]
-    parts = sorted((tmp_path / "bronze" / "openalex" / "2026-09-23" / "pilot" / "parts").glob("*.parquet"))
+    parts = sorted((tmp_path / "bronze" / "openalex" / "2026-09-23" / "pilot" / openalex_slice.SLICE_VERSION / "parts").glob("*.parquet"))
     got = pa.concat_tables([pq.read_table(p) for p in parts]).to_pylist()
     assert got == [
         {"work": 1, "year": 2010, "topics": [10, 11], "keywords": ["geography"], "field": 12},
@@ -78,7 +78,6 @@ def test_openalex_refuses_a_file_whose_size_disagrees(tmp_path):
     (root / "works" / "manifest.json").write_text(json.dumps({"date": "2026-09-23", "record_count": 1, "content_length": 1, "files": files}))
     with pytest.raises(RuntimeError, match="manifest lists"):
         openalex_slice.pilot(fs=pafs.LocalFileSystem(), root=str(root), bronze=tmp_path / "bronze", manifest=tmp_path / "m.json", stride=1, min_free=0)
-
 
 def test_pinned_science4cast_bronze_matches_its_manifest():
     target = BRONZE / "science4cast" / science4cast.PUBLISHED / science4cast.FILE
