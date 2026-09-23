@@ -49,12 +49,21 @@ The credit is morphhb's own sentence: "Original work of the Open Scriptures Hebr
 
 Run of 2026-09-23 on the local stack. Of 356 shown Hebrew rows, 166 gain verses, 46.6%, against a go line of 20%: 41 at 0.75 or above (node_words 21, nsm_exponents 20) and 125 between 0.5 and 0.75 (91 and 34). Classical Chinese waits for a text source; the ctext files hold structure only, and bkt-61kn covers it.
 
+## Arabic Root Meanings
+
+bkt-61kn. The Kaikki Arabic dump has 3 root pages, so Arabic triliteral roots showed no meaning. Its verbs name their root (`ar-rootbox`, or `etymon` with `:root`) and their form (`ar-verb`), and `python3 scripts/photon/roots_extract.py --ar-root-gloss` reads them into `ar_root_gloss` in `roots.sqlite`: 1,218 roots, 911 with a Form I verb (Form Iq for quadriliteral roots). Each root takes its Form I verb, else its lowest derived form. The first gloss that does not open with "form", "verbal noun of", "alternative form" or a participle label loses its parentheticals, cuts at the first semicolon, keeps two comma items and caps at 60 characters: ك ت ب reads "to mark on a surface, to write". Hamza seats fold to one letter for matching. A root with no gloss, or with the placeholder "?", takes it.
+
+The root keeps its own confidence. A Form I gloss takes the root's confidence. A derived-form gloss enters at `min(root_confidence, 0.7)` and shows on the row as "meaning from Form II" (or its form). "Uncertain root" keeps its one meaning, doubt about the root. `root_gloss_form` and `root_gloss_confidence` sit on `graph.node_words` and `graph.nsm_exponents` (migration `20260924070000`). A gloss below 0.5 is withheld while its root stays. Lane's Lexicon waits for a digitization with published terms. The Quranic Arabic Corpus is GPL v3 and carries no root meanings, so it is left out. Credit is the Wiktionary via Kaikki.org line already on the page.
+
+Run of 2026-09-23 on the local stack. Of 317 shown Arabic rows (node_words 233, nsm_exponents 84), 76 gain a root meaning, 24.0%, against a go line of 20%: 62 from Form I (42 and 20) and 14 from derived forms (4 and 10). Form I alone would reach 19.6%, a no-go. Sonnet and Opus judged 30 glosses drawn with seed `arabic-root-gloss`, 10 of them from derived forms: both called 27 a fit, 20 of 20 from Form I and 7 of 10 from derived forms (`learning/research-os/arabic-gloss-labels.csv`; `scripts/research-os/arabic_gloss_sample.py`). The founder's check of the same 30 is still to come. Chinese root texts wait for a text source, since the ctext files hold structure only, and stay on the bead.
+
 ## Rerun
 
 ```bash
 python3 scripts/photon/roots_extract.py                      # bronze to silver, resumes where it stopped
 python3 scripts/photon/roots_extract.py --counts             # print per-language counts
 python3 scripts/research-os/oshb_verses.py                   # fetch the pinned morphhb text if missing, write verse silver
+python3 scripts/photon/roots_extract.py --ar-root-gloss      # Arabic root meanings from verbs
 python3 scripts/research-os/node_words.py --dry-run          # match and report, no writes
 python3 scripts/research-os/node_words.py                    # replace this source's rows in graph.node_words
 npm run test:polingual-roots

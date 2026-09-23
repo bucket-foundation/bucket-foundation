@@ -81,3 +81,21 @@ test("the OSHB credit quotes morphhb's license word for word", async () => {
   assert.equal(OSHB_ATTRIBUTION.href, "https://github.com/openscriptures/morphhb");
   assert.match(OSHB_ATTRIBUTION.wlc, /Westminster Leningrad Codex, which is in the public domain/);
 });
+
+test("an Arabic root meaning from a derived form names its form and leaves the root sure", async () => {
+  const { glossFormLabel } = await import("../src/lib/research-os/node-words");
+  const derived = toNodeWord(row("ar", "علم", { root_lang: "ar", root_form: "ع ل م", root_gloss: "to teach, to instruct", root_confidence: 0.9, root_gloss_form: "II", root_gloss_confidence: 0.7 }));
+  assert.equal(derived.rootGloss, "to teach, to instruct");
+  assert.equal(derived.rootGlossForm, "II");
+  assert.equal(glossFormLabel(derived.rootGlossForm), "meaning from Form II");
+  assert.equal(derived.rootUncertain, false);
+  const base = toNodeWord(row("ar", "كتب", { root_lang: "ar", root_form: "ك ت ب", root_gloss: "to write", root_confidence: 0.9, root_gloss_form: null, root_gloss_confidence: 0.9 }));
+  assert.equal(base.rootGlossForm, null);
+  assert.equal(glossFormLabel(base.rootGlossForm), null);
+  const weak = toNodeWord(row("ar", "علم", { root_lang: "ar", root_form: "ع ل م", root_gloss: "to teach", root_confidence: 0.9, root_gloss_form: "II", root_gloss_confidence: 0.4 }));
+  assert.equal(weak.rootGloss, null);
+  assert.equal(weak.rootForm, "ع ل م");
+  assert.equal(weak.rootGlossForm, null);
+  const doubted = toNodeWord(row("ar", "كتب", { root_lang: "ar", root_form: "ك ت ب", root_gloss: "to write", root_confidence: 0.6 }));
+  assert.equal(doubted.rootUncertain, true);
+});

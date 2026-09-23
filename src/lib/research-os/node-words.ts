@@ -24,6 +24,7 @@ export interface NodeWord {
   rootLangName: string | null;
   rootForm: string | null;
   rootGloss: string | null;
+  rootGlossForm: string | null;
   chain: ChainStep[];
   rootTexts: RootText[];
   enTerm: string | null;
@@ -51,6 +52,8 @@ export interface NodeWordRow {
   confidence: number | string | null;
   root_confidence?: number | string | null;
   root_source?: string | null;
+  root_gloss_form?: string | null;
+  root_gloss_confidence?: number | string | null;
   source: string;
 }
 
@@ -91,6 +94,14 @@ function readConfidence(v: unknown): number {
   return Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
 }
 
+export function glossShown(v: unknown): boolean {
+  return v === null || v === undefined || readConfidence(v) >= HIDE_BELOW;
+}
+
+export function glossFormLabel(form: string | null): string | null {
+  return form ? `meaning from Form ${form}` : null;
+}
+
 export function toNodeWord(row: NodeWordRow): NodeWord {
   const confidence = readConfidence(row.confidence);
   const rootConfidence = row.root_form ? (row.root_confidence === undefined ? confidence : readConfidence(row.root_confidence)) : 0;
@@ -104,7 +115,8 @@ export function toNodeWord(row: NodeWordRow): NodeWord {
     rootLang: keepRoot ? row.root_lang || null : null,
     rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
     rootForm: keepRoot ? row.root_form || null : null,
-    rootGloss: keepRoot ? row.root_gloss || null : null,
+    rootGloss: keepRoot && glossShown(row.root_gloss_confidence) ? row.root_gloss || null : null,
+    rootGlossForm: keepRoot && glossShown(row.root_gloss_confidence) && row.root_gloss ? row.root_gloss_form || null : null,
     chain: keepRoot ? asArray<ChainStep>(row.chain) : [],
     rootTexts: rootTextsFor(row.root_texts, keepRoot),
     enTerm: row.en_term || null,

@@ -1,4 +1,4 @@
-import { HIDE_BELOW, UNCERTAIN_BELOW, langName, rootTextsFor, type RootText } from "./node-words";
+import { HIDE_BELOW, UNCERTAIN_BELOW, glossShown, langName, rootTextsFor, type RootText } from "./node-words";
 
 export { HIDE_BELOW, UNCERTAIN_BELOW };
 
@@ -32,6 +32,8 @@ export interface NsmExponentRow {
   root_lang: string | null;
   root_form: string | null;
   root_gloss: string | null;
+  root_gloss_form?: string | null;
+  root_gloss_confidence?: number | string | null;
   colex_with?: string[] | null;
   root_source?: string | null;
   root_texts?: unknown;
@@ -53,6 +55,7 @@ export interface NsmExponent {
   rootLangName: string | null;
   rootForm: string | null;
   rootGloss: string | null;
+  rootGlossForm: string | null;
   colexWith: string[];
   rootSource: string | null;
   rootTexts: RootText[];
@@ -111,7 +114,8 @@ export function toExponent(row: NsmExponentRow, opts: { includeHidden?: boolean 
     rootLang: keepRoot ? row.root_lang || null : null,
     rootLangName: keepRoot && row.root_lang ? langName(row.root_lang) : null,
     rootForm: keepRoot ? row.root_form || null : null,
-    rootGloss: keepRoot ? row.root_gloss || null : null,
+    rootGloss: keepRoot && glossShown(row.root_gloss_confidence) ? row.root_gloss || null : null,
+    rootGlossForm: keepRoot && glossShown(row.root_gloss_confidence) && row.root_gloss ? row.root_gloss_form || null : null,
     rootSource: keepRoot ? row.root_source || null : null,
     colexWith: Array.isArray(row.colex_with) ? row.colex_with.filter((x): x is string => typeof x === "string") : [],
     rootTexts: keepRoot && !rootHidden ? rootTextsFor(row.root_texts, true) : [],

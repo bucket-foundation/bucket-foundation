@@ -162,3 +162,12 @@ test("an exponent carries its Hebrew Bible verses only while its root shows", ()
   assert.deepEqual(toExponent({ ...base, root_confidence: 0.8, root_texts: "junk" }).rootTexts, []);
   assert.deepEqual(toExponent(exp("see", "he", "ראה", 0.9)).rootTexts, []);
 });
+
+test("an NSM exponent shows a derived-form root meaning with its form", () => {
+  const base = { ...exp("know", "ar", "علم", 0.9), root_lang: "ar", root_form: "ع ل م", root_gloss: "to teach", root_confidence: 0.9 };
+  const e = toExponent({ ...base, root_gloss_form: "II", root_gloss_confidence: 0.7 });
+  assert.equal(e.rootGlossForm, "II");
+  assert.equal(e.rootUncertain, false);
+  assert.equal(toExponent({ ...base, root_gloss_form: "II", root_gloss_confidence: 0.3 }).rootGloss, null);
+  assert.equal(toExponent(base).rootGlossForm, null);
+});
