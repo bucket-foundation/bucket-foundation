@@ -111,6 +111,15 @@
       "basis": "A third-party paper's title with no text written here.",
       "evidence": ["scripts/research-os/ingest/intake-all.ts"],
       "rightsRevision": 1
+    },
+    {
+      "id": "canon-timeline",
+      "match": { "seedFile": "src/data/canon-timeline.json" },
+      "allow": true,
+      "permission": "project-authored",
+      "basis": "Titles, years and coordinates composed for the canon timeline in this repository, under its MIT LICENSE.",
+      "evidence": ["src/data/canon-timeline.json"],
+      "rightsRevision": 1
     }
   ],
   "quote": [

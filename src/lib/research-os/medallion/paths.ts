@@ -1,4 +1,4 @@
-export const BRONZE_ROOTS = ["_intake/", "bucket-canon/", "learning/app/corpus/", "supabase/seed/", "canon-figures/", "src/data/"] as const;
+export const BRONZE_ROOTS = ["_intake/", "bucket-canon/", "learning/app/corpus/", "supabase/seed/", "canon-figures/", "src/data/", "archaeology/"] as const;
 
 export const MAX_REPO_PATH = 512;
 

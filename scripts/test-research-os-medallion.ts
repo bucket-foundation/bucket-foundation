@@ -1,13 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileSourceId, parseSourceId } from "../src/lib/research-os/evidence/identity";
-import { parsePolicy } from "../src/lib/research-os/evidence/rights";
+import { indexRights, parsePolicy, seedIds } from "../src/lib/research-os/evidence/rights";
+import { seedSlugs } from "./research-os/medallion/lib/repo-io";
 import { byteLength, sha256Hex } from "../src/lib/research-os/evidence/text";
 import { admissionRow, bronzeRecord, directoryManifest, rightsForTypes, runRevision, UNKNOWN_RIGHTS } from "../src/lib/research-os/medallion/bronze";
 import { lineageFor, type LineageNode } from "../src/lib/research-os/medallion/lineage";
-import { checkRepoPath, isTranscriptPath } from "../src/lib/research-os/medallion/paths";
+import { BRONZE_ROOTS, checkRepoPath, isTranscriptPath } from "../src/lib/research-os/medallion/paths";
 import { planMedallion, silverKey, type MedallionIO, type PlanNode } from "../src/lib/research-os/medallion/plan";
 import { edgeCandidates, edgeKey, edgeProposalRow, factorAndDependent, FACTOR_KINDS, nodeProposalRow, queueable, splitImport } from "../src/lib/research-os/medallion/proposals";
 import type { IngestEdgeDraft, IngestNodeDraft } from "../src/lib/research-os/ingest/types";
@@ -37,6 +38,20 @@ function withReviewers<T>(emails: string, run: () => T): T {
   }
 }
 
+test("the bronze path CHECK in the latest migration names the same roots as BRONZE_ROOTS", () => {
+  const dir = path.join(ROOT, "supabase", "migrations");
+  const latest = readdirSync(dir)
+    .filter((f) => f.endsWith(".sql") && readFileSync(path.join(dir, f), "utf8").includes("bronze_file_paths_relative check"))
+    .sort()
+    .pop();
+  assert.ok(latest, "no migration defines bronze_file_paths_relative");
+  const text = readFileSync(path.join(dir, latest), "utf8");
+  const block = text.slice(text.lastIndexOf("bronze_file_paths_relative check"));
+  const m = /repo_path ~ '\^\(([^)]+)\)\/'/.exec(block);
+  assert.ok(m, `${latest} carries no root alternation`);
+  assert.deepEqual(m[1].split("|").sort(), BRONZE_ROOTS.map((r) => r.replace(/\/$/, "")).sort(), latest);
+});
+
 test("a file source id names bytes and parses back", () => {
   const id = fileSourceId(HASH.toUpperCase());
   assert.equal(id, `file:${HASH}`);
@@ -46,7 +61,7 @@ test("a file source id names bytes and parses back", () => {
 });
 
 test("repo paths are relative and inside the allowed roots", () => {
-  for (const good of ["_intake/concept-digests/a.md", "bucket-canon/02-physics/sub-claims/x/", "learning/app/corpus/02-physics.json", "supabase/seed/research-os-sky-blue.json", "canon-figures/figures.json", "src/data/canon-sites.json"]) {
+  for (const good of ["_intake/concept-digests/a.md", "bucket-canon/02-physics/sub-claims/x/", "learning/app/corpus/02-physics.json", "supabase/seed/research-os-sky-blue.json", "canon-figures/figures.json", "src/data/canon-sites.json", "archaeology/pleiades/579885/place.json"]) {
     assert.deepEqual(checkRepoPath(good), { ok: true, path: good }, good);
   }
   const cases: [string, string][] = [
@@ -437,4 +452,22 @@ test("--strict-shadow turns a shadow failure into a failed run and leaves a clea
   assert.equal(strictShadowFails(["node", "x.ts", "--apply", "--strict-shadow"], 1), true);
   assert.equal(strictShadowFails(["node", "x.ts", "--apply", "--strict-shadow"], 0), false);
   assert.equal(strictShadowFails(["node", "x.ts", "--apply"], 1), false);
+});
+
+test("seed files name their ids by nodes, events or JSONL rows, and any other shape is refused", () => {
+  assert.deepEqual(Array.from(seedIds("a.json", JSON.stringify({ nodes: [{ slug: "x" }, { slug: 3 }] }))), ["x"]);
+  assert.deepEqual(Array.from(seedIds("a.json", JSON.stringify({ events: [{ id: "lascaux" }, { id: "giza" }] }))), ["lascaux", "giza"]);
+  assert.deepEqual(Array.from(seedIds("a.jsonl", '{"id":"e1"}\n\n{"id":"e2"}\n')), ["e1", "e2"]);
+  assert.throws(() => seedIds("a.jsonl", '{"id":"e1"}\n{"name":"e2"}\n'), /a\.jsonl:2 has no string id/);
+  assert.throws(() => seedIds("a.json", JSON.stringify({ rows: [] })), /has no nodes or events list/);
+});
+
+test("the canon-timeline rule admits the timeline events project-authored", () => {
+  const seeds = seedSlugs(POLICY);
+  const timeline = seeds.get("src/data/canon-timeline.json");
+  assert.ok(timeline && timeline.has("lascaux"));
+  const decision = indexRights(POLICY, { slug: "lascaux", provenanceType: null }, seeds);
+  assert.equal(decision.status, "allowed");
+  assert.equal(decision.status === "allowed" && decision.rule.id, "canon-timeline");
+  assert.equal(decision.status === "allowed" && decision.rule.permission, "project-authored");
 });
