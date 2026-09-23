@@ -58,7 +58,7 @@
     "register-deriv-non-com": "npx ts-node ./scripts/registerDerivativeNonCommercial.ts",
     "register-deriv-com": "npx ts-node ./scripts/registerDerivativeCommercial.ts",
     "create-spg-collection": "npx ts-node ./scripts/utils/createSpgNftCollection.ts",
-    "beads:export": "bd export -o .beads/issues.jsonl",
+    "beads:export": "node scripts/beads-export.mjs",
     "test:polingual-roots": "python3 -m unittest scripts/photon/test_polingual_roots.py scripts/research-os/test_roots_v2.py",
     "test:tools-ui": "node scripts/research-tools-ui.mjs",
     "test:nsm-exponents": "python3 -m unittest scripts/research-os/test_nsm_exponents.py scripts/research-os/test_clics_extract.py",
