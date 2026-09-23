@@ -1,0 +1,134 @@
+{
+  "result": {
+    "job_id": "j_0f2d372bc520403aabb7",
+    "tool": "materialsfeaturizer",
+    "render": "json",
+    "output": {
+      "formula": "NaCl",
+      "composition": {
+        "Na": 1,
+        "Cl": 1
+      },
+      "atomic_fractions": {
+        "Na": 0.5,
+        "Cl": 0.5
+      },
+      "n_elements": 2,
+      "molar_mass_g_per_mol": 58.44,
+      "descriptors": {
+        "atomic_number": {
+          "mean": 14,
+          "min": 11,
+          "max": 17,
+          "range": 6,
+          "avg_deviation": 3,
+          "mode": 11
+        },
+        "atomic_weight": {
+          "mean": 29.22,
+          "min": 22.99,
+          "max": 35.45,
+          "range": 12.46,
+          "avg_deviation": 6.23,
+          "mode": 22.99
+        },
+        "electronegativity": {
+          "mean": 2.045,
+          "min": 0.93,
+          "max": 3.16,
+          "range": 2.23,
+          "avg_deviation": 1.115,
+          "mode": 0.93
+        },
+        "atomic_radius": {
+          "mean": 140,
+          "min": 100,
+          "max": 180,
+          "range": 80,
+          "avg_deviation": 40,
+          "mode": 180
+        },
+        "melting_point": {
+          "mean": 271.275,
+          "min": 171.6,
+          "max": 370.95,
+          "range": 199.35,
+          "avg_deviation": 99.675,
+          "mode": 370.95
+        },
+        "period": {
+          "mean": 3,
+          "min": 3,
+          "max": 3,
+          "range": 0,
+          "avg_deviation": 0,
+          "mode": 3
+        },
+        "group": {
+          "mean": 9,
+          "min": 1,
+          "max": 17,
+          "range": 16,
+          "avg_deviation": 8,
+          "mode": 1
+        },
+        "n_valence": {
+          "mean": 4,
+          "min": 1,
+          "max": 7,
+          "range": 6,
+          "avg_deviation": 3,
+          "mode": 1
+        }
+      },
+      "feature_vector": {
+        "atomic_number_mean": 14,
+        "atomic_number_range": 6,
+        "atomic_number_avg_deviation": 3,
+        "atomic_weight_mean": 29.22,
+        "atomic_weight_range": 12.46,
+        "atomic_weight_avg_deviation": 6.23,
+        "electronegativity_mean": 2.045,
+        "electronegativity_range": 2.23,
+        "electronegativity_avg_deviation": 1.115,
+        "atomic_radius_mean": 140,
+        "atomic_radius_range": 80,
+        "atomic_radius_avg_deviation": 40,
+        "melting_point_mean": 271.275,
+        "melting_point_range": 199.35,
+        "melting_point_avg_deviation": 99.675,
+        "period_mean": 3,
+        "period_range": 0,
+        "period_avg_deviation": 0,
+        "group_mean": 9,
+        "group_range": 16,
+        "group_avg_deviation": 8,
+        "n_valence_mean": 4,
+        "n_valence_range": 6,
+        "n_valence_avg_deviation": 3
+      },
+      "n_features": 24,
+      "demo": true,
+      "method": "Composition parsed to atomic fractions; for each tabulated elemental property (atomic weight, Pauling electronegativity, atomic radius, melting point, period, group, valence-electron count) the composition-weighted mean, range (max−min), average deviation, and mode-element value are computed, the Magpie/ElementProperty descriptor family (Ward et al. 2016) used as ML features for inorganic-material property prediction. Built-in element table; no network, no GPU.",
+      "note": "DEMO: NaCl (rock salt). 50/50 Na+Cl → mean Pauling EN = (0.93 + 3.16)/2 = 2.045; molar mass ≈ 58.44 g/mol. Field tool for materials: 'ML in materials science' is already a top recurring research topic, but featurization pipelines are hand-rolled per group. These are composition-only (Magpie) descriptors, structural descriptors (coordination, Voronoi, site features) need a crystal structure and are a documented follow-up.",
+      "ground_truth": {
+        "formula": "NaCl",
+        "mean_electronegativity": 2.045,
+        "molar_mass_g_per_mol": 58.44,
+        "n_elements": 2
+      }
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "materialsfeaturizer",
+        "at": "2026-09-23T03:46:51.522833+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

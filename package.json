@@ -60,6 +60,7 @@
     "create-spg-collection": "npx ts-node ./scripts/utils/createSpgNftCollection.ts",
     "beads:dispatch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/beads/dispatch-pending.ts",
     "test:polingual-roots": "python3 -m unittest scripts/photon/test_polingual_roots.py",
+    "test:tools-ui": "node scripts/research-tools-ui.mjs",
     "test:beads-dispatch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-beads-dispatch.ts",
     "test:evidence-worker": "cd tools/evidence-search && python3 -m unittest discover -s tests -t .",
     "test:evidence-live": "EVIDENCE_REQUIRE_LIVE=1 npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-research-os-evidence-worker-live.ts",

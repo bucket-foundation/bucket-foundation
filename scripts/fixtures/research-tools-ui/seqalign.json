@@ -1,0 +1,39 @@
+{
+  "result": {
+    "job_id": "j_73e2f5e648e04c98a70c",
+    "tool": "seqalign",
+    "render": "json",
+    "output": {
+      "demo": true,
+      "mode": "global",
+      "algorithm": "Needleman-Wunsch (global)",
+      "matrix": "blosum62",
+      "gap_penalty": -10,
+      "seq_a_length": 10,
+      "seq_b_length": 7,
+      "score": -14,
+      "aligned_a": "HEAGAWGHEE",
+      "aligned_b": "--P-AWHEAE",
+      "midline": "  . ||...|",
+      "alignment_length": 10,
+      "matches": 3,
+      "mismatches": 4,
+      "gaps": 3,
+      "percent_identity": 42.86,
+      "method": "Exact dynamic programming. Global = Needleman-Wunsch (1970): full-length DP with linear gap penalty and a traceback from the bottom-right cell. Local = Smith-Waterman (1981): the same recurrence clamped at 0, traceback from the matrix maximum. Protein scoring uses the real BLOSUM62 matrix (Henikoff & Henikoff 1992); nucleotide scoring uses an identity matrix. CPU-only, no heuristics.",
+      "note": "DEMO: HEAGAWGHEE vs PAWHEAE, the classic Durbin et al. global alignment example, scored with BLOSUM62. Field tool for biomed-bio (the largest field): pairwise alignment is the bedrock of every sequence pipeline. This is the exact optimal alignment (not a BLAST/minimap heuristic), so it is O(m·n), capped at 3000 residues per sequence. Multiple alignment + affine (open/extend) gap penalties are a documented follow-up."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "seqalign",
+        "at": "2026-09-23T03:48:06.329756+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

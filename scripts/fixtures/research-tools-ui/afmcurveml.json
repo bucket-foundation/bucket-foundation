@@ -1,0 +1,41 @@
+{
+  "result": {
+    "job_id": "j_48fdfe13d3834a51ae97",
+    "tool": "afmcurveml",
+    "render": "json",
+    "output": {
+      "method": "contact-point detection + sphere Hertz/Sneddon modulus fit (scipy)",
+      "demo": true,
+      "geometry": "sphere",
+      "radius_nm": 1000,
+      "n_points": 300,
+      "contact_point_index": 105,
+      "contact_point_z_nm": 526.756,
+      "max_indentation_nm": 973.244,
+      "fit": {
+        "youngs_modulus_pa": 10556.101,
+        "youngs_modulus_kpa": 10.5561,
+        "geometry": "sphere",
+        "poisson_ratio": 0.5,
+        "r_squared": 0.99891,
+        "converged": true
+      },
+      "adhesion_nn": 0.05647,
+      "fit_quality": "excellent",
+      "note": "DEMO MODE: Real AFM force-curve analysis: contact point from the baseline-noise rise, then a Hertz (sphere) / Sneddon (cone) least-squares fit for Young's modulus E in SI units. Adhesion = retract-minimum below baseline. ν=0.5 (incompressible) is the standard cell assumption. Curve is synthetic with a known modulus (ground_truth_modulus_kpa).",
+      "ground_truth_modulus_kpa": 10
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "afmcurveml",
+        "at": "2026-09-23T03:45:44.611148+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "result": {
+    "job_id": "j_554113def6e54cdf94f7",
+    "tool": "methodsmatcher",
+    "render": "json",
+    "output": {
+      "question": "How do I measure mitochondrial membrane potential in live cells?",
+      "degraded": false,
+      "recommended_methods": [
+        {
+          "method": "Mitochondrion",
+          "papers_in_set": 12,
+          "total_citations": 5202
+        },
+        {
+          "method": "Flow cytometry",
+          "papers_in_set": 4,
+          "total_citations": 3160
+        },
+        {
+          "method": "Apoptosis",
+          "papers_in_set": 4,
+          "total_citations": 3038
+        },
+        {
+          "method": "Programmed cell death",
+          "papers_in_set": 4,
+          "total_citations": 2956
+        },
+        {
+          "method": "Disease",
+          "papers_in_set": 3,
+          "total_citations": 1536
+        },
+        {
+          "method": "Inner mitochondrial membrane",
+          "papers_in_set": 3,
+          "total_citations": 1336
+        },
+        {
+          "method": "Reactive oxygen species",
+          "papers_in_set": 3,
+          "total_citations": 1082
+        },
+        {
+          "method": "Redox",
+          "papers_in_set": 2,
+          "total_citations": 2650
+        }
+      ],
+      "our_tools": [
+        {
+          "slug": "patchseqml",
+          "name": "PatchSeqML",
+          "answers": "auto-analyze patch-clamp electrophysiology — events, kinetics, IV curves",
+          "matched_signals": [
+            "membrane"
+          ],
+          "score": 0.3162
+        }
+      ],
+      "exemplar_papers": [
+        {
+          "title": "Reactive Species and Antioxidants. Redox Biology Is a Fundamental Theme of Aerobic Life",
+          "venue": "PLANT PHYSIOLOGY",
+          "year": 2006,
+          "cited_by_count": 2396,
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/1475431"
+        },
+        {
+          "title": "Features of apoptotic cells measured by flow cytometry",
+          "venue": "Cytometry",
+          "year": 1992,
+          "cited_by_count": 1913,
+          "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cyto.990130802"
+        },
+        {
+          "title": "VDAC oligomers form mitochondrial pores to release mtDNA fragments and promote lupus-like disease",
+          "venue": "Science",
+          "year": 2019,
+          "cited_by_count": 795,
+          "url": "https://lirias.kuleuven.be/retrieve/b3c3e304-5d5b-41a4-8361-94a5dd915b3b"
+        },
+        {
+          "title": "Why does metabolism scale with temperature?",
+          "venue": "Functional Ecology",
+          "year": 2004,
+          "cited_by_count": 700,
+          "url": "https://doi.org/10.1111/j.0269-8463.2004.00841.x"
+        },
+        {
+          "title": "Mitochondrial Fusion in Human Cells Is Efficient, Requires the Inner Membrane Potential, and Is Mediated by Mitofusins",
+          "venue": "Molecular Biology of the Cell",
+          "year": 2002,
+          "cited_by_count": 674,
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/138638"
+        }
+      ],
+      "recommendation": "For \"How do I measure mitochondrial membrane potential in live cells?\", the literature most often applies: Mitochondrion, Flow cytometry, Apoptosis. On Bucket, run PatchSeqML — it auto-analyze patch-clamp electrophysiology — events, kinetics, IV curves."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "methodsmatcher",
+        "at": "2026-09-23T05:20:54.950035+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "result": {
+    "job_id": "j_d5ea55cbecaa408c9c9e",
+    "tool": "toxinchannelfinder",
+    "render": "json",
+    "output": {
+      "method": "curated venom-peptide pharmacology KB + live OpenAlex co-occurrence fusion",
+      "input": "ziconotide",
+      "identity": {
+        "mode": "name",
+        "name": "ziconotide"
+      },
+      "degraded": false,
+      "matched_families": [
+        {
+          "family": "omega-conotoxin",
+          "source": "Cav2.2 (N-type) blocker — e.g. ω-conotoxin MVIIA / ziconotide",
+          "canonical_targets": [
+            "Cav"
+          ]
+        }
+      ],
+      "n_targets": 4,
+      "targets": [
+        {
+          "rank": 1,
+          "channel": "Cav",
+          "channel_name": "Voltage-gated calcium channel (Cav)",
+          "confidence": 0.97,
+          "basis": "curated pharmacology + literature",
+          "from_families": [
+            "omega-conotoxin"
+          ],
+          "literature_mentions": 18,
+          "exemplars": [
+            {
+              "title": "The Physiology, Pathology, and Pharmacology of Voltage-Gated Calcium Channels and Their Future Therapeutic Potential",
+              "year": 2015,
+              "cited_by_count": 1135,
+              "url": "https://pharmrev.aspetjournals.org/content/pharmrev/67/4/821.full.pdf"
+            },
+            {
+              "title": "Intrathecal Ziconotide in the Treatment of Refractory Pain in Patients With Cancer or AIDS",
+              "year": 2004,
+              "cited_by_count": 654,
+              "url": "https://doi.org/10.1001/jama.291.1.63"
+            },
+            {
+              "title": "Ziconotide: Neuronal Calcium Channel Blocker for Treating Severe Chronic Pain",
+              "year": 2004,
+              "cited_by_count": 614,
+              "url": "https://doi.org/10.2174/0929867043363884"
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "channel": "Kv",
+          "channel_name": "Voltage-gated potassium channel (Kv)",
+          "confidence": 0.075,
+          "basis": "literature co-occurrence only",
+          "from_families": [],
+          "literature_mentions": 3,
+          "exemplars": [
+            {
+              "title": "Neurotoxins and Their Binding Areas on Voltage-Gated Sodium Channels",
+              "year": 2011,
+              "cited_by_count": 289,
+              "url": "https://www.frontiersin.org/articles/10.3389/fphar.2011.00071/pdf"
+            },
+            {
+              "title": "Cloning, synthesis, and characterization of αO-conotoxin GeXIVA, a potent α9α10 nicotinic acetylcholine receptor antagonist",
+              "year": 2015,
+              "cited_by_count": 113,
+              "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4522777"
+            },
+            {
+              "title": "Conotoxins-New Vistas for Peptide Therapeutics",
+              "year": 2000,
+              "cited_by_count": 101,
+              "url": "https://doi.org/10.2174/1381612003399653"
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "channel": "SK",
+          "channel_name": "Small-conductance Ca2+-activated K+ channel (SK)",
+          "confidence": 0.075,
+          "basis": "literature co-occurrence only",
+          "from_families": [],
+          "literature_mentions": 3,
+          "exemplars": [
+            {
+              "title": "Toxins and drug discovery",
+              "year": 2014,
+              "cited_by_count": 210,
+              "url": "https://www.sciencedirect.com/science/article/pii/S0041010114003511/pdf"
+            },
+            {
+              "title": "Effects of intrathecal administration of ziconotide, a selective neuronal N-type calcium channel blocker, on mechanical allodynia and heat hyperalgesia in a rat model of postoperative pain",
+              "year": 2000,
+              "cited_by_count": 123,
+              "url": "https://doi.org/10.1016/s0304-3959(99)00197-9"
+            },
+            {
+              "title": "Ziconotide, an Intrathecally Administered N‐Type Calcium Channel Antagonist for the Treatment of Chronic Pain",
+              "year": 2005,
+              "cited_by_count": 108,
+              "url": "https://doi.org/10.1592/phco.2005.25.8.1084"
+            }
+          ]
+        },
+        {
+          "rank": 4,
+          "channel": "Nav",
+          "channel_name": "Voltage-gated sodium channel (Nav)",
+          "confidence": 0.05,
+          "basis": "literature co-occurrence only",
+          "from_families": [],
+          "literature_mentions": 2,
+          "exemplars": [
+            {
+              "title": "Neurotoxins and Their Binding Areas on Voltage-Gated Sodium Channels",
+              "year": 2011,
+              "cited_by_count": 289,
+              "url": "https://www.frontiersin.org/articles/10.3389/fphar.2011.00071/pdf"
+            },
+            {
+              "title": "Conotoxins-New Vistas for Peptide Therapeutics",
+              "year": 2000,
+              "cited_by_count": 101,
+              "url": "https://doi.org/10.2174/1381612003399653"
+            }
+          ]
+        }
+      ],
+      "note": "Targets fuse a curated venom-peptide pharmacology KB (real, literature-established toxin→channel mappings) with live OpenAlex literature co-occurrence. Sequence input is classified by cysteine framework + motif (a real disulfide-scaffold signal); a full BLAST/UniProt-toxin similarity search is a documented heavier path. Confidence is: curated hits score high, literature-only hits are flagged and capped."
+    },
+    "artifacts": [],
+    "provenance": [
+      {
+        "action": "run",
+        "tool": "toxinchannelfinder",
+        "at": "2026-09-23T05:20:55.834941+00:00",
+        "by": "tools-gateway/v1"
+      }
+    ],
+    "canon_candidate": true,
+    "canon_tier": "derived",
+    "demo": false
+  }
+}
