@@ -1,35 +1,9 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { ancestorsOf, computeAncestorClosure, type PrereqAncestorRow } from "../src/lib/research-os/closure";
 import { computeFrontier } from "../src/lib/research-os/frontier";
 import type { GraphNode, GraphEdge, LearnerNodeState, Stage } from "../src/lib/research-os/types";
-
-const SEED_PATH = join(__dirname, "..", "supabase", "seed", "research-os-sky-blue.json");
-
-interface SeedNode {
-  slug: string;
-  title: string;
-  kind: GraphNode["kind"];
-  tier: number;
-  branch: string;
-  summary: string;
-}
-interface SeedEdge {
-  from: string;
-  to: string;
-  kind: GraphEdge["kind"];
-}
-interface Seed {
-  target_slug: string;
-  nodes: SeedNode[];
-  edges: SeedEdge[];
-}
-
-function loadSeed(): Seed {
-  return JSON.parse(readFileSync(SEED_PATH, "utf8")) as Seed;
-}
+import { loadSeed, type Seed } from "./lib/test-harness";
 
 function toGraph(seed: Seed): { nodes: GraphNode[]; edges: GraphEdge[]; bySlug: Map<string, GraphNode> } {
   const nodes: GraphNode[] = seed.nodes.map((n) => ({

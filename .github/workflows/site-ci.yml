@@ -110,42 +110,11 @@ jobs:
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
             echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
           } > .env.local
-      - name: evidence append against real Postgres
+      - name: database suite against real Postgres
         if: steps.paths.outputs.run == 'true'
         env:
           RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-append.ts
-      - name: evidence admissions against real Postgres
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-evidence-admissions-db.ts
-      - name: connection paging against real Postgres
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-connections-paging.ts
-      - name: access paging against real Postgres
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-access-paging.ts
-      - name: quote receipts against real Postgres
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-quote-receipts-db.ts
-      - name: read authorization at the routes
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-          TS_NODE_BASEURL: "./"
-        run: npx ts-node -r tsconfig-paths/register --compiler-options '{"module":"commonjs","baseUrl":"."}' scripts/test-research-os-read-access-routes.ts
-      - name: import files against real Postgres
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-import-files-db.ts
+        run: node scripts/run-tests.mjs --suite db
       - name: node words loader against real Postgres
         if: steps.paths.outputs.run == 'true'
         env:
@@ -153,11 +122,6 @@ jobs:
         run: |
           set -a; . "$RUNNER_TEMP/supa.env"; set +a
           NODE_WORDS_DB_URL="$DB_URL" python3 -m unittest scripts/photon/test_node_words_db.py
-      - name: evidence search route authorization against real accounts
-        if: steps.paths.outputs.run == 'true'
-        env:
-          RESEARCH_OS_REQUIRE_DB: "1"
-        run: npm run test:evidence-route-access
 
   # The loop as a person, over a fresh local stack. On demand: it pulls the
   # Supabase images and seeds the graph, which is too slow for every pull
