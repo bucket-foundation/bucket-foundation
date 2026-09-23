@@ -25,6 +25,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   level_overrides: [{ columns: ["id"], nullable: [] }],
   medallion_withdrawn_nodes: [{ columns: ["node_id"], nullable: [] }],
   merge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["keep_slug", "drop_slug"], nullable: [] }],
+  node_embeddings: [{ columns: ["node_id", "model"], nullable: [] }],
   node_grants: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "grantee_group", "role"], nullable: ["grantee_group"] }, { columns: ["node_id", "grantee_id", "role"], nullable: ["grantee_id"] }],
   node_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["key"], nullable: [] }],
   node_words: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "lang", "word"], nullable: [] }],
