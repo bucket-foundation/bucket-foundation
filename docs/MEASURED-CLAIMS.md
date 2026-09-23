@@ -53,6 +53,14 @@ The same seam produces false accusations, at a rate worth naming. Three gates fi
 
 So a gate firing on someone else's work is a claim about their work, and the gate's author is the one person positioned to check it before reporting it. Both accusations collapsed on reading the accused code. The failure to do that, earlier the same day, is how one session told the other that a refusal message still worked when its pattern had never matched the new text.
 
+## Green on both sides, broken together
+
+`class/page.tsx` renders its load error inside parentheses: `Could not load classes ({loadError})`. One branch set a short sentinel and gave it its own render line. Another set a full sentence as the error value. Each was green on its own branch. Together they read "Could not load classes (The server could not finish the read. Try again in a moment.)."
+
+No test on either branch could have caught it, because the defect is in the combination and neither branch contains both halves. It surfaced because the two sides touched the same line and the merge asked someone to look. A defect in a combination that does not conflict textually has nothing to surface it at all.
+
+So a merge conflict is a prompt rather than a chore. The lines two branches both touched are the lines most likely to hold something neither branch could see, and resolving by taking a side ends the conflict without answering the question.
+
 ## The related shape
 
 A check that cannot fail reads as coverage. A `SEALED` assertion matching a string that is always present, and a browser test clicking the element that was already selected, both pass for reasons unrelated to what they claim to prove. The habit that catches both: run the check against the unfixed code and watch it fail before trusting that it passed.
