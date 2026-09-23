@@ -16,6 +16,13 @@ test("the scanner finds a read that pages neither way", () => {
   assert.deepEqual(found[0].reasons.length, 2, "no range and no order");
 });
 
+test("a handler passed to a route wrapper keeps the name it is exported under", () => {
+  const src = `export const GET = withResearchOsRoute({ auth: "none" }, async () => svc.from("nodes").select("id").in("id", ids));`;
+  const found = scanFile("fixture.ts", src);
+  assert.equal(found.length, 1);
+  assert.equal(found[0].anchor, "fixture.ts::GET::nodes::1");
+});
+
 test("a literal list is bounded by the source, so it is not a finding", () => {
   const src = `const r = await svc.from("class_members").select("x").in("role", ["teacher", "librarian"]);`;
   assert.deepEqual(scanFile("fixture.ts", src), [], "a two-element literal cannot overflow");
