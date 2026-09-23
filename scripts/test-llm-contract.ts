@@ -165,8 +165,6 @@ type Caller = {
   run: (s: Scenario) => Promise<unknown>;
 };
 
-let ipCounter = 0;
-
 const CALLERS: Caller[] = [
   {
     name: "research-os callGroundedModelWithUsage",
@@ -200,20 +198,28 @@ const CALLERS: Caller[] = [
     name: "academy tutor POST",
     applies: (s) => !("provider" in s),
     run: async (s) => {
-      const mod = module.require(path.join(ROOT, "src/app/api/academy/tutor/route.ts"));
+      const handler = module.require(path.join(ROOT, "src/app/api/academy/tutor/handler.ts"));
+      const client = module.require(path.join(ROOT, "src/lib/llm/client.ts"));
+      const limits = module.require(path.join(ROOT, "src/lib/llm/daily-limit.ts"));
+      const local = client.localLlmConfig(20);
       if (s.callEnv) setEnv(s.callEnv);
-      ipCounter += 1;
       const req = new NextRequest("http://localhost/api/academy/tutor", {
         method: "POST",
-        headers: { "content-type": "application/json", "x-forwarded-for": `10.0.0.${ipCounter}` },
+        headers: { "content-type": "application/json", authorization: "Bearer contract" },
         body: JSON.stringify({
           question: "What is it?",
           atomId: "atom-1",
-          grounding: { title: "Lesson", summary: "A summary.", lesson: "Body text." },
           history: [{ role: "user", content: "earlier" }, { role: "assistant", content: "reply" }],
         }),
       });
-      const res: Response = await mod.POST(req);
+      const res: Response = await handler.handleTutor(req, {
+        verifyUser: async () => ({ id: "contract-user", email: null }),
+        provider: client.selectProvider,
+        limiter: () => limits.memoryLimiter(),
+        findAtom: () => ({ atom: { id: "atom-1", title: "Lesson", summary: "A summary.", lesson: "Body text." }, titleOf: () => null }),
+        complete: client.complete,
+        local,
+      });
       return { status: res.status, headers: Array.from(res.headers.entries()).sort(), body: await res.json() };
     },
   },
