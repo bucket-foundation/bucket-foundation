@@ -211,6 +211,15 @@ test("the graph check follows chains through evidence", () => {
 test("nearest by makeup: attention in the prime basis, where a prime every composite holds weighs nothing", () => {
   const m = buildMakeup("kin", snap, none)!;
   assert.deepEqual(m.nearest.map((n) => [n.slug, n.shared.map((s) => s.slug)]), [["dynamics", ["vectors"]]]);
-  assert.equal(m.nearest[0].weight, 1);
+  assert.equal(m.nearest[0].score, 1);
+  assert.equal(m.nearest[0].sameMakeup, 0);
   assert.deepEqual(buildMakeup("lone", snap, none)!.nearest, []);
+});
+
+test("nearest by makeup groups composites built from the same primes and breaks ties by depth, then title", () => {
+  const idea = (id: string, title: string): MakeupNode => ({ id, slug: id, title, branch: "02-physics", kind: "concept", provenanceType: "reference" });
+  const ns = [idea("a", "A"), idea("b", "B"), idea("c", "C"), idea("q", "Query"), idea("z1", "Zeta"), idea("y1", "Alpha"), idea("x1", "Beta"), idea("deep", "Aardvark"), idea("other", "Other")];
+  const es = [pre("a", "q"), pre("b", "q"), pre("a", "z1"), pre("b", "z1"), pre("a", "y1"), pre("b", "y1"), pre("z1", "deep"), pre("a", "x1"), pre("c", "x1"), pre("c", "other")];
+  const m = buildMakeup("q", snapshotFrom(ns, es), none)!;
+  assert.deepEqual(m.nearest.map((n) => [n.slug, n.sameMakeup]), [["y1", 2], ["x1", 0]]);
 });

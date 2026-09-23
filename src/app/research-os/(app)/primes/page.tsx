@@ -101,7 +101,7 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
       <section className="mt-8">
         <h2 className={LABEL}>coverage</h2>
         <p className="mt-1 text-[12px] text-[color:var(--basalt-3)] max-w-[70ch]">
-          Give each prime a prime number, the most penetrating 2, then 3, 5, 7, and a composite the product over its primes. Coverage is the Dirichlet series over the distinct products the graph has built, divided by the Euler product over every combination of primes. A larger s weights the combinations of common primes.
+          The share of possible prime combinations the graph has built, from 0 to 1. Each combination counts less the more primes it holds and the rarer they are; at s = 2 that discount is steeper, so combinations of a few common primes dominate.
         </p>
         <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
           {a.coverage.map((c) => (
@@ -116,7 +116,7 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
 
       <Listed
         title="unexplored combinations"
-        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. If primes met at random, the graph would hold at least one composite for ${f.expectedAtLeastOne} of them. Ranked by the count chance predicts. ${f.withinBranch} lie inside one branch.`}
+        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. Ranked by the count chance predicts. ${f.withinBranch} lie inside one branch.`}
       >
         {f.top.map((x, i) => (
           <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
@@ -214,7 +214,6 @@ function Report({ r }: { r: PrimesReport }) {
       <Ranked title="deepest composites" hint="The longest chains of factors down to a prime, with the distinct primes each rests on." rows={r.deepest} figure={(d) => `depth ${d.depth}, ${d.primes} ${d.primes === 1 ? "prime" : "primes"}`} />
       <Ranked title="widest composites" hint="The composites that rest on the most distinct primes." rows={r.widest} figure={(d) => `${d.primes} primes, depth ${d.depth}`} />
 
-      <Algebra a={r.algebra} />
 
       <section className="mt-8">
         <h2 className={LABEL}>unfactored by kind</h2>
@@ -244,6 +243,8 @@ function Report({ r }: { r: PrimesReport }) {
           </ul>
         )}
       </section>
+
+      <Algebra a={r.algebra} />
     </>
   );
 }

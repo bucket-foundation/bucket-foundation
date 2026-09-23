@@ -15,6 +15,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
 import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
+import { forgetPrimesReport } from "../primes-report";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -295,6 +296,7 @@ export async function decideEdge(
   // and of every branch holding a node that rests on the target; a
   // derives_from edge leaves learning order, and the closure, alone.
   forgetMakeupSnapshot();
+  forgetPrimesReport();
   // The edge stands either way; a failed rebuild leaves routing stale, so
   // the reply carries a warning the page shows.
   const stale: string[] = [];
@@ -495,6 +497,7 @@ export async function decideNode(
     }
   }
   forgetMakeupSnapshot();
+  forgetPrimesReport();
   const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
   return ok({
     decision: "approved",

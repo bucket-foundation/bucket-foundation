@@ -35,7 +35,7 @@ export type Makeup = {
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];
   irreducible: { status: "pending" | "confirmed" | "rejected"; justification: string } | null;
-  nearest: (MakeupNode & { weight: number; score: number; shared: MakeupNode[] })[];
+  nearest: (MakeupNode & { score: number; shared: MakeupNode[]; sameMakeup: number })[];
 };
 
 export type MakeupProposal = {
@@ -90,14 +90,28 @@ function basisOf(dec: Map<string, Decomposition>): PrimeBasis {
 }
 
 export function nearestByMakeup(nodeId: string, snap: Snapshot, k = 8): Makeup["nearest"] {
-  const out: Makeup["nearest"] = [];
-  for (const a of attend(snap.dec, [nodeId], { k, basis: basisOf(snap.dec) })) {
+  const title = (id: string) => snap.byId.get(id)?.title ?? id;
+  const depth = (id: string) => snap.dec.get(id)?.depth ?? 0;
+  const hits = attend(snap.dec, [nodeId], {
+    k: Number.MAX_SAFE_INTEGER,
+    basis: basisOf(snap.dec),
+    tieBreak: (a, b) => depth(a) - depth(b) || title(a).localeCompare(title(b)) || a.localeCompare(b),
+  });
+  const groups = new Map<string, Makeup["nearest"][number]>();
+  for (const a of hits) {
     const n = snap.byId.get(a.id);
     if (!n) continue;
+    const key = Array.from(snap.dec.get(a.id)?.signature.keys() ?? []).sort().join("\u0000");
+    const seen = groups.get(key);
+    if (seen) {
+      seen.sameMakeup++;
+      continue;
+    }
+    if (groups.size >= k) continue;
     const shared = a.sharedPrimes.map((p) => snap.byId.get(p)).filter((x): x is MakeupNode => !!x);
-    out.push({ ...n, weight: a.weight, score: a.score, shared });
+    groups.set(key, { ...n, score: a.score, shared, sameMakeup: 0 });
   }
-  return out;
+  return Array.from(groups.values());
 }
 
 const VERDICT_ORDER: Record<string, number> = { confirmed: 0, unchecked: 1, refuted: 2 };

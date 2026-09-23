@@ -4,7 +4,7 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildPrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
+import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
 
 const node = (id: string, kind = "concept", branch = "02-physics"): ReportNode => ({ id, slug: id, title: id.toUpperCase(), kind, branch });
 
@@ -61,7 +61,7 @@ test("an empty graph gives an empty report", () => {
 test("the algebra sections: coverage, unexplored combinations, primes that travel together, implied factors, reach", () => {
   const r0 = buildPrimesReport(nodes, edges, new Set());
   assert.deepEqual(r0.algebra.coverage.map((c) => c.s), [1, 2]);
-  assert.ok(Math.abs(r0.algebra.coverage[0].coverage - 1 / 6 / 2) < 1e-12);
+  assert.ok(Math.abs(r0.algebra.coverage[0].coverage - 1 / 6 / 1) < 1e-12);
   assert.deepEqual(r0.algebra.reach[0].coefficients, [0, 1, 1]);
 
   const ns = [node("a"), node("b"), node("c"), node("m", "concept", "01-mathematics"), ...["x", "y", "z", "w", "v"].map((id) => node(id))];
@@ -74,4 +74,32 @@ test("the algebra sections: coverage, unexplored combinations, primes that trave
   assert.equal(r.frontier.top.length, 5);
   assert.deepEqual(r.implied.map((x) => `${x.node.slug}->${x.factor.slug}:${x.mutual}`), ["a->b:true"]);
   assert.deepEqual(r.together.map((x) => `${x.a.slug}${x.b.slug}`), ["ab"]);
+});
+
+test("primes with no branch never share a branch in the unexplored list", () => {
+  const ns = [{ ...node("a"), branch: null }, { ...node("b"), branch: null }, node("x"), node("y")];
+  const pre = (from: string, to: string): ReportEdge => ({ from_id: from, to_id: to, kind: "prerequisite", confidence: 1 });
+  const r = buildPrimesReport(ns, [pre("a", "x"), pre("b", "y")], new Set()).algebra;
+  assert.equal(r.frontier.pairs, 1);
+  assert.equal(r.frontier.withinBranch, 0);
+});
+
+test("the report is read once a minute, shared by concurrent loads, and forgotten after a decision", async () => {
+  forgetPrimesReport();
+  let reads = 0;
+  const read = async () => {
+    reads++;
+    await new Promise((r) => setTimeout(r, 5));
+    return buildPrimesReport(nodes, edges, new Set());
+  };
+  const svc = {} as Parameters<typeof loadPrimesReport>[0];
+  const [a, b] = await Promise.all([loadPrimesReport(svc, 60_000, read), loadPrimesReport(svc, 60_000, read)]);
+  assert.equal(a, b);
+  assert.equal(reads, 1);
+  const c: PrimesReport = await loadPrimesReport(svc, 60_000, read);
+  assert.equal(c, a);
+  forgetPrimesReport();
+  await loadPrimesReport(svc, 60_000, read);
+  assert.equal(reads, 2);
+  forgetPrimesReport();
 });

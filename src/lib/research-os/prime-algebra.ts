@@ -51,35 +51,15 @@ export function primeBasis(dec: Map<string, Decomposition>): PrimeBasis {
   return { composites: n, df, idf, vectors, norms };
 }
 
-export type AttendOptions = { k?: number; tau?: number; maskToCone?: boolean; basis?: PrimeBasis };
+export type AttendOptions = { k?: number; tau?: number; basis?: PrimeBasis; tieBreak?: (a: string, b: string) => number };
 
 export type Attention = { id: string; score: number; weight: number; sharedPrimes: string[] };
-
-export function factorCone(dec: Map<string, Decomposition>, seeds: string[]): Set<string> {
-  const cone = new Set<string>();
-  for (const dir of ["factors", "dependents"] as const) {
-    const seen = new Set<string>(seeds);
-    const stack = seeds.slice();
-    while (stack.length) {
-      const d = dec.get(stack.pop()!);
-      if (!d) continue;
-      const next = dir === "factors" ? d.factors.map((f) => f.id) : d.dependents;
-      for (const id of next) {
-        if (seen.has(id)) continue;
-        seen.add(id);
-        cone.add(id);
-        stack.push(id);
-      }
-    }
-  }
-  for (const s of seeds) cone.delete(s);
-  return cone;
-}
 
 export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts: AttendOptions = {}): Attention[] {
   const k = opts.k ?? 8;
   const tau = opts.tau ?? 0.1;
   const basis = opts.basis ?? primeBasis(dec);
+  const tieBreak = opts.tieBreak ?? ((a: string, b: string) => (dec.get(a)?.depth ?? 0) - (dec.get(b)?.depth ?? 0) || a.localeCompare(b));
   const q = new Map<string, number>();
   for (const id of queryIds) for (const [p, w] of Array.from(basis.vectors.get(id) ?? new Map<string, number>())) q.set(p, (q.get(p) ?? 0) + w);
   let qsq = 0;
@@ -87,10 +67,9 @@ export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts
   const qn = Math.sqrt(qsq);
   if (qn === 0) return [];
   const seeds = new Set(queryIds);
-  const cone = opts.maskToCone ? factorCone(dec, queryIds) : null;
   const scored: { id: string; score: number; shared: { p: string; c: number }[] }[] = [];
   for (const [id, x] of Array.from(basis.vectors)) {
-    if (seeds.has(id) || (cone && !cone.has(id)) || dec.get(id)?.status !== "composite") continue;
+    if (seeds.has(id) || dec.get(id)?.status !== "composite") continue;
     const vn = basis.norms.get(id) ?? 0;
     if (vn === 0) continue;
     let dot = 0;
@@ -114,7 +93,7 @@ export function attend(dec: Map<string, Decomposition>, queryIds: string[], opts
       weight: Math.exp((s.score - top) / tau) / z,
       sharedPrimes: s.shared.sort((a, b) => b.c - a.c || a.p.localeCompare(b.p)).map((x) => x.p),
     }))
-    .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
+    .sort((a, b) => b.score - a.score || tieBreak(a.id, b.id))
     .slice(0, k);
 }
 
@@ -131,16 +110,6 @@ export function leibnizPrimes(dec: Map<string, Decomposition>): LeibnizPrime[] {
   const ranked = Array.from(df).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   const qs = firstPrimes(ranked.length);
   return ranked.map(([id, f], i) => ({ id, q: qs[i], df: f }));
-}
-
-export function leibnizNumber(d: Decomposition, primes: LeibnizPrime[]): bigint {
-  const q = new Map(primes.map((p) => [p.id, p.q]));
-  let n = BigInt(1);
-  for (const p of Array.from(d.signature.keys())) {
-    const v = q.get(p);
-    if (v !== undefined) n *= BigInt(v);
-  }
-  return n;
 }
 
 function supportKey(ids: string[]): string {
@@ -164,7 +133,7 @@ function logSumExp(xs: number[]): number {
   return m + Math.log(t);
 }
 
-export type Coverage = { s: number; logD: number; logE: number; coverage: number; supports: number };
+export type Coverage = { s: number; logD: number; logClosure: number; coverage: number; supports: number };
 
 export function coverage(dec: Map<string, Decomposition>, s: number, primes = leibnizPrimes(dec)): Coverage {
   const logQ = new Map(primes.map((p) => [p.id, Math.log(p.q)]));
@@ -172,7 +141,8 @@ export function coverage(dec: Map<string, Decomposition>, s: number, primes = le
   const logD = logSumExp(supports.map((sup) => -s * sup.reduce((t, p) => t + (logQ.get(p) ?? 0), 0)));
   let logE = 0;
   for (const p of primes) logE += Math.log1p(Math.exp(-s * Math.log(p.q)));
-  return { s, logD, logE, coverage: Math.exp(logD - logE), supports: supports.length };
+  const logClosure = logE > 0 ? logE + Math.log(-Math.expm1(-logE)) : -Infinity;
+  return { s, logD, logClosure, coverage: logClosure === -Infinity ? 0 : Math.exp(logD - logClosure), supports: supports.length };
 }
 
 export type Nonface = { primes: string[]; expected: number };
@@ -185,7 +155,7 @@ export type Frontier = {
   nonfaces: Nonface[];
 };
 
-export function frontier(dec: Map<string, Decomposition>, maxSize: 2 | 3 = 3, group?: Map<string, string>): Frontier {
+export function frontier(dec: Map<string, Decomposition>, maxSize: 2 | 3 = 3): Frontier {
   const comps = compositeList(dec);
   const n = comps.length;
   const words = Math.ceil(n / 32) || 1;
@@ -194,12 +164,12 @@ export function frontier(dec: Map<string, Decomposition>, maxSize: 2 | 3 = 3, gr
     .filter(([, f]) => f > 0)
     .map(([id]) => id)
     .sort();
-  const bits = new Map<string, Uint32Array>();
-  for (const id of ids) bits.set(id, new Uint32Array(words));
-  comps.forEach((d, i) => {
+  const bits = ids.map(() => new Uint32Array(words));
+  const index = new Map(ids.map((id, i) => [id, i]));
+  comps.forEach((d, c) => {
     for (const p of Array.from(d.signature.keys())) {
-      const b = bits.get(p);
-      if (b) b[i >>> 5] |= 1 << (i & 31);
+      const i = index.get(p);
+      if (i !== undefined) bits[i][c >>> 5] |= 1 << (c & 31);
     }
   });
   const meets = (sets: Uint32Array[]) => {
@@ -212,13 +182,13 @@ export function frontier(dec: Map<string, Decomposition>, maxSize: 2 | 3 = 3, gr
   };
   const expected = (set: string[]) => set.reduce((t, p) => t * ((df.get(p) ?? 0) / n), n);
   const out: Nonface[] = [];
-  const face = new Set<string>();
+  const above: Set<number>[] = ids.map(() => new Set<number>());
   let pairs = 0;
   let triples = 0;
   for (let a = 0; a < ids.length; a++) {
     for (let b = a + 1; b < ids.length; b++) {
-      if (meets([bits.get(ids[a])!, bits.get(ids[b])!])) face.add(`${a},${b}`);
-      else if (!group || group.get(ids[a]) === group.get(ids[b])) {
+      if (meets([bits[a], bits[b]])) above[a].add(b);
+      else {
         pairs++;
         out.push({ primes: [ids[a], ids[b]], expected: expected([ids[a], ids[b]]) });
       }
@@ -226,20 +196,20 @@ export function frontier(dec: Map<string, Decomposition>, maxSize: 2 | 3 = 3, gr
   }
   if (maxSize === 3) {
     for (let a = 0; a < ids.length; a++)
-      for (let b = a + 1; b < ids.length; b++) {
-        if (!face.has(`${a},${b}`)) continue;
-        for (let c = b + 1; c < ids.length; c++) {
-          if (!face.has(`${a},${c}`) || !face.has(`${b},${c}`)) continue;
-          const set = [ids[a], ids[b], ids[c]];
-          if (group && (group.get(ids[a]) !== group.get(ids[b]) || group.get(ids[a]) !== group.get(ids[c]))) continue;
-          if (meets(set.map((p) => bits.get(p)!))) continue;
+      for (const b of Array.from(above[a]))
+        for (const c of Array.from(above[b])) {
+          if (!above[a].has(c) || meets([bits[a], bits[b], bits[c]])) continue;
           triples++;
+          const set = [ids[a], ids[b], ids[c]];
           out.push({ primes: set, expected: expected(set) });
         }
-      }
   }
   out.sort((x, y) => y.expected - x.expected || x.primes.join().localeCompare(y.primes.join()));
   return { composites: n, pairs, triples, expectedAtLeastOne: out.filter((x) => x.expected >= 1).length, nonfaces: out };
+}
+
+export function withinGroup(nonfaces: Nonface[], group: (prime: string) => string): Nonface[] {
+  return nonfaces.filter((x) => x.primes.every((p) => group(p) === group(x.primes[0])));
 }
 
 export type PrimePair = { a: string; b: string; joint: number; dfA: number; dfB: number; pmi: number };

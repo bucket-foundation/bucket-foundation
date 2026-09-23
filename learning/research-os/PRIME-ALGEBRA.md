@@ -12,21 +12,21 @@ idf(p) = log((N + 1) / (df(p) + 1)), after Sparck Jones.
 x_v(p) = log(1 + m_v(p)) * idf(p). The log damps multiplicities, which clamp at 10^12.
 score(q, v) = cos(x_q, x_v), and weight(q, v) = exp(score / tau) / sum of exp(score / tau) over candidates.
 
-A query of several nodes sums their vectors. Candidates are composites sharing at least one prime with the query. `maskToCone` keeps only the seed nodes' factor cone, everything above and below them, the way graph attention masks to neighbours. `attend(dec, queryIds, { k, tau, maskToCone })` returns each hit's weight, cosine and shared primes, the largest contribution first. A prime every composite holds gets idf 0 and drops out, which is the behaviour an equals-sign node needs.
+A query of several nodes sums their vectors. Candidates are composites sharing at least one prime with the query. `attend(dec, queryIds, { k, tau, tieBreak })` returns each hit's cosine, softmax weight and shared primes, the largest contribution first; equal cosines order by depth, then by the tie-break. A prime every composite holds gets idf 0 and drops out, which is the behaviour an equals-sign node needs.
 
-On the node page, over the idea layer: Folding funnel's nearest are Anfinsen's hypothesis, the mutational stability change and two-state folding at cosine 1 (weight 0.19 each at tau 0.1), then amyloid aggregation at 0.99.
+The node page shows the cosine, since a softmax weight depends on how many candidates there are. Composites with the same set of primes collapse into one row, the shallowest and then the first by title shown, with "and N more with the same primes". Over the idea layer, Folding funnel's nearest row is Two-state folding equilibrium at cosine 1, with 3 more on the same primes (Anfinsen's hypothesis among them), then Contact order and folding rate at 0.96.
 
 ## M2: Leibniz Numbers and the Euler Gap
 
-Rank primes by penetration and give them 2, 3, 5, 7 in order. A node's Leibniz number is n(v) = product of q_i over i in S(v), squarefree, a bigint. Divisibility is containment.
+Rank primes by penetration and give them 2, 3, 5, 7 in order. A node's Leibniz number is n(v) = product of q_i over i in S(v), squarefree. Divisibility is containment.
 
 D(s) = sum of n^(-s) over the distinct Leibniz numbers of composites.
-E(s) = product over primes of (1 + q^(-s)): every subset of primes once.
-coverage(s) = D(s) / E(s), at most 1 because each distinct number counts once.
+E(s) = product over primes of (1 + q^(-s)): every subset of primes once, the empty set included.
+coverage(s) = D(s) / (E(s) - 1), from 0 to 1: every nonempty subset built gives 1.
 
-Both are summed in log space (log-sum-exp for D, log1p for E), so a composite on 200 primes stays finite where the plain product underflows.
+Both are summed in log space (log-sum-exp for D, log1p for E, expm1 for the minus one), so a composite on 200 primes stays finite where the plain product underflows.
 
-The frontier: realized supports and their subsets form a simplicial complex. A minimal nonface is a set of primes no composite combines while every proper subset is combined somewhere. `frontier` lists those of size 2 and 3, each ranked by the count independence predicts, N * product of df(i) / N. Passing each prime's branch restricts the list to sets inside one branch.
+The frontier: realized supports and their subsets form a simplicial complex. A minimal nonface is a set of primes no composite combines while every proper subset is combined somewhere. `frontier` lists those of size 2 and 3, each ranked by the count independence predicts, N * product of df(i) / N. Triples are only tried on triangles of combined pairs. `withinGroup` keeps the sets inside one branch; a prime with no branch is a group of its own. The primes page caches the whole report for a minute and drops it after a review decision.
 
 ## M3: Primes That Travel Together
 
@@ -45,14 +45,14 @@ Run on 2026-09-22 over the local Supabase graph, public nodes, all factor edges:
 
 | Measure | Value |
 |---|---|
-| coverage(1) | 0.285 |
-| coverage(2) | 0.292 |
+| coverage(1) | 0.345 |
+| coverage(2) | 0.854 |
 | Minimal nonfaces, pairs | 668 |
 | Minimal nonfaces, triples | 63 |
-| Nonfaces independence expects at least once | 253 |
+| Nonfaces chance predicts at least once | 253 |
 | Nonfaces inside one branch | 214 |
 
-The top unexplored combinations, expected count under independence, seen 0:
+The top unexplored combinations, the count chance predicts, seen 0:
 
 | Primes | Expected |
 |---|---|

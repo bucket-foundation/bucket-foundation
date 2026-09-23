@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, type DepEdge } from "../src/lib/research-os/primes";
-import { attend, coverage, depthPolynomials, factorCone, firstPrimes, frontier, implications, leibnizNumber, leibnizPrimes, pmiPairs, primeBasis } from "../src/lib/research-os/prime-algebra";
+import { attend, coverage, depthPolynomials, firstPrimes, frontier, implications, leibnizPrimes, pmiPairs, primeBasis, withinGroup } from "../src/lib/research-os/prime-algebra";
 
 const pre = (from: string, to: string): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite" });
 const near = (a: number, b: number) => assert.ok(Math.abs(a - b) < 1e-9, `${a} vs ${b}`);
@@ -23,13 +23,13 @@ test("attention ranks by cosine in the prime basis and softmaxes with temperatur
   const ic = Math.log(2);
   const cosW = (ia * ia) / (Math.sqrt(ia * ia + ib * ib) * Math.sqrt(ia * ia + ic * ic));
   const out = attend(graph, ["u"], { tau: 0.5 });
-  assert.deepEqual(out.map((x) => x.id), ["top", "v", "w"]);
+  assert.deepEqual(out.map((x) => x.id), ["v", "top", "w"]);
   near(out[0].score, 1);
   near(out[2].score, cosW);
   const z = 2 * Math.exp(0) + Math.exp((cosW - 1) / 0.5);
   near(out[0].weight, 1 / z);
   near(out[2].weight, Math.exp((cosW - 1) / 0.5) / z);
-  assert.deepEqual(out[0].sharedPrimes, ["b", "a"]);
+  assert.deepEqual(out[1].sharedPrimes, ["b", "a"]);
   assert.deepEqual(out[2].sharedPrimes, ["a"]);
   assert.equal(attend(graph, ["u"], { k: 1 }).length, 1);
 });
@@ -38,13 +38,14 @@ test("a query of several nodes sums their vectors", () => {
   const out = attend(graph, ["w", "t"]);
   const ids = out.map((x) => x.id);
   assert.ok(!ids.includes("w") && !ids.includes("t"));
-  assert.deepEqual(ids, ["top", "u", "v"]);
+  assert.deepEqual(ids, ["u", "v", "top"]);
   assert.deepEqual(out[0].sharedPrimes, ["a"]);
 });
 
-test("the cone mask keeps attention to the seed's factors and dependents", () => {
-  assert.deepEqual(Array.from(factorCone(graph, ["u"])).sort(), ["a", "b", "top"]);
-  assert.deepEqual(attend(graph, ["u"], { maskToCone: true }).map((x) => x.id), ["top"]);
+test("equal scores break by depth, then by the tie-break given", () => {
+  assert.deepEqual(attend(graph, ["u"]).map((x) => x.id), ["v", "top", "w"]);
+  assert.deepEqual(attend(graph, ["u"], { tieBreak: (a, b) => b.localeCompare(a) }).map((x) => x.id), ["v", "top", "w"]);
+  assert.deepEqual(attend(graph, ["w"], { tieBreak: (a, b) => b.localeCompare(a) }).slice(1).map((x) => x.id), ["v", "u", "top"]);
 });
 
 test("a node with no primes attends to nothing", () => {
@@ -53,23 +54,22 @@ test("a node with no primes attends to nothing", () => {
   assert.deepEqual(attend(d, ["missing"]), []);
 });
 
-test("Leibniz numbers give the most penetrating prime 2 and divide by containment", () => {
+test("Leibniz numbers give the most penetrating prime 2", () => {
   assert.deepEqual(firstPrimes(6), [2, 3, 5, 7, 11, 13]);
   const lp = leibnizPrimes(graph);
   assert.deepEqual(lp.map((p) => `${p.id}=${p.q}`), ["a=2", "b=3", "c=5"]);
-  assert.equal(leibnizNumber(graph.get("u")!, lp), BigInt(6));
-  assert.equal(leibnizNumber(graph.get("w")!, lp), BigInt(10));
-  assert.equal(leibnizNumber(graph.get("top")!, lp) % leibnizNumber(graph.get("a")!, lp), BigInt(0));
 });
 
-test("coverage is the Dirichlet series over distinct supports divided by the Euler product", () => {
+test("coverage is the Dirichlet series over distinct supports divided by the Euler product less the empty set", () => {
   const c1 = coverage(graph, 1);
   assert.equal(c1.supports, 3);
   near(Math.exp(c1.logD), 1 / 6 + 1 / 10 + 1 / 5);
-  near(Math.exp(c1.logE), 1.5 * (4 / 3) * 1.2);
-  near(c1.coverage, (1 / 6 + 1 / 10 + 1 / 5) / 2.4);
+  near(Math.exp(c1.logClosure), 2.4 - 1);
+  near(c1.coverage, (1 / 6 + 1 / 10 + 1 / 5) / 1.4);
   const c2 = coverage(graph, 2);
-  near(c2.coverage, (1 / 36 + 1 / 100 + 1 / 25) / ((1 + 1 / 4) * (1 + 1 / 9) * (1 + 1 / 25)));
+  near(c2.coverage, (1 / 36 + 1 / 100 + 1 / 25) / ((1 + 1 / 4) * (1 + 1 / 9) * (1 + 1 / 25) - 1));
+  const full = decompose([], [pre("a", "x"), pre("b", "x"), pre("a", "y"), pre("b", "z")]);
+  near(coverage(full, 1).coverage, 1);
 });
 
 test("coverage stays finite where the plain product would underflow", () => {
@@ -79,7 +79,7 @@ test("coverage stays finite where the plain product would underflow", () => {
   const logN = firstPrimes(200).reduce((t, q) => t + Math.log(q), 0);
   assert.ok(Math.exp(-4 * logN) === 0);
   near(c.logD, -4 * logN);
-  assert.ok(Number.isFinite(c.logE));
+  assert.ok(Number.isFinite(c.logClosure));
 });
 
 test("minimal nonfaces: a pair never combined, ranked by expected count", () => {
@@ -89,8 +89,9 @@ test("minimal nonfaces: a pair never combined, ranked by expected count", () => 
   assert.deepEqual(f.nonfaces[0].primes, ["b", "c"]);
   near(f.nonfaces[0].expected, 5 * (3 / 5) * (2 / 5));
   assert.equal(f.expectedAtLeastOne, 1);
-  assert.equal(frontier(graph, 3, new Map([["a", "m"], ["b", "m"], ["c", "p"]])).pairs, 0);
-  assert.equal(frontier(graph, 3, new Map([["a", "m"], ["b", "p"], ["c", "p"]])).pairs, 1);
+  const branch = (m: Record<string, string>) => (p: string) => m[p];
+  assert.equal(withinGroup(f.nonfaces, branch({ a: "m", b: "m", c: "p" })).length, 0);
+  assert.equal(withinGroup(f.nonfaces, branch({ a: "m", b: "p", c: "p" })).length, 1);
 });
 
 test("minimal nonfaces: a triple whose pairs all occur", () => {
