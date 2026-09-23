@@ -1,30 +1,11 @@
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
+import { writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { inferEdges } from "../../../src/lib/research-os/ingest/infer";
 import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
-import type { ReviewItem } from "../../../src/lib/research-os/ingest/types";
 import { buildNodePool } from "./lib/build-node-pool";
+import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 
 const OUT_DIR = join(__dirname, "out");
-
-function readExistingReviewList(): ReviewItem[] {
-  const p = join(OUT_DIR, "review-list.json");
-  if (!existsSync(p)) return [];
-  try {
-    const parsed = JSON.parse(readFileSync(p, "utf8"));
-    return Array.isArray(parsed?.items) ? parsed.items : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeReviewList(items: ReviewItem[]): void {
-  mkdirSync(OUT_DIR, { recursive: true });
-  writeFileSync(
-    join(OUT_DIR, "review-list.json"),
-    JSON.stringify({ generated_at: new Date().toISOString(), items }, null, 2) + "\n",
-  );
-}
 
 async function main() {
   const { nodes, existingPrerequisitePairs } = buildNodePool();
