@@ -60,6 +60,54 @@ begin
   if res->>'status' is distinct from 'rejected' then raise exception 'the rejection failed: %', res; end if;
 end $$;
 
+do $$
+declare
+  h text := encode(gen_random_bytes(32), 'hex');
+  a uuid := (select v::uuid from t_ids where k = 'a');
+  b uuid := (select v::uuid from t_ids where k = 'b');
+  u uuid := (select v::uuid from t_ids where k = 'u');
+  sa uuid;
+  sb uuid;
+  res jsonb;
+  span jsonb := '{"edtf": "1643-01-04", "start_year": 1643, "end_year": 1643, "start_min": 1643, "start_max": 1643, "end_min": 1643, "end_max": 1643, "precision": "day", "calendar": "julian", "qualifier": "none", "uncertainty": {"kind": "point", "params": {}}}';
+begin
+  res := graph.admit_bronze_sources(repeat('e', 64), repeat('f', 64), 'draft', jsonb_build_array(jsonb_build_object(
+    'source_id', 'file:' || h, 'source_revision', md5(h) || md5(h), 'repo_path', '_intake/history/wikidata-figures/fixture/born.tsv',
+    'body_hash', h, 'original_hash', h, 'extraction_revision', 'medallion-file/1 nfc-lf/1',
+    'rights_rule', 'wikidata-figures-cc0', 'rights_revision', 1, 'allow_index', true, 'permission_evidence', '{}'::jsonb)));
+  insert into graph.silver_items (source_id, source_revision, kind, span_start, span_end, text_hash, parser, parser_revision, confidence, subject, proposal)
+    values ('file:' || h, md5(h) || md5(h), 'claim', 0, 10, repeat('1', 64), 'history-import', 'history-import/wikidata-1', 0.8,
+            (select slug from graph.nodes where id = a), jsonb_build_object('qid', 'Q900000001', 'roles', jsonb_build_object('born', span), 'subject_kind', 'figure'))
+    returning id into sa;
+  insert into graph.silver_items (source_id, source_revision, kind, span_start, span_end, text_hash, parser, parser_revision, confidence, subject, proposal)
+    values ('file:' || h, md5(h) || md5(h), 'claim', 10, 20, repeat('2', 64), 'history-import', 'history-import/wikidata-1', 0.8,
+            (select slug from graph.nodes where id = b), jsonb_build_object('qid', 'Q900000001', 'roles', jsonb_build_object('born', span), 'subject_kind', 'figure'))
+    returning id into sb;
+  insert into t_ids values ('sa', sa::text), ('sb', sb::text), ('dates', 'file:' || h);
+
+  if (select status from graph.silver_items where id = sb) <> 'candidate' then raise exception 'fixture silver starts off candidate'; end if;
+  perform graph.withdraw_identity_dependents(b, array['Q900000001'], 'the Wikidata link was rejected: a different person', 'rejected');
+  if (select status from graph.silver_items where id = sb) <> 'rejected' then raise exception 'a rejected link left its dates live'; end if;
+
+  res := graph.promote_history_factoid(sa, u, true);
+  if not (res->>'ok')::boolean then raise exception 'the linked date did not promote: %', res; end if;
+  if not exists (select 1 from graph.history_anchors where subject_id = a) then raise exception 'the linked date is not an anchor'; end if;
+
+  res := graph.withdraw_external_id('Q900000001', u, 'the wrong Isaac Newton');
+  if not (res->>'ok')::boolean then raise exception 'the link was not withdrawn: %', res; end if;
+  if exists (select 1 from graph.factoids where silver_item_id = sa and status = 'active') then raise exception 'withdrawing the link left its date in gold'; end if;
+  if (select status from graph.silver_items where id = sa) <> 'withdrawn' then raise exception 'withdrawing the link left its silver live'; end if;
+  if not exists (select 1 from graph.withdrawn_factoids w join graph.factoids f on f.id = w.factoid_id where f.silver_item_id = sa and w.reviewed_at is null) then
+    raise exception 'the withdrawn gold date was not queued for re-review';
+  end if;
+  if exists (select 1 from graph.history_anchors where subject_id = a) then raise exception 'the withdrawn date still anchors the figure'; end if;
+  if (select status from graph.external_id_proposals where id = (select v::uuid from t_ids where k = 'p1')) <> 'withdrawn' then raise exception 'the proposal stayed approved'; end if;
+
+  res := graph.restore_withdrawn_history('file:' || h, u);
+  if exists (select 1 from graph.factoids where silver_item_id = sa and status = 'active') then raise exception 'a source restore revived a date whose link was withdrawn'; end if;
+  if (select status from graph.silver_items where id = sa) <> 'withdrawn' then raise exception 'a source restore revived the silver of a withdrawn link'; end if;
+end $$;
+
 update graph.evidence_source_admissions set status = 'withdrawn', withdrawn_at = now() where source_id = (select v from t_ids where k = 'src');
 
 do $$

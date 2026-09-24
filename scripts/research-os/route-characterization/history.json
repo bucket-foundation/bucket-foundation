@@ -132,7 +132,7 @@
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "action must be approve, reject, prefer, link or reject-link"
+      "error": "action must be approve, reject, prefer, link, reject-link or withdraw-link"
     }
   },
   "POST reviewer, reject without reason": {
@@ -157,6 +157,14 @@
     "type": "application/json",
     "body": {
       "error": "link_failed"
+    }
+  },
+  "POST reviewer, withdraw a link without a reason": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "a reason is required to withdraw a link"
     }
   },
   "POST reviewer, approve, store down": {

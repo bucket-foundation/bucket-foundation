@@ -50,6 +50,7 @@ export interface HistoryProposal {
   subject_kind: NodeKind;
   subject_resolved: boolean;
   qid?: string;
+  identity_proposal_id?: string;
 }
 
 export interface HistorySilver {

@@ -278,13 +278,20 @@ export type HistoryDecision =
   | { action: "reject"; silverId: string; reason: string }
   | { action: "prefer"; silverId: string; role: string }
   | { action: "link"; proposalId: string; qid: string }
-  | { action: "reject-link"; proposalId: string; reason: string };
+  | { action: "reject-link"; proposalId: string; reason: string }
+  | { action: "withdraw-link"; qid: string; reason: string };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export function parseHistoryDecision(body: unknown): { ok: true; value: HistoryDecision } | { ok: false; error: string } {
   const b = (body ?? {}) as Record<string, unknown>;
   const reason = typeof b.reason === "string" ? b.reason.trim().slice(0, 500) : "";
+  if (b.action === "withdraw-link") {
+    const qid = typeof b.qid === "string" ? b.qid.trim() : "";
+    if (!/^Q[0-9]+$/.test(qid)) return { ok: false, error: "qid must be a Wikidata QID" };
+    if (!reason) return { ok: false, error: "a reason is required to withdraw a link" };
+    return { ok: true, value: { action: "withdraw-link", qid, reason } };
+  }
   if (b.action === "link" || b.action === "reject-link") {
     const proposalId = typeof b.proposalId === "string" ? b.proposalId.trim() : "";
     if (!UUID.test(proposalId)) return { ok: false, error: "proposalId must be a uuid" };
@@ -308,10 +315,16 @@ export function parseHistoryDecision(body: unknown): { ok: true; value: HistoryD
     if (!role) return { ok: false, error: "role is required to prefer" };
     return { ok: true, value: { action: "prefer", silverId, role } };
   }
-  return { ok: false, error: "action must be approve, reject, prefer, link or reject-link" };
+  return { ok: false, error: "action must be approve, reject, prefer, link, reject-link or withdraw-link" };
 }
 
 export async function decideHistory(svc: SupabaseClient, reviewerId: string, d: HistoryDecision): Promise<Result<Record<string, unknown>>> {
+  if (d.action === "withdraw-link") {
+    const { data, error } = await svc.rpc("withdraw_external_id", { p_qid: d.qid, p_reviewer: reviewerId, p_reason: d.reason });
+    if (error) return { ok: false, status: 500, error: "withdraw_failed" };
+    const r = data as { ok: boolean; error?: string; queued?: number };
+    return r.ok ? { ok: true, value: { decision: "withdrawn", queued: r.queued ?? 0 } } : { ok: false, status: 404, error: r.error ?? "link_not_found" };
+  }
   if (d.action === "link" || d.action === "reject-link") {
     const { data, error } = await svc.rpc("decide_external_id", {
       p_proposal: d.proposalId,

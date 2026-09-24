@@ -40,7 +40,7 @@ export interface WikidataReport {
   silver: { born: number; died: number; occurred: number; refused: number };
   places: number;
   periods: { parsed: number; skipped: number };
-  written: { proposals: number; silver: number; places: number; periods: number };
+  written: { proposals: number; silver: number; places: number; periods: number; tagged: number };
   bronze: { staged: number; activated: number; unchanged: number };
 }
 
@@ -138,7 +138,7 @@ export async function runWikidataImport(svc: SupabaseClient, options: { date: st
     silver: { born: 0, died: 0, occurred: 0, refused: 0 },
     places: 0,
     periods: { parsed: 0, skipped: 0 },
-    written: { proposals: 0, silver: 0, places: 0, periods: 0 },
+    written: { proposals: 0, silver: 0, places: 0, periods: 0, tagged: 0 },
     bronze: { staged: 0, activated: 0, unchanged: 0 },
   };
   const { policy, sha256 } = loadPolicy();
@@ -203,6 +203,9 @@ export async function runWikidataImport(svc: SupabaseClient, options: { date: st
   if (assignErr) throw new Error(`region assignment failed: ${assignErr.message}`);
   const silver: HistorySilver[] = [...born.silver, ...died.silver, ...events.silver];
   report.written.silver = await upsert(svc, "silver_items", silver as unknown as Record<string, unknown>[], SILVER_CONFLICT);
+  const { data: tagged, error: tagErr } = await svc.rpc("tag_identity_silver");
+  if (tagErr) throw new Error(`identity tagging failed: ${tagErr.message}`);
+  report.written.tagged = Number(tagged ?? 0);
   report.written.periods = await upsert(
     svc,
     "periods",
