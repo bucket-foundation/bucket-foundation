@@ -17,7 +17,6 @@ Open decisions only you can make, what each one blocks, and what the loop does w
 | FD-11 | Whether a later change invalidates a citation already made. `cite-forever/v0.1` says nothing about it. Two shapes of the same question: a truth tier moving down, and a source withdrawn from the corpus. The answer decides whether a receipt records the grade at purchase or resolves it live | 2026-09-21 | `ros-truth 2`, the citation contract in `PROTOCOL.md`, and the order of the admission check in #218 | Both answers stay available. PR #196 records the source revision on every receipt, and #218 checks admission after the idempotency read, so a withdrawal stops the next quotation and leaves a settled receipt answering. Deciding the other way is a one-line move of that check, agreed between both sessions rather than settled by either |
 | PR-072 | An upward teacher override pays XP with no cap. The slice-1 review recorded it and left it, because a cap is a product decision | 2026-09-20 | Nothing; it is live behaviour | The override transaction is correct; only the reward is uncapped |
 | PR-073 | `graph.level_overrides` survives a privacy delete. A teacher decision about a learner may count as the teacher record, which is why it stayed | 2026-09-20 | Nothing; it is live behaviour | Every other learner-scoped table is deleted |
-| PR-074 | `holdsStaffRole` is self-grantable: anyone signed in can create a class, hold a teacher role in it, and become a reviewer. Class scoping now bounds what that reaches, and the gate itself is unchanged. `/class` also serves an unfiltered subgraph | 2026-09-20 | Nothing; it is live behaviour | PR #195 scopes the review queue and its decisions to the reviewer's own classes |
 
 ## How a row closes
 
@@ -29,4 +28,5 @@ A ruling given in one session is invisible to every other one. On 2026-09-21 two
 
 | Date | Decision | Asked in | Carried by |
 |---|---|---|---|
+| 2026-09-24 | PR-074: creating a class grants no staff powers. Staff is the `RESEARCH_OS_REVIEWER_EMAILS` allowlist; a class teacher acts on their own classes only | bkt-0343, a founder-sourced launch bead | `fix/staff-roles` |
 | 2026-09-21 | The 599 transcript cards under `bucket-canon/*/sub-claims/` are source excerpts and out of canon. They keep citing their video and timestamp, they move from `/canon/claims` to `/excerpts`, their graph kind is `excerpt` and their provenance type is `source_excerpt`. A card rejoins canon when it names its foundation and a person promotes it | the `bkt-nuc` session, as a posed question | #208, with the map filter in #195 and the promotion gate held on `fix/canon-claims-promotion-gate` until the first card is curated |

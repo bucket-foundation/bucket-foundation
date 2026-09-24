@@ -4,7 +4,6 @@ export interface ErrorException {
 }
 
 export const ERROR_EXCEPTIONS: ErrorException[] = [
-  { at: "src/lib/research-os/class-db.ts::isClassStaffAnywhere::class_members::data::1", because: "isClassStaffAnywhere answers an authorization gate, and false is the closed direction. A failed read hides staff navigation from a teacher for as long as the outage lasts, and grants nobody anything. The cost of the other direction is a stranger reaching a staff page." },
   { at: "src/app/api/academy/credential/verify/route.ts::liveProfile::academy_profiles::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/app/m/[handle]/page.tsx::fetchPublicProfile::academy_profiles::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/lib/academy/credential/store.ts::listCredentialsForUser::<unknown>::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },

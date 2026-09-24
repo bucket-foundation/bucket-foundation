@@ -2,7 +2,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createHash } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { configured, graphService, verifyLearnerIdentity } from "./db";
-import { verifyReviewer } from "./reviewer";
+import { verifyGraphReviewer } from "./reviewer";
 import { DELETE_CONFIRM_TOKEN } from "./types";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -167,7 +167,7 @@ export async function resolvePrivacyActor(req: NextRequest, requestedLearnerId: 
     return { callerId: identity.id, targetLearnerId, actingAsReviewer: false };
   }
 
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return null;
   return { callerId: identity.id, targetLearnerId, actingAsReviewer: true };
 }
