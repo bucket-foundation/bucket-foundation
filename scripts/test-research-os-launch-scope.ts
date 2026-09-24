@@ -4,13 +4,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
 import { LAUNCH_APIS, LAUNCH_PAGES, inLaunchScope } from "../src/lib/research-os/launch-scope";
-import { isLaunchStaff, launchPageAllowed, launchWriteRefusal } from "../src/lib/research-os/launch-gate";
+import { isLaunchStaff, launchPageAllowed, launchRefusal } from "../src/lib/research-os/launch-gate";
 import { gateLaunchPage } from "../src/lib/research-os/launch-page";
 
 const ROOT = path.join(__dirname, "..");
 const APP = path.join(ROOT, "src/app/research-os/(app)");
 const API = path.join(ROOT, "src/app/api/research-os");
-const WRITES = ["POST", "PUT", "PATCH", "DELETE"] as const;
+const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
 
 function walk(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -68,43 +68,46 @@ test("every (app) page is in launch scope or behind a launch-scope layout for it
   assert.deepEqual(loose, []);
 });
 
-test("every research-os API is in launch scope or wraps each write method in the launch gate", () => {
+test("every research-os API is in launch scope or wraps each method in the launch gate", () => {
   const known = new Set(apis.map((a) => a.route));
   assert.deepEqual(LAUNCH_APIS.filter((r) => !known.has(r)), [], "LAUNCH_APIS names a route that does not exist");
   const loose: string[] = [];
   for (const a of apis) {
     if (inLaunchScope(a.route)) continue;
     const src = fs.readFileSync(a.file, "utf8");
-    for (const m of WRITES) {
+    for (const m of METHODS) {
       if (new RegExp(`export\\s+(async\\s+)?function\\s+${m}\\b`).test(src)) loose.push(`${a.route} ${m} is a bare function`);
       const exported = new RegExp(`export\\s+const\\s+${m}\\s*=\\s*(\\w+)\\(`).exec(src);
-      if (exported && !["withResearchOsRoute", "staffWritesAtLaunch"].includes(exported[1])) loose.push(`${a.route} ${m} is built by ${exported[1]}`);
+      if (exported && !["withResearchOsRoute", "staffOnlyAtLaunch"].includes(exported[1])) loose.push(`${a.route} ${m} is built by ${exported[1]}`);
     }
   }
   assert.deepEqual(loose, []);
 });
 
-test("out-of-scope write APIs answer 404 to a caller with no staff identity", async () => {
+test("out-of-scope APIs answer 404 to reads and writes from a caller with no staff identity", async () => {
   const gated: string[] = [];
   for (const a of apis) {
     if (inLaunchScope(a.route)) continue;
     /* eslint-disable-next-line @typescript-eslint/no-require-imports */
     const mod = require(a.file) as Record<string, unknown>;
-    for (const m of WRITES) {
+    for (const m of METHODS) {
       const handler = mod[m];
       if (typeof handler !== "function") continue;
-      const res = (await handler(new NextRequest(`http://localhost${a.route}`, { method: m, body: "{}", headers: { "content-type": "application/json" } }), { params: {} })) as Response;
+      const init = m === "GET" ? { method: m } : { method: m, body: "{}", headers: { "content-type": "application/json" } };
+      const res = (await handler(new NextRequest(`http://localhost${a.route}`, init), { params: {} })) as Response;
       assert.equal(res.status, 404, `${m} ${a.route} answered ${res.status}`);
       gated.push(`${m} ${a.route}`);
     }
   }
-  assert.ok(gated.length >= 10, `only ${gated.length} gated write handlers found`);
+  assert.ok(gated.filter((g) => g.startsWith("GET ")).length >= 10, `only ${gated.length} gated handlers found`);
+  assert.ok(gated.filter((g) => !g.startsWith("GET ")).length >= 10, `only ${gated.length} gated handlers found`);
 });
 
-test("reads and in-scope writes pass the launch gate", async () => {
-  assert.equal(await launchWriteRefusal(new NextRequest("http://localhost/api/research-os/edges")), null);
-  assert.equal(await launchWriteRefusal(new NextRequest("http://localhost/api/research-os/workspace", { method: "POST", body: "{}" })), null);
-  assert.equal((await launchWriteRefusal(new NextRequest("http://localhost/api/research-os/edges", { method: "POST", body: "{}" })))?.status, 404);
+test("in-scope APIs pass the launch gate and out-of-scope ones refuse a non-staff read", async () => {
+  assert.equal(await launchRefusal(new NextRequest("http://localhost/api/research-os/node?slug=x")), null);
+  assert.equal(await launchRefusal(new NextRequest("http://localhost/api/research-os/workspace", { method: "POST", body: "{}" })), null);
+  assert.equal((await launchRefusal(new NextRequest("http://localhost/api/research-os/graph")))?.status, 404);
+  assert.equal((await launchRefusal(new NextRequest("http://localhost/api/research-os/edges", { method: "POST", body: "{}" })))?.status, 404);
 });
 
 test("every API an in-scope page calls stays in launch scope", () => {
@@ -159,10 +162,11 @@ async function pageStatus(route: string): Promise<number> {
   }
 }
 
-async function writeStatus(route: string): Promise<number> {
+async function apiStatus(route: string, method: "GET" | "POST" = "POST"): Promise<number> {
   /* eslint-disable-next-line @typescript-eslint/no-require-imports */
-  const mod = require(path.join(API, route.replace("/api/research-os/", ""), "route")) as { POST: (req: NextRequest, ctx: unknown) => Promise<Response> };
-  const res = await mod.POST(new NextRequest(`http://localhost${route}`, { method: "POST", body: "{}", headers: { "content-type": "application/json" } }), { params: {} });
+  const mod = require(path.join(API, route.replace("/api/research-os/", ""), "route")) as Record<string, (req: NextRequest, ctx: unknown) => Promise<Response>>;
+  const init = method === "GET" ? { method } : { method, body: "{}", headers: { "content-type": "application/json" } };
+  const res = await mod[method](new NextRequest(`http://localhost${route}`, init), { params: {} });
   return res.status;
 }
 
@@ -170,7 +174,8 @@ test("a self-made teacher gets 404 on out-of-scope pages and their write APIs", 
   await as(TEACHER, LISTED.email, async () => {
     assert.equal(isLaunchStaff(TEACHER), false);
     for (const route of ["/research-os/status", "/research-os/class", "/research-os/edges"]) assert.equal(await pageStatus(route), 404, route);
-    for (const route of ["/api/research-os/edges", "/api/research-os/roster"]) assert.equal(await writeStatus(route), 404, route);
+    for (const route of ["/api/research-os/edges", "/api/research-os/roster"]) assert.equal(await apiStatus(route), 404, route);
+    for (const route of ["/api/research-os/edges", "/api/research-os/graph"]) assert.equal(await apiStatus(route, "GET"), 404, `GET ${route}`);
     assert.equal(await pageStatus("/research-os/learn"), 200);
   });
 });
@@ -178,12 +183,12 @@ test("a self-made teacher gets 404 on out-of-scope pages and their write APIs", 
 test("a listed staff email passes the gate, and an unset list refuses everyone", async () => {
   await as(LISTED, `other@bucket.test, ${LISTED.email.toUpperCase()}`, async () => {
     assert.equal(await pageStatus("/research-os/status"), 200);
-    assert.notEqual(await writeStatus("/api/research-os/edges"), 404);
+    assert.notEqual(await apiStatus("/api/research-os/edges"), 404);
   });
   await as(LISTED, undefined, async () => {
     assert.equal(launchPageAllowed("/research-os/status", LISTED), false);
     assert.equal(await pageStatus("/research-os/status"), 404);
-    assert.equal(await writeStatus("/api/research-os/edges"), 404);
+    assert.equal(await apiStatus("/api/research-os/edges"), 404);
   });
   await as(LISTED, "", async () => {
     assert.equal(await pageStatus("/research-os/patents"), 404);

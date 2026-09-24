@@ -5,7 +5,7 @@ import { dailyToolCap, dailyCapMessage, recordAndCheck } from "@/lib/research-os
 import { decideGate, flagOn, pilotIds, ProfileUnavailable, readBirthYearBucket } from "@/lib/research-os/evidence-search/gate";
 import { CorpusReadFailed, CorpusUnavailable, EligibilityUnavailable, loadCorpus, runEvidenceSearch, workerFromEnv } from "@/lib/research-os/evidence-search/server";
 import { MAX_BODY_BYTES, parseSearchRequest } from "@/lib/research-os/evidence-search/types";
-import { staffWritesAtLaunch } from "@/lib/research-os/launch-gate";
+import { staffOnlyAtLaunch } from "@/lib/research-os/launch-gate";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +46,7 @@ async function gate(req: NextRequest): Promise<{ ok: true; learnerId: string } |
   return { ok: true, learnerId };
 }
 
-export async function GET(req: NextRequest) {
+async function get(req: NextRequest) {
   const allowed = await gate(req);
   if (!allowed.ok) return allowed.res;
   try {
@@ -93,4 +93,5 @@ async function post(req: NextRequest) {
   }
 }
 
-export const POST = staffWritesAtLaunch(post);
+export const POST = staffOnlyAtLaunch(post);
+export const GET = staffOnlyAtLaunch(get);

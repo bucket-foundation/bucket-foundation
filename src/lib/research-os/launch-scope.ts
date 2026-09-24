@@ -35,8 +35,6 @@ export const LAUNCH_API_NAMES = [
 
 export const LAUNCH_APIS: readonly string[] = LAUNCH_API_NAMES.map((name) => [API_ROOT, name].join("/"));
 
-const WRITE_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
-
 function isParam(segment: string): boolean {
   return segment.length > 2 && segment.startsWith("[") && segment.endsWith("]");
 }
@@ -50,8 +48,4 @@ function matches(pattern: string, path: string): boolean {
 
 export function inLaunchScope(path: string): boolean {
   return [...LAUNCH_PAGES, ...LAUNCH_APIS].some((p) => matches(p, path));
-}
-
-export function isWriteMethod(method: string): boolean {
-  return WRITE_METHODS.has(method.toUpperCase());
 }

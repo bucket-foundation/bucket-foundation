@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { consentRefusal, requireConsent, type ConsentAction } from "./consent";
 import { configured, verifyLearner } from "./db";
-import { launchWriteRefusal } from "./launch-gate";
+import { launchRefusal } from "./launch-gate";
 
 export const NO_STORE = { headers: { "cache-control": "no-store" } } as const;
 
@@ -66,7 +66,7 @@ function refusal(r: Response | (() => Response) | undefined, fallback: () => Res
 
 export function withResearchOsRoute<O extends RouteOptions, P = unknown>(options: O, handler: Handler<O, P>) {
   return async (req: NextRequest, params: P): Promise<Response> => {
-    const outOfScope = await launchWriteRefusal(req);
+    const outOfScope = await launchRefusal(req);
     if (outOfScope) return outOfScope;
     if (!configured()) return refusal(options.unavailable, () => bad(503, "research_os_unavailable"));
     try {

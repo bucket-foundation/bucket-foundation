@@ -4,7 +4,7 @@ import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { validateImportFile, MAX_IMPORT_BYTES } from "@/lib/research-os/import-storage";
 import { detectType, validateFilename } from "@/lib/research-os/import-types";
 import { bucketFrom, listImportFiles, ownedImport, recordImportFile, verifyUpload } from "@/lib/research-os/import-upload";
-import { staffWritesAtLaunch } from "@/lib/research-os/launch-gate";
+import { staffOnlyAtLaunch } from "@/lib/research-os/launch-gate";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +29,7 @@ function graphUnavailable(e: unknown): NextResponse {
   return answer(503, { error: "graph_unavailable", message: "The graph could not be read." });
 }
 
-export async function GET(req: NextRequest) {
+async function get(req: NextRequest) {
   const who = await caller(req);
   if (!who.ok) return who.res;
   const importId = new URL(req.url).searchParams.get("import") ?? "";
@@ -133,4 +133,5 @@ async function post(req: NextRequest) {
   }
 }
 
-export const POST = staffWritesAtLaunch(post);
+export const POST = staffOnlyAtLaunch(post);
+export const GET = staffOnlyAtLaunch(get);

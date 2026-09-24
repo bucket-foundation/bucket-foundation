@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest, NextResponse } from "next/server";
+import { openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 const db = require("@/lib/research-os/db") as Record<string, unknown>;

@@ -2,6 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 import { parseHistoryDecision } from "../src/lib/history/review";
+import { openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 const ID = "0f8c7a52-2b8e-4a3e-9f4e-3a8a0f1f2c11";
 
@@ -31,5 +34,5 @@ test("the history review route refuses a caller who is not a graph reviewer", as
   const post = await route.POST(
     new NextRequest("http://localhost/api/research-os/history", { method: "POST", body: JSON.stringify({ action: "approve", silverId: ID }), headers: { "content-type": "application/json" } }),
   );
-  assert.equal(post.status, 404, "the launch gate refuses a non-staff write before the reviewer check");
+  assert.equal(post.status, 403);
 });
