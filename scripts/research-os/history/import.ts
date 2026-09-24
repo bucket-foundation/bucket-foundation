@@ -108,6 +108,8 @@ export async function runImport(svc: SupabaseClient, apply: boolean): Promise<{ 
       if (pr.changed) report.written.preferred += 1;
     }
   }
+  const { error: refreshErr } = await svc.rpc("refresh_history_coverage");
+  if (refreshErr) throw new Error(`coverage refresh failed: ${refreshErr.message}`);
   return { plan, report };
 }
 
