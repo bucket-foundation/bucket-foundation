@@ -1,16 +1,20 @@
 from __future__ import annotations
 
+import contextlib
+import fcntl
 import hashlib
 import json
 import os
 import shutil
+import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 REPO = Path(__file__).resolve().parents[4]
 BRONZE = Path(os.environ.get("RESEARCH_EVAL_DATA") or REPO / "_intake" / "research-eval")
 MANIFESTS = Path(__file__).resolve().parent / "manifests"
-MIN_FREE_BYTES = 60 * 1024**3
+FLOOR_BYTES = 30 * 1024**3
+GB = 1024**3
 
 class ChecksumError(RuntimeError):
     pass
@@ -22,11 +26,67 @@ def digest(path: Path, algo: str) -> str:
             h.update(block)
     return h.hexdigest()
 
-def require_free(path: Path, need: int = MIN_FREE_BYTES) -> None:
+class DiskFloorError(RuntimeError):
+    pass
+
+class DiskBusyError(RuntimeError):
+    pass
+
+LOCK_NAME = ".disk-job.lock"
+_held: dict[Path, int] = {}
+
+def _holder(lock: Path) -> str:
+    try:
+        return lock.read_text().strip() or "unknown"
+    except OSError:
+        return "unknown"
+
+@contextlib.contextmanager
+def disk_job(root: Path, wait: float = 6 * 3600, poll: float = 1.0) -> Iterator[Path]:
+    root.mkdir(parents=True, exist_ok=True)
+    lock = (root / LOCK_NAME).resolve()
+    if lock in _held:
+        _held[lock] += 1
+        try:
+            yield lock
+        finally:
+            _held[lock] -= 1
+        return
+    fd = os.open(lock, os.O_RDWR | os.O_CREAT, 0o644)
+    deadline = time.monotonic() + wait
+    try:
+        while True:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                if time.monotonic() >= deadline:
+                    raise DiskBusyError(f"{root} is held by a disk job, pid {_holder(lock)}; waited {wait:.0f} s")
+                time.sleep(poll)
+        os.ftruncate(fd, 0)
+        os.write(fd, f"{os.getpid()}\n".encode())
+        _held[lock] = 1
+        try:
+            yield lock
+        finally:
+            del _held[lock]
+            os.ftruncate(fd, 0)
+            fcntl.flock(fd, fcntl.LOCK_UN)
+    finally:
+        os.close(fd)
+
+def floor_for(transient: int) -> int:
+    return FLOOR_BYTES + max(0, transient)
+
+def require_free(path: Path, transient: int = 0, *, need: int | None = None, free: int | None = None) -> None:
+    want = floor_for(transient) if need is None else need
+    probe = path
+    while not probe.exists() and probe != probe.parent:
+        probe = probe.parent
+    have = shutil.disk_usage(probe).free if free is None else free
+    if have < want:
+        raise DiskFloorError(f"{path} has {have / GB:.1f} GB free; the job needs {want / GB:.1f} GB, a {FLOOR_BYTES / GB:.0f} GB floor plus {max(0, want - FLOOR_BYTES) / GB:.1f} GB transient")
     path.mkdir(parents=True, exist_ok=True)
-    free = shutil.disk_usage(path).free
-    if free < need:
-        raise RuntimeError(f"{path} has {free / 1024**3:.1f} GB free; the pull needs {need / 1024**3:.0f} GB")
 
 def read_manifest(path: Path) -> dict[str, Any] | None:
     return json.loads(path.read_text()) if path.exists() else None
