@@ -49,8 +49,12 @@ export function sql(statement: string): { status: number; out: string } {
   return { status: run.status ?? 1, out: (run.stdout || "").trim() + (run.stderr || "") };
 }
 
-export function openLaunchScope(): void {
+export function openLaunchScope(): () => void {
   /* eslint-disable-next-line @typescript-eslint/no-require-imports */
   const scope = require("../../src/lib/research-os/launch-scope") as Record<string, unknown>;
+  const closed = scope.inLaunchScope;
   scope.inLaunchScope = () => true;
+  return () => {
+    scope.inLaunchScope = closed;
+  };
 }

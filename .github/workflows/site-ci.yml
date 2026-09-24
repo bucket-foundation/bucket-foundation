@@ -177,6 +177,7 @@ jobs:
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
             echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+            echo "RESEARCH_OS_REVIEWER_EMAILS=ros-shots@bucket.test,e2e-staff@bucket.local"
           } > .env.local
       - name: seed and ingest
         run: |
