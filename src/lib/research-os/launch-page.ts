@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { getSessionUser } from "@/lib/supabase/server";
 import { inLaunchScope } from "./launch-scope";
-import { isStaff } from "./staff";
+import { launchPageAllowed } from "./launch-gate";
 
 export async function gateLaunchPage(route: string): Promise<void> {
   if (inLaunchScope(route)) return;
-  if (!(await isStaff(await getSessionUser()))) notFound();
+  if (!launchPageAllowed(route, await getSessionUser())) notFound();
 }

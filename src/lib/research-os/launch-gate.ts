@@ -1,7 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { verifyLearnerIdentity } from "./db";
-import { inLaunchScope, isWriteMethod, launchAllows } from "./launch-scope";
-import { isStaff } from "./staff";
+import { inLaunchScope, isWriteMethod } from "./launch-scope";
+import { isReviewerEmail } from "./reviewer";
+
+export function isLaunchStaff(identity: { email?: string | null } | null): boolean {
+  return Boolean(identity?.email && isReviewerEmail(identity.email));
+}
+
+export function launchPageAllowed(route: string, identity: { email?: string | null } | null): boolean {
+  return inLaunchScope(route) || isLaunchStaff(identity);
+}
 
 export function launchNotFound(): NextResponse {
   return NextResponse.json({ error: "not_found" }, { status: 404, headers: { "cache-control": "private, no-store" } });
@@ -9,10 +17,8 @@ export function launchNotFound(): NextResponse {
 
 export async function launchWriteRefusal(req: NextRequest): Promise<Response | null> {
   if (!isWriteMethod(req.method)) return null;
-  const path = new URL(req.url).pathname;
-  if (inLaunchScope(path)) return null;
-  const identity = await verifyLearnerIdentity(req);
-  return launchAllows(path, await isStaff(identity)) ? null : launchNotFound();
+  if (inLaunchScope(new URL(req.url).pathname)) return null;
+  return isLaunchStaff(await verifyLearnerIdentity(req)) ? null : launchNotFound();
 }
 
 export function staffWritesAtLaunch<A extends unknown[]>(handler: (req: NextRequest, ...rest: A) => Promise<Response>) {

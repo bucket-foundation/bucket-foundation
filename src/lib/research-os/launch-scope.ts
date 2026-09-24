@@ -52,10 +52,6 @@ export function inLaunchScope(path: string): boolean {
   return [...LAUNCH_PAGES, ...LAUNCH_APIS].some((p) => matches(p, path));
 }
 
-export function launchAllows(path: string, staff: boolean): boolean {
-  return staff || inLaunchScope(path);
-}
-
 export function isWriteMethod(method: string): boolean {
   return WRITE_METHODS.has(method.toUpperCase());
 }

@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
-import { LAUNCH_APIS, LAUNCH_PAGES, inLaunchScope, launchAllows } from "../src/lib/research-os/launch-scope";
-import { launchWriteRefusal } from "../src/lib/research-os/launch-gate";
+import { LAUNCH_APIS, LAUNCH_PAGES, inLaunchScope } from "../src/lib/research-os/launch-scope";
+import { isLaunchStaff, launchPageAllowed, launchWriteRefusal } from "../src/lib/research-os/launch-gate";
+import { gateLaunchPage } from "../src/lib/research-os/launch-page";
 
 const ROOT = path.join(__dirname, "..");
 const APP = path.join(ROOT, "src/app/research-os/(app)");
@@ -50,8 +51,6 @@ test("the scope list matches the plan's launch screens", () => {
   assert.ok(!inLaunchScope("/research-os/n"));
   assert.ok(!inLaunchScope("/research-os/learn/02-physics/place/extra"));
   assert.ok(!inLaunchScope("/api/research-os/edges"));
-  assert.ok(launchAllows("/research-os/status", true));
-  assert.ok(!launchAllows("/research-os/status", false));
 });
 
 test("every (app) page is in launch scope or behind a launch-scope layout for its own segment", () => {
@@ -118,4 +117,75 @@ test("every API an in-scope page calls stays in launch scope", () => {
     }
   }
   assert.deepEqual(Array.from(missing), []);
+});
+
+const TEACHER = { id: "00000000-0000-0000-0000-00000000d074", email: "self-made-teacher@bucket.test" };
+const LISTED = { id: "00000000-0000-0000-0000-00000000d075", email: "staff@bucket.test" };
+
+/* eslint-disable @typescript-eslint/no-require-imports */
+const db = require("@/lib/research-os/db") as Record<string, unknown>;
+const classDb = require("@/lib/research-os/class-db") as Record<string, unknown>;
+const staff = require("@/lib/research-os/staff") as Record<string, unknown>;
+const server = require("@/lib/supabase/server") as Record<string, unknown>;
+/* eslint-enable @typescript-eslint/no-require-imports */
+
+async function as<T>(who: { id: string; email: string } | null, list: string | undefined, run: () => Promise<T>): Promise<T> {
+  const saved = { verify: db.verifyLearnerIdentity, anywhere: classDb.isClassStaffAnywhere, isStaff: staff.isStaff, session: server.getSessionUser, list: process.env.RESEARCH_OS_REVIEWER_EMAILS };
+  db.verifyLearnerIdentity = async () => who;
+  classDb.isClassStaffAnywhere = async () => true;
+  staff.isStaff = async () => true;
+  server.getSessionUser = async () => who;
+  if (list === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+  else process.env.RESEARCH_OS_REVIEWER_EMAILS = list;
+  try {
+    return await run();
+  } finally {
+    db.verifyLearnerIdentity = saved.verify;
+    classDb.isClassStaffAnywhere = saved.anywhere;
+    staff.isStaff = saved.isStaff;
+    server.getSessionUser = saved.session;
+    if (saved.list === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    else process.env.RESEARCH_OS_REVIEWER_EMAILS = saved.list;
+  }
+}
+
+async function pageStatus(route: string): Promise<number> {
+  try {
+    await gateLaunchPage(route);
+    return 200;
+  } catch (err) {
+    if (err instanceof Error && /NEXT_NOT_FOUND/.test(`${err.message} ${(err as { digest?: string }).digest ?? ""}`)) return 404;
+    throw err;
+  }
+}
+
+async function writeStatus(route: string): Promise<number> {
+  /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+  const mod = require(path.join(API, route.replace("/api/research-os/", ""), "route")) as { POST: (req: NextRequest, ctx: unknown) => Promise<Response> };
+  const res = await mod.POST(new NextRequest(`http://localhost${route}`, { method: "POST", body: "{}", headers: { "content-type": "application/json" } }), { params: {} });
+  return res.status;
+}
+
+test("a self-made teacher gets 404 on out-of-scope pages and their write APIs", async () => {
+  await as(TEACHER, LISTED.email, async () => {
+    assert.equal(isLaunchStaff(TEACHER), false);
+    for (const route of ["/research-os/status", "/research-os/class", "/research-os/edges"]) assert.equal(await pageStatus(route), 404, route);
+    for (const route of ["/api/research-os/edges", "/api/research-os/roster"]) assert.equal(await writeStatus(route), 404, route);
+    assert.equal(await pageStatus("/research-os/learn"), 200);
+  });
+});
+
+test("a listed staff email passes the gate, and an unset list refuses everyone", async () => {
+  await as(LISTED, `other@bucket.test, ${LISTED.email.toUpperCase()}`, async () => {
+    assert.equal(await pageStatus("/research-os/status"), 200);
+    assert.notEqual(await writeStatus("/api/research-os/edges"), 404);
+  });
+  await as(LISTED, undefined, async () => {
+    assert.equal(launchPageAllowed("/research-os/status", LISTED), false);
+    assert.equal(await pageStatus("/research-os/status"), 404);
+    assert.equal(await writeStatus("/api/research-os/edges"), 404);
+  });
+  await as(LISTED, "", async () => {
+    assert.equal(await pageStatus("/research-os/patents"), 404);
+  });
 });
