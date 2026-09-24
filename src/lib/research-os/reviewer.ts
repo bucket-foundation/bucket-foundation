@@ -6,13 +6,22 @@ export interface Reviewer {
   email: string;
 }
 
-function reviewerAllowlist(): Set<string> {
+export function emailAllowlist(raw: string | undefined): Set<string> {
   return new Set(
-    (process.env.RESEARCH_OS_REVIEWER_EMAILS || "")
+    (raw || "")
       .split(",")
       .map((e) => e.trim().toLowerCase())
       .filter(Boolean),
   );
+}
+
+function reviewerAllowlist(): Set<string> {
+  return emailAllowlist(process.env.RESEARCH_OS_REVIEWER_EMAILS);
+}
+
+export function isResearchAgentEmail(email: string | null | undefined): boolean {
+  if (!email) return false;
+  return emailAllowlist(process.env.RESEARCH_AGENT_EMAILS).has(email.trim().toLowerCase());
 }
 
 export function isReviewerEmail(email: string): boolean {
