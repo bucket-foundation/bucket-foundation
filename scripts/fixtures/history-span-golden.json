@@ -7175,11 +7175,387 @@
       }
     },
     {
-      "id": "wikidata:1879-03-14T00:00:00Z:11:gregorian:rdf",
+      "id": "wikidata:Q1000033:+1201-01-01T00:00:00Z:7:gregorian:json",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "1879-03-14T00:00:00Z",
+        "time": "+1201-01-01T00:00:00Z",
+        "precision": 7,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q1000033",
+        "property": "P571",
+        "ui": "13. century"
+      },
+      "expect": {
+        "span": {
+          "edtf": "1201/1300",
+          "start_year": 1201,
+          "end_year": 1300,
+          "start_min": 1201,
+          "start_max": 1201,
+          "end_min": 1300,
+          "end_max": 1300,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q1000630:-4300-00-00T00:00:00Z:7:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-4300-00-00T00:00:00Z",
+        "precision": 7,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q1000630",
+        "property": "P571",
+        "ui": "43. century BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-4299/-4200",
+          "start_year": -4299,
+          "end_year": -4200,
+          "start_min": -4299,
+          "start_max": -4299,
+          "end_min": -4200,
+          "end_max": -4200,
+          "precision": "century",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q1000630:-4300-01-01T00:00:00Z:7:julian:rdf",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-4300-01-01T00:00:00Z",
+        "precision": 7,
+        "calendar": "http://www.wikidata.org/entity/Q1985786"
+      },
+      "wikidata_item": {
+        "qid": "Q1000630",
+        "property": "P571",
+        "ui": "43. century BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-4299/-4200",
+          "start_year": -4299,
+          "end_year": -4200,
+          "start_min": -4299,
+          "start_max": -4299,
+          "end_min": -4200,
+          "end_max": -4200,
+          "precision": "century",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q1000630:-5000-00-00T00:00:00Z:6:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-5000-00-00T00:00:00Z",
+        "precision": 6,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q1000630",
+        "property": "P571",
+        "ui": "5. millennium BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-4999/-4000",
+          "start_year": -4999,
+          "end_year": -4000,
+          "start_min": -4999,
+          "start_max": -4999,
+          "end_min": -4000,
+          "end_max": -4000,
+          "precision": "millennium",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q100494058:+0700-00-00T00:00:00Z:6:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+0700-00-00T00:00:00Z",
+        "precision": 6,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q100494058",
+        "property": "P571",
+        "ui": "1. millennium"
+      },
+      "expect": {
+        "span": {
+          "edtf": "0001/1000",
+          "start_year": 1,
+          "end_year": 1000,
+          "start_min": 1,
+          "start_max": 1,
+          "end_min": 1000,
+          "end_max": 1000,
+          "precision": "millennium",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q10392686:-20000-00-00T00:00:00Z:5:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-20000-00-00T00:00:00Z",
+        "precision": 5,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q10392686",
+        "property": "P571",
+        "ui": "20000 years BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-24998/Y-14999",
+          "start_year": -24998,
+          "end_year": -14999,
+          "start_min": -24998,
+          "start_max": -24998,
+          "end_min": -14999,
+          "end_max": -14999,
+          "precision": "10ka",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q103908561:+1990-01-01T00:00:00Z:5:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+1990-01-01T00:00:00Z",
+        "precision": 5,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q103908561",
+        "property": "P571",
+        "ui": "1990"
+      },
+      "expect": {
+        "refusal": "inconsistent"
+      }
+    },
+    {
+      "id": "wikidata:Q15720503:-800000-01-01T00:00:00Z:4:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-800000-01-01T00:00:00Z",
+        "precision": 4,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q15720503",
+        "property": "P571",
+        "ui": "800000 years BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "Y-849998/Y-749999",
+          "start_year": -849998,
+          "end_year": -749999,
+          "start_min": -849998,
+          "start_max": -849998,
+          "end_min": -749999,
+          "end_max": -749999,
+          "precision": "100ka",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q11142035:-5500-00-00T00:00:00Z:4:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-5500-00-00T00:00:00Z",
+        "precision": 4,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q11142035",
+        "property": "P571",
+        "ui": "5500 BCE"
+      },
+      "expect": {
+        "refusal": "inconsistent"
+      }
+    },
+    {
+      "id": "wikidata:Q859:-0427-05-07T00:00:00Z:11:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-0427-05-07T00:00:00Z",
+        "precision": 11,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q859",
+        "property": "P569",
+        "ui": "7 May 427 BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0426-05-02",
+          "start_year": -426,
+          "end_year": -426,
+          "start_min": -426,
+          "start_max": -426,
+          "end_min": -426,
+          "end_max": -426,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q859:-0426-05-02T00:00:00Z:11:julian:rdf",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-0426-05-02T00:00:00Z",
+        "precision": 11,
+        "calendar": "http://www.wikidata.org/entity/Q1985786"
+      },
+      "wikidata_item": {
+        "qid": "Q859",
+        "property": "P569",
+        "ui": "7 May 427 BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0426-05-02",
+          "start_year": -426,
+          "end_year": -426,
+          "start_min": -426,
+          "start_max": -426,
+          "end_min": -426,
+          "end_max": -426,
+          "precision": "day",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:Q859:-0428-00-00T00:00:00Z:8:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-0428-00-00T00:00:00Z",
+        "precision": 8,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_item": {
+        "qid": "Q859",
+        "property": "P569",
+        "ui": "420s BCE"
+      },
+      "expect": {
+        "span": {
+          "edtf": "-0428/-0419",
+          "start_year": -428,
+          "end_year": -419,
+          "start_min": -428,
+          "start_max": -428,
+          "end_min": -419,
+          "end_max": -419,
+          "precision": "decade",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:+1879-03-14T00:00:00Z:11:gregorian:rdf",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+1879-03-14T00:00:00Z",
         "precision": 11,
         "calendar": "http://www.wikidata.org/entity/Q1985727"
       },
@@ -7203,68 +7579,11 @@
       }
     },
     {
-      "id": "wikidata:1643-01-04T00:00:00Z:11:julian:rdf",
+      "id": "wikidata:+1879-03-00T00:00:00Z:10:gregorian:rdf",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "1643-01-04T00:00:00Z",
-        "precision": 11,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1643-01-04",
-          "start_year": 1643,
-          "end_year": 1643,
-          "start_min": 1643,
-          "start_max": 1643,
-          "end_min": 1643,
-          "end_max": 1643,
-          "precision": "day",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1642-12-25T00:00:00Z:11:julian:json",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1642-12-25T00:00:00Z",
-        "precision": 11,
-        "calendar": "http://www.wikidata.org/entity/Q1985786",
-        "source": "json"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1643-01-04",
-          "start_year": 1643,
-          "end_year": 1643,
-          "start_min": 1643,
-          "start_max": 1643,
-          "end_min": 1643,
-          "end_max": 1643,
-          "precision": "day",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1879-03-00T00:00:00Z:10:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1879-03-00T00:00:00Z",
+        "time": "+1879-03-00T00:00:00Z",
         "precision": 10,
         "calendar": "http://www.wikidata.org/entity/Q1985727"
       },
@@ -7288,40 +7607,11 @@
       }
     },
     {
-      "id": "wikidata:1582-10-00T00:00:00Z:10:julian:json",
+      "id": "wikidata:+1879-00-00T00:00:00Z:9:gregorian:rdf",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "1582-10-00T00:00:00Z",
-        "precision": 10,
-        "calendar": "http://www.wikidata.org/entity/Q1985786",
-        "source": "json"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1582-10",
-          "start_year": 1582,
-          "end_year": 1582,
-          "start_min": 1582,
-          "start_max": 1582,
-          "end_min": 1582,
-          "end_max": 1582,
-          "precision": "month",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1879-00-00T00:00:00Z:9:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1879-00-00T00:00:00Z",
+        "time": "+1879-00-00T00:00:00Z",
         "precision": 9,
         "calendar": "http://www.wikidata.org/entity/Q1985727"
       },
@@ -7335,6 +7625,246 @@
           "end_min": 1879,
           "end_max": 1879,
           "precision": "year",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:+1875-00-00T00:00:00Z:8:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+1875-00-00T00:00:00Z",
+        "precision": 8,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "1870s",
+      "expect": {
+        "span": {
+          "edtf": "1870/1879",
+          "start_year": 1870,
+          "end_year": 1879,
+          "start_min": 1870,
+          "start_max": 1870,
+          "end_min": 1879,
+          "end_max": 1879,
+          "precision": "decade",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:+1900-00-00T00:00:00Z:7:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+1900-00-00T00:00:00Z",
+        "precision": 7,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "19. century",
+      "expect": {
+        "span": {
+          "edtf": "1801/1900",
+          "start_year": 1801,
+          "end_year": 1900,
+          "start_min": 1801,
+          "start_max": 1801,
+          "end_min": 1900,
+          "end_max": 1900,
+          "precision": "century",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:+2000-00-00T00:00:00Z:6:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+2000-00-00T00:00:00Z",
+        "precision": 6,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "2. millennium",
+      "expect": {
+        "span": {
+          "edtf": "1001/2000",
+          "start_year": 1001,
+          "end_year": 2000,
+          "start_min": 1001,
+          "start_max": 1001,
+          "end_min": 2000,
+          "end_max": 2000,
+          "precision": "millennium",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:-12000-00-00T00:00:00Z:6:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-12000-00-00T00:00:00Z",
+        "precision": 6,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_ui": "12. millennium BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-11999/Y-11000",
+          "start_year": -11999,
+          "end_year": -11000,
+          "start_min": -11999,
+          "start_max": -11999,
+          "end_min": -11000,
+          "end_max": -11000,
+          "precision": "millennium",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:-24000-00-00T00:00:00Z:5:julian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-24000-00-00T00:00:00Z",
+        "precision": 5,
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
+      },
+      "wikidata_ui": "20000 years BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-24998/Y-14999",
+          "start_year": -24998,
+          "end_year": -14999,
+          "start_min": -24998,
+          "start_max": -24998,
+          "end_min": -14999,
+          "end_max": -14999,
+          "precision": "10ka",
+          "calendar": "julian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:-25000-00-00T00:00:00Z:5:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-25000-00-00T00:00:00Z",
+        "precision": 5,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "30000 years BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-34998/Y-24999",
+          "start_year": -34998,
+          "end_year": -24999,
+          "start_min": -34998,
+          "start_max": -34998,
+          "end_min": -24999,
+          "end_max": -24999,
+          "precision": "10ka",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:-14999-00-00T00:00:00Z:5:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-14999-00-00T00:00:00Z",
+        "precision": 5,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "10000 years BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-14998/-4999",
+          "start_year": -14998,
+          "end_year": -4999,
+          "start_min": -14998,
+          "start_max": -14998,
+          "end_min": -4999,
+          "end_max": -4999,
+          "precision": "10ka",
+          "calendar": "gregorian",
+          "qualifier": "none",
+          "uncertainty": {
+            "kind": "point",
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "wikidata:-850000-00-00T00:00:00Z:4:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "-850000-00-00T00:00:00Z",
+        "precision": 4,
+        "calendar": "http://www.wikidata.org/entity/Q1985727",
+        "source": "json"
+      },
+      "wikidata_ui": "900000 years BCE",
+      "expect": {
+        "span": {
+          "edtf": "Y-949998/Y-849999",
+          "start_year": -949998,
+          "end_year": -849999,
+          "start_min": -949998,
+          "start_max": -949998,
+          "end_min": -849999,
+          "end_max": -849999,
+          "precision": "100ka",
           "calendar": "gregorian",
           "qualifier": "none",
           "uncertainty": {
@@ -7387,444 +7917,25 @@
       }
     },
     {
-      "id": "wikidata:-0499-01-01T00:00:00Z:9:julian:rdf",
+      "id": "wikidata:-3400000-01-01T00:00:00Z:3:julian:json",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "-0499-01-01T00:00:00Z",
-        "precision": 9,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "-0499",
-          "start_year": -499,
-          "end_year": -499,
-          "start_min": -499,
-          "start_max": -499,
-          "end_min": -499,
-          "end_max": -499,
-          "precision": "year",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1870-00-00T00:00:00Z:8:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1870-00-00T00:00:00Z",
-        "precision": 8,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1870/1879",
-          "start_year": 1870,
-          "end_year": 1879,
-          "start_min": 1870,
-          "start_max": 1870,
-          "end_min": 1879,
-          "end_max": 1879,
-          "precision": "decade",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-0505-01-01T00:00:00Z:8:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-0505-01-01T00:00:00Z",
-        "precision": 8,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "-0510/-0501",
-          "start_year": -510,
-          "end_year": -501,
-          "start_min": -510,
-          "start_max": -510,
-          "end_min": -501,
-          "end_max": -501,
-          "precision": "decade",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1900-01-01T00:00:00Z:7:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1900-01-01T00:00:00Z",
-        "precision": 7,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1801/1900",
-          "start_year": 1801,
-          "end_year": 1900,
-          "start_min": 1801,
-          "start_max": 1801,
-          "end_min": 1900,
-          "end_max": 1900,
-          "precision": "century",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:1201-01-01T00:00:00Z:7:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "1201-01-01T00:00:00Z",
-        "precision": 7,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1201/1300",
-          "start_year": 1201,
-          "end_year": 1300,
-          "start_min": 1201,
-          "start_max": 1201,
-          "end_min": 1300,
-          "end_max": 1300,
-          "precision": "century",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-4300-01-01T00:00:00Z:7:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-4300-01-01T00:00:00Z",
-        "precision": 7,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "-4399/-4300",
-          "start_year": -4399,
-          "end_year": -4300,
-          "start_min": -4399,
-          "start_max": -4399,
-          "end_min": -4300,
-          "end_max": -4300,
-          "precision": "century",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:2000-01-01T00:00:00Z:6:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "2000-01-01T00:00:00Z",
-        "precision": 6,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "1001/2000",
-          "start_year": 1001,
-          "end_year": 2000,
-          "start_min": 1001,
-          "start_max": 1001,
-          "end_min": 2000,
-          "end_max": 2000,
-          "precision": "millennium",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:0700-01-01T00:00:00Z:6:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "0700-01-01T00:00:00Z",
-        "precision": 6,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "0001/1000",
-          "start_year": 1,
-          "end_year": 1000,
-          "start_min": 1,
-          "start_max": 1,
-          "end_min": 1000,
-          "end_max": 1000,
-          "precision": "millennium",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-5000-01-01T00:00:00Z:6:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-5000-01-01T00:00:00Z",
-        "precision": 6,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "-5999/-5000",
-          "start_year": -5999,
-          "end_year": -5000,
-          "start_min": -5999,
-          "start_max": -5999,
-          "end_min": -5000,
-          "end_max": -5000,
-          "precision": "millennium",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-12000-01-01T00:00:00:6:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-12000-01-01T00:00:00",
-        "precision": 6,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-12500/Y-11501",
-          "start_year": -12500,
-          "end_year": -11501,
-          "start_min": -12500,
-          "start_max": -12500,
-          "end_min": -11501,
-          "end_max": -11501,
-          "precision": "ka",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-35000-01-01T00:00:00:6:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-35000-01-01T00:00:00",
-        "precision": 6,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-35500/Y-34501",
-          "start_year": -35500,
-          "end_year": -34501,
-          "start_min": -35500,
-          "start_max": -35500,
-          "end_min": -34501,
-          "end_max": -34501,
-          "precision": "ka",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-20000-01-01T00:00:00:5:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-20000-01-01T00:00:00",
-        "precision": 5,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-25000/Y-15001",
-          "start_year": -25000,
-          "end_year": -15001,
-          "start_min": -25000,
-          "start_max": -25000,
-          "end_min": -15001,
-          "end_max": -15001,
-          "precision": "10ka",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-40000-01-01T00:00:00:5:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-40000-01-01T00:00:00",
-        "precision": 5,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-45000/Y-35001",
-          "start_year": -45000,
-          "end_year": -35001,
-          "start_min": -45000,
-          "start_max": -45000,
-          "end_min": -35001,
-          "end_max": -35001,
-          "precision": "10ka",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-800000-01-01T00:00:00:4:gregorian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-800000-01-01T00:00:00",
-        "precision": 4,
-        "calendar": "http://www.wikidata.org/entity/Q1985727"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-850000/Y-750001",
-          "start_year": -850000,
-          "end_year": -750001,
-          "start_min": -850000,
-          "start_max": -850000,
-          "end_min": -750001,
-          "end_max": -750001,
-          "precision": "100ka",
-          "calendar": "gregorian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-38000-01-01T00:00:00:4:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-38000-01-01T00:00:00",
-        "precision": 4,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
-      },
-      "expect": {
-        "span": {
-          "edtf": "Y-88000/Y11999",
-          "start_year": -88000,
-          "end_year": 11999,
-          "start_min": -88000,
-          "start_max": -88000,
-          "end_min": 11999,
-          "end_max": 11999,
-          "precision": "100ka",
-          "calendar": "julian",
-          "qualifier": "none",
-          "uncertainty": {
-            "kind": "point",
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "id": "wikidata:-3400000-01-01T00:00:00:3:julian:rdf",
-      "category": "wikidata",
-      "call": "wikidata",
-      "input": {
-        "time": "-3400000-01-01T00:00:00",
+        "time": "-3400000-01-01T00:00:00Z",
         "precision": 3,
-        "calendar": "http://www.wikidata.org/entity/Q1985786"
+        "calendar": "http://www.wikidata.org/entity/Q1985786",
+        "source": "json"
       },
       "expect": {
         "refusal": "out-of-range"
       }
     },
     {
-      "id": "wikidata:1900-01-01T00:00:00Z:9:other:rdf",
+      "id": "wikidata:+1900-01-01T00:00:00Z:9:other:rdf",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "1900-01-01T00:00:00Z",
+        "time": "+1900-01-01T00:00:00Z",
         "precision": 9,
         "calendar": "http://www.wikidata.org/entity/Q12138"
       },
@@ -7833,11 +7944,24 @@
       }
     },
     {
-      "id": "wikidata:0000-01-01T00:00:00Z:9:gregorian:json",
+      "id": "wikidata:+1900-01-01T00:00:00Z:9:other:rdf:bare-qid",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "0000-01-01T00:00:00Z",
+        "time": "+1900-01-01T00:00:00Z",
+        "precision": 9,
+        "calendar": "Q1985727"
+      },
+      "expect": {
+        "refusal": "calendar"
+      }
+    },
+    {
+      "id": "wikidata:+0000-01-01T00:00:00Z:9:gregorian:json",
+      "category": "wikidata",
+      "call": "wikidata",
+      "input": {
+        "time": "+0000-01-01T00:00:00Z",
         "precision": 9,
         "calendar": "http://www.wikidata.org/entity/Q1985727",
         "source": "json"
@@ -7847,11 +7971,11 @@
       }
     },
     {
-      "id": "wikidata:1900-02-29T00:00:00Z:11:gregorian:rdf",
+      "id": "wikidata:+1900-02-29T00:00:00Z:11:gregorian:rdf",
       "category": "wikidata",
       "call": "wikidata",
       "input": {
-        "time": "1900-02-29T00:00:00Z",
+        "time": "+1900-02-29T00:00:00Z",
         "precision": 11,
         "calendar": "http://www.wikidata.org/entity/Q1985727"
       },

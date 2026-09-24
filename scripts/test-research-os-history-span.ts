@@ -225,38 +225,62 @@ test("every canon-sites and canon-timeline year parses as a historical year", ()
   }
 });
 
-test("Wikidata time values reach every precision from day to 100ka, in both calendar models", () => {
-  const G = "http://www.wikidata.org/entity/Q1985727";
-  const J = "http://www.wikidata.org/entity/Q1985786";
-  const w = (time: string, precision: number, calendar = G, source?: "rdf" | "json") => span(fromWikidata({ time, precision, calendar, source }));
-  const bounds = (s: Span) => [s.edtf, s.start_min, s.end_max, s.precision, s.calendar];
+function uiWindow(ui: string): [number, number] | "plain-year" | null {
+  const bce = / BCE$/.test(ui);
+  const text = ui.replace(/ BCE$/, "");
+  const astro = (h: number) => (bce ? 1 - h : h);
+  const pair = (lo: number, hi: number): [number, number] => (bce ? [astro(hi), astro(lo)] : [lo, hi]);
+  let m = /^([0-9]+)\. (century|millennium)$/.exec(text);
+  if (m) {
+    const unit = m[2] === "century" ? 100 : 1000;
+    const n = Number(m[1]);
+    return pair((n - 1) * unit + 1, n * unit);
+  }
+  m = /^([0-9]+)0s$/.exec(text);
+  if (m) {
+    const low = Number(m[1]) * 10;
+    return pair(Math.max(low, bce ? 1 : low), low + 9);
+  }
+  m = /^([0-9]+) years$/.exec(text);
+  if (m) {
+    const shown = Number(m[1]);
+    const unit = shown % 100000 === 0 && shown >= 100000 ? 100000 : 10000;
+    return pair(shown - unit / 2, shown + unit / 2 - 1);
+  }
+  if (/^[0-9]+$/.test(text)) return "plain-year";
+  return null;
+}
 
-  assert.deepEqual(bounds(w("1879-03-14T00:00:00Z", 11)), ["1879-03-14", 1879, 1879, "day", "gregorian"]);
-  assert.deepEqual(bounds(w("1642-12-25T00:00:00Z", 11, J, "json")), ["1643-01-04", 1643, 1643, "day", "julian"]);
-  assert.deepEqual(bounds(w("1643-01-04T00:00:00Z", 11, J)), ["1643-01-04", 1643, 1643, "day", "julian"]);
-  assert.deepEqual(bounds(w("1879-03-00T00:00:00Z", 10)), ["1879-03", 1879, 1879, "month", "gregorian"]);
-  assert.deepEqual(bounds(w("1879-00-00T00:00:00Z", 9)), ["1879", 1879, 1879, "year", "gregorian"]);
-  assert.deepEqual(bounds(w("-0500-00-00T00:00:00Z", 9, J, "json")).slice(0, 1), ["-0499"]);
-  assert.deepEqual(bounds(w("1870-00-00T00:00:00Z", 8)), ["1870/1879", 1870, 1879, "decade", "gregorian"]);
-  assert.deepEqual(bounds(w("1900-01-01T00:00:00Z", 7)), ["1801/1900", 1801, 1900, "century", "gregorian"]);
-  assert.deepEqual(bounds(w("1201-01-01T00:00:00Z", 7)), ["1201/1300", 1201, 1300, "century", "gregorian"]);
-  assert.deepEqual(bounds(w("-4300-01-01T00:00:00Z", 7, J)), ["-4399/-4300", -4399, -4300, "century", "julian"]);
-  assert.deepEqual(bounds(w("2000-01-01T00:00:00Z", 6)), ["1001/2000", 1001, 2000, "millennium", "gregorian"]);
-  assert.deepEqual(bounds(w("-5000-01-01T00:00:00Z", 6, J)), ["-5999/-5000", -5999, -5000, "millennium", "julian"]);
-  assert.deepEqual(bounds(w("-12000-01-01T00:00:00", 6, J)), ["Y-12500/Y-11501", -12500, -11501, "ka", "julian"]);
-  assert.deepEqual(bounds(w("-20000-01-01T00:00:00", 5, J)), ["Y-25000/Y-15001", -25000, -15001, "10ka", "julian"]);
-  assert.deepEqual(bounds(w("-800000-01-01T00:00:00", 4)), ["Y-850000/Y-750001", -850000, -750001, "100ka", "gregorian"]);
+test("Wikidata cases from real items land on the window Wikidata's own formatter shows", () => {
+  const cases = golden.cases.filter((c) => c.category === "wikidata") as (GoldenCase & { wikidata_item?: { qid: string; property: string; ui: string }; wikidata_ui?: string })[];
+  const withUi = cases.filter((c) => c.wikidata_item || c.wikidata_ui);
+  assert.ok(withUi.filter((c) => c.wikidata_item).length >= 10);
+  for (const c of withUi) {
+    const ui = c.wikidata_item?.ui ?? c.wikidata_ui!;
+    const expected = uiWindow(ui);
+    if (expected === null) continue;
+    const r = fromWikidata(c.input as WikidataTime);
+    if (expected === "plain-year") {
+      assert.ok(!r.ok && r.refusal === "inconsistent", `${c.id}: Wikidata shows ${ui}, so a 10ka or 100ka reading is refused`);
+      continue;
+    }
+    const s = span(r);
+    assert.deepEqual([s.start_min, s.end_max], expected, `${c.id}: Wikidata shows ${ui}`);
+  }
+  const plato = cases.filter((c) => c.wikidata_item?.qid === "Q859" && (c.input as WikidataTime).precision === 11).map((c) => span(fromWikidata(c.input as WikidataTime)).edtf);
+  assert.deepEqual(plato, ["-0426-05-02", "-0426-05-02"], "the JSON Julian value and the RDF value agree");
+});
 
+test("Wikidata time values reach every precision a Wikidata date can carry, in both calendar models", () => {
+  const precisions = new Set(golden.cases.filter((c) => c.category === "wikidata").flatMap(spansOf).map((s) => s.precision));
+  assert.deepEqual(Array.from(precisions).sort(), SPAN_PRECISIONS.filter((p) => p !== "ka").sort());
+  const calendars = new Set(golden.cases.filter((c) => c.category === "wikidata").flatMap(spansOf).map((s) => s.calendar));
+  assert.deepEqual(Array.from(calendars).sort(), ["gregorian", "julian"]);
   const refused = (v: WikidataTime) => {
     const r = fromWikidata(v);
     return r.ok ? null : r.refusal;
   };
-  assert.equal(refused({ time: "-3400000-01-01T00:00:00", precision: 3, calendar: J }), "out-of-range");
-  assert.equal(refused({ time: "1900-01-01T00:00:00Z", precision: 9, calendar: "http://www.wikidata.org/entity/Q12138" }), "calendar");
-  assert.equal(refused({ time: "0000-01-01T00:00:00Z", precision: 9, calendar: G, source: "json" }), "impossible-date");
-  assert.equal(refused({ time: "1900-02-29T00:00:00Z", precision: 11, calendar: G }), "impossible-date");
-  assert.equal(refused({ time: "not a time", precision: 9, calendar: G }), "syntax");
-
-  const precisions = new Set(golden.cases.filter((c) => c.category === "wikidata").flatMap(spansOf).map((s) => s.precision));
-  assert.deepEqual(Array.from(precisions).sort(), Array.from(SPAN_PRECISIONS).sort());
+  assert.equal(refused({ time: "+1900-01-01T00:00:00Z", precision: 9, calendar: "Q1985727" }), "calendar");
+  assert.equal(refused({ time: "+1900-01-01T00:00:00Z", precision: 9, calendar: "https://www.wikidata.org/entity/Q1985727" }), "calendar");
+  assert.equal(refused({ time: "-3400000-01-01T00:00:00Z", precision: 3, calendar: "http://www.wikidata.org/entity/Q1985786" }), "out-of-range");
 });

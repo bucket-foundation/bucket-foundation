@@ -64,7 +64,13 @@ class HistorySpanGolden(unittest.TestCase):
 
     def test_wikidata_cases_reach_every_precision(self):
         wikidata = [s for c in self.golden["cases"] if c["category"] == "wikidata" for s in spans(c)]
-        self.assertEqual({s["precision"] for s in wikidata}, set(PRECISION_TO_RESOLUTION))
+        self.assertEqual({s["precision"] for s in wikidata}, set(PRECISION_TO_RESOLUTION) - {"ka"})
+        items = [c for c in self.golden["cases"] if c["category"] == "wikidata" and "wikidata_item" in c]
+        self.assertGreaterEqual(len(items), 10)
+        for c in items:
+            self.assertRegex(c["wikidata_item"]["qid"], r"^Q[0-9]+$")
+            self.assertRegex(c["wikidata_item"]["property"], r"^P[0-9]+$")
+            self.assertIn(c["input"]["calendar"], {"http://www.wikidata.org/entity/Q1985727", "http://www.wikidata.org/entity/Q1985786"})
         self.assertEqual({s["calendar"] for s in wikidata}, {"gregorian", "julian"})
         for s in wikidata:
             with self.subTest(edtf=s["edtf"]):
