@@ -106,3 +106,17 @@ def test_the_tracked_manifests_hold_the_pinned_counts_and_checksums():
     eloundou = store.load_manifest("eloundou")
     assert eloundou is not None and {k: t.rows for k, t in eloundou.tables.items()} == labor.ELOUNDOU_ROWS
     assert all(len(t.sha256) == 64 for m in (onet, eloundou) for t in m.tables.values())
+
+def test_a_pull_holds_the_data_root_lock_through_conversion(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    from bucket_eval.datasets import common
+    seen: list[bool] = []
+    real = labor.convert_member
+    def spy(*args, **kwargs):
+        seen.append((tmp_path / "data" / common.LOCK_NAME).resolve() in common._held)
+        return real(*args, **kwargs)
+    monkeypatch.setattr(labor, "convert_member", spy)
+    body = onet_zip()
+    src = fixture_source(body)
+    labor.pull_onet(tmp_path / "data", tmp_path / "m", opener_for({src.url: body}, []), source=src, tables={"tasks": "db/Task Statements.txt"}, rows={"tasks": 3}, need=0)
+    assert seen == [True]
+    assert (tmp_path / "data" / common.LOCK_NAME).resolve() not in common._held

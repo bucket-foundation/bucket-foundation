@@ -10,7 +10,7 @@ import pyarrow as pa
 import pyarrow.csv as pacsv
 import pyarrow.parquet as pq
 
-from ..datasets.common import GB, digest
+from ..datasets.common import GB, digest, disk_job
 from .store import EVOLUTION_DATA, MANIFESTS, Manifest, Opener, Source, Table, fetch, load_manifest, open_url, relative, save_manifest, source_dir, today
 
 ONET = Source(
@@ -122,6 +122,10 @@ def convert_member(body: BinaryIO, out: Path, delimiter: str, quoted: bool) -> i
     return rows
 
 def pull_onet(data: Path = EVOLUTION_DATA, manifests: Path = MANIFESTS, opener: Opener = open_url, *, source: Source = ONET, tables: dict[str, str] = ONET_TABLES, rows: dict[str, int] = ONET_ROWS, need: int | None = None) -> Result:
+    with disk_job(data):
+        return _pull_onet(data, manifests, opener, source, tables, rows, need)
+
+def _pull_onet(data: Path, manifests: Path, opener: Opener, source: Source, tables: dict[str, str], rows: dict[str, int], need: int | None) -> Result:
     bronze, sha, size = fetch(source, data, opener, need=need)
     out_dir = source_dir(source, data) / "parquet"
     counts: dict[str, int] = {}
@@ -140,6 +144,10 @@ def pull_onet(data: Path = EVOLUTION_DATA, manifests: Path = MANIFESTS, opener: 
     return _finish(source, sha, size, {n: out_dir / f"{n}.parquet" for n in tables}, counts, written, data, manifests)
 
 def pull_eloundou(data: Path = EVOLUTION_DATA, manifests: Path = MANIFESTS, opener: Opener = open_url, *, sources: dict[str, Source] = ELOUNDOU, rows: dict[str, int] = ELOUNDOU_ROWS, need: int | None = None) -> Result:
+    with disk_job(data):
+        return _pull_eloundou(data, manifests, opener, sources, rows, need)
+
+def _pull_eloundou(data: Path, manifests: Path, opener: Opener, sources: dict[str, Source], rows: dict[str, int], need: int | None) -> Result:
     counts: dict[str, int] = {}
     written: dict[str, bool] = {}
     paths: dict[str, Path] = {}
