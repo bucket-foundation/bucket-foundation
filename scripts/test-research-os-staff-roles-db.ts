@@ -3,9 +3,10 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { sql, loadLocalEnv } from "./lib/test-harness";
+import { sql, loadLocalEnv, openLaunchScope } from "./lib/test-harness";
 
 loadLocalEnv();
+let closeLaunchScope = openLaunchScope();
 
 const reachable = sql("select 1").out === "1";
 const keyed = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY);
@@ -129,6 +130,17 @@ test("a self-made teacher gets owner powers on their class and no staff powers a
       const outsiderReview = await status(await review.GET(request("/api/research-os/review", outsider), undefined));
       assert.equal(outsiderReview.status, 200);
       assert.equal(((outsiderReview.body.productions as unknown[]) ?? []).length, 0, "the outsider's own class holds nobody");
+    });
+
+    await t.test("with launch scope closed, the teacher gets 404 on /class", async () => {
+      closeLaunchScope();
+      try {
+        const cls = await import("../src/app/api/research-os/class/route");
+        const res = await cls.GET(request(`/api/research-os/class?branch=${BRANCH}&target=target-${RUN}`, teacher), undefined);
+        assert.equal(res.status, 404);
+      } finally {
+        closeLaunchScope = openLaunchScope();
+      }
     });
 
     await t.test("/class shows the teacher their class and hides titles the teacher cannot read", async () => {

@@ -9,6 +9,7 @@ import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
+import PrivacySection from "./PrivacySection";
 import SignInGate from "@/components/auth/SignInGate";
 
 const ROLE_OPTIONS: LearnerRole[] = ["student", "teacher", "independent"];
@@ -194,6 +195,7 @@ export default function ResearchOsProfilePage() {
         <ConsentPayeeSection token={token} />
         <GameSection token={token} />
         <AccessMine token={token} />
+        <PrivacySection token={token} onDeleted={signOut} />
       </div>
     </main>
   );

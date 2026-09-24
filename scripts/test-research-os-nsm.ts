@@ -4,7 +4,9 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
 import { assemble, byCategory, colexFor, HIDE_BELOW, UNCERTAIN_BELOW, parseLang, toExponent, type NsmExponentRow, type NsmPrimeRow } from "../src/lib/research-os/nsm";
-import { sql, loadLocalEnv } from "./lib/test-harness";
+import { sql, loadLocalEnv, openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 loadLocalEnv();
 
