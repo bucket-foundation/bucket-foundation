@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { getWaitlistStore, listSignups } from "../src/lib/waitlist/store";
-import { entriesFromCsv, getInviteStore, loadInvites, logId, planWave, renderInvite, sendWave, suppress, WAVE_SIZE, type EmailProvider } from "../src/lib/waitlist/invites";
+import { entriesFromCsv, getInviteStore, loadInvites, logId, planWave, POSTAL_PLACEHOLDER, renderInvite, sendWave, suppress, WAVE_SIZE, type EmailProvider } from "../src/lib/waitlist/invites";
 
 const PROVIDERS: Record<string, () => EmailProvider> = {};
 
@@ -63,18 +63,20 @@ async function main() {
 
   console.log(`wave ${plan.wave}: ${plan.picked.length} to invite from ${entries.length} on the list`);
   console.log(`skipped: ${Object.entries(plan.skipped).map(([k, v]) => `${k} ${v}`).join(", ")}`);
-  for (const c of plan.picked) console.log(`  ${logId(c.key)}  ${c.entry.role ?? "none"}  joined ${c.entry.created_at.slice(0, 10)}${c.retry ? "  retry" : ""}`);
+  for (const c of plan.picked) console.log(`  ${logId(c.key)}  ${c.entry.role ?? "none"}  joined ${c.entry.created_at.slice(0, 10)}${c.retry ? `  retry ${c.retry}` : ""}`);
 
+  const postalAddress = process.env.INVITE_POSTAL_ADDRESS?.trim() ?? "";
   if (!args.send) {
-    const sample = renderInvite({ email: "learner@example.org", name: "Ada Lovelace", wanted: null }, plan.wave);
+    const sample = renderInvite({ email: "learner@example.org", name: "Ada Lovelace", wanted: null }, plan.wave, postalAddress || POSTAL_PLACEHOLDER, "sample");
     console.log(`\ndry run, nothing written. Sample email:\n\nSubject: ${sample.subject}\n\n${sample.text}`);
     return;
   }
 
+  if (!postalAddress) throw new Error("INVITE_POSTAL_ADDRESS is unset; CAN-SPAM requires a postal address in every invite");
   const name = process.env.INVITE_EMAIL_PROVIDER?.trim() ?? "";
   const make = PROVIDERS[name];
   if (!make) throw new Error(`no email provider is wired${name ? ` for "${name}"` : ""}; the provider choice is open with the founder`);
-  const result = await sendWave(plan, invites, make());
+  const result = await sendWave(plan, invites, make(), { postalAddress });
   console.log(`sent ${result.sent.length}, failed ${result.failed.length}, claimed by another run ${result.lost.length}`);
   if (result.failed.length) console.log(`failed: ${result.failed.join(" ")}`);
 }

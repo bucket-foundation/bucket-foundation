@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { get, list, put } from "@vercel/blob";
@@ -10,12 +11,15 @@ type Env = Record<string, string | undefined>;
 export const WAVE_SIZE = 50;
 export const SITE_URL = "https://www.bucket.foundation";
 export const FIRST_ROUTE = "/research-os/learn";
+export const PENDING_RETRY_MS = 60 * 60 * 1000;
+export const POSTAL_PLACEHOLDER = "[postal address: set INVITE_POSTAL_ADDRESS]";
 
 export type InviteStatus = "pending" | "sent" | "failed" | "unsubscribed" | "bounced";
 
 export interface InviteRecord {
   key: string;
   status: InviteStatus;
+  invite_id: string | null;
   wave: number | null;
   updated_at: string;
   invited_at: string | null;
@@ -36,6 +40,7 @@ export interface OutboundEmail {
   to: string;
   subject: string;
   text: string;
+  idempotencyKey: string;
 }
 
 export interface EmailProvider {
@@ -48,7 +53,7 @@ export type SkipReason = "already_invited" | "suppressed" | "role_held" | "wave_
 export interface Candidate {
   key: string;
   entry: WaitlistEntry;
-  retry: boolean;
+  retry: "failed" | "stale" | null;
 }
 
 export interface WavePlan {
@@ -68,7 +73,16 @@ export function roleEligible(role: WaitlistRole | null, wave: number): boolean {
   return true;
 }
 
-export function planWave(entries: WaitlistEntry[], invites: Map<string, InviteRecord>, wave: number, size = WAVE_SIZE): WavePlan {
+export function retryKind(record: InviteRecord | undefined | null, now: number): "failed" | "stale" | null {
+  if (record?.status === "failed") return "failed";
+  if (record?.status === "pending") {
+    const at = Date.parse(record.updated_at);
+    if (!Number.isFinite(at) || now - at >= PENDING_RETRY_MS) return "stale";
+  }
+  return null;
+}
+
+export function planWave(entries: WaitlistEntry[], invites: Map<string, InviteRecord>, wave: number, size = WAVE_SIZE, now: number = Date.now()): WavePlan {
   if (!Number.isInteger(wave) || wave < 1) throw new Error("wave must be a whole number from 1");
   const cap = Math.min(Math.max(1, Math.floor(size)), WAVE_SIZE);
   const skipped: Record<SkipReason, number> = { already_invited: 0, suppressed: 0, role_held: 0, wave_full: 0 };
@@ -80,11 +94,12 @@ export function planWave(entries: WaitlistEntry[], invites: Map<string, InviteRe
     if (seen.has(key)) continue;
     seen.add(key);
     const record = invites.get(key);
+    const retry = retryKind(record, now);
     if (record && SUPPRESSING.includes(record.status)) skipped.suppressed++;
-    else if (record && BLOCKING.includes(record.status)) skipped.already_invited++;
+    else if (record && BLOCKING.includes(record.status) && !retry) skipped.already_invited++;
     else if (!roleEligible(entry.role, wave)) skipped.role_held++;
     else if (picked.length >= cap) skipped.wave_full++;
-    else picked.push({ key, entry, retry: record?.status === "failed" });
+    else picked.push({ key, entry, retry });
   }
   return { wave, picked, skipped };
 }
@@ -94,7 +109,7 @@ export function inviteLink(entry: Pick<WaitlistEntry, "wanted">): string {
   return `${SITE_URL}/sign-in?next=${encodeURIComponent(next)}`;
 }
 
-export function renderInvite(entry: Pick<WaitlistEntry, "email" | "name" | "wanted">, wave: number): OutboundEmail {
+export function renderInvite(entry: Pick<WaitlistEntry, "email" | "name" | "wanted">, wave: number, postalAddress: string, idempotencyKey: string): OutboundEmail {
   const first = entry.name?.split(" ")[0]?.replace(/[<>&"\\/:;@(){}[\]]/g, "") ?? "";
   const text = [
     first ? `Hi ${first},` : "Hello,",
@@ -110,10 +125,11 @@ export function renderInvite(entry: Pick<WaitlistEntry, "email" | "name" | "want
     "To stop these emails, reply with the word stop and we take you off the list.",
     "",
     "Bucket Foundation",
+    postalAddress,
     SITE_URL,
     "",
   ].join("\n");
-  return { to: entry.email, subject: "Research OS is open for you", text };
+  return { to: entry.email, subject: "Research OS is open for you", text, idempotencyKey };
 }
 
 export function logId(key: string): string {
@@ -125,7 +141,7 @@ export function scrubEmails(message: string): string {
 }
 
 function record(key: string, status: InviteStatus, now: string, extra: Partial<InviteRecord> = {}): InviteRecord {
-  return { key, status, wave: null, updated_at: now, invited_at: null, provider: null, message_id: null, error: null, ...extra };
+  return { key, status, invite_id: null, wave: null, updated_at: now, invited_at: null, provider: null, message_id: null, error: null, ...extra };
 }
 
 export interface SendResult {
@@ -134,23 +150,33 @@ export interface SendResult {
   lost: string[];
 }
 
-export async function sendWave(plan: WavePlan, store: InviteStore, provider: EmailProvider, now: () => string = () => new Date().toISOString()): Promise<SendResult> {
+export interface SendOptions {
+  postalAddress: string;
+  now?: () => string;
+}
+
+export async function sendWave(plan: WavePlan, store: InviteStore, provider: EmailProvider, opts: SendOptions): Promise<SendResult> {
+  const postalAddress = opts.postalAddress.trim();
+  if (!postalAddress) throw new Error("a postal address is required in every invite");
+  const now = opts.now ?? (() => new Date().toISOString());
   const out: SendResult = { sent: [], failed: [], lost: [] };
   for (const c of plan.picked) {
-    const claim = record(c.key, "pending", now(), { wave: plan.wave, provider: provider.name });
+    let claim = record(c.key, "pending", now(), { invite_id: randomUUID(), wave: plan.wave, provider: provider.name });
     if (c.retry) {
       const current = await store.read(c.key);
-      if (current?.status !== "failed") {
+      const kind = retryKind(current, Date.parse(claim.updated_at));
+      if (!current || kind !== c.retry) {
         out.lost.push(logId(c.key));
         continue;
       }
+      if (kind === "stale" && current.invite_id) claim = { ...claim, invite_id: current.invite_id, wave: current.wave ?? plan.wave };
       await store.write(c.key, claim);
     } else if (!(await store.create(c.key, claim))) {
       out.lost.push(logId(c.key));
       continue;
     }
     try {
-      const { id } = await provider.send(renderInvite(c.entry, plan.wave));
+      const { id } = await provider.send(renderInvite(c.entry, claim.wave ?? plan.wave, postalAddress, claim.invite_id!));
       const at = now();
       await store.write(c.key, { ...claim, status: "sent", updated_at: at, invited_at: at, message_id: id });
       out.sent.push(logId(c.key));
@@ -190,6 +216,7 @@ export function parseInvite(raw: unknown): InviteRecord | null {
   return {
     key: r.key,
     status: r.status as InviteStatus,
+    invite_id: str(r.invite_id),
     wave: typeof r.wave === "number" ? r.wave : null,
     updated_at: str(r.updated_at) ?? "",
     invited_at: str(r.invited_at),
