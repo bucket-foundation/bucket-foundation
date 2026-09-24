@@ -62,6 +62,20 @@ class HistorySpanGolden(unittest.TestCase):
         self.assertGreaterEqual(len(self.golden["cases"]), 70)
         self.assertGreater(len(self.accepted), 100)
 
+    def test_wikidata_cases_reach_every_precision(self):
+        wikidata = [s for c in self.golden["cases"] if c["category"] == "wikidata" for s in spans(c)]
+        self.assertEqual({s["precision"] for s in wikidata}, set(PRECISION_TO_RESOLUTION) - {"ka"})
+        items = [c for c in self.golden["cases"] if c["category"] == "wikidata" and "wikidata_item" in c]
+        self.assertGreaterEqual(len(items), 10)
+        for c in items:
+            self.assertRegex(c["wikidata_item"]["qid"], r"^Q[0-9]+$")
+            self.assertRegex(c["wikidata_item"]["property"], r"^P[0-9]+$")
+            self.assertIn(c["input"]["calendar"], {"http://www.wikidata.org/entity/Q1985727", "http://www.wikidata.org/entity/Q1985786"})
+        self.assertEqual({s["calendar"] for s in wikidata}, {"gregorian", "julian"})
+        for s in wikidata:
+            with self.subTest(edtf=s["edtf"]):
+                self.assertLessEqual(s["end_max"] - s["start_min"] + 1, {"day": 1, "month": 1, "year": 2, "decade": 10, "century": 100, "millennium": 1000, "ka": 1000, "10ka": 10000, "100ka": 100000}[s["precision"]])
+
     def test_bounds_satisfy_the_factoid_checks(self):
         pattern = re.compile(EDTF_SUBSET)
         for case_id, s in self.accepted:
