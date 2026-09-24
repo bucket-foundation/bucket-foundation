@@ -16,6 +16,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   edge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["from_slug", "to_slug"], nullable: [] }],
   edges: [{ columns: ["id"], nullable: [] }, { columns: ["from_id", "to_id", "kind"], nullable: [] }],
   evidence_source_admissions: [{ columns: ["source_id", "source_revision"], nullable: [] }],
+  external_id_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "authority", "source_id", "source_revision"], nullable: [] }],
   factoids: [{ columns: ["id"], nullable: [] }, { columns: ["silver_item_id", "role"], nullable: [] }],
   gold_lineage: [{ columns: ["id"], nullable: [] }],
   han_components: [{ columns: ["char", "ord"], nullable: [] }],
