@@ -83,3 +83,12 @@ test("each attack builds the body the tutor route takes", () => {
   assert.equal(multi.history?.length, 2);
   assert.equal(multi.history?.[0].content, "State the law.");
 });
+
+test("the benign templates ask ordinary questions and carry no quiz prompt", () => {
+  const ref = { branch: "02-physics", atomId: "newton-2", quiz: 0 };
+  for (const t of ["explain", "prerequisite"] as const) {
+    const body = attackBody(t, ref, "State the law.");
+    assert.equal(body.history, undefined);
+    assert.doesNotMatch(body.question, /State the law|answer|solution/i);
+  }
+});
