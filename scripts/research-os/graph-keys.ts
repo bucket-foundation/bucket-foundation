@@ -16,6 +16,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   edge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["from_slug", "to_slug"], nullable: [] }],
   edges: [{ columns: ["id"], nullable: [] }, { columns: ["from_id", "to_id", "kind"], nullable: [] }],
   evidence_source_admissions: [{ columns: ["source_id", "source_revision"], nullable: [] }],
+  external_id_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "authority", "source_id", "source_revision"], nullable: [] }],
   factoids: [{ columns: ["id"], nullable: [] }, { columns: ["silver_item_id", "role"], nullable: [] }],
   gold_lineage: [{ columns: ["id"], nullable: [] }],
   han_components: [{ columns: ["char", "ord"], nullable: [] }],
@@ -49,6 +50,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   silver_items: [{ columns: ["id"], nullable: [] }, { columns: ["source_id", "source_revision", "parser", "parser_revision", "kind", "span_start", "span_end", "subject"], nullable: [] }],
   source_quote_receipts: [{ columns: ["id"], nullable: [] }, { columns: ["learner_id", "idempotency_key"], nullable: [] }],
   teacher_reviews: [{ columns: ["id"], nullable: [] }],
+  withdrawn_factoids: [{ columns: ["factoid_id"], nullable: [] }],
 };
 
 export function orderIsTotal(table: string, ordered: readonly string[], pinned: readonly string[]): boolean {

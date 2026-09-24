@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { coverageReport, dominantUnplacedCause, garwood, regularizedGammaP, type BucketCell, type ReferenceCell } from "../src/lib/history/coverage";
+import { aboveOneNotes, coverageReport, dominantUnplacedCause, garwood, regularizedGammaP, type BucketCell, type ReferenceCell } from "../src/lib/history/coverage";
 import { formatReport } from "./research-os/history/gap-report";
 
 const close = (a: number, b: number, tol = 1e-4) => assert.ok(Math.abs(a - b) < tol, `${a} is not ${b}`);
@@ -113,4 +113,15 @@ test("the report names the main cause when unplaced subjects outnumber placed on
   const line = "Unplaced subjects outnumber placed ones, 37 to 28; the main cause is no place on the anchor factoid, 33 of 37.";
   assert.equal(dominantUnplacedCause(many), line);
   assert.ok(formatReport(many, "2026-09-24").split("\n").includes(line));
+});
+
+test("a printed cell with C above 1 carries a note with its E", () => {
+  const r = coverageReport(bucket, reference);
+  const notes = aboveOneNotes(r);
+  assert.deepEqual(notes, [
+    "Europe, 1500 to 2100: C 4.00 above 1 reflects a small expected count, E 5.00, or an undercount in the Wikidata reference.",
+    "Western Asia and Northern Africa, 0 to 999: C 1.17 above 1 reflects a small expected count, E 6.00, or an undercount in the Wikidata reference.",
+  ]);
+  const text = formatReport(r, "2026-09-24").split("\n");
+  for (const n of notes) assert.ok(text.includes(n));
 });

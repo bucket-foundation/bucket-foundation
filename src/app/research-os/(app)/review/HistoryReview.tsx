@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import type { HistoryConflict, HistoryReviewQueue, PendingFactoid } from "@/lib/history/review";
+import type { HistoryConflict, HistoryReviewQueue, IdentityLink, PendingFactoid } from "@/lib/history/review";
 
 function years(startMin: number, endMax: number): string {
   const label = (y: number) => (y <= 0 ? `${1 - y} BCE` : `${y}`);
@@ -63,6 +63,17 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
   const prefer = (c: HistoryConflict, silverId: string) =>
     post("/api/research-os/history", `c:${silverId}:${c.role}`, { action: "prefer", silverId, role: c.role }, `Preferred for ${c.subjectTitle}, ${c.role}.`);
 
+  const link = (l: IdentityLink, qid: string) => post("/api/research-os/history", `i:${l.id}`, { action: "link", proposalId: l.id, qid }, `${l.subjectTitle} linked to ${qid}.`);
+
+  const rejectLink = (l: IdentityLink) => {
+    const reason = (reasons[`i:${l.id}`] || "").trim();
+    if (!reason) {
+      setNotice("A one-line reason is required when no candidate is the right person.");
+      return;
+    }
+    return post("/api/research-os/history", `i:${l.id}`, { action: "reject-link", proposalId: l.id, reason }, `No Wikidata link for ${l.subjectTitle}.`);
+  };
+
   const decideNode = (id: string, decision: "approved" | "rejected") =>
     post("/api/research-os/node-proposals", `n:${id}`, { id, decision, reason: decision === "rejected" ? "not a history subject" : undefined }, decision === "approved" ? "Node created." : "Node proposal rejected.");
 
@@ -114,6 +125,56 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
           </div>
 
           <div>
+            <h3 className="small-caps text-[12px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-2">identity links: {queue.identities.length}</h3>
+            {queue.identities.length === 0 && <p className="text-[13px] text-[color:var(--basalt-2)]">No Wikidata links wait for review.</p>}
+            <div className="flex flex-col gap-3">
+              {queue.identities.map((l) => {
+                const key = `i:${l.id}`;
+                return (
+                  <div key={l.id} className="p-4 bg-[color:var(--bone)] text-[13px] text-[color:var(--basalt)]">
+                    <div>
+                      <strong>{l.subjectTitle}</strong> &middot; {l.reason.replace(/_/g, " ")}
+                    </div>
+                    {l.candidates.map((c) => (
+                      <div key={c.qid} className="mt-2 flex flex-wrap items-center gap-3">
+                        <span>
+                          <a href={c.url} target="_blank" rel="noreferrer" className="underline underline-offset-4">
+                            {c.qid}
+                          </a>{" "}
+                          {c.label ?? "no English label"}
+                          {c.description ? `: ${c.description}` : ""}
+                          {c.born !== null ? `, born ${c.born}` : ""}
+                          {c.died !== null ? `, died ${c.died}` : ""}
+                        </span>
+                        <button
+                          onClick={() => link(l, c.qid)}
+                          disabled={busy === key}
+                          className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+                        >
+                          link {c.qid}
+                        </button>
+                      </div>
+                    ))}
+                    <input
+                      value={reasons[key] || ""}
+                      onChange={(e) => setReasons((x) => ({ ...x, [key]: e.target.value }))}
+                      placeholder="one-line reason when no candidate is the person"
+                      className="mt-2 border border-[color:var(--hairline)] px-2 py-1 text-[12px] w-full bg-white/60"
+                    />
+                    <button
+                      onClick={() => rejectLink(l)}
+                      disabled={busy === key}
+                      className="mt-2 px-3 py-1 text-[12px] small-caps border border-[color:var(--hairline)] disabled:opacity-50"
+                    >
+                      none of these
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
             <h3 className="small-caps text-[12px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-2">pending factoids: {queue.pendingTotal}</h3>
             {queue.pendingTotal > queue.pending.length && (
               <p className="mb-2 text-[12px] text-[color:var(--basalt-2)]">The first {queue.pending.length} are shown, highest confidence first.</p>
@@ -127,6 +188,16 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                     <div>
                       <strong>{f.subjectTitle ?? f.subject}</strong>
                       {!f.subjectExists && <span className="text-[color:var(--aegean-deep)]"> &middot; node proposed, approve it first</span>}
+                      {f.qid && (
+                        <span className="text-[color:var(--aegean-deep)]">
+                          {" "}
+                          &middot;{" "}
+                          <a href={`https://www.wikidata.org/wiki/${f.qid}`} target="_blank" rel="noreferrer" className="underline underline-offset-4">
+                            {f.qid}
+                          </a>
+                          {f.linked ? "" : ", link the identity first"}
+                        </span>
+                      )}
                     </div>
                     {f.roles.map((r) => (
                       <div key={r.role} className="mt-1">
@@ -147,8 +218,8 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                     <div className="mt-2 flex gap-3">
                       <button
                         onClick={() => decide(f, "approve")}
-                        disabled={busy === key || !f.subjectExists}
-                        title={f.subjectExists ? undefined : "Approve the node proposal for this subject first."}
+                        disabled={busy === key || !f.subjectExists || !f.linked}
+                        title={!f.subjectExists ? "Approve the node proposal for this subject first." : !f.linked ? "Link the Wikidata identity first." : undefined}
                         className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
                       >
                         approve
