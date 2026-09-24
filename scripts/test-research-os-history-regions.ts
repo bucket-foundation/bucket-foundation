@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { PERIODS, periodOf, regionForSubregion, REGIONS, SUBREGION_TO_REGION, UNMAPPED_SUBREGIONS } from "../src/lib/history/regions";
 import { admin0Rows, BRONZE_PATH, NATURAL_EARTH, sha256, verified } from "./research-os/history/natural-earth";
-import { addHumanRows, emptyCounts, HUMAN_SLICES, humanQuery, intCell, parseTsv, pointCell, qid } from "./research-os/history/reference";
+import { addHumanRows, emptyCounts, HUMAN_SLICES, humanQuery, humanSliceOf, intCell, parseTsv, pointCell, qid } from "./research-os/history/reference";
 
 const ROOT = path.join(__dirname, "..");
 
@@ -69,15 +69,35 @@ test("admin-0 rows carry name, subregion, region and QID from a GeoJSON feature"
   assert.equal(JSON.parse(rows[0].geometry).type, "Polygon");
 });
 
-test("the human slices cover -9999 to 2100 with no gap or overlap", () => {
-  const sorted = [...HUMAN_SLICES].sort((a, b) => a.from - b.from);
-  assert.equal(sorted[0].from, -9999);
-  assert.equal(sorted[sorted.length - 1].to, 2100);
-  for (let i = 1; i < sorted.length; i++) assert.equal(sorted[i].from, sorted[i - 1].to + 1);
+test("the human slices partition people by QID and bin each person once, after MIN over every birth date", () => {
+  assert.deepEqual(HUMAN_SLICES.map((s) => s.digit), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   for (const s of HUMAN_SLICES) {
-    assert.equal(periodOf(s.from), periodOf(s.to), `${s.label} crosses a period bin`);
-    assert.match(humanQuery(s), new RegExp(`YEAR\\(\\?b\\) >= ${s.from} && YEAR\\(\\?b\\) <= ${s.to}`));
+    const q = humanQuery(s);
+    assert.match(q, new RegExp(`STRENDS\\(STR\\(\\?p\\), "${s.digit}"\\)`));
+    assert.doesNotMatch(q, /FILTER\(YEAR/);
+    assert.match(q, /MIN\(YEAR\(\?b\)\) AS \?year\) \(MIN\(\?c\) AS \?country\)/);
   }
+  const births = [
+    { p: "Q12345", year: 999, country: "Q41" },
+    { p: "Q12345", year: 1001, country: "Q41" },
+    { p: "Q20", year: 1950, country: "Q41" },
+  ];
+  const counts = emptyCounts();
+  for (const s of HUMAN_SLICES) {
+    const people = new Map<string, { year: number; country: string }>();
+    for (const b of births.filter((x) => humanSliceOf(x.p) === s.digit)) {
+      const held = people.get(b.p);
+      people.set(b.p, { year: Math.min(held?.year ?? Infinity, b.year), country: held && held.country < b.country ? held.country : b.country });
+    }
+    const grouped = new Map<string, number>();
+    for (const v of Array.from(people.values())) grouped.set(`${v.year}\t<http://www.wikidata.org/entity/${v.country}>`, (grouped.get(`${v.year}\t<http://www.wikidata.org/entity/${v.country}>`) ?? 0) + 1);
+    const tsv = ["?year\t?country\t?n", ...Array.from(grouped.entries()).map(([k, n]) => `${k}\t${n}`)].join("\n");
+    addHumanRows(counts, parseTsv(tsv), new Map([["Q41", "Europe"]]));
+  }
+  assert.equal(counts.human["0 to 999"].Europe, 1);
+  assert.equal(counts.human["1000 to 1499"].Europe, 0);
+  assert.equal(counts.human["1500 to 2100"].Europe, 1);
+  assert.throws(() => humanSliceOf("P31"), /not a QID/);
 });
 
 test("SPARQL TSV cells parse, and a coordinate on another globe is refused", () => {

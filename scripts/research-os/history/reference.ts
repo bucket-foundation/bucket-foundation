@@ -17,18 +17,16 @@ export type Kind = "human" | "site" | "event";
 export interface Slice {
   kind: Kind;
   label: string;
-  from: number;
-  to: number;
+  digit: number;
 }
 
-export const HUMAN_SLICES: Slice[] = [
-  { kind: "human", label: "before -3000", from: -9999, to: -3001 },
-  { kind: "human", label: "-3000 to -1001", from: -3000, to: -1001 },
-  { kind: "human", label: "-1000 to -1", from: -1000, to: -1 },
-  { kind: "human", label: "0 to 999", from: 0, to: 999 },
-  { kind: "human", label: "1000 to 1499", from: 1000, to: 1499 },
-  ...[1500, 1600, 1700, 1800, 1900, 2000].map((c) => ({ kind: "human" as const, label: `${c} to ${c === 2000 ? 2100 : c + 99}`, from: c, to: c === 2000 ? 2100 : c + 99 })),
-];
+export const HUMAN_SLICES: Slice[] = Array.from({ length: 10 }, (_, digit) => ({ kind: "human" as const, label: `QIDs ending ${digit}`, digit }));
+
+export function humanSliceOf(qidText: string): number {
+  const m = /^Q[0-9]*([0-9])$/.exec(qidText);
+  if (!m) throw new Error(`not a QID: ${qidText}`);
+  return Number(m[1]);
+}
 
 export function humanQuery(s: Slice): string {
   return `${PREFIXES}SELECT ?year ?country (COUNT(?p) AS ?n) WHERE {
@@ -36,7 +34,7 @@ export function humanQuery(s: Slice): string {
     SELECT ?p (MIN(YEAR(?b)) AS ?year) (MIN(?c) AS ?country) WHERE {
       ?p wdt:P31 wd:Q5 ; wdt:P569 ?b ; wdt:P19 ?bp .
       ?bp wdt:P17 ?c .
-      FILTER(YEAR(?b) >= ${s.from} && YEAR(?b) <= ${s.to})
+      FILTER(STRENDS(STR(?p), "${s.digit}"))
     } GROUP BY ?p
   }
 } GROUP BY ?year ?country
@@ -172,7 +170,7 @@ export async function runReference(svc: SupabaseClient, runDate: string): Promis
     const query = humanQuery(s);
     const { text, ms } = await sparql(query);
     const rows = parseTsv(text);
-    runs.push({ kind: "human", label: s.label, querySha256: sha(query), rows: rows.length, runtimeMs: ms, bytes: Buffer.byteLength(text), bronzeSha256: bronze(dir, `human_${s.from}_${s.to}.tsv`, text) });
+    runs.push({ kind: "human", label: s.label, querySha256: sha(query), rows: rows.length, runtimeMs: ms, bytes: Buffer.byteLength(text), bronzeSha256: bronze(dir, `human_qid_${s.digit}.tsv`, text) });
     skipped.human += addHumanRows(counts, rows, countryRegion);
   }
   const worst = runs.filter((r) => r.kind === "human").reduce((a, b) => (b.runtimeMs > a.runtimeMs ? b : a));
@@ -224,7 +222,7 @@ async function main() {
     endpoint: ENDPOINT,
     license: "Wikidata CC0",
     humanSliceLimitMs: HUMAN_SLICE_LIMIT_MS,
-    queries: { human: humanQuery({ kind: "human", label: "<slice>", from: 0, to: 0 }).replace(">= 0 && YEAR(?b) <= 0", ">= <from> && YEAR(?b) <= <to>"), site: SITE_QUERY, event: EVENT_QUERY },
+    queries: { human: humanQuery({ kind: "human", label: "<slice>", digit: 0 }).replace('STRENDS(STR(?p), "0")', 'STRENDS(STR(?p), "<digit>")'), site: SITE_QUERY, event: EVENT_QUERY },
     runs,
     skipped,
     totals: Object.fromEntries((Object.keys(counts) as Kind[]).map((k) => [k, PERIODS.reduce((a, p) => a + Object.values(counts[k][p]).reduce((x, y) => x + y, 0), 0)])),

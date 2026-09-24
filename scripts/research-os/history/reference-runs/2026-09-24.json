@@ -4,116 +4,107 @@
   "license": "Wikidata CC0",
   "humanSliceLimitMs": 30000,
   "queries": {
-    "human": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?year ?country (COUNT(?p) AS ?n) WHERE {\n  {\n    SELECT ?p (MIN(YEAR(?b)) AS ?year) (MIN(?c) AS ?country) WHERE {\n      ?p wdt:P31 wd:Q5 ; wdt:P569 ?b ; wdt:P19 ?bp .\n      ?bp wdt:P17 ?c .\n      FILTER(YEAR(?b) >= <from> && YEAR(?b) <= <to>)\n    } GROUP BY ?p\n  }\n} GROUP BY ?year ?country\n",
+    "human": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?year ?country (COUNT(?p) AS ?n) WHERE {\n  {\n    SELECT ?p (MIN(YEAR(?b)) AS ?year) (MIN(?c) AS ?country) WHERE {\n      ?p wdt:P31 wd:Q5 ; wdt:P569 ?b ; wdt:P19 ?bp .\n      ?bp wdt:P17 ?c .\n      FILTER(STRENDS(STR(?p), \"<digit>\"))\n    } GROUP BY ?p\n  }\n} GROUP BY ?year ?country\n",
     "site": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?item (MIN(YEAR(?d)) AS ?year) (MIN(STR(?coord)) AS ?point) WHERE {\n  ?item wdt:P31/wdt:P279* wd:Q839954 ; wdt:P625 ?coord .\n  { ?item wdt:P571 ?d } UNION { ?item wdt:P580 ?d } UNION { ?item wdt:P1319 ?d }\n} GROUP BY ?item\n",
     "event": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?item (MIN(YEAR(?d)) AS ?year) (MIN(STR(?coord)) AS ?point) WHERE {\n  ?item wdt:P625 ?coord .\n  { ?item wdt:P585 ?d } UNION { ?item wdt:P580 ?d }\n} GROUP BY ?item\n"
   },
   "runs": [
     {
       "kind": "human",
-      "label": "before -3000",
-      "querySha256": "8fac2432843f984d41c49059c82c4eb01b5566648e741236c5fa42ff350ffbb4",
-      "rows": 5,
-      "runtimeMs": 756,
-      "bytes": 245,
-      "bronzeSha256": "e0557df7153895781be2fc36cc74f90c2ea70fd3c1c627b0e8eccb8f97df5f24"
+      "label": "QIDs ending 0",
+      "querySha256": "27d5954e6bac69a2dafdf05bb2a51fa53f387e532d534686f6aa56e926d0f496",
+      "rows": 30375,
+      "runtimeMs": 2360,
+      "bytes": 1375852,
+      "bronzeSha256": "08b7d91bd677259df3f1fb8a55bc9a85977be5ce3a121df0d4b5cd25045d1651"
     },
     {
       "kind": "human",
-      "label": "-3000 to -1001",
-      "querySha256": "6998b53f106d0b117bed77638d1cf04e5179291d873bf82de05ae84c5d32634f",
-      "rows": 68,
-      "runtimeMs": 239,
-      "bytes": 3122,
-      "bronzeSha256": "44685c9c58cc7d4301c30aa6f0f8ee893f2d46391770b89db515498c2bff7246"
+      "label": "QIDs ending 1",
+      "querySha256": "eefafb54bd2a84e9f558f9b46c7a769852e124291304fcb63f1d6175a30f3d7f",
+      "rows": 30456,
+      "runtimeMs": 1521,
+      "bytes": 1379533,
+      "bronzeSha256": "1e0e6636ef40400a468cec0227d346388ccf7ada5e1fff206deed4840d210c75"
     },
     {
       "kind": "human",
-      "label": "-1000 to -1",
-      "querySha256": "135ce1dc81afecf13272ed2b8893e67de732bccc0cbc53dee794471e61b129cb",
-      "rows": 826,
-      "runtimeMs": 422,
-      "bytes": 37130,
-      "bronzeSha256": "2f003b051d93114d70463240f4fa3d64197b218e6bc9230ae50aa769faefe0c0"
+      "label": "QIDs ending 2",
+      "querySha256": "e85c2367b159d598d4cdf23f5d3e039583e2f49a1a8a11ed8e5d9d780443a572",
+      "rows": 30130,
+      "runtimeMs": 1526,
+      "bytes": 1364553,
+      "bronzeSha256": "c935178337947fcc548e9f96ad6d8edd9934266145cf8c12de8c2a1c84e2aba0"
     },
     {
       "kind": "human",
-      "label": "0 to 999",
-      "querySha256": "dbb0a565d37fd98e184d3b24d4acaac0d17ed32fa8a0326eccb032aac99f3981",
-      "rows": 3680,
-      "runtimeMs": 663,
-      "bytes": 162285,
-      "bronzeSha256": "d0d7a159d54839b494942be8160edaae93b5ac999f961750ff58b059ac1a50a9"
+      "label": "QIDs ending 3",
+      "querySha256": "095e911150fd35cf9bc7383d03894866e887a9a7a852a02e58cd76e14113ce58",
+      "rows": 30143,
+      "runtimeMs": 1525,
+      "bytes": 1365124,
+      "bronzeSha256": "873e87ed30446685e2f2871eff36dbf555c4f0e9f428f757d83c609d3ee173cf"
     },
     {
       "kind": "human",
-      "label": "1000 to 1499",
-      "querySha256": "a25b1d29f4858719f48d742552d7d643b9bedf5fbccd26a831db5593612d2e99",
-      "rows": 7004,
-      "runtimeMs": 653,
-      "bytes": 315035,
-      "bronzeSha256": "50dc7c50cbca27c444e8944e9207e6a94ea0bde19b7d764e809baaf89987da7a"
+      "label": "QIDs ending 4",
+      "querySha256": "9d5249c132f121f83b72581d9192caf7812b4c753f8f68e60f627dbfafc9cd67",
+      "rows": 30087,
+      "runtimeMs": 1302,
+      "bytes": 1362463,
+      "bronzeSha256": "c27909657d734f83c1d450033352be09b9c201d317001af8f43e558ac561872f"
     },
     {
       "kind": "human",
-      "label": "1500 to 1599",
-      "querySha256": "e868466f1579015a5da6c02ddad6504793bea0df461bc316cd93d12356ee3e9f",
-      "rows": 3607,
-      "runtimeMs": 414,
-      "bytes": 162984,
-      "bronzeSha256": "a60fef3d2180b9bf8a699eb366ced031231671da31d171d0a4f66e89a040d3e9"
+      "label": "QIDs ending 5",
+      "querySha256": "93861de3a980f78e7653e80a8e5f4e9305a93084a629a06ed6bc537279b94f35",
+      "rows": 30286,
+      "runtimeMs": 1558,
+      "bytes": 1371945,
+      "bronzeSha256": "62ade80c8a081988949b613b0ba61dd0a66a106db9a3de3e80b38f7950861e1c"
     },
     {
       "kind": "human",
-      "label": "1600 to 1699",
-      "querySha256": "cb22cc37262b49f4cd5b226a64102c8bfd633a6c210e91cf7496bee3609b1f75",
-      "rows": 4777,
-      "runtimeMs": 680,
-      "bytes": 216674,
-      "bronzeSha256": "81aed544bc022cb64707aa5efe09cd5ef5c12b7ea571ea184fbf64ea20286077"
+      "label": "QIDs ending 6",
+      "querySha256": "abfd2c90780674366d2ea1bb16fd118404e0e2d00062733dccc812d091eea06a",
+      "rows": 30218,
+      "runtimeMs": 1477,
+      "bytes": 1368630,
+      "bronzeSha256": "45759f5bc1350dae6072a6e5f1feb7daff550a189cacd4bcceb626f069bc891f"
     },
     {
       "kind": "human",
-      "label": "1700 to 1799",
-      "querySha256": "c4d019fb0f92453645cb96dcb51360d8d5e514f99148d1fc9b3c2941927a18f9",
-      "rows": 7356,
-      "runtimeMs": 652,
-      "bytes": 335073,
-      "bronzeSha256": "e8a1127d4765ccbd818c39f967e6f93a2de876a0f6293dc29c7e9b7d648b24cc"
+      "label": "QIDs ending 7",
+      "querySha256": "a3b02bd92f6b6c69393268c01f25ca3544596b72d6cca5b1a81c07c5d53c323b",
+      "rows": 30216,
+      "runtimeMs": 1299,
+      "bytes": 1368440,
+      "bronzeSha256": "69b74815a6a6cb088518fbe334bdd1dac3dd1dcc696bb9c68c6101861006cbcb"
     },
     {
       "kind": "human",
-      "label": "1800 to 1899",
-      "querySha256": "54d333804af03292c0e07374e1cfc4fcee2559471bcdfff0e9e525632d9cb6eb",
-      "rows": 13523,
-      "runtimeMs": 1973,
-      "bytes": 623223,
-      "bronzeSha256": "bf37d8f4f41162b92eec393cff4e73cc1ba21fecee73ada053edabe6ee001b64"
+      "label": "QIDs ending 8",
+      "querySha256": "7998b0f9eac81c7448a0551b60ad77b7f0f42fc2b453c1052cf37faf883bdf48",
+      "rows": 30159,
+      "runtimeMs": 1302,
+      "bytes": 1366026,
+      "bronzeSha256": "d3f392369f1eb7947d063fc2701dbf8210cfc584573d82498025e93ed1e4572c"
     },
     {
       "kind": "human",
-      "label": "1900 to 1999",
-      "querySha256": "5aff52ee07074c8cbef2bea6519bccc0be4d9b2c2daaa9b6cdb2b807ef779002",
-      "rows": 23080,
-      "runtimeMs": 2633,
-      "bytes": 1071101,
-      "bronzeSha256": "462baadbd183cedd07176087558eb4dbe0ed0303be3c6501a1c24f09958ff31c"
-    },
-    {
-      "kind": "human",
-      "label": "2000 to 2100",
-      "querySha256": "ec9832fae1c9faa7206b9ca798d5b6762eeaf04f513e3e090885f7a5bc16e01c",
-      "rows": 2180,
-      "runtimeMs": 426,
-      "bytes": 99439,
-      "bronzeSha256": "8cb082bb3bb6b1db597f78bec23b774d115e180572f1817fb8c487e2e02091c6"
+      "label": "QIDs ending 9",
+      "querySha256": "b0fc79e10906d491b9185615dc9a2cbd695f6617da3e35175803c8f557ee09e1",
+      "rows": 30174,
+      "runtimeMs": 1303,
+      "bytes": 1366821,
+      "bronzeSha256": "0ad3ce06ca3edb5ce71530dcacf65cc171387dbc2b28584d5d4bfbface56277f"
     },
     {
       "kind": "site",
       "label": "all",
       "querySha256": "438063d9bd58f30f5ee3e8ebdd2bfd3c127914049f54266f038dc1f4018b2e2e",
       "rows": 5168,
-      "runtimeMs": 658,
+      "runtimeMs": 640,
       "bytes": 397276,
       "bronzeSha256": "54e4044bda33dee5de5ef30c518674ddc6857fd0f60a5a8f4c686e98ffab3ec0"
     },
@@ -122,18 +113,18 @@
       "label": "all",
       "querySha256": "79cfd284da5f273b94c398451e3e65f70d23a492321b1c6703eac555de9e88f5",
       "rows": 92321,
-      "runtimeMs": 3507,
+      "runtimeMs": 3068,
       "bytes": 7109766,
       "bronzeSha256": "26e9ca76ac3fe65b9edb77dcbdf232a540db8aac6c8bc1899bd51c4db4897f2e"
     }
   ],
   "skipped": {
-    "human": 0,
+    "human": 4739,
     "site": 444,
     "event": 2210
   },
   "totals": {
-    "human": 4124180,
+    "human": 4122562,
     "site": 4724,
     "event": 90111
   },
@@ -160,44 +151,44 @@
         "unplaced": 7
       },
       "-1000 to -1": {
-        "Europe": 1504,
+        "Europe": 1499,
         "Northern America": 1,
         "Latin America and Caribbean": 0,
-        "Western Asia and Northern Africa": 450,
+        "Western Asia and Northern Africa": 445,
         "Sub-Saharan Africa": 1,
         "Central and Southern Asia": 59,
         "Eastern and South-eastern Asia with Oceania": 94,
-        "unplaced": 198
+        "unplaced": 197
       },
       "0 to 999": {
-        "Europe": 2428,
+        "Europe": 2419,
         "Northern America": 11,
         "Latin America and Caribbean": 21,
-        "Western Asia and Northern Africa": 1888,
+        "Western Asia and Northern Africa": 1879,
         "Sub-Saharan Africa": 11,
         "Central and Southern Asia": 350,
-        "Eastern and South-eastern Asia with Oceania": 1074,
-        "unplaced": 737
+        "Eastern and South-eastern Asia with Oceania": 1072,
+        "unplaced": 735
       },
       "1000 to 1499": {
-        "Europe": 18538,
+        "Europe": 18508,
         "Northern America": 12,
-        "Latin America and Caribbean": 65,
-        "Western Asia and Northern Africa": 1441,
+        "Latin America and Caribbean": 63,
+        "Western Asia and Northern Africa": 1436,
         "Sub-Saharan Africa": 32,
-        "Central and Southern Asia": 620,
-        "Eastern and South-eastern Asia with Oceania": 1323,
-        "unplaced": 922
+        "Central and Southern Asia": 617,
+        "Eastern and South-eastern Asia with Oceania": 1318,
+        "unplaced": 918
       },
       "1500 to 2100": {
-        "Europe": 2699951,
-        "Northern America": 494312,
-        "Latin America and Caribbean": 224679,
-        "Western Asia and Northern Africa": 137292,
-        "Sub-Saharan Africa": 61417,
-        "Central and Southern Asia": 94401,
-        "Eastern and South-eastern Asia with Oceania": 317888,
-        "unplaced": 62346
+        "Europe": 2698924,
+        "Northern America": 494163,
+        "Latin America and Caribbean": 224580,
+        "Western Asia and Northern Africa": 137210,
+        "Sub-Saharan Africa": 61381,
+        "Central and Southern Asia": 94361,
+        "Eastern and South-eastern Asia with Oceania": 317815,
+        "unplaced": 62316
       }
     },
     "site": {
