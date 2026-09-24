@@ -15,6 +15,7 @@ export interface BucketCell {
   sources: number;
   conflicted: number;
   yearOrFiner: number;
+  unplacedReason?: string;
 }
 
 export interface ReferenceCell {
@@ -48,6 +49,7 @@ export interface CoverageReport {
   eurocentrism: { period: Period; b: number; E: number; EI: number; interval: Interval }[];
   precisionShare: { region: Region; subjects: number; share: number | null }[];
   unplaced: Record<CoverageKind, number>;
+  unplacedReasons: { reason: string; subjects: number }[];
   unresolved: Record<CoverageKind, number>;
   totals: { B: Record<CoverageKind, number>; W: Record<CoverageKind, number> };
 }
@@ -129,6 +131,7 @@ export function coverageReport(bucket: BucketCell[], reference: ReferenceCell[])
   }
   const b = new Map<string, { n: number; sources: number; conflicted: number }>();
   const precision = new Map<string, { n: number; fine: number }>();
+  const reasons = new Map<string, number>();
   for (const c of bucket) {
     if (c.period === UNRESOLVED || !isPeriod(c.period)) {
       unresolved[c.kind] += c.subjects;
@@ -136,6 +139,8 @@ export function coverageReport(bucket: BucketCell[], reference: ReferenceCell[])
     }
     if (c.region === UNPLACED || !isRegion(c.region)) {
       unplaced[c.kind] += c.subjects;
+      const reason = c.unplacedReason || "unknown";
+      reasons.set(reason, (reasons.get(reason) ?? 0) + c.subjects);
       continue;
     }
     B[c.kind] += c.subjects;
@@ -179,5 +184,16 @@ export function coverageReport(bucket: BucketCell[], reference: ReferenceCell[])
     const p = precision.get(region);
     return { region, subjects: p?.n ?? 0, share: p && p.n > 0 ? p.fine / p.n : null };
   });
-  return { cells, printed, gaps: printed.filter((c) => c.gap), eurocentrism, precisionShare, unplaced, unresolved, totals: { B, W } };
+  const unplacedReasons = Array.from(reasons.entries())
+    .map(([reason, subjects]) => ({ reason, subjects }))
+    .sort((a, b) => b.subjects - a.subjects || a.reason.localeCompare(b.reason));
+  return { cells, printed, gaps: printed.filter((c) => c.gap), eurocentrism, precisionShare, unplaced, unplacedReasons, unresolved, totals: { B, W } };
+}
+
+export function dominantUnplacedCause(report: Pick<CoverageReport, "unplaced" | "unplacedReasons" | "totals">): string | null {
+  const unplaced = KINDS.reduce((a, k) => a + report.unplaced[k], 0);
+  const placed = KINDS.reduce((a, k) => a + report.totals.B[k], 0);
+  if (unplaced <= placed || report.unplacedReasons.length === 0) return null;
+  const top = report.unplacedReasons[0];
+  return `Unplaced subjects outnumber placed ones, ${unplaced} to ${placed}; the main cause is ${top.reason}, ${top.subjects} of ${unplaced}.`;
 }

@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { coverageReport, garwood, regularizedGammaP, type BucketCell, type ReferenceCell } from "../src/lib/history/coverage";
+import { coverageReport, dominantUnplacedCause, garwood, regularizedGammaP, type BucketCell, type ReferenceCell } from "../src/lib/history/coverage";
+import { formatReport } from "./research-os/history/gap-report";
 
 const close = (a: number, b: number, tol = 1e-4) => assert.ok(Math.abs(a - b) < tol, `${a} is not ${b}`);
 
@@ -30,7 +31,7 @@ const reference: ReferenceCell[] = [
 
 const bucket: BucketCell[] = [
   { kind: "human", region: "Europe", period: "1500 to 2100", subjects: 20, sources: 2, conflicted: 5, yearOrFiner: 10 },
-  { kind: "human", region: "unplaced", period: "1500 to 2100", subjects: 3, sources: 1, conflicted: 0, yearOrFiner: 3 },
+  { kind: "human", region: "unplaced", period: "1500 to 2100", subjects: 3, sources: 1, conflicted: 0, yearOrFiner: 3, unplacedReason: "no place on the anchor factoid" },
   { kind: "site", region: "Europe", period: "0 to 999", subjects: 1, sources: 1, conflicted: 0, yearOrFiner: 1 },
   { kind: "site", region: "Western Asia and Northern Africa", period: "0 to 999", subjects: 7, sources: 1, conflicted: 1, yearOrFiner: 0 },
   { kind: "site", region: "Europe", period: "unresolved", subjects: 2, sources: 1, conflicted: 0, yearOrFiner: 2 },
@@ -91,4 +92,25 @@ test("a zero count needs E above 7.38 to be a gap", () => {
   close(at(27).E, 7.3);
   assert.equal(at(25).gap, true);
   close(at(25).E, 7.5);
+});
+
+test("the report names the main cause when unplaced subjects outnumber placed ones", () => {
+  const few = coverageReport(bucket, reference);
+  assert.equal(dominantUnplacedCause(few), null);
+  assert.ok(!formatReport(few, "2026-09-24").includes("main cause"));
+  const many = coverageReport(
+    [
+      ...bucket,
+      { kind: "human", region: "unplaced", period: "0 to 999", subjects: 30, sources: 1, conflicted: 0, yearOrFiner: 30, unplacedReason: "no place on the anchor factoid" },
+      { kind: "site", region: "unplaced", period: "0 to 999", subjects: 4, sources: 1, conflicted: 0, yearOrFiner: 4, unplacedReason: "the anchor place lies outside every region" },
+    ],
+    reference,
+  );
+  assert.deepEqual(many.unplacedReasons, [
+    { reason: "no place on the anchor factoid", subjects: 33 },
+    { reason: "the anchor place lies outside every region", subjects: 4 },
+  ]);
+  const line = "Unplaced subjects outnumber placed ones, 37 to 28; the main cause is no place on the anchor factoid, 33 of 37.";
+  assert.equal(dominantUnplacedCause(many), line);
+  assert.ok(formatReport(many, "2026-09-24").split("\n").includes(line));
 });

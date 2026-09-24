@@ -62,9 +62,16 @@ select
   end as period,
   coalesce(
     case when p.status = 'active' then p.region end,
-    (select sp.region from graph.places sp where sp.site_node_id = r.subject_id and sp.status = 'active' limit 1),
+    (select sp.region from graph.places sp where sp.site_node_id = r.subject_id and sp.status = 'active' and sp.region is not null order by sp.id limit 1),
     'unplaced'
   ) as region,
+  case
+    when (p.status = 'active' and p.region is not null)
+      or exists (select 1 from graph.places sp where sp.site_node_id = r.subject_id and sp.status = 'active' and sp.region is not null) then null
+    when r.place_id is null then 'no place on the anchor factoid'
+    when p.status <> 'active' then 'the anchor place is withdrawn'
+    else 'the anchor place lies outside every region'
+  end as unplaced_reason,
   exists (
     select 1 from graph.factoid_conflicts c where c.subject_id = r.subject_id and c.role = r.role
   ) as conflicted
@@ -77,14 +84,15 @@ select
   kind,
   region,
   period,
+  coalesce(unplaced_reason, '') as unplaced_reason,
   count(*)::bigint as subjects,
   count(distinct source_id)::bigint as sources,
   count(*) filter (where conflicted)::bigint as conflicted,
   count(*) filter (where precision in ('day', 'month', 'year'))::bigint as year_or_finer
 from graph.history_anchors
-group by kind, region, period;
+group by kind, region, period, coalesce(unplaced_reason, '');
 
-create unique index history_coverage_cell_uidx on graph.history_coverage (kind, region, period);
+create unique index history_coverage_cell_uidx on graph.history_coverage (kind, region, period, unplaced_reason);
 
 revoke all on graph.history_anchors from anon, authenticated;
 revoke all on graph.history_coverage from anon, authenticated;

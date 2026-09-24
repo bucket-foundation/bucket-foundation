@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { pagedRead } from "../../../src/lib/research-os/paging";
-import { coverageReport, type BucketCell, type CoverageReport, type ReferenceCell } from "../../../src/lib/history/coverage";
+import { coverageReport, dominantUnplacedCause, type BucketCell, type CoverageReport, type ReferenceCell } from "../../../src/lib/history/coverage";
 import { graphClient } from "../ingest/lib/medallion-shadow";
 
 function readAll<T>(run: (from: number, to: number) => PromiseLike<{ data: unknown; error: { message: string } | null }>): Promise<T[]> {
@@ -16,8 +16,8 @@ export async function loadReport(svc: SupabaseClient, refresh = true): Promise<{
   if (latest.error) throw new Error(`reference lookup failed: ${latest.error.message}`);
   const runDate = (latest.data as { run_date: string }[])[0]?.run_date;
   if (!runDate) throw new Error("graph.history_reference_counts is empty; run reference.ts first");
-  const bucket = await readAll<{ kind: BucketCell["kind"]; region: string; period: string; subjects: number; sources: number; conflicted: number; year_or_finer: number }>((from, to) =>
-    svc.from("history_coverage").select("kind,region,period,subjects,sources,conflicted,year_or_finer").order("kind").order("region").order("period").range(from, to),
+  const bucket = await readAll<{ kind: BucketCell["kind"]; region: string; period: string; subjects: number; sources: number; conflicted: number; year_or_finer: number; unplaced_reason: string }>((from, to) =>
+    svc.from("history_coverage").select("kind,region,period,unplaced_reason,subjects,sources,conflicted,year_or_finer").order("kind").order("region").order("period").order("unplaced_reason").range(from, to),
   );
   const reference = await readAll<ReferenceCell>((from, to) =>
     svc.from("history_reference_counts").select("run_date,kind,period,region,n").eq("run_date", runDate).order("run_date").order("kind").order("period").order("region").range(from, to),
@@ -25,7 +25,7 @@ export async function loadReport(svc: SupabaseClient, refresh = true): Promise<{
   return {
     runDate,
     report: coverageReport(
-      bucket.map((c) => ({ kind: c.kind, region: c.region, period: c.period, subjects: Number(c.subjects), sources: Number(c.sources), conflicted: Number(c.conflicted), yearOrFiner: Number(c.year_or_finer) })),
+      bucket.map((c) => ({ kind: c.kind, region: c.region, period: c.period, subjects: Number(c.subjects), sources: Number(c.sources), conflicted: Number(c.conflicted), yearOrFiner: Number(c.year_or_finer), unplacedReason: c.unplaced_reason || undefined })),
       reference.map((r) => ({ ...r, n: Number(r.n) })),
     ),
   };
@@ -38,6 +38,8 @@ export function formatReport(report: CoverageReport, runDate: string): string {
   out.push(`History coverage against the Wikidata reference of ${runDate}`);
   out.push(`B: ${JSON.stringify(report.totals.B)}  W: ${JSON.stringify(report.totals.W)}`);
   out.push(`unplaced: ${JSON.stringify(report.unplaced)}  unresolved: ${JSON.stringify(report.unresolved)}`);
+  const cause = dominantUnplacedCause(report);
+  if (cause) out.push(cause);
   out.push("");
   out.push(`Cells with E >= 5: ${report.printed.length} of ${report.cells.length}`);
   out.push("region | period | b | E | C | 95% interval | sources | conflict rate | gap");

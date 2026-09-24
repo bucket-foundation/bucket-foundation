@@ -63,9 +63,9 @@ declare
   r record;
 begin
   select * into r from graph.history_anchors where subject_id = (select v::uuid from t_ids where k = 'a');
-  if r.period <> 'unresolved' or r.kind <> 'human' then raise exception 'a span across 1499 and 1500 was binned: %', r.period; end if;
+  if r.period <> 'unresolved' or r.kind <> 'human' or r.unplaced_reason <> 'no place on the anchor factoid' then raise exception 'a span across 1499 and 1500 was binned: %, %', r.period, r.unplaced_reason; end if;
   select * into r from graph.history_anchors where subject_id = (select v::uuid from t_ids where k = 'b');
-  if r.period <> '1500 to 2100' or r.region <> 'Europe' or r.midpoint <> 1600 then raise exception 'the placed birth anchored at %, %, %', r.period, r.region, r.midpoint; end if;
+  if r.period <> '1500 to 2100' or r.region <> 'Europe' or r.midpoint <> 1600 or r.unplaced_reason is not null then raise exception 'the placed birth anchored at %, %, %', r.period, r.region, r.midpoint; end if;
   select * into r from graph.history_anchors where subject_id = (select v::uuid from t_ids where k = 's');
   if r.role <> 'occupied' or r.period <> '0 to 999' or r.region <> 'Western Asia and Northern Africa' or r.midpoint <> 549 then
     raise exception 'the site anchored on % at %, %, midpoint %', r.role, r.period, r.region, r.midpoint;
@@ -79,10 +79,10 @@ refresh materialized view graph.history_coverage;
 
 do $$
 begin
-  if (select subjects from graph.history_coverage where kind = 'site' and region = 'Western Asia and Northern Africa' and period = '0 to 999') < 1 then
+  if (select coalesce(sum(subjects), 0) from graph.history_coverage where kind = 'site' and region = 'Western Asia and Northern Africa' and period = '0 to 999') < 1 then
     raise exception 'the coverage view missed the site';
   end if;
-  if (select subjects from graph.history_coverage where kind = 'human' and region = 'unplaced' and period = 'unresolved') < 1 then
+  if (select coalesce(sum(subjects), 0) from graph.history_coverage where kind = 'human' and region = 'unplaced' and period = 'unresolved' and unplaced_reason = 'no place on the anchor factoid') < 1 then
     raise exception 'the coverage view missed the unresolved birth';
   end if;
 end $$;
