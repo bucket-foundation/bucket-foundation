@@ -256,7 +256,7 @@ export async function decideHistory(svc: SupabaseClient, reviewerId: string, d: 
     return r.ok ? { ok: true, value: { decision: "rejected", changed: r.changed } } : { ok: false, status: r.error === "silver_not_found" ? 404 : 409, error: r.error ?? "reject_refused" };
   }
   if (d.action === "prefer") {
-    const { data, error } = await svc.rpc("prefer_history_factoid", { p_silver: d.silverId, p_role: d.role });
+    const { data, error } = await svc.rpc("prefer_history_factoid", { p_silver: d.silverId, p_role: d.role, p_reviewer: reviewerId });
     if (error) return { ok: false, status: 500, error: "prefer_failed" };
     const r = data as { ok: boolean; error?: string; changed?: boolean };
     return r.ok ? { ok: true, value: { decision: "preferred", changed: r.changed } } : { ok: false, status: r.error === "factoid_not_found" ? 404 : 409, error: r.error ?? "prefer_refused" };
@@ -285,7 +285,7 @@ export async function decideHistory(svc: SupabaseClient, reviewerId: string, d: 
       .eq("status", "active");
     if (error) return { ok: false, status: 500, error: "read_failed" };
     if ((count ?? 0) > 0) continue;
-    const { error: prefErr } = await svc.rpc("prefer_history_factoid", { p_silver: d.silverId, p_role: role });
+    const { error: prefErr } = await svc.rpc("prefer_history_factoid", { p_silver: d.silverId, p_role: role, p_reviewer: reviewerId });
     if (prefErr) return { ok: false, status: 500, error: "prefer_failed" };
     preferred.push(role);
   }

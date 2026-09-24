@@ -8,7 +8,7 @@ import { runImport } from "./research-os/history/import";
 
 loadLocalEnv();
 
-const probe = sql("select to_regprocedure('graph.prefer_history_factoid(uuid, text)') is not null");
+const probe = sql("select to_regprocedure('graph.prefer_history_factoid(uuid, text, uuid, text)') is not null");
 const ready = probe.status === 0 && probe.out === "t" && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 if (process.env.RESEARCH_OS_REQUIRE_DB === "1" && !ready) {
   throw new Error(`RESEARCH_OS_REQUIRE_DB=1 and no local stack carries the history migrations: ${probe.out}`);

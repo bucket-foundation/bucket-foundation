@@ -9,7 +9,7 @@ import { decideNode } from "../src/lib/research-os/inference/review-actions";
 
 loadLocalEnv();
 
-const probe = sql("select to_regprocedure('graph.reject_history_silver(uuid, uuid, text)') is not null");
+const probe = sql("select to_regprocedure('graph.reject_history_silver(uuid, uuid, text)') is not null and to_regprocedure('graph.prefer_history_factoid(uuid, text, uuid, text)') is not null");
 const ready = probe.status === 0 && probe.out === "t" && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 if (process.env.RESEARCH_OS_REQUIRE_DB === "1" && !ready) {
   throw new Error(`RESEARCH_OS_REQUIRE_DB=1 and no local stack carries the history review migration: ${probe.out}`);
@@ -61,6 +61,14 @@ test("a reviewer creates a proposed subject, approves its factoid, and rejects a
 
   const prefer = await decideHistory(db, reviewer, { action: "prefer", silverId, role: "occurred" });
   assert.deepEqual(prefer, { ok: true, value: { decision: "preferred", changed: false } });
+  const bare = await db.rpc("prefer_history_factoid", { p_silver: silverId, p_role: "occurred", p_reviewer: null });
+  assert.equal(bare.error?.code, "22023", "a prefer with no reviewer and no importer marker is refused");
+  const borrowed = await db.rpc("prefer_history_factoid", { p_silver: silverId, p_role: "occurred", p_reviewer: null, p_importer: "history-import" });
+  assert.equal(borrowed.error?.code, "23514", "the importer marker cannot prefer a reviewer-promoted factoid");
+  assert.equal(sql(`update graph.factoids set preferred = false where silver_item_id = '${silverId}'`).status, 0);
+  const recorded = await decideHistory(db, reviewer, { action: "prefer", silverId, role: "occurred" });
+  assert.deepEqual(recorded, { ok: true, value: { decision: "preferred", changed: true } });
+  assert.equal(sql(`select preferred || ' ' || preferred_by || ' ' || preferred_via from graph.factoids where silver_item_id = '${silverId}'`).out, `true ${reviewer} reviewer`);
   const missingRole = await decideHistory(db, reviewer, { action: "prefer", silverId, role: "born" });
   assert.deepEqual(missingRole, { ok: false, status: 404, error: "factoid_not_found" });
 
