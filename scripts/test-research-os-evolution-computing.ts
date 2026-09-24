@@ -119,7 +119,7 @@ test("endoflife.date loads under its MIT rule and reads only release dates of ma
   assert.ok(!policy.index.some((r) => r.id === "endoflife-gate"));
 });
 
-test("the Software Atlas merge matches by name, flags ties and proposes the rest", () => {
+test("the Software Atlas merge links nothing on name alone: every name match is a review candidate", () => {
   const tool = (name: string) => ({ name, field: "Proof", open: true }) as AtlasTool;
   const m = mergeSoftwareAtlas([tool("Lean 4"), tool("Rocq"), tool("GAP"), tool("lean 4")], [
     { slug: "software-wikidata-q1", title: "Lean 4", kind: "software" },
@@ -127,8 +127,11 @@ test("the Software Atlas merge matches by name, flags ties and proposes the rest
     { slug: "software-wikidata-q3", title: "gap", kind: "software" },
     { slug: "concept-rocq", title: "Rocq", kind: "concept" },
   ]);
-  assert.deepEqual(m.matched, [{ tool: "Lean 4", slug: "software-wikidata-q1" }]);
-  assert.deepEqual(m.ambiguous, [{ tool: "GAP", slugs: ["software-wikidata-q2", "software-wikidata-q3"] }]);
+  assert.deepEqual(m.candidates, [
+    { tool: "Lean 4", slugs: ["software-wikidata-q1"], reason: "one_name_match" },
+    { tool: "GAP", slugs: ["software-wikidata-q2", "software-wikidata-q3"], reason: "several_name_matches" },
+  ]);
+  assert.ok(!("matched" in m));
   assert.deepEqual(m.proposals.map((p) => p.slug), [atlasSlug("Rocq")]);
   assert.equal(m.proposals[0].provenance.level, "application");
   assert.match(m.proposals[0].slug, /^[a-z0-9][a-z0-9-]{0,199}$/);

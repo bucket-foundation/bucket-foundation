@@ -7,9 +7,14 @@ export interface SoftwareNodeRef {
   kind: string;
 }
 
+export interface AtlasCandidate {
+  tool: string;
+  slugs: string[];
+  reason: "one_name_match" | "several_name_matches";
+}
+
 export interface AtlasMerge {
-  matched: { tool: string; slug: string }[];
-  ambiguous: { tool: string; slugs: string[] }[];
+  candidates: AtlasCandidate[];
   proposals: IngestNodeDraft[];
 }
 
@@ -35,19 +40,15 @@ export function mergeSoftwareAtlas(tools: AtlasTool[], nodes: SoftwareNodeRef[])
     const k = atlasKey(n.title);
     byKey.set(k, [...(byKey.get(k) ?? []), n.slug]);
   }
-  const out: AtlasMerge = { matched: [], ambiguous: [], proposals: [] };
+  const out: AtlasMerge = { candidates: [], proposals: [] };
   const seen = new Set<string>();
   for (const t of tools) {
     const k = atlasKey(t.name);
     if (seen.has(k)) continue;
     seen.add(k);
     const hits = byKey.get(k) ?? [];
-    if (hits.length === 1) {
-      out.matched.push({ tool: t.name, slug: hits[0] });
-      continue;
-    }
-    if (hits.length > 1) {
-      out.ambiguous.push({ tool: t.name, slugs: [...hits].sort() });
+    if (hits.length > 0) {
+      out.candidates.push({ tool: t.name, slugs: [...hits].sort(), reason: hits.length === 1 ? "one_name_match" : "several_name_matches" });
       continue;
     }
     const slug = atlasSlug(t.name);
