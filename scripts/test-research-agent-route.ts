@@ -8,7 +8,13 @@ function deps(over: Partial<AgentDeps<{ ok: boolean }>> = {}) {
   const runs: string[] = [];
   const limiter = memoryLimiter();
   const d: AgentDeps<{ ok: boolean }> = {
-    verifyUser: async (req) => (req.headers.get("authorization") === "Bearer good" ? { id: "user-9", email: null } : null),
+    verifyUser: async (req) => {
+      const auth = req.headers.get("authorization");
+      if (auth === "Bearer good") return { id: "user-9", email: null };
+      if (auth === "Bearer member") return { id: "member-1", email: null };
+      return null;
+    },
+    isStaff: async (user) => user.id === "user-9",
     provider: () => "local",
     limiter: () => limiter,
     caps: () => ({ user: 1, global: 100 }),
@@ -71,4 +77,25 @@ test("unset provider gets 503, and a limiter failure gets 503", async () => {
 
 test("short question gets 400", async () => {
   assert.equal((await handleAgent(request({ question: "why" }), deps().d)).status, 400);
+});
+
+test("a signed-in non-staff user gets 404 with no run and no quota spent", async () => {
+  const hits: string[] = [];
+  const { d, runs } = deps({ limiter: () => ({ hit: async (s) => (hits.push(s), 1) }) });
+  const res = await handleAgent(request(Q, "Bearer member"), d);
+  assert.equal(res.status, 404);
+  assert.deepEqual(await res.json(), { error: "Not found." });
+  assert.equal(runs.length, 0);
+  assert.deepEqual(hits, []);
+});
+
+test("the staff check runs before the provider check", async () => {
+  const res = await handleAgent(request(Q, "Bearer member"), deps({ provider: () => null }).d);
+  assert.equal(res.status, 404);
+});
+
+test("a failing staff check gets 503 and no run", async () => {
+  const { d, runs } = deps({ isStaff: async () => { throw new Error("db down"); } });
+  assert.equal((await handleAgent(request(Q), d)).status, 503);
+  assert.equal(runs.length, 0);
 });
