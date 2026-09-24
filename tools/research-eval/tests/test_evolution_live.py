@@ -60,11 +60,17 @@ class Importer:
         self.calls.append(cmd)
         return subprocess.CompletedProcess(cmd, self.code, "", "importer boom" if self.code else "")
 
+def policy(repo: Path, **rule) -> None:
+    doc = {"index": [{"id": "wikidata-evolution-cc0", "allow": True, "permission": "cc0"}, {"id": "endoflife-mit", "allow": True, "permission": "mit", **rule}]}
+    (repo / live.POLICY).parent.mkdir(parents=True, exist_ok=True)
+    (repo / live.POLICY).write_text(json.dumps(doc))
+
 @pytest.fixture
 def repo(tmp_path: Path) -> Path:
     r = tmp_path / "repo"
     (r / live.IMPORTER).parent.mkdir(parents=True)
     (r / live.IMPORTER).write_text("")
+    policy(r)
     return r
 
 def files_under(root: Path) -> list[str]:
@@ -110,11 +116,41 @@ def test_cadence_is_daily_for_endoflife_and_weekly_for_wikidata(tmp_path: Path, 
     data = tmp_path / "data"
     fx = Fixture()
     live.run(data, repo, fx, lambda: NOW, runner=Importer(), need=0)
-    assert live.due_feeds(data, NOW + datetime.timedelta(days=1)) == ["endoflife"]
-    assert live.due_feeds(data, NOW + datetime.timedelta(days=7)) == ["endoflife", "wikidata"]
+    assert live.due_feeds(data, NOW + datetime.timedelta(days=1), repo=repo) == ["endoflife"]
+    assert live.due_feeds(data, NOW + datetime.timedelta(days=7), repo=repo) == ["endoflife", "wikidata"]
     fx.python_releases.insert(0, {"name": "3.14", "releaseDate": "2025-10-07"})
     nxt = live.run(data, repo, fx, lambda: NOW + datetime.timedelta(days=1), runner=Importer(), need=0)
     assert nxt.changed == ["_intake/evolution/endoflife/products/python.json"]
+
+@pytest.mark.parametrize("rule, every", [
+    ({}, live.DAILY),
+    ({"allow": False}, live.WEEKLY),
+    ({"permission": "unverified"}, live.WEEKLY),
+    ({"id": "endoflife-gated"}, live.WEEKLY),
+])
+def test_endoflife_runs_daily_only_while_its_rights_rule_loads(tmp_path: Path, rule: dict, every: datetime.timedelta):
+    r = tmp_path / "r"
+    policy(r, **rule)
+    assert live.cadence(r) == {"endoflife": every, "wikidata": live.WEEKLY}
+    data = tmp_path / "data"
+    live.run(data, r, Fixture(), lambda: NOW, runner=Importer(), need=0)
+    assert live.due_feeds(data, NOW + datetime.timedelta(days=1), repo=r) == (["endoflife"] if every == live.DAILY else [])
+
+def test_a_missing_policy_falls_back_to_the_weekly_cadence(tmp_path: Path):
+    assert live.cadence(tmp_path / "nowhere")["endoflife"] == live.WEEKLY
+
+def test_the_importer_runs_the_npm_entry_with_apply_after_the_run_manifest_is_on_disk(tmp_path: Path, repo: Path):
+    data = tmp_path / "data"
+    seen: list[str] = []
+    def runner(cmd, cwd, env, capture_output, text):
+        runs = sorted(live.runs_dir(data).glob("*.json"))
+        seen.append(json.loads(runs[-1].read_text())["imported"]["status"])
+        assert cmd[:6] == ["npm", "run", "--silent", "evolution:computing-import", "--", "--apply"]
+        return subprocess.CompletedProcess(cmd, 0, "", "")
+    live.run(data, repo, Fixture(), lambda: NOW, runner=runner, need=0)
+    assert seen == ["running"]
+    runs = sorted(live.runs_dir(data).glob("*.json"))
+    assert json.loads(runs[-1].read_text())["imported"]["status"] == "ok"
 
 def test_a_failed_import_is_recorded_and_retried_on_the_next_run(tmp_path: Path, repo: Path):
     data = tmp_path / "data"

@@ -19,9 +19,12 @@ from .store import EVOLUTION_DATA
 ENDOFLIFE_API = "https://endoflife.date/api/v1"
 ENDOFLIFE_CATEGORIES = ("os", "lang")
 QLEVER = os.environ.get("EVOLUTION_QLEVER_ENDPOINT") or "https://qlever.dev/api/wikidata"
-CADENCE = {"endoflife": datetime.timedelta(hours=20), "wikidata": datetime.timedelta(days=6, hours=20)}
+DAILY = datetime.timedelta(hours=20)
+WEEKLY = datetime.timedelta(days=6, hours=20)
+ENDOFLIFE_RULE = "endoflife-mit"
+POLICY = Path("learning") / "research-os" / "ai" / "rights-policy.json"
 TRANSIENT = 1 * GB
-IMPORTER = Path("scripts") / "research-os" / "evolution" / "import-live.ts"
+IMPORTER = Path("scripts") / "research-os" / "evolution" / "computing-import.ts"
 ATTEMPTS = 3
 
 Http = Callable[[str, bytes | None], bytes]
@@ -153,6 +156,17 @@ class RunReport:
     def changed(self) -> list[str]:
         return [c["path"] for f in self.feeds.values() for c in f.get("changed", [])]
 
+def rule_loads(policy_path: Path, rule_id: str) -> bool:
+    try:
+        doc = json.loads(policy_path.read_text())
+    except (OSError, ValueError):
+        return False
+    rule = next((r for r in doc.get("index", []) if r.get("id") == rule_id), None)
+    return bool(rule and rule.get("allow") is True and rule.get("permission") not in (None, "unverified"))
+
+def cadence(repo: Path = REPO) -> dict[str, datetime.timedelta]:
+    return {"endoflife": DAILY if rule_loads(repo / POLICY, ENDOFLIFE_RULE) else WEEKLY, "wikidata": WEEKLY}
+
 def runs_dir(data: Path) -> Path:
     return data / "live" / "runs"
 
@@ -168,11 +182,12 @@ def last_fetch(data: Path) -> dict[str, datetime.datetime]:
             seen[name] = max(seen.get(name, at), at)
     return seen
 
-def due_feeds(data: Path, now: datetime.datetime, force: bool = False) -> list[str]:
+def due_feeds(data: Path, now: datetime.datetime, force: bool = False, repo: Path = REPO) -> list[str]:
     if force:
         return sorted(FEEDS)
     seen = last_fetch(data)
-    return [name for name in sorted(FEEDS) if name not in seen or now - seen[name] >= CADENCE[name]]
+    every = cadence(repo)
+    return [name for name in sorted(FEEDS) if name not in seen or now - seen[name] >= every[name]]
 
 def _write(path: Path, body: bytes) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -198,7 +213,7 @@ def import_command(repo: Path, paths: list[str]) -> list[str] | None:
         return custom.split() + paths
     if not (repo / IMPORTER).exists():
         return None
-    return ["npx", "ts-node", "--compiler-options", '{"module":"commonjs"}', str(IMPORTER), *paths]
+    return ["npm", "run", "--silent", "evolution:computing-import", "--", "--apply", *paths]
 
 def run_import(repo: Path, paths: list[str], runner: Callable[..., subprocess.CompletedProcess] = subprocess.run) -> dict[str, Any]:
     cmd = import_command(repo, paths)
@@ -236,7 +251,7 @@ def run(
     need: int | None = None,
 ) -> RunReport:
     started = now()
-    due = due_feeds(data, started, force)
+    due = due_feeds(data, started, force, repo)
     report = RunReport(started=started.isoformat(), due=due)
     if not due:
         return report
@@ -248,14 +263,15 @@ def run(
         require_free(data, TRANSIENT, need=need)
         report.feeds = {name: stage(data, files, dry_run=False) for name, files in fetched.items()}
         paths = list(dict.fromkeys(pending_imports(data) + report.changed))
+        stamp = started.strftime("%Y-%m-%dT%H%M%SZ")
+        path = runs_dir(data) / f"{stamp}.json"
+        _write(path, (json.dumps({"started": report.started, "feeds": report.feeds, "imported": {"status": "running"}}, indent=2, sort_keys=True) + "\n").encode())
         failure: Exception | None = None
         try:
             report.imported = run_import(repo, paths, runner) if paths else {"status": "nothing"}
         except Exception as err:
             failure = err
             report.imported = {"status": "failed", "error": str(err)[-400:]}
-        stamp = started.strftime("%Y-%m-%dT%H%M%SZ")
-        path = runs_dir(data) / f"{stamp}.json"
         _write(path, (json.dumps({"started": report.started, "feeds": report.feeds, "imported": report.imported}, indent=2, sort_keys=True) + "\n").encode())
         report.manifest = str(path)
         if failure is not None:
