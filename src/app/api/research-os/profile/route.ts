@@ -2,6 +2,7 @@ import { validateProfileInput } from "@/lib/research-os/profile";
 import { graphService, loadGame } from "@/lib/research-os/db";
 import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 import { summarize } from "@/lib/research-os/game";
+import { recordServerEvent } from "@/lib/academy/events-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,5 +55,10 @@ export const POST = withResearchOsRoute({ auth: "required" }, async (req, { lear
     .maybeSingle();
   if (error) return bad(500, "write_failed");
 
-  return { profile: data ? toResponseProfile(data as LearnerProfileRow) : null };
+  const saved = data as LearnerProfileRow | null;
+  if (saved?.birth_year_bucket === "under13" || saved?.birth_year_bucket === "13to17" || saved?.birth_year_bucket === "18plus") {
+    await recordServerEvent(learnerId, "age_band_set", { band: saved.birth_year_bucket });
+  }
+
+  return { profile: saved ? toResponseProfile(saved) : null };
 });

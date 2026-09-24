@@ -50,6 +50,8 @@ export interface PendingFactoid {
   span: { start: number; end: number; text: string | null };
   confidence: number;
   roles: ReviewRole[];
+  qid: string | null;
+  linked: boolean;
 }
 
 export interface ConflictSide {
@@ -83,11 +85,29 @@ export interface HistoryNodeProposal {
   silverIds: string[];
 }
 
+export interface IdentityCandidate {
+  qid: string;
+  label: string | null;
+  description: string | null;
+  born: number | null;
+  died: number | null;
+  url: string;
+}
+
+export interface IdentityLink {
+  id: string;
+  subject: string;
+  subjectTitle: string;
+  reason: "one_candidate" | "several_candidates" | "no_candidate";
+  candidates: IdentityCandidate[];
+}
+
 export interface HistoryReviewQueue {
   pending: PendingFactoid[];
   pendingTotal: number;
   conflicts: HistoryConflict[];
   proposals: HistoryNodeProposal[];
+  identities: IdentityLink[];
 }
 
 type Result<T> = { ok: true; value: T } | { ok: false; status: number; error: string };
@@ -169,6 +189,17 @@ export async function listHistoryReview(svc: SupabaseClient): Promise<Result<His
     );
     const ruleOf = new Map(admissions.map((a) => [`${a.source_id} ${a.source_revision}`, a.rights_rule]));
 
+    const qids = Array.from(new Set(pendingAll.map((s) => s.proposal.qid).filter((q): q is string => !!q)));
+    const links = await byIds<{ external_id: string; node_id: string }>(qids, (chunk, from, to) =>
+      svc.from("node_external_ids").select("authority,external_id,node_id").eq("authority", "wikidata").in("external_id", chunk).order("authority").order("external_id").range(from, to),
+    );
+    const linkedTo = new Map(links.map((l) => [l.external_id, l.node_id]));
+    const linkNodes = await byIds<{ id: string; slug: string }>(
+      links.map((l) => l.node_id),
+      (chunk, from, to) => svc.from("nodes").select("id,slug").in("id", chunk).order("id").range(from, to),
+    );
+    const slugOfNode = new Map(linkNodes.map((n) => [n.id, n.slug]));
+
     const sorted = pendingAll.sort((a, b) => b.confidence - a.confidence || a.subject.localeCompare(b.subject) || a.id.localeCompare(b.id));
     const pending: PendingFactoid[] = sorted.slice(0, REVIEW_LIMIT).map((s) => ({
       silverId: s.id,
@@ -183,6 +214,8 @@ export async function listHistoryReview(svc: SupabaseClient): Promise<Result<His
         const place = r?.place_slug ? placeBySlug.get(r.place_slug) : undefined;
         return { role, edtf: r!.edtf, startMin: r!.start_min, endMax: r!.end_max, place: place ? { slug: place.slug, title: place.title, lat: place.lat, lng: place.lng } : null };
       }),
+      qid: s.proposal.qid ?? null,
+      linked: s.proposal.qid && s.proposal.subject_kind === "figure" ? slugOfNode.get(linkedTo.get(s.proposal.qid) ?? "") === s.subject : true,
     }));
 
     const side = (id: string): ConflictSide | null => {
@@ -218,7 +251,22 @@ export async function listHistoryReview(svc: SupabaseClient): Promise<Result<His
       bySlug.set(slug, { id: p.id, slug, title: p.title, kind: p.draft!.kind ?? "unknown", branch: p.branch, silverIds: silverBySubject.get(slug) ?? [] });
     }
 
-    return { ok: true, value: { pending, pendingTotal: pendingAll.length, conflicts, proposals: Array.from(bySlug.values()).sort((x, y) => x.slug.localeCompare(y.slug)) } };
+    const identityRows = await readAll<{ id: string; node_id: string; reason: IdentityLink["reason"]; candidates: IdentityCandidate[] }>((from, to) =>
+      svc.from("external_id_proposals").select("id,node_id,reason,candidates").eq("status", "pending").order("id").range(from, to),
+    );
+    const identityNodes = await byIds<{ id: string; slug: string; title: string }>(
+      identityRows.map((r) => r.node_id),
+      (chunk, from, to) => svc.from("nodes").select("id,slug,title").in("id", chunk).order("id").range(from, to),
+    );
+    const identityNode = new Map(identityNodes.map((n) => [n.id, n]));
+    const identities: IdentityLink[] = identityRows
+      .flatMap((r) => {
+        const n = identityNode.get(r.node_id);
+        return n ? [{ id: r.id, subject: n.slug, subjectTitle: n.title, reason: r.reason, candidates: r.candidates }] : [];
+      })
+      .sort((a, b) => a.subject.localeCompare(b.subject));
+
+    return { ok: true, value: { pending, pendingTotal: pendingAll.length, conflicts, proposals: Array.from(bySlug.values()).sort((x, y) => x.slug.localeCompare(y.slug)), identities } };
   } catch (err) {
     console.error("[history-review] read failed:", err instanceof Error ? err.message : String(err));
     return { ok: false, status: 500, error: "read_failed" };
@@ -228,15 +276,37 @@ export async function listHistoryReview(svc: SupabaseClient): Promise<Result<His
 export type HistoryDecision =
   | { action: "approve"; silverId: string }
   | { action: "reject"; silverId: string; reason: string }
-  | { action: "prefer"; silverId: string; role: string };
+  | { action: "prefer"; silverId: string; role: string }
+  | { action: "link"; proposalId: string; qid: string }
+  | { action: "reject-link"; proposalId: string; reason: string }
+  | { action: "withdraw-link"; qid: string; reason: string };
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export function parseHistoryDecision(body: unknown): { ok: true; value: HistoryDecision } | { ok: false; error: string } {
   const b = (body ?? {}) as Record<string, unknown>;
+  const reason = typeof b.reason === "string" ? b.reason.trim().slice(0, 500) : "";
+  if (b.action === "withdraw-link") {
+    const qid = typeof b.qid === "string" ? b.qid.trim() : "";
+    if (!/^Q[0-9]+$/.test(qid)) return { ok: false, error: "qid must be a Wikidata QID" };
+    if (!reason) return { ok: false, error: "a reason is required to withdraw a link" };
+    return { ok: true, value: { action: "withdraw-link", qid, reason } };
+  }
+  if (b.action === "link" || b.action === "reject-link") {
+    const proposalId = typeof b.proposalId === "string" ? b.proposalId.trim() : "";
+    if (!UUID.test(proposalId)) return { ok: false, error: "proposalId must be a uuid" };
+    if (b.action === "reject-link") {
+      if (!reason) return { ok: false, error: "a reason is required to reject a link" };
+      return { ok: true, value: { action: "reject-link", proposalId, reason } };
+    }
+    const qid = typeof b.qid === "string" ? b.qid.trim() : "";
+    if (!/^Q[0-9]+$/.test(qid)) return { ok: false, error: "qid must be a Wikidata QID" };
+    return { ok: true, value: { action: "link", proposalId, qid } };
+  }
   const silverId = typeof b.silverId === "string" ? b.silverId.trim() : "";
-  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(silverId)) return { ok: false, error: "silverId must be a uuid" };
+  if (!UUID.test(silverId)) return { ok: false, error: "silverId must be a uuid" };
   if (b.action === "approve") return { ok: true, value: { action: "approve", silverId } };
   if (b.action === "reject") {
-    const reason = typeof b.reason === "string" ? b.reason.trim().slice(0, 500) : "";
     if (!reason) return { ok: false, error: "a reason is required to reject" };
     return { ok: true, value: { action: "reject", silverId, reason } };
   }
@@ -245,10 +315,27 @@ export function parseHistoryDecision(body: unknown): { ok: true; value: HistoryD
     if (!role) return { ok: false, error: "role is required to prefer" };
     return { ok: true, value: { action: "prefer", silverId, role } };
   }
-  return { ok: false, error: "action must be approve, reject or prefer" };
+  return { ok: false, error: "action must be approve, reject, prefer, link, reject-link or withdraw-link" };
 }
 
 export async function decideHistory(svc: SupabaseClient, reviewerId: string, d: HistoryDecision): Promise<Result<Record<string, unknown>>> {
+  if (d.action === "withdraw-link") {
+    const { data, error } = await svc.rpc("withdraw_external_id", { p_qid: d.qid, p_reviewer: reviewerId, p_reason: d.reason });
+    if (error) return { ok: false, status: 500, error: "withdraw_failed" };
+    const r = data as { ok: boolean; error?: string; queued?: number };
+    return r.ok ? { ok: true, value: { decision: "withdrawn", queued: r.queued ?? 0 } } : { ok: false, status: 404, error: r.error ?? "link_not_found" };
+  }
+  if (d.action === "link" || d.action === "reject-link") {
+    const { data, error } = await svc.rpc("decide_external_id", {
+      p_proposal: d.proposalId,
+      p_reviewer: reviewerId,
+      p_qid: d.action === "link" ? d.qid : null,
+      p_reason: d.action === "reject-link" ? d.reason : null,
+    });
+    if (error) return { ok: false, status: 500, error: "link_failed" };
+    const r = data as { ok: boolean; error?: string; changed?: boolean; status?: string };
+    return r.ok ? { ok: true, value: { decision: r.status, changed: r.changed } } : { ok: false, status: r.error === "proposal_not_found" ? 404 : 409, error: r.error ?? "link_refused" };
+  }
   if (d.action === "reject") {
     const { data, error } = await svc.rpc("reject_history_silver", { p_silver: d.silverId, p_reviewer: reviewerId, p_reason: d.reason });
     if (error) return { ok: false, status: 500, error: "reject_failed" };
@@ -270,6 +357,16 @@ export async function decideHistory(svc: SupabaseClient, reviewerId: string, d: 
   const { data: node, error: nodeErr } = await svc.from("nodes").select("id").eq("slug", s.subject).maybeSingle();
   if (nodeErr) return { ok: false, status: 500, error: "read_failed" };
   if (!node) return { ok: false, status: 409, error: "subject_node_missing" };
+  if (s.proposal.qid && s.proposal.subject_kind === "figure") {
+    const { data: link, error: linkErr } = await svc
+      .from("node_external_ids")
+      .select("node_id")
+      .eq("authority", "wikidata")
+      .eq("external_id", s.proposal.qid)
+      .maybeSingle();
+    if (linkErr) return { ok: false, status: 500, error: "read_failed" };
+    if (!link || (link as { node_id: string }).node_id !== (node as { id: string }).id) return { ok: false, status: 409, error: "identity_not_linked" };
+  }
   const { data: promoted, error: promoteErr } = await svc.rpc("promote_history_factoid", { p_silver: d.silverId, p_reviewer: reviewerId, p_preferred: false });
   if (promoteErr) return { ok: false, status: 409, error: "promote_refused" };
   const p = promoted as { ok: boolean; error?: string; factoids?: string[]; inserted?: number };
