@@ -543,3 +543,93 @@ function parseParenthetical(main: string, inner: string, options: SpanOptions): 
   if (died.span.start_year < born.span.start_year) return refuse("reversed", "death before birth");
   return { ok: true, roles: { born: born.span, died: died.span } };
 }
+
+export const WIKIDATA_GREGORIAN = "Q1985727";
+export const WIKIDATA_JULIAN = "Q1985786";
+export const WIKIDATA_PRECISIONS: Record<number, SpanPrecision> = {
+  11: "day",
+  10: "month",
+  9: "year",
+  8: "decade",
+  7: "century",
+  6: "millennium",
+  5: "10ka",
+  4: "100ka",
+};
+
+export interface WikidataTime {
+  time: string;
+  precision: number;
+  calendar: string;
+  source?: "rdf" | "json";
+}
+
+const WIKIDATA_TIME = /^([+-]?)([0-9]{1,16})-([0-9]{2})-([0-9]{2})T/;
+
+function yearEndpointAt(year: number): Endpoint | Refused {
+  return endpointFromRaw({ year, month: null, day: null, width: 1, flags: NO_FLAGS }, "gregorian");
+}
+
+function windowSpan(first: number, last: number, precision: SpanPrecision, calendar: SpanCalendar): SpanResult {
+  if (Math.abs(first) > MAX_ABS_YEAR || Math.abs(last) > MAX_ABS_YEAR) return refuse("out-of-range", `window ${first} to ${last} is outside int4 years`);
+  const a = yearEndpointAt(first);
+  if (isRefused(a)) return a;
+  const b = yearEndpointAt(last);
+  if (isRefused(b)) return b;
+  const r = build(a, b, false, precision);
+  return r.ok ? { ok: true, span: { ...r.span, calendar } } : r;
+}
+
+function ordinalWindow(year: number, unit: number): [number, number] {
+  if (year >= 1) {
+    const n = Math.ceil(year / unit);
+    return [(n - 1) * unit + 1, n * unit];
+  }
+  const n = Math.ceil((1 - year) / unit);
+  return [1 - n * unit, -(n - 1) * unit];
+}
+
+function centredWindow(year: number, unit: number): [number, number] {
+  return [year - unit / 2, year + unit / 2 - 1];
+}
+
+export function fromWikidata(value: WikidataTime): SpanResult {
+  const precision = WIKIDATA_PRECISIONS[value.precision];
+  if (!precision) return refuse("out-of-range", `Wikidata precision ${value.precision} is coarser than 100,000 years or unknown`);
+  const model = value.calendar.split("/").pop() ?? "";
+  if (model !== WIKIDATA_GREGORIAN && model !== WIKIDATA_JULIAN) return refuse("calendar", `calendar model ${value.calendar} is neither Gregorian nor Julian`);
+  const calendar: SpanCalendar = model === WIKIDATA_JULIAN ? "julian" : "gregorian";
+  const m = WIKIDATA_TIME.exec(value.time.trim());
+  if (!m) return refuse("syntax", `not a Wikidata time value: ${value.time}`);
+  const source = value.source ?? "rdf";
+  const signed = Number(m[2]) * (m[1] === "-" ? -1 : 1);
+  if (source === "json" && signed === 0) return refuse("impossible-date", "Wikidata JSON has no year 0");
+  const year = source === "json" && signed < 0 ? signed + 1 : signed;
+  const month = Number(m[3]);
+  const day = Number(m[4]);
+
+  if (precision === "day" || precision === "month" || precision === "year") {
+    if (Math.abs(year) > 9999) return refuse("out-of-range", `${precision} precision needs a 4-digit year, got ${year}`);
+    const raw: RawDate = {
+      year,
+      month: precision === "year" ? null : month,
+      day: precision === "day" ? day : null,
+      width: 1,
+      flags: NO_FLAGS,
+    };
+    const hint: CalendarHint = source === "json" && calendar === "julian" ? "julian" : "gregorian";
+    const r = fromEndpoint(endpointFromRaw(raw, hint));
+    return r.ok ? { ok: true, span: { ...r.span, calendar } } : r;
+  }
+  if (precision === "decade") {
+    const first = fdiv(year, 10) * 10;
+    return windowSpan(first, first + 9, "decade", calendar);
+  }
+  if (precision === "century") return windowSpan(...ordinalWindow(year, 100), "century", calendar);
+  if (precision === "millennium") {
+    if (Math.abs(year) > 9999) return windowSpan(...centredWindow(year, 1000), "ka", calendar);
+    return windowSpan(...ordinalWindow(year, 1000), "millennium", calendar);
+  }
+  if (precision === "10ka") return windowSpan(...centredWindow(year, 10000), "10ka", calendar);
+  return windowSpan(...centredWindow(year, 100000), "100ka", calendar);
+}

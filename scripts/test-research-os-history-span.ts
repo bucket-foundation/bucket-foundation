@@ -14,8 +14,9 @@ import {
   parseLifespan,
   parseSpan,
   parseYear,
+  fromWikidata,
 } from "../src/lib/history/span";
-import type { CalendarHint, LifespanResult, Span, SpanResult, YearConvention } from "../src/lib/history/span";
+import type { CalendarHint, LifespanResult, Span, SpanResult, WikidataTime, YearConvention } from "../src/lib/history/span";
 
 const ROOT = path.resolve(__dirname, "..");
 const GOLDEN_PATH = path.join(ROOT, "scripts/fixtures/history-span-golden.json");
@@ -23,8 +24,8 @@ const GOLDEN_PATH = path.join(ROOT, "scripts/fixtures/history-span-golden.json")
 interface GoldenCase {
   id: string;
   category: string;
-  call: "edtf" | "span" | "year" | "lifespan";
-  input: string | number;
+  call: "edtf" | "span" | "year" | "lifespan" | "wikidata";
+  input: string | number | WikidataTime;
   options?: { calendar?: CalendarHint; convention?: YearConvention };
   expect: { span?: Span; roles?: Record<string, Span>; refusal?: string };
   offset_days?: number;
@@ -38,6 +39,7 @@ function run(c: GoldenCase): SpanResult | LifespanResult {
   if (c.call === "year") return parseYear(c.input as number, c.options!.convention!);
   if (c.call === "edtf") return parseEdtf(c.input as string, { calendar });
   if (c.call === "span") return parseSpan(c.input as string, { calendar });
+  if (c.call === "wikidata") return fromWikidata(c.input as WikidataTime);
   return parseLifespan(c.input as string);
 }
 
@@ -61,7 +63,7 @@ test("the golden file holds at least 70 unique cases across every category", () 
   assert.ok(golden.cases.length >= 70, `${golden.cases.length} cases`);
   assert.equal(new Set(golden.cases.map((c) => c.id)).size, golden.cases.length);
   const categories = new Set(golden.cases.map((c) => c.category));
-  for (const name of ["edtf", "unknown-calendar", "rejected", "integer-year", "era-text", "century", "julian", "old-style", "figure"]) {
+  for (const name of ["edtf", "unknown-calendar", "rejected", "integer-year", "era-text", "century", "julian", "old-style", "figure", "wikidata"]) {
     assert.ok(categories.has(name), name);
   }
 });
@@ -221,4 +223,40 @@ test("every canon-sites and canon-timeline year parses as a historical year", ()
     const s = span(parseYear(row.year, "historical"));
     assert.equal(s.start_year, row.year < 0 ? row.year + 1 : row.year, row.id);
   }
+});
+
+test("Wikidata time values reach every precision from day to 100ka, in both calendar models", () => {
+  const G = "http://www.wikidata.org/entity/Q1985727";
+  const J = "http://www.wikidata.org/entity/Q1985786";
+  const w = (time: string, precision: number, calendar = G, source?: "rdf" | "json") => span(fromWikidata({ time, precision, calendar, source }));
+  const bounds = (s: Span) => [s.edtf, s.start_min, s.end_max, s.precision, s.calendar];
+
+  assert.deepEqual(bounds(w("1879-03-14T00:00:00Z", 11)), ["1879-03-14", 1879, 1879, "day", "gregorian"]);
+  assert.deepEqual(bounds(w("1642-12-25T00:00:00Z", 11, J, "json")), ["1643-01-04", 1643, 1643, "day", "julian"]);
+  assert.deepEqual(bounds(w("1643-01-04T00:00:00Z", 11, J)), ["1643-01-04", 1643, 1643, "day", "julian"]);
+  assert.deepEqual(bounds(w("1879-03-00T00:00:00Z", 10)), ["1879-03", 1879, 1879, "month", "gregorian"]);
+  assert.deepEqual(bounds(w("1879-00-00T00:00:00Z", 9)), ["1879", 1879, 1879, "year", "gregorian"]);
+  assert.deepEqual(bounds(w("-0500-00-00T00:00:00Z", 9, J, "json")).slice(0, 1), ["-0499"]);
+  assert.deepEqual(bounds(w("1870-00-00T00:00:00Z", 8)), ["1870/1879", 1870, 1879, "decade", "gregorian"]);
+  assert.deepEqual(bounds(w("1900-01-01T00:00:00Z", 7)), ["1801/1900", 1801, 1900, "century", "gregorian"]);
+  assert.deepEqual(bounds(w("1201-01-01T00:00:00Z", 7)), ["1201/1300", 1201, 1300, "century", "gregorian"]);
+  assert.deepEqual(bounds(w("-4300-01-01T00:00:00Z", 7, J)), ["-4399/-4300", -4399, -4300, "century", "julian"]);
+  assert.deepEqual(bounds(w("2000-01-01T00:00:00Z", 6)), ["1001/2000", 1001, 2000, "millennium", "gregorian"]);
+  assert.deepEqual(bounds(w("-5000-01-01T00:00:00Z", 6, J)), ["-5999/-5000", -5999, -5000, "millennium", "julian"]);
+  assert.deepEqual(bounds(w("-12000-01-01T00:00:00", 6, J)), ["Y-12500/Y-11501", -12500, -11501, "ka", "julian"]);
+  assert.deepEqual(bounds(w("-20000-01-01T00:00:00", 5, J)), ["Y-25000/Y-15001", -25000, -15001, "10ka", "julian"]);
+  assert.deepEqual(bounds(w("-800000-01-01T00:00:00", 4)), ["Y-850000/Y-750001", -850000, -750001, "100ka", "gregorian"]);
+
+  const refused = (v: WikidataTime) => {
+    const r = fromWikidata(v);
+    return r.ok ? null : r.refusal;
+  };
+  assert.equal(refused({ time: "-3400000-01-01T00:00:00", precision: 3, calendar: J }), "out-of-range");
+  assert.equal(refused({ time: "1900-01-01T00:00:00Z", precision: 9, calendar: "http://www.wikidata.org/entity/Q12138" }), "calendar");
+  assert.equal(refused({ time: "0000-01-01T00:00:00Z", precision: 9, calendar: G, source: "json" }), "impossible-date");
+  assert.equal(refused({ time: "1900-02-29T00:00:00Z", precision: 11, calendar: G }), "impossible-date");
+  assert.equal(refused({ time: "not a time", precision: 9, calendar: G }), "syntax");
+
+  const precisions = new Set(golden.cases.filter((c) => c.category === "wikidata").flatMap(spansOf).map((s) => s.precision));
+  assert.deepEqual(Array.from(precisions).sort(), Array.from(SPAN_PRECISIONS).sort());
 });
