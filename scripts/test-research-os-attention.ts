@@ -266,6 +266,45 @@ test("vector loads ask only for the snapshot's node ids and reread them after th
   assert.ok(asked.flat().every((id) => snap.byId.has(id)), "no id outside the snapshot is read");
 });
 
+test("filtered vector loads rank exactly as the unfiltered read did, private query included", async () => {
+  const { embeddingTextHash, freshVectors, vectorLoader } = await import("../src/lib/research-os/attention-db");
+  const { embedText } = await import("../src/lib/research-os/attention");
+  const hashOf = (id: string) => embeddingTextHash(embedText(snap.byId.get(id)!.title, snap.summaries.get(id)));
+  const dims = 8;
+  const unit = (seed: number) => {
+    const v = Array.from({ length: dims }, (_, i) => Math.sin(seed * 7.3 + i * 1.7));
+    const n = Math.sqrt(v.reduce((a, x) => a + x * x, 0));
+    return v.map((x) => x / n);
+  };
+  const stored = rows.map((r, i) => ({ node_id: r.id, text_hash: r.id === "heat" ? "stale" : hashOf(r.id), vector: unit(i + 1) }));
+  const vecOf = new Map(stored.map((r) => [r.node_id, r.vector]));
+  const privateVector = vecOf.get("prob")!.map((x, i) => (x + vecOf.get("vec")![i]) / 2);
+  const all = stored.concat(
+    { node_id: "secret-draft", text_hash: "private", vector: privateVector },
+    { node_id: "deleted-node", text_hash: "gone", vector: unit(99) },
+  );
+  const unfiltered = freshVectors(all, snap);
+  const byId = new Map<string, typeof all>();
+  for (const r of all) byId.set(r.node_id, (byId.get(r.node_id) ?? []).concat(r));
+  const filtered = await vectorLoader(async (ids) => ids.flatMap((id) => byId.get(id) ?? []))(snap);
+  assert.deepEqual(Array.from(filtered.vectors.entries()).sort(), Array.from(unfiltered.vectors.entries()).sort());
+  assert.equal(filtered.stale, unfiltered.stale);
+  assert.equal(unfiltered.stale, 1);
+  assert.ok(!filtered.vectors.has("secret-draft") && !filtered.vectors.has("deleted-node"));
+
+  const privateDeps = (v: typeof unfiltered) =>
+    deps({ vectors: async () => v, privateFactors: async () => ({ factors: [["prob", "vec"]], denied: 0, missing: 0 }) });
+  for (const q of ["ids=secret-draft", "ids=secret-draft&rank=vector", "ids=kin&rank=vector", "ids=kin", "q=motion%20vectors", "ids=secret-draft&cone=show"]) {
+    const a = await answerAttend(params(q), "learner", privateDeps(unfiltered));
+    const b = await answerAttend(params(q), "learner", privateDeps(filtered));
+    assert.deepEqual(b, a, q);
+  }
+  for (const query of [{ ids: ["kin"] }, { privateFactors: [["prob", "vec"]] }, { ids: ["gas"], cone: "show" as const }]) {
+    assert.deepEqual(rankByAttention(snap, { ...query, k: 50 }), rankByAttention(snap, { ...query, k: 50 }));
+    assert.deepEqual(rankQuery(snap, filtered.vectors, { ...query, k: 50, rank: "fused" }), rankQuery(snap, unfiltered.vectors, { ...query, k: 50, rank: "fused" }));
+  }
+});
+
 test("a stored vector whose text changed is skipped and counted as stale", async () => {
   const { embeddingTextHash, freshVectors } = await import("../src/lib/research-os/attention-db");
   const { embedText } = await import("../src/lib/research-os/attention");
