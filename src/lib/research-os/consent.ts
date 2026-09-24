@@ -14,7 +14,7 @@ export interface LearnerProfile {
   updatedAt: string;
 }
 
-export type ConsentAction = "workspace_tool" | "probe_answer" | "transfer_answer" | "production_submit" | "search_standing";
+export type ConsentAction = "workspace_tool" | "probe_answer" | "transfer_answer" | "production_submit" | "search_standing" | "learn_event";
 
 export interface ConsentCheckResult {
   allowed: boolean;
@@ -92,6 +92,12 @@ export async function decideWithPaths(
   if (effective.status === "none") return first;
   await writeThrough(learnerId, effective);
   return decideConsent({ ...profile, consentStatus: effective.status, consentSource: effective.source }, action);
+}
+
+export async function readLearnerProfile(learnerId: string): Promise<LearnerProfile | null> {
+  const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
+  if (error) throw new Error(`readLearnerProfile: learner_profiles read failed: ${error.message}`);
+  return data ? toLearnerProfile(data as LearnerProfileRow) : null;
 }
 
 export async function requireConsent(learnerId: string, action: ConsentAction): Promise<ConsentCheckResult> {
