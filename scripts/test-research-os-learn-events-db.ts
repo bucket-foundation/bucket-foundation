@@ -58,6 +58,28 @@ test("anon and authenticated are refused the table and the writer", { skip }, ()
   }
 });
 
+test("the event counter refuses anon and authenticated and counts per user, name and day for the service role", { skip }, () => {
+  for (const role of ["anon", "authenticated"]) {
+    for (const statement of ["select count(*) from graph.event_usage", `select graph.event_usage_hit('${randomUUID()}', 'assess_done')`]) {
+      const run = psql(`begin; grant usage on schema graph to ${role}; set local role ${role}; ${statement}; rollback;`);
+      assert.notEqual(run.status, 0, `${role} ran: ${statement}`);
+      assert.match(run.stderr, /permission denied/);
+    }
+  }
+  const rls = psql("select relrowsecurity and relforcerowsecurity from pg_class where oid = 'graph.event_usage'::regclass");
+  assert.equal(rls.stdout.trim(), "t");
+  const user = makeUser("18plus");
+  try {
+    const run = psql(
+      `begin; set local role service_role; select graph.event_usage_hit('${user}', 'assess_done'); select graph.event_usage_hit('${user}', 'assess_done'); select graph.event_usage_hit('${user}', 'placement_done'); rollback;`,
+    );
+    assert.equal(run.status, 0, run.stderr);
+    assert.deepEqual(run.stdout.split("\n").filter((l) => /^\d+$/.test(l)), ["1", "2", "1"]);
+  } finally {
+    dropUser(user);
+  }
+});
+
 test("row level security is forced, so a stray grant still reads nothing and writes nothing", { skip }, () => {
   const rls = psql("select relrowsecurity and relforcerowsecurity from pg_class where oid = 'bucket.learn_events'::regclass");
   assert.equal(rls.stdout.trim(), "t");

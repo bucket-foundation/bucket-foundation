@@ -4,6 +4,8 @@ export type LearnEventName = (typeof LEARN_EVENT_NAMES)[number];
 export const CLIENT_EVENT_NAMES = ["placement_done", "study_session_done", "assess_done"] as const;
 export type ClientEventName = (typeof CLIENT_EVENT_NAMES)[number];
 
+export const EVENT_DAILY_CAPS: Record<ClientEventName, number> = { placement_done: 20, study_session_done: 60, assess_done: 30 };
+
 export const MAX_ASSESS_ITEMS = 50;
 const LEVELS = ["recall", "apply", "derive", "teach"] as const;
 const BANDS = ["under13", "13to17", "18plus"] as const;

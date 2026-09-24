@@ -1,12 +1,15 @@
 import { randomUUID } from "node:crypto";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { decideConsent, readLearnerProfile, type LearnerProfile } from "@/lib/research-os/consent";
-import { configured } from "@/lib/research-os/db";
-import { parseProps, validArm, type LearnEvent, type LearnEventName, type LearnEventProps } from "./events";
+import { configured, graphService } from "@/lib/research-os/db";
+import { secondsUntilUtcMidnight } from "@/lib/llm/daily-limit";
+import { CLIENT_EVENT_NAMES, EVENT_DAILY_CAPS, parseProps, validArm, type ClientEventName, type LearnEvent, type LearnEventName, type LearnEventProps } from "./events";
 
 export type WriteOutcome = "recorded" | "duplicate" | "refused";
 export type GateReason = "no_profile" | "under_age" | "no_consent";
-export type RecordOutcome = { recorded: boolean; outcome: WriteOutcome | GateReason };
+export type RecordOutcome =
+  | { recorded: boolean; outcome: WriteOutcome | GateReason }
+  | { recorded: false; outcome: "rate_limited"; cap: number; retryAfterSeconds: number };
 
 export interface LearnEventRow {
   user_id: string;
@@ -19,6 +22,7 @@ export interface LearnEventRow {
 export interface LearnEventStore {
   readProfile: (userId: string) => Promise<LearnerProfile | null>;
   write: (row: LearnEventRow) => Promise<WriteOutcome>;
+  hit: (userId: string, name: ClientEventName) => Promise<number>;
 }
 
 export type EventGate = { record: true } | { record: false; reason: GateReason };
@@ -30,11 +34,21 @@ export function learnEventGate(profile: LearnerProfile | null): EventGate {
   return { record: true };
 }
 
-export async function recordLearnEvent(store: LearnEventStore, userId: string, event: LearnEvent): Promise<RecordOutcome> {
+function isClientName(name: LearnEventName): name is ClientEventName {
+  return (CLIENT_EVENT_NAMES as readonly string[]).includes(name);
+}
+
+export async function recordLearnEvent(store: LearnEventStore, userId: string, event: LearnEvent, now: Date = new Date()): Promise<RecordOutcome> {
   const props = parseProps(event.name, event.props);
   if (!props.ok) throw new Error(`recordLearnEvent: ${props.error}`);
   const gate = learnEventGate(await store.readProfile(userId));
   if (!gate.record) return { recorded: false, outcome: gate.reason };
+  if (isClientName(event.name)) {
+    const cap = EVENT_DAILY_CAPS[event.name];
+    if ((await store.hit(userId, event.name)) > cap) {
+      return { recorded: false, outcome: "rate_limited", cap, retryAfterSeconds: secondsUntilUtcMidnight(now) };
+    }
+  }
   const outcome = await store.write({
     user_id: userId,
     event_id: event.id,
@@ -70,6 +84,13 @@ export function supabaseEventStore(): LearnEventStore | null {
       if (error) throw new Error(`record_learn_event failed: ${error.message}`);
       if (data !== "recorded" && data !== "duplicate" && data !== "refused") throw new Error(`record_learn_event returned ${String(data)}`);
       return data;
+    },
+    hit: async (userId, name) => {
+      const { data, error } = await graphService().rpc("event_usage_hit", { p_subject: userId, p_name: name });
+      if (error) throw new Error(`event_usage_hit failed: ${error.message}`);
+      const n = Number(data);
+      if (!Number.isFinite(n)) throw new Error("event_usage_hit returned no count");
+      return n;
     },
   };
 }

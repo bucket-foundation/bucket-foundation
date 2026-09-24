@@ -11,8 +11,8 @@ export interface EventDeps {
   store: () => LearnEventStore | null;
 }
 
-function reply(body: Record<string, unknown>, status: number): NextResponse {
-  return NextResponse.json(body, { status, headers: NO_STORE });
+function reply(body: Record<string, unknown>, status: number, headers: Record<string, string> = {}): NextResponse {
+  return NextResponse.json(body, { status, headers: { ...NO_STORE, ...headers } });
 }
 
 export async function handleLearnEvent(req: NextRequest, deps: EventDeps): Promise<NextResponse> {
@@ -34,6 +34,9 @@ export async function handleLearnEvent(req: NextRequest, deps: EventDeps): Promi
 
   try {
     const result = await recordLearnEvent(store, user.id, parsed.value);
+    if (result.outcome === "rate_limited") {
+      return reply({ error: "rate_limited", ...result }, 429, { "retry-after": String(result.retryAfterSeconds) });
+    }
     return reply({ ...result }, 200);
   } catch (err) {
     console.error("[academy/event] write failed:", err instanceof Error ? err.message : err);

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
-import { parseClientEvent, parseProps, type LearnEventProps } from "../src/lib/academy/events";
+import { EVENT_DAILY_CAPS, parseClientEvent, parseProps, type LearnEventProps } from "../src/lib/academy/events";
 import { learnEventGate, recordLearnEvent, type LearnEventRow, type LearnEventStore, type WriteOutcome } from "../src/lib/academy/events-server";
 import { createEventSender } from "../src/lib/academy/events-client";
 import { handleLearnEvent } from "../src/app/api/academy/event/handler";
@@ -14,12 +14,20 @@ function profile(band: BirthYearBucket | null, consent: ConsentStatus = "none"):
   return { learnerId: USER, role: "independent", birthYearBucket: band, consentStatus: consent, consentSource: null, updatedAt: "2026-09-23T00:00:00Z" };
 }
 
-function memoryStore(p: LearnerProfile | null): LearnEventStore & { rows: LearnEventRow[]; writes: number } {
+function memoryStore(p: LearnerProfile | null): LearnEventStore & { rows: LearnEventRow[]; writes: number; hits: number } {
   const rows: LearnEventRow[] = [];
+  const counts = new Map<string, number>();
   const store = {
     rows,
     writes: 0,
+    hits: 0,
     readProfile: async () => p,
+    hit: async (userId: string, name: string) => {
+      store.hits++;
+      const n = (counts.get(`${userId}:${name}`) ?? 0) + 1;
+      counts.set(`${userId}:${name}`, n);
+      return n;
+    },
     write: async (row: LearnEventRow): Promise<WriteOutcome> => {
       store.writes++;
       if (rows.some((r) => r.user_id === row.user_id && r.event_id === row.event_id)) return "duplicate";
@@ -118,6 +126,31 @@ test("the route answers a minor with recorded false and writes nothing", async (
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { recorded: false, outcome: "under_age" });
   assert.equal(store.writes, 0);
+  assert.equal(store.hits, 0, "a minor leaves no counter row either");
+});
+
+test("the daily caps are placement 20, study sessions 60 and assessments 30", () => {
+  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30 });
+});
+
+test("past the daily cap the route answers 429 with Retry-After and writes nothing more", async () => {
+  const store = memoryStore(profile("18plus"));
+  const deps = { verifyUser: async () => ({ id: USER, email: null }), store: () => store };
+  const cap = EVENT_DAILY_CAPS.assess_done;
+  for (let i = 0; i < cap; i++) {
+    const ok = await handleLearnEvent(post({ id: randomUUID(), name: "assess_done", props: ASSESS }), deps);
+    assert.equal(ok.status, 200);
+  }
+  const over = await handleLearnEvent(post({ id: randomUUID(), name: "assess_done", props: ASSESS }), deps);
+  assert.equal(over.status, 429);
+  const retryAfter = Number(over.headers.get("retry-after"));
+  assert.ok(retryAfter >= 1 && retryAfter <= 86_400, String(retryAfter));
+  const body = await over.json();
+  assert.equal(body.error, "rate_limited");
+  assert.equal(body.cap, cap);
+  assert.equal(store.rows.length, cap);
+  const other = await handleLearnEvent(post({ id: randomUUID(), name: "placement_done", props: { branch: "02-physics", questions: 5, known: 2 } }), deps);
+  assert.equal(other.status, 200, "each event type has its own counter");
 });
 
 test("the client sends one request per id and retries a failure with the same id", async () => {

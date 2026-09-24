@@ -48,6 +48,35 @@ $$;
 revoke all on function bucket.record_learn_event(uuid, uuid, text, jsonb, text) from public, anon, authenticated;
 grant execute on function bucket.record_learn_event(uuid, uuid, text, jsonb, text) to service_role;
 
+create table if not exists graph.event_usage (
+  subject uuid not null references auth.users (id) on delete cascade,
+  name    text not null check (name in ('placement_done', 'study_session_done', 'assess_done')),
+  day     date not null,
+  count   int  not null default 0 check (count >= 0),
+  primary key (subject, name, day)
+);
+
+alter table graph.event_usage enable row level security;
+alter table graph.event_usage force row level security;
+
+revoke all on graph.event_usage from public, anon, authenticated;
+grant select, insert, update, delete on graph.event_usage to service_role;
+
+create or replace function graph.event_usage_hit(p_subject uuid, p_name text)
+returns int
+language sql
+security invoker
+set search_path = ''
+as $$
+  insert into graph.event_usage as u (subject, name, day, count)
+  values (p_subject, p_name, (pg_catalog.now() at time zone 'utc')::date, 1)
+  on conflict (subject, name, day) do update set count = u.count + 1
+  returning u.count;
+$$;
+
+revoke all on function graph.event_usage_hit(uuid, text) from public, anon, authenticated;
+grant execute on function graph.event_usage_hit(uuid, text) to service_role;
+
 create or replace function graph.privacy_delete_learner(
   p_learner_id uuid,
   p_actor_id uuid default null,
@@ -71,6 +100,7 @@ declare
   v_academy_profiles    int;
   v_academy_credentials int;
   v_learn_events        int;
+  v_event_usage         int;
 begin
   delete from graph.source_quote_receipts where learner_id = p_learner_id;
   get diagnostics v_quote_receipts = row_count;
@@ -108,6 +138,9 @@ begin
   delete from bucket.learn_events where user_id = p_learner_id;
   get diagnostics v_learn_events = row_count;
 
+  delete from graph.event_usage where subject = p_learner_id;
+  get diagnostics v_event_usage = row_count;
+
   insert into graph.privacy_events (learner_id_hash, action, actor_id_hash, acting_as_reviewer)
   values (
     encode(digest(p_learner_id::text, 'sha256'), 'hex'),
@@ -130,7 +163,8 @@ begin
     'academy_progress', v_academy_progress,
     'academy_profiles', v_academy_profiles,
     'academy_credentials', v_academy_credentials,
-    'learn_events', v_learn_events
+    'learn_events', v_learn_events,
+    'event_usage', v_event_usage
   );
 end;
 $$;

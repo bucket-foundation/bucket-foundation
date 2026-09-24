@@ -15,6 +15,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   edge_flags: [{ columns: ["id"], nullable: [] }, { columns: ["edge_id", "learner_id"], nullable: [] }],
   edge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["from_slug", "to_slug"], nullable: [] }],
   edges: [{ columns: ["id"], nullable: [] }, { columns: ["from_id", "to_id", "kind"], nullable: [] }],
+  event_usage: [{ columns: ["subject", "name", "day"], nullable: [] }],
   evidence_source_admissions: [{ columns: ["source_id", "source_revision"], nullable: [] }],
   factoids: [{ columns: ["id"], nullable: [] }, { columns: ["silver_item_id", "role"], nullable: [] }],
   gold_lineage: [{ columns: ["id"], nullable: [] }],
