@@ -6,7 +6,7 @@ function multipart(fields: Record<string, string>): string {
 }
 const MULTIPART = { "content-type": `multipart/form-data; boundary=${BOUNDARY}` };
 const FILES = { orgs: "o", users: "u", classes: "c", enrollments: "e" };
-const reviewer = { "@/lib/research-os/reviewer": { verifyReviewer: async () => ({ id: "r1" }) } };
+const reviewer = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: "r1" }) } };
 class Source {
   async fetchBundle() {
     return { orgs: [] };
@@ -44,7 +44,7 @@ export const probes: Probe[] = [
     body: "{}",
     stubs: () => ({
       "@/lib/research-os/reviewer": {
-        verifyReviewer: async () => {
+        verifyGraphReviewer: async () => {
           throw new Error("reviewer store down");
         },
       },

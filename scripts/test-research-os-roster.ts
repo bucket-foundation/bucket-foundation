@@ -246,9 +246,9 @@ const ROSTER_ROUTE = join(__dirname, "..", "src", "app", "api", "research-os", "
 
 test("roster route: reviewer gate runs before the request body is ever parsed, and rejects with 403", () => {
   const src = readFileSync(ROSTER_ROUTE, "utf8");
-  assert.match(src, /const reviewer = await verifyReviewer\(req\);/);
+  assert.match(src, /const reviewer = await verifyGraphReviewer\(req\);/);
   assert.match(src, /if \(!reviewer\) return bad\(403, "forbidden"\);/);
-  const reviewerCheckIndex = src.indexOf("verifyReviewer(req)");
+  const reviewerCheckIndex = src.indexOf("verifyGraphReviewer(req)");
   const formDataIndex = src.indexOf("req.formData()");
   assert.ok(reviewerCheckIndex > -1 && formDataIndex > -1);
   assert.ok(reviewerCheckIndex < formDataIndex, "the reviewer gate must run before the multipart body is parsed");

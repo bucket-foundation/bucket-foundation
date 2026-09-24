@@ -6,7 +6,7 @@ import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib
 import type { Stage } from "@/lib/research-os/types";
 import { awardProgress, configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById, inChunks} from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
-import { verifyReviewer, isReviewerEmail } from "@/lib/research-os/reviewer";
+import { verifyClassTeacher, type ClassTeacher } from "@/lib/research-os/reviewer";
 import {
   hasUnverifiedSource,
   isSourceProvenanceStale,
@@ -58,7 +58,7 @@ function sourceLinesOf(sources: unknown[] | null | undefined): string[] {
 }
 
 export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyClassTeacher(req);
   if (!reviewer) return bad(403, "forbidden");
 
   const svc = graphService();
@@ -174,8 +174,8 @@ export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
   );
 });
 
-async function reviewerScope(reviewer: { id: string; email: string | null }): Promise<{ ok: true; learners: string[] | null } | { ok: false }> {
-  if (reviewer.email && isReviewerEmail(reviewer.email)) return { ok: true, learners: null };
+async function reviewerScope(reviewer: ClassTeacher): Promise<{ ok: true; learners: string[] | null } | { ok: false }> {
+  if (reviewer.staff) return { ok: true, learners: null };
   const svc = graphService();
 
   const classIds: string[] = [];
@@ -250,7 +250,7 @@ interface ReviewBody {
 }
 
 export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyClassTeacher(req);
   if (!reviewer) return bad(403, "forbidden");
 
   const read = await readAnyJson(req, "bad_request");
