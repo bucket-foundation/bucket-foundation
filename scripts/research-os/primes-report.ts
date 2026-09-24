@@ -14,6 +14,7 @@ import {
 import { pagedRead } from "../../src/lib/research-os/paging";
 import { readLineageSummary } from "../../src/lib/research-os/medallion/lineage-read";
 import type { LineageSummary } from "../../src/lib/research-os/medallion/report";
+import { nonIdeaReportFilter } from "../../src/lib/research-os/idea";
 
 type NodeRow = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -34,7 +35,7 @@ async function main() {
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null).neq("kind", "event"));
+  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null).not("kind", "in", nonIdeaReportFilter()));
   const live = new Set(nodeRows.map((n) => n.id));
   const edgeRows = (await all<EdgeRow>(svc, "edges", "from_id, to_id, kind, confidence", (q) => q.in("kind", Object.keys(FACTOR_EDGES)))).filter(
     (e) => live.has(e.from_id) && live.has(e.to_id),

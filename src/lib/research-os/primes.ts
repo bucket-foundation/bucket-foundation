@@ -40,10 +40,12 @@ export const FACTOR_EDGES: Record<string, "from" | "to"> = {
 
 export const MULTIPLICITY_CAP = 1e12;
 
-export function factorMap(edges: DepEdge[]): Map<string, Map<string, number>> {
+export type FactorEdgeMap = Record<string, "from" | "to">;
+
+export function factorMap(edges: DepEdge[], factorEdges: FactorEdgeMap = FACTOR_EDGES): Map<string, Map<string, number>> {
   const out = new Map<string, Map<string, number>>();
   for (const e of edges) {
-    const side = FACTOR_EDGES[e.kind];
+    const side = factorEdges[e.kind];
     if (!side || e.fromId === e.toId) continue;
     const node = side === "from" ? e.toId : e.fromId;
     const factor = side === "from" ? e.fromId : e.toId;
@@ -132,8 +134,8 @@ export function components(ids: string[], factors: Map<string, Map<string, numbe
   return comp;
 }
 
-export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[]): Map<string, Decomposition> {
-  const factors = factorMap(edges);
+export function decompose(nodes: PrimeNodeInput[], edges: DepEdge[], factorEdges: FactorEdgeMap = FACTOR_EDGES): Map<string, Decomposition> {
+  const factors = factorMap(edges, factorEdges);
   const idSet = new Set<string>(nodes.map((n) => n.id));
   for (const [n, fs] of Array.from(factors)) {
     idSet.add(n);
