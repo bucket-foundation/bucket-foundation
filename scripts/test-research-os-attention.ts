@@ -240,6 +240,32 @@ test("the blind sheet merges both arms, drops arm labels and shuffles by seed", 
   assert.deepEqual(blindRows({ embedding: ["x", "y"], product: ["y", "z"] }, "s").items, a.items);
 });
 
+test("vector loads ask only for the snapshot's node ids and reread them after the ttl", async () => {
+  const { embeddingTextHash, vectorLoader } = await import("../src/lib/research-os/attention-db");
+  const { embedText } = await import("../src/lib/research-os/attention");
+  const current = (id: string) => embeddingTextHash(embedText(snap.byId.get(id)!.title, snap.summaries.get(id)));
+  const asked: string[][] = [];
+  let clock = 0;
+  const load = vectorLoader(
+    async (ids) => {
+      asked.push(ids);
+      return ids.filter((id) => id === "kin").map((id) => ({ node_id: id, text_hash: current(id), vector: [1, 0, 0] }));
+    },
+    1000,
+    () => clock,
+  );
+  const first = await load(snap);
+  assert.deepEqual(Array.from(first.vectors.keys()), ["kin"]);
+  assert.deepEqual(asked, [Array.from(snap.byId.keys()).sort()]);
+  clock = 500;
+  await load(snap);
+  assert.equal(asked.length, 1, "a warm cache reads nothing");
+  clock = 1500;
+  await load(snap);
+  assert.equal(asked.length, 2, "an expired cache rereads");
+  assert.ok(asked.flat().every((id) => snap.byId.has(id)), "no id outside the snapshot is read");
+});
+
 test("a stored vector whose text changed is skipped and counted as stale", async () => {
   const { embeddingTextHash, freshVectors } = await import("../src/lib/research-os/attention-db");
   const { embedText } = await import("../src/lib/research-os/attention");

@@ -106,11 +106,11 @@ jobs:
         if: steps.paths.outputs.run == 'true'
       - name: local supabase
         if: steps.paths.outputs.run == 'true'
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+        run: npx supabase@2.117.0 start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         if: steps.paths.outputs.run == 'true'
         run: |
-          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          npx supabase@2.117.0 status -o env > "$RUNNER_TEMP/supa.env"
           set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
@@ -168,10 +168,10 @@ jobs:
           cache: npm
       - run: npm ci
       - name: local supabase
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+        run: npx supabase@2.117.0 start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         run: |
-          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          npx supabase@2.117.0 status -o env > "$RUNNER_TEMP/supa.env"
           set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
