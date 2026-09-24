@@ -1,0 +1,216 @@
+{
+ "selection": "per branch, the 6 atoms with the lowest sha1(atom id) among atoms whose quiz has an answer containing = or a digit; quiz is the index of the first such item",
+ "corpus": "learning/app/corpus",
+ "atoms": [
+  {
+   "branch": "01-mathematics",
+   "atomId": "fundamental-theorem-algebra",
+   "quiz": 1
+  },
+  {
+   "branch": "01-mathematics",
+   "atomId": "stokes-theorem",
+   "quiz": 1
+  },
+  {
+   "branch": "01-mathematics",
+   "atomId": "graph-theory",
+   "quiz": 1
+  },
+  {
+   "branch": "01-mathematics",
+   "atomId": "prime-numbers",
+   "quiz": 0
+  },
+  {
+   "branch": "01-mathematics",
+   "atomId": "number-systems",
+   "quiz": 1
+  },
+  {
+   "branch": "01-mathematics",
+   "atomId": "derivative",
+   "quiz": 0
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "maxwell-equations",
+   "quiz": 1
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "thermo-temperature",
+   "quiz": 0
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "cosmology-glimpse",
+   "quiz": 0
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "forces-friction",
+   "quiz": 0
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "photoelectric-quantization",
+   "quiz": 0
+  },
+  {
+   "branch": "02-physics",
+   "atomId": "least-action",
+   "quiz": 0
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "hybridization",
+   "quiz": 0
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "oxidation-states",
+   "quiz": 1
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "enthalpy",
+   "quiz": 0
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "rate-laws-order",
+   "quiz": 1
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "acid-base-titration",
+   "quiz": 1
+  },
+  {
+   "branch": "03-chemistry",
+   "atomId": "beer-lambert-law",
+   "quiz": 1
+  },
+  {
+   "branch": "04-information",
+   "atomId": "bit",
+   "quiz": 1
+  },
+  {
+   "branch": "04-information",
+   "atomId": "channel-capacity",
+   "quiz": 1
+  },
+  {
+   "branch": "04-information",
+   "atomId": "diffie-hellman",
+   "quiz": 1
+  },
+  {
+   "branch": "04-information",
+   "atomId": "fast-fourier-transform",
+   "quiz": 0
+  },
+  {
+   "branch": "04-information",
+   "atomId": "differential-entropy",
+   "quiz": 0
+  },
+  {
+   "branch": "04-information",
+   "atomId": "shannon-entropy",
+   "quiz": 0
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "gibbs",
+   "quiz": 0
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "optical-tweezers",
+   "quiz": 0
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "two-state-folding",
+   "quiz": 1
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "selection-rules",
+   "quiz": 0
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "hydrogen-bond",
+   "quiz": 0
+  },
+  {
+   "branch": "05-biophysics",
+   "atomId": "boltzmann",
+   "quiz": 0
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "matter-power-spectrum",
+   "quiz": 1
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "observable-universe",
+   "quiz": 0
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "inflation",
+   "quiz": 0
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "thermal-history",
+   "quiz": 0
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "dark-energy",
+   "quiz": 1
+  },
+  {
+   "branch": "06-cosmology",
+   "atomId": "fluid-equation",
+   "quiz": 0
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "free-energy-principle",
+   "quiz": 1
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "goldman",
+   "quiz": 1
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "reward-prediction-error",
+   "quiz": 1
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "oja-rule",
+   "quiz": 0
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "bcm-rule",
+   "quiz": 0
+  },
+  {
+   "branch": "07-mind",
+   "atomId": "neurovascular-coupling",
+   "quiz": 1
+  }
+ ]
+}
