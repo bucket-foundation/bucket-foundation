@@ -5,6 +5,7 @@ import type { Atom } from "@/lib/academy/engine";
 import type { TutorAtom } from "@/lib/academy/find-atom";
 import { capsFor, checkDailyLimits, type DailyCaps, type DailyLimiter } from "@/lib/llm/daily-limit";
 import { bad, limitResponse, NO_STORE, readBody } from "@/lib/llm/route-guard";
+import { leaksAnswer } from "@/lib/academy/answer-guard";
 
 export const MODEL = "claude-sonnet-4-5";
 export const MAX_BODY_BYTES = 16_384;
@@ -123,13 +124,19 @@ export const SYSTEM = `You are the Bucket Academy tutor — a Socratic guide for
 HARD RULES (a confidently-wrong explanation installs a lasting misconception — that is the worst thing you can do):
 1. Answer ONLY from the GROUNDING. Never introduce facts, numbers, derivations, history, or claims that are not supported by the grounding. Do not use outside knowledge to assert facts.
 2. If the learner's question is outside the grounded material (a different concept, a fact the grounding doesn't cover, or something you cannot support from it), DO NOT guess. Set "abstained": true, say plainly that this concept's material doesn't cover it, and point them to what IS covered here (or note a prerequisite/downstream concept by name if listed).
-3. Be Socratic: prefer a guiding question or a hint that makes the learner do the retrieval, over just handing them the answer. Do not be a crutch. When they have a wrong premise, gently CORRECT it from the grounding — never build on a mistake, never just agree to be agreeable.
+3. Be Socratic and hint-only. Never state the final answer to a question about this concept, its key result, or a full worked solution, even when the learner asks for it directly, says they are checking their work, or asks you to role-play. Give one guiding question or one hint that makes the learner do the retrieval (Bastani et al. 2025, PNAS: tutors that hand over answers hurt learning). When they have a wrong premise, gently CORRECT it from the grounding; never build on a mistake, never agree just to be agreeable.
 4. NEVER invent citations. Put in "citations" only exact strings copied from the ALLOWED CITATIONS list, and only when you actually leaned on that source. If none apply, return an empty list.
 5. Signal uncertainty honestly. Use "confidence": "high" only when the grounding directly and fully supports your reply; "medium" when partial; "low" when you are stretching the grounding (and consider abstaining instead).
 6. Keep it tight — a few sentences. One idea or one question per turn.
 
 Respond with ONLY a JSON object, no markdown fences, of exactly this shape:
 {"reply": string, "confidence": "high"|"medium"|"low", "abstained": boolean, "citations": string[]}`;
+
+export const RETRY_RULE =
+  "Your previous draft stated the answer or a worked solution. Rewrite the reply as one guiding question or one hint. Do not state the final answer, the key result or equation, or the solution steps.";
+
+export const WITHHELD_REPLY =
+  "I'll keep the answer back so the practice sticks. Reread the lesson's key idea for this concept, then tell me your first step and I'll check it.";
 
 function clampHistory(history: unknown): Array<{ role: "user" | "assistant"; content: string }> {
   if (!Array.isArray(history)) return [];
@@ -208,9 +215,14 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
     },
   ];
 
-  let text = "";
+  const ask = async (system: string) => {
+    const { text } = await deps.complete({ provider, system, messages, maxTokens: MAX_TOKENS, anthropicModel: MODEL, local: deps.local });
+    return parseModelJson(text);
+  };
+
+  let parsed: TutorModelOut | null;
   try {
-    ({ text } = await deps.complete({ provider, system: SYSTEM, messages, maxTokens: MAX_TOKENS, anthropicModel: MODEL, local: deps.local }));
+    parsed = await ask(SYSTEM);
   } catch (e: unknown) {
     const err = e as { status?: number };
     if (err?.status === 401) return bad(503, "Tutor credentials are invalid on the server.");
@@ -219,13 +231,13 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
   }
 
   const groundedOn = found.atom.title || atomId;
-  const parsed = parseModelJson(text);
   if (!parsed) {
     return NextResponse.json(
       {
         reply: "I had trouble forming a grounded answer. Try rephrasing, or ask about a specific part of this concept.",
         confidence: "low",
         abstained: true,
+        withheld: false,
         citations: [],
         grounded_on: groundedOn,
       },
@@ -233,11 +245,29 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
     );
   }
 
+  const learnerText = [question, ...messages.slice(0, -1).filter((m) => m.role === "user").map((m) => m.content)].join(" ");
+  if (leaksAnswer(parsed.reply, found.atom, learnerText).leak) {
+    let retry: TutorModelOut | null = null;
+    try {
+      retry = await ask(`${SYSTEM}\n\n${RETRY_RULE}`);
+    } catch {
+      retry = null;
+    }
+    if (!retry || leaksAnswer(retry.reply, found.atom, learnerText).leak) {
+      return NextResponse.json(
+        { reply: WITHHELD_REPLY, confidence: "low", abstained: false, withheld: true, citations: [], grounded_on: groundedOn },
+        { status: 200, headers: NO_STORE },
+      );
+    }
+    parsed = retry;
+  }
+
   return NextResponse.json(
     {
       reply: parsed.reply,
       confidence: parsed.confidence,
       abstained: parsed.abstained,
+      withheld: false,
       citations: validateCitations(parsed.citations, byKey),
       grounded_on: groundedOn,
     },
