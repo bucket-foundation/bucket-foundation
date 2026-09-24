@@ -17,6 +17,11 @@ export const COLLECTED: { what: string; detail: string; why: string }[] = [
     why: "To schedule your next reviews and show your level on your profile.",
   },
   {
+    what: "Public Mastery Profile",
+    detail: "Only if you turn it on: the handle and display name you choose, and for each branch you study, how many concepts you started and mastered, your deepest level and your last study date. Anyone can read it at bucket.foundation/m/ followed by your handle.",
+    why: "To let you show your progress to others. Turn it off and the page goes away.",
+  },
+  {
     what: "Product events",
     detail: "A short record, tied to your account, each time one of the events below happens.",
     why: "To learn whether Learn works: how many people finish a first session and how many come back.",
@@ -32,8 +37,8 @@ export const EVENTS: { name: string; when: string }[] = [
 ];
 
 export const PROCESSORS: { name: string; role: string }[] = [
-  { name: "Supabase", role: "stores your account and the records above, and sends sign-in codes" },
+  { name: "Supabase", role: "stores your account and the records above" },
   { name: "Vercel", role: "hosts the site and counts page views without cookies" },
-  { name: "Email provider", role: "delivers sign-in codes and invites from a bucket.foundation address" },
+  { name: "Email provider", role: "will send sign-in codes and invites from a bucket.foundation address; we name it here before the first wave of invites" },
   { name: "Anthropic", role: "receives the text of a tutor question and the lesson it is about, once the tutor is on" },
 ];

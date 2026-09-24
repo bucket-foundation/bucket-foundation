@@ -29,7 +29,7 @@ test("the notice names every product event the launch plan records", () => {
 });
 
 test("the notice covers what the plan's measurement and consent sections collect", () => {
-  assert.deepEqual(COLLECTED.map((c) => c.what), ["Email", "Age band", "Progress", "Product events"]);
+  assert.deepEqual(COLLECTED.map((c) => c.what), ["Email", "Age band", "Progress", "Public Mastery Profile", "Product events"]);
   for (const c of COLLECTED) assert.ok(c.detail.trim() && c.why.trim(), `${c.what} says what and why`);
 });
 
