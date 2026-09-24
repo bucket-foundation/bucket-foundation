@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useSession } from "@/providers/SessionProvider";
 import { ToolOfflineNotice, detectToolOffline } from "../tools/_shared/ToolOfflineNotice";
 
 type Citation = { id: string; title: string; url?: string; doi?: string };
@@ -58,6 +60,7 @@ export default function ResearchAgentClient() {
   const [brief, setBrief] = useState<Brief | null>(null);
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState<number | null>(null);
+  const { accessToken } = useSession();
 
   async function run(q: string) {
     const qq = q.trim();
@@ -69,7 +72,10 @@ export default function ResearchAgentClient() {
     try {
       const r = await fetch("/api/research-agent", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+        },
         body: JSON.stringify({ question: qq }),
       });
       if (!r.ok) {
@@ -146,7 +152,14 @@ export default function ResearchAgentClient() {
       )}
 
       {errMsg &&
-        (detectToolOffline(errStatus, errMsg) ? (
+        (errStatus === 401 ? (
+          <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
+            <Link href="/sign-in?next=/research/agent" className="underline">
+              Sign in
+            </Link>{" "}
+            to run the research agent.
+          </div>
+        ) : detectToolOffline(errStatus, errMsg) ? (
           <ToolOfflineNotice toolName="The research agent" />
         ) : (
           <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">

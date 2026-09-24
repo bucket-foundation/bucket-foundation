@@ -16,7 +16,9 @@ const SUITES = {
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
       "scripts/test-waitlist.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard}.ts",
+      "scripts/test-research-agent-route.ts",
+      "scripts/test-llm-daily-limit.ts",
       "scripts/test-canon-allbranch-index.ts",
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
@@ -27,7 +29,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db,history-db,history-import-db,history-review-db}.ts"],
+    files: ["scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db,history-db,history-import-db,history-review-db,llm-usage-db}.ts"],
   },
   "research-os": {
     files: [
@@ -41,7 +43,7 @@ const SUITES = {
     ],
     exclude: [
       "scripts/test-research-os-{dedup,merge-actions}.ts",
-      "scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db,history-db,history-import-db,history-review-db}.ts",
+      "scripts/test-research-os-{evidence-append,evidence-admissions-db,connections-paging,access-paging,quote-receipts-db,read-access-routes,import-files-db,evidence-route-access,medallion-db,public-tables-deny-db,visible-select-db,history-db,history-import-db,history-review-db,llm-usage-db}.ts",
     ],
     commands: [
       ["node", "scripts/check-code-citations.mjs"],

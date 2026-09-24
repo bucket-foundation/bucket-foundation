@@ -50,9 +50,9 @@ Tutor gaps block the tutor, which is outside the day-one loop:
 
 | ID | Gap | Where |
 |---|---|---|
-| T1 | Route has no sign-in check and accepts up to 20,000 characters of client-supplied grounding, so a key makes it an open proxy | `src/app/api/academy/tutor/route.ts:209-217` |
-| T2 | Rate limit is a per-instance in-memory map, 20 per minute per IP; the workspace daily cap is in memory too | `tutor/route.ts:20-35`, `src/lib/research-os/rate-limit.ts:15` |
-| T3 | Hint-only is a prompt preference ("prefer a guiding question", rule 3 of `SYSTEM`) | `tutor/route.ts:141` |
+| T1 | Closed by bkt-exce: the route verifies the session, caps the body at 16 KB and builds grounding from the corpus | `src/app/api/academy/tutor/handler.ts:177-188` |
+| T2 | Closed for the tutor by bkt-exce: a per-user and a global daily cap in `graph.llm_usage`; the workspace daily cap is still in memory | `tutor/handler.ts:202`, `src/lib/research-os/rate-limit.ts:15` |
+| T3 | Closed by bkt-eyc8: rule 3 of `SYSTEM` forbids answers, and `leaksAnswer` checks each reply, regenerates once, then withholds | `tutor/handler.ts:127`, `src/lib/academy/answer-guard.ts` |
 | T4 | Learn has no tutor UI. The only caller is the legacy PWA | `learning/app/js/tutor.js:4` |
 
 ## 3. Infrastructure
@@ -173,7 +173,7 @@ The pending edge and NSM review queues feed staff-only surfaces and wait until a
 
 Rollback: `BUCKET_SIGNIN_OPEN=0` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
 
-Removing the tutor key returns the tutor to its 503 fail-safe (`tutor/route.ts:221`, "Tutor isn't enabled yet").
+Removing the tutor key returns the tutor to its 503 fail-safe (`tutor/handler.ts:195`, "Tutor isn't enabled yet").
 
 ### Founder Decisions
 
