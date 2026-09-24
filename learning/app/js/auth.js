@@ -349,6 +349,7 @@
     sync: syncAll,
     pushActive: pushActive,
     getProfile: getProfile,
+    accessToken: accessToken,
     setProfile: setProfile,
     _mergeState: mergeState,
   };

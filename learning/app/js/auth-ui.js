@@ -224,5 +224,10 @@
     Auth.init();
   }
 
-  global.BucketAuthUI = { mountInto: mountInto };
+  global.BucketAuthUI = {
+    mountInto: mountInto,
+    open: function () {
+      if (Auth && Auth.enabled) openModal();
+    },
+  };
 })(typeof window !== "undefined" ? window : globalThis);
