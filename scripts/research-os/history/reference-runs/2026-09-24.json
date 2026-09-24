@@ -1,0 +1,319 @@
+{
+  "runDate": "2026-09-24",
+  "endpoint": "https://qlever.dev/api/wikidata",
+  "license": "Wikidata CC0",
+  "humanSliceLimitMs": 30000,
+  "queries": {
+    "human": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?year ?country (COUNT(?p) AS ?n) WHERE {\n  {\n    SELECT ?p (MIN(YEAR(?b)) AS ?year) (MIN(?c) AS ?country) WHERE {\n      ?p wdt:P31 wd:Q5 ; wdt:P569 ?b ; wdt:P19 ?bp .\n      ?bp wdt:P17 ?c .\n      FILTER(STRENDS(STR(?p), \"<digit>\"))\n    } GROUP BY ?p\n  }\n} GROUP BY ?year ?country\n",
+    "site": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?item (MIN(YEAR(?d)) AS ?year) (MIN(STR(?coord)) AS ?point) WHERE {\n  ?item wdt:P31/wdt:P279* wd:Q839954 ; wdt:P625 ?coord .\n  { ?item wdt:P571 ?d } UNION { ?item wdt:P580 ?d } UNION { ?item wdt:P1319 ?d }\n} GROUP BY ?item\n",
+    "event": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nSELECT ?item (MIN(YEAR(?d)) AS ?year) (MIN(STR(?coord)) AS ?point) WHERE {\n  ?item wdt:P625 ?coord .\n  { ?item wdt:P585 ?d } UNION { ?item wdt:P580 ?d }\n} GROUP BY ?item\n"
+  },
+  "runs": [
+    {
+      "kind": "human",
+      "label": "QIDs ending 0",
+      "querySha256": "27d5954e6bac69a2dafdf05bb2a51fa53f387e532d534686f6aa56e926d0f496",
+      "rows": 30375,
+      "runtimeMs": 2360,
+      "bytes": 1375852,
+      "bronzeSha256": "08b7d91bd677259df3f1fb8a55bc9a85977be5ce3a121df0d4b5cd25045d1651"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 1",
+      "querySha256": "eefafb54bd2a84e9f558f9b46c7a769852e124291304fcb63f1d6175a30f3d7f",
+      "rows": 30456,
+      "runtimeMs": 1521,
+      "bytes": 1379533,
+      "bronzeSha256": "1e0e6636ef40400a468cec0227d346388ccf7ada5e1fff206deed4840d210c75"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 2",
+      "querySha256": "e85c2367b159d598d4cdf23f5d3e039583e2f49a1a8a11ed8e5d9d780443a572",
+      "rows": 30130,
+      "runtimeMs": 1526,
+      "bytes": 1364553,
+      "bronzeSha256": "c935178337947fcc548e9f96ad6d8edd9934266145cf8c12de8c2a1c84e2aba0"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 3",
+      "querySha256": "095e911150fd35cf9bc7383d03894866e887a9a7a852a02e58cd76e14113ce58",
+      "rows": 30143,
+      "runtimeMs": 1525,
+      "bytes": 1365124,
+      "bronzeSha256": "873e87ed30446685e2f2871eff36dbf555c4f0e9f428f757d83c609d3ee173cf"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 4",
+      "querySha256": "9d5249c132f121f83b72581d9192caf7812b4c753f8f68e60f627dbfafc9cd67",
+      "rows": 30087,
+      "runtimeMs": 1302,
+      "bytes": 1362463,
+      "bronzeSha256": "c27909657d734f83c1d450033352be09b9c201d317001af8f43e558ac561872f"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 5",
+      "querySha256": "93861de3a980f78e7653e80a8e5f4e9305a93084a629a06ed6bc537279b94f35",
+      "rows": 30286,
+      "runtimeMs": 1558,
+      "bytes": 1371945,
+      "bronzeSha256": "62ade80c8a081988949b613b0ba61dd0a66a106db9a3de3e80b38f7950861e1c"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 6",
+      "querySha256": "abfd2c90780674366d2ea1bb16fd118404e0e2d00062733dccc812d091eea06a",
+      "rows": 30218,
+      "runtimeMs": 1477,
+      "bytes": 1368630,
+      "bronzeSha256": "45759f5bc1350dae6072a6e5f1feb7daff550a189cacd4bcceb626f069bc891f"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 7",
+      "querySha256": "a3b02bd92f6b6c69393268c01f25ca3544596b72d6cca5b1a81c07c5d53c323b",
+      "rows": 30216,
+      "runtimeMs": 1299,
+      "bytes": 1368440,
+      "bronzeSha256": "69b74815a6a6cb088518fbe334bdd1dac3dd1dcc696bb9c68c6101861006cbcb"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 8",
+      "querySha256": "7998b0f9eac81c7448a0551b60ad77b7f0f42fc2b453c1052cf37faf883bdf48",
+      "rows": 30159,
+      "runtimeMs": 1302,
+      "bytes": 1366026,
+      "bronzeSha256": "d3f392369f1eb7947d063fc2701dbf8210cfc584573d82498025e93ed1e4572c"
+    },
+    {
+      "kind": "human",
+      "label": "QIDs ending 9",
+      "querySha256": "b0fc79e10906d491b9185615dc9a2cbd695f6617da3e35175803c8f557ee09e1",
+      "rows": 30174,
+      "runtimeMs": 1303,
+      "bytes": 1366821,
+      "bronzeSha256": "0ad3ce06ca3edb5ce71530dcacf65cc171387dbc2b28584d5d4bfbface56277f"
+    },
+    {
+      "kind": "site",
+      "label": "all",
+      "querySha256": "438063d9bd58f30f5ee3e8ebdd2bfd3c127914049f54266f038dc1f4018b2e2e",
+      "rows": 5168,
+      "runtimeMs": 640,
+      "bytes": 397276,
+      "bronzeSha256": "54e4044bda33dee5de5ef30c518674ddc6857fd0f60a5a8f4c686e98ffab3ec0"
+    },
+    {
+      "kind": "event",
+      "label": "all",
+      "querySha256": "79cfd284da5f273b94c398451e3e65f70d23a492321b1c6703eac555de9e88f5",
+      "rows": 92321,
+      "runtimeMs": 3068,
+      "bytes": 7109766,
+      "bronzeSha256": "26e9ca76ac3fe65b9edb77dcbdf232a540db8aac6c8bc1899bd51c4db4897f2e"
+    }
+  ],
+  "skipped": {
+    "human": 4739,
+    "site": 444,
+    "event": 2210
+  },
+  "totals": {
+    "human": 4122562,
+    "site": 4724,
+    "event": 90111
+  },
+  "counts": {
+    "human": {
+      "before -3000": {
+        "Europe": 2,
+        "Northern America": 0,
+        "Latin America and Caribbean": 0,
+        "Western Asia and Northern Africa": 2,
+        "Sub-Saharan Africa": 0,
+        "Central and Southern Asia": 2,
+        "Eastern and South-eastern Asia with Oceania": 0,
+        "unplaced": 0
+      },
+      "-3000 to -1001": {
+        "Europe": 0,
+        "Northern America": 0,
+        "Latin America and Caribbean": 0,
+        "Western Asia and Northern Africa": 94,
+        "Sub-Saharan Africa": 0,
+        "Central and Southern Asia": 4,
+        "Eastern and South-eastern Asia with Oceania": 3,
+        "unplaced": 7
+      },
+      "-1000 to -1": {
+        "Europe": 1499,
+        "Northern America": 1,
+        "Latin America and Caribbean": 0,
+        "Western Asia and Northern Africa": 445,
+        "Sub-Saharan Africa": 1,
+        "Central and Southern Asia": 59,
+        "Eastern and South-eastern Asia with Oceania": 94,
+        "unplaced": 197
+      },
+      "0 to 999": {
+        "Europe": 2419,
+        "Northern America": 11,
+        "Latin America and Caribbean": 21,
+        "Western Asia and Northern Africa": 1879,
+        "Sub-Saharan Africa": 11,
+        "Central and Southern Asia": 350,
+        "Eastern and South-eastern Asia with Oceania": 1072,
+        "unplaced": 735
+      },
+      "1000 to 1499": {
+        "Europe": 18508,
+        "Northern America": 12,
+        "Latin America and Caribbean": 63,
+        "Western Asia and Northern Africa": 1436,
+        "Sub-Saharan Africa": 32,
+        "Central and Southern Asia": 617,
+        "Eastern and South-eastern Asia with Oceania": 1318,
+        "unplaced": 918
+      },
+      "1500 to 2100": {
+        "Europe": 2698924,
+        "Northern America": 494163,
+        "Latin America and Caribbean": 224580,
+        "Western Asia and Northern Africa": 137210,
+        "Sub-Saharan Africa": 61381,
+        "Central and Southern Asia": 94361,
+        "Eastern and South-eastern Asia with Oceania": 317815,
+        "unplaced": 62316
+      }
+    },
+    "site": {
+      "before -3000": {
+        "Europe": 60,
+        "Northern America": 0,
+        "Latin America and Caribbean": 3,
+        "Western Asia and Northern Africa": 71,
+        "Sub-Saharan Africa": 2,
+        "Central and Southern Asia": 12,
+        "Eastern and South-eastern Asia with Oceania": 9,
+        "unplaced": 0
+      },
+      "-3000 to -1001": {
+        "Europe": 53,
+        "Northern America": 0,
+        "Latin America and Caribbean": 2,
+        "Western Asia and Northern Africa": 66,
+        "Sub-Saharan Africa": 3,
+        "Central and Southern Asia": 5,
+        "Eastern and South-eastern Asia with Oceania": 4,
+        "unplaced": 0
+      },
+      "-1000 to -1": {
+        "Europe": 313,
+        "Northern America": 1,
+        "Latin America and Caribbean": 8,
+        "Western Asia and Northern Africa": 173,
+        "Sub-Saharan Africa": 2,
+        "Central and Southern Asia": 11,
+        "Eastern and South-eastern Asia with Oceania": 3,
+        "unplaced": 0
+      },
+      "0 to 999": {
+        "Europe": 464,
+        "Northern America": 2,
+        "Latin America and Caribbean": 9,
+        "Western Asia and Northern Africa": 102,
+        "Sub-Saharan Africa": 2,
+        "Central and Southern Asia": 16,
+        "Eastern and South-eastern Asia with Oceania": 275,
+        "unplaced": 0
+      },
+      "1000 to 1499": {
+        "Europe": 723,
+        "Northern America": 2,
+        "Latin America and Caribbean": 13,
+        "Western Asia and Northern Africa": 18,
+        "Sub-Saharan Africa": 4,
+        "Central and Southern Asia": 9,
+        "Eastern and South-eastern Asia with Oceania": 29,
+        "unplaced": 0
+      },
+      "1500 to 2100": {
+        "Europe": 1902,
+        "Northern America": 214,
+        "Latin America and Caribbean": 14,
+        "Western Asia and Northern Africa": 38,
+        "Sub-Saharan Africa": 4,
+        "Central and Southern Asia": 16,
+        "Eastern and South-eastern Asia with Oceania": 61,
+        "unplaced": 6
+      }
+    },
+    "event": {
+      "before -3000": {
+        "Europe": 67,
+        "Northern America": 13,
+        "Latin America and Caribbean": 2,
+        "Western Asia and Northern Africa": 18,
+        "Sub-Saharan Africa": 3,
+        "Central and Southern Asia": 6,
+        "Eastern and South-eastern Asia with Oceania": 21,
+        "unplaced": 2
+      },
+      "-3000 to -1001": {
+        "Europe": 290,
+        "Northern America": 213,
+        "Latin America and Caribbean": 76,
+        "Western Asia and Northern Africa": 70,
+        "Sub-Saharan Africa": 68,
+        "Central and Southern Asia": 42,
+        "Eastern and South-eastern Asia with Oceania": 96,
+        "unplaced": 1600
+      },
+      "-1000 to -1": {
+        "Europe": 618,
+        "Northern America": 210,
+        "Latin America and Caribbean": 68,
+        "Western Asia and Northern Africa": 201,
+        "Sub-Saharan Africa": 81,
+        "Central and Southern Asia": 46,
+        "Eastern and South-eastern Asia with Oceania": 100,
+        "unplaced": 1616
+      },
+      "0 to 999": {
+        "Europe": 781,
+        "Northern America": 204,
+        "Latin America and Caribbean": 75,
+        "Western Asia and Northern Africa": 325,
+        "Sub-Saharan Africa": 80,
+        "Central and Southern Asia": 60,
+        "Eastern and South-eastern Asia with Oceania": 160,
+        "unplaced": 1566
+      },
+      "1000 to 1499": {
+        "Europe": 1914,
+        "Northern America": 108,
+        "Latin America and Caribbean": 44,
+        "Western Asia and Northern Africa": 290,
+        "Sub-Saharan Africa": 58,
+        "Central and Southern Asia": 88,
+        "Eastern and South-eastern Asia with Oceania": 176,
+        "unplaced": 809
+      },
+      "1500 to 2100": {
+        "Europe": 50323,
+        "Northern America": 9396,
+        "Latin America and Caribbean": 3056,
+        "Western Asia and Northern Africa": 3022,
+        "Sub-Saharan Africa": 1544,
+        "Central and Southern Asia": 1808,
+        "Eastern and South-eastern Asia with Oceania": 6898,
+        "unplaced": 1799
+      }
+    }
+  }
+}
