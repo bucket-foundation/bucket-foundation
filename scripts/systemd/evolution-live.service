@@ -1,0 +1,15 @@
+[Unit]
+Description=Bucket Foundation evolution live feeds: endoflife.date daily, Wikidata weekly, staged for review
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+ExecStart=%h/agfarms/bucket-foundation/scripts/evolution-live-runner.sh
+Restart=on-failure
+RestartSec=45min
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=2h
