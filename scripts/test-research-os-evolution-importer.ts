@@ -50,7 +50,7 @@ test("every rule records how and when its license was checked", () => {
   for (const r of policy.index.filter((x) => x.match.sourcePrefix)) assert.match(r.basis, /License checked 2026-09-24/, r.id);
   const s4c = policy.index.find((r) => r.id === "science4cast-cc-by")!;
   assert.ok(s4c.evidence.includes("https://zenodo.org/api/records/7882892"));
-  assert.equal(GATED_RULES.length, 8);
+  assert.equal(GATED_RULES.length, 7);
   assert.ok(!policy.index.some((r) => r.id === "histpat-cc0" || r.id === "patentsview-cc-by"));
 });
 

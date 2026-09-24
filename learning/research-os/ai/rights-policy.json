@@ -266,12 +266,12 @@
       "rightsRevision": 1
     },
     {
-      "id": "endoflife-gate",
+      "id": "endoflife-mit",
       "match": { "sourcePrefix": "_intake/evolution/endoflife/" },
-      "allow": false,
-      "permission": "unverified",
-      "basis": "endoflife.date releases and support dates. The license is unverified, so the importer loads nothing until it is confirmed. License checked 2026-09-24: no license statement confirmed.",
-      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "allow": true,
+      "permission": "mit",
+      "basis": "endoflife.date product release cycles. License checked 2026-09-24: the repository LICENSE is the MIT License, Copyright 2020 endoflife.date contributors, and the README states Licensed under the MIT License; the API serves the repository's product data. Product descriptions adapted from English Wikipedia are CC BY-SA 3.0, so the importer reads each cycle's name and releaseDate and nothing else.",
+      "evidence": ["https://github.com/endoflife-date/endoflife.date/blob/master/LICENSE", "https://github.com/endoflife-date/endoflife.date/blob/master/README.md"],
       "rightsRevision": 1
     },
     {
