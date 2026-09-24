@@ -9,6 +9,7 @@ import { useAcademy } from "../learn/useAcademy";
 import { Diagnostic, type DiagnosticItem, type Placement } from "@/lib/academy/diagnostic";
 import { pickLevel } from "@/lib/academy/engine";
 import { deckLabel } from "@/lib/academy/corpus-client";
+import { newEventId, sendLearnEvent } from "@/lib/academy/events-client";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState } from "@/components/ui";
 
 const SLOW_MS = 45_000;
@@ -62,6 +63,7 @@ export default function PlacementSession({ branch }: { branch: string }) {
     });
     setSeeded(n);
     setResult(r);
+    sendLearnEvent(newEventId(), "placement_done", { branch, questions: r.questionsAsked, known: r.placedCount });
     setStep("done");
   }
 

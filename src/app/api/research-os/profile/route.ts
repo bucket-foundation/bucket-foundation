@@ -5,6 +5,7 @@ import { bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 import { summarize } from "@/lib/research-os/game";
 import { AGE_BAND_LOCKED_MESSAGE, bandChangeAllowed, readAgeBand } from "@/lib/research-os/learn-gate";
 import { deleteLearnerData } from "@/lib/research-os/privacy";
+import { recordServerEvent } from "@/lib/academy/events-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,5 +77,10 @@ export const POST = withResearchOsRoute({ auth: "required" }, async (req, { lear
   if (error) return bad(500, "write_failed");
   if (deleteFailed) return bad(500, "delete_failed");
 
-  return { profile: data ? toResponseProfile(data as LearnerProfileRow) : null, deleted };
+  const saved = data as LearnerProfileRow | null;
+  if (saved?.birth_year_bucket === "13to17" || saved?.birth_year_bucket === "18plus") {
+    await recordServerEvent(learnerId, "age_band_set", { band: saved.birth_year_bucket });
+  }
+
+  return { profile: saved ? toResponseProfile(saved) : null, deleted };
 });

@@ -1,11 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
-import type { CompleteOptions, LlmCallResult, Provider } from "@/lib/llm/client";
+import type { CompleteOptions, LlmCallResult, LlmUsage, Provider } from "@/lib/llm/client";
 import type { RequestUser } from "@/lib/auth/verify";
 import type { Atom } from "@/lib/academy/engine";
 import type { TutorAtom } from "@/lib/academy/find-atom";
 import { capsFor, checkDailyLimits, type DailyCaps, type DailyLimiter } from "@/lib/llm/daily-limit";
 import { bad, limitResponse, NO_STORE, readBody } from "@/lib/llm/route-guard";
 import { leaksAnswer } from "@/lib/academy/answer-guard";
+import type { LearnEventProps } from "@/lib/academy/events";
 
 export const MODEL = "claude-sonnet-4-5";
 export const MAX_BODY_BYTES = 16_384;
@@ -21,9 +22,11 @@ export interface TutorDeps {
   limiter: () => DailyLimiter | null;
   caps?: () => DailyCaps;
   findAtom: (branch: string | null, atomId: string) => TutorAtom | null;
-  complete: (opts: CompleteOptions) => Promise<Pick<LlmCallResult, "text">>;
+  complete: (opts: CompleteOptions) => Promise<Pick<LlmCallResult, "text"> & Partial<Pick<LlmCallResult, "usage">>>;
   local: CompleteOptions["local"];
   now?: () => Date;
+  recordTurn?: (userId: string, props: LearnEventProps["tutor_turn"]) => Promise<unknown>;
+  costUsd?: (usage: LlmUsage | null) => number | null;
 }
 
 interface TutorBody {
@@ -215,9 +218,32 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
     },
   ];
 
+  const spent: LlmUsage = { inputTokens: 0, outputTokens: 0 };
+  let metered = false;
   const ask = async (system: string) => {
-    const { text } = await deps.complete({ provider, system, messages, maxTokens: MAX_TOKENS, anthropicModel: MODEL, local: deps.local });
+    const { text, usage } = await deps.complete({ provider, system, messages, maxTokens: MAX_TOKENS, anthropicModel: MODEL, local: deps.local });
+    if (usage) {
+      metered = true;
+      spent.inputTokens += usage.inputTokens;
+      spent.outputTokens += usage.outputTokens;
+    }
     return parseModelJson(text);
+  };
+  const turn = async (abstained: boolean, leakBlocked: boolean) => {
+    if (!deps.recordTurn) return;
+    const usage = metered ? spent : null;
+    try {
+      await deps.recordTurn(user.id, {
+        atom: atomId,
+        abstained,
+        leakBlocked,
+        inputTokens: usage?.inputTokens ?? null,
+        outputTokens: usage?.outputTokens ?? null,
+        costUsd: deps.costUsd ? deps.costUsd(usage) : null,
+      });
+    } catch (err) {
+      console.error("[academy/tutor] tutor_turn not recorded:", err instanceof Error ? err.message : err);
+    }
   };
 
   let parsed: TutorModelOut | null;
@@ -232,6 +258,7 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
 
   const groundedOn = found.atom.title || atomId;
   if (!parsed) {
+    await turn(true, false);
     return NextResponse.json(
       {
         reply: "I had trouble forming a grounded answer. Try rephrasing, or ask about a specific part of this concept.",
@@ -254,6 +281,7 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
       retry = null;
     }
     if (!retry || leaksAnswer(retry.reply, found.atom, learnerText).leak) {
+      await turn(false, true);
       return NextResponse.json(
         { reply: WITHHELD_REPLY, confidence: "low", abstained: false, withheld: true, citations: [], grounded_on: groundedOn },
         { status: 200, headers: NO_STORE },
@@ -262,6 +290,7 @@ export async function handleTutor(req: NextRequest, deps: TutorDeps): Promise<Ne
     parsed = retry;
   }
 
+  await turn(parsed.abstained, false);
   return NextResponse.json(
     {
       reply: parsed.reply,
