@@ -14,6 +14,7 @@ const raw = JSON.parse(readFileSync(path.join(ROOT, SACRED_DIR, "wikidata-sacred
   results: { bindings: { event: { value: string }; when: { value: string } }[] };
 };
 const published = JSON.parse(readFileSync(path.join(ROOT, "src/data/sacred-history.json"), "utf8")).timeline as { id: string; wikidata: string; year: number; precision: string }[];
+const anchors = JSON.parse(readFileSync(path.join(ROOT, "_intake/sacred-history-corpus/tools/timeline-anchor-events.json"), "utf8")).events as { id: string; wikidata: string; year: number; precision: string }[];
 
 const rawDates = new Map<string, string[]>();
 for (const b of raw.results.bindings) {
@@ -21,13 +22,13 @@ for (const b of raw.results.bindings) {
   rawDates.set(qid, [...(rawDates.get(qid) ?? []), b.when.value]);
 }
 
-test("the committed snapshot holds 106 raw bindings and 74 graph rows", () => {
+test("snapshot population: the committed Wikidata query holds 106 raw bindings and 74 graph rows", () => {
   assert.equal(raw.results.bindings.length, 106);
   assert.equal(rows.length, 74);
   assert.equal(published.length, 21);
 });
 
-test("every graph row agrees with a raw Wikidata binding for its QID", () => {
+test("snapshot population: every graph row agrees with a raw Wikidata binding for its QID", () => {
   for (const r of rows) {
     const dates = rawDates.get(r.wikidata);
     assert.ok(dates, `${r.id}: ${r.wikidata} has no raw binding`);
@@ -36,7 +37,7 @@ test("every graph row agrees with a raw Wikidata binding for its QID", () => {
   }
 });
 
-test("every published sacred-history year parses, and any the snapshot also dates agrees with it", () => {
+test("snapshot population: no published anchor is in the snapshot, and any that joins it must agree", () => {
   const snapshot = new Map(rows.map((r) => [r.wikidata, r]));
   let shared = 0;
   for (const e of published) {
@@ -51,4 +52,9 @@ test("every published sacred-history year parses, and any the snapshot also date
     assert.ok(Math.abs(own.span.start_year - theirs.span.start_year) <= slack, `${e.id}: published ${e.year}, snapshot ${s.date.value}`);
   }
   assert.equal(shared, 0, "a published anchor now appears in the snapshot; review the drift pin");
+});
+
+test("published set: sacred-history.json's 21 anchors match the curated anchor file they are built from", () => {
+  const key = (e: { id: string; wikidata: string; year: number; precision: string }) => [e.id, e.wikidata, e.year, e.precision].join(" ");
+  assert.deepEqual(published.map(key).sort(), anchors.map(key).sort());
 });

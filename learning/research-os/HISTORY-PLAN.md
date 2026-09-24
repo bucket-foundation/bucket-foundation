@@ -195,7 +195,7 @@ Licenses checked 2026-09-23.
 | `canon-sites.json` (47) | Places plus `founded` factoids, auto-promoted | Stays authored input |
 | `canon-timeline.json` (58 births, 54 works, 2 events) | `born`, `composed`, `occurred` factoids | Founder question 7 |
 | `figures.json` (99) | 97 parse targets as in 3.5 | Unparsed rows stay in hidden silver |
-| Sacred-history (106 raw, 21 published) | P2 commits both inputs to `_intake/history/wikidata-sacred/<date>/` (119 KB, CC0 plus project fields, rule `wikidata-cc0`), then bronzes them. P5 refetches with `psv:` precision. | A drift test checks `sacred-history.json` against gold |
+| Sacred-history (106 raw, 21 published) | P2 commits both inputs to `_intake/history/wikidata-sacred/<date>/` (119 KB, CC0 plus project fields, rule `wikidata-cc0`), then bronzes them. P5 refetches with `psv:` precision. The snapshot is a bounded query over 4 event classes with P585; the 21 published anchors come from the curated `_intake/sacred-history-corpus/tools/timeline-anchor-events.json` and share no QID with it. | Drift tests pin the snapshot population to its raw bindings, and the published set to the anchor file and to gold |
 | `archaeology/pleiades/` | Bronze, rows load on first reference | Founder question 5 |
 | hte | `hte/corpus/history_graph.py` reads the export | `timeline.py` unchanged |
 
