@@ -78,8 +78,9 @@ test("the plan writes silver for every fitting record and refuses the rest", () 
   assert.equal(p.silver[2].subject, "edge:0f8fad5b-d9cb-469f-a165-70867728950e");
   assert.equal(p.silver[0].parser, "evolution-import");
   assert.equal(p.silver[0].text, "1957");
-  assert.equal(p.proposals.length, 1);
-  assert.equal(p.proposals[0].draft.slug, "occupation-new-thing");
+  assert.equal(p.proposals.length, 0);
+  assert.deepEqual(p.importPromotions.map((x) => [x.kind, x.silver.subject]), [["node", "occupation-new-thing"]]);
+  assert.equal(p.silver[1].proposal.node?.slug, "occupation-new-thing");
   assert.deepEqual(p.promotions.map((s) => s.proposal.record), ["onet-15-1252", "onet-perf"]);
 });
 

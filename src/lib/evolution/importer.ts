@@ -71,6 +71,7 @@ export interface EvolutionProposal {
   subject_resolved: boolean;
   internal: boolean;
   qid?: string;
+  node?: IngestNodeDraft;
 }
 
 export interface EvolutionSilver {
@@ -144,6 +145,7 @@ export interface EvolutionPlan {
   series: SeriesDraft[];
   proposals: { draft: IngestNodeDraft; silver: EvolutionSilver }[];
   promotions: EvolutionSilver[];
+  importPromotions: { kind: "node" | "edge"; silver: EvolutionSilver | EvolutionEdgeSilver }[];
   refused: { record: string; reason: string }[];
   counts: Record<string, number>;
 }
@@ -288,12 +290,13 @@ export function planEvolution(input: EvolutionInput): EvolutionPlan {
           subject_resolved: resolved,
           internal: isInternalRule(source.rule),
           ...(r.qid ? { qid: r.qid } : {}),
+          ...(r.subject.kind === "node" && r.subject.draft && !resolved ? { node: r.subject.draft } : {}),
         },
         subject,
       };
       silver.push(item);
       bump(resolved ? "silver_resolved" : "silver_unresolved");
-      if (!resolved && r.subject.kind === "node" && r.subject.draft && !proposed.has(r.subject.slug)) {
+      if (!resolved && r.subject.kind === "node" && r.subject.draft && !IMPORTER_PROMOTABLE_RULES.has(source.rule) && !proposed.has(r.subject.slug)) {
         proposed.add(r.subject.slug);
         proposals.push({ draft: r.subject.draft, silver: item });
       }
@@ -386,7 +389,14 @@ export function planEvolution(input: EvolutionInput): EvolutionPlan {
   counts.promotions = promotions.length;
   counts.refused = refused.length;
   counts.series = series.length;
-  return { bronze, silver, edgeCandidates, series, proposals, promotions, refused, counts };
+  const importPromotions: EvolutionPlan["importPromotions"] = [
+    ...silver.filter((s) => IMPORTER_PROMOTABLE_RULES.has(s.proposal.rule) && s.proposal.node && s.confidence >= HIDE_BELOW).map((s) => ({ kind: "node" as const, silver: s })),
+    ...edgeCandidates
+      .filter((e) => IMPORTER_PROMOTABLE_RULES.has(e.proposal.rule) && !e.proposal.cycle && e.confidence >= HIDE_BELOW)
+      .map((e) => ({ kind: "edge" as const, silver: e })),
+  ];
+  counts.import_promotions = importPromotions.length;
+  return { bronze, silver, edgeCandidates, series, proposals, promotions, importPromotions, refused, counts };
 }
 
 export function lineageCycles(edges: { from: string; to: string; kind: string }[]): Map<string, number> {
@@ -487,7 +497,7 @@ export type BatchGate =
   | { ok: true; upper: number }
   | { ok: false; reason: "batch_promotion_off" | "sample_too_small" | "upper_bound_too_high" | "share_alike" | "rule_not_batchable"; upper?: number };
 
-export const BATCHABLE_RULES = new Set<string>(["bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0"]);
+export const BATCHABLE_RULES = new Set<string>(["bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0", "eloundou-mit"]);
 
 export function batchGate(input: { rule: string; sample: number; errors: number; enabled: boolean }): BatchGate {
   if (!input.enabled) return { ok: false, reason: "batch_promotion_off" };

@@ -21,7 +21,7 @@ export const LABEL = "evolution-import";
 export interface EvolutionReport {
   plan: Record<string, number>;
   bronze: { staged: number; activated: number; unchanged: number; refused: number };
-  written: { silver: number; edgeCandidates: number; series: number; proposals: number; factoids: number; preferred: number };
+  written: { silver: number; edgeCandidates: number; series: number; proposals: number; nodes: number; edges: number; factoids: number; preferred: number };
 }
 
 async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any, orderBy = "id"): Promise<T[]> {
@@ -62,7 +62,7 @@ export async function applyEvolution(svc: SupabaseClient, plan: EvolutionPlan, p
   const report: EvolutionReport = {
     plan: plan.counts,
     bronze: { staged: 0, activated: 0, unchanged: 0, refused: 0 },
-    written: { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, factoids: 0, preferred: 0 },
+    written: { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, nodes: 0, edges: 0, factoids: 0, preferred: 0 },
   };
   if (plan.bronze.length === 0) return report;
 
@@ -112,6 +112,20 @@ export async function applyEvolution(svc: SupabaseClient, plan: EvolutionPlan, p
     const { data, error } = await svc.from("node_proposals").upsert(proposalRows.slice(i, i + 200), { onConflict: "key", ignoreDuplicates: true }).select("id");
     if (error) throw new Error(`node proposal write failed: ${error.message}`);
     report.written.proposals += (data ?? []).length;
+  }
+
+  if (plan.importPromotions.length) {
+    const candidateIds = await silverIds(svc, plan.edgeCandidates);
+    for (const p of plan.importPromotions) {
+      const key = silverKeyOf(p.silver);
+      const silverId = p.kind === "edge" ? candidateIds.get(key) : ids.get(key);
+      if (!silverId) throw new Error(`silver item for ${p.silver.proposal.record} was not written`);
+      const { data, error } = await svc.rpc("promote_evolution_import", { p_silver: silverId });
+      if (error) throw new Error(`import of ${p.silver.proposal.record} failed: ${error.message}`);
+      const r = data as { ok: boolean; error?: string; inserted?: boolean };
+      if (!r.ok) throw new Error(`import of ${p.silver.proposal.record} refused: ${r.error}`);
+      if (r.inserted) report.written[p.kind === "node" ? "nodes" : "edges"] += 1;
+    }
   }
 
   for (const s of plan.promotions) {
