@@ -5,7 +5,7 @@ import { slugifyPart } from "../research-os/ingest/types";
 import type { NodeKind } from "../research-os/types";
 import { bronzeRecord, type BronzeRecord, type BronzeRights } from "../research-os/medallion/bronze";
 import { combineConfidence, HIDE_BELOW } from "../research-os/medallion/silver";
-import { parseLifespan, parseYear, type Span } from "./span";
+import { parseEdtf, parseLifespan, parseYear, type Span } from "./span";
 
 export const HISTORY_PARSER = "history-import";
 export const HISTORY_PARSER_REVISION = "history-import/1";
@@ -14,7 +14,7 @@ export const SACRED_SNAPSHOT_DATE = "2026-09-23";
 export const SACRED_DIR = `_intake/history/wikidata-sacred/${SACRED_SNAPSHOT_DATE}`;
 
 export type HistoryRole = "born" | "died" | "flourished" | "occurred" | "founded" | "occupied" | "composed" | "published" | "arose";
-export type SourceKind = "sites" | "timeline" | "figures" | "snapshot";
+export type SourceKind = "sites" | "timeline" | "figures" | "sacred" | "snapshot";
 
 export interface HistorySource {
   repoPath: string;
@@ -27,7 +27,7 @@ export const HISTORY_SOURCES: HistorySource[] = [
   { repoPath: "src/data/canon-sites.json", rule: "canon-site", kind: "sites", prior: 0.9 },
   { repoPath: "src/data/canon-timeline.json", rule: "canon-timeline", kind: "timeline", prior: 0.9 },
   { repoPath: "canon-figures/figures.json", rule: "canon-figure", kind: "figures", prior: 0.6 },
-  { repoPath: `${SACRED_DIR}/timeline-events.jsonl`, rule: "wikidata-cc0", kind: "snapshot", prior: 0.8 },
+  { repoPath: `${SACRED_DIR}/timeline-events.jsonl`, rule: "wikidata-cc0", kind: "sacred", prior: 0.8 },
   { repoPath: `${SACRED_DIR}/wikidata-sacred-events.json`, rule: "wikidata-cc0", kind: "snapshot", prior: 0.8 },
 ];
 
@@ -202,6 +202,7 @@ function silverFor(
 
 type Sites = { sites: { id: string; title: string; lat: number; lng: number; year: number; civilization?: string; branch?: string }[] };
 type Timeline = { events: { id: string; title: string; lat: number; lng: number; year: number; branch?: string; kind: string }[] };
+type SacredRow = { id: string; label: string; event_class: string; wikidata: string; date: { value: string; calendar?: string } };
 type Figures = { figures: { id: string; name: string; lifespan?: string; branches?: string[]; summary?: string }[] };
 
 const TIMELINE_ROLES: Record<string, { role: HistoryRole; kind: NodeKind; prefix: string; tier: number }> = {
@@ -256,6 +257,44 @@ export function planHistory(input: HistoryInput): HistoryPlan {
         bump(parsed.ok ? "sites_parsed" : "sites_refused");
         if (!subject.resolved) {
           propose({ slug: subject.slug, title: s.title, kind: "site", tier: 13, branch: canonBranch(s.branch), summary: s.civilization ?? null, labels: { en: { title: s.title } }, provenance: { type: "canon_site", site_id: s.id } }, item);
+        }
+      }
+      continue;
+    }
+
+    if (source.kind === "sacred") {
+      const rows = b.text.split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l) as SacredRow);
+      for (const r of rows) {
+        const at = valueSpan(b.text, r.id, "value");
+        if (!at) throw new Error(`${source.repoPath}: no date value for ${r.id}`);
+        const subject = resolveKind(`event-wikidata-${slugifyPart(r.wikidata)}`, "event", bySlug);
+        const parsed = parseEdtf(r.date.value, { calendar: r.date.calendar === "julian" ? "julian" : "gregorian" });
+        const roles = parsed.ok ? { occurred: parsed.span } : {};
+        const item = silverFor(b, at, subject.slug, { prior: source.prior, parse: parsed.ok ? 1 : 0, match: subject.match }, {
+          source: source.repoPath,
+          record: r.id,
+          field: "date.value",
+          roles,
+          ...(parsed.ok ? {} : { refusal: { reason: parsed.refusal, detail: parsed.detail } }),
+          subject_kind: "event",
+          subject_resolved: subject.resolved,
+        });
+        silver.push(item);
+        bump(parsed.ok ? "sacred_parsed" : "sacred_refused");
+        if (!subject.resolved && parsed.ok) {
+          propose(
+            {
+              slug: subject.slug,
+              title: r.label,
+              kind: "event",
+              tier: 13,
+              branch: "08-tradition",
+              summary: `${r.label}, ${r.event_class}, Wikidata ${r.wikidata}.`,
+              labels: { en: { title: r.label } },
+              provenance: { type: "wikidata_sacred", qid: r.wikidata, event_class: r.event_class, record: r.id },
+            },
+            item,
+          );
         }
       }
       continue;

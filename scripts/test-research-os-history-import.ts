@@ -51,7 +51,7 @@ test("the real canon files plan the counts HISTORY-PLAN.md section 1 names", () 
   }
 });
 
-test("each bronze source carries its rule, and the wikidata snapshot yields no silver", () => {
+test("each bronze source carries its rule, and the sacred rows become wikidata-cc0 silver that waits for review", () => {
   const plan = planHistory({ files: realFiles(), policy: POLICY, nodes: canonNodes() });
   const rules = new Map(plan.bronze.map((b) => [b.repoPath, b.rights.rule]));
   assert.equal(rules.get("src/data/canon-timeline.json"), "canon-timeline");
@@ -59,7 +59,16 @@ test("each bronze source carries its rule, and the wikidata snapshot yields no s
   assert.equal(rules.get("src/data/canon-sites.json"), "canon-site");
   assert.equal(rules.get("_intake/history/wikidata-sacred/2026-09-23/timeline-events.jsonl"), "wikidata-cc0");
   assert.equal(rules.get("_intake/history/wikidata-sacred/2026-09-23/wikidata-sacred-events.json"), "wikidata-cc0");
-  assert.ok(!plan.silver.some((s) => s.proposal.source.startsWith("_intake/history/")));
+  const sacred = plan.silver.filter((s) => s.proposal.source.startsWith("_intake/history/"));
+  assert.equal(sacred.length, 74);
+  assert.ok(sacred.every((s) => s.proposal.source.endsWith("timeline-events.jsonl") && s.proposal.roles.occurred && s.subject.startsWith("event-wikidata-q")));
+  assert.equal(plan.counts.sacred_parsed, 74);
+  const promoted = new Set(plan.promotions.map((p) => p.silver));
+  assert.ok(sacred.every((s) => !promoted.has(s)), "wikidata-cc0 silver waits for a reviewer");
+  const feast = sacred.find((s) => s.proposal.record === "ev-Q937328")!;
+  assert.equal(feast.proposal.roles.occurred?.edtf, "1454-02-26");
+  const bronze = plan.bronze.find((b) => b.sourceId === feast.source_id)!;
+  assert.ok(verifySilver(feast, bronze.text));
 });
 
 test("section 3.5 figure cases through the importer", () => {
@@ -140,7 +149,7 @@ test("unresolved subjects become node proposals and stay out of promotion", () =
   const kinds = new Map<string, number>();
   for (const p of plan.proposals) kinds.set(p.draft.kind, (kinds.get(p.draft.kind) ?? 0) + 1);
   assert.equal(kinds.get("primary_source"), 54);
-  assert.equal(kinds.get("event"), 2);
+  assert.equal(kinds.get("event"), 2 + 74);
   const promoted = new Set(plan.promotions.map((p) => p.silver));
   for (const p of plan.proposals) assert.ok(!promoted.has(p.silver), p.draft.slug);
 });

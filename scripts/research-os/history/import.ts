@@ -101,7 +101,7 @@ export async function runImport(svc: SupabaseClient, apply: boolean): Promise<{ 
     if (!r.ok) throw new Error(`promotion of ${p.silver.proposal.record} refused: ${r.error}`);
     report.written.factoids += r.inserted ?? 0;
     for (const role of p.preferredRoles) {
-      const { data: pref, error: prefErr } = await svc.rpc("prefer_history_factoid", { p_silver: silverId, p_role: role });
+      const { data: pref, error: prefErr } = await svc.rpc("prefer_history_factoid", { p_silver: silverId, p_role: role, p_reviewer: null, p_importer: "history-import" });
       if (prefErr) throw new Error(`prefer ${p.silver.proposal.record} ${role} failed: ${prefErr.message}`);
       const pr = pref as { ok: boolean; changed?: boolean; error?: string };
       if (!pr.ok) throw new Error(`prefer ${p.silver.proposal.record} ${role} refused: ${pr.error}`);

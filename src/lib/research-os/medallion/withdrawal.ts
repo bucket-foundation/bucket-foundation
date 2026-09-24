@@ -4,7 +4,8 @@ import { checkRepoPath } from "./paths";
 export type WithdrawArgs =
   | { mode: "withdraw"; target: { source: string } | { path: string }; reason: string; apply: boolean }
   | { mode: "queue" }
-  | { mode: "restore"; slug: string; reviewer: string; apply: boolean };
+  | { mode: "restore"; slug: string; reviewer: string; apply: boolean }
+  | { mode: "restore-history"; source: string; reviewer: string; apply: boolean };
 
 export type ArgError = "no_target" | "two_targets" | "bad_source" | "bad_path" | "no_reason" | "no_reviewer";
 
@@ -16,6 +17,13 @@ function value(argv: string[], name: string): string | null {
 export function parseWithdrawArgs(argv: string[]): { ok: true; args: WithdrawArgs } | { ok: false; error: ArgError } {
   const apply = argv.includes("--apply");
   if (argv.includes("--queue")) return { ok: true, args: { mode: "queue" } };
+  const restoreHistory = value(argv, "restore-history");
+  if (restoreHistory) {
+    const reviewer = value(argv, "reviewer");
+    if (!reviewer) return { ok: false, error: "no_reviewer" };
+    if (parseSourceId(restoreHistory)?.kind !== "file") return { ok: false, error: "bad_source" };
+    return { ok: true, args: { mode: "restore-history", source: restoreHistory, reviewer, apply } };
+  }
   const restore = value(argv, "restore");
   if (restore) {
     const reviewer = value(argv, "reviewer");
