@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { pagedRead } from "../../../src/lib/research-os/paging";
-import { coverageReport, dominantUnplacedCause, type BucketCell, type CoverageReport, type ReferenceCell } from "../../../src/lib/history/coverage";
+import { aboveOneNotes, coverageReport, dominantUnplacedCause, type BucketCell, type CoverageReport, type ReferenceCell } from "../../../src/lib/history/coverage";
 import { graphClient } from "../ingest/lib/medallion-shadow";
 
 function readAll<T>(run: (from: number, to: number) => PromiseLike<{ data: unknown; error: { message: string } | null }>): Promise<T[]> {
@@ -85,6 +85,7 @@ export function formatReport(report: CoverageReport, runDate: string): string {
   for (const c of report.printed) {
     out.push(`${c.region} | ${c.period} | ${c.b} | ${f(c.E)} | ${f(c.C)} | ${f(c.interval.low)} to ${f(c.interval.high)} | ${c.sources} | ${c.conflictRate === null ? "n/a" : f(c.conflictRate)} | ${c.gap ? "GAP" : ""}`);
   }
+  for (const note of aboveOneNotes(report)) out.push(note);
   out.push("");
   out.push(`Gaps, upper bound on C under 0.5: ${report.gaps.length}`);
   for (const g of report.gaps) out.push(`  ${g.region}, ${g.period}: b ${g.b}, E ${f(g.E)}, C upper ${f(g.interval.high)}`);
