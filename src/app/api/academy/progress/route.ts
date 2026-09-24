@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
+import { decideLearnWrite, readAgeBand } from "@/lib/research-os/learn-gate";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -80,6 +81,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   const uid = await verifyUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
+
+  const band = await readAgeBand(uid);
+  if (!band.ok) return json({ error: "consent_unavailable" }, 503);
+  const gate = decideLearnWrite(band.band);
+  if (!gate.allowed) return json({ error: gate.reason, message: gate.message, needsProfile: gate.reason === "no_profile" }, 403);
 
   let body: unknown;
   try {
