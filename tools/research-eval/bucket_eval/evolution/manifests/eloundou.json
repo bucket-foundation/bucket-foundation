@@ -1,0 +1,21 @@
+{
+  "bytes": 4019270,
+  "fetched": "2026-09-24",
+  "license_rule": "eloundou-mit",
+  "revision": "0471612fef3c",
+  "sha256": "6aabbd579c73bedfa154f804c73293fc76213d53c46d933ac8bc228524d95923",
+  "source": "eloundou",
+  "tables": {
+    "occupation_scores": {
+      "path": "eloundou/0471612fef3c/parquet/occupation_scores.parquet",
+      "rows": 923,
+      "sha256": "43ccd10e01edc74c6bee9fbde8ece25e98cf6fcf86b998b6a5dc80409cc57294"
+    },
+    "task_labels": {
+      "path": "eloundou/0471612fef3c/parquet/task_labels.parquet",
+      "rows": 19265,
+      "sha256": "1beeadaa9227a625c6ced9efc0504935b927c8606443058a63b0a2838f565c5e"
+    }
+  },
+  "url": "https://raw.githubusercontent.com/openai/GPTs-are-GPTs/0471612fef3cc22b74fb884d27bff9dbd3770582/data/{full_labelset.tsv,occ_level.csv}"
+}

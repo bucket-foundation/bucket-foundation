@@ -1,0 +1,41 @@
+{
+  "bytes": 13215772,
+  "fetched": "2026-09-24",
+  "license_rule": "onet-cc-by",
+  "revision": "28.2",
+  "sha256": "ed047de0f019ee378e08ccebb156d873918b5c72ba984fb1050d05caa889392b",
+  "source": "onet",
+  "tables": {
+    "dwa_reference": {
+      "path": "onet/28.2/parquet/dwa_reference.parquet",
+      "rows": 2087,
+      "sha256": "9bb09a9fabb52d5944b97e53526291484895b3b6cf99fd67646c9c0940a13022"
+    },
+    "iwa_reference": {
+      "path": "onet/28.2/parquet/iwa_reference.parquet",
+      "rows": 332,
+      "sha256": "f15c4269f095c62982f3f6610011477f019ab5ab2ac7b2e42cb63c9b8d2d2446"
+    },
+    "occupations": {
+      "path": "onet/28.2/parquet/occupations.parquet",
+      "rows": 1016,
+      "sha256": "71d454bc1fb4bbaf95e0bfc7e6c65ce3b4bfe0b41c82cf0ed05db65c58ddbe62"
+    },
+    "tasks": {
+      "path": "onet/28.2/parquet/tasks.parquet",
+      "rows": 19281,
+      "sha256": "3e7cdc3db69a7a8b61908dcd68278e9c158e062277c77aea06bc05e04c6431a3"
+    },
+    "tasks_to_dwas": {
+      "path": "onet/28.2/parquet/tasks_to_dwas.parquet",
+      "rows": 23703,
+      "sha256": "58b2106f6b11f9c5ae83dc20faf2d41b851dae40c7005ec1e70cd265ba67ffff"
+    },
+    "technology_skills": {
+      "path": "onet/28.2/parquet/technology_skills.parquet",
+      "rows": 32435,
+      "sha256": "bda3ecc7f5bc2714c35e191ff2b022242076a0cc9127782923f3f964dd3133c9"
+    }
+  },
+  "url": "https://www.onetcenter.org/dl_files/database/db_28_2_text.zip"
+}
