@@ -6,14 +6,13 @@ import { parsePolicy } from "../src/lib/research-os/evidence/rights";
 import { batchGate, planEvolution } from "../src/lib/evolution/importer";
 import {
   checkManifest,
+  ELOUNDOU_BETA,
   LABOR_PLAN_COUNTS,
   laborEdges,
   laborRecords,
-  laborSeries,
   laborSources,
   LLM_TECHNOLOGY_SLUG,
   occupationSlug,
-  socIndex,
   taskSlug,
   toolSlug,
 } from "../src/lib/evolution/labor";
@@ -22,7 +21,7 @@ import { laborFixture } from "./research-os/evolution/lib/labor-fixture";
 const policy = parsePolicy(JSON.parse(fs.readFileSync(path.join(__dirname, "..", "learning", "research-os", "ai", "rights-policy.json"), "utf8")));
 
 test("the plan counts are the E3 row's", () => {
-  assert.deepEqual(LABOR_PLAN_COUNTS, { occupations: 1016, tasks: 18838, tech_skills: 32435 });
+  assert.deepEqual(LABOR_PLAN_COUNTS, { occupations: 1016, tasks: 19281, tech_skills: 32435 });
 });
 
 test("the manifest must match the export row for row and byte for byte", () => {
@@ -38,6 +37,24 @@ test("the manifest must match the export row for row and byte for byte", () => {
   assert.match((checkManifest(manifest, tampered, false) as { problems: string[] }).problems.join(" "), /sha256/);
 });
 
+test("the export must name its upstream table and license rule", () => {
+  const { manifest, files } = laborFixture("a");
+  const wrongRule = structuredClone(manifest);
+  wrongRule.files.eloundou!.upstream.license_rule = "wikidata-evolution-cc0";
+  assert.match((checkManifest(wrongRule, files, false) as { problems: string[] }).problems.join(" "), /upstream license rule wikidata-evolution-cc0, expected eloundou-mit/);
+  const wrongTable = structuredClone(manifest);
+  wrongTable.files.tech_skills!.upstream.table = "tasks";
+  assert.match((checkManifest(wrongTable, files, false) as { problems: string[] }).problems.join(" "), /upstream onet.tasks, expected onet.technology_skills/);
+  const rows = structuredClone(manifest);
+  rows.files.tasks!.upstream.rows = 19281;
+  assert.match((checkManifest(rows, files, false) as { problems: string[] }).problems.join(" "), /upstream has 19281 rows, the export 3/);
+});
+
+test("the ops manifests on measure/evo-labor pin the plan counts", () => {
+  const onet = { occupations: 1016, tasks: 19281, technology_skills: 32435 };
+  assert.deepEqual({ occupations: LABOR_PLAN_COUNTS.occupations, tasks: LABOR_PLAN_COUNTS.tasks, technology_skills: LABOR_PLAN_COUNTS.tech_skills }, onet);
+});
+
 test("a real release must carry the plan counts", () => {
   const { manifest, files } = laborFixture("a");
   const r = checkManifest(manifest, files, true);
@@ -45,7 +62,7 @@ test("a real release must carry the plan counts", () => {
   assert.match(!r.ok ? r.problems.join(" ") : "", /occupations: 2, the plan counts 1016/);
   const real = structuredClone(manifest);
   real.files.occupations!.rows = 1016;
-  real.files.tasks!.rows = 18838;
+  real.files.tasks!.rows = 19281;
   real.files.tech_skills!.rows = 32435;
   const counts = (checkManifest(real, files, true) as { problems: string[] }).problems;
   assert.ok(!counts.some((p) => p.includes("the plan counts")));
@@ -61,7 +78,6 @@ function plan(nodes: { slug: string; kind: string }[] = [], edges: { id: string;
     edges,
     records: laborRecords(manifest),
     edgeCandidates: laborEdges(manifest),
-    series: laborSeries(manifest, socIndex(nodes.filter((n) => n.kind === "occupation").map((n) => n.slug))),
   });
 }
 
@@ -85,15 +101,15 @@ test("Eloundou goes to a reviewer: automates candidates stay unpromoted and expo
   const withEdge = plan([], [{ id: "0f8fad5b-d9cb-469f-a165-70867728950e", fromSlug: LLM_TECHNOLOGY_SLUG, toSlug: taskSlug(16363), kind: "automates" }]);
   const measured = withEdge.silver.find((s) => s.proposal.rule === "eloundou-mit" && s.proposal.record === "16363")!;
   assert.equal(measured.subject, "edge:0f8fad5b-d9cb-469f-a165-70867728950e");
-  assert.deepEqual(measured.proposal.roles.measured.measure, { metric: "gpt4_exposure", value: 1, unit: "beta" });
+  assert.deepEqual(measured.proposal.roles.measured.measure, { metric: "gpt4_exposure_beta", value: 1, unit: "beta" });
   assert.equal(measured.proposal.roles.measured.start_year, 2023);
   assert.deepEqual(withEdge.promotions, []);
 });
 
-test("OEWS employment lands as a series once the occupation exists", () => {
-  assert.deepEqual(plan().series, []);
-  const p = plan([{ slug: occupationSlug("15-1252.00"), kind: "occupation" }]);
-  assert.deepEqual(p.series.map((s) => [s.subjectSlug, s.metric, s.year, s.value, s.unit]), [[occupationSlug("15-1252.00"), "employment", 2022, 1534790, "jobs"]]);
+test("the exposure weights are the paper's beta measure", () => {
+  assert.deepEqual(ELOUNDOU_BETA.weights, { E0: 0, E1: 1, E2: 0.5 });
+  assert.match(ELOUNDOU_BETA.basis, /beta = E1 \+ 0\.5 x E2/);
+  assert.match(ELOUNDOU_BETA.url, /2303\.10130/);
 });
 
 test("the Wilson gate refuses a bad Eloundou batch and stays off by default", () => {

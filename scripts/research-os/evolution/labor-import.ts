@@ -1,5 +1,5 @@
 import { planEvolution } from "../../../src/lib/evolution/importer";
-import { checkManifest, laborEdges, laborRecords, laborSeries, laborSources, socIndex, type LaborManifest } from "../../../src/lib/evolution/labor";
+import { checkManifest, laborEdges, laborRecords, laborSources, type LaborManifest } from "../../../src/lib/evolution/labor";
 import { graphClient } from "../ingest/lib/medallion-shadow";
 import { loadPolicy, repoIO } from "../medallion/lib/repo-io";
 import { readGraph } from "./lib/apply";
@@ -34,7 +34,6 @@ async function main() {
       edges: graph.edges,
       records: laborRecords(manifest),
       edgeCandidates: laborEdges(manifest),
-      series: laborSeries(manifest, socIndex(graph.nodes.filter((n) => n.kind === "occupation").map((n) => n.slug))),
     });
     console.log(JSON.stringify(plan.counts, null, 2));
     console.log(`[${LABEL}] dry run, nothing written. Pass --apply to write.`);

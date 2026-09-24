@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { RightsPolicy } from "../../../../src/lib/research-os/evidence/rights";
 import { planEvolution } from "../../../../src/lib/evolution/importer";
-import { checkManifest, laborEdges, laborRecords, laborSeries, laborSources, socIndex, type LaborManifest } from "../../../../src/lib/evolution/labor";
+import { checkManifest, laborEdges, laborRecords, laborSources, type LaborManifest } from "../../../../src/lib/evolution/labor";
 import { applyEvolution, readGraph, type EvolutionReport } from "./apply";
 
 export async function runLabor(
@@ -21,7 +21,6 @@ export async function runLabor(
       edges: graph.edges,
       records: laborRecords(input.manifest),
       edgeCandidates: laborEdges(input.manifest),
-      series: laborSeries(input.manifest, socIndex(graph.nodes.filter((n) => n.kind === "occupation").map((n) => n.slug))),
     });
     reports.push(await applyEvolution(svc, plan, input.policyMeta));
   }

@@ -40,11 +40,11 @@ function cleanup(sources: string[]) {
     delete from graph.edges where from_id in (select id from graph.nodes where slug in (${slugs})) or to_id in (select id from graph.nodes where slug in (${slugs}));
     delete from graph.nodes where slug in (${slugs});
     delete from graph.evidence_source_admissions where source_id in (${list});
-    delete from graph.bronze_file_paths where repo_path like '_intake/evolution/%/fixture-%/%.jsonl';`);
+    delete from graph.bronze_file_paths where repo_path like '_intake/evolution/%/fixture-%/jsonl/%.jsonl';`);
   assert.equal(out.status, 0, out.out);
 }
 
-test("the labor fixture imports O*NET and BLS under the carve-out, stages Eloundou for review, and reruns write nothing", { skip }, async () => {
+test("the labor fixture imports O*NET under the carve-out, stages Eloundou for review, and reruns write nothing", { skip }, async () => {
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
   const { manifest, files } = laborFixture(randomUUID().slice(0, 8));
   const reviewer = randomUUID();
@@ -58,12 +58,11 @@ test("the labor fixture imports O*NET and BLS under the carve-out, stages Elound
     assert.equal(first.written.factoids, 0);
     assert.equal(first.written.silver, 8);
     assert.equal(first.written.edgeCandidates, 8);
-    assert.equal(second.written.series, 2);
+    assert.equal(second.written.series, 0);
     assert.equal(sql(`select count(*) from graph.nodes where slug in (${SLUGS.map((s) => `'${s}'`).join(",")})`).out, "7");
     assert.equal(sql(`select string_agg(distinct l.importer, ',') from graph.gold_lineage l join graph.nodes n on n.id = l.node_id where n.slug in (${SLUGS.map((s) => `'${s}'`).join(",")})`).out, "evolution-import");
     assert.equal(sql(`select count(*) from graph.edges e join graph.nodes a on a.id = e.from_id where a.slug = '${occupationSlug("15-1252.00")}' and e.kind in ('performs', 'uses')`).out, "4");
     assert.equal(sql(`select count(*) from graph.edges e join graph.nodes t on t.id = e.to_id where t.slug in ('${taskSlug(16363)}', '${taskSlug(8591)}') and e.kind = 'automates'`).out, "0");
-    assert.equal(sql(`select value::bigint || ' ' || year from graph.evolution_series s join graph.nodes n on n.id = s.subject_id where n.slug = '${occupationSlug("15-1252.00")}'`).out, "1534790 2022");
 
     const again = await runLabor(svc, { manifest, files, policy, policyMeta, requirePlanCounts: false });
     for (const r of again) {

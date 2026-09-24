@@ -3,9 +3,9 @@ import { sha256Hex } from "../research-os/evidence/text";
 import { parseYear } from "../history/span";
 import type { EdgeCandidateRecord, EvolutionRecord, EvolutionSource, SeriesRecord } from "./importer";
 
-export const LABOR_PLAN_COUNTS = { occupations: 1016, tasks: 18838, tech_skills: 32435 } as const;
+export const LABOR_PLAN_COUNTS = { occupations: 1016, tasks: 19281, tech_skills: 32435 } as const;
 
-export const LABOR_TABLES = ["occupations", "tasks", "tech_skills", "eloundou", "oews"] as const;
+export const LABOR_TABLES = ["occupations", "tasks", "tech_skills", "eloundou"] as const;
 export type LaborTable = (typeof LABOR_TABLES)[number];
 
 export const LABOR_RULES: Record<LaborTable, string> = {
@@ -13,17 +13,41 @@ export const LABOR_RULES: Record<LaborTable, string> = {
   tasks: "onet-cc-by",
   tech_skills: "onet-cc-by",
   eloundou: "eloundou-mit",
-  oews: "bls-oews-pd",
 };
 
-export const LABOR_PRIORS: Record<LaborTable, number> = { occupations: 0.9, tasks: 0.9, tech_skills: 0.9, eloundou: 0.8, oews: 0.9 };
+export const LABOR_PRIORS: Record<LaborTable, number> = { occupations: 0.9, tasks: 0.9, tech_skills: 0.9, eloundou: 0.8 };
+
+export const UPSTREAM_TABLES: Record<LaborTable, { source: string; table: string }> = {
+  occupations: { source: "onet", table: "occupations" },
+  tasks: { source: "onet", table: "tasks" },
+  tech_skills: { source: "onet", table: "technology_skills" },
+  eloundou: { source: "eloundou", table: "task_labels" },
+};
+
+export const ELOUNDOU_BETA = {
+  basis: "Eloundou, Manning, Mishkin and Rock 2023, GPTs are GPTs, measure beta = E1 + 0.5 x E2",
+  url: "https://arxiv.org/abs/2303.10130",
+  weights: { E0: 0, E1: 1, E2: 0.5 },
+} as const;
 
 export const LLM_TECHNOLOGY_SLUG = "technology-large-language-models";
+
+export interface LaborUpstream {
+  source: string;
+  revision: string;
+  license_rule: string;
+  url: string;
+  manifest_sha256: string;
+  table: string;
+  table_sha256: string;
+  rows: number;
+}
 
 export interface LaborManifestFile {
   path: string;
   rows: number;
   sha256: string;
+  upstream: LaborUpstream;
 }
 
 export interface LaborManifest {
@@ -52,14 +76,8 @@ export interface EloundouRow {
   onetsoc_code: string;
   gpt4_exposure: "E0" | "E1" | "E2";
 }
-export interface OewsRow {
-  soc_code: string;
-  year: number;
-  tot_emp: number;
-}
 
 const ONETSOC = /^[0-9]{2}-[0-9]{4}\.[0-9]{2}$/;
-const SOC = /^[0-9]{2}-[0-9]{4}$/;
 
 export function occupationSlug(code: string): string {
   if (!ONETSOC.test(code)) throw new Error(`not an O*NET-SOC code: ${code}`);
@@ -135,6 +153,15 @@ export function checkManifest(manifest: LaborManifest, files: Map<string, Uint8A
       continue;
     }
     if (sha256Hex(bytes) !== f.sha256) problems.push(`${table}: sha256 differs from the manifest`);
+    const up = f.upstream;
+    const want = UPSTREAM_TABLES[table];
+    if (!up) problems.push(`${table}: no upstream manifest record`);
+    else {
+      if (up.source !== want.source || up.table !== want.table) problems.push(`${table}: upstream ${up.source}.${up.table}, expected ${want.source}.${want.table}`);
+      if (up.license_rule !== LABOR_RULES[table]) problems.push(`${table}: upstream license rule ${up.license_rule}, expected ${LABOR_RULES[table]}`);
+      if (up.rows !== f.rows) problems.push(`${table}: upstream has ${up.rows} rows, the export ${f.rows}`);
+      if (!/^[0-9a-f]{64}$/.test(up.table_sha256 ?? "") || !/^[0-9a-f]{64}$/.test(up.manifest_sha256 ?? "")) problems.push(`${table}: upstream checksums are missing`);
+    }
     const rows = Buffer.from(bytes).toString("utf8").split("\n").filter((l) => l.trim()).length;
     if (rows !== f.rows) problems.push(`${table}: ${rows} rows, manifest says ${f.rows}`);
   }
@@ -239,7 +266,7 @@ export function laborRecords(manifest: LaborManifest) {
         });
       }
       for (const line of lines) {
-        const value = { E0: 0, E1: 1, E2: 0.5 }[line.row.gpt4_exposure];
+        const value = ELOUNDOU_BETA.weights[line.row.gpt4_exposure];
         if (value === undefined) throw new Error(`Eloundou task ${line.row.task_id} has exposure ${line.row.gpt4_exposure}`);
         out.push({
           repoPath: source.repoPath,
@@ -247,7 +274,7 @@ export function laborRecords(manifest: LaborManifest) {
           field: "gpt4_exposure",
           span: fieldSpan(line, "gpt4_exposure"),
           subject: { kind: "edge", fromSlug: LLM_TECHNOLOGY_SLUG, toSlug: taskSlug(line.row.task_id), edgeKind: "automates" },
-          roles: { measured: { ...year.span, measure: { metric: "gpt4_exposure", value, unit: "beta" } } },
+          roles: { measured: { ...year.span, measure: { metric: "gpt4_exposure_beta", value, unit: "beta" } } },
         });
       }
     }
@@ -283,28 +310,4 @@ export function laborEdges(manifest: LaborManifest) {
     }
     return out;
   };
-}
-
-export function laborSeries(manifest: LaborManifest, socToSlugs: (soc: string) => string[]) {
-  return (b: BronzeRecord, source: EvolutionSource): SeriesRecord[] => {
-    if (tableOf(manifest, source.repoPath) !== "oews") return [];
-    const out: SeriesRecord[] = [];
-    for (const line of jsonlLines<OewsRow>(b)) {
-      if (!SOC.test(line.row.soc_code)) throw new Error(`not a SOC code: ${line.row.soc_code}`);
-      const slugs = socToSlugs(line.row.soc_code);
-      if (slugs.length !== 1) continue;
-      out.push({ repoPath: source.repoPath, subjectSlug: slugs[0], metric: "employment", year: line.row.year, value: line.row.tot_emp, unit: "jobs" });
-    }
-    return out;
-  };
-}
-
-export function socIndex(slugs: string[]): (soc: string) => string[] {
-  const by = new Map<string, string[]>();
-  for (const s of slugs) {
-    const m = /^occupation-onet-([0-9]{2}-[0-9]{4})-[0-9]{2}$/.exec(s);
-    if (!m) continue;
-    by.set(m[1], [...(by.get(m[1]) ?? []), s]);
-  }
-  return (soc) => by.get(soc) ?? [];
 }
