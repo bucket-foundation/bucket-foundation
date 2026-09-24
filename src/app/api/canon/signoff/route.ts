@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { isCanonSignoffApprover } from "@/lib/canon-signoff-approvers";
 import { listPending, approve, reject, SignoffError } from "@/lib/canon-signoff";
 
@@ -11,7 +11,7 @@ function bad(status: number, error: string) {
 }
 
 async function authorize(req: NextRequest): Promise<string | null> {
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!isCanonSignoffApprover(!!reviewer, reviewer?.email)) return null;
   return reviewer!.email;
 }

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { computeRosterDiff } from "@/lib/research-os/roster/diff";
 import { loadRosterExistingState, applyRosterImport } from "@/lib/research-os/roster/apply";
 import { OneRosterCsvSource } from "@/lib/research-os/roster/sources";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
@@ -23,7 +23,7 @@ async function readCsvField(form: FormData, field: string): Promise<string | nul
 }
 
 export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
   let form: FormData;

@@ -303,13 +303,3 @@ export async function setMemberRole(
 }
 
 export { loadClassMemberships as listMembers };
-
-export async function isClassStaffAnywhere(userId: string): Promise<boolean> {
-  try {
-    const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", userId).in("role", ["teacher", "librarian"]).limit(1);
-    if (error || !data) return false;
-    return data.length > 0;
-  } catch {
-    return false;
-  }
-}

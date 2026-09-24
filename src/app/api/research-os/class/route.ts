@@ -2,7 +2,7 @@ import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
 import { graphService, inChunks, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyClassTeacher } from "@/lib/research-os/reviewer";
 import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "@/lib/research-os/calibration";
 import { bad, withResearchOsRoute } from "@/lib/research-os/route";
 
@@ -25,7 +25,7 @@ interface ProductionRow {
 }
 
 export const GET = withResearchOsRoute({ auth: "none" }, async (req) => {
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyClassTeacher(req);
   if (!reviewer) return bad(403, "forbidden");
 
   const { searchParams } = new URL(req.url);
