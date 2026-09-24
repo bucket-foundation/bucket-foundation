@@ -16,27 +16,27 @@
     }
   },
   "GET signed in, store down": {
-    "status": 403,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "forbidden"
+      "error": "research_os_unavailable"
     }
   },
   "GET signed in, consent unavailable": {
-    "status": 403,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "forbidden"
+      "error": "research_os_unavailable"
     }
   },
   "GET signed in, consent refused": {
-    "status": 403,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "forbidden"
+      "error": "research_os_unavailable"
     }
   },
   "GET reviewer, store down": {
