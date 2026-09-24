@@ -17,7 +17,6 @@ export const ALLOWED_BASELINE: readonly string[] = [
   "src/lib/auth/identity.ts::getIdentity::identities::made::1",
   "src/lib/research-os/check-attempts-db.ts::dbGetPendingAttempt::check_attempts::data::1",
   "src/lib/research-os/check-attempts-db.ts::dbPurgeExpiredAttempts::purge_expired_check_attempts::data::1",
-  "src/lib/research-os/class-db.ts::isClassStaffAnywhere::class_members::data::1",
   "src/lib/research-os/classes.ts::joinClass::class_members::existing::1",
   "src/lib/research-os/db.ts::awardProgress::learner_profiles::exists::1",
   "src/lib/research-os/db.ts::findNodeById::nodes::data::1",
