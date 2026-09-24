@@ -49,6 +49,7 @@ export interface HistoryProposal {
   refusal?: { reason: string; detail: string };
   subject_kind: NodeKind;
   subject_resolved: boolean;
+  qid?: string;
 }
 
 export interface HistorySilver {

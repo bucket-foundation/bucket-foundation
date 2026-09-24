@@ -129,6 +129,24 @@
       "basis": "Wikidata item data is CC0; the snapshot adds project fields composed here. Rows wait in silver for a reviewer.",
       "evidence": ["https://www.wikidata.org/wiki/Wikidata:Licensing", "_intake/history/wikidata-sacred/2026-09-23/wikidata-sacred-events.json"],
       "rightsRevision": 1
+    },
+    {
+      "id": "wikidata-figures-cc0",
+      "match": { "provenanceType": "wikidata_figure" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "Wikidata item data is CC0. Query results for the canon figures and sacred events wait in silver, and every identity link waits for a reviewer.",
+      "evidence": ["https://www.wikidata.org/wiki/Wikidata:Licensing"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "periodo-cc0",
+      "match": { "provenanceType": "periodo_period" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "PeriodO period definitions are dedicated to the public domain under CC0.",
+      "evidence": ["https://perio.do/license/"],
+      "rightsRevision": 1
     }
   ],
   "quote": [
