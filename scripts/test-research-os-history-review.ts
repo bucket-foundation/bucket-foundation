@@ -31,5 +31,5 @@ test("the history review route refuses a caller who is not a graph reviewer", as
   const post = await route.POST(
     new NextRequest("http://localhost/api/research-os/history", { method: "POST", body: JSON.stringify({ action: "approve", silverId: ID }), headers: { "content-type": "application/json" } }),
   );
-  assert.equal(post.status, 403);
+  assert.equal(post.status, 404, "the launch gate refuses a non-staff write before the reviewer check");
 });

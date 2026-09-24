@@ -190,5 +190,5 @@ test("the review route refuses a caller who is not a graph reviewer", { skip }, 
   const get = await GET(new NextRequest("http://localhost/api/research-os/nsm-links"), undefined);
   assert.equal(get.status, 403);
   const post = await POST(new NextRequest("http://localhost/api/research-os/nsm-links", { method: "POST", body: JSON.stringify({ id: randomUUID(), decision: "approved" }) }), undefined);
-  assert.equal(post.status, 403);
+  assert.equal(post.status, 404, "the launch gate refuses a non-staff write before the reviewer check");
 });

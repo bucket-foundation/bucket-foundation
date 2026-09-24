@@ -44,7 +44,7 @@ const PROBES: Probe[] = [
 ];
 
 let installed = false;
-type Stubs = { db: Record<string, unknown>; consent: Record<string, unknown> };
+type Stubs = { db: Record<string, unknown>; consent: Record<string, unknown>; staff: Record<string, unknown> };
 let stubs: Stubs;
 
 function install(): Stubs {
@@ -59,7 +59,7 @@ function install(): Stubs {
     throw new TypeError("fetch failed");
   }) as typeof fetch;
   /* eslint-disable @typescript-eslint/no-require-imports */
-  stubs = { db: require("@/lib/research-os/db"), consent: require("@/lib/research-os/consent") };
+  stubs = { db: require("@/lib/research-os/db"), consent: require("@/lib/research-os/consent"), staff: require("@/lib/research-os/staff") };
   /* eslint-enable @typescript-eslint/no-require-imports */
   installed = true;
   return stubs;
@@ -97,7 +97,8 @@ async function observe(res: Response): Promise<Observed> {
 }
 
 async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response>, method: string, probe: Probe): Promise<Observed> {
-  const { db, consent } = install();
+  const { db, consent, staff } = install();
+  staff.isStaff = async () => true;
   db.configured = () => probe.configured;
   db.verifyLearner = async () => probe.learner;
   db.verifyLearnerIdentity = async () => (probe.learner ? { id: probe.learner, email: "learner@bucket.test" } : null);

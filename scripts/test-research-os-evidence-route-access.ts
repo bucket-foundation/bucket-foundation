@@ -120,14 +120,25 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
     const offlist = await account(made, "offlist", { band: "18plus", consent: "self" });
     process.env.RESEARCH_OS_AI_SEARCH_PILOT_IDS = [adult.id, minor.id, ageless.id, unconsented.id, profileless.id].join(",");
 
-    await t.test("no session is 401, on both methods", async () => {
-      for (const method of ["GET", "POST"] as const) {
-        const answer = await call(method, null);
-        assert.equal(answer.status, 401, `${method} with no token`);
-        assert.equal(answer.body.error, "no_session");
-        saysNothing(answer, `${method} anonymous`);
-      }
+    await t.test("no session is 401 on GET and the launch gate's 404 on POST", async () => {
+      const get = await call("GET", null);
+      assert.equal(get.status, 401);
+      assert.equal(get.body.error, "no_session");
+      saysNothing(get, "GET anonymous");
+      const post = await call("POST", null);
+      assert.equal(post.status, 404);
+      assert.equal(post.body.error, "not_found");
+      saysNothing(post, "POST anonymous");
     });
+
+    await t.test("a signed-in account outside staff is 404 on POST while evidence search is out of launch scope", async () => {
+      const post = await call("POST", offlist.token);
+      assert.equal(post.status, 404);
+      assert.equal(post.body.error, "not_found");
+      saysNothing(post, "POST non-staff");
+    });
+
+    process.env.RESEARCH_OS_REVIEWER_EMAILS = [adult, minor, ageless, unconsented, profileless, offlist].map((a) => a.email).join(",");
 
     await t.test("a token this stack never issued is 401, never a personalized answer", async () => {
       const forged = `${adult.token.split(".")[0]}.${adult.token.split(".")[1]}.${"a".repeat(43)}`;
@@ -232,6 +243,7 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
       assert.equal(answer.body.error, "not_in_pilot");
     });
   } finally {
+    delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
     await removeAccounts(made);
   }
 });

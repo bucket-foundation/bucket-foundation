@@ -5,6 +5,7 @@ import { dailyToolCap, dailyCapMessage, recordAndCheck } from "@/lib/research-os
 import { decideGate, flagOn, pilotIds, ProfileUnavailable, readBirthYearBucket } from "@/lib/research-os/evidence-search/gate";
 import { CorpusReadFailed, CorpusUnavailable, EligibilityUnavailable, loadCorpus, runEvidenceSearch, workerFromEnv } from "@/lib/research-os/evidence-search/server";
 import { MAX_BODY_BYTES, parseSearchRequest } from "@/lib/research-os/evidence-search/types";
+import { staffWritesAtLaunch } from "@/lib/research-os/launch-gate";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +59,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+async function post(req: NextRequest) {
   const allowed = await gate(req);
   if (!allowed.ok) return allowed.res;
   const learnerId = allowed.learnerId;
@@ -91,3 +92,5 @@ export async function POST(req: NextRequest) {
     throw e;
   }
 }
+
+export const POST = staffWritesAtLaunch(post);

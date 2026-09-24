@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
+import { inLaunchScope } from "@/lib/research-os/launch-scope";
 
 export interface ShellUser {
   email: string | null;
@@ -50,7 +51,7 @@ function isOn(item: Item, pathname: string): boolean {
 
 export default function AppShell({ user, children }: { user: ShellUser; children: ReactNode }) {
   const pathname = usePathname() || "/research-os/home";
-  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: LEARN }];
+  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: user.staff ? LEARN : LEARN.filter((it) => inLaunchScope(it.href)) }];
   if (user.staff) groups.push({ title: "teach", items: TEACH });
   const all = groups.flatMap((g) => g.items);
   const name = user.handle || (user.email ? user.email.split("@")[0] : "you");

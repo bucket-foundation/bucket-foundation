@@ -910,6 +910,8 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     `);
     assert.equal(seeded.status, 0, seeded.out);
 
+    const allowlist = process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    process.env.RESEARCH_OS_REVIEWER_EMAILS = grantee.email;
     try {
       const res = await hypothesize.POST(new NextRequest("http://127.0.0.1/api/research-os/hypothesize", {
         method: "POST",
@@ -921,6 +923,8 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       assert.equal(json.error, "production_not_found", "and the reply says nothing about which it was");
       assert.equal(json.node, undefined, "no node field reaches the caller");
     } finally {
+      if (allowlist === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+      else process.env.RESEARCH_OS_REVIEWER_EMAILS = allowlist;
       sql(`delete from graph.productions where id = '${prod}';`);
     }
   });

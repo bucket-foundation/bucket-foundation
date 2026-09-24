@@ -4,6 +4,7 @@ import { graphService, verifyLearner } from "@/lib/research-os/db";
 import { validateImportFile, MAX_IMPORT_BYTES } from "@/lib/research-os/import-storage";
 import { detectType, validateFilename } from "@/lib/research-os/import-types";
 import { bucketFrom, listImportFiles, ownedImport, recordImportFile, verifyUpload } from "@/lib/research-os/import-upload";
+import { staffWritesAtLaunch } from "@/lib/research-os/launch-gate";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +63,7 @@ interface AttachBody {
   sha256?: unknown;
 }
 
-export async function POST(req: NextRequest) {
+async function post(req: NextRequest) {
   const who = await caller(req);
   if (!who.ok) return who.res;
 
@@ -131,3 +132,5 @@ export async function POST(req: NextRequest) {
     return graphUnavailable(e);
   }
 }
+
+export const POST = staffWritesAtLaunch(post);
