@@ -18,7 +18,7 @@ Research OS is the product (`learning/research-os/INTEGRATION-PLAN.md`). The sit
 | teach | Roster | `/research-os/roster` |
 | teach | Edges | `/research-os/edges` |
 
-The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher or librarian membership in any class (`isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`).
+The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` (`isStaff` in `src/lib/research-os/staff.ts`). A class membership grants nothing outside that class.
 
 ## The graph
 
