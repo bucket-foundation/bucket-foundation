@@ -152,7 +152,11 @@ export default function ResearchAgentClient() {
       )}
 
       {errMsg &&
-        (errStatus === 401 ? (
+        (errStatus === 404 ? (
+          <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
+            The research agent is open to Bucket staff during launch.
+          </div>
+        ) : errStatus === 401 ? (
           <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
             <Link href="/sign-in?next=/research/agent" className="underline">
               Sign in
