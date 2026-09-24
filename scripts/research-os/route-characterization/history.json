@@ -132,7 +132,7 @@
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "action must be approve, reject or prefer"
+      "error": "action must be approve, reject, prefer, link or reject-link"
     }
   },
   "POST reviewer, reject without reason": {
@@ -141,6 +141,22 @@
     "type": "application/json",
     "body": {
       "error": "a reason is required to reject"
+    }
+  },
+  "POST reviewer, link without a QID": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "qid must be a Wikidata QID"
+    }
+  },
+  "POST reviewer, link, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "link_failed"
     }
   },
   "POST reviewer, approve, store down": {
