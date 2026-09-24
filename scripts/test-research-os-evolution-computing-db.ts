@@ -59,7 +59,7 @@ test("Wikidata software reaches silver, series and reviewed lineage edges, and a
     assert.equal(sql(`select value || ' ' || unit || ' ' || year from graph.evolution_series where source_id = '${sourceId}'`).out, "2 releases 1987");
 
     const r2 = await applyEvolution(svc, await build(), policyMeta);
-    assert.deepEqual(r2.written, { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, factoids: 0, preferred: 0 });
+    assert.deepEqual(r2.written, { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, nodes: 0, edges: 0, factoids: 0, preferred: 0 });
 
     const promote = async (silver: string) => {
       const { data, error } = await svc.rpc("promote_evolution_edge", { p_silver: silver, p_reviewer: reviewer });
