@@ -119,9 +119,9 @@ test("isGraphReviewer: only the allowlist changes the graph, whatever classes th
 });
 
 test("every route that changes the graph through review uses the allowlist gate", () => {
-  for (const route of ["edges", "node-proposals", "irreducible", "makeup"]) {
+  for (const route of ["edges", "node-proposals", "irreducible", "makeup", "frontier", "roster"]) {
     const src = readFileSync(join(__dirname, "..", "src", "app", "api", "research-os", route, "route.ts"), "utf8");
     assert.match(src, /verifyGraphReviewer\(req\)/, `${route} checks the graph reviewer`);
-    assert.doesNotMatch(src, /\bverifyReviewer\(/, `${route} does not use the teacher gate`);
+    assert.doesNotMatch(src, /\bverifyClassTeacher\(/, `${route} does not use the teacher gate`);
   }
 });

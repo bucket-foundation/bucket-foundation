@@ -48,6 +48,18 @@ test("sign in with an email code lands on home", async () => {
   await expect(page.getByRole("heading", { name: "your path" })).toBeVisible();
 });
 
+async function seedAdultProfile(p: Page): Promise<void> {
+  const res = await p.request.post("/api/research-os/profile", { data: { role: "independent", birthYearBucket: "18plus" } });
+  expect(res.ok(), `profile seed answered ${res.status()}`).toBeTruthy();
+}
+
+test("learn asks a user with no age range first", async () => {
+  await page.goto("/research-os/learn");
+  await expect(page.getByRole("heading", { name: /one question first/i })).toBeVisible();
+  await expect(page.getByRole("button", { name: "18 or older" })).toBeVisible();
+  await seedAdultProfile(page);
+});
+
 test("learn: a deck, an atom, and its drill", async () => {
   await page.goto("/research-os/learn");
   await expect(page.getByRole("heading", { name: /lessons and recall/i })).toBeVisible();

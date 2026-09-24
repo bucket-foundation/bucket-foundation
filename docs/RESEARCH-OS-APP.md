@@ -18,7 +18,7 @@ Research OS is the product (`learning/research-os/INTEGRATION-PLAN.md`). The sit
 | teach | Roster | `/research-os/roster` |
 | teach | Edges | `/research-os/edges` |
 
-The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher or librarian membership in any class (`isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`).
+The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` (`isStaff` in `src/lib/research-os/staff.ts`). A class membership grants nothing outside that class.
 
 ## The graph
 
@@ -54,7 +54,7 @@ The map is the graph. `/research-os/map` lists every branch the graph holds and 
 
 ## Class
 
-A teacher creates a class from the home page (`ClassesPanel`, `POST /api/research-os/classes {action: "create", name}`); the class gets a join code and the creator a teacher membership, and `reviewer_email` is set to the creator so the class grid and the review queue scope to them. Anyone enters a code to join as a learner; staff change roles on the roster. The reviewer gate (`verifyReviewer`) accepts a teacher or librarian membership beside the env allowlist, and the shell shows the teach group on the same test. Migration `20260916020000_research_os_class_codes.sql`; library `src/lib/research-os/classes.ts`.
+A teacher creates a class from the home page (`ClassesPanel`, `POST /api/research-os/classes {action: "create", name}`); the class gets a join code and the creator a teacher membership, and `reviewer_email` is set to the creator so the class grid and the review queue scope to them. Anyone enters a code to join as a learner; staff change roles on the roster. A teacher or librarian membership passes `verifyClassTeacher`, which reaches only that teacher's own classes. Staff powers and the teach group in the shell take the `RESEARCH_OS_REVIEWER_EMAILS` allowlist alone. Migration `20260916020000_research_os_class_codes.sql`; library `src/lib/research-os/classes.ts`.
 
 ## Learn to graph
 
