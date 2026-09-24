@@ -13,6 +13,7 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   "stage_read_failed",
   "corpus_read_failed",
   "graph_unavailable",
+  "purge_unavailable",
 ]);
 
 export const PERMANENT_CODES: ReadonlySet<string> = new Set([UNCONFIGURED, "corpus_unavailable"]);
