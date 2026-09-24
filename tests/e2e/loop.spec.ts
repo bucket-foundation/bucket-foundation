@@ -2,6 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const email = `e2e-${Date.now()}@bucket.local`;
+const staffEmail = process.env.E2E_STAFF_EMAIL || "e2e-staff@bucket.local";
 
 async function codeFor(address: string): Promise<string> {
   for (let i = 0; i < 40; i++) {
@@ -22,13 +23,26 @@ async function codeFor(address: string): Promise<string> {
 
 test.describe.configure({ mode: "serial" });
 let page: Page;
+let staff: Page;
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
+  staff = await (await browser.newContext()).newPage();
 });
 test.afterAll(async () => {
   await page.close();
+  await staff.close();
 });
+
+async function signIn(p: Page, address: string): Promise<void> {
+  await p.goto("/sign-in?next=%2Fresearch-os%2Fhome");
+  await p.fill("#sign-in-email", address);
+  await p.click("button[type=submit]");
+  await expect(p.locator("#sign-in-code")).toBeVisible();
+  await p.fill("#sign-in-code", await codeFor(address));
+  await p.click("button[type=submit]");
+  await expect(p).toHaveURL(/\/research-os\/home/);
+}
 
 test("a protected page sends a visitor to sign in", async () => {
   await page.goto("/research-os/home");
@@ -37,13 +51,7 @@ test("a protected page sends a visitor to sign in", async () => {
 });
 
 test("sign in with an email code lands on home", async () => {
-  await page.goto("/sign-in?next=%2Fresearch-os%2Fhome");
-  await page.fill("#sign-in-email", email);
-  await page.click("button[type=submit]");
-  await expect(page.locator("#sign-in-code")).toBeVisible();
-  await page.fill("#sign-in-code", await codeFor(email));
-  await page.click("button[type=submit]");
-  await expect(page).toHaveURL(/\/research-os\/home/);
+  await signIn(page, email);
   await expect(page.getByRole("heading", { name: /today/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: "your path" })).toBeVisible();
 });
@@ -87,7 +95,19 @@ test("the node page carries the standing and the verbs; search opens a node", as
   await expect(page).toHaveURL(/\/research-os\/n\//);
 });
 
+test("a learner outside staff gets 404 on pages outside launch scope", async () => {
+  for (const path of ["/research-os/map", "/research-os/workspace", "/research-os/import", "/research-os/status"]) {
+    const res = await page.goto(path);
+    expect(res?.status(), path).toBe(404);
+  }
+});
+
+test("staff sign in on a second session", async () => {
+  await signIn(staff, staffEmail);
+});
+
 test("the map is the graph", async () => {
+  const page = staff;
   await page.goto("/research-os/map?branch=02-physics");
   await expect(page.getByRole("heading", { name: /the graph/i })).toBeVisible();
   await expect(page.getByRole("img", { name: /02-physics graph/i })).toBeVisible();
@@ -95,6 +115,7 @@ test("the map is the graph", async () => {
 });
 
 test("the workspace and the map render inside the shell", async () => {
+  const page = staff;
   await page.goto("/research-os/workspace");
   await expect(page.getByRole("heading", { name: /what are you working toward/i })).toBeVisible();
   await page.goto("/research-os/workspace?target=why-the-sky-is-blue");

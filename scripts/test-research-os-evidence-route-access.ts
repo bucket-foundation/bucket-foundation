@@ -120,21 +120,32 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
     const offlist = await account(made, "offlist", { band: "18plus", consent: "self" });
     process.env.RESEARCH_OS_AI_SEARCH_PILOT_IDS = [adult.id, minor.id, ageless.id, unconsented.id, profileless.id].join(",");
 
-    await t.test("no session is 401, on both methods", async () => {
+    await t.test("no session is the launch gate's 404 on both methods", async () => {
       for (const method of ["GET", "POST"] as const) {
         const answer = await call(method, null);
-        assert.equal(answer.status, 401, `${method} with no token`);
-        assert.equal(answer.body.error, "no_session");
+        assert.equal(answer.status, 404, `${method} with no token`);
+        assert.equal(answer.body.error, "not_found");
         saysNothing(answer, `${method} anonymous`);
       }
     });
 
-    await t.test("a token this stack never issued is 401, never a personalized answer", async () => {
+    await t.test("a signed-in account outside staff is 404 on both methods while evidence search is out of launch scope", async () => {
+      for (const method of ["GET", "POST"] as const) {
+        const answer = await call(method, offlist.token);
+        assert.equal(answer.status, 404, method);
+        assert.equal(answer.body.error, "not_found");
+        saysNothing(answer, `${method} non-staff`);
+      }
+    });
+
+    process.env.RESEARCH_OS_REVIEWER_EMAILS = [adult, minor, ageless, unconsented, profileless, offlist].map((a) => a.email).join(",");
+
+    await t.test("a token this stack never issued is refused, never a personalized answer", async () => {
       const forged = `${adult.token.split(".")[0]}.${adult.token.split(".")[1]}.${"a".repeat(43)}`;
       for (const token of ["not-a-token", forged, `${adult.token}x`]) {
         const answer = await call("GET", token);
-        assert.equal(answer.status, 401, `token ${token.slice(0, 12)}…`);
-        assert.equal(answer.body.error, "no_session");
+        assert.equal(answer.status, 404, `token ${token.slice(0, 12)}…`);
+        assert.equal(answer.body.error, "not_found");
         saysNothing(answer, "forged token");
       }
     });
@@ -232,6 +243,7 @@ test("the route refuses everyone outside the pilot, and names each reason", { sk
       assert.equal(answer.body.error, "not_in_pilot");
     });
   } finally {
+    delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
     await removeAccounts(made);
   }
 });
@@ -242,8 +254,8 @@ test("a refused caller is refused before the corpus is read", { skip }, async ()
   process.env.RESEARCH_OS_EVIDENCE_DIR = path.join(__dirname, "..", "no-corpus-here");
   try {
     const answer = await call("GET", null);
-    assert.equal(answer.status, 401);
-    assert.equal(answer.body.error, "no_session");
+    assert.equal(answer.status, 404);
+    assert.equal(answer.body.error, "not_found");
   } finally {
     if (before === undefined) delete process.env.RESEARCH_OS_EVIDENCE_DIR;
     else process.env.RESEARCH_OS_EVIDENCE_DIR = before;
