@@ -12,7 +12,8 @@ export type NodeKind =
   | "production"
   | "figure"
   | "site"
-  | "excerpt";
+  | "excerpt"
+  | "event";
 
 export type EdgeKind =
   | "prerequisite"
