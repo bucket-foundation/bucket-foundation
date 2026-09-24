@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 import datetime
-import hashlib
 import os
 import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, BinaryIO, Callable
 
-from ..datasets.common import REPO, ChecksumError, digest, read_manifest, require_free, write_manifest
+from ..datasets.common import REPO, ChecksumError, digest, disk_job, read_manifest, require_free, write_manifest
 
 EVOLUTION_DATA = Path(os.environ.get("EVOLUTION_DATA") or REPO / "_intake" / "evolution")
 MANIFESTS = Path(__file__).resolve().parent / "manifests"
@@ -108,14 +107,13 @@ def fetch(src: Source, data: Path = EVOLUTION_DATA, opener: Opener = open_url, *
     target_dir = source_dir(src, data) / "bronze"
     target = target_dir / src.file
     if not (target.exists() and (src.size is None or target.stat().st_size == src.size)):
-        require_free(target_dir, src.transient, need=need, free=free)
-        partial = target.with_name(target.name + ".part")
-        h = hashlib.sha256()
-        with opener(src.url) as body, partial.open("wb") as out:
-            for block in iter(lambda: body.read(1 << 20), b""):
-                h.update(block)
-                out.write(block)
-        partial.rename(target)
+        with disk_job(data):
+            require_free(target_dir, src.transient, need=need, free=free)
+            partial = target.with_name(target.name + ".part")
+            with opener(src.url) as body, partial.open("wb") as out:
+                for block in iter(lambda: body.read(1 << 20), b""):
+                    out.write(block)
+            partial.rename(target)
     sha = digest(target, "sha256")
     size = target.stat().st_size
     if src.sha256 is not None and sha != src.sha256:

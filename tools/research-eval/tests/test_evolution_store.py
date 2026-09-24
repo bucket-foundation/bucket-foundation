@@ -74,3 +74,64 @@ def test_a_manifest_round_trips_and_its_pins_hold(tmp_path: Path):
 
 def test_the_store_defaults_under_intake_evolution():
     assert store.EVOLUTION_DATA.parts[-2:] == ("_intake", "evolution") or "EVOLUTION_DATA" in __import__("os").environ
+
+def _hold(root: str, seconds: float, log: str, name: str) -> None:
+    import time as t
+    from bucket_eval.datasets.common import disk_job as job
+    with job(Path(root), poll=0.02):
+        with open(log, "a") as f:
+            f.write(f"{name} start {t.monotonic()}\n")
+        t.sleep(seconds)
+        with open(log, "a") as f:
+            f.write(f"{name} end {t.monotonic()}\n")
+
+def test_two_concurrent_disk_jobs_run_one_after_the_other(tmp_path: Path):
+    import multiprocessing as mp
+    log = tmp_path / "log.txt"
+    ctx = mp.get_context("spawn")
+    procs = [ctx.Process(target=_hold, args=(str(tmp_path / "data"), 0.4, str(log), n)) for n in ("a", "b")]
+    for p in procs:
+        p.start()
+    for p in procs:
+        p.join(30)
+        assert p.exitcode == 0
+    events = [line.split() for line in log.read_text().splitlines()]
+    assert [e[1] for e in events] == ["start", "end", "start", "end"]
+    assert events[0][0] == events[1][0] and events[2][0] == events[3][0]
+    assert float(events[2][2]) >= float(events[1][2])
+
+def test_a_waiter_gives_up_naming_the_holder(tmp_path: Path):
+    import multiprocessing as mp
+    import time as t
+    from bucket_eval.datasets.common import DiskBusyError, disk_job
+    ctx = mp.get_context("spawn")
+    holder = ctx.Process(target=_hold, args=(str(tmp_path), 1.5, str(tmp_path / "log"), "h"))
+    holder.start()
+    try:
+        deadline = t.monotonic() + 10
+        while not (tmp_path / "log").exists() and t.monotonic() < deadline:
+            t.sleep(0.02)
+        with pytest.raises(DiskBusyError, match=f"pid {holder.pid}"):
+            with disk_job(tmp_path, wait=0.2, poll=0.05):
+                pass
+    finally:
+        holder.join(30)
+
+def test_a_stale_lock_from_a_dead_pid_is_taken_over(tmp_path: Path):
+    import subprocess
+    import sys
+    from bucket_eval.datasets.common import LOCK_NAME, disk_job
+    dead = subprocess.run([sys.executable, "-c", "import os; print(os.getpid())"], capture_output=True, text=True).stdout.strip()
+    (tmp_path / LOCK_NAME).write_text(f"{dead}\n")
+    with disk_job(tmp_path, wait=0.2, poll=0.05) as lock:
+        assert lock.read_text().strip() == str(__import__("os").getpid())
+    assert (tmp_path / LOCK_NAME).read_text() == ""
+
+def test_the_lock_is_reentrant_and_released_on_error(tmp_path: Path):
+    from bucket_eval.datasets.common import disk_job
+    with pytest.raises(RuntimeError, match="boom"):
+        with disk_job(tmp_path):
+            with disk_job(tmp_path, wait=0):
+                raise RuntimeError("boom")
+    with disk_job(tmp_path, wait=0):
+        pass

@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import contextlib
+import fcntl
 import hashlib
 import json
 import os
 import shutil
+import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 REPO = Path(__file__).resolve().parents[4]
 BRONZE = Path(os.environ.get("RESEARCH_EVAL_DATA") or REPO / "_intake" / "research-eval")
@@ -25,6 +28,52 @@ def digest(path: Path, algo: str) -> str:
 
 class DiskFloorError(RuntimeError):
     pass
+
+class DiskBusyError(RuntimeError):
+    pass
+
+LOCK_NAME = ".disk-job.lock"
+_held: dict[Path, int] = {}
+
+def _holder(lock: Path) -> str:
+    try:
+        return lock.read_text().strip() or "unknown"
+    except OSError:
+        return "unknown"
+
+@contextlib.contextmanager
+def disk_job(root: Path, wait: float = 6 * 3600, poll: float = 1.0) -> Iterator[Path]:
+    root.mkdir(parents=True, exist_ok=True)
+    lock = (root / LOCK_NAME).resolve()
+    if lock in _held:
+        _held[lock] += 1
+        try:
+            yield lock
+        finally:
+            _held[lock] -= 1
+        return
+    fd = os.open(lock, os.O_RDWR | os.O_CREAT, 0o644)
+    deadline = time.monotonic() + wait
+    try:
+        while True:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                if time.monotonic() >= deadline:
+                    raise DiskBusyError(f"{root} is held by a disk job, pid {_holder(lock)}; waited {wait:.0f} s")
+                time.sleep(poll)
+        os.ftruncate(fd, 0)
+        os.write(fd, f"{os.getpid()}\n".encode())
+        _held[lock] = 1
+        try:
+            yield lock
+        finally:
+            del _held[lock]
+            os.ftruncate(fd, 0)
+            fcntl.flock(fd, fcntl.LOCK_UN)
+    finally:
+        os.close(fd)
 
 def floor_for(transient: int) -> int:
     return FLOOR_BYTES + max(0, transient)

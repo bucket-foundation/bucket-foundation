@@ -13,7 +13,7 @@ import pyarrow.compute as pc
 import pyarrow.fs as pafs
 import pyarrow.parquet as pq
 
-from .common import BRONZE, GB, MANIFESTS, digest, pin, require_free
+from .common import BRONZE, GB, MANIFESTS, disk_job, digest, pin, require_free
 
 BUCKET_ROOT = "openalex/data/parquet"
 LICENSE = "CC0-1.0"
@@ -196,11 +196,12 @@ def pilot(fs: pafs.FileSystem | None = None, root: str = BUCKET_ROOT, bronze: Pa
     fs = fs or s3()
     snap = fetch_manifest(fs, root, bronze)
     out_dir = bronze / "openalex" / snap.date / "pilot" / SLICE_VERSION
-    require_free(out_dir, TRANSIENT_BYTES, need=min_free)
     chosen = snap.files[::stride]
     started = time.monotonic()
-    totals = slice_files(fs, root, chosen, out_dir)
-    kept = dedup_parts(out_dir / "parts", out_dir / "dedup")
+    with disk_job(bronze):
+        require_free(out_dir, TRANSIENT_BYTES, need=min_free)
+        totals = slice_files(fs, root, chosen, out_dir)
+        kept = dedup_parts(out_dir / "parts", out_dir / "dedup")
     listed = max(totals["bytes_listed"], 1)
     scale = snap.content_length / listed
     projected_read = totals["bytes_read"] * scale
@@ -250,9 +251,10 @@ def full_slice(
     if snap.manifest_sha256 != result["manifest_sha256"]:
         raise GateError("the snapshot manifest changed since the pilot; rerun the pilot")
     out_dir = bronze / "openalex" / snap.date / "slice" / SLICE_VERSION
-    require_free(out_dir, TRANSIENT_BYTES, need=min_free)
-    totals = slice_files(fs, root, snap.files, out_dir)
-    kept = dedup_parts(out_dir / "parts", out_dir / "dedup")
+    with disk_job(bronze):
+        require_free(out_dir, TRANSIENT_BYTES, need=min_free)
+        totals = slice_files(fs, root, snap.files, out_dir)
+        kept = dedup_parts(out_dir / "parts", out_dir / "dedup")
     _pin(manifest, snap)
     return {"gate": verdict, **totals, **{f"dedup_{k}": v for k, v in kept.items()}}
 

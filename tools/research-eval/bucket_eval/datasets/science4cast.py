@@ -6,7 +6,7 @@ import zipfile
 from pathlib import Path
 from typing import BinaryIO, Callable
 
-from .common import BRONZE, GB, MANIFESTS, REPO, ChecksumError, digest, pin, read_manifest, require_free
+from .common import BRONZE, GB, disk_job, MANIFESTS, REPO, ChecksumError, digest, pin, read_manifest, require_free
 
 RECORD = "7882892"
 FILE = "Science4Cast_18datasets.zip"
@@ -30,6 +30,10 @@ def _relative(path: Path) -> str:
         return path.name
 
 def pull(bronze: Path = BRONZE, manifest: Path = MANIFEST, opener: Opener = _open, size: int = SIZE, md5: str = MD5, min_free: int | None = None) -> dict:
+    with disk_job(bronze):
+        return _pull(bronze, manifest, opener, size, md5, min_free)
+
+def _pull(bronze: Path, manifest: Path, opener: Opener, size: int, md5: str, min_free: int | None) -> dict:
     target_dir = bronze / "science4cast" / PUBLISHED
     require_free(target_dir, TRANSIENT_BYTES, need=min_free)
     target = target_dir / FILE
