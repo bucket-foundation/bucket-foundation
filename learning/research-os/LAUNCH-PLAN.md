@@ -101,7 +101,7 @@ New table `bucket.learn_events` with `user_id`, `name`, `props jsonb`, `arm`, `c
 
 Definitions. Activated: placement done and one study session of 10 or more graded items within 24 hours of the first sign-in. Week-1 retained: an activated learner with a study session on any of days 2 to 8. Completed learn session: the day's route finished or 10 graded items in one `StudySession`. Review decisions: weekly counts of founder decisions from the rows `decideEdge` and `decideNsmLink` write, tracked as an ops number.
 
-Privacy and consent. The privacy page names each event, its purpose and the existing export and delete paths (`/api/research-os/privacy`). The experiment takes a separate opt-in. Nobody under 18 is enrolled; `decideConsent` blocks unconsented minors on the listed actions (`consent.ts:32-44`), and G3 extends that to Learn.
+Privacy and consent. The privacy page names each event, its purpose and the existing export and delete paths (`/api/research-os/privacy`). The experiment takes a separate opt-in. Nobody under 18 is enrolled, and at launch every under-18 account is read-only (G3), consented or not. That rule is stricter than `decideConsent`, which blocks only unconsented minors on the listed actions (`consent.ts:32-44`); events, Learn and the experiment all follow the stricter rule.
 
 | Bar | 30 days | 90 days |
 |---|---|---|
