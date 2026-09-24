@@ -1,0 +1,20 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX psv: <http://www.wikidata.org/prop/statement/value/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+SELECT ?p ?t ?prec ?cal ?place ?placeLabel ?coord WHERE {
+  VALUES ?p { wd:Q260 wd:Q307 wd:Q529 wd:Q619 wd:Q692 wd:Q762 wd:Q868 wd:Q892 wd:Q909 wd:Q935 wd:Q1067 wd:Q1339 wd:Q4604 wd:Q5333 wd:Q5586 wd:Q6722 wd:Q7085 wd:Q7091 wd:Q7099 wd:Q7251 wd:Q7286 wd:Q7474 wd:Q8018 wd:Q8739 wd:Q8747 wd:Q8963 wd:Q9038 wd:Q9049 wd:Q9095 wd:Q9106 wd:Q9191 wd:Q9333 wd:Q9438 wd:Q11104 wd:Q11359 wd:Q12998 wd:Q17455 wd:Q33772 wd:Q34943 wd:Q37970 wd:Q39607 wd:Q41284 wd:Q41390 wd:Q41585 wd:Q42299 wd:Q43027 wd:Q47480 wd:Q48983 wd:Q60028 wd:Q70991 wd:Q76323 wd:Q76420 wd:Q84296 wd:Q84989 wd:Q88419 wd:Q89054 wd:Q92741 wd:Q92760 wd:Q92844 wd:Q125249 wd:Q127398 wd:Q140188 wd:Q151564 wd:Q151722 wd:Q153224 wd:Q178577 wd:Q180468 wd:Q192927 wd:Q202943 wd:Q234583 wd:Q234888 wd:Q259378 wd:Q273969 wd:Q438346 wd:Q538786 wd:Q1252080 wd:Q1585921 wd:Q1745666 wd:Q2158400 wd:Q4494454 wd:Q5237147 wd:Q6219218 wd:Q7027454 wd:Q7347179 wd:Q8013720 wd:Q8013739 wd:Q15485090 wd:Q16085947 wd:Q19325102 wd:Q20734645 wd:Q20734646 wd:Q20734647 wd:Q21554518 wd:Q39444955 wd:Q59640714 wd:Q63460604 wd:Q75577060 wd:Q76104084 wd:Q76315462 wd:Q95236210 wd:Q96415139 wd:Q107094685 wd:Q108350306 wd:Q112450579 wd:Q113953939 wd:Q124614932 }
+  ?p p:P569 ?st .
+  ?st psv:P569 ?v ; wikibase:rank ?rank .
+  FILTER(?rank != wikibase:DeprecatedRank)
+  ?v wikibase:timeValue ?t ; wikibase:timePrecision ?prec ; wikibase:timeCalendarModel ?cal .
+  OPTIONAL {
+    ?p wdt:P19 ?place .
+    OPTIONAL { ?place rdfs:label ?placeLabel FILTER(LANG(?placeLabel) = "en") }
+    OPTIONAL { ?place wdt:P625 ?coord }
+  }
+}

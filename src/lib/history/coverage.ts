@@ -197,3 +197,9 @@ export function dominantUnplacedCause(report: Pick<CoverageReport, "unplaced" | 
   const top = report.unplacedReasons[0];
   return `Unplaced subjects outnumber placed ones, ${unplaced} to ${placed}; the main cause is ${top.reason}, ${top.subjects} of ${unplaced}.`;
 }
+
+export function aboveOneNotes(report: Pick<CoverageReport, "printed">): string[] {
+  return report.printed
+    .filter((c) => c.C > 1)
+    .map((c) => `${c.region}, ${c.period}: C ${c.C.toFixed(2)} above 1 reflects a small expected count, E ${c.E.toFixed(2)}, or an undercount in the Wikidata reference.`);
+}

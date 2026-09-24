@@ -29,11 +29,11 @@ test("a reviewer creates a proposed subject, approves its factoid, and rejects a
   const before = await listHistoryReview(db);
   assert.ok(before.ok);
   if (!before.ok) return;
-  const proposal = before.value.proposals.find((p) => p.slug.startsWith("event-wikidata-q") && p.silverIds.length === 1)!;
+  const proposal = before.value.proposals.find((p) => p.slug.startsWith("event-wikidata-q") && p.silverIds.length >= 1)!;
   assert.ok(proposal, "a sacred event proposal is listed with its factoid");
   const silverId = proposal.silverIds[0];
-  const other = before.value.pending.find((f) => f.subject.startsWith("event-wikidata-q") && f.silverId !== silverId)!;
-  assert.ok(other.rule === "wikidata-cc0");
+  const other = before.value.pending.find((f) => f.subject.startsWith("event-wikidata-q") && f.subject !== proposal.slug)!;
+  assert.ok(other.rule === "wikidata-cc0" || other.rule === "wikidata-figures-cc0");
 
   t.after(() => {
     sql(`delete from graph.factoids where silver_item_id = '${silverId}'`);

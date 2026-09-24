@@ -1,0 +1,37 @@
+{
+  "endpoint": "https://qlever.dev/api/wikidata",
+  "license": "Wikidata CC0",
+  "date": "2026-09-24",
+  "queries": [
+    {
+      "name": "match",
+      "rows": 538,
+      "runtimeMs": 0,
+      "reused": true
+    },
+    {
+      "name": "born",
+      "rows": 155,
+      "runtimeMs": 0,
+      "reused": true
+    },
+    {
+      "name": "died",
+      "rows": 134,
+      "runtimeMs": 0,
+      "reused": true
+    },
+    {
+      "name": "events",
+      "rows": 76,
+      "runtimeMs": 0,
+      "reused": true
+    }
+  ],
+  "files": {
+    "match.tsv": "dd9ee3704eba93311051e75b8dd0406b8958a7395fc4f9c8e016bd3ff832506c",
+    "born.tsv": "16e212c096937d1f01ad6fc4be0f53d03086967cefbb50d36b4fc21cb8cf3c14",
+    "died.tsv": "aa62681a178746226fa8125674f9880cea3d18c6deba495b618059696303a8fc",
+    "events.tsv": "dd6db1805809b25d298ab62bca77e5da1774faa1b5a4d8d9a7a2244149140112"
+  }
+}
