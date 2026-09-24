@@ -147,6 +147,159 @@
       "basis": "PeriodO period definitions are dedicated to the public domain under CC0.",
       "evidence": ["https://perio.do/license/"],
       "rightsRevision": 1
+    },
+    {
+      "id": "onet-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/onet/" },
+      "allow": true,
+      "permission": "cc-by-4.0",
+      "basis": "O*NET database releases, occupations, tasks, work activities and technology skills, under CC BY 4.0 with attribution to the O*NET Resource Center. Rows wait in silver for a reviewer or an approved batch.",
+      "evidence": ["https://www.onetcenter.org/license_db.html"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "bls-oews-pd",
+      "match": { "sourcePrefix": "_intake/evolution/bls-oews/" },
+      "allow": true,
+      "permission": "public-domain",
+      "basis": "BLS Occupational Employment and Wage Statistics tables, a US federal work in the public domain.",
+      "evidence": ["https://www.bls.gov/opub/copyright-information.htm"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "wikidata-evolution-cc0",
+      "match": { "sourcePrefix": "_intake/evolution/wikidata/" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "Wikidata item data for software, technology and discovery, CC0. Query results wait in silver, and every identity link waits for a reviewer.",
+      "evidence": ["https://www.wikidata.org/wiki/Wikidata:Licensing"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "openalex-cc0",
+      "match": { "sourcePrefix": "_intake/evolution/openalex/" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "OpenAlex works and topics metadata, released under CC0.",
+      "evidence": ["https://openalex.org/about"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "patentsview-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/patentsview/" },
+      "allow": true,
+      "permission": "cc-by-4.0",
+      "basis": "PatentsView bulk tables on the USPTO Open Data Portal, CC BY 4.0 with attribution, to be confirmed on the signed-in download page per PATENTS.md.",
+      "evidence": ["learning/research-os/PATENTS.md", "https://data.uspto.gov/support/transition-guide/patentsview"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "histpat-cc0",
+      "match": { "sourcePrefix": "_intake/evolution/histpat/" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "HistPat historical US patent geography, Harvard Dataverse, CC0 as its record states; the record is read again at download.",
+      "evidence": ["https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/BPC15W"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "science4cast-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/science4cast/" },
+      "allow": true,
+      "permission": "cc-by-4.0",
+      "basis": "Science4Cast semantic network of AI concepts, CC BY 4.0 as published with the benchmark.",
+      "evidence": ["https://github.com/artificial-scientist-lab/FutureOfAIviaAI"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "eloundou-mit",
+      "match": { "sourcePrefix": "_intake/evolution/eloundou/" },
+      "allow": true,
+      "permission": "mit",
+      "basis": "Task exposure labels from Eloundou et al., released in the GPTs-are-GPTs repository under the MIT license.",
+      "evidence": ["https://github.com/openai/GPTs-are-GPTs"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "libraries-io-cc-by-sa",
+      "match": { "sourcePrefix": "_intake/evolution/libraries-io/" },
+      "allow": true,
+      "permission": "cc-by-sa-4.0",
+      "basis": "libraries.io open data, CC BY-SA 4.0. Share-alike: internal only, out of feed402 exports and public pages until founder question 4.",
+      "evidence": ["https://libraries.io/data"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "so-survey-odbl",
+      "match": { "sourcePrefix": "_intake/evolution/so-survey/" },
+      "allow": true,
+      "permission": "odbl-1.0",
+      "basis": "Stack Overflow Developer Survey results, ODbL. Share-alike: internal only, out of feed402 exports and public pages until founder question 4.",
+      "evidence": ["https://survey.stackoverflow.co/"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "pypl-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/pypl/" },
+      "allow": true,
+      "permission": "cc-by-3.0",
+      "basis": "PYPL programming language popularity index, CC BY 3.0 with attribution.",
+      "evidence": ["https://pypl.github.io/PYPL.html"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "isco-gate",
+      "match": { "sourcePrefix": "_intake/evolution/isco/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "ISCO-08 structure from the ILO. The license is unverified, so the importer loads nothing until it is confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "hisco-gate",
+      "match": { "sourcePrefix": "_intake/evolution/hisco/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "HISCO historical occupation codes. The license is unverified, so the importer loads nothing until it is confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "endoflife-gate",
+      "match": { "sourcePrefix": "_intake/evolution/endoflife/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "endoflife.date releases and support dates. The license is unverified, so the importer loads nothing until it is confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "chat-owid-gate",
+      "match": { "sourcePrefix": "_intake/evolution/chat-owid/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "CHAT technology adoption data beneath Our World in Data. The license is unverified, so the importer loads nothing until it is confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "aioe-gate",
+      "match": { "sourcePrefix": "_intake/evolution/aioe/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "AIOE occupation exposure scores, which ship with no license file, so the importer loads nothing until one is confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "github-innovation-graph-gate",
+      "match": { "sourcePrefix": "_intake/evolution/github-innovation-graph/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "GitHub Innovation Graph language activity. The license and schema are unverified, so the importer loads nothing until they are confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
     }
   ],
   "quote": [
