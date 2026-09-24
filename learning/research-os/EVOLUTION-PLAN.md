@@ -212,7 +212,7 @@ The config hash covers seeds, solver, init, loss, k, mask seed and the scikit-le
 | GitHub Innovation Graph | Language activity by economy and quarter | Quarterly, after its license gate | $0; license and schema **UNVERIFIED** |
 | SO Survey, PYPL | Usage shares | Annual, monthly | $0; ODbL, CC BY 3.0 |
 
-"Live" means a new release reaches silver within 24 hours for endoflife products and 7 days for Wikidata-only items, then the globe after review or batch promotion. Until endoflife.date clears its license gate, every product runs on the weekly Wikidata cadence. `evolution-live.timer`, a systemd user unit like `sacred-history-mirror.timer`, is idempotent on the silver unique key. Growth: under 50 MB a year (ESTIMATE, 10,000 factoids at 2.4 KB). GH Archive and TIOBE history ($5,000) are out.
+"Live" means a new release reaches silver within 24 hours for endoflife products and 7 days for Wikidata-only items, then the globe after review or batch promotion. The endoflife.date license gate cleared in #342: the repository is MIT (rule `endoflife-mit`), and the importer reads only product names and dates, leaving out the CC BY-SA descriptions. endoflife products run daily; Wikidata-only items run weekly. `evolution-live.timer`, a systemd user unit like `sacred-history-mirror.timer`, is idempotent on the silver unique key. Growth: under 50 MB a year (ESTIMATE, 10,000 factoids at 2.4 KB). GH Archive and TIOBE history ($5,000) are out.
 
 ## 8. Tool Integration
 
@@ -255,7 +255,7 @@ Migrations, importers and pages go on `feat/ros-evo-*` into `dev`; pipelines, ti
 
 ## 11. Rights
 
-New rules in `learning/research-os/ai/rights-policy.json`, in the shape of `wikidata-cc0` (line 125): `onet-cc-by`, `bls-oews-pd`, `wikidata-evolution-cc0`, `openalex-cc0`, `patentsview-cc-by`, `histpat-cc0`, `science4cast-cc-by`, `eloundou-mit`, `libraries-io-cc-by-sa`, `so-survey-odbl`, `pypl-cc-by`. License gates, **UNVERIFIED**, each loading nothing until confirmed: ISCO, HISCO, endoflife.date, CHAT beneath OWID, AIOE (no license file) and GitHub Innovation Graph. Excluded: HOPL, Webb (gated), Reliance on Science, TIOBE history, full IPUMS microdata, EPO PATSTAT. Share-alike sources (libraries.io, Stack Overflow Survey) stay internal by default: their series, and the libraries.io dependents ranking behind the 100,000 package cap, stay out of feed402 exports and public pages until founder question 3.
+New rules in `learning/research-os/ai/rights-policy.json`, in the shape of `wikidata-cc0` (line 125): `onet-cc-by`, `bls-oews-pd`, `wikidata-evolution-cc0`, `openalex-cc0`, `patentsview-cc-by`, `histpat-cc0`, `science4cast-cc-by`, `eloundou-mit`, `libraries-io-cc-by-sa`, `so-survey-odbl`, `pypl-cc-by`. License gates, **UNVERIFIED**, each loading nothing until confirmed: ISCO, HISCO, CHAT beneath OWID, AIOE (no license file) and GitHub Innovation Graph. Excluded: HOPL, Webb (gated), Reliance on Science, TIOBE history, full IPUMS microdata, EPO PATSTAT. Share-alike sources (libraries.io, Stack Overflow Survey) stay internal by default: their series, and the libraries.io dependents ranking behind the 100,000 package cap, stay out of feed402 exports and public pages until founder question 3.
 
 ## 12. Risks
 
