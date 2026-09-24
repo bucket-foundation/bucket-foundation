@@ -16,7 +16,7 @@ bucket-eval = "bucket_eval.cli:main"
 include = ["bucket_eval", "bucket_eval.*"]
 
 [tool.setuptools.package-data]
-bucket_eval = ["datasets/manifests/*.json"]
+bucket_eval = ["datasets/manifests/*.json", "evolution/manifests/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

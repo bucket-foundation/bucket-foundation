@@ -10,7 +10,8 @@ from typing import Any
 REPO = Path(__file__).resolve().parents[4]
 BRONZE = Path(os.environ.get("RESEARCH_EVAL_DATA") or REPO / "_intake" / "research-eval")
 MANIFESTS = Path(__file__).resolve().parent / "manifests"
-MIN_FREE_BYTES = 60 * 1024**3
+FLOOR_BYTES = 30 * 1024**3
+GB = 1024**3
 
 class ChecksumError(RuntimeError):
     pass
@@ -22,11 +23,21 @@ def digest(path: Path, algo: str) -> str:
             h.update(block)
     return h.hexdigest()
 
-def require_free(path: Path, need: int = MIN_FREE_BYTES) -> None:
+class DiskFloorError(RuntimeError):
+    pass
+
+def floor_for(transient: int) -> int:
+    return FLOOR_BYTES + max(0, transient)
+
+def require_free(path: Path, transient: int = 0, *, need: int | None = None, free: int | None = None) -> None:
+    want = floor_for(transient) if need is None else need
+    probe = path
+    while not probe.exists() and probe != probe.parent:
+        probe = probe.parent
+    have = shutil.disk_usage(probe).free if free is None else free
+    if have < want:
+        raise DiskFloorError(f"{path} has {have / GB:.1f} GB free; the job needs {want / GB:.1f} GB, a {FLOOR_BYTES / GB:.0f} GB floor plus {max(0, want - FLOOR_BYTES) / GB:.1f} GB transient")
     path.mkdir(parents=True, exist_ok=True)
-    free = shutil.disk_usage(path).free
-    if free < need:
-        raise RuntimeError(f"{path} has {free / 1024**3:.1f} GB free; the pull needs {need / 1024**3:.0f} GB")
 
 def read_manifest(path: Path) -> dict[str, Any] | None:
     return json.loads(path.read_text()) if path.exists() else None

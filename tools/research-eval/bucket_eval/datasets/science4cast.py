@@ -6,7 +6,7 @@ import zipfile
 from pathlib import Path
 from typing import BinaryIO, Callable
 
-from .common import BRONZE, MANIFESTS, REPO, ChecksumError, digest, pin, read_manifest, require_free
+from .common import BRONZE, GB, MANIFESTS, REPO, ChecksumError, digest, pin, read_manifest, require_free
 
 RECORD = "7882892"
 FILE = "Science4Cast_18datasets.zip"
@@ -16,6 +16,7 @@ MD5 = "9325a2d05df1834939ed7cdba9158afc"
 LICENSE = "CC-BY-4.0"
 PUBLISHED = "2023-05-01"
 MANIFEST = MANIFESTS / "science4cast.json"
+TRANSIENT_BYTES = 3 * GB
 
 Opener = Callable[[str], BinaryIO]
 
@@ -30,10 +31,7 @@ def _relative(path: Path) -> str:
 
 def pull(bronze: Path = BRONZE, manifest: Path = MANIFEST, opener: Opener = _open, size: int = SIZE, md5: str = MD5, min_free: int | None = None) -> dict:
     target_dir = bronze / "science4cast" / PUBLISHED
-    if min_free is None:
-        require_free(target_dir)
-    else:
-        require_free(target_dir, min_free)
+    require_free(target_dir, TRANSIENT_BYTES, need=min_free)
     target = target_dir / FILE
     if not (target.exists() and target.stat().st_size == size):
         partial = target.with_suffix(".part")
