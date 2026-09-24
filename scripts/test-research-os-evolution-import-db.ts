@@ -114,3 +114,46 @@ test("the importer core runs bronze to gold, refuses unapproved rules, reruns id
     cleanup(tag, sources);
   }
 });
+
+test("share-alike silver cannot reach gold by a reviewer or a batch until founder question 4", { skip }, async () => {
+  const tag = randomUUID().slice(0, 8);
+  const sw = `evo-imp-${tag}-sa`;
+  assert.equal(sql(`insert into graph.nodes (slug, title, kind, branch, visibility, provenance) values ('${sw}', 'Python', 'software', '04-information', 'public', '{"type": "wikidata", "level": "language"}')`).status, 0);
+  const client = svc();
+  const sources: string[] = [];
+  const reviewer = randomUUID();
+  try {
+    assert.equal(sql(`insert into auth.users (id, email) values ('${reviewer}', 'evo-sa-${tag}@test.example')`).status, 0);
+    const rows: FixtureRow[] = [{ id: "sa", subject: { kind: "node", slug: sw, nodeKind: "software" }, role: "adopted", year: 2008 }];
+    const so: EvolutionSource = { repoPath: `_intake/evolution/so-survey/fixture-${tag}/rows.jsonl`, rule: "so-survey-odbl", prior: 0.9 };
+    const graph = await readGraph(client);
+    const p = planEvolution({ sources: [so], files: new Map([[so.repoPath, Buffer.from(fixtureText(rows, tag))]]), policy, nodes: graph.nodes, edges: graph.edges, records: fixtureRecords(rows) });
+    sources.push(...p.bronze.map((b) => b.sourceId));
+    assert.equal(p.silver[0].proposal.internal, true);
+    assert.deepEqual(p.promotions, []);
+    const r = await applyEvolution(client, p, policyMeta);
+    assert.equal(r.written.silver, 1);
+    const silver = sql(`select id from graph.silver_items where source_id = '${p.bronze[0].sourceId}'`).out;
+
+    const { data, error } = await client.rpc("promote_evolution_factoid", { p_silver: silver, p_reviewer: reviewer, p_preferred: true });
+    assert.equal(data, null);
+    assert.equal(error?.code, "23514");
+    assert.match(error?.message ?? "", /share-alike/);
+
+    const review = sql(`insert into graph.evolution_batch_reviews (source_id, source_revision, parser, role, sample_size, status, reviewer_id, decided_at)
+      values ('${p.bronze[0].sourceId}', '${p.bronze[0].sourceRevision}', 'evolution-import', 'adopted', 200, 'approved', '${reviewer}', now()) returning id`).out.split("\n")[0];
+    const { error: batchErr } = await client.rpc("promote_evolution_batch", { p_review: review });
+    assert.equal(batchErr?.code, "23514");
+    const gated = await approveAndRunBatch(client, { reviewId: review, reviewerId: reviewer, errors: 0, env: { EVOLUTION_BATCH_PROMOTION: "on" } });
+    assert.equal(gated.ok, false);
+
+    const backfill = sql(`insert into graph.gold_lineage (node_id, silver_item_id, promoted_by) select id, '${silver}', 'backfill' from graph.nodes where slug = '${sw}'`);
+    assert.notEqual(backfill.status, 0);
+    assert.match(backfill.out, /share-alike/);
+    assert.equal(sql(`select count(*) from graph.factoids where silver_item_id = '${silver}'`).out, "0");
+    assert.equal(sql(`select count(*) from graph.gold_lineage where silver_item_id = '${silver}'`).out, "0");
+  } finally {
+    sql(`delete from auth.users where id = '${reviewer}'`);
+    cleanup(tag, sources);
+  }
+});

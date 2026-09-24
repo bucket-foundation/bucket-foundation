@@ -38,12 +38,20 @@ function plan(rule: string, repoPath: string, salt = "a", r = rows) {
 }
 
 test("every named evolution rule is in the policy and parses", () => {
-  for (const id of ["onet-cc-by", "bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0", "patentsview-cc-by", "histpat-cc0", "science4cast-cc-by", "eloundou-mit", "libraries-io-cc-by-sa", "so-survey-odbl", "pypl-cc-by"]) {
+  for (const id of ["onet-cc-by", "bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0", "science4cast-cc-by", "eloundou-mit", "libraries-io-cc-by-sa", "so-survey-odbl", "pypl-cc-by"]) {
     const rule = policy.index.find((r) => r.id === id);
     assert.ok(rule, id);
     assert.equal(rule!.allow, true, id);
     assert.match(rule!.match.sourcePrefix ?? "", /^_intake\/evolution\/[a-z0-9-]+\/$/, id);
   }
+});
+
+test("every rule records how and when its license was checked", () => {
+  for (const r of policy.index.filter((x) => x.match.sourcePrefix)) assert.match(r.basis, /License checked 2026-09-24/, r.id);
+  const s4c = policy.index.find((r) => r.id === "science4cast-cc-by")!;
+  assert.ok(s4c.evidence.includes("https://zenodo.org/api/records/7882892"));
+  assert.equal(GATED_RULES.length, 8);
+  assert.ok(!policy.index.some((r) => r.id === "histpat-cc0" || r.id === "patentsview-cc-by"));
 });
 
 test("each license gate loads nothing", () => {

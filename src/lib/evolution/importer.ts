@@ -14,8 +14,6 @@ export const EVOLUTION_RULES = [
   "bls-oews-pd",
   "wikidata-evolution-cc0",
   "openalex-cc0",
-  "patentsview-cc-by",
-  "histpat-cc0",
   "science4cast-cc-by",
   "eloundou-mit",
   "libraries-io-cc-by-sa",
@@ -23,7 +21,16 @@ export const EVOLUTION_RULES = [
   "pypl-cc-by",
 ] as const;
 
-export const GATED_RULES = ["isco-gate", "hisco-gate", "endoflife-gate", "chat-owid-gate", "aioe-gate", "github-innovation-graph-gate"] as const;
+export const GATED_RULES = [
+  "isco-gate",
+  "hisco-gate",
+  "endoflife-gate",
+  "chat-owid-gate",
+  "aioe-gate",
+  "github-innovation-graph-gate",
+  "patentsview-gate",
+  "histpat-gate",
+] as const;
 
 export const SHARE_ALIKE_RULES = new Set<string>(["libraries-io-cc-by-sa", "so-survey-odbl"]);
 
@@ -274,7 +281,7 @@ export type BatchGate =
   | { ok: true; upper: number }
   | { ok: false; reason: "batch_promotion_off" | "sample_too_small" | "upper_bound_too_high" | "share_alike" | "rule_not_batchable"; upper?: number };
 
-export const BATCHABLE_RULES = new Set<string>(["bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0", "histpat-cc0"]);
+export const BATCHABLE_RULES = new Set<string>(["bls-oews-pd", "wikidata-evolution-cc0", "openalex-cc0"]);
 
 export function batchGate(input: { rule: string; sample: number; errors: number; enabled: boolean }): BatchGate {
   if (!input.enabled) return { ok: false, reason: "batch_promotion_off" };
