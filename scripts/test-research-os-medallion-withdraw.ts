@@ -27,6 +27,9 @@ test("the runner's arguments name one target, a reason, and file ids only", () =
   assert.deepEqual(parseWithdrawArgs(["--path=/srv/abs/_intake/a.md", "--reason=r"]), { ok: false, error: "bad_path" });
   assert.deepEqual(parseWithdrawArgs(["--queue"]), { ok: true, args: { mode: "queue" } });
   assert.deepEqual(parseWithdrawArgs(["--restore=claim-x"]), { ok: false, error: "no_reviewer" });
+  assert.deepEqual(parseWithdrawArgs([`--restore-history=${A}`, "--reviewer=r@x.example", "--apply"]), { ok: true, args: { mode: "restore-history", source: A, reviewer: "r@x.example", apply: true } });
+  assert.deepEqual(parseWithdrawArgs([`--restore-history=${A}`]), { ok: false, error: "no_reviewer" });
+  assert.deepEqual(parseWithdrawArgs(["--restore-history=doi:10.1000/x", "--reviewer=r@x.example"]), { ok: false, error: "bad_source" });
 });
 
 test("a node goes private only when every source it has is withdrawn", () => {
@@ -171,6 +174,12 @@ const TABLES = {
     { id: "n-atom", slug: "academy-emf" },
   ],
   medallion_withdrawn_nodes: [{ node_id: "n-claim", source_id: B, withdrawn_at: "2026-09-24T00:00:00Z", reviewed_at: null }],
+  factoids: [
+    { id: "f1", silver_item_id: "s1", status: "active" },
+    { id: "f2", silver_item_id: "s3", status: "active" },
+  ],
+  places: [{ id: "p1", source_id: B, status: "active" }],
+  periods: [],
   users: [{ id: "u-founder", email: "founder@bucket.example" }],
 };
 
@@ -181,6 +190,7 @@ test("a dry run by path finds every revision the path held, lists what would cha
   assert.match(r.stdout, /2 silver item\(s\) go withdrawn; 1 gold node\(s\) go private; 1 keep another source/);
   assert.match(r.stdout, /private\tclaim-emf-001/);
   assert.match(r.stdout, /kept\tacademy-emf/);
+  assert.match(r.stdout, /1 history factoid\(s\), 1 place\(s\) and 0 period\(s\) go withdrawn/);
   assert.match(r.stdout, /dry run, nothing written/);
   assert.deepEqual(r.rpcs, []);
   assert.ok(!r.stdout.includes(PATH) && !r.stderr.includes(PATH), "the runner printed the repo path");
@@ -213,4 +223,16 @@ test("the queue lists withdrawn nodes, and a listed reviewer restores through th
   const r = runRunner(["--restore=claim-emf-001", "--reviewer=Founder@Bucket.example", "--apply"], TABLES, { RESEARCH_OS_REVIEWER_EMAILS: "founder@bucket.example" });
   assert.equal(r.status, 0, r.stderr);
   assert.deepEqual(r.rpcs, [{ name: "restore_withdrawn_node", args: { p_node: "n-claim", p_reviewer: "u-founder" } }]);
+});
+
+test("a listed reviewer revives a history source through restore_withdrawn_history, and an outsider cannot", () => {
+  const env = { RESEARCH_OS_REVIEWER_EMAILS: "founder@bucket.example" };
+  const outsider = runRunner([`--restore-history=${B}`, "--reviewer=someone@else.example", "--apply"], TABLES, env);
+  assert.equal(outsider.status, 1);
+  assert.deepEqual(outsider.rpcs, []);
+  const dry = runRunner([`--restore-history=${B}`, "--reviewer=founder@bucket.example"], TABLES, env);
+  assert.equal(dry.status, 0, dry.stderr);
+  assert.deepEqual(dry.rpcs, []);
+  const r = runRunner([`--restore-history=${B}`, "--reviewer=founder@bucket.example", "--apply"], TABLES, env);
+  assert.deepEqual(r.rpcs, [{ name: "restore_withdrawn_history", args: { p_source: B, p_reviewer: "u-founder" } }]);
 });

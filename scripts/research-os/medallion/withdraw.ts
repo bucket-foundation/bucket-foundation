@@ -48,7 +48,7 @@ async function reviewerId(svc: SupabaseClient, email: string): Promise<string | 
 async function main() {
   const parsed = parseWithdrawArgs(process.argv.slice(2));
   if (!parsed.ok) {
-    console.error(`[withdraw] ${parsed.error}. Use --source=file:<sha256> or --path=<repo path> with --reason=<text>, --queue, or --restore=<slug> --reviewer=<email>.`);
+    console.error(`[withdraw] ${parsed.error}. Use --source=file:<sha256> or --path=<repo path> with --reason=<text>, --queue, --restore=<slug> --reviewer=<email>, or --restore-history=file:<sha256> --reviewer=<email>.`);
     process.exit(1);
   }
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -70,6 +70,31 @@ async function main() {
     );
     console.log(`[withdraw] ${rows.length} withdrawn node(s) wait for a reviewer.`);
     for (const r of rows) console.log(`  ${slugs.get(r.node_id) ?? r.node_id}\t${r.source_id}\t${r.withdrawn_at}`);
+    return;
+  }
+
+  if (args.mode === "restore-history") {
+    if (!isReviewerEmail(args.reviewer)) {
+      console.error("[withdraw] --reviewer is not on RESEARCH_OS_REVIEWER_EMAILS.");
+      process.exit(1);
+    }
+    if (!args.apply) {
+      console.log(`[withdraw] would revive the factoids, places and periods of ${args.source} if it is active again. Dry run, nothing written.`);
+      return;
+    }
+    const id = await reviewerId(svc, args.reviewer);
+    if (!id) {
+      console.error("[withdraw] the reviewer has no account.");
+      process.exit(1);
+    }
+    const { data: res, error: rpcErr } = await svc.rpc("restore_withdrawn_history", { p_source: args.source, p_reviewer: id });
+    if (rpcErr) throw new Error(`restore history: ${rpcErr.message}`);
+    const out = res as { ok: boolean; error?: string; places?: number; periods?: number; factoids_revived?: number };
+    if (!out.ok) {
+      console.error(`[withdraw] ${args.source} not restored: ${out.error}.`);
+      process.exit(1);
+    }
+    console.log(`[withdraw] revived ${out.factoids_revived} factoid(s), ${out.places} place(s) and ${out.periods} period(s) of ${args.source}.`);
     return;
   }
 
@@ -148,7 +173,15 @@ async function main() {
 
   console.log(`[withdraw] ${sourceIds.length} source(s): ${sourceIds.join(", ")}`);
   for (const a of admissions) console.log(`  ${a.source_id}\t${a.status}`);
+  const factoids = await chunked<{ id: string }>(
+    silver.map((s) => s.id),
+    (c, from, to) => svc.from("factoids").select("id").in("silver_item_id", c).eq("status", "active").order("id").range(from, to),
+    "factoids",
+  );
+  const places = await chunked<{ id: string }>(sourceIds, (c, from, to) => svc.from("places").select("id").in("source_id", c).eq("status", "active").order("id").range(from, to), "places");
+  const periods = await chunked<{ id: string }>(sourceIds, (c, from, to) => svc.from("periods").select("id").in("source_id", c).eq("status", "active").order("id").range(from, to), "periods");
   console.log(`[withdraw] ${impact.silverToWithdraw.length} silver item(s) go withdrawn; ${impact.orphaned.length} gold node(s) go private; ${impact.kept.length} keep another source.`);
+  console.log(`[withdraw] ${factoids.length} history factoid(s), ${places.length} place(s) and ${periods.length} period(s) go withdrawn; --restore-history=<source> revives them.`);
   for (const id of impact.orphaned) console.log(`  private\t${slugs.get(id) ?? id}`);
   for (const id of impact.kept) console.log(`  kept\t${slugs.get(id) ?? id}`);
   if (!args.apply) {
