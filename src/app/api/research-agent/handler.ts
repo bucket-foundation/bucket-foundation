@@ -10,7 +10,7 @@ const MIN_QUESTION_CHARS = 8;
 
 export interface AgentDeps<T> {
   verifyUser: (req: NextRequest) => Promise<RequestUser | null>;
-  isStaff: (user: RequestUser) => Promise<boolean>;
+  isAllowed: (user: RequestUser) => boolean | Promise<boolean>;
   provider: () => Provider | null;
   limiter: () => DailyLimiter | null;
   caps?: () => DailyCaps;
@@ -21,13 +21,13 @@ export interface AgentDeps<T> {
 export async function handleAgent<T>(req: NextRequest, deps: AgentDeps<T>): Promise<NextResponse> {
   const user = await deps.verifyUser(req);
   if (!user) return bad(401, "Sign in to use the research agent.", { signIn: true });
-  let staff = false;
+  let allowed = false;
   try {
-    staff = await deps.isStaff(user);
+    allowed = await deps.isAllowed(user);
   } catch {
     return bad(503, "The research agent could not check access. Try again shortly.");
   }
-  if (!staff) return bad(404, "Not found.");
+  if (!allowed) return bad(404, "Not found.");
 
   const read = await readBody(req, MAX_BODY_BYTES);
   if (read.error) return read.error;

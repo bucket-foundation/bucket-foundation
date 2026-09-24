@@ -246,7 +246,7 @@ Enforced by the filter at `src/lib/research-os/grounding.ts:91`, an exact string
 Enforced by `sanitizeGradeResult` at `grounding.ts:82` returning `ABSTAIN_FALLBACK` on a null parse or an out-of-range enum. Falsified by: any code path that surfaces a verdict from an unparsed response. Test: `parseModelJson` returning null, asserting `abstained === true`.
 
 **Rule 4. A model's output changes the graph only after a named human decides.**
-Enforced by `graph.edge_proposals`, `graph.node_proposals` and `graph.irreducible_proposals` as separate tables from `graph.edges` and `graph.nodes`, with `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:31` as the gate. Falsified by: any writer that inserts into `graph.edges` with `confidence_source` set from a model without a `reviewer_id` on the originating proposal. Test: a contract test over every `graph.edges` insert path.
+Enforced by `graph.edge_proposals`, `graph.node_proposals` and `graph.irreducible_proposals` as separate tables from `graph.edges` and `graph.nodes`, with `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:40` as the gate. Falsified by: any writer that inserts into `graph.edges` with `confidence_source` set from a model without a `reviewer_id` on the originating proposal. Test: a contract test over every `graph.edges` insert path.
 
 **Rule 5. The product runs with the model off.**
 Enforced by `llmEnabled` at `deterministic.ts:3` defaulting off, and by `deterministicCheck` and `deterministicOrganize` covering the two tools that would otherwise call a model. Falsified by: any Research OS route returning a 5xx or an empty tool when `RESEARCH_OS_LLM_ENABLED` is unset. Test: the full route suite with the flag unset.
