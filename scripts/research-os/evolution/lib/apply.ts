@@ -8,6 +8,7 @@ import {
   batchPromotionEnabled,
   EVOLUTION_PARSER,
   silverKeyOf,
+  type SilverKeyFields,
   type EdgeRef,
   type EvolutionPlan,
   type EvolutionSilver,
@@ -20,22 +21,25 @@ export const LABEL = "evolution-import";
 export interface EvolutionReport {
   plan: Record<string, number>;
   bronze: { staged: number; activated: number; unchanged: number; refused: number };
-  written: { silver: number; proposals: number; factoids: number; preferred: number };
+  written: { silver: number; edgeCandidates: number; series: number; proposals: number; factoids: number; preferred: number };
 }
 
-async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any): Promise<T[]> {
+async function all<T>(svc: SupabaseClient, table: string, columns: string, filter?: (q: any) => any, orderBy = "id"): Promise<T[]> {
   return pagedRead<T>((page) => {
-    let q = svc.from(table).select(columns).order("id").range(page.from, page.to);
+    let q = svc.from(table).select(columns).order(orderBy).range(page.from, page.to);
     if (filter) q = filter(q);
     return q as unknown as Promise<{ data: T[] | null; error: { message: string } | null }>;
   });
 }
 
-export async function readGraph(svc: SupabaseClient): Promise<{ nodes: NodeRef[]; edges: EdgeRef[] }> {
+export async function readGraph(svc: SupabaseClient): Promise<{ nodes: NodeRef[]; edges: EdgeRef[]; nodeIds: Map<string, string>; eolToSlug: Map<string, string> }> {
   const nodes = await all<{ id: string; slug: string; kind: string }>(svc, "nodes", "id,slug,kind", (q) => q.in("kind", [...EVOLUTION_NODE_KINDS]));
   const edges = await all<{ id: string; from_id: string; to_id: string; kind: string }>(svc, "edges", "id,from_id,to_id,kind", (q) => q.in("kind", [...EVOLUTION_EDGE_KINDS]));
   const slugOf = new Map(nodes.map((n) => [n.id, n.slug]));
+  const eol = await all<{ external_id: string; node_id: string; authority: string }>(svc, "node_external_ids", "authority,external_id,node_id", (q) => q.eq("authority", "eol"), "external_id");
   return {
+    nodeIds: new Map(nodes.map((n) => [n.slug, n.id])),
+    eolToSlug: new Map(eol.filter((e) => slugOf.has(e.node_id)).map((e) => [e.external_id, slugOf.get(e.node_id)!])),
     nodes: nodes.map((n) => ({ slug: n.slug, kind: n.kind })),
     edges: edges
       .filter((e) => slugOf.has(e.from_id) && slugOf.has(e.to_id))
@@ -43,7 +47,7 @@ export async function readGraph(svc: SupabaseClient): Promise<{ nodes: NodeRef[]
   };
 }
 
-async function silverIds(svc: SupabaseClient, rows: EvolutionSilver[]): Promise<Map<string, string>> {
+export async function silverIds(svc: SupabaseClient, rows: SilverKeyFields[]): Promise<Map<string, string>> {
   const out = new Map<string, string>();
   const sources = Array.from(new Set(rows.map((r) => r.source_id)));
   if (sources.length === 0) return out;
@@ -58,7 +62,7 @@ export async function applyEvolution(svc: SupabaseClient, plan: EvolutionPlan, p
   const report: EvolutionReport = {
     plan: plan.counts,
     bronze: { staged: 0, activated: 0, unchanged: 0, refused: 0 },
-    written: { silver: 0, proposals: 0, factoids: 0, preferred: 0 },
+    written: { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, factoids: 0, preferred: 0 },
   };
   if (plan.bronze.length === 0) return report;
 
@@ -78,6 +82,29 @@ export async function applyEvolution(svc: SupabaseClient, plan: EvolutionPlan, p
     if (error) throw new Error(`silver write failed: ${error.message}`);
     report.written.silver += (data ?? []).length;
   }
+  for (let i = 0; i < plan.edgeCandidates.length; i += 200) {
+    const { data, error } = await svc.from("silver_items").upsert(plan.edgeCandidates.slice(i, i + 200), { onConflict: SILVER_CONFLICT, ignoreDuplicates: true }).select("id");
+    if (error) throw new Error(`edge candidate write failed: ${error.message}`);
+    report.written.edgeCandidates += (data ?? []).length;
+  }
+
+  if (plan.series.length) {
+    const nodeIds = (await readGraph(svc)).nodeIds;
+    const rows = plan.series.map((r) => {
+      const subject = nodeIds.get(r.subjectSlug);
+      if (!subject) throw new Error(`series subject ${r.subjectSlug} is not a node`);
+      return { subject_id: subject, metric: r.metric, place_id: null, year: r.year, value: r.value, unit: r.unit, source_id: r.sourceId, source_revision: r.sourceRevision, run_hash: r.runHash };
+    });
+    for (let i = 0; i < rows.length; i += 500) {
+      const { data, error } = await svc
+        .from("evolution_series")
+        .upsert(rows.slice(i, i + 500), { onConflict: "subject_id,metric,place_id,year,source_id,source_revision", ignoreDuplicates: true })
+        .select("id");
+      if (error) throw new Error(`series write failed: ${error.message}`);
+      report.written.series += (data ?? []).length;
+    }
+  }
+
   const ids = await silverIds(svc, plan.silver);
 
   const proposalRows = plan.proposals.map((p) => nodeProposalRow(LABEL, p.draft, p.silver, ids.get(silverKeyOf(p.silver)) ?? null));

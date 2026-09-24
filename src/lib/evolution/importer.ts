@@ -19,12 +19,12 @@ export const EVOLUTION_RULES = [
   "libraries-io-cc-by-sa",
   "so-survey-odbl",
   "pypl-cc-by",
+  "endoflife-mit",
 ] as const;
 
 export const GATED_RULES = [
   "isco-gate",
   "hisco-gate",
-  "endoflife-gate",
   "chat-owid-gate",
   "aioe-gate",
   "github-innovation-graph-gate",
@@ -90,9 +90,58 @@ export interface EvolutionSilver {
   subject: string;
 }
 
+export interface EdgeCandidateRecord {
+  repoPath: string;
+  record: string;
+  field: string;
+  span: { start: number; end: number };
+  fromSlug: string;
+  toSlug: string;
+  edgeKind: string;
+  qid?: string;
+}
+
+export interface EdgeCandidateProposal {
+  source: string;
+  rule: string;
+  record: string;
+  field: string;
+  from_slug: string;
+  to_slug: string;
+  edge_kind: string;
+  endpoints_resolved: boolean;
+  cycle: boolean;
+  internal: boolean;
+  qid?: string;
+}
+
+export interface EvolutionEdgeSilver extends Omit<EvolutionSilver, "kind" | "proposal"> {
+  kind: "edge_candidate";
+  proposal: EdgeCandidateProposal;
+}
+
+export interface SeriesRecord {
+  repoPath: string;
+  subjectSlug: string;
+  metric: string;
+  year: number;
+  value: number;
+  unit: string;
+}
+
+export interface SeriesDraft extends Omit<SeriesRecord, "repoPath"> {
+  sourceId: string;
+  sourceRevision: string;
+  runHash: string;
+}
+
+export const LINEAGE_KINDS = new Set<string>(["descends_from", "replaces"]);
+
 export interface EvolutionPlan {
   bronze: BronzeRecord[];
   silver: EvolutionSilver[];
+  edgeCandidates: EvolutionEdgeSilver[];
+  series: SeriesDraft[];
   proposals: { draft: IngestNodeDraft; silver: EvolutionSilver }[];
   promotions: EvolutionSilver[];
   refused: { record: string; reason: string }[];
@@ -118,6 +167,8 @@ export interface EvolutionInput {
   nodes: NodeRef[];
   edges: EdgeRef[];
   records: (bronze: BronzeRecord, source: EvolutionSource) => EvolutionRecord[];
+  edgeCandidates?: (bronze: BronzeRecord, source: EvolutionSource) => EdgeCandidateRecord[];
+  series?: (bronze: BronzeRecord, source: EvolutionSource) => SeriesRecord[];
 }
 
 export class RightsRefusal extends Error {
@@ -169,6 +220,8 @@ export function planEvolution(input: EvolutionInput): EvolutionPlan {
   const counts: Record<string, number> = {};
   const bump = (k: string) => (counts[k] = (counts[k] ?? 0) + 1);
   const proposed = new Set<string>();
+  const edgeCandidates: EvolutionEdgeSilver[] = [];
+  const seriesRecords: { record: SeriesRecord; bronze: BronzeRecord }[] = [];
 
   for (const source of input.sources) {
     const rights = evolutionRights(input.policy, source.rule, source.repoPath);
@@ -245,6 +298,83 @@ export function planEvolution(input: EvolutionInput): EvolutionPlan {
         proposals.push({ draft: r.subject.draft, silver: item });
       }
     }
+
+    for (const e of input.edgeCandidates?.(b, source) ?? []) {
+      if (e.repoPath !== source.repoPath) throw new Error(`${e.record} names ${e.repoPath}, read from ${source.repoPath}`);
+      if (!isEvolutionEdgeKind(e.edgeKind)) {
+        refused.push({ record: e.record, reason: `${e.edgeKind} is not an evolution edge kind` });
+        bump("refused_edge_kind");
+        continue;
+      }
+      if (e.fromSlug === e.toSlug) {
+        refused.push({ record: e.record, reason: "self_loop" });
+        bump("refused_self_loop");
+        continue;
+      }
+      const slice = byteSlice(b.text, e.span.start, e.span.end);
+      if (slice.length === 0) throw new Error(`${e.record}: empty span in ${source.repoPath}`);
+      const parts = { prior: source.prior };
+      edgeCandidates.push({
+        source_id: b.sourceId,
+        source_revision: b.sourceRevision,
+        kind: "edge_candidate",
+        span_start: e.span.start,
+        span_end: e.span.end,
+        locator: `${e.record}#${e.field}`,
+        text_hash: sha256Hex(slice),
+        text: b.rights.allowIndex ? slice : null,
+        parser: EVOLUTION_PARSER,
+        parser_revision: EVOLUTION_PARSER_REVISION,
+        confidence: combineConfidence(parts),
+        confidence_parts: parts,
+        proposal: {
+          source: source.repoPath,
+          rule: source.rule,
+          record: e.record,
+          field: e.field,
+          from_slug: e.fromSlug,
+          to_slug: e.toSlug,
+          edge_kind: e.edgeKind,
+          endpoints_resolved: bySlug.has(e.fromSlug) && bySlug.has(e.toSlug),
+          cycle: false,
+          internal: isInternalRule(source.rule),
+          ...(e.qid ? { qid: e.qid } : {}),
+        },
+        subject: `${e.fromSlug} ${e.edgeKind} ${e.toSlug}`,
+      });
+      bump("edge_candidates");
+    }
+
+    for (const sr of input.series?.(b, source) ?? []) {
+      if (sr.repoPath !== source.repoPath) throw new Error(`series for ${sr.subjectSlug} names ${sr.repoPath}, read from ${source.repoPath}`);
+      if (!Number.isInteger(sr.year) || !Number.isFinite(sr.value)) throw new Error(`series for ${sr.subjectSlug} has a bad year or value`);
+      seriesRecords.push({ record: sr, bronze: b });
+    }
+  }
+
+  const cyclic = lineageCycles([
+    ...input.edges.filter((e) => LINEAGE_KINDS.has(e.kind)).map((e) => ({ from: e.fromSlug, to: e.toSlug, kind: e.kind })),
+    ...edgeCandidates.filter((e) => LINEAGE_KINDS.has(e.proposal.edge_kind)).map((e) => ({ from: e.proposal.from_slug, to: e.proposal.to_slug, kind: e.proposal.edge_kind })),
+  ]);
+  for (const e of edgeCandidates) {
+    if (LINEAGE_KINDS.has(e.proposal.edge_kind) && cyclic.has(`${e.proposal.edge_kind} ${e.proposal.from_slug}`) && cyclic.get(`${e.proposal.edge_kind} ${e.proposal.from_slug}`) === cyclic.get(`${e.proposal.edge_kind} ${e.proposal.to_slug}`)) {
+      e.proposal.cycle = true;
+      bump("lineage_cycles");
+    }
+  }
+
+  const runHash = sha256Hex(JSON.stringify(bronze.map((x) => x.sourceRevision).sort()));
+  const series: SeriesDraft[] = [];
+  const seenSeries = new Set<string>();
+  for (const { record: r, bronze: sb } of seriesRecords) {
+    if (!bySlug.has(r.subjectSlug)) {
+      bump("series_unresolved");
+      continue;
+    }
+    const key = [r.subjectSlug, r.metric, r.year, sb.sourceId].join(" ");
+    if (seenSeries.has(key)) throw new Error(`two series values for ${key}`);
+    seenSeries.add(key);
+    series.push({ subjectSlug: r.subjectSlug, metric: r.metric, year: r.year, value: r.value, unit: r.unit, sourceId: sb.sourceId, sourceRevision: sb.sourceRevision, runHash });
   }
 
   const promotions = silver.filter(
@@ -255,10 +385,86 @@ export function planEvolution(input: EvolutionInput): EvolutionPlan {
   counts.proposals = proposals.length;
   counts.promotions = promotions.length;
   counts.refused = refused.length;
-  return { bronze, silver, proposals, promotions, refused, counts };
+  counts.series = series.length;
+  return { bronze, silver, edgeCandidates, series, proposals, promotions, refused, counts };
 }
 
-export function silverKeyOf(s: Pick<EvolutionSilver, "source_id" | "source_revision" | "parser" | "parser_revision" | "kind" | "span_start" | "span_end" | "subject">): string {
+export function lineageCycles(edges: { from: string; to: string; kind: string }[]): Map<string, number> {
+  const out = new Map<string, number>();
+  const kinds = Array.from(new Set(edges.map((e) => e.kind)));
+  let comp = 0;
+  for (const kind of kinds) {
+    const adj = new Map<string, string[]>();
+    for (const e of edges.filter((x) => x.kind === kind)) {
+      if (!adj.has(e.from)) adj.set(e.from, []);
+      adj.get(e.from)!.push(e.to);
+      if (!adj.has(e.to)) adj.set(e.to, []);
+    }
+    const index = new Map<string, number>();
+    const low = new Map<string, number>();
+    const onStack = new Set<string>();
+    const stack: string[] = [];
+    let counter = 0;
+    for (const root of Array.from(adj.keys())) {
+      if (index.has(root)) continue;
+      const work: { v: string; i: number }[] = [{ v: root, i: 0 }];
+      index.set(root, counter);
+      low.set(root, counter++);
+      stack.push(root);
+      onStack.add(root);
+      while (work.length) {
+        const top = work[work.length - 1];
+        const next = adj.get(top.v)!;
+        if (top.i < next.length) {
+          const w = next[top.i++];
+          if (!index.has(w)) {
+            index.set(w, counter);
+            low.set(w, counter++);
+            stack.push(w);
+            onStack.add(w);
+            work.push({ v: w, i: 0 });
+          } else if (onStack.has(w)) {
+            low.set(top.v, Math.min(low.get(top.v)!, index.get(w)!));
+          }
+          continue;
+        }
+        work.pop();
+        if (work.length) {
+          const parent = work[work.length - 1].v;
+          low.set(parent, Math.min(low.get(parent)!, low.get(top.v)!));
+        }
+        if (low.get(top.v) === index.get(top.v)) {
+          const members: string[] = [];
+          let w: string;
+          do {
+            w = stack.pop()!;
+            onStack.delete(w);
+            members.push(w);
+          } while (w !== top.v);
+          const selfLoop = adj.get(top.v)!.includes(top.v);
+          if (members.length > 1 || selfLoop) {
+            for (const m of members) out.set(`${kind} ${m}`, comp);
+            comp++;
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+export interface SilverKeyFields {
+  source_id: string;
+  source_revision: string;
+  parser: string;
+  parser_revision: string;
+  kind: string;
+  span_start: number;
+  span_end: number;
+  subject: string;
+}
+
+export function silverKeyOf(s: SilverKeyFields): string {
   return [s.source_id, s.source_revision, s.parser, s.parser_revision, s.kind, s.span_start, s.span_end, s.subject].join(" ");
 }
 

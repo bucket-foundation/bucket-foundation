@@ -86,7 +86,7 @@ test("the importer core runs bronze to gold, refuses unapproved rules, reruns id
     assert.equal(sql(`select string_agg(distinct importer, ',') from graph.gold_lineage l join graph.silver_items s on s.id = l.silver_item_id where s.source_id = '${p1.bronze[0].sourceId}'`).out, "evolution-import");
 
     const r2 = await applyEvolution(client, build(), policyMeta);
-    assert.deepEqual(r2.written, { silver: 0, proposals: 0, factoids: 0, preferred: 0 });
+    assert.deepEqual(r2.written, { silver: 0, edgeCandidates: 0, series: 0, proposals: 0, factoids: 0, preferred: 0 });
     assert.equal(r2.bronze.activated, 0);
 
     const wdSilver = sql(`select id from graph.silver_items where source_id = '${p1.bronze[1].sourceId}'`).out;
