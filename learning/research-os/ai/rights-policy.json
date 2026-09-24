@@ -147,6 +147,159 @@
       "basis": "PeriodO period definitions are dedicated to the public domain under CC0.",
       "evidence": ["https://perio.do/license/"],
       "rightsRevision": 1
+    },
+    {
+      "id": "onet-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/onet/" },
+      "allow": true,
+      "permission": "cc-by-4.0",
+      "basis": "O*NET database releases, occupations, tasks, work activities and technology skills, under CC BY 4.0 with attribution to the O*NET Resource Center. License checked 2026-09-24: the license page reads that the O*NET 31.0 Database is licensed under a Creative Commons Attribution 4.0 International License, except as noted there. Rows wait in silver for a reviewer.",
+      "evidence": ["https://www.onetcenter.org/license_db.html"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "bls-oews-pd",
+      "match": { "sourcePrefix": "_intake/evolution/bls-oews/" },
+      "allow": true,
+      "permission": "public-domain",
+      "basis": "BLS Occupational Employment and Wage Statistics tables. License checked 2026-09-24: the BLS copyright page reads that everything BLS publishes is in the public domain, except previously copyrighted photographs and illustrations.",
+      "evidence": ["https://www.bls.gov/opub/copyright-information.htm"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "wikidata-evolution-cc0",
+      "match": { "sourcePrefix": "_intake/evolution/wikidata/" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "Wikidata item data for software, technology and discovery. License checked 2026-09-24: Wikidata:Licensing reads that all structured data in the main, Property, Lexeme and EntitySchema namespaces is released under Creative Commons Zero. Rows wait in silver, and every identity link waits for a reviewer.",
+      "evidence": ["https://www.wikidata.org/wiki/Wikidata:Licensing"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "openalex-cc0",
+      "match": { "sourcePrefix": "_intake/evolution/openalex/" },
+      "allow": true,
+      "permission": "cc0",
+      "basis": "OpenAlex works and topics metadata. License checked 2026-09-24: the LICENSE.txt at the root of the OpenAlex snapshot bucket is the CC0 1.0 Universal legal code; the help pages state no license in their served text.",
+      "evidence": ["https://openalex.s3.amazonaws.com/LICENSE.txt"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "patentsview-gate",
+      "match": { "sourcePrefix": "_intake/evolution/patentsview/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "PatentsView bulk tables on the USPTO Open Data Portal. License checked 2026-09-24: the ODP transition guide served no license text, and PATENTS.md leaves CC BY 4.0 to be confirmed on the signed-in download page, so the importer loads nothing until it is confirmed.",
+      "evidence": ["learning/research-os/PATENTS.md", "https://data.uspto.gov/support/transition-guide/patentsview"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "histpat-gate",
+      "match": { "sourcePrefix": "_intake/evolution/histpat/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "HistPat, Harvard Dataverse doi:10.7910/DVN/BPC15W. License checked 2026-09-24: the Dataverse API returns a null license field and terms of use reading CC0 with additional or modified terms, so the importer loads nothing until the terms are confirmed.",
+      "evidence": ["https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/BPC15W"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "science4cast-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/science4cast/" },
+      "allow": true,
+      "permission": "cc-by-4.0",
+      "basis": "Science4Cast semantic network of AI concepts, the dataset behind Predicting the Future of AI with AI. License checked 2026-09-24: the Zenodo API for record 7882892 returns metadata.license id cc-by-4.0. The GitHub code repository is a separate MIT work and is not the data source.",
+      "evidence": ["https://zenodo.org/records/7882892", "https://zenodo.org/api/records/7882892"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "eloundou-mit",
+      "match": { "sourcePrefix": "_intake/evolution/eloundou/" },
+      "allow": true,
+      "permission": "mit",
+      "basis": "Task exposure labels from Eloundou et al. in the GPTs-are-GPTs repository. License checked 2026-09-24: the repository LICENSE file is the MIT License, Copyright 2024 OpenAI, and covers the repository contents.",
+      "evidence": ["https://github.com/openai/GPTs-are-GPTs", "https://raw.githubusercontent.com/openai/GPTs-are-GPTs/main/LICENSE"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "libraries-io-cc-by-sa",
+      "match": { "sourcePrefix": "_intake/evolution/libraries-io/" },
+      "allow": true,
+      "permission": "cc-by-sa-4.0",
+      "basis": "libraries.io open data. License checked 2026-09-24: the data page reads that data is available under the CC-BY-SA 4.0 license. Share-alike: internal only, out of feed402 exports and public pages, and gold_lineage_rules refuses its promotion, until founder question 4 is answered; an answer of yes lifts both.",
+      "evidence": ["https://libraries.io/data"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "so-survey-odbl",
+      "match": { "sourcePrefix": "_intake/evolution/so-survey/" },
+      "allow": true,
+      "permission": "odbl-1.0",
+      "basis": "Stack Overflow Developer Survey results. License checked 2026-09-24: the survey site reads that survey data is licensed under ODbL 1.0, contents under DbCL 1.0, and its dataset markup names the ODbL 1.0 license URL. Share-alike: internal only, out of feed402 exports and public pages, and gold_lineage_rules refuses its promotion, until founder question 4 is answered; an answer of yes lifts both.",
+      "evidence": ["https://survey.stackoverflow.co/", "https://opendatacommons.org/licenses/odbl/1-0/"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "pypl-cc-by",
+      "match": { "sourcePrefix": "_intake/evolution/pypl/" },
+      "allow": true,
+      "permission": "cc-by-3.0",
+      "basis": "PYPL programming language popularity index. License checked 2026-09-24: the PYPL page reads that the work is licensed under a Creative Commons Attribution 3.0 Unported License.",
+      "evidence": ["https://pypl.github.io/PYPL.html"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "isco-gate",
+      "match": { "sourcePrefix": "_intake/evolution/isco/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "ISCO-08 structure from the ILO. The license is unverified, so the importer loads nothing until it is confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "hisco-gate",
+      "match": { "sourcePrefix": "_intake/evolution/hisco/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "HISCO historical occupation codes. The license is unverified, so the importer loads nothing until it is confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "endoflife-gate",
+      "match": { "sourcePrefix": "_intake/evolution/endoflife/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "endoflife.date releases and support dates. The license is unverified, so the importer loads nothing until it is confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "chat-owid-gate",
+      "match": { "sourcePrefix": "_intake/evolution/chat-owid/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "CHAT technology adoption data beneath Our World in Data. The license is unverified, so the importer loads nothing until it is confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "aioe-gate",
+      "match": { "sourcePrefix": "_intake/evolution/aioe/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "AIOE occupation exposure scores, which ship with no license file, so the importer loads nothing until one is confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
+    },
+    {
+      "id": "github-innovation-graph-gate",
+      "match": { "sourcePrefix": "_intake/evolution/github-innovation-graph/" },
+      "allow": false,
+      "permission": "unverified",
+      "basis": "GitHub Innovation Graph language activity. The license and schema are unverified, so the importer loads nothing until they are confirmed. License checked 2026-09-24: no license statement confirmed.",
+      "evidence": ["learning/research-os/EVOLUTION-PLAN.md"],
+      "rightsRevision": 1
     }
   ],
   "quote": [
