@@ -1,0 +1,297 @@
+{
+  "graphs": {
+    "dags": 1099,
+    "valid_mastery_target_cases": 57060,
+    "distance_errors": 0,
+    "readiness_errors": 0,
+    "required_inclusion_errors": 0,
+    "fixtures": {
+      "diamond_disconnected": {
+        "sequence": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "distance": 4
+      },
+      "shortcut": {
+        "sequence": [
+          0,
+          1,
+          2
+        ],
+        "distance": 3
+      },
+      "mastered_target": {
+        "sequence": [],
+        "distance": 0
+      },
+      "unmastered_root": {
+        "sequence": [
+          0
+        ],
+        "distance": 1
+      },
+      "cycle": {
+        "error": "cycle"
+      },
+      "mastery_conflict": {
+        "error": "mastery_conflict"
+      },
+      "unreviewed_foundation": {
+        "error": "unreviewed_foundation"
+      },
+      "missing_node": {
+        "error": "missing_node"
+      },
+      "naive_chain_counterexample": {
+        "chain": [
+          0,
+          1,
+          3
+        ],
+        "readiness_failures": [
+          3
+        ],
+        "omitted_required": [
+          2
+        ],
+        "chain_nodes": 3,
+        "minimum_learning_nodes": 4
+      },
+      "unrelated_inconsistent_mastery": {
+        "sequence": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "target_closure": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "chart_mastered_nodes": [],
+        "restricted_reference_distance": 4
+      }
+    }
+  },
+  "axes": {
+    "milestones": [
+      {
+        "coordinates": [
+          0.0,
+          0.0
+        ],
+        "denominators": [
+          1.5,
+          1.5
+        ],
+        "coverage": 0.0,
+        "extent_squared": 0.0
+      },
+      {
+        "coordinates": [
+          0.6666666666666666,
+          0.0
+        ],
+        "denominators": [
+          1.5,
+          1.5
+        ],
+        "coverage": 0.3333333333333333,
+        "extent_squared": 0.2222222222222222
+      },
+      {
+        "coordinates": [
+          0.6666666666666666,
+          0.6666666666666666
+        ],
+        "denominators": [
+          1.5,
+          1.5
+        ],
+        "coverage": 0.6666666666666666,
+        "extent_squared": 0.4444444444444444
+      },
+      {
+        "coordinates": [
+          1.0,
+          1.0
+        ],
+        "denominators": [
+          1.5,
+          1.5
+        ],
+        "coverage": 1.0,
+        "extent_squared": 1.0
+      }
+    ],
+    "duplicate_invariance": true,
+    "all_binary_mastery_monotonicity": true
+  },
+  "statistics": {
+    "source": "synthetic_only",
+    "seed": 20260925,
+    "learners": {
+      "train": 400,
+      "calibration": 200,
+      "test": 600
+    },
+    "items_per_learner": 8,
+    "bootstrap_replicates": 2000,
+    "models": {
+      "intercept": {
+        "brier": 0.24633261148167127,
+        "calibration_bins": [
+          {
+            "lower": 0.5,
+            "n": 4800,
+            "predicted": 0.581873090418645,
+            "observed": 0.5633333333333334
+          }
+        ],
+        "calibration_intercept_slope": [
+          0.3055330167885402,
+          0.08728268820500218
+        ]
+      },
+      "item_baseline": {
+        "brier": 0.23475401712969599,
+        "calibration_bins": [
+          {
+            "lower": 0.4,
+            "n": 1200,
+            "predicted": 0.4635858173497771,
+            "observed": 0.43416666666666665
+          },
+          {
+            "lower": 0.5,
+            "n": 1800,
+            "predicted": 0.5621074461609493,
+            "observed": 0.5277777777777778
+          },
+          {
+            "lower": 0.6,
+            "n": 1200,
+            "predicted": 0.6534484907454207,
+            "observed": 0.6508333333333334
+          },
+          {
+            "lower": 0.7,
+            "n": 600,
+            "predicted": 0.7346041123568064,
+            "observed": 0.7533333333333333
+          }
+        ],
+        "calibration_intercept_slope": [
+          0.09865939900364949,
+          0.807337324293981
+        ]
+      },
+      "prerequisite_axis": {
+        "brier": 0.1864944457093003,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "n": 96,
+            "predicted": 0.07067432234561255,
+            "observed": 0.15625
+          },
+          {
+            "lower": 0.1,
+            "n": 300,
+            "predicted": 0.15084491559065677,
+            "observed": 0.20333333333333334
+          },
+          {
+            "lower": 0.2,
+            "n": 432,
+            "predicted": 0.25007292068503756,
+            "observed": 0.24768518518518517
+          },
+          {
+            "lower": 0.3,
+            "n": 500,
+            "predicted": 0.3502874164605454,
+            "observed": 0.31
+          },
+          {
+            "lower": 0.4,
+            "n": 534,
+            "predicted": 0.44885389797789765,
+            "observed": 0.4288389513108614
+          },
+          {
+            "lower": 0.5,
+            "n": 606,
+            "predicted": 0.5491253219608112,
+            "observed": 0.523102310231023
+          },
+          {
+            "lower": 0.6,
+            "n": 643,
+            "predicted": 0.649798054911413,
+            "observed": 0.614307931570762
+          },
+          {
+            "lower": 0.7,
+            "n": 665,
+            "predicted": 0.75036420620656,
+            "observed": 0.7669172932330827
+          },
+          {
+            "lower": 0.8,
+            "n": 645,
+            "predicted": 0.84959897321705,
+            "observed": 0.8527131782945736
+          },
+          {
+            "lower": 0.9,
+            "n": 379,
+            "predicted": 0.9354756371424006,
+            "observed": 0.9630606860158312
+          }
+        ],
+        "calibration_intercept_slope": [
+          0.07535509005622894,
+          1.040560981908705
+        ]
+      }
+    },
+    "residual_correlations": {
+      "planted_shared_latent": {
+        "items": [
+          0,
+          1
+        ],
+        "correlation": 0.33463162497219046,
+        "permutation_p": 0.0004997501249375312,
+        "bonferroni_97_5_percent_bootstrap_interval": [
+          0.24379450363553193,
+          0.4129890466422016
+        ],
+        "excludes_zero": true,
+        "holm_adjusted_p": 0.0009995002498750624
+      },
+      "control": {
+        "items": [
+          2,
+          3
+        ],
+        "correlation": -0.07996838625341732,
+        "permutation_p": 0.054972513743128434,
+        "bonferroni_97_5_percent_bootstrap_interval": [
+          -0.16684601088068854,
+          0.0018204573020574664
+        ],
+        "excludes_zero": false,
+        "holm_adjusted_p": 0.054972513743128434
+      }
+    },
+    "prerequisite_axis_brier_improvement_over_item": 0.04825957142039569,
+    "efficacy_claim": false
+  }
+}
