@@ -125,6 +125,24 @@
       "sitemaps": [
         "https://www.givewell.org/sitemap.xml"
       ]
+    },
+    {
+      "name": "adjacent-papers",
+      "hosts": [
+        "pmc.ncbi.nlm.nih.gov",
+        "arxiv.org"
+      ],
+      "seeds": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6042097/",
+        "https://arxiv.org/abs/1908.03475",
+        "https://arxiv.org/pdf/1908.03475"
+      ],
+      "sitemap_discovery": false,
+      "include_patterns": [
+        "^/articles/PMC6042097/",
+        "^/(abs|pdf)/1908\\.03475$"
+      ],
+      "sitemaps": []
     }
   ]
 }

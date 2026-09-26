@@ -5,7 +5,7 @@ import unittest
 from protego import Protego
 from unittest.mock import patch
 
-from collect import Collector, canonical, digest, extract
+from collect import Collector, canonical, digest, extract, unavailable_title
 
 
 CONFIG = {"collections": [{"name": "test", "hosts": ["example.org"], "seeds": []}]}
@@ -22,6 +22,21 @@ class CorpusTests(unittest.TestCase):
         self.assertNotEqual(canonical("https://example.org/a?x=1"), canonical("https://example.org/a?x=2"))
         self.assertNotEqual(digest("https://example.org/a"), digest("https://example.org/a/"))
 
+    def test_challenge_detection(self):
+        self.assertTrue(unavailable_title("Checking your browser - reCAPTCHA"))
+        self.assertTrue(unavailable_title("Page not found | Publisher"))
+        self.assertFalse(unavailable_title("Flynn effect and its reversal are both environmentally caused"))
+
+    def test_discovery_limit_preserves_overflow(self):
+        with tempfile.TemporaryDirectory() as temp:
+            c = self.collector(temp)
+            with patch("collect.MAX_URLS", 1):
+                c.discover("https://example.org/a")
+                c.discover("https://example.org/b")
+                c.discover("https://example.org/a")
+            self.assertEqual(c.db.execute("select count(*) from sources").fetchone()[0], 1)
+            self.assertEqual(c.db.execute("select url from discovery_overflow").fetchall(), [("https://example.org/b",)])
+
     def test_reject_credentials_and_non_http(self):
         for url in ("file:///etc/passwd", "https://user:pass@example.org/", "http://example.org:8080/"):
             with self.assertRaises(ValueError):
@@ -37,6 +52,18 @@ class CorpusTests(unittest.TestCase):
     def test_pdf_failure_is_visible(self):
         with self.assertRaises(ValueError):
             extract(b"%PDF broken", "https://example.org/a.pdf", "application/pdf")
+
+    def test_pdf_line_endings_match_disk_hash(self):
+        import subprocess
+
+        result = subprocess.CompletedProcess([], 0, stdout=b"first\rsecond\r\nthird\n", stderr=b"")
+        with patch("collect.subprocess.run", return_value=result):
+            text = extract(b"%PDF", "https://example.org/a.pdf", "application/pdf")["text"]
+        self.assertEqual(text, "first\nsecond\nthird\n")
+        with tempfile.TemporaryDirectory() as temp:
+            path = pathlib.Path(temp) / "text.txt"
+            path.write_text(text)
+            self.assertEqual(digest(path.read_bytes()), digest(path.read_text()))
 
     def test_robots_fail_closed(self):
         with tempfile.TemporaryDirectory() as temp:

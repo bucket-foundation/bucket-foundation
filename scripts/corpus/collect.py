@@ -20,7 +20,7 @@ import requests
 from bs4 import BeautifulSoup
 from protego import Protego
 
-VERSION = "raw-html-v1"
+VERSION = "raw-source-v2"
 AGENT = "BucketResearchArchive/1.0"
 MAX_BYTES = 12 * 1024 * 1024
 MAX_TOTAL = 4 * 1024 * 1024 * 1024
@@ -34,6 +34,14 @@ def stamp():
 
 def digest(value):
     return hashlib.sha256(value if isinstance(value, bytes) else value.encode()).hexdigest()
+
+
+def normalize_newlines(text):
+    return text.replace("\r\n", "\n").replace("\r", "\n")
+
+
+def unavailable_title(title):
+    return bool(re.match(r"^(just a moment|access denied|verify you are human|attention required|bot verification|checking your browser|page not found|404 not found|access to this page has been denied)", title.lower()))
 
 
 def canonical(url):
@@ -63,7 +71,7 @@ def extract(raw, url, content_type):
         cp = subprocess.run(["pdftotext", "-", "-"], input=raw, capture_output=True, timeout=40)
         if cp.returncode:
             raise ValueError("PDF text extraction failed")
-        return {"title": urllib.parse.unquote(urllib.parse.urlsplit(url).path.rsplit("/", 1)[-1]), "text": cp.stdout.decode("utf-8"), "transcript": "", "links": [], "selector": "pdftotext", "license_links": []}
+        return {"title": urllib.parse.unquote(urllib.parse.urlsplit(url).path.rsplit("/", 1)[-1]), "text": normalize_newlines(cp.stdout.decode("utf-8")), "transcript": "", "links": [], "selector": "pdftotext", "license_links": []}
     s = BeautifulSoup(raw, "html.parser")
     canonical_link = s.select_one('link[rel="canonical"][href]')
     publisher_url = None
@@ -76,7 +84,7 @@ def extract(raw, url, content_type):
     title = s.find("h1") or s.find("title")
     title = og_title["content"] if og_title else title.get_text(" ", strip=True) if title else url
     transcript = s.select_one(".wrap-podcast-transcript")
-    transcript_text = transcript.get_text("\n", strip=True) if transcript else ""
+    transcript_text = normalize_newlines(transcript.get_text("\n", strip=True)) if transcript else ""
     selected = None
     selector = "body"
     for candidate in (".post-content", ".entry-content", ".body-content", ".PostsPage-postContent", "main", "article", "body"):
@@ -97,7 +105,7 @@ def extract(raw, url, content_type):
     licenses = [a.get("href") for a in s.select("a[href]") if "creativecommons.org/licenses/" in a.get("href", "")]
     for el in selected.select("script,style,noscript,nav,footer,header,form,button"):
         el.decompose()
-    text = selected.get_text("\n", strip=True)
+    text = normalize_newlines(selected.get_text("\n", strip=True))
     return {"title": title, "text": text, "transcript": transcript_text, "links": links, "selector": selector, "license_links": sorted(set(licenses)), "publisher_canonical_url": publisher_url}
 
 
@@ -114,7 +122,7 @@ class Collector:
         self.bytes = 0
         self.db = sqlite3.connect(self.root / "corpus.sqlite", check_same_thread=False)
         self.db.execute("pragma journal_mode=wal")
-        self.db.executescript("create table if not exists sources(url text primary key, collection text, state text, metadata text); create table if not exists events(time text,url text,state text,detail text); create virtual table if not exists texts using fts5(url UNINDEXED,title,body,transcript);")
+        self.db.executescript("create table if not exists sources(url text primary key, collection text, state text, metadata text); create table if not exists events(time text,url text,state text,detail text); create table if not exists discovery_overflow(url text primary key, discovered_from text, reason text); create virtual table if not exists texts using fts5(url UNINDEXED,title,body,transcript);")
         self.db.commit()
 
     def event(self, url, state, detail):
@@ -135,9 +143,13 @@ class Collector:
         if c.get("include_patterns") and not any(re.search(x, p.path) for x in c["include_patterns"]):
             excluded = True
         with self.lock:
-            if self.db.execute("select count(*) from sources").fetchone()[0] >= MAX_URLS:
+            if self.db.execute("select 1 from sources where url=?", (url,)).fetchone():
                 return
-            self.db.execute("insert or ignore into sources values (?,?,?,?)", (url, c["name"], "excluded" if excluded else "pending", json.dumps({"discovered_from": origin, "reason": "scope_or_asset" if excluded else None})))
+            added = self.db.execute("insert or ignore into sources select ?,?,?,? where (select count(*) from sources) < ?", (url, c["name"], "excluded" if excluded else "pending", json.dumps({"discovered_from": origin, "reason": "scope_or_asset" if excluded else None}), MAX_URLS))
+            if added.rowcount:
+                self.db.execute("delete from discovery_overflow where url=?", (url,))
+            else:
+                self.db.execute("insert or ignore into discovery_overflow select ?,?,? where not exists(select 1 from sources where url=?)", (url, origin, "discovery_limit", url))
             self.db.commit()
 
     def pace(self, host, delay):
@@ -240,7 +252,7 @@ class Collector:
                 folder.mkdir(parents=True, exist_ok=True)
                 (folder / "response.bin").write_bytes(raw)
                 parsed = extract(raw, final, kind)
-                if any(x in parsed["title"].lower() for x in ("just a moment", "access denied", "verify you are human", "attention required", "bot verification")):
+                if unavailable_title(parsed["title"]):
                     raise ValueError("challenge page; raw response retained at " + str(relative))
                 if len(parsed["text"].strip()) < 150:
                     raise ValueError("empty or thin source body; raw response retained at " + str(relative))
@@ -272,7 +284,7 @@ class Collector:
                     break
                 time.sleep(attempt + 1)
         state = "failed"
-        if error and "robots" in error:
+        if error and ("robots" in error or "challenge page" in error):
             state = "blocked"
         with self.lock:
             self.db.execute("update sources set state=?,metadata=? where url=? and state <> 'withdrawn'", (state, json.dumps({"error": error, "attempts": attempt+1, "attempted_at": stamp()}), url))
@@ -352,6 +364,9 @@ class Collector:
             counts.setdefault(collection, {}).setdefault(state, 0)
             counts[collection][state] += 1
         coverage = {"collections": counts, "discovered_total": len(rows), "graph": stats, "raw_bytes": sum(x.get("bytes", 0) for x in manifest if x["state"] == "fetched"), "source_text_characters": sum(x.get("text_characters", 0) for x in manifest if x["state"] == "fetched"), "transcripts": sum(x.get("transcript_characters", 0) > 0 for x in manifest if x["state"] == "fetched"), "scope": self.config, "live_applied": False}
+        overflow = [dict(zip(("url", "discovered_from", "reason"), r)) for r in self.db.execute("select * from discovery_overflow order by url")]
+        coverage["discovery_overflow"] = len(overflow)
+        (out / "discovery-overflow.jsonl").write_text("".join(json.dumps(x) + "\n" for x in overflow))
         (out / "coverage.json").write_text(json.dumps(coverage, indent=2))
         (out / "events.jsonl").write_text("".join(json.dumps(dict(zip(("time", "url", "state", "detail"), x))) + "\n" for x in self.db.execute("select * from events order by time,url")))
         print(json.dumps(coverage["graph"]), flush=True)
