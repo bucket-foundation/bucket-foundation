@@ -109,6 +109,10 @@ def extract(raw, url, content_type):
     return {"title": title, "text": text, "transcript": transcript_text, "links": links, "selector": selector, "license_links": sorted(set(licenses)), "publisher_canonical_url": publisher_url}
 
 
+class BudgetExceeded(ValueError):
+    pass
+
+
 class Collector:
     def __init__(self, root, config):
         self.root = pathlib.Path(root)
@@ -120,6 +124,7 @@ class Collector:
         self.next_request = {}
         self.robots = {}
         self.bytes = 0
+        self.budget_exhausted = threading.Event()
         self.db = sqlite3.connect(self.root / "corpus.sqlite", check_same_thread=False)
         self.db.execute("pragma journal_mode=wal")
         self.db.executescript("create table if not exists sources(url text primary key, collection text, state text, metadata text); create table if not exists events(time text,url text,state text,detail text); create table if not exists discovery_overflow(url text primary key, discovered_from text, reason text); create virtual table if not exists texts using fts5(url UNINDEXED,title,body,transcript);")
@@ -162,6 +167,8 @@ class Collector:
     def request(self, url, robots=False):
         original = url
         for hop in range(6):
+            if self.budget_exhausted.is_set():
+                raise BudgetExceeded("run decoded-response budget reached")
             url = canonical(url)
             host = hostof(url)
             if host not in self.hosts:
@@ -171,6 +178,8 @@ class Collector:
             if not robots and (rp is None or not rp.can_fetch(url, AGENT)):
                 raise PermissionError("robots unavailable or disallowed")
             self.pace(host, rp.crawl_delay(AGENT) or rp.crawl_delay("*") or 0.5 if rp else 0.5)
+            if self.budget_exhausted.is_set():
+                raise BudgetExceeded("run decoded-response budget reached")
             with requests.get(url, headers={"User-Agent": AGENT}, timeout=(10, 45), allow_redirects=False, stream=True) as r:
                 if r.is_redirect:
                     url = urllib.parse.urljoin(url, r.headers["Location"])
@@ -179,13 +188,14 @@ class Collector:
                 data = bytearray()
                 started = time.monotonic()
                 for chunk in r.iter_content(65536):
+                    with self.lock:
+                        self.bytes += len(chunk)
+                        if self.bytes >= MAX_TOTAL:
+                            self.budget_exhausted.set()
+                            raise BudgetExceeded("run decoded-response budget reached")
                     data.extend(chunk)
                     if len(data) > MAX_BYTES or time.monotonic() - started > 45:
                         raise ValueError("response exceeds byte or time limit")
-                with self.lock:
-                    if self.bytes + len(data) > MAX_TOTAL:
-                        raise ValueError("run byte budget reached")
-                    self.bytes += len(data)
                 return bytes(data), url, r.headers.get("Content-Type", ""), {k: r.headers[k] for k in ("ETag", "Last-Modified") if k in r.headers}
         raise ValueError("redirect limit: " + original)
 
@@ -240,6 +250,8 @@ class Collector:
             print(json.dumps({"inventory": url, "discovered": self.db.execute("select count(*) from sources").fetchone()[0]}), flush=True)
 
     def fetch(self, url):
+        if self.budget_exhausted.is_set():
+            return
         error = None
         for attempt in range(3):
             try:
@@ -278,6 +290,9 @@ class Collector:
                     if target_collection and (target_collection["name"] == c["name"] or c["name"] == "80000hours"):
                         self.discover(link["url"], url)
                 return
+            except BudgetExceeded as e:
+                self.event(url, "budget_exhausted", {"error": str(e), "decoded_bytes": self.bytes})
+                return
             except Exception as e:
                 error = str(e)
                 if isinstance(e, (PermissionError, ValueError)) or isinstance(e, requests.HTTPError) and e.response.status_code in (400, 401, 403, 404, 410):
@@ -296,7 +311,7 @@ class Collector:
             self.setup_robots()
         done = 0
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-            while done < limit:
+            while done < limit and not self.budget_exhausted.is_set():
                 with self.lock:
                     rows = self.db.execute("select url,collection from sources where state='pending' order by case when json_extract(metadata,'$.discovered_from')='seed' then 0 when json_extract(metadata,'$.discovered_from') like '%sitemap%' then 1 when url like '%/podcast/episodes/%' or url like '%/after-hours-podcast/episodes/%' then 2 else 3 end,url").fetchall()
                 if selected_collections:

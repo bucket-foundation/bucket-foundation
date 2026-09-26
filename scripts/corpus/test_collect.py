@@ -149,6 +149,38 @@ class CorpusTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "declared hosts"):
                     c.request("https://example.org/a")
 
+    def test_budget_stops_downloads_and_preserves_pending(self):
+        class Response:
+            is_redirect = False
+            headers = {"Content-Type": "text/html"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def raise_for_status(self):
+                return None
+
+            def iter_content(self, size):
+                yield b"12345"
+                raise AssertionError("download continued after budget")
+
+        with tempfile.TemporaryDirectory() as temp:
+            c = self.collector(temp)
+            c.robots["example.org"] = Protego.parse("User-agent: *\nDisallow:\n")
+            for suffix in ("a", "b", "c"):
+                c.discover("https://example.org/" + suffix)
+            with patch("collect.public_host"), patch.object(c, "pace"), patch("collect.requests.get", return_value=Response()) as get, patch("collect.MAX_TOTAL", 4):
+                c.fetch("https://example.org/a")
+                c.crawl(100, [])
+                c.fetch("https://example.org/b")
+            self.assertEqual(get.call_count, 1)
+            self.assertEqual(c.bytes, 5)
+            self.assertTrue(c.budget_exhausted.is_set())
+            self.assertEqual(c.db.execute("select count(*) from sources where state='pending'").fetchone()[0], 3)
+
     def test_withdrawal_wins_over_inflight_fetch(self):
         with tempfile.TemporaryDirectory() as temp:
             c = self.collector(temp)
