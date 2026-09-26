@@ -6,7 +6,7 @@ Beads: `bkt-in9n` tracks the request. `bkt-48qv` tracks collection. The five res
 
 `scripts/corpus/collect.py` stores raw HTTP response bodies in content-addressed revision directories. Requests decodes HTTP transfer and content encoding before the hash is computed. `response.bin` preserves those bytes. `text.txt` is a deterministic extraction of source text. Publisher transcript sections have a separate `transcript.txt`. No language model generates either file.
 
-The local corpus root is `_intake/80k-ea-longtermism/` in the main checkout. That folder is ignored by Git. It contains `corpus.sqlite`, a full-text search index, acquisition events, and raw response files. Source text with unreviewed redistribution rights stays local. The checked-in manifest contains identity and acquisition metadata.
+The local corpus root is `_intake/80k-ea-longtermism/` in the main checkout. That folder is ignored by Git. It contains `corpus.sqlite`, a full-text search index, acquisition events, and raw response files. Source text with unreviewed redistribution rights stays local. The committed reports contain aggregate coverage. Per-source manifests and graph exports remain local because public source links can contain credential-like values.
 
 Identity is SHA-256 of the canonical source URL. Canonicalization lowers the scheme and hostname, removes fragments and known tracking parameters, and preserves other query parameters and trailing slashes. A redirected URL retains its requested identity and records its final URL. Aliases can therefore be separate nodes; count URLs and byte-identical revisions separately.
 
@@ -55,4 +55,18 @@ Live apply is disabled. The existing `apply-drafts.ts` writer can skip unresolve
 
 Boundary tests check URL identity, rejected credentials, transcript fidelity, PDF extraction failure, robots failure, declared-host rejection, stored hashes, repeat graph-build identity, endpoint closure, coverage counts, and withdrawal. Results from the acquisition run are reported separately from unit tests.
 
-The Bucket critic's plan review passed at 9.125/10 in round two. The final implementation review remains pending until its evidence is recorded in CRITIC.md. The initial connection check to the configured Nucleus endpoint timed out from this machine; that observation does not establish a service outage.
+The Bucket critic passed the plan in round two and the repaired implementation in round three, each at 9.125/10. [CRITIC.md](CRITIC.md) records the rubric, findings, evidence, and scope. The initial connection check to the configured Nucleus endpoint timed out from this machine; that observation does not establish a service outage.
+
+## Saved acquisition snapshot
+
+The saved local graph snapshot contains 10,628 fetched source URLs, 21,300 nodes, and 347,877 edges. Retained responses total 3,416,415,849 bytes, with 225,087,534 extracted source-text characters. Counts include URL aliases. A subsequent verification read checked 10,629 URLs and 10,086 unique raw revisions with zero errors. Collection continued between those reads; `results/snapshot.json` records the distinction and artifact hashes.
+
+The two official podcast archive pages list 302 episodes. All 302 episode pages were fetched. Publisher transcript sections cover 296 episodes; saved YouTube captions cover another three. The remaining three gaps are recorded in `results/podcast-coverage.json` and Bead `bkt-g6xj`. Four YouTube caption sources were imported through `agf-yt`; one is a related talk rather than an episode-gap replacement.
+
+The snapshot includes original material from 80,000 Hours, EffectiveAltruism.org, EA Forum, Longtermism.com, GPI, Rethink Priorities, Giving What We Can, and GiveWell. The graph also catalogs 65,602 adjacent reference URLs. A catalog entry alone does not establish that the referenced work was fetched.
+
+The 80,000 Hours discovered queue has no pending URL at this snapshot: 3,071 fetched, 102 failed, 576 blocked, and 1,301 excluded. EA Forum and GiveWell acquisition remains in progress under `bkt-48qv`. Other source states appear in `results/coverage.json`. Failed and blocked states remain visible.
+
+A local continuation at `_intake/80k-ea-longtermism/operations/continue.sh` waits for the current collector, then runs one bounded pass over the pending EA Forum and GiveWell queue. It rebuilds the local graph and verifies its archive under `reports/latest/` inside the corpus root. Its log is `operations/continuation.log`. The process depends on this machine remaining available. The saved snapshot remains accessible under `reports/snapshot-2026-09-26/`.
+
+GitHub push protection rejected the first metadata publication because public source links included credential-like values. Per-source graph, reference, event, and audit exports were removed from the unpublished commit and kept in the ignored local archive. No push-protection bypass was used. Aggregate reports and collection code are published. `results/podcast-summary.json` contains the aggregate episode coverage; the per-episode ledger remains local.
