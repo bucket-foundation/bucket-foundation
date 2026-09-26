@@ -286,7 +286,7 @@ class Collector:
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
             while done < limit:
                 with self.lock:
-                    rows = self.db.execute("select url,collection from sources where state='pending' order by case when url like '%/podcast/episodes/%' or url like '%/after-hours-podcast/episodes/%' then 0 else 1 end,url").fetchall()
+                    rows = self.db.execute("select url,collection from sources where state='pending' order by case when json_extract(metadata,'$.discovered_from')='seed' then 0 when json_extract(metadata,'$.discovered_from') like '%sitemap%' then 1 when url like '%/podcast/episodes/%' or url like '%/after-hours-podcast/episodes/%' then 2 else 3 end,url").fetchall()
                 if selected_collections:
                     rows = [x for x in rows if x[1] in selected_collections]
                 if not rows:
@@ -339,7 +339,7 @@ class Collector:
                 if target not in known or target == url or (url, target) in seen:
                     continue
                 seen.add((url, target))
-                edges.append(dict(fromSlug=known[url], toSlug=known[target], kind="bridges", confidence=1.0, confidenceSource="observed_html_link", provenance={"relation": "html_link", "source_url": url, "target_url": target, "anchor": link["anchor"], "does_not_assert_citation_or_prerequisite": True}))
+                edges.append(dict(fromSlug=known[url], toSlug=known[target], kind="bridges", confidence=1.0, confidenceSource=None, provenance={"method": "observed_html_link", "relation": "html_link", "source_url": url, "target_url": target, "anchor": link["anchor"], "does_not_assert_citation_or_prerequisite": True}))
         stats = {"nodes": len(nodes), "edges": len(edges), "fetched": sum(x[2] == "fetched" for x in rows)}
         slugs = {n["slug"] for n in nodes}
         if len(slugs) != len(nodes) or any(e["fromSlug"] not in slugs or e["toSlug"] not in slugs for e in edges):

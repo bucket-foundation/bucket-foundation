@@ -27,7 +27,7 @@ def enrich(root, out):
                 continue
             match = pattern.search(text)
             if match:
-                graph["edges"].append(dict(fromSlug=known[url], toSlug=slug, kind="bridges", confidence=0.5, confidenceSource="literal_phrase_candidate", provenance={"review_required": True, "text_sha256": digest(text), "start": match.start(), "end": match.end(), "offset_unit": "unicode_codepoint_end_exclusive", "match": match.group(), "rule": "first_literal_phrase_v1"}))
+                graph["edges"].append(dict(fromSlug=known[url], toSlug=slug, kind="bridges", confidence=0.5, confidenceSource="inferred", provenance={"method": "literal_phrase_candidate", "review_required": True, "text_sha256": digest(text), "start": match.start(), "end": match.end(), "offset_unit": "unicode_codepoint_end_exclusive", "match": match.group(), "rule": "first_literal_phrase_v1"}))
         for target in topic.get("academy", []):
             proposals.append({"fromSlug": slug, "toSlug": target, "kind": "bridges", "review_required": True, "relation": "editorial_candidate", "endpoint_status": "existing_academy_slug_requires_live_resolution"})
     for url, raw in db.execute("select url,metadata from sources where state='fetched' order by url"):

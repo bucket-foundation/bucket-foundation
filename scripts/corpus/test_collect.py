@@ -72,6 +72,7 @@ class CorpusTests(unittest.TestCase):
             g = json.loads(first)
             self.assertEqual(len(g["nodes"]), 2)
             self.assertEqual(len(g["edges"]), 1)
+            self.assertTrue(all(e["confidenceSource"] in (None, "seed", "academy_requires", "canon_map", "inferred", "teacher") for e in g["edges"]))
             self.assertTrue(all(n["summary"] is None for n in g["nodes"]))
             self.assertEqual(sum(sum(v.values()) for v in c.counts().values()), 2)
             c.db.execute("update sources set state='withdrawn' where url=?", (b,))
@@ -158,7 +159,7 @@ class CorpusTests(unittest.TestCase):
             c.build(out)
             enrich(temp, out)
             graph = json.loads(gzip.decompress((out / "graph-with-topics.json.gz").read_bytes()))
-            edge = next(e for e in graph["edges"] if e["confidenceSource"] == "literal_phrase_candidate")
+            edge = next(e for e in graph["edges"] if e["provenance"].get("method") == "literal_phrase_candidate")
             text = c.db.execute("select body from texts").fetchone()[0]
             p = edge["provenance"]
             self.assertEqual(text[p["start"]:p["end"]], p["match"])
