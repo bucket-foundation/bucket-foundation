@@ -70,5 +70,5 @@ def build(person: dict, items: list[Item]) -> dict:
         "interests": [{"term": t, "weight": round(w, 2)} for t, w in top_terms(usable)],
         "skills": [{"language": l, "repos": c} for l, c in skills(items)],
         "evidence": [{"source": it.source, "url": it.url, "title": it.title, **{k: v for k, v in it.meta.items() if k in ("kind", "language", "stars", "pushed", "year")}} for it in items],
-        "errors": [{"url": it.url, "error": it.meta["error"]} for it in items if it.meta.get("error")],
+        "errors": [{"url": it.url, "error": e} for it in items for e in ([it.meta["error"]] if it.meta.get("error") else []) + list(it.meta.get("errors") or [])],
     }

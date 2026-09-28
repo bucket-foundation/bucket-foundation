@@ -115,14 +115,33 @@ def openalex(orcid: str | None, name: str | None, max_items: int, fetch=fetch_js
                  {"kind": "work", "year": w.get("publication_year")}) for w in works]
 
 
-def websites(seeds: list[str], max_links: int, fetch_text=None) -> list[Item]:
+def websites(seeds: list[str], max_links: int, fetch_text=None, allowed=None, delay: float = 1.0, sleep=None) -> list[Item]:
     def default_fetch(url: str) -> str:
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req, timeout=20) as r:
             return r.read(2_000_000).decode("utf-8", "replace")
 
-    fetch_text = fetch_text or default_fetch
+    import time
+    from urllib import robotparser
     from urllib.parse import urljoin, urlparse
+
+    fetch_text = fetch_text or default_fetch
+    sleep = sleep or time.sleep
+    robots: dict = {}
+
+    def default_allowed(url: str) -> bool:
+        host = urlparse(url)
+        key = f"{host.scheme}://{host.netloc}"
+        if key not in robots:
+            rp = robotparser.RobotFileParser(key + "/robots.txt")
+            try:
+                rp.read()
+            except OSError:
+                rp = None
+            robots[key] = rp
+        return robots[key] is None or robots[key].can_fetch(USER_AGENT, url)
+
+    allowed = allowed or default_allowed
     queue, seen, items = list(seeds), set(), []
     hosts = {urlparse(s).netloc for s in seeds}
     while queue and len(items) < max_links:
@@ -130,6 +149,11 @@ def websites(seeds: list[str], max_links: int, fetch_text=None) -> list[Item]:
         if url in seen:
             continue
         seen.add(url)
+        if not allowed(url):
+            items.append(Item("web", url, "", "", {"kind": "page", "error": "disallowed by robots.txt"}))
+            continue
+        if len(seen) > 1:
+            sleep(delay)
         try:
             title, text, links = parse_html(fetch_text(url))
         except Exception as exc:
@@ -157,7 +181,8 @@ def local(roots: list[str], max_items: int) -> list[Item]:
                     p = Path(dirpath) / name
                     try:
                         text = p.read_text("utf-8", "replace")[:20000]
-                    except OSError:
+                    except OSError as exc:
+                        items.append(Item("local", str(p), Path(dirpath).name, "", {"kind": "project-doc", "error": str(exc)}))
                         continue
                     items.append(Item("local", str(p), Path(dirpath).name, text, {"kind": "project-doc"}))
                     if len(items) >= max_items:

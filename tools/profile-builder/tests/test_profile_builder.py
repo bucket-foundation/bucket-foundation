@@ -32,13 +32,13 @@ class ProfileBuilderTest(unittest.TestCase):
             "https://a.org/p1": "<title>P1</title>quantum learning",
             "https://a.org/p2": "<title>P2</title>more",
         }
-        items = sources.websites(["https://a.org/"], 2, fetch_text=pages.__getitem__)
+        items = sources.websites(["https://a.org/"], 2, fetch_text=pages.__getitem__, allowed=lambda u: True, sleep=lambda s: None)
         self.assertEqual([i.url for i in items], ["https://a.org/", "https://a.org/p1"])
 
     def test_website_errors_are_kept(self):
         def boom(url):
             raise OSError("down")
-        items = sources.websites(["https://a.org/"], 5, fetch_text=boom)
+        items = sources.websites(["https://a.org/"], 5, fetch_text=boom, allowed=lambda u: True, sleep=lambda s: None)
         self.assertEqual(items[0].meta["error"], "down")
 
     def test_branch_scores_sum_to_one_and_reflect_text(self):
@@ -61,6 +61,58 @@ class ProfileBuilderTest(unittest.TestCase):
         texts = profile.strip_boilerplate(items)
         self.assertTrue(all("Sign in to continue" not in t for t in texts))
         self.assertIn("photon", texts[0])
+
+
+    def test_robots_disallow_is_recorded(self):
+        items = sources.websites(["https://a.org/"], 5, fetch_text=lambda u: "", allowed=lambda u: False, sleep=lambda s: None)
+        self.assertEqual(items[0].meta["error"], "disallowed by robots.txt")
+
+    def test_readme_errors_reach_the_report(self):
+        items = sources.github("ada", 10, fetch=fake_fetch)
+        out = profile.build({"name": "Ada"}, items)
+        self.assertIn({"url": "u1", "error": "no readme"}, out["errors"])
+
+    def test_failing_source_does_not_drop_other_sources(self):
+        from profile_builder import cli
+        def bad():
+            raise OSError("rate limited")
+        items = cli.run_sources([("github", bad), ("web", lambda: [Item("web", "w", "t", "x")])])
+        self.assertEqual([i.source for i in items], ["github", "web"])
+        self.assertIn("rate limited", items[0].meta["error"])
+
+    def test_out_inside_repo_is_refused(self):
+        from profile_builder import cli
+        with self.assertRaises(SystemExit):
+            cli.main(["--name", "Ada", "--out", str(__import__("pathlib").Path(__file__).resolve().parent / "p.json")])
+
+    def test_local_reads_docs_and_records_unreadable(self):
+        import os, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            os.makedirs(os.path.join(d, "proj"))
+            open(os.path.join(d, "proj", "README.md"), "w").write("graph learning")
+            bad = os.path.join(d, "proj", "CLAUDE.md")
+            open(bad, "w").write("x")
+            os.chmod(bad, 0)
+            items = sources.local([d], 10)
+            os.chmod(bad, 0o600)
+        by = {os.path.basename(i.url): i for i in items}
+        self.assertEqual(by["README.md"].text, "graph learning")
+        if os.geteuid() != 0:
+            self.assertIn("error", by["CLAUDE.md"].meta)
+
+    def test_openalex_by_orcid(self):
+        def fetch(url, token=None):
+            if "authors?filter=orcid" in url:
+                return {"results": [{"id": "https://openalex.org/A1"}]}
+            if "works?filter=author.id:A1" in url:
+                return {"results": [{"id": "W1", "title": "Graph paths", "publication_year": 2025, "topics": [{"display_name": "Learning"}], "doi": None}]}
+            raise AssertionError(url)
+        items = sources.openalex("0000-0000", None, 5, fetch=fetch)
+        self.assertEqual(items[0].title, "Graph paths")
+        self.assertIn("Learning", items[0].text)
+
+    def test_branches_match_bucket_canon(self):
+        self.assertEqual(set(profile.BRANCHES), {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "earth"})
 
 
 if __name__ == "__main__":

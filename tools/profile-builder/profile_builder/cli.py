@@ -14,6 +14,16 @@ SIGN_IN_SOURCES = {
 }
 
 
+def run_sources(plan) -> list[sources.Item]:
+    items: list[sources.Item] = []
+    for name, fn in plan:
+        try:
+            items += fn()
+        except Exception as exc:
+            items.append(sources.Item(name, name, "", "", {"kind": "source", "error": f"{type(exc).__name__}: {exc}"}))
+    return items
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="profile-builder")
     ap.add_argument("--name", required=True)
@@ -30,19 +40,24 @@ def main(argv: list[str] | None = None) -> None:
     if args.list_sources:
         print(json.dumps(SIGN_IN_SOURCES, indent=2))
         return
+    out = Path(args.out).expanduser().resolve()
+    repo_root = Path(__file__).resolve().parents[3]
+    if repo_root in out.parents:
+        raise SystemExit(f"refusing to write a profile inside the repository: {out}")
     items: list[sources.Item] = []
+    plan = []
     if args.github:
-        items += sources.github(args.github, args.max_links, sources.gh_token())
-    if args.orcid or args.github is None and args.name:
-        items += sources.openalex(args.orcid, None if args.orcid else args.name, args.max_links)
+        plan.append(("github", lambda: sources.github(args.github, args.max_links, sources.gh_token())))
+    if args.orcid or args.github is None:
+        plan.append(("openalex", lambda: sources.openalex(args.orcid, None if args.orcid else args.name, args.max_links)))
     if args.web:
-        items += sources.websites(args.web, args.max_links)
+        plan.append(("web", lambda: sources.websites(args.web, args.max_links)))
     if args.local:
-        items += sources.local(args.local, args.max_links)
+        plan.append(("local", lambda: sources.local(args.local, args.max_links)))
+    items += run_sources(plan)
     person = {"name": args.name, "email": args.email, "github": args.github, "orcid": args.orcid, "wallet": args.wallet,
               "sources_used": [s for s in ("github", "orcid", "web", "local") if getattr(args, s)]}
     result = profile.build(person, items)
-    out = Path(args.out).expanduser()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2))
     print(json.dumps({"out": str(out), **result["counts"], "branches": result["branches"]}))
