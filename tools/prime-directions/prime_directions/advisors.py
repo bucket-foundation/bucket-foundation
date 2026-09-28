@@ -180,10 +180,8 @@ def cosine(a: np.ndarray, q: np.ndarray) -> np.ndarray:
 
 TOKEN = re.compile(TOKEN_PATTERN)
 
-
 def shared_terms(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[int], n: int = 6) -> list[list[str]]:
     return [terms for terms, _ in shared_evidence(model, query_row, rows, n)]
-
 
 def shared_evidence(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[int], n: int = 5) -> list[tuple[list[str], list[str]]]:
     q = query_row.toarray().ravel()
@@ -204,9 +202,7 @@ def shared_evidence(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[in
         out.append((terms, topics))
     return out
 
-
 SCORINGS = ("whitened", "centered", "raw")
-
 
 def score_space(raw: np.ndarray, q: np.ndarray, scoring: str = "whitened") -> tuple[np.ndarray, np.ndarray]:
     if scoring not in SCORINGS:
@@ -220,13 +216,11 @@ def score_space(raw: np.ndarray, q: np.ndarray, scoring: str = "whitened") -> tu
     sd[sd <= 1e-12] = 1
     return (raw - mu) / sd, (q - mu) / sd
 
-
 def percentile_of(values: np.ndarray) -> np.ndarray:
     from scipy.stats import rankdata
 
     ranks = rankdata(values, method="max") - 1
     return 100.0 * ranks / max(len(values) - 1, 1)
-
 
 def spread(values: np.ndarray) -> dict:
     s = np.sort(values)[::-1]
@@ -236,7 +230,6 @@ def spread(values: np.ndarray) -> dict:
         "median": round(float(np.median(s)), 4), "sd": round(float(s.std()), 4),
         "gap_top1_top100": round(pick(1) - pick(100), 4),
     }
-
 
 def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: str = "whitened") -> tuple[list[dict], np.ndarray, dict]:
     raw = model.result.raw_scores
@@ -276,10 +269,8 @@ def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: s
     report = {"scoring": scoring, "score_spread": spread(cos), "people_scored": int(len(cos))}
     return rows, qraw, report
 
-
 def is_source(row: dict, source: str) -> bool:
     return source in [s.strip() for s in str(row.get("sources") or "").split(";")]
-
 
 def diversify(rows: list[dict], cap: int = 5, window: int = 50, key: str = "institution") -> list[dict]:
     picked, held, counts = [], [], {}
@@ -295,7 +286,6 @@ def diversify(rows: list[dict], cap: int = 5, window: int = 50, key: str = "inst
             held = []
     return picked + held
 
-
 def institution_mix(rows: list[dict], n: int = 100, top: int = 8) -> dict:
     head = rows[:n]
     counts: dict[str, int] = {}
@@ -310,7 +300,6 @@ def institution_mix(rows: list[dict], n: int = 100, top: int = 8) -> dict:
         "top": [{"institution": k, "count": v} for k, v in ordered[:top]],
         "stevens_share": round(sum(is_source(r, "stevens") for r in head) / max(len(head), 1), 3),
     }
-
 
 def unit(v: np.ndarray) -> np.ndarray:
     n = np.linalg.norm(v, axis=-1, keepdims=True)
@@ -341,7 +330,6 @@ def index_benchmark(space: np.ndarray, query_vectors: np.ndarray, k: int = 25, b
         })
     return rows
 
-
 def write_csv(rows: list[dict], path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -356,7 +344,6 @@ def plot_axes(raw: np.ndarray, qraw: np.ndarray) -> tuple[int, int, np.ndarray, 
     a, b = (order[0], order[1]) if len(order) == 2 else (0, 1)
     share = float((zq[a] ** 2 + zq[b] ** 2) / max(float((zq**2).sum()), 1e-12))
     return a, b, z, zq, share
-
 
 def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, label: int = 25, dpi: int = 150) -> tuple[Path, dict]:
     import matplotlib
@@ -402,9 +389,7 @@ def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, la
     }
     return path, info
 
-
 PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
-
 
 def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path) -> Path:
     import base64
@@ -416,7 +401,6 @@ def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path) -> P
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(page, encoding="utf-8")
     return path
-
 
 def statement_body(text: str, stop_heading: str = "## References") -> str:
     lines = text.splitlines()

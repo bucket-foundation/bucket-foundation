@@ -227,7 +227,6 @@ def advisor_run(args, out: Path, people: list) -> None:
     print(json.dumps({k: report[k] for k in ("people", "fitted", "terms", "k", "score_spread", "checks", "institution_mix_top100", "timings")}), flush=True)
     print(f"open: xdg-open {out / 'index.html'}", flush=True)
 
-
 def _print_neighbors(found: list) -> None:
     for nb in found:
         print(json.dumps({"id": nb.id, "title": nb.title, "distance": round(nb.distance, 5), "canon": nb.label + 1}))

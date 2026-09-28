@@ -69,7 +69,6 @@ def test_rank_orders_by_score_and_puts_the_statement_field_first():
     i = model.result.doc_ids.index(rows[0]["id"])
     assert rows[0]["score"] == pytest.approx(float(advisors.cosine(z[i:i + 1], zq)[0]), abs=1e-4)
 
-
 @pytest.mark.parametrize("scoring", advisors.SCORINGS)
 def test_scoring_spaces(scoring):
     rng = np.random.default_rng(0)
@@ -86,14 +85,12 @@ def test_scoring_spaces(scoring):
     with pytest.raises(ValueError):
         advisors.score_space(raw, q, "nope")
 
-
 def test_percentile_and_spread():
     v = np.array([0.1, 0.5, 0.3, 0.9])
     assert advisors.percentile_of(v).tolist() == pytest.approx([0, 200 / 3, 100 / 3, 100])
     s = advisors.spread(np.linspace(0, 1, 400))
     assert s["top1"] == 1.0 and s["top1"] > s["top10"] > s["top100"] > s["top300"]
     assert s["gap_top1_top100"] == pytest.approx(s["top1"] - s["top100"])
-
 
 def test_cosine_handles_zero_vectors():
     out = advisors.cosine(np.array([[0.0, 0.0], [1.0, 0.0]]), np.array([1.0, 0.0]))
@@ -116,7 +113,6 @@ def test_index_benchmark_exact_and_indexed_agree():
     assert {r["backend"] for r in rows} == {"brute", "kdtree", "hnsw"}
     assert all(r["tie_aware_recall"] >= 0.99 for r in rows)
 
-
 def test_page_inlines_image_and_escapes_data(tmp_path: Path):
     png = tmp_path / "p.png"
     png.write_bytes(b"\x89PNG\r\n\x1a\nfake")
@@ -129,7 +125,6 @@ def test_page_inlines_image_and_escapes_data(tmp_path: Path):
     assert "</" not in data and "<!--" not in data
     assert json.loads(data)["rows"][0]["name"] == "</script><script>alert(1)</script>"
     assert "innerHTML" not in page
-
 
 def test_cli_advisor_review_writes_private_outputs(tmp_path: Path, monkeypatch, capsys):
     monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
@@ -208,7 +203,6 @@ def test_statement_body_stops_at_references():
     assert advisors.statement_body(text) == "# T\nbody line"
     assert advisors.statement_body("no refs") == "no refs"
 
-
 def test_diversify_caps_institutions_in_the_window_and_keeps_everyone():
     rows = [{"id": str(i), "institution": "A" if i < 8 else f"B{i}"} for i in range(20)]
     out = advisors.diversify(rows, cap=5, window=10)
@@ -218,7 +212,6 @@ def test_diversify_caps_institutions_in_the_window_and_keeps_everyone():
     assert [r["id"] for r in head[:5]] == ["0", "1", "2", "3", "4"]
     assert [r["id"] for r in out[10:13]] == ["5", "6", "7"]
     assert advisors.diversify(rows, cap=50, window=10) == rows
-
 
 def test_institution_mix_and_sources():
     rows = [{"institution": "S", "sources": "stevens"}] * 3 + [{"institution": "T", "sources": "cockpit; stevens"}, {"institution": "U", "sources": "cockpit"}]

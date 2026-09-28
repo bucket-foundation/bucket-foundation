@@ -11,7 +11,6 @@ from pathlib import Path
 API = "https://api.ror.org/v2/organizations"
 NAME_BASED = re.compile(r"autocomplete|name|search", re.IGNORECASE)
 
-
 @dataclass(frozen=True)
 class Org:
     id: str
@@ -19,10 +18,8 @@ class Org:
     country: str
     related: frozenset
 
-
 def short_id(value: str | None) -> str:
     return (value or "").rstrip("/").rsplit("/", 1)[-1]
-
 
 def parse(record: dict) -> Org:
     names = record.get("names") or []
@@ -34,12 +31,10 @@ def parse(record: dict) -> Org:
     related = frozenset(short_id(r.get("id")) for r in record.get("relationships") or [])
     return Org(short_id(record.get("id")), display, country, related)
 
-
 def http_get(url: str, timeout: float = 20.0) -> dict:
     req = urllib.request.Request(url, headers={"User-Agent": "bucket-prime-directions/1 (advisor review)"})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return json.loads(resp.read().decode("utf-8"))
-
 
 class RorClient:
     def __init__(self, cache_path: Path, fetch=http_get, pause: float = 0.12, offline: bool = False) -> None:
@@ -96,7 +91,6 @@ class RorClient:
         self.cache["orgs"].setdefault(org.id, record)
         return org
 
-
 def check(meta: dict, client: RorClient) -> dict:
     listed = client.match(str(meta.get("institution") or ""))
     profile = client.org(str(meta.get("ror") or ""))
@@ -113,7 +107,6 @@ def check(meta: dict, client: RorClient) -> dict:
     else:
         out["identity"] = "unknown"
     return out
-
 
 def validate(people, client: RorClient, save_every: int = 200) -> dict:
     counts: dict[str, int] = {}
