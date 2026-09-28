@@ -4,8 +4,10 @@ import numpy as np
 
 METHODS = ("linear", "pchip")
 
+
 def lerp(a: np.ndarray, b: np.ndarray, s: float) -> np.ndarray:
     return (1.0 - s) * a + s * b
+
 
 def _pchip_slopes(t: np.ndarray, y: np.ndarray) -> np.ndarray:
     h = np.diff(t)
@@ -23,6 +25,7 @@ def _pchip_slopes(t: np.ndarray, y: np.ndarray) -> np.ndarray:
     m[-1] = d[-1]
     return m
 
+
 def _pchip(t: np.ndarray, y: np.ndarray, grid: np.ndarray) -> np.ndarray:
     m = _pchip_slopes(t, y)
     idx = np.clip(np.searchsorted(t, grid, side="right") - 1, 0, len(t) - 2)
@@ -34,10 +37,12 @@ def _pchip(t: np.ndarray, y: np.ndarray, grid: np.ndarray) -> np.ndarray:
     h11 = s**3 - s**2
     return h00 * y[idx] + h10 * h * m[idx] + h01 * y[idx + 1] + h11 * h * m[idx + 1]
 
+
 def to_simplex(W: np.ndarray) -> np.ndarray:
     W = np.clip(W, 0.0, None)
     total = W.sum(axis=1, keepdims=True)
     return np.divide(W, total, out=np.full_like(W, 1.0 / W.shape[1]), where=total > 0)
+
 
 def sample(t: np.ndarray, W: np.ndarray, grid: np.ndarray, method: str = "linear") -> np.ndarray:
     if method not in METHODS:
@@ -47,6 +52,7 @@ def sample(t: np.ndarray, W: np.ndarray, grid: np.ndarray, method: str = "linear
         out = np.column_stack([np.interp(grid, t, W[:, k]) for k in range(W.shape[1])])
         return out
     return to_simplex(np.column_stack([_pchip(t, W[:, k], grid) for k in range(W.shape[1])]))
+
 
 def loo_error(t: np.ndarray, W: np.ndarray, method: str = "linear") -> dict | None:
     n = len(t)

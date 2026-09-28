@@ -4,8 +4,10 @@ import numpy as np
 
 from ..geometry import coords
 
+
 def _r(a) -> list:
     return np.round(np.asarray(a, dtype=float), 6).tolist()
+
 
 def build(
     primes, grid: np.ndarray, W: np.ndarray, omega: float, t0: float, slices_t: np.ndarray, projection: dict | None
