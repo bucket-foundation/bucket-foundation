@@ -8,6 +8,7 @@ import rehypeKatex from "rehype-katex";
 import { useAcademy } from "../learn/useAcademy";
 import { buildRun, gradeAnswer, ratingFor, summarize, type Run, type RunResult, type Verdict } from "@/lib/academy/assess";
 import { deckLabel } from "@/lib/academy/corpus-client";
+import { newEventId, sendLearnEvent } from "@/lib/academy/events-client";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
@@ -22,6 +23,7 @@ export default function AssessmentSession({ branch }: { branch: string }) {
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [results, setResults] = useState<RunResult[]>([]);
   const shownAt = useRef(0);
+  const runId = useRef("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const item = run?.items[i];
@@ -40,6 +42,7 @@ export default function AssessmentSession({ branch }: { branch: string }) {
 
   function begin() {
     const r = buildRun(a.corpus!.atoms, (id) => a.state.cards[id] ?? null, { size: 10 });
+    runId.current = newEventId();
     setRun(r);
     setI(0);
     setResults([]);
@@ -53,8 +56,13 @@ export default function AssessmentSession({ branch }: { branch: string }) {
     a.gradeAtom(item.atomId, ratingFor(correct), item.level);
     const next = [...results, res];
     setResults(next);
-    if (i + 1 >= (run?.items.length ?? 0)) setStep("done");
-    else {
+    if (i + 1 >= (run?.items.length ?? 0)) {
+      sendLearnEvent(runId.current, "assess_done", {
+        branch,
+        items: next.map((r) => ({ atomId: r.atomId, level: r.level, correct: r.correct, autoGraded: r.autoGraded })),
+      });
+      setStep("done");
+    } else {
       setI(i + 1);
       setInput("");
       setVerdict(null);

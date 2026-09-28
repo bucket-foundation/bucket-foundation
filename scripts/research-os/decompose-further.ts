@@ -13,6 +13,7 @@ import {
   irreducibleAction,
   modelMatchesAlias,
   reuseEarlierKeys,
+  seedBaseIdeaRows,
   aggregateMissing,
   blindSet,
   buildConsolidatePrompt,
@@ -38,6 +39,7 @@ import {
   verificationOf,
   CONFIDENCE_SOURCE,
   type AgreementRow,
+  type BaseIdeaSeed,
   type Answer,
   type Candidate,
   type ConsolidateItem,
@@ -50,6 +52,7 @@ import {
 } from "../../src/lib/research-os/decompose-further";
 
 const OUT = path.join(__dirname, "ingest", "out");
+const BASE_IDEAS_FILE = path.join(__dirname, "..", "..", "learning", "research-os", "base-ideas.json");
 const CACHE = path.join(OUT, "decompose-cache");
 const CONSOLIDATE_BATCH = 60;
 const DUPLICATE_SIMILARITY = 0.75;
@@ -188,20 +191,24 @@ async function main() {
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
   async function resolveModel(alias: string): Promise<string> {
+    probes++;
     const probe = await askClaude("Reply with the single word ok.", alias, 120_000, { type: "object", properties: { ok: { type: "string" } }, required: ["ok"] });
     if (!modelMatchesAlias(alias, probe.modelId))
       throw new Error(`model alias ${alias} resolved to ${probe.modelId}; refusing to run under the wrong model`);
     return probe.modelId;
   }
-  const model = await resolveModel(proposerAlias);
-  const verifyModel = await resolveModel(verifierAlias);
+  let model = "";
+  let verifyModel = "";
   const mismatched: { hash: string; expected: string; answered: string }[] = [];
+  const liveCalls: Record<string, number> = {};
+  let probes = 0;
 
   async function cachedAsk<T>(prompt: string, m: string, schema: object, accept: (reply: string) => T | { error: string }): Promise<Cached<T>> {
     const hash = promptHash(`${m}\n${prompt}`);
     const cacheFile = path.join(CACHE, `${hash}.txt`);
     const metaFile = path.join(CACHE, `${hash}.model`);
     if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
+    liveCalls[m] = (liveCalls[m] ?? 0) + 1;
     const res = await askClaude(prompt, m, 300_000, schema);
     if (res.modelId !== m) {
       mismatched.push({ hash, expected: m, answered: res.modelId });
@@ -246,13 +253,51 @@ async function main() {
   const rejectedWhy = new Map(irreducibleRows.filter((r) => r.status === "rejected").map((r) => [r.node_slug, r.decision_reason ?? ""]));
   let targets = selectTargets(rows, dec).filter((t) => !settled.has(t.slug));
 
+  const seeds = JSON.parse(readFileSync(BASE_IDEAS_FILE, "utf8")) as BaseIdeaSeed[];
+  const seedVectors = embed(seeds.map((x) => ({ id: x.title, text: `${x.title}. ${x.definition}` })));
+  const seeded = seedBaseIdeaRows(seeds, rows, (title) => {
+    const v = seedVectors.get(title);
+    if (!v) return [];
+    return ideaPool
+      .map((c) => ({ slug: c.slug, title: c.title, similarity: vectors.has(c.slug) ? Math.round(cosine(v, vectors.get(c.slug)!) * 1000) / 1000 : 0 }))
+      .filter((x) => x.similarity >= DUPLICATE_SIMILARITY)
+      .sort((a, b) => b.similarity - a.similarity || a.slug.localeCompare(b.slug));
+  });
+  const foundationSlugs = new Set(seeded.held.flatMap((h) => h.slugs));
+  const listOpts = { vectors, idf, foundations: !process.argv.includes("--no-foundations"), foundationSlugs };
+  const baseIdeas = { held: seeded.held, proposed: seeded.rows.map((r) => r.key), written: 0 };
+  if (process.argv.includes("--seed-base-ideas")) {
+    if (!dryRun && seeded.rows.length) {
+      const { error } = await svc.rpc("merge_node_proposals", { p_rows: seeded.rows });
+      if (error) throw new Error(`merge_node_proposals: ${error.message}`);
+      baseIdeas.written = seeded.rows.length;
+    }
+    console.log(
+      `[decompose-further] base ideas: ${seeded.rows.length} proposed (${seeded.rows.map((r) => r.title).join(", ") || "none"}), ${baseIdeas.written} written; ` +
+        `held by existing nodes: ${seeded.held.map((h) => `${h.title} by ${h.slugs.join(", ")}`).join("; ") || "none"}`,
+    );
+    if (process.argv.includes("--seed-only")) return;
+  }
+
   const show = arg("--show-shortlist");
   if (show) {
     const t = selectTargets(rows, dec).find((x) => x.slug === show);
     if (!t) throw new Error(`${show} is not a decompose target`);
-    for (const c of shortlist(t, pool, dec, { vectors, idf })) console.log(`${c.branch}\t${c.tier ?? "-"}\t${c.slug}\t${c.title}`);
+    for (const c of shortlist(t, pool, dec, listOpts)) console.log(`${c.branch}\t${c.tier ?? "-"}\t${c.slug}\t${c.title}`);
     return;
   }
+  if (process.argv.includes("--shortlist-sizes")) {
+    const sizes = targets.map((t) => {
+      const s = shortlist(t, pool, dec, listOpts);
+      return { slug: t.slug, size: s.length, cross: s.filter((c) => c.branch !== t.branch).length };
+    });
+    for (const x of sizes) console.log(`${x.size}\t${x.cross}\t${x.slug}`);
+    const total = sizes.reduce((a, x) => a + x.size, 0);
+    console.log(`[decompose-further] ${sizes.length} targets, shortlist mean ${(total / Math.max(1, sizes.length)).toFixed(1)}, max ${Math.max(0, ...sizes.map((x) => x.size))}`);
+    return;
+  }
+  model = await resolveModel(proposerAlias);
+  verifyModel = await resolveModel(verifierAlias);
   if (limit > 0) targets = targets.slice(0, limit);
   mkdirSync(CACHE, { recursive: true });
   console.log(`[decompose-further] ${targets.length} targets (${settled.size} left out as irreducible), proposer ${model}, verifier ${verifyModel}${dryRun ? ", dry run" : ""}`);
@@ -266,7 +311,7 @@ async function main() {
   async function worker() {
     while (next < targets.length) {
       const target = targets[next++];
-      const cands = shortlist(target, pool, dec, { vectors, idf });
+      const cands = shortlist(target, pool, dec, listOpts);
       try {
         const allowed = new Set(cands.map((c) => c.slug));
         const ask = await cachedAsk(buildPrompt(target, cands, { rejectedIrreducible: rejectedWhy.get(target.slug) ?? null }), model, SCHEMA, (r) =>
@@ -426,6 +471,8 @@ async function main() {
       );
     }
   }
+
+  if (process.argv.includes("--cross-only")) proposals.splice(0, proposals.length, ...proposals.filter((p) => p.cross_branch));
 
   const pendingUnchecked = dryRun
     ? []
@@ -634,12 +681,22 @@ async function main() {
   }
 
   const stats = agreementStats(agreement);
+  const crossPair = (target: string, slug: string) => (branchOf.get(target) ?? null) !== (branchOf.get(slug) ?? null);
+  const byBranch = {
+    cross: agreementStats(agreement.filter((a) => a.slug && crossPair(a.target, a.slug))),
+    same: agreementStats(agreement.filter((a) => a.slug && !crossPair(a.target, a.slug))),
+  };
+  const aucByBranch = {
+    cross: refdAucInterval(withCycle.filter((p) => p.cross_branch).map((p) => ({ target: p.to_slug, refd: p.refd, verification: p.verification }))),
+    same: refdAucInterval(withCycle.filter((p) => !p.cross_branch).map((p) => ({ target: p.to_slug, refd: p.refd, verification: p.verification }))),
+  };
   const rate = (rs: ProposalRow[]) => ({ pairs: rs.length, confirmed: rs.filter((r) => r.verification === "confirmed").length });
   const primeTargets = new Set(results.filter((r) => r.target.status === "prime").map((r) => r.target.slug));
   const report = {
     generated_at: new Date().toISOString(),
     models: { proposer: model, verifier: verifyModel, aliases: { proposer: proposerAlias, verifier: verifierAlias }, mismatched },
     targets: targets.length,
+    model_calls: { probes, by_model: liveCalls, total: probes + Object.values(liveCalls).reduce((a, b) => a + b, 0) },
     answered: results.length,
     from_cache: results.filter((r) => r.cached).length,
     failures,
@@ -653,7 +710,10 @@ async function main() {
     cross_branch_proposals: proposals.filter((p) => p.cross_branch).length,
     in_cycle: withCycle.filter((p) => p.in_cycle).length,
     agreement: stats,
-    refd: { wikipedia: wiki, proposals: refdProposals, blinded: refdBlind, auc: refdAuc },
+    agreement_by_branch: byBranch,
+    refd: { wikipedia: wiki, proposals: refdProposals, blinded: refdBlind, auc: refdAuc, auc_by_branch: aucByBranch },
+    shortlist: { foundations: listOpts.foundations, foundation_slugs: Array.from(foundationSlugs).sort() },
+    base_ideas: baseIdeas,
     confirmation: {
       all: rate(proposals),
       cross_branch: rate(proposals.filter((p) => p.cross_branch)),
@@ -696,6 +756,7 @@ async function main() {
       `${proposals.length} proposals (${report.by_origin.missing_matched} from matched missing ideas), ${report.confirmation.all.confirmed} confirmed, ` +
       `${report.cross_branch_proposals} across branches, ${report.in_cycle} in a cycle`,
   );
+  console.log(`[decompose-further] model calls: ${report.model_calls.total} (${probes} probes, ${JSON.stringify(liveCalls)})`);
   console.log(`[decompose-further] blinded agreement: ${stats.pairs} pairs over ${stats.targets} targets, kappa ${k}, 95% interval ${ci}, table ${JSON.stringify(stats.table)}`);
   const iv = (a: ReturnType<typeof refdAucInterval>) =>
     a.auc === null ? "n/a" : `${a.auc}${a.interval ? ` [${a.interval[0]}, ${a.interval[1]}]` : ""}`;

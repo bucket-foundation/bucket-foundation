@@ -12,7 +12,14 @@ export type NodeKind =
   | "production"
   | "figure"
   | "site"
-  | "excerpt";
+  | "excerpt"
+  | "event"
+  | "occupation"
+  | "task"
+  | "technology"
+  | "software"
+  | "discovery"
+  | "topic";
 
 export type EdgeKind =
   | "prerequisite"
@@ -27,7 +34,16 @@ export type EdgeKind =
   | "answers"
   | "contributes"
   | "authored"
-  | "bridges";
+  | "bridges"
+  | "performs"
+  | "uses"
+  | "automates"
+  | "enables"
+  | "replaces"
+  | "descends_from"
+  | "influences"
+  | "part_of"
+  | "maps_to";
 
 export type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 

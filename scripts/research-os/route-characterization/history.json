@@ -1,0 +1,186 @@
+{
+  "GET unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "GET anonymous": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "GET reviewer, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
+  "GET reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 403,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "forbidden"
+    }
+  },
+  "POST reviewer, store down": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "silverId must be a uuid"
+    }
+  },
+  "POST reviewer, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_request"
+    }
+  },
+  "POST reviewer, null body": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "silverId must be a uuid"
+    }
+  },
+  "POST reviewer, unknown action": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "action must be approve, reject, prefer, link, reject-link or withdraw-link"
+    }
+  },
+  "POST reviewer, reject without reason": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "a reason is required to reject"
+    }
+  },
+  "POST reviewer, link without a QID": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "qid must be a Wikidata QID"
+    }
+  },
+  "POST reviewer, link, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "link_failed"
+    }
+  },
+  "POST reviewer, withdraw a link without a reason": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "a reason is required to withdraw a link"
+    }
+  },
+  "POST reviewer, approve, store down": {
+    "status": 500,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "read_failed"
+    }
+  },
+  "POST reviewer check throws": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createHash } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { configured, graphService, verifyLearnerIdentity } from "./db";
-import { verifyReviewer } from "./reviewer";
+import { verifyGraphReviewer } from "./reviewer";
 import { DELETE_CONFIRM_TOKEN } from "./types";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -38,6 +38,8 @@ export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "bucket", table: "academy_progress", learnerColumn: "user_id", label: "academy_progress" },
   { schema: "bucket", table: "academy_profiles", learnerColumn: "user_id", label: "academy_profile" },
   { schema: "bucket", table: "academy_credentials", learnerColumn: "user_id", label: "academy_credentials" },
+  { schema: "bucket", table: "learn_events", learnerColumn: "user_id", label: "learn_events" },
+  { schema: "graph", table: "event_usage", learnerColumn: "subject", label: "event_usage" },
 ];
 
 export function hashLearnerId(learnerId: string): string {
@@ -167,7 +169,7 @@ export async function resolvePrivacyActor(req: NextRequest, requestedLearnerId: 
     return { callerId: identity.id, targetLearnerId, actingAsReviewer: false };
   }
 
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return null;
   return { callerId: identity.id, targetLearnerId, actingAsReviewer: true };
 }

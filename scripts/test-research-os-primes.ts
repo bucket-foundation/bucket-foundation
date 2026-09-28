@@ -113,3 +113,19 @@ test("contraction keeps the better of two paths and ignores a loop back to the s
   const out = contractedFactorEdges(new Set(["a", "b"]), edges);
   assert.deepEqual(out.map((e) => `${e.fromId}->${e.toId}@${e.confidence}`), ["b->a@0.8"]);
 });
+
+test("decompose over a work layer factors an occupation into its DWAs through performs", () => {
+  const ns = ["dev", "analyst", "dwa-code", "dwa-test", "dwa-report"].map((id) => ({ id, slug: id, title: id, kind: id.startsWith("dwa") ? "task" : "occupation", branch: "11-work" }));
+  const es = [
+    { fromId: "dev", toId: "dwa-code", kind: "performs", confidence: 1 },
+    { fromId: "dev", toId: "dwa-test", kind: "performs", confidence: 1 },
+    { fromId: "analyst", toId: "dwa-report", kind: "performs", confidence: 1 },
+    { fromId: "analyst", toId: "dwa-code", kind: "performs", confidence: 1 },
+  ];
+  assert.equal(decompose(ns, es).get("dev")?.status, "unfactored");
+  const work = decompose(ns, es, { performs: "to" });
+  assert.equal(work.get("dwa-code")?.status, "prime");
+  assert.equal(work.get("dev")?.status, "composite");
+  assert.deepEqual(Array.from(work.get("dev")?.signature.keys() ?? []).sort(), ["dwa-code", "dwa-test"]);
+  assert.deepEqual(Array.from(work.get("analyst")?.signature.keys() ?? []).sort(), ["dwa-code", "dwa-report"]);
+});

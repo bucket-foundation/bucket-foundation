@@ -4,12 +4,19 @@ const SHA256 = /^[0-9a-f]{64}$/;
 export type SourceIdentity =
   | { kind: "graph"; id: string; nodeId: string }
   | { kind: "doi"; id: string; doi: string }
-  | { kind: "url"; id: string; url: string; sha256: string };
+  | { kind: "url"; id: string; url: string; sha256: string }
+  | { kind: "file"; id: string; sha256: string };
 
 export function graphSourceId(nodeId: string): string {
   const id = nodeId.toLowerCase();
   if (!UUID.test(id)) throw new Error(`not a node uuid: ${nodeId}`);
   return `graph:${id}`;
+}
+
+export function fileSourceId(sha256: string): string {
+  const h = sha256.toLowerCase();
+  if (!SHA256.test(h)) throw new Error(`not a sha256: ${sha256}`);
+  return `file:${h}`;
 }
 
 export function normalizeDoi(raw: string | null | undefined): string | null {
@@ -34,6 +41,10 @@ export function parseSourceId(id: string): SourceIdentity | null {
   if (id.startsWith("doi:")) {
     const doi = normalizeDoi(id.slice(4));
     return doi && `doi:${doi}` === id ? { kind: "doi", id, doi } : null;
+  }
+  if (id.startsWith("file:")) {
+    const sha256 = id.slice(5);
+    return SHA256.test(sha256) ? { kind: "file", id, sha256 } : null;
   }
   if (id.startsWith("url:")) {
     const at = id.lastIndexOf("@");

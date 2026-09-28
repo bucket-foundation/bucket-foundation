@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
+import { inLaunchScope } from "@/lib/research-os/launch-scope";
 
 export interface ShellUser {
   email: string | null;
@@ -25,6 +26,7 @@ const LEARN: Item[] = [
   { href: "/research-os/import", label: "Import", hint: "bring a file in", match: ["/research-os/import"] },
   { href: "/research-os/map", label: "Map", hint: "the graph, the globe", match: ["/research-os/map"] },
   { href: "/research-os/primes", label: "Primes", hint: "what the graph rests on", match: ["/research-os/primes"] },
+  { href: "/research-os/attend", label: "Attention", hint: "rank the graph by shared primes", match: ["/research-os/attend"] },
   { href: "/research-os/nsm", label: "Semantic primes", hint: "the 65 meanings every language has", match: ["/research-os/nsm"] },
   { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
@@ -49,7 +51,7 @@ function isOn(item: Item, pathname: string): boolean {
 
 export default function AppShell({ user, children }: { user: ShellUser; children: ReactNode }) {
   const pathname = usePathname() || "/research-os/home";
-  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: LEARN }];
+  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: user.staff ? LEARN : LEARN.filter((it) => inLaunchScope(it.href)) }];
   if (user.staff) groups.push({ title: "teach", items: TEACH });
   const all = groups.flatMap((g) => g.items);
   const name = user.handle || (user.email ? user.email.split("@")[0] : "you");

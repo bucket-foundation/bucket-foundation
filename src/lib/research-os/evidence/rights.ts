@@ -8,7 +8,7 @@ export interface RightsRule {
 }
 
 export interface IndexRule extends RightsRule {
-  match: { provenanceType?: string; seedFile?: string };
+  match: { provenanceType?: string; seedFile?: string; sourcePrefix?: string };
 }
 
 export interface QuoteRule extends RightsRule {
@@ -52,13 +52,32 @@ export function parsePolicy(value: unknown): RightsPolicy {
   for (const r of p.index) {
     common(r, "index");
     const keys = Object.keys(r.match ?? {});
-    if (keys.length !== 1 || !["provenanceType", "seedFile"].includes(keys[0])) fail(`${r.id}: match names one of provenanceType or seedFile`);
+    if (keys.length !== 1 || !["provenanceType", "seedFile", "sourcePrefix"].includes(keys[0])) fail(`${r.id}: match names one of provenanceType, seedFile or sourcePrefix`);
+    if (keys[0] === "sourcePrefix" && !/^_intake\/[a-z0-9-]+\/[a-z0-9-]+\/$/.test(r.match.sourcePrefix ?? "")) fail(`${r.id}: sourcePrefix must be an _intake directory ending in /`);
   }
   for (const r of p.quote) {
     common(r, "quote");
     if (!/^https:\/\/[^/]+\//.test(r.urlPrefix ?? "")) fail(`${r.id}: urlPrefix must be an https origin ending in /`);
   }
   return p;
+}
+
+export function seedIds(file: string, raw: string): Set<string> {
+  if (file.endsWith(".jsonl")) {
+    const ids = raw
+      .split("\n")
+      .filter((line) => line.trim() !== "")
+      .map((line, i) => {
+        const row = JSON.parse(line) as { id?: unknown };
+        if (typeof row.id !== "string") throw new Error(`${file}:${i + 1} has no string id`);
+        return row.id;
+      });
+    return new Set(ids);
+  }
+  const seed = JSON.parse(raw) as { nodes?: { slug?: unknown }[]; events?: { id?: unknown }[] };
+  if (Array.isArray(seed.nodes)) return new Set(seed.nodes.map((n) => n.slug).filter((s): s is string => typeof s === "string"));
+  if (Array.isArray(seed.events)) return new Set(seed.events.map((e) => e.id).filter((s): s is string => typeof s === "string"));
+  throw new Error(`${file} has no nodes or events list`);
 }
 
 export interface RightsSubject {

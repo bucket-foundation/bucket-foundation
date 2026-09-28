@@ -72,7 +72,7 @@ const EXEMPT: { route: string; because: string; proof: RegExp[]; alsoIn?: { file
   {
     route: "frontier/route.ts",
     because:
-      "the GET is pinned to public nodes in the query itself, so no decision remains to make. The POST is gated on verifyReviewer or class staff. An earlier version of this entry claimed verifyReviewer covered the read, which was false: it is called in the POST, twenty lines below a GET that anyone may call",
+      "the GET is pinned to public nodes in the query itself, so no decision remains to make. The POST is gated on verifyGraphReviewer, the staff allowlist. An earlier version of this entry claimed the reviewer gate covered the read, which was false: it is called in the POST, twenty lines below a GET that anyone may call",
     proof: [/\.eq\("visibility",\s*"public"\)/],
   },
   {

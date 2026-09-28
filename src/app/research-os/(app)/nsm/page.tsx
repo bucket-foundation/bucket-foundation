@@ -3,7 +3,9 @@ import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
 import { loadNsm } from "@/lib/research-os/nsm-db";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
-import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName } from "@/lib/research-os/node-words";
+import RootTexts from "../RootTexts";
+import { BABELSTONE_NOTE, UNIHAN_NOTE } from "@/lib/research-os/han-components";
 
 export const metadata: Metadata = { title: "Semantic primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -65,6 +67,21 @@ function Merges({ p }: { p: NsmPrime }) {
   );
 }
 
+function Han({ e }: { e: NsmExponent }) {
+  if (!e.hanParts || e.hanParts.length === 0) return null;
+  return (
+    <span className="text-[12px] text-[color:var(--basalt-3)]">
+      {e.hanParts.map((h, i) => (
+        <span key={h.char}>
+          {i ? "; " : ""}
+          <span lang="zh">{h.char}</span> = {h.parts.map((p) => p.component).join(" + ")}
+        </span>
+      ))}
+      <Mark text={e.hanParts.some((h) => h.parts.some((p) => p.uncertain)) ? "IDS, uncertain" : "IDS, agrees with Wiktionary"} />
+    </span>
+  );
+}
+
 function Root({ e }: { e: NsmExponent }) {
   if (!e.rootForm) return <span className="text-[color:var(--basalt-3)]">no root shown</span>;
   return (
@@ -72,6 +89,7 @@ function Root({ e }: { e: NsmExponent }) {
       <span className="small-caps text-[10px] tracking-[0.12em] text-[color:var(--basalt-3)]">{e.rootLangName} </span>
       <span lang={(e.rootLang || "").split("-")[0]} dir="auto">{e.rootForm}</span>
       {e.rootGloss && <span className="text-[color:var(--basalt-3)]"> “{e.rootGloss}”</span>}
+      {e.rootGlossForm && <Mark text={glossFormLabel(e.rootGlossForm) ?? ""} />}
       {e.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
       {e.rootHidden ? <Mark text="root unconfirmed" /> : e.rootUncertain && <Mark text="root uncertain" />}
     </span>
@@ -96,6 +114,12 @@ function OneLanguage({ p, labels }: { p: NsmPrime; labels: Labels }) {
         <li key={`${e.lang}-${e.word}`} className="flex flex-wrap gap-x-4">
           <Word e={e} labels={labels} />
           <Root e={e} />
+          {e.rootTexts.length > 0 && (
+            <div className="basis-full">
+              <RootTexts texts={e.rootTexts} lang={e.lang} uncertain={e.uncertain} rootUncertain={e.rootUncertain} />
+            </div>
+          )}
+          <Han e={e} />
         </li>
       ))}
     </ul>
@@ -230,15 +254,22 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
           .
         </p>
         <p className="mt-1">
-          {OSHB_ATTRIBUTION.text}{" "}
-          <a href={OSHB_ATTRIBUTION.href} className="underline underline-offset-4">
-            hb.openscriptures.org
+          {BABELSTONE_NOTE.text}{" "}
+          <a href={BABELSTONE_NOTE.href} className="underline underline-offset-4">
+            BabelStone IDS
           </a>
-          ,{" "}
+          . {UNIHAN_NOTE.text}{" "}
+          <a href={UNIHAN_NOTE.license} className="underline underline-offset-4">
+            Unicode License v3
+          </a>
+          .
+        </p>
+        <p className="mt-1">
+          Hebrew roots and verses: {OSHB_ATTRIBUTION.text}, under{" "}
           <a href={OSHB_ATTRIBUTION.license} className="underline underline-offset-4">
             CC BY 4.0
           </a>
-          .
+          . {OSHB_ATTRIBUTION.wlc}
         </p>
         <p className="mt-1">
           {CLICS_ATTRIBUTION.text}{" "}

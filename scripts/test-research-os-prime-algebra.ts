@@ -1,7 +1,26 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, type DepEdge } from "../src/lib/research-os/primes";
-import { attend, coverage, depthPolynomials, firstPrimes, frontier, implications, leibnizPrimes, pmiPairs, primeBasis, withinGroup } from "../src/lib/research-os/prime-algebra";
+import {
+  attend,
+  benjaminiHochberg,
+  classifyFrontier,
+  coverage,
+  curveballTrade,
+  depthPolynomials,
+  firstPrimes,
+  formatP,
+  frontier,
+  implications,
+  leibnizPrimes,
+  nullFrontier,
+  pmiPairs,
+  primeBasis,
+  primeReach,
+  seededRandom,
+  topJaccard,
+  withinGroup,
+} from "../src/lib/research-os/prime-algebra";
 
 const pre = (from: string, to: string): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite" });
 const near = (a: number, b: number) => assert.ok(Math.abs(a - b) < 1e-9, `${a} vs ${b}`);
@@ -146,4 +165,82 @@ test("an empty graph yields empty results", () => {
   assert.deepEqual(implications(d), []);
   assert.deepEqual(depthPolynomials(d), []);
   assert.equal(coverage(d, 1).coverage, 0);
+});
+
+const margins = (rows: number[][]) => {
+  const cols = new Map<number, number>();
+  for (const r of rows) for (const x of r) cols.set(x, (cols.get(x) ?? 0) + 1);
+  return { rows: rows.map((r) => r.length), cols: Object.fromEntries(Array.from(cols).sort((a, b) => a[0] - b[0])) };
+};
+
+test("curveball trades keep every row's size and every column's count", () => {
+  const rows = [[0, 1], [2, 3, 4], [0, 4], [1, 2], [3], [0, 1, 2, 3]];
+  const before = margins(rows);
+  const rand = seededRandom("margins");
+  let moved = false;
+  const start = JSON.stringify(rows);
+  for (let i = 0; i < 500; i++) curveballTrade(rows, rand);
+  if (JSON.stringify(rows) !== start) moved = true;
+  assert.deepEqual(margins(rows), before);
+  assert.ok(moved, "the chain leaves the observed table");
+  for (const r of rows) assert.equal(new Set(r).size, r.length, "a row never holds a column twice");
+});
+
+const bipartite = (rows: string[][]): Map<string, import("../src/lib/research-os/primes").Decomposition> => {
+  const edges: DepEdge[] = rows.flatMap((ps, i) => ps.map((p) => pre(p, `c${i}`)));
+  return decompose([], edges);
+};
+
+const forced = bipartite([
+  ...Array.from({ length: 20 }, (_, i) => ["a", `x${i % 4}`]),
+  ...Array.from({ length: 20 }, (_, i) => ["b", `x${i % 4}`]),
+  ["r", "s"],
+  ["u", "x0"],
+  ["v", "x1"],
+]);
+
+test("the null model repeats under one seed and tells a forced gap from a chance gap", () => {
+  const sets = [["a", "b"], ["u", "v"]];
+  const one = nullFrontier(forced, sets, { draws: 200, seed: "s" });
+  const two = nullFrontier(forced, sets, { draws: 200, seed: "s" });
+  assert.deepEqual(one, two);
+  assert.equal(one.empty[0], 0, "a and b share a composite in every shuffle");
+  assert.ok(one.p[0] < 0.01);
+  assert.ok(one.p[1] > 0.5, "u and v, each in one composite, are apart in most shuffles");
+  const f = frontier(forced, 2);
+  const ab = f.nonfaces.find((x) => x.primes.join() === "a,b");
+  assert.ok(ab, "a and b form a nonface");
+  const asked = f.nonfaces.filter((x) => ["a,b", "u,v"].includes(x.primes.join()));
+  assert.equal(asked.length, 2);
+  const g = classifyFrontier(forced, asked, null, { draws: 200 });
+  assert.equal(g.nonfaces.find((x) => x.primes.join() === "a,b")!.gap, "real");
+  assert.equal(g.nonfaces.find((x) => x.primes.join() === "u,v")!.gap, "chance");
+  assert.equal(g.nonfaces[0].gap, "real");
+  assert.deepEqual(g.counts, { missing_edge: 0, chance: 1, real: 1 });
+});
+
+test("a nonface the pending pairs would close is a missing edge", () => {
+  const f = frontier(forced, 2);
+  const counterfactual = decompose([], [...Array.from(forced.values()).flatMap((d) => d.factors.map((x) => pre(x.id, d.id))), pre("b", "a")]);
+  const reach = primeReach(counterfactual, ["a", "b"]);
+  assert.deepEqual(Array.from(reach.get("a")!).sort(), ["a", "b"]);
+  const g = classifyFrontier(forced, f.nonfaces, counterfactual, { draws: 50 });
+  assert.equal(g.nonfaces.find((x) => x.primes.join() === "a,b")!.gap, "missing_edge");
+});
+
+test("Benjamini-Hochberg keeps the ranks under the step line", () => {
+  assert.deepEqual(benjaminiHochberg([0.01, 0.02, 0.03, 0.5], 0.05), [true, true, true, false]);
+  assert.deepEqual(benjaminiHochberg([0.03, 0.5], 0.05), [false, false]);
+  assert.deepEqual(benjaminiHochberg([0.001, 0.2, 0.3], 0.05), [true, false, false]);
+});
+
+test("p reads <0.001 at the floor of 1,000 draws", () => {
+  assert.equal(formatP(1 / 1001, 1000), "<0.001");
+  assert.equal(formatP(3 / 1001, 1000), "0.0030");
+  assert.equal(formatP(1 / 201, 200), "<0.005");
+});
+
+test("top-k Jaccard ignores the order of primes inside a set", () => {
+  assert.equal(topJaccard([["a", "b"], ["c", "d"]], [["b", "a"], ["e", "f"]], 2), 1 / 3);
+  assert.equal(topJaccard([], [], 20), 1);
 });

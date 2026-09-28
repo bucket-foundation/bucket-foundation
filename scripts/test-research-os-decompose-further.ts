@@ -31,7 +31,10 @@ import {
   parseConsolidation,
   parseVerdicts,
   selectTargets,
+  seedBaseIdeaRows,
   shortlist,
+  FOUNDATION_PER_BRANCH,
+  SEED_MODEL,
   stem,
   toProposals,
   verificationOf,
@@ -532,4 +535,74 @@ test("a model alias resolves only inside its family, and a full id only to itsel
   assert.equal(modelMatchesAlias("opus", "claude-haiku-4-5-20251001"), false);
   assert.equal(modelMatchesAlias("claude-opus-5", "claude-opus-5"), true);
   assert.equal(modelMatchesAlias("claude-opus-5", "claude-opus-4"), false);
+});
+
+test("foundations bring base ideas and other branches' mathematics and information primes into the shortlist", () => {
+  const ns = [
+    node("kin", "02-physics", "concept", "Kinematics"),
+    node("vel", "02-physics", "concept", "Velocity"),
+    node("bio", "05-biophysics", "concept", "Boltzmann distribution"),
+    node("bio-up", "05-biophysics", "concept", "Partition function"),
+    node("logic", "01-mathematics", "concept", "Logic and proof"),
+    node("thm", "01-mathematics", "concept", "Theorems"),
+    node("eq", "01-mathematics", "concept", "Equality", "node_proposal"),
+    node("num", "01-mathematics", "concept", "Number", "node_proposal"),
+    node("held", "01-mathematics", "concept", "Set theory"),
+    ...Array.from({ length: 8 }, (_, i) => node(`m${i}`, "01-mathematics", "concept", `Math topic ${i}`)),
+  ];
+  const es = [pre("kin", "vel"), pre("bio", "bio-up"), pre("logic", "thm"), pre("kin", "num"), pre("held", "thm"), ...Array.from({ length: 8 }, (_, i) => pre("logic", `m${i}`))];
+  const d = decompose(ns, es);
+  const p: Candidate[] = ns.map((n) => ({ ...n, tier: d.get(n.id)!.status === "unfactored" ? null : d.get(n.id)!.tier, prime: d.get(n.id)!.status === "prime" }));
+  const target = selectTargets(ns, d).find((t) => t.slug === "kin")!;
+  const off = shortlist(target, p, d, { perBranch: 1, semantic: 0, lexical: 0 }).map((c) => c.slug);
+  const on = shortlist(target, p, d, { perBranch: 1, semantic: 0, lexical: 0, foundations: true, foundationSlugs: new Set(["held"]) }).map((c) => c.slug);
+  assert.ok(!off.includes("eq"), "an unfactored base idea has no tier and misses the per-branch pool");
+  assert.ok(on.includes("eq"), "a base idea is a foundation");
+  assert.ok(on.includes("held"), "a node holding a base idea is a foundation");
+  assert.ok(on.includes("logic"), "a mathematics prime is a foundation for a physics target");
+  assert.deepEqual(on.filter((x) => x.startsWith("bio")), off.filter((x) => x.startsWith("bio")), "biophysics keeps the per-branch pool");
+  assert.ok(!on.includes("num"), "a foundation resting on the target still drops out");
+  const math = on.filter((x) => /^m\d$/.test(x));
+  assert.equal(math.length, FOUNDATION_PER_BRANCH - 2, "mathematics gets the larger quota: two primes and four tier-one nodes");
+  assert.equal(off.filter((x) => /^m\d$/.test(x)).length, 0);
+});
+
+test("the foundation quota applies only to a target outside mathematics and information", () => {
+  const ns = [node("setf", "01-mathematics", "concept", "Sets and functions"), ...Array.from({ length: 8 }, (_, i) => node(`q${i}`, "01-mathematics", "concept", `Quantity ${i}`))];
+  const d = decompose(ns, []);
+  const p: Candidate[] = ns.map((n) => ({ ...n, tier: 1, prime: true }));
+  const target = { ...ns[0], status: "prime" as const };
+  const s = shortlist(target, p, d, { perBranch: 2, semantic: 0, lexical: 0, foundations: true });
+  assert.equal(s.length, 2);
+});
+
+test("base ideas are seeded once each, skipped when a node already names them", () => {
+  const ns = [
+    node("sf", "01-mathematics", "concept", "Sets and functions"),
+    node("ep", "02-physics", "concept", "Equivalence principle"),
+    node("ns", "01-mathematics", "concept", "Number systems"),
+  ];
+  const seeds = [
+    { title: "Equality", branch: "01-mathematics", definition: "Two expressions are equal when they name the same thing." },
+    { title: "Set", branch: "01-mathematics", definition: "A collection of distinct things." },
+    { title: "Function", branch: "01-mathematics", definition: "Each input gets one output." },
+    { title: "Number", branch: "01-mathematics", definition: "How many or how much." },
+  ];
+  const near = (title: string) => (title === "Equality" ? [{ slug: "ep", title: "Equivalence principle", similarity: 0.8 }, { slug: "a", title: "A", similarity: 0.79 }, { slug: "b", title: "B", similarity: 0.78 }, { slug: "c", title: "C", similarity: 0.77 }] : []);
+  const { rows, held } = seedBaseIdeaRows(seeds, ns, near);
+  assert.deepEqual(held, [
+    { title: "Set", slugs: ["sf"] },
+    { title: "Function", slugs: ["sf"] },
+  ]);
+  assert.deepEqual(rows.map((r) => r.key), [missingKey("Equality"), missingKey("Number")]);
+  const eq = rows[0];
+  assert.equal(eq.summary, seeds[0].definition);
+  assert.deepEqual(eq.named_by, []);
+  assert.equal(eq.base_match, "THE SAME (equality)");
+  assert.equal(eq.model, SEED_MODEL);
+  assert.deepEqual(eq.possible_duplicates.map((x) => x.slug), ["ep", "a", "b"]);
+  assert.deepEqual(rows[1].possible_duplicates, []);
+  assert.deepEqual(seedBaseIdeaRows(seeds, ns, near).rows, rows);
+  assert.deepEqual(seedBaseIdeaRows(seeds, [...ns, node("eqn", "01-mathematics", "concept", "Equality", "node_proposal")], near).rows.map((r) => r.key), [missingKey("Number")]);
+  assert.throws(() => seedBaseIdeaRows([{ title: "Gravity", branch: "02-physics", definition: "x" }], ns, near), /names no base idea/);
 });

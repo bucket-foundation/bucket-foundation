@@ -1,0 +1,16 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX psv: <http://www.wikidata.org/prop/statement/value/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+SELECT ?name ?p ?label ?desc (MIN(YEAR(?b)) AS ?born) (MIN(YEAR(?d)) AS ?died) WHERE {
+  VALUES ?name { "Abū Ḥāmid al-Ghazālī"@en "Alan Hodgkin & Andrew Huxley"@en "Alan Turing"@en "Albert Einstein"@en "Albert Szent-Györgyi"@en "Alfred Wegener"@en "Alhazen"@en "Alonzo Church"@en "Andrew Marino"@en "Andrey Kolmogorov"@en "Antoine Lavoisier"@en "Archimedes"@en "Archimedes of Syracuse"@en "Aristarchus"@en "Aristarchus of Samos"@en "Aristotle"@en "Arturo Solís-Herrera"@en "Aryabhata"@en "Augustine"@en "Augustine of Hippo"@en "Bernhard Riemann"@en "Brahmagupta"@en "Carl Friedrich Gauss"@en "Charles Lyell"@en "Claude Shannon"@en "Claudius Ptolemy"@en "Confucius"@en "Confucius (Kong Fuzi)"@en "Dante Alighieri"@en "David Hilbert"@en "David Marr"@en "Dmitri Mendeleev"@en "Douglas C. Wallace"@en "Du Fu"@en "Edwin Hubble"@en "Emmy Noether"@en "Euclid"@en "Euclid of Alexandria"@en "Frederick Sanger"@en "Fritz-Albert Popp"@en "Galileo Galilei"@en "Georg Cantor"@en "George Boole"@en "Georges Lemaître"@en "Gerald Pollack"@en "Gilbert Ling"@en "Gottlob Frege"@en "Gregor Mendel"@en "Harold Saxton Burr"@en "Hildegard"@en "Hildegard of Bingen"@en "Homer"@en "Homer (attributed)"@en "Ibn al-Haytham"@en "Ibn al-Haytham (Alhazen)"@en "Immanuel Kant"@en "Isaac Newton"@en "J. R. R. Tolkien"@en "James Clerk Maxwell"@en "James Hutton"@en "James Watson & Francis Crick"@en "Jean-François Champollion"@en "Johann Sebastian Bach"@en "Johannes Kepler"@en "John Anthony West"@en "John Dalton"@en "John von Neumann"@en "Jorge Luis Borges"@en "Katsushika Hokusai"@en "Klaus Schmidt"@en "Kong Fuzi"@en "Kurt Gödel"@en "Lao Tzu"@en "Lao Tzu (Laozi)"@en "Laozi"@en "Leonardo da Vinci"@en "Linus Pauling"@en "Louis Pasteur"@en "Ludwig Boltzmann"@en "Ludwig Wittgenstein"@en "Lynn Margulis"@en "Maimonides"@en "Maimonides (Rambam)"@en "Marie Skłodowska-Curie"@en "Marie Tharp"@en "Michael Levin"@en "Michael Ventris"@en "Milutin Milanković"@en "Muḥammad ibn Mūsā al-Khwārizmī"@en "Nick Lane"@en "Nicolas Steno"@en "Nicolaus Copernicus"@en "Niels Bohr"@en "Noam Chomsky"@en "Norbert Wiener"@en "Paul Dirac"@en "Peter Mitchell"@en "Rambam"@en "Randall Carlson"@en "René Descartes"@en "Robert M. Schoch"@en "Robert O. Becker"@en "Rosalind Franklin"@en "Sappho"@en "Siddhārtha Gautama"@en "Siddhārtha Gautama (the Buddha)"@en "Thomas Aquinas"@en "Vera Rubin"@en "Vladimir Khavinson"@en "William James"@en "William Jones"@en "William Shakespeare"@en "attributed"@en "the Buddha"@en "Émilie du Châtelet"@en "Évariste Galois"@en }
+  ?p rdfs:label|skos:altLabel ?name ; wdt:P31 wd:Q5 .
+  OPTIONAL { ?p rdfs:label ?label FILTER(LANG(?label) = "en") }
+  OPTIONAL { ?p schema:description ?desc FILTER(LANG(?desc) = "en") }
+  OPTIONAL { ?p wdt:P569 ?b }
+  OPTIONAL { ?p wdt:P570 ?d }
+} GROUP BY ?name ?p ?label ?desc

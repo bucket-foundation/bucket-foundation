@@ -135,11 +135,11 @@
     }
   },
   "POST valid, store down": {
-    "status": 500,
+    "status": 503,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "write_failed"
+      "error": "research_os_unavailable"
     }
   },
   "POST valid, saved": {
@@ -152,7 +152,8 @@
         "birthYearBucket": "18plus",
         "consentStatus": "not_required",
         "updatedAt": "<time>"
-      }
+      },
+      "deleted": false
     }
   }
 }

@@ -48,3 +48,13 @@ export function sql(statement: string): { status: number; out: string } {
   const run = spawnSync("psql", [TEST_DB, "-At", "-v", "ON_ERROR_STOP=1", "-c", statement], { encoding: "utf8" });
   return { status: run.status ?? 1, out: (run.stdout || "").trim() + (run.stderr || "") };
 }
+
+export function openLaunchScope(): () => void {
+  /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+  const scope = require("../../src/lib/research-os/launch-scope") as Record<string, unknown>;
+  const closed = scope.inLaunchScope;
+  scope.inLaunchScope = () => true;
+  return () => {
+    scope.inLaunchScope = closed;
+  };
+}

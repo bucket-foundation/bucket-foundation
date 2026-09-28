@@ -45,8 +45,6 @@
 
   function open(opts) {
     var atom = opts.atom;
-    var byId = opts.byId || {};
-    var grounding = buildGrounding(atom, byId);
     var history = [];
 
     var back = el("div", "tutor-back");
@@ -213,7 +211,7 @@
           "div",
           "tutor-bubble notice",
           "<b>Tutor not enabled yet.</b><br>The tutor needs an API key configured on the server. " +
-            "Everything else on this concept — the lesson, the art, the drill — works as normal."
+            "The lesson, the art and the drill on this concept work as normal."
         )
       );
       log.appendChild(m);
@@ -229,10 +227,39 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    function addSignIn() {
+      var m = el("div", "tutor-msg tutor");
+      var bubble = el("div", "tutor-bubble notice", "<b>Sign in to ask the tutor.</b>");
+      var AuthUI = global.BucketAuthUI;
+      var Auth = global.BucketAuth;
+      if (AuthUI && typeof AuthUI.open === "function" && Auth && Auth.enabled) {
+        var btn = el("button", "tutor-signin", "Sign in");
+        btn.type = "button";
+        btn.onclick = function () {
+          AuthUI.open();
+        };
+        bubble.appendChild(btn);
+      } else {
+        bubble.appendChild(el("div", "tutor-signin-note", "Sign-in is off in this build, so the tutor is unavailable."));
+      }
+      m.appendChild(bubble);
+      log.appendChild(m);
+      scroll();
+    }
+    function sessionToken() {
+      var Auth = global.BucketAuth;
+      return Auth && typeof Auth.accessToken === "function" ? Auth.accessToken() : null;
+    }
+
     var busy = false;
     function ask() {
       var q = (input.value || "").trim();
       if (!q || busy) return;
+      var tok = sessionToken();
+      if (!tok) {
+        addSignIn();
+        return;
+      }
       busy = true;
       send.disabled = true;
       input.value = "";
@@ -245,12 +272,12 @@
         branch: opts.branch || null,
         question: q,
         history: history.slice(-8),
-        grounding: grounding,
       };
 
       fetch(API, {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", Authorization: "Bearer " + tok },
+        credentials: "omit",
         body: JSON.stringify(payload),
       })
         .then(function (res) {
@@ -265,16 +292,22 @@
         })
         .then(function (r) {
           if (thinking.parentNode) thinking.parentNode.removeChild(thinking);
+          var serverMsg = r.data && typeof r.data.error === "string" ? r.data.error : "";
+          if (r.status === 401) {
+            addSignIn();
+            return;
+          }
           if (r.status === 503) {
-            addNotEnabled();
+            if (!serverMsg || /enabled/i.test(serverMsg)) addNotEnabled();
+            else addError("The tutor is unavailable right now. Try again later.");
             return;
           }
           if (r.status === 429) {
-            addError("You're asking quickly — give it a few seconds and try again.");
+            addError(serverMsg || "You've reached today's tutor limit. It resets at midnight UTC.");
             return;
           }
           if (r.status >= 400 || !r.data || typeof r.data.reply !== "string") {
-            var msg = r.data && r.data.error && r.data.error.message;
+            var msg = serverMsg;
             addError(msg || "The tutor couldn't answer that. Try rephrasing.");
             return;
           }

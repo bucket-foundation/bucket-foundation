@@ -1,0 +1,13 @@
+{"version": "1.2.0",
+ "packagesDir": ".lake/packages",
+ "packages":
+ [{"type": "path",
+   "scope": "",
+   "name": "bucket_history_hypothesis_engine",
+   "manifestFile": "lake-manifest.json",
+   "inherited": false,
+   "dir": "../papers/history-hypothesis-engine/lean",
+   "configFile": "lakefile.toml"}],
+ "name": "bucketmath",
+ "lakeDir": ".lake",
+ "fixedToolchain": false}

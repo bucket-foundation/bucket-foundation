@@ -72,3 +72,15 @@ test("a batch answers every request and drops notifications; a non-object body i
   const bad = (await handleBody("nope")) as Rpc;
   assert.equal(bad.error.code, -32600);
 });
+
+test("bucketmath_lookup finds proved theorems with a citation tag", async () => {
+  const r = (await handleMessage({ jsonrpc: "2.0", id: 9, method: "tools/call", params: { name: "bucketmath_lookup", arguments: { q: "pythagoras_unit" } } })) as Rpc;
+  assert.equal(r.result.isError, false);
+  const hit = r.result.structuredContent.results[0];
+  assert.equal(hit.name, "BucketMath.Directions.pythagoras_unit");
+  assert.equal(hit.status, "proved");
+  assert.equal(hit.cite, "[bm:BucketMath.Directions.pythagoras_unit]");
+  assert.ok(!hit.source.startsWith("/") && hit.url.includes("lean/BucketMath/Directions.lean"));
+  const projected = (await handleMessage({ jsonrpc: "2.0", id: 10, method: "tools/call", params: { name: "bucketmath_lookup", arguments: { q: "pythagoras_orthonormal" } } })) as Rpc;
+  assert.equal(projected.result.structuredContent.results[0].cite, "[bm:BucketMath.Project.pythagoras_orthonormal]");
+});

@@ -19,6 +19,10 @@ The timer **disables itself** once 0-fail run completes. Re-enable with
 
 ## Grant Draft Review
 
+**Retired 2026-09-23:** the founder's Hetzner box hosted both
+`longtail.agfarms.dev` and the HMAC secret below. That box is gone for good,
+so this queue is unreachable until a replacement host is chosen. The steps
+below are kept as a record of the workflow.
 
 Bucket grant drafts (LoIs, full applications, budget narratives, etc.) flow
 through the Longtail chisel queue at https://longtail.agfarms.dev/chisel for
@@ -58,6 +62,16 @@ Secret, do not use it. Cleanup tracked in `bkt-*` bead.
 
 ## Polingual Infrastructure
 
+**Retired 2026-09-23:** the founder's Hetzner box is gone for good. That
+retires the "HETZNER (AUTHORITATIVE)" copy below, the "Architecture
+decision" paragraph that assumed it, the interim `polingual.agfarms.dev`
+service and its "Accessibility tiers" fallback chain, and the Nucleus 502
+note under "Known infra issues." With `POLINGUAL_API_URL` and
+`POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes
+no network call and falls straight to the baked subset. The "LOCAL FULL
+pgvector" and "FULL FINAL STATE" entries below are current: they describe
+the local docker `bucket-pgvector` index CLAUDE.md names as the primary
+index today.
 
 Language surface on the photon substrate.
 

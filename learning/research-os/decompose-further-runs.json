@@ -393,6 +393,263 @@
    "failures": 0,
    "first_pass_from_cache": 34,
    "possible_duplicate_hints": 21
+  },
+  {
+   "run": "v6, cross-branch foundations in the shortlist (bkt-ybzm)",
+   "generated_at": "2026-09-23T16:08:36.844Z",
+   "targets": 41,
+   "answered": 41,
+   "replayed_from_cache": 1,
+   "model_calls": {
+    "probes": 2,
+    "by_model": {
+     "claude-sonnet-5": 42,
+     "claude-opus-5-5": 61
+    },
+    "total": 105
+   },
+   "proposals": 168,
+   "confirmed": 92,
+   "confirmed_blind": 85,
+   "confirmed_unblinded": 7,
+   "cross_branch": 115,
+   "in_cycle": 38,
+   "confirmation": {
+    "all": {
+     "pairs": 168,
+     "confirmed": 92
+    },
+    "cross_branch": {
+     "pairs": 115,
+     "confirmed": 68
+    },
+    "same_branch": {
+     "pairs": 53,
+     "confirmed": 24
+    },
+    "prime_targets": {
+     "pairs": 159,
+     "confirmed": 85
+    },
+    "unfactored_targets": {
+     "pairs": 9,
+     "confirmed": 7
+    }
+   },
+   "agreement": {
+    "pairs": 316,
+    "targets": 41,
+    "table": {
+     "pickedHolds": 85,
+     "pickedNot": 72,
+     "passedHolds": 2,
+     "passedNot": 157
+    },
+    "observed": 0.7658227848101266,
+    "kappa": 0.5303097256256779,
+    "kappaInterval": [
+     0.44794867160672314,
+     0.6204912280701755
+    ]
+   },
+   "agreement_by_branch": {
+    "cross": {
+     "pairs": 226,
+     "targets": 41,
+     "table": {
+      "pickedHolds": 61,
+      "pickedNot": 44,
+      "passedHolds": 1,
+      "passedNot": 120
+     },
+     "observed": 0.8008849557522124,
+     "kappa": 0.5886255157349729,
+     "kappaInterval": [
+      0.47599968575693297,
+      0.7106184364060678
+     ]
+    },
+    "same": {
+     "pairs": 90,
+     "targets": 35,
+     "table": {
+      "pickedHolds": 24,
+      "pickedNot": 28,
+      "passedHolds": 1,
+      "passedNot": 37
+     },
+     "observed": 0.6777777777777778,
+     "kappa": 0.397228637413395,
+     "kappaInterval": [
+      0.2695439739413681,
+      0.5662535748331744
+     ]
+    }
+   },
+   "refd_auc": {
+    "proposals": {
+     "auc": 0.603,
+     "interval": [
+      0.523,
+      0.691
+     ],
+     "targets": 39,
+     "confirmed": 86,
+     "refuted": 70
+    },
+    "blinded": {
+     "auc": 0.636,
+     "interval": [
+      0.562,
+      0.713
+     ],
+     "targets": 39,
+     "confirmed": 81,
+     "refuted": 204
+    },
+    "blinded_picks": {
+     "auc": 0.579,
+     "interval": [
+      0.496,
+      0.67
+     ],
+     "targets": 39,
+     "confirmed": 79,
+     "refuted": 66
+    },
+    "blinded_passed_over": {
+     "auc": 0.895,
+     "interval": null,
+     "targets": 38,
+     "confirmed": 2,
+     "refuted": 138
+    }
+   },
+   "refd_auc_by_branch": {
+    "cross": {
+     "auc": 0.563,
+     "interval": [
+      0.461,
+      0.665
+     ],
+     "targets": 35,
+     "confirmed": 63,
+     "refuted": 42
+    },
+    "same": {
+     "auc": 0.669,
+     "interval": [
+      0.494,
+      0.831
+     ],
+     "targets": 24,
+     "confirmed": 23,
+     "refuted": 28
+    }
+   },
+   "models": {
+    "proposer": "claude-sonnet-5",
+    "verifier": "claude-opus-5-5",
+    "aliases": {
+     "proposer": "sonnet",
+     "verifier": "opus"
+    },
+    "mismatched": []
+   },
+   "shortlist": {
+    "foundations": true,
+    "foundation_slugs": [
+     "academy-01-mathematics-set-function",
+     "academy-01-mathematics-set-theory-axioms",
+     "academy-04-information-set-function-relation"
+    ]
+   },
+   "base_ideas": {
+    "held": [
+     {
+      "title": "Set",
+      "slugs": [
+       "academy-01-mathematics-set-function",
+       "academy-01-mathematics-set-theory-axioms",
+       "academy-04-information-set-function-relation"
+      ]
+     },
+     {
+      "title": "Function",
+      "slugs": [
+       "academy-01-mathematics-set-function",
+       "academy-04-information-set-function-relation"
+      ]
+     }
+    ],
+    "proposed": [
+     "equality",
+     "number",
+     "measurement"
+    ],
+    "written": 0
+   },
+   "missing": {
+    "named": 78,
+    "groups": 76,
+    "matched_to_existing": 19,
+    "node_proposals": 57,
+    "reused_earlier_keys": 6,
+    "matched_pairs_made": 11,
+    "named_by_more_than_one": 0
+   },
+   "frontier_baseline": {
+    "composites": 510,
+    "nonfaces": 731,
+    "counterfactual_pairs": 121,
+    "null": {
+     "method": "curveball",
+     "draws": 1000,
+     "seed": "null-frontier",
+     "ms": 379
+    },
+    "counts": {
+     "missing_edge": 331,
+     "chance": 378,
+     "real": 22
+    },
+    "cross_branch": {
+     "missing_edge": 231,
+     "chance": 264,
+     "real": 22
+    },
+    "stability": {
+     "subsets": 100,
+     "fraction": 0.9,
+     "subset_draws": 1000,
+     "top": 20,
+     "jaccard": {
+      "min": 0,
+      "median": 0.81,
+      "max": 1
+     },
+     "real_per_subset": {
+      "min": 0,
+      "max": 23
+     }
+    },
+    "stability_at_half": {
+     "fraction": 0.5,
+     "jaccard_median": 0,
+     "real_per_subset": [
+      0,
+      0
+     ]
+    },
+    "before_run": {
+     "counterfactual_pairs": 98,
+     "counts": {
+      "missing_edge": 289,
+      "chance": 419,
+      "real": 23
+     }
+    }
+   }
   }
  ]
 }

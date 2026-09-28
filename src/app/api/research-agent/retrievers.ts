@@ -27,8 +27,8 @@ export type RetrievalLog = {
 
 export type RetrievalResult = { sources: Source[]; log: RetrievalLog[] };
 
-const ATLAS_API = (process.env.ATLAS_API_URL ?? "https://atlas-api.agfarms.dev").replace(/\/$/, "");
-const GATEWAY = (process.env.TOOLS_GATEWAY_URL ?? "https://research-tools.agfarms.dev").replace(/\/$/, "");
+const ATLAS_API = process.env.ATLAS_API_URL?.replace(/\/$/, "") ?? "";
+const GATEWAY = process.env.TOOLS_GATEWAY_URL?.replace(/\/$/, "") ?? "";
 const RETR_TIMEOUT_MS = Number(process.env.RESEARCH_AGENT_RETR_TIMEOUT_MS ?? "12000");
 const OPENALEX_MAILTO = process.env.OPENALEX_MAILTO ?? "research@bucket.foundation";
 
@@ -197,6 +197,9 @@ export async function retrievePubMed(query: string, retmax = 4): Promise<Retriev
 }
 
 export async function retrieveAtlas(): Promise<RetrievalResult> {
+  if (!ATLAS_API) {
+    return { sources: [], log: [{ retriever: "atlas", call: "(unconfigured)", ok: false, count: 0, note: "ATLAS_API_URL not set" }] };
+  }
   const statsUrl = `${ATLAS_API}/stats`;
   const call = `GET ${statsUrl}`;
   try {
@@ -242,6 +245,10 @@ export type MethodsMatch = {
 };
 
 export async function matchMethods(question: string): Promise<{ match: MethodsMatch; sources: Source[]; log: RetrievalLog }> {
+  if (!GATEWAY) {
+    const match: MethodsMatch = { recommendation: "(MethodsMatcher unreachable)", methods: [], tools: [], degraded: true, call: "(unconfigured)", ok: false };
+    return { match, sources: [], log: { retriever: "methods", call: "(unconfigured)", ok: false, count: 0, note: "TOOLS_GATEWAY_URL not set" } };
+  }
   const url = `${GATEWAY}/v1/methodsmatcher/submit`;
   const call = `POST ${url} {"question": ${JSON.stringify(question)}}`;
   try {

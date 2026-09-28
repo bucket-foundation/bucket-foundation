@@ -27,7 +27,7 @@ def row(node_id, lang, word, confidence=0.9):
         "node_id": node_id, "lang": lang, "word": word, "roman": "", "gloss": "light", "root_lang": "ine-pro",
         "root_form": "*lewk-", "root_gloss": "to shine", "chain": [{"lang": "ine-pro", "form": "*lewk-", "rel": "der", "gloss": "to shine"}],
         "root_texts": [], "source": nw.SOURCE, "en_term": "light", "sense": "visible light", "confidence": confidence,
-        "root_confidence": confidence, "root_source": "wiktionary",
+        "root_confidence": confidence, "root_source": "wiktionary", "root_gloss_form": None, "root_gloss_confidence": None,
     }
 
 class WriteRowsTests(unittest.TestCase):
@@ -62,6 +62,22 @@ class WriteRowsTests(unittest.TestCase):
     def test_a_malformed_node_id_is_refused_before_any_sql(self):
         with self.assertRaises(ValueError):
             nw.write_rows(DB_URL, [], ["x') or true --"])
+
+    def test_hebrew_bible_verses_round_trip_as_jsonb(self):
+        he = dict(row(self.node_id, "he", "אור"), root_lang="he", root_form="א־ו־ר", root_texts=[{
+            "corpus": "Hebrew Bible", "source": "Original work of the Open Scriptures Hebrew Bible available at https://github.com/openscriptures/morphhb",
+            "root": "א־ו־ר", "count": 179, "samples": [{"ref": "Genesis 1:3", "text": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר"}],
+        }])
+        nw.write_rows(DB_URL, [he], [self.node_id])
+        got = psql(f"select root_texts->0->>'corpus', root_texts->0->'samples'->0->>'text' from graph.node_words where node_id = '{self.node_id}' and lang = 'he'")
+        self.assertEqual(got, "Hebrew Bible|וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר")
+
+    def test_arabic_root_meaning_columns_round_trip(self):
+        ar = dict(row(self.node_id, "ar", "علم"), root_lang="ar", root_form="ع ل م", root_gloss="to teach, to instruct", root_gloss_form="II", root_gloss_confidence=0.7)
+        en = dict(row(self.node_id, "en", "light"), root_gloss_form=None, root_gloss_confidence=None)
+        nw.write_rows(DB_URL, [ar, en], [self.node_id])
+        self.assertEqual(psql(f"select root_gloss_form || '|' || root_gloss_confidence from graph.node_words where node_id = '{self.node_id}' and lang = 'ar'"), "II|0.7")
+        self.assertEqual(psql(f"select coalesce(root_gloss_form, 'none') from graph.node_words where node_id = '{self.node_id}' and lang = 'en'"), "none")
 
 if __name__ == "__main__":
     unittest.main()

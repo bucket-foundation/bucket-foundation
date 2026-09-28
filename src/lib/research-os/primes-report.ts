@@ -1,7 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { coverage, depthPolynomials, frontier, implications, leibnizPrimes, pmiPairs, withinGroup, type Nonface } from "./prime-algebra";
+import { classifyFrontier, coverage, depthPolynomials, formatP, frontier, implications, leibnizPrimes, pmiPairs, withinGroup, type GapClass, type Nonface } from "./prime-algebra";
+import { CONFIDENCE_SOURCE } from "./decompose-further";
 import { pagedRead } from "./paging";
-import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
+import { decompose, FACTOR_EDGES, penetration, summarize, type Decomposition, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
+import { nonIdeaReportFilter } from "./idea";
+import { readLineageSummary } from "./medallion/lineage-read";
+import type { LineageSummary } from "./medallion/report";
 
 export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 export type ReportEdge = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -23,7 +27,10 @@ export interface PrimesReport {
   confirmedIrreducible: { count: number; of: number; sample: ReportRef[] };
   reviewAgain: ReportRef[];
   algebra: PrimeAlgebraReport;
+  lineage?: LineageBlock;
 }
+
+export type LineageBlock = { ok: true; summary: LineageSummary } | { ok: false; unavailable: string };
 
 export interface PrimeAlgebraReport {
   coverage: { s: number; coverage: number; supports: number }[];
@@ -32,23 +39,45 @@ export interface PrimeAlgebraReport {
     triples: number;
     expectedAtLeastOne: number;
     withinBranch: number;
-    top: { primes: ReportRef[]; expected: number }[];
-    topWithinBranch: { primes: ReportRef[]; expected: number }[];
+    top: GapRow[];
+    topWithinBranch: GapRow[];
+    gaps: { draws: number; counts: Record<GapClass, number>; counterfactualPairs: number };
   };
   together: { a: ReportRef; b: ReportRef; joint: number; pmi: number }[];
   implied: { node: ReportRef; factor: ReportRef; support: number; mutual: boolean }[];
   reach: (ReportRef & { coefficients: number[]; meanDepth: number })[];
 }
 
+export type GapRow = { primes: ReportRef[]; expected: number; p: string; gap: GapClass };
+
+export type PendingPair = { from_id: string; to_id: string };
+
+export type ReportOptions = { now?: Date; pendingConfirmed?: PendingPair[]; nullDraws?: number };
+
+export const NULL_DRAWS = 1000;
+
 const TOP = 12;
 const ALGEBRA_ROWS = 5;
 
-export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[], irreducibleSlugs: Set<string>, now = new Date()): PrimesReport {
+function factorInputs(nodeRows: ReportNode[], edgeRows: ReportEdge[]): { nodes: PrimeNodeInput[]; edges: DepEdge[] } {
   const live = new Set(nodeRows.map((n) => n.id));
-  const nodes: PrimeNodeInput[] = nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch }));
-  const edges: DepEdge[] = edgeRows
-    .filter((e) => e.kind in FACTOR_EDGES && live.has(e.from_id) && live.has(e.to_id))
-    .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
+  return {
+    nodes: nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch })),
+    edges: edgeRows
+      .filter((e) => e.kind in FACTOR_EDGES && live.has(e.from_id) && live.has(e.to_id))
+      .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence })),
+  };
+}
+
+export function decomposeRows(nodeRows: ReportNode[], edgeRows: ReportEdge[]): Map<string, Decomposition> {
+  const { nodes, edges } = factorInputs(nodeRows, edgeRows);
+  return decompose(nodes, edges);
+}
+
+export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[], irreducibleSlugs: Set<string>, options: ReportOptions = {}): PrimesReport {
+  const now = options.now ?? new Date();
+  const { nodes, edges } = factorInputs(nodeRows, edgeRows);
+  const live = new Set(nodeRows.map((n) => n.id));
 
   const dec = decompose(nodes, edges);
   const pen = penetration(nodes, dec);
@@ -80,8 +109,13 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
     return b ? `branch:${b}` : `prime:${id}`;
   };
   const all = frontier(dec);
-  const within = withinGroup(all.nonfaces, branchKey);
-  const named = (x: Nonface) => ({ primes: x.primes.map(ref), expected: x.expected });
+  const extra = (options.pendingConfirmed ?? []).filter((p) => live.has(p.from_id) && live.has(p.to_id));
+  const counterfactual = extra.length
+    ? decompose(nodes, edges.concat(extra.map((p) => ({ fromId: p.from_id, toId: p.to_id, kind: "prerequisite", confidence: null }))))
+    : null;
+  const gaps = classifyFrontier(dec, all.nonfaces, counterfactual, { draws: options.nullDraws ?? NULL_DRAWS });
+  const within = withinGroup(gaps.nonfaces, branchKey) as typeof gaps.nonfaces;
+  const named = (x: (typeof gaps.nonfaces)[number]): GapRow => ({ primes: x.primes.map(ref), expected: x.expected, p: formatP(x.p, gaps.draws), gap: x.gap });
   const algebra: PrimeAlgebraReport = {
     coverage: [1, 2].map((s) => {
       const c = coverage(dec, s, lp);
@@ -92,8 +126,9 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
       triples: all.triples,
       expectedAtLeastOne: all.expectedAtLeastOne,
       withinBranch: within.length,
-      top: all.nonfaces.slice(0, ALGEBRA_ROWS).map(named),
+      top: gaps.nonfaces.slice(0, ALGEBRA_ROWS).map(named),
       topWithinBranch: within.slice(0, ALGEBRA_ROWS).map(named),
+      gaps: { draws: gaps.draws, counts: gaps.counts, counterfactualPairs: extra.length },
     },
     together: pmiPairs(dec)
       .slice(0, ALGEBRA_ROWS)
@@ -120,6 +155,15 @@ export function buildPrimesReport(nodeRows: ReportNode[], edgeRows: ReportEdge[]
     reviewAgain: reviewAgain.map((n) => ref(n.id)),
     algebra,
   };
+}
+
+export function pendingPairIds(nodeRows: ReportNode[], pairs: { from_slug: string; to_slug: string }[]): PendingPair[] {
+  const idOf = new Map(nodeRows.filter((n) => n.slug).map((n) => [n.slug!, n.id]));
+  return pairs.flatMap((p) => {
+    const from = idOf.get(p.from_slug);
+    const to = idOf.get(p.to_slug);
+    return from && to ? [{ from_id: from, to_id: to }] : [];
+  });
 }
 
 type Query = ReturnType<ReturnType<SupabaseClient["from"]>["select"]>;
@@ -159,12 +203,33 @@ export async function loadPrimesReport(svc: SupabaseClient, ttlMs = 60_000, read
   return promise;
 }
 
-async function readPrimesReport(svc: SupabaseClient): Promise<PrimesReport> {
-  const [nodeRows, edgeRows, reviewed] = await Promise.all([
-    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null)),
+export type PrimesInputs = { nodeRows: ReportNode[]; edgeRows: ReportEdge[]; irreducible: Set<string>; pendingConfirmed: PendingPair[] };
+
+export async function readPrimesInputs(svc: SupabaseClient): Promise<PrimesInputs> {
+  const [nodeRows, edgeRows, reviewed, pending] = await Promise.all([
+    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null).not("kind", "in", nonIdeaReportFilter())),
     readAll<ReportEdge>(svc, "edges", "id, from_id, to_id, kind, confidence", "id", (q) => q.in("kind", Object.keys(FACTOR_EDGES))),
     readAll<{ node_slug: string; status: string }>(svc, "irreducible_proposals", "id, node_slug, status", "id"),
+    readAll<{ from_slug: string; to_slug: string }>(svc, "edge_proposals", "id, from_slug, to_slug", "id", (q) =>
+      q.eq("status", "pending").eq("verification", "confirmed").eq("confidence_source", CONFIDENCE_SOURCE),
+    ),
   ]);
   const irreducible = new Set(reviewed.filter((r) => r.status === "confirmed").map((r) => r.node_slug));
-  return buildPrimesReport(nodeRows, edgeRows, irreducible);
+  return { nodeRows, edgeRows, irreducible, pendingConfirmed: pendingPairIds(nodeRows, pending) };
+}
+
+export async function readLineageBlock(svc: SupabaseClient, nodeRows: ReportNode[], edgeRows: ReportEdge[]): Promise<LineageBlock> {
+  try {
+    return { ok: true, summary: await readLineageSummary(svc, decomposeRows(nodeRows, edgeRows)) };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[primes] lineage block failed:", message);
+    return { ok: false, unavailable: message };
+  }
+}
+
+async function readPrimesReport(svc: SupabaseClient): Promise<PrimesReport> {
+  const x = await readPrimesInputs(svc);
+  const report = buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible, { pendingConfirmed: x.pendingConfirmed });
+  return { ...report, lineage: await readLineageBlock(svc, x.nodeRows, x.edgeRows) };
 }

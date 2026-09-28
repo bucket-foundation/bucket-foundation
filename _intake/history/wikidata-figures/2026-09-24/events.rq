@@ -1,0 +1,15 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX psv: <http://www.wikidata.org/prop/statement/value/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+SELECT ?e ?t ?prec ?cal WHERE {
+  VALUES ?e { wd:Q10872057 wd:Q109803885 wd:Q110685305 wd:Q111917713 wd:Q112243708 wd:Q113955168 wd:Q11443166 wd:Q115300617 wd:Q115498546 wd:Q116286589 wd:Q119855415 wd:Q126373743 wd:Q129676126 wd:Q130008314 wd:Q130008379 wd:Q13017652 wd:Q13017658 wd:Q13017665 wd:Q13017666 wd:Q13017668 wd:Q13017669 wd:Q13017670 wd:Q13017671 wd:Q13017680 wd:Q130552906 wd:Q130553101 wd:Q131198847 wd:Q131419282 wd:Q131419536 wd:Q131419559 wd:Q131419653 wd:Q131419721 wd:Q131419834 wd:Q131419879 wd:Q131419912 wd:Q131419989 wd:Q131831137 wd:Q132173063 wd:Q132541119 wd:Q132650050 wd:Q135004855 wd:Q135642091 wd:Q135726467 wd:Q137767146 wd:Q143866 wd:Q16056961 wd:Q16490716 wd:Q17176489 wd:Q17221501 wd:Q17230997 wd:Q25487937 wd:Q39745435 wd:Q39745767 wd:Q39746053 wd:Q39746220 wd:Q39746356 wd:Q39746481 wd:Q39746601 wd:Q39746709 wd:Q39746804 wd:Q39746961 wd:Q39747116 wd:Q39747320 wd:Q5166275 wd:Q62388505 wd:Q63486522 wd:Q65259264 wd:Q65259305 wd:Q7253161 wd:Q85039642 wd:Q85879137 wd:Q85987157 wd:Q937328 wd:Q97502346 }
+  { ?e p:P585 ?st . ?st psv:P585 ?v } UNION { ?e p:P580 ?st . ?st psv:P580 ?v }
+  ?st wikibase:rank ?rank .
+  FILTER(?rank != wikibase:DeprecatedRank)
+  ?v wikibase:timeValue ?t ; wikibase:timePrecision ?prec ; wikibase:timeCalendarModel ?cal .
+}

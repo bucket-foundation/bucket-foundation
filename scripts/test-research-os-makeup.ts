@@ -22,6 +22,7 @@ const snap: Snapshot = {
   byId: new Map(nodes.map((n) => [n.id, n])),
   bySlug: new Map(nodes.map((n) => [n.slug, n])),
   reach: new Map(penetration(nodes, dec).map((p) => [p.id, p])),
+  summaries: new Map(),
 };
 const none = { proposals: [], missing: [], irreducible: null };
 

@@ -3,7 +3,9 @@
 import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
-import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
+import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName, type ChainStep, type NodeWord } from "@/lib/research-os/node-words";
+import RootTexts from "../RootTexts";
+import { BABELSTONE_NOTE, UNIHAN_NOTE, type HanChar } from "@/lib/research-os/han-components";
 
 const FIRST = 12;
 
@@ -34,6 +36,28 @@ function Step({ step }: { step: ChainStep }) {
   );
 }
 
+function HanParts({ parts }: { parts: HanChar[] }) {
+  return (
+    <p className="text-[12px] leading-[1.7] text-[color:var(--basalt-2)]">
+      <span className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">components </span>
+      {parts.map((h, i) => (
+        <span key={h.char}>
+          {i ? "; " : ""}
+          <span lang="zh">{h.char}</span> ={" "}
+          {h.parts.map((p, j) => (
+            <span key={j}>
+              {j ? " + " : ""}
+              <span lang="zh">{p.component}</span>
+              {p.meaning ? ` “${p.meaning.split(";")[0]}”` : ""}
+            </span>
+          ))}
+          <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{h.parts.some((p) => p.uncertain) ? "IDS, uncertain" : "IDS, agrees with Wiktionary"}</span>
+        </span>
+      ))}
+    </p>
+  );
+}
+
 function WordRow({ w }: { w: NodeWord }) {
   const texts = w.rootTexts;
   return (
@@ -52,10 +76,12 @@ function WordRow({ w }: { w: NodeWord }) {
             <span lang={(w.rootLang ?? "").split("-")[0] || undefined} dir="auto" className="text-[15px] text-[color:var(--basalt)]">{w.rootForm}</span>
             {w.rootLangName && <span className="text-[color:var(--basalt-3)]"> · {w.rootLangName}</span>}
             {w.rootGloss && <span> · “{w.rootGloss}”</span>}
+            {w.rootGlossForm && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{glossFormLabel(w.rootGlossForm)}</span>}
             {w.rootSource === "oshb" && <span className="text-[color:var(--basalt-3)]"> · from OSHB</span>}
             {w.rootUncertain && <span className="ml-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">uncertain root</span>}
           </p>
         )}
+        {w.hanParts && w.hanParts.length > 0 && <HanParts parts={w.hanParts} />}
         {w.chain.length > 0 && (
           <details className="text-[12px] leading-[1.7] text-[color:var(--basalt-2)]">
             <summary className="cursor-pointer text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]">descent, {w.chain.length} {w.chain.length === 1 ? "step" : "steps"}</summary>
@@ -69,20 +95,7 @@ function WordRow({ w }: { w: NodeWord }) {
             </ol>
           </details>
         )}
-        {texts.map((t, i) => (
-          <div key={i} className="mt-1 flex flex-col gap-1">
-            <p className="text-[12px] text-[color:var(--basalt-3)]">
-              In the {t.corpus}: {t.count} {t.count === 1 ? "verse" : "verses"} carry this word.
-            </p>
-            {t.samples.map((s) => (
-              <blockquote key={s.ref} className="border-l-2 border-[color:var(--gold)] pl-3 text-[15px] leading-[1.9] text-[color:var(--basalt-2)]">
-                <span lang={w.lang} dir="rtl" className="block">{s.text}</span>
-                <footer className="text-[11px] text-[color:var(--basalt-3)]">{t.corpus} {s.ref}</footer>
-              </blockquote>
-            ))}
-            <p className="text-[11px] text-[color:var(--basalt-3)]">{t.source}</p>
-          </div>
-        ))}
+        <RootTexts texts={texts} lang={w.lang} uncertain={w.uncertain} rootUncertain={w.rootUncertain} />
       </div>
     </li>
   );
@@ -153,12 +166,23 @@ export default function WordsSection({ nodeId }: { nodeId: string }) {
             {", "}
             <a href={KAIKKI_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY-SA 4.0</a>
           </p>
+          {list.some((w) => w.hanParts && w.hanParts.length > 0) && (
+            <p className="text-[11px] text-[color:var(--basalt-3)]">
+              {BABELSTONE_NOTE.text}{" "}
+              <a href={BABELSTONE_NOTE.href} target="_blank" rel="noreferrer" className="underline underline-offset-2">BabelStone IDS</a>
+              {list.some((w) => (w.hanParts ?? []).some((h) => h.parts.some((p) => p.meaningSource === "unihan"))) && (
+                <>
+                  {" "}{UNIHAN_NOTE.text}{" "}
+                  <a href={UNIHAN_NOTE.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">Unicode License v3</a>
+                </>
+              )}
+            </p>
+          )}
           {list.some((w) => w.lang === "he") && (
             <p className="text-[11px] text-[color:var(--basalt-3)]">
-              Hebrew roots checked against the{" "}
-              <a href={OSHB_ATTRIBUTION.href} target="_blank" rel="noreferrer" className="underline underline-offset-2">Open Scriptures Hebrew Bible</a>
-              {" lexical index, "}
+              Hebrew roots and verses: {OSHB_ATTRIBUTION.text}, under{" "}
               <a href={OSHB_ATTRIBUTION.license} target="_blank" rel="noreferrer" className="underline underline-offset-2">CC BY 4.0</a>
+              . {OSHB_ATTRIBUTION.wlc}
             </p>
           )}
         </div>

@@ -44,7 +44,7 @@ const PROBES: Probe[] = [
 ];
 
 let installed = false;
-type Stubs = { db: Record<string, unknown>; consent: Record<string, unknown> };
+type Stubs = { db: Record<string, unknown>; consent: Record<string, unknown>; scope: Record<string, unknown> };
 let stubs: Stubs;
 
 function install(): Stubs {
@@ -59,18 +59,21 @@ function install(): Stubs {
     throw new TypeError("fetch failed");
   }) as typeof fetch;
   /* eslint-disable @typescript-eslint/no-require-imports */
-  stubs = { db: require("@/lib/research-os/db"), consent: require("@/lib/research-os/consent") };
+  stubs = { db: require("@/lib/research-os/db"), consent: require("@/lib/research-os/consent"), scope: require("@/lib/research-os/launch-scope") };
   /* eslint-enable @typescript-eslint/no-require-imports */
   installed = true;
   return stubs;
 }
 
-export function folders(): string[] {
-  return fs
-    .readdirSync(API_DIR, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && fs.existsSync(path.join(API_DIR, d.name, "route.ts")))
-    .map((d) => d.name)
-    .sort();
+export function folders(dir = API_DIR, prefix = ""): string[] {
+  const out: string[] = [];
+  for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!d.isDirectory()) continue;
+    const rel = prefix ? `${prefix}/${d.name}` : d.name;
+    if (fs.existsSync(path.join(dir, d.name, "route.ts"))) out.push(rel);
+    out.push(...folders(path.join(dir, d.name), rel));
+  }
+  return out.sort();
 }
 
 const UUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
@@ -94,7 +97,8 @@ async function observe(res: Response): Promise<Observed> {
 }
 
 async function run(handler: (req: NextRequest, ctx: unknown) => Promise<Response>, method: string, probe: Probe): Promise<Observed> {
-  const { db, consent } = install();
+  const { db, consent, scope } = install();
+  scope.inLaunchScope = () => true;
   db.configured = () => probe.configured;
   db.verifyLearner = async () => probe.learner;
   db.verifyLearnerIdentity = async () => (probe.learner ? { id: probe.learner, email: "learner@bucket.test" } : null);
@@ -151,7 +155,7 @@ export async function characterize(folder: string): Promise<Snapshot> {
 }
 
 export function fixturePath(folder: string): string {
-  return path.join(FIXTURE_DIR, `${folder}.json`);
+  return path.join(FIXTURE_DIR, `${folder.split("/").join("--")}.json`);
 }
 
 export function readFixture(folder: string): Snapshot | null {

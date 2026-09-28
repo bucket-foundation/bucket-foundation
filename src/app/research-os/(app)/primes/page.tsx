@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { configured, graphService } from "@/lib/research-os/db";
-import { loadPrimesReport, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
+import { loadPrimesReport, type LineageBlock, type PrimeAlgebraReport, type PrimesReport, type ReportRef } from "@/lib/research-os/primes-report";
+import type { GapClass } from "@/lib/research-os/prime-algebra";
 
 export const metadata: Metadata = { title: "Primes", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -93,6 +94,8 @@ function Joined({ refs, sep }: { refs: ReportRef[]; sep: string }) {
   );
 }
 
+const GAP_LABEL: Record<GapClass, string> = { real: "candidate real gap", missing_edge: "missing edge", chance: "chance" };
+
 function Algebra({ a }: { a: PrimeAlgebraReport }) {
   const f = a.frontier;
   const maxCount = Math.max(1, ...a.reach.flatMap((r) => r.coefficients));
@@ -116,10 +119,10 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
 
       <Listed
         title="unexplored combinations"
-        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. Ranked by the count chance predicts. ${f.withinBranch} lie inside one branch.`}
+        hint={`Sets of primes no composite combines, though every smaller part of the set is combined somewhere: ${f.pairs} pairs and ${f.triples} triples. Chance predicts at least one composite for ${f.expectedAtLeastOne} of them. ${f.withinBranch} lie inside one branch. Each set is tested against ${f.gaps.draws} shuffles of the composite-by-prime table that keep every composite's prime count and every prime's reach. ${f.gaps.counts.real} are candidate real gaps, empty more often than the shuffles allow; on the local graph of 2026-09-23 their top 20 kept a median Jaccard overlap of 0.81 over random 90% subsets of the composites, and halves showed none; ${f.gaps.counts.missing_edge} close once the ${f.gaps.counterfactualPairs} pending pairs the verifier confirmed are added; ${f.gaps.counts.chance} are empty by chance. Candidate real gaps come first, each by the count chance predicts.`}
       >
         {f.top.map((x, i) => (
-          <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+          <Row key={i} figure={`${GAP_LABEL[x.gap]}, expected ${x.expected.toFixed(1)}, p ${x.p}`}>
             <Joined refs={x.primes} sep=" + " />
           </Row>
         ))}
@@ -129,7 +132,7 @@ function Algebra({ a }: { a: PrimeAlgebraReport }) {
           <p className="text-[12px] text-[color:var(--basalt-3)]">Inside one branch:</p>
           <ol className="mt-1 border-t border-[color:var(--hairline)]">
             {f.topWithinBranch.map((x, i) => (
-              <Row key={i} figure={`expected ${x.expected.toFixed(1)}, seen 0`}>
+              <Row key={i} figure={`${GAP_LABEL[x.gap]}, expected ${x.expected.toFixed(1)}, p ${x.p}`}>
                 <Joined refs={x.primes} sep=" + " />
               </Row>
             ))}
@@ -244,8 +247,52 @@ function Report({ r }: { r: PrimesReport }) {
         )}
       </section>
 
+      {r.lineage && <Lineage block={r.lineage} />}
+
       <Algebra a={r.algebra} />
     </>
+  );
+}
+
+function Lineage({ block }: { block: LineageBlock }) {
+  if (!block.ok) {
+    return (
+      <section className="mt-8">
+        <h2 className={LABEL}>lineage</h2>
+        <p role="alert" className="mt-1 text-[12px] text-[color:var(--gold-deep)]">
+          Lineage was not read this minute.
+        </p>
+      </section>
+    );
+  }
+  const l = block.summary;
+  const types = Object.entries(l.transcript.byType).sort((a, b) => b[1].onDependencyPath - a[1].onDependencyPath || a[0].localeCompare(b[0]));
+  return (
+    <section className="mt-8">
+      <h2 className={LABEL}>lineage</h2>
+      <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">Where each public node came from: a backfilled source, a curated importer, or a reviewer&apos;s decision.</p>
+      <ul className="mt-2 flex flex-wrap gap-2 text-[12px] text-[color:var(--basalt-2)]">
+        <li className="border border-[color:var(--hairline)] px-2 py-1">backfill {l.byPromotedBy.backfill}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">importer {l.byPromotedBy.importer}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">reviewer {l.byPromotedBy.reviewer}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">none, older {l.none.beforeStage2}</li>
+        <li className="border border-[color:var(--hairline)] px-2 py-1">none, since review began {l.none.afterStage2}</li>
+      </ul>
+      <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]">
+        {l.transcript.onDependencyPath} of {l.transcript.nodes} nodes that came from transcripts sit on a dependency path
+        {l.transcript.onDependencyPath > 0 ? `, reaching layer ${l.transcript.deepest}.` : "."} Pending review: {l.review.demotePending} demotions, {l.review.addPending} new
+        dependency edges, {l.review.withdrawnQueue} withdrawn nodes.
+      </p>
+      {types.length > 0 && (
+        <ul className="mt-2 text-[12px] space-y-1 text-[color:var(--basalt-2)]">
+          {types.map(([type, t]) => (
+            <li key={type}>
+              {type}: {t.onDependencyPath} of {t.nodes} on a path{t.onDependencyPath > 0 ? `, deepest layer ${t.deepest}` : ""}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }
 

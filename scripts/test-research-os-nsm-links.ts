@@ -17,7 +17,9 @@ import {
   MAX_MODEL_PICKS,
   type LinkProposal,
 } from "../src/lib/research-os/nsm-links";
-import { sql, loadLocalEnv } from "./lib/test-harness";
+import { sql, loadLocalEnv, openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 loadLocalEnv();
 

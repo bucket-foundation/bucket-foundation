@@ -60,7 +60,7 @@ export default function Footer({ launchList = false }: { launchList?: boolean })
             <li><Link href="/mission" className="hover:text-[color:var(--bone)] transition">Mission · reform education</Link></li>
             <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
             <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
-            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Publish research</Link></li>
+            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Research</Link></li>
             <li><Link href="/research/papers" className="hover:text-[color:var(--bone)] transition">Atlas papers</Link></li>
             <li><Link href="/research/education" className="hover:text-[color:var(--bone)] transition">Education research</Link></li>
             <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>

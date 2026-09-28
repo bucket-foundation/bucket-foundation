@@ -12,6 +12,9 @@ import {
   type PrimeNodeInput,
 } from "../../src/lib/research-os/primes";
 import { pagedRead } from "../../src/lib/research-os/paging";
+import { readLineageSummary } from "../../src/lib/research-os/medallion/lineage-read";
+import type { LineageSummary } from "../../src/lib/research-os/medallion/report";
+import { nonIdeaReportFilter } from "../../src/lib/research-os/idea";
 
 type NodeRow = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -32,7 +35,7 @@ async function main() {
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null));
+  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null).not("kind", "in", nonIdeaReportFilter()));
   const live = new Set(nodeRows.map((n) => n.id));
   const edgeRows = (await all<EdgeRow>(svc, "edges", "from_id, to_id, kind, confidence", (q) => q.in("kind", Object.keys(FACTOR_EDGES)))).filter(
     (e) => live.has(e.from_id) && live.has(e.to_id),
@@ -93,6 +96,20 @@ async function main() {
     for (const n of lostStanding.slice(0, 15)) console.log(`  ${label(n.id)}`);
   }
 
+  let lineage: LineageSummary | null = null;
+  try {
+    lineage = await readLineageSummary(svc, dec);
+  } catch (e) {
+    console.log(`\nlineage unavailable: ${e instanceof Error ? e.message : e}`);
+  }
+  if (lineage) {
+    const l = lineage;
+    console.log(`\nlineage: backfill ${l.byPromotedBy.backfill}, importer ${l.byPromotedBy.importer}, reviewer ${l.byPromotedBy.reviewer}; none ${l.none.beforeStage2} before review began, ${l.none.afterStage2} since (${l.stage2Since ?? "no backfill yet"})`);
+    console.log(`transcript-lineage nodes on a dependency path: ${l.transcript.onDependencyPath} of ${l.transcript.nodes}, deepest layer ${l.transcript.deepest}`);
+    for (const [type, t] of Object.entries(l.transcript.byType)) console.log(`  ${type}\t${t.onDependencyPath} of ${t.nodes}\tdeepest ${t.deepest}`);
+    console.log(`pending review: ${l.review.demotePending} demotions, ${l.review.addPending} new dependency edges, ${l.review.withdrawnQueue} withdrawn nodes`);
+  }
+
   const outDir = path.join(__dirname, "ingest", "out");
   const reportFile = path.join(outDir, "primes-report.json");
   let moves: ReturnType<typeof movesSince> | null = null;
@@ -121,6 +138,7 @@ async function main() {
     reviewed_irreducible: confirmed.map((n) => n.slug),
     irreducible_with_new_factors: lostStanding.map((n) => n.slug),
     moves: moves && { since, ...moves },
+    lineage,
     penetration: pen.map((p) => ({ ...p, label: label(p.id) })),
     nodes: Array.from(dec.values()).map((d) => ({
       id: d.id,

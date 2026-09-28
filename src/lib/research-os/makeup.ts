@@ -53,6 +53,7 @@ export type Snapshot = {
   byId: Map<string, MakeupNode>;
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
+  summaries: Map<string, string>;
 };
 
 const bases = new WeakMap<Map<string, Decomposition>, PrimeBasis>();
@@ -163,8 +164,8 @@ async function paged<T>(q: (from: number) => PromiseLike<{ data: unknown; error:
 }
 
 async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
-  const rows = await paged<MakeupNode>((from) =>
-    svc.from("nodes").select("id,slug,title,branch,kind,provenanceType:provenance->>type").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
+  const rows = await paged<MakeupNode & { summary?: string | null }>((from) =>
+    svc.from("nodes").select("id,slug,title,branch,kind,summary,provenanceType:provenance->>type").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
   );
   const edgeRows = await paged<{ from_id: string; to_id: string; kind: string; confidence: number | null }>((from) =>
     svc.from("edges").select("from_id,to_id,kind,confidence").in("kind", Object.keys(FACTOR_EDGES)).order("id").range(from, from + 999),
@@ -175,7 +176,12 @@ async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   );
 }
 
-export function snapshotFrom(rows: MakeupNode[], allEdges: DepEdge[]): Snapshot {
+export function snapshotFrom(withSummaries: (MakeupNode & { summary?: string | null })[], allEdges: DepEdge[]): Snapshot {
+  const summaries = new Map<string, string>();
+  const rows: MakeupNode[] = withSummaries.map(({ summary, ...n }) => {
+    if (summary) summaries.set(n.id, summary);
+    return n;
+  });
   const live = new Set(rows.map((n) => n.id));
   const edges = allEdges.filter((e) => live.has(e.fromId) && live.has(e.toId));
   const ideas = rows.filter((n) => isIdeaNode({ kind: n.kind ?? "", provenanceType: n.provenanceType ?? null }));
@@ -200,6 +206,7 @@ export function snapshotFrom(rows: MakeupNode[], allEdges: DepEdge[]): Snapshot 
     byId,
     bySlug: new Map(rows.map((n) => [n.slug, n])),
     reach: new Map(penetration(ideas, dec).map((p) => [p.id, p])),
+    summaries,
   };
 }
 

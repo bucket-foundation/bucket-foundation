@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useAcademy } from "../learn/useAcademy";
 import { pickLevel, type Depth, type RouteItem } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
 import { deckLabel } from "@/lib/academy/corpus-client";
+import { newEventId, sendLearnEvent } from "@/lib/academy/events-client";
 import Lesson from "./Lesson";
 import Drill from "./Drill";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
@@ -16,10 +17,23 @@ export default function StudySession({ branch }: { branch: string }) {
   const [i, setI] = useState(0);
   const [showLesson, setShowLesson] = useState(false);
   const [graded, setGraded] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const startedAt = useRef(0);
+  const sessionId = useRef("");
 
   useEffect(() => {
-    if (a.status === "ready" && queue === null) setQueue(a.routeItems);
+    if (a.status === "ready" && queue === null) {
+      startedAt.current = Date.now();
+      setQueue(a.routeItems);
+    }
   }, [a.status, a.routeItems, queue]);
+
+  useEffect(() => {
+    if (!queue || queue.length === 0 || i < queue.length || graded === 0 || sessionId.current) return;
+    sessionId.current = newEventId();
+    const seconds = Math.min(86_400, Math.round((Date.now() - startedAt.current) / 1000));
+    sendLearnEvent(sessionId.current, "study_session_done", { branch, items: graded, correct, seconds });
+  }, [queue, i, graded, correct, branch]);
 
   const item = queue?.[i];
   const atom = item ? a.byId.get(item.id) : undefined;
@@ -34,6 +48,7 @@ export default function StudySession({ branch }: { branch: string }) {
       if (!item) return;
       a.gradeAtom(item.id, rating, level);
       setGraded((n) => n + 1);
+      if (rating > 1) setCorrect((n) => n + 1);
       advance();
     },
     [a, item, advance]

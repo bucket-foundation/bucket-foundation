@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
+import HistoryReview from "./HistoryReview";
 
 interface TransferHold {
   learnerId: string;
@@ -302,6 +303,7 @@ export default function ResearchOsReviewPage() {
             </section>
           </div>
         )}
+        {token && <HistoryReview headers={authHeaders()} />}
       </div>
     </main>
   );

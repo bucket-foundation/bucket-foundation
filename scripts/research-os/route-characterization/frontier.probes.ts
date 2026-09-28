@@ -6,7 +6,7 @@ function store(answer: { data: unknown; error: { message: string } | null }) {
   builder.then = (resolve: (v: unknown) => unknown) => resolve(answer);
   return { "@/lib/research-os/db": { graphService: () => ({ from: () => builder }) } };
 }
-const reviewer = { "@/lib/research-os/reviewer": { verifyReviewer: async () => ({ id: "r1" }) } };
+const reviewer = { "@/lib/research-os/reviewer": { verifyGraphReviewer: async () => ({ id: "r1" }) } };
 const ROWS = [
   { id: "n1", slug: "a", title: "A", kind: "concept", tier: 1, frontier_flag: "open_question" },
   { id: "n2", slug: "b", title: "B", kind: "concept", tier: 2, frontier_flag: "frontier" },
@@ -28,7 +28,7 @@ export const probes: Probe[] = [
     body: '{"nodeId":"n1","flag":"frontier"}',
     stubs: () => ({
       "@/lib/research-os/reviewer": {
-        verifyReviewer: async () => {
+        verifyGraphReviewer: async () => {
           throw new Error("reviewer store down");
         },
       },

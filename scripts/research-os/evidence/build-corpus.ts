@@ -16,7 +16,7 @@ import {
   type SourceRecord,
 } from "../../../src/lib/research-os/evidence/corpus";
 import { admissionRows, admitRefusal, type AdmissionResult } from "../../../src/lib/research-os/evidence/admissions";
-import { parsePolicy, type RightsPolicy } from "../../../src/lib/research-os/evidence/rights";
+import { parsePolicy, seedIds, type RightsPolicy } from "../../../src/lib/research-os/evidence/rights";
 import { sha256Hex } from "../../../src/lib/research-os/evidence/text";
 
 const ROOT = path.resolve(__dirname, "..", "..", "..");
@@ -34,9 +34,7 @@ function seedSlugs(policy: RightsPolicy): Map<string, Set<string>> {
   for (const rule of policy.index) {
     const file = rule.match.seedFile;
     if (!file || out.has(file)) continue;
-    const seed = JSON.parse(readFileSync(path.join(ROOT, file), "utf8")) as { nodes?: { slug?: string }[] };
-    if (!Array.isArray(seed.nodes)) throw new Error(`${file} has no nodes list`);
-    out.set(file, new Set(seed.nodes.map((n) => n.slug).filter((s): s is string => typeof s === "string")));
+    out.set(file, seedIds(file, readFileSync(path.join(ROOT, file), "utf8")));
   }
   return out;
 }

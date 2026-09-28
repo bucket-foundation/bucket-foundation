@@ -6,6 +6,8 @@ import { slugifyPart, type IngestEdgeDraft, type IngestNodeDraft } from "../../.
 import { Linker } from "../../../src/lib/research-os/ingest/link";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { applyDrafts } from "./lib/apply-drafts";
+import { splitImport } from "../../../src/lib/research-os/medallion/proposals";
+import { existingFactorEdges, existingNodeIds, graphClient, shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(process.cwd());
 const APPLY = process.argv.includes("--apply");
@@ -138,7 +140,28 @@ function main() {
   }
 
   console.log(`[intake-all] ${nodes.length} nodes, ${edges.length} edges:`, JSON.stringify(counts));
-  if (APPLY) void applyDrafts("intake-all", nodes, edges, flags);
+  void finish(nodes, edges, flags);
+}
+
+async function finish(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[], flags: Parameters<typeof applyDrafts>[3]) {
+  const medallion = shadowRequested();
+  if (!APPLY) {
+    if (medallion) await shadowWrite("intake-all", nodes);
+    return;
+  }
+  if (!medallion) {
+    await applyDrafts("intake-all", nodes, edges, flags);
+    return;
+  }
+  const svc = graphClient("intake-all");
+  const known = await existingNodeIds(svc, nodes.map((n) => n.slug));
+  const split = splitImport(nodes, edges, new Set(known.keys()), await existingFactorEdges(svc, edges));
+  console.log(
+    `[intake-all] medallion split: ${split.goldNodes.length} gold nodes, ${split.proposedNodes.length} new nodes to review, ` +
+      `${split.directEdges.length} direct edges, ${split.factorEdges.length} factor edges to review, ${split.factorEdgesInGold.length} factor edges already in gold left as they are.`,
+  );
+  await applyDrafts("intake-all", split.goldNodes, split.directEdges, flags);
+  await shadowWrite("intake-all", { nodes, factorEdges: split.factorEdges, proposedNodes: split.proposedNodes });
 }
 
 main();

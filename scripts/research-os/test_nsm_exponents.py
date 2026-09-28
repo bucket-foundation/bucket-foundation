@@ -223,9 +223,12 @@ class Rerun(unittest.TestCase):
                 sql = [f"delete from graph.nsm_exponents where prime_id = '{pid}';"]
                 for i, w in enumerate(words, start=1):
                     r = dict(row, word=w, rank=i, run_id=run_id)
-                    sql.append("insert into graph.nsm_exponents (" + ", ".join(nsm.ROW_COLUMNS) + ") values (" + ", ".join(nsm.lit(r[c]) for c in nsm.ROW_COLUMNS) + ");")
+                    sql.append(nsm.row_sql(r))
                 subprocess.run(["psql", DB_URL, "-q", "-1", "-v", "ON_ERROR_STOP=1", "-f", "-"], input="\n".join(sql), text=True, check=True)
             self.assertEqual(self.psql(f"select string_agg(word || ':' || run_id, ',') from graph.nsm_exponents where prime_id = '{pid}'"), "videre:r2")
+            verse = [{"corpus": "Hebrew Bible", "source": "s", "count": 1, "samples": [{"ref": "Genesis 1:3", "text": "אוֹר"}]}]
+            subprocess.run(["psql", DB_URL, "-q", "-1", "-v", "ON_ERROR_STOP=1", "-f", "-"], input=f"delete from graph.nsm_exponents where prime_id = '{pid}';\n" + nsm.row_sql(dict(row, lang="he", word="אור", root_texts=verse)), text=True, check=True)
+            self.assertEqual(self.psql(f"select root_texts->0->'samples'->0->>'ref' from graph.nsm_exponents where prime_id = '{pid}'"), "Genesis 1:3")
             self.psql(insert_prime)
             self.assertEqual(self.psql(f"select count(*) from graph.nsm_primes where id = '{pid}'"), "1")
         finally:

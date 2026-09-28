@@ -147,11 +147,11 @@
     }
   },
   "POST class given, staff read fails": {
-    "status": 503,
+    "status": 403,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "class_read_failed"
+      "error": "forbidden"
     }
   },
   "POST reviewer, write fails": {
