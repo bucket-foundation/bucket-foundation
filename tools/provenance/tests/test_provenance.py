@@ -66,7 +66,7 @@ def test_v2_schema_rejects_bad_rows():
     good = manifest.migrate_row({"path": "~/x", "sha256": "ab" * 32, "bytes": 1, "author": "mixed"})
     for bad in [
         {**good, "author": "robot"},
-        {**good, "path": "/home/gian/x"},
+        {**good, "path": str(Path.home() / "x")},
         {**good, "sealed_sha256": "cd" * 32},
         {k: v for k, v in good.items() if k != "created"},
     ]:

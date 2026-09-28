@@ -27,6 +27,7 @@ const SUITES = {
       "scripts/test-research-os-{dedup,merge-actions}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
+      "scripts/test-provenance-packet.ts",
     ],
   },
   db: {
@@ -117,8 +118,12 @@ function orphanCheck(tests, suites) {
   return problems;
 }
 
+const ESM_TS = new Set(["scripts/test-provenance-packet.ts"]);
+const TSX = "tsx@4.21.0";
+
 function stepFor(file) {
   if (file.endsWith(".mjs")) return { argv: [process.execPath, "--test", file], env: {} };
+  if (ESM_TS.has(file)) return { argv: ["npx", "--yes", TSX, "--test", file], env: {} };
   return {
     argv: [
       process.execPath,

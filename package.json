@@ -43,7 +43,7 @@
     "db:local:status": "npx supabase@2.117.0 status -o env",
     "db:local:reset": "npx supabase@2.117.0 db reset",
     "db:local:stop": "npx supabase@2.117.0 stop",
-    "test:provenance": "npx --yes tsx@4 --test scripts/test-provenance-packet.ts && cd tools/provenance && python3 -m pytest -q tests",
+    "test:provenance": "npx --yes tsx@4.21.0 --test scripts/test-provenance-packet.ts && cd tools/provenance && python3 -m pytest -q tests",
     "test:research-os": "node scripts/run-tests.mjs --suite research-os",
     "globe:landmask": "node scripts/globe/build-landmask.mjs",
     "seed:research-os": "node scripts/seed-research-os.mjs",

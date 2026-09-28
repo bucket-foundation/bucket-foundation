@@ -47,4 +47,4 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - run: npx --yes tsx@4 --test scripts/test-provenance-packet.ts
+      - run: npx --yes tsx@4.21.0 --test scripts/test-provenance-packet.ts
