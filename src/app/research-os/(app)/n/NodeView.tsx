@@ -15,6 +15,7 @@ import AroundSection from "./AroundSection";
 import MakeupSection from "./MakeupSection";
 import ProductionsSection from "./ProductionsSection";
 import ClassSection from "./ClassSection";
+import PathPanel from "../learn-path/PathPanel";
 import AccessBlock from "../workspace/AccessBlock";
 import Section from "./Section";
 import { useSession } from "@/providers/SessionProvider";
@@ -121,6 +122,7 @@ export default function NodeView({ slug }: { slug: string }) {
       </nav>
 
       <LearnSection data={data} />
+      <PathPanel target={node.slug} compact />
       <SourcesSection data={data} quotes={quotes} onQuote={(q) => setQuotes((prev) => (prev.some((p) => p.citation === q.citation && p.quotable_span === q.quotable_span) ? prev : [...prev, q]))} onChanged={load} />
       {showWords && <WordsSection nodeId={node.id} />}
       <CheckSection data={data} quotes={quotes} onChanged={load} />

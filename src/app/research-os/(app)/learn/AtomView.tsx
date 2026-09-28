@@ -9,6 +9,7 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { deckLabel } from "@/lib/academy/corpus-client";
 import Lesson from "./Lesson";
 import Drill from "./Drill";
+import PathPanel from "../learn-path/PathPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState } from "@/components/ui";
 
 export default function AtomView({ branch, atomId }: { branch: string; atomId: string }) {
@@ -63,6 +64,8 @@ export default function AtomView({ branch, atomId }: { branch: string; atomId: s
           )}
         </div>
       </header>
+
+      <PathPanel target={`academy-${branch}-${atomId}`} compact />
 
       <Lesson atom={atom} />
 
