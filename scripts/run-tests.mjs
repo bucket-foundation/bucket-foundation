@@ -27,6 +27,7 @@ const SUITES = {
       "scripts/test-research-os-{dedup,merge-actions}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
+      "scripts/test-whats-new.mjs",
     ],
   },
   db: {

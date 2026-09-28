@@ -2,6 +2,60 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-80k-prime-directions",
+      "date": "2026-09-27",
+      "category": "production",
+      "branch": null,
+      "title": "Prime directions of the 80k corpus",
+      "summary": "Twelve orthogonal SVD components of the 80,000 Hours and effective altruism corpus, drawn as one polygon per document.",
+      "commit": "e8e7506",
+      "pr": 353,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/353",
+      "status": "merged",
+      "plot_title": "Prime directions of the 80k/EA corpus: 12 orthogonal SVD components of a 5,988 x 13,872 binary document-term matrix",
+      "image": "/whats-new/80k-prime-directions.webp",
+      "image_alt": "Radar chart with 12 spokes, one per SVD component, and one colored polygon per sample document from the 80k corpus.",
+      "discussion": "Randomized truncated SVD ran on a binary matrix of 5,988 documents and 13,872 terms. The twelve components hold orthogonal to within 1e-6. Component 1, developed, leading and models, carries 2.1% of the variance. Component 2, reviewed, monitoring, randomized and mortality, carries 1.7%. Operations, skills and hiring follow at 0.85%, then technology, safety and China at 0.53%. Each polygon is one document's standardized scores. A gap analysis against other public corpora ranks charity, pledges, neglected causes and careers highest for 80k.",
+      "links": [
+        {
+          "label": "PR #353",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/353"
+        },
+        {
+          "label": "tools/prime-directions",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/prime-directions"
+        }
+      ]
+    },
+    {
+      "id": "production-canon-clusters",
+      "date": "2026-09-27",
+      "category": "production",
+      "branch": null,
+      "title": "Canon clusters of the Bucket graph",
+      "summary": "Twelve SVD directions over the public Bucket graph sort 1,685 nodes into 20 canons.",
+      "commit": null,
+      "pr": 354,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/354",
+      "status": "open",
+      "plot_title": "Canon clusters of the Bucket graph: 12 SVD directions over 1,685 public nodes, 20 clusters numbered by PageRank mass",
+      "image": "/whats-new/canon-clusters-globe.webp",
+      "image_alt": "Radar chart with 12 spokes, one per SVD direction of the Bucket graph, and one colored polygon per sample node.",
+      "extra_images": [
+        {
+          "src": "/whats-new/canon-clusters-projection.webp",
+          "alt": "Scatter of every public node on components 2 and 3 with kernel density contours, colored by canon."
+        }
+      ],
+      "discussion": "Each node's features are its terms plus its link columns, idf-weighted and row-normalized. A node joins the pole of its strongest direction. Modularity comes to 0.278, against -0.001 for shuffled labels, 0.770 for the editorial branches and 0.859 for Louvain. NMI against the branches is 0.36. Four of the largest canons: Canon 2 on mitochondria, consciousness and melanin, Canon 3 on universe, light and dark, Canon 8 on water and the exclusion zone, and Canon 13 on BCE, Neolithic and Greek history.",
+      "links": [
+        {
+          "label": "PR #354, open",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/354"
+        }
+      ]
+    },
+    {
       "id": "27855ae-site",
       "date": "2026-09-14",
       "category": "site-feature",
@@ -1953,15 +2007,6 @@
       "title": "biophysics · new vitamin d claim card",
       "summary": "Claim card(s) committed under 05-biophysics/sub-claims/vitamin-d/.",
       "commit": "b70f86c"
-    },
-    {
-      "id": "afec2ed-site-refactor",
-      "date": "2026-05-01",
-      "category": "site-refactor",
-      "branch": null,
-      "title": "Canon site refactor",
-      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. Kruse demoted from top nav, repositioned as one of multiple sources under biophysics. Pattern-B changelog (this file) introduced.",
-      "commit": "afec2ed"
     },
     {
       "id": "afec2ed-chemistry-branch",
