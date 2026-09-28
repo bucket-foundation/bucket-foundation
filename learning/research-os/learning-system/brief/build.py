@@ -13,7 +13,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, XPreformatted, KeepTogether
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, XPreformatted, KeepTogether, Table, TableStyle
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
@@ -157,7 +157,7 @@ def markup(text):
     text=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',text)
     text=re.sub(r'`([^`]+)`',r'<font name="Mono">\1</font>',text)
     text=re.sub(r'\[([^\]]+)\]\((https?[^)]+)\)',r'<link href="\2" color="#2E6B6B">\1</link>',text)
-    return text
+    return text.replace("■", '<font color="#000000">■</font>')
 
 
 def header(canvas,doc):
@@ -170,11 +170,11 @@ def header(canvas,doc):
     canvas.drawString(48,height-32,'BUCKET  /  LEARNING SYSTEM')
     canvas.setFillColor(colors.HexColor(PALETTE['muted']))
     canvas.setFont('Sans',7.5)
-    canvas.drawRightString(width-48,height-32,'25 SEP 2026')
+    canvas.drawRightString(width-48,height-32,'27 SEP 2026')
     canvas.setStrokeColor(colors.HexColor(PALETTE['line']))
     canvas.line(48,40,width-48,40)
-    canvas.drawString(48,26,'IMPLEMENTATION BRIEF  ·  FORMAL MODEL + SYNTHETIC EVIDENCE')
-    canvas.drawRightString(width-48,26,f'{doc.page} / 6')
+    canvas.drawString(48,26,'RESEARCH ARGUMENT  ·  DEFINITIONS / PROOFS / EVIDENCE')
+    canvas.drawRightString(width-48,26,f'{doc.page}')
     canvas.restoreState()
 
 
@@ -189,18 +189,17 @@ def build():
     for alias,name in [('Sans','DejaVuSans.ttf'),('SansBold','DejaVuSans-Bold.ttf'),('Serif','DejaVuSerif.ttf'),('Mono','DejaVuSansMono.ttf')]:
         pdfmetrics.registerFont(TTFont(alias,str(fonts/name)))
     pdfmetrics.registerFontFamily('Sans',normal='Sans',bold='SansBold',italic='Sans',boldItalic='SansBold')
-    body=ParagraphStyle('Body',fontName='Sans',fontSize=10.0,leading=14,textColor=colors.HexColor(PALETTE['ink']),spaceAfter=7)
-    title=ParagraphStyle('Title',fontName='Serif',fontSize=25,leading=30,textColor=colors.HexColor(PALETTE['ink']),spaceAfter=12)
+    body=ParagraphStyle('Body',fontName='Sans',fontSize=9.5,leading=13.2,textColor=colors.HexColor(PALETTE['ink']),spaceAfter=7)
+    title=ParagraphStyle('Title',fontName='Serif',fontSize=24,leading=28,textColor=colors.HexColor(PALETTE['ink']),spaceAfter=12)
     caption=ParagraphStyle('Caption',parent=body,fontSize=8,leading=11,textColor=colors.HexColor(PALETTE['muted']),spaceAfter=11)
     code=ParagraphStyle('Code',fontName='Mono',fontSize=7.15,leading=10.5,textColor=colors.HexColor(PALETTE['ink']),backColor=colors.HexColor('#E8E2D6'),borderPadding=9,spaceBefore=4,spaceAfter=14)
     kicker=ParagraphStyle('Kicker',fontName='SansBold',fontSize=8,leading=12,textColor=colors.HexColor(PALETTE['gold']),spaceAfter=6)
     source=(HERE/'BRIEF.md').read_text()
     lean=re.search(r'```lean\n(.*?)\n```',source,re.S).group(1)
     assert lean in (HERE.parent/'lean/LearningSystem.lean').read_text()
-    assert len(source.split())<=2000
     sections=re.split(r'^## ',source,flags=re.M)[1:]
-    assert len(sections)==6
-    tags=['PROPOSED EXPERIENCE','MINIMUM REQUIREMENTS','COMPILED LEAN PROOF','VERSIONED KNOWLEDGE COVERAGE','SYNTHETIC VALIDATION','CRITIC REVIEW AND DELIVERY']
+    assert len(sections)==15
+    tags=['QUESTION AND THESIS','NOTATION AND TERMINOLOGY','ASSUMPTIONS AND STATE TRANSITIONS','LOWER-BOUND ARGUMENT','ATTAINING THE LOWER BOUND','COSTS AND MONOTONICITY','ALGORITHM AND CERTIFICATES','FORMAL VERIFICATION','KNOWLEDGE COORDINATES','MEASUREMENT ARGUMENT','EXPERIMENTAL DESIGN','OBSERVATIONS AND LIMITS','HUMAN VALIDATION PROPOSAL','PRODUCT CONSEQUENCES','REPRODUCTION AND SOURCES']
     story=[]
     equation=0
     for page,section in enumerate(sections):
@@ -210,30 +209,43 @@ def build():
         story.extend([Paragraph(f'{page+1:02d}  /  {tags[page]}',kicker),Paragraph(heading,title)])
         blocks=re.split(r'\n\s*\n',content.strip())
         for block in blocks:
-            if block.startswith('```'):
+            if block.startswith('|'):
+                rows=[]
+                cell=ParagraphStyle('Cell',parent=body,fontSize=8.2,leading=11,spaceAfter=0)
+                for line in block.splitlines():
+                    cells=[x.strip() for x in line.strip().strip('|').split('|')]
+                    if all(re.fullmatch(r'[: -]+',x) for x in cells):
+                        continue
+                    rows.append([Paragraph(markup(x),cell) for x in cells])
+                table=Table(rows,colWidths=[170,346],repeatRows=1,hAlign='LEFT')
+                table.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor(PALETTE['pale'])),('VALIGN',(0,0),(-1,-1),'TOP'),('LINEBELOW',(0,0),(-1,0),.7,colors.HexColor(PALETTE['teal'])),('LINEBELOW',(0,1),(-1,-1),.3,colors.HexColor(PALETTE['line'])),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),5),('BOTTOMPADDING',(0,0),(-1,-1),5)]))
+                story.extend([table,Spacer(1,10)])
+            elif block.startswith('```'):
                 lines=block.splitlines()[1:-1]
                 story.append(XPreformatted(escape('\n'.join(lines)),code))
             elif block.startswith('$$'):
                 equation+=1
                 destination=formula_image(block[2:-2],equation)
                 img=Image(str(destination))
-                scale=min(1,516/(img.imageWidth*72/240))
+                scale=min(1,474/(img.imageWidth*72/240))
                 img.drawWidth=img.imageWidth*72/240*scale
                 img.drawHeight=img.imageHeight*72/240*scale
-                story.append(img)
-                story.append(Spacer(1,3))
+                numbered=Table([[img,Paragraph(f'({equation})',caption)]],colWidths=[482,34])
+                numbered.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0)]))
+                story.append(numbered)
+                story.append(Spacer(1,4))
             elif block.startswith('!['):
                 match=re.match(r'!\[(.*?)\]\((.*?)\)',block,re.S)
                 img=Image(str(HERE/match.group(2)))
                 img.drawHeight=516*img.imageHeight/img.imageWidth
                 img.drawWidth=516
-                if page==3 and img.drawHeight>145:
-                    img.drawWidth*=145/img.drawHeight
-                    img.drawHeight=145
+                if img.drawHeight>155:
+                    img.drawWidth*=155/img.drawHeight
+                    img.drawHeight=155
                 story.append(KeepTogether([img,Paragraph(markup(match.group(1)),caption)]))
             else:
                 story.append(Paragraph(markup(block.replace('\n',' ')),body))
-    doc=SimpleDocTemplate(str(OUTPUT),pagesize=(612,792),leftMargin=48,rightMargin=48,topMargin=56,bottomMargin=54,title='Bucket learning system: brief and Lean proof',author='Bucket Foundation')
+    doc=SimpleDocTemplate(str(OUTPUT),pagesize=(612,792),leftMargin=48,rightMargin=48,topMargin=56,bottomMargin=54,title='Minimum prerequisite learning: research argument and proofs',author='Bucket Foundation')
     doc.build(story,onFirstPage=header,onLaterPages=header)
     print(json.dumps({'pdf':str(OUTPUT),'source_words':len(source.split()),'sections':len(sections),'proof_excerpt_matches_source':True}))
 
