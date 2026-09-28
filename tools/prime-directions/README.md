@@ -4,7 +4,7 @@ Bead `bkt-ilgt`. Turns a corpus into its orthogonal prime directions and draws t
 
 ## Commands
 
-Run from this directory. Needs numpy, scipy, scikit-learn and matplotlib; `pdftotext` for PDF corpora and `ffmpeg` for video.
+Run from this directory. Needs numpy, scipy, scikit-learn and matplotlib; psycopg2 and networkx for `canon`; `pdftotext` for PDF corpora and `ffmpeg` for video.
 
 ```bash
 python3 -m prime_directions list
@@ -36,3 +36,14 @@ A corpus with `"private": true` writes only under `--private-out`, which must si
 ## JSON
 
 `prime.json` carries schema `bucket.prime-directions/1`: shape, density, orthogonality error, params, cleaning stats, timings, and per component the spoke angle, singular value, variance ratio, top and bottom terms. `docs` holds id, title and standardized scores, omitted with `--no-docs`.
+
+## Canon clusters
+
+```bash
+python3 -m prime_directions canon --out out/canon --smooth
+python3 -m prime_directions canon --out ~/.local/share/bucket-prime-directions/canon-full --include-private
+```
+
+`canon` reads the Research OS graph from the local Supabase stack, `PRIME_GRAPH_DSN` or `--dsn` overriding the default local address, over a read-only session: public, current nodes and the edges between them. Academy atoms from `learning/app/corpus` enrich their mirror nodes with the lesson text, and atoms missing from the graph join as nodes with their `requires` edges. Nodes whose text, provenance or source video metadata (`yt/<id>-*/metadata.json`) names a private corpus are dropped, with every excerpt from a flagged video, unless `--include-private`, which writes only outside the repo.
+
+Features are node terms plus link columns, idf-weighted and row-normalized by default (`--weighting`). Outputs: `canon.json` with canon clusters, cluster metrics, five-number summaries per component and per-node canon, PageRank, residual and scores; `globe.png`; and the charts picked with `--charts`: `projection` (`--axes 2,3`, `--smooth` adds a kernel density view), `boxplot`, `residuals`. The math and the Lean proofs: [MATH.md](MATH.md), `lean/check.sh`.
