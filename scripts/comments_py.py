@@ -56,15 +56,22 @@ def strip(src):
             out.append(replace[i])
             continue
         if i in drop_lines:
+            out.append(None)
             continue
         if i in cuts:
             nl = "\n" if line.endswith("\n") else ""
             line = line[: cuts[i]].rstrip() + nl
         out.append(line)
     res = []
+    gap = False
     for i, line in enumerate(out):
-        if line.strip() == "" and res and res[-1].strip() == "" and (i + 1 < len(out)):
+        if line is None:
+            gap = True
             continue
+        if line.strip() == "" and gap and res and res[-1].strip() == "" and (i + 1 < len(out)):
+            continue
+        if line.strip() != "":
+            gap = False
         res.append(line)
     text = "".join(res).lstrip("\n")
     try:
