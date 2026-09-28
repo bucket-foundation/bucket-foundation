@@ -134,6 +134,7 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--min-chars", type=int, default=200)
     a.add_argument("--seed", type=int, default=0)
     a.add_argument("--min-rows", type=int, default=0)
+    a.add_argument("--bench-k", type=int, default=25)
     a.add_argument("--watch", type=float, default=0.0)
     a.add_argument("--max-runs", type=int, default=0)
     return p
@@ -155,6 +156,7 @@ def cmd_advisor_review(args) -> int:
                 last = sig
             else:
                 print(f"{len(people)} people, waiting for {args.min_rows}", flush=True)
+                last = sig
         if not args.watch or (args.max_runs and runs >= args.max_runs):
             break
         time.sleep(args.watch)
@@ -169,7 +171,7 @@ def advisor_run(args, out: Path, people: list) -> None:
     model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
                    min_chars=args.min_chars, seed=args.seed)
     rows, qvec = _time(timings, "rank_s", advisors.rank, model_, query, top=args.top)
-    bench = advisors.index_benchmark(model_, np.vstack([qvec[None, :], model_.result.raw_scores[:199]]), k=args.label)
+    bench = advisors.index_benchmark(model_, np.vstack([qvec[None, :], model_.result.raw_scores[:199]]), k=args.bench_k)
     advisors.write_csv(rows, out / "ranked.csv")
     _, axes = _time(timings, "plot_s", advisors.plot, model_, qvec, rows, out / "pca.png", label=args.label)
     r = model_.result
