@@ -255,8 +255,12 @@ function enrichFromGh(pr) {
 export function mergeEntries(data, newEntries, options = leakOptions()) {
   const { kept, dropped } = filterEntries(newEntries, options);
   const existing = new Set(data.entries.map((e) => e.id));
+  const productionPrs = new Set(
+    data.entries.filter((e) => e.category === "production" && e.pr !== undefined && e.pr !== null).map((e) => e.pr),
+  );
   let added = 0;
   for (const e of kept) {
+    if (e.category === "pr-merged" && productionPrs.has(e.pr)) continue;
     if (!existing.has(e.id)) {
       data.entries.push(e);
       existing.add(e.id);

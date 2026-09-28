@@ -29,6 +29,50 @@ function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+const CONFUSABLES = {
+  "а": "a", "е": "e", "о": "o", "р": "p", "с": "c", "у": "y", "х": "x", "к": "k", "м": "m", "т": "t", "н": "h", "в": "b",
+  "і": "i", "ј": "j", "ѕ": "s", "ԁ": "d", "ԛ": "q", "ԝ": "w", "ү": "y", "һ": "h", "г": "r",
+  "α": "a", "ε": "e", "ο": "o", "ρ": "p", "κ": "k", "ν": "v", "τ": "t", "υ": "u", "ι": "i", "χ": "x",
+  "ı": "i", "ſ": "s", "ʀ": "r", "ᴋ": "k", "ᴜ": "u", "ꜱ": "s", "ᴇ": "e",
+};
+const INVISIBLE = /[\p{Cf}\u200B-\u200F\u2060-\u2064\uFEFF\u00AD\u034F\u180E]/gu;
+const BASE64_TOKEN = /[A-Za-z0-9+/_-]{8,}={0,2}/g;
+
+export function foldText(text) {
+  const nfkc = text.normalize("NFKC").replace(INVISIBLE, "");
+  const folded = Array.from(nfkc.toLowerCase(), (ch) => CONFUSABLES[ch] ?? ch).join("");
+  return folded.normalize("NFD").replace(/\p{M}/gu, "");
+}
+
+function decodedTokens(text) {
+  const out = [];
+  for (const token of text.match(BASE64_TOKEN) ?? []) {
+    const decoded = Buffer.from(token.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8");
+    if (decoded && /^[\x20-\x7E\s]+$/.test(decoded)) out.push(decoded);
+  }
+  return out;
+}
+
+export function textVariants(text) {
+  const folded = foldText(text);
+  const variants = [text, folded, folded.replace(/[^\p{L}\p{N}]+/gu, "")];
+  for (const decoded of decodedTokens(text)) {
+    const d = foldText(decoded);
+    variants.push(d, d.replace(/[^\p{L}\p{N}]+/gu, ""));
+  }
+  return variants;
+}
+
+function privateTermHit(text, terms) {
+  const variants = textVariants(text);
+  for (const term of terms) {
+    const needle = foldText(term).replace(/[^\p{L}\p{N}]+/gu, "");
+    if (!needle) continue;
+    if (variants.some((v) => v.includes(needle))) return term;
+  }
+  return null;
+}
+
 function listFromEnv(name) {
   const raw = process.env[name];
   if (!raw) return [];
@@ -50,9 +94,8 @@ export function leakHits(text, options = leakOptions()) {
     if (m) hits.push({ kind, match: m[0].trim() });
   };
   for (const re of SECRET_PATTERNS) add("secret", re);
-  for (const term of options.privateTerms) {
-    add("private-corpus", new RegExp(`${escapeRegExp(term)}`, "i"));
-  }
+  const term = privateTermHit(text, options.privateTerms);
+  if (term) hits.push({ kind: "private-corpus", match: term });
   add("email", EMAIL);
   add("phone", PHONE);
   add("ip", IPV4);

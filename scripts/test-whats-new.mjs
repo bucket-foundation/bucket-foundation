@@ -38,6 +38,30 @@ test("private corpora are caught, the defaults and the configured list", () => {
   assert.ok(kinds("loaded secretcorpus v2").includes("private-corpus"));
 });
 
+test("private corpora are caught through zero-width characters", () => {
+  assert.ok(kinds("kru\u200Bse notes").includes("private-corpus"));
+  assert.ok(kinds("kr\u2060u\uFEFFse").includes("private-corpus"));
+});
+
+test("private corpora are caught through letter spacing and punctuation", () => {
+  assert.ok(kinds("the K r u s e posts").includes("private-corpus"));
+  assert.ok(kinds("k.r.u.s.e archive").includes("private-corpus"));
+  assert.ok(kinds("k-r-u-s-e").includes("private-corpus"));
+});
+
+test("private corpora are caught through Unicode confusables", () => {
+  assert.ok(kinds("\u212Aruse archive").includes("private-corpus"));
+  assert.ok(kinds("\u043Aru\u0455\u0435 archive").includes("private-corpus"));
+  assert.ok(kinds("\uFF4B\uFF52\uFF55\uFF53\uFF45").includes("private-corpus"));
+});
+
+test("private corpora are caught inside base64 tokens", () => {
+  const encoded = Buffer.from("kruse corpus").toString("base64");
+  assert.ok(kinds(`payload ${encoded}`).includes("private-corpus"));
+  const urlSafe = Buffer.from("jackkruse").toString("base64url");
+  assert.ok(kinds(`id=${urlSafe}`).includes("private-corpus"));
+});
+
 test("configured private terms come from the environment", () => {
   process.env.WHATS_NEW_PRIVATE_TERMS = "envcorpus, other";
   try {
@@ -151,6 +175,17 @@ test("mergeEntries keeps clean new entries once and leaves leaking ones out", ()
   assert.equal(added, 1);
   assert.deepEqual(dropped.map((d) => d.entry.id), ["pr-3"]);
   assert.deepEqual(data.entries.map((e) => e.id), ["pr-2", "pr-1"]);
+});
+
+test("a merged PR already covered by a production entry gets no pr-merged entry", () => {
+  const data = { version: "0.1", entries: [{ id: "production-x", category: "production", pr: 353, date: "2026-09-27", title: "p", summary: "s" }] };
+  const fresh = [
+    prEntry({ number: 353, title: "feat(ros): prime directions", sha: "e8e750641636", date: "2026-09-27T00:00:00Z" }),
+    prEntry({ number: 350, title: "feat(site): star button", sha: "67fb4ad15aaa", date: "2026-09-27T00:00:00Z" }),
+  ];
+  const { added } = mergeEntries(data, fresh, opts);
+  assert.equal(added, 1);
+  assert.deepEqual(data.entries.map((e) => e.id).sort(), ["pr-350", "production-x"]);
 });
 
 test("production entries in the data file validate: word count, images, links", () => {
