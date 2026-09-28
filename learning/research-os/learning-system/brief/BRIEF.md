@@ -254,7 +254,9 @@ The planted pair's interval is [0.24379,0.41299]. The control interval is [−0.
 
 ## Proposed empirical test
 
-**Hypothesis H1.** For a specified curriculum, access to an assessed prerequisite plan improves delayed transfer per unit of study time relative to a fixed baseline. This is a research hypothesis with no completed human experiment behind it.
+**Hypothesis H1.** For a specified curriculum, access to an assessed prerequisite plan improves delayed transfer relative to a fixed baseline. This is a research hypothesis with no completed human experiment behind it.
+
+**Protocol status.** This is a proposed alternative to PLAN.md, which specifies time-to-target with seven-day retention noninferiority. The present design makes delayed transfer primary. Select one protocol and preregister its outcome and analysis before recruitment; the study design remains unsettled.
 
 **Target and comparison.** Recruit consenting learners within a declared subject and starting-skill range. Randomly assign learners to the prerequisite-plan interface or a fixed topic-order interface with the same lessons and assessment access. Stratify assignment by baseline skill if prespecified. Record contamination where participants use both conditions.
 
