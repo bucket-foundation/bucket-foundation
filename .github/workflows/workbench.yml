@@ -1,14 +1,16 @@
-name: helix
+name: workbench
 
 on:
   pull_request:
     paths:
-      - "tools/helix/**"
-      - ".github/workflows/helix.yml"
+      - "tools/workbench/**"
+      - "mcp-server/**"
+      - ".github/workflows/workbench.yml"
   push:
     branches: [dev]
     paths:
-      - "tools/helix/**"
+      - "tools/workbench/**"
+      - "mcp-server/**"
 
 permissions:
   contents: read
@@ -19,7 +21,7 @@ jobs:
     timeout-minutes: 20
     defaults:
       run:
-        working-directory: tools/helix
+        working-directory: tools/workbench
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
