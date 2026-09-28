@@ -212,4 +212,6 @@ def test_exclude_private_uses_video_metadata_and_propagates_by_video(tmp_path: P
     kept, dropped = graph.exclude_private(rows, graph.PRIVATE_PATTERNS, meta)
     assert [r[0] for r in kept] == ["c", "d"] and dropped == 2
     assert graph.exclude_private(rows, graph.PRIVATE_PATTERNS, {})[1] == 0
+    closed, dropped_closed = graph.exclude_private(rows, graph.PRIVATE_PATTERNS, meta, drop_unresolved=True)
+    assert [r[0] for r in closed] == ["d"] and dropped_closed == 3
     assert graph.video_metadata({vid}, tmp_path / "missing") == {}

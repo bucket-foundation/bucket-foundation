@@ -179,7 +179,12 @@ def video_metadata(ids: set[str], yt_dir: Path) -> dict[str, str]:
 def glob_escape(text: str) -> str:
     return re.sub(r"([\[\]*?])", r"[\1]", text)
 
-def exclude_private(node_rows, patterns=PRIVATE_PATTERNS, videos: dict[str, str] | None = None) -> tuple[list[tuple], int]:
+def exclude_private(
+    node_rows,
+    patterns=PRIVATE_PATTERNS,
+    videos: dict[str, str] | None = None,
+    drop_unresolved: bool = False,
+) -> tuple[list[tuple], int]:
     if not patterns:
         return list(node_rows), 0
     rx = re.compile("|".join(re.escape(p) for p in patterns), re.IGNORECASE)
@@ -194,7 +199,10 @@ def exclude_private(node_rows, patterns=PRIVATE_PATTERNS, videos: dict[str, str]
         if hit:
             flagged_videos |= ids
         blobs.append((row, ids, hit))
-    kept = [row for row, ids, hit in blobs if not hit and not (ids & flagged_videos)]
+    kept = [
+        row for row, ids, hit in blobs
+        if not hit and not (ids & flagged_videos) and not (drop_unresolved and ids - set(videos))
+    ]
     return kept, len(node_rows) - len(kept)
 
 def load_graph(
@@ -209,13 +217,15 @@ def load_graph(
     if exclude_patterns:
         ids = set().union(*(video_ids(r[7]) for r in node_rows)) if node_rows else set()
         videos = video_metadata(ids, resolve_path(yt_dir))
-    node_rows, excluded = exclude_private(node_rows, exclude_patterns, videos)
+    referenced = set().union(*(video_ids(r[7]) for r in node_rows)) if node_rows else set()
+    node_rows, excluded = exclude_private(node_rows, exclude_patterns, videos, drop_unresolved=bool(exclude_patterns))
     path = resolve_path(academy_dir)
     atoms = academy_atoms(path) if path.exists() else {}
     graph = build_graph(node_rows, edge_rows, atoms)
     graph.meta["excluded_private"] = excluded
     graph.meta["private_patterns"] = len(exclude_patterns or ())
     graph.meta["video_metadata_resolved"] = len(videos)
+    graph.meta["video_ids_referenced"] = len(referenced)
     return graph
 
 def pagerank(adj: sp.csr_matrix, damping: float = 0.85, tol: float = 1e-10, max_iter: int = 200) -> tuple[np.ndarray, int]:
