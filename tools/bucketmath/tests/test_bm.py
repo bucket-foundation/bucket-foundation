@@ -109,7 +109,6 @@ def test_inline_code_is_not_linted():
     errors, warnings = bm.lint_text("Write `[bm:Not.A.Name]` to cite, and `ratio 50%` in code.\n", manifest())
     assert errors == [] and warnings == []
 
-
 @pytest.mark.parametrize("query,name", [
     ("acyclic", "BucketMath.Graph.acyclic_of_rank"),
     ("prereq_rank_lt", "BucketMath.Graph.prereq_rank_lt"),
@@ -121,14 +120,12 @@ def test_lookup_finds_phase_two_rows(query, name):
     rows = bm.lookup(query, bm.load_manifest())
     assert name in {r["name"] for r in rows}
 
-
 def test_phase_two_rows_are_proved():
     by_name = {r["name"]: r for r in bm.load_manifest()}
     for name in ["BucketMath.Graph.acyclic_of_rank", "BucketMath.Graph.reach_rank_lt", "BucketMath.Graph.prereq_rank_lt",
                  "BucketMath.Discovery.expected_append", "BucketMath.Discovery.expected_mono",
                  "BucketMath.Markets.efficient_spread_bounded", "BucketMath.Project.pythagoras_orthonormal"]:
         assert by_name[name]["status"] == "proved", name
-
 
 def test_lint_accepts_discovery_and_graph_citations():
     text = "Adding directions never lowers yield [bm:BucketMath.Discovery.expected_mono]. Ranked prerequisites cannot cycle [bm:BucketMath.Graph.acyclic_of_rank]."
