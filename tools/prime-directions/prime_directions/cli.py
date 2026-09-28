@@ -133,6 +133,7 @@ def cmd_canon(args) -> int:
     names = [c["name"] for c in clusters.clusters]
     data = export.to_dict(result, include_docs=False)
     data.update({
+        "kind": "canon-clusters",
         "graph": g.meta,
         "pagerank": {"damping": 0.85, "iterations": iterations},
         "canon_clusters": clusters.clusters,

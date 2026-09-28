@@ -16,6 +16,7 @@ def to_dict(result: PrimeResult, top_n: int = 20, include_docs: bool = True, pre
     ang = angles(result.k)
     out = {
         "schema": SCHEMA,
+        "kind": "corpus",
         "corpus": result.corpus,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "shape": {"docs": result.shape[0], "terms": result.shape[1]},

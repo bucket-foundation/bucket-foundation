@@ -199,3 +199,17 @@ def test_cmd_canon_private_needs_outside_dir(monkeypatch, capsys):
     code = cli.main(["canon", "--out", str(TOOL_REPO_ROOT / "tools" / "x"), "--include-private"])
     assert code == 2
     assert "private" in capsys.readouterr().err
+
+
+def test_cmd_canon_private_writes_outside_repo_and_keeps_private_nodes(tmp_path: Path, monkeypatch):
+    monkeypatch.setattr(graph, "fetch_rows", lambda dsn: synthetic_rows())
+    monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
+    out = tmp_path / "private"
+    code = cli.main(["canon", "--out", str(out), "--include-private", "--k", "3", "--min-df", "2", "--max-df", "0.9",
+                     "--charts", "boxplot", "--no-globe"])
+    assert code == 0
+    data = json.loads((out / "canon.json").read_text())
+    assert data["kind"] == "canon-clusters"
+    assert data["graph"]["excluded_private"] == 0 and data["graph"]["private_patterns"] == 0
+    assert len(data["nodes"]) == 90
+    assert (out / "boxplot.png").exists() and not (out / "projection.png").exists()

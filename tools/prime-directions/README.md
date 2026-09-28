@@ -4,7 +4,7 @@ Bead `bkt-ilgt`. Turns a corpus into its orthogonal prime directions and draws t
 
 ## Commands
 
-Run from this directory. Needs numpy, scipy, scikit-learn and matplotlib; `pdftotext` for PDF corpora and `ffmpeg` for video.
+Run from this directory. Needs numpy, scipy, scikit-learn and matplotlib; psycopg2 and networkx for `canon`; `pdftotext` for PDF corpora and `ffmpeg` for video.
 
 ```bash
 python3 -m prime_directions list
