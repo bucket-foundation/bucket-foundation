@@ -13,7 +13,6 @@ SIGN_IN_SOURCES = {
     "local": "project docs on the person's own machine, read only with consent",
 }
 
-
 def run_sources(plan) -> list[sources.Item]:
     items: list[sources.Item] = []
     for name, fn in plan:
@@ -22,7 +21,6 @@ def run_sources(plan) -> list[sources.Item]:
         except Exception as exc:
             items.append(sources.Item(name, name, "", "", {"kind": "source", "error": f"{type(exc).__name__}: {exc}"}))
     return items
-
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="profile-builder")

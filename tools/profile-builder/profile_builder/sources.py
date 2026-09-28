@@ -11,7 +11,6 @@ USER_AGENT = "bucket-profile-builder/0.1 (+https://bucket.foundation)"
 TEXT_NAMES = ("README.md", "README", "CLAUDE.md", "AGENTS.md", "readme.md")
 SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".lake", ".next", "dist", "build", ".wt", "worktrees"}
 
-
 @dataclass
 class Item:
     source: str
@@ -20,14 +19,12 @@ class Item:
     text: str
     meta: dict = field(default_factory=dict)
 
-
 def fetch_json(url: str, token: str | None = None) -> object:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
     if token:
         req.add_header("Authorization", f"Bearer {token}")
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read())
-
 
 class _TextParser(HTMLParser):
     def __init__(self) -> None:
@@ -60,12 +57,10 @@ class _TextParser(HTMLParser):
         elif not self._skip and data.strip():
             self.parts.append(data.strip())
 
-
 def parse_html(html: str) -> tuple[str, str, list[str]]:
     p = _TextParser()
     p.feed(html)
     return p.title.strip(), " ".join(p.parts), p.links
-
 
 def gh_token() -> str | None:
     tok = os.environ.get("GITHUB_TOKEN")
@@ -75,7 +70,6 @@ def gh_token() -> str | None:
         return subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=10).stdout.strip() or None
     except (OSError, subprocess.TimeoutExpired):
         return None
-
 
 def github(login: str, max_items: int, token: str | None = None, fetch=fetch_json) -> list[Item]:
     base = "https://api.github.com"
@@ -97,7 +91,6 @@ def github(login: str, max_items: int, token: str | None = None, fetch=fetch_jso
                           {"kind": "repo", "language": repo.get("language"), "stars": repo.get("stargazers_count"), "pushed": repo.get("pushed_at"), "errors": repo.get("_errors", [])}))
     return items
 
-
 def openalex(orcid: str | None, name: str | None, max_items: int, fetch=fetch_json) -> list[Item]:
     base = "https://api.openalex.org"
     if orcid:
@@ -113,7 +106,6 @@ def openalex(orcid: str | None, name: str | None, max_items: int, fetch=fetch_js
     return [Item("openalex", w.get("doi") or w["id"], w.get("title") or "",
                  " ".join([w.get("title") or ""] + [t.get("display_name", "") for t in w.get("topics") or []]),
                  {"kind": "work", "year": w.get("publication_year")}) for w in works]
-
 
 def websites(seeds: list[str], max_links: int, fetch_text=None, allowed=None, delay: float = 1.0, sleep=None) -> list[Item]:
     def default_fetch(url: str) -> str:
@@ -165,7 +157,6 @@ def websites(seeds: list[str], max_links: int, fetch_text=None, allowed=None, de
             if urlparse(nxt).netloc in hosts and nxt not in seen:
                 queue.append(nxt)
     return items
-
 
 def local(roots: list[str], max_items: int) -> list[Item]:
     items: list[Item] = []
