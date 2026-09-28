@@ -1,0 +1,779 @@
+{
+ "schema": "workbench.registry/v1",
+ "limits": {
+  "total": 4,
+  "per_user": 2,
+  "queue": 20,
+  "group_caps": {
+   "visual": 1,
+   "prime_directions": 1,
+   "bucketmath": 1
+  }
+ },
+ "tools": [
+  {
+   "id": "prime_directions_list",
+   "group": "prime_directions",
+   "kind": "cli",
+   "title": "List corpora",
+   "description": "List the corpora registered for prime directions.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 60,
+   "status": "live",
+   "cwd": "tools/prime-directions",
+   "command": [
+    "python3",
+    "-m",
+    "prime_directions",
+    "list"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  },
+  {
+   "id": "prime_directions_run",
+   "group": "prime_directions",
+   "kind": "cli",
+   "title": "Prime directions",
+   "description": "Fit prime directions for one corpus, or all, with optional gap analysis and video. Writes charts and JSON to your data root.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 3600,
+   "status": "live",
+   "cwd": "tools/prime-directions",
+   "command": [
+    "python3",
+    "-m",
+    "prime_directions",
+    "run",
+    [
+     "{corpus}"
+    ],
+    [
+     "?all",
+     "--all"
+    ],
+    "--out",
+    "{out}",
+    [
+     "--k",
+     "{k}"
+    ],
+    [
+     "--seed",
+     "{seed}"
+    ],
+    [
+     "?gaps",
+     "--gaps"
+    ],
+    [
+     "?mp4",
+     "--mp4"
+    ]
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "corpus": {
+      "type": "string",
+      "description": "corpus name from prime_directions_list"
+     },
+     "all": {
+      "type": "boolean"
+     },
+     "k": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 64
+     },
+     "seed": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "gaps": {
+      "type": "boolean"
+     },
+     "mp4": {
+      "type": "boolean"
+     }
+    },
+    "required": []
+   },
+   "exit_codes": {
+    "0": "ok",
+    "2": "bad arguments"
+   }
+  },
+  {
+   "id": "prime_directions_canon",
+   "group": "prime_directions",
+   "kind": "cli",
+   "title": "Canon clusters",
+   "description": "Cluster the Bucket canon graph into prime directions. Needs a local graph DSN.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 3600,
+   "status": "live",
+   "cwd": "tools/prime-directions",
+   "command": [
+    "python3",
+    "-m",
+    "prime_directions",
+    "canon",
+    "--out",
+    "{out}",
+    [
+     "--dsn",
+     "{dsn}"
+    ],
+    [
+     "--k",
+     "{k}"
+    ],
+    [
+     "--seed",
+     "{seed}"
+    ]
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "dsn": {
+      "type": "string"
+     },
+     "k": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 64
+     },
+     "seed": {
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "required": []
+   }
+  },
+  {
+   "id": "profile_sources",
+   "group": "profile",
+   "kind": "cli",
+   "title": "Profile sources",
+   "description": "List the opt-in sources the profile builder can read.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 60,
+   "status": "live",
+   "cwd": "tools/profile-builder",
+   "command": [
+    "python3",
+    "-m",
+    "profile_builder",
+    "--list-sources"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  },
+  {
+   "id": "profile_build",
+   "group": "profile",
+   "kind": "cli",
+   "title": "Build profile",
+   "description": "Build your Bucket profile from opt-in sources. Personal data, written to your own data root only.",
+   "scope": "personal",
+   "writes": "local",
+   "timeout_s": 1800,
+   "status": "live",
+   "cwd": "tools/profile-builder",
+   "command": [
+    "python3",
+    "-m",
+    "profile_builder",
+    "--name",
+    "{name}",
+    [
+     "--github",
+     "{github}"
+    ],
+    [
+     "--orcid",
+     "{orcid}"
+    ],
+    [
+     "--web",
+     "{web}"
+    ],
+    [
+     "--local",
+     "{local}"
+    ],
+    [
+     "--max-links",
+     "{max_links}"
+    ],
+    "--out",
+    "{out}/profile.json"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "github": {
+      "type": "string"
+     },
+     "orcid": {
+      "type": "string"
+     },
+     "web": {
+      "type": "string"
+     },
+     "local": {
+      "type": "path"
+     },
+     "max_links": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+     }
+    },
+    "required": [
+     "name"
+    ]
+   }
+  },
+  {
+   "id": "profile_card",
+   "group": "profile",
+   "kind": "cli",
+   "title": "Profile card",
+   "description": "Render a profile card image from a built profile.",
+   "scope": "personal",
+   "writes": "local",
+   "timeout_s": 300,
+   "status": "pending",
+   "bead": "bkt-ya07 child: profile cards",
+   "blocked_by": "card.py lives outside the repo",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "profile": {
+      "type": "path"
+     }
+    },
+    "required": [
+     "profile"
+    ]
+   }
+  },
+  {
+   "id": "advisor_review",
+   "group": "advisor",
+   "kind": "cli",
+   "title": "Advisor review",
+   "description": "Rank advisors by PCA distance to a research statement, with swipe review.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 1800,
+   "status": "pending",
+   "bead": "bkt-ya07 child: advisor review",
+   "blocked_by": "PR #359",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "path"
+     }
+    },
+    "required": [
+     "statement"
+    ]
+   }
+  },
+  {
+   "id": "network_map",
+   "group": "network",
+   "kind": "python",
+   "title": "Network map",
+   "description": "Lay out a Bucket graph export (nodes and edges JSON, as /api/research-os/graph returns) as a network map with components and top-degree nodes.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 600,
+   "status": "live",
+   "function": "workbench.tools.network:build",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "graph": {
+      "type": "path"
+     },
+     "seed": {
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "required": [
+     "graph"
+    ]
+   }
+  },
+  {
+   "id": "visual_render_scene",
+   "group": "visual",
+   "kind": "cli",
+   "title": "Render scene",
+   "description": "Render a helix or prime-directions scene.json with Manim, Blender or R3F.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 1800,
+   "status": "pending",
+   "bead": "bkt-ya07 child: visual engine in repo",
+   "blocked_by": "Manim, Blender and R3F scripts live outside the repo",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "scene": {
+      "type": "path"
+     },
+     "engine": {
+      "type": "string",
+      "enum": [
+       "manim",
+       "blender",
+       "r3f"
+      ]
+     }
+    },
+    "required": [
+     "scene"
+    ]
+   }
+  },
+  {
+   "id": "statements_score",
+   "group": "statements",
+   "kind": "python",
+   "title": "Score statement",
+   "description": "Score a research statement with the Bucket critic rubric through the local claude CLI. Pass: weighted above 8.0, no dimension below 7, no open critical or high.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 900,
+   "status": "live",
+   "function": "workbench.tools.statements:score",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "path"
+     },
+     "model": {
+      "type": "string",
+      "enum": [
+       "sonnet",
+       "opus",
+       "haiku"
+      ]
+     }
+    },
+    "required": [
+     "statement"
+    ]
+   }
+  },
+  {
+   "id": "bucketmath_lookup",
+   "group": "bucketmath",
+   "kind": "python",
+   "title": "BucketMath lookup",
+   "description": "Look up a BucketMath definition or theorem (repo Lean library at lean/) by name or words: type, status (proved, open, external, def), source line, and the tag to cite it with.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 60,
+   "status": "live",
+   "function": "workbench.tools.bucketmath:lookup",
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "integer",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 50
+     }
+    },
+    "required": [
+     "q"
+    ]
+   }
+  },
+  {
+   "id": "bucketmath_check",
+   "group": "bucketmath",
+   "kind": "cli",
+   "title": "BucketMath check",
+   "description": "Build the BucketMath Lean library, run the axiom gate and check manifest drift. Takes minutes.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 1800,
+   "status": "live",
+   "cwd": ".",
+   "command": [
+    "python3",
+    "tools/bucketmath/bm.py",
+    "check"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "exit_codes": {
+    "0": "ok",
+    "1": "build, axiom or manifest problem"
+   }
+  },
+  {
+   "id": "corpus_evidence_verify",
+   "group": "corpus",
+   "kind": "cli",
+   "title": "Verify evidence model",
+   "description": "Check the evidence search model files, license and runtime against the pins.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 300,
+   "status": "live",
+   "cwd": "tools/evidence-search",
+   "command": [
+    "python3",
+    "-m",
+    "evidence_search",
+    "verify"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  },
+  {
+   "id": "corpus_evidence_vectors",
+   "group": "corpus",
+   "kind": "cli",
+   "title": "Build evidence vectors",
+   "description": "Chunk and embed a built evidence corpus into vectors under your data root.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 7200,
+   "status": "live",
+   "cwd": "tools/evidence-search",
+   "command": [
+    "python3",
+    "-m",
+    "evidence_search",
+    "build-vectors",
+    "{corpus}",
+    "--out",
+    "{out}",
+    [
+     "--batch",
+     "{batch}"
+    ]
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "corpus": {
+      "type": "path"
+     },
+     "batch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256
+     }
+    },
+    "required": [
+     "corpus"
+    ]
+   }
+  },
+  {
+   "id": "corpus_helix_series",
+   "group": "corpus",
+   "kind": "cli",
+   "title": "Corpus to helix",
+   "description": "Collect a JSON-lines corpus of dates and tags into a helix time series and render it.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 600,
+   "status": "live",
+   "cwd": "tools/helix",
+   "command": [
+    "python3",
+    "-m",
+    "helix",
+    "run",
+    "{corpus}",
+    "--adapter",
+    "corpus",
+    "--primes",
+    "{primes}",
+    "--name",
+    "{name}",
+    "--slug",
+    "{slug}",
+    "--source-title",
+    "{source_title}",
+    "--source-url",
+    "{source_url}",
+    "--retrieved",
+    "{retrieved}",
+    "--license",
+    "{license}",
+    "--out",
+    "{out}"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "primes": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "slug": {
+      "type": "string"
+     },
+     "source_title": {
+      "type": "string"
+     },
+     "source_url": {
+      "type": "string"
+     },
+     "retrieved": {
+      "type": "string"
+     },
+     "license": {
+      "type": "string"
+     },
+     "corpus": {
+      "type": "path"
+     }
+    },
+    "required": [
+     "corpus",
+     "primes",
+     "name",
+     "slug",
+     "source_title",
+     "source_url",
+     "retrieved",
+     "license"
+    ]
+   },
+   "exit_codes": {
+    "0": "ok",
+    "2": "input failed validation",
+    "3": "gdrive mirror failed"
+   }
+  },
+  {
+   "id": "helix_validate",
+   "group": "helix",
+   "kind": "cli",
+   "title": "Validate series",
+   "description": "Validate a helix.series/v1 file.",
+   "scope": "read",
+   "writes": "none",
+   "timeout_s": 60,
+   "status": "live",
+   "cwd": "tools/helix",
+   "command": [
+    "python3",
+    "-m",
+    "helix",
+    "validate",
+    "{input}"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input": {
+      "type": "path"
+     }
+    },
+    "required": [
+     "input"
+    ]
+   },
+   "exit_codes": {
+    "0": "ok",
+    "2": "input failed validation"
+   }
+  },
+  {
+   "id": "helix_run",
+   "group": "helix",
+   "kind": "cli",
+   "title": "Helix run",
+   "description": "Plot a helix.series/v1 file as primes on a helix with interpolation error and projection bands.",
+   "scope": "local",
+   "writes": "local",
+   "timeout_s": 900,
+   "status": "live",
+   "cwd": "tools/helix",
+   "command": [
+    "python3",
+    "-m",
+    "helix",
+    "run",
+    "{input}",
+    "--out",
+    "{out}",
+    [
+     "--horizon",
+     "{horizon}"
+    ],
+    [
+     "--method",
+     "{method}"
+    ],
+    [
+     "--seed",
+     "{seed}"
+    ]
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input": {
+      "type": "path"
+     },
+     "horizon": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 50
+     },
+     "method": {
+      "type": "string",
+      "enum": [
+       "linear",
+       "pchip"
+      ]
+     },
+     "seed": {
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "required": [
+     "input"
+    ]
+   },
+   "exit_codes": {
+    "0": "ok",
+    "2": "input failed validation",
+    "3": "gdrive mirror failed"
+   }
+  },
+  {
+   "id": "helix_mirror",
+   "group": "helix",
+   "kind": "cli",
+   "title": "Helix run with mirror",
+   "description": "Helix run that also mirrors the run to gdrive.",
+   "scope": "gdrive",
+   "writes": "gdrive",
+   "timeout_s": 1200,
+   "status": "live",
+   "cwd": "tools/helix",
+   "command": [
+    "python3",
+    "-m",
+    "helix",
+    "run",
+    "{input}",
+    "--out",
+    "{out}",
+    "--mirror",
+    [
+     "--horizon",
+     "{horizon}"
+    ]
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "input": {
+      "type": "path"
+     },
+     "horizon": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 50
+     }
+    },
+    "required": [
+     "input"
+    ]
+   },
+   "exit_codes": {
+    "0": "ok",
+    "2": "input failed validation",
+    "3": "gdrive mirror failed"
+   }
+  },
+  {
+   "id": "helix_publish",
+   "group": "helix",
+   "kind": "cli",
+   "title": "Helix publish",
+   "description": "Copy a helix run into public/helix on a clean feature branch for a founder-reviewed PR.",
+   "scope": "repo",
+   "writes": "repo",
+   "timeout_s": 120,
+   "status": "live",
+   "cwd": "tools/helix",
+   "command": [
+    "python3",
+    "-m",
+    "helix",
+    "publish",
+    "{run_dir}",
+    "--repo",
+    "{repo}"
+   ],
+   "input_schema": {
+    "type": "object",
+    "properties": {
+     "run_dir": {
+      "type": "path"
+     },
+     "repo": {
+      "type": "path"
+     }
+    },
+    "required": [
+     "run_dir",
+     "repo"
+    ]
+   },
+   "exit_codes": {
+    "0": "ok",
+    "4": "publish refused: protected branch, detached HEAD or dirty tree"
+   }
+  }
+ ]
+}

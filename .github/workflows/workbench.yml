@@ -1,0 +1,32 @@
+name: workbench
+
+on:
+  pull_request:
+    paths:
+      - "tools/workbench/**"
+      - "mcp-server/**"
+      - ".github/workflows/workbench.yml"
+  push:
+    branches: [dev]
+    paths:
+      - "tools/workbench/**"
+      - "mcp-server/**"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: tools/workbench
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install --quiet numpy matplotlib pytest ruff==0.16.9
+      - run: ruff check . && ruff format --check .
+      - run: python -m pytest -q tests

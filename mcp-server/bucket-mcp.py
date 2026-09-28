@@ -186,39 +186,7 @@ def tool_bucket_cite(doi_or_url: str) -> dict:
         'type': 'webpage', 'URL': doi_or_url, 'id': doi_or_url
     }, 'note': 'no DOI detected; returned minimal webpage CSL stub'}
 
-def _bucketmath():
-    sys.path.insert(0, str(REPO / 'tools' / 'bucketmath'))
-    import bm
-    return bm
-
-def tool_bucketmath_lookup(q: str, limit: int = 20) -> dict:
-    bm = _bucketmath()
-    rows = bm.lookup(q, bm.load_manifest(), max(1, min(int(limit), 50)))
-    for r in rows:
-        r['cite'] = f"[bm-open:{r['name']}]" if r['status'] == 'open' else f"[bm:{r['name']}]"
-    return {'ok': True, 'query': q, 'n_results': len(rows), 'results': rows}
-
-def tool_bucketmath_check() -> dict:
-    import subprocess
-    proc = subprocess.run([sys.executable, str(REPO / 'tools' / 'bucketmath' / 'bm.py'), 'check'],
-                          capture_output=True, text=True, timeout=1800)
-    return {'ok': proc.returncode == 0, 'stdout': proc.stdout[-4000:], 'stderr': proc.stderr[-4000:]}
-
 TOOLS = [
-    {
-        'name': 'bucketmath_lookup',
-        'description': 'Look up a BucketMath definition or theorem (repo Lean library at lean/) by name or words: type, status (proved, open, external, def), source line, and the tag to cite it with.',
-        'inputSchema': {
-            'type': 'object',
-            'properties': {'q': {'type': 'string'}, 'limit': {'type': 'integer', 'default': 20, 'minimum': 1, 'maximum': 50}},
-            'required': ['q'],
-        },
-    },
-    {
-        'name': 'bucketmath_check',
-        'description': 'Build BucketMath with lake, run the axiom gate and compare lean/manifest.json with a fresh one. Local only; takes up to a few minutes.',
-        'inputSchema': {'type': 'object', 'properties': {}},
-    },
     {
         'name': 'canon_search',
         'description': 'Search the bucket.foundation canon (599 curated claim cards across 9 branches) by natural-language query. Returns top-K most relevant claims with branch/concept/url/excerpt.',
@@ -287,6 +255,19 @@ TOOLS = [
     },
 ]
 
+CANON_TOOLS = {t['name'] for t in TOOLS}
+_WORKBENCH = None
+
+
+def workbench():
+    global _WORKBENCH
+    if _WORKBENCH is None:
+        sys.path.insert(0, str(REPO / 'tools' / 'workbench'))
+        from workbench.mcp import McpBridge
+        _WORKBENCH = McpBridge()
+    return _WORKBENCH
+
+
 def handle_request(req: dict) -> dict:
     method = req.get('method', '')
     id_ = req.get('id')
@@ -305,17 +286,15 @@ def handle_request(req: dict) -> dict:
         return {}
 
     if method == 'tools/list':
-        return {'jsonrpc': '2.0', 'id': id_, 'result': {'tools': TOOLS}}
+        return {'jsonrpc': '2.0', 'id': id_, 'result': {'tools': TOOLS + workbench().tools()}}
 
     if method == 'tools/call':
         name = params.get('name', '')
         args = params.get('arguments', {}) or {}
         try:
-            if name == 'bucketmath_lookup':
-                result = tool_bucketmath_lookup(args.get('q', ''), args.get('limit', 20))
-            elif name == 'bucketmath_check':
-                result = tool_bucketmath_check()
-            elif name == 'canon_search':
+            if name not in CANON_TOOLS and workbench().has(name):
+                return workbench().call(id_, name, args)
+            if name == 'canon_search':
                 result = tool_canon_search(args.get('q', ''), int(args.get('top_k', 10)),
                                             args.get('branch'), args.get('tier'))
             elif name == 'canon_get_claim':
