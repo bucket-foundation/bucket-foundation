@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 
 interface Node {
   id: string;
@@ -34,7 +35,12 @@ export default function PathPanel({ target, compact = false }: { target: string;
       try {
         const res = await fetch(`/api/research-os/learning-plan?target=${encodeURIComponent(target)}`, { cache: "no-store" });
         if (!live) return;
-        if (!res.ok) return setLoad(compact ? { kind: "hidden" } : { kind: "error", message: res.status === 404 ? "No such concept, or you cannot read it." : `The study path is unavailable (${res.status}).` });
+        if (!res.ok) {
+          const transient = isTransientOutage(res.status, await readErrorCode(res));
+          if (!live) return;
+          if (compact && !transient) return setLoad({ kind: "hidden" });
+          return setLoad({ kind: "error", message: transient ? `${OUTAGE_COPY.title}. ${OUTAGE_COPY.body}` : res.status === 404 ? "No such concept, or you cannot read it." : `The study path is unavailable (${res.status}).` });
+        }
         setLoad({ kind: "ready", plan: (await res.json()) as Plan });
       } catch {
         if (live) setLoad(compact ? { kind: "hidden" } : { kind: "error", message: "The study path could not reach the server." });

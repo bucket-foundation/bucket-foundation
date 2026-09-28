@@ -9,7 +9,13 @@ const SLUG = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/;
 export const GET = withResearchOsRoute({ auth: "optional" }, async (req, { learnerId }) => {
   const slug = (new URL(req.url).searchParams.get("target") || "").trim();
   if (!SLUG.test(slug)) return bad(400, "target_required");
-  const loaded = await loadPlan(dbPlanStore, slug, learnerId);
+  let loaded: Awaited<ReturnType<typeof loadPlan>>;
+  try {
+    loaded = await loadPlan(dbPlanStore, slug, learnerId);
+  } catch (err) {
+    console.error("[research-os/learning-plan] read failed:", err instanceof Error ? err.message : String(err));
+    return bad(503, "graph_read_failed");
+  }
   if (loaded.status === "not_found") return bad(404, "target_not_found");
   if (loaded.status === "unavailable") return { status: "unavailable", certified: false };
   const base = { objective: "unit_concepts", certified: false, foundations: "graph_roots", mastery: learnerId ? "practice" : "none", target: loaded.target };
