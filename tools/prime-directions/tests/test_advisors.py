@@ -67,7 +67,9 @@ def test_rank_orders_by_cosine_and_puts_the_statement_field_first():
     center = scores.mean(axis=0)
     assert best["cosine"] == pytest.approx(float(advisors.cosine((scores - center)[i:i + 1], qvec - center)[0]), abs=1e-4)
     raw_rows, _ = advisors.rank(model, STATEMENT.read_text(), top=5, centered=False)
-    assert raw_rows[0]["cosine"] >= rows[0]["cosine"] - 1
+    j = model.result.doc_ids.index(raw_rows[0]["id"])
+    assert raw_rows[0]["cosine"] == pytest.approx(float(advisors.cosine(scores[j:j + 1], qvec)[0]), abs=1e-4)
+    assert raw_rows[0]["euclidean"] == pytest.approx(float(np.linalg.norm(scores[j] - qvec)), abs=1e-4)
 
 def test_cosine_handles_zero_vectors():
     out = advisors.cosine(np.array([[0.0, 0.0], [1.0, 0.0]]), np.array([1.0, 0.0]))
