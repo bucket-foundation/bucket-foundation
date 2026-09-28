@@ -387,6 +387,141 @@
   "type": "∀ (x v : List Rat),\n  x.length = v.length →\n    BucketMath.Vec.dot v v = 1 →\n      BucketMath.Vec.dot x x =\n        BucketMath.Vec.dot (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v)\n            (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v) +\n          BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))\n            (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))"
  },
  {
+  "name": "BucketMath.Discovery.Admissible",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 11,
+  "type": "List BucketMath.Discovery.Direction → Prop"
+ },
+ {
+  "name": "BucketMath.Discovery.Direction",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Discovery.expected",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 7,
+  "type": "List BucketMath.Discovery.Direction → Rat"
+ },
+ {
+  "name": "BucketMath.Discovery.expected_append",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 15,
+  "type": "∀ (a b : List BucketMath.Discovery.Direction),\n  BucketMath.Discovery.expected (a ++ b) = BucketMath.Discovery.expected a + BucketMath.Discovery.expected b"
+ },
+ {
+  "name": "BucketMath.Discovery.expected_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 30,
+  "type": "∀ (ds extra : List BucketMath.Discovery.Direction),\n  BucketMath.Discovery.Admissible extra → BucketMath.Discovery.expected ds ≤ BucketMath.Discovery.expected (ds ++ extra)"
+ },
+ {
+  "name": "BucketMath.Discovery.expected_nil",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 13,
+  "type": "BucketMath.Discovery.expected [] = 0"
+ },
+ {
+  "name": "BucketMath.Discovery.expected_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Discovery",
+  "source": "lean/BucketMath/Discovery.lean",
+  "line": 20,
+  "type": "∀ (ds : List BucketMath.Discovery.Direction), BucketMath.Discovery.Admissible ds → 0 ≤ BucketMath.Discovery.expected ds"
+ },
+ {
+  "name": "BucketMath.Graph.Edge",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Graph.Prereq",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 9,
+  "type": "List BucketMath.Graph.Edge → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Graph.Reach",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 5,
+  "type": "List BucketMath.Graph.Edge → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Graph.StrictRank",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 11,
+  "type": "List BucketMath.Graph.Edge → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Graph.acyclic_of_rank",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 19,
+  "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ (a : Nat), ¬BucketMath.Graph.Reach E a a"
+ },
+ {
+  "name": "BucketMath.Graph.prereq_rank_lt",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 22,
+  "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ {target a : Nat}, BucketMath.Graph.Prereq E target a → r a < r target"
+ },
+ {
+  "name": "BucketMath.Graph.prereq_trans",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 25,
+  "type": "∀ (E : List BucketMath.Graph.Edge) {a b c : Nat},\n  BucketMath.Graph.Prereq E b a → BucketMath.Graph.Prereq E c b → BucketMath.Graph.Prereq E c a"
+ },
+ {
+  "name": "BucketMath.Graph.reach_rank_lt",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 13,
+  "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ {a b : Nat}, BucketMath.Graph.Reach E a b → r a < r b"
+ },
+ {
   "name": "BucketMath.Helix.Nonneg",
   "kind": "def",
   "status": "def",
@@ -630,6 +765,15 @@
   "type": "∀ (step : Int) (i : BucketMath.Markets.Industry) (n : Nat),\n  BucketMath.Markets.spread i ≤ ↑n * step → BucketMath.Markets.spread (BucketMath.Markets.compete step n i) ≤ 0"
  },
  {
+  "name": "BucketMath.Markets.efficient_spread_bounded",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 105,
+  "type": "∀ (band : Int) (i : BucketMath.Markets.Industry),\n  BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient →\n    -band ≤ BucketMath.Markets.spread i ∧ BucketMath.Markets.spread i ≤ band"
+ },
+ {
   "name": "BucketMath.Markets.entry",
   "kind": "def",
   "status": "def",
@@ -666,6 +810,24 @@
   "type": "∀ (i : BucketMath.Markets.Industry), 0 < i.capital → (BucketMath.Markets.eva i = 0 ↔ BucketMath.Markets.spread i = 0)"
  },
  {
+  "name": "BucketMath.Markets.excess",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 100,
+  "type": "Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Markets.excess_zero_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 102,
+  "type": "∀ (r bench : Int), BucketMath.Markets.excess r bench = 0 ↔ r = bench"
+ },
+ {
   "name": "BucketMath.Markets.spread",
   "kind": "def",
   "status": "def",
@@ -691,33 +853,6 @@
   "source": "lean/BucketMath/Markets.lean",
   "line": 61,
   "type": "∀ (band : Int),\n  0 ≤ band →\n    ∀ (i : BucketMath.Markets.Industry),\n      BucketMath.Markets.spread i = 0 → BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient"
- },
- {
-  "name": "BucketMath.Open.Orthonormal",
-  "kind": "def",
-  "status": "def",
-  "module": "BucketMath.Open",
-  "source": "lean/BucketMath/Open.lean",
-  "line": 11,
-  "type": "List (List Rat) → Prop"
- },
- {
-  "name": "BucketMath.Open.project",
-  "kind": "def",
-  "status": "def",
-  "module": "BucketMath.Open",
-  "source": "lean/BucketMath/Open.lean",
-  "line": 7,
-  "type": "List (List Rat) → List Rat → List Rat"
- },
- {
-  "name": "BucketMath.Open.pythagoras_orthonormal",
-  "kind": "theorem",
-  "status": "open",
-  "module": "BucketMath.Open",
-  "source": "lean/BucketMath/Open.lean",
-  "line": 14,
-  "type": "∀ (x : List Rat) (vs : List (List Rat)),\n  (∀ (v : List Rat), v ∈ vs → v.length = x.length) →\n    BucketMath.Open.Orthonormal vs →\n      vs.Nodup →\n        BucketMath.Vec.dot x x =\n          BucketMath.Vec.dot (BucketMath.Open.project vs x) (BucketMath.Open.project vs x) +\n            BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Open.project vs x))\n              (BucketMath.Vec.sub x (BucketMath.Open.project vs x))"
  },
  {
   "name": "BucketMath.Profile.Pair",
@@ -889,6 +1024,105 @@
   "source": "lean/BucketMath/Profile.lean",
   "line": 38,
   "type": "∀ (n : Nat) (p : BucketMath.Profile.Pair), BucketMath.Profile.turns (n + 4) p = BucketMath.Profile.turns n p"
+ },
+ {
+  "name": "BucketMath.Project.Orthonormal",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 11,
+  "type": "List (List Rat) → Prop"
+ },
+ {
+  "name": "BucketMath.Project.dot_add_left",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 24,
+  "type": "∀ (a b c : List Rat),\n  a.length = b.length → BucketMath.Vec.dot (BucketMath.Vec.add a b) c = BucketMath.Vec.dot a c + BucketMath.Vec.dot b c"
+ },
+ {
+  "name": "BucketMath.Project.dot_basis_project",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 92,
+  "type": "∀ (x v : List Rat) (vs : List (List Rat)),\n  (∀ (u : List Rat), u ∈ vs → u.length = x.length) →\n    BucketMath.Project.Orthonormal vs →\n      vs.Nodup → v ∈ vs → BucketMath.Vec.dot v (BucketMath.Project.project vs x) = BucketMath.Vec.dot x v"
+ },
+ {
+  "name": "BucketMath.Project.dot_project_left",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 56,
+  "type": "∀ (x w : List Rat) (vs : List (List Rat)),\n  (∀ (v : List Rat), v ∈ vs → v.length = x.length) →\n    BucketMath.Vec.dot (BucketMath.Project.project vs x) w =\n      BucketMath.Vec.sum (List.map (fun v => BucketMath.Vec.dot x v * BucketMath.Vec.dot v w) vs)"
+ },
+ {
+  "name": "BucketMath.Project.dot_zeros",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 38,
+  "type": "∀ (x w : List Rat), BucketMath.Vec.dot (List.map (fun x => 0) x) w = 0"
+ },
+ {
+  "name": "BucketMath.Project.length_add",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 14,
+  "type": "∀ (a b : List Rat), a.length = b.length → (BucketMath.Vec.add a b).length = a.length"
+ },
+ {
+  "name": "BucketMath.Project.length_project",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 46,
+  "type": "∀ (x : List Rat) (vs : List (List Rat)),\n  (∀ (v : List Rat), v ∈ vs → v.length = x.length) → (BucketMath.Project.project vs x).length = x.length"
+ },
+ {
+  "name": "BucketMath.Project.project",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 7,
+  "type": "List (List Rat) → List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Project.pythagoras_orthonormal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 100,
+  "type": "∀ (x : List Rat) (vs : List (List Rat)),\n  (∀ (v : List Rat), v ∈ vs → v.length = x.length) →\n    BucketMath.Project.Orthonormal vs →\n      vs.Nodup →\n        BucketMath.Vec.dot x x =\n          BucketMath.Vec.dot (BucketMath.Project.project vs x) (BucketMath.Project.project vs x) +\n            BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Project.project vs x))\n              (BucketMath.Vec.sub x (BucketMath.Project.project vs x))"
+ },
+ {
+  "name": "BucketMath.Project.sum_delta",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 77,
+  "type": "∀ (f : List Rat → Rat) (v : List Rat) (us : List (List Rat)),\n  v ∈ us → us.Nodup → BucketMath.Vec.sum (List.map (fun u => f u * if u = v then 1 else 0) us) = f v"
+ },
+ {
+  "name": "BucketMath.Project.sum_delta_absent",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Project",
+  "source": "lean/BucketMath/Project.lean",
+  "line": 67,
+  "type": "∀ (f : List Rat → Rat) (v : List Rat) (us : List (List Rat)),\n  ¬v ∈ us → BucketMath.Vec.sum (List.map (fun u => f u * if u = v then 1 else 0) us) = 0"
  },
  {
   "name": "BucketMath.Vec.add",

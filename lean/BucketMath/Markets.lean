@@ -97,4 +97,18 @@ theorem compete_reaches_efficiency (step : Int) (i : Industry) (n : Nat)
   have := compete_bound step n i
   omega
 
+def excess (r bench : Int) : Int := r - bench
+
+theorem excess_zero_iff (r bench : Int) : excess r bench = 0 ↔ r = bench := by
+  unfold excess; omega
+
+theorem efficient_spread_bounded (band : Int) (i : Industry) (h : classify band i = .efficient) :
+    -band ≤ spread i ∧ spread i ≤ band := by
+  unfold classify at h
+  split at h
+  · cases h
+  · split at h
+    · cases h
+    · omega
+
 end BucketMath.Markets
