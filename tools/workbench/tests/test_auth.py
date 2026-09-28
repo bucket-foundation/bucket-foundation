@@ -11,14 +11,12 @@ from workbench.service import ToolError
 
 from .conftest import FOUNDER, STAFF, audit_lines, founder, staff
 
-
 class Clock:
     def __init__(self):
         self.t = 1_000_000.0
 
     def __call__(self):
         return self.t
-
 
 def test_token_issue_and_verify(tmp_path):
     store = auth.TokenStore(tmp_path / "t.json")
@@ -29,14 +27,12 @@ def test_token_issue_and_verify(tmp_path):
     assert secret not in raw
     assert oct((tmp_path / "t.json").stat().st_mode)[-3:] == "600"
 
-
 def test_token_scopes_capped_by_role(tmp_path):
     store = auth.TokenStore(tmp_path / "t.json")
     _, secret = store.issue(STAFF, ["read", "repo", "gdrive"])
     assert store.verify(secret).scopes == {"read"}
     _, fsecret = store.issue(FOUNDER, ["read", "repo"])
     assert store.verify(fsecret).scopes == {"read", "repo"}
-
 
 def test_token_expiry(tmp_path):
     clock = Clock()
@@ -46,14 +42,12 @@ def test_token_expiry(tmp_path):
     with pytest.raises(auth.AuthError, match="expired"):
         store.verify(secret)
 
-
 def test_ttl_bounds(tmp_path):
     store = auth.TokenStore(tmp_path / "t.json")
     with pytest.raises(ValueError):
         store.issue(STAFF, ["read"], ttl_days=31)
     with pytest.raises(ValueError):
         store.issue(STAFF, ["root"])
-
 
 def test_revoke(tmp_path):
     store = auth.TokenStore(tmp_path / "t.json")
@@ -62,7 +56,6 @@ def test_revoke(tmp_path):
     with pytest.raises(auth.AuthError, match="revoked"):
         store.verify(secret)
     assert store.list()[0]["active"] is False
-
 
 def test_rotate_overlap(tmp_path):
     clock = Clock()
@@ -77,18 +70,15 @@ def test_rotate_overlap(tmp_path):
         store.verify(old)
     assert store.verify(new).user == STAFF
 
-
 @pytest.mark.parametrize("secret", [None, "", "nope", "bwt_abc_def", "bwt_" + "x" * 40])
 def test_bad_tokens(tmp_path, secret):
     with pytest.raises(auth.AuthError):
         auth.TokenStore(tmp_path / "t.json").verify(secret)
 
-
 def _signed(key: bytes, clock: Clock, **over):
     msg = {"user": STAFF, "role": "staff", "exp": clock.t + 30, "nonce": pysecrets.token_hex(12)} | over
     body = json.dumps(msg).encode()
     return body, auth.sign(body, key)
-
 
 def test_signed_request_accepts_and_rejects_replay():
     clock, key = Clock(), b"k" * 32
@@ -98,7 +88,6 @@ def test_signed_request_accepts_and_rejects_replay():
     assert p.user == STAFF and p.role == "staff"
     with pytest.raises(auth.AuthError, match="replayed"):
         signer.verify(body, sig)
-
 
 def test_signed_request_unsigned_and_expired():
     clock, key = Clock(), b"k" * 32
@@ -115,7 +104,6 @@ def test_signed_request_unsigned_and_expired():
     with pytest.raises(auth.AuthError, match="expired"):
         signer.verify(body, sig)
 
-
 def test_signing_key_rotation(monkeypatch):
     clock, old, new = Clock(), b"o" * 32, b"n" * 32
     monkeypatch.setenv("WORKBENCH_SIGNING_KEYS", f"{new.decode()},{old.decode()}")
@@ -126,7 +114,6 @@ def test_signing_key_rotation(monkeypatch):
     monkeypatch.setenv("WORKBENCH_SIGNING_KEYS", "short")
     with pytest.raises(auth.AuthError, match="32 characters"):
         auth.signing_keys()
-
 
 def test_signed_role_checks():
     clock, key = Clock(), b"k" * 32
@@ -141,7 +128,6 @@ def test_signed_role_checks():
     assert signer.verify(body, sig)[0].founder
     body, sig = _signed(key, clock, role="staff", user=FOUNDER)
     assert not signer.verify(body, sig)[0].founder
-
 
 def test_scope_rules(bench):
     with pytest.raises(ToolError) as exc:
@@ -164,18 +150,15 @@ def test_scope_rules(bench):
     assert (FOUNDER, "pub", "done") in results
     assert ("local", "echo", "refused") in results
 
-
 def test_pending_tool_refused(bench):
     with pytest.raises(ToolError) as exc:
         bench.call(founder(), "later", {"word": "x"})
     assert exc.value.code == "pending" and "PR #1" in str(exc.value)
 
-
 def test_list_hides_out_of_scope(bench):
     assert {t["id"] for t in bench.list_tools(staff())} == {"echo", "mine", "look", "later"}
     assert {t["id"] for t in bench.list_tools(auth.anonymous())} == {"look"}
     assert "pub" in {t["id"] for t in bench.list_tools(founder())}
-
 
 def test_founder_requires_env(monkeypatch):
     monkeypatch.setenv("BUCKET_FOUNDER_EMAIL", "")

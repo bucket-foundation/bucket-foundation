@@ -17,13 +17,11 @@ SOURCE_KEYS = ("title", "url", "retrieved", "license")
 MIN_PRIMES = 2
 MAX_PRIMES = 64
 
-
 class SeriesError(ValueError):
     def __init__(self, code: str, path: str, message: str):
         super().__init__(f"{code} at {path}: {message}")
         self.code = code
         self.path = path
-
 
 @dataclass(frozen=True)
 class Series:
@@ -53,12 +51,10 @@ class Series:
         span = float(self.t[-1] - self.t[0])
         return 1.0 / span if span > 0 else 0.0
 
-
 def _finite(x, path: str) -> float:
     if isinstance(x, bool) or not isinstance(x, (int, float)) or not math.isfinite(x):
         raise SeriesError("E_NONFINITE", path, f"expected a finite number, got {x!r}")
     return float(x)
-
 
 def validate(doc: dict) -> Series:
     if not isinstance(doc, dict) or doc.get("schema") != SCHEMA:
@@ -124,7 +120,6 @@ def validate(doc: dict) -> Series:
         dropped=tuple(doc.get("dropped", ())),
     )
 
-
 def to_doc(s: Series) -> dict:
     doc = {
         "schema": SCHEMA,
@@ -145,7 +140,6 @@ def to_doc(s: Series) -> dict:
         doc["dropped"] = list(s.dropped)
     return doc
 
-
 def load_csv(path: Path, meta: dict) -> Series:
     table: dict[float, dict[str, float]] = {}
     with open(path, newline="") as fh:
@@ -163,7 +157,6 @@ def load_csv(path: Path, meta: dict) -> Series:
     doc.setdefault("schema", SCHEMA)
     doc["slices"] = [{"t": t, "weights": table[t]} for t in sorted(table)]
     return validate(doc)
-
 
 def load(path: Path) -> Series:
     path = Path(path)

@@ -13,10 +13,8 @@ from .schema import SeriesError, load
 
 EXIT_INVALID = 2
 
-
 def _source(args) -> dict:
     return {"title": args.source_title, "url": args.source_url, "retrieved": args.retrieved, "license": args.license}
-
 
 def read_series(args):
     if args.adapter == "series":
@@ -32,7 +30,6 @@ def read_series(args):
     return corpus.load(
         Path(args.input), args.primes.split(","), args.name, args.slug, _source(args), args.period, args.omega
     )
-
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="helix")
@@ -65,7 +62,6 @@ def parser() -> argparse.ArgumentParser:
     s.add_argument("--repo", type=Path, default=Path.cwd())
     return p
 
-
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
     if args.cmd == "publish":
@@ -89,7 +85,6 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_INVALID
     print(run_dir)
     return code
-
 
 if __name__ == "__main__":
     sys.exit(main())

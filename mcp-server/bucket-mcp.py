@@ -258,7 +258,6 @@ TOOLS = [
 CANON_TOOLS = {t['name'] for t in TOOLS}
 _WORKBENCH = None
 
-
 def workbench():
     global _WORKBENCH
     if _WORKBENCH is None:
@@ -266,7 +265,6 @@ def workbench():
         from workbench.mcp import McpBridge
         _WORKBENCH = McpBridge()
     return _WORKBENCH
-
 
 def handle_request(req: dict) -> dict:
     method = req.get('method', '')

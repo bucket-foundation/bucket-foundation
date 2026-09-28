@@ -26,13 +26,11 @@ CADENCE_TOOL = Tool(
     input_schema={"type": "object", "properties": {}},
 )
 
-
 class ToolError(RuntimeError):
     def __init__(self, code: str, message: str, data: dict | None = None):
         super().__init__(message)
         self.code = code
         self.data = data or {}
-
 
 class Workbench:
     def __init__(

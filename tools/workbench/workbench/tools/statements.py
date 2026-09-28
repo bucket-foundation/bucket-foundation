@@ -13,7 +13,6 @@ PASS_SCORE = 8.0
 PASS_FLOOR = 7.0
 SCORE_BLOCK = re.compile(r"\{[^{}]*\"weighted\"[^{}]*\"dimensions\"\s*:\s*\{[^{}]*\}[^{}]*\}", re.DOTALL)
 
-
 def prompt(statement: str) -> str:
     rubric = CRITIC.read_text() if CRITIC.exists() else ""
     return (
@@ -22,7 +21,6 @@ def prompt(statement: str) -> str:
         '"critical|high|medium|low", "issue": "...", "fix": "..."}]}.\n\n'
         f"Research statement:\n\n{statement}"
     )
-
 
 def parse(text: str) -> dict:
     try:
@@ -41,7 +39,6 @@ def parse(text: str) -> dict:
         return json.loads(text[start : end + 1])
     return json.loads(m.group(0))
 
-
 def verdict(score: dict) -> dict:
     dims = score.get("dimensions") or {}
     findings = score.get("findings") or []
@@ -55,7 +52,6 @@ def verdict(score: dict) -> dict:
         "pass": passed,
         "rule": f"weighted above {PASS_SCORE}, no dimension below {PASS_FLOOR}, no open critical or high",
     }
-
 
 def score(args: dict, out_dir: Path) -> dict:
     statement = Path(args["statement"]).read_text()

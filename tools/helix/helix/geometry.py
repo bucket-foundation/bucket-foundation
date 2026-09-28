@@ -2,10 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
-
 def phase(K: int, k: int | np.ndarray, omega: float, t: float | np.ndarray) -> np.ndarray:
     return np.asarray(k, dtype=float) / K + omega * np.asarray(t, dtype=float)
-
 
 def coords(t: np.ndarray, W: np.ndarray, omega: float, t0: float | None = None) -> np.ndarray:
     K = W.shape[1]

@@ -7,7 +7,6 @@ from .registry import Tool
 
 RATES = {"read": 60, "write": 10, "remote": 2}
 
-
 def rate_class(tool: Tool) -> str:
     if tool.scope in ("gdrive", "repo"):
         return "remote"
@@ -15,12 +14,10 @@ def rate_class(tool: Tool) -> str:
         return "read"
     return "write"
 
-
 class RateLimited(RuntimeError):
     def __init__(self, retry_after: float):
         super().__init__(f"rate limited, retry after {retry_after:.1f}s")
         self.retry_after = retry_after
-
 
 class RateLimiter:
     def __init__(self, rates: dict | None = None, clock=time.monotonic):

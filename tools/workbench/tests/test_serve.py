@@ -16,11 +16,9 @@ from .conftest import STAFF
 
 KEY = b"s" * 32
 
-
 def body(**over) -> bytes:
     msg = {"user": STAFF, "role": "staff", "exp": time.time() + 30, "nonce": secrets.token_hex(12)} | over
     return json.dumps(msg).encode()
-
 
 def test_loopback_only():
     assert loopback("127.0.0.1") and loopback("::1") and loopback("localhost")
@@ -28,14 +26,12 @@ def test_loopback_only():
     with pytest.raises(SystemExit):
         serve(None, auth.SignedRequests([KEY]), host="0.0.0.0", port=0)
 
-
 def test_handle_requires_signature(bench):
     signer = auth.SignedRequests([KEY])
     b = body()
     assert handle(bench, signer, "/tools", b, None)[0] == 401
     code, out = handle(bench, signer, "/tools", b, auth.sign(b, KEY))
     assert code == 200 and {t["id"] for t in out["tools"]} == {"echo", "mine", "look", "later"}
-
 
 def test_handle_run_and_errors(bench):
     signer = auth.SignedRequests([KEY])
@@ -58,7 +54,6 @@ def test_handle_run_and_errors(bench):
     assert runs[0]["state"] == "done"
     assert set(runs[0]["result"]["outputs"]) >= {"call.json", "stdout.txt"}
     assert post("/cancel", run_id="missing")[0] == 404
-
 
 def test_http_server_end_to_end(bench):
     server = serve(bench, auth.SignedRequests([KEY]), port=0)

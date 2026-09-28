@@ -11,11 +11,9 @@ import numpy as np
 
 BG, INK, SUB = "#EFE8D4", "#1F1C16", "#3A3529"
 
-
 def palette(K: int) -> list:
     cmap = plt.get_cmap("tab20" if K > 10 else "tab10")
     return [cmap(i % cmap.N) for i in range(K)]
-
 
 def render(scene: dict, title: str, footer: str, out_dir: Path) -> tuple[Path, Path]:
     plt.rcParams["svg.hashsalt"] = "bucket-helix"

@@ -9,7 +9,6 @@ import pytest
 
 from workbench.tools import network, statements
 
-
 def test_network_map(tmp_path):
     graph = {
         "nodes": [
@@ -31,20 +30,17 @@ def test_network_map(tmp_path):
     assert (out / "network.png").stat().st_size > 0
     assert set(json.loads((out / "network.json").read_text())["positions"]) == {"a", "b", "c", "d"}
 
-
 def test_network_bad_file(tmp_path):
     g = tmp_path / "g.json"
     g.write_text("{}")
     with pytest.raises(TypeError, match="nodes and edges"):
         network.build({"graph": str(g)}, tmp_path)
 
-
 def _fake_claude(tmp_path, reply: str, code: int = 0):
     path = tmp_path / f"claude{code}"
     path.write_text(f"#!{sys.executable}\nimport sys\nsys.stdin.read()\nprint({reply!r})\nsys.exit({code})\n")
     path.chmod(path.stat().st_mode | stat.S_IEXEC)
     return path
-
 
 @pytest.mark.parametrize(
     "score,passed",
@@ -57,7 +53,6 @@ def _fake_claude(tmp_path, reply: str, code: int = 0):
 )
 def test_statement_verdict(score, passed):
     assert statements.verdict(score)["pass"] is passed
-
 
 def test_statement_score_with_wrapper(tmp_path, monkeypatch):
     inner = json.dumps({"weighted": 8.5, "dimensions": {"clarity": 9}, "findings": []})
@@ -72,7 +67,6 @@ def test_statement_score_with_wrapper(tmp_path, monkeypatch):
     assert json.loads((out / "score.json").read_text())["pass"]
     assert (out / "statement.md").read_text() == "We test whether X."
 
-
 def test_statement_score_failures(tmp_path, monkeypatch):
     st = tmp_path / "s.md"
     st.write_text("x")
@@ -83,7 +77,6 @@ def test_statement_score_failures(tmp_path, monkeypatch):
     with pytest.raises(RuntimeError, match="exited 2"):
         statements.score({"statement": str(st)}, tmp_path)
     assert os.path.exists(tmp_path / "critic-raw.txt")
-
 
 def test_prompt_carries_rubric():
     p = statements.prompt("S")

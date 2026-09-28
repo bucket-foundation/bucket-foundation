@@ -20,18 +20,14 @@ from .registry import Registry, Tool
 
 DEFAULT_LIMITS = {"total": 4, "per_user": 2, "queue": 20, "group_caps": {"visual": 1, "prime_directions": 1}}
 
-
 class ArgError(ValueError):
     pass
-
 
 class Busy(RuntimeError):
     pass
 
-
 class Cancelled(RuntimeError):
     pass
-
 
 def validate_args(tool: Tool, args: dict, p: Principal) -> dict:
     schema = tool.input_schema
@@ -75,7 +71,6 @@ def validate_args(tool: Tool, args: dict, p: Principal) -> dict:
         out[name] = value
     return out
 
-
 def _needs(part: list) -> list[str]:
     names = []
     for x in part:
@@ -84,7 +79,6 @@ def _needs(part: list) -> list[str]:
         elif x.startswith("{") and x.endswith("}") and x != "{out}":
             names.append(x[1:-1])
     return names
-
 
 def render(parts, args: dict, out_dir: Path) -> list[str]:
     argv: list[str] = []
@@ -100,20 +94,16 @@ def render(parts, args: dict, out_dir: Path) -> list[str]:
         argv.append(sys.executable if part == "python3" else part)
     return argv
 
-
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
-
 
 def git_sha() -> str:
     r = subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True, check=False)
     return r.stdout.strip() if r.returncode == 0 else "unknown"
 
-
 def run_dir_for(tool: Tool, p: Principal, run_id: str) -> Path:
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     return user_root(p.user) / tool.group / f"{stamp}-{tool.id}-{run_id[:8]}"
-
 
 def execute(tool: Tool, args: dict, p: Principal, run_id: str, cancel: threading.Event | None = None) -> dict:
     out_dir = run_dir_for(tool, p, run_id)
@@ -162,7 +152,6 @@ def execute(tool: Tool, args: dict, p: Principal, run_id: str, cancel: threading
     (out_dir / "result.json").write_text(json.dumps(result, indent=1, sort_keys=True, default=str))
     return result
 
-
 @dataclass
 class Job:
     tool: Tool
@@ -182,7 +171,6 @@ class Job:
             "state": self.state,
             "result": self.result,
         }
-
 
 class Scheduler:
     def __init__(self, registry: Registry, limits: dict | None = None, executor=execute):

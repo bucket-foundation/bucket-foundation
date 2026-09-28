@@ -9,19 +9,16 @@ from helix.schema import SeriesError, load, to_doc, validate
 
 from .conftest import FIXTURES
 
-
 def test_round_trip(doc):
     s = validate(doc)
     assert s.K == 3
     assert to_doc(validate(to_doc(s))) == to_doc(s)
     assert np.allclose(s.shares.sum(axis=1), 1.0)
 
-
 def test_default_omega_spans_one_turn(doc):
     del doc["omega"]
     s = validate(doc)
     assert s.omega_or_default() == pytest.approx(1 / 4)
-
 
 def _set(doc, path, value):
     target = doc
@@ -31,7 +28,6 @@ def _set(doc, path, value):
         del target[path[-1]]
     else:
         target[path[-1]] = value
-
 
 CASES = [
     ("E_SCHEMA", ("schema",), "helix.series/v0"),
@@ -50,7 +46,6 @@ CASES = [
     ("E_SOURCE", ("source", "license"), KeyError),
 ]
 
-
 @pytest.mark.parametrize("code,path,value", CASES)
 def test_validation_errors(doc, code, path, value):
     _set(doc, path, value)
@@ -59,14 +54,12 @@ def test_validation_errors(doc, code, path, value):
     assert exc.value.code == code
     assert exc.value.path.startswith("$")
 
-
 def test_csv_needs_sidecar(tmp_path):
     p = tmp_path / "s.csv"
     p.write_text("t,prime,value\n2020,a,1\n2021,a,1\n")
     with pytest.raises(SeriesError) as exc:
         load(p)
     assert exc.value.code == "E_SCHEMA"
-
 
 def test_csv_loads_with_sidecar(tmp_path, doc):
     rows = ["t,prime,value"]
@@ -76,7 +69,6 @@ def test_csv_loads_with_sidecar(tmp_path, doc):
     meta = {k: v for k, v in doc.items() if k != "slices"}
     (tmp_path / "s.meta.json").write_text(json.dumps(meta))
     assert np.allclose(load(tmp_path / "s.csv").raw, validate(doc).raw)
-
 
 def test_fixture_file_loads():
     assert load(FIXTURES / "series.json").slug == "fixture-topics"

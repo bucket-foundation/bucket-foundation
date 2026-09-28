@@ -11,7 +11,6 @@ from workbench.runner import render
 
 from .conftest import make_registry, tool_doc
 
-
 def test_repo_registry_loads():
     reg = registry.load()
     groups = {t.group for t in reg.tools.values()}
@@ -30,7 +29,6 @@ def test_repo_registry_loads():
     assert reg.get("visual_render_scene").status == "pending"
     assert reg.get("helix_publish").scope == "repo"
     assert reg.get("profile_build").scope == "personal"
-
 
 @pytest.mark.parametrize(
     "over,message",
@@ -51,16 +49,13 @@ def test_registry_errors(over, message):
     with pytest.raises(registry.RegistryError, match=message):
         make_registry(tool_doc(**over))
 
-
 def test_duplicate_ids():
     with pytest.raises(registry.RegistryError, match="duplicate"):
         make_registry(tool_doc(), tool_doc())
 
-
 def test_unknown_cap_group():
     with pytest.raises(registry.RegistryError, match="unknown group"):
         make_registry(tool_doc(), limits={"group_caps": {"weather": 1}})
-
 
 @pytest.mark.skipif(
     os.environ.get("WORKBENCH_HELP_CHECK") != "1", reason="needs every tool's deps; set WORKBENCH_HELP_CHECK=1"

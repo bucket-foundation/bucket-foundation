@@ -8,7 +8,6 @@ import pytest
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
-
 @pytest.fixture
 def doc() -> dict:
     return copy.deepcopy(json.loads((FIXTURES / "series.json").read_text()))

@@ -4,7 +4,6 @@ import datetime as dt
 
 from ..schema import SeriesError
 
-
 def year_fraction(value, path: str) -> float:
     if isinstance(value, (int, float)) and not isinstance(value, bool):
         return float(value)

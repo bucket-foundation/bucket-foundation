@@ -6,13 +6,11 @@ from pathlib import Path
 
 from ..paths import REPO
 
-
 def _bm():
     path = str(REPO / "tools" / "bucketmath")
     if path not in sys.path:
         sys.path.insert(0, path)
     return importlib.import_module("bm")
-
 
 def lookup(args: dict, out_dir: Path) -> dict:
     bm = _bm()

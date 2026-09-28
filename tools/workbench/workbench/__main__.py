@@ -8,7 +8,6 @@ from . import auth
 from .registry import RegistryError
 from .registry import load as load_registry
 
-
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="workbench")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -59,7 +58,6 @@ def main(argv: list[str] | None = None) -> int:
     print(f"workbench-serve on {args.host}:{args.port}", file=sys.stderr)
     server.serve_forever()
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())
