@@ -90,6 +90,12 @@ test("weak cards and non-academy nodes never count as mastered", () => {
   assert.deepEqual(Array.from(practiceMastered(nodes, { "02-physics": { cards: { a: strong } } })), ["a"]);
 });
 
+test("biophysics progress counts under the deck id or the file stem", async () => {
+  const bio = row("m", { branch: "05-biophysics", provenance: { type: "academy_atom", atom_id: "m", source: "learning/app/corpus/biophysics.json" } });
+  const r = await loadPlan(store([bio], [], { "05-biophysics": { cards: { m: strong } } }), "s-m", "viewer");
+  assert.ok(r.status === "plan" && r.plan.status === "ready" && r.plan.studyOrder.length === 0);
+});
+
 test("biophysics atoms map to the biophysics deck key", async () => {
   const bio = row("m", { branch: "05-biophysics", provenance: { type: "academy_atom", atom_id: "m", source: "learning/app/corpus/biophysics.json" } });
   const r = await loadPlan(store([bio], [], { biophysics: { cards: { m: strong } } }), "s-m", "viewer");

@@ -55,10 +55,11 @@ export function practiceMastered(nodes: PlanNode[], progress: Record<string, unk
   const out = new Set<string>();
   for (const n of nodes) {
     if (!n.atom) continue;
-    const state = progress[n.atom.branchFile] as { cards?: Record<string, StoredCard>; prof?: Record<string, ProficiencyState> } | undefined;
-    const card = state?.cards?.[n.atom.atomId];
-    if (!card) continue;
-    if (fusedConceptMastery(card, state?.prof?.[n.atom.atomId]).mastery >= MASTERED_THRESHOLD) out.add(n.id);
+    for (const key of Array.from(new Set([n.branch, n.atom.branchFile]))) {
+      const state = progress[key] as { cards?: Record<string, StoredCard>; prof?: Record<string, ProficiencyState> } | undefined;
+      const card = state?.cards?.[n.atom.atomId];
+      if (card && fusedConceptMastery(card, state?.prof?.[n.atom.atomId]).mastery >= MASTERED_THRESHOLD) out.add(n.id);
+    }
   }
   return out;
 }
