@@ -53,23 +53,47 @@ def test_projection_of_a_member_matches_its_fitted_scores():
     np.testing.assert_allclose(projected, model.result.raw_scores[3], atol=1e-9)
     assert model.result.orthogonality < 1e-8
 
-def test_rank_orders_by_cosine_and_puts_the_statement_field_first():
+def test_rank_orders_by_score_and_puts_the_statement_field_first():
     model = small_model()
-    rows, qvec = advisors.rank(model, STATEMENT.read_text(), top=40)
-    assert [r["rank_cosine"] for r in rows] == list(range(1, 41))
-    assert all(rows[i]["cosine"] >= rows[i + 1]["cosine"] for i in range(len(rows) - 1))
+    rows, qraw, report = advisors.rank(model, STATEMENT.read_text(), top=40)
+    assert [r["rank"] for r in rows] == list(range(1, 41))
+    assert all(rows[i]["score"] >= rows[i + 1]["score"] for i in range(len(rows) - 1))
+    assert all(rows[i]["percentile"] >= rows[i + 1]["percentile"] for i in range(len(rows) - 1))
+    assert rows[0]["percentile"] == pytest.approx(100.0)
     assert sum(r["field"] == "Biology" for r in rows[:20]) >= 18
-    assert rows[0]["email"].endswith("@example.org") and rows[0]["shared_terms"]
-    best = rows[0]
-    scores = model.result.raw_scores
-    i = model.result.doc_ids.index(best["id"])
-    assert best["euclidean"] == pytest.approx(float(np.linalg.norm(scores[i] - qvec)), abs=1e-4)
-    center = scores.mean(axis=0)
-    assert best["cosine"] == pytest.approx(float(advisors.cosine((scores - center)[i:i + 1], qvec - center)[0]), abs=1e-4)
-    raw_rows, _ = advisors.rank(model, STATEMENT.read_text(), top=5, centered=False)
-    j = model.result.doc_ids.index(raw_rows[0]["id"])
-    assert raw_rows[0]["cosine"] == pytest.approx(float(advisors.cosine(scores[j:j + 1], qvec)[0]), abs=1e-4)
-    assert raw_rows[0]["euclidean"] == pytest.approx(float(np.linalg.norm(scores[j] - qvec)), abs=1e-4)
+    assert rows[0]["email"].endswith("@example.org")
+    assert 1 <= len(rows[0]["shared_terms"].split()) <= 5
+    assert report["scoring"] == "whitened" and report["score_spread"]["top1"] == pytest.approx(rows[0]["score"], abs=1e-4)
+    raw = model.result.raw_scores
+    z, zq = advisors.score_space(raw, qraw, "whitened")
+    i = model.result.doc_ids.index(rows[0]["id"])
+    assert rows[0]["score"] == pytest.approx(float(advisors.cosine(z[i:i + 1], zq)[0]), abs=1e-4)
+
+
+@pytest.mark.parametrize("scoring", advisors.SCORINGS)
+def test_scoring_spaces(scoring):
+    rng = np.random.default_rng(0)
+    raw = rng.normal(loc=3, scale=[1, 10, 0.1], size=(50, 3))
+    q = raw[0] + 1
+    space, qs = advisors.score_space(raw, q, scoring)
+    if scoring == "raw":
+        assert np.allclose(space, raw) and np.allclose(qs, q)
+    else:
+        assert np.allclose(space.mean(axis=0), 0)
+        assert np.allclose(np.linalg.norm(space - qs, axis=1), np.linalg.norm(space - qs, axis=1))
+    if scoring == "whitened":
+        assert np.allclose(space.std(axis=0), 1)
+    with pytest.raises(ValueError):
+        advisors.score_space(raw, q, "nope")
+
+
+def test_percentile_and_spread():
+    v = np.array([0.1, 0.5, 0.3, 0.9])
+    assert advisors.percentile_of(v).tolist() == pytest.approx([0, 200 / 3, 100 / 3, 100])
+    s = advisors.spread(np.linspace(0, 1, 400))
+    assert s["top1"] == 1.0 and s["top1"] > s["top10"] > s["top100"] > s["top300"]
+    assert s["gap_top1_top100"] == pytest.approx(s["top1"] - s["top100"])
+
 
 def test_cosine_handles_zero_vectors():
     out = advisors.cosine(np.array([[0.0, 0.0], [1.0, 0.0]]), np.array([1.0, 0.0]))
@@ -86,20 +110,26 @@ def test_unit_vectors_make_l2_rank_match_cosine_rank():
 
 def test_index_benchmark_exact_and_indexed_agree():
     model = small_model()
-    _, qvec = advisors.rank(model, STATEMENT.read_text(), top=5)
-    rows = advisors.index_benchmark(model, np.vstack([qvec, model.result.raw_scores[:20]]), k=10)
+    _, qraw, _ = advisors.rank(model, STATEMENT.read_text(), top=5)
+    space, qs = advisors.score_space(model.result.raw_scores, qraw, "whitened")
+    rows = advisors.index_benchmark(space, np.vstack([qs, space[:20]]), k=10)
     assert {r["backend"] for r in rows} == {"brute", "kdtree", "hnsw"}
     assert all(r["tie_aware_recall"] >= 0.99 for r in rows)
 
-def test_page_escapes_and_embeds_filters(tmp_path: Path):
-    rows = [{"rank_cosine": 1, "rank_euclidean": 1, "cosine": 0.9, "euclidean": 0.1, "id": "x",
-             "name": "<script>alert(1)</script>", "field": "Bio", "country": "US", "funding": "",
-             "institution": "Inst </script>", "taking_students": "", "email": "a@b.c", "shared_terms": "cell"}]
-    page = advisors.write_page(rows, "pca.png", "summary & more", tmp_path / "i.html").read_text()
-    assert "<script>alert(1)</script>" not in page
-    assert "<\\/script>" in page
-    assert 'id="f-field"' in page and 'id="f-country"' in page and 'id="f-funding"' not in page
-    assert "summary &amp; more" in page
+
+def test_page_inlines_image_and_escapes_data(tmp_path: Path):
+    png = tmp_path / "p.png"
+    png.write_bytes(b"\x89PNG\r\n\x1a\nfake")
+    rows = [{"rank": 1, "score": 0.9, "percentile": 100.0, "id": "x", "name": "</script><script>alert(1)</script>",
+             "institution": "I <!-- x", "field": "Bio", "country": "US", "shared_terms": "cell"}]
+    ctx = {"key": "k", "summary": "s", "method": "m", "plot": "p", "spread": {"top1": 1, "top10": 1, "top100": 1, "top300": 1, "median": 0}}
+    page = advisors.write_page(rows, png, ctx, tmp_path / "i.html").read_text()
+    assert 'src="data:image/png;base64,' in page and "pca.png" not in page
+    data = page.split('<script id="data" type="application/json">', 1)[1].split("</script>", 1)[0]
+    assert "</" not in data and "<!--" not in data
+    assert json.loads(data)["rows"][0]["name"] == "</script><script>alert(1)</script>"
+    assert "innerHTML" not in page
+
 
 def test_cli_advisor_review_writes_private_outputs(tmp_path: Path, monkeypatch, capsys):
     monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
@@ -111,9 +141,11 @@ def test_cli_advisor_review_writes_private_outputs(tmp_path: Path, monkeypatch, 
         assert (out / name).exists()
     with open(out / "ranked.csv") as f:
         rows = list(csv.DictReader(f))
-    assert len(rows) == 30 and rows[0]["rank_cosine"] == "1"
+    assert len(rows) == 30 and rows[0]["rank"] == "1"
     report = json.loads((out / "report.json").read_text())
     assert report["fitted"] == 160 and len(report["statement_scores"]) == 6
+    assert report["plot"]["components"][0] != report["plot"]["components"][1]
+    assert "pca.png" not in (out / "index.html").read_text()
     assert "xdg-open" in capsys.readouterr().out
 
 def test_cli_advisor_review_refuses_repo_output():
@@ -175,3 +207,22 @@ def test_statement_body_stops_at_references():
     text = "# T\nbody line\n## References\n[1] cited"
     assert advisors.statement_body(text) == "# T\nbody line"
     assert advisors.statement_body("no refs") == "no refs"
+
+
+def test_diversify_caps_institutions_in_the_window_and_keeps_everyone():
+    rows = [{"id": str(i), "institution": "A" if i < 8 else f"B{i}"} for i in range(20)]
+    out = advisors.diversify(rows, cap=5, window=10)
+    assert sorted(r["id"] for r in out) == sorted(r["id"] for r in rows)
+    head = out[:10]
+    assert sum(r["institution"] == "A" for r in head) == 5
+    assert [r["id"] for r in head[:5]] == ["0", "1", "2", "3", "4"]
+    assert [r["id"] for r in out[10:13]] == ["5", "6", "7"]
+    assert advisors.diversify(rows, cap=50, window=10) == rows
+
+
+def test_institution_mix_and_sources():
+    rows = [{"institution": "S", "sources": "stevens"}] * 3 + [{"institution": "T", "sources": "cockpit; stevens"}, {"institution": "U", "sources": "cockpit"}]
+    mix = advisors.institution_mix(rows, n=5)
+    assert mix["institutions"] == 3 and mix["largest_share"] == 0.6 and mix["stevens_share"] == 0.8
+    assert mix["top"][0] == {"institution": "S", "count": 3}
+    assert advisors.is_source(rows[3], "stevens") and not advisors.is_source(rows[4], "stevens")

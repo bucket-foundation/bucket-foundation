@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import csv
-import html
 import json
+import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -83,7 +83,13 @@ def _first(record: dict, keys) -> str:
             return _flatten(value)
     return ""
 
-def load_people(path: Path, text_keys=TEXT_KEYS, max_chars: int = 60000, allow_partial_tail: bool = True) -> list[Person]:
+def load_people(
+    path: Path,
+    text_keys=TEXT_KEYS,
+    max_chars: int = 60000,
+    allow_partial_tail: bool = True,
+    label_key: str | None = "author_topics.name",
+) -> list[Person]:
     people: list[Person] = []
     seen: set[str] = set()
     raw = Path(path).read_text(encoding="utf-8")
@@ -112,6 +118,9 @@ def load_people(path: Path, text_keys=TEXT_KEYS, max_chars: int = 60000, allow_p
                 meta[k] = "; ".join(_flatten(x) for x in record[k])
         meta["field"] = derive_field(record)
         meta["funding"] = derive_funding(record.get("funding"))
+        labels = get_path(record, label_key) if label_key else None
+        if isinstance(labels, list):
+            meta["topic_labels"] = [str(x) for x in labels if isinstance(x, str) and x]
         people.append(Person(pid, _first(record, NAME_KEYS) or pid, text, meta))
     return people
 
@@ -169,57 +178,148 @@ def cosine(a: np.ndarray, q: np.ndarray) -> np.ndarray:
     denom = na * nq
     return np.divide(a @ q, denom, out=np.zeros(a.shape[0]), where=denom > 0)
 
+TOKEN = re.compile(TOKEN_PATTERN)
+
+
 def shared_terms(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[int], n: int = 6) -> list[list[str]]:
+    return [terms for terms, _ in shared_evidence(model, query_row, rows, n)]
+
+
+def shared_evidence(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[int], n: int = 5) -> list[tuple[list[str], list[str]]]:
     q = query_row.toarray().ravel()
     person = model.embed([model.people[model.kept[r]].text for r in rows])
+    index = {str(t): i for i, t in enumerate(model.vocab)}
     out = []
-    for r in range(person.shape[0]):
+    for r, row in enumerate(rows):
         contrib = person[r].toarray().ravel() * q
         top = np.argsort(-contrib)[:n]
-        out.append([str(model.vocab[t]) for t in top if contrib[t] > 0])
+        terms = [str(model.vocab[t]) for t in top if contrib[t] > 0]
+        labels = model.people[model.kept[row]].meta.get("topic_labels") or []
+        scored = []
+        for label in dict.fromkeys(labels):
+            weight = sum(contrib[index[tok]] for tok in set(TOKEN.findall(label.lower())) if tok in index)
+            if weight > 0:
+                scored.append((weight, label))
+        topics = [label for _, label in sorted(scored, key=lambda x: -x[0])[:n]]
+        out.append((terms, topics))
     return out
 
-def rank(model: AdvisorModel, query_text: str, top: int = 300, centered: bool = True) -> tuple[list[dict], np.ndarray]:
+
+SCORINGS = ("whitened", "centered", "raw")
+
+
+def score_space(raw: np.ndarray, q: np.ndarray, scoring: str = "whitened") -> tuple[np.ndarray, np.ndarray]:
+    if scoring not in SCORINGS:
+        raise ValueError(f"scoring must be one of {SCORINGS}")
+    if scoring == "raw":
+        return raw, q
+    mu = raw.mean(axis=0)
+    if scoring == "centered":
+        return raw - mu, q - mu
+    sd = raw.std(axis=0)
+    sd[sd <= 1e-12] = 1
+    return (raw - mu) / sd, (q - mu) / sd
+
+
+def percentile_of(values: np.ndarray) -> np.ndarray:
+    from scipy.stats import rankdata
+
+    ranks = rankdata(values, method="max") - 1
+    return 100.0 * ranks / max(len(values) - 1, 1)
+
+
+def spread(values: np.ndarray) -> dict:
+    s = np.sort(values)[::-1]
+    pick = lambda k: round(float(s[min(k, len(s)) - 1]), 4)
+    return {
+        "top1": pick(1), "top10": pick(10), "top100": pick(100), "top300": pick(300),
+        "median": round(float(np.median(s)), 4), "sd": round(float(s.std()), 4),
+        "gap_top1_top100": round(pick(1) - pick(100), 4),
+    }
+
+
+def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: str = "whitened") -> tuple[list[dict], np.ndarray, dict]:
     raw = model.result.raw_scores
-    center = raw.mean(axis=0) if centered else np.zeros(raw.shape[1])
-    scores = raw - center
     qraw = model.project([query_text])[0]
-    qvec = qraw - center
-    cos = cosine(scores, qvec)
-    euclid = np.linalg.norm(scores - qvec[None, :], axis=1)
+    space, qvec = score_space(raw, qraw, scoring)
+    cos = cosine(space, qvec)
+    euclid = np.linalg.norm(space - qvec[None, :], axis=1)
+    pct = percentile_of(cos)
+    embedded = model.embed([model.people[i].text for i in model.kept])
+    qrow = model.embed([query_text])
+    term_cos = np.asarray((embedded @ qrow.T).todense()).ravel()
     order_cos = np.argsort(-cos, kind="stable")
-    order_euc = np.argsort(euclid, kind="stable")
-    rank_cos = np.empty(len(cos), dtype=int)
-    rank_cos[order_cos] = np.arange(1, len(cos) + 1)
     rank_euc = np.empty(len(cos), dtype=int)
-    rank_euc[order_euc] = np.arange(1, len(cos) + 1)
-    chosen = [int(i) for i in order_cos[:top]]
-    terms = shared_terms(model, model.embed([query_text]), chosen)
+    rank_euc[np.argsort(euclid, kind="stable")] = np.arange(1, len(cos) + 1)
+    chosen = [int(i) for i in (order_cos if not top else order_cos[:top])]
+    evidence = shared_evidence(model, qrow, chosen, n=5)
     rows = []
     for j, i in enumerate(chosen):
         person = model.people[model.kept[i]]
+        meta = person.meta
         rows.append({
-            "rank_cosine": int(rank_cos[i]),
+            "rank": j + 1,
             "rank_euclidean": int(rank_euc[i]),
-            "cosine": round(float(cos[i]), 5),
-            "euclidean": round(float(euclid[i]), 5),
+            "score": round(float(cos[i]), 4),
+            "percentile": round(float(pct[i]), 2),
+            "term_overlap": round(float(term_cos[i]), 4),
             "id": person.id,
             "name": person.name,
-            **{k: person.meta.get(k, "") for k in FILTER_KEYS},
-            **{k: person.meta.get(k, "") for k in EXTRA_KEYS},
-            "email": person.meta.get("email") or "",
-            "shared_terms": " ".join(terms[j]),
+            **{k: meta.get(k, "") for k in FILTER_KEYS},
+            **{k: meta.get(k, "") for k in EXTRA_KEYS},
+            "identity": meta.get("identity", ""),
+            "profile_institution": meta.get("profile_institution", ""),
+            "email": meta.get("email") or "",
+            "shared_terms": " ".join(evidence[j][0]),
+            "shared_topics": evidence[j][1],
         })
-    return rows, qraw
+    report = {"scoring": scoring, "score_spread": spread(cos), "people_scored": int(len(cos))}
+    return rows, qraw, report
+
+
+def is_source(row: dict, source: str) -> bool:
+    return source in [s.strip() for s in str(row.get("sources") or "").split(";")]
+
+
+def diversify(rows: list[dict], cap: int = 5, window: int = 50, key: str = "institution") -> list[dict]:
+    picked, held, counts = [], [], {}
+    for row in rows:
+        inst = str(row.get(key) or "")
+        if len(picked) < window and inst and counts.get(inst, 0) >= cap:
+            held.append(row)
+            continue
+        counts[inst] = counts.get(inst, 0) + 1
+        picked.append(row)
+        if len(picked) == window:
+            picked.extend(held)
+            held = []
+    return picked + held
+
+
+def institution_mix(rows: list[dict], n: int = 100, top: int = 8) -> dict:
+    head = rows[:n]
+    counts: dict[str, int] = {}
+    for row in head:
+        inst = str(row.get("institution") or "unknown")
+        counts[inst] = counts.get(inst, 0) + 1
+    ordered = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    return {
+        "rows": len(head),
+        "institutions": len(counts),
+        "largest_share": round(ordered[0][1] / max(len(head), 1), 3) if ordered else 0.0,
+        "top": [{"institution": k, "count": v} for k, v in ordered[:top]],
+        "stevens_share": round(sum(is_source(r, "stevens") for r in head) / max(len(head), 1), 3),
+    }
+
 
 def unit(v: np.ndarray) -> np.ndarray:
     n = np.linalg.norm(v, axis=-1, keepdims=True)
     n[n == 0] = 1
     return v / n
 
-def index_benchmark(model: AdvisorModel, query_vectors: np.ndarray, k: int = 25, backends=("brute", "kdtree", "hnsw")) -> list[dict]:
-    space = unit(model.result.raw_scores)
-    queries = unit(np.atleast_2d(query_vectors))
+def index_benchmark(space: np.ndarray, query_vectors: np.ndarray, k: int = 25, backends=("brute", "kdtree", "hnsw")) -> list[dict]:
+    space = unit(np.asarray(space, dtype=np.float64))
+    queries = unit(np.atleast_2d(query_vectors).astype(np.float64))
     truth, truth_dist = brute_knn(space, queries, k)
     rows = []
     for backend in backends:
@@ -241,135 +341,82 @@ def index_benchmark(model: AdvisorModel, query_vectors: np.ndarray, k: int = 25,
         })
     return rows
 
+
 def write_csv(rows: list[dict], path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]) if rows else ["rank_cosine"])
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows({k: "; ".join(v) if isinstance(v, list) else v for k, v in row.items()} for row in rows)
     return path
 
-def plot(model: AdvisorModel, qvec: np.ndarray, rows: list[dict], path: Path, label: int = 25, dpi: int = 160) -> tuple[Path, tuple[int, int]]:
+def plot_axes(raw: np.ndarray, qraw: np.ndarray) -> tuple[int, int, np.ndarray, np.ndarray, float]:
+    z, zq = score_space(raw, qraw, "whitened")
+    order = [int(c) for c in np.argsort(-np.abs(zq))][:2]
+    a, b = (order[0], order[1]) if len(order) == 2 else (0, 1)
+    share = float((zq[a] ** 2 + zq[b] ** 2) / max(float((zq**2).sum()), 1e-12))
+    return a, b, z, zq, share
+
+
+def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, label: int = 25, dpi: int = 150) -> tuple[Path, dict]:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    from .render import BASALT, BASALT_2, BONE, BONE_DIM, GOLD, GOLD_BRIGHT
-
+    ink, soft, ochre, bone, panel = "#1F1C16", "#6B6150", "#8A641A", "#EFE8D4", "#E4DCC4"
     raw = model.result.raw_scores
-    std = raw.std(axis=0)
-    live = std > 1e-9 * max(float(std.max()), 1e-300)
-    std[~live] = 1
-    z = (raw - raw.mean(axis=0)) / std
-    zq = (qvec - raw.mean(axis=0)) / std
-    order = [int(c) for c in np.argsort(-np.abs(zq)) if c != 0 and live[c]][:2]
-    a, b = (int(order[0]), int(order[1])) if len(order) == 2 else (0, 1)
-    fig = plt.figure(figsize=(12, 10), facecolor=BASALT)
+    a, b, z, zq, share = plot_axes(raw, qraw)
+    fig = plt.figure(figsize=(9, 8), facecolor=bone)
     ax = fig.add_subplot(111)
-    ax.set_facecolor(BASALT_2)
-    ax.scatter(z[:, a], z[:, b], s=5, color=BONE_DIM, alpha=0.35, lw=0, label="professors")
+    ax.set_facecolor(panel)
+    ax.scatter(z[:, a], z[:, b], s=4, color=soft, alpha=0.3, lw=0)
     ids = {r["id"]: r for r in rows[:label]}
     idx = [i for i, pid in enumerate(model.result.doc_ids) if pid in ids]
-    ax.scatter(z[idx, a], z[idx, b], s=22, color=GOLD, alpha=0.95, lw=0, label=f"nearest {len(idx)} by cosine")
-    if idx:
-        ys = z[idx, b]
-        order_y = [idx[j] for j in np.argsort(-ys)]
-        lo, hi = float(np.percentile(z[:, b], 1)), float(np.percentile(z[:, b], 99))
-        slots = np.linspace(hi, lo, len(order_y)) if len(order_y) > 1 else [float(ys[0])]
-        x_text = float(np.percentile(z[:, a], 99.5)) + 0.6
-        for i, y_text in zip(order_y, slots):
-            r = ids[model.result.doc_ids[i]]
-            ax.annotate(f"{r['rank_cosine']}. {r['name'][:26]}", (z[i, a], z[i, b]), xytext=(x_text, y_text),
-                        fontsize=6.5, color=BONE, va="center",
-                        arrowprops={"arrowstyle": "-", "color": GOLD, "alpha": 0.35, "lw": 0.5})
-    ax.scatter([zq[a]], [zq[b]], marker="*", s=420, color=GOLD_BRIGHT, edgecolor=BONE, lw=0.8, zorder=5, label="research statement")
+    ax.scatter(z[idx, a], z[idx, b], s=26, color=ochre, lw=0, zorder=4)
+    for i in idx:
+        ax.annotate(str(ids[model.result.doc_ids[i]]["rank"]), (z[i, a], z[i, b]), xytext=(3, 2),
+                    textcoords="offset points", fontsize=7, color=ink, zorder=5)
+    ax.scatter([zq[a]], [zq[b]], marker="*", s=520, color=ochre, edgecolor=ink, lw=0.9, zorder=6)
+    ax.annotate("statement", (zq[a], zq[b]), xytext=(10, -14), textcoords="offset points", fontsize=9, color=ink, zorder=6)
+    lo_x, hi_x = np.percentile(z[:, a], [0.5, 99.5])
+    lo_y, hi_y = np.percentile(z[:, b], [0.5, 99.5])
+    ax.set_xlim(min(lo_x, zq[a]) - 0.5, max(hi_x, zq[a]) + 0.5)
+    ax.set_ylim(min(lo_y, zq[b]) - 0.5, max(hi_y, zq[b]) + 0.5)
     for spine in ax.spines.values():
-        spine.set_color(GOLD)
-        spine.set_alpha(0.4)
-    ax.tick_params(colors=BONE_DIM, labelsize=8)
-    terms_a = ", ".join(t for t, _ in model.result.top_terms(a, 4))
-    terms_b = ", ".join(t for t, _ in model.result.top_terms(b, 4))
-    ax.set_xlabel(f"component {a + 1}: {terms_a} (standardized)", color=BONE)
-    ax.set_ylabel(f"component {b + 1}: {terms_b} (standardized)", color=BONE)
-    ax.set_title(f"Research statement among {len(raw):,} professors on the two components where it scores highest",
-                 color=BONE, fontsize=11)
-    ax.legend(frameon=False, labelcolor=BONE, fontsize=8, loc="best")
+        spine.set_color(ink)
+        spine.set_alpha(0.3)
+    ax.tick_params(colors=soft, labelsize=8)
+    ax.grid(color=ink, alpha=0.08, lw=0.5)
+    terms = lambda c: ", ".join(t for t, _ in model.result.top_terms(c, 4, sign=1 if zq[c] >= 0 else -1))
+    ax.set_xlabel(f"component {a + 1}: {terms(a)}  (sd from the mean)", color=ink, fontsize=9)
+    ax.set_ylabel(f"component {b + 1}: {terms(b)}  (sd from the mean)", color=ink, fontsize=9)
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, dpi=dpi, facecolor=BASALT, bbox_inches="tight")
+    fig.savefig(path, dpi=dpi, facecolor=bone, bbox_inches="tight")
     plt.close(fig)
-    return path, (a + 1, b + 1)
+    info = {
+        "components": [a + 1, b + 1],
+        "statement_sd": [round(float(zq[a]), 2), round(float(zq[b]), 2)],
+        "share_of_statement": round(share, 3),
+        "terms": [terms(a), terms(b)],
+    }
+    return path, info
 
-PAGE = """<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Advisor review</title>
-<style>
-:root{--bg:#1F1C16;--panel:#2A261E;--ink:#EFE8D4;--dim:#A89F88;--gold:#D9A43A}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif}
-main{max-width:1200px;margin:0 auto;padding:16px}
-h1{font-size:20px;margin:8px 0}
-.meta{color:var(--dim);font-size:12px}
-img{max-width:100%;border:1px solid #3A3529;border-radius:6px}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-select,input{background:var(--panel);color:var(--ink);border:1px solid #3A3529;border-radius:4px;padding:6px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:6px;border-bottom:1px solid #3A3529;text-align:left;vertical-align:top}
-th{cursor:pointer;color:var(--gold);position:sticky;top:0;background:var(--bg)}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-.terms{color:var(--dim);font-size:12px}
-.wrap{overflow-x:auto}
-</style></head><body><main>
-<h1>Advisor review</h1>
-<p class="meta">__SUMMARY__</p>
-<img src="__PLOT__" alt="PCA projection with the research statement as a star and the nearest professors labeled">
-<div class="filters">
-<input id="q" placeholder="search name, institution, terms">
-__SELECTS__
-<span id="count" class="meta"></span>
-</div>
-<div class="wrap"><table><thead><tr>__HEAD__</tr></thead><tbody id="rows"></tbody></table></div>
-</main>
-<script id="data" type="application/json">__DATA__</script>
-<script>
-const rows=JSON.parse(document.getElementById('data').textContent);
-const cols=__COLS__;const filters=__FILTERS__;
-let sortKey='rank_cosine',asc=true;
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function render(){
-  const q=document.getElementById('q').value.toLowerCase();
-  const active=Object.fromEntries(filters.map(f=>[f,document.getElementById('f-'+f).value]));
-  let out=rows.filter(r=>filters.every(f=>!active[f]||String(r[f]??'')===active[f]));
-  if(q)out=out.filter(r=>[r.name,r.institution,r.field,r.shared_terms].join(' ').toLowerCase().includes(q));
-  out.sort((a,b)=>{const x=a[sortKey],y=b[sortKey];const c=(typeof x==='number'&&typeof y==='number')?x-y:String(x).localeCompare(String(y));return asc?c:-c});
-  document.getElementById('rows').innerHTML=out.map(r=>'<tr>'+cols.map(c=>{
-    const v=r[c];if(c==='email'&&v)return '<td><a style="color:var(--gold)" href="mailto:'+esc(v)+'">'+esc(v)+'</a></td>';
-    if(c==='shared_terms')return '<td class="terms">'+esc(v)+'</td>';
-    return '<td'+(typeof v==='number'?' class="num"':'')+'>'+esc(v)+'</td>'}).join('')+'</tr>').join('');
-  document.getElementById('count').textContent=out.length+' of '+rows.length+' shown';
-}
-document.querySelectorAll('th').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.k;asc=sortKey===k?!asc:true;sortKey=k;render()}));
-document.querySelectorAll('select,input').forEach(e=>e.addEventListener('input',render));
-render();
-</script></body></html>
-"""
 
-def write_page(rows: list[dict], plot_name: str, summary: str, path: Path) -> Path:
-    cols = [c for c in ("rank_cosine", "rank_euclidean", "cosine", "euclidean", "name", "institution", "department",
-                        "field", "country", "funding", "taking_students", "h_index", "sources", "email", "shared_terms") if any(r.get(c) not in ("", None) for r in rows)]
-    filters = [f for f in FILTER_KEYS if any(r.get(f) not in ("", None) for r in rows)]
-    selects = []
-    for f in filters:
-        values = sorted({str(r.get(f)) for r in rows if r.get(f) not in ("", None)})
-        opts = "".join(f'<option value="{html.escape(v, quote=True)}">{html.escape(v)}</option>' for v in values)
-        selects.append(f'<select id="f-{f}"><option value="">all {html.escape(f.replace("_", " "))}</option>{opts}</select>')
-    head = "".join(f'<th data-k="{c}">{html.escape(c.replace("_", " "))}</th>' for c in cols)
-    data = json.dumps(rows, ensure_ascii=False).replace("</", "<\\/")
-    page = (PAGE.replace("__SUMMARY__", html.escape(summary)).replace("__PLOT__", html.escape(plot_name, quote=True))
-            .replace("__SELECTS__", "".join(selects)).replace("__HEAD__", head)
-            .replace("__COLS__", json.dumps(cols)).replace("__FILTERS__", json.dumps(filters)).replace("__DATA__", data))
+PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
+
+
+def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path) -> Path:
+    import base64
+
+    image = "data:image/png;base64," + base64.b64encode(Path(plot_png).read_bytes()).decode("ascii")
+    payload = {"rows": rows, "context": context}
+    data = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
+    page = PAGE.replace("__IMAGE__", image).replace("__DATA__", data)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(page, encoding="utf-8")
     return path
+
 
 def statement_body(text: str, stop_heading: str = "## References") -> str:
     lines = text.splitlines()
