@@ -1,0 +1,1037 @@
+[
+ {
+  "name": "Bucket.Address.SlotTuple",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 26,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Address.encode",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 42,
+  "type": "Bucket.Address.SlotTuple → Nat"
+ },
+ {
+  "name": "Bucket.Address.encode_injective",
+  "kind": "theorem",
+  "status": "open",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 49,
+  "type": "Function.Injective Bucket.Address.encode"
+ },
+ {
+  "name": "Bucket.Address.encode_injective_bounded",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 60,
+  "type": "∀ (a1 b1 c1 d1 e1 f1 a2 b2 c2 d2 e2 f2 : Fin 2),\n  2 ^ (↑a1 + 1) * 3 ^ (↑b1 + 1) * 5 ^ (↑c1 + 1) * 7 ^ (↑d1 + 1) * 11 ^ (↑e1 + 1) * 13 ^ (↑f1 + 1) =\n      2 ^ (↑a2 + 1) * 3 ^ (↑b2 + 1) * 5 ^ (↑c2 + 1) * 7 ^ (↑d2 + 1) * 11 ^ (↑e2 + 1) * 13 ^ (↑f2 + 1) →\n    a1 = a2 ∧ b1 = b2 ∧ c1 = c2 ∧ d1 = d2 ∧ e1 = e2 ∧ f1 = f2"
+ },
+ {
+  "name": "Bucket.Belief.Opinion",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 16,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Belief.OpinionQ",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 59,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Belief.fromEvidence",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 27,
+  "type": "Float → Float → Float → Float → Bucket.Belief.Opinion"
+ },
+ {
+  "name": "Bucket.Belief.fromEvidenceQ",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 68,
+  "type": "Rat → Rat → Rat → Rat → Bucket.Belief.OpinionQ"
+ },
+ {
+  "name": "Bucket.Belief.fuse",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 39,
+  "type": "Bucket.Belief.Opinion → Bucket.Belief.Opinion → Bucket.Belief.Opinion"
+ },
+ {
+  "name": "Bucket.Belief.project",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 34,
+  "type": "Bucket.Belief.Opinion → Float"
+ },
+ {
+  "name": "Bucket.Belief.projectQ",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 71,
+  "type": "Bucket.Belief.OpinionQ → Rat"
+ },
+ {
+  "name": "Bucket.Belief.project_mem_unit",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 95,
+  "type": "∀ (ω : Bucket.Belief.OpinionQ),\n  0 ≤ ω.b →\n    0 ≤ ω.d →\n      0 ≤ ω.u → ω.b + ω.d + ω.u = 1 → 0 ≤ ω.a → ω.a ≤ 1 → 0 ≤ Bucket.Belief.projectQ ω ∧ Bucket.Belief.projectQ ω ≤ 1"
+ },
+ {
+  "name": "Bucket.Belief.sum_eq_one",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 86,
+  "type": "∀ (r s W a : Rat),\n  0 ≤ r →\n    0 ≤ s →\n      0 < W →\n        (Bucket.Belief.fromEvidenceQ r s W a).b + (Bucket.Belief.fromEvidenceQ r s W a).d +\n            (Bucket.Belief.fromEvidenceQ r s W a).u =\n          1"
+ },
+ {
+  "name": "Bucket.Belief.u_eq_one_of_no_evidence",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Belief",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Belief.lean",
+  "line": 109,
+  "type": "∀ (W a : Rat),\n  0 < W → (Bucket.Belief.fromEvidenceQ 0 0 W a).u = 1 ∧ Bucket.Belief.projectQ (Bucket.Belief.fromEvidenceQ 0 0 W a) = a"
+ },
+ {
+  "name": "Bucket.Concept.Concept",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 39,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Concept.ConsensusStatus",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 27,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Concept.Slot",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 14,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Concept.Vocabulary",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 69,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Concept.Vocabulary.hasOther",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 74,
+  "type": "∀ (self : Bucket.Concept.Vocabulary) (s : Bucket.Concept.Slot), Bucket.Concept.otherConcept s ∈ self.bySlot s"
+ },
+ {
+  "name": "Bucket.Concept.lookup_other_succeeds",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 76,
+  "type": "∀ (v : Bucket.Concept.Vocabulary) (s : Bucket.Concept.Slot), Bucket.Concept.otherConcept s ∈ v.bySlot s"
+ },
+ {
+  "name": "Bucket.Concept.otherConcept",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 61,
+  "type": "Bucket.Concept.Slot → Bucket.Concept.Concept"
+ },
+ {
+  "name": "Bucket.Concept.otherId",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Concept",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Concept.lean",
+  "line": 51,
+  "type": "Bucket.Concept.Slot → String"
+ },
+ {
+  "name": "Bucket.Hypothesis.Placement",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Hypothesis",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Hypothesis.lean",
+  "line": 17,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Hypothesis.Sequence",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Hypothesis",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Hypothesis.lean",
+  "line": 32,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Timeline.AllenRelation",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 45,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Timeline.Interval",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 34,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Timeline.Interval.le",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 41,
+  "type": "∀ (self : Bucket.Timeline.Interval), self.start ≤ self.stop"
+ },
+ {
+  "name": "Bucket.Timeline.Uncertainty",
+  "kind": "inductive",
+  "status": "def",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 22,
+  "type": "Type"
+ },
+ {
+  "name": "Bucket.Timeline.relate",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 65,
+  "type": "Bucket.Timeline.Interval → Bucket.Timeline.Interval → Bucket.Timeline.AllenRelation"
+ },
+ {
+  "name": "Bucket.Timeline.relate_after_iff",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 108,
+  "type": "∀ (a b : Bucket.Timeline.Interval), Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.after ↔ b.stop < a.start"
+ },
+ {
+  "name": "Bucket.Timeline.relate_before_iff",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 96,
+  "type": "∀ (a b : Bucket.Timeline.Interval), Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.before ↔ a.stop < b.start"
+ },
+ {
+  "name": "Bucket.Timeline.relate_converse_before_after",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 121,
+  "type": "∀ (a b : Bucket.Timeline.Interval),\n  Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.before ↔\n    Bucket.Timeline.relate b a = Bucket.Timeline.AllenRelation.after"
+ },
+ {
+  "name": "Bucket.Timeline.relate_converse_meets_metBy",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 239,
+  "type": "∀ (a b : Bucket.Timeline.Interval),\n  a.start < a.stop ∨ b.start < b.stop →\n    (Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.meets ↔\n      Bucket.Timeline.relate b a = Bucket.Timeline.AllenRelation.metBy)"
+ },
+ {
+  "name": "Bucket.Timeline.relate_meets_iff",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 129,
+  "type": "∀ (a b : Bucket.Timeline.Interval),\n  Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.meets ↔\n    ¬a.stop < b.start ∧ ¬b.stop < a.start ∧ a.stop = b.start"
+ },
+ {
+  "name": "Bucket.Timeline.relate_metBy_iff",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 184,
+  "type": "∀ (a b : Bucket.Timeline.Interval),\n  Bucket.Timeline.relate a b = Bucket.Timeline.AllenRelation.metBy ↔\n    ¬a.stop < b.start ∧ ¬b.stop < a.start ∧ ¬a.stop = b.start ∧ b.stop = a.start"
+ },
+ {
+  "name": "Bucket.Timeline.relate_total",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Timeline",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean",
+  "line": 87,
+  "type": "∀ (a b : Bucket.Timeline.Interval),\n  ∃ r, Bucket.Timeline.relate a b = r ∧ ∀ (r' : Bucket.Timeline.AllenRelation), Bucket.Timeline.relate a b = r' → r' = r"
+ },
+ {
+  "name": "Bucket.Unknowns.chao1",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Unknowns",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Unknowns.lean",
+  "line": 20,
+  "type": "Nat → Nat → Nat → Rat"
+ },
+ {
+  "name": "Bucket.Unknowns.chao1_ge_sObs",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Unknowns",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Unknowns.lean",
+  "line": 56,
+  "type": "∀ (sObs f1 f2 : Nat), ↑sObs ≤ Bucket.Unknowns.chao1 sObs f1 f2"
+ },
+ {
+  "name": "Bucket.Unknowns.missingMass",
+  "kind": "def",
+  "status": "def",
+  "module": "Bucket.Unknowns",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Unknowns.lean",
+  "line": 12,
+  "type": "Nat → Nat → Rat"
+ },
+ {
+  "name": "Bucket.Unknowns.missingMass_le_one",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Unknowns",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Unknowns.lean",
+  "line": 42,
+  "type": "∀ (n1 N : Nat), n1 ≤ N → Bucket.Unknowns.missingMass n1 N ≤ 1"
+ },
+ {
+  "name": "BucketMath.Directions.modularity_single_cluster",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Directions",
+  "source": "lean/BucketMath/Directions.lean",
+  "line": 22,
+  "type": "∀ (twoM : Rat), twoM ≠ 0 → twoM / twoM - twoM / twoM * (twoM / twoM) = 0"
+ },
+ {
+  "name": "BucketMath.Directions.pagerank_step_mass",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Directions",
+  "source": "lean/BucketMath/Directions.lean",
+  "line": 16,
+  "type": "∀ (d : Rat) (walk teleport : List Rat),\n  walk.length = teleport.length →\n    BucketMath.Vec.sum walk = 1 →\n      BucketMath.Vec.sum teleport = 1 →\n        BucketMath.Vec.sum (BucketMath.Vec.add (BucketMath.Vec.smul d walk) (BucketMath.Vec.smul (1 - d) teleport)) = 1"
+ },
+ {
+  "name": "BucketMath.Directions.pythagoras_unit",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Directions",
+  "source": "lean/BucketMath/Directions.lean",
+  "line": 7,
+  "type": "∀ (x v : List Rat),\n  x.length = v.length →\n    BucketMath.Vec.dot v v = 1 →\n      BucketMath.Vec.dot x x =\n        BucketMath.Vec.dot (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v)\n            (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v) +\n          BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))\n            (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))"
+ },
+ {
+  "name": "BucketMath.Helix.Nonneg",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 28,
+  "type": "List Rat → Prop"
+ },
+ {
+  "name": "BucketMath.Helix.Slice",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 7,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Helix.basis",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 104,
+  "type": "Nat → Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Helix.basis_orth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 116,
+  "type": "∀ (K i j : Nat), i ≠ j → BucketMath.Vec.dot (BucketMath.Helix.basis K i) (BucketMath.Helix.basis K j) = 0"
+ },
+ {
+  "name": "BucketMath.Helix.basis_unit",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 130,
+  "type": "∀ (K i : Nat), i < K → BucketMath.Vec.dot (BucketMath.Helix.basis K i) (BucketMath.Helix.basis K i) = 1"
+ },
+ {
+  "name": "BucketMath.Helix.dot_basis",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 138,
+  "type": "∀ (K i : Nat) (w : List Rat), w.length = K → i < K → BucketMath.Vec.dot (BucketMath.Helix.basis K i) w = w.getD i 0"
+ },
+ {
+  "name": "BucketMath.Helix.dot_zeros",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 109,
+  "type": "∀ (n : Nat) (v : List Rat), BucketMath.Vec.dot (BucketMath.Helix.zeros n) v = 0"
+ },
+ {
+  "name": "BucketMath.Helix.length_lerp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 57,
+  "type": "∀ (a b : List Rat) (s : Rat), a.length = b.length → (BucketMath.Helix.lerp a b s).length = a.length"
+ },
+ {
+  "name": "BucketMath.Helix.lerp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 26,
+  "type": "List Rat → List Rat → Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 30,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  0 ≤ s →\n    s ≤ 1 →\n      BucketMath.Helix.Nonneg a → BucketMath.Helix.Nonneg b → BucketMath.Helix.Nonneg (BucketMath.Helix.lerp a b s)"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 87,
+  "type": "∀ (a b : List Rat), a.length = b.length → BucketMath.Helix.lerp a b 1 = b"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_simplex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 69,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  a.length = b.length →\n    0 ≤ s →\n      s ≤ 1 →\n        BucketMath.Helix.Nonneg a →\n          BucketMath.Helix.Nonneg b →\n            BucketMath.Vec.sum a = 1 →\n              BucketMath.Vec.sum b = 1 →\n                BucketMath.Helix.Nonneg (BucketMath.Helix.lerp a b s) ∧\n                  BucketMath.Vec.sum (BucketMath.Helix.lerp a b s) = 1 ∧ (BucketMath.Helix.lerp a b s).length = a.length"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_sum",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 45,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  a.length = b.length →\n    BucketMath.Vec.sum (BucketMath.Helix.lerp a b s) = (1 - s) * BucketMath.Vec.sum a + s * BucketMath.Vec.sum b"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 76,
+  "type": "∀ (a b : List Rat), a.length = b.length → BucketMath.Helix.lerp a b 0 = a"
+ },
+ {
+  "name": "BucketMath.Helix.phase",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 11,
+  "type": "Nat → Nat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Helix.phase_period",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 21,
+  "type": "∀ (K k : Nat) (ω t : Rat), K ≠ 0 → BucketMath.Helix.phase K (k + K) ω t = BucketMath.Helix.phase K k ω t + 1"
+ },
+ {
+  "name": "BucketMath.Helix.phase_shift",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 13,
+  "type": "∀ (K k : Nat) (ω t d : Rat), BucketMath.Helix.phase K k ω (t + d) = BucketMath.Helix.phase K k ω t + ω * d"
+ },
+ {
+  "name": "BucketMath.Helix.phase_spacing",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 17,
+  "type": "∀ (K k : Nat) (ω t : Rat), BucketMath.Helix.phase K (k + 1) ω t = BucketMath.Helix.phase K k ω t + 1 / ↑K"
+ },
+ {
+  "name": "BucketMath.Helix.zeros",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 100,
+  "type": "Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Markets.Industry",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Markets.Regime",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 12,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Markets.classify",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 18,
+  "type": "Int → BucketMath.Markets.Industry → BucketMath.Markets.Regime"
+ },
+ {
+  "name": "BucketMath.Markets.classify_above_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 52,
+  "type": "∀ (band : Int) (i : BucketMath.Markets.Industry),\n  BucketMath.Markets.classify band i = BucketMath.Markets.Regime.above ↔ band < BucketMath.Markets.spread i"
+ },
+ {
+  "name": "BucketMath.Markets.classify_efficient_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 43,
+  "type": "∀ (band : Int) (i : BucketMath.Markets.Industry),\n  BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient ↔\n    -band ≤ BucketMath.Markets.spread i ∧ BucketMath.Markets.spread i ≤ band"
+ },
+ {
+  "name": "BucketMath.Markets.compete",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 69,
+  "type": "Int → Nat → BucketMath.Markets.Industry → BucketMath.Markets.Industry"
+ },
+ {
+  "name": "BucketMath.Markets.compete_bound",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 76,
+  "type": "∀ (step : Int) (n : Nat) (i : BucketMath.Markets.Industry),\n  BucketMath.Markets.spread (BucketMath.Markets.compete step n i) ≤ max 0 (BucketMath.Markets.spread i - ↑n * step)"
+ },
+ {
+  "name": "BucketMath.Markets.compete_reaches_efficiency",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 95,
+  "type": "∀ (step : Int) (i : BucketMath.Markets.Industry) (n : Nat),\n  BucketMath.Markets.spread i ≤ ↑n * step → BucketMath.Markets.spread (BucketMath.Markets.compete step n i) ≤ 0"
+ },
+ {
+  "name": "BucketMath.Markets.entry",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 66,
+  "type": "Int → BucketMath.Markets.Industry → BucketMath.Markets.Industry"
+ },
+ {
+  "name": "BucketMath.Markets.eva",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 10,
+  "type": "BucketMath.Markets.Industry → Int"
+ },
+ {
+  "name": "BucketMath.Markets.eva_pos_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 23,
+  "type": "∀ (i : BucketMath.Markets.Industry), 0 < i.capital → (0 < BucketMath.Markets.eva i ↔ 0 < BucketMath.Markets.spread i)"
+ },
+ {
+  "name": "BucketMath.Markets.eva_zero_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 33,
+  "type": "∀ (i : BucketMath.Markets.Industry), 0 < i.capital → (BucketMath.Markets.eva i = 0 ↔ BucketMath.Markets.spread i = 0)"
+ },
+ {
+  "name": "BucketMath.Markets.spread",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 8,
+  "type": "BucketMath.Markets.Industry → Int"
+ },
+ {
+  "name": "BucketMath.Markets.spread_entry",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 73,
+  "type": "∀ (step : Int) (i : BucketMath.Markets.Industry),\n  BucketMath.Markets.spread (BucketMath.Markets.entry step i) = BucketMath.Markets.spread i - step"
+ },
+ {
+  "name": "BucketMath.Markets.zero_spread_is_efficient",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Markets",
+  "source": "lean/BucketMath/Markets.lean",
+  "line": 61,
+  "type": "∀ (band : Int),\n  0 ≤ band →\n    ∀ (i : BucketMath.Markets.Industry),\n      BucketMath.Markets.spread i = 0 → BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient"
+ },
+ {
+  "name": "BucketMath.Open.Orthonormal",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Open",
+  "source": "lean/BucketMath/Open.lean",
+  "line": 11,
+  "type": "List (List Rat) → Prop"
+ },
+ {
+  "name": "BucketMath.Open.project",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Open",
+  "source": "lean/BucketMath/Open.lean",
+  "line": 7,
+  "type": "List (List Rat) → List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Open.pythagoras_orthonormal",
+  "kind": "theorem",
+  "status": "open",
+  "module": "BucketMath.Open",
+  "source": "lean/BucketMath/Open.lean",
+  "line": 14,
+  "type": "∀ (x : List Rat) (vs : List (List Rat)),\n  (∀ (v : List Rat), v ∈ vs → v.length = x.length) →\n    BucketMath.Open.Orthonormal vs →\n      vs.Nodup →\n        BucketMath.Vec.dot x x =\n          BucketMath.Vec.dot (BucketMath.Open.project vs x) (BucketMath.Open.project vs x) +\n            BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Open.project vs x))\n              (BucketMath.Vec.sub x (BucketMath.Open.project vs x))"
+ },
+ {
+  "name": "BucketMath.Profile.Pair",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Profile.Slice",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 43,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Profile.coil",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 62,
+  "type": "BucketMath.Profile.Slice → Nat → List BucketMath.Profile.Slice"
+ },
+ {
+  "name": "BucketMath.Profile.coil_energy",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 67,
+  "type": "∀ (s : BucketMath.Profile.Slice) (steps : Nat) (t : BucketMath.Profile.Slice),\n  t ∈ BucketMath.Profile.coil s steps → BucketMath.Profile.energy t = BucketMath.Profile.energy s"
+ },
+ {
+  "name": "BucketMath.Profile.coil_length",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 64,
+  "type": "∀ (s : BucketMath.Profile.Slice) (steps : Nat), (BucketMath.Profile.coil s steps).length = steps"
+ },
+ {
+  "name": "BucketMath.Profile.dot",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 10,
+  "type": "BucketMath.Profile.Pair → BucketMath.Profile.Pair → Int"
+ },
+ {
+  "name": "BucketMath.Profile.energy",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 47,
+  "type": "BucketMath.Profile.Slice → Int"
+ },
+ {
+  "name": "BucketMath.Profile.norm2",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 12,
+  "type": "BucketMath.Profile.Pair → Int"
+ },
+ {
+  "name": "BucketMath.Profile.quarter",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 8,
+  "type": "BucketMath.Profile.Pair → BucketMath.Profile.Pair"
+ },
+ {
+  "name": "BucketMath.Profile.quarter_four",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 26,
+  "type": "∀ (p : BucketMath.Profile.Pair),\n  BucketMath.Profile.quarter (BucketMath.Profile.quarter (BucketMath.Profile.quarter (BucketMath.Profile.quarter p))) =\n    p"
+ },
+ {
+  "name": "BucketMath.Profile.quarter_norm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 29,
+  "type": "∀ (p : BucketMath.Profile.Pair), BucketMath.Profile.norm2 (BucketMath.Profile.quarter p) = BucketMath.Profile.norm2 p"
+ },
+ {
+  "name": "BucketMath.Profile.quarter_perpendicular",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 18,
+  "type": "∀ (p : BucketMath.Profile.Pair), BucketMath.Profile.dot p (BucketMath.Profile.quarter p) = 0"
+ },
+ {
+  "name": "BucketMath.Profile.quarter_twice",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 23,
+  "type": "∀ (p : BucketMath.Profile.Pair),\n  BucketMath.Profile.quarter (BucketMath.Profile.quarter p) = { re := -p.re, im := -p.im }"
+ },
+ {
+  "name": "BucketMath.Profile.rotate",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 45,
+  "type": "Nat → BucketMath.Profile.Slice → BucketMath.Profile.Slice"
+ },
+ {
+  "name": "BucketMath.Profile.rotate_energy",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 51,
+  "type": "∀ (n : Nat) (s : BucketMath.Profile.Slice),\n  BucketMath.Profile.energy (BucketMath.Profile.rotate n s) = BucketMath.Profile.energy s"
+ },
+ {
+  "name": "BucketMath.Profile.rotate_period",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 56,
+  "type": "∀ (n : Nat) (s : BucketMath.Profile.Slice), BucketMath.Profile.rotate (n + 4) s = BucketMath.Profile.rotate n s"
+ },
+ {
+  "name": "BucketMath.Profile.turns",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 14,
+  "type": "Nat → BucketMath.Profile.Pair → BucketMath.Profile.Pair"
+ },
+ {
+  "name": "BucketMath.Profile.turns_norm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 33,
+  "type": "∀ (n : Nat) (p : BucketMath.Profile.Pair),\n  BucketMath.Profile.norm2 (BucketMath.Profile.turns n p) = BucketMath.Profile.norm2 p"
+ },
+ {
+  "name": "BucketMath.Profile.turns_period",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Profile",
+  "source": "lean/BucketMath/Profile.lean",
+  "line": 38,
+  "type": "∀ (n : Nat) (p : BucketMath.Profile.Pair), BucketMath.Profile.turns (n + 4) p = BucketMath.Profile.turns n p"
+ },
+ {
+  "name": "BucketMath.Vec.add",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 19,
+  "type": "List Rat → List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Vec.centered_sum_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 81,
+  "type": "∀ (xs : List Rat), xs ≠ [] → BucketMath.Vec.sum (List.map (fun x => x - BucketMath.Vec.sum xs / ↑xs.length) xs) = 0"
+ },
+ {
+  "name": "BucketMath.Vec.dot",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 7,
+  "type": "List Rat → List Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Vec.dot_comm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 28,
+  "type": "∀ (a b : List Rat), BucketMath.Vec.dot a b = BucketMath.Vec.dot b a"
+ },
+ {
+  "name": "BucketMath.Vec.dot_smul_left",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 44,
+  "type": "∀ (c : Rat) (a b : List Rat), BucketMath.Vec.dot (BucketMath.Vec.smul c a) b = c * BucketMath.Vec.dot a b"
+ },
+ {
+  "name": "BucketMath.Vec.dot_smul_right",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 36,
+  "type": "∀ (c : Rat) (a b : List Rat), BucketMath.Vec.dot a (BucketMath.Vec.smul c b) = c * BucketMath.Vec.dot a b"
+ },
+ {
+  "name": "BucketMath.Vec.dot_sub_left",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 47,
+  "type": "∀ (a b c : List Rat),\n  a.length = b.length → BucketMath.Vec.dot (BucketMath.Vec.sub a b) c = BucketMath.Vec.dot a c - BucketMath.Vec.dot b c"
+ },
+ {
+  "name": "BucketMath.Vec.dot_sub_right",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 61,
+  "type": "∀ (a b c : List Rat),\n  b.length = c.length → BucketMath.Vec.dot a (BucketMath.Vec.sub b c) = BucketMath.Vec.dot a b - BucketMath.Vec.dot a c"
+ },
+ {
+  "name": "BucketMath.Vec.length_smul",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 23,
+  "type": "∀ (c : Rat) (v : List Rat), (BucketMath.Vec.smul c v).length = v.length"
+ },
+ {
+  "name": "BucketMath.Vec.length_sub",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 65,
+  "type": "∀ (a b : List Rat), a.length = b.length → (BucketMath.Vec.sub a b).length = a.length"
+ },
+ {
+  "name": "BucketMath.Vec.smul",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 11,
+  "type": "Rat → List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Vec.sub",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 15,
+  "type": "List Rat → List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Vec.sum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 3,
+  "type": "List Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Vec.sum_add",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 90,
+  "type": "∀ (a b : List Rat),\n  a.length = b.length → BucketMath.Vec.sum (BucketMath.Vec.add a b) = BucketMath.Vec.sum a + BucketMath.Vec.sum b"
+ },
+ {
+  "name": "BucketMath.Vec.sum_smul",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 100,
+  "type": "∀ (c : Rat) (a : List Rat), BucketMath.Vec.sum (BucketMath.Vec.smul c a) = c * BucketMath.Vec.sum a"
+ },
+ {
+  "name": "BucketMath.Vec.sum_sub_const",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Vec",
+  "source": "lean/BucketMath/Vec.lean",
+  "line": 75,
+  "type": "∀ (xs : List Rat) (c : Rat), BucketMath.Vec.sum (List.map (fun x => x - c) xs) = BucketMath.Vec.sum xs - ↑xs.length * c"
+ }
+]

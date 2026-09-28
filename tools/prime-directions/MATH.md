@@ -8,7 +8,7 @@ A corpus of n documents over m features becomes a sparse matrix X ∈ ℝ^{n×m}
 
 ## Prime directions
 
-The truncated SVD X ≈ U_k Σ_k V_kᵀ keeps the top k singular triples. Rows of V_k are the prime directions, orthonormal: V_k V_kᵀ = I. The engine checks this on every run and reports max |V_k V_kᵀ − I|; the graph run gives 2.7e-15.
+The truncated SVD X ≈ U_k Σ_k V_kᵀ keeps the top k singular triples. Rows of V_k are the prime directions, orthonormal: V_k V_kᵀ = I. The engine checks this on every run and reports max |V_k V_kᵀ − I|; the graph run gives 2.7e-15 [empirical: local graph, 2026-09-28, `python3 -m prime_directions canon`].
 
 The engine computes the SVD with the randomized range finder of Halko, Martinsson and Tropp (SIAM Review 53, 2011): sample Y = (X Xᵀ)^q X Ω with a Gaussian Ω, orthonormalize, and take the exact SVD of the small projected matrix. By Eckart and Young (Psychometrika 1, 1936), U_k Σ_k V_kᵀ is the best rank-k approximation of X in Frobenius norm.
 
@@ -36,7 +36,7 @@ With A the weighted directed adjacency and P its row-normalized transition matri
 
 Node i joins the pole of its strongest direction: c*(i) = argmax_c |z_ic|, sign = sign(z_ic*). With k directions there are at most 2k canon clusters. Clusters are numbered 1, 2, 3, … in descending order of PageRank mass Σ_{i ∈ C} r_i, so the naming is a bijection onto an initial segment of ℕ. A cluster's name is its three top-loading terms on that pole, or its three highest-PageRank members when every top feature is a link.
 
-Quality is Newman modularity on the undirected graph, Q = Σ_C [L_C/m − (d_C/2m)²], reported with three references: the same labels shuffled 20 times, the human branch labels, and Louvain (Blondel et al., 2008) as an upper reference. The public graph run on 2026-09-28, 1,669 nodes and 20 canon clusters: canon Q 0.286, shuffled −0.002 ± 0.008, branch labels 0.773, Louvain 0.860 over 400 communities. NMI against branches 0.35, silhouette on z 0.19. The canons follow the text directions and cut across the branch taxonomy; they recover less edge structure than the branches, which are built from the same editorial links.
+Quality is Newman modularity on the undirected graph, Q = Σ_C [L_C/m − (d_C/2m)²], reported with three references: the same labels shuffled 20 times, the human branch labels, and Louvain (Blondel et al., 2008) as an upper reference. The public graph run on 2026-09-28, 1,669 nodes and 20 canon clusters: canon Q 0.286, shuffled −0.002 ± 0.008, branch labels 0.773, Louvain 0.860 over 400 communities. NMI against branches 0.35, silhouette on z 0.19 [empirical: local graph, 2026-09-28, `python3 -m prime_directions canon`]. The canons follow the text directions and cut across the branch taxonomy; they recover less edge structure than the branches, which are built from the same editorial links.
 
 ## Five-number summary
 
@@ -48,14 +48,15 @@ For term t, the gap log-ratio is ln((df_A + a)/(n_A + 2a)) − ln(max_B (df_B + 
 
 ## Lean
 
-`lean/` holds core-Lean proofs over ℚ, with no Mathlib and no `sorry`. `lean/check.sh` builds them and fails on `sorry` or any axiom outside `propext`, `Classical.choice` and `Quot.sound`.
+The proofs live in BucketMath, the repo's Lean library at `lean/`, core Lean over ℚ with no Mathlib. `lean/check.sh` builds it, regenerates `lean/manifest.json`, and fails on `sorry` outside `BucketMath.Open` or any axiom outside `propext`, `Classical.choice` and `Quot.sound`. `tools/prime-directions/lean` is a thin package that requires it.
 
 | Claim | Lean theorem | Status |
 |---|---|---|
-| Dot product is symmetric, linear in each slot | `dot_comm`, `dot_smul_right`, `dot_sub_left`, `dot_sub_right` | proved |
-| Residual identity for one unit direction | `pythagoras_unit` | proved |
-| Centered scores sum to zero | `centered_sum_zero` | proved |
-| A PageRank step keeps total mass 1 when the walk part has mass 1 | `pagerank_step_mass` | proved |
-| One-cluster partition has modularity zero | `modularity_single_cluster` | proved |
+| Dot product is symmetric, linear in each slot | [bm:BucketMath.Vec.dot_comm], [bm:BucketMath.Vec.dot_smul_right], [bm:BucketMath.Vec.dot_sub_left], [bm:BucketMath.Vec.dot_sub_right] | proved |
+| Residual identity for one unit direction | [bm:BucketMath.Directions.pythagoras_unit] | proved |
+| Residual identity for k orthonormal directions | [bm-open:BucketMath.Open.pythagoras_orthonormal] | open |
+| Centered scores sum to zero | [bm:BucketMath.Vec.centered_sum_zero] | proved |
+| A PageRank step keeps total mass 1 when the walk part has mass 1 | [bm:BucketMath.Directions.pagerank_step_mass] | proved |
+| One-cluster partition has modularity zero | [bm:BucketMath.Directions.modularity_single_cluster] | proved |
 
-Claims that need Mathlib's real analysis and linear algebra, and stay as cited results here: the residual identity for k orthonormal directions by induction on k, existence of the SVD, Eckart and Young, the Halko, Martinsson and Tropp error bound, convergence of the PageRank power iteration through Perron and Frobenius, and the sign of the gap log-ratio, which needs `Real.log`. The walk part's mass in `pagerank_step_mass` is a hypothesis; the code meets it by adding the dangling mass back uniformly.
+Claims that need Mathlib's real analysis and linear algebra, and stay as cited results here: existence of the SVD, Eckart and Young, the Halko, Martinsson and Tropp error bound, convergence of the PageRank power iteration through Perron and Frobenius, and the sign of the gap log-ratio, which needs `Real.log`. The walk part's mass in `pagerank_step_mass` is a hypothesis; the code meets it by adding the dangling mass back uniformly.
