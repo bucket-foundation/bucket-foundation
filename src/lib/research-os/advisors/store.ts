@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { graphService } from "../db";
 import { pagedRead } from "../paging";
@@ -92,25 +93,50 @@ export function dropCache(): void {
   cache = null;
 }
 
-export async function takeMatch(learnerId: string, svc: SupabaseClient = graphService()): Promise<boolean> {
-  const { data, error } = await svc.rpc("advisor_match_take", { p_subject: learnerId, p_cap: DAILY_MATCH_CAP });
+export const PAGES_PER_TEXT = 12;
+export type MatchQuota = "ok" | "over_cap" | "over_pages";
+
+export function textHash(text: string): string {
+  return createHash("sha256").update(text.normalize("NFC").replace(/\s+/g, " ").trim(), "utf8").digest("hex");
+}
+
+export async function takeMatch(learnerId: string, text: string, svc: SupabaseClient = graphService()): Promise<MatchQuota> {
+  const { data, error } = await svc.rpc("advisor_match_take", {
+    p_subject: learnerId,
+    p_text_hash: textHash(text),
+    p_cap: DAILY_MATCH_CAP,
+    p_max_pages: PAGES_PER_TEXT,
+  });
   if (error) throw new Error(error.message);
-  return data === true;
+  if (data !== "ok" && data !== "over_cap" && data !== "over_pages") throw new Error(`advisor_match_take returned ${String(data)}`);
+  return data;
+}
+
+export const OPTOUTS_PER_SOURCE_HOUR = 5;
+export const HIDES_PER_DAY = 100;
+export type OptOutOutcome = "hidden" | "queued" | "rate_limited";
+
+export function sourceHash(ip: string): string {
+  return createHash("sha256").update(`advisor-optout:${ip}`, "utf8").digest("hex");
 }
 
 export async function requestOptOut(
-  input: { openalexId: string | null; orcid: string | null; contact: string; reason: string },
+  input: { openalexId: string | null; orcid: string | null; contact: string; reason: string; source: string },
   svc: SupabaseClient = graphService(),
-): Promise<number> {
+): Promise<OptOutOutcome> {
   const { data, error } = await svc.rpc("advisor_request_optout", {
     p_openalex: input.openalexId ?? "",
     p_orcid: input.orcid ?? "",
     p_contact: input.contact,
     p_reason: input.reason,
+    p_source_hash: sourceHash(input.source),
+    p_per_source_hour: OPTOUTS_PER_SOURCE_HOUR,
+    p_hides_per_day: HIDES_PER_DAY,
   });
   if (error) throw new Error(error.message);
-  dropCache();
-  return Number(data ?? 0);
+  if (data !== "hidden" && data !== "queued" && data !== "rate_limited") throw new Error(`advisor_request_optout returned ${String(data)}`);
+  if (data === "hidden") dropCache();
+  return data;
 }
 
 export async function listSwipes(learnerId: string, svc: SupabaseClient = bucketService()): Promise<{ openalexId: string; decision: Decision; updatedAt: string }[]> {

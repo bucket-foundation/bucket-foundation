@@ -41,3 +41,8 @@ export function unavailable(where: string, e: unknown): NextResponse {
   console.error(`[research-os/advisors/${where}]`, e instanceof Error ? e.message : String(e));
   return answer(503, { error: "unavailable", message: "Advisor data could not be read." });
 }
+
+export function clientAddress(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwarded || req.headers.get("x-real-ip")?.trim() || req.ip || "unknown";
+}

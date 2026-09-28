@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { answer, readJson, unavailable } from "@/lib/research-os/advisors/gate";
+import { answer, clientAddress, readJson, unavailable } from "@/lib/research-os/advisors/gate";
 import { OPENALEX_ID, ORCID_ID, requestOptOut } from "@/lib/research-os/advisors/store";
 
 export const runtime = "nodejs";
@@ -32,8 +32,9 @@ export async function POST(req: NextRequest) {
   if (contact.length < 3 || contact.length > 320) return answer(400, { error: "invalid_request", message: "Give a way to reach you." });
   const reason = typeof body.reason === "string" ? body.reason.trim().slice(0, 1000) : "";
   try {
-    await requestOptOut({ openalexId, orcid, contact, reason });
-    return answer(200, { received: true });
+    const outcome = await requestOptOut({ openalexId, orcid, contact, reason, source: clientAddress(req) });
+    if (outcome === "rate_limited") return answer(429, { error: "rate_limited", message: "Too many requests from here. Try again in an hour." });
+    return answer(200, { received: true, hidden: outcome === "hidden" });
   } catch (e) {
     return unavailable("optout", e);
   }

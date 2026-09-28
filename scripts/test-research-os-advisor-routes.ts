@@ -51,3 +51,79 @@ test("the opt-out validates input before it touches the database", async () => {
     assert.equal(res.status, status, JSON.stringify(body).slice(0, 60));
   }
 });
+
+test("every match call spends quota, so later offsets without a first page are refused", async () => {
+  const db = require("../src/lib/research-os/db");
+  const gate = require("../src/lib/research-os/advisors/gate");
+  const store = require("../src/lib/research-os/advisors/store");
+  const saved = { identity: db.verifyLearnerIdentity, adult: gate.adultLearner, take: store.takeMatch, load: store.loadSpace, env: process.env.RESEARCH_OS_REVIEWER_EMAILS };
+  const calls: { text: string }[] = [];
+  let quota: string = "over_cap";
+  process.env.RESEARCH_OS_REVIEWER_EMAILS = "staff@example.org";
+  db.verifyLearnerIdentity = async () => ({ id: "u1", email: "staff@example.org" });
+  gate.adultLearner = async () => ({ ok: true, learnerId: "u1" });
+  store.takeMatch = async (_id: string, text: string) => {
+    calls.push({ text });
+    return quota;
+  };
+  store.loadSpace = async () => {
+    throw new Error("loadSpace must not run when the quota refuses");
+  };
+  try {
+    const { POST } = await import("../src/app/api/research-os/advisors/match/route");
+    const text = "mitochondria membranes circadian metabolism in cells";
+    for (const offset of [1, 25, 275]) {
+      const res = await POST(req("match", "POST", { text, offset }));
+      assert.equal(res.status, 429, `offset ${offset}`);
+    }
+    assert.equal(calls.length, 3);
+    quota = "over_pages";
+    const pages = await POST(req("match", "POST", { text, offset: 50 }));
+    assert.equal(pages.status, 429);
+    assert.equal((await pages.json()).message, "You loaded every page for this text today.");
+    const bad = await POST(req("match", "POST", { text, offset: 300 }));
+    assert.equal(bad.status, 400);
+    assert.equal(calls.length, 4);
+    gate.adultLearner = saved.adult;
+    const anon = await POST(req("match", "POST", { text, offset: 1 }));
+    assert.equal(anon.status, 401);
+    assert.equal(calls.length, 4);
+  } finally {
+    db.verifyLearnerIdentity = saved.identity;
+    gate.adultLearner = saved.adult;
+    store.takeMatch = saved.take;
+    store.loadSpace = saved.load;
+    process.env.RESEARCH_OS_REVIEWER_EMAILS = saved.env;
+  }
+});
+
+test("the opt-out answers 429 when the source is over its hourly limit and reports queued requests", async () => {
+  const store = require("../src/lib/research-os/advisors/store");
+  const saved = store.requestOptOut;
+  const seen: string[] = [];
+  let outcome = "rate_limited";
+  store.requestOptOut = async (input: { source: string }) => {
+    seen.push(input.source);
+    return outcome;
+  };
+  try {
+    const { POST } = await import("../src/app/api/research-os/advisors/optout/route");
+    const body = { openalexId: "A123", contact: "me@example.org" };
+    const limited = await POST(req("optout", "POST", body, { "x-forwarded-for": "203.0.113.9, 10.0.0.1" }));
+    assert.equal(limited.status, 429);
+    outcome = "queued";
+    const queued = await POST(req("optout", "POST", body, { "x-forwarded-for": "203.0.113.9" }));
+    assert.deepEqual(await queued.json(), { received: true, hidden: false });
+    assert.deepEqual(seen, ["203.0.113.9", "203.0.113.9"]);
+  } finally {
+    store.requestOptOut = saved;
+  }
+});
+
+test("text hashes ignore whitespace and source hashes never contain the address", async () => {
+  const { textHash, sourceHash } = await import("../src/lib/research-os/advisors/store");
+  assert.equal(textHash("a  b\n c"), textHash("a b c"));
+  assert.notEqual(textHash("a b c"), textHash("a b d"));
+  assert.match(sourceHash("203.0.113.9"), /^[0-9a-f]{64}$/);
+  assert.ok(!sourceHash("203.0.113.9").includes("203"));
+});

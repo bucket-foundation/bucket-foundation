@@ -34,7 +34,7 @@ create table if not exists graph.advisor_optouts (
   orcid       text        check (orcid is null or orcid ~ '^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$'),
   contact     text        not null check (length(contact) between 3 and 320),
   reason      text        not null default '' check (length(reason) <= 1000),
-  status      text        not null default 'hidden' check (status in ('hidden', 'restored')),
+  status      text        not null default 'hidden' check (status in ('hidden', 'queued', 'restored')),
   created_at  timestamptz not null default now(),
   reviewed_at timestamptz,
   check (openalex_id is not null or orcid is not null)
@@ -44,10 +44,18 @@ create index if not exists advisor_optouts_openalex on graph.advisor_optouts (op
 create index if not exists advisor_optouts_orcid on graph.advisor_optouts (orcid) where status = 'hidden';
 
 create table if not exists graph.advisor_match_usage (
-  subject uuid not null references auth.users (id) on delete cascade,
-  day     date not null,
-  count   int  not null default 0 check (count >= 0),
-  primary key (subject, day)
+  subject   uuid not null references auth.users (id) on delete cascade,
+  day       date not null,
+  text_hash text not null check (text_hash ~ '^[0-9a-f]{64}$'),
+  pages     int  not null default 0 check (pages >= 0),
+  primary key (subject, day, text_hash)
+);
+
+create table if not exists graph.advisor_optout_usage (
+  source_hash text not null check (source_hash ~ '^[0-9a-f]{64}$'),
+  hour        timestamptz not null,
+  count       int not null default 0 check (count >= 0),
+  primary key (source_hash, hour)
 );
 
 create table if not exists bucket.advisor_swipes (
@@ -66,32 +74,48 @@ alter table graph.advisor_optouts enable row level security;
 alter table graph.advisor_optouts force row level security;
 alter table graph.advisor_match_usage enable row level security;
 alter table graph.advisor_match_usage force row level security;
+alter table graph.advisor_optout_usage enable row level security;
+alter table graph.advisor_optout_usage force row level security;
 alter table bucket.advisor_swipes enable row level security;
 alter table bucket.advisor_swipes force row level security;
 
-revoke all on graph.advisor_space, graph.advisor_public, graph.advisor_optouts, graph.advisor_match_usage from public, anon, authenticated;
+revoke all on graph.advisor_space, graph.advisor_public, graph.advisor_optouts, graph.advisor_match_usage, graph.advisor_optout_usage from public, anon, authenticated;
 revoke all on bucket.advisor_swipes from public, anon, authenticated;
-grant select, insert, update, delete on graph.advisor_space, graph.advisor_public, graph.advisor_optouts, graph.advisor_match_usage to service_role;
+grant select, insert, update, delete on graph.advisor_space, graph.advisor_public, graph.advisor_optouts, graph.advisor_match_usage, graph.advisor_optout_usage to service_role;
 grant select, insert, update, delete on bucket.advisor_swipes to service_role;
 
-create or replace function graph.advisor_request_optout(p_openalex text, p_orcid text, p_contact text, p_reason text)
-returns int
+create or replace function graph.advisor_request_optout(
+  p_openalex text, p_orcid text, p_contact text, p_reason text,
+  p_source_hash text, p_per_source_hour int default 5, p_hides_per_day int default 100
+)
+returns text
 language plpgsql
 security invoker
 set search_path = ''
 as $$
 declare
-  v_hidden int;
+  v_source int;
+  v_today int;
+  v_status text;
 begin
-  insert into graph.advisor_optouts (openalex_id, orcid, contact, reason)
-  values (nullif(p_openalex, ''), nullif(p_orcid, ''), p_contact, coalesce(p_reason, ''));
-  update graph.advisor_public ap
-    set hidden = true, updated_at = now()
-    where not ap.hidden
-      and ((nullif(p_openalex, '') is not null and ap.openalex_id = p_openalex)
-        or (nullif(p_orcid, '') is not null and ap.orcid = p_orcid));
-  get diagnostics v_hidden = row_count;
-  return v_hidden;
+  insert into graph.advisor_optout_usage (source_hash, hour, count) values (p_source_hash, date_trunc('hour', now()), 1)
+  on conflict (source_hash, hour) do update set count = graph.advisor_optout_usage.count + 1
+  returning count into v_source;
+  if v_source > p_per_source_hour then
+    return 'rate_limited';
+  end if;
+  select count(*) into v_today from graph.advisor_optouts where status = 'hidden' and created_at >= date_trunc('day', now());
+  v_status := case when v_today < p_hides_per_day then 'hidden' else 'queued' end;
+  insert into graph.advisor_optouts (openalex_id, orcid, contact, reason, status)
+  values (nullif(p_openalex, ''), nullif(p_orcid, ''), p_contact, coalesce(p_reason, ''), v_status);
+  if v_status = 'hidden' then
+    update graph.advisor_public ap
+      set hidden = true, updated_at = now()
+      where not ap.hidden
+        and ((nullif(p_openalex, '') is not null and ap.openalex_id = p_openalex)
+          or (nullif(p_orcid, '') is not null and ap.orcid = p_orcid));
+  end if;
+  return v_status;
 end;
 $$;
 
@@ -117,19 +141,31 @@ begin
 end;
 $$;
 
-create or replace function graph.advisor_match_take(p_subject uuid, p_cap int)
-returns boolean
+create or replace function graph.advisor_match_take(p_subject uuid, p_text_hash text, p_cap int, p_max_pages int default 12)
+returns text
 language plpgsql
 security invoker
 set search_path = ''
 as $$
 declare
-  v_count int;
+  v_distinct int;
+  v_pages int;
 begin
-  insert into graph.advisor_match_usage (subject, day, count) values (p_subject, current_date, 1)
-  on conflict (subject, day) do update set count = graph.advisor_match_usage.count + 1
-  returning count into v_count;
-  return v_count <= p_cap;
+  perform pg_advisory_xact_lock(hashtextextended(p_subject::text, 0));
+  select pages into v_pages from graph.advisor_match_usage where subject = p_subject and day = current_date and text_hash = p_text_hash;
+  if v_pages is null then
+    select count(*) into v_distinct from graph.advisor_match_usage where subject = p_subject and day = current_date;
+    if v_distinct >= p_cap then
+      return 'over_cap';
+    end if;
+    insert into graph.advisor_match_usage (subject, day, text_hash, pages) values (p_subject, current_date, p_text_hash, 1);
+    return 'ok';
+  end if;
+  if v_pages >= p_max_pages then
+    return 'over_pages';
+  end if;
+  update graph.advisor_match_usage set pages = pages + 1 where subject = p_subject and day = current_date and text_hash = p_text_hash;
+  return 'ok';
 end;
 $$;
 
@@ -166,9 +202,9 @@ $$;
 revoke all on function graph.advisor_load(jsonb, jsonb, jsonb) from public, anon, authenticated;
 grant execute on function graph.advisor_load(jsonb, jsonb, jsonb) to service_role;
 
-revoke all on function graph.advisor_request_optout(text, text, text, text) from public, anon, authenticated;
+revoke all on function graph.advisor_request_optout(text, text, text, text, text, int, int) from public, anon, authenticated;
 revoke all on function graph.advisor_activate(text, int) from public, anon, authenticated;
-revoke all on function graph.advisor_match_take(uuid, int) from public, anon, authenticated;
-grant execute on function graph.advisor_request_optout(text, text, text, text) to service_role;
+revoke all on function graph.advisor_match_take(uuid, text, int, int) from public, anon, authenticated;
+grant execute on function graph.advisor_request_optout(text, text, text, text, text, int, int) to service_role;
 grant execute on function graph.advisor_activate(text, int) to service_role;
-grant execute on function graph.advisor_match_take(uuid, int) to service_role;
+grant execute on function graph.advisor_match_take(uuid, text, int, int) to service_role;

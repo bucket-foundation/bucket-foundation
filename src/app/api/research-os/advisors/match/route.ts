@@ -8,7 +8,7 @@ import { staffOnlyAtLaunch } from "@/lib/research-os/launch-gate";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export const MAX_BODY_BYTES = 200 * 1024;
+const MAX_BODY_BYTES = 200 * 1024;
 const MAX_TEXT_CHARS = 150_000;
 
 type Body = { text?: unknown; offset?: unknown; cap?: unknown };
@@ -25,9 +25,9 @@ async function post(req: NextRequest) {
   if (!Number.isInteger(start) || start < 0 || start >= MAX_RESULTS) return answer(400, { error: "invalid_request", message: `offset is a whole number below ${MAX_RESULTS}.` });
   if (cap !== undefined && cap !== null && cap !== 5) return answer(400, { error: "invalid_request", message: "cap is 5 or null." });
   try {
-    if (start === 0 && !(await takeMatch(who.learnerId))) {
-      return answer(429, { error: "rate_limited", message: "You reached today's match limit. Try again tomorrow." });
-    }
+    const quota = await takeMatch(who.learnerId, text);
+    if (quota === "over_cap") return answer(429, { error: "rate_limited", message: "You reached today's match limit. Try again tomorrow." });
+    if (quota === "over_pages") return answer(429, { error: "rate_limited", message: "You loaded every page for this text today." });
     const space = await loadSpace();
     if (!space) return answer(503, { error: "not_loaded", message: "No advisor set is loaded yet." });
     const result = matchAdvisors(space.projector, space.profiles, statementBody(text), { offset: start, cap: cap === null ? null : 5 });

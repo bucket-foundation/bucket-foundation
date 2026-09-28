@@ -22,7 +22,8 @@ begin
   select count(*) into v_n from graph.advisor_space where active;
   assert v_n = 1, 'exactly one active model';
 
-  v_n := graph.advisor_request_optout(null, '0000-0001-2345-6789', 'someone@example.org', 'test');
+  assert graph.advisor_request_optout(null, '0000-0001-2345-6789', 'someone@example.org', 'test', repeat('a', 64)) = 'hidden';
+  select count(*) into v_n from graph.advisor_public where orcid = '0000-0001-2345-6789' and hidden;
   assert v_n = 2, format('orcid opt-out hides the row in both versions, got %s', v_n);
   select count(*) into v_n from graph.advisor_public where openalex_id = 'A1' and not hidden;
   assert v_n = 0, 'opted-out advisor is hidden everywhere';
@@ -51,13 +52,23 @@ begin
   exception when check_violation then null;
   end;
 
+  for i in 1..4 loop
+    perform graph.advisor_request_optout('A99' || i, null, 'bulk@example.org', '', repeat('b', 64), 3, 100);
+  end loop;
+  select count(*) into v_n from graph.advisor_optouts where contact = 'bulk@example.org';
+  assert v_n = 3, format('one source gets 3 requests an hour, got %s', v_n);
+  assert graph.advisor_request_optout('A9999', null, 'bulk@example.org', '', repeat('b', 64), 3, 100) = 'rate_limited';
+  assert graph.advisor_request_optout('A8888', null, 'other@example.org', '', repeat('c', 64), 5, 0) = 'queued', 'over the daily hide budget the request queues';
+  select count(*) into v_n from graph.advisor_optouts where openalex_id = 'A8888' and status = 'queued';
+  assert v_n = 1, 'the queued request is recorded';
+
   insert into auth.users (id, email) values (v_user, 'advisor-test-' || v_user || '@example.org');
-  v_ok := graph.advisor_match_take(v_user, 2);
-  assert v_ok, 'first match allowed';
-  v_ok := graph.advisor_match_take(v_user, 2);
-  assert v_ok, 'second match allowed';
-  v_ok := graph.advisor_match_take(v_user, 2);
-  assert not v_ok, 'third match over the cap refused';
+  assert graph.advisor_match_take(v_user, repeat('1', 64), 2, 3) = 'ok', 'first text';
+  assert graph.advisor_match_take(v_user, repeat('1', 64), 2, 3) = 'ok', 'second page of the same text is free of the text cap';
+  assert graph.advisor_match_take(v_user, repeat('1', 64), 2, 3) = 'ok', 'third page';
+  assert graph.advisor_match_take(v_user, repeat('1', 64), 2, 3) = 'over_pages', 'pages per text are capped';
+  assert graph.advisor_match_take(v_user, repeat('2', 64), 2, 3) = 'ok', 'second text';
+  assert graph.advisor_match_take(v_user, repeat('3', 64), 2, 3) = 'over_cap', 'a third text is refused at any offset';
 
   insert into bucket.advisor_swipes (user_id, openalex_id, decision) values (v_user, 'A2', 'yes');
   begin

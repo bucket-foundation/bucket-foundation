@@ -7,6 +7,7 @@ const LABEL = "grid gap-1 text-[13px] text-[color:var(--basalt-2)]";
 
 export default function RemoveAdvisorForm() {
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
+  const [hidden, setHidden] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -19,6 +20,7 @@ export default function RemoveAdvisorForm() {
       const res = await fetch("/api/research-os/advisors/optout", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const out = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(typeof out.message === "string" ? out.message : `Request failed (${res.status}).`);
+      setHidden(out.hidden !== false);
       setState("done");
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -29,7 +31,7 @@ export default function RemoveAdvisorForm() {
   if (state === "done") {
     return (
       <p role="status" className="mt-6 border-t border-[color:var(--basalt)] pt-4 text-[14px] text-[color:var(--basalt)]">
-        Received. The profile is hidden now, and a maintainer will write to you.
+        {hidden ? "Received. The profile is hidden now, and a maintainer will write to you." : "Received. A maintainer will review it and write to you."}
       </p>
     );
   }
