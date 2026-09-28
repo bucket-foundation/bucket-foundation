@@ -8,6 +8,7 @@ import type { BirthYearBucket, ConsentStatus, LearnerRole } from "@/lib/research
 import { OUTAGE_COPY, isTransientOutage } from "@/lib/research-os/outage";
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
+import GripSection from "../grip/GripSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
 import PrivacySection from "./PrivacySection";
 import SignInGate from "@/components/auth/SignInGate";
@@ -193,6 +194,7 @@ export default function ResearchOsProfilePage() {
           </div>
         )}
         <ConsentPayeeSection token={token} />
+        <GripSection compact />
         <GameSection token={token} />
         <AccessMine token={token} />
         <PrivacySection token={token} onDeleted={signOut} />
