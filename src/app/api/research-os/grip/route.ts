@@ -9,7 +9,7 @@ export const GET = withResearchOsRoute({ auth: "required" }, async (_req, { lear
   let catalog: Awaited<ReturnType<typeof loadGripCatalog>>;
   let verdicts: Awaited<ReturnType<typeof loadAssessVerdicts>>;
   try {
-    [catalog, verdicts] = await Promise.all([loadGripCatalog(), loadAssessVerdicts(learnerId)]);
+    [catalog, verdicts] = await Promise.all([loadGripCatalog(learnerId), loadAssessVerdicts(learnerId)]);
   } catch (err) {
     console.error("[research-os/grip] read failed:", err instanceof Error ? err.message : String(err));
     return bad(503, "graph_read_failed");

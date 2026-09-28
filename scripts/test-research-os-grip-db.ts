@@ -36,7 +36,7 @@ test("assessed answers on the local stack become grounded reach on their branch"
       const ins = psql(`insert into bucket.learn_events (user_id, event_id, name, props) values ('${user}', '${randomUUID()}', 'assess_done', '${JSON.stringify(props)}'::jsonb)`);
       assert.equal(ins.status, 0, ins.stderr);
     }
-    const [catalog, verdicts] = await Promise.all([loadGripCatalog(), loadAssessVerdicts(user)]);
+    const [catalog, verdicts] = await Promise.all([loadGripCatalog(user), loadAssessVerdicts(user)]);
     assert.equal(catalog.nodes.length, atoms - 10);
     const g = gripFor(catalog.nodes, catalog.edges, demonstratedKeys(verdicts));
     const physics = g.axes.find((a) => a.branch === "02-physics")!;

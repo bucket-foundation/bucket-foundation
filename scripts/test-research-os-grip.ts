@@ -79,10 +79,10 @@ test("assess events map to verdict keys that match graph node keys", () => {
   ]);
   assert.deepEqual(verdicts.map((v) => [v.atomKey, v.correct, v.order]), [["05-biophysics/atp", true, 0], ["05-biophysics/atp", false, 1], ["05-biophysics/nadh", true, 0]]);
   assert.deepEqual(Array.from(demonstratedKeys(verdicts)), ["05-biophysics/nadh"]);
-  const n = toGripNode({ id: "1", slug: "academy-biophysics-atp", title: "ATP", branch: "05-biophysics", provenance: { type: "academy_atom", atom_id: "atp", source: "learning/app/corpus/biophysics.json" } });
+  const n = toGripNode({ id: "1", slug: "academy-biophysics-atp", title: "ATP", branch: "05-biophysics", provenance: { type: "academy_atom", atom_id: "atp", source: "learning/app/corpus/biophysics.json" }, visibility: null, owner_id: null });
   assert.equal(n?.atomKey, "05-biophysics/atp");
   assert.equal(n?.learnHref, "/research-os/learn/biophysics/atp");
-  assert.equal(toGripNode({ id: "2", slug: "x", title: "x", branch: "02-physics", provenance: { type: "canon_claim" } }), null);
+  assert.equal(toGripNode({ id: "2", slug: "x", title: "x", branch: "02-physics", provenance: { type: "canon_claim" }, visibility: null, owner_id: null }), null);
 });
 
 test("the grip API sits outside launch scope, so only listed staff reach it", () => {

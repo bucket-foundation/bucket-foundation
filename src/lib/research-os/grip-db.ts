@@ -1,5 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { graphService, pagedRead } from "./db";
+import { filterSubgraphForViewer } from "./access-db";
+import type { Visibility } from "./access";
 import { learnTargetFor } from "./learn-link";
 import { GRIP_BRANCHES, type AssessVerdict, type GripEdge, type GripNode } from "./grip";
 
@@ -11,6 +13,8 @@ interface NodeRow {
   title: string;
   branch: string;
   provenance: Record<string, unknown> | null;
+  visibility: string | null;
+  owner_id: string | null;
 }
 
 export function toGripNode(r: NodeRow): GripNode | null {
@@ -63,17 +67,23 @@ export async function loadAssessVerdicts(learnerId: string): Promise<AssessVerdi
   return verdictsFromEvents((data ?? []) as { props: unknown; created_at: string }[]);
 }
 
-export async function loadGripCatalog(): Promise<{ nodes: GripNode[]; edges: GripEdge[] }> {
+export async function loadGripCatalog(viewerId: string): Promise<{ nodes: GripNode[]; edges: GripEdge[] }> {
   const rows = await pagedRead<NodeRow>((page) =>
     graphService()
       .from("nodes")
-      .select("id,slug,title,branch,provenance")
+      .select("id,slug,title,branch,provenance,visibility,owner_id")
       .eq("provenance->>type", "academy_atom")
       .in("branch", Array.from(GRIP_BRANCHES))
       .order("id")
       .range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
   );
-  const nodes = rows.map(toGripNode).filter((n): n is GripNode => n !== null);
+  const visible = await filterSubgraphForViewer(
+    rows.map((r) => ({ ...r, visibility: (r.visibility ?? "public") as Visibility, ownerId: r.owner_id })),
+    [] as GripEdge[],
+    viewerId,
+  );
+  if (!visible.ok) throw new Error("grip: access unavailable");
+  const nodes = visible.nodes.map(toGripNode).filter((n): n is GripNode => n !== null);
   const ids = nodes.map((n) => n.id);
   const edges: GripEdge[] = [];
   for (let i = 0; i < ids.length; i += 200) {
@@ -86,5 +96,6 @@ export async function loadGripCatalog(): Promise<{ nodes: GripNode[]; edges: Gri
     );
     edges.push(...got.map((e) => ({ fromId: e.from_id, toId: e.to_id })));
   }
-  return { nodes, edges };
+  const kept = new Set(ids);
+  return { nodes, edges: edges.filter((e) => kept.has(e.fromId) && kept.has(e.toId)) };
 }
