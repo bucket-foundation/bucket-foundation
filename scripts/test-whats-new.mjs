@@ -55,6 +55,11 @@ test("private corpora are caught through Unicode confusables", () => {
   assert.ok(kinds("\uFF4B\uFF52\uFF55\uFF53\uFF45").includes("private-corpus"));
 });
 
+test("words that meet across a space are left alone", () => {
+  assert.deepEqual(kinds("a clever bank ruse"), []);
+  assert.deepEqual(kinds("Frank ruse the argument"), []);
+});
+
 test("private corpora are caught inside base64 tokens", () => {
   const encoded = Buffer.from("kruse corpus").toString("base64");
   assert.ok(kinds(`payload ${encoded}`).includes("private-corpus"));

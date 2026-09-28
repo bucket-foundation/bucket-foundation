@@ -36,7 +36,7 @@ const CONFUSABLES = {
   "ı": "i", "ſ": "s", "ʀ": "r", "ᴋ": "k", "ᴜ": "u", "ꜱ": "s", "ᴇ": "e",
 };
 const INVISIBLE = /[\p{Cf}\u200B-\u200F\u2060-\u2064\uFEFF\u00AD\u034F\u180E]/gu;
-const BASE64_TOKEN = /[A-Za-z0-9+/_-]{8,}={0,2}/g;
+const BASE64_TOKEN = /[A-Za-z0-9+/_-]{6,}={0,2}/g;
 
 export function foldText(text) {
   const nfkc = text.normalize("NFKC").replace(INVISIBLE, "");
@@ -53,13 +53,38 @@ function decodedTokens(text) {
   return out;
 }
 
-export function textVariants(text) {
-  const folded = foldText(text);
-  const variants = [text, folded, folded.replace(/[^\p{L}\p{N}]+/gu, "")];
-  for (const decoded of decodedTokens(text)) {
-    const d = foldText(decoded);
-    variants.push(d, d.replace(/[^\p{L}\p{N}]+/gu, ""));
+function collapseTokens(text) {
+  return text
+    .split(/\s+/)
+    .map((t) => t.replace(/[^\p{L}\p{N}]+/gu, ""))
+    .filter(Boolean);
+}
+
+function joinLetterRuns(tokens) {
+  const out = [];
+  let run = "";
+  for (const t of tokens) {
+    if (t.length === 1) {
+      run += t;
+      continue;
+    }
+    if (run) out.push(run);
+    run = "";
+    out.push(t);
   }
+  if (run) out.push(run);
+  return out.join(" ");
+}
+
+function foldedVariants(text) {
+  const folded = foldText(text);
+  const tokens = collapseTokens(folded);
+  return [folded, tokens.join(" "), joinLetterRuns(tokens)];
+}
+
+export function textVariants(text) {
+  const variants = [text, ...foldedVariants(text)];
+  for (const decoded of decodedTokens(text)) variants.push(...foldedVariants(decoded));
   return variants;
 }
 
