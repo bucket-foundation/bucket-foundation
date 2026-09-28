@@ -1,3 +1,5 @@
+import BucketMath.Learning
+
 namespace BucketMath.Graph
 
 abbrev Edge := Nat × Nat
@@ -24,5 +26,19 @@ theorem prereq_rank_lt (E : List Edge) (r : Nat → Nat) (h : StrictRank E r) {t
 
 theorem prereq_trans (E : List Edge) {a b c : Nat} (h1 : Prereq E b a) (h2 : Prereq E c b) :
     Prereq E c a := Reach.trans h1 h2
+
+def edgeRel (E : List Edge) (p q : Nat) : Prop := (p, q) ∈ E
+
+theorem required_rank_le (E : List Edge) (r : Nat → Nat) (h : StrictRank E r) {target v : Nat}
+    (hr : BucketMath.Learning.Required (edgeRel E) target v) : r v ≤ r target := by
+  induction hr with
+  | target => exact Nat.le_refl _
+  | prerequisite hp _ ih => exact Nat.le_trans (Nat.le_of_lt (h _ hp)) ih
+
+theorem required_rank_lt (E : List Edge) (r : Nat → Nat) (h : StrictRank E r) {target v : Nat}
+    (hr : BucketMath.Learning.Required (edgeRel E) target v) (hne : v ≠ target) : r v < r target := by
+  cases hr with
+  | target => exact absurd rfl hne
+  | prerequisite hp hv => exact Nat.lt_of_lt_of_le (h _ hp) (required_rank_le E r h hv)
 
 end BucketMath.Graph

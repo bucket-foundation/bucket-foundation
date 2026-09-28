@@ -82,5 +82,7 @@ test("bucketmath_lookup finds proved theorems with a citation tag", async () => 
   assert.equal(hit.cite, "[bm:BucketMath.Directions.pythagoras_unit]");
   assert.ok(!hit.source.startsWith("/") && hit.url.includes("lean/BucketMath/Directions.lean"));
   const projected = (await handleMessage({ jsonrpc: "2.0", id: 10, method: "tools/call", params: { name: "bucketmath_lookup", arguments: { q: "pythagoras_orthonormal" } } })) as Rpc;
+  const learning = (await handleMessage({ jsonrpc: "2.0", id: 21, method: "tools/call", params: { name: "bucketmath_lookup", arguments: { q: "minimum_weighted_effort" } } })) as Rpc;
+  assert.equal(learning.result.structuredContent.results[0].cite, "[bm:BucketMath.Learning.minimum_weighted_effort]");
   assert.equal(projected.result.structuredContent.results[0].cite, "[bm:BucketMath.Project.pythagoras_orthonormal]");
 });

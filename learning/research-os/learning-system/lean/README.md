@@ -1,6 +1,6 @@
 # Lean learning model
 
-Lean 4.33.1 compiles `LearningSystem.lean` using its bundled Std library. No package downloads are needed after installing the pinned toolchain.
+Lean 4.33.1. The definitions and theorems live in `lean/BucketMath/Learning.lean` and `lean/BucketMath/Learning/Diamond.lean` at the repo root. `LearningSystem.lean` here imports them and prints the axiom audit. The package requires BucketMath by path, so no downloads are needed after installing the pinned toolchain.
 
 Run from this directory:
 

@@ -31,6 +31,7 @@ The lint resolves tags. It cannot tell whether the cited theorem supports the se
 | `BucketMath.Project` | projection onto orthonormal directions and the residual identity for k directions |
 | `BucketMath.Graph` | prerequisite reachability, rank order along prerequisite chains, acyclicity under a strict rank |
 | `BucketMath.Discovery` | expected discovery as the sum of probability times value, additive and monotone over admissible directions |
+| `BucketMath.Learning` | prerequisite closure, learning paths, the minimum unit and weighted learning path, coverage and extent monotonicity; `Learning.Diamond` is the worked example |
 | `BucketMath.Open` | stated claims without proofs, empty today |
 | `BucketMathAll` | BucketMath plus the history engine package at `papers/history-hypothesis-engine/lean` |
 
@@ -44,4 +45,7 @@ Core Lean 4.33.1 only; `Std` ships with the toolchain. Adding a fetched package 
 | Expected discovery never drops when admissible directions are added | [bm:BucketMath.Discovery.expected_mono] |
 | Projection energy plus residual energy equals total energy | [bm:BucketMath.Project.pythagoras_orthonormal] |
 | An efficient industry has spread within the band | [bm:BucketMath.Markets.efficient_spread_bounded] |
-| Graph edges, direction probabilities and values, market returns, benchmark choice | inputs; cite each with `[empirical: source, date, command]` |
+| Every concept a target requires and the learner lacks appears on any valid learning path | [bm:BucketMath.Learning.remaining_necessary] |
+| An enumerated, prerequisite-ordered list of missing concepts is a shortest path, and a minimum-effort one under nonnegative weights | [bm:BucketMath.Learning.minimum_unit_distance], [bm:BucketMath.Learning.minimum_weighted_effort] |
+| Under a strict rank, every required prerequisite ranks below its target | [bm:BucketMath.Graph.required_rank_lt] |
+| Graph edges, direction probabilities and values, market returns, benchmark choice, concept edges, effort weights, learner evidence | inputs; cite each with `[empirical: source, date, command]` |

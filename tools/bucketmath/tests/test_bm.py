@@ -115,6 +115,10 @@ def test_inline_code_is_not_linted():
     ("expected_mono", "BucketMath.Discovery.expected_mono"),
     ("excess_zero_iff", "BucketMath.Markets.excess_zero_iff"),
     ("pythagoras_orthonormal", "BucketMath.Project.pythagoras_orthonormal"),
+    ("minimum_weighted_effort", "BucketMath.Learning.minimum_weighted_effort"),
+    ("remaining_necessary", "BucketMath.Learning.remaining_necessary"),
+    ("diamond_minimum", "BucketMath.Learning.diamond_minimum"),
+    ("required_rank_lt", "BucketMath.Graph.required_rank_lt"),
 ])
 def test_lookup_finds_phase_two_rows(query, name):
     rows = bm.lookup(query, bm.load_manifest())
@@ -129,5 +133,45 @@ def test_phase_two_rows_are_proved():
 
 def test_lint_accepts_discovery_and_graph_citations():
     text = "Adding directions never lowers yield [bm:BucketMath.Discovery.expected_mono]. Ranked prerequisites cannot cycle [bm:BucketMath.Graph.acyclic_of_rank]."
+    errors, _ = bm.lint_text(text, bm.load_manifest())
+    assert errors == []
+
+
+LEARNING_CORE = ["restricted_closed", "restricted_remaining", "required_known", "after_closed", "remaining_necessary",
+                 "earlier_path", "minimum_unit_distance", "effort_subset", "minimum_weighted_effort",
+                 "remaining_antitone", "distance_antitone", "coverage_monotone", "squared_extent_monotone"]
+LEARNING_DIAMOND = ["diamond_required", "diamond_enumerates", "diamond_ready", "diamond_minimum",
+                    "diamond_chain_insufficient"]
+PRE_MOVE_AXIOMS = {
+    "restricted_closed": set(), "restricted_remaining": set(),
+    "minimum_weighted_effort": {"propext", "Classical.choice", "Quot.sound"},
+    "minimum_unit_distance": {"propext", "Classical.choice", "Quot.sound"},
+    "distance_antitone": {"propext", "Classical.choice", "Quot.sound"},
+    "coverage_monotone": {"propext", "Quot.sound"}, "squared_extent_monotone": {"propext", "Quot.sound"},
+    "diamond_ready": {"propext"}, "diamond_minimum": {"propext", "Classical.choice", "Quot.sound"},
+}
+
+
+def test_learning_rows_proved():
+    by_name = {r["name"]: r for r in bm.load_manifest()}
+    for short in LEARNING_CORE + LEARNING_DIAMOND:
+        assert by_name[f"BucketMath.Learning.{short}"]["status"] == "proved", short
+    assert by_name["BucketMath.Graph.required_rank_lt"]["status"] == "proved"
+
+
+def test_learning_axioms_match_pre_move_audit():
+    audit = (bm.REPO / "learning/research-os/learning-system/lean/check-output.txt").read_text().splitlines()
+    found = {}
+    for line in audit:
+        name = line.split("'")[1]
+        axioms = line.split("depends on axioms: ")[1].strip("[]").split(", ") if "depends on axioms" in line else []
+        found[name.removeprefix("BucketMath.Learning.")] = set(axioms)
+    assert len(audit) == 10
+    for short, axioms in PRE_MOVE_AXIOMS.items():
+        assert found[short] == axioms, short
+
+
+def test_lint_accepts_learning_citation():
+    text = "Every missing prerequisite is on the path [bm:BucketMath.Learning.remaining_necessary]."
     errors, _ = bm.lint_text(text, bm.load_manifest())
     assert errors == []

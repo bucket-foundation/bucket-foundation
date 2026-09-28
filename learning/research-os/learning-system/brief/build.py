@@ -196,7 +196,7 @@ def build():
     kicker=ParagraphStyle('Kicker',fontName='SansBold',fontSize=8,leading=12,textColor=colors.HexColor(PALETTE['gold']),spaceAfter=6)
     source=(HERE/'BRIEF.md').read_text()
     lean=re.search(r'```lean\n(.*?)\n```',source,re.S).group(1)
-    assert lean in (HERE.parent/'lean/LearningSystem.lean').read_text()
+    assert lean in (HERE.parents[3]/'lean/BucketMath/Learning.lean').read_text()
     sections=re.split(r'^## ',source,flags=re.M)[1:]
     assert len(sections)==15
     tags=['QUESTION AND THESIS','NOTATION AND TERMINOLOGY','ASSUMPTIONS AND STATE TRANSITIONS','LOWER-BOUND ARGUMENT','ATTAINING THE LOWER BOUND','COSTS AND MONOTONICITY','ALGORITHM AND CERTIFICATES','FORMAL VERIFICATION','KNOWLEDGE COORDINATES','MEASUREMENT ARGUMENT','EXPERIMENTAL DESIGN','OBSERVATIONS AND LIMITS','HUMAN VALIDATION PROPOSAL','PRODUCT CONSEQUENCES','REPRODUCTION AND SOURCES']
