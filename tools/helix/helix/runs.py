@@ -15,7 +15,8 @@ from . import __version__
 from .interp import loo_error, sample
 from .method import card, footer
 from .project import MIN_SLICES, project
-from .render import mpl, scene as scene_mod
+from .render import mpl
+from .render import scene as scene_mod
 from .schema import Series, SeriesError, to_doc
 
 DEFAULT_ROOT = Path(os.environ.get("HELIX_RUNS", Path.home() / ".local/share/bucket-profiles/helix/runs"))
@@ -34,7 +35,7 @@ def dump(obj, path: Path) -> None:
 
 
 def git_sha(repo: Path) -> str:
-    r = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=False)
     return r.stdout.strip() if r.returncode == 0 else "unknown"
 
 
@@ -45,7 +46,7 @@ def tree_bytes(path: Path) -> int:
 def mirror(src: Path, dest: str, runner=subprocess.run, sleep=time.sleep, tries: int = 3) -> dict:
     error = ""
     for attempt in range(1, tries + 1):
-        r = runner(["rclone", "copy", str(src), dest], capture_output=True, text=True)
+        r = runner(["rclone", "copy", str(src), dest], capture_output=True, text=True, check=False)
         if r.returncode == 0:
             return {"status": "ok", "path": dest, "attempts": attempt, "error": None}
         error = (r.stderr or r.stdout or f"rclone exit {r.returncode}").strip()

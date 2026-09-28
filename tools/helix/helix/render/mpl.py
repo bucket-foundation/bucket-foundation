@@ -6,8 +6,8 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
 BG, INK, SUB = "#EFE8D4", "#1F1C16", "#3A3529"
 

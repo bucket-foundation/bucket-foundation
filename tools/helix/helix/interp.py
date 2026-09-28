@@ -67,7 +67,7 @@ def loo_error(t: np.ndarray, W: np.ndarray, method: str = "linear") -> dict | No
     l1 = E.sum(axis=1)
     return {
         "method": "leave-one-out on interior slices, L1 distance on shares",
-        "points": int(len(l1)),
+        "points": len(l1),
         "max_l1": float(l1.max()),
         "mean_l1": float(l1.mean()),
         "per_prime_max": [float(x) for x in E.max(axis=0)],

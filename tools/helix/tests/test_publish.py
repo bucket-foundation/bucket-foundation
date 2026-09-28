@@ -56,9 +56,13 @@ def test_refuses_dirty(repo, run_dir):
 
 def test_publishes_on_feature_branch(repo, run_dir):
     git(repo, "checkout", "-q", "-b", "feat/ros-helix-x")
-    head = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True).stdout
+    head = subprocess.run(
+        ["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=False
+    ).stdout
     dest = publish(run_dir, repo)
     assert dest == repo / "public/helix/fixture-topics/20260101T000000Z"
     assert sorted(p.name for p in dest.iterdir()) == ["chart.svg", "manifest.json"]
-    after = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True).stdout
+    after = subprocess.run(
+        ["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=False
+    ).stdout
     assert head == after

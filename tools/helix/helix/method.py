@@ -15,7 +15,7 @@ def card(
     return {
         "series": series.slug,
         "kind": series.kind,
-        "slices": int(len(series.t)),
+        "slices": len(series.t),
         "primes": list(series.primes),
         "normalization": f"raw {series.unit} divided by the slice total",
         "dropped_slices": list(series.dropped),

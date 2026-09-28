@@ -15,7 +15,7 @@ class PublishRefused(RuntimeError):
 
 
 def _git(repo: Path, *args: str) -> str:
-    r = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, check=False)
     if r.returncode != 0:
         raise PublishRefused(f"git {' '.join(args)} failed: {r.stderr.strip()}")
     return r.stdout
