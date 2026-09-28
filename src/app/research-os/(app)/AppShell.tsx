@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
+import WorkQuiz from "./WorkQuiz";
 import { inLaunchScope } from "@/lib/research-os/launch-scope";
 
 export interface ShellUser {
@@ -31,6 +32,7 @@ const LEARN: Item[] = [
   { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
+  { href: "/research-os/quiz", label: "Work quiz", hint: "surprise questions from our own work", match: ["/research-os/quiz"] },
 ];
 
 const TEACH: Item[] = [
@@ -94,6 +96,7 @@ export default function AppShell({ user, children }: { user: ShellUser; children
       </nav>
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <WorkQuiz enabled={user.staff} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
