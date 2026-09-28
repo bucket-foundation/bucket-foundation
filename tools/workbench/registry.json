@@ -261,7 +261,7 @@
    "writes": "local",
    "timeout_s": 300,
    "status": "pending",
-   "bead": "bkt-ya07 child: profile cards",
+   "bead": "bkt-ya07.3",
    "blocked_by": "card.py lives outside the repo",
    "input_schema": {
     "type": "object",
@@ -285,7 +285,7 @@
    "writes": "local",
    "timeout_s": 1800,
    "status": "pending",
-   "bead": "bkt-ya07 child: advisor review",
+   "bead": "bkt-ya07.1",
    "blocked_by": "PR #359",
    "input_schema": {
     "type": "object",
@@ -336,7 +336,7 @@
    "writes": "local",
    "timeout_s": 1800,
    "status": "pending",
-   "bead": "bkt-ya07 child: visual engine in repo",
+   "bead": "bkt-ya07.2",
    "blocked_by": "Manim, Blender and R3F scripts live outside the repo",
    "input_schema": {
     "type": "object",
