@@ -37,7 +37,7 @@ python3 -m prime_directions neighbors-bench --out out/bench
 
 ## Benchmark
 
-One query thread, k = 10, 500 queries drawn from the data, run on 2026-09-28 on this machine: 16 CPU threads, load average 5 to 9 for the first table and near 22 for the second. Latency is the median of three passes of single queries; batch is the per-query time of one 500-query call. Tie-aware recall counts a returned neighbor as correct when its distance is within 1e-6 of the tenth true distance; the graph has 23 duplicate score vectors, so ID recall reads below 1 for exact methods there.
+One query thread, k = 10, 500 queries drawn from the data, run on 2026-09-28 on this machine: 16 CPU threads, load average 5 to 9 for the first table and near 22 for the second. Latency is the median of three passes of single queries, over 500 queries for the in-process backends and the first 100 for pgvector; batch is the per-query time of one 500-query call, which pgvector runs as the same per-row SQL loop. The pgvector index lives in a temporary table inside one transaction that `close()` rolls back, so a benchmark leaves nothing in the database. Tie-aware recall counts a returned neighbor as correct when its distance is within 1e-6 of the tenth true distance; the graph has 23 duplicate score vectors, so ID recall reads below 1 for exact methods there.
 
 | Data | Backend | Build ms | Query µs | Batch µs | Recall | Tie-aware |
 |---|---|---:|---:|---:|---:|---:|

@@ -151,3 +151,42 @@ def test_distance_recall_counts_ties():
     v = np.array([[0.0], [1.0], [1.0], [3.0]])
     idx, dist = nb.brute_knn(v, v[:1], 2)
     assert nb.distance_recall(np.array([[0.0, 1.0]]), dist) == 1.0
+
+def test_pgvector_index_runs_in_one_transaction_and_rolls_back(monkeypatch):
+    import sys
+    import types
+
+    calls = []
+
+    class Cursor:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def execute(self, sql, params=None):
+            calls.append(sql)
+
+        def copy_expert(self, sql, buf):
+            calls.append(sql)
+
+    class Conn:
+        autocommit = True
+
+        def cursor(self):
+            return Cursor()
+
+        def rollback(self):
+            calls.append("ROLLBACK")
+
+        def close(self):
+            calls.append("CLOSE")
+
+    conn = Conn()
+    monkeypatch.setitem(sys.modules, "psycopg2", types.SimpleNamespace(connect=lambda dsn, connect_timeout: conn))
+    index = nb.PgvectorIndex(np.zeros((3, 2)), "postgresql://x")
+    assert conn.autocommit is False
+    index.close()
+    assert calls[-2:] == ["ROLLBACK", "CLOSE"]
+    assert not any("commit" in c.lower() for c in calls if c not in ("ROLLBACK", "CLOSE"))

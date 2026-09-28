@@ -113,7 +113,7 @@ class PgvectorIndex:
         import psycopg2
 
         self.con = psycopg2.connect(dsn, connect_timeout=10)
-        self.con.autocommit = True
+        self.con.autocommit = False
         dim = vectors.shape[1]
         with self.con.cursor() as cur:
             cur.execute("set search_path to pg_temp, public, extensions")
@@ -140,7 +140,10 @@ class PgvectorIndex:
         return idx, dist
 
     def close(self) -> None:
-        self.con.close()
+        try:
+            self.con.rollback()
+        finally:
+            self.con.close()
 
 def _literal(v: np.ndarray) -> str:
     return "[" + ",".join(f"{x:.7g}" for x in v) + "]"
