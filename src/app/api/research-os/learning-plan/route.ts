@@ -12,7 +12,7 @@ export const GET = withResearchOsRoute({ auth: "optional" }, async (req, { learn
   const loaded = await loadPlan(dbPlanStore, slug, learnerId);
   if (loaded.status === "not_found") return bad(404, "target_not_found");
   if (loaded.status === "unavailable") return { status: "unavailable", certified: false };
-  const base = { objective: "unit_concepts", certified: false, mastery: learnerId ? "practice" : "none", target: loaded.target };
+  const base = { objective: "unit_concepts", certified: false, foundations: "graph_roots", mastery: learnerId ? "practice" : "none", target: loaded.target };
   if (loaded.status === "limit") return { ...base, status: "limit" };
   const { plan, nodes } = loaded;
   const pick = (ids: string[]): PlanNode[] => ids.map((id) => nodes[id]).filter(Boolean);
