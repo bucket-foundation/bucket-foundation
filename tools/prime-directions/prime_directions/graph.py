@@ -32,7 +32,6 @@ join graph.nodes a on a.id = e.from_id and a.visibility = 'public' and a.superse
 join graph.nodes b on b.id = e.to_id and b.visibility = 'public' and b.superseded_by is null
 """
 
-
 @dataclass
 class Node:
     id: str
@@ -42,7 +41,6 @@ class Node:
     branch: str
     text: str
     source: str = "graph"
-
 
 @dataclass
 class Graph:
@@ -63,7 +61,6 @@ class Graph:
         a = sp.csr_matrix((data, (rows, cols)), shape=(n, n))
         a.sum_duplicates()
         return (a + a.T).tocsr() if symmetric else a
-
 
 def label_text(labels) -> str:
     if isinstance(labels, str):
@@ -86,7 +83,6 @@ def label_text(labels) -> str:
     walk(labels)
     return " ".join(out)
 
-
 def academy_atoms(corpus_dir: Path) -> dict[str, dict]:
     atoms = {}
     for f in sorted(corpus_dir.glob("[0-9b]*.json")):
@@ -96,14 +92,12 @@ def academy_atoms(corpus_dir: Path) -> dict[str, dict]:
                 atoms[str(atom["id"])] = {**atom, "_branch": f.stem}
     return atoms
 
-
 def atom_text(atom: dict) -> str:
     parts = [str(atom.get("summary") or ""), str(atom.get("lesson") or "")]
     depths = atom.get("depths")
     if isinstance(depths, (dict, list)):
         parts.append(label_text(depths))
     return "\n".join(p for p in parts if p)
-
 
 def fetch_rows(dsn: str) -> tuple[list[tuple], list[tuple]]:
     import psycopg2
@@ -119,7 +113,6 @@ def fetch_rows(dsn: str) -> tuple[list[tuple], list[tuple]]:
     finally:
         con.close()
     return nodes, edges
-
 
 def build_graph(node_rows, edge_rows, atoms: dict[str, dict] | None = None) -> Graph:
     atoms = atoms or {}
@@ -161,34 +154,69 @@ def build_graph(node_rows, edge_rows, atoms: dict[str, dict] | None = None) -> G
     }
     return Graph(nodes, edges, meta)
 
+VIDEO_ID = re.compile(r"(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})")
 
-def exclude_private(node_rows, patterns=PRIVATE_PATTERNS) -> tuple[list[tuple], int]:
+def video_ids(provenance) -> set[str]:
+    text = provenance if isinstance(provenance, str) else json.dumps(provenance, default=str)
+    return set(VIDEO_ID.findall(text))
+
+def video_metadata(ids: set[str], yt_dir: Path) -> dict[str, str]:
+    out: dict[str, str] = {}
+    if not yt_dir.is_dir():
+        return out
+    for vid in ids:
+        for folder in yt_dir.glob(f"{glob_escape(vid)}-*"):
+            meta = folder / "metadata.json"
+            if meta.is_file():
+                try:
+                    data = json.loads(meta.read_text("utf-8"))
+                except ValueError:
+                    continue
+                out[vid] = " ".join(str(data.get(k) or "") for k in ("title", "channel", "uploader", "description"))
+                break
+    return out
+
+def glob_escape(text: str) -> str:
+    return re.sub(r"([\[\]*?])", r"[\1]", text)
+
+def exclude_private(node_rows, patterns=PRIVATE_PATTERNS, videos: dict[str, str] | None = None) -> tuple[list[tuple], int]:
     if not patterns:
         return list(node_rows), 0
     rx = re.compile("|".join(re.escape(p) for p in patterns), re.IGNORECASE)
-    kept = []
+    videos = videos or {}
+    blobs = []
+    flagged_videos: set[str] = set()
     for row in node_rows:
+        ids = video_ids(row[7])
         blob = " ".join(json.dumps(v, default=str) if not isinstance(v, str) else v for v in row[1:])
-        if not rx.search(blob):
-            kept.append(row)
+        blob += " " + " ".join(videos.get(v, "") for v in ids)
+        hit = bool(rx.search(blob))
+        if hit:
+            flagged_videos |= ids
+        blobs.append((row, ids, hit))
+    kept = [row for row, ids, hit in blobs if not hit and not (ids & flagged_videos)]
     return kept, len(node_rows) - len(kept)
-
 
 def load_graph(
     dsn: str | None = None,
     academy_dir: str = "learning/app/corpus",
     exclude_patterns=PRIVATE_PATTERNS,
+    yt_dir: str = "yt",
 ) -> Graph:
     dsn = dsn or os.environ.get("PRIME_GRAPH_DSN", LOCAL_DSN)
     node_rows, edge_rows = fetch_rows(dsn)
-    node_rows, excluded = exclude_private(node_rows, exclude_patterns)
+    videos = {}
+    if exclude_patterns:
+        ids = set().union(*(video_ids(r[7]) for r in node_rows)) if node_rows else set()
+        videos = video_metadata(ids, resolve_path(yt_dir))
+    node_rows, excluded = exclude_private(node_rows, exclude_patterns, videos)
     path = resolve_path(academy_dir)
     atoms = academy_atoms(path) if path.exists() else {}
     graph = build_graph(node_rows, edge_rows, atoms)
     graph.meta["excluded_private"] = excluded
     graph.meta["private_patterns"] = len(exclude_patterns or ())
+    graph.meta["video_metadata_resolved"] = len(videos)
     return graph
-
 
 def pagerank(adj: sp.csr_matrix, damping: float = 0.85, tol: float = 1e-10, max_iter: int = 200) -> tuple[np.ndarray, int]:
     n = adj.shape[0]
@@ -203,7 +231,6 @@ def pagerank(adj: sp.csr_matrix, damping: float = 0.85, tol: float = 1e-10, max_
             return new / new.sum(), it
         rank = new
     return rank / rank.sum(), max_iter
-
 
 def feature_matrix(
     graph: Graph,
@@ -228,9 +255,7 @@ def feature_matrix(
     matrix = weight_matrix(matrix, weighting)
     return matrix, np.concatenate([vocab.astype(object), link_vocab]), stats
 
-
 WEIGHTINGS = ("binary", "rownorm", "idf-rownorm")
-
 
 def weight_matrix(matrix: sp.csr_matrix, weighting: str) -> sp.csr_matrix:
     if weighting == "binary":
@@ -242,7 +267,6 @@ def weight_matrix(matrix: sp.csr_matrix, weighting: str) -> sp.csr_matrix:
     norms = np.sqrt(np.asarray(matrix.multiply(matrix).sum(axis=1)).ravel())
     norms[norms == 0] = 1
     return (sp.diags(1 / norms) @ matrix).tocsr()
-
 
 def fit_graph(
     graph: Graph, k: int = 12, seed: int = 0, edge_weight: float = 1.0, weighting: str = "idf-rownorm", **kwargs

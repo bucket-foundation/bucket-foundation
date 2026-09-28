@@ -10,10 +10,8 @@ import numpy as np
 
 from . import canon, charts, clean, corpora, export, gaps, graph, model, render
 
-
 class PrivacyError(RuntimeError):
     pass
-
 
 def _inside(path: Path, root: Path) -> bool:
     try:
@@ -21,7 +19,6 @@ def _inside(path: Path, root: Path) -> bool:
         return True
     except ValueError:
         return False
-
 
 def check_private_out(path: Path | None, protected: list[Path]) -> Path:
     if path is None:
@@ -31,13 +28,11 @@ def check_private_out(path: Path | None, protected: list[Path]) -> Path:
             raise PrivacyError(f"--private-out {path} is inside {root}; private outputs stay outside the repo")
     return path
 
-
 def _time(timings: dict, key: str, fn, *args, **kwargs):
     start = time.perf_counter()
     value = fn(*args, **kwargs)
     timings[key] = round(time.perf_counter() - start, 3)
     return value
-
 
 def run_corpus(spec: corpora.CorpusSpec, args, out_dir: Path) -> tuple[model.PrimeResult, dict]:
     timings: dict = {}
@@ -64,7 +59,6 @@ def run_corpus(spec: corpora.CorpusSpec, args, out_dir: Path) -> tuple[model.Pri
         data["video"] = video
     data["timings"] = timings
     return result, data
-
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="prime_directions")
@@ -108,14 +102,12 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--no-globe", dest="globe", action="store_false")
     return p
 
-
 def parse_charts(value: str) -> list[str]:
     chosen = [c.strip() for c in value.split(",") if c.strip()]
     unknown = [c for c in chosen if c not in charts.CHARTS]
     if unknown:
         raise ValueError(f"unknown charts {unknown}; choose from {', '.join(charts.CHARTS)}")
     return chosen
-
 
 def cmd_canon(args) -> int:
     out: Path = args.out
@@ -167,14 +159,12 @@ def cmd_canon(args) -> int:
                       "canons": [c["name"] for c in clusters.clusters]}, indent=1))
     return 0
 
-
 def cmd_list(registry: dict[str, corpora.CorpusSpec]) -> int:
     for spec in registry.values():
         path = corpora.resolve_path(spec.path)
         flag = "private" if spec.private else "public"
         print(f"{spec.name:18} {spec.kind:11} {flag:8} {'ok' if path.exists() else 'missing':8} {spec.description}")
     return 0
-
 
 def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
     names = list(registry) if args.all else args.names
@@ -247,7 +237,6 @@ def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
         export.write_json({"corpora": summary, "failures": failures}, private_out / "summary.json")
     return 1 if failures else 0
 
-
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     registry = corpora.load_registry(args.registry)
@@ -260,7 +249,6 @@ def main(argv: list[str] | None = None) -> int:
     except PrivacyError as exc:
         print(str(exc), file=sys.stderr)
         return 2
-
 
 if __name__ == "__main__":
     sys.exit(main())

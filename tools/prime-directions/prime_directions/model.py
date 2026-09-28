@@ -12,7 +12,6 @@ from .corpora import Doc
 
 TOKEN_PATTERN = r"(?u)\b[^\W\d_]\w+\b"
 
-
 @dataclass
 class TermStats:
     vocab: np.ndarray
@@ -27,7 +26,6 @@ class TermStats:
         index = self.index
         counts = np.array([self.df[index[t]] if t in index else 0 for t in terms], dtype=float)
         return (counts + alpha) / (self.n_docs + 2 * alpha)
-
 
 @dataclass
 class PrimeResult:
@@ -66,10 +64,8 @@ class PrimeResult:
         top = w.max()
         return w / top if top > 0 else w
 
-
 def default_min_df(n_docs: int) -> int:
     return max(2, min(10, n_docs // 50))
-
 
 def vectorize(
     texts: list[str],
@@ -94,18 +90,15 @@ def vectorize(
         keep = np.sort(keep[order[:max_features]])
     return full[:, keep].tocsr(), vocab[keep], stats
 
-
 def orthogonality_error(components: np.ndarray) -> float:
     gram = components @ components.T
     return float(np.abs(gram - np.eye(gram.shape[0])).max())
-
 
 def _flip_signs(u: np.ndarray, vt: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     idx = np.argmax(np.abs(vt), axis=1)
     signs = np.sign(vt[np.arange(vt.shape[0]), idx])
     signs[signs == 0] = 1
     return u * signs, vt * signs[:, None]
-
 
 def fit(
     corpus: str,
@@ -123,7 +116,6 @@ def fit(
     matrix, vocab, stats = vectorize([d.text for d in docs], min_df, max_df, max_features)
     params = {"min_df": min_df, "max_df": max_df, "max_features": max_features}
     return fit_matrix(corpus, matrix, vocab, [d.id for d in docs], [d.title for d in docs], stats, k, n_iter, seed, params)
-
 
 def fit_matrix(
     corpus: str,

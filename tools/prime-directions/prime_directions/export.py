@@ -11,7 +11,6 @@ from .render import angles
 
 SCHEMA = "bucket.prime-directions/1"
 
-
 def to_dict(result: PrimeResult, top_n: int = 20, include_docs: bool = True, precision: int = 3) -> dict:
     ang = angles(result.k)
     out = {
@@ -43,7 +42,6 @@ def to_dict(result: PrimeResult, top_n: int = 20, include_docs: bool = True, pre
             for i, (d, t) in enumerate(zip(result.doc_ids, result.titles))
         ]
     return out
-
 
 def write_json(data: dict, path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)

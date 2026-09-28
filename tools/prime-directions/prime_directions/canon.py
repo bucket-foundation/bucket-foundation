@@ -8,7 +8,6 @@ from sklearn.metrics import normalized_mutual_info_score, silhouette_score
 
 from .model import PrimeResult
 
-
 @dataclass
 class CanonClusters:
     labels: np.ndarray
@@ -16,16 +15,13 @@ class CanonClusters:
     clusters: list[dict]
     metrics: dict
 
-
 def assign(scores: np.ndarray) -> np.ndarray:
     comp = np.argmax(np.abs(scores), axis=1)
     negative = scores[np.arange(scores.shape[0]), comp] < 0
     return comp * 2 + negative
 
-
 def pole(label: int) -> tuple[int, int]:
     return label // 2, (-1 if label % 2 else 1)
-
 
 def louvain_modularity(adj: sp.csr_matrix, seed: int = 0) -> tuple[float, int]:
     import networkx as nx
@@ -33,7 +29,6 @@ def louvain_modularity(adj: sp.csr_matrix, seed: int = 0) -> tuple[float, int]:
     g = nx.from_scipy_sparse_array(sp.csr_matrix(adj))
     communities = nx.community.louvain_communities(g, weight="weight", seed=seed)
     return float(nx.community.modularity(g, communities, weight="weight")), len(communities)
-
 
 def modularity(adj: sp.csr_matrix, labels: np.ndarray) -> float:
     adj = sp.csr_matrix(adj)
@@ -48,7 +43,6 @@ def modularity(adj: sp.csr_matrix, labels: np.ndarray) -> float:
     deg_by = np.bincount(labels, weights=degree, minlength=k)
     return internal / two_m - float(((deg_by / two_m) ** 2).sum())
 
-
 def five_number(values: np.ndarray) -> dict:
     q = np.percentile(values, [0, 25, 50, 75, 100])
     return {
@@ -56,10 +50,8 @@ def five_number(values: np.ndarray) -> dict:
         "mean": float(values.mean()), "sd": float(values.std()),
     }
 
-
 def summaries(result: PrimeResult) -> list[dict]:
     return [{"component": k + 1, **five_number(result.raw_scores[:, k])} for k in range(result.k)]
-
 
 def canon_clusters(
     result: PrimeResult,

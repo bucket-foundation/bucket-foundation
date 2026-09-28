@@ -18,12 +18,10 @@ CHARTS = ("projection", "boxplot", "residuals")
 CLUSTER_COLORS = PICK_COLORS + ["#C9B458", "#5FA37A", "#B0656F", "#7C8FB5"]
 DENSITY = LinearSegmentedColormap.from_list("basalt_gold", [BASALT_2, "#5A4A22", GOLD, "#F2D48A"])
 
-
 def view_limits(values: np.ndarray, low: float = 1.0, high: float = 99.0, pad: float = 0.15) -> tuple[float, float]:
     lo, hi = np.percentile(values, [low, high])
     span = max(hi - lo, 1e-9)
     return float(lo - pad * span), float(hi + pad * span)
-
 
 def _style(ax) -> None:
     ax.set_facecolor(BASALT_2)
@@ -36,17 +34,14 @@ def _style(ax) -> None:
     ax.title.set_color(BONE)
     ax.grid(color=GOLD, alpha=0.12, lw=0.5)
 
-
 def _figure(w: float, h: float):
     return plt.figure(figsize=(w, h), facecolor=BASALT)
-
 
 def _save(fig, path: Path, dpi: int) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=dpi, facecolor=BASALT, bbox_inches="tight")
     plt.close(fig)
     return path
-
 
 def projection(
     result: PrimeResult,
@@ -100,7 +95,6 @@ def projection(
                  + (", kernel density" if smooth else ""), fontsize=11)
     return _save(fig, path, dpi)
 
-
 def boxplot(result: PrimeResult, path: Path, title: str | None = None, dpi: int = 160) -> tuple[Path, list[dict]]:
     data = [result.raw_scores[:, k] for k in range(result.k)]
     stats = [five_number(d) for d in data]
@@ -122,7 +116,6 @@ def boxplot(result: PrimeResult, path: Path, title: str | None = None, dpi: int 
     ax.legend(fontsize=8, frameon=False, labelcolor=BONE)
     ax.set_title(title or f"{result.corpus}: five-number summary per component, whiskers at min and max", fontsize=11)
     return _save(fig, path, dpi), stats
-
 
 def residuals(
     result: PrimeResult,

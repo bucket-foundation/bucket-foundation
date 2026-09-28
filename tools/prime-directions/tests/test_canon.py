@@ -16,7 +16,6 @@ TOPICS = {
     "farm": "wheat barley harvest tractor silo irrigation fertilizer combine",
 }
 
-
 def synthetic_rows(per_topic: int = 30, seed: int = 0):
     rng = np.random.default_rng(seed)
     nodes, edges = [], []
@@ -36,11 +35,9 @@ def synthetic_rows(per_topic: int = 30, seed: int = 0):
             edges.append((a, ids[0], "cites", 1.0))
     return nodes, edges
 
-
 def small_graph(**kwargs) -> graph.Graph:
     nodes, edges = synthetic_rows(**kwargs)
     return graph.build_graph(nodes, edges)
-
 
 def test_exclude_private_drops_rows_matching_patterns():
     nodes, _ = synthetic_rows()
@@ -48,7 +45,6 @@ def test_exclude_private_drops_rows_matching_patterns():
     assert dropped == 1
     assert all("kruse" not in json.dumps(r[7]) for r in kept)
     assert graph.exclude_private(nodes, ())[1] == 0
-
 
 def test_build_graph_adds_academy_atoms_and_prerequisites():
     nodes, edges = synthetic_rows(per_topic=3)
@@ -70,11 +66,9 @@ def test_build_graph_adds_academy_atoms_and_prerequisites():
     assert (idx["canon-waves"], idx["light"], "prerequisite", 1.0) in g.edges
     assert g.meta["academy_added"] == 2 and g.meta["academy_mirrored"] == 1
 
-
 def test_label_text_walks_nested_json():
     assert graph.label_text({"en": {"title": "A", "tags": ["b", "c"]}, "n": 3}) == "A b c"
     assert graph.label_text('{"x": "y"}') == "y"
-
 
 def test_pagerank_sums_to_one_and_ranks_the_hub():
     a = sp.csr_matrix(np.array([[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 0], [1, 0, 0, 0]], dtype=float))
@@ -83,12 +77,10 @@ def test_pagerank_sums_to_one_and_ranks_the_hub():
     assert rank.argmax() == 0
     assert iterations < 200
 
-
 def test_pagerank_handles_dangling_nodes():
     a = sp.csr_matrix(np.array([[0, 1, 0], [0, 0, 0], [0, 1, 0]], dtype=float))
     rank, _ = graph.pagerank(a)
     assert abs(rank.sum() - 1) < 1e-12 and np.all(rank > 0)
-
 
 @pytest.mark.parametrize("weighting", graph.WEIGHTINGS)
 def test_weightings(weighting):
@@ -103,7 +95,6 @@ def test_weightings(weighting):
     with pytest.raises(ValueError):
         graph.feature_matrix(small_graph(), weighting="nope")
 
-
 def test_fit_graph_orthonormal_and_residual_identity():
     g = small_graph()
     result = graph.fit_graph(g, k=4, min_df=2, max_df=0.9)
@@ -114,25 +105,21 @@ def test_fit_graph_orthonormal_and_residual_identity():
     assert np.all(res >= 0)
     assert any(v.startswith("@") for v in result.vocab)
 
-
 def test_modularity_known_values():
     a = sp.csr_matrix(np.array([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]], dtype=float))
     assert canon.modularity(a, np.array([0, 0, 1, 1])) == pytest.approx(0.5)
     assert canon.modularity(a, np.array([0, 0, 0, 0])) == pytest.approx(0.0)
     assert canon.modularity(sp.csr_matrix((2, 2)), np.array([0, 1])) == 0.0
 
-
 def test_assign_uses_signed_poles():
     z = np.array([[2.0, 0.1], [-3.0, 1.0], [0.2, -0.5]])
     assert canon.assign(z).tolist() == [0, 1, 3]
     assert canon.pole(3) == (1, -1)
 
-
 def test_five_number_summary():
     s = canon.five_number(np.array([1.0, 2, 3, 4, 5]))
     assert (s["min"], s["q1"], s["median"], s["q3"], s["max"]) == (1, 2, 3, 4, 5)
     assert s["mean"] == 3 and s["sd"] == pytest.approx(np.sqrt(2))
-
 
 def test_canon_clusters_numbered_by_pagerank_mass_and_beat_shuffle():
     g = small_graph(per_topic=40)
@@ -145,7 +132,6 @@ def test_canon_clusters_numbered_by_pagerank_mass_and_beat_shuffle():
     assert out.labels.min() == 0 and out.labels.max() == len(out.clusters) - 1
     assert out.metrics["modularity"] > out.metrics["modularity_shuffled_mean"] + 3 * out.metrics["modularity_shuffled_sd"]
     assert all(c["name"].startswith(f"Canon {c['canon']}: ") and len(c["name"]) > 10 for c in out.clusters)
-
 
 def test_charts_write_pngs_and_validate_axes(tmp_path: Path):
     g = small_graph()
@@ -165,12 +151,10 @@ def test_charts_write_pngs_and_validate_axes(tmp_path: Path):
     with pytest.raises(ValueError):
         charts.projection(result, tmp_path / "x.png", axes=(1, 9))
 
-
 def test_parse_charts():
     assert cli.parse_charts("boxplot, residuals") == ["boxplot", "residuals"]
     with pytest.raises(ValueError):
         cli.parse_charts("pie")
-
 
 def test_cmd_canon_end_to_end(tmp_path: Path, monkeypatch):
     nodes, edges = synthetic_rows()
@@ -193,13 +177,11 @@ def test_cmd_canon_end_to_end(tmp_path: Path, monkeypatch):
     assert len(data["component_summaries"]) == 3
     assert {"modularity", "nmi_vs_branch", "modularity_louvain"} <= set(data["cluster_metrics"])
 
-
 def test_cmd_canon_private_needs_outside_dir(monkeypatch, capsys):
     monkeypatch.setattr(graph, "fetch_rows", lambda dsn: synthetic_rows())
     code = cli.main(["canon", "--out", str(TOOL_REPO_ROOT / "tools" / "x"), "--include-private"])
     assert code == 2
     assert "private" in capsys.readouterr().err
-
 
 def test_cmd_canon_private_writes_outside_repo_and_keeps_private_nodes(tmp_path: Path, monkeypatch):
     monkeypatch.setattr(graph, "fetch_rows", lambda dsn: synthetic_rows())
@@ -213,3 +195,21 @@ def test_cmd_canon_private_writes_outside_repo_and_keeps_private_nodes(tmp_path:
     assert data["graph"]["excluded_private"] == 0 and data["graph"]["private_patterns"] == 0
     assert len(data["nodes"]) == 90
     assert (out / "boxplot.png").exists() and not (out / "projection.png").exists()
+
+def test_exclude_private_uses_video_metadata_and_propagates_by_video(tmp_path: Path):
+    vid = "AbCdEfGhIjK"
+    folder = tmp_path / f"{vid}-some-talk"
+    folder.mkdir()
+    (folder / "metadata.json").write_text(json.dumps({"title": "Light talk with Dr. Jack Kruse", "channel": "c"}))
+    rows = [
+        ("a", "a", "clip one", "excerpt", "b", "sunlight", {}, {"url": f"https://www.youtube.com/watch?v={vid}&t=5", "video": "Light talk with Dr. "}),
+        ("b", "b", "clip two", "excerpt", "b", "water", {}, {"url": f"https://youtu.be/{vid}"}),
+        ("c", "c", "clip three", "excerpt", "b", "orbit", {}, {"url": "https://www.youtube.com/watch?v=ZZZZZZZZZZZ"}),
+        ("d", "d", "plain", "concept", "b", "text", {}, {}),
+    ]
+    meta = graph.video_metadata({vid, "ZZZZZZZZZZZ"}, tmp_path)
+    assert set(meta) == {vid}
+    kept, dropped = graph.exclude_private(rows, graph.PRIVATE_PATTERNS, meta)
+    assert [r[0] for r in kept] == ["c", "d"] and dropped == 2
+    assert graph.exclude_private(rows, graph.PRIVATE_PATTERNS, {})[1] == 0
+    assert graph.video_metadata({vid}, tmp_path / "missing") == {}

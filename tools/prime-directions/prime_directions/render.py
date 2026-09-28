@@ -25,19 +25,15 @@ PICK_COLORS = ["#D9A43A", "#1FB5B5", "#E4DCC4", "#D96C4A", "#8FBF5A", "#9C7FD1",
 RADIUS = 1.0
 SIGMA_SPAN = 2.5
 
-
 def angles(k: int, offset: float = 0.0) -> np.ndarray:
     return np.pi / 2 - np.linspace(0, 2 * np.pi, k, endpoint=False) + offset
-
 
 def radii(scores: np.ndarray) -> np.ndarray:
     return RADIUS * np.clip((scores + SIGMA_SPAN) / (2 * SIGMA_SPAN), 0.02, 1.0)
 
-
 def polygon(scores: np.ndarray, ang: np.ndarray) -> np.ndarray:
     r = radii(scores)
     return np.column_stack([r * np.cos(ang), r * np.sin(ang)])
-
 
 def default_picks(result: PrimeResult, n: int = 6) -> list[int]:
     picks: list[int] = []
@@ -50,7 +46,6 @@ def default_picks(result: PrimeResult, n: int = 6) -> list[int]:
             break
     return picks
 
-
 def find_picks(result: PrimeResult, queries: list[str]) -> list[int]:
     picks = []
     lowered = [t.lower() for t in result.titles]
@@ -62,12 +57,10 @@ def find_picks(result: PrimeResult, queries: list[str]) -> list[int]:
                 break
     return picks
 
-
 def component_label(result: PrimeResult, k: int, n_terms: int = 3) -> str:
     ranked = [t for t, _ in result.top_terms(k, 4 * n_terms)]
     terms = " / ".join(([t for t in ranked if not t.startswith("@")] or [t.lstrip("@") for t in ranked])[:n_terms])
     return f"{k + 1}. {terms}\n{result.variance_ratio[k] * 100:.1f}%"
-
 
 def _draw_frame(ax, result: PrimeResult, ang: np.ndarray, cloud: int, seed: int, label_size: float) -> None:
     ax.set_facecolor(BASALT)
@@ -99,7 +92,6 @@ def _draw_frame(ax, result: PrimeResult, ang: np.ndarray, cloud: int, seed: int,
         ax.add_collection(PolyCollection(polys, facecolors="none", edgecolors=TEAL, alpha=alpha, lw=0.5, zorder=3))
     ax.plot(0, 0, "o", color=GOLD_BRIGHT, ms=5, zorder=6)
 
-
 def _subtitle(result: PrimeResult) -> str:
     n, v = result.shape
     return (
@@ -108,7 +100,6 @@ def _subtitle(result: PrimeResult) -> str:
         f"spoke = component; polygon = one document's standardized scores, "
         f"center -{SIGMA_SPAN:g} sd, dashed ring 0, rim +{SIGMA_SPAN:g} sd"
     )
-
 
 def render_png(
     result: PrimeResult,
@@ -144,10 +135,8 @@ def render_png(
     plt.close(fig)
     return path
 
-
 def _ease(t: np.ndarray) -> np.ndarray:
     return 0.5 - 0.5 * np.cos(np.pi * t)
-
 
 def sweep_sequence(result: PrimeResult, n_docs: int | None = None) -> list[tuple[int, int]]:
     seq = []
@@ -158,7 +147,6 @@ def sweep_sequence(result: PrimeResult, n_docs: int | None = None) -> list[tuple
                 seq.append((int(i), k))
                 break
     return seq[:n_docs] if n_docs else seq
-
 
 def render_mp4(
     result: PrimeResult,
