@@ -3,6 +3,7 @@ import { getAllBridges, getBridge } from "../canon-bridges";
 import { getClaim } from "../canon-claims";
 import { getEvidenceFor } from "../canon-evidence";
 import { buildIndex, tokenRank } from "../canon-search-index";
+import bucketMathManifest from "../../../lean/manifest.json";
 
 export const PROTOCOL_VERSION = "2025-06-18";
 export const SERVER_INFO = { name: "bucket-foundation", version: "0.2.0" };
@@ -121,6 +122,36 @@ const PRODUCTION_RECORD = {
   description: "One Research OS production (tools/hypothesis-engine/docs/PRODUCTION-SCHEMA.md): claim, evidence, sources, counter-evidence, status.",
 };
 
+type BucketMathEntry = { name: string; kind: string; status: string; module: string; source: string; line: number; type: string };
+const BUCKETMATH = bucketMathManifest as BucketMathEntry[];
+
+export function bucketMathLookup(query: string, limit = 20): BucketMathEntry[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const exact = BUCKETMATH.filter((r) => r.name.toLowerCase() === q || r.name.toLowerCase().endsWith("." + q));
+  if (exact.length) return exact.slice(0, limit);
+  const words = q.split(/\s+/).filter(Boolean);
+  return BUCKETMATH.map((r) => {
+    const hay = `${r.name} ${r.type} ${r.module}`.toLowerCase();
+    return { r, hits: words.filter((w) => hay.includes(w)).length };
+  })
+    .filter((x) => x.hits > 0)
+    .sort((a, b) => b.hits - a.hits || a.r.name.localeCompare(b.r.name))
+    .slice(0, limit)
+    .map((x) => x.r);
+}
+
+async function bucketmathLookupTool(args: Json): Promise<Json> {
+  const q = asString(args.q).trim();
+  if (!q) return { ok: false, error: "q required" };
+  const results = bucketMathLookup(q, asInt(args.limit, 20, 1, 50)).map((r) => ({
+    ...r,
+    cite: r.status === "open" ? `[bm-open:${r.name}]` : `[bm:${r.name}]`,
+    url: `https://github.com/bucket-foundation/bucket-foundation/blob/dev/${r.source}#L${r.line}`,
+  }));
+  return { ok: true, query: q, n_results: results.length, results };
+}
+
 export const TOOLS: ToolSpec[] = [
   {
     name: "canon_search",
@@ -177,6 +208,16 @@ export const TOOLS: ToolSpec[] = [
       },
     },
     handler: hypothesize,
+  },
+  {
+    name: "bucketmath_lookup",
+    description: "Look up a BucketMath definition or theorem (the repo's Lean library) by name or words, with its type, status (proved, open, external, def), source line and the tag to cite it with. Agents cite quantitative claims this way (docs/agents/MATH-CONTRACT.md).",
+    inputSchema: {
+      type: "object",
+      properties: { q: { type: "string", description: "a name such as pythagoras_unit, or words from the statement" }, limit: { type: "integer", default: 20, minimum: 1, maximum: 50 } },
+      required: ["q"],
+    },
+    handler: bucketmathLookupTool,
   },
 ];
 
