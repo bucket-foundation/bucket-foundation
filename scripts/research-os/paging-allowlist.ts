@@ -21,6 +21,7 @@ export const PAGING_EXCEPTIONS: PagingException[] = [
   { at: "src/lib/research-os/learn-sync.ts::syncAcademyMastery::nodes::1", because: "UNTRIAGED: reads nodes by ?, and nothing here has checked the rows per value against the schema" },
   { at: "src/lib/research-os/learn-sync.ts::syncAcademyMastery::learner_node_state::1", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
   { at: "src/lib/research-os/roster/apply.ts::applyRosterImport::classes::1", because: "UNTRIAGED: reads classes by sourced_id, and nothing here has checked the rows per value against the schema" },
+  { at: "src/lib/research-os/learning-plan-db.ts::nodesByIds::nodes::1", because: "nodes.id is the primary key, so one row per id, and loadPlan hands in() at most CHUNK (200) ids a call" },
   { at: "src/app/api/research-os/probe/route.ts::POST::nodes::1", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/production/route.ts::GET::nodes::1", because: "nodes.id is the primary key, so one row per id and at most as many rows as the list is long" },
   { at: "src/app/api/research-os/search/route.ts::GET::learner_node_state::1", because: "learner_node_state has primary key (learner_id, node_id) and learner_id is pinned with eq, so one row per node" },
