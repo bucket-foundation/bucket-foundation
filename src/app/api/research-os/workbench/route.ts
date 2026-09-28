@@ -20,9 +20,9 @@ async function post(req: NextRequest): Promise<Response> {
   try {
     keys = parseSigningKeys(process.env.WORKBENCH_SIGNING_KEYS);
   } catch {
-    return bad(503, "workbench_misconfigured");
+    return bad(503, "workbench_signing_not_configured");
   }
-  if (keys.length === 0) return bad(503, "workbench_misconfigured");
+  if (keys.length === 0) return bad(503, "workbench_signing_not_configured");
   const read = await readAnyJson(req, "bad_request");
   if (!read.ok) return read.res;
   const parsed = parseWorkbenchRequest(read.value);
