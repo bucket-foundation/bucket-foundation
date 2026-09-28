@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { fusedConceptMastery, MASTERED_THRESHOLD, type ProficiencyState, type StoredCard } from "../../src/lib/academy/mastery";
 import { demonstratedKeys } from "../../src/lib/research-os/grip";
-import { verdictsFromEvents } from "../../src/lib/research-os/grip-db";
+import { deckBranch, verdictsFromEvents } from "../../src/lib/research-os/grip-db";
 
 const DB = process.env.RESEARCH_OS_TEST_DATABASE_URL || "postgresql://postgres:postgres@127.0.0.1:54322/postgres";
 export const MIN_N = 30;
@@ -24,7 +24,7 @@ for (const p of progress) {
   const t = table.get(p.branch) ?? { n: 0, practice: 0, shown: 0, both: 0 };
   for (const [atom, card] of Object.entries(p.data?.cards ?? {})) {
     const practiced = fusedConceptMastery(card, p.data?.prof?.[atom]).mastery >= MASTERED_THRESHOLD;
-    const demo = shown.has(`${p.branch}/${atom}`);
+    const demo = shown.has(`${deckBranch(p.branch)}/${atom}`);
     t.n++;
     t.practice += practiced ? 1 : 0;
     t.shown += demo ? 1 : 0;

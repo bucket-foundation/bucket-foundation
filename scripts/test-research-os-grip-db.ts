@@ -27,9 +27,15 @@ test("assessed answers on the local stack become grounded reach on their branch"
   const user = randomUUID();
   assert.equal(psql(`insert into auth.users (id, instance_id, aud, role, email) values ('${user}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'grip-${user}@bucket.test')`).status, 0);
   try {
-    const props = JSON.stringify({ branch: "02-physics", items: [{ atomId: roots, level: "recall", correct: true, autoGraded: true }, { atomId: "not-an-atom", level: "recall", correct: true, autoGraded: true }] });
-    const ins = psql(`insert into bucket.learn_events (user_id, event_id, name, props) values ('${user}', '${randomUUID()}', 'assess_done', '${props}'::jsonb)`);
-    assert.equal(ins.status, 0, ins.stderr);
+    const bioRoot = psql("select n.provenance->>'atom_id' from graph.nodes n where n.branch = '05-biophysics' and n.provenance->>'type' = 'academy_atom' and not exists (select 1 from graph.edges e where e.to_id = n.id and e.kind = 'prerequisite') order by 1 limit 1").stdout.trim();
+    assert.ok(bioRoot, "a biophysics root atom exists");
+    for (const props of [
+      { branch: "02-physics", items: [{ atomId: roots, level: "recall", correct: true, autoGraded: true }, { atomId: "not-an-atom", level: "recall", correct: true, autoGraded: true }] },
+      { branch: "05-biophysics", items: [{ atomId: bioRoot, level: "recall", correct: true, autoGraded: true }] },
+    ]) {
+      const ins = psql(`insert into bucket.learn_events (user_id, event_id, name, props) values ('${user}', '${randomUUID()}', 'assess_done', '${JSON.stringify(props)}'::jsonb)`);
+      assert.equal(ins.status, 0, ins.stderr);
+    }
     const [catalog, verdicts] = await Promise.all([loadGripCatalog(), loadAssessVerdicts(user)]);
     assert.equal(catalog.nodes.length, atoms - 10);
     const g = gripFor(catalog.nodes, catalog.edges, demonstratedKeys(verdicts));
@@ -37,7 +43,10 @@ test("assessed answers on the local stack become grounded reach on their branch"
     assert.equal(physics.demonstrated, 1);
     assert.equal(physics.groundedDepth, 0);
     assert.equal(physics.radius, 1 / (1 + physics.maxDepth));
-    assert.equal(g.demonstratedTotal, 1);
+    const bio = g.axes.find((a) => a.branch === "05-biophysics")!;
+    assert.equal(bio.demonstrated, 1);
+    assert.ok(bio.radius > 0);
+    assert.equal(g.demonstratedTotal, 2);
     assert.ok(g.grip > 0 && g.grip < 0.01);
     const other = await loadAssessVerdicts(randomUUID());
     assert.equal(other.length, 0);

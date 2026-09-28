@@ -18,7 +18,13 @@ export function toGripNode(r: NodeRow): GripNode | null {
   if (p.type !== "academy_atom" || typeof p.atom_id !== "string") return null;
   const learn = learnTargetFor({ branch: r.branch, provenance: r.provenance });
   if (!learn) return null;
-  return { id: r.id, slug: r.slug, title: r.title, branch: r.branch, atomKey: `${learn.branchFile}/${p.atom_id}`, learnHref: learn.atomId ? learn.href : null };
+  return { id: r.id, slug: r.slug, title: r.title, branch: r.branch, atomKey: `${r.branch}/${p.atom_id}`, learnHref: learn.atomId ? learn.href : null };
+}
+
+export const DECK_BRANCH_ALIASES: Record<string, string> = { biophysics: "05-biophysics" };
+
+export function deckBranch(branch: string): string {
+  return DECK_BRANCH_ALIASES[branch] ?? branch;
 }
 
 export function verdictsFromEvents(rows: { props: unknown; created_at: string }[]): AssessVerdict[] {
@@ -29,7 +35,7 @@ export function verdictsFromEvents(rows: { props: unknown; created_at: string }[
     props.items.forEach((it, i) => {
       const item = it as { atomId?: unknown; correct?: unknown; autoGraded?: unknown };
       if (typeof item.atomId !== "string" || typeof item.correct !== "boolean" || typeof item.autoGraded !== "boolean") return;
-      out.push({ atomKey: `${props.branch}/${item.atomId}`, correct: item.correct, autoGraded: item.autoGraded, at: r.created_at, order: i });
+      out.push({ atomKey: `${deckBranch(props.branch as string)}/${item.atomId}`, correct: item.correct, autoGraded: item.autoGraded, at: r.created_at, order: i });
     });
   }
   return out;
