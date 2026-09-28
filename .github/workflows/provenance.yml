@@ -1,0 +1,50 @@
+name: provenance
+
+on:
+  pull_request:
+    paths:
+      - "tools/provenance/**"
+      - "src/lib/provenance/**"
+      - "scripts/test-provenance-packet.ts"
+      - ".github/workflows/provenance.yml"
+  push:
+    branches: [dev]
+    paths:
+      - "tools/provenance/**"
+      - "src/lib/provenance/**"
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: tools/provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install age
+        run: |
+          curl -sfLo /tmp/age.tgz https://github.com/FiloSottile/age/releases/download/v1.2.1/age-v1.2.1-linux-amd64.tar.gz
+          echo "7df45a6cc87d4da11cc03a539a7470c15b1041ab2b396af088fe9990f7c79d50  /tmp/age.tgz" | sha256sum -c
+          tar xzf /tmp/age.tgz -C /tmp
+          sudo install /tmp/age/age /tmp/age/age-keygen /usr/local/bin/
+      - run: python -m pip install --quiet -r requirements.txt
+      - run: ruff check . && ruff format --check .
+      - run: python -m pytest -q tests
+  packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx --yes tsx@4 --test scripts/test-provenance-packet.ts
