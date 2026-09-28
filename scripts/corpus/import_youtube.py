@@ -5,7 +5,6 @@ import pathlib
 
 from collect import Collector, digest, stamp
 
-
 def ingest(root, config):
     c = Collector(root, config)
     report = []
@@ -41,7 +40,6 @@ def ingest(root, config):
         report.append({"id": source["id"], "url": url, "title": meta["title"], "state": "fetched", "caption_sha256": revision, "characters": len(text), "caption_origin": meta["caption_origin"]})
     c.db.close()
     return report
-
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

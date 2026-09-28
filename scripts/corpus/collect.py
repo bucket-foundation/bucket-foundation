@@ -27,22 +27,17 @@ MAX_TOTAL = 4 * 1024 * 1024 * 1024
 MAX_URLS = 30000
 ASSET = re.compile(r"\.(?:png|jpg|jpeg|webp|gif|svg|css|js|woff2?|mp3|mp4|zip|ico|wav)$", re.I)
 
-
 def stamp():
     return datetime.now(timezone.utc).isoformat()
-
 
 def digest(value):
     return hashlib.sha256(value if isinstance(value, bytes) else value.encode()).hexdigest()
 
-
 def normalize_newlines(text):
     return text.replace("\r\n", "\n").replace("\r", "\n")
 
-
 def unavailable_title(title):
     return bool(re.match(r"^(just a moment|access denied|verify you are human|attention required|bot verification|checking your browser|page not found|404 not found|access to this page has been denied)", title.lower()))
-
 
 def canonical(url):
     p = urllib.parse.urlsplit(url.strip())
@@ -55,16 +50,13 @@ def canonical(url):
     query = [(k, v) for k, v in urllib.parse.parse_qsl(p.query, keep_blank_values=True) if not k.lower().startswith("utm_") and k.lower() not in {"fbclid", "gclid"}]
     return urllib.parse.urlunsplit((p.scheme, netloc, p.path or "/", urllib.parse.urlencode(query), ""))
 
-
 def hostof(url):
     return urllib.parse.urlsplit(url).hostname
-
 
 def public_host(host):
     addresses = socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)
     if not addresses or any(not ipaddress.ip_address(a[4][0]).is_global for a in addresses):
         raise ValueError("nonpublic address")
-
 
 def extract(raw, url, content_type):
     if "pdf" in content_type or raw.startswith(b"%PDF"):
@@ -108,10 +100,8 @@ def extract(raw, url, content_type):
     text = normalize_newlines(selected.get_text("\n", strip=True))
     return {"title": title, "text": text, "transcript": transcript_text, "links": links, "selector": selector, "license_links": sorted(set(licenses)), "publisher_canonical_url": publisher_url}
 
-
 class BudgetExceeded(ValueError):
     pass
-
 
 class Collector:
     def __init__(self, root, config):
@@ -386,7 +376,6 @@ class Collector:
         (out / "events.jsonl").write_text("".join(json.dumps(dict(zip(("time", "url", "state", "detail"), x))) + "\n" for x in self.db.execute("select * from events order by time,url")))
         print(json.dumps(coverage["graph"]), flush=True)
 
-
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("action", choices=["inventory", "crawl", "build", "status", "search", "retry", "withdraw"])
@@ -425,7 +414,6 @@ def main():
         c.db.execute("delete from texts where url=?", (url,))
         c.db.commit()
         c.event(url, "withdrawn", "Excluded from search and graph; retained raw bytes require owner retention decision")
-
 
 if __name__ == "__main__":
     main()

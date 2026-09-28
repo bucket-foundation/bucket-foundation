@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 from collect import canonical
 
-
 def refresh(root):
     root = pathlib.Path(root)
     db = sqlite3.connect(root / "corpus.sqlite", timeout=30)
@@ -44,7 +43,6 @@ def refresh(root):
         db.commit()
     db.close()
     return changed
-
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

@@ -6,7 +6,6 @@ import json
 import pathlib
 import sqlite3
 
-
 def verify(root):
     root = pathlib.Path(root)
     db = sqlite3.connect(root / "corpus.sqlite")
@@ -44,7 +43,6 @@ def verify(root):
     report = {"checked_fetched_urls": fetched, "unique_raw_revisions": len(revisions), "duplicate_raw_revisions": fetched-len(revisions), "transcript_urls": transcript_count, "selectors": dict(selectors), "states": states, "discovered_total": total, "errors": errors}
     db.close()
     return report
-
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

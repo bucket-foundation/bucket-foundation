@@ -8,7 +8,6 @@ import sqlite3
 
 from collect import digest
 
-
 def enrich(root, out):
     root, out = pathlib.Path(root), pathlib.Path(out)
     graph = json.loads((out / "graph-preview.json").read_text())
@@ -49,7 +48,6 @@ def enrich(root, out):
     (out / "topic-stats.json").write_text(json.dumps(graph["stats"], indent=2))
     db.close()
     print(json.dumps(graph["stats"]))
-
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

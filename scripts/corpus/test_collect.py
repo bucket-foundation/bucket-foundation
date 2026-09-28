@@ -7,9 +7,7 @@ from unittest.mock import patch
 
 from collect import Collector, canonical, digest, extract, unavailable_title
 
-
 CONFIG = {"collections": [{"name": "test", "hosts": ["example.org"], "seeds": []}]}
-
 
 class CorpusTests(unittest.TestCase):
     def collector(self, root):
@@ -223,7 +221,6 @@ class CorpusTests(unittest.TestCase):
             p = edge["provenance"]
             self.assertEqual(text[p["start"]:p["end"]], p["match"])
             self.assertEqual(digest(text), p["text_sha256"])
-
 
 if __name__ == "__main__":
     unittest.main()
