@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
-import WorkQuiz from "./WorkQuiz";
+import WorkQuiz from "./quiz/WorkQuiz";
 import { inLaunchScope } from "@/lib/research-os/launch-scope";
 
 export interface ShellUser {
