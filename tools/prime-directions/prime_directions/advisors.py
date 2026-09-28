@@ -417,3 +417,86 @@ def statement_body(text: str, stop_heading: str = "## References") -> str:
         if line.strip().lower() == stop_heading.lower():
             return "\n".join(lines[:i])
     return text
+
+PUBLIC_SOURCES = ("cockpit", "stevens")
+PUBLIC_IDENTITY = ("match", "moved")
+EXPORT_SCHEMA = "bucket.advisor-space/1"
+
+def publishable(person: Person, optouts: set[str] = frozenset()) -> bool:
+    meta = person.meta
+    openalex = str(meta.get("openalex_id") or "")
+    if not re.fullmatch(r"A\d+", openalex):
+        return False
+    if openalex in optouts or str(meta.get("orcid") or "") in optouts:
+        return False
+    if meta.get("identity") not in PUBLIC_IDENTITY:
+        return False
+    sources = [s.strip() for s in str(meta.get("sources") or "").split(";") if s.strip()]
+    return any(s in PUBLIC_SOURCES for s in sources)
+
+def profile_links(meta: dict) -> dict:
+    links = {"openalex": f"https://openalex.org/{meta['openalex_id']}"}
+    orcid = str(meta.get("orcid") or "")
+    orcid = orcid.rsplit("/", 1)[-1]
+    if re.fullmatch(r"\d{4}-\d{4}-\d{4}-\d{3}[\dX]", orcid):
+        links["orcid"] = f"https://orcid.org/{orcid}"
+    ror = str(meta.get("ror") or "").rsplit("/", 1)[-1]
+    if re.fullmatch(r"0[a-z0-9]{6}\d{2}", ror):
+        links["institution"] = f"https://ror.org/{ror}"
+    return links
+
+def public_record(person: Person, scores: np.ndarray) -> dict:
+    meta = person.meta
+    return {
+        "openalex_id": meta["openalex_id"],
+        "name": person.name,
+        "institution": str(meta.get("institution") or ""),
+        "ror": str(meta.get("ror") or "").rsplit("/", 1)[-1],
+        "country": str(meta.get("country") or ""),
+        "field": str(meta.get("field") or ""),
+        "topics": list(dict.fromkeys(meta.get("topic_labels") or []))[:8],
+        "links": profile_links(meta),
+        "orcid": profile_links(meta).get("orcid", "").rsplit("/", 1)[-1] or None,
+        "scores": [round(float(v), 6) for v in scores],
+    }
+
+def export_bundle(people: list[Person], optouts: set[str] = frozenset(), fixtures: list[str] = (), k: int = 64,
+                  min_chars: int = 20, seed: int = 0, min_df: int = 3, max_df: float = 0.2) -> dict:
+    import hashlib
+
+    chosen = [p for p in people if publishable(p, optouts)]
+    model = fit_people(chosen, k=k, min_chars=min_chars, seed=seed, min_df=min_df, max_df=max_df)
+    raw = model.result.raw_scores
+    mu = raw.mean(axis=0)
+    sd = raw.std(axis=0)
+    sd[sd <= 1e-12] = 1
+    whitened = (raw - mu) / sd
+    records = [public_record(model.people[model.kept[i]], whitened[i]) for i in range(len(model.kept))]
+    digest = hashlib.sha256(json.dumps([r["openalex_id"] for r in records] + [str(model.result.params)]).encode()).hexdigest()
+    space = {
+        "schema": EXPORT_SCHEMA,
+        "version": digest[:16],
+        "vocab": [str(t) for t in model.vocab],
+        "idf": [round(float(v), 9) for v in model.idf],
+        "components": [[round(float(v), 9) for v in row] for row in model.result.components],
+        "mean": [round(float(v), 9) for v in mu],
+        "sd": [round(float(v), 9) for v in sd],
+        "k": int(model.result.k),
+    }
+    expected = []
+    for text in fixtures:
+        q = model.project([text])[0]
+        z = (q - mu) / sd
+        cos = cosine(whitened, z)
+        order = np.argsort(-cos, kind="stable")[:10]
+        expected.append({
+            "text": text,
+            "query_whitened": [round(float(v), 9) for v in z],
+            "top": [{"openalex_id": records[i]["openalex_id"], "score": round(float(cos[i]), 9)} for i in order],
+        })
+    return {
+        "space": space,
+        "profiles": records,
+        "fixtures": expected,
+        "counts": {"people": len(people), "publishable": len(chosen), "published": len(records), "optouts": len(optouts)},
+    }

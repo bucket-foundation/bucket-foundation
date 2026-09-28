@@ -227,3 +227,64 @@ def test_write_csv_neutralizes_formula_cells(tmp_path: Path):
         out = next(csv.DictReader(f))
     assert out["name"] == "'=HYPERLINK(1)" and out["institution"] == "'+x" and out["field"] == "'-y" and out["department"] == "'@z"
     assert out["score"] == "-0.5" and out["topics"] == "a; =b" and out["ok"] == "plain"
+
+def test_publishable_selection_rule():
+    base = {"openalex_id": "A123", "identity": "match", "sources": "cockpit", "orcid": "0000-0001-2345-6789"}
+    ok = advisors.Person("x", "X", "t", dict(base))
+    assert advisors.publishable(ok)
+    assert advisors.publishable(advisors.Person("x", "X", "t", dict(base, sources="stevens; tracker")))
+    assert advisors.publishable(advisors.Person("x", "X", "t", dict(base, identity="moved")))
+    for bad in ({"sources": "tracker"}, {"identity": "check"}, {"identity": "unknown"}, {"openalex_id": ""},
+                {"openalex_id": "https://evil"}):
+        assert not advisors.publishable(advisors.Person("x", "X", "t", dict(base, **bad)))
+    assert not advisors.publishable(ok, {"A123"})
+    assert not advisors.publishable(ok, {"0000-0001-2345-6789"})
+
+def test_public_record_has_no_private_fields():
+    meta = {"openalex_id": "A9", "institution": "U", "ror": "https://ror.org/05ect4e57", "country": "US",
+            "field": "Biology", "topic_labels": ["a", "b", "a"], "email": "x@y.z", "orcid": "https://orcid.org/0000-0001-2345-678X",
+            "funding": "active grant", "h_index": 9, "sources": "tracker"}
+    rec = advisors.public_record(advisors.Person("A9", "N", "t", meta), np.array([0.5, -1.0]))
+    assert set(rec) == {"openalex_id", "name", "institution", "ror", "country", "field", "topics", "links", "orcid", "scores"}
+    assert rec["orcid"] == "0000-0001-2345-678X"
+    assert rec["topics"] == ["a", "b"] and rec["ror"] == "05ect4e57"
+    assert rec["links"] == {"openalex": "https://openalex.org/A9", "orcid": "https://orcid.org/0000-0001-2345-678X",
+                            "institution": "https://ror.org/05ect4e57"}
+    assert "x@y.z" not in json.dumps(rec)
+
+def test_export_bundle_excludes_optouts_and_matches_projection():
+    people = advisors.load_people(PEOPLE)
+    for i, p in enumerate(people):
+        p.meta.update({"openalex_id": f"A{i}", "identity": "match", "sources": "cockpit" if i % 10 else "tracker"})
+    bundle = advisors.export_bundle(people, {"A1", "A2"}, [STATEMENT.read_text()], k=6, min_chars=10, min_df=2, max_df=0.9)
+    ids = {r["openalex_id"] for r in bundle["profiles"]}
+    assert "A1" not in ids and "A2" not in ids and "A0" not in ids and "A10" not in ids
+    assert bundle["counts"]["publishable"] == len(people) - 16 - 2
+    space = bundle["space"]
+    assert len(space["components"]) == 6 and len(space["components"][0]) == len(space["vocab"]) == len(space["idf"])
+    top = bundle["fixtures"][0]["top"]
+    assert len(top) == 10 and top[0]["score"] >= top[-1]["score"]
+    assert all(len(r["scores"]) == 6 for r in bundle["profiles"])
+
+def test_cli_advisor_export_refuses_repo_output_and_writes_private_bundle(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
+    people = tmp_path / "people.jsonl"
+    rows = []
+    for i, line in enumerate(PEOPLE.read_text().splitlines()):
+        rec = json.loads(line)
+        rec.update({"openalex_id": f"A{i}", "sources": ["cockpit"], "ror": "05ect4e57"})
+        rows.append(json.dumps(rec))
+    people.write_text("\n".join(rows) + "\n")
+    cache = tmp_path / "ror.json"
+    cmu = {"id": "https://ror.org/05ect4e57", "names": [{"value": "Institute A", "types": ["ror_display"]}],
+           "locations": [{"geonames_details": {"country_code": "US"}}], "relationships": []}
+    cache.write_text(json.dumps({"orgs": {"05ect4e57": cmu}, "matches": {k: cmu for k in ("institute a", "university b", "college c", "lab d")}}))
+    assert cli.main(["advisor-export", "--people", str(people), "--out", str(TOOL_REPO_ROOT / "tools" / "b.json"),
+                     "--ror-cache", str(cache), "--ror-offline"]) == 2
+    out = tmp_path / "bundle.json"
+    code = cli.main(["advisor-export", "--people", str(people), "--out", str(out), "--ror-cache", str(cache), "--ror-offline",
+                     "--k", "4", "--min-chars", "10", "--min-df", "2", "--max-df", "0.9", "--text-keys", "titles,topics"])
+    assert code == 0
+    bundle = json.loads(out.read_text())
+    assert bundle["counts"]["published"] > 100
+    assert not any("email" in p for p in bundle["profiles"])

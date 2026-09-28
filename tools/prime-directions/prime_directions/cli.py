@@ -145,7 +145,34 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--ror-offline", action="store_true")
     a.add_argument("--watch", type=float, default=0.0)
     a.add_argument("--max-runs", type=int, default=0)
+    ex = sub.add_parser("advisor-export")
+    ex.add_argument("--people", type=Path, required=True)
+    ex.add_argument("--out", type=Path, required=True)
+    ex.add_argument("--ror-cache", type=Path, required=True)
+    ex.add_argument("--optouts", type=Path, help="text file, one OpenAlex id or ORCID per line")
+    ex.add_argument("--fixtures", type=Path, help="JSON list of texts to record expected scores for")
+    ex.add_argument("--text-keys", default="author_topics.name,author_topics.field")
+    ex.add_argument("--k", type=int, default=64)
+    ex.add_argument("--min-chars", type=int, default=20)
+    ex.add_argument("--ror-offline", action="store_true")
+    ex.add_argument("--min-df", type=int, default=3)
+    ex.add_argument("--max-df", type=float, default=0.2)
     return p
+
+def cmd_advisor_export(args) -> int:
+    out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
+    keys = tuple(k.strip() for k in args.text_keys.split(",") if k.strip())
+    people = advisors.load_people(args.people, text_keys=keys)
+    ror.validate(people, ror.RorClient(args.ror_cache, offline=args.ror_offline))
+    optouts = set()
+    if args.optouts and args.optouts.exists():
+        optouts = {l.strip().rsplit("/", 1)[-1] for l in args.optouts.read_text().splitlines() if l.strip()}
+    fixtures = json.loads(args.fixtures.read_text()) if args.fixtures else []
+    bundle = advisors.export_bundle(people, optouts, fixtures, k=args.k, min_chars=args.min_chars,
+                                    min_df=args.min_df, max_df=args.max_df)
+    export.write_json(bundle, out)
+    print(json.dumps(bundle["counts"]))
+    return 0
 
 def cmd_advisor_review(args) -> int:
     out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
@@ -425,6 +452,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "advisor-export":
+            return cmd_advisor_export(args)
         if args.cmd == "advisor-review":
             return cmd_advisor_review(args)
         if args.cmd == "neighbors":

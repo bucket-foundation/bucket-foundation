@@ -8,12 +8,14 @@ export const LAUNCH_PAGES = [
   "/research-os/learn/[branch]/assess",
   "/research-os/profile",
   "/research-os/n/[slug]",
+  "/research-os/remove-advisor",
 ] as const;
 
 const API_ROOT = "/api/research-os";
 
 export const LAUNCH_API_NAMES = [
   "access",
+  "advisors/optout",
   "assignments",
   "classes",
   "connections",
