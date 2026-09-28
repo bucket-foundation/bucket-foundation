@@ -257,3 +257,30 @@ def test_cli_reports_failures(tmp_path: Path):
     reg.write_text(json.dumps({"corpora": {"gone": {"kind": "folder", "path": str(tmp_path / "missing")}}}))
     assert cli.main(["--registry", str(reg), "run", "gone", "--out", str(tmp_path / "o")]) == 1
     assert "gone" in json.loads((tmp_path / "o" / "summary.json").read_text())["failures"]
+
+
+def test_folder_loader_reads_pdfs_through_pdftotext(tmp_path: Path, monkeypatch):
+    (tmp_path / "r.pdf").write_bytes(b"%PDF-1.4")
+    (tmp_path / "n.md").write_text("# N\nbody")
+    monkeypatch.setattr(corpora, "pdf_text", lambda path, max_chars=20000: "extracted pdf text")
+    docs = {d.id: d for d in corpora.load_folder(tmp_path, extensions=[], pdf=True)}
+    assert list(docs) == ["r.pdf"]
+    assert docs["r.pdf"].text == "extracted pdf text" and docs["r.pdf"].title == "r"
+
+
+def test_render_mp4_fails_closed_when_ffmpeg_dies(tmp_path: Path):
+    stub = tmp_path / "ffmpeg"
+    stub.write_text("#!/bin/sh\nexit 3\n")
+    stub.chmod(0o755)
+    result = fit_small(synthetic_docs())
+    with pytest.raises(RuntimeError):
+        render.render_mp4(result, tmp_path / "s.mp4", frames_per_doc=4, hold=1, size_px=240, cloud=20, ffmpeg=str(stub), timeout_s=20)
+
+
+def test_cli_records_unexpected_errors_and_keeps_going(tmp_path: Path, monkeypatch):
+    reg = tmp_path / "reg.json"
+    reg.write_text(json.dumps({"corpora": {"boom": {"kind": "folder", "path": str(tmp_path)}}}))
+    monkeypatch.setattr(corpora, "load_folder", lambda *a, **k: (_ for _ in ()).throw(MemoryError("oom")))
+    monkeypatch.setitem(corpora.LOADERS, "folder", corpora.load_folder)
+    assert cli.main(["--registry", str(reg), "run", "boom", "--out", str(tmp_path / "o")]) == 1
+    assert "MemoryError" in json.loads((tmp_path / "o" / "summary.json").read_text())["failures"]["boom"]

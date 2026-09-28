@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import shutil
 import subprocess
+import time
 from pathlib import Path
 
 import matplotlib
@@ -169,6 +170,7 @@ def render_mp4(
     seed: int = 0,
     crf: int = 20,
     ffmpeg: str | None = None,
+    timeout_s: float = 900.0,
 ) -> dict:
     ffmpeg = ffmpeg or shutil.which("ffmpeg")
     if not ffmpeg:
@@ -203,11 +205,14 @@ def render_mp4(
     path.parent.mkdir(parents=True, exist_ok=True)
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     frames = 0
+    deadline = time.monotonic() + timeout_s
     try:
         for j, (doc, comp) in enumerate(seq):
             nxt = (j + 1) % len(seq)
             steps = np.concatenate([np.zeros(hold), _ease(np.linspace(0, 1, frames_per_doc, endpoint=False))])
             for t in steps:
+                if time.monotonic() > deadline or proc.poll() is not None:
+                    raise RuntimeError(f"ffmpeg stopped or exceeded {timeout_s:g}s after {frames} frames")
                 shape = (1 - t) * shapes[j] + t * shapes[nxt]
                 closed = np.vstack([shape, shape[:1]])
                 fill.set_xy(closed)
@@ -224,8 +229,17 @@ def render_mp4(
                 proc.stdin.write(bytes(canvas.buffer_rgba()))
                 frames += 1
         proc.stdin.close()
+        code = proc.wait(timeout=max(1.0, deadline - time.monotonic()))
         err = proc.stderr.read().decode("utf-8", "replace")
-        code = proc.wait()
+    except subprocess.TimeoutExpired as exc:
+        proc.kill()
+        proc.wait()
+        raise RuntimeError(f"ffmpeg exceeded {timeout_s:g}s") from exc
+    except BrokenPipeError as exc:
+        proc.kill()
+        proc.wait()
+        err = proc.stderr.read().decode("utf-8", "replace").strip()
+        raise RuntimeError(f"ffmpeg closed its input after {frames} frames: {err}") from exc
     except BaseException:
         proc.kill()
         proc.wait()

@@ -122,8 +122,8 @@ def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
         started = time.perf_counter()
         try:
             result, data = run_corpus(spec, args, out_dir)
-        except (corpora.CorpusError, ValueError, RuntimeError) as exc:
-            failures[spec.name] = str(exc)
+        except Exception as exc:
+            failures[spec.name] = f"{type(exc).__name__}: {exc}"
             print(f"[{spec.name}] failed: {exc}", file=sys.stderr)
             continue
         data["timings"]["total_s"] = round(time.perf_counter() - started, 3)
