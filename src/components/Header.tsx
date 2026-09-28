@@ -3,6 +3,7 @@
 import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 import InverseOmega from "./InverseOmega";
+import GitHubStarButton from "./GitHubStarButton";
 import { useEffect, useRef, useState } from "react";
 
 type NavItem = {
@@ -180,6 +181,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
           </nav>
 
           <div className="flex items-center gap-2">
+            <GitHubStarButton />
             <UserMenu launchList={launchList} />
             <button
               type="button"

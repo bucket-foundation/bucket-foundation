@@ -39,6 +39,7 @@ const SUITES = {
       "scripts/test-canon-*signoff.ts",
       "scripts/test-code-citations.mjs",
       "scripts/test-site-reveal-fallback.ts",
+      "scripts/test-site-github-button.ts",
       "scripts/test-migration-versions.ts",
       "scripts/test-research-tools-routes.ts",
     ],
