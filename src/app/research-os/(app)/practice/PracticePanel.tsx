@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY } from "@/components/ui";
+import { OUTAGE_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import type { LearningModule, ModuleItem, ModuleKind } from "@/lib/research-os/modules/generate";
 
 const LABEL: Record<ModuleKind, string> = {
@@ -31,7 +32,11 @@ export default function PracticePanel({ node, compact = false }: { node: string;
         const res = await fetch(`/api/research-os/modules?node=${encodeURIComponent(node)}`, { cache: "no-store" });
         if (!live) return;
         if (res.status === 404 && compact) return setLoad({ kind: "hidden" });
-        if (!res.ok) return setLoad({ kind: "error", message: res.status === 404 ? "No such node, or you cannot read it." : `Practice is unavailable (${res.status}).` });
+        if (!res.ok) {
+          const transient = isTransientOutage(res.status, await readErrorCode(res));
+          if (!live) return;
+          return setLoad({ kind: "error", message: transient ? `${OUTAGE_COPY.title}. ${OUTAGE_COPY.body}` : res.status === 404 ? "No such node, or you cannot read it." : `Practice is unavailable (${res.status}).` });
+        }
         setLoad({ kind: "ready", body: (await res.json()) as Body });
       } catch {
         if (live) setLoad(compact ? { kind: "hidden" } : { kind: "error", message: "Practice could not reach the server." });

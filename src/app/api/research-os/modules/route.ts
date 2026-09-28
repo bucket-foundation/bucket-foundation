@@ -14,7 +14,7 @@ export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learn
   const kindParam = params.get("kind");
   if (kindParam && !(MODULE_KINDS as readonly string[]).includes(kindParam)) return bad(400, "bad_kind");
   const read = await loadModuleContext(slug, learnerId);
-  if (!read.ok) return read.reason === "not_found" ? bad(404, "node_not_found") : bad(503, "modules_unavailable");
+  if (!read.ok) return read.reason === "not_found" ? bad(404, "node_not_found") : bad(503, "graph_read_failed");
   const modules = kindParam ? [generateModule(read.ctx, kindParam as ModuleKind)] : generateModules(read.ctx);
   return { node: { id: read.ctx.node.id, slug: read.ctx.node.slug, title: read.ctx.node.title }, modules };
 });
