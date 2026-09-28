@@ -6,6 +6,7 @@ from pathlib import Path
 from ..schema import SCHEMA, Series, SeriesError, validate
 from .timeparse import year_fraction
 
+
 def load(path: Path, name: str, slug: str, source: dict, omega: float | None = None) -> Series:
     snaps = json.loads(Path(path).read_text())
     if not isinstance(snaps, list) or not snaps or "branches" not in snaps[0]:

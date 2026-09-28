@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .schema import Series
 
+
 def card(
     series: Series,
     interp_method: str,
@@ -30,6 +31,7 @@ def card(
         "source": series.source,
         "input_sha256": input_sha256,
     }
+
 
 def footer(c: dict) -> str:
     err = c["interpolation_error"]

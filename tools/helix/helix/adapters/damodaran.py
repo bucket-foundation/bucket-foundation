@@ -9,6 +9,7 @@ MEASURES = {"market_cap": "USD market capitalization", "revenue": "USD revenue"}
 SOURCE_URL = "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datacurrent.html"
 LICENSE = "Derived shares from Damodaran Online public data, cited; raw data not redistributed"
 
+
 def load(
     path: Path,
     industries: list[str],

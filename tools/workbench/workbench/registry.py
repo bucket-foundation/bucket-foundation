@@ -31,8 +31,10 @@ SCOPE_WRITES = {
 STATUSES = ("live", "pending")
 ARG_TYPES = {"string", "integer", "number", "boolean", "path"}
 
+
 class RegistryError(ValueError):
     pass
+
 
 @dataclass(frozen=True)
 class Tool:
@@ -61,6 +63,7 @@ class Tool:
         prefix = "" if self.live else f"[pending {self.bead}: {self.blocked_by}] "
         return {"name": self.id, "description": prefix + self.description, "inputSchema": self.input_schema}
 
+
 @dataclass(frozen=True)
 class Registry:
     tools: dict
@@ -74,6 +77,7 @@ class Registry:
         for t in self.tools.values():
             out.setdefault(t.group, []).append(t)
         return out
+
 
 def _slots(parts, props: set, where: str) -> set:
     found = set()
@@ -91,6 +95,7 @@ def _slots(parts, props: set, where: str) -> set:
                 raise RegistryError(f"{where}: slot {part} has no input_schema property")
             found.add(name)
     return found
+
 
 def _tool(raw: dict, i: int) -> Tool:
     where = f"tools[{i}]"
@@ -147,6 +152,7 @@ def _tool(raw: dict, i: int) -> Tool:
         blocked_by=raw.get("blocked_by", ""),
     )
 
+
 def parse(doc: dict) -> Registry:
     if doc.get("schema") != SCHEMA:
         raise RegistryError(f"schema must be {SCHEMA}")
@@ -161,6 +167,7 @@ def parse(doc: dict) -> Registry:
         if g not in GROUPS:
             raise RegistryError(f"limits: unknown group {g}")
     return Registry(tools=tools, limits=limits)
+
 
 def load(path: Path = REGISTRY_PATH) -> Registry:
     return parse(json.loads(Path(path).read_text()))

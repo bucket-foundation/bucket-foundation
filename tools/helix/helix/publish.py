@@ -9,14 +9,17 @@ PROTECTED = ("main", "dev", "hte/integration", "ops/integration")
 EXIT_REFUSED = 4
 FILES = ("manifest.json", "chart.svg")
 
+
 class PublishRefused(RuntimeError):
     pass
+
 
 def _git(repo: Path, *args: str) -> str:
     r = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, check=False)
     if r.returncode != 0:
         raise PublishRefused(f"git {' '.join(args)} failed: {r.stderr.strip()}")
     return r.stdout
+
 
 def check(repo: Path) -> str:
     branch = _git(repo, "rev-parse", "--abbrev-ref", "HEAD").strip()
@@ -27,6 +30,7 @@ def check(repo: Path) -> str:
     if _git(repo, "status", "--porcelain").strip():
         raise PublishRefused("working tree is dirty; commit or remove changes first")
     return branch
+
 
 def publish(run_dir: Path, repo: Path) -> Path:
     check(repo)

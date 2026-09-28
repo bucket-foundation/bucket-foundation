@@ -23,11 +23,13 @@ STATUS = {
     "cancelled": 409,
 }
 
+
 def loopback(host: str) -> bool:
     try:
         return ipaddress.ip_address(host).is_loopback
     except ValueError:
         return host == "localhost"
+
 
 def handle(bench: Workbench, signer: SignedRequests, path: str, body: bytes, signature: str | None) -> tuple[int, dict]:
     try:
@@ -49,6 +51,7 @@ def handle(bench: Workbench, signer: SignedRequests, path: str, body: bytes, sig
     except ToolError as exc:
         return STATUS.get(exc.code, 500), {"error": exc.code, "message": str(exc), **exc.data}
     return 404, {"error": "not_found"}
+
 
 def serve(bench: Workbench, signer: SignedRequests, host: str = "127.0.0.1", port: int = DEFAULT_PORT):
     if not loopback(host):

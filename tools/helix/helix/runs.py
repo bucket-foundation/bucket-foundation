@@ -25,18 +25,23 @@ MIRROR_BYTES = 5 * 1024 * 1024
 BACKOFF = (5, 20, 60)
 EXIT_MIRROR = 3
 
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+
 def dump(obj, path: Path) -> None:
     path.write_text(json.dumps(obj, indent=1, sort_keys=True) + "\n")
+
 
 def git_sha(repo: Path) -> str:
     r = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=False)
     return r.stdout.strip() if r.returncode == 0 else "unknown"
 
+
 def tree_bytes(path: Path) -> int:
     return sum(p.stat().st_size for p in path.rglob("*") if p.is_file())
+
 
 def mirror(src: Path, dest: str, runner=subprocess.run, sleep=time.sleep, tries: int = 3) -> dict:
     error = ""
@@ -48,6 +53,7 @@ def mirror(src: Path, dest: str, runner=subprocess.run, sleep=time.sleep, tries:
         if attempt < tries:
             sleep(BACKOFF[min(attempt - 1, len(BACKOFF) - 1)])
     return {"status": "failed", "path": dest, "attempts": tries, "error": error}
+
 
 def compute(series: Series, method: str, horizon: int, step: float | None, seed: int, samples: int) -> dict:
     W = series.shares
@@ -63,6 +69,7 @@ def compute(series: Series, method: str, horizon: int, step: float | None, seed:
                 raise
             why = f"refused: {len(series.t)} slices, needs {MIN_SLICES}"
     return {"grid": grid, "W": Wg, "loo": loo, "projection": proj, "why": why}
+
 
 def run(
     series: Series,

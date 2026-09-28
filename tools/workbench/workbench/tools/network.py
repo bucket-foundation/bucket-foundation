@@ -6,6 +6,7 @@ from pathlib import Path
 
 import numpy as np
 
+
 def _load(path: Path) -> tuple[list[dict], list[dict]]:
     doc = json.loads(Path(path).read_text())
     nodes, edges = doc.get("nodes"), doc.get("edges")
@@ -13,12 +14,14 @@ def _load(path: Path) -> tuple[list[dict], list[dict]]:
         raise TypeError("graph file needs nodes and edges lists")
     return nodes, edges
 
+
 def _edge_ends(e: dict) -> tuple[str, str]:
     a = e.get("source", e.get("from", e.get("source_id")))
     b = e.get("target", e.get("to", e.get("target_id")))
     if a is None or b is None:
         raise ValueError(f"edge without source and target: {e}")
     return str(a), str(b)
+
 
 def components(ids: list[str], pairs: list[tuple[str, str]]) -> list[list[str]]:
     parent = {i: i for i in ids}
@@ -35,6 +38,7 @@ def components(ids: list[str], pairs: list[tuple[str, str]]) -> list[list[str]]:
     for i in ids:
         groups[find(i)].append(i)
     return sorted(groups.values(), key=lambda g: (-len(g), g[0]))
+
 
 def layout(ids: list[str], pairs: list[tuple[str, str]], seed: int = 0, steps: int = 200) -> np.ndarray:
     n = len(ids)
@@ -57,6 +61,7 @@ def layout(ids: list[str], pairs: list[tuple[str, str]], seed: int = 0, steps: i
         norm = np.linalg.norm(force, axis=1, keepdims=True) + 1e-9
         pos += force / norm * np.minimum(norm, temp)
     return pos
+
 
 def build(args: dict, out_dir: Path) -> dict:
     nodes, edges = _load(Path(args["graph"]))

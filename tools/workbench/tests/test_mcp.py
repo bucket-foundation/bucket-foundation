@@ -12,6 +12,7 @@ from .conftest import FIXTURES, STAFF
 
 SERVER = REPO / "mcp-server" / "bucket-mcp.py"
 
+
 def rpc(lines: list[dict], env: dict | None = None) -> list[dict]:
     data = "".join(json.dumps(x) + "\n" for x in lines)
     r = subprocess.run(
@@ -26,8 +27,10 @@ def rpc(lines: list[dict], env: dict | None = None) -> list[dict]:
     assert r.returncode == 0, r.stderr
     return [json.loads(x) for x in r.stdout.splitlines()]
 
+
 def call(name: str, args: dict, i: int = 1) -> dict:
     return {"jsonrpc": "2.0", "id": i, "method": "tools/call", "params": {"name": name, "arguments": args}}
+
 
 def test_tools_list_keeps_canon_and_adds_registry():
     (resp,) = rpc([{"jsonrpc": "2.0", "id": 1, "method": "tools/list"}])
@@ -36,6 +39,7 @@ def test_tools_list_keeps_canon_and_adds_registry():
     assert "helix_run" not in names
     assert len(names) == len(set(names))
 
+
 def test_tools_list_with_token_shows_write_tools(data_home):
     _, secret = auth.TokenStore().issue(STAFF, ["read", "local"])
     (resp,) = rpc([{"jsonrpc": "2.0", "id": 1, "method": "tools/list"}], {"BUCKET_WORKBENCH_TOKEN": secret})
@@ -43,10 +47,12 @@ def test_tools_list_with_token_shows_write_tools(data_home):
     assert "helix_run" in tools and "helix_publish" not in tools
     assert tools["advisor_review"]["description"].startswith("[pending")
 
+
 def test_bucketmath_lookup_unchanged():
     (resp,) = rpc([call("bucketmath_lookup", {"q": "lerp simplex", "limit": 3})])
     before = json.loads((FIXTURES / "bucketmath-lookup-before.json").read_text())
     assert resp == before
+
 
 def test_helix_validate_and_errors(data_home):
     fixture = str(REPO / "tools" / "helix" / "tests" / "fixtures" / "series.json")
@@ -65,6 +71,7 @@ def test_helix_validate_and_errors(data_home):
     assert pending["error"]["code"] == -32003
     assert write["error"]["code"] == -32003
 
+
 def test_revoked_token_unauthorized(data_home):
     store = auth.TokenStore()
     tid, secret = store.issue(STAFF, ["read", "local"])
@@ -73,6 +80,7 @@ def test_revoked_token_unauthorized(data_home):
     assert resp["error"]["code"] == -32001
     audit = (data_home / "workbench" / "audit.jsonl").read_text()
     assert "revoked" in audit
+
 
 def test_canon_tool_still_dispatches():
     (resp,) = rpc([call("canon_list_branches", {})])

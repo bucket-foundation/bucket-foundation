@@ -10,12 +10,14 @@ from workbench.service import ToolError, Workbench
 
 from .conftest import NullCadence, make_registry, sleeper, staff, tool_doc
 
+
 class Clock:
     def __init__(self):
         self.t = 0.0
 
     def __call__(self):
         return self.t
+
 
 def test_rate_classes():
     reg = make_registry(
@@ -42,6 +44,7 @@ def test_rate_classes():
     clock.t += 30
     lim.take("u", reg.get("g"))
 
+
 def test_rate_limit_through_service(tmp_path):
     reg = make_registry(tool_doc())
     bench = Workbench(reg, Scheduler(reg), RateLimiter({"write": 1}), NullCadence(), tmp_path / "a.jsonl")
@@ -49,6 +52,7 @@ def test_rate_limit_through_service(tmp_path):
     with pytest.raises(ToolError) as exc:
         bench.call(staff(), "echo", {"word": "x"})
     assert exc.value.code == "rate_limited" and "retry_after" in exc.value.data
+
 
 def test_busy_through_service(tmp_path):
     reg = make_registry(sleeper("a"))

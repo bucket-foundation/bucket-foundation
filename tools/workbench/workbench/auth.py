@@ -21,10 +21,12 @@ STAFF_SCOPES = frozenset({"read", "local", "personal"})
 FOUNDER_SCOPES = frozenset({"read", "local", "personal", "gdrive", "repo"})
 ANON_SCOPES = frozenset({"read"})
 
+
 class AuthError(PermissionError):
     def __init__(self, code: str, message: str):
         super().__init__(message)
         self.code = code
+
 
 @dataclass(frozen=True)
 class Principal:
@@ -36,12 +38,15 @@ class Principal:
     def founder(self) -> bool:
         return self.role == "founder"
 
+
 def founder_email() -> str:
     return os.environ.get("BUCKET_FOUNDER_EMAIL", "").strip().lower()
+
 
 def role_for(email: str) -> str:
     f = founder_email()
     return "founder" if f and email.strip().lower() == f else "staff"
+
 
 def principal(email: str, scopes=None) -> Principal:
     role = role_for(email)
@@ -49,8 +54,10 @@ def principal(email: str, scopes=None) -> Principal:
     granted = allowed if scopes is None else allowed & frozenset(scopes)
     return Principal(user=email.strip().lower(), role=role, scopes=frozenset(granted))
 
+
 def anonymous() -> Principal:
     return Principal(user="local", role="anonymous", scopes=ANON_SCOPES)
+
 
 def authorize(p: Principal, tool: Tool, args: dict) -> None:
     if tool.scope not in p.scopes:
@@ -59,8 +66,10 @@ def authorize(p: Principal, tool: Tool, args: dict) -> None:
     if tool.scope == "personal" and target != p.user and not p.founder:
         raise AuthError("forbidden", "personal tools run on your own data only")
 
+
 def _hash(secret: str) -> str:
     return hashlib.sha256(secret.encode()).hexdigest()
+
 
 class TokenStore:
     def __init__(self, path: Path | None = None, clock=time.time):
@@ -150,6 +159,7 @@ class TokenStore:
             raise AuthError("unauthorized", "token expired")
         return principal(row["user"], row["scopes"])
 
+
 def signing_keys() -> list[bytes]:
     raw = os.environ.get("WORKBENCH_SIGNING_KEYS", "")
     keys = [k.strip().encode() for k in raw.split(",") if k.strip()]
@@ -158,8 +168,10 @@ def signing_keys() -> list[bytes]:
             raise AuthError("misconfigured", "each signing key needs at least 32 characters")
     return keys
 
+
 def sign(body: bytes, key: bytes) -> str:
     return hmac.new(key, body, hashlib.sha256).hexdigest()
+
 
 class SignedRequests:
     def __init__(self, keys: list[bytes], clock=time.time):

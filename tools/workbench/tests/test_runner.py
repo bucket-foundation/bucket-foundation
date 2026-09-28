@@ -11,11 +11,13 @@ from workbench.runner import ArgError, Busy, Scheduler, execute, render, validat
 
 from .conftest import make_registry, sleeper, staff, tool_doc
 
+
 def test_render_optional_groups(tmp_path):
     t = make_registry(tool_doc()).get("echo")
     assert render(t.command, {"word": "hi"}, tmp_path)[3:] == ["hi"]
     assert render(t.command, {"word": "hi", "n": 3, "loud": True}, tmp_path)[3:] == ["hi", "--n", "3", "--loud"]
     assert render(t.command, {"word": "hi", "loud": False}, tmp_path)[3:] == ["hi"]
+
 
 @pytest.mark.parametrize(
     "args,message",
@@ -34,6 +36,7 @@ def test_validate_errors(args, message):
     with pytest.raises(ArgError, match=message):
         validate_args(t, args, staff())
 
+
 def test_path_escape_refused(tmp_path):
     doc = tool_doc(
         command=["python3", "{word}"],
@@ -45,6 +48,7 @@ def test_path_escape_refused(tmp_path):
     with pytest.raises(ArgError, match="outside"):
         validate_args(t, {"word": "../../../../etc"}, staff())
     assert validate_args(t, {"word": "tools/workbench/registry.json"}, staff())["word"].endswith("registry.json")
+
 
 def test_execute_writes_run_record(data_home):
     t = make_registry(tool_doc(exit_codes={"0": "fine"})).get("echo")
@@ -58,6 +62,7 @@ def test_execute_writes_run_record(data_home):
     saved = json.loads((run_dir / "result.json").read_text())
     assert saved["outputs"]["stdout.txt"] == r["outputs"]["stdout.txt"]
 
+
 def test_exit_code_meaning():
     doc = tool_doc(
         command=["python3", "-c", "raise SystemExit(4)"],
@@ -67,6 +72,7 @@ def test_exit_code_meaning():
     r = execute(make_registry(doc).get("echo"), {}, staff(), "b" * 32)
     assert not r["ok"] and r["exit_code"] == 4 and r["meaning"] == "publish refused"
 
+
 def test_timeout_kills_process_group():
     doc = sleeper(secs=30) | {"timeout_s": 1}
     start = time.monotonic()
@@ -74,10 +80,12 @@ def test_timeout_kills_process_group():
     assert r["meaning"] == "timeout" and r["exit_code"] == -9
     assert time.monotonic() - start < 10
 
+
 def test_python_tool_errors_are_results():
     doc = tool_doc(kind="python", function="json:loads", command=[], input_schema={"type": "object", "properties": {}})
     r = execute(make_registry(doc).get("echo"), {}, staff(), "d" * 32)
     assert not r["ok"] and "TypeError" in r["meaning"]
+
 
 def _blocking_executor(gate: threading.Event):
     def run(tool, args, p, run_id, cancel):
@@ -85,6 +93,7 @@ def _blocking_executor(gate: threading.Event):
         return {"ok": True}
 
     return run
+
 
 def test_caps_queue_and_cancel():
     reg = make_registry(sleeper("a"), sleeper("v", group="visual"))
@@ -113,6 +122,7 @@ def test_caps_queue_and_cancel():
         assert j.done.wait(10)
     assert v2.state == "done"
 
+
 def test_total_cap():
     reg = make_registry(sleeper("a"))
     gate = threading.Event()
@@ -126,6 +136,7 @@ def test_total_cap():
     assert jobs[4].state == "queued"
     gate.set()
     assert all(j.done.wait(10) for j in jobs)
+
 
 def test_cancel_running_job_kills_it():
     reg = make_registry(sleeper("a", secs=30))

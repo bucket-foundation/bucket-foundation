@@ -15,15 +15,19 @@ RENDER_TIMEOUT_S = 900.0
 FAIL_WINDOW_S = 300.0
 COOLDOWN_S = 300.0
 
+
 class CadenceUnavailable(RuntimeError):
     pass
+
 
 class CadenceTimeout(RuntimeError):
     pass
 
+
 def default_command() -> list[str] | None:
     path = os.environ.get("CADENCE_MCP_BIN") or shutil.which("cadence_mcp")
     return [path] if path and os.path.exists(path) else None
+
 
 class CadenceProxy:
     def __init__(

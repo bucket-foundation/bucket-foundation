@@ -15,6 +15,7 @@ MCP_CODES = {
     "bad_arguments": -32602,
 }
 
+
 class McpBridge:
     def __init__(self, bench: Workbench | None = None, tokens: TokenStore | None = None, env=os.environ):
         self._bench = bench

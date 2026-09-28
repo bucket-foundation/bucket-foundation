@@ -14,6 +14,7 @@ FIXTURES = Path(__file__).parent / "fixtures"
 FOUNDER = "founder@example.org"
 STAFF = "staff@example.org"
 
+
 @pytest.fixture(autouse=True)
 def data_home(tmp_path, monkeypatch):
     home = tmp_path / "data"
@@ -21,6 +22,7 @@ def data_home(tmp_path, monkeypatch):
     monkeypatch.setenv("BUCKET_FOUNDER_EMAIL", FOUNDER)
     monkeypatch.delenv("BUCKET_WORKBENCH_TOKEN", raising=False)
     return home
+
 
 def tool_doc(**over) -> dict:
     base = {
@@ -48,8 +50,10 @@ def tool_doc(**over) -> dict:
     base.update(over)
     return base
 
+
 def make_registry(*tools, limits=None) -> registry.Registry:
     return registry.parse({"schema": registry.SCHEMA, "limits": limits or {}, "tools": list(tools)})
+
 
 def sleeper(tool_id="sleep", group="helix", secs=5, scope="local", writes="local"):
     return tool_doc(
@@ -60,6 +64,7 @@ def sleeper(tool_id="sleep", group="helix", secs=5, scope="local", writes="local
         command=["python3", "-c", f"import time; time.sleep({secs})"],
         input_schema={"type": "object", "properties": {}},
     )
+
 
 class NullCadence:
     configured = False
@@ -72,6 +77,7 @@ class NullCadence:
 
         raise CadenceUnavailable("not configured")
 
+
 @pytest.fixture
 def bench(tmp_path):
     reg = make_registry(
@@ -83,14 +89,18 @@ def bench(tmp_path):
     )
     return Workbench(reg, Scheduler(reg), cadence=NullCadence(), audit_path=tmp_path / "audit.jsonl")
 
+
 def staff():
     return auth.principal(STAFF)
+
 
 def founder():
     return auth.principal(FOUNDER)
 
+
 def audit_lines(bench) -> list[dict]:
     return [json.loads(x) for x in bench.audit_path.read_text().splitlines()]
+
 
 def python() -> str:
     return sys.executable
