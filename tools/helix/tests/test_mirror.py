@@ -9,7 +9,6 @@ from helix.schema import load
 
 from .conftest import FIXTURES
 
-
 class Rclone:
     def __init__(self, codes):
         self.codes = list(codes)
@@ -19,7 +18,6 @@ class Rclone:
         self.calls.append(cmd)
         code = self.codes.pop(0)
         return subprocess.CompletedProcess(cmd, code, "", "" if code == 0 else "quota exceeded")
-
 
 def _run(tmp_path, codes, **kw):
     fake, sleeps = Rclone(codes), []
@@ -35,7 +33,6 @@ def _run(tmp_path, codes, **kw):
     )
     return run_dir, code, fake, sleeps, json.loads((run_dir / "manifest.json").read_text())
 
-
 def test_mirror_ok(tmp_path):
     _, code, fake, sleeps, m = _run(tmp_path, [0])
     assert code == 0
@@ -44,13 +41,11 @@ def test_mirror_ok(tmp_path):
     assert fake.calls[0][3] == f"{runs.GDRIVE_ROOT}/fixture-topics/20260101T000000Z/"
     assert sleeps == []
 
-
 def test_mirror_retry_then_ok(tmp_path):
     _, code, _, sleeps, m = _run(tmp_path, [1, 0])
     assert code == 0
     assert m["mirror"]["attempts"] == 2
     assert sleeps == [5]
-
 
 def test_mirror_failure_exit_code(tmp_path, capsys):
     run_dir, code, _, sleeps, m = _run(tmp_path, [1, 1, 1])
@@ -60,14 +55,12 @@ def test_mirror_failure_exit_code(tmp_path, capsys):
     assert "quota exceeded" in capsys.readouterr().err
     assert (run_dir / "chart.svg").exists()
 
-
 def test_raw_mirror_failure_fails_run(tmp_path):
     raw = tmp_path / "raw"
     raw.mkdir()
     _, code, _, _, m = _run(tmp_path / "out", [0, 1, 1, 1], raw=raw)
     assert code == 3
     assert m["mirror"]["raw"]["status"] == "failed"
-
 
 def test_cli_propagates_mirror_exit(tmp_path, monkeypatch):
     monkeypatch.setattr(runs.subprocess, "run", Rclone([1, 1, 1]))
@@ -76,12 +69,10 @@ def test_cli_propagates_mirror_exit(tmp_path, monkeypatch):
     code = cli.main(["run", str(FIXTURES / "series.json"), "--out", str(tmp_path), "--mirror"])
     assert code == 3
 
-
 def test_cli_invalid_input_exit(tmp_path):
     bad = tmp_path / "bad.json"
     bad.write_text("{}")
     assert cli.main(["run", str(bad), "--out", str(tmp_path)]) == 2
-
 
 def test_small_run_skips_mirror(tmp_path):
     run_dir, code = runs.run(load(FIXTURES / "series.json"), tmp_path, stamp="20260101T000000Z", samples=21)

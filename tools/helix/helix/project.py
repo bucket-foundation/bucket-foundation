@@ -12,22 +12,18 @@ METHOD = (
     "componentwise quantiles of on-simplex sample paths"
 )
 
-
 def alr(W: np.ndarray) -> np.ndarray:
     W = W + EPS
     return np.log(W[:, :-1] / W[:, -1:])
-
 
 def inv_alr(X: np.ndarray) -> np.ndarray:
     Z = np.concatenate([np.exp(X), np.ones(X.shape[:-1] + (1,))], axis=-1)
     return Z / Z.sum(axis=-1, keepdims=True)
 
-
 def _fit(t: np.ndarray, Y: np.ndarray) -> np.ndarray:
     A = np.column_stack([np.ones_like(t), t])
     coef, *_ = np.linalg.lstsq(A, Y, rcond=None)
     return coef
-
 
 def project(
     t: np.ndarray, W: np.ndarray, horizon: int, step: float | None = None, seed: int = 0, n_boot: int = 400

@@ -8,7 +8,6 @@ from .timeparse import year_fraction
 
 PERIODS = {"year": 1.0, "quarter": 0.25, "month": 1 / 12}
 
-
 def load(
     path: Path, primes: list[str], name: str, slug: str, source: dict, period: str = "year", omega: float | None = None
 ) -> Series:

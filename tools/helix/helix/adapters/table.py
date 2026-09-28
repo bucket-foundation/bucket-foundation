@@ -5,7 +5,6 @@ from pathlib import Path
 
 from ..schema import SCHEMA, Series, SeriesError, validate
 
-
 def load(path: Path) -> Series:
     doc = json.loads(Path(path).read_text())
     rows = doc.pop("rows", None)

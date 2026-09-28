@@ -16,7 +16,6 @@ from .conftest import FIXTURES
 GOLDEN = Path(__file__).parent / "golden"
 REGEN = os.environ.get("HELIX_REGEN_GOLDEN") == "1"
 
-
 @pytest.fixture(scope="module")
 def run_dir(tmp_path_factory):
     series = load(FIXTURES / "series.json")
@@ -31,17 +30,14 @@ def run_dir(tmp_path_factory):
         (GOLDEN / "matplotlib.txt").write_text(matplotlib.__version__ + "\n")
     return d
 
-
 @pytest.mark.parametrize("name", ["scene.json", "method.json"])
 def test_json_golden(run_dir, name):
     assert json.loads((run_dir / name).read_text()) == json.loads((GOLDEN / name).read_text())
-
 
 def test_svg_golden(run_dir):
     if (GOLDEN / "matplotlib.txt").read_text().strip() != matplotlib.__version__:
         pytest.skip("SVG golden recorded with another matplotlib version")
     assert (run_dir / "chart.svg").read_bytes() == (GOLDEN / "chart.svg").read_bytes()
-
 
 def test_scene_matches_old_helix_angles(run_dir):
     scene = json.loads((run_dir / "scene.json").read_text())
@@ -53,7 +49,6 @@ def test_scene_matches_old_helix_angles(run_dir):
     r = np.hypot(P[..., 0], P[..., 1])
     ok = r > 1e-9
     assert np.allclose(np.angle(np.exp(1j * (ang - want)))[ok], 0, atol=1e-5)
-
 
 def test_outputs_hashed_in_manifest(run_dir):
     m = json.loads((run_dir / "manifest.json").read_text())
