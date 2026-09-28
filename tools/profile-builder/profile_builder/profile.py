@@ -20,10 +20,8 @@ them they these those if else get set run make file files code md json true fals
 http https www com org io github readme license mit bucket foundation agfarms claude agents never next dev admin src curl user password read about docs build committed banned wed sep oct aug jul jun mon tue thu fri sat sun jan feb mar apr may nov dec open work tier cards card figure figures api npm bash sign menu home back click page log login signup view share copy link""".split())
 TOKEN = re.compile(r"[a-z][a-z0-9+#-]{2,}")
 
-
 def tokens(text: str) -> list[str]:
     return [t for t in TOKEN.findall(text.lower()) if t not in STOP]
-
 
 def strip_boilerplate(items: list[Item], max_share: float = 0.2) -> list[str]:
     line_df: Counter = Counter()
@@ -32,7 +30,6 @@ def strip_boilerplate(items: list[Item], max_share: float = 0.2) -> list[str]:
         line_df.update(set(lines))
     limit = max(2, int(max_share * len(items)))
     return [it.title + " " + " ".join(l for l in lines if line_df[l] <= limit) for it, lines in zip(items, split)]
-
 
 def top_terms(items: list[Item], k: int = 40, max_doc_share: float = 0.4) -> list[tuple[str, float]]:
     df: Counter = Counter()
@@ -45,7 +42,6 @@ def top_terms(items: list[Item], k: int = 40, max_doc_share: float = 0.4) -> lis
     scored = {t: c * math.log(1 + n / df[t]) for t, c in tf.items() if (df[t] >= 2 or n < 5) and df[t] <= max_doc_share * n}
     return sorted(scored.items(), key=lambda kv: -kv[1])[:k]
 
-
 def branch_scores(items: list[Item]) -> dict[str, float]:
     counts = Counter()
     for it in items:
@@ -55,11 +51,9 @@ def branch_scores(items: list[Item]) -> dict[str, float]:
     total = sum(counts.values()) or 1
     return {b: round(counts[b] / total, 4) for b in BRANCHES}
 
-
 def skills(items: list[Item]) -> list[tuple[str, int]]:
     langs = Counter(it.meta.get("language") for it in items if it.meta.get("language"))
     return langs.most_common()
-
 
 def build(person: dict, items: list[Item]) -> dict:
     usable = [it for it in items if it.text.strip()]

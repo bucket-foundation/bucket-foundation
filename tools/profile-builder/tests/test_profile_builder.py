@@ -3,7 +3,6 @@ import unittest
 from profile_builder import profile, sources
 from profile_builder.sources import Item
 
-
 def fake_fetch(url, token=None):
     if url.endswith("/users/ada"):
         return {"html_url": "https://github.com/ada", "bio": "graphs and learning", "public_repos": 2}
@@ -15,7 +14,6 @@ def fake_fetch(url, token=None):
     if url.endswith("/readme"):
         raise OSError("no readme")
     raise AssertionError(url)
-
 
 class ProfileBuilderTest(unittest.TestCase):
     def test_github_skips_forks_and_records_readme_errors(self):
@@ -55,13 +53,11 @@ class ProfileBuilderTest(unittest.TestCase):
         self.assertEqual(out["skills"], [{"language": "Python", "repos": 1}])
         self.assertEqual(out["errors"], [{"url": "w", "error": "x"}])
 
-
     def test_boilerplate_lines_shared_by_most_items_are_dropped(self):
         items = [Item("web", str(i), "p", f"Sign in to continue\nunique topic {w}") for i, w in enumerate(["photon", "enzyme", "galaxy", "theorem", "glacier"])]
         texts = profile.strip_boilerplate(items)
         self.assertTrue(all("Sign in to continue" not in t for t in texts))
         self.assertIn("photon", texts[0])
-
 
     def test_robots_disallow_is_recorded(self):
         items = sources.websites(["https://a.org/"], 5, fetch_text=lambda u: "", allowed=lambda u: False, sleep=lambda s: None)
@@ -113,7 +109,6 @@ class ProfileBuilderTest(unittest.TestCase):
 
     def test_branches_match_bucket_canon(self):
         self.assertEqual(set(profile.BRANCHES), {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "earth"})
-
 
 if __name__ == "__main__":
     unittest.main()
