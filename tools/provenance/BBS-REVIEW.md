@@ -38,4 +38,4 @@ If a BBS flaw turns up: set `PROVENANCE_BBS=0`, which stops issue, derive and ve
 
 ## Sign-off
 
-Founder: ______________________ Date: __________
+Founder: Gianangelo Dichio (gianyrox), approved in session Date: 2026-09-28
