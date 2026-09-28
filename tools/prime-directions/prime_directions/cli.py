@@ -135,6 +135,9 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--seed", type=int, default=0)
     a.add_argument("--min-rows", type=int, default=0)
     a.add_argument("--bench-k", type=int, default=25)
+    a.add_argument("--stop-heading", default="## References")
+    a.add_argument("--text-keys", help="comma-separated record paths to use as text, e.g. author_topics.name,works")
+    a.add_argument("--uncentered", action="store_true")
     a.add_argument("--watch", type=float, default=0.0)
     a.add_argument("--max-runs", type=int, default=0)
     return p
@@ -149,7 +152,8 @@ def cmd_advisor_review(args) -> int:
             st = args.people.stat()
             sig = (st.st_size, st.st_mtime_ns)
         if sig is not None and sig != last:
-            people = advisors.load_people(args.people)
+            keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+            people = advisors.load_people(args.people, text_keys=keys)
             if len(people) >= args.min_rows:
                 advisor_run(args, out, people)
                 runs += 1
@@ -167,10 +171,10 @@ def cmd_advisor_review(args) -> int:
 
 def advisor_run(args, out: Path, people: list) -> None:
     timings: dict = {"load_s": 0.0}
-    query = args.query.read_text(encoding="utf-8")
+    query = advisors.statement_body(args.query.read_text(encoding="utf-8"), args.stop_heading)
     model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
                    min_chars=args.min_chars, seed=args.seed)
-    rows, qvec = _time(timings, "rank_s", advisors.rank, model_, query, top=args.top)
+    rows, qvec = _time(timings, "rank_s", advisors.rank, model_, query, top=args.top, centered=not args.uncentered)
     bench = advisors.index_benchmark(model_, np.vstack([qvec[None, :], model_.result.raw_scores[:199]]), k=args.bench_k)
     advisors.write_csv(rows, out / "ranked.csv")
     _, axes = _time(timings, "plot_s", advisors.plot, model_, qvec, rows, out / "pca.png", label=args.label)

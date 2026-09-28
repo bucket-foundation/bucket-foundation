@@ -15,10 +15,15 @@ from .clean import scrub
 from .model import PrimeResult, TOKEN_PATTERN, fit_matrix, vectorize
 from .neighbors import build_index, brute_knn, distance_recall
 
-TEXT_KEYS = ("text", "abstracts", "titles", "works", "topics", "concepts", "keywords", "interests", "summary")
+TEXT_KEYS = (
+    "text", "abstracts", "titles", "works", "topics", "concepts", "keywords", "interests", "summary",
+    "author_topics.name", "author_topics.field", "atlas_topics", "research_areas_official",
+    "cockpit.interests_matched", "funding.recent_grants.title",
+)
 ID_KEYS = ("id", "openalex_id", "orcid", "email", "name")
 NAME_KEYS = ("name", "display_name", "full_name")
 FILTER_KEYS = ("field", "country", "funding", "institution", "taking_students")
+EXTRA_KEYS = ("department", "h_index", "sources")
 
 @dataclass
 class Person:
@@ -37,6 +42,39 @@ def _flatten(value) -> str:
     if isinstance(value, (list, tuple)):
         return " ".join(_flatten(v) for v in value)
     return str(value)
+
+def get_path(record, path: str):
+    head, _, rest = path.partition(".")
+    if isinstance(record, list):
+        values = [get_path(item, path) for item in record]
+        values = [v for v in values if v not in (None, "", [])]
+        return values or None
+    if not isinstance(record, dict):
+        return None
+    value = record.get(head)
+    return get_path(value, rest) if rest and value is not None else value
+
+def derive_field(record: dict) -> str:
+    value = record.get("field")
+    if isinstance(value, str) and value:
+        return value
+    if isinstance(value, list) and value:
+        return "; ".join(_flatten(v) for v in value)
+    weights: dict[str, float] = {}
+    for topic in record.get("author_topics") or []:
+        if isinstance(topic, dict) and topic.get("field"):
+            weights[topic["field"]] = weights.get(topic["field"], 0.0) + float(topic.get("count") or 1)
+    if weights:
+        return max(sorted(weights), key=lambda f: weights[f])
+    atlas = record.get("atlas_topics")
+    return str(atlas.get("primary_field") or "") if isinstance(atlas, dict) else _flatten(value)
+
+def derive_funding(value) -> str:
+    if isinstance(value, dict):
+        if "active" in value:
+            return "active grant" if value.get("active") else "past grants"
+        return _flatten(value)
+    return _flatten(value)
 
 def _first(record: dict, keys) -> str:
     for key in keys:
@@ -67,11 +105,13 @@ def load_people(path: Path, text_keys=TEXT_KEYS, max_chars: int = 60000, allow_p
         if pid in seen:
             continue
         seen.add(pid)
-        text = scrub(" \n".join(_flatten(record.get(k)) for k in text_keys if record.get(k)))[:max_chars]
+        text = scrub(" \n".join(_flatten(get_path(record, k)) for k in text_keys if get_path(record, k)))[:max_chars]
         meta = {k: v for k, v in record.items() if k not in text_keys and not isinstance(v, (dict, list))}
-        for k in FILTER_KEYS:
+        for k in FILTER_KEYS + EXTRA_KEYS:
             if isinstance(record.get(k), list):
                 meta[k] = "; ".join(_flatten(x) for x in record[k])
+        meta["field"] = derive_field(record)
+        meta["funding"] = derive_funding(record.get("funding"))
         people.append(Person(pid, _first(record, NAME_KEYS) or pid, text, meta))
     return people
 
@@ -139,9 +179,12 @@ def shared_terms(model: AdvisorModel, query_row: sp.csr_matrix, rows: list[int],
         out.append([str(model.vocab[t]) for t in top if contrib[t] > 0])
     return out
 
-def rank(model: AdvisorModel, query_text: str, top: int = 300) -> tuple[list[dict], np.ndarray]:
-    scores = model.result.raw_scores
-    qvec = model.project([query_text])[0]
+def rank(model: AdvisorModel, query_text: str, top: int = 300, centered: bool = True) -> tuple[list[dict], np.ndarray]:
+    raw = model.result.raw_scores
+    center = raw.mean(axis=0) if centered else np.zeros(raw.shape[1])
+    scores = raw - center
+    qraw = model.project([query_text])[0]
+    qvec = qraw - center
     cos = cosine(scores, qvec)
     euclid = np.linalg.norm(scores - qvec[None, :], axis=1)
     order_cos = np.argsort(-cos, kind="stable")
@@ -163,10 +206,11 @@ def rank(model: AdvisorModel, query_text: str, top: int = 300) -> tuple[list[dic
             "id": person.id,
             "name": person.name,
             **{k: person.meta.get(k, "") for k in FILTER_KEYS},
-            "email": person.meta.get("email", ""),
+            **{k: person.meta.get(k, "") for k in EXTRA_KEYS},
+            "email": person.meta.get("email") or "",
             "shared_terms": " ".join(terms[j]),
         })
-    return rows, qvec
+    return rows, qraw
 
 def unit(v: np.ndarray) -> np.ndarray:
     n = np.linalg.norm(v, axis=-1, keepdims=True)
@@ -228,9 +272,17 @@ def plot(model: AdvisorModel, qvec: np.ndarray, rows: list[dict], path: Path, la
     ids = {r["id"]: r for r in rows[:label]}
     idx = [i for i, pid in enumerate(model.result.doc_ids) if pid in ids]
     ax.scatter(z[idx, a], z[idx, b], s=22, color=GOLD, alpha=0.95, lw=0, label=f"nearest {len(idx)} by cosine")
-    for i in idx:
-        ax.annotate(ids[model.result.doc_ids[i]]["name"][:28], (z[i, a], z[i, b]), fontsize=6.5, color=BONE,
-                    xytext=(3, 3), textcoords="offset points")
+    if idx:
+        ys = z[idx, b]
+        order_y = [idx[j] for j in np.argsort(-ys)]
+        lo, hi = float(np.percentile(z[:, b], 1)), float(np.percentile(z[:, b], 99))
+        slots = np.linspace(hi, lo, len(order_y)) if len(order_y) > 1 else [float(ys[0])]
+        x_text = float(np.percentile(z[:, a], 99.5)) + 0.6
+        for i, y_text in zip(order_y, slots):
+            r = ids[model.result.doc_ids[i]]
+            ax.annotate(f"{r['rank_cosine']}. {r['name'][:26]}", (z[i, a], z[i, b]), xytext=(x_text, y_text),
+                        fontsize=6.5, color=BONE, va="center",
+                        arrowprops={"arrowstyle": "-", "color": GOLD, "alpha": 0.35, "lw": 0.5})
     ax.scatter([zq[a]], [zq[b]], marker="*", s=420, color=GOLD_BRIGHT, edgecolor=BONE, lw=0.8, zorder=5, label="research statement")
     for spine in ax.spines.values():
         spine.set_color(GOLD)
@@ -302,8 +354,8 @@ render();
 """
 
 def write_page(rows: list[dict], plot_name: str, summary: str, path: Path) -> Path:
-    cols = [c for c in ("rank_cosine", "rank_euclidean", "cosine", "euclidean", "name", "institution", "field",
-                        "country", "funding", "taking_students", "email", "shared_terms") if any(r.get(c) not in ("", None) for r in rows)]
+    cols = [c for c in ("rank_cosine", "rank_euclidean", "cosine", "euclidean", "name", "institution", "department",
+                        "field", "country", "funding", "taking_students", "h_index", "sources", "email", "shared_terms") if any(r.get(c) not in ("", None) for r in rows)]
     filters = [f for f in FILTER_KEYS if any(r.get(f) not in ("", None) for r in rows)]
     selects = []
     for f in filters:
@@ -318,3 +370,10 @@ def write_page(rows: list[dict], plot_name: str, summary: str, path: Path) -> Pa
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(page, encoding="utf-8")
     return path
+
+def statement_body(text: str, stop_heading: str = "## References") -> str:
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if line.strip().lower() == stop_heading.lower():
+            return "\n".join(lines[:i])
+    return text

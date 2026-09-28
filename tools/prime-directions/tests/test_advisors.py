@@ -64,6 +64,10 @@ def test_rank_orders_by_cosine_and_puts_the_statement_field_first():
     scores = model.result.raw_scores
     i = model.result.doc_ids.index(best["id"])
     assert best["euclidean"] == pytest.approx(float(np.linalg.norm(scores[i] - qvec)), abs=1e-4)
+    center = scores.mean(axis=0)
+    assert best["cosine"] == pytest.approx(float(advisors.cosine((scores - center)[i:i + 1], qvec - center)[0]), abs=1e-4)
+    raw_rows, _ = advisors.rank(model, STATEMENT.read_text(), top=5, centered=False)
+    assert raw_rows[0]["cosine"] >= rows[0]["cosine"] - 1
 
 def test_cosine_handles_zero_vectors():
     out = advisors.cosine(np.array([[0.0, 0.0], [1.0, 0.0]]), np.array([1.0, 0.0]))
@@ -144,3 +148,28 @@ def test_cli_min_rows_gate_and_watch_reruns_on_growth(tmp_path: Path, monkeypatc
     assert cli.main(base + ["--min-rows", "100", "--watch", "0.01", "--max-runs", "2"]) == 0
     report = json.loads((tmp_path / "o" / "report.json").read_text())
     assert report["people"] == 160
+
+def test_nested_topic_records_feed_text_and_filters(tmp_path: Path):
+    path = tmp_path / "p.jsonl"
+    rec = {
+        "id": "A1", "name": "N", "country": "US", "h_index": 12, "sources": ["cockpit", "stevens"],
+        "author_topics": [{"count": 3, "field": "Physics", "name": "Quantum optics"},
+                          {"count": 9, "field": "Biology", "name": "Mitochondrial membranes"}],
+        "cockpit": {"interests_matched": "bioenergetics", "tier": "C"},
+        "funding": {"active": True, "recent_grants": [{"title": "Proton gradients", "funder_source": "nsf"}]},
+        "atlas_topics": None, "works": [],
+    }
+    path.write_text(json.dumps(rec) + "\n")
+    person = advisors.load_people(path)[0]
+    for word in ("Quantum optics", "Mitochondrial membranes", "bioenergetics", "Proton gradients"):
+        assert word in person.text
+    assert "nsf" not in person.text and "tier" not in person.text
+    assert person.meta["field"] == "Biology" and person.meta["funding"] == "active grant"
+    assert person.meta["sources"] == "cockpit; stevens"
+    assert advisors.derive_funding({"active": False}) == "past grants"
+    assert advisors.derive_field({"atlas_topics": {"primary_field": "Math"}}) == "Math"
+
+def test_statement_body_stops_at_references():
+    text = "# T\nbody line\n## References\n[1] cited"
+    assert advisors.statement_body(text) == "# T\nbody line"
+    assert advisors.statement_body("no refs") == "no refs"
