@@ -330,12 +330,21 @@ def index_benchmark(space: np.ndarray, query_vectors: np.ndarray, k: int = 25, b
         })
     return rows
 
+FORMULA_START = ("=", "+", "-", "@", "\t", "\r")
+
+def csv_cell(value):
+    if isinstance(value, list):
+        value = "; ".join(str(v) for v in value)
+    if isinstance(value, str) and value.startswith(FORMULA_START):
+        return "'" + value
+    return value
+
 def write_csv(rows: list[dict], path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]) if rows else ["rank_cosine"])
         writer.writeheader()
-        writer.writerows({k: "; ".join(v) if isinstance(v, list) else v for k, v in row.items()} for row in rows)
+        writer.writerows({k: csv_cell(v) for k, v in row.items()} for row in rows)
     return path
 
 def plot_axes(raw: np.ndarray, qraw: np.ndarray) -> tuple[int, int, np.ndarray, np.ndarray, float]:

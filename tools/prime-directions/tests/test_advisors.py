@@ -219,3 +219,11 @@ def test_institution_mix_and_sources():
     assert mix["institutions"] == 3 and mix["largest_share"] == 0.6 and mix["stevens_share"] == 0.8
     assert mix["top"][0] == {"institution": "S", "count": 3}
     assert advisors.is_source(rows[3], "stevens") and not advisors.is_source(rows[4], "stevens")
+
+def test_write_csv_neutralizes_formula_cells(tmp_path: Path):
+    rows = [{"name": "=HYPERLINK(1)", "institution": "+x", "field": "-y", "department": "@z", "score": -0.5, "topics": ["a", "=b"], "ok": "plain"}]
+    path = advisors.write_csv(rows, tmp_path / "r.csv")
+    with open(path) as f:
+        out = next(csv.DictReader(f))
+    assert out["name"] == "'=HYPERLINK(1)" and out["institution"] == "'+x" and out["field"] == "'-y" and out["department"] == "'@z"
+    assert out["score"] == "-0.5" and out["topics"] == "a; =b" and out["ok"] == "plain"
