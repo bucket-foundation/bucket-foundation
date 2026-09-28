@@ -30,6 +30,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   irreducible_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_slug"], nullable: [] }],
   learner_node_state: [{ columns: ["learner_id", "node_id"], nullable: [] }],
   learner_profiles: [{ columns: ["learner_id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: ["source_system", "sourced_id"] }],
+  learning_items: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "kind", "ordinal"], nullable: [] }],
   level_overrides: [{ columns: ["id"], nullable: [] }],
   llm_usage: [{ columns: ["subject", "route", "day"], nullable: [] }],
   medallion_withdrawn_nodes: [{ columns: ["node_id"], nullable: [] }],

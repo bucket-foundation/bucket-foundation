@@ -10,7 +10,7 @@ export async function upsertGraph(
   nodes: IngestNodeDraft[],
   edges: IngestEdgeDraft[],
   { label, skippedEdgeHint }: UpsertGraphOptions,
-): Promise<{ nodesWritten: number; edgesWritten: number }> {
+): Promise<{ nodesWritten: number; edgesWritten: number; idBySlug: Map<string, string> }> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !serviceKey) {
@@ -53,5 +53,5 @@ export async function upsertGraph(
   const { data: raised, error: tierErr } = await svc.rpc("enforce_prerequisite_tiers");
   if (tierErr) throw new Error(`enforce_prerequisite_tiers failed: ${tierErr.message}`);
   if (typeof raised === "number" && raised > 0) console.log(`raised ${raised} grade tiers to keep learning order monotone`);
-  return { nodesWritten: nodeRows.length, edgesWritten: edgeRows.length };
+  return { nodesWritten: nodeRows.length, edgesWritten: edgeRows.length, idBySlug };
 }

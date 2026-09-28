@@ -1,5 +1,6 @@
 import type { IngestNodeDraft, IngestEdgeDraft, IngestResult, ReviewItem } from "./types";
 import { slugifyPart, CONFIDENCE_DEFAULTS } from "./types";
+import { atomLearningItems, type AtomContent, type LearningItemDraft } from "./academy-items";
 
 export interface AcademyAtom {
   id: string;
@@ -194,4 +195,12 @@ export function buildAcademyImport(files: AcademyCorpusFile[]): IngestResult {
       reviewItems: reviewList.length,
     },
   };
+}
+
+export function buildAcademyLearningItems(files: AcademyCorpusFile[]): Map<string, LearningItemDraft[]> {
+  const out = new Map<string, LearningItemDraft[]>();
+  for (const file of files) {
+    for (const atom of file.atoms) out.set(academyNodeSlug(file.sourceFile, atom.id), atomLearningItems(file.sourceFile, atom as AtomContent));
+  }
+  return out;
 }

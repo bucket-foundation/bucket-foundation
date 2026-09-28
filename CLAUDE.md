@@ -142,7 +142,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 **bucket.foundation/academy**. Validate: `learning/app/validate.sh`. Design+research:
 `learning/EPIC.md` + `learning/research/` (now on main).
 
-- **Content:** 358 science atoms across the 7 canon branches, each with a full markdown
+- **Content:** 487 science atoms in 8 decks (count from `graph.academy_course_counts`), each with a full markdown
  `lesson` + 3-depth + quiz + `resources` (Wikipedia/open, link) + deterministic
  procedural-SVG art. Branch manifest = `learning/app/corpus/index.json`.
 - **Engine:** FSRS-5 + two-layer graph + FIRe + mastery (`M=proficiency^α·retention^β`).
