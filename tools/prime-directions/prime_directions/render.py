@@ -64,7 +64,8 @@ def find_picks(result: PrimeResult, queries: list[str]) -> list[int]:
 
 
 def component_label(result: PrimeResult, k: int, n_terms: int = 3) -> str:
-    terms = " / ".join(t for t, _ in result.top_terms(k, n_terms))
+    ranked = [t for t, _ in result.top_terms(k, 4 * n_terms)]
+    terms = " / ".join(([t for t in ranked if not t.startswith("@")] or [t.lstrip("@") for t in ranked])[:n_terms])
     return f"{k + 1}. {terms}\n{result.variance_ratio[k] * 100:.1f}%"
 
 
@@ -102,7 +103,7 @@ def _draw_frame(ax, result: PrimeResult, ang: np.ndarray, cloud: int, seed: int,
 def _subtitle(result: PrimeResult) -> str:
     n, v = result.shape
     return (
-        f"{n:,} documents x {v:,} terms, binary sparse matrix, density {result.density:.4f}; "
+        f"{n:,} documents x {v:,} features, {result.params.get('weighting', 'binary')} sparse matrix, density {result.density:.4f}; "
         f"{result.k} orthogonal components, max |VV'-I| {result.orthogonality:.1e}\n"
         f"spoke = component; polygon = one document's standardized scores, "
         f"center -{SIGMA_SPAN:g} sd, dashed ring 0, rim +{SIGMA_SPAN:g} sd"

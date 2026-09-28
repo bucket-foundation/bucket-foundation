@@ -6,7 +6,9 @@ import sys
 import time
 from pathlib import Path
 
-from . import clean, corpora, export, gaps, model, render
+import numpy as np
+
+from . import canon, charts, clean, corpora, export, gaps, graph, model, render
 
 
 class PrivacyError(RuntimeError):
@@ -90,7 +92,79 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--frames-per-doc", type=int, default=36)
     r.add_argument("--fps", type=int, default=30)
     r.add_argument("--size", type=int, default=1080)
+    c = sub.add_parser("canon")
+    c.add_argument("--out", type=Path, required=True)
+    c.add_argument("--dsn")
+    c.add_argument("--include-private", action="store_true")
+    c.add_argument("--k", type=int, default=12)
+    c.add_argument("--seed", type=int, default=0)
+    c.add_argument("--min-df", type=int, default=3)
+    c.add_argument("--max-df", type=float, default=0.15)
+    c.add_argument("--edge-weight", type=float, default=1.0)
+    c.add_argument("--weighting", choices=graph.WEIGHTINGS, default="idf-rownorm")
+    c.add_argument("--charts", default="projection,boxplot,residuals")
+    c.add_argument("--axes", default="2,3")
+    c.add_argument("--smooth", action="store_true")
+    c.add_argument("--no-globe", dest="globe", action="store_false")
     return p
+
+
+def parse_charts(value: str) -> list[str]:
+    chosen = [c.strip() for c in value.split(",") if c.strip()]
+    unknown = [c for c in chosen if c not in charts.CHARTS]
+    if unknown:
+        raise ValueError(f"unknown charts {unknown}; choose from {', '.join(charts.CHARTS)}")
+    return chosen
+
+
+def cmd_canon(args) -> int:
+    out: Path = args.out
+    if args.include_private:
+        check_private_out(out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
+    chosen = parse_charts(args.charts)
+    axes = tuple(int(a) for a in args.axes.split(","))
+    timings: dict = {}
+    g = _time(timings, "load_s", graph.load_graph, args.dsn, exclude_patterns=() if args.include_private else graph.PRIVATE_PATTERNS)
+    result = _time(timings, "fit_s", graph.fit_graph, g, k=args.k, seed=args.seed,
+                   edge_weight=args.edge_weight, weighting=args.weighting, min_df=args.min_df, max_df=args.max_df)
+    adj = g.adjacency(symmetric=True)
+    rank, iterations = _time(timings, "pagerank_s", graph.pagerank, g.adjacency(symmetric=False))
+    clusters = _time(timings, "cluster_s", canon.canon_clusters, result, adj, rank, [n.branch for n in g.nodes], seed=args.seed)
+    names = [c["name"] for c in clusters.clusters]
+    data = export.to_dict(result, include_docs=False)
+    data.update({
+        "graph": g.meta,
+        "pagerank": {"damping": 0.85, "iterations": iterations},
+        "canon_clusters": clusters.clusters,
+        "cluster_metrics": clusters.metrics,
+        "component_summaries": canon.summaries(result),
+        "nodes": [
+            {"slug": n.slug, "title": n.title, "kind": n.kind, "branch": n.branch, "canon": int(clusters.labels[i]) + 1,
+             "pagerank": round(float(rank[i]), 7), "residual": round(float(r), 4),
+             "scores": [round(float(v), 3) for v in result.scores[i]]}
+            for i, (n, r) in enumerate(zip(g.nodes, result.residuals()))
+        ],
+    })
+    started = time.perf_counter()
+    if "projection" in chosen:
+        charts.projection(result, out / "projection.png", axes=axes, labels=clusters.labels, names=names, size=rank)
+        if args.smooth:
+            charts.projection(result, out / "projection-smooth.png", axes=axes, labels=clusters.labels, names=names,
+                              size=rank, smooth=True)
+    if "boxplot" in chosen:
+        charts.boxplot(result, out / "boxplot.png")
+    if "residuals" in chosen:
+        _, data["residual_summary"] = charts.residuals(result, out / "residuals.png", against=rank)
+    if args.globe:
+        picks = [int(np.flatnonzero(clusters.labels == c)[np.argmax(rank[clusters.labels == c])])
+                 for c in range(min(6, len(clusters.clusters)))]
+        render.render_png(result, out / "globe.png", picks=picks, title="Canon clusters of the Bucket graph")
+    timings["charts_s"] = round(time.perf_counter() - started, 3)
+    data["timings"] = timings
+    export.write_json(data, out / "canon.json")
+    print(json.dumps({"shape": data["shape"], "metrics": clusters.metrics, "timings": timings,
+                      "canons": [c["name"] for c in clusters.clusters]}, indent=1))
+    return 0
 
 
 def cmd_list(registry: dict[str, corpora.CorpusSpec]) -> int:
@@ -179,6 +253,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "list":
         return cmd_list(registry)
     try:
+        if args.cmd == "canon":
+            return cmd_canon(args)
         return cmd_run(args, registry)
     except PrivacyError as exc:
         print(str(exc), file=sys.stderr)
