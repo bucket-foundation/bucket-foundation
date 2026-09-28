@@ -8,7 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import canon, charts, clean, corpora, export, gaps, graph, model, render
+from . import canon, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -100,7 +100,84 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--axes", default="2,3")
     c.add_argument("--smooth", action="store_true")
     c.add_argument("--no-globe", dest="globe", action="store_false")
+    n = sub.add_parser("neighbors")
+    n.add_argument("--node", help="graph node slug")
+    n.add_argument("--corpus", help="registry corpus instead of the graph")
+    n.add_argument("--doc", help="document id within --corpus")
+    n.add_argument("--csv", type=Path, help="table of entities with numeric columns, for advisor matching")
+    n.add_argument("--id-col", default="id")
+    n.add_argument("--name-col", default="name")
+    n.add_argument("--profile", help="JSON object of column values to match against --csv")
+    n.add_argument("--scope", choices=neighbors.SCOPES, default="global")
+    n.add_argument("--k", type=int, default=10)
+    n.add_argument("--components", type=int, default=12)
+    n.add_argument("--space", choices=("raw", "z"), default="raw")
+    n.add_argument("--dsn")
+    b = sub.add_parser("neighbors-bench")
+    b.add_argument("--out", type=Path, required=True)
+    b.add_argument("--dsn")
+    b.add_argument("--corpus", default="80k")
+    b.add_argument("--dims", default="12,64")
+    b.add_argument("--synthetic", type=int, default=1_000_000)
+    b.add_argument("--backends", default=",".join(neighbors.BACKENDS))
+    b.add_argument("--queries", type=int, default=500)
+    b.add_argument("--threads", type=int, default=1)
     return p
+
+def _print_neighbors(found: list) -> None:
+    for nb in found:
+        print(json.dumps({"id": nb.id, "title": nb.title, "distance": round(nb.distance, 5), "canon": nb.label + 1}))
+
+def cmd_neighbors(args) -> int:
+    if args.csv:
+        if not args.profile:
+            raise ValueError("--csv needs --profile")
+        ns, pca = neighbors.advisor_space(args.csv, args.id_col, args.name_col)
+        _print_neighbors(neighbors.match_advisors(ns, pca, json.loads(args.profile), k=args.k))
+        return 0
+    if args.corpus:
+        ns, _ = space.corpus_space(args.corpus, k=args.components, space=args.space)
+        key = args.doc
+    else:
+        ns, _ = space.graph_space(args.dsn, k=args.components, space=args.space)
+        key = args.node
+    if not key:
+        raise ValueError("name a --node, or a --doc with --corpus")
+    _print_neighbors(neighbors.neighbors(ns, key, k=args.k, scope=args.scope))
+    return 0
+
+def synthetic_vectors(n: int, dim: int, seed: int = 0, clusters: int = 24) -> np.ndarray:
+    rng = np.random.default_rng(seed)
+    centers = rng.normal(scale=3.0, size=(clusters, dim))
+    return centers[rng.integers(0, clusters, size=n)] + rng.normal(size=(n, dim))
+
+def cmd_neighbors_bench(args) -> int:
+    import os
+
+    backends = [b.strip() for b in args.backends.split(",") if b.strip()]
+    unknown = [b for b in backends if b not in neighbors.BACKENDS]
+    if unknown:
+        raise ValueError(f"unknown backends {unknown}")
+    dsn = args.dsn or os.environ.get("PRIME_GRAPH_DSN", graph.LOCAL_DSN)
+    dims = [int(d) for d in args.dims.split(",")]
+    datasets: dict[str, np.ndarray] = {}
+    gs, _ = space.graph_space(dsn, k=dims[0])
+    datasets[f"graph-k{dims[0]}"] = gs.vectors
+    for d in dims:
+        cs, _ = space.corpus_space(args.corpus, k=d)
+        datasets[f"{args.corpus}-k{d}"] = cs.vectors
+    if args.synthetic:
+        for d in dims:
+            datasets[f"synthetic{args.synthetic}-d{d}"] = synthetic_vectors(args.synthetic, d)
+    rows = []
+    for name, vectors in datasets.items():
+        for row in neighbors.benchmark(vectors, backends, n_queries=args.queries, dsn=dsn, threads=args.threads):
+            rows.append({"dataset": name, **row})
+            print(json.dumps(rows[-1]), flush=True)
+    load = os.getloadavg()
+    export.write_json({"rows": rows, "load_average": [round(x, 2) for x in load], "cpus": os.cpu_count()},
+                      args.out / "neighbors-bench.json")
+    return 0
 
 def parse_charts(value: str) -> list[str]:
     chosen = [c.strip() for c in value.split(",") if c.strip()]
@@ -245,8 +322,12 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "neighbors":
+            return cmd_neighbors(args)
+        if args.cmd == "neighbors-bench":
+            return cmd_neighbors_bench(args)
         return cmd_run(args, registry)
-    except PrivacyError as exc:
+    except (PrivacyError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
