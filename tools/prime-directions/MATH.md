@@ -54,7 +54,7 @@ The proofs live in BucketMath, the repo's Lean library at `lean/`, core Lean ove
 |---|---|---|
 | Dot product is symmetric, linear in each slot | [bm:BucketMath.Vec.dot_comm], [bm:BucketMath.Vec.dot_smul_right], [bm:BucketMath.Vec.dot_sub_left], [bm:BucketMath.Vec.dot_sub_right] | proved |
 | Residual identity for one unit direction | [bm:BucketMath.Directions.pythagoras_unit] | proved |
-| Residual identity for k orthonormal directions | [bm-open:BucketMath.Open.pythagoras_orthonormal] | open |
+| Residual identity for k orthonormal directions | [bm:BucketMath.Project.pythagoras_orthonormal] | proved |
 | Centered scores sum to zero | [bm:BucketMath.Vec.centered_sum_zero] | proved |
 | A PageRank step keeps total mass 1 when the walk part has mass 1 | [bm:BucketMath.Directions.pagerank_step_mass] | proved |
 | One-cluster partition has modularity zero | [bm:BucketMath.Directions.modularity_single_cluster] | proved |
