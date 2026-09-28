@@ -1,0 +1,18 @@
+{
+ "schema": "helix.series/v1",
+ "name": "Fixture topics",
+ "slug": "fixture-topics",
+ "kind": "topics",
+ "unit": "paper count",
+ "time_unit": "year",
+ "omega": 0.25,
+ "primes": ["optics", "spin", "water"],
+ "slices": [
+  {"t": 2020, "weights": {"optics": 4, "spin": 2, "water": 2}},
+  {"t": 2021, "weights": {"optics": 5, "spin": 3, "water": 2}},
+  {"t": 2022, "weights": {"optics": 5, "spin": 5, "water": 2}},
+  {"t": 2023, "weights": {"optics": 6, "spin": 6, "water": 4}},
+  {"t": 2024, "weights": {"optics": 6, "spin": 8, "water": 6}}
+ ],
+ "source": {"title": "Test fixture", "url": "local:fixture", "retrieved": "2026-09-28", "license": "CC0"}
+}

@@ -387,6 +387,177 @@
   "type": "∀ (x v : List Rat),\n  x.length = v.length →\n    BucketMath.Vec.dot v v = 1 →\n      BucketMath.Vec.dot x x =\n        BucketMath.Vec.dot (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v)\n            (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v) +\n          BucketMath.Vec.dot (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))\n            (BucketMath.Vec.sub x (BucketMath.Vec.smul (BucketMath.Vec.dot x v) v))"
  },
  {
+  "name": "BucketMath.Helix.Nonneg",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 28,
+  "type": "List Rat → Prop"
+ },
+ {
+  "name": "BucketMath.Helix.Slice",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 7,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Helix.basis",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 104,
+  "type": "Nat → Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Helix.basis_orth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 116,
+  "type": "∀ (K i j : Nat), i ≠ j → BucketMath.Vec.dot (BucketMath.Helix.basis K i) (BucketMath.Helix.basis K j) = 0"
+ },
+ {
+  "name": "BucketMath.Helix.basis_unit",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 130,
+  "type": "∀ (K i : Nat), i < K → BucketMath.Vec.dot (BucketMath.Helix.basis K i) (BucketMath.Helix.basis K i) = 1"
+ },
+ {
+  "name": "BucketMath.Helix.dot_basis",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 138,
+  "type": "∀ (K i : Nat) (w : List Rat), w.length = K → i < K → BucketMath.Vec.dot (BucketMath.Helix.basis K i) w = w.getD i 0"
+ },
+ {
+  "name": "BucketMath.Helix.dot_zeros",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 109,
+  "type": "∀ (n : Nat) (v : List Rat), BucketMath.Vec.dot (BucketMath.Helix.zeros n) v = 0"
+ },
+ {
+  "name": "BucketMath.Helix.length_lerp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 57,
+  "type": "∀ (a b : List Rat) (s : Rat), a.length = b.length → (BucketMath.Helix.lerp a b s).length = a.length"
+ },
+ {
+  "name": "BucketMath.Helix.lerp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 26,
+  "type": "List Rat → List Rat → Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 30,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  0 ≤ s →\n    s ≤ 1 →\n      BucketMath.Helix.Nonneg a → BucketMath.Helix.Nonneg b → BucketMath.Helix.Nonneg (BucketMath.Helix.lerp a b s)"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 87,
+  "type": "∀ (a b : List Rat), a.length = b.length → BucketMath.Helix.lerp a b 1 = b"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_simplex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 69,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  a.length = b.length →\n    0 ≤ s →\n      s ≤ 1 →\n        BucketMath.Helix.Nonneg a →\n          BucketMath.Helix.Nonneg b →\n            BucketMath.Vec.sum a = 1 →\n              BucketMath.Vec.sum b = 1 →\n                BucketMath.Helix.Nonneg (BucketMath.Helix.lerp a b s) ∧\n                  BucketMath.Vec.sum (BucketMath.Helix.lerp a b s) = 1 ∧ (BucketMath.Helix.lerp a b s).length = a.length"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_sum",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 45,
+  "type": "∀ (a b : List Rat) (s : Rat),\n  a.length = b.length →\n    BucketMath.Vec.sum (BucketMath.Helix.lerp a b s) = (1 - s) * BucketMath.Vec.sum a + s * BucketMath.Vec.sum b"
+ },
+ {
+  "name": "BucketMath.Helix.lerp_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 76,
+  "type": "∀ (a b : List Rat), a.length = b.length → BucketMath.Helix.lerp a b 0 = a"
+ },
+ {
+  "name": "BucketMath.Helix.phase",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 11,
+  "type": "Nat → Nat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Helix.phase_period",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 21,
+  "type": "∀ (K k : Nat) (ω t : Rat), K ≠ 0 → BucketMath.Helix.phase K (k + K) ω t = BucketMath.Helix.phase K k ω t + 1"
+ },
+ {
+  "name": "BucketMath.Helix.phase_shift",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 13,
+  "type": "∀ (K k : Nat) (ω t d : Rat), BucketMath.Helix.phase K k ω (t + d) = BucketMath.Helix.phase K k ω t + ω * d"
+ },
+ {
+  "name": "BucketMath.Helix.phase_spacing",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 17,
+  "type": "∀ (K k : Nat) (ω t : Rat), BucketMath.Helix.phase K (k + 1) ω t = BucketMath.Helix.phase K k ω t + 1 / ↑K"
+ },
+ {
+  "name": "BucketMath.Helix.zeros",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Helix",
+  "source": "lean/BucketMath/Helix.lean",
+  "line": 100,
+  "type": "Nat → List Rat"
+ },
+ {
   "name": "BucketMath.Markets.Industry",
   "kind": "inductive",
   "status": "def",
