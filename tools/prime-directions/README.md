@@ -51,3 +51,11 @@ Features are node terms plus link columns, idf-weighted and row-normalized by de
 ## Nearest neighbors
 
 `neighbors` returns the closest observations in PCA score space, scoped `local`, `global` or `cross` to canon clusters, and matches advisors from a CSV of numeric columns. `neighbors-bench` compares brute force, KD-tree, HNSW and pgvector. Method notes, sources and results: [NEIGHBORS.md](NEIGHBORS.md). `faiss` and `threadpoolctl` are needed for HNSW and the benchmark; `PRIME_TEST_PG` names a pgvector DSN for the live pgvector test.
+
+## Advisor review
+
+```bash
+python3 -m prime_directions advisor-review --people people.jsonl --query statement.md --out ~/.local/share/bucket-advisor-review
+```
+
+`people.jsonl` holds one JSON object per person: an id (`id`, `openalex_id`, `orcid`, `email` or `name`), a name, text fields (`titles`, `abstracts`, `topics`, `concepts`, `keywords`, `works`, `interests`, `summary`, `text`) and filter fields (`field`, `country`, `funding`, `institution`, `taking_students`). The command fits prime directions on the people's text with idf weights and unit rows, projects the query document into the same components, and ranks everyone by cosine and by Euclidean distance there. It writes `ranked.csv` with the top rows, `pca.png` with the query as a star and the nearest labeled, `index.html` with filters and sorting, and `report.json` with the fit and an exact against KD-tree and HNSW lookup check. The output directory must sit outside the repo, since it holds names and emails. `--min-rows N` skips the run until the file holds N people, and `--watch SECONDS` re-runs whenever the file grows; a partial last line from a writer in progress is skipped.

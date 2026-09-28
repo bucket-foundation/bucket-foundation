@@ -8,7 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import canon, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
+from . import advisors, canon, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -122,7 +122,71 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--backends", default=",".join(neighbors.BACKENDS))
     b.add_argument("--queries", type=int, default=500)
     b.add_argument("--threads", type=int, default=1)
+    a = sub.add_parser("advisor-review")
+    a.add_argument("--people", type=Path, required=True)
+    a.add_argument("--query", type=Path, required=True)
+    a.add_argument("--out", type=Path, required=True)
+    a.add_argument("--k", type=int, default=24)
+    a.add_argument("--top", type=int, default=300)
+    a.add_argument("--label", type=int, default=25)
+    a.add_argument("--min-df", type=int, default=3)
+    a.add_argument("--max-df", type=float, default=0.2)
+    a.add_argument("--min-chars", type=int, default=200)
+    a.add_argument("--seed", type=int, default=0)
+    a.add_argument("--min-rows", type=int, default=0)
+    a.add_argument("--watch", type=float, default=0.0)
+    a.add_argument("--max-runs", type=int, default=0)
     return p
+
+def cmd_advisor_review(args) -> int:
+    out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
+    last = None
+    runs = 0
+    while True:
+        sig = None
+        if args.people.exists():
+            st = args.people.stat()
+            sig = (st.st_size, st.st_mtime_ns)
+        if sig is not None and sig != last:
+            people = advisors.load_people(args.people)
+            if len(people) >= args.min_rows:
+                advisor_run(args, out, people)
+                runs += 1
+                last = sig
+            else:
+                print(f"{len(people)} people, waiting for {args.min_rows}", flush=True)
+        if not args.watch or (args.max_runs and runs >= args.max_runs):
+            break
+        time.sleep(args.watch)
+    if runs == 0:
+        print("no run: input missing or below --min-rows", file=sys.stderr)
+        return 3
+    return 0
+
+def advisor_run(args, out: Path, people: list) -> None:
+    timings: dict = {"load_s": 0.0}
+    query = args.query.read_text(encoding="utf-8")
+    model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
+                   min_chars=args.min_chars, seed=args.seed)
+    rows, qvec = _time(timings, "rank_s", advisors.rank, model_, query, top=args.top)
+    bench = advisors.index_benchmark(model_, np.vstack([qvec[None, :], model_.result.raw_scores[:199]]), k=args.label)
+    advisors.write_csv(rows, out / "ranked.csv")
+    _, axes = _time(timings, "plot_s", advisors.plot, model_, qvec, rows, out / "pca.png", label=args.label)
+    r = model_.result
+    summary = (f"{len(people):,} people loaded, {r.shape[0]:,} with enough text; {r.shape[1]:,} terms; "
+               f"{r.k} components, max |VV'-I| {r.orthogonality:.1e}; ranked by cosine in component space; "
+               f"plot on components {axes[0]} and {axes[1]}")
+    advisors.write_page(rows, "pca.png", summary, out / "index.html")
+    report = {
+        "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
+        "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),
+        "plot_components": axes, "timings": timings, "index_benchmark": bench,
+        "statement_scores": [round(float(v), 5) for v in qvec],
+        "components": [{"index": c + 1, "top_terms": [t for t, _ in r.top_terms(c, 8)]} for c in range(r.k)],
+    }
+    export.write_json(report, out / "report.json")
+    print(json.dumps({k: report[k] for k in ("people", "fitted", "terms", "k", "timings")}), flush=True)
+    print(f"open: xdg-open {out / 'index.html'}", flush=True)
 
 def _print_neighbors(found: list) -> None:
     for nb in found:
@@ -322,6 +386,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "advisor-review":
+            return cmd_advisor_review(args)
         if args.cmd == "neighbors":
             return cmd_neighbors(args)
         if args.cmd == "neighbors-bench":
