@@ -19,10 +19,8 @@ RAW = [
     {"name": "BucketMath.Markets.Regime.ofNat", "kind": "def", "module": "BucketMath.Markets", "line": 3, "type": "…", "axioms": []},
 ]
 
-
 def manifest():
     return bm.build_manifest(RAW)
-
 
 def test_build_manifest_statuses_sources_and_filters():
     m = {r["name"]: r for r in manifest()}
@@ -37,7 +35,6 @@ def test_build_manifest_statuses_sources_and_filters():
     assert m["Bucket.Timeline.relate_total"]["source"] == "papers/history-hypothesis-engine/lean/Bucket/Timeline.lean"
     assert [r["name"] for r in manifest()] == sorted(m)
 
-
 def test_sorry_outside_open_and_extra_axioms_fail():
     bad = [dict(RAW[0], axioms=["sorryAx"])]
     with pytest.raises(bm.ManifestError, match="sorry outside"):
@@ -46,13 +43,11 @@ def test_sorry_outside_open_and_extra_axioms_fail():
     with pytest.raises(bm.ManifestError, match="unapproved"):
         bm.build_manifest(odd)
 
-
 def test_source_paths_stay_in_the_repo():
     with pytest.raises(bm.ManifestError):
         bm.source_path("Mathlib.Data.Real")
     for row in manifest():
         assert not row["source"].startswith("/") and ".." not in Path(row["source"]).parts
-
 
 def test_committed_manifest_sources_exist_inside_the_repo():
     committed = bm.load_manifest()
@@ -64,7 +59,6 @@ def test_committed_manifest_sources_exist_inside_the_repo():
     assert "BucketMath.Directions.pythagoras_unit" in names
     assert not [r for r in committed if r["module"].startswith("BucketMath.") and not r["module"].startswith("BucketMath.Open") and r["status"] == "open"]
 
-
 def test_check_packages_rejects_fetched_and_outside_paths():
     ok = {"packages": [{"name": "h", "type": "path", "dir": "../papers/history-hypothesis-engine/lean"}]}
     assert bm.check_packages(ok) == []
@@ -73,14 +67,12 @@ def test_check_packages_rejects_fetched_and_outside_paths():
     out = {"packages": [{"name": "x", "type": "path", "dir": "../../elsewhere"}]}
     assert "outside" in bm.check_packages(out)[0]
 
-
 def test_lookup_exact_suffix_and_words():
     m = manifest()
     assert bm.lookup("dot_comm", m)[0]["name"] == "BucketMath.Vec.dot_comm"
     assert bm.lookup("BucketMath.Vec.dot", m)[0]["name"] == "BucketMath.Vec.dot"
     assert {r["name"] for r in bm.lookup("relate total", m)} == {"Bucket.Timeline.relate_total"}
     assert bm.lookup("nothing-here", m) == []
-
 
 def test_lint_resolution_errors_and_heuristic_warnings():
     text = "\n".join([
@@ -100,7 +92,6 @@ def test_lint_resolution_errors_and_heuristic_warnings():
     assert any("open claim" in e for e in errors) and any("is proved" in e for e in errors) and any("names nothing" in e for e in errors)
     assert len(warnings) == 1 and "line 6" in warnings[0]
 
-
 def test_lint_cli_exit_codes(tmp_path: Path, monkeypatch, capsys):
     mf = tmp_path / "manifest.json"
     mf.write_text(json.dumps(manifest()))
@@ -113,7 +104,6 @@ def test_lint_cli_exit_codes(tmp_path: Path, monkeypatch, capsys):
     bad.write_text("[bm:BucketMath.Missing]\n")
     assert bm.main(["lint", str(bad)]) == 1
     assert "error" in capsys.readouterr().out
-
 
 def test_inline_code_is_not_linted():
     errors, warnings = bm.lint_text("Write `[bm:Not.A.Name]` to cite, and `ratio 50%` in code.\n", manifest())

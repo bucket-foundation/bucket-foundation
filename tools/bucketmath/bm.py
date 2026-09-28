@@ -23,15 +23,12 @@ NUMBER = re.compile(r"(?<![\w.])-?\d+(?:[.,]\d+)?(?:e-?\d+)?\s*(?:%|x\b|×)?")
 INLINE_CODE = re.compile(r"`[^`]*`")
 QUANT_WORDS = re.compile(r"%|×|\b(?:ratio|variance|correlat\w*|modularity|recall|precision|accuracy|p-value|faster|slower|higher|lower|times|share|rate)\b", re.I)
 
-
 class ManifestError(RuntimeError):
     pass
-
 
 def generated(name: str) -> bool:
     parts = name.split(".")
     return any(p in GENERATED or p.startswith("inst") for p in parts)
-
 
 def source_path(module: str) -> str:
     root, _, rest = module.partition(".")
@@ -41,7 +38,6 @@ def source_path(module: str) -> str:
     if path.startswith("/") or ".." in Path(path).parts:
         raise ManifestError(f"source path {path} leaves the repo")
     return path
-
 
 def status_of(row: dict) -> str:
     axioms = set(row.get("axioms", []))
@@ -53,7 +49,6 @@ def status_of(row: dict) -> str:
     if module.startswith("BucketMath."):
         return "proved"
     return "external"
-
 
 def build_manifest(raw: list[dict]) -> list[dict]:
     out = []
@@ -79,13 +74,11 @@ def build_manifest(raw: list[dict]) -> list[dict]:
     out.sort(key=lambda r: r["name"])
     return out
 
-
 def run(cmd: list[str], cwd: Path = LEAN, timeout: int = 1800) -> str:
     proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
     if proc.returncode != 0:
         raise ManifestError(f"{' '.join(cmd)} failed:\n{proc.stdout[-4000:]}\n{proc.stderr[-4000:]}")
     return proc.stdout
-
 
 def generate() -> list[dict]:
     run(["lake", "build"])
@@ -94,7 +87,6 @@ def generate() -> list[dict]:
     if line is None:
         raise ManifestError("manifest script printed no JSON")
     return build_manifest(json.loads(line))
-
 
 def check_packages(lake_manifest: dict) -> list[str]:
     problems = []
@@ -107,10 +99,8 @@ def check_packages(lake_manifest: dict) -> list[str]:
             problems.append(f"package {pkg.get('name')} points outside the repo")
     return problems
 
-
 def load_manifest(path: Path | None = None) -> list[dict]:
     return json.loads((path or MANIFEST).read_text())
-
 
 def lookup(query: str, manifest: list[dict], limit: int = 20) -> list[dict]:
     q = query.lower()
@@ -127,7 +117,6 @@ def lookup(query: str, manifest: list[dict], limit: int = 20) -> list[dict]:
     scored.sort(key=lambda t: (-t[0], t[1]))
     return [r for _, _, r in scored[:limit]]
 
-
 def sentences(text: str):
     for n, line in enumerate(text.splitlines(), start=1):
         if line.lstrip().startswith(("|---", "<!--")):
@@ -138,7 +127,6 @@ def sentences(text: str):
         for part in re.split(r"(?<=[.;!?])\s+", INLINE_CODE.sub("", line)):
             if part.strip():
                 yield n, part
-
 
 def lint_text(text: str, manifest: list[dict]) -> tuple[list[str], list[str]]:
     by_name = {r["name"]: r for r in manifest}
@@ -169,7 +157,6 @@ def lint_text(text: str, manifest: list[dict]) -> tuple[list[str], list[str]]:
             warnings.append(f"line {n}: quantitative claim without [bm:] or [empirical:]: {part.strip()[:100]}")
     return errors, warnings
 
-
 def cmd_check(args) -> int:
     problems = check_packages(json.loads((LEAN / "lake-manifest.json").read_text()))
     try:
@@ -189,12 +176,10 @@ def cmd_check(args) -> int:
         print(p, file=sys.stderr)
     return 1 if problems else 0
 
-
 def cmd_lookup(args) -> int:
     for r in lookup(" ".join(args.query), load_manifest(), args.limit):
         print(f"{r['name']}  [{r['status']}]  {r['source']}:{r['line']}\n    {r['type']}")
     return 0
-
 
 def cmd_lint(args) -> int:
     manifest = load_manifest()
@@ -207,7 +192,6 @@ def cmd_lint(args) -> int:
             print(f"{f}: warning: {w}")
         failed |= bool(errors) or (args.strict and bool(warnings))
     return 1 if failed else 0
-
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="bm")
@@ -222,7 +206,6 @@ def main(argv: list[str] | None = None) -> int:
     ln.add_argument("--strict", action="store_true")
     args = p.parse_args(argv)
     return {"check": cmd_check, "lookup": cmd_lookup, "lint": cmd_lint}[args.cmd](args)
-
 
 if __name__ == "__main__":
     sys.exit(main())
