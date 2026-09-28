@@ -11,7 +11,6 @@ import numpy as np
 SCOPES = ("local", "global", "cross")
 BACKENDS = ("brute", "kdtree", "hnsw", "pgvector")
 
-
 @dataclass
 class Neighbor:
     index: int
@@ -19,7 +18,6 @@ class Neighbor:
     title: str
     distance: float
     label: int
-
 
 @dataclass
 class NeighborSpace:
@@ -44,11 +42,9 @@ class NeighborSpace:
             raise KeyError(f"unknown id {key!r}")
         return self._pos[key]
 
-
 def distances(vectors: np.ndarray, query: np.ndarray) -> np.ndarray:
     diff = vectors - query[None, :]
     return np.sqrt(np.einsum("ij,ij->i", diff, diff))
-
 
 def brute_knn(vectors: np.ndarray, queries: np.ndarray, k: int, sq_norms: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
     queries = np.atleast_2d(queries)
@@ -63,7 +59,6 @@ def brute_knn(vectors: np.ndarray, queries: np.ndarray, k: int, sq_norms: np.nda
     order = np.argsort(exact, axis=1, kind="stable")
     return part[rows, order], exact[rows, order]
 
-
 class BruteIndex:
     name = "brute"
 
@@ -76,7 +71,6 @@ class BruteIndex:
 
     def close(self) -> None:
         pass
-
 
 class KDTreeIndex:
     name = "kdtree"
@@ -93,7 +87,6 @@ class KDTreeIndex:
 
     def close(self) -> None:
         pass
-
 
 class HNSWIndex:
     name = "hnsw"
@@ -112,7 +105,6 @@ class HNSWIndex:
 
     def close(self) -> None:
         pass
-
 
 class PgvectorIndex:
     name = "pgvector"
@@ -150,10 +142,8 @@ class PgvectorIndex:
     def close(self) -> None:
         self.con.close()
 
-
 def _literal(v: np.ndarray) -> str:
     return "[" + ",".join(f"{x:.7g}" for x in v) + "]"
-
 
 def build_index(backend: str, vectors: np.ndarray, dsn: str | None = None, **kwargs):
     if backend == "brute":
@@ -167,7 +157,6 @@ def build_index(backend: str, vectors: np.ndarray, dsn: str | None = None, **kwa
             raise ValueError("pgvector needs a DSN")
         return PgvectorIndex(vectors, dsn, **kwargs)
     raise ValueError(f"backend must be one of {BACKENDS}")
-
 
 def neighbors(
     space: NeighborSpace,
@@ -210,7 +199,6 @@ def neighbors(
         for i, d in pairs
     ]
 
-
 @dataclass
 class TablePCA:
     columns: list[str]
@@ -222,7 +210,6 @@ class TablePCA:
     def transform(self, rows: np.ndarray) -> np.ndarray:
         return ((np.atleast_2d(rows) - self.mean) / self.scale) @ self.components.T
 
-
 def fit_table_pca(table: np.ndarray, columns: list[str], k: int | None = None) -> TablePCA:
     table = np.asarray(table, dtype=np.float64)
     mean = table.mean(axis=0)
@@ -233,7 +220,6 @@ def fit_table_pca(table: np.ndarray, columns: list[str], k: int | None = None) -
     k = min(k or vt.shape[0], vt.shape[0])
     var = s**2
     return TablePCA(columns, mean, scale, vt[:k], var[:k] / var.sum() if var.sum() > 0 else var[:k])
-
 
 def read_table(path: Path, id_col: str, name_col: str | None = None) -> tuple[list[str], list[str], list[str], np.ndarray]:
     with open(path, newline="", encoding="utf-8") as f:
@@ -256,12 +242,10 @@ def read_table(path: Path, id_col: str, name_col: str | None = None) -> tuple[li
     data = np.array([[float(r[c]) for c in numeric] for r in rows])
     return ids, names, numeric, data
 
-
 def advisor_space(path: Path, id_col: str = "id", name_col: str | None = "name", k: int | None = None) -> tuple[NeighborSpace, TablePCA]:
     ids, names, cols, data = read_table(path, id_col, name_col)
     pca = fit_table_pca(data, cols, k)
     return NeighborSpace(pca.transform(data), ids, names, meta={"columns": cols}), pca
-
 
 def match_advisors(space: NeighborSpace, pca: TablePCA, profile: dict[str, float], k: int = 5) -> list[Neighbor]:
     missing = [c for c in pca.columns if c not in profile]
@@ -270,16 +254,13 @@ def match_advisors(space: NeighborSpace, pca: TablePCA, profile: dict[str, float
     vec = pca.transform(np.array([float(profile[c]) for c in pca.columns]))[0]
     return neighbors(space, vec, k=k, scope="global")
 
-
 def recall_at_k(found: np.ndarray, truth: np.ndarray) -> float:
     hits = sum(len(set(f.tolist()) & set(t.tolist())) for f, t in zip(found, truth))
     return hits / truth.size
 
-
 def distance_recall(found_dist: np.ndarray, truth_dist: np.ndarray, tol: float = 1e-9) -> float:
     kth = truth_dist[:, -1:]
     return float((found_dist <= kth + tol).sum() / truth_dist.size)
-
 
 def benchmark(
     vectors: np.ndarray,
@@ -344,7 +325,6 @@ def benchmark(
             "tie_aware_recall": round(distance_recall(found_dist, truth_dist, 1e-6), 4),
         })
     return rows
-
 
 def _set_faiss_threads(threads: int) -> None:
     try:

@@ -10,14 +10,12 @@ import pytest
 from prime_directions import cli, graph
 from prime_directions import neighbors as nb
 
-
 def space(n: int = 300, dim: int = 6, seed: int = 0) -> nb.NeighborSpace:
     rng = np.random.default_rng(seed)
     labels = rng.integers(0, 4, size=n)
     centers = rng.normal(scale=5, size=(4, dim))
     vectors = centers[labels] + rng.normal(size=(n, dim))
     return nb.NeighborSpace(vectors, [f"n{i}" for i in range(n)], [f"t{i}" for i in range(n)], labels)
-
 
 def test_brute_knn_matches_full_sort():
     s = space()
@@ -28,7 +26,6 @@ def test_brute_knn_matches_full_sort():
         np.testing.assert_allclose(dist[r], np.sort(d)[:10], atol=1e-9)
         assert idx[r, 0] == r
 
-
 @pytest.mark.parametrize("backend", ["brute", "kdtree", "hnsw"])
 def test_backends_agree_with_exact(backend):
     s = space(n=2000)
@@ -38,13 +35,11 @@ def test_backends_agree_with_exact(backend):
     assert nb.recall_at_k(found, truth) >= 0.98
     np.testing.assert_allclose(dist[:, 0], 0, atol=1e-3)
 
-
 def test_build_index_rejects_unknown_and_pg_without_dsn():
     with pytest.raises(ValueError):
         nb.build_index("annoy", np.zeros((3, 2)))
     with pytest.raises(ValueError):
         nb.build_index("pgvector", np.zeros((3, 2)))
-
 
 def test_scopes_partition_candidates():
     s = space()
@@ -59,14 +54,12 @@ def test_scopes_partition_candidates():
     exact = np.sort(nb.distances(np.delete(s.vectors, 0, axis=0), s.vectors[0]))[:20]
     np.testing.assert_allclose([x.distance for x in glob], exact)
 
-
 def test_global_with_index_skips_self_and_matches_exact():
     s = space()
     index = nb.build_index("kdtree", s.vectors)
     a = nb.neighbors(s, "n5", k=8, index=index)
     b = nb.neighbors(s, "n5", k=8)
     assert [x.id for x in a] == [x.id for x in b]
-
 
 def test_scope_errors():
     s = space()
@@ -82,7 +75,6 @@ def test_scope_errors():
     with pytest.raises(ValueError):
         nb.NeighborSpace(np.zeros((2, 2)), ["a"], ["a", "b"])
 
-
 def test_table_pca_standardizes_and_orthonormal():
     rng = np.random.default_rng(1)
     table = rng.normal(size=(50, 4)) * [1, 10, 100, 0] + [0, 5, -3, 7]
@@ -91,7 +83,6 @@ def test_table_pca_standardizes_and_orthonormal():
     np.testing.assert_allclose(z.mean(axis=0), 0, atol=1e-9)
     np.testing.assert_allclose(pca.components @ pca.components.T, np.eye(pca.components.shape[0]), atol=1e-9)
     assert pca.explained.sum() == pytest.approx(1.0)
-
 
 def test_advisor_matching_from_csv(tmp_path: Path):
     csv_path = tmp_path / "advisors.csv"
@@ -105,7 +96,6 @@ def test_advisor_matching_from_csv(tmp_path: Path):
     with pytest.raises(ValueError):
         nb.match_advisors(s, pca, {"ml": 1}, k=3)
 
-
 def test_read_table_errors(tmp_path: Path):
     empty = tmp_path / "e.csv"
     empty.write_text("id,name\n")
@@ -116,7 +106,6 @@ def test_read_table_errors(tmp_path: Path):
     with pytest.raises(ValueError):
         nb.read_table(text, "id", "name")
 
-
 def test_benchmark_rows_and_pg_skip():
     s = space(n=500)
     rows = nb.benchmark(s.vectors, ["brute", "kdtree", "pgvector"], n_queries=20, pg_max_rows=100, repeats=1)
@@ -125,11 +114,9 @@ def test_benchmark_rows_and_pg_skip():
     assert "skipped" in by["pgvector"]
     assert by["brute"]["query_us"] > 0
 
-
 def test_benchmark_records_backend_errors():
     rows = nb.benchmark(np.zeros((30, 2)) + np.arange(30)[:, None], ["pgvector"], n_queries=5, dsn="postgresql://127.0.0.1:1/x")
     assert "error" in rows[0]
-
 
 @pytest.mark.skipif(not os.environ.get("PRIME_TEST_PG"), reason="set PRIME_TEST_PG to a DSN with pgvector")
 def test_pgvector_backend_live():
@@ -141,7 +128,6 @@ def test_pgvector_backend_live():
         index.close()
     truth, _ = nb.brute_knn(s.vectors, s.vectors[:10], 5)
     assert nb.recall_at_k(found, truth) >= 0.9
-
 
 def test_cli_neighbors_graph_and_csv(tmp_path: Path, monkeypatch, capsys):
     from tests.test_canon import synthetic_rows
@@ -157,7 +143,6 @@ def test_cli_neighbors_graph_and_csv(tmp_path: Path, monkeypatch, capsys):
     csv_path.write_text("id,name,a,b\nx,X,1,0\ny,Y,0,1\nz,Z,1,1\n")
     assert cli.main(["neighbors", "--csv", str(csv_path), "--profile", '{"a": 1, "b": 0}', "--k", "1"]) == 0
     assert json.loads(capsys.readouterr().out.strip())["id"] == "x"
-
 
 def test_distance_recall_counts_ties():
     truth = np.array([[0.0, 1.0, 2.0]])

@@ -6,14 +6,12 @@ from . import canon, clean, corpora, graph, model
 from .model import PrimeResult
 from .neighbors import NeighborSpace
 
-
 def vectors_of(result: PrimeResult, space: str = "raw") -> np.ndarray:
     if space == "raw":
         return result.raw_scores
     if space == "z":
         return result.scores
     raise ValueError("space must be raw or z")
-
 
 def graph_space(
     dsn: str | None = None,
@@ -32,7 +30,6 @@ def graph_space(
         meta={"canons": [c["name"] for c in clusters.clusters], "space": space},
     )
     return ns, result
-
 
 def corpus_space(name: str, k: int = 12, seed: int = 0, space: str = "raw") -> tuple[NeighborSpace, PrimeResult]:
     spec = corpora.load_registry()[name]
