@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
 import { isProtectedPath, signInUrl } from "@/lib/auth/paths";
 import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
+import { cookieMigrationHeaders, parseCookieHeader, researchRoute } from "@/lib/research-host";
 
 export const config = {
   matcher: [
@@ -55,11 +56,26 @@ async function kruse(req: NextRequest): Promise<NextResponse> {
   return NextResponse.next({ request: { headers } });
 }
 
+function forward(req: NextRequest, rewriteTo: string | null): NextResponse {
+  if (!rewriteTo) return NextResponse.next({ request: { headers: req.headers } });
+  const url = req.nextUrl.clone();
+  url.pathname = rewriteTo;
+  return NextResponse.rewrite(url, { request: { headers: req.headers } });
+}
+
 export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  const out = await route(req);
+  for (const h of cookieMigrationHeaders(req.headers.get("host"), parseCookieHeader(req.headers.get("cookie")), req.nextUrl.protocol === "https:", out.cookies.getAll().map((c) => c.name))) out.headers.append("set-cookie", h);
+  return out;
+}
+
+async function route(req: NextRequest): Promise<NextResponse> {
+  const route = researchRoute(req.headers.get("host"), req.nextUrl.pathname, req.nextUrl.search, process.env.RESEARCH_SUBDOMAIN_REDIRECT);
+  if (route.kind === "redirect") return NextResponse.redirect(route.url, 308);
+  const pathname = route.kind === "rewrite" ? route.pathname : req.nextUrl.pathname;
   if (isKrusePath(pathname)) return kruse(req);
 
-  const res = NextResponse.next({ request: { headers: req.headers } });
+  const res = forward(req, route.kind === "rewrite" ? route.pathname : null);
   if (!authConfigured()) {
     if (isProtectedPath(pathname)) return NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
     return res;
