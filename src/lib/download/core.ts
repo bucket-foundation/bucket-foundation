@@ -3,6 +3,7 @@ import { parseSignup, type SignupInput, type WaitlistEntry } from "../waitlist/c
 export const DOWNLOAD_PLATFORMS = ["linux-x64", "linux-arm64", "macos-arm64", "windows-x64"] as const;
 export type DownloadPlatform = (typeof DOWNLOAD_PLATFORMS)[number];
 
+export const CONSENT_VERSION = "download-consent-2026-09-29";
 export const RETENTION_MONTHS = 12;
 export const RETENTION_DAYS = 365;
 const DAY_MS = 86_400_000;
@@ -21,7 +22,7 @@ export function parseDownload(body: unknown): ParsedDownload {
   if (b.consent !== true) return { ok: false, error: "Tick the box to agree before we store your email." };
   const platform = (DOWNLOAD_PLATFORMS as readonly unknown[]).includes(b.platform) ? (b.platform as DownloadPlatform) : null;
   const wanted = platform ? `/download?platform=${platform}` : null;
-  return { ok: true, request: { input: { ...parsed.input, role: null, wanted }, platform }, suspect: parsed.suspect };
+  return { ok: true, request: { input: { ...parsed.input, role: null, wanted, consent_version: CONSENT_VERSION }, platform }, suspect: parsed.suspect };
 }
 
 export function isExpired(entry: WaitlistEntry, now: Date, days = RETENTION_DAYS): boolean {

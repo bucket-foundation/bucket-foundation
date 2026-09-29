@@ -50,7 +50,7 @@ export default function DownloadForm() {
       <div role="status" className="mt-8 border-l-2 border-[color:var(--gold)] pl-4 py-1">
         <p className="text-[15px] text-[color:var(--basalt)]">Request received.</p>
         <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">
-          We will send the download link to <span className="break-all">{sent}</span>.
+          We will email a download link to <span className="break-all">{sent}</span>.
         </p>
       </div>
     );

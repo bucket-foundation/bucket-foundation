@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { isExpired, parseDownload } from "../src/lib/download/core";
+import { CONSENT_VERSION, isExpired, parseDownload } from "../src/lib/download/core";
+import { DEFAULT_NOTIFY_TO, LINK_TTL_MS, downloadLink, linkValid, resendNotifier } from "../src/lib/download/notify";
 import { forgetDownload, handleDownload, purgeExpired, rateLimiter, type DownloadNotifier } from "../src/lib/download/handler";
 import { emailKey, fileStore, getWaitlistStore } from "../src/lib/waitlist/store";
 
@@ -20,7 +21,7 @@ test("parseDownload requires explicit consent and a valid email", () => {
   assert.equal(ok.ok, true);
   if (ok.ok) {
     assert.equal(ok.request.platform, "linux-x64");
-    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: null, wanted: "/download?platform=linux-x64" });
+    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: null, wanted: "/download?platform=linux-x64", consent_version: CONSENT_VERSION });
   }
   const odd = parseDownload({ email: "ada@example.org", consent: true, platform: "amiga" });
   assert.equal(odd.ok && odd.request.platform, null);
@@ -92,4 +93,70 @@ test("rateLimiter allows max hits per window per ip", () => {
   assert.deepEqual([limited("a"), limited("a"), limited("a"), limited("b")], [false, false, true, false]);
   t = 1500;
   assert.equal(limited("a"), false);
+});
+
+test("download entries record consent time and consent text version", async () => {
+  const { root, main } = await tempStores();
+  try {
+    await handleDownload({ email: "ada@example.org", consent: true }, "ip", { store: () => main, now: () => "2026-09-29T00:00:00.000Z" });
+    const e = await main.read(emailKey("ada@example.org"));
+    assert.equal(e?.consent_at, "2026-09-29T00:00:00.000Z");
+    assert.equal(e?.consent_version, CONSENT_VERSION);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("download links are signed, expire after 24 hours and reject tampering", () => {
+  const now = 1_800_000_000_000;
+  const url = new URL(downloadLink("https://bucket.foundation", "s3cret", now));
+  const e = url.searchParams.get("e");
+  const s = url.searchParams.get("s");
+  assert.equal(url.pathname, "/api/download/file");
+  assert.equal(linkValid(e, s, "s3cret", now + LINK_TTL_MS - 1), true);
+  assert.equal(linkValid(e, s, "s3cret", now + LINK_TTL_MS + 1), false);
+  assert.equal(linkValid(e, s, "other", now), false);
+  assert.equal(linkValid(String(Number(e) + 1), s, "s3cret", now), false);
+  assert.equal(linkValid(e, s, undefined, now), false);
+});
+
+test("resendNotifier sends the founder email and time only, and the downloader a link", async () => {
+  const sent: { url: string; body: Record<string, string> }[] = [];
+  const fetcher = async (url: string, init: RequestInit) => {
+    sent.push({ url, body: JSON.parse(String(init.body)) });
+    return new Response("{}", { status: 200 });
+  };
+  const notify = resendNotifier({ RESEND_API_KEY: "re_x", DOWNLOAD_LINK_SECRET: "s3cret" }, fetcher, () => Date.parse("2026-09-29T12:00:00.000Z"));
+  assert.ok(notify);
+  const parsed = parseDownload({ email: "ada@example.org", name: "Ada Lovelace", consent: true, platform: "linux-x64" });
+  assert.ok(parsed.ok);
+  if (!parsed.ok || !notify) return;
+  await notify(parsed.request, true);
+  assert.equal(sent.length, 2);
+  assert.equal(sent[0].url, "https://api.resend.com/emails");
+  assert.equal(sent[0].body.to, DEFAULT_NOTIFY_TO);
+  assert.equal(sent[0].body.text, "ada@example.org requested the desktop app at 2026-09-29T12:00:00.000Z.");
+  assert.equal(sent[1].body.to, "ada@example.org");
+  assert.match(sent[1].body.text, /https:\/\/bucket\.foundation\/api\/download\/file\?e=\d+&s=/);
+  assert.equal(resendNotifier({}, fetcher), null);
+  sent.length = 0;
+  await resendNotifier({ RESEND_API_KEY: "re_x", DOWNLOAD_NOTIFY_TO: "ops@example.org" }, fetcher)?.(parsed.request, true);
+  assert.deepEqual(sent.map((m) => m.body.to), ["ops@example.org"]);
+});
+
+test("a Resend failure is logged and the capture still returns 200", async () => {
+  const { root, main } = await tempStores();
+  const errors: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]) => void errors.push(args.join(" "));
+  try {
+    const notify = resendNotifier({ RESEND_API_KEY: "re_x", DOWNLOAD_LINK_SECRET: "s" }, async () => new Response("down", { status: 500 }));
+    const res = await handleDownload({ email: "ada@example.org", consent: true }, "ip", { store: () => main, notify: notify ?? undefined });
+    assert.equal(res.status, 200);
+    assert.ok(await main.read(emailKey("ada@example.org")));
+    assert.match(errors[0] ?? "", /notify failed: resend 500/);
+  } finally {
+    console.error = original;
+    await rm(root, { recursive: true, force: true });
+  }
 });

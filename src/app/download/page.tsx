@@ -19,7 +19,7 @@ export default function DownloadPage() {
           bucket on <span className="inlay-gold">your computer.</span>
         </h1>
         <p className={P}>
-          The desktop app runs offline: learn, review and quiz without a connection. Leave your email and we send the link. Every release is signed; the installer checks the signature before it installs.
+          The desktop app runs offline: learn, review and quiz without a connection. Leave your email. Once a release is published, we email you a download link that works for 24 hours. Every release is signed; the installer checks the signature before it installs.
         </p>
         <DownloadForm />
         <h2 className="mt-12 small-caps text-[11px] tracking-[0.2em] text-[color:var(--basalt)]">what we keep</h2>
