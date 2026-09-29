@@ -31,6 +31,7 @@ const LEARN: Item[] = [
   { href: "/research-os/attend", label: "Attention", hint: "rank the graph by shared primes", match: ["/research-os/attend"] },
   { href: "/research-os/nsm", label: "Semantic primes", hint: "the 65 meanings every language has", match: ["/research-os/nsm"] },
   { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
+  { href: "/research-os/solvability", label: "Solvability", hint: "open problems by level, proof and market", match: ["/research-os/solvability"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
   { href: "/research-os/quiz", label: "Work quiz", hint: "surprise questions from our own work", match: ["/research-os/quiz"] },
