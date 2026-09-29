@@ -17,7 +17,7 @@ export function getBrowserSupabase(): SupabaseClient {
   if (!url || !anon) {
     throw new Error("Supabase env missing: set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY");
   }
-  const domain = cookieDomainFor(window.location.hostname, process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_ENV === "production");
+  const domain = cookieDomainFor(window.location.hostname);
   _client = createBrowserClient(url, anon, domain ? { cookieOptions: { domain } } : undefined);
   return _client;
 }

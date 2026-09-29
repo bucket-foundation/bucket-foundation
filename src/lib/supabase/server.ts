@@ -12,7 +12,7 @@ export function authConfigured(): boolean {
 }
 
 function sharedCookieOptions(host: string | null): { cookieOptions?: { domain: string } } {
-  const domain = cookieDomainFor(host, process.env.VERCEL_ENV === "production");
+  const domain = cookieDomainFor(host);
   return domain ? { cookieOptions: { domain } } : {};
 }
 
