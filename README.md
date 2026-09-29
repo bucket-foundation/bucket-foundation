@@ -107,15 +107,46 @@ See **[PROTOCOL.md](./PROTOCOL.md)** for the spec. See **[CONTRIBUTING.md](./CON
 
 | Piece | State |
 |---|---|
+| Reference site | Live at [bucket.foundation](https://www.bucket.foundation) |
+| Research OS | Live at [bucket.foundation/research-os](https://www.bucket.foundation/research-os); [research.bucket.foundation](https://research.bucket.foundation) once DNS lands |
 | Protocol spec (`PROTOCOL.md`) | Draft v0.1 |
 | Sidecar schema (`canon.json`) | Draft v0.1 |
-| Reference site (Next.js) | Dormant, being revived |
-| x402 buyer client | Planned, depends on [x402](https://x402.org/) vendor gateway |
-| Story Protocol IP mint (optional) | Shipped in prior version, kept |
+| `bkt` offline terminal app | 0.1.0 via [/download](https://www.bucket.foundation/download), signed ([release](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.1.0)) |
+| BucketMath Lean library | In `lean/`, checked in CI |
 | Federation / mirroring spec | Not yet drafted |
 | Open contributors welcome | **Yes** |
 
-This project was dormant between Feb 2025 and April 2026. It is being revived as an **open-source protocol first** and a site second. Expect rough edges.
+## What's new
+
+September 2026. The full feed lives at [bucket.foundation/whats-new](https://www.bucket.foundation/whats-new).
+
+- **Research OS workbench.** A tool registry and an MCP server so agents and people work in one place (#365).
+- **Work quiz.** A timed quiz built from beads, PRs and notes, graded on the server, with misses turned into review cards (#351).
+- **BucketMath.** A Lean 4 library, including a proof that learning prerequisites first gives the shortest path to a concept (#362, #363, #368).
+- **Solvability atlas.** 156 problem and theorem cards across the seven branches, with the token circle, star charts, helix and sphere plots (#376).
+- **Offline `bkt` app.** A terminal quiz and review that works with no network, encrypts answers, and gives each computer its own key (#374).
+- **`bkt analyze`.** Checks a data file's form, runs the helix generator, then a full analysis suite (#380).
+- **Download page and signed releases.** Email capture with consent, a signed link per person, and an installer that verifies every download (#372, #373).
+- **research.bucket.foundation.** Serves Research OS, with one sign-in across both hosts (#381).
+
+## Active canon
+
+The canon holds foundations only: axioms, laws, principles and primary derivations. It lives in [`bucket-canon/`](./bucket-canon/) and is searchable on the [home page globe](https://www.bucket.foundation).
+
+| Branch | Canon files |
+|---|---|
+| [Mathematics](./bucket-canon/01-mathematics/) | 46 |
+| [Physics](./bucket-canon/02-physics/) | 149 |
+| [Chemistry](./bucket-canon/03-chemistry/) | 31 |
+| [Information](./bucket-canon/04-information/) | 22 |
+| [Biophysics](./bucket-canon/05-biophysics/) | 227 |
+| [Cosmology](./bucket-canon/06-cosmology/) | 60 |
+| [Mind](./bucket-canon/07-mind/) | 120 |
+| [Deep history](./bucket-canon/08-deep-history/) | 48 |
+| [Sacred texts](./bucket-canon/09-sacred-texts/) and [Art](./bucket-canon/09-art/) | 20 |
+| [Bridges](./bucket-canon/_bridges/) between branches | 43 |
+
+The site indexes 599 source excerpts, 114 figures and 47 sites. Counts are from 2026-09-29.
 
 ## *build history*
 The contributor index.
