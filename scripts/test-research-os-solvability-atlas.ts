@@ -30,6 +30,15 @@ test("BucketMath cards match the Lean manifest they claim", () => {
   }
 });
 
+test("a formal status either cites its source or is marked uncited", () => {
+  for (const p of data.productions) {
+    if (p.formal === "none") assert.equal(p.formal_source, null, p.id);
+    else if (p.formal_source) assert.ok(p.formal_source.label.length > 0, p.id);
+  }
+  const cited = data.productions.filter((p) => p.source_kind === "problem" && p.formal === "proved" && p.formal_source);
+  assert.ok(cited.length >= 8);
+});
+
 test("the page sits behind the launch gate", () => {
   const layout = readFileSync(path.join(__dirname, "..", "src", "app", "research-os", "(app)", "solvability", "layout.tsx"), "utf8");
   assert.match(layout, /gateLaunchPage\("\/research-os\/solvability"\)/);

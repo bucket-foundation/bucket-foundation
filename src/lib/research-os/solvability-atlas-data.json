@@ -12,6 +12,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1971,
    "resolved": null,
    "markets": [
@@ -50,6 +51,10 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib, RiemannHypothesis",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/NumberTheory/LSeries/RiemannZeta.lean"
+   },
    "posed": 1859,
    "resolved": null,
    "markets": [
@@ -85,6 +90,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1934,
    "resolved": null,
    "markets": [
@@ -123,6 +129,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1954,
    "resolved": null,
    "markets": [
@@ -159,6 +166,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1950,
    "resolved": null,
    "markets": [],
@@ -191,6 +199,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1965,
    "resolved": null,
    "markets": [
@@ -226,6 +235,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1904,
    "resolved": 2003,
    "markets": [],
@@ -259,6 +269,10 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Buzzard, FLT formalization project in Lean",
+    "url": "https://github.com/ImperialCollegeLondon/FLT"
+   },
    "posed": 1637,
    "resolved": 1994,
    "markets": [
@@ -293,6 +307,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Gonthier, Formal proof of the four color theorem in Coq, Notices AMS 2008",
+    "url": "https://www.ams.org/notices/200811/tx081101382p.pdf"
+   },
    "posed": 1852,
    "resolved": 1976,
    "markets": [
@@ -327,6 +345,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Hales et al., A formal proof of the Kepler conjecture, Forum of Mathematics Pi 2017",
+    "url": "https://doi.org/10.1017/fmp.2017.1"
+   },
    "posed": 1611,
    "resolved": 1998,
    "markets": [
@@ -362,6 +384,10 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures",
+    "url": "https://github.com/google-deepmind/formal-conjectures"
+   },
    "posed": 1849,
    "resolved": null,
    "markets": [
@@ -397,6 +423,10 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures",
+    "url": "https://github.com/google-deepmind/formal-conjectures"
+   },
    "posed": 1742,
    "resolved": null,
    "markets": [],
@@ -429,6 +459,10 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures",
+    "url": "https://github.com/google-deepmind/formal-conjectures"
+   },
    "posed": 1937,
    "resolved": null,
    "markets": [],
@@ -461,6 +495,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1985,
    "resolved": null,
    "markets": [
@@ -495,6 +530,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1967,
    "resolved": null,
    "markets": [],
@@ -527,6 +563,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1980,
    "resolved": 2024,
    "markets": [],
@@ -559,6 +596,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib Archive, Sensitivity.lean",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Archive/Sensitivity.lean"
+   },
    "posed": 1992,
    "resolved": 2019,
    "markets": [
@@ -593,6 +634,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Dahmen, Holzl, Lewis, Formalizing the solution to the cap set problem, ITP 2019",
+    "url": "https://doi.org/10.4230/LIPIcs.ITP.2019.15"
+   },
    "posed": 1970,
    "resolved": 2016,
    "markets": [
@@ -627,6 +672,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Tao et al., PFR project in Lean",
+    "url": "https://github.com/teorth/pfr"
+   },
    "posed": 1990,
    "resolved": 2023,
    "markets": [],
@@ -659,6 +708,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1935,
    "resolved": 2023,
    "markets": [],
@@ -691,6 +741,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1950,
    "resolved": null,
    "markets": [],
@@ -722,6 +773,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "bbchallenge, Coq proof of BB(5)",
+    "url": "https://github.com/ccz181078/Coq-BB5"
+   },
    "posed": 1962,
    "resolved": 2024,
    "markets": [],
@@ -754,6 +809,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1970,
    "resolved": null,
    "markets": [
@@ -788,6 +844,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1969,
    "resolved": null,
    "markets": [
@@ -823,6 +880,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2002,
    "resolved": null,
    "markets": [
@@ -857,6 +915,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1993,
    "resolved": null,
    "markets": [
@@ -891,6 +950,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1977,
    "resolved": null,
    "markets": [
@@ -926,6 +986,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1976,
    "resolved": null,
    "markets": [
@@ -960,6 +1021,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib, ComputablePred.halting_problem",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Computability/Halting.lean"
+   },
    "posed": 1936,
    "resolved": 1936,
    "markets": [],
@@ -992,6 +1057,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Bayer et al., A formal proof of the MRDP theorem in Isabelle, 2019",
+    "url": "https://www.isa-afp.org/entries/DPRM_Theorem.html"
+   },
    "posed": 1900,
    "resolved": 1970,
    "markets": [],
@@ -1024,6 +1093,10 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Han, van Doorn, Flypitch: independence of the continuum hypothesis in Lean, 2019",
+    "url": "https://flypitch.github.io/"
+   },
    "posed": 1878,
    "resolved": 1963,
    "markets": [],
@@ -1056,6 +1129,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1935,
    "resolved": null,
    "markets": [],
@@ -1088,6 +1162,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1939,
    "resolved": null,
    "markets": [],
@@ -1120,6 +1195,7 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1893,
    "resolved": null,
    "markets": [
@@ -1153,6 +1229,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1972,
    "resolved": 2020,
    "markets": [
@@ -1189,6 +1266,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1968,
    "resolved": null,
    "markets": [
@@ -1225,6 +1303,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1941,
    "resolved": null,
    "markets": [
@@ -1261,6 +1340,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1930,
    "resolved": null,
    "markets": [],
@@ -1294,6 +1374,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1933,
    "resolved": null,
    "markets": [],
@@ -1327,6 +1408,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1917,
    "resolved": null,
    "markets": [],
@@ -1359,6 +1441,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2016,
    "resolved": null,
    "markets": [],
@@ -1392,6 +1475,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1969,
    "resolved": null,
    "markets": [],
@@ -1424,6 +1508,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1975,
    "resolved": null,
    "markets": [
@@ -1459,6 +1544,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1932,
    "resolved": null,
    "markets": [
@@ -1493,6 +1579,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1986,
    "resolved": null,
    "markets": [
@@ -1528,6 +1615,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1963,
    "resolved": null,
    "markets": [
@@ -1563,6 +1651,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1990,
    "resolved": null,
    "markets": [
@@ -1597,6 +1686,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1920,
    "resolved": null,
    "markets": [
@@ -1632,6 +1722,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1892,
    "resolved": null,
    "markets": [
@@ -1667,6 +1758,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1835,
    "resolved": null,
    "markets": [
@@ -1702,6 +1794,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1965,
    "resolved": null,
    "markets": [
@@ -1737,6 +1830,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1924,
    "resolved": null,
    "markets": [],
@@ -1770,6 +1864,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1956,
    "resolved": null,
    "markets": [
@@ -1806,6 +1901,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1960,
    "resolved": null,
    "markets": [
@@ -1842,6 +1938,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1938,
    "resolved": null,
    "markets": [
@@ -1878,6 +1975,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1952,
    "resolved": null,
    "markets": [
@@ -1914,6 +2012,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1995,
    "resolved": null,
    "markets": [
@@ -1948,6 +2047,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1981,
    "resolved": null,
    "markets": [
@@ -1982,6 +2082,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2006,
    "resolved": null,
    "markets": [
@@ -2016,6 +2117,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2014,
    "resolved": null,
    "markets": [
@@ -2050,6 +2152,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2017,
    "resolved": null,
    "markets": [
@@ -2084,6 +2187,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2018,
    "resolved": null,
    "markets": [
@@ -2119,6 +2223,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1998,
    "resolved": null,
    "markets": [
@@ -2152,6 +2257,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2010,
    "resolved": null,
    "markets": [
@@ -2186,6 +2292,7 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1951,
    "resolved": 2006,
    "markets": [
@@ -2221,6 +2328,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1981,
    "resolved": null,
    "markets": [
@@ -2255,6 +2363,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 2014,
    "resolved": null,
    "markets": [
@@ -2288,6 +2397,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1985,
    "resolved": null,
    "markets": [
@@ -2323,6 +2433,7 @@
    "formal": "partial",
    "mint_state": "pending",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1985,
    "resolved": null,
    "markets": [
@@ -2358,6 +2469,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1896,
    "resolved": null,
    "markets": [
@@ -2393,6 +2505,7 @@
    "formal": "none",
    "mint_state": "unminted",
    "mint_basis": "formal proof status",
+   "formal_source": null,
    "posed": 1950,
    "resolved": null,
    "markets": [
@@ -2427,6 +2540,9 @@
    "formal": "statement",
    "mint_state": "draft",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": null,
    "markets": [],
@@ -2456,6 +2572,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2485,6 +2604,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2514,6 +2636,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2543,6 +2668,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2572,6 +2700,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2601,6 +2732,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2630,6 +2764,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2659,6 +2796,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2688,6 +2828,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2717,6 +2860,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2746,6 +2892,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2775,6 +2924,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2804,6 +2956,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2833,6 +2988,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2862,6 +3020,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2891,6 +3052,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2920,6 +3084,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2949,6 +3116,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -2978,6 +3148,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3007,6 +3180,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3036,6 +3212,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3065,6 +3244,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3094,6 +3276,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3123,6 +3308,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3152,6 +3340,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3181,6 +3372,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3210,6 +3404,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3239,6 +3436,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3268,6 +3468,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3297,6 +3500,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3326,6 +3532,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3355,6 +3564,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3384,6 +3596,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3413,6 +3628,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3442,6 +3660,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3471,6 +3692,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3500,6 +3724,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3529,6 +3756,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3558,6 +3788,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3587,6 +3820,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3616,6 +3852,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3645,6 +3884,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3674,6 +3916,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3703,6 +3948,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3732,6 +3980,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3761,6 +4012,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3790,6 +4044,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3819,6 +4076,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3848,6 +4108,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3877,6 +4140,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3906,6 +4172,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3935,6 +4204,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3964,6 +4236,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -3993,6 +4268,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4022,6 +4300,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4051,6 +4332,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4080,6 +4364,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4109,6 +4396,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4138,6 +4428,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4167,6 +4460,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4196,6 +4492,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4225,6 +4524,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4254,6 +4556,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4283,6 +4588,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4312,6 +4620,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4341,6 +4652,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4370,6 +4684,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4399,6 +4716,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4428,6 +4748,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4457,6 +4780,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4486,6 +4812,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4515,6 +4844,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4544,6 +4876,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4573,6 +4908,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4602,6 +4940,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4631,6 +4972,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4660,6 +5004,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4689,6 +5036,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4718,6 +5068,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4747,6 +5100,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4776,6 +5132,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4805,6 +5164,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4834,6 +5196,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],
@@ -4863,6 +5228,9 @@
    "formal": "proved",
    "mint_state": "minted",
    "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
    "posed": 2026,
    "resolved": 2026,
    "markets": [],

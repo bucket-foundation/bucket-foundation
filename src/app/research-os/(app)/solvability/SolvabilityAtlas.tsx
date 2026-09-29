@@ -85,6 +85,22 @@ function Card({ p }: { p: AtlasProduction }) {
         ))}
       </div>
       <p className="text-[11px] text-[color:var(--basalt-3)]">{p.tokens.join(", ")}</p>
+      {p.formal !== "none" && (
+        <p className="text-[11px] text-[color:var(--basalt-3)]">
+          formal status:{" "}
+          {p.formal_source ? (
+            p.formal_source.url ? (
+              <a href={p.formal_source.url} target="_blank" rel="noreferrer" className="underline underline-offset-4 text-[color:var(--aegean-deep)]">
+                {p.formal_source.label}
+              </a>
+            ) : (
+              p.formal_source.label
+            )
+          ) : (
+            <span className="text-[color:var(--crimson)]">curator judgement, no source yet</span>
+          )}
+        </p>
+      )}
       {p.sources[0]?.url && (
         <a href={p.sources[0].url} target="_blank" rel="noreferrer" className="text-[11px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
           {p.sources[0].label}
@@ -196,7 +212,7 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
         <div className="flex flex-col gap-2 text-[13px] text-[color:var(--basalt-2)] max-w-[72ch]">
           <p>Solvability = 0.55 x resolved + 0.45 x formal, with formal at proved 1.0, partial 0.6, statement 0.35 and none 0.1. Formal counts a machine-checked proof in Lean, Coq, Isabelle or HOL Light.</p>
           <p>Minted state is measured by formal proof status: a machine-checked proof is minted, partial formalization is pending, a formal statement with an open proof is draft, and no formal statement is unminted. It records proof status and involves no token or chain.</p>
-          <p>Embeddings come from bge-small-en-v1.5 over name, branch and tokens. Angle is rank along the first two principal directions. The catalog in problems.tsv, the levels and the market tags are hand-curated and open to review.</p>
+          <p>Embeddings come from bge-small-en-v1.5 over name, branch and tokens. Angle is rank along the first two principal directions. The catalog in problems.tsv, the levels and the market tags are hand-curated and open to review. Each card cites the formalization behind its formal status from formal_sources.tsv; BucketMath cards cite lean/manifest.json. A card without a citation says so and its status is curator judgement.</p>
         </div>
       </Panel>
     </div>

@@ -21,6 +21,7 @@ export interface AtlasProduction {
   formal: "proved" | "partial" | "statement" | "none";
   mint_state: MintState;
   mint_basis: "formal proof status";
+  formal_source: { label: string; url?: string } | null;
   posed: number;
   resolved: number | null;
   markets: string[];

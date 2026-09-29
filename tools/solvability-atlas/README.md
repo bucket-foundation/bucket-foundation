@@ -2,6 +2,8 @@
 
 Maps 71 open and closed problems across the seven canon branches, plus the proved and open theorems in `lean/manifest.json`, by problem level, Lean formal status and the markets each problem touches.
 
+Formal status sources: `formal_sources.tsv` cites the formalization behind each problem's formal status, and BucketMath rows cite `lean/manifest.json`. A problem without a row there shows as curator judgement on its card.
+
 Solvability score: `0.55 * resolved + 0.45 * formal`, where formal is proved 1.0, partial 0.6, statement 0.35, none 0.1. Level runs 1 to 5, with P vs NP and the Millennium problems at 5.
 
 ## Run

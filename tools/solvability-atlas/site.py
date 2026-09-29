@@ -23,6 +23,7 @@ PLOTS = [
 
 def productions():
     g = json.load(open(OUT / "graph.json"))
+    fsrc = {r["id"]: {"label": r["source"], "url": r["url"]} for r in csv.DictReader(open(HERE / "formal_sources.tsv"), delimiter="\t")}
     desc = {r["id"]: r["description"] for r in csv.DictReader(open(HERE / "descriptions.tsv"), delimiter="\t")}
     cards = []
     for n in g["nodes"]:
@@ -37,6 +38,7 @@ def productions():
             "id": n["id"], "kind": "production", "title": n["name"], "claim": d,
             "branch": n["branch"], "level": n["level"], "formal": n["lean"],
             "mint_state": mint, "mint_basis": "formal proof status",
+            "formal_source": ({"label": "lean/manifest.json"} if n["kind"] == "lean" else fsrc.get(n["id"])) if n["lean"] != "none" else None,
             "posed": n["posed"], "resolved": n["resolved"], "markets": n["market"], "tokens": n["keywords"],
             "solvability": n["solvability"], "theta": round(n["theta"], 4),
             "community": n["community"], "betweenness": round(n["betweenness"], 5),
