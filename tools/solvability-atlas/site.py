@@ -8,7 +8,6 @@ from PIL import Image
 HERE = Path(__file__).parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
 MINT = {"proved": "minted", "partial": "pending", "statement": "draft", "none": "unminted"}
-STATUS = {"minted": "accepted", "pending": "submitted", "draft": "draft", "unminted": "draft"}
 PLOTS = [
     ("01-token-circle.png", "Token circle", "Every keyword and market token sits on the circle in the order of its embedding similarity. Distance from the centre is the mean solvability of the problems that use it."),
     ("02-star-chart.png", "Star chart", "Angle is semantic position. Radius grows with level and with distance from a solution. Star size counts the markets a problem touches."),
@@ -37,7 +36,7 @@ def productions():
         cards.append({
             "id": n["id"], "kind": "production", "title": n["name"], "claim": d,
             "branch": n["branch"], "level": n["level"], "formal": n["lean"],
-            "mint_state": mint, "status": STATUS[mint],
+            "mint_state": mint, "mint_basis": "formal proof status",
             "posed": n["posed"], "resolved": n["resolved"], "markets": n["market"], "tokens": n["keywords"],
             "solvability": n["solvability"], "theta": round(n["theta"], 4),
             "community": n["community"], "betweenness": round(n["betweenness"], 5),

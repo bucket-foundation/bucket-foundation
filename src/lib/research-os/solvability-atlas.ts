@@ -20,7 +20,7 @@ export interface AtlasProduction {
   level: number;
   formal: "proved" | "partial" | "statement" | "none";
   mint_state: MintState;
-  status: "draft" | "submitted" | "accepted" | "returned";
+  mint_basis: "formal proof status";
   posed: number;
   resolved: number | null;
   markets: string[];

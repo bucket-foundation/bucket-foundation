@@ -56,7 +56,7 @@ function Card({ p }: { p: AtlasProduction }) {
     <article className="border border-[color:var(--hairline)] bg-white/60 p-4 flex flex-col gap-3 min-w-0" style={{ borderTop: `3px solid ${BRANCH_COLOR[p.branch]}` }}>
       <div className="flex items-center justify-between gap-2">
         <span className={LABEL} style={{ color: BRANCH_COLOR[p.branch] }}>{p.branch}</span>
-        <span className={`border px-2 text-[10px] small-caps tracking-[0.14em] ${MINT_STYLE[p.mint_state]}`} title={MINT_HINT[p.mint_state]}>
+        <span className={`border px-2 text-[10px] small-caps tracking-[0.14em] ${MINT_STYLE[p.mint_state]}`} title={`minted by ${p.mint_basis}: ${MINT_HINT[p.mint_state]}`}>
           {p.mint_state}
         </span>
       </div>
@@ -70,7 +70,7 @@ function Card({ p }: { p: AtlasProduction }) {
           ["level", `L${p.level}`],
           ["formal", p.formal],
           ["solvable", p.solvability.toFixed(2)],
-          ["status", p.status],
+          ["cluster", `C${p.community}`],
         ].map(([k, v]) => (
           <div key={k}>
             <dt className={LABEL}>{k}</dt>
@@ -195,7 +195,7 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
       <Panel title="method">
         <div className="flex flex-col gap-2 text-[13px] text-[color:var(--basalt-2)] max-w-[72ch]">
           <p>Solvability = 0.55 x resolved + 0.45 x formal, with formal at proved 1.0, partial 0.6, statement 0.35 and none 0.1. Formal counts a machine-checked proof in Lean, Coq, Isabelle or HOL Light.</p>
-          <p>Minted state follows formal status: proved is minted, partial is pending, a stated result is draft, no formalization is unminted. Minted maps to an accepted production and pending to submitted.</p>
+          <p>Minted state is measured by formal proof status: a machine-checked proof is minted, partial formalization is pending, a formal statement with an open proof is draft, and no formal statement is unminted. It records proof status and involves no token or chain.</p>
           <p>Embeddings come from bge-small-en-v1.5 over name, branch and tokens. Angle is rank along the first two principal directions. The catalog in problems.tsv, the levels and the market tags are hand-curated and open to review.</p>
         </div>
       </Panel>

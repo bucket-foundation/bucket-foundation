@@ -20,6 +20,8 @@ FORMAL = {"proved": 1.0, "partial": 0.6, "statement": 0.35, "none": 0.1}
 BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath"]
 COLORS = dict(zip(BRANCHES, ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756", "#72b7b2", "#eeca3b", "#9d755d"]))
 K = 6
+MODEL = "BAAI/bge-small-en-v1.5"
+MODEL_REVISION = "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
 
 
 def load_problems():
@@ -83,7 +85,7 @@ def main():
     problems = load_problems()
     lean = load_bucketmath()
     nodes = problems + lean
-    model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+    model = SentenceTransformer(MODEL, revision=MODEL_REVISION)
     texts = [f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"]) for n in nodes]
     emb = unit(model.encode(texts, normalize_embeddings=True))
     sim = emb @ emb.T

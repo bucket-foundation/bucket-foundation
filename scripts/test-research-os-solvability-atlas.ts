@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import atlas from "../src/lib/research-os/solvability-atlas-data.json";
 import { BRANCHES, MINT_STATES, dialPoint, filterProductions, mintCounts, type SolvabilityAtlasData } from "../src/lib/research-os/solvability-atlas";
 
@@ -16,9 +18,21 @@ test("every production is a bucket production with a claim and a known mint stat
   }
 });
 
-test("minted state follows formal status", () => {
-  const want = { proved: "minted", partial: "pending", statement: "draft", none: "unminted" } as const;
-  for (const p of data.productions) assert.equal(p.mint_state, want[p.formal], p.id);
+test("BucketMath cards match the Lean manifest they claim", () => {
+  const manifest = JSON.parse(readFileSync(path.join(__dirname, "..", "lean", "manifest.json"), "utf8")) as { name: string; status: string }[];
+  const byName = new Map(manifest.map((t) => [t.name, t.status]));
+  const lean = data.productions.filter((p) => p.source_kind === "lean");
+  assert.ok(lean.length > 0);
+  for (const p of lean) {
+    const st = byName.get(p.title);
+    assert.ok(st, p.title);
+    assert.equal(p.mint_state === "minted", st === "proved", p.title);
+  }
+});
+
+test("the page sits behind the launch gate", () => {
+  const layout = readFileSync(path.join(__dirname, "..", "src", "app", "research-os", "(app)", "solvability", "layout.tsx"), "utf8");
+  assert.match(layout, /gateLaunchPage\("\/research-os\/solvability"\)/);
 });
 
 test("counts add up and filters narrow", () => {

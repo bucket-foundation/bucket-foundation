@@ -30,4 +30,12 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 
 `build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. Research OS renders them at `/research-os/solvability`. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
-PNGs are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/` and kept out of git.
+`out/` stays out of git; its PNGs, graph.json, graph.cypher and stats.json are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/`.
+
+## Reproduce
+
+`pip install -r requirements.txt`. The embedding model is pinned by revision in `atlas.py`. `python3 -m pytest tests` checks that the angles, the network and its statistics repeat on a fixed input.
+
+## Public Plots
+
+The plots in `public/atlas/` are public on purpose: they show published problems and the repo's own Lean manifest. The page that frames them waits behind the launch gate.
