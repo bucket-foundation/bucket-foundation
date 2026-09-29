@@ -16,27 +16,27 @@
     }
   },
   "GET signed in, store down": {
-    "status": 503,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "research_os_unavailable"
+      "error": "not_found"
     }
   },
   "GET signed in, consent unavailable": {
-    "status": 503,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "research_os_unavailable"
+      "error": "not_found"
     }
   },
   "GET signed in, consent refused": {
-    "status": 503,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "research_os_unavailable"
+      "error": "not_found"
     }
   },
   "POST unconfigured": {
@@ -56,35 +56,35 @@
     }
   },
   "POST signed in, store down": {
-    "status": 400,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "attempt_id_required"
+      "error": "not_found"
     }
   },
   "POST signed in, malformed json": {
-    "status": 400,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "bad_json"
+      "error": "not_found"
     }
   },
   "POST signed in, consent unavailable": {
-    "status": 400,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "attempt_id_required"
+      "error": "not_found"
     }
   },
   "POST signed in, consent refused": {
-    "status": 400,
+    "status": 404,
     "cache": "no-store",
     "type": "application/json",
     "body": {
-      "error": "attempt_id_required"
+      "error": "not_found"
     }
   }
 }
