@@ -49,6 +49,10 @@ const nextConfig = {
         headers: SECURITY_HEADERS,
       },
       {
+        source: "/.well-known/bucket-release.pub",
+        headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }],
+      },
+      {
         source: "/api/research",
         headers: [
           { key: "X-Robots-Tag", value: "all" },
