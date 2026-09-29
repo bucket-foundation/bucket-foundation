@@ -2,7 +2,7 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { cookieDomainFor } from "@/lib/research-host";
+import { cookieDomainFor } from "../research-host";
 
 let _client: SupabaseClient | null = null;
 
