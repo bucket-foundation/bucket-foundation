@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
 import { isProtectedPath, signInUrl } from "@/lib/auth/paths";
 import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
-import { cookieMigrationHeaders, researchRoute } from "@/lib/research-host";
+import { cookieMigrationHeaders, parseCookieHeader, researchRoute } from "@/lib/research-host";
 
 export const config = {
   matcher: [
@@ -65,7 +65,7 @@ function forward(req: NextRequest, rewriteTo: string | null): NextResponse {
 
 export async function middleware(req: NextRequest) {
   const out = await route(req);
-  for (const h of cookieMigrationHeaders(req.headers.get("host"), req.cookies.getAll(), req.nextUrl.protocol === "https:", out.cookies.getAll().map((c) => c.name))) out.headers.append("set-cookie", h);
+  for (const h of cookieMigrationHeaders(req.headers.get("host"), parseCookieHeader(req.headers.get("cookie")), req.nextUrl.protocol === "https:", out.cookies.getAll().map((c) => c.name))) out.headers.append("set-cookie", h);
   return out;
 }
 

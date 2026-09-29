@@ -60,11 +60,25 @@ export function cookieMigrationHeaders(host: string | null | undefined, cookies:
   if (cookies.some((c) => c.name === COOKIE_MIGRATION_MARKER)) return [];
   const flags = `Path=/; SameSite=Lax${secure ? "; Secure" : ""}`;
   const out: string[] = [];
+  const counts = new Map<string, number>();
+  for (const c of cookies) counts.set(c.name, (counts.get(c.name) ?? 0) + 1);
+  const seen = new Set<string>();
   for (const c of cookies) {
-    if (!c.name.startsWith("sb-")) continue;
+    if (!c.name.startsWith("sb-") || seen.has(c.name)) continue;
+    seen.add(c.name);
     out.push(`${c.name}=; ${flags}; Max-Age=0`);
-    if (!alreadySet.includes(c.name)) out.push(`${c.name}=${c.value}; ${flags}; Domain=${SHARED_COOKIE_DOMAIN}; Max-Age=34560000`);
+    if (!alreadySet.includes(c.name) && counts.get(c.name) === 1) out.push(`${c.name}=${c.value}; ${flags}; Domain=${SHARED_COOKIE_DOMAIN}; Max-Age=34560000`);
   }
   out.push(`${COOKIE_MIGRATION_MARKER}=1; ${flags}; Domain=${SHARED_COOKIE_DOMAIN}; Max-Age=34560000`);
   return out;
+}
+
+export function parseCookieHeader(header: string | null | undefined): { name: string; value: string }[] {
+  if (!header) return [];
+  return header.split(";").flatMap((part) => {
+    const i = part.indexOf("=");
+    if (i < 0) return [];
+    const name = part.slice(0, i).trim();
+    return name ? [{ name, value: part.slice(i + 1).trim() }] : [];
+  });
 }

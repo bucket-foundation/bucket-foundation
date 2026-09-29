@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { COOKIE_MIGRATION_MARKER, cookieDomainFor, cookieMigrationHeaders, isResearchHost, researchHref, researchRoute } from "../src/lib/research-host";
+import { parseCookieHeader, COOKIE_MIGRATION_MARKER, cookieDomainFor, cookieMigrationHeaders, isResearchHost, researchHref, researchRoute } from "../src/lib/research-host";
 
 const R = "research.bucket.foundation";
 
@@ -76,4 +76,13 @@ test("cookie migration expires host-only sb chunks and re-sets them on the share
   assert.deepEqual(cookieMigrationHeaders(R, [...jar, { name: COOKIE_MIGRATION_MARKER, value: "1" }]), []);
   assert.deepEqual(cookieMigrationHeaders("localhost:3000", jar), []);
   assert.deepEqual(cookieMigrationHeaders("x.vercel.app", jar), []);
+});
+
+test("duplicate sb names expire the host-only copy and never re-set a stale value", () => {
+  const jar = parseCookieHeader("sb-p-auth-token=stale; other=1; sb-p-auth-token=fresh; sb-p-auth-token.0=x");
+  assert.equal(jar.filter((c) => c.name === "sb-p-auth-token").length, 2);
+  const h = cookieMigrationHeaders(R, jar);
+  assert.deepEqual(h.filter((l) => l.startsWith("sb-p-auth-token=")), ["sb-p-auth-token=; Path=/; SameSite=Lax; Secure; Max-Age=0"]);
+  assert.ok(!h.some((l) => l.includes("stale") || l.includes("fresh")));
+  assert.ok(h.includes("sb-p-auth-token.0=x; Path=/; SameSite=Lax; Secure; Domain=.bucket.foundation; Max-Age=34560000"));
 });
