@@ -7,7 +7,7 @@ Solvability score: `0.55 * resolved + 0.45 * formal`, where formal is proved 1.0
 ## Run
 
 ```bash
-HF_HUB_OFFLINE=1 python3 atlas.py out
+./build.sh
 ```
 
 Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
@@ -28,6 +28,6 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 | stats.json | density, clustering, modularity, assortativity, permutation test, Spearman |
 | productions.json | one production card per node: claim, formal status, minted state, status, sources |
 
-`python3 report.py out` builds `out/report.html`, the card report with every plot embedded.
+`build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. Research OS renders them at `/research-os/solvability`. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
 PNGs are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/` and kept out of git.
