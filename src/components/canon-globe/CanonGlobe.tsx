@@ -15,6 +15,7 @@ import { Earth, EARTH_RADIUS } from "./Earth";
 import { Halo } from "./Halo";
 import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
 import { useReducedMotion } from "./useReducedMotion";
+import { globeProjection, type Projection } from "./projections";
 import { useMemo } from "react";
 import * as THREE from "three";
 
@@ -293,11 +294,9 @@ function ContextRecovery() {
 function CameraTracker({
   controlsRef,
   onDistance,
-  onPosition,
 }: {
   controlsRef: React.MutableRefObject<OrbitControlsImpl | null>;
   onDistance: (d: number) => void;
-  onPosition: (xyz: [number, number, number]) => void;
 }) {
   const { camera, invalidate } = useThree();
   useEffect(() => {
@@ -305,13 +304,72 @@ function CameraTracker({
     if (!c) return;
     const handler = () => {
       onDistance(camera.position.length());
-      onPosition([camera.position.x, camera.position.y, camera.position.z]);
       invalidate();
     };
     handler();
     c.addEventListener("change", handler);
     return () => c.removeEventListener("change", handler);
-  }, [controlsRef, camera, onDistance, onPosition, invalidate]);
+  }, [controlsRef, camera, onDistance, invalidate]);
+  return null;
+}
+
+const CAMERA_TWEEN_MS = 900;
+const CAMERA_DISTANCE_EASE = 5;
+
+function CameraTween({
+  controlsRef,
+  viewId,
+  fitRadius,
+  target,
+  reducedMotion,
+}: {
+  controlsRef: React.MutableRefObject<OrbitControlsImpl | null>;
+  viewId: string;
+  fitRadius?: number;
+  target: [number, number, number];
+  reducedMotion: boolean;
+}) {
+  const { camera, invalidate, size } = useThree();
+  const aspect = fitRadius ? Math.round((size.width / Math.max(1, size.height)) * 100) / 100 : 1;
+  const tween = useRef<{ from: THREE.Quaternion; to: THREE.Quaternion; start: number; dist: number } | null>(null);
+  const [tx, ty, tz] = target;
+
+  useEffect(() => {
+    const goal = new THREE.Vector3(tx, ty, tz);
+    const fov = (camera as THREE.PerspectiveCamera).fov ?? 44;
+    const fitDist = fitRadius ? (fitRadius * 1.1) / (Math.tan((fov * Math.PI) / 360) * Math.min(1, aspect)) : 0;
+    const dist = Math.max(goal.length(), fitDist);
+    const dirFrom = camera.position.clone().normalize();
+    const dirTo = goal.clone().normalize();
+    if (reducedMotion) {
+      camera.position.copy(goal.clone().setLength(dist));
+      camera.lookAt(0, 0, 0);
+      controlsRef.current?.update();
+      tween.current = null;
+      invalidate();
+      return;
+    }
+    tween.current = {
+      from: new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dirFrom),
+      to: new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dirTo),
+      start: performance.now(),
+      dist,
+    };
+    invalidate();
+  }, [viewId, tx, ty, tz, fitRadius, aspect, reducedMotion, camera, controlsRef, invalidate]);
+
+  useFrame((_state, delta) => {
+    const t = tween.current;
+    if (!t) return;
+    const k = Math.min(1, (performance.now() - t.start) / CAMERA_TWEEN_MS);
+    const q = t.from.clone().slerp(t.to, easeOutCubic(k));
+    const len = damp(camera.position.length(), t.dist, CAMERA_DISTANCE_EASE, Math.min(delta, 0.1));
+    camera.position.set(0, 0, 1).applyQuaternion(q).multiplyScalar(k >= 1 ? t.dist : len);
+    camera.lookAt(0, 0, 0);
+    controlsRef.current?.update();
+    if (k >= 1) tween.current = null;
+    invalidate();
+  });
   return null;
 }
 
@@ -324,6 +382,8 @@ interface CanonGlobeProps {
   decorative?: boolean;
   scrollRef?: MutableRefObject<ScrollState>;
   variant?: DecorativeVariant;
+  projection?: Projection;
+  theta?: (id: string) => number;
 }
 
 const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
@@ -337,6 +397,8 @@ export default function CanonGlobe({
   decorative = false,
   scrollRef,
   variant,
+  projection = globeProjection,
+  theta,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
   const scrollSpin = decorative && !reducedMotion && !variant?.nospin;
@@ -345,8 +407,6 @@ export default function CanonGlobe({
   const spinRef = useRef<THREE.Group | null>(null);
   const shellRef = useRef<THREE.Group | null>(null);
   const [cameraDistance, setCameraDistance] = useState(3.4);
-  const [cameraPosition, setCameraPosition] =
-    useState<[number, number, number]>([0, 0, 3.4]);
 
   const stars = useMemo(() => {
     const N = 600;
@@ -400,6 +460,8 @@ export default function CanonGlobe({
             sampleCount={decorative ? variant?.dots ?? DECORATIVE_DOT_COUNT : undefined}
             dotRadius={decorative ? variant?.dotr ?? DECORATIVE_DOT_RADIUS : undefined}
             limbScale={decorative ? variant?.limb ?? DECORATIVE_LIMB_SCALE : 1}
+            visibility={projection.earthOpacity}
+            instantFade={reducedMotion}
           >
             <CanonMarkers
               markers={markers}
@@ -407,13 +469,14 @@ export default function CanonGlobe({
               radius={EARTH_RADIUS * 1.008}
               reducedMotion={reducedMotion}
               cameraDistance={cameraDistance}
-              cameraPosition={cameraPosition}
+              projection={projection}
+              theta={theta}
               onHoverChange={onHoverChange}
               onSelectChange={onSelectChange}
             />
           </Earth>
         </Suspense>
-        <Halo enabled alpha={alpha} fade={decorative ? [0.45, 0.9] : undefined} />
+        <Halo enabled alpha={alpha} fade={decorative ? [0.45, 0.9] : undefined} visibility={projection.earthOpacity} instantFade={reducedMotion} />
         {decorative && !variant?.noshell && <ParticleShell shellRef={shellRef} />}
         </group>
         </group>
@@ -423,7 +486,7 @@ export default function CanonGlobe({
           enableDamping={false}
           enableZoom={!decorative}
           enablePan={false}
-          enableRotate={!decorative}
+          enableRotate={!decorative && projection.allowRotate}
           minDistance={1.04}
           maxDistance={6}
           minPolarAngle={0.15}
@@ -434,8 +497,10 @@ export default function CanonGlobe({
         <CameraTracker
           controlsRef={controlsRef}
           onDistance={setCameraDistance}
-          onPosition={setCameraPosition}
         />
+        {!decorative && (
+          <CameraTween controlsRef={controlsRef} viewId={projection.id} fitRadius={projection.fitRadius} target={projection.camera} reducedMotion={reducedMotion} />
+        )}
         {scrollSpin && (
           <ScrollSpinDriver spinRef={spinRef} shellRef={shellRef} scrollRef={scrollRef} />
         )}

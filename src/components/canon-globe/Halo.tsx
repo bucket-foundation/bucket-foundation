@@ -1,5 +1,6 @@
 "use client";
-import { useMemo } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 interface HaloProps {
@@ -8,6 +9,8 @@ interface HaloProps {
   enabled?: boolean;
   alpha?: number;
   fade?: [number, number];
+  visibility?: number;
+  instantFade?: boolean;
 }
 
 export function Halo({
@@ -16,7 +19,11 @@ export function Halo({
   enabled = true,
   alpha = 1,
   fade = [10, 11],
+  visibility = 1,
+  instantFade = false,
 }: HaloProps) {
+  const fadeRef = useRef(visibility);
+  const invalidate = useThree((state) => state.invalidate);
   const innerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
@@ -92,6 +99,17 @@ export function Halo({
       }),
     [color, alpha, fade]
   );
+
+  useEffect(() => { invalidate(); }, [visibility, invalidate]);
+
+  useFrame((_state, delta) => {
+    const prev = fadeRef.current;
+    const next = instantFade ? visibility : prev + (visibility - prev) * (1 - Math.exp(-5 * Math.min(delta, 0.1)));
+    fadeRef.current = Math.abs(next - visibility) < 1e-3 ? visibility : next;
+    innerMat.uniforms.uAlpha.value = alpha * fadeRef.current;
+    outerMat.uniforms.uAlpha.value = alpha * fadeRef.current;
+    if (fadeRef.current !== visibility) invalidate();
+  });
 
   if (!enabled) return null;
   return (

@@ -11,6 +11,17 @@ import type { CanonMarker } from "@/components/canon-globe";
 import timelineData from "@/data/canon-timeline.json";
 import sitesData from "@/data/canon-sites.json";
 import figuresData from "../../../canon-figures/figures.json";
+import embeddingsData from "@/data/canon-embeddings.json";
+import {
+  PROJECTIONS,
+  buildThetaIndex,
+  capBranchBalanced,
+  type ProjectionId,
+  type ThetaSort,
+} from "@/components/canon-globe/projections";
+import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
+import { SORTS, VIEWS } from "@/lib/canon-explorer/url";
+import { useExplorerState } from "./useExplorerState";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -92,6 +103,42 @@ const DECORATIVE_MARKERS: CanonMarker[] = [
   ...eventsAsMarkers(ALL_EVENTS),
   ...sitesAsMarkers(ALL_SITES),
 ];
+
+const EVENT_IDS = new Set(ALL_EVENTS.map((e) => e.id));
+const RANK_THETA = new Map<string, number>();
+for (const it of (embeddingsData as { items: { id: string; theta: number }[] }).items) {
+  RANK_THETA.set(it.id, it.theta);
+}
+function embeddingId(m: CanonMarker): string {
+  return m.kind === "archaeological-site" && EVENT_IDS.has(m.id) ? `site:${m.id}` : m.id;
+}
+const UNIVERSE = DECORATIVE_MARKERS.map((m) => ({ ...m, id: embeddingId(m) }));
+const THETA_INDEX: Record<ThetaSort, Map<string, number>> = {
+  rank: buildThetaIndex(UNIVERSE, "rank", RANK_THETA),
+  year: buildThetaIndex(UNIVERSE, "year", RANK_THETA),
+  branch: buildThetaIndex(UNIVERSE, "branch", RANK_THETA),
+};
+
+const EXPLORER_BRANCHES = [
+  "01-mathematics", "02-physics", "03-chemistry", "04-information", "05-biophysics",
+  "06-cosmology", "07-mind", "08-deep-history", "09-sacred-texts",
+] as const;
+const DEFAULT_YEAR = 2020;
+const MOBILE_MARKER_CAP = 250;
+const VIEW_LABEL: Record<ProjectionId, string> = { globe: "globe", circle: "circle" };
+const SORT_LABEL: Record<ThetaSort, string> = { rank: "similarity", year: "year", branch: "branch" };
+
+function useIsNarrow(): boolean {
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const on = () => setNarrow(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  return narrow;
+}
 
 interface Props {
   branches: GlobeBranch[];
@@ -192,18 +239,27 @@ function InteractiveCanonGlobeMount({
     return () => window.removeEventListener("keydown", onKey);
   }, [expanded]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    const markerId = params.get("marker");
-    if (!markerId) return;
+  const explorer = useExplorerState({
+    minYear: MIN_YEAR,
+    maxYear: MAX_YEAR,
+    defaultYear: DEFAULT_YEAR,
+    branches: EXPLORER_BRANCHES,
+  });
+  const { view, sort, y: year, q, branch: branchFilter } = explorer.state;
+  const { setView, setSort, setYear, setQ, setBranch: setBranchFilter, setMarker, initial } = explorer;
+  const reducedMotion = useReducedMotion();
+  const narrow = useIsNarrow();
+  const projection = PROJECTIONS[view];
 
+  useEffect(() => {
+    if (!initial?.marker) return;
+    const markerId = initial.marker;
     const found =
       ALL_EVENTS.find((e) => e.id === markerId) ||
       ALL_SITES.find((s) => s.id === markerId);
     if (!found) return;
 
-    const isSite = "civilization" in found || ALL_SITES.some((s) => s.id === markerId);
+    const isSite = !ALL_EVENTS.some((e) => e.id === markerId);
     const m: CanonMarker = isSite
       ? {
           id: found.id, lat: found.lat, lng: found.lng, year: found.year,
@@ -222,31 +278,20 @@ function InteractiveCanonGlobeMount({
         };
     setSelected(m);
     setYear((y) => Math.max(y, found.year));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initial, setYear]);
 
-  const lastSyncedMarker = useRef<string | null>(null);
+  const lastSyncedMarker = useRef<string | null | undefined>(undefined);
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const currentId = selected?.id ?? null;
-    if (lastSyncedMarker.current === currentId) return;
-    lastSyncedMarker.current = currentId;
-    const url = new URL(window.location.href);
-    if (currentId) url.searchParams.set("marker", currentId);
-    else url.searchParams.delete("marker");
-    window.history.replaceState(null, "", url.toString());
-  }, [selected]);
+    if (!explorer.hydrated) return;
+    const id = selected?.id ?? null;
+    if (lastSyncedMarker.current === undefined && id === null) return;
+    if (lastSyncedMarker.current === id) return;
+    lastSyncedMarker.current = id;
+    setMarker(id);
+  }, [selected, setMarker, explorer.hydrated]);
 
-  const [year, setYear] = useState(2020);
   const [playing, setPlaying] = useState(false);
 
-  const [q, setQ] = useState("");
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const initial = new URLSearchParams(window.location.search).get("q");
-    if (initial && initial.trim()) setQ(initial.trim());
-  }, []);
-  const [branchFilter, setBranchFilter] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
   const searchAbort = useRef<AbortController | null>(null);
@@ -276,11 +321,23 @@ function InteractiveCanonGlobeMount({
     });
   }, [year, showFigures, showSites, branchFilter, branchesInResults]);
 
+  const thetaIndex = THETA_INDEX[sort];
+  const theta = useMemo(() => {
+    const byMarkerId = new Map<string, number>();
+    for (const m of DECORATIVE_MARKERS) byMarkerId.set(m.id, thetaIndex.get(embeddingId(m)) ?? 0);
+    return (id: string) => byMarkerId.get(id) ?? 0;
+  }, [thetaIndex]);
+
+  const shownMarkers = useMemo(
+    () => (narrow ? capBranchBalanced(markers, MOBILE_MARKER_CAP, theta, selected?.id) : markers),
+    [narrow, markers, theta, selected]
+  );
+
   const activeIndex = useMemo(() => {
     if (!selected) return undefined;
-    const idx = markers.findIndex((m) => m.id === selected.id);
+    const idx = shownMarkers.findIndex((m) => m.id === selected.id);
     return idx >= 0 ? idx : undefined;
-  }, [selected, markers]);
+  }, [selected, shownMarkers]);
 
   useEffect(() => {
     if (!playing) return;
@@ -292,7 +349,7 @@ function InteractiveCanonGlobeMount({
       });
     }, 100);
     return () => clearInterval(id);
-  }, [playing]);
+  }, [playing, setYear]);
 
   useEffect(() => {
     if (!q.trim()) { setResults([]); return; }
@@ -566,6 +623,70 @@ function InteractiveCanonGlobeMount({
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
+        <div className="absolute top-3 left-3 z-20 flex flex-col gap-2 pointer-events-auto">
+          <div
+            role="radiogroup"
+            aria-label="projection"
+            className="flex w-fit rounded-full overflow-hidden"
+            style={{ border: "1px solid var(--hairline)", background: "color-mix(in srgb, var(--bone) 92%, transparent)" }}
+            onKeyDown={(e) => {
+              if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+              e.preventDefault();
+              const i = VIEWS.indexOf(view);
+              const next = VIEWS[(i + (e.key === "ArrowRight" ? 1 : VIEWS.length - 1)) % VIEWS.length];
+              setView(next);
+              (e.currentTarget.querySelector(`[data-view="${next}"]`) as HTMLElement | null)?.focus();
+            }}
+          >
+            {VIEWS.map((v) => (
+              <button
+                key={v}
+                type="button"
+                role="radio"
+                data-view={v}
+                aria-checked={view === v}
+                tabIndex={view === v ? 0 : -1}
+                onClick={() => setView(v)}
+                className="min-h-[44px] min-w-[64px] px-4 text-[10px] uppercase tracking-[0.16em] transition"
+                style={{
+                  fontFamily: "var(--font-jetbrains)",
+                  background: view === v ? "var(--basalt)" : "transparent",
+                  color: view === v ? "var(--bone)" : "var(--parchment-dim)",
+                }}
+              >
+                {VIEW_LABEL[v]}
+              </button>
+            ))}
+          </div>
+          {view === "circle" && (
+            <div
+              className="rounded-md px-3 py-2 text-[10px]"
+              style={{
+                background: "color-mix(in srgb, var(--bone) 92%, transparent)",
+                border: "1px solid var(--hairline)",
+                fontFamily: "var(--font-jetbrains)",
+                color: "var(--parchment-dim)",
+              }}
+            >
+              <label className="flex items-center gap-2 uppercase tracking-[0.16em]">
+                angle
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value as ThetaSort)}
+                  className="min-h-[32px] bg-transparent border rounded px-1"
+                  style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+                >
+                  {SORTS.map((o) => (
+                    <option key={o} value={o}>{SORT_LABEL[o]}</option>
+                  ))}
+                </select>
+              </label>
+              {/* voice-ignore-next 1 */}
+              <p className="mt-1 max-w-[220px]" aria-live="polite">Angle shows order, not distance. One ring per branch.</p>
+            </div>
+          )}
+        </div>
+        {view === "globe" && (
         <div
           className="absolute bottom-3 right-3 z-20 pointer-events-none rounded-md px-3 py-2 shadow-sm"
           style={{
@@ -590,14 +711,17 @@ function InteractiveCanonGlobeMount({
             <li><span style={{ color: "var(--basalt)" }}>↓</span> · scrub time</li>
           </ul>
         </div>
+        )}
 
         <GlobeErrorBoundary>
           <R3FCanonGlobe
-            markers={markers}
+            markers={shownMarkers}
             activeIndex={activeIndex}
+            projection={projection}
+            theta={theta}
             onHoverChange={setHovered}
             onSelectChange={setSelected}
-            className="relative z-10"
+            className="absolute inset-0 z-10"
           />
         </GlobeErrorBoundary>
       </div>
