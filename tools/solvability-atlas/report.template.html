@@ -1,0 +1,121 @@
+<title>Solvability Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: observatory ledger, a filter rail above a wrapping grid of production cards, then plots and statistics */
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --ink: #1a1f2b; --ink-2: #5a6272; --line: #d8dce4; --accent: #2c4f86;
+  --mathematics: #4c78a8; --physics: #d9730d; --chemistry: #3f8f3a; --information: #9a5e92;
+  --biophysics: #cf4446; --cosmology: #3f9a95; --mind: #b8930c; --bucketmath: #8a654c;
+  --minted: #2f7d4f; --pending: #b8860b; --draft: #5a6272; --unminted: #a33b3b;
+  --display: "Newsreader", Georgia, serif; --body: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10141c; --panel: #171c27; --ink: #e6e9ef; --ink-2: #9aa3b4; --line: #2a3242; --accent: #8fb0e6;
+  --mathematics: #7ea6d6; --physics: #f0a050; --chemistry: #7cc275; --information: #c996c0;
+  --biophysics: #ef7c7d; --cosmology: #72c9c3; --mind: #e3c44a; --bucketmath: #c09a7e;
+  --minted: #6cc790; --pending: #e0b545; --draft: #9aa3b4; --unminted: #e07a7a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #10141c; --panel: #171c27; --ink: #e6e9ef; --ink-2: #9aa3b4; --line: #2a3242; --accent: #8fb0e6;
+  --mathematics: #7ea6d6; --physics: #f0a050; --chemistry: #7cc275; --information: #c996c0;
+  --biophysics: #ef7c7d; --cosmology: #72c9c3; --mind: #e3c44a; --bucketmath: #c09a7e;
+  --minted: #6cc790; --pending: #e0b545; --draft: #9aa3b4; --unminted: #e07a7a; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.05; }
+h2 { font-size: 1.7rem; }
+.lede { max-width: 68ch; color: var(--ink-2); margin: 12px 0 0; }
+.ledger { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 24px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.ledger div { display: grid; }
+.ledger b { font-size: 1.9rem; font-weight: 500; }
+.ledger span { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); }
+.ledger .minted b { color: var(--minted); } .ledger .pending b { color: var(--pending); } .ledger .unminted b { color: var(--unminted); }
+.rail { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.rail span { font: .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin-inline: 8px 2px; }
+.rail button { font: .8rem var(--body); background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; cursor: pointer; }
+.rail button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.rail button:focus-visible, figure img:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--b); border-radius: 6px; padding: 14px 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card header { display: flex; justify-content: space-between; font: .7rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.branch { color: var(--b); }
+.mint { padding: 1px 7px; border-radius: 3px; border: 1px solid currentColor; }
+.mint.minted { color: var(--minted); } .mint.pending { color: var(--pending); } .mint.draft { color: var(--draft); } .mint.unminted { color: var(--unminted); }
+.head { display: flex; gap: 10px; align-items: center; }
+.dial { width: 40px; height: 40px; flex: none; }
+.card h3 { font-size: 1.15rem; line-height: 1.2; }
+.card p { margin: 0; font-size: .88rem; }
+.card dl { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; border-block: 1px solid var(--line); padding-block: 6px; }
+.card dt { font: .64rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+.card dd { margin: 0; font: .85rem var(--mono); font-variant-numeric: tabular-nums; }
+.card footer { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.years { font: .78rem var(--mono); color: var(--ink-2); margin-right: 4px; }
+.chip { font-size: .72rem; background: var(--bg); border: 1px solid var(--line); border-radius: 3px; padding: 0 6px; }
+.toks { color: var(--ink-2); font-size: .76rem !important; }
+.plots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); gap: 20px; }
+figure { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+figure img { display: block; width: 100%; cursor: zoom-in; }
+figcaption { background: var(--panel); color: var(--ink); padding: 10px 14px; font-size: .85rem; border-top: 1px solid var(--line); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 24px; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+th { font-weight: 400; color: var(--ink-2); padding-right: 16px; }
+td { font-family: var(--mono); }
+ol { margin: 0; padding-left: 20px; } ol li { padding: 4px 0; border-bottom: 1px solid var(--line); } ol span { font-family: var(--mono); color: var(--ink-2); float: right; }
+.method { max-width: 72ch; color: var(--ink-2); font-size: .9rem; }
+.method code { font-family: var(--mono); color: var(--ink); }
+dialog { max-width: 96vw; padding: 0; border: 0; background: #fff; }
+dialog img { max-height: 92vh; width: auto; display: block; }
+dialog::backdrop { background: rgb(0 0 0 / .7); }
+@media (prefers-reduced-motion: no-preference) { .card { transition: opacity .15s; } }
+</style>
+<div class="wrap">
+<section>
+<h1>Solvability Atlas</h1>
+<p class="lede">{{N}} productions: open and settled problems across the seven canon branches, plus the theorems in BucketMath. Each card shows its level, formal proof status, solvability and minted state. The dial marks the card's angle on the token circle and its solvability as distance from the centre.</p>
+<div class="ledger">
+<div><b>{{N}}</b><span>productions</span></div>
+<div class="minted"><b>{{MINTED}}</b><span>minted</span></div>
+<div class="pending"><b>{{PENDING}}</b><span>pending</span></div>
+<div><b>{{DRAFT}}</b><span>draft</span></div>
+<div class="unminted"><b>{{UNMINTED}}</b><span>unminted</span></div>
+</div>
+</section>
+<section>
+<div class="rail" id="rail">
+<span>Source</span><button data-f="kind" data-v="problem" aria-pressed="true">Problems</button><button data-f="kind" data-v="lean" aria-pressed="false">BucketMath</button>
+<span>Branch</span><button data-f="branch" data-v="" aria-pressed="true">All</button><button data-f="branch" data-v="mathematics" aria-pressed="false">Math</button><button data-f="branch" data-v="physics" aria-pressed="false">Physics</button><button data-f="branch" data-v="chemistry" aria-pressed="false">Chemistry</button><button data-f="branch" data-v="information" aria-pressed="false">Information</button><button data-f="branch" data-v="biophysics" aria-pressed="false">Biophysics</button><button data-f="branch" data-v="cosmology" aria-pressed="false">Cosmology</button><button data-f="branch" data-v="mind" aria-pressed="false">Mind</button>
+<span>Minted</span><button data-f="mint" data-v="" aria-pressed="true">All</button><button data-f="mint" data-v="minted" aria-pressed="false">Minted</button><button data-f="mint" data-v="pending" aria-pressed="false">Pending</button><button data-f="mint" data-v="draft" aria-pressed="false">Draft</button><button data-f="mint" data-v="unminted" aria-pressed="false">Unminted</button>
+</div>
+<div class="grid" id="grid">{{CARDS}}</div>
+</section>
+<section class="stats">
+<div><h2>Network statistics</h2><table>{{STATS}}</table></div>
+<div><h2>Strongest bridges</h2><p class="method">Betweenness centrality in the similarity network. These problems sit between clusters.</p><ol>{{BRIDGES}}</ol></div>
+</section>
+<section><h2>Maps</h2><div class="plots" style="margin-top:16px">{{PLOTS}}</div></section>
+<section class="method">
+<h2>Method</h2>
+<p>Solvability = <code>0.55 x resolved + 0.45 x formal</code>, where formal is proved 1.0, partial 0.6, statement 0.35 and none 0.1. Formal counts a machine-checked proof in any assistant: Lean, Coq, Isabelle or HOL Light. Minted state follows formal status: a proved result is minted, partial is pending, a stated result is draft, and no formalization is unminted. Production status maps minted to accepted and pending to submitted.</p>
+<p>Embeddings come from bge-small-en-v1.5 over name, branch and tokens. Angle is the rank along the first two principal directions. The network links each node to its six nearest neighbours by cosine similarity. The catalog, levels and market tags were chosen by hand and are open to review.</p>
+</section>
+</div>
+<dialog id="zoom"><img alt=""></dialog>
+<script>
+const state = { kind: "problem", branch: "", mint: "" };
+const cards = [...document.querySelectorAll(".card")];
+function apply() {
+  cards.forEach(c => { c.hidden = (state.kind && c.dataset.kind !== state.kind) || (state.branch && c.dataset.branch !== state.branch) || (state.mint && c.dataset.mint !== state.mint); });
+}
+document.getElementById("rail").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  state[b.dataset.f] = b.dataset.v;
+  document.querySelectorAll(`button[data-f="${b.dataset.f}"]`).forEach(x => x.setAttribute("aria-pressed", x === b));
+  apply();
+});
+const dlg = document.getElementById("zoom");
+document.querySelectorAll("figure img").forEach(img => { img.tabIndex = 0; const open = () => { dlg.querySelector("img").src = img.src; dlg.showModal(); }; img.addEventListener("click", open); img.addEventListener("keydown", e => { if (e.key === "Enter") open(); }); });
+dlg.addEventListener("click", () => dlg.close());
+apply();
+</script>

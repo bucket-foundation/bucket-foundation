@@ -26,5 +26,8 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 | 08-matrices.png | branch x branch, level x Lean status, market x branch |
 | graph.json, graph.cypher | nodes with centralities, SIMILAR_TO, HAS_TOKEN and MARKET edges |
 | stats.json | density, clustering, modularity, assortativity, permutation test, Spearman |
+| productions.json | one production card per node: claim, formal status, minted state, status, sources |
+
+`python3 report.py out` builds `out/report.html`, the card report with every plot embedded.
 
 PNGs are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/` and kept out of git.
