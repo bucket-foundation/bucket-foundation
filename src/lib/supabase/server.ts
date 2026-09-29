@@ -1,5 +1,5 @@
 import { cookies, headers } from "next/headers";
-import { cookieDomainFor } from "@/lib/research-host";
+import { cookieDomainFor } from "../research-host";
 import type { NextRequest, NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
