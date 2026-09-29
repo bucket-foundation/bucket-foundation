@@ -15,6 +15,7 @@ const SUITES = {
     files: [
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
+      "scripts/test-research-host.ts",
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
       "scripts/test-waitlist-invites.ts",
@@ -22,6 +23,8 @@ const SUITES = {
       "scripts/test-research-agent-route.ts",
       "scripts/test-llm-daily-limit.ts",
       "scripts/test-canon-allbranch-index.ts",
+      "scripts/test-canon-embeddings.ts",
+      "scripts/test-canon-explorer-{projections,url}.ts",
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
@@ -29,6 +32,10 @@ const SUITES = {
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-release-signing.mjs",
+    ],
+    commands: [
+      ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
+      ["python3", "scripts/canon-explorer/embed.py", "--check"],
     ],
   },
   db: {

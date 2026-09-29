@@ -4,15 +4,16 @@ import type { Metadata } from "next";
 import FixedCanonGlobeBackground from "@/components/FixedCanonGlobeBackground";
 import RevealRow from "./RevealRow";
 import "./landing.css";
+import { RESEARCH_ORIGIN } from "@/lib/research-host";
 
 export const metadata: Metadata = {
   title: "Research OS for K-12 · find, quote, check, organize",
   description:
     "A student research workspace over Bucket's knowledge graph. The AI finds sources, quotes them with provenance, checks claims against quotes, and organizes evidence. It never writes the answer. Five learner states per concept, a teacher class view, and student productions that become citable nodes.",
-  alternates: { canonical: "/research-os" },
+  alternates: { canonical: RESEARCH_ORIGIN },
   openGraph: {
     type: "website",
-    url: "https://www.bucket.foundation/research-os",
+    url: RESEARCH_ORIGIN,
     title: "Research OS for K-12 · bucket.foundation",
     description:
       "Find, quote, check, organize. Five learner states per concept. Student productions that enter the graph as citable nodes.",
