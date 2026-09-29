@@ -1,6 +1,7 @@
 import type { Card } from "@/lib/academy/fsrs";
 import { graphService } from "../db";
 import type { QuizQuestion } from "./types";
+import { OPEN_WINDOW_MS, stillOpen } from "./open";
 
 export type QuizMode = "surprise" | "review" | "manual";
 
@@ -52,6 +53,21 @@ export async function issueAttempt(learnerId: string, question: QuizQuestion, mo
     .select("*")
     .single();
   return must(data as AttemptRow, error);
+}
+
+export async function openAttempt(learnerId: string, mode: QuizMode, now: Date): Promise<AttemptRow | null> {
+  const since = new Date(now.getTime() - OPEN_WINDOW_MS).toISOString();
+  const { data, error } = await graphService()
+    .from("work_quiz_attempts")
+    .select("*")
+    .eq("learner_id", learnerId)
+    .eq("mode", mode)
+    .is("answered_at", null)
+    .gte("issued_at", since)
+    .order("issued_at", { ascending: false })
+    .limit(1);
+  const row = (must(data as AttemptRow[] | null, error) ?? [])[0] ?? null;
+  return row && stillOpen(row, now) ? row : null;
 }
 
 export async function loadAttempt(learnerId: string, id: string): Promise<AttemptRow | null> {

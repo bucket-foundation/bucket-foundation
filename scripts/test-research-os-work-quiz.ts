@@ -430,3 +430,19 @@ test("with no sources and nothing due the quiz stays quiet", async () => {
   const { deps } = fakeDeps(EMPTY);
   assert.deepEqual(await issueQuestion(deps, ME, "surprise", new Date(clock)), { status: "empty", reason: "no_sources" });
 });
+
+test("an open unanswered attempt is served again until its time runs out", async () => {
+  const { deps, attempts } = fakeDeps();
+  const { stillOpen } = await import("../src/lib/research-os/work-quiz/open");
+  deps.openAttempt = async (learnerId, mode, now) =>
+    Array.from(attempts.values()).find((r) => r.learner_id === learnerId && r.mode === mode && stillOpen(r, now)) ?? null;
+  const first = await issueQuestion(deps, ME, "surprise", new Date(clock));
+  const again = await issueQuestion(deps, ME, "surprise", new Date(clock + 1000));
+  assert.ok(first.status === "issued" && again.status === "issued");
+  assert.equal(again.attemptId, first.attemptId);
+  assert.equal(attempts.size, 1);
+  const other = await issueQuestion(deps, OTHER, "surprise", new Date(clock + 1000));
+  assert.ok(other.status === "issued" && other.attemptId !== first.attemptId);
+  const later = await issueQuestion(deps, ME, "surprise", new Date(clock + 120_000));
+  assert.ok(later.status === "issued" && later.attemptId !== first.attemptId);
+});

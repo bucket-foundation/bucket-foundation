@@ -1,5 +1,8 @@
+import type { NextRequest } from "next/server";
+import { verifyLearnerIdentity } from "@/lib/research-os/db";
+import { isStaff } from "@/lib/research-os/staff";
 import { bad, readJson, withResearchOsRoute } from "@/lib/research-os/route";
-import { answerAttempt, dueCards, issueAttempt, loadAttempt, loadCard, loadStats, writeCard } from "@/lib/research-os/work-quiz/db";
+import { answerAttempt, dueCards, openAttempt, issueAttempt, loadAttempt, loadCard, loadStats, writeCard } from "@/lib/research-os/work-quiz/db";
 import { answerQuestion, issueQuestion, parseMode, type QuizDeps } from "@/lib/research-os/work-quiz/service";
 import { loadWorkSources } from "@/lib/research-os/work-quiz/sources-server";
 import { matchLearnItem } from "@/lib/research-os/work-quiz/learn-match";
@@ -13,13 +16,19 @@ const deps: QuizDeps = {
   matchLearn: (text) => matchLearnItem(text, learnAtoms()),
   dueCards,
   issueAttempt,
+  openAttempt,
   loadAttempt,
   answerAttempt,
   loadCard,
   writeCard,
 };
 
+async function staff(req: NextRequest): Promise<boolean> {
+  return isStaff(await verifyLearnerIdentity(req));
+}
+
 export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
+  if (!(await staff(req))) return bad(404, "not_found");
   const params = new URL(req.url).searchParams;
   if (params.get("view") === "stats") {
     const [stats, sources] = await Promise.all([loadStats(learnerId, new Date()), loadWorkSources()]);
@@ -31,6 +40,7 @@ export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learn
 });
 
 export const POST = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
+  if (!(await staff(req))) return bad(404, "not_found");
   const read = await readJson(req);
   if (!read.ok) return read.res;
   const out = await answerQuestion(deps, learnerId, read.value, new Date());

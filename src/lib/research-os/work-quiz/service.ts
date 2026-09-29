@@ -12,6 +12,7 @@ export interface QuizDeps {
   matchLearn(text: string): LearnLink | null;
   dueCards(learnerId: string, now: Date, limit: number): Promise<CardRow[]>;
   issueAttempt(learnerId: string, question: QuizQuestion, mode: QuizMode): Promise<AttemptRow>;
+  openAttempt?(learnerId: string, mode: QuizMode, now: Date): Promise<AttemptRow | null>;
   loadAttempt(learnerId: string, id: string): Promise<AttemptRow | null>;
   answerAttempt(learnerId: string, id: string, fields: AnswerFields, answeredAt: string): Promise<AttemptRow | null>;
   loadCard(learnerId: string, questionId: string): Promise<CardRow | null>;
@@ -44,6 +45,8 @@ export function parseMode(raw: string | null): QuizMode | null {
 }
 
 export async function issueQuestion(deps: QuizDeps, learnerId: string, mode: QuizMode, now: Date): Promise<IssueResult> {
+  const open = deps.openAttempt ? await deps.openAttempt(learnerId, mode, now) : null;
+  if (open) return { status: "issued", attemptId: open.id, mode, fromReview: false, question: toPublic(open.question) };
   const seed = `${learnerId}|${now.toISOString()}`;
   const rng = seededRng(seed);
   const due = await deps.dueCards(learnerId, now, 1);
