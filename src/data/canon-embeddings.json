@@ -1,0 +1,2361 @@
+{
+ "schema": "bucket.canon-embeddings/v1",
+ "model": "BAAI/bge-small-en-v1.5",
+ "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+ "dim": 384,
+ "n": 260,
+ "dtype": "float32-le",
+ "normalized": true,
+ "rank_version": "nn-chain-pc1/v1",
+ "rankSourceSha256": "e9597778cecff153738e1b845c97d62cfaf9a88d7075cff15d9e3db7a595cdfe",
+ "generatedAt": "2026-09-29T21:39:32Z",
+ "inputSha256": "6983e5247e1b4fa1dc9dfa95b36b4a9ab8ac8e1a31f008d1fa98f8d3a73405f6",
+ "bin": "canon-embeddings.bin",
+ "sources": [
+  "src/data/canon-timeline.json",
+  "src/data/canon-sites.json",
+  "canon-figures/figures.json"
+ ],
+ "items": [
+  {
+   "id": "lascaux",
+   "kind": "event",
+   "title": "Lascaux cave paintings",
+   "branch": "deep-history",
+   "year": -17000,
+   "rank": 211,
+   "theta": 5.099047
+  },
+  {
+   "id": "catalhoyuk",
+   "kind": "event",
+   "title": "Çatalhöyük (Hodder)",
+   "branch": "deep-history",
+   "year": -7100,
+   "rank": 102,
+   "theta": 2.464942
+  },
+  {
+   "id": "stonehenge",
+   "kind": "event",
+   "title": "Stonehenge — built",
+   "branch": "deep-history",
+   "year": -2500,
+   "rank": 214,
+   "theta": 5.171545
+  },
+  {
+   "id": "gilgamesh",
+   "kind": "event",
+   "title": "Gilgamesh — Uruk",
+   "branch": "sacred-texts",
+   "year": -2100,
+   "rank": 235,
+   "theta": 5.679033
+  },
+  {
+   "id": "vedas",
+   "kind": "event",
+   "title": "Rigveda compiled — Punjab",
+   "branch": "sacred-texts",
+   "year": -1500,
+   "rank": 237,
+   "theta": 5.727365
+  },
+  {
+   "id": "upanishads",
+   "kind": "event",
+   "title": "Upanishads — Varanasi",
+   "branch": "sacred-texts",
+   "year": -800,
+   "rank": 236,
+   "theta": 5.703199
+  },
+  {
+   "id": "lao-tzu",
+   "kind": "event",
+   "title": "Lao Tzu — Henan",
+   "branch": "mind",
+   "year": -571,
+   "rank": 167,
+   "theta": 4.035738
+  },
+  {
+   "id": "pythagoras",
+   "kind": "event",
+   "title": "Pythagoras — Samos",
+   "branch": "mathematics",
+   "year": -570,
+   "rank": 165,
+   "theta": 3.987406
+  },
+  {
+   "id": "buddha",
+   "kind": "event",
+   "title": "Buddha — Lumbini",
+   "branch": "mind",
+   "year": -563,
+   "rank": 168,
+   "theta": 4.059904
+  },
+  {
+   "id": "confucius",
+   "kind": "event",
+   "title": "Confucius — Qufu",
+   "branch": "mind",
+   "year": -551,
+   "rank": 166,
+   "theta": 4.011572
+  },
+  {
+   "id": "hippocrates",
+   "kind": "event",
+   "title": "Hippocrates — Kos",
+   "branch": "biophysics",
+   "year": -460,
+   "rank": 32,
+   "theta": 0.773315
+  },
+  {
+   "id": "plato",
+   "kind": "event",
+   "title": "Plato — Academy founded",
+   "branch": "mind",
+   "year": -387,
+   "rank": 170,
+   "theta": 4.108237
+  },
+  {
+   "id": "aristotle",
+   "kind": "event",
+   "title": "Aristotle — Lyceum founded",
+   "branch": "mind",
+   "year": -335,
+   "rank": 169,
+   "theta": 4.08407
+  },
+  {
+   "id": "euclid",
+   "kind": "event",
+   "title": "Euclid — Elements (Alexandria)",
+   "branch": "mathematics",
+   "year": -300,
+   "rank": 121,
+   "theta": 2.924098
+  },
+  {
+   "id": "archimedes",
+   "kind": "event",
+   "title": "Archimedes — Syracuse",
+   "branch": "mathematics",
+   "year": -250,
+   "rank": 123,
+   "theta": 2.97243
+  },
+  {
+   "id": "archimedes-e",
+   "kind": "event",
+   "title": "Archimedes — Eureka (Syracuse)",
+   "branch": "physics",
+   "year": -250,
+   "rank": 122,
+   "theta": 2.948264
+  },
+  {
+   "id": "nag-hammadi",
+   "kind": "event",
+   "title": "Nag Hammadi codices — Egypt",
+   "branch": "sacred-texts",
+   "year": 380,
+   "rank": 238,
+   "theta": 5.751531
+  },
+  {
+   "id": "al-khwarizmi",
+   "kind": "event",
+   "title": "al-Khwarizmi — Baghdad",
+   "branch": "mathematics",
+   "year": 780,
+   "rank": 164,
+   "theta": 3.96324
+  },
+  {
+   "id": "alhazen",
+   "kind": "event",
+   "title": "Alhazen — Book of Optics",
+   "branch": "physics",
+   "year": 1021,
+   "rank": 161,
+   "theta": 3.890742
+  },
+  {
+   "id": "avicenna",
+   "kind": "event",
+   "title": "Avicenna — Canon of Medicine",
+   "branch": "biophysics",
+   "year": 1025,
+   "rank": 33,
+   "theta": 0.797481
+  },
+  {
+   "id": "copernicus",
+   "kind": "event",
+   "title": "Copernicus — De Revolutionibus",
+   "branch": "cosmology",
+   "year": 1543,
+   "rank": 54,
+   "theta": 1.304969
+  },
+  {
+   "id": "galileo",
+   "kind": "event",
+   "title": "Galileo — Pisa",
+   "branch": "physics",
+   "year": 1564,
+   "rank": 68,
+   "theta": 1.643295
+  },
+  {
+   "id": "kepler",
+   "kind": "event",
+   "title": "Kepler — Mysterium Cosmographicum",
+   "branch": "cosmology",
+   "year": 1596,
+   "rank": 53,
+   "theta": 1.280803
+  },
+  {
+   "id": "descartes",
+   "kind": "event",
+   "title": "Descartes — La Haye",
+   "branch": "mind",
+   "year": 1596,
+   "rank": 87,
+   "theta": 2.10245
+  },
+  {
+   "id": "newton",
+   "kind": "event",
+   "title": "Newton — Principia",
+   "branch": "physics",
+   "year": 1687,
+   "rank": 67,
+   "theta": 1.619129
+  },
+  {
+   "id": "euler",
+   "kind": "event",
+   "title": "Euler — St. Petersburg",
+   "branch": "mathematics",
+   "year": 1707,
+   "rank": 3,
+   "theta": 0.072498
+  },
+  {
+   "id": "lavoisier",
+   "kind": "event",
+   "title": "Lavoisier — Paris",
+   "branch": "chemistry",
+   "year": 1743,
+   "rank": 15,
+   "theta": 0.362491
+  },
+  {
+   "id": "volta",
+   "kind": "event",
+   "title": "Volta — Como",
+   "branch": "physics",
+   "year": 1745,
+   "rank": 69,
+   "theta": 1.667461
+  },
+  {
+   "id": "hegel-w",
+   "kind": "event",
+   "title": "Hegel — Stuttgart",
+   "branch": "mind",
+   "year": 1770,
+   "rank": 171,
+   "theta": 4.132403
+  },
+  {
+   "id": "faraday",
+   "kind": "event",
+   "title": "Faraday — Royal Institution",
+   "branch": "physics",
+   "year": 1791,
+   "rank": 70,
+   "theta": 1.691627
+  },
+  {
+   "id": "lovelace",
+   "kind": "event",
+   "title": "Lovelace — London",
+   "branch": "mathematics",
+   "year": 1815,
+   "rank": 16,
+   "theta": 0.386658
+  },
+  {
+   "id": "boole",
+   "kind": "event",
+   "title": "Boole — Lincoln",
+   "branch": "information",
+   "year": 1815,
+   "rank": 17,
+   "theta": 0.410824
+  },
+  {
+   "id": "helmholtz",
+   "kind": "event",
+   "title": "Helmholtz — Potsdam",
+   "branch": "physics",
+   "year": 1821,
+   "rank": 24,
+   "theta": 0.579986
+  },
+  {
+   "id": "mendel",
+   "kind": "event",
+   "title": "Mendel — Hynčice",
+   "branch": "biophysics",
+   "year": 1822,
+   "rank": 31,
+   "theta": 0.749149
+  },
+  {
+   "id": "riemann",
+   "kind": "event",
+   "title": "Riemann — Breselenz",
+   "branch": "mathematics",
+   "year": 1826,
+   "rank": 0,
+   "theta": 0.0
+  },
+  {
+   "id": "james-w",
+   "kind": "event",
+   "title": "William James — NYC",
+   "branch": "mind",
+   "year": 1842,
+   "rank": 173,
+   "theta": 4.180735
+  },
+  {
+   "id": "poincare",
+   "kind": "event",
+   "title": "Poincaré — Nancy",
+   "branch": "mathematics",
+   "year": 1854,
+   "rank": 4,
+   "theta": 0.096664
+  },
+  {
+   "id": "freud",
+   "kind": "event",
+   "title": "Freud — Příbor",
+   "branch": "mind",
+   "year": 1856,
+   "rank": 85,
+   "theta": 2.054118
+  },
+  {
+   "id": "darwin",
+   "kind": "event",
+   "title": "Darwin — Origin of Species",
+   "branch": "biophysics",
+   "year": 1859,
+   "rank": 249,
+   "theta": 6.017358
+  },
+  {
+   "id": "hilbert",
+   "kind": "event",
+   "title": "Hilbert — Königsberg",
+   "branch": "mathematics",
+   "year": 1862,
+   "rank": 2,
+   "theta": 0.048332
+  },
+  {
+   "id": "maxwell",
+   "kind": "event",
+   "title": "Maxwell — Cambridge",
+   "branch": "physics",
+   "year": 1865,
+   "rank": 96,
+   "theta": 2.319945
+  },
+  {
+   "id": "curie-m",
+   "kind": "event",
+   "title": "Marie Curie — Warsaw",
+   "branch": "physics",
+   "year": 1867,
+   "rank": 8,
+   "theta": 0.193329
+  },
+  {
+   "id": "mendeleev",
+   "kind": "event",
+   "title": "Mendeleev — periodic table",
+   "branch": "chemistry",
+   "year": 1869,
+   "rank": 12,
+   "theta": 0.289993
+  },
+  {
+   "id": "rutherford",
+   "kind": "event",
+   "title": "Rutherford — Brightwater",
+   "branch": "physics",
+   "year": 1871,
+   "rank": 71,
+   "theta": 1.715793
+  },
+  {
+   "id": "boltzmann",
+   "kind": "event",
+   "title": "Boltzmann — stat. mechanics",
+   "branch": "physics",
+   "year": 1872,
+   "rank": 72,
+   "theta": 1.739959
+  },
+  {
+   "id": "cantor",
+   "kind": "event",
+   "title": "Cantor — set theory",
+   "branch": "mathematics",
+   "year": 1874,
+   "rank": 61,
+   "theta": 1.474132
+  },
+  {
+   "id": "noether",
+   "kind": "event",
+   "title": "Noether — Erlangen",
+   "branch": "mathematics",
+   "year": 1882,
+   "rank": 5,
+   "theta": 0.12083
+  },
+  {
+   "id": "ramanujan",
+   "kind": "event",
+   "title": "Ramanujan — Erode",
+   "branch": "mathematics",
+   "year": 1887,
+   "rank": 6,
+   "theta": 0.144997
+  },
+  {
+   "id": "hubble",
+   "kind": "event",
+   "title": "Hubble — Marshfield, MO",
+   "branch": "cosmology",
+   "year": 1889,
+   "rank": 52,
+   "theta": 1.256637
+  },
+  {
+   "id": "wiener",
+   "kind": "event",
+   "title": "Wiener (cybernetics) — Columbia, MO",
+   "branch": "information",
+   "year": 1894,
+   "rank": 81,
+   "theta": 1.957454
+  },
+  {
+   "id": "lemaitre",
+   "kind": "event",
+   "title": "Lemaître — Charleroi",
+   "branch": "cosmology",
+   "year": 1894,
+   "rank": 50,
+   "theta": 1.208305
+  },
+  {
+   "id": "curie-marie",
+   "kind": "event",
+   "title": "Marie Curie — radium",
+   "branch": "chemistry",
+   "year": 1898,
+   "rank": 9,
+   "theta": 0.217495
+  },
+  {
+   "id": "planck",
+   "kind": "event",
+   "title": "Planck — black body",
+   "branch": "physics",
+   "year": 1900,
+   "rank": 95,
+   "theta": 2.295779
+  },
+  {
+   "id": "pauling-l",
+   "kind": "event",
+   "title": "Pauling — Portland, OR",
+   "branch": "chemistry",
+   "year": 1901,
+   "rank": 21,
+   "theta": 0.507488
+  },
+  {
+   "id": "dirac",
+   "kind": "event",
+   "title": "Dirac — Bristol",
+   "branch": "physics",
+   "year": 1902,
+   "rank": 23,
+   "theta": 0.55582
+  },
+  {
+   "id": "skinner",
+   "kind": "event",
+   "title": "Skinner — Susquehanna, PA",
+   "branch": "mind",
+   "year": 1904,
+   "rank": 84,
+   "theta": 2.029952
+  },
+  {
+   "id": "einstein-1905",
+   "kind": "event",
+   "title": "Einstein — annus mirabilis",
+   "branch": "physics",
+   "year": 1905,
+   "rank": 159,
+   "theta": 3.842409
+  },
+  {
+   "id": "alfven",
+   "kind": "event",
+   "title": "Alfvén — Norrköping",
+   "branch": "cosmology",
+   "year": 1908,
+   "rank": 51,
+   "theta": 1.232471
+  },
+  {
+   "id": "wheeler",
+   "kind": "event",
+   "title": "John Wheeler — Jacksonville",
+   "branch": "physics",
+   "year": 1911,
+   "rank": 248,
+   "theta": 5.993192
+  },
+  {
+   "id": "hodgkin",
+   "kind": "event",
+   "title": "Hodgkin — Banbury",
+   "branch": "biophysics",
+   "year": 1914,
+   "rank": 30,
+   "theta": 0.724983
+  },
+  {
+   "id": "einstein-1915",
+   "kind": "event",
+   "title": "Einstein — general relativity",
+   "branch": "physics",
+   "year": 1915,
+   "rank": 160,
+   "theta": 3.866576
+  },
+  {
+   "id": "jung",
+   "kind": "event",
+   "title": "Jung — collective unconscious",
+   "branch": "mind",
+   "year": 1916,
+   "rank": 113,
+   "theta": 2.730769
+  },
+  {
+   "id": "crick",
+   "kind": "event",
+   "title": "Crick — Cambridge",
+   "branch": "chemistry",
+   "year": 1916,
+   "rank": 22,
+   "theta": 0.531654
+  },
+  {
+   "id": "huxley-a",
+   "kind": "event",
+   "title": "Huxley — Hampstead",
+   "branch": "biophysics",
+   "year": 1917,
+   "rank": 29,
+   "theta": 0.700817
+  },
+  {
+   "id": "feynman",
+   "kind": "event",
+   "title": "Feynman — Queens, NY",
+   "branch": "physics",
+   "year": 1918,
+   "rank": 26,
+   "theta": 0.628319
+  },
+  {
+   "id": "schwinger",
+   "kind": "event",
+   "title": "Schwinger — Manhattan",
+   "branch": "physics",
+   "year": 1918,
+   "rank": 25,
+   "theta": 0.604152
+  },
+  {
+   "id": "becker-r",
+   "kind": "event",
+   "title": "Robert Becker — NY",
+   "branch": "biophysics",
+   "year": 1923,
+   "rank": 46,
+   "theta": 1.11164
+  },
+  {
+   "id": "mandelbrot",
+   "kind": "event",
+   "title": "Mandelbrot — Warsaw",
+   "branch": "mathematics",
+   "year": 1924,
+   "rank": 7,
+   "theta": 0.169163
+  },
+  {
+   "id": "schrodinger",
+   "kind": "event",
+   "title": "Schrödinger — wave equation",
+   "branch": "physics",
+   "year": 1926,
+   "rank": 93,
+   "theta": 2.247447
+  },
+  {
+   "id": "foucault",
+   "kind": "event",
+   "title": "Foucault — Poitiers",
+   "branch": "mind",
+   "year": 1926,
+   "rank": 86,
+   "theta": 2.078284
+  },
+  {
+   "id": "heisenberg",
+   "kind": "event",
+   "title": "Heisenberg — uncertainty",
+   "branch": "physics",
+   "year": 1927,
+   "rank": 94,
+   "theta": 2.271613
+  },
+  {
+   "id": "mccarthy",
+   "kind": "event",
+   "title": "McCarthy (LISP) — Boston",
+   "branch": "information",
+   "year": 1927,
+   "rank": 18,
+   "theta": 0.43499
+  },
+  {
+   "id": "grothendieck",
+   "kind": "event",
+   "title": "Grothendieck — Berlin",
+   "branch": "mathematics",
+   "year": 1928,
+   "rank": 1,
+   "theta": 0.024166
+  },
+  {
+   "id": "watson-j",
+   "kind": "event",
+   "title": "Watson — Chicago",
+   "branch": "chemistry",
+   "year": 1928,
+   "rank": 20,
+   "theta": 0.483322
+  },
+  {
+   "id": "chomsky",
+   "kind": "event",
+   "title": "Chomsky — Philadelphia",
+   "branch": "information",
+   "year": 1928,
+   "rank": 19,
+   "theta": 0.459156
+  },
+  {
+   "id": "whitehead",
+   "kind": "event",
+   "title": "Whitehead — Process & Reality",
+   "branch": "mind",
+   "year": 1929,
+   "rank": 114,
+   "theta": 2.754935
+  },
+  {
+   "id": "dijkstra",
+   "kind": "event",
+   "title": "Dijkstra — Rotterdam",
+   "branch": "information",
+   "year": 1930,
+   "rank": 83,
+   "theta": 2.005786
+  },
+  {
+   "id": "godel",
+   "kind": "event",
+   "title": "Gödel — incompleteness",
+   "branch": "mathematics",
+   "year": 1931,
+   "rank": 60,
+   "theta": 1.449966
+  },
+  {
+   "id": "weinberg-s",
+   "kind": "event",
+   "title": "Steven Weinberg — NYC",
+   "branch": "physics",
+   "year": 1933,
+   "rank": 47,
+   "theta": 1.135807
+  },
+  {
+   "id": "sagan",
+   "kind": "event",
+   "title": "Sagan — Brooklyn",
+   "branch": "cosmology",
+   "year": 1934,
+   "rank": 48,
+   "theta": 1.159973
+  },
+  {
+   "id": "turing",
+   "kind": "event",
+   "title": "Turing — computability",
+   "branch": "information",
+   "year": 1936,
+   "rank": 77,
+   "theta": 1.860789
+  },
+  {
+   "id": "knuth",
+   "kind": "event",
+   "title": "Knuth — Milwaukee",
+   "branch": "information",
+   "year": 1938,
+   "rank": 82,
+   "theta": 1.98162
+  },
+  {
+   "id": "rees",
+   "kind": "event",
+   "title": "Martin Rees — York",
+   "branch": "cosmology",
+   "year": 1942,
+   "rank": 49,
+   "theta": 1.184139
+  },
+  {
+   "id": "dennett",
+   "kind": "event",
+   "title": "Dennett — Boston",
+   "branch": "mind",
+   "year": 1942,
+   "rank": 172,
+   "theta": 4.156569
+  },
+  {
+   "id": "vneumann",
+   "kind": "event",
+   "title": "von Neumann — Princeton",
+   "branch": "information",
+   "year": 1944,
+   "rank": 76,
+   "theta": 1.836623
+  },
+  {
+   "id": "tHooft",
+   "kind": "event",
+   "title": "'t Hooft — Den Helder",
+   "branch": "physics",
+   "year": 1946,
+   "rank": 28,
+   "theta": 0.676651
+  },
+  {
+   "id": "shannon",
+   "kind": "event",
+   "title": "Shannon — information theory",
+   "branch": "information",
+   "year": 1948,
+   "rank": 78,
+   "theta": 1.884956
+  },
+  {
+   "id": "witten",
+   "kind": "event",
+   "title": "Witten — Baltimore",
+   "branch": "physics",
+   "year": 1951,
+   "rank": 27,
+   "theta": 0.652485
+  },
+  {
+   "id": "crick-watson",
+   "kind": "event",
+   "title": "Crick & Watson — DNA",
+   "branch": "biophysics",
+   "year": 1953,
+   "rank": 250,
+   "theta": 6.041524
+  },
+  {
+   "id": "smolin",
+   "kind": "event",
+   "title": "Smolin — NYC",
+   "branch": "physics",
+   "year": 1955,
+   "rank": 246,
+   "theta": 5.94486
+  },
+  {
+   "id": "berners-lee",
+   "kind": "event",
+   "title": "Berners-Lee — London",
+   "branch": "information",
+   "year": 1955,
+   "rank": 247,
+   "theta": 5.969026
+  },
+  {
+   "id": "rovelli",
+   "kind": "event",
+   "title": "Rovelli — Verona",
+   "branch": "physics",
+   "year": 1956,
+   "rank": 245,
+   "theta": 5.920694
+  },
+  {
+   "id": "szent-gyorgyi",
+   "kind": "event",
+   "title": "Szent-Györgyi — bioelectronics",
+   "branch": "biophysics",
+   "year": 1957,
+   "rank": 44,
+   "theta": 1.063308
+  },
+  {
+   "id": "mitchell",
+   "kind": "event",
+   "title": "Mitchell — chemiosmotic theory",
+   "branch": "biophysics",
+   "year": 1961,
+   "rank": 35,
+   "theta": 0.845813
+  },
+  {
+   "id": "penrose",
+   "kind": "event",
+   "title": "Penrose — singularity theorem",
+   "branch": "cosmology",
+   "year": 1965,
+   "rank": 150,
+   "theta": 3.624915
+  },
+  {
+   "id": "chomsky-m",
+   "kind": "event",
+   "title": "Chomsky on mind — MIT",
+   "branch": "mind",
+   "year": 1965,
+   "rank": 115,
+   "theta": 2.779101
+  },
+  {
+   "id": "hawking",
+   "kind": "event",
+   "title": "Hawking — radiation",
+   "branch": "cosmology",
+   "year": 1974,
+   "rank": 149,
+   "theta": 3.600749
+  },
+  {
+   "id": "becker",
+   "kind": "event",
+   "title": "Becker — bioelectric body",
+   "branch": "biophysics",
+   "year": 1985,
+   "rank": 45,
+   "theta": 1.087474
+  },
+  {
+   "id": "hancock-g",
+   "kind": "event",
+   "title": "Hancock — UK",
+   "branch": "deep-history",
+   "year": 1990,
+   "rank": 109,
+   "theta": 2.634105
+  },
+  {
+   "id": "schoch",
+   "kind": "event",
+   "title": "Schoch — Sphinx water erosion",
+   "branch": "deep-history",
+   "year": 1991,
+   "rank": 101,
+   "theta": 2.440776
+  },
+  {
+   "id": "mae-wan-ho",
+   "kind": "event",
+   "title": "Mae-Wan Ho — rainbow worm",
+   "branch": "biophysics",
+   "year": 1993,
+   "rank": 34,
+   "theta": 0.821647
+  },
+  {
+   "id": "schmidt",
+   "kind": "event",
+   "title": "Schmidt — Göbekli Tepe discovery",
+   "branch": "deep-history",
+   "year": 1994,
+   "rank": 107,
+   "theta": 2.585772
+  },
+  {
+   "id": "hancock",
+   "kind": "event",
+   "title": "Hancock — Fingerprints of the Gods",
+   "branch": "deep-history",
+   "year": 1995,
+   "rank": 108,
+   "theta": 2.609939
+  },
+  {
+   "id": "carlson",
+   "kind": "event",
+   "title": "Carlson — Younger Dryas thesis",
+   "branch": "deep-history",
+   "year": 2007,
+   "rank": 110,
+   "theta": 2.658271
+  },
+  {
+   "id": "carlson-r",
+   "kind": "event",
+   "title": "Carlson — Portland, OR",
+   "branch": "deep-history",
+   "year": 2007,
+   "rank": 111,
+   "theta": 2.682437
+  },
+  {
+   "id": "tononi",
+   "kind": "event",
+   "title": "Tononi — IIT",
+   "branch": "mind",
+   "year": 2008,
+   "rank": 112,
+   "theta": 2.706603
+  },
+  {
+   "id": "mcgilchrist",
+   "kind": "event",
+   "title": "McGilchrist — Master and Emissary",
+   "branch": "mind",
+   "year": 2009,
+   "rank": 257,
+   "theta": 6.210687
+  },
+  {
+   "id": "kruse-j",
+   "kind": "event",
+   "title": "Jack Kruse — New Orleans",
+   "branch": "biophysics",
+   "year": 2010,
+   "rank": 147,
+   "theta": 3.552416
+  },
+  {
+   "id": "pollack",
+   "kind": "event",
+   "title": "Pollack — EZ water",
+   "branch": "biophysics",
+   "year": 2013,
+   "rank": 145,
+   "theta": 3.504084
+  },
+  {
+   "id": "weinstein",
+   "kind": "event",
+   "title": "Weinstein — Geometric Unity",
+   "branch": "physics",
+   "year": 2013,
+   "rank": 91,
+   "theta": 2.199115
+  },
+  {
+   "id": "pollack-g",
+   "kind": "event",
+   "title": "Pollack — Seattle",
+   "branch": "biophysics",
+   "year": 2013,
+   "rank": 146,
+   "theta": 3.52825
+  },
+  {
+   "id": "kruse",
+   "kind": "event",
+   "title": "Kruse — quantum biology podcast",
+   "branch": "biophysics",
+   "year": 2016,
+   "rank": 148,
+   "theta": 3.576582
+  },
+  {
+   "id": "hoffman",
+   "kind": "event",
+   "title": "Hoffman — case against reality",
+   "branch": "mind",
+   "year": 2019,
+   "rank": 256,
+   "theta": 6.186521
+  },
+  {
+   "id": "wolfram",
+   "kind": "event",
+   "title": "Wolfram — Physics Project",
+   "branch": "physics",
+   "year": 2020,
+   "rank": 92,
+   "theta": 2.223281
+  },
+  {
+   "id": "giza-pyramids",
+   "kind": "site",
+   "title": "Giza Pyramid Complex",
+   "branch": "deep-history",
+   "year": -2560,
+   "rank": 216,
+   "theta": 5.219877
+  },
+  {
+   "id": "sphinx",
+   "kind": "site",
+   "title": "Great Sphinx of Giza",
+   "branch": "deep-history",
+   "year": -2500,
+   "rank": 215,
+   "theta": 5.195711
+  },
+  {
+   "id": "karnak",
+   "kind": "site",
+   "title": "Karnak Temple Complex",
+   "branch": "deep-history",
+   "year": -2055,
+   "rank": 217,
+   "theta": 5.244043
+  },
+  {
+   "id": "abu-simbel",
+   "kind": "site",
+   "title": "Abu Simbel",
+   "branch": "deep-history",
+   "year": -1264,
+   "rank": 218,
+   "theta": 5.268209
+  },
+  {
+   "id": "gobekli-tepe",
+   "kind": "site",
+   "title": "Göbekli Tepe",
+   "branch": "deep-history",
+   "year": -9500,
+   "rank": 105,
+   "theta": 2.53744
+  },
+  {
+   "id": "site:catalhoyuk",
+   "kind": "site",
+   "title": "Çatalhöyük",
+   "branch": "deep-history",
+   "year": -7100,
+   "rank": 103,
+   "theta": 2.489108
+  },
+  {
+   "id": "ur",
+   "kind": "site",
+   "title": "Ur (Sumerian city)",
+   "branch": "deep-history",
+   "year": -3800,
+   "rank": 198,
+   "theta": 4.784887
+  },
+  {
+   "id": "babylon",
+   "kind": "site",
+   "title": "Babylon",
+   "branch": "deep-history",
+   "year": -1894,
+   "rank": 231,
+   "theta": 5.582368
+  },
+  {
+   "id": "nineveh",
+   "kind": "site",
+   "title": "Nineveh",
+   "branch": "deep-history",
+   "year": -3000,
+   "rank": 232,
+   "theta": 5.606535
+  },
+  {
+   "id": "jericho",
+   "kind": "site",
+   "title": "Jericho (Tell es-Sultan)",
+   "branch": "deep-history",
+   "year": -9000,
+   "rank": 219,
+   "theta": 5.292375
+  },
+  {
+   "id": "baalbek",
+   "kind": "site",
+   "title": "Baalbek",
+   "branch": "deep-history",
+   "year": -1500,
+   "rank": 104,
+   "theta": 2.513274
+  },
+  {
+   "id": "petra",
+   "kind": "site",
+   "title": "Petra",
+   "branch": "deep-history",
+   "year": -312,
+   "rank": 204,
+   "theta": 4.929884
+  },
+  {
+   "id": "mohenjo-daro",
+   "kind": "site",
+   "title": "Mohenjo-daro",
+   "branch": "deep-history",
+   "year": -2500,
+   "rank": 194,
+   "theta": 4.688223
+  },
+  {
+   "id": "harappa",
+   "kind": "site",
+   "title": "Harappa",
+   "branch": "deep-history",
+   "year": -2600,
+   "rank": 195,
+   "theta": 4.712389
+  },
+  {
+   "id": "dholavira",
+   "kind": "site",
+   "title": "Dholavira",
+   "branch": "deep-history",
+   "year": -2650,
+   "rank": 196,
+   "theta": 4.736555
+  },
+  {
+   "id": "angkor",
+   "kind": "site",
+   "title": "Angkor (Khmer empire)",
+   "branch": "deep-history",
+   "year": 802,
+   "rank": 197,
+   "theta": 4.760721
+  },
+  {
+   "id": "borobudur",
+   "kind": "site",
+   "title": "Borobudur",
+   "branch": "deep-history",
+   "year": 750,
+   "rank": 230,
+   "theta": 5.558202
+  },
+  {
+   "id": "great-wall",
+   "kind": "site",
+   "title": "Great Wall of China",
+   "branch": "deep-history",
+   "year": -700,
+   "rank": 189,
+   "theta": 4.567392
+  },
+  {
+   "id": "terracotta-army",
+   "kind": "site",
+   "title": "Terracotta Army (Xi'an)",
+   "branch": "deep-history",
+   "year": -210,
+   "rank": 190,
+   "theta": 4.591558
+  },
+  {
+   "id": "sanxingdui",
+   "kind": "site",
+   "title": "Sanxingdui",
+   "branch": "deep-history",
+   "year": -1200,
+   "rank": 193,
+   "theta": 4.664057
+  },
+  {
+   "id": "stonehenge-site",
+   "kind": "site",
+   "title": "Stonehenge",
+   "branch": "deep-history",
+   "year": -3000,
+   "rank": 213,
+   "theta": 5.147379
+  },
+  {
+   "id": "carnac",
+   "kind": "site",
+   "title": "Carnac stones",
+   "branch": "deep-history",
+   "year": -4500,
+   "rank": 212,
+   "theta": 5.123213
+  },
+  {
+   "id": "newgrange",
+   "kind": "site",
+   "title": "Newgrange",
+   "branch": "deep-history",
+   "year": -3200,
+   "rank": 221,
+   "theta": 5.340708
+  },
+  {
+   "id": "malta-temples",
+   "kind": "site",
+   "title": "Megalithic Temples of Malta",
+   "branch": "deep-history",
+   "year": -3600,
+   "rank": 220,
+   "theta": 5.316541
+  },
+  {
+   "id": "parthenon",
+   "kind": "site",
+   "title": "Parthenon, Acropolis",
+   "branch": "deep-history",
+   "year": -447,
+   "rank": 202,
+   "theta": 4.881552
+  },
+  {
+   "id": "delphi",
+   "kind": "site",
+   "title": "Delphi",
+   "branch": "deep-history",
+   "year": -800,
+   "rank": 201,
+   "theta": 4.857386
+  },
+  {
+   "id": "knossos",
+   "kind": "site",
+   "title": "Knossos (Minoan palace)",
+   "branch": "deep-history",
+   "year": -1900,
+   "rank": 203,
+   "theta": 4.905718
+  },
+  {
+   "id": "pompeii",
+   "kind": "site",
+   "title": "Pompeii",
+   "branch": "deep-history",
+   "year": -600,
+   "rank": 233,
+   "theta": 5.630701
+  },
+  {
+   "id": "colosseum",
+   "kind": "site",
+   "title": "Colosseum, Rome",
+   "branch": "deep-history",
+   "year": 80,
+   "rank": 234,
+   "theta": 5.654867
+  },
+  {
+   "id": "teotihuacan",
+   "kind": "site",
+   "title": "Teotihuacán",
+   "branch": "deep-history",
+   "year": -100,
+   "rank": 226,
+   "theta": 5.461538
+  },
+  {
+   "id": "chichen-itza",
+   "kind": "site",
+   "title": "Chichén Itzá",
+   "branch": "deep-history",
+   "year": 600,
+   "rank": 206,
+   "theta": 4.978216
+  },
+  {
+   "id": "tikal",
+   "kind": "site",
+   "title": "Tikal",
+   "branch": "deep-history",
+   "year": -400,
+   "rank": 208,
+   "theta": 5.026548
+  },
+  {
+   "id": "palenque",
+   "kind": "site",
+   "title": "Palenque",
+   "branch": "deep-history",
+   "year": 600,
+   "rank": 207,
+   "theta": 5.002382
+  },
+  {
+   "id": "caracol",
+   "kind": "site",
+   "title": "Caracol (LiDAR revealed)",
+   "branch": "deep-history",
+   "year": 250,
+   "rank": 209,
+   "theta": 5.050714
+  },
+  {
+   "id": "machu-picchu",
+   "kind": "site",
+   "title": "Machu Picchu",
+   "branch": "deep-history",
+   "year": 1450,
+   "rank": 227,
+   "theta": 5.485704
+  },
+  {
+   "id": "caral",
+   "kind": "site",
+   "title": "Caral-Supe",
+   "branch": "deep-history",
+   "year": -2627,
+   "rank": 228,
+   "theta": 5.50987
+  },
+  {
+   "id": "nazca-lines",
+   "kind": "site",
+   "title": "Nazca Lines",
+   "branch": "deep-history",
+   "year": -500,
+   "rank": 205,
+   "theta": 4.95405
+  },
+  {
+   "id": "cahokia",
+   "kind": "site",
+   "title": "Cahokia Mounds",
+   "branch": "deep-history",
+   "year": 1050,
+   "rank": 225,
+   "theta": 5.437372
+  },
+  {
+   "id": "amazonian-geoglyphs",
+   "kind": "site",
+   "title": "Amazonian geoglyphs (LiDAR)",
+   "branch": "deep-history",
+   "year": -500,
+   "rank": 210,
+   "theta": 5.07488
+  },
+  {
+   "id": "great-zimbabwe",
+   "kind": "site",
+   "title": "Great Zimbabwe",
+   "branch": "deep-history",
+   "year": 1100,
+   "rank": 223,
+   "theta": 5.38904
+  },
+  {
+   "id": "lalibela",
+   "kind": "site",
+   "title": "Lalibela rock churches",
+   "branch": "deep-history",
+   "year": 1200,
+   "rank": 224,
+   "theta": 5.413206
+  },
+  {
+   "id": "meroe",
+   "kind": "site",
+   "title": "Meroë pyramids",
+   "branch": "deep-history",
+   "year": -800,
+   "rank": 200,
+   "theta": 4.833219
+  },
+  {
+   "id": "easter-island",
+   "kind": "site",
+   "title": "Easter Island moai",
+   "branch": "deep-history",
+   "year": 1100,
+   "rank": 222,
+   "theta": 5.364874
+  },
+  {
+   "id": "nan-madol",
+   "kind": "site",
+   "title": "Nan Madol",
+   "branch": "deep-history",
+   "year": 1180,
+   "rank": 229,
+   "theta": 5.534036
+  },
+  {
+   "id": "gunung-padang",
+   "kind": "site",
+   "title": "Gunung Padang",
+   "branch": "deep-history",
+   "year": -10000,
+   "rank": 191,
+   "theta": 4.615725
+  },
+  {
+   "id": "yonaguni-monument",
+   "kind": "site",
+   "title": "Yonaguni Monument (submerged)",
+   "branch": "deep-history",
+   "year": -10000,
+   "rank": 192,
+   "theta": 4.639891
+  },
+  {
+   "id": "eridu",
+   "kind": "site",
+   "title": "Eridu (oldest known city)",
+   "branch": "deep-history",
+   "year": -5400,
+   "rank": 199,
+   "theta": 4.809053
+  },
+  {
+   "id": "figure:euclid",
+   "kind": "figure",
+   "title": "Euclid of Alexandria",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 120,
+   "theta": 2.899932
+  },
+  {
+   "id": "figure:archimedes",
+   "kind": "figure",
+   "title": "Archimedes of Syracuse",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 124,
+   "theta": 2.996596
+  },
+  {
+   "id": "figure:brahmagupta",
+   "kind": "figure",
+   "title": "Brahmagupta",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 128,
+   "theta": 3.09326
+  },
+  {
+   "id": "figure:al-khwarizmi",
+   "kind": "figure",
+   "title": "Muḥammad ibn Mūsā al-Khwārizmī",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 163,
+   "theta": 3.939074
+  },
+  {
+   "id": "figure:gauss",
+   "kind": "figure",
+   "title": "Carl Friedrich Gauss",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 129,
+   "theta": 3.117427
+  },
+  {
+   "id": "figure:galois",
+   "kind": "figure",
+   "title": "Évariste Galois",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 89,
+   "theta": 2.150783
+  },
+  {
+   "id": "figure:riemann",
+   "kind": "figure",
+   "title": "Bernhard Riemann",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 57,
+   "theta": 1.377468
+  },
+  {
+   "id": "figure:cantor",
+   "kind": "figure",
+   "title": "Georg Cantor",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 62,
+   "theta": 1.498298
+  },
+  {
+   "id": "figure:hilbert",
+   "kind": "figure",
+   "title": "David Hilbert",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 58,
+   "theta": 1.401634
+  },
+  {
+   "id": "figure:godel",
+   "kind": "figure",
+   "title": "Kurt Gödel",
+   "branch": "mathematics",
+   "year": null,
+   "rank": 59,
+   "theta": 1.4258
+  },
+  {
+   "id": "figure:ibn-al-haytham",
+   "kind": "figure",
+   "title": "Ibn al-Haytham (Alhazen)",
+   "branch": "physics",
+   "year": null,
+   "rank": 162,
+   "theta": 3.914908
+  },
+  {
+   "id": "figure:galileo",
+   "kind": "figure",
+   "title": "Galileo Galilei",
+   "branch": "physics",
+   "year": null,
+   "rank": 244,
+   "theta": 5.896528
+  },
+  {
+   "id": "figure:newton",
+   "kind": "figure",
+   "title": "Isaac Newton",
+   "branch": "physics",
+   "year": null,
+   "rank": 66,
+   "theta": 1.594962
+  },
+  {
+   "id": "figure:du-chatelet",
+   "kind": "figure",
+   "title": "Émilie du Châtelet",
+   "branch": "physics",
+   "year": null,
+   "rank": 175,
+   "theta": 4.229067
+  },
+  {
+   "id": "figure:maxwell",
+   "kind": "figure",
+   "title": "James Clerk Maxwell",
+   "branch": "physics",
+   "year": null,
+   "rank": 97,
+   "theta": 2.344111
+  },
+  {
+   "id": "figure:boltzmann",
+   "kind": "figure",
+   "title": "Ludwig Boltzmann",
+   "branch": "physics",
+   "year": null,
+   "rank": 73,
+   "theta": 1.764125
+  },
+  {
+   "id": "figure:einstein",
+   "kind": "figure",
+   "title": "Albert Einstein",
+   "branch": "physics",
+   "year": null,
+   "rank": 74,
+   "theta": 1.788291
+  },
+  {
+   "id": "figure:noether",
+   "kind": "figure",
+   "title": "Emmy Noether",
+   "branch": "physics",
+   "year": null,
+   "rank": 90,
+   "theta": 2.174949
+  },
+  {
+   "id": "figure:bohr",
+   "kind": "figure",
+   "title": "Niels Bohr",
+   "branch": "physics",
+   "year": null,
+   "rank": 134,
+   "theta": 3.238257
+  },
+  {
+   "id": "figure:dirac",
+   "kind": "figure",
+   "title": "Paul Dirac",
+   "branch": "physics",
+   "year": null,
+   "rank": 135,
+   "theta": 3.262423
+  },
+  {
+   "id": "figure:lavoisier",
+   "kind": "figure",
+   "title": "Antoine Lavoisier",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 14,
+   "theta": 0.338325
+  },
+  {
+   "id": "figure:dalton",
+   "kind": "figure",
+   "title": "John Dalton",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 13,
+   "theta": 0.314159
+  },
+  {
+   "id": "figure:mendeleev",
+   "kind": "figure",
+   "title": "Dmitri Mendeleev",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 11,
+   "theta": 0.265827
+  },
+  {
+   "id": "figure:curie",
+   "kind": "figure",
+   "title": "Marie Skłodowska-Curie",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 10,
+   "theta": 0.241661
+  },
+  {
+   "id": "figure:pauling",
+   "kind": "figure",
+   "title": "Linus Pauling",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 136,
+   "theta": 3.286589
+  },
+  {
+   "id": "figure:sanger",
+   "kind": "figure",
+   "title": "Frederick Sanger",
+   "branch": "chemistry",
+   "year": null,
+   "rank": 42,
+   "theta": 1.014976
+  },
+  {
+   "id": "figure:boole",
+   "kind": "figure",
+   "title": "George Boole",
+   "branch": "information",
+   "year": null,
+   "rank": 133,
+   "theta": 3.214091
+  },
+  {
+   "id": "figure:frege",
+   "kind": "figure",
+   "title": "Gottlob Frege",
+   "branch": "information",
+   "year": null,
+   "rank": 63,
+   "theta": 1.522464
+  },
+  {
+   "id": "figure:turing",
+   "kind": "figure",
+   "title": "Alan Turing",
+   "branch": "information",
+   "year": null,
+   "rank": 132,
+   "theta": 3.189925
+  },
+  {
+   "id": "figure:church",
+   "kind": "figure",
+   "title": "Alonzo Church",
+   "branch": "information",
+   "year": null,
+   "rank": 131,
+   "theta": 3.165759
+  },
+  {
+   "id": "figure:shannon",
+   "kind": "figure",
+   "title": "Claude Shannon",
+   "branch": "information",
+   "year": null,
+   "rank": 79,
+   "theta": 1.909122
+  },
+  {
+   "id": "figure:von-neumann",
+   "kind": "figure",
+   "title": "John von Neumann",
+   "branch": "information",
+   "year": null,
+   "rank": 75,
+   "theta": 1.812457
+  },
+  {
+   "id": "figure:kolmogorov",
+   "kind": "figure",
+   "title": "Andrey Kolmogorov",
+   "branch": "information",
+   "year": null,
+   "rank": 130,
+   "theta": 3.141593
+  },
+  {
+   "id": "figure:mendel",
+   "kind": "figure",
+   "title": "Gregor Mendel",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 153,
+   "theta": 3.697413
+  },
+  {
+   "id": "figure:pasteur",
+   "kind": "figure",
+   "title": "Louis Pasteur",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 152,
+   "theta": 3.673247
+  },
+  {
+   "id": "figure:franklin",
+   "kind": "figure",
+   "title": "Rosalind Franklin",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 41,
+   "theta": 0.99081
+  },
+  {
+   "id": "figure:watson-crick",
+   "kind": "figure",
+   "title": "James Watson & Francis Crick",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 40,
+   "theta": 0.966644
+  },
+  {
+   "id": "figure:hodgkin-huxley",
+   "kind": "figure",
+   "title": "Alan Hodgkin & Andrew Huxley",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 142,
+   "theta": 3.431586
+  },
+  {
+   "id": "figure:mitchell",
+   "kind": "figure",
+   "title": "Peter Mitchell",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 36,
+   "theta": 0.86998
+  },
+  {
+   "id": "figure:margulis",
+   "kind": "figure",
+   "title": "Lynn Margulis",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 38,
+   "theta": 0.918312
+  },
+  {
+   "id": "figure:aristarchus",
+   "kind": "figure",
+   "title": "Aristarchus of Samos",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 126,
+   "theta": 3.044928
+  },
+  {
+   "id": "figure:ptolemy",
+   "kind": "figure",
+   "title": "Claudius Ptolemy",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 125,
+   "theta": 3.020762
+  },
+  {
+   "id": "figure:aryabhata",
+   "kind": "figure",
+   "title": "Aryabhata",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 127,
+   "theta": 3.069094
+  },
+  {
+   "id": "figure:copernicus",
+   "kind": "figure",
+   "title": "Nicolaus Copernicus",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 55,
+   "theta": 1.329135
+  },
+  {
+   "id": "figure:kepler",
+   "kind": "figure",
+   "title": "Johannes Kepler",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 56,
+   "theta": 1.353301
+  },
+  {
+   "id": "figure:hubble",
+   "kind": "figure",
+   "title": "Edwin Hubble",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 158,
+   "theta": 3.818243
+  },
+  {
+   "id": "figure:lemaitre",
+   "kind": "figure",
+   "title": "Georges Lemaître",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 151,
+   "theta": 3.649081
+  },
+  {
+   "id": "figure:rubin",
+   "kind": "figure",
+   "title": "Vera Rubin",
+   "branch": "cosmology",
+   "year": null,
+   "rank": 157,
+   "theta": 3.794077
+  },
+  {
+   "id": "figure:aristotle",
+   "kind": "figure",
+   "title": "Aristotle",
+   "branch": "mind",
+   "year": null,
+   "rank": 176,
+   "theta": 4.253233
+  },
+  {
+   "id": "figure:descartes",
+   "kind": "figure",
+   "title": "René Descartes",
+   "branch": "mind",
+   "year": null,
+   "rank": 88,
+   "theta": 2.126617
+  },
+  {
+   "id": "figure:kant",
+   "kind": "figure",
+   "title": "Immanuel Kant",
+   "branch": "mind",
+   "year": null,
+   "rank": 65,
+   "theta": 1.570796
+  },
+  {
+   "id": "figure:james",
+   "kind": "figure",
+   "title": "William James",
+   "branch": "mind",
+   "year": null,
+   "rank": 174,
+   "theta": 4.204901
+  },
+  {
+   "id": "figure:wittgenstein",
+   "kind": "figure",
+   "title": "Ludwig Wittgenstein",
+   "branch": "mind",
+   "year": null,
+   "rank": 64,
+   "theta": 1.54663
+  },
+  {
+   "id": "figure:chomsky",
+   "kind": "figure",
+   "title": "Noam Chomsky",
+   "branch": "mind",
+   "year": null,
+   "rank": 116,
+   "theta": 2.803267
+  },
+  {
+   "id": "figure:marr",
+   "kind": "figure",
+   "title": "David Marr",
+   "branch": "mind",
+   "year": null,
+   "rank": 252,
+   "theta": 6.089857
+  },
+  {
+   "id": "figure:laozi",
+   "kind": "figure",
+   "title": "Lao Tzu (Laozi)",
+   "branch": "tradition",
+   "year": null,
+   "rank": 187,
+   "theta": 4.51906
+  },
+  {
+   "id": "figure:confucius",
+   "kind": "figure",
+   "title": "Confucius (Kong Fuzi)",
+   "branch": "tradition",
+   "year": null,
+   "rank": 186,
+   "theta": 4.494894
+  },
+  {
+   "id": "figure:buddha",
+   "kind": "figure",
+   "title": "Siddhārtha Gautama (the Buddha)",
+   "branch": "tradition",
+   "year": null,
+   "rank": 241,
+   "theta": 5.824029
+  },
+  {
+   "id": "figure:augustine",
+   "kind": "figure",
+   "title": "Augustine of Hippo",
+   "branch": "tradition",
+   "year": null,
+   "rank": 259,
+   "theta": 6.259019
+  },
+  {
+   "id": "figure:maimonides",
+   "kind": "figure",
+   "title": "Maimonides (Rambam)",
+   "branch": "tradition",
+   "year": null,
+   "rank": 240,
+   "theta": 5.799863
+  },
+  {
+   "id": "figure:al-ghazali",
+   "kind": "figure",
+   "title": "Abū Ḥāmid al-Ghazālī",
+   "branch": "tradition",
+   "year": null,
+   "rank": 239,
+   "theta": 5.775697
+  },
+  {
+   "id": "figure:aquinas",
+   "kind": "figure",
+   "title": "Thomas Aquinas",
+   "branch": "tradition",
+   "year": null,
+   "rank": 177,
+   "theta": 4.277399
+  },
+  {
+   "id": "figure:homer",
+   "kind": "figure",
+   "title": "Homer (attributed)",
+   "branch": "art",
+   "year": null,
+   "rank": 182,
+   "theta": 4.39823
+  },
+  {
+   "id": "figure:sappho",
+   "kind": "figure",
+   "title": "Sappho",
+   "branch": "art",
+   "year": null,
+   "rank": 183,
+   "theta": 4.422396
+  },
+  {
+   "id": "figure:du-fu",
+   "kind": "figure",
+   "title": "Du Fu",
+   "branch": "art",
+   "year": null,
+   "rank": 188,
+   "theta": 4.543226
+  },
+  {
+   "id": "figure:dante",
+   "kind": "figure",
+   "title": "Dante Alighieri",
+   "branch": "art",
+   "year": null,
+   "rank": 184,
+   "theta": 4.446562
+  },
+  {
+   "id": "figure:shakespeare",
+   "kind": "figure",
+   "title": "William Shakespeare",
+   "branch": "art",
+   "year": null,
+   "rank": 258,
+   "theta": 6.234853
+  },
+  {
+   "id": "figure:bach",
+   "kind": "figure",
+   "title": "Johann Sebastian Bach",
+   "branch": "art",
+   "year": null,
+   "rank": 179,
+   "theta": 4.325731
+  },
+  {
+   "id": "figure:hokusai",
+   "kind": "figure",
+   "title": "Katsushika Hokusai",
+   "branch": "art",
+   "year": null,
+   "rank": 254,
+   "theta": 6.138189
+  },
+  {
+   "id": "figure:borges",
+   "kind": "figure",
+   "title": "Jorge Luis Borges",
+   "branch": "art",
+   "year": null,
+   "rank": 180,
+   "theta": 4.349898
+  },
+  {
+   "id": "figure:steno",
+   "kind": "figure",
+   "title": "Nicolas Steno",
+   "branch": "earth",
+   "year": null,
+   "rank": 154,
+   "theta": 3.721579
+  },
+  {
+   "id": "figure:hutton",
+   "kind": "figure",
+   "title": "James Hutton",
+   "branch": "earth",
+   "year": null,
+   "rank": 98,
+   "theta": 2.368278
+  },
+  {
+   "id": "figure:lyell",
+   "kind": "figure",
+   "title": "Charles Lyell",
+   "branch": "earth",
+   "year": null,
+   "rank": 99,
+   "theta": 2.392444
+  },
+  {
+   "id": "figure:wegener",
+   "kind": "figure",
+   "title": "Alfred Wegener",
+   "branch": "earth",
+   "year": null,
+   "rank": 155,
+   "theta": 3.745745
+  },
+  {
+   "id": "figure:milankovic",
+   "kind": "figure",
+   "title": "Milutin Milanković",
+   "branch": "earth",
+   "year": null,
+   "rank": 156,
+   "theta": 3.769911
+  },
+  {
+   "id": "figure:tharp",
+   "kind": "figure",
+   "title": "Marie Tharp",
+   "branch": "earth",
+   "year": null,
+   "rank": 253,
+   "theta": 6.114023
+  },
+  {
+   "id": "figure:wiener",
+   "kind": "figure",
+   "title": "Norbert Wiener",
+   "branch": "information",
+   "year": null,
+   "rank": 80,
+   "theta": 1.933288
+  },
+  {
+   "id": "figure:szent-gyorgyi",
+   "kind": "figure",
+   "title": "Albert Szent-Györgyi",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 43,
+   "theta": 1.039142
+  },
+  {
+   "id": "figure:burr",
+   "kind": "figure",
+   "title": "Harold Saxton Burr",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 139,
+   "theta": 3.359088
+  },
+  {
+   "id": "figure:becker",
+   "kind": "figure",
+   "title": "Robert O. Becker",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 141,
+   "theta": 3.40742
+  },
+  {
+   "id": "figure:marino",
+   "kind": "figure",
+   "title": "Andrew Marino",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 138,
+   "theta": 3.334921
+  },
+  {
+   "id": "figure:ling",
+   "kind": "figure",
+   "title": "Gilbert Ling",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 143,
+   "theta": 3.455752
+  },
+  {
+   "id": "figure:pollack",
+   "kind": "figure",
+   "title": "Gerald Pollack",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 144,
+   "theta": 3.479918
+  },
+  {
+   "id": "figure:popp",
+   "kind": "figure",
+   "title": "Fritz-Albert Popp",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 137,
+   "theta": 3.310755
+  },
+  {
+   "id": "figure:levin",
+   "kind": "figure",
+   "title": "Michael Levin",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 140,
+   "theta": 3.383254
+  },
+  {
+   "id": "figure:wallace-doug",
+   "kind": "figure",
+   "title": "Douglas C. Wallace",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 39,
+   "theta": 0.942478
+  },
+  {
+   "id": "figure:lane",
+   "kind": "figure",
+   "title": "Nick Lane",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 37,
+   "theta": 0.894146
+  },
+  {
+   "id": "figure:solis-herrera",
+   "kind": "figure",
+   "title": "Arturo Solís-Herrera",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 251,
+   "theta": 6.06569
+  },
+  {
+   "id": "figure:khavinson",
+   "kind": "figure",
+   "title": "Vladimir Khavinson",
+   "branch": "biophysics",
+   "year": null,
+   "rank": 255,
+   "theta": 6.162355
+  },
+  {
+   "id": "figure:hildegard",
+   "kind": "figure",
+   "title": "Hildegard of Bingen",
+   "branch": "tradition",
+   "year": null,
+   "rank": 178,
+   "theta": 4.301565
+  },
+  {
+   "id": "figure:champollion",
+   "kind": "figure",
+   "title": "Jean-François Champollion",
+   "branch": "tradition",
+   "year": null,
+   "rank": 119,
+   "theta": 2.875766
+  },
+  {
+   "id": "figure:william-jones",
+   "kind": "figure",
+   "title": "William Jones",
+   "branch": "tradition",
+   "year": null,
+   "rank": 117,
+   "theta": 2.827433
+  },
+  {
+   "id": "figure:ventris",
+   "kind": "figure",
+   "title": "Michael Ventris",
+   "branch": "tradition",
+   "year": null,
+   "rank": 118,
+   "theta": 2.851599
+  },
+  {
+   "id": "figure:leonardo",
+   "kind": "figure",
+   "title": "Leonardo da Vinci",
+   "branch": "art",
+   "year": null,
+   "rank": 185,
+   "theta": 4.470728
+  },
+  {
+   "id": "figure:tolkien",
+   "kind": "figure",
+   "title": "J. R. R. Tolkien",
+   "branch": "art",
+   "year": null,
+   "rank": 181,
+   "theta": 4.374064
+  },
+  {
+   "id": "figure:schmidt-klaus",
+   "kind": "figure",
+   "title": "Klaus Schmidt",
+   "branch": "earth",
+   "year": null,
+   "rank": 106,
+   "theta": 2.561606
+  },
+  {
+   "id": "figure:schoch",
+   "kind": "figure",
+   "title": "Robert M. Schoch",
+   "branch": "earth",
+   "year": null,
+   "rank": 100,
+   "theta": 2.41661
+  },
+  {
+   "id": "figure:west-jaw",
+   "kind": "figure",
+   "title": "John Anthony West",
+   "branch": "earth",
+   "year": null,
+   "rank": 243,
+   "theta": 5.872362
+  },
+  {
+   "id": "figure:carlson-randall",
+   "kind": "figure",
+   "title": "Randall Carlson",
+   "branch": "earth",
+   "year": null,
+   "rank": 242,
+   "theta": 5.848196
+  }
+ ]
+}
