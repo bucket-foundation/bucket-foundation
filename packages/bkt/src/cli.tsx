@@ -1,15 +1,15 @@
 #!/usr/bin/env bun
 import React from "react";
 import { render } from "ink";
-import { join } from "node:path";
 import pack from "../content/pack.json" with { type: "json" };
 import { App } from "./app";
 import type { Pack } from "./pack/export";
-import { dataDir, openSession, pickKeyring } from "./setup";
+import { dataDir, ensureDataDir, openSession, parseArgs, pickKeyring } from "./setup";
 
 async function main(argv: string[]) {
-  const cmd = argv[0] ?? "tui";
-  const session = await openSession(pickKeyring(), join(dataDir(), "bkt.db"));
+  const { cmd, opts } = parseArgs(argv);
+  const dir = ensureDataDir(dataDir());
+  const session = await openSession(await pickKeyring(opts, dir), dir);
   const content = pack as Pack;
   const imported = session.store.importPack(content.version, content.items);
   try {

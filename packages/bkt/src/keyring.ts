@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { randomBytes } from "node:crypto";
 import { deriveKey, open, seal } from "./crypto";
@@ -11,6 +11,12 @@ export interface Keyring {
 
 export const SERVICE = "bucket-bkt";
 
+export class KeyringError extends Error {}
+
+export function refuseOverwrite(account: string): never {
+  throw new KeyringError(`keyring already holds ${account}; refusing to overwrite`);
+}
+
 export class MemoryKeyring implements Keyring {
   readonly kind = "memory" as const;
   private store = new Map<string, string>();
@@ -18,6 +24,7 @@ export class MemoryKeyring implements Keyring {
     return this.store.get(account) ?? null;
   }
   async set(account: string, secret: string) {
+    if (this.store.has(account)) refuseOverwrite(account);
     this.store.set(account, secret);
   }
 }
@@ -26,18 +33,20 @@ export class SecretToolKeyring implements Keyring {
   readonly kind = "libsecret" as const;
   constructor(private bin = "secret-tool") {}
 
-  static available(bin = "secret-tool"): boolean {
-    return Bun.which(bin) !== null && !!process.env.DBUS_SESSION_BUS_ADDRESS;
+  static available(env: Record<string, string | undefined> = process.env, bin = "secret-tool"): boolean {
+    return Bun.which(bin, { PATH: env.PATH ?? "" }) !== null && !!env.DBUS_SESSION_BUS_ADDRESS;
   }
 
   async get(account: string) {
     const p = Bun.spawn([this.bin, "lookup", "service", SERVICE, "account", account], { stdout: "pipe", stderr: "pipe" });
-    const [out, code] = await Promise.all([new Response(p.stdout).text(), p.exited]);
-    if (code !== 0) return null;
-    return out.length ? out : null;
+    const [out, err, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
+    if (code === 0 && out.length) return out;
+    if (code === 1 && !err.trim()) return null;
+    throw new KeyringError(`secret-tool lookup failed (exit ${code}): ${err.trim() || "empty output"}`);
   }
 
   async set(account: string, secret: string) {
+    if ((await this.get(account)) !== null) refuseOverwrite(account);
     const p = Bun.spawn([this.bin, "store", "--label", `bkt ${account}`, "service", SERVICE, "account", account], {
       stdin: "pipe",
       stdout: "pipe",
@@ -46,7 +55,7 @@ export class SecretToolKeyring implements Keyring {
     p.stdin.write(secret);
     p.stdin.end();
     const [err, code] = await Promise.all([new Response(p.stderr).text(), p.exited]);
-    if (code !== 0) throw new Error(`secret-tool store failed: ${err.trim()}`);
+    if (code !== 0) throw new KeyringError(`secret-tool store failed: ${err.trim()}`);
   }
 }
 
@@ -63,6 +72,8 @@ export class PassphraseKeyring implements Keyring {
   private vault: VaultFile;
 
   constructor(private file: string, passphrase: string) {
+    mkdirSync(dirname(file), { recursive: true, mode: 0o700 });
+    chmodSync(dirname(file), 0o700);
     if (existsSync(file)) {
       this.vault = JSON.parse(readFileSync(file, "utf8")) as VaultFile;
       this.key = deriveKey(passphrase, Buffer.from(this.vault.salt, "base64"));
@@ -85,6 +96,7 @@ export class PassphraseKeyring implements Keyring {
   }
 
   async set(account: string, secret: string) {
+    if (this.vault.entries[account]) refuseOverwrite(account);
     this.vault.entries[account] = seal(this.key, secret, account);
     this.flush();
   }

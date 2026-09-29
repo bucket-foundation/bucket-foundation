@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { chmodSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, deviceIdFor, ensureDataKey, ensureDevice, verifyDeviceSignature } from "../src/device";
 import { MemoryKeyring, PassphraseKeyring, SecretToolKeyring } from "../src/keyring";
-import { openSession } from "../src/setup";
+import { openSession, parseArgs, pickKeyring } from "../src/setup";
 
 let dir: string;
 beforeEach(() => {
@@ -103,7 +103,7 @@ describe("libsecret keyring", () => {
 
 describe("openSession", () => {
   test("records the device and refuses a db bound to another device", async () => {
-    const path = join(dir, "bkt.db");
+    const path = dir;
     const kr = new MemoryKeyring();
     const s = await openSession(kr, path, 1);
     expect(s.store.device()!.id).toBe(s.device.id);
@@ -114,5 +114,90 @@ describe("openSession", () => {
     const intruder = new MemoryKeyring();
     await intruder.set(DATA_KEY_ACCOUNT, (await kr.get(DATA_KEY_ACCOUNT))!);
     await expect(openSession(intruder, path, 3)).rejects.toThrow("belongs to device");
+  });
+});
+
+function fakeSecretTool(body: string): SecretToolKeyring {
+  const bin = join(dir, "fake-secret-tool");
+  writeFileSync(bin, `#!/usr/bin/env bash\n${body}\n`);
+  chmodSync(bin, 0o755);
+  return new SecretToolKeyring(bin);
+}
+
+describe("keyring failures never mint keys", () => {
+  test("lookup error with stderr throws and stores nothing", async () => {
+    const marker = join(dir, "stored");
+    const kr = fakeSecretTool(`if [ "$1" = store ]; then touch "${marker}"; exit 0; fi\necho "Cannot autolaunch D-Bus" >&2; exit 1`);
+    await expect(ensureDataKey(kr)).rejects.toThrow("secret-tool lookup failed");
+    await expect(ensureDevice(kr)).rejects.toThrow("secret-tool lookup failed");
+    expect(existsSync(marker)).toBe(false);
+  });
+
+  test("lookup exit codes other than 1 throw", async () => {
+    await expect(fakeSecretTool("exit 2").get("x")).rejects.toThrow("exit 2");
+  });
+
+  test("a throwing keyring surfaces the error from openSession", async () => {
+    let sets = 0;
+    const kr = {
+      kind: "memory" as const,
+      get: async (): Promise<string | null> => {
+        throw new Error("locked collection");
+      },
+      set: async () => {
+        sets++;
+      },
+    };
+    await expect(openSession(kr, dir)).rejects.toThrow("locked collection");
+    expect(sets).toBe(0);
+  });
+
+  test("set refuses to overwrite an existing secret", async () => {
+    const kr = new MemoryKeyring();
+    await kr.set("a", "1");
+    await expect(kr.set("a", "2")).rejects.toThrow("refusing to overwrite");
+    expect(await kr.get("a")).toBe("1");
+    const vault = new PassphraseKeyring(join(dir, "v.json"), "pw");
+    await vault.set("a", "1");
+    await expect(vault.set("a", "2")).rejects.toThrow("refusing to overwrite");
+    const st = fakeSecretTool(`if [ "$1" = store ]; then exit 0; fi\nprintf existing`);
+    await expect(st.set("a", "new")).rejects.toThrow("refusing to overwrite");
+  });
+
+  test("parallel first runs share one data key and one device key", async () => {
+    const kr = new MemoryKeyring();
+    const runs = await Promise.all([1, 2, 3, 4].map(() => openSession(kr, dir)));
+    expect(new Set(runs.map((r) => r.device.id)).size).toBe(1);
+    expect(runs.filter((r) => r.device.created)).toHaveLength(1);
+    runs.forEach((r) => r.store.close());
+  });
+
+  test("vault dir is reset to 0700 on start", () => {
+    mkdirSync(join(dir, "vault"), { mode: 0o755 });
+    chmodSync(join(dir, "vault"), 0o755);
+    new PassphraseKeyring(join(dir, "vault", "k.json"), "pw");
+    expect(statSync(join(dir, "vault")).mode & 0o777).toBe(0o700);
+  });
+});
+
+describe("keyring selection", () => {
+  test("refuses silent fallback when libsecret is missing", async () => {
+    await expect(pickKeyring({}, dir, { PATH: "/nonexistent" })).rejects.toThrow("--keyring passphrase");
+  });
+
+  test("reads the passphrase from --passphrase-fd", async () => {
+    const f = join(dir, "pass");
+    writeFileSync(f, "secret\n");
+    const fd = openSync(f, "r");
+    const { cmd, opts } = parseArgs(["init", "--keyring=passphrase", "--passphrase-fd", String(fd)]);
+    expect(cmd).toBe("init");
+    const kr = await pickKeyring(opts, dir, {});
+    expect(kr.kind).toBe("passphrase");
+    expect(() => new PassphraseKeyring(join(dir, "keyring.json"), "secret")).not.toThrow();
+  });
+
+  test("rejects unknown flags and bad fds", () => {
+    expect(() => parseArgs(["--nope"])).toThrow("unknown flag");
+    expect(() => parseArgs(["--passphrase-fd", "x"])).toThrow("file descriptor");
   });
 });
