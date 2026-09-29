@@ -16,6 +16,7 @@ const SUITES = {
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
       "scripts/test-waitlist.ts",
+      "scripts/test-download.ts",
       "scripts/test-waitlist-invites.ts",
       "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events}.ts",
       "scripts/test-research-agent-route.ts",
@@ -27,6 +28,7 @@ const SUITES = {
       "scripts/test-research-os-{dedup,merge-actions,work-quiz}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
+      "scripts/test-release-signing.mjs",
     ],
   },
   db: {
