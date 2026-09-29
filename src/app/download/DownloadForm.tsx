@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { DOWNLOAD_PLATFORMS, RETENTION_MONTHS } from "@/lib/download/core";
+import { DOWNLOAD_PLATFORMS, RETENTION_MONTHS, sentMessage } from "@/lib/download/core";
 import { NAME_MAX } from "@/lib/waitlist/core";
 
 const INPUT =
@@ -18,7 +18,7 @@ export default function DownloadForm() {
   const [website, setWebsite] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [sent, setSent] = useState<string | null>(null);
+  const [sent, setSent] = useState<{ address: string; outcome: string } | null>(null);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -32,12 +32,12 @@ export default function DownloadForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email: address, name, platform, consent, website }),
       });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; email?: string };
       if (!res.ok || !data.ok) {
         setError(data.error ?? "Your request did not save. Try again in a minute.");
         return;
       }
-      setSent(address);
+      setSent({ address, outcome: data.email ?? "off" });
     } catch {
       setError("No connection. Check your network and try again.");
     } finally {
@@ -50,7 +50,7 @@ export default function DownloadForm() {
       <div role="status" className="mt-8 border-l-2 border-[color:var(--gold)] pl-4 py-1">
         <p className="text-[15px] text-[color:var(--basalt)]">Request received.</p>
         <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">
-          We will email a download link to <span className="break-all">{sent}</span>.
+          {sentMessage(sent.outcome)} <span className="break-all">{sent.address}</span>
         </p>
       </div>
     );

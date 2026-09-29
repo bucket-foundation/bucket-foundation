@@ -1,30 +1,70 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import type { DownloadNotifier } from "./handler";
+import type { MarkStore } from "./marks";
+import { emailKey } from "../waitlist/store";
 
 type Env = Record<string, string | undefined>;
 type Fetch = (url: string, init: RequestInit) => Promise<Response>;
 
 export const LINK_TTL_MS = 24 * 60 * 60 * 1000;
+export const LINK_REUSE_MS = 10 * 60 * 1000;
+export const EMAIL_COOLDOWN_MS = 60 * 60 * 1000;
 export const DEFAULT_NOTIFY_TO = "gianyrox@gmail.com";
 export const DEFAULT_FROM = "Bucket Foundation <downloads@bucket.foundation>";
 const RESEND_URL = "https://api.resend.com/emails";
 
-function sign(expires: number, secret: string): string {
-  return createHmac("sha256", secret).update(`download:${expires}`).digest("base64url");
+function sign(key: string, expires: number, secret: string): string {
+  return createHmac("sha256", secret).update(`download:${key}:${expires}`).digest("base64url");
 }
 
-export function downloadLink(origin: string, secret: string, now: number): string {
+export function downloadLink(origin: string, secret: string, email: string, now: number): string {
   const expires = now + LINK_TTL_MS;
-  return `${origin}/api/download/file?e=${expires}&s=${sign(expires, secret)}`;
+  const key = emailKey(email);
+  return `${origin}/api/download/file?k=${key}&e=${expires}&s=${sign(key, expires, secret)}`;
 }
 
-export function linkValid(e: string | null, s: string | null, secret: string | undefined, now: number): boolean {
-  if (!secret || !e || !s || !/^\d{1,16}$/.test(e)) return false;
+export type LinkCheck = { ok: true; key: string; sig: string } | { ok: false };
+
+export function checkLink(q: URLSearchParams, secret: string | undefined, now: number): LinkCheck {
+  const k = q.get("k");
+  const e = q.get("e");
+  const s = q.get("s");
+  if (!secret || !k || !e || !s || !/^[0-9a-f]{64}$/.test(k) || !/^\d{1,16}$/.test(e)) return { ok: false };
   const expires = Number(e);
-  if (expires < now || expires > now + LINK_TTL_MS) return false;
-  const want = Buffer.from(sign(expires, secret));
+  if (expires < now || expires > now + LINK_TTL_MS) return { ok: false };
+  const want = Buffer.from(sign(k, expires, secret));
   const got = Buffer.from(s);
-  return want.length === got.length && timingSafeEqual(want, got);
+  return want.length === got.length && timingSafeEqual(want, got) ? { ok: true, key: k, sig: s } : { ok: false };
+}
+
+export async function redeemLink(marks: MarkStore, sig: string, now: number): Promise<boolean> {
+  const first = await marks.get(`used:${sig}`);
+  if (first === null) {
+    await marks.set(`used:${sig}`, now);
+    return true;
+  }
+  return now - first <= LINK_REUSE_MS;
+}
+
+export interface NotifierConfig {
+  apiKey: string;
+  secret: string;
+  from: string;
+  to: string;
+  origin: string;
+}
+
+export function notifierConfig(env: Env = process.env): NotifierConfig | null {
+  const apiKey = env.RESEND_API_KEY?.trim();
+  const secret = env.DOWNLOAD_LINK_SECRET?.trim();
+  if (!apiKey || !secret || !env.DOWNLOAD_ARTIFACT_BLOB?.trim()) return null;
+  return {
+    apiKey,
+    secret,
+    from: env.DOWNLOAD_FROM?.trim() || DEFAULT_FROM,
+    to: env.DOWNLOAD_NOTIFY_TO?.trim() || DEFAULT_NOTIFY_TO,
+    origin: (env.DOWNLOAD_ORIGIN?.trim() || "https://bucket.foundation").replace(/\/$/, ""),
+  };
 }
 
 async function send(fetcher: Fetch, key: string, body: Record<string, unknown>): Promise<void> {
@@ -36,33 +76,22 @@ async function send(fetcher: Fetch, key: string, body: Record<string, unknown>):
   if (!res.ok) throw new Error(`resend ${res.status}: ${(await res.text().catch(() => "")).slice(0, 200)}`);
 }
 
-export function resendNotifier(env: Env = process.env, fetcher: Fetch = fetch, clock: () => number = Date.now): DownloadNotifier | null {
-  const key = env.RESEND_API_KEY?.trim();
-  if (!key) return null;
-  const from = env.DOWNLOAD_FROM?.trim() || DEFAULT_FROM;
-  const to = env.DOWNLOAD_NOTIFY_TO?.trim() || DEFAULT_NOTIFY_TO;
-  const origin = (env.DOWNLOAD_ORIGIN?.trim() || "https://bucket.foundation").replace(/\/$/, "");
-  const secret = env.DOWNLOAD_LINK_SECRET?.trim();
+export function resendNotifier(config: NotifierConfig, marks: MarkStore, fetcher: Fetch = fetch, clock: () => number = Date.now): DownloadNotifier {
   return async (request) => {
     const now = clock();
+    const email = request.input.email;
+    const cooldownKey = `mail:${emailKey(email)}`;
+    const last = await marks.get(cooldownKey);
+    if (last !== null && now - last < EMAIL_COOLDOWN_MS) return "cooldown";
+    await marks.set(cooldownKey, now);
     const at = new Date(now).toISOString();
-    const jobs: Promise<void>[] = [
-      send(fetcher, key, { from, to, subject: "Bucket download request", text: `${request.input.email} requested the desktop app at ${at}.` }),
-    ];
-    if (secret) {
-      const link = downloadLink(origin, secret, now);
-      jobs.push(
-        send(fetcher, key, {
-          from,
-          to: request.input.email,
-          subject: "Your Bucket download link",
-          text: `Download the Bucket desktop app: ${link}\n\nThe link works for 24 hours. Check the signature before you install: ${origin}/.well-known/bucket-release.pub`,
-        }),
-      );
-    }
-    const results = await Promise.allSettled(jobs);
+    const link = downloadLink(config.origin, config.secret, email, now);
+    const results = await Promise.allSettled([
+      send(fetcher, config.apiKey, { from: config.from, to: email, subject: "Your Bucket download link", text: `Download the Bucket desktop app: ${link}\n\nThe link works for 24 hours. Check the signature before you install: ${config.origin}/.well-known/bucket-release.pub` }),
+      send(fetcher, config.apiKey, { from: config.from, to: config.to, subject: "Bucket download request", text: `${email} requested the desktop app at ${at}.` }),
+    ]);
     const failed = results.filter((r): r is PromiseRejectedResult => r.status === "rejected");
-    if (!secret) console.error("[download] DOWNLOAD_LINK_SECRET unset; no link sent");
-    if (failed.length) throw new Error(failed.map((f) => (f.reason instanceof Error ? f.reason.message : String(f.reason))).join("; "));
+    for (const f of failed) console.error("[download] notify failed:", f.reason instanceof Error ? f.reason.message : f.reason);
+    return results[0].status === "fulfilled" ? "sent" : "failed";
   };
 }

@@ -25,6 +25,12 @@ export function parseDownload(body: unknown): ParsedDownload {
   return { ok: true, request: { input: { ...parsed.input, role: null, wanted, consent_version: CONSENT_VERSION }, platform }, suspect: parsed.suspect };
 }
 
+export function sentMessage(outcome: string): string {
+  if (outcome === "sent") return "A download link that works for 24 hours is on its way to";
+  if (outcome === "cooldown") return "We emailed a link within the last hour. Check your inbox at";
+  return "Your request is saved. Downloads are not open yet; we will write when they are, to";
+}
+
 export function isExpired(entry: WaitlistEntry, now: Date, days = RETENTION_DAYS): boolean {
   const last = Date.parse(entry.updated_at);
   return Number.isFinite(last) && now.getTime() - last > days * DAY_MS;
