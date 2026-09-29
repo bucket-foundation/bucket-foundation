@@ -6,7 +6,7 @@ import { getWaitlistStore } from "@/lib/waitlist/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "no-store" };
 
