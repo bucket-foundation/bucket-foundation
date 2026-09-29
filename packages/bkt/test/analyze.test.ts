@@ -1,11 +1,14 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { listAnalyses, loadSections, parseAnalyzeArgs, runAnalysis, sections } from "../src/analyze";
+import { listAnalyses, loadSections, parseAnalyzeArgs, runAnalysis, sections, startAnalysis } from "../src/analyze";
+import { buildPySource } from "../src/pack/pysrc";
+import { extractPy } from "../src/pyruntime";
 import { step, type BrowserState } from "../src/analyze-view";
 
 const FIX = resolve(import.meta.dir, "../analyze/tests/fixtures");
+process.env.XDG_CACHE_HOME ??= mkdtempSync(join(tmpdir(), "bkt-cache-"));
 let out: string;
 beforeEach(() => {
   out = mkdtempSync(join(tmpdir(), "bkt-analyze-"));
@@ -26,8 +29,8 @@ describe("args", () => {
 });
 
 describe("runAnalysis", () => {
-  test("good file passes and writes markdown plus json", () => {
-    const r = runAnalysis({ file: join(FIX, "monthly.csv"), force: false, noHelix: true, json: false, tui: false, out });
+  test("good file passes and writes markdown plus json", async () => {
+    const r = await runAnalysis({ file: join(FIX, "monthly.csv"), force: false, noHelix: true, json: false, tui: false, dev: false, out });
     expect(r.code).toBe(0);
     expect(r.report?.form.ok).toBe(true);
     expect(existsSync(join(r.report!.dir, "report.md"))).toBe(true);
@@ -37,23 +40,58 @@ describe("runAnalysis", () => {
     expect(listAnalyses(out).map((a) => a.dir)).toEqual([r.report!.dir]);
   });
 
-  test("malformed file stops with exit 2 and no analysis", () => {
-    const r = runAnalysis({ file: join(FIX, "ragged.csv"), force: false, noHelix: true, json: false, tui: false, out });
+  test("malformed file stops with exit 2 and no analysis", async () => {
+    const r = await runAnalysis({ file: join(FIX, "ragged.csv"), force: false, noHelix: true, json: false, tui: false, dev: false, out });
     expect(r.code).toBe(2);
     expect(r.report?.form.errors.map((e) => e.code)).toContain("E_RAGGED");
     expect(r.report?.analysis).toBeUndefined();
   });
 
-  test("--force analyzes past form errors", () => {
-    const r = runAnalysis({ file: join(FIX, "ragged.csv"), force: true, noHelix: true, json: false, tui: false, out });
+  test("--force analyzes past form errors", async () => {
+    const r = await runAnalysis({ file: join(FIX, "ragged.csv"), force: true, noHelix: true, json: false, tui: false, dev: false, out });
     expect(r.code).toBe(0);
     expect(r.report?.analysis).toBeDefined();
   });
 
-  test("missing analyzer surfaces an error", () => {
-    const r = runAnalysis({ file: join(FIX, "monthly.csv"), force: false, noHelix: true, json: false, tui: false, out }, { ...process.env, BKT_ANALYZE_PY: join(out, "nope.py") });
+  test("dev override is honored only with --dev", async () => {
+    const env = { ...process.env, BKT_ANALYZE_PY: join(out, "nope.py"), XDG_CACHE_HOME: join(out, "cache") };
+    const base = { file: join(FIX, "monthly.csv"), force: false, noHelix: true, json: false, tui: false, out };
+    const dev = await runAnalysis({ ...base, dev: true }, env);
+    expect(dev.report).toBeNull();
+    expect(dev.stderr).toContain("nope.py");
+    const rel = await runAnalysis({ ...base, noHelix: false, dev: false }, env);
+    expect(rel.report?.form.ok).toBe(true);
+    expect(rel.report?.analysis).toBeDefined();
+    expect(rel.report?.helix?.status).toBe("ok");
+  });
+
+  test("missing python gives an install hint", async () => {
+    const env = { ...process.env, BKT_PYTHON: join(out, "no-python"), XDG_CACHE_HOME: join(out, "cache") };
+    const r = await runAnalysis({ file: join(FIX, "monthly.csv"), force: false, noHelix: true, json: false, tui: false, dev: true, out }, env);
     expect(r.report).toBeNull();
-    expect(r.stderr).toContain("nope.py");
+    expect(r.stderr).toContain("pip install --user numpy");
+  });
+
+  test("cancel stops the run", async () => {
+    const run = startAnalysis({ file: join(FIX, "monthly.csv"), force: false, noHelix: false, json: false, tui: false, dev: false, out }, { ...process.env, XDG_CACHE_HOME: join(out, "cache") });
+    run.cancel();
+    const r = await run.done;
+    expect(r.cancelled).toBe(true);
+    expect(r.code).not.toBe(0);
+  });
+});
+
+describe("embedded python", () => {
+  test("extracts once to a private versioned dir with helix", () => {
+    const src = buildPySource(resolve(import.meta.dir, ".."), resolve(import.meta.dir, "../../.."));
+    const root = join(out, "py");
+    const dir = extractPy(src, root);
+    expect(dir).toBe(join(root, src.version));
+    expect(statSync(dir).mode & 0o777).toBe(0o700);
+    expect(statSync(root).mode & 0o777).toBe(0o700);
+    expect(existsSync(join(dir, "helix/helix/adapters/table.py"))).toBe(true);
+    expect(extractPy(src, root)).toBe(dir);
+    expect(readdirSync(root)).toEqual([src.version]);
   });
 });
 

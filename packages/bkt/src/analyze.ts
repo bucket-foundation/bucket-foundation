@@ -1,6 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
+import pysrc from "../content/pysrc.json" with { type: "json" };
+import type { PySource } from "./pack/pysrc";
+import { checkPython, pyPaths } from "./pyruntime";
 
 export interface Issue {
   code: string;
@@ -28,18 +31,28 @@ export interface AnalyzeOptions {
   out?: string;
   json: boolean;
   tui: boolean;
+  dev: boolean;
+  maxRows?: number;
+}
+
+export interface AnalysisResult {
+  code: number;
+  report: AnalysisReport | null;
+  stderr: string;
+  cancelled: boolean;
+}
+
+export interface RunningAnalysis {
+  done: Promise<AnalysisResult>;
+  cancel: () => void;
 }
 
 export function analysesRoot(env = process.env): string {
   return env.BKT_ANALYSES ?? join(env.XDG_DATA_HOME ?? join(homedir(), ".local/share"), "bucket/analyses");
 }
 
-export function analyzerScript(env = process.env): string {
-  return env.BKT_ANALYZE_PY ?? resolve(import.meta.dir, "../analyze/bkt_analyze.py");
-}
-
 export function parseAnalyzeArgs(argv: string[]): AnalyzeOptions {
-  const o: Partial<AnalyzeOptions> = { force: false, noHelix: false, json: false, tui: false };
+  const o: Partial<AnalyzeOptions> = { force: false, noHelix: false, json: false, tui: false, dev: false };
   for (let i = 0; i < argv.length; i++) {
     const [flag, inline] = argv[i].split("=", 2);
     const value = () => {
@@ -51,6 +64,12 @@ export function parseAnalyzeArgs(argv: string[]): AnalyzeOptions {
     else if (flag === "--no-helix") o.noHelix = true;
     else if (flag === "--json") o.json = true;
     else if (flag === "--tui") o.tui = true;
+    else if (flag === "--dev") o.dev = true;
+    else if (flag === "--max-rows") {
+      const m = Number(value());
+      if (!Number.isInteger(m) || m < 1) throw new Error("--max-rows needs a positive whole number");
+      o.maxRows = m;
+    }
     else if (flag === "--name") o.name = value();
     else if (flag === "--out") o.out = value();
     else if (flag === "--horizon") {
@@ -61,29 +80,61 @@ export function parseAnalyzeArgs(argv: string[]): AnalyzeOptions {
     else if (o.file) throw new Error(`unexpected argument ${flag}`);
     else o.file = flag;
   }
-  if (!o.file) throw new Error("usage: bkt analyze <file> [--force] [--no-helix] [--name N] [--horizon N] [--out DIR] [--json] [--tui]");
+  if (!o.file) throw new Error("usage: bkt analyze <file> [--force] [--no-helix] [--name N] [--horizon N] [--max-rows N] [--out DIR] [--json] [--tui] [--dev]");
   return o as AnalyzeOptions;
 }
 
-export function runAnalysis(o: AnalyzeOptions, env = process.env): { code: number; report: AnalysisReport | null; stderr: string } {
-  const script = analyzerScript(env);
-  if (!existsSync(script)) return { code: 1, report: null, stderr: `analyzer not found at ${script}; set BKT_ANALYZE_PY` };
-  const args = [script, resolve(o.file), "--out", o.out ?? analysesRoot(env)];
+function fail(stderr: string): RunningAnalysis {
+  return { done: Promise.resolve({ code: 1, report: null, stderr, cancelled: false }), cancel: () => {} };
+}
+
+export function startAnalysis(o: AnalyzeOptions, env = process.env, src: PySource = pysrc as PySource): RunningAnalysis {
+  const python = (o.dev && env.BKT_PYTHON) || "python3";
+  const missing = checkPython(python);
+  if (missing) return fail(missing);
+  let paths;
+  try {
+    paths = pyPaths(src, o.dev, env);
+  } catch (e) {
+    return fail(`could not unpack the analyzer: ${e instanceof Error ? e.message : String(e)}`);
+  }
+  if (!existsSync(paths.script)) return fail(`analyzer not found at ${paths.script}`);
+  const args = [paths.script, resolve(o.file), "--out", o.out ?? analysesRoot(env)];
   if (o.force) args.push("--force");
   if (o.noHelix) args.push("--no-helix");
   if (o.name) args.push("--name", o.name);
   if (o.horizon !== undefined) args.push("--horizon", String(o.horizon));
-  const p = Bun.spawnSync([env.BKT_PYTHON ?? "python3", ...args], { env, stdout: "pipe", stderr: "pipe" });
-  const stdout = p.stdout.toString().trim();
-  const stderr = p.stderr.toString();
-  const last = stdout.split("\n").pop() ?? "";
-  let report: AnalysisReport | null = null;
-  try {
-    report = last ? (JSON.parse(last) as AnalysisReport) : null;
-  } catch {
-    report = null;
+  if (o.maxRows !== undefined) args.push("--max-rows", String(o.maxRows));
+  const childEnv: Record<string, string | undefined> = { ...env };
+  if (paths.helixDir) {
+    childEnv.BKT_HELIX_DIR = paths.helixDir;
+    childEnv.BKT_PRIME_DIR = paths.helixDir;
   }
-  return { code: p.exitCode ?? 1, report, stderr };
+  const proc = Bun.spawn([python, ...args], { env: childEnv, stdout: "pipe", stderr: "pipe" });
+  let cancelled = false;
+  const done = (async () => {
+    const [stdout, stderr] = await Promise.all([new Response(proc.stdout).text(), new Response(proc.stderr).text()]);
+    const code = await proc.exited;
+    const last = stdout.trim().split("\n").pop() ?? "";
+    let report: AnalysisReport | null = null;
+    try {
+      report = last ? (JSON.parse(last) as AnalysisReport) : null;
+    } catch {
+      report = null;
+    }
+    return { code, report, stderr, cancelled };
+  })();
+  return {
+    done,
+    cancel: () => {
+      cancelled = true;
+      proc.kill("SIGTERM");
+    },
+  };
+}
+
+export function runAnalysis(o: AnalyzeOptions, env = process.env): Promise<AnalysisResult> {
+  return startAnalysis(o, env).done;
 }
 
 export function formLines(r: AnalysisReport): string[] {

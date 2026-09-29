@@ -3,16 +3,20 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
-import io
 import json
 import math
 import os
 import re
+import signal
 import subprocess
 import sys
 from pathlib import Path
 
-import numpy as np
+try:
+    import numpy as np
+except ImportError:
+    print("bkt analyze needs numpy: python3 -m pip install --user numpy", file=sys.stderr)
+    sys.exit(3)
 
 SCHEMA = "bucket.analysis/1"
 REPO = Path(__file__).resolve().parents[3]
@@ -28,6 +32,10 @@ UNIT_SUFFIX = {
 UNIT_BRACKET = re.compile(r"^(.*?)\s*[\(\[]\s*([^\)\]]+?)\s*[\)\]]\s*$")
 DATE_FORMATS = ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m", "%Y/%m/%d", "%m/%d/%Y", "%d.%m.%Y")
 TYPE_SHARE = 0.95
+MAX_ROWS = 1_000_000
+MAX_JSON_BYTES = 256 << 20
+LISTWISE_WARN = 0.2
+REGULAR_TOL = 0.1
 
 
 class FormError(Exception):
@@ -51,19 +59,32 @@ def sniff_format(path: Path, head: bytes) -> str:
     return "tsv" if first.count("\t") > first.count(",") else "csv"
 
 
-def read_delimited(text: str, delim: str, errors: list) -> tuple[list[str], list[list]]:
-    rows = list(csv.reader(io.StringIO(text), delimiter=delim))
-    rows = [r for r in rows if any(c.strip() for c in r)]
-    if not rows:
+def read_delimited(path: Path, delim: str, errors: list, max_rows: int) -> tuple[list[str], list[list], bool]:
+    header: list[str] | None = None
+    body: list[list] = []
+    truncated = False
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as fh:
+            for i, r in enumerate(csv.reader(fh, delimiter=delim), start=1):
+                if not any(c.strip() for c in r):
+                    continue
+                if header is None:
+                    header = [h.strip() for h in r]
+                    continue
+                if len(body) >= max_rows:
+                    truncated = True
+                    break
+                if len(r) != len(header):
+                    errors.append({"code": "E_RAGGED", "where": f"record {i}", "message": f"{len(r)} fields, header has {len(header)}"})
+                    r = (r + [""] * len(header))[: len(header)]
+                body.append(r)
+    except UnicodeDecodeError as exc:
+        raise FormError(f"not UTF-8: {exc}") from exc
+    except csv.Error as exc:
+        raise FormError(f"CSV parse failed: {exc}") from exc
+    if header is None:
         raise FormError("empty file")
-    header = [h.strip() for h in rows[0]]
-    body = []
-    for i, r in enumerate(rows[1:], start=2):
-        if len(r) != len(header):
-            errors.append({"code": "E_RAGGED", "where": f"line {i}", "message": f"{len(r)} fields, header has {len(header)}"})
-            r = (r + [""] * len(header))[: len(header)]
-        body.append(r)
-    return header, body
+    return header, body, truncated
 
 
 def records_to_table(recs: list, errors: list) -> tuple[list[str], list[list]]:
@@ -83,33 +104,41 @@ def records_to_table(recs: list, errors: list) -> tuple[list[str], list[list]]:
     return header, [[r.get(h) for h in header] for r in recs]
 
 
-def read_table(path: Path) -> tuple[str, list[str], list[list], list]:
+def read_table(path: Path, max_rows: int = MAX_ROWS) -> tuple[str, list[str], list[list], list, bool]:
     errors: list = []
     if not path.is_file():
         raise FormError(f"{path} is not a file")
-    raw = path.read_bytes()
-    if not raw.strip():
+    with path.open("rb") as fh:
+        head = fh.read(4096)
+    if not head.strip():
         raise FormError("empty file")
-    fmt = sniff_format(path, raw[:4096])
+    fmt = sniff_format(path, head)
     if fmt == "parquet":
         try:
             import pyarrow.parquet as pq
         except ImportError as exc:
-            raise FormError("parquet needs pyarrow") from exc
+            raise FormError("parquet needs pyarrow: python3 -m pip install --user pyarrow") from exc
         try:
-            tbl = pq.read_table(path)
+            pf = pq.ParquetFile(path)
+            cols = pf.schema_arrow.names
+            body: list[list] = []
+            for batch in pf.iter_batches(batch_size=65536):
+                data = batch.to_pydict()
+                body.extend([data[c][i] for c in cols] for i in range(batch.num_rows))
+                if len(body) > max_rows:
+                    break
         except Exception as exc:
             raise FormError(f"parquet read failed: {exc}") from exc
-        cols = tbl.column_names
-        data = tbl.to_pydict()
-        return fmt, cols, [[data[c][i] for c in cols] for i in range(tbl.num_rows)], errors
+        return fmt, cols, body[:max_rows], errors, len(body) > max_rows
+    if fmt in ("csv", "tsv"):
+        header, body, truncated = read_delimited(path, "\t" if fmt == "tsv" else ",", errors, max_rows)
+        return fmt, header, body, errors, truncated
+    if path.stat().st_size > MAX_JSON_BYTES:
+        raise FormError(f"JSON over {MAX_JSON_BYTES >> 20} MB; convert to CSV or Parquet")
     try:
-        text = raw.decode("utf-8-sig")
+        text = path.read_text(encoding="utf-8-sig")
     except UnicodeDecodeError as exc:
         raise FormError(f"not UTF-8: {exc}") from exc
-    if fmt in ("csv", "tsv"):
-        header, body = read_delimited(text, "\t" if fmt == "tsv" else ",", errors)
-        return fmt, header, body, errors
     try:
         if fmt == "jsonl":
             doc = [json.loads(line) for line in text.splitlines() if line.strip()]
@@ -130,8 +159,9 @@ def read_table(path: Path) -> tuple[str, list[str], list[list], list]:
             raise FormError("JSON object needs a rows or data list, or equal-length column lists")
     if not isinstance(doc, list):
         raise FormError("JSON must be a list of records")
-    header, body = records_to_table(doc, errors)
-    return fmt, header, body, errors
+    truncated = len(doc) > max_rows
+    header, body = records_to_table(doc[:max_rows], errors)
+    return fmt, header, body, errors, truncated
 
 
 def is_missing(v) -> bool:
@@ -148,6 +178,8 @@ def parse_number(v):
     if isinstance(v, (int, float)):
         return float(v)
     if isinstance(v, str):
+        if "_" in v:
+            return None
         s = v.strip().replace(",", "") if re.fullmatch(r"-?\d{1,3}(,\d{3})+(\.\d+)?", v.strip()) else v.strip()
         s = s.rstrip("%")
         try:
@@ -242,10 +274,10 @@ def time_values(col: list, kind: str) -> list:
     return [parse_number(v) for v in col]
 
 
-def verify(path: Path) -> tuple[dict, dict]:
+def verify(path: Path, max_rows: int = MAX_ROWS) -> tuple[dict, dict]:
     report = {"file": str(path), "format": None, "rows": 0, "columns": [], "errors": [], "warnings": []}
     try:
-        fmt, header, body, errors = read_table(path)
+        fmt, header, body, errors, truncated = read_table(path, max_rows)
     except FormError as exc:
         report["errors"].append({"code": "E_READ", "where": str(path), "message": str(exc)})
         report["ok"] = False
@@ -253,6 +285,9 @@ def verify(path: Path) -> tuple[dict, dict]:
     report["format"] = fmt
     report["rows"] = len(body)
     report["errors"].extend(errors)
+    report["truncated"] = truncated
+    if truncated:
+        report["warnings"].append({"code": "W_TRUNCATED", "where": "body", "message": f"read the first {max_rows} rows; raise --max-rows to read more"})
     header = [str(h) for h in header]
     blank = [i for i, h in enumerate(header) if not h.strip()]
     if blank:
@@ -335,13 +370,9 @@ def spark(counts) -> str:
 
 
 def rank(x: np.ndarray) -> np.ndarray:
-    order = x.argsort(kind="stable")
-    r = np.empty(len(x))
-    r[order] = np.arange(len(x))
-    for v in np.unique(x):
-        m = x == v
-        r[m] = r[m].mean()
-    return r
+    _, inv, counts = np.unique(x, return_inverse=True, return_counts=True)
+    ends = np.cumsum(counts)
+    return (ends - (counts + 1) / 2)[inv]
 
 
 def corr(m: np.ndarray) -> np.ndarray:
@@ -400,6 +431,30 @@ def acf(x: np.ndarray, max_lag: int) -> list[float]:
     return [float((x[:-k] * x[k:]).sum() / denom) for k in range(1, max_lag + 1)]
 
 
+def regular_spacing(t: np.ndarray) -> bool:
+    d = np.diff(t)
+    if len(d) == 0:
+        return False
+    med = float(np.median(d))
+    return med > 0 and bool((np.abs(d - med) <= REGULAR_TOL * med).all())
+
+
+def find_season(res: np.ndarray, regular: bool) -> tuple[dict | None, list[float], float]:
+    n = len(res)
+    bound = 2 / math.sqrt(n) if n else float("inf")
+    max_lag = n // 2
+    ac = acf(res, max_lag) if n > 3 and max_lag >= 1 else []
+    if not regular or max_lag < 2:
+        return None, ac, bound
+    peaks = [lag for lag in range(2, max_lag + 1) if ac[lag - 1] >= ac[lag - 2] and (lag == max_lag or ac[lag - 1] >= ac[lag])]
+    if not peaks:
+        return None, ac, bound
+    lag = max(peaks, key=lambda k: ac[k - 1])
+    if ac[lag - 1] <= bound or 2 * lag > n:
+        return None, ac, bound
+    return {"lag": lag, "acf": ac[lag - 1], "cycles": n / lag}, ac, bound
+
+
 def trend_season(t: np.ndarray, y: np.ndarray) -> dict:
     a = np.vstack([t, np.ones_like(t)]).T
     coef, *_ = np.linalg.lstsq(a, y, rcond=None)
@@ -408,18 +463,12 @@ def trend_season(t: np.ndarray, y: np.ndarray) -> dict:
     ss_tot = float(((y - y.mean()) ** 2).sum())
     r2 = 1 - float((res**2).sum()) / ss_tot if ss_tot > 0 else 0.0
     dw = float((np.diff(res) ** 2).sum() / (res**2).sum()) if (res**2).sum() > 0 else float("nan")
-    max_lag = max(1, len(y) // 2)
-    ac = acf(res, max_lag) if len(y) > 3 else []
-    season = None
-    for lag in range(2, len(ac) + 1):
-        v = ac[lag - 1]
-        if v > 0.3 and (lag == len(ac) or v >= ac[lag]) and v >= ac[lag - 2]:
-            season = {"lag": lag, "acf": v}
-            break
+    regular = regular_spacing(t)
+    season, ac, bound = find_season(res, regular)
     rsd = float(res.std(ddof=1)) if len(res) > 1 else 0.0
     worst = np.argsort(-np.abs(res))[:5]
     return {"slope": float(coef[0]), "intercept": float(coef[1]), "r2": r2, "direction": "up" if coef[0] > 0 else "down" if coef[0] < 0 else "flat",
-            "season": season, "acf": [round(v, 4) for v in ac[:24]],
+            "regular": regular, "acf_bound": bound, "season": season, "acf": [round(v, 4) for v in ac[:24]],
             "residuals": {"sd": rsd, "durbin_watson": dw, "largest": [{"row": int(i), "t": float(t[i]), "residual": float(res[i])} for i in worst]}}
 
 
@@ -442,7 +491,7 @@ def numeric_array(col: list) -> np.ndarray:
 def analyze(form: dict, values: dict) -> dict:
     names = form["numeric"]
     cols = {n: numeric_array(values[n]) for n in names}
-    out: dict = {"summary": {}, "distributions": {}, "outliers": {}}
+    out: dict = {"summary": {}, "distributions": {}, "outliers": {}, "warnings": []}
     for n, x in cols.items():
         v = x[~np.isnan(x)]
         if len(v) == 0:
@@ -454,6 +503,9 @@ def analyze(form: dict, values: dict) -> dict:
     if len(usable) >= 2:
         m = np.column_stack([cols[n] for n in usable])
         complete = m[~np.isnan(m).any(axis=1)]
+        most = max(out["summary"][n]["n"] for n in usable)
+        if most and 1 - len(complete) / most > LISTWISE_WARN:
+            out["warnings"].append({"code": "W_LISTWISE", "where": "correlations", "message": f"complete rows {len(complete)} of {most}; listwise deletion dropped {1 - len(complete) / most:.0%}"})
         pear = corr(complete)
         spear = corr(np.column_stack([rank(complete[:, j]) for j in range(complete.shape[1])])) if len(complete) else pear
         pairs = []
@@ -524,6 +576,22 @@ def helix_doc(form: dict, values: dict, name: str, retrieved: str) -> tuple[dict
             "rows": rows}, ""
 
 
+CHILD: subprocess.Popen | None = None
+HELIX_TIMEOUT = 300
+
+
+def has_module(name: str) -> bool:
+    import importlib.util
+
+    return importlib.util.find_spec(name) is not None
+
+
+def on_term(signum, frame):
+    if CHILD is not None and CHILD.poll() is None:
+        CHILD.kill()
+    sys.exit(130)
+
+
 def run_helix(form: dict, values: dict, name: str, out: Path, retrieved: str, horizon: int) -> dict:
     doc, why = helix_doc(form, values, name, retrieved)
     if doc is None:
@@ -534,11 +602,19 @@ def run_helix(form: dict, values: dict, name: str, out: Path, retrieved: str, ho
     hdir.mkdir(parents=True, exist_ok=True)
     inp = hdir / "input.table.json"
     inp.write_text(json.dumps(doc, indent=2))
+    if not has_module("matplotlib"):
+        return {"status": "skipped", "reason": "helix needs matplotlib: python3 -m pip install --user matplotlib"}
     cmd = [sys.executable, "-m", "helix", "run", str(inp), "--adapter", "table", "--horizon", str(horizon), "--out", str(hdir / "runs")]
+    global CHILD
+    CHILD = subprocess.Popen(cmd, cwd=HELIX_DIR, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     try:
-        p = subprocess.run(cmd, cwd=HELIX_DIR, capture_output=True, text=True, timeout=300)
+        stdout, stderr = CHILD.communicate(timeout=HELIX_TIMEOUT)
     except subprocess.TimeoutExpired:
-        return {"status": "failed", "reason": "helix timed out after 300s", "command": cmd}
+        CHILD.kill()
+        CHILD.communicate()
+        return {"status": "failed", "reason": f"helix timed out after {HELIX_TIMEOUT}s", "command": cmd}
+    p = subprocess.CompletedProcess(cmd, CHILD.returncode, stdout, stderr)
+    CHILD = None
     (hdir / "stdout.txt").write_text(p.stdout)
     (hdir / "stderr.txt").write_text(p.stderr)
     res = {"status": "ok" if p.returncode == 0 else "failed", "exit": p.returncode, "command": cmd, "primes": doc["primes"],
@@ -579,7 +655,7 @@ def markdown(rep: dict) -> str:
     L += [f"| {n} | {s['n']} | {fmt(s['mean'])} | {fmt(s['sd'])} | {fmt(s['min'])} | {fmt(s['median'])} | {fmt(s['max'])} | {fmt(s['skew'])} |" for n, s in a["summary"].items()]
     L += ["", "## Distributions", ""] + [f"- `{n}` {d['spark']} [{fmt(d['edges'][0])}, {fmt(d['edges'][-1])}]" for n, d in a["distributions"].items()]
     c = a["correlations"]
-    L += ["", "## Correlations", ""]
+    L += ["", "## Correlations", ""] + [f"- `{w['code']}` {w['message']}" for w in a.get("warnings", [])]
     L += [c["skipped"]] if "skipped" in c else [f"- {p['a']} x {p['b']}: pearson {fmt(p['pearson'])}, spearman {fmt(p['spearman'])}" for p in c["top_pairs"]]
     p = a["pca"]
     L += ["", "## Prime Directions", ""]
@@ -593,7 +669,7 @@ def markdown(rep: dict) -> str:
     if "skipped" in t:
         L.append(t["skipped"])
     else:
-        L += [f"- `{n}`: slope {fmt(v['slope'])} per time unit, r2 {fmt(v['r2'])}, season {('lag ' + str(v['season']['lag'])) if v['season'] else 'none'}" for n, v in t.items()]
+        L += [f"- `{n}`: slope {fmt(v['slope'])} per time unit, r2 {fmt(v['r2'])}, season {('lag ' + str(v['season']['lag']) + ', acf ' + fmt(v['season']['acf'])) if v['season'] else 'none'}{'' if v['regular'] else ', index irregular'}" for n, v in t.items()]
     L += ["", "## Outliers", ""] + [f"- `{n}`: {o['iqr_count']} outside IQR fences, {o['z3_count']} beyond 3 sd" for n, o in a["outliers"].items()]
     L += ["", "## Residuals", ""]
     if "skipped" not in t:
@@ -642,18 +718,24 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-helix", action="store_true")
     ap.add_argument("--horizon", type=int, default=3)
     ap.add_argument("--name")
+    ap.add_argument("--max-rows", type=int, default=MAX_ROWS)
     ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--date", default=dt.date.today().isoformat())
     args = ap.parse_args(argv)
     name = args.name or args.file.stem
-    form, values = verify(args.file)
+    form, values = verify(args.file, max(1, args.max_rows))
     rep = {"schema": SCHEMA, "name": name, "created": dt.datetime.now().isoformat(timespec="seconds"), "forced": args.force, "form": form}
     if args.verify_only:
         print(json.dumps(rep))
         return 0 if form["ok"] else 2
     hard_stop = not form["ok"] and (not args.force or not values or not form["numeric"])
-    out = unique_dir(args.out or default_root(), name, args.date)
-    out.mkdir(parents=True)
+    signal.signal(signal.SIGTERM, on_term)
+    root = args.out or default_root()
+    root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    os.chmod(root, 0o700)
+    out = unique_dir(root, name, args.date)
+    out.mkdir(mode=0o700)
+    os.chmod(out, 0o700)
     if not hard_stop:
         rep["analysis"] = analyze(form, values)
         rep["helix"] = {"status": "skipped", "reason": "--no-helix"} if args.no_helix else run_helix(form, values, name, out, args.date, args.horizon)

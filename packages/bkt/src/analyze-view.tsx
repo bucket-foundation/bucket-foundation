@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Text, useApp, useInput, useStdout } from "ink";
-import { listAnalyses, loadSections, type SavedAnalysis, type Section } from "./analyze";
+import { formLines, listAnalyses, loadSections, type AnalysisResult, type RunningAnalysis, type SavedAnalysis, type Section } from "./analyze";
 
 export interface BrowserState {
   mode: "list" | "sections" | "read";
@@ -102,6 +102,60 @@ export function AnalysisBrowser({ root, openDir }: { root?: string; openDir?: st
         </Text>
       ))}
       <Text dimColor>j/k scroll, space page, n/p section, h back</Text>
+    </Box>
+  );
+}
+
+const FRAMES = ["|", "/", "-", "\\"];
+
+export function AnalyzeRun({ run, file, onResult }: { run: RunningAnalysis; file: string; onResult: (r: AnalysisResult) => void }) {
+  const { exit } = useApp();
+  const [result, setResult] = useState<AnalysisResult | null>(null);
+  const [tick, setTick] = useState(0);
+  const [started] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setTick((n) => n + 1), 120);
+    run.done.then((r) => {
+      clearInterval(t);
+      onResult(r);
+      setResult(r);
+      if (r.cancelled) exit();
+    });
+    return () => clearInterval(t);
+  }, [run]);
+  useInput((input, key) => {
+    if (!result) {
+      if (input === "q" || key.escape || (key.ctrl && input === "c")) run.cancel();
+      return;
+    }
+    if (!result.report && (input === "q" || key.escape || key.return)) exit();
+  });
+  if (!result) {
+    return (
+      <Box flexDirection="column">
+        <Text>
+          <Text color="cyan">{FRAMES[tick % FRAMES.length]}</Text> analyzing {file}, {Math.floor((Date.now() - started) / 1000)}s
+        </Text>
+        <Text dimColor>q or esc cancels</Text>
+      </Box>
+    );
+  }
+  if (result.report) {
+    return (
+      <Box flexDirection="column">
+        {formLines(result.report).slice(0, 1).map((l) => (
+          <Text key={l} color={result.report!.form.ok ? "green" : "red"}>
+            {l}
+          </Text>
+        ))}
+        <AnalysisBrowser openDir={result.report.dir} />
+      </Box>
+    );
+  }
+  return (
+    <Box flexDirection="column">
+      <Text color="red">{result.stderr.trim() || "analyzer produced no report"}</Text>
+      <Text dimColor>q to quit</Text>
     </Box>
   );
 }

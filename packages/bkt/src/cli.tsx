@@ -4,14 +4,17 @@ import { render } from "ink";
 import pack from "../content/pack.json" with { type: "json" };
 import { join } from "node:path";
 import { App } from "./app";
-import { formLines, parseAnalyzeArgs, runAnalysis } from "./analyze";
-import { AnalysisBrowser } from "./analyze-view";
+import { formLines, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "./analyze";
+import { AnalysisBrowser, AnalyzeRun } from "./analyze-view";
 import type { Pack } from "./pack/export";
 import { dataDir, ensureDataDir, openSession, parseArgs, pickKeyring } from "./setup";
 
-async function analyzeCmd(argv: string[]): Promise<number> {
-  const o = parseAnalyzeArgs(argv);
-  const { code, report, stderr } = runAnalysis(o);
+function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
+  const { code, report, stderr, cancelled } = r;
+  if (cancelled) {
+    console.error("cancelled");
+    return 130;
+  }
   if (!report) {
     console.error(stderr.trim() || "analyzer produced no report");
     return code || 1;
@@ -23,8 +26,25 @@ async function analyzeCmd(argv: string[]): Promise<number> {
     else console.log(`helix: ${report.helix?.status}${report.helix?.reason ? `, ${report.helix.reason}` : ""}${report.helix?.run_dir ? ` ${report.helix.run_dir}` : ""}`);
     console.log(`report: ${join(report.dir, "report.md")}`);
   }
-  if (o.tui) await render(<AnalysisBrowser openDir={report.dir} />).waitUntilExit();
   return code;
+}
+
+async function analyzeCmd(argv: string[]): Promise<number> {
+  const o = parseAnalyzeArgs(argv);
+  const run = startAnalysis(o);
+  if (o.tui) {
+    let result: AnalysisResult | null = null;
+    await render(<AnalyzeRun run={run} file={o.file} onResult={(r) => (result = r)} />, { exitOnCtrlC: false }).waitUntilExit();
+    const r = result ?? (await run.done);
+    return r.cancelled ? 130 : r.report ? r.code : r.code || 1;
+  }
+  const onInt = () => run.cancel();
+  process.on("SIGINT", onInt);
+  try {
+    return printResult(o, await run.done);
+  } finally {
+    process.off("SIGINT", onInt);
+  }
 }
 
 async function main(argv: string[]) {
