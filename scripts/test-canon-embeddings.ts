@@ -15,7 +15,7 @@ function check(name: string, cond: boolean, detail = "") {
 
 const TOP_KEYS = [
   "bin", "dim", "dtype", "generatedAt", "inputSha256", "items", "model", "n", "normalized",
-  "rank_version", "revision", "schema", "sources",
+  "rankSourceSha256", "rank_version", "revision", "schema", "sources",
 ];
 const ITEM_KEYS = ["branch", "id", "kind", "rank", "theta", "title", "year"];
 

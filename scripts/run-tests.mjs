@@ -31,6 +31,10 @@ const SUITES = {
       "scripts/test-beads-export.mjs",
       "scripts/test-release-signing.mjs",
     ],
+    commands: [
+      ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
+      ["python3", "scripts/canon-explorer/embed.py", "--check"],
+    ],
   },
   db: {
     files: ["scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],

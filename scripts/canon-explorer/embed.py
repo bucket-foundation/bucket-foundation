@@ -1,6 +1,7 @@
 import argparse
 import datetime
 import hashlib
+import inspect
 import json
 import pathlib
 
@@ -71,6 +72,15 @@ def rank_order(vecs):
     return order
 
 
+def rank_source_sha():
+    return hashlib.sha256(inspect.getsource(rank_order).encode()).hexdigest()
+
+
+def load_vectors(manifest):
+    blob = (OUT_BIN.parent / manifest["bin"]).read_bytes()
+    return np.frombuffer(blob, dtype="<f4").reshape(manifest["n"], manifest["dim"])
+
+
 def input_sha(items):
     return hashlib.sha256("\n".join(f"{i['id']}\t{i['text']}" for i in items).encode()).hexdigest()
 
@@ -85,6 +95,10 @@ def main():
     if args.check:
         if not prev or prev["inputSha256"] != digest or prev["n"] != len(items):
             raise SystemExit("canon-embeddings is stale: run python3 scripts/canon-explorer/embed.py")
+        if prev.get("rankSourceSha256") != rank_source_sha() and prev.get("rank_version") == RANK_VERSION:
+            raise SystemExit("rank_order changed: bump RANK_VERSION and regenerate")
+        if prev.get("rank_version") != RANK_VERSION or prev.get("rankSourceSha256") != rank_source_sha():
+            raise SystemExit("rank_version is stale: regenerate")
         print(f"canon-embeddings up to date, n={prev['n']}")
         return
 
@@ -109,6 +123,7 @@ def main():
         "dtype": "float32-le",
         "normalized": True,
         "rank_version": RANK_VERSION,
+        "rankSourceSha256": rank_source_sha(),
         "generatedAt": generated_at,
         "inputSha256": digest,
         "bin": "canon-embeddings.bin",
