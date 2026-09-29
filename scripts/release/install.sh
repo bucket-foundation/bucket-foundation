@@ -10,12 +10,13 @@ fail() { echo "install.sh: $*" >&2; exit 1; }
 [ $# -eq 1 ] || usage
 
 source=$1
+base=${source%%\?*}
+query=${source#"$base"}
 prefix=${BUCKET_PREFIX:-$HOME/.local}
-pubkey=${BUCKET_RELEASE_PUBKEY:-$RELEASE_PUBKEY}
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 
-name=$(basename "${source%%\?*}")
+name=$(basename "$base")
 case "$name" in
   ""|.|..|*/*) fail "cannot name the artifact from $source" ;;
 esac
@@ -29,18 +30,35 @@ fetch() {
 }
 
 fetch "$source" "$work/$name" || fail "download failed: $source"
-fetch "$source.sha256" "$work/$name.sha256" || fail "no checksum at $source.sha256"
-fetch "$source.sig" "$work/$name.sig" || fail "no signature at $source.sig"
+fetch "$base.manifest$query" "$work/$name.manifest" || fail "no manifest at $base.manifest"
+fetch "$base.manifest.sig$query" "$work/$name.manifest.sig" || fail "no signature at $base.manifest.sig"
 
-expected=$(awk 'NR==1{print $1}' "$work/$name.sha256")
-actual=$(sha256sum -- "$work/$name" | awk '{print $1}')
-[ -n "$expected" ] && [ "$expected" = "$actual" ] || fail "checksum mismatch for $name"
-
-printf '%s namespaces="%s" %s\n' "$SIGNER" "$NAMESPACE" "$pubkey" > "$work/allowed_signers"
-ssh-keygen -q -Y verify -f "$work/allowed_signers" -I "$SIGNER" -n "$NAMESPACE" -s "$work/$name.sig" < "$work/$name" > /dev/null \
+printf '%s namespaces="%s" %s\n' "$SIGNER" "$NAMESPACE" "$RELEASE_PUBKEY" > "$work/allowed_signers"
+ssh-keygen -q -Y verify -f "$work/allowed_signers" -I "$SIGNER" -n "$NAMESPACE" -s "$work/$name.manifest.sig" < "$work/$name.manifest" > /dev/null \
   || fail "signature check failed for $name"
 
-mkdir -p "$prefix/bin"
+field() { awk -F= -v k="$1" '$1==k{print substr($0, length(k)+2); exit}' "$work/$name.manifest"; }
+m_name=$(field name)
+m_version=$(field version)
+m_sum=$(field sha256)
+m_expires=$(field expires)
+
+[ "$m_name" = "$name" ] || fail "manifest names $m_name, downloaded $name"
+[[ "$m_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "manifest version is malformed"
+[[ "$m_expires" =~ ^[0-9]+$ ]] || fail "manifest expiry is malformed"
+[ "$m_expires" -gt "$(date +%s)" ] || fail "manifest expired; get a fresh release"
+actual=$(sha256sum -- "$work/$name" | awk '{print $1}')
+[ -n "$m_sum" ] && [ "$m_sum" = "$actual" ] || fail "checksum mismatch for $name"
+
+state="$prefix/share/bucket/version"
+if [ -f "$state" ]; then
+  current=$(cat "$state")
+  if [ "$current" != "$m_version" ] && [ "$(printf '%s\n%s\n' "$current" "$m_version" | sort -V | tail -n1)" = "$current" ]; then
+    fail "refusing downgrade from $current to $m_version"
+  fi
+fi
+
+mkdir -p "$prefix/bin" "$prefix/share/bucket"
 case "$name" in
   *.tar.gz|*.tgz)
     dest="$prefix/lib/bucket"
@@ -49,10 +67,12 @@ case "$name" in
     [ -x "$dest.new/bin/bkt" ] || fail "archive has no bin/bkt"
     rm -rf "$dest" && mv "$dest.new" "$dest"
     ln -sfn "$dest/bin/bkt" "$prefix/bin/bkt"
-    echo "installed $prefix/bin/bkt"
+    target="$prefix/bin/bkt"
     ;;
   *)
     install -m 0755 "$work/$name" "$prefix/bin/bucket"
-    echo "installed $prefix/bin/bucket"
+    target="$prefix/bin/bucket"
     ;;
 esac
+printf '%s\n' "$m_version" > "$state"
+echo "installed $target $m_version"
