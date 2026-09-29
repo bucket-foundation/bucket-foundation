@@ -40,6 +40,8 @@ export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "bucket", table: "academy_credentials", learnerColumn: "user_id", label: "academy_credentials" },
   { schema: "bucket", table: "learn_events", learnerColumn: "user_id", label: "learn_events" },
   { schema: "graph", table: "event_usage", learnerColumn: "subject", label: "event_usage" },
+  { schema: "graph", table: "work_quiz_attempts", learnerColumn: "learner_id", label: "work_quiz_attempts" },
+  { schema: "graph", table: "work_quiz_cards", learnerColumn: "learner_id", label: "work_quiz_cards" },
 ];
 
 export function hashLearnerId(learnerId: string): string {
