@@ -8,7 +8,9 @@ import {
   capBranchBalanced,
   circleProjection,
   globeProjection,
+  markerScales,
   ringRadius,
+  UNRANKED_RING,
   type ProjectionItem,
   type ThetaSort,
 } from "../src/components/canon-globe/projections";
@@ -78,6 +80,22 @@ const p0 = circleProjection.position({ id: "a", lat: 0, lng: 0, branch: "mathema
 check("circle: theta 0 sits at 12 o'clock", Math.abs(p0[0]) < 1e-9 && p0[1] > 0);
 const g = globeProjection.position({ id: "np", lat: 90, lng: 0, branch: "physics" }, circleCtx);
 check("globe: north pole on +y", Math.abs(g[1] - RADIUS) < 1e-9);
+
+const front = markerScales({ lifted: false, lodScale: 1, facing: 0.8, globeWeight: 1 });
+const back = markerScales({ lifted: false, lodScale: 1, facing: -0.5, globeWeight: 1 });
+const backLifted = markerScales({ lifted: true, lodScale: 1, facing: 0.05, globeWeight: 1 });
+const inCircle = markerScales({ lifted: false, lodScale: 1, facing: -0.5, globeWeight: 0 });
+check("globe: front marker is hittable", front.hit > 0);
+check("globe: far-side marker has zero hit scale", back.hit === 0 && backLifted.hit === 0);
+check("globe: far-side marker drawn smaller", back.size < front.size && back.size > 0);
+check("circle: facing ignored, every marker hittable", inCircle.hit > 0 && inCircle.size === front.size);
+
+const unrankedIds = universe.filter((u) => !rankTheta.has(u.id)).map((u) => u.id).sort();
+const rIdx = buildThetaIndex(universe, "rank", rankTheta);
+check("rank: unranked items spaced evenly in id order", unrankedIds.every((id, i) => rIdx.get(id) === (2 * Math.PI * i) / unrankedIds.length));
+const outer = circleProjection.position(universe[universe.length - 1], { radius: RADIUS, theta: () => 0, unranked: (id) => !rankTheta.has(id) });
+check("circle: unranked items sit on the outer labeled ring", Math.abs(Math.hypot(...outer) - RADIUS * UNRANKED_RING) < 1e-9);
+check("circle: outer ring lies outside every branch ring", UNRANKED_RING > CIRCLE_OUTER);
 
 const big: ProjectionItem[] = [];
 const branches = ["mathematics", "physics", "chemistry", "mind"];

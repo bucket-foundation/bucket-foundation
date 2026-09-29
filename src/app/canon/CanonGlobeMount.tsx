@@ -333,6 +333,20 @@ function InteractiveCanonGlobeMount({
     [narrow, markers, theta, selected]
   );
 
+  const unrankedMarkerIds = useMemo(() => {
+    if (sort !== "rank") return null;
+    return new Set(shownMarkers.filter((m) => !RANK_THETA.has(embeddingId(m))).map((m) => m.id));
+  }, [sort, shownMarkers]);
+  const isUnranked = useMemo(
+    () => (unrankedMarkerIds ? (id: string) => unrankedMarkerIds.has(id) : undefined),
+    [unrankedMarkerIds]
+  );
+
+  const circleList = useMemo(
+    () => (view === "circle" ? [...shownMarkers].sort((a, b) => theta(a.id) - theta(b.id)) : []),
+    [view, shownMarkers, theta]
+  );
+
   const activeIndex = useMemo(() => {
     if (!selected) return undefined;
     const idx = shownMarkers.findIndex((m) => m.id === selected.id);
@@ -683,6 +697,9 @@ function InteractiveCanonGlobeMount({
               </label>
               {/* voice-ignore-next 1 */}
               <p className="mt-1 max-w-[220px]" aria-live="polite">Angle shows order, not distance. One ring per branch.</p>
+              {unrankedMarkerIds && unrankedMarkerIds.size > 0 && (
+                <p className="mt-1 max-w-[220px]">Outer ring: {unrankedMarkerIds.size} entries without embeddings, placed in id order.</p>
+              )}
             </div>
           )}
         </div>
@@ -719,12 +736,36 @@ function InteractiveCanonGlobeMount({
             activeIndex={activeIndex}
             projection={projection}
             theta={theta}
+            unranked={isUnranked}
             onHoverChange={setHovered}
             onSelectChange={setSelected}
             className="absolute inset-0 z-10"
           />
         </GlobeErrorBoundary>
       </div>
+
+      {view === "circle" && (
+        <details className="w-full mt-2 px-4 md:px-6 text-[11px]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+          <summary className="cursor-pointer uppercase tracking-[0.16em] min-h-[44px] flex items-center">
+            circle as a list · {circleList.length} entries in angle order
+          </summary>
+          <ol className="mt-2 max-h-64 overflow-y-auto space-y-0.5">
+            {circleList.map((m) => (
+              <li key={`${m.kind}-${m.id}`}>
+                <button
+                  type="button"
+                  onClick={() => setSelected(m)}
+                  aria-current={selected?.id === m.id ? "true" : undefined}
+                  className="w-full text-left px-2 py-1 rounded hover:bg-[color:var(--bone-2)] focus:outline focus:outline-1"
+                  style={{ color: "var(--basalt)" }}
+                >
+                  {m.title} <span style={{ color: "var(--parchment-dim)" }}>· {m.branch.replace(/^\d+-/, "")}{typeof m.year === "number" ? ` · ${fmtYear(m.year)}` : ""}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </details>
+      )}
 
       <div className={`w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0 ${home && !expanded ? "md:pr-[464px]" : ""}`}>
         <div

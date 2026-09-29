@@ -4,7 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
-import { globeProjection, type Projection } from "./projections";
+import { globeProjection, markerScales, type Projection } from "./projections";
 
 export type CanonMarkerKind =
   | "canon-entry"
@@ -40,6 +40,7 @@ interface CanonMarkersProps {
   cameraDistance?: number;
   projection?: Projection;
   theta?: (id: string) => number;
+  unranked?: (id: string) => boolean;
   onHoverChange?: (m: CanonMarker | null) => void;
   onSelectChange?: (m: CanonMarker | null) => void;
 }
@@ -173,9 +174,6 @@ function MarkerTooltip({ m, color }: { m: CanonMarker; color: string }) {
   );
 }
 
-const HEAD = 0.024;
-const HEAD_LIFTED = 0.034;
-const HIT_SCALE = 3;
 const MOVE_LAMBDA = 6;
 const EPS = 1e-4;
 
@@ -187,9 +185,11 @@ export function CanonMarkers({
   cameraDistance,
   projection = globeProjection,
   theta,
+  unranked,
   onHoverChange,
   onSelectChange,
 }: CanonMarkersProps) {
+  const boundsDirty = useRef(true);
   const router = useRouter();
   const invalidate = useThree((s) => s.invalidate);
   const [hover, setHover] = useState<number | null>(null);
@@ -210,18 +210,23 @@ export function CanonMarkers({
   }, [cameraDistance]);
 
   const targets = useMemo(() => {
-    const ctx = { radius, theta: theta ?? (() => 0) };
+    const ctx = { radius, theta: theta ?? (() => 0), unranked };
+    boundsDirty.current = true;
     return markers.map((m) => new THREE.Vector3(...projection.position(m, ctx)));
-  }, [markers, projection, radius, theta]);
+  }, [markers, projection, radius, theta, unranked]);
 
   const count = Math.max(1, markers.length);
   const geometry = useMemo(() => new THREE.SphereGeometry(1, 14, 14), []);
+  const hitGeometry = useMemo(() => new THREE.IcosahedronGeometry(1, 0), []);
   const material = useMemo(() => new THREE.MeshBasicMaterial({ toneMapped: false }), []);
   const hitMaterial = useMemo(
     () => new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false }),
     []
   );
-  useEffect(() => () => { geometry.dispose(); material.dispose(); hitMaterial.dispose(); }, [geometry, material, hitMaterial]);
+  useEffect(
+    () => () => { geometry.dispose(); hitGeometry.dispose(); material.dispose(); hitMaterial.dispose(); },
+    [geometry, hitGeometry, material, hitMaterial]
+  );
 
   useEffect(() => {
     const mesh = meshRef.current;
@@ -264,29 +269,33 @@ export function CanonMarkers({
       if (!cur) {
         cur = target.clone();
         current.current.set(id, cur);
+        boundsDirty.current = true;
       } else if (cur.distanceToSquared(target) > EPS * EPS) {
         cur.lerp(target, k);
+        boundsDirty.current = true;
         if (cur.distanceToSquared(target) > EPS * EPS) moving = true;
         else cur.copy(target);
       }
       const lifted = i === hover || i === activeIndex;
-      let size = lifted ? HEAD_LIFTED : HEAD * lodScale;
+      let facing = 1;
       if (globeWeight.current > 0.01) {
         mesh.localToWorld(tmp.w.copy(cur));
-        const facing = tmp.w.normalize().dot(tmp.cam);
-        if (facing < 0.1) size *= 1 - 0.55 * globeWeight.current;
+        facing = tmp.w.normalize().dot(tmp.cam);
       }
+      const { size, hit: hitSize } = markerScales({ lifted, lodScale, facing, globeWeight: globeWeight.current });
       tmp.m.compose(cur, tmp.q, tmp.s.setScalar(size));
       mesh.setMatrixAt(i, tmp.m);
-      tmp.m.compose(cur, tmp.q, tmp.s.setScalar(Math.max(size * HIT_SCALE, 0.04)));
+      tmp.m.compose(cur, tmp.q, tmp.s.setScalar(hitSize));
       hit.setMatrixAt(i, tmp.m);
     }
     mesh.count = markers.length;
     hit.count = markers.length;
     mesh.instanceMatrix.needsUpdate = true;
     hit.instanceMatrix.needsUpdate = true;
-    mesh.computeBoundingSphere();
-    hit.computeBoundingSphere();
+    if (boundsDirty.current) {
+      hit.computeBoundingSphere();
+      boundsDirty.current = false;
+    }
     const place = (g: THREE.Group | null, idx: number | null | undefined, lift: number) => {
       if (!g) return;
       const m = typeof idx === "number" ? markers[idx] : undefined;
@@ -321,7 +330,7 @@ export function CanonMarkers({
       <instancedMesh
         key={`h-${count}`}
         ref={hitRef}
-        args={[geometry, hitMaterial, count]}
+        args={[hitGeometry, hitMaterial, count]}
         frustumCulled={false}
         onPointerMove={(e) => {
           e.stopPropagation();

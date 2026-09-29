@@ -384,6 +384,7 @@ interface CanonGlobeProps {
   variant?: DecorativeVariant;
   projection?: Projection;
   theta?: (id: string) => number;
+  unranked?: (id: string) => boolean;
 }
 
 const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
@@ -399,6 +400,7 @@ export default function CanonGlobe({
   variant,
   projection = globeProjection,
   theta,
+  unranked,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
   const scrollSpin = decorative && !reducedMotion && !variant?.nospin;
@@ -471,6 +473,7 @@ export default function CanonGlobe({
               cameraDistance={cameraDistance}
               projection={projection}
               theta={theta}
+              unranked={unranked}
               onHoverChange={onHoverChange}
               onSelectChange={onSelectChange}
             />

@@ -13,6 +13,7 @@ export type ProjectionItem = {
 export type ProjectionContext = {
   radius: number;
   theta: (id: string) => number;
+  unranked?: (id: string) => boolean;
 };
 
 export interface Projection {
@@ -53,6 +54,21 @@ const TAU = Math.PI * 2;
 
 export const CIRCLE_INNER = 0.35;
 export const CIRCLE_OUTER = 1.25;
+export const UNRANKED_RING = 1.42;
+export const FAR_SIDE_FACING = 0.1;
+
+export function markerScales(opts: {
+  lifted: boolean;
+  lodScale: number;
+  facing: number;
+  globeWeight: number;
+}): { size: number; hit: number } {
+  let size = opts.lifted ? 0.034 : 0.024 * opts.lodScale;
+  const farSide = opts.globeWeight > 0.01 && opts.facing < FAR_SIDE_FACING;
+  if (farSide) size *= 1 - 0.55 * opts.globeWeight;
+  const hit = farSide && opts.globeWeight > 0.5 ? 0 : Math.max(size * 3, 0.04);
+  return { size, hit };
+}
 
 export function ringRadius(branch: string, radius: number): number {
   const t = branchIndex(branch) / (BRANCH_COUNT - 1);
@@ -79,9 +95,9 @@ export const circleProjection: Projection = {
   earthOpacity: 0,
   allowRotate: false,
   camera: [0, 0, 3.4],
-  fitRadius: CIRCLE_OUTER * 1.02,
+  fitRadius: UNRANKED_RING * 1.02,
   position(item, ctx) {
-    const r = ringRadius(item.branch, ctx.radius);
+    const r = ctx.unranked?.(item.id) ? ctx.radius * UNRANKED_RING : ringRadius(item.branch, ctx.radius);
     const a = ctx.theta(item.id) + Math.PI / 2;
     return [r * Math.cos(a), r * Math.sin(a), 0];
   },
@@ -91,15 +107,6 @@ export const PROJECTIONS: Record<ProjectionId, Projection> = {
   globe: globeProjection,
   circle: circleProjection,
 };
-
-function hashUnit(id: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < id.length; i++) {
-    h ^= id.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return (h >>> 0) / 4294967296;
-}
 
 function byId(a: string, b: string): number {
   return a < b ? -1 : a > b ? 1 : 0;
@@ -112,10 +119,12 @@ export function buildThetaIndex(
 ): Map<string, number> {
   const out = new Map<string, number>();
   if (sort === "rank") {
-    for (const it of universe) out.set(it.id, rankTheta.get(it.id) ?? hashUnit(it.id) * TAU);
+    const unranked = universe.filter((it) => !rankTheta.has(it.id)).map((it) => it.id).sort(byId);
+    for (const it of universe) if (rankTheta.has(it.id)) out.set(it.id, rankTheta.get(it.id)!);
+    unranked.forEach((id, i) => out.set(id, (TAU * i) / unranked.length));
     return out;
   }
-  const rankOf = (id: string) => rankTheta.get(id) ?? TAU + hashUnit(id);
+  const rankOf = (id: string) => rankTheta.get(id) ?? Infinity;
   const sorted = [...universe].sort((a, b) => {
     if (sort === "year") {
       const d = (a.year ?? Infinity) - (b.year ?? Infinity);
@@ -125,8 +134,9 @@ export function buildThetaIndex(
     } else {
       const d = branchIndex(a.branch) - branchIndex(b.branch);
       if (d !== 0) return d;
-      const r = rankOf(a.id) - rankOf(b.id);
-      if (r !== 0) return r;
+      const ra = rankOf(a.id);
+      const rb = rankOf(b.id);
+      if (ra !== rb) return ra < rb ? -1 : 1;
     }
     return byId(a.id, b.id);
   });
