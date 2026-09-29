@@ -27,5 +27,11 @@
       "claude/*": false,
       "agent/*": false
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/download-retention",
+      "schedule": "17 4 * * *"
+    }
+  ]
 }
