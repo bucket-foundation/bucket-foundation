@@ -10,7 +10,7 @@ import numpy as np
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 MODEL_ID = "BAAI/bge-small-en-v1.5"
 MODEL_REVISION = "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
-RANK_VERSION = "nn-chain-pc1/v1"
+RANK_VERSION = "nn-chain-pc1/v2"
 SCHEMA = "bucket.canon-embeddings/v1"
 OUT_JSON = ROOT / "src/data/canon-embeddings.json"
 OUT_BIN = ROOT / "src/data/canon-embeddings.bin"
@@ -73,7 +73,8 @@ def rank_order(vecs):
 
 
 def rank_source_sha():
-    return hashlib.sha256(inspect.getsource(rank_order).encode()).hexdigest()
+    src = "".join(inspect.getsource(f) for f in (rank_order, load_vectors))
+    return hashlib.sha256(src.encode()).hexdigest()
 
 
 def load_vectors(manifest):

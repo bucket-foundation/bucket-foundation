@@ -24,6 +24,7 @@ const SUITES = {
       "scripts/test-llm-daily-limit.ts",
       "scripts/test-canon-allbranch-index.ts",
       "scripts/test-canon-embeddings.ts",
+      "scripts/test-canon-explorer-{projections,url}.ts",
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
