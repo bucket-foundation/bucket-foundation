@@ -1,0 +1,356 @@
+import csv
+import json
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+from networkx.algorithms import community
+from sentence_transformers import SentenceTransformer
+
+HERE = Path(__file__).parent
+REPO = HERE.parent.parent
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
+FORMAL = {"proved": 1.0, "partial": 0.6, "statement": 0.35, "none": 0.1}
+BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath"]
+COLORS = dict(zip(BRANCHES, ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756", "#72b7b2", "#eeca3b", "#9d755d"]))
+K = 6
+
+
+def load_problems():
+    rows = list(csv.DictReader(open(HERE / "problems.tsv"), delimiter="\t"))
+    for r in rows:
+        r["level"] = int(r["level"])
+        r["posed"] = int(r["posed"])
+        r["resolved"] = int(r["resolved"]) if r["resolved"] else None
+        r["keywords"] = [k.strip() for k in r["keywords"].split(",")]
+        r["market"] = [m for m in r["market"].split(";") if m != "none"]
+        r["solvability"] = round(0.55 * (r["resolved"] is not None) + 0.45 * FORMAL[r["lean"]], 3)
+        r["kind"] = "problem"
+    return rows
+
+
+def load_bucketmath():
+    manifest = json.load(open(REPO / "lean" / "manifest.json"))
+    rows = []
+    for t in manifest:
+        if t["kind"] != "theorem" or t["status"] not in ("proved", "open"):
+            continue
+        name = t["name"].split(".")[-1].replace("_", " ")
+        module = t["module"].split(".")[-1]
+        rows.append({
+            "id": "lean:" + t["name"], "name": t["name"], "branch": "bucketmath",
+            "level": 2, "lean": "proved" if t["status"] == "proved" else "statement",
+            "posed": 2026, "resolved": 2026 if t["status"] == "proved" else None,
+            "market": [], "keywords": [name, module], "kind": "lean",
+        })
+        rows[-1]["solvability"] = 1.0 if t["status"] == "proved" else 0.35 * 0.45
+    return rows
+
+
+def unit(v):
+    return v / np.linalg.norm(v, axis=1, keepdims=True)
+
+
+def ranked_angles(vecs):
+    c = vecs - vecs.mean(0)
+    _, _, vt = np.linalg.svd(c, full_matrices=False)
+    p = c @ vt[:2].T
+    raw = np.arctan2(p[:, 1], p[:, 0])
+    order = np.argsort(raw)
+    theta = np.empty(len(vecs))
+    theta[order] = np.linspace(0, 2 * np.pi, len(vecs), endpoint=False)
+    return theta, c @ vt[:3].T
+
+
+def knn_graph(nodes, sim):
+    g = nx.Graph()
+    for n in nodes:
+        g.add_node(n["id"], **{k: n[k] for k in ("name", "branch", "level", "solvability", "kind")})
+    for i in range(len(nodes)):
+        for j in np.argsort(-sim[i])[1:K + 1]:
+            g.add_edge(nodes[i]["id"], nodes[j]["id"], weight=float(sim[i, j]))
+    return g
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    problems = load_problems()
+    lean = load_bucketmath()
+    nodes = problems + lean
+    model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+    texts = [f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"]) for n in nodes]
+    emb = unit(model.encode(texts, normalize_embeddings=True))
+    sim = emb @ emb.T
+
+    tokens = sorted({k.lower() for n in problems for k in n["keywords"]} | {m for n in problems for m in n["market"]})
+    tok_emb = unit(model.encode(tokens, normalize_embeddings=True))
+    tok_sim = tok_emb @ tok_emb.T
+    tok_users = defaultdict(list)
+    for n in problems:
+        for k in [k.lower() for k in n["keywords"]] + n["market"]:
+            tok_users[k].append(n)
+
+    theta, p3 = ranked_angles(emb)
+    for n, t in zip(nodes, theta):
+        n["theta"] = float(t)
+
+    plot_token_circle(tokens, tok_emb, tok_sim, tok_users)
+    plot_star_chart(problems)
+    plot_star_time(problems)
+    plot_helix(nodes)
+    plot_sphere(nodes, emb)
+    g = knn_graph(nodes, sim)
+    stats = network_stats(g, nodes)
+    plot_network(g, nodes)
+    plot_matrices(nodes, sim, stats, problems, tokens, tok_sim)
+    export_graph(g, nodes, tokens, tok_users, stats)
+    print(json.dumps(stats["summary"], indent=1))
+
+
+def plot_token_circle(tokens, tok_emb, tok_sim, users):
+    theta, _ = ranked_angles(tok_emb)
+    r = 0.45 + 0.55 * np.array([np.mean([u["solvability"] for u in users[t]]) for t in tokens])
+    freq = np.array([len(users[t]) for t in tokens])
+    fig, ax = plt.subplots(figsize=(16, 16), subplot_kw={"projection": "polar"})
+    for i in range(len(tokens)):
+        j = np.argsort(-tok_sim[i])[1]
+        ax.plot([theta[i], theta[j]], [r[i], r[j]], color="#bbb", lw=0.4, zorder=1)
+    col = [COLORS[Counter(u["branch"] for u in users[t]).most_common(1)[0][0]] for t in tokens]
+    ax.scatter(theta, r, s=20 + 40 * freq, c=col, alpha=0.85, zorder=2)
+    for i, t in enumerate(tokens):
+        ax.annotate("", xy=(theta[i], r[i]), xytext=(theta[i], 0), arrowprops={"arrowstyle": "-", "color": col[i], "alpha": 0.25, "lw": 0.6})
+        ax.text(theta[i], r[i] + 0.04, t, fontsize=6, rotation=np.degrees(theta[i]) % 180 - 90 * (np.cos(theta[i]) < 0), ha="center", va="center")
+    ax.set_ylim(0, 1.12)
+    ax.set_yticks([0.45, 0.725, 1.0], ["solv 0", "0.5", "1"], fontsize=7)
+    ax.set_title("Token circle: angle = ranked embedding similarity, radius = mean solvability", pad=30)
+    legend(ax)
+    fig.savefig(OUT / "01-token-circle.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def legend(ax, loc="lower left"):
+    for b in BRANCHES:
+        ax.scatter([], [], c=COLORS[b], label=b)
+    ax.legend(loc=loc, fontsize=8, frameon=False, bbox_to_anchor=(-0.05, -0.05))
+
+
+def plot_star_chart(problems):
+    fig, ax = plt.subplots(figsize=(14, 14), subplot_kw={"projection": "polar"})
+    for n in problems:
+        r = n["level"] / 5 * (1.05 - n["solvability"])
+        mag = 40 + 160 * len(n["market"])
+        ax.scatter(n["theta"], r, s=mag, c=COLORS[n["branch"]], marker="*", edgecolor="k", lw=0.3, alpha=0.9)
+        ax.text(n["theta"], r + 0.03, n["name"], fontsize=6.5, ha="center")
+    ax.set_title("Star chart: angle = semantic position, radius = level x unsolvedness, star size = markets touched", pad=24)
+    legend(ax)
+    fig.savefig(OUT / "02-star-chart.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_star_time(problems):
+    fig, ax = plt.subplots(figsize=(14, 14), subplot_kw={"projection": "polar"})
+    t0 = 1600
+    for n in problems:
+        r0 = max(n["posed"], t0) - t0
+        ax.scatter(n["theta"], r0, s=30 + 20 * n["level"] ** 2, c=COLORS[n["branch"]], marker="*", alpha=0.9, edgecolor="k", lw=0.3)
+        if n["resolved"]:
+            r1 = n["resolved"] - t0
+            ax.plot([n["theta"]] * 2, [r0, r1], color=COLORS[n["branch"]], lw=1.5)
+            ax.scatter(n["theta"], r1, s=25, c="k", marker="o")
+        ax.text(n["theta"], r0 + 8, n["name"], fontsize=6, ha="center")
+    ax.set_rticks([0, 100, 200, 300, 400])
+    ax.set_yticklabels(["1600", "1700", "1800", "1900", "2000"], fontsize=7)
+    ax.set_title("Star chart through time: radius = year posed, line to dot = year resolved", pad=24)
+    legend(ax)
+    fig.savefig(OUT / "03-star-chart-time.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_helix(nodes):
+    fig = plt.figure(figsize=(14, 14))
+    ax = fig.add_subplot(projection="3d")
+    ps = [n for n in nodes if n["kind"] == "problem"]
+    s = np.linspace(0, 5, 2000)
+    ax.plot(np.cos(2 * np.pi * s), np.sin(2 * np.pi * s), s + 0.5, color="#ccc", lw=0.8)
+    for n in ps:
+        r = 0.4 + 0.8 * n["solvability"]
+        z = n["level"] + n["theta"] / (2 * np.pi) - 0.5
+        ax.scatter(r * np.cos(n["theta"]), r * np.sin(n["theta"]), z, s=30 + 60 * len(n["market"]), c=COLORS[n["branch"]], edgecolor="k", lw=0.3)
+        ax.text(r * np.cos(n["theta"]), r * np.sin(n["theta"]), z + 0.08, n["name"], fontsize=5.5)
+    ax.set_zlabel("problem level")
+    ax.set_title("Solvability helix: angle = semantic rank, height = level, radius = solvability")
+    ax.view_init(elev=18, azim=-60)
+    legend(ax, "upper left")
+    fig.savefig(OUT / "04-helix.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_sphere(nodes, emb):
+    _, p3 = ranked_angles(emb)
+    xyz = p3 / np.linalg.norm(p3, axis=1, keepdims=True)
+    fig = plt.figure(figsize=(13, 13))
+    ax = fig.add_subplot(projection="3d")
+    u, v = np.mgrid[0:2 * np.pi:40j, 0:np.pi:20j]
+    ax.plot_wireframe(np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), np.cos(v), color="#ddd", lw=0.3)
+    for n, (x, y, z) in zip(nodes, xyz):
+        ax.scatter(x, y, z, c=COLORS[n["branch"]], s=60 if n["kind"] == "problem" else 12, marker="*" if n["kind"] == "problem" else "o", alpha=0.35 + 0.65 * n["solvability"])
+        if n["kind"] == "problem":
+            ax.text(x, y, z, n["name"], fontsize=5.5)
+    ax.set_title("Sphere map: top-3 principal directions projected onto the unit sphere, opacity = solvability")
+    legend(ax, "upper left")
+    fig.savefig(OUT / "05-sphere.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def network_stats(g, nodes):
+    comms = community.greedy_modularity_communities(g, weight="weight")
+    cid = {n: i for i, c in enumerate(comms) for n in c}
+    deg = nx.degree_centrality(g)
+    btw = nx.betweenness_centrality(g, weight=None)
+    eig = nx.eigenvector_centrality(g, weight="weight", max_iter=5000)
+    pr = nx.pagerank(g, weight="weight")
+    byid = {n["id"]: n for n in nodes}
+    per = {i: {"community": cid[i], "degree": deg[i], "betweenness": btw[i], "eigenvector": eig[i], "pagerank": pr[i]} for i in g}
+    branch_attr = nx.attribute_assortativity_coefficient(g, "branch")
+    solv = {i: byid[i]["solvability"] for i in g}
+    nbr_solv = np.array([np.mean([solv[j] for j in g[i]]) for i in g])
+    own = np.array([solv[i] for i in g])
+    rng = np.random.default_rng(0)
+    null = [np.corrcoef(own, rng.permutation(nbr_solv))[0, 1] for _ in range(2000)]
+    obs = float(np.corrcoef(own, nbr_solv)[0, 1])
+    probs = [n for n in nodes if n["kind"] == "problem"]
+    lvl = np.array([n["level"] for n in probs])
+    sv = np.array([n["solvability"] for n in probs])
+    mk = np.array([len(n["market"]) for n in probs])
+    top = sorted(((per[n["id"]]["betweenness"], n["name"]) for n in probs), reverse=True)[:10]
+    summary = {
+        "nodes": g.number_of_nodes(), "edges": g.number_of_edges(), "k": K,
+        "components": nx.number_connected_components(g), "density": round(nx.density(g), 4), "avg_clustering": round(nx.average_clustering(g, weight="weight"), 4),
+        "communities": len(comms), "modularity": round(community.modularity(g, comms, weight="weight"), 4),
+        "branch_assortativity": round(branch_attr, 4),
+        "solvability_neighbor_corr": round(obs, 4),
+        "solvability_neighbor_corr_perm_p": round(float(np.mean(np.abs(null) >= abs(obs))), 4),
+        "spearman_level_vs_solvability": round(spearman(lvl, sv), 4),
+        "spearman_markets_vs_level": round(spearman(mk, lvl), 4),
+        "top_bridges_betweenness": [[name, round(b, 4)] for b, name in top],
+    }
+    return {"summary": summary, "per_node": per, "communities": [sorted(c) for c in comms]}
+
+
+def spearman(a, b):
+    ra = np.argsort(np.argsort(a))
+    rb = np.argsort(np.argsort(b))
+    return float(np.corrcoef(ra, rb)[0, 1])
+
+
+def plot_network(g, nodes):
+    pos = nx.spring_layout(g, weight="weight", seed=7, k=0.35)
+    byid = {n["id"]: n for n in nodes}
+    btw = nx.betweenness_centrality(g)
+    fig, ax = plt.subplots(figsize=(16, 14))
+    nx.draw_networkx_edges(g, pos, alpha=0.15, ax=ax)
+    nx.draw_networkx_nodes(g, pos, node_color=[COLORS[byid[i]["branch"]] for i in g], node_size=[40 + 3000 * btw[i] for i in g], ax=ax, alpha=0.9)
+    nx.draw_networkx_labels(g, pos, {i: byid[i]["name"] for i in g if byid[i]["kind"] == "problem"}, font_size=6, ax=ax)
+    ax.set_title(f"kNN similarity network, k={K}: node size = betweenness centrality")
+    ax.axis("off")
+    legend(ax)
+    fig.savefig(OUT / "06-network.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_matrices(nodes, sim, stats, problems, tokens, tok_sim):
+    per = stats["per_node"]
+    idx = [i for i, n in enumerate(nodes) if n["kind"] == "problem"]
+    idx.sort(key=lambda i: (per[nodes[i]["id"]]["community"], nodes[i]["branch"]))
+    labels = [nodes[i]["name"] for i in idx]
+    fig, ax = plt.subplots(figsize=(18, 16))
+    im = ax.imshow(sim[np.ix_(idx, idx)], cmap="viridis")
+    ax.set_xticks(range(len(idx)), labels, rotation=90, fontsize=6)
+    ax.set_yticks(range(len(idx)), labels, fontsize=6)
+    ax.set_title("Problem x problem cosine similarity, ordered by network community")
+    fig.colorbar(im, shrink=0.6)
+    fig.savefig(OUT / "07-similarity-matrix.png", dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+    br = [b for b in BRANCHES if any(n["branch"] == b for n in nodes)]
+    bi = {b: i for i, b in enumerate(br)}
+    m = np.zeros((len(br), len(br)))
+    c = np.zeros_like(m)
+    for i, a in enumerate(nodes):
+        for j, b in enumerate(nodes):
+            if i != j:
+                m[bi[a["branch"]], bi[b["branch"]]] += sim[i, j]
+                c[bi[a["branch"]], bi[b["branch"]]] += 1
+    markets = sorted({m_ for n in problems for m_ in n["market"]})
+    lv = np.zeros((5, 4))
+    mb = np.zeros((len(markets), len(br)))
+    for n in problems:
+        lv[n["level"] - 1, ["none", "statement", "partial", "proved"].index(n["lean"])] += 1
+        for m_ in n["market"]:
+            mb[markets.index(m_), bi[n["branch"]]] += 1
+    fig, axs = plt.subplots(1, 3, figsize=(24, 8))
+    heat(axs[0], m / np.maximum(c, 1), br, br, "Branch x branch mean similarity", "{:.2f}")
+    heat(axs[1], lv, ["L1", "L2", "L3", "L4", "L5"], ["none", "statement", "partial", "proved"], "Level x Lean formal status, counts", "{:.0f}")
+    heat(axs[2], mb, markets, br, "Market x branch, problem counts", "{:.0f}")
+    fig.tight_layout()
+    fig.savefig(OUT / "08-matrices.png", dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+    order = np.argsort(ranked_angles(unit(tok_sim))[0])
+    fig, ax = plt.subplots(figsize=(20, 18))
+    ax.imshow(tok_sim[np.ix_(order, order)], cmap="magma")
+    ax.set_xticks(range(len(order)), [tokens[i] for i in order], rotation=90, fontsize=4)
+    ax.set_yticks(range(len(order)), [tokens[i] for i in order], fontsize=4)
+    ax.set_title("Token x token similarity, ordered by circle rank")
+    fig.savefig(OUT / "09-token-matrix.png", dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
+def heat(ax, m, rows, cols, title, fmt):
+    ax.imshow(m, cmap="Blues")
+    ax.set_xticks(range(len(cols)), cols, rotation=45, ha="right", fontsize=8)
+    ax.set_yticks(range(len(rows)), rows, fontsize=8)
+    for i in range(m.shape[0]):
+        for j in range(m.shape[1]):
+            ax.text(j, i, fmt.format(m[i, j]), ha="center", va="center", fontsize=7)
+    ax.set_title(title)
+
+
+def export_graph(g, nodes, tokens, users, stats):
+    per = stats["per_node"]
+    out_nodes = []
+    for n in nodes:
+        out_nodes.append({k: n[k] for k in ("id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "solvability", "kind", "theta")} | per[n["id"]])
+    for t in tokens:
+        out_nodes.append({"id": "token:" + t, "name": t, "kind": "token"})
+    edges = [{"source": a, "target": b, "type": "SIMILAR_TO", "weight": round(d["weight"], 4)} for a, b, d in g.edges(data=True)]
+    for t in tokens:
+        for n in users[t]:
+            edges.append({"source": n["id"], "target": "token:" + t, "type": "MARKET" if t in n["market"] else "HAS_TOKEN"})
+    json.dump({"schema": "bucket.solvability-atlas/v1", "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
+    json.dump(stats["summary"], open(OUT / "stats.json", "w"), indent=1)
+    with open(OUT / "graph.cypher", "w") as f:
+        for n in out_nodes:
+            f.write(f"MERGE (n:AtlasNode {{id: {json.dumps(n['id'])}}}) SET n += {cypher_map(n)};\n")
+        for e in edges:
+            w = f" SET r.weight = {e['weight']}" if "weight" in e else ""
+            f.write(f"MATCH (a:AtlasNode {{id: {json.dumps(e['source'])}}}), (b:AtlasNode {{id: {json.dumps(e['target'])}}}) MERGE (a)-[r:{e['type']}]->(b){w};\n")
+
+
+def cypher_map(n):
+    parts = []
+    for k, v in n.items():
+        if v is None:
+            continue
+        parts.append(f"{k}: {json.dumps(v)}")
+    return "{" + ", ".join(parts) + "}"
+
+
+if __name__ == "__main__":
+    main()
