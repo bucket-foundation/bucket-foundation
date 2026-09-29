@@ -455,7 +455,7 @@
   "status": "def",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 3,
+  "line": 5,
   "type": "Type"
  },
  {
@@ -464,7 +464,7 @@
   "status": "def",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 9,
+  "line": 11,
   "type": "List BucketMath.Graph.Edge → Nat → Nat → Prop"
  },
  {
@@ -473,7 +473,7 @@
   "status": "def",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 5,
+  "line": 7,
   "type": "List BucketMath.Graph.Edge → Nat → Nat → Prop"
  },
  {
@@ -482,7 +482,7 @@
   "status": "def",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 11,
+  "line": 13,
   "type": "List BucketMath.Graph.Edge → (Nat → Nat) → Prop"
  },
  {
@@ -491,8 +491,17 @@
   "status": "proved",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 19,
+  "line": 21,
   "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ (a : Nat), ¬BucketMath.Graph.Reach E a a"
+ },
+ {
+  "name": "BucketMath.Graph.edgeRel",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 30,
+  "type": "List BucketMath.Graph.Edge → Nat → Nat → Prop"
  },
  {
   "name": "BucketMath.Graph.prereq_rank_lt",
@@ -500,7 +509,7 @@
   "status": "proved",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 22,
+  "line": 24,
   "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ {target a : Nat}, BucketMath.Graph.Prereq E target a → r a < r target"
  },
  {
@@ -509,7 +518,7 @@
   "status": "proved",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 25,
+  "line": 27,
   "type": "∀ (E : List BucketMath.Graph.Edge) {a b c : Nat},\n  BucketMath.Graph.Prereq E b a → BucketMath.Graph.Prereq E c b → BucketMath.Graph.Prereq E c a"
  },
  {
@@ -518,8 +527,26 @@
   "status": "proved",
   "module": "BucketMath.Graph",
   "source": "lean/BucketMath/Graph.lean",
-  "line": 13,
+  "line": 15,
   "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r → ∀ {a b : Nat}, BucketMath.Graph.Reach E a b → r a < r b"
+ },
+ {
+  "name": "BucketMath.Graph.required_rank_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 32,
+  "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r →\n    ∀ {target v : Nat}, BucketMath.Learning.Required (BucketMath.Graph.edgeRel E) target v → r v ≤ r target"
+ },
+ {
+  "name": "BucketMath.Graph.required_rank_lt",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Graph",
+  "source": "lean/BucketMath/Graph.lean",
+  "line": 38,
+  "type": "∀ (E : List BucketMath.Graph.Edge) (r : Nat → Nat),\n  BucketMath.Graph.StrictRank E r →\n    ∀ {target v : Nat}, BucketMath.Learning.Required (BucketMath.Graph.edgeRel E) target v → v ≠ target → r v < r target"
  },
  {
   "name": "BucketMath.Helix.Nonneg",
@@ -691,6 +718,303 @@
   "source": "lean/BucketMath/Helix.lean",
   "line": 100,
   "type": "Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Learning.After",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 14,
+  "type": "{α : Type} → (α → Prop) → List α → α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Closed",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 7,
+  "type": "{α : Type} → (α → α → Prop) → (α → Prop) → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.CoordinateGrowth",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 179,
+  "type": "List Nat → List Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Coverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 161,
+  "type": "{α : Type} → List α → (α → Bool) → (α → Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Diamond",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 5,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Learning.Earlier",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 72,
+  "type": "{α : Type} → (α → α → Prop) → (α → Prop) → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Effort",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 110,
+  "type": "{α : Type} → (α → Nat) → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Enumerates",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 68,
+  "type": "{α : Type} → (α → α → Prop) → (α → Prop) → α → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Path",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 17,
+  "type": "{α : Type} → (α → α → Prop) → (α → Prop) → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Required",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 10,
+  "type": "{α : Type} → (α → α → Prop) → α → α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.RestrictedKnown",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 24,
+  "type": "{α : Type} → (α → α → Prop) → α → (α → Prop) → α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.SquaredExtent",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 177,
+  "type": "List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.after_closed",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 49,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {steps : List α},\n  BucketMath.Learning.Closed edge known →\n    BucketMath.Learning.Path edge known steps → BucketMath.Learning.Closed edge (BucketMath.Learning.After known steps)"
+ },
+ {
+  "name": "BucketMath.Learning.coverage_monotone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 164,
+  "type": "∀ {α : Type} (catalog : List α) (small large : α → Bool) (weight : α → Nat),\n  (∀ (v : α), small v = true → large v = true) →\n    BucketMath.Learning.Coverage catalog small weight ≤ BucketMath.Learning.Coverage catalog large weight"
+ },
+ {
+  "name": "BucketMath.Learning.diamondChain",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 17,
+  "type": "List BucketMath.Learning.Diamond"
+ },
+ {
+  "name": "BucketMath.Learning.diamondEdge",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 9,
+  "type": "BucketMath.Learning.Diamond → BucketMath.Learning.Diamond → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.diamondOrder",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 15,
+  "type": "List BucketMath.Learning.Diamond"
+ },
+ {
+  "name": "BucketMath.Learning.diamond_chain_insufficient",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 61,
+  "type": "¬BucketMath.Learning.Path BucketMath.Learning.diamondEdge (fun x => False) BucketMath.Learning.diamondChain"
+ },
+ {
+  "name": "BucketMath.Learning.diamond_enumerates",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 28,
+  "type": "BucketMath.Learning.Enumerates BucketMath.Learning.diamondEdge (fun x => False) BucketMath.Learning.Diamond.target\n  BucketMath.Learning.diamondOrder"
+ },
+ {
+  "name": "BucketMath.Learning.diamond_minimum",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 53,
+  "type": "∀ (steps : List BucketMath.Learning.Diamond),\n  BucketMath.Learning.Path BucketMath.Learning.diamondEdge (fun x => False) steps →\n    BucketMath.Learning.After (fun x => False) steps BucketMath.Learning.Diamond.target → 4 ≤ steps.length"
+ },
+ {
+  "name": "BucketMath.Learning.diamond_ready",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 38,
+  "type": "BucketMath.Learning.Path BucketMath.Learning.diamondEdge (fun x => False) BucketMath.Learning.diamondOrder"
+ },
+ {
+  "name": "BucketMath.Learning.diamond_required",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Diamond",
+  "source": "lean/BucketMath/Learning/Diamond.lean",
+  "line": 19,
+  "type": "∀ (v : BucketMath.Learning.Diamond),\n  BucketMath.Learning.Required BucketMath.Learning.diamondEdge BucketMath.Learning.Diamond.target v"
+ },
+ {
+  "name": "BucketMath.Learning.distance_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 153,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {small large : α → Prop} {target : α} {oldOrder newOrder : List α},\n  (∀ (x : α), small x → large x) →\n    BucketMath.Learning.Enumerates edge small target oldOrder →\n      BucketMath.Learning.Enumerates edge large target newOrder → newOrder.length ≤ oldOrder.length"
+ },
+ {
+  "name": "BucketMath.Learning.earlier_path",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 76,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {order : List α},\n  order.Nodup →\n    (∀ (v : α), v ∈ order → ¬known v) →\n      BucketMath.Learning.Earlier edge known order → BucketMath.Learning.Path edge known order"
+ },
+ {
+  "name": "BucketMath.Learning.effort_subset",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 112,
+  "type": "∀ {α : Type} (weight : α → Nat) {required steps : List α},\n  required.Nodup →\n    required ⊆ steps → BucketMath.Learning.Effort weight required ≤ BucketMath.Learning.Effort weight steps"
+ },
+ {
+  "name": "BucketMath.Learning.minimum_unit_distance",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 95,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {target : α} {order : List α},\n  BucketMath.Learning.Closed edge known →\n    BucketMath.Learning.Enumerates edge known target order →\n      BucketMath.Learning.Earlier edge known order →\n        BucketMath.Learning.Path edge known order ∧\n          BucketMath.Learning.After known order target ∧\n            ∀ (steps : List α),\n              BucketMath.Learning.Path edge known steps →\n                BucketMath.Learning.After known steps target → order.length ≤ steps.length"
+ },
+ {
+  "name": "BucketMath.Learning.minimum_weighted_effort",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 133,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {target : α} {order : List α} (weight : α → Nat),\n  BucketMath.Learning.Closed edge known →\n    BucketMath.Learning.Enumerates edge known target order →\n      BucketMath.Learning.Earlier edge known order →\n        BucketMath.Learning.Path edge known order ∧\n          BucketMath.Learning.After known order target ∧\n            ∀ (steps : List α),\n              BucketMath.Learning.Path edge known steps →\n                BucketMath.Learning.After known steps target →\n                  BucketMath.Learning.Effort weight order ≤ BucketMath.Learning.Effort weight steps"
+ },
+ {
+  "name": "BucketMath.Learning.remaining_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 147,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {small large : α → Prop} {target v : α},\n  (∀ (x : α), small x → large x) →\n    BucketMath.Learning.Required edge target v ∧ ¬large v → BucketMath.Learning.Required edge target v ∧ ¬small v"
+ },
+ {
+  "name": "BucketMath.Learning.remaining_necessary",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 62,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {target v : α} {steps : List α},\n  BucketMath.Learning.Closed edge known →\n    BucketMath.Learning.Path edge known steps →\n      BucketMath.Learning.After known steps target → BucketMath.Learning.Required edge target v → ¬known v → v ∈ steps"
+ },
+ {
+  "name": "BucketMath.Learning.required_known",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 42,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {known : α → Prop} {target v : α},\n  BucketMath.Learning.Closed edge known → known target → BucketMath.Learning.Required edge target v → known v"
+ },
+ {
+  "name": "BucketMath.Learning.restricted_closed",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 27,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {target : α} {known : α → Prop},\n  (∀ (p v : α), BucketMath.Learning.Required edge target v → known v → edge p v → known p) →\n    BucketMath.Learning.Closed edge (BucketMath.Learning.RestrictedKnown edge target known)"
+ },
+ {
+  "name": "BucketMath.Learning.restricted_remaining",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 33,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {target v : α} {known : α → Prop},\n  BucketMath.Learning.Required edge target v ∧ ¬BucketMath.Learning.RestrictedKnown edge target known v ↔\n    BucketMath.Learning.Required edge target v ∧ ¬known v"
+ },
+ {
+  "name": "BucketMath.Learning.squared_extent_monotone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning",
+  "source": "lean/BucketMath/Learning.lean",
+  "line": 183,
+  "type": "∀ {small large : List Nat},\n  BucketMath.Learning.CoordinateGrowth small large →\n    BucketMath.Learning.SquaredExtent small ≤ BucketMath.Learning.SquaredExtent large"
  },
  {
   "name": "BucketMath.Markets.Industry",

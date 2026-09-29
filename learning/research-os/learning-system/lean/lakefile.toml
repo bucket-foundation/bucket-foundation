@@ -2,5 +2,9 @@ name = "learning_system"
 version = "0.1.0"
 defaultTargets = ["LearningSystem"]
 
+[[require]]
+name = "bucketmath"
+path = "../../../../lean"
+
 [[lean_lib]]
 name = "LearningSystem"

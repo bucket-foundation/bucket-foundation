@@ -292,7 +292,7 @@ The concept page, Research OS map or workspace offers **Learn this**. Choosing a
 
 ## Reproduction and sources
 
-**Formal reproduction.** Run `bash learning/research-os/learning-system/lean/check.sh`. The pinned toolchain is Lean 4.33.1; the manifest uses bundled Std without external packages. Read `lean/check-output.txt` for the recorded ten-theorem axiom audit. The expanded document preserves the existing Lean source.
+**Formal reproduction.** Run `bash learning/research-os/learning-system/lean/check.sh`. The pinned toolchain is Lean 4.33.1. The theorems live in `lean/BucketMath/Learning.lean` at the repo root, part of the BucketMath library; this package requires it by path. Read `lean/check-output.txt` for the recorded ten-theorem axiom audit. The expanded document preserves the existing Lean source.
 
 **Analysis reproduction.** Run `python3 learning/research-os/learning-system/analysis/evaluate.py` with the pinned analysis dependency. The recorded environment is Python 3.13.13 and NumPy 2.5.1, with seed 20260925. Floating-point output can vary by numerical library. `analysis/results/metrics.json` contains the full measurements plotted here.
 
@@ -303,7 +303,7 @@ The concept page, Research OS map or workspace offers **Learn this**. Choosing a
 | Reference | Artifact and role |
 | --- | --- |
 | [1] | PLAN.md: proposed learner workflow, mathematical contract, measurement and evidence policies. |
-| [2] | lean/LearningSystem.lean, lean/README.md and check-output.txt: definitions, compiled theorems, assumptions and axiom audit. |
+| [2] | lean/BucketMath/Learning.lean at the repo root, lean/LearningSystem.lean, lean/README.md and check-output.txt: definitions, compiled theorems, assumptions and axiom audit. |
 | [3] | analysis/evaluate.py, analysis/results/metrics.json and README.md: reference experiments, saved data and methods. |
 | [4] | CRITIC.md: original three-round review of the plan and formal/synthetic prototype. |
 

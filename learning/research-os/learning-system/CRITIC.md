@@ -72,6 +72,7 @@ Executed: Lean compilation, ten axiom outputs, 57,060 graph cases, axis assertio
 |---|---|
 | PLAN.md | `79473c68f39de0d088f4e7e8ef3c5da9cbb4bc082203c95dc94652fa978d67c0` |
 | lean/LearningSystem.lean | `44b5450158265f971bcccdbe7692a70dc290f83207b3ec82bcd7f6427bd727cb` |
+| lean/BucketMath/Learning.lean, moved 2026-09-28 | `f62f0666c73c4ad2f7e91cb82de36c2d02cbfa120b663af2d980e38233de0c84` |
 | analysis/evaluate.py | `4190094b52e8a08337080f3909b0a27c9079db7b63315fd47960516c81c18d92` |
 
 The delivery commit after the reviewed candidate adds this final review record. The plan, proof and analysis retain the reviewed hashes.
