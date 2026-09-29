@@ -1,0 +1,50 @@
+{
+  "POST unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  },
+  "POST anonymous": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "workbench_not_configured"
+    }
+  }
+}

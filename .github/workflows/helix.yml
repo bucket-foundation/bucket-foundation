@@ -1,0 +1,30 @@
+name: helix
+
+on:
+  pull_request:
+    paths:
+      - "tools/helix/**"
+      - ".github/workflows/helix.yml"
+  push:
+    branches: [dev]
+    paths:
+      - "tools/helix/**"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: tools/helix
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: 'python -m pip install --quiet --only-binary=:all: "numpy>=2" "matplotlib>=3.9" pytest ruff==0.16.9'
+      - run: ruff check . && ruff format --check .
+      - run: python -m pytest -q tests

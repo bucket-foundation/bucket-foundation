@@ -255,6 +255,17 @@ TOOLS = [
     },
 ]
 
+CANON_TOOLS = {t['name'] for t in TOOLS}
+_WORKBENCH = None
+
+def workbench():
+    global _WORKBENCH
+    if _WORKBENCH is None:
+        sys.path.insert(0, str(REPO / 'tools' / 'workbench'))
+        from workbench.mcp import McpBridge
+        _WORKBENCH = McpBridge()
+    return _WORKBENCH
+
 def handle_request(req: dict) -> dict:
     method = req.get('method', '')
     id_ = req.get('id')
@@ -273,12 +284,14 @@ def handle_request(req: dict) -> dict:
         return {}
 
     if method == 'tools/list':
-        return {'jsonrpc': '2.0', 'id': id_, 'result': {'tools': TOOLS}}
+        return {'jsonrpc': '2.0', 'id': id_, 'result': {'tools': TOOLS + workbench().tools()}}
 
     if method == 'tools/call':
         name = params.get('name', '')
         args = params.get('arguments', {}) or {}
         try:
+            if name not in CANON_TOOLS and workbench().has(name):
+                return workbench().call(id_, name, args)
             if name == 'canon_search':
                 result = tool_canon_search(args.get('q', ''), int(args.get('top_k', 10)),
                                             args.get('branch'), args.get('tier'))
