@@ -41,6 +41,15 @@ export default function Page({ params }: { params: { slug: string } }) {
         {b.tier} · {b.mass.toLocaleString()} hits · {b.spans} branches
       </p>
 
+      <p
+        className="mt-8 text-lg leading-relaxed"
+        style={{ fontFamily: "var(--font-fraunces)" }}
+      >
+        A bridge is one primitive that shows up in more than one branch of the canon. {b.title} is cited across{" "}
+        {b.spans} branches ({b.branches.map((br) => br.branch).join(", ")}), with {b.mass.toLocaleString()} source hits behind it.
+        The branch list below says what {b.title.toLowerCase()} means in each one, and the sources list names the primary texts.
+      </p>
+
       <section className="mt-12">
         <h2
           className="mb-4 text-sm uppercase tracking-[0.2em]"
