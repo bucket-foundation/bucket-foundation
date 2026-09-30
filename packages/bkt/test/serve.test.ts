@@ -187,6 +187,11 @@ describe("bkt serve fails closed", () => {
     expect((await req("/")).status).toBe(403);
   });
 
+  test("the default resolver reads this process as the peer over /proc/net/tcp", async () => {
+    s = startServe({});
+    expect((await req("/")).status).toBe(200);
+  });
+
   test("only one session token is ever minted", async () => {
     boot();
     await token();
