@@ -21,7 +21,12 @@ export default defineConfig({
   plugins: [react(), landmask()],
   publicDir: false,
   resolve: {
+    dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
     alias: [
+      ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei"].map((pkg) => ({
+        find: new RegExp(`^${pkg.replace("/", "\\/")}(/.*)?$`),
+        replacement: `${resolve(__dirname, "node_modules", pkg)}$1`,
+      })),
       { find: "@academy", replacement: resolve(SRC, "lib/academy") },
       { find: "@ros", replacement: resolve(SRC, "lib/research-os") },
       { find: /^@\//, replacement: `${SRC}/` },
