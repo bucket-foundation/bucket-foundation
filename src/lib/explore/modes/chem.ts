@@ -80,6 +80,17 @@ export const HUB_COLOR = "#D9A43A";
 const ORDER: Record<string, number> = { "-": 1, "=": 2, "#": 3, ":": 1 };
 const BY_SYMBOL = new Map(elements.map((e) => [e.symbol, e]));
 
+export const UPLOAD_PREFIX = "upload-";
+let uploadCount = 0;
+
+export function registerCustom(list: { id: string; name: string; smiles: string }[], item: { name: string; smiles: string }): string {
+  const entry = { id: `${UPLOAD_PREFIX}${++uploadCount}`, name: item.name, smiles: item.smiles };
+  const at = list.findIndex((m) => m.id.startsWith(UPLOAD_PREFIX));
+  if (at >= 0) list[at] = entry;
+  else list.push(entry);
+  return entry.id;
+}
+
 export function moleculeById(id: string | null | undefined): Molecule {
   return MOLECULES.find((m) => m.id === id) ?? MOLECULES[0];
 }

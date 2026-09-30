@@ -63,7 +63,7 @@ Until Research OS opens, production `/sign-in` shows a launch list: email, an op
 | List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails, and the signups the bot filter held. Asks for the list key. |
 | Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` asks Supabase to sign in existing accounts only (`shouldCreateUser` off) and answers the same for a known and an unknown address. The flag comes from the browser; whether the project accepts new accounts is GoTrue's signup setting (`GOTRUE_DISABLE_SIGNUP` on the self-hosted stack), which is the server-side control. |
 
-The Blob store keeps every object until someone deletes it; it lives on the Vercel account, apart from the Hetzner box. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
+The Blob store keeps every object until someone deletes it; it lives on the Vercel account. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
 
 ```bash
 curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundation/api/waitlist?format=csv" -o launch-list.csv

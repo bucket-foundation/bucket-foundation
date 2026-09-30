@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import { join } from "node:path";
 
-export const ANALYSIS_TIMEOUT_MS = 120_000;
+export const ANALYSIS_TIMEOUT_MS = 50_000;
 export const MAX_STDOUT_BYTES = 32 * 1024 * 1024;
 
 export type RunFailure = "analysis_local_only" | "analysis_timeout" | "analysis_failed" | "analysis_output";
