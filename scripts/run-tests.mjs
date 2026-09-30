@@ -20,6 +20,8 @@ const SUITES = {
       "scripts/test-download.ts",
       "scripts/test-download-release.ts",
       "scripts/test-site-chrome.ts",
+      "scripts/test-whats-new-email.ts",
+      "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
       "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path}.ts",
       "scripts/test-research-agent-route.ts",
