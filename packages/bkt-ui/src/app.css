@@ -811,3 +811,157 @@ button {
   opacity: 0.45;
   cursor: default;
 }
+
+.grip {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.grip h2 {
+  margin: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.grip .big {
+  font-size: 40px;
+  font-weight: 650;
+  margin: 2px 0;
+}
+
+.grip svg .ring {
+  fill: none;
+  stroke: var(--line);
+}
+
+.grip svg .axis {
+  stroke: var(--line);
+}
+
+.grip svg text {
+  font-size: 10px;
+  fill: var(--ink-2);
+}
+
+.grip svg .peak {
+  fill: var(--accent);
+  opacity: 0.15;
+}
+
+.grip svg .current {
+  fill: var(--accent);
+  fill-opacity: 0.45;
+  stroke: var(--accent);
+}
+
+.grip-rows {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 5px;
+}
+
+.grip-rows li {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.grip-rows .track {
+  position: relative;
+  height: 8px;
+  background: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.grip-rows .peak,
+.grip-rows .current {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.grip-rows .peak {
+  opacity: 0.3;
+}
+
+.grip-rows .value {
+  text-align: right;
+  color: var(--ink-3);
+}
+
+.matches {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.matches a {
+  display: block;
+  padding: 6px 8px;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.matches a:hover {
+  background: var(--paper);
+}
+
+.path {
+  margin-top: 14px;
+}
+
+.steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 6px;
+}
+
+.steps-list li {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.steps-list li.goal {
+  border-color: var(--accent);
+}
+
+.steps-list .n {
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.steps-list .who {
+  display: flex;
+  flex-direction: column;
+}
+
+.steps-list .go {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .grip {
+    grid-template-columns: 1fr;
+  }
+}

@@ -8,12 +8,14 @@ import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
+import { PathView } from "./views/Path";
 import { QuizView } from "./views/Quiz";
 import { ReviewView } from "./views/Review";
 import "./app.css";
 
 const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
+  { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
   { route: { name: "advisors" }, label: "Advisors" },
@@ -73,7 +75,9 @@ function App() {
         ) : !api ? (
           <p className="muted">Opening…</p>
         ) : route.name === "deck" ? (
-          <DeckView api={api} deck={route.deck} />
+          <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />
+        ) : route.name === "path" ? (
+          <PathView api={api} to={route.to} />
         ) : route.name === "quiz" ? (
           <QuizView api={api} />
         ) : route.name === "review" ? (

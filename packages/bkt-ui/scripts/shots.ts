@@ -108,6 +108,15 @@ await page.waitForSelector(".card .q");
 await page.click("text=Show answer");
 await page.screenshot({ path: join(out, "5-review.png") });
 
+await page.click('nav a[href="#/learn"]');
+await page.waitForSelector(".grip");
+await page.screenshot({ path: join(out, "0-grip.png") });
+await page.click('nav a[href="#/path"]');
+await page.fill(".search", "entropy");
+await page.click(".matches a >> nth=0");
+await page.waitForSelector(".steps-list, .path p");
+await page.screenshot({ path: join(out, "6b-path.png") });
+
 await page.click('nav a[href="#/advisors"]');
 await page.waitForSelector(".people button");
 await page.click(".people li:nth-child(3) button");

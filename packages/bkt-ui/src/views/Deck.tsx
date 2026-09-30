@@ -12,7 +12,7 @@ const RATINGS: { r: Rating; label: string }[] = [
   { r: 4, label: "Easy" },
 ];
 
-export function DeckView({ api, deck }: { api: Api; deck: string }) {
+export function DeckView({ api, deck, focus }: { api: Api; deck: string; focus?: string }) {
   const [atoms, setAtoms] = useState<Atom[] | null>(null);
   const [state, setState] = useState<EngineState>(() => normalizeState(null));
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +41,9 @@ export function DeckView({ api, deck }: { api: Api; deck: string }) {
   const enc = useMemo(() => buildEncompassingMap(list), [list]);
   const queue = useMemo(() => route(state, list, now), [state, list, now]);
   const sum = useMemo(() => summary(state, list, now), [state, list, now]);
-  const next = queue[0] ? byId.get(queue[0].id) : undefined;
+  const focused = focus ? byId.get(focus) : undefined;
+  const head = focused ? { id: focused.id, kind: state.cards[focused.id] ? ("review" as const) : ("new" as const) } : queue[0];
+  const next = head ? byId.get(head.id) : undefined;
   const level = next ? pickLevel(state, next) : "recall";
   const q = next?.quiz?.find((x) => (x.level ?? "recall") === level) ?? next?.quiz?.[0];
 
@@ -55,8 +57,9 @@ export function DeckView({ api, deck }: { api: Api; deck: string }) {
       setNow(t);
       setRevealed(false);
       api.progress.save(deck, s);
+      if (focused) window.history.back();
     },
-    [api, deck, enc, level, list, next],
+    [api, deck, enc, level, list, next, focused],
   );
 
   if (error) return <p className="error">{error}</p>;
@@ -86,14 +89,14 @@ export function DeckView({ api, deck }: { api: Api; deck: string }) {
       ) : (
         <article className="panel card">
           <div className="card-top">
-            <span className="tag">{queue[0].kind === "new" ? "New" : "Review"}</span>
+            <span className="tag">{head!.kind === "new" ? "New" : "Review"}</span>
             {next.shell && <span className="tag ghost">{next.shell}</span>}
             <span className="tag ghost">{level}</span>
             <span className="mastery">mastery {Math.round(100 * masteryFor(state, next.id))}%</span>
           </div>
           <h2>{next.title}</h2>
           {next.equation && <p className="equation">{next.equation}</p>}
-          {queue[0].kind === "new" && (next.lesson ? <Lesson text={next.lesson} /> : next.summary && <p>{next.summary}</p>)}
+          {head!.kind === "new" && (next.lesson ? <Lesson text={next.lesson} /> : next.summary && <p>{next.summary}</p>)}
           {q && (
             <div className="prompt">
               <p className="q">{q.prompt}</p>
