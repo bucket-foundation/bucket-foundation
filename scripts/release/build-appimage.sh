@@ -10,7 +10,7 @@ tool_version=1.9.1
 tool_sha256=ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0
 cache=${XDG_CACHE_HOME:-$HOME/.cache}/bucket-release
 tool=${APPIMAGETOOL:-$cache/appimagetool-$tool_version-$arch.AppImage}
-version=$(cd "$repo/packages/bkt" && bun -e 'console.log(require("./package.json").version)')
+version=$(bash "$repo/scripts/release/version.sh")
 [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "packages/bkt version is malformed: $version"
 
 if [ ! -x "$tool" ]; then
@@ -20,7 +20,7 @@ if [ ! -x "$tool" ]; then
   chmod +x "$tool.part" && mv "$tool.part" "$tool"
 fi
 
-(cd "$repo/packages/bkt" && bun install --frozen-lockfile >/dev/null && bun run build >/dev/null)
+(cd "$repo/packages/bkt" && bun install --frozen-lockfile >/dev/null && bun run pack:content >/dev/null && bun build --compile --minify --define "BKT_BUILD_VERSION=\"$version\"" src/cli.tsx --outfile dist/bkt >/dev/null)
 (cd "$repo/packages/bkt-ui" && bun install --frozen-lockfile >/dev/null && bun run build >/dev/null && bun run size)
 if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
   bun "$repo/packages/bkt/scripts/check-no-staff.ts" "$repo/packages/bkt-ui/dist" "$repo/packages/bkt/dist/bkt" "$repo/packages/bkt/content/staff-ros.json" || fail "staff atlas data found in a public build"

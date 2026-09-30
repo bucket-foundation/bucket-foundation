@@ -6,7 +6,7 @@ import { useSession } from "@/providers/SessionProvider";
 import { signInUrl } from "@/lib/auth/paths";
 
 const BUTTON =
-  "small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition inline-flex items-center whitespace-nowrap min-h-[44px]";
+  "small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] tracking-[0.14em] px-4 rounded-sm hover:bg-[color:var(--aegean-deep)] transition inline-flex items-center whitespace-nowrap h-11";
 const DRAWER_BUTTON =
   "block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]";
 
@@ -53,7 +53,7 @@ export default function UserMenu({ drawer = false, onNavigate, launchList = fals
         {label}
       </Link>
       <form method="post" action="/auth/sign-out">
-        <button type="submit" className="small-caps text-[11px] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4 min-h-[44px] px-1">
+        <button type="submit" className="small-caps text-[11px] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4 h-11 inline-flex items-center px-1">
           sign out
         </button>
       </form>
