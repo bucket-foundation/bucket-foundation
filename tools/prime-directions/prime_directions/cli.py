@@ -142,6 +142,8 @@ def review_args(a) -> None:
     a.add_argument("--k", type=int, default=64)
     a.add_argument("--top", type=int, default=300)
     a.add_argument("--directions", type=Path, default=None)
+    a.add_argument("--extra-people", type=Path, action="append", help="more people files; a person already present (ORCID, then OpenAlex, then ROR plus name) keeps the first record")
+    a.add_argument("--suppress", type=Path, help="opt-out and tombstone list: one ORCID, OpenAlex id or sha256:<hex of 'name|institution' lowercased> per line; required with --extra-people")
     a.add_argument("--publishable", action="store_true")
     a.add_argument("--images", action="store_true", help="load portrait images from image_url hosts; off shows the knowledge chart")
     a.add_argument("--basis", type=Path, help="JSON list of {name, text} reference documents that define the prime directions")
@@ -215,7 +217,31 @@ def cmd_advisor_review(args) -> int:
         return 3
     return 0
 
+def merge_extra_people(args, people: list) -> list:
+    paths = getattr(args, "extra_people", None) or []
+    for p in paths:
+        if not p.exists():
+            print(f"WARNING: --extra-people {p} does not exist; building without it", file=sys.stderr, flush=True)
+    extra = [p for p in paths if p.exists()]
+    if not extra:
+        return people
+    if not getattr(args, "suppress", None):
+        raise SystemExit("--extra-people needs --suppress FILE: opt-outs and tombstones must be applied to merged people (an empty file is allowed)")
+    blocked = advisors.load_suppress(args.suppress)
+    keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+    merged, seen = [], set()
+    for person in people + [q for path in extra for q in advisors.load_people(path, text_keys=keys, allow_partial_tail=True)]:
+        if advisors.suppressed(person, blocked):
+            continue
+        k = advisors.person_key(person)
+        if k in seen:
+            continue
+        seen.add(k)
+        merged.append(person)
+    return merged
+
 def advisor_run(args, out: Path, people: list) -> None:
+    people = merge_extra_people(args, people)
     timings: dict = {"load_s": 0.0}
     checks = None
     if args.ror_cache:

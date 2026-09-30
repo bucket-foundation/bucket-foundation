@@ -593,8 +593,56 @@ def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, la
 
 PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
 
+def _norm(s) -> str:
+    return re.sub(r"\s+", " ", str(s or "")).strip().lower()
+
+
+def person_key(person) -> str:
+    m = person.meta
+    orcid = _norm(m.get("orcid"))
+    if orcid and orcid != "none":
+        return "orcid:" + orcid.rsplit("/", 1)[-1]
+    oa = _norm(m.get("openalex_id") or person.id)
+    if re.fullmatch(r"a\d+", oa.rsplit("/", 1)[-1]):
+        return "openalex:" + oa.rsplit("/", 1)[-1]
+    pid = _norm(person.id)
+    if pid and not pid.startswith("row-") and pid != _norm(person.name):
+        return "id:" + pid
+    return "name:" + _norm(m.get("ror")) + "|" + _norm(person.name)
+
+
+def name_hash(name, institution) -> str:
+    import hashlib
+
+    return "sha256:" + hashlib.sha256(f"{_norm(name)}|{_norm(institution)}".encode("utf-8")).hexdigest()
+
+
+def load_suppress(path: Path) -> set[str]:
+    out = set()
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        v = line.strip()
+        if v and not v.startswith("#"):
+            out.add(v.lower() if not v.startswith("sha256:") else v)
+    return out
+
+
+def suppressed(person, blocked: set[str]) -> bool:
+    m = person.meta
+    ids = {_norm(m.get("orcid")).rsplit("/", 1)[-1], _norm(m.get("openalex_id")).rsplit("/", 1)[-1], _norm(person.id).rsplit("/", 1)[-1]}
+    ids.discard("")
+    if ids & blocked:
+        return True
+    return name_hash(person.name, m.get("institution")) in blocked
+
+
+def opaque_id(value) -> str:
+    import hashlib
+
+    return "p" + hashlib.sha256(str(value).encode("utf-8")).hexdigest()[:16]
+
+
 def publishable_rows(rows: list[dict]) -> list[dict]:
-    return [{**r, "email": "", "email_public": False, "image_url": "", "tracker_notes": []} for r in rows]
+    return [{**r, "id": opaque_id(r.get("id")), "email": "", "email_public": False, "image_url": "", "tracker_notes": []} for r in rows]
 
 
 REVIEW_SCHEMA = "bucket.advisor-review/1"

@@ -358,7 +358,7 @@ export function CanonMarkers({
       </group>
       <group ref={tipRef} visible={false}>
         {hovered && (
-          <Html center zIndexRange={[100, 0]}>
+          <Html center style={{ pointerEvents: "none" }} zIndexRange={[100, 0]}>
             <MarkerTooltip m={hovered} color={markerColor(hovered)} />
           </Html>
         )}

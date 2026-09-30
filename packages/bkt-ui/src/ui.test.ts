@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { href, parseHash } from "./router";
+import { firstRunHash, href, parseHash } from "./router";
 import { blocks } from "./views/Lesson";
 
 describe("hash router", () => {
@@ -15,6 +15,17 @@ describe("hash router", () => {
     expect(parseHash("#/path")).toEqual({ name: "path" });
     expect(parseHash(href({ name: "path", to: "first law" }))).toEqual({ name: "path", to: "first law" });
     for (const n of ["advisors", "primes", "jobs"] as const) expect(parseHash(`#/${n}`)).toEqual({ name: n });
+  });
+});
+
+describe("first run", () => {
+  test("sends a new user with no progress to the quiz", () => {
+    const fresh = [{ introduced: 0, xp: 0 }, { introduced: 0, xp: 0 }];
+    expect(firstRunHash("", fresh)).toBe("#/quiz");
+    expect(firstRunHash("#/", fresh)).toBe("#/quiz");
+    expect(firstRunHash("#/review", fresh)).toBeNull();
+    expect(firstRunHash("", [{ introduced: 3, xp: 0 }])).toBeNull();
+    expect(firstRunHash("", [{ introduced: 0, xp: 12 }])).toBeNull();
   });
 });
 

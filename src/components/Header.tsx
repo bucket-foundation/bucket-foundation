@@ -22,6 +22,7 @@ const NAV: NavItem[] = [
       { href: "/research-os/workspace", label: "Workspace",  meta: "find · quote · check · organize" },
       { href: "/research-os/learn",     label: "Learn",      meta: "lessons, recall, mastery" },
       { href: "/research-os/map",       label: "Map",        meta: "the canon on the globe" },
+      { href: "/research-os/solvability", label: "Solvability", meta: "open problems on circle, sphere, slices, helix" },
       { href: "/research-os/class",     label: "Class",      meta: "teachers and librarians" },
       { href: "/research-os/profile",   label: "Profile",    meta: "levels, credentials, privacy" },
       { href: "/account",               label: "Account",    meta: "handle, wallet, sign out" },
@@ -107,7 +108,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
               >
                 <Link
                   href={n.href}
-                  className="hover:text-[color:var(--aegean-deep)] transition border-b-2 border-transparent hover:border-[color:var(--gold)] pb-1 min-h-[44px] flex items-center"
+                  className="hover:text-[color:var(--aegean-deep)] transition border-y-2 border-transparent hover:border-b-[color:var(--gold)] h-11 flex items-center"
                   aria-haspopup={n.sub ? "true" : undefined}
                   aria-expanded={n.sub ? openSub === n.label : undefined}
                 >
@@ -181,6 +182,13 @@ export default function Header({ launchList = false }: { launchList?: boolean })
           </nav>
 
           <div className="flex items-center gap-2">
+            <Link
+              href="/download"
+              onClick={closeDrawer}
+              className="h-11 flex items-center px-3 md:px-4 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em]"
+            >
+              Download
+            </Link>
             <GitHubStarButton />
             <UserMenu launchList={launchList} />
             <button

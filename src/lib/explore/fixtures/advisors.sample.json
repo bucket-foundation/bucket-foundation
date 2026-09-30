@@ -1,0 +1,19 @@
+{
+  "schema": "bucket.advisor-review/1",
+  "context": {
+    "key": "sample",
+    "prime_axes": ["light and water", "quantum fields", "genes and proteins", "entropy and information"],
+    "our_axes": ["biophysics", "physics", "chemistry", "information"],
+    "star_query_prime": [0.4, 0.2, 0.3, 0.1],
+    "star_query_ours": [0.5, 0.2, 0.2, 0.1],
+    "summary": "Synthetic sample advisors for local development. Set BUCKET_ADVISOR_REVIEW to a review.json from prime_directions advisor-review."
+  },
+  "rows": [
+    { "rank": 1, "name": "Sample Advisor A", "score": 0.91, "percentile": 99, "field": "biophysics", "topics": ["mitochondria", "light", "water", "circadian"], "year": 1998, "star_prime": [0.9, 0.1, 0.4, 0.2], "star_ours": [0.9, 0.2, 0.3, 0.1] },
+    { "rank": 2, "name": "Sample Advisor B", "score": 0.84, "percentile": 96, "field": "physics", "topics": ["quantum", "photon", "electron", "field theory"], "year": 1985, "star_prime": [0.2, 0.9, 0.1, 0.3], "star_ours": [0.1, 0.9, 0.2, 0.2] },
+    { "rank": 3, "name": "Sample Advisor C", "score": 0.79, "percentile": 92, "field": "chemistry", "topics": ["carbon", "oxygen", "hydrogen bond", "reaction"], "year": 2004, "star_prime": [0.3, 0.2, 0.6, 0.2], "star_ours": [0.2, 0.2, 0.9, 0.1] },
+    { "rank": 4, "name": "Sample Advisor D", "score": 0.73, "percentile": 88, "field": "genetics", "topics": ["DNA", "MTHFR", "APOE", "protein folding"], "year": 2011, "star_prime": [0.3, 0.1, 0.9, 0.1], "star_ours": [0.6, 0.1, 0.5, 0.2] },
+    { "rank": 5, "name": "Sample Advisor E", "score": 0.66, "percentile": 80, "field": "information", "topics": ["entropy", "information", "Shannon", "thermodynamics"], "year": 1979, "star_prime": [0.1, 0.3, 0.1, 0.9], "star_ours": [0.1, 0.3, 0.1, 0.9] },
+    { "rank": 6, "name": "Sample Advisor F", "score": 0.58, "percentile": 71, "field": "cosmology", "topics": ["gravity", "relativity", "quark", "Higgs boson"], "year": 1992, "star_prime": [0.1, 0.8, 0.1, 0.4], "star_ours": [0.1, 0.8, 0.1, 0.3] }
+  ]
+}

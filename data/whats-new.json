@@ -2,6 +2,86 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-solver-gap-engine",
+      "date": "2026-09-30",
+      "category": "production",
+      "branch": null,
+      "title": "Solver gap engine",
+      "summary": "3,592 problems from DeepMind formal-conjectures mapped as proved or open. The 1,369 open ones are ranked by embedding similarity to their nearest solved problem; 57 sit at 0.9 or above. A Lean test file proves two classical results and sample-tests four claims, Goldbach to 3,000 included.",
+      "commit": "949b98f95",
+      "pr": 430,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/430",
+      "status": "open",
+      "plot_title": "Open problems by similarity to the nearest solved problem, all-MiniLM-L6-v2 over docstrings",
+      "image": "/whats-new/production-solver-gap-engine.webp",
+      "image_alt": "Histogram of 1,369 open problems by cosine similarity to the nearest solved problem, peaking near 0.6, with 174 at 0.8 or above and 57 at 0.9 or above.",
+      "discussion": "The closest pairs are open variants of problems whose sibling variant is solved, such as Erdos 308 and 686. Those are the first targets for a prover. Similarity measures wording, so a high score marks a candidate and proves nothing about difficulty. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
+      "links": [
+        {
+          "label": "PR 430",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/430"
+        },
+        {
+          "label": "Solvability atlas",
+          "href": "/research-os/solvability"
+        }
+      ]
+    },
+    {
+      "id": "production-80k-prime-directions",
+      "date": "2026-09-27",
+      "category": "production",
+      "branch": null,
+      "title": "Prime directions of the 80k corpus",
+      "summary": "Twelve orthogonal SVD components of the 80,000 Hours and effective altruism corpus, drawn as one polygon per document.",
+      "commit": "e8e7506",
+      "pr": 353,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/353",
+      "status": "merged",
+      "plot_title": "Prime directions of the 80k/EA corpus: 12 orthogonal SVD components of a 5,988 x 13,872 binary document-term matrix",
+      "image": "/whats-new/80k-prime-directions.webp",
+      "image_alt": "Radar chart with 12 spokes, one per SVD component, and one colored polygon per sample document from the 80k corpus.",
+      "discussion": "Randomized truncated SVD ran on a binary matrix of 5,988 documents and 13,872 terms. The twelve components hold orthogonal to within 1e-6. Component 1, developed, leading and models, carries 2.1% of the variance. Component 2, reviewed, monitoring, randomized and mortality, carries 1.7%. Operations, skills and hiring follow at 0.85%, then technology, safety and China at 0.53%. Each polygon is one document's standardized scores. A gap analysis against other public corpora ranks charity, pledges, neglected causes and careers highest for 80k.",
+      "links": [
+        {
+          "label": "PR #353",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/353"
+        },
+        {
+          "label": "tools/prime-directions",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/prime-directions"
+        }
+      ]
+    },
+    {
+      "id": "production-canon-clusters",
+      "date": "2026-09-27",
+      "category": "production",
+      "branch": null,
+      "title": "Canon clusters of the Bucket graph",
+      "summary": "Twelve SVD directions over the public Bucket graph sort 1,669 nodes into 20 canons.",
+      "commit": null,
+      "pr": 354,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/354",
+      "status": "open",
+      "plot_title": "Canon clusters of the Bucket graph: 12 SVD directions over 1,669 public nodes, 20 clusters numbered by PageRank mass",
+      "image": "/whats-new/canon-clusters-globe.webp",
+      "image_alt": "Radar chart with 12 spokes, one per SVD direction of the Bucket graph, and one colored polygon per sample node.",
+      "extra_images": [
+        {
+          "src": "/whats-new/canon-clusters-projection.webp",
+          "alt": "Scatter of every public node on components 2 and 3 with kernel density contours, colored by canon."
+        }
+      ],
+      "discussion": "Each node's features are its terms plus its link columns, idf-weighted and row-normalized. A node joins the pole of its strongest direction. Modularity comes to 0.286, against -0.002 for shuffled labels, 0.773 for the editorial branches and 0.860 for Louvain. NMI against the branches is 0.35. Four of the canons: Canon 2 on mitochondria, melanin and topology, Canon 3 on light and the universe, Canon 4 on computer science and theory, and Canon 8 on water and the exclusion zone.",
+      "links": [
+        {
+          "label": "PR #354, open",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/354"
+        }
+      ]
+    },
+    {
       "id": "fe0458d-07-mind-cognitive-load-promoted",
       "date": "2026-09-17",
       "category": "entry-promoted",
@@ -1973,15 +2053,6 @@
       "commit": "b70f86c"
     },
     {
-      "id": "afec2ed-site-refactor",
-      "date": "2026-05-01",
-      "category": "site-refactor",
-      "branch": null,
-      "title": "Canon site refactor",
-      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. Kruse demoted from top nav, repositioned as one of multiple sources under biophysics. Pattern-B changelog (this file) introduced.",
-      "commit": "afec2ed"
-    },
-    {
       "id": "afec2ed-chemistry-branch",
       "date": "2026-05-01",
       "category": "branch-opened",
@@ -2250,6 +2321,15 @@
       "title": "Intake memo: mind-canon-pass-1-2026-05-01",
       "summary": "New file under 07-mind/_intake/.",
       "commit": "fc0fadb"
+    },
+    {
+      "id": "afec2ed-site-refactor",
+      "date": "2026-05-01",
+      "category": "site-refactor",
+      "branch": null,
+      "title": "Canon site refactor",
+      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. The private corpus left the top nav and became one of several sources under biophysics. Pattern-B changelog (this file) introduced.",
+      "commit": "afec2ed"
     }
   ]
 }

@@ -2,12 +2,25 @@ import { graphService, pagedRead } from "./db";
 import { partsFor } from "./han-components";
 import { loadHanParts } from "./han-components-db";
 import { assemble, HIDE_BELOW, type NsmColexRow, type NsmExponentRow, type NsmPrime, type NsmPrimeRow } from "./nsm";
+import { groupApprovedLinks, type ApprovedLinkRow, type ApprovedNodeRow, type PrimeIdeas } from "./nsm-links";
+import { inChunks } from "./paging";
 
 const PRIME_COLUMNS = "id,label,category,english,ord,en_word,en_pos,sense,sense_match";
 const EXPONENT_COLUMNS = "prime_id,lang,word,rank,roman,sense,sense_match,confidence,root_confidence,root_lang,root_form,root_gloss,root_source,root_gloss_form,root_gloss_confidence,colex_with,root_texts";
 const COLEX_COLUMNS = "prime_a,prime_b,lang,form,family_count,matched";
 
 type Page<T> = Promise<{ data: T[] | null; error: { message: string } | null }>;
+
+export async function loadApprovedNsmLinks(): Promise<Map<string, PrimeIdeas>> {
+  const links = await pagedRead<ApprovedLinkRow>((page) =>
+    graphService().from("nsm_links").select("node_id,prime_id").eq("status", "approved").order("id").range(page.from, page.to) as unknown as Page<ApprovedLinkRow>,
+  );
+  const ids = Array.from(new Set(links.map((l) => l.node_id)));
+  const nodes = await inChunks<ApprovedNodeRow>(ids, (chunk, page) =>
+    graphService().from("nodes").select("id,slug,title,visibility,superseded_by").in("id", chunk).order("id").range(page.from, page.to) as unknown as Page<ApprovedNodeRow>,
+  );
+  return groupApprovedLinks(links, nodes);
+}
 
 export async function loadNsm(opts: { lang?: string | null; includeHidden?: boolean } = {}): Promise<NsmPrime[]> {
   const primes = await pagedRead<NsmPrimeRow>((page) =>
