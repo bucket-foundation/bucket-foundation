@@ -202,3 +202,9 @@ test("appimage size gate records sizes and fails over the limit", () => {
     s.done();
   }
 });
+
+test("release-appimage refuses CI and a staff-data build", () => {
+  const script = path.join(ROOT, "scripts/release/release-appimage.sh");
+  assert.match(run("bash", [script], { CI: "1" }).stderr, /CI builds and measures only/);
+  assert.match(run("bash", [script], { CI: "", BKT_INCLUDE_STAFF_DATA: "1" }).stderr, /public releases ship no staff data/);
+});

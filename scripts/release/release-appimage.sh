@@ -4,6 +4,7 @@ set -euo pipefail
 fail() { echo "release-appimage.sh: $*" >&2; exit 1; }
 
 [ -z "${CI:-}" ] || fail "sign releases on the founder's machine; CI builds and measures only"
+[ -z "${BKT_INCLUDE_STAFF_DATA:-}" ] || fail "BKT_INCLUDE_STAFF_DATA is set; public releases ship no staff data"
 repo=$(cd "$(dirname "$0")/../.." && pwd)
 askpass=${BUCKET_RELEASE_ASKPASS:-$HOME/.local/bin/bkt-release-askpass}
 [ -x "$askpass" ] || fail "no askpass at $askpass"

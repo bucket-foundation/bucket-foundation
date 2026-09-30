@@ -58,6 +58,9 @@ jobs:
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - name: install
         run: npm ci --ignore-scripts && (cd packages/ros-contract && bun install --frozen-lockfile)
+      - name: public content for bkt serve
+        working-directory: packages/bkt
+        run: bun run src/pack/staff.ts
       - name: contract, web regression and runtime-neutral tests
         working-directory: packages/ros-contract
         run: bun test && bun run typecheck
