@@ -314,7 +314,8 @@ function radar(labels, series, compact = false, square = false, rings = null) {
     root.append(svg("line", {x1: C, y1: C, x2: C + R * Math.cos(ang(i)), y2: C + R * Math.sin(ang(i)), stroke: "currentColor", "stroke-opacity": "0.15"}));
     const t = svg("text", {x: C + (R + 12) * Math.cos(ang(i)), y: C + (R + 12) * Math.sin(ang(i)), "text-anchor": Math.abs(Math.cos(ang(i))) < 0.3 ? "middle" : Math.cos(ang(i)) > 0 ? "start" : "end", "dominant-baseline": "middle"});
     const words = String(l).split(/\s+/), lines = [];
-    for (const w of words) { if (lines.length && (lines[lines.length - 1] + " " + w).length <= 16) lines[lines.length - 1] += " " + w; else lines.push(w); }
+    const wrapAt = Math.abs(Math.cos(ang(i))) < 0.3 ? 30 : 16;
+    for (const w of words) { if (lines.length && (lines[lines.length - 1] + " " + w).length <= wrapAt) lines[lines.length - 1] += " " + w; else lines.push(w); }
     const up = Math.sin(ang(i)) < -0.3 ? -(lines.length - 1) : Math.abs(Math.sin(ang(i))) <= 0.3 ? -(lines.length - 1) / 2 : 0;
     lines.forEach((line, j) => { const sp = svg("tspan", {x: t.getAttribute("x"), dy: j === 0 ? up + "em" : "1.1em"}); sp.textContent = line; t.append(sp); });
     root.append(t);

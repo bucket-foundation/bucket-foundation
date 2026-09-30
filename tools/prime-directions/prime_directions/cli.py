@@ -3,13 +3,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sys
 import time
 from pathlib import Path
 
 import numpy as np
 
-from . import fitme, advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
+from . import fitme, reference, advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -142,6 +143,8 @@ def review_args(a) -> None:
     a.add_argument("--top", type=int, default=300)
     a.add_argument("--directions", type=Path, default=None)
     a.add_argument("--publishable", action="store_true")
+    a.add_argument("--basis", type=Path, help="JSON list of {name, text} reference documents that define the prime directions")
+    a.add_argument("--basis-openalex", action="store_true", help="fit the prime directions on the OpenAlex topic taxonomy, cached under the data root")
     a.add_argument("--cap", type=int, default=5)
     a.add_argument("--cap-window", type=int, default=50)
     a.add_argument("--label", type=int, default=25)
@@ -219,8 +222,16 @@ def advisor_run(args, out: Path, people: list) -> None:
         checks = _time(timings, "ror_s", ror.validate, people, client)
     query_text = getattr(args, "query_text", None) or args.query.read_text(encoding="utf-8")
     query = advisors.statement_body(query_text, args.stop_heading)
-    model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
-                   min_chars=args.min_chars, seed=args.seed)
+    basis = None
+    if getattr(args, "basis", None):
+        basis = reference.load_basis(args.basis)
+    elif getattr(args, "basis_openalex", False):
+        basis = reference.fetch_topics(corpora.data_root() / "openalex-topics.json", os.environ.get("PRIME_CONTACT"))
+    if basis is not None:
+        model_ = _time(timings, "fit_s", advisors.fit_people_on_basis, people, basis, k=args.k, min_chars=args.min_chars, seed=args.seed)
+    else:
+        model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
+                       min_chars=args.min_chars, seed=args.seed)
     rows, qraw, scored = _time(timings, "rank_s", advisors.rank, model_, query, top=None, scoring=args.scoring)
     phd = [row for row in rows if not advisors.is_source(row, "stevens")]
     mixes = {
