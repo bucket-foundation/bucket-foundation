@@ -1,6 +1,6 @@
 # Gap Candidates
 
-Open problems ranked by cosine similarity to the nearest solved problem in a different file, so variants of one problem never pair. Model all-MiniLM-L6-v2 on docstrings. 455 of 1364 open problems have their closest solved match in their own file; those matches are excluded. A random open and solved pair has median similarity 0.167, against 0.586 for the nearest cross-file match.
+Open problems ranked by cosine similarity to the nearest solved problem in a different file, so variants of one problem never pair. Model all-MiniLM-L6-v2 on docstrings. 455 of 1364 open problems have their closest solved match in their own file; those matches are excluded. The median nearest cross-file similarity is 0.586.
 
 | Rank | Sim | Open | Nearest solved |
 |---|---|---|---|

@@ -21,10 +21,9 @@ python3 match.py
 |---|---|
 | Problems mapped | 3,599, of which 1,403 open [empirical: build_map.py at fc 7d450ef, 2026-09-30, python3 build_map.py] |
 | Open problems ranked | 1364 [empirical: match.py, 2026-09-30, python3 match.py] |
-| Cross-file similarity 0.9 or above | 5 |
+| Cross-file similarity 0.9 or above | 5 [empirical: match.py stats.json, 2026-09-30, python3 match.py] |
 | Cross-file similarity 0.8 or above | 31 |
 | Median nearest cross-file similarity | 0.586 |
-| Median random open and solved pair | 0.167 |
 | Closest match in the same file, excluded | 455 |
 
 Similarity measures wording. A high score marks a problem worth handing to a prover and says nothing about its difficulty.

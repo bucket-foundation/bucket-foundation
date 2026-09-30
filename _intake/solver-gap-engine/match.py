@@ -28,7 +28,7 @@ stats = {"open_ranked": len(out), "at_0_9": int((sc >= 0.9).sum()), "at_0_8": in
          "same_file_best": sum(o["same_file_best"] is not None for o in out), "random_pair_median": round(float(np.median(base)), 3)}
 json.dump(stats, open("stats.json", "w"), indent=1)
 with open("CANDIDATES.md", "w") as f:
-    f.write(f"# Gap Candidates\n\nOpen problems ranked by cosine similarity to the nearest solved problem in a different file, so variants of one problem never pair. Model {MODEL} on docstrings. {stats['same_file_best']} of {stats['open_ranked']} open problems have their closest solved match in their own file; those matches are excluded. A random open and solved pair has median similarity {stats['random_pair_median']}, against {stats['median']} for the nearest cross-file match.\n\n| Rank | Sim | Open | Nearest solved |\n|---|---|---|---|\n")
+    f.write(f"# Gap Candidates\n\nOpen problems ranked by cosine similarity to the nearest solved problem in a different file, so variants of one problem never pair. Model {MODEL} on docstrings. {stats['same_file_best']} of {stats['open_ranked']} open problems have their closest solved match in their own file; those matches are excluded. The median nearest cross-file similarity is {stats['median']}.\n\n| Rank | Sim | Open | Nearest solved |\n|---|---|---|---|\n")
     for n, o in enumerate(out[:50], 1):
         f.write(f"| {n} | {o['score']:.3f} | `{o['open']}` | `{o['nearest_solved'][0]['id']}` |\n")
 print(json.dumps(stats))

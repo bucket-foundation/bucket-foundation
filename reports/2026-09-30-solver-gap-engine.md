@@ -10,10 +10,9 @@ Ranking open math problems by closeness to solved ones, with a Lean proof and em
 | Solved, open | 2,196, 1,403 |
 | Solved with a Lean proof | 783 |
 | Open problems ranked | 1,364 with a docstring over 30 characters |
-| Cross-file similarity 0.9 or above | 5 |
+| Cross-file similarity 0.9 or above | 5 [empirical: match.py stats.json, 2026-09-30, python3 match.py] |
 | Cross-file similarity 0.8 or above | 31 |
 | Median nearest cross-file similarity | 0.586 |
-| Median random open and solved pair | 0.167 |
 | Closest match in the same file, excluded | 455 |
 
 ## Method
