@@ -1,4 +1,4 @@
-import { ERAS } from "../research-os/solvability-space";
+import { ERAS } from "./geometry";
 import type { AdvisorReview, PrimeDirections } from "../research-os/advisor-review";
 
 export const SPACE_SCHEMA = "bucket.explore-space/1";

@@ -159,7 +159,8 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const searchAbort = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    const v = new URLSearchParams(window.location.search).get("space");
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get("space") ?? (params.get("view") === "slices" ? "slices" : null);
     if ((SPACE_VIEWS as readonly string[]).includes(v ?? "")) setViewState(v as SpaceViewId);
   }, []);
 
