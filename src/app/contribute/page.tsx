@@ -79,7 +79,7 @@ export default function Page() {
           <Way
             n="01"
             title="primary research"
-            body="Add an axiom, derivation, law, or first principle to the canon. Upload a PDF, it's pinned + minted, and every downstream citation pays you forever."
+            body="Add an axiom, derivation, law, or first principle to the canon. Submit it through Research OS; after review it becomes a canon entry, and every paid citation pays you."
           />
           <Way
             n="02"
@@ -115,19 +115,19 @@ export default function Page() {
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
             <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-              The canon holds only foundations — axioms, real math, laws,
-              principles, primary derivations. Upload a PDF; it&rsquo;s pinned to
-              Walrus and minted as a Story Protocol IP NFT, and every downstream
-              citation routes a payment to <em>you</em>, the author, over the x402
-              rail — forever. Reading is always free; only paid re-publication
-              pays.
+              The canon holds only foundations: axioms, real math, laws,
+              principles, primary derivations. Submit your work through Research
+              OS. A reviewer signs off, the work becomes a canon entry with a
+              canonical URL, and every paid citation routes a fee to{" "}
+              <em>you</em>, the author, over x402 on Base. Reading stays free;
+              paid re-publication pays.
             </p>
             <div className="mt-4 flex flex-wrap gap-4">
               <Link
-                href="/research"
+                href="/research-os"
                 className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition-colors"
               >
-                publish to canon →
+                submit through research os →
               </Link>
               <Link
                 href="/canon"

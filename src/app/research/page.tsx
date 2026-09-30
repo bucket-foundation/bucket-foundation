@@ -1,23 +1,24 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Research · tools, datasets, atlas, papers",
   description:
-    "The bucket.foundation research hub: twenty free research instruments, the open research-economy datasets, the research-atlas graph, and primary papers born with a real DOI. Free to read, paid to cite — the reader pays nothing.",
+    "The Bucket research hub: free research tools, open research-economy datasets, the research-atlas graph, and primary papers with real DOIs. Free to read, paid to cite. The reader pays nothing.",
   alternates: { canonical: "/research" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/research",
     title: "Research · bucket.foundation",
     description:
-      "Twenty free research tools, open research-economy datasets, the research-atlas graph, and primary papers with real DOIs.",
+      "Free research tools, open research-economy datasets, the research-atlas graph, and primary papers with real DOIs.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Research · bucket.foundation",
     description:
-      "Twenty free research tools, open datasets, the research-atlas graph, and primary papers with real DOIs.",
+      "Free research tools, open datasets, the research-atlas graph, and primary papers with real DOIs.",
   },
 };
 
@@ -37,18 +38,30 @@ export default function Page() {
           cite. Each downstream citation pays the author over the x402 rail on
           Base.
         </p>
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Link
+            href="/research-os"
+            className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition-colors"
+          >
+            open Research OS →
+          </Link>
+          <span className="text-[14px] leading-[1.6] text-[color:var(--basalt-2)] max-w-md">
+            Research OS is the workspace that runs these tools, datasets and
+            papers in one place.
+          </span>
+        </div>
         <div className="carved-rule max-w-xs mt-10" />
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <HubCard
             href="/research/agent"
             title="Agent"
-            body="Ask a research question; the agent plans, retrieves from the canon + live OpenAlex/PubMed + the atlas, routes it through real instruments, and writes a brief where every claim cites a source — or abstains. Reproducible."
+            body="Ask a research question. The agent retrieves from the canon, OpenAlex, PubMed and the atlas, runs real instruments, and writes a brief where every claim cites a source or abstains."
           />
           <HubCard
             href="/research/tools"
             title="Tools"
-            body="Forty research instruments — protein stability, ADMET, ephys, RNA folding, literature/agent tools over live OpenAlex — run on your input and publish to canon."
+            body={`${TOOLS.length} research instruments: protein stability, ADMET, ephys, RNA folding, and literature tools over live OpenAlex. Run them on your input.`}
           />
           <HubCard
             href="/research/datasets"
@@ -58,22 +71,22 @@ export default function Page() {
           <HubCard
             href="/research/atlas"
             title="Atlas"
-            body="The reconciled research-economy graph — 73 funders, ~958k grants, ~$658B, ~8.1M rows. The source behind every dataset and paper."
+            body="The reconciled research-economy graph: 73 funders, about 958k grants, about $658B, about 8.1M rows. The source behind every dataset and paper."
           />
           <HubCard
             href="/research/papers"
             title="Papers"
-            body="Four metascience papers on the research-atlas graph — funding structure, paper-ranking, funder specialization, funding & careers. Free to read, each born with a real DOI."
+            body="Metascience papers on the research-atlas graph: funding structure, paper ranking, funder specialization, funding and careers. Free to read, each with a real DOI."
           />
           <HubCard
             href="/research/education"
             title="Education"
-            body="The education-atlas corpus — Bucket's founding education-reform research, led by The Knowledge-Access Gradient. Three crises, a 270× access cliff, the consume-vs-produce gap. Free to read."
+            body="The education-atlas corpus, led by The Knowledge-Access Gradient: three crises, a 270x access cliff, and the gap between consuming and producing knowledge. Free to read."
           />
           <HubCard
             href="/research-os"
             title="Research OS"
-            body="A K-12 research workspace over the same graph. The AI finds, quotes, checks, and organizes; the learner writes. Five states per concept, a teacher view, and student productions that enter the graph as citable nodes."
+            body="A K-12 research workspace over the same graph. The AI finds, quotes, checks and organizes. The learner writes."
           />
         </div>
 

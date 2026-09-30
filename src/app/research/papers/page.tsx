@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { listPapers } from "@/lib/papers";
+import { DATASET_CITE_PRICE_USD } from "@/lib/research-atlas";
 
 export const metadata = {
   title: "Papers · primary research",
@@ -52,10 +53,9 @@ export default function Page() {
 
         <div className="mt-14 flex flex-col gap-px bg-[color:var(--hairline)] grid-hairlines">
           {papers.map((p) => (
-            <Link
+            <article
               key={p.slug}
-              href={`/research/papers/${p.slug}`}
-              className="block bg-[color:var(--bone)] p-7 md:p-9 shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]"
+              className="bg-[color:var(--bone)] p-7 md:p-9 shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]"
             >
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
@@ -66,19 +66,38 @@ export default function Page() {
                 </span>
               </div>
               <h2 className="mt-3 font-display text-[clamp(1.25rem,2.6vw,1.85rem)] leading-[1.2] text-[color:var(--basalt)]">
-                {p.title}
+                <Link
+                  href={`/research/papers/${p.slug}`}
+                  className="hover:text-[color:var(--aegean-deep)]"
+                >
+                  {p.title}
+                </Link>
               </h2>
               <div className="w-8 h-0.5 bg-[color:var(--gold)] mt-4" />
               <p className="mt-4 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] line-clamp-4">
                 {p.abstract[0]}
               </p>
-              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
-                <span>{p.authors}</span>
-                <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
-                  read paper →
-                </span>
+              <div className="mt-5 text-[12px] text-[color:var(--basalt-3)]">
+                {p.authors}
               </div>
-            </Link>
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+                <Link
+                  href={`/research/papers/${p.slug}`}
+                  className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                >
+                  read paper →
+                </Link>
+                <a
+                  href={p.doiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                >
+                  cite via DOI {p.doi} ↗
+                </a>
+                <span>${DATASET_CITE_PRICE_USD.toFixed(2)} per citation in a paid work</span>
+              </div>
+            </article>
           ))}
         </div>
 
