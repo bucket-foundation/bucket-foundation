@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IMPORT_BUCKET, sha256Hex, storagePathFor } from "./import-storage";
 import { detectType } from "./import-types";
-import { isTransientOutage, OUTAGE_COPY } from "./outage";
+import { isTransientOutage, OUTAGE_COPY } from "@/lib/research-os/outage";
 
 export type UploadStage = "hashing" | "uploading" | "recording";
 

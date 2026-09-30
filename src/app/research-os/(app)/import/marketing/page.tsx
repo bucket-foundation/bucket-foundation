@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { uploadAndAttach } from "@/lib/research-os/import-client";
+import { isTransientOutage, OUTAGE_COPY } from "@/lib/research-os/outage";
 import { MAX_TITLE } from "@/lib/research-os/import-types";
 import { MARKETING_EXTENSIONS, MAX_MARKETING_FILE_BYTES, MAX_MARKETING_FILES, marketingExtension } from "@/lib/research-os/marketing/sniff";
 import { MarketingReportView, type MarketingSection } from "./report-view";
@@ -19,6 +20,14 @@ interface Result {
 }
 
 const MB = 1024 * 1024;
+async function api<T>(url: string, init: RequestInit): Promise<{ ok: true; body: T } | { ok: false; message: string }> {
+  const res = await fetch(url, init);
+  const body = (await res.json().catch(() => null)) as (T & { message?: string; error?: string }) | null;
+  if (res.ok && body) return { ok: true, body };
+  if (isTransientOutage(res.status, body?.error ?? null)) return { ok: false, message: OUTAGE_COPY.body };
+  return { ok: false, message: body?.message ?? `The request failed (${res.status}).` };
+}
+
 const ACCEPT = MARKETING_EXTENSIONS.map((e) => `.${e}`).join(",");
 
 function fileProblem(f: File): string | null {
@@ -49,10 +58,9 @@ export default function MarketingImportPage() {
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("import");
     if (!id || !token) return;
-    void fetch(`/api/research-os/marketing?import=${encodeURIComponent(id)}`, { headers: headers() }).then(async (res) => {
-      const body = (await res.json().catch(() => null)) as (Result & { message?: string }) | null;
-      if (res.ok && body) setResult({ importId: id, report: body.report });
-      else setProblem(body?.message ?? "That analysis could not be opened.");
+    void api<Result>(`/api/research-os/marketing?import=${encodeURIComponent(id)}`, { headers: headers() }).then((r) => {
+      if (r.ok) setResult({ importId: id, report: r.body.report });
+      else setProblem(r.message);
     });
   }, [token, headers]);
 
@@ -72,10 +80,9 @@ export default function MarketingImportPage() {
     setBusy(true);
     setProblem(null);
     try {
-      const created = await fetch("/api/research-os/marketing", { method: "POST", headers: headers(), body: JSON.stringify({ action: "create", title: title.trim() }) });
-      const cbody = (await created.json().catch(() => null)) as { importId?: string; message?: string } | null;
-      if (!created.ok || !cbody?.importId) return setProblem(cbody?.message ?? "The analysis could not be created.");
-      const importId = cbody.importId;
+      const created = await api<{ importId: string }>("/api/research-os/marketing", { method: "POST", headers: headers(), body: JSON.stringify({ action: "create", title: title.trim() }) });
+      if (!created.ok) return setProblem(created.message);
+      const importId = created.body.importId;
       const supabase = getBrowserSupabase();
       const ownerId = (await supabase.auth.getUser()).data.user?.id ?? "";
       let recorded = 0;
@@ -88,10 +95,9 @@ export default function MarketingImportPage() {
         } else mark(i, out.message, true);
       }
       if (!recorded) return setProblem("No file was recorded, so nothing was analyzed.");
-      const analyzed = await fetch("/api/research-os/marketing", { method: "POST", headers: headers(), body: JSON.stringify({ action: "analyze", importId }) });
-      const abody = (await analyzed.json().catch(() => null)) as (Result & { message?: string }) | null;
-      if (!analyzed.ok || !abody?.report) return setProblem(abody?.message ?? "The files could not be analyzed.");
-      setResult({ importId, report: abody.report });
+      const analyzed = await api<Result>("/api/research-os/marketing", { method: "POST", headers: headers(), body: JSON.stringify({ action: "analyze", importId }) });
+      if (!analyzed.ok) return setProblem(analyzed.message);
+      setResult({ importId, report: analyzed.body.report });
       window.history.replaceState(null, "", `?import=${encodeURIComponent(importId)}`);
     } catch {
       setProblem("The analysis did not finish.");
@@ -103,10 +109,9 @@ export default function MarketingImportPage() {
   async function remove() {
     if (!result || !window.confirm("Delete these files and the saved analysis? This cannot be undone.")) return;
     setBusy(true);
-    const res = await fetch(`/api/research-os/marketing?import=${encodeURIComponent(result.importId)}`, { method: "DELETE", headers: headers() });
-    const body = (await res.json().catch(() => null)) as { message?: string } | null;
+    const res = await api<{ deleted: boolean }>(`/api/research-os/marketing?import=${encodeURIComponent(result.importId)}`, { method: "DELETE", headers: headers() });
     setBusy(false);
-    if (!res.ok) return setProblem(body?.message ?? "The delete did not finish.");
+    if (!res.ok) return setProblem(res.message);
     setResult(null);
     setPicked([]);
     setProblem("Deleted. The files and the saved analysis are gone from this install.");
