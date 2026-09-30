@@ -13,8 +13,3 @@ export const APPIMAGE_RUN_STEPS = ["chmod +x Bucket-*.AppImage", "./Bucket-*.App
 export const APPIMAGE_WARNING = "Open the AppImage from a terminal. Opening it with Disks offers to overwrite your whole drive.";
 
 export const INSTALL_SHELL: Record<Os, string> = { macos: "Terminal", linux: "a terminal", windows: "PowerShell" };
-
-export function siteVersion(tag: string | null | undefined, packageVersion: string): string {
-  const fromTag = tag?.replace(/^bkt-v/, "");
-  return `v${fromTag || packageVersion}`;
-}
