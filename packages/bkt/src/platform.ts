@@ -173,9 +173,9 @@ export function procNetTcpOwner(peerPort: number, serverPort: number, files = ["
 }
 
 export function lsofOwner(run: ExecSync, peerPort: number, serverPort: number): number | null | undefined {
-  const r = run(["lsof", "-nP", `-iTCP@127.0.0.1:${peerPort}`, "-sTCP:ESTABLISHED", "-Fun"]);
-  if (r.code === 1 && !r.stderr.trim()) return null;
-  if (r.code !== 0) return undefined;
+  const r = run(["lsof", "-w", "-nP", `-iTCP@127.0.0.1:${peerPort}`, "-sTCP:ESTABLISHED", "-Fun"]);
+  if (r.code === 127) return undefined;
+  if (r.code !== 0) return null;
   let uid: number | null = null;
   for (const line of r.stdout.split("\n")) {
     if (line.startsWith("p")) uid = null;
@@ -215,7 +215,8 @@ function windowsSecure(d: PlatformDeps, path: string): string {
 
 export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number): Owner | null | undefined {
   const ns = d.execSync(["netstat", "-ano", "-p", "TCP"]);
-  if (ns.code !== 0) return undefined;
+  if (ns.code === 127) return undefined;
+  if (ns.code !== 0) return null;
   const row = ns.stdout
     .split(/\r?\n/)
     .map((l) => l.trim().split(/\s+/))
@@ -225,7 +226,8 @@ export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: numb
   const tl = d.execSync(["tasklist", "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
   const cols = tl.stdout.trim().match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
   const user = cols[1] === String(pid) ? cols[6]?.toLowerCase() : undefined;
-  if (tl.code !== 0) return undefined;
+  if (tl.code === 127) return undefined;
+  if (tl.code !== 0) return null;
   return user && user !== "n/a" ? user : null;
 }
 

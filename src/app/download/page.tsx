@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
-import { OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, macArch, megabytes, orderFor } from "@/lib/download/release";
+import { OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, installerArch, macArch, megabytes, orderFor } from "@/lib/download/release";
 import DownloadForm from "./DownloadForm";
 
 export const metadata: Metadata = {
@@ -41,9 +41,9 @@ export default async function DownloadPage() {
           {installers.length > 0 ? (
             <ul className="mt-4 flex flex-col gap-3">
               {installers.map((i) => (
-                <li key={i.os}>
+                <li key={i.name}>
                   <a href={i.url} className={i === mine ? PRIMARY : SECONDARY} data-os={i.os}>
-                    <span>Download for {OS_LABEL[i.os]}</span>
+                    <span>Download for {OS_LABEL[i.os]}{installerArch(i) ? ` ${installerArch(i)}` : ""}</span>
                     <span className="normal-case tracking-normal text-[12px] opacity-80">{megabytes(i.size)}</span>
                   </a>
                 </li>

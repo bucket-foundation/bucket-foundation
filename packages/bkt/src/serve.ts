@@ -109,15 +109,7 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
 export function startServe(opts: ServeOptions = {}): Serve {
   const platform = opts.uid === undefined || opts.resolvePeerUid === undefined || opts.peerCheck === undefined ? platformFor() : null;
   const peerCheck: PeerCheck = opts.peerCheck ?? (opts.resolvePeerUid ? "strict" : platform!.peerCheck);
-  const selfOwner = (): Owner | undefined => {
-    try {
-      return platform!.self();
-    } catch (e) {
-      if (peerCheck === "strict") throw e;
-      return undefined;
-    }
-  };
-  const uid = opts.uid ?? selfOwner();
+  const uid = opts.uid ?? platform!.self();
   const resolve = opts.resolvePeerUid ?? ((peer: number, server: number) => platform!.peerOwner(peer, server));
   const now = opts.now ?? Date.now;
   const routes = opts.routes ?? {};
@@ -175,7 +167,6 @@ export function startServe(opts: ServeOptions = {}): Serve {
       const peerOk = () => {
         const ip = srv.requestIP(req);
         if (!ip || (ip.address !== HOSTNAME && ip.address !== `::ffff:${HOSTNAME}`)) return false;
-        if (uid === undefined) return peerCheck === "best-effort";
         let peer: Owner | null | undefined;
         try {
           peer = resolve(ip.port, serverPort);

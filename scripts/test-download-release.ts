@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { detectOs, fetchLatestRelease, installersFor, macArch, orderFor, pickLatest, type GitHubRelease } from "../src/lib/download/release";
+import { detectOs, fetchLatestRelease, installerArch, installersFor, macArch, orderFor, pickLatest, type GitHubRelease } from "../src/lib/download/release";
 
 const asset = (name: string) => ({ name, browser_download_url: `https://example.org/${name}`, size: 38_091_256 });
 const rel = (tag: string, names: string[], extra: Partial<GitHubRelease> = {}): GitHubRelease => ({
@@ -42,15 +42,15 @@ test("fetchLatestRelease returns null when GitHub fails", async () => {
   assert.equal(ok?.installers[0].os, "macos");
 });
 
-test("bare bkt-darwin binaries show for macOS, arm64 unless the arch hint says x86", () => {
+test("bare bkt-darwin binaries show for macOS: the hinted arch alone, both without a hint", () => {
   const names = ["bkt-darwin-arm64", "bkt-darwin-arm64.sha256", "bkt-darwin-x64", "bkt-darwin-x64.manifest.sig", "bkt-windows-x64.exe", "bkt-linux-x64", "Bucket-0.4.0-x86_64.AppImage"];
-  const mac = (arch?: "arm64" | "x64") => installersFor(names.map(asset), arch).find((i) => i.os === "macos")?.name;
-  assert.equal(mac(), "bkt-darwin-arm64");
-  assert.equal(mac(macArch('"x86"')), "bkt-darwin-x64");
-  assert.equal(mac(macArch('"arm"')), "bkt-darwin-arm64");
-  assert.equal(mac(macArch(null)), "bkt-darwin-arm64");
-  assert.equal(installersFor(["bkt-darwin-x64"].map(asset), "arm64")[0].name, "bkt-darwin-x64");
+  const mac = (arch: "arm64" | "x64" | null) => installersFor(names.map(asset), arch).filter((i) => i.os === "macos").map((i) => i.name);
+  assert.deepEqual(mac(macArch('"x86"')), ["bkt-darwin-x64"]);
+  assert.deepEqual(mac(macArch('"arm"')), ["bkt-darwin-arm64"]);
+  assert.deepEqual(mac(macArch(null)), ["bkt-darwin-arm64", "bkt-darwin-x64"]);
+  assert.deepEqual(installersFor(["bkt-darwin-x64"].map(asset), "arm64").map((i) => i.name), ["bkt-darwin-x64"]);
   assert.equal(installersFor(["Bucket-1.dmg", "bkt-darwin-arm64"].map(asset))[0].name, "Bucket-1.dmg");
-  assert.deepEqual(installersFor(names.map(asset)).map((i) => i.os), ["macos", "windows", "linux"]);
+  assert.deepEqual(installersFor(names.map(asset), "arm64").map((i) => i.os), ["macos", "windows", "linux"]);
   assert.equal(pickLatest([rel("bkt-v0.4.0", names)], "x64")?.installers[0].name, "bkt-darwin-x64");
+  assert.deepEqual(["bkt-darwin-arm64", "bkt-darwin-x64", "Bucket-1.dmg"].map((name) => installerArch({ name })), ["Apple silicon", "Intel", null]);
 });
