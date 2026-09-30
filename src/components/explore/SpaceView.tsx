@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import CircleChart, { type ChartSeries } from "./CircleChart";
 import Scrubber from "./Scrubber";
 import { useWheelStep } from "./useWheelStep";
@@ -22,6 +23,8 @@ interface Props {
   index?: number;
   onIndex?(i: number): void;
   lowCoverage?: number;
+  scrubberHost?: HTMLElement | null;
+  chrome?: "full" | "minimal";
 }
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
@@ -55,7 +58,8 @@ function Components({ ds }: { ds: Dataset }) {
   );
 }
 
-export default function SpaceView({ view, dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3 }: Props) {
+export default function SpaceView({ view, dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3, scrubberHost = null, chrome = "full" }: Props) {
+  const place = (node: ReactNode) => (scrubberHost ? createPortal(node, scrubberHost) : node);
   const ds = useMemo(() => dataset ?? sampleDataset(), [dataset]);
   const [local, setLocal] = useState(0);
   const [activeSlice, setActiveSlice] = useState(0);
@@ -152,7 +156,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           <p data-testid="surface-status" data-visible={visible} className="sr-only">
             {view === "cylinder" ? `surface of ${slices.length} slices` : `${visible} of ${count} observations`}
           </p>
-          {view === "cylinder" ? sliceScrubber : view === "sphere" ? obsScrubber : yearScrubber}
+          {place(view === "cylinder" ? sliceScrubber : view === "sphere" ? obsScrubber : yearScrubber)}
         </div>
       </Root>
     );
@@ -166,12 +170,16 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           <SliceStack dataset={ds} slices={slices} active={activeSlice} onActive={setActiveSlice} onOpen={setOpened} />
         </div>
         <div className="w-full max-w-3xl px-4 pb-4 text-sm">
-          <Scrubber count={slices.length} index={activeSlice} label={slices[activeSlice] ? `${slices[activeSlice].label} · slice ${activeSlice + 1} / ${slices.length}` : "no slices"} ariaLabel="slices" onIndex={setActiveSlice} labelTestId="slice-current" />
-          <div className="flex justify-center mt-3">
-            <button type="button" data-testid="slice-open-btn" onClick={() => setOpened(activeSlice)} className="border hairline px-3 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={mono}>
-              Open circle chart
-            </button>
-          </div>
+          {place(
+            <>
+            <Scrubber count={slices.length} index={activeSlice} label={slices[activeSlice] ? `${slices[activeSlice].label} · slice ${activeSlice + 1} / ${slices.length}` : "no slices"} ariaLabel="slices" onIndex={setActiveSlice} labelTestId="slice-current" />
+            <div className="flex justify-center mt-3">
+              <button type="button" data-testid="slice-open-btn" onClick={() => setOpened(activeSlice)} className="border hairline px-3 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={mono}>
+                Open circle chart
+              </button>
+            </div>
+            </>,
+          )}
         </div>
       </Root>
     );
@@ -203,14 +211,14 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       </div>
       <div className="w-full max-w-3xl px-4 pb-6 text-sm">
         {slice ? (
-          <Scrubber count={slices.length} index={opened ?? 0} label={`${slice.label} · ${slice.obsIds.length} observations`} ariaLabel="slices" onIndex={setOpened} labelTestId="slice-open" />
+          place(<Scrubber count={slices.length} index={opened ?? 0} label={`${slice.label} · ${slice.obsIds.length} observations`} ariaLabel="slices" onIndex={setOpened} labelTestId="slice-open" />)
         ) : (
           <>
-            {obsScrubber}
-            {lowTag && <p className="text-center text-xs mt-1">{lowTag}</p>}
+            {place(obsScrubber)}
+            {lowTag && chrome === "full" && <p className="text-center text-xs mt-1">{lowTag}</p>}
           </>
         )}
-        <Components ds={ds} />
+        {chrome === "full" && <Components ds={ds} />}
       </div>
     </Root>
   );

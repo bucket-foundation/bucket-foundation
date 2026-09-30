@@ -63,7 +63,7 @@ export default function Scrubber({ count, index, label, ariaLabel, onIndex, labe
         onKeyDown={key}
         className="relative h-6 cursor-ew-resize touch-none outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]"
       >
-        <div className="absolute left-0 right-0 top-1/2 h-[3px] -translate-y-1/2 rounded" style={{ background: "rgba(239,232,212,0.25)" }} />
+        <div className="absolute left-0 right-0 top-1/2 h-[3px] -translate-y-1/2 rounded" style={{ background: "color-mix(in srgb, currentColor 30%, transparent)" }} />
         <div className="absolute left-0 top-1/2 h-[3px] -translate-y-1/2 rounded" style={{ width: `${fraction * 100}%`, background: GOLD }} />
         <div data-testid="scrubber-handle" className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ left: `${fraction * 100}%`, background: GOLD, boxShadow: "0 0 0 3px rgba(20,19,17,0.9)" }} />
       </div>
