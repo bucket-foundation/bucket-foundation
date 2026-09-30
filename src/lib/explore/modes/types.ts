@@ -45,6 +45,8 @@ export interface ModeContext {
   genome?: GenomeSummary | null;
   extraHits?: Hit[];
   element?: number;
+  molecule?: string;
+  reaction?: string;
 }
 
 export interface ExploreMode {
