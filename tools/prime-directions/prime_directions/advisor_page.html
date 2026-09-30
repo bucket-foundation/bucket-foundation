@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="__CSP__">
 <title>Advisor review</title>
 <style>
 :root{--bg:#EFE8D4;--panel:#E4DCC4;--line:rgba(31,28,22,.16);--ink:#1F1C16;--soft:#5E5543;--ochre:#8A641A;--ochre-fill:#B8861E;--teal:#0B6E6E;--rust:#9A3B22;--chip:#F6F1E3}
@@ -105,9 +106,10 @@ body:not(.rows) .sheet-wrap{display:none}
 .submode button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .sheet-wrap{overflow:auto;margin-top:8px;border:1px solid var(--line);border-radius:6px;min-width:0}
 .sheet{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
-.sheet th{position:sticky;top:0;background:var(--panel);text-align:left;font-weight:600;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
-.sheet th[aria-sort=descending]::after{content:" ↓"}
-.sheet th[aria-sort=ascending]::after{content:" ↑"}
+.sheet th{position:sticky;top:0;background:var(--panel);text-align:left;font-weight:600;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sheet th button.th{background:none;border:0;padding:0;font:inherit;font-weight:600;color:inherit;cursor:pointer}
+.sheet th[aria-sort=descending] button::after{content:" ↓"}
+.sheet th[aria-sort=ascending] button::after{content:" ↑"}
 .sheet td{padding:3px 8px;border-bottom:1px solid var(--line);white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
 .sheet td.num{text-align:right}
 .sheet tr{cursor:pointer}
@@ -641,6 +643,7 @@ function knowledgeChart(r) {
   g.setAttribute("aria-label", "Knowledge chart for " + r.name);
   return g;
 }
+const SORT_DIR = {rank: "ascending", score: "ascending", name: "ascending", institution: "ascending", country: "ascending", field: "ascending", h: "descending", funded: "descending", saved: "ascending"};
 const COLS = [
   ["rank", "#", (r) => r.rank, "num"], ["name", "Name", (r) => r.name], ["institution", "Institution", (r) => r.institution || ""],
   ["country", "Country", (r) => r.country || ""], ["field", "Field", (r) => r.field || ""], ["h", "h", (r) => r.h_index ?? "", "num"],
@@ -653,16 +656,19 @@ function sheet(list) {
   const key = $("sort").value || "rank";
   const head = make("tr");
   COLS.forEach(([k, label]) => {
-    const th = make("th", {scope: "col", text: label});
+    const th = make("th", {scope: "col"});
     if (k) {
-      if (k === key && label !== "Top %") th.setAttribute("aria-sort", k === "name" || k === "institution" || k === "country" || k === "field" || k === "rank" ? "ascending" : "descending");
-      th.addEventListener("click", () => { $("sort").value = k in SORTS ? k : "rank"; selectedId = null; reset(); });
-    }
+      const sk = k in SORTS ? k : "rank";
+      if (sk === key && label !== "Top %") th.setAttribute("aria-sort", SORT_DIR[sk] || "ascending");
+      const b = make("button", {type: "button", class: "th", text: label, "aria-label": "Sort by " + label});
+      b.addEventListener("click", () => { $("sort").value = sk; selectedId = null; reset(); });
+      th.append(b);
+    } else th.textContent = label;
     head.append(th);
   });
   const body = make("tbody");
   for (const r of list.slice(0, limit * 5)) {
-    const tr = make("tr", {dataset: {id: r.id}, tabindex: "0"});
+    const tr = make("tr", {dataset: {id: r.id}, tabindex: r.id === selectedId ? "0" : "-1", "aria-selected": String(r.id === selectedId)});
     if (r.id === selectedId) tr.classList.add("selected");
     COLS.forEach(([k, , get, cls]) => {
       const v = String(get(r));
@@ -673,6 +679,7 @@ function sheet(list) {
     });
     tr.addEventListener("click", () => select(r.id));
     tr.addEventListener("dblclick", () => { select(r.id); document.querySelector('[data-view="circle"]').click(); });
+    tr.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); select(r.id); document.querySelector('[data-view="circle"]').click(); } });
     body.append(tr);
   }
   t.replaceChildren(make("thead", {}, [head]), body);
@@ -709,6 +716,7 @@ function card(r, tag = "li") {
 }
 
 function render() {
+  const inSheet = !!(document.activeElement && document.activeElement.closest && document.activeElement.closest(".sheet tbody"));
   const list = visible();
   const counts = {shortlist: 0, maybe: 0, skip: 0};
   for (const r of rows) { const s = statusOf(r); if (s in counts) counts[s]++; }
@@ -724,7 +732,11 @@ function render() {
   if (!list.length) ol.append(make("li", {class: "empty", text: "No one matches these filters."}));
   current = list;
   if (!list.some((r) => r.id === selectedId)) selectedId = list.length ? list[0].id : null;
-  document.querySelectorAll(".cards .card, .sheet tbody tr").forEach((el) => el.classList.toggle("selected", el.dataset.id === selectedId));
+  document.querySelectorAll(".cards .card, .sheet tbody tr").forEach((el) => {
+    const on = el.dataset.id === selectedId;
+    el.classList.toggle("selected", on);
+    if (el.tagName === "TR") { el.tabIndex = on ? 0 : -1; el.setAttribute("aria-selected", String(on)); if (on && inSheet) el.focus({preventScroll: false}); }
+  });
   const idx = list.findIndex((r) => r.id === selectedId);
   $("tl").max = String(Math.max(list.length - 1, 0));
   $("tl").value = String(Math.max(idx, 0));
