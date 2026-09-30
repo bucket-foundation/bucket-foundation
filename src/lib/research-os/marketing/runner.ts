@@ -82,7 +82,9 @@ export function scrubReport(report: Record<string, unknown>, input: Pick<RunInpu
     const i = input.files.findIndex((f) => value === f || value.endsWith(`/${f.split("/").pop()}`) || value === f.split("/").pop());
     return i >= 0 ? input.names[i] : value;
   };
-  const out: Record<string, unknown> = { ...report };
+  const dirs = Array.from(new Set(input.files.map((f) => f.slice(0, f.lastIndexOf("/") + 1)).filter((d) => d.length > 1)));
+  const scrubbed = dirs.reduce((text, d) => text.split(JSON.stringify(d).slice(1, -1)).join(""), JSON.stringify(report));
+  const out: Record<string, unknown> = JSON.parse(scrubbed) as Record<string, unknown>;
   delete out.dir;
   delete out.helix;
   const form = out.form as Record<string, unknown> | undefined;

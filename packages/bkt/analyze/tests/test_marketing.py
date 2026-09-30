@@ -220,6 +220,7 @@ def base_parts() -> dict[str, bytes]:
         (lambda p: {**p, "xl/worksheets/sheet1.xml": b'<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "aaaa">]><worksheet/>'}, "E_XLSX_DOCTYPE"),
         (lambda p: {**p, "xl/worksheets/sheet1.xml": b"<worksheet>" + b" " * (70 << 20) + b"</worksheet>"}, "E_XLSX_TOO_LARGE"),
         (lambda p: {k: v for k, v in p.items() if k != "[Content_Types].xml"}, "E_XLSX_TYPE"),
+        (lambda p: {**p, "xl/worksheets/sheet1.xml": '<?xml version="1.0" encoding="UTF-16"?><!DOCTYPE x [<!ENTITY a "a">]><worksheet/>'.encode("utf-16")}, "E_XLSX_ENCODING"),
         (lambda p: {**{f"pad/{i}": b"" for i in range(2001)}, **p}, "E_XLSX_TOO_LARGE"),
     ],
 )

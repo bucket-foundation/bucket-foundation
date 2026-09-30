@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import datetime as dt
-import os
 import re
 import resource
 import subprocess
@@ -58,7 +57,9 @@ def read_member(zf: zipfile.ZipFile, name: str, budget: Budget) -> bytes:
             budget.take(len(chunk))
             if len(out) > MAX_MEMBER_BYTES:
                 raise ReadError("E_XLSX_TOO_LARGE", f"part {name} expands past {MAX_MEMBER_BYTES >> 20} MB")
-    if b"<!DOCTYPE" in out[:4096] or b"<!ENTITY" in out:
+    if out[:2] in (b"\xff\xfe", b"\xfe\xff") or out[:4] in (b"\x00<\x00?", b"<\x00?\x00"):
+        raise ReadError("E_XLSX_ENCODING", f"part {name} is not UTF-8")
+    if b"<!DOCTYPE" in out or b"<!ENTITY" in out:
         raise ReadError("E_XLSX_DOCTYPE", f"part {name} declares a DOCTYPE or entity")
     return bytes(out)
 
@@ -179,7 +180,7 @@ def read_xlsx(path: Path, max_rows: int, sheet: int = 0) -> tuple[list[str], lis
                     uncached += 1
                 val = None
             elif t == "s":
-                i = int(v.text)
+                i = int(v.text) if v.text.isdigit() else -1
                 val = shared[i] if 0 <= i < len(shared) else None
             elif t == "b":
                 val = v.text == "1"
@@ -191,7 +192,8 @@ def read_xlsx(path: Path, max_rows: int, sheet: int = 0) -> tuple[list[str], lis
                 except ValueError:
                     val = v.text
                 else:
-                    if int(c.get("s", "0")) in styles:
+                    style = c.get("s", "0")
+                    if style.isdigit() and int(style) in styles:
                         val = excel_date(num, date1904)
                     else:
                         val = int(num) if num.is_integer() and abs(num) < 2**53 else num
@@ -215,7 +217,6 @@ def read_xlsx(path: Path, max_rows: int, sheet: int = 0) -> tuple[list[str], lis
 def _limit_child() -> None:
     resource.setrlimit(resource.RLIMIT_AS, (PDF_MEMORY, PDF_MEMORY))
     resource.setrlimit(resource.RLIMIT_CPU, (PDF_TIMEOUT, PDF_TIMEOUT))
-    os.setsid()
 
 
 def split_layout(text: str) -> tuple[list[str], list[list], int]:

@@ -1,4 +1,3 @@
--- Run: psql "$DB" -v ON_ERROR_STOP=1 -f supabase/tests/research_os_marketing_reports.sql
 begin;
 
 create temporary table t_m (owner uuid, other uuid, imp uuid, node uuid, pubimp uuid) on commit drop;
