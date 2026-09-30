@@ -23,7 +23,7 @@ TEXT_KEYS = (
 ID_KEYS = ("id", "openalex_id", "orcid", "email", "name")
 NAME_KEYS = ("name", "display_name", "full_name")
 FILTER_KEYS = ("field", "country", "funding", "institution", "taking_students")
-EXTRA_KEYS = ("department", "h_index", "sources", "profile_url")
+EXTRA_KEYS = ("department", "h_index", "sources", "profile_url", "image_url")
 PUBLIC_EMAIL_SOURCES = ("official_directory", "opt_in")
 
 @dataclass
@@ -554,19 +554,40 @@ def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, la
 PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
 
 def publishable_rows(rows: list[dict]) -> list[dict]:
-    return [{**r, "email": "", "email_public": False} for r in rows]
+    return [{**r, "email": "", "email_public": False, "image_url": ""} for r in rows]
 
 
-def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path, publishable: bool = False) -> Path:
+def image_hosts(rows: list[dict]) -> list[str]:
+    from urllib.parse import urlparse
+
+    hosts = set()
+    for r in rows:
+        u = str(r.get("image_url") or "")
+        if u.startswith("https://"):
+            host = urlparse(u).hostname
+            if host and re.fullmatch(r"[a-z0-9.-]+", host):
+                hosts.add(host)
+    return sorted(hosts)
+
+
+def csp(hosts: list[str]) -> str:
+    img = " ".join(["data:"] + [f"https://{h}" for h in hosts])
+    return (f"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src {img}; "
+            "connect-src 'none'; base-uri 'none'; form-action 'none'")
+
+
+def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path, publishable: bool = False, images: bool = False) -> Path:
     import base64
 
     if publishable:
         rows = publishable_rows(rows)
+    if publishable or not images:
+        rows = [{**r, "image_url": ""} for r in rows]
 
     image = "data:image/png;base64," + base64.b64encode(Path(plot_png).read_bytes()).decode("ascii")
     payload = {"rows": rows, "context": context}
     data = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
-    page = PAGE.replace("__IMAGE__", image).replace("__DATA__", data)
+    page = PAGE.replace("__CSP__", csp(image_hosts(rows))).replace("__IMAGE__", image).replace("__DATA__", data)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(page, encoding="utf-8")
     return path

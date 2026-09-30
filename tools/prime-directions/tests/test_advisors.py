@@ -319,3 +319,17 @@ def test_basis_spans_its_own_fields_and_projects_people():
     ctx = advisors.direction_profiles(model, rows, query, [])
     assert ctx["prime_axes"] == labels[:6]
     assert all(0 <= v <= 1 for r in rows for v in r["star_prime"])
+
+
+def test_images_off_by_default_stripped_when_publishable_and_csp_lists_hosts(tmp_path: Path):
+    rows = [{"id": "a", "email": "", "image_url": "https://upload.wikimedia.org/x.jpg"}, {"id": "b", "image_url": "javascript:alert(1)"}]
+    png = tmp_path / "p.png"
+    import matplotlib.pyplot as plt
+    plt.figure(); plt.savefig(png); plt.close()
+    off = advisors.write_page(rows, png, {}, tmp_path / "off.html").read_text()
+    assert "upload.wikimedia.org" not in off and "img-src data:;" in off
+    on = advisors.write_page(rows, png, {}, tmp_path / "on.html", images=True).read_text()
+    assert "img-src data: https://upload.wikimedia.org;" in on
+    pub = advisors.write_page(rows, png, {}, tmp_path / "pub.html", publishable=True, images=True).read_text()
+    assert "upload.wikimedia.org" not in pub
+    assert advisors.image_hosts([{"image_url": "https://a.org/x"}, {"image_url": "http://b.org/y"}, {"image_url": "https://bad host/z"}]) == ["a.org"]

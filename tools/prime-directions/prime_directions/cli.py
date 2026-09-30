@@ -143,6 +143,7 @@ def review_args(a) -> None:
     a.add_argument("--top", type=int, default=300)
     a.add_argument("--directions", type=Path, default=None)
     a.add_argument("--publishable", action="store_true")
+    a.add_argument("--images", action="store_true", help="load portrait images from image_url hosts; off shows the knowledge chart")
     a.add_argument("--basis", type=Path, help="JSON list of {name, text} reference documents that define the prime directions")
     a.add_argument("--basis-openalex", action="store_true", help="fit the prime directions on the OpenAlex topic taxonomy, cached under the data root")
     a.add_argument("--cap", type=int, default=5)
@@ -265,7 +266,7 @@ def advisor_run(args, out: Path, people: list) -> None:
     directions = advisors.load_directions(args.directions) if args.directions else (
         fitme.statement_directions(model_, query_text) if getattr(args, "directions_from_statement", False) else [])
     context.update(advisors.direction_profiles(model_, rows, query, directions, args.scoring))
-    advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable)
+    advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable, images=getattr(args, "images", False))
     report = {
         "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
         "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),

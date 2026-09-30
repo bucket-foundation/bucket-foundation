@@ -103,10 +103,11 @@ test("scrolling over the chart steps people and a mini chart becomes the main vi
 test("clicking a list card expands that person and scrolling switches the active person", async ({ page }) => {
   await page.goto(pageUrl);
   await page.click('[data-view="list"]');
+  await page.click('[data-mode="grid"]');
   await expect(page.locator(".cards .card .minis")).toHaveCount(0);
   const second = page.locator(".cards .card").nth(1);
   const id = await second.getAttribute("data-id");
-  await second.locator(".name").click();
+  await second.locator(".name").dblclick();
   await expect(page.locator('[data-view="circle"]')).toHaveAttribute("aria-pressed", "true");
   expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(id);
   const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
@@ -196,4 +197,38 @@ test("single-key shortcuts only act on the chart and panel, and switch off", asy
   await page.keyboard.press("x");
   expect(await st()).toBe("shortlist");
   await expect(page.locator("#legend")).toContainText("single-key shortcuts off");
+});
+
+test("table view: list is a sortable sheet, grid shows profile cards with an image or knowledge chart", async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.click('[data-view="list"]');
+  const rows = page.locator(".sheet tbody tr");
+  expect(await rows.count()).toBeGreaterThan(5);
+  await expect(page.locator(".cards .card")).toHaveCount(0);
+  await page.locator(".sheet th button", {hasText: "Name"}).focus();
+  await page.keyboard.press("Enter");
+  expect(await page.evaluate(() => (window as any).__advisorReview.sortKey())).toBe("name");
+  const names = await page.locator(".sheet tbody tr td:nth-child(2)").allTextContents();
+  expect(names.slice(0, 5)).toEqual([...names.slice(0, 5)].sort((a, b) => a.localeCompare(b)));
+  const id = await rows.nth(2).getAttribute("data-id");
+  await rows.nth(2).click();
+  expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(id);
+  await page.click('[data-mode="grid"]');
+  await expect(page.locator(".sheet tbody tr")).toHaveCount(0);
+  const first = page.locator(".cards .card").first();
+  await expect(first.locator(".portrait svg, .portrait img")).toHaveCount(1);
+});
+
+test("sheet is one tab stop and Enter on a row opens Circle", async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.click('[data-view="list"]');
+  await expect(page.locator('.sheet tbody tr[tabindex="0"]')).toHaveCount(1);
+  await page.locator('.sheet tbody tr[tabindex="0"]').focus();
+  await page.keyboard.press("ArrowDown");
+  await expect(page.locator('.sheet tbody tr[tabindex="0"]')).toHaveCount(1);
+  const id = await page.locator('.sheet tbody tr[tabindex="0"]').getAttribute("data-id");
+  expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(id);
+  await page.keyboard.press("Enter");
+  await expect(page.locator('[data-view="circle"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".sheet th[aria-sort]")).toHaveCount(0);
 });
