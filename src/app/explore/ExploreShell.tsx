@@ -11,6 +11,7 @@ import { useExplorerState } from "@/app/canon/useExplorerState";
 import SpaceView from "@/components/explore/SpaceView";
 import WidgetOverlay, { type WidgetSpec } from "@/components/explore/WidgetOverlay";
 import { initialCollapsed, toggleCollapsed } from "@/lib/explore/widgets";
+import { useFocusTrap } from "@/components/explore/useFocusTrap";
 import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views";
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
@@ -160,6 +161,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const [view, setViewState] = useState<SpaceViewId>(initialView);
   const [index, setIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  useFocusTrap(shellRef, expanded, toggleRef);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [scrubberHost, setScrubberHost] = useState<HTMLElement | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -445,8 +449,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   ];
 
   return (
-    <div data-testid="explore-shell" data-expanded={expanded ? "true" : "false"} className={expanded ? "fixed inset-0 z-[60] overflow-hidden" : NORMAL_CLASS} style={expanded ? { background: "#141311" } : undefined}>
+    <div ref={shellRef} data-testid="explore-shell" data-expanded={expanded ? "true" : "false"} className={expanded ? "fixed inset-0 z-[60] overflow-hidden" : NORMAL_CLASS} style={expanded ? { background: "#141311" } : undefined}>
       <button
+        ref={toggleRef}
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-label={expanded ? "exit fullscreen" : "expand to fullscreen"}
