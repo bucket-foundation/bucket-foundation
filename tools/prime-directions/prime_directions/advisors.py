@@ -132,6 +132,8 @@ class AdvisorModel:
     idf: np.ndarray
     people: list[Person]
     kept: list[int]
+    basis_names: list[str] | None = None
+    basis_scores: np.ndarray | None = None
 
     def embed(self, texts: list[str]) -> np.ndarray:
         cv = CountVectorizer(
@@ -172,6 +174,80 @@ def fit_people(
         k=k, seed=seed, params={"min_df": min_df, "max_df": max_df, "weighting": "idf-rownorm"},
     )
     return AdvisorModel(result, vocab, idf, people, kept)
+
+
+SHORT_FIELD = {
+    "Biochemistry, Genetics and Molecular Biology": "Molecular Biology",
+    "Agricultural and Biological Sciences": "Agriculture and Biology",
+    "Economics, Econometrics and Finance": "Economics",
+    "Business, Management and Accounting": "Business",
+    "Pharmacology, Toxicology and Pharmaceutics": "Pharmacology",
+    "Immunology and Microbiology": "Immunology",
+    "Earth and Planetary Sciences": "Earth Sciences",
+    "Physics and Astronomy": "Physics",
+    "Chemical Engineering": "Chem Engineering",
+    "Environmental Science": "Environment",
+    "Decision Sciences": "Decision Sciences",
+    "Health Professions": "Health Professions",
+}
+
+
+def fit_people_on_basis(people: list[Person], basis: list[dict], k: int = 64, min_df: int = 2, max_df: float = 0.2,
+                        max_features: int = 40000, min_chars: int = 200, seed: int = 0) -> AdvisorModel:
+    import dataclasses
+    from collections import Counter
+
+    from sklearn.utils.extmath import randomized_svd
+
+    kept = [i for i, p in enumerate(people) if len(p.text) >= min_chars]
+    if not kept:
+        raise ValueError(f"no people with at least {min_chars} characters of text")
+    texts = [b["text"] for b in basis]
+    binary, vocab, stats = vectorize(texts, min_df, max_df, max_features)
+    n = binary.shape[0]
+    df = np.asarray(binary.getnnz(axis=0)).ravel()
+    idf = np.log((1 + n) / (1 + df)) + 1
+    dense = weigh(binary, idf).toarray().astype(np.float32)
+    mean = dense.mean(axis=0)
+    k = min(k, n - 1)
+    u, sv, vt = randomized_svd(dense - mean, n_components=k, n_iter=7, random_state=seed)
+    flip = np.sign(vt[np.arange(k), np.argmax(np.abs(vt), axis=1)])
+    vt, u = vt * flip[:, None], u * flip[None, :]
+    basis_raw = u * sv
+    fields = [SHORT_FIELD.get(b.get("field") or "", b.get("field") or b.get("domain") or b["name"]) for b in basis]
+    m = max(20, n // 60)
+    labels, seen = [], set()
+    for j in range(k):
+        order = np.argsort(-basis_raw[:, j])
+        pos = Counter(fields[i] for i in order[:m]).most_common(1)[0][0]
+        neg = Counter(fields[i] for i in order[-m:]).most_common(1)[0][0]
+        label = pos if pos == neg else f"{pos} vs {neg}"
+        if label in seen:
+            label = f"{label}: {basis[int(order[0])]['name']}"
+        seen.add(label)
+        labels.append(label)
+    total = float(((dense - mean) ** 2).sum())
+    ref = model_result(vocab, vt, sv, basis_raw, total, stats, [str(b.get("id", i)) for i, b in enumerate(basis)], [b["name"] for b in basis], min_df, max_df)
+    model = AdvisorModel(ref, vocab, idf, people, kept, labels, None)
+    raw = model.project([people[i].text for i in kept]) - (mean @ vt.T)
+    std = raw.std(axis=0)
+    std[std == 0] = 1
+    model.result = dataclasses.replace(ref, corpus="advisors", doc_ids=[people[i].id for i in kept],
+                                       titles=[people[i].name for i in kept], raw_scores=raw,
+                                       scores=(raw - raw.mean(axis=0)) / std, shape=(len(kept), ref.shape[1]))
+    return model
+
+
+def model_result(vocab, vt, sv, raw, total, stats, ids, titles, min_df, max_df) -> PrimeResult:
+    std = raw.std(axis=0)
+    std[std == 0] = 1
+    return PrimeResult(
+        corpus="basis", doc_ids=ids, titles=titles, vocab=vocab, components=vt, singular_values=sv,
+        variance_ratio=(sv ** 2) / total if total > 0 else np.zeros(len(sv)), raw_scores=raw,
+        scores=(raw - raw.mean(axis=0)) / std, shape=(raw.shape[0], vt.shape[1]), density=0.0,
+        orthogonality=float(np.abs(vt @ vt.T - np.eye(vt.shape[0])).max()), term_stats=stats,
+        params={"min_df": min_df, "max_df": max_df, "weighting": "idf-rownorm", "basis": "reference", "centered": True},
+    )
 
 def cosine(a: np.ndarray, q: np.ndarray) -> np.ndarray:
     na = np.linalg.norm(a, axis=1)
@@ -274,7 +350,13 @@ def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: s
 STAR_AXES = 8
 
 
+def axis_offset(model: AdvisorModel) -> int:
+    return 0
+
+
 def axis_labels(model: AdvisorModel, n: int = STAR_AXES, terms: int = 3) -> list[str]:
+    if model.basis_names is not None:
+        return model.basis_names[:n]
     comps = model.result.components[:n]
     return [" ".join(str(model.vocab[t]) for t in np.argsort(-c)[:terms]) for c in comps]
 
@@ -295,14 +377,15 @@ def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, d
     raw = model.result.raw_scores
     qraw = model.project([query_text])[0]
     space, qvec = score_space(raw, qraw, scoring)
-    n = min(STAR_AXES, space.shape[1])
-    pct = np.stack([percentile_of(space[:, j]) for j in range(n)], axis=1) / 100
-    sorted_axes = [np.sort(space[:, j]) for j in range(n)]
-    qpct = np.array([np.searchsorted(sorted_axes[j], qvec[j]) / max(len(space) - 1, 1) for j in range(n)]).clip(0, 1)
+    o = axis_offset(model)
+    n = min(STAR_AXES, space.shape[1] - o)
+    pct = np.stack([percentile_of(space[:, o + j]) for j in range(n)], axis=1) / 100
+    sorted_axes = [np.sort(space[:, o + j]) for j in range(n)]
+    qpct = np.array([np.searchsorted(sorted_axes[j], qvec[o + j]) / max(len(space) - 1, 1) for j in range(n)]).clip(0, 1)
     index = {model.people[model.kept[i]].id: i for i in range(len(model.kept))}
     context = {"prime_axes": axis_labels(model, n), "star_query_prime": [round(float(v), 3) for v in qpct]}
     rel = space - qvec[None, :]
-    ang = np.arctan2(rel[:, 1], rel[:, 0])
+    ang = np.arctan2(rel[:, o + 1], rel[:, o])
     order = np.argsort(ang, kind="stable")
     theta = np.empty(len(ang))
     theta[order] = np.linspace(0, 2 * np.pi, len(ang), endpoint=False)

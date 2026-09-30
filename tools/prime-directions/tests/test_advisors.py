@@ -299,3 +299,23 @@ def test_our_directions_are_percentiles_among_everyone_and_the_statement_is_plac
     assert len(q) == 2 and all(0 <= v <= 1 for v in q)
     same = advisors.direction_profiles(model, rows, query, [("alpha", query), ("beta", query)])
     assert all(v >= 0.95 for v in same["star_query_ours"])
+
+
+def test_basis_spans_its_own_fields_and_projects_people():
+    fields = ["Computer Science", "Medicine", "Economics, Econometrics and Finance", "Arts and Humanities"]
+    words = {"Computer Science": "neural network learning algorithm graph software",
+             "Medicine": "clinical patient disease therapy hospital trial",
+             "Economics, Econometrics and Finance": "market price labor finance policy growth",
+             "Arts and Humanities": "literature history poetry art culture philosophy"}
+    basis = [{"id": f"T{f[:3]}{i}", "name": f"{f} topic {i}", "field": f, "text": words[f] + f" subtopic{i} extra{i % 3}"} for f in fields for i in range(15)]
+    people = advisors.load_people(PEOPLE)
+    model = advisors.fit_people_on_basis(people, basis, k=6, min_chars=50)
+    assert model.result.raw_scores.shape == (len(model.kept), 6)
+    labels = advisors.axis_labels(model, 6)
+    assert len(labels) == 6 and len(set(labels)) == 6
+    assert {l.split(" vs ")[0].split(":")[0] for l in labels[:3]} <= {"Computer Science", "Medicine", "Economics", "Arts and Humanities"}
+    query = advisors.statement_body(STATEMENT.read_text())
+    rows, _, _ = advisors.rank(model, query, top=None)
+    ctx = advisors.direction_profiles(model, rows, query, [])
+    assert ctx["prime_axes"] == labels[:6]
+    assert all(0 <= v <= 1 for r in rows for v in r["star_prime"])
