@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Html, Line } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as THREE from "three";
 import { AXIS } from "@/lib/explore/geometry";
 import { STACK_LENGTH, cylinderRadius, sliceCenter, sliceOutline, stepSlice, type Slice } from "@/lib/explore/slices";
@@ -16,7 +16,6 @@ interface Props {
   onOpen(i: number): void;
 }
 
-export const WHEEL_GESTURE_GAP_MS = 140;
 const GOLD = "#D9A43A";
 const DIM = "#8A8270";
 const CAMERA: [number, number, number] = [1.5, 5, 15];
@@ -33,24 +32,7 @@ function fan(points: [number, number, number][], center: [number, number, number
 }
 
 export default function SliceStack({ dataset, slices, active, onActive, onOpen }: Props) {
-  const host = useRef<HTMLDivElement>(null);
   const count = slices.length;
-
-  const lastWheel = useRef(0);
-
-  useEffect(() => {
-    const el = host.current;
-    if (!el) return;
-    const wheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const now = performance.now();
-      const quiet = now - lastWheel.current >= WHEEL_GESTURE_GAP_MS;
-      lastWheel.current = now;
-      if (quiet) onActive(stepSlice(active, e.deltaY > 0 ? 1 : -1, count));
-    };
-    el.addEventListener("wheel", wheel, { passive: false });
-    return () => el.removeEventListener("wheel", wheel);
-  }, [active, count, onActive]);
 
   const geometry = useMemo(
     () =>
@@ -65,7 +47,6 @@ export default function SliceStack({ dataset, slices, active, onActive, onOpen }
 
   return (
     <div
-      ref={host}
       data-testid="slice-stack"
       data-active={active}
       data-count={count}

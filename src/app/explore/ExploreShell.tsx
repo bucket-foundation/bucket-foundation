@@ -9,11 +9,15 @@ import { SORTS } from "@/lib/canon-explorer/url";
 import { matchExcerptEvent } from "@/lib/canon-explorer/markers";
 import { useExplorerState } from "@/app/canon/useExplorerState";
 import SpaceView from "@/components/explore/SpaceView";
+import WidgetOverlay, { type WidgetSpec } from "@/components/explore/WidgetOverlay";
+import { initialCollapsed, toggleCollapsed } from "@/lib/explore/widgets";
 import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views";
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
 import canonSpace from "@/data/explore/canon.space.json";
-import { SPACE_SOURCES, sourceFromParam, type SpaceSource } from "@/lib/explore/sources";
+import { dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
+import { ParseTokens, sizeError, type SpaceReply } from "@/lib/explore/genome/job";
+import { sampleDataset } from "@/lib/explore/space-sample";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
@@ -147,6 +151,11 @@ export function sortResults(results: SearchResult[], sort: (typeof SORTS)[number
   return out;
 }
 
+const DNA_SAMPLE: DatasetEntry = { id: "dna-sample", label: "DNA: sample genome", group: "genome" };
+const DNA_UPLOAD: DatasetEntry = { id: "dna-upload", label: "DNA: your file…", group: "upload" };
+
+const NORMAL_CLASS = "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
+
 export default function ExploreShell({ workspaceLinks = false, initialView = "circle" }: { workspaceLinks?: boolean; initialView?: SpaceViewId }) {
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const explorer = useExplorerState({ minYear: MIN_YEAR_BOUND, maxYear: new Date().getFullYear(), defaultYear: DEFAULT_YEAR, branches: EXPLORER_BRANCHES });
@@ -154,6 +163,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const { setSort, setQ, setBranch: setBranchFilter, setMarker, initial } = explorer;
   const [view, setViewState] = useState<SpaceViewId>(initialView);
   const [index, setIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [scrubberHost, setScrubberHost] = useState<HTMLElement | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
   const [basis, setBasis] = useState<ReferenceBasis | null>(null);
@@ -233,36 +245,133 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
   const canon = useMemo(() => parseDataset(canonSpace), []);
-  const [source, setSourceState] = useState<SpaceSource>("canon");
-  const [advisors, setAdvisors] = useState<Dataset | null>(null);
-  const [advisorsAvailable, setAdvisorsAvailable] = useState(false);
+  const [remoteList, setRemoteList] = useState<{ id: string; label?: string }[]>([]);
+  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE, DNA_UPLOAD]), [remoteList]);
+  const persistable = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE]), [remoteList]);
+  const [genomeSets, setGenomeSets] = useState<Record<string, Dataset>>({});
+  const [genomeStatus, setGenomeStatus] = useState("Genome files are parsed in this browser and never uploaded.");
+  const worker = useRef<Worker | null>(null);
+  const tokens = useRef(new ParseTokens());
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [dataId, setDataIdState] = useState("canon");
+  const [remoteSets, setRemoteSets] = useState<Record<string, Dataset>>({});
+  const [dataError, setDataError] = useState<string | null>(null);
+  const sample = useMemo(() => sampleDataset(), []);
+  const dataFromUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    setSourceState(sourceFromParam(new URLSearchParams(window.location.search).get("src")));
-    fetch("/api/explore/space?id=advisors")
+    dataFromUrl.current = new URLSearchParams(window.location.search).get("data");
+    setDataIdState(dataParam(dataFromUrl.current, listDatasets([], [DNA_SAMPLE])));
+    fetch("/api/explore/space")
       .then(async (r) => {
         if (!r.ok) return;
-        setAdvisors(parseDataset(await r.json()));
-        setAdvisorsAvailable(true);
+        const body = (await r.json()) as { datasets?: { id: string; label?: string }[] };
+        const list = (body.datasets ?? []).filter((d) => validDatasetId(d.id));
+        setRemoteList(list);
+        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) : cur));
       })
       .catch(() => undefined);
   }, []);
 
-  const setSource = (v: SpaceSource) => {
-    setSourceState(v);
+  useEffect(() => {
+    if (!isRemote(dataId, entries) || remoteSets[dataId]) return;
+    let live = true;
+    setDataError(null);
+    fetch(`/api/explore/space?id=${encodeURIComponent(dataId)}`)
+      .then(async (r) => {
+        if (!r.ok) throw new Error(`data set ${dataId}: ${r.status}`);
+        const ds = parseDataset(await r.json());
+        if (live) setRemoteSets((m) => ({ ...m, [dataId]: ds }));
+      })
+      .catch((e) => live && setDataError(e instanceof Error ? e.message : String(e)));
+    return () => {
+      live = false;
+    };
+  }, [dataId, entries, remoteSets]);
+
+  const getWorker = () => {
+    if (worker.current) return worker.current;
+    const w = new Worker(new URL("../../lib/explore/genome/genome.worker.ts", import.meta.url));
+    w.onmessage = (e: MessageEvent<SpaceReply>) => {
+      if (!tokens.current.isCurrent(e.data.token)) return;
+      if (!e.data.ok) {
+        setGenomeStatus(`Could not read the file: ${e.data.error}`);
+        return;
+      }
+      const ds = e.data.dataset;
+      setGenomeSets((m) => ({ ...m, [ds.id]: ds }));
+      setGenomeStatus(`${ds.label}: ${ds.obs.filter((o) => (o.meta.variants as number) > 0).length} windows with variants, ${ds.marks?.length ?? 0} annotated loci. Parsed in this browser and never uploaded.`);
+      if (ds.id === "dna-upload") setDataIdState("dna-upload");
+    };
+    worker.current = w;
+    return w;
+  };
+
+  useEffect(() => () => worker.current?.terminate(), []);
+
+  useEffect(() => {
+    if (dataId !== "dna-sample" || genomeSets["dna-sample"]) return;
+    const token = tokens.current.next();
+    setGenomeStatus("Parsing the sample genome in this browser…");
+    fetch("/explore/sample-genome.txt")
+      .then((r) => r.text())
+      .then((text) => tokens.current.isCurrent(token) && getWorker().postMessage({ token, text, space: { id: "dna-sample", label: "sample genome" } }))
+      .catch((e) => setGenomeStatus(`Could not load the sample genome: ${e instanceof Error ? e.message : String(e)}`));
+  }, [dataId, genomeSets]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onGenomeFile = (file: File | undefined) => {
+    if (!file) return;
+    const tooBig = sizeError(file.size);
+    if (tooBig) {
+      setGenomeStatus(tooBig);
+      return;
+    }
+    setGenomeStatus(`Parsing ${file.name} in this browser…`);
+    getWorker().postMessage({ token: tokens.current.next(), file, space: { id: "dna-upload", label: "your DNA" } });
+  };
+
+  const setData = (id: string) => {
+    if (id === "dna-upload") {
+      fileInput.current?.click();
+      return;
+    }
+    const next = dataParam(id, persistable);
+    setDataIdState(next);
+    setQ("");
+    setResults([]);
     const u = new URL(window.location.href);
-    u.searchParams.set("src", v);
+    u.searchParams.set("data", next);
     window.history.replaceState(window.history.state, "", u.toString());
   };
 
   const searching_ = basis !== null && ordered.length > 0;
   const dataset = useMemo<Dataset>(() => {
     if (searching_ && basis) return datasetFromResults(ordered, basis);
-    return source === "advisors" && advisors ? advisors : canon;
-  }, [searching_, basis, ordered, source, advisors, canon]);
+    if (dataId === "sample") return sample;
+    if (dataId.startsWith("dna-")) return genomeSets[dataId] ?? canon;
+    return remoteSets[dataId] ?? canon;
+  }, [searching_, basis, ordered, dataId, remoteSets, genomeSets, canon, sample]);
 
   const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
   useEffect(() => setIndex(0), [datasetKey]);
+
+  useEffect(() => {
+    setCollapsed(initialCollapsed([{ id: "view", slot: "left", title: "View", collapsible: true }]));
+  }, []);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExpanded(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [expanded]);
 
   const selectEntity = (id: string) => {
     const ev = ALL_EVENTS.find((e) => e.id === id);
@@ -278,9 +387,8 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     else if (dataset.id === "canon") selectEntity(dataset.obs[i]?.id ?? "");
   };
 
-  return (
-    <div data-testid="explore-shell" className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]">
-      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+  const searchNode = (
+    <div className="flex flex-col items-center gap-2 w-full">
         <div className="w-full max-w-2xl pointer-events-auto">
           <div className="rounded-full shadow-sm flex items-center px-2" style={{ background: "var(--bone)", border: "1px solid var(--hairline)" }}>
             <input
@@ -338,38 +446,101 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
             );
           })}
         </div>
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
-          <div role="radiogroup" aria-label="view" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
-            {SPACE_VIEWS.map((v) => (
-              <button key={v} type="button" role="radio" data-view={v} aria-checked={view === v} onClick={() => setView(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: view === v ? "var(--basalt)" : "transparent", color: view === v ? "var(--bone)" : "var(--parchment-dim)" }}>
-                {v}
-              </button>
-            ))}
-          </div>
-          <div role="radiogroup" aria-label="data set" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
-            {SPACE_SOURCES.filter((v) => v === "canon" || advisorsAvailable).map((v) => (
-              <button key={v} type="button" role="radio" data-source={v} aria-checked={source === v} onClick={() => setSource(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: source === v ? "var(--basalt)" : "transparent", color: source === v ? "var(--bone)" : "var(--parchment-dim)" }}>
-                {v}
-              </button>
-            ))}
-          </div>
-          <label className="flex items-center gap-2">
-            order
-            <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
-              {SORTS.map((o) => (
-                <option key={o} value={o}>{SORT_LABEL[o]}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-      </div>
+    </div>
+  );
 
-      <div className="relative w-full mx-auto flex-1 overflow-hidden" style={{ minHeight: "440px" }}>
-        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} />
+  const viewNode = (
+    <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      <div role="radiogroup" aria-label="view" className="flex w-fit flex-shrink-0 rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
+        {SPACE_VIEWS.map((v) => (
+          <button key={v} type="button" role="radio" data-view={v} aria-checked={view === v} onClick={() => setView(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: view === v ? "var(--basalt)" : "transparent", color: view === v ? "var(--bone)" : "var(--parchment-dim)" }}>
+            {v}
+          </button>
+        ))}
       </div>
+      <label className="flex items-center gap-2">
+        order
+        <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
+          {SORTS.map((o) => (
+            <option key={o} value={o}>{SORT_LABEL[o]}</option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+
+  const dataNode = (
+    <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      data
+      <select data-testid="data-switcher" aria-label="data set" value={searching_ ? "search" : dataId} onChange={(e) => setData(e.target.value)} className="min-h-[32px] bg-transparent border rounded px-2" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
+        {searching_ && <option value="search">search results</option>}
+        <optgroup label="bundled">
+          {entries.filter((e) => e.group === "bundled").map((e) => (
+            <option key={e.id} value={e.id}>{e.label}</option>
+          ))}
+        </optgroup>
+        <optgroup label="genome">
+          {entries.filter((e) => e.group === "genome" || e.group === "upload").map((e) => (
+            <option key={e.id} value={e.id}>{e.label}</option>
+          ))}
+        </optgroup>
+        {entries.some((e) => e.group === "local") && (
+          <optgroup label="local">
+            {entries.filter((e) => e.group === "local").map((e) => (
+              <option key={e.id} value={e.id}>{e.label}</option>
+            ))}
+          </optgroup>
+        )}
+      </select>
+      {dataError && <span role="alert">{dataError}</span>}
+    </label>
+  );
+
+  const genomeNode = (
+    <div className="text-[10px]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      <input ref={fileInput} type="file" accept=".txt,.vcf,.csv,text/plain" data-testid="dna-file" className="sr-only" aria-label="DNA file" onChange={(e) => onGenomeFile(e.target.files?.[0])} />
+      <p data-testid="dna-status">{genomeStatus}</p>
+    </div>
+  );
+
+  const scrubberHostNode = <div ref={setScrubberHost} data-testid="scrubber-host" className="w-full" />;
+
+  const widgets: WidgetSpec[] = [
+    { id: "search", slot: "top", title: "Search", node: searchNode },
+    { id: "data", slot: "left", title: "Data", collapsible: true, order: 0, node: (<>{dataNode}{genomeNode}</>) },
+    { id: "view", slot: "left", title: "View", collapsible: true, order: 1, node: viewNode },
+    { id: "scrubber", slot: "bottom", title: "Scrubber", node: scrubberHostNode },
+  ];
+
+  return (
+    <div data-testid="explore-shell" data-expanded={expanded ? "true" : "false"} className={expanded ? "fixed inset-0 z-[60] overflow-hidden" : NORMAL_CLASS} style={expanded ? { background: "#141311" } : undefined}>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-label={expanded ? "exit fullscreen" : "expand to fullscreen"}
+        title={expanded ? "exit fullscreen (Esc)" : "expand to fullscreen"}
+        data-testid="expand-toggle"
+        className={`absolute top-3 z-[70] w-9 h-9 flex items-center justify-center rounded-md border transition ${selected ? "right-3 md:right-[460px]" : "right-3"}`}
+        style={{ borderColor: "var(--hairline)", background: "var(--bone)", color: "var(--basalt)" }}
+      >
+        {expanded ? "×" : "⤢"}
+      </button>
+      {expanded ? null : (
+        <div key="top" className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+          {searchNode}
+          {dataNode}
+          {genomeNode}
+          {viewNode}
+        </div>
+      )}
+      <div key="base" data-testid="base-layer" className={expanded ? "absolute inset-0" : "relative w-full mx-auto flex-1 overflow-hidden"} style={expanded ? undefined : { minHeight: "440px" }}>
+        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} chrome={expanded ? "minimal" : "full"} />
+      </div>
+      {expanded ? <WidgetOverlay key="overlay" insetRight widgets={widgets} collapsed={collapsed} onToggle={(id) => setCollapsed((c) => toggleCollapsed(c, id, widgets))} /> : <div key="bottom" className="px-2 pb-3">{scrubberHostNode}</div>}
 
       <Drawer
         selected={selected}
+        floating={expanded}
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
@@ -380,12 +551,14 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 
 function Drawer({
   selected,
+  floating = false,
   transparent = false,
   workspaceLinks = false,
   onClose,
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
+  floating?: boolean;
   transparent?: boolean;
   workspaceLinks?: boolean;
   onClose: () => void;
@@ -529,8 +702,8 @@ function Drawer({
       <aside
         className={`md:absolute md:right-0 md:top-0 md:bottom-0 md:h-auto md:translate-x-0 md:z-10
                     fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
-          selected ? "translate-x-0" : "translate-x-full"
-        }`}
+          floating ? "md:top-4 md:bottom-4 md:right-4 md:rounded-2xl md:shadow-xl md:border" : ""
+        } ${selected ? "translate-x-0" : "translate-x-full"}`}
         style={{
           width: "min(440px, 100vw)",
           background: transparent ? "transparent" : "var(--bone)",
