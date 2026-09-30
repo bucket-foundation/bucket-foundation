@@ -1,4 +1,4 @@
-export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk";
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you";
 
 export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk"];
 
