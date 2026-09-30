@@ -1,4 +1,4 @@
-import SmilesDrawer from "smiles-drawer";
+import type SmilesDrawerType from "smiles-drawer";
 import type { Hit } from "../search";
 import chem from "../fixtures/chem.json";
 import elements from "../fixtures/elements.json";
@@ -51,6 +51,24 @@ interface Pre {
   graph: { vertices: Vertex[]; edges: Edge[] };
 }
 
+export type SmilesApi = typeof SmilesDrawerType;
+
+let smilesApi: SmilesApi | null = null;
+
+export function setSmilesApi(api: SmilesApi | null): void {
+  smilesApi = api?.SvgDrawer ? api : null;
+}
+
+export function smilesReady(): boolean {
+  return smilesApi !== null;
+}
+
+export async function loadSmiles(): Promise<void> {
+  if (smilesApi) return;
+  const mod = await import("smiles-drawer");
+  setSmilesApi((mod.default ?? mod) as SmilesApi);
+}
+
 export const MOLECULES = chem.molecules as Molecule[];
 export const REACTIONS = chem.reactions as Reaction[];
 export const BOND_LENGTH = 30;
@@ -71,13 +89,14 @@ export function reactionById(id: string | null | undefined): Reaction {
 }
 
 export function parseStructure(smiles: string): Structure {
-  const drawer = new SmilesDrawer.SvgDrawer({});
+  if (!smilesApi) return { atoms: [], bonds: [] };
+  const drawer = new smilesApi.SvgDrawer({});
   const pre = drawer.preprocessor as unknown as Pre;
-  pre.initDraw(SmilesDrawer.Parser.parse(smiles), "light", true);
+  pre.initDraw(smilesApi.Parser.parse(smiles), "light", true);
   pre.processGraph();
   const atoms = pre.graph.vertices.map((v) => ({ element: v.value.element, x: v.position.x, y: v.position.y }));
-  const cx = atoms.reduce((s, a) => s + a.x, 0) / atoms.length;
-  const cy = atoms.reduce((s, a) => s + a.y, 0) / atoms.length;
+  const cx = atoms.reduce((s, a) => s + a.x, 0) / (atoms.length || 1);
+  const cy = atoms.reduce((s, a) => s + a.y, 0) / (atoms.length || 1);
   return {
     atoms: atoms.map((a) => ({ ...a, x: a.x - cx, y: a.y - cy })),
     bonds: pre.graph.edges.map((e) => ({ a: e.sourceId, b: e.targetId, order: ORDER[e.bondType] ?? 1 })),
@@ -107,6 +126,7 @@ export function atomColor(element: string): string {
 }
 
 export function mentionsTerm(h: Hit, term: string): boolean {
+  if (!term) return false;
   return new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(`${h.title} ${h.text}`);
 }
 

@@ -27,6 +27,27 @@ export const ALL_SITES: SiteEntry[] = [...(sitesData.sites as SiteEntry[])].sort
 export const MIN_YEAR = Math.min(timelineData.min_year as number, ...ALL_SITES.map((s) => s.year));
 export const MAX_YEAR = Math.max(timelineData.max_year as number, ...ALL_SITES.map((s) => s.year));
 
+export function matchExcerptEvent(
+  r: { title: string; concept: string; branch: string },
+  events: TimelineEvent[] = ALL_EVENTS,
+): TimelineEvent | undefined {
+  const lowerTitle = r.title.toLowerCase();
+  const branchSuffix = r.branch.replace(/^\d+-/, "");
+  const candidates = events.filter((e) => e.branch.replace(/^\d+-/, "") === branchSuffix);
+  const bySurname = candidates.find((e) => {
+    const surname = e.title
+      .replace(/\(.*?\)/g, "")
+      .split(/[\s—,-]+/)
+      .filter((w) => w.length >= 4)
+      .pop()
+      ?.toLowerCase();
+    return surname && lowerTitle.includes(surname);
+  });
+  if (bySurname) return bySurname;
+  const concept = r.concept.toLowerCase();
+  return candidates.find((e) => e.title.toLowerCase().includes(concept) || e.id.toLowerCase().includes(concept));
+}
+
 export function eventsAsMarkers(events: TimelineEvent[]): ExplorerMarker[] {
   return events.map((e) => ({
     id: e.id,

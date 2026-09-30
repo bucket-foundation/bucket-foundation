@@ -10,13 +10,18 @@ import type * as Chem from "../src/lib/explore/modes/chem";
 import { SAMPLE_HITS } from "./lib/explore-hits";
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const { MOLECULES, REACTIONS, formula, moleculeLayout, parseStructure, reactionLayout, splitReaction } = require("../src/lib/explore/modes/chem") as typeof Chem;
+const { MOLECULES, REACTIONS, formula, moleculeLayout, parseStructure, reactionLayout, setSmilesApi, splitReaction } = require("../src/lib/explore/modes/chem") as typeof Chem;
 
 let failed = 0;
 function check(name: string, cond: boolean, detail = "") {
   console.log(`${cond ? "PASS" : "FAIL"}  ${name}${detail ? ` :: ${detail}` : ""}`);
   if (!cond) failed++;
 }
+
+check("structure is empty before the drawer loads", parseStructure("CCO").atoms.length === 0);
+check("layout still builds before the drawer loads", moleculeLayout(SAMPLE_HITS, "ethanol").nodes.length === 1);
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+setSmilesApi(require("smiles-drawer").default);
 
 const acetic = parseStructure("CC(=O)O");
 check("acetic acid has 4 heavy atoms and 3 bonds", acetic.atoms.length === 4 && acetic.bonds.length === 3);
