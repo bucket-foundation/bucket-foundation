@@ -2,6 +2,32 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-solver-gap-engine",
+      "date": "2026-09-30",
+      "category": "production",
+      "branch": null,
+      "title": "Solver gap engine",
+      "summary": "3,592 problems from DeepMind formal-conjectures mapped as proved or open. The 1,369 open ones are ranked by embedding similarity to their nearest solved problem; 57 sit at 0.9 or above. A Lean test file proves two classical results and sample-tests four claims, Goldbach to 3,000 included.",
+      "commit": "949b98f95",
+      "pr": 430,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/430",
+      "status": "open",
+      "plot_title": "Open problems by similarity to the nearest solved problem, all-MiniLM-L6-v2 over docstrings",
+      "image": "/whats-new/production-solver-gap-engine.webp",
+      "image_alt": "Histogram of 1,369 open problems by cosine similarity to the nearest solved problem, peaking near 0.6, with 174 at 0.8 or above and 57 at 0.9 or above.",
+      "discussion": "The closest pairs are open variants of problems whose sibling variant is solved, such as Erdos 308 and 686. Those are the first targets for a prover. Similarity measures wording, so a high score marks a candidate and proves nothing about difficulty. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
+      "links": [
+        {
+          "label": "PR 430",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/430"
+        },
+        {
+          "label": "Solvability atlas",
+          "href": "/research-os/solvability"
+        }
+      ]
+    },
+    {
       "id": "production-80k-prime-directions",
       "date": "2026-09-27",
       "category": "production",
@@ -2302,7 +2328,7 @@
       "category": "site-refactor",
       "branch": null,
       "title": "Canon site refactor",
-      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. Kruse demoted from top nav, repositioned as one of multiple sources under biophysics. Pattern-B changelog (this file) introduced.",
+      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. The private corpus left the top nav and became one of several sources under biophysics. Pattern-B changelog (this file) introduced.",
       "commit": "afec2ed"
     }
   ]

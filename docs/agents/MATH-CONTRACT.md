@@ -32,6 +32,7 @@ The lint resolves tags. It cannot tell whether the cited theorem supports the se
 | `BucketMath.Graph` | prerequisite reachability, rank order along prerequisite chains, acyclicity under a strict rank |
 | `BucketMath.Discovery` | expected discovery as the sum of probability times value, additive and monotone over admissible directions |
 | `BucketMath.Learning` | prerequisite closure, learning paths, the minimum unit and weighted learning path, coverage and extent monotonicity; `Learning.Diamond` is the worked example |
+| `BucketMath.Marketing` | marketing ratios as partial division over ℚ, CPA times conversions equals spend, CTR and retention at most one, channel shares summing to one, last-touch and linear credit conserving the conversion count |
 | `BucketMath.Open` | stated claims without proofs, empty today |
 | `BucketMathAll` | BucketMath plus the history engine package at `papers/history-hypothesis-engine/lean` |
 

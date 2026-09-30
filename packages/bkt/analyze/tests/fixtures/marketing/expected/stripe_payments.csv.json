@@ -1,0 +1,34 @@
+{
+  "currencies": {
+    "USD": {
+      "blended": {
+        "cac": null,
+        "ltv_hist": 132.759259,
+        "ltv_window": [
+          "2026-01-01",
+          "2026-03-01"
+        ],
+        "range": null,
+        "reason": "CAC and blended ROAS need an ad spend file in the same analysis",
+        "roas": null
+      },
+      "channels": [],
+      "cohorts": 3,
+      "funnel": null,
+      "orders": {
+        "count": 131,
+        "customers": 54,
+        "revenue": 7169.0
+      },
+      "series": [
+        "revenue"
+      ]
+    }
+  },
+  "platforms": [
+    "stripe"
+  ],
+  "warnings": [
+    "W_STATUS_EXCLUDED"
+  ]
+}
