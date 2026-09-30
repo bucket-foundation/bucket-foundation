@@ -84,6 +84,10 @@ button{cursor:pointer}
 .card.selected{outline:2px solid var(--ochre-fill);outline-offset:1px}
 .card{cursor:pointer}
 .note{font-size:12px;color:var(--soft);margin:0}
+.prof{display:grid;gap:4px;border-top:1px solid var(--line);padding-top:8px}
+.prof h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+.prof .works{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13px}
+.prof .links{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .pill{border-radius:999px;padding:10px 18px;font-size:15px}
 .circle-wrap{position:relative;margin:12px auto 0;width:100%}
@@ -389,6 +393,57 @@ function decisionButtons(r, into) {
     into.append(b);
   }
 }
+const ID = /^[A-Za-z0-9._-]+$/;
+function linkItem(href, label) {
+  const url = safeUrl(href);
+  if (!url) return null;
+  const li = make("li");
+  li.append(make("a", {href: url, target: "_blank", rel: "noreferrer", text: label}));
+  return li;
+}
+function profileSections(r) {
+  const out = [];
+  const research = make("section", {class: "prof"});
+  research.append(make("h3", {text: "Research"}));
+  const facts = [r.title, r.research_areas].filter(Boolean);
+  for (const f of facts) research.append(make("p", {class: "note", text: f}));
+  const counts = [r.works_count ? r.works_count + " works" : "", r.cited_by_count ? r.cited_by_count + " citations" : "", r.h_index ? "h-index " + r.h_index : ""].filter(Boolean).join(" · ");
+  if (counts) research.append(make("p", {class: "note", text: counts}));
+  if (r.works_top && r.works_top.length) {
+    const ol = make("ol", {class: "works"});
+    for (const w of r.works_top.slice(0, 6)) {
+      const li = make("li");
+      const href = ID.test(w.id || "") ? "https://openalex.org/" + w.id : "";
+      li.append(href ? make("a", {href, target: "_blank", rel: "noreferrer", text: w.title}) : document.createTextNode(w.title));
+      li.append(make("span", {class: "note", text: " " + [w.year, w.cited ? w.cited + " cited" : ""].filter(Boolean).join(" · ")}));
+      ol.append(li);
+    }
+    research.append(ol);
+  }
+  if (research.children.length > 1) out.push(research);
+  const q = encodeURIComponent(r.name + (r.institution ? " " + r.institution : ""));
+  const links = [
+    ID.test(r.openalex_id || r.id || "") ? linkItem("https://openalex.org/" + (r.openalex_id || r.id), "OpenAlex profile") : null,
+    /^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/.test(r.orcid || "") ? linkItem("https://orcid.org/" + r.orcid, "ORCID " + r.orcid) : null,
+    ID.test(r.ror || "") ? linkItem("https://ror.org/" + r.ror, (r.institution || "Institution") + " on ROR") : null,
+    linkItem(r.profile_url, "Official profile page"),
+    linkItem(r.program_url, "PhD program page"),
+    linkItem("https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + r.name + '"'), "Google Scholar search"),
+    linkItem("https://www.semanticscholar.org/search?q=" + encodeURIComponent(r.name), "Semantic Scholar search"),
+    linkItem("https://dblp.org/search?q=" + encodeURIComponent(r.name), "DBLP search"),
+    linkItem("https://www.google.com/search?q=" + q, "Web search"),
+  ].filter(Boolean);
+  const sec = make("section", {class: "prof"});
+  sec.append(make("h3", {text: "Links"}), make("ul", {class: "links"}, links));
+  out.push(sec);
+  if (r.tracker_notes && r.tracker_notes.length) {
+    const t = make("section", {class: "prof"});
+    t.append(make("h3", {text: "In your tracker"}));
+    for (const n of r.tracker_notes) t.append(make("p", {class: "note", text: n}));
+    out.push(t);
+  }
+  return out;
+}
 function panel(r) {
   const p = $("panel");
   p.replaceChildren();
@@ -409,6 +464,7 @@ function panel(r) {
   p.append(dl);
   const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 6);
   if (topics.length) p.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
+  p.append(...profileSections(r));
   const minis = miniCharts(r, (kind) => setMain(kind));
   const stars = make("div", {class: "stars"});
   stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: percentile among all professors." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is you, grey is the filter average, teal is this advisor. Rings mark the top 50%, 10% and 1% of all professors."}));
