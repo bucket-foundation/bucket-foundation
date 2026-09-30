@@ -140,3 +140,14 @@ def project_texts(basis_file: dict, texts: list[str]):
     emb = weigh(cv.transform(texts), np.array(basis_file["idf"]))
     raw = np.asarray(emb @ np.array(basis_file["loadings"]).T) - np.array(basis_file["offset"])
     return (raw - np.array(basis_file["score_mean"])) / np.array(basis_file["score_std"])
+
+
+def coverage_of(basis_file: dict, text: str) -> float:
+    import re
+
+    from .model import TOKEN_PATTERN
+
+    stop = set(basis_file.get("stop_words") or [])
+    vocab = set(basis_file["vocab"])
+    tokens = [t for t in re.findall(TOKEN_PATTERN, text.lower()) if t not in stop]
+    return sum(t in vocab for t in tokens) / len(tokens) if tokens else 0.0

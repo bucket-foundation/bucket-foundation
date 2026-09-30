@@ -11,8 +11,9 @@ import { useExplorerState } from "@/app/canon/useExplorerState";
 import SpaceView from "@/components/explore/SpaceView";
 import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views";
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
-import { SPACE_SCHEMA, type Dataset, type SpaceObservation } from "@/lib/explore/space";
-import { sampleDataset } from "@/lib/explore/space-sample";
+import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
+import canonSpace from "@/data/explore/canon.space.json";
+import { SPACE_SOURCES, sourceFromParam, type SpaceSource } from "@/lib/explore/sources";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
@@ -231,15 +232,50 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   }, [q, branchFilter]);
 
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
-  const dataset = useMemo<Dataset>(() => (basis && ordered.length ? datasetFromResults(ordered, basis) : sampleDataset()), [basis, ordered]);
+  const canon = useMemo(() => parseDataset(canonSpace), []);
+  const [source, setSourceState] = useState<SpaceSource>("canon");
+  const [advisors, setAdvisors] = useState<Dataset | null>(null);
+  const [advisorsAvailable, setAdvisorsAvailable] = useState(false);
+
+  useEffect(() => {
+    setSourceState(sourceFromParam(new URLSearchParams(window.location.search).get("src")));
+    fetch("/api/explore/space?id=advisors")
+      .then(async (r) => {
+        if (!r.ok) return;
+        setAdvisors(parseDataset(await r.json()));
+        setAdvisorsAvailable(true);
+      })
+      .catch(() => undefined);
+  }, []);
+
+  const setSource = (v: SpaceSource) => {
+    setSourceState(v);
+    const u = new URL(window.location.href);
+    u.searchParams.set("src", v);
+    window.history.replaceState(window.history.state, "", u.toString());
+  };
+
+  const searching_ = basis !== null && ordered.length > 0;
+  const dataset = useMemo<Dataset>(() => {
+    if (searching_ && basis) return datasetFromResults(ordered, basis);
+    return source === "advisors" && advisors ? advisors : canon;
+  }, [searching_, basis, ordered, source, advisors, canon]);
 
   const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
   useEffect(() => setIndex(0), [datasetKey]);
 
+  const selectEntity = (id: string) => {
+    const ev = ALL_EVENTS.find((e) => e.id === id);
+    const site = ev ? null : ALL_SITES.find((s) => s.id === id);
+    if (ev) setSelected({ id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year, branch: ev.branch, title: ev.title, kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] });
+    else if (site) setSelected({ id: site.id, lat: site.lat, lng: site.lng, year: site.year, branch: site.branch, title: site.title, kind: "archaeological-site", civilization: site.civilization, lidar: site.lidar, unesco: site.unesco, wikipedia: site.wikipedia });
+  };
+
   const pick = (i: number) => {
     setIndex(i);
-    const r = ordered[i];
-    if (r && !dataset.sample) setSelected(markerForResult(r));
+    const r = searching_ ? ordered[i] : undefined;
+    if (r) setSelected(markerForResult(r));
+    else if (dataset.id === "canon") selectEntity(dataset.obs[i]?.id ?? "");
   };
 
   return (
@@ -310,6 +346,13 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
               </button>
             ))}
           </div>
+          <div role="radiogroup" aria-label="data set" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
+            {SPACE_SOURCES.filter((v) => v === "canon" || advisorsAvailable).map((v) => (
+              <button key={v} type="button" role="radio" data-source={v} aria-checked={source === v} onClick={() => setSource(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: source === v ? "var(--basalt)" : "transparent", color: source === v ? "var(--bone)" : "var(--parchment-dim)" }}>
+                {v}
+              </button>
+            ))}
+          </div>
           <label className="flex items-center gap-2">
             order
             <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
@@ -328,12 +371,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
       <Drawer
         selected={selected}
         onClose={() => setSelected(null)}
-        onSelectMarker={(id) => {
-          const ev = ALL_EVENTS.find((e) => e.id === id);
-          const site = ev ? null : ALL_SITES.find((s) => s.id === id);
-          if (ev) setSelected({ id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year, branch: ev.branch, title: ev.title, kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] });
-          else if (site) setSelected({ id: site.id, lat: site.lat, lng: site.lng, year: site.year, branch: site.branch, title: site.title, kind: "archaeological-site", civilization: site.civilization, lidar: site.lidar, unesco: site.unesco, wikipedia: site.wikipedia });
-        }}
+        onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
       />
     </div>

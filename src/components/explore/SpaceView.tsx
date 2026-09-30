@@ -40,6 +40,13 @@ function Root({ embedded, view, children }: { embedded: boolean; view: SpaceView
   );
 }
 
+const LIST_WINDOW = 40;
+
+function visibleWindow<T>(items: T[], index: number): { o: T; i: number }[] {
+  const start = Math.max(0, Math.min(items.length - LIST_WINDOW, index - LIST_WINDOW / 2));
+  return items.slice(start, start + LIST_WINDOW).map((o, k) => ({ o, i: start + k }));
+}
+
 function Components({ ds }: { ds: Dataset }) {
   return (
     <ol className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-1 text-xs" style={{ color: DIM }}>
@@ -64,6 +71,10 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
   const step = useCallback((d: number) => setIndex(count ? (index + d + count) % count : 0), [count, index, setIndex]);
   const current = ds.obs[index];
   const range = useMemo(() => yearRange(ds.obs), [ds]);
+  const meanCoverage = useMemo(() => {
+    const cs = ds.obs.map((o) => o.coverage).filter((c): c is number => typeof c === "number");
+    return cs.length ? cs.reduce((a, b) => a + b, 0) / cs.length : null;
+  }, [ds]);
   const [year, setYear] = useState<number | null>(null);
   const shownYear = year ?? range?.[1] ?? 0;
 
@@ -92,6 +103,11 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       {ds.sample && (
         <span data-testid="sample-badge" className="border hairline px-2 py-0.5" style={{ color: GOLD }}>
           sample data
+        </span>
+      )}
+      {meanCoverage !== null && (
+        <span data-testid="coverage-stat" className="border hairline px-2 py-0.5" style={{ color: DIM }}>
+          mean coverage {Math.round(meanCoverage * 100)}%
         </span>
       )}
       {ds.basis === "own" && (
@@ -184,6 +200,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           <>
             <p data-testid="space-current" className="text-center" style={mono}>
               {current ? `${current.title} · ${index + 1} / ${count}` : "no observations"}
+              {current && Object.values(current.meta).filter((v) => typeof v === "string" && v).length > 0 && <span data-testid="space-meta" style={{ color: DIM }}> · {Object.values(current.meta).filter((v) => typeof v === "string" && v).join(" · ")}</span>}
               {current?.coverage !== undefined && current.coverage < lowCoverage && (
                 <span data-testid="low-coverage" style={{ color: GOLD }}>
                   {" "}
@@ -192,7 +209,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
               )}
             </p>
             <ul className="flex flex-wrap justify-center gap-2 mt-3">
-              {ds.obs.map((o, i) => (
+              {visibleWindow(ds.obs, index).map(({ o, i }) => (
                 <li key={o.id}>
                   <button type="button" aria-pressed={i === index} onClick={() => setIndex(i)} className="border hairline px-2 py-1 text-xs" style={{ ...mono, background: i === index ? GOLD : undefined, color: i === index ? "#141311" : undefined }}>
                     {o.title}

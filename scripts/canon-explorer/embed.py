@@ -14,6 +14,9 @@ RANK_VERSION = "nn-chain-pc1/v2"
 SCHEMA = "bucket.canon-embeddings/v1"
 OUT_JSON = ROOT / "src/data/canon-embeddings.json"
 OUT_BIN = ROOT / "src/data/canon-embeddings.bin"
+OUT_SPACE = ROOT / "src/data/explore/canon.space.json"
+BASIS_JSON = ROOT / "src/data/explore/reference-basis.json"
+TOOL_DIR = ROOT / "tools/prime-directions"
 SOURCES = ["src/data/canon-timeline.json", "src/data/canon-sites.json", "canon-figures/figures.json"]
 
 
@@ -86,11 +89,27 @@ def input_sha(items):
     return hashlib.sha256("\n".join(f"{i['id']}\t{i['text']}" for i in items).encode()).hexdigest()
 
 
+def write_space(items):
+    import sys
+
+    sys.path.insert(0, str(TOOL_DIR))
+    from prime_directions import explore_space
+
+    basis = json.loads(BASIS_JSON.read_text())
+    data = explore_space.canon_space(basis, items)
+    explore_space.write_space(data, OUT_SPACE)
+    print(f"wrote {len(data['obs'])} canon observations to {OUT_SPACE.relative_to(ROOT)}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--space", action="store_true")
     args = ap.parse_args()
     items = load_items()
+    if args.space:
+        write_space(items)
+        return
     digest = input_sha(items)
     prev = json.loads(OUT_JSON.read_text()) if OUT_JSON.exists() else None
     if args.check:
