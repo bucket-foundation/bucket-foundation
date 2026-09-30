@@ -130,6 +130,7 @@ def build_parser() -> argparse.ArgumentParser:
     review_args(a)
     f = sub.add_parser("fit-me")
     f.add_argument("--statement", type=Path)
+    f.add_argument("--cv", type=Path)
     f.add_argument("--people", type=Path)
     f.add_argument("--out", type=Path, required=True)
     f.add_argument("--forget", action="store_true")
@@ -162,18 +163,21 @@ def cmd_fit_me(args) -> int:
     repo = corpora.TOOL_REPO_ROOT
     try:
         if args.forget:
-            fitme.forget(args.out, repo)
+            fitme.forget(args.out, repo, corpora.data_root())
             print(f"deleted {args.out}")
             return 0
         if args.statement is None or args.people is None:
             print("fit-me needs --statement and --people (the public advisor export is not published yet)", file=sys.stderr)
             return 2
         out = check_private_out(args.out, [repo, corpora.data_root()])
-        fitme.prepare_out(out)
+        text = fitme.read_text(args.statement)
+        if args.cv:
+            text = text + "\n\n" + fitme.read_text(args.cv)
+        fitme.prepare_out(out, corpora.data_root())
     except (fitme.FitError, PrivacyError) as exc:
         print(str(exc), file=sys.stderr)
         return 2
-    ns = argparse.Namespace(**{**vars(args), "query": args.statement, "publishable": True,
+    ns = argparse.Namespace(**{**vars(args), "query": args.statement, "query_text": text[:fitme.MAX_CHARS], "publishable": True,
                                 "directions_from_statement": args.directions is None})
     people = advisors.load_people(args.people, text_keys=tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS)
     advisor_run(ns, out, people)
@@ -213,7 +217,7 @@ def advisor_run(args, out: Path, people: list) -> None:
     if args.ror_cache:
         client = ror.RorClient(args.ror_cache, offline=args.ror_offline)
         checks = _time(timings, "ror_s", ror.validate, people, client)
-    query_text = args.query.read_text(encoding="utf-8")
+    query_text = getattr(args, "query_text", None) or args.query.read_text(encoding="utf-8")
     query = advisors.statement_body(query_text, args.stop_heading)
     model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
                    min_chars=args.min_chars, seed=args.seed)
