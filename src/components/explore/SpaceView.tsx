@@ -234,7 +234,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
             {lowTag && chrome === "full" && <p className="text-center text-xs mt-1">{lowTag}</p>}
           </>
         )}
-        {chrome === "full" && <Components ds={ds} />}
+        {chrome === "full" && !scrubberHost && <Components ds={ds} />}
       </div>
     </Root>
   );

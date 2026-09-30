@@ -56,6 +56,7 @@ export interface Dataset {
   id: string;
   label: string;
   sample?: boolean;
+  license?: string;
   scale?: ScoreScale;
   basis?: BasisKind;
   fields: SpaceField[];
@@ -137,7 +138,8 @@ export function parseDataset(raw: unknown): Dataset {
         .slice(0, MAX_MARKS)
         .map((m) => ({ t: m.t as number, label: scrubEmails(m.label as string), kind: typeof m.kind === "string" ? m.kind : undefined }))
     : undefined;
-  return { schema: SPACE_SCHEMA, marks, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, scale: raw.scale === "unit" ? "unit" : "standardized", basis: raw.basis === "own" ? "own" : "reference", fields, components, mean, sweep, obs };
+  const license = typeof raw.license === "string" && raw.license.trim() ? scrubEmails(raw.license).slice(0, 200) : undefined;
+  return { schema: SPACE_SCHEMA, marks, license, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, scale: raw.scale === "unit" ? "unit" : "standardized", basis: raw.basis === "own" ? "own" : "reference", fields, components, mean, sweep, obs };
 }
 
 export function radiusOf(score: number, scale: ScoreScale = "standardized"): number {
