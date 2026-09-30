@@ -1,5 +1,17 @@
 import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-store";
 import type { Atom } from "@academy/engine";
+import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
+
+export interface StoredReview {
+  key: string;
+  prime_axes: string[];
+  our_axes: string[];
+  star_query_prime: number[];
+  star_query_ours: number[];
+  summary: string;
+  imported_at: number;
+  rows: AdvisorRow[];
+}
 
 declare global {
   interface Window {
@@ -91,5 +103,25 @@ export class Api {
 
   importWeb(payload: unknown, force = false) {
     return this.call<{ imported: string[] }>(`/local/import${force ? "?force=1" : ""}`, { method: "POST", body: payload });
+  }
+
+  advisor() {
+    return this.call<{ review: StoredReview | null; forgotten: number }>("/local/advisor");
+  }
+
+  importAdvisor(file: unknown, force = false) {
+    return this.call<{ imported: number; forgotten: number }>(`/local/advisor/import${force ? "?force=1" : ""}`, { method: "POST", body: file });
+  }
+
+  forgetAdvisor() {
+    return this.call<{ forgotten: number }>("/local/advisor/forget", { method: "POST", body: {} });
+  }
+
+  primeDirections() {
+    return this.call<{ sets: (PrimeDirections & { imported_at: number })[] }>("/local/prime-directions").then((r) => r.sets);
+  }
+
+  importPrimeDirections(file: unknown) {
+    return this.call<{ corpus: string; components: number }>("/local/prime-directions/import", { method: "POST", body: file });
   }
 }

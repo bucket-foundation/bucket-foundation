@@ -267,6 +267,7 @@ def advisor_run(args, out: Path, people: list) -> None:
         fitme.statement_directions(model_, query_text) if getattr(args, "directions_from_statement", False) else [])
     context.update(advisors.direction_profiles(model_, rows, query, directions, args.scoring))
     advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable, images=getattr(args, "images", False))
+    advisors.write_review_json(rows, context, out / "review.json")
     report = {
         "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
         "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),

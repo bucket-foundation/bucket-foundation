@@ -9,7 +9,7 @@
     "noEmit": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["bun"],
-    "paths": { "@academy/*": ["../../src/lib/academy/*"] }
+    "paths": { "@academy/*": ["../../src/lib/academy/*"], "@ros/*": ["../../src/lib/research-os/*"] }
   },
   "include": ["src", "scripts", "vite.config.ts"]
 }

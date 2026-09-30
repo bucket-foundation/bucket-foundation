@@ -2,9 +2,11 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { href, useRoute, type Route } from "./router";
+import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
 import { LearnHome } from "./views/LearnHome";
+import { PrimesView } from "./views/Primes";
 import { QuizView } from "./views/Quiz";
 import { ReviewView } from "./views/Review";
 import "./app.css";
@@ -13,6 +15,8 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
+  { route: { name: "advisors" }, label: "Advisors" },
+  { route: { name: "primes" }, label: "Prime directions" },
   { route: { name: "import" }, label: "Import" },
 ];
 
@@ -72,6 +76,10 @@ function App() {
           <QuizView api={api} />
         ) : route.name === "review" ? (
           <ReviewView api={api} />
+        ) : route.name === "advisors" ? (
+          <AdvisorsView api={api} />
+        ) : route.name === "primes" ? (
+          <PrimesView api={api} />
         ) : route.name === "import" ? (
           <ImportView api={api} />
         ) : (

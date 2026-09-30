@@ -45,7 +45,7 @@ describe("migration 3", () => {
     const path = join(dir, "bkt.db");
     const { newer, k } = v2Fixture(path);
     const s = new Store(path, newDataKey());
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(3);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(MIGRATIONS.length);
     expect(s.db.query("select name from sqlite_master where name = 'cards'").get()).toBeNull();
     const bio = s.learnState("05-biophysics");
     expect(Object.keys(bio.cards)).toEqual(["mito"]);
