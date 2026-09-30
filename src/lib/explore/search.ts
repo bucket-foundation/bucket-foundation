@@ -1,3 +1,5 @@
+import type { Edge, EdgeKind } from "@/lib/stage/record";
+
 export type HitType = "excerpt" | "advisor" | "work";
 
 export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work"];
@@ -13,6 +15,7 @@ export interface Hit {
   year: number | null;
   url: string | null;
   links: string[];
+  edges?: Edge[];
 }
 
 export interface ExcerptSource {
@@ -77,13 +80,20 @@ export function advisorId(a: Pick<AdvisorSource, "rank">): string {
   return `advisor:${a.rank}`;
 }
 
-function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): string[] {
+function sharedTerms(a: Set<string>, b: Set<string>): string {
+  return Array.from(a)
+    .filter((w) => b.has(w))
+    .sort()
+    .slice(0, 5)
+    .join(", ");
+}
+
+function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): { id: string; s: number; terms: string }[] {
   return pool
-    .map((p) => ({ id: p.id, s: similarity(bag, p.bag) }))
+    .map((p) => ({ id: p.id, s: similarity(bag, p.bag), terms: sharedTerms(bag, p.bag) }))
     .filter((p) => p.s > 0)
     .sort((x, y) => y.s - x.s || (x.id < y.id ? -1 : 1))
-    .slice(0, k)
-    .map((p) => p.id);
+    .slice(0, k);
 }
 
 export function rankNormalized<T extends { id: string; raw: number }>(items: T[]): (T & { score: number })[] {
@@ -110,21 +120,23 @@ export function unify(opts: UnifyOptions): Hit[] {
       .filter((x) => x.raw > 0),
   );
 
-  const links = new Map<string, Set<string>>();
-  const link = (from: string, to: string) => {
-    if (!links.has(from)) links.set(from, new Set());
-    links.get(from)!.add(to);
+  const edges = new Map<string, Map<string, Edge>>();
+  const link = (from: string, to: string, kind: EdgeKind, reason: string, weight: number) => {
+    if (!edges.has(from)) edges.set(from, new Map());
+    const m = edges.get(from)!;
+    if (!m.has(to)) m.set(to, { to, kind, reason, weight });
   };
+  const edgesOf = (id: string): Edge[] => Array.from(edges.get(id)?.values() ?? []);
   for (const a of advisors) {
-    for (const id of nearest(a.bag, excerpts, k)) {
-      link(a.id, id);
-      link(id, a.id);
+    for (const n of nearest(a.bag, excerpts, k)) {
+      link(a.id, n.id, "advises", `shares ${n.terms}`, n.s);
+      link(n.id, a.id, "shares-token", `shares ${n.terms}`, n.s);
     }
   }
   for (const e of excerpts) {
-    for (const id of nearest(e.bag, advisors, 1)) {
-      link(e.id, id);
-      link(id, e.id);
+    for (const n of nearest(e.bag, advisors, 1)) {
+      link(e.id, n.id, "shares-token", `shares ${n.terms}`, n.s);
+      link(n.id, e.id, "advises", `shares ${n.terms}`, n.s);
     }
   }
 
@@ -140,7 +152,8 @@ export function unify(opts: UnifyOptions): Hit[] {
       branch: x.e.branch,
       year: x.e.year ?? null,
       url: `/excerpts/${x.e.concept}/${x.e.slug}`,
-      links: Array.from(links.get(x.id) ?? []),
+      links: edgesOf(x.id).map((e) => e.to),
+      edges: edgesOf(x.id),
     });
   }
   for (const x of advisors) {
@@ -154,7 +167,8 @@ export function unify(opts: UnifyOptions): Hit[] {
       branch: x.a.field,
       year: x.a.year,
       url: x.a.url,
-      links: Array.from(links.get(x.id) ?? []),
+      links: edgesOf(x.id).map((e) => e.to),
+      edges: edgesOf(x.id),
     });
   }
   const works = new Map<string, { e: ExcerptSource; ids: string[]; score: number }>();
@@ -178,6 +192,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       year: w.e.year ?? null,
       url: `/excerpts/${w.e.concept}`,
       links: w.ids,
+      edges: w.ids.map((id) => ({ to: id, kind: "same-branch" as const, reason: `excerpt of ${key}`, weight: 1 })),
     });
   }
   return hits

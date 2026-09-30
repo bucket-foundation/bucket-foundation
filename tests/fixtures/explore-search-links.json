@@ -1,0 +1,107 @@
+{
+ "query": "photon quantum light",
+ "excerpts": [
+  {
+   "branch": "05-biophysics",
+   "concept": "light",
+   "slug": "a",
+   "title": "Light and water",
+   "text": "Mitochondria turn light into water.",
+   "score": 4
+  },
+  {
+   "branch": "02-physics",
+   "concept": "quantum",
+   "slug": "b",
+   "title": "Quantum photon",
+   "text": "A photon carries a quantum of energy.",
+   "score": 2
+  },
+  {
+   "branch": "02-physics",
+   "concept": "quantum",
+   "slug": "c",
+   "title": "Electron field",
+   "text": "The electron field and the photon.",
+   "score": 1
+  }
+ ],
+ "links": [
+  {
+   "id": "advisor:2",
+   "links": [
+    "excerpt:02-physics/quantum/c",
+    "excerpt:02-physics/quantum/b"
+   ]
+  },
+  {
+   "id": "excerpt:05-biophysics/light/a",
+   "links": [
+    "advisor:1",
+    "advisor:3",
+    "advisor:4"
+   ]
+  },
+  {
+   "id": "work:05-biophysics/light",
+   "links": [
+    "excerpt:05-biophysics/light/a"
+   ]
+  },
+  {
+   "id": "advisor:1",
+   "links": [
+    "excerpt:05-biophysics/light/a"
+   ]
+  },
+  {
+   "id": "advisor:3",
+   "links": [
+    "excerpt:05-biophysics/light/a"
+   ]
+  },
+  {
+   "id": "excerpt:02-physics/quantum/b",
+   "links": [
+    "advisor:2",
+    "advisor:5",
+    "advisor:6"
+   ]
+  },
+  {
+   "id": "work:02-physics/quantum",
+   "links": [
+    "excerpt:02-physics/quantum/b",
+    "excerpt:02-physics/quantum/c"
+   ]
+  },
+  {
+   "id": "advisor:4",
+   "links": [
+    "excerpt:05-biophysics/light/a"
+   ]
+  },
+  {
+   "id": "advisor:5",
+   "links": [
+    "excerpt:02-physics/quantum/b",
+    "excerpt:02-physics/quantum/c"
+   ]
+  },
+  {
+   "id": "excerpt:02-physics/quantum/c",
+   "links": [
+    "advisor:2",
+    "advisor:5",
+    "advisor:6"
+   ]
+  },
+  {
+   "id": "advisor:6",
+   "links": [
+    "excerpt:02-physics/quantum/b",
+    "excerpt:02-physics/quantum/c"
+   ]
+  }
+ ]
+}
