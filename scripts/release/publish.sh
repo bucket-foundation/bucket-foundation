@@ -10,6 +10,7 @@ version=${tag#bkt-v}
 repo=${GITHUB_REPOSITORY:-bucket-foundation/bucket-foundation}
 
 expected=(bkt-linux-x64 bkt-linux-arm64 bkt-darwin-arm64 bkt-darwin-x64 bkt-windows-x64.exe "Bucket-$version-x86_64.AppImage")
+for a in "${expected[@]}"; do [[ "$a" =~ ^[A-Za-z0-9._-]+$ ]] || fail "asset names may use only letters, digits, dot, underscore and hyphen: $a"; done
 assets=()
 for a in "${expected[@]}"; do
   for suffix in "" .sha256 .manifest .manifest.sig; do

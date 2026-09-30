@@ -12,8 +12,17 @@ fail() { echo "install.sh: $*" >&2; exit 1; }
 source=$1
 base=${source%%\?*}
 query=${source#"$base"}
+[ -n "${HOME:-}" ] && [ "$HOME" != "/" ] || fail "HOME is not set to a user directory"
 prefix=${BUCKET_PREFIX:-$HOME/.local}
-work=$(mktemp -d)
+case "$prefix/" in
+  "$HOME"/*/*) ;;
+  *) fail "refusing to install outside $HOME: $prefix" ;;
+esac
+case "/$prefix/" in
+  */../*) fail "refusing a prefix with ..: $prefix" ;;
+esac
+mkdir -p "$prefix"
+work=$(mktemp -d "$prefix/.install.XXXXXX")
 trap 'rm -rf "$work"' EXIT
 
 name=$(basename "$base")
@@ -59,6 +68,7 @@ if [ -f "$state" ]; then
 fi
 
 mkdir -p "$prefix/bin" "$prefix/share/bucket"
+installed=()
 case "$name" in
   *.tar.gz|*.tgz)
     dest="$prefix/lib/bucket"
@@ -68,6 +78,7 @@ case "$name" in
     rm -rf "$dest" && mv "$dest.new" "$dest"
     ln -sfn "$dest/bin/bkt" "$prefix/bin/bkt"
     target="$prefix/bin/bkt"
+    installed+=("$dest" "$target")
     ;;
   *.AppImage)
     dest="$prefix/lib/bucket"
@@ -78,16 +89,26 @@ case "$name" in
     ln -sfn "$dest/Bucket.AppImage" "$prefix/bin/bkt"
     if (cd "$work" && "$dest/Bucket.AppImage" --appimage-extract bucket.png > /dev/null 2>&1) && [ -f "$work/squashfs-root/bucket.png" ]; then
       install -m 0644 "$work/squashfs-root/bucket.png" "$prefix/share/icons/hicolor/256x256/apps/bucket.png"
+      installed+=("$prefix/share/icons/hicolor/256x256/apps/bucket.png")
     else
       echo "install.sh: could not read the icon from $name; the menu entry shows a default icon" >&2
     fi
-    printf '[Desktop Entry]\nType=Application\nName=Bucket\nComment=Learn the canon offline\nExec=%s app\nIcon=bucket\nCategories=Education;Science;\nTerminal=false\nStartupWMClass=Bucket\n' "$prefix/bin/bucket" > "$prefix/share/applications/bucket.desktop"
+    printf '[Desktop Entry]\nType=Application\nName=Bucket\nComment=Learn the canon offline\nExec="%s" app\nIcon=bucket\nCategories=Education;Science;\nTerminal=false\nStartupWMClass=Bucket\n' "$(printf '%s' "$prefix/bin/bucket" | sed -e 's/[\\"`$]/\\&/g' -e 's/\\/\\\\/g' -e 's/%/%%/g')" > "$prefix/share/applications/bucket.desktop"
     target="$prefix/bin/bucket"
+    command -v update-desktop-database > /dev/null 2>&1 && update-desktop-database "$prefix/share/applications" > /dev/null 2>&1 || true
+    installed+=("$dest/Bucket.AppImage" "$prefix/bin/bucket" "$prefix/bin/bkt" "$prefix/share/applications/bucket.desktop")
     ;;
   *)
     install -m 0755 "$work/$name" "$prefix/bin/bucket"
     target="$prefix/bin/bucket"
+    installed+=("$target")
     ;;
 esac
 printf '%s\n' "$m_version" > "$state"
+installed+=("$state")
 echo "installed $target $m_version"
+for f in "${installed[@]}"; do echo "  $f"; done
+case ":$PATH:" in
+  *":$prefix/bin:"*) ;;
+  *) echo "add $prefix/bin to your PATH to run bucket from a terminal" ;;
+esac

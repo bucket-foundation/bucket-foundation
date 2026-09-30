@@ -46,6 +46,7 @@ const SUITES = {
       "scripts/test-release-signing.mjs",
     ],
     commands: [
+      ["bash", "scripts/test-release-install-linux.sh"],
       ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
       ["python3", "scripts/canon-explorer/embed.py", "--check"],
     ],
