@@ -56,6 +56,9 @@ jobs:
       run:
         shell: bash
     steps:
+      - name: allow checkout of names Windows cannot write
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           sparse-checkout-cone-mode: false
@@ -107,7 +110,7 @@ jobs:
           sudo apt-get install -yq "$BUNDLES"/*.deb
           cat > "$RUNNER_TEMP/smoke.sh" <<'SH'
           set -eu
-          printf '' | gnome-keyring-daemon --unlock --components=secrets >/dev/null
+          printf 'smoke' | gnome-keyring-daemon --unlock --components=secrets >/dev/null
           export XDG_RUNTIME_DIR=$(mktemp -d)
           HOME=$(mktemp -d) bun scripts/smoke.ts "$1"
           SH
