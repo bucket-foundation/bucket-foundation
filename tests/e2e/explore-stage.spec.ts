@@ -9,6 +9,7 @@ test("canon search loads with its heading and a canvas", async ({ page }) => {
 });
 
 test("canon search switches between the globe and circle views", async ({ page }) => {
+  test.skip(process.env.E2E_STAGE_V2 === "1", "the legacy globe and circle views are replaced by the stage");
   await page.goto("/canon/search?view=globe");
   await expect(page.locator("canvas").first()).toBeVisible();
   await page.goto("/canon/search?view=circle");
@@ -53,6 +54,23 @@ test.describe("stage render path", () => {
     await page.getByTestId("mode-globe").click();
     await expect(stage).toHaveAttribute("data-locked", "true");
     expect(await stage.getAttribute("data-distance")).toBe(before);
+  });
+
+  test("explore redirects to canon search and keeps q, mode and sel", async ({ page }) => {
+    await page.goto("/explore?q=photon&mode=helix");
+    await expect(page).toHaveURL(/\/canon\/search\?/);
+    await expect(page).toHaveURL(/q=photon/);
+    await expect(page).toHaveURL(/mode=helix/);
+    await expect(page.getByTestId("mode-helix")).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByTestId("explore-query")).toHaveValue("photon");
+    await expect(page.getByTestId("stage")).toBeVisible();
+    const first = page.getByTestId("explore-results").locator("button").first();
+    await expect(first).toBeVisible();
+    await first.click();
+    await expect(page).toHaveURL(/sel=/);
+    const sel = new URL(page.url()).searchParams.get("sel");
+    await page.goto(`/explore?q=photon&mode=helix&sel=${encodeURIComponent(sel as string)}`);
+    await expect(page).toHaveURL(new RegExp(`sel=${encodeURIComponent(sel as string).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
   });
 
   test("orbiting unlocks the home view and Home locks it again", async ({ page }) => {

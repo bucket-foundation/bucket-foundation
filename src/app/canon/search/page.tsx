@@ -1,4 +1,6 @@
 import CanonGlobeMount from "../CanonGlobeMount";
+import ExploreClient from "@/app/explore/ExploreClient";
+import { stageV2Enabled } from "@/lib/stage/flag";
 import { getBranches } from "@/lib/canon-fs";
 import type { GlobeBranch } from "@/components/CanonGlobe";
 
@@ -9,6 +11,7 @@ export const metadata = {
 export const dynamic = "force-static";
 
 export default function Page() {
+  if (stageV2Enabled()) return <ExploreClient stage embedded />;
   const branches = getBranches();
   const globeBranches: GlobeBranch[] = branches.map((b) => ({
     slug: b.slug,
