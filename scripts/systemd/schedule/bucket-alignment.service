@@ -2,5 +2,5 @@
 Description=Bucket scheduled alignment report
 [Service]
 Type=oneshot
-ExecStart=%h/agfarms/bucket-foundation/scripts/schedule/run-job.sh alignment
+ExecStart=%h/.local/share/bucket-schedule/run-job.sh alignment
 TimeoutStartSec=3h

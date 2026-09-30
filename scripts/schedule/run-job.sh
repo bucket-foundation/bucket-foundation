@@ -8,7 +8,7 @@ mkdir -p "$(dirname "$out")"
 cd "$repo" || exit 1
 git fetch -q origin
 
-prompt_file="$repo/scripts/schedule/prompts/$job.md"
+prompt_file="$(dirname "$0")/prompts/$job.md"
 [ -f "$prompt_file" ] || { echo "no prompt for $job" >&2; exit 1; }
 
 claude -p --model sonnet --permission-mode bypassPermissions \
