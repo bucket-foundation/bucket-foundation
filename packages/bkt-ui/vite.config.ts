@@ -32,6 +32,7 @@ export default defineConfig({
       { find: /^@\//, replacement: `${SRC}/` },
       { find: /^next\/navigation$/, replacement: resolve(__dirname, "src/shims/next-navigation.ts") },
       { find: /^next\/link$/, replacement: resolve(__dirname, "src/shims/next-link.tsx") },
+      { find: /^next\/dynamic$/, replacement: resolve(__dirname, "src/shims/next-dynamic.tsx") },
     ],
   },
   build: {
