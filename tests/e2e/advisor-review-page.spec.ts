@@ -100,9 +100,19 @@ test("scrolling over the chart steps people and a mini chart becomes the main vi
   await expect(page.locator("#circle")).toBeVisible();
 });
 
-test("one at a time keeps the full circle", async ({ page }) => {
+test("clicking a list card expands that person and scrolling switches the active person", async ({ page }) => {
   await page.goto(pageUrl);
-  await page.click('[data-view="one"]');
-  await expect(page.locator("#circle")).toBeVisible();
-  await expect(page.locator("#deck")).toBeVisible();
+  await page.click('[data-view="list"]');
+  await expect(page.locator(".cards .card .minis")).toHaveCount(0);
+  const second = page.locator(".cards .card").nth(1);
+  const id = await second.getAttribute("data-id");
+  await second.locator(".name").click();
+  await expect(page.locator('[data-view="circle"]')).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(id);
+  const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
+  const box = await page.locator("#circle-wrap").boundingBox();
+  await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2);
+  await page.mouse.wheel(0, 120);
+  await expect.poll(() => page.evaluate(() => (window as any).__advisorReview.selected())).toBe(ids[ids.indexOf(id!) + 1]);
+  await expect(page.locator('[data-view="one"]')).toHaveCount(0);
 });
