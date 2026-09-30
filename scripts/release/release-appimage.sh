@@ -10,7 +10,7 @@ askpass=${BUCKET_RELEASE_ASKPASS:-$HOME/.local/bin/bkt-release-askpass}
 [ -x "$askpass" ] || fail "no askpass at $askpass"
 
 artifact=$(bash "$repo/scripts/release/build-appimage.sh" "${1:-$repo/dist/release}" | tail -n1)
-version=$(cd "$repo/packages/bkt" && bun -e 'console.log(require("./package.json").version)')
+version=$(bash "$repo/scripts/release/version.sh")
 SSH_ASKPASS="$askpass" SSH_ASKPASS_REQUIRE=force DISPLAY=${DISPLAY:-:0} setsid -w bash "$repo/scripts/release/sign.sh" "$artifact" "$version" < /dev/null
 check=$(mktemp -d)
 trap 'rm -rf "$check"' EXIT

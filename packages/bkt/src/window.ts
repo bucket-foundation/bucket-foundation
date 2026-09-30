@@ -1,6 +1,8 @@
 import { spawn } from "node:child_process";
-import { chmodSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+import { platformFor, type Platform } from "./platform";
 
 export interface AppRecord {
   pid: number;
@@ -8,7 +10,7 @@ export interface AppRecord {
 }
 
 export function runtimeDir(env = process.env): string {
-  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? "/tmp", `bucket-${process.getuid?.() ?? "user"}`);
+  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? tmpdir(), `bucket-${process.getuid?.() ?? "user"}`);
   return join(base, "bucket");
 }
 
@@ -38,8 +40,7 @@ export function readApp(dir: string, kill: typeof process.kill = process.kill): 
 }
 
 export function writeApp(dir: string, rec: AppRecord): () => void {
-  mkdirSync(dir, { recursive: true, mode: 0o700 });
-  chmodSync(dir, 0o700);
+  platformFor().secureDir(dir);
   const p = join(dir, "app.json");
   writeFileSync(p, JSON.stringify(rec), { mode: 0o600 });
   chmodSync(p, 0o600);
@@ -52,19 +53,8 @@ export function writeApp(dir: string, rec: AppRecord): () => void {
   };
 }
 
-const BROWSERS = ["chromium-browser", "chromium", "google-chrome", "google-chrome-stable", "brave-browser"];
-
-function which(bin: string, path = process.env.PATH ?? ""): string | null {
-  for (const d of path.split(":")) if (d && existsSync(join(d, bin))) return join(d, bin);
-  return null;
-}
-
-export function windowCommand(url: string, profile: string, find: (b: string) => string | null = which): string[] {
-  for (const b of BROWSERS) {
-    const bin = find(b);
-    if (bin) return [bin, `--app=${url}`, `--user-data-dir=${profile}`, "--disable-extensions", "--no-first-run", "--no-default-browser-check", "--window-size=1280,860"];
-  }
-  return ["xdg-open", url];
+export function windowCommand(url: string, profile: string, find?: (b: string) => string | null, platform?: Platform): string[] {
+  return (platform ?? platformFor(process.platform, find ? { which: find } : {})).windowCommand(url, profile);
 }
 
 export function openWindow(url: string, profile: string): void {
