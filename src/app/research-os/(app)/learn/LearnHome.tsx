@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { deckLabel, loadCorpus, loadDecks, type Deck } from "@/lib/academy/corpus-client";
 import { gripSphere, type GripSphere } from "@/lib/academy/grip-sphere";
-import { loadBranch, pullServer } from "@/lib/academy/progress-store";
+import { webProgressStore } from "@/lib/academy/progress-store";
 import type { EngineState } from "@/lib/academy/engine";
 import { BTN_PRIMARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 
@@ -36,12 +36,12 @@ export default function LearnHome() {
     let alive = true;
     (async () => {
       try {
-        const [decks, server] = await Promise.all([loadDecks(), pullServer()]);
+        const [decks, server] = await Promise.all([loadDecks(), webProgressStore.pull()]);
         const now = Date.now();
         const out: Row[] = [];
         const states: EngineState[] = [];
         for (const d of decks) {
-          const s = await loadBranch(d.id, server);
+          const s = await webProgressStore.load(d.id, server);
           states.push(s);
           out.push(rowFor(d, s, now));
         }
