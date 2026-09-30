@@ -47,8 +47,8 @@ export interface PrimeDirections {
 
 export class ReviewFileError extends Error {}
 
-const LOCAL = String.raw`[A-Za-z0-9._%+-]+`;
-const LABEL = String.raw`[A-Za-z0-9-]+`;
+const LOCAL = String.raw`(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]{1,64}`;
+const LABEL = String.raw`[A-Za-z0-9-]{1,63}`;
 const AT = String.raw`\s*(?:@|\[\s*at\s*\]|\(\s*at\s*\)|\{\s*at\s*\}|<\s*at\s*>)\s*`;
 const DOT = String.raw`\s*(?:\.|\[\s*dot\s*\]|\(\s*dot\s*\)|\{\s*dot\s*\}|<\s*dot\s*>)\s*`;
 const SPOKEN = String.raw`${LOCAL}\s+at\s+${LABEL}(?:\s+dot\s+${LABEL})+`;

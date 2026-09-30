@@ -26,6 +26,8 @@ const SPECS: Record<string, JobSpec> = {
     after: (d) => ({ wrote: readFileSync(join(d.out, "done"), "utf8") }),
   }),
   sleep: spec(`setTimeout(()=>{},60000)`),
+  family: spec(`const cp=require("child_process"),fs=require("fs");const [,out]=process.argv.slice(1);const c=cp.spawn("sleep",["60"],{stdio:"ignore"});fs.writeFileSync(out+"/grandchild",String(c.pid));setTimeout(()=>{},60000)`),
+  echoer: spec(`const fs=require("fs");const [f]=process.argv.slice(1);const t=fs.readFileSync(f,"utf8");console.log("Traceback (most recent call last):");console.log("ValueError: bad row "+t.split("\\n")[1]);console.log("contact avery [at] uni [dot] example");console.log("fitted 160 people");console.error(t.split("\\n")[2].slice(5,40))`),
   noisy: spec(`process.stdout.write("x".repeat(100000)+"END")`),
   fail: spec(`console.error("boom");process.exit(3)`),
   refuse: spec("", { plan: () => ({ error: "this job needs numpy: python3 -m pip install --user numpy" }) }),
@@ -73,6 +75,42 @@ describe("job runner", () => {
     expect((await settle(runner.start("echo", { note: "y" }).id)).state).toBe("done");
   });
 
+  test("cancel and timeout stop the whole process group, grandchildren included", async () => {
+    const alive = (pid: number) => {
+      try {
+        process.kill(pid, 0);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    for (const how of ["cancel", "timeout"] as const) {
+      const r = new JobRunner({ root, specs: SPECS, timeoutMs: how === "timeout" ? 400 : 60_000, killGraceMs: 300 });
+      const j = r.start("family", { note: "x" });
+      const pidFile = join(root, j.id, "out", "grandchild");
+      for (let i = 0; i < 200 && !existsSync(pidFile); i++) await Bun.sleep(10);
+      const pid = Number(readFileSync(pidFile, "utf8"));
+      expect(alive(pid)).toBe(true);
+      if (how === "cancel") r.cancel(j.id);
+      const done = await settle(j.id, r);
+      expect(done.state).toBe(how === "cancel" ? "cancelled" : "timeout");
+      for (let i = 0; i < 100 && alive(pid); i++) await Bun.sleep(20);
+      expect(alive(pid)).toBe(false);
+    }
+  });
+
+  test("log lines that repeat input text or carry an email are hidden", async () => {
+    const note = ["header line", "Avery Stone works on water interfaces at North Institute", "the statement says membranes carry charge across the cell"].join("\n");
+    const r = new JobRunner({ root, specs: { ...SPECS, echoer: { ...SPECS.echoer, inputs: { note: { label: "Note", maxBytes: 4096, exts: [".txt"] } } } } });
+    const done = await settle(r.start("echoer", { note }).id, r);
+    expect(done.log).toContain("Traceback (most recent call last):");
+    expect(done.log).toContain("fitted 160 people");
+    expect(done.log).not.toContain("Avery Stone");
+    expect(done.log).not.toContain("membranes carry charge");
+    expect(done.log).not.toContain("[at]");
+    expect(done.log.match(/line hidden/g)?.length).toBe(3);
+  });
+
   test("a job past its time limit is stopped", async () => {
     const r = new JobRunner({ root, specs: SPECS, timeoutMs: 150 });
     const j = r.start("sleep", { note: "x" });
@@ -86,7 +124,7 @@ describe("job runner", () => {
     const done = await settle(runner.start("noisy", { note: "x" }).id);
     expect(done.logTruncated).toBe(true);
     expect(Buffer.byteLength(done.log)).toBeLessThanOrEqual(1024);
-    expect(done.log.endsWith("END")).toBe(true);
+    expect(done.log.trimEnd().endsWith("END")).toBe(true);
   });
 
   test("failures carry a reason", async () => {

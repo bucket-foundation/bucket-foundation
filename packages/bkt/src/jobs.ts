@@ -1,6 +1,8 @@
+import { spawn, type ChildProcess } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { chmodSync, existsSync, lstatSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
+import { LogGuard } from "./log-guard";
 
 export const JOB_MARKER = ".bkt-job";
 export const DEFAULT_TIMEOUT_MS = 30 * 60_000;
@@ -49,7 +51,7 @@ export class JobError extends Error {
 
 interface Running {
   view: JobView;
-  proc: ReturnType<typeof Bun.spawn> | null;
+  proc: ChildProcess | null;
   timer: ReturnType<typeof setTimeout> | null;
   killTimer: ReturnType<typeof setTimeout> | null;
   stop: JobState | null;
@@ -62,6 +64,7 @@ export interface JobRunnerOptions {
   logBytes?: number;
   now?: () => number;
   keep?: number;
+  killGraceMs?: number;
 }
 
 const INPUT_NAME = /^[a-z][a-z0-9-]{0,31}$/;
@@ -160,38 +163,62 @@ export class JobRunner {
     }
 
     const cap = this.o.logBytes ?? DEFAULT_LOG_BYTES;
-    const append = (chunk: string) => {
-      const next = view.log + chunk;
+    const guard = new LogGuard(Object.values(named).map((n) => n.text));
+    const append = (line: string) => {
+      const next = view.log + guard.line(line) + "\n";
       if (Buffer.byteLength(next) > cap) {
         view.log = next.slice(next.length - cap);
         view.logTruncated = true;
       } else view.log = next;
     };
-    const pump = async (stream: ReadableStream<Uint8Array> | undefined | number | null) => {
-      if (!stream || typeof stream === "number") return;
-      const dec = new TextDecoder();
-      const reader = stream.getReader();
-      for (;;) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        append(dec.decode(value, { stream: true }));
-      }
-    };
+    const lines = (stream: NodeJS.ReadableStream | null) =>
+      new Promise<void>((done) => {
+        if (!stream) return done();
+        let rest = "";
+        stream.setEncoding("utf8");
+        stream.on("data", (chunk: string) => {
+          const parts = (rest + chunk).split(/\r?\n/);
+          rest = parts.pop() ?? "";
+          if (rest.length > 8192) {
+            parts.push(rest);
+            rest = "";
+          }
+          for (const l of parts) append(l);
+        });
+        stream.on("end", () => {
+          if (rest) append(rest);
+          done();
+        });
+        stream.on("error", () => done());
+      });
 
+    let proc: ChildProcess;
     try {
-      job.proc = Bun.spawn(plan.argv, { cwd: dir, env: { PATH: process.env.PATH ?? "/usr/bin:/bin", HOME: process.env.HOME ?? dir, LANG: "C.UTF-8", ...plan.env }, stdout: "pipe", stderr: "pipe", stdin: "ignore" });
+      proc = spawn(plan.argv[0], plan.argv.slice(1), {
+        cwd: dir,
+        env: { PATH: process.env.PATH ?? "/usr/bin:/bin", HOME: process.env.HOME ?? dir, LANG: "C.UTF-8", ...plan.env },
+        stdio: ["ignore", "pipe", "pipe"],
+        detached: true,
+      });
     } catch (e) {
       finish("failed", `could not start: ${e instanceof Error ? e.message : String(e)}`);
       return { ...view };
     }
-    const proc = job.proc;
+    job.proc = proc;
+    const exited = new Promise<number | null>((done) => {
+      proc.on("error", (e) => {
+        append(`could not start: ${e.message}`);
+        done(null);
+      });
+      proc.on("exit", (code) => done(code));
+    });
     job.timer = setTimeout(() => this.halt(job, "timeout"), this.o.timeoutMs ?? DEFAULT_TIMEOUT_MS);
     void (async () => {
-      await Promise.all([pump(proc.stdout as ReadableStream<Uint8Array>), pump(proc.stderr as ReadableStream<Uint8Array>)]);
-      const code = await proc.exited;
+      const [code] = await Promise.all([exited, lines(proc.stdout), lines(proc.stderr)]);
+      this.signalGroup(proc, "SIGKILL");
       view.code = code;
       if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : null);
-      if (code !== 0) return finish("failed", `exited with code ${code}`);
+      if (code !== 0) return finish("failed", code === null ? "the job could not start" : `exited with code ${code}`);
       try {
         view.result = spec.after ? ((await spec.after(dirs)) ?? null) : null;
         finish("done");
@@ -210,11 +237,21 @@ export class JobRunner {
     return { ...job.view };
   }
 
+  private signalGroup(proc: ChildProcess, sig: NodeJS.Signals) {
+    if (!proc.pid) return;
+    try {
+      process.kill(-proc.pid, sig);
+    } catch {
+      return;
+    }
+  }
+
   private halt(job: Running, why: JobState) {
-    if (!job.proc || job.stop) return;
+    const proc = job.proc;
+    if (!proc || job.stop) return;
     job.stop = why;
-    job.proc.kill("SIGTERM");
-    job.killTimer = setTimeout(() => job.proc?.kill("SIGKILL"), KILL_GRACE_MS);
+    this.signalGroup(proc, "SIGTERM");
+    job.killTimer = setTimeout(() => this.signalGroup(proc, "SIGKILL"), this.o.killGraceMs ?? KILL_GRACE_MS);
   }
 
   remove(id: string): void {
