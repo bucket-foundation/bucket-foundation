@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { deckLabel, loadCorpus, loadDecks } from "@/lib/academy/corpus-client";
 import { masteryFor, type Atom } from "@/lib/academy/engine";
 import { MASTERED_THRESHOLD } from "@/lib/academy/mastery";
-import { loadBranch, pullServer } from "@/lib/academy/progress-store";
+import { peekBranch, pullServer } from "@/lib/academy/progress-store";
 import { graphFromAtoms, planPath, repairMastery, type PathError } from "@/lib/academy/prereq-path";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel } from "@/components/ui";
 
@@ -22,7 +22,7 @@ async function loadAll(): Promise<Loaded> {
   const atoms: Loaded["atoms"] = new Map();
   const mastered = new Set<string>();
   for (const d of decks) {
-    const [c, s] = await Promise.all([loadCorpus(d.id), loadBranch(d.id, server)]);
+    const [c, s] = await Promise.all([loadCorpus(d.id), Promise.resolve(peekBranch(d.id, server))]);
     if (!c) continue;
     for (const a of c.atoms) {
       if (!atoms.has(a.id)) atoms.set(a.id, { ...a, branch: d.id, branchLabel: deckLabel(d) });
@@ -165,7 +165,7 @@ export default function PathView() {
             </details>
           )}
           <p className="mt-4 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">
-            This path is minimal for the reviewed prerequisite graph. Edges still under review may add prerequisites.
+            This path is minimal for the deck prerequisites. Prerequisites the decks do not list may add steps.
           </p>
           <div className="mt-4">
             <Link href={`/research-os/learn/${target.branch}`} className={BTN_SECONDARY}>open {target.branchLabel}</Link>

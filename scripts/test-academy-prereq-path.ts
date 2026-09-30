@@ -1,5 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { normalizeState } from "../src/lib/academy/engine";
+import { peekBranch } from "../src/lib/academy/progress-store";
 import { closureOf, graphFromAtoms, planPath, repairMastery, type PrereqGraph } from "../src/lib/academy/prereq-path";
 
 let failures = 0;
@@ -151,7 +153,26 @@ function corpus() {
   console.log(`corpus: ${g.size} atoms planned`);
 }
 
+function readOnlyLoad() {
+  const store: Record<string, string> = { "bucket-academy/v1/b": JSON.stringify(normalizeState(null)) };
+  let writes = 0;
+  let fetches = 0;
+  (globalThis as any).localStorage = {
+    getItem: (k: string) => (k in store ? store[k] : null),
+    setItem: () => { writes++; },
+    removeItem: () => { writes++; },
+    get length() { return Object.keys(store).length; },
+    key: (i: number) => Object.keys(store)[i] ?? null,
+  };
+  (globalThis as any).fetch = async () => { fetches++; return { ok: true, json: async () => ({}) }; };
+  const remote = normalizeState({ cards: { x: { state: "review", stability: 30, reps: 3, lastReview: 1 } } });
+  const merged = peekBranch("b", { b: { data: remote } } as any);
+  check(Object.keys(merged.cards).includes("x"), "peekBranch merges server state");
+  check(writes === 0 && fetches === 0, `peekBranch wrote ${writes} and fetched ${fetches}`);
+}
+
 exhaustive();
+readOnlyLoad();
 fixtures();
 corpus();
 if (failures) {
