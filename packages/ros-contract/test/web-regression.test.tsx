@@ -1,25 +1,13 @@
-import { describe, expect, mock, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
+import { graph } from "./mocks";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import primes from "./fixtures/primes.json";
 
 const GOLDEN = join(import.meta.dir, "golden");
 const UPDATE = process.env.UPDATE_GOLDEN === "1";
-
-let dbState: "configured" | "unconfigured" | "failing" = "configured";
-mock.module("@/lib/research-os/db", () => ({
-  configured: () => dbState !== "unconfigured",
-  graphService: () => ({}),
-}));
-mock.module("@/lib/research-os/primes-report", () => ({
-  loadPrimesReport: async () => {
-    if (dbState === "failing") throw new Error("down");
-    return primes;
-  },
-}));
 
 function golden(name: string, el: ReactElement) {
   const html = renderToStaticMarkup(el);
@@ -55,15 +43,15 @@ describe("web Research OS pages render as before", () => {
     const err = console.error;
     console.error = () => {};
     try {
-      dbState = "configured";
+      graph.state = "up";
       golden("primes", await Page());
-      dbState = "unconfigured";
+      graph.state = "off";
       golden("primes-unconfigured", await Page());
-      dbState = "failing";
+      graph.state = "down";
       golden("primes-failing", await Page());
     } finally {
       console.error = err;
-      dbState = "configured";
+      graph.state = "up";
     }
   });
 });
