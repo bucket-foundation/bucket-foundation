@@ -76,6 +76,15 @@ function place(n){
  if(mode==="slices")return ringAt(n.e+0.5,r)(a);
  const lat=(n.u/ERAS.length-0.5)*Math.PI*0.9,rad=6;return new THREE.Vector3(Math.cos(lat)*Math.cos(a)*rad,Math.sin(lat)*rad,Math.cos(lat)*Math.sin(a)*rad)}
 function lineMat(o){return new THREE.LineBasicMaterial({color:css("--muted"),transparent:true,opacity:o})}
+const surf=new THREE.Group();scene.add(surf);
+function surfR(u,a){let w=0,v=0;N.forEach(n=>{if(n.p>year)return;const au=mode==="slices"?n.e+0.5:n.u,d=Math.atan2(Math.sin(a-(n.th*Math.PI*2+(mode==="helix"?n.u*Math.PI*2:0))),Math.cos(a-(n.th*Math.PI*2+(mode==="helix"?n.u*Math.PI*2:0)))),k=Math.exp(-((u-au)**2)/0.5-d*d/0.4);w+=k;v+=k*(0.6+n.s*1.8)});return w>1e-3?v/w:0.6}
+function mesh(pos,idx,op){const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));geo.setIndex(idx);const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:css("--accent"),transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:false}));surf.add(m);surf.add(new THREE.LineSegments(new THREE.WireframeGeometry(geo),lineMat(0.08)))}
+function buildSurface(){surf.clear();
+ if(mode==="sphere"){surf.add(new THREE.Mesh(new THREE.SphereGeometry(5.9,48,32),new THREE.MeshBasicMaterial({color:css("--accent"),transparent:true,opacity:0.07,depthWrite:false})));return}
+ const A=48,pos=[],idx=[];
+ if(mode==="helix"){const U=72;for(let i=0;i<=U;i++){const u=i/U*ERAS.length;for(let j=0;j<=A;j++){const a=j/A*Math.PI*2;pos.push(...ringAt(u,surfR(u,a))(a).toArray())}}
+  for(let i=0;i<U;i++)for(let j=0;j<A;j++){const q=i*(A+1)+j;idx.push(q,q+1,q+A+1,q+1,q+A+2,q+A+1)}mesh(pos,idx,0.1);return}
+ ERAS.forEach((e,i)=>{const u=i+0.5,b=pos.length/3;pos.push(...axisPos(u).toArray());for(let j=0;j<=A;j++){const a=j/A*Math.PI*2;pos.push(...ringAt(u,surfR(u,a))(a).toArray())}for(let j=0;j<A;j++)idx.push(b,b+1+j,b+2+j)});mesh(pos,idx,0.16)}
 function build(){
  guides.clear();
  if(mode==="sphere"){
@@ -89,7 +98,7 @@ function build(){
    const disk=new THREE.Mesh(new THREE.CircleGeometry(2.5,48),new THREE.MeshBasicMaterial({color:css("--accent"),transparent:true,opacity:0.05,side:THREE.DoubleSide}));disk.position.copy(f(0).add(f(Math.PI)).multiplyScalar(0.5));disk.lookAt(disk.position.clone().add(AX));disk.userData.era=i;guides.add(disk)});
   cam.position.set(-4,17,12);
  }
- ctl.target.set(0,0,0);refresh()}
+ ctl.target.set(0,0,0);refresh();buildSurface()}
 function refresh(){meshes.forEach(m=>{const n=m.userData.n;m.position.copy(place(n));const vis=n.p<=year;m.visible=vis;const solved=n.rs&&n.rs<=year;m.material.opacity=solved?1:0.55;m.scale.setScalar(solved?1.25:1)})}
 function resize(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix()}
 addEventListener("resize",resize);
@@ -114,7 +123,7 @@ function drawSlice(){
  g.fillStyle=css("--fg");g.font="17px IBM Plex Sans, sans-serif";ns.forEach(n=>{const[x,y]=P(n);const t=n.t.length>26?n.t.slice(0,25)+"…":n.t;g.textAlign=x>c?"left":"right";g.fillText(t,x+(x>c?14:-14),y+5)});
  document.getElementById("list").innerHTML=ns.slice().sort((a,b)=>b.s-a.s).map(n=>`<div${n===hl?' style="color:var(--accent)"':""}><span>${n.t}</span><span>${n.p} · ${n.s.toFixed(2)}</span></div>`).join("")}
 const yr=document.getElementById("year"),yv=document.getElementById("yv");
-yr.addEventListener("input",()=>{year=+yr.value;yv.textContent=year;refresh();drawSlice()});
+yr.addEventListener("input",()=>{year=+yr.value;yv.textContent=year;refresh();buildSurface();drawSlice()});
 ["helix","slices","sphere"].forEach(k=>document.getElementById("m-"+k).addEventListener("click",()=>{mode=k;document.querySelectorAll(".modes button").forEach(b=>b.setAttribute("aria-pressed",b.id==="m-"+k));build()}));
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{build();drawSlice()});
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;ctl.autoRotate=!still&&mode==="sphere";
