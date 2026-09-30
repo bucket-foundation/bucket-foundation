@@ -33,3 +33,17 @@ test("default collapsed widgets start shut and only collapsible widgets toggle",
   assert.equal(toggleCollapsed(shut, "missing", defs), shut);
   assert.equal(start.has("data"), true);
 });
+
+import { FOCUSABLE, trapIndex } from "../src/lib/explore/focus";
+
+test("the focus trap wraps at both ends", () => {
+  assert.equal(trapIndex(0, 5, false), 1);
+  assert.equal(trapIndex(4, 5, false), 0);
+  assert.equal(trapIndex(0, 5, true), 4);
+  assert.equal(trapIndex(3, 5, true), 2);
+  assert.equal(trapIndex(-1, 5, false), 0);
+  assert.equal(trapIndex(-1, 5, true), 4);
+  assert.equal(trapIndex(9, 5, false), 0);
+  assert.equal(trapIndex(0, 0, false), -1);
+  assert.ok(FOCUSABLE.includes("button") && FOCUSABLE.includes('[role="slider"]'));
+});
