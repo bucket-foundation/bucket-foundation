@@ -162,7 +162,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <div id="main-radar" class="main-radar" hidden></div>
 </div>
 <p class="tip" id="tip" hidden></p>
-<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll to step through people</span></div>
+<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll or arrow keys: step · s shortlist · m maybe · x skip</span></div>
 </section>
 
 <ol class="cards" id="cards"></ol>
@@ -424,15 +424,34 @@ cv.addEventListener("mousemove", (e) => {
 cv.addEventListener("mouseleave", () => { hoverId = null; $("tip").hidden = true; drawCircle(); });
 if (window.ResizeObserver) new ResizeObserver(() => drawMain()).observe($("circle-wrap"));
 window.addEventListener("resize", () => drawMain());
-let wheelAt = 0;
+const WHEEL_STEP = 100, WHEEL_MAX = 3;
+let wheelAcc = 0, wheelAt = 0, wheelBurst = 0;
+function wheelPixels(e) { return e.deltaY * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 800 : 1); }
 $("circle-wrap").addEventListener("wheel", (e) => {
-  if (Math.abs(e.deltaY) < 4) return;
+  if (e.ctrlKey || e.metaKey) return;
   e.preventDefault();
   const now = Date.now();
-  if (now - wheelAt < 90) return;
+  if (now - wheelAt > 250) { wheelAcc = 0; wheelBurst = 0; }
   wheelAt = now;
-  step(e.deltaY > 0 ? 1 : -1);
+  wheelAcc += wheelPixels(e);
+  while (Math.abs(wheelAcc) >= WHEEL_STEP && wheelBurst < WHEEL_MAX) {
+    const d = wheelAcc > 0 ? 1 : -1;
+    wheelAcc -= d * WHEEL_STEP;
+    wheelBurst++;
+    step(d);
+  }
+  if (wheelBurst >= WHEEL_MAX) wheelAcc = 0;
 }, {passive: false});
+cv.tabIndex = 0;
+document.addEventListener("keydown", (e) => {
+  if (e.target.matches("input,select,textarea")) return;
+  const map = {s: "shortlist", m: "maybe", x: "skip"};
+  if (!map[e.key] || e.ctrlKey || e.metaKey || e.altKey) return;
+  const r = rows.find((x) => x.id === selectedId);
+  if (!r) return;
+  e.preventDefault();
+  setStatus(r, map[e.key]);
+});
 let timer = null;
 $("play").addEventListener("click", () => {
   if (timer) { clearInterval(timer); timer = null; } else { timer = setInterval(() => { const i = current.findIndex((x) => x.id === selectedId); if (i >= current.length - 1) { clearInterval(timer); timer = null; $("play").setAttribute("aria-pressed", "false"); $("play").textContent = "Play"; return; } step(1); }, 1400); }
@@ -539,7 +558,7 @@ $("tl").addEventListener("input", () => { const r = current[Number($("tl").value
 $("prev").addEventListener("click", () => step(-1));
 $("next").addEventListener("click", () => step(1));
 document.addEventListener("keydown", (e) => {
-  if (e.target !== document.body && !e.target.classList.contains("card")) return;
+  if (e.target !== document.body && !e.target.classList.contains("card") && e.target.id !== "circle") return;
   if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
   else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
 });
@@ -563,7 +582,7 @@ $("export").addEventListener("click", () => {
   document.body.append(a); a.click(); a.remove();
 });
 render();
-window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, toggleDirection: (k) => $("dirs").children[k].click(), main: () => MAIN, setMain};
+window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, statusOf: (id) => statusOf(rows.find((x) => x.id === id) || {}), toggleDirection: (k) => $("dirs").children[k].click(), main: () => MAIN, setMain};
 })();
 </script>
 </body>

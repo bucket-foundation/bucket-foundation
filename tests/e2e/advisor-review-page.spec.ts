@@ -116,3 +116,35 @@ test("clicking a list card expands that person and scrolling switches the active
   await expect.poll(() => page.evaluate(() => (window as any).__advisorReview.selected())).toBe(ids[ids.indexOf(id!) + 1]);
   await expect(page.locator('[data-view="one"]')).toHaveCount(0);
 });
+
+async function wheelAt(page: any, deltaY: number, opts: {deltaMode?: number; ctrlKey?: boolean} = {}) {
+  return page.evaluate(([dy, mode, ctrl]: [number, number, boolean]) => {
+    const el = document.getElementById("circle-wrap")!;
+    const ev = new WheelEvent("wheel", {deltaY: dy, deltaMode: mode, ctrlKey: ctrl, bubbles: true, cancelable: true});
+    el.dispatchEvent(ev);
+    return ev.defaultPrevented;
+  }, [deltaY, opts.deltaMode ?? 0, opts.ctrlKey ?? false]);
+}
+
+test("line-mode wheel steps, ctrl-wheel passes through, a fling is bounded", async ({ page }) => {
+  await page.goto(pageUrl);
+  const sel = () => page.evaluate(() => (window as any).__advisorReview.selected());
+  const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
+  expect(await wheelAt(page, 3, {deltaMode: 1})).toBe(true);
+  expect(await sel()).toBe(ids[1]);
+  expect(await wheelAt(page, 120, {ctrlKey: true})).toBe(false);
+  expect(await sel()).toBe(ids[1]);
+  await page.waitForTimeout(300);
+  for (let i = 0; i < 40; i++) await wheelAt(page, 60);
+  expect(await sel()).toBe(ids[4]);
+});
+
+test("s, m and x set the decision for the active person", async ({ page }) => {
+  await page.goto(pageUrl);
+  const id = await page.evaluate(() => (window as any).__advisorReview.selected());
+  await page.locator("#circle").focus();
+  await page.keyboard.press("s");
+  expect(await page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id)).toBe("shortlist");
+  await page.keyboard.press("x");
+  expect(await page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id)).toBe("skip");
+});
