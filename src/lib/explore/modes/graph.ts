@@ -10,6 +10,7 @@ export interface BridgeRecord {
   tier: string;
   mass: number;
   branches: string[];
+  keywords?: string;
   members?: { branch: string; concept: string }[];
 }
 
@@ -17,6 +18,7 @@ export const BRIDGES: BridgeRecord[] = [...(bridgeData.curated as BridgeRecord[]
 export const BRIDGE_COLOR = "#C9C1AA";
 export const BRIDGE_LINK_COLOR = "#8C7B4F";
 export const GRAPH_RADIUS = 1.6;
+export const MIN_SHARED_TOKENS = 2;
 export const FORCE_STEPS = 220;
 
 function hashUnit(s: string, salt: number): number {
@@ -43,13 +45,13 @@ export function bridgeMembers(bridge: BridgeRecord, hits: Hit[]): string[] {
     }
     return ids;
   }
-  const words = tokens(bridge.title);
+  const words = tokens(`${bridge.title} ${bridge.keywords ?? ""}`);
   if (words.size === 0) return ids;
   const branches = new Set(bridge.branches);
   for (const h of hits) {
     if (h.type !== "excerpt" || !branches.has(bareBranch(h.branch))) continue;
     const hay = tokens(`${h.title} ${h.text} ${excerptConcept(h)}`);
-    if (Array.from(words).some((w) => hay.has(w))) ids.push(h.id);
+    if (Array.from(words).filter((w) => hay.has(w)).length >= MIN_SHARED_TOKENS) ids.push(h.id);
   }
   return ids;
 }

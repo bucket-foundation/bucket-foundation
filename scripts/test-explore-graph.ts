@@ -9,12 +9,16 @@ function check(name: string, cond: boolean, detail = "") {
 }
 
 const ctx = { selected: null, scroll: 0 };
-const lightBridge: BridgeRecord = { id: "bridge:light", title: "Light", tier: "secondary", mass: 10, branches: ["physics", "biophysics"] };
+const lightBridge: BridgeRecord = { id: "bridge:light", title: "Light", keywords: "Light water coherence", tier: "secondary", mass: 10, branches: ["physics", "biophysics"] };
 const detected: BridgeRecord = { id: "bridge:detected-x", title: "X", tier: "detected", mass: 3, branches: ["physics", "chemistry"], members: [{ branch: "physics", concept: "quantum" }, { branch: "chemistry", concept: "carbon" }] };
 const lonely: BridgeRecord = { id: "bridge:lonely", title: "Zebra", tier: "secondary", mass: 1, branches: ["physics"] };
 
 check("bundled bridge data loads", BRIDGES.length >= 12 && BRIDGES.every((b) => b.id.startsWith("bridge:") && b.branches.length > 0));
 check("curated bridge matches by title word inside its branches", bridgeMembers(lightBridge, SAMPLE_HITS).join() === "excerpt:05-biophysics/light/b");
+const photonBridge: BridgeRecord = { ...lightBridge, id: "bridge:photon", keywords: "Light photon" };
+check("a single shared token no longer links a hit", bridgeMembers(photonBridge, SAMPLE_HITS).length === 0);
+check("two shared tokens link a hit", bridgeMembers({ ...photonBridge, keywords: "Light water" }, SAMPLE_HITS).length === 1);
+check("curated fixtures carry keywords", BRIDGES.filter((b) => !b.members).every((b) => (b.keywords ?? "").length > 0));
 check("detected bridge matches by branch and concept", bridgeMembers(detected, SAMPLE_HITS).join() === "excerpt:02-physics/quantum/a,excerpt:03-chemistry/carbon/c");
 check("bridges with under two members are dropped", bridgeLinks(SAMPLE_HITS, [lonely, lightBridge, detected]).bridges.map((b) => b.id).join() === detected.id);
 check("bridge links point at hits", bridgeLinks(SAMPLE_HITS, [detected]).links.every((l) => l.from === detected.id && SAMPLE_HITS.some((h) => h.id === l.to)));

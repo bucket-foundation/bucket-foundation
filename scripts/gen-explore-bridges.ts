@@ -12,6 +12,7 @@ const curated = getAllBridges()
   tier: b.tier,
   mass: b.mass,
   branches: b.branches.map((x) => bare(x.branch)),
+  keywords: [b.title, ...b.branches.map((x) => x.description)].join(" "),
 }));
 
 const detected = getAllDetectedBridges()
