@@ -53,7 +53,7 @@ export default function UserMenu({ drawer = false, onNavigate, launchList = fals
         {label}
       </Link>
       <form method="post" action="/auth/sign-out">
-        <button type="submit" className="small-caps text-[11px] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4 h-11 inline-flex items-center px-1">
+        <button type="submit" className="small-caps text-[11px] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4 h-11 inline-flex items-center px-1 whitespace-nowrap">
           sign out
         </button>
       </form>

@@ -16,7 +16,7 @@ import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views"
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
 import canonSpace from "@/data/explore/canon.space.json";
-import { SPACE_SOURCES, sourceFromParam, type SpaceSource } from "@/lib/explore/sources";
+import { SPACE_SOURCES, sourceFromParam, type SpaceSource } from "@/lib/explore/space-sources";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
