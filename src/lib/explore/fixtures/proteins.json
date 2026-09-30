@@ -1,0 +1,15 @@
+{
+  "proteins": [
+    {
+      "id": "apoe3",
+      "name": "Apolipoprotein E3, N-terminal domain",
+      "gene": "APOE",
+      "pdb": "1LPE",
+      "file": "/explore/fixtures/apoe3-nterm.pdb",
+      "residues": [
+        { "chain": "A", "resi": 112, "rsid": "rs429358", "note": "Cys112 in E3, Arg112 in E4" },
+        { "chain": "A", "resi": 158, "rsid": "rs7412", "note": "Arg158 in E3, Cys158 in E2" }
+      ]
+    }
+  ]
+}
