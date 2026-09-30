@@ -240,3 +240,19 @@ test("panel lists research and links, all https", async ({ page }) => {
   for (const href of await links.evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute("href") || ""))) expect(href.startsWith("https://")).toBe(true);
   await expect(page.locator("#panel .links a", {hasText: "OpenAlex profile"})).toHaveCount(1);
 });
+
+test("panel values are clickable: field filters, h-index sorts, name links out", async ({ page }) => {
+  await page.goto(pageUrl);
+  const field = page.locator("#panel dd button.linkish").nth(1);
+  const value = (await field.textContent()) || "";
+  await field.click();
+  expect(await page.locator("#f-field").inputValue()).toBe(value);
+  const vis = await page.evaluate(() => (window as any).__advisorReview.visible());
+  for (const r of vis) expect(r.field).toBe(value);
+  const h = page.locator("#panel dt", {hasText: "h-index"});
+  if (await h.count()) {
+    await page.locator("#panel dd button.linkish", {hasText: /^\\d+$/}).first().click();
+    expect(await page.evaluate(() => (window as any).__advisorReview.sortKey())).toBe("h");
+  }
+  await expect(page.locator("#panel h2 a")).toHaveAttribute("href", /^https:\/\/openalex\.org\//);
+});
