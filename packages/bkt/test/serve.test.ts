@@ -55,7 +55,7 @@ describe("bkt serve fails closed", () => {
     const r = await req("/");
     const csp = r.headers.get("content-security-policy") ?? "";
     expect(csp).toContain("default-src 'none'");
-    expect(csp).toMatch(/script-src 'sha256-[A-Za-z0-9+/=]+'/);
+    expect(csp).toMatch(/script-src 'self' 'sha256-[A-Za-z0-9+/=]+';/);
     expect(csp).not.toContain("unsafe-inline");
     expect(r.headers.get("set-cookie")).toBeNull();
   });
