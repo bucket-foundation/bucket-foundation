@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type Route = { name: "learn" } | { name: "deck"; deck: string } | { name: "quiz" } | { name: "review" } | { name: "import" };
+export type Route = { name: "learn" } | { name: "deck"; deck: string } | { name: "quiz" } | { name: "review" } | { name: "import" } | { name: "advisors" } | { name: "primes" };
 
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean).map(decodeURIComponent);
@@ -8,6 +8,8 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "quiz") return { name: "quiz" };
   if (parts[0] === "review") return { name: "review" };
   if (parts[0] === "import") return { name: "import" };
+  if (parts[0] === "advisors") return { name: "advisors" };
+  if (parts[0] === "primes") return { name: "primes" };
   return { name: "learn" };
 }
 

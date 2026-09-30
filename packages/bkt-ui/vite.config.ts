@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  resolve: { alias: { "@academy": resolve(__dirname, "../../src/lib/academy") } },
+  resolve: { alias: { "@academy": resolve(__dirname, "../../src/lib/academy"), "@ros": resolve(__dirname, "../../src/lib/research-os") } },
   build: {
     outDir: "dist",
     emptyOutDir: true,
