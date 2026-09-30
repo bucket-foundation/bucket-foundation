@@ -67,3 +67,12 @@ python3 -m prime_directions advisor-review --people people.jsonl --query stateme
 `--ror-cache` checks each listed institution against its ROR record: the country comes from the listed institution, and a profile whose OpenAlex institution is unrelated after a name-based match is flagged as possibly another person. Lookups are cached; `--ror-offline` uses the cache alone.
 
 Outputs, all under an `--out` outside the repo: `index.html`, one self-contained file with the plot inlined, card views, shortlist, maybe and skip decisions kept in the browser, a shortlist CSV export, a PhD advisors view without Stevens faculty, a Stevens contacts view, and a per-institution cap in the top 50 (`--cap`, `--cap-window`); `ranked.csv` with the top `--top` rows; `pca.png`; and `report.json` with the fit, the score spread, the top-100 institution mix per view, the ROR check counts and an exact against KD-tree and HNSW lookup check. `--min-rows` and `--watch` re-run as the input grows.
+
+## Fit me
+
+```bash
+python3 -m prime_directions fit-me --statement statement.md --people people.jsonl --out ~/my-fit
+python3 -m prime_directions fit-me --out ~/my-fit --forget
+```
+
+Runs on this machine with no network call: TF-IDF and SVD fitted on the people file, no model download. Research directions come from the statement's Research Directions list (or its six longest paragraphs), each labelled by its top three terms; `--directions` overrides them. Output is always publishable, so no email reaches it, and the page carries ranked rows, stars and direction labels, never statement text. `--out` gets a `.bucket-fit-marker`; fit-me refuses a non-empty unmarked or symlinked `--out`, and `--forget` deletes only a marked directory that is not the filesystem root, home, the repo or an ancestor of them. `--people` is required until the public advisor export (bkt-abwh) lands. PDF and CV input and `--validate` follow in later slices.
