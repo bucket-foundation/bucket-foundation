@@ -1,5 +1,6 @@
 import { unify, tokens, coverage, advisorId, excerptId } from "../src/lib/explore/search";
 import { advisorSources, primeTerms } from "../src/lib/explore/advisors";
+import { canonSearch, parseCanonSearchParams, CANON_TOP_K_MAX } from "../src/lib/canon-search";
 import { parseAdvisorReview, parsePrimeDirections } from "../src/lib/research-os/advisor-review";
 import sampleReview from "../src/lib/explore/fixtures/advisors.sample.json";
 import samplePrime from "../src/lib/explore/fixtures/prime.sample.json";
@@ -44,6 +45,51 @@ check("type filter keeps only advisors", onlyAdvisors.length > 0 && onlyAdvisors
 check("topK caps results", unify({ query: "photon quantum", excerpts, advisors, topK: 2 }).length === 2);
 check("empty query tokens give no advisor hits", unify({ query: "a", excerpts: [], advisors }).length === 0);
 check("coverage counts query tokens", coverage(tokens("photon quantum"), tokens("photon")) === 0.5);
+
+const EMAIL_RE = /[A-Za-z0-9._%+-]+\s*(@|\[\s*at\s*\])\s*[A-Za-z0-9-]+\s*(\.|\[\s*dot\s*\])\s*[A-Za-z]{2,}/i;
+const leakyRaw = JSON.parse(JSON.stringify(sampleReview));
+leakyRaw.rows[1].name = "Sample Advisor B jane.doe@example.org";
+leakyRaw.rows[1].contact_email = "jane.doe@example.org";
+leakyRaw.rows[1].topics = [...leakyRaw.rows[1].topics, "write jane [at] example [dot] org"];
+leakyRaw.rows[1].profile_url = "mailto:jane.doe@example.org";
+const parsedLeaky = advisorSources(parseAdvisorReview(leakyRaw), prime);
+const directLeaky = advisorSources(
+  {
+    ...review,
+    rows: review.rows.map((r, i) =>
+      i === 1
+        ? {
+            ...r,
+            name: "B jane.doe@example.org",
+            fields: { ...r.fields, field: "physics jane@example.org", bio: "reach me at jane.doe@example.org" },
+            links: { profile_url: "mailto:jane.doe@example.org" },
+          }
+        : r,
+    ),
+  },
+  prime,
+);
+for (const [label, srcs] of [["parsed", parsedLeaky], ["unparsed", directLeaky]] as const) {
+  const out = JSON.stringify(unify({ query: "photon quantum physics", excerpts, advisors: srcs, topK: 50 }));
+  check(`no email reaches search output from ${label} advisors`, !EMAIL_RE.test(out) && !out.includes("mailto"), out.match(EMAIL_RE)?.[0] ?? "");
+  check(`email-bearing ${label} advisor still ranks`, out.includes(advisorId({ rank: 2 })));
+}
+
+const ranked = unify({ query: "photon quantum", excerpts, advisors, types: ["excerpt", "advisor"] });
+const topExcerpt = ranked.filter((h) => h.type === "excerpt")[0];
+const topAdvisor = ranked.filter((h) => h.type === "advisor")[0];
+check("top excerpt and top advisor share normalized rank 1", topExcerpt.score === 1 && topAdvisor.score === 1);
+check("excerpt order follows canon rank", topExcerpt.id === excerptId(excerpts[0]));
+check("empty query keeps canon excerpts from qvec search", unify({ query: "", excerpts, advisors }).some((h) => h.type === "excerpt"));
+
+const p = parseCanonSearchParams(new URL("http://x/api/explore/search?q=photon&top_k=500&branch=02-physics&tier=Core&mode=SEMANTIC"), 40);
+check("explore shares canon top_k cap of 50", p.topK === CANON_TOP_K_MAX && CANON_TOP_K_MAX === 50);
+check("branch, tier and mode parse like canon search", p.branch === "02-physics" && p.tier === "core" && p.mode === "semantic");
+check("bad top_k falls back to default", parseCanonSearchParams(new URL("http://x/?q=a&top_k=zz"), 40).topK === 40);
+check("missing q and qvec is a 400", (() => {
+  const r = canonSearch(parseCanonSearchParams(new URL("http://x/")));
+  return !r.ok && r.status === 400;
+})());
 
 if (failed) {
   console.error(`${failed} failed`);
