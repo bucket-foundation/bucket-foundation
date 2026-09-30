@@ -1,18 +1,17 @@
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "../../../src/lib/research-os/contract";
-import patents from "../../../src/lib/research-os/patents-design-data.json" with { type: "json" };
-import software from "../../../src/lib/research-os/software-atlas-data.json" with { type: "json" };
-import solvability from "../../../src/lib/research-os/solvability-atlas-data.json" with { type: "json" };
+import staff from "../content/staff-ros.json" with { type: "json" };
 import type { Route } from "./serve";
 
 export type RosLoader<K extends RosResource> = () => RosPayloads[K] | null;
 
 export type RosLoaders = { [K in RosResource]?: RosLoader<K> };
 
-export const BUNDLED_ROS: RosLoaders = {
-  solvability: () => solvability as unknown as RosPayloads["solvability"],
-  software: () => software as unknown as RosPayloads["software"],
-  patents: () => patents as unknown as RosPayloads["patents"],
-};
+export function bundledRos(data: Record<string, unknown> = staff): RosLoaders {
+  const pick = <K extends RosResource>(k: K): RosLoader<K> | undefined => (k in data ? () => data[k] as RosPayloads[K] : undefined);
+  return { solvability: pick("solvability"), software: pick("software"), patents: pick("patents") };
+}
+
+export const BUNDLED_ROS: RosLoaders = bundledRos();
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } });

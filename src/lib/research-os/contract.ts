@@ -1,5 +1,5 @@
 import type { PatentsDesign } from "./patents-design";
-import type { PrimesReport } from "./primes-report";
+import type { PrimesReport } from "./primes-report-types";
 import type { SoftwareAtlasData } from "./software-atlas";
 import type { SolvabilityAtlasData } from "./solvability-atlas";
 

@@ -1,12 +1,12 @@
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
-import { graph } from "./mocks";
+import { graph, viewer } from "./mocks";
 import { NextRequest } from "next/server";
 import patents from "@/lib/research-os/patents-design-data.json";
 import software from "@/lib/research-os/software-atlas-data.json";
 import solvability from "@/lib/research-os/solvability-atlas-data.json";
 import { ContractError, localRosSource, parseRos, ROS_PATHS, ROS_RESOURCES, webRosSource, type RosPayloads, type RosResource } from "@/lib/research-os/contract";
 import { rosState } from "@/lib/research-os/use-ros-resource";
-import { BUNDLED_ROS, rosRoutes } from "../../bkt/src/ros";
+import { bundledRos, rosRoutes } from "../../bkt/src/ros";
 import { startServe, type Serve } from "../../bkt/src/serve";
 import primes from "./fixtures/primes.json";
 
@@ -20,7 +20,7 @@ const FIXTURES: RosPayloads = {
 async function webFetch(url: string): Promise<Response> {
   const path = new URL(url, "http://web.test").pathname;
   const req = new NextRequest(new URL(path, "http://web.test"));
-  if (path === ROS_PATHS.primes.web) return (await import("@/app/api/research-os/primes-report/route")).GET(req, undefined);
+  if (path === ROS_PATHS.primes.web) return (await import("@/app/api/research-os/primes-report/route")).GET(req);
   const name = path.slice("/api/research-os/atlas/".length);
   return (await import("@/app/api/research-os/atlas/[name]/route")).GET(req, { params: { name } });
 }
@@ -30,7 +30,7 @@ let token = "";
 const UID = 5151;
 
 beforeAll(async () => {
-  srv = startServe({ uid: UID, resolvePeerUid: () => UID, routes: rosRoutes({ ...BUNDLED_ROS, primes: () => FIXTURES.primes }) });
+  srv = startServe({ uid: UID, resolvePeerUid: () => UID, routes: rosRoutes({ ...bundledRos({ solvability, software, patents }), primes: () => FIXTURES.primes }) });
   const host = { host: `127.0.0.1:${srv.port}` };
   const nonce = (await (await fetch(srv.url, { headers: host })).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
   const r = await fetch(`${srv.url}session`, { method: "POST", headers: { ...host, origin: `http://127.0.0.1:${srv.port}`, "content-type": "application/json" }, body: JSON.stringify({ nonce }) });
@@ -88,6 +88,21 @@ describe("web and local serve the same contract", () => {
   test("local routes need the header token", async () => {
     const r = await localRosSource({ base: srv.url.slice(0, -1), token: "x".repeat(43), fetch: localFetch }).get("solvability");
     expect(r).toEqual({ ok: false, status: 401, error: "solvability 401" });
+  });
+
+  test("anonymous requests to the staff-gated routes get 404", async () => {
+    viewer.staff = false;
+    try {
+      for (const r of ROS_RESOURCES) expect((await webFetch(ROS_PATHS[r].web)).status).toBe(404);
+    } finally {
+      viewer.staff = true;
+    }
+  });
+
+  test("the real launch gate refuses an anonymous primes-report request", async () => {
+    const real = await import("../../../src/lib/research-os/launch-scope");
+    expect(real.inLaunchScope(ROS_PATHS.primes.web)).toBe(false);
+    for (const r of ROS_RESOURCES) expect(real.inLaunchScope(ROS_PATHS[r].web)).toBe(false);
   });
 
   test("an unknown atlas is 404 on the web", async () => {

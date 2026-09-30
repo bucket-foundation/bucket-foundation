@@ -1,15 +1,14 @@
-import { graphService } from "@/lib/research-os/db";
-import { loadPrimesReport } from "@/lib/research-os/primes-report";
-import { bad, ok, withResearchOsRoute } from "@/lib/research-os/route";
+import { NextResponse, type NextRequest } from "next/server";
+import { staffOnlyAtLaunch } from "@/lib/research-os/launch-gate";
+import { readPrimesViewState } from "@/lib/research-os/primes-view-state";
+import { NO_STORE } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export const GET = withResearchOsRoute({ auth: "none" }, async () => {
-  try {
-    return ok({ ...(await loadPrimesReport(graphService())) });
-  } catch (err) {
-    console.error("[primes-report] failed:", err instanceof Error ? err.message : err);
-    return bad(503, "graph_unavailable");
-  }
+export const GET = staffOnlyAtLaunch(async (_req: NextRequest): Promise<Response> => {
+  const state = await readPrimesViewState();
+  if (state.kind === "ready") return NextResponse.json(state.report, NO_STORE);
+  const error = state.kind === "unconfigured" ? "research_os_unavailable" : "graph_unavailable";
+  return NextResponse.json({ error }, { status: 503, ...NO_STORE });
 });

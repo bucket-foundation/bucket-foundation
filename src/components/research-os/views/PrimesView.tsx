@@ -2,15 +2,13 @@ import type {
   LineageBlock,
   PrimeAlgebraReport,
   PrimesReport,
+  PrimesViewState,
   ReportRef,
-} from "@/lib/research-os/primes-report";
+} from "@/lib/research-os/primes-report-types";
 import type { GapClass } from "@/lib/research-os/prime-algebra";
 import type { RosLink } from "./link";
 
-export type PrimesViewState =
-  | { kind: "unconfigured" }
-  | { kind: "failed" }
-  | { kind: "ready"; report: PrimesReport };
+export type { PrimesViewState };
 
 export function primesView(Link: RosLink) {
   const LABEL =
