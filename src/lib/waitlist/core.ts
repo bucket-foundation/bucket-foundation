@@ -5,6 +5,7 @@ export type WaitlistRole = (typeof WAITLIST_ROLES)[number];
 
 export const NAME_MAX = 80;
 export const WANTED_MAX = 200;
+export const RESEARCH_MAX = 160;
 const EMAIL_MAX = 254;
 
 export interface WaitlistEntry {
@@ -12,11 +13,14 @@ export interface WaitlistEntry {
   name: string | null;
   role: WaitlistRole | null;
   wanted: string | null;
+  research?: string | null;
+  release_notes?: boolean;
   created_at: string;
   updated_at: string;
   signups: number;
   consent_at?: string;
   consent_version?: string;
+  whats_new_daily?: boolean;
 }
 
 export interface SignupInput {
@@ -24,7 +28,10 @@ export interface SignupInput {
   name: string | null;
   role: WaitlistRole | null;
   wanted: string | null;
+  research?: string | null;
+  release_notes?: boolean;
   consent_version?: string;
+  whats_new_daily?: boolean;
 }
 
 export type ParsedSignup = { ok: true; input: SignupInput; suspect: boolean } | { ok: false; error: string };
@@ -65,14 +72,20 @@ export function parseSignup(body: unknown): ParsedSignup {
   const name = clean(b.name).slice(0, NAME_MAX) || null;
   const roleRaw = clean(b.role).toLowerCase();
   const role = (WAITLIST_ROLES as readonly string[]).includes(roleRaw) ? (roleRaw as WaitlistRole) : null;
-  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted) }, suspect };
+  const optIn = b.whats_new_daily === true ? { whats_new_daily: true } : {};
+  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted), ...optIn }, suspect };
 }
 
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {
-  const { consent_version, ...fields } = input;
+  const { consent_version, whats_new_daily, release_notes, ...fields } = input;
+  const extra = {
+    ...((input.research === undefined ? existing?.research : input.research) ? { research: input.research === undefined ? existing?.research : input.research } : {}),
+    ...(release_notes === true || existing?.release_notes === true ? { release_notes: true } : {}),
+  };
   const consent = consent_version ? { consent_at: now, consent_version } : existing?.consent_version ? { consent_at: existing.consent_at, consent_version: existing.consent_version } : {};
+  const optIn = whats_new_daily === true || existing?.whats_new_daily === true ? { whats_new_daily: true } : {};
   if (!existing) {
-    return { ...fields, created_at: now, updated_at: now, signups: 1, ...consent };
+    return { ...fields, created_at: now, updated_at: now, signups: 1, ...extra, ...consent, ...optIn };
   }
   return {
     email: existing.email,
@@ -82,7 +95,9 @@ export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, n
     created_at: existing.created_at,
     updated_at: now,
     signups: existing.signups + 1,
+    ...extra,
     ...consent,
+    ...optIn,
   };
 }
 
@@ -100,7 +115,10 @@ export function parseEntry(raw: unknown): WaitlistEntry | null {
     created_at: r.created_at,
     updated_at: typeof r.updated_at === "string" ? r.updated_at : r.created_at,
     signups: typeof r.signups === "number" && r.signups > 0 ? Math.floor(r.signups) : 1,
+    ...(typeof r.research === "string" && r.research ? { research: r.research } : {}),
+    ...(r.release_notes === true ? { release_notes: true } : {}),
     ...(typeof r.consent_at === "string" && typeof r.consent_version === "string" ? { consent_at: r.consent_at, consent_version: r.consent_version } : {}),
+    ...(r.whats_new_daily === true ? { whats_new_daily: true } : {}),
   };
 }
 
