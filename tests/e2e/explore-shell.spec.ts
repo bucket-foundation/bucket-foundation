@@ -44,6 +44,7 @@ test("the branch filter narrows the search", async ({ page }) => {
 
 test("the sort control and the view switch write to the URL", async ({ page }) => {
   await page.goto("/explore?view=circle&q=entropy");
+  await expect(page.getByTestId("shell-result").first()).toBeVisible();
   await page.getByTestId("shell-sort").selectOption("year");
   await expect(page).toHaveURL(/sort=year/);
   await page.getByRole("radio", { name: "circle" }).click();
