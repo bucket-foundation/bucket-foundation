@@ -220,3 +220,50 @@ export function approvalBySource(rows: { source: LinkSource; status: LinkStatus 
   }
   return out;
 }
+
+export const APPROVED_SHOWN = 12;
+
+export interface ApprovedLinkRow {
+  node_id: string;
+  prime_id: string;
+}
+
+export interface ApprovedNodeRow {
+  id: string;
+  slug: string | null;
+  title: string | null;
+  visibility: string | null;
+  superseded_by: string | null;
+}
+
+export interface ApprovedIdea {
+  slug: string;
+  title: string;
+}
+
+export interface PrimeIdeas {
+  shown: ApprovedIdea[];
+  more: number;
+}
+
+export function groupApprovedLinks(links: ApprovedLinkRow[], nodes: ApprovedNodeRow[], cap = APPROVED_SHOWN): Map<string, PrimeIdeas> {
+  const usable = new Map<string, ApprovedIdea>();
+  for (const n of nodes) {
+    if (n.visibility !== "public" || n.superseded_by || !n.slug) continue;
+    usable.set(n.id, { slug: n.slug, title: n.title || n.slug });
+  }
+  const byPrime = new Map<string, Map<string, ApprovedIdea>>();
+  for (const l of links) {
+    const idea = usable.get(l.node_id);
+    if (!idea) continue;
+    const set = byPrime.get(l.prime_id) ?? new Map<string, ApprovedIdea>();
+    set.set(idea.slug, idea);
+    byPrime.set(l.prime_id, set);
+  }
+  const out = new Map<string, PrimeIdeas>();
+  for (const [prime, set] of Array.from(byPrime)) {
+    const all = Array.from(set.values()).sort((a, b) => a.title.localeCompare(b.title) || a.slug.localeCompare(b.slug));
+    out.set(prime, { shown: all.slice(0, cap), more: Math.max(0, all.length - cap) });
+  }
+  return out;
+}
