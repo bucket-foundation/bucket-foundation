@@ -4,7 +4,7 @@ import { randomBytes } from "node:crypto";
 import { deriveKey, open, seal } from "./crypto";
 
 export interface Keyring {
-  readonly kind: "libsecret" | "passphrase" | "memory";
+  readonly kind: "libsecret" | "keychain" | "dpapi" | "passphrase" | "memory";
   get(account: string): Promise<string | null>;
   set(account: string, secret: string): Promise<void>;
 }

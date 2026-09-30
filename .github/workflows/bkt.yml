@@ -1,6 +1,7 @@
 name: bkt
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - "packages/bkt/**"
@@ -17,6 +18,7 @@ on:
       - "public/bucket_logo.webp"
       - ".github/workflows/bkt.yml"
   push:
+    tags: ["bkt-v*"]
     branches: [dev]
     paths:
       - "packages/bkt/**"
@@ -97,3 +99,125 @@ jobs:
           cat "$RUNNER_TEMP"/release/*.sizes.json >> "$GITHUB_STEP_SUMMARY"
       - name: release signing test
         run: node --test scripts/test-release-signing.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: appimage
+          path: ${{ runner.temp }}/release/*.AppImage
+          if-no-files-found: error
+
+  binaries:
+    runs-on: ubuntu-latest
+    needs: [bkt]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - name: compile bkt for every target
+        run: bash scripts/release/build-binaries.sh "$RUNNER_TEMP/bin" | tee "$RUNNER_TEMP/bin.log"
+      - name: run the linux binary
+        run: |
+          out=$("$RUNNER_TEMP/bin/bkt-linux-x64" --no-such-flag 2>&1 || true)
+          echo "$out" | grep -q "unknown flag --no-such-flag"
+          ls -l "$RUNNER_TEMP/bin" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: binaries
+          path: ${{ runner.temp }}/bin/bkt-*
+          if-no-files-found: error
+
+  sign:
+    runs-on: ubuntu-latest
+    needs: [binaries, appimage]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          path: ${{ runner.temp }}/dist
+          merge-multiple: true
+      - name: sign with the release key on a tag, or a throwaway key otherwise
+        env:
+          SIGNING_KEY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.BKT_RELEASE_SIGNING_KEY || '' }}
+          SIGNING_PASSPHRASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.BKT_RELEASE_SIGNING_PASSPHRASE || '' }}
+          RELEASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') }}
+        run: bash scripts/release/ci-sign.sh "$RUNNER_TEMP/dist" "$RUNNER_TEMP/keys"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist/
+          if-no-files-found: error
+
+  install:
+    needs: [sign]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-13, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist
+      - name: install.sh from the signed artifacts
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          BKT_DOWNLOAD_BASE: ${{ runner.temp }}/dist
+          BKT_INSTALL_DIR: ${{ runner.temp }}/bin
+          BKT_REQUIRE_SIGNATURE: "1"
+        run: |
+          script=scripts/install.sh
+          if [ -f "$BKT_DOWNLOAD_BASE/throwaway.pub" ]; then
+            script=$RUNNER_TEMP/install.sh
+            sed "s|^RELEASE_PUBKEY=.*|RELEASE_PUBKEY=\"$(cat "$BKT_DOWNLOAD_BASE/throwaway.pub")\"|" scripts/install.sh > "$script"
+          fi
+          sh "$script"
+          out=$("$BKT_INSTALL_DIR/bkt" --no-such-flag 2>&1 || true)
+          echo "$out" | grep -q "unknown flag --no-such-flag"
+      - name: install.sh rejects a tampered binary
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          BKT_INSTALL_DIR: ${{ runner.temp }}/bin2
+          BKT_NO_MODIFY_PATH: "1"
+        run: |
+          bad=$RUNNER_TEMP/bad && cp -r "$RUNNER_TEMP/dist" "$bad"
+          for f in "$bad"/bkt-*; do case "$f" in *.sha256|*.manifest|*.sig|*.exe) ;; *) printf x >> "$f" ;; esac; done
+          if BKT_DOWNLOAD_BASE=$bad sh scripts/install.sh; then echo "tampered binary installed" >&2; exit 1; fi
+      - name: install.ps1 from the signed artifacts
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          BKT_DOWNLOAD_BASE: ${{ runner.temp }}\dist
+          BKT_INSTALL_DIR: ${{ runner.temp }}\bin
+          BKT_REQUIRE_SIGNATURE: "1"
+        run: |
+          $script = 'scripts/install.ps1'
+          $pub = Join-Path $env:BKT_DOWNLOAD_BASE 'throwaway.pub'
+          if (Test-Path $pub) {
+            $script = Join-Path $env:RUNNER_TEMP 'install.ps1'
+            $key = (Get-Content $pub -Raw).Trim()
+            (Get-Content scripts/install.ps1) -replace '^\$ReleasePubkey = .*$', "`$ReleasePubkey = '$key'" | Set-Content $script
+          }
+          & $script
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $out = & (Join-Path $env:BKT_INSTALL_DIR 'bkt.exe') --no-such-flag 2>&1 | Out-String
+          if ($out -notmatch 'unknown flag --no-such-flag') { Write-Error "bkt.exe did not run: $out"; exit 1 }
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [sign, install]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist
+      - name: upload binaries, AppImage, checksums and signatures to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/release/publish.sh "$GITHUB_REF_NAME" "$RUNNER_TEMP/dist"

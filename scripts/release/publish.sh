@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+fail() { echo "publish.sh: $*" >&2; exit 1; }
+[ $# -eq 2 ] || { echo "usage: publish.sh TAG DIR" >&2; exit 2; }
+
+tag=$1 dir=$2
+[[ "$tag" =~ ^bkt-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "tag must look like bkt-v1.2.3: $tag"
+version=${tag#bkt-v}
+repo=${GITHUB_REPOSITORY:-bucket-foundation/bucket-foundation}
+
+expected=(bkt-linux-x64 bkt-linux-arm64 bkt-darwin-arm64 bkt-darwin-x64 bkt-windows-x64.exe "Bucket-$version-x86_64.AppImage")
+assets=()
+for a in "${expected[@]}"; do
+  for suffix in "" .sha256 .manifest .manifest.sig; do
+    [ -s "$dir/$a$suffix" ] || fail "missing $a$suffix"
+    assets+=("$dir/$a$suffix")
+  done
+done
+
+if ! gh release view "$tag" --repo "$repo" > /dev/null 2>&1; then
+  gh release create "$tag" --repo "$repo" --verify-tag --title "Bucket $version" \
+    --notes "bkt $version for Linux, macOS and Windows, plus the Linux AppImage. Install with scripts/install.sh or scripts/install.ps1 from this tag."
+fi
+gh release upload "$tag" --repo "$repo" --clobber "${assets[@]}"
+echo "published ${#assets[@]} files to $tag"

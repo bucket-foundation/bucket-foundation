@@ -1,10 +1,10 @@
 import { chmodSync, existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
-import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import type { PySource } from "./pack/pysrc";
+import { platformFor } from "./platform";
 
 export function cacheRoot(env = process.env): string {
-  return join(env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), "bkt/py");
+  return join(platformFor(process.platform, { env }).cacheDir(), "bkt", "py");
 }
 
 export function extractPy(src: PySource, root = cacheRoot()): string {

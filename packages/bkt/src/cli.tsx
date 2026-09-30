@@ -72,6 +72,10 @@ async function main(argv: string[]) {
   if (argv[0] === "app") {
     const running = readApp(runtimeDir());
     if (running) {
+      if (process.platform === "win32") {
+        console.log(`Bucket is already running at http://127.0.0.1:${running.port}/`);
+        return;
+      }
       process.kill(running.pid, "SIGUSR1");
       console.log(`reopened the Bucket window on port ${running.port}`);
       return;
@@ -171,7 +175,7 @@ async function main(argv: string[]) {
         srv.remint();
         show();
       };
-      process.on("SIGUSR1", reopen);
+      if (process.platform !== "win32") process.on("SIGUSR1", reopen);
       show();
       await new Promise<void>((done) => {
         process.once("SIGINT", done);
