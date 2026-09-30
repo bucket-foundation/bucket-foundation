@@ -16,6 +16,7 @@
       "@ros/*": ["../../src/lib/research-os/*"],
       "@/*": ["../../src/*"],
       "next/navigation": ["./src/shims/next-navigation.ts"],
+      "next/link": ["./src/shims/next-link.tsx"],
       "react": ["./node_modules/@types/react"],
       "react/*": ["./node_modules/@types/react/*"],
       "react-dom": ["./node_modules/@types/react-dom"],

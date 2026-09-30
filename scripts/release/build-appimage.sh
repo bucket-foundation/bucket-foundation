@@ -22,6 +22,9 @@ fi
 
 (cd "$repo/packages/bkt" && bun install --frozen-lockfile >/dev/null && bun run build >/dev/null)
 (cd "$repo/packages/bkt-ui" && bun install --frozen-lockfile >/dev/null && bun run build >/dev/null && bun run size)
+if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
+  bun "$repo/packages/bkt/scripts/check-no-staff.ts" "$repo/packages/bkt-ui/dist" "$repo/packages/bkt/dist/bkt" "$repo/packages/bkt/content/staff-ros.json" || fail "staff atlas data found in a public build"
+fi
 
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
