@@ -761,3 +761,53 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.file.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.jobs {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.jobs > li {
+  padding: 14px 18px;
+}
+
+.job-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  text-align: left;
+}
+
+.log,
+.result {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  max-height: 280px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.primary:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
