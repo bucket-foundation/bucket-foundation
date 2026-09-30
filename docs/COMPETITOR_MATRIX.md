@@ -47,7 +47,7 @@ Data marketplaces + oracle economies.
 | Entity | What | Traction | Bucket fit | Contact |
 |---|---|---|---|---|
 | **Story Protocol** (story.foundation) | Programmable IP + royalty modules | $136M raised (a16z, Polychain, Samsung); Global Wallet Apr 22 2026 ([press release](https://www.globenewswire.com/news-release/2026/04/22/3278888/0/en/IP-Strategy-Highlights-the-Story-Global-Wallet-Advancing-Access-to-Programmable-IP-Infrastructure.html)) | **Foundational, bucket already uses Story for IP-NFT minting.** Push to be featured ecosystem case study | @StoryProtocol |
-| **Arweave / AO** (arweave.org) | Permanent storage + hyper-parallel compute | AO mainnet Feb 2025; PermawebOS Feb 2026 ([MEXC news](https://www.mexc.com/news/548714)) | **Storage backbone**, bucket is migrating Walrus → Arweave (see BLOCKCHAIN_LANDSCAPE.md §B) | @ArweaveEco |
+| **Arweave / AO** (arweave.org) | Permanent storage + hyper-parallel compute | AO mainnet Feb 2025; PermawebOS Feb 2026 ([MEXC news](https://www.mexc.com/news/548714)) | **Storage backbone**, bucket is migrating Walrus → Arweave (see docs/internal/archive/BLOCKCHAIN_LANDSCAPE.md §B) | @ArweaveEco |
 | **Gitcoin / Optimism RetroPGF** | Public goods funding | 60M+ OP distributed; GG21 DeSci round $39k ([Gitcoin blog](https://www.gitcoin.co/blog/prediction-markets-meet-public-goods-a-new-approach-to-retropgf)) | **Nonprofit fit.** Apply to DeSci quadratic rounds. Free runway. | @gitcoin |
 | **Farcaster Frames** | Social discovery rails | Active, but not research-specific | Distribution channel for bucket canon announcements | @farcaster_xyz |
 

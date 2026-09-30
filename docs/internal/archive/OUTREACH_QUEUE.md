@@ -1,4 +1,6 @@
 # Outreach Queue
+
+> Archived 2026-09-30. Drafted 2026-04-23 around Story Protocol minting, which was removed in 2026-09. Text kept unchanged for history.
 Bucket.foundation DeSci Partnerships.
 
 **Author:** Revenue pillar (Nucleus)
