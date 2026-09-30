@@ -1,5 +1,6 @@
 import type { Hit } from "../search";
 import type { GenomeSummary } from "../genome/parse";
+import type { MapModel } from "../map";
 
 export type Vec3 = [number, number, number];
 
@@ -47,6 +48,8 @@ export interface ModeContext {
   element?: number;
   molecule?: string;
   reaction?: string;
+  map?: MapModel | null;
+  youText?: string;
 }
 
 export interface ExploreMode {

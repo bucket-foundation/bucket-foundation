@@ -271,7 +271,7 @@ export const MODE_FOR: Record<Exclude<UploadKind, "unknown">, string> = {
   structure: "protein",
   smiles: "molecule",
   bibliography: "papers",
-  document: "self",
+  document: "map",
 };
 
 export function routeFor(r: UploadResult): { mode: string | null; label: string } {
@@ -280,7 +280,7 @@ export function routeFor(r: UploadResult): { mode: string | null; label: string 
   if (r.kind === "genome") return { mode: "dna", label: `${r.format}: ${r.summary.variantCount.toLocaleString()} variants, ${r.summary.annotated.length} annotated.` };
   if (r.kind === "structure") return { mode: "protein", label: `${r.format}: ${r.summary.chains.join(",")} · ${r.summary.residues} residues.` };
   if (r.kind === "bibliography") return { mode: null, label: `${r.format}: ${r.entries.length} papers added to the results.` };
-  return { mode: null, label: `${r.format}: added as your node.` };
+  return { mode: "map", label: `${r.format}: added as your node on the map.` };
 }
 
 const YOU_ID = "you:self";

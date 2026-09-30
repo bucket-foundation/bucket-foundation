@@ -57,7 +57,7 @@ async function main() {
   const txt = await pdfText(new Uint8Array(pdf));
   check("PDF text is extracted from a flate stream", txt.includes("Light and water in cells") && txt.includes("Mito chondria"), txt);
   const pdfr = await processUpload("cv.pdf", new Uint8Array(pdf));
-  check("PDF upload becomes a document", pdfr.kind === "document" && routeFor(pdfr).mode === null);
+  check("PDF upload becomes a document", pdfr.kind === "document" && routeFor(pdfr).mode === "map");
   const noText = await processUpload("s.pdf", enc("%PDF-1.4\nstream\nabc\nendstream"));
   check("PDF without text is rejected", noText.kind === "unknown");
 

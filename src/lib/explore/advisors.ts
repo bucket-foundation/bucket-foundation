@@ -56,14 +56,29 @@ export function advisorSources(review: AdvisorReview, prime: PrimeDirections): A
       text,
       year,
       score: row.score,
+      star: row.star_prime,
       url: url && !hasEmail(url) && !/^mailto:/i.test(url) ? url : null,
     };
   });
 }
 
-let cache: { sources: AdvisorSource[]; sample: boolean } | null = null;
+export interface PrimeAxis {
+  label: string;
+  angle: number;
+  terms: string[];
+}
 
-export function loadAdvisors(): { sources: AdvisorSource[]; sample: boolean } {
+export function primeAxes(review: AdvisorReview, prime: PrimeDirections): PrimeAxis[] {
+  return prime.components.map((c, i) => ({
+    label: scrubEmails(review.prime_axes[i] || c.top_terms.slice(0, 2).join(" ") || `axis ${i + 1}`),
+    angle: c.angle_deg,
+    terms: c.top_terms,
+  }));
+}
+
+let cache: { sources: AdvisorSource[]; sample: boolean; axes: PrimeAxis[] } | null = null;
+
+export function loadAdvisors(): { sources: AdvisorSource[]; sample: boolean; axes: PrimeAxis[] } {
   if (cache) return cache;
   const rawReview = readJson(process.env.BUCKET_ADVISOR_REVIEW);
   const rawPrime = readJson(process.env.BUCKET_PRIME_DIRECTIONS);
@@ -81,6 +96,6 @@ export function loadAdvisors(): { sources: AdvisorSource[]; sample: boolean } {
   } catch {
     prime = parsePrimeDirections(samplePrime);
   }
-  cache = { sources: advisorSources(review, prime), sample };
+  cache = { sources: advisorSources(review, prime), sample, axes: primeAxes(review, prime) };
   return cache;
 }
