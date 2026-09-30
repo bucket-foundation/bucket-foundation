@@ -82,19 +82,28 @@ export interface UiAssets {
   styles: string[];
 }
 
+const UI_DIRS: { dir: string; types: Record<string, string> }[] = [
+  { dir: "assets", types: TYPES },
+  { dir: "textures/earth", types: { ".bin": "application/octet-stream", ".json": "application/json" } },
+];
+
+export const UI_ENTRY = "/assets/app.js";
+
 export function loadUi(dir: string | undefined): UiAssets {
   const files = new Map<string, { body: Uint8Array; type: string }>();
-  const assets = dir ? join(dir, "assets") : "";
-  if (dir && existsSync(assets)) {
-    for (const name of readdirSync(assets).sort()) {
-      const p = join(assets, name);
-      const type = TYPES[extname(name)];
+  for (const { dir: sub, types } of UI_DIRS) {
+    const root = dir ? join(dir, sub) : "";
+    if (!dir || !existsSync(root)) continue;
+    for (const name of readdirSync(root).sort()) {
+      const p = join(root, name);
+      const type = types[extname(name)];
       if (!type || !statSync(p).isFile() || !/^[A-Za-z0-9._-]+$/.test(name)) continue;
-      files.set(`/assets/${name}`, { body: readFileSync(p), type });
+      files.set(`/${sub}/${name}`, { body: readFileSync(p), type });
     }
   }
   const keys = [...files.keys()];
-  return { files, scripts: keys.filter((k) => k.endsWith(".js")), styles: keys.filter((k) => k.endsWith(".css")) };
+  const js = keys.filter((k) => k.startsWith("/assets/") && k.endsWith(".js"));
+  return { files, scripts: js.includes(UI_ENTRY) ? [UI_ENTRY] : js, styles: keys.filter((k) => k.startsWith("/assets/") && k.endsWith(".css")) };
 }
 
 export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = { scripts: [], styles: [] }): { html: string; csp: string } {

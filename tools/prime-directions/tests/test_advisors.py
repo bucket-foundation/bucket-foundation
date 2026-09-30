@@ -132,8 +132,15 @@ def test_cli_advisor_review_writes_private_outputs(tmp_path: Path, monkeypatch, 
     code = cli.main(["advisor-review", "--people", str(PEOPLE), "--query", str(STATEMENT), "--out", str(out),
                      "--k", "6", "--top", "30", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"])
     assert code == 0
-    for name in ("ranked.csv", "pca.png", "index.html", "report.json"):
+    for name in ("ranked.csv", "pca.png", "index.html", "report.json", "review.json"):
         assert (out / name).exists()
+    review = json.loads((out / "review.json").read_text())
+    assert review["schema"] == "bucket.advisor-review/1" and len(review["rows"]) == 160
+    assert not {"email", "email_public", "image_url", "tracker_notes", "id"} & set().union(*(r.keys() for r in review["rows"]))
+    assert "star_prime" in review["rows"][0] and review["context"]["prime_axes"]
+    statement = STATEMENT.read_text()
+    sentences = [s.strip() for s in statement.replace("\n", " ").split(".") if len(s.strip()) > 30]
+    assert sentences and not any(s in json.dumps(review["context"]) for s in sentences)
     with open(out / "ranked.csv") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 30 and rows[0]["rank"] == "1"
@@ -319,3 +326,36 @@ def test_basis_spans_its_own_fields_and_projects_people():
     ctx = advisors.direction_profiles(model, rows, query, [])
     assert ctx["prime_axes"] == labels[:6]
     assert all(0 <= v <= 1 for r in rows for v in r["star_prime"])
+
+
+def test_images_off_by_default_stripped_when_publishable_and_csp_lists_hosts(tmp_path: Path):
+    rows = [{"id": "a", "email": "", "image_url": "https://upload.wikimedia.org/x.jpg"}, {"id": "b", "image_url": "javascript:alert(1)"}]
+    png = tmp_path / "p.png"
+    import matplotlib.pyplot as plt
+    plt.figure(); plt.savefig(png); plt.close()
+    off = advisors.write_page(rows, png, {}, tmp_path / "off.html").read_text()
+    assert "upload.wikimedia.org" not in off and "img-src data:;" in off
+    on = advisors.write_page(rows, png, {}, tmp_path / "on.html", images=True).read_text()
+    assert "img-src data: https://upload.wikimedia.org;" in on
+    pub = advisors.write_page(rows, png, {}, tmp_path / "pub.html", publishable=True, images=True).read_text()
+    assert "upload.wikimedia.org" not in pub
+    assert advisors.image_hosts([{"image_url": "https://a.org/x"}, {"image_url": "http://b.org/y"}, {"image_url": "https://bad host/z"}]) == ["a.org"]
+
+
+def test_profile_meta_keeps_links_and_top_works_and_publishable_drops_tracker():
+    rec = {"openalex_id": "A1", "orcid": "0000-0002-8838-3151", "ror": "05ect4e57", "title": "Professor",
+           "research_areas_official": ["learning", "AI"], "cockpit": {"program_url": "https://x.edu/phd"},
+           "tracker": [{"opportunity": "UCL PhD", "priority": "P1"}],
+           "works": [{"id": "W1", "title": "Low", "year": 2020, "cited_by_count": 1}, {"id": "W2", "title": "High", "year": 2021, "cited_by_count": 90}]}
+    m = advisors.profile_meta(rec)
+    assert m["orcid"] == "0000-0002-8838-3151" and m["ror"] == "05ect4e57" and m["program_url"] == "https://x.edu/phd"
+    assert m["research_areas"] == "learning; AI" and [w["title"] for w in m["works_top"]] == ["High", "Low"]
+    assert m["tracker_notes"] == ["UCL PhD (P1)"]
+    assert advisors.publishable_rows([{**m, "id": "A1"}])[0]["tracker_notes"] == []
+
+def test_review_json_drops_private_fields_even_from_a_private_build(tmp_path: Path):
+    rows = [{"rank": 1, "id": "ada@uni.edu", "name": "Ada", "email": "ada@uni.edu", "email_public": True,
+             "image_url": "https://x/p.png", "tracker_notes": ["call"], "score": 0.5}]
+    data = json.loads(advisors.write_review_json(rows, {"prime_axes": ["a"]}, tmp_path / "r.json").read_text())
+    assert data["rows"] == [{"rank": 1, "name": "Ada", "score": 0.5}]
+    assert "ada@uni.edu" not in (tmp_path / "r.json").read_text()

@@ -65,3 +65,11 @@ Measures the multiplier from bead bkt-7v10. `freeze` writes `hai/bank.json`: eac
 `score` prints the item count, a cost estimate and the worst case at `max_tokens` 400 for `claude-opus-5-5` at effort low, one run, and stops. `--yes` submits a Batches API job and needs `ANTHROPIC_API_KEY`; it refuses while an earlier batch is uncollected and when the worst case exceeds `--max-usd`, default 1.5 times the batched estimate. `--collect` writes `hai/ai-scores.json` when the batch ends; malformed or truncated replies are counted and left out of A and of probes.
 
 A probe is 40 unseen items in 20 pairs matched on tier and AI correctness. One item of each pair is answered alone, the other with the AI answer shown after a 20 s think window. No scores are shown until the unaided retest 7 days later. Scores are guess-corrected, `(c - 1/4) / (3/4)`. The report gives D = J - max(H, A) first and m = J / max(H, A) beside it, retention R = H(t+7) - H(t), learning L = J(t+7) - H(t+7), and 95% CIs from a bootstrap over pairs. A is scored on the paired items only. Answers are sealed like attempts, and nothing leaves the device.
+
+## Paths from the window
+
+The window never sends a file path to `bkt serve`, with one exception: `POST /local/work-quiz/repo` takes the folder of a git repository for the work quiz. The folder must resolve, after symlinks, inside the user's home folder and hold a `.git` entry. Git runs there read-only with argv arrays, a 3 second timeout, no terminal prompt, system and global config off, and `core.fsmonitor`, `core.hooksPath`, `core.pager`, `diff.external` and signature checks overridden on the command line, so a repository's own config cannot start a program. Every other file reaches `bkt serve` as text from a file picker.
+
+## History snapshot
+
+The window reads productions from a file the user saves on the web: sign in at bucket.foundation, open `/api/research-os/production`, save the JSON, then open it under History. `bkt serve` keeps the last snapshot sealed in `bkt.db` (at most 4 MB after cleaning, 5000 productions), so History stays readable while the web or its API is down. A new export replaces it; Remove snapshot deletes it.

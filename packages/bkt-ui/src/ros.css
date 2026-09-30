@@ -1,0 +1,36 @@
+@tailwind utilities;
+
+.ros {
+  --basalt: var(--ink);
+  --basalt-2: var(--ink-2);
+  --basalt-3: var(--ink-3);
+  --hairline: var(--line);
+  --bone: var(--paper);
+  --bone-2: var(--panel);
+  --gold: #d9a43a;
+  --gold-deep: #a8781f;
+  --laurel-deep: var(--ok);
+  --laurel-core: var(--ok);
+  --crimson: var(--bad);
+  --aegean: #3e6fa8;
+  --aegean-deep: #2d5a8a;
+  --aegean-dark: #264b73;
+  --verdigris: #4f8a7a;
+  --copper: #9b5a2c;
+  --stone-300: var(--line);
+}
+
+.ros .small-caps {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.ros .font-display {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.ros .chisel {
+  color: var(--ink);
+}

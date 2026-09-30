@@ -13,7 +13,7 @@ function walk(dir: string): string[] {
     .flatMap((name) => {
       const p = join(dir, name);
       if (name === "__pycache__") return [];
-      return statSync(p).isDirectory() ? walk(p) : p.endsWith(".py") ? [p] : [];
+      return statSync(p).isDirectory() ? walk(p) : p.endsWith(".py") || p.endsWith(".html") ? [p] : [];
     });
 }
 
@@ -21,6 +21,9 @@ export function buildPySource(pkgDir: string, repoDir: string): PySource {
   const files: Record<string, string> = { "bkt_analyze.py": readFileSync(join(pkgDir, "analyze/bkt_analyze.py"), "utf8") };
   const helixRoot = join(repoDir, "tools/helix");
   for (const p of walk(join(helixRoot, "helix"))) files[`helix/${relative(helixRoot, p)}`] = readFileSync(p, "utf8");
+  const primeRoot = join(repoDir, "tools/prime-directions");
+  for (const p of walk(join(primeRoot, "prime_directions"))) files[relative(primeRoot, p)] = readFileSync(p, "utf8");
+  files["corpora.json"] = readFileSync(join(primeRoot, "corpora.json"), "utf8");
   const h = createHash("sha256");
   for (const k of Object.keys(files).sort()) h.update(k).update("\0").update(files[k]).update("\0");
   return { version: h.digest("hex").slice(0, 16), files };

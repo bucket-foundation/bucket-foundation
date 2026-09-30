@@ -6,7 +6,11 @@ import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
 import type { Card, Item, Rating } from "./grade";
 
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 7;
+
+export const SYNC_TABLES = ["attempts"] as const;
+
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -78,6 +82,17 @@ export const MIGRATIONS: Migration[] = [
      unique (probe_id, item_id, phase));
    create index hai_answer_item on hai_answer(item_id);`,
   migrateLearn,
+  `create table advisor_review (id integer primary key check (id = 1), key text not null, meta text not null, imported_at integer not null);
+   create table advisor_rows (rank integer primary key, person_mark text not null, data text not null);
+   create index advisor_rows_mark on advisor_rows(person_mark);
+   create table prime_directions (corpus text primary key, data text not null, imported_at integer not null);
+   create table people_forget (mark text primary key, at integer not null);`,
+  `create table work_quiz_source (id integer primary key check (id = 1), beads text, repo text, updated_at integer not null);
+   create table work_quiz_attempts (id text primary key, question_id text not null, type text not null, correct integer not null,
+     rating integer not null, elapsed_ms integer not null, at integer not null);`,
+  `create table notes (id text primary key, doc text not null, pinned integer not null default 0, created_at integer not null, updated_at integer not null);
+   create index notes_updated on notes(updated_at);`,
+  `create table history_snapshot (id integer primary key check (id = 1), doc text not null, imported_at integer not null);`,
 ];
 
 export interface AttemptInput {
@@ -102,6 +117,7 @@ export class Store {
     this.db = new Database(path, { create: true, strict: true });
     this.db.run("pragma journal_mode = wal");
     this.db.run("pragma foreign_keys = on");
+    this.db.run("pragma secure_delete = on");
     this.db.run("pragma busy_timeout = 5000");
     this.migrate();
     this.checkKey();
