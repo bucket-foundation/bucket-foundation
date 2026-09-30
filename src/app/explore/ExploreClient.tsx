@@ -9,6 +9,7 @@ import DnaPanel from "@/components/explore/DnaPanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
+import { loadLandmask, type Landmask } from "@/components/canon-globe/landmaskFromImage";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
@@ -40,6 +41,7 @@ export default function ExploreClient() {
   const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
+  const [landmask, setLandmask] = useState<Landmask | null>(null);
 
   useEffect(() => {
     const m = new URLSearchParams(window.location.search).get("mode");
@@ -111,10 +113,15 @@ export default function ExploreClient() {
     };
   }, [matterQuery]);
 
+  useEffect(() => {
+    if (mode.id !== "earth" || landmask) return;
+    loadLandmask("/textures/earth/landmask-2k.bin").then(setLandmask, () => setLandmask(null));
+  }, [mode.id, landmask]);
+
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction }),
-    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded],
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask }),
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
