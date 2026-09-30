@@ -1,0 +1,40 @@
+{
+  "currencies": {
+    "USD": {
+      "blended": {
+        "cac": null,
+        "ltv_hist": null,
+        "ltv_window": null,
+        "range": null,
+        "reason": "CAC and blended ROAS need a transaction file in the same analysis",
+        "roas": null
+      },
+      "channels": [
+        "paid_social_meta"
+      ],
+      "cohorts": 0,
+      "funnel": {
+        "clicks": 4408.0,
+        "conversions": 174.0,
+        "cpa": 17.225172,
+        "cpc": 0.679941,
+        "ctr": 0.015326,
+        "impressions": 287611.0,
+        "revenue": 8439.0,
+        "roas": 2.815647,
+        "sessions": null,
+        "spend": 2997.18
+      },
+      "orders": null,
+      "series": [
+        "conversions",
+        "revenue",
+        "spend"
+      ]
+    }
+  },
+  "platforms": [
+    "meta_ads"
+  ],
+  "warnings": []
+}

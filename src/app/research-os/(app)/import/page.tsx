@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
-import { IMPORT_BUCKET, MAX_IMPORT_BYTES, sha256Hex, storagePathFor } from "@/lib/research-os/import-storage";
+import { uploadAndAttach } from "@/lib/research-os/import-client";
+import { MAX_IMPORT_BYTES } from "@/lib/research-os/import-storage";
 import { detectType, IMPORT_KINDS, MAX_NOTE, MAX_TITLE, validateMetadata, type ImportKind } from "@/lib/research-os/import-types";
 import { isTransientOutage, OUTAGE_COPY } from "@/lib/research-os/outage";
 
@@ -18,16 +19,6 @@ interface Picked {
 
 const KB = 1024;
 const size = (bytes: number) => (bytes < KB ? `${bytes} B` : bytes < KB * KB ? `${(bytes / KB).toFixed(0)} KB` : `${(bytes / KB / KB).toFixed(1)} MB`);
-
-function uploadRefusal(message: string): string {
-  if (/import quota/i.test(message)) {
-    return `${message}. Every file you have imported counts toward it, so remove an import you no longer need and the room comes back.`;
-  }
-  if (/row-level security|not authorized|unauthorized/i.test(message)) {
-    return "Storage refused this file for this account. Sign in again, and if it keeps happening the file is being written under a path that is not yours.";
-  }
-  return message;
-}
 
 export default function ImportPage() {
   const [kind, setKind] = useState<ImportKind>("dataset");
@@ -108,40 +99,20 @@ export default function ImportPage() {
         const item = picked[index];
         if (item.file.size === 0 || item.file.size > MAX_IMPORT_BYTES) continue;
         update(index, { stage: "hashing", message: null });
-        const bytes = new Uint8Array(await item.file.arrayBuffer());
-        const sha256 = await sha256Hex(bytes);
-        const path = storagePathFor(ownerId, sha256);
-        if (!path.ok) {
-          update(index, { stage: "failed", message: "This file could not be named for storage." });
-          continue;
-        }
-        const detected = detectType(item.file.name, item.file.type);
-        update(index, { sha256, stage: "uploading" });
-        const upload = await supabase.storage.from(IMPORT_BUCKET).upload(path.value, item.file, { upsert: false, contentType: detected.mediaType });
-        const already = Boolean(upload.error && /exists/i.test(upload.error.message));
-        if (upload.error && !already) {
-          update(index, { stage: "failed", message: uploadRefusal(upload.error.message) });
-          continue;
-        }
-        update(index, { stage: "recording" });
-        const attached = await fetch("/api/research-os/import", {
-          method: "POST",
+        const outcome = await uploadAndAttach({
+          supabase,
+          ownerId,
+          importId,
+          file: item.file,
           headers,
-          body: JSON.stringify({ action: "attach", importId, filename: item.file.name, mediaType: detected.mediaType, bytes: item.file.size, sha256 }),
+          onStage: (stage, sha256) => update(index, sha256 ? { stage, sha256 } : { stage }),
         });
-        if (!attached.ok) {
-          const body = (await attached.json().catch(() => null)) as { message?: string; error?: string } | null;
-          const retryable = isTransientOutage(attached.status, body?.error ?? null);
-          update(index, {
-            stage: "failed",
-            message: retryable
-              ? `${OUTAGE_COPY.body} The file is uploaded, so importing it again records it.`
-              : (body?.message ?? `The file could not be recorded (${attached.status}).`),
-          });
+        if (!outcome.ok) {
+          update(index, { stage: "failed", message: outcome.message });
           continue;
         }
-        const body = (await attached.json().catch(() => null)) as { nodeSlug?: string | null } | null;
-        nodeSlug = body?.nodeSlug ?? nodeSlug;
+        nodeSlug = outcome.nodeSlug ?? nodeSlug;
+        const already = outcome.already;
         recorded += 1;
         update(index, { stage: "done", message: already ? "Already in storage; recorded." : "Recorded." });
       }
@@ -160,6 +131,9 @@ export default function ImportPage() {
         <h1 className="font-display uppercase text-[clamp(1.4rem,3.5vw,2.2rem)] leading-[1.1] text-[color:var(--basalt)]">bring a file in</h1>
         <p className="mt-2 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
           Any format, up to {size(MAX_IMPORT_BYTES)} a file. It stays private to you, and it keeps its bytes under the hash of those bytes, so a run that read it can read the same file again.
+        </p>
+        <p className="mt-1 text-[13px] text-[color:var(--basalt-2)]">
+          Ad platform, store or CRM exports: <Link href="/research-os/import/marketing" className="underline">analyze marketing data</Link>.
         </p>
       </div>
 
