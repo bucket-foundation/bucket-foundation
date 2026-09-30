@@ -159,3 +159,46 @@ test("sign refuses an unencrypted key without the flag, a key inside the repo an
     s.done();
   }
 });
+
+test("install verifies a signed AppImage, links bucket and bkt and adds a menu entry", () => {
+  const s = sandbox();
+  try {
+    const image = path.join(s.dir, "Bucket-0.1.0-x86_64.AppImage");
+    writeFileSync(
+      image,
+      '#!/bin/sh\nif [ "$1" = "--appimage-extract" ]; then mkdir -p squashfs-root && printf png > squashfs-root/bucket.png; exit 0; fi\necho "bkt ${1:-app}"\n',
+    );
+    chmodSync(image, 0o755);
+    assert.equal(s.sign(image, "0.1.0").status, 0);
+    const out = s.install(image);
+    assert.equal(out.status, 0, out.stderr);
+    assert.equal(run(path.join(s.prefix, "bin/bucket"), []).stdout, "bkt app\n");
+    assert.equal(run(path.join(s.prefix, "bin/bkt"), ["whoami"]).stdout, "bkt whoami\n");
+    assert.equal(readFileSync(path.join(s.prefix, "share/icons/hicolor/256x256/apps/bucket.png"), "utf8"), "png");
+    const desktop = readFileSync(path.join(s.prefix, "share/applications/bucket.desktop"), "utf8");
+    assert.match(desktop, new RegExp(`^Exec=${path.join(s.prefix, "bin/bucket")} app$`, "m"));
+
+    writeFileSync(image, readFileSync(image, "utf8") + "# tampered\n");
+    assert.match(s.install(image).stderr, /checksum mismatch/);
+  } finally {
+    s.done();
+  }
+});
+
+test("appimage size gate records sizes and fails over the limit", () => {
+  const s = sandbox();
+  try {
+    const image = path.join(s.dir, "Bucket-0.1.0-x86_64.AppImage");
+    writeFileSync(image, Buffer.alloc(4096));
+    const gate = path.join(ROOT, "scripts/release/appimage-size.sh");
+    const ok = run("bash", [gate, image], { APPIMAGE_MAX_BYTES: "8192" });
+    assert.equal(ok.status, 0, ok.stderr);
+    assert.deepEqual(JSON.parse(readFileSync(`${image}.sizes.json`, "utf8")), { artifact: "Bucket-0.1.0-x86_64.AppImage", bytes: 4096, limit: 8192, bkt: 0, ui: 0, pack: 0 });
+    const over = run("bash", [gate, image], { APPIMAGE_MAX_BYTES: "1024" });
+    assert.equal(over.status, 1);
+    assert.match(over.stderr, /over the size limit/);
+    assert.equal(readFileSync(path.join(ROOT, "scripts/release/appimage-size.sh"), "utf8").includes("157286400"), true);
+  } finally {
+    s.done();
+  }
+});
