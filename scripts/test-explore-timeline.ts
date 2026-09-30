@@ -33,6 +33,7 @@ check("era bands render as guides", layout.guides.filter((g) => g.kind === "text
 
 const crowd: Hit[] = Array.from({ length: 6 }, (_, i) => ({ ...SAMPLE_HITS[3], id: `advisor:c${i}`, year: 1900 }));
 check("same-year hits in one lane stack apart", new Set(Array.from(timelinePositions(crowd).values()).map((p) => p.join(","))).size === crowd.length);
+check("axis is labelled as eras, not to scale", layout.guides.some((g) => g.kind === "text" && g.text.startsWith("Eras, not to scale") && g.text.includes("Bucket")));
 check("timeline registers as a mode", modeById("timeline").id === "timeline");
 check("timeline handles no hits", timelineMode.layout([], ctx).nodes.length === 0);
 

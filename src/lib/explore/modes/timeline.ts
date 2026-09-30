@@ -80,6 +80,7 @@ function eraGuides(): Guide[] {
   const undatedStart = AXIS_LEFT + ERA_BANDS.length * BAND_WIDTH;
   out.push({ kind: "line", points: [[undatedStart, bottom, 0], [undatedStart, top, 0]], color: "#3A362E" });
   out.push({ kind: "text", position: [undatedStart + UNDATED_WIDTH / 2, top + 0.14, 0], text: "Undated", color: "#B8AE94", size: 10 });
+  out.push({ kind: "text", position: [AXIS_LEFT + (ERA_BANDS.length * BAND_WIDTH) / 2, bottom - 0.36, 0], text: "Eras, not to scale. Era split is Bucket's own.", color: "#8A8170", size: 9 });
   out.push({ kind: "line", points: [[AXIS_LEFT, bottom, 0], [undatedStart + UNDATED_WIDTH, bottom, 0]], color: "#6B6252" });
   return out;
 }
