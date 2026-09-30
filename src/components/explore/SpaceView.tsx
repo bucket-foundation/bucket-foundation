@@ -14,6 +14,7 @@ import { clampIndex, describeItem, yearSteps } from "@/lib/explore/scrub";
 import type { Dataset } from "@/lib/explore/space";
 
 const SurfaceView = dynamic(() => import("./SurfaceView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
+const HelicoidView = dynamic(() => import("./HelicoidView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 const SliceStack = dynamic(() => import("./SliceStack"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 
 interface Props {
@@ -93,7 +94,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
 
   const stepCurrent = useCallback(
     (d: number) => {
-      if (view === "circle" || view === "sphere") setIndex(clampIndex(index + d, count));
+      if (view === "circle" || view === "sphere" || view === "helicoid") setIndex(clampIndex(index + d, count));
       else if (view === "slices" && opened !== null) setOpened(clampIndex(opened + d, slices.length));
       else if (view === "slices" || view === "cylinder") setActiveSlice((i) => clampIndex(i + d, slices.length));
       else setYearIndex(clampIndex(yi + d, years.length));
@@ -132,11 +133,26 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       )}
       {ds.basis === "own" && (
         <span data-testid="basis-label" className="border hairline px-2 py-0.5" style={{ color: DIM }}>
-          own basis, unscaled
+          {ds.scale === "unit" ? "own basis, unscaled" : "own basis"}
         </span>
       )}
     </div>
   );
+
+  if (view === "helicoid") {
+    return (
+      <Root embedded={embedded} view={view} rootRef={rootRef} ready={ready}>
+        {badge}
+        <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
+          <HelicoidView dataset={ds} selected={index} onSelect={setIndex} />
+        </div>
+        <div className="w-full max-w-3xl px-4 pb-4 text-sm">
+          {place(obsScrubber)}
+          {lowTag && chrome === "full" && <p className="text-center text-xs mt-1">{lowTag}</p>}
+        </div>
+      </Root>
+    );
+  }
 
   if (view === "cylinder" || view === "sphere" || view === "sphere-time") {
     const visible = view === "sphere-time" ? ds.obs.filter((o) => visibleAt(o, shownYear)).length : count;
