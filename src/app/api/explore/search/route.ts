@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { buildIndex, tokenRank } from "@/lib/canon-search-index";
+import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, unify, type HitType } from "@/lib/explore/search";
@@ -16,27 +16,32 @@ function json(body: unknown, status = 200) {
 export async function GET(req: NextRequest) {
   const t0 = Date.now();
   const url = new URL(req.url);
-  const q = (url.searchParams.get("q") || "").trim().slice(0, 200);
-  const topK = Math.min(100, Math.max(1, parseInt(url.searchParams.get("top_k") || "40", 10) || 40));
+  const params = parseCanonSearchParams(url, 40);
   const types = (url.searchParams.get("types") || "")
     .split(",")
     .filter((t): t is HitType => (HIT_TYPES as string[]).includes(t));
-  if (!q) return json({ error: { code: "missing_q", message: "q required" } }, 400);
+  const found = canonSearch(params);
+  if (!found.ok) return json({ error: { code: found.code, message: found.message } }, found.status);
 
-  const excerpts = buildIndex().length
-    ? tokenRank(q, topK * 2)
-        .filter((r) => r.score > 0)
-        .map(({ entry, score }) => ({
-          branch: entry.branch,
-          concept: entry.concept,
-          slug: entry.slug,
-          title: entry.title,
-          text: entry.text,
-          score,
-          year: YEAR_BY_ID.get(entry.concept) ?? null,
-        }))
-    : [];
+  const excerpts = found.results.map(({ entry, score }) => ({
+    branch: entry.branch,
+    concept: entry.concept,
+    slug: entry.slug,
+    title: entry.title,
+    text: entry.text,
+    score,
+    year: YEAR_BY_ID.get(entry.concept) ?? null,
+  }));
   const { sources, sample } = loadAdvisors();
-  const results = unify({ query: q, excerpts, advisors: sources, types, topK });
-  return json({ query: q, n_results: results.length, advisors_sample: sample, results, took_ms: Date.now() - t0 });
+  const advisors = params.branch ? [] : sources;
+  const results = unify({ query: params.q, excerpts, advisors, types, topK: params.topK });
+  return json({
+    query: params.q || null,
+    top_k: params.topK,
+    mode: found.mode,
+    n_results: results.length,
+    advisors_sample: sample,
+    results,
+    took_ms: Date.now() - t0,
+  });
 }
