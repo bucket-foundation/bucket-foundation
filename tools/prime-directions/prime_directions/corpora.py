@@ -26,6 +26,7 @@ class CorpusSpec:
     kind: str
     path: str
     private: bool = False
+    publish: bool = False
     description: str = ""
     options: dict = field(default_factory=dict)
     clean: dict = field(default_factory=dict)
@@ -62,6 +63,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> dict[str, CorpusSpec]:
             kind=entry.pop("kind"),
             path=entry.pop("path"),
             private=bool(entry.pop("private", False)),
+            publish=bool(entry.pop("publish", False)),
             description=entry.pop("description", ""),
             options=entry.pop("options", {}),
             clean=entry.pop("clean", {}),
