@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { mergeEntry, parseEntry } from "../src/lib/waitlist/core";
 import { CONSENT_VERSION, isExpired, parseDownload, sentMessage } from "../src/lib/download/core";
 import { DEFAULT_NOTIFY_TO, EMAIL_COOLDOWN_MS, LINK_REUSE_MS, LINK_TTL_MS, checkLink, downloadLink, notifierConfig, redeemLink, resendNotifier } from "../src/lib/download/notify";
 import { fileMarks, sharedRateLimiter, type MarkStore } from "../src/lib/download/marks";
@@ -22,7 +23,7 @@ test("parseDownload requires explicit consent and a valid email", () => {
   assert.equal(ok.ok, true);
   if (ok.ok) {
     assert.equal(ok.request.platform, "linux-x64");
-    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: null, wanted: "/download?platform=linux-x64", consent_version: CONSENT_VERSION });
+    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: "teacher", wanted: "/download?platform=linux-x64", consent_version: CONSENT_VERSION });
   }
   const odd = parseDownload({ email: "ada@example.org", consent: true, platform: "amiga" });
   assert.equal(odd.ok && odd.request.platform, null);
@@ -222,4 +223,44 @@ test("sentMessage promises an email only when one was sent", () => {
   assert.match(sentMessage("sent"), /on its way/);
   assert.match(sentMessage("cooldown"), /last hour/);
   for (const o of ["off", "failed", "anything"]) assert.match(sentMessage(o), /not open yet/);
+});
+
+test("parseDownload carries role, research and opt-ins, and mergeEntry stores them", () => {
+  const r = parseDownload({
+    email: "ada@example.org", name: "Ada", consent: true, platform: "macos-arm64", role: "researcher",
+    research: "  protein   folding ", release_notes: true, whats_new_daily: true,
+  });
+  assert.ok(r.ok);
+  if (!r.ok) return;
+  assert.equal(r.request.input.role, "researcher");
+  assert.equal(r.request.input.research, "protein folding");
+  assert.equal(r.request.input.release_notes, true);
+  assert.equal(r.request.input.whats_new_daily, true);
+  const entry = mergeEntry(null, r.request.input, "2026-09-30T00:00:00.000Z");
+  assert.equal(entry.release_notes, true);
+  assert.equal(entry.whats_new_daily, true);
+  const later = mergeEntry(entry, { email: entry.email, name: null, role: null, wanted: null }, "2026-10-01T00:00:00.000Z");
+  assert.equal(later.release_notes, true);
+  assert.equal(later.whats_new_daily, true);
+  assert.equal(later.research, "protein folding");
+  assert.equal(parseEntry(JSON.parse(JSON.stringify(later)))?.release_notes, true);
+});
+
+test("parseDownload leaves opt-ins unset when the client sends none", () => {
+  const r = parseDownload({ email: "ada@example.org", consent: true });
+  assert.ok(r.ok);
+  if (r.ok) assert.equal(r.request.input.release_notes, undefined);
+});
+
+test("a resubmit with research emptied clears it, and one without the field keeps it", () => {
+  const first = parseDownload({ email: "ada@example.org", consent: true, research: "protein folding" });
+  assert.ok(first.ok);
+  if (!first.ok) return;
+  const entry = mergeEntry(null, first.request.input, "2026-09-30T00:00:00.000Z");
+  const kept = parseDownload({ email: "ada@example.org", consent: true });
+  const cleared = parseDownload({ email: "ada@example.org", consent: true, research: "  " });
+  assert.ok(kept.ok && cleared.ok);
+  if (!kept.ok || !cleared.ok) return;
+  assert.equal(mergeEntry(entry, kept.request.input, "2026-10-01T00:00:00.000Z").research, "protein folding");
+  assert.equal(mergeEntry(entry, cleared.request.input, "2026-10-01T00:00:00.000Z").research, undefined);
 });
