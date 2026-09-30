@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
-import { href, useRoute, type Route } from "./router";
+import { firstRunHash, href, useRoute, type Route } from "./router";
 import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
@@ -43,7 +43,11 @@ function App() {
 
   useEffect(() => {
     Api.connect((e) => setWarn(e.message))
-      .then(setApi)
+      .then(async (a) => {
+        const next = await a.decks().then((d) => firstRunHash(window.location.hash, d), () => null);
+        if (next) window.location.hash = next;
+        setApi(a);
+      })
       .catch((e: Error) => setFatal(e.message));
   }, []);
 
