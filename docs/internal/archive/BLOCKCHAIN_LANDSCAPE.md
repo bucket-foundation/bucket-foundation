@@ -1,5 +1,7 @@
 # Blockchain Landscape Memo
 
+> Superseded 2026-09-30. The 2026-04-23 memo recommends keeping Story Protocol, which was removed in 2026-09; citations settle over x402 on Base. Text kept unchanged for history.
+
 Bucket.foundation Citation Rail.
 
 **Author:** Product pillar (Nucleus)

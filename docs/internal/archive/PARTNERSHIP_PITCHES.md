@@ -1,4 +1,6 @@
 # Partnership Pitches
+
+> Archived 2026-09-30. Drafted 2026-04-23 around Story Protocol and Molecule partnerships, which no longer apply. Text kept unchanged for history.
 Bucket.foundation x Top 5 DeSci Candidates.
 
 **Author:** Revenue pillar (Nucleus)
