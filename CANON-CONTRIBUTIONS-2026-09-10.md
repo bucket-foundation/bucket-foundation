@@ -1,5 +1,7 @@
 # Canon Contributions, 2026-09-10
 
+Updated 2026-09-30 for the current release and paths.
+
 Review of the current Bucket Foundation setup, what landed since the last
 ingestion-index update (2026-05-10), what the canon and the site should
 absorb next, and the first contributions made against that list.
@@ -95,7 +97,7 @@ manifest:
   branches), one markdown shelf per branch, `bios/`, `SCHEMA.md` (the card
   contract), and `CONTRIBUTORS.md` (the master index). The audit
   at `docs/internal/archive/CANON-WEB-AUDIT.md` (2026-05-14) found 98 of 99
-  figure pages 404 on the site; a later pass made all 99 resolve.
+  figure pages 404 on the site; a later pass made all 99 resolve (2026-05-14).
 - **Timelines** live in two places: `src/data/canon-timeline.json` and
   `src/data/canon-sites.json` feed the site's `/canon/timeline` and
   `/research/education/knowledge-access-gradient` pages, and

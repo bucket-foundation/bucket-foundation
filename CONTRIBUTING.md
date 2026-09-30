@@ -28,8 +28,6 @@ A single contributor-index card per figure, following [`canon-figures/SCHEMA.md`
 
 ---
 
-## Acceptance criteria
-
 ## Branches and PRs
 
 | Branch | Holds | PR target |
