@@ -12,6 +12,7 @@ import { loadBank, loadReview, loadScores } from "./hai/files";
 import { HaiStore } from "./hai/store";
 import { freeze, parseToolArgs, review, score } from "./hai/tools";
 import { HaiApp } from "./hai/view";
+import { localRoutes } from "./local";
 import { startServe } from "./serve";
 
 const HAI_TOOLS = new Set(["freeze", "review", "score"]);
@@ -107,7 +108,7 @@ async function main(argv: string[]) {
       return;
     }
     if (cmd === "serve") {
-      const srv = startServe();
+      const srv = startServe({ routes: localRoutes(session.store) });
       console.log(srv.url);
       await new Promise<void>((done) => {
         process.once("SIGINT", done);
