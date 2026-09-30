@@ -18,6 +18,11 @@ export default function SourcePanel({ hit }: { hit: Hit }) {
         {LABEL[hit.type]}
         {hit.year !== null && <span>{hit.year}</span>}
       </p>
+      {(hit.source || hit.license) && (
+        <p data-testid="source-license" className="mt-2" style={{ color: "var(--parchment-dim)" }}>
+          {[hit.source, hit.license].filter(Boolean).join(" · ")}
+        </p>
+      )}
       {hit.url && (
         <a className="underline mt-2 inline-block" href={hit.url} target="_blank" rel="noreferrer">
           {OPEN[hit.type]}

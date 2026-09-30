@@ -24,7 +24,17 @@ const dirs = (d) => {
     return [];
   }
 };
-const flat = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+const EMAIL = /(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]{1,64}\s*(?:@|\[\s*at\s*\]|\(\s*at\s*\))\s*[A-Za-z0-9-]{1,63}(?:\s*(?:\.|\[\s*dot\s*\]|\(\s*dot\s*\))\s*[A-Za-z0-9-]{1,63})+/gi;
+const ENTITIES = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'", "&nbsp;": " " };
+export const scrub = (s) => String(s ?? "").normalize("NFKC").replace(EMAIL, "");
+const flat = (s) =>
+  scrub(
+    String(s ?? "")
+      .replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g, (m) => ENTITIES[m])
+      .replace(/<\/?[A-Za-z][^>]*>/g, " "),
+  )
+    .replace(/\s+/g, " ")
+    .trim();
 const cut = (s, n = SNIPPET) => {
   const t = flat(s);
   return t.length <= n ? t : `${t.slice(0, n - 1).trimEnd()}…`;
@@ -134,9 +144,18 @@ export function buildYt() {
   return out;
 }
 
+export const LICENSE = {
+  o: "OpenAlex metadata, CC0",
+  p: "PubMed metadata, NLM public domain",
+  a: "arXiv metadata, CC0",
+  g: "Project Gutenberg, public domain in the US",
+  w: "Wikisource, CC BY-SA 4.0",
+  y: "YouTube transcript, link only",
+};
+
 export function buildIndex() {
   const items = [...buildOpenalex(), ...buildPubmed(), ...buildArxiv(), ...buildGutenberg(), ...buildWikisource(), ...buildYt()];
-  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], items };
+  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], licenses: LICENSE, items };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {

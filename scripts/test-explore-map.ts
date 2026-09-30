@@ -55,6 +55,7 @@ check("advisor A sits nearer the light axis than advisor B", (() => {
   const b = base.nodes.find((n) => n.id === "advisor:2")!.position;
   return a[0] > b[0] && b[1] > a[1];
 })());
+check("legend states the method", base.legend.some((l) => l.label.includes("term overlap with prime directions, not fit-me")));
 check("axis guides carry labels", base.guides.filter((g) => g.kind === "text").length === 4);
 check("empty model gives an empty layout", mapLayout(null, [], "x").nodes.length === 0);
 

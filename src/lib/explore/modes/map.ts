@@ -9,7 +9,7 @@ export const LINK_COLOR = "#D9A43A";
 export const YOU_ID = "you:self";
 export const NEAR_EXCERPTS = 3;
 
-const EMPTY: SceneLayout = { nodes: [], links: [], guides: [], legend: [{ label: "advisor", color: ADVISOR_COLOR }], camera: [0, 0, 4.6], wheel: "zoom" };
+const EMPTY: SceneLayout = { nodes: [], links: [], guides: [], legend: [{ label: "advisor", color: ADVISOR_COLOR }, { label: "position: term overlap with prime directions, not fit-me", color: AXIS_COLOR }], camera: [0, 0, 4.6], wheel: "zoom" };
 
 export function nearestExcerpts(text: string, hits: Hit[], k = NEAR_EXCERPTS): Hit[] {
   const bag = tokens(text);
@@ -42,7 +42,7 @@ export function mapLayout(model: MapModel | null | undefined, hits: Hit[], youTe
   });
   for (const a of model.advisors) nodes.push({ id: a.id, position: at(a.star), color: ADVISOR_COLOR, size: 0.04 + 0.04 * Math.max(0, Math.min(1, a.score)), label: `${a.name} · ${a.field}` });
 
-  const legend = [{ label: "advisor", color: ADVISOR_COLOR }];
+  const legend = [{ label: "advisor", color: ADVISOR_COLOR }, { label: "position: term overlap with prime directions, not fit-me", color: AXIS_COLOR }];
   if (youText?.trim()) {
     const vec = termVector(youText, model.axes);
     nodes.push({ id: YOU_ID, position: at(vec), color: YOU_COLOR, size: 0.11, label: "You" });
