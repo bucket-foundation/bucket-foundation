@@ -129,6 +129,12 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--query", type=Path, required=True)
     a.add_argument("--out", type=Path, required=True)
     review_args(a)
+    rb = sub.add_parser("reference-basis")
+    rb.add_argument("--out", type=Path, required=True)
+    rb.add_argument("--basis", type=Path, help="JSON list of {name, text} documents; default is the cached OpenAlex topic taxonomy")
+    rb.add_argument("--k", type=int, default=12)
+    rb.add_argument("--max-features", type=int, default=6000)
+    rb.add_argument("--seed", type=int, default=0)
     f = sub.add_parser("fit-me")
     f.add_argument("--statement", type=Path)
     f.add_argument("--cv", type=Path)
@@ -496,8 +502,20 @@ def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
         export.write_json({"corpora": summary, "failures": failures}, private_out / "summary.json")
     return 1 if failures else 0
 
+def cmd_reference_basis(args) -> int:
+    if args.basis:
+        rows = reference.load_basis(args.basis)
+    else:
+        rows = reference.fetch_topics(corpora.data_root() / "openalex-topics.json", os.environ.get("PRIME_CONTACT"))
+    data = reference.build_reference_basis(rows, k=args.k, max_features=args.max_features, seed=args.seed)
+    export.write_json(data, args.out)
+    print(f"wrote {args.out}: {len(data['vocab'])} terms, {args.k} components")
+    return 0
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.cmd == "reference-basis":
+        return cmd_reference_basis(args)
     registry = corpora.load_registry(args.registry)
     if args.cmd == "list":
         return cmd_list(registry)
