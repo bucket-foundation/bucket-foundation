@@ -6,6 +6,8 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
+import { PARTICLES } from "@/lib/explore/modes/particle";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 
@@ -29,6 +31,8 @@ export default function ExploreClient() {
   const [scroll, setScroll] = useState(0);
   const [genome, setGenome] = useState<GenomeSummary | null>(null);
   const [geneHits, setGeneHits] = useState<Hit[]>([]);
+  const [element, setElement] = useState(DEFAULT_Z);
+  const [matterHits, setMatterHits] = useState<Hit[]>([]);
 
   useEffect(() => {
     const m = new URLSearchParams(window.location.search).get("mode");
@@ -80,9 +84,24 @@ export default function ExploreClient() {
       .catch(() => setGeneHits([]));
   }, [mode.id, geneHits.length]);
 
+  const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : null;
+
+  useEffect(() => {
+    if (!matterQuery) return;
+    let live = true;
+    fetch(`/api/explore/search?q=${encodeURIComponent(matterQuery)}&types=excerpt&top_k=40`)
+      .then((r) => (r.ok ? r.json() : { results: [] }))
+      .then((b) => live && setMatterHits(b.results ?? []))
+      .catch(() => live && setMatterHits([]));
+    return () => {
+      live = false;
+    };
+  }, [matterQuery]);
+
+  const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits: geneHits }),
-    [mode, visible, selected, scroll, genome, geneHits],
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element }),
+    [mode, visible, selected, scroll, genome, extraHits, element],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
@@ -145,6 +164,18 @@ export default function ExploreClient() {
           ))}
         </div>
         {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
+        {mode.id === "atom" && (
+          <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
+            Element
+            <select data-testid="atom-element" value={element} onChange={(e) => setElement(Number(e.target.value))} className="border hairline bg-transparent px-2 py-1">
+              {ELEMENTS.map((el) => (
+                <option key={el.z} value={el.z}>
+                  {el.z} {el.symbol} {el.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <div className="mt-3">
           <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
           <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={mono}>
