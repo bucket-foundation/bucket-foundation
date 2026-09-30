@@ -34,8 +34,52 @@
       "schedule": "17 4 * * *"
     },
     {
-      "path": "/api/cron/whats-new-daily",
-      "schedule": "10 0 * * *"
+      "path": "/api/cron/whats-new-daily?slot=0",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=1",
+      "schedule": "10 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=2",
+      "schedule": "20 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=3",
+      "schedule": "30 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=4",
+      "schedule": "40 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=5",
+      "schedule": "50 6 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=6",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=7",
+      "schedule": "10 7 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=8",
+      "schedule": "20 7 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=9",
+      "schedule": "30 7 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=10",
+      "schedule": "40 7 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily?slot=11",
+      "schedule": "50 7 * * *"
     }
   ]
 }

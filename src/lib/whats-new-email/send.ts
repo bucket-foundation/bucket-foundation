@@ -9,6 +9,7 @@ type Fetch = (url: string, init: RequestInit) => Promise<Response>;
 
 export const DEFAULT_FROM = "Bucket Foundation <whats-new@bucket.foundation>";
 export const SEND_GAP_MS = 600;
+export const CURSOR_EVERY = 10;
 const RESEND_URL = "https://api.resend.com/emails";
 
 export function cronAuthorized(header: string | null, secret: string | undefined): boolean {
@@ -58,7 +59,8 @@ export interface SendReport {
   sent: number;
   failed: number;
   pending: number;
-  skipped?: "empty";
+  skipped?: "empty" | "done";
+  resumedAt: number;
 }
 
 async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
@@ -88,17 +90,21 @@ export async function sendDailyDigest(opts: {
   deadline?: number;
   clock?: () => number;
   gapMs?: number;
+  progress?: MarkStore;
 }): Promise<SendReport> {
   const { config, now } = opts;
   const fetcher = opts.fetcher ?? fetch;
   const clock = opts.clock ?? Date.now;
   const digest = buildDigest(opts.entries, digestDay(now));
-  const base = { day: digest.day, entries: digest.count, recipients: 0, sent: 0, failed: 0, pending: 0 };
+  const base = { day: digest.day, entries: digest.count, recipients: 0, sent: 0, failed: 0, pending: 0, resumedAt: 0 };
   if (digest.count === 0) return { ...base, skipped: "empty" };
+  const progress = opts.progress;
+  if (progress && (await progress.get(`done:${digest.day}`)) !== null) return { ...base, skipped: "done" };
   const recipients = await opts.recipients();
-  const report: SendReport = { ...base, recipients: recipients.length };
+  const start = Math.min(progress ? ((await progress.get(`cursor:${digest.day}`)) ?? 0) : 0, recipients.length);
+  const report: SendReport = { ...base, recipients: recipients.length, resumedAt: start };
   const gap = opts.gapMs ?? SEND_GAP_MS;
-  for (let i = 0; i < recipients.length; i++) {
+  for (let i = start; i < recipients.length; i++) {
     if (opts.deadline !== undefined && clock() > opts.deadline) {
       report.pending = recipients.length - i;
       break;
@@ -112,7 +118,12 @@ export async function sendDailyDigest(opts: {
       report.failed++;
       console.error(`[whats-new] send failed for ${r.key.slice(0, 12)}:`, err instanceof Error ? err.message : "unknown");
     }
+    if (progress && (i + 1 - start) % CURSOR_EVERY === 0) await progress.set(`cursor:${digest.day}`, i + 1);
     if (gap > 0 && i < recipients.length - 1) await pause(gap);
+  }
+  if (progress) {
+    if (report.pending === 0) await progress.set(`done:${digest.day}`, clock());
+    else await progress.set(`cursor:${digest.day}`, recipients.length - report.pending);
   }
   return report;
 }

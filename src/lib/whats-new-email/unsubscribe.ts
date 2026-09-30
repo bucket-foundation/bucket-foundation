@@ -34,8 +34,8 @@ export function unsubscribeSecret(env: Env = process.env): string | null {
   return s.length >= SECRET_MIN ? s : null;
 }
 
-export function getOptOutStore(env: Env = process.env): MarkStore | null {
-  const prefix = `${waitlistPrefix(env)}whats-new-optout/`;
+export function getOptOutStore(env: Env = process.env, part: "optout" | "progress" = "optout"): MarkStore | null {
+  const prefix = `${waitlistPrefix(env)}whats-new-${part}/`;
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobMarks(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileMarks(path.join(process.cwd(), ".data", prefix));
   return null;

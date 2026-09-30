@@ -7,6 +7,7 @@ import { buildDigest, digestDay, oneLine, renderDigest, type RawEntry } from "..
 import { recordOptOut, subscriberId, unsubscribeSecret, unsubscribeUrl, verifyUnsubscribe } from "../src/lib/whats-new-email/unsubscribe";
 import { cronAuthorized, digestConfig, optedInRecipients, sendDailyDigest, type DigestConfig, type Recipient } from "../src/lib/whats-new-email/send";
 import { fileMarks } from "../src/lib/download/marks";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { emailKey, fileStore, saveSignup } from "../src/lib/waitlist/store";
 import { mergeEntry, parseEntry, parseSignup } from "../src/lib/waitlist/core";
 import { parseDownload } from "../src/lib/download/core";
@@ -176,4 +177,45 @@ test("a passed deadline leaves the rest pending", async () => {
   const recipients: Recipient[] = Array.from({ length: 25 }, (_, i) => ({ email: `u${i}@example.org`, key: subscriberId(`u${i}@example.org`, SECRET) }));
   const report = await sendDailyDigest({ entries: ENTRIES, recipients: async () => recipients, config: CONFIG, now: NOW, deadline: 9, gapMs: 0, clock: () => t++, fetcher: async () => new Response("{}") });
   assert.deepEqual({ sent: report.sent, pending: report.pending }, { sent: 10, pending: 15 });
+});
+
+test("a run resumes from the saved cursor and skips once the day is done", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "bkt-wn-p-"));
+  try {
+    const progress = fileMarks(root);
+    const recipients: Recipient[] = Array.from({ length: 25 }, (_, i) => ({ email: `u${i}@example.org`, key: subscriberId(`u${i}@example.org`, SECRET) }));
+    const sentTo: unknown[] = [];
+    const fetcher = async (_u: string, init: RequestInit) => (sentTo.push(JSON.parse(String(init.body)).to), new Response("{}"));
+    let t = 0;
+    const first = await sendDailyDigest({ entries: ENTRIES, recipients: async () => recipients, config: CONFIG, now: NOW, deadline: 11, gapMs: 0, clock: () => t++, fetcher, progress });
+    assert.deepEqual({ sent: first.sent, pending: first.pending }, { sent: 12, pending: 13 });
+    const second = await sendDailyDigest({ entries: ENTRIES, recipients: async () => recipients, config: CONFIG, now: NOW, gapMs: 0, fetcher, progress });
+    assert.deepEqual({ resumedAt: second.resumedAt, sent: second.sent, pending: second.pending }, { resumedAt: 12, sent: 13, pending: 0 });
+    assert.equal(new Set(sentTo).size, 25);
+    assert.equal(sentTo.length, 25);
+    const third = await sendDailyDigest({ entries: ENTRIES, recipients: async () => { throw new Error("not loaded"); }, config: CONFIG, now: NOW, fetcher, progress });
+    assert.equal(third.skipped, "done");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("no route exports maxDuration above the 60 second Hobby limit", () => {
+  const walk = (dir: string): string[] => readdirSync(dir).flatMap((n) => {
+    const p = path.join(dir, n);
+    return statSync(p).isDirectory() ? walk(p) : /\.(ts|tsx)$/.test(n) ? [p] : [];
+  });
+  const over = walk(path.join(__dirname, "..", "src", "app")).flatMap((f) => {
+    const m = readFileSync(f, "utf8").match(/export\s+const\s+maxDuration\s*=\s*([\d_]+)/);
+    return m && Number(m[1].replace(/_/g, "")) > 60 ? [path.relative(process.cwd(), f)] : [];
+  });
+  assert.deepEqual(over, []);
+});
+
+test("every whats-new cron slot fits the Hobby once-a-day rule", () => {
+  const crons = (JSON.parse(readFileSync(path.join(__dirname, "..", "vercel.json"), "utf8")) as { crons: { path: string; schedule: string }[] }).crons;
+  const slots = crons.filter((c) => c.path.startsWith("/api/cron/whats-new-daily"));
+  assert.equal(slots.length, 12);
+  assert.equal(new Set(slots.map((c) => c.path)).size, 12);
+  for (const c of slots) assert.match(c.schedule, /^\d{1,2} [67] \* \* \*$/);
 });
