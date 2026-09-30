@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
+import functools
+import itertools
 import json
 import math
 import os
@@ -17,6 +19,11 @@ try:
 except ImportError:
     print("bkt analyze needs numpy: python3 -m pip install --user numpy", file=sys.stderr)
     sys.exit(3)
+
+from marketing import run as marketing_run
+from marketing.adapters import header_row
+from marketing.readers import ReadError, magic_ok, read_pdf, read_xlsx
+from marketing.report import markdown as marketing_markdown
 
 SCHEMA = "bucket.analysis/1"
 REPO = Path(__file__).resolve().parents[3]
@@ -35,6 +42,8 @@ TYPE_SHARE = 0.95
 MAX_ROWS = 1_000_000
 MAX_JSON_BYTES = 256 << 20
 LISTWISE_WARN = 0.2
+PREAMBLE_SCAN = 15
+MAX_FILES = 8
 REGULAR_TOL = 0.1
 
 
@@ -42,10 +51,20 @@ class FormError(Exception):
     pass
 
 
+def text_encoding(head: bytes) -> str:
+    return "utf-16" if head.startswith((b"\xff\xfe", b"\xfe\xff")) else "utf-8-sig"
+
+
 def sniff_format(path: Path, head: bytes) -> str:
     ext = path.suffix.lower()
     if head.startswith(b"PAR1") or ext == ".parquet":
         return "parquet"
+    if ext == ".xlsx" or (head.startswith(b"PK\x03\x04") and ext not in (".csv", ".tsv", ".json", ".jsonl")):
+        return "xlsx"
+    if ext == ".pdf" or head.startswith(b"%PDF-"):
+        return "pdf"
+    if text_encoding(head) == "utf-16":
+        head = head.decode("utf-16", errors="replace").encode("utf-8")
     if ext in (".json", ".jsonl", ".ndjson"):
         return "jsonl" if ext != ".json" else "json"
     text = head.decode("utf-8", errors="replace").lstrip("﻿ \r\n\t")
@@ -59,17 +78,41 @@ def sniff_format(path: Path, head: bytes) -> str:
     return "tsv" if first.count("\t") > first.count(",") else "csv"
 
 
-def read_delimited(path: Path, delim: str, errors: list, max_rows: int) -> tuple[list[str], list[list], bool]:
+def pick_header(rows: list[list[str]]) -> int:
+    hit = header_row(rows, PREAMBLE_SCAN)
+    if hit:
+        return hit
+    counts: dict[int, int] = {}
+    for r in rows:
+        counts[len(r)] = counts.get(len(r), 0) + 1
+    modal = max(counts, key=lambda k: (counts[k], k))
+    if modal < 2:
+        return 0
+    return next(i for i, r in enumerate(rows) if len(r) == modal)
+
+
+def read_delimited(path: Path, delim: str, errors: list, max_rows: int, encoding: str = "utf-8-sig", warnings: list | None = None) -> tuple[list[str], list[list], bool]:
     header: list[str] | None = None
     body: list[list] = []
     truncated = False
+    pending: list[tuple[int, list[str]]] = []
     try:
-        with path.open(encoding="utf-8-sig", newline="") as fh:
-            for i, r in enumerate(csv.reader(fh, delimiter=delim), start=1):
-                if not any(c.strip() for c in r):
+        with path.open(encoding=encoding, newline="") as fh:
+            reader = enumerate(csv.reader(fh, delimiter=delim), start=1)
+            for i, r in reader:
+                if not any(c.strip() for c in r) or (not pending and r[0].lstrip().startswith("#")):
                     continue
-                if header is None:
-                    header = [h.strip() for h in r]
+                pending.append((i, r))
+                if len(pending) >= PREAMBLE_SCAN:
+                    break
+            if pending:
+                k = pick_header([r for _, r in pending])
+                if k and warnings is not None:
+                    warnings.append({"code": "W_PREAMBLE", "where": "header", "message": f"skipped {k} rows above the header"})
+                header = [h.strip().lstrip("\ufeff") for h in pending[k][1]]
+            rest = ((i, r) for i, r in pending[k + 1 :]) if pending else iter(())
+            for i, r in itertools.chain(rest, reader):
+                if not any(c.strip() for c in r):
                     continue
                 if len(body) >= max_rows:
                     truncated = True
@@ -104,7 +147,7 @@ def records_to_table(recs: list, errors: list) -> tuple[list[str], list[list]]:
     return header, [[r.get(h) for h in header] for r in recs]
 
 
-def read_table(path: Path, max_rows: int = MAX_ROWS) -> tuple[str, list[str], list[list], list, bool]:
+def read_table(path: Path, max_rows: int = MAX_ROWS, warnings: list | None = None, sheet: int = 0) -> tuple[str, list[str], list[list], list, bool]:
     errors: list = []
     if not path.is_file():
         raise FormError(f"{path} is not a file")
@@ -113,6 +156,16 @@ def read_table(path: Path, max_rows: int = MAX_ROWS) -> tuple[str, list[str], li
     if not head.strip():
         raise FormError("empty file")
     fmt = sniff_format(path, head)
+    if not magic_ok(fmt, head):
+        raise FormError(f"E_MAGIC: contents do not match {fmt}")
+    if fmt in ("xlsx", "pdf"):
+        try:
+            header, body, warns, truncated = read_xlsx(path, max_rows, sheet) if fmt == "xlsx" else read_pdf(path, max_rows)
+        except ReadError as exc:
+            raise FormError(f"{exc.code}: {exc}") from exc
+        if warnings is not None:
+            warnings.extend(warns)
+        return fmt, header, body, errors, truncated
     if fmt == "parquet":
         try:
             import pyarrow.parquet as pq
@@ -131,12 +184,12 @@ def read_table(path: Path, max_rows: int = MAX_ROWS) -> tuple[str, list[str], li
             raise FormError(f"parquet read failed: {exc}") from exc
         return fmt, cols, body[:max_rows], errors, len(body) > max_rows
     if fmt in ("csv", "tsv"):
-        header, body, truncated = read_delimited(path, "\t" if fmt == "tsv" else ",", errors, max_rows)
+        header, body, truncated = read_delimited(path, "\t" if fmt == "tsv" else ",", errors, max_rows, text_encoding(head), warnings)
         return fmt, header, body, errors, truncated
     if path.stat().st_size > MAX_JSON_BYTES:
         raise FormError(f"JSON over {MAX_JSON_BYTES >> 20} MB; convert to CSV or Parquet")
     try:
-        text = path.read_text(encoding="utf-8-sig")
+        text = path.read_text(encoding=text_encoding(head))
     except UnicodeDecodeError as exc:
         raise FormError(f"not UTF-8: {exc}") from exc
     try:
@@ -197,16 +250,26 @@ def parse_date(v):
         return dt.datetime(v.year, v.month, v.day)
     if not isinstance(v, str):
         return None
-    s = v.strip()
+    return parse_date_text(v.strip())
+
+
+DATE_START = re.compile(r"^\d")
+
+
+@functools.lru_cache(maxsize=65536)
+def parse_date_text(s: str):
+    if not DATE_START.match(s) or len(s) > 40:
+        return None
+    try:
+        return dt.datetime.fromisoformat(s.replace("Z", "+00:00")).replace(tzinfo=None)
+    except ValueError:
+        pass
     for fmt in DATE_FORMATS:
         try:
             return dt.datetime.strptime(s, fmt)
         except ValueError:
             continue
-    try:
-        return dt.datetime.fromisoformat(s.replace("Z", "+00:00")).replace(tzinfo=None)
-    except ValueError:
-        return None
+    return None
 
 
 def parse_bool(v):
@@ -274,10 +337,10 @@ def time_values(col: list, kind: str) -> list:
     return [parse_number(v) for v in col]
 
 
-def verify(path: Path, max_rows: int = MAX_ROWS) -> tuple[dict, dict]:
+def verify(path: Path, max_rows: int = MAX_ROWS, sheet: int = 0) -> tuple[dict, dict]:
     report = {"file": str(path), "format": None, "rows": 0, "columns": [], "errors": [], "warnings": []}
     try:
-        fmt, header, body, errors, truncated = read_table(path, max_rows)
+        fmt, header, body, errors, truncated = read_table(path, max_rows, report["warnings"], sheet)
     except FormError as exc:
         report["errors"].append({"code": "E_READ", "where": str(path), "message": str(exc)})
         report["ok"] = False
@@ -428,7 +491,10 @@ def acf(x: np.ndarray, max_lag: int) -> list[float]:
     denom = float((x**2).sum())
     if denom == 0:
         return [0.0] * max_lag
-    return [float((x[:-k] * x[k:]).sum() / denom) for k in range(1, max_lag + 1)]
+    size = 1 << (2 * len(x) - 1).bit_length()
+    f = np.fft.rfft(x, size)
+    full = np.fft.irfft(f * np.conj(f), size)[: max_lag + 1]
+    return [float(full[k] / denom) for k in range(1, max_lag + 1)]
 
 
 def regular_spacing(t: np.ndarray) -> bool:
@@ -650,6 +716,8 @@ def markdown(rep: dict) -> str:
         if f[kind]:
             L += ["", f"{kind.capitalize()}:", ""] + [f"- `{e['code']}` {e['where']}: {e['message']}" for e in f[kind]]
     if not a:
+        if rep.get("marketing") and rep["marketing"].get("by_currency"):
+            L += marketing_markdown(rep["marketing"])
         return "\n".join(L) + "\n"
     L += ["", "## Summary", "", "| column | n | mean | sd | min | median | max | skew |", "|---|---|---|---|---|---|---|---|"]
     L += [f"| {n} | {s['n']} | {fmt(s['mean'])} | {fmt(s['sd'])} | {fmt(s['min'])} | {fmt(s['median'])} | {fmt(s['max'])} | {fmt(s['skew'])} |" for n, s in a["summary"].items()]
@@ -678,6 +746,8 @@ def markdown(rep: dict) -> str:
         r = p["reconstruction_residual"]
         L.append(f"- PCA rank-{p['k90']} reconstruction error mean {fmt(r['mean'])}, max {fmt(r['max'])}, worst rows {r['worst_rows']}")
     h = rep.get("helix", {})
+    if rep.get("marketing") and rep["marketing"].get("by_currency"):
+        L += marketing_markdown(rep["marketing"])
     L += ["", "## Helix", "", f"Status: {h.get('status')}. " + (h.get("reason") or "")]
     if h.get("run_dir"):
         L += [f"Run: `{h['run_dir']}`", f"Files: {', '.join(h.get('files', []))}"]
@@ -710,23 +780,57 @@ def unique_dir(root: Path, name: str, date: str) -> Path:
     return d
 
 
+def marketing_section(args, first: tuple[dict, dict], rest: list[Path]) -> dict | None:
+    if args.marketing == "off":
+        return None
+    tables = [(Path(first[0]["file"]).name, first[1])] if first[1] else []
+    forms = []
+    for f in rest:
+        form, values = verify(f, max(1, args.max_rows), args.sheet)
+        forms.append(form)
+        if values:
+            tables.append((f.name, values))
+    section = marketing_run(tables, trend_season) if tables else None
+    if section is None and args.marketing == "on":
+        section = {"schema": "marketing.v1", "sources": [], "by_currency": {}, "warnings": [{"code": "E_NO_MARKETING", "where": "files", "message": "no file matched a marketing export or held a date and two marketing measures"}]}
+    if section is not None:
+        section["files"] = [{k: f[k] for k in ("file", "format", "rows", "ok", "errors", "warnings")} for f in forms]
+    return section
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="bkt analyze")
-    ap.add_argument("file", type=Path)
+    ap.add_argument("files", type=Path, nargs="+")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--verify-only", action="store_true")
     ap.add_argument("--no-helix", action="store_true")
     ap.add_argument("--horizon", type=int, default=3)
     ap.add_argument("--name")
     ap.add_argument("--max-rows", type=int, default=MAX_ROWS)
+    ap.add_argument("--sheet", type=int, default=0)
+    ap.add_argument("--marketing", choices=("auto", "on", "off"), default="auto")
+    ap.add_argument("--quiet-errors", action="store_true")
     ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--date", default=dt.date.today().isoformat())
     args = ap.parse_args(argv)
-    name = args.name or args.file.stem
-    form, values = verify(args.file, max(1, args.max_rows))
+    if len(args.files) > MAX_FILES:
+        ap.error(f"at most {MAX_FILES} files")
+    if args.quiet_errors:
+        try:
+            return run_main(args)
+        except Exception as exc:
+            print(json.dumps({"error": "E_INTERNAL", "type": type(exc).__name__}))
+            return 4
+    return run_main(args)
+
+
+def run_main(args) -> int:
+    path = args.files[0]
+    name = args.name or path.stem
+    form, values = verify(path, max(1, args.max_rows), args.sheet)
     rep = {"schema": SCHEMA, "name": name, "created": dt.datetime.now().isoformat(timespec="seconds"), "forced": args.force, "form": form}
     if args.verify_only:
-        print(json.dumps(rep))
+        print(json.dumps(rep, default=str))
         return 0 if form["ok"] else 2
     hard_stop = not form["ok"] and (not args.force or not values or not form["numeric"])
     signal.signal(signal.SIGTERM, on_term)
@@ -739,12 +843,16 @@ def main(argv: list[str] | None = None) -> int:
     if not hard_stop:
         rep["analysis"] = analyze(form, values)
         rep["helix"] = {"status": "skipped", "reason": "--no-helix"} if args.no_helix else run_helix(form, values, name, out, args.date, args.horizon)
+    section = marketing_section(args, (form, values), args.files[1:])
+    marketing_ok = bool(section and section.get("by_currency"))
+    if section is not None:
+        rep["marketing"] = section
     rep["dir"] = str(out)
     rep = clean(rep)
     (out / "report.json").write_text(json.dumps(rep, indent=2, allow_nan=False, default=str))
     (out / "report.md").write_text(markdown(rep))
     print(json.dumps(rep, allow_nan=False, default=str))
-    return 2 if hard_stop else 0
+    return 0 if marketing_ok or not hard_stop else 2
 
 
 if __name__ == "__main__":
