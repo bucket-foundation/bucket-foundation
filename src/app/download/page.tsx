@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
-import { OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, megabytes, orderFor } from "@/lib/download/release";
+import { OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, macArch, megabytes, orderFor } from "@/lib/download/release";
 import DownloadForm from "./DownloadForm";
 
 export const metadata: Metadata = {
@@ -17,8 +17,9 @@ const SECONDARY =
   "flex items-center justify-between gap-3 px-6 py-3 min-h-[44px] border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold-deep)] transition small-caps text-[11px] tracking-[0.14em]";
 
 export default async function DownloadPage() {
-  const os = detectOs((await headers()).get("user-agent"));
-  const release = await fetchLatestRelease();
+  const h = await headers();
+  const os = detectOs(h.get("user-agent"));
+  const release = await fetchLatestRelease(fetch, macArch(h.get("sec-ch-ua-arch")));
   const installers = release ? orderFor(os, release.installers) : [];
   const mine = installers.find((i) => i.os === os);
 

@@ -238,6 +238,10 @@ describe("peer owner", () => {
     expect(lsofOwner(run, 5000, 80)).toBe(502);
     expect(lsofOwner(run, 5001, 80)).toBeNull();
     expect(lsofOwner(() => ({ code: 1, stdout: "", stderr: "" }), 5000, 80)).toBeNull();
+    expect(lsofOwner(() => ({ code: 127, stdout: "", stderr: "lsof: not found" }), 5000, 80)).toBeUndefined();
+    expect(platformFor("darwin", deps()).peerCheck).toBe("best-effort");
+    expect(platformFor("win32", deps()).peerCheck).toBe("best-effort");
+    expect(platformFor("linux", deps()).peerCheck).toBe("strict");
   });
 
   test("windows maps netstat pid to its tasklist user and hides other users", () => {
@@ -249,6 +253,8 @@ describe("peer owner", () => {
     expect(netstatOwner(d("PC\\Ann"), 6000, 80)).toBe("pc\\ann");
     expect(netstatOwner(d("N/A"), 6000, 80)).toBeNull();
     expect(netstatOwner(d("PC\\Ann"), 6002, 80)).toBeNull();
+    const down = { ...deps({ execSync: () => ({ code: 1, stdout: "", stderr: "netstat failed" }) }), env: {} } as PlatformDeps;
+    expect(netstatOwner(down, 6000, 80)).toBeUndefined();
     expect(platformFor("win32", deps({ env: { USERNAME: "Ann", USERDOMAIN: "PC" } })).self()).toBe("pc\\ann");
   });
 });

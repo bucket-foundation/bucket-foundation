@@ -49,6 +49,13 @@ const nextConfig = {
         headers: SECURITY_HEADERS,
       },
       {
+        source: "/download",
+        headers: [
+          { key: "Accept-CH", value: "Sec-CH-UA-Arch" },
+          { key: "Vary", value: "Sec-CH-UA-Arch" },
+        ],
+      },
+      {
         source: "/.well-known/bucket-release.pub",
         headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }],
       },

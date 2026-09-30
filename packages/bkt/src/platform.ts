@@ -36,6 +36,7 @@ export const execSync: ExecSync = (argv) => {
 };
 
 export type Owner = number | string;
+export type PeerCheck = "strict" | "best-effort";
 
 export interface PlatformDeps {
   env: Env;
@@ -54,7 +55,8 @@ export interface Platform {
   windowCommand(url: string, profile: string): string[];
   secureDir(path: string): string;
   self(): Owner;
-  peerOwner(peerPort: number, serverPort: number): Owner | null;
+  readonly peerCheck: PeerCheck;
+  peerOwner(peerPort: number, serverPort: number): Owner | null | undefined;
   dataDir(): string;
   cacheDir(): string;
   configDir(): string;
@@ -170,9 +172,10 @@ export function procNetTcpOwner(peerPort: number, serverPort: number, files = ["
   return null;
 }
 
-export function lsofOwner(run: ExecSync, peerPort: number, serverPort: number): number | null {
+export function lsofOwner(run: ExecSync, peerPort: number, serverPort: number): number | null | undefined {
   const r = run(["lsof", "-nP", `-iTCP@127.0.0.1:${peerPort}`, "-sTCP:ESTABLISHED", "-Fun"]);
-  if (r.code !== 0) return null;
+  if (r.code === 1 && !r.stderr.trim()) return null;
+  if (r.code !== 0) return undefined;
   let uid: number | null = null;
   for (const line of r.stdout.split("\n")) {
     if (line.startsWith("p")) uid = null;
@@ -210,9 +213,9 @@ function windowsSecure(d: PlatformDeps, path: string): string {
   return path;
 }
 
-export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number): Owner | null {
+export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number): Owner | null | undefined {
   const ns = d.execSync(["netstat", "-ano", "-p", "TCP"]);
-  if (ns.code !== 0) return null;
+  if (ns.code !== 0) return undefined;
   const row = ns.stdout
     .split(/\r?\n/)
     .map((l) => l.trim().split(/\s+/))
@@ -222,7 +225,8 @@ export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: numb
   const tl = d.execSync(["tasklist", "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
   const cols = tl.stdout.trim().match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
   const user = cols[1] === String(pid) ? cols[6]?.toLowerCase() : undefined;
-  return tl.code === 0 && user && user !== "n/a" ? user : null;
+  if (tl.code !== 0) return undefined;
+  return user && user !== "n/a" ? user : null;
 }
 
 function linux(d: PlatformDeps): Platform {
@@ -240,6 +244,7 @@ function linux(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
+    peerCheck: "strict",
     peerOwner: (peer, server) => procNetTcpOwner(peer, server),
     dataDir: () => data,
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(d.home, ".cache"),
@@ -264,6 +269,7 @@ function darwin(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
+    peerCheck: "best-effort",
     peerOwner: (peer, server) => lsofOwner(d.execSync, peer, server),
     dataDir: () => d.env.XDG_DATA_HOME ?? posix.join(lib, "Application Support"),
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(lib, "Caches"),
@@ -291,6 +297,7 @@ function windows(d: PlatformDeps): Platform {
     },
     secureDir: (path) => windowsSecure(d, path),
     self: () => windowsUser(d),
+    peerCheck: "best-effort",
     peerOwner: (peer, server) => netstatOwner(d, peer, server),
     dataDir: () => roaming,
     cacheDir: () => local,
