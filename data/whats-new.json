@@ -9,8 +9,8 @@
       "title": "Solver gap engine",
       "summary": "3,592 problems from DeepMind formal-conjectures mapped as proved or open. The 1,369 open ones are ranked by embedding similarity to their nearest solved problem; 57 sit at 0.9 or above. A Lean test file proves two classical results and sample-tests four claims, Goldbach to 3,000 included.",
       "commit": "949b98f95",
-      "pr": 430,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/430",
+      "pr": 470,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/470",
       "status": "open",
       "plot_title": "Open problems by similarity to the nearest solved problem, all-MiniLM-L6-v2 over docstrings",
       "image": "/whats-new/production-solver-gap-engine.webp",
@@ -18,12 +18,12 @@
       "discussion": "The closest pairs are open variants of problems whose sibling variant is solved, such as Erdos 308 and 686. Those are the first targets for a prover. Similarity measures wording, so a high score marks a candidate and proves nothing about difficulty. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
       "links": [
         {
-          "label": "PR 430",
-          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/430"
+          "label": "PR 470",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/470"
         },
         {
-          "label": "Solvability atlas",
-          "href": "/research-os/solvability"
+          "label": "Report",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/reports/2026-09-30-solver-gap-engine.md"
         }
       ]
     },
