@@ -4,6 +4,8 @@ import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
+import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
+import DnaPanel from "@/components/explore/DnaPanel";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 
@@ -25,6 +27,8 @@ export default function ExploreClient() {
   const [loading, setLoading] = useState(false);
   const [modeId, setModeId] = useState<string>("globe");
   const [scroll, setScroll] = useState(0);
+  const [genome, setGenome] = useState<GenomeSummary | null>(null);
+  const [geneHits, setGeneHits] = useState<Hit[]>([]);
 
   useEffect(() => {
     const m = new URLSearchParams(window.location.search).get("mode");
@@ -66,7 +70,21 @@ export default function ExploreClient() {
   const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
   const current = selected ? byId.get(selected) ?? null : null;
   const mode = modeById(modeId);
-  const layout = useMemo(() => mode.layout(visible, { selected, scroll }), [mode, visible, selected, scroll]);
+
+  useEffect(() => {
+    if (mode.id !== "dna" || geneHits.length) return;
+    const genes = Array.from(new Set(SNPS.map((s) => s.gene))).join(" ");
+    fetch(`/api/explore/search?q=${encodeURIComponent(genes)}&types=excerpt&top_k=40`)
+      .then((r) => (r.ok ? r.json() : { results: [] }))
+      .then((b) => setGeneHits(b.results ?? []))
+      .catch(() => setGeneHits([]));
+  }, [mode.id, geneHits.length]);
+
+  const layout = useMemo(
+    () => mode.layout(visible, { selected, scroll, genome, extraHits: geneHits }),
+    [mode, visible, selected, scroll, genome, geneHits],
+  );
+  const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
   const toggle = (t: HitType) =>
     setTypes((prev) => {
@@ -126,6 +144,7 @@ export default function ExploreClient() {
             </button>
           ))}
         </div>
+        {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
         <div className="mt-3">
           <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
           <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={mono}>
@@ -187,6 +206,11 @@ export default function ExploreClient() {
                     </ul>
                   </>
                 )}
+              </>
+            ) : selectedNode ? (
+              <>
+                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{selectedNode.id.split(":")[0]}</p>
+                <p className="mt-1">{selectedNode.label ?? selectedNode.id}</p>
               </>
             ) : (
               <p className="text-sm">Select a result.</p>
