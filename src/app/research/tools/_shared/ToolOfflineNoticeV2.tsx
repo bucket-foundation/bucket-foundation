@@ -1,6 +1,11 @@
 "use client";
 
-import { TOOL_OFFLINE_MAILTO } from "@/lib/support";
+import { mailto } from "@/lib/support";
+
+const TOOL_OFFLINE_MAILTO_V2 = mailto(
+  "bucket.foundation research tool is not answering",
+  "I tried a bucket.foundation research tool and it did not answer. Tool name and time:\n\n",
+);
 
 export function detectToolOffline(status: number | null, msg: string): boolean {
   if (status === 503 || status === 502 || status === 504) return true;
@@ -25,8 +30,7 @@ export function ToolOfflineNoticeV2({ toolName }: { toolName?: string }) {
       </div>
       <p className="text-[15px] leading-[1.8] text-[color:var(--basalt)]">
         {toolName ? `${toolName} ` : "This tool "}
-        runs on the Bucket engine on the founder&rsquo;s machine, which did not
-        answer this request.
+        runs on the Bucket engine, which did not answer this request.
       </p>
       <p className="mt-3 text-[14px] leading-[1.75] text-[color:var(--basalt-2)]">
         Try again in a minute. If it keeps failing, write to us below.
@@ -36,7 +40,7 @@ export function ToolOfflineNoticeV2({ toolName }: { toolName?: string }) {
 
       <div className="flex flex-wrap items-center gap-4">
         <a
-          href={TOOL_OFFLINE_MAILTO}
+          href={TOOL_OFFLINE_MAILTO_V2}
           className="font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 border border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition-colors"
         >
           contact →

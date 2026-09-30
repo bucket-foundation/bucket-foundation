@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { listPapers } from "@/lib/papers";
+import { DATASET_CITE_PRICE_USD } from "@/lib/research-atlas";
 
 export const metadata = {
   title: "Papers · primary research",
@@ -20,8 +21,6 @@ export const metadata = {
       "Primary research, free to read, born with a real DOI, fully reproducible.",
   },
 };
-
-const PAPER_CITE_PRICE_USD = 0.05;
 
 export default function Page() {
   const papers = listPapers();
@@ -96,7 +95,7 @@ export default function Page() {
                 >
                   cite via DOI {p.doi} ↗
                 </a>
-                <span>${PAPER_CITE_PRICE_USD.toFixed(2)} per citation in a paid work</span>
+                <span>${DATASET_CITE_PRICE_USD.toFixed(2)} per citation in a paid work</span>
               </div>
             </article>
           ))}

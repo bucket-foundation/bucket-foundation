@@ -42,16 +42,20 @@ const CITE_RESPONSE = `{
   "data": { "...": "insight-tier synthesis" },
   "citation": {
     "type": "source",
-    "source_id": "pmid:123456",
-    "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/123456/"
+    "source_id": "bucket:canon-index",
+    "canonical_url": "https://www.bucket.foundation/canon"
   },
   "receipt": {
     "tier": "insight",
-    "price_usd": 0.002,
-    "status": "paid"
+    "status": "served_from_canon",
+    "price_usd": 0,
+    "paid_by": "bucket-foundation (pre-paid canon; reader pays nothing)"
   },
   "cite": {
+    "applies_to": "downstream_republication_in_a_paid_work",
+    "reader_owes": 0,
     "price_usd": 0.002,
+    "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
     "license": "bucket.foundation/cite-forever/v0.1"
   }
 }`;
@@ -95,10 +99,10 @@ export default function Page() {
             One cite call
           </h2>
           <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
-            An agent asks for an insight and gets the envelope back. Reading
-            costs the reader nothing. The receipt and cite blocks state the
-            price a paid work owes when it republishes the result: $0.002 at
-            the insight tier, paid to the author over x402 on Base.
+            An agent asks for an insight and gets the envelope back. The receipt
+            shows the reader paid 0. The cite block states what a paid work owes
+            when it republishes the result: $0.002 at the insight tier, paid to
+            the author over x402 on Base.
           </p>
           <pre className="mt-4 overflow-x-auto text-[12px] leading-[1.6] text-[color:var(--basalt)] bg-[color:var(--bone-3,var(--bone))] border border-[color:var(--hairline)] p-4">
             <code>{CITE_CALL}</code>
