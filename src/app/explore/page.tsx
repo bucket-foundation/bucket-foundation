@@ -7,6 +7,6 @@ export const metadata = {
 };
 
 export default function Page({ searchParams }: { searchParams: { view?: string; space?: string } }) {
-  if (searchParams.view === "circle" || searchParams.space) return <ExploreShell />;
+  if (searchParams.view === "circle" || searchParams.view === "slices" || searchParams.space) return <ExploreShell />;
   return <ExploreClient />;
 }

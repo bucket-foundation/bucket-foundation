@@ -1,6 +1,5 @@
-import { ERAS } from "../research-os/solvability-space";
+import { ERAS } from "./geometry";
 import { hasEmail, scrubEmails, type AdvisorReview, type PrimeDirections } from "../research-os/advisor-review";
-
 export const SPACE_SCHEMA = "bucket.explore-space/1";
 export const MAX_OBSERVATIONS = 20_000;
 export const MAX_COMPONENTS = 64;
