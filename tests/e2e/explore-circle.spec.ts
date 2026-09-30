@@ -16,12 +16,14 @@ test("the circle view renders the chart on the canon data", async ({ page }) => 
 
 test("scrolling steps through the observations", async ({ page }) => {
   await page.goto("/explore?view=circle");
+  await expect(page.getByTestId("space-view")).toHaveAttribute("data-ready", "true");
   const current = page.getByTestId("space-current");
   await expect(current).toContainText("1 /");
   const box = (await page.getByTestId("circle-chart").boundingBox())!;
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
   await page.mouse.wheel(0, 120);
   await expect(current).toContainText("2 /");
+  await page.waitForTimeout(250);
   await page.mouse.wheel(0, -120);
   await expect(current).toContainText("1 /");
 });
@@ -62,6 +64,7 @@ test("arrow keys step the scrubber", async ({ page }) => {
 test("a burst of wheel events from one gesture steps once", async ({ page }) => {
   await page.goto("/explore?view=circle");
   const view = page.getByTestId("space-view");
+  await expect(view).toHaveAttribute("data-ready", "true");
   await expect(page.getByTestId("scrubber")).toHaveAttribute("data-index", "0");
   await view.evaluate(async (el) => {
     for (let i = 0; i < 8; i++) {
