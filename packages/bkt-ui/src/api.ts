@@ -1,6 +1,7 @@
 import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-store";
 import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
+import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 
 export interface WorkStatus {
   beads: number;
@@ -208,5 +209,12 @@ export class Api {
 
   workAnswer(id: string, response: string, elapsedMs: number) {
     return this.call<WorkAnswer>("/local/work-quiz/answer", { method: "POST", body: { id, response, elapsedMs } });
+  }
+
+  async ros<K extends RosResource>(resource: K): Promise<RosPayloads[K] | null> {
+    const r = await fetch(ROS_PATHS[resource].local, { headers: { authorization: `Bucket ${this.token}` } });
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error(`${resource} ${r.status}`);
+    return parseRos(resource, await r.json());
   }
 }
