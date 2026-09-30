@@ -51,33 +51,53 @@ export function detectOs(ua: string | null | undefined): Os | null {
   return null;
 }
 
-export function installersFor(assets: ReleaseAsset[]): Installer[] {
+export type MacArch = "arm64" | "x64";
+
+export function macArch(archHint: string | null | undefined): MacArch | null {
+  const h = (archHint ?? "").replace(/"/g, "").toLowerCase();
+  return h === "x86" ? "x64" : h === "arm" ? "arm64" : null;
+}
+
+const MAC_ORDER: MacArch[] = ["arm64", "x64"];
+
+export function installerArch(i: Pick<Installer, "name">): string | null {
+  return { "bkt-darwin-arm64": "Apple silicon", "bkt-darwin-x64": "Intel" }[i.name] ?? null;
+}
+
+export function installersFor(assets: ReleaseAsset[], arch: MacArch | null = null): Installer[] {
   const out: Installer[] = [];
   for (const os of OSES) {
     const a = assets.find((x) => INSTALLER[os].test(x.name));
+    if (!a && os === "macos") {
+      const bins = (arch ? [arch, ...MAC_ORDER.filter((m) => m !== arch)] : MAC_ORDER)
+        .map((m) => assets.find((x) => x.name === `bkt-darwin-${m}`))
+        .filter((x): x is ReleaseAsset => !!x);
+      for (const b of arch ? bins.slice(0, 1) : bins) out.push({ os, name: b.name, url: b.browser_download_url, size: b.size });
+      continue;
+    }
     if (a) out.push({ os, name: a.name, url: a.browser_download_url, size: a.size });
   }
   return out;
 }
 
-export function pickLatest(releases: GitHubRelease[]): LatestRelease | null {
+export function pickLatest(releases: GitHubRelease[], arch: MacArch | null = null): LatestRelease | null {
   const r = releases.find((x) => !x.draft && !x.prerelease && x.tag_name.startsWith(RELEASE_TAG_PREFIX));
   if (!r) return null;
-  return { tag: r.tag_name, name: r.name || r.tag_name, page: r.html_url, installers: installersFor(r.assets) };
+  return { tag: r.tag_name, name: r.name || r.tag_name, page: r.html_url, installers: installersFor(r.assets, arch) };
 }
 
 export function orderFor(os: Os | null, installers: Installer[]): Installer[] {
   return [...installers].sort((a, b) => Number(b.os === os) - Number(a.os === os));
 }
 
-export async function fetchLatestRelease(fetcher: typeof fetch = fetch): Promise<LatestRelease | null> {
+export async function fetchLatestRelease(fetcher: typeof fetch = fetch, arch: MacArch | null = null): Promise<LatestRelease | null> {
   try {
     const res = await fetcher(`https://api.github.com/repos/${RELEASE_REPO}/releases?per_page=20`, {
       headers: { accept: "application/vnd.github+json" },
       next: { revalidate: 900 },
     } as RequestInit);
     if (!res.ok) return null;
-    return pickLatest((await res.json()) as GitHubRelease[]);
+    return pickLatest((await res.json()) as GitHubRelease[], arch);
   } catch {
     return null;
   }

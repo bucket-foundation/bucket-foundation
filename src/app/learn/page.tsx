@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import Link from "next/link";
 import LearnTabs from "./LearnTabs";
 
 export const metadata: Metadata = {
@@ -70,11 +71,10 @@ export default function LearnPage() {
       <div className="w-full border-b border-[color:var(--hairline)] bg-[color:var(--bone-2)]/80">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-2)]">
           <span className="text-[color:var(--gold-deep)]">§</span> reformative
-          education — bucket is a nonprofit. Every feature on this page runs
-          on <span className="text-[color:var(--basalt)]">your</span> key,{" "}
-          <span className="text-[color:var(--basalt)]">your</span> Claude,{" "}
-          <span className="text-[color:var(--basalt)]">your</span> corpus. We
-          host the rail. You own the learning.
+          education. Bucket is a nonprofit. Start in Research OS. The tabs
+          below run on <span className="text-[color:var(--basalt)]">your</span>{" "}
+          Claude key and <span className="text-[color:var(--basalt)]">your</span>{" "}
+          corpus.
         </div>
       </div>
 
@@ -90,11 +90,27 @@ export default function LearnPage() {
         </h1>
         <p className="mt-6 max-w-2xl text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
           Publishing is gated. Citation is dead. Authorship is unpaid. Bucket
-          rewires all three — and you learn by doing, with your own Claude.
+          rewires all three, and you learn by doing.
         </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Link
+            href="/research-os"
+            className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition-colors"
+          >
+            Start in Research OS →
+          </Link>
+          <a
+            href="#key-setup"
+            className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 border border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition-colors"
+          >
+            Set up your own Claude key
+          </a>
+        </div>
       </section>
 
-      <LearnTabs />
+      <div id="key-setup">
+        <LearnTabs />
+      </div>
     </main>
   );
 }

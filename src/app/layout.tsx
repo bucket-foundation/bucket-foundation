@@ -3,8 +3,9 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderV2";
+import Footer from "@/components/FooterV2";
+import { CANON_BRANCHES } from "@/lib/contribute";
 import { SessionProvider } from "@/providers/SessionProvider";
 import { signInOpen } from "@/lib/launch";
 
@@ -20,8 +21,6 @@ const KEYWORDS = [
   "open access",
   "scientific citation",
   "nonprofit foundation",
-  "story protocol",
-  "IP NFT",
   "Base network",
   "canon",
   "axioms",
@@ -125,7 +124,7 @@ export const metadata: Metadata = {
     "mission": "primary research paid-for-once, citeable-forever",
     "license:code": "MIT",
     "license:intent": "CC0",
-    "canon:branches": "8",
+    "canon:branches": String(CANON_BRANCHES.length),
     "protocol": "feed402 / x402 / Base",
     "ai:protocol": "feed402/0.2",
     "ai:discovery": "/.well-known/feed402.json",
@@ -189,7 +188,7 @@ const JSON_LD = {
       name: "The bucket canon",
       url: `${SITE_URL}/canon`,
       description:
-        "Eight branches of foundations: mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth.",
+        `${CANON_BRANCHES.length} branches of foundations: ${CANON_BRANCHES.map((b) => b.name).join(", ")}.`,
       creator: { "@id": `${SITE_URL}#org` },
       license: `${SITE_URL}/cite-forever/v0.1`,
       usageInfo: `${SITE_URL}/cite-forever/v0.1`,

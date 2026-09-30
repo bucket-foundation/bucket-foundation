@@ -87,19 +87,16 @@ export default function Page() {
           § Research · open datasets
         </div>
         <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
-          publish everything we{" "}
-          <span className="inlay-gold">research.</span>
+          open{" "}
+          <span className="inlay-gold">datasets.</span>
         </h1>
-        <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          research-atlas is the canonical, normalized graph of the global
-          research economy — funders, grants, organizations, people, and fields,
-          every row carrying provenance and a fetch timestamp. Each table is
-          published here as an open dataset: free to read, priced-once to cite
-          over feed402/x402, and born with a real DOI (via Zenodo) so it is
-          citeable forever.
+        <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
+          Each research-atlas table is an open dataset with provenance on every
+          row. Free to read, priced once to cite over x402, and each has a real
+          DOI through Zenodo.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
           <span>
             {datasets.length} datasets · {totalRows.toLocaleString()} rows
           </span>
@@ -108,9 +105,7 @@ export default function Page() {
           <span>generated {m.generated_at.slice(0, 10)}</span>
         </div>
 
-        <div className="carved-rule max-w-xs mt-10" />
-
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           {datasets.map((d) => (
             <DatasetCard key={d.table} d={d} />
           ))}

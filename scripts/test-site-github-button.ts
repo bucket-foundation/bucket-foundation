@@ -6,7 +6,7 @@ import { formatStars, loadStars } from "../src/lib/format-stars";
 
 const root = path.join(__dirname, "..");
 const BUTTON = fs.readFileSync(path.join(root, "src/components/GitHubStarButton.tsx"), "utf8");
-const HEADER = fs.readFileSync(path.join(root, "src/components/Header.tsx"), "utf8");
+const HEADER = fs.readFileSync(path.join(root, "src/components/HeaderV2.tsx"), "utf8");
 
 test("button links to the public repo in a new tab", () => {
   assert.match(BUTTON, /GITHUB_URL = "https:\/\/github\.com\/bucket-foundation\/bucket-foundation"/);

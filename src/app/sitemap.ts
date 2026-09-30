@@ -24,8 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/protocol/envelope",  pri: 0.8,  freq: "weekly"  as const },
     { p: "/cite-forever/v0.1",  pri: 0.8,  freq: "yearly"  as const },
     { p: "/governance",         pri: 0.7,  freq: "monthly" as const },
+    { p: "/download",           pri: 0.9,  freq: "weekly"  as const },
     { p: "/about",              pri: 0.7,  freq: "monthly" as const },
-    { p: "/join",               pri: 0.7,  freq: "monthly" as const },
     { p: "/contributors",       pri: 0.7,  freq: "weekly"  as const },
     { p: "/research",           pri: 0.85, freq: "weekly"  as const },
     { p: "/research/tools",     pri: 0.85, freq: "weekly"  as const },
@@ -38,8 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/contribute",         pri: 0.75, freq: "monthly" as const },
     { p: "/research-os/learn",  pri: 0.7,  freq: "weekly"  as const },
     { p: "/whats-new",          pri: 0.6,  freq: "daily"   as const },
-    { p: "/kruse",              pri: 0.6,  freq: "weekly"  as const },
-    { p: "/kruse/search",       pri: 0.5,  freq: "weekly"  as const },
   ].map(({ p, pri, freq }) => ({
     url: `${BASE}${p}`,
     lastModified: now,

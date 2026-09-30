@@ -8,13 +8,14 @@ interface Props {
   protein: ProteinEntry;
   focus: ResidueLink | null;
   onFocus(r: ResidueLink | null): void;
+  upload?: { text: string; format: "pdb" | "cif"; name: string } | null;
 }
 
 type Style = "cartoon" | "surface";
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
-export default function ProteinView({ protein, focus, onFocus }: Props) {
+export default function ProteinView({ protein, focus, onFocus, upload }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const viewer = useRef<GLViewer | null>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -34,6 +35,10 @@ export default function ProteinView({ protein, focus, onFocus }: Props) {
       live = false;
     };
   }, [protein]);
+
+  useEffect(() => {
+    if (upload) setData(upload);
+  }, [upload]);
 
   useEffect(() => {
     if (!data || !host.current) return;

@@ -1,18 +1,19 @@
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
-import { platformFor, procNetTcpOwner, type Owner } from "./platform";
+import { platformFor, procNetTcpOwner, type Owner, type PeerCheck } from "./platform";
 
 export const NONCE_TTL_MS = 30_000;
 export const HOSTNAME = "127.0.0.1";
 export const MAX_BODY_BYTES = 256 * 1024;
 
-export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | null;
+export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | null | undefined;
 export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 
 export interface ServeOptions {
   port?: number;
   uid?: Owner;
+  peerCheck?: PeerCheck;
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
@@ -106,7 +107,8 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
 }
 
 export function startServe(opts: ServeOptions = {}): Serve {
-  const platform = opts.uid === undefined || opts.resolvePeerUid === undefined ? platformFor() : null;
+  const platform = opts.uid === undefined || opts.resolvePeerUid === undefined || opts.peerCheck === undefined ? platformFor() : null;
+  const peerCheck: PeerCheck = opts.peerCheck ?? (opts.resolvePeerUid ? "strict" : platform!.peerCheck);
   const uid = opts.uid ?? platform!.self();
   const resolve = opts.resolvePeerUid ?? ((peer: number, server: number) => platform!.peerOwner(peer, server));
   const now = opts.now ?? Date.now;
@@ -165,12 +167,13 @@ export function startServe(opts: ServeOptions = {}): Serve {
       const peerOk = () => {
         const ip = srv.requestIP(req);
         if (!ip || (ip.address !== HOSTNAME && ip.address !== `::ffff:${HOSTNAME}`)) return false;
-        let peer: Owner | null;
+        let peer: Owner | null | undefined;
         try {
           peer = resolve(ip.port, serverPort);
         } catch {
-          return false;
+          peer = null;
         }
+        if (peer === undefined) return peerCheck === "best-effort";
         return peer !== null && peer === uid;
       };
 

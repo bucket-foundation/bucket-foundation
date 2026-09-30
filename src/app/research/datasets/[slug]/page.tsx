@@ -299,20 +299,14 @@ export default function Page({ params }: { params: { slug: string } }) {
           </p>
         </Section>
 
-        <Section n="05" title="doi — be cited forever (seam)">
+        <Section n="05" title="doi and citation">
           <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-            For permanent, scholarly-citeable identity, a published dataset gets a
-            real <strong>DOI via Zenodo</strong> — the content-addressed parquet is
-            deposited and the DOI is recorded alongside its feed402/0.2
-            cite-forever block. Reading and citing stay free; citation fees flow to
-            the dataset&rsquo;s authors over feed402/x402. There is{" "}
-            <strong>no blockchain, no Story Protocol, no IP-NFT</strong> — just a
-            DOI and the open cite-forever envelope. No wallet is ever required to
-            read, download, or cite.
+            A published dataset gets a DOI through Zenodo. The content-addressed
+            parquet is deposited and the DOI is recorded beside its feed402/0.2
+            cite-forever block. Reading and downloading cost nothing. A paid
+            work that republishes the dataset pays the authors over x402 on
+            Base. No wallet is required to read, download or cite.
           </p>
-          <div className="mt-4 inline-block border border-dashed border-[color:var(--hairline)] px-5 py-2.5 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
-            register doi — seam (zenodo + feed402 cite-forever; no wallet, no chain)
-          </div>
         </Section>
 
         <div className="mt-16 flex flex-wrap gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">

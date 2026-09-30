@@ -6,20 +6,20 @@ import { TOOLS, type Tool } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Research tools · run real instruments",
   description:
-    "Forty free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, imaging, plus per-field tools — causal-study design (DAG + adjustment set), materials featurization, statistical power & sample size, geospatial/time-series summary, ML reproducibility cards — and literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
+    `${TOOLS.length} free research instruments on bucket.foundation: protein stability, ADMET screening, RNA folding, ephys fits, imaging, causal design, power analysis and literature tools over live OpenAlex. Run them on your input. The reader pays nothing.`,
   alternates: { canonical: "/research/tools" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/research/tools",
-    title: "Forty free research tools · bucket.foundation",
+    title: `${TOOLS.length} free research tools · bucket.foundation`,
     description:
-      "Real research instruments across fields — protein/RNA/ephys/imaging, causal design, materials featurization, power analysis, geospatial summary, ML reproducibility, and live-literature agents — free to run, citeable forever.",
+      "Research instruments across fields, from protein and RNA to causal design and live literature search. Free to run.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Forty free research tools · bucket.foundation",
+    title: `${TOOLS.length} free research tools · bucket.foundation`,
     description:
-      "Real research instruments across fields — biophysics, econ-social causal design, materials, stats power, earth-climate, cs-ml — free to run.",
+      "Research instruments across biophysics, causal design, materials, statistics, earth science and machine learning. Free to run.",
   },
 };
 
@@ -58,102 +58,54 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Forty tools, each running real logic on your input — protein
-          stability, ADMET screening, trajectory mining, ephys, and cryo-EM
-          triage; five literature/agent tools over the live OpenAlex index and a
-          real awarded-grant corpus (PaperRadar, GrantDraft, MethodsMatcher,
-          ReviewGuard, QuantumBioRAG); a DNA/RNA cluster (RNAStructure folding via
-          ViennaRNA, gRNA-Optimizer, RNA-FM-Embeds, ChromatinAccess); a
-          neuroscience cluster (HH-FitML membrane fits, SpikeFeatures detection,
-          ChannelDwell idealization); an imaging / mechanobiology cluster
-          (CalciumTraceML ΔF/F, CellSegTrack segmentation, AFM-CurveML modulus,
-          TractionForceML PIV); a gap-research cluster (ProtocolGPT,
-          ToxinChannelFinder, CitationGraph, FigureMiner, AggregatePredict);
-          all-field metascience tools (FAIRCheck, RepliCheck); a per-field
-          set for the biggest non-bio fields — CausalDesigner (econ/social
-          do-calculus), MaterialsFeaturizer (Magpie descriptors), PowerPlan
-          (power &amp; sample size), GeoSummary (earth-climate trend/seasonality),
-          and MLReproCard (cs-ml reproducibility); and a classical-algorithm set
-          — SeqAlign (Needleman-Wunsch / Smith-Waterman), StoichBalance (equation
-          balancing), UnitDimCheck (SI dimensional analysis), SurvivalFit
-          (Kaplan-Meier + log-rank), and TimeSeriesForecast (Holt-Winters). Run
-          one, read the result, and publish it to canon as a citeable, paid-once
-          artifact.
+          {TOOLS.length} tools, each running real logic on your input. Run one,
+          read the result, and request canon review. Accepted results enter the
+          canon and pay their author on each paid citation.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
-        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.13em] text-[color:var(--basalt-3)]">
-          <span className="inline-flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--laurel-deep,var(--aegean-deep))]" />
-            always-on · Hetzner CPU, 24/7
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--gold-deep,var(--basalt-3))]" />
-            founder GPU · offline when the laptop is closed
-          </span>
-          <Link
-            href="/support"
-            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
-          >
-            fund always-on hosting →
-          </Link>
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
-          {TOOLS.map((t) => (
-            <ToolCard key={t.slug} tool={t} />
-          ))}
+        <div className="mt-10 overflow-hidden border border-[color:var(--hairline)] bg-[color:var(--bone)]">
+          <table className="w-full text-left border-collapse">
+            <caption className="sr-only">Research tools</caption>
+            <thead>
+              <tr className="border-b border-[color:var(--hairline)] text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+                <th scope="col" className="p-4 md:px-6 font-normal w-[40%] md:w-[28%]">
+                  Tool
+                </th>
+                <th scope="col" className="p-4 md:px-6 font-normal">
+                  What it does
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {TOOLS.map((t) => (
+                <ToolRow key={t.slug} tool={t} />
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
   );
 }
 
-function ToolCard({ tool }: { tool: Tool }) {
-  const inner = (
-    <div className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3 min-h-[200px] h-full shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
-      <div className="flex items-center justify-between">
-        <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
-          {tool.name}
-        </div>
-        <span className="text-[10px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
-          {tool.klass}
-          {tool.status === "live" ? " · live" : " · demo"}
-        </span>
-      </div>
-      <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
-      <div>
-        <span
-          className={`inline-flex items-center gap-1.5 text-[10px] small-caps tracking-[0.12em] border px-2 py-0.5 ${
-            tool.hosting === "founder-gpu"
-              ? "border-[color:var(--gold-deep,var(--basalt-3))] text-[color:var(--gold-deep,var(--basalt-3))]"
-              : "border-[color:var(--hairline)] text-[color:var(--basalt-3)]"
-          }`}
-        >
-          <span
-            className={`inline-block w-1.5 h-1.5 rounded-full ${
-              tool.hosting === "founder-gpu"
-                ? "bg-[color:var(--gold-deep,var(--basalt-3))]"
-                : "bg-[color:var(--laurel-deep,var(--aegean-deep))]"
-            }`}
-          />
-          {tool.hosting === "founder-gpu" ? "founder GPU" : "always-on"}
-        </span>
-      </div>
-      <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-        {tool.blurb}
-      </p>
-      <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
-        <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
-          {tool.status === "demo" ? "open tool · demo →" : "open tool →"}
-        </span>
-      </div>
-    </div>
-  );
-
+function ToolRow({ tool }: { tool: Tool }) {
   return (
-    <Link href={`/research/tools/${tool.slug}`} className="block h-full">
-      {inner}
-    </Link>
+    <tr className="border-b border-[color:var(--hairline)] last:border-b-0 align-top">
+      <th scope="row" className="p-4 md:px-6 font-normal">
+        <Link
+          href={`/research/tools/${tool.slug}`}
+          className="font-display uppercase text-[16px] tracking-[0.04em] text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+        >
+          {tool.name}
+        </Link>
+        <div className="mt-1 text-[10px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          {tool.klass} · {tool.status === "live" ? "live" : "demo"}
+        </div>
+      </th>
+      <td className="p-4 md:px-6 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
+        {tool.blurb}
+      </td>
+    </tr>
   );
 }
