@@ -50,10 +50,12 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
                 }
                 CommandEvent::Stderr(bytes) => {
                     tail = String::from_utf8_lossy(&bytes).trim().to_string();
+                    eprintln!("{tail}");
                 }
                 CommandEvent::Error(e) => tail = e,
                 CommandEvent::Terminated(p) => {
                     let why = if tail.is_empty() { format!("exit code {:?}", p.code) } else { tail.clone() };
+                    eprintln!("bkt serve stopped: {why}");
                     show_error(&handle, &format!("bkt serve stopped: {why}"));
                     break;
                 }
@@ -82,6 +84,7 @@ pub fn run() {
         .manage(Sidecar(Mutex::new(None)))
         .setup(|app| {
             if let Err(e) = start(app.handle()) {
+                eprintln!("bkt serve did not start: {e}");
                 show_error(app.handle(), &format!("bkt serve did not start: {e}"));
             }
             if updates_enabled() {
