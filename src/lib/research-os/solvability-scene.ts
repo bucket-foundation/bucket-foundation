@@ -9,6 +9,7 @@ export const BUCKETMATH_COLOR = "#8A7A5A";
 export const GUIDE_COLOR = "#8C8577";
 export const SURFACE_COLOR = "#D9A43A";
 export const SELECTED_LINK = "#EFE8D4";
+export const ERA_LABEL_PX = 10;
 
 const CAMERA: Record<SpaceView, Vec3> = { circle: [0, 0, 3.2], sphere: [0, 0.8, 3], slices: [-0.8, 3.4, 2.4], helix: [-0.8, 3.4, 2.4] };
 
@@ -36,7 +37,7 @@ export function solvabilityGuides(view: SpaceView, rows: AtlasProduction[]): Gui
   ERAS.forEach((e, i) => {
     const u = view === "slices" ? i + 0.5 : i;
     out.push({ kind: "line", points: loop((a) => ringPoint(u, 2.5, a)), color: GUIDE_COLOR });
-    out.push({ kind: "text", position: s(ringPoint(u, 2.9, Math.PI / 2)), text: e.label, color: GUIDE_COLOR, size: 0.05 });
+    out.push({ kind: "text", position: s(ringPoint(u, 2.9, Math.PI / 2)), text: e.label, color: GUIDE_COLOR, size: ERA_LABEL_PX });
   });
   const surfaceRings = view === "helix" ? Array.from({ length: 37 }, (_, i) => (i / 36) * ERAS.length) : ERAS.map((_, i) => i + 0.5);
   for (const u of surfaceRings) {
@@ -46,8 +47,12 @@ export function solvabilityGuides(view: SpaceView, rows: AtlasProduction[]): Gui
   return out;
 }
 
-export function solvabilityLayout(rows: AtlasProduction[], view: SpaceView, year: number, selected: string | null): SceneLayout {
-  const visible = rows.filter((p) => p.posed <= year);
+export function visibleRows(rows: AtlasProduction[], year: number): AtlasProduction[] {
+  return rows.filter((p) => p.posed <= year);
+}
+
+export function solvabilityLayout(rows: AtlasProduction[], view: SpaceView, year: number, selected: string | null, guides?: Guide[]): SceneLayout {
+  const visible = visibleRows(rows, year);
   const nodes: SceneNode[] = visible.map((p) => {
     const solved = p.resolved != null && p.resolved <= year;
     return { id: p.id, position: s(place(p, view)), color: branchColor(p.branch), size: solved ? 0.034 : 0.024, label: p.id === selected ? p.title : undefined };
@@ -55,5 +60,5 @@ export function solvabilityLayout(rows: AtlasProduction[], view: SpaceView, year
   const links: SceneLink[] = selected ? sharedTokenEdges(visible).filter(([a, b]) => a === selected || b === selected).map(([from, to]) => ({ from, to, color: SELECTED_LINK })) : [];
   const present = new Set(visible.map((p) => p.branch));
   const legend: LegendItem[] = BRANCHES.filter((b) => present.has(b)).map((b) => ({ label: b, color: branchColor(b) }));
-  return { nodes, links, guides: solvabilityGuides(view, visible), legend, camera: CAMERA[view], spin: view === "sphere" ? 0.05 : 0, wheel: "zoom" };
+  return { nodes, links, guides: guides ?? solvabilityGuides(view, visible), legend, camera: CAMERA[view], spin: view === "sphere" ? 0.05 : 0, wheel: "zoom" };
 }

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import SliceCircle from "./SliceCircle";
 import { ERAS, SPACE_VIEWS, eraOf, type SpaceView } from "@/lib/research-os/solvability-space";
-import { branchColor, solvabilityLayout } from "@/lib/research-os/solvability-scene";
+import { branchColor, solvabilityGuides, solvabilityLayout, visibleRows } from "@/lib/research-os/solvability-scene";
 import { PageHeader, Panel } from "@/components/ui";
 import {
   BRANCHES,
@@ -138,7 +138,8 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
   const [selected, setSelected] = useState<string | null>(null);
   const [era, setEra] = useState(3);
   const picked = rows.find((p) => p.id === selected) ?? null;
-  const layout = useMemo(() => (view === "cards" ? null : solvabilityLayout(rows, view, year, selected)), [rows, view, year, selected]);
+  const guides = useMemo(() => (view === "cards" ? [] : solvabilityGuides(view, visibleRows(rows, year))), [rows, view, year]);
+  const layout = useMemo(() => (view === "cards" ? null : solvabilityLayout(rows, view, year, selected, guides)), [rows, view, year, selected, guides]);
   const select = (id: string) => {
     setSelected(id);
     const p = rows.find((r) => r.id === id);
