@@ -1,0 +1,148 @@
+{
+  "scope_version": "2026-09-26-v1",
+  "collections": [
+    {
+      "name": "80000hours",
+      "hosts": [
+        "80000hours.org",
+        "www.80000hours.org"
+      ],
+      "seeds": [
+        "https://80000hours.org/",
+        "https://80000hours.org/podcast/episodes/",
+        "https://80000hours.org/after-hours-podcast/episodes/",
+        "https://80000hours.org/articles/",
+        "https://80000hours.org/career-guide/",
+        "https://80000hours.org/problem-profiles/",
+        "https://80000hours.org/career-reviews/",
+        "https://80000hours.org/blog/"
+      ],
+      "sitemaps": [
+        "https://80000hours.org/sitemap.xml",
+        "https://80000hours.org/wp-sitemap.xml"
+      ]
+    },
+    {
+      "name": "effectivealtruism",
+      "hosts": [
+        "www.effectivealtruism.org",
+        "effectivealtruism.org"
+      ],
+      "seeds": [
+        "https://www.effectivealtruism.org/",
+        "https://www.effectivealtruism.org/articles/introduction-to-effective-altruism"
+      ],
+      "sitemaps": [
+        "https://www.effectivealtruism.org/sitemap.xml"
+      ]
+    },
+    {
+      "name": "ea-forum",
+      "hosts": [
+        "forum.effectivealtruism.org"
+      ],
+      "seeds": [
+        "https://forum.effectivealtruism.org/topics/longtermism",
+        "https://forum.effectivealtruism.org/topics/existential-risk",
+        "https://forum.effectivealtruism.org/topics/cause-prioritization",
+        "https://forum.effectivealtruism.org/topics/education"
+      ],
+      "include_patterns": [
+        "^/posts/",
+        "^/topics/",
+        "^/s/"
+      ],
+      "sitemaps": [],
+      "sitemap_discovery": false
+    },
+    {
+      "name": "longtermism",
+      "hosts": [
+        "longtermism.com",
+        "www.longtermism.com"
+      ],
+      "seeds": [
+        "https://longtermism.com/"
+      ],
+      "sitemaps": [
+        "https://longtermism.com/sitemap.xml"
+      ]
+    },
+    {
+      "name": "gpi",
+      "hosts": [
+        "globalprioritiesinstitute.org",
+        "www.globalprioritiesinstitute.org"
+      ],
+      "seeds": [
+        "https://globalprioritiesinstitute.org/",
+        "https://globalprioritiesinstitute.org/papers/"
+      ],
+      "sitemaps": [
+        "https://globalprioritiesinstitute.org/sitemap_index.xml"
+      ]
+    },
+    {
+      "name": "rethinkpriorities",
+      "hosts": [
+        "rethinkpriorities.org",
+        "www.rethinkpriorities.org"
+      ],
+      "seeds": [
+        "https://rethinkpriorities.org/",
+        "https://rethinkpriorities.org/publications/"
+      ],
+      "sitemaps": [
+        "https://rethinkpriorities.org/sitemap_index.xml"
+      ]
+    },
+    {
+      "name": "givingwhatwecan",
+      "hosts": [
+        "www.givingwhatwecan.org",
+        "givingwhatwecan.org"
+      ],
+      "seeds": [
+        "https://www.givingwhatwecan.org/",
+        "https://www.givingwhatwecan.org/blog"
+      ],
+      "sitemaps": [
+        "https://www.givingwhatwecan.org/sitemap.xml"
+      ]
+    },
+    {
+      "name": "givewell",
+      "hosts": [
+        "www.givewell.org",
+        "givewell.org",
+        "blog.givewell.org"
+      ],
+      "seeds": [
+        "https://www.givewell.org/",
+        "https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness",
+        "https://blog.givewell.org/"
+      ],
+      "sitemaps": [
+        "https://www.givewell.org/sitemap.xml"
+      ]
+    },
+    {
+      "name": "adjacent-papers",
+      "hosts": [
+        "pmc.ncbi.nlm.nih.gov",
+        "arxiv.org"
+      ],
+      "seeds": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6042097/",
+        "https://arxiv.org/abs/1908.03475",
+        "https://arxiv.org/pdf/1908.03475"
+      ],
+      "sitemap_discovery": false,
+      "include_patterns": [
+        "^/articles/PMC6042097/",
+        "^/(abs|pdf)/1908\\.03475$"
+      ],
+      "sitemaps": []
+    }
+  ]
+}
