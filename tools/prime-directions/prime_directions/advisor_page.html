@@ -32,6 +32,7 @@ select{max-width:100%;min-width:0;flex:1 1 150px;text-overflow:ellipsis}
 select,input,button{font:inherit;font-size:14px;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
 input[type=search]{flex:1 1 200px;min-width:0}
 button{cursor:pointer}
+.tabs select{flex:0 1 auto;max-width:260px}
 .tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .count{color:var(--soft);font-size:13px}
 .cards{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;align-items:start}
@@ -103,6 +104,10 @@ body.circle .cards,body.circle .more-wrap{display:none}
 .key.you{background:var(--ochre-fill)}
 .key.avg{background:var(--soft);border-radius:0;transform:rotate(45deg) scale(.8)}
 .key.sel{border:2px solid var(--ink)}
+.key.short{border:2px solid var(--ochre-fill);background:transparent}
+.legend em{font-style:normal;font-size:11px;color:var(--soft)}
+.legend span{display:flex;align-items:center;gap:0;overflow-wrap:anywhere}
+.swatch{width:22px;height:10px;margin-right:6px;flex:none}
 .minis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .minis button{padding:4px;display:grid;gap:2px;font-size:11px;color:var(--soft);background:var(--bg)}
 .minis button[aria-pressed=true]{border-color:var(--ochre-fill);box-shadow:inset 0 0 0 1px var(--ochre-fill)}
@@ -129,7 +134,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 .timeline{margin-top:6px;padding-top:6px;gap:4px}
 .tl-now b{font-size:20px}
 .side{height:100vh;overflow:auto;padding:20px}
-.legend,.legend.static{position:absolute;right:0;bottom:0;margin:0}
+.legend,.legend.static{position:absolute;left:0;top:0;margin:0;max-width:220px}
 .head .meta{font-size:12px}
 .main-radar text{font-size:5.5px}
 .more-filters[open]{max-height:30vh;overflow:auto}
@@ -148,6 +153,9 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <div class="row tabs" role="group" aria-label="View">
 <button type="button" data-view="circle" aria-pressed="true">Expanded</button>
 <button type="button" data-view="list" aria-pressed="false">List</button>
+<select id="sort" aria-label="Sort"></select>
+<select id="f-ours" aria-label="Strong on one of our directions"></select>
+<select id="f-h" aria-label="Minimum h-index"><option value="">Any h-index</option><option value="10">h-index 10+</option><option value="25">h-index 25+</option><option value="50">h-index 50+</option></select>
 <span class="count" id="count"></span>
 </div>
 <details class="more-filters"><summary>Filters and export</summary>
@@ -167,7 +175,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <div id="main-radar" class="main-radar" hidden></div>
 </div>
 <p class="tip" id="tip" hidden></p>
-<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll or arrow keys: step · s shortlist · x skip · b save for later</span></div>
+<div class="legend" id="legend" aria-label="Chart legend"></div>
 </section>
 
 <ol class="cards" id="cards"></ol>
@@ -176,7 +184,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <div class="timeline">
 <p class="tl-now"><b id="tl-name"></b><span id="tl-pos"></span></p>
 <div class="row"><button type="button" id="prev" aria-label="Previous advisor">Previous</button><input type="range" id="tl" min="0" max="0" value="0" aria-label="Step through advisors in the current order"><button type="button" id="next" aria-label="Next advisor">Next</button><button type="button" id="play" aria-pressed="false">Play</button></div>
-<p class="count tl-foot">Scroll over the chart or drag to step through advisors in rank order.</p>
+<p class="count tl-foot">Scroll over the chart or drag to step through advisors in the current sort order.</p>
 </div>
 
 
@@ -249,6 +257,25 @@ AXES.forEach((label, k) => {
   $("dirs").append(b);
 });
 if (!AXES.length) $("dirs").hidden = true;
+const num = (v) => (v === "" || v == null || isNaN(Number(v)) ? -Infinity : Number(v));
+const SORTS = {
+  rank: (a, b) => a.rank - b.rank,
+  h: (a, b) => num(b.h_index) - num(a.h_index) || a.rank - b.rank,
+  name: (a, b) => String(a.name).localeCompare(String(b.name)),
+  institution: (a, b) => String(a.institution || "~").localeCompare(String(b.institution || "~")) || a.rank - b.rank,
+  funded: (a, b) => (String(b.funding).includes("active") ? 1 : 0) - (String(a.funding).includes("active") ? 1 : 0) || a.rank - b.rank,
+  saved: (a, b) => ({shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(a)] - {shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(b)]) || a.rank - b.rank,
+};
+OURS.forEach((l, k) => { SORTS["ours" + k] = (a, b) => ((b.star_ours || [])[k] ?? -1) - ((a.star_ours || [])[k] ?? -1) || a.rank - b.rank; });
+AXES.forEach((l, k) => { SORTS["prime" + k] = (a, b) => ((b.star_prime || [])[k] ?? -1) - ((a.star_prime || [])[k] ?? -1) || a.rank - b.rank; });
+const sortOpts = [["rank", "Sort: best match"], ["h", "Sort: h-index"], ["funded", "Sort: active grant first"], ["saved", "Sort: my decisions"], ["institution", "Sort: institution"], ["name", "Sort: name"]]
+  .concat(OURS.map((l, k) => ["ours" + k, "Sort: closest to " + l]))
+  .concat(AXES.map((l, k) => ["prime" + k, "Sort: highest on " + l]));
+for (const [v, t] of sortOpts) $("sort").append(make("option", {value: v, text: t}));
+$("f-ours").append(make("option", {value: "", text: "Any of our directions"}));
+OURS.forEach((l, k) => $("f-ours").append(make("option", {value: String(k), text: "Strong on " + l})));
+if (!OURS.length) $("f-ours").hidden = true;
+if (!rows.some((r) => r.h_index !== "" && r.h_index != null)) $("f-h").hidden = true;
 let selectedId = null, current = [];
 const SVGNS = "http://www.w3.org/2000/svg";
 const svg = (tag, attrs) => { const n = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
@@ -360,6 +387,27 @@ function series(kind, r) {
   if (r && r[key]) out.push({name: r.name, values: r[key], fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25});
   return out;
 }
+const LINE = (stroke, dash, fill) => '<svg class="swatch" viewBox="0 0 22 10" aria-hidden="true"><rect x="1" y="1" width="20" height="8" rx="4" fill="' + (fill || "none") + '" fill-opacity="0.3" stroke="' + stroke + '" stroke-width="1.6"' + (dash ? ' stroke-dasharray="3 2"' : "") + '/></svg>';
+function renderLegend() {
+  const L = $("legend");
+  const row = (html, text) => { const sp = make("span"); sp.innerHTML = html; sp.append(document.createTextNode(text)); return sp; };
+  const kids = [make("b", {text: MAIN === "circle" ? "Circle" : MAIN === "prime" ? "Prime directions" : "Our directions"})];
+  if (MAIN === "circle") {
+    kids.push(row('<i class="key you"></i>', "you, at the centre"), row('<i class="key avg"></i>', "average of the current filters"), row('<i class="key sel"></i>', "the advisor you picked"), row('<i class="key short"></i>', "shortlisted"));
+    const counts = {};
+    for (const r of current) { const f = r.field || "unknown"; counts[f] = (counts[f] || 0) + 1; }
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    if (top.length) { kids.push(make("em", {text: "dot colour: field"})); for (const [f] of top) { const sp = row('<i class="key" style="background:' + colorOf(f) + '"></i>', f); kids.push(sp); } }
+    kids.push(make("em", {text: "closer to the centre: a closer match"}));
+  } else {
+    const css = getComputedStyle(document.documentElement);
+    const gold = css.getPropertyValue("--ochre-fill"), soft = css.getPropertyValue("--soft"), teal = css.getPropertyValue("--teal");
+    kids.push(row(LINE(gold, true), MAIN === "prime" ? "you, the research statement" : "median of the 200 closest"), row(LINE(soft, false, soft), "average of the current filters"), row(LINE(teal, false, teal), "the advisor you picked"));
+    kids.push(make("em", {text: MAIN === "prime" ? "further out: higher percentile among all professors" : "further out: closer to that direction, scaled against the 200 closest"}));
+  }
+  kids.push(make("em", {text: "scroll or arrows: step · s shortlist · x skip · b save"}));
+  L.replaceChildren(...kids);
+}
 function sizeBox() {
   const wrap = $("circle-wrap"), box = $("chart-box");
   const fixed = window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches;
@@ -371,11 +419,11 @@ function drawMain() {
   const showCircle = MAIN === "circle";
   cv.hidden = !showCircle;
   $("main-radar").hidden = showCircle;
-  $("legend").hidden = !showCircle;
+  renderLegend();
   if (showCircle) { drawCircle(); return; }
   const r = rows.find((x) => x.id === selectedId);
   const big = radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r));
-  const m = 14, lo = 190 - 84 - m, span = 84 * 2 + 2 * m;
+  const m = 24, lo = 190 - 84 - m, span = 84 * 2 + 2 * m;
   big.setAttribute("viewBox", lo + " " + lo + " " + span + " " + span);
   big.style.overflow = "visible";
   $("main-radar").replaceChildren(big);
@@ -504,10 +552,16 @@ function visible() {
     if (st && statusOf(r) !== st) return false;
     for (const [k] of present) { const v = $("f-" + k).value; if (v && String(r[k] ?? "") !== v) return false; }
     for (const k of dirOn) if (!r.star_prime || r.star_prime[k] < 0.75) return false;
+    const oursK = $("f-ours").value;
+    if (oursK !== "" && (!r.star_ours || r.star_ours[+oursK] < 0.75)) return false;
+    const hmin = $("f-h").value;
+    if (hmin && !(Number(r.h_index) >= Number(hmin))) return false;
     if (q && ![r.name, r.institution, r.department, r.field, r.shared_terms].join(" ").toLowerCase().includes(q)) return false;
     return true;
   });
-  return $("cap").checked ? diversify(list) : list;
+  const key = $("sort").value || "rank";
+  if (key === "rank") return $("cap").checked ? diversify(list) : list;
+  return list.slice().sort(SORTS[key] || SORTS.rank);
 }
 
 function setStatus(r, s) {
@@ -591,6 +645,7 @@ $("view").addEventListener("change", reset);
 $("cap").addEventListener("change", reset);
 $("q").addEventListener("input", reset);
 $("f-status").addEventListener("change", reset);
+for (const id of ["sort", "f-ours", "f-h"]) $(id).addEventListener("change", reset);
 for (const [k] of present) $("f-" + k).addEventListener("change", reset);
 
 const csvCell = (v) => { let s = Array.isArray(v) ? v.join("; ") : String(v ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };

@@ -162,3 +162,21 @@ test("decisions: shortlist, skip and a save-for-later bookmark with b as its key
   expect(await page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id)).toBe("maybe");
   await expect(page.locator("#panel .actions button[data-set=maybe]")).toHaveAttribute("aria-pressed", "true");
 });
+
+test("sorts and filters: our-direction sort, strong-on filter and h-index floor", async ({ page }) => {
+  await page.goto(pageUrl);
+  const vis = () => page.evaluate(() => (window as any).__advisorReview.visible());
+  await page.selectOption("#sort", "ours0");
+  const sorted = await vis();
+  for (let i = 1; i < sorted.length; i++) expect(sorted[i - 1].star_ours[0]).toBeGreaterThanOrEqual(sorted[i].star_ours[0]);
+  expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(sorted[0].id);
+  await page.selectOption("#sort", "rank");
+  const all = (await vis()).length;
+  await page.selectOption("#f-ours", "1");
+  const strong = await vis();
+  expect(strong.length).toBeLessThan(all);
+  for (const r of strong) expect(r.star_ours[1]).toBeGreaterThanOrEqual(0.75);
+  await expect(page.locator("#legend")).toContainText("average of the current filters");
+  await page.locator(".minis button").nth(2).click();
+  await expect(page.locator("#legend")).toContainText("median of the 200 closest");
+});
