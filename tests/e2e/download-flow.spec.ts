@@ -1,8 +1,14 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
+import { INSTALL_COMMAND, linuxInstallCommand } from "../../src/lib/download/install";
 
 const LINUX_UA = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0";
 const MAC_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 Version/17.5 Safari/605.1.15";
-const LINUX_COMMAND = "curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts/install.sh | sh";
+
+async function expectedLinuxCommand(block: Locator): Promise<string> {
+  const link = block.locator('[data-direct="linux"][data-kind="desktop"]');
+  const href = (await link.count()) > 0 ? await link.first().getAttribute("href") : null;
+  return linuxInstallCommand(href);
+}
 
 test.describe("download flow on linux", () => {
   test.use({ userAgent: LINUX_UA });
@@ -18,7 +24,7 @@ test.describe("download flow on linux", () => {
     const button = page.locator("[data-download-button]");
     await expect(button).toBeDisabled();
     await expect(page.locator("[data-install-blocks]")).toHaveCount(0);
-    await expect(page.getByText(LINUX_COMMAND)).toHaveCount(0);
+    await expect(page.getByText(INSTALL_COMMAND.linux)).toHaveCount(0);
     await expect(page.locator("[data-download-missing]")).toContainText("email and name");
 
     await page.getByLabel("email address, required").fill("not-an-email");
@@ -52,7 +58,7 @@ test.describe("download flow on linux", () => {
 
     const blocks = page.locator("[data-install-blocks] [data-os]");
     await expect(blocks.first()).toHaveAttribute("data-os", "linux");
-    await expect(blocks.first()).toContainText(LINUX_COMMAND);
+    await expect(blocks.first()).toContainText(await expectedLinuxCommand(blocks.first()));
 
     expect(posts).toHaveLength(1);
     expect(posts[0]).toMatchObject({
@@ -79,7 +85,7 @@ test.describe("download flow on macos", () => {
     await page.locator("[data-download-button]").click();
     const first = page.locator("[data-install-blocks] [data-os]").first();
     await expect(first).toHaveAttribute("data-os", "macos");
-    await expect(first).toContainText(LINUX_COMMAND);
+    await expect(first).toContainText(INSTALL_COMMAND.macos);
   });
 
   test("windows gets the PowerShell line when chosen", async ({ page }) => {
