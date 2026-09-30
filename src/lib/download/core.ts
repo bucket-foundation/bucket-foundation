@@ -3,7 +3,7 @@ import { RESEARCH_MAX, parseOptIns, parseSignup, type SignupInput, type Waitlist
 export const DOWNLOAD_PLATFORMS = ["linux-x64", "linux-arm64", "macos-arm64", "windows-x64"] as const;
 export type DownloadPlatform = (typeof DOWNLOAD_PLATFORMS)[number];
 
-export const CONSENT_VERSION = "download-consent-2026-09-29";
+export const CONSENT_VERSION = "download-consent-2026-09-30";
 export const RETENTION_MONTHS = 12;
 export const RETENTION_DAYS = 365;
 const DAY_MS = 86_400_000;
@@ -22,11 +22,11 @@ export function parseDownload(body: unknown): ParsedDownload {
   if (b.consent !== true) return { ok: false, error: "Tick the box to agree before we store your email." };
   const platform = (DOWNLOAD_PLATFORMS as readonly unknown[]).includes(b.platform) ? (b.platform as DownloadPlatform) : null;
   const wanted = platform ? `/download?platform=${platform}` : null;
-  const research = typeof b.research === "string" ? b.research.replace(/\s+/g, " ").trim().slice(0, RESEARCH_MAX) || null : null;
+  const research = typeof b.research === "string" ? b.research.replace(/\s+/g, " ").trim().slice(0, RESEARCH_MAX) || null : undefined;
   const optins = parseOptIns(b.optins);
   return {
     ok: true,
-    request: { input: { ...parsed.input, wanted, research, ...(optins ? { optins } : {}), consent_version: CONSENT_VERSION }, platform },
+    request: { input: { ...parsed.input, wanted, ...(research !== undefined ? { research } : {}), ...(optins ? { optins } : {}), consent_version: CONSENT_VERSION }, platform },
     suspect: parsed.suspect,
   };
 }

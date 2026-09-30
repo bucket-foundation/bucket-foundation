@@ -23,7 +23,7 @@ test("parseDownload requires explicit consent and a valid email", () => {
   assert.equal(ok.ok, true);
   if (ok.ok) {
     assert.equal(ok.request.platform, "linux-x64");
-    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: "teacher", research: null, wanted: "/download?platform=linux-x64", consent_version: CONSENT_VERSION });
+    assert.deepEqual(ok.request.input, { email: "ada@example.org", name: null, role: "teacher", wanted: "/download?platform=linux-x64", consent_version: CONSENT_VERSION });
   }
   const odd = parseDownload({ email: "ada@example.org", consent: true, platform: "amiga" });
   assert.equal(odd.ok && odd.request.platform, null);
@@ -247,4 +247,17 @@ test("parseDownload leaves opt-ins unset when the client sends none", () => {
   const r = parseDownload({ email: "ada@example.org", consent: true });
   assert.ok(r.ok);
   if (r.ok) assert.equal(r.request.input.optins, undefined);
+});
+
+test("a resubmit with research emptied clears it, and one without the field keeps it", () => {
+  const first = parseDownload({ email: "ada@example.org", consent: true, research: "protein folding" });
+  assert.ok(first.ok);
+  if (!first.ok) return;
+  const entry = mergeEntry(null, first.request.input, "2026-09-30T00:00:00.000Z");
+  const kept = parseDownload({ email: "ada@example.org", consent: true });
+  const cleared = parseDownload({ email: "ada@example.org", consent: true, research: "  " });
+  assert.ok(kept.ok && cleared.ok);
+  if (!kept.ok || !cleared.ok) return;
+  assert.equal(mergeEntry(entry, kept.request.input, "2026-10-01T00:00:00.000Z").research, "protein folding");
+  assert.equal(mergeEntry(entry, cleared.request.input, "2026-10-01T00:00:00.000Z").research, undefined);
 });

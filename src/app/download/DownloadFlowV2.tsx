@@ -15,6 +15,13 @@ const LABEL = "small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt
 const WHY = "text-[13px] leading-relaxed text-[color:var(--basalt-2)]";
 const STEP_TITLE = "small-caps text-[11px] tracking-[0.2em] text-[color:var(--basalt)]";
 
+const PLATFORM_LABEL: Record<DownloadPlatform, string> = {
+  "linux-x64": "Linux, x86_64",
+  "linux-arm64": "Linux, ARM",
+  "macos-arm64": "macOS, Apple silicon",
+  "windows-x64": "Windows, x64",
+};
+
 const PLATFORM_OF: Record<Os, DownloadPlatform> = {
   linux: "linux-x64",
   macos: "macos-arm64",
@@ -118,7 +125,7 @@ export default function DownloadFlowV2({ detected, installers }: { detected: Os 
         <select id="flow-platform" required value={platform} onChange={(e) => setPlatform(e.target.value)} className={INPUT}>
           <option value="">choose one</option>
           {DOWNLOAD_PLATFORMS.map((p) => (
-            <option key={p} value={p}>{p}</option>
+            <option key={p} value={p}>{PLATFORM_LABEL[p]}</option>
           ))}
         </select>
         <label htmlFor="flow-role" className={LABEL + " mt-2"}>your role, optional</label>
@@ -137,11 +144,11 @@ export default function DownloadFlowV2({ detected, installers }: { detected: Os 
         <p className={WHY}>Both update emails are off until you tick them. Each one has an unsubscribe link, and you can ask us to delete your data at any time.</p>
         <label className={WHY + " flex items-start gap-3"}>
           <input type="checkbox" checked={releaseNotes} onChange={(e) => setReleaseNotes(e.target.checked)} className="mt-1" />
-          <span>Email me release notes when a new version ships. Optional.</span>
+          <span>Email me release notes when a new version ships. Optional. We record this choice now and sending starts with the next release.</span>
         </label>
         <label className={WHY + " flex items-start gap-3"}>
           <input type="checkbox" checked={dailyNew} onChange={(e) => setDailyNew(e.target.checked)} className="mt-1" />
-          <span>Email me the daily What&apos;s New digest. Optional.</span>
+          <span>Email me the daily What&apos;s New digest. Optional. We record this choice now and sending starts when the digest launches.</span>
         </label>
         <label className={WHY + " flex items-start gap-3"}>
           <input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1" />

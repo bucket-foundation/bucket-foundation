@@ -87,7 +87,7 @@ export function parseOptIns(raw: unknown): OptIns | undefined {
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {
   const { consent_version, ...fields } = input;
   const extra = {
-    ...((input.research ?? existing?.research) ? { research: input.research ?? existing?.research } : {}),
+    ...((input.research === undefined ? existing?.research : input.research) ? { research: input.research === undefined ? existing?.research : input.research } : {}),
     ...((input.optins ?? existing?.optins) ? { optins: input.optins ?? existing?.optins } : {}),
   };
   const consent = consent_version ? { consent_at: now, consent_version } : existing?.consent_version ? { consent_at: existing.consent_at, consent_version: existing.consent_version } : {};

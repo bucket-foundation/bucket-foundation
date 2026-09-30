@@ -34,7 +34,7 @@ export default async function DownloadPage() {
             {release ? release.name : "latest release"}
           </h2>
           <p className={P}>
-            Three short steps unlock the installer for your computer. Each field says why we ask.
+            Sign up in three short steps and we show the install command for your computer. Each field says why we ask. The installers are public on the releases page; signing up gets you release notices and a link by email.
           </p>
           <DownloadFlowV2 detected={os} installers={installers} />
           <p className="mt-4 text-[13px] text-[color:var(--basalt-2)]">
