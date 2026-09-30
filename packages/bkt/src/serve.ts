@@ -171,7 +171,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
         try {
           peer = resolve(ip.port, serverPort);
         } catch {
-          peer = undefined;
+          peer = null;
         }
         if (peer === undefined) return peerCheck === "best-effort";
         return peer !== null && peer === uid;
