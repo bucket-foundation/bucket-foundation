@@ -104,6 +104,14 @@ export interface AdvisorBundle {
 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
+const EXCLUDE_TRUE = ["opt_out", "optout", "opted_out", "private", "hidden", "excluded", "unpublished"];
+const REQUIRE_TRUE = ["published", "publishable", "publish"];
+
+export function isPublished(p: Record<string, unknown>): boolean {
+  if (EXCLUDE_TRUE.some((k) => p[k] === true)) return false;
+  return !REQUIRE_TRUE.some((k) => p[k] === false);
+}
+
 const clean = (v: unknown, n = 300): string => (typeof v === "string" ? scrubEmails(v.slice(0, n)) : "");
 
 export function parseAdvisorBundle(raw: unknown): AdvisorBundle {
@@ -114,7 +122,7 @@ export function parseAdvisorBundle(raw: unknown): AdvisorBundle {
   if (!Array.isArray(raw.profiles)) throw new BundleError("the bundle has no profiles");
   const profiles: BundleProfile[] = [];
   for (const p of raw.profiles.slice(0, MAX_BUNDLE_PROFILES)) {
-    if (!isObj(p) || typeof p.name !== "string" || !Array.isArray(p.scores) || !p.scores.every(isNum)) continue;
+    if (!isObj(p) || !isPublished(p) || typeof p.name !== "string" || !Array.isArray(p.scores) || !p.scores.every(isNum)) continue;
     const links = isObj(p.links) ? p.links : {};
     const url = typeof links.openalex === "string" && !hasEmail(links.openalex) && /^https?:\/\//i.test(links.openalex) ? links.openalex : null;
     profiles.push({

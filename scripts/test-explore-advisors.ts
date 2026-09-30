@@ -1,7 +1,8 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import { BundleError, DEFAULT_BUNDLE_PATH, bundleAxes, bundleSources, bundleStar, loadAdvisors, loadBundle, parseAdvisorBundle, resetAdvisors } from "../src/lib/explore/advisors";
+import { SPLIT_NOTE } from "../src/lib/explore/modes/map";
+import { BundleError, isPublished, DEFAULT_BUNDLE_PATH, bundleAxes, bundleSources, bundleStar, loadAdvisors, loadBundle, parseAdvisorBundle, resetAdvisors } from "../src/lib/explore/advisors";
 import { ORIGIN_LABEL } from "../src/lib/explore/advisor-origin";
 import { hasEmail } from "../src/lib/research-os/advisor-review";
 import { mapLayout } from "../src/lib/explore/modes/map";
@@ -40,6 +41,24 @@ check("non-object input is rejected", (() => {
     return true;
   }
 })());
+
+const flagged = (extra: Record<string, unknown>) => ({ ...fixture, profiles: [{ ...fixture.profiles[0], ...extra }, fixture.profiles[2]] });
+for (const [label, extra] of [["published false", { published: false }], ["publishable false", { publishable: false }], ["opt_out true", { opt_out: true }], ["private true", { private: true }], ["hidden true", { hidden: true }]] as const) {
+  check(`profile with ${label} is skipped`, parseAdvisorBundle(flagged(extra)).profiles.length === 1);
+}
+check("profile with published true is kept", parseAdvisorBundle(flagged({ published: true, opt_out: false })).profiles.length === 2);
+check("isPublished ignores profiles with no flags", isPublished({ name: "x" }));
+check("a bundle where every profile is flagged is rejected", (() => {
+  try {
+    parseAdvisorBundle({ ...fixture, profiles: [{ ...fixture.profiles[0], opt_out: true }] });
+    return false;
+  } catch (e) {
+    return e instanceof BundleError;
+  }
+})());
+const split = mapLayout({ axes: bundleAxes(bundle), advisors: [], split: true }, [], undefined);
+check("split bundle axes are stated in the legend", split.legend.some((l) => l.label === SPLIT_NOTE) && SPLIT_NOTE.includes("4 bundle components split by sign") && SPLIT_NOTE.includes("top terms"));
+check("unsplit axes add no split note", !mapLayout({ axes: bundleAxes(bundle), advisors: [] }, [], undefined).legend.some((l) => l.label === SPLIT_NOTE));
 
 const out = JSON.stringify(bundle);
 check("emails are scrubbed from names, fields, topics and links", !hasEmail(out) && !out.includes("mailto"));

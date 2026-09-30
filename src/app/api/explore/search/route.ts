@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
       .sort((a, b) => b.score - a.score || a.rank - b.rank)
       .slice(0, MAP_ADVISOR_CAP)
       .map((a) => ({ id: advisorId(a), name: a.name, field: a.field, score: a.score, star: a.star }));
-    return json({ advisors_sample: sample, advisors_source: origin, axes, advisors });
+    return json({ advisors_sample: sample, advisors_source: origin, axes_split: origin === "bundle", axes, advisors });
   }
   const params = parseCanonSearchParams(url, 40);
   const types = (url.searchParams.get("types") || "")
