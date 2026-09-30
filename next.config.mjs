@@ -9,6 +9,8 @@ const SECURITY_HEADERS = [
   { key: "Referrer-Policy", value: "origin-when-cross-origin" },
 ];
 
+const STAGE_V2 = ["1", "true", "on"].includes((process.env.STAGE_V2 || "").trim().toLowerCase());
+
 const nextConfig = {
   eslint: { ignoreDuringBuilds: false },
 
@@ -32,6 +34,7 @@ const nextConfig = {
 
   async redirects() {
     return [
+      ...(STAGE_V2 ? [{ source: "/explore", destination: "/canon/search", permanent: false }] : []),
       { source: "/canon/claims", destination: "/excerpts", permanent: true },
       { source: "/canon/claims/:concept", destination: "/excerpts/:concept", permanent: true },
       { source: "/canon/claims/:concept/:slug", destination: "/excerpts/:concept/:slug", permanent: true },

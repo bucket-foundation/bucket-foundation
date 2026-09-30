@@ -1,7 +1,7 @@
 "use client";
 
 import nextDynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
 import Stage, { type StageItem } from "@/components/stage/Stage";
 import { placeRecords, type StageMode } from "@/lib/stage/forms";
@@ -26,7 +26,7 @@ const TYPES: { id: HitType; label: string }[] = [
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
-export default function ExploreClient({ stage = false }: { stage?: boolean }) {
+export default function ExploreClient({ stage = false, embedded = false }: { stage?: boolean; embedded?: boolean }) {
   const [q, setQ] = useState("light water mitochondria");
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
   const [hits, setHits] = useState<Hit[]>([]);
@@ -45,10 +45,24 @@ export default function ExploreClient({ stage = false }: { stage?: boolean }) {
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
 
+  const initialSel = useRef<string | null>(null);
+
   useEffect(() => {
-    const m = new URLSearchParams(window.location.search).get("mode");
+    const params = new URLSearchParams(window.location.search);
+    const m = params.get("mode");
     if (m) setModeId(modeById(m).id);
-  }, []);
+    initialSel.current = params.get("sel");
+    const initialQ = params.get("q");
+    if (initialQ) setQ(initialQ);
+    run(initialQ || "light water mitochondria");
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const writeUrl = (key: string, value: string | null) => {
+    const u = new URL(window.location.href);
+    if (value) u.searchParams.set(key, value);
+    else u.searchParams.delete(key);
+    window.history.replaceState(null, "", u.toString());
+  };
 
   const pickMode = (id: string) => {
     setModeId(id);
@@ -68,7 +82,10 @@ export default function ExploreClient({ stage = false }: { stage?: boolean }) {
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
       setSample(!!body.advisors_sample);
-      setSelected(body.results[0]?.id ?? null);
+      const wanted = initialSel.current;
+      initialSel.current = null;
+      setSelected(body.results.find((r: Hit) => r.id === wanted)?.id ?? body.results[0]?.id ?? null);
+      writeUrl("q", query);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setHits([]);
@@ -78,8 +95,8 @@ export default function ExploreClient({ stage = false }: { stage?: boolean }) {
   }, []);
 
   useEffect(() => {
-    run(q);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (selected) writeUrl("sel", selected);
+  }, [selected]);
 
   const visible = useMemo(() => hits.filter((h) => types.has(h.type)), [hits, types]);
   const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
@@ -141,8 +158,9 @@ export default function ExploreClient({ stage = false }: { stage?: boolean }) {
     <main className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 md:px-6 pt-10 pb-16">
         <p className="mb-3 text-xs uppercase tracking-[0.22em]" style={{ color: "var(--parchment-dim)", ...mono }}>
-          Explore
+          {embedded ? "Canon · search" : "Explore"}
         </p>
+        {embedded && <h1 className="sr-only">Search the canon.</h1>}
         <form
           className="flex gap-2"
           onSubmit={(e) => {
