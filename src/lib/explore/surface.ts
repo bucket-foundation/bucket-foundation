@@ -1,6 +1,6 @@
 import { SPHERE_RADIUS, spherePoint, type Vec3 } from "./geometry";
 import { SLICE_RADIUS, sliceCenter, slicePoint, type Slice } from "./slices";
-import { radiusOf, smooth, spokeAngle, type PolarSample, type SpaceComponent, type SpaceObservation } from "./space";
+import { radiusOf, smooth, spokeAngle, type PolarSample, type ScoreScale, type SpaceComponent, type SpaceObservation } from "./space";
 
 export const SURFACE_STEPS = 48;
 export const SURFACE_ANGLES = 64;
@@ -14,24 +14,24 @@ export interface SurfaceMesh {
   angles: number;
 }
 
-export function slicePolarPoints(slices: Slice[], components: Pick<SpaceComponent, "angle_deg">[]): PolarSample[] {
-  return slices.flatMap((s, i) => components.map((c, j) => ({ angle: spokeAngle(c), u: i, r: radiusOf(s.scores[j]) })));
+export function slicePolarPoints(slices: Slice[], components: Pick<SpaceComponent, "angle_deg">[], scale: ScoreScale = "standardized"): PolarSample[] {
+  return slices.flatMap((s, i) => components.map((c, j) => ({ angle: spokeAngle(c), u: i, r: radiusOf(s.scores[j], scale) })));
 }
 
-export function surfaceRadius(points: PolarSample[], u: number, angle: number): number {
-  return smooth(points, u, angle, { fallback: radiusOf(0) });
+export function surfaceRadius(points: PolarSample[], u: number, angle: number, scale: ScoreScale = "standardized"): number {
+  return smooth(points, u, angle, { fallback: radiusOf(0, scale) });
 }
 
-export function surfaceMesh(slices: Slice[], components: Pick<SpaceComponent, "angle_deg">[], steps = SURFACE_STEPS, angles = SURFACE_ANGLES): SurfaceMesh {
+export function surfaceMesh(slices: Slice[], components: Pick<SpaceComponent, "angle_deg">[], steps = SURFACE_STEPS, angles = SURFACE_ANGLES, scale: ScoreScale = "standardized"): SurfaceMesh {
   const n = slices.length;
-  const points = slicePolarPoints(slices, components);
+  const points = slicePolarPoints(slices, components, scale);
   const positions: Vec3[] = [];
   for (let iu = 0; iu <= steps; iu++) {
     const u = n > 1 ? (iu / steps) * (n - 1) : 0;
     const center = sliceCenter(u, n);
     for (let ia = 0; ia < angles; ia++) {
       const a = (ia / angles) * Math.PI * 2;
-      positions.push(slicePoint(center, a, SLICE_RADIUS * surfaceRadius(points, u, a)));
+      positions.push(slicePoint(center, a, SLICE_RADIUS * surfaceRadius(points, u, a, scale)));
     }
   }
   const index: number[] = [];
@@ -47,11 +47,11 @@ export function surfaceMesh(slices: Slice[], components: Pick<SpaceComponent, "a
   return { positions, index, steps, angles };
 }
 
-export function obsTheta(scores: number[], components: Pick<SpaceComponent, "angle_deg">[]): number {
+export function obsTheta(scores: number[], components: Pick<SpaceComponent, "angle_deg">[], scale: ScoreScale = "standardized"): number {
   let x = 0;
   let y = 0;
   scores.forEach((s, i) => {
-    const w = radiusOf(s) - radiusOf(0) > 0 ? radiusOf(s) - radiusOf(0) : 0;
+    const w = Math.max(0, radiusOf(s, scale) - radiusOf(0, scale));
     const a = spokeAngle(components[i]);
     x += w * Math.cos(a);
     y += w * Math.sin(a);
@@ -70,8 +70,8 @@ export function midYear(obs: Pick<SpaceObservation, "t">[]): number {
   return ts.length ? ts[Math.floor(ts.length / 2)] : DEFAULT_YEAR;
 }
 
-export function spherePlacement(o: Pick<SpaceObservation, "scores" | "t">, components: Pick<SpaceComponent, "angle_deg">[], fallbackYear: number): Vec3 {
-  return spherePoint(obsTheta(o.scores, components), typeof o.t === "number" ? o.t : fallbackYear);
+export function spherePlacement(o: Pick<SpaceObservation, "scores" | "t">, components: Pick<SpaceComponent, "angle_deg">[], fallbackYear: number, scale: ScoreScale = "standardized"): Vec3 {
+  return spherePoint(obsTheta(o.scores, components, scale), typeof o.t === "number" ? o.t : fallbackYear);
 }
 
 export function visibleAt(o: Pick<SpaceObservation, "t">, year: number): boolean {

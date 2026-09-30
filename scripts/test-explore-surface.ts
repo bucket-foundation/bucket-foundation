@@ -101,3 +101,14 @@ test("the time slider shows items posed by the year and keeps undated items", ()
   assert.equal(midYear([{ t: 1900 }, { t: 1950 }, { t: 2000 }]), 1950);
   assert.equal(midYear([{ t: null }]), DEFAULT_YEAR);
 });
+
+test("the unit scale flows through the surface and the placement", () => {
+  const ds = dataset([[1, 0.5, 0.2, 0.8], [0.4, 0.4, 0.4, 0.4]], [1920, 2010]);
+  const slices = makeSlices(ds);
+  const pts = slicePolarPoints(slices, ds.components, "unit");
+  assert.ok(pts.every((p) => p.r >= 0.02 && p.r <= 1));
+  assert.equal(pts[0].r, 1);
+  const mesh = surfaceMesh(slices, ds.components, 6, 8, "unit");
+  for (const p of mesh.positions) assert.ok(distanceFromAxis(p) <= cylinderRadius() + 1e-9);
+  assert.ok(Math.abs(obsTheta([1, 0, 0, 0], ds.components, "unit") - 0) < 1e-9);
+});
