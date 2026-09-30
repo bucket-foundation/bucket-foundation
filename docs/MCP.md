@@ -44,4 +44,4 @@ No tool writes. Productions, canon sign-off and anything scoped to a person stay
 
 ## Protocol notes
 
-`initialize` reports protocol version `2025-06-18`; clients negotiating `2024-11-05` receive the same tools. GET and DELETE answer 405; OPTIONS answers CORS preflight with `*`. Errors follow JSON-RPC: `-32700` parse, `-32600` invalid request, `-32601` method not found, `-32602` unknown tool, `-32603` tool exception.
+`initialize` reports protocol version `2025-06-18`. GET and DELETE answer 405; OPTIONS answers CORS preflight with `*`. Errors follow JSON-RPC: `-32700` parse, `-32600` invalid request, `-32601` method not found, `-32602` unknown tool, `-32603` tool exception.
