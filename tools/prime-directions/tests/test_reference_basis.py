@@ -71,3 +71,9 @@ def test_committed_projection_golden_matches_python():
     golden = json.loads((root / "tests" / "fixtures" / "reference-projection.golden.json").read_text())
     got = reference.project_texts(data, golden["texts"])
     assert np.allclose(got, np.array(golden["scores"]), atol=1e-5)
+
+
+def test_basis_carries_the_stop_words_used_for_coverage():
+    data = json.loads(COMMITTED.read_text())
+    assert "the" in data["stop_words"] and "and" in data["stop_words"]
+    assert not set(data["stop_words"]) & set(data["vocab"])

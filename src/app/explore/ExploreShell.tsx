@@ -233,7 +233,8 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
   const dataset = useMemo<Dataset>(() => (basis && ordered.length ? datasetFromResults(ordered, basis) : sampleDataset()), [basis, ordered]);
 
-  useEffect(() => setIndex(0), [dataset]);
+  const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
+  useEffect(() => setIndex(0), [datasetKey]);
 
   const pick = (i: number) => {
     setIndex(i);
