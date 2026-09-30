@@ -45,10 +45,10 @@ jobs:
             strict: "1"
           - os: macos-latest
             bundles: app,dmg
-            strict: "0"
+            strict: "1"
           - os: windows-latest
             bundles: msi
-            strict: "0"
+            strict: "1"
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
