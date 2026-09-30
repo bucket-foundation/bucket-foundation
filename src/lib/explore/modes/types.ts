@@ -44,6 +44,7 @@ export interface ModeContext {
   scroll: number;
   genome?: GenomeSummary | null;
   extraHits?: Hit[];
+  element?: number;
 }
 
 export interface ExploreMode {
