@@ -23,7 +23,9 @@ async function codeFor(address: string): Promise<string> {
 
 test("the solvability atlas renders in cards and the four space views", async ({ page }) => {
   const mail = await fetch(`${MAIL}/api/v1/messages?limit=1`).catch(() => null);
-  test.skip(!mail?.ok, `local mail server at ${MAIL} is not running`);
+  const required = process.env.E2E_REQUIRE_ATLAS === "1";
+  if (required) expect(mail?.ok, `local mail server at ${MAIL} is not running`).toBe(true);
+  test.skip(!required && !mail?.ok, `local mail server at ${MAIL} is not running`);
   await page.goto(`/sign-in?next=${encodeURIComponent(ATLAS)}`);
   await page.fill("#sign-in-email", EMAIL);
   await page.click("button[type=submit]");
@@ -32,6 +34,7 @@ test("the solvability atlas renders in cards and the four space views", async ({
   await page.click("button[type=submit]");
   await expect(page).toHaveURL(/\/research-os\/solvability/);
   const gated = await page.getByRole("heading", { name: "Not in the canon." }).isVisible();
+  if (required) expect(gated, `${EMAIL} is not in RESEARCH_OS_REVIEWER_EMAILS on the server under test`).toBe(false);
   test.skip(gated, `${EMAIL} is not in RESEARCH_OS_REVIEWER_EMAILS on the server under test`);
   await expect(page.getByRole("heading", { name: "solvability atlas" })).toBeVisible();
   await expect(page.locator("canvas")).toHaveCount(0);
