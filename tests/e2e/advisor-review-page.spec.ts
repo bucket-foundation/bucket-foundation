@@ -148,3 +148,17 @@ test("s, m and x set the decision for the active person", async ({ page }) => {
   await page.keyboard.press("x");
   expect(await page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id)).toBe("skip");
 });
+
+test("decisions: shortlist, skip and a save-for-later bookmark with b as its key", async ({ page }) => {
+  await page.goto(pageUrl);
+  const buttons = page.locator("#panel .actions button");
+  await expect(buttons).toHaveCount(3);
+  await expect(buttons.nth(0)).toHaveText("Shortlist");
+  await expect(buttons.nth(1)).toHaveText("Skip");
+  await expect(buttons.nth(2)).toHaveAttribute("aria-label", "Save for later");
+  const id = await page.evaluate(() => (window as any).__advisorReview.selected());
+  await page.locator("#circle").focus();
+  await page.keyboard.press("b");
+  expect(await page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id)).toBe("maybe");
+  await expect(page.locator("#panel .actions button[data-set=maybe]")).toHaveAttribute("aria-pressed", "true");
+});

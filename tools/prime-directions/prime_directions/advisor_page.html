@@ -36,8 +36,8 @@ button{cursor:pointer}
 .count{color:var(--soft);font-size:13px}
 .cards{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;align-items:start}
 .card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--panel);display:grid;gap:8px;align-content:start}
-.card[data-status=shortlist]{border-color:var(--teal);box-shadow:inset 4px 0 0 var(--teal)}
-.card[data-status=maybe]{box-shadow:inset 4px 0 0 var(--ochre-fill)}
+.card[data-status=shortlist]{border-color:var(--ochre-fill);box-shadow:inset 4px 0 0 var(--ochre-fill)}
+.card[data-status=maybe]{box-shadow:inset 4px 0 0 var(--soft)}
 .card[data-status=skip]{opacity:.55}
 .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 .name{font:400 19px/1.25 Georgia,serif;margin:0}
@@ -50,9 +50,13 @@ button{cursor:pointer}
 .flag{color:var(--rust);font-weight:600}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .actions button{flex:1 1 90px}
-.actions button[aria-pressed=true][data-set=shortlist]{background:var(--teal);color:#fff;border-color:var(--teal)}
-.actions button[aria-pressed=true][data-set=maybe]{background:var(--ochre-fill);color:#1F1C16;border-color:var(--ochre-fill)}
-.actions button[aria-pressed=true][data-set=skip]{background:var(--ink);color:var(--bg)}
+.actions button[data-set=shortlist]{border-color:var(--ochre-fill);color:var(--ochre)}
+.actions button[data-set=skip]{color:var(--rust);border-color:color-mix(in srgb,var(--rust) 45%,transparent);background:transparent}
+.actions button[data-set=maybe]{flex:0 0 38px;padding:6px 0;display:grid;place-items:center;color:var(--soft);background:transparent}
+.actions button[data-set=maybe] svg{width:14px;height:14px}
+.actions button[aria-pressed=true][data-set=shortlist]{background:var(--ochre-fill);color:#1F1C16;border-color:var(--ochre-fill)}
+.actions button[aria-pressed=true][data-set=maybe]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.actions button[aria-pressed=true][data-set=skip]{background:var(--rust);color:#fff;border-color:var(--rust)}
 .empty{color:var(--soft);padding:24px 0;text-align:center}
 .toggle{display:flex;gap:6px;align-items:center;font-size:14px}
 .more-filters summary{cursor:pointer;font-size:14px;color:var(--soft);padding:2px 0}
@@ -149,7 +153,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <details class="more-filters"><summary>Filters and export</summary>
 <div class="row">
 <select id="view" aria-label="Who"><option value="phd">PhD advisors</option><option value="stevens">Stevens contacts</option><option value="all">Everyone</option></select>
-<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Maybe</option><option value="skip">Skip</option></select>
+<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Saved for later</option><option value="skip">Skip</option></select>
 <label class="toggle"><input type="checkbox" id="cap" checked> <span id="cap-label"></span></label>
 <button type="button" id="export">Export shortlist CSV</button>
 </div>
@@ -163,7 +167,7 @@ main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12p
 <div id="main-radar" class="main-radar" hidden></div>
 </div>
 <p class="tip" id="tip" hidden></p>
-<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll or arrow keys: step · s shortlist · m maybe · x skip</span></div>
+<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll or arrow keys: step · s shortlist · x skip · b save for later</span></div>
 </section>
 
 <ol class="cards" id="cards"></ol>
@@ -299,6 +303,15 @@ function miniCharts(r, onPick) {
   }
   return minis;
 }
+const BOOKMARK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="currentColor"/></svg>';
+function decisionButtons(r, into) {
+  for (const [s, label] of [["shortlist", "Shortlist"], ["skip", "Skip"], ["maybe", "Save for later"]]) {
+    const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, title: label, "aria-label": label});
+    if (s === "maybe") b.innerHTML = BOOKMARK; else b.textContent = label;
+    b.addEventListener("click", () => setStatus(r, s));
+    into.append(b);
+  }
+}
 function panel(r) {
   const p = $("panel");
   p.replaceChildren();
@@ -324,11 +337,7 @@ function panel(r) {
   stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: similarity scaled against the 200 closest." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is the median of the 200 closest, grey is the filter average, teal is this advisor."}));
   p.append(stars, make("p", {class: "note", text: "Similarity of published topics. Unvalidated as a measure of advising fit."}));
   const actions = make("div", {class: "actions"});
-  for (const [s, label] of [["shortlist","Shortlist"],["maybe","Maybe"],["skip","Skip"]]) {
-    const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, text: label});
-    b.addEventListener("click", () => setStatus(r, s));
-    actions.append(b);
-  }
+  decisionButtons(r, actions);
   p.append(actions);
 }
 const PALETTE = ["#8A641A","#0B6E6E","#9A3B22","#4F6B2A","#5B4A8A","#2E6B8A","#B8861E","#7A5C3E","#3F7F6B","#8A3B5E"];
@@ -399,7 +408,7 @@ function drawCircle(target, focusId) {
     cx.globalAlpha = on ? 0.85 : 0.12;
     cx.fillStyle = colorOf(r.field || "");
     cx.beginPath(); cx.arc(x, y, on ? 2.6 : 1.6, 0, 2 * Math.PI); cx.fill();
-    if (on && statusOf(r) === "shortlist") { cx.globalAlpha = 1; cx.strokeStyle = css.getPropertyValue("--teal"); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(x, y, 5, 0, 2 * Math.PI); cx.stroke(); }
+    if (on && statusOf(r) === "shortlist") { cx.globalAlpha = 1; cx.strokeStyle = css.getPropertyValue("--ochre-fill"); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(x, y, 5, 0, 2 * Math.PI); cx.stroke(); }
   }
   cx.globalAlpha = 1;
   if (onMain) geo = g;
@@ -461,7 +470,7 @@ $("circle-wrap").addEventListener("wheel", (e) => {
 cv.tabIndex = 0;
 document.addEventListener("keydown", (e) => {
   if (e.target.matches("input,select,textarea")) return;
-  const map = {s: "shortlist", m: "maybe", x: "skip"};
+  const map = {s: "shortlist", b: "maybe", m: "maybe", x: "skip"};
   if (!map[e.key] || e.ctrlKey || e.metaKey || e.altKey) return;
   const r = rows.find((x) => x.id === selectedId);
   if (!r) return;
@@ -527,11 +536,7 @@ function card(r, tag = "li") {
   if (cc && cc.kind === "email") tags.append(make("a", {href: "mailto:" + cc.value, text: cc.value}));
   c.append(tags);
   const actions = make("div", {class: "actions"});
-  for (const [s, label] of [["shortlist","Shortlist"],["maybe","Maybe"],["skip","Skip"]]) {
-    const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, text: label});
-    b.addEventListener("click", () => setStatus(r, s));
-    actions.append(b);
-  }
+  decisionButtons(r, actions);
   c.append(actions);
   c.setAttribute("tabindex", "0");
   if (r.id === selectedId) c.classList.add("selected");
@@ -543,7 +548,7 @@ function render() {
   const list = visible();
   const counts = {shortlist: 0, maybe: 0, skip: 0};
   for (const r of rows) { const s = statusOf(r); if (s in counts) counts[s]++; }
-  $("count").textContent = list.length + " shown · " + counts.shortlist + " shortlisted · " + counts.maybe + " maybe · " + counts.skip + " skipped";
+  $("count").textContent = list.length + " shown · " + counts.shortlist + " shortlisted · " + counts.maybe + " saved · " + counts.skip + " skipped";
   const ol = $("cards");
   ol.replaceChildren(...list.slice(0, limit).map((r) => card(r)));
   $("more").hidden = list.length <= limit;
