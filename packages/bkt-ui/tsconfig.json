@@ -10,12 +10,22 @@
     "resolveJsonModule": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["bun"],
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "@academy/*": ["../../src/lib/academy/*"],
       "@ros/*": ["../../src/lib/research-os/*"],
       "@/*": ["../../src/*"],
       "next/navigation": ["./src/shims/next-navigation.ts"],
-      "next/link": ["./src/shims/next-link.tsx"]
+      "next/link": ["./src/shims/next-link.tsx"],
+      "react": ["./node_modules/@types/react"],
+      "react/*": ["./node_modules/@types/react/*"],
+      "react-dom": ["./node_modules/@types/react-dom"],
+      "react-dom/*": ["./node_modules/@types/react-dom/*"],
+      "three": ["./node_modules/@types/three"],
+      "three/*": ["./node_modules/@types/three/*"],
+      "three-stdlib": ["./node_modules/three-stdlib"],
+      "@react-three/fiber": ["./node_modules/@react-three/fiber"],
+      "@react-three/drei": ["./node_modules/@react-three/drei"]
     }
   },
   "include": ["src", "scripts", "vite.config.ts"]
