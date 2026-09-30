@@ -178,5 +178,5 @@ test("sorts and filters: our-direction sort, strong-on filter and h-index floor"
   for (const r of strong) expect(r.star_ours[1]).toBeGreaterThanOrEqual(0.75);
   await expect(page.locator("#legend")).toContainText("average of the current filters");
   await page.locator(".minis button").nth(2).click();
-  await expect(page.locator("#legend")).toContainText("median of the 200 closest");
+  await expect(page.locator("#legend")).toContainText("top 50%, 10% and 1%");
 });

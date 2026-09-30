@@ -313,11 +313,13 @@ def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, d
         draw = model.project([t for _, t in directions])
         _, dvec = score_space(raw, draw, scoring)
         sim = cosine_matrix(space, dvec)
+        qsim = cosine_matrix(qvec[None, :], dvec)[0]
+        ours = np.stack([percentile_of(sim[:, j]) for j in range(sim.shape[1])], axis=1) / 100
+        sorted_sim = [np.sort(sim[:, j]) for j in range(sim.shape[1])]
+        qours = np.array([np.searchsorted(sorted_sim[j], qsim[j], side="right") / len(sim) for j in range(sim.shape[1])]).clip(0, 1)
         top = [index[r["id"]] for r in rows[:ref_n] if r["id"] in index]
-        ref = sim[top] if top else sim
-        lo, hi = np.percentile(ref, 5, axis=0), ref.max(axis=0)
-        ours = np.clip((sim - lo) / np.where(hi - lo > 1e-12, hi - lo, 1), 0, 1)
         context["our_axes"] = [label for label, _ in directions]
+        context["star_query_ours"] = [round(float(v), 3) for v in qours]
         context["star_ref_ours"] = [round(float(v), 3) for v in np.median(ours[top] if top else ours, axis=0)]
     for r in rows:
         i = index.get(r["id"])

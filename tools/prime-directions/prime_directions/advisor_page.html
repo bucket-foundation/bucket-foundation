@@ -290,11 +290,15 @@ function smoothLoop(p, t = 0.35) {
   }
   return d + " Z";
 }
-function radar(labels, series, compact = false, square = false) {
+const topScale = (v) => (v == null ? v : Math.max(0, 1 - Math.log10(1 + 99 * (1 - Math.min(1, Math.max(0, v)))) / 2));
+function radar(labels, series, compact = false, square = false, rings = null) {
   const W = 380, C = 190, R = 84, k = labels.length;
   const root = svg("svg", {preserveAspectRatio: "xMidYMid meet", viewBox: compact || square ? (C - R - 4) + " " + (C - R - 4) + " " + (2 * R + 8) + " " + (2 * R + 8) : "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
   const ang = (i) => -Math.PI / 2 + 2 * Math.PI * i / k;
-  for (const f of [0.25, 0.5, 0.75, 1]) root.append(svg("circle", {cx: C, cy: C, r: R * f, fill: "none", stroke: "currentColor", "stroke-opacity": "0.15"}));
+  for (const [f, name] of rings || [[0.25], [0.5], [0.75], [1]]) {
+    root.append(svg("circle", {cx: C, cy: C, r: R * f, fill: "none", stroke: "currentColor", "stroke-opacity": "0.15"}));
+    if (name && !compact) { const t = svg("text", {x: C + 2, y: C - R * f - 2, "font-size": "4.5", "fill-opacity": "0.7"}); t.textContent = name; root.append(t); }
+  }
   labels.forEach((l, i) => {
     root.append(svg("line", {x1: C, y1: C, x2: C + R * Math.cos(ang(i)), y2: C + R * Math.sin(ang(i)), stroke: "currentColor", "stroke-opacity": "0.15"}));
     const t = svg("text", {x: C + (R + 12) * Math.cos(ang(i)), y: C + (R + 12) * Math.sin(ang(i)), "text-anchor": Math.abs(Math.cos(ang(i))) < 0.3 ? "middle" : Math.cos(ang(i)) > 0 ? "start" : "end", "dominant-baseline": "middle"});
@@ -323,18 +327,18 @@ function miniCharts(r, onPick) {
       const c = make("canvas", {"aria-hidden": "true", dataset: {focus: r.id}});
       b.append(c);
       if (lazy) lazy.observe(c); else requestAnimationFrame(() => drawCircle(c, r.id));
-    } else b.append(radar(kind === "prime" ? AXES : OURS, series(kind, r), true));
+    } else b.append(radar(kind === "prime" ? AXES : OURS, series(kind, r), true, false, kind === "ours" ? OURS_RINGS : null));
     b.append(document.createTextNode(label));
     b.addEventListener("click", (e) => { e.stopPropagation(); onPick(kind); });
     minis.append(b);
   }
   return minis;
 }
-const BOOKMARK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="currentColor"/></svg>';
+const bookmark = () => { const g = svg("svg", {viewBox: "0 0 16 16", "aria-hidden": "true"}); g.append(svg("path", {d: "M4 2h8v12l-4-3-4 3z", fill: "currentColor"})); return g; };
 function decisionButtons(r, into) {
   for (const [s, label] of [["shortlist", "Shortlist"], ["skip", "Skip"], ["maybe", "Save for later"]]) {
     const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, title: label, "aria-label": label});
-    if (s === "maybe") b.innerHTML = BOOKMARK; else b.textContent = label;
+    if (s === "maybe") b.append(bookmark()); else b.textContent = label;
     b.addEventListener("click", () => setStatus(r, s));
     into.append(b);
   }
@@ -361,7 +365,7 @@ function panel(r) {
   if (topics.length) p.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
   const minis = miniCharts(r, (kind) => setMain(kind));
   const stars = make("div", {class: "stars"});
-  stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: similarity scaled against the 200 closest." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is the median of the 200 closest, grey is the filter average, teal is this advisor."}));
+  stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: percentile among all professors." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is you, grey is the filter average, teal is this advisor. Rings mark the top 50%, 10% and 1% of all professors."}));
   p.append(stars, make("p", {class: "note", text: "Similarity of published topics. Unvalidated as a measure of advising fit."}));
   const actions = make("div", {class: "actions"});
   decisionButtons(r, actions);
@@ -379,31 +383,37 @@ function pos(r, size) {
 let MAIN = "circle";
 const avgOf = (key) => { const xs = current.filter((r) => r[key]); if (!xs.length) return null; return xs[0][key].map((_, i) => xs.reduce((a, r) => a + r[key][i], 0) / xs.length); };
 function series(kind, r) {
+  const out = seriesRaw(kind, r);
+  return kind === "ours" ? out.map((x) => ({...x, values: x.values && x.values.map(topScale)})) : out;
+}
+const OURS_RINGS = [[topScale(0.5), "top 50%"], [topScale(0.9), "top 10%"], [topScale(0.99), "top 1%"], [1, ""]];
+function seriesRaw(kind, r) {
   const out = [];
   if (kind === "prime") out.push({name: "you", values: ctx.star_query_prime, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
-  if (kind === "ours") out.push({name: "median of the 200 closest", values: ctx.star_ref_ours, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
+  if (kind === "ours") out.push({name: "you", values: ctx.star_query_ours || ctx.star_ref_ours, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
   const key = kind === "prime" ? "star_prime" : "star_ours";
   out.push({name: "average of the current filters", values: avgOf(key), fill: "var(--soft)", stroke: "var(--soft)", opacity: 0.15});
   if (r && r[key]) out.push({name: r.name, values: r[key], fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25});
   return out;
 }
-const LINE = (stroke, dash, fill) => '<svg class="swatch" viewBox="0 0 22 10" aria-hidden="true"><rect x="1" y="1" width="20" height="8" rx="4" fill="' + (fill || "none") + '" fill-opacity="0.3" stroke="' + stroke + '" stroke-width="1.6"' + (dash ? ' stroke-dasharray="3 2"' : "") + '/></svg>';
+const LINE = (stroke, dash, fill) => { const g = svg("svg", {class: "swatch", viewBox: "0 0 22 10", "aria-hidden": "true"}); g.append(svg("rect", {x: 1, y: 1, width: 20, height: 8, rx: 4, fill: fill || "none", "fill-opacity": "0.3", stroke, "stroke-width": "1.6", "stroke-dasharray": dash ? "3 2" : "none"})); return g; };
+const legendKey = (cls, color) => { const i = make("i", {class: "key " + cls}); if (color) i.style.background = color; return i; };
 function renderLegend() {
   const L = $("legend");
-  const row = (html, text) => { const sp = make("span"); sp.innerHTML = html; sp.append(document.createTextNode(text)); return sp; };
+  const row = (icon, text) => { const sp = make("span"); sp.append(icon, document.createTextNode(text)); return sp; };
   const kids = [make("b", {text: MAIN === "circle" ? "Circle" : MAIN === "prime" ? "Prime directions" : "Our directions"})];
   if (MAIN === "circle") {
-    kids.push(row('<i class="key you"></i>', "you, at the centre"), row('<i class="key avg"></i>', "average of the current filters"), row('<i class="key sel"></i>', "the advisor you picked"), row('<i class="key short"></i>', "shortlisted"));
+    kids.push(row(legendKey("you"), "you, at the centre"), row(legendKey("avg"), "average of the current filters"), row(legendKey("sel"), "the advisor you picked"), row(legendKey("short"), "shortlisted"));
     const counts = {};
     for (const r of current) { const f = r.field || "unknown"; counts[f] = (counts[f] || 0) + 1; }
     const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
-    if (top.length) { kids.push(make("em", {text: "dot colour: field"})); for (const [f] of top) { const sp = row('<i class="key" style="background:' + colorOf(f) + '"></i>', f); kids.push(sp); } }
+    if (top.length) { kids.push(make("em", {text: "dot colour: field"})); for (const [f] of top) { kids.push(row(legendKey("", colorOf(f)), f)); } }
     kids.push(make("em", {text: "closer to the centre: a closer match"}));
   } else {
     const css = getComputedStyle(document.documentElement);
     const gold = css.getPropertyValue("--ochre-fill"), soft = css.getPropertyValue("--soft"), teal = css.getPropertyValue("--teal");
-    kids.push(row(LINE(gold, true), MAIN === "prime" ? "you, the research statement" : "median of the 200 closest"), row(LINE(soft, false, soft), "average of the current filters"), row(LINE(teal, false, teal), "the advisor you picked"));
-    kids.push(make("em", {text: MAIN === "prime" ? "further out: higher percentile among all professors" : "further out: closer to that direction, scaled against the 200 closest"}));
+    kids.push(row(LINE(gold, true), "you, the research statement"), row(LINE(soft, false, soft), "average of the current filters"), row(LINE(teal, false, teal), "the advisor you picked"));
+    kids.push(make("em", {text: MAIN === "prime" ? "further out: higher percentile among all professors" : "rings: top 50%, 10% and 1% of all professors on that direction"}));
   }
   kids.push(make("em", {text: "scroll or arrows: step · s shortlist · x skip · b save"}));
   L.replaceChildren(...kids);
@@ -422,7 +432,7 @@ function drawMain() {
   renderLegend();
   if (showCircle) { drawCircle(); return; }
   const r = rows.find((x) => x.id === selectedId);
-  const big = radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r));
+  const big = radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r), false, false, MAIN === "ours" ? OURS_RINGS : null);
   const m = 24, lo = 190 - 84 - m, span = 84 * 2 + 2 * m;
   big.setAttribute("viewBox", lo + " " + lo + " " + span + " " + span);
   big.style.overflow = "visible";
@@ -645,7 +655,8 @@ $("view").addEventListener("change", reset);
 $("cap").addEventListener("change", reset);
 $("q").addEventListener("input", reset);
 $("f-status").addEventListener("change", reset);
-for (const id of ["sort", "f-ours", "f-h"]) $(id).addEventListener("change", reset);
+$("sort").addEventListener("change", () => { selectedId = null; reset(); });
+for (const id of ["f-ours", "f-h"]) $(id).addEventListener("change", reset);
 for (const [k] of present) $("f-" + k).addEventListener("change", reset);
 
 const csvCell = (v) => { let s = Array.isArray(v) ? v.join("; ") : String(v ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
