@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import { CANON_BRANCHES } from "@/lib/contribute";
 import { getAllEvents, getAllHandles, computeStats } from "./lib";
 
 export const revalidate = 300;
@@ -29,8 +30,25 @@ export default function Page() {
     <PageShell
       eyebrow="§ contributors"
       title="Contributors"
-      subtitle="Everyone who has landed a commit on the canon. Attribution is public, permanent, and on-chain where applicable."
+      subtitle="Everyone who has landed a commit on the canon. Attribution is public and permanent."
     >
+      <div className="mb-10 max-w-2xl text-[color:var(--parchment-dim)] text-pretty">
+        <p>
+          Each contributor below added canon entries, landscape notes or figure pages to the repository. Open a profile to see their commits by branch.
+        </p>
+        <p className="mt-4">
+          Figure pages sit inside each branch:{" "}
+          {CANON_BRANCHES.map((b, i) => (
+            <span key={b.slug}>
+              {i > 0 && ", "}
+              <Link href={`/canon/${b.slug}`} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+                {b.name}
+              </Link>
+            </span>
+          ))}
+          .
+        </p>
+      </div>
       {rows.length === 0 ? (
         <div className="py-16 text-center border hairline">
           <div className="font-mono-mark text-2xl text-[color:var(--gold-dim)] mb-4">

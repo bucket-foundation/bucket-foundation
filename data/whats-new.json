@@ -2,6 +2,32 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-solver-gap-engine",
+      "date": "2026-09-30",
+      "category": "production",
+      "branch": null,
+      "title": "Solver gap engine",
+      "summary": "3,599 problems from DeepMind formal-conjectures mapped as proved or open. The 1,364 open ones with a docstring are ranked by embedding similarity to the nearest solved problem in another file; 31 score 0.8 or above and 5 score 0.9 or above. A Lean test file proves three classical results and sample-tests four claims, Goldbach to 3,000 included.",
+      "commit": "949b98f95",
+      "pr": 470,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/470",
+      "status": "open",
+      "plot_title": "Open problems by similarity to the nearest solved problem in another file, all-MiniLM-L6-v2 over docstrings",
+      "image": "/whats-new/production-solver-gap-engine.webp",
+      "image_alt": "Histogram of 1,364 open problems by cosine similarity to the nearest solved problem in another file, peaking near 0.58, with 31 at 0.8 or above, 5 at 0.9 or above.",
+      "discussion": "Matches inside the same file are excluded, since those are variants of one problem; 455 open problems had their closest match there. The top cross-file pairs join related conjectures, such as Kotzig's conjecture with Ringel's, and neighbouring Erdos problems. Similarity measures wording, so a high score marks a problem worth handing to a prover and says nothing about difficulty. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
+      "links": [
+        {
+          "label": "PR 470",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/470"
+        },
+        {
+          "label": "Report",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/reports/2026-09-30-solver-gap-engine.md"
+        }
+      ]
+    },
+    {
       "id": "production-80k-prime-directions",
       "date": "2026-09-27",
       "category": "production",
@@ -54,6 +80,24 @@
           "href": "https://github.com/bucket-foundation/bucket-foundation/pull/354"
         }
       ]
+    },
+    {
+      "id": "fe0458d-07-mind-cognitive-load-promoted",
+      "date": "2026-09-17",
+      "category": "entry-promoted",
+      "branch": "07-mind",
+      "title": "mind · cognitive-load index updated",
+      "summary": "CANON_INDEX.md modified — see commit for new rows.",
+      "commit": "fe0458d"
+    },
+    {
+      "id": "fe0458d-07-mind-sub-outcomes-promoted",
+      "date": "2026-09-17",
+      "category": "entry-promoted",
+      "branch": "07-mind",
+      "title": "mind · sub-outcomes index updated",
+      "summary": "CANON_INDEX.md modified — see commit for new rows.",
+      "commit": "fe0458d"
     },
     {
       "id": "27855ae-site",
@@ -2277,6 +2321,15 @@
       "title": "Intake memo: mind-canon-pass-1-2026-05-01",
       "summary": "New file under 07-mind/_intake/.",
       "commit": "fc0fadb"
+    },
+    {
+      "id": "afec2ed-site-refactor",
+      "date": "2026-05-01",
+      "category": "site-refactor",
+      "branch": null,
+      "title": "Canon site refactor",
+      "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. The private corpus left the top nav and became one of several sources under biophysics. Pattern-B changelog (this file) introduced.",
+      "commit": "afec2ed"
     }
   ]
 }

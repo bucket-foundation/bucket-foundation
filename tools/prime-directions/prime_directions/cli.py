@@ -129,6 +129,17 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--query", type=Path, required=True)
     a.add_argument("--out", type=Path, required=True)
     review_args(a)
+    rb = sub.add_parser("reference-basis")
+    rb.add_argument("--out", type=Path, required=True)
+    rb.add_argument("--basis", type=Path, help="JSON list of {name, text} documents; default is the cached OpenAlex topic taxonomy")
+    rb.add_argument("--k", type=int, default=12)
+    rb.add_argument("--max-features", type=int, default=6000)
+    rb.add_argument("--seed", type=int, default=0)
+    es = sub.add_parser("explore-space")
+    es.add_argument("kind", choices=["advisors"])
+    es.add_argument("--bundle", type=Path, required=True)
+    es.add_argument("--basis-file", type=Path, required=True)
+    es.add_argument("--out", type=Path, required=True)
     f = sub.add_parser("fit-me")
     f.add_argument("--statement", type=Path)
     f.add_argument("--cv", type=Path)
@@ -496,8 +507,32 @@ def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
         export.write_json({"corpora": summary, "failures": failures}, private_out / "summary.json")
     return 1 if failures else 0
 
+def cmd_reference_basis(args) -> int:
+    if args.basis:
+        rows = reference.load_basis(args.basis)
+    else:
+        rows = reference.fetch_topics(corpora.data_root() / "openalex-topics.json", os.environ.get("PRIME_CONTACT"))
+    data = reference.build_reference_basis(rows, k=args.k, max_features=args.max_features, seed=args.seed)
+    export.write_json(data, args.out)
+    print(f"wrote {args.out}: {len(data['vocab'])} terms, {args.k} components")
+    return 0
+
+def cmd_explore_space(args) -> int:
+    from . import explore_space
+
+    basis_file = json.loads(args.basis_file.read_text(encoding="utf-8"))
+    bundle = json.loads(args.bundle.read_text(encoding="utf-8"))
+    data = explore_space.advisors_space(basis_file, bundle)
+    explore_space.write_space(data, args.out)
+    print(f"wrote {args.out}: {len(data['obs'])} advisors, {len(data['components'])} components")
+    return 0
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.cmd == "reference-basis":
+        return cmd_reference_basis(args)
+    if args.cmd == "explore-space":
+        return cmd_explore_space(args)
     registry = corpora.load_registry(args.registry)
     if args.cmd == "list":
         return cmd_list(registry)

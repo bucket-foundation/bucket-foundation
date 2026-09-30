@@ -39,6 +39,11 @@ const nextConfig = {
       { source: "/library", destination: "/", permanent: true },
       { source: "/assets", destination: "/", permanent: true },
       { source: "/chat", destination: "/", permanent: true },
+      { source: "/canon/timeline", destination: "/canon", permanent: true },
+      { source: "/join", destination: "/download", permanent: true },
+      { source: "/canon/concept/:term", destination: "/excerpts/:term", permanent: true },
+      { source: "/canon/author", destination: "/contributors", permanent: true },
+      { source: "/canon/author/:handle", destination: "/contributors/:handle", permanent: true },
     ];
   },
 

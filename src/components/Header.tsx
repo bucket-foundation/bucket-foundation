@@ -97,7 +97,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-7 small-caps text-[11px] text-[color:var(--basalt-2)]">
+          <nav className="hidden xl:flex items-center gap-7 whitespace-nowrap small-caps text-[11px] text-[color:var(--basalt-2)]">
             {NAV.map((n) => (
               <div
                 key={n.href}
@@ -107,7 +107,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
               >
                 <Link
                   href={n.href}
-                  className="hover:text-[color:var(--aegean-deep)] transition border-b-2 border-transparent hover:border-[color:var(--gold)] pb-1 min-h-[44px] flex items-center"
+                  className="hover:text-[color:var(--aegean-deep)] transition border-y-2 border-transparent hover:border-b-[color:var(--gold)] h-11 flex items-center"
                   aria-haspopup={n.sub ? "true" : undefined}
                   aria-expanded={n.sub ? openSub === n.label : undefined}
                 >
@@ -184,7 +184,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
             <Link
               href="/download"
               onClick={closeDrawer}
-              className="min-h-[44px] flex items-center px-3 md:px-4 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em]"
+              className="h-11 flex items-center px-3 md:px-4 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em]"
             >
               Download
             </Link>
@@ -196,7 +196,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
               aria-expanded={open}
               aria-controls="mobile-drawer"
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-[5px] rounded-sm border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 active:bg-[color:var(--bone-3)] transition"
+              className="xl:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-[5px] rounded-sm border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 active:bg-[color:var(--bone-3)] transition"
             >
               <span
                 className={`block w-5 h-[2px] bg-[color:var(--basalt)] transition-transform origin-center ${
@@ -223,7 +223,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
         role="dialog"
         aria-modal="true"
         aria-hidden={!open}
-        className={`md:hidden fixed inset-0 z-50 transition-[visibility] ${
+        className={`xl:hidden fixed inset-0 z-50 transition-[visibility] ${
           open ? "visible" : "invisible"
         }`}
       >

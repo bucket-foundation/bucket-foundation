@@ -47,6 +47,10 @@ npm run db:local:stop
 
 Put the local `API_URL`, `ANON_KEY`, and `SERVICE_ROLE_KEY` from `db:local:status` into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. Sign-in codes land in Inbucket at http://localhost:54324. The hosted project gets the same migrations with `npx supabase link` and `npx supabase db push`; `graph` and `bucket` must be in its exposed schemas (Settings → API), which `config.toml` sets for the local stack.
 
+## Marketing Data
+
+`/research-os/import/marketing` stores uploads in the private `research-os-imports` bucket under imports with no node, so only the owner reaches them, and seals each saved report with AES-256-GCM under `MARKETING_SEAL_KEYS`. The raw files rely on storage encryption at rest: hosted Supabase encrypts storage, and the local stack needs an encrypted host disk, which no code checks. Delete removes the files and the report at once; hosted backups keep them until the backup window ends, and the local stack keeps no backups. `BKT_ANALYZE_PYTHON` names the interpreter that runs `packages/bkt/analyze/marketing/bounded.py`.
+
 ## Launch List
 
 Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` decides: `BUCKET_SIGNIN_OPEN=1` opens sign-in on production at launch, and `0` shows the launch list anywhere. The flag is read at build time, so a change needs a redeploy.
@@ -59,7 +63,7 @@ Until Research OS opens, production `/sign-in` shows a launch list: email, an op
 | List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails, and the signups the bot filter held. Asks for the list key. |
 | Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` asks Supabase to sign in existing accounts only (`shouldCreateUser` off) and answers the same for a known and an unknown address. The flag comes from the browser; whether the project accepts new accounts is GoTrue's signup setting (`GOTRUE_DISABLE_SIGNUP` on the self-hosted stack), which is the server-side control. |
 
-The Blob store keeps every object until someone deletes it; it lives on the Vercel account, apart from the Hetzner box. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
+The Blob store keeps every object until someone deletes it; it lives on the Vercel account. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
 
 ```bash
 curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundation/api/waitlist?format=csv" -o launch-list.csv

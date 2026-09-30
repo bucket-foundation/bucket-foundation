@@ -1,5 +1,7 @@
 # Production Log, Execution Layer
 
+Record from April 2026. The Hetzner host and the Story Protocol path named here are gone.
+
 Engineering pass to ship the execution layer of the bucket.foundation
 research stack: host the gateway, provision a wallet, stand up the bucket
 MCP server, wire the docs together.

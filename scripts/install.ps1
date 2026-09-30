@@ -11,7 +11,9 @@ function Fail($msg) { Write-Error "bkt install: $msg"; exit 1 }
 function Fetch($src, $dest) {
   if ($src -like 'https://*') {
     $r = Invoke-WebRequest -UseBasicParsing -Uri $src -OutFile $dest -PassThru
-    $final = if ($r.BaseResponse.ResponseUri) { $r.BaseResponse.ResponseUri } else { $r.BaseResponse.RequestMessage.RequestUri }
+    $resp = $r.BaseResponse
+    $final = if ($resp.PSObject.Properties['ResponseUri']) { $resp.ResponseUri } elseif ($resp.PSObject.Properties['RequestMessage']) { $resp.RequestMessage.RequestUri } else { $null }
+    if (-not $final) { Fail "could not confirm the final download URL for $src" }
     if ($final -and $final.Scheme -ne 'https') { Fail "refusing a download that left https: $final" }
   }
   elseif ($src -like 'http://*') { Fail "refusing plain http: $src" }

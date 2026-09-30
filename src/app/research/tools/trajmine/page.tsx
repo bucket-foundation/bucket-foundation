@@ -32,10 +32,10 @@ export default function Page() {
           TrajMine turns a molecular-dynamics trajectory into a mechanism report —
           RMSD/RMSF, PCA landscape, tICA slow modes, and a Markov state model with
           implied-timescale convergence. Run a demo trajectory to see the full
-          report; uploading your own trajectory lands with the GPU compute plane.
+          report; uploading your own trajectory is not available yet.
         </p>
         <p className="mt-4 text-[13px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)]">
-          demo mode — built-in trajectory until a GPU/long-job compute plan lands
+          demo mode — built-in trajectory until long-job compute is available
         </p>
         <div className="carved-rule max-w-xs mt-10" />
         <div className="mt-12">
