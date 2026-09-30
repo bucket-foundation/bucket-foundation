@@ -6,6 +6,7 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import SourcePanel, { isSourceHit } from "@/components/explore/SourcePanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
@@ -18,13 +19,16 @@ const TYPES: { id: HitType; label: string }[] = [
   { id: "excerpt", label: "Excerpts" },
   { id: "advisor", label: "Advisors" },
   { id: "work", label: "Works" },
+  { id: "paper", label: "Papers" },
+  { id: "text", label: "Texts" },
+  { id: "talk", label: "Talks" },
 ];
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
-  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
+  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk"]));
   const [hits, setHits] = useState<Hit[]>([]);
   const [sample, setSample] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -276,7 +280,8 @@ export default function ExploreClient() {
                 <h2 className="text-lg mt-1">{current.title}</h2>
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
-                {current.url && (
+                <SourcePanel hit={current} />
+                {current.url && !isSourceHit(current) && (
                   <a className="text-sm underline mt-3 inline-block" href={current.url}>
                     Open
                   </a>
@@ -284,10 +289,10 @@ export default function ExploreClient() {
                 {current.links.length > 0 && (
                   <>
                     <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : "Nearest advisors"}
+                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
                     </p>
                     <ul className="mt-1 space-y-1 text-sm">
-                      {current.links.map((id) => {
+                      {current.links.filter((id) => !isSourceHit(current) || byId.has(id)).map((id) => {
                         const l = byId.get(id);
                         return (
                           <li key={id}>

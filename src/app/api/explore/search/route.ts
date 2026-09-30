@@ -3,6 +3,7 @@ import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, unify, type HitType } from "@/lib/explore/search";
+import { loadSourceIndex, searchSources, sourceToHit } from "@/lib/explore/sources";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
 
@@ -34,7 +35,9 @@ export async function GET(req: NextRequest) {
   }));
   const { sources, sample } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
-  const results = unify({ query: params.q, excerpts, advisors, types, topK: params.topK });
+  const wantsSources = !types.length || types.some((t) => t === "paper" || t === "text" || t === "talk");
+  const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await loadSourceIndex()).map(sourceToHit) : [];
+  const results = unify({ query: params.q, excerpts, advisors, sources: sourceHits, types, topK: params.topK });
   return json({
     query: params.q || null,
     top_k: params.topK,
