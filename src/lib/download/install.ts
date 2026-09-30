@@ -1,14 +1,13 @@
 import type { Os } from "./release";
 
 const RAW = "https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts";
+const RAW_AT = (ref: string) => `https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/${ref}/scripts`;
 
 export const INSTALL_COMMAND: Record<Os, string> = {
   macos: `curl -fsSL ${RAW}/install.sh | sh`,
   linux: `curl -fsSL ${RAW}/install.sh | sh`,
   windows: `irm ${RAW}/install.ps1 | iex`,
 };
-
-export const LINUX_INSTALL_SCRIPT = `${RAW}/release/install.sh`;
 
 export type Distro = "fedora" | "ubuntu" | "debian" | "arch" | "opensuse";
 
@@ -19,13 +18,21 @@ export function detectLinuxDistro(ua: string | null | undefined): Distro | null 
   if (/Fedora/i.test(s)) return "fedora";
   if (/Ubuntu/i.test(s)) return "ubuntu";
   if (/Debian/i.test(s)) return "debian";
-  if (/Arch/i.test(s) && /Linux/i.test(s)) return "arch";
+  if (/\bArch\b/i.test(s) && /Linux/i.test(s)) return "arch";
   if (/SUSE/i.test(s)) return "opensuse";
   return null;
 }
 
+const RELEASE_TAG_IN_URL = /\/releases\/download\/(bkt-v\d+\.\d+\.\d+)\/[A-Za-z0-9._-]+$/;
+
+export function releaseTagOf(appImageUrl: string): string | null {
+  return RELEASE_TAG_IN_URL.exec(appImageUrl)?.[1] ?? null;
+}
+
 export function linuxInstallCommand(appImageUrl: string | null): string {
-  return appImageUrl ? `curl -fsSL ${LINUX_INSTALL_SCRIPT} | bash -s -- ${appImageUrl}` : INSTALL_COMMAND.linux;
+  const tag = appImageUrl ? releaseTagOf(appImageUrl) : null;
+  if (!appImageUrl || !tag) return INSTALL_COMMAND.linux;
+  return `curl -fsSL '${RAW_AT(tag)}/release/install.sh' | bash -s -- '${appImageUrl}'`;
 }
 
 export function executableStep(distro: Distro | null): string {

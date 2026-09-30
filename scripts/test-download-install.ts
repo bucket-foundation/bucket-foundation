@@ -51,6 +51,7 @@ test("the linux block leads with the one-line install, then the run steps, warni
   assert.ok(command > 0 && command < other && other < run && run < step && step < warning && warning < link && link < sum, `order ${command} ${other} ${run} ${step} ${warning} ${link} ${sum}`);
   assert.match(linux, /Fedora: In your file manager/);
   assert.match(linux, /on Fedora/);
+  assert.match(linux, /pinned to release bkt-v0\.4\.0/);
   assert.match(linux, /href="https:[^"]*Bucket-0\.4\.0-x86_64\.AppImage"/);
   assert.match(linux, /aria-label="Copy Linux install command"/);
 });
@@ -59,9 +60,11 @@ test("the linux install command passes the canonical AppImage url to install.sh"
   const url = "https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.4.0/Bucket-0.4.0-x86_64.AppImage";
   assert.equal(
     linuxInstallCommand(url),
-    `curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts/release/install.sh | bash -s -- ${url}`,
+    `curl -fsSL 'https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/release/install.sh' | bash -s -- '${url}'`,
   );
   assert.equal(linuxInstallCommand(null), INSTALL_COMMAND.linux);
+  assert.equal(linuxInstallCommand("https://example.com/Bucket-0.4.0-x86_64.AppImage"), INSTALL_COMMAND.linux);
+  assert.doesNotMatch(linuxInstallCommand(url), /\/main\//);
   const html = renderToStaticMarkup(InstallBlocks({ os: "linux", installers }));
   assert.ok(html.includes(url));
   assert.doesNotMatch(url, /\s/);
@@ -70,6 +73,8 @@ test("the linux install command passes the canonical AppImage url to install.sh"
 test("release assets with spaces in the name are never linked", () => {
   const spaced: ReleaseAsset[] = [{ name: "Bucket-0.4.0-x86_64 (1).AppImage", browser_download_url: "https://example.com/a", size: 1 }];
   assert.deepEqual(installersForV2(spaced), []);
+  const odd: ReleaseAsset[] = [{ name: "Bucket-0.4.0-x86_64';id.AppImage", browser_download_url: "https://example.com/a", size: 1 }];
+  assert.deepEqual(installersForV2(odd), []);
   for (const i of installers) assert.doesNotMatch(i.name, /\s/);
 });
 
@@ -78,6 +83,8 @@ test("linux distro detection reads the user agent", () => {
   assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0"), "ubuntu");
   assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"), null);
   assert.equal(detectLinuxDistro(null), null);
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 Chrome/130.0"), null);
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Arch Linux x86_64) Gecko/20100101 Firefox/130.0"), "arch");
   assert.match(executableStep("fedora"), /^Fedora: /);
   assert.match(executableStep(null), /^In your file manager/);
 });

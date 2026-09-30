@@ -21,7 +21,8 @@ esac
 case "/$prefix/" in
   */../*) fail "refusing a prefix with ..: $prefix" ;;
 esac
-work=$(mktemp -d)
+mkdir -p "$prefix"
+work=$(mktemp -d "$prefix/.install.XXXXXX")
 trap 'rm -rf "$work"' EXIT
 
 name=$(basename "$base")
@@ -92,7 +93,7 @@ case "$name" in
     else
       echo "install.sh: could not read the icon from $name; the menu entry shows a default icon" >&2
     fi
-    printf '[Desktop Entry]\nType=Application\nName=Bucket\nComment=Learn the canon offline\nExec="%s" app\nIcon=bucket\nCategories=Education;Science;\nTerminal=false\nStartupWMClass=Bucket\n' "$prefix/bin/bucket" > "$prefix/share/applications/bucket.desktop"
+    printf '[Desktop Entry]\nType=Application\nName=Bucket\nComment=Learn the canon offline\nExec="%s" app\nIcon=bucket\nCategories=Education;Science;\nTerminal=false\nStartupWMClass=Bucket\n' "$(printf '%s' "$prefix/bin/bucket" | sed -e 's/[\\"`$]/\\&/g' -e 's/\\/\\\\/g' -e 's/%/%%/g')" > "$prefix/share/applications/bucket.desktop"
     target="$prefix/bin/bucket"
     command -v update-desktop-database > /dev/null 2>&1 && update-desktop-database "$prefix/share/applications" > /dev/null 2>&1 || true
     installed+=("$dest/Bucket.AppImage" "$prefix/bin/bucket" "$prefix/bin/bkt" "$prefix/share/applications/bucket.desktop")

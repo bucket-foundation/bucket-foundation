@@ -10,7 +10,7 @@ shift 3
 count=0
 for f in "$dir"/bkt-* "$dir"/Bucket-*.AppImage; do
   [ -f "$f" ] || continue
-  case "$(basename "$f")" in *[[:space:]]*) fail "artifact names cannot contain spaces: $f" ;; esac
+  [[ "$(basename "$f")" =~ ^[A-Za-z0-9._-]+$ ]] || fail "artifact names may use only letters, digits, dot, underscore and hyphen: $f"
   case "$f" in *.sha256|*.manifest|*.manifest.sig|*.sizes.json) continue ;; esac
   bash "$repo/scripts/release/sign.sh" "$@" "$f" "$version" "$key" > /dev/null
   (cd "$dir" && sha256sum -c --quiet "$(basename "$f").sha256") || fail "checksum did not verify for $f"

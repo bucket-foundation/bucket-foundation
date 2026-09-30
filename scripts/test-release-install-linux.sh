@@ -61,6 +61,42 @@ if HOME=$root/home BUCKET_PREFIX=$root/home/../escape bash "$root/install.sh" "$
 fi
 check test ! -e "$root/escape"
 
+other=$root/other
+ssh-keygen -q -t ed25519 -N "" -C test -f "$other"
+old=$root/release/Bucket-0.3.0-x86_64.AppImage
+cp "$app" "$old"
+bash "$repo/scripts/release/sign.sh" --allow-unencrypted "$old" 0.3.0 "$key" > /dev/null
+if HOME=$root/home bash "$root/install.sh" "$old" > /dev/null 2>"$root/err"; then
+  echo "FAIL: downgrade installed" >&2; fails=$((fails + 1))
+fi
+check grep -q 'refusing downgrade from 0.4.0 to 0.3.0' "$root/err"
+
+bad=$root/release/Bucket-0.5.0-x86_64.AppImage
+cp "$app" "$bad"
+bash "$repo/scripts/release/sign.sh" --allow-unencrypted "$bad" 0.5.0 "$other" > /dev/null
+if HOME=$root/home bash "$root/install.sh" "$bad" > /dev/null 2>"$root/err"; then
+  echo "FAIL: wrong-key signature installed" >&2; fails=$((fails + 1))
+fi
+check grep -q 'signature check failed' "$root/err"
+
+stale=$root/release/Bucket-0.6.0-x86_64.AppImage
+cp "$app" "$stale"
+bash "$repo/scripts/release/sign.sh" --allow-unencrypted "$stale" 0.6.0 "$key" > /dev/null
+sed -i 's/^expires=.*/expires=1000/' "$stale.manifest"
+rm "$stale.manifest.sig"
+ssh-keygen -q -Y sign -f "$key" -n bucket-release "$stale.manifest"
+if HOME=$root/home bash "$root/install.sh" "$stale" > /dev/null 2>"$root/err"; then
+  echo "FAIL: expired manifest installed" >&2; fails=$((fails + 1))
+fi
+check grep -q 'manifest expired' "$root/err"
+check test "$(cat "$root/home/.local/share/bucket/version")" = "0.4.0"
+
+odd=$root/'h$o%me'
+mkdir -p "$odd"
+HOME=$odd bash "$root/install.sh" "$app" > /dev/null 2>&1
+check grep -qxF "Exec=\"$root/h\\\\\$o%%me/.local/bin/bucket\" app" "$odd/.local/share/applications/bucket.desktop"
+check test -z "$(find "$odd/.local" -name '.install.*')"
+
 printf 'tampered' >> "$app"
 if HOME=$root/home bash "$root/install.sh" "$app" > /dev/null 2>&1; then
   echo "FAIL: tampered AppImage installed" >&2; fails=$((fails + 1))
