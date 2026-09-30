@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three-stdlib";
 import type { AtlasProduction } from "@/lib/research-os/solvability-atlas";
@@ -11,8 +11,6 @@ import {
   eraOf,
   place,
   ringPoint,
-  sharedTokenEdges,
-  sliceRows,
   smoothedRadius,
   spaceRadius,
   type SpaceView,
@@ -35,6 +33,16 @@ function resolve(el: HTMLElement, c: string): THREE.Color {
   const m = c.match(/^var\((--[^)]+)\)$/);
   const v = m ? getComputedStyle(el).getPropertyValue(m[1]).trim() : c;
   return new THREE.Color(v || "#888");
+}
+
+function disposeTree(o: THREE.Object3D, keep?: THREE.BufferGeometry) {
+  o.traverse((c) => {
+    const m = c as THREE.Mesh;
+    if (m.geometry && m.geometry !== keep) m.geometry.dispose();
+    const mat = m.material as THREE.Material | THREE.Material[] | undefined;
+    if (Array.isArray(mat)) mat.forEach((x) => x.dispose());
+    else mat?.dispose();
+  });
 }
 
 function lineOf(pts: Vec3[], color: THREE.Color, opacity: number): THREE.Line {
@@ -116,6 +124,8 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
   const api = useRef<{ setView: (v: SpaceView, rows: AtlasProduction[], year: number, selected: string | null) => void } | null>(null);
   const handlers = useRef({ onSelect, onSlice });
   handlers.current = { onSelect, onSlice };
+  const latest = useRef({ view, rows, year, selected });
+  latest.current = { view, rows, year, selected };
 
   useEffect(() => {
     const el = host.current;
@@ -147,6 +157,7 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
       meshes.forEach((m, id) => {
         if (!keep.has(id)) {
           scene.remove(m);
+          (m.material as THREE.Material).dispose();
           meshes.delete(id);
         }
       });
@@ -164,9 +175,14 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
         m.scale.setScalar(solved ? 1.25 : 1);
         m.userData.target = new THREE.Vector3(...place(p, v));
       }
-      scene.remove(guides);
-      guides = buildGuides(v, visible, ink, accent);
-      scene.add(guides);
+      const key = `${v}|${y}|${visible.map((p) => p.id).join(",")}`;
+      if (guides.userData.key !== key) {
+        scene.remove(guides);
+        disposeTree(guides);
+        guides = buildGuides(v, visible, ink, accent);
+        guides.userData.key = key;
+        scene.add(guides);
+      }
       const sm = sel ? meshes.get(sel) : undefined;
       halo.visible = !!sm;
       halo.userData.follow = sm ?? null;
@@ -175,6 +191,7 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
         controls.target.set(0, 0, 0);
         camera.userData.view = v;
       }
+      if (guides.userData.key === key && from.size && Array.from(meshes.values()).every((m) => m.position.equals(m.userData.target))) return;
       tween = still ? null : { from, t0: performance.now() };
       if (still) meshes.forEach((m) => m.position.copy(m.userData.target));
     };
@@ -200,7 +217,7 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
       ray.setFromCamera(mp, camera);
       ray.params.Line = { threshold: 0.15 };
       const eraLines = guides.children.filter((g) => g.userData.era !== undefined);
-      return ray.intersectObjects([...Array.from(meshes.values()), ...eraLines])[0];
+      return ray.intersectObjects(Array.from(meshes.values()))[0] ?? ray.intersectObjects(eraLines)[0];
     };
     const onDown = (ev: PointerEvent) => (down = [ev.clientX, ev.clientY]);
     const onUp = (ev: PointerEvent) => {
@@ -241,10 +258,17 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
       raf = requestAnimationFrame(loop);
     };
     loop();
+    const cur = latest.current;
+    setView(cur.view, cur.rows, cur.year, cur.selected);
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
       controls.dispose();
+      meshes.forEach((m) => (m.material as THREE.Material).dispose());
+      disposeTree(guides);
+      disposeTree(halo);
+      dot.dispose();
+      renderer.forceContextLoss();
       renderer.dispose();
       el.removeChild(renderer.domElement);
       api.current = null;
@@ -257,52 +281,3 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
 
   return <div ref={host} className="relative w-full h-[520px] border border-[color:var(--hairline)] bg-white/40" />;
 }
-
-export function SliceCircle({ rows, era, year, selected, colors, onSelect }: { rows: AtlasProduction[]; era: number; year: number; selected: string | null; colors: Record<string, string>; onSelect: (id: string) => void }) {
-  const ns = useMemo(() => sliceRows(rows, era, year), [rows, era, year]);
-  const edges = useMemo(() => sharedTokenEdges(ns), [ns]);
-  const W = 420;
-  const c = W / 2;
-  const R = c - 40;
-  const at = (p: AtlasProduction) => {
-    const r = R * p.solvability;
-    return [c + Math.cos(p.theta) * r, c - Math.sin(p.theta) * r] as const;
-  };
-  const byId = new Map(ns.map((p) => [p.id, p]));
-  const solved = ns.filter((p) => p.resolved != null && p.resolved <= year).length;
-  return (
-    <figure className="flex flex-col gap-2 min-w-0">
-      <figcaption className="text-[13px] text-[color:var(--basalt-2)]">
-        <b className="text-[color:var(--basalt)]">{ERAS[era].label}.</b> {ns.length} problems posed, {solved} resolved by {year}. Angle is embedding rank, distance from the centre is solvability, lines join problems that share a keyword.
-      </figcaption>
-      <svg viewBox={`0 0 ${W} ${W}`} className="w-full max-w-[420px]" role="img" aria-label={`circle graph for ${ERAS[era].label}`}>
-        {[0.25, 0.5, 0.75, 1].map((f) => (
-          <circle key={f} cx={c} cy={c} r={R * f} fill="none" stroke="var(--hairline)" />
-        ))}
-        <text x={c + 4} y={c - R + 12} fontSize="10" fill="var(--basalt-3)">1.0</text>
-        <text x={c + 4} y={c - R / 2 + 12} fontSize="10" fill="var(--basalt-3)">0.5</text>
-        {edges.map(([a, b]) => {
-          const [x1, y1] = at(byId.get(a)!);
-          const [x2, y2] = at(byId.get(b)!);
-          return <line key={`${a}-${b}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--basalt-3)" strokeOpacity="0.25" />;
-        })}
-        {ns.map((p) => {
-          const [x, y] = at(p);
-          const done = p.resolved != null && p.resolved <= year;
-          const on = p.id === selected;
-          return (
-            <g key={p.id} role="button" tabIndex={0} aria-label={p.title} className="cursor-pointer" onClick={() => onSelect(p.id)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onSelect(p.id)}>
-              <circle cx={x} cy={y} r={on ? 8 : 5.5} fill={done ? colors[p.branch] : "var(--bone, #fff)"} stroke={colors[p.branch]} strokeWidth="2" />
-              {(on || ns.length <= 24) && (
-                <text x={x + (x > c ? 9 : -9)} y={y + 3} fontSize="10" textAnchor={x > c ? "start" : "end"} fill="var(--basalt)">
-                  {p.title.length > 28 ? `${p.title.slice(0, 27)}…` : p.title}
-                </text>
-              )}
-            </g>
-          );
-        })}
-      </svg>
-    </figure>
-  );
-}
-

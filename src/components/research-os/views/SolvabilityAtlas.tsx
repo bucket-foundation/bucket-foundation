@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { SliceCircle } from "./SolvabilitySpace";
+import SliceCircle from "./SliceCircle";
 import { SPACE_VIEWS, eraOf, type SpaceView } from "@/lib/research-os/solvability-space";
 import { PageHeader, Panel } from "@/components/ui";
 import {

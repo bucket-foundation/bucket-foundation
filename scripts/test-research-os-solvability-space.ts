@@ -48,3 +48,11 @@ test("the smoothed surface stays inside the solvability range", () => {
     assert.ok(r >= spaceRadius(0) - 1e-9 && r <= spaceRadius(1) + 1e-9);
   }
 });
+
+test("a slice surface follows its era's solvability and the helix wraps one turn per era", () => {
+  const one = [{ theta: 0, solvability: 1, posed: 1990 }];
+  assert.ok(Math.abs(smoothedRadius(one, 3.5, 0, "slices") - spaceRadius(1)) < 1e-9);
+  const a = place({ theta: 0, solvability: 0.5, posed: 1950 }, "helix");
+  const b = place({ theta: 0, solvability: 0.5, posed: 1980 }, "helix");
+  assert.ok(Math.abs(a[1]) < 1e-9 && Math.abs(b[1]) < 1e-9);
+});
