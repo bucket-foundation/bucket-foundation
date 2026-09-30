@@ -17,6 +17,7 @@ import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } fr
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
 import canonSpace from "@/data/explore/canon.space.json";
 import { dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
+import { ParseTokens, sizeError, type SpaceReply } from "@/lib/explore/genome/job";
 import { sampleDataset } from "@/lib/explore/space-sample";
 
 type TimelineEvent = {
@@ -151,6 +152,9 @@ export function sortResults(results: SearchResult[], sort: (typeof SORTS)[number
   return out;
 }
 
+const DNA_SAMPLE: DatasetEntry = { id: "dna-sample", label: "DNA: sample genome", group: "genome" };
+const DNA_UPLOAD: DatasetEntry = { id: "dna-upload", label: "DNA: your file…", group: "upload" };
+
 const NORMAL_CLASS = "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 
 export default function ExploreShell({ workspaceLinks = false, initialView = "circle" }: { workspaceLinks?: boolean; initialView?: SpaceViewId }) {
@@ -246,7 +250,13 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
   const canon = useMemo(() => parseDataset(canonSpace), []);
   const [remoteList, setRemoteList] = useState<{ id: string; label?: string }[]>([]);
-  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList), [remoteList]);
+  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE, DNA_UPLOAD]), [remoteList]);
+  const persistable = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE]), [remoteList]);
+  const [genomeSets, setGenomeSets] = useState<Record<string, Dataset>>({});
+  const [genomeStatus, setGenomeStatus] = useState("Genome files are parsed in this browser and never uploaded.");
+  const worker = useRef<Worker | null>(null);
+  const tokens = useRef(new ParseTokens());
+  const fileInput = useRef<HTMLInputElement>(null);
   const [dataId, setDataIdState] = useState("canon");
   const [remoteSets, setRemoteSets] = useState<Record<string, Dataset>>({});
   const [dataError, setDataError] = useState<string | null>(null);
@@ -255,14 +265,14 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 
   useEffect(() => {
     dataFromUrl.current = new URLSearchParams(window.location.search).get("data");
-    setDataIdState(dataParam(dataFromUrl.current, listDatasets([])));
+    setDataIdState(dataParam(dataFromUrl.current, listDatasets([], [DNA_SAMPLE])));
     fetch("/api/explore/space")
       .then(async (r) => {
         if (!r.ok) return;
         const body = (await r.json()) as { datasets?: { id: string; label?: string }[] };
         const list = (body.datasets ?? []).filter((d) => validDatasetId(d.id));
         setRemoteList(list);
-        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list)) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list)) : cur));
+        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) : cur));
       })
       .catch(() => undefined);
   }, []);
@@ -283,8 +293,53 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     };
   }, [dataId, entries, remoteSets]);
 
+  const getWorker = () => {
+    if (worker.current) return worker.current;
+    const w = new Worker(new URL("../../lib/explore/genome/genome.worker.ts", import.meta.url));
+    w.onmessage = (e: MessageEvent<SpaceReply>) => {
+      if (!tokens.current.isCurrent(e.data.token)) return;
+      if (!e.data.ok) {
+        setGenomeStatus(`Could not read the file: ${e.data.error}`);
+        return;
+      }
+      const ds = e.data.dataset;
+      setGenomeSets((m) => ({ ...m, [ds.id]: ds }));
+      setGenomeStatus(`${ds.label}: ${ds.obs.filter((o) => (o.meta.variants as number) > 0).length} windows with variants, ${ds.marks?.length ?? 0} annotated loci. Parsed in this browser and never uploaded.`);
+      if (ds.id === "dna-upload") setDataIdState("dna-upload");
+    };
+    worker.current = w;
+    return w;
+  };
+
+  useEffect(() => () => worker.current?.terminate(), []);
+
+  useEffect(() => {
+    if (dataId !== "dna-sample" || genomeSets["dna-sample"]) return;
+    const token = tokens.current.next();
+    setGenomeStatus("Parsing the sample genome in this browser…");
+    fetch("/explore/sample-genome.txt")
+      .then((r) => r.text())
+      .then((text) => tokens.current.isCurrent(token) && getWorker().postMessage({ token, text, space: { id: "dna-sample", label: "sample genome" } }))
+      .catch((e) => setGenomeStatus(`Could not load the sample genome: ${e instanceof Error ? e.message : String(e)}`));
+  }, [dataId, genomeSets]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onGenomeFile = (file: File | undefined) => {
+    if (!file) return;
+    const tooBig = sizeError(file.size);
+    if (tooBig) {
+      setGenomeStatus(tooBig);
+      return;
+    }
+    setGenomeStatus(`Parsing ${file.name} in this browser…`);
+    getWorker().postMessage({ token: tokens.current.next(), file, space: { id: "dna-upload", label: "your DNA" } });
+  };
+
   const setData = (id: string) => {
-    const next = dataParam(id, entries);
+    if (id === "dna-upload") {
+      fileInput.current?.click();
+      return;
+    }
+    const next = dataParam(id, persistable);
     setDataIdState(next);
     setQ("");
     setResults([]);
@@ -297,8 +352,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const dataset = useMemo<Dataset>(() => {
     if (searching_ && basis) return datasetFromResults(ordered, basis);
     if (dataId === "sample") return sample;
+    if (dataId.startsWith("dna-")) return genomeSets[dataId] ?? canon;
     return remoteSets[dataId] ?? canon;
-  }, [searching_, basis, ordered, dataId, remoteSets, canon, sample]);
+  }, [searching_, basis, ordered, dataId, remoteSets, genomeSets, canon, sample]);
 
   const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
   useEffect(() => setIndex(0), [datasetKey]);
@@ -427,6 +483,11 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
             <option key={e.id} value={e.id}>{e.label}</option>
           ))}
         </optgroup>
+        <optgroup label="genome">
+          {entries.filter((e) => e.group === "genome" || e.group === "upload").map((e) => (
+            <option key={e.id} value={e.id}>{e.label}</option>
+          ))}
+        </optgroup>
         {entries.some((e) => e.group === "local") && (
           <optgroup label="local">
             {entries.filter((e) => e.group === "local").map((e) => (
@@ -439,11 +500,18 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     </label>
   );
 
+  const genomeNode = (
+    <div className="text-[10px]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      <input ref={fileInput} type="file" accept=".txt,.vcf,.csv,text/plain" data-testid="dna-file" className="sr-only" aria-label="DNA file" onChange={(e) => onGenomeFile(e.target.files?.[0])} />
+      <p data-testid="dna-status">{genomeStatus}</p>
+    </div>
+  );
+
   const scrubberHostNode = <div ref={setScrubberHost} data-testid="scrubber-host" className="w-full" />;
 
   const widgets: WidgetSpec[] = [
     { id: "search", slot: "top", title: "Search", node: searchNode },
-    { id: "data", slot: "left", title: "Data", collapsible: true, order: 0, node: dataNode },
+    { id: "data", slot: "left", title: "Data", collapsible: true, order: 0, node: (<>{dataNode}{genomeNode}</>) },
     { id: "view", slot: "left", title: "View", collapsible: true, order: 1, node: viewNode },
     { id: "scrubber", slot: "bottom", title: "Scrubber", node: scrubberHostNode },
   ];
@@ -466,6 +534,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
         <div key="top" className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
           {searchNode}
           {dataNode}
+          {genomeNode}
           {viewNode}
         </div>
       )}

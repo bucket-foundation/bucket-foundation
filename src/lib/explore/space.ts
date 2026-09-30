@@ -43,6 +43,14 @@ export interface SweepBin {
   to: number;
 }
 
+export interface SpaceMark {
+  t: number;
+  label: string;
+  kind?: string;
+}
+
+export const MAX_MARKS = 2000;
+
 export interface Dataset {
   schema: typeof SPACE_SCHEMA;
   id: string;
@@ -54,6 +62,7 @@ export interface Dataset {
   components: SpaceComponent[];
   mean: number[];
   sweep?: { field: string; bins: SweepBin[] };
+  marks?: SpaceMark[];
   obs: SpaceObservation[];
 }
 
@@ -122,7 +131,13 @@ export function parseDataset(raw: unknown): Dataset {
     const bins = raw.sweep.bins.filter((b): b is Record<string, unknown> => isObj(b) && typeof b.label === "string" && typeof b.from === "number" && typeof b.to === "number");
     sweep = { field: raw.sweep.field, bins: bins.map((b) => ({ label: b.label as string, from: b.from as number, to: b.to as number })) };
   }
-  return { schema: SPACE_SCHEMA, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, scale: raw.scale === "unit" ? "unit" : "standardized", basis: raw.basis === "own" ? "own" : "reference", fields, components, mean, sweep, obs };
+  const marks = Array.isArray(raw.marks)
+    ? raw.marks
+        .filter((m): m is Record<string, unknown> => isObj(m) && finite(m.t) && typeof m.label === "string")
+        .slice(0, MAX_MARKS)
+        .map((m) => ({ t: m.t as number, label: scrubEmails(m.label as string), kind: typeof m.kind === "string" ? m.kind : undefined }))
+    : undefined;
+  return { schema: SPACE_SCHEMA, marks, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, scale: raw.scale === "unit" ? "unit" : "standardized", basis: raw.basis === "own" ? "own" : "reference", fields, components, mean, sweep, obs };
 }
 
 export function radiusOf(score: number, scale: ScoreScale = "standardized"): number {
