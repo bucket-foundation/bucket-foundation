@@ -28,13 +28,14 @@ const TYPES: { id: HitType; label: string }[] = [
   { id: "paper", label: "Papers" },
   { id: "text", label: "Texts" },
   { id: "talk", label: "Talks" },
+  { id: "canon-file", label: "Canon files" },
 ];
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
-  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk"]));
+  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
   const [origin, setOrigin] = useState<AdvisorOrigin>("sample");
   const [selected, setSelected] = useState<string | null>(null);
