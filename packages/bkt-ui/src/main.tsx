@@ -6,6 +6,7 @@ import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
+import { WORK_QUIZ_CHANGED, WorkQuizView } from "./views/WorkQuiz";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
 import { PathView } from "./views/Path";
@@ -18,6 +19,7 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
+  { route: { name: "work" }, label: "Work quiz" },
   { route: { name: "advisors" }, label: "Advisors" },
   { route: { name: "primes" }, label: "Prime directions" },
   { route: { name: "jobs" }, label: "Jobs" },
@@ -29,12 +31,21 @@ function App() {
   const [api, setApi] = useState<Api | null>(null);
   const [fatal, setFatal] = useState<string | null>(null);
   const [warn, setWarn] = useState<string | null>(null);
+  const [workReady, setWorkReady] = useState(false);
 
   useEffect(() => {
     Api.connect((e) => setWarn(e.message))
       .then(setApi)
       .catch((e: Error) => setFatal(e.message));
   }, []);
+
+  useEffect(() => {
+    if (!api) return;
+    const check = () => void api.workStatus().then((s) => setWorkReady(s.ready), () => setWorkReady(false));
+    check();
+    window.addEventListener(WORK_QUIZ_CHANGED, check);
+    return () => window.removeEventListener(WORK_QUIZ_CHANGED, check);
+  }, [api]);
 
   useEffect(() => {
     const flush = () => void api?.progress.flush();
@@ -52,7 +63,7 @@ function App() {
           <span>Bucket</span>
         </div>
         <nav>
-          {NAV.map((n) => (
+          {NAV.filter((n) => n.route.name !== "work" || workReady).map((n) => (
             <a key={n.label} href={href(n.route)} className={active === n.route.name ? "on" : ""}>
               {n.label}
             </a>
@@ -86,6 +97,8 @@ function App() {
           <AdvisorsView api={api} />
         ) : route.name === "primes" ? (
           <PrimesView api={api} />
+        ) : route.name === "work" ? (
+          <WorkQuizView api={api} />
         ) : route.name === "jobs" ? (
           <JobsView api={api} />
         ) : route.name === "import" ? (

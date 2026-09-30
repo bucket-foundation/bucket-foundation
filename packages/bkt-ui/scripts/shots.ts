@@ -8,6 +8,7 @@ import { PeopleStore } from "../../bkt/src/people";
 import { jobRoutes } from "../../bkt/src/job-routes";
 import { jobSpecs } from "../../bkt/src/job-specs";
 import { JobRunner } from "../../bkt/src/jobs";
+import { WorkQuizStore, workQuizRoutes } from "../../bkt/src/work-quiz";
 import { buildPySource } from "../../bkt/src/pack/pysrc";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -80,7 +81,18 @@ const runner = new JobRunner({
 const csv = ["day,sleep_h,focus"].concat(Array.from({ length: 40 }, (_, i) => `2026-08-${String((i % 28) + 1).padStart(2, "0")},${(6 + (i % 5) * 0.5).toFixed(1)},${50 + ((i * 7) % 40)}`)).join("\n");
 const job = runner.start("analyze", { data: { text: csv, ext: ".csv" } });
 for (let i = 0; i < 600 && runner.get(job.id)!.state === "running"; i++) await Bun.sleep(100);
-const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner) }, uiDir: resolve(import.meta.dir, "../dist") });
+const wq = new WorkQuizStore(store, key);
+wq.setBeads(
+  ["Grip sphere on Learn", "Prerequisite path view", "Advisor viewer", "Host jobs runner", "Work quiz from beads", "Canon circle", "Atlas views", "Notes in bkt.db"].map((title, i) => ({
+    id: `bkt-${200 + i}`,
+    title,
+    status: i < 5 ? "closed" : "open",
+    priority: i % 3,
+    createdAt: `2026-09-${String(20 + i).padStart(2, "0")}`,
+  })),
+  Date.now(),
+);
+const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }) }, uiDir: resolve(import.meta.dir, "../dist") });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
 const errors: string[] = [];
@@ -116,6 +128,10 @@ await page.fill(".search", "entropy");
 await page.click(".matches a >> nth=0");
 await page.waitForSelector(".steps-list, .path p");
 await page.screenshot({ path: join(out, "6b-path.png") });
+
+await page.click('nav a[href="#/work"]');
+await page.waitForSelector(".q");
+await page.screenshot({ path: join(out, "5b-work-quiz.png") });
 
 await page.click('nav a[href="#/advisors"]');
 await page.waitForSelector(".people button");
