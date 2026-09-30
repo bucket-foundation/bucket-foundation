@@ -144,7 +144,17 @@ jobs:
           exe=$(find "$dir" -maxdepth 1 -name '*.exe' ! -name 'bkt.exe' ! -iname 'uninstall*' | head -1)
           [ -n "$exe" ] || { echo "no app binary in $dir"; exit 1; }
           [ -f "$dir/bkt.exe" ] || { echo "no bkt sidecar in $dir"; exit 1; }
-          bun scripts/smoke.ts "$exe"
+          echo "APP_EXE=$(cygpath -w "$exe")" >> "$GITHUB_ENV"
+      - name: smoke the installed app from a plain Windows shell
+        if: runner.os == 'Windows'
+        working-directory: packages/bkt-desktop
+        shell: pwsh
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          $env:PATH = (($env:PATH -split ';') | Where-Object { $_ -notmatch '\\Git\\(usr|mingw64)\\bin' }) -join ';'
+          bun scripts/smoke.ts "$env:APP_EXE"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: checksums
         run: |
           cd "$BUNDLES"
