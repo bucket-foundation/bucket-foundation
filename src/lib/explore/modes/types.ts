@@ -52,6 +52,7 @@ export interface ModeContext {
 export interface ExploreMode {
   id: string;
   label: string;
+  renderer?: "scene" | "protein";
   layout(hits: Hit[], ctx: ModeContext): SceneLayout;
 }
 
