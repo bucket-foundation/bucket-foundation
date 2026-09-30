@@ -8,7 +8,7 @@ Design only. No code, migration or deploy ships with this file. It defines the d
 2. **Identity comes from identifiers.** A person record exists only when one strong identifier backs it: ORCID iD, OpenAlex author id, or a Bucket account holder's own claim. A name alone never creates a person, and a name match never merges two people.
 3. **Store what the licence allows, link the rest.** Each source has a storage class: `store` (open licence, facts copied with attribution), `store_ids` (identifier and a few facts, content linked), or `link_only` (URL and our own one-line statement about it, nothing copied).
 4. **Public professional facts only in public views.** Email, fit scores, viewer decisions and inferred traits never reach a public row. The person can see, correct and remove anything about them.
-5. **Reuse Bucket shapes.** Provenance keys match research-atlas (`source`, `source_id`, `source_url`, `as_of`). External identifiers extend `graph.node_external_ids`. Withdrawal reuses the `status in ('active','withdrawn')` plus reason-log pattern from `graph.factoids` and `graph.withdrawn_factoids`. Review reuses `external_id_proposals`.
+5. **Reuse Bucket shapes.** Provenance keys match research-atlas (`source`, `source_id`, `source_url`, `as_of`). External identifiers copy the shape checks and review flow of `graph.node_external_ids` into a separate `profile.person_ids` table, so people never become graph nodes. Withdrawal reuses the `status in ('active','withdrawn')` plus reason-log pattern from `graph.factoids` and `graph.withdrawn_factoids`. Review reuses `external_id_proposals`.
 
 ## Existing Shapes This Builds On
 
@@ -42,16 +42,16 @@ Licence and terms checked on 2026-09-29 from each provider's published terms. Ea
 | PubMed and PMC | PMID, PMCID | Biomedical works, MeSH terms, grant ids in the record | NLM terms; abstracts may be copyrighted | store metadata, link abstracts |
 | NIH RePORTER | project number, PI profile id | Awards, amounts, dates, PIs | US government public domain | store |
 | NSF Award Search | award id | Awards, amounts, PIs, institutions | US government public domain | store |
-| CORDIS | project id | EU Horizon projects, participants, amounts | EU open data, CC BY 4.0 | store |
+| CORDIS | project id | EU Horizon projects, participants, amounts | CC BY 4.0 for project and organization data; the Commission reuse decision 2011/833/EU excludes personal data, so named contacts in CORDIS are never read | store project and org fields only; person links come from ORCID or works |
 | Wellcome via 360Giving | grant id | Awards, amounts, recipients | CC BY 4.0 | store |
 | Other funders | funder grant id | UKRI Gateway to Research (OGL), DFG GEPRIS (link), ERC (CC BY) | per funder | store or link_only |
-| Wikidata | QID | Birth year only for deceased or notable public figures, employers, awards, doctoral advisor (P184), doctoral student (P185), external ids | CC0 | store |
+| Wikidata | QID | Employers, awards, doctoral advisor (P184), doctoral student (P185), external ids | CC0 | store |
 | Wikipedia | article URL | Narrative biography | CC BY-SA 4.0 | link_only |
 | DBLP | DBLP pid | Computer science works and venues | CC0 | store |
 | GitHub | user login, repo id | Repositories, languages, stars, releases | GitHub terms; per-repo licence | store_ids |
 | Zenodo | DOI, record id | Datasets, software, posters | Metadata CC0 | store |
 | Software Heritage | SWHID | Archived source code | Metadata open | store_ids |
-| USPTO and PatentsView | patent number | Patents, inventors, assignees, CPC classes | US government public domain | store |
+| USPTO and PatentsView | patent number | Patents, inventors, assignees, CPC classes | USPTO data public domain; PatentsView bulk data CC BY 4.0, attribution on every source record | store |
 | EPO and Lens | publication number, Lens id | Non-US patents, patent-to-paper citations | Lens terms restrict bulk reuse | link_only |
 | ClinicalTrials.gov | NCT id | Trials, investigators, sites, status | US government public domain | store |
 | EU CTR, ISRCTN | trial id | Non-US trials | registry terms | link_only |
@@ -207,13 +207,37 @@ The profile renders each statement as one sentence with inline source chips, the
 
 Each chip links to `SourceRef.url` and shows `as_of`, `match_tier` and `licence` on hover. A statement with `status = 'disputed'` renders with both conflicting sources side by side. A `link_only` source renders our one-line statement plus the link, with no copied text. Derived numbers render the `derivation.command` on expand.
 
+## Public Tier Gate
+
+A statement is public only when its best source is `T0`, `T1` or `self`. `T2` and `T3` statements stay `visibility = 'owner'` until the person claims the profile and confirms them. The arithmetic behind the rule: a 95% precise tier applied across 1,438,636 atlas people leaves about 72,000 wrong attributions (0.05 times 1,438,636) [empirical: research_atlas.duckdb person count, 2026-06-21 build, `select count(*) from person`], each one a grant or paper shown under the wrong name. The DDL enforces it with a check on `statements`.
+
+## Legal Basis
+
+| Question | Answer, pending founder and counsel approval |
+|---|---|
+| Controller | Bucket is held in the founder's personal capacity (GOVERNANCE.md), so the founder is the controller of profile data until the nonprofit entity exists; the privacy notice names him and a contact address, and control transfers to the entity on formation |
+| Lawful basis for unclaimed EU and UK researchers | GDPR Art. 6(1)(f) legitimate interest: helping students find advisors and crediting researchers for their public work |
+| Balancing test | Data is professional and already published by the person or their institution under open licences; the page adds source links; no email, no inferred traits, no ranking, no contact action; only T0 and T1 facts show; objection is one form away. Recorded as a written legitimate interest assessment before any unclaimed page ships |
+| Art. 14 notice | Indirect collection. Art. 14(5)(b) disproportionate effort covers 1.4M people only with a public notice: a privacy page listing sources, purposes, retention, rights and the objection form, linked from every profile. Once a verified official email exists for a person in the private atlas, a one-time notice is sent before the page goes public |
+| Special category data | None collected. Topics that reveal health or beliefs of the researcher are out of scope |
+| Rights | Access, rectification and erasure through claim or the objection form; Art. 21 objection honoured without a balancing argument for profile pages |
+
+## Objection And Tombstones
+
+- A public form at `/profile/remove` needs no sign-in: name, one profile URL or identifier, and a reply address. A maintainer confirms identity through the institutional contact, and removal completes within 7 days. ORCID sign-in skips the confirmation step.
+- Removal deletes the person's statements, ids and viewer rows, and writes a tombstone: `profile.tombstones(id_hash text primary key, authority text, removed_at timestamptz)`, where `id_hash` is SHA-256 of `authority:external_id` plus a server-held salt, for every identifier the person had. Stage 0 and stage 1 of the pipeline check every candidate id against tombstones and stop on a hit, so a removed person is never re-ingested. The reply address is deleted after confirmation.
+
+## Storage And Rendering
+
+Bucket is local first and has no hosted database for bulk data. Pipeline statements live in the local research-atlas DuckDB build, with the same columns as the DDL below; 1.4M people at 50 to 100 statements each is 70M to 140M rows, too many for the Supabase free stack. Supabase holds only claimed persons, their statements, tombstones and the viewer-private tables. Claimed public pages render statically at build time from those rows and ship with the site.
+
 ## Privacy
 
 | Rule | Mechanism |
 |---|---|
 | Public professional facts only | `visibility = 'public'` allowed only for predicates in the public set: identity, position, output, funding, lineage, service, teaching, recognition, topic, metrics, Bucket |
 | No email in any public or served table | Email lives in research-atlas private `researchers.parquet` under USERS_POLICY and FACULTY-EMAIL-PLAN. Bucket stores `has_public_contact boolean` only, with a link to the source page where the person published their own address. Open Decision 3 |
-| No inferred traits | No gender, age, ethnicity, nationality, reply likelihood, photo. Birth year only for deceased canon figures from Wikidata |
+| No inferred traits | No gender, age, ethnicity, nationality, reply likelihood, photo, birth date. Life dates exist only on historical figures, where the canon `figure` node already carries them as `graph.factoids`; the profile reads them from there and never stores them |
 | No minors | Persons with any `educated_at` statement ending after `today - 5 years` at secondary level, or any sign of age under 18, are excluded; `educated_at` below doctoral level is never stored for living people |
 | No public ranking of named people | Lists sort by neutral keys (recent works in topic, name). Fit and stars never leave the viewer layer. Server tests assert no score field in any public response, as ADVISOR-DB-PLAN step 4 does |
 | Opt-out | ORCID OAuth sign-in whose iD equals `person_ids` ORCID sets `persons.opt_out`. Without ORCID, a maintainer confirms through the institutional page contact. Opt-out hides the page and every statement from public views within 7 days, keeps a tombstone row with the ORCID so rebuilds do not recreate it, and propagates to the atlas slim DB |
@@ -221,7 +245,7 @@ Each chip links to `SourceRef.url` and shows `as_of`, `match_tier` and `licence`
 | Withdrawal | Same pattern as `graph.withdraw_identity_dependents`: a wrong identity match withdraws every dependent statement in one call, logged with reason |
 | No contact actions | No "email this person" button, no bulk send, no automated contact from any Bucket surface |
 | Retention | Pipeline statements rebuild from source each refresh; a source record that disappears withdraws its statements on the next build |
-| Deceased and historical figures | Canon figures (Kruse, Becker, Szent-Györgyi and the `canon-figures/` index) use the same schema with `persons.kind = 'historical'`, link to their `figure` node, and may carry Wikidata life dates |
+| Deceased and historical figures | The canon `figure` node stays the record of a historical person. A `profile.persons` row with `kind = 'historical'` exists only when that person also has works or grants to list; it holds a one-way `figure_node_id` link and copies nothing the node holds, so the two never diverge |
 
 ## Viewer-Private Layer
 
@@ -395,6 +419,7 @@ create table profile.statements (
   constraint statements_object_kind check (object_kind in ('person','org','work','grant','output','venue','course','topic','node','production','literal')),
   constraint statements_sources check (jsonb_typeof(sources) = 'array' and jsonb_array_length(sources) > 0),
   constraint statements_derivation check (not derived or derivation is not null),
+  constraint statements_public_tier check (visibility <> 'public' or asserted_by = 'self' or jsonb_path_exists(sources, '$[*] ? (@.match_tier == "T0" || @.match_tier == "T1")')),
   constraint statements_private_predicates check (visibility <> 'public' or predicate <> 'has_contact')
 );
 create index statements_subject_pred_idx on profile.statements (subject_id, predicate) where status = 'active';
@@ -627,6 +652,8 @@ Each step files as its own bead with `needs-founder` and `source-agent` and goes
 
 ## Open Decisions
 
-1. **Where people live.** A separate `profile` schema (this file) keeps people out of the learner-editable knowledge graph, as ADVISOR-DB-PLAN requires. The alternative adds `person` to `NodeKind` and reuses `graph.edges`, which gives one graph query surface and puts real people inside a graph learners edit.
-2. **Who gets a public page.** Option A: only people who claim their profile through ORCID get a public page; everyone else appears as a name with source links inside topic panels. Option B: every T0 or T1 person gets a public page with opt-out. B covers 1.4M people and carries the privacy exposure; A starts near zero pages.
-3. **Email in Bucket.** Keep official and public emails only in the research-atlas private parquet and show a link to the source page (this file), or copy them into a Bucket `private` statement readable by the founder account for correspondence. The second puts contact data in Supabase and needs a new USERS_POLICY version.
+Defaults adopted from critic round 1, each pending founder approval:
+
+1. **Where people live.** A separate `profile` schema with one-way links to `graph.nodes`. People never become graph nodes.
+2. **Who gets a public page.** Claimed profiles only, until a legal review signs off the legitimate interest assessment and the objection form has run 90 days without a missed deadline. After that, T0 and T1 facts for unclaimed people may be reconsidered.
+3. **Email.** Kept only in the research-atlas private parquet. Bucket stores `has_public_contact` and a link to the page where the person published it.
