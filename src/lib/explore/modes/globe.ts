@@ -6,10 +6,12 @@ import { linksFromHits, type ExploreMode, type SceneNode } from "./types";
 export const GLOBE_RADIUS = 1.008;
 export const ADVISOR_COLOR = "#EFE8D4";
 export const WORK_COLOR = "#8A7A5A";
+export const SOURCE_COLOR = { paper: "#6FA8DC", text: "#C98B5B", talk: "#A78BD6" } as const;
 
 export function hitColor(h: Hit): string {
   if (h.type === "advisor") return ADVISOR_COLOR;
   if (h.type === "work") return WORK_COLOR;
+  if (h.type === "paper" || h.type === "text" || h.type === "talk") return SOURCE_COLOR[h.type];
   return BRANCH_COLOR[bareBranch(h.branch)] ?? "#D9A43A";
 }
 
