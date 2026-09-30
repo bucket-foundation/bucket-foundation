@@ -3,6 +3,15 @@ import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 
+export interface Note {
+  id: string;
+  title: string;
+  body: string;
+  pinned: boolean;
+  createdAt: number;
+  updatedAt: number;
+}
+
 export interface WorkStatus {
   beads: number;
   prs: number;
@@ -216,5 +225,17 @@ export class Api {
     if (r.status === 404) return null;
     if (!r.ok) throw new Error(`${resource} ${r.status}`);
     return parseRos(resource, await r.json());
+  }
+
+  notes() {
+    return this.call<{ notes: Note[] }>("/local/notes").then((r) => r.notes);
+  }
+
+  saveNote(note: { id?: string; title: string; body: string; pinned: boolean }) {
+    return this.call<Note>("/local/notes", { method: "POST", body: note });
+  }
+
+  deleteNote(id: string) {
+    return this.call<{ deleted: string }>("/local/notes/delete", { method: "POST", body: { id } });
   }
 }

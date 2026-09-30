@@ -9,6 +9,7 @@ import { jobRoutes } from "../../bkt/src/job-routes";
 import { jobSpecs } from "../../bkt/src/job-specs";
 import { JobRunner } from "../../bkt/src/jobs";
 import { WorkQuizStore, workQuizRoutes } from "../../bkt/src/work-quiz";
+import { NotesStore, notesRoutes } from "../../bkt/src/notes";
 import { buildPySource } from "../../bkt/src/pack/pysrc";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -81,6 +82,9 @@ const runner = new JobRunner({
 const csv = ["day,sleep_h,focus"].concat(Array.from({ length: 40 }, (_, i) => `2026-08-${String((i % 28) + 1).padStart(2, "0")},${(6 + (i % 5) * 0.5).toFixed(1)},${50 + ((i * 7) % 40)}`)).join("\n");
 const job = runner.start("analyze", { data: { text: csv, ext: ".csv" } });
 for (let i = 0; i < 600 && runner.get(job.id)!.state === "running"; i++) await Bun.sleep(100);
+const notesStore = new NotesStore(store, key);
+notesStore.save({ title: "Exclusion zone reading list", body: "## To read\n- Pollack, the fourth phase of water\n- **Ling** on the association-induction hypothesis\n\nCheck whether `EZ` width scales with $\\lambda$ of the light.", pinned: true }, Date.now() - 86_400_000);
+notesStore.save({ title: "Prime directions questions", body: "Which direction separates biophysics from chemistry?", pinned: false }, Date.now());
 const wq = new WorkQuizStore(store, key);
 wq.setBeads(
   ["Grip sphere on Learn", "Prerequisite path view", "Advisor viewer", "Host jobs runner", "Work quiz from beads", "Canon circle", "Atlas views", "Notes in bkt.db"].map((title, i) => ({
@@ -92,7 +96,7 @@ wq.setBeads(
   })),
   Date.now(),
 );
-const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }) }, uiDir: resolve(import.meta.dir, "../dist") });
+const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }), ...notesRoutes(notesStore) }, uiDir: resolve(import.meta.dir, "../dist") });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
 const errors: string[] = [];
@@ -160,6 +164,11 @@ await page.screenshot({ path: join(out, "7-advisors.png") });
 await page.click('nav a[href="#/primes"]');
 await page.waitForSelector(".spokes");
 await page.screenshot({ path: join(out, "8-prime-directions.png") });
+
+await page.click('nav a[href="#/notes"]');
+await page.waitForSelector(".editor");
+await page.click("text=Preview");
+await page.screenshot({ path: join(out, "8b-notes.png") });
 
 await page.click('nav a[href="#/jobs"]');
 await page.waitForSelector(".job-head");
