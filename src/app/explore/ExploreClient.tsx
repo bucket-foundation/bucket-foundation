@@ -1,0 +1,152 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { Hit, HitType } from "@/lib/explore/search";
+
+const TYPES: { id: HitType; label: string }[] = [
+  { id: "excerpt", label: "Excerpts" },
+  { id: "advisor", label: "Advisors" },
+  { id: "work", label: "Works" },
+];
+
+const mono = { fontFamily: "var(--font-jetbrains)" };
+
+export default function ExploreClient() {
+  const [q, setQ] = useState("light water mitochondria");
+  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
+  const [hits, setHits] = useState<Hit[]>([]);
+  const [sample, setSample] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const run = useCallback(async (query: string) => {
+    if (!query.trim()) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/explore/search?q=${encodeURIComponent(query)}&top_k=60`);
+      const body = await res.json();
+      if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
+      setHits(body.results);
+      setSample(!!body.advisors_sample);
+      setSelected(body.results[0]?.id ?? null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+      setHits([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    run(q);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const visible = useMemo(() => hits.filter((h) => types.has(h.type)), [hits, types]);
+  const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
+  const current = selected ? byId.get(selected) ?? null : null;
+
+  const toggle = (t: HitType) =>
+    setTypes((prev) => {
+      const next = new Set(prev);
+      if (next.has(t)) next.delete(t);
+      else next.add(t);
+      return next;
+    });
+
+  return (
+    <main className="min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 pt-10 pb-16">
+        <p className="mb-3 text-xs uppercase tracking-[0.22em]" style={{ color: "var(--parchment-dim)", ...mono }}>
+          Explore
+        </p>
+        <form
+          className="flex gap-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            run(q);
+          }}
+        >
+          <input
+            aria-label="Search"
+            data-testid="explore-query"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            className="flex-1 border hairline bg-transparent px-3 py-2"
+            placeholder="Search canon excerpts and advisors"
+          />
+          <button type="submit" className="border hairline px-4 py-2" style={mono}>
+            {loading ? "…" : "Search"}
+          </button>
+        </form>
+        <div className="flex flex-wrap gap-3 mt-3 text-sm" style={mono}>
+          {TYPES.map((t) => (
+            <label key={t.id} className="flex items-center gap-1">
+              <input type="checkbox" checked={types.has(t.id)} onChange={() => toggle(t.id)} />
+              {t.label} ({hits.filter((h) => h.type === t.id).length})
+            </label>
+          ))}
+          {sample && <span style={{ color: "var(--parchment-dim)" }}>advisors: sample data</span>}
+        </div>
+        {error && <p className="mt-4 text-sm" role="alert">{error}</p>}
+        <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
+          <ol data-testid="explore-results" className="space-y-2">
+            {visible.map((h) => (
+              <li key={h.id}>
+                <button
+                  onClick={() => setSelected(h.id)}
+                  className="w-full text-left border hairline px-3 py-2"
+                  style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
+                >
+                  <span className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
+                    {h.type} · {h.score.toFixed(2)}
+                  </span>
+                  <span className="block">{h.title}</span>
+                  <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
+                </button>
+              </li>
+            ))}
+            {!loading && !visible.length && !error && <li className="text-sm">No results.</li>}
+          </ol>
+          <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">
+            {current ? (
+              <>
+                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{current.type}</p>
+                <h2 className="text-lg mt-1">{current.title}</h2>
+                <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
+                {current.text && <p className="text-sm mt-3">{current.text}</p>}
+                {current.url && (
+                  <a className="text-sm underline mt-3 inline-block" href={current.url}>
+                    Open
+                  </a>
+                )}
+                {current.links.length > 0 && (
+                  <>
+                    <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
+                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : "Nearest advisors"}
+                    </p>
+                    <ul className="mt-1 space-y-1 text-sm">
+                      {current.links.map((id) => {
+                        const l = byId.get(id);
+                        return (
+                          <li key={id}>
+                            <button className="underline text-left" onClick={() => setSelected(id)}>
+                              {l?.title ?? id}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                )}
+              </>
+            ) : (
+              <p className="text-sm">Select a result.</p>
+            )}
+          </aside>
+        </div>
+      </div>
+    </main>
+  );
+}
