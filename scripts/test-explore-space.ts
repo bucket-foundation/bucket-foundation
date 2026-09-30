@@ -31,11 +31,13 @@ function raw(over: Record<string, unknown> = {}) {
   return { schema: SPACE_SCHEMA, id: "x", label: "x", fields: [], components: comps(4), obs: [{ id: "a", title: "A", scores: [0, 1, 2, -1], meta: {}, links: [] }], ...over };
 }
 
-test("the advisor adapter keeps every row, component and standardized score", () => {
+test("the advisor adapter keeps every row, component and raw own-basis score", () => {
   assert.equal(sample.obs.length, review.rows.length);
   assert.equal(sample.components.length, prime.components.length);
   assert.equal(sample.sample, true);
-  review.rows.forEach((r, i) => r.star_prime.forEach((v, k) => assert.ok(Math.abs(sample.obs[i].scores[k] - (v - 0.5) * 5) < 1e-12)));
+  review.rows.forEach((r, i) => assert.deepEqual(sample.obs[i].scores, r.star_prime));
+  assert.equal(sample.scale, "unit");
+  assert.equal(sample.basis, "own");
 });
 
 test("a dataset survives a JSON round trip through the contract", () => {
@@ -106,6 +108,33 @@ test("a polygon has one vertex per component inside the outer ring", () => {
     assert.ok(d.startsWith("M") && d.endsWith("Z"));
   }
   assert.equal(polygonPoints(new Array(12).fill(0), comps(12)).length, 12);
+});
+
+test("the unit scale maps a score straight to a radius", () => {
+  assert.equal(radiusOf(0.4, "unit"), 0.4);
+  assert.equal(radiusOf(3, "unit"), 1);
+  assert.equal(radiusOf(-1, "unit"), 0.02);
+  const pts = polygonPoints([1, 0.5, 0.25, 0.75], comps(4), CIRCLE_RADIUS, "unit");
+  assert.ok(Math.abs(Math.hypot(...pts[0]) - CIRCLE_RADIUS) < 1e-9);
+  assert.ok(Math.abs(Math.hypot(...pts[1]) - CIRCLE_RADIUS * 0.5) < 1e-9);
+});
+
+test("parseDataset scrubs emails from meta and drops email links", () => {
+  const ds = parseDataset(raw({
+    obs: [{ id: "a", title: "A", scores: [0, 1, 2, -1], meta: { contact: "write to jane.doe@example.org today", note: "plain", n: 3 }, links: ["mailto:jane@example.org", "https://example.org/a", "https://x.org/?e=jane.doe@example.org"] }],
+  }));
+  assert.ok(!/@/.test(String(ds.obs[0].meta.contact)));
+  assert.equal(ds.obs[0].meta.note, "plain");
+  assert.equal(ds.obs[0].meta.n, 3);
+  assert.deepEqual(ds.obs[0].links, ["https://example.org/a"]);
+});
+
+test("the scale and basis survive the contract", () => {
+  const back = parseDataset(JSON.parse(JSON.stringify(sample)));
+  assert.equal(back.scale, "unit");
+  assert.equal(back.basis, "own");
+  assert.equal(parseDataset(raw()).scale, "standardized");
+  assert.equal(parseDataset(raw()).basis, "reference");
 });
 
 test("radius clamps the standardized score to the chart span", () => {
