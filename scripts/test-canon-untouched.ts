@@ -51,7 +51,7 @@ function canonSet(): Set<string> {
 function ensureBase(): void {
   const has = () => spawnSync("git", ["rev-parse", "--verify", "--quiet", "origin/dev"], { cwd: ROOT }).status === 0;
   if (has()) return;
-  spawnSync("git", ["fetch", "--quiet", "origin", "dev"], { cwd: ROOT });
+  spawnSync("git", ["fetch", "--quiet", "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
   assert.ok(has(), "origin/dev is missing and could not be fetched, so the canon search diff cannot be checked");
 }
 
