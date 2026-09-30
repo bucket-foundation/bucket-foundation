@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import atlas from "@/lib/research-os/solvability-atlas-data.json";
 import type { SolvabilityAtlasData } from "@/lib/research-os/solvability-atlas";
-import SolvabilityAtlas from "./SolvabilityAtlas";
+import SolvabilityAtlas from "@/components/research-os/views/SolvabilityAtlas";
 
 export const metadata: Metadata = { title: "Solvability", robots: { index: false, follow: false } };
 
