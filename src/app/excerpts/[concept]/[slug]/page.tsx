@@ -1,32 +1,30 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getClaim, getClaimsByConcept } from "@/lib/canon-claims";
+import { detailStaticParams, resolveDetail } from "../../detail-params-v2";
 import { isFoundationTier } from "../../qualify-v2";
 import { getEvidenceFor, prettySourcePath, sourceKind } from "@/lib/canon-evidence";
 
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  const all = getClaimsByConcept();
-  const out: { concept: string; slug: string }[] = [];
-  for (const [concept, claims] of Object.entries(all)) {
-    for (const c of claims.filter(isFoundationTier)) out.push({ concept, slug: c.slug });
-  }
-  return out;
+  return detailStaticParams();
 }
 
 export function generateMetadata({ params }: { params: { concept: string; slug: string } }) {
-  const c = getClaim(params.concept, params.slug);
-  if (!c || !isFoundationTier(c)) return { title: "Source excerpt · bucket.foundation" };
+  const c = resolveDetail(params.concept, params.slug);
+  if (!c) return { title: "Source excerpt · bucket.foundation" };
+  const qualified = isFoundationTier(c);
   return {
+    robots: qualified ? undefined : { index: false, follow: true },
     title: `Excerpt from ${c.videoTitle} at ${c.timestamp} · ${c.concept} · bucket.foundation`,
-    description: `A passage from ${c.videoTitle}, ${c.timestamp}, tagged ${c.concept}. A foundation-tier source excerpt awaiting a primary-source check.`,
+    description: `A passage from ${c.videoTitle}, ${c.timestamp}, tagged ${c.concept}. A source excerpt, outside the canon until it names a foundation.`,
   };
 }
 
 export default function Page({ params }: { params: { concept: string; slug: string } }) {
-  const c = getClaim(params.concept, params.slug);
-  if (!c || !isFoundationTier(c)) notFound();
+  const c = resolveDetail(params.concept, params.slug);
+  if (!c) notFound();
+  const qualified = isFoundationTier(c);
   const evidence = getEvidenceFor(params.concept, params.slug);
 
   return (
@@ -106,7 +104,9 @@ export default function Page({ params }: { params: { concept: string; slug: stri
               Status
             </dt>
             <dd style={{ color: "var(--ochre)" }}>
-              foundation-tier excerpt, awaiting a primary-source check
+              {qualified
+                ? "foundation-tier excerpt, awaiting a primary-source check"
+                : "source excerpt, outside the canon until it names a foundation"}
             </dd>
           </div>
         </dl>

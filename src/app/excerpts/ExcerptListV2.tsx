@@ -56,7 +56,7 @@ export function ExcerptListV2({
         <p className="text-sm" style={{ ...dim, fontFamily: "var(--font-fraunces)" }}>
           {tier === "foundation"
             ? "Score 8 or higher with three assertion signals."
-            : "Includes unqualified fragments. These have no detail page."}
+            : "Includes unqualified fragments, marked outside the canon."}
         </p>
       </div>
 
@@ -93,15 +93,9 @@ export function ExcerptListV2({
                     </>
                   )}
                 </div>
-                {c.qualified ? (
-                  <Link href={`/excerpts/${c.concept}/${c.slug}`} className="block text-base md:text-lg" style={serif}>
-                    {text}
-                  </Link>
-                ) : (
-                  <p className="text-base md:text-lg" style={serif}>
-                    {text}
-                  </p>
-                )}
+                <Link href={`/excerpts/${c.concept}/${c.slug}`} className="block text-base md:text-lg" style={serif}>
+                  {text}
+                </Link>
                 <div className="mt-1 text-sm" style={{ ...dim, fontFamily: "var(--font-fraunces)" }}>
                   From {c.videoTitle}
                 </div>
