@@ -2,6 +2,32 @@ import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-stor
 import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 
+export interface WorkStatus {
+  beads: number;
+  prs: number;
+  repo: string | null;
+  repoError: string | null;
+  ready: boolean;
+  answered: number;
+  correct: number;
+}
+
+export interface WorkQuestion {
+  id: string;
+  type: string;
+  prompt: string;
+  lines: string[];
+  choices: string[] | null;
+  limitSec: number;
+}
+
+export interface WorkAnswer {
+  correct: boolean;
+  timedOut: boolean;
+  answer: string;
+  explain: string;
+}
+
 export interface JobKind {
   kind: string;
   label: string;
@@ -158,5 +184,29 @@ export class Api {
 
   deleteJob(id: string) {
     return this.call<{ deleted: string }>("/local/jobs/delete", { method: "POST", body: { id } });
+  }
+
+  workStatus() {
+    return this.call<WorkStatus>("/local/work-quiz/status");
+  }
+
+  workBeads(text: string) {
+    return this.call<{ beads: number }>("/local/work-quiz/beads", { method: "POST", body: { text } });
+  }
+
+  workRepo(path: string | null) {
+    return this.call<{ repo: string | null }>("/local/work-quiz/repo", { method: "POST", body: { path } });
+  }
+
+  workForget() {
+    return this.call<{ cleared: boolean }>("/local/work-quiz/forget", { method: "POST", body: {} });
+  }
+
+  workNext() {
+    return this.call<WorkQuestion>("/local/work-quiz/next");
+  }
+
+  workAnswer(id: string, response: string, elapsedMs: number) {
+    return this.call<WorkAnswer>("/local/work-quiz/answer", { method: "POST", body: { id, response, elapsedMs } });
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Api } from "../api";
+import { WorkQuizSources } from "./WorkQuiz";
 
 export function ImportView({ api }: { api: Api }) {
   const [status, setStatus] = useState<string | null>(null);
@@ -57,6 +58,7 @@ export function ImportView({ api }: { api: Api }) {
           </button>
         )}
       </article>
+      <WorkQuizSources api={api} />
     </section>
   );
 }
