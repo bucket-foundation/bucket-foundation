@@ -7,7 +7,8 @@ import numpy as np
 
 from . import reference
 from .advisors import opaque_id
-from .clean import scrub
+from .clean import scrub, strip_boilerplate
+from .corpora import CorpusSpec, Doc, load as load_corpus
 
 SCHEMA = "bucket.explore-space/1"
 ERA_BOUND = 1_000_000
@@ -19,6 +20,8 @@ ERAS = [
     ("2000 to 2019", 2000, 2019),
     ("2020 on", 2020, ERA_BOUND),
 ]
+ADVISORS_LICENSE = "OpenAlex metadata (CC0) and public institution pages"
+CANON_LICENSE = "Bucket Foundation canon index"
 ADVISOR_FIELDS = ("name", "institution", "field", "country", "topics", "links")
 PUBLIC_LINK_KEYS = ("openalex", "institution", "profile_url")
 
@@ -30,7 +33,7 @@ def space_components(basis_file: dict) -> list[dict]:
     ]
 
 
-def space_dict(space_id: str, label: str, basis_file: dict, obs: list[dict], sweep: bool = True, fields: list[dict] | None = None) -> dict:
+def space_dict(space_id: str, label: str, basis_file: dict, obs: list[dict], sweep: bool = True, fields: list[dict] | None = None, license: str = "") -> dict:
     k = len(basis_file["components"])
     mean = np.mean([o["scores"] for o in obs], axis=0).tolist() if obs else [0.0] * k
     out = {
@@ -44,6 +47,8 @@ def space_dict(space_id: str, label: str, basis_file: dict, obs: list[dict], swe
         "mean": [round(float(v), 4) for v in mean],
         "obs": obs,
     }
+    if license:
+        out["license"] = license
     if sweep:
         out["sweep"] = {"field": "year", "bins": [{"label": a, "from": b, "to": c} for a, b, c in ERAS]}
     return out
@@ -69,7 +74,7 @@ def project_obs(basis_file: dict, rows: list[dict]) -> list[dict]:
 
 def canon_space(basis_file: dict, items: list[dict]) -> dict:
     rows = [{"id": i["id"], "title": i["title"], "text": i["text"], "t": i.get("year"), "meta": {"kind": i["kind"], "branch": i.get("branch") or ""}} for i in items]
-    return space_dict("canon", "canon", basis_file, project_obs(basis_file, rows))
+    return space_dict("canon", "canon", basis_file, project_obs(basis_file, rows), license=CANON_LICENSE)
 
 
 def public_links(links: dict) -> list[str]:
@@ -103,10 +108,52 @@ def advisor_rows(profiles: list[dict]) -> list[dict]:
 
 def advisors_space(basis_file: dict, bundle: dict) -> dict:
     rows = advisor_rows(bundle["profiles"])
-    return space_dict("advisors", "advisors", basis_file, project_obs(basis_file, rows), sweep=False, fields=[{"key": "topics", "kind": "tokens"}, {"key": "field", "kind": "category"}])
+    return space_dict("advisors", "advisors", basis_file, project_obs(basis_file, rows), sweep=False, fields=[{"key": "topics", "kind": "tokens"}, {"key": "field", "kind": "category"}], license=ADVISORS_LICENSE)
 
 
 def write_space(data: dict, path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return path
+
+
+MAX_CORPUS_DOCS = 3000
+SPACE_DIR_PARTS = (".data", "explore")
+
+
+def corpus_rows(docs: list[Doc], cap: int = MAX_CORPUS_DOCS) -> list[dict]:
+    ordered = sorted(docs, key=lambda d: d.id)
+    stride = max(1, -(-len(ordered) // cap))
+    rows = []
+    for d in ordered[::stride][:cap]:
+        rows.append({
+            "id": opaque_id(d.id),
+            "title": (scrub(d.title or "").strip() or "untitled")[:120],
+            "text": scrub(d.text),
+            "t": None,
+            "meta": {},
+            "links": [],
+        })
+    return rows
+
+
+def corpus_space(spec: CorpusSpec, basis_file: dict, docs: list[Doc], cap: int = MAX_CORPUS_DOCS) -> dict:
+    data = space_dict(spec.name, spec.name, basis_file, project_obs(basis_file, corpus_rows(docs, cap)), sweep=False, license=spec.license)
+    return data
+
+
+def export_corpora(specs: list[CorpusSpec], basis_file: dict, out_dir: Path, cap: int = MAX_CORPUS_DOCS) -> dict[str, str]:
+    results: dict[str, str] = {}
+    for spec in specs:
+        if spec.private:
+            results[spec.name] = "skipped: private"
+            continue
+        if not spec.publish:
+            results[spec.name] = "skipped: not marked publish"
+            continue
+        docs = load_corpus(spec)
+        kept, _ = strip_boilerplate(docs, **spec.clean)
+        data = corpus_space(spec, basis_file, kept, cap)
+        write_space(data, out_dir / f"{spec.name}.space.json")
+        results[spec.name] = f"{len(data['obs'])} documents"
+    return results

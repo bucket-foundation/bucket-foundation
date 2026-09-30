@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import InstallBlocks from "@/components/download/InstallBlocks";
 import { DOWNLOAD_PLATFORMS, RETENTION_MONTHS, osOfPlatform, sentMessage, type DownloadPlatform } from "@/lib/download/core";
+import type { Distro } from "@/lib/download/install";
 import { OS_LABEL, type Os } from "@/lib/download/release";
 import type { Arch, InstallerV2 } from "@/lib/download/release-v2";
 import { NAME_MAX, RESEARCH_MAX, WAITLIST_ROLES } from "@/lib/waitlist/core";
@@ -28,7 +29,7 @@ const PLATFORM_OF: Record<Os, DownloadPlatform> = {
   windows: "windows-x64",
 };
 
-export default function DownloadFlowV2({ detected, installers }: { detected: Os | null; installers: InstallerV2[] }) {
+export default function DownloadFlowV2({ detected, distro = null, installers }: { detected: Os | null; distro?: Distro | null; installers: InstallerV2[] }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -103,7 +104,7 @@ export default function DownloadFlowV2({ detected, installers }: { detected: Os 
             {sentMessage(done.outcome)} <span className="break-all">{done.address}</span>
           </p>
         </div>
-        <InstallBlocks os={done.os} arch={arch} installers={installers} />
+        <InstallBlocks os={done.os} arch={arch} distro={distro} installers={installers} />
       </div>
     );
   }

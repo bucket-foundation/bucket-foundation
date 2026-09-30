@@ -377,8 +377,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     };
   }, [expanded]);
 
-  const selectEntity = (id: string) => {
-    const ev = ALL_EVENTS.find((e) => e.id === id);
+  const selectEntity = (rawId: string) => {
+    const id = rawId.replace(/^site:/, "");
+    const ev = rawId.startsWith("site:") ? undefined : ALL_EVENTS.find((e) => e.id === id);
     const site = ev ? null : ALL_SITES.find((s) => s.id === id);
     if (ev) setSelected({ id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year, branch: ev.branch, title: ev.title, kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] });
     else if (site) setSelected({ id: site.id, lat: site.lat, lng: site.lng, year: site.year, branch: site.branch, title: site.title, kind: "archaeological-site", civilization: site.civilization, lidar: site.lidar, unesco: site.unesco, wikipedia: site.wikipedia });
@@ -539,13 +540,14 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
         </div>
       )}
       <div key="base" data-testid="base-layer" className={expanded ? "absolute inset-0" : "relative w-full mx-auto flex-1 overflow-hidden"} style={expanded ? undefined : { minHeight: "440px" }}>
-        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} chrome={expanded ? "minimal" : "full"} />
+        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} onEntity={selectEntity} chrome={expanded ? "minimal" : "full"} />
       </div>
       {expanded ? <WidgetOverlay key="overlay" insetRight widgets={widgets} collapsed={collapsed} onToggle={(id) => setCollapsed((c) => toggleCollapsed(c, id, widgets))} /> : <div key="bottom" className="px-2 pb-3">{scrubberHostNode}</div>}
 
       <Drawer
         selected={selected}
         floating={expanded}
+        datasetInfo={{ label: dataset.label, count: dataset.obs.length, license: dataset.license }}
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
@@ -557,6 +559,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 function Drawer({
   selected,
   floating = false,
+  datasetInfo,
   transparent = false,
   workspaceLinks = false,
   onClose,
@@ -564,6 +567,7 @@ function Drawer({
 }: {
   selected: CanonMarker | null;
   floating?: boolean;
+  datasetInfo?: { label: string; count: number; license?: string };
   transparent?: boolean;
   workspaceLinks?: boolean;
   onClose: () => void;
@@ -1028,6 +1032,20 @@ function Drawer({
               with year, branch, coordinates, claim excerpt (when from search),
               and links into the canon.
             </p>
+
+            {datasetInfo && (
+              <div data-testid="dataset-info" className="rounded-md p-4 mb-5" style={{ background: "var(--bone-2)", border: "1px solid var(--hairline)" }}>
+                <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}>
+                  Data set
+                </div>
+                <p className="text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  {datasetInfo.label} · {datasetInfo.count.toLocaleString()} items
+                </p>
+                <p data-testid="dataset-license" className="text-xs mt-1" style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                  {datasetInfo.license ? `Licence: ${datasetInfo.license}` : "Licence: not stated"}
+                </p>
+              </div>
+            )}
 
             <div
               className="rounded-md p-4 mb-5"

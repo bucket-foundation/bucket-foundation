@@ -168,3 +168,12 @@ test("a prime file alone gives a dataset with no observations", () => {
 test("labels wrap at the given width", () => {
   assert.deepEqual(wrapLabel("light and water", 10), ["light and", "water"]);
 });
+
+test("a licence label passes the contract, scrubbed and capped", () => {
+  assert.equal(parseDataset(raw({ license: "CC BY 4.0" })).license, "CC BY 4.0");
+  assert.equal(parseDataset(raw()).license, undefined);
+  assert.equal(parseDataset(raw({ license: "   " })).license, undefined);
+  assert.equal(parseDataset(raw({ license: 5 })).license, undefined);
+  assert.ok(!/@/.test(parseDataset(raw({ license: "contact jane@example.org" })).license as string));
+  assert.equal((parseDataset(raw({ license: "x".repeat(500) })).license as string).length, 200);
+});
