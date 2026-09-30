@@ -81,6 +81,9 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--no-png", dest="png", action="store_false")
     r.add_argument("--mp4", action="store_true")
     r.add_argument("--no-docs", action="store_true")
+    r.add_argument("--space", action="store_true", help="write .data/explore/<name>.space.json for corpora marked publish, projected on the reference basis, and skip the fit")
+    r.add_argument("--space-out", type=Path)
+    r.add_argument("--basis-file", type=Path)
     r.add_argument("--gaps", action="store_true")
     r.add_argument("--gap-alpha", type=float, default=0.5)
     r.add_argument("--pick", action="append", default=[])
@@ -436,7 +439,24 @@ def cmd_list(registry: dict[str, corpora.CorpusSpec]) -> int:
         print(f"{spec.name:18} {spec.kind:11} {flag:8} {'ok' if path.exists() else 'missing':8} {spec.description}")
     return 0
 
+def cmd_run_space(args, registry: dict[str, corpora.CorpusSpec]) -> int:
+    from . import explore_space
+
+    names = list(registry) if args.all else args.names
+    unknown = [n for n in names if n not in registry]
+    if not names or unknown:
+        print(f"unknown or missing corpora: {', '.join(unknown) or 'none named'}", file=sys.stderr)
+        return 2
+    basis_path = args.basis_file or corpora.TOOL_REPO_ROOT / "src" / "data" / "explore" / "reference-basis.json"
+    basis_file = json.loads(basis_path.read_text(encoding="utf-8"))
+    out_dir = args.space_out or corpora.data_root() / ".data" / "explore"
+    for name, status in explore_space.export_corpora([registry[n] for n in names], basis_file, out_dir).items():
+        print(f"[{name}] {status}")
+    return 0
+
 def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
+    if args.space:
+        return cmd_run_space(args, registry)
     names = list(registry) if args.all else args.names
     if not names:
         print("name at least one corpus, or pass --all", file=sys.stderr)

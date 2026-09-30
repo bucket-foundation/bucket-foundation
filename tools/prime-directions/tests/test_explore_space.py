@@ -73,3 +73,54 @@ def test_the_committed_canon_space_matches_a_rebuild():
     assert committed == json.loads(json.dumps(rebuilt))
     assert len(committed["obs"]) == len(embed.load_items())
     assert all("coverage" in o for o in committed["obs"])
+
+
+def _registry(tmp_path: Path) -> Path:
+    for name in ("pub", "hidden", "secret"):
+        d = tmp_path / name
+        d.mkdir()
+        for i in range(4):
+            (d / f"doc{i}.md").write_text(f"# title {i}\n" + ("quantum photon electron wave energy field lattice " * 40) + f"contact me at person{i}@example.org")
+    reg = {"corpora": {
+        "pub": {"kind": "folder", "path": str(tmp_path / "pub"), "publish": True, "clean": {"min_chars": 10}},
+        "hidden": {"kind": "folder", "path": str(tmp_path / "hidden"), "clean": {"min_chars": 10}},
+        "secret": {"kind": "folder", "path": str(tmp_path / "secret"), "private": True, "publish": True, "clean": {"min_chars": 10}},
+    }}
+    path = tmp_path / "corpora.json"
+    path.write_text(json.dumps(reg))
+    return path
+
+
+def test_run_space_exports_only_published_public_corpora(tmp_path: Path, capsys):
+    from prime_directions import cli, corpora
+
+    reg = _registry(tmp_path)
+    out = tmp_path / "out"
+    assert cli.main(["--registry", str(reg), "run", "--all", "--out", str(tmp_path / "x"), "--space", "--space-out", str(out), "--basis-file", str(ROOT / "src" / "data" / "explore" / "reference-basis.json")]) == 0
+    files = sorted(p.name for p in out.iterdir())
+    assert files == ["pub.space.json"]
+    text = capsys.readouterr().out
+    assert "[hidden] skipped: not marked publish" in text and "[secret] skipped: private" in text
+    data = json.loads((out / "pub.space.json").read_text())
+    assert data["schema"] == explore_space.SCHEMA and data["id"] == "pub"
+    assert len(data["obs"]) == 4 and all(len(o["scores"]) == 12 for o in data["obs"])
+    assert not re.search(r"[\w.+-]+@[\w-]+\.[\w.]+", json.dumps(data))
+    assert corpora.load_registry(reg)["pub"].publish
+
+
+def test_corpus_space_caps_documents_deterministically():
+    from prime_directions.corpora import Doc
+
+    docs = [Doc(id=f"d{i:04d}", title=f"t{i}", text="quantum photon electron " * 10) for i in range(50)]
+    rows = explore_space.corpus_rows(docs, cap=10)
+    assert len(rows) == 10
+    assert rows == explore_space.corpus_rows(list(reversed(docs)), cap=10)
+    assert all(r["id"].startswith("p") and "d00" not in r["id"] for r in rows)
+
+
+def test_shipped_registry_publishes_no_private_corpus():
+    from prime_directions import corpora
+
+    specs = corpora.load_registry()
+    assert specs["kruse"].private and not specs["kruse"].publish
+    assert not any(s.private and s.publish for s in specs.values())

@@ -7,7 +7,8 @@ import numpy as np
 
 from . import reference
 from .advisors import opaque_id
-from .clean import scrub
+from .clean import scrub, strip_boilerplate
+from .corpora import CorpusSpec, Doc, load as load_corpus
 
 SCHEMA = "bucket.explore-space/1"
 ERA_BOUND = 1_000_000
@@ -110,3 +111,45 @@ def write_space(data: dict, path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return path
+
+
+MAX_CORPUS_DOCS = 3000
+SPACE_DIR_PARTS = (".data", "explore")
+
+
+def corpus_rows(docs: list[Doc], cap: int = MAX_CORPUS_DOCS) -> list[dict]:
+    ordered = sorted(docs, key=lambda d: d.id)
+    stride = max(1, -(-len(ordered) // cap))
+    rows = []
+    for d in ordered[::stride][:cap]:
+        rows.append({
+            "id": opaque_id(d.id),
+            "title": (scrub(d.title or "").strip() or "untitled")[:120],
+            "text": scrub(d.text),
+            "t": None,
+            "meta": {},
+            "links": [],
+        })
+    return rows
+
+
+def corpus_space(spec: CorpusSpec, basis_file: dict, docs: list[Doc], cap: int = MAX_CORPUS_DOCS) -> dict:
+    data = space_dict(spec.name, spec.name, basis_file, project_obs(basis_file, corpus_rows(docs, cap)), sweep=False)
+    return data
+
+
+def export_corpora(specs: list[CorpusSpec], basis_file: dict, out_dir: Path, cap: int = MAX_CORPUS_DOCS) -> dict[str, str]:
+    results: dict[str, str] = {}
+    for spec in specs:
+        if spec.private:
+            results[spec.name] = "skipped: private"
+            continue
+        if not spec.publish:
+            results[spec.name] = "skipped: not marked publish"
+            continue
+        docs = load_corpus(spec)
+        kept, _ = strip_boilerplate(docs, **spec.clean)
+        data = corpus_space(spec, basis_file, kept, cap)
+        write_space(data, out_dir / f"{spec.name}.space.json")
+        results[spec.name] = f"{len(data['obs'])} documents"
+    return results
