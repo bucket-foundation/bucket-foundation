@@ -4,6 +4,7 @@ import { parseAdvisorReview } from "../../../src/lib/research-os/advisor-review"
 import type { PySource } from "./pack/pysrc";
 import type { JobDirs, JobSpec } from "./jobs";
 import type { PeopleStore } from "./people";
+import { platformFor } from "./platform";
 import { extractPy } from "./pyruntime";
 
 const MB = 1024 * 1024;
@@ -34,7 +35,7 @@ export interface SpecDeps {
 }
 
 export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
-  const python = d.python ?? "python3";
+  const python = d.python ?? platformFor().python();
   const check = d.check ?? checkModules;
   const now = d.now ?? Date.now;
   return {
