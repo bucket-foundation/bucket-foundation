@@ -228,25 +228,28 @@ test("sentMessage promises an email only when one was sent", () => {
 test("parseDownload carries role, research and opt-ins, and mergeEntry stores them", () => {
   const r = parseDownload({
     email: "ada@example.org", name: "Ada", consent: true, platform: "macos-arm64", role: "researcher",
-    research: "  protein   folding ", optins: { release_notes: true, daily_whats_new: false },
+    research: "  protein   folding ", release_notes: true, whats_new_daily: true,
   });
   assert.ok(r.ok);
   if (!r.ok) return;
   assert.equal(r.request.input.role, "researcher");
   assert.equal(r.request.input.research, "protein folding");
-  assert.deepEqual(r.request.input.optins, { release_notes: true, daily_whats_new: false });
+  assert.equal(r.request.input.release_notes, true);
+  assert.equal(r.request.input.whats_new_daily, true);
   const entry = mergeEntry(null, r.request.input, "2026-09-30T00:00:00.000Z");
-  assert.deepEqual(entry.optins, { release_notes: true, daily_whats_new: false });
+  assert.equal(entry.release_notes, true);
+  assert.equal(entry.whats_new_daily, true);
   const later = mergeEntry(entry, { email: entry.email, name: null, role: null, wanted: null }, "2026-10-01T00:00:00.000Z");
-  assert.deepEqual(later.optins, { release_notes: true, daily_whats_new: false });
+  assert.equal(later.release_notes, true);
+  assert.equal(later.whats_new_daily, true);
   assert.equal(later.research, "protein folding");
-  assert.deepEqual(parseEntry(JSON.parse(JSON.stringify(later)))?.optins, { release_notes: true, daily_whats_new: false });
+  assert.equal(parseEntry(JSON.parse(JSON.stringify(later)))?.release_notes, true);
 });
 
 test("parseDownload leaves opt-ins unset when the client sends none", () => {
   const r = parseDownload({ email: "ada@example.org", consent: true });
   assert.ok(r.ok);
-  if (r.ok) assert.equal(r.request.input.optins, undefined);
+  if (r.ok) assert.equal(r.request.input.release_notes, undefined);
 });
 
 test("a resubmit with research emptied clears it, and one without the field keeps it", () => {

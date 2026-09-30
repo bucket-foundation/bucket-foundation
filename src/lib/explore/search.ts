@@ -1,6 +1,6 @@
-export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you";
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file";
 
-export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk"];
+export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"];
 
 export interface Hit {
   id: string;
@@ -46,6 +46,7 @@ export interface UnifyOptions {
   types?: HitType[];
   topK?: number;
   linksPerHit?: number;
+  extraHits?: Hit[];
 }
 
 const STOP = new Set(["the", "and", "for", "with", "that", "this", "from", "are", "was", "his", "her", "its", "not", "but", "you", "all", "any", "can", "has", "have", "into", "our", "out", "who", "why", "how", "what"]);
@@ -191,7 +192,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       links: w.ids,
     });
   }
-  return hits
+  return [...hits, ...(opts.extraHits ?? [])]
     .filter((h) => types.has(h.type))
     .sort((a, b) => b.score - a.score || (a.id < b.id ? -1 : 1))
     .slice(0, topK);

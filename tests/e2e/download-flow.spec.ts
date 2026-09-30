@@ -61,7 +61,8 @@ test.describe("download flow on linux", () => {
       platform: "linux-x64",
       research: "protein folding",
       consent: true,
-      optins: { release_notes: true, daily_whats_new: false },
+      release_notes: true,
+      whats_new_daily: false,
     });
   });
 });

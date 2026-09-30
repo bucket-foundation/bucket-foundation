@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
+import { canonFileHits } from "@/lib/explore/canon-files";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, advisorId, unify, type HitType } from "@/lib/explore/search";
@@ -48,7 +49,7 @@ export async function GET(req: NextRequest) {
   const advisors = params.branch ? [] : sources;
   const wantsSources = !types.length || types.some((t) => t === "paper" || t === "text" || t === "talk");
   const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await loadSourceIndex()).map(sourceToHit) : [];
-  const results = unify({ query: params.q, excerpts, advisors, sources: sourceHits, types, topK: params.topK });
+  const results = unify({ query: params.q, excerpts, advisors, sources: sourceHits, types, topK: params.topK, extraHits: params.branch ? [] : canonFileHits(params.q) });
   return json({
     query: params.q || null,
     top_k: params.topK,

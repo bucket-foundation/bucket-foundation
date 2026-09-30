@@ -22,7 +22,6 @@ const NAV: NavItem[] = [
       { href: "/research-os/workspace", label: "Workspace",  meta: "find · quote · check · organize" },
       { href: "/research-os/learn",     label: "Learn",      meta: "lessons, recall, mastery" },
       { href: "/research-os/map",       label: "Map",        meta: "the canon on the globe" },
-      { href: "/research-os/solvability", label: "Solvability", meta: "open problems on circle, sphere, slices, helix" },
       { href: "/research-os/class",     label: "Class",      meta: "teachers and librarians" },
       { href: "/research-os/profile",   label: "Profile",    meta: "levels, credentials, privacy" },
       { href: "/account",               label: "Account",    meta: "handle, wallet, sign out" },
@@ -98,7 +97,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-7 small-caps text-[11px] text-[color:var(--basalt-2)]">
+          <nav className="hidden xl:flex items-center gap-7 whitespace-nowrap small-caps text-[11px] text-[color:var(--basalt-2)]">
             {NAV.map((n) => (
               <div
                 key={n.href}
@@ -197,7 +196,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
               aria-expanded={open}
               aria-controls="mobile-drawer"
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-[5px] rounded-sm border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 active:bg-[color:var(--bone-3)] transition"
+              className="xl:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-[5px] rounded-sm border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 active:bg-[color:var(--bone-3)] transition"
             >
               <span
                 className={`block w-5 h-[2px] bg-[color:var(--basalt)] transition-transform origin-center ${
@@ -224,7 +223,7 @@ export default function Header({ launchList = false }: { launchList?: boolean })
         role="dialog"
         aria-modal="true"
         aria-hidden={!open}
-        className={`md:hidden fixed inset-0 z-50 transition-[visibility] ${
+        className={`xl:hidden fixed inset-0 z-50 transition-[visibility] ${
           open ? "visible" : "invisible"
         }`}
       >
