@@ -6,6 +6,7 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import type { MapModel } from "@/lib/explore/map";
 import DropZone from "@/components/explore/DropZone";
 import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
 import SourcePanel, { isSourceHit } from "@/components/explore/SourcePanel";
@@ -49,6 +50,8 @@ export default function ExploreClient() {
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
   const [uploadedPapers, setUploadedPapers] = useState<Hit[]>([]);
   const [you, setYou] = useState<Hit | null>(null);
+  const [youText, setYouText] = useState("");
+  const [mapModel, setMapModel] = useState<MapModel | null>(null);
   const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
 
@@ -109,6 +112,14 @@ export default function ExploreClient() {
     loadSmiles().then(() => setSmilesLoaded(true));
   }, [mode.id, smilesLoaded]);
 
+  useEffect(() => {
+    if (mode.id !== "map" || mapModel) return;
+    fetch("/api/explore/search?map=1")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((b) => b && setMapModel({ axes: b.axes, advisors: b.advisors }))
+      .catch(() => setMapModel(null));
+  }, [mode.id, mapModel]);
+
   const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : mode.id === "protein" ? `${proteinById(null).gene} ${proteinById(null).name}` : null;
 
   useEffect(() => {
@@ -130,8 +141,8 @@ export default function ExploreClient() {
 
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask }),
-    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask],
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask, map: mapModel, youText }),
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask, mapModel, youText],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
@@ -156,6 +167,8 @@ export default function ExploreClient() {
     } else if (r.kind === "document") {
       const h = youHit(r.name, r.text);
       setYou(h);
+      setYouText(r.text);
+      pickMode("map");
       setSelected(h.id);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

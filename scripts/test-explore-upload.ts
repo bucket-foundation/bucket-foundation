@@ -57,7 +57,7 @@ async function main() {
   const txt = await pdfText(new Uint8Array(pdf));
   check("PDF text is extracted from a flate stream", txt.includes("Light and water in cells") && txt.includes("Mito chondria"), txt);
   const pdfr = await processUpload("cv.pdf", new Uint8Array(pdf));
-  check("PDF upload becomes a document", pdfr.kind === "document" && routeFor(pdfr).mode === null);
+  check("PDF upload becomes a document", pdfr.kind === "document" && routeFor(pdfr).mode === "map");
   const bomb = Buffer.concat([Buffer.from("%PDF-1.4\n<< /Filter /FlateDecode >>\nstream\n"), zlib.deflateSync(Buffer.alloc(2_000_000, "BT (x) Tj ET ")), Buffer.from("\nendstream\n")]);
   check("oversized flate output is dropped at the cap", (await pdfText(new Uint8Array(bomb), 100_000)) === "");
   check("same stream reads under a higher cap", (await pdfText(new Uint8Array(bomb))).length > 0);

@@ -35,6 +35,7 @@ export interface AdvisorSource {
   year: number | null;
   score: number;
   url: string | null;
+  star?: number[];
 }
 
 export interface UnifyOptions {

@@ -2,10 +2,12 @@ import { NextRequest } from "next/server";
 import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
-import { HIT_TYPES, unify, type HitType } from "@/lib/explore/search";
+import { HIT_TYPES, advisorId, unify, type HitType } from "@/lib/explore/search";
 import { loadSourceIndex, searchSources, sourceToHit } from "@/lib/explore/sources";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
+
+const MAP_ADVISOR_CAP = 400;
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,6 +19,15 @@ function json(body: unknown, status = 200) {
 export async function GET(req: NextRequest) {
   const t0 = Date.now();
   const url = new URL(req.url);
+  if (url.searchParams.get("map") === "1") {
+    const { sources, sample, axes } = loadAdvisors();
+    const advisors = sources
+      .filter((a) => a.star?.length)
+      .sort((a, b) => b.score - a.score || a.rank - b.rank)
+      .slice(0, MAP_ADVISOR_CAP)
+      .map((a) => ({ id: advisorId(a), name: a.name, field: a.field, score: a.score, star: a.star }));
+    return json({ advisors_sample: sample, axes, advisors });
+  }
   const params = parseCanonSearchParams(url, 40);
   const types = (url.searchParams.get("types") || "")
     .split(",")
