@@ -38,7 +38,7 @@ export const DEPTH_LADDER: DepthRung[] = [
       {
         label: "Academy",
         href: "/academy",
-        note: "Spaced-repetition mastery over the foundations of each branch — the consume rung, done honestly.",
+        note: "Spaced-repetition mastery over the foundations of each branch: the consume rung.",
       },
     ],
   },
@@ -52,7 +52,7 @@ export const DEPTH_LADDER: DepthRung[] = [
       {
         label: "Academy mastery",
         href: "/academy",
-        note: "Push a branch to high honest mastery (M = proficiency^α · retention^β) — the top of the consume side.",
+        note: "Push a branch to high mastery (M = proficiency^α · retention^β), the top of the consume side.",
       },
     ],
   },
@@ -85,7 +85,7 @@ export const DEPTH_LADDER: DepthRung[] = [
       {
         label: "research tools",
         href: "/research/tools",
-        note: `${TOOLS.length} instruments that let a motivated person DO frontier research, not only read about it.`,
+        note: `${TOOLS.length} instruments that let a motivated person DO frontier research and read about it.`,
       },
     ],
   },
