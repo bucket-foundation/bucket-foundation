@@ -11,6 +11,9 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 
 ## [Unreleased]
 
+### Added
+- **Research OS for K-12**, iteration 1: plan, learner-state model, frontier-backward routing, the four-tool student workspace, the production schema shared with the hypothesis engine, and phases (`learning/research-os/`). Intake of the vendor and data-source map and the funding and people map (`_intake/research-os-k12/`). Public page at `/research-os`, linked from the research hub. Ten `ros-` beads queued in `BEADS-PENDING.jsonl`.
+
 ## [0.4.0]: 2026-09-30 · *Terminal installers*
 
 ### Added
@@ -33,10 +36,15 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 - Human and AI probe, `bkt hai`.
 - Backward prerequisite path to any concept, and per-branch mastery bars.
 
-## [0.2.0]: 2026-09-29 · *Desktop AppImage*
+## [0.2.0]: 2026-09-30 · *Desktop AppImage*
 
 ### Added
 - Bucket AppImage build with a size gate, a signed manifest and checksum, and an installer that verifies them.
+
+## [0.1.0]: 2026-09-29 · *First signed release*
+
+### Added
+- Signed offline `bkt` terminal app, distributed through `/download`.
 
 ## [Site 0.2.0]: 2026-04-23 · *Mobile awakening*
 

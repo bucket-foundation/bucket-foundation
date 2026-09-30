@@ -11,20 +11,20 @@ Bucket is a free-to-read, paid-to-cite research canon with Research OS and a des
 
 ## Install
 
-`bkt` 0.4.0 is a signed terminal app for Linux, macOS and Windows. The installers pick your architecture, verify the release signature and checksum, and put `bkt` on your path.
+`bkt` 0.4.0 is a signed terminal app for Linux, macOS and Windows. The installers pick your architecture, verify the release signature and checksum, and put `bkt` on your path. Drop `BKT_VERSION` to take the latest release.
 
 macOS and Linux:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.sh -o install.sh
-sh install.sh
+BKT_VERSION=0.4.0 sh install.sh
 ```
 
 Windows, in PowerShell:
 
 ```powershell
 iwr https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.ps1 -OutFile install.ps1
-.\install.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 Then run `bkt init` and `bkt`. A new install starts on your first quiz, and every answer stays on your computer. The Linux desktop app ships as `Bucket-0.4.0-x86_64.AppImage` on the [release page](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0). Commands and storage details are in [`packages/bkt/README.md`](./packages/bkt/README.md).

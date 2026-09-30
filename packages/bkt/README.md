@@ -10,14 +10,14 @@ macOS and Linux:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.sh -o install.sh
-sh install.sh
+BKT_VERSION=0.4.0 sh install.sh
 ```
 
 Windows, in PowerShell:
 
 ```powershell
 iwr https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.ps1 -OutFile install.ps1
-.\install.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 `BKT_VERSION` pins a release and `BKT_INSTALL_DIR` sets the target directory, default `~/.local/bin` on macOS and Linux and `%LOCALAPPDATA%\Programs\bkt` on Windows. `BKT_NO_MODIFY_PATH=1` leaves your shell profile alone on macOS and Linux. Then run `bkt init` and `bkt`.
