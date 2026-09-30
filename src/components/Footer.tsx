@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InverseOmega from "./InverseOmega";
+import FooterVersion from "./FooterVersion";
 
 export default function Footer({ launchList = false }: { launchList?: boolean }) {
   return (
@@ -86,7 +87,7 @@ export default function Footer({ launchList = false }: { launchList?: boolean })
 
       <div className="border-t border-[color:var(--hairline-bone)]">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
-          <div>bucket foundation · nonprofit · MIT code · CC0 intent · v0.2.0</div>
+          <div>bucket foundation · nonprofit · MIT code · CC0 intent · <FooterVersion /></div>
           <div className="text-[color:var(--gold)]">carved in stone · mmxxii</div>
         </div>
       </div>

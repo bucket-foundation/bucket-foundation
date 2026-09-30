@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
-import { OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, megabytes, orderFor } from "@/lib/download/release";
+import CopyBlock from "@/components/CopyBlock";
+import { APPIMAGE_RUN_STEPS, APPIMAGE_WARNING, INSTALL_COMMAND, INSTALL_SHELL } from "@/lib/download/install";
+import { OSES, OS_LABEL, RELEASES_PAGE, detectOs, fetchLatestRelease, megabytes } from "@/lib/download/release";
 import DownloadForm from "./DownloadForm";
 
 export const metadata: Metadata = {
@@ -11,16 +13,14 @@ export const metadata: Metadata = {
 };
 
 const P = "mt-4 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]";
-const PRIMARY =
-  "flex items-center justify-between gap-3 px-6 py-4 min-h-[44px] bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[12px] tracking-[0.14em]";
 const SECONDARY =
   "flex items-center justify-between gap-3 px-6 py-3 min-h-[44px] border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold-deep)] transition small-caps text-[11px] tracking-[0.14em]";
 
 export default async function DownloadPage() {
   const os = detectOs((await headers()).get("user-agent"));
   const release = await fetchLatestRelease();
-  const installers = release ? orderFor(os, release.installers) : [];
-  const mine = installers.find((i) => i.os === os);
+  const installers = release ? release.installers : [];
+  const order = [...OSES].sort((a, b) => Number(b === os) - Number(a === os));
 
   return (
     <main className="stone-bone relative grain">
@@ -37,24 +37,37 @@ export default async function DownloadPage() {
           <h2 id="installers" className="small-caps text-[11px] tracking-[0.2em] text-[color:var(--basalt)]">
             {release ? release.name : "latest release"}
           </h2>
-          {installers.length > 0 ? (
-            <ul className="mt-4 flex flex-col gap-3">
-              {installers.map((i) => (
-                <li key={i.os}>
-                  <a href={i.url} className={i === mine ? PRIMARY : SECONDARY} data-os={i.os}>
-                    <span>Download for {OS_LABEL[i.os]}</span>
-                    <span className="normal-case tracking-normal text-[12px] opacity-80">{megabytes(i.size)}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {release ? (
+            <div className="mt-4 flex flex-col gap-8">
+              {order.map((o) => {
+                const direct = installers.find((i) => i.os === o);
+                return (
+                  <div key={o} data-os={o} className="flex flex-col gap-3">
+                    <h3 className={o === os ? "small-caps text-[12px] tracking-[0.14em] text-[color:var(--aegean-deep)]" : "small-caps text-[11px] tracking-[0.14em] text-[color:var(--basalt-2)]"}>
+                      {OS_LABEL[o]}
+                    </h3>
+                    <p className="text-[13px] text-[color:var(--basalt-2)]">Paste this into {INSTALL_SHELL[o]}. It checks the signature before it installs.</p>
+                    <CopyBlock text={INSTALL_COMMAND[o]} label={`${OS_LABEL[o]} install command`} />
+                    {direct && (
+                      <a href={direct.url} className={SECONDARY} data-direct={o}>
+                        <span>{o === "linux" ? "or download the AppImage" : `or download the ${OS_LABEL[o]} installer`}</span>
+                        <span className="normal-case tracking-normal text-[12px] opacity-80">{megabytes(direct.size)}</span>
+                      </a>
+                    )}
+                    {direct && o === "linux" && /\.AppImage$/i.test(direct.name) && (
+                      <div className="flex flex-col gap-2" data-appimage-run>
+                        <CopyBlock text={APPIMAGE_RUN_STEPS.join("\n")} label="AppImage run commands" />
+                        <p className="text-[13px] text-[color:var(--basalt)]" role="note">{APPIMAGE_WARNING}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           ) : (
             <p className={P}>
-              Linux AppImage coming. macOS and Windows builds follow. Leave your email below and we send a link when your installer is ready.
+              Installers are being published. Leave your email below and we send a link when your installer is ready.
             </p>
-          )}
-          {os && installers.length > 0 && !mine && (
-            <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]">No {OS_LABEL[os]} build yet. The builds above are for other systems.</p>
           )}
           <p className="mt-4 text-[13px] text-[color:var(--basalt-2)]">
             <a className="underline" href={release?.page ?? RELEASES_PAGE}>All releases, checksums and signatures</a>
@@ -62,7 +75,7 @@ export default async function DownloadPage() {
         </section>
 
         <h2 className="mt-12 small-caps text-[11px] tracking-[0.2em] text-[color:var(--basalt)]">
-          {installers.length > 0 ? "or get the link by email" : "get the link by email"}
+          {release ? "or get the link by email" : "get the link by email"}
         </h2>
         <p className={P}>
           Leave your email and we send a download link that works for 24 hours, plus a note when a new release ships.
