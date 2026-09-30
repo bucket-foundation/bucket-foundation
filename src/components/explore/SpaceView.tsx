@@ -6,8 +6,10 @@ import CircleChart, { type ChartSeries } from "./CircleChart";
 import type { SpaceViewId } from "./space-views";
 import { sampleDataset } from "@/lib/explore/space-sample";
 import { makeSlices, type Slice } from "@/lib/explore/slices";
+import { visibleAt, yearRange } from "@/lib/explore/surface";
 import type { Dataset } from "@/lib/explore/space";
 
+const SurfaceView = dynamic(() => import("./SurfaceView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 const SliceStack = dynamic(() => import("./SliceStack"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 
 interface Props {
@@ -61,10 +63,14 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
   const setIndex = useCallback((i: number) => (onIndex ? onIndex(i) : setLocal(i)), [onIndex]);
   const step = useCallback((d: number) => setIndex(count ? (index + d + count) % count : 0), [count, index, setIndex]);
   const current = ds.obs[index];
+  const range = useMemo(() => yearRange(ds.obs), [ds]);
+  const [year, setYear] = useState<number | null>(null);
+  const shownYear = year ?? range?.[1] ?? 0;
 
   useEffect(() => {
     setActiveSlice(0);
     setOpened(null);
+    setYear(null);
   }, [ds]);
 
   useEffect(() => {
@@ -95,6 +101,30 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       )}
     </div>
   );
+
+  if (view === "cylinder" || view === "sphere" || view === "sphere-time") {
+    const visible = view === "sphere-time" ? ds.obs.filter((o) => visibleAt(o, shownYear)).length : count;
+    return (
+      <Root embedded={embedded} view={view}>
+        {badge}
+        <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
+          <SurfaceView mode={view} dataset={ds} slices={slices} year={shownYear} selected={index} onSelect={setIndex} />
+        </div>
+        <div className="w-full max-w-3xl px-4 pb-4 text-sm">
+          {view === "sphere-time" && range && (
+            <label htmlFor="space-year" className="flex items-center gap-3 text-xs" style={mono}>
+              <span>year</span>
+              <input id="space-year" data-testid="time-slider" type="range" min={range[0]} max={range[1]} value={shownYear} onChange={(e) => setYear(Number(e.target.value))} className="flex-1 accent-[#D9A43A]" />
+              <span data-testid="time-year">{shownYear}</span>
+            </label>
+          )}
+          <p data-testid="surface-status" data-visible={visible} className="text-center mt-2" style={mono}>
+            {view === "cylinder" ? `surface of ${slices.length} slices` : `${visible} of ${count} observations${current ? ` · ${current.title}` : ""}`}
+          </p>
+        </div>
+      </Root>
+    );
+  }
 
   if (view === "slices" && opened === null) {
     return (
