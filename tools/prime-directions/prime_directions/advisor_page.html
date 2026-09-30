@@ -8,6 +8,7 @@
 :root{--bg:#EFE8D4;--panel:#E4DCC4;--line:rgba(31,28,22,.16);--ink:#1F1C16;--soft:#5E5543;--ochre:#8A641A;--ochre-fill:#B8861E;--teal:#0B6E6E;--rust:#9A3B22;--chip:#F6F1E3}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F1C16;--panel:#2A261E;--line:rgba(239,232,212,.16);--ink:#EFE8D4;--soft:#B9AF96;--ochre:#D9A43A;--ochre-fill:#D9A43A;--teal:#3FB6B6;--rust:#E07A5F;--chip:#2F2A21}}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 main{min-width:0;padding:16px 16px 48px}
 .stage{display:grid;gap:0;max-width:1600px;margin:0 auto}
@@ -69,7 +70,7 @@ body.one .more-wrap{display:none}
 @media (prefers-reduced-motion:reduce){.deck .card{transition:none}}
 .layout{display:grid;gap:16px;align-items:start}
 .layout>div{min-width:0}
-.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:14px;display:grid;gap:10px;min-width:0}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
 .panel h2{margin:0}
 .panel dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:13px}
 .panel dt{color:var(--soft)}
@@ -95,9 +96,21 @@ body.one .more-wrap{display:none}
 .tl-now{margin:0;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 .tl-now b{font:400 24px/1.2 Georgia,serif;color:var(--ochre)}
 .tl-foot{margin:0;text-align:center;letter-spacing:.06em}
-body:not(.circle) .circle-wrap{display:none}
+body:not(.circle):not(.one) .circle-wrap{display:none}
 body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 .panel{border-width:0 0 0 1px;border-radius:0}
+.main-radar svg{width:100%;height:auto;display:block}
+.main-radar text{font-size:8px}
+.legend.static{position:static;margin:8px auto 0}
+.key{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle;border-radius:50%}
+.key.you{background:var(--ochre-fill)}
+.key.avg{background:var(--soft);border-radius:0;transform:rotate(45deg) scale(.8)}
+.key.sel{border:2px solid var(--ink)}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.minis button{padding:4px;display:grid;gap:2px;font-size:11px;color:var(--soft);background:var(--bg)}
+.minis button[aria-pressed=true]{border-color:var(--ochre-fill);box-shadow:inset 0 0 0 1px var(--ochre-fill)}
+.minis canvas,.minis svg{width:100%;aspect-ratio:1/1;height:auto;display:block}
+.minis svg text{display:none}
 @media (min-width:1100px){.stage{grid-template-columns:minmax(0,1fr) 420px}.panel{position:sticky;top:0;height:100vh;overflow:auto;padding:24px}.legend{position:absolute;right:0;bottom:0}}
 @media (max-width:1099px){.panel{border-width:1px 0 0 0}}
 </style>
@@ -131,8 +144,9 @@ body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 
 <section class="circle-wrap" id="circle-wrap">
 <canvas id="circle" role="img" aria-label="Every advisor on a circle around the research statement"></canvas>
+<div id="main-radar" class="main-radar" hidden></div>
 <p class="tip" id="tip" hidden></p>
-<div class="legend"><b>Reading the circle</b><span>centre: the research statement</span><span>closer: a closer match</span><span>angle: position on the two main directions</span><span>click a dot to inspect it</span></div>
+<div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll to step through people</span></div>
 </section>
 
 <ol class="cards" id="cards"></ol>
@@ -216,9 +230,9 @@ if (!AXES.length) $("dirs").hidden = true;
 let selectedId = null, current = [];
 const SVGNS = "http://www.w3.org/2000/svg";
 const svg = (tag, attrs) => { const n = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
-function radar(labels, series) {
+function radar(labels, series, compact = false) {
   const W = 380, C = 190, R = 84, k = labels.length;
-  const root = svg("svg", {viewBox: "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
+  const root = svg("svg", {viewBox: compact ? (C - R - 4) + " " + (C - R - 4) + " " + (2 * R + 8) + " " + (2 * R + 8) : "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
   const ang = (i) => -Math.PI / 2 + 2 * Math.PI * i / k;
   for (const f of [0.25, 0.5, 0.75, 1]) root.append(svg("polygon", {points: labels.map((_, i) => [C + R * f * Math.cos(ang(i)), C + R * f * Math.sin(ang(i))].join(",")).join(" "), fill: "none", stroke: "currentColor", "stroke-opacity": "0.15"}));
   labels.forEach((l, i) => {
@@ -255,15 +269,18 @@ function panel(r) {
   p.append(dl);
   const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 6);
   if (topics.length) p.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
+  const minis = make("div", {class: "minis", role: "group", "aria-label": "Charts: pick one for the main view"});
+  const kinds = [["circle", "Circle"]].concat(AXES.length ? [["prime", "Prime directions"]] : []).concat(OURS.length ? [["ours", "Our directions"]] : []);
+  for (const [kind, label] of kinds) {
+    const b = make("button", {type: "button", "aria-pressed": String(MAIN === kind), title: "Show " + label + " in the main view"});
+    if (kind === "circle") { const c = make("canvas", {"aria-hidden": "true"}); b.append(c); requestAnimationFrame(() => drawCircle(c)); }
+    else b.append(radar(kind === "prime" ? AXES : OURS, series(kind, r), true));
+    b.append(document.createTextNode(label));
+    b.addEventListener("click", () => setMain(kind));
+    minis.append(b);
+  }
   const stars = make("div", {class: "stars"});
-  if (AXES.length && r.star_prime) {
-    const f = make("figure"); f.append(radar(AXES, [{name: "research statement", values: ctx.star_query_prime, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0}, {name: r.name, values: r.star_prime, fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25}]));
-    f.append(make("figcaption", {text: "Prime directions. Radius is the percentile among all professors. Dashed: the research statement."})); stars.append(f);
-  }
-  if (OURS.length && r.star_ours) {
-    const f = make("figure"); f.append(radar(OURS, [{name: "median of the 200 closest", values: ctx.star_ref_ours, fill: "none", stroke: "var(--soft)", dash: "4 3", opacity: 0}, {name: r.name, values: r.star_ours, fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25}]));
-    f.append(make("figcaption", {text: "Our research directions. Radius is similarity scaled against the 200 closest professors. Dashed: their median."})); stars.append(f);
-  }
+  stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: similarity scaled against the 200 closest." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is the median of the 200 closest, grey is the filter average, teal is this advisor."}));
   p.append(stars, make("p", {class: "note", text: "Similarity of published topics. Unvalidated as a measure of advising fit."}));
   const actions = make("div", {class: "actions"});
   for (const [s, label] of [["shortlist","Shortlist"],["maybe","Maybe"],["skip","Skip"]]) {
@@ -276,18 +293,41 @@ function panel(r) {
 const PALETTE = ["#8A641A","#0B6E6E","#9A3B22","#4F6B2A","#5B4A8A","#2E6B8A","#B8861E","#7A5C3E","#3F7F6B","#8A3B5E"];
 const fieldColor = {};
 const colorOf = (f) => { if (!(f in fieldColor)) fieldColor[f] = PALETTE[Object.keys(fieldColor).length % PALETTE.length]; return fieldColor[f]; };
-const cv = $("circle"), cx = cv.getContext("2d");
+const cv = $("circle");
 let geo = null, hoverId = null;
 function pos(r, size) {
   const R = size / 2 - 18, rr = 12 + (R - 12) * Math.sqrt(Math.max(0, Math.min(1, r.radius ?? 1)));
   return [size / 2 + rr * Math.cos(r.theta || 0), size / 2 + rr * Math.sin(r.theta || 0)];
 }
-function drawCircle() {
-  if (!document.body.classList.contains("circle")) return;
+let MAIN = "circle";
+const avgOf = (key) => { const xs = current.filter((r) => r[key]); if (!xs.length) return null; return xs[0][key].map((_, i) => xs.reduce((a, r) => a + r[key][i], 0) / xs.length); };
+function series(kind, r) {
+  const out = [];
+  if (kind === "prime") out.push({name: "you", values: ctx.star_query_prime, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
+  if (kind === "ours") out.push({name: "median of the 200 closest", values: ctx.star_ref_ours, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
+  const key = kind === "prime" ? "star_prime" : "star_ours";
+  out.push({name: "average of the current filters", values: avgOf(key), fill: "var(--soft)", stroke: "var(--soft)", opacity: 0.15});
+  if (r && r[key]) out.push({name: r.name, values: r[key], fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25});
+  return out;
+}
+function drawMain() {
+  const showCircle = MAIN === "circle";
+  cv.hidden = !showCircle;
+  $("main-radar").hidden = showCircle;
+  $("legend").classList.toggle("static", !showCircle);
+  if (showCircle) { drawCircle(); return; }
+  const r = rows.find((x) => x.id === selectedId);
+  $("main-radar").replaceChildren(radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r)));
+}
+function setMain(kind) { MAIN = kind; drawMain(); render(); }
+function drawCircle(target) {
+  const onMain = !target;
+  if (onMain && (!document.body.classList.contains("circle") && !document.body.classList.contains("one") || MAIN !== "circle")) return;
+  const canvas = target || cv, cx = canvas.getContext("2d");
   const css = getComputedStyle(document.documentElement);
-  const size = cv.clientWidth, dpr = window.devicePixelRatio || 1;
+  const size = canvas.clientWidth, dpr = window.devicePixelRatio || 1;
   if (!size) return;
-  if (cv.width !== Math.round(size * dpr)) { cv.width = Math.round(size * dpr); cv.height = Math.round(size * dpr); }
+  if (canvas.width !== Math.round(size * dpr)) { canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr); }
   cx.setTransform(dpr, 0, 0, dpr, 0, 0);
   cx.clearRect(0, 0, size, size);
   const c = size / 2, R = c - 18;
@@ -295,27 +335,38 @@ function drawCircle() {
   cx.strokeStyle = css.getPropertyValue("--line"); cx.lineWidth = 1;
   for (const f of [0.25, 0.5, 0.75, 1]) { cx.beginPath(); cx.arc(c, c, 12 + (R - 12) * Math.sqrt(f), 0, 2 * Math.PI); cx.stroke(); }
   const shown = new Set(current.map((r) => r.id));
-  geo = [];
+  const g = [];
+  let sx = 0, sy = 0, sn = 0;
   for (const pass of [0, 1]) for (const r of rows) {
     if (r.theta == null) continue;
     const on = shown.has(r.id);
     if ((pass === 0) === on) continue;
     const [x, y] = pos(r, size);
-    geo.push([x, y, r]);
+    g.push([x, y, r]);
+    if (on) { sx += x; sy += y; sn++; }
     cx.globalAlpha = on ? 0.85 : 0.12;
     cx.fillStyle = colorOf(r.field || "");
     cx.beginPath(); cx.arc(x, y, on ? 2.6 : 1.6, 0, 2 * Math.PI); cx.fill();
     if (on && statusOf(r) === "shortlist") { cx.globalAlpha = 1; cx.strokeStyle = css.getPropertyValue("--teal"); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(x, y, 5, 0, 2 * Math.PI); cx.stroke(); }
   }
   cx.globalAlpha = 1;
-  cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.beginPath(); cx.arc(c, c, 6, 0, 2 * Math.PI); cx.fill();
-  for (const id of [hoverId, selectedId]) {
+  if (onMain) geo = g;
+  cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.beginPath(); cx.arc(c, c, onMain ? 7 : 4, 0, 2 * Math.PI); cx.fill();
+  if (sn) {
+    const ax = sx / sn, ay = sy / sn, d = onMain ? 7 : 4;
+    cx.fillStyle = css.getPropertyValue("--soft"); cx.strokeStyle = css.getPropertyValue("--ink"); cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(ax, ay - d); cx.lineTo(ax + d, ay); cx.lineTo(ax, ay + d); cx.lineTo(ax - d, ay); cx.closePath(); cx.fill(); cx.stroke();
+    if (onMain) { cx.fillStyle = css.getPropertyValue("--soft"); cx.font = "12px system-ui, sans-serif"; cx.textAlign = "left"; cx.fillText("filter average", ax + 10, ay + 4); }
+  }
+  if (onMain) { cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.font = "12px system-ui, sans-serif"; cx.textAlign = "left"; cx.fillText("you", c + 10, c + 4); }
+  for (const id of onMain ? [hoverId, selectedId] : [selectedId]) {
     const r = rows.find((x) => x.id === id); if (!r || r.theta == null) continue;
     const [x, y] = pos(r, size);
     cx.strokeStyle = css.getPropertyValue("--ink"); cx.lineWidth = id === selectedId ? 2 : 1;
     cx.beginPath(); cx.arc(x, y, 8, 0, 2 * Math.PI); cx.stroke();
-    if (id === selectedId) { cx.fillStyle = css.getPropertyValue("--ink"); cx.font = "13px Georgia, serif"; cx.textAlign = x > c ? "right" : "left"; cx.fillText(r.name, x + (x > c ? -12 : 12), y - 10); }
+    if (id === selectedId && onMain) { cx.fillStyle = css.getPropertyValue("--ink"); cx.font = "13px Georgia, serif"; cx.textAlign = x > c ? "right" : "left"; cx.fillText(r.name, x + (x > c ? -12 : 12), y - 10); }
   }
+  if (!onMain) return;
   cv.setAttribute("aria-label", current.length + " advisors on a circle around the research statement" + (selectedId ? "; selected " + (rows.find((x) => x.id === selectedId) || {}).name : ""));
 }
 function nearest(e) {
@@ -335,7 +386,16 @@ cv.addEventListener("mousemove", (e) => {
   drawCircle();
 });
 cv.addEventListener("mouseleave", () => { hoverId = null; $("tip").hidden = true; drawCircle(); });
-if (window.ResizeObserver) new ResizeObserver(() => drawCircle()).observe(cv);
+if (window.ResizeObserver) new ResizeObserver(() => drawMain()).observe($("circle-wrap"));
+let wheelAt = 0;
+$("circle-wrap").addEventListener("wheel", (e) => {
+  if (Math.abs(e.deltaY) < 4) return;
+  e.preventDefault();
+  const now = Date.now();
+  if (now - wheelAt < 90) return;
+  wheelAt = now;
+  step(e.deltaY > 0 ? 1 : -1);
+}, {passive: false});
 let timer = null;
 $("play").addEventListener("click", () => {
   if (timer) { clearInterval(timer); timer = null; } else { timer = setInterval(() => { const i = current.findIndex((x) => x.id === selectedId); if (i >= current.length - 1) { clearInterval(timer); timer = null; $("play").setAttribute("aria-pressed", "false"); $("play").textContent = "Play"; return; } step(1); }, 1400); }
@@ -449,14 +509,14 @@ function render() {
   $("prev").disabled = idx <= 0; $("next").disabled = idx < 0 || idx >= list.length - 1;
   panel(list[idx]);
   $("tl-name").textContent = list[idx] ? "#" + list[idx].rank + " " + list[idx].name : "No one matches";
-  drawCircle();
+  drawMain();
 }
 
 document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
   document.querySelectorAll("[data-view]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
   document.body.classList.toggle("one", b.dataset.view === "one");
   document.body.classList.toggle("circle", b.dataset.view === "circle");
-  drawCircle();
+  drawMain();
 }));
 $("tl").addEventListener("input", () => { const r = current[Number($("tl").value)]; if (r) select(r.id); });
 $("prev").addEventListener("click", () => step(-1));
@@ -491,7 +551,7 @@ $("export").addEventListener("click", () => {
   document.body.append(a); a.click(); a.remove();
 });
 render();
-window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, toggleDirection: (k) => $("dirs").children[k].click()};
+window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, toggleDirection: (k) => $("dirs").children[k].click(), main: () => MAIN, setMain};
 })();
 </script>
 </body>

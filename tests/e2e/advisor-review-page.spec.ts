@@ -74,3 +74,32 @@ test("a prime-direction chip keeps rows at or above the 75th percentile", async 
   const label = await page.locator("#panel svg.radar").first().getAttribute("aria-label");
   expect(label).toMatch(/\d/);
 });
+
+test("scrolling over the chart steps people and a mini chart becomes the main view", async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.selectOption("#view", "all");
+  const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
+  const box = await page.locator("#circle-wrap").boundingBox();
+  await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2);
+  await page.mouse.wheel(0, 120);
+  await expect.poll(() => page.evaluate(() => (window as any).__advisorReview.selected())).toBe(ids[1]);
+  await page.waitForTimeout(150);
+  await page.mouse.wheel(0, -120);
+  await expect.poll(() => page.evaluate(() => (window as any).__advisorReview.selected())).toBe(ids[0]);
+  await expect(page.locator(".minis button")).toHaveCount(3);
+  await page.locator(".minis button").nth(1).click();
+  expect(await page.evaluate(() => (window as any).__advisorReview.main())).toBe("prime");
+  await expect(page.locator("#circle")).toBeHidden();
+  const label = await page.locator("#main-radar svg").getAttribute("aria-label");
+  expect(label).toContain("you:");
+  expect(label).toContain("average of the current filters:");
+  await page.locator(".minis button").nth(0).click();
+  await expect(page.locator("#circle")).toBeVisible();
+});
+
+test("one at a time keeps the full circle", async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.click('[data-view="one"]');
+  await expect(page.locator("#circle")).toBeVisible();
+  await expect(page.locator("#deck")).toBeVisible();
+});
