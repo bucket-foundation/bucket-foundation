@@ -4,6 +4,10 @@ import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
 import Stage, { type StageItem } from "@/components/stage/Stage";
+import StageShell from "@/components/stage/StageShell";
+import SearchDock, { type SortId } from "@/components/stage/SearchDock";
+import RightNav from "@/components/stage/RightNav";
+import { thetaBySort } from "@/lib/stage/sort";
 import { placeRecords, type StageMode } from "@/lib/stage/forms";
 import { toStageRecord } from "@/lib/stage/mappers";
 import { hitColor } from "@/lib/explore/modes/globe";
@@ -44,6 +48,7 @@ export default function ExploreClient({ stage = false, embedded = false }: { sta
   const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
+  const [sort, setSort] = useState<SortId>("relevance");
 
   const initialSel = useRef<string | null>(null);
 
@@ -140,10 +145,11 @@ export default function ExploreClient({ stage = false, embedded = false }: { sta
   const stageMode = stage && (mode.id === "globe" || mode.id === "helix");
   const stageItems = useMemo<StageItem[]>(() => {
     if (!stageMode) return [];
-    const records = visible.map((h) => toStageRecord(h));
+    const thetas = thetaBySort(visible, sort);
+    const records = visible.map((h) => toStageRecord(h, { thetaOf: (id) => thetas.get(id) }));
     const placed = placeRecords(mode.id as StageMode, records);
     return visible.map((h) => ({ id: h.id, position: placed.get(h.id) ?? [0, 0, 0], color: hitColor(h), size: 0.018 + 0.03 * h.score }));
-  }, [stageMode, mode.id, visible]);
+  }, [stageMode, mode.id, visible, sort]);
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
   const toggle = (t: HitType) =>
@@ -153,6 +159,120 @@ export default function ExploreClient({ stage = false, embedded = false }: { sta
       else next.add(t);
       return next;
     });
+
+  const modeTabs = (
+    <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2 mt-6 text-sm" style={mono}>
+      {MODES.map((m) => (
+        <button
+          key={m.id}
+          role="tab"
+          aria-selected={m.id === mode.id}
+          data-testid={`mode-${m.id}`}
+          onClick={() => pickMode(m.id)}
+          className="border hairline px-3 py-1"
+          style={{ background: m.id === mode.id ? "var(--gold, #D9A43A)" : undefined }}
+        >
+          {m.label}
+        </button>
+      ))}
+    </div>
+  );
+
+  const modeControls = (
+    <>
+      {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
+      {mode.id === "atom" && (
+        <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
+          Element
+          <select data-testid="atom-element" value={element} onChange={(e) => setElement(Number(e.target.value))} className="border hairline bg-transparent px-2 py-1">
+            {ELEMENTS.map((el) => (
+              <option key={el.z} value={el.z}>
+                {el.z} {el.symbol} {el.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+      {(mode.id === "molecule" || mode.id === "reaction") && (
+        <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
+          {mode.id === "molecule" ? "Molecule" : "Reaction"}
+          <select
+            data-testid="chem-select"
+            value={mode.id === "molecule" ? molecule : reaction}
+            onChange={(e) => (mode.id === "molecule" ? setMolecule(e.target.value) : setReaction(e.target.value))}
+            className="border hairline bg-transparent px-2 py-1"
+          >
+            {(mode.id === "molecule" ? MOLECULES : REACTIONS).map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+    </>
+  );
+
+  const resultsList = (
+    <ol data-testid="explore-results" className="space-y-2">
+      {visible.map((h) => (
+        <li key={h.id}>
+          <button
+            onClick={() => setSelected(h.id)}
+            className="w-full text-left border hairline px-3 py-2"
+            style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
+          >
+            <span className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
+              {h.type} · {h.score.toFixed(2)}
+            </span>
+            <span className="block">{h.title}</span>
+            <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
+          </button>
+        </li>
+      ))}
+      {!loading && !visible.length && !error && <li className="text-sm">No results.</li>}
+    </ol>
+  );
+
+  const stageNode = mode.renderer === "protein" ? (
+    <div className="absolute inset-0 overflow-auto p-4 pt-56">
+      <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
+    </div>
+  ) : stageMode ? (
+    <Stage fill items={stageItems} selected={selected} onSelect={setSelected} />
+  ) : (
+    <SceneHost fill key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
+  );
+
+  if (stage) {
+    return (
+      <StageShell
+        heading="Search the canon."
+        stage={stageNode}
+        dock={
+          <SearchDock
+            q={q}
+            onQ={setQ}
+            onSearch={() => run(q)}
+            loading={loading}
+            types={TYPES}
+            active={types}
+            onToggle={toggle}
+            hits={hits}
+            sort={sort}
+            onSort={setSort}
+            sample={sample}
+            modes={modeTabs}
+            modeControls={modeControls}
+            results={resultsList}
+            resultCount={visible.length}
+            error={error}
+          />
+        }
+        rightNav={<RightNav current={current} fallbackLabel={selectedNode ? selectedNode.label ?? selectedNode.id : null} byId={byId} onSelect={setSelected} />}
+      />
+    );
+  }
 
   return (
     <main className="min-h-screen">
@@ -190,51 +310,8 @@ export default function ExploreClient({ stage = false, embedded = false }: { sta
           {sample && <span style={{ color: "var(--parchment-dim)" }}>advisors: sample data</span>}
         </div>
         {error && <p className="mt-4 text-sm" role="alert">{error}</p>}
-        <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2 mt-6 text-sm" style={mono}>
-          {MODES.map((m) => (
-            <button
-              key={m.id}
-              role="tab"
-              aria-selected={m.id === mode.id}
-              data-testid={`mode-${m.id}`}
-              onClick={() => pickMode(m.id)}
-              className="border hairline px-3 py-1"
-              style={{ background: m.id === mode.id ? "var(--gold, #D9A43A)" : undefined }}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-        {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
-        {mode.id === "atom" && (
-          <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
-            Element
-            <select data-testid="atom-element" value={element} onChange={(e) => setElement(Number(e.target.value))} className="border hairline bg-transparent px-2 py-1">
-              {ELEMENTS.map((el) => (
-                <option key={el.z} value={el.z}>
-                  {el.z} {el.symbol} {el.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
-        {(mode.id === "molecule" || mode.id === "reaction") && (
-          <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
-            {mode.id === "molecule" ? "Molecule" : "Reaction"}
-            <select
-              data-testid="chem-select"
-              value={mode.id === "molecule" ? molecule : reaction}
-              onChange={(e) => (mode.id === "molecule" ? setMolecule(e.target.value) : setReaction(e.target.value))}
-              className="border hairline bg-transparent px-2 py-1"
-            >
-              {(mode.id === "molecule" ? MOLECULES : REACTIONS).map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+        {modeTabs}
+        {modeControls}
         <div className="mt-3">
           {mode.renderer === "protein" ? (
             <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
@@ -282,24 +359,7 @@ export default function ExploreClient({ stage = false, embedded = false }: { sta
           </ul>
         </div>
         <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
-          <ol data-testid="explore-results" className="space-y-2">
-            {visible.map((h) => (
-              <li key={h.id}>
-                <button
-                  onClick={() => setSelected(h.id)}
-                  className="w-full text-left border hairline px-3 py-2"
-                  style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
-                >
-                  <span className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                    {h.type} · {h.score.toFixed(2)}
-                  </span>
-                  <span className="block">{h.title}</span>
-                  <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
-                </button>
-              </li>
-            ))}
-            {!loading && !visible.length && !error && <li className="text-sm">No results.</li>}
-          </ol>
+          {resultsList}
           <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">
             {current ? (
               <>

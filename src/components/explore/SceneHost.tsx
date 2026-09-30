@@ -1,10 +1,11 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html, Line, OrbitControls } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { Guide, SceneLayout, Vec3 } from "@/lib/explore/modes/types";
+import { readSharedCamera, writeSharedCamera } from "@/lib/stage/pose";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
   selected: string | null;
   onSelect(id: string): void;
   onScroll?(delta: number): void;
+  fill?: boolean;
 }
 
 function GuideView({ g }: { g: Guide }) {
@@ -93,21 +95,46 @@ function Scene({ layout, selected, onSelect }: Props) {
   );
 }
 
+function PoseSync({ initial }: { initial: ReturnType<typeof readSharedCamera> }) {
+  const { camera, controls } = useThree();
+  const applied = useRef(false);
+  const moved = useRef(false);
+  useFrame(() => {
+    const c = controls as unknown as { target: THREE.Vector3; update(): void } | null;
+    if (!c) return;
+    if (!applied.current) {
+      applied.current = true;
+      if (initial.pose) {
+        camera.position.set(...initial.pose.position);
+        c.target.set(...initial.pose.target);
+        c.update();
+      }
+    }
+    const position = camera.position.toArray() as Vec3;
+    const start = initial.pose?.position;
+    if (!moved.current && start && Math.hypot(position[0] - start[0], position[1] - start[1], position[2] - start[2]) > 1e-3) moved.current = true;
+    writeSharedCamera({ position, target: c.target.toArray() as Vec3, fov: 45 }, initial.locked && !moved.current);
+  });
+  return null;
+}
+
 export default function SceneHost(props: Props) {
   const { layout, onScroll } = props;
   const scrollMode = layout.wheel === "scroll";
+  const initial = useMemo(() => (props.fill ? readSharedCamera() : { pose: null, locked: true }), [props.fill]);
   return (
     <div
       data-testid="explore-scene"
-      className="w-full h-[420px] md:h-[520px] border hairline"
+      className={props.fill ? "absolute inset-0" : "w-full h-[420px] md:h-[520px] border hairline"}
       style={{ background: "#141311" }}
       onWheel={scrollMode && onScroll ? (e) => onScroll(e.deltaY) : undefined}
     >
-      <Canvas camera={{ position: layout.camera, fov: 45 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: initial.pose ? initial.pose.position : layout.camera, fov: 45 }} dpr={[1, 2]}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.1} />
         <Scene {...props} />
         <OrbitControls enablePan={false} enableZoom={!scrollMode} makeDefault />
+        {props.fill && <PoseSync initial={initial} />}
       </Canvas>
     </div>
   );

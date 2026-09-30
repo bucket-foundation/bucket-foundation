@@ -5,8 +5,9 @@ import { OrbitControls } from "@react-three/drei";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import * as THREE from "three";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
-import { cameraDistance, homeCamera, type Vec3 } from "@/lib/explore/frame";
+import { cameraDistance, homeCamera, type CameraPose, type Vec3 } from "@/lib/explore/frame";
 import { INITIAL_LOCK, lockReducer } from "@/lib/stage/camera";
+import { readSharedCamera, writeSharedCamera } from "@/lib/stage/pose";
 import { bufferSize, planMorph, sampleMorph, settled, type MorphItem } from "@/lib/stage/morph";
 
 export interface StageItem {
@@ -21,6 +22,7 @@ interface Props {
   selected: string | null;
   onSelect(id: string): void;
   morphMs?: number;
+  fill?: boolean;
 }
 
 const DRAW_CAP = 5000;
@@ -85,16 +87,26 @@ function Instances({ items, selected, onSelect, morphMs = 600 }: Props) {
 
 interface RigProps {
   locked: boolean;
+  initial: CameraPose | null;
   onOrbit(): void;
   readout: React.RefObject<HTMLDivElement>;
 }
 
-function Rig({ locked, onOrbit, readout }: RigProps) {
+function Rig({ locked, initial, onOrbit, readout }: RigProps) {
   const controls = useRef<{ target: THREE.Vector3; update(): void } | null>(null);
+  const applied = useRef(false);
   const { camera } = useThree();
   useFrame(() => {
     const c = controls.current;
     if (!c) return;
+    if (!applied.current) {
+      applied.current = true;
+      if (initial && !locked) {
+        camera.position.set(...initial.position);
+        c.target.set(...initial.target);
+        c.update();
+      }
+    }
     if (locked) {
       const h = homeCamera();
       camera.position.set(...h.position);
@@ -104,29 +116,31 @@ function Rig({ locked, onOrbit, readout }: RigProps) {
     if (readout.current) {
       const pose = { position: camera.position.toArray() as Vec3, target: c.target.toArray() as Vec3, fov: 45 };
       readout.current.dataset.distance = cameraDistance(pose).toFixed(3);
+      writeSharedCamera(pose, locked);
     }
   });
   return <OrbitControls ref={controls as never} makeDefault enablePan={false} onStart={onOrbit} />;
 }
 
 export default function Stage(props: Props) {
-  const [lock, dispatch] = useReducer(lockReducer, INITIAL_LOCK);
+  const shared = useMemo(() => readSharedCamera(), []);
+  const [lock, dispatch] = useReducer(lockReducer, { locked: shared.locked || !shared.pose ? INITIAL_LOCK.locked : false });
   const readout = useRef<HTMLDivElement>(null);
   const home = homeCamera();
   return (
-    <div ref={readout} data-testid="stage" data-locked={lock.locked ? "true" : "false"} className="relative w-full h-[420px] md:h-[520px] border hairline" style={{ background: "#141311" }}>
+    <div ref={readout} data-testid="stage" data-locked={lock.locked ? "true" : "false"} className={props.fill ? "absolute inset-0" : "relative w-full h-[420px] md:h-[520px] border hairline"} style={{ background: "#141311" }}>
       <Canvas camera={{ position: home.position, fov: home.fov }} dpr={[1, 2]}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.1} />
         <Instances {...props} />
-        <Rig locked={lock.locked} onOrbit={() => dispatch("orbit")} readout={readout} />
+        <Rig locked={lock.locked} initial={shared.pose} onOrbit={() => dispatch("orbit")} readout={readout} />
       </Canvas>
       <button
         type="button"
         data-testid="stage-home"
         aria-pressed={lock.locked}
         onClick={() => dispatch("home")}
-        className="absolute top-2 right-2 border hairline px-2 py-1 text-xs"
+        className="absolute bottom-3 left-3 border hairline px-2 py-1 text-xs"
         style={{ fontFamily: "var(--font-jetbrains)", background: "rgba(20,19,17,0.8)", color: "#EFE8D4" }}
       >
         Home

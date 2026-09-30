@@ -24,4 +24,7 @@ test("explore redirects to canon search only when STAGE_V2 is on", async () => {
   assert.ok(hit);
   assert.equal(hit.destination, "/canon/search");
   assert.equal(hit.permanent, false);
+  assert.ok(!hit.destination.includes("?"));
+  assert.equal(hit.has, undefined);
+  assert.equal(hit.missing, undefined);
 });

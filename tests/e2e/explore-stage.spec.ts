@@ -64,6 +64,7 @@ test.describe("stage render path", () => {
     await expect(page.getByTestId("mode-helix")).toHaveAttribute("aria-selected", "true");
     await expect(page.getByTestId("explore-query")).toHaveValue("photon");
     await expect(page.getByTestId("stage")).toBeVisible();
+    await page.locator('[data-testid="dock-results"] summary').click();
     const first = page.getByTestId("explore-results").locator("button").first();
     await expect(first).toBeVisible();
     await first.click();
@@ -85,5 +86,64 @@ test.describe("stage render path", () => {
     await expect(stage).toHaveAttribute("data-locked", "false");
     await page.getByTestId("stage-home").click();
     await expect(stage).toHaveAttribute("data-locked", "true");
+  });
+
+  test("the shell is full-bleed and the dock moves between full, card and left nav", async ({ page }) => {
+    await page.goto("/canon/search");
+    const shell = page.getByTestId("stage-shell");
+    await expect(shell).toHaveAttribute("data-layout", "full");
+    const viewport = page.viewportSize()!;
+    const box = (await shell.boundingBox())!;
+    expect(box.x).toBe(0);
+    expect(box.width).toBe(viewport.width);
+    expect(box.height).toBeGreaterThan(viewport.height * 0.8);
+    const stageBox = (await page.getByTestId("stage").boundingBox())!;
+    expect(stageBox.width).toBeGreaterThan(viewport.width - 340);
+    const dock = page.getByTestId("dock-full");
+    await expect(dock.getByTestId("explore-query")).toBeVisible();
+    await expect(dock.getByTestId("dock-sort")).toBeVisible();
+    await page.getByTestId("dock-compact").click();
+    await expect(shell).toHaveAttribute("data-layout", "compact");
+    const card = page.getByTestId("dock-card");
+    await expect(card.getByTestId("explore-query")).toBeVisible();
+    const cardBox = (await card.boundingBox())!;
+    expect(cardBox.x + cardBox.width).toBeGreaterThan(viewport.width - 5);
+    await page.getByTestId("dock-to-nav").click();
+    const nav = page.getByTestId("dock-nav");
+    await expect(nav.getByTestId("explore-query")).toBeVisible();
+    expect((await nav.boundingBox())!.x).toBe(0);
+    await nav.getByRole("button", { name: "Close" }).click();
+    await expect(page.getByTestId("dock-open")).toBeVisible();
+    await page.getByTestId("dock-open").click();
+    await expect(page.getByTestId("dock-nav")).toBeVisible();
+  });
+
+  test("the right nav shows the profile and the Links section", async ({ page }) => {
+    await page.goto("/canon/search?q=photon");
+    const panel = page.getByTestId("explore-panel");
+    await expect(panel.locator("h2")).toBeVisible();
+    const links = page.getByTestId("right-nav-links");
+    await expect(links).toContainText("Links (");
+  });
+
+  test("the camera and lock survive a detour through a SceneHost mode", async ({ page }) => {
+    await page.goto("/canon/search");
+    const stage = page.getByTestId("stage");
+    await expect(stage).toHaveAttribute("data-locked", "true");
+    const box = (await stage.boundingBox())!;
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2 + 120, box.y + box.height / 2 + 40, { steps: 8 });
+    await page.mouse.up();
+    await expect(stage).toHaveAttribute("data-locked", "false");
+    await page.waitForTimeout(300);
+    const before = Number(await stage.getAttribute("data-distance"));
+    await page.getByTestId("mode-atom").click();
+    await expect(page.getByTestId("explore-scene")).toBeVisible();
+    await page.waitForTimeout(800);
+    await page.getByTestId("mode-globe").click();
+    const back = page.getByTestId("stage");
+    await expect(back).toHaveAttribute("data-locked", "false");
+    await expect.poll(async () => Math.abs(Number(await back.getAttribute("data-distance")) - before)).toBeLessThan(0.05);
   });
 });
