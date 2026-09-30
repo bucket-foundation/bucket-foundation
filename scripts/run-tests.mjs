@@ -19,6 +19,7 @@ const SUITES = {
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
       "scripts/test-download-release.ts",
+      "scripts/test-site-chrome.ts",
       "scripts/test-waitlist-invites.ts",
       "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path}.ts",
       "scripts/test-research-agent-route.ts",
