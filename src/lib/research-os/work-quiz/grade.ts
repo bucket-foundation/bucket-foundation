@@ -1,4 +1,4 @@
-import { FSRS, type Card, type Rating } from "@/lib/academy/fsrs";
+import { FSRS, type Card, type Rating } from "../../academy/fsrs";
 import type { QuizQuestion } from "./types";
 
 export const GRACE_MS = 3000;
