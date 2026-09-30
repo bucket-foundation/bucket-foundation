@@ -13,6 +13,8 @@ import { HaiStore } from "./hai/store";
 import { freeze, parseToolArgs, review, score } from "./hai/tools";
 import { HaiApp } from "./hai/view";
 import { IMPORT_BODY_BYTES, localRoutes } from "./local";
+import { advisorRoutes, REVIEW_BODY_BYTES } from "./advisor";
+import { PeopleStore } from "./people";
 import { BUNDLED_ROS, rosRoutes } from "./ros";
 import { startServe } from "./serve";
 import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
@@ -81,6 +83,9 @@ async function main(argv: string[]) {
     else await score(a);
     return;
   }
+  const forgetPeople = argv[0] === "forget" && argv[1] === "people";
+  if (argv[0] === "forget" && !forgetPeople) throw new Error("usage: bkt forget people");
+  if (forgetPeople) argv = argv.slice(2);
   const hai = argv[0] === "hai";
   const haiCmd = hai ? (argv[1] && !argv[1].startsWith("--") ? argv[1] : "tui") : null;
   const { cmd, opts } = parseArgs(hai ? argv.slice(haiCmd === "tui" ? 1 : 2) : argv);
@@ -117,10 +122,23 @@ async function main(argv: string[]) {
       );
       return;
     }
+    if (forgetPeople) {
+      const n = new PeopleStore(session.store, session.key).forget(Date.now());
+      console.log(`forgot ${n} people; a later import skips them unless you confirm`);
+      return;
+    }
     if (cmd === "serve" || cmd === "app") {
       const srv = startServe({
-        routes: { ...localRoutes(session.store, { content }), ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)) },
-        routeBodyBytes: { "POST /local/import": IMPORT_BODY_BYTES },
+        routes: {
+          ...localRoutes(session.store, { content }),
+          ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
+          ...advisorRoutes(new PeopleStore(session.store, session.key)),
+        },
+        routeBodyBytes: {
+          "POST /local/import": IMPORT_BODY_BYTES,
+          "POST /local/advisor/import": REVIEW_BODY_BYTES,
+          "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
+        },
         uiDir: uiDir(),
         onError: (e) => console.error(`bkt serve: ${e.message}`),
       });
