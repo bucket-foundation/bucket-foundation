@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import SliceCircle from "./SliceCircle";
+import { SPACE_VIEWS, eraOf, type SpaceView } from "@/lib/research-os/solvability-space";
 import { PageHeader, Panel } from "@/components/ui";
 import {
   BRANCHES,
@@ -30,6 +33,8 @@ const BRANCH_COLOR: Record<string, string> = {
   mind: "var(--gold)",
   bucketmath: "var(--stone-300)",
 };
+
+const SolvabilitySpace = dynamic(() => import("./SolvabilitySpace"), { ssr: false });
 
 const MINT_STYLE: Record<MintState, string> = {
   minted: "border-[color:var(--laurel-deep)] text-[color:var(--laurel-deep)]",
@@ -126,6 +131,16 @@ function Pills<T extends string>({ label, value, options, onChange }: { label: s
 export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData }) {
   const [f, setF] = useState<AtlasFilter>({ source: "problem", branch: "", mint: "" });
   const rows = useMemo(() => filterProductions(data.productions, f), [data.productions, f]);
+  const [view, setView] = useState<"cards" | SpaceView>("cards");
+  const [year, setYear] = useState(2026);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [era, setEra] = useState(3);
+  const picked = rows.find((p) => p.id === selected) ?? null;
+  const select = (id: string) => {
+    setSelected(id);
+    const p = rows.find((r) => r.id === id);
+    if (p) setEra(eraOf(p.posed));
+  };
   const counts = mintCounts(data.productions);
   const s = data.summary;
   const stats: [string, string][] = [
@@ -162,11 +177,35 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
         <Pills label="minted" value={f.mint} onChange={(v) => setF({ ...f, mint: v })} options={[{ v: "", label: "all" }, ...MINT_STATES.map((m) => ({ v: m, label: m }))]} />
       </div>
 
-      <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
-        {rows.map((p) => (
-          <Card key={p.id} p={p} />
-        ))}
+      <div className="flex flex-col gap-2">
+        <Pills label="view" value={view} onChange={setView} options={[{ v: "cards", label: "cards" }, ...SPACE_VIEWS.map((v) => ({ v, label: v }))]} />
+        {view !== "cards" && (
+          <label htmlFor="atlas-year" className="flex items-center gap-3 font-mono tabular-nums text-[12px]">
+            <span className={LABEL}>year</span>
+            <input id="atlas-year" type="range" min={1600} max={2026} value={year} onChange={(e) => setYear(Number(e.target.value))} className="flex-1 accent-[color:var(--gold-deep)]" />
+            <span>{year}</span>
+          </label>
+        )}
       </div>
+
+      {view === "cards" ? (
+        <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
+          {rows.map((p) => (
+            <Card key={p.id} p={p} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_420px]">
+          <div className="flex flex-col gap-2 min-w-0">
+            <SolvabilitySpace rows={rows} view={view} year={year} selected={selected} colors={BRANCH_COLOR} onSelect={select} onSlice={setEra} />
+            <p className="text-[12px] text-[color:var(--basalt-3)]">Drag to orbit. Click a problem to open its card, or a ring to open that era as a circle graph. Time runs from back left to front right; a filled dot is resolved by the chosen year; the shaded surface is solvability smoothed across time and angle.</p>
+          </div>
+          <div className="flex flex-col gap-4 min-w-0">
+            <SliceCircle rows={rows} era={era} year={year} selected={selected} colors={BRANCH_COLOR} onSelect={select} />
+            {picked ? <Card p={picked} /> : <p className="text-[13px] text-[color:var(--basalt-3)]">Pick a problem to see its card.</p>}
+          </div>
+        </div>
+      )}
       {rows.length === 0 && <p className="text-[13px] text-[color:var(--basalt-3)]">No production matches these filters.</p>}
 
       <div className="grid gap-6 md:grid-cols-2">

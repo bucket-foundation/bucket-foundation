@@ -1,18 +1,16 @@
-import { chmodSync, closeSync, mkdirSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
-import { homedir } from "node:os";
+import { closeSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ensureDataKey, ensureDevice, type DeviceIdentity } from "./device";
-import { PassphraseKeyring, SecretToolKeyring, type Keyring } from "./keyring";
+import { PassphraseKeyring, type Keyring } from "./keyring";
+import { platformFor, type Platform } from "./platform";
 import { Store } from "./store";
 
 export function dataDir(env = process.env): string {
-  return env.BKT_HOME ?? join(env.XDG_DATA_HOME ?? join(homedir(), ".local/share"), "bkt");
+  return env.BKT_HOME ?? join(platformFor(process.platform, { env }).dataDir(), "bkt");
 }
 
-export function ensureDataDir(dir: string): string {
-  mkdirSync(dir, { recursive: true, mode: 0o700 });
-  chmodSync(dir, 0o700);
-  return dir;
+export function ensureDataDir(dir: string, platform: Platform = platformFor()): string {
+  return platform.secureDir(dir);
 }
 
 export interface KeyringOptions {
@@ -68,13 +66,20 @@ export async function promptPassphrase(label = "bkt passphrase: "): Promise<stri
   });
 }
 
-export async function pickKeyring(opts: KeyringOptions, dir: string, env = process.env): Promise<Keyring> {
-  const kind = opts.keyring ?? env.BKT_KEYRING ?? "libsecret";
-  if (kind === "libsecret") {
-    if (!SecretToolKeyring.available(env)) throw new Error("libsecret is unavailable; rerun with --keyring passphrase to use a passphrase vault");
-    return new SecretToolKeyring();
+export async function pickKeyring(
+  opts: KeyringOptions,
+  dir: string,
+  env = process.env,
+  platform: Platform = platformFor(process.platform, { env }),
+): Promise<Keyring> {
+  const native = platform.nativeKeyring;
+  const kind = opts.keyring ?? env.BKT_KEYRING ?? native;
+  if (kind === native || kind === "native") {
+    const kr = platform.keyring();
+    if (!kr) throw new Error(`${native} is unavailable; rerun with --keyring passphrase to use a passphrase vault`);
+    return kr;
   }
-  if (kind !== "passphrase") throw new Error(`unknown keyring ${kind}`);
+  if (kind !== "passphrase") throw new Error(`unknown keyring ${kind} on ${platform.os}; use ${native} or passphrase`);
   const pass = opts.passphraseFd !== undefined ? readPassphraseFd(opts.passphraseFd) : await promptPassphrase();
   return new PassphraseKeyring(join(dir, "keyring.json"), pass);
 }
