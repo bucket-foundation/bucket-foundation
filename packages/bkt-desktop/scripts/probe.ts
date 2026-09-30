@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 export interface ProbeResult {
@@ -9,7 +10,7 @@ export interface ProbeResult {
 }
 
 export function appRecordPath(env: Record<string, string | undefined>, uid: number | undefined): string {
-  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? "/tmp", `bucket-${uid ?? "user"}`);
+  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? tmpdir(), `bucket-${uid ?? "user"}`);
   return join(base, "bucket", "app.json");
 }
 

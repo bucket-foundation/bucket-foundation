@@ -6,6 +6,7 @@ import { appRecordPath, probe, readPort } from "./probe";
 
 test("finds app.json where bkt writes it", () => {
   expect(appRecordPath({ XDG_RUNTIME_DIR: "/run/user/7" }, 7)).toBe(join("/run/user/7", "bucket", "app.json"));
+  expect(appRecordPath({}, undefined)).toBe(join(tmpdir(), "bucket-user", "bucket", "app.json"));
   expect(appRecordPath({ TMPDIR: "/t" }, 7)).toBe(join("/t", "bucket-7", "bucket", "app.json"));
 });
 
