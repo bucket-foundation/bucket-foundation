@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getClaim, getClaimsByConcept } from "@/lib/canon-claims";
+import { isFoundationTier } from "../../qualify-v2";
 import { getEvidenceFor, prettySourcePath, sourceKind } from "@/lib/canon-evidence";
 
 export const dynamic = "force-static";
@@ -9,23 +10,23 @@ export function generateStaticParams() {
   const all = getClaimsByConcept();
   const out: { concept: string; slug: string }[] = [];
   for (const [concept, claims] of Object.entries(all)) {
-    for (const c of claims) out.push({ concept, slug: c.slug });
+    for (const c of claims.filter(isFoundationTier)) out.push({ concept, slug: c.slug });
   }
   return out;
 }
 
 export function generateMetadata({ params }: { params: { concept: string; slug: string } }) {
   const c = getClaim(params.concept, params.slug);
-  if (!c) return { title: "Source excerpt · bucket.foundation" };
+  if (!c || !isFoundationTier(c)) return { title: "Source excerpt · bucket.foundation" };
   return {
     title: `Excerpt from ${c.videoTitle} at ${c.timestamp} · ${c.concept} · bucket.foundation`,
-    description: `A passage from ${c.videoTitle}, ${c.timestamp}, tagged ${c.concept}. A source excerpt, outside the canon.`,
+    description: `A passage from ${c.videoTitle}, ${c.timestamp}, tagged ${c.concept}. A foundation-tier source excerpt awaiting a primary-source check.`,
   };
 }
 
 export default function Page({ params }: { params: { concept: string; slug: string } }) {
   const c = getClaim(params.concept, params.slug);
-  if (!c) notFound();
+  if (!c || !isFoundationTier(c)) notFound();
   const evidence = getEvidenceFor(params.concept, params.slug);
 
   return (
@@ -88,23 +89,24 @@ export default function Page({ params }: { params: { concept: string; slug: stri
                 style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
               Score
             </dt>
-            <dd>
-              {c.score}
-              {c.patternSignals.length > 0 && (
-                <span style={{ color: "var(--parchment-dim)" }}>
-                  {" "}
-                  · {c.patternSignals.join(" · ")}
-                </span>
-              )}
-            </dd>
+            <dd>{c.score}</dd>
           </div>
+          {c.patternSignals.length > 0 && (
+            <div className="flex flex-wrap items-baseline gap-3">
+              <dt className="text-xs uppercase tracking-[0.2em]"
+                  style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                Assertion signals
+              </dt>
+              <dd>{c.patternSignals.join(", ")}</dd>
+            </div>
+          )}
           <div className="flex flex-wrap items-baseline gap-3">
             <dt className="text-xs uppercase tracking-[0.2em]"
                 style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
               Status
             </dt>
             <dd style={{ color: "var(--ochre)" }}>
-              source excerpt, outside the canon until it names a foundation
+              foundation-tier excerpt, awaiting a primary-source check
             </dd>
           </div>
         </dl>
@@ -115,14 +117,14 @@ export default function Page({ params }: { params: { concept: string; slug: stri
               className="mb-4 text-xs uppercase tracking-[0.22em]"
               style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
             >
-              Corpus evidence — top {evidence.evidence.length} passages
+              Corpus evidence: top {evidence.evidence.length} passages
             </h2>
             <p
               className="mb-6 text-sm"
               style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
             >
               Most-relevant passages from the entire indexed corpus
-              ({Math.round(67286).toLocaleString()} paragraph chunks
+              (67,286 paragraph chunks
               across YouTube transcripts, PubMed, arXiv, archive.org,
               Stanford Encyclopedia of Philosophy, OpenAlex, and more)
               ranked by semantic similarity (bge-small-en-v1.5).

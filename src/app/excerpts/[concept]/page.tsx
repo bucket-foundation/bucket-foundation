@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
+import { ExcerptListV2 } from "../ExcerptListV2";
+import { isFoundationTier, toExcerptItem } from "../qualify-v2";
 
 export const dynamic = "force-static";
 
@@ -9,7 +11,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { concept: string } }) {
-  return { title: `${params.concept} · source excerpts · bucket.foundation` };
+  return { title: `${params.concept.replace(/-/g, " ")} · source excerpts · bucket.foundation` };
 }
 
 export default function Page({ params }: { params: { concept: string } }) {
@@ -37,52 +39,12 @@ export default function Page({ params }: { params: { concept: string } }) {
         className="mt-3 text-lg"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
       >
-        {claims.length} {claims.length === 1 ? "excerpt" : "excerpts"} · {claims[0].branch}
+        {claims.filter(isFoundationTier).length} foundation-tier of {claims.length} {claims.length === 1 ? "excerpt" : "excerpts"} · {claims[0].branch}
       </p>
 
-      <ul className="mt-12 space-y-8">
-        {claims.map((c) => (
-          <li
-            key={c.slug}
-            className="border-l-2 border-[color:var(--hairline)] pl-5 transition hover:border-[color:var(--gold)]"
-          >
-            <div
-              className="mb-2 flex items-baseline gap-3 text-xs uppercase tracking-[0.18em]"
-              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
-            >
-              <span>score {c.score}</span>
-              <span>·</span>
-              <a
-                href={c.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-4 hover:text-[color:var(--gold)] hover:underline"
-              >
-                {c.timestamp} ↗
-              </a>
-              {c.crossConcepts.length > 0 && (
-                <>
-                  <span>·</span>
-                  <span>{c.crossConcepts.join(" · ")}</span>
-                </>
-              )}
-            </div>
-            <Link
-              href={`/excerpts/${c.concept}/${c.slug}`}
-              className="block text-lg md:text-xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
-            >
-              {c.excerpt}
-            </Link>
-            <div
-              className="mt-2 text-sm"
-              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
-            >
-              — {c.videoTitle}
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-12">
+        <ExcerptListV2 items={claims.map(toExcerptItem)} showConcept={false} />
+      </div>
     </main>
   );
 }
