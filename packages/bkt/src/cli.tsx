@@ -20,6 +20,7 @@ import { jobSpecs } from "./job-specs";
 import { JobRunner } from "./jobs";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "./work-quiz";
 import { NOTES_BODY_BYTES, NotesStore, notesRoutes } from "./notes";
+import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "./history";
 import { cacheRoot } from "./pyruntime";
 import pysrc from "../content/pysrc.json" with { type: "json" };
 import type { PySource } from "./pack/pysrc";
@@ -149,6 +150,7 @@ async function main(argv: string[]) {
           ...jobRoutes(runner),
           ...workQuizRoutes(new WorkQuizStore(session.store, session.key)),
           ...notesRoutes(new NotesStore(session.store, session.key)),
+          ...historyRoutes(new HistoryStore(session.store, session.key)),
         },
         routeBodyBytes: {
           "POST /local/import": IMPORT_BODY_BYTES,
@@ -157,6 +159,7 @@ async function main(argv: string[]) {
           "POST /local/jobs": JOB_BODY_BYTES,
           "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
           "POST /local/notes": NOTES_BODY_BYTES,
+          "POST /local/history/import": HISTORY_BODY_BYTES,
         },
         uiDir: uiDir(),
         onError: (e) => console.error(`bkt serve: ${e.message}`),

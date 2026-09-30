@@ -10,6 +10,7 @@ import { jobSpecs } from "../../bkt/src/job-specs";
 import { JobRunner } from "../../bkt/src/jobs";
 import { WorkQuizStore, workQuizRoutes } from "../../bkt/src/work-quiz";
 import { NotesStore, notesRoutes } from "../../bkt/src/notes";
+import { HistoryStore, historyRoutes } from "../../bkt/src/history";
 import { buildPySource } from "../../bkt/src/pack/pysrc";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -85,6 +86,18 @@ for (let i = 0; i < 600 && runner.get(job.id)!.state === "running"; i++) await B
 const notesStore = new NotesStore(store, key);
 notesStore.save({ title: "Exclusion zone reading list", body: "## To read\n- Pollack, the fourth phase of water\n- **Ling** on the association-induction hypothesis\n\nCheck whether `EZ` width scales with $\\lambda$ of the light.", pinned: true }, Date.now() - 86_400_000);
 notesStore.save({ title: "Prime directions questions", body: "Which direction separates biophysics from chemistry?", pinned: false }, Date.now());
+const hist = new HistoryStore(store, key);
+hist.save(
+  {
+    productions: [
+      { id: "p1", kind: "production", status: "accepted", claim: "Exclusion-zone width grows with infrared exposure", target_node_id: "n1", related_node_id: null, node_id: "n9", notes: [{ at: "2026-09-12", decision: "accept" }], updated_at: "2026-09-12T10:00:00Z" },
+      { id: "p2", kind: "extension", status: "submitted", claim: "The same effect in cellular cytoplasm", target_node_id: "n1", related_node_id: "n9", node_id: null, notes: [], updated_at: "2026-09-25T10:00:00Z" },
+      { id: "p3", kind: "production", status: "returned", claim: "Water memory claims", target_node_id: "n2", related_node_id: null, node_id: null, notes: [{ at: "2026-09-20", decision: "return", reason: "Needs a primary source for the measurement." }], updated_at: "2026-09-20T10:00:00Z" },
+    ],
+    nodes: { n1: { slug: "water", title: "Structured water", kind: "concept" }, n2: { slug: "memory", title: "Water memory", kind: "claim" }, n9: { slug: "ez", title: "Exclusion zone", kind: "claim" } },
+  },
+  Date.now(),
+);
 const wq = new WorkQuizStore(store, key);
 wq.setBeads(
   ["Grip sphere on Learn", "Prerequisite path view", "Advisor viewer", "Host jobs runner", "Work quiz from beads", "Canon circle", "Atlas views", "Notes in bkt.db"].map((title, i) => ({
@@ -96,7 +109,7 @@ wq.setBeads(
   })),
   Date.now(),
 );
-const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }), ...notesRoutes(notesStore) }, uiDir: resolve(import.meta.dir, "../dist") });
+const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }), ...notesRoutes(notesStore), ...historyRoutes(hist) }, uiDir: resolve(import.meta.dir, "../dist") });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
 const errors: string[] = [];
@@ -169,6 +182,10 @@ await page.click('nav a[href="#/notes"]');
 await page.waitForSelector(".editor");
 await page.click("text=Preview");
 await page.screenshot({ path: join(out, "8b-notes.png") });
+
+await page.click('nav a[href="#/history"]');
+await page.waitForSelector(".activity");
+await page.screenshot({ path: join(out, "8c-history.png") });
 
 await page.click('nav a[href="#/jobs"]');
 await page.waitForSelector(".job-head");

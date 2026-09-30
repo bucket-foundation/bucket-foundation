@@ -1101,3 +1101,69 @@ section > article + article {
   border-radius: 8px;
   padding: 12px 14px;
 }
+
+.activity {
+  display: grid;
+  grid-template-columns: repeat(60, 1fr);
+  gap: 2px;
+  height: 90px;
+  align-items: end;
+  margin: 12px 0 6px;
+}
+
+.activity .day {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+}
+
+.activity .none {
+  height: 2px;
+  background: var(--line);
+}
+
+.activity .learn,
+.legend .learn {
+  background: var(--accent);
+}
+
+.activity .work,
+.legend .work {
+  background: var(--r4);
+}
+
+.activity .note,
+.legend .note {
+  background: var(--r2);
+}
+
+.legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin: 0 4px 0 10px;
+  vertical-align: -1px;
+}
+
+.prod-group h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  margin: 18px 0 6px;
+}
+
+.prod-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.prod-group li {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
