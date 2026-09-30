@@ -1073,3 +1073,31 @@ section > article + article {
   padding: 20px 24px;
   overflow-x: auto;
 }
+
+.split.notes {
+  grid-template-columns: 300px 1fr;
+}
+
+.editor .title-input {
+  flex: 1;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 6px 2px;
+}
+
+.editor .body-input {
+  width: 100%;
+  min-height: 460px;
+  resize: vertical;
+  font: 14px/1.6 ui-monospace, "SF Mono", Menlo, monospace;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+}

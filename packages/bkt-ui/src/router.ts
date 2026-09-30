@@ -12,9 +12,10 @@ export type Route =
   | { name: "jobs" }
   | { name: "work" }
   | { name: "canon" }
-  | { name: "atlases" };
+  | { name: "atlases" }
+  | { name: "notes" };
 
-const SIMPLE = new Set(["quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases"]);
+const SIMPLE = new Set(["quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes"]);
 
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean).map(decodeURIComponent);
