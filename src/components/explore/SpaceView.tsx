@@ -35,6 +35,11 @@ export default function SpaceView({ dataset }: Props) {
             sample data
           </span>
         )}
+        {ds.basis === "own" && (
+          <span data-testid="basis-label" className="border hairline px-2 py-0.5" style={{ color: "#A89F88" }}>
+            own basis, unscaled
+          </span>
+        )}
       </div>
       <div className="w-full flex-1 max-w-3xl" style={{ minHeight: 420 }}>
         <CircleChart components={ds.components} series={series} onStep={step} scale={ds.scale} />
