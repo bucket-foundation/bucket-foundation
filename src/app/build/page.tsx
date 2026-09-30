@@ -28,10 +28,10 @@ x-bucket-source: canon
   },
   "citation": {
     "type":          "source",
-    "source_id":     "canon:mitochondria/peter-mitchell-1961",
+    "source_id":     "canon:mitochondria/019-don-t-have-to-make-a-lot-of-heat-because-it-s-hot-all-the-ti",
     "provider":      "bucket-foundation",
     "license":       "CC-BY-4.0",
-    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/peter-mitchell-1961"
+    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/019-don-t-have-to-make-a-lot-of-heat-because-it-s-hot-all-the-ti"
   },
   "receipt": {
     "tier":      "insight",

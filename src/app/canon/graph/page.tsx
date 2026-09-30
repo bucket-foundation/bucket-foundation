@@ -34,6 +34,12 @@ export default function Page() {
           The Canon Network
         </h1>
         <p
+          className="mt-4 max-w-2xl text-base"
+          style={{ fontFamily: "var(--font-fraunces)" }}
+        >
+          This page maps how the canon connects. Each node is an author, a concept, a claim or a bridge. Two authors are linked when they share published works, and the rankings below show which authors and concepts sit closest to the center. Use it to find who to read next.
+        </p>
+        <p
           className="mt-4 max-w-2xl text-lg md:text-xl"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
         >
@@ -271,7 +277,7 @@ export default function Page() {
           </Link>{" "}
           ·{" "}
           <Link href="/canon" className="underline">
-            seven branches
+            nine branches
           </Link>
         </p>
         <p className="mt-2">
