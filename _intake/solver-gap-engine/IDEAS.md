@@ -6,7 +6,7 @@ Founder ideas, 2026-09-30.
 A solver returns a computed solution as a Lean proof. The classical result is then checked by empirical tests: run the claim on samples and confirm it holds.
 
 ## Proof Map
-Map every math topic as proved or open. Embed all proved and provable problems, embed all open problems, match them. High similarity marks candidates for discovery.
+Map every math topic as proved or open. Embed all proved and provable problems, embed all open problems, match them. High similarity marks candidates to hand to a prover. The ranking excludes matches within the same file, since those are variants of one problem.
 
 ## Division of Labor
 The solver is centralized proof. Empirical research is distributed: many groups collect samples on the same topic.

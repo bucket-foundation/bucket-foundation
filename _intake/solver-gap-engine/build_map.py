@@ -1,6 +1,6 @@
 import json, re, pathlib, collections
 root = pathlib.Path("fc/FormalConjectures")
-pat = re.compile(r'(/--(?P<doc>.*?)-/\s*)?@\[category research (?P<st>open|solved)(?P<tags>[^\]]*)\]\s*(?:theorem|lemma)\s+(?P<name>\S+)', re.S)
+pat = re.compile(r'(/--(?P<doc>(?:(?!-/).)*?)-/\s*)?@\[category research (?P<st>open|solved)(?P<tags>[^\]]*)\]\s*(?:theorem|lemma)\s+(?P<name>\S+)', re.S)
 rows = []
 for f in root.rglob("*.lean"):
     t = f.read_text(errors="ignore")
