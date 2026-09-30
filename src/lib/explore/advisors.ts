@@ -85,7 +85,13 @@ export const MAX_BUNDLE_PROFILES = 20_000;
 export const BUNDLE_COMPONENTS = 4;
 export const SCORE_CAP = 3;
 
-export class BundleError extends Error {}
+export class BundleError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "BundleError";
+    Object.setPrototypeOf(this, BundleError.prototype);
+  }
+}
 
 export interface BundleProfile {
   name: string;
