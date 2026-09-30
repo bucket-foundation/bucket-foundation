@@ -1,7 +1,11 @@
 "use client";
 
+import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
+import { MODES, modeById } from "@/lib/explore/modes";
+
+const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 
 const TYPES: { id: HitType; label: string }[] = [
   { id: "excerpt", label: "Excerpts" },
@@ -19,6 +23,21 @@ export default function ExploreClient() {
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [modeId, setModeId] = useState<string>("globe");
+  const [scroll, setScroll] = useState(0);
+
+  useEffect(() => {
+    const m = new URLSearchParams(window.location.search).get("mode");
+    if (m) setModeId(modeById(m).id);
+  }, []);
+
+  const pickMode = (id: string) => {
+    setModeId(id);
+    setScroll(0);
+    const u = new URL(window.location.href);
+    u.searchParams.set("mode", id);
+    window.history.replaceState(null, "", u.toString());
+  };
 
   const run = useCallback(async (query: string) => {
     if (!query.trim()) return;
@@ -46,6 +65,8 @@ export default function ExploreClient() {
   const visible = useMemo(() => hits.filter((h) => types.has(h.type)), [hits, types]);
   const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
   const current = selected ? byId.get(selected) ?? null : null;
+  const mode = modeById(modeId);
+  const layout = useMemo(() => mode.layout(visible, { selected, scroll }), [mode, visible, selected, scroll]);
 
   const toggle = (t: HitType) =>
     setTypes((prev) => {
@@ -90,6 +111,32 @@ export default function ExploreClient() {
           {sample && <span style={{ color: "var(--parchment-dim)" }}>advisors: sample data</span>}
         </div>
         {error && <p className="mt-4 text-sm" role="alert">{error}</p>}
+        <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2 mt-6 text-sm" style={mono}>
+          {MODES.map((m) => (
+            <button
+              key={m.id}
+              role="tab"
+              aria-selected={m.id === mode.id}
+              data-testid={`mode-${m.id}`}
+              onClick={() => pickMode(m.id)}
+              className="border hairline px-3 py-1"
+              style={{ background: m.id === mode.id ? "var(--gold, #D9A43A)" : undefined }}
+            >
+              {m.label}
+            </button>
+          ))}
+        </div>
+        <div className="mt-3">
+          <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
+          <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={mono}>
+            {layout.legend.map((l) => (
+              <li key={l.label} className="flex items-center gap-1">
+                <span style={{ width: 10, height: 10, borderRadius: 5, background: l.color, display: "inline-block" }} />
+                {l.label}
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
           <ol data-testid="explore-results" className="space-y-2">
             {visible.map((h) => (
