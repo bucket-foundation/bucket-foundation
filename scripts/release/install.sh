@@ -69,6 +69,21 @@ case "$name" in
     ln -sfn "$dest/bin/bkt" "$prefix/bin/bkt"
     target="$prefix/bin/bkt"
     ;;
+  *.AppImage)
+    dest="$prefix/lib/bucket"
+    mkdir -p "$dest" "$prefix/share/applications" "$prefix/share/icons/hicolor/256x256/apps"
+    install -m 0755 "$work/$name" "$dest/Bucket.AppImage.new"
+    mv -f "$dest/Bucket.AppImage.new" "$dest/Bucket.AppImage"
+    ln -sfn "$dest/Bucket.AppImage" "$prefix/bin/bucket"
+    ln -sfn "$dest/Bucket.AppImage" "$prefix/bin/bkt"
+    if (cd "$work" && "$dest/Bucket.AppImage" --appimage-extract bucket.png > /dev/null 2>&1) && [ -f "$work/squashfs-root/bucket.png" ]; then
+      install -m 0644 "$work/squashfs-root/bucket.png" "$prefix/share/icons/hicolor/256x256/apps/bucket.png"
+    else
+      echo "install.sh: could not read the icon from $name; the menu entry shows a default icon" >&2
+    fi
+    printf '[Desktop Entry]\nType=Application\nName=Bucket\nComment=Learn the canon offline\nExec=%s app\nIcon=bucket\nCategories=Education;Science;\nTerminal=false\nStartupWMClass=Bucket\n' "$prefix/bin/bucket" > "$prefix/share/applications/bucket.desktop"
+    target="$prefix/bin/bucket"
+    ;;
   *)
     install -m 0755 "$work/$name" "$prefix/bin/bucket"
     target="$prefix/bin/bucket"

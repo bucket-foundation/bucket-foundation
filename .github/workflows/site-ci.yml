@@ -186,6 +186,11 @@ jobs:
           set -a; . ./.env.local; set +a
           npm run seed:research-os
           npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply --strict-shadow
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: python deps for the advisor page e2e
+        run: python -m pip install --quiet -r tools/prime-directions/requirements.txt
       - name: browser
         run: npx playwright install --with-deps chromium
       - name: dev server

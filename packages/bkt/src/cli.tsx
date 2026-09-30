@@ -8,6 +8,15 @@ import { formLines, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type A
 import { AnalysisBrowser, AnalyzeRun } from "./analyze-view";
 import type { Pack } from "./pack/export";
 import { dataDir, ensureDataDir, openSession, parseArgs, pickKeyring } from "./setup";
+import { loadBank, loadReview, loadScores } from "./hai/files";
+import { HaiStore } from "./hai/store";
+import { freeze, parseToolArgs, review, score } from "./hai/tools";
+import { HaiApp } from "./hai/view";
+import { IMPORT_BODY_BYTES, localRoutes } from "./local";
+import { startServe } from "./serve";
+import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
+
+const HAI_TOOLS = new Set(["freeze", "review", "score"]);
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -48,6 +57,14 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 }
 
 async function main(argv: string[]) {
+  if (argv[0] === "app") {
+    const running = readApp(runtimeDir());
+    if (running) {
+      process.kill(running.pid, "SIGUSR1");
+      console.log(`reopened the Bucket window on port ${running.port}`);
+      return;
+    }
+  }
   if (argv[0] === "analyze") {
     process.exitCode = await analyzeCmd(argv.slice(1));
     return;
@@ -56,12 +73,31 @@ async function main(argv: string[]) {
     await render(<AnalysisBrowser root={argv[1]} />).waitUntilExit();
     return;
   }
-  const { cmd, opts } = parseArgs(argv);
+  if (argv[0] === "hai" && HAI_TOOLS.has(argv[1])) {
+    const a = parseToolArgs(argv.slice(2));
+    if (argv[1] === "freeze") freeze(pack as Pack, a);
+    else if (argv[1] === "review") review(a);
+    else await score(a);
+    return;
+  }
+  const hai = argv[0] === "hai";
+  const haiCmd = hai ? (argv[1] && !argv[1].startsWith("--") ? argv[1] : "tui") : null;
+  const { cmd, opts } = parseArgs(hai ? argv.slice(haiCmd === "tui" ? 1 : 2) : argv);
   const dir = ensureDataDir(dataDir());
   const session = await openSession(await pickKeyring(opts, dir), dir);
   const content = pack as Pack;
   const imported = session.store.importPack(content.version, content.items);
   try {
+    if (haiCmd) {
+      const h = new HaiStore(session.store, session.key);
+      if (haiCmd === "wipe") {
+        h.wipe();
+        console.log("hai data deleted");
+      } else if (haiCmd === "export") console.log(JSON.stringify(h.export(), null, 2));
+      else if (haiCmd === "tui") await render(<HaiApp hai={h} data={{ bank: loadBank(), review: loadReview(), scores: loadScores() }} />).waitUntilExit();
+      else throw new Error(`unknown hai command ${haiCmd}; try freeze, review, score, wipe, export`);
+      return;
+    }
     if (cmd === "init" || cmd === "whoami") {
       console.log(
         JSON.stringify(
@@ -80,11 +116,36 @@ async function main(argv: string[]) {
       );
       return;
     }
+    if (cmd === "serve" || cmd === "app") {
+      const srv = startServe({
+        routes: localRoutes(session.store, { content }),
+        routeBodyBytes: { "POST /local/import": IMPORT_BODY_BYTES },
+        uiDir: uiDir(),
+        onError: (e) => console.error(`bkt serve: ${e.message}`),
+      });
+      const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
+      const profile = join(dir, "window-profile");
+      const show = () => (cmd === "app" ? openWindow(srv.url, profile) : console.log(srv.url));
+      const reopen = () => {
+        srv.remint();
+        show();
+      };
+      process.on("SIGUSR1", reopen);
+      show();
+      await new Promise<void>((done) => {
+        process.once("SIGINT", done);
+        process.once("SIGTERM", done);
+      });
+      process.off("SIGUSR1", reopen);
+      release();
+      srv.stop();
+      return;
+    }
     if (cmd === "stats") {
       console.log(JSON.stringify(session.store.stats(Date.now())));
       return;
     }
-    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, analyze, analyses`);
+    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, serve, app, analyze, analyses`);
     const ink = render(<App session={session} />);
     await ink.waitUntilExit();
   } finally {
