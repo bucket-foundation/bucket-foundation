@@ -43,11 +43,19 @@ function extOf(name: string): string {
 
 export type Classified = { kind: UploadKind; format: string };
 
+export function isTextLike(s: string): boolean {
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c < 32 && c !== 9 && c !== 10 && c !== 13) return false;
+  }
+  return true;
+}
+
 export function classify(name: string, head: string): Classified {
   const ext = extOf(name);
-  const text = head.replace(/^﻿/, "");
+  const text = head.replace(/^\uFEFF/, "");
   if (ext === "pdf" || text.startsWith("%PDF")) return { kind: "document", format: "pdf" };
-  if (["pdb", "ent"].includes(ext) || /^ATOM  .{20}/m.test(text)) return { kind: "structure", format: "pdb" };
+  if (["pdb", "ent"].includes(ext) || /^ATOM {2}.{20}/m.test(text)) return { kind: "structure", format: "pdb" };
   if (["cif", "mmcif"].includes(ext) || (/^data_\S+/m.test(text.slice(0, 2000)) && /_atom_site\./.test(text))) return { kind: "structure", format: "cif" };
   const genome = detectFormat(text);
   if (genome !== "unknown") return { kind: "genome", format: genome };
@@ -70,7 +78,7 @@ export function classify(name: string, head: string): Classified {
   if (["smi", "smiles"].includes(ext)) return { kind: "smiles", format: "smi" };
   const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   if (lines.length && lines.length <= 50 && lines.every((l) => looksLikeSmiles(l.split(/\s+/)[0]))) return { kind: "smiles", format: "smi" };
-  if (["md", "markdown", "txt", "text", "rtf"].includes(ext) || /^[\x09\x0A\x0D\x20-\x7E -￿]*$/.test(text.slice(0, 2000))) {
+  if (["md", "markdown", "txt", "text", "rtf"].includes(ext) || isTextLike(text.slice(0, 2000))) {
     return { kind: "document", format: ext === "md" || ext === "markdown" ? "markdown" : "text" };
   }
   return { kind: "unknown", format: ext };
