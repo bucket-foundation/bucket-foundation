@@ -10,8 +10,7 @@ export function cacheRoot(env = process.env): string {
 export function extractPy(src: PySource, root = cacheRoot()): string {
   const dest = join(root, src.version);
   if (existsSync(join(dest, ".complete"))) return dest;
-  mkdirSync(root, { recursive: true, mode: 0o700 });
-  chmodSync(root, 0o700);
+  platformFor().secureDir(root);
   const tmp = `${dest}.tmp-${process.pid}`;
   rmSync(tmp, { recursive: true, force: true });
   for (const [rel, body] of Object.entries(src.files)) {

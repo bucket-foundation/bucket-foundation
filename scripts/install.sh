@@ -93,15 +93,10 @@ main() {
   case "$expires" in ''|*[!0-9]*) fail "manifest expiry is malformed" ;; esac
   [ "$expires" -gt "$(date +%s)" ] || fail "manifest expired; get a fresh release"
 
-  if command -v ssh-keygen > /dev/null 2>&1; then
-    printf '%s namespaces="%s" %s\n' "$SIGNER" "$NAMESPACE" "$RELEASE_PUBKEY" > "$work/allowed_signers"
-    ssh-keygen -q -Y verify -f "$work/allowed_signers" -I "$SIGNER" -n "$NAMESPACE" -s "$work/$name.manifest.sig" < "$work/$name.manifest" > /dev/null \
-      || fail "signature check failed for $name"
-  elif [ "${BKT_REQUIRE_SIGNATURE:-}" = 1 ]; then
-    fail "ssh-keygen is missing and BKT_REQUIRE_SIGNATURE=1"
-  else
-    say "ssh-keygen not found; verified the checksum only"
-  fi
+  command -v ssh-keygen > /dev/null 2>&1 || fail "ssh-keygen is required to verify the release signature; install OpenSSH and rerun"
+  printf '%s namespaces="%s" %s\n' "$SIGNER" "$NAMESPACE" "$RELEASE_PUBKEY" > "$work/allowed_signers"
+  ssh-keygen -q -Y verify -f "$work/allowed_signers" -I "$SIGNER" -n "$NAMESPACE" -s "$work/$name.manifest.sig" < "$work/$name.manifest" > /dev/null \
+    || fail "signature check failed for $name"
 
   mkdir -p "$bindir"
   install_to="$bindir/bkt"

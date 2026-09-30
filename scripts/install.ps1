@@ -48,8 +48,7 @@ function Install-Bkt {
       $cmd = "`"$($sshKeygen.Source)`" -q -Y verify -f `"$allowed`" -I $Signer -n bucket-release -s `"$bin.manifest.sig`" < `"$bin.manifest`""
       cmd.exe /d /c $cmd | Out-Null
       if ($LASTEXITCODE -ne 0) { Fail "signature check failed for $Name" }
-    } elseif ($env:BKT_REQUIRE_SIGNATURE -eq '1') { Fail 'ssh-keygen is missing and BKT_REQUIRE_SIGNATURE=1' }
-    else { Write-Warning 'bkt install: ssh-keygen not found; verified the checksum only' }
+    } else { Fail 'ssh-keygen is required to verify the release signature; add the OpenSSH Client optional feature and rerun' }
 
     $dir = if ($env:BKT_INSTALL_DIR) { $env:BKT_INSTALL_DIR } else { Join-Path $env:LOCALAPPDATA 'Programs\bkt' }
     New-Item -ItemType Directory -Force -Path $dir | Out-Null

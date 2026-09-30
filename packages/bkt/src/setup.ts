@@ -1,4 +1,4 @@
-import { chmodSync, closeSync, mkdirSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
+import { closeSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ensureDataKey, ensureDevice, type DeviceIdentity } from "./device";
 import { PassphraseKeyring, type Keyring } from "./keyring";
@@ -9,10 +9,8 @@ export function dataDir(env = process.env): string {
   return env.BKT_HOME ?? join(platformFor(process.platform, { env }).dataDir(), "bkt");
 }
 
-export function ensureDataDir(dir: string): string {
-  mkdirSync(dir, { recursive: true, mode: 0o700 });
-  chmodSync(dir, 0o700);
-  return dir;
+export function ensureDataDir(dir: string, platform: Platform = platformFor()): string {
+  return platform.secureDir(dir);
 }
 
 export interface KeyringOptions {

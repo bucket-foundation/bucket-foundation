@@ -26,6 +26,8 @@ import pysrc from "../content/pysrc.json" with { type: "json" };
 import type { PySource } from "./pack/pysrc";
 import { BUNDLED_ROS, rosRoutes } from "./ros";
 import { startServe } from "./serve";
+import { checkUpdate, describeUpdate } from "./update";
+import { VERSION } from "./version";
 import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
 
 const HAI_TOOLS = new Set(["freeze", "review", "score"]);
@@ -69,6 +71,17 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 }
 
 async function main(argv: string[]) {
+  if (argv[0] === "--version" || argv[0] === "version") {
+    console.log(VERSION);
+    return;
+  }
+  if (argv[0] === "update") {
+    if (argv.length > 2 || (argv[1] && argv[1] !== "--check")) throw new Error("usage: bkt update [--check]");
+    const r = await checkUpdate();
+    console.log(describeUpdate(r));
+    if (r.status === "error") process.exitCode = 1;
+    return;
+  }
   if (argv[0] === "app") {
     const running = readApp(runtimeDir());
     if (running) {

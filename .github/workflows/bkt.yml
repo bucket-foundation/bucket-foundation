@@ -115,8 +115,7 @@ jobs:
         run: bash scripts/release/build-binaries.sh "$RUNNER_TEMP/bin" | tee "$RUNNER_TEMP/bin.log"
       - name: run the linux binary
         run: |
-          out=$("$RUNNER_TEMP/bin/bkt-linux-x64" --no-such-flag 2>&1 || true)
-          echo "$out" | grep -q "unknown flag --no-such-flag"
+          test "$("$RUNNER_TEMP/bin/bkt-linux-x64" --version)" = "$(bash scripts/release/version.sh)"
           ls -l "$RUNNER_TEMP/bin" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -151,21 +150,32 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-13, windows-latest]
+        include:
+          - os: ubuntu-latest
+            asset: bkt-linux-x64
+          - os: ubuntu-24.04-arm
+            asset: bkt-linux-arm64
+          - os: macos-latest
+            asset: bkt-darwin-arm64
+          - os: windows-latest
+            asset: bkt-windows-x64.exe
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: signed
           path: ${{ runner.temp }}/dist
-      - name: install.sh from the signed artifacts
+      - name: expected version
+        shell: bash
+        run: echo "BKT_EXPECT=$(bash scripts/release/version.sh)" >> "$GITHUB_ENV"
+      - name: install.sh verifies and installs
         if: runner.os != 'Windows'
         shell: bash
         env:
           BKT_DOWNLOAD_BASE: ${{ runner.temp }}/dist
           BKT_INSTALL_DIR: ${{ runner.temp }}/bin
-          BKT_REQUIRE_SIGNATURE: "1"
         run: |
           script=scripts/install.sh
           if [ -f "$BKT_DOWNLOAD_BASE/throwaway.pub" ]; then
@@ -173,25 +183,17 @@ jobs:
             sed "s|^RELEASE_PUBKEY=.*|RELEASE_PUBKEY=\"$(cat "$BKT_DOWNLOAD_BASE/throwaway.pub")\"|" scripts/install.sh > "$script"
           fi
           sh "$script"
-          out=$("$BKT_INSTALL_DIR/bkt" --no-such-flag 2>&1 || true)
-          echo "$out" | grep -q "unknown flag --no-such-flag"
-      - name: install.sh rejects a tampered binary
-        if: runner.os != 'Windows'
-        shell: bash
-        env:
-          BKT_INSTALL_DIR: ${{ runner.temp }}/bin2
-          BKT_NO_MODIFY_PATH: "1"
-        run: |
-          bad=$RUNNER_TEMP/bad && cp -r "$RUNNER_TEMP/dist" "$bad"
-          for f in "$bad"/bkt-*; do case "$f" in *.sha256|*.manifest|*.sig|*.exe) ;; *) printf x >> "$f" ;; esac; done
-          if BKT_DOWNLOAD_BASE=$bad sh scripts/install.sh; then echo "tampered binary installed" >&2; exit 1; fi
-      - name: install.ps1 from the signed artifacts
+          bad=$RUNNER_TEMP/bad && cp -r "$BKT_DOWNLOAD_BASE" "$bad" && printf x >> "$bad/${{ matrix.asset }}"
+          if BKT_DOWNLOAD_BASE=$bad BKT_INSTALL_DIR=$RUNNER_TEMP/bad-bin sh "$script"; then echo "a tampered binary installed" >&2; exit 1; fi
+          if BKT_DOWNLOAD_BASE=$BKT_DOWNLOAD_BASE BKT_INSTALL_DIR=$RUNNER_TEMP/prod-bin sh scripts/install.sh && [ -f "$BKT_DOWNLOAD_BASE/throwaway.pub" ]; then echo "the pinned key accepted a throwaway signature" >&2; exit 1; fi
+          echo "BKT_BIN=$BKT_INSTALL_DIR/bkt" >> "$GITHUB_ENV"
+      - name: install.ps1 verifies and installs
         if: runner.os == 'Windows'
         shell: pwsh
         env:
           BKT_DOWNLOAD_BASE: ${{ runner.temp }}\dist
           BKT_INSTALL_DIR: ${{ runner.temp }}\bin
-          BKT_REQUIRE_SIGNATURE: "1"
+          BKT_NO_MODIFY_PATH: "1"
         run: |
           $script = 'scripts/install.ps1'
           $pub = Join-Path $env:BKT_DOWNLOAD_BASE 'throwaway.pub'
@@ -200,10 +202,35 @@ jobs:
             $key = (Get-Content $pub -Raw).Trim()
             (Get-Content scripts/install.ps1) -replace '^\$ReleasePubkey = .*$', "`$ReleasePubkey = '$key'" | Set-Content $script
           }
-          & $script
+          pwsh -NoProfile -File $script
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
-          $out = & (Join-Path $env:BKT_INSTALL_DIR 'bkt.exe') --no-such-flag 2>&1 | Out-String
-          if ($out -notmatch 'unknown flag --no-such-flag') { Write-Error "bkt.exe did not run: $out"; exit 1 }
+          $bad = Join-Path $env:RUNNER_TEMP 'bad'
+          Copy-Item -Recurse $env:BKT_DOWNLOAD_BASE $bad
+          Add-Content -NoNewline -Path (Join-Path $bad '${{ matrix.asset }}') -Value 'x'
+          $env:BKT_DOWNLOAD_BASE = $bad
+          $env:BKT_INSTALL_DIR = Join-Path $env:RUNNER_TEMP 'bad-bin'
+          pwsh -NoProfile -File $script
+          if ($LASTEXITCODE -eq 0) { Write-Error 'a tampered binary installed'; exit 1 }
+          "BKT_BIN=$env:RUNNER_TEMP\bin\bkt.exe" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+          exit 0
+      - name: smoke on linux with a libsecret keystore
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11
+          dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun scripts/release/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
+      - name: smoke on macos with a Keychain
+        if: runner.os == 'macOS'
+        run: |
+          security create-keychain -p smoke bkt-smoke.keychain
+          security list-keychains -d user -s bkt-smoke.keychain
+          security default-keychain -s bkt-smoke.keychain
+          security unlock-keychain -p smoke bkt-smoke.keychain
+          security set-keychain-settings bkt-smoke.keychain
+          bun scripts/release/smoke.ts "$BKT_BIN" "$BKT_EXPECT"
+      - name: smoke on windows with DPAPI
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: bun scripts/release/smoke.ts $env:BKT_BIN $env:BKT_EXPECT
 
   publish:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
@@ -211,12 +238,23 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
+      attestations: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: signed
           path: ${{ runner.temp }}/dist
+      - uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
+        with:
+          subject-path: |
+            ${{ runner.temp }}/dist/bkt-linux-x64
+            ${{ runner.temp }}/dist/bkt-linux-arm64
+            ${{ runner.temp }}/dist/bkt-darwin-arm64
+            ${{ runner.temp }}/dist/bkt-darwin-x64
+            ${{ runner.temp }}/dist/bkt-windows-x64.exe
+            ${{ runner.temp }}/dist/Bucket-*.AppImage
       - name: upload binaries, AppImage, checksums and signatures to the release
         env:
           GH_TOKEN: ${{ github.token }}

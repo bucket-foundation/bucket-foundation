@@ -40,8 +40,7 @@ export function readApp(dir: string, kill: typeof process.kill = process.kill): 
 }
 
 export function writeApp(dir: string, rec: AppRecord): () => void {
-  mkdirSync(dir, { recursive: true, mode: 0o700 });
-  chmodSync(dir, 0o700);
+  platformFor().secureDir(dir);
   const p = join(dir, "app.json");
   writeFileSync(p, JSON.stringify(rec), { mode: 0o600 });
   chmodSync(p, 0o600);

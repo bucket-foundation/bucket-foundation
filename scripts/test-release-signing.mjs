@@ -224,7 +224,7 @@ function binarySandbox() {
   const installer = path.join(box.dir, "curl-install.sh");
   writeFileSync(installer, readFileSync(CURL_INSTALL, "utf8").replace(PINNED, `RELEASE_PUBKEY="${pub}"`));
   const bin = path.join(box.dir, "bin");
-  const env = { BKT_DOWNLOAD_BASE: dist, BKT_INSTALL_DIR: bin, BKT_NO_MODIFY_PATH: "1", BKT_REQUIRE_SIGNATURE: "1" };
+  const env = { BKT_DOWNLOAD_BASE: dist, BKT_INSTALL_DIR: bin, BKT_NO_MODIFY_PATH: "1" };
   return {
     ...box,
     dist,

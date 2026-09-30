@@ -4,7 +4,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ensureDevice } from "../src/device";
 import { SERVICE } from "../src/keyring";
-import { DpapiKeyring, KeychainKeyring, platformFor, type Exec, type PlatformDeps } from "../src/platform";
+import { DpapiKeyring, KeychainKeyring, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
+import { statSync, writeFileSync } from "node:fs";
 import { pickKeyring } from "../src/setup";
 
 let dir: string;
@@ -202,5 +203,53 @@ describe("keyring selection per platform", () => {
 
   test("rejects another platform's keyring", async () => {
     await expect(pickKeyring({ keyring: "libsecret" }, dir, {}, platformFor("darwin", deps()))).rejects.toThrow("unknown keyring libsecret on darwin");
+  });
+});
+
+describe("owner-only dirs", () => {
+  test("unix dirs are 0700", () => {
+    const p = join(dir, "a", "b");
+    platformFor("linux", deps()).secureDir(p);
+    expect(statSync(p).mode & 0o777).toBe(0o700);
+  });
+
+  test("windows dirs get an ACL for the current user alone, and icacls failure stops", () => {
+    const calls: string[][] = [];
+    const ok: ExecSync = (argv) => (calls.push(argv), { code: 0, stdout: "", stderr: "" });
+    const p = join(dir, "w1");
+    platformFor("win32", deps({ env: { USERNAME: "Ann", USERDOMAIN: "PC" }, execSync: ok })).secureDir(p);
+    expect(calls[0]).toEqual(["icacls", p, "/inheritance:r", "/grant:r", "pc\\ann:(OI)(CI)F", "/q"]);
+    const bad: ExecSync = () => ({ code: 5, stdout: "", stderr: "Access is denied." });
+    expect(() => platformFor("win32", deps({ env: { USERNAME: "Ann" }, execSync: bad })).secureDir(join(dir, "w2"))).toThrow("Access is denied.");
+    expect(() => platformFor("win32", deps({ env: {}, execSync: ok })).secureDir(join(dir, "w3"))).toThrow("USERNAME is unset");
+  });
+});
+
+describe("peer owner", () => {
+  test("linux reads /proc/net/tcp", () => {
+    const f = join(dir, "tcp");
+    writeFileSync(f, "  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid\n   0: 0100007F:1F90 0100007F:0050 01 00000000:00000000 00:00000000 00000000  1000\n");
+    expect(procNetTcpOwner(8080, 80, [f])).toBe(1000);
+    expect(procNetTcpOwner(8081, 80, [f])).toBeNull();
+  });
+
+  test("macos matches the lsof connection line", () => {
+    const out = "p10\nu501\nn127.0.0.1:80->127.0.0.1:5000\np11\nu502\nn127.0.0.1:5000->127.0.0.1:80\n";
+    const run: ExecSync = () => ({ code: 0, stdout: out, stderr: "" });
+    expect(lsofOwner(run, 5000, 80)).toBe(502);
+    expect(lsofOwner(run, 5001, 80)).toBeNull();
+    expect(lsofOwner(() => ({ code: 1, stdout: "", stderr: "" }), 5000, 80)).toBeNull();
+  });
+
+  test("windows maps netstat pid to its tasklist user and hides other users", () => {
+    const run = (user: string): ExecSync => (argv) =>
+      argv[0] === "netstat"
+        ? { code: 0, stdout: "  TCP    127.0.0.1:6000    127.0.0.1:80    ESTABLISHED     4242\r\n", stderr: "" }
+        : { code: 0, stdout: `"msedge.exe","4242","Console","1","100 K","Running","${user}","0:00:01","Bucket"\r\n`, stderr: "" };
+    const d = (user: string) => ({ ...deps({ execSync: run(user) }), env: {} } as PlatformDeps);
+    expect(netstatOwner(d("PC\\Ann"), 6000, 80, 1)).toBe("pc\\ann");
+    expect(netstatOwner(d("N/A"), 6001, 80, 1)).toBeNull();
+    expect(netstatOwner(d("PC\\Ann"), 6002, 80, 1)).toBeNull();
+    expect(platformFor("win32", deps({ env: { USERNAME: "Ann", USERDOMAIN: "PC" } })).self()).toBe("pc\\ann");
   });
 });
