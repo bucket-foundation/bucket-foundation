@@ -12,13 +12,18 @@
     "test": "bun test src"
   },
   "dependencies": {
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "three": "0.170.0",
+    "three-stdlib": "2.36.1"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "@types/react": "18",
     "@types/react-dom": "18",
+    "@types/three": "0.170.0",
     "@vitejs/plugin-react": "4",
     "playwright": "1.58.2",
     "typescript": "5",

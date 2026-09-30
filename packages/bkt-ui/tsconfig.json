@@ -7,9 +7,15 @@
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
+    "resolveJsonModule": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["bun"],
-    "paths": { "@academy/*": ["../../src/lib/academy/*"], "@ros/*": ["../../src/lib/research-os/*"] }
+    "paths": {
+      "@academy/*": ["../../src/lib/academy/*"],
+      "@ros/*": ["../../src/lib/research-os/*"],
+      "@/*": ["../../src/*"],
+      "next/navigation": ["./src/shims/next-navigation.ts"]
+    }
   },
   "include": ["src", "scripts", "vite.config.ts"]
 }

@@ -133,6 +133,15 @@ await page.click('nav a[href="#/work"]');
 await page.waitForSelector(".q");
 await page.screenshot({ path: join(out, "5b-work-quiz.png") });
 
+await page.click('nav a[href="#/canon"]');
+await page.waitForSelector(".circle-view .pt");
+await page.locator(".circle-view .pt").nth(40).dispatchEvent("click");
+await page.screenshot({ path: join(out, "6c-canon-circle.png") });
+await page.click(".seg button >> nth=1");
+await page.waitForSelector(".globe-box canvas", { timeout: 30000 });
+await page.waitForTimeout(3000);
+await page.screenshot({ path: join(out, "6d-canon-globe.png") });
+
 await page.click('nav a[href="#/advisors"]');
 await page.waitForSelector(".people button");
 await page.click(".people li:nth-child(3) button");

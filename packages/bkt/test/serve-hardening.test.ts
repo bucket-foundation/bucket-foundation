@@ -106,10 +106,18 @@ describe("ui assets", () => {
     writeFileSync(join(dir, "assets", "app.js"), "console.log(1)");
     writeFileSync(join(dir, "assets", "app.css"), "body{}");
     writeFileSync(join(dir, "assets", "notes.txt"), "skip");
+    writeFileSync(join(dir, "assets", "Globe3d.js"), "export default 1");
+    mkdirSync(join(dir, "textures", "earth"), { recursive: true });
+    writeFileSync(join(dir, "textures", "earth", "landmask-2k.bin"), "mask");
+    writeFileSync(join(dir, "textures", "earth", "secret.txt"), "no");
     boot({ uiDir: dir });
     const html = await (await req("/")).text();
     expect(html).toContain('<script type="module" src="/assets/app.js">');
     expect(html).toContain('<link rel="stylesheet" href="/assets/app.css">');
+    expect(html).not.toContain("Globe3d.js");
+    expect((await req("/assets/Globe3d.js")).status).toBe(200);
+    expect((await req("/textures/earth/landmask-2k.bin")).headers.get("content-type")).toBe("application/octet-stream");
+    expect((await req("/textures/earth/secret.txt")).status).toBe(401);
     const js = await req("/assets/app.js");
     expect(js.status).toBe(200);
     expect(js.headers.get("content-type")).toContain("javascript");
