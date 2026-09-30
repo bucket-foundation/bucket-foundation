@@ -10,22 +10,22 @@ import {
 } from "@/lib/support";
 
 export const metadata = {
-  title: "Support · fund always-on research",
+  title: "Support · host Research OS",
   description:
-    "Fund always-on cloud-GPU hosting so bucket.foundation's research tools and local-LLM features are available to everyone, 24/7. A real, honest ask — not a checkout.",
+    "Donations pay to host Research OS, the research tools and the canon for free. Citation fees go to authors. A nonprofit ask with no checkout.",
   alternates: { canonical: "/support" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/support",
-    title: "Support · fund always-on research — bucket.foundation",
+    title: "Support · host Research OS — bucket.foundation",
     description:
-      "Fund always-on cloud-GPU hosting so bucket.foundation's free research tools stay available to everyone, 24/7. A nonprofit — no equity, no investors, no exit.",
+      "Donations host Research OS and the free research tools. Citation fees go to authors. A nonprofit with no equity, no investors, no exit.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Support · fund always-on research — bucket.foundation",
+    title: "Support · host Research OS — bucket.foundation",
     description:
-      "Help keep the free research instruments always on. A nonprofit ask, not a checkout.",
+      "Donations host Research OS. Citation fees go to authors.",
   },
 };
 
@@ -34,27 +34,24 @@ export default function Page() {
     <main className="stone-bone relative grain">
       <div className="max-w-[860px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
-          § Support · the fundable thing
+          § Support · host Research OS
         </div>
         <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
-          keep the instruments{" "}
-          <span className="inlay-gold">always on.</span>
+          host Research OS{" "}
+          <span className="inlay-gold">for everyone.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)]">
-          Bucket Foundation is a nonprofit — no equity, no investors, no exit.
-          Most of the research tools run on an always-on server. But the heaviest
-          ones — the GPU jobs and the grounded local-LLM features — run on the
-          founder&rsquo;s personal laptop GPU, reached over a tunnel. When that
-          laptop is closed, those features go dark.
+          Bucket Foundation is a nonprofit with no equity, no investors and no exit. Research OS,
+          the canon and the research tools are free to use. Two kinds of money move through the
+          foundation: citation fees, which go to the author of the cited work, and donations,
+          which pay for hosting.
         </p>
         <p className="mt-4 text-[17px] leading-[1.75] text-[color:var(--basalt-2)]">
           <strong className="text-[color:var(--basalt)]">
-            The ask is simple: fund cloud-GPU hosting.
+            The ask is hosting for Research OS.
           </strong>{" "}
-          With it, every research tool and every local-LLM feature is available
-          to everyone, 24/7 — not just while one machine happens to be open.
-          That is the single thing standing between &ldquo;a demo on a
-          laptop&rdquo; and &ldquo;a public research instrument.&rdquo;
+          That covers the web app, the desktop app releases, the database, and always-on GPUs for
+          the heaviest tools, which run on a founder laptop today and go dark when it closes.
         </p>
 
         <div className="carved-rule max-w-xs mt-10" />
@@ -62,18 +59,18 @@ export default function Page() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <FundLine
             n="01"
-            title="cloud GPU"
-            body="A persistent GPU host for the local-LLM + GPU tools (LabBrain, TrajMine, CryoTriage) so they answer 24/7, not just when a laptop is open."
+            title="Research OS hosting"
+            body="The web app, sign-in, sync and the signed desktop releases stay online for every learner, student and teacher."
           />
           <FundLine
             n="02"
-            title="always-on"
-            body="Move the founder-GPU tools off a personal machine onto hosting the foundation controls — uptime, not goodwill."
+            title="always-on GPUs"
+            body="LabBrain, TrajMine and CryoTriage move from a personal machine to hosting the foundation controls, so they answer around the clock."
           />
           <FundLine
             n="03"
             title="open forever"
-            body="Every tool, dataset and paper stays free to read and priced-once to cite. Funding buys uptime, never a paywall."
+            body="Every tool, dataset and paper stays free to read and priced once to cite, with the fee paid to the author. Funding buys uptime and leaves the paywall out."
           />
         </div>
 
@@ -167,6 +164,12 @@ export default function Page() {
         </p>
 
         <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+          <Link
+            href="/research-os"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            Research OS
+          </Link>
           <Link
             href="/research/tools"
             className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
