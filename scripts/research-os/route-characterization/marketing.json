@@ -1,0 +1,158 @@
+{
+  "GET unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "GET anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "GET signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  },
+  "POST unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The actions are create and analyze."
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The body is a small JSON object."
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  },
+  "DELETE unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "DELETE anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "DELETE signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "DELETE signed in, malformed json": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "DELETE signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "DELETE signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  }
+}
