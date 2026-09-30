@@ -172,11 +172,28 @@ test("sorts and filters: our-direction sort, strong-on filter and h-index floor"
   expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(sorted[0].id);
   await page.selectOption("#sort", "rank");
   const all = (await vis()).length;
-  await page.selectOption("#f-ours", "1");
+  await page.locator("#odirs button").nth(1).click();
   const strong = await vis();
   expect(strong.length).toBeLessThan(all);
   for (const r of strong) expect(r.star_ours[1]).toBeGreaterThanOrEqual(0.75);
   await expect(page.locator("#legend")).toContainText("average of the current filters");
   await page.locator(".minis button").nth(2).click();
   await expect(page.locator("#legend")).toContainText("top 50%, 10% and 1%");
+});
+
+test("single-key shortcuts only act on the chart and panel, and switch off", async ({ page }) => {
+  await page.goto(pageUrl);
+  const id = await page.evaluate(() => (window as any).__advisorReview.selected());
+  const st = () => page.evaluate((i) => (window as any).__advisorReview.statusOf(i), id);
+  await page.locator("body").press("s");
+  expect(await st()).toBe("none");
+  await page.locator("#circle").focus();
+  await page.keyboard.press("s");
+  expect(await st()).toBe("shortlist");
+  await page.evaluate(() => { (document.querySelector(".more-filters") as HTMLDetailsElement).open = true; });
+  await page.locator("#keys").uncheck();
+  await page.locator("#circle").focus();
+  await page.keyboard.press("x");
+  expect(await st()).toBe("shortlist");
+  await expect(page.locator("#legend")).toContainText("single-key shortcuts off");
 });
