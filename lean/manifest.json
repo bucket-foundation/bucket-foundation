@@ -1017,6 +1017,240 @@
   "type": "∀ {small large : List Nat},\n  BucketMath.Learning.CoordinateGrowth small large →\n    BucketMath.Learning.SquaredExtent small ≤ BucketMath.Learning.SquaredExtent large"
  },
  {
+  "name": "BucketMath.Marketing.cac",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 17,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.cpa",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 13,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.cpa_mul",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 39,
+  "type": "∀ {spend conversions x : Rat}, BucketMath.Marketing.cpa spend conversions = some x → x * conversions = spend"
+ },
+ {
+  "name": "BucketMath.Marketing.cpc",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 11,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.credit_conserves",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 111,
+  "type": "∀ (credits : List Nat → List Rat),\n  (∀ (p : List Nat), p ≠ [] → BucketMath.Vec.sum (credits p) = 1) →\n    ∀ (paths : List (List Nat)),\n      (∀ (p : List Nat), p ∈ paths → p ≠ []) → BucketMath.Marketing.totalCredit credits paths = ↑paths.length"
+ },
+ {
+  "name": "BucketMath.Marketing.ctr",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 9,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.ctr_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 58,
+  "type": "∀ {clicks impressions x : Rat},\n  0 ≤ clicks → clicks ≤ impressions → BucketMath.Marketing.ctr clicks impressions = some x → x ≤ 1"
+ },
+ {
+  "name": "BucketMath.Marketing.lastTouchCredits",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 27,
+  "type": "List Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.last_touch_conserves",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 127,
+  "type": "∀ (paths : List (List Nat)),\n  (∀ (p : List Nat), p ∈ paths → p ≠ []) →\n    BucketMath.Marketing.totalCredit BucketMath.Marketing.lastTouchCredits paths = ↑paths.length"
+ },
+ {
+  "name": "BucketMath.Marketing.last_touch_path_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 107,
+  "type": "∀ {path : List Nat}, path ≠ [] → BucketMath.Vec.sum (BucketMath.Marketing.lastTouchCredits path) = 1"
+ },
+ {
+  "name": "BucketMath.Marketing.linearCredits",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 25,
+  "type": "List Nat → List Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.linear_conserves",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 123,
+  "type": "∀ (paths : List (List Nat)),\n  (∀ (p : List Nat), p ∈ paths → p ≠ []) →\n    BucketMath.Marketing.totalCredit BucketMath.Marketing.linearCredits paths = ↑paths.length"
+ },
+ {
+  "name": "BucketMath.Marketing.linear_path_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 99,
+  "type": "∀ {path : List Nat}, path ≠ [] → BucketMath.Vec.sum (BucketMath.Marketing.linearCredits path) = 1"
+ },
+ {
+  "name": "BucketMath.Marketing.ltvHist",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 19,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.mix_sum_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 89,
+  "type": "∀ {xs : List Rat}, BucketMath.Vec.sum xs ≠ 0 → BucketMath.Vec.sum (BucketMath.Marketing.shares xs) = 1"
+ },
+ {
+  "name": "BucketMath.Marketing.ratio",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 7,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.ratio_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 42,
+  "type": "∀ {num den x : Rat}, 0 ≤ num → num ≤ den → BucketMath.Marketing.ratio num den = some x → x ≤ 1"
+ },
+ {
+  "name": "BucketMath.Marketing.ratio_mul",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 31,
+  "type": "∀ {num den x : Rat}, BucketMath.Marketing.ratio num den = some x → x * den = num"
+ },
+ {
+  "name": "BucketMath.Marketing.retention",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 21,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.retention_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 62,
+  "type": "∀ {active cohort x : Rat}, 0 ≤ active → active ≤ cohort → BucketMath.Marketing.retention active cohort = some x → x ≤ 1"
+ },
+ {
+  "name": "BucketMath.Marketing.roas",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 15,
+  "type": "Rat → Rat → Option Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.roas_ge_one_iff",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 66,
+  "type": "∀ {revenue spend : Rat},\n  0 < spend → BucketMath.Marketing.roas revenue spend = some (revenue / spend) ∧ (1 ≤ revenue / spend ↔ spend ≤ revenue)"
+ },
+ {
+  "name": "BucketMath.Marketing.shares",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 23,
+  "type": "List Rat → List Rat"
+ },
+ {
+  "name": "BucketMath.Marketing.sum_map_div",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 82,
+  "type": "∀ (xs : List Rat) (t : Rat), BucketMath.Vec.sum (List.map (fun x => x / t) xs) = BucketMath.Vec.sum xs / t"
+ },
+ {
+  "name": "BucketMath.Marketing.sum_replicate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 94,
+  "type": "∀ (n : Nat) (c : Rat), BucketMath.Vec.sum (List.replicate n c) = ↑n * c"
+ },
+ {
+  "name": "BucketMath.Marketing.totalCredit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Marketing",
+  "source": "lean/BucketMath/Marketing.lean",
+  "line": 29,
+  "type": "(List Nat → List Rat) → List (List Nat) → Rat"
+ },
+ {
   "name": "BucketMath.Markets.Industry",
   "kind": "inductive",
   "status": "def",

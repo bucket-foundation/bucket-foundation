@@ -1,0 +1,34 @@
+{
+  "currencies": {
+    "unknown": {
+      "blended": {
+        "cac": null,
+        "ltv_hist": 5220.833333,
+        "ltv_window": [
+          "2026-01-08",
+          "2026-02-27"
+        ],
+        "range": null,
+        "reason": "CAC and blended ROAS need an ad spend file in the same analysis",
+        "roas": null
+      },
+      "channels": [],
+      "cohorts": 2,
+      "funnel": null,
+      "orders": {
+        "count": 45,
+        "customers": 24,
+        "revenue": 125300.0
+      },
+      "series": [
+        "revenue"
+      ]
+    }
+  },
+  "platforms": [
+    "hubspot"
+  ],
+  "warnings": [
+    "W_STATUS_EXCLUDED"
+  ]
+}
