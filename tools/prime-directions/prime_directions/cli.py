@@ -129,6 +129,8 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--out", type=Path, required=True)
     a.add_argument("--k", type=int, default=64)
     a.add_argument("--top", type=int, default=300)
+    a.add_argument("--directions", type=Path, default=None)
+    a.add_argument("--publishable", action="store_true")
     a.add_argument("--cap", type=int, default=5)
     a.add_argument("--cap-window", type=int, default=50)
     a.add_argument("--label", type=int, default=25)
@@ -214,7 +216,8 @@ def advisor_run(args, out: Path, people: list) -> None:
         "cap": args.cap,
         "cap_window": args.cap_window,
     }
-    advisors.write_page(rows, out / "pca.png", context, out / "index.html")
+    context.update(advisors.direction_profiles(model_, rows, query, advisors.load_directions(args.directions), args.scoring))
+    advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable)
     report = {
         "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
         "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),
