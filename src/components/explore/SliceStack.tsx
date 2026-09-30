@@ -16,6 +16,7 @@ interface Props {
   onOpen(i: number): void;
 }
 
+export const WHEEL_GESTURE_GAP_MS = 140;
 const GOLD = "#D9A43A";
 const DIM = "#8A8270";
 const CAMERA: [number, number, number] = [1.5, 5, 15];
@@ -35,12 +36,17 @@ export default function SliceStack({ dataset, slices, active, onActive, onOpen }
   const host = useRef<HTMLDivElement>(null);
   const count = slices.length;
 
+  const lastWheel = useRef(0);
+
   useEffect(() => {
     const el = host.current;
     if (!el) return;
     const wheel = (e: WheelEvent) => {
       e.preventDefault();
-      onActive(stepSlice(active, e.deltaY > 0 ? 1 : -1, count));
+      const now = performance.now();
+      const quiet = now - lastWheel.current >= WHEEL_GESTURE_GAP_MS;
+      lastWheel.current = now;
+      if (quiet) onActive(stepSlice(active, e.deltaY > 0 ? 1 : -1, count));
     };
     el.addEventListener("wheel", wheel, { passive: false });
     return () => el.removeEventListener("wheel", wheel);
@@ -66,7 +72,7 @@ export default function SliceStack({ dataset, slices, active, onActive, onOpen }
       tabIndex={0}
       role="group"
       aria-label={`${count} slices, arrow keys step, Enter opens the circle chart`}
-      className="absolute inset-0 outline-none"
+      className="absolute inset-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#D9A43A]"
       onKeyDown={(e) => {
         if (e.key === "ArrowRight" || e.key === "ArrowDown") onActive(stepSlice(active, 1, count));
         else if (e.key === "ArrowLeft" || e.key === "ArrowUp") onActive(stepSlice(active, -1, count));

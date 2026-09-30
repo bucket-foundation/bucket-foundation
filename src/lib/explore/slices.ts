@@ -1,5 +1,5 @@
 import { AXIS, SIDE, type Vec3 } from "./geometry";
-import { circleProfile, meanScores, radiusOf, spokeAngle, type Dataset } from "./space";
+import { circleProfile, meanScores, radiusOf, spokeAngle, type Dataset, type ScoreScale } from "./space";
 
 export const STACK_LENGTH = 11;
 export const SLICE_RADIUS = 2.1;
@@ -61,9 +61,9 @@ export function slicePoint(center: Vec3, angle: number, r: number): Vec3 {
   return [center[0] + SIDE[0] * c, center[1] + s, center[2] + SIDE[2] * c];
 }
 
-export function sliceOutline(slice: Slice, ds: Pick<Dataset, "components">, index: number, count: number): Vec3[] {
+export function sliceOutline(slice: Slice, ds: Pick<Dataset, "components" | "scale">, index: number, count: number): Vec3[] {
   const angles = ds.components.map(spokeAngle);
-  const profile = circleProfile(slice.scores, angles, PROFILE_SAMPLES);
+  const profile = circleProfile(slice.scores, angles, PROFILE_SAMPLES, 0.25, ds.scale);
   const center = sliceCenter(index, count);
   return profile.map((r, j) => slicePoint(center, (j / PROFILE_SAMPLES) * Math.PI * 2, SLICE_RADIUS * r));
 }
@@ -79,6 +79,6 @@ export function distanceFromAxis(p: Vec3): number {
   return Math.hypot(dx, p[1], dz);
 }
 
-export function sliceRadiusAt(slice: Slice): number {
-  return SLICE_RADIUS * Math.max(...slice.scores.map(radiusOf));
+export function sliceRadiusAt(slice: Slice, scale: ScoreScale = "standardized"): number {
+  return SLICE_RADIUS * Math.max(...slice.scores.map((v) => radiusOf(v, scale)));
 }

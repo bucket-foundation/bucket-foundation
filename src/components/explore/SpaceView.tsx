@@ -110,7 +110,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           <ul data-testid="slice-rail" className="flex flex-wrap justify-center gap-2 mt-3">
             {slices.map((s, i) => (
               <li key={s.index}>
-                <button type="button" data-testid={`slice-${i}`} aria-pressed={i === activeSlice} onClick={() => setOpened(i)} onFocus={() => setActiveSlice(i)} className="border hairline px-2 py-1 text-xs" style={{ ...mono, background: i === activeSlice ? GOLD : undefined, color: i === activeSlice ? "#141311" : undefined }}>
+                <button type="button" data-testid={`slice-${i}`} aria-pressed={i === activeSlice} onClick={() => setOpened(i)} onFocus={() => setActiveSlice(i)} className="border hairline px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={{ ...mono, background: i === activeSlice ? GOLD : undefined, color: i === activeSlice ? "#141311" : undefined }}>
                   {s.label}
                 </button>
               </li>

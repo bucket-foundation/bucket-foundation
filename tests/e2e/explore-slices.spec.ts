@@ -24,10 +24,40 @@ test("scrolling moves one slice at a time", async ({ page }) => {
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
   await page.mouse.wheel(0, 120);
   await expect(stack).toHaveAttribute("data-active", "1");
+  await page.waitForTimeout(250);
   await page.mouse.wheel(0, 120);
   await expect(stack).toHaveAttribute("data-active", "2");
+  await page.waitForTimeout(250);
   await page.mouse.wheel(0, -120);
   await expect(stack).toHaveAttribute("data-active", "1");
+});
+
+test("a burst of wheel events from one gesture moves one slice", async ({ page }) => {
+  await open(page);
+  const stack = page.getByTestId("slice-stack");
+  await stack.evaluate(async (el) => {
+    for (let i = 0; i < 8; i++) {
+      el.dispatchEvent(new WheelEvent("wheel", { deltaY: 40, bubbles: true, cancelable: true }));
+      await new Promise((r) => setTimeout(r, 15));
+    }
+  });
+  await expect(stack).toHaveAttribute("data-active", "1");
+  await page.waitForTimeout(300);
+  await stack.evaluate((el) => el.dispatchEvent(new WheelEvent("wheel", { deltaY: 40, bubbles: true, cancelable: true })));
+  await expect(stack).toHaveAttribute("data-active", "2");
+});
+
+test("the focused stack and rail buttons show a focus ring", async ({ page }) => {
+  await open(page);
+  await page.keyboard.press("Tab");
+  const outline = await page.getByTestId("slice-stack").evaluate((el) => getComputedStyle(el).outlineStyle);
+  const focused = await page.evaluate(() => document.activeElement?.getAttribute("data-testid"));
+  if (focused === "slice-stack") expect(outline).not.toBe("none");
+  await page.getByTestId("slice-0").focus();
+  await page.keyboard.press("Shift+Tab");
+  await page.keyboard.press("Tab");
+  const ring = await page.getByTestId("slice-0").evaluate((el) => getComputedStyle(el).outlineStyle);
+  expect(ring).not.toBe("none");
 });
 
 test("arrow keys step and Enter opens the circle chart of the slice", async ({ page }) => {
