@@ -86,28 +86,29 @@ function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, p
     .map((p) => p.id);
 }
 
+export function rankNormalized<T extends { id: string; raw: number }>(items: T[]): (T & { score: number })[] {
+  const sorted = items.slice().sort((x, y) => y.raw - x.raw || (x.id < y.id ? -1 : 1));
+  return sorted.map((x, i) => ({ ...x, score: (sorted.length - i) / sorted.length }));
+}
+
 export function unify(opts: UnifyOptions): Hit[] {
   const q = tokens(opts.query);
   const types = new Set(opts.types?.length ? opts.types : HIT_TYPES);
   const topK = opts.topK ?? 30;
   const k = opts.linksPerHit ?? 3;
-  const maxExcerpt = Math.max(1e-9, ...opts.excerpts.map((e) => e.score));
+  const excerpts = rankNormalized(
+    opts.excerpts.map((e) => ({ e, bag: tokens(`${e.title} ${e.text}`), id: excerptId(e), raw: e.score })),
+  );
 
-  const excerpts = opts.excerpts
-    .map((e) => {
-      const bag = tokens(`${e.title} ${e.text}`);
-      const cov = coverage(q, bag);
-      return { e, bag, id: excerptId(e), score: q.size ? cov * 0.8 + (e.score / maxExcerpt) * 0.2 : e.score / maxExcerpt };
-    })
-    .filter((x) => x.score > 0);
-
-  const advisors = opts.advisors
-    .map((a) => {
-      const bag = tokens(`${a.name} ${a.field} ${a.text}`);
-      const cov = coverage(q, bag);
-      return { a, bag, id: advisorId(a), score: cov * 0.8 + Math.max(0, Math.min(1, a.score)) * 0.2 * (cov > 0 ? 1 : 0) };
-    })
-    .filter((x) => x.score > 0);
+  const advisors = rankNormalized(
+    opts.advisors
+      .map((a) => {
+        const bag = tokens(`${a.name} ${a.field} ${a.text}`);
+        const cov = coverage(q, bag);
+        return { a, bag, id: advisorId(a), raw: cov > 0 ? cov * 0.8 + Math.max(0, Math.min(1, a.score)) * 0.2 : 0 };
+      })
+      .filter((x) => x.raw > 0),
+  );
 
   const links = new Map<string, Set<string>>();
   const link = (from: string, to: string) => {
