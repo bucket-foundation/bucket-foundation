@@ -27,7 +27,7 @@ const obj = (v: unknown): v is Record<string, unknown> => typeof v === "object" 
 const str = (v: unknown, n = 4000): string | null => (typeof v === "string" ? v.slice(0, n) : null);
 
 export function parseProductionsSnapshot(raw: unknown): ProductionsSnapshot {
-  if (!obj(raw) || !Array.isArray(raw.productions) || !obj(raw.nodes)) throw new SnapshotError("expected the JSON from /api/research-os/production: { productions, nodes }");
+  if (!obj(raw) || !Array.isArray(raw.productions) || !obj(raw.nodes)) throw new SnapshotError("expected the productions JSON saved from the web: { productions, nodes }");
   if (raw.productions.length > MAX_PRODUCTIONS) throw new SnapshotError(`more than ${MAX_PRODUCTIONS} productions`);
   const productions: SnapshotProduction[] = [];
   for (const p of raw.productions) {
