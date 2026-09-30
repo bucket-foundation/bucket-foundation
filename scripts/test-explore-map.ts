@@ -42,6 +42,7 @@ const sources = advisorSources(review, prime);
 check("advisor sources carry star_prime", sources[0].star?.length === 4);
 const sampleAxes = primeAxes(review, prime);
 check("prime axes carry labels, angles and terms", sampleAxes.length === 4 && sampleAxes[0].label === "light and water" && sampleAxes[1].angle === 90 && sampleAxes[0].terms.includes("light"));
+process.env.BUCKET_ADVISOR_REVIEW = "/nonexistent/review.json";
 check("loadAdvisors exposes the prime axes", loadAdvisors().axes.length === 4);
 
 const model: MapModel = {

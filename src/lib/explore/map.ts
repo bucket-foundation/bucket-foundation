@@ -15,6 +15,7 @@ export interface MapAdvisor {
 export interface MapModel {
   axes: MapAxis[];
   advisors: MapAdvisor[];
+  split?: boolean;
 }
 
 export type Point = [number, number];
