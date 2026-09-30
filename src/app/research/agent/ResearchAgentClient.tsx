@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/providers/SessionProvider";
-import { ToolOfflineNotice, detectToolOffline } from "../tools/_shared/ToolOfflineNotice";
+import { ToolOfflineNoticeV2, detectToolOffline } from "../tools/_shared/ToolOfflineNoticeV2";
 
 type Citation = { id: string; title: string; url?: string; doi?: string };
 type Finding = { statement: string; citations: Citation[] };
@@ -164,7 +164,7 @@ export default function ResearchAgentClient() {
             to run the research agent.
           </div>
         ) : detectToolOffline(errStatus, errMsg) ? (
-          <ToolOfflineNotice toolName="The research agent" />
+          <ToolOfflineNoticeV2 toolName="The research agent" />
         ) : (
           <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
             <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-2">

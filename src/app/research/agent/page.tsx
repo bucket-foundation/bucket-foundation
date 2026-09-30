@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import ResearchAgentClient from "./ResearchAgentClient";
 
 export const metadata: Metadata = {
-  title: "Research agent · plan, retrieve, synthesize — cited & reproducible",
+  title: "Research agent · cited and reproducible briefs",
   description:
     "Ask a research question; the Bucket research agent decomposes it, retrieves grounding from the canon, OpenAlex, PubMed, and the research-atlas, routes it through real instruments, and writes a brief where every claim cites a retrieved source — or abstains. Reproducible: it shows the exact calls it made.",
   alternates: { canonical: "/research/agent" },
@@ -36,6 +36,26 @@ const AGENT_JSON_LD = {
   isAccessibleForFree: true,
 };
 
+const CITE_CALL = `curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+atp&tier=insight"`;
+
+const CITE_RESPONSE = `{
+  "data": { "...": "insight-tier synthesis" },
+  "citation": {
+    "type": "source",
+    "source_id": "pmid:123456",
+    "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/123456/"
+  },
+  "receipt": {
+    "tier": "insight",
+    "price_usd": 0.002,
+    "status": "paid"
+  },
+  "cite": {
+    "price_usd": 0.002,
+    "license": "bucket.foundation/cite-forever/v0.1"
+  }
+}`;
+
 export default function Page() {
   return (
     <main className="stone-bone relative grain">
@@ -57,21 +77,46 @@ export default function Page() {
           <span className="inlay-gold">at the frontier.</span>
         </h1>
         <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Not a chatbot. Ask a real research question and the agent runs a
-          grounded loop — it plans the inquiry, retrieves evidence from the
-          Bucket canon, the live OpenAlex and PubMed literature, the
-          research-atlas, and routes it through real instruments — then writes a
-          brief where <span className="text-[color:var(--basalt)]">every claim cites a
-          retrieved source, or it abstains</span>. No fabricated findings, no
-          invented citations. It shows you the exact calls it made, so the brief
-          is reproducible.
+          Ask a research question. The agent plans the inquiry, retrieves
+          evidence from the Bucket canon, OpenAlex, PubMed and the
+          research-atlas, routes it through real instruments, and writes a
+          brief where every claim cites a retrieved source or the agent
+          abstains. It lists the exact calls it made, so the brief is
+          reproducible.
         </p>
         <p className="mt-4 text-[13px] leading-[1.7] text-[color:var(--basalt-3)] max-w-2xl">
-          Synthesis runs on the founder&rsquo;s GPU — when that machine is
-          closed the agent is offline (the always-on tools keep working). The
-          reader pays nothing.
+          Synthesis runs on the local Bucket engine and answers only while it
+          is up. The reader pays nothing.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
+
+        <div className="mt-12 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-8">
+          <h2 className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
+            One cite call
+          </h2>
+          <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
+            An agent asks for an insight and gets the envelope back. Reading
+            costs the reader nothing. The receipt and cite blocks state the
+            price a paid work owes when it republishes the result: $0.002 at
+            the insight tier, paid to the author over x402 on Base.
+          </p>
+          <pre className="mt-4 overflow-x-auto text-[12px] leading-[1.6] text-[color:var(--basalt)] bg-[color:var(--bone-3,var(--bone))] border border-[color:var(--hairline)] p-4">
+            <code>{CITE_CALL}</code>
+          </pre>
+          <pre className="mt-3 overflow-x-auto text-[12px] leading-[1.6] text-[color:var(--basalt)] bg-[color:var(--bone-3,var(--bone))] border border-[color:var(--hairline)] p-4">
+            <code>{CITE_RESPONSE}</code>
+          </pre>
+          <p className="mt-3 text-[13px] text-[color:var(--basalt-3)]">
+            Full field list:{" "}
+            <Link
+              href="/protocol/envelope"
+              className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+            >
+              the envelope spec
+            </Link>
+            .
+          </p>
+        </div>
 
         <div className="mt-12">
           <ResearchAgentClient />
