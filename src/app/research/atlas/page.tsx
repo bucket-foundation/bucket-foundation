@@ -107,7 +107,12 @@ export default function Page() {
           map the research{" "}
           <span className="inlay-gold">economy.</span>
         </h1>
-        <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+        <p className="mt-7 text-[19px] leading-[1.6] text-[color:var(--basalt)] max-w-2xl">
+          The atlas shows where public money goes across the fields behind
+          Bucket&rsquo;s seven canon branches: mathematics, physics, chemistry,
+          information and computation, biophysics, cosmology and mind.
+        </p>
+        <p className="mt-5 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           research-atlas reconciles the world&rsquo;s public research funding into
           one normalized graph — funders, grants, organizations, people, works and
           fields — keyed on global identifiers (ROR for orgs, ORCID for people,
