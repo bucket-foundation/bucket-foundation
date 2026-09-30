@@ -1,6 +1,7 @@
 name: bkt
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - "packages/bkt/**"
@@ -17,6 +18,7 @@ on:
       - "public/bucket_logo.webp"
       - ".github/workflows/bkt.yml"
   push:
+    tags: ["bkt-v*"]
     branches: [dev]
     paths:
       - "packages/bkt/**"
@@ -90,6 +92,8 @@ jobs:
         run: sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends imagemagick webp
       - name: build the unsigned AppImage
         run: bash scripts/release/build-appimage.sh "$RUNNER_TEMP/release" | tee "$RUNNER_TEMP/build.log"
+      - name: run bkt inside the AppImage
+        run: test "$(APPIMAGE_EXTRACT_AND_RUN=1 "$RUNNER_TEMP"/release/Bucket-*.AppImage --version)" = "$(bash scripts/release/version.sh)"
       - name: record sizes
         run: |
           echo "### AppImage size" >> "$GITHUB_STEP_SUMMARY"
@@ -97,3 +101,235 @@ jobs:
           cat "$RUNNER_TEMP"/release/*.sizes.json >> "$GITHUB_STEP_SUMMARY"
       - name: release signing test
         run: node --test scripts/test-release-signing.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: appimage
+          path: ${{ runner.temp }}/release/*.AppImage
+          if-no-files-found: error
+
+  binaries:
+    runs-on: ubuntu-latest
+    needs: [bkt]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - name: compile bkt for every target
+        run: bash scripts/release/build-binaries.sh "$RUNNER_TEMP/bin" | tee "$RUNNER_TEMP/bin.log"
+      - name: run the linux binary
+        run: |
+          test "$("$RUNNER_TEMP/bin/bkt-linux-x64" --version)" = "$(bash scripts/release/version.sh)"
+          ls -l "$RUNNER_TEMP/bin" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: binaries
+          path: ${{ runner.temp }}/bin/bkt-*
+          if-no-files-found: error
+
+  sign:
+    runs-on: ubuntu-latest
+    needs: [binaries, appimage]
+    environment: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && 'bkt-release' || 'bkt-dry-run' }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: a release tag must point at a commit on main or dev
+        if: startsWith(github.ref, 'refs/tags/bkt-v')
+        run: |
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || git merge-base --is-ancestor "$GITHUB_SHA" origin/dev \
+            || { echo "$GITHUB_REF_NAME points at $GITHUB_SHA, which is on neither main nor dev" >&2; exit 1; }
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          path: ${{ runner.temp }}/dist
+          merge-multiple: true
+      - name: sign with the release key on a tag, or a throwaway key otherwise
+        env:
+          SIGNING_KEY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.BKT_RELEASE_SIGNING_KEY || '' }}
+          SIGNING_PASSPHRASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.BKT_RELEASE_SIGNING_PASSPHRASE || '' }}
+          RELEASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') }}
+        run: bash scripts/release/ci-sign.sh "$RUNNER_TEMP/dist" "$RUNNER_TEMP/keys"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist/
+          if-no-files-found: error
+
+  install:
+    needs: [sign]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            asset: bkt-linux-x64
+          - os: ubuntu-24.04-arm
+            asset: bkt-linux-arm64
+          - os: macos-latest
+            asset: bkt-darwin-arm64
+          - os: macos-15-intel
+            asset: bkt-darwin-x64
+          - os: windows-latest
+            asset: bkt-windows-x64.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: let git skip repo paths that NTFS cannot hold
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/install.sh
+            /scripts/install.ps1
+            /scripts/release/version.sh
+            /packages/bkt/package.json
+            /packages/bkt/scripts/smoke.ts
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist
+      - name: expected version
+        shell: bash
+        run: echo "BKT_EXPECT=$(bash scripts/release/version.sh)" >> "$GITHUB_ENV"
+      - name: install.sh verifies and installs
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          BKT_DOWNLOAD_BASE: ${{ runner.temp }}/dist
+          BKT_INSTALL_DIR: ${{ runner.temp }}/bin
+        run: |
+          script=scripts/install.sh
+          if [ -f "$BKT_DOWNLOAD_BASE/throwaway.pub" ]; then
+            script=$RUNNER_TEMP/install.sh
+            sed "s|^RELEASE_PUBKEY=.*|RELEASE_PUBKEY=\"$(cat "$BKT_DOWNLOAD_BASE/throwaway.pub")\"|" scripts/install.sh > "$script"
+          fi
+          sh "$script"
+          bad=$RUNNER_TEMP/bad && cp -r "$BKT_DOWNLOAD_BASE" "$bad" && printf x >> "$bad/${{ matrix.asset }}"
+          if BKT_DOWNLOAD_BASE=$bad BKT_INSTALL_DIR=$RUNNER_TEMP/bad-bin sh "$script"; then echo "a tampered binary installed" >&2; exit 1; fi
+          if BKT_DOWNLOAD_BASE=$BKT_DOWNLOAD_BASE BKT_INSTALL_DIR=$RUNNER_TEMP/prod-bin sh scripts/install.sh && [ -f "$BKT_DOWNLOAD_BASE/throwaway.pub" ]; then echo "the pinned key accepted a throwaway signature" >&2; exit 1; fi
+          echo "BKT_BIN=$BKT_INSTALL_DIR/bkt" >> "$GITHUB_ENV"
+      - name: install.ps1 verifies and installs
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          BKT_DOWNLOAD_BASE: ${{ runner.temp }}\dist
+          BKT_INSTALL_DIR: ${{ runner.temp }}\bin
+          BKT_NO_MODIFY_PATH: "1"
+        run: |
+          $script = 'scripts/install.ps1'
+          $pub = Join-Path $env:BKT_DOWNLOAD_BASE 'throwaway.pub'
+          if (Test-Path $pub) {
+            $script = Join-Path $env:RUNNER_TEMP 'install.ps1'
+            $key = (Get-Content $pub -Raw).Trim()
+            (Get-Content scripts/install.ps1) -replace '^\$ReleasePubkey = .*$', "`$ReleasePubkey = '$key'" | Set-Content $script
+          }
+          pwsh -NoProfile -File $script
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $bad = Join-Path $env:RUNNER_TEMP 'bad'
+          Copy-Item -Recurse $env:BKT_DOWNLOAD_BASE $bad
+          Add-Content -NoNewline -Path (Join-Path $bad '${{ matrix.asset }}') -Value 'x'
+          $env:BKT_DOWNLOAD_BASE = $bad
+          $env:BKT_INSTALL_DIR = Join-Path $env:RUNNER_TEMP 'bad-bin'
+          pwsh -NoProfile -File $script
+          if ($LASTEXITCODE -eq 0) { Write-Error 'a tampered binary installed'; exit 1 }
+          "BKT_BIN=$env:RUNNER_TEMP\bin\bkt.exe" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+          exit 0
+      - name: smoke on linux with a libsecret keystore
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11
+          dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
+      - name: smoke on macos with a Keychain
+        if: runner.os == 'macOS'
+        run: |
+          security create-keychain -p smoke bkt-smoke.keychain
+          security list-keychains -d user -s bkt-smoke.keychain
+          security default-keychain -s bkt-smoke.keychain
+          security unlock-keychain -p smoke bkt-smoke.keychain
+          security set-keychain-settings bkt-smoke.keychain
+          bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"
+      - name: smoke on windows with DPAPI
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: bun packages/bkt/scripts/smoke.ts $env:BKT_BIN $env:BKT_EXPECT
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [sign, install]
+    runs-on: ubuntu-latest
+    environment: bkt-release
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: signed
+          path: ${{ runner.temp }}/dist
+      - uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
+        with:
+          subject-path: |
+            ${{ runner.temp }}/dist/bkt-linux-x64
+            ${{ runner.temp }}/dist/bkt-linux-arm64
+            ${{ runner.temp }}/dist/bkt-darwin-arm64
+            ${{ runner.temp }}/dist/bkt-darwin-x64
+            ${{ runner.temp }}/dist/bkt-windows-x64.exe
+            ${{ runner.temp }}/dist/Bucket-*.AppImage
+      - name: upload to the release as a prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/release/publish.sh "$GITHUB_REF_NAME" "$RUNNER_TEMP/dist"
+
+  verify-release:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [publish]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: let git skip repo paths that NTFS cannot hold
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/install.sh
+            /scripts/install.ps1
+      - name: install.sh from the release over HTTPS
+        if: runner.os != 'Windows'
+        env:
+          BKT_INSTALL_DIR: ${{ runner.temp }}/bin
+        run: |
+          BKT_VERSION=${GITHUB_REF_NAME#bkt-v} sh scripts/install.sh
+          test "$("$BKT_INSTALL_DIR/bkt" --version)" = "${GITHUB_REF_NAME#bkt-v}"
+      - name: install.ps1 from the release over HTTPS
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          BKT_INSTALL_DIR: ${{ runner.temp }}\bin
+          BKT_NO_MODIFY_PATH: "1"
+        run: |
+          $env:BKT_VERSION = $env:GITHUB_REF_NAME -replace '^bkt-v', ''
+          pwsh -NoProfile -File scripts/install.ps1
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $v = (& (Join-Path $env:BKT_INSTALL_DIR 'bkt.exe') --version | Out-String).Trim()
+          if ($v -ne $env:BKT_VERSION) { Write-Error "installed $v, expected $env:BKT_VERSION"; exit 1 }
+
+  promote:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [verify-release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: mark the verified release as latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --prerelease=false --latest
