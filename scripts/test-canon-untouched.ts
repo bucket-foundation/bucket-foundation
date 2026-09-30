@@ -51,12 +51,24 @@ function canonSet(): Set<string> {
 function ensureBase(): void {
   const has = () => spawnSync("git", ["rev-parse", "--verify", "--quiet", "origin/dev"], { cwd: ROOT }).status === 0;
   if (has()) return;
-  spawnSync("git", ["fetch", "--quiet", "origin", "dev"], { cwd: ROOT });
+  spawnSync("git", ["fetch", "--quiet", "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
   assert.ok(has(), "origin/dev is missing and could not be fetched, so the canon search diff cannot be checked");
+}
+
+function ensureMergeBase(): void {
+  const found = () => spawnSync("git", ["merge-base", "origin/dev", "HEAD"], { cwd: ROOT }).status === 0;
+  if (found()) return;
+  const shallow = spawnSync("git", ["rev-parse", "--is-shallow-repository"], { cwd: ROOT, encoding: "utf8" }).stdout.trim() === "true";
+  if (shallow) spawnSync("git", ["fetch", "--quiet", "--unshallow", "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
+  for (let depth = 200; !found() && depth <= 3200; depth *= 2) {
+    spawnSync("git", ["fetch", "--quiet", `--deepen=${depth}`, "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
+  }
+  assert.ok(found(), "no merge base between origin/dev and HEAD after deepening, so the canon search diff cannot be checked");
 }
 
 function changedFiles(): string[] {
   ensureBase();
+  ensureMergeBase();
   const diff = spawnSync("git", ["diff", "--name-only", "origin/dev...HEAD"], { cwd: ROOT, encoding: "utf8" });
   assert.equal(diff.status, 0, diff.stderr);
   const dirty = spawnSync("git", ["diff", "--name-only", "HEAD"], { cwd: ROOT, encoding: "utf8" });
@@ -72,7 +84,7 @@ test("the canon search import set covers the page, the mount, the globe and the 
   assert.ok(set.has("src/app/canon/search/page.tsx"));
   assert.ok(set.has("src/app/canon/CanonGlobeMount.tsx"));
   assert.ok(set.has("src/app/canon/useExplorerState.ts"));
-  assert.ok(set.has("src/lib/canon-search-index.ts"));
+  assert.ok(set.has("src/app/api/canon/search/route.ts"));
   assert.ok(Array.from(set).some((f) => f.startsWith("src/components/canon-globe/")));
   assert.ok(Array.from(set).some((f) => f.startsWith("src/app/api/canon/search/")));
   assert.ok(set.size > 15);
@@ -85,7 +97,7 @@ test("the explorer files are not part of the canon search import set", () => {
 
 test("the guard flags a changed canon search file and passes an explorer file", () => {
   const set = canonSet();
-  assert.deepEqual(touchedCanonFiles(["src/lib/canon-search-index.ts"], set), ["src/lib/canon-search-index.ts"]);
+  assert.deepEqual(touchedCanonFiles(["src/app/api/canon/search/route.ts"], set), ["src/app/api/canon/search/route.ts"]);
   assert.deepEqual(touchedCanonFiles(["src/app/canon/CanonGlobeMount.tsx", "src/app/explore/ExploreShell.tsx"], set), ["src/app/canon/CanonGlobeMount.tsx"]);
   assert.deepEqual(touchedCanonFiles(["src/app/explore/ExploreShell.tsx", "README.md"], set), []);
   assert.deepEqual(touchedCanonFiles([], set), []);
