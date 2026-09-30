@@ -1,4 +1,5 @@
 import type { Hit } from "../search";
+import type { GenomeSummary } from "../genome/parse";
 
 export type Vec3 = [number, number, number];
 
@@ -41,6 +42,8 @@ export interface SceneLayout {
 export interface ModeContext {
   selected: string | null;
   scroll: number;
+  genome?: GenomeSummary | null;
+  extraHits?: Hit[];
 }
 
 export interface ExploreMode {
