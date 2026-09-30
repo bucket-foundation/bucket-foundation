@@ -1,0 +1,3 @@
+Monthly alignment chart for Bucket beads. Read the mission in CLAUDE.md, MANIFESTO.md and ROADMAP.md: primary research paid for once and citeable forever, a canon of foundations, Research OS for people doing their best work with AI.
+Score every open, in_progress and last-30-days closed bead 0 to 10 for alignment. Aligned means 8 or more. Built means merged code exists.
+Report: a 2x2 count table (built or not by aligned or not), then each quadrant as a table of id, title, score, reason under 12 words, highest score first. List beads whose score moved 2 or more since the last report under reports/schedule/alignment/. No em dashes.

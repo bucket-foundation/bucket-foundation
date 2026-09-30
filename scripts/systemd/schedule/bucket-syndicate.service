@@ -1,0 +1,6 @@
+[Unit]
+Description=Bucket scheduled syndicate report
+[Service]
+Type=oneshot
+ExecStart=%h/.local/share/bucket-schedule/run-job.sh syndicate
+TimeoutStartSec=3h

@@ -1,0 +1,3 @@
+Monthly critic pass over every public page of bucket.foundation, the GitHub README and the repo homepage.
+List routes from src/app (skip api, admin, auth internals). For each public route, fetch the live page at https://bucket.foundation, and score it with docs/agents/BUCKET-CRITIC.md plus two funnel questions: can a first-time visitor tell what Bucket is in 10 seconds, and is the path to download or sign in one click away.
+Report: table of route, score, top finding, fix. Then the acquisition funnel from README and homepage to /download to first quiz, with the drop points. File a bead for every page under 8.0 with labels needs-founder and source-agent. No em dashes.
