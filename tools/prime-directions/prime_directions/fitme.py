@@ -1,9 +1,14 @@
 from __future__ import annotations
 
+import fcntl
 import json
+import os
 import re
+import resource
 import shutil
 import subprocess
+import sys
+import tempfile
 import uuid
 from pathlib import Path
 
@@ -32,17 +37,66 @@ def registry_path(data_root: Path) -> Path:
     return data_root / "fit-me-registry.json"
 
 
+MAX_MEMORY = 1024 * 1024 * 1024
+
+
 def _registry(data_root: Path) -> dict:
     f = registry_path(data_root)
-    try:
-        return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-    except ValueError:
+    if not f.exists():
         return {}
+    try:
+        reg = json.loads(f.read_text(encoding="utf-8"))
+    except ValueError as exc:
+        raise FitError(f"{f} is damaged ({exc}); fix or remove it by hand") from exc
+    if not isinstance(reg, dict):
+        raise FitError(f"{f} is damaged; fix or remove it by hand")
+    return reg
+
+
+class _Locked:
+    def __init__(self, data_root: Path):
+        data_root.mkdir(parents=True, exist_ok=True)
+        self.path = data_root / "fit-me-registry.lock"
+
+    def __enter__(self):
+        self.fh = open(self.path, "a")
+        fcntl.flock(self.fh, fcntl.LOCK_EX)
+        return self
+
+    def __exit__(self, *exc):
+        fcntl.flock(self.fh, fcntl.LOCK_UN)
+        self.fh.close()
 
 
 def _save_registry(data_root: Path, reg: dict) -> None:
     data_root.mkdir(parents=True, exist_ok=True)
-    registry_path(data_root).write_text(json.dumps(reg, indent=1), encoding="utf-8")
+    fd, tmp = tempfile.mkstemp(dir=data_root, prefix=".fit-me-registry.", suffix=".tmp")
+    try:
+        os.fchmod(fd, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            json.dump(reg, fh, indent=1)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, registry_path(data_root))
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+
+
+def _limits() -> None:
+    resource.setrlimit(resource.RLIMIT_AS, (MAX_MEMORY, MAX_MEMORY))
+    resource.setrlimit(resource.RLIMIT_CPU, (MAX_SECONDS, MAX_SECONDS))
+
+
+def _bounded(cmd: list[str]) -> tuple[int, str, str]:
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, preexec_fn=_limits)
+    try:
+        out, err = proc.communicate(timeout=MAX_SECONDS)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        proc.communicate()
+        raise FitError(f"reading the PDF took over {MAX_SECONDS} s")
+    return proc.returncode, out[: MAX_CHARS * 4].decode("utf-8", errors="replace"), err[:2000].decode("utf-8", errors="replace")
 
 
 def read_text(path: Path) -> str:
@@ -61,30 +115,15 @@ def read_text(path: Path) -> str:
 
 
 def pdf_text(path: Path) -> str:
-    text = ""
-    try:
-        from pypdf import PdfReader
-
-        reader = PdfReader(str(path))
-        if len(reader.pages) > MAX_PAGES:
-            raise FitError(f"{path} has {len(reader.pages)} pages; the limit is {MAX_PAGES}")
-        parts = []
-        for page in reader.pages[:MAX_PAGES]:
-            parts.append(page.extract_text() or "")
-            if sum(map(len, parts)) > MAX_CHARS:
-                break
-        text = "\n".join(parts)
-    except FitError:
-        raise
-    except Exception:
-        text = ""
-    if len(text.strip()) >= MIN_CHARS:
-        return text
-    try:
-        done = subprocess.run(["pdftotext", "-l", str(MAX_PAGES), "--", str(path), "-"], capture_output=True, timeout=MAX_SECONDS, check=False)
-        return done.stdout.decode("utf-8", errors="replace")[:MAX_CHARS]
-    except (OSError, subprocess.TimeoutExpired):
-        return text
+    code, out, err = _bounded([sys.executable, "-m", "prime_directions.pdfworker", str(path)])
+    if code == 3 and err.startswith("pages:"):
+        raise FitError(f"{path} has {err.split(':')[1].strip()} pages; the limit is {MAX_PAGES}")
+    if code == 0 and len(out.strip()) >= MIN_CHARS:
+        return out[:MAX_CHARS]
+    if not shutil.which("pdftotext"):
+        raise FitError(f"{path} could not be read with pypdf and pdftotext is not installed; install poppler-utils or pass Markdown")
+    code, out2, _ = _bounded(["pdftotext", "-l", str(MAX_PAGES), "--", str(path), "-"])
+    return (out2 if len(out2.strip()) > len(out.strip()) else out)[:MAX_CHARS]
 
 
 def _is_within(child: Path, parent: Path) -> bool:
@@ -114,13 +153,13 @@ def prepare_out(out: Path, data_root: Path) -> Path:
     if _is_within(target, Path(data_root).resolve()):
         raise FitError(f"{out} is inside the tool's data directory; pick another")
     out.mkdir(parents=True, exist_ok=True)
-    reg = _registry(data_root)
-    key = str(out.resolve())
     if not (out / MARKER).exists():
-        mark = uuid.uuid4().hex
-        (out / MARKER).write_text(f"{VERSION}\n{mark}\n", encoding="utf-8")
-        reg[key] = mark
-        _save_registry(data_root, reg)
+        with _Locked(data_root):
+            reg = _registry(data_root)
+            mark = uuid.uuid4().hex
+            (out / MARKER).write_text(f"{VERSION}\n{mark}\n", encoding="utf-8")
+            reg[str(out.resolve())] = mark
+            _save_registry(data_root, reg)
     return out
 
 
@@ -138,12 +177,13 @@ def forget(out: Path, repo: Path, data_root: Path) -> None:
     for root in protected_roots(repo, data_root):
         if target == root or _is_within(root, target):
             raise FitError(f"{out} is or contains {root}; refusing to delete")
-    reg = _registry(data_root)
-    if reg.get(str(target)) != marker_id(target):
-        raise FitError(f"{out} has a marker this machine did not record; refusing to delete")
-    shutil.rmtree(target)
-    reg.pop(str(target), None)
-    _save_registry(data_root, reg)
+    with _Locked(data_root):
+        reg = _registry(data_root)
+        if reg.get(str(target)) != marker_id(target):
+            raise FitError(f"{out} has a marker this machine did not record; refusing to delete")
+        shutil.rmtree(target)
+        reg.pop(str(target), None)
+        _save_registry(data_root, reg)
 
 
 def direction_items(text: str, fallback: int = 6) -> list[str]:

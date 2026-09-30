@@ -138,7 +138,8 @@ def test_run_writes_nothing_else_under_data_root_and_report_has_no_path(tmp_path
     out = tmp_path / "fit"
     assert run(tmp_path, out, monkeypatch) == 0
     data = tmp_path / "data"
-    assert sorted(p.name for p in data.rglob("*")) == [fitme.registry_path(data).name]
+    assert sorted(p.name for p in data.rglob("*")) == sorted([fitme.registry_path(data).name, "fit-me-registry.lock"])
+    assert oct(fitme.registry_path(data).stat().st_mode & 0o777) == "0o600"
     report = (out / "report.json").read_text()
     assert "statement.md" not in report and str(tmp_path) not in report
 
@@ -189,3 +190,55 @@ def test_oversized_file_is_refused(tmp_path, monkeypatch):
     monkeypatch.setattr(fitme, "MAX_BYTES", 0)
     with pytest.raises(fitme.FitError, match="MB"):
         fitme.read_text(f)
+
+
+def test_damaged_registry_is_an_error(tmp_path, monkeypatch):
+    data = tmp_path / "data"
+    data.mkdir()
+    fitme.registry_path(data).write_text('{"trunc')
+    with pytest.raises(fitme.FitError, match="damaged"):
+        fitme.prepare_out(tmp_path / "o", data)
+
+
+def test_missing_pdftotext_has_its_own_error(tmp_path, monkeypatch):
+    from pypdf import PdfWriter
+
+    w = PdfWriter()
+    w.add_blank_page(width=200, height=200)
+    f = tmp_path / "scan.pdf"
+    with open(f, "wb") as h:
+        w.write(h)
+    monkeypatch.setattr(fitme.shutil, "which", lambda name: None)
+    with pytest.raises(fitme.FitError, match="pdftotext is not installed"):
+        fitme.read_text(f)
+
+
+def test_page_limit_is_enforced_in_the_worker(tmp_path, monkeypatch):
+    from pypdf import PdfWriter
+
+    w = PdfWriter()
+    for _ in range(fitme.MAX_PAGES + 1):
+        w.add_blank_page(width=100, height=100)
+    f = tmp_path / "long.pdf"
+    with open(f, "wb") as h:
+        w.write(h)
+    with pytest.raises(fitme.FitError, match="pages"):
+        fitme.read_text(f)
+
+
+def test_cv_contact_details_never_reach_any_output(tmp_path, monkeypatch, no_network):
+    cv = tmp_path / "cv.md"
+    cv.write_text("Jane Example, jane.example@example.org, +1 (555) 010-4477, 42 Elm Street, Springfield. "
+                  "Skills: neural network inference, protein structure, circadian metabolism, mitochondria assays. " * 3)
+    monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
+    st = tmp_path / "statement.md"
+    st.write_text(STATEMENT)
+    out = tmp_path / "fit"
+    code = cli.main(["fit-me", "--statement", str(st), "--cv", str(cv), "--people", str(people_with_emails(tmp_path)), "--out", str(out),
+                     "--k", "6", "--top", "30", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"])
+    assert code == 0
+    for f in out.rglob("*"):
+        if f.is_file() and f.suffix in (".html", ".csv", ".json"):
+            text = f.read_text(errors="replace")
+            for needle in ("jane.example@example.org", "(555)", "010-4477", "Elm Street", "Jane Example"):
+                assert needle not in text, (f.name, needle)
