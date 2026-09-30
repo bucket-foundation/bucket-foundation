@@ -1,17 +1,18 @@
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
+import { platformFor, procNetTcpOwner, type Owner } from "./platform";
 
 export const NONCE_TTL_MS = 30_000;
 export const HOSTNAME = "127.0.0.1";
 export const MAX_BODY_BYTES = 256 * 1024;
 
-export type PeerUidResolver = (peerPort: number, serverPort: number) => number | null;
+export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | null;
 export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 
 export interface ServeOptions {
   port?: number;
-  uid?: number;
+  uid?: Owner;
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
@@ -29,29 +30,7 @@ export interface Serve {
   stop(): void;
 }
 
-function hexPort(s: string): number {
-  return parseInt(s.split(":")[1], 16);
-}
-
-export function procNetTcpUid(peerPort: number, serverPort: number, files = ["/proc/net/tcp", "/proc/net/tcp6"]): number | null {
-  for (const f of files) {
-    let text: string;
-    try {
-      text = readFileSync(f, "utf8");
-    } catch {
-      continue;
-    }
-    for (const line of text.split("\n").slice(1)) {
-      const cols = line.trim().split(/\s+/);
-      if (cols.length < 8) continue;
-      if (hexPort(cols[1]) === peerPort && hexPort(cols[2]) === serverPort) {
-        const uid = Number(cols[7]);
-        return Number.isInteger(uid) ? uid : null;
-      }
-    }
-  }
-  return null;
-}
+export const procNetTcpUid = procNetTcpOwner;
 
 function same(a: string, b: string): boolean {
   const x = Buffer.from(a);
@@ -127,8 +106,9 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
 }
 
 export function startServe(opts: ServeOptions = {}): Serve {
-  const uid = opts.uid ?? process.getuid?.() ?? -1;
-  const resolve = opts.resolvePeerUid ?? procNetTcpUid;
+  const platform = opts.uid === undefined || opts.resolvePeerUid === undefined ? platformFor() : null;
+  const uid = opts.uid ?? platform!.self();
+  const resolve = opts.resolvePeerUid ?? ((peer: number, server: number) => platform!.peerOwner(peer, server));
   const now = opts.now ?? Date.now;
   const routes = opts.routes ?? {};
   const ui = loadUi(opts.uiDir);
@@ -185,7 +165,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
       const peerOk = () => {
         const ip = srv.requestIP(req);
         if (!ip || (ip.address !== HOSTNAME && ip.address !== `::ffff:${HOSTNAME}`)) return false;
-        let peer: number | null;
+        let peer: Owner | null;
         try {
           peer = resolve(ip.port, serverPort);
         } catch {

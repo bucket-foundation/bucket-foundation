@@ -1,8 +1,8 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import pysrc from "../content/pysrc.json" with { type: "json" };
 import type { PySource } from "./pack/pysrc";
+import { platformFor } from "./platform";
 import { checkPython, pyPaths } from "./pyruntime";
 
 export interface Issue {
@@ -48,7 +48,7 @@ export interface RunningAnalysis {
 }
 
 export function analysesRoot(env = process.env): string {
-  return env.BKT_ANALYSES ?? join(env.XDG_DATA_HOME ?? join(homedir(), ".local/share"), "bucket/analyses");
+  return env.BKT_ANALYSES ?? join(platformFor(process.platform, { env }).dataDir(), "bucket", "analyses");
 }
 
 export function parseAnalyzeArgs(argv: string[]): AnalyzeOptions {
@@ -89,7 +89,7 @@ function fail(stderr: string): RunningAnalysis {
 }
 
 export function startAnalysis(o: AnalyzeOptions, env = process.env, src: PySource = pysrc as PySource): RunningAnalysis {
-  const python = (o.dev && env.BKT_PYTHON) || "python3";
+  const python = (o.dev && env.BKT_PYTHON) || platformFor(process.platform, { env }).python();
   const missing = checkPython(python);
   if (missing) return fail(missing);
   let paths;

@@ -264,6 +264,14 @@ project.
 
 ---
 
+## Research additions
+
+Dated additions since the 2026 revival, newest last.
+
+- **2026-09-30, the solver gap engine.** Bucket mapped the 3,592 problems in formal-conjectures as proved or open and ranked the open ones by closeness to solved ones. The plan: a Lean prover supplies proofs, sampled tests supply the empirical check, and funded labs replicate. The same day, the solvability atlas gained circle, sphere, slice and helix views.
+
+---
+
 ## Recovery metadata
 
 - **Recovered:** 2026-04-15, during the Nucleus Brain integration of

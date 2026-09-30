@@ -67,7 +67,39 @@ export interface ImportFileRow {
   created_at: string;
 }
 
-export type RecordResult = { ok: true; value: ImportFileRow; repeat: boolean } | { ok: false; error: "import_not_found" | "write_failed"; detail: string };
+export type PathConflict = "object_shared" | "object_marketing";
+
+export type RecordResult =
+  | { ok: true; value: ImportFileRow; repeat: boolean }
+  | { ok: false; error: "import_not_found" | "write_failed" | PathConflict; detail: string };
+
+interface ImportFlags {
+  id: string;
+  node_id: string | null;
+  source: { marketing?: unknown } | null;
+}
+
+export const isMarketing = (row: Pick<ImportFlags, "source"> | null): boolean => row?.source?.marketing === true;
+
+async function importFlags(svc: SupabaseClient, importId: string): Promise<ImportFlags | null> {
+  const { data, error } = await svc.from("imports").select("id, node_id, source").eq("id", importId).maybeSingle();
+  if (error) throw new Error(`reading the import: ${error.message}`);
+  return (data as ImportFlags | null) ?? null;
+}
+
+export async function pathConflict(svc: SupabaseClient, importId: string, storagePath: string): Promise<PathConflict | null> {
+  const target = await importFlags(svc, importId);
+  const { data, error } = await svc.from("import_files").select("import_id").eq("storage_path", storagePath);
+  if (error) throw new Error(`reading the files at that path: ${error.message}`);
+  const others = Array.from(new Set(((data as { import_id: string }[] | null) ?? []).map((r) => r.import_id).filter((id) => id !== importId)));
+  for (const id of others) {
+    const other = await importFlags(svc, id);
+    if (!other) continue;
+    if (isMarketing(target) && other.node_id !== null) return "object_shared";
+    if (!isMarketing(target) && isMarketing(other)) return "object_marketing";
+  }
+  return null;
+}
 
 export async function ownedImport(svc: SupabaseClient, importId: string, ownerId: string): Promise<{ id: string; nodeId: string | null; nodeSlug: string | null } | null> {
   const { data, error } = await svc.from("imports").select("id, node_id").eq("id", importId).eq("owner_id", ownerId).maybeSingle();
@@ -89,6 +121,13 @@ export async function recordImportFile(svc: SupabaseClient, importId: string, re
     .maybeSingle();
   if (existing.error) return { ok: false, error: "write_failed", detail: existing.error.message };
   if (existing.data) return { ok: true, value: existing.data as ImportFileRow, repeat: true };
+
+  try {
+    const conflict = await pathConflict(svc, importId, record.storagePath);
+    if (conflict) return { ok: false, error: conflict, detail: "the same bytes are recorded under an import with other readers" };
+  } catch (e) {
+    return { ok: false, error: "write_failed", detail: e instanceof Error ? e.message : String(e) };
+  }
 
   const { data, error } = await svc
     .from("import_files")
