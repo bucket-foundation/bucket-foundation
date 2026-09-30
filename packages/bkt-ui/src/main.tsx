@@ -5,6 +5,7 @@ import { href, useRoute, type Route } from "./router";
 import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
+import { JobsView } from "./views/Jobs";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
 import { QuizView } from "./views/Quiz";
@@ -17,6 +18,7 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "review" }, label: "Review" },
   { route: { name: "advisors" }, label: "Advisors" },
   { route: { name: "primes" }, label: "Prime directions" },
+  { route: { name: "jobs" }, label: "Jobs" },
   { route: { name: "import" }, label: "Import" },
 ];
 
@@ -80,6 +82,8 @@ function App() {
           <AdvisorsView api={api} />
         ) : route.name === "primes" ? (
           <PrimesView api={api} />
+        ) : route.name === "jobs" ? (
+          <JobsView api={api} />
         ) : route.name === "import" ? (
           <ImportView api={api} />
         ) : (
