@@ -129,7 +129,8 @@ jobs:
           [ -n "$exe" ] || { echo "no app binary in the dmg"; exit 1; }
           [ -x "$(dirname "$exe")/bkt" ] || { echo "no bkt sidecar in the app"; exit 1; }
           bun scripts/smoke.ts "$exe"
-          hdiutil detach "$RUNNER_TEMP/dmg"
+          pkill -f "$RUNNER_TEMP/dmg/" || true
+          hdiutil detach "$RUNNER_TEMP/dmg" -force
       - name: smoke the msi
         if: runner.os == 'Windows'
         working-directory: packages/bkt-desktop
