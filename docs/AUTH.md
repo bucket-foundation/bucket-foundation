@@ -1,6 +1,6 @@
 # Auth
 
-One session for the whole site. A person signs in once at `/sign-in` with an email one-time code and is signed in on every page, every API route, and the framed Academy app until they sign out.
+One session for the whole site. A person signs in once at `/sign-in` with an email one-time code and is signed in on every page and every API route until they sign out. The session gates Research OS (`docs/RESEARCH-OS-APP.md`), the product behind `/download` and the canon.
 
 ## Pieces
 
@@ -18,7 +18,7 @@ One session for the whole site. A person signs in once at `/sign-in` with an ema
 | Identity | `supabase/migrations/20260916000000_bucket_identities.sql`, `src/lib/auth/identity.ts` | `bucket.identities` keyed on `auth.users.id`: unique handle, unique wallet. `getIdentity` creates the row on a person's first read (no trigger on the shared `auth.users`). Reached through the service-role client bound to the private `bucket` schema. |
 | Header | `src/components/auth/UserMenu.tsx` | Sign in, or the person's name and sign out. |
 | Page gate | `src/components/auth/SignInGate.tsx` | Rendered by app pages for the moment before the browser client hydrates. |
-| Academy bridge | `src/app/academy/AcademyFrame.tsx`, `learning/app/js/auth.js` `adoptSession` | The site posts its session into the frame on load, on request, and on every change; the frame's own sign-in link goes to the site's `/sign-in` when framed. Same origin only. |
+| Academy | `src/app/academy/page.tsx`, `learning/app/js/auth.js` `adoptSession` | `/academy` redirects to `/research-os/learn`. The standalone Academy build adopts a session posted by a same-origin parent frame. |
 
 ## Flows
 
@@ -26,7 +26,7 @@ Sign in: `/sign-in` → `signInWithOtp` → code → `verifyOtp` → cookies wri
 
 A page request: middleware reads the cookies, refreshes an expired access token, and either serves the page or redirects to `/sign-in`. The `(app)` layout under `/research-os` checks again with `getSessionUser()` and loads the identity row and staff roles for the shell.
 
-An API call from a page: `fetch("/api/...")` sends the cookies; the handler calls `verifyRequestUser`. A Bearer header still works, so agents, scripts, and the framed Academy app are unchanged.
+An API call from a page: `fetch("/api/...")` sends the cookies; the handler calls `verifyRequestUser`. A Bearer header still works, so agents and scripts are unchanged.
 
 Sign out: a POST to `/auth/sign-out` from the header, the account page, or the app shell.
 
@@ -71,7 +71,7 @@ curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundati
 
 ## Retired
 
-NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/research`, the bucket 1.0 publish path; a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
+NextAuth v4 (`next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`) and its route and helper files are removed: `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/research`, the bucket 1.0 publish path; a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
 
 ## Register
 
