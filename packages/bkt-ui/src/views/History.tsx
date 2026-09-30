@@ -72,7 +72,9 @@ export function HistoryView({ api }: { api: Api }) {
           )}
         </div>
         {!snap ? (
-          <p className="muted">Save the JSON of /api/research-os/production while signed in on the web, then open it here. It stays on this computer, encrypted.</p>
+          <p className="muted">
+            Export while the web is up: sign in at bucket.foundation, open /api/research-os/production, and save the page as a .json file. Open that file here. Bucket keeps the last snapshot on this computer, encrypted, so the list stays readable while the web is down; export again once it is back.
+          </p>
         ) : (
           <>
             <p className="muted small">Snapshot from {new Date(snap.importedAt).toLocaleString()}.</p>

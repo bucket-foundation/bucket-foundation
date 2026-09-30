@@ -4,6 +4,9 @@ import type { Route } from "./serve";
 import type { Store } from "./store";
 
 export const HISTORY_BODY_BYTES = 16 * 1024 * 1024;
+export const MAX_SNAPSHOT_BYTES = 4 * 1024 * 1024;
+
+export class SnapshotTooLarge extends Error {}
 export const DAY_MS = 86_400_000;
 
 export interface ActivityDay {
@@ -25,9 +28,11 @@ export class HistoryStore {
   }
 
   save(s: ProductionsSnapshot, now: number) {
+    const doc = JSON.stringify(s);
+    if (Buffer.byteLength(doc) > MAX_SNAPSHOT_BYTES) throw new SnapshotTooLarge(`the snapshot is larger than ${MAX_SNAPSHOT_BYTES / 1048576} MB after cleaning`);
     this.store.db
       .query("insert into history_snapshot (id, doc, imported_at) values (1, ?, ?) on conflict(id) do update set doc = excluded.doc, imported_at = excluded.imported_at")
-      .run(seal(this.key, JSON.stringify(s), "history_snapshot"), now);
+      .run(seal(this.key, doc, "history_snapshot"), now);
   }
 
   forget() {
@@ -71,6 +76,7 @@ export function historyRoutes(h: HistoryStore, now: () => number = Date.now): Re
         return json({ productions: s.productions.length });
       } catch (e) {
         if (e instanceof SnapshotError) return json({ error: e.message }, 400);
+        if (e instanceof SnapshotTooLarge) return json({ error: e.message }, 413);
         throw e;
       }
     },

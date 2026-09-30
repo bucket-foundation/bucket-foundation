@@ -69,6 +69,13 @@ describe("history routes", () => {
     expect(((await (await req("/local/history")).json()) as { snapshot: unknown }).snapshot).toBeNull();
   });
 
+  test("a snapshot over the size cap is refused and nothing is stored", async () => {
+    const big = { productions: Array.from({ length: 1200 }, (_, i) => ({ ...SNAP.productions[0], id: `p${i}`, claim: "x".repeat(3900) })), nodes: SNAP.nodes };
+    const r = await req("/local/history/import", { method: "POST", body: big });
+    expect(r.status).toBe(413);
+    expect(((await (await req("/local/history")).json()) as { snapshot: unknown }).snapshot).toBeNull();
+  });
+
   test("bad files are refused", async () => {
     expect((await req("/local/history/import", { method: "POST", body: { productions: "x" } })).status).toBe(400);
     auth = {};
