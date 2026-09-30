@@ -20,10 +20,31 @@ except ImportError:
     print("bkt analyze needs numpy: python3 -m pip install --user numpy", file=sys.stderr)
     sys.exit(3)
 
-from marketing import run as marketing_run
-from marketing.adapters import header_row
-from marketing.readers import ReadError, magic_ok, read_pdf, read_xlsx
-from marketing.report import markdown as marketing_markdown
+try:
+    from marketing import run as marketing_run
+    from marketing.adapters import header_row
+    from marketing.readers import ReadError, magic_ok, read_pdf, read_xlsx
+    from marketing.report import markdown as marketing_markdown
+
+    HAS_MARKETING = True
+except ImportError:
+    HAS_MARKETING = False
+
+    class ReadError(Exception):
+        code = "E_MARKETING_MISSING"
+
+    def header_row(rows, limit=15):
+        return 0
+
+    def magic_ok(kind, head):
+        return True
+
+    def read_xlsx(path, max_rows, sheet=0):
+        raise ReadError("XLSX needs the marketing package next to bkt_analyze.py")
+
+    read_pdf = read_xlsx
+    marketing_run = None
+    marketing_markdown = None
 
 SCHEMA = "bucket.analysis/1"
 REPO = Path(__file__).resolve().parents[3]
@@ -781,7 +802,7 @@ def unique_dir(root: Path, name: str, date: str) -> Path:
 
 
 def marketing_section(args, first: tuple[dict, dict], rest: list[Path]) -> dict | None:
-    if args.marketing == "off":
+    if args.marketing == "off" or not HAS_MARKETING:
         return None
     tables = [(Path(first[0]["file"]).name, first[1])] if first[1] else []
     forms = []
