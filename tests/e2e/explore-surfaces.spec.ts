@@ -12,21 +12,24 @@ test("the cylinder view draws one surface over the slices", async ({ page }) => 
 test("the sphere view places every observation", async ({ page }) => {
   await page.goto("/explore?space=sphere");
   await expect(page.getByTestId("surface-view")).toHaveAttribute("data-mode", "sphere");
-  await expect(page.getByTestId("surface-status")).toContainText("6 of 6");
+  const status = page.getByTestId("surface-status");
+  const visible = Number(await status.getAttribute("data-visible"));
+  expect(visible).toBeGreaterThan(100);
+  await expect(status).toContainText(`${visible} of ${visible}`);
   await expect(page.getByTestId("time-slider")).toHaveCount(0);
 });
 
 test("the time slider filters the sphere by year", async ({ page }) => {
   await page.goto("/explore?space=sphere-time");
   const status = page.getByTestId("surface-status");
-  await expect(status).toContainText("6 of 6");
+  const total = Number(await status.getAttribute("data-visible"));
   const slider = page.getByTestId("time-slider");
   await slider.fill(String(await slider.getAttribute("min")));
   const visible = Number(await status.getAttribute("data-visible"));
-  expect(visible).toBeLessThan(6);
+  expect(visible).toBeLessThan(total);
   expect(visible).toBeGreaterThanOrEqual(1);
   await slider.fill(String(await slider.getAttribute("max")));
-  await expect(status).toContainText("6 of 6");
+  await expect(status).toContainText(`${total} of ${total}`);
 });
 
 test("the view switch reaches every surface view", async ({ page }) => {

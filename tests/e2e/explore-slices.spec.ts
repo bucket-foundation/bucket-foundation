@@ -8,9 +8,9 @@ async function open(page: import("@playwright/test").Page) {
   await expect(page.locator('[data-testid="slice-stack"] canvas')).toBeVisible();
 }
 
-test("the slice view shows the stack on sample data", async ({ page }) => {
+test("the slice view shows the stack on the canon data", async ({ page }) => {
   await open(page);
-  await expect(page.getByTestId("sample-badge")).toBeVisible();
+  await expect(page.getByTestId("sample-badge")).toHaveCount(0);
   await expect(page.getByRole("radio", { name: "slices" })).toHaveAttribute("aria-checked", "true");
   const count = Number(await page.getByTestId("slice-stack").getAttribute("data-count"));
   expect(count).toBeGreaterThanOrEqual(2);
@@ -82,7 +82,7 @@ test("selecting a slice goes straight to its circle chart and back", async ({ pa
   await page.getByTestId("slice-1").click();
   const chart = page.getByTestId("circle-chart");
   await expect(chart).toBeVisible();
-  await expect(chart.locator("g[data-series=mean]")).toHaveAttribute("data-vertices", "4");
+  await expect(chart.locator("g[data-series=mean]")).toHaveAttribute("data-vertices", "12");
   await expect(page.getByTestId("slice-open")).toContainText("observations");
   await page.getByTestId("slice-back").click();
   await expect(page.getByTestId("slice-stack")).toBeVisible();
