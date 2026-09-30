@@ -18,20 +18,20 @@ const BRANCH_WORD = NUMBER_WORDS[BRANCH_COUNT] ?? String(BRANCH_COUNT);
 const BRANCH_LIST = [...CANON_BRANCHES, ...HISTORY_BRANCHES].map((b) => b.name).join(", ");
 
 export const metadata = {
-  title: `Canon · ${BRANCH_WORD} branches of foundations`,
+  title: `Canon · ${BRANCH_WORD} branches`,
   description:
-    `The bucket canon: ${BRANCH_WORD} branches of foundations: ${BRANCH_LIST}. Only axioms, real math, laws, principles, and primary derivations. Free to read, free to cite.`,
+    `The bucket canon: ${BRANCH_WORD} branches: ${BRANCH_LIST}. Only axioms, real math, laws, principles, and primary derivations. Free to read, free to cite.`,
   alternates: { canonical: "/canon" },
   openGraph: {
     type: "website" as const,
     url: "https://www.bucket.foundation/canon",
-    title: `The bucket canon: ${BRANCH_WORD} branches of foundations`,
+    title: `The bucket canon: ${BRANCH_WORD} branches`,
     description:
       `${BRANCH_LIST}. Only foundations, carved to be cited forever. Free to read.`,
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: `The bucket canon: ${BRANCH_WORD} branches of foundations`,
+    title: `The bucket canon: ${BRANCH_WORD} branches`,
     description:
       "Only foundations: axioms, real math, laws, principles, primary derivations. Free to read, free to cite.",
   },
