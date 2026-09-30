@@ -1,65 +1,23 @@
 import { NextRequest } from "next/server";
-import { buildIndex, cosineRank, tokenRank, getIndexDim } from "@/lib/canon-search-index";
+import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { getEvidenceFor } from "@/lib/canon-evidence";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function decodeQVec(b64: string, dim: number): Float32Array | null {
-  try {
-    const buf = Buffer.from(b64, "base64");
-    if (buf.length !== dim * 4) return null;
-    return new Float32Array(buf.buffer, buf.byteOffset, dim);
-  } catch {
-    return null;
-  }
-}
-
 export async function GET(req: NextRequest) {
   const t0 = Date.now();
-  const url = new URL(req.url);
-  const q = (url.searchParams.get("q") || "").trim();
-  const topK = Math.min(50, Math.max(1, parseInt(url.searchParams.get("top_k") || "10", 10)));
-  const tier = (url.searchParams.get("tier") || "all").toLowerCase();
-  const branchFilter = url.searchParams.get("branch") || "";
-  const modeParam = (url.searchParams.get("mode") || "hybrid").toLowerCase();
-  const qvec = url.searchParams.get("qvec");
-
-  if (!q && !qvec) {
+  const params = parseCanonSearchParams(new URL(req.url));
+  const { q, topK } = params;
+  const found = canonSearch(params);
+  if (!found.ok) {
     return new Response(
-      JSON.stringify({ error: { code: "missing_q", message: "q or qvec required" } }),
-      { status: 400, headers: { "content-type": "application/json" } },
+      JSON.stringify({ error: { code: found.code, message: found.message } }),
+      { status: found.status, headers: { "content-type": "application/json" } },
     );
   }
-
-  const idx = buildIndex();
-  if (!idx.length) {
-    return new Response(
-      JSON.stringify({ error: { code: "index_empty", message: "canon search index not built" } }),
-      { status: 503, headers: { "content-type": "application/json" } },
-    );
-  }
-
-  let results: { entry: typeof idx[number]; score: number }[] = [];
-  let mode = modeParam;
-
-  if (qvec) {
-    const dim = getIndexDim();
-    const qv = decodeQVec(qvec, dim);
-    if (qv) {
-      results = cosineRank(qv, topK * 3);
-      mode = "semantic";
-    }
-  }
-  if (results.length === 0) {
-    results = tokenRank(q || "", topK * 3);
-    mode = modeParam === "semantic" ? "semantic_fallback_lexical" : "lexical";
-  }
-
-  if (branchFilter) {
-    results = results.filter((r) => r.entry.branch === branchFilter);
-  }
-  const out = results.slice(0, topK).map((r) => {
+  const { mode, results } = found;
+  const out = results.map((r) => {
     const ev = getEvidenceFor(r.entry.concept, r.entry.slug);
     return {
       claim_id: r.entry.rowid,

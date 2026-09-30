@@ -95,7 +95,7 @@ export default function ProteinView({ protein, focus, onFocus }: Props) {
           </button>
         ))}
         <span style={{ color: "var(--parchment-dim)" }}>
-          {summary ? `${data?.name} · ${summary.chains.join(",")} · ${summary.residues} residues` : "loading"} · files stay in this browser
+          {summary ? `${data?.name} · ${summary.chains.join(",")} · ${summary.residues} residues` : "loading"} · files stay in this browser · {protein.credit}
         </span>
       </div>
       {error && <p role="alert" className="mt-2 text-sm">{error}</p>}

@@ -2,6 +2,8 @@ import fs from "fs";
 import {
   parseAdvisorReview,
   parsePrimeDirections,
+  scrubEmails,
+  hasEmail,
   type AdvisorReview,
   type AdvisorRow,
   type PrimeDirections,
@@ -34,24 +36,27 @@ export function primeTerms(row: AdvisorRow, prime: PrimeDirections, n = 2): stri
 
 export function advisorSources(review: AdvisorReview, prime: PrimeDirections): AdvisorSource[] {
   return review.rows.map((row) => {
-    const field = typeof row.fields.field === "string" ? row.fields.field : "";
+    const field = typeof row.fields.field === "string" ? scrubEmails(row.fields.field) : "";
     const year = typeof row.fields.year === "number" ? row.fields.year : null;
-    const text = [
-      ...Object.entries(row.fields)
-        .filter(([k]) => k !== "field" && k !== "year")
-        .map(([, v]) => flat(v)),
-      ...primeTerms(row, prime),
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const text = scrubEmails(
+      [
+        ...Object.entries(row.fields)
+          .filter(([k]) => k !== "field" && k !== "year")
+          .map(([, v]) => flat(v)),
+        ...primeTerms(row, prime),
+      ]
+        .filter(Boolean)
+        .join(" "),
+    );
+    const url = row.links.profile_url ?? row.links.program_url ?? null;
     return {
       rank: row.rank,
-      name: row.name,
+      name: scrubEmails(row.name),
       field,
       text,
       year,
       score: row.score,
-      url: row.links.profile_url ?? row.links.program_url ?? null,
+      url: url && !hasEmail(url) && !/^mailto:/i.test(url) ? url : null,
     };
   });
 }

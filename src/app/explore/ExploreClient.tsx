@@ -8,8 +8,8 @@ import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
+import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
-import { MOLECULES, REACTIONS, moleculeById, reactionById } from "@/lib/explore/modes/chem";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 const ProteinView = nextDynamic(() => import("@/components/explore/ProteinView"), { ssr: false });
@@ -37,6 +37,7 @@ export default function ExploreClient() {
   const [element, setElement] = useState(DEFAULT_Z);
   const [molecule, setMolecule] = useState(MOLECULES[0].id);
   const [reaction, setReaction] = useState(REACTIONS[0].id);
+  const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
 
@@ -91,6 +92,11 @@ export default function ExploreClient() {
       .catch(() => setGeneHits([]));
   }, [mode.id, geneHits.length]);
 
+  useEffect(() => {
+    if ((mode.id !== "molecule" && mode.id !== "reaction") || smilesLoaded) return;
+    loadSmiles().then(() => setSmilesLoaded(true));
+  }, [mode.id, smilesLoaded]);
+
   const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : mode.id === "protein" ? `${proteinById(null).gene} ${proteinById(null).name}` : null;
 
   useEffect(() => {
@@ -108,7 +114,7 @@ export default function ExploreClient() {
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
     () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction }),
-    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction],
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 

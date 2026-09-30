@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { detectFormat, genomeOffset, GENOME_LENGTH, parseFasta, summarize } from "../src/lib/explore/genome/parse";
 import { dnaMode, genesCited, slotOf, DNA_SLOTS } from "../src/lib/explore/modes/dna";
+import { MAX_GENOME_BYTES, ParseTokens, runGenomeJob, sizeError } from "../src/lib/explore/genome/job";
+import { HELIX_RADIUS } from "../src/lib/explore/modes/helix";
 import { SAMPLE_HITS } from "./lib/explore-hits";
 
 let failed = 0;
@@ -56,8 +58,56 @@ check("loaded layout draws markers", loaded.nodes.some((n) => n.id.startsWith("m
 check("excerpt citing MTHFR links to its SNP", loaded.links.some((l) => l.from === SAMPLE_HITS[0].id && l.to === "snp:rs1801133"));
 check("positions are finite", loaded.nodes.every((n) => n.position.every(Number.isFinite)));
 
-if (failed) {
-  console.error(`${failed} failed`);
-  process.exit(1);
+check("markers ride the outer strand", loaded.nodes.filter((n) => n.id.startsWith("marker:")).every((n) => Math.abs(Math.hypot(n.position[0], n.position[2]) - HELIX_RADIUS) < 1e-9));
+check("SNPs ride the inner strand", loaded.nodes.filter((n) => n.id.startsWith("snp:")).every((n) => Math.abs(Math.hypot(n.position[0], n.position[2]) - 0.92) < 1e-9));
+check("citing excerpt sits outside the helix", (() => {
+  const n = loaded.nodes.find((x) => x.id === SAMPLE_HITS[0].id);
+  return !!n && Math.abs(Math.hypot(n.position[0], n.position[2]) - 1.6) < 1e-9;
+})());
+check("non-citing hits are left off the DNA view", !loaded.nodes.some((n) => n.id === SAMPLE_HITS[2].id));
+check("DNA node ids are unique", new Set(loaded.nodes.map((n) => n.id)).size === loaded.nodes.length);
+check("DNA links join known nodes", (() => {
+  const ids = new Set(loaded.nodes.map((n) => n.id));
+  return loaded.links.every((l) => ids.has(l.from) && ids.has(l.to));
+})());
+check("legend switches to your file once loaded", loaded.legend.some((l) => l.label === "annotated SNP in your file") && empty.legend.some((l) => l.label === "annotated SNP, reference"));
+check("extra hits join the DNA layout", dnaMode.layout([], { selected: null, scroll: 0, extraHits: [SAMPLE_HITS[0]] }).nodes.some((n) => n.id === SAMPLE_HITS[0].id));
+const scrolled = dnaMode.layout([], { selected: null, scroll: 400 });
+check("scroll moves the DNA helix", scrolled.nodes[0].position[1] !== empty.nodes[0].position[1]);
+
+check("size cap is 100 MB", MAX_GENOME_BYTES === 100 * 1024 * 1024);
+check("files at the cap pass", sizeError(MAX_GENOME_BYTES) === null);
+check("files over the cap name the limit", /100 MB/.test(sizeError(MAX_GENOME_BYTES + 1) ?? ""));
+
+async function asyncChecks() {
+  let read = false;
+  const huge = { size: MAX_GENOME_BYTES + 1, text: async () => { read = true; return ""; } };
+  const r = await runGenomeJob({ token: 7, file: huge });
+  check("oversize file is refused before it is read", !r.ok && !read && r.token === 7);
+  const ok = await runGenomeJob({ token: 8, file: { size: t23.length, text: async () => t23 } });
+  check("small file parses and echoes its token", ok.ok && ok.token === 8 && ok.summary.variantCount === 3);
+  const bad = await runGenomeJob({ token: 9, file: { size: 10, text: async () => { throw new Error("read failed"); } } });
+  check("read errors come back as messages", !bad.ok && bad.error === "read failed");
+
+  const tokens = new ParseTokens();
+  const first = tokens.next();
+  check("a fresh token is current", tokens.isCurrent(first));
+  tokens.cancel();
+  check("clear makes an in-flight parse stale", !tokens.isCurrent(first));
+  const second = tokens.next();
+  check("a newer parse supersedes an older one", tokens.isCurrent(second) && !tokens.isCurrent(first));
 }
-console.log("all passed");
+
+asyncChecks().then(
+  () => {
+    if (failed) {
+      console.error(`${failed} failed`);
+      process.exit(1);
+    }
+    console.log("all passed");
+  },
+  (err) => {
+    console.error(err);
+    process.exit(1);
+  },
+);

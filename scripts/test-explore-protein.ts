@@ -24,7 +24,8 @@ check("file extension picks the format", formatOf("AF-P02649.cif") === "cif" && 
 const cif = ["loop_", "_atom_site.group_PDB", "_atom_site.label_atom_id", "_atom_site.auth_asym_id", "_atom_site.auth_seq_id", "ATOM N A 1", "ATOM CA A 1", "ATOM CA A 2"].join("\n");
 check("mmCIF residues are counted by CA", summarize(cif, "cif").residues === 2);
 const gene = { ...SAMPLE_HITS[1], id: "excerpt:x", title: "APOE and light", text: "", branch: "01-mathematics" };
-check("hits citing the gene or in biophysics attach", proteinHits(p, [gene, ...SAMPLE_HITS]).map((h) => h.id).sort().join() === ["advisor:1", "excerpt:05-biophysics/light/b", "excerpt:x"].sort().join());
+check("only hits citing the gene attach", proteinHits(p, [gene, ...SAMPLE_HITS]).map((h) => h.id).sort().join() === ["excerpt:05-biophysics/light/b", "excerpt:x"].sort().join());
+check("fixture credits RCSB PDB under CC0", /RCSB PDB.*1LPE.*CC0/.test(p.credit));
 check("protein mode uses the protein renderer", proteinMode.renderer === "protein" && MODES.some((m) => m.id === "protein"));
 
 if (failed) process.exit(1);

@@ -1,4 +1,5 @@
 import { BRANCH_COLOR, BRANCH_ORDER, bareBranch, branchIndex, globeProjection } from "../../../components/canon-globe/projections";
+import { ALL_EVENTS, matchExcerptEvent, type TimelineEvent } from "../../canon-explorer/markers";
 import type { Hit } from "../search";
 import { linksFromHits, type ExploreMode, type SceneNode } from "./types";
 
@@ -12,7 +13,15 @@ export function hitColor(h: Hit): string {
   return BRANCH_COLOR[bareBranch(h.branch)] ?? "#D9A43A";
 }
 
-export function hitLatLng(h: Hit, i: number, n: number): { lat: number; lng: number } {
+export function excerptConcept(h: Hit): string {
+  return h.id.replace(/^excerpt:/, "").split("/")[1] ?? "";
+}
+
+export function hitLatLng(h: Hit, i: number, n: number, events: TimelineEvent[] = ALL_EVENTS): { lat: number; lng: number } {
+  if (h.type === "excerpt") {
+    const match = matchExcerptEvent({ title: h.title, concept: excerptConcept(h), branch: h.branch }, events);
+    if (match) return { lat: match.lat, lng: match.lng };
+  }
   const bands = BRANCH_ORDER.length + 1;
   const b = h.type === "advisor" ? bands - 1 : branchIndex(h.branch);
   const lat = 70 - (140 * (b + 0.5)) / bands;

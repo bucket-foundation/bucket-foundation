@@ -14,6 +14,7 @@ export interface ProteinEntry {
   name: string;
   gene: string;
   pdb: string;
+  credit: string;
   file: string;
   residues: ResidueLink[];
 }
@@ -83,7 +84,7 @@ export function proteinHits(p: ProteinEntry, hits: Hit[]): Hit[] {
   const re = new RegExp(`(^|[^A-Za-z0-9])${p.gene}([^A-Za-z0-9]|$)`);
   const seen = new Set<string>();
   return hits.filter((h) => {
-    if (seen.has(h.id) || !(re.test(`${h.title} ${h.text}`) || h.branch.includes("biophysics"))) return false;
+    if (seen.has(h.id) || !re.test(`${h.title} ${h.text}`)) return false;
     seen.add(h.id);
     return true;
   });
