@@ -79,6 +79,13 @@ const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: strin
   },
 ];
 
+const FIRST_TASK: string[] = [
+  "Pick one concept, for example ATP synthase.",
+  "Ask the AI for sources. It returns quotes with the page they came from.",
+  "Write one sentence of your own about the concept.",
+  "Run the check. Each claim in your sentence is matched to a quote or flagged as unsupported.",
+];
+
 const TRUST = "Free · no login for the demo · every quote traces to a real source";
 
 export default function ResearchOsPage() {
@@ -102,10 +109,33 @@ export default function ResearchOsPage() {
               <Link className="ros-btn" href="/research-os/home">
                 Open Research OS →
               </Link>
-              <a className="ros-btn ros-btn-quiet" href="#states">
-                See the Five States
+              <Link className="ros-btn ros-btn-quiet" href="/download">
+                Download →
+              </Link>
+              <a className="ros-btn ros-btn-quiet" href="#first-task">
+                Your first task
               </a>
               <span className="ros-trust">{TRUST}</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="first-task" className="ros-section">
+          <div className="ros-wrap">
+            <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Your first task</h2>
+            <p className="ros-section-sub">Ten minutes, one concept, four steps.</p>
+            <ol className="list-decimal pl-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]">
+              {FIRST_TASK.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+            <div className="ros-cta-row">
+              <Link className="ros-btn" href="/research-os/workspace">
+                Try it in the Workspace →
+              </Link>
+              <Link className="ros-btn ros-btn-quiet" href="/download">
+                Download the desktop app →
+              </Link>
             </div>
           </div>
         </section>
@@ -113,7 +143,7 @@ export default function ResearchOsPage() {
         <section id="states" className="ros-section">
           <div className="ros-wrap">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Five States</h2>
-            <p className="ros-section-sub">Five levels of interaction with the graph. Each holds the ones before it.</p>
+            <p className="ros-section-sub">The same concept at five depths, from being allowed to open it to adding a new node beside it. Each depth holds the ones before it.</p>
             {STATES.map((s, i) => {
               const shot = STATE_SCREENSHOTS[i];
               return (
