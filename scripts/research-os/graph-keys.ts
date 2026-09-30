@@ -32,6 +32,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   learner_profiles: [{ columns: ["learner_id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: ["source_system", "sourced_id"] }],
   learning_items: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "kind", "ordinal"], nullable: [] }],
   level_overrides: [{ columns: ["id"], nullable: [] }],
+  marketing_reports: [{ columns: ["id"], nullable: [] }, { columns: ["import_id", "input_digest", "analyzer_version"], nullable: [] }],
   llm_usage: [{ columns: ["subject", "route", "day"], nullable: [] }],
   medallion_withdrawn_nodes: [{ columns: ["node_id"], nullable: [] }],
   merge_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["keep_slug", "drop_slug"], nullable: [] }],

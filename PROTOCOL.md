@@ -37,7 +37,7 @@ bucket/<sha256>/
 ```
 
 - `<sha256>` is the SHA-256 of `paper.<ext>`, hex-encoded, lowercase.
-- Any storage backend is acceptable: filesystem, S3, IPFS, Walrus, Arweave, Google Drive, a USB stick. The protocol only requires that a given `<sha256>` address resolves to the same bytes everywhere.
+- Any storage backend is acceptable: filesystem, S3, IPFS, Arweave, Google Drive, a USB stick. The protocol only requires that a given `<sha256>` address resolves to the same bytes everywhere.
 - A bucket with a missing or invalid `canon.json` is **not a canon bucket**. It still exists; it just cannot be cited through this protocol.
 
 ### 3.1 Agent-trust rule
@@ -141,9 +141,9 @@ The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be prese
 
 | Tier | Meaning |
 |---|---|
-| `draft` | Fetched and sidecar-ed, review pending. Not eligible for minting. Usable for private research. |
-| `candidate` | Reviewed by a human or high-confidence agent, passed a provisional canon filter. Eligible for mint. |
-| `canon` | Final, minted as an IP NFT, appears on the public canon. |
+| `draft` | Fetched and sidecar-ed, review pending. Not eligible for the public canon. Usable for private research. |
+| `candidate` | Reviewed by a human or high-confidence agent, passed a provisional canon filter. Awaiting reviewer sign-off. |
+| `canon` | Final after reviewer sign-off; appears on the public canon with a canonical URL. Submit through [Research OS](https://www.bucket.foundation/research-os). |
 
 Tiers are **advisory**; the protocol does not enforce them. Different buckets can disagree on tier and still interoperate.
 

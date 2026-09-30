@@ -1,24 +1,37 @@
 import Link from "next/link";
 import { getBranches } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
+import { CANON_BRANCHES } from "@/lib/contribute";
 import { GlobeBranch } from "@/components/CanonGlobe";
 import CanonGlobeMount from "./CanonGlobeMount";
 
+const HISTORY_BRANCHES = [
+  { slug: "deep-history", name: "deep history" },
+  { slug: "sacred-texts", name: "sacred texts" },
+];
+const FOUNDATION_SLUGS: string[] = CANON_BRANCHES.map((b) => b.slug);
+const HISTORY_SLUGS: string[] = HISTORY_BRANCHES.map((b) => b.slug);
+const SHOWN_SLUGS = [...FOUNDATION_SLUGS, ...HISTORY_SLUGS];
+const BRANCH_COUNT = SHOWN_SLUGS.length;
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+const BRANCH_WORD = NUMBER_WORDS[BRANCH_COUNT] ?? String(BRANCH_COUNT);
+const BRANCH_LIST = [...CANON_BRANCHES, ...HISTORY_BRANCHES].map((b) => b.name).join(", ");
+
 export const metadata = {
-  title: "Canon · eight branches of foundations",
+  title: `Canon · ${BRANCH_WORD} branches`,
   description:
-    "The bucket canon: eight branches of foundations — mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth. Only axioms, real math, laws, principles, and primary derivations. Free to read, free to cite.",
+    `The bucket canon: ${BRANCH_WORD} branches: ${BRANCH_LIST}. Only axioms, real math, laws, principles, and primary derivations. Free to read, free to cite.`,
   alternates: { canonical: "/canon" },
   openGraph: {
     type: "website" as const,
     url: "https://www.bucket.foundation/canon",
-    title: "The bucket canon — eight branches of foundations",
+    title: `The bucket canon: ${BRANCH_WORD} branches`,
     description:
-      "Mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth — only foundations, carved to be cited forever. Free to read.",
+      `${BRANCH_LIST}. Only foundations, carved to be cited forever. Free to read.`,
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "The bucket canon — eight branches of foundations",
+    title: `The bucket canon: ${BRANCH_WORD} branches`,
     description:
       "Only foundations: axioms, real math, laws, principles, primary derivations. Free to read, free to cite.",
   },
@@ -43,7 +56,7 @@ function fmtDate(iso: string | null): string {
 }
 
 export default function Page() {
-  const branches = getBranches();
+  const branches = SHOWN_SLUGS.flatMap((slug) => getBranches().filter((b) => b.slug === slug));
   const totalEntries = branches.reduce((n, b) => n + b.entryCount, 0);
   const opened = branches.filter((b) => b.exists).length;
 
@@ -64,8 +77,8 @@ export default function Page() {
             Build the past.<br />Build history.
           </h1>
           <p className="mt-6 max-w-2xl text-[color:var(--parchment-dim)] text-pretty">
-            The canon holds only foundations — axioms, real math, rules, laws, principles, primary derivations.
-            Outcomes (longevity, disease, cognition) are downstream applications, not canon.
+            The canon holds {BRANCH_WORD} branches: seven of foundations (axioms, real math, rules, laws, principles and primary derivations) followed by two history branches, deep history and sacred texts.
+            Longevity, disease and cognition are downstream applications and live outside it.
           </p>
 
           <nav className="mt-10 flex flex-wrap gap-2 small-caps text-[11px]">
@@ -111,7 +124,7 @@ export default function Page() {
           </div>
 
           <div className="mt-10 grid grid-cols-3 max-w-2xl gap-6">
-            <Stat label="branches" value={String(branches.length)} />
+            <Stat label="branches" value={String(BRANCH_COUNT)} />
             <Stat label="opened" value={String(opened)} />
             <Stat label="canon entries" value={String(totalEntries)} />
           </div>
@@ -145,8 +158,13 @@ export default function Page() {
                   <div className="font-mono-mark text-xs text-[color:var(--gold-dim)] group-hover:text-[color:var(--gold)]">
                     {b.numeral} · {b.num}
                   </div>
-                  <span className={`small-caps text-[9px] tracking-[0.1em] border px-2 py-[2px] ${badgeClass}`}>
-                    {b.status}
+                  <span className="flex items-center gap-2">
+                    {HISTORY_SLUGS.includes(b.slug) && (
+                      <span className="small-caps text-[9px] tracking-[0.1em] text-[color:var(--parchment-dim)]">history branch</span>
+                    )}
+                    <span className={`small-caps text-[9px] tracking-[0.1em] border px-2 py-[2px] ${badgeClass}`}>
+                      {b.status}
+                    </span>
                   </span>
                 </div>
                 <div className="font-serif-display text-2xl text-[color:var(--basalt)] capitalize">

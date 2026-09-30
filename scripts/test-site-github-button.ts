@@ -6,7 +6,7 @@ import { formatStars, loadStars } from "../src/lib/format-stars";
 
 const root = path.join(__dirname, "..");
 const BUTTON = fs.readFileSync(path.join(root, "src/components/GitHubStarButton.tsx"), "utf8");
-const HEADER = fs.readFileSync(path.join(root, "src/components/Header.tsx"), "utf8");
+const HEADER = fs.readFileSync(path.join(root, "src/components/HeaderV2.tsx"), "utf8");
 
 test("button links to the public repo in a new tab", () => {
   assert.match(BUTTON, /GITHUB_URL = "https:\/\/github\.com\/bucket-foundation\/bucket-foundation"/);
@@ -58,8 +58,8 @@ test("loadStars passes the abort signal and returns null once aborted", async ()
   assert.equal(await pending, null);
 });
 
-test("button is a 36px square below sm with the star and count hidden", () => {
-  assert.match(BUTTON, /h-9 w-9 sm:w-auto sm:px-3/);
+test("button is a 44px square below sm with the star and count hidden", () => {
+  assert.match(BUTTON, /h-11 w-11 sm:w-auto sm:px-3/);
   assert.match(BUTTON, /className="hidden sm:block"[^>]*viewBox="0 0 24 24"/);
   assert.match(BUTTON, /className="hidden sm:inline/);
   assert.match(BUTTON, /if \(!controller\.signal\.aborted\) setStars/);

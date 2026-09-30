@@ -208,3 +208,67 @@ test("release-appimage refuses CI and a staff-data build", () => {
   assert.match(run("bash", [script], { CI: "1" }).stderr, /CI builds and measures only/);
   assert.match(run("bash", [script], { CI: "", BKT_INCLUDE_STAFF_DATA: "1" }).stderr, /public releases ship no staff data/);
 });
+
+const CURL_INSTALL = path.join(ROOT, "scripts/install.sh");
+const SIGN_ALL = path.join(ROOT, "scripts/release/sign-all.sh");
+
+function binarySandbox() {
+  const box = sandbox();
+  const dist = path.join(box.dir, "dist");
+  mkdirSync(dist);
+  const arch = { x64: "x64", arm64: "arm64" }[process.arch];
+  const os = { linux: "linux", darwin: "darwin" }[process.platform];
+  const name = `bkt-${os}-${arch}`;
+  writeFileSync(path.join(dist, name), "#!/bin/sh\necho bkt-ok\n");
+  const pub = readFileSync(`${box.key}.pub`, "utf8").trim();
+  const installer = path.join(box.dir, "curl-install.sh");
+  writeFileSync(installer, readFileSync(CURL_INSTALL, "utf8").replace(PINNED, `RELEASE_PUBKEY="${pub}"`));
+  const bin = path.join(box.dir, "bin");
+  const env = { BKT_DOWNLOAD_BASE: dist, BKT_INSTALL_DIR: bin, BKT_NO_MODIFY_PATH: "1" };
+  return {
+    ...box,
+    dist,
+    name,
+    bin,
+    signAll: () => run("bash", [SIGN_ALL, dist, "1.2.3", box.key, "--allow-unencrypted"]),
+    curlInstall: (script = installer) => run("sh", [script], env),
+  };
+}
+
+test("scripts/install.sh pins the release key", () => {
+  const repo = readFileSync(path.join(ROOT, "release/bucket-release.pub"), "utf8").trim();
+  assert.equal(readFileSync(CURL_INSTALL, "utf8").match(PINNED)?.[0], `RELEASE_PUBKEY="${repo}"`);
+  assert.match(readFileSync(path.join(ROOT, "scripts/install.ps1"), "utf8"), new RegExp(`^\\$ReleasePubkey = '${repo.replace(/[+/]/g, "\\$&")}'$`, "m"));
+});
+
+test("scripts/install.sh verifies checksum and signature, installs bkt, and rejects tampering", () => {
+  const s = binarySandbox();
+  try {
+    const signed = s.signAll();
+    assert.equal(signed.status, 0, signed.stderr);
+    assert.match(signed.stdout, /signed 1 artifacts/);
+    const ok = s.curlInstall();
+    assert.equal(ok.status, 0, ok.stderr);
+    assert.equal(run(path.join(s.bin, "bkt"), []).stdout.trim(), "bkt-ok");
+    assert.notEqual(s.curlInstall(CURL_INSTALL).status, 0);
+    writeFileSync(path.join(s.dist, s.name), "#!/bin/sh\necho evil\n");
+    const bad = s.curlInstall();
+    assert.notEqual(bad.status, 0);
+    assert.match(bad.stderr, /checksum mismatch/);
+    assert.equal(run(path.join(s.bin, "bkt"), []).stdout.trim(), "bkt-ok");
+  } finally {
+    s.done();
+  }
+});
+
+test("sign-all fails when there is nothing to sign", () => {
+  const s = binarySandbox();
+  try {
+    rmSync(path.join(s.dist, s.name));
+    const r = s.signAll();
+    assert.notEqual(r.status, 0);
+    assert.match(r.stderr, /nothing to sign/);
+  } finally {
+    s.done();
+  }
+});
