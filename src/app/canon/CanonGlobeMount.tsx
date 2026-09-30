@@ -21,6 +21,7 @@ import {
 } from "@/components/canon-globe/projections";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
 import { SORTS, VIEWS } from "@/lib/canon-explorer/url";
+import { matchExcerptEvent } from "@/lib/canon-explorer/markers";
 import { useExplorerState } from "./useExplorerState";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
@@ -483,27 +484,8 @@ function InteractiveCanonGlobeMount({
                   <button
                     key={`${r.concept}/${r.slug}`}
                     onClick={() => {
-                      const lowerTitle = r.title.toLowerCase();
                       const branchSuffix = r.branch.replace(/^\d+-/, "");
-                      const eventCandidates = ALL_EVENTS.filter(
-                        (e) => e.branch.replace(/^\d+-/, "") === branchSuffix
-                      );
-                      let match = eventCandidates.find((e) => {
-                        const surname = e.title
-                          .replace(/\(.*?\)/g, "")
-                          .split(/[\s—,-]+/)
-                          .filter((w) => w.length >= 4)
-                          .pop()
-                          ?.toLowerCase();
-                        return surname && lowerTitle.includes(surname);
-                      });
-                      if (!match) {
-                        const concept = r.concept.toLowerCase();
-                        match = eventCandidates.find((e) =>
-                          e.title.toLowerCase().includes(concept) ||
-                          e.id.toLowerCase().includes(concept)
-                        );
-                      }
+                      const match = matchExcerptEvent(r, ALL_EVENTS);
                       const m: CanonMarker = match
                         ? {
                             id: match.id,
