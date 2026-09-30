@@ -23,7 +23,7 @@ TEXT_KEYS = (
 ID_KEYS = ("id", "openalex_id", "orcid", "email", "name")
 NAME_KEYS = ("name", "display_name", "full_name")
 FILTER_KEYS = ("field", "country", "funding", "institution", "taking_students")
-EXTRA_KEYS = ("department", "h_index", "sources", "profile_url")
+EXTRA_KEYS = ("department", "h_index", "sources", "profile_url", "image_url")
 PUBLIC_EMAIL_SOURCES = ("official_directory", "opt_in")
 
 @dataclass
