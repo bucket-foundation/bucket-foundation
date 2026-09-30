@@ -3,6 +3,10 @@
 import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
+import Stage, { type StageItem } from "@/components/stage/Stage";
+import { placeRecords, type StageMode } from "@/lib/stage/forms";
+import { toStageRecord } from "@/lib/stage/mappers";
+import { hitColor } from "@/lib/explore/modes/globe";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
@@ -22,7 +26,7 @@ const TYPES: { id: HitType; label: string }[] = [
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
-export default function ExploreClient() {
+export default function ExploreClient({ stage = false }: { stage?: boolean }) {
   const [q, setQ] = useState("light water mitochondria");
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
   const [hits, setHits] = useState<Hit[]>([]);
@@ -116,6 +120,13 @@ export default function ExploreClient() {
     () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction }),
     [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded],
   );
+  const stageMode = stage && (mode.id === "globe" || mode.id === "helix");
+  const stageItems = useMemo<StageItem[]>(() => {
+    if (!stageMode) return [];
+    const records = visible.map((h) => toStageRecord(h));
+    const placed = placeRecords(mode.id as StageMode, records);
+    return visible.map((h) => ({ id: h.id, position: placed.get(h.id) ?? [0, 0, 0], color: hitColor(h), size: 0.018 + 0.03 * h.score }));
+  }, [stageMode, mode.id, visible]);
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
   const toggle = (t: HitType) =>
@@ -209,6 +220,8 @@ export default function ExploreClient() {
         <div className="mt-3">
           {mode.renderer === "protein" ? (
             <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
+          ) : stageMode ? (
+            <Stage items={stageItems} selected={selected} onSelect={setSelected} />
           ) : (
             <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
           )}

@@ -19,3 +19,19 @@ export function dot(a: Vec3, b: Vec3): number {
 export function norm(a: Vec3): number {
   return Math.hypot(a[0], a[1], a[2]);
 }
+
+export interface CameraPose {
+  position: Vec3;
+  target: Vec3;
+  fov: number;
+}
+
+export const HOME_CAMERA: CameraPose = { position: [0, 2.6, 1.9], target: [0, 0, 0], fov: 45 };
+
+export function homeCamera(): CameraPose {
+  return { position: [...HOME_CAMERA.position], target: [...HOME_CAMERA.target], fov: HOME_CAMERA.fov };
+}
+
+export function cameraDistance(pose: CameraPose): number {
+  return norm([pose.position[0] - pose.target[0], pose.position[1] - pose.target[1], pose.position[2] - pose.target[2]]);
+}

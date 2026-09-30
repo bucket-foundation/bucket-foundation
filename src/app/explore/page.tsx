@@ -1,4 +1,7 @@
+import { stageV2Enabled } from "@/lib/stage/flag";
 import ExploreClient from "./ExploreClient";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Explore · bucket.foundation",
@@ -6,5 +9,5 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <ExploreClient />;
+  return <ExploreClient stage={stageV2Enabled()} />;
 }
