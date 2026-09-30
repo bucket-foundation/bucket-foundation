@@ -5,7 +5,9 @@ import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
-import { checkRepoPath, RepoPathError, WorkQuizStore, workQuizRoutes, type GitRunner } from "../src/work-quiz";
+import { execFileSync } from "node:child_process";
+import { existsSync, writeFileSync } from "node:fs";
+import { checkRepoPath, MAX_BEAD_LINES, RepoPathError, runGit, WorkQuizStore, workQuizRoutes, type GitRunner } from "../src/work-quiz";
 
 const BEADS = Array.from({ length: 12 }, (_, i) =>
   JSON.stringify({ id: `bkt-${100 + i}`, title: `Ship slice ${i} of the window`, status: i % 3 ? "closed" : "open", priority: i % 4, created_at: `2026-09-${String(10 + i).padStart(2, "0")}T00:00:00Z` }),
@@ -33,6 +35,25 @@ describe("repository path", () => {
     symlinkSync(outside, join(home, "link"));
     expect(() => checkRepoPath("~/link", home)).toThrow("inside your home folder");
     rmSync(outside, { recursive: true });
+  });
+});
+
+describe("git runs with repo-local code paths disabled", () => {
+  test("a hostile fsmonitor, hooks path and pager never run", async () => {
+    const r = join(home, "hostile");
+    mkdirSync(r);
+    execFileSync("git", ["init", "-q", r]);
+    execFileSync("git", ["-C", r, "-c", "user.email=a@b.example", "-c", "user.name=a", "commit", "-q", "--allow-empty", "-m", "first (#1)"]);
+    const flag = join(home, "pwned");
+    const evil = join(home, "evil.sh");
+    writeFileSync(evil, `#!/bin/sh\ntouch ${flag}\n`, { mode: 0o755 });
+    execFileSync("git", ["-C", r, "config", "core.fsmonitor", evil]);
+    execFileSync("git", ["-C", r, "config", "core.hooksPath", home]);
+    execFileSync("git", ["-C", r, "config", "core.pager", evil]);
+    const log = await runGit(["log", "--format=%cs|%s", "HEAD"], r);
+    await runGit(["status", "--porcelain"], r);
+    expect(log).toContain("first (#1)");
+    expect(existsSync(flag)).toBe(false);
   });
 });
 
@@ -84,6 +105,11 @@ describe("work quiz routes", () => {
     expect(typeof res.answer).toBe("string");
     expect((await req("/local/work-quiz/answer", { method: "POST", body: { id: q.id, response: "x", elapsedMs: 1 } })).status).toBe(404);
     expect(((await (await req("/local/work-quiz/status")).json()) as { answered: number }).answered).toBe(1);
+  });
+
+  test("a beads file over the line cap is refused", async () => {
+    const r = await req("/local/work-quiz/beads", { method: "POST", body: { text: "{}\n".repeat(MAX_BEAD_LINES + 1) } });
+    expect(r.status).toBe(413);
   });
 
   test("bad inputs are refused and sources stay sealed at rest", async () => {

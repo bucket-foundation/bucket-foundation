@@ -14,13 +14,34 @@ import type { Store } from "./store";
 export const GIT_TIMEOUT_MS = 3000;
 export const MAX_PRS = 400;
 export const BEADS_BODY_BYTES = 32 * 1024 * 1024;
+export const MAX_BEAD_BYTES = 24 * 1024 * 1024;
+export const MAX_BEAD_LINES = 100_000;
+
+export const SAFE_GIT_CONFIG = [
+  "-c", "core.fsmonitor=false",
+  "-c", "core.hooksPath=/dev/null",
+  "-c", "core.pager=cat",
+  "-c", "core.untrackedCache=false",
+  "-c", "diff.external=",
+  "-c", "log.showSignature=false",
+  "-c", "gpg.program=/bin/false",
+  "-c", "protocol.allow=never",
+];
 
 export type GitRunner = (args: string[], cwd: string) => Promise<string>;
 
 export const runGit: GitRunner = (args, cwd) =>
   new Promise((done, fail) => {
-    execFile("git", args, { cwd, timeout: GIT_TIMEOUT_MS, maxBuffer: 4 * 1024 * 1024, env: { PATH: process.env.PATH ?? "/usr/bin:/bin", GIT_TERMINAL_PROMPT: "0" } }, (err, stdout) =>
-      err ? fail(err) : done(stdout),
+    execFile(
+      "git",
+      [...SAFE_GIT_CONFIG, "--no-optional-locks", ...args],
+      {
+        cwd,
+        timeout: GIT_TIMEOUT_MS,
+        maxBuffer: 4 * 1024 * 1024,
+        env: { PATH: process.env.PATH ?? "/usr/bin:/bin", GIT_TERMINAL_PROMPT: "0", GIT_CONFIG_NOSYSTEM: "1", GIT_CONFIG_GLOBAL: "/dev/null", GIT_OPTIONAL_LOCKS: "0" },
+      },
+      (err, stdout) => (err ? fail(err) : done(stdout)),
     );
   });
 
@@ -140,6 +161,10 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     "POST /local/work-quiz/beads": async (req) => {
       const b = await body(req);
       if (!b || typeof b.text !== "string") return json({ error: "send the text of .beads/issues.jsonl" }, 400);
+      if (Buffer.byteLength(b.text) > MAX_BEAD_BYTES) return json({ error: `the beads file is larger than ${MAX_BEAD_BYTES / 1048576} MB` }, 413);
+      let lines = 0;
+      for (let i = b.text.indexOf("\n"); i !== -1 && lines <= MAX_BEAD_LINES; i = b.text.indexOf("\n", i + 1)) lines++;
+      if (lines > MAX_BEAD_LINES) return json({ error: `the beads file has more than ${MAX_BEAD_LINES} lines` }, 413);
       const beads = parseBeads(b.text);
       if (!beads.length) return json({ error: "no beads found; pick a .beads/issues.jsonl file" }, 400);
       wq.setBeads(beads, now());
