@@ -123,8 +123,10 @@ export function toolRoute<B = Record<string, unknown>>(config: ToolRouteConfig<B
     let payload: unknown;
     try {
       payload = config.prepare ? config.prepare(body) : body;
-    } catch {
-      return badRequest("invalid request body");
+    } catch (err) {
+      console.error(`research-tools ${tool}: prepare threw ${err instanceof Error ? err.name : typeof err}`);
+      if (err instanceof TypeError) return badRequest("invalid request body");
+      throw err;
     }
     if (payload instanceof Rejection) return badRequest(payload.message);
     return {
