@@ -3,17 +3,31 @@
 > **build history.** *(the original slogan, still load-bearing)*
 > **bucket is the new renaissance.** *(the thesis it became)*
 >
-> Foundations, brilliant humans, and AI, on an open substrate, with the patronage layer routed back to the people who write the foundations.
->
-> **Open-source research data protocol.** Free to read, paid to cite. The reader pays nothing and needs no wallet. The bucket operator pays for a paper *once*, server-side, and the citation fee routes to the author forever. No gatekeepers.
+Bucket is a free-to-read, paid-to-cite research canon with Research OS and a desktop app for studying it offline. Foundations, brilliant humans and AI work on an open substrate, and citation fees route back to the people who write the foundations.
 
-**[Download Bucket desktop](https://www.bucket.foundation/download)** for offline study, or browse [every release](https://github.com/bucket-foundation/bucket-foundation/releases).
+**Open-source research data protocol.** The reader pays nothing and needs no wallet. The bucket operator pays for a paper once, server-side, and the citation fee routes to the author forever. No gatekeepers.
 
-## Quickstart
+**[Download](https://www.bucket.foundation/download)** the `bkt` terminal app for your system, open [Research OS](https://www.bucket.foundation/research-os) in the browser, or browse [every release](https://github.com/bucket-foundation/bucket-foundation/releases).
 
-1. Open [bucket.foundation/download](https://www.bucket.foundation/download) and take the installer for your system, or leave your email for a link when your build ships. Linux x86_64 comes first.
-2. Install it. The installer checks the release signature first; on Linux, `scripts/release/install.sh <url>` does the same check by hand.
-3. Open Bucket. A new install starts on your first quiz, and every answer stays on your computer.
+## Install
+
+`bkt` 0.4.0 is a signed terminal app for Linux, macOS and Windows. The installers pick your architecture, verify the release signature and checksum, and put `bkt` on your path. Drop `BKT_VERSION` to take the latest release.
+
+macOS and Linux:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.sh -o install.sh
+BKT_VERSION=0.4.0 sh install.sh
+```
+
+Windows, in PowerShell:
+
+```powershell
+iwr https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.ps1 -OutFile install.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Then run `bkt init` and `bkt`. A new install starts on your first quiz, and every answer stays on your computer. The Linux desktop app ships as `Bucket-0.4.0-x86_64.AppImage` on the [release page](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0). Commands and storage details are in [`packages/bkt/README.md`](./packages/bkt/README.md).
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
@@ -99,10 +113,10 @@ In 90 seconds.
 
 A bucket is just a folder. A sidecar is just JSON. An x402 endpoint is just HTTP 402. There is nothing novel to deploy, the novelty is the convention, the license, and the citation economics built on top.
 
-## Quick start
+## Run the site locally
 
 ```bash
-git clone https://github.com/gianyrox/bucket-foundation
+git clone https://github.com/bucket-foundation/bucket-foundation
 cd bucket-foundation
 cp .env.example .env.local    # fill in your keys
 npm install
@@ -116,10 +130,11 @@ See **[PROTOCOL.md](./PROTOCOL.md)** for the spec. See **[CONTRIBUTING.md](./CON
 | Piece | State |
 |---|---|
 | Reference site | Live at [bucket.foundation](https://www.bucket.foundation) |
-| Research OS | Live at [bucket.foundation/research-os](https://www.bucket.foundation/research-os); [research.bucket.foundation](https://research.bucket.foundation) once DNS lands |
+| Research OS | Live at [bucket.foundation/research-os](https://www.bucket.foundation/research-os) and [research.bucket.foundation](https://research.bucket.foundation), one sign-in across both |
 | Protocol spec (`PROTOCOL.md`) | Draft v0.1 |
 | Sidecar schema (`canon.json`) | Draft v0.1 |
-| `bkt` offline terminal app | 0.1.0 via [/download](https://www.bucket.foundation/download), signed ([release](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.1.0)) |
+| `bkt` offline terminal app | 0.4.0 for Linux, macOS and Windows, signed, installed with `scripts/install.sh` or `scripts/install.ps1` ([release](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0)) |
+| Bucket desktop app | 0.4.0 Linux x86_64 AppImage; macOS and Windows installers in a later release |
 | BucketMath Lean library | In `lean/`, checked in CI |
 | Federation / mirroring spec | Not yet drafted |
 | Open contributors welcome | **Yes** |
@@ -168,10 +183,9 @@ The index is *not* a hall of fame. It is a record of *who built what foundation*
 ## Prior art & credits
 
 - **[x402](https://x402.org/)**, the HTTP 402 micropayment protocol this builds on.
-- **[Story Protocol](https://www.story.foundation/)**, IP NFT infrastructure used by the reference site to mint licenses.
-- **[Walrus](https://www.walrus.xyz/)**, storage layer for bucketed papers in the reference site.
-- **[Dynamic](https://www.dynamic.xyz/)**, wallet auth used by the reference site.
 - **Research gateways** that expose x402 endpoints on top of PubMed, arXiv, OpenAlex, PubChem, `bucket.foundation` consumes these.
+
+Story Protocol minting was removed in 2026-06; citations settle over x402 on Base.
 
 ## Governance
 Bucket.foundation is a nonprofit.

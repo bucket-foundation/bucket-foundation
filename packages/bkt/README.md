@@ -1,8 +1,28 @@
 # bkt
 
-Offline Bucket terminal app: timed quiz and FSRS review over a local SQLite store.
+Offline Bucket terminal app: timed quiz and FSRS review over a local SQLite store. Download it at [bucket.foundation/download](https://www.bucket.foundation/download).
 
-## Build
+## Install
+
+Release [bkt-v0.4.0](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0) ships signed binaries for Linux, macOS and Windows. The installers pick your architecture, check the checksum and the release signature, and refuse to replace a newer install.
+
+macOS and Linux:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.sh -o install.sh
+BKT_VERSION=0.4.0 sh install.sh
+```
+
+Windows, in PowerShell:
+
+```powershell
+iwr https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/install.ps1 -OutFile install.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+`BKT_VERSION` pins a release and `BKT_INSTALL_DIR` sets the target directory, default `~/.local/bin` on macOS and Linux and `%LOCALAPPDATA%\Programs\bkt` on Windows. `BKT_NO_MODIFY_PATH=1` leaves your shell profile alone on macOS and Linux. Then run `bkt init` and `bkt`.
+
+## Build from source
 
 ```bash
 bun install
