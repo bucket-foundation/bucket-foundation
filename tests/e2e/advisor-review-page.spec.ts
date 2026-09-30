@@ -18,7 +18,7 @@ test.beforeAll(() => {
   const dirs = path.join(dir, "dirs.tsv");
   writeFileSync(dirs, "alpha\tprotein folding\nbeta\tgraph learning agents\n");
   const out = path.join(dir, "review");
-  execFileSync("python3", ["-m", "prime_directions", "advisor-review", "--people", people, "--query", path.join(FIX, "statement-synthetic.md"),
+  execFileSync(process.env.PYTHON || "python3", ["-m", "prime_directions", "advisor-review", "--people", people, "--query", path.join(FIX, "statement-synthetic.md"),
     "--out", out, "--directions", dirs, "--k", "6", "--top", "30", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"],
     { cwd: TOOL, env: { ...process.env, PRIME_DATA_ROOT: path.join(dir, "data") } });
   pageUrl = "file://" + path.join(out, "index.html");
