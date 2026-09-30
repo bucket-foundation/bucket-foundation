@@ -9,8 +9,10 @@ import DnaPanel from "@/components/explore/DnaPanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
+import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
+const ProteinView = nextDynamic(() => import("@/components/explore/ProteinView"), { ssr: false });
 
 const TYPES: { id: HitType; label: string }[] = [
   { id: "excerpt", label: "Excerpts" },
@@ -36,6 +38,7 @@ export default function ExploreClient() {
   const [molecule, setMolecule] = useState(MOLECULES[0].id);
   const [reaction, setReaction] = useState(REACTIONS[0].id);
   const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
+  const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
 
   useEffect(() => {
@@ -78,6 +81,7 @@ export default function ExploreClient() {
   const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
   const current = selected ? byId.get(selected) ?? null : null;
   const mode = modeById(modeId);
+  const protein = proteinById(null);
 
   useEffect(() => {
     if (mode.id !== "dna" || geneHits.length) return;
@@ -93,7 +97,7 @@ export default function ExploreClient() {
     loadSmiles().then(() => setSmilesLoaded(true));
   }, [mode.id, smilesLoaded]);
 
-  const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : null;
+  const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : mode.id === "protein" ? `${proteinById(null).gene} ${proteinById(null).name}` : null;
 
   useEffect(() => {
     if (!matterQuery) return;
@@ -203,7 +207,40 @@ export default function ExploreClient() {
           </label>
         )}
         <div className="mt-3">
-          <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
+          {mode.renderer === "protein" ? (
+            <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
+          ) : (
+            <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
+          )}
+          {mode.renderer === "protein" && (
+            <div data-testid="protein-links" className="mt-3 text-sm space-y-2">
+              <ul className="space-y-1">
+                {protein.residues.map((r) => {
+                  const snp = snpFor(r);
+                  return (
+                    <li key={`${r.chain}${r.resi}`} className="flex flex-wrap items-center gap-2">
+                      <button className="border hairline px-2 py-1" style={mono} onClick={() => setFocus(r)}>
+                        {r.chain}:{r.resi}
+                      </button>
+                      <span>{r.note}</span>
+                      <button className="underline" style={mono} onClick={() => pickMode("dna")}>
+                        {snp ? `${snp.gene} ${snp.rsid} in DNA mode` : `${r.rsid} in DNA mode`}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ul className="space-y-1">
+                {proteinHits(protein, [...matterHits, ...visible]).slice(0, 6).map((h) => (
+                  <li key={h.id}>
+                    <button className="underline text-left" onClick={() => setSelected(h.id)}>
+                      {h.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={mono}>
             {layout.legend.map((l) => (
               <li key={l.label} className="flex items-center gap-1">
