@@ -24,6 +24,15 @@ export interface SourceSource {
 export const SOURCE_TYPE: Record<SourceKind, SourceType> = { o: "paper", p: "paper", a: "paper", g: "text", w: "text", y: "talk" };
 export const SOURCE_LABEL: Record<SourceKind, string> = { o: "OpenAlex", p: "PubMed", a: "arXiv", g: "Gutenberg", w: "Wikisource", y: "YouTube" };
 
+export const SOURCE_LICENSE: Record<SourceKind, string> = {
+  o: "OpenAlex metadata, CC0",
+  p: "PubMed metadata, NLM public domain",
+  a: "arXiv metadata, CC0",
+  g: "Project Gutenberg, public domain in the US",
+  w: "Wikisource, CC BY-SA 4.0",
+  y: "YouTube transcript, link only",
+};
+
 export function sourceUrl(kind: SourceKind, id: string): string | null {
   if (kind === "o") return `https://openalex.org/${id}`;
   if (kind === "p") return `https://pubmed.ncbi.nlm.nih.gov/${id}/`;
@@ -110,6 +119,8 @@ export function sourceToHit(s: SourceSource): Hit {
     text: s.snippet,
     score: s.score * 0.9,
     branch: label,
+    source: label,
+    license: SOURCE_LICENSE[s.kind],
     year: s.year,
     url: sourceUrl(s.kind, s.id),
     links: [],

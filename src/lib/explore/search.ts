@@ -13,6 +13,8 @@ export interface Hit {
   year: number | null;
   url: string | null;
   links: string[];
+  source?: string;
+  license?: string;
 }
 
 export interface ExcerptSource {

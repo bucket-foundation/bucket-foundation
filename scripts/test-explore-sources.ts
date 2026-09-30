@@ -4,7 +4,8 @@ import path from "path";
 import { unify, HIT_TYPES } from "../src/lib/explore/search";
 import { loadSourceIndex, prepare, resetSourceIndex, searchSources, sourceToHit, SOURCE_TYPE, type SourceIndex } from "../src/lib/explore/sources";
 import { hitColor } from "../src/lib/explore/modes/globe";
-import { buildIndex } from "./build-explore-sources.mjs";
+import { hasEmail } from "../src/lib/research-os/advisor-review";
+import { buildIndex, LICENSE, scrub } from "./build-explore-sources.mjs";
 
 let failed = 0;
 function check(name: string, cond: boolean, detail = "") {
@@ -47,6 +48,10 @@ check("excerpt links back to the source hit", unified.find((h) => h.type === "ex
 check("type filter drops source hits", unify({ query: "photon light", excerpts, advisors: [], sources: hits, types: ["excerpt"] }).every((h) => h.type === "excerpt"));
 check("scores stay in [0,1]", unified.every((h) => h.score >= 0 && h.score <= 1));
 
+check("scrub removes plain and obfuscated emails", !hasEmail(scrub("write to jane.doe@example.org or bob [at] example [dot] com")));
+check("source hits carry source and licence", hits.every((h) => !!h.source && !!h.license));
+check("licence table covers every kind", Object.keys(SOURCE_TYPE).every((k) => k in LICENSE));
+
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "explore-src-"));
 fs.writeFileSync(path.join(tmp, "explore-sources.local.json"), JSON.stringify(index));
 resetSourceIndex();
@@ -60,6 +65,8 @@ loadSourceIndex(tmp).then((p) => {
     check("built index covers all six local sources", ["o", "p", "a", "g", "w", "y"].every((k) => kinds.has(k)), Array.from(kinds).join(","));
     const size = Buffer.byteLength(JSON.stringify(built));
     check("built index stays under the 5 MB commit cap or is gitignored", size <= 5 * 1024 * 1024 || fs.readFileSync(".gitignore", "utf8").includes("explore-sources.local.json"), String(size));
+    check("built index holds no email", !built.items.some((r: unknown[]) => hasEmail(`${r[2]} ${r[4]} ${r[5]}`)));
+    check("built index holds no markup tags", !built.items.some((r: unknown[]) => /<\/?[a-z][^>]*>/i.test(`${r[2]} ${r[4]}`)));
     check("built rows have short snippets", built.items.every((r: unknown[]) => String(r[4]).length <= 150));
     if (failed) {
       console.error(`${failed} failed`);
