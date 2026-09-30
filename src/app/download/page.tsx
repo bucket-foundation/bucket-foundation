@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
 import { RELEASES_PAGE, detectOs } from "@/lib/download/release";
 import { fetchLatestReleaseV2 } from "@/lib/download/release-v2";
+import { detectLinuxDistro } from "@/lib/download/install";
 import DownloadFlowV2 from "./DownloadFlowV2";
 
 export const metadata: Metadata = {
@@ -14,7 +15,9 @@ export const metadata: Metadata = {
 const P = "mt-4 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]";
 
 export default async function DownloadPage() {
-  const os = detectOs((await headers()).get("user-agent"));
+  const ua = (await headers()).get("user-agent");
+  const os = detectOs(ua);
+  const distro = os === "linux" ? detectLinuxDistro(ua) : null;
   const release = await fetchLatestReleaseV2();
   const installers = release ? release.installers : [];
 
@@ -36,7 +39,7 @@ export default async function DownloadPage() {
           <p className={P}>
             Sign up in three short steps and we show the install command for your computer. Each field says why we ask. The installers are public on the releases page; signing up gets you release notices and a link by email.
           </p>
-          <DownloadFlowV2 detected={os} installers={installers} />
+          <DownloadFlowV2 detected={os} distro={distro} installers={installers} />
           <p className="mt-4 text-[13px] text-[color:var(--basalt-2)]">
             <a className="underline" href={release?.page ?? RELEASES_PAGE}>All releases, checksums and signatures</a>
           </p>

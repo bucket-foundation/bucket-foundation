@@ -55,3 +55,11 @@ test("a search leaves the data set and the switcher says so", async ({ page }) =
   await page.getByTestId("data-switcher").selectOption("canon");
   await expect(page.getByTestId("shell-query")).toHaveValue("");
 });
+
+test("the right panel shows the licence of the current data set", async ({ page }) => {
+  await ready(page, "/explore?view=circle");
+  await expect(page.getByTestId("dataset-license")).toContainText("Bucket Foundation canon index");
+  await page.getByTestId("data-switcher").selectOption("sample");
+  await expect(page.getByTestId("dataset-license")).toContainText("Licence:");
+  await expect(page.getByTestId("dataset-info")).toContainText("6 items");
+});

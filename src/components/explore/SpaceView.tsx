@@ -11,9 +11,11 @@ import { sampleDataset } from "@/lib/explore/space-sample";
 import { makeSlices, type Slice } from "@/lib/explore/slices";
 import { visibleAt } from "@/lib/explore/surface";
 import { clampIndex, describeItem, yearSteps } from "@/lib/explore/scrub";
+import { canonMarkers, fmtYear, geoMarkersFor, markerYears, markersUpTo } from "@/lib/explore/globe-markers";
 import type { Dataset } from "@/lib/explore/space";
 
 const SurfaceView = dynamic(() => import("./SurfaceView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
+const GlobeView = dynamic(() => import("./GlobeView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 const HelicoidView = dynamic(() => import("./HelicoidView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 const SliceStack = dynamic(() => import("./SliceStack"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
 
@@ -25,6 +27,7 @@ interface Props {
   onIndex?(i: number): void;
   lowCoverage?: number;
   scrubberHost?: HTMLElement | null;
+  onEntity?(id: string): void;
   chrome?: "full" | "minimal";
 }
 
@@ -59,7 +62,7 @@ function Components({ ds }: { ds: Dataset }) {
   );
 }
 
-export default function SpaceView({ view, dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3, scrubberHost = null, chrome = "full" }: Props) {
+export default function SpaceView({ view, dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3, scrubberHost = null, chrome = "full", onEntity }: Props) {
   const place = (node: ReactNode) => (scrubberHost ? createPortal(node, scrubberHost) : node);
   const ds = useMemo(() => dataset ?? sampleDataset(), [dataset]);
   const [local, setLocal] = useState(0);
@@ -78,6 +81,11 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
   const [yearIndex, setYearIndex] = useState<number | null>(null);
   const yi = yearIndex === null ? Math.max(0, years.length - 1) : clampIndex(yearIndex, years.length);
   const shownYear = years.length ? years[yi] : 0;
+  const globeMarkers = useMemo(() => (view === "earth" ? geoMarkersFor(ds) : view === "globe" ? canonMarkers() : []), [view, ds]);
+  const globeYears = useMemo(() => markerYears(globeMarkers), [globeMarkers]);
+  const [globeIndex, setGlobeIndex] = useState<number | null>(null);
+  const gi = globeIndex === null ? Math.max(0, globeYears.length - 1) : clampIndex(globeIndex, globeYears.length);
+  const globeYear = globeYears.length ? globeYears[gi] : 0;
   const rootRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
@@ -86,6 +94,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
     setActiveSlice(0);
     setOpened(null);
     setYearIndex(null);
+    setGlobeIndex(null);
   }, [ds]);
 
   useEffect(() => {
@@ -97,9 +106,10 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       if (view === "circle" || view === "sphere" || view === "helicoid") setIndex(clampIndex(index + d, count));
       else if (view === "slices" && opened !== null) setOpened(clampIndex(opened + d, slices.length));
       else if (view === "slices" || view === "cylinder") setActiveSlice((i) => clampIndex(i + d, slices.length));
+      else if (view === "globe" || view === "earth") setGlobeIndex(clampIndex(gi + d, globeYears.length));
       else setYearIndex(clampIndex(yi + d, years.length));
     },
-    [view, index, count, opened, slices.length, yi, years.length, setIndex],
+    [view, index, count, opened, slices.length, yi, years.length, gi, globeYears.length, setIndex],
   );
   useWheelStep(rootRef, stepCurrent);
 
@@ -138,6 +148,26 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       )}
     </div>
   );
+
+  if (view === "globe" || view === "earth") {
+    const shown = markersUpTo(globeMarkers, globeYear);
+    return (
+      <Root embedded={embedded} view={view} rootRef={rootRef} ready={ready}>
+        {badge}
+        <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
+          <GlobeView markers={shown} onSelect={(id) => onEntity?.(id)} />
+          {view === "earth" && globeMarkers.length === 0 && (
+            <p data-testid="earth-empty" className="absolute inset-0 flex items-center justify-center text-sm" style={{ color: DIM }}>
+              This data set has no places to show on the earth.
+            </p>
+          )}
+        </div>
+        <div className="w-full max-w-3xl px-4 pb-4 text-sm">
+          {place(<Scrubber count={globeYears.length} index={gi} label={globeYears.length ? `${fmtYear(globeYear)} · ${shown.length} of ${globeMarkers.length} places` : "no dated places"} ariaLabel="year" onIndex={setGlobeIndex} labelTestId="globe-year" />)}
+        </div>
+      </Root>
+    );
+  }
 
   if (view === "helicoid") {
     return (
@@ -234,7 +264,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
             {lowTag && chrome === "full" && <p className="text-center text-xs mt-1">{lowTag}</p>}
           </>
         )}
-        {chrome === "full" && <Components ds={ds} />}
+        {chrome === "full" && !scrubberHost && <Components ds={ds} />}
       </div>
     </Root>
   );
