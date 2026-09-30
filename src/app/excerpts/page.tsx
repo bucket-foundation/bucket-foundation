@@ -45,8 +45,8 @@ export default function Page() {
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
         >
           {foundationTotal} of {total} passages across {concepts.length} concepts
-          reach the foundation tier, drawn from {videos} talks and podcasts. Each carries the verbatim transcript, a timestamped link
-          to the video, and a curation checklist. An excerpt joins the canon when
+          reach the foundation tier, drawn from {videos} talks and podcasts. Each links to the recording at its timestamp, and foundation-tier
+          excerpts carry a curation checklist. An excerpt joins the canon when
           it names the foundation it rests on and a primary source backs it.
         </p>
       </header>
@@ -90,7 +90,7 @@ export default function Page() {
         >
           Top-scored passages
         </h2>
-        <ExcerptListV2 items={items} showConcept clip={280} />
+        <ExcerptListV2 items={items} showConcept clip={280} foundationCount={foundationTotal} allCount={total} />
       </section>
 
       <footer

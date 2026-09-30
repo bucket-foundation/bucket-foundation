@@ -13,10 +13,14 @@ export function ExcerptListV2({
   items,
   showConcept,
   clip,
+  foundationCount,
+  allCount,
 }: {
   items: ExcerptItem[];
   showConcept: boolean;
   clip?: number;
+  foundationCount: number;
+  allCount: number;
 }) {
   const [tier, setTier] = useState<Tier>("foundation");
   const foundation = items.filter((i) => i.qualified);
@@ -28,8 +32,8 @@ export function ExcerptListV2({
         <div role="radiogroup" aria-label="Excerpt tier" className="inline-flex overflow-hidden rounded-md border border-[color:var(--hairline)]">
           {(
             [
-              ["foundation", `Foundation tier ${foundation.length}`],
-              ["all", `All excerpts ${items.length}`],
+              ["foundation", `Foundation tier ${foundationCount}`],
+              ["all", `All excerpts ${allCount}`],
             ] as const
           ).map(([value, label]) => (
             <button

@@ -43,7 +43,7 @@ export default function Page({ params }: { params: { concept: string } }) {
       </p>
 
       <div className="mt-12">
-        <ExcerptListV2 items={claims.map(toExcerptItem)} showConcept={false} />
+        <ExcerptListV2 items={claims.map(toExcerptItem)} showConcept={false} foundationCount={claims.filter(isFoundationTier).length} allCount={claims.length} />
       </div>
     </main>
   );
