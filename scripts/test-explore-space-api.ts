@@ -23,7 +23,7 @@ function comps() {
 }
 
 function dataset(id: string, obsExtra: Record<string, unknown> = {}) {
-  return { schema: SPACE_SCHEMA, id, label: id, fields: [], components: comps(), obs: [{ id: "a", title: "A", scores: [0, 1, 2, 3], t: 1990, meta: { institution: "Example U", secret: "hidden", note: "jane@example.org" }, links: ["https://example.org/a", "mailto:jane@example.org"], ...obsExtra }] };
+  return { schema: SPACE_SCHEMA, id, label: id, license: "CC0", fields: [], components: comps(), obs: [{ id: "a", title: "A", scores: [0, 1, 2, 3], t: 1990, meta: { institution: "Example U", secret: "hidden", note: "jane@example.org" }, links: ["https://example.org/a", "mailto:jane@example.org"], ...obsExtra }] };
 }
 
 for (const id of ["advisors", "pub", "hidden", "kruse", "also-pub"]) fs.writeFileSync(path.join(dir, `${id}.space.json`), JSON.stringify(dataset(id)));
@@ -98,6 +98,7 @@ test("a listed data set is served with scrubbed, allow-listed fields", async () 
     const ds = parseDataset(JSON.parse(text));
     assert.equal(ds.obs[0].meta.institution, "Example U");
     assert.equal(ds.obs[0].meta.secret, undefined);
+    assert.equal(ds.license, "CC0");
     assert.deepEqual(ds.obs[0].links, ["https://example.org/a"]);
   });
 });

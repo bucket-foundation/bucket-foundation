@@ -68,3 +68,24 @@ test("a widget collapses to its header", async ({ page }) => {
   await page.getByTestId("widget-toggle-view").click();
   await expect(widget.getByRole("radiogroup", { name: "view" })).toBeVisible();
 });
+
+test("Tab stays inside the full-screen overlay and focus returns on exit", async ({ page }) => {
+  await ready(page);
+  await page.getByRole("button", { name: "expand to fullscreen" }).click();
+  const shell = page.getByTestId("explore-shell");
+  await expect(shell).toHaveAttribute("data-expanded", "true");
+  await expect(page.getByRole("button", { name: "exit fullscreen" })).toBeFocused();
+  for (let i = 0; i < 60; i++) {
+    await page.keyboard.press("Tab");
+    const inside = await page.evaluate(() => !!document.activeElement && !!document.querySelector('[data-testid="explore-shell"]')?.contains(document.activeElement));
+    expect(inside).toBe(true);
+  }
+  for (let i = 0; i < 60; i++) {
+    await page.keyboard.press("Shift+Tab");
+    const inside = await page.evaluate(() => !!document.querySelector('[data-testid="explore-shell"]')?.contains(document.activeElement));
+    expect(inside).toBe(true);
+  }
+  await page.keyboard.press("Escape");
+  await expect(shell).toHaveAttribute("data-expanded", "false");
+  await expect(page.getByRole("button", { name: "expand to fullscreen" })).toBeFocused();
+});
