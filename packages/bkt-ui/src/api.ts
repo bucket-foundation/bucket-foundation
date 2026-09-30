@@ -2,6 +2,12 @@ import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-stor
 import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
+import type { ProductionsSnapshot } from "@ros/productions-snapshot";
+
+export interface HistoryData {
+  snapshot: (ProductionsSnapshot & { importedAt: number }) | null;
+  activity: { day: string; learn: number; work: number; notes: number }[];
+}
 
 export interface Note {
   id: string;
@@ -237,5 +243,17 @@ export class Api {
 
   deleteNote(id: string) {
     return this.call<{ deleted: string }>("/local/notes/delete", { method: "POST", body: { id } });
+  }
+
+  history() {
+    return this.call<HistoryData>("/local/history");
+  }
+
+  importHistory(file: unknown) {
+    return this.call<{ productions: number }>("/local/history/import", { method: "POST", body: file });
+  }
+
+  forgetHistory() {
+    return this.call<{ cleared: boolean }>("/local/history/forget", { method: "POST", body: {} });
   }
 }

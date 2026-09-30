@@ -9,6 +9,7 @@ import { JobsView } from "./views/Jobs";
 import { CanonView } from "./views/Canon";
 import { AtlasesView } from "./views/Atlases";
 import { NotesView } from "./views/Notes";
+import { HistoryView } from "./views/History";
 import { WORK_QUIZ_CHANGED, WorkQuizView } from "./views/WorkQuiz";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
@@ -28,6 +29,7 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "advisors" }, label: "Advisors" },
   { route: { name: "primes" }, label: "Prime directions" },
   { route: { name: "notes" }, label: "Notes" },
+  { route: { name: "history" }, label: "History" },
   { route: { name: "jobs" }, label: "Jobs" },
   { route: { name: "import" }, label: "Import" },
 ];
@@ -103,6 +105,8 @@ function App() {
           <AdvisorsView api={api} />
         ) : route.name === "primes" ? (
           <PrimesView api={api} />
+        ) : route.name === "history" ? (
+          <HistoryView api={api} />
         ) : route.name === "notes" ? (
           <NotesView api={api} />
         ) : route.name === "atlases" ? (
