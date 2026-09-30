@@ -4,7 +4,6 @@ import fs from "node:fs";
 import path from "node:path";
 import sitemap from "../src/app/sitemap";
 import { isProtectedPath } from "../src/lib/auth/paths";
-import nextConfig from "../next.config.mjs";
 
 const root = path.join(__dirname, "..");
 const appDir = path.join(root, "src/app");
@@ -34,8 +33,11 @@ function resolves(dir: string, segs: string[]): boolean {
 }
 
 async function redirectSources(): Promise<RegExp[]> {
-  const rules = await (nextConfig as { redirects: () => Promise<{ source: string }[]> }).redirects();
-  return rules.map((r) => new RegExp("^" + r.source.replace(/:[a-zA-Z]+\*?/g, "[^/]+") + "$"));
+  const config = fs.readFileSync(path.join(root, "next.config.mjs"), "utf8");
+  const block = config.match(/async redirects\(\) \{([\s\S]*?)\n  \},/);
+  assert.ok(block);
+  const sources = Array.from(block[1].matchAll(/source: "([^"]+)"/g), (m) => m[1]);
+  return sources.map((s) => new RegExp("^" + s.replace(/:[a-zA-Z]+\*?/g, "[^/]+") + "$"));
 }
 
 const urls = sitemap().map((e) => new URL(e.url).pathname.replace(/\/$/, "") || "/");
