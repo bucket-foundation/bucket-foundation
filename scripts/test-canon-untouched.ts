@@ -48,13 +48,23 @@ function canonSet(): Set<string> {
   return importSet([ENTRY, ...EXTRA_DIRS.flatMap(walk)]);
 }
 
-function changedFiles(): string[] | null {
-  const base = spawnSync("git", ["rev-parse", "--verify", "--quiet", "origin/dev"], { cwd: ROOT });
-  if (base.status !== 0) return null;
+function ensureBase(): void {
+  const has = () => spawnSync("git", ["rev-parse", "--verify", "--quiet", "origin/dev"], { cwd: ROOT }).status === 0;
+  if (has()) return;
+  spawnSync("git", ["fetch", "--quiet", "origin", "dev"], { cwd: ROOT });
+  assert.ok(has(), "origin/dev is missing and could not be fetched, so the canon search diff cannot be checked");
+}
+
+function changedFiles(): string[] {
+  ensureBase();
   const diff = spawnSync("git", ["diff", "--name-only", "origin/dev...HEAD"], { cwd: ROOT, encoding: "utf8" });
   assert.equal(diff.status, 0, diff.stderr);
   const dirty = spawnSync("git", ["diff", "--name-only", "HEAD"], { cwd: ROOT, encoding: "utf8" });
   return [...diff.stdout.split("\n"), ...dirty.stdout.split("\n")].filter(Boolean);
+}
+
+export function touchedCanonFiles(changed: string[], set: Set<string>): string[] {
+  return changed.filter((f) => set.has(f));
 }
 
 test("the canon search import set covers the page, the mount, the globe and the route", () => {
@@ -73,13 +83,14 @@ test("the explorer files are not part of the canon search import set", () => {
   for (const f of ["src/app/explore/ExploreShell.tsx", "src/app/explore/ExploreClient.tsx", "src/lib/explore/space.ts", "src/components/explore/SpaceView.tsx"]) assert.ok(!set.has(f), f);
 });
 
-test("this branch changes no file in the canon search import set", () => {
-  const changed = changedFiles();
-  if (changed === null) {
-    process.stdout.write("origin/dev is not available, skipping the diff check\n");
-    return;
-  }
+test("the guard flags a changed canon search file and passes an explorer file", () => {
   const set = canonSet();
-  const touched = changed.filter((f) => set.has(f));
-  assert.deepEqual(touched, []);
+  assert.deepEqual(touchedCanonFiles(["src/lib/canon-search.ts"], set), ["src/lib/canon-search.ts"]);
+  assert.deepEqual(touchedCanonFiles(["src/app/canon/CanonGlobeMount.tsx", "src/app/explore/ExploreShell.tsx"], set), ["src/app/canon/CanonGlobeMount.tsx"]);
+  assert.deepEqual(touchedCanonFiles(["src/app/explore/ExploreShell.tsx", "README.md"], set), []);
+  assert.deepEqual(touchedCanonFiles([], set), []);
+});
+
+test("this branch changes no file in the canon search import set", () => {
+  assert.deepEqual(touchedCanonFiles(changedFiles(), canonSet()), []);
 });
