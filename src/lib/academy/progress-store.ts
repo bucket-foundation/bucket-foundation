@@ -67,6 +67,13 @@ export async function loadBranch(branch: string, server?: ServerBranches | null)
   return merged;
 }
 
+export function peekBranch(branch: string, server: ServerBranches | null): EngineState {
+  const local = readLocal(branch);
+  const remoteState = server && server[branch] ? normalizeState(server[branch].data) : null;
+  if (!remoteState) return local ?? normalizeState(null);
+  return mergeState(local, remoteState);
+}
+
 const timers = new Map<string, number>();
 
 export function saveBranch(branch: string, state: EngineState): void {
