@@ -20,9 +20,9 @@ import {
   type LearnerConfidence,
 } from "@/lib/research-os/forcing";
 import { SECOND_SOURCE_QUESTION_COPY, SECOND_SOURCE_AGREE_QUESTION_COPY } from "@/lib/research-os/lateral-reading";
-import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 import { firstHalfOfWorkedExample } from "@/lib/research-os/worked-examples";
 import AccessBlock from "./AccessBlock";
+import PrivacySection from "../profile/PrivacySection";
 import LearnBlock from "./LearnBlock";
 import MapBlock from "./MapBlock";
 import PenBlock from "./PenBlock";
@@ -252,10 +252,6 @@ function Workspace() {
   const [probeBusy, setProbeBusy] = useState<string | null>(null);
 
   const [consentNotice, setConsentNotice] = useState<{ message: string; needsProfile: boolean } | null>(null);
-  const [privacyBusy, setPrivacyBusy] = useState<"export" | "delete" | null>(null);
-  const [privacyNotice, setPrivacyNotice] = useState<string | null>(null);
-  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
-  const [deleteConfirmText, setDeleteConfirmText] = useState("");
 
   useEffect(() => {
     if (!supabase) return;
@@ -671,64 +667,6 @@ function Workspace() {
       if (res.ok) loadRoute();
     } finally {
       setBusy(null);
-    }
-  }
-
-  async function exportMyData() {
-    if (!token) return;
-    setPrivacyBusy("export");
-    setPrivacyNotice(null);
-    try {
-      const res = await fetch("/api/research-os/privacy", {
-        method: "POST",
-        headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "export" }),
-      });
-      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
-      if (!res.ok) {
-        setPrivacyNotice(data.error || "export_failed");
-        return;
-      }
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `research-os-export-${new Date().toISOString().slice(0, 10)}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      setPrivacyNotice("Export downloaded.");
-    } catch {
-      setPrivacyNotice("network_error");
-    } finally {
-      setPrivacyBusy(null);
-    }
-  }
-
-  async function deleteMyData() {
-    if (!token || deleteConfirmText.trim() !== DELETE_CONFIRM_TOKEN) return;
-    setPrivacyBusy("delete");
-    setPrivacyNotice(null);
-    try {
-      const res = await fetch("/api/research-os/privacy", {
-        method: "POST",
-        headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "delete", confirm: DELETE_CONFIRM_TOKEN }),
-      });
-      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
-      if (!res.ok) {
-        setPrivacyNotice(data.error || "delete_failed");
-        return;
-      }
-      setPrivacyNotice("Your data has been deleted.");
-      setDeleteConfirmOpen(false);
-      setDeleteConfirmText("");
-      await signOut();
-    } catch {
-      setPrivacyNotice("network_error");
-    } finally {
-      setPrivacyBusy(null);
     }
   }
 
@@ -1316,61 +1254,7 @@ function Workspace() {
           </div>
         )}
 
-        {token && (
-          <footer className="mt-14 pt-6 border-t border-[color:var(--hairline)] flex flex-col gap-3">
-            <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">§ your data</div>
-            <div className="flex flex-wrap gap-3 items-start">
-              <button
-                onClick={exportMyData}
-                disabled={privacyBusy === "export"}
-                className="px-4 py-2 text-[12px] small-caps border border-[color:var(--basalt)] text-[color:var(--basalt)] disabled:opacity-50"
-              >
-                {privacyBusy === "export" ? "exporting…" : "export my data"}
-              </button>
-
-              {!deleteConfirmOpen ? (
-                <button
-                  onClick={() => setDeleteConfirmOpen(true)}
-                  className="px-4 py-2 text-[12px] small-caps border border-red-700 text-red-700"
-                >
-                  delete my data
-                </button>
-              ) : (
-                <div className="flex flex-col gap-2 p-3 border border-red-700 bg-white/60 w-full max-w-sm">
-                  <p className="text-[12px] text-[color:var(--basalt-2)]">
-                    This permanently removes every record of your work. It cannot be undone. Type{" "}
-                    <strong>{DELETE_CONFIRM_TOKEN}</strong> to confirm.
-                  </p>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <input
-                      value={deleteConfirmText}
-                      onChange={(e) => setDeleteConfirmText(e.target.value)}
-                      placeholder={DELETE_CONFIRM_TOKEN}
-                      className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] bg-white/60 w-[120px]"
-                    />
-                    <button
-                      onClick={deleteMyData}
-                      disabled={deleteConfirmText.trim() !== DELETE_CONFIRM_TOKEN || privacyBusy === "delete"}
-                      className="px-3 py-2 text-[12px] small-caps bg-red-700 text-white disabled:opacity-50"
-                    >
-                      {privacyBusy === "delete" ? "deleting…" : "confirm delete"}
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDeleteConfirmOpen(false);
-                        setDeleteConfirmText("");
-                      }}
-                      className="text-[12px] small-caps underline underline-offset-4"
-                    >
-                      cancel
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-            {privacyNotice && <p className="text-[12px] text-[color:var(--basalt-2)]">{privacyNotice}</p>}
-          </footer>
-        )}
+        <PrivacySection token={token} onDeleted={signOut} />
       </div>
     </main>
   );

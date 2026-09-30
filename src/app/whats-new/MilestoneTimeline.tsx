@@ -13,6 +13,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   "landscape-added":   "landscape",
   "intake-research":   "intake",
   "site-refactor":     "site",
+  "pr-merged":         "merged",
 };
 
 function weekKey(date: string): string {
@@ -89,7 +90,7 @@ export default function MilestoneTimeline({ milestones }: { milestones: Mileston
           </div>
           <ul className="border-y hairline divide-y divide-[color:var(--hairline)]">
             {items.map((m) => (
-              <li key={m.id} className="py-4 flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
+              <li key={m.id} id={m.id} className="py-4 flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
                 <div className="w-32 shrink-0 small-caps text-[10px] text-[color:var(--gold)]">
                   {CATEGORY_LABEL[m.category] || m.category}
                   {m.branch && <div className="text-[color:var(--parchment-dim)]">{m.branch}</div>}
@@ -98,15 +99,33 @@ export default function MilestoneTimeline({ milestones }: { milestones: Mileston
                   <div className="font-serif-display text-lg text-[color:var(--basalt)]">{m.title}</div>
                   <p className="text-sm text-[color:var(--parchment-dim)] mt-1">{m.summary}</p>
                   <div className="mt-2 small-caps text-[10px] text-[color:var(--parchment-dim)]">
-                    {m.date} ·{" "}
-                    <a
-                      href={`https://github.com/${REPO}/commit/${m.commit}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
-                    >
-                      {m.commit.slice(0, 7)} ↗
-                    </a>
+                    {m.date}
+                    {m.pr !== undefined && m.pr !== null && (
+                      <>
+                        {" · "}
+                        <a
+                          href={m.url ?? `https://github.com/${REPO}/pull/${m.pr}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+                        >
+                          #{m.pr} ↗
+                        </a>
+                      </>
+                    )}
+                    {m.commit && (
+                      <>
+                        {" · "}
+                        <a
+                          href={`https://github.com/${REPO}/commit/${m.commit}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+                        >
+                          {m.commit.slice(0, 7)} ↗
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
               </li>

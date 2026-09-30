@@ -1,0 +1,9 @@
+name = "prime_directions"
+defaultTargets = ["PrimeDirections"]
+
+[[require]]
+name = "bucketmath"
+path = "../../../lean"
+
+[[lean_lib]]
+name = "PrimeDirections"

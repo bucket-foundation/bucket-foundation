@@ -18,7 +18,7 @@ Research OS is the product (`learning/research-os/INTEGRATION-PLAN.md`). The sit
 | teach | Roster | `/research-os/roster` |
 | teach | Edges | `/research-os/edges` |
 
-The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher or librarian membership in any class (`isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`).
+The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` (`isStaff` in `src/lib/research-os/staff.ts`). A class membership grants nothing outside that class.
 
 ## The graph
 
@@ -40,9 +40,9 @@ The proposed [AI evidence-search architecture](../learning/research-os/ai/IMPLEM
 
 ## Learn
 
-The Academy runs inside the shell as the Learn module (`src/app/research-os/(app)/learn`). The engine is a TypeScript port of the Academy app's scheduler and learning loop (`src/lib/academy/fsrs.ts`, `engine.ts`: FSRS-5, leverage, the encompassing map, the daily route, grading with proficiency and FIRe credit, streaks, the cross-device merge; tests in `scripts/test-academy-engine.ts`). The corpus is the same 358-atom set, read from `/academy-app/corpus`. Progress keeps the Academy's local keys (`bucket-academy/v1/<branch>`) and syncs to `bucket.academy_progress` through `/api/academy/progress` with the site session (`src/lib/academy/progress-store.ts`).
+The Academy runs inside the shell as the Learn module (`src/app/research-os/(app)/learn`). The engine is a TypeScript port of the Academy app's scheduler and learning loop (`src/lib/academy/fsrs.ts`, `engine.ts`: FSRS-5, leverage, the encompassing map, the daily route, grading with proficiency and FIRe credit, streaks, the cross-device merge; tests in `scripts/test-academy-engine.ts`). The corpus is the same 487-atom set, read from `/academy-app/corpus`. The importer also writes each atom's lesson, depths, quiz items, resources, equation, sources and note to `graph.learning_items`; `graph.academy_course_counts` gives atoms and items per deck, and `/api/research-os/modules` generates recall cards, drills, worked problems, quizzes and a path lesson from the graph. Progress keeps the Academy's local keys (`bucket-academy/v1/<branch>`) and syncs to `bucket.academy_progress` through `/api/academy/progress` with the site session (`src/lib/academy/progress-store.ts`).
 
-Surfaces: `/research-os/learn` (every deck with the person's progress), `/research-os/learn/[branch]` (summary, today's route, the atoms by shell with mastery), `/research-os/learn/[branch]/[atom]` (the lesson at three depths with the full text and equations, then retrieval at the depth mastery calls for), `/research-os/learn/[branch]/study` (today's route one item at a time). `/academy?branch=&atom=` redirects to the same atom, so every older link holds. A Research OS node's Learn link (`learnTargetFor`) opens its atom here.
+Surfaces: `/research-os/learn` (every deck with the person's progress), `/research-os/learn/[branch]` (summary, today's route, the atoms by shell with mastery), `/research-os/learn/[branch]/[atom]` (the lesson at three depths with the full text and equations, then retrieval at the depth mastery calls for), `/research-os/learn/[branch]/study` (today's route one item at a time), `/research-os/learn/path?to=` (the unmastered prerequisites of any concept, foundations first). `/academy?branch=&atom=` redirects to the same atom, so every older link holds. A Research OS node's Learn link (`learnTargetFor`) opens its atom here.
 
 ### Placement and test yourself
 
@@ -54,7 +54,7 @@ The map is the graph. `/research-os/map` lists every branch the graph holds and 
 
 ## Class
 
-A teacher creates a class from the home page (`ClassesPanel`, `POST /api/research-os/classes {action: "create", name}`); the class gets a join code and the creator a teacher membership, and `reviewer_email` is set to the creator so the class grid and the review queue scope to them. Anyone enters a code to join as a learner; staff change roles on the roster. The reviewer gate (`verifyReviewer`) accepts a teacher or librarian membership beside the env allowlist, and the shell shows the teach group on the same test. Migration `20260916020000_research_os_class_codes.sql`; library `src/lib/research-os/classes.ts`.
+A teacher creates a class from the home page (`ClassesPanel`, `POST /api/research-os/classes {action: "create", name}`); the class gets a join code and the creator a teacher membership, and `reviewer_email` is set to the creator so the class grid and the review queue scope to them. Anyone enters a code to join as a learner; staff change roles on the roster. A teacher or librarian membership passes `verifyClassTeacher`, which reaches only that teacher's own classes. Staff powers and the teach group in the shell take the `RESEARCH_OS_REVIEWER_EMAILS` allowlist alone. Migration `20260916020000_research_os_class_codes.sql`; library `src/lib/research-os/classes.ts`.
 
 ## Learn to graph
 

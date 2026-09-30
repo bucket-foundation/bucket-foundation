@@ -57,6 +57,10 @@ Bucket Foundation canon lives on gdrive (not in this repo, too large, too many P
 - **Outcome canon (longevity)**: `gdrive:AGFarms/Nucleus/research/longevity-canon/`, cross-referenced to `bucket-canon/05-biophysics/sub-outcomes/longevity/`
 - **Kruse corpus**: `~/jackkruse/`, 460 scraped articles, FTS5 + MiniLM-L6-v2 + RRF hybrid search, one partial source for the 05-biophysics branch. **This is the Kruse Index.** Not open-source as of 2026-04-17.
 
+## Math Contract
+
+Every quantitative claim an agent writes cites BucketMath (`lean/`, `[bm:Name]`) or is tagged `[empirical: source, date, command]`: `docs/agents/MATH-CONTRACT.md`, tool `tools/bucketmath/bm.py`.
+
 ## Research Papers
 
 Rules for writing a Bucket paper to journal standard, LaTeX + Lean 4 +
@@ -142,7 +146,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 **bucket.foundation/academy**. Validate: `learning/app/validate.sh`. Design+research:
 `learning/EPIC.md` + `learning/research/` (now on main).
 
-- **Content:** 358 science atoms across the 7 canon branches, each with a full markdown
+- **Content:** 487 science atoms in 8 decks (count from `graph.academy_course_counts`), each with a full markdown
  `lesson` + 3-depth + quiz + `resources` (Wikipedia/open, link) + deterministic
  procedural-SVG art. Branch manifest = `learning/app/corpus/index.json`.
 - **Engine:** FSRS-5 + two-layer graph + FIRe + mastery (`M=proficiency^α·retention^β`).

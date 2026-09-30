@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { NON_IDEA_REPORT_KINDS } from "../src/lib/research-os/idea";
 import { buildPrimesReport, forgetPrimesReport, loadPrimesReport, pendingPairIds, readPrimesInputs, type PrimesReport, type ReportEdge, type ReportNode } from "../src/lib/research-os/primes-report";
 
 const node = (id: string, kind = "concept", branch = "02-physics"): ReportNode => ({ id, slug: id, title: id.toUpperCase(), kind, branch });
@@ -132,6 +133,12 @@ class FakeQuery {
   neq(col: string, v: unknown) { this.preds.push((r) => r[col] !== v); return this; }
   is(col: string, v: unknown) { this.preds.push((r) => (r[col] ?? null) === v); return this; }
   in(col: string, vs: unknown[]) { this.preds.push((r) => vs.includes(r[col])); return this; }
+  not(col: string, op: string, list: string) {
+    assert.equal(op, "in");
+    const vs = list.replace(/^\(|\)$/g, "").split(",");
+    this.preds.push((r) => !vs.includes(String(r[col])));
+    return this;
+  }
   then<R>(done: (v: { data: Row[]; error: null }) => R) {
     const data = this.rows.filter((r) => this.preds.every((p) => p(r))).slice(this.slice[0], this.slice[1] + 1);
     return Promise.resolve({ data, error: null }).then(done);
@@ -151,4 +158,25 @@ test("an event node never enters the primes inputs, so unfactoredByKind is uncha
   const r = buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible);
   assert.equal(r.summary.nodes, 5);
   assert.deepEqual(r.unfactoredByKind, [{ kind: "artifact", count: 1 }]);
+});
+
+test("the six evolution kinds never enter the primes inputs, so unfactoredByKind is pinned", async () => {
+  const work = ["occupation", "task", "technology", "software", "discovery", "topic"].map((k) => node(`evo-${k}`, k, "11-work"));
+  const tables: Record<string, Row[]> = {
+    nodes: [...nodes, node("battle-of-marathon", "event", "00-history"), ...work].map((n) => ({ ...n, visibility: "public", superseded_by: null })),
+    edges: [...edges, { from_id: "evo-occupation", to_id: "evo-task", kind: "performs", confidence: 1 }].map((e, i) => ({ id: `e${i}`, ...e })),
+    irreducible_proposals: [],
+    edge_proposals: [],
+  };
+  const svc = { from: (t: string) => new FakeQuery(tables[t] ?? []) } as unknown as Parameters<typeof readPrimesInputs>[0];
+  const x = await readPrimesInputs(svc);
+  assert.deepEqual(x.nodeRows.map((n) => n.kind).filter((k) => !["concept", "artifact"].includes(k ?? "")), []);
+  assert.ok(!x.edgeRows.some((e) => e.kind === "performs"));
+  const r = buildPrimesReport(x.nodeRows, x.edgeRows, x.irreducible);
+  assert.equal(r.summary.nodes, 5);
+  assert.deepEqual(r.unfactoredByKind, [{ kind: "artifact", count: 1 }]);
+});
+
+test("NON_IDEA_REPORT_KINDS names event and the six evolution kinds", () => {
+  assert.deepEqual([...NON_IDEA_REPORT_KINDS].sort(), ["discovery", "event", "occupation", "software", "task", "technology", "topic"]);
 });

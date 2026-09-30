@@ -5,7 +5,9 @@ import path from "node:path";
 import fs from "node:fs";
 import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
-import { sql, TEST_DB as DB, loadLocalEnv } from "./lib/test-harness";
+import { sql, TEST_DB as DB, loadLocalEnv, openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 function requireLoopback(): void {
   let host: string;

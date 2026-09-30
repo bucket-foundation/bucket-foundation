@@ -8,6 +8,7 @@ import {
   addRandomPairs,
   approvalBySource,
   buildLinkPrompt,
+  groupApprovedLinks,
   mergeProposals,
   parseLinkAnswer,
   planWrites,
@@ -17,11 +18,41 @@ import {
   MAX_MODEL_PICKS,
   type LinkProposal,
 } from "../src/lib/research-os/nsm-links";
-import { sql, loadLocalEnv } from "./lib/test-harness";
+import { sql, loadLocalEnv, openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 loadLocalEnv();
 
 const node = { id: "n1", slug: "conservation-of-energy", title: "Conservation of energy", summary: "Energy stays the same over time.", branch: "02-physics" };
+
+test("approved links group by prime over public, current ideas, sorted and capped", () => {
+  const nodes = [
+    { id: "a", slug: "zeno", title: "Zeno", visibility: "public", superseded_by: null },
+    { id: "b", slug: "atom", title: "Atom", visibility: "public", superseded_by: null },
+    { id: "c", slug: "hid", title: "Hid", visibility: "private", superseded_by: null },
+    { id: "d", slug: "old", title: "Old", visibility: "public", superseded_by: "b" },
+    { id: "e", slug: "bare", title: null, visibility: "public", superseded_by: null },
+  ];
+  const links = [
+    { node_id: "a", prime_id: "time" },
+    { node_id: "b", prime_id: "time" },
+    { node_id: "b", prime_id: "time" },
+    { node_id: "c", prime_id: "time" },
+    { node_id: "d", prime_id: "time" },
+    { node_id: "e", prime_id: "time" },
+    { node_id: "c", prime_id: "before" },
+    { node_id: "gone", prime_id: "after" },
+  ];
+  const out = groupApprovedLinks(links, nodes);
+  assert.deepEqual(out.get("time"), { shown: [{ slug: "atom", title: "Atom" }, { slug: "bare", title: "bare" }, { slug: "zeno", title: "Zeno" }], more: 0 });
+  assert.equal(out.has("before"), false);
+  assert.equal(out.has("after"), false);
+  const capped = groupApprovedLinks(links, nodes, 2).get("time")!;
+  assert.deepEqual(capped.shown.map((i) => i.slug), ["atom", "bare"]);
+  assert.equal(capped.more, 1);
+  assert.equal(groupApprovedLinks([], nodes).size, 0);
+});
 
 test("cosine keeps the top three with ranks", () => {
   const vecs = new Map([["a", [1, 0]], ["b", [0.8, 0.6]], ["c", [0, 1]], ["d", [-1, 0]]]);

@@ -63,11 +63,29 @@ const ready = probe.status === 0 && Number((probe.stdout || "").trim()) > 0 && B
 if (process.env.RESEARCH_OS_REQUIRE_DB === "1" && !ready) throw new Error("RESEARCH_OS_REQUIRE_DB=1 and graph.han_components is empty or unreachable");
 const skip = ready ? false : "no local stack with graph.han_components loaded";
 
+const STAFF = { id: "00000000-0000-0000-0000-0000000000a1", email: "staff@bucket.test" };
+
 async function get(query: string): Promise<Response> {
+  const db = (await import("../src/lib/research-os/db")) as unknown as Record<string, unknown>;
   const { GET } = await import("../src/app/api/research-os/han-components/export/route");
   const { NextRequest } = await import("next/server");
-  return GET(new NextRequest(`http://localhost/api/research-os/han-components/export${query}`), undefined);
+  const saved = { verify: db.verifyLearnerIdentity, list: process.env.RESEARCH_OS_REVIEWER_EMAILS };
+  db.verifyLearnerIdentity = async () => STAFF;
+  process.env.RESEARCH_OS_REVIEWER_EMAILS = STAFF.email;
+  try {
+    return await GET(new NextRequest(`http://localhost/api/research-os/han-components/export${query}`), undefined);
+  } finally {
+    db.verifyLearnerIdentity = saved.verify;
+    if (saved.list === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    else process.env.RESEARCH_OS_REVIEWER_EMAILS = saved.list;
+  }
 }
+
+test("the export route answers 404 to a caller outside launch staff", { skip }, async () => {
+  const { GET } = await import("../src/app/api/research-os/han-components/export/route");
+  const { NextRequest } = await import("next/server");
+  assert.equal((await GET(new NextRequest("http://localhost/api/research-os/han-components/export"), undefined)).status, 404);
+});
 
 test("the export route lists three files and serves each as CSV", { skip }, async () => {
   const index = await get("");

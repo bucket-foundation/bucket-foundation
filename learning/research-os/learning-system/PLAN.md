@@ -1,0 +1,115 @@
+# Prerequisite learning and knowledge coverage
+
+Status: implementation plan and executable mathematical prototype; review verdicts are in CRITIC.md. Tracking: `bkt-jy5z`, derived from `bkt-pnxs`. Inspected baseline: `ce7f93952d353ed3127625470c4155fd17ed2ab3`. Scope: implementation plan, compiled Lean model and reproducible synthetic evaluation. Production integration follows separate implementation beads. DeepSeek and Laya are outside this product design.
+
+## Learner experience
+
+A learner chooses any recorded concept. Its prerequisite chart opens backward to reviewed foundations, showing mastered nodes and remaining requirements. A forward study sequence starts at ready foundations and ends at the target. Selecting a node shows its evidence and why it is required. A compact line can show one explanatory chain; the chart preserves every mandatory branch. Missing coverage produces an incomplete result.
+
+The learner profile shows a growing region along named primitive concept axes, with the selected target and its remaining prerequisites overlaid. The region represents assessed coverage within a versioned catalog. Historical learning accumulates; current recall can decay. The UI displays both as separate metrics. Earliest concepts means reviewed pedagogical foundations in this plan. Historical discovery dates remain separate.
+
+## Current source
+
+The route in `src/app/api/research-os/route/route.ts` calls `computeFrontier` after access filtering. `frontier.ts` ranks negative log edge confidence and hops, sorts by hop depth, and omits unmastered roots from `gap`. The new planner needs a separate response contract and fixtures before consumers migrate.
+
+`primes.ts` factors prerequisite and derives-from relations and contracts strongly connected components. `prime-algebra.ts` builds corpus-weighted concept vectors. Graph roots and integer prime labels do not establish independent cognitive variables. The learning planner consumes accepted prerequisite relations; the axis layer starts with a reviewed basis whose relation to learner outcomes must be measured.
+
+## Mathematical contract
+
+Let the catalog be a finite directed acyclic graph with edge p to v meaning p is required before v. All incoming prerequisites are mandatory in release one. Let M be assessed mastery and C(t) the target plus all its prerequisite ancestors. M must be downward closed within the target's complete prerequisite snapshot. A mastery conflict triggers a diagnostic and blocks a minimum-plan claim. Define R(t,M) = C(t) minus M.
+
+The formal input is restricted mastery M_C = M intersect C(t). The target-local check is: for every v in C(t) intersect M, every prerequisite p of v belongs to M. Because C(t) contains every prerequisite ancestor, this check implies global closure of M_C on the complete edge relation. Thus the Lean `Closed` premise and the Python target-local check agree. For every node in C(t), subtracting M_C gives the same remaining set as subtracting M. Inconsistent mastery in a disconnected subject is ignored for this target; it awards no mastery elsewhere. Returned `masteredNodes` is exactly M_C. The formal restriction lemmas and the unrelated inconsistent-mastery fixture enforce this boundary.
+
+Any valid learning sequence must include every member of R. A topological ordering of R is feasible when prerequisites outside R belong to M. With one unit of cost per new node, its length is |R| and is minimal. With fixed nonnegative per-node effort, its cost is the sum over R. Shared prerequisites occur once. This is a shortest path through knowledge states, where an edge adds one ready concept. A shortest chain in the concept graph may omit a required branch.
+
+Alternative sufficient prerequisite groups introduce AND/OR choices and are deferred. Their future solver must distinguish the union cost of shared requirements from summed branch costs. Cycles, unavailable authority, missing nodes and unresolved coverage prevent a certified plan. A zero-edge node becomes a foundation only through reviewed foundation metadata.
+
+The Lean artifact will prove prerequisite closure necessity, minimal unit learning distance under explicit feasible-order assumptions, and monotonic remaining work as valid mastery grows. It will prove monotonic weighted coverage under fixed nonnegative weights. A theorem inventory will identify every assumption and the executable algorithm boundary. No theorem will certify human learning, graph truth, independence of axes or the TypeScript implementation. No sorry, axiom declarations or native_decide are permitted in the proof deliverable.
+
+The line view uses unit-edge backward BFS from the selected target to a reviewed foundation, with stable node-ID tie-breaking. Its label is shortest explanatory chain. The learning chart uses R and its ready-node order; its label is minimum required new concepts under the selected prerequisite snapshot. Every line result links to the complete chart. The Lean distance theorem concerns the knowledge-state path. The proposed BFS and TypeScript adapter require their own executable conformance checks.
+
+Formal scope uses natural-number effort ticks and an explicit ready-order certificate. The certificate checks every step against all mandatory prerequisites, contains each unmet required node once, and reaches the target. Existence of that certificate is an input to the minimality theorem; the initial Lean project does not prove a general topological-sort implementation. The Python reference constructs and checks such sequences, then compares their lengths with an independent exhaustive state search. Production must perform the same certificate checks and preserve fixtures across the port.
+
+## Knowledge region
+
+Each catalog version defines K named axes, a reviewed concept-to-axis matrix with nonnegative weights, and fixed normalization denominators. A learner coordinate g_j is the normalized sum of evidence-backed mastery contributions along axis j. Show g as a radial region; display weighted coverage G = sum_j w_j g_j / sum_j w_j, observed assessment coverage, and uncertainty. G is a catalog coverage index. Its units and denominator remain visible. A Euclidean norm can describe the visualization; sphere volume will not be reported as a measure of intelligence.
+
+For release one, let S(v) be the set of distinct reviewed primitive IDs for catalog concept v. Set A_vj = 1/|S(v)| for j in S(v), zero otherwise. A repeated factor changes neither S nor A. Exclude unfactored concepts from this basis and display their count. Set d_j = sum_v A_vj, require d_j > 0, and fix w_j = d_j. With binary assessed mastery m_v, g_j = sum_v A_vj m_v / d_j. Then G equals the fraction of mastered concepts in the factored catalog. Display G beside assessed coverage and axis coordinates. Define sphere extent as r = sqrt(sum_j w_j g_j^2 / sum_j w_j), a dimensionless visual summary. The radial chart and concept overlay preserve gaps that a scalar hides. Prime factors give named coordinates; they do not establish statistical independence.
+
+Numerical fixture: concepts a, b and t have supports {a}, {b}, {a,b}. Denominators are (1.5,1.5). Mastering a gives g=(2/3,0), G=1/3 and r=sqrt(2/9). Mastering b as well gives g=(2/3,2/3), G=2/3. Mastering t gives g=(1,1), G=1. Repeating a in t's input support preserves every result. Unknown concepts remain in the catalog denominator with zero confirmed attainment, labeled unknown rather than failed.
+
+Unassessed nodes remain unknown. The milestone view uses verified ever-demonstrated attainment and grows within one basis version. The current view uses retained mastery and can shrink. Basis versions remain incomparable until an explicit migration maps node identities and normalization. Duplicate factors must not inflate coverage. The initial basis is an interpretable coordinate system; empirical independence requires held-out residual analysis.
+
+## Empirical validation
+
+The reproducible artifact uses synthetic graphs and synthetic learner responses. Compare a graph-chain baseline with full prerequisite closure and exhaustive knowledge-state search on small DAGs. Include a diamond, shortcut, disconnected node, cycle, already-mastered target, and unmastered foundation. Report constraint violations and distance errors against the exhaustive reference. Synthetic agreement supports implementation checks only.
+
+For future learner data, estimate response probability on training learners, calibrate on separate learners and freeze predictions before testing. Evaluate Brier score, calibration bins, and residual r_ui = y_ui minus p_ui. Measure residual correlation between axis-associated items with learner-cluster uncertainty intervals and multiplicity control. Persistent residual structure prompts axis revision or a correlated model. Inspect performance by baseline mastery and subject, retention after delay and novel transfer items. Data splitting must also keep shared item families and source passages from leaking across folds.
+
+Use fixed seeds and machine-readable outputs. Compare intercept-only and item-difficulty baselines. Real learning gains require a prospectively designed learner study with independent assessment; a proof or synthetic simulation cannot substitute for it. Dataset size, power assumptions and numerical promotion gates must be fixed before a learner trial.
+
+For a proposed calibration study, recruit 600 consenting adults within one subject domain, assigned 300/150/150 to training, calibration and held-out learner sets. Reserve disjoint item families and passages for calibration and test; item-only models use a training-intercept fallback on unseen items. Separate a familiar-item diagnostic from an unseen-family transfer diagnostic. This sample is a planning budget, with no asserted power until pilot variance and missingness estimates exist. Freeze graph, axes, scoring policy and model before opening test labels. Teacher-reviewed answers supply outcome labels; model agreement supplies no labels. Require at least 100 observed outcomes per calibration bin or report that bin as underpowered.
+
+Proposed promotion gates are Brier improvement of at least 0.01 over the strongest prespecified baseline with a positive learner-bootstrap 95% interval, expected calibration error at most 0.05, and no subgroup Brier degradation above 0.02 where a subgroup has at least 100 learners. Inconclusive intervals block promotion. Examine all axis-pair residual correlations using learner-cluster bootstrap intervals and Holm-adjusted permutation p-values at familywise 0.05. A correlation magnitude above 0.10 with adjusted evidence of dependence blocks an independent-axis label. Failure to detect dependence never proves independence. Pairwise linear tests do not establish joint or nonlinear independence; a later HSIC diagnostic can probe nonlinear structure on held-out data.
+
+A separate randomized trial is required before claiming improved learning time or retention. Its primary endpoint is time to an independently assessed target with seven-day retention noninferiority. Set the retention margin at five percentage points, then size the study from pilot variance, two-sided alpha 0.05 and 80% power before enrollment. Report attrition and intent-to-treat results. The planning artifact runs no human study and has no production promotion authority.
+
+The graph-state formulation follows established [knowledge and learning space theory](https://arxiv.org/abs/1511.06757). Our all-mandatory DAG is a restricted model of feasible knowledge states. [Thompson and Nash](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2021.714736/full) motivate empirical checks of proposed learning maps; graph structure alone does not validate a learning progression. [Gretton and colleagues](https://proceedings.neurips.cc/paper/2007/file/d5cfead94f5350c12c322b5b664544c1-Paper.pdf) provide a nonlinear independence-testing method; it is a future diagnostic here. Lean's [axiom audit](https://lean-lang.org/doc/reference/latest/Axioms/) identifies theorem dependencies; compilation must allow only Lean's standard logical axioms and reject proof placeholders.
+
+## Integration and authority
+
+Add a planner module beside frontier.ts, an additive versioned route, and graph UI overlays. Existing consumers retain their contract until a feature flag enables migration. The server reads a consistent graph revision plus viewer authorization and the learner's own evidence. The planner is read-only and cannot award mastery. Assessment writers retain their existing authority and gain evidence-version binding in a separate migration.
+
+Certified planning must exclude `learner_node_state.stage`, client-owned Academy progress and browser mastery flags as proof of mastery. A new append-only `assessment_evidence` contract records learner ID, concept ID, item/form version, graph version, server-scored result, scorer identity, assessment policy, hint status, observed time, expiry and revocation. Trusted writers are a server scorer verifying a server-issued attempt nonce or an authorized teacher signing a reviewed rubric. Existing progress endpoints cannot insert evidence or call the mastery projection. Restrict evidence table writes through an allowlisted transaction; ownership alone grants no write permission.
+
+An initial operational policy requires 12 correct server-scored independent items across at least two forms and two sessions separated by seven days, no hints, and age at most 30 days. Its 95% Wilson lower bound exceeds 0.75 for 12 of 12; this is a conservative product rule pending learner validation. Item independence and rubric validity require review. One assessment result cannot be copied between concept IDs. Invalid prerequisites trigger `mastery_conflict` and a diagnostic plan; the server never infers missing mastery from a mastered dependent.
+
+Each evidence transaction locks the learner revision, checks the attempt nonce and writer grant, verifies current item version, then appends evidence and increments the revision together. Unique attempt/item keys make retries idempotent; conflicting payloads return 409. Revocation and deletion use the same lock and revision increment. Graph review transactions increment a graph revision. Plans read graph, evidence and authorization state in one repeatable-read transaction and return their revisions; a final current-revision/expiry check before response detects changes and returns `stale_snapshot` for retry. Authority failures return 503. This transaction and evidence layer are release blockers before certified learner routing.
+
+Private learner evidence remains under learner ownership and authorized teacher access. Retain scored outcomes for 180 days, expire mastery at 30 days and delete raw answer text after scoring. A valid attainment transaction also creates a minimal `attainment_receipt`: learner ID, concept ID, graph/policy version, attainment time, trusted issuer and signed evidence digest. It retains no answer text or item responses. Its unique learner/concept/policy/evidence-digest key makes retries idempotent. Receipt issuance shares the evidence revision transaction and cannot be invoked through browser progress writes.
+
+Retain attainment receipts until account deletion or a learner's history-erasure request. Ordinary assessment expiry and 180-day outcome deletion preserve these receipts for the recorded-attainment view. Once supporting outcomes are deleted, the receipt certifies the past issuer decision; the original scoring cannot be replayed. A receipt never satisfies current prerequisite mastery. Authorized evidence, policy or issuer revocation also revokes affected receipts using concept/policy/digest indexes and increments the same learner revision. Revoked receipt metadata is retained for at most 180 days for audit, then removed. History erasure and account deletion remove receipts, evidence and projections and invalidate pending responses.
+
+The recorded-attainment view excludes revoked or erased receipts. Its monotonicity claim assumes a fixed basis with no revocation or erasure; current recall can shrink through expiry. Aggregate research retention requires separate opt-in and a declared study schedule. Use private no-store HTTP responses and no cross-request planner cache in release one. Version-bound cache design remains a later optimization. The evidence owner must test outcome deletion preserving attainment, receipt erasure reducing history, revocation propagation, and receipt rejection by the current-mastery predicate.
+
+A server-owned completeness check runs before public serialization. A response may signal unavailable coverage without disclosing hidden identifiers, counts or topology. View, study, cite and review permissions remain distinct. To avoid revealing the existence of a private relationship, public coverage status comes from a separately reviewed disclosure-safe coverage record; inaccessible or unreviewed targets share an opaque unavailable response. Cache keys in any later cache bind target, graph revision, evidence revision and authorization revision; permission expiry still requires a server check.
+
+Bound computation at 5,000 target-closure nodes, 25,000 edges and one second; return a typed limit result with no minimum claim on exhaustion. No full-catalog download is required for each learner. Traversal and topological sorting have O(V+E) cost on the loaded closure. Exact alternative-group search is outside release one. A feature flag disables the new route and UI without touching source graph or assessment state.
+
+Proposed endpoint: `GET /api/research-os/learning-plan?target=<slug>&basis=<version>`. It derives learner identity from the authenticated session; it accepts no learner ID, mastery flags or arbitrary edge list. Anonymous requests use empty mastery and public catalog data. A ready response binds target ID, graph/evidence/basis versions and expiry to `requiredNodes`, `masteredNodes`, `remainingNodes`, `readyNodes`, `studyOrder` and `explanatoryChain`. Its objective field is `unit_concepts`; future estimated minutes carry an uncertainty interval and no optimal-time claim. Non-ready outcomes are opaque unavailable coverage, mastery conflict, cycle, stale snapshot or resource limit. A ready result has no unresolved prerequisite. Direct links and reloads preserve the target and basis; login recomputes the plan for the authenticated learner.
+
+Cross-branch prerequisites are loaded by target closure rather than branch filtering. A reviewed foundation record includes graph version, reviewer, justification and source revision. A completeness record covers the full target closure and expires on any relevant accepted edge or foundation edit. Each returned source pointer binds node ID, source ID, revision and passage hash. Raw evidence stays server-owned. Unknown coverage, denied study access or expired source permission prevents a ready result.
+
+## Delivery and acceptance
+
+The graph owner defines reviewed foundations, snapshot versioning and opaque incomplete-coverage responses. The planner owner implements closure, topological order and shared fixtures linked to Lean definitions. The learner owner implements evidence predicates and axis catalog versions. The evaluation owner maintains exhaustive references and held-out calibration tests. UI ownership includes target deep links, reloads, missing-data states and accessible chart/line switching.
+
+| Phase | Bead | Owner and acceptance | Depends on |
+|---|---|---|---|
+| Evidence and graph snapshots | `bkt-csuj` | Graph/evidence implementer: server-only writes, completeness and race tests | Reviewed plan |
+| Minimum prerequisite planner | `bkt-yg5e` | Planner implementer: closure certificates, route and oracle conformance | `bkt-csuj` |
+| Charts and knowledge region | `bkt-t2ia` | Learner/UI implementer: chart/line behavior, assessed coverage and basis fixtures | `bkt-yg5e` |
+| Empirical validation | `bkt-iwx0` | Evaluation owner: consent, held-out predictions, residual tests and prospective outcome protocol | `bkt-t2ia` |
+
+These beads cover future product implementation. This task delivers the plan and executable mathematical prototype. An implementation PR must obtain its own critic review and runtime evidence before merge.
+
+Planning acceptance requires Lean compilation with an axiom audit, deterministic graph analysis, a theorem-to-code mapping, and exactly three independent critic rounds targeting at least 9/10 with no high or critical finding. Scores must follow evidence. The reviewer fixes a rubric before round one. Round two inspects proof and analysis artifacts; round three rechecks repairs and final hashes.
+
+Runtime acceptance requires unit and API boundary tests for all-required diamonds, shared prerequisites, cycles, shortcuts, mastery conflicts, hidden prerequisites, authorization expiry, stale snapshots and compute limits. The learner visualization requires duplicate-factor and denominator tests, unknown-state display and retention decline. Numerical experimental gates will be specified before any data collection or production promotion.
+
+## Reproduction
+
+From the repository root:
+
+```sh
+bash learning/research-os/learning-system/lean/check.sh
+python3 learning/research-os/learning-system/analysis/evaluate.py
+agf-lint-voice check learning/research-os/learning-system
+git diff --check
+```
+
+The proof uses pinned Lean 4.33.1 and its bundled Std library. The analysis uses Python 3 with NumPy 2.5.1. Both are installed on the development host; no model weights or paid services are required. A fresh host installs the pinned toolchain and `analysis/requirements.txt`, then runs the commands. Build artifacts remain ignored. `lean/README.md` binds theorem names to assumptions and runtime obligations; `analysis/results/README.md` records methods and limits.
+
+Parent verification passed on September 25, 2026. Lean compiled the minimum-unit-distance and fixed-Nat-effort theorems with certificate assumptions; all ten audited declarations use either no axioms or only standard Lean logical axioms. The graph experiment checked 1,099 DAGs and 57,060 valid mastery/target cases, with zero distance, readiness or required-node inclusion errors. The synthetic response model reported Brier scores 0.24633 for intercept-only, 0.23475 for item baseline and 0.18649 for axis/prerequisite features. Its planted residual pair had correlation 0.33463 and Holm p=0.00100; the control pair had p=0.05497. These values exercise a known synthetic generator and supply no evidence of human learning gains or independent real-world axes.
+
+Generated results reproduce from source within numerical-library precision. The synthetic experiment uses a shared item bank across disjoint learners; the proposed learner study additionally requires unseen-family tests. Automated runtime authorization tests remain future implementation gates. The proof library is an abstract reference model; no extraction or verified TypeScript translation is delivered here.

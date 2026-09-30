@@ -246,7 +246,7 @@ Enforced by the filter at `src/lib/research-os/grounding.ts:91`, an exact string
 Enforced by `sanitizeGradeResult` at `grounding.ts:82` returning `ABSTAIN_FALLBACK` on a null parse or an out-of-range enum. Falsified by: any code path that surfaces a verdict from an unparsed response. Test: `parseModelJson` returning null, asserting `abstained === true`.
 
 **Rule 4. A model's output changes the graph only after a named human decides.**
-Enforced by `graph.edge_proposals`, `graph.node_proposals` and `graph.irreducible_proposals` as separate tables from `graph.edges` and `graph.nodes`, with `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:31` as the gate. Falsified by: any writer that inserts into `graph.edges` with `confidence_source` set from a model without a `reviewer_id` on the originating proposal. Test: a contract test over every `graph.edges` insert path.
+Enforced by `graph.edge_proposals`, `graph.node_proposals` and `graph.irreducible_proposals` as separate tables from `graph.edges` and `graph.nodes`, with `verifyGraphReviewer` at `src/lib/research-os/reviewer.ts:40` as the gate. Falsified by: any writer that inserts into `graph.edges` with `confidence_source` set from a model without a `reviewer_id` on the originating proposal. Test: a contract test over every `graph.edges` insert path.
 
 **Rule 5. The product runs with the model off.**
 Enforced by `llmEnabled` at `deterministic.ts:3` defaulting off, and by `deterministicCheck` and `deterministicOrganize` covering the two tools that would otherwise call a model. Falsified by: any Research OS route returning a 5xx or an empty tool when `RESEARCH_OS_LLM_ENABLED` is unset. Test: the full route suite with the flag unset.
@@ -258,7 +258,7 @@ Not built. The consequence copy does not exist on the Check button, the probe an
 Not built. Closes G2, G9 and G15 together. A dispute writes an evidence event of a new kind beside the `"check"` event it disputes, carrying the learner's reason. The teacher's class view lists disputes the way `graph.edge_flags` lists crossed low-confidence edges today. Once disputes accumulate, the grader's agreement rate against teacher decisions becomes computable, which is what G2 asks for. Bead: `ros-ai dispute a verdict`.
 
 **Rule 8. The reading level of model output is measured before it reaches a child.**
-Not built. Closes G5. `WorkedExample` at `src/lib/research-os/types.ts:66` already sets the target for seeded content. The same target belongs on the model's `feedback` string, checked in code after the model returns and before the learner sees it, with an abstain on a failure the way a malformed response already abstains. Bead: `ros-ai reading level gate`.
+Not built. Closes G5. `WorkedExample` at `src/lib/research-os/types.ts:82` already sets the target for seeded content. The same target belongs on the model's `feedback` string, checked in code after the model returns and before the learner sees it, with an abstain on a failure the way a malformed response already abstains. Bead: `ros-ai reading level gate`.
 
 **Rule 9. A change to a model, a prompt or a tool appears in the change feed.**
 Not built. Closes G18. `src/app/whats-new/types.ts` already carries a typed `FeedEventType` union and a commit SHA per event. Adding `model_change` and `prompt_change` to that union, emitted when `MODEL` in `src/lib/research-os/llm.ts:22` or `CHECK_SYSTEM_PROMPT` in `grounding.ts:107` changes, puts the model on the same public record as the canon. Bead: `ros-ai model change feed`.

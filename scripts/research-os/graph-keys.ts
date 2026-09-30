@@ -17,6 +17,8 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   edges: [{ columns: ["id"], nullable: [] }, { columns: ["from_id", "to_id", "kind"], nullable: [] }],
   event_usage: [{ columns: ["subject", "name", "day"], nullable: [] }],
   evidence_source_admissions: [{ columns: ["source_id", "source_revision"], nullable: [] }],
+  evolution_batch_reviews: [{ columns: ["id"], nullable: [] }, { columns: ["source_id", "source_revision", "parser", "role"], nullable: [] }],
+  evolution_series: [{ columns: ["id"], nullable: [] }, { columns: ["subject_id", "metric", "place_id", "year", "source_id", "source_revision"], nullable: ["place_id"] }],
   external_id_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "authority", "source_id", "source_revision"], nullable: [] }],
   factoids: [{ columns: ["id"], nullable: [] }, { columns: ["silver_item_id", "role"], nullable: [] }],
   gold_lineage: [{ columns: ["id"], nullable: [] }],
@@ -28,6 +30,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   irreducible_proposals: [{ columns: ["id"], nullable: [] }, { columns: ["node_slug"], nullable: [] }],
   learner_node_state: [{ columns: ["learner_id", "node_id"], nullable: [] }],
   learner_profiles: [{ columns: ["learner_id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: ["source_system", "sourced_id"] }],
+  learning_items: [{ columns: ["id"], nullable: [] }, { columns: ["node_id", "kind", "ordinal"], nullable: [] }],
   level_overrides: [{ columns: ["id"], nullable: [] }],
   llm_usage: [{ columns: ["subject", "route", "day"], nullable: [] }],
   medallion_withdrawn_nodes: [{ columns: ["node_id"], nullable: [] }],
@@ -47,11 +50,15 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   prereq_ancestor: [{ columns: ["node_id", "ancestor_id"], nullable: [] }],
   privacy_events: [{ columns: ["id"], nullable: [] }],
   productions: [{ columns: ["id"], nullable: [] }],
+  purged_factoids: [{ columns: ["id"], nullable: [] }],
+  purged_gold_lineage: [{ columns: ["id"], nullable: [] }],
   reviewer_candidates: [{ columns: ["id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: [] }],
   silver_items: [{ columns: ["id"], nullable: [] }, { columns: ["source_id", "source_revision", "parser", "parser_revision", "kind", "span_start", "span_end", "subject"], nullable: [] }],
   source_quote_receipts: [{ columns: ["id"], nullable: [] }, { columns: ["learner_id", "idempotency_key"], nullable: [] }],
   teacher_reviews: [{ columns: ["id"], nullable: [] }],
   withdrawn_factoids: [{ columns: ["factoid_id"], nullable: [] }],
+  work_quiz_attempts: [{ columns: ["id"], nullable: [] }],
+  work_quiz_cards: [{ columns: ["learner_id", "question_id"], nullable: [] }],
 };
 
 export function orderIsTotal(table: string, ordered: readonly string[], pinned: readonly string[]): boolean {

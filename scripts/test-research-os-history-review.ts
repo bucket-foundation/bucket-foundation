@@ -2,6 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 import { parseHistoryDecision } from "../src/lib/history/review";
+import { openLaunchScope } from "./lib/test-harness";
+
+openLaunchScope();
 
 const ID = "0f8c7a52-2b8e-4a3e-9f4e-3a8a0f1f2c11";
 

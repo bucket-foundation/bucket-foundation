@@ -1,0 +1,42 @@
+{
+  "GET unconfigured": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_atlas"
+    }
+  },
+  "GET anonymous": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_atlas"
+    }
+  },
+  "GET signed in, store down": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_atlas"
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_atlas"
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unknown_atlas"
+    }
+  }
+}

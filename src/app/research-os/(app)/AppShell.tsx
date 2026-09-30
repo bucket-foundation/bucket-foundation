@@ -4,6 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import SearchPalette from "./SearchPalette";
+import WorkQuiz from "./quiz/WorkQuiz";
+import { inLaunchScope } from "@/lib/research-os/launch-scope";
+import { RESEARCH_PREFIX, researchHref } from "@/lib/research-host";
 
 export interface ShellUser {
   email: string | null;
@@ -28,8 +31,10 @@ const LEARN: Item[] = [
   { href: "/research-os/attend", label: "Attention", hint: "rank the graph by shared primes", match: ["/research-os/attend"] },
   { href: "/research-os/nsm", label: "Semantic primes", hint: "the 65 meanings every language has", match: ["/research-os/nsm"] },
   { href: "/research-os/software", label: "Software", hint: "what each science runs, and how we reach it", match: ["/research-os/software"] },
+  { href: "/research-os/solvability", label: "Solvability", hint: "open problems by level, proof and market", match: ["/research-os/solvability"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
+  { href: "/research-os/quiz", label: "Work quiz", hint: "surprise questions from our own work", match: ["/research-os/quiz"] },
 ];
 
 const TEACH: Item[] = [
@@ -48,9 +53,11 @@ function isOn(item: Item, pathname: string): boolean {
   return item.match.some((p) => pathname === p || pathname.startsWith(p + "/"));
 }
 
-export default function AppShell({ user, children }: { user: ShellUser; children: ReactNode }) {
-  const pathname = usePathname() || "/research-os/home";
-  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: LEARN }];
+export default function AppShell({ user, host, children }: { user: ShellUser; host: string | null; children: ReactNode }) {
+  const raw = usePathname() || "/research-os/home";
+  const pathname = raw.startsWith(RESEARCH_PREFIX) ? raw : RESEARCH_PREFIX + (raw === "/" ? "" : raw);
+  const href = (p: string) => researchHref(p, host);
+  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: user.staff ? LEARN : LEARN.filter((it) => inLaunchScope(it.href)) }];
   if (user.staff) groups.push({ title: "teach", items: TEACH });
   const all = groups.flatMap((g) => g.items);
   const name = user.handle || (user.email ? user.email.split("@")[0] : "you");
@@ -78,7 +85,7 @@ export default function AppShell({ user, children }: { user: ShellUser; children
             return (
               <Link
                 key={it.href}
-                href={it.href}
+                href={href(it.href)}
                 aria-current={on ? "page" : undefined}
                 className={
                   "small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap border-b-2 min-h-[44px] inline-flex items-center " +
@@ -93,6 +100,7 @@ export default function AppShell({ user, children }: { user: ShellUser; children
       </nav>
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <WorkQuiz enabled={user.staff} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
@@ -113,7 +121,7 @@ export default function AppShell({ user, children }: { user: ShellUser; children
                     return (
                       <li key={it.href}>
                         <Link
-                          href={it.href}
+                          href={href(it.href)}
                           aria-current={on ? "page" : undefined}
                           className={
                             "block px-3 py-2 rounded-sm border-l-2 transition " +
@@ -130,7 +138,7 @@ export default function AppShell({ user, children }: { user: ShellUser; children
               </div>
             ))}
             <div className="mt-6 px-3 flex flex-col gap-2 text-[12px]">
-              <Link href="/research-os" className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">about Research OS</Link>
+              <Link href={href("/research-os")} className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">about Research OS</Link>
               <form method="post" action="/auth/sign-out">
                 <button type="submit" className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">sign out</button>
               </form>

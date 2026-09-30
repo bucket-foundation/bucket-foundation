@@ -2,7 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createHash } from "node:crypto";
 import { EMBED_MODEL, embedText, publicFactorIds, type EdgeRow, type NodeVectors, type PrivateLookup } from "./attention";
 import type { Snapshot } from "./makeup";
-import { pagedRead } from "./paging";
+import { inChunks, pagedRead } from "./paging";
 import { FACTOR_EDGES } from "./primes";
 import { authorizeNode } from "./read-access";
 
@@ -60,19 +60,46 @@ export function freshVectors(rows: StoredVector[], snap: Snapshot): { vectors: N
   return { vectors, stale };
 }
 
-let cachedRows: { at: number; rows: StoredVector[] } | null = null;
+type VectorReader = (ids: string[]) => Promise<StoredVector[]>;
 
-export async function loadNodeVectors(svc: SupabaseClient, snap: Snapshot, ttlMs = 600_000): Promise<{ vectors: NodeVectors; stale: number }> {
-  if (!cachedRows || Date.now() - cachedRows.at >= ttlMs) {
-    const rows = await pagedRead<StoredVector>((page) =>
+export function vectorLoader(read: VectorReader, ttlMs = 600_000, now: () => number = Date.now) {
+  const cache = new Map<string, { at: number; row: StoredVector | null }>();
+  return async (snap: Snapshot): Promise<{ vectors: NodeVectors; stale: number }> => {
+    const t = now();
+    const ids = Array.from(snap.byId.keys()).sort();
+    const missing = ids.filter((id) => {
+      const hit = cache.get(id);
+      return !hit || t - hit.at >= ttlMs;
+    });
+    if (missing.length) {
+      const got = new Map((await read(missing)).map((r) => [r.node_id, r]));
+      for (const id of missing) cache.set(id, { at: t, row: got.get(id) ?? null });
+    }
+    const rows: StoredVector[] = [];
+    for (const id of ids) {
+      const row = cache.get(id)?.row;
+      if (row) rows.push(row);
+    }
+    return freshVectors(rows, snap);
+  };
+}
+
+export function readVectorsFor(svc: SupabaseClient): VectorReader {
+  return (ids) =>
+    inChunks<StoredVector>(ids, (chunk, page) =>
       svc
         .from("node_embeddings")
         .select("node_id,text_hash,vector")
         .eq("model", EMBED_MODEL)
+        .in("node_id", chunk)
         .order("node_id", { ascending: true })
         .range(page.from, page.to) as unknown as Promise<{ data: StoredVector[] | null; error: { message: string } | null }>,
     );
-    cachedRows = { at: Date.now(), rows };
-  }
-  return freshVectors(cachedRows.rows, snap);
+}
+
+let sharedLoader: { svc: SupabaseClient; load: ReturnType<typeof vectorLoader> } | null = null;
+
+export async function loadNodeVectors(svc: SupabaseClient, snap: Snapshot, ttlMs = 600_000): Promise<{ vectors: NodeVectors; stale: number }> {
+  if (!sharedLoader || sharedLoader.svc !== svc) sharedLoader = { svc, load: vectorLoader(readVectorsFor(svc), ttlMs) };
+  return sharedLoader.load(snap);
 }

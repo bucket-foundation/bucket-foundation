@@ -8,6 +8,10 @@ For material architecture, implementation plans, code and research claims anywhe
 
 Plans and PRs both get a critic review before work starts and before merge. Pass: weighted score above 8.0/10, no dimension below 7, no open critical or high finding. Three rounds at most; after round three the change merges with its open medium and low findings filed as beads, or it closes. Post the final report on the PR. The critic must not recursively delegate itself.
 
+## Math Contract
+
+Quantitative claims cite a BucketMath definition or theorem (`[bm:Name]`, library at `lean/`) or carry `[empirical: source, date, command]`. Rules and the `bm.py` tool: [docs/agents/MATH-CONTRACT.md](docs/agents/MATH-CONTRACT.md).
+
 ## Quick Reference
 
 ```bash

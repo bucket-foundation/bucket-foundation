@@ -1,11 +1,12 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { buildAcademyImport } from "../../../src/lib/research-os/ingest/academy";
+import { buildAcademyImport, buildAcademyLearningItems } from "../../../src/lib/research-os/ingest/academy";
 import { checkOrphanEdges, checkTierMonotonicity, tierViolationsToReviewItems } from "../../../src/lib/research-os/ingest/validate";
 import { mergeReviewList } from "../../../src/lib/research-os/ingest/review";
 import { loadAcademyCorpusFiles } from "./lib/load-academy-corpus";
 import { readExistingReviewList, writeReviewList } from "./lib/review-list";
 import { upsertGraph } from "./lib/upsert-graph";
+import { upsertLearningItems } from "./lib/upsert-learning-items";
 import { shadowRequested, shadowWrite } from "./lib/medallion-shadow";
 
 const ROOT = resolve(__dirname, "..", "..", "..");
@@ -15,6 +16,8 @@ const APPLY = process.argv.includes("--apply");
 async function main() {
   const files = loadAcademyCorpusFiles(ROOT);
   const result = buildAcademyImport(files);
+  const items = buildAcademyLearningItems(files);
+  const itemCount = Array.from(items.values()).reduce((n, xs) => n + xs.length, 0);
 
   const orphans = checkOrphanEdges(result.nodes, result.edges);
   if (orphans.length > 0) {
@@ -32,7 +35,7 @@ async function main() {
 
   console.log(
     `[academy-import] ${files.length} corpus files, ${result.nodes.length} nodes, ${result.edges.length} prerequisite edges, ` +
-      `${tierViolations.length} tier violations, ${result.reviewList.length} other review items.`,
+      `${itemCount} learning items, ${tierViolations.length} tier violations, ${result.reviewList.length} other review items.`,
   );
 
   if (!APPLY) {
@@ -40,6 +43,8 @@ async function main() {
   } else {
     const written = await upsertGraph(result.nodes, result.edges, { label: "academy-import" });
     console.log(`[academy-import] wrote ${written.nodesWritten} nodes, ${written.edgesWritten} edges to graph schema.`);
+    const li = await upsertLearningItems(items, written.idBySlug, "academy-import");
+    console.log(`[academy-import] learning items on ${li.nodes} nodes: ${li.written} written, ${li.deleted} deleted.`);
   }
   if (shadowRequested()) await shadowWrite("academy-import", { nodes: result.nodes, importer: "academy-import" });
 }

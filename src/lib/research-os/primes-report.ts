@@ -3,55 +3,13 @@ import { classifyFrontier, coverage, depthPolynomials, formatP, frontier, implic
 import { CONFIDENCE_SOURCE } from "./decompose-further";
 import { pagedRead } from "./paging";
 import { decompose, FACTOR_EDGES, penetration, summarize, type Decomposition, type DepEdge, type PrimeNodeInput, type PrimeSummary } from "./primes";
+import { nonIdeaReportFilter } from "./idea";
 import { readLineageSummary } from "./medallion/lineage-read";
 import type { LineageSummary } from "./medallion/report";
 
-export type ReportNode = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
-export type ReportEdge = { from_id: string; to_id: string; kind: string; confidence: number | null };
+import type { ReportNode, ReportEdge, ReportRef, PrimesReport, LineageBlock, PrimeAlgebraReport, GapRow, PendingPair, ReportOptions } from "./primes-report-types";
 
-export interface ReportRef {
-  slug: string | null;
-  title: string;
-  kind: string | null;
-  branch: string | null;
-}
-
-export interface PrimesReport {
-  generatedAt: string;
-  summary: PrimeSummary;
-  unfactoredByKind: { kind: string; count: number }[];
-  penetrating: (ReportRef & { composites: number; branches: number; spread: number })[];
-  deepest: (ReportRef & { depth: number; primes: number })[];
-  widest: (ReportRef & { depth: number; primes: number })[];
-  confirmedIrreducible: { count: number; of: number; sample: ReportRef[] };
-  reviewAgain: ReportRef[];
-  algebra: PrimeAlgebraReport;
-  lineage?: LineageBlock;
-}
-
-export type LineageBlock = { ok: true; summary: LineageSummary } | { ok: false; unavailable: string };
-
-export interface PrimeAlgebraReport {
-  coverage: { s: number; coverage: number; supports: number }[];
-  frontier: {
-    pairs: number;
-    triples: number;
-    expectedAtLeastOne: number;
-    withinBranch: number;
-    top: GapRow[];
-    topWithinBranch: GapRow[];
-    gaps: { draws: number; counts: Record<GapClass, number>; counterfactualPairs: number };
-  };
-  together: { a: ReportRef; b: ReportRef; joint: number; pmi: number }[];
-  implied: { node: ReportRef; factor: ReportRef; support: number; mutual: boolean }[];
-  reach: (ReportRef & { coefficients: number[]; meanDepth: number })[];
-}
-
-export type GapRow = { primes: ReportRef[]; expected: number; p: string; gap: GapClass };
-
-export type PendingPair = { from_id: string; to_id: string };
-
-export type ReportOptions = { now?: Date; pendingConfirmed?: PendingPair[]; nullDraws?: number };
+export type { ReportNode, ReportEdge, ReportRef, PrimesReport, LineageBlock, PrimeAlgebraReport, GapRow, PendingPair, ReportOptions };
 
 export const NULL_DRAWS = 1000;
 
@@ -206,7 +164,7 @@ export type PrimesInputs = { nodeRows: ReportNode[]; edgeRows: ReportEdge[]; irr
 
 export async function readPrimesInputs(svc: SupabaseClient): Promise<PrimesInputs> {
   const [nodeRows, edgeRows, reviewed, pending] = await Promise.all([
-    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null).neq("kind", "event")),
+    readAll<ReportNode>(svc, "nodes", "id, slug, title, kind, branch", "id", (q) => q.eq("visibility", "public").is("superseded_by", null).not("kind", "in", nonIdeaReportFilter())),
     readAll<ReportEdge>(svc, "edges", "id, from_id, to_id, kind, confidence", "id", (q) => q.in("kind", Object.keys(FACTOR_EDGES))),
     readAll<{ node_slug: string; status: string }>(svc, "irreducible_proposals", "id, node_slug, status", "id"),
     readAll<{ from_slug: string; to_slug: string }>(svc, "edge_proposals", "id, from_slug, to_slug", "id", (q) =>
