@@ -361,19 +361,35 @@ def test_review_json_drops_private_fields_even_from_a_private_build(tmp_path: Pa
     assert "ada@uni.edu" not in (tmp_path / "r.json").read_text()
 
 
-def test_extra_people_merge_by_id_keeping_the_first_file(tmp_path: Path, monkeypatch):
+def test_extra_people_merge_suppress_and_normalized_ids(tmp_path: Path, monkeypatch, capsys):
     monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
     lines = PEOPLE.read_text().splitlines()
     first = json.loads(lines[0])
+    second = json.loads(lines[1])
     extra = tmp_path / "extra.jsonl"
-    new = dict(json.loads(lines[1]), id="NEW1", name="Fresh Person")
-    extra.write_text("\n".join([json.dumps(dict(first, name="Duplicate Name")), json.dumps(new)]) + "\n")
+    rows = [dict(first, name="Duplicate Name"), dict(json.loads(lines[2]), id="NEW1", name="Fresh Person"),
+            dict(json.loads(lines[3]), id="NEW2", name="Opted Out", institution="Somewhere U")]
+    extra.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+    sup = tmp_path / "suppress.txt"
+    sup.write_text(advisors.name_hash("Opted Out", "Somewhere U") + "\n" + str(second["id"]).lower() + "\n")
     out = tmp_path / "review"
-    code = cli.main(["advisor-review", "--people", str(PEOPLE), "--extra-people", str(extra), "--extra-people", str(tmp_path / "missing.jsonl"),
-                     "--query", str(STATEMENT), "--out", str(out), "--k", "6", "--top", "500", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"])
-    assert code == 0
-    report = json.loads((out / "report.json").read_text())
-    assert report["people"] == len(lines) + 1
+    base = ["advisor-review", "--people", str(PEOPLE), "--extra-people", str(extra), "--extra-people", str(tmp_path / "missing.jsonl"),
+            "--query", str(STATEMENT), "--out", str(out), "--k", "6", "--top", "500", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"]
+    with pytest.raises(SystemExit):
+        cli.main(base)
+    assert cli.main(base + ["--suppress", str(sup)]) == 0
+    assert "WARNING" in capsys.readouterr().err
     with open(out / "ranked.csv") as f:
         names = {r["name"] for r in csv.DictReader(f)}
-    assert "Fresh Person" in names and "Duplicate Name" not in names
+    assert "Fresh Person" in names and "Duplicate Name" not in names and "Opted Out" not in names
+    assert second["name"] not in names
+
+
+def test_person_key_prefers_orcid_then_openalex_then_ror_name():
+    P = advisors.Person
+    assert advisors.person_key(P("A1", "X", "", {"orcid": "0000-0001-2345-6789", "openalex_id": "A1"})) == "orcid:0000-0001-2345-6789"
+    assert advisors.person_key(P("A5000043872", "X", "", {"orcid": "None"})) == "openalex:a5000043872"
+    assert advisors.person_key(P("row-3", "Jane Doe", "", {"ror": "05ect4e57"})) == "name:05ect4e57|jane doe"
+    assert advisors.person_key(P("src-9", "Jane Doe", "", {})) == "id:src-9"
+    pub = advisors.publishable_rows([{"id": "A1", "email": "x@y"}])[0]
+    assert pub["id"] != "A1" and pub["id"].startswith("p")
