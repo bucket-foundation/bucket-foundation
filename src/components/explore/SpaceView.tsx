@@ -52,7 +52,7 @@ export default function SpaceView({ dataset }: Props) {
             </li>
           ))}
         </ul>
-        <ol className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-1 text-xs" style={{ color: "var(--parchment-dim)" }}>
+        <ol className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-1 text-xs" style={{ color: "#A89F88" }}>
           {ds.components.map((c) => (
             <li key={c.index}>
               <b>{c.index}</b> {c.top_terms.slice(0, 4).join(", ")} <span>{(c.variance_ratio * 100).toFixed(0)}%</span>
