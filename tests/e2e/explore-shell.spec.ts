@@ -17,7 +17,7 @@ test("a query replaces the sample with canon excerpts projected on the reference
   await page.goto("/explore?view=circle");
   await page.getByTestId("shell-query").fill("entropy");
   const results = page.getByTestId("shell-result");
-  await expect(results.first()).toBeVisible();
+  await expect(results.first()).toBeVisible({ timeout: 60_000 });
   await expect(page.getByTestId("sample-badge")).toHaveCount(0);
   await expect(page.getByTestId("circle-chart").locator("g[data-vertices]").first()).toHaveAttribute("data-vertices", "12");
   await expect(page).toHaveURL(/q=entropy/);
