@@ -8,6 +8,12 @@ import { formLines, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type A
 import { AnalysisBrowser, AnalyzeRun } from "./analyze-view";
 import type { Pack } from "./pack/export";
 import { dataDir, ensureDataDir, openSession, parseArgs, pickKeyring } from "./setup";
+import { loadBank, loadReview, loadScores } from "./hai/files";
+import { HaiStore } from "./hai/store";
+import { freeze, parseToolArgs, review, score } from "./hai/tools";
+import { HaiApp } from "./hai/view";
+
+const HAI_TOOLS = new Set(["freeze", "review", "score"]);
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -56,12 +62,31 @@ async function main(argv: string[]) {
     await render(<AnalysisBrowser root={argv[1]} />).waitUntilExit();
     return;
   }
-  const { cmd, opts } = parseArgs(argv);
+  if (argv[0] === "hai" && HAI_TOOLS.has(argv[1])) {
+    const a = parseToolArgs(argv.slice(2));
+    if (argv[1] === "freeze") freeze(pack as Pack, a);
+    else if (argv[1] === "review") review(a);
+    else await score(a);
+    return;
+  }
+  const hai = argv[0] === "hai";
+  const haiCmd = hai ? (argv[1] && !argv[1].startsWith("--") ? argv[1] : "tui") : null;
+  const { cmd, opts } = parseArgs(hai ? argv.slice(haiCmd === "tui" ? 1 : 2) : argv);
   const dir = ensureDataDir(dataDir());
   const session = await openSession(await pickKeyring(opts, dir), dir);
   const content = pack as Pack;
   const imported = session.store.importPack(content.version, content.items);
   try {
+    if (haiCmd) {
+      const h = new HaiStore(session.store, session.key);
+      if (haiCmd === "wipe") {
+        h.wipe();
+        console.log("hai data deleted");
+      } else if (haiCmd === "export") console.log(JSON.stringify(h.export(), null, 2));
+      else if (haiCmd === "tui") await render(<HaiApp hai={h} data={{ bank: loadBank(), review: loadReview(), scores: loadScores() }} />).waitUntilExit();
+      else throw new Error(`unknown hai command ${haiCmd}; try freeze, review, score, wipe, export`);
+      return;
+    }
     if (cmd === "init" || cmd === "whoami") {
       console.log(
         JSON.stringify(

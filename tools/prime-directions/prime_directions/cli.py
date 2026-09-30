@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
+from . import fitme, advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -127,8 +127,21 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--people", type=Path, required=True)
     a.add_argument("--query", type=Path, required=True)
     a.add_argument("--out", type=Path, required=True)
+    review_args(a)
+    f = sub.add_parser("fit-me")
+    f.add_argument("--statement", type=Path)
+    f.add_argument("--cv", type=Path)
+    f.add_argument("--people", type=Path)
+    f.add_argument("--out", type=Path, required=True)
+    f.add_argument("--forget", action="store_true")
+    review_args(f)
+    return p
+
+def review_args(a) -> None:
     a.add_argument("--k", type=int, default=64)
     a.add_argument("--top", type=int, default=300)
+    a.add_argument("--directions", type=Path, default=None)
+    a.add_argument("--publishable", action="store_true")
     a.add_argument("--cap", type=int, default=5)
     a.add_argument("--cap-window", type=int, default=50)
     a.add_argument("--label", type=int, default=25)
@@ -145,7 +158,31 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--ror-offline", action="store_true")
     a.add_argument("--watch", type=float, default=0.0)
     a.add_argument("--max-runs", type=int, default=0)
-    return p
+
+def cmd_fit_me(args) -> int:
+    repo = corpora.TOOL_REPO_ROOT
+    try:
+        if args.forget:
+            fitme.forget(args.out, repo, corpora.data_root())
+            print(f"deleted {args.out}")
+            return 0
+        if args.statement is None or args.people is None:
+            print("fit-me needs --statement and --people (the public advisor export is not published yet)", file=sys.stderr)
+            return 2
+        out = check_private_out(args.out, [repo, corpora.data_root()])
+        text = fitme.read_text(args.statement)
+        if args.cv:
+            text = text + "\n\n" + fitme.read_text(args.cv)
+        fitme.prepare_out(out, corpora.data_root())
+    except (fitme.FitError, PrivacyError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    ns = argparse.Namespace(**{**vars(args), "query": args.statement, "query_text": text[:fitme.MAX_CHARS], "publishable": True,
+                                "directions_from_statement": args.directions is None})
+    people = advisors.load_people(args.people, text_keys=tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS)
+    advisor_run(ns, out, people)
+    print("wrote " + ", ".join(sorted(p.name for p in out.iterdir() if p.name != fitme.MARKER)) + f" to {out}; delete with --forget")
+    return 0
 
 def cmd_advisor_review(args) -> int:
     out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
@@ -180,7 +217,7 @@ def advisor_run(args, out: Path, people: list) -> None:
     if args.ror_cache:
         client = ror.RorClient(args.ror_cache, offline=args.ror_offline)
         checks = _time(timings, "ror_s", ror.validate, people, client)
-    query_text = args.query.read_text(encoding="utf-8")
+    query_text = getattr(args, "query_text", None) or args.query.read_text(encoding="utf-8")
     query = advisors.statement_body(query_text, args.stop_heading)
     model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
                    min_chars=args.min_chars, seed=args.seed)
@@ -214,7 +251,10 @@ def advisor_run(args, out: Path, people: list) -> None:
         "cap": args.cap,
         "cap_window": args.cap_window,
     }
-    advisors.write_page(rows, out / "pca.png", context, out / "index.html")
+    directions = advisors.load_directions(args.directions) if args.directions else (
+        fitme.statement_directions(model_, query_text) if getattr(args, "directions_from_statement", False) else [])
+    context.update(advisors.direction_profiles(model_, rows, query, directions, args.scoring))
+    advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable)
     report = {
         "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
         "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),
@@ -425,6 +465,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "fit-me":
+            return cmd_fit_me(args)
         if args.cmd == "advisor-review":
             return cmd_advisor_review(args)
         if args.cmd == "neighbors":
