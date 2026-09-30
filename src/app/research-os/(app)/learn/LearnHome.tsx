@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { deckLabel, loadCorpus, loadDecks, type Deck } from "@/lib/academy/corpus-client";
 import { gripSphere, type GripSphere } from "@/lib/academy/grip-sphere";
-import { loadBranch, pullServer } from "@/lib/academy/progress-store";
+import { exportLocal, webProgressStore } from "@/lib/academy/progress-store";
 import type { EngineState } from "@/lib/academy/engine";
 import { BTN_PRIMARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 
@@ -36,12 +36,12 @@ export default function LearnHome() {
     let alive = true;
     (async () => {
       try {
-        const [decks, server] = await Promise.all([loadDecks(), pullServer()]);
+        const [decks, server] = await Promise.all([loadDecks(), webProgressStore.pull()]);
         const now = Date.now();
         const out: Row[] = [];
         const states: EngineState[] = [];
         for (const d of decks) {
-          const s = await loadBranch(d.id, server);
+          const s = await webProgressStore.load(d.id, server);
           states.push(s);
           out.push(rowFor(d, s, now));
         }
@@ -99,10 +99,25 @@ export default function LearnHome() {
             </Panel>
           ))}
         </div>
+        <p className="text-[12px] text-[color:var(--basalt-3)]">
+          <button type="button" onClick={downloadProgress} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
+            Export progress
+          </button>
+        </p>
         </>
       )}
     </div>
   );
+}
+
+function downloadProgress() {
+  const blob = new Blob([JSON.stringify({ branches: exportLocal() })], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "bucket-learn-progress.json";
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;

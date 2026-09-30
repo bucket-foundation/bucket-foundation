@@ -2,7 +2,15 @@
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
 
-const LS_BASE = "bucket-academy/v1";
+export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
+
+export interface ProgressStore {
+  pull(): Promise<ServerBranches | null>;
+  load(branch: string, server?: ServerBranches | null): Promise<EngineState>;
+  save(branch: string, state: EngineState): void;
+}
+
+export const LS_BASE = "bucket-academy/v1";
 const API = "/api/academy/progress";
 
 export function readLocal(branch: string): EngineState | null {
@@ -32,8 +40,6 @@ export function localBranches(): string[] {
   }
   return out;
 }
-
-export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
 
 export async function pullServer(): Promise<ServerBranches | null> {
   try {
@@ -87,4 +93,15 @@ export function saveBranch(branch: string, state: EngineState): void {
       void pushBranch(branch, state);
     }, 1200)
   );
+}
+
+export const webProgressStore: ProgressStore = { pull: pullServer, load: loadBranch, save: saveBranch };
+
+export function exportLocal(): Record<string, EngineState> {
+  const out: Record<string, EngineState> = {};
+  for (const b of localBranches()) {
+    const s = readLocal(b);
+    if (s) out[b] = s;
+  }
+  return out;
 }

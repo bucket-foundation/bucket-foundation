@@ -1,12 +1,15 @@
 import { randomBytes } from "node:crypto";
+import { buildEncompassingMap, mergeState, normalizeState, withLeverage, type Atom, type EncEdge } from "../../../src/lib/academy/engine";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
 import type { Question, Rating } from "./grade";
 import type { Route } from "./serve";
-import type { Store } from "./store";
+import type { Pack, PackDeck } from "./pack/export";
+import { deckOf, type Store } from "./store";
 
 export interface LocalOptions {
   now?: () => number;
   seed?: () => string;
+  content?: Pick<Pack, "decks" | "atoms">;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -32,6 +35,17 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
   const now = opts.now ?? Date.now;
   const seed = opts.seed ?? (() => randomBytes(8).toString("hex"));
   const open = new Map<string, Question>();
+  const decks: PackDeck[] = opts.content?.decks ?? [];
+  const atoms = new Map<string, Atom[]>(Object.entries(opts.content?.atoms ?? {}).map(([d, a]) => [d, withLeverage(a)]));
+  const enc = new Map<string, Record<string, EncEdge[]>>();
+  const encFor = (deck: string) => {
+    if (!enc.has(deck)) enc.set(deck, buildEncompassingMap(atoms.get(deck) ?? []));
+    return enc.get(deck)!;
+  };
+  const itemDeck = (itemId: string) => {
+    const it = store.items().find((i) => i.id === itemId);
+    return it ? deckOf(it.branch) : "";
+  };
 
   return {
     "GET /local/quiz": (_req, url) => {
@@ -52,7 +66,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
       const ms = elapsed(b.elapsedMs);
       if (ms === null) return json({ error: "bad elapsedMs" }, 400);
       open.delete(q.itemId);
-      const r = answerQuiz(store, q, choice as number | null, ms, now());
+      const r = answerQuiz(store, q, choice as number | null, ms, now(), encFor(itemDeck(q.itemId)));
       return json({ ...r, answer: q.choices[q.answerIndex] });
     },
     "GET /local/review": (_req, url) => {
@@ -70,8 +84,79 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
       if (b.rating !== 1 && b.rating !== 2 && b.rating !== 3 && b.rating !== 4) return json({ error: "rating must be 1..4" }, 400);
       const ms = elapsed(b.elapsedMs);
       if (ms === null) return json({ error: "bad elapsedMs" }, 400);
-      answerReview(store, b.itemId, b.rating as Rating, ms, now());
+      answerReview(store, b.itemId, b.rating as Rating, ms, now(), encFor(itemDeck(b.itemId)));
       return json({ ok: true, due: store.card(b.itemId)?.due ?? null });
     },
+    "GET /local/decks": () => {
+      const s = now();
+      return json({
+        decks: decks.map((d) => {
+          const state = store.learnState(d.id);
+          const cards = Object.values(state.cards);
+          return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= s).length, xp: state.stats.xp };
+        }),
+      });
+    },
+    "GET /local/atoms": (_req, url) => {
+      const deck = url.searchParams.get("deck") ?? "";
+      const list = atoms.get(deck);
+      return list ? json({ deck, atoms: list }) : json({ error: "unknown deck" }, 404);
+    },
+    "GET /local/progress": () => {
+      const branches: Record<string, { data: unknown; updated_at: string }> = {};
+      for (const deck of store.learnDecks()) branches[deck] = { data: store.learnState(deck), updated_at: new Date(store.learnUpdatedAt(deck)).toISOString() };
+      return json({ branches });
+    },
+    "POST /local/progress": async (req) => {
+      const b = await body(req);
+      if (!b || typeof b.branch !== "string" || !DECK_ID.test(b.branch) || !b.data || typeof b.data !== "object") return json({ error: "branch and data required" }, 400);
+      const merged = mergeState(store.learnState(b.branch), normalizeState(b.data));
+      store.putLearnState(b.branch, merged, now());
+      return json({ data: merged });
+    },
+    "POST /local/import": async (req, url) => {
+      const force = url.searchParams.get("force") === "1";
+      if (store.meta("web_import_at") && !force) return json({ error: "already imported" }, 409);
+      const b = await body(req);
+      const incoming = b ? webBranches(b) : null;
+      if (!incoming) return json({ error: "expected { branches: { <deck>: EngineState } }" }, 400);
+      const known = new Set(decks.map((d) => d.id));
+      const unknown = Object.keys(incoming).filter((d) => !known.has(d));
+      if (unknown.length) return json({ error: `unknown decks: ${unknown.sort().join(", ")}` }, 400);
+      const at = now();
+      const imported: string[] = [];
+      store.db.transaction(() => {
+        for (const [deck, state] of Object.entries(incoming)) {
+          store.putLearnState(deck, mergeState(store.learnState(deck), state), at);
+          imported.push(deck);
+        }
+        store.setMeta("web_import_at", String(at));
+      })();
+      return json({ imported: imported.sort() });
+    },
   };
+}
+
+const DECK_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
+export const IMPORT_BODY_BYTES = 8 * 1024 * 1024;
+const LS_PREFIX = "bucket-academy/v1/";
+
+export function webBranches(b: Record<string, unknown>): Record<string, ReturnType<typeof normalizeState>> | null {
+  const source = b.branches && typeof b.branches === "object" && !Array.isArray(b.branches) ? (b.branches as Record<string, unknown>) : b;
+  const out: Record<string, ReturnType<typeof normalizeState>> = {};
+  for (const [k, v] of Object.entries(source)) {
+    const deck = k.startsWith(LS_PREFIX) ? k.slice(LS_PREFIX.length) : k;
+    if (!DECK_ID.test(deck)) return null;
+    let raw: unknown = v;
+    if (typeof v === "string") {
+      try {
+        raw = JSON.parse(v);
+      } catch {
+        return null;
+      }
+    }
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+    out[deck] = normalizeState(raw);
+  }
+  return Object.keys(out).length ? out : null;
 }

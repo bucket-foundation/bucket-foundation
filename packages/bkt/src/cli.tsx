@@ -12,8 +12,9 @@ import { loadBank, loadReview, loadScores } from "./hai/files";
 import { HaiStore } from "./hai/store";
 import { freeze, parseToolArgs, review, score } from "./hai/tools";
 import { HaiApp } from "./hai/view";
-import { localRoutes } from "./local";
+import { IMPORT_BODY_BYTES, localRoutes } from "./local";
 import { startServe } from "./serve";
+import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
 
 const HAI_TOOLS = new Set(["freeze", "review", "score"]);
 
@@ -56,6 +57,14 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 }
 
 async function main(argv: string[]) {
+  if (argv[0] === "app") {
+    const running = readApp(runtimeDir());
+    if (running) {
+      process.kill(running.pid, "SIGUSR1");
+      console.log(`reopened the Bucket window on port ${running.port}`);
+      return;
+    }
+  }
   if (argv[0] === "analyze") {
     process.exitCode = await analyzeCmd(argv.slice(1));
     return;
@@ -107,13 +116,28 @@ async function main(argv: string[]) {
       );
       return;
     }
-    if (cmd === "serve") {
-      const srv = startServe({ routes: localRoutes(session.store) });
-      console.log(srv.url);
+    if (cmd === "serve" || cmd === "app") {
+      const srv = startServe({
+        routes: localRoutes(session.store, { content }),
+        routeBodyBytes: { "POST /local/import": IMPORT_BODY_BYTES },
+        uiDir: uiDir(),
+        onError: (e) => console.error(`bkt serve: ${e.message}`),
+      });
+      const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
+      const profile = join(dir, "window-profile");
+      const show = () => (cmd === "app" ? openWindow(srv.url, profile) : console.log(srv.url));
+      const reopen = () => {
+        srv.remint();
+        show();
+      };
+      process.on("SIGUSR1", reopen);
+      show();
       await new Promise<void>((done) => {
         process.once("SIGINT", done);
         process.once("SIGTERM", done);
       });
+      process.off("SIGUSR1", reopen);
+      release();
       srv.stop();
       return;
     }
@@ -121,7 +145,7 @@ async function main(argv: string[]) {
       console.log(JSON.stringify(session.store.stats(Date.now())));
       return;
     }
-    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, serve, analyze, analyses`);
+    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, serve, app, analyze, analyses`);
     const ink = render(<App session={session} />);
     await ink.waitUntilExit();
   } finally {

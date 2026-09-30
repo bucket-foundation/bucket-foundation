@@ -3,11 +3,62 @@ import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 import { open, seal } from "./crypto";
+import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
 import type { Card, Item, Rating } from "./grade";
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 3;
 
-const MIGRATIONS = [
+export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
+
+export function deckOf(branch: string): string {
+  return LEGACY_DECKS[branch] ?? branch;
+}
+
+const deckCase = `case branch ${Object.entries(LEGACY_DECKS)
+  .map(([b, d]) => `when '${b}' then '${d}'`)
+  .join(" ")} else branch end`;
+
+const toProf = (p: { theta?: number; n?: number }) => ({ theta: p.theta ?? 0, n: p.n ?? 0 });
+
+type Migration = string | ((db: Database) => void);
+
+export function migrateLearn(db: Database) {
+  db.run(`create table learn_cards (deck text not null, card_id text not null, state text not null, due integer, updated_at integer not null,
+      primary key (deck, card_id));
+    create index learn_cards_due on learn_cards(due);
+    create table learn_prof (deck text not null, card_id text not null, theta real not null, n integer not null, primary key (deck, card_id));
+    create table learn_settings (deck text primary key, data text not null, updated_at integer not null);
+    create table learn_stats (deck text primary key, data text not null, updated_at integer not null);
+    alter table items add column deck text;`);
+  db.run(`update items set deck = ${deckCase}`);
+  type Row = { deck: string; atom_id: string; state: string; updated_at: number };
+  const rows = db.query<Row, []>("select i.deck, i.atom_id, c.state, c.updated_at from cards c join items i on i.id = c.item_id order by c.item_id").all();
+  const best = new Map<string, { row: Row; card: Card }>();
+  for (const row of rows) {
+    const card = JSON.parse(row.state) as Card;
+    const k = JSON.stringify([row.deck, row.atom_id]);
+    const prev = best.get(k);
+    if (!prev || (card.lastReview ?? 0) > (prev.card.lastReview ?? 0)) best.set(k, { row, card });
+  }
+  const insCard = db.query("insert into learn_cards (deck, card_id, state, due, updated_at) values (?, ?, ?, ?, ?)");
+  for (const { row, card } of best.values()) insCard.run(row.deck, row.atom_id, JSON.stringify(card), card.due ?? null, row.updated_at);
+  const attempts = db
+    .query<{ deck: string; atom_id: string; level: string; rating: number }, []>(
+      "select i.deck, i.atom_id, i.level, a.rating from attempts a join items i on i.id = a.item_id order by a.at, a.id",
+    )
+    .all();
+  const prof = new Map<string, { deck: string; id: string; p: { theta: number; n: number } }>();
+  for (const a of attempts) {
+    const k = JSON.stringify([a.deck, a.atom_id]);
+    const score = ADAPTIVE.PROF_RATING_SCORE[a.rating] ?? (a.rating > 1 ? 1 : 0);
+    prof.set(k, { deck: a.deck, id: a.atom_id, p: toProf(updateProficiency(prof.get(k)?.p, a.level, score)) });
+  }
+  const insProf = db.query("insert into learn_prof (deck, card_id, theta, n) values (?, ?, ?, ?)");
+  for (const { deck, id, p } of prof.values()) insProf.run(deck, id, p.theta, p.n);
+  db.run("drop index cards_due; drop table cards;");
+}
+
+export const MIGRATIONS: Migration[] = [
   `create table meta (k text primary key, v text not null);
    create table device (id text primary key, public_key text not null, created_at integer not null);
    create table items (id text primary key, atom_id text not null, branch text not null, title text not null,
@@ -26,6 +77,7 @@ const MIGRATIONS = [
      response_enc text, correct integer not null, accepted_ai integer, elapsed_ms integer not null, at integer not null,
      unique (probe_id, item_id, phase));
    create index hai_answer_item on hai_answer(item_id);`,
+  migrateLearn,
 ];
 
 export interface AttemptInput {
@@ -59,7 +111,9 @@ export class Store {
     const current = this.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version;
     for (let v = current; v < MIGRATIONS.length; v++) {
       this.db.transaction(() => {
-        this.db.run(MIGRATIONS[v]);
+        const m = MIGRATIONS[v];
+        if (typeof m === "string") this.db.run(m);
+        else m(this.db);
         this.db.run(`pragma user_version = ${v + 1}`);
       })();
     }
@@ -101,12 +155,12 @@ export class Store {
   importPack(version: string, items: Item[]): number {
     if (this.meta("pack_version") === version) return 0;
     const ins = this.db.query(
-      `insert into items (id, atom_id, branch, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, ?, ?, ?)
-       on conflict(id) do update set atom_id = excluded.atom_id, branch = excluded.branch, title = excluded.title,
+      `insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+       on conflict(id) do update set atom_id = excluded.atom_id, branch = excluded.branch, deck = excluded.deck, title = excluded.title,
        level = excluded.level, prompt = excluded.prompt, answer = excluded.answer, pack_version = excluded.pack_version`,
     );
     this.db.transaction(() => {
-      for (const i of items) ins.run(i.id, i.atomId, i.branch, i.title, i.level, i.prompt, i.answer, version);
+      for (const i of items) ins.run(i.id, i.atomId, i.branch, deckOf(i.branch), i.title, i.level, i.prompt, i.answer, version);
       this.setMeta("pack_version", version);
     })();
     return items.length;
@@ -121,31 +175,103 @@ export class Store {
       .map((r) => ({ id: r.id, atomId: r.atom_id, branch: r.branch, title: r.title, level: r.level, prompt: r.prompt, answer: r.answer }));
   }
 
-  card(itemId: string): Card | null {
-    const row = this.db.query<{ state: string }, [string]>("select state from cards where item_id = ?").get(itemId);
-    return row ? (JSON.parse(row.state) as Card) : null;
+  private itemKey(itemId: string): { deck: string; atom: string; level: string } | null {
+    const r = this.db.query<{ deck: string; atom_id: string; level: string }, [string]>("select deck, atom_id, level from items where id = ?").get(itemId);
+    return r ? { deck: r.deck, atom: r.atom_id, level: r.level } : null;
   }
 
-  putCard(itemId: string, card: Card, now: number) {
-    this.db
-      .query(
-        "insert into cards (item_id, state, updated_at, due) values (?, ?, ?, ?) on conflict(item_id) do update set state = excluded.state, updated_at = excluded.updated_at, due = excluded.due",
-      )
-      .run(itemId, JSON.stringify(card), now, card.due ?? null);
+  card(itemId: string): Card | null {
+    const k = this.itemKey(itemId);
+    if (!k) return null;
+    const row = this.db.query<{ state: string }, [string, string]>("select state from learn_cards where deck = ? and card_id = ?").get(k.deck, k.atom);
+    return row ? (JSON.parse(row.state) as Card) : null;
   }
 
   dueItemIds(now: number, limit: number): string[] {
     return this.db
-      .query<{ item_id: string }, [number, number]>("select item_id from cards where due is not null and due <= ? order by due limit ?")
+      .query<{ id: string }, [number, number]>(
+        `select (select min(i.id) from items i where i.deck = c.deck and i.atom_id = c.card_id) id from learn_cards c
+         where c.due is not null and c.due <= ? and exists (select 1 from items i where i.deck = c.deck and i.atom_id = c.card_id)
+         order by c.due, c.deck, c.card_id limit ?`,
+      )
       .all(now, limit)
-      .map((r) => r.item_id);
+      .map((r) => r.id);
   }
 
   newItemIds(limit: number): string[] {
     return this.db
-      .query<{ id: string }, [number]>("select id from items where id not in (select item_id from cards) order by id limit ?")
+      .query<{ id: string }, [number]>(
+        `select min(i.id) id from items i where not exists (select 1 from learn_cards c where c.deck = i.deck and c.card_id = i.atom_id)
+         group by i.deck, i.atom_id order by id limit ?`,
+      )
       .all(limit)
       .map((r) => r.id);
+  }
+
+  learnDecks(): string[] {
+    return this.db
+      .query<{ deck: string }, []>("select deck from learn_cards union select deck from learn_prof union select deck from learn_settings union select deck from learn_stats order by deck")
+      .all()
+      .map((r) => r.deck);
+  }
+
+  learnUpdatedAt(deck: string): number {
+    const q = (table: string) => this.db.query<{ t: number | null }, [string]>(`select max(updated_at) t from ${table} where deck = ?`).get(deck)?.t ?? 0;
+    return Math.max(q("learn_cards"), q("learn_settings"), q("learn_stats"));
+  }
+
+  learnState(deck: string): EngineState {
+    const cards: Record<string, Card> = {};
+    for (const r of this.db.query<{ card_id: string; state: string }, [string]>("select card_id, state from learn_cards where deck = ?").all(deck))
+      cards[r.card_id] = JSON.parse(r.state) as Card;
+    const prof: EngineState["prof"] = {};
+    for (const r of this.db.query<{ card_id: string; theta: number; n: number }, [string]>("select card_id, theta, n from learn_prof where deck = ?").all(deck))
+      prof[r.card_id] = { theta: r.theta, n: r.n };
+    const settings = this.db.query<{ data: string }, [string]>("select data from learn_settings where deck = ?").get(deck);
+    const stats = this.db.query<{ data: string }, [string]>("select data from learn_stats where deck = ?").get(deck);
+    return normalizeState({ cards, prof, settings: settings ? JSON.parse(settings.data) : undefined, stats: stats ? JSON.parse(stats.data) : undefined });
+  }
+
+  putLearnState(deck: string, raw: unknown, now: number) {
+    const s = normalizeState(raw);
+    this.db.transaction(() => {
+      const existing = new Map(
+        this.db.query<{ card_id: string; state: string }, [string]>("select card_id, state from learn_cards where deck = ?").all(deck).map((r) => [r.card_id, r.state]),
+      );
+      const keep = new Set<string>();
+      const up = this.db.query(
+        "insert into learn_cards (deck, card_id, state, due, updated_at) values (?, ?, ?, ?, ?) on conflict(deck, card_id) do update set state = excluded.state, due = excluded.due, updated_at = excluded.updated_at",
+      );
+      for (const [id, c] of Object.entries(s.cards)) {
+        if (!c || typeof c !== "object") continue;
+        keep.add(id);
+        const state = JSON.stringify(c);
+        if (existing.get(id) !== state) up.run(deck, id, state, typeof c.due === "number" ? c.due : null, now);
+      }
+      const del = this.db.query("delete from learn_cards where deck = ? and card_id = ?");
+      for (const id of existing.keys()) if (!keep.has(id)) del.run(deck, id);
+      this.db.query("delete from learn_prof where deck = ?").run(deck);
+      const ip = this.db.query("insert into learn_prof (deck, card_id, theta, n) values (?, ?, ?, ?)");
+      for (const [id, p] of Object.entries(s.prof)) if (p && Number.isFinite(p.theta)) ip.run(deck, id, p.theta ?? 0, Number.isFinite(p.n) ? (p.n as number) : 0);
+      for (const table of ["learn_settings", "learn_stats"] as const) {
+        const data = JSON.stringify(table === "learn_settings" ? s.settings : s.stats);
+        const prev = this.db.query<{ data: string }, [string]>(`select data from ${table} where deck = ?`).get(deck)?.data;
+        if (prev !== data)
+          this.db
+            .query(`insert into ${table} (deck, data, updated_at) values (?, ?, ?) on conflict(deck) do update set data = excluded.data, updated_at = excluded.updated_at`)
+            .run(deck, data, now);
+      }
+    })();
+  }
+
+  gradeItem(itemId: string, rating: Rating, now: number, encompassing: Record<string, EncEdge[]> = {}): Card {
+    const k = this.itemKey(itemId);
+    if (!k) throw new Error(`unknown item ${itemId}`);
+    return this.db.transaction(() => {
+      const next = engineGrade(this.learnState(k.deck), [], encompassing, k.atom, rating, k.level as Depth, now);
+      this.putLearnState(k.deck, next, now);
+      return next.cards[k.atom];
+    }).immediate();
   }
 
   recordAttempt(a: AttemptInput): string {
@@ -186,8 +312,8 @@ export class Store {
     const q = (sql: string, ...args: number[]) => this.db.query<{ n: number }, number[]>(sql).get(...args)!.n;
     return {
       items: q("select count(*) n from items"),
-      seen: q("select count(*) n from cards"),
-      due: q("select count(*) n from cards where due <= ?", now),
+      seen: q("select count(*) n from learn_cards"),
+      due: q("select count(*) n from learn_cards where due <= ?", now),
       attempts: q("select count(*) n from attempts"),
     };
   }
