@@ -67,7 +67,8 @@ export function parseSignup(body: unknown): ParsedSignup {
   const name = clean(b.name).slice(0, NAME_MAX) || null;
   const roleRaw = clean(b.role).toLowerCase();
   const role = (WAITLIST_ROLES as readonly string[]).includes(roleRaw) ? (roleRaw as WaitlistRole) : null;
-  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted) }, suspect };
+  const optIn = b.whats_new_daily === true ? { whats_new_daily: true } : {};
+  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted), ...optIn }, suspect };
 }
 
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {

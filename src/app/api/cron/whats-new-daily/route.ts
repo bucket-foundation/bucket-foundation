@@ -22,7 +22,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const report = await sendDailyDigest({
       entries: whatsNew.entries,
-      recipients: () => optedInRecipients([list, downloads], optOuts),
+      recipients: () => optedInRecipients([list, downloads], optOuts, config.secret),
       config,
       now: Date.now(),
       deadline,

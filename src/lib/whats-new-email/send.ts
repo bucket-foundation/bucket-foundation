@@ -1,14 +1,14 @@
 import type { MarkStore } from "../download/marks";
 import type { WaitlistEntry } from "../waitlist/core";
-import { adminKeyMatches, emailKey, listSignups, type WaitlistStore } from "../waitlist/store";
+import { adminKeyMatches, listSignups, type WaitlistStore } from "../waitlist/store";
 import { buildDigest, digestDay, renderDigest, type RawEntry } from "./digest";
-import { optedOutAt, unsubscribeUrl } from "./unsubscribe";
+import { optedOutAt, subscriberId, unsubscribeUrl } from "./unsubscribe";
 
 type Env = Record<string, string | undefined>;
 type Fetch = (url: string, init: RequestInit) => Promise<Response>;
 
 export const DEFAULT_FROM = "Bucket Foundation <whats-new@bucket.foundation>";
-export const BATCH_SIZE = 10;
+export const SEND_GAP_MS = 600;
 const RESEND_URL = "https://api.resend.com/emails";
 
 export function cronAuthorized(header: string | null, secret: string | undefined): boolean {
@@ -37,22 +37,16 @@ export interface Recipient {
   email: string;
 }
 
-export async function optedInRecipients(stores: WaitlistStore[], optOuts: MarkStore): Promise<Recipient[]> {
-  const latest = new Map<string, { email: string; at: number }>();
+export async function optedInRecipients(stores: WaitlistStore[], optOuts: MarkStore, secret: string): Promise<Recipient[]> {
+  const emails = new Set<string>();
   for (const store of stores) {
     const entries: WaitlistEntry[] = await listSignups(store);
-    for (const e of entries) {
-      if (e.whats_new_daily !== true) continue;
-      const at = Date.parse(e.updated_at) || 0;
-      const prev = latest.get(e.email);
-      if (!prev || at > prev.at) latest.set(e.email, { email: e.email, at });
-    }
+    for (const e of entries) if (e.whats_new_daily === true) emails.add(e.email);
   }
   const out: Recipient[] = [];
-  for (const { email, at } of Array.from(latest.values())) {
-    const key = emailKey(email);
-    const optedOut = await optedOutAt(optOuts, key);
-    if (optedOut === null || optedOut < at) out.push({ key, email });
+  for (const email of Array.from(emails)) {
+    const key = subscriberId(email, secret);
+    if ((await optedOutAt(optOuts, key)) === null) out.push({ key, email });
   }
   return out.sort((a, b) => a.key.localeCompare(b.key));
 }
@@ -83,6 +77,8 @@ async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day:
   if (!res.ok) throw new Error(`resend ${res.status}`);
 }
 
+const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 export async function sendDailyDigest(opts: {
   entries: readonly RawEntry[];
   recipients: () => Promise<Recipient[]>;
@@ -91,6 +87,7 @@ export async function sendDailyDigest(opts: {
   fetcher?: Fetch;
   deadline?: number;
   clock?: () => number;
+  gapMs?: number;
 }): Promise<SendReport> {
   const { config, now } = opts;
   const fetcher = opts.fetcher ?? fetch;
@@ -100,25 +97,22 @@ export async function sendDailyDigest(opts: {
   if (digest.count === 0) return { ...base, skipped: "empty" };
   const recipients = await opts.recipients();
   const report: SendReport = { ...base, recipients: recipients.length };
-  for (let i = 0; i < recipients.length; i += BATCH_SIZE) {
+  const gap = opts.gapMs ?? SEND_GAP_MS;
+  for (let i = 0; i < recipients.length; i++) {
     if (opts.deadline !== undefined && clock() > opts.deadline) {
       report.pending = recipients.length - i;
       break;
     }
-    const batch = recipients.slice(i, i + BATCH_SIZE);
-    const results = await Promise.allSettled(
-      batch.map((r) => {
-        const unsub = unsubscribeUrl(r.email, config.secret);
-        return sendOne(fetcher, config, r, digest.day, renderDigest(digest, unsub, config.postalAddress), unsub);
-      }),
-    );
-    results.forEach((res, j) => {
-      if (res.status === "fulfilled") report.sent++;
-      else {
-        report.failed++;
-        console.error(`[whats-new] send failed for ${batch[j].key.slice(0, 12)}:`, res.reason instanceof Error ? res.reason.message : "unknown");
-      }
-    });
+    const r = recipients[i];
+    const unsub = unsubscribeUrl(r.email, config.secret);
+    try {
+      await sendOne(fetcher, config, r, digest.day, renderDigest(digest, unsub, config.postalAddress), unsub);
+      report.sent++;
+    } catch (err) {
+      report.failed++;
+      console.error(`[whats-new] send failed for ${r.key.slice(0, 12)}:`, err instanceof Error ? err.message : "unknown");
+    }
+    if (gap > 0 && i < recipients.length - 1) await pause(gap);
   }
   return report;
 }

@@ -4,11 +4,12 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { buildDigest, digestDay, oneLine, renderDigest, type RawEntry } from "../src/lib/whats-new-email/digest";
-import { recordOptOut, unsubscribeSecret, unsubscribeUrl, verifyUnsubscribe } from "../src/lib/whats-new-email/unsubscribe";
+import { recordOptOut, subscriberId, unsubscribeSecret, unsubscribeUrl, verifyUnsubscribe } from "../src/lib/whats-new-email/unsubscribe";
 import { cronAuthorized, digestConfig, optedInRecipients, sendDailyDigest, type DigestConfig, type Recipient } from "../src/lib/whats-new-email/send";
 import { fileMarks } from "../src/lib/download/marks";
 import { emailKey, fileStore, saveSignup } from "../src/lib/waitlist/store";
-import { mergeEntry, parseEntry } from "../src/lib/waitlist/core";
+import { mergeEntry, parseEntry, parseSignup } from "../src/lib/waitlist/core";
+import { parseDownload } from "../src/lib/download/core";
 
 const SECRET = "s".repeat(40);
 const NOW = Date.parse("2026-09-30T00:10:00Z");
@@ -69,9 +70,10 @@ test("unsubscribe tokens verify only for the signed key and a real secret", () =
   const url = new URL(unsubscribeUrl("ada@example.org", SECRET));
   const k = url.searchParams.get("k");
   const s = url.searchParams.get("s");
-  assert.equal(k, emailKey("ada@example.org"));
+  assert.equal(k, subscriberId("ada@example.org", SECRET));
+  assert.notEqual(k, emailKey("ada@example.org"));
   assert.equal(verifyUnsubscribe(k, s, SECRET), k);
-  assert.equal(verifyUnsubscribe(emailKey("eve@example.org"), s, SECRET), null);
+  assert.equal(verifyUnsubscribe(subscriberId("eve@example.org", SECRET), s, SECRET), null);
   assert.equal(verifyUnsubscribe(k, s, "t".repeat(40)), null);
   assert.equal(verifyUnsubscribe(k, (s![0] === "A" ? "B" : "A") + s!.slice(1), SECRET), null);
   assert.equal(verifyUnsubscribe(k, s, undefined), null);
@@ -97,6 +99,16 @@ test("config lists what is missing", () => {
   assert.equal("apiKey" in digestConfig({ RESEND_API_KEY: "k", INVITE_POSTAL_ADDRESS: "a" }, SECRET), true);
 });
 
+test("signup and download forms record an explicit opt-in only", () => {
+  const on = parseSignup({ email: "A@Example.org", whats_new_daily: true });
+  assert.equal(on.ok && on.input.whats_new_daily, true);
+  assert.equal(on.ok && on.input.email, "a@example.org");
+  const truthy = parseSignup({ email: "a@example.org", whats_new_daily: "true" });
+  assert.equal(truthy.ok && truthy.input.whats_new_daily, undefined);
+  const dl = parseDownload({ email: "a@example.org", consent: true, whats_new_daily: true });
+  assert.equal(dl.ok && dl.request.input.whats_new_daily, true);
+});
+
 test("opt-in survives merge and parse", () => {
   const e = mergeEntry(null, { email: "a@example.org", name: null, role: null, wanted: null, whats_new_daily: true }, "2026-09-01T00:00:00Z");
   assert.equal(e.whats_new_daily, true);
@@ -105,7 +117,7 @@ test("opt-in survives merge and parse", () => {
   assert.equal(parseEntry({ ...e, whats_new_daily: "yes" })?.whats_new_daily, undefined);
 });
 
-test("recipients are opted-in, deduped across stores, and drop opt-outs until a newer signup", async () => {
+test("recipients are opted-in, deduped across stores, and an opt-out holds through later signups", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "bkt-wn-"));
   try {
     const list = fileStore(root, "list/");
@@ -116,21 +128,21 @@ test("recipients are opted-in, deduped across stores, and drop opt-outs until a 
     await saveSignup(downloads, { ...base, email: "a@example.org", whats_new_daily: true }, "2026-09-02T00:00:00Z");
     await saveSignup(list, { ...base, email: "b@example.org" }, "2026-09-01T00:00:00Z");
     await saveSignup(downloads, { ...base, email: "c@example.org", whats_new_daily: true }, "2026-09-01T00:00:00Z");
-    let got = await optedInRecipients([list, downloads], marks);
+    let got = await optedInRecipients([list, downloads], marks, SECRET);
     assert.deepEqual(got.map((r) => r.email).sort(), ["a@example.org", "c@example.org"]);
-    await recordOptOut(marks, emailKey("c@example.org"), Date.parse("2026-09-10T00:00:00Z"));
-    got = await optedInRecipients([list, downloads], marks);
+    await recordOptOut(marks, subscriberId("c@example.org", SECRET), Date.parse("2026-09-10T00:00:00Z"));
+    got = await optedInRecipients([list, downloads], marks, SECRET);
     assert.deepEqual(got.map((r) => r.email), ["a@example.org"]);
     await saveSignup(list, { ...base, email: "c@example.org", whats_new_daily: true }, "2026-09-20T00:00:00Z");
-    got = await optedInRecipients([list, downloads], marks);
-    assert.deepEqual(got.map((r) => r.email).sort(), ["a@example.org", "c@example.org"]);
+    got = await optedInRecipients([list, downloads], marks, SECRET);
+    assert.deepEqual(got.map((r) => r.email), ["a@example.org"]);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
 });
 
-test("sends in batches with unsubscribe headers and keeps going past failures", async () => {
-  const recipients: Recipient[] = Array.from({ length: 23 }, (_, i) => ({ email: `u${i}@example.org`, key: emailKey(`u${i}@example.org`) }));
+test("sends one by one with unsubscribe headers and keeps going past failures", async () => {
+  const recipients: Recipient[] = Array.from({ length: 23 }, (_, i) => ({ email: `u${i}@example.org`, key: subscriberId(`u${i}@example.org`, SECRET) }));
   const bodies: Record<string, unknown>[] = [];
   const keys: string[] = [];
   const report = await sendDailyDigest({
@@ -138,6 +150,7 @@ test("sends in batches with unsubscribe headers and keeps going past failures", 
     recipients: async () => recipients,
     config: CONFIG,
     now: NOW,
+    gapMs: 0,
     fetcher: async (_url, init) => {
       const body = JSON.parse(String(init.body)) as Record<string, unknown>;
       bodies.push(body);
@@ -160,7 +173,7 @@ test("sends in batches with unsubscribe headers and keeps going past failures", 
 
 test("a passed deadline leaves the rest pending", async () => {
   let t = 0;
-  const recipients: Recipient[] = Array.from({ length: 25 }, (_, i) => ({ email: `u${i}@example.org`, key: emailKey(`u${i}@example.org`) }));
-  const report = await sendDailyDigest({ entries: ENTRIES, recipients: async () => recipients, config: CONFIG, now: NOW, deadline: 0, clock: () => t++, fetcher: async () => new Response("{}") });
+  const recipients: Recipient[] = Array.from({ length: 25 }, (_, i) => ({ email: `u${i}@example.org`, key: subscriberId(`u${i}@example.org`, SECRET) }));
+  const report = await sendDailyDigest({ entries: ENTRIES, recipients: async () => recipients, config: CONFIG, now: NOW, deadline: 9, gapMs: 0, clock: () => t++, fetcher: async () => new Response("{}") });
   assert.deepEqual({ sent: report.sent, pending: report.pending }, { sent: 10, pending: 15 });
 });

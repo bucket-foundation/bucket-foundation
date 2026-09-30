@@ -17,7 +17,7 @@ export type ParsedDownload = { ok: true; request: DownloadRequest; suspect: bool
 
 export function parseDownload(body: unknown): ParsedDownload {
   const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
-  const parsed = parseSignup({ email: b.email, name: b.name, website: b.website });
+  const parsed = parseSignup({ email: b.email, name: b.name, website: b.website, whats_new_daily: b.whats_new_daily });
   if (!parsed.ok) return parsed;
   if (b.consent !== true) return { ok: false, error: "Tick the box to agree before we store your email." };
   const platform = (DOWNLOAD_PLATFORMS as readonly unknown[]).includes(b.platform) ? (b.platform as DownloadPlatform) : null;
