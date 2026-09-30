@@ -1,6 +1,6 @@
-export type HitType = "excerpt" | "advisor" | "work";
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you";
 
-export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work"];
+export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk"];
 
 export interface Hit {
   id: string;
@@ -13,6 +13,8 @@ export interface Hit {
   year: number | null;
   url: string | null;
   links: string[];
+  source?: string;
+  license?: string;
 }
 
 export interface ExcerptSource {
@@ -33,12 +35,14 @@ export interface AdvisorSource {
   year: number | null;
   score: number;
   url: string | null;
+  star?: number[];
 }
 
 export interface UnifyOptions {
   query: string;
   excerpts: ExcerptSource[];
   advisors: AdvisorSource[];
+  sources?: Hit[];
   types?: HitType[];
   topK?: number;
   linksPerHit?: number;
@@ -128,7 +132,14 @@ export function unify(opts: UnifyOptions): Hit[] {
     }
   }
 
-  const hits: Hit[] = [];
+  const sourceHits: Hit[] = (opts.sources ?? []).map((h) => {
+    const bag = tokens(`${h.title} ${h.text}`);
+    const near = [...nearest(bag, excerpts, 2), ...nearest(bag, advisors, 1)];
+    for (const id of near) link(id, h.id);
+    return { ...h, links: near };
+  });
+
+  const hits: Hit[] = [...sourceHits];
   for (const x of excerpts) {
     hits.push({
       id: x.id,

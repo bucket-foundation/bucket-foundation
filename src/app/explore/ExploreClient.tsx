@@ -6,9 +6,15 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
+import { SPLIT_NOTE } from "@/lib/explore/modes/map";
+import type { MapModel } from "@/lib/explore/map";
+import DropZone from "@/components/explore/DropZone";
+import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
+import SourcePanel, { isSourceHit } from "@/components/explore/SourcePanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
-import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
+import { MOLECULES, REACTIONS, registerCustom, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
 import { loadLandmask, type Landmask } from "@/components/canon-globe/landmaskFromImage";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
 
@@ -19,15 +25,18 @@ const TYPES: { id: HitType; label: string }[] = [
   { id: "excerpt", label: "Excerpts" },
   { id: "advisor", label: "Advisors" },
   { id: "work", label: "Works" },
+  { id: "paper", label: "Papers" },
+  { id: "text", label: "Texts" },
+  { id: "talk", label: "Talks" },
 ];
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
-  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
+  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk"]));
   const [hits, setHits] = useState<Hit[]>([]);
-  const [sample, setSample] = useState(false);
+  const [origin, setOrigin] = useState<AdvisorOrigin>("sample");
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -41,6 +50,11 @@ export default function ExploreClient() {
   const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
+  const [uploadedPapers, setUploadedPapers] = useState<Hit[]>([]);
+  const [you, setYou] = useState<Hit | null>(null);
+  const [youText, setYouText] = useState("");
+  const [mapModel, setMapModel] = useState<MapModel | null>(null);
+  const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
 
   useEffect(() => {
@@ -65,7 +79,7 @@ export default function ExploreClient() {
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
-      setSample(!!body.advisors_sample);
+      setOrigin(body.advisors_source ?? (body.advisors_sample ? "sample" : "review"));
       setSelected(body.results[0]?.id ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -79,8 +93,9 @@ export default function ExploreClient() {
     run(q);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const visible = useMemo(() => hits.filter((h) => types.has(h.type)), [hits, types]);
-  const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
+  const uploaded = useMemo(() => linkNearest([...uploadedPapers, ...(you ? [you] : [])], hits), [uploadedPapers, you, hits]);
+  const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
+  const byId = useMemo(() => new Map([...hits, ...uploaded].map((h) => [h.id, h])), [hits, uploaded]);
   const current = selected ? byId.get(selected) ?? null : null;
   const mode = modeById(modeId);
   const protein = proteinById(null);
@@ -98,6 +113,14 @@ export default function ExploreClient() {
     if ((mode.id !== "molecule" && mode.id !== "reaction") || smilesLoaded) return;
     loadSmiles().then(() => setSmilesLoaded(true));
   }, [mode.id, smilesLoaded]);
+
+  useEffect(() => {
+    if (mode.id !== "map" || mapModel) return;
+    fetch("/api/explore/search?map=1")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((b) => b && setMapModel({ axes: b.axes, advisors: b.advisors, split: !!b.axes_split }))
+      .catch(() => setMapModel(null));
+  }, [mode.id, mapModel]);
 
   const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : mode.id === "protein" ? `${proteinById(null).gene} ${proteinById(null).name}` : null;
 
@@ -120,10 +143,37 @@ export default function ExploreClient() {
 
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask }),
-    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask],
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask, map: mapModel, youText }),
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask, mapModel, youText],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
+
+  const handleUpload = useCallback((r: UploadResult) => {
+    if (r.kind === "genome") {
+      setGenome(r.summary);
+      pickMode("dna");
+    } else if (r.kind === "structure") {
+      setStructure({ text: r.text, format: r.format, name: r.name });
+      pickMode("protein");
+    } else if (r.kind === "smiles") {
+      const list = r.reaction ? REACTIONS : MOLECULES;
+      const id = registerCustom(list, { name: r.name, smiles: r.smiles });
+      if (r.reaction) setReaction(id);
+      else setMolecule(id);
+      pickMode(r.reaction ? "reaction" : "molecule");
+    } else if (r.kind === "bibliography") {
+      const added = bibHits(r.entries);
+      setUploadedPapers(added);
+      setTypes((prev) => new Set(prev).add("paper"));
+      setSelected(added[0]?.id ?? null);
+    } else if (r.kind === "document") {
+      const h = youHit(r.name, r.text);
+      setYou(h);
+      setYouText(r.text);
+      pickMode("map");
+      setSelected(h.id);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggle = (t: HitType) =>
     setTypes((prev) => {
@@ -165,7 +215,7 @@ export default function ExploreClient() {
               {t.label} ({hits.filter((h) => h.type === t.id).length})
             </label>
           ))}
-          {sample && <span style={{ color: "var(--parchment-dim)" }}>advisors: sample data</span>}
+          <span data-testid="advisor-source" style={{ color: "var(--parchment-dim)" }}>{ORIGIN_LABEL[origin]}</span>
         </div>
         {error && <p className="mt-4 text-sm" role="alert">{error}</p>}
         <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2 mt-6 text-sm" style={mono}>
@@ -183,6 +233,12 @@ export default function ExploreClient() {
             </button>
           ))}
         </div>
+        {mode.id === "map" && origin === "bundle" && (
+          <p data-testid="map-note" className="mt-3 text-sm" style={{ color: "var(--parchment-dim)", ...mono }}>
+            {SPLIT_NOTE}. The bundle builder decides who is published; profiles the bundle flags as unpublished, opted out or private are skipped.
+          </p>
+        )}
+        <DropZone onResult={handleUpload} />
         {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
         {mode.id === "atom" && (
           <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
@@ -215,7 +271,7 @@ export default function ExploreClient() {
         )}
         <div className="mt-3">
           {mode.renderer === "protein" ? (
-            <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
+            <ProteinView protein={protein} focus={focus} onFocus={setFocus} upload={structure} />
           ) : (
             <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
           )}
@@ -283,7 +339,8 @@ export default function ExploreClient() {
                 <h2 className="text-lg mt-1">{current.title}</h2>
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
-                {current.url && (
+                <SourcePanel hit={current} />
+                {current.url && !isSourceHit(current) && (
                   <a className="text-sm underline mt-3 inline-block" href={current.url}>
                     Open
                   </a>
@@ -291,10 +348,10 @@ export default function ExploreClient() {
                 {current.links.length > 0 && (
                   <>
                     <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : "Nearest advisors"}
+                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
                     </p>
                     <ul className="mt-1 space-y-1 text-sm">
-                      {current.links.map((id) => {
+                      {current.links.filter((id) => !isSourceHit(current) || byId.has(id)).map((id) => {
                         const l = byId.get(id);
                         return (
                           <li key={id}>
