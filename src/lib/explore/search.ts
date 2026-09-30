@@ -22,6 +22,7 @@ export interface ExcerptSource {
   title: string;
   text: string;
   score: number;
+  year?: number | null;
 }
 
 export interface AdvisorSource {
@@ -136,7 +137,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       text: x.e.text.slice(0, 400),
       score: x.score,
       branch: x.e.branch,
-      year: null,
+      year: x.e.year ?? null,
       url: `/excerpts/${x.e.concept}/${x.e.slug}`,
       links: Array.from(links.get(x.id) ?? []),
     });
@@ -173,7 +174,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       text: "",
       score: w.score * 0.95,
       branch: w.e.branch,
-      year: null,
+      year: w.e.year ?? null,
       url: `/excerpts/${w.e.concept}`,
       links: w.ids,
     });
