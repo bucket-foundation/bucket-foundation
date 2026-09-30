@@ -1,4 +1,5 @@
-import { buildQuestion, gradeChoice, isDue, schedule, seededRandom, type GradeResult, type Item, type Question, type Rating } from "./grade";
+import type { EncEdge } from "../../../src/lib/academy/engine";
+import { buildQuestion, gradeChoice, isDue, seededRandom, type GradeResult, type Item, type Question, type Rating } from "./grade";
 import type { Store } from "./store";
 
 export function pickSession(store: Store, now: number, size: number, seed: string): Item[] {
@@ -18,17 +19,17 @@ export function quizQuestions(store: Store, items: Item[], seed: string): Questi
   return items.map((i) => buildQuestion(i, pool, seed));
 }
 
-export function answerQuiz(store: Store, q: Question, choice: number | null, elapsedMs: number, now: number): GradeResult {
+export function answerQuiz(store: Store, q: Question, choice: number | null, elapsedMs: number, now: number, enc: Record<string, EncEdge[]> = {}): GradeResult {
   const result = gradeChoice(q, choice, elapsedMs);
   const response = choice === null ? null : (q.choices[choice] ?? null);
   store.recordAttempt({ itemId: q.itemId, mode: "quiz", response, correct: result.correct, rating: result.rating, elapsedMs, at: now });
-  store.putCard(q.itemId, schedule(store.card(q.itemId), result.rating, now), now);
+  store.gradeItem(q.itemId, result.rating, now, enc);
   return result;
 }
 
-export function answerReview(store: Store, itemId: string, rating: Rating, elapsedMs: number, now: number) {
+export function answerReview(store: Store, itemId: string, rating: Rating, elapsedMs: number, now: number, enc: Record<string, EncEdge[]> = {}) {
   store.recordAttempt({ itemId, mode: "review", response: null, correct: rating > 1, rating, elapsedMs, at: now });
-  store.putCard(itemId, schedule(store.card(itemId), rating, now), now);
+  store.gradeItem(itemId, rating, now, enc);
 }
 
 export function dueNow(store: Store, itemId: string, now: number): boolean {

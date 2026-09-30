@@ -43,7 +43,7 @@ describe("Store", () => {
     expect(s.journalMode()).toBe("wal");
     s.close();
     const again = new Store(path, key);
-    expect(again.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(2);
+    expect(again.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(3);
     again.close();
   });
 
