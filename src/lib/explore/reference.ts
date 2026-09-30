@@ -12,6 +12,7 @@ export interface ReferenceComponent {
 export interface ReferenceBasis {
   schema: typeof REFERENCE_SCHEMA;
   sign_convention: string;
+  stop_words?: string[];
   vocab: string[];
   idf: number[];
   loadings: number[][];
@@ -43,7 +44,8 @@ export function parseReferenceBasis(raw: unknown): ReferenceBasis {
 
 export function projectText(basis: ReferenceBasis, text: string): Projection {
   const index = new Map(basis.vocab.map((t, i) => [t, i]));
-  const tokens = tokenize(text);
+  const stop = new Set(basis.stop_words ?? []);
+  const tokens = tokenize(text).filter((t) => !stop.has(t));
   const seen = new Set<number>();
   let hits = 0;
   for (const t of tokens) {

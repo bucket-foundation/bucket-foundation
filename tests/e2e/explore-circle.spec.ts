@@ -6,6 +6,7 @@ test("the circle view renders the chart on sample data", async ({ page }) => {
   await page.goto("/explore?view=circle");
   await expect(page.getByTestId("space-view")).toBeVisible();
   await expect(page.getByTestId("sample-badge")).toHaveText("sample data");
+  await expect(page.getByTestId("basis-label")).toHaveText("own basis, unscaled");
   const chart = page.getByTestId("circle-chart");
   await expect(chart).toBeVisible();
   await expect(chart.locator("g[data-series=mean]")).toHaveAttribute("data-vertices", "4");

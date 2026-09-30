@@ -1,11 +1,13 @@
 import { ERAS } from "./geometry";
-import type { AdvisorReview, PrimeDirections } from "../research-os/advisor-review";
-
+import { hasEmail, scrubEmails, type AdvisorReview, type PrimeDirections } from "../research-os/advisor-review";
 export const SPACE_SCHEMA = "bucket.explore-space/1";
 export const MAX_OBSERVATIONS = 20_000;
 export const MAX_COMPONENTS = 64;
 export const SIGMA_SPAN = 2.5;
 const ERA_BOUND = 1e6;
+
+export type ScoreScale = "standardized" | "unit";
+export type BasisKind = "reference" | "own";
 
 export type FieldKind = "number" | "category" | "tokens" | "time";
 
@@ -46,6 +48,8 @@ export interface Dataset {
   id: string;
   label: string;
   sample?: boolean;
+  scale?: ScoreScale;
+  basis?: BasisKind;
   fields: SpaceField[];
   components: SpaceComponent[];
   mean: number[];
@@ -63,6 +67,10 @@ function isObj(v: unknown): v is Record<string, unknown> {
 
 function finite(v: unknown): v is number {
   return typeof v === "number" && Number.isFinite(v);
+}
+
+function publicLink(l: string): boolean {
+  return !hasEmail(l) && !/^mailto:/i.test(l.trim());
 }
 
 function strings(v: unknown, cap: number): string[] {
@@ -99,8 +107,11 @@ export function parseDataset(raw: unknown): Dataset {
     if (o.scores.length !== k || !o.scores.every(finite)) throw new SpaceError(`observation ${o.id} needs ${k} finite scores`);
     if (o.t !== undefined && o.t !== null && !finite(o.t)) throw new SpaceError(`observation ${o.id} has a non-finite t`);
     const meta: Meta = {};
-    if (isObj(o.meta)) for (const [key, v] of Object.entries(o.meta)) if (typeof v === "string" || finite(v) || v === null) meta[key] = v;
-    return { id: o.id, title: o.title, scores: o.scores as number[], t: o.t as number | null | undefined, meta, links: strings(o.links, 50), coverage: finite(o.coverage) ? o.coverage : undefined };
+    if (isObj(o.meta)) for (const [key, v] of Object.entries(o.meta)) {
+        if (typeof v === "string") meta[key] = scrubEmails(v);
+        else if (finite(v) || v === null) meta[key] = v;
+      }
+    return { id: o.id, title: o.title, scores: o.scores as number[], t: o.t as number | null | undefined, meta, links: strings(o.links, 50).filter(publicLink), coverage: finite(o.coverage) ? o.coverage : undefined };
   });
   const fields = Array.isArray(raw.fields)
     ? raw.fields.filter((f): f is Record<string, unknown> => isObj(f) && typeof f.key === "string" && FIELD_KINDS.includes(f.kind as FieldKind)).map((f) => ({ key: f.key as string, kind: f.kind as FieldKind }))
@@ -111,11 +122,12 @@ export function parseDataset(raw: unknown): Dataset {
     const bins = raw.sweep.bins.filter((b): b is Record<string, unknown> => isObj(b) && typeof b.label === "string" && typeof b.from === "number" && typeof b.to === "number");
     sweep = { field: raw.sweep.field, bins: bins.map((b) => ({ label: b.label as string, from: b.from as number, to: b.to as number })) };
   }
-  return { schema: SPACE_SCHEMA, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, fields, components, mean, sweep, obs };
+  return { schema: SPACE_SCHEMA, id: typeof raw.id === "string" ? raw.id : "dataset", label: typeof raw.label === "string" ? raw.label : "dataset", sample: raw.sample === true, scale: raw.scale === "unit" ? "unit" : "standardized", basis: raw.basis === "own" ? "own" : "reference", fields, components, mean, sweep, obs };
 }
 
-export function radiusOf(score: number): number {
-  return Math.min(1, Math.max(0.02, (score + SIGMA_SPAN) / (2 * SIGMA_SPAN)));
+export function radiusOf(score: number, scale: ScoreScale = "standardized"): number {
+  const v = scale === "unit" ? score : (score + SIGMA_SPAN) / (2 * SIGMA_SPAN);
+  return Math.min(1, Math.max(0.02, v));
 }
 
 export function spokeAngle(component: Pick<SpaceComponent, "angle_deg">): number {
@@ -148,9 +160,9 @@ export function smooth(points: PolarSample[], u: number, angle: number, opts: Sm
   return w > 1e-3 ? v / w : opts.fallback ?? 0;
 }
 
-export function circleProfile(scores: number[], angles: number[], samples = 120, angleVariance = 0.25): number[] {
-  const points = scores.map((s, i) => ({ angle: angles[i], u: 0, r: radiusOf(s) }));
-  return Array.from({ length: samples }, (_, j) => smooth(points, 0, (j / samples) * Math.PI * 2, { angleVariance, fallback: radiusOf(0) }));
+export function circleProfile(scores: number[], angles: number[], samples = 120, angleVariance = 0.25, scale: ScoreScale = "standardized"): number[] {
+  const points = scores.map((s, i) => ({ angle: angles[i], u: 0, r: radiusOf(s, scale) }));
+  return Array.from({ length: samples }, (_, j) => smooth(points, 0, (j / samples) * Math.PI * 2, { angleVariance, fallback: radiusOf(0, scale) }));
 }
 
 export function bandAverages(ds: Dataset): (number[] | null)[] {
@@ -176,12 +188,14 @@ export function fromAdvisorReview(review: AdvisorReview, prime: PrimeDirections,
     .map((r): SpaceObservation => {
       const year = typeof r.fields.year === "number" ? r.fields.year : null;
       const field = typeof r.fields.field === "string" ? r.fields.field : null;
-      return { id: `advisor:${r.rank}`, title: r.name, scores: r.star_prime.map((v) => (v - 0.5) * 2 * SIGMA_SPAN), t: year, meta: { field, score: r.score }, links: Object.values(r.links).filter((l) => /^https?:/.test(l)) };
+      return { id: `advisor:${r.rank}`, title: r.name, scores: r.star_prime, t: year, meta: { field, score: r.score }, links: Object.values(r.links).filter((l) => /^https?:/.test(l)) };
     });
   return {
     ...base,
     id: review.key || "advisors",
     label: "advisors",
+    scale: "unit" as const,
+    basis: "own" as const,
     fields: [{ key: "star_prime", kind: "number" }, { key: "year", kind: "time" }],
     mean: meanScores(obs, k),
     sweep: { field: "year", bins: ERAS.map((e) => ({ label: e.label, from: Math.max(e.from, -ERA_BOUND), to: Math.min(e.to, ERA_BOUND) })) },

@@ -88,6 +88,11 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           sample data
         </span>
       )}
+      {ds.basis === "own" && (
+        <span data-testid="basis-label" className="border hairline px-2 py-0.5" style={{ color: DIM }}>
+          own basis, unscaled
+        </span>
+      )}
     </div>
   );
 
@@ -105,7 +110,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
           <ul data-testid="slice-rail" className="flex flex-wrap justify-center gap-2 mt-3">
             {slices.map((s, i) => (
               <li key={s.index}>
-                <button type="button" data-testid={`slice-${i}`} aria-pressed={i === activeSlice} onClick={() => setOpened(i)} onFocus={() => setActiveSlice(i)} className="border hairline px-2 py-1 text-xs" style={{ ...mono, background: i === activeSlice ? GOLD : undefined, color: i === activeSlice ? "#141311" : undefined }}>
+                <button type="button" data-testid={`slice-${i}`} aria-pressed={i === activeSlice} onClick={() => setOpened(i)} onFocus={() => setActiveSlice(i)} className="border hairline px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={{ ...mono, background: i === activeSlice ? GOLD : undefined, color: i === activeSlice ? "#141311" : undefined }}>
                   {s.label}
                 </button>
               </li>
@@ -138,7 +143,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
         </button>
       )}
       <div className="w-full flex-1 max-w-3xl" style={{ minHeight: 420 }}>
-        <CircleChart components={ds.components} series={series} onStep={slice ? undefined : step} />
+        <CircleChart components={ds.components} series={series} onStep={slice ? undefined : step} scale={ds.scale} />
       </div>
       <div className="w-full max-w-3xl px-4 pb-6 text-sm">
         {slice ? (

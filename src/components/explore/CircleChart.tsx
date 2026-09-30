@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { CIRCLE_RADIUS, RINGS, ariaSummary, labelLayout, polygonPoints, smoothLoop, spokeDirection, wrapLabel } from "@/lib/explore/circle";
-import type { SpaceComponent } from "@/lib/explore/space";
+import type { ScoreScale, SpaceComponent } from "@/lib/explore/space";
 
 export interface ChartSeries {
   id: string;
@@ -18,11 +18,12 @@ interface Props {
   components: SpaceComponent[];
   series: ChartSeries[];
   onStep?(delta: number): void;
+  scale?: ScoreScale;
 }
 
 const LABEL_GAP = 14;
 
-export default function CircleChart({ components, series, onStep }: Props) {
+export default function CircleChart({ components, series, onStep, scale = "standardized" }: Props) {
   const host = useRef<SVGSVGElement>(null);
   const labels = components.map((c) => c.label ?? c.top_terms[0] ?? String(c.index));
 
@@ -44,7 +45,7 @@ export default function CircleChart({ components, series, onStep }: Props) {
       viewBox="-230 -200 460 400"
       className="w-full h-full"
       role="img"
-      aria-label={ariaSummary(labels, series)}
+      aria-label={ariaSummary(labels, series, scale)}
       preserveAspectRatio="xMidYMid meet"
       style={{ color: "#EFE8D4" }}
     >
@@ -71,7 +72,7 @@ export default function CircleChart({ components, series, onStep }: Props) {
         );
       })}
       {series.map((s) => {
-        const pts = polygonPoints(s.scores, components);
+        const pts = polygonPoints(s.scores, components, CIRCLE_RADIUS, scale);
         return (
           <g key={s.id} data-series={s.id} data-vertices={pts.length}>
             <path d={smoothLoop(pts)} fill={s.fill} fillOpacity={s.opacity} stroke={s.stroke} strokeWidth={1.6} strokeDasharray={s.dash ?? "none"} />
