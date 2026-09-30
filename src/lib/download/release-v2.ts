@@ -23,7 +23,7 @@ function archOf(name: string): Arch {
 }
 
 function classify(asset: ReleaseAsset): Omit<InstallerV2, "checksumUrl" | "url" | "size" | "name"> | null {
-  if (SIDECAR.test(asset.name)) return null;
+  if (SIDECAR.test(asset.name) || /\s/.test(asset.name)) return null;
   const terminal = TERMINAL.exec(asset.name);
   if (terminal) return { os: TERMINAL_OS[terminal[1]], arch: terminal[2] as Arch, kind: "terminal" };
   if (/\.dmg$/i.test(asset.name)) return { os: "macos", arch: archOf(asset.name), kind: "desktop" };
