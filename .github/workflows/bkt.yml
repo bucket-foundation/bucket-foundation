@@ -217,7 +217,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11
-          dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun scripts/release/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
+          dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
       - name: smoke on macos with a Keychain
         if: runner.os == 'macOS'
         run: |
@@ -226,11 +226,11 @@ jobs:
           security default-keychain -s bkt-smoke.keychain
           security unlock-keychain -p smoke bkt-smoke.keychain
           security set-keychain-settings bkt-smoke.keychain
-          bun scripts/release/smoke.ts "$BKT_BIN" "$BKT_EXPECT"
+          bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"
       - name: smoke on windows with DPAPI
         if: runner.os == 'Windows'
         shell: pwsh
-        run: bun scripts/release/smoke.ts $env:BKT_BIN $env:BKT_EXPECT
+        run: bun packages/bkt/scripts/smoke.ts $env:BKT_BIN $env:BKT_EXPECT
 
   publish:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
