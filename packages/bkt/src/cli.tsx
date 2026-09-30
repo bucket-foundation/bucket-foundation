@@ -12,6 +12,8 @@ import { loadBank, loadReview, loadScores } from "./hai/files";
 import { HaiStore } from "./hai/store";
 import { freeze, parseToolArgs, review, score } from "./hai/tools";
 import { HaiApp } from "./hai/view";
+import { localRoutes } from "./local";
+import { startServe } from "./serve";
 
 const HAI_TOOLS = new Set(["freeze", "review", "score"]);
 
@@ -105,11 +107,21 @@ async function main(argv: string[]) {
       );
       return;
     }
+    if (cmd === "serve") {
+      const srv = startServe({ routes: localRoutes(session.store) });
+      console.log(srv.url);
+      await new Promise<void>((done) => {
+        process.once("SIGINT", done);
+        process.once("SIGTERM", done);
+      });
+      srv.stop();
+      return;
+    }
     if (cmd === "stats") {
       console.log(JSON.stringify(session.store.stats(Date.now())));
       return;
     }
-    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, analyze, analyses`);
+    if (cmd !== "tui") throw new Error(`unknown command ${cmd}; try tui, init, whoami, stats, serve, analyze, analyses`);
     const ink = render(<App session={session} />);
     await ink.waitUntilExit();
   } finally {
