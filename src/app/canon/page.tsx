@@ -5,9 +5,17 @@ import { CANON_BRANCHES } from "@/lib/contribute";
 import { GlobeBranch } from "@/components/CanonGlobe";
 import CanonGlobeMount from "./CanonGlobeMount";
 
-const BRANCH_COUNT = CANON_BRANCHES.length;
-const BRANCH_WORD = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][BRANCH_COUNT];
-const BRANCH_LIST = CANON_BRANCHES.map((b) => b.name).join(", ");
+const HISTORY_BRANCHES = [
+  { slug: "deep-history", name: "deep history" },
+  { slug: "sacred-texts", name: "sacred texts" },
+];
+const FOUNDATION_SLUGS: string[] = CANON_BRANCHES.map((b) => b.slug);
+const HISTORY_SLUGS: string[] = HISTORY_BRANCHES.map((b) => b.slug);
+const SHOWN_SLUGS = [...FOUNDATION_SLUGS, ...HISTORY_SLUGS];
+const BRANCH_COUNT = SHOWN_SLUGS.length;
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+const BRANCH_WORD = NUMBER_WORDS[BRANCH_COUNT] ?? String(BRANCH_COUNT);
+const BRANCH_LIST = [...CANON_BRANCHES, ...HISTORY_BRANCHES].map((b) => b.name).join(", ");
 
 export const metadata = {
   title: `Canon · ${BRANCH_WORD} branches of foundations`,
@@ -48,8 +56,7 @@ function fmtDate(iso: string | null): string {
 }
 
 export default function Page() {
-  const slugs = new Set(CANON_BRANCHES.map((b) => b.slug));
-  const branches = getBranches().filter((b) => slugs.has(b.slug));
+  const branches = SHOWN_SLUGS.flatMap((slug) => getBranches().filter((b) => b.slug === slug));
   const totalEntries = branches.reduce((n, b) => n + b.entryCount, 0);
   const opened = branches.filter((b) => b.exists).length;
 
@@ -70,7 +77,7 @@ export default function Page() {
             Build the past.<br />Build history.
           </h1>
           <p className="mt-6 max-w-2xl text-[color:var(--parchment-dim)] text-pretty">
-            The canon holds {BRANCH_WORD} branches of foundations: axioms, real math, rules, laws, principles and primary derivations.
+            The canon holds {BRANCH_WORD} branches: seven of foundations (axioms, real math, rules, laws, principles and primary derivations) followed by two history branches, deep history and sacred texts.
             Longevity, disease and cognition are downstream applications and live outside it.
           </p>
 
@@ -151,8 +158,13 @@ export default function Page() {
                   <div className="font-mono-mark text-xs text-[color:var(--gold-dim)] group-hover:text-[color:var(--gold)]">
                     {b.numeral} · {b.num}
                   </div>
-                  <span className={`small-caps text-[9px] tracking-[0.1em] border px-2 py-[2px] ${badgeClass}`}>
-                    {b.status}
+                  <span className="flex items-center gap-2">
+                    {HISTORY_SLUGS.includes(b.slug) && (
+                      <span className="small-caps text-[9px] tracking-[0.1em] text-[color:var(--parchment-dim)]">history branch</span>
+                    )}
+                    <span className={`small-caps text-[9px] tracking-[0.1em] border px-2 py-[2px] ${badgeClass}`}>
+                      {b.status}
+                    </span>
                   </span>
                 </div>
                 <div className="font-serif-display text-2xl text-[color:var(--basalt)] capitalize">

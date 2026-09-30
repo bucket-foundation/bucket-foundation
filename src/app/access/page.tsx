@@ -7,7 +7,7 @@ export const metadata = {
 export const dynamic = "force-static";
 
 const WEB_ROUTES = [
-  { path: "/canon",                 what: "Seven-branch grid and interactive globe, the entry point" },
+  { path: "/canon",                 what: "Nine-branch grid and interactive globe, the entry point" },
   { path: "/canon/search",          what: "Type a question, get ranked source excerpts" },
   { path: "/excerpts",          what: "All 599 source excerpts from talks and podcasts" },
   { path: "/canon/bridges",         what: "17 multi-branch primitives (cross-domain isomorphisms)" },
@@ -253,7 +253,7 @@ export default function AccessPage() {
             </p>
             <p className="text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
               Start at <Link href="/canon" className="underline">/canon</Link>.
-              The seven-branch globe is the map. Click any branch, browse claims.
+              The nine-branch globe is the map. Click any branch, browse claims.
               Try <Link href="/canon/search" className="underline">search</Link>{" "}
               for a specific question.
             </p>

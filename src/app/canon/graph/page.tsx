@@ -277,7 +277,7 @@ export default function Page() {
           </Link>{" "}
           ·{" "}
           <Link href="/canon" className="underline">
-            seven branches
+            nine branches
           </Link>
         </p>
         <p className="mt-2">
