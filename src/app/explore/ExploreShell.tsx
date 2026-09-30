@@ -9,6 +9,8 @@ import { SORTS } from "@/lib/canon-explorer/url";
 import { matchExcerptEvent } from "@/lib/canon-explorer/markers";
 import { useExplorerState } from "@/app/canon/useExplorerState";
 import SpaceView from "@/components/explore/SpaceView";
+import WidgetOverlay, { type WidgetSpec } from "@/components/explore/WidgetOverlay";
+import { initialCollapsed, toggleCollapsed } from "@/lib/explore/widgets";
 import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views";
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
@@ -147,6 +149,8 @@ export function sortResults(results: SearchResult[], sort: (typeof SORTS)[number
   return out;
 }
 
+const NORMAL_CLASS = "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
+
 export default function ExploreShell({ workspaceLinks = false, initialView = "circle" }: { workspaceLinks?: boolean; initialView?: SpaceViewId }) {
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const explorer = useExplorerState({ minYear: MIN_YEAR_BOUND, maxYear: new Date().getFullYear(), defaultYear: DEFAULT_YEAR, branches: EXPLORER_BRANCHES });
@@ -154,6 +158,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const { setSort, setQ, setBranch: setBranchFilter, setMarker, initial } = explorer;
   const [view, setViewState] = useState<SpaceViewId>(initialView);
   const [index, setIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [scrubberHost, setScrubberHost] = useState<HTMLElement | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
   const [basis, setBasis] = useState<ReferenceBasis | null>(null);
@@ -264,6 +271,24 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
   useEffect(() => setIndex(0), [datasetKey]);
 
+  useEffect(() => {
+    setCollapsed(initialCollapsed([{ id: "view", slot: "left", title: "View", collapsible: true }]));
+  }, []);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExpanded(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [expanded]);
+
   const selectEntity = (id: string) => {
     const ev = ALL_EVENTS.find((e) => e.id === id);
     const site = ev ? null : ALL_SITES.find((s) => s.id === id);
@@ -278,9 +303,8 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     else if (dataset.id === "canon") selectEntity(dataset.obs[i]?.id ?? "");
   };
 
-  return (
-    <div data-testid="explore-shell" className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]">
-      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+  const searchNode = (
+    <div className="flex flex-col items-center gap-2 w-full">
         <div className="w-full max-w-2xl pointer-events-auto">
           <div className="rounded-full shadow-sm flex items-center px-2" style={{ background: "var(--bone)", border: "1px solid var(--hairline)" }}>
             <input
@@ -338,38 +362,71 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
             );
           })}
         </div>
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
-          <div role="radiogroup" aria-label="view" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
-            {SPACE_VIEWS.map((v) => (
-              <button key={v} type="button" role="radio" data-view={v} aria-checked={view === v} onClick={() => setView(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: view === v ? "var(--basalt)" : "transparent", color: view === v ? "var(--bone)" : "var(--parchment-dim)" }}>
-                {v}
-              </button>
-            ))}
-          </div>
-          <div role="radiogroup" aria-label="data set" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
-            {SPACE_SOURCES.filter((v) => v === "canon" || advisorsAvailable).map((v) => (
-              <button key={v} type="button" role="radio" data-source={v} aria-checked={source === v} onClick={() => setSource(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: source === v ? "var(--basalt)" : "transparent", color: source === v ? "var(--bone)" : "var(--parchment-dim)" }}>
-                {v}
-              </button>
-            ))}
-          </div>
-          <label className="flex items-center gap-2">
-            order
-            <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
-              {SORTS.map((o) => (
-                <option key={o} value={o}>{SORT_LABEL[o]}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-      </div>
+    </div>
+  );
 
-      <div className="relative w-full mx-auto flex-1 overflow-hidden" style={{ minHeight: "440px" }}>
-        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} />
+  const viewNode = (
+    <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      <div role="radiogroup" aria-label="view" className="flex w-fit flex-shrink-0 rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
+        {SPACE_VIEWS.map((v) => (
+          <button key={v} type="button" role="radio" data-view={v} aria-checked={view === v} onClick={() => setView(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: view === v ? "var(--basalt)" : "transparent", color: view === v ? "var(--bone)" : "var(--parchment-dim)" }}>
+            {v}
+          </button>
+        ))}
       </div>
+      <div role="radiogroup" aria-label="data set" className="flex w-fit flex-shrink-0 rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
+        {SPACE_SOURCES.filter((v) => v === "canon" || advisorsAvailable).map((v) => (
+          <button key={v} type="button" role="radio" data-source={v} aria-checked={source === v} onClick={() => setSource(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: source === v ? "var(--basalt)" : "transparent", color: source === v ? "var(--bone)" : "var(--parchment-dim)" }}>
+            {v}
+          </button>
+        ))}
+      </div>
+      <label className="flex items-center gap-2">
+        order
+        <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
+          {SORTS.map((o) => (
+            <option key={o} value={o}>{SORT_LABEL[o]}</option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+
+  const scrubberHostNode = <div ref={setScrubberHost} data-testid="scrubber-host" className="w-full" />;
+
+  const widgets: WidgetSpec[] = [
+    { id: "search", slot: "top", title: "Search", node: searchNode },
+    { id: "view", slot: "left", title: "View", collapsible: true, node: viewNode },
+    { id: "scrubber", slot: "bottom", title: "Scrubber", node: scrubberHostNode },
+  ];
+
+  return (
+    <div data-testid="explore-shell" data-expanded={expanded ? "true" : "false"} className={expanded ? "fixed inset-0 z-[60] overflow-hidden" : NORMAL_CLASS} style={expanded ? { background: "#141311" } : undefined}>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-label={expanded ? "exit fullscreen" : "expand to fullscreen"}
+        title={expanded ? "exit fullscreen (Esc)" : "expand to fullscreen"}
+        data-testid="expand-toggle"
+        className={`absolute top-3 z-[70] w-9 h-9 flex items-center justify-center rounded-md border transition ${selected ? "right-3 md:right-[460px]" : "right-3"}`}
+        style={{ borderColor: "var(--hairline)", background: "var(--bone)", color: "var(--basalt)" }}
+      >
+        {expanded ? "×" : "⤢"}
+      </button>
+      {expanded ? null : (
+        <div key="top" className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+          {searchNode}
+          {viewNode}
+        </div>
+      )}
+      <div key="base" data-testid="base-layer" className={expanded ? "absolute inset-0" : "relative w-full mx-auto flex-1 overflow-hidden"} style={expanded ? undefined : { minHeight: "440px" }}>
+        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} chrome={expanded ? "minimal" : "full"} />
+      </div>
+      {expanded ? <WidgetOverlay key="overlay" insetRight widgets={widgets} collapsed={collapsed} onToggle={(id) => setCollapsed((c) => toggleCollapsed(c, id, widgets))} /> : <div key="bottom" className="px-2 pb-3">{scrubberHostNode}</div>}
 
       <Drawer
         selected={selected}
+        floating={expanded}
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
@@ -380,12 +437,14 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 
 function Drawer({
   selected,
+  floating = false,
   transparent = false,
   workspaceLinks = false,
   onClose,
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
+  floating?: boolean;
   transparent?: boolean;
   workspaceLinks?: boolean;
   onClose: () => void;
@@ -529,8 +588,8 @@ function Drawer({
       <aside
         className={`md:absolute md:right-0 md:top-0 md:bottom-0 md:h-auto md:translate-x-0 md:z-10
                     fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
-          selected ? "translate-x-0" : "translate-x-full"
-        }`}
+          floating ? "md:top-4 md:bottom-4 md:right-4 md:rounded-2xl md:shadow-xl md:border" : ""
+        } ${selected ? "translate-x-0" : "translate-x-full"}`}
         style={{
           width: "min(440px, 100vw)",
           background: transparent ? "transparent" : "var(--bone)",
