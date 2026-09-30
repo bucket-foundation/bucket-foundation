@@ -2,6 +2,7 @@ import { MODES, modeById } from "../src/lib/explore/modes";
 import { GLOBE_RADIUS, excerptConcept, hitColor, hitLatLng } from "../src/lib/explore/modes/globe";
 import { ALL_EVENTS, matchExcerptEvent } from "../src/lib/canon-explorer/markers";
 import { BRANCH_COLOR, globeProjection } from "../src/components/canon-globe/projections";
+import type { Hit } from "../src/lib/explore/search";
 import { SAMPLE_HITS } from "./lib/explore-hits";
 
 let failed = 0;
