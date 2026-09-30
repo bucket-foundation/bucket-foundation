@@ -173,6 +173,9 @@ jobs:
             asset: bkt-windows-x64.exe
     runs-on: ${{ matrix.os }}
     steps:
+      - name: let git skip repo paths that NTFS cannot hold
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           sparse-checkout-cone-mode: false
@@ -290,6 +293,9 @@ jobs:
         os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: let git skip repo paths that NTFS cannot hold
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           sparse-checkout-cone-mode: false
