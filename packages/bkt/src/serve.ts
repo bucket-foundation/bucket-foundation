@@ -17,6 +17,7 @@ export interface ServeOptions {
   routes?: Record<string, Route>;
   uiDir?: string;
   maxBodyBytes?: number;
+  routeBodyBytes?: Record<string, number>;
   onError?: (e: Error) => void;
 }
 
@@ -123,6 +124,8 @@ export function startServe(opts: ServeOptions = {}): Serve {
   const routes = opts.routes ?? {};
   const ui = loadUi(opts.uiDir);
   const maxBody = opts.maxBodyBytes ?? MAX_BODY_BYTES;
+  const routeBody = opts.routeBodyBytes ?? {};
+  const serverMax = Math.max(maxBody, ...Object.values(routeBody));
   let nonce = "";
   let mintedAt = 0;
   let served = false;
@@ -156,7 +159,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
     hostname: HOSTNAME,
     port: opts.port ?? 0,
     development: false,
-    maxRequestBodySize: maxBody,
+    maxRequestBodySize: serverMax,
     error(e) {
       opts.onError?.(e);
       return deny(500);
@@ -220,11 +223,14 @@ export function startServe(opts: ServeOptions = {}): Serve {
       const m = auth.match(/^Bucket ([A-Za-z0-9_-]{43})$/);
       if (!token || !m || !same(m[1], token)) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
-      const route = routes[`${req.method} ${url.pathname}`];
+      const key = `${req.method} ${url.pathname}`;
+      const route = routes[key];
       if (!route) return deny(404);
       if (req.method !== "GET") {
-        const declared = Number(req.headers.get("content-length") ?? "0");
-        if (declared > maxBody) return deny(413);
+        const cap = routeBody[key] ?? maxBody;
+        const declared = req.headers.get("content-length");
+        if (declared === null || !/^\d+$/.test(declared)) return deny(411);
+        if (Number(declared) > cap) return deny(413);
       }
       return route(req, url);
     },

@@ -235,25 +235,43 @@ export class Store {
   putLearnState(deck: string, raw: unknown, now: number) {
     const s = normalizeState(raw);
     this.db.transaction(() => {
-      this.db.query("delete from learn_cards where deck = ?").run(deck);
+      const existing = new Map(
+        this.db.query<{ card_id: string; state: string }, [string]>("select card_id, state from learn_cards where deck = ?").all(deck).map((r) => [r.card_id, r.state]),
+      );
+      const keep = new Set<string>();
+      const up = this.db.query(
+        "insert into learn_cards (deck, card_id, state, due, updated_at) values (?, ?, ?, ?, ?) on conflict(deck, card_id) do update set state = excluded.state, due = excluded.due, updated_at = excluded.updated_at",
+      );
+      for (const [id, c] of Object.entries(s.cards)) {
+        if (!c || typeof c !== "object") continue;
+        keep.add(id);
+        const state = JSON.stringify(c);
+        if (existing.get(id) !== state) up.run(deck, id, state, typeof c.due === "number" ? c.due : null, now);
+      }
+      const del = this.db.query("delete from learn_cards where deck = ? and card_id = ?");
+      for (const id of existing.keys()) if (!keep.has(id)) del.run(deck, id);
       this.db.query("delete from learn_prof where deck = ?").run(deck);
-      const ic = this.db.query("insert into learn_cards (deck, card_id, state, due, updated_at) values (?, ?, ?, ?, ?)");
-      for (const [id, c] of Object.entries(s.cards)) if (c && typeof c === "object") ic.run(deck, id, JSON.stringify(c), typeof c.due === "number" ? c.due : null, now);
       const ip = this.db.query("insert into learn_prof (deck, card_id, theta, n) values (?, ?, ?, ?)");
       for (const [id, p] of Object.entries(s.prof)) if (p && Number.isFinite(p.theta)) ip.run(deck, id, p.theta ?? 0, Number.isFinite(p.n) ? (p.n as number) : 0);
-      for (const table of ["learn_settings", "learn_stats"] as const)
-        this.db
-          .query(`insert into ${table} (deck, data, updated_at) values (?, ?, ?) on conflict(deck) do update set data = excluded.data, updated_at = excluded.updated_at`)
-          .run(deck, JSON.stringify(table === "learn_settings" ? s.settings : s.stats), now);
+      for (const table of ["learn_settings", "learn_stats"] as const) {
+        const data = JSON.stringify(table === "learn_settings" ? s.settings : s.stats);
+        const prev = this.db.query<{ data: string }, [string]>(`select data from ${table} where deck = ?`).get(deck)?.data;
+        if (prev !== data)
+          this.db
+            .query(`insert into ${table} (deck, data, updated_at) values (?, ?, ?) on conflict(deck) do update set data = excluded.data, updated_at = excluded.updated_at`)
+            .run(deck, data, now);
+      }
     })();
   }
 
   gradeItem(itemId: string, rating: Rating, now: number, encompassing: Record<string, EncEdge[]> = {}): Card {
     const k = this.itemKey(itemId);
     if (!k) throw new Error(`unknown item ${itemId}`);
-    const next = engineGrade(this.learnState(k.deck), [], encompassing, k.atom, rating, k.level as Depth, now);
-    this.putLearnState(k.deck, next, now);
-    return next.cards[k.atom];
+    return this.db.transaction(() => {
+      const next = engineGrade(this.learnState(k.deck), [], encompassing, k.atom, rating, k.level as Depth, now);
+      this.putLearnState(k.deck, next, now);
+      return next.cards[k.atom];
+    }).immediate();
   }
 
   recordAttempt(a: AttemptInput): string {

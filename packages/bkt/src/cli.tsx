@@ -12,7 +12,7 @@ import { loadBank, loadReview, loadScores } from "./hai/files";
 import { HaiStore } from "./hai/store";
 import { freeze, parseToolArgs, review, score } from "./hai/tools";
 import { HaiApp } from "./hai/view";
-import { localRoutes } from "./local";
+import { IMPORT_BODY_BYTES, localRoutes } from "./local";
 import { startServe } from "./serve";
 import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
 
@@ -119,6 +119,7 @@ async function main(argv: string[]) {
     if (cmd === "serve" || cmd === "app") {
       const srv = startServe({
         routes: localRoutes(session.store, { content }),
+        routeBodyBytes: { "POST /local/import": IMPORT_BODY_BYTES },
         uiDir: uiDir(),
         onError: (e) => console.error(`bkt serve: ${e.message}`),
       });

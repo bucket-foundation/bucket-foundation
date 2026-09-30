@@ -4,19 +4,35 @@ import type { Api } from "../api";
 export function ImportView({ api }: { api: Api }) {
   const [status, setStatus] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [pending, setPending] = useState<unknown>(null);
 
-  const onFile = async (f: File | undefined) => {
-    if (!f) return;
+  const run = async (payload: unknown, force: boolean) => {
     setBusy(true);
     try {
-      const payload = JSON.parse(await f.text()) as unknown;
-      const r = await api.importWeb(payload);
+      const r = await api.importWeb(payload, force);
+      setPending(null);
       setStatus(`Imported ${r.imported.length} decks: ${r.imported.join(", ")}.`);
     } catch (e) {
-      setStatus((e as Error).message === "already imported" ? "Web progress was already imported on this computer." : (e as Error).message);
+      if ((e as Error).message === "already imported") {
+        setPending(payload);
+        setStatus("Web progress was already imported on this computer.");
+      } else setStatus((e as Error).message);
     } finally {
       setBusy(false);
     }
+  };
+
+  const onFile = async (f: File | undefined) => {
+    if (!f) return;
+    try {
+      await run(JSON.parse(await f.text()) as unknown, false);
+    } catch {
+      setStatus("That file is not valid JSON.");
+    }
+  };
+
+  const redo = () => {
+    if (window.confirm("Import again? Cards merge by the most recent review, so nothing newer on this computer is lost.")) void run(pending, true);
   };
 
   return (
@@ -27,7 +43,7 @@ export function ImportView({ api }: { api: Api }) {
       </header>
       <article className="panel card">
         <ol className="steps">
-          <li>On the web Learn page, choose export progress at the foot of the deck list.</li>
+          <li>On the web Learn page, choose Export progress at the foot of the deck list.</li>
           <li>Pick the downloaded JSON file here. Cards merge by the most recent review.</li>
         </ol>
         <label className="file">
@@ -35,6 +51,11 @@ export function ImportView({ api }: { api: Api }) {
           <span>{busy ? "Importing…" : "Choose file"}</span>
         </label>
         {status && <p className="status">{status}</p>}
+        {pending !== null && (
+          <button className="primary" disabled={busy} onClick={redo}>
+            Import again
+          </button>
+        )}
       </article>
     </section>
   );

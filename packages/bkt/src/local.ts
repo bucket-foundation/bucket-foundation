@@ -114,11 +114,15 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
       store.putLearnState(b.branch, merged, now());
       return json({ data: merged });
     },
-    "POST /local/import": async (req) => {
-      if (store.meta("web_import_at")) return json({ error: "already imported" }, 409);
+    "POST /local/import": async (req, url) => {
+      const force = url.searchParams.get("force") === "1";
+      if (store.meta("web_import_at") && !force) return json({ error: "already imported" }, 409);
       const b = await body(req);
       const incoming = b ? webBranches(b) : null;
       if (!incoming) return json({ error: "expected { branches: { <deck>: EngineState } }" }, 400);
+      const known = new Set(decks.map((d) => d.id));
+      const unknown = Object.keys(incoming).filter((d) => !known.has(d));
+      if (unknown.length) return json({ error: `unknown decks: ${unknown.sort().join(", ")}` }, 400);
       const at = now();
       const imported: string[] = [];
       store.db.transaction(() => {
@@ -134,6 +138,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
 }
 
 const DECK_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
+export const IMPORT_BODY_BYTES = 8 * 1024 * 1024;
 const LS_PREFIX = "bucket-academy/v1/";
 
 export function webBranches(b: Record<string, unknown>): Record<string, ReturnType<typeof normalizeState>> | null {

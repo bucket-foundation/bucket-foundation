@@ -100,11 +100,9 @@ export default function LearnHome() {
           ))}
         </div>
         <p className="text-[12px] text-[color:var(--basalt-3)]">
-          Moving to the desktop app?{" "}
           <button type="button" onClick={downloadProgress} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
-            export progress
-          </button>{" "}
-          and pick the file under Import in Bucket.
+            Export progress
+          </button>
         </p>
         </>
       )}

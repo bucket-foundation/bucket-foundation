@@ -182,3 +182,68 @@ describe("learn routes", () => {
     expect(errors).toEqual(["progress pull 401"]);
   });
 });
+
+describe("import round 2", () => {
+  const post = (path: string, body: unknown) => req(path, { method: "POST", headers: auth, body });
+  const web = () => grade(normalizeState(null), content.atoms.phys, buildEncompassingMap(content.atoms.phys), "c", 3, "recall", clock);
+
+  test("unknown decks are rejected and nothing is written", async () => {
+    const r = await post("/local/import", { branches: { phys: web(), "99-nope": web() } });
+    expect(r.status).toBe(400);
+    expect(((await r.json()) as { error: string }).error).toBe("unknown decks: 99-nope");
+    expect(store.meta("web_import_at")).toBeNull();
+    expect(store.learnState("phys").cards).toEqual({});
+  });
+
+  test("force=1 redoes an import and merges again", async () => {
+    expect((await post("/local/import", { branches: { phys: web() } })).status).toBe(200);
+    expect((await post("/local/import", { branches: { phys: web() } })).status).toBe(409);
+    const later = grade(web(), content.atoms.phys, {}, "d", 4, "recall", clock + 1000);
+    expect((await post("/local/import?force=1", { branches: { phys: later } })).status).toBe(200);
+    expect(Object.keys(store.learnState("phys").cards).sort()).toEqual(["c", "d"]);
+  });
+
+  test("the import route takes a body above the default cap", async () => {
+    s.stop();
+    s = startServe({
+      uid: 7,
+      resolvePeerUid: () => 7,
+      now: () => clock,
+      maxBodyBytes: 1024,
+      routeBodyBytes: { "POST /local/import": 1024 * 1024 },
+      routes: localRoutes(store, { now: () => clock, content }),
+    });
+    const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
+    const t = ((await (await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } })).json()) as { token: string }).token;
+    const h = { authorization: `Bucket ${t}` };
+    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`2026-1-${i}`, { new: 1, reviews: 1 }])) } };
+    expect(JSON.stringify(big).length).toBeGreaterThan(1024);
+    expect((await req("/local/progress", { method: "POST", headers: h, body: { branch: "phys", data: big } })).status).toBe(413);
+    expect((await req("/local/import", { method: "POST", headers: h, body: { branches: { phys: big } } })).status).toBe(200);
+  });
+});
+
+describe("learn state writes", () => {
+  test("only changed cards get a new updated_at", () => {
+    const a = grade(normalizeState(null), content.atoms.phys, {}, "a", 3, "recall", 1000);
+    store.putLearnState("phys", a, 1000);
+    const b = grade(a, content.atoms.phys, {}, "b", 3, "recall", 2000);
+    store.putLearnState("phys", b, 2000);
+    const rows = store.db.query<{ card_id: string; updated_at: number }, []>("select card_id, updated_at from learn_cards order by card_id").all();
+    expect(rows).toEqual([
+      { card_id: "a", updated_at: 1000 },
+      { card_id: "b", updated_at: 2000 },
+    ]);
+    store.putLearnState("phys", { ...b, cards: { b: b.cards.b } }, 3000);
+    expect(store.db.query<{ card_id: string }, []>("select card_id from learn_cards").all()).toEqual([{ card_id: "b" }]);
+  });
+
+  test("gradeItem rolls back when the write fails", () => {
+    store.gradeItem(items[0].id, 3, clock);
+    const before = JSON.stringify(store.learnState("phys"));
+    store.db.run("create trigger boom before insert on learn_prof begin select raise(abort, 'boom'); end");
+    expect(() => store.gradeItem(items[1].id, 3, clock + 1)).toThrow("boom");
+    store.db.run("drop trigger boom");
+    expect(JSON.stringify(store.learnState("phys"))).toBe(before);
+  });
+});

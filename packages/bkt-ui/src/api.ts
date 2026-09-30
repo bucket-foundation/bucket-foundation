@@ -89,7 +89,7 @@ export class Api {
     return this.call<{ ok: boolean; due: number | null }>("/local/review", { method: "POST", body: { itemId, rating, elapsedMs } });
   }
 
-  importWeb(payload: unknown) {
-    return this.call<{ imported: string[] }>("/local/import", { method: "POST", body: payload });
+  importWeb(payload: unknown, force = false) {
+    return this.call<{ imported: string[] }>(`/local/import${force ? "?force=1" : ""}`, { method: "POST", body: payload });
   }
 }

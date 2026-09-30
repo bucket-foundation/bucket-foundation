@@ -15,12 +15,15 @@ on:
       - "packages/bkt-ui/**"
       - "src/lib/academy/**"
 
+permissions:
+  contents: read
+
 jobs:
   bkt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - name: install
         working-directory: packages/bkt
         run: bun install --frozen-lockfile
@@ -34,8 +37,8 @@ jobs:
   bkt-ui:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - name: install
         working-directory: packages/bkt-ui
         run: bun install --frozen-lockfile
