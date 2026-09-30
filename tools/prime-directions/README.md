@@ -68,7 +68,7 @@ python3 -m prime_directions advisor-review --people people.jsonl --query stateme
 
 `--ror-cache` checks each listed institution against its ROR record: the country comes from the listed institution, and a profile whose OpenAlex institution is unrelated after a name-based match is flagged as possibly another person. Lookups are cached; `--ror-offline` uses the cache alone.
 
-Outputs, all under an `--out` outside the repo: `index.html`, one self-contained file with the plot inlined, card views, shortlist, maybe and skip decisions kept in the browser, a shortlist CSV export, a PhD advisors view without Stevens faculty, a Stevens contacts view, and a per-institution cap in the top 50 (`--cap`, `--cap-window`); `ranked.csv` with the top `--top` rows; `pca.png`; and `report.json` with the fit, the score spread, the top-100 institution mix per view, the ROR check counts and an exact against KD-tree and HNSW lookup check. `--min-rows` and `--watch` re-run as the input grows.
+Outputs, all under an `--out` outside the repo: `index.html`, one self-contained file with the plot inlined, card views, shortlist, maybe and skip decisions kept in the browser, a shortlist CSV export, a PhD advisors view without Stevens faculty, a Stevens contacts view, and a per-institution cap in the top 50 (`--cap`, `--cap-window`); `review.json` (schema `bucket.advisor-review/1`), the rows and context for the Bucket desktop viewer, always stripped of emails, ids, images and tracker notes; `ranked.csv` with the top `--top` rows; `pca.png`; and `report.json` with the fit, the score spread, the top-100 institution mix per view, the ROR check counts and an exact against KD-tree and HNSW lookup check. `--min-rows` and `--watch` re-run as the input grows.
 
 ## Fit me
 

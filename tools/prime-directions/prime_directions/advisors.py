@@ -597,6 +597,21 @@ def publishable_rows(rows: list[dict]) -> list[dict]:
     return [{**r, "email": "", "email_public": False, "image_url": "", "tracker_notes": []} for r in rows]
 
 
+REVIEW_SCHEMA = "bucket.advisor-review/1"
+PRIVATE_ROW_KEYS = ("email", "email_public", "image_url", "tracker_notes", "id")
+
+
+def review_rows(rows: list[dict]) -> list[dict]:
+    return [{k: v for k, v in r.items() if k not in PRIVATE_ROW_KEYS} for r in publishable_rows(rows)]
+
+
+def write_review_json(rows: list[dict], context: dict, path: Path) -> Path:
+    payload = {"schema": REVIEW_SCHEMA, "rows": review_rows(rows), "context": context}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return path
+
+
 def image_hosts(rows: list[dict]) -> list[str]:
     from urllib.parse import urlparse
 
