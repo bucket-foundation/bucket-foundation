@@ -45,6 +45,7 @@ test("url sanitizing and contact rule", async ({ page }) => {
 
 test("stepping moves the selection through the current order", async ({ page }) => {
   await page.goto(pageUrl);
+  await page.evaluate(() => { (document.querySelector(".more-filters") as HTMLDetailsElement).open = true; });
   await page.selectOption("#view", "all");
   const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
   expect(await page.evaluate(() => (window as any).__advisorReview.selected())).toBe(ids[0]);
@@ -63,6 +64,7 @@ test("stepping moves the selection through the current order", async ({ page }) 
 
 test("a prime-direction chip keeps rows at or above the 75th percentile", async ({ page }) => {
   await page.goto(pageUrl);
+  await page.evaluate(() => { (document.querySelector(".more-filters") as HTMLDetailsElement).open = true; });
   await page.selectOption("#view", "all");
   const before = await page.evaluate(() => (window as any).__advisorReview.visible().length);
   await page.locator("#dirs button").first().click();
@@ -77,6 +79,7 @@ test("a prime-direction chip keeps rows at or above the 75th percentile", async 
 
 test("scrolling over the chart steps people and a mini chart becomes the main view", async ({ page }) => {
   await page.goto(pageUrl);
+  await page.evaluate(() => { (document.querySelector(".more-filters") as HTMLDetailsElement).open = true; });
   await page.selectOption("#view", "all");
   const ids = await page.evaluate(() => (window as any).__advisorReview.visible().map((r: any) => r.id));
   const box = await page.locator("#circle-wrap").boundingBox();

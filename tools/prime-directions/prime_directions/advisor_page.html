@@ -62,7 +62,7 @@ body.one .cards{display:none}
 .toggle{display:flex;gap:6px;align-items:center;font-size:14px}
 .more-filters summary{cursor:pointer;font-size:14px;color:var(--soft);padding:2px 0}
 .more-filters .row{margin-top:8px}
-@media (min-width:760px){.more-filters summary{display:none}}
+
 .toggle input{width:18px;height:18px;accent-color:var(--ochre-fill)}
 .more-wrap{text-align:center;margin:16px 0}
 body.one .more-wrap{display:none}
@@ -87,8 +87,8 @@ body.one .more-wrap{display:none}
 .note{font-size:12px;color:var(--soft);margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .pill{border-radius:999px;padding:10px 18px;font-size:15px}
-.circle-wrap{position:relative;margin:12px auto 0;width:min(100%,820px,calc(100vh - 300px));min-width:min(100%,320px)}
-#circle{display:block;width:100%;aspect-ratio:1/1;max-width:100%;cursor:crosshair}
+.circle-wrap{position:relative;margin:12px auto 0;width:100%}
+#circle{display:block;cursor:crosshair}
 .tip{position:absolute;pointer-events:none;background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:12px;margin:0;white-space:nowrap}
 .legend{display:grid;gap:2px;font-size:12px;color:var(--soft);border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--chip);margin-top:8px;max-width:260px}
 .legend b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
@@ -111,16 +111,40 @@ body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 .minis button[aria-pressed=true]{border-color:var(--ochre-fill);box-shadow:inset 0 0 0 1px var(--ochre-fill)}
 .minis canvas,.minis svg{width:100%;aspect-ratio:1/1;height:auto;display:block}
 .minis svg text{display:none}
-@media (min-width:1100px){.stage{grid-template-columns:minmax(0,1fr) 420px}.panel{position:sticky;top:0;height:100vh;overflow:auto;padding:24px}.legend{position:absolute;right:0;bottom:0}}
+.side{min-width:0;background:var(--panel);display:grid;gap:12px;align-content:start;padding:14px}
+.side details.method{margin:0 0 8px}
+.head{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.head h1{margin:0;font-size:24px}
+.dirs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.dirs button{white-space:nowrap;flex:none}
+.chart-box{position:relative;margin:0 auto}
+.chart-box #circle,.chart-box .main-radar{width:100%;height:100%}
+.main-radar svg{width:100%;height:100%}
+@media (min-width:900px) and (min-height:560px){
+html,body{height:100%;overflow:hidden}
+.stage{grid-template-columns:minmax(0,1fr) 400px;height:100vh;max-width:none}
+main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12px 24px 10px}
+.bar{padding:8px 0;gap:6px}
+.circle-wrap{flex:1 1 auto;min-height:0;width:100%;max-width:none;margin:6px 0 0;display:flex;align-items:center;justify-content:center}
+.cards,.deck{flex:1 1 auto;min-height:0;overflow:auto}
+body.one .circle-wrap{flex:1 1 60%}
+body.one .deck{flex:0 1 auto;max-height:34%;margin-top:6px}
+.more-wrap{margin:6px 0}
+.timeline{margin-top:6px;padding-top:6px;gap:4px}
+.tl-now b{font-size:20px}
+.side{height:100vh;overflow:auto;padding:20px}
+.legend,.legend.static{position:absolute;right:0;bottom:0;margin:0}
+.head .meta{font-size:12px}
+.main-radar text{font-size:9px}
+.more-filters[open]{max-height:30vh;overflow:auto}
+}
 @media (max-width:1099px){.panel{border-width:1px 0 0 0}}
 </style>
 </head>
 <body class="circle">
 <div class="stage">
 <main>
-<p class="meta">Private review. Stored in this browser only.</p>
-<h1>Advisor review</h1>
-<p class="meta" id="summary"></p>
+<header class="head"><h1>Advisor review</h1><p class="meta" id="summary"></p><p class="meta">Private review. Stored in this browser only.</p></header>
 
 <div class="bar">
 <div class="row"><input type="search" id="q" class="pill" placeholder="Search name, institution, topic" aria-label="Search"></div>
@@ -143,8 +167,10 @@ body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 </div>
 
 <section class="circle-wrap" id="circle-wrap">
+<div class="chart-box" id="chart-box">
 <canvas id="circle" role="img" aria-label="Every advisor on a circle around the research statement"></canvas>
 <div id="main-radar" class="main-radar" hidden></div>
+</div>
 <p class="tip" id="tip" hidden></p>
 <div class="legend" id="legend"><b>Reading the chart</b><span><i class="key you"></i>you: the research statement</span><span><i class="key avg"></i>average of the current filters</span><span><i class="key sel"></i>the advisor you picked</span><span>scroll to step through people</span></div>
 </section>
@@ -156,9 +182,12 @@ body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 <div class="timeline">
 <p class="tl-now"><b id="tl-name"></b><span id="tl-pos"></span></p>
 <div class="row"><button type="button" id="prev" aria-label="Previous advisor">Previous</button><input type="range" id="tl" min="0" max="0" value="0" aria-label="Step through advisors in the current order"><button type="button" id="next" aria-label="Next advisor">Next</button><button type="button" id="play" aria-pressed="false">Play</button></div>
-<p class="count tl-foot">Step through advisors in rank order. Search and filters change the order.</p>
+<p class="count tl-foot">Scroll over the chart or drag to step through advisors in rank order.</p>
 </div>
 
+
+</main>
+<aside class="side"><div class="panel" id="panel" aria-label="Selected advisor"></div>
 <details class="method">
 <summary>How the ranking works</summary>
 <p id="method-text"></p>
@@ -166,8 +195,7 @@ body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
 <p id="plot-text"></p>
 <img src="__IMAGE__" alt="Every professor as a dot on the two components where the statement scores highest; the statement is a star and the top matches are numbered">
 </details>
-</main>
-<aside class="panel" id="panel" aria-label="Selected advisor"></aside>
+</aside>
 </div>
 <p class="sr" id="announce" aria-live="polite"></p>
 <script id="data" type="application/json">__DATA__</script>
@@ -230,9 +258,9 @@ if (!AXES.length) $("dirs").hidden = true;
 let selectedId = null, current = [];
 const SVGNS = "http://www.w3.org/2000/svg";
 const svg = (tag, attrs) => { const n = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
-function radar(labels, series, compact = false) {
+function radar(labels, series, compact = false, square = false) {
   const W = 380, C = 190, R = 84, k = labels.length;
-  const root = svg("svg", {viewBox: compact ? (C - R - 4) + " " + (C - R - 4) + " " + (2 * R + 8) + " " + (2 * R + 8) : "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
+  const root = svg("svg", {preserveAspectRatio: "xMidYMid meet", viewBox: compact || square ? (C - R - 4) + " " + (C - R - 4) + " " + (2 * R + 8) + " " + (2 * R + 8) : "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
   const ang = (i) => -Math.PI / 2 + 2 * Math.PI * i / k;
   for (const f of [0.25, 0.5, 0.75, 1]) root.append(svg("polygon", {points: labels.map((_, i) => [C + R * f * Math.cos(ang(i)), C + R * f * Math.sin(ang(i))].join(",")).join(" "), fill: "none", stroke: "currentColor", "stroke-opacity": "0.15"}));
   labels.forEach((l, i) => {
@@ -310,14 +338,23 @@ function series(kind, r) {
   if (r && r[key]) out.push({name: r.name, values: r[key], fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25});
   return out;
 }
+function sizeBox() {
+  const wrap = $("circle-wrap"), box = $("chart-box");
+  const fixed = window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches;
+  const side = fixed ? Math.max(200, Math.min(wrap.clientWidth, wrap.clientHeight)) : Math.min(wrap.clientWidth, 820);
+  box.style.width = side + "px"; box.style.height = side + "px";
+}
 function drawMain() {
+  sizeBox();
   const showCircle = MAIN === "circle";
   cv.hidden = !showCircle;
   $("main-radar").hidden = showCircle;
   $("legend").classList.toggle("static", !showCircle);
   if (showCircle) { drawCircle(); return; }
   const r = rows.find((x) => x.id === selectedId);
-  $("main-radar").replaceChildren(radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r)));
+  const big = radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r));
+  big.setAttribute("viewBox", "0 10 380 360");
+  $("main-radar").replaceChildren(big);
 }
 function setMain(kind) { MAIN = kind; drawMain(); render(); }
 function drawCircle(target) {
@@ -387,6 +424,7 @@ cv.addEventListener("mousemove", (e) => {
 });
 cv.addEventListener("mouseleave", () => { hoverId = null; $("tip").hidden = true; drawCircle(); });
 if (window.ResizeObserver) new ResizeObserver(() => drawMain()).observe($("circle-wrap"));
+window.addEventListener("resize", () => drawMain());
 let wheelAt = 0;
 $("circle-wrap").addEventListener("wheel", (e) => {
   if (Math.abs(e.deltaY) < 4) return;
@@ -531,7 +569,7 @@ document.addEventListener("keydown", (e) => {
   const id = $("deck").dataset.current; const r = rows.find((x) => x.id === id); if (!r) return;
   const map = {s: "shortlist", m: "maybe", x: "skip"}; if (map[e.key]) { e.preventDefault(); setStatus(r, map[e.key]); }
 });
-if (window.matchMedia("(min-width: 760px)").matches) document.querySelector(".more-filters").open = true;
+if (window.matchMedia("(min-width: 760px)").matches && !window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches) document.querySelector(".more-filters").open = true;
 $("cap-label").textContent = "At most " + CAP + " per institution in the top " + WINDOW;
 const reset = () => { limit = PAGE_SIZE; render(); };
 $("more").addEventListener("click", () => { limit += PAGE_SIZE; render(); });
