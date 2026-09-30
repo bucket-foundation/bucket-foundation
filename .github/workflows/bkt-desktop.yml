@@ -1,0 +1,212 @@
+name: bkt-desktop
+
+on:
+  pull_request:
+    paths:
+      - "packages/bkt-desktop/**"
+      - "packages/bkt-ui/**"
+      - "packages/bkt/**"
+      - "packages/ros-contract/**"
+      - "src/lib/research-os/**"
+      - "src/lib/academy/**"
+      - ".github/workflows/bkt-desktop.yml"
+  push:
+    tags: ["bkt-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bkt-desktop-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - name: install
+        working-directory: packages/bkt-desktop
+        run: bun install --frozen-lockfile
+      - name: config guarantees, sidecar naming and probe tests
+        working-directory: packages/bkt-desktop
+        run: bun test scripts && bunx tsc --noEmit
+
+  bundle:
+    needs: config
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            bundles: deb,appimage
+            strict: "1"
+          - os: macos-latest
+            bundles: app,dmg
+            strict: "1"
+          - os: windows-latest
+            bundles: msi
+            strict: "1"
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: allow checkout of names Windows cannot write
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/archive/
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+        with:
+          workspaces: packages/bkt-desktop/src-tauri
+      - name: linux build and smoke packages
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq --no-install-recommends libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xvfb dbus-x11 gnome-keyring libsecret-tools libfuse2
+      - name: install
+        working-directory: packages/bkt-desktop
+        run: bun install --frozen-lockfile
+      - name: bkt-ui build and bkt sidecar
+        working-directory: packages/bkt-desktop
+        run: bun run prepare:bundle
+      - name: no staff data in the public bundle
+        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json
+      - name: tauri build
+        working-directory: packages/bkt-desktop
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          extra=()
+          if [ -n "$TAURI_SIGNING_PRIVATE_KEY" ]; then extra=(--config '{"bundle":{"createUpdaterArtifacts":true}}'); fi
+          bunx tauri build --bundles ${{ matrix.bundles }} "${extra[@]}"
+      - name: collect bundles
+        run: |
+          out="$RUNNER_TEMP/bundles"
+          mkdir -p "$out"
+          b=packages/bkt-desktop/src-tauri/target/release/bundle
+          find "$b" -maxdepth 2 -type f \( -name '*.deb' -o -name '*.AppImage' -o -name '*.dmg' -o -name '*.msi' -o -name '*.sig' -o -name '*.tar.gz' -o -name '*.zip' \) -exec cp {} "$out/" \;
+          ls -la "$out"
+          [ -n "$(ls "$out")" ] || { echo "no bundles produced"; exit 1; }
+          echo "BUNDLES=$out" >> "$GITHUB_ENV"
+      - name: smoke the deb and AppImage
+        if: runner.os == 'Linux'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          sudo apt-get install -yq "$BUNDLES"/*.deb
+          cat > "$RUNNER_TEMP/smoke.sh" <<'SH'
+          set -eu
+          printf 'smoke' | gnome-keyring-daemon --unlock --components=secrets >/dev/null
+          export XDG_RUNTIME_DIR=$(mktemp -d)
+          HOME=$(mktemp -d) bun scripts/smoke.ts "$1"
+          SH
+          xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" /usr/bin/bucket-desktop
+          app=$(ls "$BUNDLES"/*.AppImage)
+          chmod +x "$app"
+          APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" "$app"
+      - name: smoke the dmg
+        if: runner.os == 'macOS'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          hdiutil attach "$(ls "$BUNDLES"/*.dmg)" -nobrowse -mountpoint "$RUNNER_TEMP/dmg"
+          exe=$(find "$RUNNER_TEMP/dmg" -path '*.app/Contents/MacOS/*' -type f ! -name 'bkt' | head -1)
+          [ -n "$exe" ] || { echo "no app binary in the dmg"; exit 1; }
+          [ -x "$(dirname "$exe")/bkt" ] || { echo "no bkt sidecar in the app"; exit 1; }
+          bun scripts/smoke.ts "$exe"
+          pkill -f "$RUNNER_TEMP/dmg/" || true
+          hdiutil detach "$RUNNER_TEMP/dmg" -force
+      - name: smoke the msi
+        if: runner.os == 'Windows'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          msi=$(cygpath -w "$(ls "$BUNDLES"/*.msi)")
+          log=$(cygpath -w "$RUNNER_TEMP/msi.log")
+          powershell -NoProfile -Command "\$p = Start-Process msiexec -ArgumentList '/i','\"$msi\"','/qn','/l*v','\"$log\"' -Wait -PassThru; exit \$p.ExitCode"
+          dir="/c/Program Files/Bucket"
+          exe=$(find "$dir" -maxdepth 1 -name '*.exe' ! -name 'bkt.exe' ! -iname 'uninstall*' | head -1)
+          [ -n "$exe" ] || { echo "no app binary in $dir"; exit 1; }
+          [ -f "$dir/bkt.exe" ] || { echo "no bkt sidecar in $dir"; exit 1; }
+          echo "APP_EXE=$(cygpath -w "$exe")" >> "$GITHUB_ENV"
+      - name: smoke the installed app from a plain Windows shell
+        if: runner.os == 'Windows'
+        working-directory: packages/bkt-desktop
+        shell: pwsh
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          $env:PATH = (($env:PATH -split ';') | Where-Object { $_ -notmatch '\\Git\\(usr|mingw64)\\bin' }) -join ';'
+          bun scripts/smoke.ts "$env:APP_EXE"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: checksums
+        run: |
+          cd "$BUNDLES"
+          if command -v sha256sum >/dev/null; then sha256sum * > "SHA256SUMS-${{ runner.os }}.txt"; else shasum -a 256 * > "SHA256SUMS-${{ runner.os }}.txt"; fi
+          cat "SHA256SUMS-${{ runner.os }}.txt"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: bkt-desktop-${{ runner.os }}
+          path: ${{ env.BUNDLES }}/*
+          if-no-files-found: error
+
+  attest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    needs: bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: bkt-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: verify checksums
+        run: cd bundles && for f in SHA256SUMS-*.txt; do sha256sum -c "$f"; done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: bundles/*
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: attest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: bkt-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: updater manifest
+        run: bun packages/bkt-desktop/scripts/latest-json.ts bundles "$GITHUB_REF_NAME" "$GITHUB_REPOSITORY"
+      - name: upload to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --verify-tag --title "$TAG" --notes "Unsigned desktop builds." || gh release view "$TAG" >/dev/null
+          gh release upload "$TAG" bundles/* --clobber

@@ -1,0 +1,19 @@
+{
+  "name": "@bucket/bkt-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ui": "cd ../bkt-ui && bun install --frozen-lockfile && bun run build",
+    "sidecar": "bun run scripts/sidecar.ts",
+    "prepare:bundle": "bun run ui && bun run sidecar",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "test": "bun test scripts && cd src-tauri && cargo test"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.9.6",
+    "@types/bun": "^1.4.2",
+    "typescript": "5"
+  }
+}
