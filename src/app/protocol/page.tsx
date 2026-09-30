@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import { Markdown } from "@/lib/markdown";
 import { readDoc } from "@/lib/docs";
@@ -24,6 +25,7 @@ export default function Page() {
         <ul className="space-y-1">
           <li>Spec: <a href="https://github.com/gianyrox/feed402" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">gianyrox/feed402</a>, MIT code, CC0 intent</li>
           <li>Reference gateway: <a href="https://github.com/gianyrox/x402-research-gateway" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">gianyrox/x402-research-gateway</a>, 7+ live upstreams on Base</li>
+          <li>Submit and review canon work in <Link href="/research-os" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Research OS</Link></li>
           <li>AGFarms org forks: <a href="https://github.com/AGFarms/feed402" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">AGFarms/feed402</a>, <a href="https://github.com/AGFarms/x402-research-gateway" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">AGFarms/x402-research-gateway</a></li>
         </ul>
       </div>
