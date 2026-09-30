@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
+import { stageV2Enabled } from "@/lib/stage/flag";
 import { HIT_TYPES, unify, type HitType } from "@/lib/explore/search";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
@@ -34,7 +35,9 @@ export async function GET(req: NextRequest) {
   }));
   const { sources, sample } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
-  const results = unify({ query: params.q, excerpts, advisors, types, topK: params.topK });
+  const unified = unify({ query: params.q, excerpts, advisors, types, topK: params.topK });
+  const withEdges = stageV2Enabled();
+  const results = withEdges ? unified : unified.map(({ edges: _edges, ...hit }) => hit);
   return json({
     query: params.q || null,
     top_k: params.topK,

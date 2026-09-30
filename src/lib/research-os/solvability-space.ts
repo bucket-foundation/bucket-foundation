@@ -1,35 +1,16 @@
 import type { AtlasProduction } from "./solvability-atlas";
+import { ERAS, eraOf, timeCoord } from "../explore/time";
+
+export { ERAS, eraOf, timeCoord };
 
 export const SPACE_VIEWS = ["circle", "sphere", "slices", "helix"] as const;
 export type SpaceView = (typeof SPACE_VIEWS)[number];
 export type Vec3 = [number, number, number];
 
-export const ERAS: readonly { from: number; to: number; label: string }[] = [
-  { from: -Infinity, to: 1899, label: "before 1900" },
-  { from: 1900, to: 1949, label: "1900 to 1949" },
-  { from: 1950, to: 1979, label: "1950 to 1979" },
-  { from: 1980, to: 1999, label: "1980 to 1999" },
-  { from: 2000, to: 2019, label: "2000 to 2019" },
-  { from: 2020, to: Infinity, label: "2020 on" },
-];
-
 export const AXIS_LENGTH = 18;
 export const SPHERE_RADIUS = 6;
 const AXIS: Vec3 = [Math.SQRT1_2, 0, Math.SQRT1_2];
 const SIDE: Vec3 = [-Math.SQRT1_2, 0, Math.SQRT1_2];
-
-export function eraOf(year: number): number {
-  const i = ERAS.findIndex((e) => year >= e.from && year <= e.to);
-  return i < 0 ? ERAS.length - 1 : i;
-}
-
-export function timeCoord(year: number): number {
-  const e = eraOf(year);
-  const { from, to } = ERAS[e];
-  const lo = Number.isFinite(from) ? from : 1600;
-  const hi = Number.isFinite(to) ? to : 2026;
-  return e + Math.min(1, Math.max(0, (year - lo) / (hi - lo + 1)));
-}
 
 export function spaceRadius(solvability: number): number {
   return 0.6 + 1.8 * solvability;
