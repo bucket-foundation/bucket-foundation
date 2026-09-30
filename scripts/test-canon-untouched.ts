@@ -55,8 +55,20 @@ function ensureBase(): void {
   assert.ok(has(), "origin/dev is missing and could not be fetched, so the canon search diff cannot be checked");
 }
 
+function ensureMergeBase(): void {
+  const found = () => spawnSync("git", ["merge-base", "origin/dev", "HEAD"], { cwd: ROOT }).status === 0;
+  if (found()) return;
+  const shallow = spawnSync("git", ["rev-parse", "--is-shallow-repository"], { cwd: ROOT, encoding: "utf8" }).stdout.trim() === "true";
+  if (shallow) spawnSync("git", ["fetch", "--quiet", "--unshallow", "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
+  for (let depth = 200; !found() && depth <= 3200; depth *= 2) {
+    spawnSync("git", ["fetch", "--quiet", `--deepen=${depth}`, "origin", "+refs/heads/dev:refs/remotes/origin/dev"], { cwd: ROOT });
+  }
+  assert.ok(found(), "no merge base between origin/dev and HEAD after deepening, so the canon search diff cannot be checked");
+}
+
 function changedFiles(): string[] {
   ensureBase();
+  ensureMergeBase();
   const diff = spawnSync("git", ["diff", "--name-only", "origin/dev...HEAD"], { cwd: ROOT, encoding: "utf8" });
   assert.equal(diff.status, 0, diff.stderr);
   const dirty = spawnSync("git", ["diff", "--name-only", "HEAD"], { cwd: ROOT, encoding: "utf8" });
