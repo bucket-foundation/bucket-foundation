@@ -20,13 +20,13 @@ export async function GET(req: NextRequest) {
   const t0 = Date.now();
   const url = new URL(req.url);
   if (url.searchParams.get("map") === "1") {
-    const { sources, sample, axes } = loadAdvisors();
+    const { sources, sample, axes, origin } = loadAdvisors();
     const advisors = sources
       .filter((a) => a.star?.length)
       .sort((a, b) => b.score - a.score || a.rank - b.rank)
       .slice(0, MAP_ADVISOR_CAP)
       .map((a) => ({ id: advisorId(a), name: a.name, field: a.field, score: a.score, star: a.star }));
-    return json({ advisors_sample: sample, axes, advisors });
+    return json({ advisors_sample: sample, advisors_source: origin, axes, advisors });
   }
   const params = parseCanonSearchParams(url, 40);
   const types = (url.searchParams.get("types") || "")
@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
     score,
     year: YEAR_BY_ID.get(entry.concept) ?? null,
   }));
-  const { sources, sample } = loadAdvisors();
+  const { sources, sample, origin } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
   const wantsSources = !types.length || types.some((t) => t === "paper" || t === "text" || t === "talk");
   const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await loadSourceIndex()).map(sourceToHit) : [];
@@ -55,6 +55,7 @@ export async function GET(req: NextRequest) {
     mode: found.mode,
     n_results: results.length,
     advisors_sample: sample,
+    advisors_source: origin,
     results,
     took_ms: Date.now() - t0,
   });

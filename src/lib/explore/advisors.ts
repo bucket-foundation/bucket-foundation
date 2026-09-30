@@ -1,4 +1,6 @@
 import fs from "fs";
+import os from "os";
+import path from "path";
 import {
   parseAdvisorReview,
   parsePrimeDirections,
@@ -9,6 +11,7 @@ import {
   type PrimeDirections,
 } from "../research-os/advisor-review";
 import type { AdvisorSource } from "./search";
+import type { AdvisorOrigin } from "./advisor-origin";
 import sampleReview from "./fixtures/advisors.sample.json";
 import samplePrime from "./fixtures/prime.sample.json";
 
@@ -76,10 +79,131 @@ export function primeAxes(review: AdvisorReview, prime: PrimeDirections): PrimeA
   }));
 }
 
-let cache: { sources: AdvisorSource[]; sample: boolean; axes: PrimeAxis[] } | null = null;
+export const ADVISOR_SPACE_SCHEMA = "bucket.advisor-space/1";
+export const DEFAULT_BUNDLE_PATH = path.join(os.homedir(), ".local", "share", "bucket-advisor-review", "advisor-bundle.json");
+export const MAX_BUNDLE_PROFILES = 20_000;
+export const BUNDLE_COMPONENTS = 4;
+export const SCORE_CAP = 3;
 
-export function loadAdvisors(): { sources: AdvisorSource[]; sample: boolean; axes: PrimeAxis[] } {
+export class BundleError extends Error {}
+
+export interface BundleProfile {
+  name: string;
+  institution: string;
+  field: string;
+  topics: string[];
+  url: string | null;
+  scores: number[];
+}
+
+export interface AdvisorBundle {
+  vocab: string[];
+  components: number[][];
+  profiles: BundleProfile[];
+}
+
+const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
+const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
+const clean = (v: unknown, n = 300): string => (typeof v === "string" ? scrubEmails(v.slice(0, n)) : "");
+
+export function parseAdvisorBundle(raw: unknown): AdvisorBundle {
+  if (!isObj(raw) || !isObj(raw.space) || raw.space.schema !== ADVISOR_SPACE_SCHEMA) throw new BundleError(`expected a ${ADVISOR_SPACE_SCHEMA} bundle`);
+  const vocab = Array.isArray(raw.space.vocab) ? raw.space.vocab.filter((t): t is string => typeof t === "string") : [];
+  const components = Array.isArray(raw.space.components) ? raw.space.components.filter((c): c is number[] => Array.isArray(c) && c.every(isNum)) : [];
+  if (!vocab.length || !components.length || components.some((c) => c.length !== vocab.length)) throw new BundleError("the bundle space has no usable vocab or components");
+  if (!Array.isArray(raw.profiles)) throw new BundleError("the bundle has no profiles");
+  const profiles: BundleProfile[] = [];
+  for (const p of raw.profiles.slice(0, MAX_BUNDLE_PROFILES)) {
+    if (!isObj(p) || typeof p.name !== "string" || !Array.isArray(p.scores) || !p.scores.every(isNum)) continue;
+    const links = isObj(p.links) ? p.links : {};
+    const url = typeof links.openalex === "string" && !hasEmail(links.openalex) && /^https?:\/\//i.test(links.openalex) ? links.openalex : null;
+    profiles.push({
+      name: clean(p.name, 120),
+      institution: clean(p.institution),
+      field: clean(p.field),
+      topics: Array.isArray(p.topics) ? p.topics.map((t) => clean(t, 120)).filter(Boolean).slice(0, 12) : [],
+      url,
+      scores: p.scores.slice(0, components.length),
+    });
+  }
+  if (!profiles.length) throw new BundleError("the bundle has no readable profiles");
+  return { vocab, components, profiles };
+}
+
+export function bundleStar(scores: number[], n = BUNDLE_COMPONENTS): number[] {
+  const out: number[] = [];
+  for (let c = 0; c < n; c++) {
+    const v = Math.max(-SCORE_CAP, Math.min(SCORE_CAP, scores[c] ?? 0)) / SCORE_CAP;
+    out.push(Math.max(0, v), Math.max(0, -v));
+  }
+  return out;
+}
+
+export function bundleSources(bundle: AdvisorBundle): AdvisorSource[] {
+  return bundle.profiles.map((p, i) => {
+    const rms = Math.sqrt(p.scores.reduce((a, v) => a + v * v, 0) / Math.max(1, p.scores.length));
+    return {
+      rank: i + 1,
+      name: p.name,
+      field: p.field,
+      text: [p.institution, ...p.topics].filter(Boolean).join(" "),
+      year: null,
+      score: Math.min(1, rms / SCORE_CAP),
+      star: bundleStar(p.scores),
+      url: p.url,
+    };
+  });
+}
+
+export function bundleAxes(bundle: AdvisorBundle, n = BUNDLE_COMPONENTS): PrimeAxis[] {
+  const axes: PrimeAxis[] = [];
+  const count = Math.min(n, bundle.components.length);
+  const total = count * 2;
+  for (let c = 0; c < count; c++) {
+    const ranked = bundle.vocab.map((term, j) => ({ term, w: bundle.components[c][j] })).sort((a, b) => b.w - a.w || (a.term < b.term ? -1 : 1));
+    const pos = ranked.slice(0, 4).map((r) => r.term);
+    const neg = ranked.slice(-4).reverse().map((r) => r.term);
+    axes.push({ label: pos.slice(0, 2).join(" "), angle: (360 * (2 * c)) / total, terms: pos });
+    axes.push({ label: neg.slice(0, 2).join(" "), angle: (360 * (2 * c + 1)) / total, terms: neg });
+  }
+  return axes;
+}
+
+function bundlePath(): string | null {
+  if (process.env.BUCKET_ADVISOR_REVIEW) return null;
+  return process.env.BUCKET_ADVISOR_BUNDLE || DEFAULT_BUNDLE_PATH;
+}
+
+export function loadBundle(file: string | null): { sources: AdvisorSource[]; axes: PrimeAxis[] } | null {
+  if (!file) return null;
+  try {
+    const bundle = parseAdvisorBundle(readJson(file));
+    return { sources: bundleSources(bundle), axes: bundleAxes(bundle) };
+  } catch {
+    return null;
+  }
+}
+
+export interface LoadedAdvisors {
+  sources: AdvisorSource[];
+  sample: boolean;
+  origin: AdvisorOrigin;
+  axes: PrimeAxis[];
+}
+
+let cache: LoadedAdvisors | null = null;
+
+export function resetAdvisors(): void {
+  cache = null;
+}
+
+export function loadAdvisors(): LoadedAdvisors {
   if (cache) return cache;
+  const bundle = loadBundle(bundlePath());
+  if (bundle) {
+    cache = { ...bundle, sample: false, origin: "bundle" };
+    return cache;
+  }
   const rawReview = readJson(process.env.BUCKET_ADVISOR_REVIEW);
   const rawPrime = readJson(process.env.BUCKET_PRIME_DIRECTIONS);
   let review: AdvisorReview;
@@ -96,6 +220,6 @@ export function loadAdvisors(): { sources: AdvisorSource[]; sample: boolean; axe
   } catch {
     prime = parsePrimeDirections(samplePrime);
   }
-  cache = { sources: advisorSources(review, prime), sample, axes: primeAxes(review, prime) };
+  cache = { sources: advisorSources(review, prime), sample, origin: sample ? "sample" : "review", axes: primeAxes(review, prime) };
   return cache;
 }

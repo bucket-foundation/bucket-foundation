@@ -6,6 +6,7 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
 import type { MapModel } from "@/lib/explore/map";
 import DropZone from "@/components/explore/DropZone";
 import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
@@ -33,7 +34,7 @@ export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk"]));
   const [hits, setHits] = useState<Hit[]>([]);
-  const [sample, setSample] = useState(false);
+  const [origin, setOrigin] = useState<AdvisorOrigin>("sample");
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -75,7 +76,7 @@ export default function ExploreClient() {
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
-      setSample(!!body.advisors_sample);
+      setOrigin(body.advisors_source ?? (body.advisors_sample ? "sample" : "review"));
       setSelected(body.results[0]?.id ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -206,7 +207,7 @@ export default function ExploreClient() {
               {t.label} ({hits.filter((h) => h.type === t.id).length})
             </label>
           ))}
-          {sample && <span style={{ color: "var(--parchment-dim)" }}>advisors: sample data</span>}
+          <span data-testid="advisor-source" style={{ color: "var(--parchment-dim)" }}>{ORIGIN_LABEL[origin]}</span>
         </div>
         {error && <p className="mt-4 text-sm" role="alert">{error}</p>}
         <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2 mt-6 text-sm" style={mono}>
