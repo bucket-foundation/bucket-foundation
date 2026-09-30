@@ -15,6 +15,12 @@ import { HaiApp } from "./hai/view";
 import { IMPORT_BODY_BYTES, localRoutes } from "./local";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "./advisor";
 import { PeopleStore } from "./people";
+import { JOB_BODY_BYTES, jobRoutes } from "./job-routes";
+import { jobSpecs } from "./job-specs";
+import { JobRunner } from "./jobs";
+import { cacheRoot } from "./pyruntime";
+import pysrc from "../content/pysrc.json" with { type: "json" };
+import type { PySource } from "./pack/pysrc";
 import { BUNDLED_ROS, rosRoutes } from "./ros";
 import { startServe } from "./serve";
 import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
@@ -128,16 +134,23 @@ async function main(argv: string[]) {
       return;
     }
     if (cmd === "serve" || cmd === "app") {
+      const people = new PeopleStore(session.store, session.key);
+      const runner = new JobRunner({
+        root: join(dir, "jobs"),
+        specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
+      });
       const srv = startServe({
         routes: {
           ...localRoutes(session.store, { content }),
           ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
-          ...advisorRoutes(new PeopleStore(session.store, session.key)),
+          ...advisorRoutes(people),
+          ...jobRoutes(runner),
         },
         routeBodyBytes: {
           "POST /local/import": IMPORT_BODY_BYTES,
           "POST /local/advisor/import": REVIEW_BODY_BYTES,
           "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
+          "POST /local/jobs": JOB_BODY_BYTES,
         },
         uiDir: uiDir(),
         onError: (e) => console.error(`bkt serve: ${e.message}`),
@@ -156,6 +169,7 @@ async function main(argv: string[]) {
         process.once("SIGTERM", done);
       });
       process.off("SIGUSR1", reopen);
+      runner.stopAll();
       release();
       srv.stop();
       return;
