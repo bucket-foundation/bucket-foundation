@@ -65,7 +65,7 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
 }
 
 pub fn updates_enabled() -> bool {
-    !cfg!(debug_assertions) && std::env::var_os("BUCKET_NO_UPDATE").is_none()
+    !cfg!(debug_assertions)
 }
 
 async fn update(app: tauri::AppHandle) -> Result<(), tauri_plugin_updater::Error> {
@@ -121,5 +121,4 @@ mod tests {
         assert!(serve_url("bkt serve: pack v3").is_none());
         assert!(serve_url("http://127.0.0.1/").is_none());
     }
-
 }

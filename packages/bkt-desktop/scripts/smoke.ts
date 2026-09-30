@@ -6,7 +6,7 @@ const strict = process.env.BKT_SMOKE_STRICT === "1";
 const waitMs = Number(process.env.BKT_SMOKE_WAIT_MS ?? 90_000);
 const recordPath = appRecordPath(process.env, process.getuid?.());
 
-const app = Bun.spawn([exe, ...args], { env: { ...process.env, BUCKET_NO_UPDATE: "1" }, stdout: "inherit", stderr: "inherit" });
+const app = Bun.spawn([exe, ...args], { stdout: "inherit", stderr: "inherit" });
 const deadline = Date.now() + waitMs;
 let port: number | null = null;
 while (Date.now() < deadline && app.exitCode === null && port === null) {

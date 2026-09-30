@@ -48,8 +48,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
-      attestations: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
@@ -62,6 +60,7 @@ jobs:
         with:
           name: bkt-mobile-web
           path: packages/bkt-mobile/dist
+      - uses: gradle/actions/wrapper-validation@3f5f9adaf7d9fecd50b5935e54106014257a94e6
       - name: sync native project
         working-directory: packages/bkt-mobile
         run: bun install --frozen-lockfile && bunx cap sync android
@@ -93,10 +92,6 @@ jobs:
           target: google_apis
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: bash packages/bkt-mobile/scripts/android-smoke.sh "$RUNNER_TEMP/smoke.apk"
-      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-        with:
-          subject-path: ${{ env.OUT }}/*.apk
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: bkt-mobile-android
@@ -108,8 +103,6 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: read
-      id-token: write
-      attestations: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
@@ -139,19 +132,40 @@ jobs:
           cp -R "$RUNNER_TEMP/dd-device/Build/Products/Release-iphoneos/App.app" "$out/Payload/"
           (cd "$out" && zip -qry Bucket-ios-unsigned.ipa Payload && rm -rf Payload && shasum -a 256 * > SHA256SUMS-ios.txt && cat SHA256SUMS-ios.txt)
           echo "OUT=$out" >> "$GITHUB_ENV"
-      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-        with:
-          subject-path: ${{ env.OUT }}/*.ipa
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: bkt-mobile-ios
           path: ${{ env.OUT }}/*
           if-no-files-found: error
 
+  attest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    needs: [android, ios]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: bkt-mobile-android
+          path: bundles
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: bkt-mobile-ios
+          path: bundles
+      - name: verify checksums
+        run: cd bundles && for f in SHA256SUMS-*.txt; do sha256sum -c "$f"; done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: |
+            bundles/*.apk
+            bundles/*.ipa
+
   release:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
-    needs: [android, ios]
+    needs: attest
     runs-on: ubuntu-latest
     permissions:
       contents: write

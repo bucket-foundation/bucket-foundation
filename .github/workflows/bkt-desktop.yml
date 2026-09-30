@@ -52,16 +52,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
-      id-token: write
-      attestations: write
-    env:
-      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
     defaults:
       run:
         shell: bash
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/archive/
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
@@ -82,6 +82,9 @@ jobs:
         run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json
       - name: tauri build
         working-directory: packages/bkt-desktop
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: |
           extra=()
           if [ -n "$TAURI_SIGNING_PRIVATE_KEY" ]; then extra=(--config '{"bundle":{"createUpdaterArtifacts":true}}'); fi
@@ -143,28 +146,48 @@ jobs:
           cd "$BUNDLES"
           if command -v sha256sum >/dev/null; then sha256sum * > "SHA256SUMS-${{ runner.os }}.txt"; else shasum -a 256 * > "SHA256SUMS-${{ runner.os }}.txt"; fi
           cat "SHA256SUMS-${{ runner.os }}.txt"
-      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-        with:
-          subject-path: ${{ env.BUNDLES }}/*
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: bkt-desktop-${{ runner.os }}
           path: ${{ env.BUNDLES }}/*
           if-no-files-found: error
 
-  release:
-    if: startsWith(github.ref, 'refs/tags/bkt-v')
+  attest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     needs: bundle
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      id-token: write
+      attestations: write
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           pattern: bkt-desktop-*
           path: bundles
           merge-multiple: true
+      - name: verify checksums
+        run: cd bundles && for f in SHA256SUMS-*.txt; do sha256sum -c "$f"; done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: bundles/*
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: attest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: bkt-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: updater manifest
+        run: bun packages/bkt-desktop/scripts/latest-json.ts bundles "$GITHUB_REF_NAME" "$GITHUB_REPOSITORY"
       - name: upload to the release
         env:
           GH_TOKEN: ${{ github.token }}
