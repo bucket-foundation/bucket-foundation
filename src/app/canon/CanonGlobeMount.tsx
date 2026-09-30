@@ -626,7 +626,7 @@ function InteractiveCanonGlobeMount({
         className={`relative w-full mx-auto flex-1 overflow-visible ${globeWrapperClassName}`}
         style={{
           minHeight: "440px",
-          ...globeWrapperStyle,
+          ...(expanded ? null : globeWrapperStyle),
         }}
       >
         <div
