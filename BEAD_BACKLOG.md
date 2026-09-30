@@ -1,5 +1,7 @@
 # Bead Backlog: "Make the Stack Participable"
 
+Record from April 2026. The Hetzner host and the Story Protocol path named here are gone.
+
 Filed 2026-04-23. Nucleus API currently 401'd on `/api/portfolio/dispatch` (nginx basic-auth rejecting founder creds, see CLAUDE.md Strategic Priority "bkt-epic-infra"). These will be filed via `bd-remote` once that's unblocked. Priority 1 = blocker for external-dev / agent participation.
 
 ## Stack Reality Check

@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import SliceCircle from "./SliceCircle";
-import { SPACE_VIEWS, eraOf, type SpaceView } from "@/lib/research-os/solvability-space";
+import { ERAS, SPACE_VIEWS, eraOf, type SpaceView } from "@/lib/research-os/solvability-space";
+import { branchColor, solvabilityGuides, solvabilityLayout, visibleRows } from "@/lib/research-os/solvability-scene";
 import { PageHeader, Panel } from "@/components/ui";
 import {
   BRANCHES,
@@ -34,7 +35,8 @@ const BRANCH_COLOR: Record<string, string> = {
   bucketmath: "var(--stone-300)",
 };
 
-const SolvabilitySpace = dynamic(() => import("./SolvabilitySpace"), { ssr: false });
+const SceneHost = dynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
+const SCENE_COLORS: Record<string, string> = Object.fromEntries(BRANCHES.map((b) => [b, branchColor(b)]));
 
 const MINT_STYLE: Record<MintState, string> = {
   minted: "border-[color:var(--laurel-deep)] text-[color:var(--laurel-deep)]",
@@ -136,6 +138,8 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
   const [selected, setSelected] = useState<string | null>(null);
   const [era, setEra] = useState(3);
   const picked = rows.find((p) => p.id === selected) ?? null;
+  const guides = useMemo(() => (view === "cards" ? [] : solvabilityGuides(view, visibleRows(rows, year))), [rows, view, year]);
+  const layout = useMemo(() => (view === "cards" ? null : solvabilityLayout(rows, view, year, selected, guides)), [rows, view, year, selected, guides]);
   const select = (id: string) => {
     setSelected(id);
     const p = rows.find((r) => r.id === id);
@@ -197,11 +201,20 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
       ) : (
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_420px]">
           <div className="flex flex-col gap-2 min-w-0">
-            <SolvabilitySpace rows={rows} view={view} year={year} selected={selected} colors={BRANCH_COLOR} onSelect={select} onSlice={setEra} />
-            <p className="text-[12px] text-[color:var(--basalt-3)]">Drag to orbit. Click a problem to open its card, or a ring to open that era as a circle graph. Time runs from back left to front right; a filled dot is resolved by the chosen year; the shaded surface is solvability smoothed across time and angle.</p>
+            {layout && <SceneHost key={view} layout={layout} selected={selected} onSelect={select} />}
+            <div className="flex flex-wrap gap-3 text-[12px]">
+              {layout?.legend.map((l) => (
+                <span key={l.label} className="flex items-center gap-1.5">
+                  <i className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: l.color }} />
+                  {l.label}
+                </span>
+              ))}
+            </div>
+            <Pills label="era" value={String(era)} onChange={(v) => setEra(Number(v))} options={ERAS.map((e, i) => ({ v: String(i), label: e.label }))} />
+            <p className="text-[12px] text-[color:var(--basalt-3)]">Drag to orbit, scroll to zoom. Click a problem to open its card and its era; pick an era to see it as a circle graph. Time runs from back left to front right; a larger dot is resolved by the chosen year; gold rings trace solvability smoothed across time and angle.</p>
           </div>
           <div className="flex flex-col gap-4 min-w-0">
-            <SliceCircle rows={rows} era={era} year={year} selected={selected} colors={BRANCH_COLOR} onSelect={select} />
+            <SliceCircle rows={rows} era={era} year={year} selected={selected} colors={SCENE_COLORS} onSelect={select} />
             {picked ? <Card p={picked} /> : <p className="text-[13px] text-[color:var(--basalt-3)]">Pick a problem to see its card.</p>}
           </div>
         </div>
