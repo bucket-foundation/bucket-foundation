@@ -6,11 +6,11 @@ import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
 import type { Card, Item, Rating } from "./grade";
 
-export const SCHEMA_VERSION = 4;
+export const SCHEMA_VERSION = 5;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -87,6 +87,9 @@ export const MIGRATIONS: Migration[] = [
    create index advisor_rows_mark on advisor_rows(person_mark);
    create table prime_directions (corpus text primary key, data text not null, imported_at integer not null);
    create table people_forget (mark text primary key, at integer not null);`,
+  `create table work_quiz_source (id integer primary key check (id = 1), beads text, repo text, updated_at integer not null);
+   create table work_quiz_attempts (id text primary key, question_id text not null, type text not null, correct integer not null,
+     rating integer not null, elapsed_ms integer not null, at integer not null);`,
 ];
 
 export interface AttemptInput {

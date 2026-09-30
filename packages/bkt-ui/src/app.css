@@ -965,3 +965,18 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.lines {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  color: var(--ink-2);
+}
+
+.after-block {
+  margin-top: 10px;
+}
+
+section > .panel + .panel,
+section > article + article {
+  margin-top: 14px;
+}

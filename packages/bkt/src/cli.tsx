@@ -18,6 +18,7 @@ import { PeopleStore } from "./people";
 import { JOB_BODY_BYTES, jobRoutes } from "./job-routes";
 import { jobSpecs } from "./job-specs";
 import { JobRunner } from "./jobs";
+import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "./work-quiz";
 import { cacheRoot } from "./pyruntime";
 import pysrc from "../content/pysrc.json" with { type: "json" };
 import type { PySource } from "./pack/pysrc";
@@ -145,12 +146,14 @@ async function main(argv: string[]) {
           ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
           ...advisorRoutes(people),
           ...jobRoutes(runner),
+          ...workQuizRoutes(new WorkQuizStore(session.store, session.key)),
         },
         routeBodyBytes: {
           "POST /local/import": IMPORT_BODY_BYTES,
           "POST /local/advisor/import": REVIEW_BODY_BYTES,
           "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
           "POST /local/jobs": JOB_BODY_BYTES,
+          "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
         },
         uiDir: uiDir(),
         onError: (e) => console.error(`bkt serve: ${e.message}`),
