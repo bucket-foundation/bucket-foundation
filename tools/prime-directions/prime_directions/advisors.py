@@ -23,7 +23,8 @@ TEXT_KEYS = (
 ID_KEYS = ("id", "openalex_id", "orcid", "email", "name")
 NAME_KEYS = ("name", "display_name", "full_name")
 FILTER_KEYS = ("field", "country", "funding", "institution", "taking_students")
-EXTRA_KEYS = ("department", "h_index", "sources")
+EXTRA_KEYS = ("department", "h_index", "sources", "profile_url")
+PUBLIC_EMAIL_SOURCES = ("official_directory", "opt_in")
 
 @dataclass
 class Person:
@@ -263,6 +264,7 @@ def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: s
             "identity": meta.get("identity", ""),
             "profile_institution": meta.get("profile_institution", ""),
             "email": meta.get("email") or "",
+            "email_public": str(meta.get("email_source") or "") in PUBLIC_EMAIL_SOURCES,
             "shared_terms": " ".join(evidence[j][0]),
             "shared_topics": evidence[j][1],
         })
@@ -299,6 +301,13 @@ def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, d
     qpct = np.array([np.searchsorted(sorted_axes[j], qvec[j]) / max(len(space) - 1, 1) for j in range(n)]).clip(0, 1)
     index = {model.people[model.kept[i]].id: i for i in range(len(model.kept))}
     context = {"prime_axes": axis_labels(model, n), "star_query_prime": [round(float(v), 3) for v in qpct]}
+    rel = space - qvec[None, :]
+    ang = np.arctan2(rel[:, 1], rel[:, 0])
+    order = np.argsort(ang, kind="stable")
+    theta = np.empty(len(ang))
+    theta[order] = np.linspace(0, 2 * np.pi, len(ang), endpoint=False)
+    cos_q = cosine(space, qvec)
+    radius = 1 - percentile_of(cos_q) / 100
     ours = None
     if directions:
         draw = model.project([t for _, t in directions])
@@ -315,6 +324,8 @@ def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, d
         if i is None:
             continue
         r["star_prime"] = [round(float(v), 3) for v in pct[i]]
+        r["theta"] = round(float(theta[i]), 4)
+        r["radius"] = round(float(radius[i]), 4)
         if ours is not None:
             r["star_ours"] = [round(float(v), 3) for v in ours[i]]
     return context
@@ -457,8 +468,15 @@ def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, la
 
 PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
 
-def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path) -> Path:
+def publishable_rows(rows: list[dict]) -> list[dict]:
+    return [{**r, "email": "", "email_public": False} for r in rows]
+
+
+def write_page(rows: list[dict], plot_png: Path, context: dict, path: Path, publishable: bool = False) -> Path:
     import base64
+
+    if publishable:
+        rows = publishable_rows(rows)
 
     image = "data:image/png;base64," + base64.b64encode(Path(plot_png).read_bytes()).decode("ascii")
     payload = {"rows": rows, "context": context}

@@ -269,3 +269,17 @@ def test_page_carries_panel_timeline_and_direction_filters(tmp_path: Path, monke
     page = (out / "index.html").read_text()
     for hook in ('id="panel"', 'id="tl"', 'id="dirs"', '"prime_axes"', '"our_axes"', '"star_prime"', '"star_ours"'):
         assert hook in page
+
+
+def test_email_public_only_for_public_sources_and_publishable_strips(tmp_path: Path):
+    lines = PEOPLE.read_text().splitlines()
+    a, b = json.loads(lines[0]), json.loads(lines[1])
+    a.update(email="a@example.edu", email_source="official_directory")
+    b.update(email="b@example.edu", email_source="scraped")
+    f = tmp_path / "p.jsonl"
+    f.write_text("\n".join([json.dumps(a), json.dumps(b)] + lines[2:]) + "\n")
+    model = advisors.fit_people(advisors.load_people(f), k=6, min_df=2, max_df=0.9, min_chars=50)
+    rows, _, _ = advisors.rank(model, advisors.statement_body(STATEMENT.read_text()), top=None)
+    by = {r["email"]: r for r in rows if r["email"]}
+    assert by["a@example.edu"]["email_public"] is True and by["b@example.edu"]["email_public"] is False
+    assert all(r["email"] == "" and r["email_public"] is False for r in advisors.publishable_rows(rows))

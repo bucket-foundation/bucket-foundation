@@ -9,7 +9,8 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F1C16;--panel:#2A261E;--line:rgba(239,232,212,.16);--ink:#EFE8D4;--soft:#B9AF96;--ochre:#D9A43A;--ochre-fill:#D9A43A;--teal:#3FB6B6;--rust:#E07A5F;--chip:#2F2A21}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:1100px;margin:0 auto;padding:16px 16px 96px}
+main{min-width:0;padding:16px 16px 48px}
+.stage{display:grid;gap:0;max-width:1600px;margin:0 auto}
 h1{font:400 28px/1.15 Georgia,"Iowan Old Style",serif;margin:8px 0 4px}
 h2{font:400 20px/1.2 Georgia,serif;margin:28px 0 8px}
 .meta{color:var(--soft);font-size:13px;margin:0}
@@ -22,7 +23,7 @@ details.method img{width:100%;height:auto;border-radius:4px;margin-top:8px}
 .spread{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:8px 0}
 .spread div{border-top:1px solid var(--line);padding-top:4px;font-size:13px}
 .spread b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
-.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;display:grid;gap:8px}
+.bar{z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;display:grid;gap:8px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 select{max-width:100%;min-width:0;flex:1 1 150px;text-overflow:ellipsis}
 .toggle{flex:1 1 220px;min-width:0}
@@ -83,14 +84,66 @@ body.one .more-wrap{display:none}
 .card.selected{outline:2px solid var(--ochre-fill);outline-offset:1px}
 .card{cursor:pointer}
 .note{font-size:12px;color:var(--soft);margin:0}
-@media (min-width:1100px){main{max-width:1440px}.layout{grid-template-columns:minmax(0,1fr) 400px}.panel{position:sticky;top:210px;max-height:calc(100vh - 230px);overflow:auto}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pill{border-radius:999px;padding:10px 18px;font-size:15px}
+.circle-wrap{position:relative;margin:12px auto 0;width:min(100%,820px,calc(100vh - 300px));min-width:min(100%,320px)}
+#circle{display:block;width:100%;aspect-ratio:1/1;max-width:100%;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:12px;margin:0;white-space:nowrap}
+.legend{display:grid;gap:2px;font-size:12px;color:var(--soft);border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--chip);margin-top:8px;max-width:260px}
+.legend b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+.timeline{border-top:1px solid var(--line);margin-top:16px;padding-top:10px;display:grid;gap:6px}
+.tl-now{margin:0;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.tl-now b{font:400 24px/1.2 Georgia,serif;color:var(--ochre)}
+.tl-foot{margin:0;text-align:center;letter-spacing:.06em}
+body:not(.circle) .circle-wrap{display:none}
+body.circle .cards,body.circle .more-wrap,body.circle .deck{display:none}
+.panel{border-width:0 0 0 1px;border-radius:0}
+@media (min-width:1100px){.stage{grid-template-columns:minmax(0,1fr) 420px}.panel{position:sticky;top:0;height:100vh;overflow:auto;padding:24px}.legend{position:absolute;right:0;bottom:0}}
+@media (max-width:1099px){.panel{border-width:1px 0 0 0}}
 </style>
 </head>
-<body>
+<body class="circle">
+<div class="stage">
 <main>
 <p class="meta">Private review. Stored in this browser only.</p>
 <h1>Advisor review</h1>
 <p class="meta" id="summary"></p>
+
+<div class="bar">
+<div class="row"><input type="search" id="q" class="pill" placeholder="Search name, institution, topic" aria-label="Search"></div>
+<div class="row dirs" id="dirs" role="group" aria-label="Prime directions: keep advisors at or above the 75th percentile"></div>
+<div class="row tabs" role="group" aria-label="View">
+<button type="button" data-view="circle" aria-pressed="true">Circle</button>
+<button type="button" data-view="list" aria-pressed="false">List</button>
+<button type="button" data-view="one" aria-pressed="false">One at a time</button>
+<span class="count" id="count"></span>
+</div>
+<details class="more-filters"><summary>Filters and export</summary>
+<div class="row">
+<select id="view" aria-label="Who"><option value="phd">PhD advisors</option><option value="stevens">Stevens contacts</option><option value="all">Everyone</option></select>
+<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Maybe</option><option value="skip">Skip</option></select>
+<label class="toggle"><input type="checkbox" id="cap" checked> <span id="cap-label"></span></label>
+<button type="button" id="export">Export shortlist CSV</button>
+</div>
+<div class="row" id="filters"></div>
+</details>
+</div>
+
+<section class="circle-wrap" id="circle-wrap">
+<canvas id="circle" role="img" aria-label="Every advisor on a circle around the research statement"></canvas>
+<p class="tip" id="tip" hidden></p>
+<div class="legend"><b>Reading the circle</b><span>centre: the research statement</span><span>closer: a closer match</span><span>angle: position on the two main directions</span><span>click a dot to inspect it</span></div>
+</section>
+
+<ol class="cards" id="cards"></ol>
+<p class="more-wrap"><button type="button" id="more">Show more</button></p>
+<section class="deck" id="deck" aria-live="polite"></section>
+
+<div class="timeline">
+<p class="tl-now"><b id="tl-name"></b><span id="tl-pos"></span></p>
+<div class="row"><button type="button" id="prev" aria-label="Previous advisor">Previous</button><input type="range" id="tl" min="0" max="0" value="0" aria-label="Step through advisors in the current order"><button type="button" id="next" aria-label="Next advisor">Next</button><button type="button" id="play" aria-pressed="false">Play</button></div>
+<p class="count tl-foot">Step through advisors in rank order. Search and filters change the order.</p>
+</div>
 
 <details class="method">
 <summary>How the ranking works</summary>
@@ -99,36 +152,10 @@ body.one .more-wrap{display:none}
 <p id="plot-text"></p>
 <img src="__IMAGE__" alt="Every professor as a dot on the two components where the statement scores highest; the statement is a star and the top matches are numbered">
 </details>
-
-<div class="bar">
-<div class="row tabs" role="group" aria-label="View">
-<button type="button" data-view="list" aria-pressed="true">List</button>
-<button type="button" data-view="one" aria-pressed="false">One at a time</button>
-<button type="button" id="export">Export shortlist CSV</button>
-<span class="count" id="count"></span>
-</div>
-<div class="row">
-<select id="view" aria-label="View"><option value="phd">PhD advisors</option><option value="stevens">Stevens contacts</option><option value="all">Everyone</option></select>
-<label class="toggle"><input type="checkbox" id="cap" checked> <span id="cap-label"></span></label>
-</div>
-<div class="row">
-<input type="search" id="q" placeholder="Search name, institution, topic" aria-label="Search">
-<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Maybe</option><option value="skip">Skip</option></select>
-</div>
-<details class="more-filters"><summary>More filters</summary><div class="row" id="filters"></div></details>
-<div class="row dirs" id="dirs" role="group" aria-label="Prime directions: keep advisors at or above the 75th percentile"></div>
-<div class="row timeline"><button type="button" id="prev" aria-label="Previous advisor">Previous</button><input type="range" id="tl" min="0" max="0" value="0" aria-label="Step through advisors in the current order"><button type="button" id="next" aria-label="Next advisor">Next</button><span class="count" id="tl-pos"></span></div>
-</div>
-
-<div class="layout">
-<div>
-<ol class="cards" id="cards"></ol>
-<p class="more-wrap"><button type="button" id="more">Show more</button></p>
-<section class="deck" id="deck" aria-live="polite"></section>
-</div>
-<aside class="panel" id="panel" aria-live="polite"></aside>
-</div>
 </main>
+<aside class="panel" id="panel" aria-label="Selected advisor"></aside>
+</div>
+<p class="sr" id="announce" aria-live="polite"></p>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 (() => {
@@ -176,6 +203,8 @@ for (const [k, label] of present) {
 }
 
 const statusOf = (r) => decisions[r.id] || "none";
+const safeUrl = (u) => (typeof u === "string" && /^https:\/\/[^\s]+$/i.test(u.trim()) ? u.trim() : "");
+const contactOf = (r) => (r.email && r.email_public === true ? {kind: "email", value: r.email} : safeUrl(r.profile_url) ? {kind: "profile", value: safeUrl(r.profile_url)} : null);
 const AXES = ctx.prime_axes || [], OURS = ctx.our_axes || [];
 const dirOn = new Set();
 AXES.forEach((label, k) => {
@@ -203,7 +232,7 @@ function radar(labels, series) {
     const pts = s.values.map((v, i) => [C + R * v * Math.cos(ang(i)), C + R * v * Math.sin(ang(i))].join(",")).join(" ");
     root.append(svg("polygon", {points: pts, fill: s.fill, "fill-opacity": s.opacity, stroke: s.stroke, "stroke-width": "1.6", "stroke-dasharray": s.dash || "none"}));
   }
-  root.setAttribute("aria-label", series.filter((s) => s.values).map((s) => s.name).join(" against "));
+  root.setAttribute("aria-label", series.filter((s) => s.values).map((s) => s.name + ": " + labels.map((l, i) => l + " " + Math.round(s.values[i] * 100)).join(", ")).join(". "));
   return root;
 }
 function panel(r) {
@@ -216,8 +245,13 @@ function panel(r) {
   const add = (k, v) => { if (v !== "" && v != null) dl.append(make("dt", {text: k}), make("dd", {text: String(v)})); };
   add("Rank", "#" + r.rank + ", top " + fmt(Math.max(100 - r.percentile, 0.1), 1) + "%");
   add("Field", r.field); add("Funding", r.funding); add("h-index", r.h_index); add("Taking students", r.taking_students); add("Sources", r.sources);
-  if (r.email) { dl.append(make("dt", {text: "Contact"})); const dd = make("dd"); dd.append(make("a", {href: "mailto:" + r.email, text: r.email})); dl.append(dd); }
-  else if (r.profile_url) { dl.append(make("dt", {text: "Profile"})); const dd = make("dd"); dd.append(make("a", {href: r.profile_url, target: "_blank", rel: "noreferrer", text: "open profile"})); dl.append(dd); }
+  const contact = contactOf(r);
+  if (contact) {
+    dl.append(make("dt", {text: contact.kind === "email" ? "Contact" : "Profile"}));
+    const dd = make("dd");
+    dd.append(contact.kind === "email" ? make("a", {href: "mailto:" + contact.value, text: contact.value}) : make("a", {href: contact.value, target: "_blank", rel: "noreferrer", text: "open profile"}));
+    dl.append(dd);
+  }
   p.append(dl);
   const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 6);
   if (topics.length) p.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
@@ -239,13 +273,81 @@ function panel(r) {
   }
   p.append(actions);
 }
+const PALETTE = ["#8A641A","#0B6E6E","#9A3B22","#4F6B2A","#5B4A8A","#2E6B8A","#B8861E","#7A5C3E","#3F7F6B","#8A3B5E"];
+const fieldColor = {};
+const colorOf = (f) => { if (!(f in fieldColor)) fieldColor[f] = PALETTE[Object.keys(fieldColor).length % PALETTE.length]; return fieldColor[f]; };
+const cv = $("circle"), cx = cv.getContext("2d");
+let geo = null, hoverId = null;
+function pos(r, size) {
+  const R = size / 2 - 18, rr = 12 + (R - 12) * Math.sqrt(Math.max(0, Math.min(1, r.radius ?? 1)));
+  return [size / 2 + rr * Math.cos(r.theta || 0), size / 2 + rr * Math.sin(r.theta || 0)];
+}
+function drawCircle() {
+  if (!document.body.classList.contains("circle")) return;
+  const css = getComputedStyle(document.documentElement);
+  const size = cv.clientWidth, dpr = window.devicePixelRatio || 1;
+  if (!size) return;
+  if (cv.width !== Math.round(size * dpr)) { cv.width = Math.round(size * dpr); cv.height = Math.round(size * dpr); }
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cx.clearRect(0, 0, size, size);
+  const c = size / 2, R = c - 18;
+  cx.fillStyle = css.getPropertyValue("--panel"); cx.beginPath(); cx.arc(c, c, R + 12, 0, 2 * Math.PI); cx.fill();
+  cx.strokeStyle = css.getPropertyValue("--line"); cx.lineWidth = 1;
+  for (const f of [0.25, 0.5, 0.75, 1]) { cx.beginPath(); cx.arc(c, c, 12 + (R - 12) * Math.sqrt(f), 0, 2 * Math.PI); cx.stroke(); }
+  const shown = new Set(current.map((r) => r.id));
+  geo = [];
+  for (const pass of [0, 1]) for (const r of rows) {
+    if (r.theta == null) continue;
+    const on = shown.has(r.id);
+    if ((pass === 0) === on) continue;
+    const [x, y] = pos(r, size);
+    geo.push([x, y, r]);
+    cx.globalAlpha = on ? 0.85 : 0.12;
+    cx.fillStyle = colorOf(r.field || "");
+    cx.beginPath(); cx.arc(x, y, on ? 2.6 : 1.6, 0, 2 * Math.PI); cx.fill();
+    if (on && statusOf(r) === "shortlist") { cx.globalAlpha = 1; cx.strokeStyle = css.getPropertyValue("--teal"); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(x, y, 5, 0, 2 * Math.PI); cx.stroke(); }
+  }
+  cx.globalAlpha = 1;
+  cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.beginPath(); cx.arc(c, c, 6, 0, 2 * Math.PI); cx.fill();
+  for (const id of [hoverId, selectedId]) {
+    const r = rows.find((x) => x.id === id); if (!r || r.theta == null) continue;
+    const [x, y] = pos(r, size);
+    cx.strokeStyle = css.getPropertyValue("--ink"); cx.lineWidth = id === selectedId ? 2 : 1;
+    cx.beginPath(); cx.arc(x, y, 8, 0, 2 * Math.PI); cx.stroke();
+    if (id === selectedId) { cx.fillStyle = css.getPropertyValue("--ink"); cx.font = "13px Georgia, serif"; cx.textAlign = x > c ? "right" : "left"; cx.fillText(r.name, x + (x > c ? -12 : 12), y - 10); }
+  }
+  cv.setAttribute("aria-label", current.length + " advisors on a circle around the research statement" + (selectedId ? "; selected " + (rows.find((x) => x.id === selectedId) || {}).name : ""));
+}
+function nearest(e) {
+  if (!geo) return null;
+  const b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+  let best = null, bd = 100;
+  const shown = new Set(current.map((r) => r.id));
+  for (const [gx, gy, r] of geo) { if (!shown.has(r.id)) continue; const d = (gx - x) ** 2 + (gy - y) ** 2; if (d < bd) { bd = d; best = r; } }
+  return best ? {r: best, x, y} : null;
+}
+cv.addEventListener("click", (e) => { const n = nearest(e); if (n) select(n.r.id); });
+cv.addEventListener("mousemove", (e) => {
+  const n = nearest(e), tip = $("tip");
+  hoverId = n ? n.r.id : null;
+  tip.hidden = !n;
+  if (n) { tip.textContent = "#" + n.r.rank + " " + n.r.name; tip.style.left = (n.x + 12) + "px"; tip.style.top = (n.y + 12) + "px"; }
+  drawCircle();
+});
+cv.addEventListener("mouseleave", () => { hoverId = null; $("tip").hidden = true; drawCircle(); });
+if (window.ResizeObserver) new ResizeObserver(() => drawCircle()).observe(cv);
+let timer = null;
+$("play").addEventListener("click", () => {
+  if (timer) { clearInterval(timer); timer = null; } else { timer = setInterval(() => { const i = current.findIndex((x) => x.id === selectedId); if (i >= current.length - 1) { clearInterval(timer); timer = null; $("play").setAttribute("aria-pressed", "false"); $("play").textContent = "Play"; return; } step(1); }, 1400); }
+  $("play").setAttribute("aria-pressed", String(!!timer)); $("play").textContent = timer ? "Pause" : "Play";
+});
 function select(id) {
   selectedId = id;
   const i = current.findIndex((x) => x.id === id);
   if (i >= limit) { limit = Math.ceil((i + 1) / PAGE_SIZE) * PAGE_SIZE; }
   render();
   const el = document.querySelector('.cards [data-id="' + CSS.escape(id) + '"]');
-  if (el && !document.body.classList.contains("one")) el.scrollIntoView({block: "nearest"});
+  if (el && !document.body.classList.contains("one") && !document.body.classList.contains("circle")) el.scrollIntoView({block: "nearest"});
 }
 function step(d) {
   if (!current.length) return;
@@ -289,7 +391,8 @@ function card(r, tag = "li") {
   if (r.taking_students !== "" && r.taking_students != null) tags.append(make("span", {text: "taking students: " + r.taking_students}));
   if (r.identity === "check") tags.append(make("span", {class: "flag", text: "profile may be another person" + (r.profile_institution ? " at " + r.profile_institution : "")}));
   if (r.identity === "moved" && r.profile_institution) tags.append(make("span", {text: "publishes as " + r.profile_institution}));
-  if (r.email) { const a = make("a", {href: "mailto:" + r.email, text: r.email}); tags.append(a); }
+  const cc = contactOf(r);
+  if (cc && cc.kind === "email") tags.append(make("a", {href: "mailto:" + cc.value, text: cc.value}));
   c.append(tags);
   const actions = make("div", {class: "actions"});
   for (const [s, label] of [["shortlist","Shortlist"],["maybe","Maybe"],["skip","Skip"]]) {
@@ -298,6 +401,7 @@ function card(r, tag = "li") {
     actions.append(b);
   }
   c.append(actions);
+  c.setAttribute("tabindex", "0");
   if (r.id === selectedId) c.classList.add("selected");
   c.addEventListener("click", (e) => { if (!e.target.closest("button,a")) select(r.id); });
   return c;
@@ -339,19 +443,26 @@ function render() {
   $("tl").max = String(Math.max(list.length - 1, 0));
   $("tl").value = String(Math.max(idx, 0));
   $("tl-pos").textContent = list.length ? (idx + 1) + " of " + list.length : "";
+  $("tl").setAttribute("aria-valuetext", list.length && idx >= 0 ? (idx + 1) + " of " + list.length + ": " + list[idx].name : "none");
+  const said = list[idx] ? list[idx].name + ", rank " + list[idx].rank : "";
+  if ($("announce").textContent !== said) $("announce").textContent = said;
   $("prev").disabled = idx <= 0; $("next").disabled = idx < 0 || idx >= list.length - 1;
   panel(list[idx]);
+  $("tl-name").textContent = list[idx] ? "#" + list[idx].rank + " " + list[idx].name : "No one matches";
+  drawCircle();
 }
 
 document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
   document.querySelectorAll("[data-view]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
   document.body.classList.toggle("one", b.dataset.view === "one");
+  document.body.classList.toggle("circle", b.dataset.view === "circle");
+  drawCircle();
 }));
 $("tl").addEventListener("input", () => { const r = current[Number($("tl").value)]; if (r) select(r.id); });
 $("prev").addEventListener("click", () => step(-1));
 $("next").addEventListener("click", () => step(1));
 document.addEventListener("keydown", (e) => {
-  if (e.target.matches("input,select,textarea")) return;
+  if (e.target !== document.body && !e.target.classList.contains("card")) return;
   if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
   else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
 });
@@ -380,6 +491,7 @@ $("export").addEventListener("click", () => {
   document.body.append(a); a.click(); a.remove();
 });
 render();
+window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, toggleDirection: (k) => $("dirs").children[k].click()};
 })();
 </script>
 </body>
