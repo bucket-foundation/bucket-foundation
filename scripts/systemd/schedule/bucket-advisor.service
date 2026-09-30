@@ -1,0 +1,6 @@
+[Unit]
+Description=Bucket scheduled advisor report
+[Service]
+Type=oneshot
+ExecStart=%h/agfarms/bucket-foundation/scripts/schedule/run-job.sh advisor
+TimeoutStartSec=3h

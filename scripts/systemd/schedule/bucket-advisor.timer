@@ -1,0 +1,8 @@
+[Unit]
+Description=Bucket advisor schedule
+[Timer]
+OnCalendar=*-*-01 06:00:00
+Persistent=true
+RandomizedDelaySec=15m
+[Install]
+WantedBy=timers.target

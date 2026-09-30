@@ -1,0 +1,6 @@
+[Unit]
+Description=Bucket scheduled hygiene report
+[Service]
+Type=oneshot
+ExecStart=%h/agfarms/bucket-foundation/scripts/schedule/run-job.sh hygiene
+TimeoutStartSec=3h
