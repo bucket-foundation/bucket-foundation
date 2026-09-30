@@ -16,7 +16,8 @@ import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views"
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
 import canonSpace from "@/data/explore/canon.space.json";
-import { SPACE_SOURCES, sourceFromParam, type SpaceSource } from "@/lib/explore/space-sources";
+import { dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
+import { sampleDataset } from "@/lib/explore/space-sample";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
@@ -244,33 +245,60 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
   const canon = useMemo(() => parseDataset(canonSpace), []);
-  const [source, setSourceState] = useState<SpaceSource>("canon");
-  const [advisors, setAdvisors] = useState<Dataset | null>(null);
-  const [advisorsAvailable, setAdvisorsAvailable] = useState(false);
+  const [remoteList, setRemoteList] = useState<{ id: string; label?: string }[]>([]);
+  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList), [remoteList]);
+  const [dataId, setDataIdState] = useState("canon");
+  const [remoteSets, setRemoteSets] = useState<Record<string, Dataset>>({});
+  const [dataError, setDataError] = useState<string | null>(null);
+  const sample = useMemo(() => sampleDataset(), []);
+  const dataFromUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    setSourceState(sourceFromParam(new URLSearchParams(window.location.search).get("src")));
-    fetch("/api/explore/space?id=advisors")
+    dataFromUrl.current = new URLSearchParams(window.location.search).get("data");
+    setDataIdState(dataParam(dataFromUrl.current, listDatasets([])));
+    fetch("/api/explore/space")
       .then(async (r) => {
         if (!r.ok) return;
-        setAdvisors(parseDataset(await r.json()));
-        setAdvisorsAvailable(true);
+        const body = (await r.json()) as { datasets?: { id: string; label?: string }[] };
+        const list = (body.datasets ?? []).filter((d) => validDatasetId(d.id));
+        setRemoteList(list);
+        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list)) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list)) : cur));
       })
       .catch(() => undefined);
   }, []);
 
-  const setSource = (v: SpaceSource) => {
-    setSourceState(v);
+  useEffect(() => {
+    if (!isRemote(dataId, entries) || remoteSets[dataId]) return;
+    let live = true;
+    setDataError(null);
+    fetch(`/api/explore/space?id=${encodeURIComponent(dataId)}`)
+      .then(async (r) => {
+        if (!r.ok) throw new Error(`data set ${dataId}: ${r.status}`);
+        const ds = parseDataset(await r.json());
+        if (live) setRemoteSets((m) => ({ ...m, [dataId]: ds }));
+      })
+      .catch((e) => live && setDataError(e instanceof Error ? e.message : String(e)));
+    return () => {
+      live = false;
+    };
+  }, [dataId, entries, remoteSets]);
+
+  const setData = (id: string) => {
+    const next = dataParam(id, entries);
+    setDataIdState(next);
+    setQ("");
+    setResults([]);
     const u = new URL(window.location.href);
-    u.searchParams.set("src", v);
+    u.searchParams.set("data", next);
     window.history.replaceState(window.history.state, "", u.toString());
   };
 
   const searching_ = basis !== null && ordered.length > 0;
   const dataset = useMemo<Dataset>(() => {
     if (searching_ && basis) return datasetFromResults(ordered, basis);
-    return source === "advisors" && advisors ? advisors : canon;
-  }, [searching_, basis, ordered, source, advisors, canon]);
+    if (dataId === "sample") return sample;
+    return remoteSets[dataId] ?? canon;
+  }, [searching_, basis, ordered, dataId, remoteSets, canon, sample]);
 
   const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
   useEffect(() => setIndex(0), [datasetKey]);
@@ -378,13 +406,6 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
           </button>
         ))}
       </div>
-      <div role="radiogroup" aria-label="data set" className="flex w-fit flex-shrink-0 rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
-        {SPACE_SOURCES.filter((v) => v === "canon" || advisorsAvailable).map((v) => (
-          <button key={v} type="button" role="radio" data-source={v} aria-checked={source === v} onClick={() => setSource(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: source === v ? "var(--basalt)" : "transparent", color: source === v ? "var(--bone)" : "var(--parchment-dim)" }}>
-            {v}
-          </button>
-        ))}
-      </div>
       <label className="flex items-center gap-2">
         order
         <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
@@ -396,11 +417,34 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     </div>
   );
 
+  const dataNode = (
+    <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+      data
+      <select data-testid="data-switcher" aria-label="data set" value={searching_ ? "search" : dataId} onChange={(e) => setData(e.target.value)} className="min-h-[32px] bg-transparent border rounded px-2" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
+        {searching_ && <option value="search">search results</option>}
+        <optgroup label="bundled">
+          {entries.filter((e) => e.group === "bundled").map((e) => (
+            <option key={e.id} value={e.id}>{e.label}</option>
+          ))}
+        </optgroup>
+        {entries.some((e) => e.group === "local") && (
+          <optgroup label="local">
+            {entries.filter((e) => e.group === "local").map((e) => (
+              <option key={e.id} value={e.id}>{e.label}</option>
+            ))}
+          </optgroup>
+        )}
+      </select>
+      {dataError && <span role="alert">{dataError}</span>}
+    </label>
+  );
+
   const scrubberHostNode = <div ref={setScrubberHost} data-testid="scrubber-host" className="w-full" />;
 
   const widgets: WidgetSpec[] = [
     { id: "search", slot: "top", title: "Search", node: searchNode },
-    { id: "view", slot: "left", title: "View", collapsible: true, node: viewNode },
+    { id: "data", slot: "left", title: "Data", collapsible: true, order: 0, node: dataNode },
+    { id: "view", slot: "left", title: "View", collapsible: true, order: 1, node: viewNode },
     { id: "scrubber", slot: "bottom", title: "Scrubber", node: scrubberHostNode },
   ];
 
@@ -421,6 +465,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
       {expanded ? null : (
         <div key="top" className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
           {searchNode}
+          {dataNode}
           {viewNode}
         </div>
       )}

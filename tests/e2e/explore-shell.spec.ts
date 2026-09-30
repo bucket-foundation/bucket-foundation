@@ -7,7 +7,7 @@ test("the shell opens on the canon data set with the canon search controls", asy
   await expect(page.getByTestId("explore-shell")).toBeVisible();
   await expect(page.getByTestId("shell-query")).toBeVisible();
   await expect(page.getByTestId("sample-badge")).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: "canon" })).toHaveAttribute("aria-checked", "true");
+  await expect(page.getByTestId("data-switcher")).toHaveValue("canon");
   await expect(page.getByTestId("circle-chart")).toBeVisible();
   await expect(page.getByRole("radio", { name: "circle" })).toHaveAttribute("aria-checked", "true");
   await expect(page.getByRole("button", { name: "physics" })).toBeVisible();
