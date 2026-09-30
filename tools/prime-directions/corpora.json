@@ -5,50 +5,103 @@
       "path": "_intake/80k-ea-longtermism/corpus.sqlite",
       "description": "80,000 Hours, EA Forum, GiveWell and adjacent effective-altruism sources",
       "options": {
-        "exclude_id_substrings": ["job-board", "/latest/", "/topic/", "/page/", "/tag/", "/topics/"]
+        "exclude_id_substrings": [
+          "job-board",
+          "/latest/",
+          "/topic/",
+          "/page/",
+          "/tag/",
+          "/topics/"
+        ]
       },
-      "clean": {"min_chars": 2000}
+      "clean": {
+        "min_chars": 2000
+      }
     },
     "kruse": {
       "kind": "folder",
       "path": "~/jackkruse/articles",
       "private": true,
       "description": "Jack Kruse blog, local scrape; outputs stay on this machine",
-      "clean": {"min_chars": 1000}
+      "clean": {
+        "min_chars": 1000
+      }
     },
     "health-longevity": {
       "kind": "folder",
       "path": "_intake/health-longevity-fitness",
       "description": "Health, longevity and fitness research notes, protocols and transcripts",
-      "options": {"exclude_dirs": ["reports", "__pycache__"]},
-      "clean": {"min_chars": 800}
+      "options": {
+        "exclude_dirs": [
+          "reports",
+          "__pycache__"
+        ]
+      },
+      "clean": {
+        "min_chars": 800
+      }
     },
     "war-gov": {
       "kind": "folder",
       "path": "_intake/war-gov-pursue-release-01",
       "description": "Department of War PURSUE release 01: records and PDFs",
-      "options": {"pdf": true},
-      "clean": {"min_chars": 800}
+      "options": {
+        "pdf": true
+      },
+      "clean": {
+        "min_chars": 800
+      }
     },
     "aaro": {
       "kind": "folder",
       "path": "_intake/aaro-mil-archive",
       "description": "AARO military archive PDFs",
-      "options": {"pdf": true, "extensions": []},
-      "clean": {"min_chars": 800}
+      "options": {
+        "pdf": true,
+        "extensions": []
+      },
+      "clean": {
+        "min_chars": 800
+      }
     },
     "k12-literature": {
       "kind": "folder",
       "path": "_intake/research-os-k12-literature",
       "description": "Research OS K-12 literature review notes",
-      "clean": {"min_chars": 800}
+      "clean": {
+        "min_chars": 800
+      }
     },
     "academy": {
       "kind": "json_items",
       "path": "learning/app/corpus",
       "description": "Bucket Academy science atoms across the canon branches",
-      "options": {"pattern": "[0-9b]*.json", "text_keys": ["summary", "lesson", "depths", "note"]},
-      "clean": {"min_chars": 400}
+      "options": {
+        "pattern": "[0-9b]*.json",
+        "text_keys": [
+          "summary",
+          "lesson",
+          "depths",
+          "note"
+        ]
+      },
+      "clean": {
+        "min_chars": 400
+      }
+    },
+    "bryan-johnson": {
+      "kind": "folder",
+      "path": "_intake/health-longevity-fitness/01-people/bryan-johnson-corpus",
+      "description": "Bryan Johnson: Blueprint protocol pages and public video transcripts",
+      "options": {
+        "extensions": [
+          ".md",
+          ".txt"
+        ]
+      },
+      "clean": {
+        "min_chars": 800
+      }
     }
   }
 }

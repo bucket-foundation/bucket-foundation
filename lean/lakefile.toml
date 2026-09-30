@@ -1,0 +1,12 @@
+name = "bucketmath"
+defaultTargets = ["BucketMath", "BucketMathAll"]
+
+[[require]]
+name = "bucket_history_hypothesis_engine"
+path = "../papers/history-hypothesis-engine/lean"
+
+[[lean_lib]]
+name = "BucketMath"
+
+[[lean_lib]]
+name = "BucketMathAll"

@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="__CSP__">
+<title>Advisor review</title>
+<style>
+:root{--bg:#EFE8D4;--panel:#E4DCC4;--line:rgba(31,28,22,.16);--ink:#1F1C16;--soft:#5E5543;--ochre:#8A641A;--ochre-fill:#B8861E;--teal:#0B6E6E;--rust:#9A3B22;--chip:#F6F1E3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F1C16;--panel:#2A261E;--line:rgba(239,232,212,.16);--ink:#EFE8D4;--soft:#B9AF96;--ochre:#D9A43A;--ochre-fill:#D9A43A;--teal:#3FB6B6;--rust:#E07A5F;--chip:#2F2A21}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{min-width:0;padding:16px 16px 48px}
+.stage{display:grid;gap:0;max-width:1600px;margin:0 auto}
+h1{font:400 28px/1.15 Georgia,"Iowan Old Style",serif;margin:8px 0 4px}
+h2{font:400 20px/1.2 Georgia,serif;margin:28px 0 8px}
+.meta{color:var(--soft);font-size:13px;margin:0}
+a{color:inherit;text-decoration-color:var(--ochre);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+details.method{border-top:1px solid var(--ink);margin-top:16px;padding-top:8px}
+details.method summary{cursor:pointer;font-weight:600}
+details.method img{width:100%;height:auto;border-radius:4px;margin-top:8px}
+.method p{color:var(--soft);font-size:14px;margin:8px 0}
+.spread{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:8px 0}
+.spread div{border-top:1px solid var(--line);padding-top:4px;font-size:13px}
+.spread b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.bar{z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;display:grid;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select{max-width:100%;min-width:0;flex:1 1 150px;text-overflow:ellipsis}
+.toggle{flex:1 1 220px;min-width:0}
+.toggle span{overflow-wrap:anywhere}
+select,input,button{font:inherit;font-size:14px;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+input[type=search]{flex:1 1 200px;min-width:0}
+button{cursor:pointer}
+.tabs select{flex:0 1 auto;max-width:260px}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{color:var(--soft);font-size:13px}
+.cards{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;align-items:start}
+.card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--panel);display:grid;gap:8px;align-content:start}
+.card[data-status=shortlist]{border-color:var(--ochre-fill);box-shadow:inset 4px 0 0 var(--ochre-fill)}
+.card[data-status=maybe]{box-shadow:inset 4px 0 0 var(--soft)}
+.card[data-status=skip]{opacity:.55}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.name{font:400 19px/1.25 Georgia,serif;margin:0}
+.rank{font-variant-numeric:tabular-nums;color:var(--soft);font-size:13px;white-space:nowrap;text-align:right}
+.rank b{display:block;font-size:17px;color:var(--ink)}
+.where{color:var(--soft);font-size:14px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--soft)}
+.flag{color:var(--rust);font-weight:600}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{flex:1 1 90px}
+.actions button[data-set=shortlist]{border-color:var(--ochre-fill);color:var(--ochre)}
+.actions button[data-set=skip]{color:var(--rust);border-color:color-mix(in srgb,var(--rust) 45%,transparent);background:transparent}
+.actions button[data-set=maybe]{flex:0 0 38px;padding:6px 0;display:grid;place-items:center;color:var(--soft);background:transparent}
+.actions button[data-set=maybe] svg{width:14px;height:14px}
+.actions button[aria-pressed=true][data-set=shortlist]{background:var(--ochre-fill);color:#1F1C16;border-color:var(--ochre-fill)}
+.actions button[aria-pressed=true][data-set=maybe]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.actions button[aria-pressed=true][data-set=skip]{background:var(--rust);color:#fff;border-color:var(--rust)}
+.empty{color:var(--soft);padding:24px 0;text-align:center}
+.toggle{display:flex;gap:6px;align-items:center;font-size:14px}
+.more-filters summary{cursor:pointer;font-size:14px;color:var(--soft);padding:2px 0}
+.more-filters .row{margin-top:8px}
+
+.toggle input{width:18px;height:18px;accent-color:var(--ochre-fill)}
+.more-wrap{text-align:center;margin:16px 0}
+@media (min-width:760px){main{padding:24px 32px 96px}.cards{grid-template-columns:1fr 1fr}}
+.layout{display:grid;gap:16px;align-items:start}
+.layout>div{min-width:0}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:14px;display:grid;gap:10px;min-width:0;align-content:start}
+.panel h2{margin:0}
+.panel dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:13px}
+.panel dt{color:var(--soft)}
+.panel dd{margin:0;overflow-wrap:anywhere}
+.stars{display:grid;gap:8px}
+.stars figure{margin:0}
+.stars figcaption{font-size:12px;color:var(--soft)}
+.radar{width:100%;height:auto;display:block}
+.radar text{fill:var(--soft);font-size:9px}
+.timeline input[type=range]{flex:1 1 200px;min-width:0;accent-color:var(--ochre-fill)}
+.dirs button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.card.selected{outline:2px solid var(--ochre-fill);outline-offset:1px}
+.card{cursor:pointer}
+.note{font-size:12px;color:var(--soft);margin:0}
+button.linkish{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-decoration-color:var(--ochre);text-underline-offset:3px;cursor:pointer;text-align:left}
+button.linkish:hover{color:var(--ochre)}
+.chips li:has(button.linkish){padding:0}
+.chips li button.linkish{padding:2px 10px;text-decoration:none;border-radius:999px}
+.chips li button.linkish:hover{background:var(--bg)}
+#panel h2 a{color:inherit;text-decoration:underline;text-decoration-color:var(--ochre);text-underline-offset:4px}
+.prof{display:grid;gap:4px;border-top:1px solid var(--line);padding-top:8px}
+.prof h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+.prof .works{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13px}
+.prof .links{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pill{border-radius:999px;padding:10px 18px;font-size:15px}
+.circle-wrap{position:relative;margin:12px auto 0;width:100%}
+#circle{display:block;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:12px;margin:0;white-space:nowrap}
+.legend{display:grid;gap:2px;font-size:12px;color:var(--soft);border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--chip);margin-top:8px;max-width:260px}
+.legend b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+.timeline{border-top:1px solid var(--line);margin-top:16px;padding-top:10px;display:grid;gap:6px}
+.tl-now{margin:0;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.tl-now b{font:400 24px/1.2 Georgia,serif;color:var(--ochre)}
+.tl-foot{margin:0;text-align:center;letter-spacing:.06em}
+body:not(.circle) .circle-wrap{display:none}
+body.circle .cards,body.circle .more-wrap,body.circle .sheet-wrap,body.circle .submode{display:none}
+body.rows .cards{display:none}
+body:not(.rows) .sheet-wrap{display:none}
+.submode{display:inline-flex;gap:0;margin-left:4px}
+.submode button{border-radius:0}
+.submode button:first-child{border-radius:6px 0 0 6px}
+.submode button:last-child{border-radius:0 6px 6px 0}
+.submode button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sheet-wrap{overflow:auto;margin-top:8px;border:1px solid var(--line);border-radius:6px;min-width:0}
+.sheet{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+.sheet th{position:sticky;top:0;background:var(--panel);text-align:left;font-weight:600;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sheet th button.th{background:none;border:0;padding:0;font:inherit;font-weight:600;color:inherit;cursor:pointer}
+.sheet th[aria-sort=descending] button::after{content:" ↓"}
+.sheet th[aria-sort=ascending] button::after{content:" ↑"}
+.sheet td{padding:3px 8px;border-bottom:1px solid var(--line);white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+.sheet td.num{text-align:right}
+.sheet tr{cursor:pointer}
+.sheet tbody tr:hover{background:var(--chip)}
+.sheet tr.selected{background:color-mix(in srgb,var(--ochre-fill) 22%,transparent)}
+.sheet td.st-shortlist{color:var(--ochre);font-weight:600}
+.sheet td.st-skip{color:var(--rust)}
+body:not(.rows) .cards{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));align-content:start}
+body:not(.rows) .card{padding:10px;gap:6px}
+body:not(.rows) .card .name{font-size:16px}
+body:not(.rows) .card .where{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .portrait{width:100%;height:150px;border-radius:6px;background:var(--bg);display:grid;place-items:center;overflow:hidden}
+.card .portrait img{width:100%;height:100%;object-fit:cover}
+.card .portrait svg{height:92%;width:auto}
+.card .portrait svg text{display:none}
+.panel{border-width:0 0 0 1px;border-radius:0}
+.main-radar svg{width:100%;height:auto;display:block}
+.main-radar text{font-size:8px}
+.legend.static{position:static;margin:8px auto 0}
+.key{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle;border-radius:50%}
+.key.you{background:var(--ochre-fill)}
+.key.avg{background:var(--soft);border-radius:0;transform:rotate(45deg) scale(.8)}
+.key.sel{border:2px solid var(--ink)}
+.key.short{border:2px solid var(--ochre-fill);background:transparent}
+.legend em{font-style:normal;font-size:11px;color:var(--soft)}
+.legend span{display:flex;align-items:center;gap:0;overflow-wrap:anywhere}
+.swatch{width:22px;height:10px;margin-right:6px;flex:none}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.minis button{padding:4px;display:grid;gap:2px;font-size:11px;color:var(--soft);background:var(--bg)}
+.minis button[aria-pressed=true]{border-color:var(--ochre-fill);box-shadow:inset 0 0 0 1px var(--ochre-fill)}
+.minis canvas,.minis svg{width:100%;aspect-ratio:1/1;height:auto;display:block}
+.minis svg text{display:none}
+.side{min-width:0;background:var(--panel);display:grid;gap:12px;align-content:start;padding:14px}
+.side details.method{margin:0 0 8px}
+.head{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.head h1{margin:0;font-size:24px}
+.dirs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.dirs button{white-space:nowrap;flex:none}
+.dirs .count{flex:none;white-space:nowrap}
+#odirs button[aria-pressed=true]{background:var(--ochre-fill);color:#1F1C16;border-color:var(--ochre-fill)}
+.chart-box{position:relative;margin:0 auto}
+.chart-box #circle,.chart-box .main-radar{width:100%;height:100%}
+.main-radar svg{width:100%;height:100%;overflow:visible}
+.main-radar{overflow:visible}
+@media (min-width:900px) and (min-height:560px){
+html,body{height:100%;overflow:hidden}
+.stage{grid-template-columns:minmax(0,1fr) 400px;height:100vh;max-width:none}
+main{display:flex;flex-direction:column;height:100vh;overflow:hidden;padding:12px 24px 10px}
+.bar{padding:8px 0;gap:6px}
+.circle-wrap{flex:1 1 auto;min-height:0;width:100%;max-width:none;margin:6px 0 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bar{flex:none;max-height:48vh;overflow:auto}
+.timeline{flex:none}
+.cards,.sheet-wrap{flex:1 1 auto;min-height:0;overflow:auto}
+.more-wrap{margin:6px 0}
+.timeline{margin-top:6px;padding-top:6px;gap:4px}
+.tl-now b{font-size:20px}
+.side{height:100vh;overflow:auto;padding:20px}
+.legend,.legend.static{position:absolute;left:0;top:0;margin:0;max-width:220px}
+.head .meta{font-size:12px}
+.main-radar text{font-size:5.5px}
+.more-filters[open]{max-height:30vh;overflow:auto}
+}
+@media (max-width:1099px){.panel{border-width:1px 0 0 0}}
+</style>
+</head>
+<body class="circle rows">
+<div class="stage">
+<main>
+<header class="head"><h1>Advisor review</h1><p class="meta" id="summary"></p><p class="meta">Private review. Stored in this browser only.</p></header>
+
+<div class="bar">
+<div class="row"><input type="search" id="q" class="pill" placeholder="Search name, institution, topic" aria-label="Search"></div>
+<div class="row dirs" id="dirs" role="group" aria-label="Prime directions: keep advisors at or above the 75th percentile"></div>
+<div class="row dirs" id="odirs" role="group" aria-label="Our directions: keep advisors at or above the 75th percentile"></div>
+<div class="row tabs" role="group" aria-label="View">
+<button type="button" data-view="circle" aria-pressed="true">Circle</button>
+<button type="button" data-view="list" aria-pressed="false">Table</button>
+<span class="submode" id="submode" role="group" aria-label="Table layout"><button type="button" data-mode="rows" aria-pressed="true">List</button><button type="button" data-mode="grid" aria-pressed="false">Grid</button></span>
+<select id="sort" aria-label="Sort"></select>
+<select id="f-h" aria-label="Minimum h-index"><option value="">Any h-index</option><option value="10">h-index 10+</option><option value="25">h-index 25+</option><option value="50">h-index 50+</option></select>
+<span class="count" id="count"></span>
+</div>
+<details class="more-filters"><summary>Filters and export</summary>
+<div class="row">
+<select id="view" aria-label="Who"><option value="phd">PhD advisors</option><option value="stevens">Stevens contacts</option><option value="all">Everyone</option></select>
+<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Saved for later</option><option value="skip">Skip</option></select>
+<label class="toggle"><input type="checkbox" id="cap" checked> <span id="cap-label"></span></label>
+<label class="toggle"><input type="checkbox" id="keys" checked> <span>Single-key shortcuts on the chart and panel</span></label>
+<button type="button" id="export">Export shortlist CSV</button>
+</div>
+<div class="row" id="filters"></div>
+</details>
+</div>
+
+<section class="circle-wrap" id="circle-wrap">
+<div class="chart-box" id="chart-box">
+<canvas id="circle" role="img" aria-label="Every advisor on a circle around the research statement"></canvas>
+<div id="main-radar" class="main-radar" tabindex="0" hidden></div>
+</div>
+<p class="tip" id="tip" hidden></p>
+<div class="legend" id="legend" aria-label="Chart legend"></div>
+</section>
+
+<div class="sheet-wrap" id="sheet-wrap"><table class="sheet" id="sheet"></table></div>
+<ol class="cards" id="cards"></ol>
+<p class="more-wrap"><button type="button" id="more">Show more</button></p>
+
+<div class="timeline">
+<p class="tl-now"><b id="tl-name"></b><span id="tl-pos"></span></p>
+<div class="row"><button type="button" id="prev" aria-label="Previous advisor">Previous</button><input type="range" id="tl" min="0" max="0" value="0" aria-label="Step through advisors in the current order"><button type="button" id="next" aria-label="Next advisor">Next</button><button type="button" id="play" aria-pressed="false">Play</button></div>
+<p class="count tl-foot">Scroll over the chart or drag to step through advisors in the current sort order.</p>
+</div>
+
+
+</main>
+<aside class="side"><div class="panel" id="panel" aria-label="Selected advisor"></div>
+<details class="method">
+<summary>How the ranking works</summary>
+<p id="method-text"></p>
+<div class="spread" id="spread"></div>
+<p id="plot-text"></p>
+<img src="__IMAGE__" alt="Every professor as a dot on the two components where the statement scores highest; the statement is a star and the top matches are numbered">
+</details>
+</aside>
+</div>
+<p class="sr" id="announce" aria-live="polite"></p>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(() => {
+const payload = JSON.parse(document.getElementById("data").textContent);
+const rows = payload.rows, ctx = payload.context;
+const KEY = "advisor-review:" + (ctx.key || "v1");
+const FILTERS = [["field","All fields"],["country","All countries"],["funding","All funding"],["institution","All institutions"],["taking_students","Taking students: any"],["identity","All profile checks"]];
+const PAGE_SIZE = 60;
+let limit = PAGE_SIZE;
+const CAP = ctx.cap || 5, WINDOW = ctx.cap_window || 50;
+const inSource = (r, s) => String(r.sources || "").split(";").map((x) => x.trim()).includes(s);
+const VIEWS = {phd: (r) => !inSource(r, "stevens"), stevens: (r) => inSource(r, "stevens"), all: () => true};
+function diversify(list) {
+  const picked = [], held = [], counts = {};
+  for (const r of list) {
+    const inst = r.institution || "";
+    if (picked.length < WINDOW && inst && (counts[inst] || 0) >= CAP) { held.push(r); continue; }
+    counts[inst] = (counts[inst] || 0) + 1;
+    picked.push(r);
+    if (picked.length === WINDOW) { picked.push(...held); held.length = 0; }
+  }
+  return picked.concat(held);
+}
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { decisions = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} };
+const $ = (id) => document.getElementById(id);
+const make = (tag, props = {}, kids = []) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(props)) { if (k === "text") n.textContent = v; else if (k === "dataset") Object.assign(n.dataset, v); else n.setAttribute(k, v); } for (const c of kids) if (c) n.append(c); return n; };
+const fmt = (x, d = 2) => Number(x).toFixed(d);
+
+$("summary").textContent = ctx.summary;
+$("method-text").textContent = ctx.method;
+$("plot-text").textContent = ctx.plot;
+const spread = $("spread");
+for (const [label, key] of [["Best score","top1"],["10th","top10"],["100th","top100"],["300th","top300"],["Median","median"]]) spread.append(make("div", {}, [make("b", {text: fmt(ctx.spread[key], 3)}), document.createTextNode(label)]));
+
+const present = FILTERS.filter(([k]) => rows.some((r) => r[k] !== "" && r[k] != null));
+for (const [k, label] of present) {
+  const sel = make("select", {id: "f-" + k, "aria-label": label});
+  sel.append(make("option", {value: "", text: label}));
+  const counts = {};
+  for (const r of rows) { const v = String(r[k] ?? ""); if (v) counts[v] = (counts[v] || 0) + 1; }
+  for (const v of Object.keys(counts).sort()) sel.append(make("option", {value: v, text: v + " (" + counts[v] + ")"}));
+  $("filters").append(sel);
+}
+
+const statusOf = (r) => decisions[r.id] || "none";
+const safeUrl = (u) => (typeof u === "string" && /^https:\/\/[^\s]+$/i.test(u.trim()) ? u.trim() : "");
+const contactOf = (r) => (r.email && r.email_public === true ? {kind: "email", value: r.email} : safeUrl(r.profile_url) ? {kind: "profile", value: safeUrl(r.profile_url)} : null);
+const AXES = ctx.prime_axes || [], OURS = ctx.our_axes || [];
+const dirOn = new Set();
+AXES.forEach((label, k) => {
+  const b = make("button", {type: "button", "aria-pressed": "false", title: "Direction " + (k + 1) + ": " + label, text: label});
+  b.addEventListener("click", () => { if (dirOn.has(k)) dirOn.delete(k); else dirOn.add(k); b.setAttribute("aria-pressed", String(dirOn.has(k))); reset(); });
+  $("dirs").append(b);
+});
+if (AXES.length) $("dirs").prepend(make("span", {class: "count", text: "Prime directions"}));
+if (!AXES.length) $("dirs").hidden = true;
+const num = (v) => (v === "" || v == null || isNaN(Number(v)) ? -Infinity : Number(v));
+const SORTS = {
+  rank: (a, b) => a.rank - b.rank,
+  score: (a, b) => a.rank - b.rank,
+  country: (a, b) => String(a.country || "~").localeCompare(String(b.country || "~")) || a.rank - b.rank,
+  field: (a, b) => String(a.field || "~").localeCompare(String(b.field || "~")) || a.rank - b.rank,
+  h: (a, b) => num(b.h_index) - num(a.h_index) || a.rank - b.rank,
+  name: (a, b) => String(a.name).localeCompare(String(b.name)),
+  institution: (a, b) => String(a.institution || "~").localeCompare(String(b.institution || "~")) || a.rank - b.rank,
+  funded: (a, b) => (String(b.funding).includes("active") ? 1 : 0) - (String(a.funding).includes("active") ? 1 : 0) || a.rank - b.rank,
+  saved: (a, b) => ({shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(a)] - {shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(b)]) || a.rank - b.rank,
+};
+OURS.forEach((l, k) => { SORTS["ours" + k] = (a, b) => ((b.star_ours || [])[k] ?? -1) - ((a.star_ours || [])[k] ?? -1) || a.rank - b.rank; });
+AXES.forEach((l, k) => { SORTS["prime" + k] = (a, b) => ((b.star_prime || [])[k] ?? -1) - ((a.star_prime || [])[k] ?? -1) || a.rank - b.rank; });
+const sortOpts = [["rank", "Sort: best match"], ["h", "Sort: h-index"], ["funded", "Sort: active grant first"], ["saved", "Sort: my decisions"], ["institution", "Sort: institution"], ["country", "Sort: country"], ["field", "Sort: field"], ["name", "Sort: name"]]
+  .concat(OURS.map((l, k) => ["ours" + k, "Sort: closest to " + l]))
+  .concat(AXES.map((l, k) => ["prime" + k, "Sort: highest on " + l]));
+for (const [v, t] of sortOpts) $("sort").append(make("option", {value: v, text: t}));
+const oursOn = new Set();
+if (OURS.length) $("odirs").append(make("span", {class: "count", text: "Our directions"}));
+OURS.forEach((label, k) => {
+  const b = make("button", {type: "button", "aria-pressed": "false", title: "Keep advisors in the top quarter on " + label, text: label});
+  b.addEventListener("click", () => { if (oursOn.has(k)) oursOn.delete(k); else oursOn.add(k); b.setAttribute("aria-pressed", String(oursOn.has(k))); reset(); });
+  $("odirs").append(b);
+});
+if (!OURS.length) $("odirs").hidden = true;
+if (!rows.some((r) => r.h_index !== "" && r.h_index != null)) $("f-h").hidden = true;
+let selectedId = null, current = [];
+const SVGNS = "http://www.w3.org/2000/svg";
+const svg = (tag, attrs) => { const n = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
+function smoothLoop(p, t = 0.35) {
+  const n = p.length, at = (i) => p[(i + n) % n];
+  let d = "M" + p[0][0].toFixed(2) + "," + p[0][1].toFixed(2);
+  for (let i = 0; i < n; i++) {
+    const p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2);
+    const c1 = [p1[0] + (p2[0] - p0[0]) * t / 2, p1[1] + (p2[1] - p0[1]) * t / 2];
+    const c2 = [p2[0] - (p3[0] - p1[0]) * t / 2, p2[1] - (p3[1] - p1[1]) * t / 2];
+    d += " C" + c1.map((v) => v.toFixed(2)).join(",") + " " + c2.map((v) => v.toFixed(2)).join(",") + " " + p2[0].toFixed(2) + "," + p2[1].toFixed(2);
+  }
+  return d + " Z";
+}
+const topScale = (v) => (v == null ? v : Math.max(0, 1 - Math.log10(1 + 99 * (1 - Math.min(1, Math.max(0, v)))) / 2));
+function radar(labels, series, compact = false, square = false, rings = null) {
+  const W = 380, C = 190, R = 84, k = labels.length;
+  const root = svg("svg", {preserveAspectRatio: "xMidYMid meet", viewBox: compact || square ? (C - R - 4) + " " + (C - R - 4) + " " + (2 * R + 8) + " " + (2 * R + 8) : "0 " + (C - R - 30) + " " + W + " " + (2 * R + 60), class: "radar", role: "img"});
+  const ang = (i) => -Math.PI / 2 + 2 * Math.PI * i / k;
+  for (const [f, name] of rings || [[0.25], [0.5], [0.75], [1]]) {
+    root.append(svg("circle", {cx: C, cy: C, r: R * f, fill: "none", stroke: "currentColor", "stroke-opacity": "0.15"}));
+    if (name && !compact) { const t = svg("text", {x: C + 2, y: C - R * f - 2, "font-size": "4.5", "fill-opacity": "0.7"}); t.textContent = name; root.append(t); }
+  }
+  labels.forEach((l, i) => {
+    root.append(svg("line", {x1: C, y1: C, x2: C + R * Math.cos(ang(i)), y2: C + R * Math.sin(ang(i)), stroke: "currentColor", "stroke-opacity": "0.15"}));
+    const t = svg("text", {x: C + (R + 12) * Math.cos(ang(i)), y: C + (R + 12) * Math.sin(ang(i)), "text-anchor": Math.abs(Math.cos(ang(i))) < 0.3 ? "middle" : Math.cos(ang(i)) > 0 ? "start" : "end", "dominant-baseline": "middle"});
+    const words = String(l).split(/\s+/), lines = [];
+    const wrapAt = Math.abs(Math.cos(ang(i))) < 0.3 ? 30 : 16;
+    for (const w of words) { if (lines.length && (lines[lines.length - 1] + " " + w).length <= wrapAt) lines[lines.length - 1] += " " + w; else lines.push(w); }
+    const up = Math.sin(ang(i)) < -0.3 ? -(lines.length - 1) : Math.abs(Math.sin(ang(i))) <= 0.3 ? -(lines.length - 1) / 2 : 0;
+    lines.forEach((line, j) => { const sp = svg("tspan", {x: t.getAttribute("x"), dy: j === 0 ? up + "em" : "1.1em"}); sp.textContent = line; t.append(sp); });
+    root.append(t);
+  });
+  for (const s of series) {
+    if (!s.values) continue;
+    root.append(svg("path", {d: smoothLoop(s.values.map((v, i) => [C + R * v * Math.cos(ang(i)), C + R * v * Math.sin(ang(i))])), fill: s.fill, "fill-opacity": s.opacity, stroke: s.stroke, "stroke-width": "1.6", "stroke-dasharray": s.dash || "none"}));
+  }
+  root.setAttribute("aria-label", series.filter((s) => s.values).map((s) => s.name + ": " + labels.map((l, i) => l + " " + Math.round(s.values[i] * 100)).join(", ")).join(". "));
+  return root;
+}
+const lazy = window.IntersectionObserver ? new IntersectionObserver((entries) => {
+  for (const e of entries) if (e.isIntersecting) { lazy.unobserve(e.target); drawCircle(e.target, e.target.dataset.focus); }
+}) : null;
+function miniCharts(r, onPick) {
+  const minis = make("div", {class: "minis", role: "group", "aria-label": "Charts for " + r.name + ": pick one for the main view"});
+  const kinds = [["circle", "Circle"]].concat(AXES.length ? [["prime", "Prime directions"]] : []).concat(OURS.length ? [["ours", "Our directions"]] : []);
+  for (const [kind, label] of kinds) {
+    const b = make("button", {type: "button", "aria-pressed": String(MAIN === kind && r.id === selectedId), title: "Show " + label + " for " + r.name + " in the main view", dataset: {chart: kind}});
+    if (kind === "circle") {
+      const c = make("canvas", {"aria-hidden": "true", dataset: {focus: r.id}});
+      b.append(c);
+      if (lazy) lazy.observe(c); else requestAnimationFrame(() => drawCircle(c, r.id));
+    } else b.append(radar(kind === "prime" ? AXES : OURS, series(kind, r), true, false, kind === "ours" ? OURS_RINGS : null));
+    b.append(document.createTextNode(label));
+    b.addEventListener("click", (e) => { e.stopPropagation(); onPick(kind); });
+    minis.append(b);
+  }
+  return minis;
+}
+const bookmark = () => { const g = svg("svg", {viewBox: "0 0 16 16", "aria-hidden": "true"}); g.append(svg("path", {d: "M4 2h8v12l-4-3-4 3z", fill: "currentColor"})); return g; };
+function decisionButtons(r, into) {
+  for (const [s, label] of [["shortlist", "Shortlist"], ["skip", "Skip"], ["maybe", "Save for later"]]) {
+    const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, title: label, "aria-label": label});
+    if (s === "maybe") b.append(bookmark()); else b.textContent = label;
+    b.addEventListener("click", () => setStatus(r, s));
+    into.append(b);
+  }
+}
+const ID = /^[A-Za-z0-9._-]+$/;
+function linkItem(href, label) {
+  const url = safeUrl(href);
+  if (!url) return null;
+  const li = make("li");
+  li.append(make("a", {href: url, target: "_blank", rel: "noreferrer", text: label}));
+  return li;
+}
+function chipLink(text, hint, onClick) {
+  const b = make("button", {type: "button", class: "linkish", title: hint, text});
+  b.addEventListener("click", onClick);
+  return b;
+}
+function applyFilter(key, value) {
+  const sel = $("f-" + key);
+  if (!sel) { searchFor(String(value)); return; }
+  if (![...sel.options].some((o) => o.value === String(value))) sel.append(make("option", {value: String(value), text: String(value)}));
+  sel.value = String(value);
+  const more = document.querySelector(".more-filters"); if (more) more.open = true;
+  reset();
+}
+function searchFor(text) { $("q").value = text; reset(); }
+function setSort(key) { $("sort").value = key; reset(); }
+function profileSections(r) {
+  const out = [];
+  const research = make("section", {class: "prof"});
+  research.append(make("h3", {text: "Research"}));
+  const facts = [r.title, r.research_areas].filter(Boolean);
+  for (const f of facts) research.append(make("p", {class: "note", text: f}));
+  const counts = [r.works_count ? r.works_count + " works" : "", r.cited_by_count ? r.cited_by_count + " citations" : "", r.h_index ? "h-index " + r.h_index : ""].filter(Boolean).join(" · ");
+  if (counts) research.append(make("p", {class: "note", text: counts}));
+  if (r.works_top && r.works_top.length) {
+    const ol = make("ol", {class: "works"});
+    for (const w of r.works_top.slice(0, 6)) {
+      const li = make("li");
+      const href = ID.test(w.id || "") ? "https://openalex.org/" + w.id : "";
+      li.append(href ? make("a", {href, target: "_blank", rel: "noreferrer", text: w.title}) : document.createTextNode(w.title));
+      li.append(make("span", {class: "note", text: " " + [w.year, w.cited ? w.cited + " cited" : ""].filter(Boolean).join(" · ")}));
+      ol.append(li);
+    }
+    research.append(ol);
+  }
+  if (research.children.length > 1) out.push(research);
+  const q = encodeURIComponent(r.name + (r.institution ? " " + r.institution : ""));
+  const links = [
+    ID.test(r.openalex_id || r.id || "") ? linkItem("https://openalex.org/" + (r.openalex_id || r.id), "OpenAlex profile") : null,
+    /^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/.test(r.orcid || "") ? linkItem("https://orcid.org/" + r.orcid, "ORCID " + r.orcid) : null,
+    ID.test(r.ror || "") ? linkItem("https://ror.org/" + r.ror, (r.institution || "Institution") + " on ROR") : null,
+    linkItem(r.profile_url, "Official profile page"),
+    linkItem(r.program_url, "PhD program page"),
+    linkItem("https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + r.name + '"'), "Google Scholar search"),
+    linkItem("https://www.semanticscholar.org/search?q=" + encodeURIComponent(r.name), "Semantic Scholar search"),
+    linkItem("https://dblp.org/search?q=" + encodeURIComponent(r.name), "DBLP search"),
+    linkItem("https://www.google.com/search?q=" + q, "Web search"),
+  ].filter(Boolean);
+  const sec = make("section", {class: "prof"});
+  sec.append(make("h3", {text: "Links"}), make("ul", {class: "links"}, links));
+  out.push(sec);
+  if (r.tracker_notes && r.tracker_notes.length) {
+    const t = make("section", {class: "prof"});
+    t.append(make("h3", {text: "In your tracker"}));
+    for (const n of r.tracker_notes) t.append(make("p", {class: "note", text: n}));
+    out.push(t);
+  }
+  return out;
+}
+function panel(r) {
+  const p = $("panel");
+  p.replaceChildren();
+  if (!r) { p.append(make("p", {class: "note", text: "Pick an advisor to see the profile."})); return; }
+  const place = [r.institution, r.department].filter(Boolean).join(", ");
+  const nameLink = ID.test(r.openalex_id || r.id || "") ? make("a", {href: "https://openalex.org/" + (r.openalex_id || r.id), target: "_blank", rel: "noreferrer", text: r.name, title: "Open the OpenAlex profile"}) : document.createTextNode(r.name);
+  const where = make("p", {class: "where"});
+  const bits = [];
+  if (r.institution) bits.push(chipLink(r.institution, "Show everyone at " + r.institution, () => applyFilter("institution", r.institution)));
+  if (r.department) bits.push(document.createTextNode(r.department));
+  if (r.country) bits.push(chipLink(r.country, "Show everyone in " + r.country, () => applyFilter("country", r.country)));
+  bits.forEach((b, i) => { if (i) where.append(document.createTextNode(i === 1 && r.department && b.nodeType === 3 ? ", " : " · ")); where.append(b); });
+  p.append(make("h2", {}, [nameLink]), where);
+  const dl = make("dl");
+  const add = (k, v, onClick, hint) => {
+    if (v === "" || v == null) return;
+    const dd = make("dd");
+    dd.append(onClick ? chipLink(String(v), hint, onClick) : document.createTextNode(String(v)));
+    dl.append(make("dt", {text: k}), dd);
+  };
+  add("Rank", "#" + r.rank + ", top " + fmt(Math.max(100 - r.percentile, 0.1), 1) + "%", () => setSort("rank"), "Sort by best match");
+  add("Field", r.field, () => applyFilter("field", r.field), "Show everyone in " + r.field);
+  add("Funding", r.funding, () => applyFilter("funding", r.funding), "Show everyone with " + r.funding);
+  add("h-index", r.h_index, () => setSort("h"), "Sort by h-index");
+  add("Taking students", r.taking_students, () => applyFilter("taking_students", r.taking_students), "Filter on taking students");
+  add("Sources", r.sources, () => searchFor(String(r.sources).split(";")[0].trim()), "Search this source");
+  const contact = contactOf(r);
+  if (contact) {
+    dl.append(make("dt", {text: contact.kind === "email" ? "Contact" : "Profile"}));
+    const dd = make("dd");
+    dd.append(contact.kind === "email" ? make("a", {href: "mailto:" + contact.value, text: contact.value}) : make("a", {href: contact.value, target: "_blank", rel: "noreferrer", text: "open profile"}));
+    dl.append(dd);
+  }
+  p.append(dl);
+  const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 6);
+  if (topics.length) p.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => { const li = make("li"); li.append(chipLink(t, "Search for " + t, () => searchFor(t))); return li; })));
+  p.append(...profileSections(r));
+  const minis = miniCharts(r, (kind) => setMain(kind));
+  const stars = make("div", {class: "stars"});
+  stars.append(minis, make("p", {class: "note", text: MAIN === "circle" ? "Circle: distance from you is rank. Prime directions: percentile among all professors. Our directions: percentile among all professors." : MAIN === "prime" ? "Prime directions: dashed is you, grey is the filter average, teal is this advisor." : "Our directions: dashed is you, grey is the filter average, teal is this advisor. Rings mark the top 50%, 10% and 1% of all professors."}));
+  p.append(stars, make("p", {class: "note", text: "Similarity of published topics. Unvalidated as a measure of advising fit."}));
+  const actions = make("div", {class: "actions"});
+  decisionButtons(r, actions);
+  p.append(actions);
+}
+const PALETTE = ["#8A641A","#0B6E6E","#9A3B22","#4F6B2A","#5B4A8A","#2E6B8A","#B8861E","#7A5C3E","#3F7F6B","#8A3B5E"];
+const fieldColor = {};
+const colorOf = (f) => { if (!(f in fieldColor)) fieldColor[f] = PALETTE[Object.keys(fieldColor).length % PALETTE.length]; return fieldColor[f]; };
+const cv = $("circle");
+let geo = null, hoverId = null;
+function pos(r, size) {
+  const R = size / 2 - 18, rr = 12 + (R - 12) * Math.sqrt(Math.max(0, Math.min(1, r.radius ?? 1)));
+  return [size / 2 + rr * Math.cos(r.theta || 0), size / 2 + rr * Math.sin(r.theta || 0)];
+}
+let MAIN = "circle";
+const avgOf = (key) => { const xs = current.filter((r) => r[key]); if (!xs.length) return null; return xs[0][key].map((_, i) => xs.reduce((a, r) => a + r[key][i], 0) / xs.length); };
+function series(kind, r) {
+  const out = seriesRaw(kind, r);
+  return kind === "ours" ? out.map((x) => ({...x, values: x.values && x.values.map(topScale)})) : out;
+}
+const OURS_RINGS = [[topScale(0.5), "top 50%"], [topScale(0.9), "top 10%"], [topScale(0.99), "top 1%"], [1, ""]];
+function seriesRaw(kind, r) {
+  const out = [];
+  if (kind === "prime") out.push({name: "you", values: ctx.star_query_prime, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
+  if (kind === "ours") out.push({name: "you", values: ctx.star_query_ours || ctx.star_ref_ours, fill: "none", stroke: "var(--ochre-fill)", dash: "4 3", opacity: 0});
+  const key = kind === "prime" ? "star_prime" : "star_ours";
+  out.push({name: "average of the current filters", values: avgOf(key), fill: "var(--soft)", stroke: "var(--soft)", opacity: 0.15});
+  if (r && r[key]) out.push({name: r.name, values: r[key], fill: "var(--teal)", stroke: "var(--teal)", opacity: 0.25});
+  return out;
+}
+const LINE = (stroke, dash, fill) => { const g = svg("svg", {class: "swatch", viewBox: "0 0 22 10", "aria-hidden": "true"}); g.append(svg("rect", {x: 1, y: 1, width: 20, height: 8, rx: 4, fill: fill || "none", "fill-opacity": "0.3", stroke, "stroke-width": "1.6", "stroke-dasharray": dash ? "3 2" : "none"})); return g; };
+const legendKey = (cls, color) => { const i = make("i", {class: "key " + cls}); if (color) i.style.background = color; return i; };
+function renderLegend() {
+  const L = $("legend");
+  const row = (icon, text) => { const sp = make("span"); sp.append(icon, document.createTextNode(text)); return sp; };
+  const kids = [make("b", {text: MAIN === "circle" ? "Circle" : MAIN === "prime" ? "Prime directions" : "Our directions"})];
+  if (MAIN === "circle") {
+    kids.push(row(legendKey("you"), "you, at the centre"), row(legendKey("avg"), "average of the current filters"), row(legendKey("sel"), "the advisor you picked"), row(legendKey("short"), "shortlisted"));
+    const counts = {};
+    for (const r of current) { const f = r.field || "unknown"; counts[f] = (counts[f] || 0) + 1; }
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    if (top.length) { kids.push(make("em", {text: "dot colour: field"})); for (const [f] of top) { kids.push(row(legendKey("", colorOf(f)), f)); } }
+    kids.push(make("em", {text: "closer to the centre: a closer match"}));
+  } else {
+    const css = getComputedStyle(document.documentElement);
+    const gold = css.getPropertyValue("--ochre-fill"), soft = css.getPropertyValue("--soft"), teal = css.getPropertyValue("--teal");
+    kids.push(row(LINE(gold, true), "you, the research statement"), row(LINE(soft, false, soft), "average of the current filters"), row(LINE(teal, false, teal), "the advisor you picked"));
+    kids.push(make("em", {text: MAIN === "prime" ? "further out: higher percentile among all professors" : "rings: top 50%, 10% and 1% of all professors on that direction"}));
+  }
+  if (MAIN === "ours") kids.push(make("em", {text: "your own line runs high: the directions come from your statement"}));
+  kids.push(make("em", {text: keysOn ? "scroll or arrows: step · with the chart focused: s shortlist · x skip · b save" : "scroll or arrows: step · single-key shortcuts off"}));
+  L.replaceChildren(...kids);
+}
+function sizeBox() {
+  const wrap = $("circle-wrap"), box = $("chart-box");
+  const fixed = window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches;
+  const side = fixed ? Math.max(0, Math.min(wrap.clientWidth, wrap.clientHeight)) : Math.min(wrap.clientWidth, 820);
+  box.style.width = side + "px"; box.style.height = side + "px";
+}
+function drawMain() {
+  sizeBox();
+  const showCircle = MAIN === "circle";
+  cv.hidden = !showCircle;
+  $("main-radar").hidden = showCircle;
+  renderLegend();
+  if (showCircle) { drawCircle(); return; }
+  const r = rows.find((x) => x.id === selectedId);
+  const big = radar(MAIN === "prime" ? AXES : OURS, series(MAIN, r), false, false, MAIN === "ours" ? OURS_RINGS : null);
+  const m = 24, lo = 190 - 84 - m, span = 84 * 2 + 2 * m;
+  big.setAttribute("viewBox", lo + " " + lo + " " + span + " " + span);
+  big.style.overflow = "visible";
+  $("main-radar").replaceChildren(big);
+}
+function setMain(kind) { MAIN = kind; drawMain(); render(); }
+function drawCircle(target, focusId) {
+  const onMain = !target;
+  if (onMain && (!document.body.classList.contains("circle") || MAIN !== "circle")) return;
+  const canvas = target || cv, cx = canvas.getContext("2d");
+  const css = getComputedStyle(document.documentElement);
+  const size = canvas.clientWidth, dpr = window.devicePixelRatio || 1;
+  if (!size) return;
+  if (canvas.width !== Math.round(size * dpr)) { canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr); }
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cx.clearRect(0, 0, size, size);
+  const c = size / 2, R = c - 18;
+  cx.fillStyle = css.getPropertyValue("--panel"); cx.beginPath(); cx.arc(c, c, R + 12, 0, 2 * Math.PI); cx.fill();
+  cx.strokeStyle = css.getPropertyValue("--line"); cx.lineWidth = 1;
+  for (const f of [0.25, 0.5, 0.75, 1]) { cx.beginPath(); cx.arc(c, c, 12 + (R - 12) * Math.sqrt(f), 0, 2 * Math.PI); cx.stroke(); }
+  const shown = new Set(current.map((r) => r.id));
+  const g = [];
+  let sx = 0, sy = 0, sn = 0;
+  for (const pass of [0, 1]) for (const r of rows) {
+    if (r.theta == null) continue;
+    const on = shown.has(r.id);
+    if ((pass === 0) === on) continue;
+    const [x, y] = pos(r, size);
+    g.push([x, y, r]);
+    if (on) { sx += x; sy += y; sn++; }
+    cx.globalAlpha = on ? 0.85 : 0.12;
+    cx.fillStyle = colorOf(r.field || "");
+    cx.beginPath(); cx.arc(x, y, on ? 2.6 : 1.6, 0, 2 * Math.PI); cx.fill();
+    if (on && statusOf(r) === "shortlist") { cx.globalAlpha = 1; cx.strokeStyle = css.getPropertyValue("--ochre-fill"); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(x, y, 5, 0, 2 * Math.PI); cx.stroke(); }
+  }
+  cx.globalAlpha = 1;
+  if (onMain) geo = g;
+  cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.beginPath(); cx.arc(c, c, onMain ? 7 : 4, 0, 2 * Math.PI); cx.fill();
+  if (sn) {
+    const ax = sx / sn, ay = sy / sn, d = onMain ? 7 : 4;
+    cx.fillStyle = css.getPropertyValue("--soft"); cx.strokeStyle = css.getPropertyValue("--ink"); cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(ax, ay - d); cx.lineTo(ax + d, ay); cx.lineTo(ax, ay + d); cx.lineTo(ax - d, ay); cx.closePath(); cx.fill(); cx.stroke();
+    if (onMain) { cx.fillStyle = css.getPropertyValue("--soft"); cx.font = "12px system-ui, sans-serif"; cx.textAlign = "left"; cx.fillText("filter average", ax + 10, ay + 4); }
+  }
+  if (onMain) { cx.fillStyle = css.getPropertyValue("--ochre-fill"); cx.font = "12px system-ui, sans-serif"; cx.textAlign = "left"; cx.fillText("you", c + 10, c + 4); }
+  for (const id of onMain ? [hoverId, selectedId] : [focusId || selectedId]) {
+    const r = rows.find((x) => x.id === id); if (!r || r.theta == null) continue;
+    const [x, y] = pos(r, size);
+    cx.strokeStyle = css.getPropertyValue("--ink"); cx.lineWidth = id === selectedId ? 2 : 1;
+    cx.beginPath(); cx.arc(x, y, 8, 0, 2 * Math.PI); cx.stroke();
+    if (id === selectedId && onMain) { cx.fillStyle = css.getPropertyValue("--ink"); cx.font = "13px Georgia, serif"; cx.textAlign = x > c ? "right" : "left"; cx.fillText(r.name, x + (x > c ? -12 : 12), y - 10); }
+  }
+  if (!onMain) return;
+  cv.setAttribute("aria-label", current.length + " advisors on a circle around the research statement" + (selectedId ? "; selected " + (rows.find((x) => x.id === selectedId) || {}).name : ""));
+}
+function nearest(e) {
+  if (!geo) return null;
+  const b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+  let best = null, bd = 100;
+  const shown = new Set(current.map((r) => r.id));
+  for (const [gx, gy, r] of geo) { if (!shown.has(r.id)) continue; const d = (gx - x) ** 2 + (gy - y) ** 2; if (d < bd) { bd = d; best = r; } }
+  return best ? {r: best, x, y} : null;
+}
+cv.addEventListener("click", (e) => { const n = nearest(e); if (n) select(n.r.id); });
+cv.addEventListener("mousemove", (e) => {
+  const n = nearest(e), tip = $("tip");
+  hoverId = n ? n.r.id : null;
+  tip.hidden = !n;
+  if (n) { tip.textContent = "#" + n.r.rank + " " + n.r.name; tip.style.left = (n.x + 12) + "px"; tip.style.top = (n.y + 12) + "px"; }
+  drawCircle();
+});
+cv.addEventListener("mouseleave", () => { hoverId = null; $("tip").hidden = true; drawCircle(); });
+if (window.ResizeObserver) new ResizeObserver(() => drawMain()).observe($("circle-wrap"));
+window.addEventListener("resize", () => drawMain());
+const WHEEL_STEP = 100, WHEEL_MAX = 3;
+let wheelAcc = 0, wheelAt = 0, wheelBurst = 0;
+function wheelPixels(e) { return e.deltaY * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 800 : 1); }
+$("circle-wrap").addEventListener("wheel", (e) => {
+  if (e.ctrlKey || e.metaKey) return;
+  e.preventDefault();
+  const now = Date.now();
+  if (now - wheelAt > 250) { wheelAcc = 0; wheelBurst = 0; }
+  wheelAt = now;
+  wheelAcc += wheelPixels(e);
+  while (Math.abs(wheelAcc) >= WHEEL_STEP && wheelBurst < WHEEL_MAX) {
+    const d = wheelAcc > 0 ? 1 : -1;
+    wheelAcc -= d * WHEEL_STEP;
+    wheelBurst++;
+    step(d);
+  }
+  if (wheelBurst >= WHEEL_MAX) wheelAcc = 0;
+}, {passive: false});
+cv.tabIndex = 0;
+let keysOn = true;
+try { keysOn = localStorage.getItem("advisor-review:keys") !== "off"; } catch (e) {}
+$("keys").checked = keysOn;
+$("keys").addEventListener("change", () => { keysOn = $("keys").checked; try { localStorage.setItem("advisor-review:keys", keysOn ? "on" : "off"); } catch (e) {} renderLegend(); });
+const keyScope = (el) => el === cv || (el && el.closest && (el.closest("#panel") || el.closest(".card") || el.closest("#main-radar") || el.closest(".sheet")));
+document.addEventListener("keydown", (e) => {
+  if (!keysOn || !keyScope(e.target) || e.target.matches("input,select,textarea")) return;
+  const map = {s: "shortlist", b: "maybe", m: "maybe", x: "skip"};
+  if (!map[e.key] || e.ctrlKey || e.metaKey || e.altKey) return;
+  const r = rows.find((x) => x.id === selectedId);
+  if (!r) return;
+  e.preventDefault();
+  setStatus(r, map[e.key]);
+});
+let timer = null;
+$("play").addEventListener("click", () => {
+  if (timer) { clearInterval(timer); timer = null; } else { timer = setInterval(() => { const i = current.findIndex((x) => x.id === selectedId); if (i >= current.length - 1) { clearInterval(timer); timer = null; $("play").setAttribute("aria-pressed", "false"); $("play").textContent = "Play"; return; } step(1); }, 1400); }
+  $("play").setAttribute("aria-pressed", String(!!timer)); $("play").textContent = timer ? "Pause" : "Play";
+});
+function select(id) {
+  selectedId = id;
+  const i = current.findIndex((x) => x.id === id);
+  if (i >= limit) { limit = Math.ceil((i + 1) / PAGE_SIZE) * PAGE_SIZE; }
+  render();
+  const el = document.querySelector('.cards [data-id="' + CSS.escape(id) + '"], .sheet tr[data-id="' + CSS.escape(id) + '"]');
+  if (el && !document.body.classList.contains("circle")) el.scrollIntoView({block: "nearest"});
+}
+function step(d) {
+  if (!current.length) return;
+  const i = Math.max(0, current.findIndex((x) => x.id === selectedId));
+  select(current[Math.min(current.length - 1, Math.max(0, i + d))].id);
+}
+function visible() {
+  const q = $("q").value.trim().toLowerCase();
+  const st = $("f-status").value;
+  const view = VIEWS[$("view").value] || VIEWS.all;
+  const list = rows.filter((r) => {
+    if (!view(r)) return false;
+    if (st && statusOf(r) !== st) return false;
+    for (const [k] of present) { const v = $("f-" + k).value; if (v && String(r[k] ?? "") !== v) return false; }
+    for (const k of dirOn) if (!r.star_prime || r.star_prime[k] < 0.75) return false;
+    for (const k of oursOn) if (!r.star_ours || r.star_ours[k] < 0.75) return false;
+    const hmin = $("f-h").value;
+    if (hmin && !(Number(r.h_index) >= Number(hmin))) return false;
+    if (q && ![r.name, r.institution, r.department, r.field, r.shared_terms, (r.shared_topics || []).join(" "), r.sources, r.research_areas].join(" ").toLowerCase().includes(q)) return false;
+    return true;
+  });
+  const key = $("sort").value || "rank";
+  if (key === "rank") return $("cap").checked ? diversify(list) : list;
+  return list.slice().sort(SORTS[key] || SORTS.rank);
+}
+
+function setStatus(r, s) {
+  if (decisions[r.id] === s) delete decisions[r.id]; else decisions[r.id] = s;
+  save(); render();
+}
+
+function portrait(r) {
+  const box = make("div", {class: "portrait"});
+  const src = safeUrl(r.image_url);
+  if (src) { const img = make("img", {src, alt: r.name, loading: "lazy", referrerpolicy: "no-referrer"}); img.addEventListener("error", () => { img.remove(); box.append(knowledgeChart(r)); }); box.append(img); }
+  else box.append(knowledgeChart(r));
+  return box;
+}
+function knowledgeChart(r) {
+  const kind = OURS.length && r.star_ours ? "ours" : "prime";
+  const g = radar(kind === "prime" ? AXES : OURS, series(kind, r), true, false, kind === "ours" ? OURS_RINGS : null);
+  g.setAttribute("aria-label", "Knowledge chart for " + r.name);
+  return g;
+}
+const SORT_DIR = {rank: "ascending", score: "ascending", name: "ascending", institution: "ascending", country: "ascending", field: "ascending", h: "descending", funded: "descending", saved: "ascending"};
+const COLS = [
+  ["rank", "#", (r) => r.rank, "num"], ["name", "Name", (r) => r.name], ["institution", "Institution", (r) => r.institution || ""],
+  ["country", "Country", (r) => r.country || ""], ["field", "Field", (r) => r.field || ""], ["h", "h", (r) => r.h_index ?? "", "num"],
+  ["score", "Score", (r) => fmt(r.score, 3), "num"], ["rank", "Top %", (r) => fmt(Math.max(100 - r.percentile, 0.1), 1), "num"],
+  ["funded", "Funding", (r) => r.funding || ""], ["saved", "Decision", (r) => ({shortlist: "shortlist", maybe: "saved", skip: "skip", none: ""})[statusOf(r)]],
+  ["", "Shared topic", (r) => ((r.shared_topics || [])[0] || "")],
+];
+function sheet(list) {
+  const t = $("sheet");
+  const key = $("sort").value || "rank";
+  const head = make("tr");
+  COLS.forEach(([k, label]) => {
+    const th = make("th", {scope: "col"});
+    if (k) {
+      const sk = k in SORTS ? k : "rank";
+      if (sk === key && label !== "Top %") th.setAttribute("aria-sort", SORT_DIR[sk] || "ascending");
+      const b = make("button", {type: "button", class: "th", text: label, "aria-label": "Sort by " + label});
+      b.addEventListener("click", () => { $("sort").value = sk; selectedId = null; reset(); });
+      th.append(b);
+    } else th.textContent = label;
+    head.append(th);
+  });
+  const body = make("tbody");
+  for (const r of list.slice(0, limit * 5)) {
+    const tr = make("tr", {dataset: {id: r.id}, tabindex: r.id === selectedId ? "0" : "-1", "aria-selected": String(r.id === selectedId)});
+    if (r.id === selectedId) tr.classList.add("selected");
+    COLS.forEach(([k, , get, cls]) => {
+      const v = String(get(r));
+      const td = make("td", {text: v, title: v});
+      if (cls) td.className = cls;
+      if (k === "saved") td.className = "st-" + statusOf(r);
+      tr.append(td);
+    });
+    tr.addEventListener("click", () => select(r.id));
+    tr.addEventListener("dblclick", () => { select(r.id); document.querySelector('[data-view="circle"]').click(); });
+    tr.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); select(r.id); document.querySelector('[data-view="circle"]').click(); } });
+    body.append(tr);
+  }
+  t.replaceChildren(make("thead", {}, [head]), body);
+}
+function card(r, tag = "li") {
+  const c = make(tag, {class: "card", dataset: {status: statusOf(r), id: r.id}});
+  c.append(portrait(r));
+  const place = [r.institution, r.department].filter(Boolean).join(", ");
+  c.append(make("div", {class: "top"}, [
+    make("div", {}, [make("h3", {class: "name", text: r.name}), make("p", {class: "where", text: [place, r.country].filter(Boolean).join(" · ")})]),
+    make("div", {class: "rank"}, [make("b", {text: "#" + r.rank}), document.createTextNode("top " + fmt(Math.max(100 - r.percentile, 0.1), 1) + "%")]),
+  ]));
+  const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 2);
+  if (topics.length) c.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
+  const tags = make("div", {class: "tags"});
+  tags.append(make("span", {text: "score " + fmt(r.score, 3)}));
+  if (r.field) tags.append(make("span", {text: r.field}));
+  if (r.funding) tags.append(make("span", {text: r.funding}));
+  if (r.h_index !== "" && r.h_index != null) tags.append(make("span", {text: "h " + r.h_index}));
+  if (r.taking_students !== "" && r.taking_students != null) tags.append(make("span", {text: "taking students: " + r.taking_students}));
+  if (r.identity === "check") tags.append(make("span", {class: "flag", text: "profile may be another person" + (r.profile_institution ? " at " + r.profile_institution : "")}));
+  if (r.identity === "moved" && r.profile_institution) tags.append(make("span", {text: "publishes as " + r.profile_institution}));
+  const cc = contactOf(r);
+  if (cc && cc.kind === "email") tags.append(make("a", {href: "mailto:" + cc.value, text: cc.value}));
+  c.append(tags);
+  const actions = make("div", {class: "actions"});
+  decisionButtons(r, actions);
+  c.append(actions);
+  c.setAttribute("tabindex", "0");
+  if (r.id === selectedId) c.classList.add("selected");
+  c.addEventListener("click", (e) => { if (e.target.closest("button,a")) return; select(r.id); });
+  c.addEventListener("dblclick", (e) => { if (e.target.closest("button,a")) return; select(r.id); document.querySelector('[data-view="circle"]').click(); });
+  return c;
+}
+
+function render() {
+  const inSheet = !!(document.activeElement && document.activeElement.closest && document.activeElement.closest(".sheet tbody"));
+  const list = visible();
+  const counts = {shortlist: 0, maybe: 0, skip: 0};
+  for (const r of rows) { const s = statusOf(r); if (s in counts) counts[s]++; }
+  $("count").textContent = list.length + " shown · " + counts.shortlist + " shortlisted · " + counts.maybe + " saved · " + counts.skip + " skipped";
+  const ol = $("cards");
+  const tableView = !document.body.classList.contains("circle");
+  const rowsMode = document.body.classList.contains("rows");
+  ol.replaceChildren(...(tableView && !rowsMode ? list.slice(0, limit).map((r) => card(r)) : []));
+  if (tableView && rowsMode) sheet(list); else $("sheet").replaceChildren();
+  $("more").hidden = list.length <= (rowsMode ? limit * 5 : limit);
+  const shownN = rowsMode ? limit * 5 : limit;
+  $("more").textContent = "Show more of " + Math.max(0, list.length - shownN);
+  if (!list.length) ol.append(make("li", {class: "empty", text: "No one matches these filters."}));
+  current = list;
+  if (!list.some((r) => r.id === selectedId)) selectedId = list.length ? list[0].id : null;
+  document.querySelectorAll(".cards .card, .sheet tbody tr").forEach((el) => {
+    const on = el.dataset.id === selectedId;
+    el.classList.toggle("selected", on);
+    if (el.tagName === "TR") { el.tabIndex = on ? 0 : -1; el.setAttribute("aria-selected", String(on)); if (on && inSheet) el.focus({preventScroll: false}); }
+  });
+  const idx = list.findIndex((r) => r.id === selectedId);
+  $("tl").max = String(Math.max(list.length - 1, 0));
+  $("tl").value = String(Math.max(idx, 0));
+  $("tl-pos").textContent = list.length ? (idx + 1) + " of " + list.length : "";
+  $("tl").setAttribute("aria-valuetext", list.length && idx >= 0 ? (idx + 1) + " of " + list.length + ": " + list[idx].name : "none");
+  const said = list[idx] ? list[idx].name + ", rank " + list[idx].rank : "";
+  if ($("announce").textContent !== said) $("announce").textContent = said;
+  $("prev").disabled = idx <= 0; $("next").disabled = idx < 0 || idx >= list.length - 1;
+  panel(list[idx]);
+  $("tl-name").textContent = list[idx] ? "#" + list[idx].rank + " " + list[idx].name : "No one matches";
+  drawMain();
+}
+
+document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-view]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  document.body.classList.toggle("circle", b.dataset.view === "circle");
+  render();
+}));
+document.querySelectorAll("[data-mode]").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  document.body.classList.toggle("rows", b.dataset.mode === "rows");
+  render();
+}));
+$("tl").addEventListener("input", () => { const r = current[Number($("tl").value)]; if (r) select(r.id); });
+$("prev").addEventListener("click", () => step(-1));
+$("next").addEventListener("click", () => step(1));
+document.addEventListener("keydown", (e) => {
+  if (e.target !== document.body && !e.target.classList.contains("card") && e.target.id !== "circle" && !(e.target.closest && e.target.closest(".sheet"))) return;
+  if (e.key === "ArrowRight" || (e.key === "ArrowDown" && e.target.closest && e.target.closest(".sheet"))) { e.preventDefault(); step(1); }
+  else if (e.key === "ArrowUp" && e.target.closest && e.target.closest(".sheet")) { e.preventDefault(); step(-1); }
+  else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+});
+if (window.matchMedia("(min-width: 760px)").matches && !window.matchMedia("(min-width: 900px) and (min-height: 560px)").matches) document.querySelector(".more-filters").open = true;
+$("cap-label").textContent = "At most " + CAP + " per institution in the top " + WINDOW;
+const reset = () => { limit = PAGE_SIZE; render(); };
+$("more").addEventListener("click", () => { limit += PAGE_SIZE; render(); });
+$("view").addEventListener("change", reset);
+$("cap").addEventListener("change", reset);
+$("q").addEventListener("input", reset);
+$("f-status").addEventListener("change", reset);
+$("sort").addEventListener("change", () => { selectedId = null; reset(); });
+$("f-h").addEventListener("change", reset);
+for (const [k] of present) $("f-" + k).addEventListener("change", reset);
+
+const csvCell = (v) => { let s = Array.isArray(v) ? v.join("; ") : String(v ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+$("export").addEventListener("click", () => {
+  const cols = ["decision","rank","name","institution","department","country","field","funding","email","score","percentile","shared_topics"];
+  const picked = rows.filter((r) => ["shortlist","maybe"].includes(statusOf(r))).sort((a, b) => (statusOf(a) === "shortlist" ? 0 : 1) - (statusOf(b) === "shortlist" ? 0 : 1) || a.rank - b.rank);
+  const lines = [cols.join(",")].concat(picked.map((r) => cols.map((c) => csvCell(c === "decision" ? statusOf(r) : r[c])).join(",")));
+  const blob = new Blob([lines.join("\n") + "\n"], {type: "text/csv"});
+  const a = make("a", {href: URL.createObjectURL(blob), download: "advisor-shortlist.csv"});
+  document.body.append(a); a.click(); a.remove();
+});
+render();
+window.__advisorReview = {safeUrl, contactOf, step, select, visible, selected: () => selectedId, statusOf: (id) => statusOf(rows.find((x) => x.id === id) || {}), sortKey: () => $("sort").value, toggleDirection: (k) => $("dirs").children[k].click(), main: () => MAIN, setMain};
+})();
+</script>
+</body>
+</html>

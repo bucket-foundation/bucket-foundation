@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { getSessionUser } from "@/lib/supabase/server";
 import { getIdentity } from "@/lib/auth/identity";
 import { signInUrl, DEFAULT_AFTER_SIGN_IN } from "@/lib/auth/paths";
@@ -14,7 +15,7 @@ export default async function ResearchOsAppLayout({ children }: { children: Reac
   const identity = await getIdentity(user.id);
   const staff = isLaunchStaff(user);
   return (
-    <AppShell user={{ email: user.email, handle: identity?.handle ?? null, staff }}>
+    <AppShell host={headers().get("host")} user={{ email: user.email, handle: identity?.handle ?? null, staff }}>
       {children}
     </AppShell>
   );

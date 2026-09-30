@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import atlas from "@/lib/research-os/software-atlas-data.json";
 import type { SoftwareAtlasData } from "@/lib/research-os/software-atlas";
-import SoftwareAtlas from "./SoftwareAtlas";
+import SoftwareAtlas from "@/components/research-os/views/SoftwareAtlas";
 
 export const metadata: Metadata = { title: "Software", robots: { index: false, follow: false } };
 

@@ -14,13 +14,11 @@ TOOL_REPO_ROOT = Path(__file__).resolve().parents[3]
 HEADING = re.compile(r"^\s*#{1,3}\s+(.+?)\s*#*\s*$")
 FRONT_TITLE = re.compile(r"^title:\s*[\"']?(.+?)[\"']?\s*$", re.MULTILINE)
 
-
 @dataclass(frozen=True)
 class Doc:
     id: str
     title: str
     text: str
-
 
 @dataclass
 class CorpusSpec:
@@ -32,10 +30,8 @@ class CorpusSpec:
     options: dict = field(default_factory=dict)
     clean: dict = field(default_factory=dict)
 
-
 class CorpusError(RuntimeError):
     pass
-
 
 def data_root() -> Path:
     env = os.environ.get("PRIME_DATA_ROOT")
@@ -50,13 +46,11 @@ def data_root() -> Path:
     except (OSError, subprocess.SubprocessError):
         return TOOL_REPO_ROOT
 
-
 def resolve_path(path: str, root: Path | None = None) -> Path:
     p = Path(os.path.expandvars(path)).expanduser()
     if p.is_absolute():
         return p
     return (root or data_root()) / p
-
 
 def load_registry(path: Path = REGISTRY_PATH) -> dict[str, CorpusSpec]:
     raw = json.loads(path.read_text())
@@ -74,7 +68,6 @@ def load_registry(path: Path = REGISTRY_PATH) -> dict[str, CorpusSpec]:
         )
     return specs
 
-
 def load(spec: CorpusSpec, root: Path | None = None) -> list[Doc]:
     loader = LOADERS.get(spec.kind)
     if loader is None:
@@ -83,7 +76,6 @@ def load(spec: CorpusSpec, root: Path | None = None) -> list[Doc]:
     if not path.exists():
         raise CorpusError(f"{spec.name}: path {path} does not exist")
     return loader(path, **spec.options)
-
 
 def load_sqlite(
     path: Path,
@@ -111,7 +103,6 @@ def load_sqlite(
         docs.append(Doc(doc_id, title, text))
     return docs
 
-
 def _title_from_text(text: str, fallback: str) -> str:
     head = text[:4000]
     if head.startswith("---"):
@@ -124,7 +115,6 @@ def _title_from_text(text: str, fallback: str) -> str:
             return m.group(1).strip()
     return fallback
 
-
 def pdf_text(path: Path, timeout: float = 120.0, max_chars: int = 200000) -> str:
     try:
         out = subprocess.run(
@@ -134,7 +124,6 @@ def pdf_text(path: Path, timeout: float = 120.0, max_chars: int = 200000) -> str
     except (OSError, subprocess.SubprocessError):
         return ""
     return out.decode("utf-8", "replace")[:max_chars]
-
 
 def load_folder(
     path: Path,
@@ -169,7 +158,6 @@ def load_folder(
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         return [d for d in pool.map(read, files) if d is not None]
 
-
 def load_json_items(
     path: Path,
     pattern: str = "*.json",
@@ -197,7 +185,6 @@ def load_json_items(
             if text.strip():
                 docs.append(Doc(f"{f.stem}/{item.get(id_key, len(docs))}", str(item.get(title_key, "")), text))
     return docs
-
 
 LOADERS = {
     "sqlite": load_sqlite,
