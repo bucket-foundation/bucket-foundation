@@ -7,6 +7,7 @@ import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
 import { CanonView } from "./views/Canon";
+import { AtlasesView } from "./views/Atlases";
 import { WORK_QUIZ_CHANGED, WorkQuizView } from "./views/WorkQuiz";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
@@ -22,6 +23,7 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "review" }, label: "Review" },
   { route: { name: "work" }, label: "Work quiz" },
   { route: { name: "canon" }, label: "Canon" },
+  { route: { name: "atlases" }, label: "Atlases" },
   { route: { name: "advisors" }, label: "Advisors" },
   { route: { name: "primes" }, label: "Prime directions" },
   { route: { name: "jobs" }, label: "Jobs" },
@@ -99,6 +101,8 @@ function App() {
           <AdvisorsView api={api} />
         ) : route.name === "primes" ? (
           <PrimesView api={api} />
+        ) : route.name === "atlases" ? (
+          <AtlasesView api={api} />
         ) : route.name === "canon" ? (
           <CanonView />
         ) : route.name === "work" ? (

@@ -14,7 +14,8 @@
       "@academy/*": ["../../src/lib/academy/*"],
       "@ros/*": ["../../src/lib/research-os/*"],
       "@/*": ["../../src/*"],
-      "next/navigation": ["./src/shims/next-navigation.ts"]
+      "next/navigation": ["./src/shims/next-navigation.ts"],
+      "next/link": ["./src/shims/next-link.tsx"]
     }
   },
   "include": ["src", "scripts", "vite.config.ts"]

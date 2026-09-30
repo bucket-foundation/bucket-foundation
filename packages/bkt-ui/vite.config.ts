@@ -26,6 +26,7 @@ export default defineConfig({
       { find: "@ros", replacement: resolve(SRC, "lib/research-os") },
       { find: /^@\//, replacement: `${SRC}/` },
       { find: /^next\/navigation$/, replacement: resolve(__dirname, "src/shims/next-navigation.ts") },
+      { find: /^next\/link$/, replacement: resolve(__dirname, "src/shims/next-link.tsx") },
     ],
   },
   build: {

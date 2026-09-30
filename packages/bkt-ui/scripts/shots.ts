@@ -96,8 +96,8 @@ const srv = startServe({ routes: { ...localRoutes(store, { content }), ...adviso
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
 const errors: string[] = [];
-page.on("pageerror", (e) => errors.push(e.message));
-page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+page.on("pageerror", (e) => (errors.push(e.message), console.error("pageerror", e.message)));
+page.on("console", (m) => m.type() === "error" && !m.text().includes("status of 404") && errors.push(m.text()));
 
 await page.goto(srv.url);
 await page.waitForSelector(".deck");
@@ -141,6 +141,16 @@ await page.click(".seg button >> nth=1");
 await page.waitForSelector(".globe-box canvas", { timeout: 30000 });
 await page.waitForTimeout(3000);
 await page.screenshot({ path: join(out, "6d-canon-globe.png") });
+
+await page.click('nav a[href="#/atlases"]');
+await page.waitForSelector("text=This build has no solvability atlas");
+await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../../../src/lib/research-os/solvability-atlas-data.json"));
+await page.waitForSelector(".atlas-body");
+await page.screenshot({ path: join(out, "6e-atlas-solvability.png") });
+await page.click(".seg button >> nth=2");
+await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../../../src/lib/research-os/patents-design-data.json"));
+await page.waitForSelector(".atlas-body");
+await page.screenshot({ path: join(out, "6f-atlas-patents.png") });
 
 await page.click('nav a[href="#/advisors"]');
 await page.waitForSelector(".people button");
