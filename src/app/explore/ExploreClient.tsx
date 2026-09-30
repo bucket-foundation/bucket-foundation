@@ -19,13 +19,14 @@ const TYPES: { id: HitType; label: string }[] = [
   { id: "excerpt", label: "Excerpts" },
   { id: "advisor", label: "Advisors" },
   { id: "work", label: "Works" },
+  { id: "canon-file", label: "Canon files" },
 ];
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
-  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work"]));
+  const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
   const [sample, setSample] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
