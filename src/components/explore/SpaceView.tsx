@@ -1,33 +1,38 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
 import CircleChart, { type ChartSeries } from "./CircleChart";
 import { sampleDataset } from "@/lib/explore/space-sample";
 import type { Dataset } from "@/lib/explore/space";
-
-export type SpaceViewId = "circle";
+import type { SpaceViewId } from "./space-views";
 
 interface Props {
   view: SpaceViewId;
   dataset?: Dataset;
+  embedded?: boolean;
+  index?: number;
+  onIndex?(i: number): void;
+  lowCoverage?: number;
 }
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 const GOLD = "#D9A43A";
 const BONE = "#EFE8D4";
 
-export default function SpaceView({ dataset }: Props) {
+export default function SpaceView({ dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3 }: Props) {
   const ds = useMemo(() => dataset ?? sampleDataset(), [dataset]);
-  const [index, setIndex] = useState(0);
+  const [local, setLocal] = useState(0);
+  const index = controlled ?? local;
   const count = ds.obs.length;
-  const step = useCallback((d: number) => setIndex((i) => (count ? (i + d + count) % count : 0)), [count]);
+  const setIndex = useCallback((i: number) => (onIndex ? onIndex(i) : setLocal(i)), [onIndex]);
+  const step = useCallback((d: number) => setIndex(count ? (index + d + count) % count : 0), [count, index, setIndex]);
   const current = ds.obs[index];
   const series: ChartSeries[] = [
     { id: "mean", name: "average", scores: ds.mean, stroke: BONE, fill: BONE, opacity: 0.04, dash: "5 4" },
     ...(current ? [{ id: current.id, name: current.title, scores: current.scores, stroke: GOLD, fill: GOLD, opacity: 0.22 }] : []),
   ];
   return (
-    <main data-testid="space-view" data-view="circle" className="relative w-full flex flex-col items-center" style={{ minHeight: "calc(100dvh - 4.5rem)", background: "#141311", color: BONE }}>
+    <Root embedded={embedded}>
       <div className="absolute top-3 left-3 flex items-center gap-2 text-xs" style={mono}>
         <span>{ds.label}</span>
         {ds.sample && (
@@ -42,6 +47,7 @@ export default function SpaceView({ dataset }: Props) {
       <div className="w-full max-w-3xl px-4 pb-6 text-sm">
         <p data-testid="space-current" className="text-center" style={mono}>
           {current ? `${current.title} · ${index + 1} / ${count}` : "no observations"}
+          {current?.coverage !== undefined && current.coverage < lowCoverage && <span data-testid="low-coverage" style={{ color: GOLD }}> · low coverage</span>}
         </p>
         <ul className="flex flex-wrap justify-center gap-2 mt-3">
           {ds.obs.map((o, i) => (
@@ -60,6 +66,20 @@ export default function SpaceView({ dataset }: Props) {
           ))}
         </ol>
       </div>
+    </Root>
+  );
+}
+
+function Root({ embedded, children }: { embedded: boolean; children: ReactNode }) {
+  const style = { background: "#141311", color: BONE, ...(embedded ? { height: "100%" } : { minHeight: "calc(100dvh - 4.5rem)" }) };
+  const cls = "relative w-full flex flex-col items-center";
+  return embedded ? (
+    <div data-testid="space-view" data-view="circle" className={cls} style={style}>
+      {children}
+    </div>
+  ) : (
+    <main data-testid="space-view" data-view="circle" className={cls} style={style}>
+      {children}
     </main>
   );
 }
