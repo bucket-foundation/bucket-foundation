@@ -27,7 +27,7 @@ const SUITES = {
       "scripts/test-canon-embeddings.ts",
       "scripts/test-canon-explorer-{projections,url}.ts",
       "scripts/test-atlas-baseline.ts",
-      "scripts/test-stage-record.ts",
+      "scripts/test-stage-*.ts",
       "scripts/test-explore-*.ts",
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
