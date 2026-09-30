@@ -5,6 +5,12 @@ import { GET } from "../src/app/api/explore/search/route";
 import { ERAS as SHIM_ERAS, eraOf as shimEraOf, timeCoord as shimTimeCoord } from "../src/lib/research-os/solvability-space";
 import { ERAS, eraOf, timeCoord } from "../src/lib/explore/time";
 import { EDGE_KINDS, isEdge } from "../src/lib/stage/record";
+import { unify } from "../src/lib/explore/search";
+import { advisorSources } from "../src/lib/explore/advisors";
+import { parseAdvisorReview, parsePrimeDirections } from "../src/lib/research-os/advisor-review";
+import sampleReview from "../src/lib/explore/fixtures/advisors.sample.json";
+import samplePrime from "../src/lib/explore/fixtures/prime.sample.json";
+import pinned from "../tests/fixtures/explore-search-links.json";
 import { stageV2Enabled } from "../src/lib/stage/flag";
 
 interface ApiHit {
@@ -18,7 +24,7 @@ async function search(q: string, flag: string | undefined): Promise<ApiHit[]> {
   if (flag === undefined) delete process.env.STAGE_V2;
   else process.env.STAGE_V2 = flag;
   try {
-    const res = await GET(new NextRequest(`http://localhost/api/explore/search?q=${encodeURIComponent(q)}&topK=30`));
+    const res = await GET(new NextRequest(`http://localhost/api/explore/search?q=${encodeURIComponent(q)}&top_k=30`));
     assert.equal(res.status, 200);
     return ((await res.json()) as { results: ApiHit[] }).results;
   } finally {
@@ -82,4 +88,26 @@ test("search adds edges with the same ids as links under the flag", async () => 
   }
   assert.ok(withEdges > 0);
   for (const h of after) for (const e of h.edges as { kind: string }[]) assert.ok((EDGE_KINDS as readonly string[]).includes(e.kind));
+});
+
+test("links match the fixture pinned from dev", () => {
+  const advisors = advisorSources(parseAdvisorReview(sampleReview), parsePrimeDirections(samplePrime));
+  const got = unify({ query: pinned.query, excerpts: pinned.excerpts, advisors }).map((h) => ({ id: h.id, links: h.links }));
+  assert.deepEqual(got, pinned.links);
+});
+
+test("edge reasons name the matched terms and each direction has its own kind", () => {
+  const advisors = advisorSources(parseAdvisorReview(sampleReview), parsePrimeDirections(samplePrime));
+  const hits = unify({ query: pinned.query, excerpts: pinned.excerpts, advisors });
+  const advisor = hits.find((h) => h.type === "advisor" && h.edges?.length);
+  const excerpt = hits.find((h) => h.type === "excerpt" && h.edges?.some((e) => e.to.startsWith("advisor:")));
+  assert.ok(advisor && excerpt);
+  for (const e of advisor.edges ?? []) {
+    assert.equal(e.kind, "advises");
+    assert.match(e.reason, /^shares \w+/);
+  }
+  for (const e of (excerpt.edges ?? []).filter((x) => x.to.startsWith("advisor:"))) {
+    assert.equal(e.kind, "shares-token");
+    assert.match(e.reason, /^shares \w+/);
+  }
 });

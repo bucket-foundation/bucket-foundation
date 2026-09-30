@@ -80,9 +80,17 @@ export function advisorId(a: Pick<AdvisorSource, "rank">): string {
   return `advisor:${a.rank}`;
 }
 
-function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): { id: string; s: number }[] {
+function sharedTerms(a: Set<string>, b: Set<string>): string {
+  return Array.from(a)
+    .filter((w) => b.has(w))
+    .sort()
+    .slice(0, 5)
+    .join(", ");
+}
+
+function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): { id: string; s: number; terms: string }[] {
   return pool
-    .map((p) => ({ id: p.id, s: similarity(bag, p.bag) }))
+    .map((p) => ({ id: p.id, s: similarity(bag, p.bag), terms: sharedTerms(bag, p.bag) }))
     .filter((p) => p.s > 0)
     .sort((x, y) => y.s - x.s || (x.id < y.id ? -1 : 1))
     .slice(0, k);
@@ -121,14 +129,14 @@ export function unify(opts: UnifyOptions): Hit[] {
   const edgesOf = (id: string): Edge[] => Array.from(edges.get(id)?.values() ?? []);
   for (const a of advisors) {
     for (const n of nearest(a.bag, excerpts, k)) {
-      link(a.id, n.id, "advises", "shared vocabulary", n.s);
-      link(n.id, a.id, "advises", "shared vocabulary", n.s);
+      link(a.id, n.id, "advises", `shares ${n.terms}`, n.s);
+      link(n.id, a.id, "shares-token", `shares ${n.terms}`, n.s);
     }
   }
   for (const e of excerpts) {
     for (const n of nearest(e.bag, advisors, 1)) {
-      link(e.id, n.id, "advises", "shared vocabulary", n.s);
-      link(n.id, e.id, "advises", "shared vocabulary", n.s);
+      link(e.id, n.id, "shares-token", `shares ${n.terms}`, n.s);
+      link(n.id, e.id, "advises", `shares ${n.terms}`, n.s);
     }
   }
 
