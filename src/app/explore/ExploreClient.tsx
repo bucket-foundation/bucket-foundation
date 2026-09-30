@@ -8,6 +8,7 @@ import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
+import { MOLECULES, REACTIONS, moleculeById, reactionById } from "@/lib/explore/modes/chem";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 
@@ -32,6 +33,8 @@ export default function ExploreClient() {
   const [genome, setGenome] = useState<GenomeSummary | null>(null);
   const [geneHits, setGeneHits] = useState<Hit[]>([]);
   const [element, setElement] = useState(DEFAULT_Z);
+  const [molecule, setMolecule] = useState(MOLECULES[0].id);
+  const [reaction, setReaction] = useState(REACTIONS[0].id);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
 
   useEffect(() => {
@@ -84,7 +87,7 @@ export default function ExploreClient() {
       .catch(() => setGeneHits([]));
   }, [mode.id, geneHits.length]);
 
-  const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : null;
+  const matterQuery = mode.id === "atom" ? `${elementByZ(element).name} ${elementByZ(element).symbol}` : mode.id === "particle" ? PARTICLES.map((p) => p.name).join(" ") : mode.id === "molecule" ? moleculeById(molecule).name : mode.id === "reaction" ? `${reactionById(reaction).name} chemistry` : null;
 
   useEffect(() => {
     if (!matterQuery) return;
@@ -100,8 +103,8 @@ export default function ExploreClient() {
 
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
   const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits, element }),
-    [mode, visible, selected, scroll, genome, extraHits, element],
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction }),
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
@@ -171,6 +174,23 @@ export default function ExploreClient() {
               {ELEMENTS.map((el) => (
                 <option key={el.z} value={el.z}>
                   {el.z} {el.symbol} {el.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {(mode.id === "molecule" || mode.id === "reaction") && (
+          <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
+            {mode.id === "molecule" ? "Molecule" : "Reaction"}
+            <select
+              data-testid="chem-select"
+              value={mode.id === "molecule" ? molecule : reaction}
+              onChange={(e) => (mode.id === "molecule" ? setMolecule(e.target.value) : setReaction(e.target.value))}
+              className="border hairline bg-transparent px-2 py-1"
+            >
+              {(mode.id === "molecule" ? MOLECULES : REACTIONS).map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
                 </option>
               ))}
             </select>
