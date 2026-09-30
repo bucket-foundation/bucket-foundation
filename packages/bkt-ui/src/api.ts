@@ -2,6 +2,25 @@ import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-stor
 import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 
+export interface JobKind {
+  kind: string;
+  label: string;
+  inputs: { name: string; label: string; exts: string[] }[];
+}
+
+export interface JobView {
+  id: string;
+  kind: string;
+  state: "running" | "done" | "failed" | "cancelled" | "timeout";
+  startedAt: number;
+  endedAt: number | null;
+  code: number | null;
+  log: string;
+  logTruncated: boolean;
+  result: unknown;
+  error: string | null;
+}
+
 export interface StoredReview {
   key: string;
   prime_axes: string[];
@@ -123,5 +142,21 @@ export class Api {
 
   importPrimeDirections(file: unknown) {
     return this.call<{ corpus: string; components: number }>("/local/prime-directions/import", { method: "POST", body: file });
+  }
+
+  jobs() {
+    return this.call<{ kinds: JobKind[]; jobs: JobView[] }>("/local/jobs");
+  }
+
+  startJob(kind: string, files: Record<string, { text: string; ext: string }>, options: Record<string, number> = {}) {
+    return this.call<JobView>("/local/jobs", { method: "POST", body: { kind, files, options } });
+  }
+
+  cancelJob(id: string) {
+    return this.call<JobView>("/local/jobs/cancel", { method: "POST", body: { id } });
+  }
+
+  deleteJob(id: string) {
+    return this.call<{ deleted: string }>("/local/jobs/delete", { method: "POST", body: { id } });
   }
 }

@@ -47,7 +47,21 @@ export interface PrimeDirections {
 
 export class ReviewFileError extends Error {}
 
-const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
+const LOCAL = String.raw`(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]{1,64}`;
+const LABEL = String.raw`[A-Za-z0-9-]{1,63}`;
+const AT = String.raw`\s*(?:@|\[\s*at\s*\]|\(\s*at\s*\)|\{\s*at\s*\}|<\s*at\s*>)\s*`;
+const DOT = String.raw`\s*(?:\.|\[\s*dot\s*\]|\(\s*dot\s*\)|\{\s*dot\s*\}|<\s*dot\s*>)\s*`;
+const SPOKEN = String.raw`${LOCAL}\s+at\s+${LABEL}(?:\s+dot\s+${LABEL})+`;
+const EMAIL = new RegExp(String.raw`${LOCAL}${AT}${LABEL}(?:${DOT}${LABEL})+|${SPOKEN}`, "i");
+const EMAILS = new RegExp(EMAIL.source, "gi");
+
+export function scrubEmails(s: string): string {
+  return s.normalize("NFKC").replace(EMAILS, "");
+}
+
+export function hasEmail(s: string): boolean {
+  return EMAIL.test(s.normalize("NFKC"));
+}
 const PRIVATE_KEY = /email|tracker|image|^id$|statement|note/i;
 const LINK_KEYS = new Set(["profile_url", "program_url"]);
 const ROW_CORE = new Set(["rank", "name", "score", "percentile", "star_prime", "star_ours", "theta", "radius"]);
@@ -59,8 +73,7 @@ const nums = (v: unknown): number[] => (Array.isArray(v) ? v.filter(num).slice(0
 const strs = (v: unknown, n = 64): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string").map(clean).slice(0, n) : []);
 
 function clean(s: string): string {
-  const t = s.slice(0, MAX_TEXT);
-  return EMAIL.test(t) ? t.replace(new RegExp(EMAIL.source, "g"), "") : t;
+  return scrubEmails(s.slice(0, MAX_TEXT));
 }
 
 function scalar(v: unknown): Scalar | undefined {
@@ -71,7 +84,7 @@ function scalar(v: unknown): Scalar | undefined {
 }
 
 function https(v: unknown): string | null {
-  if (typeof v !== "string" || EMAIL.test(v)) return null;
+  if (typeof v !== "string" || hasEmail(v)) return null;
   try {
     const u = new URL(v);
     return u.protocol === "https:" && !u.username && !u.password ? u.toString() : null;

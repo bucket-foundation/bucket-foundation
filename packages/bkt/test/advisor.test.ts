@@ -63,6 +63,25 @@ describe("advisor review parsing", () => {
     expect(r.prime_axes).toEqual(["water membrane", "light cell", "field"]);
   });
 
+  test("scrubs obfuscated and full-width emails after NFKC normalization", () => {
+    const r = parseAdvisorReview({
+      ...REVIEW,
+      rows: [
+        {
+          rank: 1,
+          name: "Avery Stone",
+          score: 1,
+          department: "write avery [at] uni [dot] example or avery (at) uni.example",
+          research_areas: "avery at uni dot example; avery\uff20uni\uff0eexample",
+          field: "look at cells. Then at scale",
+        },
+      ],
+    });
+    expect(r.rows[0].fields.department).toBe("write  or ");
+    expect(r.rows[0].fields.research_areas).toBe("; ");
+    expect(r.rows[0].fields.field).toBe("look at cells. Then at scale");
+  });
+
   test("rejects other files with a message", () => {
     expect(() => parseAdvisorReview({ rows: [] })).toThrow(ReviewFileError);
     expect(() => parseAdvisorReview({ schema: "bucket.advisor-review/1", rows: [] })).toThrow("no rows");
@@ -99,6 +118,33 @@ describe("people store", () => {
     for (const f of readdirSync(dir)) expect(readFileSync(join(dir, f)).includes("@uni.example")).toBe(false);
     expect(store.outboxCount()).toBe(0);
     expect(people.review()!.rows).toHaveLength(3);
+  });
+
+  test("rows and the review context are sealed at rest", () => {
+    const people = new PeopleStore(store, key);
+    people.importReview(parseAdvisorReview(REVIEW), 1);
+    store.db.run("pragma wal_checkpoint(truncate)");
+    for (const f of readdirSync(dir)) {
+      const bytes = readFileSync(join(dir, f));
+      for (const plain of ["Avery Stone", "North Institute", "3 of 3 ranked", "water membrane"]) expect(bytes.includes(plain)).toBe(false);
+    }
+    expect(people.review()!.summary).toBe("3 of 3 ranked");
+    expect(() => new PeopleStore(store, newDataKey()).review()).toThrow();
+  });
+
+  test("two people with one name at one institution get separate marks when their ids differ", () => {
+    const twins = {
+      ...REVIEW,
+      rows: [
+        { ...privateRow(1, "Sam Lee", "North Institute"), orcid: "0000-0001-0000-0001" },
+        { ...privateRow(2, "Sam Lee", "North Institute"), orcid: "0000-0001-0000-0002" },
+      ],
+    };
+    const people = new PeopleStore(store, key);
+    people.importReview(parseAdvisorReview({ ...twins, rows: [twins.rows[0]] }), 1);
+    people.forget(2);
+    expect(people.importReview(parseAdvisorReview(twins), 3)).toEqual({ imported: 1, forgotten: 1 });
+    expect(people.review()!.rows.map((r) => r.fields.orcid)).toEqual(["0000-0001-0000-0002"]);
   });
 
   test("people tables stay out of hub sync", () => {

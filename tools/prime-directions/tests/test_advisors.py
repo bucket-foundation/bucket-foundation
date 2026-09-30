@@ -138,6 +138,9 @@ def test_cli_advisor_review_writes_private_outputs(tmp_path: Path, monkeypatch, 
     assert review["schema"] == "bucket.advisor-review/1" and len(review["rows"]) == 160
     assert not {"email", "email_public", "image_url", "tracker_notes", "id"} & set().union(*(r.keys() for r in review["rows"]))
     assert "star_prime" in review["rows"][0] and review["context"]["prime_axes"]
+    statement = STATEMENT.read_text()
+    sentences = [s.strip() for s in statement.replace("\n", " ").split(".") if len(s.strip()) > 30]
+    assert sentences and not any(s in json.dumps(review["context"]) for s in sentences)
     with open(out / "ranked.csv") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 30 and rows[0]["rank"] == "1"

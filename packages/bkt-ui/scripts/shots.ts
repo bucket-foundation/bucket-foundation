@@ -5,6 +5,12 @@ import { newDataKey } from "../../bkt/src/crypto";
 import { advisorRoutes } from "../../bkt/src/advisor";
 import { localRoutes } from "../../bkt/src/local";
 import { PeopleStore } from "../../bkt/src/people";
+import { jobRoutes } from "../../bkt/src/job-routes";
+import { jobSpecs } from "../../bkt/src/job-specs";
+import { JobRunner } from "../../bkt/src/jobs";
+import { buildPySource } from "../../bkt/src/pack/pysrc";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
 import type { Pack } from "../../bkt/src/pack/export";
 import { startServe } from "../../bkt/src/serve";
 import { Store } from "../../bkt/src/store";
@@ -66,7 +72,15 @@ const seen = content.items.filter((i) => i.branch === "02-physics").slice(0, 24)
 seen.forEach((it, k) => store.gradeItem(it.id, (k % 4 === 0 ? 1 : 3) as 1 | 3, now - (12 - (k % 6)) * DAY));
 content.items.filter((i) => i.branch === "01-mathematics").slice(0, 9).forEach((it) => store.gradeItem(it.id, 3, now - DAY));
 
-const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people) }, uiDir: resolve(import.meta.dir, "../dist") });
+const scratch = mkdtempSync(join(tmpdir(), "bkt-shots-"));
+const runner = new JobRunner({
+  root: join(scratch, "jobs"),
+  specs: jobSpecs({ src: buildPySource(resolve(import.meta.dir, "../../bkt"), resolve(import.meta.dir, "../../..")), cacheRoot: join(scratch, "bkt", "py"), dataRoot: join(scratch, "fit"), people }),
+});
+const csv = ["day,sleep_h,focus"].concat(Array.from({ length: 40 }, (_, i) => `2026-08-${String((i % 28) + 1).padStart(2, "0")},${(6 + (i % 5) * 0.5).toFixed(1)},${50 + ((i * 7) % 40)}`)).join("\n");
+const job = runner.start("analyze", { data: { text: csv, ext: ".csv" } });
+for (let i = 0; i < 600 && runner.get(job.id)!.state === "running"; i++) await Bun.sleep(100);
+const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner) }, uiDir: resolve(import.meta.dir, "../dist") });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
 const errors: string[] = [];
@@ -102,6 +116,12 @@ await page.screenshot({ path: join(out, "7-advisors.png") });
 await page.click('nav a[href="#/primes"]');
 await page.waitForSelector(".spokes");
 await page.screenshot({ path: join(out, "8-prime-directions.png") });
+
+await page.click('nav a[href="#/jobs"]');
+await page.waitForSelector(".job-head");
+await page.click(".job-head");
+await page.waitForSelector(".log");
+await page.screenshot({ path: join(out, "9-jobs.png") });
 
 await page.click('nav a[href="#/import"]');
 await page.waitForSelector(".file");
