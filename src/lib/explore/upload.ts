@@ -182,10 +182,34 @@ export function smilesFromText(text: string, csv: boolean, sep = ","): string[] 
   return text.split(/\r?\n/).map((l) => l.trim().split(/\s+/)[0]).filter((l) => l && !l.startsWith("#"));
 }
 
-function inflate(bytes: Uint8Array): Promise<Uint8Array | null> {
-  if (typeof DecompressionStream === "undefined") return Promise.resolve(null);
-  const stream = new Blob([bytes as BlobPart]).stream().pipeThrough(new DecompressionStream("deflate"));
-  return new Response(stream).arrayBuffer().then((b) => new Uint8Array(b), () => null);
+export const MAX_INFLATED_BYTES = 8 * 1024 * 1024;
+
+async function inflate(bytes: Uint8Array, cap = MAX_INFLATED_BYTES): Promise<Uint8Array | null> {
+  if (typeof DecompressionStream === "undefined") return null;
+  const reader = new Blob([bytes as BlobPart]).stream().pipeThrough(new DecompressionStream("deflate")).getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.length;
+      if (total > cap) {
+        await reader.cancel();
+        return null;
+      }
+      chunks.push(value);
+    }
+  } catch {
+    return null;
+  }
+  const out = new Uint8Array(total);
+  let at = 0;
+  for (const c of chunks) {
+    out.set(c, at);
+    at += c.length;
+  }
+  return out;
 }
 
 function unescapePdf(s: string): string {
@@ -207,7 +231,7 @@ export function textOps(content: string): string {
   return out.join(" ").replace(/[ \t]+/g, " ").replace(/ ?\n ?/g, "\n").trim();
 }
 
-export async function pdfText(bytes: Uint8Array): Promise<string> {
+export async function pdfText(bytes: Uint8Array, inflateCap = MAX_INFLATED_BYTES): Promise<string> {
   const raw = new TextDecoder("latin1").decode(bytes);
   const parts: string[] = [];
   const re = /stream\r?\n/g;
@@ -220,7 +244,7 @@ export async function pdfText(bytes: Uint8Array): Promise<string> {
     let stop = end;
     while (stop > start && (bytes[stop - 1] === 10 || bytes[stop - 1] === 13)) stop--;
     const body = bytes.subarray(start, stop);
-    const data = /FlateDecode/.test(dict.slice(dict.lastIndexOf("<<"))) ? await inflate(body) : body;
+    const data = /FlateDecode/.test(dict.slice(dict.lastIndexOf("<<"))) ? await inflate(body, inflateCap) : body;
     if (data) {
       const t = textOps(new TextDecoder("latin1").decode(data));
       if (t) parts.push(t);

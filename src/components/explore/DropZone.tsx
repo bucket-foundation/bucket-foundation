@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { GenomeReply } from "@/lib/explore/genome/job";
 import { ParseTokens, sizeError } from "@/lib/explore/genome/job";
-import { classify, processUpload, routeFor, type UploadResult } from "@/lib/explore/upload";
+import { MAX_UPLOAD_BYTES, classify, processUpload, routeFor, type UploadResult } from "@/lib/explore/upload";
 
 interface Props {
   onResult(r: UploadResult): void;
@@ -37,6 +37,10 @@ export default function DropZone({ onResult }: Props) {
     const token = tokens.current.next();
     pending.current = f.name;
     setStatus(`Reading ${f.name}…`);
+    if (f.size > MAX_UPLOAD_BYTES) {
+      setStatus(`${f.name} is ${Math.round(f.size / 1024 / 1024)} MB. The limit is ${MAX_UPLOAD_BYTES / 1024 / 1024} MB.`);
+      return;
+    }
     const head = await f.slice(0, 64 * 1024).text();
     if (classify(f.name, head).kind === "genome") {
       const tooBig = sizeError(f.size);
