@@ -373,8 +373,9 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
     };
   }, [expanded]);
 
-  const selectEntity = (id: string) => {
-    const ev = ALL_EVENTS.find((e) => e.id === id);
+  const selectEntity = (rawId: string) => {
+    const id = rawId.replace(/^site:/, "");
+    const ev = rawId.startsWith("site:") ? undefined : ALL_EVENTS.find((e) => e.id === id);
     const site = ev ? null : ALL_SITES.find((s) => s.id === id);
     if (ev) setSelected({ id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year, branch: ev.branch, title: ev.title, kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] });
     else if (site) setSelected({ id: site.id, lat: site.lat, lng: site.lng, year: site.year, branch: site.branch, title: site.title, kind: "archaeological-site", civilization: site.civilization, lidar: site.lidar, unesco: site.unesco, wikipedia: site.wikipedia });
@@ -534,7 +535,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
         </div>
       )}
       <div key="base" data-testid="base-layer" className={expanded ? "absolute inset-0" : "relative w-full mx-auto flex-1 overflow-hidden"} style={expanded ? undefined : { minHeight: "440px" }}>
-        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} chrome={expanded ? "minimal" : "full"} />
+        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} scrubberHost={scrubberHost} onEntity={selectEntity} chrome={expanded ? "minimal" : "full"} />
       </div>
       {expanded ? <WidgetOverlay key="overlay" insetRight widgets={widgets} collapsed={collapsed} onToggle={(id) => setCollapsed((c) => toggleCollapsed(c, id, widgets))} /> : <div key="bottom" className="px-2 pb-3">{scrubberHostNode}</div>}
 
