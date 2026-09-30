@@ -5,7 +5,8 @@ import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import type { Item } from "../src/grade";
 import { eligibleIds, freezeBank, reviewBank, reviewItem, type FrozenItem } from "../src/hai/bank";
-import { aiVisible, displayOrder, pickPairs, retestDue, RETEST_MS, THINK_MS, type AiScores } from "../src/hai/probe";
+import { loadSubmission, save } from "../src/hai/files";
+import { aiVisible, displayOrder, malformedCount, pickPairs, retestDue, RETEST_MS, THINK_MS, type AiScores } from "../src/hai/probe";
 import { batchRequests, estimateCost, MODEL, parseAnswer, selectForScoring } from "../src/hai/score";
 import { ProbeRun, report } from "../src/hai/session";
 import { bootstrapPairs, dependenceFlag, guessCorrect, halfWidthItems, point, summarize, type PairOutcome } from "../src/hai/stats";
@@ -161,6 +162,7 @@ describe("stats", () => {
     expect(dependenceFlag({ value: 0.2, lo: 0.1, hi: 0.3 }, { value: -0.1, lo: -0.2, hi: -0.01 })).toBe(true);
     expect(dependenceFlag({ value: 0.2, lo: -0.1, hi: 0.3 }, { value: -0.1, lo: -0.2, hi: -0.01 })).toBe(false);
     expect(dependenceFlag({ value: 0.2, lo: 0.1, hi: 0.3 }, { value: 0.1, lo: 0.05, hi: 0.2 })).toBe(false);
+    expect(dependenceFlag({ value: 0.2, lo: 0.1, hi: 0.3 }, { value: 0.05, lo: -0.1, hi: 0.2 })).toBe(true);
     expect(dependenceFlag({ value: 0.2, lo: null, hi: null }, { value: 0, lo: 0, hi: 0 })).toBeNull();
   });
 
@@ -265,8 +267,35 @@ describe("scorer", () => {
     const i = bank.items[0];
     const letter = "ABCD"[i.answerIndex];
     expect(parseAnswer(i, JSON.stringify({ choice: letter, rationale: "ok" }))).toEqual({ choice: i.answerIndex, correct: true, rationale: "ok" });
-    expect(parseAnswer(i, "nope")).toEqual({ choice: null, correct: false, rationale: "" });
-    expect(parseAnswer(i, JSON.stringify({ choice: "Z" })).choice).toBeNull();
+    expect(parseAnswer(i, "nope")).toEqual({ choice: null, correct: false, rationale: "", malformed: true });
+    expect(parseAnswer(i, JSON.stringify({ choice: "Z" })).malformed).toBe(true);
+  });
+
+  test("malformed replies never enter a probe", () => {
+    const s = scoresFor(bank);
+    for (const i of bank.items.slice(0, 60)) s.answers[i.id] = { choice: null, correct: false, rationale: "", malformed: true };
+    const all = new Set(bank.items.map((i) => i.id));
+    const bad = new Set(bank.items.slice(0, 60).map((i) => i.id));
+    expect(malformedCount(s)).toBe(60);
+    expect(pickPairs(bank, s, all, new Set(), "m", 10).some((x) => bad.has(x.itemId))).toBe(false);
+  });
+
+  test("a pending batch blocks resubmission until collected, and the cap blocks overspend", async () => {
+    const a = { ...parseToolArgs(["--pilot", "20"]), dir };
+    freeze({ version: "p1", source: "t", items }, a, () => {});
+    let created = 0;
+    const fake = () => ({ messages: { batches: { create: async () => ({ id: `batch${++created}` }) } } }) as never;
+    const env = { ANTHROPIC_API_KEY: "test" };
+    await score({ ...a, yes: true }, () => {}, env, fake);
+    expect(created).toBe(1);
+    expect(loadSubmission(dir)!.batchId).toBe("batch1");
+    await expect(score({ ...a, yes: true }, () => {}, env, fake)).rejects.toThrow("not collected");
+    expect(loadSubmission(dir)!.batchId).toBe("batch1");
+    save("submission", { ...loadSubmission(dir)!, collectedAt: "now" }, dir);
+    await expect(score({ ...a, yes: true, maxUsd: 0.0001 }, () => {}, env, fake)).rejects.toThrow("above --max-usd");
+    expect(created).toBe(1);
+    await score({ ...a, yes: true }, () => {}, env, fake);
+    expect(created).toBe(2);
   });
 
   test("pilot is stratified and cost is positive", () => {

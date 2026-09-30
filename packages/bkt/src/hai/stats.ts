@@ -90,8 +90,8 @@ export function summarize(pairs: PairOutcome[], draws = 2000, seed = "hai-boot")
 }
 
 export function dependenceFlag(JminusH: Estimate, L: Estimate): boolean | null {
-  if (JminusH.lo === null || L.hi === null) return null;
-  return JminusH.lo > 0 && L.hi <= 0;
+  if (JminusH.lo === null || L.lo === null) return null;
+  return JminusH.lo > 0 && L.lo! <= 0;
 }
 
 export function halfWidthItems(halfWidth: number, p = 0.5, k = CHOICES, z = 1.96): number {

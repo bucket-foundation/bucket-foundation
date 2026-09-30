@@ -9,6 +9,8 @@ export const PRICE_IN_PER_M = 4;
 export const PRICE_OUT_PER_M = 20;
 export const BATCH_DISCOUNT = 0.5;
 export const EST_OUTPUT_TOKENS = 300;
+export const MAX_TOKENS = 400;
+export const DEFAULT_BUDGET_FACTOR = 1.5;
 export const PROMPT_OVERHEAD_TOKENS = 120;
 export const LETTERS = ["A", "B", "C", "D"];
 
@@ -51,6 +53,7 @@ export interface CostEstimate {
   outputTokens: number;
   usd: number;
   usdBatch: number;
+  worstUsdBatch: number;
 }
 
 export function estimateTokens(text: string): number {
@@ -61,7 +64,8 @@ export function estimateCost(items: FrozenItem[]): CostEstimate {
   const inputTokens = items.reduce((s, i) => s + estimateTokens(SYSTEM + questionText(i)) + PROMPT_OVERHEAD_TOKENS, 0);
   const outputTokens = items.length * EST_OUTPUT_TOKENS;
   const usd = (inputTokens * PRICE_IN_PER_M + outputTokens * PRICE_OUT_PER_M) / 1e6;
-  return { items: items.length, inputTokens, outputTokens, usd, usdBatch: usd * BATCH_DISCOUNT };
+  const worst = (inputTokens * PRICE_IN_PER_M + items.length * MAX_TOKENS * PRICE_OUT_PER_M) / 1e6;
+  return { items: items.length, inputTokens, outputTokens, usd, usdBatch: usd * BATCH_DISCOUNT, worstUsdBatch: worst * BATCH_DISCOUNT };
 }
 
 export function customId(index: number): string {
@@ -73,7 +77,7 @@ export function batchRequests(items: FrozenItem[]) {
     custom_id: customId(n),
     params: {
       model: MODEL,
-      max_tokens: 4000,
+      max_tokens: MAX_TOKENS,
       system: SYSTEM,
       output_config: { effort: EFFORT, format: { type: "json_schema" as const, schema: ANSWER_SCHEMA } },
       messages: [{ role: "user" as const, content: questionText(item) }],
@@ -86,15 +90,17 @@ export function parseAnswer(item: FrozenItem, text: string): AiAnswer {
   try {
     parsed = JSON.parse(text);
   } catch {
-    return { choice: null, correct: false, rationale: "" };
+    return { choice: null, correct: false, rationale: "", malformed: true };
   }
   const choice = typeof parsed.choice === "string" ? LETTERS.indexOf(parsed.choice) : -1;
   const valid = choice >= 0 && choice < item.choices.length;
-  return {
+  const out: AiAnswer = {
     choice: valid ? choice : null,
     correct: valid && choice === item.answerIndex,
     rationale: typeof parsed.rationale === "string" ? parsed.rationale.slice(0, 300) : "",
   };
+  if (!valid) out.malformed = true;
+  return out;
 }
 
 export interface Submission {
@@ -103,6 +109,7 @@ export interface Submission {
   model: string;
   itemIds: string[];
   submittedAt: string;
+  collectedAt?: string;
 }
 
 export async function submit(client: Anthropic, bank: Bank, items: FrozenItem[]): Promise<Submission> {
@@ -128,6 +135,10 @@ export async function collect(client: Anthropic, bank: Bank, sub: Submission, pr
     if (!item) throw new Error(`result ${r.custom_id} maps to no bank item`);
     if (r.result.type !== "succeeded" || r.result.message.stop_reason === "refusal") {
       failed.push(item.id);
+      continue;
+    }
+    if (r.result.message.stop_reason === "max_tokens") {
+      answers[item.id] = { choice: null, correct: false, rationale: "", malformed: true };
       continue;
     }
     const text = r.result.message.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("");

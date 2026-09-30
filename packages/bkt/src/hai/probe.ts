@@ -9,6 +9,7 @@ export interface AiAnswer {
   choice: number | null;
   correct: boolean;
   rationale: string;
+  malformed?: boolean;
 }
 
 export interface AiScores {
@@ -24,6 +25,10 @@ export interface ProbeSlot {
   pairId: string;
   itemId: string;
   condition: Condition;
+}
+
+export function malformedCount(ai: AiScores): number {
+  return Object.values(ai.answers).filter((a) => a.malformed).length;
 }
 
 export function pairKey(item: FrozenItem, ai: AiAnswer): string {
@@ -45,7 +50,7 @@ export function pickPairs(bank: Bank, ai: AiScores, eligible: Set<string>, used:
   const groups = new Map<string, FrozenItem[]>();
   for (const item of bank.items) {
     const a = ai.answers[item.id];
-    if (!a || !eligible.has(item.id) || used.has(item.id)) continue;
+    if (!a || a.malformed || !eligible.has(item.id) || used.has(item.id)) continue;
     const k = pairKey(item, a);
     groups.set(k, [...(groups.get(k) ?? []), item]);
   }

@@ -2,18 +2,20 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { Pack } from "../pack/export";
 import { eligibleIds, freezeBank, reviewBank, type Bank, type FlagKind, type Review } from "./bank";
 import { loadBank, loadReview, loadScores, loadSubmission, save } from "./files";
-import { collect, estimateCost, MODEL, selectForScoring, submit } from "./score";
+import { malformedCount } from "./probe";
+import { collect, DEFAULT_BUDGET_FACTOR, estimateCost, MODEL, selectForScoring, submit } from "./score";
 
 export interface ToolArgs {
   pilot: number | null;
   yes: boolean;
   collect: boolean;
   clear: string[];
+  maxUsd: number | null;
   dir?: string;
 }
 
 export function parseToolArgs(argv: string[]): ToolArgs {
-  const a: ToolArgs = { pilot: null, yes: false, collect: false, clear: [] };
+  const a: ToolArgs = { pilot: null, yes: false, collect: false, clear: [], maxUsd: null };
   for (let i = 0; i < argv.length; i++) {
     const [flag, inline] = argv[i].split("=", 2);
     const value = () => inline ?? argv[++i];
@@ -26,6 +28,11 @@ export function parseToolArgs(argv: string[]): ToolArgs {
     else if (flag === "--collect") a.collect = true;
     else if (flag === "--clear") a.clear.push(value());
     else if (flag === "--dir") a.dir = value();
+    else if (flag === "--max-usd") {
+      const n = Number(value());
+      if (!Number.isFinite(n) || n <= 0) throw new Error("--max-usd needs a positive dollar amount");
+      a.maxUsd = n;
+    }
     else throw new Error(`unknown flag ${flag}`);
   }
   return a;
@@ -76,17 +83,23 @@ export async function score(a: ToolArgs, log = console.log, env = process.env, m
     const out = await collect(makeClient(), bank, sub, loadScores(a.dir) ?? undefined);
     if ("pending" in out) return log(`batch ${sub.batchId}: ${out.pending}`);
     save("scores", out.scores, a.dir);
+    save("submission", { ...sub, collectedAt: new Date().toISOString() }, a.dir);
     const n = Object.keys(out.scores.answers).length;
+    const bad = malformedCount(out.scores);
     const right = Object.values(out.scores.answers).filter((x) => x.correct).length;
-    log(`scores: ${n} items, ${right} correct, ${out.failed.length} failed`);
+    log(`scores: ${n} items, ${right} correct, ${bad} malformed and left out of A, ${out.failed.length} failed`);
     return;
   }
+  const pending = loadSubmission(a.dir);
+  if (a.yes && pending && !pending.collectedAt) throw new Error(`batch ${pending.batchId} is not collected; run bkt hai score --collect first`);
   const eligible = eligibleIds(bank, requireReview(bank, a.dir));
-  const done = new Set(Object.keys(loadScores(a.dir)?.answers ?? {}));
+  const done = new Set(Object.entries(loadScores(a.dir)?.answers ?? {}).filter(([, v]) => !v.malformed).map(([k]) => k));
   const items = selectForScoring(bank, eligible, a.pilot).filter((i) => !done.has(i.id));
   const est = estimateCost(items);
   log(`${MODEL}, effort low, one run: ${est.items} items, ~${est.inputTokens} input and ~${est.outputTokens} output tokens`);
-  log(`estimate $${est.usd.toFixed(2)} standard, $${est.usdBatch.toFixed(2)} batched`);
+  const cap = a.maxUsd ?? Math.ceil(est.usdBatch * DEFAULT_BUDGET_FACTOR * 100) / 100;
+  log(`estimate $${est.usd.toFixed(2)} standard, $${est.usdBatch.toFixed(2)} batched, worst case $${est.worstUsdBatch.toFixed(2)}, cap $${cap.toFixed(2)}`);
+  if (a.yes && est.worstUsdBatch > cap) throw new Error(`worst case $${est.worstUsdBatch.toFixed(2)} is above --max-usd $${cap.toFixed(2)}`);
   if (!a.yes) return log("dry run; add --yes to submit the batch");
   if (!items.length) return log("nothing to score");
   if (!env.ANTHROPIC_API_KEY && !env.ANTHROPIC_AUTH_TOKEN) throw new Error("set ANTHROPIC_API_KEY to submit");

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
 import type { Bank, Review } from "./bank";
 import type { AiScores } from "./probe";
-import { THINK_MS } from "./probe";
+import { malformedCount, THINK_MS } from "./probe";
 import { ProbeRun, report } from "./session";
 import type { Estimate } from "./stats";
 import type { HaiStore } from "./store";
@@ -107,6 +107,7 @@ function ReportView({ hai, scores }: { hai: HaiStore; scores: AiScores | null })
         H {s.H.toFixed(2)} J {s.J.toFixed(2)} A {s.A.toFixed(2)} (guess-corrected)
       </Text>
       <Text>D = J - max(H, A): {fmt(s.D)}</Text>
+      {scores && malformedCount(scores) > 0 && <Text dimColor>{malformedCount(scores)} malformed AI replies left out of A and of probes</Text>}
       <Text>m = J / max(H, A): {fmt(s.m)}</Text>
       <Text>Retention R: {fmt(s.R)}</Text>
       <Text>Learning L = J(t+7) - H(t+7): {fmt(s.L)}</Text>
