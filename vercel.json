@@ -32,6 +32,10 @@
     {
       "path": "/api/cron/download-retention",
       "schedule": "17 4 * * *"
+    },
+    {
+      "path": "/api/cron/whats-new-daily",
+      "schedule": "10 0 * * *"
     }
   ]
 }
