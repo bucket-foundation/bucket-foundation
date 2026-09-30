@@ -37,6 +37,7 @@ test("the chart has a scrubber and no rows of item buttons", async ({ page }) =>
 test("dragging the handle steps the item and the label follows", async ({ page }) => {
   await page.goto("/explore?view=circle");
   const slider = page.getByRole("slider", { name: /observations/ });
+  await expect(slider).toBeVisible();
   const box = (await slider.boundingBox())!;
   const count = Number(await page.getByTestId("scrubber").getAttribute("data-count"));
   await page.mouse.move(box.x + 2, box.y + box.height / 2);
@@ -50,6 +51,7 @@ test("dragging the handle steps the item and the label follows", async ({ page }
 test("arrow keys step the scrubber", async ({ page }) => {
   await page.goto("/explore?view=circle");
   const slider = page.getByRole("slider", { name: /observations/ });
+  await expect(slider).toBeVisible();
   await slider.focus();
   await page.keyboard.press("ArrowRight");
   await expect(page.getByTestId("scrubber")).toHaveAttribute("data-index", "1");
