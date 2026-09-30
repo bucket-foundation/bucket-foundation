@@ -19,6 +19,13 @@ const MIGRATIONS = [
    create index attempts_item on attempts(item_id, at);
    create table outbox (id text primary key, kind text not null, ref_id text not null, payload_enc text not null,
      created_at integer not null, sent_at integer);`,
+  `create table hai_probe (id text primary key, bank_version text not null, seed text not null, started_at integer not null,
+     completed_at integer, due_at integer, retest_completed_at integer);
+   create table hai_answer (id text primary key, probe_id text not null references hai_probe(id) on delete cascade, pair_id text not null,
+     item_id text not null, condition text not null check (condition in ('solo', 'pair')), phase text not null check (phase in ('t0', 'retest')),
+     response_enc text, correct integer not null, accepted_ai integer, elapsed_ms integer not null, at integer not null,
+     unique (probe_id, item_id, phase));
+   create index hai_answer_item on hai_answer(item_id);`,
 ];
 
 export interface AttemptInput {

@@ -108,6 +108,7 @@ export interface Session {
   store: Store;
   device: DeviceIdentity;
   keyring: Keyring;
+  key: Buffer;
 }
 
 export async function openSession(keyring: Keyring, dir: string, now = Date.now()): Promise<Session> {
@@ -123,5 +124,5 @@ export async function openSession(keyring: Keyring, dir: string, now = Date.now(
     store.close();
     throw new Error(`database belongs to device ${recorded.id}; this keyring holds ${device.id}`);
   }
-  return { store, device, keyring };
+  return { store, device, keyring, key };
 }
