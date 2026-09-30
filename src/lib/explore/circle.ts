@@ -1,4 +1,4 @@
-import { radiusOf, spokeAngle, type SpaceComponent } from "./space";
+import { radiusOf, spokeAngle, type ScoreScale, type SpaceComponent } from "./space";
 
 export const CIRCLE_RADIUS = 130;
 export const RINGS = [0.25, 0.5, 0.75, 1];
@@ -10,10 +10,10 @@ export function spokeDirection(component: Pick<SpaceComponent, "angle_deg">): Po
   return [Math.cos(a), -Math.sin(a)];
 }
 
-export function polygonPoints(scores: number[], components: Pick<SpaceComponent, "angle_deg">[], radius = CIRCLE_RADIUS): Point[] {
+export function polygonPoints(scores: number[], components: Pick<SpaceComponent, "angle_deg">[], radius = CIRCLE_RADIUS, scale: ScoreScale = "standardized"): Point[] {
   return scores.map((s, i) => {
     const [dx, dy] = spokeDirection(components[i]);
-    const r = radius * radiusOf(s);
+    const r = radius * radiusOf(s, scale);
     return [r * dx, r * dy];
   });
 }
@@ -52,6 +52,6 @@ export function labelLayout(dir: Point, lines: number): { anchor: "start" | "mid
   return { anchor, shift };
 }
 
-export function ariaSummary(labels: string[], series: { name: string; scores: number[] }[]): string {
-  return series.map((s) => `${s.name}: ${labels.map((l, i) => `${l} ${Math.round(radiusOf(s.scores[i]) * 100)}`).join(", ")}`).join(". ");
+export function ariaSummary(labels: string[], series: { name: string; scores: number[] }[], scale: ScoreScale = "standardized"): string {
+  return series.map((s) => `${s.name}: ${labels.map((l, i) => `${l} ${Math.round(radiusOf(s.scores[i], scale) * 100)}`).join(", ")}`).join(". ");
 }

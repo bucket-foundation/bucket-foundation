@@ -71,6 +71,8 @@ def build_reference_basis(basis: list[dict], k: int = 12, min_df: int = 2, max_d
     import numpy as np
     from sklearn.utils.extmath import randomized_svd
 
+    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+
     from .advisors import SHORT_FIELD, weigh
     from .model import vectorize
     from .render import angles
@@ -113,6 +115,7 @@ def build_reference_basis(basis: list[dict], k: int = 12, min_df: int = 2, max_d
         "source": {"name": "OpenAlex topics", "documents": int(n)},
         "params": {"k": k, "min_df": min_df, "max_df": max_df, "max_features": max_features, "seed": seed, "weighting": "idf-rownorm", "centered": True},
         "sign_convention": SIGN_CONVENTION,
+        "stop_words": sorted(ENGLISH_STOP_WORDS),
         "vocab": [str(t) for t in vocab],
         "idf": [round(float(x), 5) for x in idf],
         "loadings": [[round(float(x), 6) for x in row] for row in vt],

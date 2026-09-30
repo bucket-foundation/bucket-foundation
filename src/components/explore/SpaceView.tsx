@@ -37,7 +37,7 @@ export default function SpaceView({ dataset }: Props) {
         )}
       </div>
       <div className="w-full flex-1 max-w-3xl" style={{ minHeight: 420 }}>
-        <CircleChart components={ds.components} series={series} onStep={step} />
+        <CircleChart components={ds.components} series={series} onStep={step} scale={ds.scale} />
       </div>
       <div className="w-full max-w-3xl px-4 pb-6 text-sm">
         <p data-testid="space-current" className="text-center" style={mono}>

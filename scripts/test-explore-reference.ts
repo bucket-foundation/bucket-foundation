@@ -39,6 +39,18 @@ test("repeated terms count once and unknown terms are ignored", () => {
   assert.ok(a.coverage >= LOW_COVERAGE);
 });
 
+test("stop words leave the coverage denominator", () => {
+  const withStops: ReferenceBasis = { ...tiny, stop_words: ["the", "and", "of"] };
+  const p = projectText(withStops, "the alpha and the beta of zzz");
+  assert.ok(Math.abs(p.coverage - 2 / 3) < 1e-12);
+  assert.equal(projectText(withStops, "the and of").coverage, 0);
+  assert.ok(Math.abs(projectText(tiny, "the alpha and the beta of zzz").coverage - 2 / 7) < 1e-12);
+});
+
+test("the shipped basis lists its stop words", () => {
+  assert.ok((big.stop_words ?? []).includes("the"));
+});
+
 test("text with no known term has zero coverage and a finite score", () => {
   const p = projectText(tiny, "zzz qqq");
   assert.equal(p.coverage, 0);
