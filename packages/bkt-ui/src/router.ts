@@ -32,6 +32,11 @@ export function href(r: Route): string {
   return `#/${r.name}`;
 }
 
+export function firstRunHash(hash: string, decks: { introduced: number; xp: number }[]): string | null {
+  if (hash.replace(/^#\/?/, "") !== "") return null;
+  return decks.every((d) => d.introduced === 0 && d.xp === 0) ? href({ name: "quiz" }) : null;
+}
+
 export function useRoute(): Route {
   const [route, setRoute] = useState(() => parseHash(window.location.hash));
   useEffect(() => {

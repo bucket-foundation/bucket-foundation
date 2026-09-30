@@ -181,6 +181,13 @@ export default function Header({ launchList = false }: { launchList?: boolean })
           </nav>
 
           <div className="flex items-center gap-2">
+            <Link
+              href="/download"
+              onClick={closeDrawer}
+              className="min-h-[44px] flex items-center px-3 md:px-4 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em]"
+            >
+              Download
+            </Link>
             <GitHubStarButton />
             <UserMenu launchList={launchList} />
             <button

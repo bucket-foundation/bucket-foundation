@@ -5,7 +5,15 @@
 >
 > Foundations, brilliant humans, and AI, on an open substrate, with the patronage layer routed back to the people who write the foundations.
 >
-> **Open-source research data protocol.** Free to read. Paid to cite., the reader pays nothing and needs no wallet; "paid to cite" means a paper is paid for *once*, server-side, by the bucket operator, and the citation fee then routes to the author forever. No gatekeepers.
+> **Open-source research data protocol.** Free to read, paid to cite. The reader pays nothing and needs no wallet. The bucket operator pays for a paper *once*, server-side, and the citation fee routes to the author forever. No gatekeepers.
+
+**[Download Bucket desktop](https://www.bucket.foundation/download)** for offline study, or browse [every release](https://github.com/bucket-foundation/bucket-foundation/releases).
+
+## Quickstart
+
+1. Open [bucket.foundation/download](https://www.bucket.foundation/download) and take the installer for your system, or leave your email for a link when your build ships. Linux x86_64 comes first.
+2. Install it. The installer checks the release signature first; on Linux, `scripts/release/install.sh <url>` does the same check by hand.
+3. Open Bucket. A new install starts on your first quiz, and every answer stays on your computer.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
