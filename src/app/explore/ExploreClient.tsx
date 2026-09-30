@@ -6,10 +6,12 @@ import type { Hit, HitType } from "@/lib/explore/search";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
+import DropZone from "@/components/explore/DropZone";
+import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
 import SourcePanel, { isSourceHit } from "@/components/explore/SourcePanel";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
-import { MOLECULES, REACTIONS, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
+import { MOLECULES, REACTIONS, registerCustom, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
 import { loadLandmask, type Landmask } from "@/components/canon-globe/landmaskFromImage";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
 
@@ -45,6 +47,9 @@ export default function ExploreClient() {
   const [smilesLoaded, setSmilesLoaded] = useState(smilesReady());
   const [focus, setFocus] = useState<ResidueLink | null>(null);
   const [matterHits, setMatterHits] = useState<Hit[]>([]);
+  const [uploadedPapers, setUploadedPapers] = useState<Hit[]>([]);
+  const [you, setYou] = useState<Hit | null>(null);
+  const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
 
   useEffect(() => {
@@ -83,8 +88,9 @@ export default function ExploreClient() {
     run(q);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const visible = useMemo(() => hits.filter((h) => types.has(h.type)), [hits, types]);
-  const byId = useMemo(() => new Map(hits.map((h) => [h.id, h])), [hits]);
+  const uploaded = useMemo(() => linkNearest([...uploadedPapers, ...(you ? [you] : [])], hits), [uploadedPapers, you, hits]);
+  const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
+  const byId = useMemo(() => new Map([...hits, ...uploaded].map((h) => [h.id, h])), [hits, uploaded]);
   const current = selected ? byId.get(selected) ?? null : null;
   const mode = modeById(modeId);
   const protein = proteinById(null);
@@ -128,6 +134,31 @@ export default function ExploreClient() {
     [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask],
   );
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
+
+  const handleUpload = useCallback((r: UploadResult) => {
+    if (r.kind === "genome") {
+      setGenome(r.summary);
+      pickMode("dna");
+    } else if (r.kind === "structure") {
+      setStructure({ text: r.text, format: r.format, name: r.name });
+      pickMode("protein");
+    } else if (r.kind === "smiles") {
+      const list = r.reaction ? REACTIONS : MOLECULES;
+      const id = registerCustom(list, { name: r.name, smiles: r.smiles });
+      if (r.reaction) setReaction(id);
+      else setMolecule(id);
+      pickMode(r.reaction ? "reaction" : "molecule");
+    } else if (r.kind === "bibliography") {
+      const added = bibHits(r.entries);
+      setUploadedPapers(added);
+      setTypes((prev) => new Set(prev).add("paper"));
+      setSelected(added[0]?.id ?? null);
+    } else if (r.kind === "document") {
+      const h = youHit(r.name, r.text);
+      setYou(h);
+      setSelected(h.id);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggle = (t: HitType) =>
     setTypes((prev) => {
@@ -187,6 +218,7 @@ export default function ExploreClient() {
             </button>
           ))}
         </div>
+        <DropZone onResult={handleUpload} />
         {mode.id === "dna" && <DnaPanel genome={genome} onGenome={setGenome} />}
         {mode.id === "atom" && (
           <label className="flex items-center gap-2 mt-3 text-sm" style={mono}>
@@ -219,7 +251,7 @@ export default function ExploreClient() {
         )}
         <div className="mt-3">
           {mode.renderer === "protein" ? (
-            <ProteinView protein={protein} focus={focus} onFocus={setFocus} />
+            <ProteinView protein={protein} focus={focus} onFocus={setFocus} upload={structure} />
           ) : (
             <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
           )}
