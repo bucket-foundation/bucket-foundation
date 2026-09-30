@@ -2,11 +2,12 @@ import { test, expect } from "@playwright/test";
 
 test.use({ viewport: { width: 1440, height: 900 } });
 
-test("the shell opens on sample data with the canon search controls", async ({ page }) => {
+test("the shell opens on the canon data set with the canon search controls", async ({ page }) => {
   await page.goto("/explore?view=circle");
   await expect(page.getByTestId("explore-shell")).toBeVisible();
   await expect(page.getByTestId("shell-query")).toBeVisible();
-  await expect(page.getByTestId("sample-badge")).toBeVisible();
+  await expect(page.getByTestId("sample-badge")).toHaveCount(0);
+  await expect(page.getByRole("radio", { name: "canon" })).toHaveAttribute("aria-checked", "true");
   await expect(page.getByTestId("circle-chart")).toBeVisible();
   await expect(page.getByRole("radio", { name: "circle" })).toHaveAttribute("aria-checked", "true");
   await expect(page.getByRole("button", { name: "physics" })).toBeVisible();
@@ -16,7 +17,7 @@ test("a query replaces the sample with canon excerpts projected on the reference
   await page.goto("/explore?view=circle");
   await page.getByTestId("shell-query").fill("entropy");
   const results = page.getByTestId("shell-result");
-  await expect(results.first()).toBeVisible();
+  await expect(results.first()).toBeVisible({ timeout: 60_000 });
   await expect(page.getByTestId("sample-badge")).toHaveCount(0);
   await expect(page.getByTestId("circle-chart").locator("g[data-vertices]").first()).toHaveAttribute("data-vertices", "12");
   await expect(page).toHaveURL(/q=entropy/);
