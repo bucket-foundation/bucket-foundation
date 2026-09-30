@@ -4,6 +4,7 @@ import { getBranches, getBranch, getBranchEntries } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, getBranch as getStaticBranch, REPO_TREE, DRIVE_URL } from "@/lib/canon";
 import { getClaimsForBranch } from "@/lib/canon-claims";
 import BranchEntriesTableV2 from "./BranchEntriesTableV2";
+import { branchStatus } from "@/lib/canon-branch-status";
 
 export const dynamic = "force-static";
 
@@ -48,10 +49,10 @@ export default function Page({ params }: { params: { slug: string } }) {
   const name = fs?.name || (stat as any)?.name || params.slug;
   const readme = fs?.readme || null;
   const entries = fs ? getBranchEntries(params.slug) : [];
-  const status = entries.length === 0 ? "open for submissions" : fs?.status || "in progress";
 
   const figures = stat?.figures ?? [];
   const { total: claimsTotal, concepts: claimsByConcept } = getClaimsForBranch(params.slug);
+  const status = branchStatus({ entries: entries.length, figures: figures.length, claims: claimsTotal, fsStatus: fs?.status });
 
   const readmeIntro = readme ? extractIntro(readme) : null;
 

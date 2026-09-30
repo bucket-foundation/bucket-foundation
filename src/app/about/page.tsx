@@ -58,7 +58,7 @@ export default function Page() {
           <strong className="text-[color:var(--parchment)]">2026.</strong> Reactivated as an open-source nonprofit. Two verbs deleted, canon added. The thesis turned: <span className="italic">bucket is the new renaissance.</span> Read the <Link href="/manifesto" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">manifesto</Link>.
         </p>
         <p>
-          <strong className="text-[color:var(--parchment)]">2026-06.</strong> Story Protocol minting was removed on 2026-06-14; citations settle over x402 on Base. The hackathon storage layer and web3 sign-in went with it. Credentials are Open Badges 3.0 verifiable credentials. Research happens in <Link href="/research-os" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Research OS</Link>, and the <Link href="/download" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">desktop app</Link> runs it on your machine.
+          <strong className="text-[color:var(--parchment)]">2026-06.</strong> Story Protocol minting was removed on 2026-06-14; citations settle over x402 on Base. Walrus storage and Dynamic sign-in went with it. Credentials are Open Badges 3.0 verifiable credentials. Research happens in <Link href="/research-os" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Research OS</Link>, and the <Link href="/download" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">desktop app</Link> runs it on your machine.
         </p>
       </div>
     </PageShell>

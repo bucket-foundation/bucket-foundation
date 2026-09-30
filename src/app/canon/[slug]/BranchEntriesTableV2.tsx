@@ -2,11 +2,9 @@
 
 import { useMemo, useState } from "react";
 import type { CanonRow } from "@/lib/canon-fs";
+import { CANON_CITE_PRICE_USD, canonEntryUrl } from "@/lib/canon-branch-status";
 
 type SortKey = "title" | "year" | "subfolder";
-
-const CANON_CITE_PRICE_USD = 0.002;
-const SITE = "https://www.bucket.foundation";
 
 export default function BranchEntriesTableV2({
   entries,
@@ -65,7 +63,7 @@ export default function BranchEntriesTableV2({
       <div className="flex flex-wrap gap-3 mb-4 items-center">
         <input
           type="text"
-          placeholder="filter…"
+          placeholder="filter"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           className="text-sm bg-[color:var(--bone-2)] border border-[color:var(--hairline)] px-3 py-1 outline-none focus:border-[color:var(--gold)]"
@@ -82,7 +80,7 @@ export default function BranchEntriesTableV2({
         {sorted.map((e, i) => (
           <div key={`${e.bibkey}-${i}`} id={e.bibkey || undefined} className="py-3 flex items-start gap-4 group scroll-mt-24">
             <div className="w-32 shrink-0 small-caps text-[10px] text-[color:var(--gold-deep)] pt-1">
-              {e.subfolder || "—"}
+              {e.subfolder || "root"}
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-[15px] text-[color:var(--basalt)]">{e.title}</div>
@@ -100,7 +98,7 @@ export default function BranchEntriesTableV2({
                 cite ${CANON_CITE_PRICE_USD.toFixed(3)} usdc
               </a>
               <a
-                href={`${SITE}/canon/${branchSlug}#${e.bibkey}`}
+                href={canonEntryUrl(branchSlug, e.bibkey)}
                 className="font-mono-mark normal-case text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]"
               >
                 /canon/{branchSlug}#{e.bibkey}
