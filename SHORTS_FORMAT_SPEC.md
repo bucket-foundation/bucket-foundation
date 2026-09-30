@@ -229,7 +229,6 @@ shipped_at, gdrive_url, longtail_url}`. The MCP server's
 - Multi-language. English only v1.
 - Long-form (8-15min) deep-dive companion videos. Different epic.
 - feed402 paid-CTA. V2.
-- Story Protocol IP minting. Opt-in, off by default in v1.
 
 ## 12. References
 

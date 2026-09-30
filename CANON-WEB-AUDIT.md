@@ -66,7 +66,7 @@ And the knowledge graph all live in repo files or sqlite.
 
 This means:
 
-- The PostgREST API at `https://db.agfarms.dev/rest/v1/photons` cannot serve a claim or a figure.
+- The PostgREST API at `https://<photon-api-host>/rest/v1/photons` (that host is retired) cannot serve a claim or a figure.
 - Polingual cannot show claims or figures.
 - External merchants (feed402) cannot pay-for-once-and-cite a claim photon.
 - Search across word + claim + figure in a single query is impossible.
@@ -142,22 +142,22 @@ When done, every one of these queries returns coherent results from the same `po
 
 ```bash
 # search any surface across words AND claims AND figures
-curl 'https://db.agfarms.dev/rest/v1/photons?surface=ilike.%godel%&apikey=...' \
+curl 'https://<photon-api-host>/rest/v1/photons?surface=ilike.%godel%&apikey=...' \
   -H 'Accept-Profile: polingual'
 # → en:godel word, claim:godels-incompleteness-theorem, figure:kurt-godel, …
 
 # all claims for a branch
-curl 'https://db.agfarms.dev/rest/v1/photons?kind=eq.claim&branch=cs.{02-physics}&apikey=...' \
+curl 'https://<photon-api-host>/rest/v1/photons?kind=eq.claim&branch=cs.{02-physics}&apikey=...' \
   -H 'Accept-Profile: polingual'
 # → 136 physics claims
 
 # all figures for a branch
-curl 'https://db.agfarms.dev/rest/v1/photons?kind=eq.figure&branch=cs.{05-biophysics}&apikey=...' \
+curl 'https://<photon-api-host>/rest/v1/photons?kind=eq.figure&branch=cs.{05-biophysics}&apikey=...' \
   -H 'Accept-Profile: polingual'
 # → 19 biophysics figures
 
 # evidence for a claim (via photon_edges)
-curl 'https://db.agfarms.dev/rest/v1/photon_edges?src_id=eq.photon:claim:godel:001&predicate=eq.cites'
+curl 'https://<photon-api-host>/rest/v1/photon_edges?src_id=eq.photon:claim:godel:001&predicate=eq.cites'
 # → list of evidence photons (transcripts, articles, papers)
 
 # every photon ever cited by every claim about a figure (graph traversal)

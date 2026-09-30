@@ -4,7 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
-import { BRANCH_COLOR, globeProjection, markerScales, type Projection } from "./projections";
+import { globeProjection, markerScales, type Projection } from "./projections";
 
 export type CanonMarkerKind =
   | "canon-entry"
@@ -57,6 +57,19 @@ export function latLngToVec3(lat: number, lng: number, radius: number): THREE.Ve
   );
 }
 
+const BRANCH_COLOR: Record<string, string> = {
+  mathematics:  "#D9A43A",
+  physics:      "#3E6FA8",
+  chemistry:    "#9B5A2C",
+  information:  "#557B66",
+  biophysics:   "#8E3E3E",
+  cosmology:    "#5B4882",
+  mind:         "#C2873E",
+  "deep-history": "#7A5D3E",
+  "sacred-texts": "#A0863F",
+  earth:        "#4A6E5E",
+  art:          "#A45A4C",
+};
 
 const KIND_COLOR: Record<CanonMarkerKind, string> = {
   "canon-entry":  "#D9A43A",

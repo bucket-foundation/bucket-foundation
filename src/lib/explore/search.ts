@@ -1,6 +1,6 @@
-export type HitType = "excerpt" | "advisor" | "work";
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file";
 
-export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work"];
+export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"];
 
 export interface Hit {
   id: string;
@@ -13,6 +13,8 @@ export interface Hit {
   year: number | null;
   url: string | null;
   links: string[];
+  source?: string;
+  license?: string;
 }
 
 export interface ExcerptSource {
@@ -33,15 +35,18 @@ export interface AdvisorSource {
   year: number | null;
   score: number;
   url: string | null;
+  star?: number[];
 }
 
 export interface UnifyOptions {
   query: string;
   excerpts: ExcerptSource[];
   advisors: AdvisorSource[];
+  sources?: Hit[];
   types?: HitType[];
   topK?: number;
   linksPerHit?: number;
+  extraHits?: Hit[];
 }
 
 const STOP = new Set(["the", "and", "for", "with", "that", "this", "from", "are", "was", "his", "her", "its", "not", "but", "you", "all", "any", "can", "has", "have", "into", "our", "out", "who", "why", "how", "what"]);
@@ -128,7 +133,14 @@ export function unify(opts: UnifyOptions): Hit[] {
     }
   }
 
-  const hits: Hit[] = [];
+  const sourceHits: Hit[] = (opts.sources ?? []).map((h) => {
+    const bag = tokens(`${h.title} ${h.text}`);
+    const near = [...nearest(bag, excerpts, 2), ...nearest(bag, advisors, 1)];
+    for (const id of near) link(id, h.id);
+    return { ...h, links: near };
+  });
+
+  const hits: Hit[] = [...sourceHits];
   for (const x of excerpts) {
     hits.push({
       id: x.id,
@@ -180,7 +192,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       links: w.ids,
     });
   }
-  return hits
+  return [...hits, ...(opts.extraHits ?? [])]
     .filter((h) => types.has(h.type))
     .sort((a, b) => b.score - a.score || (a.id < b.id ? -1 : 1))
     .slice(0, topK);
