@@ -546,6 +546,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
       <Drawer
         selected={selected}
         floating={expanded}
+        datasetInfo={{ label: dataset.label, count: dataset.obs.length, license: dataset.license }}
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
@@ -557,6 +558,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
 function Drawer({
   selected,
   floating = false,
+  datasetInfo,
   transparent = false,
   workspaceLinks = false,
   onClose,
@@ -564,6 +566,7 @@ function Drawer({
 }: {
   selected: CanonMarker | null;
   floating?: boolean;
+  datasetInfo?: { label: string; count: number; license?: string };
   transparent?: boolean;
   workspaceLinks?: boolean;
   onClose: () => void;
@@ -1028,6 +1031,20 @@ function Drawer({
               with year, branch, coordinates, claim excerpt (when from search),
               and links into the canon.
             </p>
+
+            {datasetInfo && (
+              <div data-testid="dataset-info" className="rounded-md p-4 mb-5" style={{ background: "var(--bone-2)", border: "1px solid var(--hairline)" }}>
+                <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}>
+                  Data set
+                </div>
+                <p className="text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  {datasetInfo.label} · {datasetInfo.count.toLocaleString()} items
+                </p>
+                <p data-testid="dataset-license" className="text-xs mt-1" style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                  {datasetInfo.license ? `Licence: ${datasetInfo.license}` : "Licence: not stated"}
+                </p>
+              </div>
+            )}
 
             <div
               className="rounded-md p-4 mb-5"

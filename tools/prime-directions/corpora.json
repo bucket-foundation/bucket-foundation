@@ -4,6 +4,7 @@
       "kind": "sqlite",
       "path": "_intake/80k-ea-longtermism/corpus.sqlite",
       "publish": true,
+      "license": "unverified: check the source licence before sharing",
       "description": "80,000 Hours, EA Forum, GiveWell and adjacent effective-altruism sources",
       "options": {
         "exclude_id_substrings": [
@@ -46,6 +47,7 @@
       "kind": "folder",
       "path": "_intake/war-gov-pursue-release-01",
       "publish": true,
+      "license": "US government work, public domain",
       "description": "Department of War PURSUE release 01: records and PDFs",
       "options": {
         "pdf": true
@@ -58,6 +60,7 @@
       "kind": "folder",
       "path": "_intake/aaro-mil-archive",
       "publish": true,
+      "license": "US government work, public domain",
       "description": "AARO military archive PDFs",
       "options": {
         "pdf": true,
@@ -71,6 +74,7 @@
       "kind": "folder",
       "path": "_intake/research-os-k12-literature",
       "publish": true,
+      "license": "Bucket Foundation research notes",
       "description": "Research OS K-12 literature review notes",
       "clean": {
         "min_chars": 800
@@ -80,6 +84,7 @@
       "kind": "json_items",
       "path": "learning/app/corpus",
       "publish": true,
+      "license": "Bucket Foundation content",
       "description": "Bucket Academy science atoms across the canon branches",
       "options": {
         "pattern": "[0-9b]*.json",
@@ -98,6 +103,7 @@
       "kind": "folder",
       "path": "_intake/health-longevity-fitness/01-people/bryan-johnson-corpus",
       "publish": true,
+      "license": "unverified: source rights apply, local analysis only",
       "description": "Bryan Johnson: Blueprint protocol pages and public video transcripts",
       "options": {
         "extensions": [

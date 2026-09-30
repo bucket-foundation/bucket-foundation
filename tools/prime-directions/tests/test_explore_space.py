@@ -124,3 +124,28 @@ def test_shipped_registry_publishes_no_private_corpus():
     specs = corpora.load_registry()
     assert specs["kruse"].private and not specs["kruse"].publish
     assert not any(s.private and s.publish for s in specs.values())
+
+
+def test_every_published_corpus_carries_a_licence_label():
+    from prime_directions import corpora
+
+    for name, spec in corpora.load_registry().items():
+        if spec.publish:
+            assert spec.license.strip(), name
+
+
+def test_the_export_writes_the_licence(tmp_path: Path):
+    from prime_directions import cli
+
+    reg = _registry(tmp_path)
+    raw = json.loads(reg.read_text())
+    raw["corpora"]["pub"]["license"] = "CC BY 4.0"
+    reg.write_text(json.dumps(raw))
+    out = tmp_path / "out"
+    cli.main(["--registry", str(reg), "run", "pub", "--out", str(tmp_path / "x"), "--space", "--space-out", str(out), "--basis-file", str(ROOT / "src" / "data" / "explore" / "reference-basis.json")])
+    assert json.loads((out / "pub.space.json").read_text())["license"] == "CC BY 4.0"
+
+
+def test_advisors_and_canon_carry_a_licence():
+    assert explore_space.advisors_space(BASIS, BUNDLE)["license"] == explore_space.ADVISORS_LICENSE
+    assert json.loads((ROOT / "src" / "data" / "explore" / "canon.space.json").read_text())["license"] == explore_space.CANON_LICENSE

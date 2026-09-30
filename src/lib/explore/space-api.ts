@@ -68,6 +68,7 @@ export function publicDataset(ds: Dataset): Dataset {
     id: ds.id,
     label: ds.label,
     sample: false,
+    license: ds.license,
     scale: ds.scale,
     basis: ds.basis,
     fields: ds.fields,

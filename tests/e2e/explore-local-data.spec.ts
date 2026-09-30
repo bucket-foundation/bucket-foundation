@@ -26,8 +26,16 @@ test.describe("local data sets from the guarded API", () => {
     expect(Number(await page.getByTestId("scrubber").getAttribute("data-count"))).toBeGreaterThan(1000);
     await expect(page.getByTestId("coverage-stat")).toContainText("mean coverage");
     await expect(page.getByTestId("basis-label")).toHaveCount(0);
+    await expect(page.getByTestId("dataset-license")).toContainText("OpenAlex metadata (CC0)");
     const text = await page.locator("body").innerText();
     expect(text).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.]+/);
+  });
+
+  test("a published corpus shows its licence label", async ({ page }) => {
+    await page.goto("/explore?view=circle&data=academy");
+    await expect(page.getByTestId("dataset-license")).toContainText("Bucket Foundation content");
+    await page.goto("/explore?view=circle&data=bryan-johnson");
+    await expect(page.getByTestId("dataset-license")).toContainText("unverified");
   });
 
   test("a data param opens the advisors directly and the view is kept", async ({ page }) => {
