@@ -283,3 +283,19 @@ def test_email_public_only_for_public_sources_and_publishable_strips(tmp_path: P
     by = {r["email"]: r for r in rows if r["email"]}
     assert by["a@example.edu"]["email_public"] is True and by["b@example.edu"]["email_public"] is False
     assert all(r["email"] == "" and r["email_public"] is False for r in advisors.publishable_rows(rows))
+
+
+def test_our_directions_are_percentiles_among_everyone_and_the_statement_is_placed_on_them():
+    model = small_model()
+    query = advisors.statement_body(STATEMENT.read_text())
+    rows, _, _ = advisors.rank(model, query, top=None)
+    dirs = [("alpha", "protein folding energy landscape"), ("beta", "graph learning agents discovery")]
+    ctx = advisors.direction_profiles(model, rows, query, dirs)
+    ours = np.array([r["star_ours"] for r in rows])
+    assert ours.max(axis=0).tolist() == [1.0, 1.0]
+    assert ours.min(axis=0).tolist() == [0.0, 0.0]
+    assert np.all(np.abs(np.median(ours, axis=0) - 0.5) < 0.15)
+    q = ctx["star_query_ours"]
+    assert len(q) == 2 and all(0 <= v <= 1 for v in q)
+    same = advisors.direction_profiles(model, rows, query, [("alpha", query), ("beta", query)])
+    assert all(v >= 0.95 for v in same["star_query_ours"])
