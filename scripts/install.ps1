@@ -9,7 +9,11 @@ $ReleasePubkey = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxLPJ9aXCPCnxg+caf9yG5sBa
 function Fail($msg) { Write-Error "bkt install: $msg"; exit 1 }
 
 function Fetch($src, $dest) {
-  if ($src -like 'https://*') { Invoke-WebRequest -UseBasicParsing -Uri $src -OutFile $dest }
+  if ($src -like 'https://*') {
+    $r = Invoke-WebRequest -UseBasicParsing -Uri $src -OutFile $dest -PassThru
+    $final = if ($r.BaseResponse.ResponseUri) { $r.BaseResponse.ResponseUri } else { $r.BaseResponse.RequestMessage.RequestUri }
+    if ($final -and $final.Scheme -ne 'https') { Fail "refusing a download that left https: $final" }
+  }
   elseif ($src -like 'http://*') { Fail "refusing plain http: $src" }
   else { Copy-Item -LiteralPath $src -Destination $dest }
 }
@@ -45,14 +49,20 @@ function Install-Bkt {
     if ($sshKeygen) {
       $allowed = Join-Path $work 'allowed_signers'
       Set-Content -LiteralPath $allowed -Value "$Signer namespaces=`"bucket-release`" $ReleasePubkey" -Encoding ascii
-      $cmd = "`"$($sshKeygen.Source)`" -q -Y verify -f `"$allowed`" -I $Signer -n bucket-release -s `"$bin.manifest.sig`" < `"$bin.manifest`""
-      cmd.exe /d /c $cmd | Out-Null
-      if ($LASTEXITCODE -ne 0) { Fail "signature check failed for $Name" }
+      $verifyArgs = @('-q', '-Y', 'verify', '-f', "`"$allowed`"", '-I', $Signer, '-n', 'bucket-release', '-s', "`"$bin.manifest.sig`"")
+      $p = Start-Process -FilePath $sshKeygen.Source -ArgumentList $verifyArgs -RedirectStandardInput "$bin.manifest" -RedirectStandardOutput (Join-Path $work 'verify.out') -NoNewWindow -Wait -PassThru
+      if ($p.ExitCode -ne 0) { Fail "signature check failed for $Name" }
     } else { Fail 'ssh-keygen is required to verify the release signature; add the OpenSSH Client optional feature and rerun' }
 
     $dir = if ($env:BKT_INSTALL_DIR) { $env:BKT_INSTALL_DIR } else { Join-Path $env:LOCALAPPDATA 'Programs\bkt' }
     New-Item -ItemType Directory -Force -Path $dir | Out-Null
     $dest = Join-Path $dir 'bkt.exe'
+    if ((Test-Path -LiteralPath $dest) -and $env:BKT_ALLOW_DOWNGRADE -ne '1') {
+      $current = (& $dest --version 2>$null | Out-String).Trim()
+      if ($current -match '^\d+\.\d+\.\d+$' -and ([version]$current -gt [version]$manifest['version'])) {
+        Fail "refusing to replace bkt $current with older $($manifest['version']); set BKT_ALLOW_DOWNGRADE=1 to allow it"
+      }
+    }
     Copy-Item -LiteralPath $bin -Destination "$dest.new" -Force
     Move-Item -LiteralPath "$dest.new" -Destination $dest -Force
 

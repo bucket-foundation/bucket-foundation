@@ -19,8 +19,18 @@ for a in "${expected[@]}"; do
 done
 
 if ! gh release view "$tag" --repo "$repo" > /dev/null 2>&1; then
-  gh release create "$tag" --repo "$repo" --verify-tag --title "Bucket $version" \
+  gh release create "$tag" --repo "$repo" --verify-tag --prerelease --title "Bucket $version" \
     --notes "bkt $version for Linux, macOS and Windows, plus the Linux AppImage. Install with scripts/install.sh or scripts/install.ps1 from this tag."
 fi
-gh release upload "$tag" --repo "$repo" --clobber "${assets[@]}"
-echo "published ${#assets[@]} files to $tag"
+existing=$(gh release view "$tag" --repo "$repo" --json assets -q '.assets[].name')
+missing=()
+for a in "${assets[@]}"; do
+  n=$(basename "$a")
+  if grep -qxF "$n" <<< "$existing"; then
+    echo "publish.sh: $n is already on $tag; leaving it in place" >&2
+  else
+    missing+=("$a")
+  fi
+done
+[ ${#missing[@]} -eq 0 ] || gh release upload "$tag" --repo "$repo" "${missing[@]}"
+echo "published ${#missing[@]} new files to $tag"

@@ -92,6 +92,8 @@ jobs:
         run: sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends imagemagick webp
       - name: build the unsigned AppImage
         run: bash scripts/release/build-appimage.sh "$RUNNER_TEMP/release" | tee "$RUNNER_TEMP/build.log"
+      - name: run bkt inside the AppImage
+        run: test "$(APPIMAGE_EXTRACT_AND_RUN=1 "$RUNNER_TEMP"/release/Bucket-*.AppImage --version)" = "$(bash scripts/release/version.sh)"
       - name: record sizes
         run: |
           echo "### AppImage size" >> "$GITHUB_STEP_SUMMARY"
@@ -126,8 +128,16 @@ jobs:
   sign:
     runs-on: ubuntu-latest
     needs: [binaries, appimage]
+    environment: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && 'bkt-release' || 'bkt-dry-run' }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: a release tag must point at a commit on main or dev
+        if: startsWith(github.ref, 'refs/tags/bkt-v')
+        run: |
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || git merge-base --is-ancestor "$GITHUB_SHA" origin/dev \
+            || { echo "$GITHUB_REF_NAME points at $GITHUB_SHA, which is on neither main nor dev" >&2; exit 1; }
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
@@ -157,11 +167,21 @@ jobs:
             asset: bkt-linux-arm64
           - os: macos-latest
             asset: bkt-darwin-arm64
+          - os: macos-15-intel
+            asset: bkt-darwin-x64
           - os: windows-latest
             asset: bkt-windows-x64.exe
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/install.sh
+            /scripts/install.ps1
+            /scripts/release/version.sh
+            /packages/bkt/package.json
+            /packages/bkt/scripts/smoke.ts
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
@@ -236,6 +256,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
     needs: [sign, install]
     runs-on: ubuntu-latest
+    environment: bkt-release
     permissions:
       contents: write
       id-token: write
@@ -255,7 +276,54 @@ jobs:
             ${{ runner.temp }}/dist/bkt-darwin-x64
             ${{ runner.temp }}/dist/bkt-windows-x64.exe
             ${{ runner.temp }}/dist/Bucket-*.AppImage
-      - name: upload binaries, AppImage, checksums and signatures to the release
+      - name: upload to the release as a prerelease
         env:
           GH_TOKEN: ${{ github.token }}
         run: bash scripts/release/publish.sh "$GITHUB_REF_NAME" "$RUNNER_TEMP/dist"
+
+  verify-release:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [publish]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/install.sh
+            /scripts/install.ps1
+      - name: install.sh from the release over HTTPS
+        if: runner.os != 'Windows'
+        env:
+          BKT_INSTALL_DIR: ${{ runner.temp }}/bin
+        run: |
+          BKT_VERSION=${GITHUB_REF_NAME#bkt-v} sh scripts/install.sh
+          test "$("$BKT_INSTALL_DIR/bkt" --version)" = "${GITHUB_REF_NAME#bkt-v}"
+      - name: install.ps1 from the release over HTTPS
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          BKT_INSTALL_DIR: ${{ runner.temp }}\bin
+          BKT_NO_MODIFY_PATH: "1"
+        run: |
+          $env:BKT_VERSION = $env:GITHUB_REF_NAME -replace '^bkt-v', ''
+          pwsh -NoProfile -File scripts/install.ps1
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $v = (& (Join-Path $env:BKT_INSTALL_DIR 'bkt.exe') --version | Out-String).Trim()
+          if ($v -ne $env:BKT_VERSION) { Write-Error "installed $v, expected $env:BKT_VERSION"; exit 1 }
+
+  promote:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: [verify-release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: mark the verified release as latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --prerelease=false --latest

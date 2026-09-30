@@ -48,9 +48,12 @@ interface Deps {
 
 async function text(f: typeof fetch, url: string): Promise<string> {
   if (!url.startsWith("https://")) throw new Error(`refusing a non-https url: ${url}`);
-  const r = await f(url, { redirect: "follow" });
+  const r = await f(url, { redirect: "follow", signal: AbortSignal.timeout(15_000) });
+  if (r.url && !r.url.startsWith("https://")) throw new Error(`${url} redirected off https`);
   if (!r.ok) throw new Error(`${url} answered ${r.status}`);
-  return r.text();
+  const body = await r.text();
+  if (body.length > 1_000_000) throw new Error(`${url} answered more than 1 MB`);
+  return body;
 }
 
 export async function checkUpdate(d: Partial<Deps> = {}): Promise<UpdateResult> {

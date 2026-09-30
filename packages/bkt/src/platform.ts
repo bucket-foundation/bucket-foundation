@@ -190,36 +190,39 @@ function windowsUser(d: PlatformDeps): string {
   return (d.env.USERDOMAIN ? `${d.env.USERDOMAIN}\\${user}` : user).toLowerCase();
 }
 
+let sid: string | null = null;
+
+export function windowsSid(d: PlatformDeps): string {
+  if (sid) return sid;
+  const r = d.execSync(["whoami", "/user", "/fo", "csv", "/nh"]);
+  const found = r.stdout.match(/"(S-1-[0-9-]+)"/)?.[1];
+  if (r.code !== 0 || !found) throw new Error(`whoami could not name the current user: ${(r.stderr || r.stdout).trim()}`);
+  sid = found;
+  return found;
+}
+
 function windowsSecure(d: PlatformDeps, path: string): string {
   mkdirSync(path, { recursive: true });
   if (secured.has(path)) return path;
-  const r = d.execSync(["icacls", path, "/inheritance:r", "/grant:r", `${windowsUser(d)}:(OI)(CI)F`, "/q"]);
+  const r = d.execSync(["icacls", path, "/inheritance:r", "/grant:r", `*${windowsSid(d)}:(OI)(CI)F`, "/q"]);
   if (r.code !== 0) throw new Error(`icacls could not restrict ${path} to the current user: ${(r.stderr || r.stdout).trim()}`);
   secured.add(path);
   return path;
 }
 
-const owners = new Map<string, { owner: Owner | null; at: number }>();
-
-export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number, now = Date.now()): Owner | null {
-  const key = `${peerPort}:${serverPort}`;
-  const hit = owners.get(key);
-  if (hit && now - hit.at < 10_000) return hit.owner;
-  let owner: Owner | null = null;
+export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number): Owner | null {
   const ns = d.execSync(["netstat", "-ano", "-p", "TCP"]);
+  if (ns.code !== 0) return null;
   const row = ns.stdout
     .split(/\r?\n/)
     .map((l) => l.trim().split(/\s+/))
     .find((c) => c[0] === "TCP" && c[1] === `127.0.0.1:${peerPort}` && c[2] === `127.0.0.1:${serverPort}` && c[3] === "ESTABLISHED");
   const pid = row ? Number(row[4]) : NaN;
-  if (Number.isInteger(pid) && pid > 0) {
-    const tl = d.execSync(["tasklist", "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
-    const cols = tl.stdout.trim().match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
-    const user = cols[6]?.toLowerCase();
-    if (tl.code === 0 && user && user !== "n/a") owner = user;
-  }
-  owners.set(key, { owner, at: now });
-  return owner;
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  const tl = d.execSync(["tasklist", "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
+  const cols = tl.stdout.trim().match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
+  const user = cols[1] === String(pid) ? cols[6]?.toLowerCase() : undefined;
+  return tl.code === 0 && user && user !== "n/a" ? user : null;
 }
 
 function linux(d: PlatformDeps): Platform {

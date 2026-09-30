@@ -11,7 +11,7 @@ say() { echo "bkt install: $*" >&2; }
 
 fetch() {
   case "$1" in
-    https://*) curl -fsSL --proto '=https' --tlsv1.2 -o "$2" "$1" ;;
+    https://*) curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 -o "$2" "$1" ;;
     http://*) fail "refusing plain http: $1" ;;
     *) cp -- "$1" "$2" ;;
   esac
@@ -42,18 +42,19 @@ target() {
 }
 
 latest_tag() {
-  curl -fsSL --proto '=https' "https://api.github.com/repos/$REPO/releases?per_page=30" \
-    | tr ',' '\n' | sed -n 's/.*"tag_name": *"\(bkt-v[0-9][0-9.]*\)".*/\1/p' | head -n1
+  url=$(curl -fsSLI --proto '=https' --proto-redir '=https' -o /dev/null -w '%{url_effective}' "https://github.com/$REPO/releases/latest") || return 0
+  case "${url##*/}" in bkt-v[0-9]*) echo "${url##*/}" ;; esac
 }
 
 add_to_path() {
   dir=$1
+  case "$dir" in *[\"\$\`\\]*) say "add $dir to your PATH"; return 0 ;; esac
   case ":${PATH:-}:" in *":$dir:"*) return 0 ;; esac
   if [ "${BKT_NO_MODIFY_PATH:-}" = 1 ]; then
     say "add $dir to your PATH"
     return 0
   fi
-  line="export PATH=\"$dir:\$PATH\""
+  line="export PATH=\"\$PATH:$dir\""
   for rc in "$HOME/.profile" "$HOME/.bashrc" "$HOME/.zshrc"; do
     case "$rc" in
       */.profile) ;;
@@ -98,6 +99,12 @@ main() {
   ssh-keygen -q -Y verify -f "$work/allowed_signers" -I "$SIGNER" -n "$NAMESPACE" -s "$work/$name.manifest.sig" < "$work/$name.manifest" > /dev/null \
     || fail "signature check failed for $name"
 
+  if [ -x "$bindir/bkt" ] && [ "${BKT_ALLOW_DOWNGRADE:-}" != 1 ]; then
+    current=$("$bindir/bkt" --version 2>/dev/null || true)
+    if [ -n "$current" ] && [ "$current" != "$version" ] && [ "$(printf '%s\n%s\n' "$current" "$version" | sort -t. -k1,1n -k2,2n -k3,3n | tail -n1)" = "$current" ]; then
+      fail "refusing to replace bkt $current with older $version; set BKT_ALLOW_DOWNGRADE=1 to allow it"
+    fi
+  fi
   mkdir -p "$bindir"
   install_to="$bindir/bkt"
   cp "$work/$name" "$install_to.new"
