@@ -1,0 +1,887 @@
+"use client";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { CanonMarker } from "@/components/canon-globe";
+import timelineData from "@/data/canon-timeline.json";
+import sitesData from "@/data/canon-sites.json";
+import figuresData from "../../../canon-figures/figures.json";
+import { SORTS } from "@/lib/canon-explorer/url";
+import { matchExcerptEvent } from "@/lib/canon-explorer/markers";
+import { useExplorerState } from "@/app/canon/useExplorerState";
+import SpaceView from "@/components/explore/SpaceView";
+import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views";
+import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
+import { SPACE_SCHEMA, type Dataset, type SpaceObservation } from "@/lib/explore/space";
+import { sampleDataset } from "@/lib/explore/space-sample";
+
+type TimelineEvent = {
+  id: string; title: string; lat: number; lng: number;
+  year: number; branch: string; kind: string;
+};
+
+type SearchResult = {
+  claim_id: number; branch: string; concept: string; slug: string;
+  title: string; score: number; url: string; excerpt: string;
+};
+
+type SiteEntry = {
+  id: string; title: string; lat: number; lng: number; year: number;
+  civilization?: string; lidar?: string; unesco?: string; wikipedia?: string;
+  branch: string; kind: string;
+};
+
+const ALL_EVENTS = (timelineData.events as TimelineEvent[]).sort((a, b) => a.year - b.year);
+const ALL_SITES = (sitesData.sites as SiteEntry[]).sort((a, b) => a.year - b.year);
+const MIN_YEAR = Math.min(timelineData.min_year as number, ...ALL_SITES.map((s) => s.year));
+const MAX_YEAR = Math.max(timelineData.max_year as number, ...ALL_SITES.map((s) => s.year));
+
+const FIGURE_IDS = new Set<string>(
+  (figuresData as { figures: { id: string }[] }).figures.map((f) => f.id)
+);
+function mapTimelineIdToFigureId(timelineId: string): string | null {
+  if (FIGURE_IDS.has(timelineId)) return timelineId;
+  if (timelineId.includes("-")) {
+    const head = timelineId.replace(/-[a-z0-9]$/i, "");
+    if (FIGURE_IDS.has(head)) return head;
+  }
+  return null;
+}
+
+function markerPageUrl(m: CanonMarker): string | null {
+  const branchSlug = (m.branch || "").replace(/^\d+-/, "");
+  if (m.kind === "figure-birth" || m.kind === "figure-death") {
+    const figureId = mapTimelineIdToFigureId(m.id);
+    if (figureId && branchSlug) return `/canon/${branchSlug}/figures/${figureId}`;
+  }
+  return null;
+}
+
+function fmtYear(y?: number): string {
+  if (y === undefined) return "";
+  if (y < 0) return `${Math.abs(y)} BCE`;
+  return `${y} CE`;
+}
+
+function eventsAsMarkers(events: TimelineEvent[]): CanonMarker[] {
+  return events.map((e) => ({
+    id: e.id, lat: e.lat, lng: e.lng, year: e.year,
+    branch: e.branch, title: e.title,
+    kind: (e.kind === "figure-birth" || e.kind === "canon-entry"
+      ? e.kind : "canon-entry") as CanonMarker["kind"],
+  }));
+}
+
+function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
+  return sites.map((s) => ({
+    id: s.id, lat: s.lat, lng: s.lng, year: s.year,
+    branch: s.branch, title: s.title,
+    kind: "archaeological-site",
+    civilization: s.civilization, lidar: s.lidar,
+    unesco: s.unesco, wikipedia: s.wikipedia,
+  }));
+}
+
+const DECORATIVE_MARKERS: CanonMarker[] = [
+  ...eventsAsMarkers(ALL_EVENTS),
+  ...sitesAsMarkers(ALL_SITES),
+];
+
+const EVENT_IDS = new Set(ALL_EVENTS.map((e) => e.id));
+
+const EXPLORER_BRANCHES = [
+  "01-mathematics", "02-physics", "03-chemistry", "04-information", "05-biophysics",
+  "06-cosmology", "07-mind", "08-deep-history", "09-sacred-texts",
+] as const;
+const MIN_YEAR_BOUND = -300000;
+const DEFAULT_YEAR = 2020;
+const SORT_LABEL: Record<(typeof SORTS)[number], string> = { rank: "similarity", year: "year", branch: "branch" };
+const BRANCH_PILLS: [string, string, string][] = [
+  ["01-mathematics", "math", "#D9A43A"],
+  ["02-physics", "physics", "#3E6FA8"],
+  ["03-chemistry", "chem", "#9B5A2C"],
+  ["04-information", "info", "#557B66"],
+  ["05-biophysics", "biophys", "#8E3E3E"],
+  ["06-cosmology", "cosmo", "#5B4882"],
+  ["07-mind", "mind", "#C2873E"],
+  ["08-deep-history", "deep-hist", "#7A5D3E"],
+  ["09-sacred-texts", "sacred", "#A0863F"],
+];
+
+function markerForResult(r: SearchResult): CanonMarker {
+  const match = matchExcerptEvent(r, ALL_EVENTS);
+  const m: CanonMarker = match
+    ? { id: match.id, lat: match.lat, lng: match.lng, year: match.year, branch: match.branch, title: match.title, kind: "canon-entry" }
+    : { id: `claim:${r.claim_id}`, lat: 0, lng: 0, branch: r.branch.replace(/^\d+-/, ""), title: r.title, kind: "canon-entry" };
+  (m as unknown as { _search: SearchResult })._search = r;
+  return m;
+}
+
+function yearOfResult(r: SearchResult): number | null {
+  return matchExcerptEvent(r, ALL_EVENTS)?.year ?? null;
+}
+
+export function datasetFromResults(results: SearchResult[], basis: ReferenceBasis): Dataset {
+  const obs: SpaceObservation[] = results.map((r) => {
+    const p = projectText(basis, `${r.title}. ${r.excerpt}`);
+    return { id: `claim:${r.claim_id}`, title: r.title, scores: p.scores, t: yearOfResult(r), meta: { branch: r.branch.replace(/^\d+-/, ""), concept: r.concept }, links: [r.url], coverage: p.coverage };
+  });
+  const k = basis.components.length;
+  const mean = new Array<number>(k).fill(0);
+  for (const o of obs) o.scores.forEach((v, i) => (mean[i] += v / Math.max(1, obs.length)));
+  return {
+    schema: SPACE_SCHEMA,
+    id: "canon-search",
+    label: "canon search",
+    fields: [{ key: "text", kind: "tokens" }],
+    components: basis.components.map((c) => ({ ...c })),
+    mean,
+    obs,
+  };
+}
+
+export function sortResults(results: SearchResult[], sort: (typeof SORTS)[number]): SearchResult[] {
+  const out = results.slice();
+  if (sort === "year") out.sort((a, b) => (yearOfResult(a) ?? Infinity) - (yearOfResult(b) ?? Infinity));
+  else if (sort === "branch") out.sort((a, b) => a.branch.localeCompare(b.branch) || b.score - a.score);
+  return out;
+}
+
+export default function ExploreShell({ workspaceLinks = false, initialView = "circle" }: { workspaceLinks?: boolean; initialView?: SpaceViewId }) {
+  const [selected, setSelected] = useState<CanonMarker | null>(null);
+  const explorer = useExplorerState({ minYear: MIN_YEAR_BOUND, maxYear: new Date().getFullYear(), defaultYear: DEFAULT_YEAR, branches: EXPLORER_BRANCHES });
+  const { sort, q, branch: branchFilter } = explorer.state;
+  const { setSort, setQ, setBranch: setBranchFilter, setMarker, initial } = explorer;
+  const [view, setViewState] = useState<SpaceViewId>(initialView);
+  const [index, setIndex] = useState(0);
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [basis, setBasis] = useState<ReferenceBasis | null>(null);
+  const searchAbort = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    const v = new URLSearchParams(window.location.search).get("space");
+    if ((SPACE_VIEWS as readonly string[]).includes(v ?? "")) setViewState(v as SpaceViewId);
+  }, []);
+
+  const setView = (v: SpaceViewId) => {
+    setViewState(v);
+    const u = new URL(window.location.href);
+    u.searchParams.set("space", v);
+    window.history.replaceState(window.history.state, "", u.toString());
+  };
+
+  useEffect(() => {
+    let live = true;
+    loadReferenceBasis().then((b) => live && setBasis(b));
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!initial?.marker) return;
+    const markerId = initial.marker;
+    const found = ALL_EVENTS.find((e) => e.id === markerId) || ALL_SITES.find((s) => s.id === markerId);
+    if (!found) return;
+    const isSite = !ALL_EVENTS.some((e) => e.id === markerId);
+    setSelected(
+      isSite
+        ? { id: found.id, lat: found.lat, lng: found.lng, year: found.year, branch: found.branch, title: found.title, kind: "archaeological-site", civilization: (found as SiteEntry).civilization, lidar: (found as SiteEntry).lidar, unesco: (found as SiteEntry).unesco, wikipedia: (found as SiteEntry).wikipedia }
+        : { id: found.id, lat: found.lat, lng: found.lng, year: found.year, branch: found.branch, title: found.title, kind: ((found as TimelineEvent).kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] },
+    );
+  }, [initial]);
+
+  const lastSyncedMarker = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (!explorer.hydrated) return;
+    const id = selected?.id ?? null;
+    if (lastSyncedMarker.current === undefined && id === null) return;
+    if (lastSyncedMarker.current === id) return;
+    lastSyncedMarker.current = id;
+    setMarker(id);
+  }, [selected, setMarker, explorer.hydrated]);
+
+  useEffect(() => {
+    if (!q.trim()) {
+      setResults([]);
+      return;
+    }
+    searchAbort.current?.abort();
+    const ac = new AbortController();
+    searchAbort.current = ac;
+    setSearching(true);
+    const t = setTimeout(async () => {
+      try {
+        const url = new URL("/api/canon/search", window.location.origin);
+        url.searchParams.set("q", q);
+        url.searchParams.set("top_k", "15");
+        if (branchFilter) url.searchParams.set("branch", branchFilter);
+        const r = await fetch(url.toString(), { signal: ac.signal });
+        if (!r.ok) throw new Error(`http ${r.status}`);
+        const j = await r.json();
+        setResults(j.results || []);
+      } catch (e: unknown) {
+        if ((e as Error).name !== "AbortError") setResults([]);
+      } finally {
+        setSearching(false);
+      }
+    }, 250);
+    return () => clearTimeout(t);
+  }, [q, branchFilter]);
+
+  const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
+  const dataset = useMemo<Dataset>(() => (basis && ordered.length ? datasetFromResults(ordered, basis) : sampleDataset()), [basis, ordered]);
+
+  const datasetKey = useMemo(() => `${dataset.id}:${dataset.obs.map((o) => o.id).join(",")}`, [dataset]);
+  useEffect(() => setIndex(0), [datasetKey]);
+
+  const pick = (i: number) => {
+    setIndex(i);
+    const r = ordered[i];
+    if (r && !dataset.sample) setSelected(markerForResult(r));
+  };
+
+  return (
+    <div data-testid="explore-shell" className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]">
+      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+        <div className="w-full max-w-2xl pointer-events-auto">
+          <div className="rounded-full shadow-sm flex items-center px-2" style={{ background: "var(--bone)", border: "1px solid var(--hairline)" }}>
+            <input
+              type="text"
+              aria-label="search"
+              data-testid="shell-query"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="search 599 source excerpts across 9 branches"
+              className="flex-1 bg-transparent px-3 py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            />
+            {q && (
+              <button onClick={() => { setQ(""); setResults([]); }} className="px-3 text-[color:var(--parchment-dim)] hover:text-[color:var(--basalt)]" aria-label="clear">
+                ×
+              </button>
+            )}
+          </div>
+          {q.trim() && (
+            <div className="max-h-72 overflow-y-auto border rounded-md mt-1" style={{ borderColor: "var(--hairline)", background: "var(--bone)" }}>
+              {searching && results.length === 0 && <div className="px-4 py-3 text-xs text-[color:var(--parchment-dim)]">searching…</div>}
+              {!searching && results.length === 0 && <div className="px-4 py-3 text-xs text-[color:var(--parchment-dim)]">no matches, try a broader term like &quot;consciousness&quot; or &quot;entropy&quot;</div>}
+              {ordered.map((r, i) => (
+                <button
+                  key={`${r.concept}/${r.slug}`}
+                  data-testid="shell-result"
+                  onClick={() => pick(i)}
+                  className="w-full text-left px-4 py-3 hover:bg-[color:var(--bone-2)] border-b last:border-0 transition"
+                  style={{ borderColor: "var(--hairline)" }}
+                >
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>{r.title.slice(0, 80)}</span>
+                    <span className="text-[10px] uppercase tracking-[0.16em] whitespace-nowrap" style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>{r.branch.replace(/^\d+-/, "")}</span>
+                  </div>
+                  <div className="text-xs mt-1 line-clamp-1" style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>{r.excerpt.slice(0, 120)}</div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="w-full max-w-2xl flex flex-wrap items-center justify-center gap-1.5 pointer-events-auto">
+          <button
+            onClick={() => setBranchFilter(null)}
+            className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
+            style={{ fontFamily: "var(--font-jetbrains)", background: branchFilter === null ? "var(--basalt)" : "transparent", color: branchFilter === null ? "var(--bone)" : "var(--parchment-dim)", border: `1px solid ${branchFilter === null ? "var(--basalt)" : "var(--hairline)"}` }}
+          >
+            all
+          </button>
+          {BRANCH_PILLS.map(([slug, label, color]) => {
+            const active = branchFilter === slug;
+            return (
+              <button key={slug} onClick={() => setBranchFilter(active ? null : slug)} className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition" style={{ fontFamily: "var(--font-jetbrains)", background: active ? color : "transparent", color: active ? "white" : color, border: `1px solid ${color}` }}>
+                {label}
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}>
+          <div role="radiogroup" aria-label="view" className="flex w-fit rounded-full overflow-hidden" style={{ border: "1px solid var(--hairline)" }}>
+            {SPACE_VIEWS.map((v) => (
+              <button key={v} type="button" role="radio" data-view={v} aria-checked={view === v} onClick={() => setView(v)} className="min-h-[36px] min-w-[64px] px-4 transition" style={{ background: view === v ? "var(--basalt)" : "transparent", color: view === v ? "var(--bone)" : "var(--parchment-dim)" }}>
+                {v}
+              </button>
+            ))}
+          </div>
+          <label className="flex items-center gap-2">
+            order
+            <select data-testid="shell-sort" value={sort} onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])} className="min-h-[32px] bg-transparent border rounded px-1" style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}>
+              {SORTS.map((o) => (
+                <option key={o} value={o}>{SORT_LABEL[o]}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div className="relative w-full mx-auto flex-1 overflow-hidden" style={{ minHeight: "440px" }}>
+        <SpaceView view={view} dataset={dataset} embedded index={index} onIndex={pick} lowCoverage={LOW_COVERAGE} />
+      </div>
+
+      <Drawer
+        selected={selected}
+        onClose={() => setSelected(null)}
+        onSelectMarker={(id) => {
+          const ev = ALL_EVENTS.find((e) => e.id === id);
+          const site = ev ? null : ALL_SITES.find((s) => s.id === id);
+          if (ev) setSelected({ id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year, branch: ev.branch, title: ev.title, kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"] });
+          else if (site) setSelected({ id: site.id, lat: site.lat, lng: site.lng, year: site.year, branch: site.branch, title: site.title, kind: "archaeological-site", civilization: site.civilization, lidar: site.lidar, unesco: site.unesco, wikipedia: site.wikipedia });
+        }}
+        workspaceLinks={workspaceLinks}
+      />
+    </div>
+  );
+}
+
+function Drawer({
+  selected,
+  transparent = false,
+  workspaceLinks = false,
+  onClose,
+  onSelectMarker,
+}: {
+  selected: CanonMarker | null;
+  transparent?: boolean;
+  workspaceLinks?: boolean;
+  onClose: () => void;
+  onSelectMarker?: (id: string) => void;
+}) {
+  const search = (selected as unknown as { _search?: SearchResult })?._search;
+  const branchSlug = selected?.branch?.replace(/^\d+-/, "");
+  const pageUrl = selected ? markerPageUrl(selected) : null;
+
+  const [relatedClaims, setRelatedClaims] = useState<SearchResult[]>([]);
+  const [relatedLoading, setRelatedLoading] = useState(false);
+  const fetchAbort = useRef<AbortController | null>(null);
+  useEffect(() => {
+    if (!selected || !selected.title) {
+      setRelatedClaims([]);
+      return;
+    }
+    fetchAbort.current?.abort();
+    const ac = new AbortController();
+    fetchAbort.current = ac;
+    setRelatedLoading(true);
+    const t = setTimeout(async () => {
+      try {
+        const url = new URL("/api/canon/search", window.location.origin);
+        url.searchParams.set("q", selected.title);
+        url.searchParams.set("top_k", "8");
+        const r = await fetch(url.toString(), { signal: ac.signal });
+        const j = r.ok ? await r.json() : { results: [] };
+        const out = (j.results || []).filter((x: SearchResult) =>
+          !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
+        );
+        setRelatedClaims(out);
+      } catch (e: unknown) {
+        if ((e as Error).name !== "AbortError") setRelatedClaims([]);
+      } finally {
+        setRelatedLoading(false);
+      }
+    }, 250);
+    return () => { clearTimeout(t); ac.abort(); };
+  }, [selected, search]);
+
+  const sameEra = useMemo(() => {
+    if (!selected || selected.year === undefined) return [];
+    const Y = selected.year;
+    const RADIUS = Y > 1700 ? 100 : 500;
+    const out: Array<{ id: string; title: string; year: number; branch: string; kind: "event" | "site" }> = [];
+    for (const e of ALL_EVENTS) {
+      if (e.id === selected.id) continue;
+      if (Math.abs(e.year - Y) <= RADIUS) {
+        out.push({ id: e.id, title: e.title, year: e.year, branch: e.branch, kind: "event" });
+      }
+    }
+    for (const s of ALL_SITES) {
+      if (s.id === selected.id) continue;
+      if (Math.abs(s.year - Y) <= RADIUS) {
+        out.push({ id: s.id, title: s.title, year: s.year, branch: s.branch, kind: "site" });
+      }
+    }
+    return out.sort((a, b) => Math.abs(a.year - Y) - Math.abs(b.year - Y)).slice(0, 8);
+  }, [selected]);
+
+  const nearby = useMemo(() => {
+    if (!selected || (selected.lat === 0 && selected.lng === 0)) return [];
+    const RADIUS = 5;
+    const within = (lat: number, lng: number) =>
+      Math.abs(lat - selected.lat) <= RADIUS &&
+      Math.abs(lng - selected.lng) <= RADIUS;
+    type Near = { id: string; title: string; year: number; branch: string; kind: "event" | "site"; lat: number; lng: number };
+    const out: Near[] = [];
+    for (const e of ALL_EVENTS) {
+      if (e.id === selected.id) continue;
+      if (within(e.lat, e.lng)) {
+        out.push({ id: e.id, title: e.title, year: e.year, branch: e.branch, kind: "event", lat: e.lat, lng: e.lng });
+      }
+    }
+    for (const s of ALL_SITES) {
+      if (s.id === selected.id) continue;
+      if (within(s.lat, s.lng)) {
+        out.push({ id: s.id, title: s.title, year: s.year, branch: s.branch, kind: "site", lat: s.lat, lng: s.lng });
+      }
+    }
+    return out
+      .sort(
+        (a, b) =>
+          Math.abs(a.lat - selected.lat) + Math.abs(a.lng - selected.lng) -
+          (Math.abs(b.lat - selected.lat) + Math.abs(b.lng - selected.lng))
+      )
+      .slice(0, 8);
+  }, [selected]);
+
+  const externalLinks = useMemo(() => {
+    if (!selected) return [];
+    const q = encodeURIComponent(selected.title);
+    return [
+      {
+        label: "Wikipedia",
+        note: "biographical / topical primary entry",
+        href: selected.wikipedia
+          ? selected.wikipedia
+          : `https://en.wikipedia.org/w/index.php?search=${q}`,
+      },
+      {
+        label: "Google Scholar",
+        note: "papers about this topic — broadest academic coverage",
+        href: `https://scholar.google.com/scholar?q=${q}`,
+      },
+      {
+        label: "Wikidata",
+        note: "structured identifiers (VIAF, GND, ORCID, ISNI)",
+        href: `https://www.wikidata.org/w/index.php?search=${q}`,
+      },
+      {
+        label: "OpenAlex",
+        note: "OA-indexed works + citation graph",
+        href: `https://openalex.org/works?search=${q}&sort=cited_by_count:desc`,
+      },
+    ];
+  }, [selected]);
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, onClose]);
+
+  return (
+    <>
+      <div
+        onClick={onClose}
+        aria-hidden
+        className="md:hidden fixed inset-0 z-40 transition-opacity duration-200"
+        style={{
+          background: selected ? "rgba(31,28,22,0.35)" : "transparent",
+          opacity: selected ? 1 : 0,
+          pointerEvents: selected ? "auto" : "none",
+        }}
+      />
+      <aside
+        className={`md:absolute md:right-0 md:top-0 md:bottom-0 md:h-auto md:translate-x-0 md:z-10
+                    fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
+          selected ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{
+          width: "min(440px, 100vw)",
+          background: transparent ? "transparent" : "var(--bone)",
+          borderLeft: transparent ? "none" : "1px solid var(--hairline)",
+        }}
+      >
+        {selected && (
+          <div>
+            <div
+              className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
+              style={{ background: transparent ? "transparent" : "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
+            >
+              <div className="flex items-baseline justify-between mb-3">
+                <span
+                  className="text-[10px] uppercase tracking-[0.22em]"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  {selected.kind?.replace(/-/g, " ")}
+                </span>
+                <button
+                  onClick={onClose}
+                  className="text-2xl leading-none hover:text-[color:var(--gold)]"
+                  style={{ color: "var(--parchment-dim)" }}
+                  aria-label="close drawer"
+                  title="close (Esc)"
+                >
+                  ×
+                </button>
+              </div>
+              <h2
+                className="text-xl md:text-2xl leading-tight mb-2"
+                style={{ fontFamily: "var(--font-fraunces)", color: "var(--basalt)", fontWeight: 500 }}
+              >
+                {selected.title}
+              </h2>
+              <p
+                className="text-[11px] uppercase tracking-[0.18em] mb-4"
+                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+              >
+                {selected.year !== undefined && <>{fmtYear(selected.year)} · </>}
+                {selected.branch}
+                {selected.civilization && <> · {selected.civilization}</>}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {workspaceLinks && (
+                  <Link
+                    href={`/research-os/workspace?q=${encodeURIComponent(search ? search.title : selected.title)}`}
+                    className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"
+                  >
+                    work on this →
+                  </Link>
+                )}
+                {search ? (
+                  <Link
+                    href={`/excerpts/${search.concept}/${search.slug}`}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
+                  >
+                    open full claim →
+                  </Link>
+                ) : pageUrl ? (
+                  <Link
+                    href={pageUrl}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
+                  >
+                    open page →
+                  </Link>
+                ) : null}
+                {branchSlug && (
+                  <Link
+                    href={`/canon/${branchSlug}`}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1.5 transition"
+                  >
+                    {branchSlug} branch →
+                  </Link>
+                )}
+                <button
+                  onClick={() => {
+                    if (typeof window === "undefined") return;
+                    const url = new URL(window.location.href);
+                    url.search = `?marker=${encodeURIComponent(selected.id)}`;
+                    navigator.clipboard?.writeText(url.toString()).catch(() => {});
+                  }}
+                  className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1.5 transition"
+                  title={`copies /canon?marker=${selected.id}`}
+                >
+                  copy link ⎘
+                </button>
+              </div>
+            </div>
+
+            <div className="px-6 md:px-8 pt-5 pb-10 space-y-7">
+              {search && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Claim excerpt
+                  </h3>
+                  <blockquote
+                    className="border-l-2 pl-4 py-1 text-sm leading-relaxed italic"
+                    style={{
+                      borderColor: "var(--gold)",
+                      color: "var(--basalt)",
+                      fontFamily: "var(--font-fraunces)",
+                    }}
+                  >
+                    {search.excerpt.slice(0, 400)}
+                    {search.excerpt.length > 400 && "…"}
+                  </blockquote>
+                </section>
+              )}
+
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Source data
+                </h3>
+                <div className="space-y-1.5">
+                  {selected.lidar && (
+                    <a href={selected.lidar} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      🛰  LiDAR / aerial survey ↗
+                    </a>
+                  )}
+                  {selected.unesco && (
+                    <a href={selected.unesco} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      🏛  UNESCO World Heritage entry ↗
+                    </a>
+                  )}
+                  {selected.wikipedia && (
+                    <a href={selected.wikipedia} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      📖  Wikipedia ↗
+                    </a>
+                  )}
+                  {pageUrl && (
+                    <Link href={pageUrl}
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      📄  Figure page in canon — biography, primary works ↗
+                    </Link>
+                  )}
+                  {externalLinks.map((e) => {
+                    if (e.label === "Wikipedia" && selected.wikipedia) return null;
+                    return (
+                      <a key={e.label} href={e.href} target="_blank" rel="noreferrer"
+                         className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                         style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                        <span className="block">{e.label} ↗</span>
+                        <span className="block text-[11px] mt-0.5" style={{ color: "var(--parchment-dim)" }}>
+                          {e.note}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </section>
+
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3 flex items-baseline justify-between"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  <span>Mentioned in canon</span>
+                  <span style={{ color: "var(--parchment-dim)" }}>
+                    {relatedLoading ? "searching…" : `${relatedClaims.length} match${relatedClaims.length === 1 ? "" : "es"}`}
+                  </span>
+                </h3>
+                {relatedClaims.length === 0 && !relatedLoading && (
+                  <p className="text-[12px] leading-relaxed"
+                     style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
+                    No source excerpts mention &ldquo;{selected.title}&rdquo; yet — try{" "}
+                    <Link href={`/canon/search?q=${encodeURIComponent(selected.title)}`}
+                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)] underline">
+                      full canon search →
+                    </Link>
+                  </p>
+                )}
+                {relatedClaims.length > 0 && (
+                  <ul className="space-y-1.5">
+                    {relatedClaims.map((c) => (
+                      <li key={`${c.concept}/${c.slug}`}>
+                        <Link
+                          href={`/excerpts/${c.concept}/${c.slug}`}
+                          className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="block leading-snug">{c.title.slice(0, 110)}{c.title.length > 110 && "…"}</span>
+                          <span className="block text-[10px] uppercase tracking-[0.18em] mt-1"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {c.branch.replace(/^\d+-/, "")} · {c.concept}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+
+              {sameEra.length > 0 && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Same era — {sameEra.length} other marker{sameEra.length === 1 ? "" : "s"}
+                  </h3>
+                  <ul className="space-y-1">
+                    {sameEra.map((m) => (
+                      <li key={m.id}>
+                        <button
+                          onClick={() => onSelectMarker?.(m.id)}
+                          className="w-full flex items-baseline justify-between gap-3 px-3 py-1.5 rounded-md border text-sm hover:border-[color:var(--gold)] transition text-left"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="truncate flex-1">{m.title}</span>
+                          <span className="text-[10px] uppercase tracking-[0.16em] flex-shrink-0"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {fmtYear(m.year)}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {nearby.length > 0 && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Nearby — {nearby.length} other marker{nearby.length === 1 ? "" : "s"}
+                  </h3>
+                  <ul className="space-y-1">
+                    {nearby.map((m) => (
+                      <li key={m.id}>
+                        <button
+                          onClick={() => onSelectMarker?.(m.id)}
+                          className="w-full flex items-baseline justify-between gap-3 px-3 py-1.5 rounded-md border text-sm hover:border-[color:var(--gold)] transition text-left"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="truncate flex-1">{m.title}</span>
+                          <span className="text-[10px] uppercase tracking-[0.16em] flex-shrink-0"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {m.branch.replace(/^\d+-/, "")}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Metadata
+                </h3>
+                <dl className="text-[12px] space-y-1" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
+                    <dt style={{ color: "var(--parchment-dim)" }}>id</dt>
+                    <dd className="font-mono">{selected.id}</dd>
+                  </div>
+                  {(selected.lat !== 0 || selected.lng !== 0) && (
+                    <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
+                      <dt style={{ color: "var(--parchment-dim)" }}>coords</dt>
+                      <dd className="font-mono">
+                        <a
+                          href={`https://www.google.com/maps?q=${selected.lat},${selected.lng}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:text-[color:var(--gold)] underline-offset-2 hover:underline"
+                        >
+                          {selected.lat.toFixed(2)}, {selected.lng.toFixed(2)} ↗
+                        </a>
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </section>
+            </div>
+          </div>
+        )}
+
+        {!selected && (
+          <div className="hidden md:block p-6 md:p-8">
+            <div
+              className="pb-3 mb-5 border-b text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)", borderColor: "var(--hairline)" }}
+            >
+              Detail panel
+            </div>
+            <h2
+              className="text-xl leading-tight mb-3"
+              style={{ fontFamily: "var(--font-fraunces)", color: "var(--basalt)", fontWeight: 500 }}
+            >
+              Click anywhere on the globe — or any search result — to inspect.
+            </h2>
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+            >
+              This panel shows the canon entity you&apos;re currently focused on.
+              Hover a pin to preview its title. Click to open the full record
+              with year, branch, coordinates, claim excerpt (when from search),
+              and links into the canon.
+            </p>
+
+            <div
+              className="rounded-md p-4 mb-5"
+              style={{ background: "var(--bone-2)", border: "1px solid var(--hairline)" }}
+            >
+              <div
+                className="text-[10px] uppercase tracking-[0.2em] mb-2"
+                style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+              >
+                Canon · live counts
+              </div>
+              <dl
+                className="space-y-1 text-sm"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Source excerpts</dt>
+                  <dd>599</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Branches</dt>
+                  <dd>9</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Detected bridges</dt>
+                  <dd>17</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Geocoded events</dt>
+                  <dd>50</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Year span</dt>
+                  <dd>570 BCE, 2020 CE</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="space-y-1.5 text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
+              <a
+                href="/canon/search"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⌕ full-page search →
+              </a>
+              <a
+                href="/canon/bridges"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⤺⤻ multi-branch bridges →
+              </a>
+              <a
+                href="/canon/graph"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⌬ knowledge graph →
+              </a>
+            </div>
+
+            <p
+              className="mt-8 text-[10px] uppercase tracking-[0.18em]"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+            >
+              A research tool. Free to read · paid to cite.
+            </p>
+          </div>
+        )}
+      </aside>
+    </>
+  );
+}
