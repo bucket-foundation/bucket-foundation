@@ -84,6 +84,44 @@ def _first(record: dict, keys) -> str:
             return _flatten(value)
     return ""
 
+PROFILE_KEYS = ("openalex_id", "orcid", "ror", "title", "cited_by_count", "works_count", "research_areas", "program_url", "works_top", "tracker_notes")
+
+
+def _clean(v):
+    return "" if v is None or v == "None" else v
+
+
+def profile_meta(record: dict) -> dict:
+    works = []
+    for w in (record.get("works") or [])[:12]:
+        if isinstance(w, dict) and w.get("title"):
+            works.append({"id": str(w.get("id") or ""), "title": str(w["title"])[:240], "year": _clean(w.get("year")) or "",
+                          "cited": w.get("cited_by_count") or 0, "pick": str(w.get("pick") or "")})
+    works.sort(key=lambda w: (-(int(w["cited"]) if str(w["cited"]).isdigit() else 0), str(w["year"])))
+    seen, unique = set(), []
+    for w in works:
+        key = w["title"].strip().lower()
+        if key not in seen:
+            seen.add(key)
+            unique.append(w)
+    works = unique
+    cockpit = record.get("cockpit") if isinstance(record.get("cockpit"), dict) else {}
+    areas = record.get("research_areas_official")
+    tracker = record.get("tracker") if isinstance(record.get("tracker"), list) else []
+    return {
+        "openalex_id": _clean(record.get("openalex_id")) or "",
+        "orcid": _clean(record.get("orcid")) or "",
+        "ror": _clean(record.get("ror")) or "",
+        "title": _clean(record.get("title")) or "",
+        "cited_by_count": _clean(record.get("cited_by_count")) or "",
+        "works_count": _clean(record.get("works_count")) or "",
+        "research_areas": "; ".join(_flatten(x) for x in areas) if isinstance(areas, list) else (_clean(areas) or ""),
+        "program_url": _clean(record.get("program_url") or cockpit.get("program_url")) or "",
+        "works_top": works[:8],
+        "tracker_notes": [f"{t.get('opportunity', '')} ({t.get('priority', '')})".strip() for t in tracker if isinstance(t, dict)][:3],
+    }
+
+
 def load_people(
     path: Path,
     text_keys=TEXT_KEYS,
@@ -117,6 +155,7 @@ def load_people(
         for k in FILTER_KEYS + EXTRA_KEYS:
             if isinstance(record.get(k), list):
                 meta[k] = "; ".join(_flatten(x) for x in record[k])
+        meta.update(profile_meta(record))
         meta["field"] = derive_field(record)
         meta["funding"] = derive_funding(record.get("funding"))
         labels = get_path(record, label_key) if label_key else None
@@ -340,6 +379,7 @@ def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: s
             "identity": meta.get("identity", ""),
             "profile_institution": meta.get("profile_institution", ""),
             "email": meta.get("email") or "",
+            **{k: meta.get(k, "" if k not in ("works_top", "tracker_notes") else []) for k in PROFILE_KEYS},
             "email_public": str(meta.get("email_source") or "") in PUBLIC_EMAIL_SOURCES,
             "shared_terms": " ".join(evidence[j][0]),
             "shared_topics": evidence[j][1],
@@ -554,7 +594,7 @@ def plot(model: AdvisorModel, qraw: np.ndarray, rows: list[dict], path: Path, la
 PAGE = (Path(__file__).parent / "advisor_page.html").read_text(encoding="utf-8")
 
 def publishable_rows(rows: list[dict]) -> list[dict]:
-    return [{**r, "email": "", "email_public": False, "image_url": ""} for r in rows]
+    return [{**r, "email": "", "email_public": False, "image_url": "", "tracker_notes": []} for r in rows]
 
 
 def image_hosts(rows: list[dict]) -> list[str]:

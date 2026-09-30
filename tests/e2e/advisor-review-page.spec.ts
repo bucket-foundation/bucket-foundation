@@ -232,3 +232,11 @@ test("sheet is one tab stop and Enter on a row opens Circle", async ({ page }) =
   await expect(page.locator('[data-view="circle"]')).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".sheet th[aria-sort]")).toHaveCount(0);
 });
+
+test("panel lists research and links, all https", async ({ page }) => {
+  await page.goto(pageUrl);
+  const links = page.locator("#panel .links a");
+  expect(await links.count()).toBeGreaterThan(3);
+  for (const href of await links.evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute("href") || ""))) expect(href.startsWith("https://")).toBe(true);
+  await expect(page.locator("#panel .links a", {hasText: "OpenAlex profile"})).toHaveCount(1);
+});

@@ -333,3 +333,15 @@ def test_images_off_by_default_stripped_when_publishable_and_csp_lists_hosts(tmp
     pub = advisors.write_page(rows, png, {}, tmp_path / "pub.html", publishable=True, images=True).read_text()
     assert "upload.wikimedia.org" not in pub
     assert advisors.image_hosts([{"image_url": "https://a.org/x"}, {"image_url": "http://b.org/y"}, {"image_url": "https://bad host/z"}]) == ["a.org"]
+
+
+def test_profile_meta_keeps_links_and_top_works_and_publishable_drops_tracker():
+    rec = {"openalex_id": "A1", "orcid": "0000-0002-8838-3151", "ror": "05ect4e57", "title": "Professor",
+           "research_areas_official": ["learning", "AI"], "cockpit": {"program_url": "https://x.edu/phd"},
+           "tracker": [{"opportunity": "UCL PhD", "priority": "P1"}],
+           "works": [{"id": "W1", "title": "Low", "year": 2020, "cited_by_count": 1}, {"id": "W2", "title": "High", "year": 2021, "cited_by_count": 90}]}
+    m = advisors.profile_meta(rec)
+    assert m["orcid"] == "0000-0002-8838-3151" and m["ror"] == "05ect4e57" and m["program_url"] == "https://x.edu/phd"
+    assert m["research_areas"] == "learning; AI" and [w["title"] for w in m["works_top"]] == ["High", "Low"]
+    assert m["tracker_notes"] == ["UCL PhD (P1)"]
+    assert advisors.publishable_rows([{**m, "id": "A1"}])[0]["tracker_notes"] == []
