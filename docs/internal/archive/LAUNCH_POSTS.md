@@ -1,5 +1,7 @@
 # bucket.foundation, Launch Posts
 
+> Archived 2026-09-30. Drafted 2026-04-24 and claims canon IP-NFTs minted on Story, which was removed in 2026-09. Text kept unchanged for history.
+
 **Date drafted:** 2026-04-24
 **Status:** Pre-1.0. Rail live, corpus thin, wallet unfunded, 501(c)(3) reinstatement pending.
 **Primary link:** https://www.bucket.foundation/

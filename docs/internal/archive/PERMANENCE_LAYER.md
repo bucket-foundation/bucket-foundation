@@ -1,10 +1,12 @@
 # Permanence Layer
 
+> Superseded 2026-09-30. The 2026-04-23 prototype assumes Story Protocol minting, which was removed in 2026-09; citations settle over x402 on Base. Text kept unchanged for history.
+
 EAS + Arweave/Irys Dual-Write.
 
 **Status:** Prototype (feature-flagged OFF). Shipped 2026-04-23.
 **Author:** Engineering pillar
-**Related:** `docs/BLOCKCHAIN_LANDSCAPE.md`, `PROTOCOL.md`
+**Related:** `docs/internal/archive/BLOCKCHAIN_LANDSCAPE.md`, `PROTOCOL.md`
 
 ---
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import DepthLadder from "@/components/DepthLadder";
+import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Mission · reform the knowledge layer",
@@ -39,6 +40,29 @@ export default function Page() {
           for five thousand years the world widened reading{" "}
           <span className="inlay-gold">and never widened producing.</span>
         </h1>
+        <div className="mt-8 max-w-2xl border-l-2 border-[color:var(--gold)] bg-[color:var(--bone)] p-6">
+          <p className="text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
+            <strong className="text-[color:var(--basalt)]">In short.</strong> Schools taught the world to read and left
+            producing knowledge to a few. Bucket makes the foundations free to read, gives anyone tools to do research on
+            them, and pays the author each time a work is cited. The canon and the research tools are live and Research OS
+            is in private testing. The research below is why.
+          </p>
+          <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
+            <strong className="text-[color:var(--basalt)]">The ask.</strong> Open{" "}
+            <Link href="/research-os" className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+              Research OS
+            </Link>{" "}
+            and try one concept, read the{" "}
+            <Link href="/canon" className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+              canon
+            </Link>
+            , or{" "}
+            <Link href="/support" className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+              fund the hosting
+            </Link>
+            .
+          </p>
+        </div>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Bucket Foundation exists to reform education. Reform that is not
           grounded in evidence is opinion — so we built the evidence first. The{" "}
@@ -213,7 +237,7 @@ export default function Page() {
           />
           <Lever
             n="02"
-            title="40 research tools · let anyone DO research"
+            title={`${TOOLS.length} research tools · let anyone DO research`}
             href="/research"
             cta="open the research hub"
             body="An AI amplifier for self-directed learning at the frontier — instruments that let a motivated person produce research, not only consume it. The bridge from 'finished the courses' to 'can read and contribute to primary research' that no current product aims at."
@@ -228,7 +252,7 @@ export default function Page() {
           <Lever
             n="04"
             title="the academy · learning-to-learn"
-            href="/research-os/learn"
+            href="/academy"
             cta="open the academy"
             body="Spaced-repetition mastery over the canon's seven branches — and a first-class 'Learning to learn' branch that TEACHES the highest-leverage missing skill the research names (metacognition, retrieval, spacing) as content you master, where 84% of students reread and 72% wrongly believe massing beats spacing. Most systems only USE this science; Bucket also teaches it."
           />
@@ -337,7 +361,7 @@ export default function Page() {
               /canon
             </Link>
             <Link
-              href="/research-os/learn"
+              href="/academy"
               className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
             >
               /academy

@@ -5,7 +5,7 @@ One-shot and test scripts for bucket.foundation. All scripts read env from
 
 ## Permanence layer
 
-See `docs/PERMANENCE_LAYER.md` for the design. Three touch-points:
+See `docs/internal/archive/PERMANENCE_LAYER.md` for the design. Three touch-points:
 
 ### 1. Register the EAS schema
 

@@ -9,11 +9,11 @@ import {
   type DepthLevel,
 } from "@/lib/depth-ladder";
 import { getBranch } from "@/lib/canon";
+import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "The depth ladder · mastery → frontier → producing knowledge",
-  description:
-    "One continuous climb from learning a field to producing new knowledge in it. The L0→L5 depth ladder maps Bucket's shipped pieces onto the rungs — Academy mastery (L1–L2), the canon (L3–L4), the 40 research tools + the research agent (L4–L5) — so a learner can cross the consume-vs-produce gap with no gap between the rungs.",
+  description: `One continuous climb from learning a field to producing new knowledge in it. The L0→L5 depth ladder maps Bucket's shipped pieces onto the rungs: Academy mastery (L1-L2), the canon (L3-L4), the ${TOOLS.length} research tools and the research agent (L4-L5).`,
   alternates: { canonical: "/ladder" },
   openGraph: {
     type: "website",
@@ -41,6 +41,14 @@ const LADDER_JSON_LD = {
   learningResourceType: ["Reference", "Tutorial"],
   isAccessibleForFree: true,
 };
+
+const WORKED_CONCEPT: { level: string; text: string }[] = [
+  { level: "L1", text: "Learn that cells make ATP and that a spinning protein in the membrane does the work." },
+  { level: "L2", text: "Recall the mechanism from memory: a proton gradient turns a rotor, and each turn closes one ATP." },
+  { level: "L3", text: "Read the canon on biophysics, where the chemiosmotic coupling sits beside the energy balance it obeys." },
+  { level: "L4", text: "Open the primary derivation of the gradient's free energy and run a research tool on your own numbers." },
+  { level: "L5", text: "Ask the research agent what the coupling predicts for a mutant, with every claim cited to a source." },
+];
 
 function isLevel(v: string | undefined): v is DepthLevel {
   return !!v && ["L0", "L1", "L2", "L3", "L4", "L5"].includes(v);
@@ -132,6 +140,20 @@ export default function Page({
         )}
 
         <div className="carved-rule max-w-xs mt-12" />
+
+        <div className="mt-12 bg-[color:var(--bone)] p-6 md:p-7 border-l-2 border-[color:var(--gold)]">
+          <div className="small-caps text-[10px] tracking-[0.16em] text-[color:var(--aegean-deep)]">
+            one concept up the ladder · ATP synthase
+          </div>
+          <ol className="mt-4 flex flex-col gap-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
+            {WORKED_CONCEPT.map((step) => (
+              <li key={step.level} className="flex gap-4">
+                <span className="font-display text-[16px] text-[color:var(--basalt-3)] w-8 shrink-0">{step.level}</span>
+                <span>{step.text}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         <div className="mt-12">
           <DepthLadder
