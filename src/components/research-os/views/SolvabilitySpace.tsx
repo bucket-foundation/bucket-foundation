@@ -175,7 +175,7 @@ export default function SolvabilitySpace({ rows, view, year, selected, colors, o
         m.scale.setScalar(solved ? 1.25 : 1);
         m.userData.target = new THREE.Vector3(...place(p, v));
       }
-      const key = `${v}|${y}|${visible.map((p) => p.id).join(",")}`;
+      const key = `${v}|${visible.map((p) => p.id).join(",")}`;
       if (guides.userData.key !== key) {
         scene.remove(guides);
         disposeTree(guides);

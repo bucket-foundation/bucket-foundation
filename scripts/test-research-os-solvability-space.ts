@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import atlas from "../src/lib/research-os/solvability-atlas-data.json";
 import type { SolvabilityAtlasData } from "../src/lib/research-os/solvability-atlas";
-import { ERAS, SPHERE_RADIUS, SPACE_VIEWS, axisPoint, eraOf, place, sharedTokenEdges, sliceRows, smoothedRadius, spaceRadius, timeCoord } from "../src/lib/research-os/solvability-space";
+import { ERAS, SPHERE_RADIUS, SPACE_VIEWS, axisPoint, eraOf, helixAngle, place, sharedTokenEdges, sliceRows, smoothedRadius, spaceRadius, timeCoord } from "../src/lib/research-os/solvability-space";
 
 const rows = (atlas as SolvabilityAtlasData).productions;
 
@@ -52,7 +52,5 @@ test("the smoothed surface stays inside the solvability range", () => {
 test("a slice surface follows its era's solvability and the helix wraps one turn per era", () => {
   const one = [{ theta: 0, solvability: 1, posed: 1990 }];
   assert.ok(Math.abs(smoothedRadius(one, 3.5, 0, "slices") - spaceRadius(1)) < 1e-9);
-  const a = place({ theta: 0, solvability: 0.5, posed: 1950 }, "helix");
-  const b = place({ theta: 0, solvability: 0.5, posed: 1980 }, "helix");
-  assert.ok(Math.abs(a[1]) < 1e-9 && Math.abs(b[1]) < 1e-9);
+  assert.ok(Math.abs(helixAngle(0.3, 2) - helixAngle(0.3, 1) - Math.PI * 2) < 1e-9);
 });
