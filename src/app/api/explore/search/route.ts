@@ -1,7 +1,10 @@
 import { NextRequest } from "next/server";
 import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
 import { loadAdvisors } from "@/lib/explore/advisors";
+import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, unify, type HitType } from "@/lib/explore/search";
+
+const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +30,7 @@ export async function GET(req: NextRequest) {
     title: entry.title,
     text: entry.text,
     score,
+    year: YEAR_BY_ID.get(entry.concept) ?? null,
   }));
   const { sources, sample } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
