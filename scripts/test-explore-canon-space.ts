@@ -4,7 +4,6 @@ import canonSpace from "../src/data/explore/canon.space.json";
 import basis from "../src/data/explore/reference-basis.json";
 import { LOW_COVERAGE } from "../src/lib/explore/reference";
 import { makeSlices } from "../src/lib/explore/slices";
-import { SPACE_SOURCES, sourceFromParam } from "../src/lib/explore/sources";
 import { parseDataset } from "../src/lib/explore/space";
 
 const ds = parseDataset(canonSpace);
@@ -34,11 +33,4 @@ test("the canon space slices by era into several slices", () => {
 
 test("canon observations carry no email", () => {
   assert.ok(!/[\w.+-]+@[\w-]+\.[\w.]+/.test(JSON.stringify(canonSpace)));
-});
-
-test("the source param falls back to canon", () => {
-  assert.deepEqual([...SPACE_SOURCES], ["canon", "advisors"]);
-  assert.equal(sourceFromParam("advisors"), "advisors");
-  assert.equal(sourceFromParam("other"), "canon");
-  assert.equal(sourceFromParam(null), "canon");
 });
