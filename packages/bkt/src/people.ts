@@ -1,5 +1,6 @@
 import { createHmac } from "node:crypto";
 import type { AdvisorReview, AdvisorRow, PrimeDirections } from "../../../src/lib/research-os/advisor-review";
+import { open, seal } from "./crypto";
 import type { Store } from "./store";
 
 export interface ImportResult {
@@ -21,9 +22,15 @@ export function forgetKey(dataKey: Buffer): Buffer {
   return createHmac("sha256", dataKey).update("bkt people-forget v1").digest();
 }
 
-export function personMark(key: Buffer, row: Pick<AdvisorRow, "name" | "fields">): string {
-  const inst = typeof row.fields.institution === "string" ? row.fields.institution : "";
-  const who = [row.name, inst].map((s) => s.normalize("NFKC").trim().toLowerCase().replace(/\s+/g, " ")).join("\u0000");
+const MARK_IDS = ["orcid", "openalex_id", "ror", "profile_url"] as const;
+
+export function personMark(key: Buffer, row: Pick<AdvisorRow, "name" | "fields"> & { links?: AdvisorRow["links"] }): string {
+  const field = (k: string) => {
+    const v = row.fields[k] ?? row.links?.[k];
+    return typeof v === "string" ? v : "";
+  };
+  const ids = MARK_IDS.map(field);
+  const who = [row.name, field("institution"), ...ids].map((s) => s.normalize("NFKC").trim().toLowerCase().replace(/\s+/g, " ")).join("\u0000");
   return createHmac("sha256", key).update(who).digest("hex");
 }
 
@@ -32,7 +39,7 @@ export class PeopleStore {
 
   constructor(
     private store: Store,
-    dataKey: Buffer,
+    private dataKey: Buffer,
   ) {
     this.key = forgetKey(dataKey);
   }
@@ -48,11 +55,11 @@ export class PeopleStore {
       db.run("delete from advisor_rows");
       db.query("insert into advisor_review (id, key, meta, imported_at) values (1, ?, ?, ?) on conflict(id) do update set key = excluded.key, meta = excluded.meta, imported_at = excluded.imported_at").run(
         review.key,
-        JSON.stringify(meta),
+        seal(this.dataKey, JSON.stringify(meta), "advisor_review"),
         now,
       );
       const ins = db.query("insert into advisor_rows (rank, person_mark, data) values (?, ?, ?)");
-      for (const { row, mark } of keep) ins.run(row.rank, mark, JSON.stringify(row));
+      for (const { row, mark } of keep) ins.run(row.rank, mark, seal(this.dataKey, JSON.stringify(row), `advisor_row:${row.rank}`));
       if (force) {
         const del = db.query("delete from people_forget where mark = ?");
         for (const { mark } of blocked) del.run(mark);
@@ -65,10 +72,11 @@ export class PeopleStore {
     const head = this.store.db.query<{ meta: string; imported_at: number }, []>("select meta, imported_at from advisor_review where id = 1").get();
     if (!head) return null;
     const rows = this.store.db
-      .query<{ data: string }, []>("select data from advisor_rows order by rank")
+      .query<{ rank: number; data: string }, []>("select rank, data from advisor_rows order by rank")
       .all()
-      .map((r) => JSON.parse(r.data) as AdvisorRow);
-    return { ...(JSON.parse(head.meta) as Omit<ReviewMeta, "imported_at">), imported_at: head.imported_at, rows };
+      .map((r) => JSON.parse(open(this.dataKey, r.data, `advisor_row:${r.rank}`)) as AdvisorRow);
+    const meta = JSON.parse(open(this.dataKey, head.meta, "advisor_review")) as Omit<ReviewMeta, "imported_at">;
+    return { ...meta, imported_at: head.imported_at, rows };
   }
 
   forget(now: number): number {
