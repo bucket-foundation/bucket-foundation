@@ -34,7 +34,7 @@ import {
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-export const maxDuration = 180;
+export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "private, no-store" };
 const MAX_BODY_BYTES = 4 * 1024;
