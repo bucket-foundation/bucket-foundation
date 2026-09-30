@@ -269,6 +269,63 @@ def rank(model: AdvisorModel, query_text: str, top: int | None = 300, scoring: s
     report = {"scoring": scoring, "score_spread": spread(cos), "people_scored": int(len(cos))}
     return rows, qraw, report
 
+STAR_AXES = 8
+
+
+def axis_labels(model: AdvisorModel, n: int = STAR_AXES, terms: int = 3) -> list[str]:
+    comps = model.result.components[:n]
+    return [" ".join(str(model.vocab[t]) for t in np.argsort(-c)[:terms]) for c in comps]
+
+
+def load_directions(path: Path | None) -> list[tuple[str, str]]:
+    if not path:
+        return []
+    out = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        parts = line.split("\t")
+        if len(parts) >= 2 and parts[0].strip() and parts[0].strip().lower() != "label":
+            out.append((parts[0].strip(), parts[1].strip()))
+    return out
+
+
+def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, directions: list[tuple[str, str]],
+                       scoring: str = "whitened", ref_n: int = 200) -> dict:
+    raw = model.result.raw_scores
+    qraw = model.project([query_text])[0]
+    space, qvec = score_space(raw, qraw, scoring)
+    n = min(STAR_AXES, space.shape[1])
+    pct = np.stack([percentile_of(space[:, j]) for j in range(n)], axis=1) / 100
+    sorted_axes = [np.sort(space[:, j]) for j in range(n)]
+    qpct = np.array([np.searchsorted(sorted_axes[j], qvec[j]) / max(len(space) - 1, 1) for j in range(n)]).clip(0, 1)
+    index = {model.people[model.kept[i]].id: i for i in range(len(model.kept))}
+    context = {"prime_axes": axis_labels(model, n), "star_query_prime": [round(float(v), 3) for v in qpct]}
+    ours = None
+    if directions:
+        draw = model.project([t for _, t in directions])
+        _, dvec = score_space(raw, draw, scoring)
+        sim = cosine_matrix(space, dvec)
+        top = [index[r["id"]] for r in rows[:ref_n] if r["id"] in index]
+        ref = sim[top] if top else sim
+        lo, hi = np.percentile(ref, 5, axis=0), ref.max(axis=0)
+        ours = np.clip((sim - lo) / np.where(hi - lo > 1e-12, hi - lo, 1), 0, 1)
+        context["our_axes"] = [label for label, _ in directions]
+        context["star_ref_ours"] = [round(float(v), 3) for v in np.median(ours[top] if top else ours, axis=0)]
+    for r in rows:
+        i = index.get(r["id"])
+        if i is None:
+            continue
+        r["star_prime"] = [round(float(v), 3) for v in pct[i]]
+        if ours is not None:
+            r["star_ours"] = [round(float(v), 3) for v in ours[i]]
+    return context
+
+
+def cosine_matrix(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    an = a / np.maximum(np.linalg.norm(a, axis=1, keepdims=True), 1e-12)
+    bn = b / np.maximum(np.linalg.norm(b, axis=1, keepdims=True), 1e-12)
+    return an @ bn.T
+
+
 def is_source(row: dict, source: str) -> bool:
     return source in [s.strip() for s in str(row.get("sources") or "").split(";")]
 

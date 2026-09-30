@@ -227,3 +227,45 @@ def test_write_csv_neutralizes_formula_cells(tmp_path: Path):
         out = next(csv.DictReader(f))
     assert out["name"] == "'=HYPERLINK(1)" and out["institution"] == "'+x" and out["field"] == "'-y" and out["department"] == "'@z"
     assert out["score"] == "-0.5" and out["topics"] == "a; =b" and out["ok"] == "plain"
+
+
+def test_direction_profiles_give_bounded_stars_and_labels():
+    model = small_model()
+    query = advisors.statement_body(STATEMENT.read_text())
+    rows, _, _ = advisors.rank(model, query, top=None)
+    dirs = [("alpha", "protein folding energy landscape"), ("beta", "graph learning agents discovery")]
+    ctx = advisors.direction_profiles(model, rows, query, dirs)
+    assert len(ctx["prime_axes"]) == 6 and all(ctx["prime_axes"])
+    assert ctx["our_axes"] == ["alpha", "beta"] and len(ctx["star_ref_ours"]) == 2
+    assert all(0 <= v <= 1 for v in ctx["star_query_prime"])
+    for r in rows:
+        assert len(r["star_prime"]) == 6 and all(0 <= v <= 1 for v in r["star_prime"])
+        assert len(r["star_ours"]) == 2 and all(0 <= v <= 1 for v in r["star_ours"])
+
+
+def test_direction_profiles_without_directions_skip_our_star():
+    model = small_model()
+    query = advisors.statement_body(STATEMENT.read_text())
+    rows, _, _ = advisors.rank(model, query, top=None)
+    ctx = advisors.direction_profiles(model, rows, query, [])
+    assert "our_axes" not in ctx and all("star_ours" not in r for r in rows)
+
+
+def test_load_directions_skips_header_and_blank(tmp_path: Path):
+    f = tmp_path / "d.tsv"
+    f.write_text("label\ttext\nalpha\tsome words\n\nbeta\tmore words\n")
+    assert advisors.load_directions(f) == [("alpha", "some words"), ("beta", "more words")]
+    assert advisors.load_directions(None) == []
+
+
+def test_page_carries_panel_timeline_and_direction_filters(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
+    d = tmp_path / "dirs.tsv"
+    d.write_text("alpha\tprotein folding\nbeta\tgraph learning agents\n")
+    out = tmp_path / "review"
+    code = cli.main(["advisor-review", "--people", str(PEOPLE), "--query", str(STATEMENT), "--out", str(out), "--directions", str(d),
+                     "--k", "6", "--top", "30", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"])
+    assert code == 0
+    page = (out / "index.html").read_text()
+    for hook in ('id="panel"', 'id="tl"', 'id="dirs"', '"prime_axes"', '"our_axes"', '"star_prime"', '"star_ours"'):
+        assert hook in page
