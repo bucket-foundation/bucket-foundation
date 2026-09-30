@@ -17,6 +17,7 @@ interface Props {
   slices: Slice[];
   year: number;
   selected: number;
+  activeSlice: number;
   onSelect(i: number): void;
 }
 
@@ -34,7 +35,7 @@ function surfaceGeometry(mesh: ReturnType<typeof surfaceMesh>): THREE.BufferGeom
   return g;
 }
 
-function CylinderScene({ dataset, slices }: Pick<Props, "dataset" | "slices">) {
+function CylinderScene({ dataset, slices, activeSlice }: Pick<Props, "dataset" | "slices" | "activeSlice">) {
   const mesh = useMemo(() => surfaceMesh(slices, dataset.components, undefined, undefined, dataset.scale), [slices, dataset]);
   const geometry = useMemo(() => surfaceGeometry(mesh), [mesh]);
   const wire = useMemo(() => new THREE.WireframeGeometry(geometry), [geometry]);
@@ -53,7 +54,7 @@ function CylinderScene({ dataset, slices }: Pick<Props, "dataset" | "slices">) {
         <lineBasicMaterial color={GOLD} transparent opacity={0.25} />
       </lineSegments>
       {rings.map((r, i) => (
-        <Line key={i} points={[...r, r[0]]} color={BONE} lineWidth={1} transparent opacity={0.5} />
+        <Line key={i} points={[...r, r[0]]} color={i === activeSlice ? GOLD : BONE} lineWidth={i === activeSlice ? 2.4 : 1} transparent opacity={i === activeSlice ? 1 : 0.5} />
       ))}
       <Html position={sliceCenter(0, slices.length)} center style={{ pointerEvents: "none" }}>
         <span style={{ color: DIM, fontSize: 11, fontFamily: "var(--font-jetbrains)", whiteSpace: "nowrap" }}>{slices[0]?.label}</span>
@@ -111,8 +112,8 @@ export default function SurfaceView(props: Props) {
     <div data-testid="surface-view" data-mode={props.mode} className="absolute inset-0">
       <Canvas camera={{ position: sphere ? SPHERE_CAMERA : CAMERA, fov: 38 }} dpr={[1, 2]}>
         <ambientLight intensity={0.9} />
-        {sphere ? <SphereScene {...props} /> : <CylinderScene dataset={props.dataset} slices={props.slices} />}
-        {sphere && <OrbitControls enablePan={false} minDistance={4} maxDistance={14} />}
+        {sphere ? <SphereScene {...props} /> : <CylinderScene dataset={props.dataset} slices={props.slices} activeSlice={props.activeSlice} />}
+        {sphere && <OrbitControls enablePan={false} enableZoom={false} />}
       </Canvas>
     </div>
   );

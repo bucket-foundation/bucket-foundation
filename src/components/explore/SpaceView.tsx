@@ -1,12 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import CircleChart, { type ChartSeries } from "./CircleChart";
+import Scrubber from "./Scrubber";
+import { useWheelStep } from "./useWheelStep";
 import type { SpaceViewId } from "./space-views";
 import { sampleDataset } from "@/lib/explore/space-sample";
 import { makeSlices, type Slice } from "@/lib/explore/slices";
-import { visibleAt, yearRange } from "@/lib/explore/surface";
+import { visibleAt } from "@/lib/explore/surface";
+import { clampIndex, describeItem, yearSteps } from "@/lib/explore/scrub";
 import type { Dataset } from "@/lib/explore/space";
 
 const SurfaceView = dynamic(() => import("./SurfaceView"), { ssr: false, loading: () => <div className="absolute inset-0" /> });
@@ -26,25 +29,18 @@ const GOLD = "#D9A43A";
 const BONE = "#EFE8D4";
 const DIM = "#A89F88";
 
-function Root({ embedded, view, children }: { embedded: boolean; view: SpaceViewId; children: ReactNode }) {
+function Root({ embedded, view, children, rootRef }: { embedded: boolean; view: SpaceViewId; children: ReactNode; rootRef: React.RefObject<HTMLDivElement> }) {
   const style = { background: "#141311", color: BONE, ...(embedded ? { height: "100%" } : { minHeight: "calc(100dvh - 4.5rem)" }) };
   const cls = "relative w-full flex flex-col items-center";
   return embedded ? (
-    <div data-testid="space-view" data-view={view} className={cls} style={style}>
+    <div ref={rootRef} data-testid="space-view" data-view={view} className={cls} style={style}>
       {children}
     </div>
   ) : (
-    <main data-testid="space-view" data-view={view} className={cls} style={style}>
+    <div ref={rootRef} data-testid="space-view" data-view={view} className={cls} style={style}>
       {children}
-    </main>
+    </div>
   );
-}
-
-const LIST_WINDOW = 40;
-
-function visibleWindow<T>(items: T[], index: number): { o: T; i: number }[] {
-  const start = Math.max(0, Math.min(items.length - LIST_WINDOW, index - LIST_WINDOW / 2));
-  return items.slice(start, start + LIST_WINDOW).map((o, k) => ({ o, i: start + k }));
 }
 
 function Components({ ds }: { ds: Dataset }) {
@@ -68,25 +64,37 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
   const index = controlled ?? local;
   const count = ds.obs.length;
   const setIndex = useCallback((i: number) => (onIndex ? onIndex(i) : setLocal(i)), [onIndex]);
-  const step = useCallback((d: number) => setIndex(count ? (index + d + count) % count : 0), [count, index, setIndex]);
   const current = ds.obs[index];
-  const range = useMemo(() => yearRange(ds.obs), [ds]);
   const meanCoverage = useMemo(() => {
     const cs = ds.obs.map((o) => o.coverage).filter((c): c is number => typeof c === "number");
     return cs.length ? cs.reduce((a, b) => a + b, 0) / cs.length : null;
   }, [ds]);
-  const [year, setYear] = useState<number | null>(null);
-  const shownYear = year ?? range?.[1] ?? 0;
+  const years = useMemo(() => yearSteps(ds.obs), [ds]);
+  const [yearIndex, setYearIndex] = useState<number | null>(null);
+  const yi = yearIndex === null ? Math.max(0, years.length - 1) : clampIndex(yearIndex, years.length);
+  const shownYear = years.length ? years[yi] : 0;
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setActiveSlice(0);
     setOpened(null);
-    setYear(null);
+    setYearIndex(null);
   }, [ds]);
 
   useEffect(() => {
     setOpened(null);
   }, [view]);
+
+  const stepCurrent = useCallback(
+    (d: number) => {
+      if (view === "circle" || view === "sphere") setIndex(clampIndex(index + d, count));
+      else if (view === "slices" && opened !== null) setOpened(clampIndex(opened + d, slices.length));
+      else if (view === "slices" || view === "cylinder") setActiveSlice((i) => clampIndex(i + d, slices.length));
+      else setYearIndex(clampIndex(yi + d, years.length));
+    },
+    [view, index, count, opened, slices.length, yi, years.length, setIndex],
+  );
+  useWheelStep(rootRef, stepCurrent);
 
   useEffect(() => {
     if (opened === null) return;
@@ -96,6 +104,12 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [opened]);
+
+  const metaOf = (o: typeof current) => (o ? Object.values(o.meta).filter((v): v is string => typeof v === "string" && v.length > 0) : []);
+  const lowTag = current?.coverage !== undefined && current.coverage < lowCoverage ? <span data-testid="low-coverage" style={{ color: GOLD }}> · low coverage</span> : null;
+  const obsScrubber = (
+    <Scrubber count={count} index={index} label={current ? describeItem(current.title, index, count, metaOf(current)) : "no observations"} suffix={undefined} ariaLabel={`${ds.label} observations`} onIndex={setIndex} labelTestId="space-current" />
+  );
 
   const badge = (
     <div className="absolute top-3 left-3 flex items-center gap-2 text-xs" style={mono}>
@@ -120,23 +134,23 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
 
   if (view === "cylinder" || view === "sphere" || view === "sphere-time") {
     const visible = view === "sphere-time" ? ds.obs.filter((o) => visibleAt(o, shownYear)).length : count;
+    const sliceScrubber = (
+      <Scrubber count={slices.length} index={activeSlice} label={slices[activeSlice] ? `${slices[activeSlice].label} · slice ${activeSlice + 1} / ${slices.length}` : "no slices"} ariaLabel="slices" onIndex={setActiveSlice} labelTestId="slice-current" />
+    );
+    const yearScrubber = (
+      <Scrubber count={years.length} index={yi} label={years.length ? `${shownYear} · ${visible} of ${count} observations` : "no dated observations"} ariaLabel="year" onIndex={setYearIndex} labelTestId="time-year" />
+    );
     return (
-      <Root embedded={embedded} view={view}>
+      <Root embedded={embedded} view={view} rootRef={rootRef}>
         {badge}
         <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
-          <SurfaceView mode={view} dataset={ds} slices={slices} year={shownYear} selected={index} onSelect={setIndex} />
+          <SurfaceView mode={view} dataset={ds} slices={slices} year={shownYear} selected={index} activeSlice={activeSlice} onSelect={setIndex} />
         </div>
         <div className="w-full max-w-3xl px-4 pb-4 text-sm">
-          {view === "sphere-time" && range && (
-            <label htmlFor="space-year" className="flex items-center gap-3 text-xs" style={mono}>
-              <span>year</span>
-              <input id="space-year" data-testid="time-slider" type="range" min={range[0]} max={range[1]} value={shownYear} onChange={(e) => setYear(Number(e.target.value))} className="flex-1 accent-[#D9A43A]" />
-              <span data-testid="time-year">{shownYear}</span>
-            </label>
-          )}
-          <p data-testid="surface-status" data-visible={visible} className="text-center mt-2" style={mono}>
-            {view === "cylinder" ? `surface of ${slices.length} slices` : `${visible} of ${count} observations${current ? ` · ${current.title}` : ""}`}
+          <p data-testid="surface-status" data-visible={visible} className="sr-only">
+            {view === "cylinder" ? `surface of ${slices.length} slices` : `${visible} of ${count} observations`}
           </p>
+          {view === "cylinder" ? sliceScrubber : view === "sphere" ? obsScrubber : yearScrubber}
         </div>
       </Root>
     );
@@ -144,24 +158,18 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
 
   if (view === "slices" && opened === null) {
     return (
-      <Root embedded={embedded} view={view}>
+      <Root embedded={embedded} view={view} rootRef={rootRef}>
         {badge}
         <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
           <SliceStack dataset={ds} slices={slices} active={activeSlice} onActive={setActiveSlice} onOpen={setOpened} />
         </div>
         <div className="w-full max-w-3xl px-4 pb-4 text-sm">
-          <p data-testid="slice-current" className="text-center" style={mono}>
-            {slices[activeSlice] ? `${slices[activeSlice].label} · slice ${activeSlice + 1} / ${slices.length}` : "no slices"}
-          </p>
-          <ul data-testid="slice-rail" className="flex flex-wrap justify-center gap-2 mt-3">
-            {slices.map((s, i) => (
-              <li key={s.index}>
-                <button type="button" data-testid={`slice-${i}`} aria-pressed={i === activeSlice} onClick={() => setOpened(i)} onFocus={() => setActiveSlice(i)} className="border hairline px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={{ ...mono, background: i === activeSlice ? GOLD : undefined, color: i === activeSlice ? "#141311" : undefined }}>
-                  {s.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <Scrubber count={slices.length} index={activeSlice} label={slices[activeSlice] ? `${slices[activeSlice].label} · slice ${activeSlice + 1} / ${slices.length}` : "no slices"} ariaLabel="slices" onIndex={setActiveSlice} labelTestId="slice-current" />
+          <div className="flex justify-center mt-3">
+            <button type="button" data-testid="slice-open-btn" onClick={() => setOpened(activeSlice)} className="border hairline px-3 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D9A43A]" style={mono}>
+              Open circle chart
+            </button>
+          </div>
         </div>
       </Root>
     );
@@ -181,7 +189,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       ];
 
   return (
-    <Root embedded={embedded} view={view}>
+    <Root embedded={embedded} view={view} rootRef={rootRef}>
       {badge}
       {slice && (
         <button type="button" data-testid="slice-back" onClick={() => setOpened(null)} className="absolute top-3 right-3 border hairline px-2 py-1 text-xs" style={mono}>
@@ -189,34 +197,15 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
         </button>
       )}
       <div className="w-full flex-1 max-w-3xl" style={{ minHeight: 420 }}>
-        <CircleChart components={ds.components} series={series} onStep={slice ? undefined : step} scale={ds.scale} />
+        <CircleChart components={ds.components} series={series} scale={ds.scale} />
       </div>
       <div className="w-full max-w-3xl px-4 pb-6 text-sm">
         {slice ? (
-          <p data-testid="slice-open" className="text-center" style={mono}>
-            {slice.label} · {slice.obsIds.length} observations
-          </p>
+          <Scrubber count={slices.length} index={opened ?? 0} label={`${slice.label} · ${slice.obsIds.length} observations`} ariaLabel="slices" onIndex={setOpened} labelTestId="slice-open" />
         ) : (
           <>
-            <p data-testid="space-current" className="text-center" style={mono}>
-              {current ? `${current.title} · ${index + 1} / ${count}` : "no observations"}
-              {current && Object.values(current.meta).filter((v) => typeof v === "string" && v).length > 0 && <span data-testid="space-meta" style={{ color: DIM }}> · {Object.values(current.meta).filter((v) => typeof v === "string" && v).join(" · ")}</span>}
-              {current?.coverage !== undefined && current.coverage < lowCoverage && (
-                <span data-testid="low-coverage" style={{ color: GOLD }}>
-                  {" "}
-                  · low coverage
-                </span>
-              )}
-            </p>
-            <ul className="flex flex-wrap justify-center gap-2 mt-3">
-              {visibleWindow(ds.obs, index).map(({ o, i }) => (
-                <li key={o.id}>
-                  <button type="button" aria-pressed={i === index} onClick={() => setIndex(i)} className="border hairline px-2 py-1 text-xs" style={{ ...mono, background: i === index ? GOLD : undefined, color: i === index ? "#141311" : undefined }}>
-                    {o.title}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {obsScrubber}
+            {lowTag && <p className="text-center text-xs mt-1">{lowTag}</p>}
           </>
         )}
         <Components ds={ds} />

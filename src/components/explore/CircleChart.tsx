@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { CIRCLE_RADIUS, RINGS, ariaSummary, labelLayout, polygonPoints, smoothLoop, spokeDirection, wrapLabel } from "@/lib/explore/circle";
 import type { ScoreScale, SpaceComponent } from "@/lib/explore/space";
 
@@ -17,30 +16,16 @@ export interface ChartSeries {
 interface Props {
   components: SpaceComponent[];
   series: ChartSeries[];
-  onStep?(delta: number): void;
   scale?: ScoreScale;
 }
 
 const LABEL_GAP = 14;
 
-export default function CircleChart({ components, series, onStep, scale = "standardized" }: Props) {
-  const host = useRef<SVGSVGElement>(null);
+export default function CircleChart({ components, series, scale = "standardized" }: Props) {
   const labels = components.map((c) => c.label ?? c.top_terms[0] ?? String(c.index));
-
-  useEffect(() => {
-    const el = host.current;
-    if (!el || !onStep) return;
-    const handler = (e: WheelEvent) => {
-      e.preventDefault();
-      onStep(e.deltaY > 0 ? 1 : -1);
-    };
-    el.addEventListener("wheel", handler, { passive: false });
-    return () => el.removeEventListener("wheel", handler);
-  }, [onStep]);
 
   return (
     <svg
-      ref={host}
       data-testid="circle-chart"
       viewBox="-230 -200 460 400"
       className="w-full h-full"
