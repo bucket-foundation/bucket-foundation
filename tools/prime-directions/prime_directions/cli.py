@@ -142,6 +142,7 @@ def review_args(a) -> None:
     a.add_argument("--k", type=int, default=64)
     a.add_argument("--top", type=int, default=300)
     a.add_argument("--directions", type=Path, default=None)
+    a.add_argument("--extra-people", type=Path, action="append", help="more people files; people already present by id are kept from the first file")
     a.add_argument("--publishable", action="store_true")
     a.add_argument("--images", action="store_true", help="load portrait images from image_url hosts; off shows the knowledge chart")
     a.add_argument("--basis", type=Path, help="JSON list of {name, text} reference documents that define the prime directions")
@@ -215,7 +216,22 @@ def cmd_advisor_review(args) -> int:
         return 3
     return 0
 
+def merge_extra_people(args, people: list) -> list:
+    extra = [p for p in (getattr(args, "extra_people", None) or []) if p.exists()]
+    if not extra:
+        return people
+    keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+    seen = {p.id for p in people}
+    merged = list(people)
+    for path in extra:
+        for person in advisors.load_people(path, text_keys=keys, allow_partial_tail=True):
+            if person.id not in seen:
+                seen.add(person.id)
+                merged.append(person)
+    return merged
+
 def advisor_run(args, out: Path, people: list) -> None:
+    people = merge_extra_people(args, people)
     timings: dict = {"load_s": 0.0}
     checks = None
     if args.ror_cache:

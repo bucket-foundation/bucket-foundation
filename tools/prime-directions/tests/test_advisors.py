@@ -359,3 +359,21 @@ def test_review_json_drops_private_fields_even_from_a_private_build(tmp_path: Pa
     data = json.loads(advisors.write_review_json(rows, {"prime_axes": ["a"]}, tmp_path / "r.json").read_text())
     assert data["rows"] == [{"rank": 1, "name": "Ada", "score": 0.5}]
     assert "ada@uni.edu" not in (tmp_path / "r.json").read_text()
+
+
+def test_extra_people_merge_by_id_keeping_the_first_file(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("PRIME_DATA_ROOT", str(tmp_path / "data"))
+    lines = PEOPLE.read_text().splitlines()
+    first = json.loads(lines[0])
+    extra = tmp_path / "extra.jsonl"
+    new = dict(json.loads(lines[1]), id="NEW1", name="Fresh Person")
+    extra.write_text("\n".join([json.dumps(dict(first, name="Duplicate Name")), json.dumps(new)]) + "\n")
+    out = tmp_path / "review"
+    code = cli.main(["advisor-review", "--people", str(PEOPLE), "--extra-people", str(extra), "--extra-people", str(tmp_path / "missing.jsonl"),
+                     "--query", str(STATEMENT), "--out", str(out), "--k", "6", "--top", "500", "--label", "5", "--min-df", "2", "--max-df", "0.9", "--min-chars", "50"])
+    assert code == 0
+    report = json.loads((out / "report.json").read_text())
+    assert report["people"] == len(lines) + 1
+    with open(out / "ranked.csv") as f:
+        names = {r["name"] for r in csv.DictReader(f)}
+    assert "Fresh Person" in names and "Duplicate Name" not in names
