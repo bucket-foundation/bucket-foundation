@@ -19,6 +19,7 @@ const SUITES = {
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
       "scripts/test-download-release.ts",
+      "scripts/test-site-chrome.ts",
       "scripts/test-download-install.ts",
       "scripts/test-download-release-v2.ts",
       "scripts/test-whats-new-email.ts",
