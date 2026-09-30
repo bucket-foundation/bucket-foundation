@@ -130,5 +130,9 @@ describe("content pack", () => {
     expect(pack.items.length).toBeGreaterThan(500);
     expect(pack.version).toMatch(/^[0-9a-f]{12}$/);
     expect(new Set(pack.items.map((i) => i.id)).size).toBe(pack.items.length);
+    expect(pack.decks!.map((d) => d.id)).toContain("05-biophysics");
+    expect(pack.decks!.find((d) => d.id === "05-biophysics")!.source).toBe("biophysics");
+    expect(pack.decks!.every((d) => pack.atoms![d.id].length === d.atoms)).toBe(true);
+    expect(Object.keys(pack.atoms!)).not.toContain("lang-core");
   });
 });
