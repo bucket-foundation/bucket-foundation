@@ -32,15 +32,15 @@ const GOLD = "#D9A43A";
 const BONE = "#EFE8D4";
 const DIM = "#A89F88";
 
-function Root({ embedded, view, children, rootRef }: { embedded: boolean; view: SpaceViewId; children: ReactNode; rootRef: React.RefObject<HTMLDivElement> }) {
+function Root({ embedded, view, children, rootRef, ready }: { embedded: boolean; view: SpaceViewId; children: ReactNode; rootRef: React.RefObject<HTMLDivElement>; ready: boolean }) {
   const style = { background: "#141311", color: BONE, ...(embedded ? { height: "100%" } : { minHeight: "calc(100dvh - 4.5rem)" }) };
   const cls = "relative w-full flex flex-col items-center";
   return embedded ? (
-    <div ref={rootRef} data-testid="space-view" data-view={view} className={cls} style={style}>
+    <div ref={rootRef} data-testid="space-view" data-view={view} data-ready={ready ? "true" : "false"} className={cls} style={style}>
       {children}
     </div>
   ) : (
-    <div ref={rootRef} data-testid="space-view" data-view={view} className={cls} style={style}>
+    <div ref={rootRef} data-testid="space-view" data-view={view} data-ready={ready ? "true" : "false"} className={cls} style={style}>
       {children}
     </div>
   );
@@ -78,6 +78,8 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
   const yi = yearIndex === null ? Math.max(0, years.length - 1) : clampIndex(yearIndex, years.length);
   const shownYear = years.length ? years[yi] : 0;
   const rootRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
 
   useEffect(() => {
     setActiveSlice(0);
@@ -145,7 +147,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       <Scrubber count={years.length} index={yi} label={years.length ? `${shownYear} · ${visible} of ${count} observations` : "no dated observations"} ariaLabel="year" onIndex={setYearIndex} labelTestId="time-year" />
     );
     return (
-      <Root embedded={embedded} view={view} rootRef={rootRef}>
+      <Root embedded={embedded} view={view} rootRef={rootRef} ready={ready}>
         {badge}
         <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
           <SurfaceView mode={view} dataset={ds} slices={slices} year={shownYear} selected={index} activeSlice={activeSlice} onSelect={setIndex} />
@@ -162,7 +164,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
 
   if (view === "slices" && opened === null) {
     return (
-      <Root embedded={embedded} view={view} rootRef={rootRef}>
+      <Root embedded={embedded} view={view} rootRef={rootRef} ready={ready}>
         {badge}
         <div className="w-full flex-1 relative" style={{ minHeight: 420 }}>
           <SliceStack dataset={ds} slices={slices} active={activeSlice} onActive={setActiveSlice} onOpen={setOpened} />
@@ -197,7 +199,7 @@ export default function SpaceView({ view, dataset, embedded = false, index: cont
       ];
 
   return (
-    <Root embedded={embedded} view={view} rootRef={rootRef}>
+    <Root embedded={embedded} view={view} rootRef={rootRef} ready={ready}>
       {badge}
       {slice && (
         <button type="button" data-testid="slice-back" onClick={() => setOpened(null)} className="absolute top-3 right-3 border hairline px-2 py-1 text-xs" style={mono}>

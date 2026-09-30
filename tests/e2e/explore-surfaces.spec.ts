@@ -45,6 +45,7 @@ test("the view switch reaches every surface view", async ({ page }) => {
 test("scroll steps the sweep variable in the sphere and never zooms it", async ({ page }) => {
   await page.goto("/explore?space=sphere-time");
   const scrubber = page.getByTestId("scrubber");
+  await expect(page.getByTestId("space-view")).toHaveAttribute("data-ready", "true");
   await expect(page.getByTestId("time-year")).toContainText("observations");
   await expect.poll(async () => Number(await scrubber.getAttribute("data-index"))).toBeGreaterThan(5);
   const before = Number(await scrubber.getAttribute("data-index"));

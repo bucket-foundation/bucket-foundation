@@ -6,6 +6,7 @@ async function open(page: import("@playwright/test").Page) {
   await page.goto("/explore?view=slices");
   await expect(page.getByTestId("slice-stack")).toBeVisible();
   await expect(page.locator('[data-testid="slice-stack"] canvas')).toBeVisible();
+  await expect(page.getByTestId("space-view")).toHaveAttribute("data-ready", "true");
 }
 
 test("the slice view shows the stack on the canon data", async ({ page }) => {
