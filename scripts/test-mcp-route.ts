@@ -1,5 +1,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { handleBody, handleMessage, PROTOCOL_VERSION, TOOLS } from "../src/lib/mcp/server";
 
 type Rpc = { result?: any; error?: any; id?: unknown };
@@ -85,4 +87,9 @@ test("bucketmath_lookup finds proved theorems with a citation tag", async () => 
   const learning = (await handleMessage({ jsonrpc: "2.0", id: 21, method: "tools/call", params: { name: "bucketmath_lookup", arguments: { q: "minimum_weighted_effort" } } })) as Rpc;
   assert.equal(learning.result.structuredContent.results[0].cite, "[bm:BucketMath.Learning.minimum_weighted_effort]");
   assert.equal(projected.result.structuredContent.results[0].cite, "[bm:BucketMath.Project.pythagoras_orthonormal]");
+});
+
+test("the well-known manifest lists exactly the tools the server serves", () => {
+  const manifest = JSON.parse(readFileSync(join(__dirname, "../public/.well-known/mcp.json"), "utf8")) as { tools: { name: string }[] };
+  assert.deepEqual(manifest.tools.map((t) => t.name).sort(), TOOLS.map((t) => t.name).sort());
 });
