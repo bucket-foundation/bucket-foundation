@@ -15,6 +15,7 @@ const files: CanonFile[] = [
 check("bundled index has files", CANON_FILES.length >= 20);
 check("index rows hold only title, branch, path, size", CANON_FILES.every((f) => Object.keys(f).sort().join() === "branch,path,size,title"));
 check("index carries no emails", !/@[\w-]+\.\w/.test(JSON.stringify(CANON_FILES)));
+check("intake readme and taxonomy notes stay out of the index", CANON_FILES.every((f) => !f.path.startsWith("_intake/") && !f.path.endsWith("TAXONOMY_NOTES.md")));
 check("canon-file is a hit type", HIT_TYPES.includes("canon-file"));
 const hits = canonFileHits("physics", files);
 check("query matches a file by title", hits.length === 1 && hits[0].id === canonFileId(files[0]));

@@ -28,9 +28,13 @@ export function titleOf(filePath, text) {
   return scrub(heading ? heading.replace(/^#\s+/, "").replace(/\*+/g, "") : fallback) || fallback;
 }
 
+export function isExcluded(filePath) {
+  return filePath.startsWith("_intake/") || path.basename(filePath) === "TAXONOMY_NOTES.md";
+}
+
 export function buildIndex(listing, readText) {
   return listing
-    .filter((f) => !f.IsDir && f.Path.toLowerCase().endsWith(".md"))
+    .filter((f) => !f.IsDir && f.Path.toLowerCase().endsWith(".md") && !isExcluded(f.Path))
     .map((f) => ({
       title: titleOf(f.Path, readText(f.Path)),
       branch: branchOf(f.Path),
