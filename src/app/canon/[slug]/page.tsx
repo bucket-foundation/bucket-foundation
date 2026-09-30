@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getBranches, getBranch, getBranchEntries } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, getBranch as getStaticBranch, REPO_TREE, DRIVE_URL } from "@/lib/canon";
 import { getClaimsForBranch } from "@/lib/canon-claims";
-import BranchEntriesTable from "./BranchEntriesTable";
+import BranchEntriesTableV2 from "./BranchEntriesTableV2";
 
 export const dynamic = "force-static";
 
@@ -46,9 +46,9 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const numeral = fs?.numeral || (stat as any)?.num || "";
   const name = fs?.name || (stat as any)?.name || params.slug;
-  const status = fs?.status || (stat ? "in progress" : "not yet opened");
   const readme = fs?.readme || null;
   const entries = fs ? getBranchEntries(params.slug) : [];
+  const status = entries.length === 0 ? "open for submissions" : fs?.status || "in progress";
 
   const figures = stat?.figures ?? [];
   const { total: claimsTotal, concepts: claimsByConcept } = getClaimsForBranch(params.slug);
@@ -193,7 +193,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {entries.length > 0 ? (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">Entries</h2>
-            <BranchEntriesTable entries={entries} branchSlug={params.slug} />
+            <BranchEntriesTableV2 entries={entries} branchSlug={params.slug} />
           </div>
         ) : fs && figures.length === 0 && claimsByConcept.length === 0 ? (
           <div className="bg-[color:var(--bone-2)] p-8 border hairline">
@@ -279,7 +279,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           <Link href={`/canon/${params.slug}/feed.xml`} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
             branch feed ↗
           </Link>
-          <Link href="/join" className="text-[color:var(--basalt)] hover:text-[color:var(--gold)]">
+          <Link href="/contribute" className="text-[color:var(--basalt)] hover:text-[color:var(--gold)]">
             contribute canon →
           </Link>
         </div>

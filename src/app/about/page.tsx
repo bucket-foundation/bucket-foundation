@@ -52,10 +52,13 @@ export default function Page() {
           <strong className="text-[color:var(--parchment)]">2022.</strong> bucket 1.0 shipped as a four-verb prototype, <em>build · discuss · discover · publish</em>, a social network for collaboratively building and debating theories of history with evidence. It never shipped publicly. The slogan: <span className="italic">build the past.</span>
         </p>
         <p>
-          <strong className="text-[color:var(--parchment)]">2023-2025.</strong> The prototype slept. The slogan widened: <span className="italic">build history.</span> A hackathon build landed the reference site on Vercel — Story Protocol IP mint, Walrus storage, Dynamic web3 auth.
+          <strong className="text-[color:var(--parchment)]">2023-2025.</strong> The prototype slept. The slogan widened: <span className="italic">build history.</span> A hackathon build landed the reference site on Vercel.
         </p>
         <p>
           <strong className="text-[color:var(--parchment)]">2026.</strong> Reactivated as an open-source nonprofit. Two verbs deleted, canon added. The thesis turned: <span className="italic">bucket is the new renaissance.</span> Read the <Link href="/manifesto" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">manifesto</Link>.
+        </p>
+        <p>
+          <strong className="text-[color:var(--parchment)]">2026-06.</strong> Story Protocol minting was removed on 2026-06-14; citations settle over x402 on Base. The hackathon storage layer and web3 sign-in went with it. Credentials are Open Badges 3.0 verifiable credentials. Research happens in <Link href="/research-os" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Research OS</Link>, and the <Link href="/download" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">desktop app</Link> runs it on your machine.
         </p>
       </div>
     </PageShell>

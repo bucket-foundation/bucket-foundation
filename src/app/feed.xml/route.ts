@@ -38,7 +38,7 @@ function items(): Item[] {
     { title: "feed402 / x402 Protocol", path: "/protocol", desc: "Open standard for paid research endpoints over x402 on Base.", date: now },
     { title: "Protocol Envelope", path: "/protocol/envelope", desc: "Citeable envelope: data + citation + receipt.", date: now },
     { title: "cite-forever license v0.1", path: "/cite-forever/v0.1", desc: "Free to read. Paid to cite. Every citation routes fees to the author, forever.", date: now },
-    { title: "Build on bucket", path: "/build", desc: "Mint foundations as Story Protocol IP NFTs. Permanent citation over x402.", date: now },
+    { title: "Build on bucket", path: "/build", desc: "Submit foundations through Research OS. Reviewed work becomes canon; citations settle over x402 on Base.", date: now },
     { title: "Learn", path: "/learn", desc: "How to use bucket with an AI — Claude.ai, ChatGPT, Perplexity.", date: now },
     { title: "Governance", path: "/governance", desc: "Nonprofit governance, conflict-of-interest disclosure, 501(c)(3) status.", date: now },
     { title: "Kruse corpus (biophysics partial source)", path: "/kruse", desc: "Jack Kruse corpus — 460 posts, one partial source for the biophysics branch.", date: now },
