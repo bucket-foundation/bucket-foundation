@@ -22,6 +22,7 @@ export type Guide =
   | { kind: "ring"; center?: Vec3; radius: number; color: string; tilt?: number }
   | { kind: "line"; points: Vec3[]; color: string }
   | { kind: "tube"; points: Vec3[]; color: string; radius: number }
+  | { kind: "points"; points: Vec3[]; color: string; size: number }
   | { kind: "text"; position: Vec3; text: string; color: string; size?: number };
 
 export interface LegendItem {
@@ -47,6 +48,7 @@ export interface ModeContext {
   element?: number;
   molecule?: string;
   reaction?: string;
+  landmask?: { isLand(lat: number, lng: number): boolean } | null;
 }
 
 export interface ExploreMode {
