@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import InstallBlocks, { osOrder } from "../src/components/download/InstallBlocks";
-import { APPIMAGE_RUN_STEPS, APPIMAGE_WARNING, INSTALL_COMMAND } from "../src/lib/download/install";
+import { APPIMAGE_RUN_STEPS, APPIMAGE_WARNING, INSTALL_COMMAND, detectLinuxDistro, executableStep, linuxInstallCommand } from "../src/lib/download/install";
 import { installersForV2 } from "../src/lib/download/release-v2";
 import type { ReleaseAsset } from "../src/lib/download/release";
 
@@ -38,17 +38,55 @@ test("the detected system sorts first", () => {
   assert.deepEqual(osOrder(null), ["macos", "windows", "linux"]);
 });
 
-test("the linux block renders the one-liner, then the AppImage link, then the run block and warning", () => {
-  const html = renderToStaticMarkup(InstallBlocks({ os: "linux", installers }));
+test("the linux block leads with the one-line install, then the run steps, warning and link under Other ways", () => {
+  const html = renderToStaticMarkup(InstallBlocks({ os: "linux", distro: "fedora", installers }));
   const linux = html.slice(html.indexOf('data-os="linux"'), html.indexOf('data-os="macos"'));
-  const command = linux.indexOf("install.sh");
-  const link = linux.indexOf("or download the AppImage");
+  const command = linux.indexOf("release/install.sh");
+  const other = linux.indexOf("Other ways");
   const run = linux.indexOf("chmod +x Bucket-*.AppImage");
+  const step = linux.indexOf("Properties, then Permissions, and tick Executable as Program");
   const warning = linux.indexOf("Opening it with Disks offers to overwrite your whole drive.");
-  assert.ok(command > 0 && command < link && link < run && run < warning, `order ${command} ${link} ${run} ${warning}`);
-  assert.match(linux, /\.\/Bucket-\*\.AppImage/);
+  const link = linux.indexOf("or download the AppImage");
+  const sum = linux.indexOf("sha256 checksum for Bucket-0.4.0-x86_64.AppImage");
+  assert.ok(command > 0 && command < other && other < run && run < step && step < warning && warning < link && link < sum, `order ${command} ${other} ${run} ${step} ${warning} ${link} ${sum}`);
+  assert.match(linux, /Fedora: In your file manager/);
+  assert.match(linux, /on Fedora/);
+  assert.match(linux, /pinned to release bkt-v0\.4\.0/);
   assert.match(linux, /href="https:[^"]*Bucket-0\.4\.0-x86_64\.AppImage"/);
   assert.match(linux, /aria-label="Copy Linux install command"/);
+});
+
+test("the linux install command passes the canonical AppImage url to install.sh", () => {
+  const url = "https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.4.0/Bucket-0.4.0-x86_64.AppImage";
+  assert.equal(
+    linuxInstallCommand(url),
+    `curl -fsSL 'https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.4.0/scripts/release/install.sh' | bash -s -- '${url}'`,
+  );
+  assert.equal(linuxInstallCommand(null), INSTALL_COMMAND.linux);
+  assert.equal(linuxInstallCommand("https://example.com/Bucket-0.4.0-x86_64.AppImage"), INSTALL_COMMAND.linux);
+  assert.doesNotMatch(linuxInstallCommand(url), /\/main\//);
+  const html = renderToStaticMarkup(InstallBlocks({ os: "linux", installers }));
+  assert.ok(html.includes(url));
+  assert.doesNotMatch(url, /\s/);
+});
+
+test("release assets with spaces in the name are never linked", () => {
+  const spaced: ReleaseAsset[] = [{ name: "Bucket-0.4.0-x86_64 (1).AppImage", browser_download_url: "https://example.com/a", size: 1 }];
+  assert.deepEqual(installersForV2(spaced), []);
+  const odd: ReleaseAsset[] = [{ name: "Bucket-0.4.0-x86_64';id.AppImage", browser_download_url: "https://example.com/a", size: 1 }];
+  assert.deepEqual(installersForV2(odd), []);
+  for (const i of installers) assert.doesNotMatch(i.name, /\s/);
+});
+
+test("linux distro detection reads the user agent", () => {
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0"), "fedora");
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0"), "ubuntu");
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"), null);
+  assert.equal(detectLinuxDistro(null), null);
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 Chrome/130.0"), null);
+  assert.equal(detectLinuxDistro("Mozilla/5.0 (X11; Arch Linux x86_64) Gecko/20100101 Firefox/130.0"), "arch");
+  assert.match(executableStep("fedora"), /^Fedora: /);
+  assert.match(executableStep(null), /^In your file manager/);
 });
 
 test("macos and windows lead with their one-liners and list direct binaries second", () => {

@@ -25,7 +25,7 @@ function sandbox() {
   writeFileSync(artifact, "#!/bin/sh\necho bucket\n");
   const prefix = path.join(dir, "prefix");
   const sign = (file, version, ...flags) => run("bash", [SIGN, "--allow-unencrypted", ...flags, file, version, key]);
-  const install = (source) => run("bash", [installer, source], { BUCKET_PREFIX: prefix });
+  const install = (source) => run("bash", [installer, source], { BUCKET_PREFIX: prefix, HOME: dir });
   return { dir, key, artifact, prefix, sign, install, done: () => rmSync(dir, { recursive: true, force: true }) };
 }
 
@@ -59,7 +59,7 @@ test("install rejects the production key, a tampered artifact, an edited manifes
   const s = sandbox();
   try {
     assert.equal(s.sign(s.artifact, "0.1.0").status, 0);
-    assert.match(run("bash", [INSTALL, s.artifact], { BUCKET_PREFIX: s.prefix, BUCKET_RELEASE_PUBKEY: "ignored" }).stderr, /signature check failed/);
+    assert.match(run("bash", [INSTALL, s.artifact], { BUCKET_PREFIX: s.prefix, HOME: s.dir, BUCKET_RELEASE_PUBKEY: "ignored" }).stderr, /signature check failed/);
 
     const original = readFileSync(s.artifact);
     writeFileSync(s.artifact, "#!/bin/sh\necho evil\n");
@@ -133,6 +133,7 @@ test("install strips the query string when naming files", () => {
     chmodSync(path.join(bin, "curl"), 0o755);
     const out = run("bash", [path.join(s.dir, "install.sh"), "https://releases.example/v1/bucket-linux-x64?token=abc"], {
       BUCKET_PREFIX: s.prefix,
+      HOME: s.dir,
       PATH: `${bin}:${process.env.PATH}`,
     });
     assert.equal(out.status, 0, out.stderr);
@@ -176,7 +177,7 @@ test("install verifies a signed AppImage, links bucket and bkt and adds a menu e
     assert.equal(run(path.join(s.prefix, "bin/bkt"), ["whoami"]).stdout, "bkt whoami\n");
     assert.equal(readFileSync(path.join(s.prefix, "share/icons/hicolor/256x256/apps/bucket.png"), "utf8"), "png");
     const desktop = readFileSync(path.join(s.prefix, "share/applications/bucket.desktop"), "utf8");
-    assert.match(desktop, new RegExp(`^Exec=${path.join(s.prefix, "bin/bucket")} app$`, "m"));
+    assert.match(desktop, new RegExp(`^Exec="${path.join(s.prefix, "bin/bucket")}" app$`, "m"));
 
     writeFileSync(image, readFileSync(image, "utf8") + "# tampered\n");
     assert.match(s.install(image).stderr, /checksum mismatch/);

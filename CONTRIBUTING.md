@@ -1,6 +1,6 @@
 # Contributing to bucket.foundation
 
-Thanks for showing up. Here's the short version.
+Bucket reforms education: Research OS is the product and the canon holds the foundations ([MANIFESTO.md](./MANIFESTO.md)). Every path below serves that mission.
 
 ## Contribution paths
 
@@ -20,11 +20,28 @@ A single contributor-index card per figure, following [`canon-figures/SCHEMA.md`
 
 ### 4. Code PR
 
-- the Next.js site in `src/`
-- `tools/canon-pipeline/` (canon intake & scoring)
+- the Next.js site and the Research OS app in `src/` (app code under `src/app/research-os/(app)`, see [`docs/RESEARCH-OS-APP.md`](./docs/RESEARCH-OS-APP.md))
+- the `bkt` terminal and desktop app in `packages/bkt/`
+- `tools/canon-pipeline/` (canon intake and scoring)
 - `tools/feed/` (feed.json generator)
+- `tools/hypothesis-engine/` (the `hte` engine)
 
 ---
+
+## Branches and PRs
+
+| Branch | Holds | PR target |
+|---|---|---|
+| `main` | Production. Vercel builds it. | Merges from `dev` only. |
+| `dev` | Site and canon work. The default PR target. | `feat/site-*`, `feat/ros-*`, `docs/*`, `intake/*` |
+| `hte/integration` | Engine work. Vercel never builds it. | `feat/hte-*`, `fix/hte-*`, `test/hte-*`, `run/*`, `docs/hte-*` |
+| `ops/integration` | Gates, measurements, runbooks and build scripts. Vercel never builds it. | `ops/*`, `gate/*`, `measure/*` |
+
+Never push to `main`. A PR into `main` comes from `dev` alone. Engine PRs never target `dev` or `main`; one batch PR carries `hte/integration` into `dev`. Start from a bead: `bd ready`, then claim it.
+
+## Review
+
+Plans and PRs get a review by the [Bucket critic](./docs/agents/BUCKET-CRITIC.md), a reviewer separate from the author. Pass: weighted score above 8.0 out of 10, no dimension below 7, no open critical or high finding. Three rounds at most. After round three the PR merges with its medium and low findings filed as beads, or it closes. Post the final report on the PR. Docs-only and mechanical PRs that tests cover skip the critic.
 
 ## Acceptance criteria
 
@@ -79,9 +96,11 @@ Full [`canon-figures/SCHEMA.md`](./canon-figures/SCHEMA.md) compliance:
 ### Code PRs
 
 - [ ] One concern per PR
+- [ ] No code comments and no docstrings. Names and tests carry the meaning. Keep only tool directives: `eslint-disable*`, `@ts-expect-error`, `@ts-ignore`, `/// <reference`, `voice-ignore*`, `# noqa`, `# type: ignore`, `# pragma`, shebangs, SPDX lines and `/*#__PURE__*/`. A comment on any other line fails review.
+- [ ] Prose follows the org voice rules. `agf-lint-voice check` and `agf-lint-voice-src check` pass.
 - [ ] Does not break `canon.json` v0.1 (add fields, don't remove or rename)
 - [ ] TypeScript strict passes; lint clean
-- [ ] Commit message written like a lawyer, what changed, why, what breaks if this is not merged
+- [ ] Conventional commit subject `type(scope): description`, at most three body lines. PR body at most ten lines: what changed and how it was tested
 
 ---
 
@@ -142,7 +161,7 @@ PRs are rejected, immediately, without debate, for:
 - **Open-source everything.** No proprietary extensions. No "enterprise edition." The reference implementation is MIT and stays MIT.
 - **Don't break `canon.json` v0.1.** Add fields, don't remove or rename them. We'll cut v0.2 when we're ready.
 - **One PR per concern.** Easier to review, easier to revert.
-- **Write the commit message like a lawyer.** What changed. Why. What breaks if you don't take it.
+- **Keep commits short.** A subject line and at most three body lines: what changed, why.
 
 ## Setup
 
@@ -154,7 +173,7 @@ npm install
 npm run dev
 ```
 
-If `.env.example` doesn't exist yet, that's one of the things we need help with.
+`npm run db:local` starts the local Supabase stack and `docs/AUTH.md` has the steps. No hosted project is needed to build or test.
 
 ## Filing an issue
 
@@ -174,7 +193,7 @@ Be kind. Assume good faith. If someone is being difficult, tell a maintainer; do
 ## Maintainers
 
 - **@gianyrox**, founder, protocol
-- Open to adding more maintainers as the project finds its contributors.
+- More maintainers join as the project finds its contributors.
 
 ## License
 
