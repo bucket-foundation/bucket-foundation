@@ -55,3 +55,8 @@ test("siteVersion prefers the release tag and falls back to package.json", () =>
   assert.equal(siteVersion(undefined, "0.2.0"), "v0.2.0");
   assert.equal(siteVersion(null, "0.2.0"), "v0.2.0");
 });
+
+test("the header branch list comes from CANON_BRANCHES", () => {
+  assert.match(HEADER, /const CANON = CANON_BRANCHES\.map/);
+  assert.doesNotMatch(HEADER, /slug: "earth"/);
+});

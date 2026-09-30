@@ -4,6 +4,7 @@ import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 import InverseOmega from "./InverseOmega";
 import GitHubStarButton from "./GitHubStarButton";
+import { CANON_BRANCHES } from "@/lib/contribute";
 import { useEffect, useRef, useState } from "react";
 
 type NavItem = {
@@ -34,16 +35,7 @@ const NAV: NavItem[] = [
   { href: "/about",          label: "About" },
 ];
 
-const CANON = [
-  { slug: "mathematics", num: "I",    name: "mathematics" },
-  { slug: "physics",     num: "II",   name: "physics"     },
-  { slug: "chemistry",   num: "III",  name: "chemistry"   },
-  { slug: "information", num: "IV",   name: "information" },
-  { slug: "biophysics",  num: "V",    name: "biophysics"  },
-  { slug: "cosmology",   num: "VI",   name: "cosmology"   },
-  { slug: "mind",        num: "VII",  name: "mind"        },
-  { slug: "earth",       num: "VIII", name: "earth"       },
-];
+const CANON = CANON_BRANCHES.map((b) => ({ slug: b.slug, num: b.roman, name: b.name }));
 
 
 export default function HeaderV2({ launchList = false }: { launchList?: boolean }) {
