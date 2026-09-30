@@ -51,3 +51,17 @@ Features are node terms plus link columns, idf-weighted and row-normalized by de
 ## Nearest neighbors
 
 `neighbors` returns the closest observations in PCA score space, scoped `local`, `global` or `cross` to canon clusters, and matches advisors from a CSV of numeric columns. `neighbors-bench` compares brute force, KD-tree, HNSW and pgvector. Method notes, sources and results: [NEIGHBORS.md](NEIGHBORS.md). `faiss` and `threadpoolctl` are needed for HNSW and the benchmark; `PRIME_TEST_PG` names a pgvector DSN for the live pgvector test.
+
+## Advisor review
+
+```bash
+python3 -m prime_directions advisor-review --people people.jsonl --query statement.md \
+  --out ~/.local/share/bucket-advisor-review/review --text-keys author_topics.name,author_topics.field \
+  --ror-cache ~/.local/share/bucket-advisor-review/cache/ror.json
+```
+
+`people.jsonl` holds one JSON object per person: an id, a name, text fields read by dotted path (`--text-keys`, default a broad list), topic labels (`author_topics.name`) for the evidence chips, and filter fields (`field`, `country`, `funding`, `institution`, `taking_students`, `sources`). The command fits 64 prime directions on the people's text with idf weights and unit rows, projects the query document above `--stop-heading` into them, and scores everyone by cosine after centering and scaling each component to unit spread (`--scoring`). Each row carries its rank, percentile among all people, and the topics it shares with the query.
+
+`--ror-cache` checks each listed institution against its ROR record: the country comes from the listed institution, and a profile whose OpenAlex institution is unrelated after a name-based match is flagged as possibly another person. Lookups are cached; `--ror-offline` uses the cache alone.
+
+Outputs, all under an `--out` outside the repo: `index.html`, one self-contained file with the plot inlined, card views, shortlist, maybe and skip decisions kept in the browser, a shortlist CSV export, a PhD advisors view without Stevens faculty, a Stevens contacts view, and a per-institution cap in the top 50 (`--cap`, `--cap-window`); `ranked.csv` with the top `--top` rows; `pca.png`; and `report.json` with the fit, the score spread, the top-100 institution mix per view, the ROR check counts and an exact against KD-tree and HNSW lookup check. `--min-rows` and `--watch` re-run as the input grows.

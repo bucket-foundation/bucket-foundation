@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import time
@@ -8,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import canon, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
+from . import advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -122,7 +123,109 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--backends", default=",".join(neighbors.BACKENDS))
     b.add_argument("--queries", type=int, default=500)
     b.add_argument("--threads", type=int, default=1)
+    a = sub.add_parser("advisor-review")
+    a.add_argument("--people", type=Path, required=True)
+    a.add_argument("--query", type=Path, required=True)
+    a.add_argument("--out", type=Path, required=True)
+    a.add_argument("--k", type=int, default=64)
+    a.add_argument("--top", type=int, default=300)
+    a.add_argument("--cap", type=int, default=5)
+    a.add_argument("--cap-window", type=int, default=50)
+    a.add_argument("--label", type=int, default=25)
+    a.add_argument("--min-df", type=int, default=3)
+    a.add_argument("--max-df", type=float, default=0.2)
+    a.add_argument("--min-chars", type=int, default=200)
+    a.add_argument("--seed", type=int, default=0)
+    a.add_argument("--min-rows", type=int, default=0)
+    a.add_argument("--bench-k", type=int, default=25)
+    a.add_argument("--stop-heading", default="## References")
+    a.add_argument("--text-keys", help="comma-separated record paths to use as text, e.g. author_topics.name,works")
+    a.add_argument("--scoring", choices=advisors.SCORINGS, default="whitened")
+    a.add_argument("--ror-cache", type=Path, help="cache file for ROR lookups; enables country and profile checks")
+    a.add_argument("--ror-offline", action="store_true")
+    a.add_argument("--watch", type=float, default=0.0)
+    a.add_argument("--max-runs", type=int, default=0)
     return p
+
+def cmd_advisor_review(args) -> int:
+    out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
+    last = None
+    runs = 0
+    while True:
+        sig = None
+        if args.people.exists():
+            st = args.people.stat()
+            sig = (st.st_size, st.st_mtime_ns)
+        if sig is not None and sig != last:
+            keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+            people = advisors.load_people(args.people, text_keys=keys)
+            if len(people) >= args.min_rows:
+                advisor_run(args, out, people)
+                runs += 1
+                last = sig
+            else:
+                print(f"{len(people)} people, waiting for {args.min_rows}", flush=True)
+                last = sig
+        if not args.watch or (args.max_runs and runs >= args.max_runs):
+            break
+        time.sleep(args.watch)
+    if runs == 0:
+        print("no run: input missing or below --min-rows", file=sys.stderr)
+        return 3
+    return 0
+
+def advisor_run(args, out: Path, people: list) -> None:
+    timings: dict = {"load_s": 0.0}
+    checks = None
+    if args.ror_cache:
+        client = ror.RorClient(args.ror_cache, offline=args.ror_offline)
+        checks = _time(timings, "ror_s", ror.validate, people, client)
+    query_text = args.query.read_text(encoding="utf-8")
+    query = advisors.statement_body(query_text, args.stop_heading)
+    model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
+                   min_chars=args.min_chars, seed=args.seed)
+    rows, qraw, scored = _time(timings, "rank_s", advisors.rank, model_, query, top=None, scoring=args.scoring)
+    phd = [row for row in rows if not advisors.is_source(row, "stevens")]
+    mixes = {
+        "all_sources": advisors.institution_mix(rows),
+        "phd_view": advisors.institution_mix(phd),
+        "phd_view_capped": advisors.institution_mix(advisors.diversify(phd, args.cap, args.cap_window)),
+    }
+    space, qspace = advisors.score_space(model_.result.raw_scores, qraw, args.scoring)
+    bench = advisors.index_benchmark(space, np.vstack([qspace[None, :], space[:199]]), k=args.bench_k)
+    advisors.write_csv(rows[: args.top], out / "ranked.csv")
+    _, axes = _time(timings, "plot_s", advisors.plot, model_, qraw, rows, out / "pca.png", label=args.label)
+    r = model_.result
+    sp_ = scored["score_spread"]
+    context = {
+        "key": hashlib.sha256(query.encode("utf-8")).hexdigest()[:12],
+        "summary": (f"{r.shape[0]:,} of {len(people):,} professors ranked against the research statement. "
+                    f"PhD advisors view by default; Stevens contacts in their own view."),
+        "method": (f"Each professor's topics become a term vector, weighted by rarity and scaled to unit length. "
+                   f"A truncated SVD keeps {r.k} orthogonal components, {r.variance_ratio.sum() * 100:.0f}% of the variance. "
+                   f"The statement is projected into the same components. Scores are cosine similarity after "
+                   f"{'centering on the mean professor and scaling each component to unit spread' if args.scoring == 'whitened' else args.scoring + ' scores'}, "
+                   f"so each component counts equally. The percentile compares a score with all {r.shape[0]:,} professors."),
+        "plot": (f"The plot uses components {axes['components'][0]} and {axes['components'][1]} because the statement "
+                 f"sits farthest from the average professor on them ({axes['statement_sd'][0]:+.1f} and "
+                 f"{axes['statement_sd'][1]:+.1f} sd), which together carry {axes['share_of_statement'] * 100:.0f}% of "
+                 f"the statement's position. Numbers mark the top {args.label} ranks."),
+        "spread": sp_,
+        "cap": args.cap,
+        "cap_window": args.cap_window,
+    }
+    advisors.write_page(rows, out / "pca.png", context, out / "index.html")
+    report = {
+        "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
+        "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),
+        "scoring": args.scoring, "score_spread": sp_, "plot": axes, "timings": timings,
+        "index_benchmark": bench, "checks": checks, "institution_mix_top100": mixes,
+        "statement_scores": [round(float(v), 5) for v in qraw],
+        "components": [{"index": c + 1, "top_terms": [t for t, _ in r.top_terms(c, 8)]} for c in range(r.k)],
+    }
+    export.write_json(report, out / "report.json")
+    print(json.dumps({k: report[k] for k in ("people", "fitted", "terms", "k", "score_spread", "checks", "institution_mix_top100", "timings")}), flush=True)
+    print(f"open: xdg-open {out / 'index.html'}", flush=True)
 
 def _print_neighbors(found: list) -> None:
     for nb in found:
@@ -322,6 +425,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "advisor-review":
+            return cmd_advisor_review(args)
         if args.cmd == "neighbors":
             return cmd_neighbors(args)
         if args.cmd == "neighbors-bench":

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advisor review</title>
+<style>
+:root{--bg:#EFE8D4;--panel:#E4DCC4;--line:rgba(31,28,22,.16);--ink:#1F1C16;--soft:#5E5543;--ochre:#8A641A;--ochre-fill:#B8861E;--teal:#0B6E6E;--rust:#9A3B22;--chip:#F6F1E3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F1C16;--panel:#2A261E;--line:rgba(239,232,212,.16);--ink:#EFE8D4;--soft:#B9AF96;--ochre:#D9A43A;--ochre-fill:#D9A43A;--teal:#3FB6B6;--rust:#E07A5F;--chip:#2F2A21}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:16px 16px 96px}
+h1{font:400 28px/1.15 Georgia,"Iowan Old Style",serif;margin:8px 0 4px}
+h2{font:400 20px/1.2 Georgia,serif;margin:28px 0 8px}
+.meta{color:var(--soft);font-size:13px;margin:0}
+a{color:inherit;text-decoration-color:var(--ochre);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+details.method{border-top:1px solid var(--ink);margin-top:16px;padding-top:8px}
+details.method summary{cursor:pointer;font-weight:600}
+details.method img{width:100%;height:auto;border-radius:4px;margin-top:8px}
+.method p{color:var(--soft);font-size:14px;margin:8px 0}
+.spread{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:8px 0}
+.spread div{border-top:1px solid var(--line);padding-top:4px;font-size:13px}
+.spread b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;display:grid;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select{max-width:100%;min-width:0;flex:1 1 150px;text-overflow:ellipsis}
+.toggle{flex:1 1 220px;min-width:0}
+.toggle span{overflow-wrap:anywhere}
+select,input,button{font:inherit;font-size:14px;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+input[type=search]{flex:1 1 200px;min-width:0}
+button{cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{color:var(--soft);font-size:13px}
+.cards{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;align-items:start}
+.card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--panel);display:grid;gap:8px;align-content:start}
+.card[data-status=shortlist]{border-color:var(--teal);box-shadow:inset 4px 0 0 var(--teal)}
+.card[data-status=maybe]{box-shadow:inset 4px 0 0 var(--ochre-fill)}
+.card[data-status=skip]{opacity:.55}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.name{font:400 19px/1.25 Georgia,serif;margin:0}
+.rank{font-variant-numeric:tabular-nums;color:var(--soft);font-size:13px;white-space:nowrap;text-align:right}
+.rank b{display:block;font-size:17px;color:var(--ink)}
+.where{color:var(--soft);font-size:14px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--soft)}
+.flag{color:var(--rust);font-weight:600}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{flex:1 1 90px}
+.actions button[aria-pressed=true][data-set=shortlist]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.actions button[aria-pressed=true][data-set=maybe]{background:var(--ochre-fill);color:#1F1C16;border-color:var(--ochre-fill)}
+.actions button[aria-pressed=true][data-set=skip]{background:var(--ink);color:var(--bg)}
+.deck{display:none;margin-top:12px}
+body.one .deck{display:block}
+body.one .cards{display:none}
+.deck .card{touch-action:pan-y;transition:transform .15s ease}
+.deck .hint{color:var(--soft);font-size:13px;text-align:center;margin:8px 0 0}
+.empty{color:var(--soft);padding:24px 0;text-align:center}
+.toggle{display:flex;gap:6px;align-items:center;font-size:14px}
+.more-filters summary{cursor:pointer;font-size:14px;color:var(--soft);padding:2px 0}
+.more-filters .row{margin-top:8px}
+@media (min-width:760px){.more-filters summary{display:none}}
+.toggle input{width:18px;height:18px;accent-color:var(--ochre-fill)}
+.more-wrap{text-align:center;margin:16px 0}
+body.one .more-wrap{display:none}
+@media (min-width:760px){main{padding:24px 32px 96px}.cards{grid-template-columns:1fr 1fr}.deck{max-width:560px;margin:12px auto 0}}
+@media (prefers-reduced-motion:reduce){.deck .card{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<p class="meta">Private review. Stored in this browser only.</p>
+<h1>Advisor review</h1>
+<p class="meta" id="summary"></p>
+
+<details class="method">
+<summary>How the ranking works</summary>
+<p id="method-text"></p>
+<div class="spread" id="spread"></div>
+<p id="plot-text"></p>
+<img src="__IMAGE__" alt="Every professor as a dot on the two components where the statement scores highest; the statement is a star and the top matches are numbered">
+</details>
+
+<div class="bar">
+<div class="row tabs" role="group" aria-label="View">
+<button type="button" data-view="list" aria-pressed="true">List</button>
+<button type="button" data-view="one" aria-pressed="false">One at a time</button>
+<button type="button" id="export">Export shortlist CSV</button>
+<span class="count" id="count"></span>
+</div>
+<div class="row">
+<select id="view" aria-label="View"><option value="phd">PhD advisors</option><option value="stevens">Stevens contacts</option><option value="all">Everyone</option></select>
+<label class="toggle"><input type="checkbox" id="cap" checked> <span id="cap-label"></span></label>
+</div>
+<div class="row">
+<input type="search" id="q" placeholder="Search name, institution, topic" aria-label="Search">
+<select id="f-status" aria-label="Decision"><option value="">All decisions</option><option value="none">Undecided</option><option value="shortlist">Shortlist</option><option value="maybe">Maybe</option><option value="skip">Skip</option></select>
+</div>
+<details class="more-filters"><summary>More filters</summary><div class="row" id="filters"></div></details>
+</div>
+
+<ol class="cards" id="cards"></ol>
+<p class="more-wrap"><button type="button" id="more">Show more</button></p>
+<section class="deck" id="deck" aria-live="polite"></section>
+</main>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(() => {
+const payload = JSON.parse(document.getElementById("data").textContent);
+const rows = payload.rows, ctx = payload.context;
+const KEY = "advisor-review:" + (ctx.key || "v1");
+const FILTERS = [["field","All fields"],["country","All countries"],["funding","All funding"],["institution","All institutions"],["taking_students","Taking students: any"],["identity","All profile checks"]];
+const PAGE_SIZE = 60;
+let limit = PAGE_SIZE;
+const CAP = ctx.cap || 5, WINDOW = ctx.cap_window || 50;
+const inSource = (r, s) => String(r.sources || "").split(";").map((x) => x.trim()).includes(s);
+const VIEWS = {phd: (r) => !inSource(r, "stevens"), stevens: (r) => inSource(r, "stevens"), all: () => true};
+function diversify(list) {
+  const picked = [], held = [], counts = {};
+  for (const r of list) {
+    const inst = r.institution || "";
+    if (picked.length < WINDOW && inst && (counts[inst] || 0) >= CAP) { held.push(r); continue; }
+    counts[inst] = (counts[inst] || 0) + 1;
+    picked.push(r);
+    if (picked.length === WINDOW) { picked.push(...held); held.length = 0; }
+  }
+  return picked.concat(held);
+}
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { decisions = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} };
+const $ = (id) => document.getElementById(id);
+const make = (tag, props = {}, kids = []) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(props)) { if (k === "text") n.textContent = v; else if (k === "dataset") Object.assign(n.dataset, v); else n.setAttribute(k, v); } for (const c of kids) if (c) n.append(c); return n; };
+const fmt = (x, d = 2) => Number(x).toFixed(d);
+
+$("summary").textContent = ctx.summary;
+$("method-text").textContent = ctx.method;
+$("plot-text").textContent = ctx.plot;
+const spread = $("spread");
+for (const [label, key] of [["Best score","top1"],["10th","top10"],["100th","top100"],["300th","top300"],["Median","median"]]) spread.append(make("div", {}, [make("b", {text: fmt(ctx.spread[key], 3)}), document.createTextNode(label)]));
+
+const present = FILTERS.filter(([k]) => rows.some((r) => r[k] !== "" && r[k] != null));
+for (const [k, label] of present) {
+  const sel = make("select", {id: "f-" + k, "aria-label": label});
+  sel.append(make("option", {value: "", text: label}));
+  const counts = {};
+  for (const r of rows) { const v = String(r[k] ?? ""); if (v) counts[v] = (counts[v] || 0) + 1; }
+  for (const v of Object.keys(counts).sort()) sel.append(make("option", {value: v, text: v + " (" + counts[v] + ")"}));
+  $("filters").append(sel);
+}
+
+const statusOf = (r) => decisions[r.id] || "none";
+function visible() {
+  const q = $("q").value.trim().toLowerCase();
+  const st = $("f-status").value;
+  const view = VIEWS[$("view").value] || VIEWS.all;
+  const list = rows.filter((r) => {
+    if (!view(r)) return false;
+    if (st && statusOf(r) !== st) return false;
+    for (const [k] of present) { const v = $("f-" + k).value; if (v && String(r[k] ?? "") !== v) return false; }
+    if (q && ![r.name, r.institution, r.department, r.field, r.shared_terms].join(" ").toLowerCase().includes(q)) return false;
+    return true;
+  });
+  return $("cap").checked ? diversify(list) : list;
+}
+
+function setStatus(r, s) {
+  if (decisions[r.id] === s) delete decisions[r.id]; else decisions[r.id] = s;
+  save(); render();
+}
+
+function card(r, tag = "li") {
+  const c = make(tag, {class: "card", dataset: {status: statusOf(r), id: r.id}});
+  const place = [r.institution, r.department].filter(Boolean).join(", ");
+  c.append(make("div", {class: "top"}, [
+    make("div", {}, [make("h3", {class: "name", text: r.name}), make("p", {class: "where", text: [place, r.country].filter(Boolean).join(" · ")})]),
+    make("div", {class: "rank"}, [make("b", {text: "#" + r.rank}), document.createTextNode("top " + fmt(Math.max(100 - r.percentile, 0.1), 1) + "%")]),
+  ]));
+  const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 5);
+  if (topics.length) c.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
+  const tags = make("div", {class: "tags"});
+  tags.append(make("span", {text: "score " + fmt(r.score, 3)}));
+  if (r.field) tags.append(make("span", {text: r.field}));
+  if (r.funding) tags.append(make("span", {text: r.funding}));
+  if (r.h_index !== "" && r.h_index != null) tags.append(make("span", {text: "h " + r.h_index}));
+  if (r.taking_students !== "" && r.taking_students != null) tags.append(make("span", {text: "taking students: " + r.taking_students}));
+  if (r.identity === "check") tags.append(make("span", {class: "flag", text: "profile may be another person" + (r.profile_institution ? " at " + r.profile_institution : "")}));
+  if (r.identity === "moved" && r.profile_institution) tags.append(make("span", {text: "publishes as " + r.profile_institution}));
+  if (r.email) { const a = make("a", {href: "mailto:" + r.email, text: r.email}); tags.append(a); }
+  c.append(tags);
+  const actions = make("div", {class: "actions"});
+  for (const [s, label] of [["shortlist","Shortlist"],["maybe","Maybe"],["skip","Skip"]]) {
+    const b = make("button", {type: "button", "aria-pressed": String(statusOf(r) === s), dataset: {set: s}, text: label});
+    b.addEventListener("click", () => setStatus(r, s));
+    actions.append(b);
+  }
+  c.append(actions);
+  return c;
+}
+
+function renderDeck(list) {
+  const deck = $("deck");
+  deck.replaceChildren();
+  const next = list.find((r) => statusOf(r) === "none");
+  if (!next) { deck.append(make("p", {class: "empty", text: "Every card in this view has a decision."})); return; }
+  const c = card(next, "article");
+  let x0 = null;
+  c.addEventListener("pointerdown", (e) => { if (e.target.closest("button,a")) return; x0 = e.clientX; c.setPointerCapture(e.pointerId); });
+  c.addEventListener("pointermove", (e) => { if (x0 !== null) c.style.transform = "translateX(" + (e.clientX - x0) + "px)"; });
+  c.addEventListener("pointerup", (e) => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0; x0 = null; c.style.transform = "";
+    if (dx > 90) setStatus(next, "shortlist"); else if (dx < -90) setStatus(next, "skip");
+  });
+  deck.append(c, make("p", {class: "hint", text: "Swipe right to shortlist, left to skip. Keys: s shortlist, m maybe, x skip."}));
+  deck.dataset.current = next.id;
+}
+
+function render() {
+  const list = visible();
+  const counts = {shortlist: 0, maybe: 0, skip: 0};
+  for (const r of rows) { const s = statusOf(r); if (s in counts) counts[s]++; }
+  $("count").textContent = list.length + " shown · " + counts.shortlist + " shortlisted · " + counts.maybe + " maybe · " + counts.skip + " skipped";
+  const ol = $("cards");
+  ol.replaceChildren(...list.slice(0, limit).map((r) => card(r)));
+  $("more").hidden = list.length <= limit;
+  $("more").textContent = "Show " + Math.min(PAGE_SIZE, list.length - limit) + " more of " + (list.length - limit);
+  if (!list.length) ol.append(make("li", {class: "empty", text: "No one matches these filters."}));
+  renderDeck(list);
+}
+
+document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-view]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  document.body.classList.toggle("one", b.dataset.view === "one");
+}));
+document.addEventListener("keydown", (e) => {
+  if (!document.body.classList.contains("one") || e.target.matches("input,select")) return;
+  const id = $("deck").dataset.current; const r = rows.find((x) => x.id === id); if (!r) return;
+  const map = {s: "shortlist", m: "maybe", x: "skip"}; if (map[e.key]) { e.preventDefault(); setStatus(r, map[e.key]); }
+});
+if (window.matchMedia("(min-width: 760px)").matches) document.querySelector(".more-filters").open = true;
+$("cap-label").textContent = "At most " + CAP + " per institution in the top " + WINDOW;
+const reset = () => { limit = PAGE_SIZE; render(); };
+$("more").addEventListener("click", () => { limit += PAGE_SIZE; render(); });
+$("view").addEventListener("change", reset);
+$("cap").addEventListener("change", reset);
+$("q").addEventListener("input", reset);
+$("f-status").addEventListener("change", reset);
+for (const [k] of present) $("f-" + k).addEventListener("change", reset);
+
+const csvCell = (v) => { let s = Array.isArray(v) ? v.join("; ") : String(v ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+$("export").addEventListener("click", () => {
+  const cols = ["decision","rank","name","institution","department","country","field","funding","email","score","percentile","shared_topics"];
+  const picked = rows.filter((r) => ["shortlist","maybe"].includes(statusOf(r))).sort((a, b) => (statusOf(a) === "shortlist" ? 0 : 1) - (statusOf(b) === "shortlist" ? 0 : 1) || a.rank - b.rank);
+  const lines = [cols.join(",")].concat(picked.map((r) => cols.map((c) => csvCell(c === "decision" ? statusOf(r) : r[c])).join(",")));
+  const blob = new Blob([lines.join("\n") + "\n"], {type: "text/csv"});
+  const a = make("a", {href: URL.createObjectURL(blob), download: "advisor-shortlist.csv"});
+  document.body.append(a); a.click(); a.remove();
+});
+render();
+})();
+</script>
+</body>
+</html>
