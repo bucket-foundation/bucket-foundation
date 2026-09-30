@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, Line, OrbitControls } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { Guide, SceneLayout, Vec3 } from "@/lib/explore/modes/types";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
@@ -20,12 +20,14 @@ function GuideView({ g }: { g: Guide }) {
     const curve = new THREE.CatmullRomCurve3(g.points.map((p) => new THREE.Vector3(...p)));
     return new THREE.TubeGeometry(curve, Math.min(1024, g.points.length * 6), g.radius, 8, false);
   }, [g]);
+  useEffect(() => () => tube?.dispose(), [tube]);
   const points = useMemo(() => {
     if (g.kind !== "points") return null;
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.Float32BufferAttribute(g.points.flat(), 3));
     return geo;
   }, [g]);
+  useEffect(() => () => points?.dispose(), [points]);
   switch (g.kind) {
     case "sphere":
       return (
