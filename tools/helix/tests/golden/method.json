@@ -1,0 +1,40 @@
+{
+ "dropped_slices": [],
+ "helix": "phase_k(t) = k/K + omega*(t - t0) turns, omega = 0.25 per year",
+ "input_sha256": "2cecb504caebc63afb5706a2e91b9e45af7946e4cb713998e3deb538cafd5a51",
+ "interpolation": "linear",
+ "interpolation_error": {
+  "max_l1": 0.15833333333333333,
+  "mean_l1": 0.10277777777777776,
+  "method": "leave-one-out on interior slices, L1 distance on shares",
+  "per_prime_max": [
+   0.04166666666666663,
+   0.07916666666666666,
+   0.05833333333333335
+  ],
+  "points": 3
+ },
+ "kind": "topics",
+ "normalization": "raw paper count divided by the slice total",
+ "primes": [
+  "optics",
+  "spin",
+  "water"
+ ],
+ "projection": {
+  "horizon": 2,
+  "method": "additive log-ratio transform, per-component linear trend by least squares, leverage-adjusted residual bootstrap scaled by sqrt(n/(n-2)) with refit, inverse transform to the simplex; bands are componentwise quantiles of on-simplex sample paths",
+  "min_slices": 4,
+  "n_boot": 400,
+  "seed": 1,
+  "step": 1.0
+ },
+ "series": "fixture-topics",
+ "slices": 5,
+ "source": {
+  "license": "CC0",
+  "retrieved": "2026-09-28",
+  "title": "Test fixture",
+  "url": "local:fixture"
+ }
+}

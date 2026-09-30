@@ -4,7 +4,6 @@ import numpy as np
 
 from .model import PrimeResult, TermStats
 
-
 def log_ratio(
     terms: np.ndarray,
     target: TermStats,
@@ -17,7 +16,6 @@ def log_ratio(
     other_rates = np.vstack([o.rates(terms, alpha) for o in others])
     ceiling = other_rates.max(axis=0)
     return np.log(rate_target) - np.log(ceiling), rate_target, other_rates
-
 
 def analyze(
     target: PrimeResult,

@@ -1,0 +1,26 @@
+{
+  "name": "@bucket/bkt",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "bkt": "./src/cli.tsx"
+  },
+  "scripts": {
+    "pack:content": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts",
+    "test": "bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun test",
+    "typecheck": "tsc --noEmit",
+    "build": "bun run pack:content && bun build --compile --minify src/cli.tsx --outfile dist/bkt"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.129.0",
+    "ink": "5",
+    "react": "18"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "@types/react": "18",
+    "react-devtools-core": "^8.0.0",
+    "typescript": "5"
+  }
+}

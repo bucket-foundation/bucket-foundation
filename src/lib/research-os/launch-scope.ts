@@ -2,6 +2,7 @@ export const LAUNCH_PAGES = [
   "/research-os/home",
   "/research-os/learn",
   "/research-os/learn/[branch]",
+  "/research-os/learn/path",
   "/research-os/learn/[branch]/place",
   "/research-os/learn/[branch]/study",
   "/research-os/learn/[branch]/[atom]",

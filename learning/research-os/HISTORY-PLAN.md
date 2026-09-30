@@ -76,7 +76,7 @@ P4 adds `geom extensions.geography(Point,4326)` generated from lat and lng, with
 
 - **`graph.periods`**: PeriodO or Pleiades id, `label`, `spatial_qids`, the four bounds, `span`, source FK, `status`.
 - **`graph.node_external_ids`**, primary key `(authority, external_id)`: one node per QID.
-- **Node kind `event`**, added to `nodes_kind_check` on the pattern of `20260921050000`. `readPrimesInputs` has no kind filter, so P1 adds `.neq("kind", "event")` at `src/lib/research-os/primes-report.ts:209` and `scripts/research-os/primes-report.ts:37`, and `scripts/test-research-os-primes-report.ts` pins `unfactoredByKind` with an event node in its fixture.
+- **Node kind `event`**, added to `nodes_kind_check` on the pattern of `20260921050000`. `readPrimesInputs` has no kind filter, so P1 adds `.neq("kind", "event")` at `src/lib/research-os/primes-report.ts:167` and `scripts/research-os/primes-report.ts:37`, and `scripts/test-research-os-primes-report.ts` pins `unfactoredByKind` with an event node in its fixture.
 
 ### 3.4 Attachment
 

@@ -57,6 +57,10 @@ Bucket Foundation canon lives on gdrive (not in this repo, too large, too many P
 - **Outcome canon (longevity)**: `gdrive:AGFarms/Nucleus/research/longevity-canon/`, cross-referenced to `bucket-canon/05-biophysics/sub-outcomes/longevity/`
 - **Kruse corpus**: `~/jackkruse/`, 460 scraped articles, FTS5 + MiniLM-L6-v2 + RRF hybrid search, one partial source for the 05-biophysics branch. **This is the Kruse Index.** Not open-source as of 2026-04-17.
 
+## Math Contract
+
+Every quantitative claim an agent writes cites BucketMath (`lean/`, `[bm:Name]`) or is tagged `[empirical: source, date, command]`: `docs/agents/MATH-CONTRACT.md`, tool `tools/bucketmath/bm.py`.
+
 ## Research Papers
 
 Rules for writing a Bucket paper to journal standard, LaTeX + Lean 4 +

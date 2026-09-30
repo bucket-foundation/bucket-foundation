@@ -15,6 +15,8 @@ export interface WaitlistEntry {
   created_at: string;
   updated_at: string;
   signups: number;
+  consent_at?: string;
+  consent_version?: string;
 }
 
 export interface SignupInput {
@@ -22,6 +24,7 @@ export interface SignupInput {
   name: string | null;
   role: WaitlistRole | null;
   wanted: string | null;
+  consent_version?: string;
 }
 
 export type ParsedSignup = { ok: true; input: SignupInput; suspect: boolean } | { ok: false; error: string };
@@ -66,8 +69,10 @@ export function parseSignup(body: unknown): ParsedSignup {
 }
 
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {
+  const { consent_version, ...fields } = input;
+  const consent = consent_version ? { consent_at: now, consent_version } : existing?.consent_version ? { consent_at: existing.consent_at, consent_version: existing.consent_version } : {};
   if (!existing) {
-    return { ...input, created_at: now, updated_at: now, signups: 1 };
+    return { ...fields, created_at: now, updated_at: now, signups: 1, ...consent };
   }
   return {
     email: existing.email,
@@ -77,6 +82,7 @@ export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, n
     created_at: existing.created_at,
     updated_at: now,
     signups: existing.signups + 1,
+    ...consent,
   };
 }
 
@@ -94,6 +100,7 @@ export function parseEntry(raw: unknown): WaitlistEntry | null {
     created_at: r.created_at,
     updated_at: typeof r.updated_at === "string" ? r.updated_at : r.created_at,
     signups: typeof r.signups === "number" && r.signups > 0 ? Math.floor(r.signups) : 1,
+    ...(typeof r.consent_at === "string" && typeof r.consent_version === "string" ? { consent_at: r.consent_at, consent_version: r.consent_version } : {}),
   };
 }
 

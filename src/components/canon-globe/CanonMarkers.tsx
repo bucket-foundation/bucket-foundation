@@ -1,8 +1,10 @@
 "use client";
-import { Html } from "@react-three/drei";
-import { useEffect, useMemo, useState } from "react";
+import { Billboard, Html } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
+import { globeProjection, markerScales, type Projection } from "./projections";
 
 export type CanonMarkerKind =
   | "canon-entry"
@@ -36,7 +38,9 @@ interface CanonMarkersProps {
   radius: number;
   reducedMotion: boolean;
   cameraDistance?: number;
-  cameraPosition?: [number, number, number];
+  projection?: Projection;
+  theta?: (id: string) => number;
+  unranked?: (id: string) => boolean;
   onHoverChange?: (m: CanonMarker | null) => void;
   onSelectChange?: (m: CanonMarker | null) => void;
 }
@@ -84,296 +88,281 @@ function markerColor(m: CanonMarker): string {
   return BRANCH_COLOR[b] || KIND_COLOR[m.kind] || "#D9A43A";
 }
 
+function MarkerTooltip({ m, color }: { m: CanonMarker; color: string }) {
+  return (
+    <div
+      style={{
+        pointerEvents: "none",
+        minWidth: "140px",
+        maxWidth: "280px",
+        background: "rgba(239, 232, 212, 0.96)",
+        color: "var(--basalt)",
+        border: `1px solid ${color}`,
+        borderRadius: "4px",
+        padding: "8px 14px",
+        fontFamily: "Cinzel, serif",
+        fontSize: 11,
+        lineHeight: 1.35,
+        letterSpacing: "0.12em",
+        boxShadow: "0 4px 18px rgba(31,28,22,0.32)",
+        whiteSpace: "normal",
+        wordBreak: "break-word",
+        textAlign: "center",
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+      }}
+    >
+      <div style={{ fontWeight: 500 }}>{m.title}</div>
+      {typeof m.value === "number" && (
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 600,
+            marginTop: 5,
+            letterSpacing: "0.06em",
+            color,
+          }}
+        >
+          {Number.isFinite(m.value)
+            ? m.value.toLocaleString(undefined, { maximumFractionDigits: 2 })
+            : "—"}
+        </div>
+      )}
+      <div
+        style={{
+          fontSize: 9,
+          opacity: 0.7,
+          marginTop: 4,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          color,
+        }}
+      >
+        {m.kind === "blue-zone"
+          ? "blue zone · longevity"
+          : m.kind === "world-indicator"
+          ? "world indicator"
+          : `${m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}${m.branch}`}
+      </div>
+      {m.kind === "blue-zone" && m.civilization && (
+        <div
+          style={{
+            fontSize: 9,
+            opacity: 0.78,
+            marginTop: 5,
+            letterSpacing: "0.04em",
+            textTransform: "none",
+            fontFamily: "Fraunces, Georgia, serif",
+            lineHeight: 1.4,
+          }}
+        >
+          {m.civilization}
+        </div>
+      )}
+      <div
+        style={{
+          fontSize: 8,
+          opacity: 0.5,
+          marginTop: 5,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+        }}
+      >
+        {m.kind === "world-indicator" ? "click to rank →" : m.kind === "blue-zone" ? "longevity ground-truth" : "click for details →"}
+      </div>
+    </div>
+  );
+}
+
+const MOVE_LAMBDA = 6;
+const EPS = 1e-4;
+
 export function CanonMarkers({
   markers,
   activeIndex,
   radius,
-  reducedMotion: _reducedMotion,
+  reducedMotion,
   cameraDistance,
-  cameraPosition,
+  projection = globeProjection,
+  theta,
+  unranked,
   onHoverChange,
   onSelectChange,
 }: CanonMarkersProps) {
+  const boundsDirty = useRef(true);
   const router = useRouter();
+  const invalidate = useThree((s) => s.invalidate);
   const [hover, setHover] = useState<number | null>(null);
+  const meshRef = useRef<THREE.InstancedMesh | null>(null);
+  const hitRef = useRef<THREE.InstancedMesh | null>(null);
+  const tipRef = useRef<THREE.Group | null>(null);
+  const activeRef = useRef<THREE.Group | null>(null);
+  const current = useRef(new Map<string, THREE.Vector3>());
+  const globeWeight = useRef(projection.earthOpacity);
 
   const lodScale = useMemo(() => {
     if (cameraDistance === undefined) return 1;
     const FAR = 3.4;
     const NEAR = 1.04;
-    const MIN_SCALE = 0.30;
+    const MIN_SCALE = 0.3;
     const t = (cameraDistance - NEAR) / (FAR - NEAR);
     return MIN_SCALE + Math.max(0, Math.min(1, t)) * (1 - MIN_SCALE);
   }, [cameraDistance]);
 
-  const visible = useMemo<boolean[]>(() => {
-    if (!cameraPosition) return markers.map(() => true);
-    const [cx, cy, cz] = cameraPosition;
-    return markers.map((m) => {
-      const mp = latLngToVec3(m.lat, m.lng, 1);
-      return mp.x * cx + mp.y * cy + mp.z * cz > 1.02;
-    });
-  }, [markers, cameraPosition]);
+  const targets = useMemo(() => {
+    const ctx = { radius, theta: theta ?? (() => 0), unranked };
+    boundsDirty.current = true;
+    return markers.map((m) => new THREE.Vector3(...projection.position(m, ctx)));
+  }, [markers, projection, radius, theta, unranked]);
+
+  const count = Math.max(1, markers.length);
+  const geometry = useMemo(() => new THREE.SphereGeometry(1, 14, 14), []);
+  const hitGeometry = useMemo(() => new THREE.IcosahedronGeometry(1, 0), []);
+  const material = useMemo(() => new THREE.MeshBasicMaterial({ toneMapped: false }), []);
+  const hitMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false }),
+    []
+  );
+  useEffect(
+    () => () => { geometry.dispose(); hitGeometry.dispose(); material.dispose(); hitMaterial.dispose(); },
+    [geometry, hitGeometry, material, hitMaterial]
+  );
 
   useEffect(() => {
-    if (hover !== null && visible[hover] === false) {
-      setHover(null);
-      onHoverChange?.(null);
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    const c = new THREE.Color();
+    markers.forEach((m, i) => mesh.setColorAt(i, c.set(markerColor(m))));
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    const seen = new Set(markers.map((m) => m.id));
+    for (const id of Array.from(current.current.keys())) if (!seen.has(id)) current.current.delete(id);
+    invalidate();
+  }, [markers, count, invalidate]);
+
+  useEffect(() => { invalidate(); }, [targets, projection, hover, activeIndex, lodScale, invalidate]);
+
+  useEffect(() => {
+    if (hover !== null && hover >= markers.length) setHover(null);
+  }, [hover, markers.length]);
+
+  const tmp = useMemo(
+    () => ({ m: new THREE.Matrix4(), q: new THREE.Quaternion(), s: new THREE.Vector3(), w: new THREE.Vector3(), cam: new THREE.Vector3() }),
+    []
+  );
+
+  useFrame((state, delta) => {
+    const mesh = meshRef.current;
+    const hit = hitRef.current;
+    if (!mesh || !hit) return;
+    const k = reducedMotion ? 1 : 1 - Math.exp(-MOVE_LAMBDA * Math.min(delta, 0.1));
+    let moving = false;
+    const gw = globeWeight.current;
+    const nextGw = reducedMotion ? projection.earthOpacity : gw + (projection.earthOpacity - gw) * k;
+    globeWeight.current = Math.abs(nextGw - projection.earthOpacity) < EPS ? projection.earthOpacity : nextGw;
+    if (globeWeight.current !== projection.earthOpacity) moving = true;
+    state.camera.getWorldPosition(tmp.cam);
+    tmp.cam.normalize();
+    for (let i = 0; i < markers.length; i++) {
+      const id = markers[i].id;
+      const target = targets[i];
+      let cur = current.current.get(id);
+      if (!cur) {
+        cur = target.clone();
+        current.current.set(id, cur);
+        boundsDirty.current = true;
+      } else if (cur.distanceToSquared(target) > EPS * EPS) {
+        cur.lerp(target, k);
+        boundsDirty.current = true;
+        if (cur.distanceToSquared(target) > EPS * EPS) moving = true;
+        else cur.copy(target);
+      }
+      const lifted = i === hover || i === activeIndex;
+      let facing = 1;
+      if (globeWeight.current > 0.01) {
+        mesh.localToWorld(tmp.w.copy(cur));
+        facing = tmp.w.normalize().dot(tmp.cam);
+      }
+      const { size, hit: hitSize } = markerScales({ lifted, lodScale, facing, globeWeight: globeWeight.current });
+      tmp.m.compose(cur, tmp.q, tmp.s.setScalar(size));
+      mesh.setMatrixAt(i, tmp.m);
+      tmp.m.compose(cur, tmp.q, tmp.s.setScalar(hitSize));
+      hit.setMatrixAt(i, tmp.m);
     }
-  }, [hover, visible, onHoverChange]);
+    mesh.count = markers.length;
+    hit.count = markers.length;
+    mesh.instanceMatrix.needsUpdate = true;
+    hit.instanceMatrix.needsUpdate = true;
+    if (boundsDirty.current) {
+      hit.computeBoundingSphere();
+      boundsDirty.current = false;
+    }
+    const place = (g: THREE.Group | null, idx: number | null | undefined, lift: number) => {
+      if (!g) return;
+      const m = typeof idx === "number" ? markers[idx] : undefined;
+      const p = m ? current.current.get(m.id) : undefined;
+      g.visible = !!p;
+      if (p) g.position.copy(p).multiplyScalar(lift);
+    };
+    place(tipRef.current, hover, 1.12);
+    place(activeRef.current, activeIndex, 1);
+    if (moving) invalidate();
+  });
 
   const reportHover = (idx: number | null) => {
     setHover(idx);
-    if (onHoverChange) onHoverChange(idx === null ? null : markers[idx] || null);
+    onHoverChange?.(idx === null ? null : markers[idx] || null);
   };
-  const positions = useMemo(
-    () => markers.map((m) => latLngToVec3(m.lat, m.lng, radius)),
-    [markers, radius]
-  );
-
-  const activePos =
-    typeof activeIndex === "number" && activeIndex >= 0 && activeIndex < positions.length
-      ? positions[activeIndex]
-      : null;
 
   const handleClick = (m: CanonMarker) => {
     if (onSelectChange) {
       onSelectChange(m);
       return;
     }
-    if (m.kind === "canon-entry" && m.href) {
-      router.push(`/canon/${m.branch}/${m.href}`);
-    } else {
-      router.push(`/canon/${m.branch}`);
-    }
+    if (m.kind === "canon-entry" && m.href) router.push(`/canon/${m.branch}/${m.href}`);
+    else router.push(`/canon/${m.branch}`);
   };
+
+  const hovered = hover !== null ? markers[hover] : undefined;
 
   return (
     <group>
-      {markers.map((m, i) => {
-        const p = positions[i];
-        const color = markerColor(m);
-        const isActive = i === activeIndex;
-        const isHover = i === hover;
-        const isFront = visible[i];
-
-        const lifted = isHover || isActive;
-        const baseHead = lifted ? 0.034 : 0.024 * lodScale;
-        const baseStem = lifted ? 0.10 : 0.06 * lodScale;
-        const headScale = baseHead;
-        const stemLen = baseStem;
-        const haloOuter = lifted ? 3.2 : 2.2;
-        const backOpacity = isFront ? 1 : 0.25;
-
-        const normal = p.clone().normalize();
-        const anchor = normal.clone().multiplyScalar(radius + 0.001);
-        const stemMid = normal.clone().multiplyScalar(radius + stemLen / 2);
-        const head = normal.clone().multiplyScalar(radius + stemLen + headScale * 0.6);
-
-        return (
-          <group key={m.id}>
-            <mesh
-              position={anchor}
-              onUpdate={(self) => self.lookAt(anchor.clone().add(normal))}
-            >
-              <ringGeometry args={[headScale * 0.7, headScale * haloOuter, 32]} />
-              <meshBasicMaterial
-                color={color}
-                transparent
-                opacity={(lifted ? 0.55 : 0.28) * backOpacity}
-                side={THREE.DoubleSide}
-                toneMapped={false}
-                depthWrite={false}
-              />
-            </mesh>
-
-            <mesh
-              position={stemMid}
-              onUpdate={(self) => self.lookAt(stemMid.clone().add(normal))}
-            >
-              <cylinderGeometry args={[headScale * 0.14, headScale * 0.20, stemLen, 8, 1, false]} />
-              <meshBasicMaterial
-                color={color}
-                transparent
-                opacity={0.85 * backOpacity}
-                toneMapped={false}
-              />
-            </mesh>
-
-            {lifted && isFront && (
-              <mesh
-                position={head}
-                onUpdate={(self) => self.lookAt(head.clone().add(normal))}
-              >
-                <ringGeometry args={[headScale * 1.05, headScale * 1.55, 24]} />
-                <meshBasicMaterial
-                  color={color}
-                  transparent
-                  opacity={0.45}
-                  side={THREE.DoubleSide}
-                  toneMapped={false}
-                  depthWrite={false}
-                />
-              </mesh>
-            )}
-
-            <mesh position={head}>
-              <sphereGeometry args={[headScale, 18, 18]} />
-              <meshBasicMaterial
-                color={color}
-                transparent
-                opacity={backOpacity}
-                toneMapped={false}
-              />
-            </mesh>
-
-            <mesh position={head.clone().multiplyScalar(1.0008)}>
-              <sphereGeometry args={[headScale * 0.45, 12, 12]} />
-              <meshBasicMaterial
-                color="#FFF8E6"
-                transparent
-                opacity={0.7 * backOpacity}
-                toneMapped={false}
-              />
-            </mesh>
-
-            {isFront && (
-              <mesh
-                position={head}
-                onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
-                onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
-                onClick={(e) => { e.stopPropagation(); handleClick(m); }}
-              >
-                <sphereGeometry args={[Math.max(headScale * 4, 0.04), 10, 10]} />
-                <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
-              </mesh>
-            )}
-
-            {isHover && (
-              <Html
-                position={head.clone().multiplyScalar(1.4)}
-                center
-                zIndexRange={[100, 0]}
-              >
-                <div
-                  style={{
-                    pointerEvents: "none",
-                    minWidth: "140px",
-                    maxWidth: "280px",
-                    background: "rgba(239, 232, 212, 0.96)",
-                    color: "var(--basalt)",
-                    border: `1px solid ${color}`,
-                    borderRadius: "4px",
-                    padding: "8px 14px",
-                    fontFamily: "Cinzel, serif",
-                    fontSize: 11,
-                    lineHeight: 1.35,
-                    letterSpacing: "0.12em",
-                    boxShadow: "0 4px 18px rgba(31,28,22,0.32)",
-                    whiteSpace: "normal",
-                    wordBreak: "break-word",
-                    textAlign: "center",
-                    backdropFilter: "blur(4px)",
-                    WebkitBackdropFilter: "blur(4px)",
-                  }}
-                >
-                  <div style={{ fontWeight: 500 }}>{m.title}</div>
-                  {typeof m.value === "number" && (
-                    <div
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        marginTop: 5,
-                        letterSpacing: "0.06em",
-                        color,
-                      }}
-                    >
-                      {Number.isFinite(m.value)
-                        ? m.value.toLocaleString(undefined, { maximumFractionDigits: 2 })
-                        : "—"}
-                    </div>
-                  )}
-                  <div
-                    style={{
-                      fontSize: 9,
-                      opacity: 0.7,
-                      marginTop: 4,
-                      letterSpacing: "0.2em",
-                      textTransform: "uppercase",
-                      color,
-                    }}
-                  >
-                    {m.kind === "blue-zone"
-                      ? "blue zone · longevity"
-                      : m.kind === "world-indicator"
-                      ? "world indicator"
-                      : `${m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}${m.branch}`}
-                  </div>
-                  {m.kind === "blue-zone" && m.civilization && (
-                    <div
-                      style={{
-                        fontSize: 9,
-                        opacity: 0.78,
-                        marginTop: 5,
-                        letterSpacing: "0.04em",
-                        textTransform: "none",
-                        fontFamily: "Fraunces, Georgia, serif",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {m.civilization}
-                    </div>
-                  )}
-                  <div
-                    style={{
-                      fontSize: 8,
-                      opacity: 0.5,
-                      marginTop: 5,
-                      letterSpacing: "0.2em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {m.kind === "world-indicator" ? "click to rank →" : m.kind === "blue-zone" ? "longevity ground-truth" : "click for details →"}
-                  </div>
-                </div>
-              </Html>
-            )}
-          </group>
-        );
-      })}
-
-      {activePos && (
-        <>
-          <mesh
-            position={activePos.clone().multiplyScalar(1.0005)}
-            onUpdate={(self) => self.lookAt(activePos.clone().multiplyScalar(2))}
-          >
+      <instancedMesh key={`v-${count}`} ref={meshRef} args={[geometry, material, count]} frustumCulled={false} />
+      <instancedMesh
+        key={`h-${count}`}
+        ref={hitRef}
+        args={[hitGeometry, hitMaterial, count]}
+        frustumCulled={false}
+        onPointerMove={(e) => {
+          e.stopPropagation();
+          if (e.instanceId === undefined || e.instanceId === hover) return;
+          reportHover(e.instanceId);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (e.instanceId !== undefined && markers[e.instanceId]) handleClick(markers[e.instanceId]);
+        }}
+      />
+      <group ref={activeRef} visible={false}>
+        <Billboard>
+          <mesh>
             <ringGeometry args={[0.048, 0.078, 48]} />
-            <meshBasicMaterial
-              color={"#D9A43A"}
-              transparent
-              opacity={0.7}
-              side={THREE.DoubleSide}
-              toneMapped={false}
-              depthWrite={false}
-            />
+            <meshBasicMaterial color="#D9A43A" transparent opacity={0.7} side={THREE.DoubleSide} toneMapped={false} depthWrite={false} />
           </mesh>
-          <mesh
-            position={activePos.clone().multiplyScalar(1.0007)}
-            onUpdate={(self) => self.lookAt(activePos.clone().multiplyScalar(2))}
-          >
+          <mesh>
             <ringGeometry args={[0.08, 0.092, 48]} />
-            <meshBasicMaterial
-              color={"#D9A43A"}
-              transparent
-              opacity={0.45}
-              side={THREE.DoubleSide}
-              toneMapped={false}
-              depthWrite={false}
-            />
+            <meshBasicMaterial color="#D9A43A" transparent opacity={0.45} side={THREE.DoubleSide} toneMapped={false} depthWrite={false} />
           </mesh>
-        </>
-      )}
+        </Billboard>
+      </group>
+      <group ref={tipRef} visible={false}>
+        {hovered && (
+          <Html center zIndexRange={[100, 0]}>
+            <MarkerTooltip m={hovered} color={markerColor(hovered)} />
+          </Html>
+        )}
+      </group>
     </group>
   );
 }

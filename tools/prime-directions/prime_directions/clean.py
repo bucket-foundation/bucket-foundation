@@ -5,19 +5,15 @@ from collections import Counter
 
 from .corpora import Doc
 
-
 MARKUP = re.compile(
     r"https?://\S+|www\.\S+|\]\([^)]*\)|<[^>\n]{0,400}>|\$\$[^$]{0,2000}\$\$|\$[^$\n]{0,300}[\\^_{}][^$\n]{0,300}\$|\\[a-zA-Z]+"
 )
 
-
 def scrub(text: str) -> str:
     return MARKUP.sub(" ", text)
 
-
 def line_threshold(n_docs: int, fraction: float = 0.002, floor: int = 5) -> int:
     return max(floor, int(fraction * n_docs))
-
 
 def strip_boilerplate(
     docs: list[Doc],

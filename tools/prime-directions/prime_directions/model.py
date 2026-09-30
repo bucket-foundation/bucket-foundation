@@ -12,7 +12,6 @@ from .corpora import Doc
 
 TOKEN_PATTERN = r"(?u)\b[^\W\d_]\w+\b"
 
-
 @dataclass
 class TermStats:
     vocab: np.ndarray
@@ -27,7 +26,6 @@ class TermStats:
         index = self.index
         counts = np.array([self.df[index[t]] if t in index else 0 for t in terms], dtype=float)
         return (counts + alpha) / (self.n_docs + 2 * alpha)
-
 
 @dataclass
 class PrimeResult:
@@ -45,6 +43,7 @@ class PrimeResult:
     orthogonality: float
     term_stats: TermStats
     params: dict = field(default_factory=dict)
+    row_sq_norms: np.ndarray | None = None
 
     @property
     def k(self) -> int:
@@ -55,15 +54,18 @@ class PrimeResult:
         order = np.argsort(-row)[:n]
         return [(str(self.vocab[i]), float(self.components[component, i])) for i in order]
 
+    def residuals(self) -> np.ndarray:
+        if self.row_sq_norms is None:
+            raise ValueError("residuals need the row norms recorded at fit time")
+        return np.clip(self.row_sq_norms - (self.raw_scores**2).sum(axis=1), 0, None)
+
     def term_weights(self) -> np.ndarray:
         w = np.sqrt(((self.singular_values[:, None] * self.components) ** 2).sum(axis=0))
         top = w.max()
         return w / top if top > 0 else w
 
-
 def default_min_df(n_docs: int) -> int:
     return max(2, min(10, n_docs // 50))
-
 
 def vectorize(
     texts: list[str],
@@ -88,18 +90,15 @@ def vectorize(
         keep = np.sort(keep[order[:max_features]])
     return full[:, keep].tocsr(), vocab[keep], stats
 
-
 def orthogonality_error(components: np.ndarray) -> float:
     gram = components @ components.T
     return float(np.abs(gram - np.eye(gram.shape[0])).max())
-
 
 def _flip_signs(u: np.ndarray, vt: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     idx = np.argmax(np.abs(vt), axis=1)
     signs = np.sign(vt[np.arange(vt.shape[0]), idx])
     signs[signs == 0] = 1
     return u * signs, vt * signs[:, None]
-
 
 def fit(
     corpus: str,
@@ -115,21 +114,39 @@ def fit(
         raise ValueError(f"{corpus}: {len(docs)} documents is too few for {k} components")
     min_df = default_min_df(len(docs)) if min_df is None else min_df
     matrix, vocab, stats = vectorize([d.text for d in docs], min_df, max_df, max_features)
-    if matrix.shape[1] <= k:
-        raise ValueError(f"{corpus}: {matrix.shape[1]} terms survive pruning, too few for {k} components")
+    params = {"min_df": min_df, "max_df": max_df, "max_features": max_features}
+    return fit_matrix(corpus, matrix, vocab, [d.id for d in docs], [d.title for d in docs], stats, k, n_iter, seed, params)
+
+def fit_matrix(
+    corpus: str,
+    matrix: sp.spmatrix,
+    vocab: np.ndarray,
+    doc_ids: list[str],
+    titles: list[str],
+    stats: TermStats,
+    k: int = 12,
+    n_iter: int = 7,
+    seed: int = 0,
+    params: dict | None = None,
+) -> PrimeResult:
+    matrix = sp.csr_matrix(matrix)
+    if matrix.shape[0] <= k or matrix.shape[1] <= k:
+        raise ValueError(f"{corpus}: a {matrix.shape[0]}x{matrix.shape[1]} matrix is too small for {k} components")
     u, s, vt = randomized_svd(matrix, n_components=k, n_iter=n_iter, random_state=seed)
     u, vt = _flip_signs(u, vt)
     raw = u * s
     col_mean = np.asarray(matrix.mean(axis=0)).ravel()
-    total_var = float((col_mean - col_mean**2).sum())
+    col_sq_mean = np.asarray(matrix.multiply(matrix).mean(axis=0)).ravel()
+    total_var = float((col_sq_mean - col_mean**2).sum())
     variance_ratio = raw.var(axis=0) / total_var if total_var > 0 else np.zeros(k)
     std = raw.std(axis=0)
     std[std == 0] = 1
     scores = (raw - raw.mean(axis=0)) / std
+    row_sq = np.asarray(matrix.multiply(matrix).sum(axis=1)).ravel()
     return PrimeResult(
         corpus=corpus,
-        doc_ids=[d.id for d in docs],
-        titles=[d.title for d in docs],
+        doc_ids=list(doc_ids),
+        titles=list(titles),
         vocab=vocab,
         components=vt,
         singular_values=s,
@@ -140,5 +157,6 @@ def fit(
         density=float(matrix.nnz / (matrix.shape[0] * matrix.shape[1])),
         orthogonality=orthogonality_error(vt),
         term_stats=stats,
-        params={"k": k, "min_df": min_df, "max_df": max_df, "max_features": max_features, "n_iter": n_iter, "seed": seed},
+        params={"k": k, "n_iter": n_iter, "seed": seed, **(params or {})},
+        row_sq_norms=row_sq,
     )
