@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { GenomeSummary } from "@/lib/explore/genome/parse";
+import { ParseTokens, sizeError, type GenomeReply } from "@/lib/explore/genome/job";
 
 interface Props {
   genome: GenomeSummary | null;
@@ -11,13 +12,15 @@ interface Props {
 export default function DnaPanel({ genome, onGenome }: Props) {
   const worker = useRef<Worker | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  const tokens = useRef(new ParseTokens());
   const [status, setStatus] = useState<string>("No file loaded. Files are parsed in this browser and never uploaded.");
 
   useEffect(() => {
     const w = new Worker(new URL("../../lib/explore/genome/genome.worker.ts", import.meta.url));
-    w.onmessage = (e: MessageEvent<{ ok: boolean; summary?: GenomeSummary; error?: string }>) => {
-      if (!e.data.ok || !e.data.summary) {
-        setStatus(`Could not read the file: ${e.data.error ?? "unknown error"}`);
+    w.onmessage = (e: MessageEvent<GenomeReply>) => {
+      if (!tokens.current.isCurrent(e.data.token)) return;
+      if (!e.data.ok) {
+        setStatus(`Could not read the file: ${e.data.error}`);
         return;
       }
       const s = e.data.summary;
@@ -39,11 +42,14 @@ export default function DnaPanel({ genome, onGenome }: Props) {
 
   const loadSample = async () => {
     setStatus("Parsing the sample genome…");
+    const token = tokens.current.next();
     const text = await (await fetch("/explore/sample-genome.txt")).text();
-    worker.current?.postMessage({ text });
+    if (!tokens.current.isCurrent(token)) return;
+    worker.current?.postMessage({ token, text });
   };
 
   const clear = () => {
+    tokens.current.cancel();
     onGenome(null);
     if (input.current) input.current.value = "";
     setStatus("Cleared. Nothing was stored.");
@@ -61,15 +67,21 @@ export default function DnaPanel({ genome, onGenome }: Props) {
           onChange={(e) => {
             const f = e.target.files?.[0];
             if (!f) return;
+            const tooBig = sizeError(f.size);
+            if (tooBig) {
+              tokens.current.cancel();
+              setStatus(tooBig);
+              return;
+            }
             setStatus(`Parsing ${f.name} in a worker…`);
-            worker.current?.postMessage({ file: f });
+            worker.current?.postMessage({ token: tokens.current.next(), file: f });
           }}
         />
       </label>
       <button type="button" className="border hairline px-3 py-1" data-testid="dna-sample" onClick={loadSample}>
         Load sample genome
       </button>
-      <button type="button" className="border hairline px-3 py-1" data-testid="dna-clear" onClick={clear} disabled={!genome}>
+      <button type="button" className="border hairline px-3 py-1" data-testid="dna-clear" onClick={clear}>
         Clear data
       </button>
       <span data-testid="dna-status" style={{ color: "var(--parchment-dim)" }}>{status}</span>
