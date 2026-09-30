@@ -123,7 +123,7 @@ export default function ResearchOsPage() {
         <section id="first-task" className="ros-section">
           <div className="ros-wrap">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Your first task</h2>
-            <p className="ros-section-sub">One concept, four steps. Research OS is in private testing; the launch list opens access in waves.</p>
+            <p className="ros-section-sub">One concept, four steps. Research OS is in private testing.</p>
             <ol className="list-decimal pl-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]">
               {FIRST_TASK.map((step) => (
                 <li key={step}>{step}</li>

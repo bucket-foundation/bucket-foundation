@@ -52,8 +52,8 @@ export default async function AcademyPage({ searchParams }: { searchParams?: Rec
           upward. You read an atom, answer from memory, and the scheduler brings it back before you forget it.
         </p>
         <p className="mt-4 text-[17px] leading-[1.75] text-[color:var(--basalt-2)]">
-          Research OS is in private testing, so the decks sit behind sign-in until the launch list opens. Leave your email
-          on the launch list to hear when your place comes up. The desktop app runs the same decks offline.
+          Research OS is in private testing, so the decks sit behind sign-in until the launch list opens. The launch list
+          is on the sign-in page. The desktop app runs the same decks offline.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
