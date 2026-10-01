@@ -35,6 +35,9 @@ const SUITES = {
       "scripts/test-llm-daily-limit.ts",
       "scripts/test-canon-allbranch-index.ts",
       "scripts/test-canon-embeddings.ts",
+      "scripts/test-canon-search-parity.ts",
+      "scripts/test-canon-route-parity.ts",
+      "scripts/test-canon-rank-lean-order.ts",
       "scripts/test-canon-explorer-{projections,url}.ts",
       "scripts/test-explore-*.ts",
       "scripts/test-canon-untouched.ts",
@@ -45,6 +48,8 @@ const SUITES = {
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-whats-new.mjs",
+      "scripts/test-whats-new-api.ts",
+      "scripts/test-whats-new-publish.ts",
       "scripts/test-release-signing.mjs",
     ],
     commands: [
@@ -153,7 +158,7 @@ function stepFor(file) {
       JSON.stringify({ module: "commonjs", baseUrl: ".", jsx: "react-jsx" }),
       file,
     ],
-    env: { TS_NODE_BASEURL: "./" },
+    env: { TS_NODE_BASEURL: "./", TS_NODE_IGNORE: "(?:^|/)node_modules/,\\.mjs$" },
   };
 }
 

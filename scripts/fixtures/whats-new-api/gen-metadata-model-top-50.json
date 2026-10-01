@@ -1,0 +1,21 @@
+{
+  "id": "gen-metadata-model-top-50",
+  "kind": "generation",
+  "category": "generation",
+  "date": "2026-10-01",
+  "source": "own",
+  "machine_generated": true,
+  "title": "Metadata model top 50",
+  "claim": "A 32-feature model of collection, file and docstring metadata puts later-solved problems in its top 50 at twice the base rate.",
+  "tool": "solver-gap-engine predict.py",
+  "run_id": "fc-137aec5c-2026-10-01",
+  "state": "candidate",
+  "score": {
+    "value": 0.3,
+    "meaning": "top-50 precision on one split against a 14.8% base rate; test AUC 0.544 with an interval that includes 0.5"
+  },
+  "evidence": [
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+  ],
+  "parent": "gap-score-backtest-2026-10"
+}

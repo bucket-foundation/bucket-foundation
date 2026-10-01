@@ -56,7 +56,9 @@ describe("daily quiz view", () => {
     const text = v.host.textContent ?? "";
     expect(text).toContain(`No quiz for ${DAY}`);
     expect(text).toContain("Bucket has no quiz saved for this day");
-    expect(text).toContain("has not shipped yet");
+    expect(text).toContain("nothing was built for this one");
+    expect(text).toContain("held nothing Bucket could ask about");
+    expect(text).not.toContain("Import");
     expect(v.host.querySelector(".error")).toBeNull();
     expect(v.host.querySelector("article")).toBeNull();
     expect(v.host.querySelector('a[href="#/work"]')).not.toBeNull();
@@ -128,7 +130,7 @@ describe("daily quiz view", () => {
 
   test("a server failure shows the error and never the empty state", async () => {
     const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError("data key does not match", 500)), dailyAnswer: async () => graded({}) });
-    expect(v.host.querySelector(".error")!.textContent).toBe("data key does not match");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket ran into a problem. Try again.");
     expect(v.host.textContent).not.toContain("No quiz for");
     await v.unmount();
   });
@@ -207,7 +209,7 @@ describe("daily quiz view", () => {
   test("a failed answer that is no refusal keeps the question open", async () => {
     const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: () => Promise.reject(new ApiError("elapsedMs required", 400)) });
     await v.click(v.button("dev"));
-    expect(v.host.querySelector(".error")!.textContent).toBe("elapsedMs required");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket could not use that. Check it and try again.");
     expect(v.host.textContent).toContain("0 of 2 answered");
     expect((v.button("dev") as HTMLButtonElement).disabled).toBe(false);
     await v.unmount();

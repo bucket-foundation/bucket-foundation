@@ -2,18 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
 import { selfRating, type GradeResult, type Item, type Question } from "./grade";
+import { statRows } from "./cli/out";
+import { paletteEntries, type PaletteTarget } from "./cli/table";
 import type { Session } from "./setup";
 
 type Screen = "home" | "quiz" | "review" | "stats";
 
-export const COMMANDS: { name: string; run: Screen | "quit" | "help"; hint: string }[] = [
-  { name: "quiz", run: "quiz", hint: "timed multiple choice" },
-  { name: "review", run: "review", hint: "due cards, self rated" },
-  { name: "stats", run: "stats", hint: "counts and device" },
-  { name: "home", run: "home", hint: "main menu" },
-  { name: "help", run: "help", hint: "key bindings" },
-  { name: "quit", run: "quit", hint: "exit bkt" },
-];
+export const COMMANDS = paletteEntries();
 
 export function isSubsequence(needle: string, hay: string): boolean {
   let at = 0;
@@ -209,13 +204,12 @@ function Stats({ session }: { session: Session }) {
   return (
     <Box flexDirection="column">
       <Text bold>stats</Text>
-      <Text>items {s.items}</Text>
-      <Text>cards seen {s.seen}</Text>
-      <Text>due now {s.due}</Text>
-      <Text>attempts {s.attempts}</Text>
-      <Text>outbox {session.store.outboxCount()}</Text>
-      <Text>device {session.device.id}</Text>
-      <Text>keyring {session.keyring.kind}</Text>
+      {statRows(s, session.store.outboxCount()).map(([label, n]) => (
+        <Text key={label}>
+          {label} {n}
+        </Text>
+      ))}
+      <Text dimColor>bkt whoami shows this device and its key store.</Text>
     </Box>
   );
 }
@@ -232,7 +226,7 @@ export function App({ session }: { session: Session }) {
   const [paletteCursor, setPaletteCursor] = useState(0);
   const keys = useMemo<KeyBus>(() => ({ current: null }), []);
 
-  const run = (target: Screen | "quit" | "help") => {
+  const run = (target: PaletteTarget) => {
     if (target === "quit") return exit();
     if (target === "help") return setHelp(true);
     setScreen(target);

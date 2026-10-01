@@ -6,9 +6,11 @@ export interface DatasetEntry {
   group: DatasetGroup;
 }
 
+export const SAMPLE_DATASET = "sample";
+
 export const BUNDLED_DATASETS: DatasetEntry[] = [
   { id: "canon", label: "canon", group: "bundled" },
-  { id: "sample", label: "sample advisors", group: "bundled" },
+  { id: SAMPLE_DATASET, label: "sample advisors", group: "bundled" },
 ];
 
 export const DEFAULT_DATASET = "canon";
@@ -18,7 +20,7 @@ export function validDatasetId(id: string | null | undefined): id is string {
   return typeof id === "string" && ID_PATTERN.test(id);
 }
 
-export function listDatasets(remote: { id: string; label?: string }[], extra: DatasetEntry[] = []): DatasetEntry[] {
+export function listDatasets(remote: { id: string; label?: string }[], extra: DatasetEntry[] = [], samples = true): DatasetEntry[] {
   const seen = new Set<string>();
   const out: DatasetEntry[] = [];
   const add = (e: DatasetEntry) => {
@@ -26,7 +28,7 @@ export function listDatasets(remote: { id: string; label?: string }[], extra: Da
     seen.add(e.id);
     out.push(e);
   };
-  BUNDLED_DATASETS.forEach(add);
+  BUNDLED_DATASETS.filter((e) => samples || e.id !== SAMPLE_DATASET).forEach(add);
   remote.forEach((r) => add({ id: r.id, label: r.label ?? r.id, group: "local" }));
   extra.forEach(add);
   return out;

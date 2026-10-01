@@ -70,6 +70,16 @@ function clozeWords(title: string): string[] {
   return (title.match(/[A-Za-z][A-Za-z-]{4,}/g) ?? []).filter((w) => !STOP.has(w.toLowerCase()));
 }
 
+const PRIORITY_WORDS = ["top", "high", "medium", "low", "lowest"];
+
+function plainStatus(status: string): string {
+  return status.replace(/_/g, " ");
+}
+
+function plainPriority(priority: number): string {
+  return `${PRIORITY_WORDS[priority] ?? "unranked"} priority`;
+}
+
 function recall(src: WorkSources, rng: Rng): QuizQuestion | null {
   const items: { text: string; ref: SourceRef; key: string }[] = [
     ...src.prs.map((p) => ({ text: prTitle(p.title), ref: prRef(p, src.repoUrl), key: `pr${p.number}` })),
@@ -91,7 +101,7 @@ function recall(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("recall", `${item.key}|${answer}`),
     type: "recall",
-    prompt: `Which word fills the blank in ${item.ref.kind === "pr" ? `PR ${item.ref.ref}` : `bead ${item.ref.ref}`}?`,
+    prompt: `Which word fills the blank in this ${item.ref.kind === "pr" ? "merged change" : "task"}?`,
     lines: [blanked],
     choices: shuffle(rng, [answer, ...distractors]),
     answer,
@@ -119,12 +129,12 @@ function trueFalse(src: WorkSources, rng: Rng): QuizQuestion | null {
       id: questionId("true_false", `${b.id}|status|${claimed}`),
       type: "true_false",
       prompt: "True or false?",
-      lines: [`Bead ${b.id}, "${b.title}", has status ${claimed}.`],
+      lines: [`The task "${b.title}" is ${plainStatus(claimed)}.`],
       choices: ["true", "false"],
       answer: claimed === b.status ? "true" : "false",
       tolerance: 0,
       limitSec: LIMIT_SEC.true_false,
-      explain: `Bead ${b.id} has status ${b.status}.`,
+      explain: `That task is ${plainStatus(b.status)}.`,
       sources: [beadRef(b)],
     };
   }
@@ -136,12 +146,12 @@ function trueFalse(src: WorkSources, rng: Rng): QuizQuestion | null {
     id: questionId("true_false", `pr${p.number}|date|${claimed}`),
     type: "true_false",
     prompt: "True or false?",
-    lines: [`PR #${p.number}, "${prTitle(p.title)}", merged into dev on ${claimed}.`],
+    lines: [`The change "${prTitle(p.title)}" merged on ${claimed}.`],
     choices: ["true", "false"],
     answer: offset === 0 ? "true" : "false",
     tolerance: 0,
     limitSec: LIMIT_SEC.true_false,
-    explain: `PR #${p.number} merged on ${p.date}.`,
+    explain: `That change merged on ${p.date}.`,
     sources: [prRef(p, src.repoUrl)],
   };
 }
@@ -180,13 +190,13 @@ function whichFirst(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("which_first", `pr${older.number}|pr${newer.number}`),
     type: "which_first",
-    prompt: "Which of these merged into dev first?",
+    prompt: "Which of these changes merged first?",
     lines: [],
     choices: shuffle(rng, [label(older), label(newer)]),
     answer: label(older),
     tolerance: 0,
     limitSec: LIMIT_SEC.which_first,
-    explain: `PR #${older.number} merged ${older.date}; PR #${newer.number} merged ${newer.date}.`,
+    explain: `"${label(older)}" merged ${older.date}; "${label(newer)}" merged ${newer.date}.`,
     sources: [prRef(older, src.repoUrl), prRef(newer, src.repoUrl)],
   };
 }
@@ -199,18 +209,18 @@ function estimate(src: WorkSources, rng: Rng): QuizQuestion | null {
   const options: { key: string; prompt: string; count: number; explain: string; refs: SourceRef[] }[] = [];
   for (const status of Array.from(new Set(src.beads.map((b) => b.status)))) {
     const n = src.beads.filter((b) => b.status === status).length;
-    options.push({ key: `beads-status-${status}`, prompt: `How many beads in the snapshot have status ${status}?`, count: n, explain: `${n} of ${src.beads.length} beads have status ${status}.`, refs: [] });
+    options.push({ key: `beads-status-${status}`, prompt: `How many of your tasks are ${plainStatus(status)}?`, count: n, explain: `${n} of ${src.beads.length} tasks are ${plainStatus(status)}.`, refs: [] });
   }
   for (const p of Array.from(new Set(src.beads.map((b) => b.priority)))) {
     const n = src.beads.filter((b) => b.priority === p).length;
-    options.push({ key: `beads-priority-${p}`, prompt: `How many beads in the snapshot are priority P${p}?`, count: n, explain: `${n} of ${src.beads.length} beads are P${p}.`, refs: [] });
+    options.push({ key: `beads-priority-${p}`, prompt: `How many of your tasks are ${plainPriority(p)}?`, count: n, explain: `${n} of ${src.beads.length} tasks are ${plainPriority(p)}.`, refs: [] });
   }
   for (const m of Array.from(new Set(src.prs.map((p) => monthOf(p.date))))) {
     const n = src.prs.filter((p) => monthOf(p.date) === m).length;
-    options.push({ key: `prs-month-${m}`, prompt: `How many PRs merged into dev during ${m}?`, count: n, explain: `${n} PRs merged into dev during ${m}.`, refs: [] });
+    options.push({ key: `prs-month-${m}`, prompt: `How many changes merged during ${m}?`, count: n, explain: `${n} changes merged during ${m}.`, refs: [] });
   }
   const feats = src.prs.filter((p) => /^feat/i.test(p.title)).length;
-  if (src.prs.length > 0) options.push({ key: "prs-feat", prompt: "Of the merged PRs on dev, how many are feat PRs?", count: feats, explain: `${feats} of ${src.prs.length} merged PRs are feat PRs.`, refs: [] });
+  if (src.prs.length > 0) options.push({ key: "prs-feat", prompt: "Of your merged changes, how many add a feature?", count: feats, explain: `${feats} of ${src.prs.length} merged changes add a feature.`, refs: [] });
   const usable = options.filter((o) => o.count >= 3);
   if (usable.length === 0) return null;
   const o = pick(rng, usable);
@@ -232,16 +242,11 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
   const useBead = src.beads.length > 1 && (src.prs.length < 2 || rng() < 0.5);
   if (useBead) {
     const b = pick(rng, src.beads);
-    const fields = ["the id", "the status", "the priority"] as const;
+    const fields = ["the status", "the priority"] as const;
     const wrong = pick(rng, fields);
-    let id = b.id;
     let status = b.status;
     let priority = b.priority;
-    if (wrong === "the id") {
-      const other = src.beads.filter((x) => x.id !== b.id);
-      if (other.length === 0) return null;
-      id = pick(rng, other).id;
-    } else if (wrong === "the status") {
+    if (wrong === "the status") {
       const other = Array.from(new Set(src.beads.map((x) => x.status))).filter((s) => s !== b.status);
       if (other.length === 0) return null;
       status = pick(rng, other);
@@ -249,15 +254,15 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
       priority = pick(rng, [0, 1, 2, 3, 4].filter((p) => p !== b.priority));
     }
     return {
-      id: questionId("spot_error", `${b.id}|${wrong}|${id}|${status}|${priority}`),
+      id: questionId("spot_error", `${b.id}|${wrong}|${status}|${priority}`),
       type: "spot_error",
-      prompt: "One of these facts is wrong. Which one?",
-      lines: [`"${b.title}"`, `id: ${id}`, `status: ${status}`, `priority: P${priority}`],
+      prompt: "One of these facts about a task is wrong. Which one?",
+      lines: [`"${b.title}"`, `status: ${plainStatus(status)}`, `priority: ${plainPriority(priority)}`],
       choices: [...fields],
       answer: wrong,
       tolerance: 0,
       limitSec: LIMIT_SEC.spot_error,
-      explain: `The bead is ${b.id}, status ${b.status}, priority P${b.priority}.`,
+      explain: `The task is "${b.title}", ${plainStatus(b.status)}, ${plainPriority(b.priority)}.`,
       sources: [beadRef(b)],
     };
   }
@@ -279,13 +284,13 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("spot_error", `pr${p.number}|${wrong}|${num}|${date}|${title}`),
     type: "spot_error",
-    prompt: "One of these facts about a merged PR is wrong. Which one?",
+    prompt: "One of these facts about a merged change is wrong. Which one?",
     lines: [`number: #${num}`, `merged: ${date}`, `title: ${title}`],
     choices: [...fields],
     answer: wrong,
     tolerance: 0,
     limitSec: LIMIT_SEC.spot_error,
-    explain: `PR #${p.number} merged ${p.date}: ${prTitle(p.title)}.`,
+    explain: `Change #${p.number} merged ${p.date}: ${prTitle(p.title)}.`,
     sources: [prRef(p, src.repoUrl)],
   };
 }

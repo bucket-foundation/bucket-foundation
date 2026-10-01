@@ -1,0 +1,24 @@
+{
+  "id": "formal-conjectures-september-2026",
+  "kind": "production",
+  "category": "production",
+  "date": "2026-10-01",
+  "source": "own",
+  "status": "open",
+  "title": "Formal-conjectures resolution rate",
+  "summary": "159 open problems in formal-conjectures moved to solved in September 2026, against 41 in the three months before.",
+  "plot_title": "Open problems retagged solved in formal-conjectures, by window, to upstream 137aec5c",
+  "discussion": "Counts follow each theorem name from an open tag at the window start to its tag at the window end. September moved 159 of 1,396 tracked open problems, 11.4%, across about 117 commits by about 24 authors, and 88 carry a formal-proof link. The earlier windows moved 5, 10, 39 and 41. A retag covers new proofs, counterexamples and corrected tags, and this count read no proof. The last window is one month; the others are three.",
+  "image": {
+    "filename": "resolution-rate.png",
+    "content_type": "image/png",
+    "base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+  },
+  "image_alt": "Bars of 5, 10, 39, 41 and 159 problems retagged solved across five windows",
+  "links": [
+    {
+      "label": "Pull request",
+      "href": "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+    }
+  ]
+}

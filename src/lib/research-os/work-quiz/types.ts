@@ -31,7 +31,7 @@ export interface WorkSources {
 }
 
 export interface SourceRef {
-  kind: "bead" | "pr" | "note";
+  kind: "bead" | "pr" | "note" | "chat";
   ref: string;
   label: string;
   href: string | null;

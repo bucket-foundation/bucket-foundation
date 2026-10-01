@@ -23,6 +23,7 @@ export interface WorkStatus {
   prs: number;
   repo: string | null;
   repoError: string | null;
+  chat?: { claude: boolean; codex: boolean };
   ready: boolean;
   answered: number;
   correct: number;
@@ -54,12 +55,71 @@ export interface DailyAnswer extends WorkAnswer {
   log10Distance: number | null;
 }
 
+export const PROGRESS_TROUBLE = "Bucket could not reach your saved progress. Close this window and open Bucket again.";
+
+export function plainError(status: number): string {
+  if (status === 401 || status === 403) return "Bucket is locked. Close this window and open Bucket again.";
+  if (status === 404) return "Bucket could not find that.";
+  if (status === 409) return "Bucket already did that.";
+  if (status === 413) return "That is too large for Bucket.";
+  if (status >= 400 && status < 500) return "Bucket could not use that. Check it and try again.";
+  return "Bucket ran into a problem. Try again.";
+}
+
+export interface CanonHit {
+  claim_id: number;
+  branch: string;
+  concept: string;
+  slug: string;
+  title: string;
+  score: number;
+  excerpt: string;
+  evidence_count: number;
+}
+
+export interface CanonPassage {
+  score: number;
+  kind: string;
+  source_path: string;
+  text: string;
+  url: string | null;
+  title: string;
+  author: string | null;
+  openable: boolean;
+}
+
+export interface CanonExcerpt {
+  id: number;
+  branch: string;
+  concept: string;
+  slug: string;
+  title: string;
+  text: string;
+  source: { title: string; url: string | null; timestamp: string | null };
+  evidence: CanonPassage[];
+}
+
+export interface CanonLicence {
+  kind: string;
+  name: string;
+  terms: string;
+  url: string | null;
+  works: number;
+}
+
+export interface CanonAbout {
+  version: string | null;
+  excerpts: number;
+  branches: string[];
+  licences: CanonLicence[];
+}
+
 export class ApiError extends Error {
   constructor(
-    message: string,
+    readonly code: string,
     readonly status: number,
   ) {
-    super(message);
+    super(plainError(status));
   }
 }
 
@@ -133,7 +193,7 @@ export class Api {
   readonly progress: BktServeStore;
 
   constructor(private token: string, onError: (e: Error) => void) {
-    this.progress = createBktServeStore({ token, onError });
+    this.progress = createBktServeStore({ token, onError: () => onError(new Error(PROGRESS_TROUBLE)) });
   }
 
   static async connect(onError: (e: Error) => void): Promise<Api> {
@@ -153,7 +213,7 @@ export class Api {
       body: init.body === undefined ? undefined : JSON.stringify(init.body),
     });
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
-    if (!r.ok) throw new ApiError(data.error ?? `${path} ${r.status}`, r.status);
+    if (!r.ok) throw new ApiError(data.error ?? "", r.status);
     return data;
   }
 
@@ -233,6 +293,10 @@ export class Api {
     return this.call<{ repo: string | null }>("/local/work-quiz/repo", { method: "POST", body: { path } });
   }
 
+  workChat(chat: { claude: boolean; codex: boolean }) {
+    return this.call<{ chat: { claude: boolean; codex: boolean } }>("/local/work-quiz/chat", { method: "POST", body: chat });
+  }
+
   workForget() {
     return this.call<{ cleared: boolean }>("/local/work-quiz/forget", { method: "POST", body: {} });
   }
@@ -256,8 +320,26 @@ export class Api {
   async ros<K extends RosResource>(resource: K): Promise<RosPayloads[K] | null> {
     const r = await fetch(ROS_PATHS[resource].local, { headers: { authorization: `Bucket ${this.token}` } });
     if (r.status === 404) return null;
-    if (!r.ok) throw new Error(`${resource} ${r.status}`);
+    if (!r.ok) throw new ApiError(resource, r.status);
     return parseRos(resource, await r.json());
+  }
+
+  canonSearch(q: string, branch = "", topK = 20) {
+    const p = new URLSearchParams({ q, top_k: String(topK) });
+    if (branch) p.set("branch", branch);
+    return this.call<{ results: CanonHit[] }>(`/local/canon/search?${p}`).then((r) => r.results);
+  }
+
+  canonExcerpt(id: number) {
+    return this.call<CanonExcerpt>(`/local/canon/excerpt?id=${id}`);
+  }
+
+  canonAbout() {
+    return this.call<CanonAbout>("/local/canon/licences");
+  }
+
+  openLink(url: string) {
+    return this.call<{ opened: string }>("/local/open", { method: "POST", body: { url } });
   }
 
   notes() {
