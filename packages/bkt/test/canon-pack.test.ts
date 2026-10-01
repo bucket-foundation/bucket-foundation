@@ -18,7 +18,7 @@ const pack = buildCanonPack(REPO);
 describe("rights filter", () => {
   test("denies by path prefix, video id, path name and listed file, and never by title", () => {
     expect(denyRef(deny, `_intake/${OWNER.toLowerCase()}-blog-corpus/articles/a.md`)).toBe("prefix");
-    expect(denyRef(deny, `/home/x/bucket-foundation/_intake/${OWNER.toLowerCase()}-blog-corpus/a.md`)).toBe("prefix");
+    expect(denyRef(deny, `/srv/checkout/bucket-foundation/_intake/${OWNER.toLowerCase()}-blog-corpus/a.md`)).toBe("prefix");
     expect(denyRef(deny, `yt/${DENIED_ID}-some-talk/transcript.txt`)).toBe("video");
     expect(denyRef(deny, `https://www.youtube.com/watch?v=${DENIED_ID}&t=12`)).toBe("video");
     expect(denyRef(deny, `https://youtu.be/${DENIED_ID}`)).toBe("video");
