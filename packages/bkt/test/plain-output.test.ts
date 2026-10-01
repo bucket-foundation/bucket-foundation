@@ -139,6 +139,7 @@ function plans(spec: CommandSpec): { args: string[]; stdin?: string }[] {
   if (spec.name === "analyses") return [{ args: ["analyses"] }, { args: ["analyses", "--where"] }, { args: ["analyses", join(dir, "nowhere")] }];
   if (spec.name === "hai score") return [{ args: [...words, "--dry-run", "--dir", join(dir, "hai")] }];
   if (spec.name === "hai freeze" || spec.name === "hai review") return [{ args: [...words, "--dir", join(dir, "hai")] }];
+  if (spec.name === "completion") return ["bash", "zsh", "fish"].map((shell) => ({ args: ["completion", shell] }));
   if (spec.name === "help") return [{ args: ["help"] }, ...CLI_COMMANDS.map((c) => ({ args: ["help", ...c.name.split(" ")] }))];
   if (spec.session && !spec.terminal) return [{ args: [...words, ...vault], stdin: "pw\n" }];
   return [{ args: words }];
