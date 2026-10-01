@@ -55,16 +55,29 @@ function abstractOf(inv) {
   return words.filter(Boolean).join(" ");
 }
 
-const lastWord = (name) => String(name ?? "").trim().split(/\s+/).pop() ?? "";
-const entry = (row, doi, family) => ({ row, doi: normDoi(doi), key: dedupeKey(row[2], family) });
+const MIN_TITLE_KEY = 16;
+const norm = (v) => flat(v).normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, "");
+const entry = (row, doi, firstAuthor) => ({ row, doi: normDoi(doi), title: norm(row[2]), author: norm(firstAuthor), year: row[3] });
 
 export function normDoi(doi) {
   return String(doi ?? "").trim().toLowerCase().replace(/^https?:\/\/(?:dx\.)?doi\.org\//, "");
 }
 
-export function dedupeKey(title, family) {
-  const norm = (v) => flat(v).normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, "");
-  return norm(title) && norm(family) ? `${norm(title)}|${norm(family)}` : "";
+export function sameTitle(a, b) {
+  const [x, y] = [norm(a), norm(b)];
+  if (!x || !y) return false;
+  if (x === y) return true;
+  return Math.min(x.length, y.length) >= MIN_TITLE_KEY && (x.startsWith(y) || y.startsWith(x));
+}
+
+export function sameFamily(family, fullName) {
+  const [f, n] = [norm(family), norm(fullName)];
+  return !!f && !!n && (n.endsWith(f) || n.startsWith(f));
+}
+
+export function sameWork(a, b) {
+  if (!sameTitle(a.title, b.title)) return false;
+  return sameFamily(a.family, b.author) || (a.year !== null && a.year === b.year);
 }
 
 function openalexEntries() {
@@ -84,7 +97,7 @@ function openalexEntries() {
       const first = w.authorships?.[0]?.author?.display_name ?? "";
       const more = (w.authorships?.length ?? 0) > 1 ? " et al." : "";
       const venue = w.primary_location?.source?.display_name ?? "";
-      out.push(entry(["o", id, flat(w.title), w.publication_year ?? null, cut(abstractOf(w.abstract_inverted_index) || venue), cut(`${first}${more}`, 60)], w.doi, lastWord(first)));
+      out.push(entry(["o", id, flat(w.title), w.publication_year ?? null, cut(abstractOf(w.abstract_inverted_index) || venue), cut(`${first}${more}`, 60)], w.doi, first));
     }
   }
   return out;
@@ -97,7 +110,7 @@ function pubmedEntries() {
     if (!m?.title || !m.pmid) continue;
     const first = m.authors?.[0] ?? "";
     const more = (m.authors?.length ?? 0) > 1 ? " et al." : "";
-    out.push(entry(["p", String(m.pmid), flat(m.title), yearOf(m.year), cut(m.abstract || m.journal), cut(`${first}${more}`, 60)], m.doi, lastWord(first)));
+    out.push(entry(["p", String(m.pmid), flat(m.title), yearOf(m.year), cut(m.abstract || m.journal), cut(`${first}${more}`, 60)], m.doi, first));
   }
   return out;
 }
@@ -109,7 +122,7 @@ function arxivEntries() {
     if (!m?.title || !m.id) continue;
     const first = m.authors?.[0] ?? "";
     const more = (m.authors?.length ?? 0) > 1 ? " et al." : "";
-    out.push(entry(["a", m.id, flat(m.title), yearOf(m.published), cut(m.summary), cut(`${first}${more}`, 60)], m.doi, lastWord(first)));
+    out.push(entry(["a", m.id, flat(m.title), yearOf(m.published), cut(m.summary), cut(`${first}${more}`, 60)], m.doi, first));
   }
   return out;
 }
@@ -198,40 +211,44 @@ export function readPrimaryPapers() {
 const authorName = (a) => [a?.given, a?.family].filter(Boolean).join(" ");
 
 export function mergePrimaryPapers(existing, records) {
-  const dois = new Set(existing.map((e) => e.doi).filter(Boolean));
-  const keys = new Set(existing.map((e) => e.key).filter(Boolean));
-  const added = new Set();
+  const dois = new Map(existing.filter((e) => e.doi).map((e) => [e.doi, e]));
+  const added = [];
   const stats = { read: records.length, added: 0, sameDoi: 0, sameTitleAuthor: 0, repeated: 0, noDoi: 0, noAuthor: 0 };
+  const skipped = [];
+  const skip = (reason, r, match) => {
+    stats[reason]++;
+    skipped.push({ reason, doi: normDoi(r?.doi), title: flat(r?.title), match: match ? `${match.row[0]}/${match.row[1]}` : "" });
+  };
   const out = [];
   for (const r of records) {
     const doi = normDoi(r?.doi);
-    const key = dedupeKey(r?.title, r?.authors?.[0]?.family);
     const by = (r?.authors ?? []).map(authorName).filter(Boolean).join(", ");
-    if (!doi || !flat(r?.title)) stats.noDoi++;
-    else if (!by) stats.noAuthor++;
-    else if (added.has(doi) || (key && added.has(key))) stats.repeated++;
-    else if (dois.has(doi)) stats.sameDoi++;
-    else if (key && keys.has(key)) stats.sameTitleAuthor++;
+    const work = { title: r?.title, family: r?.authors?.[0]?.family, year: yearOf(r?.year) };
+    const twin = (pool) => pool.find((e) => sameWork(work, e));
+    if (!doi || !flat(r?.title)) skip("noDoi", r);
+    else if (!by) skip("noAuthor", r);
+    else if (added.some((e) => e.doi === doi) || twin(added)) skip("repeated", r, added.find((e) => e.doi === doi) ?? twin(added));
+    else if (dois.has(doi)) skip("sameDoi", r, dois.get(doi));
+    else if (twin(existing)) skip("sameTitleAuthor", r, twin(existing));
     else {
-      added.add(doi);
-      if (key) added.add(key);
-      out.push(["d", doi, flat(r.title), yearOf(r.year), cut(r.venue?.name), cut(by, AUTHORS)]);
+      const row = ["d", doi, flat(r.title), work.year, cut(r.venue?.name), cut(by, AUTHORS)];
+      added.push(entry(row, doi, authorName(r.authors[0])));
+      out.push(row);
       stats.added++;
     }
   }
-  return { rows: out, stats };
+  return { rows: out, stats, skipped };
 }
-
 
 export function buildIndex() {
   const existing = [...openalexEntries(), ...pubmedEntries(), ...arxivEntries()];
   const primary = mergePrimaryPapers(existing, readPrimaryPapers());
   const items = [...rows(existing), ...buildGutenberg(), ...buildWikisource(), ...buildYt(), ...primary.rows];
-  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], licenses: LICENSE, items, primary: primary.stats };
+  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], licenses: LICENSE, items, primary: primary.stats, skipped: primary.skipped };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
-  const { primary, ...index } = buildIndex();
+  const { primary, skipped, ...index } = buildIndex();
   const body = JSON.stringify(index);
   const big = Buffer.byteLength(body) > LIMIT;
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -241,4 +258,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url
   const counts = {};
   for (const it of index.items) counts[it[0]] = (counts[it[0]] ?? 0) + 1;
   console.log(`${path.relative(ROOT, target)} ${Buffer.byteLength(body)} bytes ${index.items.length} items`, counts, primary);
+  for (const k of skipped) console.log(`skipped ${k.reason} ${k.doi || "no-doi"} ${JSON.stringify(k.title)}${k.match ? ` held as ${k.match}` : ""}`);
 }
