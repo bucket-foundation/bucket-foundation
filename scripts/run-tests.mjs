@@ -37,6 +37,7 @@ const SUITES = {
       "scripts/test-canon-embeddings.ts",
       "scripts/test-canon-search-parity.ts",
       "scripts/test-canon-route-parity.ts",
+      "scripts/test-canon-rank-lean-order.ts",
       "scripts/test-canon-explorer-{projections,url}.ts",
       "scripts/test-explore-*.ts",
       "scripts/test-canon-untouched.ts",
