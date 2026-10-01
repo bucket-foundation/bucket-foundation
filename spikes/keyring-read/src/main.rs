@@ -245,9 +245,9 @@ mod os {
     pub fn on_timeout(shot: &Path) -> String {
         let p = tool(&["/usr/bin/pgrep", "-lf", "SecurityAgent"], None);
         let s = tool(&["/usr/sbin/screencapture", "-x", &shot.to_string_lossy()], None);
-        let k = tool(&["/usr/bin/killall", "SecurityAgent"], None);
+        let k = tool(&["/usr/bin/killall", "-9", "SecurityAgent"], None);
         format!(
-            "SecurityAgent processes: [{}]; screencapture exit {}; killall SecurityAgent exit {}",
+            "SecurityAgent processes: [{}]; screencapture exit {}; killall -9 SecurityAgent exit {}",
             String::from_utf8_lossy(&p.stdout).trim().replace('\n', " | "),
             s.code,
             k.code

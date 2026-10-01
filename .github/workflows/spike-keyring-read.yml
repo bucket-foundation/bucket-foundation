@@ -40,7 +40,15 @@ jobs:
       SPIKE: spikes/keyring-read
       RELEASE_BASE: https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.4.0
     steps:
+      - name: allow checkout of names Windows cannot write
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/archive/
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - name: build bkt from the branch
         run: BKT_TARGETS=${{ matrix.target }} bash scripts/release/build-binaries.sh "$PWD/$SPIKE/bin/branch"
