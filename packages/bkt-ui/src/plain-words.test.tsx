@@ -405,7 +405,101 @@ describe("path", () => {
     const v = await mount({ name: "path", to: "ph-entropy" }, withAtoms([{ id: "ph-entropy", title: "Entropy", requires: ["ph-heat"] }, { id: "ph-heat", title: "Heat", requires: ["ph-work"] }, { id: "ph-work", title: "Work", requires: ["ph-entropy"] }]));
     expect(v.host.querySelector(".error")!.textContent).toBe(TOPIC_CYCLE);
     expect(TOPIC_CYCLE).toBe("Some topics wait on each other.");
+    expect(Array.from(v.host.querySelectorAll(".error")).map((e) => e.textContent)).toEqual([TOPIC_CYCLE]);
+    expect(v.host.querySelectorAll(".topic-map .topic").length).toBe(4);
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(3);
     expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("no topics: one sentence and no map", async () => {
+    const { NO_TOPICS } = await import("./views/Path");
+    const v = await mount({ name: "path" }, empty());
+    expect(v.text()).toContain(NO_TOPICS);
+    expect(v.host.querySelector(".topic-map")).toBeNull();
+    expect(v.host.querySelector(".grip")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the map names each topic with its state in words and a shape", async () => {
+    const { GRIP_CAPTION, PICK_A_TOPIC } = await import("./views/Path");
+    const physics = ATOMS["02-physics"];
+    const now = Date.now();
+    let s = grade(normalizeState(null), physics, {}, "ph-heat", 3, "recall", now - 40 * 86_400_000);
+    s = grade(s, physics, {}, "ph-entropy", 3, "recall", now);
+    const v = await mount({ name: "path" }, withAtoms(physics, { "02-physics": { data: s } }));
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Known.", "Heat. Due.", "Limit. New.", "Second law. New."]);
+    expect(v.host.querySelector(".topic.due path.glyph")).not.toBeNull();
+    expect(v.host.querySelector(".topic.known circle.glyph.solid")).not.toBeNull();
+    expect(v.host.querySelector(".topic.new circle.glyph.hollow")).not.toBeNull();
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(2);
+    expect(v.text()).toContain("4 topics joined by 2 links.");
+    expect(v.text()).toContain(GRIP_CAPTION);
+    expect(v.text()).toContain(PICK_A_TOPIC);
+    expect(v.host.querySelector(".topic-map svg")!.getAttribute("tabindex")).toBe("0");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a locked topic is drawn as locked", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Locked.", "Heat. New.", "Limit. New.", "Second law. Locked."]);
+    expect(v.host.querySelector(".topic.locked rect.glyph.hollow")).not.toBeNull();
+    await v.unmount();
+  });
+
+  test("picking a topic shows what it needs and opens, and the sphere follows", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const node = (name: string) => Array.from(v.host.querySelectorAll(".topic-map .topic")).find((g) => g.getAttribute("aria-label")!.startsWith(name))!;
+    const pressed = () => Array.from(v.host.querySelectorAll(".grip-rows .branch")).filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.textContent);
+    expect(pressed()).toEqual([]);
+    await v.act(async () => node("Entropy").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(window.location.hash).toBe("#/path/ph-entropy");
+    expect(node("Entropy").getAttribute("aria-pressed")).toBe("true");
+    const panel = v.host.querySelector(".topic-panel")!;
+    expect(panel.querySelector("h2")!.textContent).toBe("Entropy");
+    expect(Array.from(panel.querySelectorAll("h3")).map((h) => h.textContent)).toEqual(["Needs first", "Opens next", "Learn in this order"]);
+    expect(Array.from(panel.querySelectorAll(".linked")).map((u) => Array.from(u.querySelectorAll(".link")).map((b) => b.textContent))).toEqual([["Heat"], ["Second law"]]);
+    const start = panel.querySelector("a.start") as HTMLAnchorElement;
+    expect(start.textContent).toBe("Start this topic in Learn");
+    expect(start.getAttribute("href")).toBe("#/learn/02-physics/ph-entropy");
+    expect(pressed()).toEqual(["physics"]);
+    expect(violations(v.host)).toEqual([]);
+
+    const maths = Array.from(v.host.querySelectorAll(".grip-rows .branch")).find((b) => b.textContent === "mathematics") as HTMLButtonElement;
+    await v.act(async () => maths.click());
+    expect(pressed()).toEqual(["mathematics"]);
+    expect(window.location.hash).toBe("#/path");
+    expect(v.host.querySelector(".topic-panel h2")).toBeNull();
+    expect(Array.from(v.host.querySelectorAll(".topic-map .topic.dim")).map((g) => g.getAttribute("aria-label")).sort()).toEqual(["Entropy. Locked.", "Heat. New.", "Second law. Locked."]);
+
+    await v.act(async () => node("Heat").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(pressed()).toEqual(["physics"]);
+    expect(v.host.querySelectorAll(".topic-map .topic.dim").length).toBe(0);
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("arrow keys walk the links and the list repeats them in words", async () => {
+    const v = await mount({ name: "path", to: "ph-entropy" }, populated());
+    const svg = v.host.querySelector(".topic-map svg")!;
+    const press = (key: string) => v.act(async () => svg.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true })));
+    await press("ArrowLeft");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Heat");
+    await press("ArrowRight");
+    await press("ArrowRight");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Second law");
+    expect(svg.getAttribute("aria-activedescendant")).toBe(v.host.querySelector('.topic[aria-pressed="true"]')!.id);
+    const rows = Array.from(v.host.querySelectorAll(".links-list li")).map((li) => li.textContent);
+    expect(rows).toContain("Entropy. Locked. Needs Heat. Opens Second law.");
+    expect(rows).toContain("Limit. New. Needs nothing first. Opens nothing yet.");
+    expect(v.host.querySelector(".links-list summary")!.textContent).toBe("Read the same links as a list");
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
     await v.unmount();
   });
 
