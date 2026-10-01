@@ -16,7 +16,7 @@ export interface CommandSpec {
   options?: Record<string, OptionSpec>;
   session?: boolean;
   json?: boolean;
-  terminal?: "always" | "with-tui-flag";
+  terminal?: "always" | "with-tui-flag" | "without-json";
   palette?: { run: PaletteTarget; hint: string; order: number };
   tuiOnly?: boolean;
   data?: boolean;
@@ -127,6 +127,11 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  { name: "learn due", summary: "list the cards due now", session: true, json: true, options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "learn path", summary: "show each deck's progress, or the topics of one deck in order", args: "[deck]", positionals: [0, 1], session: true, json: true },
+  { name: "learn quiz", summary: "timed multiple choice; scripts send answers on standard input", session: true, json: true, terminal: "without-json", options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "learn review", summary: "rate the cards due now; scripts send ratings on standard input", session: true, json: true, terminal: "without-json", options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "daily", summary: "print a day's quiz, today when no day is given; scripts send answers on standard input", args: "[day]", positionals: [0, 1], session: true, json: true },
   {
     name: "doctor",
     summary: "check this install and name the fix for each problem; writes nothing",

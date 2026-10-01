@@ -11,6 +11,7 @@ export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | 
 export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 
 export interface ServeOptions {
+  cliToken?: string;
   port?: number;
   uid?: Owner;
   platform?: Platform;
@@ -223,7 +224,8 @@ export function startServe(opts: ServeOptions = {}): Serve {
 
       const auth = req.headers.get("authorization") ?? "";
       const m = auth.match(/^Bucket ([A-Za-z0-9_-]{43})$/);
-      if (!token || !m || !same(m[1], token)) return deny(401);
+      const cli = opts.cliToken !== undefined && !!m && same(m[1], opts.cliToken);
+      if (!cli && (!token || !m || !same(m[1], token))) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
       const key = `${req.method} ${url.pathname}`;
       const route = routes[key];
