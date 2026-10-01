@@ -23,6 +23,24 @@ export const NO_TOPICS = "Bucket has no topics yet.";
 export const GRIP_CAPTION = "The sphere shows how much of each branch you hold today.";
 export const PICK_A_TOPIC = "Pick a topic on the map to see what it needs first and what it opens next.";
 
+export const NO_START = "Every way into this topic waits on topics that wait on each other.";
+
+export function startFor(id: string, needs: ReadonlyMap<string, readonly string[]>, states: ReadonlyMap<string, TopicState>): string | null {
+  const seen = new Set<string>();
+  const walk = (v: string): string | null => {
+    if (seen.has(v)) return null;
+    seen.add(v);
+    if ((states.get(v) ?? "locked") !== "locked") return v;
+    for (const p of needs.get(v) ?? []) {
+      if (states.get(p) === "known" || states.get(p) === "due") continue;
+      const found = walk(p);
+      if (found) return found;
+    }
+    return null;
+  };
+  return walk(id);
+}
+
 function describe(error: PathError): string {
   if (error.kind === "MissingNode") return MISSING_TOPIC;
   if (error.kind === "Cycle") return TOPIC_CYCLE;
@@ -123,6 +141,9 @@ export function PathView({ api, to, now }: { api: Api; to?: string; now?: number
     </ul>
   );
   const sentence = (ids: string[]) => ids.map(title).join(", ");
+  const startable = (id: string) => startFor(id, layout.needs, states) === id;
+  const begin = target ? startFor(target.id, layout.needs, states) : null;
+  const beginAtom = begin ? data.atoms.get(begin) : undefined;
 
   return (
     <section>
@@ -182,9 +203,13 @@ export function PathView({ api, to, now }: { api: Api; to?: string; now?: number
                     <p className="muted small">
                       {target.deckTitle} · {STATE_LABEL[states.get(target.id) ?? "locked"]}. {STATE_MEANING[states.get(target.id) ?? "locked"]}
                     </p>
-                    <a className="primary start" href={href({ name: "deck", deck: target.deck, atom: target.id })}>
-                      Start this topic in Learn
-                    </a>
+                    {beginAtom ? (
+                      <a className="primary start" href={href({ name: "deck", deck: beginAtom.deck, atom: beginAtom.id })}>
+                        {beginAtom.id === target.id ? "Start this topic in Learn" : `Start with ${beginAtom.title}`}
+                      </a>
+                    ) : (
+                      <p className="muted small">{NO_START}</p>
+                    )}
                     <h3>Needs first</h3>
                     {(layout.needs.get(target.id) ?? []).length ? linked(layout.needs.get(target.id)!) : <p className="muted small">Nothing. You can start here.</p>}
                     <h3>Opens next</h3>
@@ -217,7 +242,8 @@ export function PathView({ api, to, now }: { api: Api; to?: string; now?: number
                                   {title(id)}
                                   <span className="muted small">{a?.deckTitle}</span>
                                 </span>
-                                {a && (
+                                {a && !startable(id) && <span className="muted small">{STATE_LABEL.locked}</span>}
+                                {a && startable(id) && (
                                   <a className="go" href={href({ name: "deck", deck: a.deck, atom: id })}>
                                     Study
                                   </a>

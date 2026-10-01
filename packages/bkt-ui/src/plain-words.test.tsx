@@ -464,8 +464,9 @@ describe("path", () => {
     expect(Array.from(panel.querySelectorAll("h3")).map((h) => h.textContent)).toEqual(["Needs first", "Opens next", "Learn in this order"]);
     expect(Array.from(panel.querySelectorAll(".linked")).map((u) => Array.from(u.querySelectorAll(".link")).map((b) => b.textContent))).toEqual([["Heat"], ["Second law"]]);
     const start = panel.querySelector("a.start") as HTMLAnchorElement;
-    expect(start.textContent).toBe("Start this topic in Learn");
-    expect(start.getAttribute("href")).toBe("#/learn/02-physics/ph-entropy");
+    expect(start.textContent).toBe("Start with Heat");
+    expect(start.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(Array.from(panel.querySelectorAll(".steps-list a.go")).map((a) => a.getAttribute("href"))).toEqual(["#/learn/02-physics/ph-heat"]);
     expect(pressed()).toEqual(["physics"]);
     expect(violations(v.host)).toEqual([]);
 
@@ -481,6 +482,23 @@ describe("path", () => {
     expect(v.host.querySelectorAll(".topic-map .topic.dim").length).toBe(0);
     expect(violations(v.host)).toEqual([]);
     window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("start never targets a locked topic", async () => {
+    const { startFor } = await import("./views/Path");
+    const needs = new Map([["a", []], ["b", ["a"]], ["c", ["b"]], ["x", ["y"]], ["y", ["x"]]]);
+    const states = new Map<string, "known" | "due" | "new" | "locked">([["a", "new"], ["b", "locked"], ["c", "locked"], ["x", "locked"], ["y", "locked"]]);
+    expect(startFor("c", needs, states)).toBe("a");
+    expect(startFor("a", needs, states)).toBe("a");
+    expect(startFor("x", needs, states)).toBeNull();
+    states.set("a", "known");
+    states.set("b", "new");
+    expect(startFor("c", needs, states)).toBe("b");
+    const v = await mount({ name: "path", to: "ph-second-law" }, populated());
+    expect(v.host.querySelector("a.start")!.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(v.text()).toContain("Start with Heat");
+    expect(violations(v.host)).toEqual([]);
     await v.unmount();
   });
 
