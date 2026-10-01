@@ -273,7 +273,7 @@ function Outcome({ result }: { result: QuizResult }) {
       <p className="mt-1 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]">{result.explain}</p>
       {result.sources.length > 0 && (
         <ul className="mt-2 flex flex-col gap-1">
-          {result.sources.map((s) => (
+          {result.sources.slice(0, 1).map((s) => (
             <li key={s.ref} className="text-[12px] text-[color:var(--basalt-3)]">
               {s.href ? (
                 <a href={s.href} target="_blank" rel="noreferrer" className="underline underline-offset-4">{s.label}</a>

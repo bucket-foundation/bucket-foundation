@@ -3,9 +3,11 @@ import type { AnswerFields, AttemptRow, CardRow, QuizMode } from "./db";
 import { generateQuestion, seededRng } from "./generate";
 import { gradeAnswer, nextCard, normalizeResponse } from "./grade";
 import { questionText } from "./learn-match";
+import { withinLimits } from "./limits";
 import { toPublic, type LearnLink, type PublicQuestion, type QuizQuestion, type SourceRef, type WorkSources } from "./types";
 
 export const REVIEW_SHARE = 0.5;
+export const DUE_SCAN = 20;
 
 export interface QuizDeps {
   loadSources(): Promise<WorkSources>;
@@ -49,7 +51,7 @@ export async function issueQuestion(deps: QuizDeps, learnerId: string, mode: Qui
   if (open) return { status: "issued", attemptId: open.id, mode, fromReview: false, question: toPublic(open.question) };
   const seed = `${learnerId}|${now.toISOString()}`;
   const rng = seededRng(seed);
-  const due = await deps.dueCards(learnerId, now, 1);
+  const due = (await deps.dueCards(learnerId, now, DUE_SCAN)).filter((c) => withinLimits(c.question));
   let question: QuizQuestion | null = null;
   let fromReview = false;
   if (due.length > 0 && (mode === "review" || rng() < REVIEW_SHARE)) {

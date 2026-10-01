@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { generateQuestion, prTitle, seededRng, sourcesEmpty, LIMIT_SEC } from "../src/lib/research-os/work-quiz/generate";
 import { gradeAnswer, isCorrect, log10Distance, nextCard, normalizeResponse, FERMI_CLOSE_LOG10, FERMI_LOG10_TOLERANCE, GRACE_MS } from "../src/lib/research-os/work-quiz/grade";
 import { DAILY_CAP, MIN_GAP_ACTIVE_MS, P_PER_ACTIVE_MINUTE, TICK_MS, initialState, markShown, normalizeState, tick, type TriggerState } from "../src/lib/research-os/work-quiz/trigger";
+import { shortTitle } from "../src/lib/research-os/work-quiz/limits";
 import { QUIZ_TYPES, toPublic, type WorkSources } from "../src/lib/research-os/work-quiz/types";
 import { DAY_MS } from "../src/lib/academy/fsrs";
 
@@ -24,7 +25,7 @@ const SOURCES: WorkSources = {
   ],
   notes: [
     { file: "_intake/ideas/IDEAS-2026-09-20.md", heading: "Swipe Breaks", date: "2026-09-20" },
-    { file: "_intake/ideas/IDEAS-2026-09-27.md", heading: "Surprise Work Quiz", date: "2026-09-27" },
+    { file: "_intake/ideas/IDEAS-2026-09-27.md", heading: "Surprise Quiz", date: "2026-09-27" },
   ],
 };
 
@@ -75,31 +76,40 @@ test("true-false answers match the source facts", () => {
   for (let i = 0; i < 60; i++) {
     const q = generateQuestion(SOURCES, `tf-${i}`, "true_false");
     assert.ok(q);
-    const line = q.lines[0];
-    const bead = SOURCES.beads.find((b) => line.includes(b.id));
+    assert.deepEqual(q.lines, []);
+    const bead = SOURCES.beads.find((b) => q.sources[0].ref === b.id);
     if (bead) {
-      assert.equal(q.answer, line.includes(`status ${bead.status}.`) ? "true" : "false");
+      assert.ok(q.prompt.includes(shortTitle(bead.title, 6)));
+      assert.equal(q.answer, q.prompt.endsWith(`status ${bead.status}.`) ? "true" : "false");
     } else {
-      const pr = SOURCES.prs.find((p) => line.includes(`#${p.number}`));
+      const pr = SOURCES.prs.find((p) => q.sources[0].ref === `#${p.number}`);
       assert.ok(pr);
-      assert.equal(q.answer, line.includes(`on ${pr.date}.`) ? "true" : "false");
+      assert.ok(q.prompt.includes(shortTitle(pr.title, 6)));
+      assert.equal(q.answer, q.prompt.endsWith(`on ${pr.date}.`) ? "true" : "false");
     }
   }
 });
 
 test("which-came-first names the older item", () => {
+  let made = 0;
   for (let i = 0; i < 40; i++) {
     const q = generateQuestion(SOURCES, `wf-${i}`, "which_first");
-    assert.ok(q && q.choices);
-    const note = SOURCES.notes.find((n) => n.heading === q.answer);
-    if (note) {
-      assert.equal(note.heading, "Swipe Breaks");
+    if (!q) continue;
+    made++;
+    assert.ok(q.choices);
+    assert.equal(q.choices.length, 2);
+    assert.equal(q.sources.length, 1);
+    if (q.sources[0].kind === "note") {
+      assert.equal(q.answer, "Swipe Breaks");
       continue;
     }
-    const orders = q.choices.map((c) => SOURCES.prs.find((p) => prTitle(p.title) === c)!.order);
-    const answerOrder = SOURCES.prs.find((p) => prTitle(p.title) === q.answer)!.order;
-    assert.equal(answerOrder, Math.min(...orders));
+    const numbers = Array.from(q.explain.matchAll(/#(\d+)/g)).map((m) => Number(m[1]));
+    const pair = numbers.map((n) => SOURCES.prs.find((p) => p.number === n)!);
+    const older = pair[0].order < pair[1].order ? pair[0] : pair[1];
+    assert.equal(q.sources[0].ref, `#${older.number}`);
+    assert.ok(shortTitle(older.title, 5).startsWith(q.answer));
   }
+  assert.ok(made >= 20, `which-first made ${made} of 40`);
 });
 
 test("spot-the-error changes exactly the field it names", () => {
@@ -109,11 +119,11 @@ test("spot-the-error changes exactly the field it names", () => {
     if (q.lines[0].startsWith("number:")) {
       const shown = { num: Number(q.lines[0].slice(9)), date: q.lines[1].slice(8), title: q.lines[2].slice(7) };
       const pr = SOURCES.prs.find((p) => q.sources[0].ref === `#${p.number}`)!;
-      const wrong = [shown.num !== pr.number && "the number", shown.date !== pr.date && "the date", shown.title !== prTitle(pr.title) && "the title"].filter(Boolean);
+      const wrong = [shown.num !== pr.number && "the number", shown.date !== pr.date && "the date", shown.title !== shortTitle(pr.title, 5) && "the title"].filter(Boolean);
       assert.deepEqual(wrong, [q.answer]);
     } else {
       const b = SOURCES.beads.find((x) => q.sources[0].ref === x.id)!;
-      const wrong = [q.lines[1] !== `id: ${b.id}` && "the id", q.lines[2] !== `status: ${b.status}` && "the status", q.lines[3] !== `priority: P${b.priority}` && "the priority"].filter(Boolean);
+      const wrong = [q.lines[1] !== `id: ${b.id}` && "the bead id", q.lines[2] !== `status: ${b.status}` && "the status", q.lines[3] !== `priority: P${b.priority}` && "the priority"].filter(Boolean);
       assert.deepEqual(wrong, [q.answer]);
     }
   }
@@ -386,6 +396,20 @@ test("answering grades on server time, and a retry returns the stored result", a
   if (again.status !== "ok") return;
   assert.equal(again.result.correct, false);
   assert.equal(cards.get(`${ME}|${q.id}`)!.reps, 1);
+});
+
+test("a due review card over a length limit is passed over for a fresh question", async () => {
+  const { deps, cards } = fakeDeps();
+  const long: QuizQuestion = { id: "true_false:old", type: "true_false", prompt: "True or false?", lines: ['PR #341, "pgvector nearest-node search with a long tail of words that runs past the stem limit", merged into dev on 2026-09-22.'], choices: ["true", "false"], answer: "true", tolerance: 0, limitSec: 20, explain: "PR #341 merged on 2026-09-22.", sources: [] };
+  const short: QuizQuestion = { ...long, id: "true_false:new", prompt: '"pgvector nearest-node search" merged on 2026-09-22.', lines: [] };
+  const due = new Date(clock - 1000).toISOString();
+  cards.set(`${ME}|${long.id}`, { learner_id: ME, question_id: long.id, question: long, card: {} as Card, due_at: due, reps: 1 });
+  const fresh = await issueQuestion(deps, ME, "review", new Date(clock));
+  assert.deepEqual(fresh, { status: "empty", reason: "nothing_due" });
+  cards.set(`${ME}|${short.id}`, { learner_id: ME, question_id: short.id, question: short, card: {} as Card, due_at: new Date(clock - 500).toISOString(), reps: 1 });
+  const review = await issueQuestion(deps, ME, "review", new Date(clock));
+  assert.equal(review.status, "issued");
+  if (review.status === "issued") assert.deepEqual([review.fromReview, review.question.id], [true, short.id]);
 });
 
 test("another learner cannot answer my attempt", async () => {
