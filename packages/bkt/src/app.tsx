@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
 import { selfRating, type GradeResult, type Item, type Question } from "./grade";
+import { statRows } from "./cli/out";
 import { paletteEntries, type PaletteTarget } from "./cli/table";
 import type { Session } from "./setup";
 
@@ -203,13 +204,12 @@ function Stats({ session }: { session: Session }) {
   return (
     <Box flexDirection="column">
       <Text bold>stats</Text>
-      <Text>items {s.items}</Text>
-      <Text>cards seen {s.seen}</Text>
-      <Text>due now {s.due}</Text>
-      <Text>attempts {s.attempts}</Text>
-      <Text>outbox {session.store.outboxCount()}</Text>
-      <Text>device {session.device.id}</Text>
-      <Text>keyring {session.keyring.kind}</Text>
+      {statRows(s, session.store.outboxCount()).map(([label, n]) => (
+        <Text key={label}>
+          {label} {n}
+        </Text>
+      ))}
+      <Text dimColor>bkt whoami shows this device and its key store.</Text>
     </Box>
   );
 }

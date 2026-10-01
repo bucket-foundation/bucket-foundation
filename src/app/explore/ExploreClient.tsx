@@ -19,6 +19,8 @@ import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, registerCustom, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
 import { loadLandmask, type Landmask } from "@/components/canon-globe/landmaskFromImage";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
+import { ResultActions, SavedPanel, useSaved } from "@/components/explore/SaveCite";
+import { citeFieldsFromHit } from "@/lib/explore/saved";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 const ProteinView = nextDynamic(() => import("@/components/explore/ProteinView"), { ssr: false });
@@ -79,6 +81,7 @@ export default function ExploreClient() {
   const [mapModel, setMapModel] = useState<MapModel | null>(null);
   const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
+  const saved = useSaved();
 
   useEffect(() => {
     const m = new URLSearchParams(window.location.search).get("mode");
@@ -125,6 +128,7 @@ export default function ExploreClient() {
   const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
   const byId = useMemo(() => new Map([...hits, ...uploaded].map((h) => [h.id, h])), [hits, uploaded]);
   const current = selected ? byId.get(selected) ?? null : null;
+  const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
   const protein = proteinById(null);
 
@@ -382,8 +386,10 @@ export default function ExploreClient() {
             </p>
           )}
           <ol data-testid="explore-results" className="space-y-2">
-            {visible.map((h) => (
-              <li key={h.id}>
+            {visible.map((h) => {
+              const fields = citeFieldsFromHit(h);
+              return (
+              <li key={h.id} data-testid="explore-result">
                 <button
                   onClick={() => setSelected(h.id)}
                   className="w-full text-left border hairline px-3 py-2"
@@ -400,8 +406,10 @@ export default function ExploreClient() {
                     </span>
                   ))}
                 </button>
+                {fields && <ResultActions fields={fields} saved={saved} />}
               </li>
-            ))}
+              );
+            })}
             {!loading && !visible.length && !error && <li className="text-sm" data-testid="explore-empty">{unreadableScript(asked) ? "Bucket reads searches in Latin letters for now. Try the English name." : "Nothing in the canon matches that search."}</li>}
           </ol>
           </div>
@@ -413,6 +421,7 @@ export default function ExploreClient() {
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
                 <SourcePanel hit={current} />
+                {currentFields && <ResultActions key={current.id} fields={currentFields} saved={saved} />}
                 {current.url && !isSourceHit(current) && (
                   <a className="text-sm underline mt-3 inline-block" href={current.url}>
                     Open
@@ -444,6 +453,7 @@ export default function ExploreClient() {
             )}
           </aside>
         </div>
+        <SavedPanel saved={saved} />
       </div>
     </main>
   );

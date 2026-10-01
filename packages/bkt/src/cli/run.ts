@@ -4,6 +4,7 @@ import { parseToolArgs } from "../hai/tools";
 import { platformFor } from "../platform";
 import type { KeyringOptions } from "../setup";
 import { VERSION } from "../version";
+import { isShell, SHELLS } from "./completion";
 import { interactive, type Tty } from "./out";
 import {
   CLI_COMMANDS,
@@ -119,6 +120,7 @@ export function resolve(argv: string[]): Resolved {
     if (spec.session) keyringOptions(inv);
     if (spec.name === "analyze") parseAnalyzeArgs(args);
     if (HAI_TOOLS.has(spec.name)) parseToolArgs(args);
+    if (spec.name === "completion" && !isShell(parsed.positionals[0])) throw new Error(`unknown shell ${parsed.positionals[0]}; use ${SHELLS.join(", ")}`);
   } catch (e) {
     throw new UsageError(reason(e), spec);
   }
