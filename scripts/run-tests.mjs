@@ -24,6 +24,7 @@ const SUITES = {
       "scripts/test-sitemap-routes.ts",
       "scripts/test-canon-branch-status.ts",
       "scripts/test-download-install.ts",
+      "scripts/test-download-install-v3.ts",
       "scripts/test-download-release-v2.ts",
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",

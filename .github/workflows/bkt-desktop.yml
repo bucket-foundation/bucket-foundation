@@ -1,0 +1,272 @@
+name: bkt-desktop
+
+on:
+  pull_request:
+    paths:
+      - "packages/bkt-desktop/**"
+      - "packages/bkt-ui/**"
+      - "packages/bkt/**"
+      - "packages/ros-contract/**"
+      - "src/lib/research-os/**"
+      - "src/lib/academy/**"
+      - ".github/workflows/bkt-desktop.yml"
+  push:
+    tags: ["bkt-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bkt-desktop-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - name: install
+        working-directory: packages/bkt-desktop
+        run: bun install --frozen-lockfile
+      - name: config guarantees, sidecar naming and probe tests
+        working-directory: packages/bkt-desktop
+        run: bun test scripts && bunx tsc --noEmit
+
+  bundle:
+    needs: config
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            bundles: deb,appimage
+            strict: "1"
+          - os: macos-latest
+            bundles: app,dmg
+            strict: "1"
+          - os: macos-15-intel
+            bundles: app,dmg
+            strict: "1"
+          - os: windows-latest
+            bundles: msi
+            strict: "1"
+    runs-on: ${{ matrix.os }}
+    environment: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && 'bkt-release' || 'bkt-dry-run' }}
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: allow checkout of names Windows cannot write
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/archive/
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+        with:
+          workspaces: packages/bkt-desktop/src-tauri
+      - name: linux build and smoke packages
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq --no-install-recommends libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xvfb dbus-x11 gnome-keyring libsecret-tools libfuse2
+      - name: install
+        working-directory: packages/bkt-desktop
+        run: bun install --frozen-lockfile
+      - name: bkt-ui build and bkt sidecar
+        working-directory: packages/bkt-desktop
+        run: bun run prepare:bundle
+      - name: no staff data in the public bundle
+        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json
+      - name: import the Windows signing certificate
+        if: runner.os == 'Windows' && startsWith(github.ref, 'refs/tags/bkt-v')
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          if (-not $env:WINDOWS_CERTIFICATE) { Write-Host 'no Windows certificate in the environment'; exit 0 }
+          $pfx = Join-Path $env:RUNNER_TEMP 'signing.pfx'
+          [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE))
+          $cert = Import-PfxCertificate -FilePath $pfx -CertStoreLocation Cert:\CurrentUser\My -Password (ConvertTo-SecureString $env:WINDOWS_CERTIFICATE_PASSWORD -AsPlainText -Force)
+          Remove-Item $pfx
+          "WINDOWS_CERTIFICATE_THUMBPRINT=$($cert.Thumbprint)" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+      - name: tauri build
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_RELEASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') }}
+          BKT_DESKTOP_UNSIGNED_OK: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && vars.BKT_DESKTOP_UNSIGNED_OK || '' }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY || '' }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD || '' }}
+          APPLE_CERTIFICATE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_CERTIFICATE || '' }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
+          APPLE_SIGNING_IDENTITY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_SIGNING_IDENTITY || '' }}
+          APPLE_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_ID || '' }}
+          APPLE_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_PASSWORD || '' }}
+          APPLE_TEAM_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_TEAM_ID || '' }}
+        run: |
+          for v in TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
+            [ -n "${!v}" ] || unset "$v"
+          done
+          bun scripts/build-config.ts "$RUNNER_TEMP/tauri.release.json"
+          bunx tauri build --bundles ${{ matrix.bundles }} --config "$RUNNER_TEMP/tauri.release.json"
+      - name: collect bundles under their release names
+        working-directory: packages/bkt-desktop
+        run: |
+          bun scripts/release-assets.ts src-tauri/target/release/bundle "$RUNNER_TEMP/bundles"
+          ls -la "$RUNNER_TEMP/bundles"
+          echo "BUNDLES=$RUNNER_TEMP/bundles" >> "$GITHUB_ENV"
+      - name: smoke the deb and AppImage
+        if: runner.os == 'Linux'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          sudo apt-get install -yq "$BUNDLES"/*.deb
+          cat > "$RUNNER_TEMP/smoke.sh" <<'SH'
+          set -eu
+          printf 'smoke' | gnome-keyring-daemon --unlock --components=secrets >/dev/null
+          export XDG_RUNTIME_DIR=$(mktemp -d)
+          HOME=$(mktemp -d) bun scripts/smoke.ts "$1"
+          SH
+          xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" /usr/bin/bucket-desktop
+          app=$(ls "$BUNDLES"/*.AppImage)
+          chmod +x "$app"
+          APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" "$app"
+      - name: smoke the dmg
+        if: runner.os == 'macOS'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          hdiutil attach "$(ls "$BUNDLES"/*.dmg)" -nobrowse -mountpoint "$RUNNER_TEMP/dmg"
+          exe=$(find "$RUNNER_TEMP/dmg" -path '*.app/Contents/MacOS/*' -type f ! -name 'bkt' | head -1)
+          [ -n "$exe" ] || { echo "no app binary in the dmg"; exit 1; }
+          [ -x "$(dirname "$exe")/bkt" ] || { echo "no bkt sidecar in the app"; exit 1; }
+          bun scripts/smoke.ts "$exe"
+          pkill -f "$RUNNER_TEMP/dmg/" || true
+          hdiutil detach "$RUNNER_TEMP/dmg" -force
+      - name: smoke the msi
+        if: runner.os == 'Windows'
+        working-directory: packages/bkt-desktop
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          msi=$(cygpath -w "$(ls "$BUNDLES"/*.msi)")
+          log=$(cygpath -w "$RUNNER_TEMP/msi.log")
+          powershell -NoProfile -Command "\$p = Start-Process msiexec -ArgumentList '/i','\"$msi\"','/qn','/l*v','\"$log\"' -Wait -PassThru; exit \$p.ExitCode"
+          dir="/c/Program Files/Bucket"
+          exe=$(find "$dir" -maxdepth 1 -name '*.exe' ! -name 'bkt.exe' ! -iname 'uninstall*' | head -1)
+          [ -n "$exe" ] || { echo "no app binary in $dir"; exit 1; }
+          [ -f "$dir/bkt.exe" ] || { echo "no bkt sidecar in $dir"; exit 1; }
+          echo "APP_EXE=$(cygpath -w "$exe")" >> "$GITHUB_ENV"
+      - name: smoke the installed app from a plain Windows shell
+        if: runner.os == 'Windows'
+        working-directory: packages/bkt-desktop
+        shell: pwsh
+        env:
+          BKT_SMOKE_STRICT: ${{ matrix.strict }}
+        run: |
+          $env:PATH = (($env:PATH -split ';') | Where-Object { $_ -notmatch '\\Git\\(usr|mingw64)\\bin' }) -join ';'
+          bun scripts/smoke.ts "$env:APP_EXE"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: bkt-desktop-${{ matrix.os }}
+          path: ${{ env.BUNDLES }}/*
+          if-no-files-found: error
+
+  attest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    needs: bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: bkt-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: verify checksums
+        run: cd bundles && for f in *.sha256; do sha256sum -c "$f"; done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: bundles/*
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: attest
+    runs-on: ubuntu-latest
+    timeout-minutes: 130
+    environment: bkt-release
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: a release tag must point at a commit on main or dev
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^bkt-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "tag must look like bkt-v1.2.3: $GITHUB_REF_NAME" >&2; exit 1; }
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || git merge-base --is-ancestor "$GITHUB_SHA" origin/dev \
+            || { echo "$GITHUB_REF_NAME points at $GITHUB_SHA, which is on neither main nor dev" >&2; exit 1; }
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: bkt-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: one installer per system, named for the tag
+        env:
+          BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
+        run: |
+          v=${GITHUB_REF_NAME#bkt-v}
+          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb; do
+            for suffix in "" .sha256; do
+              [ -s "bundles/Bucket-desktop-$v-$a$suffix" ] || { echo "missing Bucket-desktop-$v-$a$suffix" >&2; exit 1; }
+            done
+          done
+          if ls bundles/*.unsigned >/dev/null 2>&1 && [ "$BKT_DESKTOP_UNSIGNED_OK" != "1" ]; then
+            echo "unsigned installers without BKT_DESKTOP_UNSIGNED_OK=1 in the bkt-release environment:" >&2
+            ls bundles/*.unsigned >&2
+            exit 1
+          fi
+      - name: updater manifest
+        env:
+          BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
+        run: bun packages/bkt-desktop/scripts/latest-json.ts bundles "$GITHUB_REF_NAME" "$GITHUB_REPOSITORY"
+      - name: wait for the release that bkt.yml creates
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          for _ in $(seq 240); do
+            gh release view "$TAG" >/dev/null 2>&1 && exit 0
+            sleep 30
+          done
+          echo "bkt.yml created no release for $TAG within two hours" >&2
+          exit 1
+      - name: upload to the release, refusing names it already holds
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          existing=$(gh release view "$TAG" --json assets -q '.assets[].name')
+          for f in bundles/*; do
+            if grep -qxF "$(basename "$f")" <<< "$existing"; then echo "$(basename "$f") is already on $TAG" >&2; exit 1; fi
+          done
+          gh release upload "$TAG" bundles/*

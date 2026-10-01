@@ -3,7 +3,7 @@
 **Status**: in-flight, no code shipped yet, no email sent yet
 **Owner**: Gian (founder) + bkt-nuc
 **Home instance**: `bucket-foundation` (not yet certified, see `../CLAUDE.md` Known Infra Gaps)
-**Time log**: `../TIMELOG.md`
+**Time log**: `../docs/internal/archive/TIMELOG.md`
 
 ---
 

@@ -1,163 +1,100 @@
-# bucket.foundation
-Launch & syndication kit.
+# Launch
 
-A copy-paste kit of drafts for launching bucket.foundation across the channels
-that matter. **Nothing here auto-posts.** Every channel that needs a login,
-Account, or API token is marked **[FOUNDER-GATED]**, the bot never types a
-password, accepts a ToS, solves a captcha, or creates an account. Founder runs
-the actual submissions.
+Every channel below needs the founder's login, token or account. The bot never types a password, accepts a terms of service, solves a captcha or creates an account. Each item is marked FOUNDER-GATED.
 
-What we have that's already automated and zero-gated:
-- The live RSS feed at **https://www.bucket.foundation/feed.xml** (anyone can subscribe; agents/aggregators discover via the `<link rel="application/rss+xml">` in the root layout).
-- `sitemap.xml` + `robots.ts` (all crawlers + AI agents allowed) + JSON-LD (Organization / Dataset / ScholarlyArticle / SoftwareApplication). Search + LLM discovery is passive and already shipping.
-- The `agf-poster` tool at `~/agfarms/tools/agf-poster` for the TikTok/IG photo-carousel cadence (see "Posting plan" below). Still **[FOUNDER-GATED]** on OAuth.
+## Funnel
 
-The three things we are launching:
-1. **research-atlas**, the reconciled research-economy graph (73 funders, ~958k grants, ~$658B, ~8.1M rows), open, CC-BY-4.0, real DOI `10.5281/zenodo.20774322`.
-2. **The 20 free research tools**, protein stability, ADMET, RNA folding, ephys, cryo-EM triage, and live-literature/agent tools over OpenAlex. Free to run.
-3. **The paper**, the research-funding preprint born with a real DOI on Zenodo.
+A reader reaches an installer in two clicks.
 
----
+| Step | Where | What happens |
+|---|---|---|
+| 1 | Home hero (`src/components/Presentation.tsx`) and the header (`src/components/HeaderV2.tsx`) | A Download button sits beside the Research OS link; the footer links `/download` too |
+| 2 | `/download` | Email, name, computer and a consent box. The page detects the OS and offers the matching architecture |
+| 3 | Result | The install command for that computer, and a 24-hour download link by email through `/api/download` |
+| 4 | Install | `scripts/install.sh` on macOS and Linux, `scripts/install.ps1` on Windows. Both check the checksum and the release signature |
+| 5 | Daily | An optional box on `/download` opts the address into the What's New email |
 
-## Show HN drafts
+Install one-liners, as the page shows them:
 
-HN norms to honor (read before posting):
-- Title starts with **"Show HN:"** and is a plain, factual description, no hype, no superlatives, no emoji, no "revolutionary".
-- You must have something people can *try* (a URL that works without signup). All three angles below do.
-- The first comment is yours: say what it is, why you built it, what's/limited, and what you'd like feedback on. Be specific about what's real vs. Demo.
-- Reply to every comment. Don't be defensive. "Good point, that's a limitation" beats a wall of justification.
-- Post once. If it doesn't catch, you may repost a different version weeks later. Never the same thing.
-- Best window empirically: weekday ~08:00-10:00 US Eastern. Avoid Fri/weekend.
-- Submit at https://news.ycombinator.com/submit **[FOUNDER-GATED, needs HN account]**.
+```bash
+curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts/install.sh | sh
+```
 
-### Angle A, research-atlas
-**Title:** `Show HN: research-atlas – an open, reconciled graph of the global research economy`
+```powershell
+irm https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts/install.ps1 | iex
+```
 
-**URL:** https://www.bucket.foundation/research/atlas
+Release 0.4.0 carries `bkt` for five targets and the Linux AppImage `Bucket-0.4.0-x86_64.AppImage`. Then `bkt init` and `bkt` open the first quiz. The installers are also public on the [releases page](https://github.com/bucket-foundation/bucket-foundation/releases).
 
-**First comment:**
-> I reconciled the world's public research funding into one normalized graph: 73 funders (NIH down to the awarding IC, NSF, EC/ERC, UKRI, Gates, Wellcome, Sloan, DFG), ~958k grants, ~$658B, ~8.1M rows. Every grant is USD-normalized with a stamped FX date and full provenance; orgs are merged per ROR id; people are keyed on ORCID where available (~61% coverage); works are linked via OpenAlex.
+The What's New email is a daily digest of shipped work. The `whats-new` workflow appends to `data/whats-new.json` on each merge to `main`, a leak filter screens every entry, and the `/api/cron/whats-new-daily` crons send through Resend to opted-in addresses with an unsubscribe link. `npm run email:whats-new-preview` renders a digest locally. The same feed is public at `/whats-new`.
+
+## Pre-launch checks
+
+- [ ] `/download` returns 200 on production and lists the current release's installers.
+- [ ] The home page and the header show Download at 375 px and 1280 px.
+- [ ] `RESEND_API_KEY`, `DOWNLOAD_LINK_SECRET`, `DOWNLOAD_ARTIFACT_BLOB` and `CRON_SECRET` are set on Vercel, so the link email and the digest send.
+- [ ] The install one-liner installs `bkt` on a clean Linux machine and a clean macOS machine; `install.ps1` does the same on Windows.
+- [ ] `sitemap.xml`, `robots.txt` and `feed.xml` resolve in production.
+- [ ] The OG image renders in a Slack, X and LinkedIn link preview.
+- [ ] Vercel Web Analytics is on; the `<Analytics/>` tag is mounted and records once enabled.
+- [ ] `/contribute` and `/support` load and the contact address is correct.
+
+## Show HN
+
+Submit at https://news.ycombinator.com/submit. FOUNDER-GATED: needs an HN account with some karma.
+
+Post on a weekday between 08:00 and 10:00 US Eastern. The title starts with "Show HN:" and describes the thing in plain terms. The first comment is the founder's: what it is, why it exists, what is limited, and what feedback helps. Reply to every comment and post once.
+
+Title: `Show HN: Bucket, an offline study app and research OS on a free-to-read canon`
+
+URL: https://www.bucket.foundation/download
+
+First comment:
+
+> Bucket is a terminal and desktop app for studying offline. A timed quiz and spaced-repetition review run over an encrypted SQLite store on your computer, and your answers stay there. The installers verify a release signature before they write anything.
 >
-> It's CC-BY-4.0, born with a real DOI (10.5281/zenodo.20774322), and the build pipeline is open source (github.com/bucket-foundation/research-atlas). Free to read; the only paid path is downstream citation, which routes to the author.
+> The same graph of concepts is on the web as Research OS, and the canon behind it is free to read: axioms, laws and primary sources, each with a canonical URL. Agents can query it over MCP at https://www.bucket.foundation/api/mcp.
 >
-> limitations: ORCID coverage is partial, some funders publish messy award data, and the "person" node is the noisiest. I'd love feedback on the reconciliation choices and on funders worth adding next.
+> Limits today: release 0.4.0 is the first public build, the desktop window ships for Linux as an AppImage, and the author fee rail over x402 on Base is specified but does not settle yet. I would like feedback on the first-run quiz and on the install flow.
 
-### Angle B
-The 20 free tools.
+## Cross-posts
 
-**Title:** `Show HN: 20 free research tools (protein stability, RNA folding, ephys, live OpenAlex)`
+One link per post: https://www.bucket.foundation/download. All FOUNDER-GATED.
 
-**URL:** https://www.bucket.foundation/research/tools
+X and Bluesky:
 
-**First comment:**
-> Twenty small research instruments, each running real logic on your input, protein stability (ΔΔG), ADMET screening, RNA folding via ViennaRNA, Hodgkin-Huxley membrane fits, spike detection, cryo-EM triage, plus five literature/agent tools over the live OpenAlex index and a real awarded-grant corpus.
->
-> Free to run, no signup. They're part of a nonprofit open-research foundation (no equity, no investors). Some of the heavier GPU/local-LLM tools run on my own laptop GPU and go dark when it's closed, those are badged "founder GPU" vs "always-on", and there's an funding ask if anyone wants them up 24/7.
->
-> Code is MIT (github.com/bucket-foundation). Feedback I'd most value: which tool is useful in your workflow, and what's missing.
+> Bucket 0.4.0 is out. An offline study app for macOS, Windows and Linux, signed releases, answers stay on your computer. Free canon on the web, MCP endpoint for agents. bucket.foundation/download
 
-### Angle C
-The paper / cite-forever model.
+LinkedIn:
 
-**Title:** `Show HN: A paper born with a DOI, free to read, where citations pay the author`
+> Bucket 0.4.0 is out. It is a study app that runs offline: a timed quiz and spaced-repetition review over an encrypted local store, with signed installers for macOS, Windows and Linux. The web side is Research OS and a free-to-read canon of foundations, open to agents over MCP. The code is MIT. Download it at bucket.foundation/download and tell me what breaks.
 
-**URL:** https://www.bucket.foundation/research/papers
+dev.to or Medium, long form. Title: "Building an offline study app with signed releases". Outline:
 
-**First comment:**
-> I published a research-funding paper on bucket.foundation. It's free to read, has a real Zenodo DOI, and is fully reproducible from the open research-atlas corpus. The twist: it's minted as an IP record, and the "cite-forever" model routes any *downstream paid re-publication* fee to the author over x402, never a charge to a reader or an agent that just wants to cite it.
->
-> This is the nonprofit thesis: primary research paid-for-once, citeable-forever, fees to authors not publishers. I'd like feedback from people who've fought with publisher paywalls and citation economics, does the model hold up, where does it break?
+- Why the quiz store is local and encrypted.
+- The release pipeline: five binaries, one AppImage, signature and checksum checks in both installers.
+- One graph shared by the site, the terminal app and the desktop window through `packages/ros-contract`.
+- The MCP endpoint and the canon's canonical URLs.
+- Limits, and where to contribute: `/contribute`.
 
----
+Post the canonical link back on the original.
 
-## Cross-post drafts
-
-All of these are **[FOUNDER-GATED]**, each needs the founder's account/token.
-Keep one canonical link per post; let the JSON-LD + OG image do the preview work.
-
-### X / Twitter [FOUNDER-GATED, @gianyrox]
-> Launched bucket.foundation: a nonprofit canon of foundations, free to read, paid to cite, fees to authors not publishers.
->
-> • research-atlas: 73 funders, ~958k grants, ~$658B, open + CC-BY (DOI 10.5281/zenodo.20774322)
-> • 20 free research tools
-> • a paper born with a DOI
->
-> No equity. No exit. Build it with us → bucket.foundation/contribute
-
-(Thread option: one tweet per pillar, atlas / tools / paper / contribute, each with its own deep link.)
-
-### LinkedIn [FOUNDER-GATED]
-> After a long build, bucket.foundation is live.
->
-> It's a nonprofit open-research foundation with one idea: primary research should be paid-for-once and citeable-forever, with citation fees routed to authors instead of publishers.
->
-> Three things you can use today, all free to read:
-> 1) research-atlas, a reconciled graph of the global research economy: 73 funders, ~958k grants, ~$658B, ~8.1M rows. CC-BY-4.0, real DOI.
-> 2) Twenty free research tools, protein stability, ADMET, RNA folding, ephys, cryo-EM triage, and live-literature tools over OpenAlex.
-> 3) A reproducible research-funding paper born with a DOI.
->
-> All MIT/CC-BY, no equity, no investors. If you do research, I'd value your feedback, and there's a contribute page if you want to help build it. Bucket.foundation
-
-### dev.to / Medium [FOUNDER-GATED]
-Long-form post (title: *"Building an open research economy: free to read, paid to cite"*). Outline:
-- The problem: publishers capture citation value; readers and authors lose.
-- The model: cite-forever, free read, paid only on downstream re-publication, fees to authors over x402 on Base.
-- What shipped: research-atlas (the data), the 20 tools (the instruments), the paper (the proof).
-- The stack: Next.js + TypeScript, Story Protocol IP records, Walrus storage, feed402 protocol, x402 rail.
-- limits + how to contribute (link /contribute, the MIT repos, good-first-issues).
-- Cross-post canonical URL back to the dev.to/Medium original to avoid duplicate-content dilution.
-
-### Bluesky [FOUNDER-GATED]
-> bucket.foundation is live, a nonprofit canon of foundations, free to read & paid to cite (fees to authors).
->
-> Open research-economy graph (CC-BY, real DOI), 20 free research tools, a reproducible paper. MIT code, no equity. → bucket.foundation/contribute
-
-### Reddit [FOUNDER-GATED
-Read each subreddit's self-promotion rules first].
-
-Reddit punishes anything that smells like an ad. Lead with the *useful artifact*, disclose that you built it, engage in comments. Candidate subreddits, matched to angle:
-- **r/datasets**, angle A. Title: *"[OSS] research-atlas: open, reconciled graph of global research funding (73 funders, ~958k grants, ~$658B, CC-BY, DOI)"*. These folks want provenance + license + a download path, give all three up front.
-- **r/bioinformatics** or **r/labrats**, angle B (the protein/RNA/ephys tools), framed as "free tools, would love to know if any are useful."
-- **r/ScholarlyCommunication** or **r/Open_Science**, angle C (the cite-forever model + DOI paper).
-- Always: flair, disclose authorship in the body, never spam multiple subs the same hour.
-
----
+Reddit. Read each subreddit's self-promotion rules first, disclose authorship and never post to several communities in the same hour. Match the community: r/commandline or r/selfhosted for the installer and the local store, r/ClaudeAI or r/mcp for the endpoint, r/Open_Science for the canon.
 
 ## Posting plan
 
-| When | Channel | Angle | Gated? |
-|---|---|---|---|
-| Day 0, ~08:30 ET (Tue, Thu) | Show HN | pick **one** primary angle (A=atlas is the strongest "Show HN" because it's a concrete dataset) | [FOUNDER-GATED] HN account |
-| Day 0, same morning | X + Bluesky | launch announcement, link `/contribute` | [FOUNDER-GATED] |
-| Day 0, midday | LinkedIn | the longer framing | [FOUNDER-GATED] |
-| Day 1-2 | dev.to / Medium | the long-form build post (canonical link back) | [FOUNDER-GATED] |
-| Day 2-4 | Reddit | the matched subreddit for the angle that got traction | [FOUNDER-GATED] |
-| Ongoing | TikTok / IG carousels via `agf-poster` | short visual explainers (atlas stats, one-tool-per-day, the cite-forever idea) | [FOUNDER-GATED] OAuth |
-| Passive, already live | RSS `/feed.xml` + sitemap + JSON-LD | no action, aggregators + LLM crawlers pick it up | not gated |
+| When | Channel | Gate |
+|---|---|---|
+| Day 0, 08:30 ET on a Tuesday or Thursday | Show HN | FOUNDER-GATED, HN account |
+| Day 0, same morning | X and Bluesky | FOUNDER-GATED |
+| Day 0, midday | LinkedIn | FOUNDER-GATED |
+| Day 1 to 2 | dev.to or Medium | FOUNDER-GATED |
+| Day 2 to 4 | Reddit, the community that responded to the HN thread | FOUNDER-GATED |
+| Ongoing | TikTok and Instagram carousels through `agf-poster` | FOUNDER-GATED, OAuth |
+| Passive | `/feed.xml`, `sitemap.xml`, JSON-LD and `/llms.txt` | none |
 
-**On `agf-poster`** (`~/agfarms/tools/agf-poster`, see its `README.md`): it packages
-The proven TikTok photo-carousel poster as a venture-agnostic CLI. To use it for
-bucket, drop a `carousels/ACCOUNT.json` + `CHANNEL.md` under a bucket carousels
-folder, then `agf-poster status` / `pack` / `post`. **Hard rules enforced by the
-adapter (all founder-gated):** no password entry, no ToS accept, no captcha
-solving, no account creation; default is a MEDIA_UPLOAD *draft* the founder taps
-To publish; `--direct` (hands-free public) is refused unless the TikTok app is
-audited (`TIKTOK_APP_AUDITED=1`). So the bot can *stage* a packet, but a human
-authorizes OAuth and taps Post.
+`agf-poster` stages a packet from a `carousels/ACCOUNT.json` and `CHANNEL.md` under a carousels folder. Its default is a MEDIA_UPLOAD draft that the founder taps to publish, and `--direct` stays refused until the TikTok app is audited. A human authorizes OAuth and taps Post.
 
-**On the RSS feed:** it's the one channel that needs zero accounts. Make sure the
-Launch posts (and the paper) flow into `/feed.xml` so subscribers and any feed
-aggregator get the launch automatically.
+## After launch
 
----
-
-## Pre-launch checklist
-
-- [ ] `npx next build` green; sitemap.xml + robots.txt + feed.xml resolve in prod.
-- [ ] OG image renders on a Twitter/LinkedIn/Slack link-preview test.
-- [ ] Vercel → Project → Analytics → **Enable Web Analytics** (the `<Analytics/>` tag is already mounted; events only record once enabled). Speed Insights records automatically once deployed on Vercel.
-- [ ] HN account exists + has a little karma (brand-new accounts get filtered).
-- [ ] Decide the single Day-0 Show HN angle (recommend **A, atlas**).
-- [ ] First-comment text staged so you can paste it within seconds of submitting.
-- [ ] X / Bluesky / LinkedIn / dev.to accounts logged in; tokens for `agf-poster` authorized if using carousels.
-- [ ] `/contribute` and `/support` links work and the contact email is correct.
+Watch the signup list and the install smoke jobs. Answer every comment within a day. File each report as a bead in `bkt-`.

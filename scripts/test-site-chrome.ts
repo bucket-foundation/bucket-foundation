@@ -18,6 +18,14 @@ test("research os is one link with no dropdown", () => {
   assert.doesNotMatch(HEADER, /research-os\/workspace/);
 });
 
+test("canon is one link with no dropdown", () => {
+  assert.match(HEADER, /\{ href: "\/canon", label: "Canon" \}/);
+  assert.doesNotMatch(HEADER, /sub[:?]/);
+  assert.doesNotMatch(HEADER, /aria-haspopup/);
+  assert.doesNotMatch(HEADER, /▾/);
+  assert.doesNotMatch(HEADER, /canon\/(search|bridges|graph)/);
+});
+
 test("header nav lists Download right after Research OS and keeps the button", () => {
   assert.ok(HEADER.indexOf('label: "Research OS"') < HEADER.indexOf('label: "Download"'));
   assert.ok(HEADER.indexOf('label: "Download"') < HEADER.indexOf('label: "Canon"'));
@@ -54,9 +62,4 @@ test("siteVersion prefers the release tag and falls back to package.json", () =>
   assert.equal(siteVersion("bkt-v0.4.0", "0.2.0"), "v0.4.0");
   assert.equal(siteVersion(undefined, "0.2.0"), "v0.2.0");
   assert.equal(siteVersion(null, "0.2.0"), "v0.2.0");
-});
-
-test("the header branch list comes from CANON_BRANCHES", () => {
-  assert.match(HEADER, /const CANON = CANON_BRANCHES\.map/);
-  assert.doesNotMatch(HEADER, /slug: "earth"/);
 });

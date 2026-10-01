@@ -1,5 +1,7 @@
 # Canon Contributions, 2026-09-10
 
+Updated 2026-09-30 for the current release and paths.
+
 Review of the current Bucket Foundation setup, what landed since the last
 ingestion-index update (2026-05-10), what the canon and the site should
 absorb next, and the first contributions made against that list.
@@ -93,12 +95,11 @@ manifest:
   entries in `src/lib/papers.ts`; neither carries a Lean component.
 - **Figures** live in `canon-figures/`: `figures.json` (99 cards across ten
   branches), one markdown shelf per branch, `bios/`, `SCHEMA.md` (the card
-  contract), and `CONTRIBUTORS.md` (the master index). `CANON-WEB-AUDIT.md`
-  (2026-05-14) found 98 of 99 figure pages 404 on the live site because
-  `src/lib/canon.ts`'s `BRANCHES[].figures` is hand-curated and only carries
-  Einstein; that gap is unresolved as of this pass.
+  contract), and `CONTRIBUTORS.md` (the master index). The audit
+  at `docs/internal/archive/CANON-WEB-AUDIT.md` (2026-05-14) found 98 of 99
+  figure pages 404 on the site; a later pass made all 99 resolve (2026-05-14).
 - **Timelines** live in two places: `src/data/canon-timeline.json` and
-  `canon-sites.json` feed the site's `/canon/timeline` and
+  `src/data/canon-sites.json` feed the site's `/canon/timeline` and
   `/research/education/knowledge-access-gradient` pages, and
   `tools/hypothesis-engine/runs/<corpus>/<run-id>/{timeline.json,
   TIMELINE.md, MANIFEST.json}` holds the hypothesis engine's own scored
@@ -121,10 +122,8 @@ per one of the three formats above; `tools/feed/feed.py` (driven by
 `canon_tier` (`draft` → `candidate` → `canon`, per `PROTOCOL.md` §4.3)
 advances as the entry is reviewed, at which point the reference site's
 `canon.json` sidecar and the MCP `canon_search` tool both pick it up with no
-further wiring. Story Protocol IP-NFT minting is the optional final step
-inherited from the prior version of the site; Bucket Academy dropped Story
-Protocol for its own credentialing surface (2026-06-14 decision) but the
-option remains for the canon-proper mint path per the README's status table.
+further wiring. No minting step follows: IP-NFT minting was removed in
+2026-06, and Bucket Academy credentials use Open Badges 3.0.
 
 ## 2. What is new since the last ingestion-index update
 
@@ -146,7 +145,7 @@ PR #3 (`feat/research-os-k12`, 2026-09-10T04:02), and PR #6
 | Research OS for K-12: the plan, intake, and site page (PR #3), the Phase 0 prototype, graph schema, and workspace (PR #6), and a 44-card AI-for-research and educational-methods literature corpus (PR #5, open) | `learning/research-os/`, `_intake/research-os-k12/`, `_intake/research-os-k12-literature/`, `src/app/research-os/` | **Product/infrastructure**, with one **outcome/review-tier** exception: the 44 literature cards in PR #5 (knowledge tracing, spaced repetition, mastery learning, AI-for-science metascience) are secondary reviews of primary results, review tier by the same test as the survey above rather than primary sources themselves. |
 | `papers/PAPER-STANDARDS.md`, the LaTeX/Lean/citation/figure convention for every future Bucket paper | `papers/PAPER-STANDARDS.md` | **Infrastructure.** A process document. |
 
-`RESEARCH-OS-INTEGRATION.md`'s own central finding is worth carrying
+`tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`'s own central finding carries
 forward: none of the 49 Research OS questions asks the kind of question the
 hypothesis engine answers (did an indicator move, by what mechanism, with
 what evidence); the one real bridge between the two systems is that a

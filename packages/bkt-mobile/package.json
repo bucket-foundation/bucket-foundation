@@ -1,0 +1,25 @@
+{
+  "name": "@bucket/bkt-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ui:deps": "cd ../bkt-ui && bun install --frozen-lockfile",
+    "build": "bun run ui:deps && cd ../bkt-ui && bunx vite build --config ../bkt-mobile/vite.config.ts",
+    "sync": "cap sync",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test src"
+  },
+  "dependencies": {
+    "@aparajita/capacitor-secure-storage": "8.0.1",
+    "@capacitor/android": "8.5.2",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/ios": "8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.2",
+    "@types/bun": "^1.4.2",
+    "typescript": "5",
+    "vite": "6"
+  }
+}

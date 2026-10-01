@@ -1,14 +1,8 @@
-import { expect, test, type Locator } from "@playwright/test";
-import { INSTALL_COMMAND, linuxInstallCommand } from "../../src/lib/download/install";
+import { expect, test } from "@playwright/test";
+import { INSTALL_COMMAND } from "../../src/lib/download/install";
 
 const LINUX_UA = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0";
 const MAC_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 Version/17.5 Safari/605.1.15";
-
-async function expectedLinuxCommand(block: Locator): Promise<string> {
-  const link = block.locator('[data-direct="linux"][data-kind="desktop"]');
-  const href = (await link.count()) > 0 ? await link.first().getAttribute("href") : null;
-  return linuxInstallCommand(href);
-}
 
 test.describe("download flow on linux", () => {
   test.use({ userAgent: LINUX_UA });
@@ -25,21 +19,26 @@ test.describe("download flow on linux", () => {
     await expect(button).toBeDisabled();
     await expect(page.locator("[data-install-blocks]")).toHaveCount(0);
     await expect(page.getByText(INSTALL_COMMAND.linux)).toHaveCount(0);
-    await expect(page.locator("[data-download-missing]")).toContainText("email and name");
 
-    await page.getByLabel("email address, required").fill("not-an-email");
-    await page.getByLabel("name, required").fill("Ada Lovelace");
-    await page.getByLabel(/Required: store my email/).check();
+    await page.getByLabel("Email", { exact: true }).fill("not-an-email");
+    await page.getByLabel("Name", { exact: true }).fill("Ada Lovelace");
+    await page.getByLabel("Agree to the privacy terms").check();
     await expect(button).toBeDisabled();
 
-    await page.getByLabel("email address, required").fill("ada@example.org");
-    await page.getByLabel(/Required: store my email/).uncheck();
+    await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
+    await page.getByLabel("Agree to the privacy terms").uncheck();
     await expect(button).toBeDisabled();
-    await expect(page.locator("[data-download-missing]")).toContainText("the data consent");
 
-    await page.getByLabel(/Required: store my email/).check();
+    await page.getByLabel("Agree to the privacy terms").check();
     await expect(button).toBeEnabled();
-    await expect(page.locator("[data-download-missing]")).toHaveCount(0);
+  });
+
+  test("the page body stays under 70 words and links the privacy page once", async ({ page }) => {
+    await page.goto("/download");
+    const text = await page.locator("main").innerText();
+    const words = text.split(/\s+/).filter(Boolean);
+    expect(words.length).toBeLessThan(70);
+    await expect(page.locator('main a[href="/privacy"]')).toHaveCount(1);
   });
 
   test("after submit the linux command is first and the signup is stored with its opt-ins", async ({ page }) => {
@@ -49,16 +48,18 @@ test.describe("download flow on linux", () => {
       await route.fulfill({ json: { ok: true, email: "off" } });
     });
     await page.goto("/download");
-    await page.getByLabel("email address, required").fill("ada@example.org");
-    await page.getByLabel("name, required").fill("Ada Lovelace");
-    await page.getByLabel("what you research or study, optional").fill("protein folding");
-    await page.getByLabel(/Email me release notes/).check();
-    await page.getByLabel(/Required: store my email/).check();
+    await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
+    await page.getByLabel("Name", { exact: true }).fill("Ada Lovelace");
+    await page.getByLabel("What do you research?").fill("protein folding");
+    await page.getByLabel("Release notes").check();
+    await page.getByLabel("Agree to the privacy terms").check();
     await page.locator("[data-download-button]").click();
 
     const blocks = page.locator("[data-install-blocks] [data-os]");
     await expect(blocks.first()).toHaveAttribute("data-os", "linux");
-    await expect(blocks.first()).toContainText(await expectedLinuxCommand(blocks.first()));
+    await expect(blocks.first()).toContainText("install.sh");
+    await expect(blocks.first().getByRole("note")).toHaveText("Open it from a terminal, never with Disks.");
+    await expect(page.locator("[data-other-platforms]")).not.toHaveAttribute("open", "");
 
     expect(posts).toHaveLength(1);
     expect(posts[0]).toMatchObject({
@@ -79,9 +80,9 @@ test.describe("download flow on macos", () => {
   test("the macos command comes first", async ({ page }) => {
     await page.route("**/api/download", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
     await page.goto("/download");
-    await page.getByLabel("email address, required").fill("ada@example.org");
-    await page.getByLabel("name, required").fill("Ada");
-    await page.getByLabel(/Required: store my email/).check();
+    await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
+    await page.getByLabel("Name", { exact: true }).fill("Ada");
+    await page.getByLabel("Agree to the privacy terms").check();
     await page.locator("[data-download-button]").click();
     const first = page.locator("[data-install-blocks] [data-os]").first();
     await expect(first).toHaveAttribute("data-os", "macos");
@@ -91,10 +92,10 @@ test.describe("download flow on macos", () => {
   test("windows gets the PowerShell line when chosen", async ({ page }) => {
     await page.route("**/api/download", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
     await page.goto("/download");
-    await page.getByLabel("your computer, required").selectOption("windows-x64");
-    await page.getByLabel("email address, required").fill("ada@example.org");
-    await page.getByLabel("name, required").fill("Ada");
-    await page.getByLabel(/Required: store my email/).check();
+    await page.getByLabel("Computer").selectOption("windows-x64");
+    await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
+    await page.getByLabel("Name", { exact: true }).fill("Ada");
+    await page.getByLabel("Agree to the privacy terms").check();
     await page.locator("[data-download-button]").click();
     const first = page.locator("[data-install-blocks] [data-os]").first();
     await expect(first).toHaveAttribute("data-os", "windows");
