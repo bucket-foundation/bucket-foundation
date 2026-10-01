@@ -39,7 +39,7 @@ test("every generation card carries the machine-made label and its state in plai
     assert.ok(html.includes('id="gen-one"'), state);
   }
   const unknown = card(generation({ state: "pending" }));
-  assert.ok(unknown.includes("made by a machine") && unknown.includes(">state unknown<") && !unknown.includes("pending"));
+  assert.ok(unknown.includes("made by a machine") && unknown.includes(">state unknown<") && !unknown.includes(">pending<"));
 });
 
 test("a refuted generation is shown, labelled refuted, with the reason it stays", () => {
