@@ -2,7 +2,36 @@ export const KINDS = ["production", "generation"] as const;
 export const SOURCES = ["own", "third-party"] as const;
 export const PRODUCTION_STATUSES = ["merged", "open"] as const;
 export const GENERATION_STATES = ["candidate", "tested", "refuted", "proved"] as const;
-export const LINK_HOSTS: readonly string[] = ["github.com"];
+export const IMAGE_MAX_PIXELS = 16_000_000;
+
+const OWNER = "[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})";
+const REPO = "[A-Za-z0-9._-]{1,100}";
+const SEGMENT = "[A-Za-z0-9._~+@-]{1,200}";
+
+export interface HostRule {
+  reservedFirstSegments: readonly string[];
+  paths: readonly RegExp[];
+}
+
+export const LINK_RULES: Readonly<Record<string, HostRule>> = {
+  "github.com": {
+    reservedFirstSegments: [
+      "login", "logout", "session", "sessions", "join", "signup", "auth", "oauth", "redirect", "settings", "account", "orgs", "users", "apps",
+      "marketplace", "notifications", "search", "enterprises", "sponsors", "topics", "features", "site", "about", "security", "contact",
+      "pricing", "new", "explore", "codespaces", "collections", "trending", "password_reset", "sso", "raw", "gist",
+    ],
+    paths: [
+      new RegExp(`^/${OWNER}/${REPO}/?$`),
+      new RegExp(`^/${OWNER}/${REPO}/pull/\\d{1,9}(?:/(?:files|commits|checks))?$`),
+      new RegExp(`^/${OWNER}/${REPO}/issues/\\d{1,9}$`),
+      new RegExp(`^/${OWNER}/${REPO}/commit/[0-9a-f]{7,64}$`),
+      new RegExp(`^/${OWNER}/${REPO}/(?:blob|tree)/${SEGMENT}(?:/${SEGMENT}){0,30}$`),
+      new RegExp(`^/${OWNER}/${REPO}/releases(?:/tag/${SEGMENT}|/latest)?$`),
+    ],
+  },
+};
+
+export const LINK_HOSTS: readonly string[] = Object.keys(LINK_RULES);
 export const IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp"] as const;
 export const IMAGE_MAX_BYTES = 3 * 1024 * 1024;
 export const DISCUSSION_MAX_WORDS = 99;
@@ -24,6 +53,8 @@ export interface ImageMeta {
   filename: string;
   content_type: string;
   bytes: number;
+  width: number;
+  height: number;
 }
 
 interface Common {
@@ -97,6 +128,7 @@ function isRecord(v: unknown): v is Record<string, unknown> {
 function text(body: Record<string, unknown>, field: string, max: number): string {
   const v = body[field];
   if (typeof v !== "string") throw new Invalid(field, "must be a string");
+  if (v.length > max + 64) throw new Invalid(field, `must be ${max} characters or fewer`);
   const s = v.trim();
   if (s.length === 0) throw new Invalid(field, "must not be empty");
   if (s.length > max) throw new Invalid(field, `must be ${max} characters or fewer`);
@@ -120,7 +152,8 @@ function knownKeys(body: Record<string, unknown>, allowed: string[], prefix = ""
   }
 }
 
-export function checkLink(value: unknown, field: string, hosts: readonly string[] = LINK_HOSTS): string {
+export function checkLink(value: unknown, field: string, rules: Readonly<Record<string, HostRule>> = LINK_RULES): string {
+  const hosts = Object.keys(rules);
   if (typeof value !== "string" || value.length > 500 || hasControl(value) || value !== value.trim()) throw new Invalid(field, "must be an https URL");
   let url: URL;
   try {
@@ -131,6 +164,15 @@ export function checkLink(value: unknown, field: string, hosts: readonly string[
   if (url.protocol !== "https:") throw new Invalid(field, "must be an https URL");
   if (url.username || url.password) throw new Invalid(field, "must not carry a user or password");
   if (url.port || !hosts.includes(url.hostname)) throw new Invalid(field, `host must be one of ${hosts.join(", ")}`);
+  if (url.search || value.includes("?")) throw new Invalid(field, "must not carry a query string");
+  if (url.hash && !/^#[A-Za-z0-9_-]{1,80}$/.test(url.hash)) throw new Invalid(field, "must carry a plain fragment or none");
+  const rule = rules[url.hostname];
+  const first = url.pathname.split("/")[1]?.toLowerCase() ?? "";
+  const segments = url.pathname.split("/");
+  if (rule.reservedFirstSegments.includes(first) || segments.includes("..") || segments.includes(".") || url.pathname.includes("%")) {
+    throw new Invalid(field, "must point at a repository, pull request, issue, commit, file or release");
+  }
+  if (!rule.paths.some((re) => re.test(url.pathname))) throw new Invalid(field, "must point at a repository, pull request, issue, commit, file or release");
   return url.href;
 }
 
@@ -142,10 +184,64 @@ function validDate(body: Record<string, unknown>): string {
   return v;
 }
 
-function magicMatches(bytes: Buffer, type: string): boolean {
-  if (type === "image/png") return bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
-  if (type === "image/jpeg") return bytes.length > 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
-  return bytes.length > 12 && bytes.toString("latin1", 0, 4) === "RIFF" && bytes.toString("latin1", 8, 12) === "WEBP";
+interface Size {
+  width: number;
+  height: number;
+}
+
+function pngSize(b: Buffer): Size | null {
+  const signature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  const end = Buffer.from([0, 0, 0, 0, 0x49, 0x45, 0x4e, 0x44, 0xae, 0x42, 0x60, 0x82]);
+  if (b.length < 45 || !b.subarray(0, 8).equals(signature) || !b.subarray(b.length - 12).equals(end)) return null;
+  if (b.readUInt32BE(8) !== 13 || b.toString("latin1", 12, 16) !== "IHDR") return null;
+  return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+}
+
+function jpegSize(b: Buffer): Size | null {
+  if (b.length < 4 || b[0] !== 0xff || b[1] !== 0xd8 || b[b.length - 2] !== 0xff || b[b.length - 1] !== 0xd9) return null;
+  let at = 2;
+  while (at + 9 < b.length) {
+    if (b[at] !== 0xff) return null;
+    const marker = b[at + 1];
+    if (marker === 0xff) {
+      at++;
+      continue;
+    }
+    if (marker === 0xd8 || (marker >= 0xd0 && marker <= 0xd7) || marker === 0x01) {
+      at += 2;
+      continue;
+    }
+    const length = b.readUInt16BE(at + 2);
+    if (length < 2) return null;
+    const frame = marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc;
+    if (frame) return { height: b.readUInt16BE(at + 5), width: b.readUInt16BE(at + 7) };
+    if (marker === 0xda) return null;
+    at += 2 + length;
+  }
+  return null;
+}
+
+function webpSize(b: Buffer): Size | null {
+  if (b.length < 30 || b.toString("latin1", 0, 4) !== "RIFF" || b.toString("latin1", 8, 12) !== "WEBP") return null;
+  if (b.readUInt32LE(4) + 8 !== b.length) return null;
+  const chunk = b.toString("latin1", 12, 16);
+  if (chunk === "VP8X") return { width: b.readUIntLE(24, 3) + 1, height: b.readUIntLE(27, 3) + 1 };
+  if (chunk === "VP8L") {
+    if (b[20] !== 0x2f) return null;
+    const bits = b.readUInt32LE(21);
+    return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+  }
+  if (chunk === "VP8 ") {
+    if (b[23] !== 0x9d || b[24] !== 0x01 || b[25] !== 0x2a) return null;
+    return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+  }
+  return null;
+}
+
+export function imageSize(bytes: Buffer, type: string): Size | null {
+  const size = type === "image/png" ? pngSize(bytes) : type === "image/jpeg" ? jpegSize(bytes) : type === "image/webp" ? webpSize(bytes) : null;
+  if (!size || size.width < 1 || size.height < 1 || size.width * size.height > IMAGE_MAX_PIXELS) return null;
+  return size;
 }
 
 function validImage(value: unknown): { input: ImageInput; meta: ImageMeta } {
@@ -154,12 +250,13 @@ function validImage(value: unknown): { input: ImageInput; meta: ImageMeta } {
   if (typeof value.filename !== "string" || !FILENAME.test(value.filename)) throw new Invalid("image.filename", "must be a plain file name");
   const content_type = oneOf(value, "content_type", IMAGE_TYPES);
   const base64 = value.base64;
-  if (typeof base64 !== "string" || base64.length % 4 !== 0 || !BASE64.test(base64)) throw new Invalid("image.base64", "must be standard base64");
-  if (base64.length > Math.ceil(IMAGE_MAX_BYTES / 3) * 4) throw new Invalid("image.base64", `must decode to ${IMAGE_MAX_BYTES} bytes or fewer`);
+  if (typeof base64 !== "string" || base64.length > Math.ceil(IMAGE_MAX_BYTES / 3) * 4) throw new Invalid("image.base64", `must decode to ${IMAGE_MAX_BYTES} bytes or fewer`);
+  if (base64.length % 4 !== 0 || !BASE64.test(base64)) throw new Invalid("image.base64", "must be standard base64");
   const bytes = Buffer.from(base64, "base64");
   if (bytes.length > IMAGE_MAX_BYTES) throw new Invalid("image.base64", `must decode to ${IMAGE_MAX_BYTES} bytes or fewer`);
-  if (!magicMatches(bytes, content_type)) throw new Invalid("image.base64", "does not match image.content_type");
-  return { input: { filename: value.filename, content_type, base64 }, meta: { filename: value.filename, content_type, bytes: bytes.length } };
+  const size = imageSize(bytes, content_type);
+  if (!size) throw new Invalid("image.base64", "must be a whole PNG, JPEG or WebP of 16 megapixels or fewer that matches image.content_type");
+  return { input: { filename: value.filename, content_type, base64 }, meta: { filename: value.filename, content_type, bytes: bytes.length, ...size } };
 }
 
 function common(body: Record<string, unknown>, kind: Kind): Common {
@@ -202,7 +299,7 @@ function production(body: Record<string, unknown>): { entry: ProductionEntry; im
 function generation(body: Record<string, unknown>): GenerationEntry {
   knownKeys(body, GENERATION_KEYS);
   const base = common(body, "generation");
-  if (body.machine_generated !== undefined && body.machine_generated !== true) throw new Invalid("machine_generated", "must be true when given");
+  if (body.machine_generated !== undefined && body.machine_generated !== true) throw new Invalid("machine_generated", "is set by the server; send true or leave it out");
   const entry: GenerationEntry = {
     ...base,
     kind: "generation",

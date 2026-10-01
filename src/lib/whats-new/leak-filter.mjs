@@ -13,16 +13,16 @@ const SECRET_PATTERNS = [
   /\bAIza[0-9A-Za-z_-]{35}\b/,
   /\bfigd_[A-Za-z0-9_-]{20,}/,
   /\b0x[0-9a-fA-F]{64}\b/,
-  /\b[A-Z][A-Z0-9_]*(?:KEY|TOKEN|SECRET|PASSWORD|PASSWD|PWD|CREDENTIALS?)[A-Z0-9_]*\s*[=:]\s*["']?[^\s"']{4,}/,
+  /\b[A-Z][A-Z0-9_]{0,60}(?:KEY|TOKEN|SECRET|PASSWORD|PASSWD|PWD|CREDENTIALS?)[A-Z0-9_]{0,60}\s{0,8}[=:]\s{0,8}["']?[^\s"']{4,}/,
   /\b(?:api[_-]?key|access[_-]?token|secret|password|passwd)\s*[=:]\s*["']?[^\s"']{8,}/i,
 ];
 
-const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
+const EMAIL = /[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9.-]{1,253}\.[A-Za-z]{2,}/;
 const PHONE = /(?:\+\d{1,3}[\s.-]?)?(?:\(\d{3}\)\s?|\b\d{3}[\s.-])\d{3}[\s.-]\d{4}\b/;
 const IPV4 = /\b(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}\b/;
 const IPV6 = /\b(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b|(?:^|[\s[(])::1\b/;
 const LOCALHOST = /\blocalhost\b|\b0\.0\.0\.0:\d+/i;
-const INTERNAL_TLD = /\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:internal|local|lan|corp|intranet|svc\.cluster\.local)\b/i;
+const INTERNAL_TLD = /\b[a-z0-9-]{1,63}(?:\.[a-z0-9-]{1,63}){0,8}\.(?:internal|local|lan|corp|intranet|svc\.cluster\.local)\b/i;
 const ABS_PATH = /(?:^|[\s"'`(=:/])(?:~\/|\/(?:home|Users|tmp|root|var|etc|opt|mnt|private)\/|[A-Za-z]:\\(?:Users|Windows)\\)/;
 
 function escapeRegExp(s) {
@@ -129,7 +129,7 @@ export function leakHits(text, options = leakOptions()) {
   add("localhost", LOCALHOST);
   add("internal-host", INTERNAL_TLD);
   for (const host of options.internalHosts) {
-    add("internal-host", new RegExp(`(?:^|[^A-Za-z0-9.-])(?:[a-z0-9-]+\\.)*${escapeRegExp(host)}\\b`, "i"));
+    add("internal-host", new RegExp(`(?:^|[^A-Za-z0-9.-])(?:[a-z0-9-]{1,63}\\.){0,8}${escapeRegExp(host)}\\b`, "i"));
   }
   add("absolute-path", ABS_PATH);
   return hits;

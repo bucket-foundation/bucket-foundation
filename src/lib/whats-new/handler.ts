@@ -2,8 +2,25 @@ import { createHash, randomBytes } from "node:crypto";
 import { sharedRateLimiter, type MarkStore } from "../download/marks";
 import { bearer, matchToken, parseTokens, revokedInEnv, revokedInStore, sharedRevocationCache, type Poster, type RevocationCache } from "./auth";
 import { entryLeaks } from "./leak-filter.mjs";
-import { KINDS, parseEntryBody, type Kind } from "./schema";
-import { appendAudit, entryIds, listEntries, readCounter, readEntry, writeCounter, writeEntry, writeImage, type DocStore, type StoredEntry } from "./store";
+import { KINDS, parseEntryBody, type ImageMeta, type Kind } from "./schema";
+import {
+  addUsage,
+  appendAudit,
+  clearUsage,
+  createEntry,
+  entryIds,
+  listEntries,
+  markRevoked,
+  readEntry,
+  readUsage,
+  removeEntry,
+  removeImage,
+  writeEntry,
+  writeImage,
+  type DocStore,
+  type StoredEntry,
+  type Usage,
+} from "./store";
 
 type Env = Record<string, string | undefined>;
 
@@ -13,9 +30,10 @@ export interface Limits {
   ratePerMinute: number;
   draftsPerPoster: number;
   draftsTotal: number;
+  imageBytesPerPoster: number;
 }
 
-export const DEFAULT_LIMITS: Limits = { ratePerMinute: 20, draftsPerPoster: 200, draftsTotal: 2000 };
+export const DEFAULT_LIMITS: Limits = { ratePerMinute: 20, draftsPerPoster: 200, draftsTotal: 2000, imageBytesPerPoster: 50 * 1024 * 1024 };
 
 export interface Deps {
   env: Env;
@@ -43,7 +61,7 @@ export interface PostRequest {
   authorization: string | null;
   contentType: string | null;
   contentLength: string | null;
-  text(): Promise<string>;
+  body: ReadableStream<Uint8Array> | null;
 }
 
 export interface ListRequest {
@@ -52,7 +70,13 @@ export interface ListRequest {
   state: string | null;
 }
 
+export interface RevokeRequest {
+  authorization: string | null;
+  name: string;
+}
+
 const NOT_FOUND: Result = { status: 404, body: null };
+const POSTER_NAME = /^[a-z0-9-]{1,40}$/;
 
 function fail(status: number, error: string, extra: Record<string, unknown> = {}): Result {
   return { status, body: { error, ...extra } };
@@ -75,12 +99,26 @@ async function authorize(authorization: string | null, deps: Deps): Promise<{ po
   return { poster, store: deps.store };
 }
 
-function withoutImagePayload(body: unknown): unknown {
-  if (typeof body !== "object" || body === null || Array.isArray(body)) return body;
-  const image = (body as Record<string, unknown>).image;
-  if (typeof image !== "object" || image === null || Array.isArray(image)) return body;
-  const { base64: _payload, ...rest } = image as Record<string, unknown>;
-  return { ...body, image: rest };
+export async function readCapped(body: ReadableStream<Uint8Array> | null, maxBytes: number): Promise<Buffer | null> {
+  if (!body) return Buffer.alloc(0);
+  const reader = body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) return Buffer.concat(chunks);
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+}
+
+function imageBytes(entry: StoredEntry | null): number {
+  const bytes = (entry?.image as ImageMeta | undefined)?.bytes;
+  return typeof bytes === "number" ? bytes : 0;
 }
 
 export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> {
@@ -102,55 +140,105 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
     return unavailable("rate limit read failed", err);
   }
 
-  const raw = await req.text();
-  if (Buffer.byteLength(raw, "utf8") > BODY_MAX_BYTES) return fail(413, "The body is over 4 MB.");
+  const raw = await readCapped(req.body, BODY_MAX_BYTES);
+  if (raw === null) return fail(413, "The body is over 4 MB.");
   let body: unknown;
   try {
-    body = JSON.parse(raw);
+    body = JSON.parse(raw.toString("utf8"));
   } catch {
     return fail(400, "The body is not valid JSON.");
-  }
-
-  const leaks = entryLeaks(withoutImagePayload(body)) as { field: string; kind: string }[];
-  if (leaks.length > 0) {
-    const seen = new Set<string>();
-    const fields = leaks
-      .map((h) => ({ field: h.field.slice(0, 80), kind: h.kind }))
-      .filter((h) => !seen.has(`${h.field}:${h.kind}`) && Boolean(seen.add(`${h.field}:${h.kind}`)));
-    return fail(422, "The leak filter rejected the entry.", { fields });
   }
 
   const parsed = parseEntryBody(body);
   if (!parsed.ok) return fail(400, parsed.error, { field: parsed.field });
   const { entry, image } = parsed;
 
+  const leaks = entryLeaks(entry) as { field: string; kind: string }[];
+  if (leaks.length > 0) {
+    const seen = new Set<string>();
+    const fields = leaks.map((h) => ({ field: h.field, kind: h.kind })).filter((h) => !seen.has(`${h.field}:${h.kind}`) && Boolean(seen.add(`${h.field}:${h.kind}`)));
+    return fail(422, "The leak filter rejected the entry.", { fields });
+  }
+
   if (deps.legacy.some((e) => e.id === entry.id)) return fail(409, "This id belongs to an entry in the legacy feed.");
 
+  const now = new Date(clock()).toISOString();
+  const body_hash = createHash("sha256").update(raw).digest("hex");
+  const fresh: StoredEntry = { ...entry, review_state: "draft", poster: poster.name, created_at: now, updated_at: now, body_hash };
+  let reserved: Usage | null = null;
   try {
-    const existing = await readEntry(store, entry.id);
-    if (existing && existing.poster !== poster.name) return fail(409, "This id belongs to another poster.");
-
-    let count = 0;
+    let existing = await readEntry(store, entry.id);
     if (!existing) {
-      count = await readCounter(store, poster.name);
-      if (count >= limits.draftsPerPoster) return fail(429, "This poster holds the maximum number of drafts.");
+      const usage = await readUsage(store, poster.name);
+      if (usage.drafts >= limits.draftsPerPoster) return fail(429, "This poster holds the maximum number of drafts.");
+      if (usage.image_bytes + imageBytes(fresh) > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
       if ((await entryIds(store)).length >= limits.draftsTotal) return fail(429, "The store holds the maximum number of drafts.");
+      const claim: Usage = { drafts: 1, image_bytes: imageBytes(fresh) };
+      await addUsage(store, poster.name, claim);
+      reserved = claim;
+      if (!(await createEntry(store, fresh))) {
+        await addUsage(store, poster.name, { drafts: -1, image_bytes: -claim.image_bytes });
+        reserved = null;
+        existing = await readEntry(store, entry.id);
+        if (!existing) return fail(409, "This id was taken while the post was in flight. Send it again.");
+      }
     }
 
-    const now = new Date(clock()).toISOString();
-    const body_hash = createHash("sha256").update(raw).digest("hex");
+    if (existing) {
+      if (existing.poster !== poster.name) return fail(409, "This id belongs to another poster.");
+      if (existing.kind !== entry.kind) return fail(409, `This id holds a ${existing.kind}; the kind of an entry is fixed.`);
+      const delta = imageBytes(fresh) - imageBytes(existing);
+      const usage = await readUsage(store, poster.name);
+      if (delta > 0 && usage.image_bytes + delta > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
+      if (delta !== 0) {
+        await addUsage(store, poster.name, { drafts: 0, image_bytes: delta });
+        reserved = { drafts: 0, image_bytes: delta };
+      }
+      await writeEntry(store, { ...fresh, created_at: existing.created_at });
+    }
+
+    reserved = null;
+    if (image) await writeImage(store, entry.id, image);
+    else if (existing) await removeImage(store, entry.id);
     await appendAudit(
       store,
       { ts: now, id: entry.id, poster: poster.name, action: existing ? "replace" : "create", body_hash, previous_body_hash: existing?.body_hash ?? null },
       randomBytes(4).toString("hex"),
     );
-    if (image) await writeImage(store, entry.id, image);
-    const stored: StoredEntry = { ...entry, review_state: "draft", poster: poster.name, created_at: existing?.created_at ?? now, updated_at: now, body_hash };
-    await writeEntry(store, stored);
-    if (!existing) await writeCounter(store, poster.name, count + 1);
     return { status: existing ? 200 : 201, body: { ok: true, id: entry.id, kind: entry.kind, review_state: "draft", replaced: Boolean(existing) } };
   } catch (err) {
+    if (reserved) {
+      await addUsage(store, poster.name, { drafts: -reserved.drafts, image_bytes: -reserved.image_bytes }).catch((release: unknown) => {
+        console.error("[whats-new] usage release failed:", release instanceof Error ? release.message : release);
+      });
+    }
     return unavailable("write failed", err);
+  }
+}
+
+export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Result> {
+  const auth = await authorize(req.authorization, deps);
+  if ("status" in auth) return auth;
+  if (auth.poster.scope !== "admin") return NOT_FOUND;
+  if (!POSTER_NAME.test(req.name)) return fail(400, "name must match [a-z0-9-]{1,40}", { field: "name" });
+  const { store } = auth;
+  const clock = deps.clock ?? Date.now;
+  const now = new Date(clock()).toISOString();
+  try {
+    await markRevoked(store, req.name, now);
+    (deps.revocationCache ?? sharedRevocationCache).set(`${store.prefix}${req.name}`, { revoked: true, at: clock() });
+    const drafts = (await listEntries(store)).filter((e) => e.poster === req.name && e.review_state === "draft");
+    for (const draft of drafts) await removeEntry(store, draft.id);
+    await clearUsage(store, req.name);
+    const deleted = drafts.map((d) => d.id).sort();
+    await appendAudit(
+      store,
+      { ts: now, id: `token-${req.name}`, poster: auth.poster.name, action: "revoke", body_hash: null, previous_body_hash: null, deleted },
+      randomBytes(4).toString("hex"),
+    );
+    return { status: 200, body: { ok: true, revoked: req.name, deleted } };
+  } catch (err) {
+    return unavailable("revoke failed", err);
   }
 }
 

@@ -27,7 +27,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       authorization: req.headers.get("authorization"),
       contentType: req.headers.get("content-type"),
       contentLength: req.headers.get("content-length"),
-      text: () => req.text(),
+      body: req.body,
     },
     deps(),
   );

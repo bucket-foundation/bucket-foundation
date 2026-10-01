@@ -1,15 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
-import { mkdtemp, readdir, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readdir, readFile, rm, stat } from "node:fs/promises";
 import { readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileMarks } from "../src/lib/download/marks";
 import { matchToken, parseTokens, REVOCATION_TTL_MS, tokenHash, TOKEN_MIN, type RevocationCache } from "../src/lib/whats-new/auth";
-import { BODY_MAX_BYTES, handleList, handlePost, mergeEntries, type Deps, type LegacyEntry, type Limits, type Result } from "../src/lib/whats-new/handler";
-import { checkLink, IMAGE_MAX_BYTES, parseEntryBody } from "../src/lib/whats-new/schema";
-import { fileDocs, getWhatsNewStore, markRevoked, readEntry, whatsNewPrefix, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
+import { BODY_MAX_BYTES, handleList, handlePost, handleRevoke, mergeEntries, readCapped, type Deps, type LegacyEntry, type Limits, type Result } from "../src/lib/whats-new/handler";
+import { checkLink, IMAGE_MAX_BYTES, imageSize, parseEntryBody } from "../src/lib/whats-new/schema";
+import { fileDocs, getWhatsNewStore, markRevoked, readEntry, readUsage, whatsNewPrefix, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
 
 const FIXTURES = path.join(__dirname, "fixtures", "whats-new-api");
 const LEGACY: LegacyEntry[] = [{ id: "pr-496", date: "2026-10-01", category: "pr-merged", title: "Legacy row" }];
@@ -43,11 +43,23 @@ async function bench(t: { after(fn: () => Promise<void>): void }, over: Partial<
     marks: fileMarks(path.join(root, "marks")),
     legacy: LEGACY,
     clock: () => now.value,
-    limits: { ratePerMinute: 1000, draftsPerPoster: 50, draftsTotal: 100, ...limits },
+    limits: { ratePerMinute: 1000, draftsPerPoster: 50, draftsTotal: 100, imageBytesPerPoster: 10_000_000, ...limits },
     revocationCache: new Map(),
     ...over,
   };
   return { deps, store, root, now };
+}
+
+function stream(raw: string, chunk = 65536): ReadableStream<Uint8Array> {
+  const bytes = Buffer.from(raw, "utf8");
+  let at = 0;
+  return new ReadableStream<Uint8Array>({
+    pull(controller) {
+      if (at >= bytes.length) return controller.close();
+      controller.enqueue(new Uint8Array(bytes.subarray(at, at + chunk)));
+      at += chunk;
+    },
+  });
 }
 
 function post(deps: Deps, body: unknown, token: string | null = tokens.ada, over: { contentType?: string | null; contentLength?: string | null; raw?: string } = {}): Promise<Result> {
@@ -57,7 +69,7 @@ function post(deps: Deps, body: unknown, token: string | null = tokens.ada, over
       authorization: token === null ? null : `Bearer ${token}`,
       contentType: over.contentType === undefined ? "application/json" : over.contentType,
       contentLength: over.contentLength === undefined ? String(Buffer.byteLength(raw)) : over.contentLength,
-      text: async () => raw,
+      body: stream(raw),
     },
     deps,
   );
@@ -110,11 +122,13 @@ test("matchToken compares against every configured hash and names the poster", (
 
 test("a missing or wrong token gets the cron route's 404 before the body is read", async (t) => {
   const { deps } = await bench(t);
-  const unread = { contentType: "application/json", contentLength: "2", text: async (): Promise<string> => assert.fail("body was read") };
+  const body = (): ReadableStream<Uint8Array> => new ReadableStream<Uint8Array>({ pull: () => assert.fail("body was read") });
+  const unread = { contentType: "application/json", contentLength: "2" };
   for (const authorization of [null, "Bearer wrong", `Bearer ${randomBytes(24).toString("hex")}`, `Basic ${tokens.ada}`, tokens.ada]) {
-    assert.deepEqual(await handlePost({ authorization, ...unread }, deps), { status: 404, body: null });
+    assert.deepEqual(await handlePost({ authorization, ...unread, body: body() }, deps), { status: 404, body: null });
+    assert.deepEqual(await handleRevoke({ authorization, name: "ada" }, deps), { status: 404, body: null });
   }
-  assert.deepEqual(await handlePost({ authorization: `Bearer ${tokens.ada}`, ...unread }, { ...deps, env: {} }), { status: 404, body: null });
+  assert.deepEqual(await handlePost({ authorization: `Bearer ${tokens.ada}`, ...unread, body: body() }, { ...deps, env: {} }), { status: 404, body: null });
 });
 
 test("POST returns 201 for a new draft and 200 for a replace by the same poster", async (t) => {
@@ -214,53 +228,264 @@ test("field rules for productions and generations", () => {
   assert.equal(defaults.ok && defaults.entry.kind === "generation" && defaults.entry.machine_generated, true);
 });
 
-test("links need https, an exact allowlisted host and no userinfo", () => {
-  assert.equal(checkLink("https://github.com/bucket-foundation/bucket-foundation/pull/519", "href"), "https://github.com/bucket-foundation/bucket-foundation/pull/519");
+test("links need https, an exact host, an allowlisted path, no userinfo and no query", () => {
+  const accepted = [
+    "https://github.com/bucket-foundation/bucket-foundation",
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519",
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519/files",
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519#issuecomment-1",
+    "https://github.com/bucket-foundation/bucket-foundation/issues/12",
+    "https://github.com/bucket-foundation/bucket-foundation/commit/949b98f95",
+    "https://github.com/bucket-foundation/bucket-foundation/blob/dev/reports/2026-09-30-solver-gap-engine.md",
+    "https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0",
+  ];
+  for (const href of accepted) assert.equal(checkLink(href, "href"), href);
   const rejected = [
-    "http://github.com/a",
-    "https://gist.github.com/a",
-    "https://www.github.com/a",
-    "https://github.com.example.org/a",
+    "http://github.com/a/b",
+    "https://gist.github.com/a/b",
+    "https://www.github.com/a/b",
+    "https://github.com.example.org/a/b",
     "https://example.org/github.com",
-    "https://user@github.com/a",
-    "https://user:pw@github.com/a",
-    "https://github.com@example.org/a",
-    "https://github.com:8443/a",
-    "//github.com/a",
-    "github.com/a",
+    "https://user@github.com/a/b",
+    "https://user:pw@github.com/a/b",
+    "https://github.com@example.org/a/b",
+    "https://github.com:8443/a/b",
+    "//github.com/a/b",
+    "github.com/a/b",
     "javascript:alert(1)",
-    " https://github.com/a",
+    " https://github.com/a/b",
+    "https://github.com/login?return_to=https://evil.example",
+    "https://github.com/login/oauth",
+    "https://github.com/sessions/new",
+    "https://github.com/a/b?tab=readme",
+    "https://github.com/a/b?",
+    "https://github.com/a/b/pull/1?return_to=https://evil.example",
+    "https://github.com/a/b#https://evil.example",
+    "https://github.com/a/b/wiki/Home",
+    "https://github.com/a/b/pull/x",
+    "https://github.com/a/b/blob/dev/a%20b",
+    "https://github.com/a",
+    "https://github.com/",
+    "https://github.com/redirect/x",
     42,
   ];
-  for (const href of rejected) assert.throws(() => checkLink(href, "href"), String(href));
+  for (const href of rejected) assert.throws(() => checkLink(href, "href"), Error, String(href));
+  const legacy = (JSON.parse(readFileSync(path.join(__dirname, "..", "data", "whats-new.json"), "utf8")) as { entries: { links?: { href: string }[] }[] }).entries;
+  for (const link of legacy.flatMap((e) => e.links ?? [])) assert.equal(checkLink(link.href, "href"), link.href);
   const inLinks = parseEntryBody({ ...production(), links: [{ label: "PR", href: "https://bit.ly/x" }] });
   assert.deepEqual([inLinks.ok, !inLinks.ok && inLinks.field], [false, "links[0].href"]);
-  const inEvidence = parseEntryBody({ ...generation(), evidence: ["https://github.com/a", "https://user@github.com/a"] });
+  const inEvidence = parseEntryBody({ ...generation(), evidence: ["https://github.com/a/b", "https://user@github.com/a/b"] });
   assert.deepEqual([inEvidence.ok, !inEvidence.ok && inEvidence.field], [false, "evidence[1]"]);
 });
 
-test("the leak filter runs on every string field and never echoes the match", async (t) => {
-  const { deps } = await bench(t);
-  const marker = "ada.lovelace@example.org";
+test("the leak filter runs on every stored string and never echoes the match", async (t) => {
+  const { deps, store } = await bench(t);
+  const fixed = ["kind", "category", "date", "source", "status", "state", "image.content_type", "image.base64"];
+  const hostile = (field: string): string => {
+    if (field === "id" || field === "parent") return "kruse-run-7";
+    if (field === "image.filename") return "kruse-plot.png";
+    if (field.endsWith("href") || field.startsWith("evidence")) return "https://github.com/ada/kruse-notes/pull/1";
+    return "From the kruse corpus";
+  };
+  const seen: string[] = [];
   for (const make of [production, generation]) {
-    const paths = stringPaths(make()).filter((p) => p !== "image.base64");
-    assert.ok(paths.includes("links[0].href") || paths.includes("evidence[0]"));
-    for (const field of paths) {
+    for (const field of stringPaths(make())) {
       const body = make();
-      setPath(body, field, `https://github.com/a?contact=${marker}`);
+      setPath(body, field, fixed.includes(field) ? "kruse" : hostile(field));
       const res = await post(deps, body);
+      assert.ok(!JSON.stringify(res.body).includes("kruse"), field);
+      if (fixed.includes(field)) {
+        assert.equal(res.status, 400, field);
+        continue;
+      }
       assert.equal(res.status, 422, field);
-      const fields = res.body?.fields as { field: string; kind: string }[];
-      assert.ok(fields.some((f) => f.field === field && f.kind === "email"), field);
-      assert.ok(!JSON.stringify(res.body).includes("lovelace"), field);
+      assert.deepEqual(res.body?.fields, [{ field, kind: "private-corpus" }], field);
+      seen.push(field);
     }
   }
-  assert.ok(stringPaths(generation()).includes("run_id"));
-  const unknown = await post(deps, { ...generation(), note: { deep: [["", "home", "ada", "run.log"].join("/")] } });
-  assert.deepEqual(unknown.body?.fields, [{ field: "note.deep[0]", kind: "absolute-path" }]);
+  for (const field of ["id", "title", "summary", "plot_title", "discussion", "image_alt", "image.filename", "links[0].label", "links[0].href", "claim", "tool", "run_id", "score.meaning", "evidence[0]", "parent"]) {
+    assert.ok(seen.includes(field), field);
+  }
+  const email = await post(deps, { ...generation(), claim: "Write to ada.lovelace@example.org for the run log" });
+  assert.deepEqual([email.status, email.body?.fields, JSON.stringify(email.body).includes("lovelace")], [422, [{ field: "claim", kind: "email" }], false]);
   const secret = await post(deps, { ...generation(), run_id: `ghp_${"a".repeat(36)}` });
   assert.deepEqual([secret.status, JSON.stringify(secret.body).includes("ghp_")], [422, false]);
-  assert.equal((await list(deps, { state: "draft" }, tokens.root)).body?.entries instanceof Array && entriesOf(await list(deps, { state: "draft" }, tokens.root)).length, 0);
+  const home = await post(deps, { ...generation(), tool: ["", "home", "ada", "run.py"].join("/") });
+  assert.deepEqual(home.body?.fields, [{ field: "tool", kind: "absolute-path" }]);
+  const unknown = await post(deps, { ...generation(), note: "From the kruse corpus" });
+  assert.deepEqual([unknown.status, unknown.body?.field, JSON.stringify(unknown.body).includes("kruse")], [400, "note", false]);
+  assert.deepEqual(await store.list("entries"), []);
+});
+
+test("lengths are checked before the leak filter, and a hostile string costs under a second", async (t) => {
+  const { deps } = await bench(t);
+  const { leakHits } = (await import("../src/lib/whats-new/leak-filter.mjs")) as { leakHits: (text: string) => unknown[] };
+  const hostile = ["a".repeat(160_000), "A_".repeat(80_000), "a-".repeat(80_000), "a.".repeat(80_000), "a@".repeat(80_000)];
+  for (const text of hostile) {
+    const started = process.hrtime.bigint();
+    leakHits(text);
+    const ms = Number(process.hrtime.bigint() - started) / 1e6;
+    assert.ok(ms < 1000, `${text.slice(0, 4)} took ${ms} ms`);
+  }
+  for (const field of ["title", "claim", "tool", "run_id"]) {
+    const started = process.hrtime.bigint();
+    const res = await post(deps, { ...generation(), [field]: "a".repeat(3_900_000) });
+    const ms = Number(process.hrtime.bigint() - started) / 1e6;
+    assert.deepEqual([res.status, res.body?.field], [400, field]);
+    assert.ok(ms < 1000, `${field} took ${ms} ms`);
+  }
+  const long = await post(deps, { ...production(), links: [{ label: "PR", href: `https://github.com/a/b/blob/dev/${"a".repeat(600)}` }] });
+  assert.deepEqual([long.status, long.body?.field], [400, "links[0].href"]);
+  for (const [field, max] of [["title", 120], ["summary", 600], ["plot_title", 200], ["image_alt", 300], ["discussion", 1200]] as const) {
+    assert.equal((await post(deps, { ...production(), [field]: "a".repeat(max + 1) })).body?.field, field);
+  }
+});
+
+function gated(store: DocStore, name: string): DocStore {
+  let waiting = 0;
+  let open: () => void = () => undefined;
+  const both = new Promise<void>((resolve) => (open = resolve));
+  return {
+    ...store,
+    read: async (path) => {
+      const text = await store.read(path);
+      if (path === name && text === null && waiting < 2) {
+        if (++waiting === 2) open();
+        await both;
+      }
+      return text;
+    },
+  };
+}
+
+test("two posters racing on a new id: one creates it, the other gets 409 and holds no reserved count", async (t) => {
+  const { deps, store } = await bench(t);
+  const raced = { ...deps, store: gated(store, "entries/gen-sibling-momentum.json") };
+  const results = await Promise.all([post(raced, generation(), tokens.ada), post(raced, { ...generation(), title: "Second copy" }, tokens.bob)]);
+  assert.deepEqual(results.map((r) => r.status).sort(), [201, 409]);
+  const winner = results[0].status === 201 ? "ada" : "bob";
+  const stored = (await readEntry(store, "gen-sibling-momentum")) as StoredEntry;
+  assert.equal(stored.poster, winner);
+  assert.equal(stored.title, winner === "ada" ? "Sibling momentum" : "Second copy");
+  assert.deepEqual([(await readUsage(store, winner)).drafts, (await readUsage(store, winner === "ada" ? "bob" : "ada")).drafts], [1, 0]);
+  assert.deepEqual(await store.list("entries"), ["gen-sibling-momentum.json"]);
+
+  const own = await bench(t);
+  const twice = { ...own.deps, store: gated(own.store, "entries/gen-sibling-momentum.json") };
+  const mine = await Promise.all([post(twice, generation()), post(twice, generation())]);
+  assert.deepEqual(mine.map((r) => r.status).sort(), [200, 201]);
+  assert.equal((await readEntry(own.store, "gen-sibling-momentum"))?.poster, "ada");
+});
+
+test("the draft count is reserved before the entry is written and released when the write fails", async (t) => {
+  const { deps, store } = await bench(t, {}, { draftsPerPoster: 1 });
+  const quiet = t.mock.method(console, "error", () => undefined);
+  let usageAtCreate = -1;
+  const failing: DocStore = {
+    ...store,
+    create: async (name, text) => {
+      if (!name.startsWith("entries/")) return store.create(name, text);
+      usageAtCreate = (await readUsage(store, "ada")).drafts;
+      throw new Error("blob store is down");
+    },
+  };
+  assert.equal((await post({ ...deps, store: failing }, generation())).status, 503);
+  assert.equal(usageAtCreate, 1);
+  assert.equal((await readUsage(store, "ada")).drafts, 0);
+  assert.equal(await readEntry(store, "gen-sibling-momentum"), null);
+
+  const noCounter: DocStore = {
+    ...store,
+    write: async (name, text) => {
+      if (name.startsWith("counters/")) throw new Error("blob store is down");
+      return store.write(name, text);
+    },
+  };
+  assert.equal((await post({ ...deps, store: noCounter }, generation())).status, 503);
+  assert.equal(await readEntry(store, "gen-sibling-momentum"), null);
+  assert.ok(quiet.mock.callCount() >= 2);
+
+  assert.equal((await post(deps, generation())).status, 201);
+  assert.equal((await post(deps, fixture("gen-september-step-change"))).status, 429);
+  assert.equal((await readUsage(store, "ada")).drafts, 1);
+});
+
+test("a replace cannot change the kind, and machine_generated comes from the kind", async (t) => {
+  const { deps, store } = await bench(t);
+  assert.equal((await post(deps, generation())).status, 201);
+  const flipped = await post(deps, { ...production(), id: "gen-sibling-momentum" });
+  assert.equal(flipped.status, 409);
+  const kept = (await readEntry(store, "gen-sibling-momentum")) as StoredEntry;
+  assert.deepEqual([kept.kind, kept.machine_generated], ["generation", true]);
+  assert.equal((await post(deps, { ...generation(), machine_generated: undefined })).status, 200);
+  assert.equal((await readEntry(store, "gen-sibling-momentum"))?.machine_generated, true);
+  assert.equal((await post(deps, { ...generation(), machine_generated: false })).status, 400);
+  const sneaky = await post(deps, { ...production(), machine_generated: true });
+  assert.deepEqual([sneaky.status, sneaky.body?.field], [400, "machine_generated"]);
+  assert.equal((await post(deps, production())).status, 201);
+  assert.equal("machine_generated" in ((await readEntry(store, "gap-score-backtest-2026-10")) as StoredEntry), false);
+  assert.equal((await post(deps, { ...generation(), id: "gap-score-backtest-2026-10" })).status, 409);
+});
+
+test("an admin revokes a poster: the mark is written, the drafts go, and the token stops working", async (t) => {
+  const { deps, store, root } = await bench(t);
+  assert.equal((await post(deps, production())).status, 201);
+  assert.equal((await post(deps, generation())).status, 201);
+  assert.equal((await post(deps, fixture("gen-september-step-change"), tokens.bob)).status, 201);
+  const live = (await readEntry(store, "gen-sibling-momentum")) as StoredEntry;
+  await writeEntry(store, { ...live, review_state: "published" });
+
+  for (const token of [null, "wrong", tokens.ada, tokens.bob]) {
+    assert.deepEqual(await handleRevoke({ authorization: token === null ? null : `Bearer ${token}`, name: "ada" }, deps), { status: 404, body: null });
+  }
+  assert.equal((await handleRevoke({ authorization: `Bearer ${tokens.root}`, name: "Ada Lovelace" }, deps)).status, 400);
+  assert.equal((await handleRevoke({ authorization: `Bearer ${tokens.root}`, name: "ada" }, { ...deps, store: null })).status, 503);
+  assert.equal((await post(deps, generation())).status, 200);
+  await writeEntry(store, { ...live, review_state: "published" });
+
+  const res = await handleRevoke({ authorization: `Bearer ${tokens.root}`, name: "ada" }, deps);
+  assert.deepEqual(res, { status: 200, body: { ok: true, revoked: "ada", deleted: ["gap-score-backtest-2026-10"] } });
+  assert.deepEqual((await store.list("entries")).sort(), ["gen-september-step-change.json", "gen-sibling-momentum.json"]);
+  assert.deepEqual(await readUsage(store, "ada"), { drafts: 0, image_bytes: 0 });
+  assert.equal((await post(deps, generation())).status, 404);
+  assert.equal((await post({ ...deps, revocationCache: new Map() }, generation())).status, 404);
+  assert.equal((await post(deps, fixture("gen-september-step-change"), tokens.bob)).status, 200);
+  const dir = path.join(root, "whats-new-test", "audit");
+  const audit = await Promise.all((await readdir(dir)).map(async (n) => JSON.parse(await readFile(path.join(dir, n), "utf8")) as Record<string, unknown>));
+  const record = audit.find((r) => r.action === "revoke");
+  assert.deepEqual([record?.id, record?.poster, record?.deleted], ["token-ada", "root", ["gap-score-backtest-2026-10"]]);
+
+  const quiet = t.mock.method(console, "error", () => undefined);
+  const down: DocStore = { ...store, write: async () => Promise.reject(new Error("blob store is down")) };
+  assert.equal((await handleRevoke({ authorization: `Bearer ${tokens.root}`, name: "bob" }, { ...deps, store: down })).status, 503);
+  assert.equal(quiet.mock.callCount(), 1);
+});
+
+test("the file store writes files 0600 in directories 0700", { skip: process.platform === "win32" }, async (t) => {
+  const { deps, root } = await bench(t);
+  assert.equal((await post(deps, production())).status, 201);
+  const base = path.join(root, "whats-new-test");
+  for (const dir of ["entries", "audit", "counters"]) {
+    assert.equal((await stat(path.join(base, dir))).mode & 0o777, 0o700, dir);
+    for (const name of await readdir(path.join(base, dir))) assert.equal((await stat(path.join(base, dir, name))).mode & 0o777, 0o600, name);
+  }
+  assert.equal((await stat(base)).mode & 0o777, 0o700);
+  assert.equal((await readdir(path.join(base, "entries"))).filter((n) => n.endsWith(".tmp")).length, 0);
+});
+
+test("the body is read as a stream and dropped at the byte cap", async () => {
+  let pulled = 0;
+  const endless = new ReadableStream<Uint8Array>({
+    pull(controller) {
+      pulled++;
+      controller.enqueue(new Uint8Array(1024 * 1024));
+    },
+  });
+  assert.equal(await readCapped(endless, 3 * 1024 * 1024), null);
+  assert.ok(pulled <= 6, String(pulled));
+  assert.equal((await readCapped(stream("abc"), 3))?.toString(), "abc");
+  assert.equal(await readCapped(stream("abcd"), 3), null);
+  assert.equal((await readCapped(null, 3))?.length, 0);
 });
 
 test("revocation by env, by store mark, and a failing revocation read fails closed", async (t) => {
@@ -365,7 +590,7 @@ test("the image object is checked for type and size and stored beside the entry 
   assert.equal((await post(deps, production())).status, 201);
   const kept = JSON.parse(await readFile(path.join(root, "whats-new-test", "entries", "gap-score-backtest-2026-10.image.json"), "utf8")) as unknown;
   assert.deepEqual(kept, { filename: "gap-score-backtest.png", content_type: "image/png", base64: PNG });
-  assert.deepEqual((await readEntry(store, "gap-score-backtest-2026-10"))?.image, { filename: "gap-score-backtest.png", content_type: "image/png", bytes: Buffer.from(PNG, "base64").length });
+  assert.deepEqual((await readEntry(store, "gap-score-backtest-2026-10"))?.image, { filename: "gap-score-backtest.png", content_type: "image/png", bytes: Buffer.from(PNG, "base64").length, width: 1, height: 1 });
   const svg = Buffer.from("<svg xmlns='http://www.w3.org/2000/svg'/>").toString("base64");
   const cases: [unknown, string][] = [
     [{ filename: "a.svg", content_type: "image/svg+xml", base64: svg }, "content_type"],
@@ -381,6 +606,41 @@ test("the image object is checked for type and size and stored beside the entry 
     assert.deepEqual([res.status, res.body?.field], [400, field]);
   }
   const header = Buffer.from(PNG, "base64");
+  const signature = header.subarray(0, 8);
+  const fakes = [Buffer.concat([signature, Buffer.alloc(2 * 1024 * 1024)]), header.subarray(0, header.length - 12), Buffer.concat([header, Buffer.from("tail")])];
+  for (const fake of fakes) {
+    const res = await post(deps, withImage({ filename: "a.png", content_type: "image/png", base64: fake.toString("base64") }));
+    assert.deepEqual([res.status, res.body?.field], [400, "image.base64"]);
+  }
+  const huge = Buffer.from(header);
+  huge.writeUInt32BE(5000, 16);
+  huge.writeUInt32BE(5000, 20);
+  assert.equal(imageSize(huge, "image/png"), null);
+  assert.deepEqual(imageSize(header, "image/png"), { width: 1, height: 1 });
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0, 4, 0, 0, 0xff, 0xc0, 0, 11, 8, 0, 2, 0, 3, 1, 1, 0x11, 0, 0xff, 0xd9]);
+  assert.deepEqual(imageSize(jpeg, "image/jpeg"), { width: 3, height: 2 });
+  assert.equal(imageSize(jpeg.subarray(0, jpeg.length - 2), "image/jpeg"), null);
+  assert.equal(imageSize(Buffer.from([0xff, 0xd8, 0xff, 0xd9]), "image/jpeg"), null);
+  const webp = Buffer.alloc(30);
+  webp.write("RIFF", 0, "latin1");
+  webp.writeUInt32LE(22, 4);
+  webp.write("WEBPVP8X", 8, "latin1");
+  webp.writeUInt32LE(10, 16);
+  webp.writeUIntLE(639, 24, 3);
+  webp.writeUIntLE(479, 27, 3);
+  assert.deepEqual(imageSize(webp, "image/webp"), { width: 640, height: 480 });
+  assert.equal(imageSize(Buffer.concat([webp, Buffer.alloc(4)]), "image/webp"), null);
+  assert.equal(imageSize(webp, "image/png"), null);
+
+  assert.equal((await readUsage(store, "ada")).image_bytes, header.length);
+  assert.equal((await post(deps, { ...production(), image: undefined })).status, 200);
+  assert.equal((await readUsage(store, "ada")).image_bytes, 0);
+  assert.equal((await store.list("entries")).includes("gap-score-backtest-2026-10.image.json"), false);
+  const tight = { ...deps, limits: { ...(deps.limits as Limits), imageBytesPerPoster: header.length + 10 } };
+  assert.equal((await post(tight, production())).status, 200);
+  const second = await post(tight, fixture("formal-conjectures-september-2026"));
+  assert.deepEqual([second.status, /bytes of images/.test(String(second.body?.error))], [429, true]);
+  assert.equal((await readUsage(store, "ada")).image_bytes, header.length);
   const oversize = Buffer.concat([header, Buffer.alloc(IMAGE_MAX_BYTES)]).toString("base64");
   const big = parseEntryBody(withImage({ filename: "a.png", content_type: "image/png", base64: oversize }));
   assert.deepEqual([big.ok, !big.ok && big.field], [false, "image.base64"]);

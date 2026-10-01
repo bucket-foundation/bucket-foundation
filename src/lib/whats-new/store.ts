@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { get, list, put } from "@vercel/blob";
+import { del, get, list, put } from "@vercel/blob";
 
 type Env = Record<string, string | undefined>;
 
@@ -8,7 +8,9 @@ export interface DocStore {
   kind: "blob" | "file";
   prefix: string;
   read(name: string): Promise<string | null>;
-  write(name: string, text: string, options?: { overwrite?: boolean }): Promise<void>;
+  write(name: string, text: string): Promise<void>;
+  create(name: string, text: string): Promise<boolean>;
+  remove(name: string): Promise<void>;
   list(dir: string): Promise<string[]>;
 }
 
@@ -18,7 +20,7 @@ export function whatsNewPrefix(env: Env = process.env): string {
 }
 
 export function blobDocs(prefix: string): DocStore {
-  return {
+  const store: DocStore = {
     kind: "blob",
     prefix,
     async read(name) {
@@ -30,13 +32,20 @@ export function blobDocs(prefix: string): DocStore {
       if (res.statusCode !== 200) throw new Error(`blob read returned ${res.statusCode}`);
       return new Response(res.stream).text();
     },
-    async write(name, text, options) {
-      await put(prefix + name, text, {
-        access: "private",
-        addRandomSuffix: false,
-        allowOverwrite: options?.overwrite ?? true,
-        contentType: "application/json",
-      });
+    async write(name, text) {
+      await put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
+    },
+    async create(name, text) {
+      try {
+        await put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: false, contentType: "application/json" });
+        return true;
+      } catch (err) {
+        if ((await store.read(name)) !== null) return false;
+        throw err;
+      }
+    },
+    async remove(name) {
+      await del(prefix + name);
     },
     async list(dir) {
       const base = `${prefix}${dir}/`;
@@ -50,6 +59,16 @@ export function blobDocs(prefix: string): DocStore {
       return out;
     },
   };
+  return store;
+}
+
+let stagedCount = 0;
+
+async function staged(file: string, text: string): Promise<string> {
+  await fs.mkdir(path.dirname(file), { recursive: true, mode: 0o700 });
+  const tmp = `${file}.${process.pid}.${Date.now()}.${stagedCount++}.tmp`;
+  await fs.writeFile(tmp, text, { encoding: "utf8", mode: 0o600 });
+  return tmp;
 }
 
 export function fileDocs(root: string, prefix: string): DocStore {
@@ -65,20 +84,30 @@ export function fileDocs(root: string, prefix: string): DocStore {
         throw err;
       }
     },
-    async write(name, text, options) {
+    async write(name, text) {
       const file = path.join(base, name);
-      await fs.mkdir(path.dirname(file), { recursive: true });
-      if (options?.overwrite === false) {
-        await fs.writeFile(file, text, { encoding: "utf8", flag: "wx" });
-        return;
-      }
-      const tmp = `${file}.${process.pid}.${Date.now()}.tmp`;
-      await fs.writeFile(tmp, text, "utf8");
+      const tmp = await staged(file, text);
       await fs.rename(tmp, file);
+    },
+    async create(name, text) {
+      const file = path.join(base, name);
+      const tmp = await staged(file, text);
+      try {
+        await fs.link(tmp, file);
+        return true;
+      } catch (err) {
+        if ((err as NodeJS.ErrnoException).code === "EEXIST") return false;
+        throw err;
+      } finally {
+        await fs.rm(tmp, { force: true });
+      }
+    },
+    async remove(name) {
+      await fs.rm(path.join(base, name), { force: true });
     },
     async list(dir) {
       try {
-        return await fs.readdir(path.join(base, dir));
+        return (await fs.readdir(path.join(base, dir))).filter((n) => !n.endsWith(".tmp"));
       } catch (err) {
         if ((err as NodeJS.ErrnoException).code === "ENOENT") return [];
         throw err;
@@ -111,9 +140,10 @@ export interface AuditRecord {
   ts: string;
   id: string;
   poster: string;
-  action: "create" | "replace";
-  body_hash: string;
+  action: "create" | "replace" | "revoke";
+  body_hash: string | null;
   previous_body_hash: string | null;
+  deleted?: string[];
 }
 
 const ENTRY_FILE = /^([a-z0-9-]{3,80})\.json$/;
@@ -147,21 +177,46 @@ export async function listEntries(store: DocStore): Promise<StoredEntry[]> {
   return out;
 }
 
+export async function createEntry(store: DocStore, entry: StoredEntry): Promise<boolean> {
+  return store.create(`entries/${entry.id}.json`, JSON.stringify(entry));
+}
+
+export async function removeEntry(store: DocStore, id: string): Promise<void> {
+  await store.remove(`entries/${id}.image.json`);
+  await store.remove(`entries/${id}.json`);
+}
+
+export async function removeImage(store: DocStore, id: string): Promise<void> {
+  await store.remove(`entries/${id}.image.json`);
+}
+
 export async function appendAudit(store: DocStore, record: AuditRecord, suffix: string): Promise<void> {
   const stamp = record.ts.replace(/[:.]/g, "-");
-  await store.write(`audit/${stamp}-${record.id}-${suffix}.json`, JSON.stringify(record), { overwrite: false });
+  const name = `audit/${stamp}-${record.id}-${suffix}.json`;
+  if (!(await store.create(name, JSON.stringify(record)))) throw new Error("audit record name is taken");
 }
 
-export async function readCounter(store: DocStore, poster: string): Promise<number> {
+export interface Usage {
+  drafts: number;
+  image_bytes: number;
+}
+
+export async function readUsage(store: DocStore, poster: string): Promise<Usage> {
   const text = await store.read(`counters/${poster}.json`);
-  if (text === null) return 0;
-  const v = (JSON.parse(text) as { v?: unknown }).v;
-  if (typeof v !== "number" || !Number.isFinite(v)) throw new Error("draft counter is unreadable");
-  return v;
+  if (text === null) return { drafts: 0, image_bytes: 0 };
+  const v = JSON.parse(text) as Partial<Usage>;
+  if (!Number.isFinite(v.drafts) || !Number.isFinite(v.image_bytes)) throw new Error("usage counter is unreadable");
+  return { drafts: v.drafts as number, image_bytes: v.image_bytes as number };
 }
 
-export async function writeCounter(store: DocStore, poster: string, value: number): Promise<void> {
-  await store.write(`counters/${poster}.json`, JSON.stringify({ v: value }));
+export async function addUsage(store: DocStore, poster: string, delta: Usage): Promise<void> {
+  const now = await readUsage(store, poster);
+  const next: Usage = { drafts: Math.max(0, now.drafts + delta.drafts), image_bytes: Math.max(0, now.image_bytes + delta.image_bytes) };
+  await store.write(`counters/${poster}.json`, JSON.stringify(next));
+}
+
+export async function clearUsage(store: DocStore, poster: string): Promise<void> {
+  await store.write(`counters/${poster}.json`, JSON.stringify({ drafts: 0, image_bytes: 0 }));
 }
 
 export async function markRevoked(store: DocStore, poster: string, at: string): Promise<void> {
