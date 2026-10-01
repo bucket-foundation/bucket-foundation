@@ -86,7 +86,9 @@ jobs:
         working-directory: packages/bkt-desktop
         run: bun run prepare:bundle
       - name: no staff data in the public bundle
-        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json
+        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json packages/bkt/content/canon.json
+      - name: no denied source material in the public bundle
+        run: bun packages/bkt/scripts/check-no-kruse.ts packages/bkt/content/canon.json --markers-only packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries
       - name: import the Windows signing certificate
         if: runner.os == 'Windows' && startsWith(github.ref, 'refs/tags/bkt-v')
         shell: pwsh

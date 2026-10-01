@@ -96,6 +96,11 @@ export class CanonStore {
     return this.db.query<Licence, []>("select kind, name, terms, url from canon_licences order by n").all();
   }
 
+  branches(): string[] {
+    if (!this.version()) return [];
+    return this.db.query<{ branch: string }, []>("select distinct branch from canon_excerpts order by branch").all().map((r) => r.branch);
+  }
+
   matches(query: string): number[] {
     const terms = query.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 3);
     if (!terms.length || !this.version()) return [];
@@ -162,7 +167,7 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
       const found = /^\d{1,9}$/.test(raw) ? canon.excerpt(Number(raw)) : null;
       return found ? json(found) : json({ error: "no such excerpt" }, 404);
     },
-    "GET /local/canon/licences": () => json({ version: canon.version(), licences: canon.licences() }),
+    "GET /local/canon/licences": () => json({ version: canon.version(), excerpts: canon.index().length, branches: canon.branches(), licences: canon.licences() }),
     "POST /local/open": async (req) => {
       let body: unknown;
       try {
