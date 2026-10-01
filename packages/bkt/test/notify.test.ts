@@ -196,6 +196,7 @@ describe("bkt quiz schedule", () => {
     expect(unitFiles(["/opt/bucket/bkt"], "08:53", { BKT_HOME: '/h/my "data" 50%' }).service).toBe(
       '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nEnvironment="BKT_HOME=/h/my \\"data\\" 50%%"\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\n',
     );
+    expect(unitFiles(["/h/$x/bkt"], "08:53", { BKT_HOME: "/h/$data/100%" }).service).toContain('Environment="BKT_HOME=/h/$data/100%%"\nExecStart="/h/$$x/bkt" "quiz" "notify"\n');
     expect(unitFiles(["/b"], "08:53", { BKT_HOME: "" }).service).not.toContain("Environment");
     expect(() => unitFiles(["/b"], "08:53", { BKT_HOME: "/h\nExecStartPre=/bin/evil" })).toThrow("control character");
     expect(await quizCommand(["schedule"], deps("linux", { env: { BKT_HOME: "/h/alt" } }))).toBe(0);
@@ -225,9 +226,14 @@ describe("bkt quiz schedule", () => {
     ]);
     calls = [];
     expect(await quizCommand(["schedule"], deps())).toBe(0);
+    expect(await quizCommand(["schedule", "--at", "21:30"], deps())).toBe(0);
+    expect(readFileSync(join(dir, "bkt-quiz-notify.timer"), "utf8")).toContain("OnCalendar=*-*-* 21:30:00");
+    writeFileSync(join(dir, "bkt-quiz-notify.timer"), unitFiles(["/b"]).timer.replace("08:53:00", "08:53:00\nRandomizedDelaySec=1h"));
     expect(await quizCommand(["schedule", "--at", "21:30"], deps())).toBe(1);
     expect(out.at(-1)).toContain("bkt-quiz-notify.timer differs from what bkt would write; pass --force to replace");
-    expect(readFileSync(join(dir, "bkt-quiz-notify.timer"), "utf8")).toContain("08:53");
+    expect(readFileSync(join(dir, "bkt-quiz-notify.timer"), "utf8")).toContain("RandomizedDelaySec");
+    writeFileSync(join(dir, "bkt-quiz-notify.timer"), unitFiles(["/b"]).timer.replace("08:53:00", "Mon 08:53:00"));
+    expect(await quizCommand(["schedule"], deps())).toBe(1);
     expect(await quizCommand(["schedule", "--at", "21:30", "--force"], deps())).toBe(0);
     expect(await quizCommand(["schedule", "--force", "--at=6:00"], deps())).toBe(0);
     writeFileSync(join(dir, "bkt-quiz-notify.service"), "edited by hand");

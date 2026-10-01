@@ -22,7 +22,11 @@ const REMEDY: Record<Keyring["kind"], string> = {
 };
 
 export class KeyringLockedError extends KeyringError {
-  constructor(kind: Keyring["kind"], db: string, detail: string) {
+  constructor(
+    kind: Keyring["kind"],
+    db: string,
+    readonly detail: string,
+  ) {
     super(
       `keyring locked or key missing: ${db} exists and the ${kind} keyring gave no key for it (${detail}). ${REMEDY[kind]} ` +
         `If another keyring made this database, name it with --keyring. To start fresh, move ${db} aside and run bkt init. bkt made no new key and left the database untouched.`,
@@ -58,8 +62,18 @@ export class SecretToolKeyring implements Keyring {
     const p = Bun.spawn([this.bin, "lookup", "service", SERVICE, "account", account], { stdout: "pipe", stderr: "pipe" });
     const [out, err, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
     if (code === 0 && out.length) return out;
-    if (code === 1 && !err.trim()) return null;
-    throw new KeyringError(`secret-tool lookup failed (exit ${code}): ${err.trim() || "empty output"}`);
+    if (code !== 1 || err.trim()) throw new KeyringError(`secret-tool lookup failed (exit ${code}): ${err.trim() || "empty output"}`);
+    if (await this.listed(account)) throw new KeyringError(`keyring locked: the keyring holds ${account} and would not release it. ${REMEDY.libsecret} bkt stored no new key.`);
+    return null;
+  }
+
+  private async listed(account: string): Promise<boolean> {
+    const p = Bun.spawn([this.bin, "search", "--all", "service", SERVICE, "account", account], { stdout: "pipe", stderr: "pipe" });
+    const [out, err, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
+    const text = `${out}\n${err}`;
+    if (/^\[\/.*\]\s*$/m.test(text) || /^attribute\./m.test(text)) return true;
+    if ((code === 0 || code === 1) && !text.trim()) return false;
+    throw new KeyringError(`secret-tool search failed (exit ${code}): ${err.trim() || out.trim() || "empty output"}`);
   }
 
   async set(account: string, secret: string) {

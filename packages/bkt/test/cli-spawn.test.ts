@@ -3,7 +3,10 @@ import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import pack from "../content/pack.json" with { type: "json" };
-import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT } from "../src/device";
+import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, ensureDataKey, ensureDevice } from "../src/device";
+import { MemoryKeyring } from "../src/keyring";
+import { keyAccounts, keyScope } from "../src/setup";
+import { Store } from "../src/store";
 import { PassphraseKeyring } from "../src/keyring";
 import { VERSION } from "../src/version";
 
@@ -14,6 +17,7 @@ let dir: string;
 let home: string;
 let keyringLog: string;
 let keyringStore: string;
+let lockFlag: string;
 let env: Record<string, string>;
 
 beforeEach(() => {
@@ -24,9 +28,19 @@ beforeEach(() => {
   const bin = join(dir, "bin");
   mkdirSync(bin);
   mkdirSync(keyringStore);
+  lockFlag = join(dir, "locked");
   writeFileSync(
     join(bin, "secret-tool"),
-    `#!/bin/bash\necho "$1" >> "${keyringLog}"\nf="${keyringStore}/\${@: -1}"\nif [ "$1" = store ]; then IFS= read -r -d '' v; printf %s "$v" > "$f"; elif [ -f "$f" ]; then printf %s "$(<"$f")"; else exit 1; fi\n`,
+    [
+      "#!/bin/bash",
+      `echo "$1" >> "${keyringLog}"`,
+      `f="${keyringStore}/\${@: -1}"`,
+      `if [ "$1" = search ]; then if [ -f "$f" ]; then echo "[/org/freedesktop/secrets/collection/login/1]"; fi; exit 0; fi`,
+      `if [ "$1" = store ]; then IFS= read -r -d '' v; printf %s "$v" > "$f"; exit 0; fi`,
+      `if [ -f "${lockFlag}" ]; then exit 1; fi`,
+      `if [ -f "$f" ]; then printf %s "$(<"$f")"; else exit 1; fi`,
+      "",
+    ].join("\n"),
   );
   chmodSync(join(bin, "secret-tool"), 0o755);
   env = {
@@ -178,13 +192,16 @@ describe("json output", () => {
     expect(whoText.out).toContain(`device     ${legacy.device}\n`);
 
     const kr = new PassphraseKeyring(join(home, "keyring.json"), "pw");
-    const dataKey = (await kr.get(DATA_KEY_ACCOUNT))!;
-    const pem = (await kr.get(DEVICE_ACCOUNT))!;
+    const dataKey = (await kr.get(keyAccounts(home).data))!;
+    const pem = (await kr.get(keyAccounts(home).device))!;
     const secrets = [dataKey, Buffer.from(dataKey, "hex").toString("base64"), pem.split("\n")[1], "PRIVATE KEY", "passphrase-fd", "pw\n"];
     const sealed = Object.values((JSON.parse(readFileSync(join(home, "keyring.json"), "utf8")) as { entries: Record<string, string> }).entries);
     expect(dataKey).toHaveLength(64);
     expect(sealed.length).toBe(2);
-    for (const r of [first, who, init, stats, text, whoText, bkt(["version", "--json"]), bkt(["analyses", "--json"])]) {
+    const hai = bkt(["hai", "export", "--json", ...vault], { stdin: "pw\n" });
+    expect(hai).toEqual({ code: 0, out: '{"v":1,"probes":[],"answers":[]}\n', err: "" });
+    expect(JSON.parse(bkt(["hai", "export", ...vault], { stdin: "pw\n" }).out)).toEqual({ probes: [], answers: [] });
+    for (const r of [first, who, init, stats, text, whoText, hai, bkt(["version", "--json"]), bkt(["analyses", "--json"])]) {
       for (const s of [...secrets, ...sealed]) expect(r.out + r.err).not.toContain(s);
     }
   }, 60_000);
@@ -232,5 +249,91 @@ describe("keyring guard through the command line", () => {
     expect(existsSync(join(home, "keyring.json"))).toBe(false);
     expect(readFileSync(join(home, "bkt.db")).equals(db)).toBe(true);
     expect(keyringCalls()).toEqual([]);
+  }, 60_000);
+});
+
+const stored = () => Object.fromEntries(readdirSync(keyringStore).sort().map((f) => [f, readFileSync(join(keyringStore, f), "utf8")]));
+const storeCalls = () => keyringCalls().filter((c) => c === "store").length;
+
+async function legacyHome(): Promise<void> {
+  const kr = new MemoryKeyring();
+  const key = await ensureDataKey(kr);
+  const device = await ensureDevice(kr);
+  writeFileSync(join(keyringStore, DATA_KEY_ACCOUNT), (await kr.get(DATA_KEY_ACCOUNT))!);
+  writeFileSync(join(keyringStore, DEVICE_ACCOUNT), (await kr.get(DEVICE_ACCOUNT))!);
+  mkdirSync(home, { recursive: true });
+  const store = new Store(join(home, "bkt.db"), key);
+  store.recordDevice(device.id, device.publicKey, 1);
+  store.close();
+}
+
+describe.skipIf(!linux)("keyring entries scoped to the data folder, through the command line", () => {
+  test("a 0.4.0 home with unscoped entries still opens and nothing is stored", async () => {
+    await legacyHome();
+    const before = stored();
+    const r = bkt(["whoami", "--json"]);
+    expect(r.err).toBe("");
+    expect(JSON.parse(r.out)).toMatchObject({ v: 1, newDevice: false, keyring: "libsecret" });
+    expect(bkt(["stats", "--json"]).code).toBe(0);
+    expect(storeCalls()).toBe(0);
+    expect(stored()).toEqual(before);
+    expect(keyScope(home)).toBeUndefined();
+  }, 60_000);
+
+  test("a second BKT_HOME stores under its own scope and leaves 0.4.0 entries and the first home alone", async () => {
+    await legacyHome();
+    const before = stored();
+    const other = join(dir, "other");
+    expect(bkt(["init"], { env: { BKT_HOME: other } }).code).toBe(0);
+    const scope = keyScope(other)!;
+    expect(Object.keys(stored()).sort()).toEqual([DATA_KEY_ACCOUNT, `${DATA_KEY_ACCOUNT}.${scope}`, DEVICE_ACCOUNT, `${DEVICE_ACCOUNT}.${scope}`].sort());
+    expect(stored()[DATA_KEY_ACCOUNT]).toBe(before[DATA_KEY_ACCOUNT]);
+    expect(stored()[DEVICE_ACCOUNT]).toBe(before[DEVICE_ACCOUNT]);
+    expect(bkt(["stats", "--json"]).code).toBe(0);
+    expect(bkt(["stats", "--json"], { env: { BKT_HOME: other } }).code).toBe(0);
+  }, 60_000);
+
+  test("a locked collection that reports absent never overwrites an entry, with the data folder present, emptied or elsewhere", async () => {
+    expect(bkt(["init"]).code).toBe(0);
+    const before = stored();
+    const calls = storeCalls();
+    writeFileSync(lockFlag, "");
+
+    const withDb = bkt(["stats"]);
+    expect(withDb.code).toBe(1);
+    expect(withDb.err).toContain("keyring locked or key missing");
+
+    const aside = join(dir, "aside");
+    mkdirSync(aside);
+    for (const f of readdirSync(home).filter((f) => f.startsWith("bkt.db"))) {
+      writeFileSync(join(aside, f), readFileSync(join(home, f)));
+      rmSync(join(home, f));
+    }
+    const noDb = bkt(["init"]);
+    expect(noDb.code).toBe(1);
+    expect(noDb.err).toContain("bkt: keyring locked");
+    expect(noDb.err).toContain("Unlock the login keyring");
+    expect(existsSync(join(home, "bkt.db"))).toBe(false);
+    expect(storeCalls()).toBe(calls);
+    expect(stored()).toEqual(before);
+
+    const elsewhere = join(dir, "elsewhere");
+    bkt(["init"], { env: { BKT_HOME: elsewhere } });
+    for (const [name, secret] of Object.entries(before)) expect(stored()[name]).toBe(secret);
+
+    rmSync(lockFlag);
+    for (const f of readdirSync(aside)) writeFileSync(join(home, f), readFileSync(join(aside, f)));
+    expect(bkt(["stats", "--json"]).code).toBe(0);
+  }, 60_000);
+
+  test("0.4.0 entries survive a locked collection when the data folder is missing", async () => {
+    await legacyHome();
+    const before = stored();
+    rmSync(home, { recursive: true });
+    writeFileSync(lockFlag, "");
+    bkt(["init"]);
+    bkt(["init"], { env: { BKT_HOME: join(dir, "elsewhere") } });
+    expect(stored()[DATA_KEY_ACCOUNT]).toBe(before[DATA_KEY_ACCOUNT]);
+    expect(stored()[DEVICE_ACCOUNT]).toBe(before[DEVICE_ACCOUNT]);
   }, 60_000);
 });

@@ -129,9 +129,10 @@ export function parseAt(at: string): string {
   return `${m[1].padStart(2, "0")}:${m[2]}`;
 }
 
-function unitArg(arg: string): string {
+function unitArg(arg: string, expands = true): string {
   if (/[\x00-\x1f\x7f]/.test(arg)) throw new Error("the bkt path holds a control character; move bkt and run the command again");
-  return `"${arg.replace(/[\\"]/g, "\\$&").replace(/%/g, "%%").replace(/\$/g, "$$$$")}"`;
+  const quoted = arg.replace(/[\\"]/g, "\\$&").replace(/%/g, "%%");
+  return `"${expands ? quoted.replace(/\$/g, "$$$$") : quoted}"`;
 }
 
 export function unitFiles(self: string[], at = DEFAULT_AT, env: Record<string, string | undefined> = {}): { service: string; timer: string } {
@@ -141,7 +142,7 @@ Description=Bucket daily quiz notification
 
 [Service]
 Type=oneshot
-${env.BKT_HOME ? `Environment=${unitArg(`BKT_HOME=${env.BKT_HOME}`)}\n` : ""}ExecStart=${[...self, "quiz", "notify"].map(unitArg).join(" ")}
+${env.BKT_HOME ? `Environment=${unitArg(`BKT_HOME=${env.BKT_HOME}`, false)}\n` : ""}ExecStart=${[...self, "quiz", "notify"].map((a) => unitArg(a)).join(" ")}
 TimeoutStartSec=${UNIT_TIMEOUT}
 `,
     timer: `[Unit]
@@ -156,6 +157,8 @@ WantedBy=timers.target
 `,
   };
 }
+
+const anyTime = (unit: string) => unit.replace(/^OnCalendar=\*-\*-\* ([01]\d|2[0-3]):[0-5]\d:00$/m, "OnCalendar=");
 
 async function systemctl(d: QuizDeps, ...args: string[]): Promise<boolean> {
   const r = await d.exec(["systemctl", "--user", ...args]);
@@ -174,7 +177,7 @@ export async function quizSchedule(d: QuizDeps, at = DEFAULT_AT, force = false):
     [join(dir, `${UNIT}.service`), files.service],
     [join(dir, `${UNIT}.timer`), files.timer],
   ];
-  const differs = targets.filter(([path, text]) => existsSync(path) && readFileSync(path, "utf8") !== text).map(([path]) => path);
+  const differs = targets.filter(([path, text]) => existsSync(path) && anyTime(readFileSync(path, "utf8")) !== anyTime(text)).map(([path]) => path);
   if (differs.length && !force) {
     d.out(`${differs.join(" and ")} ${differs.length === 1 ? "differs" : "differ"} from what bkt would write; pass --force to replace`);
     return 1;

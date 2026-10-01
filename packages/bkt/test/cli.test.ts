@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { COMMANDS } from "../src/app";
-import { applyColor, colorEnabled, interactive, jsonLine, redact } from "../src/cli/out";
+import { applyColor, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick } from "../src/cli/out";
 import { CancelledError, describeFailure, NoDataError, preflight, resolve, UsageError } from "../src/cli/run";
 import { CLI_COMMANDS, commandHelp, EXIT, generalHelp, paletteEntries, TABLE } from "../src/cli/table";
 import { VERSION } from "../src/version";
@@ -171,32 +171,74 @@ describe("colour and terminals", () => {
 
 describe("json output", () => {
   test("golden shapes", () => {
-    expect(jsonLine({ version: "0.4.0" })).toBe('{"v":1,"version":"0.4.0"}');
-    expect(jsonLine({ status: "current", version: "0.4.0" })).toBe('{"v":1,"status":"current","version":"0.4.0"}');
-    expect(jsonLine({ status: "available", version: "0.5.0", tag: "bkt-v0.5.0", asset: "bkt-linux-x64", sha256: "ab", url: "https://example.org/a" })).toBe(
+    expect(jsonLine("version", { version: "0.4.0" })).toBe('{"v":1,"version":"0.4.0"}');
+    expect(jsonLine("update", { status: "current", version: "0.4.0" })).toBe('{"v":1,"status":"current","version":"0.4.0"}');
+    expect(jsonLine("update", { status: "available", version: "0.5.0", tag: "bkt-v0.5.0", asset: "bkt-linux-x64", sha256: "ab", url: "https://example.org/a" })).toBe(
       '{"v":1,"status":"available","version":"0.5.0","tag":"bkt-v0.5.0","asset":"bkt-linux-x64","sha256":"ab","url":"https://example.org/a"}',
     );
-    expect(jsonLine({ status: "error", error: "no bkt release found" })).toBe('{"v":1,"status":"error","error":"no bkt release found"}');
-    expect(jsonLine({ items: 4, seen: 3, due: 2, attempts: 1 })).toBe('{"v":1,"items":4,"seen":3,"due":2,"attempts":1}');
-    expect(jsonLine({ analyses: [] })).toBe('{"v":1,"analyses":[]}');
+    expect(jsonLine("update", { status: "error", error: "no bkt release found" })).toBe('{"v":1,"status":"error","error":"no bkt release found"}');
+    expect(jsonLine("stats", { items: 4, seen: 3, due: 2, attempts: 1 })).toBe('{"v":1,"items":4,"seen":3,"due":2,"attempts":1}');
+    expect(jsonLine("analyses", { analyses: [] })).toBe('{"v":1,"analyses":[]}');
+    expect(jsonLine("analyses", { analyses: [{ name: "a", dir: "/d/a", mtime: 5 }] })).toBe('{"v":1,"analyses":[{"name":"a","dir":"/d/a","mtime":5}]}');
+    expect(
+      jsonLine("whoami", { device: "dev_1", publicKey: "PUB", newDevice: false, keyring: "libsecret", pack: "abc", imported: 0, journal: "wal" }),
+    ).toBe('{"v":1,"device":"dev_1","publicKey":"PUB","newDevice":false,"keyring":"libsecret","pack":"abc","imported":0,"journal":"wal"}');
   });
 
-  test("redaction drops secret fields at any depth and keeps public ones", () => {
+  test("hai export golden", () => {
+    const probe = { id: "p1", bank_version: "b1", seed: "s", started_at: 1, completed_at: 2, due_at: 3, retest_completed_at: null };
+    const answer = { id: "a1", probeId: "p1", pairId: "x", itemId: "i", condition: "solo", phase: "t0", choice: 2, correct: true, acceptedAi: null, elapsedMs: 9, at: 4 };
+    expect(jsonLine("hai export", { probes: [probe], answers: [answer] })).toBe(
+      '{"v":1,"probes":[{"id":"p1","bank_version":"b1","seed":"s","started_at":1,"completed_at":2,"due_at":3,"retest_completed_at":null}],' +
+        '"answers":[{"id":"a1","probeId":"p1","pairId":"x","itemId":"i","condition":"solo","phase":"t0","choice":2,"correct":true,"acceptedAi":null,"elapsedMs":9,"at":4}]}',
+    );
+    expect(jsonLine("hai export", { probes: [{ ...probe, response_enc: "v1:sealed" }], answers: [{ ...answer, response_enc: "v1:sealed", key: "k" }], key: "k" })).toBe(
+      jsonLine("hai export", { probes: [probe], answers: [answer] }),
+    );
+  });
+
+  test("analyze report golden", () => {
+    const report = {
+      schema: "bkt.analysis.v1",
+      name: "sales",
+      created: "2026-10-01T00:00:00",
+      dir: "/d/sales",
+      forced: false,
+      form: {
+        ok: true,
+        format: "csv",
+        rows: 2,
+        errors: [],
+        warnings: [{ code: "W", where: "col", message: "m", extra: "dropped" }],
+        columns: [{ name: "a", type: "number", unit: null, sample: "dropped" }],
+        file: "dropped",
+      },
+      analysis: { summary: { a: { mean: 1 } } },
+      helix: { status: "ok", run_dir: "/d/sales/helix", pid: 7 },
+      env: { ANTHROPIC_API_KEY: "dropped" },
+    };
+    expect(JSON.stringify(pick(JSON_SHAPES.analyze, report))).toBe(
+      '{"schema":"bkt.analysis.v1","name":"sales","created":"2026-10-01T00:00:00","dir":"/d/sales","forced":false,' +
+        '"form":{"ok":true,"format":"csv","rows":2,"errors":[],"warnings":[{"code":"W","where":"col","message":"m"}],"columns":[{"name":"a","type":"number","unit":null}]},' +
+        '"analysis":{"summary":{"a":{"mean":1}}},"helix":{"status":"ok","run_dir":"/d/sales/helix"}}',
+    );
+  });
+
+  test("every --json command has a shape, and a shape passes only the fields it names", () => {
+    for (const c of CLI_COMMANDS.filter((c) => c.json)) expect(Object.keys(JSON_SHAPES), c.name).toContain(c.name === "init" ? "whoami" : c.name);
     const dirty = {
       device: "dev_1",
       publicKey: "PUB",
       keyring: "libsecret",
       privateKey: "x",
       token: "x",
-      sessionToken: "x",
-      nonce: "x",
-      passphrase: "x",
-      sealed: "x",
       dataKey: "x",
-      key: "x",
-      nested: [{ secret: "x", name: "ok", pem: "x", note: "-----BEGIN PRIVATE KEY-----\nabc" }],
+      anythingNew: "x",
+      journal: { nested: "object where a scalar belongs" },
+      pack: ["array where a scalar belongs"],
     };
-    expect(redact(dirty)).toEqual({ device: "dev_1", publicKey: "PUB", keyring: "libsecret", nested: [{ name: "ok", note: "[redacted]" }] });
-    expect(jsonLine(dirty)).toBe('{"v":1,"device":"dev_1","publicKey":"PUB","keyring":"libsecret","nested":[{"name":"ok","note":"[redacted]"}]}');
+    expect(jsonLine("whoami", dirty)).toBe('{"v":1,"device":"dev_1","publicKey":"PUB","keyring":"libsecret"}');
+    expect(pick(JSON_SHAPES.stats, null)).toEqual({});
+    expect(jsonLine("analyses", { analyses: [{ name: "a", secret: "x" }, "stray"] })).toBe('{"v":1,"analyses":[{"name":"a"},{}]}');
   });
 });
