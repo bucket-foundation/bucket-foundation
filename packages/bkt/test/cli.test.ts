@@ -30,12 +30,16 @@ describe("command table", () => {
       ["home", "home", "main menu"],
       ["help", "help", "key bindings"],
       ["quit", "quit", "exit bkt"],
+      ["search", "search", "search the canon"],
+      ["graph", "graph", "knowledge graph"],
+      ["research", "research", "notes and saved results"],
+      ["jobs", "jobs", "saved analyses"],
     ]);
   });
 
   test("every command name is unique and every palette-only entry stays off the command line", () => {
     expect(new Set(TABLE.map((c) => c.name)).size).toBe(TABLE.length);
-    for (const name of ["review", "home", "quit"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
+    for (const name of ["review", "home", "quit", "graph", "research", "jobs"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
     expect(() => resolve(["quiz"])).toThrow("quiz needs a subcommand: notify, schedule, unschedule");
   });
 
