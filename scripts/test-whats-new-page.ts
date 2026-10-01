@@ -5,7 +5,7 @@ import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import DraftList, { type Draft } from "../src/app/admin/whats-new/DraftList";
-import GenerationCard, { STATE_LABEL, type Generation } from "../src/app/whats-new/GenerationCard";
+import GenerationCard, { STATE_LABEL, toolLabel, type Generation } from "../src/app/whats-new/GenerationCard";
 import { mergeEntries, pageSections } from "../src/lib/whats-new/public";
 import { GENERATION_STATES } from "../src/lib/whats-new/schema";
 import type { StoredEntry } from "../src/lib/whats-new/store";
@@ -39,7 +39,7 @@ test("every generation card carries the machine-made label and its state in plai
     assert.ok(html.includes('id="gen-one"'), state);
   }
   const unknown = card(generation({ state: "pending" }));
-  assert.ok(unknown.includes("made by a machine") && unknown.includes(">pending<"));
+  assert.ok(unknown.includes("made by a machine") && unknown.includes(">state unknown<") && !unknown.includes("pending"));
 });
 
 test("a refuted generation is shown, labelled refuted, with the reason it stays", () => {
@@ -56,7 +56,9 @@ test("the card shows claim, score, tool, parent and evidence, and escapes posted
   assert.ok(!html.includes("<script>") && html.includes("&lt;script&gt;"));
   assert.ok(!html.includes("<b>claim</b>"));
   assert.ok(html.includes("Score <span") && html.includes("0.143") && html.includes("against 0.145 without"));
-  assert.ok(html.includes("Produced by solver-gap-engine momentum.py"));
+  assert.ok(html.includes("Produced by the Solver gap engine") && !html.includes("momentum.py"));
+  for (const tool of ["predict.py", "scripts/run.sh", "unknown-tool v2", ""]) assert.ok(!card(generation({ tool })).includes("Produced by"), tool);
+  assert.equal(toolLabel("hte serve"), "History hypothesis engine");
   assert.ok(html.includes('href="#prod-one"') && html.includes("from Gap score backtest"));
   assert.match(html, /href="https:\/\/github\.com\/bucket-foundation\/bucket-foundation\/pull\/519" target="_blank" rel="noopener noreferrer"/);
   const bare = card(generation({ claim: undefined, score: undefined, evidence: undefined, parent: undefined }));
