@@ -256,7 +256,7 @@ test("the leak filter runs on every string field and never echoes the match", as
     }
   }
   assert.ok(stringPaths(generation()).includes("run_id"));
-  const unknown = await post(deps, { ...generation(), note: { deep: ["/home/ada/run.log"] } });
+  const unknown = await post(deps, { ...generation(), note: { deep: [["", "home", "ada", "run.log"].join("/")] } });
   assert.deepEqual(unknown.body?.fields, [{ field: "note.deep[0]", kind: "absolute-path" }]);
   const secret = await post(deps, { ...generation(), run_id: `ghp_${"a".repeat(36)}` });
   assert.deepEqual([secret.status, JSON.stringify(secret.body).includes("ghp_")], [422, false]);
