@@ -75,20 +75,26 @@ export interface CanonPack {
   counts: CanonCounts;
 }
 
+export const NOTICE_KIND = "notice";
+export const QUOTATION_NOTICE =
+  "The pack holds short quotations from third-party talks, abstracts and texts with a link to each source. Whether these ship in a release is a founder decision recorded on bead bkt-6wjd.";
+export const AUTHOR_DEATH_CUTOFF = 1955;
+
 export const LICENCES: Omit<Licence, "works">[] = [
   { kind: "yt", name: "YouTube transcripts", terms: "Transcript excerpts of public videos on youtube.com. Copyright stays with each speaker and channel. Each excerpt names its video and channel and links to it.", url: "https://www.youtube.com" },
   { kind: "gutenberg", name: "Project Gutenberg", terms: "Books from gutenberg.org that Project Gutenberg marks as free of copyright in the United States. Each passage names its book and author.", url: "https://www.gutenberg.org/policy/permission.html" },
   {
     kind: "wikisource",
     name: "Wikisource",
-    terms: "Text by Wikisource contributors at en.wikisource.org, under CC BY-SA 4.0. Each passage names its page and links to it. If you share or adapt a passage, credit the page and release your version under the same licence.",
+    terms: "Pages from en.wikisource.org whose author died before 1955 or that the source data marks as public domain, licensed as marked on the Wikisource page. Each passage names its page and links to it. Wikisource text is offered under CC BY-SA 4.0: if you share or adapt a passage, credit the page and release your version under the same licence.",
     url: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
   { kind: "pubmed", name: "PubMed abstracts", terms: "Abstracts indexed at pubmed.ncbi.nlm.nih.gov. Copyright stays with each publisher. Each passage names its paper and authors and links to its PubMed record.", url: "https://pubmed.ncbi.nlm.nih.gov" },
-  { kind: "arxiv", name: "arXiv", terms: "Abstracts from arxiv.org under the licence each author chose. Each passage names its paper and authors and links to its arXiv record.", url: "https://arxiv.org" },
+  { kind: "arxiv", name: "arXiv", terms: "Abstracts from arxiv.org. Each passage names its paper and authors and links to its arXiv record; see the arXiv record for its licence.", url: "https://arxiv.org" },
   { kind: "openalex", name: "OpenAlex", terms: "Records from openalex.org, released under CC0. Each passage names its work or author and links to its record.", url: "https://openalex.org" },
   { kind: "archive", name: "Internet Archive", terms: "Items from archive.org that carry a public domain mark. Each passage names its item and creator and gives its address.", url: null },
   { kind: "_intake", name: "Bucket Foundation notes", terms: "Working notes by Bucket Foundation, written from the sources in this table.", url: "https://bucket.foundation" },
+  { kind: NOTICE_KIND, name: "About these quotations", terms: QUOTATION_NOTICE, url: null },
 ];
 
 const KIND_ALIAS: Record<string, string> = { "openalex-fanout": "openalex", "openalex-citers": "openalex" };
@@ -123,6 +129,14 @@ function archivePermitted(repo: string, sourcePath: string): boolean {
   return /creativecommons\.org\/(licenses\/publicdomain|publicdomain\/)/.test(d.licenseurl ?? "") || d["possible-copyright-status"] === "NOT_IN_COPYRIGHT";
 }
 
+function wikisourcePermitted(repo: string, sourcePath: string): boolean {
+  const meta = join(repo, ...clean(sourcePath).split("/").slice(0, 2), "metadata.json");
+  if (!existsSync(meta)) return false;
+  const d = JSON.parse(readFileSync(meta, "utf8")) as { author_death_year?: unknown; license?: unknown; licence?: unknown; copyright?: unknown };
+  const died = typeof d.author_death_year === "number" && d.author_death_year < AUTHOR_DEATH_CUTOFF;
+  return died || [d.license, d.licence, d.copyright].some((v) => typeof v === "string" && /public[ -]?domain/i.test(v));
+}
+
 export function sourceMeta(repo: string, sourcePath: string): SourceMeta | null {
   const kind = kindOf(sourcePath);
   const file = infoFile(repo, sourcePath);
@@ -134,6 +148,7 @@ export function sourceMeta(repo: string, sourcePath: string): SourceMeta | null 
   if (!title || (kind !== "_intake" && !url)) return null;
   let permitted = !NO_REDISTRIBUTION.has(kind);
   if (kind === "archive") permitted = archivePermitted(repo, sourcePath);
+  if (kind === "wikisource") permitted = wikisourcePermitted(repo, sourcePath);
   if (kind === "gutenberg") permitted = /^- \*\*Copyright\*\*: False\s*$/m.test(head);
   return { title, url, author, permitted };
 }
@@ -244,9 +259,10 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
   });
   counts.excerpts.kept = excerpts.length;
   counts.vectorRows.kept = excerpts.length;
+  const allWorks = Object.values(works).reduce((n, w) => n + w.size, 0);
   const unlicensed = [...kinds].filter((k) => !LICENCES.some((l) => l.kind === k));
   if (unlicensed.length) throw new Error(`canon pack: no licence row for ${unlicensed.sort().join(", ")}`);
-  const body = { source: "bucket-canon sub-claims", excerpts, evidence, licences: LICENCES.filter((l) => kinds.has(l.kind)).map((l) => ({ ...l, works: works[l.kind]?.size ?? 0 })), counts };
+  const body = { source: "bucket-canon sub-claims", excerpts, evidence, licences: LICENCES.filter((l) => kinds.has(l.kind) || l.kind === NOTICE_KIND).map((l) => ({ ...l, works: l.kind === NOTICE_KIND ? allWorks : (works[l.kind]?.size ?? 0) })), counts };
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: CanonPack = { version: sha256.slice(0, 12), sha256, ...body };
   assertClean(deny, pack, "the canon pack", markers, [...excerpts.map((e) => e.text), ...Object.values(evidence).flatMap((ps) => ps.map((p) => p.text))]);

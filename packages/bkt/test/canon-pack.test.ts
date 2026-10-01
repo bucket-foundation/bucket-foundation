@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
-import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, readInputs, sourceMeta } from "../src/pack/canon";
+import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
 import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -87,8 +87,8 @@ describe("canon pack counts", () => {
     expect(c.passages.total).toBe(5990);
     expect(c.passages.denied).toEqual({ prefix: 1165, video: 519, path: 0, file: 692, text: 0 });
     expect(c.passages.droppedWithExcerpt).toBe(527);
-    expect(c.passages.kept).toBe(2127);
-    expect(c.passages.dropped).toEqual({ licence: { blog: 930, archive: 28 }, noSource: { pubmed: 2 } });
+    expect(c.passages.kept).toBe(2104);
+    expect(c.passages.dropped).toEqual({ licence: { blog: 930, archive: 28, wikisource: 23 }, noSource: { pubmed: 2 } });
     expect(c.passages.namedInListedFolders + c.passages.namedElsewhere).toBe(126);
     expect(c.vectorRows).toEqual({ total: 599, kept: 364 });
     expect(c.connections.denied).toBe(0);
@@ -132,13 +132,13 @@ describe("canon pack counts", () => {
     expect(passages.filter((p) => !p.title)).toEqual([]);
     expect(passages.filter((p) => p.kind !== "_intake" && !/^https:\/\//.test(p.url ?? ""))).toEqual([]);
     expect(passages.filter((p) => p.kind === "blog")).toEqual([]);
-    const wiki = passages.filter((p) => p.kind === "wikisource");
-    expect(wiki.length).toBe(23);
-    expect(wiki.every((p) => p.url!.startsWith("https://en.wikisource.org/wiki/"))).toBe(true);
-    const row = pack.licences.find((l) => l.kind === "wikisource")!;
-    expect(row.terms).toContain("CC BY-SA 4.0");
-    expect(row.terms).toContain("same licence");
-    expect(row.works).toBe(new Set(wiki.map((p) => p.url)).size);
+    expect(passages.filter((p) => p.kind === "wikisource")).toEqual([]);
+    expect(pack.licences.find((l) => l.kind === "wikisource")).toBeUndefined();
+    expect(LICENCES.find((l) => l.kind === "wikisource")!.terms).toContain("as marked on the Wikisource page");
+    expect(LICENCES.find((l) => l.kind === "wikisource")!.terms).toContain("same licence");
+    expect(LICENCES.find((l) => l.kind === "arxiv")!.terms).toContain("see the arXiv record for its licence");
+    expect(pack.licences.at(-1)).toMatchObject({ kind: "notice", terms: QUOTATION_NOTICE });
+    expect(readFileSync(join(REPO, "packages/bkt/README.md"), "utf8")).toContain(QUOTATION_NOTICE);
     expect(pack.licences.every((l) => l.works > 0)).toBe(true);
   });
 
@@ -159,7 +159,14 @@ describe("canon pack counts", () => {
       put("archive/held-item/metadata.json", JSON.stringify({ licenseurl: "https://creativecommons.org/licenses/by-nc-nd/4.0/" }));
       put("pubmed/PMID-1-x/info.md", "no heading here");
       put("_intake/NOTES.md", "# Notes\n");
-      expect(sourceMeta(dir, "wikisource/a-page/page.txt")).toEqual({ title: "A Page", url: "https://en.wikisource.org/wiki/A_Page", author: null, permitted: true });
+      put("wikisource/a-page/metadata.json", JSON.stringify({ title: "A Page", pageid: 1 }));
+      expect(sourceMeta(dir, "wikisource/a-page/page.txt")).toEqual({ title: "A Page", url: "https://en.wikisource.org/wiki/A_Page", author: null, permitted: false });
+      put("wikisource/a-page/metadata.json", JSON.stringify({ title: "A Page", author_death_year: 1943 }));
+      expect(sourceMeta(dir, "wikisource/a-page/page.txt")?.permitted).toBe(true);
+      put("wikisource/a-page/metadata.json", JSON.stringify({ title: "A Page", author_death_year: 2000 }));
+      expect(sourceMeta(dir, "wikisource/a-page/page.txt")?.permitted).toBe(false);
+      put("wikisource/a-page/metadata.json", JSON.stringify({ title: "A Page", license: "Public domain" }));
+      expect(sourceMeta(dir, "wikisource/a-page/page.txt")?.permitted).toBe(true);
       expect(sourceMeta(dir, "blog/plato-stanford-edu/chaos.md")?.permitted).toBe(false);
       expect(sourceMeta(dir, "gutenberg/PG-1-free/PG-1.txt")).toEqual({ title: "Free", url: "https://www.gutenberg.org/ebooks/1", author: "Someone, A.", permitted: true });
       expect(sourceMeta(dir, "gutenberg/PG-2-held/PG-2.txt")?.permitted).toBe(false);
