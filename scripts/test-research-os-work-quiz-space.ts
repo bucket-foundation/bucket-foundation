@@ -1,0 +1,112 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
+import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
+import { BLOCKED_FORMS, DEPTHS, FORMATS, FORMS, VALID_PAIRS, allCells, cellValid, openCells, validPair, validPairs, type Form } from "../src/lib/research-os/work-quiz/space";
+import { CARD_KEY_SEPARATOR, cardKey, factId, factsFromSources, parseCardKey } from "../src/lib/research-os/work-quiz/fact";
+import { FORM_MAKERS, makeForm, sampledId } from "../src/lib/research-os/work-quiz/forms";
+import type { WorkSources } from "../src/lib/research-os/work-quiz/types";
+
+const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
+const SEEDS = 200;
+const STATUSES = ["open", "closed", "in_progress", "deferred"];
+const day = (i: number) => new Date(Date.UTC(2026, 8, 1 + Math.floor(i / 4))).toISOString().slice(0, 10);
+
+const SOURCES: WorkSources = {
+  repoUrl: "https://github.com/example/repo",
+  prs: TITLES.prs.map((title, i) => ({ number: 400 + i, title: `${title} (#${400 + i})`, date: day(i), order: i })),
+  beads: TITLES.beads.map((title, i) => ({ id: `bkt-f${i.toString(36)}`, title, status: STATUSES[i % STATUSES.length], priority: i % 5, createdAt: day(i) })),
+  notes: [
+    { file: "_intake/ideas/IDEAS-2026-09-18.md", heading: "Swipe breaks between reading sessions", date: "2026-09-18" },
+    { file: "_intake/ideas/IDEAS-2026-09-20.md", heading: "A work quiz during the day", date: "2026-09-20" },
+  ],
+};
+
+test("the space has nine forms, four formats, three depths and eleven valid form-format pairs", () => {
+  assert.equal(FORMS.length, 9);
+  assert.equal(FORMATS.length, 4);
+  assert.equal(DEPTHS.length, 3);
+  assert.deepEqual(
+    validPairs().map(([f, fmt]) => `${f}:${fmt}`).sort(),
+    ["cause_effect:pick", "cloze:pick", "cloze:word", "compare:pick", "estimate:number", "order:order", "recall:pick", "recall:word", "spot_error:pick", "true_false:pick", "which_changed:pick"],
+  );
+  assert.equal(allCells().length, 33);
+  for (const f of FORMS) for (const fmt of FORMATS) assert.equal(validPair(f, fmt), VALID_PAIRS[f].includes(fmt));
+  assert.equal(validPair("estimate", "pick"), false);
+  assert.equal(validPair("order", "pick"), false);
+});
+
+test("invalid cells: estimate without a count, order under three dated facts, compare across kinds, which_changed blocked", () => {
+  const none = { counts: 0, dated: 0, datedByKind: {} };
+  assert.equal(cellValid({ form: "estimate", format: "number", depth: 1 }, none), false);
+  assert.equal(cellValid({ form: "estimate", format: "number", depth: 1 }, { ...none, counts: 1 }), true);
+  assert.equal(cellValid({ form: "order", format: "order", depth: 2 }, { counts: 0, dated: 4, datedByKind: { pr: 2, note: 2 } }), false);
+  assert.equal(cellValid({ form: "order", format: "order", depth: 2 }, { counts: 0, dated: 3, datedByKind: { pr: 3 } }), true);
+  assert.equal(cellValid({ form: "compare", format: "pick", depth: 1 }, { counts: 0, dated: 2, datedByKind: { pr: 1, note: 1 } }), false);
+  assert.equal(cellValid({ form: "which_changed", format: "pick", depth: 1 }, { counts: 9, dated: 9, datedByKind: { pr: 9 } }), false);
+  assert.ok(BLOCKED_FORMS.which_changed);
+  assert.equal(openCells({ counts: 9, dated: 9, datedByKind: { pr: 9 } }).some((c) => c.form === "which_changed"), false);
+});
+
+test("facts carry kind:ref ids and cards key on fact.id|form", () => {
+  const facts = factsFromSources(SOURCES);
+  assert.equal(facts.length, SOURCES.prs.length + SOURCES.beads.length + SOURCES.notes.length);
+  assert.equal(facts[0].id, "pr:400");
+  assert.equal(factId("bead", "bkt-33cg"), "bead:bkt-33cg");
+  assert.equal(cardKey(facts[0], "order"), "pr:400|order");
+  assert.equal(cardKey("note:a.md#b", "compare"), `note:a.md#b${CARD_KEY_SEPARATOR}compare`);
+  assert.deepEqual(parseCardKey("bead:bkt-33cg|true_false"), { factId: "bead:bkt-33cg", form: "true_false" });
+  assert.throws(() => cardKey("a|b", "recall"));
+  for (const f of facts) assert.equal(f.id.includes(CARD_KEY_SEPARATOR), false);
+});
+
+test("the Supabase migration builds the card key the same way as cardKey", () => {
+  const sql = fs.readFileSync(path.join(process.cwd(), "supabase/migrations/20261001150000_research_os_work_quiz_card_key.sql"), "utf8");
+  assert.match(sql, /p_fact_id \|\| '\|' \|\| p_form/);
+  assert.match(sql, /unique index if not exists graph_work_quiz_cards_card_key_idx on graph\.work_quiz_cards \(learner_id, card_key\)/);
+  assert.equal(cardKey("pr:504", "estimate"), ["pr:504", "estimate"].join("|"));
+});
+
+const BUILT: Form[] = ["true_false", "estimate", "compare", "order"];
+
+for (const form of BUILT) {
+  test(`${form}: ${SEEDS} seeds per depth, every question passes checkLimits and grades on an existing grader`, () => {
+    let made = 0;
+    for (const depth of DEPTHS) {
+      for (let s = 0; s < SEEDS; s++) {
+        const q = makeForm(form, SOURCES, `space-${form}-${depth}-${s}`, depth);
+        if (!q) continue;
+        made += 1;
+        assert.deepEqual(checkLimits(q), [], `${form} seed ${s}: ${q.prompt} ${q.lines.join(" / ")}`);
+        assert.equal(q.form, form);
+        assert.equal(q.cardKey, cardKey(q.factIds[0], form));
+        assert.equal(q.id, sampledId(form, q.factIds, depth));
+        assert.equal(gradeAnswer(q, q.answer, 1000).correct, true);
+        if (q.choices) assert.ok(q.choices.includes(q.answer));
+      }
+    }
+    assert.ok(made >= SEEDS, `${form} made ${made} questions`);
+  });
+}
+
+test("the same seed yields the same question id, so regenerating keeps ids", () => {
+  for (const form of BUILT) assert.equal(makeForm(form, SOURCES, "x", 2)?.id, makeForm(form, SOURCES, "x", 2)?.id);
+});
+
+test("order uses a choice string and estimate grades by log10 distance", () => {
+  const o = makeForm("order", SOURCES, "o", 3)!;
+  assert.equal(o.lines.length, 3);
+  assert.equal(o.choices!.length, 4);
+  assert.match(o.answer, /^[ABC]{3}$/);
+  const e = makeForm("estimate", SOURCES, "e", 2)!;
+  assert.equal(e.log10Tolerance, 0.2);
+  assert.equal(gradeAnswer(e, String(Number(e.answer) * 1.5), 1000).correct, Math.log10(1.5) <= 0.2);
+  assert.equal(gradeAnswer(e, String(Number(e.answer) * 10), 1000).correct, false);
+});
+
+test("which_changed has no maker and the other built forms do", () => {
+  assert.equal(FORM_MAKERS.which_changed, undefined);
+  for (const f of BUILT) assert.ok(FORM_MAKERS[f]);
+});
