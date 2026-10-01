@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { manifest } from "./latest-json";
+import { manifest, requireManifest } from "./latest-json";
 import { releaseName } from "./release-assets";
 
 const targets: [string, string, "macos" | "windows" | "linux", "arm64" | "x64"][] = [
@@ -25,4 +25,15 @@ test("lists each signed updater artifact under its platform", () => {
 test("skips unsigned bundles and rejects a tag without a version", () => {
   expect(manifest(["Bucket-desktop-1.0.0-windows-x64.msi", "Bucket-desktop-1.0.0-linux-x64.deb"], () => "", "bkt-v1.0.0", "o/r", new Date(0)).platforms).toEqual({});
   expect(() => manifest([], () => "", "bkt-vnext", "o/r", new Date(0))).toThrow();
+});
+
+test("a release without every signed updater artifact fails unless the founder opted in", () => {
+  const full = manifest(files, () => "sig", "bkt-v0.2.0", "o/r", new Date(0));
+  const none = manifest(["Bucket-desktop-0.2.0-linux-x64.deb"], () => "", "bkt-v0.2.0", "o/r", new Date(0));
+  const partial = manifest(files.filter((f) => !f.includes("windows")), () => "sig", "bkt-v0.2.0", "o/r", new Date(0));
+  expect(requireManifest(full, false)).toBe(true);
+  expect(() => requireManifest(none, false)).toThrow(/linux-x86_64/);
+  expect(requireManifest(none, true)).toBe(false);
+  expect(() => requireManifest(partial, false)).toThrow(/windows-x86_64/);
+  expect(() => requireManifest(partial, true)).toThrow(/windows-x86_64/);
 });

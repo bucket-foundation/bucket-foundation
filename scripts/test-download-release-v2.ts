@@ -78,6 +78,10 @@ test("a release with the Tauri bundles hands each system its windowed installer"
     "linux/x64/AppImage/Bucket-desktop-0.5.0-linux-x64.AppImage",
   ]);
   for (const w of windowedInstallers(tauri)) assert.equal(w.checksumUrl, `${w.url}.sha256`);
+  assert.deepEqual(windowedInstallers(tauri).map((w) => w.signed), [false, false, false, true]);
+  const signed = tauri.filter((a) => !a.name.endsWith(".unsigned"));
+  assert.deepEqual(windowedInstallers(signed).map((w) => w.signed), [true, true, true, true]);
+  for (const i of installersForV2(tauri)) assert.doesNotMatch(i.name, /\.unsigned$/);
 });
 
 test("the Tauri bundles leave the terminal installers and the signed AppImage command untouched", () => {

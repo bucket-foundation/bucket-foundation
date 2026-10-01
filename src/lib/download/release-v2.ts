@@ -13,7 +13,7 @@ export interface InstallerV2 {
   checksumUrl: string | null;
 }
 
-const SIDECAR = /\.(sha256|manifest|manifest\.sig|sig)$/i;
+const SIDECAR = /\.(sha256|manifest|manifest\.sig|sig|unsigned)$/i;
 const TERMINAL = /^bkt-(darwin|linux|windows)-(arm64|x64)(\.exe)?$/;
 const TERMINAL_OS: Record<string, Os> = { darwin: "macos", linux: "linux", windows: "windows" };
 const ARCH_ORDER: Arch[] = ["arm64", "x64"];
@@ -35,6 +35,7 @@ export interface WindowedInstaller {
   url: string;
   size: number;
   checksumUrl: string | null;
+  signed: boolean;
 }
 
 export function windowedInstallers(assets: ReleaseAsset[]): WindowedInstaller[] {
@@ -47,7 +48,7 @@ export function windowedInstallers(assets: ReleaseAsset[]): WindowedInstaller[] 
     const held = best.get(key);
     if (held && FORMAT_ORDER.indexOf(held.format) <= FORMAT_ORDER.indexOf(format)) continue;
     const sidecar = assets.find((a) => a.name === `${asset.name}.sha256`);
-    best.set(key, { os: m[1] as Os, arch: m[2] as Arch, format, name: asset.name, url: asset.browser_download_url, size: asset.size, checksumUrl: sidecar?.browser_download_url ?? null });
+    best.set(key, { os: m[1] as Os, arch: m[2] as Arch, format, name: asset.name, url: asset.browser_download_url, size: asset.size, checksumUrl: sidecar?.browser_download_url ?? null, signed: !assets.some((a) => a.name === `${asset.name}.unsigned`) });
   }
   const out: WindowedInstaller[] = [];
   for (const os of OSES) for (const arch of ARCH_ORDER) {

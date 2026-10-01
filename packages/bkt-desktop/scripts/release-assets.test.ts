@@ -54,9 +54,21 @@ test("collect copies renamed bundles and writes a checksum beside each", () => {
   expect(() => collect(join(root, "empty"), join(root, "out2"), "0.5.0", "linux", "x64")).toThrow(/no bundles/);
 });
 
+test("an unsigned build marks its dmg, msi and exe and leaves the rest alone", () => {
+  const root = mkdtempSync(join(tmpdir(), "bkt-assets-"));
+  for (const [kind, file] of [["dmg", "Bucket_0.1.0_x64.dmg"], ["msi", "Bucket_0.1.0_x64_en-US.msi"], ["appimage", "Bucket_0.1.0_amd64.AppImage"]]) {
+    mkdirSync(join(root, "bundle", kind), { recursive: true });
+    writeFileSync(join(root, "bundle", kind, file), kind);
+  }
+  collect(join(root, "bundle"), join(root, "unsigned"), "0.5.0", "linux", "x64", true);
+  expect(readdirSync(join(root, "unsigned")).filter((f) => f.endsWith(".unsigned")).sort()).toEqual(["Bucket-desktop-0.5.0-linux-x64.dmg.unsigned", "Bucket-desktop-0.5.0-linux-x64.msi.unsigned"]);
+  collect(join(root, "bundle"), join(root, "signed"), "0.5.0", "linux", "x64");
+  expect(readdirSync(join(root, "signed")).filter((f) => f.endsWith(".unsigned"))).toEqual([]);
+});
+
 test("the release names are the ones the /download fixture holds", () => {
   const fixture: { name: string }[] = JSON.parse(readFileSync(resolve(import.meta.dir, "../../../src/lib/download/__fixtures__/bkt-v0.5.0-tauri.json"), "utf8"));
-  const held = fixture.map((a) => a.name).filter((n) => n.startsWith("Bucket-desktop-") && !/\.(sha256|sig)$/.test(n)).sort();
+  const held = fixture.map((a) => a.name).filter((n) => n.startsWith("Bucket-desktop-") && !/\.(sha256|sig|unsigned)$/.test(n)).sort();
   const built = [
     releaseName("Bucket_0.5.0_aarch64.dmg", "0.5.0", "macos", "arm64"),
     releaseName("Bucket.app.tar.gz", "0.5.0", "macos", "arm64"),

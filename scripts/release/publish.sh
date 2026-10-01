@@ -21,8 +21,7 @@ done
 
 if ! gh release view "$tag" --repo "$repo" > /dev/null 2>&1; then
   gh release create "$tag" --repo "$repo" --verify-tag --prerelease --title "Bucket $version" \
-    --notes "bkt $version for Linux, macOS and Windows, plus the Linux AppImage. Install with scripts/install.sh or scripts/install.ps1 from this tag." \
-    || gh release view "$tag" --repo "$repo" > /dev/null || fail "could not create or find release $tag"
+    --notes "bkt $version for Linux, macOS and Windows, plus the Linux AppImage. Install with scripts/install.sh or scripts/install.ps1 from this tag."
 fi
 existing=$(gh release view "$tag" --repo "$repo" --json assets -q '.assets[].name')
 missing=()

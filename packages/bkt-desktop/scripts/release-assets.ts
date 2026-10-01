@@ -47,7 +47,9 @@ export function bundleFiles(dir: string): string[] {
   return out;
 }
 
-export function collect(bundleDir: string, outDir: string, version: string, os: DesktopOs, arch: DesktopArch): string[] {
+const OS_SIGNED = /\.(dmg|msi|exe)$/;
+
+export function collect(bundleDir: string, outDir: string, version: string, os: DesktopOs, arch: DesktopArch, unsigned = false): string[] {
   mkdirSync(outDir, { recursive: true });
   const written: string[] = [];
   for (const path of bundleFiles(bundleDir)) {
@@ -59,6 +61,7 @@ export function collect(bundleDir: string, outDir: string, version: string, os: 
     if (name.endsWith(".sig")) continue;
     const sum = createHash("sha256").update(readFileSync(path)).digest("hex");
     writeFileSync(join(outDir, `${name}.sha256`), `${sum}  ${name}\n`);
+    if (unsigned && OS_SIGNED.test(name)) writeFileSync(join(outDir, `${name}.unsigned`), `${name} carries no publisher signature\n`);
   }
   if (!written.some((n) => !n.endsWith(".sig"))) throw new Error(`no bundles under ${bundleDir}`);
   return written.sort();
@@ -69,5 +72,5 @@ if (import.meta.main) {
   if (!bundleDir || !outDir) throw new Error("usage: release-assets.ts <bundle dir> <out dir>");
   const pkg = JSON.parse(readFileSync(resolve(import.meta.dir, "../../bkt/package.json"), "utf8"));
   const version = releaseVersion(process.env, pkg.version);
-  for (const n of collect(bundleDir, outDir, version, hostOs(process.platform), hostArch(process.arch))) console.log(n);
+  for (const n of collect(bundleDir, outDir, version, hostOs(process.platform), hostArch(process.arch), process.env.BKT_DESKTOP_UNSIGNED === "1")) console.log(n);
 }

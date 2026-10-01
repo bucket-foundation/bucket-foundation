@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import InstallBlocksV3 from "../src/components/download/InstallBlocksV3";
-import { APPIMAGE_WARNING_SHORT, INSTALL_COMMAND } from "../src/lib/download/install";
+import { APPIMAGE_WARNING_SHORT, FIRST_OPEN, INSTALL_COMMAND } from "../src/lib/download/install";
 import { installersForV2, windowedInstallers } from "../src/lib/download/release-v2";
 import type { ReleaseAsset } from "../src/lib/download/release";
 
@@ -55,7 +55,27 @@ test("each system links its windowed installer above the terminal command", () =
   assert.match(html, /Download the macOS app, Apple silicon/);
   assert.match(html, /Download the macOS app, Intel/);
   assert.match(html, /Download the Windows app</);
-  assert.ok(words(html) < 70);
+  assert.ok(html.includes(`/bkt-v0.5.0/Bucket-desktop-0.5.0-macos-arm64.dmg.sha256"`));
+  assert.equal((html.match(/data-checksum=/g) ?? []).length, 4);
+});
+
+test("an unsigned installer carries its first-open steps inside a disclosure", () => {
+  const html = renderToStaticMarkup(InstallBlocksV3({ os: "macos", installers: installersForV2(tauri), windowed: windowedInstallers(tauri) }));
+  assert.match(html, /<details data-first-open="macos"><summary[^>]*>First open on macOS<\/summary>/);
+  assert.ok(html.includes(FIRST_OPEN.macos!.steps.replace("&", "&amp;")));
+  assert.match(html, /<details data-first-open="windows">/);
+  assert.match(FIRST_OPEN.macos!.steps, /Open Anyway/);
+  assert.match(FIRST_OPEN.windows!.steps, /More info, then Run anyway/);
+  assert.doesNotMatch(html, /data-first-open="linux"/);
+  const visible = html.replace(/<details data-first-open[\s\S]*?<\/details>/g, (d) => d.replace(/<p[\s\S]*?<\/p>/, ""));
+  assert.ok(words(visible) < 70);
+});
+
+test("a signed installer shows no first-open steps", () => {
+  const signed = tauri.filter((a) => !a.name.endsWith(".unsigned"));
+  const html = renderToStaticMarkup(InstallBlocksV3({ os: "macos", installers: installersForV2(signed), windowed: windowedInstallers(signed) }));
+  assert.doesNotMatch(html, /data-first-open/);
+  assert.match(html, /data-windowed-installer="macos-arm64"/);
 });
 
 test("the linux command still installs the signed AppImage when a windowed one ships", () => {

@@ -47,3 +47,8 @@ export const APPIMAGE_WARNING = "Open the AppImage from a terminal. Opening it w
 export const APPIMAGE_WARNING_SHORT = "Open it from a terminal, never with Disks.";
 
 export const INSTALL_SHELL: Record<Os, string> = { macos: "Terminal", linux: "a terminal", windows: "PowerShell" };
+
+export const FIRST_OPEN: Partial<Record<Os, { summary: string; steps: string }>> = {
+  macos: { summary: "First open on macOS", steps: "This build has no Apple signature. Open Bucket once, then choose Open Anyway under System Settings, Privacy & Security." },
+  windows: { summary: "First open on Windows", steps: "This build has no publisher signature. When SmartScreen appears, choose More info, then Run anyway." },
+};
