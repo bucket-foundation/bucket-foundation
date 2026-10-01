@@ -62,6 +62,7 @@ export interface CanonHit {
   slug: string;
   title: string;
   score: number;
+  url: string;
   excerpt: string;
   evidence_count: number;
 }
