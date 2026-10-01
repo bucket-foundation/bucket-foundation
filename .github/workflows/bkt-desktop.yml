@@ -46,10 +46,14 @@ jobs:
           - os: macos-latest
             bundles: app,dmg
             strict: "1"
+          - os: macos-15-intel
+            bundles: app,dmg
+            strict: "1"
           - os: windows-latest
             bundles: msi
             strict: "1"
     runs-on: ${{ matrix.os }}
+    environment: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && 'bkt-release' || 'bkt-dry-run' }}
     permissions:
       contents: read
     defaults:
@@ -83,24 +87,44 @@ jobs:
         run: bun run prepare:bundle
       - name: no staff data in the public bundle
         run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json
+      - name: import the Windows signing certificate
+        if: runner.os == 'Windows' && startsWith(github.ref, 'refs/tags/bkt-v')
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          if (-not $env:WINDOWS_CERTIFICATE) { Write-Host 'no Windows certificate in the environment'; exit 0 }
+          $pfx = Join-Path $env:RUNNER_TEMP 'signing.pfx'
+          [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE))
+          $cert = Import-PfxCertificate -FilePath $pfx -CertStoreLocation Cert:\CurrentUser\My -Password (ConvertTo-SecureString $env:WINDOWS_CERTIFICATE_PASSWORD -AsPlainText -Force)
+          Remove-Item $pfx
+          "WINDOWS_CERTIFICATE_THUMBPRINT=$($cert.Thumbprint)" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
       - name: tauri build
         working-directory: packages/bkt-desktop
         env:
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          BKT_RELEASE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') }}
+          BKT_DESKTOP_UNSIGNED_OK: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && vars.BKT_DESKTOP_UNSIGNED_OK || '' }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY || '' }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD || '' }}
+          APPLE_CERTIFICATE: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_CERTIFICATE || '' }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
+          APPLE_SIGNING_IDENTITY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_SIGNING_IDENTITY || '' }}
+          APPLE_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_ID || '' }}
+          APPLE_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_PASSWORD || '' }}
+          APPLE_TEAM_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_TEAM_ID || '' }}
         run: |
-          extra=()
-          if [ -n "$TAURI_SIGNING_PRIVATE_KEY" ]; then extra=(--config '{"bundle":{"createUpdaterArtifacts":true}}'); fi
-          bunx tauri build --bundles ${{ matrix.bundles }} "${extra[@]}"
-      - name: collect bundles
+          for v in TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
+            [ -n "${!v}" ] || unset "$v"
+          done
+          bun scripts/build-config.ts "$RUNNER_TEMP/tauri.release.json"
+          bunx tauri build --bundles ${{ matrix.bundles }} --config "$RUNNER_TEMP/tauri.release.json"
+      - name: collect bundles under their release names
+        working-directory: packages/bkt-desktop
         run: |
-          out="$RUNNER_TEMP/bundles"
-          mkdir -p "$out"
-          b=packages/bkt-desktop/src-tauri/target/release/bundle
-          find "$b" -maxdepth 2 -type f \( -name '*.deb' -o -name '*.AppImage' -o -name '*.dmg' -o -name '*.msi' -o -name '*.sig' -o -name '*.tar.gz' -o -name '*.zip' \) -exec cp {} "$out/" \;
-          ls -la "$out"
-          [ -n "$(ls "$out")" ] || { echo "no bundles produced"; exit 1; }
-          echo "BUNDLES=$out" >> "$GITHUB_ENV"
+          bun scripts/release-assets.ts src-tauri/target/release/bundle "$RUNNER_TEMP/bundles"
+          ls -la "$RUNNER_TEMP/bundles"
+          echo "BUNDLES=$RUNNER_TEMP/bundles" >> "$GITHUB_ENV"
       - name: smoke the deb and AppImage
         if: runner.os == 'Linux'
         working-directory: packages/bkt-desktop
@@ -155,14 +179,9 @@ jobs:
           $env:PATH = (($env:PATH -split ';') | Where-Object { $_ -notmatch '\\Git\\(usr|mingw64)\\bin' }) -join ';'
           bun scripts/smoke.ts "$env:APP_EXE"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - name: checksums
-        run: |
-          cd "$BUNDLES"
-          if command -v sha256sum >/dev/null; then sha256sum * > "SHA256SUMS-${{ runner.os }}.txt"; else shasum -a 256 * > "SHA256SUMS-${{ runner.os }}.txt"; fi
-          cat "SHA256SUMS-${{ runner.os }}.txt"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: bkt-desktop-${{ runner.os }}
+          name: bkt-desktop-${{ matrix.os }}
           path: ${{ env.BUNDLES }}/*
           if-no-files-found: error
 
@@ -181,7 +200,7 @@ jobs:
           path: bundles
           merge-multiple: true
       - name: verify checksums
-        run: cd bundles && for f in SHA256SUMS-*.txt; do sha256sum -c "$f"; done
+        run: cd bundles && for f in *.sha256; do sha256sum -c "$f"; done
       - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
         with:
           subject-path: bundles/*
@@ -190,23 +209,64 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
     needs: attest
     runs-on: ubuntu-latest
+    timeout-minutes: 130
+    environment: bkt-release
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: a release tag must point at a commit on main or dev
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^bkt-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "tag must look like bkt-v1.2.3: $GITHUB_REF_NAME" >&2; exit 1; }
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || git merge-base --is-ancestor "$GITHUB_SHA" origin/dev \
+            || { echo "$GITHUB_REF_NAME points at $GITHUB_SHA, which is on neither main nor dev" >&2; exit 1; }
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           pattern: bkt-desktop-*
           path: bundles
           merge-multiple: true
+      - name: one installer per system, named for the tag
+        env:
+          BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
+        run: |
+          v=${GITHUB_REF_NAME#bkt-v}
+          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb; do
+            for suffix in "" .sha256; do
+              [ -s "bundles/Bucket-desktop-$v-$a$suffix" ] || { echo "missing Bucket-desktop-$v-$a$suffix" >&2; exit 1; }
+            done
+          done
+          if ls bundles/*.unsigned >/dev/null 2>&1 && [ "$BKT_DESKTOP_UNSIGNED_OK" != "1" ]; then
+            echo "unsigned installers without BKT_DESKTOP_UNSIGNED_OK=1 in the bkt-release environment:" >&2
+            ls bundles/*.unsigned >&2
+            exit 1
+          fi
       - name: updater manifest
+        env:
+          BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
         run: bun packages/bkt-desktop/scripts/latest-json.ts bundles "$GITHUB_REF_NAME" "$GITHUB_REPOSITORY"
-      - name: upload to the release
+      - name: wait for the release that bkt.yml creates
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           TAG: ${{ github.ref_name }}
         run: |
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --verify-tag --title "$TAG" --notes "Unsigned desktop builds." || gh release view "$TAG" >/dev/null
-          gh release upload "$TAG" bundles/* --clobber
+          for _ in $(seq 240); do
+            gh release view "$TAG" >/dev/null 2>&1 && exit 0
+            sleep 30
+          done
+          echo "bkt.yml created no release for $TAG within two hours" >&2
+          exit 1
+      - name: upload to the release, refusing names it already holds
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          existing=$(gh release view "$TAG" --json assets -q '.assets[].name')
+          for f in bundles/*; do
+            if grep -qxF "$(basename "$f")" <<< "$existing"; then echo "$(basename "$f") is already on $TAG" >&2; exit 1; fi
+          done
+          gh release upload "$TAG" bundles/*

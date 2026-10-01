@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 import InstallBlocksV3 from "@/components/download/InstallBlocksV3";
 import { DOWNLOAD_PLATFORMS, osOfPlatform, type DownloadPlatform } from "@/lib/download/core";
 import type { Os } from "@/lib/download/release";
-import type { InstallerV2 } from "@/lib/download/release-v2";
+import type { InstallerV2, WindowedInstaller } from "@/lib/download/release-v2";
 import { NAME_MAX, RESEARCH_MAX, WAITLIST_ROLES } from "@/lib/waitlist/core";
 
 const INPUT =
@@ -28,7 +28,7 @@ const PLATFORM_OF: Record<Os, DownloadPlatform> = {
   windows: "windows-x64",
 };
 
-export default function DownloadFlowV3({ detected, installers }: { detected: Os | null; installers: InstallerV2[] }) {
+export default function DownloadFlowV3({ detected, installers, windowed = [] }: { detected: Os | null; installers: InstallerV2[]; windowed?: WindowedInstaller[] }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -84,7 +84,7 @@ export default function DownloadFlowV3({ detected, installers }: { detected: Os 
     return (
       <div className="mt-6 flex flex-col gap-4" data-download-unlocked>
         {done.outcome !== "off" && <p role="status" className="text-[13px] text-[color:var(--basalt-2)]">Link emailed.</p>}
-        <InstallBlocksV3 os={done.os} installers={installers} />
+        <InstallBlocksV3 os={done.os} installers={installers} windowed={windowed} />
       </div>
     );
   }
