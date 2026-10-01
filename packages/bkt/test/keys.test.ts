@@ -2,11 +2,12 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, deviceIdFor, ensureDataKey, ensureDevice, verifyDeviceSignature } from "../src/device";
+import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, deviceIdFor, ensureDataKey, ensureDevice, scopedAccounts, verifyDeviceSignature } from "../src/device";
 import { MemoryKeyring, PassphraseKeyring, SecretToolKeyring, type Keyring } from "../src/keyring";
 import { keyringOptions, resolve } from "../src/cli/run";
 import { Database } from "bun:sqlite";
-import { existingDb, openSession, pickKeyring } from "../src/setup";
+import { existingDb, keyAccounts, keyScope, openSession, pickKeyring } from "../src/setup";
+import { Store } from "../src/store";
 
 let dir: string;
 beforeEach(() => {
@@ -114,8 +115,9 @@ describe("openSession", () => {
     expect(reopened.device.created).toBe(false);
     reopened.store.close();
     const intruder = new MemoryKeyring();
-    await intruder.set(DATA_KEY_ACCOUNT, (await kr.get(DATA_KEY_ACCOUNT))!);
-    await ensureDevice(intruder);
+    const held = keyAccounts(path);
+    await intruder.set(held.data, (await kr.get(held.data))!);
+    await ensureDevice(intruder, undefined, held.device);
     await expect(openSession(intruder, path, 3)).rejects.toThrow("belongs to device");
   });
 });
@@ -246,7 +248,7 @@ describe("keyring guard", () => {
     expect((failure as Error).message).toContain("keyring locked or key missing");
     expect((failure as Error).message).toContain("--keyring");
     expect(calls.set).toBe(0);
-    expect(await kr.get(DATA_KEY_ACCOUNT)).toBeNull();
+    expect(await kr.get(keyAccounts(dir).data)).toBeNull();
     expect(readFileSync(db()).equals(before)).toBe(true);
   });
 
@@ -281,9 +283,10 @@ describe("keyring guard", () => {
     const first = new MemoryKeyring();
     (await openSession(first, dir, 1)).store.close();
     const partial = new MemoryKeyring();
-    await partial.set(DATA_KEY_ACCOUNT, (await first.get(DATA_KEY_ACCOUNT))!);
+    const held = keyAccounts(dir);
+    await partial.set(held.data, (await first.get(held.data))!);
     await expect(openSession(partial, dir, 2)).rejects.toThrow("keyring locked or key missing");
-    expect(await partial.get(DEVICE_ACCOUNT)).toBeNull();
+    expect(await partial.get(held.device)).toBeNull();
   });
 
   test("the passphrase vault mints on a fresh home and reopens with the same key", async () => {
@@ -357,5 +360,154 @@ describe("a database that holds nothing counts as absent", () => {
     const failure = (await openSession(new MemoryKeyring(), dir, 2).catch((e: Error) => e)) as Error;
     expect(failure.message).toContain("Run bkt again with the keyring that made the database");
     expect(failure.message).toContain(`To start fresh, move ${db()} aside and run bkt init`);
+  });
+});
+
+async function legacyHome(kr: Keyring, home: string) {
+  const key = await ensureDataKey(kr);
+  const device = await ensureDevice(kr);
+  mkdirSync(home, { recursive: true });
+  const store = new Store(join(home, "bkt.db"), key);
+  store.recordDevice(device.id, device.publicKey, 1);
+  store.close();
+  return { key, device };
+}
+
+describe("keyring entries scoped to the data folder", () => {
+  test("a fresh home writes a scope file and stores its keys under that scope alone", async () => {
+    const inner = new MemoryKeyring();
+    const s = await openSession(inner, dir, 1);
+    s.store.close();
+    const scope = keyScope(dir)!;
+    expect(scope).toMatch(/^[0-9a-f]{32}$/);
+    expect(statSync(join(dir, "keyring-scope")).mode & 0o777).toBe(0o600);
+    expect(keyAccounts(dir)).toEqual({ data: `db-data-key.${scope}`, device: `device-ed25519.${scope}` });
+    expect(await inner.get(`db-data-key.${scope}`)).toHaveLength(64);
+    expect(await inner.get(DATA_KEY_ACCOUNT)).toBeNull();
+    expect(await inner.get(DEVICE_ACCOUNT)).toBeNull();
+  });
+
+  test("a second data folder on the same keyring gets its own entries and leaves the first alone", async () => {
+    const kr = new MemoryKeyring();
+    const a = join(dir, "a");
+    const b = join(dir, "b");
+    const first = await openSession(kr, a, 1);
+    first.store.close();
+    const before = await kr.get(keyAccounts(a).data);
+    const second = await openSession(kr, b, 2);
+    second.store.close();
+    expect(keyScope(b)).not.toBe(keyScope(a));
+    expect(second.key.equals(first.key)).toBe(false);
+    expect(second.device.id).not.toBe(first.device.id);
+    expect(await kr.get(keyAccounts(a).data)).toBe(before);
+    const again = await openSession(kr, a, 3);
+    again.store.close();
+    expect(again.key.equals(first.key)).toBe(true);
+  });
+
+  test("a 0.4.0 home with unscoped entries opens, and nothing is written to the keyring or the folder", async () => {
+    const inner = new MemoryKeyring();
+    const old = await legacyHome(inner, dir);
+    const { kr, calls } = counting(inner);
+    const s = await openSession(kr, dir, 2);
+    expect(s.key.equals(old.key)).toBe(true);
+    expect(s.device.id).toBe(old.device.id);
+    expect(s.device.created).toBe(false);
+    expect(s.store.device()!.id).toBe(old.device.id);
+    s.store.close();
+    expect(calls.set).toBe(0);
+    expect(keyScope(dir)).toBeUndefined();
+    expect(keyAccounts(dir)).toEqual({ data: DATA_KEY_ACCOUNT, device: DEVICE_ACCOUNT });
+  });
+
+  test("a new home beside a 0.4.0 keyring never touches the unscoped entries", async () => {
+    const kr = new MemoryKeyring();
+    const old = await legacyHome(kr, join(dir, "old"));
+    const pem = await kr.get(DEVICE_ACCOUNT);
+    const s = await openSession(kr, join(dir, "new"), 2);
+    s.store.close();
+    expect(s.key.equals(old.key)).toBe(false);
+    expect(await kr.get(DATA_KEY_ACCOUNT)).toBe(old.key.toString("hex"));
+    expect(await kr.get(DEVICE_ACCOUNT)).toBe(pem);
+    const reopened = await openSession(kr, join(dir, "old"), 3);
+    reopened.store.close();
+    expect(reopened.key.equals(old.key)).toBe(true);
+  });
+
+  test("a scope with its keys and no database reuses the keys", async () => {
+    const inner = new MemoryKeyring();
+    const first = await openSession(inner, dir, 1);
+    first.store.close();
+    for (const f of ["bkt.db", "bkt.db-wal", "bkt.db-shm"]) rmSync(join(dir, f), { force: true });
+    const scope = keyScope(dir);
+    const { kr, calls } = counting(inner);
+    const s = await openSession(kr, dir, 2);
+    s.store.close();
+    expect(calls.set).toBe(0);
+    expect(keyScope(dir)).toBe(scope);
+    expect(s.key.equals(first.key)).toBe(true);
+  });
+
+  test("a scope whose keys are gone for certain, with no database, mints under a new scope", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    for (const f of ["bkt.db", "bkt.db-wal", "bkt.db-shm"]) rmSync(join(dir, f), { force: true });
+    const scope = keyScope(dir);
+    const s = await openSession(new MemoryKeyring(), dir, 2);
+    s.store.close();
+    expect(s.device.created).toBe(true);
+    expect(keyScope(dir)).not.toBe(scope);
+  });
+
+  test("a scope with no database and a keyring that cannot answer refuses and writes nothing", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    for (const f of ["bkt.db", "bkt.db-wal", "bkt.db-shm"]) rmSync(join(dir, f), { force: true });
+    const scope = keyScope(dir);
+    let sets = 0;
+    const kr: Keyring = {
+      kind: "libsecret",
+      get: async () => {
+        throw new Error("keyring locked: no answer");
+      },
+      set: async () => {
+        sets++;
+      },
+    };
+    await expect(openSession(kr, dir, 2)).rejects.toThrow("keyring locked");
+    expect(sets).toBe(0);
+    expect(keyScope(dir)).toBe(scope);
+    expect(existsSync(join(dir, "bkt.db"))).toBe(false);
+  });
+
+  test("a damaged scope file stops the run", async () => {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "keyring-scope"), "nonsense\n");
+    await expect(openSession(new MemoryKeyring(), dir, 1)).rejects.toThrow("is damaged");
+  });
+});
+
+describe("secret-tool lookups that cannot tell absent from locked", () => {
+  const account = scopedAccounts("0".repeat(32)).data;
+
+  test("exit 1 with empty stderr and an entry listed by search counts as locked, and store never runs", async () => {
+    const marker = join(dir, "stored");
+    const kr = fakeSecretTool(
+      `if [ "$1" = store ]; then touch "${marker}"; exit 0; fi\nif [ "$1" = search ]; then echo "[/org/freedesktop/secrets/collection/login/7]"; echo "attribute.account = x" >&2; exit 0; fi\nexit 1`,
+    );
+    await expect(kr.get(account)).rejects.toThrow("keyring locked");
+    await expect(kr.set(account, "new")).rejects.toThrow("keyring locked");
+    await expect(ensureDataKey(kr, undefined, account)).rejects.toThrow("keyring locked");
+    await expect(openSession(kr, join(dir, "fresh"), 1)).rejects.toThrow("keyring locked");
+    expect(existsSync(marker)).toBe(false);
+    expect(existsSync(join(dir, "fresh", "bkt.db"))).toBe(false);
+  });
+
+  test("exit 1 with empty stderr and an empty search is a positive not-found", async () => {
+    expect(await fakeSecretTool(`if [ "$1" = search ]; then exit 0; fi\nexit 1`).get(account)).toBeNull();
+    expect(await fakeSecretTool("exit 1").get(account)).toBeNull();
+  });
+
+  test("a search that fails counts as locked", async () => {
+    await expect(fakeSecretTool(`if [ "$1" = search ]; then echo "Cannot autolaunch D-Bus" >&2; exit 1; fi\nexit 1`).get(account)).rejects.toThrow("secret-tool search failed");
+    await expect(fakeSecretTool(`if [ "$1" = search ]; then exit 3; fi\nexit 1`).get(account)).rejects.toThrow("exit 3");
   });
 });

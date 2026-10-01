@@ -1,7 +1,8 @@
-import { closeSync, existsSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
+import { closeSync, existsSync, openSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { Database } from "bun:sqlite";
 import { join } from "node:path";
-import { ensureDataKey, ensureDevice, type DeviceIdentity } from "./device";
+import { randomBytes } from "node:crypto";
+import { ensureDataKey, ensureDevice, LEGACY_ACCOUNTS, scopedAccounts, type DeviceIdentity, type KeyAccounts } from "./device";
 import { CancelledError } from "./cli/run";
 import { KeyringLockedError, PassphraseKeyring, type Keyring } from "./keyring";
 import { platformFor, type Platform } from "./platform";
@@ -121,6 +122,38 @@ export async function withLock<T>(file: string, fn: () => Promise<T>, timeoutMs 
   }
 }
 
+const SCOPE_FILE = "keyring-scope";
+
+export function keyScope(dir: string): string | undefined {
+  const file = join(dir, SCOPE_FILE);
+  if (!existsSync(file)) return undefined;
+  const scope = readFileSync(file, "utf8").trim();
+  if (!/^[0-9a-f]{32}$/.test(scope)) throw new Error(`${file} is damaged; restore it from a backup, since it names this folder's keyring entries`);
+  return scope;
+}
+
+export function keyAccounts(dir: string): KeyAccounts {
+  const scope = keyScope(dir);
+  return scope ? scopedAccounts(scope) : LEGACY_ACCOUNTS;
+}
+
+async function sessionKeys(keyring: Keyring, dir: string): Promise<{ key: Buffer; device: DeviceIdentity }> {
+  const db = existingDb(dir);
+  const scope = keyScope(dir);
+  if (db || scope) {
+    const held = scope ? scopedAccounts(scope) : LEGACY_ACCOUNTS;
+    const present = db ? true : (await keyring.get(held.data)) !== null && (await keyring.get(held.device)) !== null;
+    if (present) return { key: await ensureDataKey(keyring, db, held.data), device: await ensureDevice(keyring, db, held.device) };
+  }
+  const fresh = randomBytes(16).toString("hex");
+  const accounts = scopedAccounts(fresh);
+  const minted = { key: await ensureDataKey(keyring, undefined, accounts.data), device: await ensureDevice(keyring, undefined, accounts.device) };
+  const file = join(dir, SCOPE_FILE);
+  writeFileSync(`${file}.tmp`, `${fresh}\n`, { mode: 0o600 });
+  renameSync(`${file}.tmp`, file);
+  return minted;
+}
+
 export interface Session {
   store: Store;
   device: DeviceIdentity;
@@ -130,10 +163,7 @@ export interface Session {
 
 export async function openSession(keyring: Keyring, dir: string, now = Date.now()): Promise<Session> {
   ensureDataDir(dir);
-  const { key, device } = await withLock(join(dir, "keys.lock"), async () => {
-    const db = existingDb(dir);
-    return { key: await ensureDataKey(keyring, db), device: await ensureDevice(keyring, db) };
-  });
+  const { key, device } = await withLock(join(dir, "keys.lock"), () => sessionKeys(keyring, dir));
   const store = new Store(join(dir, "bkt.db"), key);
   store.recordDevice(device.id, device.publicKey, now);
   const recorded = store.device();

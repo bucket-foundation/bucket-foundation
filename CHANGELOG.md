@@ -12,6 +12,7 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 ## [Unreleased]
 
 ### Changed
+- `bkt` names its key store entries per data folder (`keyring-scope`), so a second `BKT_HOME` gets its own keys and device; 0.4.0 folders keep their unscoped entries. `bkt hai export` prints only the fields in its `--json` shape.
 - `bkt whoami` and `bkt stats` print text rows unless `--json` is passed; `bkt init` keeps its JSON record.
 
 ### Added
