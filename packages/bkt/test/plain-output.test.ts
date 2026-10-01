@@ -261,7 +261,8 @@ async function screen(node: React.ReactElement, keys: string[] = []) {
   }
   app.unmount();
   const lines = out.frames.flatMap((f) => f.replace(ANSI, "").split("\n"));
-  return { lines, last: (out.frames.at(-1) ?? "").replace(ANSI, "") };
+  const shown = out.frames.map((f) => f.replace(ANSI, "")).filter((f) => f.trim());
+  return { lines, last: shown.at(-1) ?? "" };
 }
 
 const words = ["heat", "light", "mass", "charge", "force", "field", "wave", "time"];
