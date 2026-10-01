@@ -1,0 +1,573 @@
+{
+ "head": "137aec5c",
+ "train": {
+  "snapshot": "2025-12-01",
+  "commit": "f33f5ddb",
+  "labels_at": "2026-06-01",
+  "n": 464,
+  "solved_later": 37
+ },
+ "test": {
+  "snapshot": "2026-06-01",
+  "commit": "729af541",
+  "labels_at": "2026-09-30",
+  "n": 1015,
+  "solved_later": 150,
+  "base_rate": 0.1478
+ },
+ "feature_count": {
+  "metadata": 32,
+  "lean": 23
+ },
+ "models": {
+  "metadata": {
+   "auc": 0.544,
+   "ci95": [
+    0.488,
+    0.597
+   ],
+   "p_permutation": 0.0426,
+   "top": {
+    "25": {
+     "solved_later": 8,
+     "precision": 0.32,
+     "lift": 2.17
+    },
+    "50": {
+     "solved_later": 15,
+     "precision": 0.3,
+     "lift": 2.03
+    },
+    "100": {
+     "solved_later": 25,
+     "precision": 0.25,
+     "lift": 1.69
+    }
+   }
+  },
+  "lean": {
+   "auc": 0.488,
+   "ci95": [
+    0.435,
+    0.538
+   ],
+   "p_permutation": 0.6797,
+   "top": {
+    "25": {
+     "solved_later": 8,
+     "precision": 0.32,
+     "lift": 2.17
+    },
+    "50": {
+     "solved_later": 11,
+     "precision": 0.22,
+     "lift": 1.49
+    },
+    "100": {
+     "solved_later": 16,
+     "precision": 0.16,
+     "lift": 1.08
+    }
+   }
+  },
+  "metadata_plus_lean": {
+   "auc": 0.566,
+   "ci95": [
+    0.509,
+    0.618
+   ],
+   "p_permutation": 0.005,
+   "top": {
+    "25": {
+     "solved_later": 6,
+     "precision": 0.24,
+     "lift": 1.62
+    },
+    "50": {
+     "solved_later": 13,
+     "precision": 0.26,
+     "lift": 1.76
+    },
+    "100": {
+     "solved_later": 22,
+     "precision": 0.22,
+     "lift": 1.49
+    }
+   }
+  }
+ },
+ "gain_over_metadata": {
+  "lean": {
+   "gain": -0.056,
+   "ci95": [
+    -0.105,
+    -0.01
+   ]
+  },
+  "metadata_plus_lean": {
+   "gain": 0.023,
+   "ci95": [
+    -0.006,
+    0.05
+   ]
+  }
+ },
+ "single_feature": [
+  {
+   "feature": "log_max_literal",
+   "auc_test": 0.658,
+   "auc_train": 0.459,
+   "share_or_mean_test": 0.484
+  },
+  {
+   "feature": "numeric_literals",
+   "auc_test": 0.65,
+   "auc_train": 0.589,
+   "share_or_mean_test": 0.875
+  },
+  {
+   "feature": "local_definitions",
+   "auc_test": 0.593,
+   "auc_train": 0.467,
+   "share_or_mean_test": 0.733
+  },
+  {
+   "feature": "iff",
+   "auc_test": 0.576,
+   "auc_train": 0.696,
+   "share_or_mean_test": 0.57
+  },
+  {
+   "feature": "nat_fin_only",
+   "auc_test": 0.446,
+   "auc_train": 0.398,
+   "share_or_mean_test": 0.198
+  },
+  {
+   "feature": "mentions_set",
+   "auc_test": 0.467,
+   "auc_train": 0.616,
+   "share_or_mean_test": 0.297
+  },
+  {
+   "feature": "mathlib_identifiers",
+   "auc_test": 0.471,
+   "auc_train": 0.721,
+   "share_or_mean_test": 1.098
+  },
+  {
+   "feature": "answer_sorry",
+   "auc_test": 0.528,
+   "auc_train": 0.669,
+   "share_or_mean_test": 0.672
+  },
+  {
+   "feature": "explicit_binders",
+   "auc_test": 0.476,
+   "auc_train": 0.471,
+   "share_or_mean_test": 0.524
+  },
+  {
+   "feature": "set_finiteness",
+   "auc_test": 0.477,
+   "auc_train": 0.527,
+   "share_or_mean_test": 0.105
+  },
+  {
+   "feature": "log_tokens",
+   "auc_test": 0.521,
+   "auc_train": 0.722,
+   "share_or_mean_test": 3.064
+  },
+  {
+   "feature": "existential",
+   "auc_test": 0.519,
+   "auc_train": 0.621,
+   "share_or_mean_test": 0.5
+  },
+  {
+   "feature": "asymptotic",
+   "auc_test": 0.481,
+   "auc_train": 0.549,
+   "share_or_mean_test": 0.339
+  },
+  {
+   "feature": "alternation_depth",
+   "auc_test": 0.514,
+   "auc_train": 0.655,
+   "share_or_mean_test": 1.106
+  },
+  {
+   "feature": "universal",
+   "auc_test": 0.487,
+   "auc_train": 0.596,
+   "share_or_mean_test": 1.129
+  },
+  {
+   "feature": "bare_definition",
+   "auc_test": 0.487,
+   "auc_train": 0.468,
+   "share_or_mean_test": 0.062
+  },
+  {
+   "feature": "mentions_real",
+   "auc_test": 0.51,
+   "auc_train": 0.623,
+   "share_or_mean_test": 0.363
+  },
+  {
+   "feature": "bounded_quantifiers",
+   "auc_test": 0.493,
+   "auc_train": 0.495,
+   "share_or_mean_test": 0.072
+  },
+  {
+   "feature": "negated",
+   "auc_test": 0.494,
+   "auc_train": 0.493,
+   "share_or_mean_test": 0.011
+  },
+  {
+   "feature": "log_statement_length",
+   "auc_test": 0.505,
+   "auc_train": 0.765,
+   "share_or_mean_test": 4.445
+  },
+  {
+   "feature": "distinct_identifiers",
+   "auc_test": 0.498,
+   "auc_train": 0.729,
+   "share_or_mean_test": 1.78
+  },
+  {
+   "feature": "type_of",
+   "auc_test": 0.499,
+   "auc_train": 0.5,
+   "share_or_mean_test": 0.002
+  },
+  {
+   "feature": "answer_fixed",
+   "auc_test": 0.5,
+   "auc_train": 0.499,
+   "share_or_mean_test": 0.0
+  }
+ ],
+ "coefficients": {
+  "lean": [
+   [
+    "iff",
+    1.046
+   ],
+   [
+    "mathlib_identifiers",
+    0.742
+   ],
+   [
+    "log_statement_length",
+    0.702
+   ],
+   [
+    "explicit_binders",
+    0.68
+   ],
+   [
+    "log_max_literal",
+    -0.674
+   ],
+   [
+    "nat_fin_only",
+    -0.641
+   ],
+   [
+    "bounded_quantifiers",
+    -0.434
+   ],
+   [
+    "answer_sorry",
+    0.412
+   ],
+   [
+    "bare_definition",
+    -0.403
+   ],
+   [
+    "distinct_identifiers",
+    -0.328
+   ],
+   [
+    "log_tokens",
+    -0.316
+   ],
+   [
+    "local_definitions",
+    0.243
+   ],
+   [
+    "mentions_set",
+    0.193
+   ],
+   [
+    "existential",
+    0.19
+   ],
+   [
+    "numeric_literals",
+    0.19
+   ],
+   [
+    "asymptotic",
+    0.153
+   ],
+   [
+    "set_finiteness",
+    0.139
+   ],
+   [
+    "negated",
+    -0.134
+   ],
+   [
+    "answer_fixed",
+    -0.125
+   ],
+   [
+    "alternation_depth",
+    0.069
+   ],
+   [
+    "mentions_real",
+    0.044
+   ],
+   [
+    "universal",
+    -0.013
+   ],
+   [
+    "type_of",
+    0.0
+   ]
+  ],
+  "metadata_plus_lean": [
+   [
+    "iff",
+    1.245
+   ],
+   [
+    "word_conjecture",
+    -0.682
+   ],
+   [
+    "log_statement_length",
+    0.633
+   ],
+   [
+    "in_Wikipedia",
+    -0.616
+   ],
+   [
+    "explicit_binders",
+    0.611
+   ],
+   [
+    "gap_score",
+    0.555
+   ],
+   [
+    "bounded_quantifiers",
+    -0.478
+   ],
+   [
+    "nat_fin_only",
+    -0.475
+   ],
+   [
+    "in_ErdosProblems",
+    0.458
+   ],
+   [
+    "mathlib_identifiers",
+    0.45
+   ],
+   [
+    "log_max_literal",
+    -0.424
+   ],
+   [
+    "in_WrittenOnTheWallII",
+    0.417
+   ],
+   [
+    "log_length",
+    0.392
+   ],
+   [
+    "open_siblings",
+    -0.352
+   ],
+   [
+    "bare_definition",
+    -0.31
+   ],
+   [
+    "in_Paper",
+    0.309
+   ],
+   [
+    "answer_sorry",
+    0.307
+   ],
+   [
+    "ams_count",
+    0.306
+   ],
+   [
+    "years_2020s",
+    -0.29
+   ],
+   [
+    "local_definitions",
+    0.271
+   ],
+   [
+    "word_true",
+    -0.269
+   ],
+   [
+    "mentions_set",
+    0.265
+   ],
+   [
+    "alternation_depth",
+    -0.252
+   ],
+   [
+    "is_variant",
+    0.245
+   ],
+   [
+    "solved_sibling_share",
+    0.235
+   ],
+   [
+    "existential",
+    0.206
+   ],
+   [
+    "set_finiteness",
+    0.195
+   ],
+   [
+    "word_proven",
+    -0.185
+   ],
+   [
+    "solved_siblings",
+    -0.184
+   ],
+   [
+    "in_Arxiv",
+    0.173
+   ],
+   [
+    "word_known",
+    -0.145
+   ],
+   [
+    "in_GreensOpenProblems",
+    -0.13
+   ],
+   [
+    "mentions_real",
+    0.129
+   ],
+   [
+    "word_proved",
+    -0.111
+   ],
+   [
+    "word_counterexample",
+    -0.109
+   ],
+   [
+    "any_file_score",
+    0.104
+   ],
+   [
+    "log_tokens",
+    -0.087
+   ],
+   [
+    "universal",
+    0.087
+   ],
+   [
+    "answer_fixed",
+    -0.086
+   ],
+   [
+    "asymptotic",
+    0.08
+   ],
+   [
+    "in_Mathoverflow",
+    0.078
+   ],
+   [
+    "numeric_literals",
+    0.054
+   ],
+   [
+    "distinct_identifiers",
+    0.038
+   ],
+   [
+    "word_false",
+    -0.03
+   ],
+   [
+    "word_arxiv",
+    -0.018
+   ],
+   [
+    "in_Books",
+    -0.005
+   ],
+   [
+    "negated",
+    -0.002
+   ],
+   [
+    "word_bound",
+    0.001
+   ],
+   [
+    "word_showed",
+    0.0
+   ],
+   [
+    "word_shown",
+    0.0
+   ],
+   [
+    "word_improved",
+    0.0
+   ],
+   [
+    "word_disproved",
+    0.0
+   ],
+   [
+    "in_OEIS",
+    0.0
+   ],
+   [
+    "in_OpenQuantumProblems",
+    0.0
+   ],
+   [
+    "type_of",
+    0.0
+   ]
+  ]
+ }
+}
