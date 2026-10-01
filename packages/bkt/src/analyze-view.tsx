@@ -1,6 +1,7 @@
+import { basename } from "node:path";
 import React, { useEffect, useState } from "react";
 import { Box, Text, useApp, useInput, useStdout } from "ink";
-import { formLines, listAnalyses, loadSections, type AnalysisResult, type RunningAnalysis, type SavedAnalysis, type Section } from "./analyze";
+import { formHeadline, listAnalyses, loadSections, type AnalysisResult, type RunningAnalysis, type SavedAnalysis, type Section } from "./analyze";
 
 export interface BrowserState {
   mode: "list" | "sections" | "read";
@@ -80,7 +81,7 @@ export function AnalysisBrowser({ root, openDir }: { root?: string; openDir?: st
   if (state.mode === "sections") {
     return (
       <Box flexDirection="column">
-        <Text bold>{dir}</Text>
+        <Text bold>{dir ? basename(dir) : ""}</Text>
         {secs.map((s, i) => (
           <Text key={s.title} color={i === state.section ? "cyan" : undefined}>
             {i === state.section ? "> " : "  "}
@@ -143,11 +144,7 @@ export function AnalyzeRun({ run, file, onResult }: { run: RunningAnalysis; file
   if (result.report) {
     return (
       <Box flexDirection="column">
-        {formLines(result.report).slice(0, 1).map((l) => (
-          <Text key={l} color={result.report!.form.ok ? "green" : "red"}>
-            {l}
-          </Text>
-        ))}
+        <Text color={result.report.form.ok ? "green" : "red"}>{formHeadline(result.report)}</Text>
         <AnalysisBrowser openDir={result.report.dir} />
       </Box>
     );
