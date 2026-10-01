@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v7, 2026-10-01, revised after critic round 6 (Rust engine 8.9), awaiting round 7 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v8, 2026-10-01, revised after round 7 scores (Rust engine 9.1, Lean 9.0, settlement 8.6, node network 8.1) and the experiments of `bkt-neoj.1` and `bkt-neoj.2`, awaiting founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -41,17 +41,17 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Rust now or later | First Decision 1 | Founder | Phases 1 to 3 |
 | Legal entity | First Decision 2 and counsel on Open Questions | Founder, counsel | Phases 4 and 5 payouts, contract deployment |
 | Who pays, and the meaning of net | First Decision 3 | Founder | Phase 5 |
-| Wasm inside the compiled Bun binary on four targets | Spike S1: load the 13 KB module on each target in CI | Half a day | Phase 1 on those targets |
-| f64 cosine parity | Rerun the round 2 critic's 2000-trial comparison in CI | One hour | Phase 1 |
-| Ranking statement proved, and equal to `cosineRank` | Prove the permutation and order statement in core Lean, under 100 lines, and diff it against `cosineRank` on 10,000 generated inputs | Two days | Phase 1 |
-| Tokenizer agreement on non-ASCII text | Non-ASCII fixtures through both engines | Half a day | Phase 1 |
+| Wasm inside the compiled Bun binary | Evidenced, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: loads on all five targets; the 48 KB module adds 49 to 51 KB and starts 1 to 12 ms slower | Done | Phase 1 |
+| f64 cosine parity | Evidenced, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 0 mismatches on the 243 ranker calls behind the PR #511 fixture and on 20,300 generated cases. f32 changed score bits on 4,879 of 6,000 real inputs | Done | Phase 1 |
+| Ranking statement proved, and equal to `cosineRank` | Evidenced: `BucketMath.Ranking` proves the order for exact integer scores under unique ids, merged in PR #536 (`78f980bb1`, 2026-10-01). It matches `cosineRank` on 10,000 generated cases in id order, which the loader guarantees. On shuffled input 4,677 cases differ, every one a tie, until the tie-break in open draft PR #542 lands | Done, PR #542 in review | Phase 1 |
+| Tokenizer agreement on non-ASCII text | Evidenced as a difference, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: Unicode word boundaries differ on 1,576 of 5,000 non-ASCII inputs, and the PR #511 fixture cannot detect it. The Rust tokenizer rule is pinned to ASCII boundaries and ASCII lowercasing | Done. The pinned rule needs its own fixture | Phase 1 |
 | `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
 | Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
 | Import then replay equals sequential grading, and deletions hold | A property test over generated interleavings of old-file and new-file attempts, including state written through `/local/progress` and deletions on both sides: merged state after import and replay equals the state from grading the same attempts in time order, no row deleted on either side returns, and no old-file deletion removes a newer row | One day | Phase 3 |
 | Old-file deletions reach the new file | A test per table rule in Changes in the Old File After the Import, including a delete in the old file after an earlier import | Two days | Phase 3 |
-| Concurrent access to `bkt.db` through phase 2 | Experiment: the 0.4.0 terminal app and the Bun server both write `bkt.db` through `bun:sqlite` while a rusqlite process reads it, for ten minutes with a `kill -9` injected, then an integrity check and a row count. Rust never writes this file | Half a day | Phase 2 |
-| Cross-build of five targets | CI trial of the cargo workspace on native runners | One day | Phase 2 |
-| Binary size and startup | A minimal engine build: rusqlite, one route, the keyring adapter | Half a day | Phase 2 |
+| Concurrent access to `bkt.db` through phase 2 | Evidenced, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: a `bun:sqlite` writer and a rusqlite writer on one WAL database for 600 s with 87 `kill -9`: 0 rows lost, 0 duplicated, integrity ok. 44 to 52 percent of deferred read-then-write transactions failed at once with `SQLITE_BUSY`, so writers use `begin immediate` or a retry. A test writer with the same pragmas stood in for the installed 0.4.0 app | Done | Phase 2 |
+| Cross-build of five targets | Evidenced for a crate that links SQLite, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: five of five on native runners in 25 to 122 s, and one Linux runner also cross-built the other four, which then ran on their targets. A keyring library is untested | Done for SQLite | Phase 2 |
+| Binary size and startup | Evidenced for SQLite plus ranking, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 2.3 MB, one search in 3 to 6 ms against 190 to 264 ms for `bkt --version`. An engine with an HTTP route and a keyring adapter is unmeasured | Half a day for the full build | Phase 2 |
 | Reproducible builds | Two builds from one commit on separate runners, compared by hash | One day | Phase 3 |
 | Search library and vector index at 1.6 GB and 6.5 million entries | Build both indexes at full size and record size, build time and query latency | One week | Full corpora in phase 5 |
 | Embedding runtime | A trial of each candidate for size, speed and licence | Three days | Semantic search |
@@ -136,20 +136,21 @@ One codebase for native and WebAssembly holds for `bucket-core` and `bucket-pack
 
 | Claim | State | Basis |
 |---|---|---|
-| A wasm module loads inside a `bun build --compile` binary | Evidenced on linux-x64 | Round 2 critic run: a 13 KB module loaded in 11 to 13 ms and added about 14 KB. Not rerun for this draft |
-| The same on linux-arm64, darwin-arm64, darwin-x64, windows-x64 | Unproven | Untested |
-| A Rust cosine matches the JavaScript ranker bit for bit | Evidenced for an f64 accumulator | Round 2 critic run: f64 matched in 2000 of 2000 trials, f32 mismatched in 2000 of 2000. `canon-rank.ts` lines 51 to 61 accumulate in a JavaScript number over Float32 storage. Not rerun for this draft |
+| A wasm module loads inside a `bun build --compile` binary | Evidenced on five targets | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: a 48 KB module with `tokenRank` adds 49 to 51 KB, loads in 1.6 to 5.5 ms on runners, and starts 1 to 12 ms slower |
+| The same on linux-arm64, darwin-arm64, darwin-x64, windows-x64 | Evidenced | Included in the row above |
+| A Rust cosine matches the JavaScript ranker bit for bit | Evidenced for an f64 accumulator | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 0 mismatches on 243 fixture calls and 20,300 generated cases. f32 changed score bits on 4,879 of 6,000 real inputs. `canon-rank.ts` lines 51 to 61 accumulate in a JavaScript number over Float32 storage |
 | A file copy of a live `bkt.db` is a safe backup | Disproved | Rerun for this draft with Python `sqlite3`: 100 rows committed in WAL mode, a copy of the main file read "no such table", and `VACUUM INTO` kept 100 rows |
-| Binary size and startup time of the Rust engine | Unproven | No build exists |
+| Binary size and startup time of the Rust engine | Evidenced for SQLite plus ranking, unproven with a route and a keyring adapter | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 2.3 MB, one search in 3 to 6 ms |
 | Reproducible builds | Unproven | No build exists |
 | A search library and a vector index at 1.6 GB of corpora and 6.5 million entries | Unproven | No index was built at that size |
 | The time the port takes | Unproven | No measured rate |
 | `exp`, `ln` and `powf` agree in the last bit across platforms and with JavaScript | Unproven | FSRS calls `Math.exp` and `Math.pow` (`src/lib/academy/fsrs.ts` lines 8 to 68) |
-| Rust regex word boundaries match the JavaScript tokenizer | Unproven, expected to differ | `canon-rank.ts` lines 65 and 72 use ASCII classes and `\b` without the Unicode flag. Rust `\b` is Unicode-aware |
+| Rust regex word boundaries match the JavaScript tokenizer | Disproved for the default `\b`, evidenced for an ASCII boundary | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 1,576 of 5,000 non-ASCII inputs differ. `canon-rank.ts` lines 65 and 72 use ASCII classes and `\b` without the Unicode flag. Lowercasing also differs on 55 code points between Rust and Bun, none in ASCII, so the rule is pinned to ASCII output |
+| A Rust reader decrypts the sealed columns byte-equal | Evidenced through the passphrase vault | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 23 of 23 cells across 11 columns on five targets. OS keyrings untested |
 | A same-user node process can be kept away from `bkt.db` and the keyring | Unproven | See Private Data |
 | A signed Rust app reads macOS keychain items made by `/usr/bin/security` without a prompt on every read | Unproven | Items made by `security` carry an access list for that tool, per the round 3 critic. Not checked on a Mac for this draft. Spike S2 |
-| Two `bun:sqlite` writers and one rusqlite reader share `bkt.db` in WAL mode without loss | Unproven | The concurrent-access experiment in Path to a Verified Design |
-| Cross-build of five targets for the Rust workspace | Unproven | A one-day CI trial |
+| Two writers share a WAL database without loss | Evidenced, with a caveat | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 0 lost, 0 duplicated through 87 `kill -9`. Deferred read-then-write transactions fail at once with `SQLITE_BUSY` 44 to 52 percent of the time |
+| Cross-build of five targets for the Rust workspace | Evidenced for SQLite, unproven with a keyring library | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743 |
 
 ### Contracts
 
@@ -180,11 +181,11 @@ Three shapes were weighed:
 
 | Shape | For | Against |
 |---|---|---|
-| A. `bucket-core` as wasm inside Bun | Smallest step. One server, one auth surface. Evidenced on linux-x64 | Four targets unproven. Covers pure functions alone, so the store and index still need another shape |
+| A. `bucket-core` as wasm inside Bun | Smallest step. One server, one auth surface. Evidenced on five targets | Covers pure functions alone, so the store and index still need another shape |
 | B. Rust engine as a drop-in loopback sidecar serving the same routes | Window, terminal and shell are unchanged. No Tauri capability change. Read routes move one by one with recorded parity, and writes cut over once | The five controls in `serve.ts` are rewritten in Rust and need their own tests. Two servers run side by side through phase 2 |
 | C. Engine in-process in the Tauri shell over IPC | No loopback port | The page origin is `http://127.0.0.1:<port>`, so IPC needs a remote capability for that origin, which widens what a loopback page can call. The terminal binary needs a second path |
 
-Choice, proposed: B is the target, and A is the first step for ranking alone. Reasons: B keeps the window's transport and the 0.4.0 terminal contract unchanged, and it is the shape the store, the index and the keyring need. A lets the ranking port ship and be measured before any server code is rewritten. C is rejected for now because of the remote capability. If A fails on any of the four untested targets, the ranking port waits for B on that target and the TypeScript ranker stays.
+Choice, proposed: B is the target, and A is the first step for ranking alone. Reasons: B keeps the window's transport and the 0.4.0 terminal contract unchanged, and it is the shape the store, the index and the keyring need. A lets the ranking port ship and be measured before any server code is rewritten. C is rejected for now because of the remote capability. The spike loaded A on all five targets, so the fallback is no longer needed for loading.
 
 A "read-only" Rust phase cannot read sealed rows without the data key. Any phase in which Rust opens `bkt.db` therefore includes the keyring adapters.
 
@@ -200,7 +201,7 @@ Proposed:
 
 | Topic | Design |
 |---|---|
-| Runners | One native runner per operating system, since Rust with SQLite and a keyring library does not cross-build five targets from one host the way Bun does. Cross-building darwin and windows from Linux is unproven |
+| Runners | Native runners per operating system for releases. With SQLite alone, one Linux runner cross-built the other four targets in the spike, so a single-runner build stays open until a keyring library is linked and tested |
 | Asset names | Unchanged, so a 0.4.0 binary's self-update finds the Rust build |
 | Manifest and signature | Same manifest fields and the same ssh signature format, signed by the same release key |
 | Compatibility test | A 0.4.0 binary runs `bkt update --check` against a staged Rust release in CI |
@@ -225,7 +226,7 @@ Proposed, in order of strength:
 
 | Test | Covers |
 |---|---|
-| Differential test: generated inputs run through the TypeScript oracle and the Rust function, outputs compared exactly | Every input generated, including NaN-free random vectors, ties, empty queries |
+| Differential test: generated inputs run through the TypeScript oracle and the Rust function, outputs compared exactly. The Rust ranker rejects NaN and infinity before sorting, since `sort_by` panicked on 139 of 500 such inputs in the spike | Every input generated, including NaN-free random vectors, ties, empty queries |
 | Golden fixtures from merged PR #511 | The recorded queries |
 | Non-ASCII fixtures: accented Latin, Greek, CJK, combining marks | The tokenizer difference in the ledger |
 | Lean test vectors | The specified rules, on the vectors emitted |
@@ -238,22 +239,24 @@ Today:
 | Fact | Source |
 |---|---|
 | BucketMath is core Lean 4 with no Mathlib | `docs/agents/MATH-CONTRACT.md` |
-| `manifest.json` has 203 entries: 98 proved, 88 definitions, 16 `external`, 1 `open` | Counted from `lean/manifest.json` |
+| `manifest.json` has 218 entries: 107 proved, 94 definitions, 16 `external`, 1 `open` | Counted from `lean/manifest.json` at `origin/dev` after PR #536 |
 | The 16 external entries come from `papers/history-hypothesis-engine/lean`, which `bm.py` maps as module root `Bucket` and builds with `lake build` | `tools/bucketmath/bm.py` lines 17 and 84 |
 | The `sorry` gate and the axiom gate apply to modules starting `BucketMath.` alone, so the 16 external entries sit outside both | `bm.py` lines 58 to 62 |
 | `Bucket.Address.encode_injective` is a `sorry` in `Address.lean` lines 57 to 58, outside `BucketMath.Open` | `papers/history-hypothesis-engine/lean/Bucket/Address.lean` |
 | A log-scale grade exists in TypeScript: `log10Distance` and `FERMI_LOG10_TOLERANCE = 0.5` | `src/lib/research-os/work-quiz/grade.ts` lines 6 and 26 |
 | FSRS clamps exist in TypeScript: D to 1 through 10, S to 0.01 or more, interval to 1 through 3650 | `src/lib/academy/fsrs.ts` lines 19, 20, 25, 39, 40 |
 | No tier cap and no payment split exist in any language. No ranking, FSRS or grade statement exists in Lean | `git grep` over `lean/` and `src/lib` |
-| The shipped ranker has no tie-break key: both rankers sort on score alone | `canon-rank.ts` lines 59 and 78 |
+| The shipped ranker has no tie-break key: both rankers sort on score alone. Open draft PR #542 adds an id tie-break | `canon-rank.ts` lines 59 and 78 |
 
-The shipped ranker is unverified today.
+The ranking order is proved for exact integer scores (`BucketMath.Ranking`, PR #536). Float scoring, NaN and the branch filter after `slice(topK*3)` stay unproved, so the shipped ranker's scores are unverified today.
+
+Specifications in review on 2026-10-01, each an open draft PR: #545 grade, #547 scheduling bounds, #550 payment split, #542 tie-break. Two found code bugs. #547: a stored stability at or below 0 gives NaN stability, interval and due date, so the FSRS precondition needs stored stability above 0 and difficulty at or above 0. #545: `LOG10_EPSILON` in `grade.ts` accepts pairs just past the tolerance boundary, such as 8658 and 27379, which the Lean specification rejects.
 
 Proposed targets, specify then prove:
 
 | Step | Statement | Precondition | Value |
 |---|---|---|---|
-| 1 | Ranking: the output is a permutation of the input, ordered by score descending then id ascending | Unique ids, no NaN score | Removes order drift between engines. Says nothing about score quality |
+| 1 | Ranking: the output is a permutation of the input, ordered by score descending then id ascending. Proved for integer scores in PR #536 | Unique ids, no NaN score | Removes order drift between engines. Says nothing about score quality |
 | 2 | Change the TypeScript rankers to that tie-break and pin them with the PR #511 fixtures | Step 1 | Makes the oracle match the specification |
 | 3 | Tier cap: the capped increase is at or below the cap | The cap from `bkt-1fuf` | A mislabelled row cannot outrank by more than the cap |
 | 4 | Split: a specification in integer micro-units whose parts sum to the amount, with the author part at or above the floor. The Solidity contract is tested against vectors from it | First Decision 3 | Small. It catches rounding loss and a floor breach on tested amounts. It proves nothing about the contract's code |
@@ -303,7 +306,7 @@ Proposed controls, all before the store moves:
 | Cross-implementation test | Per operating system in CI: the TypeScript binary writes both keys and a database, the Rust binary reads them and opens every sealed row byte-equal, and the reverse |
 | Format freeze | Rust reads and writes `v1:` unchanged, with the same associated-data strings |
 | Backup | `VACUUM INTO` a dated file before every migration, plus a rolling daily `VACUUM INTO` with seven kept, each with a copy of `keyring.json` where present. Each backup is opened and its rows counted. A plain file copy is ruled out by the ledger |
-| Writers | Rust never writes `bkt.db`. Through phase 2 the Bun server and the 0.4.0 terminal app write it, as they do today, and Rust reads it. Read routes move to Rust one by one. Writes cut over once, at the import in phase 3, to the new file. The concurrent-access experiment covers the phase 2 arrangement and gates it |
+| Writers | Rust never writes `bkt.db`. Through phase 2 the Bun server and the 0.4.0 terminal app write it, as they do today, and Rust reads it. Read routes move to Rust one by one. Writes cut over once, at the import in phase 3, to the new file. Every transaction that reads and then writes opens with `begin immediate` or retries on `SQLITE_BUSY`; `store.ts` line 256 and `local.ts` lines 114 and 128 use the deferred shape today |
 | Shared database | The 0.4.0 terminal binary and the new desktop open one `bkt.db` through phase 2, at schema version 8 |
 | Rollback | Before the store moves, install the previous release. After it, the untouched `bkt.db` or the latest daily backup is the restore point. Maximum loss is the work since the last daily backup, at most 24 hours on a device that runs daily |
 | Key loss | An encrypted export of the data key and the device key under a user passphrase, using the existing scrypt parameters, offered at first run. Bucket holds no key. A user who skips it has no recovery |
@@ -339,7 +342,7 @@ Ledger rules:
 |---|---|
 | The ledger is seeded with every id in the `VACUUM INTO` baseline, and each entry records the row's `updated_at` or `imported_at` as last seen in the old file | Missing a deletion in the old app of a row that existed before the switch |
 | An id deleted in the new app stays in the ledger marked "deleted here", and the merge never brings it back | The merge by id restoring something the user deleted in the new app |
-| A deletion from the old file is applied only when the new file's row has an `updated_at` or `imported_at` no later than the ledger's recorded value | A forget in the old app erasing a newer note, newer history or a newer work-quiz source written in the new app |
+| A deletion from the old file is applied only when the new file's row has an `updated_at` or `imported_at` no later than the ledger's recorded value. The comparison assumes one device clock: both files are written on one machine. A clock set backwards between writes can make a newer row look older | A forget in the old app erasing a newer note, newer history or a newer work-quiz source written in the new app |
 | The ledger is a table in the new database file, so every `VACUUM INTO` backup carries it | A restore that brings back data without the matching ledger |
 
 Deletions that pass these rules are applied in the new file before any row merges.
@@ -715,7 +718,7 @@ Proposed, subject to First Decision 1.
 | 2 | `bkt-1fuf` Explore | The evaluation set and the ranking rule come from here. Baseline is 0 of 40 |
 | 3 | `bkt-6wjd` parity, in TypeScript | Freezes the contracts and the golden fixtures |
 | 4 | `bkt-r3rg` | Public claims corrected before any settlement work |
-| 5 | Downgrade guard release, then spikes S1 and S2 and the concurrent-access experiment | The guard must reach users before the store moves. The spikes gate phases 1 and 2 |
+| 5 | Downgrade guard release, then spike S2 on OS keyrings. S1 and the concurrent-access experiment ran on 2026-10-01 | The guard must reach users before the store moves. S2 gates phase 2 |
 | 6 | Phases 1 to 3 | Rust behind frozen contracts |
 | 7 | Phases 4 and 5 | After First Decisions 2 and 3, the open questions, and a measured need |
 
@@ -726,7 +729,7 @@ Each phase ships a working app. All proposed.
 | Phase | Change | Reversible |
 |---|---|---|
 | 0 | Freeze data contract v1, Local API v1 and the fixtures in TypeScript. Ship the downgrade guard | Yes |
-| 1 | `bucket-core` ranking as wasm inside Bun, on targets where the load test passes. The site loads the same wasm | Yes, a flag selects the TypeScript ranker |
+| 1 | `bucket-core` ranking as wasm inside Bun, evidenced on all five targets. The site loads the same wasm | Yes, a flag selects the TypeScript ranker |
 | 2 | Rust loopback engine serves the data contract and the read routes, with keyring adapters. Bun keeps writes | Yes |
 | 3 | Rust serves every route. Store, keys and FSRS move to a new file under Schema Bump. Bun removed | No, once Rust is the single writer. The original `bkt.db` and the daily backup are the restore points |
 | 4 | Node as a verified pack mirror on a test network, off by default | Yes for the device. Seeded copies are permanent |
