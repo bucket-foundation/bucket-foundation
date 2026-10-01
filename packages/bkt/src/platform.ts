@@ -195,9 +195,13 @@ function windowsUser(d: PlatformDeps): string {
 
 let sid: string | null = null;
 
+export function windowsWhoami(env: Env): string {
+  return win32.join(env.SystemRoot ?? env.SYSTEMROOT ?? env.windir ?? "C:\\Windows", "System32", "whoami.exe");
+}
+
 export function windowsSid(d: PlatformDeps): string {
   if (sid) return sid;
-  const r = d.execSync(["whoami", "/user", "/fo", "csv", "/nh"]);
+  const r = d.execSync([windowsWhoami(d.env), "/user", "/fo", "csv", "/nh"]);
   const found = r.stdout.match(/"(S-1-[0-9-]+)"/)?.[1];
   if (r.code !== 0 || !found) throw new Error(`whoami could not name the current user: ${(r.stderr || r.stdout).trim()}`);
   sid = found;
