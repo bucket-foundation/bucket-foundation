@@ -1,7 +1,7 @@
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
-import { platformFor, procNetTcpOwner, type Owner, type PeerCheck } from "./platform";
+import { platformFor, procNetTcpOwner, type Owner, type Platform } from "./platform";
 
 export const NONCE_TTL_MS = 30_000;
 export const HOSTNAME = "127.0.0.1";
@@ -13,7 +13,7 @@ export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 export interface ServeOptions {
   port?: number;
   uid?: Owner;
-  peerCheck?: PeerCheck;
+  platform?: Platform;
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
@@ -107,8 +107,7 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
 }
 
 export function startServe(opts: ServeOptions = {}): Serve {
-  const platform = opts.uid === undefined || opts.resolvePeerUid === undefined || opts.peerCheck === undefined ? platformFor() : null;
-  const peerCheck: PeerCheck = opts.peerCheck ?? (opts.resolvePeerUid ? "strict" : platform!.peerCheck);
+  const platform = opts.platform ?? (opts.uid === undefined || opts.resolvePeerUid === undefined ? platformFor() : null);
   const uid = opts.uid ?? platform!.self();
   const resolve = opts.resolvePeerUid ?? ((peer: number, server: number) => platform!.peerOwner(peer, server));
   const now = opts.now ?? Date.now;
@@ -117,6 +116,16 @@ export function startServe(opts: ServeOptions = {}): Serve {
   const maxBody = opts.maxBodyBytes ?? MAX_BODY_BYTES;
   const routeBody = opts.routeBodyBytes ?? {};
   const serverMax = Math.max(maxBody, ...Object.values(routeBody));
+  const unavailable =
+    platform && !opts.resolvePeerUid
+      ? `peer owner lookup on ${platform.os} could not run ${platform.peerTools.join(" or ")}, so every request is refused; restore it and start bkt serve again`
+      : "peer owner lookup is unavailable, so every request is refused";
+  let lookupReported = false;
+  const lookupFailed = (e: Error) => {
+    if (lookupReported) return;
+    lookupReported = true;
+    opts.onError?.(e);
+  };
   let nonce = "";
   let mintedAt = 0;
   let served = false;
@@ -170,11 +179,12 @@ export function startServe(opts: ServeOptions = {}): Serve {
         let peer: Owner | null | undefined;
         try {
           peer = resolve(ip.port, serverPort);
-        } catch {
-          peer = null;
+        } catch (e) {
+          lookupFailed(e as Error);
+          return false;
         }
-        if (peer === undefined) return peerCheck === "best-effort";
-        return peer !== null && peer === uid;
+        if (peer === undefined) lookupFailed(new Error(unavailable));
+        return peer !== undefined && peer !== null && peer === uid;
       };
 
       if (url.pathname === "/" && req.method === "GET") {

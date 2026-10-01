@@ -10,7 +10,7 @@ import { CanonView } from "./views/Canon";
 import { AtlasesView } from "./views/Atlases";
 import { NotesView } from "./views/Notes";
 import { HistoryView } from "./views/History";
-import { WORK_QUIZ_CHANGED, WorkQuizView } from "./views/WorkQuiz";
+import { DailyQuizView, WORK_QUIZ_CHANGED, WorkQuizView } from "./views/WorkQuiz";
 import { LearnHome } from "./views/LearnHome";
 import { PrimesView } from "./views/Primes";
 import { PathView } from "./views/Path";
@@ -65,7 +65,7 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "deck" ? "learn" : route.name;
+  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name;
 
   return (
     <div className="shell">
@@ -117,6 +117,8 @@ function App() {
           <AtlasesView api={api} />
         ) : route.name === "canon" ? (
           <CanonView />
+        ) : route.name === "daily" ? (
+          <DailyQuizView key={route.day} api={api} day={route.day} />
         ) : route.name === "work" ? (
           <WorkQuizView api={api} />
         ) : route.name === "jobs" ? (

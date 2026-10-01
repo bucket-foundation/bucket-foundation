@@ -44,6 +44,25 @@ export interface WorkAnswer {
   explain: string;
 }
 
+export interface DailyQuiz {
+  day: string;
+  questions: WorkQuestion[];
+  answered: string[];
+}
+
+export interface DailyAnswer extends WorkAnswer {
+  log10Distance: number | null;
+}
+
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+  }
+}
+
 export interface JobKind {
   kind: string;
   label: string;
@@ -134,7 +153,7 @@ export class Api {
       body: init.body === undefined ? undefined : JSON.stringify(init.body),
     });
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
-    if (!r.ok) throw new Error(data.error ?? `${path} ${r.status}`);
+    if (!r.ok) throw new ApiError(data.error ?? `${path} ${r.status}`, r.status);
     return data;
   }
 
@@ -220,6 +239,14 @@ export class Api {
 
   workNext() {
     return this.call<WorkQuestion>("/local/work-quiz/next");
+  }
+
+  dailyQuiz(day: string) {
+    return this.call<DailyQuiz>(`/local/work-quiz/daily?day=${encodeURIComponent(day)}`);
+  }
+
+  dailyAnswer(day: string, id: string, response: string, elapsedMs: number) {
+    return this.call<DailyAnswer>("/local/work-quiz/answer", { method: "POST", body: { day, id, response, elapsedMs } });
   }
 
   workAnswer(id: string, response: string, elapsedMs: number) {

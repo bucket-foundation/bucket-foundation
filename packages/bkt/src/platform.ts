@@ -36,7 +36,6 @@ export const execSync: ExecSync = (argv) => {
 };
 
 export type Owner = number | string;
-export type PeerCheck = "strict" | "best-effort";
 
 export interface PlatformDeps {
   env: Env;
@@ -55,7 +54,7 @@ export interface Platform {
   windowCommand(url: string, profile: string): string[];
   secureDir(path: string): string;
   self(): Owner;
-  readonly peerCheck: PeerCheck;
+  readonly peerTools: string[];
   peerOwner(peerPort: number, serverPort: number): Owner | null | undefined;
   dataDir(): string;
   cacheDir(): string;
@@ -98,7 +97,7 @@ export class KeychainKeyring implements Keyring {
   }
 }
 
-const PS = ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command"];
+const PS_FLAGS = ["-NoProfile", "-NonInteractive", "-Command"];
 const PS_PROTECT =
   "Add-Type -AssemblyName System.Security; $i=[Console]::In.ReadToEnd().Trim(); " +
   "[Convert]::ToBase64String([Security.Cryptography.ProtectedData]::Protect([Convert]::FromBase64String($i),$null,'CurrentUser'))";
@@ -112,6 +111,7 @@ export class DpapiKeyring implements Keyring {
     private dir: string,
     private run: Exec = exec,
     private secure: (path: string) => string = (p) => (mkdirSync(p, { recursive: true, mode: 0o700 }), p),
+    private bin: string = windowsPowershell(process.env),
   ) {}
 
   private file(account: string) {
@@ -122,7 +122,7 @@ export class DpapiKeyring implements Keyring {
   async get(account: string) {
     const f = this.file(account);
     if (!existsSync(f)) return null;
-    const r = await this.run([...PS, PS_UNPROTECT], readFileSync(f, "utf8"));
+    const r = await this.run([this.bin, ...PS_FLAGS, PS_UNPROTECT], readFileSync(f, "utf8"));
     if (r.code !== 0) throw new KeyringError(`dpapi unprotect failed (exit ${r.code}): ${r.stderr.trim()}`);
     return unb64(r.stdout);
   }
@@ -130,7 +130,7 @@ export class DpapiKeyring implements Keyring {
   async set(account: string, secret: string) {
     const f = this.file(account);
     if (existsSync(f)) refuseOverwrite(account);
-    const r = await this.run([...PS, PS_PROTECT], b64(secret));
+    const r = await this.run([this.bin, ...PS_FLAGS, PS_PROTECT], b64(secret));
     if (r.code !== 0 || !r.stdout.trim()) throw new KeyringError(`dpapi protect failed (exit ${r.code}): ${r.stderr.trim()}`);
     this.secure(this.dir);
     const tmp = `${f}.tmp`;
@@ -149,6 +149,8 @@ function unixSecure(path: string): string {
   chmodSync(path, 0o700);
   return path;
 }
+
+export const LSOF = "/usr/sbin/lsof";
 
 const hexPort = (s: string) => parseInt(s.split(":").pop() ?? "", 16);
 
@@ -173,7 +175,7 @@ export function procNetTcpOwner(peerPort: number, serverPort: number, files = ["
 }
 
 export function lsofOwner(run: ExecSync, peerPort: number, serverPort: number): number | null | undefined {
-  const r = run(["lsof", "-w", "-nP", `-iTCP@127.0.0.1:${peerPort}`, "-sTCP:ESTABLISHED", "-Fun"]);
+  const r = run([LSOF, "-w", "-nP", `-iTCP@127.0.0.1:${peerPort}`, "-sTCP:ESTABLISHED", "-Fun"]);
   if (r.code === 127) return undefined;
   if (r.code !== 0) return null;
   let uid: number | null = null;
@@ -195,9 +197,16 @@ function windowsUser(d: PlatformDeps): string {
 
 let sid: string | null = null;
 
+export function system32(env: Env, ...parts: string[]): string {
+  return win32.join(env.SystemRoot || env.SYSTEMROOT || env.windir || "C:\\Windows", "System32", ...parts);
+}
+
+export const windowsWhoami = (env: Env) => system32(env, "whoami.exe");
+export const windowsPowershell = (env: Env) => system32(env, "WindowsPowerShell", "v1.0", "powershell.exe");
+
 export function windowsSid(d: PlatformDeps): string {
   if (sid) return sid;
-  const r = d.execSync(["whoami", "/user", "/fo", "csv", "/nh"]);
+  const r = d.execSync([windowsWhoami(d.env), "/user", "/fo", "csv", "/nh"]);
   const found = r.stdout.match(/"(S-1-[0-9-]+)"/)?.[1];
   if (r.code !== 0 || !found) throw new Error(`whoami could not name the current user: ${(r.stderr || r.stdout).trim()}`);
   sid = found;
@@ -207,14 +216,14 @@ export function windowsSid(d: PlatformDeps): string {
 function windowsSecure(d: PlatformDeps, path: string): string {
   mkdirSync(path, { recursive: true });
   if (secured.has(path)) return path;
-  const r = d.execSync(["icacls", path, "/inheritance:r", "/grant:r", `*${windowsSid(d)}:(OI)(CI)F`, "/q"]);
+  const r = d.execSync([system32(d.env, "icacls.exe"), path, "/inheritance:r", "/grant:r", `*${windowsSid(d)}:(OI)(CI)F`, "/q"]);
   if (r.code !== 0) throw new Error(`icacls could not restrict ${path} to the current user: ${(r.stderr || r.stdout).trim()}`);
   secured.add(path);
   return path;
 }
 
 export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: number): Owner | null | undefined {
-  const ns = d.execSync(["netstat", "-ano", "-p", "TCP"]);
+  const ns = d.execSync([system32(d.env, "netstat.exe"), "-ano", "-p", "TCP"]);
   if (ns.code === 127) return undefined;
   if (ns.code !== 0) return null;
   const row = ns.stdout
@@ -223,7 +232,7 @@ export function netstatOwner(d: PlatformDeps, peerPort: number, serverPort: numb
     .find((c) => c[0] === "TCP" && c[1] === `127.0.0.1:${peerPort}` && c[2] === `127.0.0.1:${serverPort}` && c[3] === "ESTABLISHED");
   const pid = row ? Number(row[4]) : NaN;
   if (!Number.isInteger(pid) || pid <= 0) return null;
-  const tl = d.execSync(["tasklist", "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
+  const tl = d.execSync([system32(d.env, "tasklist.exe"), "/fi", `PID eq ${pid}`, "/v", "/fo", "csv", "/nh"]);
   const cols = tl.stdout.trim().match(/"([^"]*)"/g)?.map((c) => c.slice(1, -1)) ?? [];
   const user = cols[1] === String(pid) ? cols[6]?.toLowerCase() : undefined;
   if (tl.code === 127) return undefined;
@@ -246,7 +255,7 @@ function linux(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
-    peerCheck: "strict",
+    peerTools: ["/proc/net/tcp"],
     peerOwner: (peer, server) => procNetTcpOwner(peer, server),
     dataDir: () => data,
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(d.home, ".cache"),
@@ -271,7 +280,7 @@ function darwin(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
-    peerCheck: "best-effort",
+    peerTools: [LSOF],
     peerOwner: (peer, server) => lsofOwner(d.execSync, peer, server),
     dataDir: () => d.env.XDG_DATA_HOME ?? posix.join(lib, "Application Support"),
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(lib, "Caches"),
@@ -283,6 +292,7 @@ function darwin(d: PlatformDeps): Platform {
 function windows(d: PlatformDeps): Platform {
   const roaming = d.env.APPDATA ?? win32.join(d.home, "AppData", "Roaming");
   const local = d.env.LOCALAPPDATA ?? win32.join(d.home, "AppData", "Local");
+  const powershell = windowsPowershell(d.env);
   const browsers = [
     ...[d.env["ProgramFiles(x86)"], d.env.ProgramFiles, local].flatMap((root) =>
       root ? [win32.join(root, "Microsoft", "Edge", "Application", "msedge.exe"), win32.join(root, "Google", "Chrome", "Application", "chrome.exe")] : [],
@@ -291,7 +301,7 @@ function windows(d: PlatformDeps): Platform {
   return {
     os: "win32",
     nativeKeyring: "dpapi",
-    keyring: () => (d.which("powershell.exe") || d.which("powershell") ? new DpapiKeyring(win32.join(local, "bkt", "keys"), d.exec, (p) => windowsSecure(d, p)) : null),
+    keyring: () => (d.exists(powershell) ? new DpapiKeyring(win32.join(local, "bkt", "keys"), d.exec, (p) => windowsSecure(d, p), powershell) : null),
     windowCommand(url, profile) {
       const bin = browsers.find((b) => d.exists(b));
       if (bin) return [bin, ...CHROMIUM_FLAGS(url, profile)];
@@ -299,7 +309,7 @@ function windows(d: PlatformDeps): Platform {
     },
     secureDir: (path) => windowsSecure(d, path),
     self: () => windowsUser(d),
-    peerCheck: "best-effort",
+    peerTools: [system32(d.env, "netstat.exe"), system32(d.env, "tasklist.exe")],
     peerOwner: (peer, server) => netstatOwner(d, peer, server),
     dataDir: () => roaming,
     cacheDir: () => local,

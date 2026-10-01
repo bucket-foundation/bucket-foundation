@@ -8,9 +8,10 @@ export interface UpdaterManifest {
 }
 
 const PLATFORMS: [RegExp, string][] = [
-  [/\.AppImage$/, "linux-x86_64"],
-  [/\.app\.tar\.gz$/, "darwin-aarch64"],
-  [/\.msi$/, "windows-x86_64"],
+  [/-linux-x64\.AppImage$/, "linux-x86_64"],
+  [/-macos-arm64\.app\.tar\.gz$/, "darwin-aarch64"],
+  [/-macos-x64\.app\.tar\.gz$/, "darwin-x86_64"],
+  [/-windows-x64\.msi$/, "windows-x86_64"],
 ];
 
 export function manifest(files: string[], sig: (f: string) => string, tag: string, repo: string, now: Date): UpdaterManifest {
@@ -26,14 +27,22 @@ export function manifest(files: string[], sig: (f: string) => string, tag: strin
   return { version, pub_date: now.toISOString(), platforms };
 }
 
+export function requireManifest(m: UpdaterManifest, unsignedOk: boolean): boolean {
+  const have = Object.keys(m.platforms);
+  const missing = PLATFORMS.map(([, p]) => p).filter((p) => !have.includes(p));
+  if (missing.length === 0) return true;
+  if (have.length === 0 && unsignedOk) return false;
+  throw new Error(`no signed updater artifact for ${missing.join(", ")}`);
+}
+
 if (import.meta.main) {
   const [dir, tag, repo] = process.argv.slice(2);
   if (!dir || !tag || !repo) throw new Error("usage: latest-json.ts <bundle dir> <tag> <owner/repo>");
   const m = manifest(readdirSync(dir), (f) => readFileSync(join(dir, f), "utf8"), tag, repo, new Date());
-  if (Object.keys(m.platforms).length === 0) {
-    console.log("no signed updater artifacts; latest.json not written");
-  } else {
+  if (requireManifest(m, process.env.BKT_DESKTOP_UNSIGNED_OK === "1")) {
     writeFileSync(join(dir, "latest.json"), JSON.stringify(m, null, 2));
     console.log(Object.keys(m.platforms).join(" "));
+  } else {
+    console.log("unsigned release by founder opt-in; latest.json not written");
   }
 }
