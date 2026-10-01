@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v6, 2026-10-01, revised after critic round 5 (Rust engine 8.8), awaiting round 6 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v7, 2026-10-01, revised after critic round 6 (Rust engine 8.9), awaiting round 7 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -47,7 +47,7 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Tokenizer agreement on non-ASCII text | Non-ASCII fixtures through both engines | Half a day | Phase 1 |
 | `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
 | Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
-| Import then replay equals sequential grading | A property test over generated interleavings of old-file and new-file attempts, including state written through `/local/progress`: merged state after import and replay equals the state from grading the same attempts in time order | One day | Phase 3 |
+| Import then replay equals sequential grading, and deletions hold | A property test over generated interleavings of old-file and new-file attempts, including state written through `/local/progress` and deletions on both sides: merged state after import and replay equals the state from grading the same attempts in time order, no row deleted on either side returns, and no old-file deletion removes a newer row | One day | Phase 3 |
 | Old-file deletions reach the new file | A test per table rule in Changes in the Old File After the Import, including a delete in the old file after an earlier import | Two days | Phase 3 |
 | Concurrent access to `bkt.db` through phase 2 | Experiment: the 0.4.0 terminal app and the Bun server both write `bkt.db` through `bun:sqlite` while a rusqlite process reads it, for ten minutes with a `kill -9` injected, then an integrity check and a row count. Rust never writes this file | Half a day | Phase 2 |
 | Cross-build of five targets | CI trial of the cargo workspace on native runners | One day | Phase 2 |
@@ -326,12 +326,23 @@ A 0.4.0 binary keeps working on `bkt.db` after the import: it records attempts, 
 
 | Policy | For | Against |
 |---|---|---|
-| A. On every start the Rust engine reads `bkt.db` and merges it under the per-table rules below | Covers 0.4.0, which has no guard and cannot get one. Carries deletions across | Needs the old file and the data key at every start. Merge code for 20 tables |
+| A. On every start the Rust engine reads `bkt.db` and merges it under the per-table rules below | Covers 0.4.0, which has no guard and cannot get one. Carries deletions across | Needs the old file and the data key at every start. Merge code for 20 tables and a ledger |
 | B. The guard release stops writing to the old file and tells the user | No merge code | Does nothing for a 0.4.0 binary, so its work and its deletions are lost with no message |
 
 Choice, proposed: A, with the guard release's message kept as a courtesy. Reason: B cannot reach the binary that causes the loss. What the user sees: one line at start, "Imported N changes from the older bkt app", when N is above zero. A guarded older client prints "This device has moved to a newer bkt. Update to keep one history."
 
-Order of each merge: deletions first, then rows. Today only `people_forget` is a stored tombstone. Notes, history, probe and work-quiz deletions are plain `delete` statements (`notes.ts` line 66, `history.ts` line 39, `hai/store.ts` lines 163 to 165, `work-quiz.ts` line 114). The import therefore keeps a ledger of every id it has imported from the old file. An id in the ledger that is now absent from the old file was deleted there, and the import deletes it in the new file before it merges anything.
+Order of each merge: deletions first, then rows. Today only `people_forget` is a stored tombstone. Notes, history, probe and work-quiz deletions are plain `delete` statements (`notes.ts` line 66, `history.ts` line 39, `hai/store.ts` lines 163 to 165, `work-quiz.ts` line 114). The import therefore keeps a ledger of ids. An id in the ledger that is now absent from the old file was deleted there.
+
+Ledger rules:
+
+| Rule | Guards against |
+|---|---|
+| The ledger is seeded with every id in the `VACUUM INTO` baseline, and each entry records the row's `updated_at` or `imported_at` as last seen in the old file | Missing a deletion in the old app of a row that existed before the switch |
+| An id deleted in the new app stays in the ledger marked "deleted here", and the merge never brings it back | The merge by id restoring something the user deleted in the new app |
+| A deletion from the old file is applied only when the new file's row has an `updated_at` or `imported_at` no later than the ledger's recorded value | A forget in the old app erasing a newer note, newer history or a newer work-quiz source written in the new app |
+| The ledger is a table in the new database file, so every `VACUUM INTO` backup carries it | A restore that brings back data without the matching ledger |
+
+Deletions that pass these rules are applied in the new file before any row merges.
 
 Every table in the store at schema version 8, read from `store.ts` lines 29 to 99. The `cards` table was dropped by `migrateLearn`.
 
