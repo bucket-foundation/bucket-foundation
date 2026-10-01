@@ -185,6 +185,7 @@ jobs:
             /scripts/release/version.sh
             /packages/bkt/package.json
             /packages/bkt/scripts/smoke.ts
+            /packages/bkt/scripts/smoke-locked.ts
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
@@ -241,6 +242,11 @@ jobs:
         run: |
           sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11
           dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
+      - name: a locked libsecret collection refuses and stores nothing
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -yq --no-install-recommends libglib2.0-bin
+          dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke-locked.ts "$BKT_BIN"'
       - name: smoke on macos with a Keychain
         if: runner.os == 'macOS'
         run: |

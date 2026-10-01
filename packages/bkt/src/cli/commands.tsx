@@ -43,7 +43,7 @@ function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
     console.error(stderr.trim() || "analyzer produced no report");
     return code || 1;
   }
-  if (o.json) console.log(JSON.stringify(report, null, 2));
+  if (o.json) console.log(JSON.stringify(pick(JSON_SHAPES.analyze, report), null, 2));
   else {
     for (const l of formLines(report)) console.log(l);
     if (code !== 0) console.log("stopped on form errors; rerun with --force to analyze anyway");

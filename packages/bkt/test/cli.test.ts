@@ -196,6 +196,33 @@ describe("json output", () => {
     );
   });
 
+  test("analyze report golden", () => {
+    const report = {
+      schema: "bkt.analysis.v1",
+      name: "sales",
+      created: "2026-10-01T00:00:00",
+      dir: "/d/sales",
+      forced: false,
+      form: {
+        ok: true,
+        format: "csv",
+        rows: 2,
+        errors: [],
+        warnings: [{ code: "W", where: "col", message: "m", extra: "dropped" }],
+        columns: [{ name: "a", type: "number", unit: null, sample: "dropped" }],
+        file: "dropped",
+      },
+      analysis: { summary: { a: { mean: 1 } } },
+      helix: { status: "ok", run_dir: "/d/sales/helix", pid: 7 },
+      env: { ANTHROPIC_API_KEY: "dropped" },
+    };
+    expect(JSON.stringify(pick(JSON_SHAPES.analyze, report))).toBe(
+      '{"schema":"bkt.analysis.v1","name":"sales","created":"2026-10-01T00:00:00","dir":"/d/sales","forced":false,' +
+        '"form":{"ok":true,"format":"csv","rows":2,"errors":[],"warnings":[{"code":"W","where":"col","message":"m"}],"columns":[{"name":"a","type":"number","unit":null}]},' +
+        '"analysis":{"summary":{"a":{"mean":1}}},"helix":{"status":"ok","run_dir":"/d/sales/helix"}}',
+    );
+  });
+
   test("every --json command has a shape, and a shape passes only the fields it names", () => {
     for (const c of CLI_COMMANDS.filter((c) => c.json)) expect(Object.keys(JSON_SHAPES), c.name).toContain(c.name === "init" ? "whoami" : c.name);
     const dirty = {

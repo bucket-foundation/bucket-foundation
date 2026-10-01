@@ -133,24 +133,68 @@ export function keyScope(dir: string): string | undefined {
 }
 
 export function keyAccounts(dir: string): KeyAccounts {
-  const scope = keyScope(dir);
+  const db = existingDb(dir);
+  const scope = (db && recordedScope(db)) || keyScope(dir);
   return scope ? scopedAccounts(scope) : LEGACY_ACCOUNTS;
 }
 
-async function sessionKeys(keyring: Keyring, dir: string): Promise<{ key: Buffer; device: DeviceIdentity }> {
+const SCOPE_META = "keyring_scope";
+
+function recordedScope(db: string): string | undefined {
+  let handle: Database;
+  try {
+    handle = new Database(db, { readonly: true });
+  } catch {
+    return undefined;
+  }
+  try {
+    const v = handle.query<{ v: string }, [string]>("select v from meta where k = ?").get(SCOPE_META)?.v;
+    return v && /^[0-9a-f]{32}$/.test(v) ? v : undefined;
+  } catch {
+    return undefined;
+  } finally {
+    handle.close();
+  }
+}
+
+function writeScope(dir: string, scope: string): void {
+  const file = join(dir, SCOPE_FILE);
+  if (existsSync(file) && readFileSync(file, "utf8").trim() === scope) return;
+  writeFileSync(`${file}.tmp`, `${scope}\n`, { mode: 0o600 });
+  renameSync(`${file}.tmp`, file);
+}
+
+interface SessionKeys {
+  key: Buffer;
+  device: DeviceIdentity;
+  scope?: string;
+}
+
+async function sessionKeys(keyring: Keyring, dir: string): Promise<SessionKeys> {
   const db = existingDb(dir);
-  const scope = keyScope(dir);
+  const scope = (db && recordedScope(db)) || keyScope(dir);
   if (db || scope) {
     const held = scope ? scopedAccounts(scope) : LEGACY_ACCOUNTS;
     const present = db ? true : (await keyring.get(held.data)) !== null && (await keyring.get(held.device)) !== null;
-    if (present) return { key: await ensureDataKey(keyring, db, held.data), device: await ensureDevice(keyring, db, held.device) };
+    if (present) {
+      try {
+        const keys = { key: await ensureDataKey(keyring, db, held.data), device: await ensureDevice(keyring, db, held.device), scope };
+        if (scope) writeScope(dir, scope);
+        return keys;
+      } catch (e) {
+        if (!(e instanceof KeyringLockedError) || !db || scope) throw e;
+        throw new KeyringLockedError(
+          keyring.kind,
+          db,
+          `${e.detail}; this folder has no ${SCOPE_FILE} file and the database records no scope, so bkt looked for the 0.4.0 entries ${held.data} and ${held.device}`,
+        );
+      }
+    }
   }
   const fresh = randomBytes(16).toString("hex");
   const accounts = scopedAccounts(fresh);
-  const minted = { key: await ensureDataKey(keyring, undefined, accounts.data), device: await ensureDevice(keyring, undefined, accounts.device) };
-  const file = join(dir, SCOPE_FILE);
-  writeFileSync(`${file}.tmp`, `${fresh}\n`, { mode: 0o600 });
-  renameSync(`${file}.tmp`, file);
+  const minted = { key: await ensureDataKey(keyring, undefined, accounts.data), device: await ensureDevice(keyring, undefined, accounts.device), scope: fresh };
+  writeScope(dir, fresh);
   return minted;
 }
 
@@ -163,8 +207,9 @@ export interface Session {
 
 export async function openSession(keyring: Keyring, dir: string, now = Date.now()): Promise<Session> {
   ensureDataDir(dir);
-  const { key, device } = await withLock(join(dir, "keys.lock"), () => sessionKeys(keyring, dir));
+  const { key, device, scope } = await withLock(join(dir, "keys.lock"), () => sessionKeys(keyring, dir));
   const store = new Store(join(dir, "bkt.db"), key);
+  if (scope && store.meta(SCOPE_META) !== scope) store.setMeta(SCOPE_META, scope);
   store.recordDevice(device.id, device.publicKey, now);
   const recorded = store.device();
   if (recorded && recorded.id !== device.id) {

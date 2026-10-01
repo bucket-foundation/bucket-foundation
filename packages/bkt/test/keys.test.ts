@@ -511,3 +511,48 @@ describe("secret-tool lookups that cannot tell absent from locked", () => {
     await expect(fakeSecretTool(`if [ "$1" = search ]; then exit 3; fi\nexit 1`).get(account)).rejects.toThrow("exit 3");
   });
 });
+
+describe("the scope id mirrored in the database", () => {
+  test("the first open records the scope in bkt.db", async () => {
+    const s = await openSession(new MemoryKeyring(), dir, 1);
+    expect(s.store.meta("keyring_scope")).toBe(keyScope(dir)!);
+    s.store.close();
+  });
+
+  test("a lost keyring-scope file is restored from the database and the scoped keys open it", async () => {
+    const inner = new MemoryKeyring();
+    const first = await openSession(inner, dir, 1);
+    first.store.close();
+    const scope = keyScope(dir)!;
+    rmSync(join(dir, "keyring-scope"));
+    expect(keyAccounts(dir)).toEqual(scopedAccounts(scope));
+    const { kr, calls } = counting(inner);
+    const s = await openSession(kr, dir, 2);
+    s.store.close();
+    expect(calls.set).toBe(0);
+    expect(s.key.equals(first.key)).toBe(true);
+    expect(keyScope(dir)).toBe(scope);
+  });
+
+  test("a damaged or foreign keyring-scope file yields to the id the database records", async () => {
+    const inner = new MemoryKeyring();
+    const first = await openSession(inner, dir, 1);
+    first.store.close();
+    const scope = keyScope(dir)!;
+    for (const wrong of ["nonsense\n", `${"f".repeat(32)}\n`]) {
+      writeFileSync(join(dir, "keyring-scope"), wrong);
+      const s = await openSession(inner, dir, 2);
+      s.store.close();
+      expect(s.key.equals(first.key)).toBe(true);
+      expect(keyScope(dir)).toBe(scope);
+    }
+  });
+
+  test("a database with no scope anywhere and no 0.4.0 entries names that cause", async () => {
+    await legacyHome(new MemoryKeyring(), dir);
+    const failure = (await openSession(new MemoryKeyring(), dir, 2).catch((e: Error) => e)) as Error;
+    expect(failure.message).toContain("keyring locked or key missing");
+    expect(failure.message).toContain("this folder has no keyring-scope file and the database records no scope");
+    expect(failure.message).toContain("0.4.0 entries db-data-key and device-ed25519");
+  });
+});

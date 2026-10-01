@@ -22,7 +22,11 @@ const REMEDY: Record<Keyring["kind"], string> = {
 };
 
 export class KeyringLockedError extends KeyringError {
-  constructor(kind: Keyring["kind"], db: string, detail: string) {
+  constructor(
+    kind: Keyring["kind"],
+    db: string,
+    readonly detail: string,
+  ) {
     super(
       `keyring locked or key missing: ${db} exists and the ${kind} keyring gave no key for it (${detail}). ${REMEDY[kind]} ` +
         `If another keyring made this database, name it with --keyring. To start fresh, move ${db} aside and run bkt init. bkt made no new key and left the database untouched.`,

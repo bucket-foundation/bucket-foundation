@@ -17,7 +17,7 @@ export function applyColor(env: Env, enabled: boolean): void {
   if (!enabled) env.FORCE_COLOR = "0";
 }
 
-export type Shape = readonly (string | readonly [string, Shape])[];
+export type Shape = readonly (string | readonly [string, Shape | "open"])[];
 
 export const JSON_SHAPES = {
   version: ["version"],
@@ -25,6 +25,19 @@ export const JSON_SHAPES = {
   stats: ["items", "seen", "due", "attempts"],
   analyses: [["analyses", ["name", "dir", "mtime"]]],
   update: ["status", "version", "tag", "asset", "sha256", "url", "error"],
+  analyze: [
+    "schema",
+    "name",
+    "created",
+    "dir",
+    "forced",
+    [
+      "form",
+      ["ok", "format", "rows", ["errors", ["code", "where", "message"]], ["warnings", ["code", "where", "message"]], ["columns", ["name", "type", "unit"]]],
+    ],
+    ["analysis", "open"],
+    ["helix", ["status", "reason", "run_dir"]],
+  ],
   "hai export": [
     ["probes", ["id", "bank_version", "seed", "started_at", "completed_at", "due_at", "retest_completed_at"]],
     ["answers", ["id", "probeId", "pairId", "itemId", "condition", "phase", "choice", "correct", "acceptedAi", "elapsedMs", "at"]],
@@ -43,6 +56,8 @@ export function pick(shape: Shape, value: unknown): Record<string, unknown> {
     const v = source[name];
     if (inner === null) {
       if (scalar(v)) out[name] = v;
+    } else if (inner === "open") {
+      if (v !== undefined) out[name] = v;
     } else if (Array.isArray(v)) out[name] = v.map((row) => pick(inner, row));
     else if (v && typeof v === "object") out[name] = pick(inner, v);
   }
