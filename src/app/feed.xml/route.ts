@@ -74,6 +74,6 @@ export async function GET() {
 </rss>`;
 
   return new Response(xml, {
-    headers: { "content-type": "application/rss+xml; charset=utf-8", "cache-control": "public, max-age=0, must-revalidate" },
+    headers: { "content-type": "application/rss+xml; charset=utf-8", "cache-control": "public, max-age=0, s-maxage=60" },
   });
 }

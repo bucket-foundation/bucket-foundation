@@ -1,9 +1,8 @@
-import sharp, { type OutputInfo } from "sharp";
+import type { OutputInfo } from "sharp";
 import { IMAGE_MAX_PIXELS, IMAGE_TYPES } from "./schema";
-import { readEntry, type DocStore } from "./store";
+import { readEntry, readImage, type DocStore } from "./store";
 
 export const WEBP_MAX_BYTES = 400 * 1024;
-export const IMAGE_ROUTE = "/api/whats-new/image/";
 export const ENCODE_STEPS: readonly { edge: number; quality: number }[] = [
   { edge: 2400, quality: 82 },
   { edge: 2400, quality: 72 },
@@ -17,7 +16,20 @@ export const ENCODE_STEPS: readonly { edge: number; quality: number }[] = [
 
 export type ImageType = (typeof IMAGE_TYPES)[number];
 
-export type Encoded = { ok: true; webp: Buffer; width: number; height: number; quality: number } | { ok: false; reason: string };
+export type Encoded = { ok: true; webp: Buffer; width: number; height: number; quality: number } | { ok: false; reason: string; unavailable?: true };
+
+type SharpModule = (typeof import("sharp"))["default"];
+
+export interface EncodeOptions {
+  steps?: readonly { edge: number; quality: number }[];
+  maxBytes?: number;
+  load?: () => Promise<SharpModule>;
+}
+
+async function loadSharp(): Promise<SharpModule> {
+  const mod = (await import("sharp")) as unknown as { default?: SharpModule };
+  return typeof mod.default === "function" ? mod.default : (mod as unknown as SharpModule);
+}
 
 export interface StoredImage {
   filename: string;
@@ -34,10 +46,19 @@ export function sniff(bytes: Buffer): ImageType | "svg" | null {
   return null;
 }
 
-export async function toWebp(bytes: Buffer, declared: string, steps: readonly { edge: number; quality: number }[] = ENCODE_STEPS, maxBytes: number = WEBP_MAX_BYTES): Promise<Encoded> {
+export async function toWebp(bytes: Buffer, declared: string, options: EncodeOptions = {}): Promise<Encoded> {
+  const steps = options.steps ?? ENCODE_STEPS;
+  const maxBytes = options.maxBytes ?? WEBP_MAX_BYTES;
   const kind = sniff(bytes);
   if (kind === "svg") return { ok: false, reason: "must not be an SVG" };
   if (kind === null || kind !== declared) return { ok: false, reason: "must be a PNG, JPEG or WebP that matches image.content_type" };
+  let sharp: SharpModule;
+  try {
+    sharp = await (options.load ?? loadSharp)();
+  } catch (err) {
+    console.error("[whats-new] sharp failed to load:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "cannot be processed on this server", unavailable: true };
+  }
   try {
     let edge = 0;
     let data: Buffer = Buffer.alloc(0);
@@ -63,6 +84,14 @@ export async function toWebp(bytes: Buffer, declared: string, steps: readonly { 
   }
 }
 
+export function storedWebp(text: string | null): Buffer | null {
+  if (text === null) return null;
+  const doc = JSON.parse(text) as Partial<StoredImage>;
+  if (doc.content_type !== "image/webp" || typeof doc.base64 !== "string") return null;
+  const bytes = Buffer.from(doc.base64, "base64");
+  return sniff(bytes) === "image/webp" ? bytes : null;
+}
+
 export function webpName(filename: string): string {
   return `${filename.replace(/\.[A-Za-z0-9]{1,5}$/, "")}.webp`;
 }
@@ -81,13 +110,9 @@ export async function handleImage(id: string, store: DocStore | null): Promise<I
   try {
     const entry = await readEntry(store, id);
     if (!entry || entry.review_state !== "published" || !entry.image) return MISSING;
-    const text = await store.read(`entries/${id}.image.json`);
-    if (text === null) return MISSING;
-    const doc = JSON.parse(text) as Partial<StoredImage>;
-    if (doc.content_type !== "image/webp" || typeof doc.base64 !== "string") return MISSING;
-    const bytes = Buffer.from(doc.base64, "base64");
-    if (sniff(bytes) !== "image/webp") return MISSING;
-    return { status: 200, bytes };
+    const text = await readImage(store, id, entry.body_hash);
+    const bytes = storedWebp(text);
+    return bytes ? { status: 200, bytes } : MISSING;
   } catch (err) {
     console.error("[whats-new] image read failed:", err instanceof Error ? err.message : err);
     return { status: 503, bytes: null };

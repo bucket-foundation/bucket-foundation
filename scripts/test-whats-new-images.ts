@@ -8,12 +8,14 @@ import path from "node:path";
 import sharp, { type Sharp } from "sharp";
 import { fileMarks } from "../src/lib/download/marks";
 import { tokenHash } from "../src/lib/whats-new/auth";
-import { handlePost, mergeEntries, type Deps, type Result } from "../src/lib/whats-new/handler";
+import { handleList, handlePost, handlePublish, mergeEntries, type Deps, type Result } from "../src/lib/whats-new/handler";
 import { ENCODE_STEPS, handleImage, sniff, toWebp, WEBP_MAX_BYTES, webpName } from "../src/lib/whats-new/image";
-import { fileDocs, readEntry, readUsage, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
+import { fileDocs, imageName, readEntry, readUsage, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
 
 const FIXTURES = path.join(__dirname, "fixtures", "whats-new-api");
 const token = randomBytes(24).toString("hex");
+const other = randomBytes(24).toString("hex");
+const admin = randomBytes(24).toString("hex");
 const MARKER = "junk-marker-7f3a";
 
 function production(id: string): Record<string, unknown> {
@@ -30,7 +32,7 @@ async function bench(t: { after(fn: () => Promise<void>): void }): Promise<Bench
   t.after(() => rm(root, { recursive: true, force: true }));
   const store = fileDocs(root, "whats-new-test/");
   const deps: Deps = {
-    env: { WHATS_NEW_TOKENS: `ada:${tokenHash(token)}:post` },
+    env: { WHATS_NEW_TOKENS: `ada:${tokenHash(token)}:post,bob:${tokenHash(other)}:post,root:${tokenHash(admin)}:admin` },
     store,
     marks: fileMarks(path.join(root, "marks")),
     legacy: [],
@@ -41,19 +43,21 @@ async function bench(t: { after(fn: () => Promise<void>): void }): Promise<Bench
   return { deps, store };
 }
 
-function post(deps: Deps, id: string, bytes: Buffer, content_type: string, filename = "plot.png"): Promise<Result> {
-  const raw = Buffer.from(JSON.stringify({ ...production(id), image: { filename, content_type, base64: bytes.toString("base64") } }), "utf8");
+function post(deps: Deps, id: string, bytes: Buffer | null, content_type: string, filename = "plot.png", as: string = token): Promise<Result> {
+  const image = bytes === null ? undefined : { filename, content_type, base64: bytes.toString("base64") };
+  const raw = Buffer.from(JSON.stringify({ ...production(id), image }), "utf8");
   const stream = new ReadableStream<Uint8Array>({
     start(controller) {
       controller.enqueue(new Uint8Array(raw));
       controller.close();
     },
   });
-  return handlePost({ authorization: `Bearer ${token}`, contentType: "application/json", contentLength: String(raw.length), body: stream }, deps);
+  return handlePost({ authorization: `Bearer ${as}`, contentType: "application/json", contentLength: String(raw.length), body: stream }, deps);
 }
 
 async function storedWebp(store: DocStore, id: string): Promise<Buffer> {
-  const doc = JSON.parse(String(await store.read(`entries/${id}.image.json`))) as { filename: string; content_type: string; base64: string };
+  const hash = (await readEntry(store, id))?.body_hash ?? "";
+  const doc = JSON.parse(String(await store.read(imageName(id, hash)))) as { filename: string; content_type: string; base64: string };
   assert.equal(doc.content_type, "image/webp");
   return Buffer.from(doc.base64, "base64");
 }
@@ -110,11 +114,12 @@ test("a PNG is stored as WebP, and the image route serves it only once the entry
   const [view] = mergeEntries([], [(await readEntry(store, "prod-a")) as StoredEntry]);
   assert.equal(view.image, "/api/whats-new/image/prod-a");
 
-  await store.write("entries/prod-a.image.json", JSON.stringify({ filename: "a.png", content_type: "image/png", base64: png.toString("base64") }));
+  const key = imageName("prod-a", (entry as StoredEntry).body_hash);
+  await store.write(key, JSON.stringify({ filename: "a.png", content_type: "image/png", base64: png.toString("base64") }));
   assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
-  await store.write("entries/prod-a.image.json", JSON.stringify({ filename: "a.webp", content_type: "image/webp", base64: png.toString("base64") }));
+  await store.write(key, JSON.stringify({ filename: "a.webp", content_type: "image/webp", base64: png.toString("base64") }));
   assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
-  await store.remove("entries/prod-a.image.json");
+  await store.remove(key);
   assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
   const down: DocStore = { ...store, read: async () => Promise.reject(new Error("down")) };
   assert.deepEqual(await handleImage("prod-a", down), { status: 503, bytes: null });
@@ -240,7 +245,114 @@ test("the quality steps down until the WebP fits 400 KB, and an image that canno
   assert.ok(out.ok);
   assert.ok(out.webp.length <= WEBP_MAX_BYTES, `${out.webp.length} bytes`);
   assert.ok(out.quality < ENCODE_STEPS[0].quality || out.width < side);
-  assert.deepEqual(await toWebp(noisy, "image/jpeg", ENCODE_STEPS, 2000), { ok: false, reason: "must fit 2000 bytes as WebP" });
+  assert.deepEqual(await toWebp(noisy, "image/jpeg", { maxBytes: 2000 }), { ok: false, reason: "must fit 2000 bytes as WebP" });
   const calm = await toWebp(await solid(600, 400, [250, 250, 250]).png().toBuffer(), "image/png");
   assert.ok(calm.ok && calm.quality === ENCODE_STEPS[0].quality && calm.width === 600 && calm.height === 400);
+});
+
+async function publish(deps: Deps, store: DocStore, id: string): Promise<Result> {
+  const hash = (await readEntry(store, id))?.body_hash ?? "";
+  return handlePublish({ authorization: `Bearer ${admin}`, id, ifMatch: hash }, deps);
+}
+
+test("a replace of a published entry never puts an unreviewed image on the image route", async (t) => {
+  const { deps, store } = await bench(t);
+  const red = await solid(40, 30, [220, 20, 20]).png().toBuffer();
+  const blue = await solid(40, 30, [20, 20, 220]).png().toBuffer();
+  assert.equal((await post(deps, "prod-a", red, "image/png")).status, 201);
+  assert.equal((await publish(deps, store, "prod-a")).status, 200);
+  const reviewed = (await handleImage("prod-a", store)).bytes as Buffer;
+  const reviewedHash = (await readEntry(store, "prod-a"))?.body_hash as string;
+  assert.ok(reviewed);
+
+  const quiet = t.mock.method(console, "error", () => undefined);
+  let seenDuringWrite: Buffer | null = null;
+  const midFlight: DocStore = {
+    ...store,
+    write: async (name, text) => {
+      if (name === "entries/prod-a.json") {
+        seenDuringWrite = (await handleImage("prod-a", store)).bytes;
+        throw new Error("entry write is down");
+      }
+      return store.write(name, text);
+    },
+  };
+  assert.equal((await post({ ...deps, store: midFlight }, "prod-a", blue, "image/png")).status, 503);
+  assert.ok(quiet.mock.callCount() >= 1);
+  assert.ok((seenDuringWrite as Buffer | null)?.equals(reviewed));
+  assert.ok((await handleImage("prod-a", store)).bytes?.equals(reviewed));
+  assert.deepEqual((await store.list("entries")).sort(), [`prod-a.image.${reviewedHash}.json`, "prod-a.json"]);
+
+  const replaced = await post(deps, "prod-a", blue, "image/png");
+  assert.deepEqual([replaced.status, replaced.body?.review_state], [200, "draft"]);
+  assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
+  const draftHash = (await readEntry(store, "prod-a"))?.body_hash as string;
+  assert.notEqual(draftHash, reviewedHash);
+  assert.deepEqual((await store.list("entries")).sort(), [`prod-a.image.${draftHash}.json`, "prod-a.json"]);
+
+  const stale = await handlePublish({ authorization: `Bearer ${admin}`, id: "prod-a", ifMatch: reviewedHash }, deps);
+  assert.equal(stale.status, 412);
+  assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
+  assert.equal((await publish(deps, store, "prod-a")).status, 200);
+  const now = (await handleImage("prod-a", store)).bytes as Buffer;
+  assert.ok(now && !now.equals(reviewed));
+  const pixel = await sharp(now).raw().toBuffer();
+  assert.ok(pixel[2] > 180 && pixel[0] < 80, "the served image is the re-approved blue one");
+
+  assert.equal((await post(deps, "prod-a", null, "image/png")).status, 200);
+  assert.equal((await publish(deps, store, "prod-a")).status, 200);
+  assert.deepEqual(await handleImage("prod-a", store), { status: 404, bytes: null });
+  assert.deepEqual(await store.list("entries"), ["prod-a.json"]);
+});
+
+test("publish refuses a draft whose stored image is missing or was stored before conversion", async (t) => {
+  const { deps, store } = await bench(t);
+  const png = await solid(20, 20, [9, 9, 9]).png().toBuffer();
+  assert.equal((await post(deps, "prod-old", png, "image/png")).status, 201);
+  const entry = (await readEntry(store, "prod-old")) as StoredEntry;
+  const key = imageName("prod-old", entry.body_hash);
+  const converted = String(await store.read(key));
+  await store.remove(key);
+  await store.write("entries/prod-old.image.json", JSON.stringify({ filename: "a.png", content_type: "image/png", base64: png.toString("base64") }));
+  const missing = await publish(deps, store, "prod-old");
+  assert.deepEqual([missing.status, /Post the entry again/.test(String(missing.body?.error))], [409, true]);
+  await store.write(key, JSON.stringify({ filename: "a.png", content_type: "image/png", base64: png.toString("base64") }));
+  assert.equal((await publish(deps, store, "prod-old")).status, 409);
+  assert.equal((await readEntry(store, "prod-old"))?.review_state, "draft");
+  await store.write(key, converted);
+  assert.equal((await publish(deps, store, "prod-old")).status, 200);
+});
+
+test("a missing sharp binary answers 503 for image posts alone", async (t) => {
+  const { deps, store } = await bench(t);
+  const quiet = t.mock.method(console, "error", () => undefined);
+  const png = await solid(20, 20, [9, 9, 9]).png().toBuffer();
+  const broken = await toWebp(png, "image/png", { load: () => Promise.reject(new Error("Could not load the sharp module")) });
+  assert.deepEqual(broken, { ok: false, reason: "cannot be processed on this server", unavailable: true });
+  assert.equal(quiet.mock.callCount(), 1);
+  const noSharp: Deps = { ...deps, encodeImage: (bytes, declared) => toWebp(bytes, declared, { load: () => Promise.reject(new Error("no binary")) }) };
+  assert.equal((await post(noSharp, "prod-a", png, "image/png")).status, 503);
+  assert.equal(await readEntry(store, "prod-a"), null);
+  assert.deepEqual(await readUsage(store, "ada"), { drafts: 0, image_bytes: 0 });
+  assert.equal((await post(noSharp, "prod-plain", null, "image/png")).status, 201);
+  assert.equal((await handleList({ authorization: null, kind: null, state: null }, noSharp)).status, 200);
+  const source = readFileSync(path.join(__dirname, "..", "src", "lib", "whats-new", "image.ts"), "utf8");
+  assert.equal(/^import\s+(?!type\b)[^;]*from "sharp";/m.test(source), false);
+  assert.ok(source.includes('await import("sharp")'));
+});
+
+test("the image is encoded only after the ownership and tombstone checks pass", async (t) => {
+  const { deps, store } = await bench(t);
+  const png = await solid(20, 20, [9, 9, 9]).png().toBuffer();
+  assert.equal((await post(deps, "prod-a", png, "image/png")).status, 201);
+  let encodes = 0;
+  const counted: Deps = { ...deps, encodeImage: async (bytes, declared) => (encodes++, toWebp(bytes, declared)) };
+  assert.equal((await post(counted, "prod-a", png, "image/png", "plot.png", other)).status, 409);
+  const entry = (await readEntry(store, "prod-a")) as StoredEntry;
+  await writeEntry(store, { ...entry, review_state: "deleted" });
+  assert.equal((await post(counted, "prod-a", png, "image/png")).status, 409);
+  assert.equal((await post({ ...counted, limits: { ratePerMinute: 1000, draftsPerPoster: 1, draftsTotal: 100, imageBytesPerPoster: 10_000_000 } }, "prod-b", png, "image/png")).status, 429);
+  assert.equal(encodes, 0);
+  assert.equal((await post(counted, "prod-c", png, "image/png")).status, 201);
+  assert.equal(encodes, 1);
 });

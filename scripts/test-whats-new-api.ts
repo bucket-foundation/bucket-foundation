@@ -9,7 +9,7 @@ import { fileMarks } from "../src/lib/download/marks";
 import { matchToken, parseTokens, REVOCATION_TTL_MS, tokenHash, TOKEN_MIN, type RevocationCache } from "../src/lib/whats-new/auth";
 import { BODY_MAX_BYTES, handleList, handlePost, handleRevoke, mergeEntries, readCapped, type Deps, type LegacyEntry, type Limits, type Result } from "../src/lib/whats-new/handler";
 import { checkLink, IMAGE_MAX_BYTES, imageSize, parseEntryBody } from "../src/lib/whats-new/schema";
-import { fileDocs, getWhatsNewStore, markRevoked, readEntry, readUsage, whatsNewPrefix, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
+import { fileDocs, getWhatsNewStore, LOCK_TTL_MS, markRevoked, readEntry, readUsage, whatsNewPrefix, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
 
 const FIXTURES = path.join(__dirname, "fixtures", "whats-new-api");
 const LEGACY: LegacyEntry[] = [{ id: "pr-496", date: "2026-10-01", category: "pr-merged", title: "Legacy row" }];
@@ -341,40 +341,44 @@ test("lengths are checked before the leak filter, and a hostile string costs und
   }
 });
 
-function gated(store: DocStore, name: string): DocStore {
-  let waiting = 0;
-  let open: () => void = () => undefined;
-  const both = new Promise<void>((resolve) => (open = resolve));
-  return {
-    ...store,
-    read: async (path) => {
-      const text = await store.read(path);
-      if (path === name && text === null && waiting < 2) {
-        if (++waiting === 2) open();
-        await both;
-      }
-      return text;
-    },
-  };
-}
+test("a write to an id in flight holds the lock: the second writer gets 409 and holds no reserved count", async (t) => {
+  for (const second of [tokens.bob, tokens.ada]) {
+    const { deps, store } = await bench(t);
+    let reached: () => void = () => undefined;
+    let release: () => void = () => undefined;
+    const atCreate = new Promise<void>((resolve) => (reached = resolve));
+    const gate = new Promise<void>((resolve) => (release = resolve));
+    const held: DocStore = {
+      ...store,
+      create: async (name, text) => {
+        if (name === "entries/gen-sibling-momentum.json") {
+          reached();
+          await gate;
+        }
+        return store.create(name, text);
+      },
+    };
+    const first = post({ ...deps, store: held }, generation(), tokens.ada);
+    await atCreate;
+    const loser = await post(deps, { ...generation(), title: "Second copy" }, second);
+    assert.deepEqual([loser.status, /in flight/.test(String(loser.body?.error))], [409, true]);
+    release();
+    assert.equal((await first).status, 201);
+    const stored = (await readEntry(store, "gen-sibling-momentum")) as StoredEntry;
+    assert.deepEqual([stored.poster, stored.title], ["ada", "Sibling momentum"]);
+    assert.deepEqual([(await readUsage(store, "ada")).drafts, (await readUsage(store, "bob")).drafts], [1, 0]);
+    assert.deepEqual([await store.list("entries"), await store.list("locks")], [["gen-sibling-momentum.json"], []]);
+    assert.equal((await post(deps, { ...generation(), title: "Second copy" }, tokens.ada)).status, 200);
+  }
+});
 
-test("two posters racing on a new id: one creates it, the other gets 409 and holds no reserved count", async (t) => {
-  const { deps, store } = await bench(t);
-  const raced = { ...deps, store: gated(store, "entries/gen-sibling-momentum.json") };
-  const results = await Promise.all([post(raced, generation(), tokens.ada), post(raced, { ...generation(), title: "Second copy" }, tokens.bob)]);
-  assert.deepEqual(results.map((r) => r.status).sort(), [201, 409]);
-  const winner = results[0].status === 201 ? "ada" : "bob";
-  const stored = (await readEntry(store, "gen-sibling-momentum")) as StoredEntry;
-  assert.equal(stored.poster, winner);
-  assert.equal(stored.title, winner === "ada" ? "Sibling momentum" : "Second copy");
-  assert.deepEqual([(await readUsage(store, winner)).drafts, (await readUsage(store, winner === "ada" ? "bob" : "ada")).drafts], [1, 0]);
-  assert.deepEqual(await store.list("entries"), ["gen-sibling-momentum.json"]);
-
-  const own = await bench(t);
-  const twice = { ...own.deps, store: gated(own.store, "entries/gen-sibling-momentum.json") };
-  const mine = await Promise.all([post(twice, generation()), post(twice, generation())]);
-  assert.deepEqual(mine.map((r) => r.status).sort(), [200, 201]);
-  assert.equal((await readEntry(own.store, "gen-sibling-momentum"))?.poster, "ada");
+test("a lock left by a dead writer is broken after its time to live", async (t) => {
+  const { deps, store, now } = await bench(t);
+  await store.create("locks/gen-sibling-momentum.json", JSON.stringify({ at: now.value }));
+  assert.equal((await post(deps, generation())).status, 409);
+  now.value += LOCK_TTL_MS + 1;
+  assert.equal((await post(deps, generation())).status, 201);
+  assert.deepEqual(await store.list("locks"), []);
 });
 
 test("the draft count is reserved before the entry is written and released when the write fails", async (t) => {
@@ -588,7 +592,8 @@ test("the image object is checked for type and size and stored beside the entry 
   const { deps, store, root } = await bench(t);
   const withImage = (image: unknown): Record<string, unknown> => ({ ...production(), image });
   assert.equal((await post(deps, production())).status, 201);
-  const kept = JSON.parse(await readFile(path.join(root, "whats-new-test", "entries", "gap-score-backtest-2026-10.image.json"), "utf8")) as { filename: string; content_type: string; base64: string };
+  const firstHash = (await readEntry(store, "gap-score-backtest-2026-10"))?.body_hash;
+  const kept = JSON.parse(await readFile(path.join(root, "whats-new-test", "entries", `gap-score-backtest-2026-10.image.${firstHash}.json`), "utf8")) as { filename: string; content_type: string; base64: string };
   const webpBytes = Buffer.from(kept.base64, "base64");
   assert.deepEqual([kept.filename, kept.content_type, webpBytes.toString("latin1", 0, 4), webpBytes.toString("latin1", 8, 12)], ["gap-score-backtest.webp", "image/webp", "RIFF", "WEBP"]);
   assert.deepEqual((await readEntry(store, "gap-score-backtest-2026-10"))?.image, { filename: "gap-score-backtest.webp", content_type: "image/webp", bytes: webpBytes.length, width: 1, height: 1 });
@@ -636,7 +641,7 @@ test("the image object is checked for type and size and stored beside the entry 
   assert.equal((await readUsage(store, "ada")).image_bytes, webpBytes.length);
   assert.equal((await post(deps, { ...production(), image: undefined })).status, 200);
   assert.equal((await readUsage(store, "ada")).image_bytes, 0);
-  assert.equal((await store.list("entries")).includes("gap-score-backtest-2026-10.image.json"), false);
+  assert.equal((await store.list("entries")).some((n) => n.includes(".image.")), false);
   const tight = { ...deps, limits: { ...(deps.limits as Limits), imageBytesPerPoster: webpBytes.length + 10 } };
   assert.equal((await post(tight, production())).status, 200);
   const second = await post(tight, fixture("formal-conjectures-september-2026"));
