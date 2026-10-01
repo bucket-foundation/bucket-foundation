@@ -1,0 +1,194 @@
+{
+ "model": "all-MiniLM-L6-v2",
+ "train": {
+  "snapshot": "2025-12-01",
+  "labels_at": "2026-06-01",
+  "n": 464,
+  "solved_later": 37
+ },
+ "test": {
+  "snapshot": "2026-06-01",
+  "labels_at": "2026-09-30",
+  "n": 1015,
+  "solved_later": 150,
+  "base_rate": 0.1478
+ },
+ "auc": {
+  "model": 0.544,
+  "model_ci95": [
+   0.488,
+   0.597
+  ],
+  "model_p": 0.0426,
+  "gap_score": 0.441,
+  "docstring_length": 0.511
+ },
+ "top": {
+  "25": {
+   "model": {
+    "solved_later": 8,
+    "precision": 0.32,
+    "lift": 2.17
+   },
+   "gap_score": {
+    "solved_later": 8,
+    "precision": 0.32,
+    "lift": 2.17
+   }
+  },
+  "50": {
+   "model": {
+    "solved_later": 15,
+    "precision": 0.3,
+    "lift": 2.03
+   },
+   "gap_score": {
+    "solved_later": 10,
+    "precision": 0.2,
+    "lift": 1.35
+   }
+  },
+  "100": {
+   "model": {
+    "solved_later": 25,
+    "precision": 0.25,
+    "lift": 1.69
+   },
+   "gap_score": {
+    "solved_later": 18,
+    "precision": 0.18,
+    "lift": 1.22
+   }
+  }
+ },
+ "coefficients": [
+  [
+   "word_conjecture",
+   -1.212
+  ],
+  [
+   "in_Wikipedia",
+   -0.808
+  ],
+  [
+   "log_length",
+   0.793
+  ],
+  [
+   "open_siblings",
+   -0.681
+  ],
+  [
+   "in_ErdosProblems",
+   0.676
+  ],
+  [
+   "in_WrittenOnTheWallII",
+   0.408
+  ],
+  [
+   "is_variant",
+   0.4
+  ],
+  [
+   "in_Paper",
+   0.36
+  ],
+  [
+   "years_2020s",
+   -0.277
+  ],
+  [
+   "in_Mathoverflow",
+   0.275
+  ],
+  [
+   "word_known",
+   -0.258
+  ],
+  [
+   "in_Arxiv",
+   0.232
+  ],
+  [
+   "gap_score",
+   0.216
+  ],
+  [
+   "word_arxiv",
+   -0.163
+  ],
+  [
+   "word_counterexample",
+   -0.153
+  ],
+  [
+   "ams_count",
+   0.148
+  ],
+  [
+   "solved_siblings",
+   -0.143
+  ],
+  [
+   "word_proved",
+   -0.142
+  ],
+  [
+   "in_GreensOpenProblems",
+   -0.127
+  ],
+  [
+   "word_proven",
+   -0.103
+  ],
+  [
+   "in_Books",
+   -0.076
+  ],
+  [
+   "word_true",
+   -0.068
+  ],
+  [
+   "solved_sibling_share",
+   0.067
+  ],
+  [
+   "word_false",
+   -0.062
+  ],
+  [
+   "any_file_score",
+   0.022
+  ],
+  [
+   "word_bound",
+   -0.022
+  ],
+  [
+   "word_showed",
+   0.0
+  ],
+  [
+   "word_shown",
+   0.0
+  ],
+  [
+   "word_improved",
+   0.0
+  ],
+  [
+   "word_disproved",
+   0.0
+  ],
+  [
+   "in_OEIS",
+   0.0
+  ],
+  [
+   "in_OpenQuantumProblems",
+   0.0
+  ]
+ ]
+}
