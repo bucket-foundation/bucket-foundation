@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v4, 2026-10-01, revised after critic round 3 (Lean 8.5, Rust engine 8.2, settlement 8.1, node network 7.7), awaiting round 4 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v5, 2026-10-01, revised after critic round 4 (Lean 9.0, Rust engine 8.7, settlement 8.6, node network 8.1), awaiting round 5 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -47,7 +47,7 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Tokenizer agreement on non-ASCII text | Non-ASCII fixtures through both engines | Half a day | Phase 1 |
 | `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
 | Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
-| Two writers on one WAL database | Experiment: `bun:sqlite` and rusqlite processes write one database for ten minutes with a `kill -9` injected, then an integrity check and a row count | Half a day | Phase 2 |
+| Concurrent access to `bkt.db` through phase 2 | Experiment: the 0.4.0 terminal app and the Bun server both write `bkt.db` through `bun:sqlite` while a rusqlite process reads it, for ten minutes with a `kill -9` injected, then an integrity check and a row count. Rust never writes this file | Half a day | Phase 2 |
 | Cross-build of five targets | CI trial of the cargo workspace on native runners | One day | Phase 2 |
 | Binary size and startup | A minimal engine build: rusqlite, one route, the keyring adapter | Half a day | Phase 2 |
 | Reproducible builds | Two builds from one commit on separate runners, compared by hash | One day | Phase 3 |
@@ -55,12 +55,12 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Embedding runtime | A trial of each candidate for size, speed and licence | Three days | Semantic search |
 | Adoption threshold for the downgrade guard | Founder decision | Founder | Phase 3 |
 | Port duration | The first two crates, timed | Known after phase 1 | Planning alone |
-| A mirror node that resists a hostile peer | Reference mirror prototype: serves a pack by hash under a two-signature manifest, tested against a peer that attempts rollback, withholding and oversized requests | Two weeks | Phase 4 |
+| A mirror node that resists a hostile peer | Reference mirror prototype: serves a pack by hash under a two-signature manifest, tested against a peer that attempts rollback, withholding and oversized requests, with a handshake security test for replay of a recorded handshake and for identity substitution | Two weeks | Phase 4 |
 | Node process isolation | Sandbox trial: Landlock on Linux and the macOS sandbox, with a test that the node cannot open `bkt.db` or reach the keyring | One week | Phase 4 |
 | Inbound parser safety | A fuzz target for every inbound message parser | One week, then continuous | Phase 4 |
 | A measured user need for nodes | Download failures or unreachable users, counted | Unknown | Phase 4 |
 | First peer set | Founder decision: a Bucket-run peer set at first, or a registry of operators | Founder | Phase 4 |
-| Splitter contract correctness | The contract, a test suite against the Lean split vectors, and an audit | Unpriced | Phase 5 |
+| Splitter contract correctness | The contract, a test suite against the Lean split vectors, fork tests on a test network for replay and for griefing by a front-run or a withheld submission, and an audit | Unpriced | Phase 5 |
 | Licence labels are correct | A per-source check at ingest, with its strictness set by counsel | Per source | Any pack beyond the canon pack |
 | A user's task finished | The study in Measurement of User Impact | 20 users | Any claim of impact |
 | Ranking quality | The signed evaluation set in `bkt-1fuf` | In `bkt-1fuf` | Any ranking claim |
@@ -146,7 +146,7 @@ One codebase for native and WebAssembly holds for `bucket-core` and `bucket-pack
 | Rust regex word boundaries match the JavaScript tokenizer | Unproven, expected to differ | `canon-rank.ts` lines 65 and 72 use ASCII classes and `\b` without the Unicode flag. Rust `\b` is Unicode-aware |
 | A same-user node process can be kept away from `bkt.db` and the keyring | Unproven | See Private Data |
 | A signed Rust app reads macOS keychain items made by `/usr/bin/security` without a prompt on every read | Unproven | Items made by `security` carry an access list for that tool, per the round 3 critic. Not checked on a Mac for this draft. Spike S2 |
-| `bun:sqlite` and rusqlite write one WAL database without loss | Unproven | The two-writer experiment in Path to a Verified Design |
+| Two `bun:sqlite` writers and one rusqlite reader share `bkt.db` in WAL mode without loss | Unproven | The concurrent-access experiment in Path to a Verified Design |
 | Cross-build of five targets for the Rust workspace | Unproven | A one-day CI trial |
 
 ### Contracts
@@ -179,7 +179,7 @@ Three shapes were weighed:
 | Shape | For | Against |
 |---|---|---|
 | A. `bucket-core` as wasm inside Bun | Smallest step. One server, one auth surface. Evidenced on linux-x64 | Four targets unproven. Covers pure functions alone, so the store and index still need another shape |
-| B. Rust engine as a drop-in loopback sidecar serving the same routes | Window, terminal and shell are unchanged. No Tauri capability change. Route-by-route cutover with recorded parity | The five controls in `serve.ts` are rewritten in Rust and need their own tests. Two writers on one database during cutover |
+| B. Rust engine as a drop-in loopback sidecar serving the same routes | Window, terminal and shell are unchanged. No Tauri capability change. Read routes move one by one with recorded parity, and writes cut over once | The five controls in `serve.ts` are rewritten in Rust and need their own tests. Two servers run side by side through phase 2 |
 | C. Engine in-process in the Tauri shell over IPC | No loopback port | The page origin is `http://127.0.0.1:<port>`, so IPC needs a remote capability for that origin, which widens what a loopback page can call. The terminal binary needs a second path |
 
 Choice, proposed: B is the target, and A is the first step for ranking alone. Reasons: B keeps the window's transport and the 0.4.0 terminal contract unchanged, and it is the shape the store, the index and the keyring need. A lets the ranking port ship and be measured before any server code is rewritten. C is rejected for now because of the remote capability. If A fails on any of the four untested targets, the ranking port waits for B on that target and the TypeScript ranker stays.
@@ -295,13 +295,13 @@ Proposed controls, all before the store moves:
 | Control | Design |
 |---|---|
 | Downgrade guard release | A TypeScript release, shipped before any Rust store, that refuses to open a `user_version` above the one it knows and says which version to install |
-| Minimum-client field | The signed manifest gains `min_client`. Today it carries name, version, checksum and expiry (`update.ts` lines 28 to 31), and 0.4.0 ignores an unknown field. A guarded client that is older than `min_client` stops writing and asks for an update |
+| Minimum-client field | The signed manifest gains `min_client`. Today it carries name, version, checksum and expiry (`update.ts` lines 28 to 31), and 0.4.0 ignores an unknown field. A guarded client that is older than `min_client` tells the user to update before it accepts new work |
 | Schema location | See Schema Bump |
 | Keyring read adapters | Three in `bucket-store`: libsecret by `service` and `account` attributes, macOS generic password with base64 decoding, and the `.dpapi` file through the same `Unprotect` call. Plus the `keyring.json` vault |
 | Cross-implementation test | Per operating system in CI: the TypeScript binary writes both keys and a database, the Rust binary reads them and opens every sealed row byte-equal, and the reverse |
 | Format freeze | Rust reads and writes `v1:` unchanged, with the same associated-data strings |
 | Backup | `VACUUM INTO` a dated file before every migration, plus a rolling daily `VACUUM INTO` with seven kept, each with a copy of `keyring.json` where present. Each backup is opened and its rows counted. A plain file copy is ruled out by the ledger |
-| Writers | Until cutover Bun is the writer. During route-by-route cutover both processes write through SQLite locking with the existing 5 second busy timeout. Unproven until the two-writer experiment passes, and cutover does not start before it |
+| Writers | Rust never writes `bkt.db`. Through phase 2 the Bun server and the 0.4.0 terminal app write it, as they do today, and Rust reads it. Read routes move to Rust one by one. Writes cut over once, at the import in phase 3, to the new file. The concurrent-access experiment covers the phase 2 arrangement and gates it |
 | Shared database | The 0.4.0 terminal binary and the new desktop open one `bkt.db` through phase 2, at schema version 8 |
 | Rollback | Before the store moves, install the previous release. After it, the untouched `bkt.db` or the latest daily backup is the restore point. Maximum loss is the work since the last daily backup, at most 24 hours on a device that runs daily |
 | Key loss | An encrypted export of the data key and the device key under a user passphrase, using the existing scrypt parameters, offered at first run. Bucket holds no key. A user who skips it has no recovery |
@@ -316,7 +316,16 @@ A 0.4.0 binary has no guard and cannot be given one, so a user who never updates
 | A. Bump `user_version` in the shared `bkt.db`, gated on `min_client` and an adoption threshold | One file. The old terminal and the new desktop stay in step | A 0.4.0 binary that never updated opens the newer schema with no error and may write rows the new schema misreads. The threshold bounds that risk and never removes it |
 | B. The Rust store writes a new file. It imports `bkt.db` once by `VACUUM INTO`, migrates the copy, and never writes the original | No binary of any age can damage the new store. The original stays as the rollback copy | A 0.4.0 binary keeps working on a stale file, so the user sees two histories until they update |
 
-Choice, proposed: B. Reasons: it protects users who never update, it makes the import its own backup, and its cost is a visible stale state that the guard release explains. The Rust engine never bumps `user_version` in the shared file. `min_client` is set in the manifest at the release that moves the store, so a guarded client stops writing the stale file. The share of users on a guarded release that is enough to ship that release is a founder decision.
+Choice, proposed: B. Reasons: it protects users who never update, it makes the import its own backup, and its cost is a visible stale state that the guard release explains. The Rust engine never bumps `user_version` in the shared file. `min_client` is set in the manifest at the release that moves the store, so a guarded client tells the user to update. The share of users on a guarded release that is enough to ship that release is a founder decision.
+
+Attempts written to the old file after the import. A 0.4.0 terminal app keeps writing attempts to `bkt.db`, and without a policy the new store never sees them.
+
+| Policy | For | Against |
+|---|---|---|
+| A. On every start the Rust engine reads `bkt.db` and imports attempt ids it has not seen | Covers 0.4.0, which has no guard and cannot get one. Attempts are append-only rows with random ids (`store.ts` lines 296 to 304), so the merge has no conflicts | Needs the old file and the data key at every start. Card schedules are recomputed by replaying imported attempts in time order |
+| B. The guard release stops writing to the old file and tells the user | No merge code | Does nothing for a 0.4.0 binary, so its attempts are still lost with no message |
+
+Choice, proposed: A, with the guard release's message kept as a courtesy. Reason: B cannot reach the binary that causes the loss. What the user sees: the window and the Rust terminal app print one line at start, "Imported N attempts from the older bkt app", when N is above zero. A guarded older client prints "This device has moved to a newer bkt. Update to keep one history." The same start-up import merges notes by id, with the later `updated_at` kept (`store.ts` line 93). The 0.4.0 binary also serves the window, so it can write the other tables: probe answers, advisor and history imports, the daily quiz. Changes to those in the old file after the import are outside the merge and are lost, and the import line says so when it finds any.
 
 Phase 3 is the point of no return, when the Rust store becomes the single writer of the new file. Until then the unchanged format and schema version keep the move reversible. After it, work written to the new file is lost on rollback to the original, and the daily backup bounds a restore to 24 hours.
 
@@ -350,8 +359,8 @@ Limit. The node runs as the same operating-system user, and that user can read `
 | Transport | Every peer link runs an authenticated encrypted handshake, the Noise protocol, with the peer identity bound to the node key. Bootstrap and relay identities are pinned in the signed release. A link that fails the handshake is dropped. General knowledge, unproven here |
 | Discovery | A distributed hash table, seeded from a bootstrap list pinned in the signed release. General knowledge |
 | Minimum peers | A query or a pack fetch uses at least a set number of peers from distinct address ranges, with one from the pinned list |
-| Wrong answers | Answers carry record hashes checked against the signed pack manifest. Ranking is deterministic over a given pack, so a second node recomputes and compares |
-| Withheld answers | Recomputation cannot catch omission. The device asks several nodes, compares result sets against the manifest's record count, and ranks the canon pack locally |
+| Wrong answers, from phase 5 | Answers carry record hashes checked against the signed pack manifest. Ranking is deterministic over a given pack, so a second node recomputes and compares |
+| Withheld answers, from phase 5 | Recomputation cannot catch omission. The device asks several nodes, compares result sets against the manifest's record count, and ranks the canon pack locally |
 | NAT | Relay plus hole-punching, with the relay as a Bucket cost. General knowledge |
 | Parsers | Every inbound message has a length prefix checked against a byte limit, a bounded field count and a bounded nesting depth, enforced before allocation. Each parser has a fuzz target run in CI |
 | First peer set | A Bucket-run peer set at first, or a registry of operators. Founder decision |
@@ -364,7 +373,7 @@ Eclipse and Sybil on discovery stay unmitigated. An attacker who controls the pe
 |---|---|---|---|
 | Peer serving a pack | The pack hash requested | Yes, or the relay's when relayed | Yes |
 | Any peer or monitor that joins the swarm | Which pack hashes a mirror holds and offers | The mirror's address, tied to those packs | When it is online |
-| Peer answering a query | The query text | Yes, or the relay's | Yes |
+| Peer answering a query, from phase 5 | The query text | Yes, or the relay's | Yes |
 | Relay | Ciphertext alone, since the peer handshake is end to end | Both ends | Yes |
 | Bootstrap server | None | Every node that starts | Start times |
 
@@ -495,8 +504,8 @@ Public claims the code does not meet, tracked in `bkt-r3rg`:
 Proposed flow for one paid citation:
 
 1. A publisher's wallet signs one EIP-3009 `receiveWithAuthorization` in USDC on Base, with the splitter contract as payee. That form lets the payee alone submit it, so the transfer happens inside the splitter's call.
-2. The signed `nonce` is a hash of the record SHA-256, the author address, the node address, the split and a random salt. The payer's signature therefore commits to who is paid.
-3. The facilitator calls the splitter with those values. The splitter recomputes the hash, reverts on a mismatch with the nonce, pulls the funds and divides them between author, node and operations.
+2. The signed `nonce` is a hash of the record SHA-256, the author address, the node address, the split and a random salt. The amount is the signed `value` field. The payer's signature therefore commits to who is paid and how much.
+3. The facilitator calls the splitter with the record hash, the addresses, the split and the salt as calldata. The splitter recomputes the hash, reverts on a mismatch with the nonce, pulls the funds and divides them between author, node and operations.
 4. A receipt is written: transaction hash, record SHA-256, and the node signature extension.
 
 No contract exists, so this flow is unproven.
@@ -521,7 +530,7 @@ Failure states for one citation, proposed handling:
 | Replay | EIP-3009 nonces are single-use, and the signed domain includes the chain id and token contract. The random salt keeps two citations of one record distinct |
 | Amount below fees | The client refuses to sign when gas plus facilitator fee exceeds a set fraction of the amount |
 | Failed split | The contract reverts and no funds move |
-| Facilitator down | The authorisation stays valid until `validBefore`. Anyone holding it can submit it |
+| Facilitator down | The authorisation stays valid until `validBefore`. Anyone holding it and the committed values can call the splitter, which is the one caller the token accepts |
 | Facilitator dishonest | It can delay or drop. The signed payee is the splitter, so the payee field alone does not fix the author and node addresses, which arrive as calldata. The nonce commitment does: changed addresses or a changed split fail the recomputed hash and the call reverts |
 | Authorisation submitted outside the splitter | `receiveWithAuthorization` requires the caller to be the payee, so a third party cannot move the funds without the split |
 | Author with no wallet | Open. Most canon authors have none, and many are dead |
@@ -625,7 +634,7 @@ Proposed instrument for task completion:
 | Outcome | Defined before the study: the user states the task, and the task counts as finished when the user saved or cited a result that a rater judges to answer it |
 | Baseline | The same users on the same kind of task with their current tools |
 | Order | Counterbalanced: half start with their current tools and half with Bucket |
-| Rating | Two raters judge each saved or cited result independently, and their agreement is reported |
+| Rating | Two raters judge each saved or cited result independently, and their agreement is reported. Where they disagree, a third rater decides |
 | Pre-registration | The outcome, the sample size and the analysis are committed to the repo as `docs/studies/task-completion-prereg.md`, with the commit hash recorded on `bkt-1fuf` before the first session |
 | Record | Local, exported by the user |
 | Signer | Named by the founder, as for the evaluation set |
@@ -641,7 +650,7 @@ Estimates from general knowledge. None is a quote and each is unproven.
 | Item | Estimate |
 |---|---|
 | Rust port | 6,161 TypeScript lines in `packages/bkt/src` plus about 550 in `canon-rank`, `fsrs` and `academy/engine`. Duration unproven |
-| Two engines during cutover | Every ranking change lands twice |
+| Two engines through phase 2 | Every ranking change lands twice |
 | Native runners for three operating systems | CI minutes above today's single runner |
 | Bootstrap and relay host | Tens of dollars a month at first. Relay bandwidth grows with nodes behind NAT |
 | Contract audit, legal counsel | Unpriced |
@@ -657,7 +666,7 @@ Proposed, subject to First Decision 1.
 | 2 | `bkt-1fuf` Explore | The evaluation set and the ranking rule come from here. Baseline is 0 of 40 |
 | 3 | `bkt-6wjd` parity, in TypeScript | Freezes the contracts and the golden fixtures |
 | 4 | `bkt-r3rg` | Public claims corrected before any settlement work |
-| 5 | Downgrade guard release, then spikes S1 and S2 and the two-writer experiment | The guard must reach users before the store moves. The spikes gate phases 1 and 2 |
+| 5 | Downgrade guard release, then spikes S1 and S2 and the concurrent-access experiment | The guard must reach users before the store moves. The spikes gate phases 1 and 2 |
 | 6 | Phases 1 to 3 | Rust behind frozen contracts |
 | 7 | Phases 4 and 5 | After First Decisions 2 and 3, the open questions, and a measured need |
 
