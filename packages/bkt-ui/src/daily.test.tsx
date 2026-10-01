@@ -64,6 +64,68 @@ describe("daily quiz view", () => {
     await v.unmount();
   });
 
+  test("a 404 without the server's message reads as an older Bucket, with its own line", async () => {
+    const { OUTDATED } = await import("./views/WorkQuiz");
+    const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError("/local/work-quiz/daily?day=2026-09-30 404", 404)), dailyAnswer: async () => graded({}) });
+    expect(v.host.textContent).toContain(OUTDATED);
+    expect(v.host.textContent).not.toContain("No quiz for");
+    expect(v.host.textContent).not.toContain("has not shipped yet");
+    expect(v.host.querySelector(".error")).toBeNull();
+    await v.unmount();
+  });
+
+  test("a double click sends one request and shows the grade alone", async () => {
+    const { act } = await import("react");
+    const { GRADED_ONCE } = await import("./views/WorkQuiz");
+    let n = 0;
+    let release: (a: DailyAnswer) => void = () => {};
+    const v = await mount({
+      dailyQuiz: async () => QUIZ,
+      dailyAnswer: () => {
+        n++;
+        if (n > 1) return Promise.reject(new ApiError("already answered", 409));
+        return new Promise<DailyAnswer>((ok) => (release = ok));
+      },
+    });
+    const dev = v.button("dev") as HTMLButtonElement;
+    await act(async () => {
+      dev.click();
+      dev.click();
+      (v.button("main") as HTMLButtonElement).click();
+    });
+    expect(n).toBe(1);
+    await act(async () => release(graded({})));
+    expect(v.host.textContent).toContain("Correct");
+    expect(v.host.textContent).not.toContain(GRADED_ONCE);
+    expect(v.host.textContent).toContain("1 of 2 answered");
+    await v.unmount();
+  });
+
+  test("a failed request frees the guard so the question can be answered again", async () => {
+    let n = 0;
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async () => (n++ === 0 ? Promise.reject(new ApiError("elapsedMs required", 400)) : graded({})) });
+    await v.click(v.button("dev"));
+    await v.click(v.button("dev"));
+    expect(n).toBe(2);
+    expect(v.host.textContent).toContain("Correct");
+    await v.unmount();
+  });
+
+  test("a 404 on the answer closes the question and asks for a reload", async () => {
+    const { QUIZ_CHANGED } = await import("./views/WorkQuiz");
+    let n = 0;
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: () => (n++, Promise.reject(new ApiError("no such question", 404))) });
+    await v.click(v.button("dev"));
+    expect(v.host.textContent).toContain(QUIZ_CHANGED);
+    expect(v.button("Reload")).toBeDefined();
+    expect(v.button("Next")).toBeUndefined();
+    expect((v.button("dev") as HTMLButtonElement).disabled).toBe(true);
+    expect(v.host.textContent).toContain("0 of 2 answered");
+    await v.click(v.button("dev"));
+    expect(n).toBe(1);
+    await v.unmount();
+  });
+
   test("a server failure shows the error and never the empty state", async () => {
     const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError("data key does not match", 500)), dailyAnswer: async () => graded({}) });
     expect(v.host.querySelector(".error")!.textContent).toBe("data key does not match");

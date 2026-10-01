@@ -99,6 +99,9 @@ export function WorkQuizView({ api }: { api: Api }) {
   );
 }
 
+export const NO_QUIZ = "no quiz for that day";
+export const OUTDATED = "This copy of Bucket is older than the daily quiz. Update Bucket, then open this page again.";
+export const QUIZ_CHANGED = "This quiz changed while the page was open. Reload the page to get the current questions.";
 export const GRADED_ONCE = "This question was already graded. Each daily question is graded once.";
 
 export function factorOff(log10Distance: number): string {
@@ -116,9 +119,12 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   const [at, setAt] = useState<string | null>(null);
   const [result, setResult] = useState<DailyAnswer | null>(null);
   const [refused, setRefused] = useState(false);
+  const [outdated, setOutdated] = useState(false);
+  const [stale, setStale] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
   const started = useRef(Date.now());
+  const busy = useRef(false);
 
   useEffect(() => {
     let live = true;
@@ -133,7 +139,8 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       },
       (e: Error) => {
         if (!live) return;
-        if (e instanceof ApiError && e.status === 404) setMissing(true);
+        if (e instanceof ApiError && e.status === 404 && e.message === NO_QUIZ) setMissing(true);
+        else if (e instanceof ApiError && e.status === 404) setOutdated(true);
         else setError(e.message);
       },
     );
@@ -143,17 +150,21 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   }, [api, day]);
 
   const q = quiz?.questions.find((x) => x.id === at) ?? null;
-  const settled = !!result || refused;
+  const settled = !!result || refused || stale;
 
   const answer = async (response: string) => {
-    if (!q || settled) return;
+    if (!q || settled || busy.current) return;
+    busy.current = true;
     try {
       const r = await api.dailyAnswer(day, q.id, response, Date.now() - started.current);
       setResult(r);
       if (r.correct) setRight((n) => n + 1);
     } catch (e) {
+      if (e instanceof ApiError && e.status === 404) return setStale(true);
       if (e instanceof ApiError && e.status === 409) setRefused(true);
       else return setError((e as Error).message);
+    } finally {
+      busy.current = false;
     }
     setDone((d) => new Set(d).add(q.id));
   };
@@ -184,6 +195,12 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>
+        </div>
+      )}
+      {outdated && (
+        <div className="panel empty">
+          <h2>Bucket needs an update</h2>
+          <p>{OUTDATED}</p>
         </div>
       )}
       {quiz && !q && (
@@ -247,7 +264,15 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
               <p className="bad">{GRADED_ONCE}</p>
             </div>
           )}
-          {settled && (
+          {stale && (
+            <div className="after-block">
+              <p className="bad">{QUIZ_CHANGED}</p>
+              <button className="primary" onClick={() => window.location.reload()}>
+                Reload
+              </button>
+            </div>
+          )}
+          {settled && !stale && (
             <button className="primary" onClick={next}>
               Next
             </button>
