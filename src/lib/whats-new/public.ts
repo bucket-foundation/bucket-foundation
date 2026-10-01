@@ -52,12 +52,14 @@ export async function loadPublicEntries(legacy: readonly LegacyEntry[], store: D
 
 export interface PageSections<T> {
   productions: T[];
+  generations: T[];
   milestones: T[];
 }
 
 export function pageSections<T extends { category?: string }>(entries: readonly T[]): PageSections<T> {
   return {
     productions: entries.filter((e) => e.category === "production"),
+    generations: entries.filter((e) => e.category === "generation"),
     milestones: entries.filter((e) => e.category !== "production" && e.category !== "generation"),
   };
 }

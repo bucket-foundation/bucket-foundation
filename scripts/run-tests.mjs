@@ -50,6 +50,7 @@ const SUITES = {
       "scripts/test-whats-new.mjs",
       "scripts/test-whats-new-api.ts",
       "scripts/test-whats-new-publish.ts",
+      "scripts/test-whats-new-page.ts",
       "scripts/test-release-signing.mjs",
     ],
     commands: [
