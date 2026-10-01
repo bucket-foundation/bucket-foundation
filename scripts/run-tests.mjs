@@ -47,6 +47,7 @@ const SUITES = {
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-whats-new.mjs",
+      "scripts/test-whats-new-api.ts",
       "scripts/test-release-signing.mjs",
     ],
     commands: [
@@ -155,7 +156,7 @@ function stepFor(file) {
       JSON.stringify({ module: "commonjs", baseUrl: ".", jsx: "react-jsx" }),
       file,
     ],
-    env: { TS_NODE_BASEURL: "./" },
+    env: { TS_NODE_BASEURL: "./", TS_NODE_IGNORE: "(?:^|/)node_modules/,\\.mjs$" },
   };
 }
 
