@@ -1,0 +1,78 @@
+name: spike keyring read
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [spike/keyring-read]
+
+permissions:
+  contents: read
+
+jobs:
+  read:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux-x64
+            asset: bkt-linux-x64
+            script: linux.sh
+          - os: macos-latest
+            target: darwin-arm64
+            asset: bkt-darwin-arm64
+            script: macos.sh
+          - os: macos-15-intel
+            target: darwin-x64
+            asset: bkt-darwin-x64
+            script: macos.sh
+          - os: windows-latest
+            target: windows-x64
+            asset: bkt-windows-x64.exe
+            script: windows.sh
+    defaults:
+      run:
+        shell: bash
+    env:
+      SPIKE: spikes/keyring-read
+      RELEASE_BASE: https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.4.0
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - name: build bkt from the branch
+        run: BKT_TARGETS=${{ matrix.target }} bash scripts/release/build-binaries.sh "$PWD/$SPIKE/bin/branch"
+      - name: download the released 0.4.0 binary
+        working-directory: spikes/keyring-read/bin
+        run: |
+          curl -sfL -o "release-${{ matrix.asset }}" "$RELEASE_BASE/${{ matrix.asset }}"
+          want=$(curl -sfL "$RELEASE_BASE/${{ matrix.asset }}.sha256" | cut -d' ' -f1)
+          got=$( (sha256sum "release-${{ matrix.asset }}" 2>/dev/null || shasum -a 256 "release-${{ matrix.asset }}") | cut -d' ' -f1)
+          echo "want $want got $got"
+          test "$want" = "$got"
+          chmod +x "release-${{ matrix.asset }}"
+      - name: build the Rust reader
+        run: |
+          rustc --version
+          cargo build --release --locked --manifest-path "$SPIKE/Cargo.toml"
+      - name: linux keyring tools
+        if: runner.os == 'Linux'
+        run: sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11 libglib2.0-bin
+      - name: TypeScript writes, Rust reads
+        run: |
+          set -o pipefail
+          bash "$SPIKE/${{ matrix.script }}" "$PWD/$SPIKE/work" "$PWD/$SPIKE/bin/release-${{ matrix.asset }}" "$PWD/$SPIKE/bin/branch/bkt-${{ matrix.target }}${{ runner.os == 'Windows' && '.exe' || '' }}" "$PWD/$SPIKE/target/release/keyring-read" 2>&1 | tee "$SPIKE/bin/log-${{ matrix.os }}.txt"
+          cat "$SPIKE/bin/log-${{ matrix.os }}.txt" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: keyring-read-${{ matrix.os }}
+          path: |
+            spikes/keyring-read/bin/log-*.txt
+            spikes/keyring-read/work/results-*.jsonl
+            spikes/keyring-read/work/restore/results-*.jsonl
+            spikes/keyring-read/work/**/*.png
+            spikes/keyring-read/work/acl.out
+          if-no-files-found: warn
