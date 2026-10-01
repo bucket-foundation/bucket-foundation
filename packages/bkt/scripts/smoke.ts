@@ -79,8 +79,10 @@ try {
 
 async function full(): Promise<void> {
 
-  const first = JSON.parse(run(["init"]));
-  const second = JSON.parse(run(["init"]));
+  const first = JSON.parse(run(["init", "--json"]));
+  const plain = run(["init"]);
+  check(plain.startsWith("Bucket is ready on this device.\nThis device  ") && !plain.includes("{"), "bkt init prints labelled rows");
+  const second = JSON.parse(run(["init", "--json"]));
   check(first.keyring === native, `bkt init uses the ${native} keystore (got ${first.keyring})`);
   check(first.newDevice === true && second.newDevice === false, "the device key round trips through the keystore");
   check(first.device === second.device && first.publicKey === second.publicKey, "the second run reads the same device");
