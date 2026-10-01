@@ -1,13 +1,14 @@
 import { afterEach, describe, expect, test } from "bun:test";
 import { startServe, type PeerUidResolver, type Serve } from "../src/serve";
-import { platformFor, type ExecSync, type Owner } from "../src/platform";
+import { platformFor, type ExecSync, type Owner, type Platform } from "../src/platform";
 
 let s: Serve | undefined;
 afterEach(() => s?.stop());
 
-async function flow(resolvePeerUid: PeerUidResolver, uid: Owner = 7) {
+async function flow(lookup: PeerUidResolver | Platform, uid: Owner = 7) {
   const errors: string[] = [];
-  s = startServe({ uid, resolvePeerUid, onError: (e) => errors.push(e.message) });
+  const onError = (e: Error) => void errors.push(e.message);
+  s = typeof lookup === "function" ? startServe({ uid, resolvePeerUid: lookup, onError }) : startServe({ platform: lookup, onError });
   const host = `127.0.0.1:${s.port}`;
   const page = await fetch(`http://${host}/`);
   if (page.status !== 200) {
@@ -49,11 +50,20 @@ describe("peer check", () => {
     expect(await flow(thrower)).toEqual({ page: 403, again: 403, errors: ["lsof crashed"] });
   });
 
-  test("macos and windows refuse when their lookup tools are missing", async () => {
-    for (const os of ["darwin", "win32"]) {
-      const p = platformFor(os, { env: { USERNAME: "Ann" }, home: "/h/u", execSync: missingTool, uid: () => 7 });
-      expect(await flow((peer, server) => p.peerOwner(peer, server), p.self())).toEqual({ page: 403, again: 403, errors: [UNAVAILABLE] });
-      s?.stop();
-    }
+  test("macos and windows refuse when their lookup tools are missing and name the tool and the OS", async () => {
+    const d = { env: { USERNAME: "Ann" }, home: "/h/u", execSync: missingTool, uid: () => 7 };
+    expect(await flow(platformFor("darwin", d))).toEqual({
+      page: 403,
+      again: 403,
+      errors: ["peer owner lookup on darwin could not run /usr/sbin/lsof, so every request is refused; restore it and start bkt serve again"],
+    });
+    s?.stop();
+    expect(await flow(platformFor("win32", d))).toEqual({
+      page: 403,
+      again: 403,
+      errors: [
+        "peer owner lookup on win32 could not run C:\\Windows\\System32\\netstat.exe or C:\\Windows\\System32\\tasklist.exe, so every request is refused; restore it and start bkt serve again",
+      ],
+    });
   });
 });

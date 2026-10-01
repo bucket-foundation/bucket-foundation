@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ensureDevice } from "../src/device";
 import { SERVICE } from "../src/keyring";
-import { DpapiKeyring, KeychainKeyring, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, windowsWhoami, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
+import { DpapiKeyring, KeychainKeyring, LSOF, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, system32, windowsPowershell, windowsWhoami, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
 import { statSync, writeFileSync } from "node:fs";
 import { pickKeyring } from "../src/setup";
 
@@ -175,13 +175,13 @@ describe("windows", () => {
 
   test("dpapi keyring round trips through powershell and stores only ciphertext", async () => {
     const ps = fakePowershell();
-    const kr = new DpapiKeyring(join(dir, "keys"), ps.run);
+    const kr = new DpapiKeyring(join(dir, "keys"), ps.run, undefined, POWERSHELL);
     const d = await ensureDevice(kr);
     expect((await ensureDevice(kr)).publicKey).toBe(d.publicKey);
     const file = join(dir, "keys", `${SERVICE}.device-ed25519.dpapi`);
     expect(existsSync(file)).toBe(true);
     expect(readFileSync(file, "utf8")).not.toContain("PRIVATE KEY");
-    expect(ps.calls.every((c) => c.argv[0] === "powershell.exe" && !c.argv.join(" ").includes("PRIVATE KEY"))).toBe(true);
+    expect(ps.calls.every((c) => c.argv[0] === POWERSHELL && !c.argv.join(" ").includes("PRIVATE KEY"))).toBe(true);
     await expect(kr.set("device-ed25519", "x")).rejects.toThrow("refusing to overwrite");
   });
 
@@ -207,8 +207,28 @@ describe("keyring selection per platform", () => {
 });
 
 const WHOAMI = "C:\\Windows\\System32\\whoami.exe";
+const ICACLS = "C:\\Windows\\System32\\icacls.exe";
+const NETSTAT = "C:\\Windows\\System32\\netstat.exe";
+const TASKLIST = "C:\\Windows\\System32\\tasklist.exe";
+const POWERSHELL = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
 
 describe("owner-only dirs", () => {
+  test("windows system tools resolve under SystemRoot and never from PATH", () => {
+    const hijacked = { SystemRoot: "D:\\WINNT", PATH: "C:\\evil" };
+    expect([system32({}, "icacls.exe"), system32({}, "netstat.exe"), system32({}, "tasklist.exe"), windowsPowershell({})]).toEqual([ICACLS, NETSTAT, TASKLIST, POWERSHELL]);
+    expect(system32(hijacked, "netstat.exe")).toBe("D:\\WINNT\\System32\\netstat.exe");
+    expect(windowsPowershell(hijacked)).toBe("D:\\WINNT\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
+    expect(platformFor("win32", deps({ env: hijacked })).peerTools).toEqual(["D:\\WINNT\\System32\\netstat.exe", "D:\\WINNT\\System32\\tasklist.exe"]);
+    expect(platformFor("darwin", deps()).peerTools).toEqual(["/usr/sbin/lsof"]);
+    expect(LSOF).toBe("/usr/sbin/lsof");
+  });
+
+  test("windows keyring needs System32 powershell and ignores one on PATH", () => {
+    const onPath = platformFor("win32", deps({ which: () => "C:\\evil\\powershell.exe" }));
+    expect(onPath.keyring()).toBeNull();
+    expect(platformFor("win32", deps({ exists: (f) => f === POWERSHELL })).keyring()?.kind).toBe("dpapi");
+  });
+
   test("windows whoami resolves under SystemRoot and never from PATH", () => {
     expect(windowsWhoami({})).toBe(WHOAMI);
     expect(windowsWhoami({ SystemRoot: "" })).toBe(WHOAMI);
@@ -230,7 +250,7 @@ describe("owner-only dirs", () => {
     const p = join(dir, "w1");
     platformFor("win32", deps({ execSync: ok })).secureDir(p);
     expect(calls[0]).toEqual([WHOAMI, "/user", "/fo", "csv", "/nh"]);
-    expect(calls.find((c) => c[0] === "icacls")).toEqual(["icacls", p, "/inheritance:r", "/grant:r", "*S-1-5-21-1-2-3-1001:(OI)(CI)F", "/q"]);
+    expect(calls.find((c) => c[0] === ICACLS)).toEqual([ICACLS, p, "/inheritance:r", "/grant:r", "*S-1-5-21-1-2-3-1001:(OI)(CI)F", "/q"]);
     const denied: ExecSync = (argv) => (argv[0] === WHOAMI ? ok(argv) : { code: 5, stdout: "", stderr: "Access is denied." });
     expect(() => platformFor("win32", deps({ execSync: denied })).secureDir(join(dir, "w2"))).toThrow("Access is denied.");
   });
@@ -246,8 +266,10 @@ describe("peer owner", () => {
 
   test("macos matches the lsof connection line", () => {
     const out = "p10\nu501\nn127.0.0.1:80->127.0.0.1:5000\np11\nu502\nn127.0.0.1:5000->127.0.0.1:80\n";
-    const run: ExecSync = () => ({ code: 0, stdout: out, stderr: "" });
+    const argvs: string[][] = [];
+    const run: ExecSync = (argv) => (argvs.push(argv), { code: 0, stdout: out, stderr: "" });
     expect(lsofOwner(run, 5000, 80)).toBe(502);
+    expect(argvs[0][0]).toBe("/usr/sbin/lsof");
     expect(lsofOwner(run, 5001, 80)).toBeNull();
     expect(lsofOwner(() => ({ code: 1, stdout: "", stderr: "" }), 5000, 80)).toBeNull();
     expect(lsofOwner(() => ({ code: 127, stdout: "", stderr: "lsof: not found" }), 5000, 80)).toBeUndefined();
@@ -255,12 +277,16 @@ describe("peer owner", () => {
   });
 
   test("windows maps netstat pid to its tasklist user and hides other users", () => {
+    const seen = new Set<string>();
     const run = (user: string): ExecSync => (argv) =>
-      argv[0] === "netstat"
+      (seen.add(argv[0]), argv[0] === NETSTAT)
         ? { code: 0, stdout: "  TCP    127.0.0.1:6000    127.0.0.1:80    ESTABLISHED     4242\r\n", stderr: "" }
         : { code: 0, stdout: `"msedge.exe","4242","Console","1","100 K","Running","${user}","0:00:01","Bucket"\r\n`, stderr: "" };
     const d = (user: string) => ({ ...deps({ execSync: run(user) }), env: {} } as PlatformDeps);
     expect(netstatOwner(d("PC\\Ann"), 6000, 80)).toBe("pc\\ann");
+    expect([...seen]).toEqual([NETSTAT, TASKLIST]);
+    const noTasklist: ExecSync = (argv) => (argv[0] === NETSTAT ? run("PC\\Ann")(argv) : { code: 127, stdout: "", stderr: "not found" });
+    expect(netstatOwner({ ...deps({ execSync: noTasklist }), env: {} } as PlatformDeps, 6000, 80)).toBeUndefined();
     expect(netstatOwner(d("N/A"), 6000, 80)).toBeNull();
     expect(netstatOwner(d("PC\\Ann"), 6002, 80)).toBeNull();
     const missing = { ...deps({ execSync: () => ({ code: 127, stdout: "", stderr: "not found" }) }), env: {} } as PlatformDeps;
