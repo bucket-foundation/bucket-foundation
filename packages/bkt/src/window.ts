@@ -64,3 +64,42 @@ export function openWindow(url: string, profile: string): void {
   child.on("error", (e) => console.error(`could not open a window: ${e.message}; open ${url}`));
   child.unref();
 }
+
+export const VIEWS = ["learn", "path", "quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"] as const;
+const DAILY = /^\/work\/daily\/(\d{4}-\d{2}-\d{2})$/;
+
+export class RouteError extends Error {}
+
+function calendarDay(day: string): boolean {
+  const d = new Date(`${day}T00:00:00Z`);
+  return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === day;
+}
+
+export function checkRoute(route: unknown): string {
+  const daily = typeof route === "string" ? DAILY.exec(route) : null;
+  const ok = typeof route === "string" && (daily ? calendarDay(daily[1]) : (VIEWS as readonly string[]).some((v) => route === `/${v}`));
+  if (!ok) throw new RouteError(`--route takes /work/daily/YYYY-MM-DD or one of ${VIEWS.map((v) => `/${v}`).join(", ")}`);
+  return route as string;
+}
+
+export function routeUrl(url: string, route: string | null): string {
+  return route === null ? url : `${url}#${checkRoute(route)}`;
+}
+
+export function writeRoute(dir: string, route: string): void {
+  platformFor().secureDir(dir);
+  const p = join(dir, "app-route");
+  writeFileSync(p, checkRoute(route), { mode: 0o600 });
+  chmodSync(p, 0o600);
+}
+
+export function takeRoute(dir: string): string | null {
+  const p = join(dir, "app-route");
+  try {
+    return checkRoute(readFileSync(p, "utf8"));
+  } catch {
+    return null;
+  } finally {
+    rmSync(p, { force: true });
+  }
+}

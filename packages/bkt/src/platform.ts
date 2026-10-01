@@ -60,6 +60,8 @@ export interface Platform {
   cacheDir(): string;
   configDir(): string;
   python(): string;
+  notifyCommand(title: string, body: string, action: { name: string; label: string }, waitMs: number): string[] | null;
+  timerDir(): string | null;
 }
 
 export const CHROMIUM_FLAGS = (url: string, profile: string) => [
@@ -261,6 +263,8 @@ function linux(d: PlatformDeps): Platform {
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(d.home, ".cache"),
     configDir: () => d.env.XDG_CONFIG_HOME ?? posix.join(d.home, ".config"),
     python: () => "python3",
+    notifyCommand: (title, body, action, waitMs) => ["notify-send", "--app-name=Bucket", `--expire-time=${Math.round(waitMs)}`, `--action=${action.name}=${action.label}`, "--", title, body],
+    timerDir: () => posix.join(d.env.XDG_CONFIG_HOME ?? posix.join(d.home, ".config"), "systemd", "user"),
   };
 }
 
@@ -286,6 +290,8 @@ function darwin(d: PlatformDeps): Platform {
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(lib, "Caches"),
     configDir: () => d.env.XDG_CONFIG_HOME ?? posix.join(lib, "Application Support"),
     python: () => "python3",
+    notifyCommand: () => null,
+    timerDir: () => null,
   };
 }
 
@@ -315,6 +321,8 @@ function windows(d: PlatformDeps): Platform {
     cacheDir: () => local,
     configDir: () => roaming,
     python: () => (d.which("py") ? "py" : "python"),
+    notifyCommand: () => null,
+    timerDir: () => null,
   };
 }
 
