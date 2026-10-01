@@ -4,7 +4,7 @@ Status: draft v3, `bucket.data/1`. A proposal. Nothing is built. Awaiting critic
 
 ## Founder Decisions
 
-Only the founder can settle these seven. Each one blocks the named work, and nothing else in the standard waits.
+Only the founder can settle these eight. Each one blocks the named work, and nothing else in the standard waits.
 
 | # | Decision | Blocks |
 |---|---|---|
@@ -15,8 +15,9 @@ Only the founder can settle these seven. Each one blocks the named work, and not
 | 5 | Deck prose: the decks state CC-BY-4.0 and `rights-policy.json` states MIT. One ruling. | The atom migration and the pack that ships atoms. |
 | 6 | Which roles are human reviewers and may set `verified`. | Any record leaving `unverified`. |
 | 7 | Who owns the licence list, including each `LicenseRef-*` entry. | Licence validation on every record. |
+| 8 | Confirm that MIT is the licence of the figure, site and event indexes. | The globe records in step 2 of the migration. |
 
-Lascaux is dated to about 17,000 years ago, which is near 15000 BCE. The file's other negative years read as BCE: Giza at `-2560`, Buddha at `-563`. Decision 3 settles one convention for the whole file and names the reference year if the answer is "years ago".
+Lascaux is dated to about 17,000 years ago, which is near 15000 BCE. The file's other negative years read as BCE: Giza at `-2560`, Buddha at `-563`. Decision 3 settles one convention for the whole file and names the reference year if the answer is "years ago". The same answer governs `sacred-history.json`: reading Zoroaster's `-1000` at century precision as the century 1000 to 901 BCE is an assumption of this draft.
 
 ## Scope
 
@@ -46,7 +47,7 @@ The standard covers every dataset the app, the site, a pack or a feed402 respons
 | Blue zones | `src/data/blue-zones.json` | 5 | `bz-<slug>` | Source is one sentence. No licence. |
 | Research atlas manifest | `src/data/research-atlas-manifest.json` | 9 dataset entries | Table name | Licence is the string `MIT (code) / CC-BY-4.0 (data)`. Points at parquet files outside the repo. |
 | Evidence search fixture | `scripts/research-os/route-characterization/evidence-search.json` | 11 recorded route cases | Case label | A test fixture. It holds no canon records and is listed so that no reader mistakes it for a dataset. |
-| BibTeX exports | `bucket-canon/**/*.bib` | 43 files | BibTeX key | A second rendering of the yaml papers. Under the standard it is generated from the work records. |
+| BibTeX exports | `bucket-canon/**/*.bib` | 37 files; 6 more `.bib` files sit under `papers` and `tools` and hold paper references | BibTeX key | A second rendering of the yaml papers. Under the standard it is generated from the work records. |
 
 ### Learning corpus
 
@@ -174,17 +175,17 @@ The fix, in one PR ahead of every other migration:
 1. `export.ts` emits the child id, a `prompt_hash` that is the full sha256 of the normalised prompt, and an optional authored `replaces: [prompt hash]`.
 2. `store.ts` gains migration 9. `MIGRATIONS` holds eight entries today. Migration 9 adds `items.prompt_hash`, `items.retired_at`, `attempts.prompt_hash` and the table `item_alias(old_id, new_id)`. It backfills both hash columns from the prompt each row holds at that moment, before any import runs.
 3. `recordAttempt` writes the item's `prompt_hash` on every new attempt and into the sealed outbox payload.
-4. `importPack` first snapshots the device's own `(id, prompt_hash)` rows. For each old row, inside one transaction, it looks for an incoming item with the same prompt hash, then for one whose `replaces` lists that hash. On a hit it writes an alias row and re-points the attempts. On a miss it sets `retired_at` and leaves the attempts attached. It never rebinds by position.
+4. `importPack` first snapshots the device's own `(id, prompt_hash)` rows. For each old row, inside one transaction, it looks for an incoming item of the same atom with the same prompt hash, then for one whose `replaces` lists that hash. On a hit it writes an alias row and re-points the attempts. On a miss it sets `retired_at` and leaves the attempts attached. It never rebinds by position.
 5. A typo fix is an edit with `replaces`. The author lists the old prompt hash on the corrected item, and the history follows. An edit without `replaces` is a new question, and the old one retires with its history.
 6. `item_alias` rows are permanent. A chain of renames resolves by following aliases to the end, and CI on packs rejects a cycle.
 
-The oracle is `attempts.prompt_hash`. It records which question the learner answered, on the device, independent of any later id. The property test generates decks, applies a random sequence of reorder, insert, delete, edit, and edit with `replaces`, imports each, and asserts that every attempt joins to an item whose `prompt_hash` or `replaces` holds the attempt's own hash, or to a retired item. On a real device the same query runs after migration 9 and reports attempts that fail it.
+The oracle is `attempts.prompt_hash` read together with the atom id. A prompt hash alone is safe only while no prompt repeats across atoms. None of the 998 does today, and the standard does not rely on that. It records which question the learner answered, on the device, independent of any later id. The property test generates decks, applies a random sequence of reorder, insert, delete, edit, and edit with `replaces`, imports each, and asserts that every attempt joins to an item of the same atom whose `prompt_hash` or `replaces` holds the attempt's own hash, or to a retired item. On a real device the same query runs after migration 9 and reports attempts that fail it.
 
 Backfill limit: an attempt recorded before migration 9 takes the hash of the prompt its item holds when the migration runs. If an earlier import already rebound it, the hash is wrong and nothing on the device can show it. The migration report states the count of pre-existing attempts so the scale is known.
 
 ### Sync
 
-The app has an `outbox` of sealed attempt payloads and no receiving side in `packages/bkt`. The payload gains `prompt_hash`, so a server or a second device resolves an attempt by hash and ignores the sender's item id. Two devices on different pack versions agree on the hash even when their ids differ. `item_alias` is device-local and is not synced, because each device derives it from the packs it imports.
+The app has an `outbox` of sealed attempt payloads and no receiving side in `packages/bkt`. The payload gains `prompt_hash`, so a server or a second device resolves an attempt by the atom id together with the prompt hash and ignores the sender's item id. Two devices on different pack versions agree on the hash even when their ids differ. `item_alias` is device-local and is not synced, because each device derives it from the packs it imports.
 
 ### Other Tables
 
@@ -365,7 +366,7 @@ The 344 edges of `graph.json` become `coauthor` with their `weight`. The 40 foun
 
 1. Ids are unique.
 2. Every relation target is present.
-3. No record in a pack has a text facet other than `allow`.
+3. No record in a pack has an effective text facet other than `allow`. The effective facet is the minimum of rule 1 of Rights, computed over `quotes` and `derived-from` with the rank order `deny` below `link-only` below `allow`. The validator emits it per record and Lean checks it against the relations.
 4. `requires` is acyclic, shown by a rank witness. This reuses `acyclic_of_rank` in `lean/BucketMath/Graph.lean`.
 5. Every external alias maps to one `same-as` class and every `legacy:` alias to one record, as in rule 12 of Ids. The classes are supplied as a class index per record, and Lean checks that each `same-as` edge joins equal indices.
 6. The `superseded-by` chain is acyclic, by the same rank argument.
@@ -1173,13 +1174,6 @@ The row `anc-zoroaster-life` in `src/data/sacred-history.json`, a disputed date 
     "file": "src/data/sacred-history.json"
   },
   "tier": "draft",
-  "provenance": [
-    {
-      "action": "generated",
-      "at": "2026-06-12T14:06:52Z",
-      "via": "sacred-history/web/v1"
-    }
-  ],
   "rights": {
     "status": "asserted",
     "share_alike": false,
@@ -1196,7 +1190,7 @@ The row `anc-zoroaster-life` in `src/data/sacred-history.json`, a disputed date 
 }
 ```
 
-The file's `-1000` is read as 1000 BCE and placed in its century. The dispute bounds are read from the file's note: the 2nd millennium BCE opens at 2000 BCE and the 6th century BCE closes at 501 BCE. Validator failures: `rights.licence` and `source.url` are absent. `label` becomes `title`, `eventClass` becomes `event_class`, and `wikidataUrl` moves into `links`.
+The file's `-1000` is read as 1000 BCE and placed in its century, an assumption that founder decision 3 confirms or corrects. The file's `generatedAt` describes the whole file and is left off the record. The dispute bounds are read from the file's note: the 2nd millennium BCE opens at 2000 BCE and the 6th century BCE closes at 501 BCE. Validator failures: `rights.licence` and `source.url` are absent. `label` becomes `title`, `eventClass` becomes `event_class`, and `wikidataUrl` moves into `links`.
 
 ### Learning Atom
 
@@ -1469,7 +1463,7 @@ The atom `eight` in `learning/app/corpus/lang-core.json`. It has no title, no qu
 }
 ```
 
-`title` is taken from `gloss`. The numeric `tier` becomes `order_tier`. `language` is `mul`, and `languages` lists the 17 tags of this atom: the deck's 16 and Chinese. `forms` is a list because a BCP 47 tag can hold characters the key rule forbids. The deck's licence text names Wiktionary under CC-BY-SA 3.0, so `share_alike` is true and the licence follows every record derived from this one.
+`title` is taken from `gloss`. The numeric `tier` becomes `order_tier`. `language` is `mul`, and `languages` lists the 17 tags of this atom: the deck's 16 and Chinese. `forms` is a list because a BCP 47 tag can hold characters the key rule forbids. The deck's licence text names Wiktionary under CC-BY-SA 3.0, so `share_alike` is true and the licence follows every record derived from this one. Open gap: Wiktionary is no record today, so the atom has no `derived-from` target and the minimum rule has nothing to read. The atom migration adds a `dataset:wiktionary-kaikki` source record first.
 
 ### Explore Rows
 
