@@ -60,3 +60,4 @@ if (failures.length) {
   process.exit(1);
 }
 console.log("smoke passed");
+process.exit(0);
