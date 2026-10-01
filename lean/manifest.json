@@ -1818,6 +1818,141 @@
   "type": "∀ (l out : List BucketMath.Ranking.Result),\n  BucketMath.Ranking.UniqueIds l → out.Perm l → BucketMath.Ranking.Ordered out → out = BucketMath.Ranking.rank l"
  },
  {
+  "name": "BucketMath.Split.Parts",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Split.Parts.total",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 23,
+  "type": "BucketMath.Split.Parts → Nat"
+ },
+ {
+  "name": "BucketMath.Split.author_floor",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 41,
+  "type": "∀ (nodeBps nodeFloor amount : Nat), 80 * amount ≤ 100 * (BucketMath.Split.split nodeBps nodeFloor amount).author"
+ },
+ {
+  "name": "BucketMath.Split.author_tight",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 45,
+  "type": "∀ (nodeBps nodeFloor amount : Nat), 100 * (BucketMath.Split.split nodeBps nodeFloor amount).author < 80 * amount + 100"
+ },
+ {
+  "name": "BucketMath.Split.bpsDenominator",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 9,
+  "type": "Nat"
+ },
+ {
+  "name": "BucketMath.Split.dust_to_author",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 60,
+  "type": "∀ (nodeBps nodeFloor amount : Nat), amount < 5 → (BucketMath.Split.split nodeBps nodeFloor amount).author = amount"
+ },
+ {
+  "name": "BucketMath.Split.nodePart",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 15,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Split.nodePart_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 28,
+  "type": "∀ (nodeBps nodeFloor amount : Nat),\n  nodeBps ≤ BucketMath.Split.nonAuthorBps →\n    BucketMath.Split.nodePart nodeBps nodeFloor amount ≤ BucketMath.Split.nonAuthor amount"
+ },
+ {
+  "name": "BucketMath.Split.node_share_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 49,
+  "type": "∀ (nodeBps nodeFloor amount : Nat),\n  BucketMath.Split.bpsDenominator * (BucketMath.Split.split nodeBps nodeFloor amount).node ≤ nodeBps * amount"
+ },
+ {
+  "name": "BucketMath.Split.node_zero_below_floor",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 56,
+  "type": "∀ (nodeBps nodeFloor amount : Nat), amount < nodeFloor → (BucketMath.Split.split nodeBps nodeFloor amount).node = 0"
+ },
+ {
+  "name": "BucketMath.Split.nonAuthor",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 13,
+  "type": "Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Split.nonAuthorBps",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 11,
+  "type": "Nat"
+ },
+ {
+  "name": "BucketMath.Split.nonAuthor_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 25,
+  "type": "∀ (amount : Nat), BucketMath.Split.nonAuthor amount ≤ amount"
+ },
+ {
+  "name": "BucketMath.Split.split",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 18,
+  "type": "Nat → Nat → Nat → BucketMath.Split.Parts"
+ },
+ {
+  "name": "BucketMath.Split.split_total",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 35,
+  "type": "∀ (nodeBps nodeFloor amount : Nat),\n  nodeBps ≤ BucketMath.Split.nonAuthorBps → (BucketMath.Split.split nodeBps nodeFloor amount).total = amount"
+ },
+ {
   "name": "BucketMath.Vec.add",
   "kind": "def",
   "status": "def",
