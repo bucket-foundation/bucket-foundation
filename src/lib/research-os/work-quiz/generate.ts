@@ -58,13 +58,34 @@ export const STEM_TITLE_TOKENS = 6;
 export const OPTION_TITLE_TOKENS = 5;
 export const MIN_PAIR_TOKENS = 3;
 export const PAIR_TRIES = 8;
+export const REWRITE_TRIES = 12;
+
+export interface Focus {
+  kind: "pr" | "bead" | "note" | "estimate";
+  ref: string;
+  other?: string;
+}
+
+const PRIORITY_WORDS = ["top", "high", "medium", "low", "lowest"];
+
+function plainStatus(status: string): string {
+  return status.replace(/_/g, " ");
+}
+
+function priorityWord(priority: number): string {
+  return PRIORITY_WORDS[priority] ?? "unranked";
+}
+
+function plainPriority(priority: number): string {
+  return `${priorityWord(priority)} priority`;
+}
 
 function prRef(pr: PrFact, repoUrl: string | null): SourceRef {
-  return { kind: "pr", ref: `#${pr.number}`, label: `PR #${pr.number}`, href: repoUrl ? `${repoUrl}/pull/${pr.number}` : null };
+  return { kind: "pr", ref: `#${pr.number}`, label: `Change #${pr.number}`, href: repoUrl ? `${repoUrl}/pull/${pr.number}` : null };
 }
 
 function beadRef(b: BeadFact): SourceRef {
-  return { kind: "bead", ref: b.id, label: `bead ${b.id}`, href: null };
+  return { kind: "bead", ref: b.id, label: "your task list", href: null };
 }
 
 function noteRef(n: NoteFact): SourceRef {
@@ -78,6 +99,12 @@ export function shortPair(a: string, b: string, cap = OPTION_TITLE_TOKENS): [str
     if (x && y && x !== y && parityOk([x, y])) return [x, y];
   }
   return null;
+}
+
+export function uniqueShort(title: string, all: readonly string[], cap: number): string | null {
+  const short = shortTitle(title, cap);
+  if (!short) return null;
+  return all.filter((t) => shortTitle(t, cap) === short).length === 1 ? short : null;
 }
 
 const STOP = new Set(["about", "after", "again", "every", "their", "there", "these", "those", "which", "while", "where", "with", "without", "under", "until", "before", "being"]);
@@ -95,13 +122,17 @@ export function clozeOptions(answer: string, pool: readonly string[]): string[] 
   return picked.length === 4 ? picked : null;
 }
 
-function recall(src: WorkSources, rng: Rng): QuizQuestion | null {
-  const items: { text: string; ref: SourceRef; key: string; name: string }[] = [
-    ...src.prs.map((p) => ({ text: shortTitle(p.title, CLOZE_TITLE_TOKENS), ref: prRef(p, src.repoUrl), key: `pr${p.number}`, name: `PR #${p.number}` })),
-    ...src.beads.map((b) => ({ text: shortTitle(b.title, CLOZE_TITLE_TOKENS), ref: beadRef(b), key: b.id, name: `Bead ${b.id}` })),
+const prByRef = (src: WorkSources, ref: string | undefined) => src.prs.find((p) => `#${p.number}` === ref);
+const noteByRef = (src: WorkSources, ref: string | undefined) => src.notes.find((n) => `${n.file}#${n.heading}` === ref);
+
+function recall(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | null {
+  const items: { text: string; ref: SourceRef; key: string; kind: string; name: string }[] = [
+    ...src.prs.map((p) => ({ text: shortTitle(p.title, CLOZE_TITLE_TOKENS), ref: prRef(p, src.repoUrl), key: `pr${p.number}`, kind: "merged change", name: `Change #${p.number}` })),
+    ...src.beads.map((b) => ({ text: shortTitle(b.title, CLOZE_TITLE_TOKENS), ref: beadRef(b), key: b.id, kind: "task", name: "That task" })),
   ].filter((it) => clozeWords(it.text).length > 0);
   if (items.length < 2) return null;
-  const item = pick(rng, items);
+  const item = focus ? items.find((it) => it.ref.kind === focus.kind && it.ref.ref === focus.ref) : pick(rng, items);
+  if (!item) return null;
   const words = clozeWords(item.text);
   const once = words.filter((w) => words.filter((x) => x.toLowerCase() === w.toLowerCase()).length === 1);
   if (once.length === 0) return null;
@@ -116,7 +147,7 @@ function recall(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("recall", `${item.key}|${answer}`),
     type: "recall",
-    prompt: "Which word fills the blank?",
+    prompt: `Fill the blank in this ${item.kind}.`,
     lines: [blanked],
     choices: shuffle(rng, options),
     answer,
@@ -133,55 +164,59 @@ function shiftDate(iso: string, days: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-function trueFalse(src: WorkSources, rng: Rng): QuizQuestion | null {
+function trueFalse(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | null {
   const statuses = Array.from(new Set(src.beads.map((b) => b.status)));
-  const useBead = src.beads.length > 0 && statuses.length > 1 && (src.prs.length === 0 || rng() < 0.5);
+  const useBead = focus ? focus.kind === "bead" : src.beads.length > 0 && statuses.length > 1 && (src.prs.length === 0 || rng() < 0.5);
   const claimTrue = rng() < 0.5;
   if (useBead) {
-    const b = pick(rng, src.beads);
+    const b = focus ? src.beads.find((x) => x.id === focus.ref) : pick(rng, src.beads);
+    if (!b || statuses.length < 2) return null;
     const claimed = claimTrue ? b.status : pick(rng, statuses.filter((s) => s !== b.status));
-    const short = shortTitle(b.title, STEM_TITLE_TOKENS);
+    const short = uniqueShort(b.title, src.beads.map((x) => x.title), STEM_TITLE_TOKENS);
     if (!short) return null;
     return {
       id: questionId("true_false", `${b.id}|status|${claimed}`),
       type: "true_false",
-      prompt: `The bead "${short}" has status ${claimed}.`,
+      prompt: `The task "${short}" is ${plainStatus(claimed)}.`,
       lines: [],
       choices: ["true", "false"],
       answer: claimed === b.status ? "true" : "false",
       tolerance: 0,
       limitSec: LIMIT_SEC.true_false,
-      explain: `Bead ${b.id} has status ${b.status}.`,
+      explain: `That task is ${plainStatus(b.status)}.`,
       sources: [beadRef(b)],
     };
   }
-  if (src.prs.length === 0) return null;
-  const p = pick(rng, src.prs);
+  const p = focus ? prByRef(src, focus.ref) : src.prs.length > 0 ? pick(rng, src.prs) : undefined;
+  if (!p) return null;
   const offset = claimTrue ? 0 : pick(rng, [-5, -3, -2, 2, 3, 5]);
   const claimed = shiftDate(p.date, offset);
-  const short = shortTitle(p.title, STEM_TITLE_TOKENS);
+  const short = uniqueShort(p.title, src.prs.map((x) => x.title), STEM_TITLE_TOKENS);
   if (!short) return null;
   return {
     id: questionId("true_false", `pr${p.number}|date|${claimed}`),
     type: "true_false",
-    prompt: `"${short}" merged on ${claimed}.`,
+    prompt: `The change "${short}" merged on ${claimed}.`,
     lines: [],
     choices: ["true", "false"],
     answer: offset === 0 ? "true" : "false",
     tolerance: 0,
     limitSec: LIMIT_SEC.true_false,
-    explain: `PR #${p.number} merged on ${p.date}.`,
+    explain: `Change #${p.number} merged on ${p.date}.`,
     sources: [prRef(p, src.repoUrl)],
   };
 }
 
-function whichFirst(src: WorkSources, rng: Rng): QuizQuestion | null {
+function whichFirst(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | null {
   const datedNotes = src.notes.filter((n) => /^\d{4}-\d{2}-\d{2}$/.test(n.date));
   const noteDates = new Set(datedNotes.map((n) => n.date));
-  const useNotes = noteDates.size > 1 && (src.prs.length < 2 || rng() < 0.3);
+  const useNotes = focus ? focus.kind === "note" : noteDates.size > 1 && (src.prs.length < 2 || rng() < 0.3);
   if (useNotes) {
-    const a = pick(rng, datedNotes);
-    const b = pick(rng, datedNotes.filter((n) => n.date !== a.date));
+    const a = focus ? noteByRef({ ...src, notes: datedNotes }, focus.ref) : pick(rng, datedNotes);
+    if (!a) return null;
+    const rest = datedNotes.filter((n) => n.date !== a.date);
+    const b = focus?.other ? noteByRef({ ...src, notes: rest }, focus.other) : rest.length > 0 ? pick(rng, rest) : undefined;
+    if (!b) return null;
     const [older, newer] = a.date < b.date ? [a, b] : [b, a];
     const pair = shortPair(older.heading, newer.heading);
     if (!pair) return null;
@@ -194,15 +229,17 @@ function whichFirst(src: WorkSources, rng: Rng): QuizQuestion | null {
       answer: pair[0],
       tolerance: 0,
       limitSec: LIMIT_SEC.which_first,
-      explain: `${pair[0]} is from ${older.date}; ${pair[1]} is from ${newer.date}.`,
+      explain: `"${pair[0]}" is from ${older.date}; "${pair[1]}" is from ${newer.date}.`,
       sources: [noteRef(older)],
     };
   }
-  if (src.prs.length < 2) return null;
-  const a = pick(rng, src.prs);
-  const others = shuffle(rng, src.prs.filter((p) => p.number !== a.number && Math.abs(p.order - a.order) <= 60)).slice(0, PAIR_TRIES);
+  const a = focus ? prByRef(src, focus.ref) : src.prs.length > 1 ? pick(rng, src.prs) : undefined;
+  if (!a) return null;
+  const partner = focus?.other ? prByRef(src, focus.other) : undefined;
+  const others = partner ? [partner] : shuffle(rng, src.prs.filter((p) => p.number !== a.number && Math.abs(p.order - a.order) <= 60)).slice(0, PAIR_TRIES);
   let best: { older: PrFact; newer: PrFact; pair: [string, string]; size: number } | null = null;
   for (const b of others) {
+    if (b.number === a.number) continue;
     const [o, n] = a.order < b.order ? [a, b] : [b, a];
     const found = shortPair(o.title, n.title);
     const size = found ? countTokens(found[0]) + countTokens(found[1]) : 0;
@@ -214,13 +251,13 @@ function whichFirst(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("which_first", `pr${older.number}|pr${newer.number}`),
     type: "which_first",
-    prompt: "Which merged first?",
+    prompt: "Which of these changes merged first?",
     lines: [],
     choices: shuffle(rng, pair),
     answer: pair[0],
     tolerance: 0,
     limitSec: LIMIT_SEC.which_first,
-    explain: `PR #${older.number} merged ${older.date}; PR #${newer.number} merged ${newer.date}.`,
+    explain: `"${pair[0]}" merged ${older.date}; "${pair[1]}" merged ${newer.date}.`,
     sources: [prRef(older, src.repoUrl)],
   };
 }
@@ -229,23 +266,23 @@ function monthOf(iso: string): string {
   return iso.slice(0, 7);
 }
 
-function estimate(src: WorkSources, rng: Rng): QuizQuestion | null {
+function estimate(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | null {
   const options: { key: string; prompt: string; count: number; explain: string }[] = [];
   for (const status of Array.from(new Set(src.beads.map((b) => b.status)))) {
     const n = src.beads.filter((b) => b.status === status).length;
-    options.push({ key: `beads-status-${status}`, prompt: `How many beads have status ${status}?`, count: n, explain: `${n} of ${src.beads.length} beads have status ${status}.` });
+    options.push({ key: `beads-status-${status}`, prompt: `How many of your tasks are ${plainStatus(status)}?`, count: n, explain: `${n} of ${src.beads.length} tasks are ${plainStatus(status)}.` });
   }
   for (const p of Array.from(new Set(src.beads.map((b) => b.priority)))) {
     const n = src.beads.filter((b) => b.priority === p).length;
-    options.push({ key: `beads-priority-${p}`, prompt: `How many beads are priority P${p}?`, count: n, explain: `${n} of ${src.beads.length} beads are P${p}.` });
+    options.push({ key: `beads-priority-${p}`, prompt: `How many of your tasks are ${plainPriority(p)}?`, count: n, explain: `${n} of ${src.beads.length} tasks are ${plainPriority(p)}.` });
   }
   for (const m of Array.from(new Set(src.prs.map((p) => monthOf(p.date))))) {
     const n = src.prs.filter((p) => monthOf(p.date) === m).length;
-    options.push({ key: `prs-month-${m}`, prompt: `How many PRs merged in ${m}?`, count: n, explain: `${n} PRs merged into dev during ${m}.` });
+    options.push({ key: `prs-month-${m}`, prompt: `How many changes merged during ${m}?`, count: n, explain: `${n} changes merged during ${m}.` });
   }
   const feats = src.prs.filter((p) => /^feat/i.test(p.title)).length;
-  if (src.prs.length > 0) options.push({ key: "prs-feat", prompt: "How many merged PRs are feat PRs?", count: feats, explain: `${feats} of ${src.prs.length} merged PRs are feat PRs.` });
-  const usable = options.filter((o) => o.count >= 3);
+  if (src.prs.length > 0) options.push({ key: "prs-feat", prompt: "Of your merged changes, how many add a feature?", count: feats, explain: `${feats} of ${src.prs.length} merged changes add a feature.` });
+  const usable = options.filter((o) => o.count >= 3 && (!focus || questionId("estimate", o.key) === focus.ref));
   if (usable.length === 0) return null;
   const o = pick(rng, usable);
   return {
@@ -262,22 +299,18 @@ function estimate(src: WorkSources, rng: Rng): QuizQuestion | null {
   };
 }
 
-export const BEAD_FIELDS = ["the bead id", "the status", "the priority"] as const;
+export const TASK_FIELDS = ["the status", "the priority"] as const;
 export const PR_FIELDS = ["the number", "the date", "the title"] as const;
 
-function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
-  const useBead = src.beads.length > 1 && (src.prs.length < 2 || rng() < 0.5);
+function spotError(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | null {
+  const useBead = focus ? focus.kind === "bead" : src.beads.length > 1 && (src.prs.length < 2 || rng() < 0.5);
   if (useBead) {
-    const b = pick(rng, src.beads);
-    const wrong = pick(rng, BEAD_FIELDS);
-    let id = b.id;
+    const b = focus ? src.beads.find((x) => x.id === focus.ref) : pick(rng, src.beads);
+    if (!b) return null;
+    const wrong = pick(rng, TASK_FIELDS);
     let status = b.status;
     let priority = b.priority;
-    if (wrong === "the bead id") {
-      const other = src.beads.filter((x) => x.id !== b.id);
-      if (other.length === 0) return null;
-      id = pick(rng, other).id;
-    } else if (wrong === "the status") {
+    if (wrong === "the status") {
       const other = Array.from(new Set(src.beads.map((x) => x.status))).filter((s) => s !== b.status);
       if (other.length === 0) return null;
       status = pick(rng, other);
@@ -287,20 +320,20 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
     const short = shortTitle(b.title, OPTION_TITLE_TOKENS);
     if (!short) return null;
     return {
-      id: questionId("spot_error", `${b.id}|${wrong}|${id}|${status}|${priority}`),
+      id: questionId("spot_error", `${b.id}|${wrong}|${status}|${priority}`),
       type: "spot_error",
-      prompt: "Which fact is wrong?",
-      lines: [`"${short}"`, `id: ${id}`, `status: ${status}`, `priority: P${priority}`],
-      choices: [...BEAD_FIELDS],
+      prompt: "Which task fact is wrong?",
+      lines: [`"${short}"`, `status: ${plainStatus(status)}`, `priority: ${priorityWord(priority)}`],
+      choices: [...TASK_FIELDS],
       answer: wrong,
       tolerance: 0,
       limitSec: LIMIT_SEC.spot_error,
-      explain: `The bead is ${b.id}, status ${b.status}, priority P${b.priority}.`,
+      explain: `The task is ${plainStatus(b.status)}, ${plainPriority(b.priority)}.`,
       sources: [beadRef(b)],
     };
   }
-  if (src.prs.length < 2) return null;
-  const p = pick(rng, src.prs);
+  const p = focus ? prByRef(src, focus.ref) : src.prs.length > 1 ? pick(rng, src.prs) : undefined;
+  if (!p) return null;
   const wrong = pick(rng, PR_FIELDS);
   const trueTitle = shortTitle(p.title, OPTION_TITLE_TOKENS);
   if (!trueTitle) return null;
@@ -308,6 +341,7 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
   let date = p.date;
   let title = trueTitle;
   const others = src.prs.filter((x) => x.number !== p.number);
+  if (others.length === 0) return null;
   if (wrong === "the number") num = pick(rng, others).number;
   else if (wrong === "the date") date = shiftDate(p.date, pick(rng, [-6, -4, -3, 3, 4, 6]));
   else {
@@ -318,18 +352,18 @@ function spotError(src: WorkSources, rng: Rng): QuizQuestion | null {
   return {
     id: questionId("spot_error", `pr${p.number}|${wrong}|${num}|${date}|${title}`),
     type: "spot_error",
-    prompt: "Which fact is wrong?",
+    prompt: "Which change fact is wrong?",
     lines: [`number: #${num}`, `merged: ${date}`, `title: ${title}`],
     choices: [...PR_FIELDS],
     answer: wrong,
     tolerance: 0,
     limitSec: LIMIT_SEC.spot_error,
-    explain: `PR #${p.number} merged ${p.date}: ${trueTitle}.`,
+    explain: `Change #${p.number} merged ${p.date}: ${trueTitle}.`,
     sources: [prRef(p, src.repoUrl)],
   };
 }
 
-export const MAKERS: Record<QuizType, (src: WorkSources, rng: Rng) => QuizQuestion | null> = {
+export const MAKERS: Record<QuizType, (src: WorkSources, rng: Rng, focus?: Focus) => QuizQuestion | null> = {
   recall,
   true_false: trueFalse,
   which_first: whichFirst,
@@ -342,6 +376,23 @@ export function generateQuestion(src: WorkSources, seed: string, only?: QuizType
   const order = only ? [only] : shuffle(rng, QUIZ_TYPES);
   for (const type of order) {
     const q = MAKERS[type](src, rng);
+    if (q && withinLimits(q)) return q;
+  }
+  return null;
+}
+
+export function focusOf(q: QuizQuestion): Focus | null {
+  if (q.type === "estimate") return { kind: "estimate", ref: q.id };
+  const first = q.sources[0];
+  if (!first || first.kind === "chat") return null;
+  return { kind: first.kind, ref: first.ref, other: q.sources[1]?.ref };
+}
+
+export function rewriteQuestion(old: QuizQuestion, src: WorkSources): QuizQuestion | null {
+  const focus = focusOf(old);
+  if (!focus) return null;
+  for (let i = 0; i < REWRITE_TRIES; i++) {
+    const q = MAKERS[old.type](src, seededRng(`${old.id}|${i}`), focus);
     if (q && withinLimits(q)) return q;
   }
   return null;

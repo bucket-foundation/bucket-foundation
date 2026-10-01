@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import { DONE_EVENT, START_EVENT, STORAGE_KEY, TICK_MS, initialState, normalizeState, onWorkSurface, tick, type TriggerState } from "@/lib/research-os/work-quiz/trigger";
-import { TYPE_LABEL, type PublicQuestion } from "@/lib/research-os/work-quiz/types";
+import { TYPE_LABEL, retiredNotice, type PublicQuestion } from "@/lib/research-os/work-quiz/types";
 import type { IssueResult, QuizResult } from "@/lib/research-os/work-quiz/service";
 
 const API = "/api/research-os/work-quiz";
@@ -59,7 +59,7 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
       }
       const body = (await res.json()) as IssueResult;
       if (body.status !== "issued") {
-        if (mode !== "surprise") setPhase({ kind: "error", message: body.reason === "nothing_due" ? "Nothing is due for review." : "No work sources were found on this machine." });
+        if (mode !== "surprise") setPhase({ kind: "error", message: [body.reason === "nothing_due" ? "Nothing is due for review." : "No work sources were found on this machine.", retiredNotice(body.retired)].filter(Boolean).join(" ") });
         return;
       }
       setNumeric("");
@@ -189,6 +189,9 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
                   </div>
                 )}
               </div>
+              {"issued" in phase && phase.issued.retired > 0 && (
+                <p role="status" className="mt-2 text-[12px] text-[color:var(--basalt-3)]">{retiredNotice(phase.issued.retired)}</p>
+              )}
               <p className="mt-3 text-[15px] leading-[1.5] text-[color:var(--basalt)]">{q.prompt}</p>
               {q.lines.length > 0 && (
                 <div className="mt-3 border-l-2 border-[color:var(--hairline)] pl-3 flex flex-col gap-1">

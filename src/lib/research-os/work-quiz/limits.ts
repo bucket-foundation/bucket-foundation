@@ -10,6 +10,10 @@ export const LIMITS = {
   parityShare: 0.3,
   formulaChars: 12,
   sources: 1,
+  tokenChars: 40,
+  screenChars: 280,
+  whyChars: 160,
+  unspacedCharsPerToken: 2,
 } as const;
 
 const UNITS = new Set([
@@ -18,20 +22,52 @@ const UNITS = new Set([
   "mg", "g", "kg", "hz", "khz", "mhz", "ghz", "ev", "kev", "mev", "k", "j", "kj", "w", "kw", "v", "usd", "x",
 ]);
 
-const DROPPED = new Set([
-  "a", "an", "the",
-  "of", "in", "on", "at", "to", "for", "from", "by", "with", "without", "into", "onto", "over", "under", "through", "across", "between",
-  "among", "about", "after", "before", "during", "against", "per", "via", "as", "within", "beyond", "toward", "towards", "upon", "since", "until",
-  "and", "or", "but", "nor", "while", "when", "where", "if", "because", "although", "whether", "that", "than",
-]);
+const DROPPED = new Set(["a", "an", "the", "of", "in", "on", "at", "to", "for", "from", "by", "with", "as", "per", "via", "about", "and", "or"]);
 
 const COMMIT_PREFIX = /^(feat|fix|docs|chore|refactor|test|perf|build|ci|style|revert|release|ops)(\([^)]*\))?!?:\s*/i;
 const PR_SUFFIX = /\s*\(#\d+\)\s*$/;
-const WORDLIKE = /[A-Za-z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\u0370-\u03FF\u0400-\u04FF]|_{2,}/;
 const NUMBER = /^[~<>≤≥±]?\$?\d[\d,.]*(e[+-]?\d+)?$/i;
 const OPERATOR = /^[=+*/×<>≤≥^−]+$/;
 const OPERAND = /^[A-Za-z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\u0370-\u03FF\u0400-\u04FF_^().]+$/;
 const SHORT_OPERAND = /^(\d[\d.]*|[A-Za-z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\u0370-\u03FF\u0400-\u04FF]{1,2})$/;
+
+const SYMBOL_RANGES: readonly [number, number][] = [
+  [0x00a0, 0x00bf],
+  [0x00d7, 0x00d7],
+  [0x00f7, 0x00f7],
+  [0x2000, 0x206f],
+  [0x2190, 0x22ff],
+  [0x2500, 0x257f],
+  [0x3000, 0x303f],
+  [0xfe00, 0xfe0f],
+  [0xff00, 0xff0f],
+  [0xff1a, 0xff20],
+];
+
+const UNSPACED_RANGES: readonly [number, number][] = [
+  [0x0e00, 0x0eff],
+  [0x1000, 0x109f],
+  [0x1780, 0x17ff],
+  [0x3040, 0x30ff],
+  [0x3400, 0x4dbf],
+  [0x4e00, 0x9fff],
+  [0xf900, 0xfaff],
+  [0xff66, 0xff9f],
+];
+
+const inRanges = (code: number, ranges: readonly [number, number][]) => ranges.some(([lo, hi]) => code >= lo && code <= hi);
+
+function chunkWeight(chunk: string): number {
+  if (/_{2,}/.test(chunk)) return 1;
+  let unspaced = 0;
+  let spaced = false;
+  for (let i = 0; i < chunk.length; i++) {
+    const code = chunk.charCodeAt(i);
+    if (inRanges(code, UNSPACED_RANGES)) unspaced += 1;
+    else if (code < 0x80 ? /[A-Za-z0-9]/.test(chunk[i]) : !inRanges(code, SYMBOL_RANGES)) spaced = true;
+  }
+  return Math.ceil(unspaced / LIMITS.unspacedCharsPerToken) + (spaced ? 1 : 0);
+}
 
 const bare = (chunk: string) => chunk.replace(/^[("'“‘[]+|[)"'”’\],.;:!?]+$/g, "");
 
@@ -60,7 +96,7 @@ export function tokenize(text: string): string[] {
     } else if (run > 0) {
       for (let k = i; k < i + run; k += 2) out.push(chunks[k]);
       i += run;
-    } else if (!WORDLIKE.test(chunks[i])) {
+    } else if (chunkWeight(chunks[i]) === 0) {
       i += 1;
     } else if (NUMBER.test(bare(chunks[i])) && i + 1 < chunks.length && UNITS.has(bare(chunks[i + 1]).toLowerCase())) {
       out.push(`${chunks[i]} ${chunks[i + 1]}`);
@@ -73,14 +109,28 @@ export function tokenize(text: string): string[] {
   return out;
 }
 
+export function tokenWeight(token: string): number {
+  return Math.max(1, ...token.split(" ").map(chunkWeight));
+}
+
 export function countTokens(text: string): number {
-  return tokenize(text).length;
+  return tokenize(text).reduce((n, t) => n + tokenWeight(t), 0);
+}
+
+export function longestToken(text: string): number {
+  return tokenize(text).reduce((n, t) => Math.max(n, t.length), 0);
 }
 
 export function shortTitle(title: string, cap: number): string {
-  const kept = tokenize(title.replace(PR_SUFFIX, "").replace(COMMIT_PREFIX, ""))
-    .filter((t) => !DROPPED.has(bare(t).toLowerCase()))
-    .slice(0, Math.max(0, cap));
+  const kept: string[] = [];
+  let used = 0;
+  for (const t of tokenize(title.replace(PR_SUFFIX, "").replace(COMMIT_PREFIX, ""))) {
+    if (DROPPED.has(bare(t).toLowerCase())) continue;
+    used += tokenWeight(t);
+    if (used > cap) break;
+    if (t.length > LIMITS.tokenChars) return "";
+    kept.push(t);
+  }
   return kept.join(" ").replace(/[,;:.]+$/, "");
 }
 
@@ -130,6 +180,13 @@ export function checkLimits(q: Limited, o: { intent?: boolean } = {}): string[] 
   if (why > LIMITS.why) found.push(`the why line has ${why} tokens, the limit is ${LIMITS.why}`);
   const screen = screenTokens(q);
   if (!o.intent && screen > LIMITS.screen) found.push(`${screen} tokens on screen before answering, the limit is ${LIMITS.screen}`);
+  const shown = [q.prompt, ...(q.lines ?? []), ...choices];
+  const longest = Math.max(0, ...[...shown, q.explain ?? ""].map(longestToken));
+  if (longest > LIMITS.tokenChars) found.push(`a token has ${longest} characters, the limit is ${LIMITS.tokenChars}`);
+  const chars = shown.reduce((n, t) => n + t.trim().length, 0);
+  if (chars > LIMITS.screenChars) found.push(`${chars} characters on screen before answering, the limit is ${LIMITS.screenChars}`);
+  const whyChars = (q.explain ?? "").trim().length;
+  if (whyChars > LIMITS.whyChars) found.push(`the why line has ${whyChars} characters, the limit is ${LIMITS.whyChars}`);
   if ((q.sources ?? []).length > LIMITS.sources) found.push(`${(q.sources ?? []).length} sources, the limit is ${LIMITS.sources} link`);
   return found;
 }

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { CLOZE_TITLE_TOKENS, MAKERS, OPTION_TITLE_TOKENS, STEM_TITLE_TOKENS, clozeOptions, clozeWords, generateQuestion, seededRng, shortPair } from "../src/lib/research-os/work-quiz/generate";
+import { CLOZE_TITLE_TOKENS, MAKERS, OPTION_TITLE_TOKENS, STEM_TITLE_TOKENS, clozeOptions, clozeWords, generateQuestion, rewriteQuestion, seededRng, shortPair, uniqueShort } from "../src/lib/research-os/work-quiz/generate";
 import { LIMITS, checkLimits, countTokens, parityOk, screenTokens, shortTitle, stemTokens, tokenize, withinLimits } from "../src/lib/research-os/work-quiz/limits";
 import { QUIZ_TYPES, type QuizType, type WorkSources } from "../src/lib/research-os/work-quiz/types";
 
@@ -44,8 +44,56 @@ test("a word, an identifier, a number with its unit and a short formula are one 
   assert.equal(countTokens("alpha + beta = gamma"), 3);
   assert.equal(countTokens("slice - limits"), 2);
   assert.equal(countTokens("one · two | three"), 3);
+  assert.equal(countTokens("— – … · | ? ! → ≤"), 0);
   assert.equal(countTokens("fill ____ here"), 3);
   assert.equal(countTokens("  "), 0);
+});
+
+test("other scripts and emoji count, and scripts without spaces count by length", () => {
+  assert.equal(countTokens("量子力学の基礎"), 4);
+  assert.equal(countTokens("量子"), 1);
+  assert.equal(countTokens("这是一个没有空格的很长的中文句子用来测试"), 10);
+  assert.equal(countTokens("ทดสอบภาษาไทย"), 6);
+  assert.equal(countTokens("ما هو الفرع الذي يأخذ الطلبات"), 6);
+  assert.equal(countTokens("שלום עולם"), 2);
+  assert.equal(countTokens("Привет мир café naïve"), 4);
+  assert.equal(countTokens("🚀 🎉 ✅"), 3);
+  assert.equal(countTokens("ship 🚀 now"), 3);
+  assert.equal(countTokens("PR 量子力学"), 3);
+  assert.ok(checkLimits({ prompt: "这是一个没有空格的很长的中文句子用来测试题干长度限制是否生效的例子" }).some((v) => /stem has 17 tokens/.test(v)));
+  assert.equal(shortTitle("feat: 量子力学の基礎 を 追加", 3), "");
+  assert.equal(shortTitle("feat: 量子力学 追加 する", 3), "量子力学 追加");
+});
+
+test("one token and the whole screen have character caps", () => {
+  const url = `https://example.org/${"a".repeat(300)}`;
+  assert.equal(countTokens(url), 1);
+  assert.ok(checkLimits({ prompt: `Open ${url} now` }).some((v) => v === `a token has ${url.length} characters, the limit is 40`));
+  assert.ok(checkLimits({ prompt: "Which one?", choices: ["dev", `x-${"y".repeat(60)}`] }).some((v) => /a token has 62 characters/.test(v)));
+  assert.ok(checkLimits({ prompt: "Why?", explain: `see ${"snake_case_identifier_".repeat(3)}` }).some((v) => /a token has 66 characters/.test(v)));
+  const wide = Array.from({ length: 15 }, () => "w".repeat(38)).join(" ");
+  assert.deepEqual(checkLimits({ prompt: wide }), ["584 characters on screen before answering, the limit is 280"]);
+  assert.deepEqual(checkLimits({ prompt: "Why?", explain: Array.from({ length: 20 }, () => "w".repeat(12)).join(" ") }), ["the why line has 259 characters, the limit is 160"]);
+  assert.deepEqual(checkLimits({ prompt: "Open src/lib/research-os/work-quiz/limits.ts now" }), []);
+});
+
+test("shortTitle keeps negations and direction words, and distinct titles stay distinct", () => {
+  assert.equal(shortTitle("Add no-op guard without breaking retry path", 8), "Add no-op guard without breaking retry path");
+  assert.equal(shortTitle("fix: run the check before the merge, not after", 8), "run check before merge, not after");
+  assert.equal(shortTitle("Move limits over the wire under a flag", 8), "Move limits over wire under flag");
+  assert.equal(shortTitle("never ship if no test passes until review", 8), "never ship if no test passes until review");
+  assert.notEqual(shortTitle("Retry before the timeout", 5), shortTitle("Retry after the timeout", 5));
+  assert.notEqual(shortTitle("Guard with a retry", 5), shortTitle("Guard without a retry", 5));
+  const all = [...TITLES.prs, ...TITLES.beads];
+  for (const word of ["without", "over", "under", "before", "after", "not", "no", "never", "into", "out"]) {
+    for (const t of all.filter((x) => new RegExp(`\\b${word}\\b`, "i").test(x.replace(/\s*\(#\d+\)$/, "")))) {
+      const kept = shortTitle(t, 40);
+      if (!/^[a-z]+(\([^)]*\))?!?:/i.test(t) || !new RegExp(`^[^:]*\\b${word}\\b[^:]*:`, "i").test(t)) assert.match(kept, new RegExp(`\\b${word}\\b`, "i"), `${word} survives in ${t}`);
+    }
+  }
+  const full = new Set(all);
+  const short = new Set(Array.from(full).map((t) => shortTitle(t, CLOZE_TITLE_TOKENS)));
+  assert.ok(short.size >= full.size - 2, `${full.size - short.size} of ${full.size} distinct titles collide at ${CLOZE_TITLE_TOKENS} tokens`);
 });
 
 test("shortTitle strips the commit prefix and PR number, drops function words and keeps whole tokens", () => {
@@ -55,6 +103,7 @@ test("shortTitle strips the commit prefix and PR number, drops function words an
   assert.equal(shortTitle("Explore slice 2: founding works data and its validator", 3), "Explore slice 2");
   assert.equal(shortTitle("Quiz: the of and", 5), "Quiz");
   assert.equal(shortTitle("of the and", 5), "");
+  assert.equal(shortTitle(`Open https://example.org/${"a".repeat(60)} first`, 5), "");
   assert.equal(shortTitle("docs: E = mc^2 as a card", 2), "E = mc^2 card");
   for (const t of [...TITLES.prs, ...TITLES.beads]) {
     for (const cap of [3, 5, 8]) {
@@ -114,6 +163,62 @@ test(`${SEEDS} seeds per generator over fixture PRs, beads and notes stay within
   }
 });
 
+test("no two items share a true-or-false stem, and the stem names the kind of fact", () => {
+  const twins: WorkSources = {
+    repoUrl: null,
+    notes: [],
+    prs: [],
+    beads: [
+      { id: "bkt-s1", title: "Quiz length limits on the work quiz slice 1", status: "closed", priority: 0, createdAt: "2026-10-01" },
+      { id: "bkt-s2", title: "Quiz length limits on the work quiz slice 2", status: "open", priority: 0, createdAt: "2026-10-01" },
+      { id: "bkt-s3", title: "Plain words in the Bucket window", status: "open", priority: 1, createdAt: "2026-10-01" },
+    ],
+  };
+  assert.equal(uniqueShort(twins.beads[0].title, twins.beads.map((b) => b.title), STEM_TITLE_TOKENS), null);
+  let made = 0;
+  for (let i = 0; i < SEEDS; i++) {
+    const q = MAKERS.true_false(twins, seededRng(`twins-${i}`));
+    if (!q) continue;
+    made++;
+    assert.equal(q.sources[0].ref, "bkt-s3");
+    assert.match(q.prompt, /^The task "Plain words Bucket window" is (open|closed)\.$/);
+  }
+  assert.ok(made > 0 && made < SEEDS);
+  for (let i = 0; i < 40; i++) {
+    const r = MAKERS.recall(SOURCES, seededRng(`kind-${i}`));
+    if (r) assert.match(r.prompt, /^Fill the blank in this (task|merged change)\.$/);
+    for (const type of QUIZ_TYPES) {
+      const q = MAKERS[type](SOURCES, seededRng(`plain-${type}-${i}`));
+      if (!q) continue;
+      const frame = [q.prompt.replace(/"[^"]*"/g, ""), ...(type === "spot_error" ? q.choices ?? [] : []), ...q.sources.map((x) => x.label)].join(" ");
+      assert.ok(!/\bbeads?\b|\bPRs?\b|\bid\b/i.test(frame), `${type} uses plain words: ${frame}`);
+    }
+  }
+});
+
+test("a stored question is rewritten about the same fact, or not at all", () => {
+  for (const type of QUIZ_TYPES) {
+    let done = 0;
+    for (let i = 0; i < 40; i++) {
+      const q = MAKERS[type](SOURCES, seededRng(`rw-${type}-${i}`));
+      if (!q) continue;
+      const again = rewriteQuestion({ ...q, id: type === "estimate" ? q.id : `${q.id}x`, prompt: `${q.prompt} ${"padding ".repeat(20)}` }, SOURCES);
+      if (!again) continue;
+      done++;
+      assert.deepEqual(checkLimits(again), []);
+      assert.equal(again.type, type);
+      if (type === "which_first" && q.sources[0].kind === "pr") {
+        const pr = SOURCES.prs.find((p) => `#${p.number}` === q.sources[0].ref)!;
+        assert.ok((again.choices ?? []).some((c) => shortTitle(pr.title, OPTION_TITLE_TOKENS).startsWith(c)));
+      } else if (type !== "estimate" && type !== "which_first") assert.equal(again.sources[0].ref, q.sources[0].ref);
+    }
+    assert.ok(done >= 10, `${type} rewrote ${done}`);
+  }
+  const gone = { ...MAKERS.true_false(PARTS.prs, seededRng("gone"))!, sources: [{ kind: "pr" as const, ref: "#99999", label: "x", href: null }] };
+  assert.equal(rewriteQuestion(gone, SOURCES), null);
+  assert.equal(rewriteQuestion({ ...gone, sources: [] }, SOURCES), null);
+});
+
 test("generateQuestion drops a question over a limit and falls through to the next form", () => {
   const long: WorkSources = { repoUrl: null, notes: [], prs: [], beads: [{ id: "bkt-a", title: "of the and", status: "open", priority: 1, createdAt: "2026-10-01" }, { id: "bkt-b", title: "to in on", status: "closed", priority: 2, createdAt: "2026-10-01" }] };
   for (let i = 0; i < 50; i++) {
@@ -144,10 +249,14 @@ export function validCells(titles: { prs: string[]; beads: string[] }): Record<Q
     const others = pool.filter((w) => !lower.has(w.toLowerCase()));
     return once.some((answer) => {
       const options = clozeOptions(answer, others);
-      return options !== null && withinLimits({ prompt: "Which word fills the blank?", lines: [s.replace(answer, "____")], choices: options, explain: `PR #000 reads: ${s}` });
+      return options !== null && withinLimits({ prompt: "Fill the blank in this merged change.", lines: [s.replace(answer, "____")], choices: options, explain: `Change #000 reads: ${s}` });
     });
   });
-  const stem = (cap: number, frame: (s: string) => string) => all.map((t) => shortTitle(t, cap) !== "" && withinLimits({ prompt: frame(shortTitle(t, cap)), choices: ["true", "false"] }));
+  const claim = (set: string[]) =>
+    set.map((t) => {
+      const s = uniqueShort(t, set, STEM_TITLE_TOKENS);
+      return s !== null && withinLimits({ prompt: `The change "${s}" merged on 2026-10-01.`, choices: ["true", "false"] });
+    });
   const rng = seededRng("four-titles");
   const four = Array.from({ length: 2000 }, () => {
     const picked = new Set<number>();
@@ -157,10 +266,10 @@ export function validCells(titles: { prs: string[]; beads: string[] }): Record<Q
   });
   return {
     recall: share(recall),
-    true_false: share(stem(STEM_TITLE_TOKENS, (s) => `"${s}" merged on 2026-10-01.`)),
+    true_false: share([...claim(titles.prs), ...claim(titles.beads)]),
     which_first: share([...allPairs(titles.prs), ...allPairs(titles.beads)]),
     estimate: 1,
-    spot_error: share(all.map((t) => shortTitle(t, OPTION_TITLE_TOKENS) !== "" && withinLimits({ prompt: "Which fact is wrong?", lines: [`number: #000`, "merged: 2026-10-01", `title: ${shortTitle(t, OPTION_TITLE_TOKENS)}`], choices: ["the number", "the date", "the title"] }))),
+    spot_error: share(all.map((t) => shortTitle(t, OPTION_TITLE_TOKENS) !== "" && withinLimits({ prompt: "Which change fact is wrong?", lines: [`number: #000`, "merged: 2026-10-01", `title: ${shortTitle(t, OPTION_TITLE_TOKENS)}`], choices: ["the number", "the date", "the title"] }))),
     four_titles: share(four),
   };
 }
