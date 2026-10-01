@@ -976,6 +976,18 @@ button {
   margin-top: 10px;
 }
 
+.q,
+.lines li,
+.choice,
+.why {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.why .source {
+  color: var(--ink-2);
+}
+
 section > .panel + .panel,
 section > article + article {
   margin-top: 14px;

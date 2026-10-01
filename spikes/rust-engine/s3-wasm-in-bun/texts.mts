@@ -1,0 +1,18 @@
+export const TEXTS = [
+  "Entropy. Entropy counts the microstates behind one macrostate.",
+  "Speed of light. Light in vacuum moves at one speed for every observer.",
+  "Structured water. Water orders itself next to a hydrophilic surface.",
+  "Second law. The entropy of a closed system does not fall.",
+  "Free energy. Work available from a system at fixed temperature.",
+  "Photoelectric effect. Light ejects electrons above a threshold frequency.",
+  "Information. Erasing one bit costs energy at temperature T.",
+  "Symmetry. Each continuous symmetry gives a conserved quantity.",
+  "Electron transport. Electrons step down a chain and pump protons.",
+  "Proton gradient. A membrane stores energy as a proton gradient.",
+  "Wave function. The state evolves linearly until a measurement.",
+  "Field. A field assigns a value to each point of space and time.",
+  "Gravity. Mass and energy curve space and time.",
+  "Time. Proper time is the length of a worldline.",
+  "Quantum. Action comes in units of the Planck constant.",
+  "Natural selection. Heritable variation with differential survival.",
+];

@@ -70,3 +70,8 @@ export const TYPE_LABEL: Record<QuizType, string> = {
   estimate: "estimate the number",
   spot_error: "spot the error",
 };
+
+export function retiredNotice(retired: number): string {
+  if (retired <= 0) return "";
+  return retired === 1 ? "1 review card was over the length limit, had no shorter form, and was retired." : `${retired} review cards were over the length limit, had no shorter form, and were retired.`;
+}

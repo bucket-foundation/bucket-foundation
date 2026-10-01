@@ -179,7 +179,9 @@ describe("data screen: the list", () => {
     expect(parts[1]).toContain("Source not recorded.");
     expect(v.button("Browse", explore).textContent).toBe("Browse 11,000 records");
     const fine = Array.from(explore.querySelectorAll(".fine dd")).map((d) => d.textContent);
-    expect(fine).toEqual(["e1", NOT_RECORDED, "f".repeat(64)]);
+    expect(fine).toEqual(["e1", "f".repeat(64)]);
+    expect(Array.from(explore.querySelectorAll(".fine dt")).map((d) => d.textContent)).toEqual(["Version", "Checksum"]);
+    expect(explore.textContent).not.toContain("https://");
     expect(Array.from(v.card("Learning decks").querySelectorAll(".fine dd")).map((d) => d.textContent)).toEqual(["v1", "September 30, 2026", NOT_RECORDED]);
     expect(v.button("Browse", v.card("Learning decks")).textContent).toBe("Browse 487 records");
     expect(v.card("Learning decks").querySelector(".left-out")).toBeNull();
@@ -295,7 +297,8 @@ describe("data screen: one record", () => {
     await v.click(v.button("Browse", v.card("Explore sources")));
     expect(v.rows()[1].querySelector("td:last-child button")).toBeNull();
     await v.click(v.button(ROWS[1].title));
-    expect(v.host.querySelector("article.record > dl > dd:last-child")!.textContent).toBe("https://archive.org/details/item");
+    expect(v.host.querySelector("article.record > dl > dd:last-child")!.textContent).toBe(ROWS[1].title);
+    expect(v.host.textContent).not.toContain("archive.org");
     expect(v.host.querySelector("article.record button")).toBeNull();
     await v.click(v.tab("Explore sources"));
     await v.click(v.button(ROWS[2].title));
@@ -375,7 +378,7 @@ describe("data screen: tabs", () => {
     await v.unmount();
   });
 
-  test("the open tabs, the open one and a table's filter and page come back after a reload", async () => {
+  test("the open tabs and the open one come back after a reload, with titles rebuilt from the data", async () => {
     const storage = memory();
     const { v } = await two(storage);
     await v.click(v.tab("Explore sources"));
@@ -386,11 +389,24 @@ describe("data screen: tabs", () => {
     document.body.innerHTML = "";
     const s = stubServer();
     const w = await mount(s.api, storage);
-    expect(w.tabs()).toEqual(before);
-    expect((w.host.querySelector('input[type="search"]') as HTMLInputElement).value).toBe("entropy");
-    expect(s.calls.records).toEqual([["explore", { q: "entropy", kind: "", sort: undefined, dir: undefined, offset: 50, limit: 50 }]]);
-    expect(w.status()).toBe(`51 to 100 of ${Math.ceil(BIG / 7).toLocaleString("en-US")} records`);
+    expect(w.tabs()).toEqual(before.map((t) => t.replace(ROWS[3].title, "Record")));
+    expect((w.host.querySelector('input[type="search"]') as HTMLInputElement).value).toBe("");
+    expect(s.calls.records).toEqual([["explore", { q: "", kind: "", sort: undefined, dir: undefined, offset: 0, limit: 50 }]]);
+    await w.click(w.tab("Record"));
+    expect(w.tabs()).toContain(`*${ROWS[3].title}`);
     await w.unmount();
+  });
+
+  test("the saved list holds route ids alone, never a title or a typed search", async () => {
+    const storage = memory();
+    const { v } = await two(storage);
+    await v.click(v.tab("Explore sources"));
+    await v.type("entropy");
+    await v.click(v.button("Next"));
+    const saved = storage.data["bucket.data.tabs"];
+    expect(JSON.parse(saved)).toEqual({ tabs: [{ id: "set:explore", dataset: "explore" }, { id: `rec:explore:${ROWS[3].id}`, dataset: "explore", record: ROWS[3].id }], active: "set:explore" });
+    for (const leak of ["entropy", "title", "Explore sources", ROWS[3].title, '"q"', "offset"]) expect(saved).not.toContain(leak);
+    await v.unmount();
   });
 
   test("opening the same dataset or record twice keeps one tab", async () => {
@@ -407,9 +423,9 @@ describe("data screen: tabs", () => {
     const v = await mount(stubServer().api, memory({ "bucket.data.tabs": "{broken" }));
     expect(v.tabs()).toEqual(["*All data"]);
     await v.unmount();
-    const saved = JSON.stringify({ tabs: [{ id: "set:old", title: "Old pack", dataset: "old" }, { id: 3 }, { id: "set:yours", title: "Your work", dataset: "yours" }], active: "set:old" });
+    const saved = JSON.stringify({ tabs: [{ id: "set:old", dataset: "old" }, { id: 3 }, { id: "set:yours", dataset: "yours" }], active: "set:old" });
     const w = await mount(stubServer().api, memory({ "bucket.data.tabs": saved }));
-    expect(w.tabs()).toEqual(["All data", "*Old pack", "Your work"]);
+    expect(w.tabs()).toEqual(["All data", "*Data", "Your work"]);
     expect(w.host.querySelector('[role="tabpanel"]')!.textContent).toBe(NOT_LOADED);
     await w.click(w.tab("Your work"));
     expect(w.host.querySelector('[role="tabpanel"]')!.textContent).toBe(NOT_LOADED);

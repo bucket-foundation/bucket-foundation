@@ -6,7 +6,7 @@ import { cosineRank, tokenRank, type CanonHit, type ClaimIndexEntry } from "../s
 
 const VECTORS = path.join(__dirname, "..", "lean", "vectors", "ranking-order.txt");
 const EXPECTED_CASES = 10000;
-const SHUFFLED_MISMATCHES = 4677;
+const TOKEN_SCORE_MAX = 50;
 const TOKEN = "photon";
 
 type Row = { id: number; score: number };
@@ -40,60 +40,50 @@ function ids(hits: CanonHit[]): number[] {
   return hits.map((h) => h.entry.rowid);
 }
 
-function same(a: number[], b: number[]): boolean {
-  return a.length === b.length && a.every((v, i) => v === b[i]);
-}
-
 function hasTie(rows: Row[]): boolean {
   return new Set(rows.map((r) => r.score)).size < rows.length;
 }
 
 const byId = (rows: Row[]) => [...rows].sort((a, b) => a.id - b.id);
-const nonNegative = (rows: Row[]) => rows.every((r) => r.score >= 0);
+const tokenScores = (rows: Row[]) => rows.every((r) => r.score >= 0 && r.score <= TOKEN_SCORE_MAX);
 
 const cases = parseCases();
 
-test("the Lean vectors hold 10,000 cases with ties, zero scores and negative scores", () => {
+test("the Lean vectors hold 10,000 cases with ties, edge scores, sparse and large ids, and lists over 50", () => {
   assert.equal(cases.length, EXPECTED_CASES);
   assert.ok(cases.filter((c) => hasTie(c.input)).length > 5000);
   assert.ok(cases.some((c) => c.input.some((r) => r.score === 0)));
   assert.ok(cases.some((c) => c.input.some((r) => r.score < 0)));
+  assert.ok(cases.some((c) => c.input.some((r) => r.score === 2 ** 24)));
+  assert.ok(cases.some((c) => c.input.some((r) => r.score === -(2 ** 24))));
   assert.ok(cases.some((c) => c.input.length === 0));
+  assert.ok(cases.filter((c) => c.input.length > 50).length > 300);
+  assert.ok(cases.some((c) => c.input.some((r) => r.id === Number.MAX_SAFE_INTEGER)));
+  assert.ok(cases.some((c) => c.input.some((r) => r.id > 2 ** 20 && r.id < 2 ** 32)));
+  for (const c of cases) for (const r of c.input) assert.ok(Number.isSafeInteger(r.id) && Math.fround(r.score) === r.score);
 });
 
 test("cosineRank returns a permutation in descending score order on every case", () => {
   for (const c of cases) {
     const hits = cosineOrder(c.input);
     assert.deepEqual(ids(hits).sort((a, b) => a - b), byId(c.input).map((r) => r.id));
-    assert.equal(hits.length, c.input.length);
+    const scoreOf = new Map(c.input.map((r) => [r.id, r.score]));
     for (let i = 1; i < hits.length; i++) assert.ok(hits[i - 1].score >= hits[i].score);
-    for (const h of hits) assert.equal(h.score, c.input.find((r) => r.id === h.entry.rowid)?.score);
+    for (const h of hits) assert.equal(h.score, scoreOf.get(h.entry.rowid));
   }
 });
 
-test("cosineRank matches the Lean order on every case whose index arrives in ascending id order", () => {
-  const mismatches = cases.filter((c) => !same(ids(cosineOrder(byId(c.input))), c.leanOrder)).length;
-  assert.equal(mismatches, 0);
-});
-
-test("cosineRank on shuffled input breaks ties by input position and differs from the Lean order", () => {
-  const mismatched = cases.filter((c) => !same(ids(cosineOrder(c.input)), c.leanOrder));
-  assert.ok(mismatched.every((c) => hasTie(c.input)));
-  assert.equal(mismatched.length, SHUFFLED_MISMATCHES);
-});
-
-test("tokenRank agrees with cosineRank on every case with scores at or above zero", () => {
-  const eligible = cases.filter((c) => nonNegative(c.input));
-  assert.ok(eligible.length > 1000);
-  for (const c of eligible) {
-    assert.deepEqual(ids(tokenOrder(c.input)), ids(cosineOrder(c.input)));
-    assert.deepEqual(ids(tokenOrder(byId(c.input))), c.leanOrder);
-  }
-});
-
-test("a comparator with the id tie-break matches the Lean order on every shuffled case", () => {
+test("cosineRank matches the Lean order on every case in shuffled, ascending and descending id order", () => {
   for (const c of cases) {
-    const sorted = [...c.input].sort((a, b) => b.score - a.score || a.id - b.id);
-    assert.deepEqual(sorted.map((r) => r.id), c.leanOrder);
+    assert.deepEqual(ids(cosineOrder(c.input)), c.leanOrder);
+    assert.deepEqual(ids(cosineOrder(byId(c.input))), c.leanOrder);
+    assert.deepEqual(ids(cosineOrder(byId(c.input).reverse())), c.leanOrder);
   }
+});
+
+test("tokenRank matches the Lean order on every shuffled case with scores from 0 to 50", () => {
+  const eligible = cases.filter((c) => tokenScores(c.input));
+  assert.ok(eligible.length > 1000);
+  assert.ok(eligible.some((c) => hasTie(c.input)));
+  for (const c of eligible) assert.deepEqual(ids(tokenOrder(c.input)), c.leanOrder);
 });

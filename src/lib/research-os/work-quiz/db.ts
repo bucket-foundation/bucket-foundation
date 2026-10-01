@@ -117,6 +117,35 @@ export async function writeCard(learnerId: string, question: QuizQuestion, card:
   return must(((data as unknown[] | null) ?? []).length > 0, error);
 }
 
+async function moveQuestion(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean> {
+  const { data, error } = await graphService()
+    .from("work_quiz_cards")
+    .update({ question, updated_at: new Date().toISOString() })
+    .eq("learner_id", learnerId)
+    .eq("question_id", previous.question_id)
+    .eq("reps", previous.reps)
+    .select("question_id");
+  return must(((data as unknown[] | null) ?? []).length > 0, error);
+}
+
+async function copyCard(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean> {
+  const row = { learner_id: learnerId, question_id: question.id, question, card: previous.card, due_at: previous.due_at, reps: previous.reps, updated_at: new Date().toISOString() };
+  const { data, error } = await graphService().from("work_quiz_cards").upsert(row, { onConflict: "learner_id,question_id", ignoreDuplicates: true }).select("question_id");
+  return must(((data as unknown[] | null) ?? []).length > 0, error);
+}
+
+export async function rekeyCard(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean> {
+  if (question.id === previous.question_id) return moveQuestion(learnerId, previous, question);
+  if (!(await copyCard(learnerId, previous, question))) return false;
+  await retireCard(learnerId, previous.question_id);
+  return true;
+}
+
+export async function retireCard(learnerId: string, questionId: string): Promise<void> {
+  const { error } = await graphService().from("work_quiz_cards").delete().eq("learner_id", learnerId).eq("question_id", questionId);
+  must(null, error);
+}
+
 export async function dueCards(learnerId: string, now: Date, limit: number): Promise<CardRow[]> {
   const { data, error } = await graphService()
     .from("work_quiz_cards")

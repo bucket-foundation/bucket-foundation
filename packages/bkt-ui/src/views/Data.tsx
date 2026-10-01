@@ -31,7 +31,6 @@ export const NOT_LOADED = "This data is no longer loaded. Close this tab.";
 export const NO_RECORDS = "This dataset holds no records.";
 export const NOT_RECORDED = "Not recorded";
 const TITLE_CHARS = 40;
-const SORTS: Sort[] = ["title", "creators", "year", "kind"];
 const COLUMNS: { sort: Sort; label: string }[] = [
   { sort: "title", label: "Title" },
   { sort: "creators", label: "By" },
@@ -49,22 +48,15 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 const short = (s: string) => (s.length > TITLE_CHARS ? `${s.slice(0, TITLE_CHARS - 1).trimEnd()}…` : s);
 const text = (v: unknown, max: number): v is string => typeof v === "string" && v.length > 0 && v.length <= max;
 
-function validTable(raw: unknown): TableState {
-  const t = (raw ?? {}) as Partial<TableState>;
-  return {
-    q: typeof t.q === "string" ? t.q.slice(0, 200) : "",
-    kind: typeof t.kind === "string" ? t.kind.slice(0, 64) : "",
-    sort: SORTS.includes(t.sort as Sort) ? (t.sort as Sort) : "",
-    dir: t.dir === "desc" ? "desc" : "asc",
-    offset: Number.isInteger(t.offset) && (t.offset as number) >= 0 ? (t.offset as number) : 0,
-  };
-}
-
 export function validDataTab(raw: unknown): DataTab | null {
   const t = raw as Partial<DataTab> | null;
-  if (!t || typeof t !== "object" || !text(t.id, 1200) || !text(t.title, 200) || !text(t.dataset, 32)) return null;
+  if (!t || typeof t !== "object" || !text(t.id, 1200) || !text(t.dataset, 32)) return null;
   if (t.record !== undefined && !text(t.record, 1024)) return null;
-  return t.record === undefined ? { id: t.id, title: t.title, dataset: t.dataset, table: validTable(t.table) } : { id: t.id, title: t.title, dataset: t.dataset, record: t.record };
+  return t.record === undefined ? { id: t.id, dataset: t.dataset } : { id: t.id, dataset: t.dataset, record: t.record };
+}
+
+export function storedTabs(s: Tabs<DataTab>): Tabs<DataTab> {
+  return { tabs: s.tabs.map(({ id, dataset, record }) => (record === undefined ? { id, dataset } : { id, dataset, record })), active: s.active };
 }
 
 function SourceLink({ api, url, onError, children }: { api: DataApi; url: string; onError: (m: string) => void; children: string }) {
@@ -124,9 +116,7 @@ function DatasetCard({ api, d, onOpen, onError }: { api: DataApi; d: Dataset; on
                       <SourceLink api={api} url={p.link} onError={onError}>
                         Open the source
                       </SourceLink>
-                    ) : (
-                      p.link
-                    )}
+                    ) : null}
                   </td>
                 </tr>
               ))}
@@ -140,8 +130,12 @@ function DatasetCard({ api, d, onOpen, onError }: { api: DataApi; d: Dataset; on
           <dl>
             <dt>Version</dt>
             <dd>{d.version ?? NOT_RECORDED}</dd>
-            <dt>Built</dt>
-            <dd>{d.builtAt === null ? NOT_RECORDED : new Date(d.builtAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</dd>
+            {d.builtAt !== null && (
+              <>
+                <dt>Built</dt>
+                <dd>{new Date(d.builtAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</dd>
+              </>
+            )}
             <dt>Checksum</dt>
             <dd>{d.checksum ?? NOT_RECORDED}</dd>
           </dl>
@@ -268,7 +262,7 @@ function TablePane({ api, d, table, onTable, onRecord, onError }: { api: DataApi
   );
 }
 
-function RecordPane({ api, dataset, id, onError }: { api: DataApi; dataset: string; id: string; onError: (m: string) => void }) {
+function RecordPane({ api, dataset, id, onError, onTitle }: { api: DataApi; dataset: string; id: string; onError: (m: string) => void; onTitle: (title: string) => void }) {
   const [detail, setDetail] = useState<DataDetail | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
 
@@ -277,7 +271,11 @@ function RecordPane({ api, dataset, id, onError }: { api: DataApi; dataset: stri
     setDetail(null);
     setFailed(null);
     api.dataRecord(dataset, id).then(
-      (d) => live && setDetail(d),
+      (d) => {
+        if (!live) return;
+        setDetail(d);
+        onTitle(d.record.title);
+      },
       (e: Error) => live && setFailed(e.message),
     );
     return () => {
@@ -317,7 +315,7 @@ function RecordPane({ api, dataset, id, onError }: { api: DataApi; dataset: stri
               Open the source in your browser
             </SourceLink>
           ) : (
-            r.source
+            r.title
           )}
         </dd>
       </dl>
@@ -335,13 +333,20 @@ export function DataView({ api, storage = windowStorage() }: { api: DataApi; sto
   }, [api]);
 
   useEffect(() => {
-    writeTabs(storage, DATA_TABS_KEY, tabs);
+    writeTabs(storage, DATA_TABS_KEY, storedTabs(tabs));
   }, [storage, tabs]);
 
+  const [titles, setTitles] = useState<Record<string, string>>({});
+  const titleOf = (t: DataTab) => (t.record === undefined ? (datasets?.find((d) => d.id === t.dataset)?.name ?? "Data") : (titles[t.id] ?? "Record"));
+  const shown: Tabs<DataTab> = { tabs: tabs.tabs.map((t) => ({ ...t, title: titleOf(t) })), active: tabs.active };
   const active = tabs.tabs.find((t) => t.id === tabs.active) ?? null;
   const dataset = active ? (datasets?.find((d) => d.id === active.dataset) ?? null) : null;
-  const openDataset = (d: Dataset) => setTabs((s) => openTab(s, { id: `set:${d.id}`, title: d.name, dataset: d.id, table: START }));
-  const openRecord = (d: Dataset, r: DataRow) => setTabs((s) => openTab(s, { id: `rec:${d.id}:${r.id}`, title: short(r.title), dataset: d.id, record: r.id }));
+  const openDataset = (d: Dataset) => setTabs((s) => openTab(s, { id: `set:${d.id}`, dataset: d.id, table: START }));
+  const openRecord = (d: Dataset, r: DataRow) => {
+    const id = `rec:${d.id}:${r.id}`;
+    setTitles((m) => ({ ...m, [id]: short(r.title) }));
+    setTabs((s) => openTab(s, { id, dataset: d.id, record: r.id }));
+  };
 
   return (
     <section className="data">
@@ -349,7 +354,7 @@ export function DataView({ api, storage = windowStorage() }: { api: DataApi; sto
         <h1>Data</h1>
         <p className="muted">What Bucket has loaded on this computer. Open a dataset or a record and it stays here as a tab.</p>
       </header>
-      <TabBar label="Open data" home="All data" state={tabs} onChange={setTabs} />
+      <TabBar label="Open data" home="All data" state={shown} onChange={setTabs} />
       {error && (
         <p className="banner" role="alert">
           {error}
@@ -371,7 +376,7 @@ export function DataView({ api, storage = windowStorage() }: { api: DataApi; sto
         ) : !dataset || !dataset.browsable ? (
           <p className="muted">{NOT_LOADED}</p>
         ) : active.record !== undefined ? (
-          <RecordPane key={active.id} api={api} dataset={dataset.id} id={active.record} onError={setError} />
+          <RecordPane key={active.id} api={api} dataset={dataset.id} id={active.record} onError={setError} onTitle={(t) => setTitles((m) => (m[active.id] === short(t) ? m : { ...m, [active.id]: short(t) }))} />
         ) : (
           <TablePane key={active.id} api={api} d={dataset} table={active.table ?? START} onTable={(table) => setTabs((s) => patchTab(s, active.id, { table }))} onRecord={(r) => openRecord(dataset, r)} onError={setError} />
         )}

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
 import type { Bank, Review } from "./bank";
 import type { AiScores } from "./probe";
-import { malformedCount, THINK_MS } from "./probe";
+import { THINK_MS } from "./probe";
+import { reportRows } from "./report-text";
 import { ProbeRun, report } from "./session";
-import type { Estimate } from "./stats";
 import type { HaiStore } from "./store";
 
 export interface HaiData {
@@ -14,12 +14,6 @@ export interface HaiData {
 }
 
 const LETTERS = ["1", "2", "3", "4"];
-
-export function fmt(e: Estimate): string {
-  if (e.value === null) return "n/a";
-  const ci = e.lo === null || e.hi === null ? "CI n/a" : `95% CI ${e.lo.toFixed(2)} to ${e.hi.toFixed(2)}`;
-  return `${e.value.toFixed(2)} (${ci})`;
-}
 
 export function readiness(d: HaiData): string | null {
   if (!d.bank) return "No frozen bank. Run bkt hai freeze.";
@@ -36,7 +30,7 @@ function Consent({ onYes, onNo }: { onYes: () => void; onNo: () => void }) {
       <Text>Each probe asks 40 questions. You answer half alone. On the other half you think for 20 seconds, then see an AI answer you may accept or override.</Text>
       <Text>Seven days later you answer all 40 again without help. Scores appear after that retest.</Text>
       <Text>Recorded on this device only: your choices, correctness, timing, and whether you took the AI answer. Nothing is sent anywhere.</Text>
-      <Text>Delete everything with bkt hai wipe. Export with bkt hai export.</Text>
+      <Text>Read your results with bkt hai report. Delete everything with bkt hai wipe.</Text>
       <Text color="cyan">y to agree, n to leave</Text>
     </Box>
   );
@@ -94,26 +88,14 @@ function Runner({ run, onDone }: { run: ProbeRun; onDone: () => void }) {
 }
 
 function ReportView({ hai, scores }: { hai: HaiStore; scores: AiScores | null }) {
-  const r = report(hai, scores);
-  const next = r.nextRetest ? new Date(r.nextRetest).toLocaleString() : "none";
-  if (!r.summary) return <Text>No retested probes yet. Next retest: {next}</Text>;
-  const s = r.summary;
   return (
     <Box flexDirection="column">
-      <Text bold>
-        {s.pairs} pairs over {r.retestedProbes} retested probes
-      </Text>
-      <Text>
-        H {s.H.toFixed(2)} J {s.J.toFixed(2)} A {s.A.toFixed(2)} (guess-corrected)
-      </Text>
-      <Text>D = J - max(H, A): {fmt(s.D)}</Text>
-      {scores && malformedCount(scores) > 0 && <Text dimColor>{malformedCount(scores)} malformed AI replies left out of A and of probes</Text>}
-      <Text>m = J / max(H, A): {fmt(s.m)}</Text>
-      <Text>Retention R: {fmt(s.R)}</Text>
-      <Text>Learning L = J(t+7) - H(t+7): {fmt(s.L)}</Text>
-      <Text>Dependence: {s.dependence === null ? "not enough data" : s.dependence ? "yes" : "no"}</Text>
-      {!r.trend && <Text dimColor>Trend opens at 5 retested probes; n={r.retestedProbes} of 5.</Text>}
-      <Text dimColor>Next retest: {next}</Text>
+      {reportRows(report(hai, scores), scores).map((row) => (
+        <Box key={row.text} flexDirection="column">
+          <Text>{row.text}</Text>
+          {row.meaning && <Text dimColor>{row.meaning}</Text>}
+        </Box>
+      ))}
     </Box>
   );
 }

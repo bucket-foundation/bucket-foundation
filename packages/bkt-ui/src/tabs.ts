@@ -1,6 +1,6 @@
 export interface Tab {
   id: string;
-  title: string;
+  title?: string;
 }
 
 export interface Tabs<T extends Tab> {
