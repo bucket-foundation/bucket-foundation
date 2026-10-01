@@ -159,14 +159,16 @@ export async function sendDailyDigest(opts: {
   const all: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
   const ledger = opts.ledger;
   const picked = await frozenEntries(all, day, ledger);
-  const digest = buildDigest(picked.entries, day);
+  let digest = buildDigest(picked.entries, day);
   const published = new Set(picked.entries.filter((e) => typeof e.published_at === "string").map((e) => e.id as string));
   let recorded = picked.frozen || !ledger;
   const record = async () => {
     if (recorded || !ledger) return;
     const ids = digest.groups.flatMap((g) => g.items.map((i) => i.id));
     await ledger.freeze(day, ids);
-    for (const id of ids) if (published.has(id)) await ledger.markMailed(id, day);
+    const kept = (await ledger.frozen(day)) ?? ids;
+    if (kept.length !== ids.length || kept.some((id) => !ids.includes(id))) digest = buildDigest(picked.entries.filter((e) => kept.includes(e.id as string)), day);
+    for (const id of kept) if (published.has(id)) await ledger.markMailed(id, day);
     recorded = true;
   };
   const base = { day: digest.day, entries: digest.count, recipients: 0, sent: 0, failed: 0, pending: 0, resumedAt: 0 };
@@ -183,6 +185,10 @@ export async function sendDailyDigest(opts: {
       break;
     }
     const r = recipients[i];
+    if (digest.count === 0) {
+      report.pending = recipients.length - i;
+      break;
+    }
     const unsub = unsubscribeUrl(r.email, config.secret);
     try {
       await sendOne(fetcher, config, r, digest.day, renderDigest(digest, unsub, config.postalAddress), unsub);
