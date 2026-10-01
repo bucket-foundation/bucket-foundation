@@ -1,0 +1,21 @@
+{
+  "id": "gen-sibling-momentum",
+  "kind": "generation",
+  "category": "generation",
+  "date": "2026-10-01",
+  "source": "own",
+  "machine_generated": true,
+  "title": "Sibling momentum",
+  "claim": "An open problem whose file had another problem move to solved in the prior window has a higher resolution rate in the next one.",
+  "tool": "solver-gap-engine momentum.py",
+  "run_id": "fc-137aec5c-2026-10-01",
+  "state": "tested",
+  "score": {
+    "value": 0.143,
+    "meaning": "rate with a recent solved sibling, 21 problems, against 0.145 without; no effect detected, underpowered"
+  },
+  "evidence": [
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+  ],
+  "parent": "gap-score-backtest-2026-10"
+}
