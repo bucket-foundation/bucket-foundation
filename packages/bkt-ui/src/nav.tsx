@@ -28,6 +28,10 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "import" }, label: "Import" },
 ];
 
+export function navFor(workReady: boolean) {
+  return NAV.filter((n) => n.route.name !== "work" || workReady);
+}
+
 export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "deck") return <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />;
   if (route.name === "path") return <PathView api={api} to={route.to} />;

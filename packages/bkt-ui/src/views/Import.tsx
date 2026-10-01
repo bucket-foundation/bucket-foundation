@@ -17,7 +17,7 @@ export function ImportView({ api }: { api: Api }) {
       setPending(null);
       setStatus(`Brought over ${r.imported.length} ${r.imported.length === 1 ? "deck" : "decks"}.`);
     } catch (e) {
-      if ((e as Error).message === "already imported") {
+      if (e instanceof ApiError && e.code === "already imported") {
         setPending(payload);
         setStatus(ALREADY_IMPORTED);
       } else setStatus(e instanceof ApiError && e.status === 400 ? FILE_UNREADABLE : (e as Error).message);

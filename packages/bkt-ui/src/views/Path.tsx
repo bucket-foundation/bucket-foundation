@@ -10,7 +10,7 @@ const SHELL_RANK: Record<string, number> = { prereq: 0, nucleus: 1, frontier: 2 
 
 export const MISSING_TOPIC = "This needs a topic Bucket does not have yet.";
 export const UNKNOWN_TOPIC = "Bucket does not have that topic yet.";
-export const TOPIC_CYCLE = "Two topics each need the other first.";
+export const TOPIC_CYCLE = "Some topics wait on each other.";
 export const MASTERY_UNSURE = "Bucket is unsure what you already know here.";
 
 function describe(error: PathError): string {

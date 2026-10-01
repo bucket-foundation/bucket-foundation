@@ -2,7 +2,9 @@ import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, mock, test } from "bun:test";
 import { grade, masteryFor, normalizeState, type Atom, type EngineState } from "@academy/engine";
 import { MASTERED_THRESHOLD } from "@academy/mastery";
-import { ApiError, requestFailed, type Api, type DeckRow, type JobKind } from "./api";
+import { generateQuestion } from "@ros/work-quiz/generate";
+import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
+import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type WorkQuestion } from "./api";
 import type { Route } from "./router";
 
 mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
@@ -31,6 +33,15 @@ const DENY: { name: string; re: RegExp }[] = [
   { name: "numpy", re: /numpy/i },
   { name: "bead", re: /bead/i },
   { name: "hash", re: /\bhash(es|ed)?\b/i },
+  { name: "pdf", re: /\bpdf\b/i },
+  { name: "xml", re: /\bxml\b/i },
+  { name: "zip", re: /\bzip\b/i },
+  { name: "git", re: /\bgit\b/i },
+  { name: "repo", re: /\brepo(s|sitory|sitories)?\b/i },
+  { name: "PR", re: /\bPRs?\b/ },
+  { name: "token", re: /\btokens?\b/i },
+  { name: "stdout", re: /\bstd(out|err)\b/i },
+  { name: "placeholder value", re: /<[a-z][a-z-]*>|\{[a-z_]+\}|\bYYYY\b|\byour-[a-z]+\b|\bundefined\b|\bnull\b|\bNaN\b|\[object / },
   { name: "home path", re: /~\// },
   { name: "id: prefix and code", re: /\b[a-z]{2,5}-(?=[a-z0-9]*\d)[a-z0-9]{2,8}\b/ },
   { name: "id: numbered deck", re: /\b\d{2}-[a-z]/ },
@@ -60,7 +71,11 @@ function strings(host: Element): string[] {
 }
 
 function violations(host: Element): string[] {
-  return strings(host)
+  return violationsIn(strings(host));
+}
+
+function violationsIn(all: string[]): string[] {
+  return all
     .filter((s) => !ALLOW.has(s))
     .flatMap((s) => DENY.filter((d) => d.re.test(s)).map((d) => `${d.name}: ${s}`));
 }
@@ -85,6 +100,54 @@ function masteredState(atoms: Atom[], id: string): EngineState {
   return s;
 }
 
+const WORK: WorkSources = {
+  repoUrl: "https://github.com/example/project",
+  beads: [
+    { id: "bkt-aaaa", title: "Grip sphere on Learn", status: "closed", priority: 0, createdAt: "2026-09-20" },
+    { id: "bkt-bbbb", title: "Prerequisite path view", status: "closed", priority: 1, createdAt: "2026-09-21" },
+    { id: "bkt-cccc", title: "Advisor viewer filters", status: "closed", priority: 1, createdAt: "2026-09-22" },
+    { id: "bkt-dddd", title: "Canon circle markers", status: "in_progress", priority: 2, createdAt: "2026-09-23" },
+    { id: "bkt-eeee", title: "Notes editor preview", status: "in_progress", priority: 2, createdAt: "2026-09-24" },
+    { id: "bkt-ffff", title: "History activity chart", status: "in_progress", priority: 2, createdAt: "2026-09-25" },
+    { id: "bkt-gggg", title: "Daily quiz notifier", status: "open", priority: 3, createdAt: "2026-09-26" },
+    { id: "bkt-hhhh", title: "Window launch shortcut", status: "open", priority: 4, createdAt: "2026-09-27" },
+    { id: "bkt-iiii", title: "Review rating buttons", status: "open", priority: 4, createdAt: "2026-09-28" },
+    { id: "bkt-jjjj", title: "Deck lesson reader", status: "open", priority: 4, createdAt: "2026-09-29" },
+  ],
+  prs: [
+    { number: 501, title: "feat(bkt-ui): grip sphere on Learn (#501)", date: "2026-09-22", order: 0 },
+    { number: 502, title: "feat(bkt-ui): prerequisite path view (#502)", date: "2026-09-23", order: 1 },
+    { number: 503, title: "fix(bkt): review ratings saved twice (#503)", date: "2026-09-24", order: 2 },
+    { number: 504, title: "feat(bkt): daily quiz notifier (#504)", date: "2026-09-25", order: 3 },
+    { number: 505, title: "docs(bkt): window launch shortcut (#505)", date: "2026-09-26", order: 4 },
+  ],
+  notes: [],
+};
+
+const SERVER_ERRORS: [string, number][] = [
+  ["unauthorized", 401],
+  ["unknown deck", 404],
+  ["no open question", 404],
+  ["bad elapsedMs", 400],
+  ["rating must be 1..4", 400],
+  ["expected { branches: { <deck>: EngineState } }", 400],
+  ["unknown decks: 09-alchemy", 400],
+  ["no beads found; pick a .beads/issues.jsonl file", 400],
+  ["git could not read that folder", 400],
+  ["send claude and codex as true or false", 400],
+  ["the beads file is larger than 32 MB", 413],
+  ["already answered", 409],
+  ["data key does not match", 500],
+  ["", 502],
+];
+
+function served(seed: string, only: (typeof QUIZ_TYPES)[number]) {
+  const q = generateQuestion(WORK, seed, only);
+  if (!q) return null;
+  const question: WorkQuestion = { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec };
+  return { question, answer: { correct: true, timedOut: false, answer: q.answer, explain: q.explain } };
+}
+
 type Stub = { [K in keyof Api]?: unknown };
 
 const days = (fill: (i: number) => number) => Array.from({ length: 60 }, (_, i) => ({ day: new Date(Date.UTC(2026, 7, 1 + i)).toISOString().slice(0, 10), learn: fill(i), work: 0, notes: 0 }));
@@ -103,6 +166,7 @@ function empty(): Stub {
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, ready: false, answered: 0, correct: 0 }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file or a repository", 404)),
+    dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
     jobs: async () => ({ kinds: JOB_KINDS, jobs: [] }),
     advisor: async () => ({ review: null, forgotten: 0 }),
     primeDirections: async () => [],
@@ -120,27 +184,36 @@ function populated(over: Stub = {}): Stub {
     notes: async () => [{ id: "n1", title: "Reading list", body: "Start with Carnot.", pinned: true, createdAt: 1, updatedAt: 2 }],
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
-    workNext: async () => ({ id: "w1", type: "recall", prompt: "Which change merged first?", lines: ["Canon circle", "Notes"], choices: ["Canon circle", "Notes"], limitSec: 30 }),
+    workNext: async () => served("populated", "true_false")!.question,
+    dailyQuiz: async () => ({
+      day: DAY,
+      answered: [],
+      questions: [
+        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60 },
+        { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-29", "2026-09-30"], limitSec: 30 },
+      ],
+    }),
     ...over,
   };
 }
 
 function failing(): Stub {
-  const fail = () => Promise.reject(new ApiError(requestFailed(500), 500));
+  const fail = (code: string, status: number) => () => Promise.reject(new ApiError(code, status));
   return {
     progress: progress(null),
-    decks: fail,
-    atoms: fail,
-    quiz: fail,
-    due: fail,
-    notes: fail,
-    history: fail,
-    workStatus: fail,
-    workNext: fail,
-    importWeb: fail,
-    workBeads: fail,
-    workRepo: fail,
-    workChat: fail,
+    decks: fail("data key does not match", 500),
+    atoms: fail("unknown deck", 404),
+    quiz: fail("data key does not match", 500),
+    due: fail("data key does not match", 500),
+    notes: fail("unauthorized", 401),
+    history: fail("data key does not match", 500),
+    workStatus: fail("git could not read that folder", 400),
+    workNext: fail("data key does not match", 500),
+    dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
+    importWeb: fail("expected { branches: { <deck>: EngineState } }", 400),
+    workBeads: fail("no beads found; pick a .beads/issues.jsonl file", 400),
+    workRepo: fail("git could not read that folder", 400),
+    workChat: fail("send claude and codex as true or false", 400),
   };
 }
 
@@ -163,7 +236,9 @@ async function mount(route: Route, stub: Stub) {
   return { host, text, pickFile, act, unmount: () => act(async () => root.unmount()) };
 }
 
-const COVERED: Route["name"][] = ["learn", "path", "quiz", "review", "work", "canon", "notes", "history", "import"];
+const DAY = "2026-09-30";
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
   { name: "jobs", fixedBy: "slice 2, Analyze data" },
@@ -182,10 +257,16 @@ describe("navigation", () => {
   test("every screen is covered here or listed as pending with the slice that fixes it", async () => {
     const { NAV } = await import("./nav");
     const pending = PENDING.map((p) => p.name);
-    expect(NAV.map((n) => n.route.name).filter((n) => !COVERED.includes(n) && !pending.includes(n))).toEqual([]);
-    expect(COVERED.filter((n) => pending.includes(n))).toEqual([]);
+    expect(NAV.map((n) => n.route.name).filter((n) => !COVERED_NAMES.includes(n) && !pending.includes(n))).toEqual([]);
+    expect(COVERED_NAMES.filter((n) => pending.includes(n))).toEqual([]);
     expect(PENDING.length).toBeLessThanOrEqual(4);
     expect(PENDING.every((p) => p.fixedBy.length > 0)).toBe(true);
+  });
+
+  test("the work quiz joins the menu only for someone who has set it up", async () => {
+    const { navFor } = await import("./nav");
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
   test("the removed screens still open from their address", async () => {
@@ -208,10 +289,10 @@ describe("navigation", () => {
 });
 
 describe("plain words", () => {
-  for (const name of COVERED) {
+  for (const route of COVERED) {
     for (const [state, stub] of [["empty", empty], ["populated", populated], ["failing", failing]] as const) {
-      test(`${name}, ${state}`, async () => {
-        const v = await mount({ name } as Route, stub());
+      test(`${route.name}, ${state}`, async () => {
+        const v = await mount(route, stub());
         expect(v.text().length).toBeGreaterThan(0);
         expect(violations(v.host)).toEqual([]);
         await v.unmount();
@@ -221,7 +302,7 @@ describe("plain words", () => {
 
   test("the denylist catches each format word, path and id", () => {
     const host = document.createElement("div");
-    for (const s of ["Open review.json", "Pick .beads/issues.jsonl", "a .csv table", "TSV rows", "notes.md", "log.txt", "open /api/research-os/production", "its Python", "numpy missing", "keyed hashes", "~/code/your-repo", "bkt-398t", "02-physics", "target_node_id", "c85d792ca773"]) {
+    for (const s of ["Open review.json", "Pick .beads/issues.jsonl", "a .csv table", "TSV rows", "notes.md", "log.txt", "open /api/research-os/production", "its Python", "numpy missing", "keyed hashes", "~/code/your-repo", "bkt-398t", "02-physics", "target_node_id", "c85d792ca773", "a PDF", "feed.xml", "a zip", "git log did not run", "Use repository", "3 merged PRs", "launch token", "stdout", "~/code/your-repo", "<deck>", "{tab}", "YYYY-MM-DD", "undefined due", "[object Object]"]) {
       host.textContent = s;
       expect({ s, caught: violations(host).length > 0 }).toEqual({ s, caught: true });
     }
@@ -229,6 +310,48 @@ describe("plain words", () => {
       host.textContent = s;
       expect({ s, caught: violations(host) }).toEqual({ s, caught: [] });
     }
+  });
+});
+
+describe("what the helper sends", () => {
+  test("every kind of work question reads in plain words, with its answer and reason", async () => {
+    for (const type of QUIZ_TYPES.filter((t) => t !== "which_first" || WORK.prs.length > 1)) {
+      let made = 0;
+      for (let i = 0; i < 40; i++) {
+        const s = served(`${type}-${i}`, type);
+        if (!s) continue;
+        made++;
+        const { question: q, answer: a } = s;
+        expect({ seed: i, type, bad: violationsIn([q.prompt, ...q.lines, ...(q.choices ?? []), a.answer, a.explain]) }).toEqual({ seed: i, type, bad: [] });
+      }
+      expect({ type, made: made > 0 }).toEqual({ type, made: true });
+      const s = served(`${type}-shown`, type) ?? served(`${type}-0`, type)!;
+      const v = await mount({ name: "work" }, populated({ workNext: async () => s.question, workAnswer: async () => s.answer }));
+      expect(v.text()).toContain(s.question.prompt);
+      const choice = v.host.querySelector("button.choice") as HTMLButtonElement | null;
+      if (choice) {
+        await v.act(async () => choice.click());
+        expect(v.text()).toContain(s.answer.explain);
+      }
+      expect(violations(v.host)).toEqual([]);
+      await v.unmount();
+    }
+  });
+
+  test("the text of a refusal never reaches a screen", async () => {
+    for (const [code, status] of SERVER_ERRORS) {
+      const e = new ApiError(code, status);
+      expect(e.message).toBe(plainError(status));
+      expect(violationsIn([e.message])).toEqual([]);
+      const fail = () => Promise.reject(new ApiError(code, status));
+      for (const route of COVERED.filter((r) => r.name !== "canon")) {
+        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail });
+        if (code) expect({ route: route.name, code, leaked: v.text().includes(code) }).toEqual({ route: route.name, code, leaked: false });
+        expect(violations(v.host)).toEqual([]);
+        await v.unmount();
+      }
+    }
+    expect(violationsIn([PROGRESS_TROUBLE])).toEqual([]);
   });
 });
 
@@ -256,10 +379,11 @@ describe("path", () => {
     await need.unmount();
   });
 
-  test("two topics that need each other", async () => {
+  test("topics that wait on each other, in a loop of three", async () => {
     const { TOPIC_CYCLE } = await import("./views/Path");
-    const v = await mount({ name: "path", to: "ph-entropy" }, withAtoms([{ id: "ph-entropy", title: "Entropy", requires: ["ph-heat"] }, { id: "ph-heat", title: "Heat", requires: ["ph-entropy"] }]));
+    const v = await mount({ name: "path", to: "ph-entropy" }, withAtoms([{ id: "ph-entropy", title: "Entropy", requires: ["ph-heat"] }, { id: "ph-heat", title: "Heat", requires: ["ph-work"] }, { id: "ph-work", title: "Work", requires: ["ph-entropy"] }]));
     expect(v.host.querySelector(".error")!.textContent).toBe(TOPIC_CYCLE);
+    expect(TOPIC_CYCLE).toBe("Some topics wait on each other.");
     expect(violations(v.host)).toEqual([]);
     await v.unmount();
   });
@@ -359,12 +483,13 @@ describe("work quiz setup", () => {
     await v.unmount();
   });
 
-  test("the work quiz with nothing to ask points to its setup", async () => {
+  test("the work quiz with nothing to ask says so and leads to no file", async () => {
     const { NO_WORK_QUESTIONS } = await import("./views/WorkQuiz");
     const v = await mount({ name: "work" }, empty());
     expect(v.text()).toContain(NO_WORK_QUESTIONS);
     expect(v.host.querySelector(".error")).toBeNull();
-    expect(v.host.querySelector('a[href="#/import"]')).not.toBeNull();
+    expect(v.host.querySelector("a")).toBeNull();
+    expect(v.host.querySelector('input[type="file"]')).toBeNull();
     await v.unmount();
   });
 });

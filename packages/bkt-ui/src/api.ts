@@ -55,16 +55,25 @@ export interface DailyAnswer extends WorkAnswer {
   log10Distance: number | null;
 }
 
-export class ApiError extends Error {
-  constructor(
-    message: string,
-    readonly status: number,
-  ) {
-    super(message);
-  }
+export const PROGRESS_TROUBLE = "Bucket could not reach your saved progress. Close this window and open Bucket again.";
+
+export function plainError(status: number): string {
+  if (status === 401 || status === 403) return "Bucket is locked. Close this window and open Bucket again.";
+  if (status === 404) return "Bucket could not find that.";
+  if (status === 409) return "Bucket already did that.";
+  if (status === 413) return "That is too large for Bucket.";
+  if (status >= 400 && status < 500) return "Bucket could not use that. Check it and try again.";
+  return "Bucket ran into a problem. Try again.";
 }
 
-export const requestFailed = (status: number) => `Bucket ran into a problem (${status}). Try again.`;
+export class ApiError extends Error {
+  constructor(
+    readonly code: string,
+    readonly status: number,
+  ) {
+    super(plainError(status));
+  }
+}
 
 export interface JobKind {
   kind: string;
@@ -136,7 +145,7 @@ export class Api {
   readonly progress: BktServeStore;
 
   constructor(private token: string, onError: (e: Error) => void) {
-    this.progress = createBktServeStore({ token, onError });
+    this.progress = createBktServeStore({ token, onError: () => onError(new Error(PROGRESS_TROUBLE)) });
   }
 
   static async connect(onError: (e: Error) => void): Promise<Api> {
@@ -156,7 +165,7 @@ export class Api {
       body: init.body === undefined ? undefined : JSON.stringify(init.body),
     });
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
-    if (!r.ok) throw new ApiError(data.error ?? requestFailed(r.status), r.status);
+    if (!r.ok) throw new ApiError(data.error ?? "", r.status);
     return data;
   }
 
@@ -263,7 +272,7 @@ export class Api {
   async ros<K extends RosResource>(resource: K): Promise<RosPayloads[K] | null> {
     const r = await fetch(ROS_PATHS[resource].local, { headers: { authorization: `Bucket ${this.token}` } });
     if (r.status === 404) return null;
-    if (!r.ok) throw new Error(`${resource} ${r.status}`);
+    if (!r.ok) throw new ApiError(resource, r.status);
     return parseRos(resource, await r.json());
   }
 

@@ -56,9 +56,6 @@ export function WorkQuizView({ api }: { api: Api }) {
         <div className="panel empty">
           <h2>No questions yet</h2>
           <p>{NO_WORK_QUESTIONS}</p>
-          <p>
-            <a href={href({ name: "import" })}>Set up the work quiz</a>
-          </p>
         </div>
       )}
       {q && (
@@ -158,7 +155,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       },
       (e: Error) => {
         if (!live) return;
-        if (e instanceof ApiError && e.status === 404 && e.message === NO_QUIZ) setMissing(true);
+        if (e instanceof ApiError && e.status === 404 && e.code === NO_QUIZ) setMissing(true);
         else if (e instanceof ApiError && e.status === 404) setOutdated(true);
         else setError(e.message);
       },
@@ -210,7 +207,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {missing && (
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
-          <p>Bucket has no quiz saved for this day. A quiz is built from your recent chat sessions when its page opens on its own day, and nothing was built for this one. Either both chat sources were off under Import, or the sessions from those two days held no line Bucket could ask about.</p>
+          <p>Bucket has no quiz saved for this day. A daily quiz is built from your recent chats on the day itself, and nothing was built for this one. Either reading your chats was turned off, or the chats from those two days held nothing Bucket could ask about.</p>
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>

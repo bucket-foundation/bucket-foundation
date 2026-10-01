@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { firstRunHash, href, useRoute } from "./router";
-import { NAV, Screen } from "./nav";
+import { navFor, Screen } from "./nav";
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "./app.css";
 
@@ -47,7 +47,7 @@ function App() {
           <span>Bucket</span>
         </div>
         <nav>
-          {NAV.filter((n) => n.route.name !== "work" || workReady).map((n) => (
+          {navFor(workReady).map((n) => (
             <a key={n.label} href={href(n.route)} className={active === n.route.name ? "on" : ""}>
               {n.label}
             </a>

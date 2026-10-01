@@ -1167,3 +1167,14 @@ section > article + article {
   border-radius: 10px;
   padding: 10px 12px;
 }
+
+.card > p:first-child {
+  margin-top: 0;
+}
+
+label.row:not(.file) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
