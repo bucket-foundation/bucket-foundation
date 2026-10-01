@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v5, 2026-10-01, revised after critic round 4 (Lean 9.0, Rust engine 8.7, settlement 8.6, node network 8.1), awaiting round 5 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v6, 2026-10-01, revised after critic round 5 (Rust engine 8.8), awaiting round 6 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -47,6 +47,8 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Tokenizer agreement on non-ASCII text | Non-ASCII fixtures through both engines | Half a day | Phase 1 |
 | `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
 | Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
+| Import then replay equals sequential grading | A property test over generated interleavings of old-file and new-file attempts, including state written through `/local/progress`: merged state after import and replay equals the state from grading the same attempts in time order | One day | Phase 3 |
+| Old-file deletions reach the new file | A test per table rule in Changes in the Old File After the Import, including a delete in the old file after an earlier import | Two days | Phase 3 |
 | Concurrent access to `bkt.db` through phase 2 | Experiment: the 0.4.0 terminal app and the Bun server both write `bkt.db` through `bun:sqlite` while a rusqlite process reads it, for ten minutes with a `kill -9` injected, then an integrity check and a row count. Rust never writes this file | Half a day | Phase 2 |
 | Cross-build of five targets | CI trial of the cargo workspace on native runners | One day | Phase 2 |
 | Binary size and startup | A minimal engine build: rusqlite, one route, the keyring adapter | Half a day | Phase 2 |
@@ -318,14 +320,50 @@ A 0.4.0 binary has no guard and cannot be given one, so a user who never updates
 
 Choice, proposed: B. Reasons: it protects users who never update, it makes the import its own backup, and its cost is a visible stale state that the guard release explains. The Rust engine never bumps `user_version` in the shared file. `min_client` is set in the manifest at the release that moves the store, so a guarded client tells the user to update. The share of users on a guarded release that is enough to ship that release is a founder decision.
 
-Attempts written to the old file after the import. A 0.4.0 terminal app keeps writing attempts to `bkt.db`, and without a policy the new store never sees them.
+### Changes in the Old File After the Import
+
+A 0.4.0 binary keeps working on `bkt.db` after the import: it records attempts, and it serves the window, so it can write or delete in every table. Without a policy the new store never sees those changes, and an item the user deleted in the old app would stay in the new file.
 
 | Policy | For | Against |
 |---|---|---|
-| A. On every start the Rust engine reads `bkt.db` and imports attempt ids it has not seen | Covers 0.4.0, which has no guard and cannot get one. Attempts are append-only rows with random ids (`store.ts` lines 296 to 304), so the merge has no conflicts | Needs the old file and the data key at every start. Card schedules are recomputed by replaying imported attempts in time order |
-| B. The guard release stops writing to the old file and tells the user | No merge code | Does nothing for a 0.4.0 binary, so its attempts are still lost with no message |
+| A. On every start the Rust engine reads `bkt.db` and merges it under the per-table rules below | Covers 0.4.0, which has no guard and cannot get one. Carries deletions across | Needs the old file and the data key at every start. Merge code for 20 tables |
+| B. The guard release stops writing to the old file and tells the user | No merge code | Does nothing for a 0.4.0 binary, so its work and its deletions are lost with no message |
 
-Choice, proposed: A, with the guard release's message kept as a courtesy. Reason: B cannot reach the binary that causes the loss. What the user sees: the window and the Rust terminal app print one line at start, "Imported N attempts from the older bkt app", when N is above zero. A guarded older client prints "This device has moved to a newer bkt. Update to keep one history." The same start-up import merges notes by id, with the later `updated_at` kept (`store.ts` line 93). The 0.4.0 binary also serves the window, so it can write the other tables: probe answers, advisor and history imports, the daily quiz. Changes to those in the old file after the import are outside the merge and are lost, and the import line says so when it finds any.
+Choice, proposed: A, with the guard release's message kept as a courtesy. Reason: B cannot reach the binary that causes the loss. What the user sees: one line at start, "Imported N changes from the older bkt app", when N is above zero. A guarded older client prints "This device has moved to a newer bkt. Update to keep one history."
+
+Order of each merge: deletions first, then rows. Today only `people_forget` is a stored tombstone. Notes, history, probe and work-quiz deletions are plain `delete` statements (`notes.ts` line 66, `history.ts` line 39, `hai/store.ts` lines 163 to 165, `work-quiz.ts` line 114). The import therefore keeps a ledger of every id it has imported from the old file. An id in the ledger that is now absent from the old file was deleted there, and the import deletes it in the new file before it merges anything.
+
+Every table in the store at schema version 8, read from `store.ts` lines 29 to 99. The `cards` table was dropped by `migrateLearn`.
+
+| Table | Rule | Detail |
+|---|---|---|
+| `people_forget` | Apply tombstone | Imported first. Each mark is applied to advisor rows before any advisor data merges |
+| `notes` | Apply tombstone, then merge by id | Absent ledger ids are deleted. For a shared id the later `updated_at` is kept |
+| `history_snapshot` | Apply tombstone, then merge | Single row. Absent after an earlier import means forgotten. Otherwise the later `imported_at` is kept |
+| `advisor_review`, `advisor_rows` | Apply tombstone, then merge | Replaced together by the later `imported_at`, after `people_forget` marks are applied |
+| `prime_directions` | Merge by corpus | The later `imported_at` is kept |
+| `work_quiz_source` | Apply tombstone, then merge | Single row. Absent after an earlier import means forgotten. Otherwise the later `updated_at` is kept |
+| `attempts` | Merge by id | Append-only, random ids |
+| `work_quiz_attempts` | Merge by id | Append-only. The unique index on daily question ids keeps the first answer |
+| `daily_quiz` | Merge by day | The row with the earlier `created_at` is kept, so a quiz already answered keeps its questions |
+| `hai_probe` | Apply tombstone, then merge by id | A wipe in the old file removes the probe. For a shared id the non-null `completed_at`, `due_at` and `retest_completed_at` are kept, which carries the seven-day retest |
+| `hai_answer` | Apply tombstone, then merge by id | Append-only, unique on probe, item and phase |
+| `meta` | Merge by key | The probe consent key follows the probe tombstone. `key_check` is ignored, since both files use one data key |
+| `learn_cards`, `learn_prof`, `learn_stats` | Rebuild | Derived state. See Out-of-Order Attempts |
+| `learn_settings` | Merge by deck | The later `updated_at` is kept. Whether this table holds user choices or derived state was not confirmed in this review, so it is merged and not rebuilt |
+| `items` | Rebuild | Derived from the pack, with `pack_version` on each row |
+| `device` | Ignore | One identity, read at the first import. The key lives in the keyring |
+| `outbox` | Ignore | Nothing sends it. A later sync design derives its queue from `attempts` |
+
+That is 20 tables. A row merged from the old file keeps its sealed column as written, since the format and the data key are shared.
+
+### Out-of-Order Attempts
+
+Today learning state is incremental. `recordAttempt` calls `engineGrade` on the current state with the encompassing edges (`store.ts` line 290), and `learn_prof` is a running update per attempt (lines 52 to 58). The window also writes whole learning state: `POST /local/progress` calls `putLearnState` (`local.ts` lines 110 to 114, `store.ts` line 254), so some state has no attempt row behind it. `local.ts` line 130 already merges two states with `mergeState`, and the Rust port keeps that function as its oracle.
+
+A late attempt from the old file can predate attempts already graded in the new file. Replaying it in time order can change the state those later attempts produced. Whether import followed by replay equals sequential grading is unproven.
+
+Until the property test in Path to a Verified Design passes, the engine does not replay. It stores an imported attempt in history and leaves schedules alone, and for a card present in both files it keeps the state with the later `lastReview`, the rule `migrateLearn` uses today (lines 40 to 46). An older late attempt therefore changes no schedule, and the attempt count for that card in `learn_prof` lags the history until replay is proven.
 
 Phase 3 is the point of no return, when the Rust store becomes the single writer of the new file. Until then the unchanged format and schema version keep the move reversible. After it, work written to the new file is lost on rollback to the original, and the daily backup bounds a restore to 24 hours.
 
