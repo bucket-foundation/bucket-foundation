@@ -34,7 +34,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { checkRoute, openWindow, readApp, RouteError, routeUrl, runtimeDir, takeRoute, uiDir, writeApp, writeRoute } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -84,8 +84,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
   });
   syncCanon(session.store.db, canonPack as CanonPack);
+  const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
   const srv = startServe({
     routes: {
+      ...windowRoutes(win.routes),
       ...canonRoutes(new CanonStore(session.store.db)),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
@@ -109,14 +111,18 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     onError: (e) => console.error(`bkt serve: ${e.message}`),
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
-  const profile = join(dir, "window-profile");
-  const show = (to: string | null) => (name === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
-  const reopen = () => {
+  const fresh = () => {
     srv.remint();
-    show(takeRoute(runtimeDir()));
+    return srv.url;
+  };
+  const reopen = () => {
+    const to = takeRoute(runtimeDir());
+    if (name === "app") win.relaunch(to, fresh);
+    else console.log(routeUrl(fresh(), to));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
-  show(route);
+  if (name === "app") win.open(routeUrl(srv.url, route));
+  else console.log(srv.url);
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
@@ -124,8 +130,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });
+    if (name === "app") void win.closed(() => runner.busy()).then(done);
   });
   process.off("SIGUSR1", reopen);
+  if (name === "app") win.forget();
   runner.stopAll();
   release();
   srv.stop();
@@ -138,9 +146,7 @@ function reopenRunningApp(route: string | null): boolean {
     console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
     return true;
   }
-  if (route !== null) writeRoute(runtimeDir(), route);
-  process.kill(running.pid, "SIGUSR1");
-  console.log(`reopened the Bucket window on port ${running.port}`);
+  console.log(askRunningApp(runtimeDir(), running, route, { table: processTable(), signal: (pid) => process.kill(pid, "SIGUSR1") }));
   return true;
 }
 

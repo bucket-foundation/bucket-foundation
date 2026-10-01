@@ -63,3 +63,23 @@ export function useRoute(): Route {
   }, []);
   return route;
 }
+
+export async function followRoutes(
+  next: () => Promise<string | null>,
+  go: (route: string) => void,
+  live: () => boolean,
+  wait: (ms: number) => Promise<unknown> = (ms) => new Promise((r) => setTimeout(r, ms)),
+): Promise<void> {
+  while (live()) {
+    let route: string | null;
+    try {
+      route = await next();
+    } catch (e) {
+      const status = (e as { status?: number }).status;
+      if (status === 401 || status === 404) return;
+      await wait(5000);
+      continue;
+    }
+    if (route !== null && live()) go(route);
+  }
+}

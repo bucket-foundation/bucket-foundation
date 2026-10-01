@@ -206,6 +206,10 @@ export class Api {
     return data;
   }
 
+  windowRoute() {
+    return this.call<{ route: string | null }>("/local/window/route").then((r) => r.route);
+  }
+
   decks() {
     return this.call<{ decks: DeckRow[] }>("/local/decks").then((r) => r.decks);
   }

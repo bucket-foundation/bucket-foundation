@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ensureDevice } from "../src/device";
 import { SERVICE } from "../src/keyring";
-import { DpapiKeyring, KeychainKeyring, LSOF, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, system32, windowsPowershell, windowsWhoami, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
+import { DpapiKeyring, KeychainKeyring, LSOF, lsofOwner, netstatOwner, platformFor, procCommandLine, procNetTcpOwner, system32, windowsPowershell, windowsWhoami, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
 import { statSync, writeFileSync } from "node:fs";
 import { pickKeyring } from "../src/setup";
 
@@ -82,6 +82,7 @@ describe("macos", () => {
     const p = platformFor("darwin", deps({ exists: (f) => f === "/Applications/Brave Browser.app" }));
     expect(p.windowCommand("http://127.0.0.1:5/", "/p")).toEqual([
       "open",
+      "-W",
       "-na",
       "Brave Browser",
       "--args",
@@ -96,9 +97,9 @@ describe("macos", () => {
 
   test("prefers Chrome and finds per-user apps", () => {
     const all = platformFor("darwin", deps({ exists: () => true }));
-    expect(all.windowCommand("http://x/", "/p")[2]).toBe("Google Chrome");
+    expect(all.windowCommand("http://x/", "/p")[3]).toBe("Google Chrome");
     const user = platformFor("darwin", deps({ exists: (f) => f === "/h/u/Applications/Chromium.app" }));
-    expect(user.windowCommand("http://x/", "/p")[2]).toBe("Chromium");
+    expect(user.windowCommand("http://x/", "/p")[3]).toBe("Chromium");
   });
 
   test("falls back to open", () => {
@@ -294,5 +295,25 @@ describe("peer owner", () => {
     const failed = { ...deps({ execSync: () => ({ code: 1, stdout: "", stderr: "netstat failed" }) }), env: {} } as PlatformDeps;
     expect(netstatOwner(failed, 6000, 80)).toBeNull();
     expect(platformFor("win32", deps({ env: { USERNAME: "Ann", USERDOMAIN: "PC" } })).self()).toBe("pc\\ann");
+  });
+});
+
+describe("command line of a process", () => {
+  test("linux reads proc, and a missing process has none", () => {
+    const root = join(dir, "proc");
+    mkdirSync(join(root, "41"), { recursive: true });
+    writeFileSync(join(root, "41", "cmdline"), "/usr/bin/chromium\0--app=http://x/\0--user-data-dir=/p\0");
+    expect(procCommandLine(41, root)).toBe("/usr/bin/chromium --app=http://x/ --user-data-dir=/p");
+    expect(procCommandLine(42, root)).toBeNull();
+  });
+
+  test("macOS asks ps and Windows asks for the process by id", () => {
+    const calls: string[][] = [];
+    const run = (out: string, code = 0) => (argv: string[]) => (calls.push(argv), { code, stdout: out, stderr: "" });
+    expect(platformFor("darwin", deps({ execSync: run("open -W -na Chromium --args --user-data-dir=/p\n") })).commandLine(7)).toBe("open -W -na Chromium --args --user-data-dir=/p");
+    expect(calls[0]).toEqual(["/bin/ps", "-ww", "-o", "command=", "-p", "7"]);
+    expect(platformFor("darwin", deps({ execSync: run("", 1) })).commandLine(7)).toBeNull();
+    expect(platformFor("win32", deps({ execSync: run('"C:\\e\\msedge.exe" --user-data-dir=C:\\p\r\n') })).commandLine(9)).toBe('"C:\\e\\msedge.exe" --user-data-dir=C:\\p');
+    expect(calls[2].at(-1)).toBe('(Get-CimInstance Win32_Process -Filter "ProcessId=9").CommandLine');
   });
 });

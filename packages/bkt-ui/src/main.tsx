@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
-import { firstRunHash, href, useRoute, type Route } from "./router";
+import { firstRunHash, followRoutes, href, useRoute, type Route } from "./router";
 import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
@@ -59,6 +59,15 @@ function App() {
     check();
     window.addEventListener(WORK_QUIZ_CHANGED, check);
     return () => window.removeEventListener(WORK_QUIZ_CHANGED, check);
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    let live = true;
+    void followRoutes(() => api.windowRoute(), (to) => (window.location.hash = to), () => live);
+    return () => {
+      live = false;
+    };
   }, [api]);
 
   useEffect(() => {
