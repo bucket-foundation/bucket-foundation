@@ -115,7 +115,7 @@ wq.daily.put(
     day: "2026-09-30",
     questions: [
       fermi({ id: "f1", prompt: "How many lines of chat did the day's sessions hold?", answer: 16000, explain: "About 16,000 lines across the day's sessions." }),
-      { id: "c1", type: "recall", prompt: "Which branch takes desktop pull requests?", choices: ["dev", "main", "hte/integration", "ops/integration"], answer: "dev", limitSec: 30, explain: "Desktop work opens pull requests into dev." },
+      { id: "c1", type: "recall", prompt: "Which branch takes desktop pull requests?", choices: ["dev", "main"], answer: "dev", limitSec: 30, explain: "Desktop work opens pull requests into dev." },
     ],
   },
   Date.now(),
