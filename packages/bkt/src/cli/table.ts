@@ -100,7 +100,7 @@ export const TABLE: CommandSpec[] = [
       "max-usd": { type: "string", value: "USD", help: "refuse a batch whose worst case costs more" },
     },
   },
-  { name: "hai export", summary: "print the probe data as JSON", session: true },
+  { name: "hai export", summary: "print the probe data as JSON", session: true, json: true },
   { name: "hai wipe", summary: "delete the probe data", session: true },
   { name: "forget people", summary: "forget imported people", session: true },
   {

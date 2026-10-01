@@ -39,14 +39,25 @@ async function lookup(keyring: Keyring, account: string, existingDb?: string): P
   return found;
 }
 
-export async function ensureDevice(keyring: Keyring, existingDb?: string): Promise<DeviceIdentity> {
-  let pem = await lookup(keyring, DEVICE_ACCOUNT, existingDb);
+export interface KeyAccounts {
+  data: string;
+  device: string;
+}
+
+export const LEGACY_ACCOUNTS: KeyAccounts = { data: DATA_KEY_ACCOUNT, device: DEVICE_ACCOUNT };
+
+export function scopedAccounts(scope: string): KeyAccounts {
+  return { data: `${DATA_KEY_ACCOUNT}.${scope}`, device: `${DEVICE_ACCOUNT}.${scope}` };
+}
+
+export async function ensureDevice(keyring: Keyring, existingDb?: string, account = DEVICE_ACCOUNT): Promise<DeviceIdentity> {
+  let pem = await lookup(keyring, account, existingDb);
   let created = false;
   if (!pem) {
     const { privateKey } = generateKeyPairSync("ed25519");
     pem = privateKey.export({ type: "pkcs8", format: "pem" }).toString();
-    await keyring.set(DEVICE_ACCOUNT, pem);
-    const stored = await keyring.get(DEVICE_ACCOUNT);
+    await keyring.set(account, pem);
+    const stored = await keyring.get(account);
     if (stored?.trim() !== pem.trim()) throw new Error("keyring did not persist the device key");
     created = true;
   }
@@ -61,14 +72,14 @@ export async function ensureDevice(keyring: Keyring, existingDb?: string): Promi
   };
 }
 
-export async function ensureDataKey(keyring: Keyring, existingDb?: string): Promise<Buffer> {
-  const hex = await lookup(keyring, DATA_KEY_ACCOUNT, existingDb);
+export async function ensureDataKey(keyring: Keyring, existingDb?: string, account = DATA_KEY_ACCOUNT): Promise<Buffer> {
+  const hex = await lookup(keyring, account, existingDb);
   if (hex) {
     const key = Buffer.from(hex.trim(), "hex");
     if (key.length !== 32) throw new Error("stored data key has the wrong length");
     return key;
   }
   const key = newDataKey();
-  await keyring.set(DATA_KEY_ACCOUNT, key.toString("hex"));
+  await keyring.set(account, key.toString("hex"));
   return key;
 }

@@ -10,7 +10,7 @@ import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
-import { interactive, jsonLine, textRows } from "./out";
+import { interactive, JSON_SHAPES, jsonLine, pick, textRows } from "./out";
 import { keyringOptions, NoDataError, type Invocation } from "./run";
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
@@ -43,7 +43,7 @@ function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
     console.error(stderr.trim() || "analyzer produced no report");
     return code || 1;
   }
-  if (o.json) console.log(JSON.stringify(report, null, 2));
+  if (o.json) console.log(JSON.stringify(pick(JSON_SHAPES.analyze, report), null, 2));
   else {
     for (const l of formLines(report)) console.log(l);
     if (code !== 0) console.log("stopped on form errors; rerun with --force to analyze anyway");
@@ -142,7 +142,7 @@ async function analyses(inv: Invocation, json: boolean): Promise<number> {
     return EXIT.ok;
   }
   const items = listAnalyses(root);
-  if (json) console.log(jsonLine({ analyses: items }));
+  if (json) console.log(jsonLine("analyses", { analyses: items }));
   else for (const a of items) console.log(`${a.name}\t${a.dir}`);
   if (!items.length) throw new NoDataError("no saved analyses; run bkt analyze <file>");
   return EXIT.ok;
@@ -152,12 +152,12 @@ export async function execute(inv: Invocation): Promise<number> {
   const name = inv.command.name;
   const json = inv.values.json === true;
   if (name === "version") {
-    console.log(json ? jsonLine({ version: VERSION }) : VERSION);
+    console.log(json ? jsonLine("version", { version: VERSION }) : VERSION);
     return EXIT.ok;
   }
   if (name === "update") {
     const r = await checkUpdate();
-    console.log(json ? jsonLine({ ...r }) : describeUpdate(r));
+    console.log(json ? jsonLine("update", r) : describeUpdate(r));
     return r.status === "error" ? EXIT.failure : EXIT.ok;
   }
   if (name === "app" && reopenRunningApp()) return EXIT.ok;
@@ -184,7 +184,10 @@ export async function execute(inv: Invocation): Promise<number> {
     if (name === "hai wipe") {
       new HaiStore(session.store, session.key).wipe();
       console.log("hai data deleted");
-    } else if (name === "hai export") console.log(JSON.stringify(new HaiStore(session.store, session.key).export(), null, 2));
+    } else if (name === "hai export") {
+      const data = new HaiStore(session.store, session.key).export();
+      console.log(json ? jsonLine("hai export", data) : JSON.stringify(pick(JSON_SHAPES["hai export"], data), null, 2));
+    }
     else if (name === "hai") {
       const h = new HaiStore(session.store, session.key);
       await render(<HaiApp hai={h} data={{ bank: loadBank(), review: loadReview(), scores: loadScores() }} />).waitUntilExit();
@@ -198,7 +201,7 @@ export async function execute(inv: Invocation): Promise<number> {
         imported,
         journal: session.store.journalMode(),
       };
-      if (json) console.log(jsonLine(who));
+      if (json) console.log(jsonLine("whoami", who));
       else if (name === "init") console.log(JSON.stringify(who, null, 2));
       else console.log(textRows(Object.entries(who)));
     } else if (name === "forget people") {
@@ -207,7 +210,7 @@ export async function execute(inv: Invocation): Promise<number> {
     } else if (name === "serve" || name === "app") await serve(name, session, dir, content);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
-      console.log(json ? jsonLine(s) : textRows(Object.entries(s)));
+      console.log(json ? jsonLine("stats", s) : textRows(Object.entries(s)));
     } else await render(<App session={session} />).waitUntilExit();
     return EXIT.ok;
   } finally {
