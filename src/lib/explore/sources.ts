@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { coverage, rankNormalized, tokens, type Hit } from "./search";
 
-export type SourceKind = "o" | "p" | "a" | "g" | "w" | "y";
+export type SourceKind = "o" | "p" | "a" | "g" | "w" | "y" | "d";
 export type SourceType = "paper" | "text" | "talk";
 export type SourceRow = [SourceKind, string, string, number | null, string, string];
 
@@ -21,8 +21,8 @@ export interface SourceSource {
   score: number;
 }
 
-export const SOURCE_TYPE: Record<SourceKind, SourceType> = { o: "paper", p: "paper", a: "paper", g: "text", w: "text", y: "talk" };
-export const SOURCE_LABEL: Record<SourceKind, string> = { o: "OpenAlex", p: "PubMed", a: "arXiv", g: "Gutenberg", w: "Wikisource", y: "YouTube" };
+export const SOURCE_TYPE: Record<SourceKind, SourceType> = { o: "paper", p: "paper", a: "paper", g: "text", w: "text", y: "talk", d: "paper" };
+export const SOURCE_LABEL: Record<SourceKind, string> = { o: "OpenAlex", p: "PubMed", a: "arXiv", g: "Gutenberg", w: "Wikisource", y: "YouTube", d: "Primary paper" };
 
 export const SOURCE_LICENSE: Record<SourceKind, string> = {
   o: "OpenAlex metadata, CC0",
@@ -31,6 +31,7 @@ export const SOURCE_LICENSE: Record<SourceKind, string> = {
   g: "Project Gutenberg, public domain in the US",
   w: "Wikisource, CC BY-SA 4.0",
   y: "YouTube transcript, link only",
+  d: "Crossref and OpenAlex metadata, CC0",
 };
 
 export function sourceUrl(kind: SourceKind, id: string): string | null {
@@ -38,6 +39,7 @@ export function sourceUrl(kind: SourceKind, id: string): string | null {
   if (kind === "p") return `https://pubmed.ncbi.nlm.nih.gov/${id}/`;
   if (kind === "a") return `https://arxiv.org/abs/${id}`;
   if (kind === "g") return `https://www.gutenberg.org/ebooks/${id}`;
+  if (kind === "d") return `https://doi.org/${id}`;
   if (kind === "y") return `https://www.youtube.com/watch?v=${id}`;
   return `https://en.wikisource.org/?curid=${id}`;
 }
