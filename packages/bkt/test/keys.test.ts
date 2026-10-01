@@ -3,8 +3,9 @@ import { chmodSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, deviceIdFor, ensureDataKey, ensureDevice, verifyDeviceSignature } from "../src/device";
-import { MemoryKeyring, PassphraseKeyring, SecretToolKeyring } from "../src/keyring";
-import { openSession, parseArgs, pickKeyring } from "../src/setup";
+import { MemoryKeyring, PassphraseKeyring, SecretToolKeyring, type Keyring } from "../src/keyring";
+import { keyringOptions, resolve } from "../src/cli/run";
+import { openSession, pickKeyring } from "../src/setup";
 
 let dir: string;
 beforeEach(() => {
@@ -113,6 +114,7 @@ describe("openSession", () => {
     reopened.store.close();
     const intruder = new MemoryKeyring();
     await intruder.set(DATA_KEY_ACCOUNT, (await kr.get(DATA_KEY_ACCOUNT))!);
+    await ensureDevice(intruder);
     await expect(openSession(intruder, path, 3)).rejects.toThrow("belongs to device");
   });
 });
@@ -189,15 +191,128 @@ describe("keyring selection", () => {
     const f = join(dir, "pass");
     writeFileSync(f, "secret\n");
     const fd = openSync(f, "r");
-    const { cmd, opts } = parseArgs(["init", "--keyring=passphrase", "--passphrase-fd", String(fd)]);
-    expect(cmd).toBe("init");
-    const kr = await pickKeyring(opts, dir, {});
+    const inv = resolve(["init", "--keyring=passphrase", "--passphrase-fd", String(fd)]);
+    if (inv.kind !== "run") throw new Error("expected a command");
+    expect(inv.command.name).toBe("init");
+    const kr = await pickKeyring(keyringOptions(inv), dir, {});
     expect(kr.kind).toBe("passphrase");
     expect(() => new PassphraseKeyring(join(dir, "keyring.json"), "secret")).not.toThrow();
   });
 
   test("rejects unknown flags and bad fds", () => {
-    expect(() => parseArgs(["--nope"])).toThrow("unknown flag");
-    expect(() => parseArgs(["--passphrase-fd", "x"])).toThrow("file descriptor");
+    expect(() => resolve(["--nope"])).toThrow("unknown option --nope");
+    expect(() => resolve(["--passphrase-fd", "x"])).toThrow("file descriptor");
+  });
+});
+
+function counting(inner: Keyring) {
+  const calls = { get: 0, set: 0 };
+  const kr: Keyring = {
+    kind: inner.kind,
+    get: (a) => (calls.get++, inner.get(a)),
+    set: (a, v) => (calls.set++, inner.set(a, v)),
+  };
+  return { kr, calls };
+}
+
+describe("keyring guard", () => {
+  const db = () => join(dir, "bkt.db");
+
+  test("a fresh home mints one data key and one device key", async () => {
+    const { kr, calls } = counting(new MemoryKeyring());
+    const s = await openSession(kr, dir, 1);
+    s.store.close();
+    expect(calls.set).toBe(2);
+    expect(s.device.created).toBe(true);
+    expect(existsSync(db())).toBe(true);
+  });
+
+  test("an existing database with its keys opens and stores nothing", async () => {
+    const inner = new MemoryKeyring();
+    (await openSession(inner, dir, 1)).store.close();
+    const { kr, calls } = counting(inner);
+    const s = await openSession(kr, dir, 2);
+    s.store.close();
+    expect(calls.set).toBe(0);
+    expect(s.device.created).toBe(false);
+  });
+
+  test("an existing database with a lookup miss refuses and leaves the database and keyring alone", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    const before = readFileSync(db());
+    const { kr, calls } = counting(new MemoryKeyring());
+    const failure = await openSession(kr, dir, 2).catch((e: Error) => e);
+    expect((failure as Error).message).toContain("keyring locked or key missing");
+    expect((failure as Error).message).toContain("--keyring");
+    expect(calls.set).toBe(0);
+    expect(await kr.get(DATA_KEY_ACCOUNT)).toBeNull();
+    expect(readFileSync(db()).equals(before)).toBe(true);
+  });
+
+  test("an existing database with a failing lookup refuses and stores nothing", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    let sets = 0;
+    const kr: Keyring = {
+      kind: "libsecret",
+      get: async () => {
+        throw new Error("collection is locked");
+      },
+      set: async () => {
+        sets++;
+      },
+    };
+    const failure = await openSession(kr, dir, 2).catch((e: Error) => e);
+    expect((failure as Error).message).toContain("keyring locked or key missing");
+    expect((failure as Error).message).toContain("collection is locked");
+    expect((failure as Error).message).toContain("Unlock the login keyring");
+    expect(sets).toBe(0);
+  });
+
+  test("a locked secret-service collection that exits 1 with empty stderr never reaches store", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    const marker = join(dir, "stored");
+    const kr = fakeSecretTool(`if [ "$1" = store ]; then touch "${marker}"; exit 0; fi\nexit 1`);
+    await expect(openSession(kr, dir, 2)).rejects.toThrow("keyring locked or key missing");
+    expect(existsSync(marker)).toBe(false);
+  });
+
+  test("a data key without a device key refuses instead of minting a device", async () => {
+    const first = new MemoryKeyring();
+    (await openSession(first, dir, 1)).store.close();
+    const partial = new MemoryKeyring();
+    await partial.set(DATA_KEY_ACCOUNT, (await first.get(DATA_KEY_ACCOUNT))!);
+    await expect(openSession(partial, dir, 2)).rejects.toThrow("keyring locked or key missing");
+    expect(await partial.get(DEVICE_ACCOUNT)).toBeNull();
+  });
+
+  test("the passphrase vault mints on a fresh home and reopens with the same key", async () => {
+    const vault = join(dir, "keyring.json");
+    const first = await openSession(new PassphraseKeyring(vault, "pw"), dir, 1);
+    first.store.close();
+    const second = await openSession(new PassphraseKeyring(vault, "pw", db()), dir, 2);
+    second.store.close();
+    expect(second.key.equals(first.key)).toBe(true);
+    expect(second.device.created).toBe(false);
+  });
+
+  test("a missing passphrase vault beside a database refuses and writes no vault", async () => {
+    const vault = join(dir, "keyring.json");
+    (await openSession(new PassphraseKeyring(vault, "pw"), dir, 1)).store.close();
+    rmSync(vault);
+    const f = join(dir, "pass");
+    writeFileSync(f, "pw\n");
+    await expect(pickKeyring({ keyring: "passphrase", passphraseFd: openSync(f, "r") }, dir, {})).rejects.toThrow("keyring locked or key missing");
+    expect(() => new PassphraseKeyring(vault, "pw", db())).toThrow("keyring locked or key missing");
+    expect(existsSync(vault)).toBe(false);
+  });
+
+  test("a vault that lost its data key refuses beside a database", async () => {
+    const vault = join(dir, "keyring.json");
+    (await openSession(new PassphraseKeyring(vault, "pw"), dir, 1)).store.close();
+    rmSync(vault);
+    const empty = new PassphraseKeyring(vault, "pw");
+    const before = readFileSync(vault, "utf8");
+    await expect(openSession(empty, dir, 2)).rejects.toThrow("keyring locked or key missing");
+    expect(readFileSync(vault, "utf8")).toBe(before);
   });
 });

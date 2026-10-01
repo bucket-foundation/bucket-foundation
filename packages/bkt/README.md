@@ -45,6 +45,21 @@ bun run build
 
 `bun run build` exports the content pack from `learning/app/corpus` into `content/pack.json` and compiles one binary to `dist/bkt`.
 
+## Commands
+
+```bash
+bkt --help
+bkt help analyze
+bkt stats --json
+bkt whoami --json
+```
+
+`bkt --help`, `-h` and `help` print the command list; `bkt help <command>` and `bkt <command> --help` print one command's flags. The list comes from the table in `src/cli/table.ts`, which also drives parsing and the `:` palette. `whoami`, `init`, `stats`, `analyses`, `update` and `version` take `--json` and print one line shaped `{"v":1,...}` with keys, tokens and sealed content left out.
+
+Exit codes: 0 ok, 1 failure, 2 usage, 3 no data, 130 cancelled. A usage error exits before bkt creates the data folder or calls the key store. `NO_COLOR` turns colour off. Without a terminal, or with `TERM=dumb`, the terminal app, `bkt hai` and `bkt analyze --tui` print usage and exit 2, and `bkt analyses` prints a plain list.
+
+When `bkt.db` exists and the key store returns no data key, bkt stops with `keyring locked or key missing`, exit 1, and stores no new key. Unlock the key store and run it again.
+
 ## Storage
 
 - Database at `$BKT_HOME/bkt.db`, default `$XDG_DATA_HOME/bkt`, WAL mode.

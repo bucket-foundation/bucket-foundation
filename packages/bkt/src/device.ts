@@ -1,6 +1,6 @@
 import { createHash, createPrivateKey, createPublicKey, generateKeyPairSync, sign, verify, type KeyObject } from "node:crypto";
 import { newDataKey } from "./crypto";
-import type { Keyring } from "./keyring";
+import { KeyringLockedError, type Keyring } from "./keyring";
 
 export const DEVICE_ACCOUNT = "device-ed25519";
 export const DATA_KEY_ACCOUNT = "db-data-key";
@@ -27,8 +27,20 @@ export function verifyDeviceSignature(publicKeyB64: string, message: string | Ui
   return verify(null, Buffer.from(message), key, Buffer.from(signatureB64, "base64"));
 }
 
-export async function ensureDevice(keyring: Keyring): Promise<DeviceIdentity> {
-  let pem = await keyring.get(DEVICE_ACCOUNT);
+async function lookup(keyring: Keyring, account: string, existingDb?: string): Promise<string | null> {
+  if (!existingDb) return keyring.get(account);
+  let found: string | null;
+  try {
+    found = await keyring.get(account);
+  } catch (e) {
+    throw new KeyringLockedError(keyring.kind, existingDb, `${account} lookup failed: ${e instanceof Error ? e.message : String(e)}`);
+  }
+  if (!found) throw new KeyringLockedError(keyring.kind, existingDb, `no ${account} entry`);
+  return found;
+}
+
+export async function ensureDevice(keyring: Keyring, existingDb?: string): Promise<DeviceIdentity> {
+  let pem = await lookup(keyring, DEVICE_ACCOUNT, existingDb);
   let created = false;
   if (!pem) {
     const { privateKey } = generateKeyPairSync("ed25519");
@@ -49,8 +61,8 @@ export async function ensureDevice(keyring: Keyring): Promise<DeviceIdentity> {
   };
 }
 
-export async function ensureDataKey(keyring: Keyring): Promise<Buffer> {
-  const hex = await keyring.get(DATA_KEY_ACCOUNT);
+export async function ensureDataKey(keyring: Keyring, existingDb?: string): Promise<Buffer> {
+  const hex = await lookup(keyring, DATA_KEY_ACCOUNT, existingDb);
   if (hex) {
     const key = Buffer.from(hex.trim(), "hex");
     if (key.length !== 32) throw new Error("stored data key has the wrong length");

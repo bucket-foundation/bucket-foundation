@@ -1,7 +1,8 @@
-import { closeSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
+import { closeSync, existsSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ensureDataKey, ensureDevice, type DeviceIdentity } from "./device";
-import { PassphraseKeyring, type Keyring } from "./keyring";
+import { CancelledError } from "./cli/run";
+import { KeyringLockedError, PassphraseKeyring, type Keyring } from "./keyring";
 import { platformFor, type Platform } from "./platform";
 import { Store } from "./store";
 
@@ -16,23 +17,6 @@ export function ensureDataDir(dir: string, platform: Platform = platformFor()): 
 export interface KeyringOptions {
   keyring?: string;
   passphraseFd?: number;
-}
-
-export function parseArgs(argv: string[]): { cmd: string; opts: KeyringOptions } {
-  const opts: KeyringOptions = {};
-  let cmd = "tui";
-  for (let i = 0; i < argv.length; i++) {
-    const [flag, inline] = argv[i].split("=", 2);
-    const value = () => inline ?? argv[++i];
-    if (flag === "--keyring") opts.keyring = value();
-    else if (flag === "--passphrase-fd") {
-      const fd = Number(value());
-      if (!Number.isInteger(fd) || fd < 0) throw new Error("--passphrase-fd needs a file descriptor number");
-      opts.passphraseFd = fd;
-    } else if (flag.startsWith("--")) throw new Error(`unknown flag ${flag}`);
-    else cmd = flag;
-  }
-  return { cmd, opts };
 }
 
 export function readPassphraseFd(fd: number): string {
@@ -50,7 +34,7 @@ export async function promptPassphrase(label = "bkt passphrase: "): Promise<stri
     const onData = (chunk: Buffer) => {
       for (const ch of chunk.toString("utf8")) {
         if (ch === "\r" || ch === "\n") return done(null);
-        if (ch === "\u0003") return done(new Error("cancelled"));
+        if (ch === "\u0003") return done(new CancelledError());
         if (ch === "\u007f") buf = buf.slice(0, -1);
         else buf += ch;
       }
@@ -64,6 +48,11 @@ export async function promptPassphrase(label = "bkt passphrase: "): Promise<stri
     };
     stdin.on("data", onData);
   });
+}
+
+export function existingDb(dir: string): string | undefined {
+  const db = join(dir, "bkt.db");
+  return existsSync(db) ? db : undefined;
 }
 
 export async function pickKeyring(
@@ -80,8 +69,11 @@ export async function pickKeyring(
     return kr;
   }
   if (kind !== "passphrase") throw new Error(`unknown keyring ${kind} on ${platform.os}; use ${native} or passphrase`);
+  const vault = join(dir, "keyring.json");
+  const db = existingDb(dir);
+  if (db && !existsSync(vault)) throw new KeyringLockedError("passphrase", db, `${vault} is missing`);
   const pass = opts.passphraseFd !== undefined ? readPassphraseFd(opts.passphraseFd) : await promptPassphrase();
-  return new PassphraseKeyring(join(dir, "keyring.json"), pass);
+  return new PassphraseKeyring(vault, pass, db);
 }
 
 export async function withLock<T>(file: string, fn: () => Promise<T>, timeoutMs = 10_000, staleMs = 60_000): Promise<T> {
@@ -118,10 +110,10 @@ export interface Session {
 
 export async function openSession(keyring: Keyring, dir: string, now = Date.now()): Promise<Session> {
   ensureDataDir(dir);
-  const { key, device } = await withLock(join(dir, "keys.lock"), async () => ({
-    key: await ensureDataKey(keyring),
-    device: await ensureDevice(keyring),
-  }));
+  const { key, device } = await withLock(join(dir, "keys.lock"), async () => {
+    const db = existingDb(dir);
+    return { key: await ensureDataKey(keyring, db), device: await ensureDevice(keyring, db) };
+  });
   const store = new Store(join(dir, "bkt.db"), key);
   store.recordDevice(device.id, device.publicKey, now);
   const recorded = store.device();
