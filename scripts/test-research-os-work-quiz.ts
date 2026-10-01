@@ -76,12 +76,16 @@ test("true-false answers match the source facts", () => {
     const q = generateQuestion(SOURCES, `tf-${i}`, "true_false");
     assert.ok(q);
     const line = q.lines[0];
-    const bead = SOURCES.beads.find((b) => line.includes(b.id));
+    const plain = (status: string) => status.replace(/_/g, " ");
+    const bead = SOURCES.beads.find((b) => q.sources[0].ref === b.id);
     if (bead) {
-      assert.equal(q.answer, line.includes(`status ${bead.status}.`) ? "true" : "false");
+      assert.ok(line.includes(`"${bead.title}"`));
+      assert.ok(!line.includes(bead.id));
+      assert.equal(q.answer, line.endsWith(` is ${plain(bead.status)}.`) ? "true" : "false");
     } else {
-      const pr = SOURCES.prs.find((p) => line.includes(`#${p.number}`));
+      const pr = SOURCES.prs.find((p) => q.sources[0].ref === `#${p.number}`);
       assert.ok(pr);
+      assert.ok(line.includes(`"${prTitle(pr.title)}"`));
       assert.equal(q.answer, line.includes(`on ${pr.date}.`) ? "true" : "false");
     }
   }
@@ -113,7 +117,9 @@ test("spot-the-error changes exactly the field it names", () => {
       assert.deepEqual(wrong, [q.answer]);
     } else {
       const b = SOURCES.beads.find((x) => q.sources[0].ref === x.id)!;
-      const wrong = [q.lines[1] !== `id: ${b.id}` && "the id", q.lines[2] !== `status: ${b.status}` && "the status", q.lines[3] !== `priority: P${b.priority}` && "the priority"].filter(Boolean);
+      const words = ["top", "high", "medium", "low", "lowest"];
+      assert.equal(q.lines[0], `"${b.title}"`);
+      const wrong = [q.lines[1] !== `status: ${b.status.replace(/_/g, " ")}` && "the status", q.lines[2] !== `priority: ${words[b.priority]} priority` && "the priority"].filter(Boolean);
       assert.deepEqual(wrong, [q.answer]);
     }
   }
@@ -123,8 +129,9 @@ test("estimate answers are true counts", () => {
   for (let i = 0; i < 30; i++) {
     const q = generateQuestion(SOURCES, `es-${i}`, "estimate");
     assert.ok(q);
-    const m = q.prompt.match(/status (\w+)\?/);
-    if (m) assert.equal(Number(q.answer), SOURCES.beads.filter((b) => b.status === m[1]).length);
+    const m = q.prompt.match(/^How many of your tasks are ([a-z ]+)\?$/);
+    const status = m && SOURCES.beads.find((b) => b.status.replace(/_/g, " ") === m[1])?.status;
+    if (status) assert.equal(Number(q.answer), SOURCES.beads.filter((b) => b.status === status).length);
   }
 });
 
