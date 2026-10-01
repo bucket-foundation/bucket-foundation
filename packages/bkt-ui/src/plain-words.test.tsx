@@ -119,7 +119,7 @@ function populated(over: Stub = {}): Stub {
     due: async () => [{ id: "ph-heat", title: "Heat", prompt: "Define heat.", answer: "Energy in transit." }],
     notes: async () => [{ id: "n1", title: "Reading list", body: "Start with Carnot.", pinned: true, createdAt: 1, updatedAt: 2 }],
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
-    workStatus: async () => ({ beads: 8, prs: 3, repo: "/home/someone/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
+    workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
     workNext: async () => ({ id: "w1", type: "recall", prompt: "Which change merged first?", lines: ["Canon circle", "Notes"], choices: ["Canon circle", "Notes"], limitSec: 30 }),
     ...over,
   };
