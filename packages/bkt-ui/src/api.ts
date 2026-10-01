@@ -64,6 +64,8 @@ export class ApiError extends Error {
   }
 }
 
+export const requestFailed = (status: number) => `Bucket ran into a problem (${status}). Try again.`;
+
 export interface JobKind {
   kind: string;
   label: string;
@@ -154,7 +156,7 @@ export class Api {
       body: init.body === undefined ? undefined : JSON.stringify(init.body),
     });
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
-    if (!r.ok) throw new ApiError(data.error ?? `${path} ${r.status}`, r.status);
+    if (!r.ok) throw new ApiError(data.error ?? requestFailed(r.status), r.status);
     return data;
   }
 
