@@ -1,0 +1,24 @@
+{
+  "id": "gap-score-backtest-2026-10",
+  "kind": "production",
+  "category": "production",
+  "date": "2026-10-01",
+  "source": "own",
+  "status": "open",
+  "title": "Gap score backtest",
+  "summary": "The solver gap score did not rank the open problems that upstream later tagged solved.",
+  "plot_title": "AUC of the gap score against later resolution at four formal-conjectures snapshots, 0.5 is chance",
+  "discussion": "Each open problem was scored with data from its snapshot date, then labelled by its tag at upstream 137aec5c on 2026-09-30. AUC ran 0.58, 0.58, 0.53 and 0.44. Docstring length beat the score at all four dates. A 32-feature metadata model trained on December 2025 and tested on June 2026 reached 0.54, interval 0.49 to 0.60. Wording similarity to a solved problem is a weak guide to what gets solved next. Next: features from the Lean statement and from prover attempts.",
+  "image": {
+    "filename": "gap-score-backtest.png",
+    "content_type": "image/png",
+    "base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+  },
+  "image_alt": "Four points with intervals: AUC 0.58, 0.58, 0.53, 0.44 against a dashed line at 0.5",
+  "links": [
+    {
+      "label": "Pull request",
+      "href": "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+    }
+  ]
+}

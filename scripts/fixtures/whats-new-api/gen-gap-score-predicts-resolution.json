@@ -1,0 +1,21 @@
+{
+  "id": "gen-gap-score-predicts-resolution",
+  "kind": "generation",
+  "category": "generation",
+  "date": "2026-10-01",
+  "source": "own",
+  "machine_generated": true,
+  "title": "Gap score predicts resolution",
+  "claim": "An open problem with a higher docstring similarity to a solved problem in another file is tagged solved sooner.",
+  "tool": "solver-gap-engine backtest.py",
+  "run_id": "fc-137aec5c-2026-10-01",
+  "state": "refuted",
+  "score": {
+    "value": 0.441,
+    "meaning": "AUC at the 2026-06-01 snapshot, 0.5 is chance, interval 0.389 to 0.494"
+  },
+  "evidence": [
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+  ],
+  "parent": "gap-score-backtest-2026-10"
+}
