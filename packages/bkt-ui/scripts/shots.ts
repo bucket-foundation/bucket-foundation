@@ -9,6 +9,7 @@ import { jobRoutes } from "../../bkt/src/job-routes";
 import { jobSpecs } from "../../bkt/src/job-specs";
 import { JobRunner } from "../../bkt/src/jobs";
 import { WorkQuizStore, workQuizRoutes } from "../../bkt/src/work-quiz";
+import { fermi } from "../../bkt/src/daily-quiz";
 import { NotesStore, notesRoutes } from "../../bkt/src/notes";
 import { HistoryStore, historyRoutes } from "../../bkt/src/history";
 import { buildPySource } from "../../bkt/src/pack/pysrc";
@@ -109,6 +110,16 @@ wq.setBeads(
   })),
   Date.now(),
 );
+wq.daily.put(
+  {
+    day: "2026-09-30",
+    questions: [
+      fermi({ id: "f1", prompt: "How many lines of chat did the day's sessions hold?", answer: 16000, explain: "About 16,000 lines across the day's sessions." }),
+      { id: "c1", type: "recall", prompt: "Which branch takes desktop pull requests?", choices: ["dev", "main", "hte/integration", "ops/integration"], answer: "dev", limitSec: 30, explain: "Desktop work opens pull requests into dev." },
+    ],
+  },
+  Date.now(),
+);
 const srv = startServe({ routes: { ...localRoutes(store, { content }), ...advisorRoutes(people), ...jobRoutes(runner), ...workQuizRoutes(wq, { seed: () => "shots-2" }), ...notesRoutes(notesStore), ...historyRoutes(hist) }, uiDir: resolve(import.meta.dir, "../dist") });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
@@ -150,6 +161,15 @@ await page.click('nav a[href="#/work"]');
 await page.waitForSelector(".q");
 await page.screenshot({ path: join(out, "5b-work-quiz.png") });
 
+await page.evaluate(() => (window.location.hash = "#/work/daily/2026-09-29"));
+await page.waitForSelector("text=No quiz for 2026-09-29");
+await page.screenshot({ path: join(out, "5c-daily-quiz-empty.png") });
+await page.evaluate(() => (window.location.hash = "#/work/daily/2026-09-30"));
+await page.waitForSelector(".q");
+await page.fill(".search", "4000");
+await page.click(".toolbar button.primary");
+await page.waitForSelector(".after-block");
+await page.screenshot({ path: join(out, "5d-daily-quiz-fermi.png") });
 await page.click('nav a[href="#/canon"]');
 await page.waitForSelector(".circle-view .pt");
 await page.locator(".circle-view .pt").nth(40).dispatchEvent("click");

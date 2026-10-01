@@ -14,6 +14,11 @@ describe("hash router", () => {
     expect(parseHash("#/learn/02-physics/entropy")).toEqual({ name: "deck", deck: "02-physics", atom: "entropy" });
     expect(parseHash("#/path")).toEqual({ name: "path" });
     expect(parseHash(href({ name: "path", to: "first law" }))).toEqual({ name: "path", to: "first law" });
+    expect(parseHash("#/work")).toEqual({ name: "work" });
+    expect(parseHash("#/work/daily/2026-09-30")).toEqual({ name: "daily", day: "2026-09-30" });
+    expect(href({ name: "daily", day: "2026-09-30" })).toBe("#/work/daily/2026-09-30");
+    for (const bad of ["2026-02-30", "2026-13-01", "today", "2026-9-3", "2026-09-30/extra", "..%2F..%2Fetc", "%3Cscript%3E", ""]) expect(parseHash(`#/work/daily/${bad}`)).toEqual({ name: "work" });
+    expect(parseHash("#/work/other/2026-09-30")).toEqual({ name: "work" });
     for (const n of ["advisors", "primes", "jobs"] as const) expect(parseHash(`#/${n}`)).toEqual({ name: n });
   });
 });
