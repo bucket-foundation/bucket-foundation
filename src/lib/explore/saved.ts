@@ -173,7 +173,7 @@ const LIMITS = { id: 300, title: 500, authors: 500, citation: 2000, url: 2000, l
 
 export function safeUrl(url: unknown): url is string | null {
   if (url === null) return true;
-  if (typeof url !== "string" || url.length === 0 || url.length > LIMITS.url || /[\u0000-\u0020]/.test(url)) return false;
+  if (typeof url !== "string" || url.length === 0 || url.length > LIMITS.url || Array.from(url).some((c) => c.charCodeAt(0) <= 32)) return false;
   if (url.startsWith("/")) return !url.startsWith("//") && !url.includes("\\");
   if (!/^https?:\/\//i.test(url)) return false;
   try {
