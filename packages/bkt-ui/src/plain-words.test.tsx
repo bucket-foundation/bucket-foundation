@@ -625,3 +625,57 @@ describe("work quiz setup", () => {
     await v.unmount();
   });
 });
+
+describe("canon knowledge graph", () => {
+  const GRAPH = {
+    nodes: [
+      { id: "openalex:A1", name: "Roger Penrose", group: "author", centrality: 0.9, edges: 2 },
+      { id: "openalex:A2", name: "Stuart Hameroff", group: "author", centrality: 0.4, edges: 1 },
+      { id: "openalex:A3", name: "Stephen Hawking", group: "author", centrality: 0.3, edges: 1 },
+    ],
+    edges: [
+      { source: "openalex:A1", target: "openalex:A2", weight: 15 },
+      { source: "openalex:A1", target: "openalex:A3", weight: 1 },
+    ],
+  };
+  const withGraph = (over: Stub = {}) => populated({ canonGraph: async () => GRAPH, ...over });
+
+  test("names authors and links in plain words, and opens an author's excerpt", async () => {
+    const { GRAPH_ABOUT, PICK_AN_AUTHOR } = await import("./views/CanonGraph");
+    const v = await mount({ name: "search" }, withGraph());
+    expect(v.text()).toContain(`${GRAPH_ABOUT} 3 authors, 2 pairs.`);
+    expect(v.text()).toContain(PICK_AN_AUTHOR);
+    expect(violations(v.host)).toEqual([]);
+    const node = Array.from(v.host.querySelectorAll(".canon-graph .author")).find((g) => g.getAttribute("aria-label")!.startsWith("Roger Penrose"))!;
+    expect(node.getAttribute("aria-label")).toBe("Roger Penrose. Wrote with 2 canon authors.");
+    await v.act(async () => node.dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    const side = v.host.querySelector(".graph-side")!;
+    expect(side.querySelector("h3")!.textContent).toBe("Roger Penrose");
+    expect(Array.from(side.querySelectorAll(".linked li")).map((li) => li.textContent)).toEqual(["Stuart Hameroff15 shared papers", "Stephen Hawking1 shared paper"]);
+    expect(violations(v.host)).toEqual([]);
+    await v.act(async () => (side.querySelector("button.primary") as HTMLButtonElement).click());
+    await v.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(window.location.hash).toBe("#/search/7");
+    window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("an author with no excerpt, no graph and a broken graph each read as a sentence", async () => {
+    const { NO_GRAPH } = await import("./views/CanonGraph");
+    const none = await mount({ name: "search" }, withGraph({ canonSearch: async () => [] }));
+    const node = none.host.querySelector(".canon-graph .author")!;
+    await none.act(async () => node.dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    await none.act(async () => (none.host.querySelector(".graph-side button.primary") as HTMLButtonElement).click());
+    await none.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(none.text()).toContain("No excerpt names Roger Penrose yet.");
+    expect(violations(none.host)).toEqual([]);
+    await none.unmount();
+    const missing = await mount({ name: "search" }, populated());
+    expect(missing.text()).toContain(NO_GRAPH);
+    await missing.unmount();
+    const broken = await mount({ name: "search" }, withGraph({ canonGraph: () => Promise.reject(new ApiError("data key does not match", 500)) }));
+    expect(broken.host.querySelector(".error")!.textContent).toBe(plainError(500));
+    expect(violations(broken.host)).toEqual([]);
+    await broken.unmount();
+  });
+});

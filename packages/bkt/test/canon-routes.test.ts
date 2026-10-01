@@ -212,3 +212,30 @@ describe("POST /local/open", () => {
     expect(browserCommand(u, "win32")).toEqual(["rundll32", "url.dll,FileProtocolHandler", u]);
   });
 });
+
+describe("knowledge graph route", () => {
+  const serve = (graph: typeof pack.graph | null) => {
+    const db = freshDb();
+    syncCanon(db, pack);
+    s = startServe({ uid: ME, resolvePeerUid: () => ME, routes: canonRoutes(new CanonStore(db), { graph }) });
+  };
+
+  test("serves the filtered graph with record ids", async () => {
+    serve(pack.graph);
+    const r = await req("/local/canon/graph", { headers: auth(await token()) });
+    expect(r.status).toBe(200);
+    const body = (await r.json()) as { version: string; nodes: { id: string }[]; edges: unknown[] };
+    expect(body.version).toBe(pack.version);
+    expect(body.nodes.length).toBeGreaterThan(150);
+    expect(body.nodes.every((n) => n.id.startsWith("openalex:A"))).toBe(true);
+    expect(body.edges.length).toBe(pack.graph.graph.edges.length);
+  });
+
+  test("says so when no graph ships, and refuses a caller without the token", async () => {
+    serve(null);
+    expect((await req("/local/canon/graph")).status).toBe(401);
+    const r = await req("/local/canon/graph", { headers: auth(await token()) });
+    expect(r.status).toBe(404);
+    expect(((await r.json()) as { error: string }).error).toBe("no knowledge graph on this computer");
+  });
+});

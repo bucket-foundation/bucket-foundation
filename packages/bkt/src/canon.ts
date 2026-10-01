@@ -1,7 +1,8 @@
 import type { Database } from "bun:sqlite";
 import { spawn } from "node:child_process";
 import { parseCanonSearchParams, rankCanon, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
-import type { CanonPack, Licence, PackPassage, PackSource } from "./pack/canon";
+import type { CanonPack, Licence, PackGraph, PackPassage, PackSource } from "./pack/canon";
+import { buildCanonGraph } from "../../../src/lib/canon-graph-core";
 import type { Route } from "./serve";
 
 export const CANON_META_KEY = "canon_pack_version";
@@ -159,6 +160,7 @@ export function openInBrowser(url: string): void {
 }
 
 export interface CanonRouteOptions {
+  graph?: PackGraph | null;
   open?: (url: string) => void;
   hosts?: readonly string[];
   holdsDoi?: (doi: string) => boolean;
@@ -189,6 +191,10 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
       const raw = url.searchParams.get("id") ?? "";
       const found = /^\d{1,9}$/.test(raw) ? canon.excerpt(Number(raw)) : null;
       return found ? json(found) : json({ error: "no such excerpt" }, 404);
+    },
+    "GET /local/canon/graph": () => {
+      if (!opts.graph) return json({ error: "no knowledge graph on this computer" }, 404);
+      return json({ version: canon.version(), ...buildCanonGraph(opts.graph.graph, opts.graph.centrality) });
     },
     "GET /local/canon/licences": () => json({ version: canon.version(), excerpts: canon.index().length, branches: canon.branches(), licences: canon.licences() }),
     "POST /local/open": async (req) => {

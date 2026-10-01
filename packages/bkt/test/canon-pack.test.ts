@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
-import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
+import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, keepGraph, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
 import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -282,5 +282,46 @@ describe("parity with the website fixture", () => {
     }
     expect(compared).toBeGreaterThanOrEqual(60);
     expect(rows).toBeGreaterThan(200);
+  });
+});
+
+describe("knowledge graph in the pack", () => {
+  test("ships every connected author with centrality for kept ids only", () => {
+    expect(pack.graph.graph.nodes.length).toBe(pack.counts.connections.nodes - pack.counts.connections.denied);
+    expect(pack.graph.graph.edges.length).toBeGreaterThan(300);
+    const ids = new Set(pack.graph.graph.nodes.map((n) => n.id));
+    expect(Object.keys(pack.graph.centrality.weighted).every((k) => ids.has(k))).toBe(true);
+    expect(residual(buildDenylist(REPO), pack.graph)).toEqual([]);
+  });
+
+  test("a node naming the denied author drops with its edges and centrality", () => {
+    const raw = {
+      nodes: [
+        { id: "A1", name: "Ada Lovelace", group: "author" },
+        { id: "A2", name: `Jack ${OWNER}`, group: "author" },
+        { id: "A3", name: "Charles Babbage", group: "author" },
+      ],
+      edges: [
+        { source: "A1", target: "A2", weight: 2 },
+        { source: "A1", target: "A3", weight: 5 },
+      ],
+    };
+    const kept = keepGraph(deny, raw, { degree: { A1: 2, A2: 1, A3: 1 }, weighted: { A1: 7, A2: 2, A3: 5 } });
+    expect(kept.denied).toBe(1);
+    expect(kept.graph.graph.nodes.map((n) => n.id)).toEqual(["A1", "A3"]);
+    expect(kept.graph.graph.edges).toEqual([{ source: "A1", target: "A3", weight: 5 }]);
+    expect(kept.graph.centrality).toEqual({ degree: { A1: 2, A3: 1 }, weighted: { A1: 7, A3: 5 } });
+    expect(residual(deny, kept.graph)).toEqual([]);
+  });
+
+  test("a graph edited after the filter fails the build", () => {
+    const inputs = readInputs(REPO);
+    const full = buildDenylist(REPO);
+    const leaky = { ...inputs, graph: { ...inputs.graph, nodes: inputs.graph.nodes.map((n, i) => (i === 0 ? { ...n, name: `${n.name} ${OWNER}` } : n)) } };
+    const kept = assemble(leaky, full);
+    expect(kept.graph.graph.nodes.length).toBe(inputs.graph.nodes.length - 1);
+    const tampered = structuredClone(kept);
+    tampered.graph.graph.nodes[0].name = OWNER;
+    expect(residual(full, tampered).length).toBeGreaterThan(0);
   });
 });

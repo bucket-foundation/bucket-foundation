@@ -4,12 +4,15 @@ import { ALL_EVENTS, ALL_SITES, MAX_YEAR, MIN_YEAR } from "@/lib/canon-explorer/
 import { plainError, type CanonAbout, type CanonExcerpt, type CanonHit } from "../api";
 import { href } from "../router";
 import { CANON_TROUBLE, windowHref } from "../site-fetch";
+import { CanonGraphPanel } from "./CanonGraph";
+import type { CanonGraph } from "@/lib/canon-graph-core";
 import "../ros.css";
 
 export interface CanonSearchApi {
   canonSearch(q: string, branch?: string, topK?: number): Promise<CanonHit[]>;
   canonExcerpt(id: number): Promise<CanonExcerpt>;
   canonAbout(): Promise<CanonAbout>;
+  canonGraph?: () => Promise<CanonGraph | null>;
   openLink(url: string): Promise<{ opened: string }>;
 }
 
@@ -258,6 +261,7 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
           {detail ? <Excerpt api={api} detail={detail} onError={setError} /> : <p className="muted">{id === undefined ? "Pick an excerpt to read it with its evidence." : "Opening the excerpt…"}</p>}
         </aside>
       </div>
+      <CanonGraphPanel api={api} query={asked ?? ""} onOpen={(claim) => (window.location.hash = href({ name: "search", id: claim }))} />
       <Licences api={api} about={about} onError={setError} />
     </section>
   );
@@ -266,6 +270,8 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
 function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [round, setRound] = useState(0);
+  const [typed, setTyped] = useState(find ?? "");
+  useEffect(() => setTyped(find ?? ""), [find]);
   const about = useAbout(api, setError);
   const counts = useMemo(() => (about ? canonCounts(about) : null), [about]);
   const frame = useRef<HTMLDivElement>(null);
@@ -312,9 +318,18 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
         <p className="muted">{about ? `${about.excerpts} source excerpts on this computer. Search and the globe work with the network off.` : "Opening the canon…"}</p>
       </header>
       <Problem error={error} />
-      <div className="canon-site" ref={frame} onClickCapture={onLink}>
+      <div
+        className="canon-site"
+        ref={frame}
+        onClickCapture={onLink}
+        onInputCapture={(e) => {
+          const box = e.target as HTMLInputElement;
+          if (box.matches?.('input[placeholder^="search "]')) setTyped(box.value);
+        }}
+      >
         {counts && <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} />}
       </div>
+      <CanonGraphPanel api={api} query={typed} onOpen={(claim) => (window.location.hash = href({ name: "search", id: claim }))} />
       <Licences api={api} about={about} onError={setError} />
     </section>
   );

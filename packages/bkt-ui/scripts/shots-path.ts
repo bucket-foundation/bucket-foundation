@@ -91,6 +91,18 @@ try {
   await page.keyboard.press("0");
   await page.screenshot({ path: join(out, "6i-path-every-topic.png") });
 
+  await page.evaluate(() => (window.location.hash = "#/search"));
+  await page.waitForSelector(".canon-graph .author");
+  await page.fill(".canon-q", "Penrose");
+  await page.click('form.toolbar button[type="submit"]');
+  await page.waitForSelector(".canon-graph .author.hit");
+  await page.locator(".canon-graph .author.hit").first().dispatchEvent("click");
+  await page.waitForSelector(".graph-side h3");
+  const graph = await page.evaluate(() => ({ authors: document.querySelectorAll(".canon-graph .author").length, pairs: document.querySelectorAll(".canon-graph line.link").length }));
+  await page.locator(".canon-graph").scrollIntoViewIfNeeded();
+  await page.locator(".canon-graph").screenshot({ path: join(out, "7b-canon-graph.png") });
+  console.log(`${graph.authors} authors, ${graph.pairs} pairs in the knowledge graph`);
+
   console.log(`${counts.topics} topics, ${counts.links} links, ${counts.known} studied`);
   if (errors.length) throw new Error(errors.join("\n"));
   console.log(`screenshots in ${out}`);
