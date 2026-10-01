@@ -1,0 +1,103 @@
+import type { Database } from "bun:sqlite";
+import { rankCanon } from "../../../src/lib/canon-rank";
+import type { LoadedAdvisors } from "../../../src/lib/explore/advisors";
+import { canonFileHits } from "../../../src/lib/explore/canon-files";
+import type { ReferenceBasis } from "../../../src/lib/explore/reference-core";
+import { exploreSearch, type ExploreSearchDeps } from "../../../src/lib/explore/respond";
+import { prepare, type Prepared, type SourceKind } from "../../../src/lib/explore/source-index";
+import type { CanonStore } from "./canon";
+import type { Licence } from "./pack/canon";
+import type { ExplorePack, FoundingWorks } from "./pack/explore";
+import type { Route } from "./serve";
+
+export const EXPLORE_META_KEY = "explore_pack_version";
+export const NO_ADVISORS: LoadedAdvisors = { sources: [], sample: false, origin: "none", axes: [] };
+
+const DOCS = ["years", "foundingWorks", "referenceBasis"] as const;
+type Doc = (typeof DOCS)[number];
+
+const meta = (db: Database) => db.query<{ v: string }, [string]>("select v from meta where k = ?").get(EXPLORE_META_KEY)?.v ?? null;
+
+export function syncExplore(db: Database, pack: ExplorePack): boolean {
+  if (meta(db) === pack.version) return false;
+  db.transaction(() => {
+    db.run(`drop table if exists explore_sources; drop table if exists explore_docs; drop table if exists explore_licences;
+      create table explore_sources (n integer primary key, kind text not null, id text not null, title text not null, year integer, by text not null);
+      create table explore_docs (k text primary key, v text not null);
+      create table explore_licences (n integer primary key, kind text not null, name text not null, terms text not null, url text, works integer not null);`);
+    const src = db.query("insert into explore_sources (n, kind, id, title, year, by) values (?, ?, ?, ?, ?, ?)");
+    pack.sources.forEach(([kind, id, title, year, by], n) => src.run(n, kind, id, title, year, by));
+    const doc = db.query("insert into explore_docs (k, v) values (?, ?)");
+    for (const k of DOCS) doc.run(k, JSON.stringify(pack[k]));
+    const lic = db.query("insert into explore_licences (n, kind, name, terms, url, works) values (?, ?, ?, ?, ?, ?)");
+    pack.licences.forEach((l, n) => lic.run(n, l.kind, l.name, l.terms, l.url, l.works));
+    db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(EXPLORE_META_KEY, pack.version);
+  })();
+  return true;
+}
+
+type SourceRecord = { kind: SourceKind; id: string; title: string; year: number | null; by: string };
+
+export class ExploreStore {
+  private cached: Prepared[] | null = null;
+  private yearMap: Map<string, number> | null = null;
+
+  constructor(private db: Database) {}
+
+  version(): string | null {
+    return meta(this.db);
+  }
+
+  pool(): Prepared[] {
+    if (!this.cached) {
+      if (!this.version()) return [];
+      const rows = this.db.query<SourceRecord, []>("select kind, id, title, year, by from explore_sources order by n").all();
+      this.cached = prepare({ v: 1, items: rows.map((r) => [r.kind, r.id, r.title, r.year, "", r.by]) });
+    }
+    return this.cached;
+  }
+
+  private doc<T>(k: Doc): T | null {
+    if (!this.version()) return null;
+    const row = this.db.query<{ v: string }, [string]>("select v from explore_docs where k = ?").get(k);
+    return row ? (JSON.parse(row.v) as T) : null;
+  }
+
+  yearOf(concept: string): number | null {
+    this.yearMap ??= new Map(Object.entries(this.doc<Record<string, number>>("years") ?? {}));
+    return this.yearMap.get(concept) ?? null;
+  }
+
+  foundingWorks(): FoundingWorks | null {
+    return this.doc<FoundingWorks>("foundingWorks");
+  }
+
+  referenceBasis(): ReferenceBasis | null {
+    return this.doc<ReferenceBasis>("referenceBasis");
+  }
+
+  licences(): Licence[] {
+    if (!this.version()) return [];
+    return this.db.query<Licence, []>("select kind, name, terms, url, works from explore_licences order by n").all();
+  }
+}
+
+export function exploreDeps(explore: ExploreStore, canon: CanonStore): ExploreSearchDeps {
+  return {
+    canon: (p) => rankCanon({ loadIndex: () => canon.index(), decodeQVec: () => null }, { ...p, qvec: null }),
+    advisors: () => NO_ADVISORS,
+    sources: () => explore.pool(),
+    yearOf: (concept) => explore.yearOf(concept),
+    canonFiles: (query) => canonFileHits(query),
+  };
+}
+
+export function exploreRoutes(explore: ExploreStore, canon: CanonStore): Record<string, Route> {
+  const deps = exploreDeps(explore, canon);
+  return {
+    "GET /local/explore/search": async (_req, url) => {
+      const { status, body } = await exploreSearch(deps, url);
+      return new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } });
+    },
+  };
+}
