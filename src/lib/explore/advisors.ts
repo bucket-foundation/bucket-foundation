@@ -207,7 +207,7 @@ export interface LoadedAdvisors {
 }
 
 const NO_ADVISORS: LoadedAdvisors = { sources: [], sample: false, origin: "none", axes: [] };
-const ENV_KEYS = ["VERCEL_ENV", "BUCKET_ADVISOR_REVIEW", "BUCKET_ADVISOR_BUNDLE", "BUCKET_PRIME_DIRECTIONS"];
+const ENV_KEYS = ["VERCEL_ENV", "NODE_ENV", "BUCKET_ADVISOR_REVIEW", "BUCKET_ADVISOR_BUNDLE", "BUCKET_PRIME_DIRECTIONS"];
 
 let cache: { key: string; value: LoadedAdvisors } | null = null;
 

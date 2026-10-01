@@ -17,16 +17,17 @@ interface Expected {
   openalex?: string;
   gutenberg?: string;
   wikisource?: string;
+  index_ids: string[];
 }
 
 interface EvalQuery {
   id: string;
   task: string;
   query: string;
-  expected: Expected;
+  expected: Expected[];
   justified_by: string;
+  citation_verified: boolean;
   in_index: boolean;
-  index_ids: string[];
 }
 
 interface EvalSet {
@@ -81,17 +82,26 @@ async function outcome(query: string, wanted: string[]): Promise<Outcome> {
   };
 }
 
+const wanted = (q: EvalQuery): string[] => q.expected.flatMap((e) => e.index_ids);
+
 function fixtureProblems(set: EvalSet, held: Set<string>): string[] {
   const problems: string[] = [];
   for (const q of set.queries) {
     if (!set.tasks[q.task]) problems.push(`${q.id}: unknown task ${q.task}`);
     if (!q.justified_by) problems.push(`${q.id}: no outside source`);
-    if (!q.expected.doi && !ID_KINDS.some(([key]) => q.expected[key])) problems.push(`${q.id}: no DOI, OpenAlex, Gutenberg or Wikisource id`);
-    if (q.in_index !== q.index_ids.length > 0) problems.push(`${q.id}: in_index disagrees with index_ids`);
-    for (const id of q.index_ids) if (!held.has(id)) problems.push(`${q.id}: ${id} is not in the index`);
-    for (const [key, kind] of ID_KINDS) {
-      const id = q.expected[key];
-      if (typeof id === "string" && held.has(sourceHitId(kind, id)) && !q.index_ids.includes(sourceHitId(kind, id))) problems.push(`${q.id}: ${SOURCE_TYPE[kind]} ${id} is in the index and missing from index_ids`);
+    if (typeof q.citation_verified !== "boolean") problems.push(`${q.id}: citation_verified is not a boolean`);
+    if (!Array.isArray(q.expected) || !q.expected.length) {
+      problems.push(`${q.id}: no expected item`);
+      continue;
+    }
+    if (q.in_index !== wanted(q).length > 0) problems.push(`${q.id}: in_index disagrees with index_ids`);
+    for (const e of q.expected) {
+      if (!e.doi && !ID_KINDS.some(([key]) => e[key])) problems.push(`${q.id}: ${e.title} has no DOI, OpenAlex, Gutenberg or Wikisource id`);
+      for (const id of e.index_ids) if (!held.has(id)) problems.push(`${q.id}: ${id} is not in the index`);
+      for (const [key, kind] of ID_KINDS) {
+        const id = e[key];
+        if (typeof id === "string" && held.has(sourceHitId(kind, id)) && !e.index_ids.includes(sourceHitId(kind, id))) problems.push(`${q.id}: ${SOURCE_TYPE[kind]} ${id} is in the index and missing from index_ids`);
+      }
     }
   }
   return problems;
@@ -111,6 +121,7 @@ async function main(): Promise<void> {
 
   console.log(`Explore evaluation set: ${set.status}, signer ${set.signer ?? "none"}. ${set.notice}`);
   console.log(`${set.queries.length} queries, ${set.negatives.length} negatives, ${index.items.length} index rows, production gate set, top_k ${TOP_K}.`);
+  console.log(`citations verified by a person: ${set.queries.filter((q) => q.citation_verified === true).length} of ${set.queries.length}.`);
   const problems = fixtureProblems(set, held);
   for (const p of problems) console.log(`FIXTURE PROBLEM  ${p}`);
 
@@ -118,7 +129,7 @@ async function main(): Promise<void> {
   for (const task of Object.keys(set.tasks)) tally[task] = { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, sample: 0 };
   console.log(`\n${pad("id", 5)}${pad("held", 6)}${pad("rank", 6)}${pad("rows", 6)}${pad("zero", 6)}query`);
   for (const q of set.queries) {
-    const o = await outcome(q.query, q.index_ids);
+    const o = await outcome(q.query, wanted(q));
     const t = (tally[q.task] ??= { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, sample: 0 });
     t.n++;
     if (o.rank === 1) t.top1++;
@@ -130,10 +141,14 @@ async function main(): Promise<void> {
     console.log(`${pad(q.id, 5)}${pad(q.in_index ? "yes" : "gap", 6)}${pad(o.rank ?? "-", 6)}${pad(o.rows, 6)}${pad(o.zeroMatch, 6)}${q.query}`);
   }
 
-  console.log(`\n${pad("task", 16)}${pad("n", 4)}${pad("top 1", 7)}${pad("top 3", 7)}${pad("data gaps", 11)}${pad("ranking misses", 16)}${pad("zero-match rows", 17)}sample rows`);
+  console.log(`\n${pad("task", 16)}${pad("n", 4)}${pad("attainable", 12)}${pad("top 1", 7)}${pad("top 3", 7)}${pad("data gaps", 11)}${pad("ranking misses", 16)}${pad("zero-match rows", 17)}sample rows`);
+  const all = Object.values(tally);
+  const sum = (pick: (t: Tally) => number) => all.reduce((a, t) => a + pick(t), 0);
   for (const [task, t] of Object.entries(tally)) {
-    console.log(`${pad(task, 16)}${pad(t.n, 4)}${pad(t.top1, 7)}${pad(t.top3, 7)}${pad(t.gaps, 11)}${pad(t.misses, 16)}${pad(t.zeroMatch, 17)}${t.sample}`);
+    console.log(`${pad(task, 16)}${pad(t.n, 4)}${pad(t.n - t.gaps, 12)}${pad(t.top1, 7)}${pad(t.top3, 7)}${pad(t.gaps, 11)}${pad(t.misses, 16)}${pad(t.zeroMatch, 17)}${t.sample}`);
   }
+  const attainable = sum((t) => t.n - t.gaps);
+  console.log(`\nbaseline: top 1 on ${sum((t) => t.top1)} of ${attainable} attainable, top 3 on ${sum((t) => t.top3)} of ${attainable} attainable, ${sum((t) => t.gaps)} data gaps, ${sum((t) => t.misses)} ranking misses, ${sum((t) => t.n)} queries.`);
 
   let answered = 0;
   let rows = 0;
