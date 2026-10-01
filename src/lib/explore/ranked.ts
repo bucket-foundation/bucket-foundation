@@ -1,11 +1,14 @@
 import { canonIndex, type ClaimIndexEntry } from "@/lib/canon-search";
 import { CANON_FILES, canonFileId, type CanonFile } from "./canon-files";
-import { dedupeWorks, indexDoc, rank, statsOf, type IndexedDoc, type RankDoc, type RankStats } from "./rank";
+import { MICRO } from "./rank-kernel";
+import { ANY_TERM, dedupeWorks, indexDoc, queryTerms, rank, statsOf, type Floor, type IndexedDoc, type RankDoc, type RankStats } from "./rank";
 import { excerptId, type ExcerptSource, type Hit } from "./search";
 import { SOURCE_LABEL, SOURCE_LICENSE, SOURCE_TYPE, loadSourceIndex, sourceHitId, sourceUrl, type SourceRow } from "./sources";
 import { talkFor, type Talk } from "./talks";
 
 export const CANDIDATES = 200;
+export const CLOSEST_BELOW = 10;
+export const SEMANTIC_TAIL_SCALE = 1000;
 
 type Meta = { pool: "source"; row: SourceRow } | { pool: "excerpt"; entry: ClaimIndexEntry; talk: Talk | null } | { pool: "file"; file: CanonFile };
 
@@ -13,6 +16,7 @@ export interface ExploreCorpus {
   docs: IndexedDoc[];
   stats: RankStats;
   meta: Map<string, Meta>;
+  byId: Map<string, IndexedDoc>;
 }
 
 export interface CorpusInput {
@@ -50,7 +54,7 @@ export function buildCorpus(input: CorpusInput): ExploreCorpus {
     docs.push({ id, title: file.title, author: "", concept: file.branch.replace(/^\d+-/, ""), body: file.path.replace(/[/_.-]/g, " ") });
   }
   const indexed = docs.map(indexDoc);
-  return { docs: indexed, stats: statsOf(indexed), meta };
+  return { docs: indexed, stats: statsOf(indexed), meta, byId: new Map(indexed.map((d) => [d.doc.id, d])) };
 }
 
 let cached: { pool: unknown; entries: unknown; corpus: ExploreCorpus } | null = null;
@@ -75,7 +79,7 @@ export interface RankedOptions {
   bonus?: Map<string, number>;
   year?: (concept: string) => number | null;
   candidates?: number;
-  minShare?: number;
+  floor?: Floor;
 }
 
 function sourceHit(row: SourceRow, score: number, also: string[]): Hit {
@@ -99,7 +103,7 @@ function sourceHit(row: SourceRow, score: number, also: string[]): Hit {
 }
 
 export function rankedPools(query: string, corpus: ExploreCorpus, opts: RankedOptions = {}): RankedPools {
-  const scored = rank(query, corpus.docs, corpus.stats, { bonus: opts.bonus, minShare: opts.minShare });
+  const scored = rank(query, corpus.docs, corpus.stats, { bonus: opts.bonus, floor: opts.floor });
   const works = dedupeWorks(scored.filter((s) => corpus.meta.get(s.doc.id)?.pool === "source")).slice(0, opts.candidates ?? CANDIDATES);
   const out: RankedPools = { sources: [], excerpts: [], files: [] };
   for (const w of works) {
@@ -128,4 +132,27 @@ export function rankedPools(query: string, corpus: ExploreCorpus, opts: RankedOp
     }
   }
   return out;
+}
+
+export function needsClosest(query: string, rows: number, below = CLOSEST_BELOW): boolean {
+  return queryTerms(query).length > 1 && rows > 0 && rows < below;
+}
+
+export interface SemanticCandidate {
+  entry: ClaimIndexEntry;
+  score: number;
+}
+
+export function semanticExcerpts(query: string, corpus: ExploreCorpus, found: SemanticCandidate[], year?: (concept: string) => number | null, talk?: (file: string) => Talk | null): ExcerptSource[] {
+  const source = ({ entry, score }: SemanticCandidate): ExcerptSource => {
+    const { branch, concept, slug, title, text } = entry;
+    return { branch, concept, slug, title, text, score, year: year?.(concept) ?? null, talk: talk?.(entry.path) ?? null };
+  };
+  if (!queryTerms(query).length) return found.map((c) => source({ entry: c.entry, score: Math.max(0, Math.round(c.score * MICRO)) }));
+  const byId = new Map(found.map((c) => [excerptId(c.entry), c.entry]));
+  const docs = Array.from(byId.keys()).flatMap((id) => corpus.byId.get(id) ?? []);
+  const worded = rank(query, docs, corpus.stats, { floor: ANY_TERM });
+  const matched = new Set(worded.map((s) => s.doc.id));
+  const tail = found.filter((c) => !matched.has(excerptId(c.entry))).map((c) => source({ entry: c.entry, score: Math.max(1, Math.round(c.score * SEMANTIC_TAIL_SCALE)) }));
+  return [...worded.flatMap((s) => (byId.has(s.doc.id) ? [source({ entry: byId.get(s.doc.id) as ClaimIndexEntry, score: s.score })] : [])), ...tail];
 }

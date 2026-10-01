@@ -1,4 +1,5 @@
-import { indexDoc, queryTerms, rank, round, statsOf, terms, type IndexedDoc, type RankStats } from "./rank";
+import { idiv } from "./rank-kernel";
+import { indexDoc, queryTerms, rank, statsOf, terms, type IndexedDoc, type RankStats } from "./rank";
 
 export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file";
 
@@ -64,11 +65,11 @@ export interface UnifyOptions {
   linksPerHit?: number;
   extraHits?: Hit[];
   stats?: RankStats;
-  semantic?: boolean;
 }
 
 export const FRAGMENTS_PER_TALK = 3;
-export const TOPIC_WEIGHT = 0.95;
+export const TOPIC_WEIGHT_NUM = 19;
+export const TOPIC_WEIGHT_DEN = 20;
 
 const STOP = new Set(["the", "and", "for", "with", "that", "this", "from", "are", "was", "his", "her", "its", "not", "but", "you", "all", "any", "can", "has", "have", "into", "our", "out", "who", "why", "how", "what"]);
 
@@ -139,8 +140,8 @@ export function unify(opts: UnifyOptions): Hit[] {
   const topK = opts.topK ?? 30;
   const k = opts.linksPerHit ?? 3;
   const fragments = opts.excerpts
-    .filter((e) => opts.semantic || !q.length || e.score > 0)
-    .map((e) => ({ e, id: excerptId(e), score: round(e.score), bag: tokens(`${e.title} ${e.text}`) }))
+    .filter((e) => !q.length || e.score > 0)
+    .map((e) => ({ e, id: excerptId(e), score: Math.round(e.score), bag: tokens(`${e.title} ${e.text}`) }))
     .sort(byScore);
 
   const talks = new Map<string, typeof fragments>();
@@ -227,14 +228,14 @@ export function unify(opts: UnifyOptions): Hit[] {
   }
   const wanted = new Set(q);
   for (const [key, w] of Array.from(works)) {
-    if (q.length && !opts.semantic && !terms(w.e.concept).some((t) => wanted.has(t))) continue;
+    if (q.length && !terms(w.e.concept).some((t) => wanted.has(t))) continue;
     hits.push({
       id: `work:${key}`,
       type: "work",
       title: w.e.concept.replace(/-/g, " "),
       subtitle: `${w.e.branch.replace(/^\d+-/, "")} · ${w.ids.length} excerpt${w.ids.length === 1 ? "" : "s"}`,
       text: "",
-      score: round(w.score * TOPIC_WEIGHT),
+      score: idiv(w.score * TOPIC_WEIGHT_NUM, TOPIC_WEIGHT_DEN),
       branch: w.e.branch,
       year: w.e.year ?? null,
       url: `/excerpts/${w.e.concept}`,

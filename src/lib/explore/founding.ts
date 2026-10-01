@@ -11,6 +11,7 @@ const OPEN_NODE_ENVS = ["development", "test"];
 export const FOUNDING_ROWS = (data as { rows: FoundingRow[] }).rows;
 const WORK_KINDS = (data as { work_kinds: Record<string, SourceKind> }).work_kinds;
 const TIER_LABEL: Record<string, string> = { founding: "Founding work", landmark: "Landmark paper" };
+const CONTESTED_LABEL = "Contested founding work";
 
 export function unverifiedFoundingAllowed(env: Env = process.env): boolean {
   if (env[UNVERIFIED_FLAG]?.trim() !== "1") return false;
@@ -45,7 +46,7 @@ export function foundingCard(m: FoundingMatch, kinds: Record<string, SourceKind>
     bonus: m.bonus,
     card: {
       hit_id: hitId,
-      label: TIER_LABEL[m.row.tier] ?? TIER_LABEL.landmark,
+      label: m.row.disputed ? CONTESTED_LABEL : TIER_LABEL[m.row.tier] ?? TIER_LABEL.landmark,
       concept: m.row.concept,
       title: m.row.work.title,
       author: m.row.work.author,

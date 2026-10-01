@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { NextRequest } from "next/server";
+import { FOUNDING_BONUS_CAP_MICRO, MICRO, clampBonus, idiv, kernelRank, kernelScore, termWeightMilli, type KernelDoc, type KernelQuery } from "../src/lib/explore/rank-kernel";
 import {
-  EXACT_TITLE_BONUS,
+  ANY_TERM,
   FOUNDING_BONUS_CAP,
   dedupeWorks,
   foundingApproved,
@@ -9,14 +13,14 @@ import {
   matchFounding,
   queryTerms,
   rank,
-  scoreDoc,
   statsOf,
   terms,
+  unreadableScript,
   type FoundingRow,
   type RankDoc,
 } from "../src/lib/explore/rank";
 import { foundingCard, foundingFor, unverifiedFoundingAllowed, UNVERIFIED_FLAG } from "../src/lib/explore/founding";
-import { buildCorpus, rankedPools } from "../src/lib/explore/ranked";
+import { buildCorpus, needsClosest, rankedPools, semanticExcerpts } from "../src/lib/explore/ranked";
 import { parseTalk } from "../src/lib/explore/talks";
 import { unify } from "../src/lib/explore/search";
 import type { SourceRow } from "../src/lib/explore/sources";
@@ -55,12 +59,9 @@ test("a title match outranks the same words in the body", () => {
 test("an exact title match ranks first and carries the exact-title bonus", () => {
   const r = ranked("natural selection");
   assert.equal(r[0].doc.id, "c");
-  const indexed = DOCS.map(indexDoc);
-  const stats = statsOf(indexed);
-  const q = queryTerms("natural selection");
-  const exact = scoreDoc(q, indexDoc(doc("x", "Natural selection")), stats).score;
-  const longer = scoreDoc(q, indexDoc(doc("y", "Natural selection again")), stats).score;
-  assert.ok(exact > longer * (1 + EXACT_TITLE_BONUS / 2));
+  const pair = ranked("natural selection", [doc("x", "Natural selection"), doc("y", "Natural selection again"), ...DOCS.slice(5)]);
+  assert.equal(pair[0].doc.id, "x");
+  assert.ok(pair[0].score * 4 > pair[1].score * 5);
 });
 
 test("a phrase match outranks the same terms apart", () => {
@@ -77,10 +78,9 @@ test("a row with every query term outranks a row with one term in a heavier fiel
 });
 
 test("a longer field scores lower for the same match", () => {
-  const stats = statsOf(DOCS.map(indexDoc));
-  const short = scoreDoc(queryTerms("finches"), indexDoc(doc("s", "Finches")), stats).score;
-  const long = scoreDoc(queryTerms("finches"), indexDoc(doc("l", "Finches and many other birds of the islands and the mainland")), stats).score;
-  assert.ok(short > long && long > 0);
+  const r = ranked("finches", [doc("s", "Finches"), doc("l", "Finches and many other birds of the islands and the mainland"), ...DOCS.slice(5)]);
+  assert.deepEqual(r.map((x) => x.doc.id), ["s", "l"]);
+  assert.ok(r[0].score > r[1].score && r[1].score > 0);
 });
 
 test("a row that matches nothing is never returned", () => {
@@ -195,23 +195,25 @@ test("a disputed row shows its dispute note on the card and earns no bonus", () 
   const clean = foundingCard(matchFounding("natural selection", [row()], false)!, { openalex: "o" });
   assert.equal(clean.bonus, FOUNDING_BONUS_CAP);
   assert.equal(clean.card.dispute_note, null);
+  assert.equal(f.card.label, "Contested founding work");
+  assert.equal(clean.card.label, "Founding work");
 });
 
 test("a mislabelled founding row cannot outrank a better title match by more than the cap", () => {
   const plain = ranked("natural selection");
   const base = new Map(plain.map((x) => [x.doc.id, x.score]));
   for (const wrong of ["d", "f"]) {
-    const boosted = ranked("natural selection", DOCS, new Map([[wrong, 1000]]));
+    const boosted = ranked("natural selection", DOCS, new Map([[wrong, 1000 * MICRO]]));
     const got = new Map(boosted.map((x) => [x.doc.id, x.score]));
-    assert.ok((got.get(wrong) ?? 0) - (base.get(wrong) ?? 0) <= FOUNDING_BONUS_CAP + 1e-9);
+    assert.ok((got.get(wrong) ?? 0) - (base.get(wrong) ?? 0) <= FOUNDING_BONUS_CAP);
     for (const x of plain) {
       if (x.doc.id === wrong) continue;
       assert.equal(got.get(x.doc.id), x.score);
-      assert.ok((got.get(wrong) ?? 0) - x.score <= FOUNDING_BONUS_CAP + 1e-9 || (base.get(wrong) ?? 0) > x.score);
+      assert.ok((got.get(wrong) ?? 0) - x.score <= FOUNDING_BONUS_CAP || (base.get(wrong) ?? 0) > x.score);
       if (x.score - (base.get(wrong) ?? 0) > FOUNDING_BONUS_CAP) assert.ok(boosted.findIndex((y) => y.doc.id === x.doc.id) < boosted.findIndex((y) => y.doc.id === wrong));
     }
   }
-  const unmatched = ranked("natural selection", DOCS, new Map([["f", 1000]])).find((x) => x.doc.id === "f");
+  const unmatched = ranked("natural selection", DOCS, new Map([["f", 1000 * MICRO]])).find((x) => x.doc.id === "f");
   assert.equal(unmatched?.score, FOUNDING_BONUS_CAP);
 });
 
@@ -259,7 +261,7 @@ test("pools merge on absolute scores, sorted by score then id, with no zero rows
   assert.ok(hits.length > 3);
   assert.ok(hits.every((h, i) => h.score > 0 && (i === 0 || hits[i - 1].score > h.score || (hits[i - 1].score === h.score && hits[i - 1].id < h.id))));
   assert.ok(new Set(hits.map((h) => h.type)).size >= 3);
-  assert.ok(hits.some((h) => h.score > 1));
+  assert.ok(hits.some((h) => h.score > MICRO));
   assert.ok(!hits.some((h) => /granite/i.test(h.title)));
   assert.deepEqual(explore("zzqxv plorth"), []);
   assert.deepEqual(hits, explore("heat second law"));
@@ -268,7 +270,7 @@ test("pools merge on absolute scores, sorted by score then id, with no zero rows
 test("any-term matching keeps rows under half of the query's weight and still drops rows that match nothing", () => {
   const strict = rankedPools("heat zzqxv plorth", CORPUS);
   assert.equal(strict.sources.length + strict.excerpts.length, 0);
-  const any = rankedPools("heat zzqxv plorth", CORPUS, { minShare: 0 });
+  const any = rankedPools("heat zzqxv plorth", CORPUS, { floor: ANY_TERM });
   assert.ok(any.excerpts.length >= 3 && any.sources.length >= 2);
   assert.ok(!any.sources.some((h) => /granite/i.test(h.title)));
   assert.ok([...any.sources, ...any.excerpts].every((h) => h.score > 0));
@@ -289,4 +291,133 @@ test("a founding work enters the list on the bonus alone and never above the cap
 test("a talk source line gives the talk id and title", () => {
   assert.deepEqual(parseTalk("- **Source**: [A Talk (part 1)](https://www.youtube.com/watch?v=2EqExGl4rQU&t=5795)\n"), { id: "2EqExGl4rQU", title: "A Talk (part 1)" });
   assert.equal(parseTalk("no source here"), null);
+});
+
+const KQ: KernelQuery = { idfMicro: [2_000_000, 6_000_000], avgMilli: [8_000, 2_000, 1_000, 20_000], floorNum: 1, floorDen: 2 };
+const kdoc = (id: string, tf: number[][], over: Partial<KernelDoc> = {}): KernelDoc => ({ id, tf, len: [8, 2, 0, 20], phrase: false, exactTitle: false, bonusMicro: 0, ...over });
+
+test("the kernel takes integers and returns integers", () => {
+  const rows = [kdoc("a", [[1, 0, 0, 2], [0, 0, 0, 1]]), kdoc("b", [[0, 0, 0, 0], [2, 1, 0, 0]], { phrase: true }), kdoc("c", [[1, 0, 0, 0], [0, 0, 0, 0]], { bonusMicro: 5 * MICRO })];
+  for (const r of kernelRank(KQ, rows)) for (const v of [r.score, r.lexical, r.matchedMicro, r.totalMicro]) assert.ok(Number.isSafeInteger(v));
+  assert.equal(idiv(7, 2), 3);
+  assert.equal(idiv(9_007_199_254_740_991, 3), 3_002_399_751_580_330);
+  assert.equal(termWeightMilli([1, 0, 0, 0], [8, 0, 0, 0], KQ.avgMilli), 3_000);
+  assert.equal(termWeightMilli([0, 0, 0, 1], [0, 0, 0, 40], KQ.avgMilli), 571);
+});
+
+test("the kernel score is the stated integer formula", () => {
+  const s = kernelScore(KQ, kdoc("a", [[1, 0, 0, 0], [0, 0, 0, 1]]));
+  const title = idiv(2_000_000 * 3_000, 1_200 + 3_000);
+  const body = idiv(6_000_000 * 1_000, 1_200 + 1_000);
+  assert.equal(s.lexical, idiv((title + body) * 5, 4));
+  assert.equal(s.score, s.lexical);
+  const exact = kernelScore(KQ, kdoc("a", [[1, 0, 0, 0], [0, 0, 0, 1]], { phrase: true, exactTitle: true }));
+  assert.equal(exact.lexical, idiv((title + body) * 8, 4));
+});
+
+test("the kernel floor is 2 * matched >= total on integers", () => {
+  const light = kernelScore(KQ, kdoc("a", [[3, 0, 0, 0], [0, 0, 0, 0]]));
+  assert.equal(light.matchedMicro, 2_000_000);
+  assert.equal(light.totalMicro, 8_000_000);
+  assert.equal(light.score, 0);
+  const heavy = kernelScore(KQ, kdoc("b", [[0, 0, 0, 0], [0, 0, 0, 1]]));
+  assert.ok(2 * heavy.matchedMicro >= heavy.totalMicro && heavy.score > 0);
+  const edge: KernelQuery = { ...KQ, idfMicro: [4_000_000, 4_000_000] };
+  assert.ok(kernelScore(edge, kdoc("c", [[1, 0, 0, 0], [0, 0, 0, 0]])).score > 0);
+  assert.ok(kernelScore({ ...KQ, floorNum: 0, floorDen: 1 }, kdoc("a", [[3, 0, 0, 0], [0, 0, 0, 0]])).score > 0);
+});
+
+test("the kernel bonus is an integer at or under its cap and the order is score then id", () => {
+  assert.equal(clampBonus(5 * MICRO), FOUNDING_BONUS_CAP_MICRO);
+  assert.equal(clampBonus(-3), 0);
+  assert.equal(clampBonus(250_000), 250_000);
+  const only = kernelScore(KQ, kdoc("z", [[0, 0, 0, 0], [0, 0, 0, 0]], { bonusMicro: 9 * MICRO }));
+  assert.equal(only.score, FOUNDING_BONUS_CAP_MICRO);
+  const tie = [[0, 0, 0, 0], [0, 0, 0, 1]];
+  const order = kernelRank(KQ, [kdoc("m2", tie), kdoc("m1", tie), kdoc("top", [[1, 0, 0, 0], [1, 0, 0, 0]]), kdoc("none", [[0, 0, 0, 0], [0, 0, 0, 0]])]).map((r) => r.id);
+  assert.deepEqual(order, ["top", "m1", "m2"]);
+});
+
+test("the interface hands the kernel an integer idf table built at index time", () => {
+  const stats = statsOf(DOCS.map(indexDoc));
+  assert.ok(Array.from(stats.idfMicro.values()).every((v) => Number.isSafeInteger(v) && v > 0));
+  assert.ok(Number.isSafeInteger(stats.unseenIdfMicro) && stats.avgMilli.every((v) => Number.isSafeInteger(v) && v > 0));
+  assert.ok(ranked("natural selection quarry").every((r) => Number.isSafeInteger(r.score)));
+});
+
+test("semantic excerpts with a worded query sit on the same scale as sources", () => {
+  const found = ENTRIES.map((e, i) => ({ entry: e, score: 0.9 - i * 0.1 }));
+  const worded = semanticExcerpts("heat second law", CORPUS, found);
+  const lexical = rankedPools("heat second law", CORPUS, { floor: ANY_TERM }).excerpts;
+  assert.equal(worded.length, ENTRIES.length);
+  for (const e of worded.filter((x) => x.slug !== "004-d")) assert.equal(e.score, lexical.find((x) => x.slug === e.slug)?.score);
+  const unmatched = worded.find((e) => e.slug === "004-d")!;
+  assert.equal(unmatched.score, 600);
+  assert.ok(worded.every((e) => e.slug === "004-d" || e.score > unmatched.score));
+  const pools = rankedPools("heat second law", CORPUS);
+  const hits = unify({ query: "heat second law", excerpts: worded, advisors: [], sources: pools.sources, stats: CORPUS.stats, topK: 50 });
+  const top = hits.find((h) => h.type === "excerpt")!;
+  const weakest = hits.filter((h) => h.type !== "excerpt" && h.type !== "work").pop()!;
+  assert.ok(Number.isSafeInteger(top.score) && top.score > 0 && weakest.score > 0);
+  assert.deepEqual(hits.map((h) => h.score), hits.map((h) => h.score).sort((a, b) => b - a));
+});
+
+test("semantic excerpts with no words keep the cosine order as integers", () => {
+  const found = [{ entry: ENTRIES[3], score: 0.75 }, { entry: ENTRIES[0], score: 0.5 }, { entry: ENTRIES[1], score: -0.2 }];
+  assert.deepEqual(semanticExcerpts("", CORPUS, found).map((e) => [e.slug, e.score]), [["004-d", 750_000], ["001-a", 500_000], ["002-b", 0]]);
+});
+
+test("closest matches apply only when a worded search leaves between one and nine rows", () => {
+  assert.equal(needsClosest("double helix structure of DNA", 4), true);
+  assert.equal(needsClosest("double helix structure of DNA", 10), false);
+  assert.equal(needsClosest("cheap flights to paris", 0), false);
+  assert.equal(needsClosest("thermodynamics", 3), false);
+});
+
+async function explorePage(query: string): Promise<{ results: { id: string; also?: string[] }[]; closest: boolean }> {
+  const before = process.env.VERCEL_ENV;
+  process.env.VERCEL_ENV = "production";
+  process.env.BUCKET_ADVISOR_REVIEW = path.join(__dirname, "fixtures", "no-advisor-review.json");
+  delete process.env.BUCKET_ADVISOR_BUNDLE;
+  const { GET } = await import("../src/app/api/explore/search/route");
+  const url = new URL("http://x/api/explore/search");
+  url.searchParams.set("q", query);
+  url.searchParams.set("top_k", "50");
+  const res = await GET(new NextRequest(url.toString())).finally(() => {
+    if (before === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = before;
+  });
+  return JSON.parse(await res.text());
+}
+
+test("double helix structure of DNA falls back to closest matches and fills the list", async () => {
+  const body = await explorePage("double helix structure of DNA");
+  assert.equal(body.closest, true);
+  assert.equal(body.results.length, 50);
+});
+
+test("galaxies recede in proportion to their distance stays empty, as the negative queries do", async () => {
+  const galaxies = await explorePage("galaxies recede in proportion to their distance");
+  assert.equal(galaxies.closest, false);
+  assert.equal(galaxies.results.length, 0);
+  for (const q of ["cheap flights to paris", "taylor swift tour dates", "bitcoin price today"]) {
+    const body = await explorePage(q);
+    assert.equal(body.results.length, 0, q);
+    assert.equal(body.closest, false, q);
+  }
+});
+
+test("a search in a script the index does not cover is recognised", () => {
+  assert.equal(unreadableScript("термодинамика"), true);
+  assert.equal(unreadableScript("熱力学"), true);
+  assert.equal(unreadableScript("thermodynamics"), false);
+  assert.equal(unreadableScript("Schrödinger"), false);
+  assert.equal(unreadableScript("!!!"), false);
+  assert.equal(unreadableScript(""), false);
+});
+
+test("no index row carries a replacement character", () => {
+  const raw = fs.readFileSync(path.join(__dirname, "..", "src", "data", "explore-sources.json"), "utf8");
+  assert.equal(raw.includes("\ufffd"), false);
+  assert.ok(raw.includes("Über die Krümmung des Raumes"));
 });

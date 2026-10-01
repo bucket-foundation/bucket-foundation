@@ -1,15 +1,16 @@
+import { FIELD_COUNT, FLOOR_DEN, FLOOR_NUM, FOUNDING_BONUS_CAP_MICRO, MICRO, MILLI, clampBonus, idiv, kernelOrder, kernelScore, type KernelQuery } from "./rank-kernel";
+
 export const FIELDS = ["title", "author", "concept", "body"] as const;
 export type Field = (typeof FIELDS)[number];
 
-export const FIELD_WEIGHT: Record<Field, number> = { title: 3, author: 2, concept: 2, body: 1 };
-export const K1 = 1.2;
-export const B = 0.75;
-export const ALL_TERMS_BONUS = 0.25;
-export const PHRASE_BONUS = 0.25;
-export const EXACT_TITLE_BONUS = 0.5;
-export const MIN_QUERY_SHARE = 0.5;
-export const FOUNDING_BONUS_CAP = 1;
-export const SCORE_DECIMALS = 6;
+export const FOUNDING_BONUS_CAP = FOUNDING_BONUS_CAP_MICRO;
+export const ANY_TERM: Floor = { num: 0, den: 1 };
+export const HALF_WEIGHT: Floor = { num: FLOOR_NUM, den: FLOOR_DEN };
+
+export interface Floor {
+  num: number;
+  den: number;
+}
 
 export interface RankDoc {
   id: string;
@@ -22,21 +23,21 @@ export interface RankDoc {
 
 export interface IndexedDoc {
   doc: RankDoc;
-  tf: Record<Field, Map<string, number>>;
-  len: Record<Field, number>;
-  seq: Record<Field, string>;
+  tf: Map<string, number>[];
+  len: number[];
+  seq: string[];
 }
 
 export interface RankStats {
   n: number;
-  df: Map<string, number>;
-  avg: Record<Field, number>;
+  idfMicro: Map<string, number>;
+  unseenIdfMicro: number;
+  avgMilli: number[];
 }
 
 export interface Scored {
   doc: RankDoc;
   score: number;
-  share: number;
 }
 
 const STOP = new Set([
@@ -61,37 +62,40 @@ export function terms(text: string): string[] {
     .map(stem);
 }
 
+export function unreadableScript(query: string): boolean {
+  return terms(query).length === 0 && /[\u0370-\u1fff\u2c00-\ud7ff\uf900-\ufffc]/.test(query);
+}
+
 export function queryTerms(query: string): string[] {
   return Array.from(new Set(terms(query)));
 }
 
-export function round(score: number): number {
-  const k = 10 ** SCORE_DECIMALS;
-  return Math.round(score * k) / k;
-}
-
 export function indexDoc(doc: RankDoc): IndexedDoc {
-  const tf = {} as Record<Field, Map<string, number>>;
-  const len = {} as Record<Field, number>;
-  const seq = {} as Record<Field, string>;
+  const tf: Map<string, number>[] = [];
+  const len: number[] = [];
+  const seq: string[] = [];
   for (const f of FIELDS) {
     const list = terms(doc[f]);
     const counts = new Map<string, number>();
     for (const t of list) counts.set(t, (counts.get(t) ?? 0) + 1);
-    tf[f] = counts;
-    len[f] = list.length;
-    seq[f] = ` ${list.join(" ")} `;
+    tf.push(counts);
+    len.push(list.length);
+    seq.push(` ${list.join(" ")} `);
   }
   return { doc, tf, len, seq };
 }
 
+export function idfMicro(n: number, df: number): number {
+  return Math.round(Math.log(1 + (n - df + 0.5) / (df + 0.5)) * MICRO);
+}
+
 export function statsOf(docs: IndexedDoc[]): RankStats {
   const df = new Map<string, number>();
-  const sum: Record<Field, number> = { title: 0, author: 0, concept: 0, body: 0 };
-  const filled: Record<Field, number> = { title: 0, author: 0, concept: 0, body: 0 };
+  const sum = new Array<number>(FIELD_COUNT).fill(0);
+  const filled = new Array<number>(FIELD_COUNT).fill(0);
   for (const d of docs) {
     const seen = new Set<string>();
-    for (const f of FIELDS) {
+    for (let f = 0; f < FIELD_COUNT; f++) {
       if (d.len[f] > 0) {
         sum[f] += d.len[f];
         filled[f]++;
@@ -100,64 +104,50 @@ export function statsOf(docs: IndexedDoc[]): RankStats {
     }
     for (const t of Array.from(seen)) df.set(t, (df.get(t) ?? 0) + 1);
   }
-  const avg = {} as Record<Field, number>;
-  for (const f of FIELDS) avg[f] = filled[f] ? sum[f] / filled[f] : 1;
-  return { n: docs.length, df, avg };
+  const table = new Map<string, number>();
+  for (const [t, n] of Array.from(df)) table.set(t, idfMicro(docs.length, n));
+  return {
+    n: docs.length,
+    idfMicro: table,
+    unseenIdfMicro: idfMicro(docs.length, 0),
+    avgMilli: sum.map((s, f) => (filled[f] ? Math.max(1, idiv(s * MILLI, filled[f])) : MILLI)),
+  };
 }
 
-export function idf(stats: RankStats, term: string): number {
-  const df = Math.min(stats.df.get(term) ?? 0, stats.n);
-  return Math.log(1 + (stats.n - df + 0.5) / (df + 0.5));
+export function kernelQuery(q: string[], stats: RankStats, floor: Floor = HALF_WEIGHT): KernelQuery {
+  return { idfMicro: q.map((t) => stats.idfMicro.get(t) ?? stats.unseenIdfMicro), avgMilli: stats.avgMilli, floorNum: floor.num, floorDen: floor.den };
 }
 
-export function scoreDoc(q: string[], d: IndexedDoc, stats: RankStats): { score: number; share: number } {
-  let base = 0;
-  let matchedMass = 0;
-  let totalMass = 0;
-  let matched = 0;
-  for (const t of q) {
-    const w = idf(stats, t);
-    totalMass += w;
-    let x = 0;
-    for (const f of FIELDS) {
-      const n = d.tf[f].get(t);
-      if (n) x += (FIELD_WEIGHT[f] * n) / (1 - B + (B * d.len[f]) / stats.avg[f]);
-    }
-    if (x > 0) {
-      base += (w * x) / (K1 + x);
-      matchedMass += w;
-      matched++;
-    }
-  }
-  if (!matched || totalMass <= 0) return { score: 0, share: 0 };
-  const phrase = ` ${q.join(" ")} `;
-  let m = 1;
-  if (q.length > 1 && matched === q.length) m += ALL_TERMS_BONUS;
-  if (q.length > 1 && (d.seq.title.includes(phrase) || d.seq.concept.includes(phrase) || d.seq.body.includes(phrase))) m += PHRASE_BONUS;
-  if (d.seq.title === phrase) m += EXACT_TITLE_BONUS;
-  return { score: round(base * m), share: matchedMass / totalMass };
-}
+const TITLE = 0;
 
 export function byScoreThenId<T extends { score: number; doc: { id: string } }>(a: T, b: T): number {
-  return b.score - a.score || (a.doc.id < b.doc.id ? -1 : a.doc.id > b.doc.id ? 1 : 0);
+  return kernelOrder({ id: a.doc.id, score: a.score }, { id: b.doc.id, score: b.score });
 }
 
 export interface RankOptions {
-  minShare?: number;
+  floor?: Floor;
   bonus?: Map<string, number>;
 }
 
 export function rank(query: string, docs: IndexedDoc[], stats: RankStats, opts: RankOptions = {}): Scored[] {
   const q = queryTerms(query);
   if (!q.length) return [];
-  const minShare = opts.minShare ?? MIN_QUERY_SHARE;
+  const kq = kernelQuery(q, stats, opts.floor);
+  const phrase = ` ${q.join(" ")} `;
   const out: Scored[] = [];
   for (const d of docs) {
-    const s = scoreDoc(q, d, stats);
-    const lexical = s.score > 0 && s.share >= minShare ? s.score : 0;
-    const bonus = Math.max(0, Math.min(FOUNDING_BONUS_CAP, opts.bonus?.get(d.doc.id) ?? 0));
-    const score = round(lexical + bonus);
-    if (score > 0) out.push({ doc: d.doc, score, share: s.share });
+    const bonusMicro = clampBonus(opts.bonus?.get(d.doc.id) ?? 0);
+    const tf = q.map((t) => d.tf.map((m) => m.get(t) ?? 0));
+    if (!bonusMicro && !tf.some((row) => row.some((n) => n > 0))) continue;
+    const s = kernelScore(kq, {
+      id: d.doc.id,
+      tf,
+      len: d.len,
+      phrase: d.seq.some((x, f) => f !== 1 && x.includes(phrase)),
+      exactTitle: d.seq[TITLE] === phrase,
+      bonusMicro,
+    });
+    if (s.score > 0) out.push({ doc: d.doc, score: s.score });
   }
   return out.sort(byScoreThenId);
 }

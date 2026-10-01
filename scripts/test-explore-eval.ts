@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
 import { queryTerms, terms } from "../src/lib/explore/rank";
-import type { Hit } from "../src/lib/explore/search";
+import { coverage, tokens, type Hit } from "../src/lib/explore/search";
 import { SOURCE_TYPE, sourceHitId, type SourceIndex, type SourceKind } from "../src/lib/explore/sources";
 
 const FIXTURE = path.join(__dirname, "fixtures", "explore-eval.draft.json");
@@ -10,6 +10,8 @@ const INDEX = path.join(__dirname, "..", "src", "data", "explore-sources.json");
 const TOP_K = "60";
 const UNVERIFIED = process.argv.includes("--unverified");
 const NO_ADVISOR_TYPES = "excerpt,work,paper,text,talk,canon-file";
+const NO_DATA_TASKS = ["people", "open-question"];
+const CONCEPT_PAPER = "paper-for-concept";
 const ID_KINDS: [keyof Expected, SourceKind][] = [["openalex", "o"], ["gutenberg", "g"], ["wikisource", "w"]];
 
 interface Expected {
@@ -45,6 +47,8 @@ interface EvalSet {
 interface Outcome {
   rank: number | null;
   pinned: boolean;
+  byCard: boolean;
+  zeroWhole: number;
   rows: number;
   zeroMatch: number;
   sample: number;
@@ -57,6 +61,8 @@ interface Tally {
   gaps: number;
   misses: number;
   zeroMatch: number;
+  zeroWhole: number;
+  conceptPapers: number;
   sample: number;
 }
 
@@ -82,6 +88,10 @@ export function zeroMatch(query: string, hit: Hit): boolean {
   return !queryTerms(query).some((t) => shown.has(t));
 }
 
+export function zeroMatchWholeWords(query: string, hit: Hit): boolean {
+  return coverage(tokens(query), tokens(`${hit.title} ${hit.subtitle} ${hit.text}`)) === 0;
+}
+
 async function outcome(query: string, wanted: string[]): Promise<Outcome> {
   const { results, sample, pinned } = await search(query);
   const ids = (h: Hit) => [h.id, ...(h.also ?? [])];
@@ -92,7 +102,9 @@ async function outcome(query: string, wanted: string[]): Promise<Outcome> {
     rank: at < 0 ? null : at + 1,
     pinned: !!pinned,
     rows: results.length,
+    byCard: at === 0 && !!pinned,
     zeroMatch: results.filter((h) => zeroMatch(query, h)).length,
+    zeroWhole: results.filter((h) => zeroMatchWholeWords(query, h)).length,
     sample: results.filter((h) => h.type === "advisor" && (sample || /^sample advisor/i.test(h.title))).length,
   };
 }
@@ -143,29 +155,34 @@ async function main(): Promise<void> {
   for (const p of problems) console.log(`FIXTURE PROBLEM  ${p}`);
 
   const tally: Record<string, Tally> = {};
-  for (const task of Object.keys(set.tasks)) tally[task] = { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, sample: 0 };
-  console.log(`\n${pad("id", 5)}${pad("held", 6)}${pad("rank", 6)}${pad("card", 6)}${pad("rows", 6)}${pad("zero", 6)}query`);
+  for (const task of Object.keys(set.tasks)) tally[task] = { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, zeroWhole: 0, conceptPapers: 0, sample: 0 };
+  console.log(`\n${pad("id", 5)}${pad("held", 6)}${pad("rank", 6)}${pad("card", 6)}${pad("rows", 6)}${pad("zero", 6)}${pad("zero-old", 10)}${pad("kind", 19)}query`);
   for (const q of set.queries) {
     const o = await outcome(q.query, wanted(q));
-    const t = (tally[q.task] ??= { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, sample: 0 });
+    const t = (tally[q.task] ??= { n: 0, top1: 0, top3: 0, gaps: 0, misses: 0, zeroMatch: 0, zeroWhole: 0, conceptPapers: 0, sample: 0 });
     t.n++;
     if (o.rank === 1) t.top1++;
     if (o.rank !== null && o.rank <= 3) t.top3++;
     if (!q.in_index) t.gaps++;
     else if (o.rank === null || o.rank > 3) t.misses++;
     t.zeroMatch += o.zeroMatch;
+    t.zeroWhole += o.zeroWhole;
+    if (o.byCard) t.conceptPapers++;
     t.sample += o.sample;
-    console.log(`${pad(q.id, 5)}${pad(q.in_index ? "yes" : "gap", 6)}${pad(o.rank ?? "-", 6)}${pad(o.pinned ? "yes" : "-", 6)}${pad(o.rows, 6)}${pad(o.zeroMatch, 6)}${q.query}`);
+    console.log(`${pad(q.id, 5)}${pad(q.in_index ? "yes" : "gap", 6)}${pad(o.rank ?? "-", 6)}${pad(o.pinned ? "yes" : "-", 6)}${pad(o.rows, 6)}${pad(o.zeroMatch, 6)}${pad(o.zeroWhole, 10)}${pad(o.byCard ? CONCEPT_PAPER : "-", 19)}${q.query}`);
   }
 
-  console.log(`\n${pad("task", 16)}${pad("n", 4)}${pad("attainable", 12)}${pad("top 1", 7)}${pad("top 3", 7)}${pad("data gaps", 11)}${pad("ranking misses", 16)}${pad("zero-match rows", 17)}sample rows`);
-  const all = Object.values(tally);
-  const sum = (pick: (t: Tally) => number) => all.reduce((a, t) => a + pick(t), 0);
+  console.log(`\n${pad("task", 16)}${pad("n", 4)}${pad("attainable", 12)}${pad("top 1", 9)}${pad("top 3", 9)}${pad("data gaps", 11)}${pad("ranking misses", 16)}${pad("zero-match", 12)}${pad("zero-match old", 16)}${pad(CONCEPT_PAPER, 19)}sample rows`);
+  const scored = Object.entries(tally).filter(([task]) => !NO_DATA_TASKS.includes(task)).map(([, t]) => t);
+  const sum = (pick: (t: Tally) => number) => scored.reduce((a, t) => a + pick(t), 0);
   for (const [task, t] of Object.entries(tally)) {
-    console.log(`${pad(task, 16)}${pad(t.n, 4)}${pad(t.n - t.gaps, 12)}${pad(t.top1, 7)}${pad(t.top3, 7)}${pad(t.gaps, 11)}${pad(t.misses, 16)}${pad(t.zeroMatch, 17)}${t.sample}`);
+    const none = NO_DATA_TASKS.includes(task);
+    const cell = (v: number, w: number) => pad(none ? "no data" : v, w);
+    console.log(`${pad(task, 16)}${pad(t.n, 4)}${cell(t.n - t.gaps, 12)}${cell(t.top1, 9)}${cell(t.top3, 9)}${pad(t.gaps, 11)}${cell(t.misses, 16)}${pad(t.zeroMatch, 12)}${pad(t.zeroWhole, 16)}${pad(t.conceptPapers, 19)}${t.sample}`);
   }
   const attainable = sum((t) => t.n - t.gaps);
-  console.log(`\nresult: top 1 on ${sum((t) => t.top1)} of ${attainable} attainable, top 3 on ${sum((t) => t.top3)} of ${attainable} attainable, ${sum((t) => t.gaps)} data gaps, ${sum((t) => t.misses)} ranking misses, ${sum((t) => t.n)} queries.`);
+  console.log(`\nresult over ${Object.keys(tally).filter((t) => !NO_DATA_TASKS.includes(t)).join(" and ")}: top 1 on ${sum((t) => t.top1)} of ${attainable} attainable, top 3 on ${sum((t) => t.top3)} of ${attainable} attainable, ${sum((t) => t.gaps)} data gaps, ${sum((t) => t.misses)} ranking misses, ${sum((t) => t.n)} queries.`);
+  console.log(`${NO_DATA_TASKS.join(" and ")}: no data. The index holds no person records and no open-question records, so a hit there is a paper pinned by a concept alias, labelled ${CONCEPT_PAPER}, and earns no number.`);
 
   let answered = 0;
   let rows = 0;
@@ -175,10 +192,10 @@ async function main(): Promise<void> {
     if (o.rows > 0) answered++;
     rows += o.rows;
     sample += o.sample;
-    console.log(`${pad(n.id, 5)}${pad("neg", 6)}${pad("-", 6)}${pad(o.pinned ? "yes" : "-", 6)}${pad(o.rows, 6)}${pad(o.zeroMatch, 6)}${n.query}`);
+    console.log(`${pad(n.id, 5)}${pad("neg", 6)}${pad("-", 6)}${pad(o.pinned ? "yes" : "-", 6)}${pad(o.rows, 6)}${pad(o.zeroMatch, 6)}${pad(o.zeroWhole, 10)}${pad("-", 19)}${n.query}`);
   }
   console.log(`\nnegatives: ${answered} of ${set.negatives.length} returned rows, ${rows} rows in all, ${sample} sample rows.`);
-  console.log("A ranking miss is a held item outside the top 3. Rank counts the pinned card as the first entry, and an entry counts when any record of the same work is expected. A zero-match row shares no query word with its returned title, subtitle or text.");
+  console.log("A ranking miss is a held item outside the top 3. Rank counts the pinned card as the first entry, and an entry counts when any record of the same work is expected. The zero-match column uses the ranker terms over the title, subtitle, text and listed passages. The old column uses whole words of three letters or more over the title, subtitle and text.");
   console.log(`Report only: this run gates nothing${problems.length ? `, and the fixture has ${problems.length} problem${problems.length === 1 ? "" : "s"} listed above` : ""}.`);
 }
 

@@ -4,6 +4,7 @@ import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
 import type { FoundingCard } from "@/lib/explore/founding";
+import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
@@ -56,6 +57,8 @@ export default function ExploreClient() {
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
   const [pinned, setPinned] = useState<FoundingCard | null>(null);
+  const [closest, setClosest] = useState(false);
+  const [asked, setAsked] = useState("");
   const [origin, setOrigin] = useState<AdvisorOrigin>("none");
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -100,12 +103,15 @@ export default function ExploreClient() {
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
       setPinned(body.pinned ?? null);
+      setClosest(body.closest === true);
+      setAsked(query);
       setOrigin(body.advisors_source ?? (body.advisors_sample ? "sample" : "review"));
       setSelected(body.results[0]?.id ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setHits([]);
       setPinned(null);
+      setClosest(false);
     } finally {
       setLoading(false);
     }
@@ -370,6 +376,11 @@ export default function ExploreClient() {
               </div>
             </section>
           )}
+          {closest && visible.length > 0 && (
+            <p data-testid="explore-closest" className="text-sm mb-2">
+              Closest matches. Few sources hold every word of that search, so these share some of its words.
+            </p>
+          )}
           <ol data-testid="explore-results" className="space-y-2">
             {visible.map((h) => (
               <li key={h.id}>
@@ -391,7 +402,7 @@ export default function ExploreClient() {
                 </button>
               </li>
             ))}
-            {!loading && !visible.length && !error && <li className="text-sm">Nothing in the canon matches that search.</li>}
+            {!loading && !visible.length && !error && <li className="text-sm" data-testid="explore-empty">{unreadableScript(asked) ? "Bucket reads searches in Latin letters for now. Try the English name." : "Nothing in the canon matches that search."}</li>}
           </ol>
           </div>
           <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">

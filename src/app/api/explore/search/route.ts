@@ -4,7 +4,8 @@ import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, advisorId, unify, type HitType } from "@/lib/explore/search";
 import { foundingFor } from "@/lib/explore/founding";
-import { loadExploreCorpus, rankedPools } from "@/lib/explore/ranked";
+import { loadExploreCorpus, needsClosest, rankedPools, semanticExcerpts } from "@/lib/explore/ranked";
+import { ANY_TERM, type Floor } from "@/lib/explore/rank";
 import { talkFor } from "@/lib/explore/talks";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
@@ -42,23 +43,25 @@ export async function GET(req: NextRequest) {
   const founding = params.branch ? null : foundingFor(params.q);
   const corpus = await loadExploreCorpus();
   const bonus = founding?.hitId && founding.bonus > 0 ? new Map([[founding.hitId, founding.bonus]]) : undefined;
-  const ranked = rankedPools(params.q, corpus, { branch: params.branch, bonus, year, minShare: url.searchParams.get("match") === "any" ? 0 : undefined });
-  const excerpts = semantic
-    ? found.results.map(({ entry, score }) => ({ branch: entry.branch, concept: entry.concept, slug: entry.slug, title: entry.title, text: entry.text, score, year: year(entry.concept), talk: talkFor(entry.path) }))
-    : ranked.excerpts;
+  const anyTerm = url.searchParams.get("match") === "any";
   const { sources, sample, origin } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
-  const results = unify({
-    query: params.q,
-    excerpts,
-    advisors,
-    sources: params.branch ? [] : ranked.sources,
-    types,
-    topK: params.topK,
-    extraHits: params.branch ? [] : ranked.files,
-    stats: corpus.stats,
-    semantic,
-  });
+  const search = (floor?: Floor) => {
+    const ranked = rankedPools(params.q, corpus, { branch: params.branch, bonus, year, floor });
+    return unify({
+      query: params.q,
+      excerpts: semantic ? semanticExcerpts(params.q, corpus, found.results, year, talkFor) : ranked.excerpts,
+      advisors,
+      sources: params.branch ? [] : ranked.sources,
+      types,
+      topK: params.topK,
+      extraHits: params.branch ? [] : ranked.files,
+      stats: corpus.stats,
+    });
+  };
+  const strict = search(anyTerm ? ANY_TERM : undefined);
+  const closest = !anyTerm && !semantic && needsClosest(params.q, strict.length);
+  const results = closest ? search(ANY_TERM) : strict;
   return json({
     query: params.q || null,
     top_k: params.topK,
@@ -67,6 +70,7 @@ export async function GET(req: NextRequest) {
     advisors_sample: sample,
     advisors_source: origin,
     pinned: founding?.card ?? null,
+    closest,
     results,
     took_ms: Date.now() - t0,
   });
