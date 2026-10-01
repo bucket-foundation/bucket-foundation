@@ -3,6 +3,7 @@ import type { Route } from "./router";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonView } from "./views/Canon";
+import { CanonSearchView } from "./views/CanonSearch";
 import { DeckView } from "./views/Deck";
 import { HistoryView } from "./views/History";
 import { ImportView } from "./views/Import";
@@ -22,6 +23,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "review" }, label: "Review" },
   { route: { name: "work" }, label: "Work quiz" },
   { route: { name: "canon" }, label: "Canon" },
+  { route: { name: "search" }, label: "Canon search" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
   { route: { name: "jobs" }, label: "Jobs" },
@@ -43,6 +45,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "notes") return <NotesView api={api} />;
   if (route.name === "atlases") return <AtlasesView api={api} />;
   if (route.name === "canon") return <CanonView />;
+  if (route.name === "search") return <CanonSearchView api={api} id={route.id} />;
   if (route.name === "daily") return <DailyQuizView key={route.day} api={api} day={route.day} />;
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;

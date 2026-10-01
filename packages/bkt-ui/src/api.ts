@@ -66,6 +66,54 @@ export function plainError(status: number): string {
   return "Bucket ran into a problem. Try again.";
 }
 
+export interface CanonHit {
+  claim_id: number;
+  branch: string;
+  concept: string;
+  slug: string;
+  title: string;
+  score: number;
+  excerpt: string;
+  evidence_count: number;
+}
+
+export interface CanonPassage {
+  score: number;
+  kind: string;
+  source_path: string;
+  text: string;
+  url: string | null;
+  title: string;
+  author: string | null;
+  openable: boolean;
+}
+
+export interface CanonExcerpt {
+  id: number;
+  branch: string;
+  concept: string;
+  slug: string;
+  title: string;
+  text: string;
+  source: { title: string; url: string | null; timestamp: string | null };
+  evidence: CanonPassage[];
+}
+
+export interface CanonLicence {
+  kind: string;
+  name: string;
+  terms: string;
+  url: string | null;
+  works: number;
+}
+
+export interface CanonAbout {
+  version: string | null;
+  excerpts: number;
+  branches: string[];
+  licences: CanonLicence[];
+}
+
 export class ApiError extends Error {
   constructor(
     readonly code: string,
@@ -274,6 +322,24 @@ export class Api {
     if (r.status === 404) return null;
     if (!r.ok) throw new ApiError(resource, r.status);
     return parseRos(resource, await r.json());
+  }
+
+  canonSearch(q: string, branch = "", topK = 20) {
+    const p = new URLSearchParams({ q, top_k: String(topK) });
+    if (branch) p.set("branch", branch);
+    return this.call<{ results: CanonHit[] }>(`/local/canon/search?${p}`).then((r) => r.results);
+  }
+
+  canonExcerpt(id: number) {
+    return this.call<CanonExcerpt>(`/local/canon/excerpt?id=${id}`);
+  }
+
+  canonAbout() {
+    return this.call<CanonAbout>("/local/canon/licences");
+  }
+
+  openLink(url: string) {
+    return this.call<{ opened: string }>("/local/open", { method: "POST", body: { url } });
   }
 
   notes() {

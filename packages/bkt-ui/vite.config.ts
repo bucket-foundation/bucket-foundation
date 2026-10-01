@@ -2,6 +2,7 @@ import { copyFileSync, mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
+import { DENIED_NAME } from "../bkt/src/pack/rights";
 
 const SRC = resolve(__dirname, "../../src");
 const LANDMASK = ["landmask-2k.bin", "landmask-2k.json"];
@@ -17,8 +18,23 @@ function landmask(): Plugin {
   };
 }
 
+const FILTERED_DATA = /\/src\/data\/canon-(timeline|embeddings)\.json$/;
+
+function deniedRows(): Plugin {
+  return {
+    name: "bkt-denied-rows",
+    enforce: "pre",
+    transform(code, id) {
+      if (!FILTERED_DATA.test(id.split("?")[0])) return null;
+      const data = JSON.parse(code) as Record<string, unknown>;
+      for (const [k, v] of Object.entries(data)) if (Array.isArray(v)) data[k] = v.filter((row) => !DENIED_NAME.test(JSON.stringify(row)));
+      return { code: JSON.stringify(data), map: null };
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), landmask()],
+  plugins: [deniedRows(), react(), landmask()],
   publicDir: false,
   resolve: {
     dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],

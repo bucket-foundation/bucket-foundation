@@ -7,12 +7,18 @@ on:
       - "packages/bkt/**"
       - "packages/bkt-ui/**"
       - "src/lib/academy/**"
+      - "src/lib/canon-rank.ts"
+      - "src/lib/canon-index-loader.ts"
+      - "bucket-canon/**"
+      - "_intake/embeddings/claim-evidence.jsonl"
+      - "scripts/fixtures/canon-search-parity.json"
       - "src/lib/research-os/**"
       - "src/components/research-os/**"
       - "src/app/research-os/**"
       - "src/app/api/research-os/**"
       - "packages/ros-contract/**"
       - "tools/helix/**"
+      - "tools/prime-directions/**"
       - "learning/app/corpus/**"
       - "scripts/release/**"
       - "public/bucket_logo.webp"
@@ -24,6 +30,11 @@ on:
       - "packages/bkt/**"
       - "packages/bkt-ui/**"
       - "src/lib/academy/**"
+      - "src/lib/canon-rank.ts"
+      - "src/lib/canon-index-loader.ts"
+      - "bucket-canon/**"
+      - "_intake/embeddings/claim-evidence.jsonl"
+      - "scripts/fixtures/canon-search-parity.json"
 
 permissions:
   contents: read
@@ -45,6 +56,9 @@ jobs:
       - name: engine guard, store, serve and routes
         working-directory: packages/bkt
         run: bun run pack:content && bun test
+      - name: no denied or staff material in the canon pack
+        working-directory: packages/bkt
+        run: bun scripts/check-no-kruse.ts content/canon.json && bun scripts/check-no-staff.ts content/canon.json
       - name: typecheck
         working-directory: packages/bkt
         run: bun run typecheck
@@ -81,6 +95,8 @@ jobs:
       - name: build and size gate
         working-directory: packages/bkt-ui
         run: bun run build && bun run size
+      - name: no denied source material in the build
+        run: bun packages/bkt/scripts/check-no-kruse.ts packages/bkt-ui/dist
 
   appimage:
     runs-on: ubuntu-latest

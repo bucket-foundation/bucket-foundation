@@ -54,10 +54,23 @@ def resolve_path(path: str, root: Path | None = None) -> Path:
         return p
     return (root or data_root()) / p
 
+PRIVATE_NAME = "private.json"
+
+def load_private(path: Path | None = None) -> dict:
+    path = path or REGISTRY_PATH.parent / PRIVATE_NAME
+    if not path.exists():
+        return {"patterns": [], "corpora": {}}
+    raw = json.loads(path.read_text())
+    return {"patterns": list(raw.get("patterns", [])), "corpora": dict(raw.get("corpora", {}))}
+
+def private_patterns(path: Path | None = None) -> tuple[str, ...]:
+    return tuple(load_private(path)["patterns"])
+
 def load_registry(path: Path = REGISTRY_PATH) -> dict[str, CorpusSpec]:
     raw = json.loads(path.read_text())
     specs = {}
-    for name, entry in raw["corpora"].items():
+    entries = {**raw["corpora"], **load_private(path.parent / PRIVATE_NAME)["corpora"]}
+    for name, entry in entries.items():
         entry = dict(entry)
         specs[name] = CorpusSpec(
             name=name,

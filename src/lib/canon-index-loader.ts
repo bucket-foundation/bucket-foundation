@@ -7,8 +7,6 @@ const INDEX_DIR = path.join(REPO_ROOT, "_intake", "embeddings-v2");
 const V2_VECTORS = path.join(INDEX_DIR, "claims-vectors.npy");
 const V1_VECTORS = path.join(REPO_ROOT, "_intake", "embeddings", "claims-vectors.f32.bin");
 
-const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
-
 let cache: ClaimIndexEntry[] | null = null;
 
 function parseNpy(buf: Buffer): { shape: number[]; data: Float32Array } {
@@ -50,17 +48,18 @@ function parseExcerpt(file: string): { title: string; excerpt: string } {
   return { title, excerpt };
 }
 
-export function loadCanonIndex(): ClaimIndexEntry[] {
-  if (cache) return cache;
+export type CanonClaim = { branch: string; concept: string; slug: string; path: string; title: string; text: string };
 
-  const entries: { branch: string; concept: string; slug: string; path: string; title: string; text: string }[] = [];
+export function readCanonClaims(repoRoot: string): CanonClaim[] {
+  const canonRoot = path.join(repoRoot, "bucket-canon");
+  const entries: CanonClaim[] = [];
 
-  const branches = fs.existsSync(CANON_ROOT)
-    ? fs.readdirSync(CANON_ROOT).filter((d) => /^\d{2}-/.test(d)).sort()
+  const branches = fs.existsSync(canonRoot)
+    ? fs.readdirSync(canonRoot).filter((d) => /^\d{2}-/.test(d)).sort()
     : [];
 
   for (const branch of branches) {
-    const subClaims = path.join(CANON_ROOT, branch, "sub-claims");
+    const subClaims = path.join(canonRoot, branch, "sub-claims");
     if (!fs.existsSync(subClaims)) continue;
     for (const concept of fs.readdirSync(subClaims).sort()) {
       const conceptDir = path.join(subClaims, concept);
@@ -74,12 +73,19 @@ export function loadCanonIndex(): ClaimIndexEntry[] {
         const text = `${title}. ${excerpt}`;
         entries.push({
           branch, concept, slug,
-          path: path.relative(REPO_ROOT, full),
+          path: path.relative(repoRoot, full),
           title, text,
         });
       }
     }
   }
+  return entries;
+}
+
+export function loadCanonIndex(): ClaimIndexEntry[] {
+  if (cache) return cache;
+
+  const entries = readCanonClaims(REPO_ROOT);
 
   let vectors: Float32Array;
   let dim = CANON_DEFAULT_DIM;

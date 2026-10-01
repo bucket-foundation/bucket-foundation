@@ -98,8 +98,8 @@ function fixtureProblems(set: EvalSet, held: Set<string>): string[] {
     for (const e of q.expected) {
       if (!e.doi && !ID_KINDS.some(([key]) => e[key])) problems.push(`${q.id}: ${e.title} has no DOI, OpenAlex, Gutenberg or Wikisource id`);
       for (const id of e.index_ids) if (!held.has(id)) problems.push(`${q.id}: ${id} is not in the index`);
-      for (const [key, kind] of ID_KINDS) {
-        const id = e[key];
+      const ids: [SourceKind, string | undefined][] = [...ID_KINDS.map(([key, kind]): [SourceKind, string | undefined] => [kind, e[key] as string | undefined]), ["d", e.doi?.toLowerCase()]];
+      for (const [kind, id] of ids) {
         if (typeof id === "string" && held.has(sourceHitId(kind, id)) && !e.index_ids.includes(sourceHitId(kind, id))) problems.push(`${q.id}: ${SOURCE_TYPE[kind]} ${id} is in the index and missing from index_ids`);
       }
     }

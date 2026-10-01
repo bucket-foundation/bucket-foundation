@@ -5,7 +5,7 @@ import { MASTERED_THRESHOLD } from "@academy/mastery";
 import { generateQuestion } from "@ros/work-quiz/generate";
 import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
 import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type WorkQuestion } from "./api";
-import type { Route } from "./router";
+import { href, type Route } from "./router";
 
 mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
@@ -171,6 +171,9 @@ function empty(): Stub {
     advisor: async () => ({ review: null, forgotten: 0 }),
     primeDirections: async () => [],
     ros: async () => null,
+    canonAbout: async () => ({ version: null, excerpts: 0, branches: [], licences: [] }),
+    canonSearch: async () => [],
+    canonExcerpt: () => Promise.reject(new ApiError("no such excerpt", 404)),
   };
 }
 
@@ -184,6 +187,21 @@ function populated(over: Stub = {}): Stub {
     notes: async () => [{ id: "n1", title: "Reading list", body: "Start with Carnot.", pinned: true, createdAt: 1, updatedAt: 2 }],
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
+    canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
+    canonSearch: async () => [{ claim_id: 7, branch: "02-physics", concept: "free-will", slug: "001-a", title: "Claim", score: 2, excerpt: "Claim. Entropy rises and entropy never falls.", evidence_count: 1 }],
+    canonExcerpt: async () => ({
+      id: 7,
+      branch: "02-physics",
+      concept: "entropy",
+      slug: "001-a",
+      title: "Claim",
+      text: "Claim. Entropy rises and entropy never falls.",
+      source: { title: "A lecture on heat", url: "https://www.youtube.com/watch?v=BBBBBBBBBBB&t=10", timestamp: "00:00:10.000" },
+      evidence: [
+        { score: 0.71, kind: "pubmed", source_path: "pubmed/PMID-1-x/abstract.txt", text: "Heat flows from hot to cold.", url: "https://pubmed.ncbi.nlm.nih.gov/1/", title: "On heat", author: "A. Writer", openable: true },
+        { score: 0.6, kind: "archive", source_path: "archive/item/a.txt", text: "An old book on heat.", url: "https://archive.org/details/item", title: "Old book", author: null, openable: false },
+      ],
+    }),
     workNext: async () => served("populated", "true_false")!.question,
     dailyQuiz: async () => ({
       day: DAY,
@@ -210,6 +228,9 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
+    canonAbout: fail("data key does not match", 500),
+    canonSearch: fail("data key does not match", 500),
+    canonExcerpt: fail("no such excerpt", 404),
     importWeb: fail("expected { branches: { <deck>: EngineState } }", 400),
     workBeads: fail("no beads found; pick a .beads/issues.jsonl file", 400),
     workRepo: fail("git could not read that folder", 400),
@@ -237,7 +258,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -250,7 +271,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Notes", "History", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -265,7 +286,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -291,7 +312,7 @@ describe("navigation", () => {
 describe("plain words", () => {
   for (const route of COVERED) {
     for (const [state, stub] of [["empty", empty], ["populated", populated], ["failing", failing]] as const) {
-      test(`${route.name}, ${state}`, async () => {
+      test(`${href(route)}, ${state}`, async () => {
         const v = await mount(route, stub());
         expect(v.text().length).toBeGreaterThan(0);
         expect(violations(v.host)).toEqual([]);
@@ -345,7 +366,7 @@ describe("what the helper sends", () => {
       expect(violationsIn([e.message])).toEqual([]);
       const fail = () => Promise.reject(new ApiError(code, status));
       for (const route of COVERED.filter((r) => r.name !== "canon")) {
-        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail });
+        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail, canonAbout: fail, canonExcerpt: fail });
         if (code) expect({ route: route.name, code, leaked: v.text().includes(code) }).toEqual({ route: route.name, code, leaked: false });
         expect(violations(v.host)).toEqual([]);
         await v.unmount();
