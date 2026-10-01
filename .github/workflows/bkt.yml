@@ -17,6 +17,7 @@ on:
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
+      - "scripts/fixtures/canon-search-shape.json"
       - "src/lib/research-os/**"
       - "src/components/research-os/**"
       - "src/app/research-os/**"
@@ -45,6 +46,7 @@ on:
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
+      - "scripts/fixtures/canon-search-shape.json"
 
 permissions:
   contents: read

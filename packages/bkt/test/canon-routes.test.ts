@@ -1,7 +1,8 @@
 import { Database } from "bun:sqlite";
 import { afterEach, describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { browserCommand, CANON_META_KEY, canonRoutes, CanonStore, openable, OPEN_BODY_BYTES, syncCanon } from "../src/canon";
+import { browserCommand, CANON_META_KEY, CANON_SITE, canonRoutes, CanonStore, openable, OPEN_BODY_BYTES, syncCanon } from "../src/canon";
 import { buildCanonPack } from "../src/pack/canon";
 import { startServe, type Serve } from "../src/serve";
 
@@ -128,6 +129,24 @@ describe("GET /local/canon/search", () => {
     const lic = (await (await req("/local/canon/licences", { headers: auth(t) })).json()) as { version: string; licences: { kind: string }[] };
     expect(lic.version).toBe(pack.version);
     expect(lic.licences.map((l) => l.kind)).toEqual(pack.licences.map((l) => l.kind));
+  });
+});
+
+describe("the search response shape", () => {
+  const shapeOf = (row: Record<string, unknown>) => Object.fromEntries(Object.keys(row).sort().map((k) => [k, Array.isArray(row[k]) ? "array" : typeof row[k]]));
+
+  test("has the field names and types the website's canon search returns for the same query", async () => {
+    const fixture = JSON.parse(readFileSync(resolve(import.meta.dir, "../../../scripts/fixtures/canon-search-shape.json"), "utf8")) as { query: Record<string, string>; body: Record<string, string>; result: Record<string, string> };
+    boot();
+    const r = await req(`/local/canon/search?${new URLSearchParams(fixture.query)}`, { headers: auth(await token()) });
+    expect(r.status).toBe(200);
+    const body = (await r.json()) as { results: Record<string, unknown>[] };
+    expect(shapeOf(body)).toEqual(fixture.body);
+    expect(body.results.length).toBe(Number(fixture.query.top_k));
+    for (const row of body.results) expect(shapeOf(row)).toEqual(fixture.result);
+    const first = body.results[0] as { url: string; concept: string; slug: string };
+    expect(first.url).toBe(`${CANON_SITE}/excerpts/${first.concept}/${first.slug}`);
+    expect(openable(first.url)).not.toBeNull();
   });
 });
 

@@ -7,6 +7,7 @@ import type { Route } from "./serve";
 export const CANON_META_KEY = "canon_pack_version";
 export const CANON_DEFAULT_TOP_K = 20;
 export const OPEN_BODY_BYTES = 4096;
+export const CANON_SITE = "https://bucket.foundation";
 export const OPEN_HOSTS = [
   "www.youtube.com",
   "youtube.com",
@@ -167,6 +168,7 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
   const open = opts.open ?? openInBrowser;
   return {
     "GET /local/canon/search": (_req, url) => {
+      const t0 = Date.now();
       const params = parseCanonSearchParams(url, CANON_DEFAULT_TOP_K);
       const found = rankCanon({ loadIndex: () => canon.index(), decodeQVec: () => null }, { ...params, qvec: null });
       if (!found.ok) return json({ error: found.message, code: found.code }, found.status);
@@ -177,10 +179,11 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
         slug: r.entry.slug,
         title: r.entry.title,
         score: r.score,
+        url: `${CANON_SITE}/excerpts/${r.entry.concept}/${r.entry.slug}`,
         excerpt: r.entry.text.slice(0, 400),
         evidence_count: canon.evidenceCount(r.entry.rowid),
       }));
-      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results });
+      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results, took_ms: Date.now() - t0 });
     },
     "GET /local/canon/excerpt": (_req, url) => {
       const raw = url.searchParams.get("id") ?? "";
