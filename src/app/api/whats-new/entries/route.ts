@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import whatsNewData from "../../../../../data/whats-new.json";
 import { getMarkStore } from "@/lib/download/marks";
-import { handleList, handlePost, type Deps, type LegacyEntry, type Result } from "@/lib/whats-new/handler";
+import { cachedPublished, LEGACY_ENTRIES, revalidateWhatsNew } from "@/lib/whats-new/cached";
+import { handleList, handlePost, type Deps, type Result } from "@/lib/whats-new/handler";
 import { getWhatsNewStore } from "@/lib/whats-new/store";
 
 export const runtime = "nodejs";
@@ -9,11 +9,10 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "no-store" };
-const PUBLIC = { "cache-control": "public, max-age=0, s-maxage=300" };
-const LEGACY = (whatsNewData as { entries: LegacyEntry[] }).entries;
+const PUBLIC = { "cache-control": "public, max-age=0, must-revalidate" };
 
 function deps(): Deps {
-  return { env: process.env, store: getWhatsNewStore(), marks: getMarkStore(), legacy: LEGACY };
+  return { env: process.env, store: getWhatsNewStore(), marks: getMarkStore(), legacy: LEGACY_ENTRIES, published: cachedPublished };
 }
 
 function respond(result: Result, headers: Record<string, string>): NextResponse {
@@ -31,6 +30,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     },
     deps(),
   );
+  if (result.publicChanged) revalidateWhatsNew();
   return respond(result, NO_STORE);
 }
 

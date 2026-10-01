@@ -1,6 +1,7 @@
 import type { MarkStore } from "../download/marks";
 import type { WaitlistEntry } from "../waitlist/core";
 import { adminKeyMatches, listSignups, type WaitlistStore } from "../waitlist/store";
+import type { DocStore } from "../whats-new/store";
 import { buildDigest, digestDay, renderDigest, type RawEntry } from "./digest";
 import { optedOutAt, subscriberId, unsubscribeUrl } from "./unsubscribe";
 
@@ -59,8 +60,64 @@ export interface SendReport {
   sent: number;
   failed: number;
   pending: number;
-  skipped?: "empty" | "done";
+  skipped?: "empty" | "done" | "offline";
   resumedAt: number;
+}
+
+export interface DigestLedger {
+  frozen(day: string): Promise<string[] | null>;
+  freeze(day: string, ids: string[]): Promise<void>;
+  mailedOn(id: string): Promise<string | null>;
+  markMailed(id: string, day: string): Promise<void>;
+}
+
+export function digestLedger(store: DocStore): DigestLedger {
+  return {
+    async frozen(day) {
+      const text = await store.read(`digest/freeze-${day}.json`);
+      if (text === null) return null;
+      const ids = (JSON.parse(text) as { ids?: unknown }).ids;
+      if (!Array.isArray(ids) || ids.some((id) => typeof id !== "string")) throw new Error("freeze record is unreadable");
+      return ids as string[];
+    },
+    async freeze(day, ids) {
+      await store.create(`digest/freeze-${day}.json`, JSON.stringify({ key: `freeze:${day}`, ids }));
+    },
+    async mailedOn(id) {
+      const text = await store.read(`digest/mailed-${id}.json`);
+      if (text === null) return null;
+      const day = (JSON.parse(text) as { day?: unknown }).day;
+      if (typeof day !== "string") throw new Error("mailed record is unreadable");
+      return day;
+    },
+    async markMailed(id, day) {
+      await store.create(`digest/mailed-${id}.json`, JSON.stringify({ day }));
+    },
+  };
+}
+
+export class Unreachable extends Error {
+  constructor(message: string) {
+    super(message);
+    Object.setPrototypeOf(this, Unreachable.prototype);
+  }
+}
+
+type Published = RawEntry & { published_at?: unknown };
+
+async function frozenEntries(all: readonly Published[], day: string, ledger: DigestLedger | undefined): Promise<{ entries: Published[]; frozen: boolean }> {
+  const frozen = ledger ? await ledger.frozen(day) : null;
+  if (frozen) return { entries: all.filter((e) => typeof e.id === "string" && frozen.includes(e.id)), frozen: true };
+  const entries: Published[] = [];
+  for (const e of all) {
+    if (e.date !== day || typeof e.id !== "string") continue;
+    if (ledger && typeof e.published_at === "string") {
+      const mailed = await ledger.mailedOn(e.id);
+      if (mailed !== null && mailed !== day) continue;
+    }
+    entries.push(e);
+  }
+  return { entries, frozen: false };
 }
 
 async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
@@ -75,6 +132,8 @@ async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day:
       text: email.text,
       headers: { "List-Unsubscribe": `<${unsub}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" },
     }),
+  }).catch((err: unknown) => {
+    throw new Unreachable(err instanceof Error ? err.message : "fetch failed");
   });
   if (!res.ok) throw new Error(`resend ${res.status}`);
 }
@@ -82,7 +141,8 @@ async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day:
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export async function sendDailyDigest(opts: {
-  entries: readonly RawEntry[];
+  entries: readonly RawEntry[] | (() => Promise<readonly RawEntry[]>);
+  ledger?: DigestLedger;
   recipients: () => Promise<Recipient[]>;
   config: DigestConfig;
   now: number;
@@ -95,7 +155,20 @@ export async function sendDailyDigest(opts: {
   const { config, now } = opts;
   const fetcher = opts.fetcher ?? fetch;
   const clock = opts.clock ?? Date.now;
-  const digest = buildDigest(opts.entries, digestDay(now));
+  const day = digestDay(now);
+  const all: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
+  const ledger = opts.ledger;
+  const picked = await frozenEntries(all, day, ledger);
+  const digest = buildDigest(picked.entries, day);
+  const published = new Set(picked.entries.filter((e) => typeof e.published_at === "string").map((e) => e.id as string));
+  let recorded = picked.frozen || !ledger;
+  const record = async () => {
+    if (recorded || !ledger) return;
+    const ids = digest.groups.flatMap((g) => g.items.map((i) => i.id));
+    await ledger.freeze(day, ids);
+    for (const id of ids) if (published.has(id)) await ledger.markMailed(id, day);
+    recorded = true;
+  };
   const base = { day: digest.day, entries: digest.count, recipients: 0, sent: 0, failed: 0, pending: 0, resumedAt: 0 };
   if (digest.count === 0) return { ...base, skipped: "empty" };
   const progress = opts.progress;
@@ -114,13 +187,19 @@ export async function sendDailyDigest(opts: {
     try {
       await sendOne(fetcher, config, r, digest.day, renderDigest(digest, unsub, config.postalAddress), unsub);
       report.sent++;
+      await record();
     } catch (err) {
+      if (err instanceof Unreachable && report.sent === 0 && report.failed === 0) {
+        console.error("[whats-new] mail API unreachable, nothing recorded:", err.message);
+        return { ...report, pending: recipients.length - i, skipped: "offline" };
+      }
       report.failed++;
       console.error(`[whats-new] send failed for ${r.key.slice(0, 12)}:`, err instanceof Error ? err.message : "unknown");
     }
     if (progress && (i + 1 - start) % CURSOR_EVERY === 0) await progress.set(`cursor:${digest.day}`, i + 1);
     if (gap > 0 && i < recipients.length - 1) await pause(gap);
   }
+  await record();
   if (progress) {
     if (report.pending === 0) await progress.set(`done:${digest.day}`, clock());
     else await progress.set(`cursor:${digest.day}`, recipients.length - report.pending);

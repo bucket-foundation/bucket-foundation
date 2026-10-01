@@ -2,7 +2,8 @@ import { createHash, randomBytes } from "node:crypto";
 import { sharedRateLimiter, type MarkStore } from "../download/marks";
 import { bearer, matchToken, parseTokens, revokedInEnv, revokedInStore, sharedRevocationCache, type Poster, type RevocationCache } from "./auth";
 import { entryLeaks } from "./leak-filter.mjs";
-import { KINDS, parseEntryBody, type ImageMeta, type Kind } from "./schema";
+import { loadPublicEntries, mergeEntries, type LegacyEntry } from "./public";
+import { ID, KINDS, parseEntryBody, type ImageMeta, type Kind } from "./schema";
 import {
   addUsage,
   appendAudit,
@@ -12,9 +13,12 @@ import {
   listEntries,
   markRevoked,
   readEntry,
+  readImage,
   readUsage,
   removeEntry,
   removeImage,
+  restoreImage,
+  tombstone,
   writeEntry,
   writeImage,
   type DocStore,
@@ -43,18 +47,21 @@ export interface Deps {
   clock?: () => number;
   limits?: Limits;
   revocationCache?: RevocationCache;
+  published?: () => Promise<StoredEntry[]>;
 }
 
-export interface LegacyEntry {
-  id: string;
-  date: string;
-  category?: string;
-  [field: string]: unknown;
-}
+export { mergeEntries, type LegacyEntry };
 
 export interface Result {
   status: number;
   body: Record<string, unknown> | null;
+  publicChanged?: boolean;
+}
+
+export interface EntryRequest {
+  authorization: string | null;
+  id: string;
+  ifMatch?: string | null;
 }
 
 export interface PostRequest {
@@ -184,28 +191,48 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
       }
     }
 
+    const wasPublished = existing?.review_state === "published";
     if (existing) {
       if (existing.poster !== poster.name) return fail(409, "This id belongs to another poster.");
+      if (existing.review_state === "deleted") return fail(409, "This id was deleted and stays retired.");
       if (existing.kind !== entry.kind) return fail(409, `This id holds a ${existing.kind}; the kind of an entry is fixed.`);
       const delta = imageBytes(fresh) - imageBytes(existing);
       const usage = await readUsage(store, poster.name);
       if (delta > 0 && usage.image_bytes + delta > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
-      if (delta !== 0) {
-        await addUsage(store, poster.name, { drafts: 0, image_bytes: delta });
-        reserved = { drafts: 0, image_bytes: delta };
+      const claim: Usage = { drafts: wasPublished ? 1 : 0, image_bytes: delta };
+      if (claim.drafts !== 0 || delta !== 0) {
+        await addUsage(store, poster.name, claim);
+        reserved = claim;
       }
-      await writeEntry(store, { ...fresh, created_at: existing.created_at });
+      const previousImage = await readImage(store, entry.id);
+      if (image) await writeImage(store, entry.id, image);
+      try {
+        await writeEntry(store, { ...fresh, created_at: existing.created_at });
+      } catch (err) {
+        if (image) await restoreImage(store, entry.id, previousImage);
+        throw err;
+      }
+      if (!image) await removeImage(store, entry.id);
+    } else if (image) {
+      try {
+        await writeImage(store, entry.id, image);
+      } catch (err) {
+        await removeEntry(store, entry.id);
+        throw err;
+      }
     }
 
     reserved = null;
-    if (image) await writeImage(store, entry.id, image);
-    else if (existing) await removeImage(store, entry.id);
     await appendAudit(
       store,
       { ts: now, id: entry.id, poster: poster.name, action: existing ? "replace" : "create", body_hash, previous_body_hash: existing?.body_hash ?? null },
       randomBytes(4).toString("hex"),
     );
-    return { status: existing ? 200 : 201, body: { ok: true, id: entry.id, kind: entry.kind, review_state: "draft", replaced: Boolean(existing) } };
+    return {
+      status: existing ? 200 : 201,
+      body: { ok: true, id: entry.id, kind: entry.kind, review_state: "draft", replaced: Boolean(existing) },
+      publicChanged: wasPublished,
+    };
   } catch (err) {
     if (reserved) {
       await addUsage(store, poster.name, { drafts: -reserved.drafts, image_bytes: -reserved.image_bytes }).catch((release: unknown) => {
@@ -221,6 +248,7 @@ export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Resu
   if ("status" in auth) return auth;
   if (auth.poster.scope !== "admin") return NOT_FOUND;
   if (!POSTER_NAME.test(req.name)) return fail(400, "name must match [a-z0-9-]{1,40}", { field: "name" });
+  if (req.name === auth.poster.name) return fail(409, "A token cannot revoke itself. Use another admin token.");
   const { store } = auth;
   const clock = deps.clock ?? Date.now;
   const now = new Date(clock()).toISOString();
@@ -231,9 +259,10 @@ export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Resu
     for (const draft of drafts) await removeEntry(store, draft.id);
     await clearUsage(store, req.name);
     const deleted = drafts.map((d) => d.id).sort();
+    const previous_body_hashes = Object.fromEntries(deleted.map((id) => [id, drafts.find((d) => d.id === id)?.body_hash ?? ""]));
     await appendAudit(
       store,
-      { ts: now, id: `token-${req.name}`, poster: auth.poster.name, action: "revoke", body_hash: null, previous_body_hash: null, deleted },
+      { ts: now, id: `token-${req.name}`, poster: auth.poster.name, action: "revoke", body_hash: null, previous_body_hash: null, deleted, previous_body_hashes },
       randomBytes(4).toString("hex"),
     );
     return { status: 200, body: { ok: true, revoked: req.name, deleted } };
@@ -242,30 +271,77 @@ export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Resu
   }
 }
 
-function legacyKind(entry: LegacyEntry): string {
-  return entry.category === "production" || entry.category === "generation" ? entry.category : "update";
+async function adminEntry(req: EntryRequest, deps: Deps): Promise<{ poster: Poster; store: DocStore; entry: StoredEntry } | Result> {
+  const auth = await authorize(req.authorization, deps);
+  if ("status" in auth) return auth;
+  if (auth.poster.scope !== "admin") return NOT_FOUND;
+  if (!ID.test(req.id)) return fail(400, "id must match [a-z0-9-]{3,80}", { field: "id" });
+  try {
+    const entry = await readEntry(auth.store, req.id);
+    if (!entry) return fail(404, "No stored entry has this id.");
+    if (entry.review_state === "deleted") return fail(410, "This entry was deleted.");
+    return { ...auth, entry };
+  } catch (err) {
+    return unavailable("entry read failed", err);
+  }
 }
 
-function publicView(entry: StoredEntry): Record<string, unknown> {
-  const { poster: _poster, body_hash: _hash, review_state: _review, ...rest } = entry;
-  return rest;
+export async function handlePublish(req: EntryRequest, deps: Deps): Promise<Result> {
+  const found = await adminEntry(req, deps);
+  if ("status" in found) return found;
+  const { poster, store, entry } = found;
+  if (deps.legacy.some((e) => e.id === entry.id)) return fail(409, "This id belongs to an entry in the legacy feed.");
+  if (entry.source !== "own") return fail(409, "Only own work can be published; this entry stays a draft.");
+  if (req.ifMatch && req.ifMatch !== entry.body_hash) return fail(412, "The entry changed after it was reviewed. Read the draft again.");
+  if (entry.review_state === "published") {
+    return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: entry.published_at, changed: false } };
+  }
+  const now = new Date((deps.clock ?? Date.now)()).toISOString();
+  try {
+    await appendAudit(
+      store,
+      { ts: now, id: entry.id, poster: poster.name, action: "publish", body_hash: entry.body_hash, previous_body_hash: entry.body_hash },
+      randomBytes(4).toString("hex"),
+    );
+    await writeEntry(store, { ...entry, review_state: "published", published_at: now, updated_at: now });
+    await addUsage(store, entry.poster, { drafts: -1, image_bytes: 0 });
+  } catch (err) {
+    return { ...unavailable("publish failed", err), publicChanged: true };
+  }
+  return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: now, date: now.slice(0, 10), changed: true }, publicChanged: true };
 }
 
-export function mergeEntries(legacy: LegacyEntry[], stored: StoredEntry[], kind: Kind | null = null): Record<string, unknown>[] {
-  const taken = new Set(legacy.map((e) => e.id));
-  const published = stored.filter((e) => e.review_state === "published" && !taken.has(e.id)).map(publicView);
-  const all = [...legacy, ...published] as (Record<string, unknown> & { date: string; category?: string; kind?: string })[];
-  return all
-    .filter((e) => kind === null || (e.kind ?? legacyKind(e as LegacyEntry)) === kind)
-    .map((e, i) => ({ e, i }))
-    .sort((a, b) => (a.e.date < b.e.date ? 1 : a.e.date > b.e.date ? -1 : a.i - b.i))
-    .map(({ e }) => e);
+export async function handleDelete(req: EntryRequest, deps: Deps): Promise<Result> {
+  const found = await adminEntry(req, deps);
+  if ("status" in found) return found;
+  const { poster, store, entry } = found;
+  const now = new Date((deps.clock ?? Date.now)()).toISOString();
+  try {
+    await appendAudit(
+      store,
+      { ts: now, id: entry.id, poster: poster.name, action: "delete", body_hash: null, previous_body_hash: entry.body_hash },
+      randomBytes(4).toString("hex"),
+    );
+    await writeEntry(store, tombstone(entry, now));
+    await removeImage(store, entry.id);
+    await addUsage(store, entry.poster, { drafts: entry.review_state === "draft" ? -1 : 0, image_bytes: -imageBytes(entry) });
+  } catch (err) {
+    return { ...unavailable("delete failed", err), publicChanged: true };
+  }
+  return { status: 200, body: { ok: true, id: entry.id, review_state: "deleted", deleted_at: now }, publicChanged: true };
 }
 
 export async function handleList(req: ListRequest, deps: Deps): Promise<Result> {
   if (req.kind !== null && !KINDS.includes(req.kind as Kind)) return fail(400, `kind must be one of ${KINDS.join(", ")}`, { field: "kind" });
   const kind = req.kind as Kind | null;
-  if (req.state === null) return { status: 200, body: { version: 1, entries: mergeEntries(deps.legacy, [], kind) } };
+  if (req.state === null) {
+    try {
+      const entries = deps.published ? mergeEntries(deps.legacy, await deps.published(), kind) : await loadPublicEntries(deps.legacy, deps.store, kind);
+      return { status: 200, body: { version: 1, entries } };
+    } catch (err) {
+      return unavailable("public list failed", err);
+    }
+  }
 
   const auth = await authorize(req.authorization, deps);
   if ("status" in auth) return auth;

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import feedData from "../../../feed.json";
-import whatsNewData from "../../../data/whats-new.json";
+import { publicWhatsNew } from "@/lib/whats-new/cached";
+import { pageSections } from "@/lib/whats-new/public";
 import type { Feed, FeedEvent } from "./types";
 import FeedFilters from "./FeedFilters";
 import MilestoneTimeline from "./MilestoneTimeline";
@@ -37,23 +38,22 @@ export type Production = Milestone & {
   category: "production";
   status: "merged" | "open";
   plot_title: string;
-  discussion: string;
-  image: string;
+  discussion?: string;
+  image?: string;
   image_alt: string;
   extra_images?: { src: string; alt: string }[];
   links: { label: string; href: string }[];
 };
 
-export default function Page() {
+export default async function Page() {
   const feed = feedData as Feed;
   const events: FeedEvent[] = [...feed.events].sort(
     (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
-  const entries: Milestone[] = [...((whatsNewData as any).entries as Milestone[])].sort(
-    (a, b) => b.date.localeCompare(a.date),
-  );
-  const productions = entries.filter((m): m is Production => m.category === "production");
-  const milestones = entries.filter((m) => m.category !== "production");
+  const entries = (await publicWhatsNew()) as unknown as Milestone[];
+  const sections = pageSections([...entries].sort((a, b) => b.date.localeCompare(a.date)));
+  const productions = sections.productions as Production[];
+  const milestones = sections.milestones;
 
   return (
     <PageShell

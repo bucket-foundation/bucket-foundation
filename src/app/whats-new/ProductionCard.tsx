@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Production } from "./page";
 
 export default function ProductionCard({ production }: { production: Production }) {
-  const images = [{ src: production.image, alt: production.image_alt }, ...(production.extra_images ?? [])];
+  const images = [...(production.image ? [{ src: production.image, alt: production.image_alt }] : []), ...(production.extra_images ?? [])];
   return (
     <article id={production.id} className="border hairline bg-[color:var(--bone-2)] p-6 md:p-8">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 small-caps text-[10px]">
@@ -40,7 +40,9 @@ export default function ProductionCard({ production }: { production: Production 
           {production.plot_title}
         </figcaption>
       </figure>
-      <p className="text-sm leading-relaxed text-[color:var(--parchment-dim)] mb-4">{production.discussion}</p>
+      {production.discussion && (
+        <p className="text-sm leading-relaxed text-[color:var(--parchment-dim)] mb-4">{production.discussion}</p>
+      )}
       <ul className="flex flex-wrap gap-x-4 gap-y-1 small-caps text-[10px]">
         {production.links.map((link) => (
           <li key={link.href}>
