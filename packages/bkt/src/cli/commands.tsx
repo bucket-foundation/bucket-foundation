@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
+import explorePack from "../../content/explore.json" with { type: "json" };
 import { join } from "node:path";
 import { App } from "../app";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
@@ -11,13 +12,20 @@ import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
-import { interactive, JSON_SHAPES, jsonLine, pick, textRows } from "./out";
+import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { keyringOptions, NoDataError, type Invocation, UsageError } from "./run";
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
+import { doctorLines, doctorPassed, runDoctor } from "../doctor";
+import { execSync, platformFor } from "../platform";
+import { completionScript, isShell } from "./completion";
+import { reportRows, reportSentences } from "../hai/report-text";
+import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
+import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
+import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
@@ -84,9 +92,13 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
   });
   syncCanon(session.store.db, canonPack as CanonPack);
+  syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  const canon = new CanonStore(session.store.db);
+  const explore = new ExploreStore(session.store.db);
   const srv = startServe({
     routes: {
-      ...canonRoutes(new CanonStore(session.store.db)),
+      ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
+      ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...advisorRoutes(people),
@@ -153,9 +165,41 @@ async function analyses(inv: Invocation, json: boolean): Promise<number> {
   }
   const items = listAnalyses(root);
   if (json) console.log(jsonLine("analyses", { analyses: items }));
-  else for (const a of items) console.log(`${a.name}\t${a.dir}`);
+  else if (items.length) console.log(analysisRows(items, inv.values.where === true));
   if (!items.length) throw new NoDataError("no saved analyses; run bkt analyze <file>");
   return EXIT.ok;
+}
+
+async function doctor(inv: Invocation, json: boolean): Promise<number> {
+  const env = process.env;
+  const platform = platformFor(process.platform, { env });
+  const tty = { stdin: !!process.stdin.isTTY, stdout: !!process.stdout.isTTY };
+  const checks = await runDoctor({
+    dir: dataDir(env),
+    env,
+    platform,
+    keyringKind: typeof inv.values.keyring === "string" ? inv.values.keyring : undefined,
+    keyring: () => platform.keyring(),
+    pack: pack as Pack,
+    explore: explorePack as unknown as ExplorePack,
+    uiDir: uiDir(env),
+    runtimeDir: runtimeDir(env),
+    tty,
+    columns: process.stdout.columns,
+    run: execSync,
+    alive: (pid) => {
+      try {
+        process.kill(pid, 0);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+  });
+  const passed = doctorPassed(checks);
+  if (json) console.log(jsonLine("doctor", { ok: passed, checks }));
+  else for (const line of doctorLines(checks)) console.log(line);
+  return passed ? EXIT.ok : EXIT.failure;
 }
 
 export async function execute(inv: Invocation): Promise<number> {
@@ -182,6 +226,13 @@ export async function execute(inv: Invocation): Promise<number> {
     }
   }
   if (name === "app" && reopenRunningApp(route)) return EXIT.ok;
+  if (name === "completion") {
+    const shell = inv.positionals[0];
+    if (!isShell(shell)) throw new UsageError(`unknown shell ${shell}`, inv.command);
+    console.log(completionScript(shell));
+    return EXIT.ok;
+  }
+  if (name === "doctor") return doctor(inv, json);
   if (name === "analyze") return analyzeCmd(inv.args);
   if (name === "analyses") return analyses(inv, json);
   if (name === "hai freeze") {
@@ -204,12 +255,15 @@ export async function execute(inv: Invocation): Promise<number> {
   try {
     if (name === "hai wipe") {
       new HaiStore(session.store, session.key).wipe();
-      console.log("hai data deleted");
+      console.log("Probe data deleted.");
     } else if (name === "hai export") {
       const data = new HaiStore(session.store, session.key).export();
       console.log(json ? jsonLine("hai export", data) : JSON.stringify(pick(JSON_SHAPES["hai export"], data), null, 2));
-    }
-    else if (name === "hai") {
+    } else if (name === "hai report") {
+      const h = new HaiStore(session.store, session.key);
+      const scores = loadScores();
+      for (const line of reportSentences(reportRows(report(h, scores), scores))) console.log(line);
+    } else if (name === "hai") {
       const h = new HaiStore(session.store, session.key);
       await render(<HaiApp hai={h} data={{ bank: loadBank(), review: loadReview(), scores: loadScores() }} />).waitUntilExit();
     } else if (name === "init" || name === "whoami") {
@@ -223,15 +277,17 @@ export async function execute(inv: Invocation): Promise<number> {
         journal: session.store.journalMode(),
       };
       if (json) console.log(jsonLine("whoami", who));
-      else if (name === "init") console.log(JSON.stringify(who, null, 2));
-      else console.log(textRows(Object.entries(who)));
+      else {
+        if (name === "init") console.log("Bucket is ready on this device.");
+        console.log(textRows(whoRows(who)));
+      }
     } else if (name === "forget people") {
       const n = new PeopleStore(session.store, session.key).forget(Date.now());
       console.log(`forgot ${n} people; a later import skips them unless you confirm`);
     } else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
-      console.log(json ? jsonLine("stats", s) : textRows(Object.entries(s)));
+      console.log(json ? jsonLine("stats", s) : textRows(statRows(s)));
     } else await render(<App session={session} />).waitUntilExit();
     return EXIT.ok;
   } finally {

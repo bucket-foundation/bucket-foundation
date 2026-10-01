@@ -1,12 +1,8 @@
 import { BRANCHES } from "@/lib/canon";
-import whatsNewData from "../../../data/whats-new.json";
+import { publicWhatsNew } from "@/lib/whats-new/cached";
+import { feedItemXml, feedItems, type FeedItem } from "@/lib/whats-new/public";
 
-export const dynamic = "force-static";
-
-type Milestone = {
-  id: string; date: string; category: string; branch: string | null;
-  title: string; summary: string; commit: string;
-};
+export const dynamic = "force-dynamic";
 
 const BASE = "https://www.bucket.foundation";
 const TITLE = "bucket.foundation — the canon";
@@ -22,14 +18,9 @@ function esc(s: string): string {
     .replace(/'/g, "&apos;");
 }
 
-type Item = {
-  title: string;
-  path: string;
-  desc: string;
-  date: string;
-};
+type Item = Omit<FeedItem, "categories">;
 
-function items(): Item[] {
+async function items(): Promise<FeedItem[]> {
   const now = new Date().toISOString();
   const top: Item[] = [
     { title: "bucket.foundation — build the past. build history. the new renaissance.", path: "/", desc: DESC, date: now },
@@ -60,30 +51,13 @@ function items(): Item[] {
     }))
   );
 
-  const milestones: Item[] = ((whatsNewData as any).entries as Milestone[]).map((m) => ({
-    title: `${m.title}${m.branch ? ` (${m.branch})` : ""}`,
-    path: `/whats-new#${m.id}`,
-    desc: m.summary,
-    date: new Date(m.date).toISOString(),
-  }));
-
-  return [...top, ...branch, ...figures, ...milestones];
+  const plain = [...top, ...branch, ...figures].map((it) => ({ ...it, categories: [] }));
+  return [...plain, ...feedItems(await publicWhatsNew())];
 }
 
 export async function GET() {
   const now = new Date().toUTCString();
-  const entries = items()
-    .map((it) => {
-      const url = `${BASE}${it.path}`;
-      return `<item>
-      <title>${esc(it.title)}</title>
-      <link>${url}</link>
-      <guid isPermaLink="true">${url}</guid>
-      <pubDate>${now}</pubDate>
-      <description>${esc(it.desc)}</description>
-    </item>`;
-    })
-    .join("\n    ");
+  const entries = (await items()).map((it) => feedItemXml(it, now, BASE)).join("\n    ");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
@@ -100,9 +74,6 @@ export async function GET() {
 </rss>`;
 
   return new Response(xml, {
-    headers: {
-      "content-type": "application/rss+xml; charset=utf-8",
-      "cache-control": "public, max-age=3600, s-maxage=3600",
-    },
+    headers: { "content-type": "application/rss+xml; charset=utf-8", "cache-control": "public, max-age=0, s-maxage=60" },
   });
 }

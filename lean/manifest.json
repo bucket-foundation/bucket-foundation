@@ -450,6 +450,123 @@
   "type": "∀ (ds : List BucketMath.Discovery.Direction), BucketMath.Discovery.Admissible ds → 0 ≤ BucketMath.Discovery.expected ds"
  },
  {
+  "name": "BucketMath.Grade.Close",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 11,
+  "type": "Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Grade.Closer",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 7,
+  "type": "Nat → Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Grade.Correct",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 9,
+  "type": "Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Grade.Within",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 3,
+  "type": "Nat → Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Grade.boundary_examples",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 87,
+  "type": "BucketMath.Grade.Correct 1000 3162 ∧\n  ¬BucketMath.Grade.Correct 1000 3163 ∧\n    BucketMath.Grade.Correct 1000 317 ∧\n      ¬BucketMath.Grade.Correct 1000 316 ∧\n        BucketMath.Grade.Close 1000 1412 ∧\n          ¬BucketMath.Grade.Close 1000 1413 ∧ ¬BucketMath.Grade.Correct 8658 27379 ∧ ¬BucketMath.Grade.Correct 0 0"
+ },
+ {
+  "name": "BucketMath.Grade.close_correct",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 46,
+  "type": "∀ {a b : Nat}, BucketMath.Grade.Close a b → BucketMath.Grade.Correct a b"
+ },
+ {
+  "name": "BucketMath.Grade.correct_strict",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 81,
+  "type": "∀ {a b : Nat}, BucketMath.Grade.Correct a b → max a b ^ 2 < 10 * min a b ^ 2"
+ },
+ {
+  "name": "BucketMath.Grade.no_exact_boundary",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 56,
+  "type": "∀ (b a : Nat), 0 < b → a * a ≠ 10 * (b * b)"
+ },
+ {
+  "name": "BucketMath.Grade.within_of_closer",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 34,
+  "type": "∀ {p q a b c d : Nat},\n  0 < a → 0 < b → BucketMath.Grade.Closer a b c d → BucketMath.Grade.Within p q c d → BucketMath.Grade.Within p q a b"
+ },
+ {
+  "name": "BucketMath.Grade.within_scale",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 23,
+  "type": "∀ (p q a b k : Nat), 0 < k → (BucketMath.Grade.Within p q (k * a) (k * b) ↔ BucketMath.Grade.Within p q a b)"
+ },
+ {
+  "name": "BucketMath.Grade.within_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 18,
+  "type": "∀ (p q a : Nat), 0 < a → BucketMath.Grade.Within p q a a"
+ },
+ {
+  "name": "BucketMath.Grade.within_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 13,
+  "type": "∀ (p q a b : Nat), BucketMath.Grade.Within p q a b ↔ BucketMath.Grade.Within p q b a"
+ },
+ {
+  "name": "BucketMath.Grade.within_tolerance_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 31,
+  "type": "∀ {p p' q a b : Nat}, p ≤ p' → BucketMath.Grade.Within p q a b → BucketMath.Grade.Within p' q a b"
+ },
+ {
   "name": "BucketMath.Graph.Edge",
   "kind": "def",
   "status": "def",
