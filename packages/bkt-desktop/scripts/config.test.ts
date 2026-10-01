@@ -44,3 +44,10 @@ test("the desktop shell carries the bkt version in every manifest", () => {
   expect(cargo.match(/^version = "(.+)"$/m)?.[1]).toBe(bkt);
   expect(read("Cargo.lock").match(/name = "bucket-desktop"\nversion = "(.+)"/)?.[1]).toBe(bkt);
 });
+
+test("the bucket scheme is the only deep link and single instance ships", () => {
+  expect(conf.plugins["deep-link"]).toEqual({ desktop: { schemes: ["bucket"] } });
+  expect(conf.plugins["deep-link"].mobile).toBeUndefined();
+  expect(cargo).toMatch(/^tauri-plugin-single-instance = "2"$/m);
+  expect(cargo).toMatch(/^tauri-plugin-deep-link = "2"$/m);
+});

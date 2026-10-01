@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import type { Metadata } from "next";
-import ResearchAgentClient from "./ResearchAgentClient";
+import ResearchAgentClient from "./ResearchAgentClientV2";
 
 export const metadata: Metadata = {
   title: "Research agent · cited and reproducible briefs",

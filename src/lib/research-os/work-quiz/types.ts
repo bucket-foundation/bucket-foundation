@@ -50,13 +50,14 @@ export interface QuizQuestion {
   choices: string[] | null;
   answer: string;
   tolerance: number;
+  log10Tolerance?: number;
   limitSec: number;
   explain: string;
   sources: SourceRef[];
   learn?: LearnLink | null;
 }
 
-export type PublicQuestion = Omit<QuizQuestion, "answer" | "tolerance" | "explain" | "learn" | "sources">;
+export type PublicQuestion = Omit<QuizQuestion, "answer" | "tolerance" | "log10Tolerance" | "explain" | "learn" | "sources">;
 
 export function toPublic(q: QuizQuestion): PublicQuestion {
   return { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec };

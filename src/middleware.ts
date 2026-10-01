@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
-import { isProtectedPath, signInUrl } from "@/lib/auth/paths";
+import { isProtectedPath } from "@/lib/auth/paths";
+import { protectedRedirectTarget, redirectUrl, signInRedirectTarget } from "@/lib/sign-in-gate";
 import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
-import { cookieMigrationHeaders, parseCookieHeader, researchRoute } from "@/lib/research-host";
+import { cookieMigrationHeaders, isResearchHost, parseCookieHeader, researchRoute } from "@/lib/research-host";
 
 export const config = {
   matcher: [
@@ -75,9 +76,13 @@ async function route(req: NextRequest): Promise<NextResponse> {
   const pathname = route.kind === "rewrite" ? route.pathname : req.nextUrl.pathname;
   if (isKrusePath(pathname)) return kruse(req);
 
+  const onResearchHost = isResearchHost(req.headers.get("host"));
+  const closedTarget = signInRedirectTarget(pathname);
+  if (closedTarget) return NextResponse.redirect(redirectUrl(closedTarget, req.url, onResearchHost), 307);
+
   const res = forward(req, route.kind === "rewrite" ? route.pathname : null);
   if (!authConfigured()) {
-    if (isProtectedPath(pathname)) return NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
+    if (isProtectedPath(pathname)) return NextResponse.redirect(redirectUrl(protectedRedirectTarget(pathname, req.nextUrl.search), req.url, onResearchHost));
     return res;
   }
 
@@ -91,7 +96,7 @@ async function route(req: NextRequest): Promise<NextResponse> {
   }
 
   if (!signedIn && isProtectedPath(pathname)) {
-    const redirect = NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
+    const redirect = NextResponse.redirect(redirectUrl(protectedRedirectTarget(pathname, req.nextUrl.search), req.url, onResearchHost));
     res.cookies.getAll().forEach((c) => redirect.cookies.set(c));
     return redirect;
   }

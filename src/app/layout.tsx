@@ -3,11 +3,13 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import Header from "@/components/HeaderV2";
-import Footer from "@/components/FooterV2";
+import Header from "@/components/HeaderV3";
+import Footer from "@/components/FooterV3";
 import { CANON_BRANCHES } from "@/lib/contribute";
 import { SessionProvider } from "@/providers/SessionProvider";
 import { signInOpen } from "@/lib/launch";
+import { signInClosed } from "@/lib/sign-in-gate";
+import { SignInEntryProvider } from "@/components/auth/SignInEntryContext";
 
 const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
@@ -240,6 +242,7 @@ export default function RootLayout({
       </head>
       <body className="stone-bg min-h-screen">
         <SessionProvider>
+          <SignInEntryProvider closed={signInClosed()}>
           <Script
             id="ld-org"
             type="application/ld+json"
@@ -248,9 +251,10 @@ export default function RootLayout({
           />
           <Header launchList={!signInOpen()} />
           {children}
-          <Footer launchList={!signInOpen()} />
+          <Footer launchList={!signInOpen()} signInClosed={signInClosed()} />
           <Analytics />
           <SpeedInsights />
+          </SignInEntryProvider>
         </SessionProvider>
       </body>
     </html>
