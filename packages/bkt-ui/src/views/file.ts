@@ -1,7 +1,6 @@
 export const MAX_FILE_BYTES = 16 * 1024 * 1024;
 
 export const FILE_UNREADABLE = "Bucket could not read that file.";
-export const FILE_WRONG_SCREEN = "That file is for a different screen.";
 
 export async function readJsonFile(f: File | undefined): Promise<{ ok: true; value: unknown } | { ok: false; error: string }> {
   if (!f) return { ok: false, error: "No file chosen." };

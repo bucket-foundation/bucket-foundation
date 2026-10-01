@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ApiError, type Api } from "../api";
-import { FILE_UNREADABLE, FILE_WRONG_SCREEN } from "./file";
+import { FILE_UNREADABLE } from "./file";
 import { WorkQuizSources } from "./WorkQuiz";
 
 export const ALREADY_IMPORTED = "Your progress from the website is already on this computer.";
@@ -20,7 +20,7 @@ export function ImportView({ api }: { api: Api }) {
       if ((e as Error).message === "already imported") {
         setPending(payload);
         setStatus(ALREADY_IMPORTED);
-      } else setStatus(e instanceof ApiError && e.status === 400 ? FILE_WRONG_SCREEN : (e as Error).message);
+      } else setStatus(e instanceof ApiError && e.status === 400 ? FILE_UNREADABLE : (e as Error).message);
     } finally {
       setBusy(false);
     }
@@ -32,7 +32,7 @@ export function ImportView({ api }: { api: Api }) {
     try {
       payload = JSON.parse(await f.text());
     } catch {
-      return setStatus(`${FILE_UNREADABLE} Choose the one you downloaded from the website.`);
+      return setStatus(FILE_UNREADABLE);
     }
     await run(payload, false);
   };

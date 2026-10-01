@@ -311,7 +311,7 @@ describe("import", () => {
     await v.unmount();
   });
 
-  test("an unreadable file, a file for another screen, a finished import and a repeat each read in plain words", async () => {
+  test("an unreadable file, a file the helper refuses, a finished import and a repeat each read in plain words", async () => {
     const { ALREADY_IMPORTED } = await import("./views/Import");
     const answers: (() => Promise<{ imported: string[] }>)[] = [
       () => Promise.reject(new ApiError("expected { branches: { <deck>: EngineState } }", 400)),
@@ -322,10 +322,10 @@ describe("import", () => {
     const v = await mount({ name: "import" }, populated({ importWeb: () => answers[sent++]() }));
     const status = () => v.host.querySelector("article .status")!.textContent;
     await v.pickFile(0, file("not a progress file"));
-    expect(status()).toBe("Bucket could not read that file. Choose the one you downloaded from the website.");
+    expect(status()).toBe("Bucket could not read that file.");
     expect(sent).toBe(0);
     await v.pickFile(0, file("{}"));
-    expect(status()).toBe("That file is for a different screen.");
+    expect(status()).toBe("Bucket could not read that file.");
     await v.pickFile(0, file("{}"));
     expect(status()).toBe("Brought over 2 decks.");
     await v.pickFile(0, file("{}"));
