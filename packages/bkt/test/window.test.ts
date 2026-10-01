@@ -5,6 +5,9 @@ import { join } from "node:path";
 import {
   AppWindow,
   askRunningApp,
+  holdsProfile,
+  requestReopen,
+  takeReopen,
   profileFlag,
   readApp,
   runtimeDir,
@@ -164,16 +167,19 @@ describe("one window per profile", () => {
     win.open("http://127.0.0.1:4321/");
     const poll = windowRoutes(win.routes, 1000)["GET /local/window/route"]();
     expect(launch("/work/daily/2026-10-01")).toEqual({ line: "the Bucket window is already open and now shows /work/daily/2026-10-01", did: "routed" });
-    expect(await (await poll).json()).toEqual({ route: "/work/daily/2026-10-01" });
+    expect(await (await poll).json()).toEqual({ route: "/work/daily/2026-10-01", superseded: false });
     expect(launch("/notes").did).toBe("routed");
-    expect(await (await windowRoutes(win.routes, 1000)["GET /local/window/route"]()).json()).toEqual({ route: "/notes" });
-    expect(await (await windowRoutes(win.routes, 5)["GET /local/window/route"]()).json()).toEqual({ route: null });
+    expect(await (await windowRoutes(win.routes, 1000)["GET /local/window/route"]()).json()).toEqual({ route: "/notes", superseded: false });
+    expect(await (await windowRoutes(win.routes, 5)["GET /local/window/route"]()).json()).toEqual({ route: null, superseded: false });
     expect(desk.spawned).toHaveLength(1);
     expect(mints).toBe(0);
     expect(() => askRunningApp(dir, SERVER, "//evil.test", { table: desk.table, signal: () => {} })).toThrow("--route takes");
   });
 
   test("a route with no window opens one window on that route", () => {
+    win.open("http://127.0.0.1:4321/");
+    desk.close(500);
+    desk.spawned.length = 0;
     expect(launch("/notes")).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
     expect(desk.spawned).toEqual([["/usr/bin/chromium", "--app=http://127.0.0.1:4321/?mint=1#/notes", profileFlag(profile)]]);
   });
@@ -198,14 +204,69 @@ describe("one window per profile", () => {
   });
 
   test("a browser tab opened without a profile is never tracked, so the server keeps running", async () => {
-    const tab = new AppWindow(dir, profile, { ...desk, table: desk.table, spawn: desk.spawn, command: (url) => ["xdg-open", url] });
+    writeWindow(dir, { pid: 77, profile });
+    const tab = new AppWindow(dir, profile, { table: desk.table, spawn: desk.spawn, command: (url) => ["xdg-open", url] });
     tab.open("http://127.0.0.1:4321/");
     expect(existsSync(join(dir, "window.json"))).toBe(false);
+    win = tab;
+    desk.close(500);
+    expect(launch()).toEqual({ line: "Bucket is already running at http://127.0.0.1:4321/", did: null });
+    expect(launch("/notes")).toEqual({ line: "Bucket is already running at http://127.0.0.1:4321/#/notes", did: "routed" });
+    expect((await tab.routes.next(5)).route).toBe("/notes");
+    expect(desk.spawned).toHaveLength(1);
+    expect(mints).toBe(0);
     let done = false;
     void tab.closed(() => false, () => Bun.sleep(1), 0).then(() => (done = true));
     desk.close(500);
     await Bun.sleep(5);
     expect(done).toBe(false);
+  });
+
+  test("a displaced poller stops, so two pollers do not flood the server", async () => {
+    const poll = windowRoutes(win.routes, 300)["GET /local/window/route"];
+    const requests = [0, 0];
+    let live = true;
+    const page = async (i: number) => {
+      while (live) {
+        requests[i]++;
+        const answer = (await (await poll()).json()) as { superseded: boolean };
+        if (answer.superseded) return;
+      }
+    };
+    const both = [page(0), page(1)];
+    await Bun.sleep(2000);
+    live = false;
+    await Promise.all(both);
+    expect(requests[0]).toBe(1);
+    expect(requests[1]).toBeGreaterThan(3);
+    expect(requests[1]).toBeLessThan(9);
+  });
+
+  test("another profile that shares the prefix is a different window", () => {
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile2 --app=http://x/", "/x/window-profile")).toBe(false);
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile2 --user-data-dir=/x/window-profile", "/x/window-profile")).toBe(true);
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile --app=http://x/", "/x/window-profile")).toBe(true);
+    expect(holdsProfile(null, "/x/window-profile")).toBe(false);
+  });
+
+  test("on Windows the profile holds a plain lockfile, so the recorded pid and its quoted command line decide", () => {
+    const winProfile = "C:\\Users\\a b\\bkt\\window-profile";
+    mkdirSync(profile, { recursive: true });
+    writeFileSync(join(profile, "lockfile"), "");
+    writeFileSync(join(profile, "SingletonLock"), "");
+    expect(singletonLockPid(profile)).toBeNull();
+    writeWindow(dir, { pid: 61, profile: winProfile });
+    desk.procs.set(61, `"C:\\e\\msedge.exe" --app=http://127.0.0.1:5/ "--user-data-dir=${winProfile}" --no-first-run`);
+    expect(windowPid(dir, desk.table)).toBe(61);
+    desk.procs.set(61, `"C:\\e\\msedge.exe" "--user-data-dir=${winProfile}2"`);
+    expect(windowPid(dir, desk.table)).toBeNull();
+  });
+
+  test("a Windows launch asks through a file the server takes once", () => {
+    expect(takeReopen(dir)).toBe(false);
+    requestReopen(dir);
+    expect(takeReopen(dir)).toBe(true);
+    expect(takeReopen(dir)).toBe(false);
   });
 
   test("the browser's own lock names the process that holds the profile", () => {

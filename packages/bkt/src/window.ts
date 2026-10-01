@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { chmodSync, mkdirSync, readFileSync, readlinkSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, readFileSync, readlinkSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { platformFor, type Platform } from "./platform";
@@ -85,6 +85,30 @@ export function singletonLockPid(profile: string): number | null {
   }
 }
 
+export function holdsProfile(commandLine: string | null, profile: string): boolean {
+  if (commandLine === null) return false;
+  const flag = profileFlag(profile);
+  for (let at = commandLine.indexOf(flag); at !== -1; at = commandLine.indexOf(flag, at + 1)) {
+    const after = commandLine[at + flag.length];
+    if (after === undefined || after === " " || after === '"') return true;
+  }
+  return false;
+}
+
+export function requestReopen(dir: string): void {
+  platformFor().secureDir(dir);
+  writeFileSync(join(dir, "app-reopen"), "", { mode: 0o600 });
+}
+
+export function takeReopen(dir: string): boolean {
+  const p = join(dir, "app-reopen");
+  if (!existsSync(p)) return false;
+  rmSync(p, { force: true });
+  return true;
+}
+
+export const windowTracked = (dir: string) => existsSync(join(dir, "window.json"));
+
 export function processTable(platform: Platform = platformFor()): ProcessTable {
   return { commandLine: (pid) => platform.commandLine(pid), lockPid: singletonLockPid };
 }
@@ -97,9 +121,8 @@ export function windowPid(dir: string, table: ProcessTable): number | null {
     return null;
   }
   if (!Number.isInteger(rec.pid) || typeof rec.profile !== "string" || rec.profile === "") return null;
-  const flag = profileFlag(rec.profile);
   for (const pid of [table.lockPid(rec.profile), rec.pid]) {
-    if (pid !== null && pid !== process.pid && table.commandLine(pid)?.includes(flag)) return pid;
+    if (pid !== null && pid !== process.pid && holdsProfile(table.commandLine(pid), rec.profile)) return pid;
   }
   return null;
 }
@@ -124,30 +147,35 @@ export const spawnWindow: Spawner = (cmd, url) => {
   return { pid: child.pid ?? null, exited };
 };
 
+export interface RouteAnswer {
+  route: string | null;
+  superseded: boolean;
+}
+
 export class RouteInbox {
   private pending: string | null = null;
-  private waiter: ((route: string | null) => void) | null = null;
+  private waiter: ((answer: RouteAnswer) => void) | null = null;
 
   push(route: string): void {
     const w = this.waiter;
-    if (w) w(route);
+    if (w) w({ route, superseded: false });
     else this.pending = route;
   }
 
-  next(waitMs: number): Promise<string | null> {
+  next(waitMs: number): Promise<RouteAnswer> {
     if (this.pending !== null) {
       const route = this.pending;
       this.pending = null;
-      return Promise.resolve(route);
+      return Promise.resolve({ route, superseded: false });
     }
-    this.waiter?.(null);
+    this.waiter?.({ route: null, superseded: true });
     return new Promise((resolve) => {
-      const settle = (route: string | null) => {
+      const settle = (answer: RouteAnswer) => {
         clearTimeout(timer);
         if (this.waiter === settle) this.waiter = null;
-        resolve(route);
+        resolve(answer);
       };
-      const timer = setTimeout(() => settle(null), waitMs);
+      const timer = setTimeout(() => settle({ route: null, superseded: false }), waitMs);
       this.waiter = settle;
     });
   }
@@ -179,13 +207,13 @@ export class AppWindow {
     mkdirSync(this.profile, { recursive: true, mode: 0o700 });
     const cmd = this.deps.command(url, this.profile);
     const child = this.deps.spawn(cmd, url);
-    if (child.pid === null || !cmd.includes(profileFlag(this.profile))) return;
+    if (child.pid === null || !cmd.includes(profileFlag(this.profile))) return this.forget();
     writeWindow(this.dir, { pid: child.pid, profile: this.profile });
     this.exited = child.exited;
   }
 
   relaunch(route: string | null, freshUrl: () => string): Relaunch {
-    if (!this.isOpen()) {
+    if (windowTracked(this.dir) && !this.isOpen()) {
       this.open(routeUrl(freshUrl(), route));
       return "opened";
     }
@@ -213,10 +241,11 @@ export interface AskDeps {
 }
 
 export function askRunningApp(dir: string, running: AppRecord, route: string | null, deps: AskDeps): string {
-  const open = windowPid(dir, deps.table) !== null;
+  const open = !windowTracked(dir) || windowPid(dir, deps.table) !== null;
   if (route !== null) writeRoute(dir, route);
   if (!open || route !== null) deps.signal(running.pid);
   if (!open) return `opened the Bucket window on port ${running.port}`;
+  if (!windowTracked(dir)) return `Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`;
   return route === null ? "the Bucket window is already open" : `the Bucket window is already open and now shows ${route}`;
 }
 
@@ -264,6 +293,6 @@ export const ROUTE_WAIT_MS = 8000;
 export function windowRoutes(inbox: RouteInbox, waitMs = ROUTE_WAIT_MS): Record<string, () => Promise<Response>> {
   return {
     "GET /local/window/route": async () =>
-      new Response(JSON.stringify({ route: await inbox.next(waitMs) }), { headers: { "content-type": "application/json", "cache-control": "no-store" } }),
+      new Response(JSON.stringify(await inbox.next(waitMs)), { headers: { "content-type": "application/json", "cache-control": "no-store" } }),
   };
 }

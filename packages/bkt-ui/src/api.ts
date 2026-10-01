@@ -207,7 +207,7 @@ export class Api {
   }
 
   windowRoute() {
-    return this.call<{ route: string | null }>("/local/window/route").then((r) => r.route);
+    return this.call<{ route: string | null; superseded: boolean }>("/local/window/route");
   }
 
   decks() {

@@ -34,7 +34,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { AppWindow, askRunningApp, checkRoute, processTable, readApp, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -121,6 +121,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     else console.log(routeUrl(fresh(), to));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
+  const asked = process.platform === "win32" ? setInterval(() => takeReopen(runtimeDir()) && reopen(), 1000) : undefined;
   if (name === "app") win.open(routeUrl(srv.url, route));
   else console.log(srv.url);
   await new Promise<void>((done) => {
@@ -133,6 +134,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     if (name === "app") void win.closed(() => runner.busy()).then(done);
   });
   process.off("SIGUSR1", reopen);
+  clearInterval(asked);
   if (name === "app") win.forget();
   runner.stopAll();
   release();
@@ -142,11 +144,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
 function reopenRunningApp(route: string | null): boolean {
   const running = readApp(runtimeDir());
   if (!running) return false;
-  if (process.platform === "win32") {
-    console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
-    return true;
-  }
-  console.log(askRunningApp(runtimeDir(), running, route, { table: processTable(), signal: (pid) => process.kill(pid, "SIGUSR1") }));
+  const signal = (pid: number) => (process.platform === "win32" ? requestReopen(runtimeDir()) : void process.kill(pid, "SIGUSR1"));
+  console.log(askRunningApp(runtimeDir(), running, route, { table: processTable(), signal }));
   return true;
 }
 

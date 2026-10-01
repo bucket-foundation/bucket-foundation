@@ -49,13 +49,16 @@ describe("lesson blocks", () => {
 describe("routes sent to an open window", () => {
   test("each route is applied, a failed poll is retried and a refused one ends the loop", async () => {
     const answers: (string | null | Error)[] = ["/notes", null, new Error("offline"), "/work/daily/2026-10-01", Object.assign(new Error("gone"), { status: 401 }), "/quiz"];
+    const polls = { n: 0 };
+    await followRoutes(async () => (polls.n++, { route: null, superseded: true }), () => polls.n++, () => true);
+    expect(polls.n).toBe(1);
     const went: string[] = [];
     const waits: number[] = [];
     await followRoutes(
       async () => {
         const a = answers.shift()!;
         if (a instanceof Error) throw a;
-        return a;
+        return { route: a, superseded: false };
       },
       (to) => went.push(to),
       () => true,

@@ -65,21 +65,22 @@ export function useRoute(): Route {
 }
 
 export async function followRoutes(
-  next: () => Promise<string | null>,
+  next: () => Promise<{ route: string | null; superseded: boolean }>,
   go: (route: string) => void,
   live: () => boolean,
   wait: (ms: number) => Promise<unknown> = (ms) => new Promise((r) => setTimeout(r, ms)),
 ): Promise<void> {
   while (live()) {
-    let route: string | null;
+    let answer: { route: string | null; superseded: boolean };
     try {
-      route = await next();
+      answer = await next();
     } catch (e) {
       const status = (e as { status?: number }).status;
       if (status === 401 || status === 404) return;
       await wait(5000);
       continue;
     }
-    if (route !== null && live()) go(route);
+    if (answer.superseded) return;
+    if (answer.route !== null && live()) go(answer.route);
   }
 }
