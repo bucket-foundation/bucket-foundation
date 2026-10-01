@@ -94,7 +94,8 @@ export const MIGRATIONS: Migration[] = [
    create index notes_updated on notes(updated_at);`,
   `create table history_snapshot (id integer primary key check (id = 1), doc text not null, imported_at integer not null);`,
   `create table daily_quiz (day text primary key, body text not null, created_at integer not null);
-   alter table work_quiz_attempts add column log10_distance real;`,
+   alter table work_quiz_attempts add column log10_distance real;
+   create unique index work_quiz_attempts_daily on work_quiz_attempts(question_id) where substr(question_id, 1, 6) = 'daily:';`,
 ];
 
 export interface AttemptInput {

@@ -227,7 +227,12 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
         const response = normalizeResponse(q, b.response);
         const g = gradeAnswer(q, response, elapsed);
         const distance = q.log10Tolerance === undefined ? null : log10Distance(q.answer, response);
-        wq.record(q, g.correct, g.rating, elapsed, now(), { questionId: attemptId(b.day, q.id), log10Distance: distance });
+        try {
+          wq.record(q, g.correct, g.rating, elapsed, now(), { questionId: attemptId(b.day, q.id), log10Distance: distance });
+        } catch (e) {
+          if (/UNIQUE constraint failed/i.test((e as Error).message)) return json({ error: "already answered" }, 409);
+          throw e;
+        }
         return json({ ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources });
       }
       const open = issued.get(b.id);

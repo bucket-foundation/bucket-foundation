@@ -9,6 +9,7 @@ export const MAX_TEXT = 600;
 export const MAX_LIMIT_SEC = 600;
 export const MAX_CHOICES = 8;
 export const MAX_LINES = 12;
+export const MAX_SOURCES = 8;
 
 export interface DailyQuiz {
   day: string;
@@ -52,6 +53,10 @@ function question(v: unknown): QuizQuestion {
   const lines = r.lines === undefined ? [] : r.lines;
   if (!Array.isArray(lines) || lines.length > MAX_LINES) throw new DailyQuizError(`question ${id} has too many lines`);
   const answer = text(r.answer, `the answer of question ${id}`);
+  const explain = r.explain === undefined ? "" : r.explain;
+  if (typeof explain !== "string" || explain.length > MAX_TEXT) throw new DailyQuizError(`the explanation of question ${id} must be text of at most ${MAX_TEXT} characters`);
+  const sources = r.sources === undefined ? [] : r.sources;
+  if (!Array.isArray(sources) || sources.length > MAX_SOURCES) throw new DailyQuizError(`question ${id} takes at most ${MAX_SOURCES} sources`);
   const base = {
     id,
     type: r.type as QuizType,
@@ -59,8 +64,8 @@ function question(v: unknown): QuizQuestion {
     lines: lines.map((l) => text(l, `a line of question ${id}`)),
     answer,
     limitSec,
-    explain: typeof r.explain === "string" && r.explain.length <= MAX_TEXT ? r.explain : "",
-    sources: Array.isArray(r.sources) ? r.sources.slice(0, MAX_CHOICES).map(source) : [],
+    explain,
+    sources: sources.map(source),
   };
   if (r.choices !== null && r.choices !== undefined) {
     if (!Array.isArray(r.choices) || r.choices.length < 2 || r.choices.length > MAX_CHOICES) throw new DailyQuizError(`question ${id} needs between 2 and ${MAX_CHOICES} choices`);

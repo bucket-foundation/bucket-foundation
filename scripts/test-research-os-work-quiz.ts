@@ -172,6 +172,9 @@ test("Fermi grading: log10 distance bands, non-positive answers, and the old tol
   assert.ok(Math.abs(log10Distance("1000", "10000")! - 1) < 1e-12);
   for (const bad of ["0", "-5", "abc", null]) assert.equal(log10Distance("1000", bad), null);
   assert.equal(log10Distance("0", "10"), null);
+  assert.ok(Math.abs(log10Distance("1e300", "1e-300")! - 600) < 1e-9);
+  assert.ok(Math.abs(log10Distance("1e-300", "1e300")! - 600) < 1e-9);
+  assert.ok(!isCorrect({ choices: null, answer: "1e300", tolerance: 0, log10Tolerance: FERMI_LOG10_TOLERANCE, limitSec: 90 }, "1e-300"));
   assert.equal(log10Distance("-3", "10"), null);
   assert.equal(FERMI_LOG10_TOLERANCE, 0.5);
   assert.ok(isCorrect(f, "3162"));

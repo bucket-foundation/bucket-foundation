@@ -28,7 +28,7 @@ export function log10Distance(answer: string, response: string | null): number |
   const got = Number(response);
   const want = Number(answer);
   if (!Number.isFinite(got) || !Number.isFinite(want) || got <= 0 || want <= 0) return null;
-  return Math.abs(Math.log10(got / want));
+  return Math.abs(Math.log10(got) - Math.log10(want));
 }
 
 export function isCorrect(q: Pick<QuizQuestion, "choices" | "answer" | "tolerance" | "log10Tolerance">, response: string | null): boolean {

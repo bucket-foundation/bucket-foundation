@@ -59,6 +59,12 @@ describe("daily quiz parsing", () => {
     expect(bad([{ ...CHOICE, choices: null, answer: "5", log10Tolerance: 0 }])).toThrow("log10 tolerance");
     expect(bad([{ ...CHOICE, sources: [{ kind: "pr", ref: "1", label: "one", href: "javascript:alert(1)" }] }])).toThrow("https://");
     expect(() => fermi({ ...FERMI, answer: 0 })).toThrow("positive answer");
+    expect(bad([{ ...CHOICE, explain: "x".repeat(601) }])).toThrow("explanation");
+    expect(bad([{ ...CHOICE, explain: 7 }])).toThrow("explanation");
+    const ref = { kind: "pr", ref: "1", label: "one", href: null };
+    expect(bad([{ ...CHOICE, sources: Array.from({ length: 9 }, () => ref) }])).toThrow("at most 8 sources");
+    expect(bad([{ ...CHOICE, sources: "pr 1" }])).toThrow("at most 8 sources");
+    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, explain: "x".repeat(600), sources: Array.from({ length: 8 }, () => ref) }] }).questions[0].sources).toHaveLength(8);
   });
 });
 
@@ -105,7 +111,50 @@ describe("schema 8", () => {
   });
 });
 
+describe("schema 8 failure", () => {
+  test("a failing last statement rolls the whole step back, the database stays readable at 7, and a retry migrates", () => {
+    const path = join(dir, "bkt.db");
+    const db = new Database(path, { create: true, strict: true });
+    for (const m of MIGRATIONS.slice(0, 7)) {
+      if (typeof m === "string") db.run(m);
+      else m(db);
+    }
+    db.run("pragma user_version = 7");
+    db.run("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at) values ('a1', 'recall-pr-341', 'recall', 1, 3, 2000, 100)");
+    db.run("create index work_quiz_attempts_daily on notes(updated_at)");
+    db.close();
+    const key = newDataKey();
+    expect(() => new Store(path, key)).toThrow();
+    const after = new Database(path, { strict: true });
+    expect(after.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(7);
+    expect(after.query("select name from sqlite_master where name = 'daily_quiz'").get()).toBeNull();
+    expect(after.query<{ name: string }, []>("pragma table_info(work_quiz_attempts)").all().map((c) => c.name)).not.toContain("log10_distance");
+    expect(after.query("select id, correct, rating from work_quiz_attempts").all()).toEqual([{ id: "a1", correct: 1, rating: 3 }]);
+    after.run("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at) values ('a2', 'recall-pr-342', 'recall', 0, 1, 2000, 200)");
+    after.run("drop index work_quiz_attempts_daily");
+    after.close();
+    const s = new Store(path, key);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
+    expect(new WorkQuizStore(s, key).tally()).toEqual({ answered: 2, correct: 1 });
+    s.close();
+  });
+});
+
 describe("daily quiz store", () => {
+  test("the database refuses a second attempt row for one daily question and leaves other rows free", () => {
+    const key = newDataKey();
+    const s = new Store(join(dir, "bkt.db"), key);
+    const wq = new WorkQuizStore(s, key);
+    const q = fermi(FERMI);
+    wq.record(q, true, 3, 1000, 1, { questionId: attemptId(DAY, q.id) });
+    expect(() => wq.record(q, true, 3, 1000, 2, { questionId: attemptId(DAY, q.id) })).toThrow("UNIQUE");
+    wq.record(q, true, 3, 1000, 3, { questionId: attemptId("2026-09-29", q.id) });
+    wq.record(q, true, 3, 1000, 4);
+    wq.record(q, false, 1, 1000, 5);
+    expect(wq.tally().answered).toBe(4);
+    s.close();
+  });
+
   test("seals the quiz at rest, reads it back, replaces a day and lists days", () => {
     const key = newDataKey();
     const s = new Store(join(dir, "bkt.db"), key);
@@ -228,6 +277,34 @@ describe("daily quiz routes", () => {
     await req("/local/work-quiz/forget", { method: "POST", body: {} });
     expect((await req(`/local/work-quiz/daily?day=${DAY}`)).status).toBe(404);
     expect(store.db.query<{ n: number }, []>("select count(*) n from daily_quiz").get()!.n).toBe(0);
+  });
+
+  test("two concurrent answers to one question record one attempt", async () => {
+    wq.daily.put(quiz(), 1);
+    const both = await Promise.all([answer({ id: "f1", response: "1000" }), answer({ id: "f1", response: "5" })]);
+    expect(both.map((r) => r.status).sort()).toEqual([200, 409]);
+    expect(wq.tally().answered).toBe(1);
+  });
+
+  test("a foreign host or origin is refused, and a foreign peer gets no token for the daily routes", async () => {
+    wq.daily.put(quiz(), 1);
+    const path = `/local/work-quiz/daily?day=${DAY}`;
+    const url = `http://127.0.0.1:${s.port}${path}`;
+    expect((await fetch(url, { headers: { host: "evil.example", ...auth } })).status).toBe(403);
+    expect((await fetch(url, { headers: { host: `127.0.0.1:${s.port}`, origin: "https://evil.example", ...auth } })).status).toBe(403);
+    const other = startServe({ uid: 4, resolvePeerUid: () => 5, routes: workQuizRoutes(wq) });
+    try {
+      const host = { host: `127.0.0.1:${other.port}` };
+      const base = `http://127.0.0.1:${other.port}`;
+      expect((await fetch(`${base}/`, { headers: host })).status).toBe(403);
+      expect((await fetch(`${base}/session`, { method: "POST", body: JSON.stringify({ nonce: "x" }), headers: { ...host, origin: base } })).status).toBe(403);
+      expect((await fetch(`${base}${path}`, { headers: { ...host, ...auth } })).status).toBe(401);
+      const post = await fetch(`${base}/local/work-quiz/answer`, { method: "POST", body: JSON.stringify({ day: DAY, id: "f1", response: "1000", elapsedMs: 1 }), headers: { ...host, ...auth } });
+      expect(post.status).toBe(401);
+    } finally {
+      other.stop();
+    }
+    expect(wq.tally().answered).toBe(0);
   });
 
   test("the daily route needs the header token", async () => {
