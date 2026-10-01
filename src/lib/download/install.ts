@@ -44,4 +44,6 @@ export const APPIMAGE_RUN_STEPS = ["chmod +x Bucket-*.AppImage", "./Bucket-*.App
 
 export const APPIMAGE_WARNING = "Open the AppImage from a terminal. Opening it with Disks offers to overwrite your whole drive.";
 
+export const APPIMAGE_WARNING_SHORT = "Open it from a terminal, never with Disks.";
+
 export const INSTALL_SHELL: Record<Os, string> = { macos: "Terminal", linux: "a terminal", windows: "PowerShell" };
