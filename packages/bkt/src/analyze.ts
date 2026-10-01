@@ -145,6 +145,11 @@ export function formLines(r: AnalysisReport): string[] {
   return lines;
 }
 
+export function formHeadline(r: AnalysisReport): string {
+  const f = r.form;
+  return `${f.ok ? "The data check passed" : "The data check found problems"}: ${f.rows} rows, ${f.columns.length} columns`;
+}
+
 export interface Section {
   title: string;
   body: string[];
