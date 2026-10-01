@@ -537,7 +537,7 @@ describe("analyze data", () => {
       ["W_TIME_DUP", "day", "12 repeated time values"],
       ["W_NO_TIME", "header", "no time index found; trend, seasonality and helix skipped"],
       ["W_DUP_ROWS", "body", "4 duplicate rows"],
-      ["E_READ", "/home/someone/table.csv", "E_MAGIC: contents do not match xlsx"],
+      ["E_READ", "data/table.csv", "E_MAGIC: contents do not match xlsx"],
       ["E_HEADER", "header", "blank column names at [2]"],
       ["E_DUP_COLUMN", "header", "duplicate columns ['name']"],
       ["E_EMPTY", "body", "header but no rows"],
