@@ -71,7 +71,7 @@ RLS audit: 42 tables are created across the migrations, 41 enable RLS; `graph.im
 
 ### Vercel Env Vars
 
-`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `BUCKET_SIGNIN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `consent/route.ts:12`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SIGN_IN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `consent/route.ts:12`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
 
 ### Anthropic Key
 
@@ -171,7 +171,7 @@ Sizes: S under half a day, M one to two days, L three to five days. Beads carry 
 
 The pending edge and NSM review queues feed staff-only surfaces and wait until after wave 1.
 
-Rollback: `BUCKET_SIGNIN_OPEN=0` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
+Rollback: unsetting `SIGN_IN_OPEN` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
 
 Removing the tutor key returns the tutor to its 503 fail-safe (`tutor/handler.ts:195`, "Tutor isn't enabled yet").
 

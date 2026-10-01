@@ -53,7 +53,7 @@ Put the local `API_URL`, `ANON_KEY`, and `SERVICE_ROLE_KEY` from `db:local:statu
 
 ## Launch List
 
-Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` decides: `BUCKET_SIGNIN_OPEN=1` opens sign-in on production at launch, and `0` shows the launch list anywhere. The flag is read at build time, so a change needs a redeploy.
+Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` and `src/lib/sign-in-gate.ts` decide: on production `SIGN_IN_OPEN=1` opens sign-in and any other value closes it. The middleware sends `/sign-in` and every signed-out protected route to `/download` with a 307 while closed. Existing sessions keep working. Preview and local stay open, and `BUCKET_SIGNIN_OPEN=0` shows the launch list there. A flag change needs a redeploy. The Supabase OTP endpoint stays reachable with the anon key, so closing new accounts also needs the GoTrue signup switch.
 
 | Piece | File | Job |
 |---|---|---|
