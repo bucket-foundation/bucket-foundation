@@ -128,6 +128,18 @@ export const TABLE: CommandSpec[] = [
   },
   { name: "version", summary: "print the version", json: true },
   {
+    name: "doctor",
+    summary: "check this install and name the fix for each problem; writes nothing",
+    json: true,
+    options: { keyring: { type: "string", value: "KIND", help: "key store to check: native or passphrase" } },
+  },
+  {
+    name: "completion",
+    summary: "print a shell completion script",
+    args: "<bash|zsh|fish>",
+    positionals: [1, 1],
+  },
+  {
     name: "help",
     summary: "show help for bkt or one command",
     args: "[command]",

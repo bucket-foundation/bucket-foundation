@@ -1,12 +1,14 @@
+import { createHash } from "node:crypto";
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { CHAT_CAPS, CHAT_OFF, chatRoot, localDay, MAX_LABEL, readChatSources, userText, type FactStub } from "../src/chat-sources";
-import { newDataKey } from "../src/crypto";
+import { newDataKey, seal } from "../src/crypto";
 import { parseDailyQuiz } from "../src/daily-quiz";
-import { askModel, loopbackUrl, modelPrompt, templateQuestions, writeDailyQuiz, WriterError, type Fetcher } from "../src/quiz-writer";
+import { askModel, loopbackUrl, modelPrompt, safeStubs, templateQuestions, writeDailyQuiz, WriterError, type Fetcher } from "../src/quiz-writer";
 import { scanLines, secretLine } from "../src/secret-scan";
+import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
 import { WorkQuizStore, workQuizRoutes } from "../src/work-quiz";
@@ -241,7 +243,7 @@ const reply = (questions: unknown): Fetcher => async () => new Response(JSON.str
 const GOOD = {
   stub: "aaaaaaaaaaaaaaaa",
   prompt: "Which grader did the session wire into the daily quiz route?",
-  choices: ["Fermi", "Exact match", "Rubric", "Peer"],
+  choices: ["Fermi", "Exact", "Rubric", "Peers"],
   answer: "Fermi",
   explain: "The session began with the Fermi grader.",
 };
@@ -286,6 +288,58 @@ describe("question writer", () => {
     expect(seen[0].url).toBe("http://127.0.0.1:11435/v1/chat/completions");
     expect(seen[0].redirect).toBe("error");
     expect(clean(seen[0].body)).toEqual([]);
+  });
+
+  test("an over-length model reply is rejected and a template takes its place", async () => {
+    const long = [
+      { ...GOOD, prompt: "Which of the several graders that the team discussed did the long first session of the day wire into the daily quiz route?" },
+      { ...GOOD, choices: ["Fermi", "An exact match on the normalized answer text", "Rubric", "Peers"] },
+      { ...GOOD, choices: ["Fermi", "Exact", "Rubric", "Peers", "Votes"] },
+      { ...GOOD, explain: Array.from({ length: 21 }, (_, i) => `word${i}`).join(" ") },
+    ];
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: reply(long) });
+    expect([w.writer, w.modelError]).toEqual(["templates", "the model wrote no usable question"]);
+    expect(w.quiz!.questions).toEqual(templateQuestions(DAY, STUBS));
+    const mixed = await writeDailyQuiz(DAY, STUBS, { fetch: reply([long[0], GOOD]) });
+    expect(mixed.quiz!.questions.map((q) => q.id.startsWith("chat-model-"))).toEqual([true, false, false, false, false]);
+    expect(mixed.quiz!.questions.every((q) => checkLimits(q).length === 0)).toBe(true);
+  });
+
+  test("the model prompt states the limits", () => {
+    expect(modelPrompt(STUBS, 5)).toContain("the prompt at most 15 words, each choice at most 5 words");
+  });
+
+  test("200 days of templates over chat stubs stay within every limit", () => {
+    const labels = [
+      CLAUDE_LABEL,
+      CODEX_LABEL,
+      "Find out why the release installer test fails on a clean Fedora machine and fix the sig…",
+      "fix(bkt): never overwrite a keyring entry, scope keys to the data folder (#512)",
+      "of the and",
+      "E = mc^2 as a card in src/lib/research-os/work-quiz/limits.ts with 20 percent slack",
+      "ok",
+      "Read CLAUDE.md, then plan the quiz combination question sample space in three slices…",
+    ];
+    let made = 0;
+    for (let i = 0; i < 200; i++) {
+      const day = new Date(Date.UTC(2026, 0, 1 + i)).toISOString().slice(0, 10);
+      const before = new Date(Date.UTC(2026, 0, i)).toISOString().slice(0, 10);
+      const stubs: FactStub[] = Array.from({ length: 1 + (i % 9) }, (_, k) => ({
+        id: createHash("sha256").update(`${i}:${k}`).digest("hex").slice(0, 16),
+        root: (i + k) % 3 === 0 ? "codex" : "claude",
+        label: labels[(i * 7 + k * 3) % labels.length],
+        date: (i + k) % 2 === 0 ? day : before,
+        turns: 1 + ((i * 13 + k * 5) % 400),
+      }));
+      for (const q of templateQuestions(day, stubs, 20)) {
+        made++;
+        expect(checkLimits(q)).toEqual([]);
+        expect([q.prompt, ...q.lines, ...(q.choices ?? []), q.explain].join(" ")).not.toContain("…");
+        expect(q.sources.length).toBeLessThanOrEqual(1);
+      }
+      expect(templateQuestions(day, stubs).length).toBeGreaterThanOrEqual(Math.min(2, safeStubs(stubs).length));
+    }
+    expect(made).toBeGreaterThan(1000);
   });
 
   test("a secret in the model reply drops that question", async () => {
@@ -340,9 +394,25 @@ describe("daily quiz from chats", () => {
       .map((f) => readFileSync(join(dir, f)).toString("latin1"))
       .join("\n");
 
+  let key: Buffer;
+  const LONG = {
+    id: "old-1",
+    type: "recall",
+    prompt: `Which tool ran the session that began "${CLAUDE_LABEL} and then asked for a second pass over the tests"?`,
+    lines: [],
+    choices: ["Claude", "Codex"],
+    answer: "Claude",
+    tolerance: 0,
+    limitSec: 30,
+    explain: "It ran in Claude.",
+    sources: [],
+  };
+  const plantLong = (day: string) =>
+    store.db.query("insert into daily_quiz (day, body, created_at) values (?, ?, ?)").run(day, seal(key, JSON.stringify({ day, questions: [LONG] }), `daily_quiz:${day}`), NOW);
+
   beforeEach(async () => {
     dir = mkdtempSync(join(tmpdir(), "bkt-chat-db-"));
-    const key = newDataKey();
+    key = newDataKey();
     store = new Store(join(dir, "bkt.db"), key);
     logs = [];
     prompts = [];
@@ -457,6 +527,27 @@ describe("daily quiz from chats", () => {
     expect(quiz.questions[0].id).toBe("chat-model-0");
     expect(logs[0]).toContain("writer model");
     expect(clean(prompts.join("\n"))).toEqual([]);
+  });
+
+  test("today's stored quiz over a length limit is rebuilt before its first answer", async () => {
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    plantLong(DAY);
+    const quiz = (await (await req(`/local/work-quiz/daily?day=${DAY}`)).json()) as { questions: { id: string; prompt: string; lines: string[]; choices: string[] | null }[] };
+    expect(quiz.questions.map((q) => q.id)).not.toContain("old-1");
+    expect(quiz.questions.flatMap((q) => checkLimits(q))).toEqual([]);
+    expect(reads).toBe(1);
+  });
+
+  test("an over-length quiz stays as stored on a past day, after an answer, and with the chat sources off", async () => {
+    plantLong("2026-09-01");
+    plantLong(DAY);
+    const ids = async (day: string) => ((await (await req(`/local/work-quiz/daily?day=${day}`)).json()) as { questions: { id: string }[] }).questions.map((q) => q.id);
+    expect(await ids("2026-09-01")).toEqual(["old-1"]);
+    expect(await ids(DAY)).toEqual(["old-1"]);
+    expect(await ids(DAY)).toEqual(["old-1"]);
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    expect((await req("/local/work-quiz/answer", { method: "POST", body: { day: DAY, id: "old-1", response: "Claude", elapsedMs: 1000 } })).status).toBe(200);
+    expect(await ids(DAY)).toEqual(["old-1"]);
   });
 
   test("another day is never built, and forgetting turns the switches off", async () => {

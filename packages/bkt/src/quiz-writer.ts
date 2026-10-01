@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { LIMITS, shortTitle, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import type { QuizQuestion, SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import type { FactStub } from "./chat-sources";
 import { fermi, parseDailyQuiz, type DailyQuiz } from "./daily-quiz";
@@ -10,6 +11,7 @@ export const LLM_MODEL = "qwen2.5-coder-7b";
 export const LLM_TIMEOUT_MS = 30_000;
 export const LLM_MAX_STUBS = 24;
 export const LLM_MAX_REPLY = 64 * 1024;
+export const SESSION_TITLE_TOKENS = 6;
 
 const TOOL: Record<FactStub["root"], string> = { claude: "Claude", codex: "Codex" };
 
@@ -54,19 +56,21 @@ export function templateQuestions(day: string, stubs: FactStub[], count = DAILY_
   const safe = safeStubs(stubs).sort((a, b) => rank(day, a.id).localeCompare(rank(day, b.id)));
   if (!safe.length) return [];
   const out: QuizQuestion[] = [
-    fermi({ id: "chat-sessions", prompt: "How many chat sessions did you run in the last two days?", answer: safe.length, explain: `${safe.length} sessions held a message from you.` }),
+    fermi({ id: "chat-sessions", prompt: "How many chat sessions in two days?", answer: safe.length, explain: `${safe.length} sessions held a message from you.` }),
   ];
   const turns = safe.reduce((n, s) => n + s.turns, 0);
-  out.push(fermi({ id: "chat-messages", prompt: "How many messages did you send across your chat sessions in the last two days?", answer: turns, explain: `${turns} messages across ${safe.length} sessions.` }));
+  out.push(fermi({ id: "chat-messages", prompt: "How many messages did you send in two days?", answer: turns, explain: `${turns} messages across ${safe.length} sessions.` }));
   const tools = new Set(safe.map((s) => s.root));
   const days = new Set(safe.map((s) => s.date));
   for (const [i, s] of safe.entries()) {
     const per: QuizQuestion[] = [];
+    const short = shortTitle(s.label.replace(/…$/, ""), SESSION_TITLE_TOKENS);
+    if (!short) continue;
     if (tools.size > 1)
       per.push({
         id: `chat-tool-${s.id}`,
         type: "recall",
-        prompt: `Which tool ran the session that began "${s.label}"?`,
+        prompt: `Which tool ran "${short}"?`,
         lines: [],
         choices: Object.values(TOOL),
         answer: TOOL[s.root],
@@ -75,11 +79,11 @@ export function templateQuestions(day: string, stubs: FactStub[], count = DAILY_
         explain: `It ran in ${TOOL[s.root]} on ${s.date}.`,
         sources: [ref(s)],
       });
-    if (days.size > 1)
+    if (days.size > 1 && days.size <= LIMITS.maxOptions)
       per.push({
         id: `chat-day-${s.id}`,
         type: "recall",
-        prompt: `On which day did the session that began "${s.label}" start?`,
+        prompt: `Which day did "${short}" start?`,
         lines: [],
         choices: [...days].sort(),
         answer: s.date,
@@ -88,10 +92,10 @@ export function templateQuestions(day: string, stubs: FactStub[], count = DAILY_
         explain: `It started on ${s.date}.`,
         sources: [ref(s)],
       });
-    per.push(fermi({ id: `chat-turns-${s.id}`, prompt: `How many messages did you send in the session that began "${s.label}"?`, answer: s.turns, explain: `You sent ${s.turns}.`, sources: [ref(s)] }));
+    per.push(fermi({ id: `chat-turns-${s.id}`, prompt: `How many messages in "${short}"?`, answer: s.turns, explain: `You sent ${s.turns}.`, sources: [ref(s)] }));
     out.push(per[i % per.length]);
   }
-  return out.slice(0, count);
+  return out.filter(withinLimits).slice(0, count);
 }
 
 export function modelPrompt(stubs: FactStub[], count: number): string {
@@ -102,6 +106,7 @@ export function modelPrompt(stubs: FactStub[], count: number): string {
     `Write ${count} multiple-choice recall questions about the work sessions listed below.`,
     "Each row is: id | day | tool | message count | first line of the session.",
     "Use the rows alone. Each question has four distinct choices and one answer copied from its choices.",
+    `Keep it short: the prompt at most ${LIMITS.stem} words, each choice at most ${LIMITS.option} words and all choices about the same length, the explain line at most ${LIMITS.why} words.`,
     'Reply with JSON alone: {"questions":[{"stub":"<id>","prompt":"...","choices":["..."],"answer":"...","explain":"..."}]}',
     "",
     ...rows,
