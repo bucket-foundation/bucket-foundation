@@ -75,6 +75,7 @@ export interface RankedOptions {
   bonus?: Map<string, number>;
   year?: (concept: string) => number | null;
   candidates?: number;
+  minShare?: number;
 }
 
 function sourceHit(row: SourceRow, score: number, also: string[]): Hit {
@@ -98,7 +99,7 @@ function sourceHit(row: SourceRow, score: number, also: string[]): Hit {
 }
 
 export function rankedPools(query: string, corpus: ExploreCorpus, opts: RankedOptions = {}): RankedPools {
-  const scored = rank(query, corpus.docs, corpus.stats, { bonus: opts.bonus });
+  const scored = rank(query, corpus.docs, corpus.stats, { bonus: opts.bonus, minShare: opts.minShare });
   const works = dedupeWorks(scored.filter((s) => corpus.meta.get(s.doc.id)?.pool === "source")).slice(0, opts.candidates ?? CANDIDATES);
   const out: RankedPools = { sources: [], excerpts: [], files: [] };
   for (const w of works) {

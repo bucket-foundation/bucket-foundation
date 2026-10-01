@@ -265,6 +265,15 @@ test("pools merge on absolute scores, sorted by score then id, with no zero rows
   assert.deepEqual(hits, explore("heat second law"));
 });
 
+test("any-term matching keeps rows under half of the query's weight and still drops rows that match nothing", () => {
+  const strict = rankedPools("heat zzqxv plorth", CORPUS);
+  assert.equal(strict.sources.length + strict.excerpts.length, 0);
+  const any = rankedPools("heat zzqxv plorth", CORPUS, { minShare: 0 });
+  assert.ok(any.excerpts.length >= 3 && any.sources.length >= 2);
+  assert.ok(!any.sources.some((h) => /granite/i.test(h.title)));
+  assert.ok([...any.sources, ...any.excerpts].every((h) => h.score > 0));
+});
+
 test("a topic row appears only when its name matches the query", () => {
   const hits = explore("heat");
   assert.deepEqual(hits.filter((h) => h.type === "work").map((h) => h.title), ["heat"]);

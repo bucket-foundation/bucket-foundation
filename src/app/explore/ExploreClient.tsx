@@ -125,7 +125,7 @@ export default function ExploreClient() {
   useEffect(() => {
     if (mode.id !== "dna" || geneHits.length) return;
     const genes = Array.from(new Set(SNPS.map((s) => s.gene))).join(" ");
-    fetch(`/api/explore/search?q=${encodeURIComponent(genes)}&types=excerpt&top_k=40`)
+    fetch(`/api/explore/search?q=${encodeURIComponent(genes)}&types=excerpt&top_k=40&match=any`)
       .then((r) => (r.ok ? r.json() : { results: [] }))
       .then((b) => setGeneHits(b.results ?? []))
       .catch(() => setGeneHits([]));
@@ -149,7 +149,7 @@ export default function ExploreClient() {
   useEffect(() => {
     if (!matterQuery) return;
     let live = true;
-    fetch(`/api/explore/search?q=${encodeURIComponent(matterQuery)}&types=excerpt&top_k=40`)
+    fetch(`/api/explore/search?q=${encodeURIComponent(matterQuery)}&types=excerpt&top_k=40&match=any`)
       .then((r) => (r.ok ? r.json() : { results: [] }))
       .then((b) => live && setMatterHits(b.results ?? []))
       .catch(() => live && setMatterHits([]));

@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
   const founding = params.branch ? null : foundingFor(params.q);
   const corpus = await loadExploreCorpus();
   const bonus = founding?.hitId && founding.bonus > 0 ? new Map([[founding.hitId, founding.bonus]]) : undefined;
-  const ranked = rankedPools(params.q, corpus, { branch: params.branch, bonus, year });
+  const ranked = rankedPools(params.q, corpus, { branch: params.branch, bonus, year, minShare: url.searchParams.get("match") === "any" ? 0 : undefined });
   const excerpts = semantic
     ? found.results.map(({ entry, score }) => ({ branch: entry.branch, concept: entry.concept, slug: entry.slug, title: entry.title, text: entry.text, score, year: year(entry.concept), talk: talkFor(entry.path) }))
     : ranked.excerpts;
