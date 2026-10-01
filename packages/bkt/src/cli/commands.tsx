@@ -15,6 +15,9 @@ import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textR
 import { keyringOptions, NoDataError, type Invocation, UsageError } from "./run";
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
+import { doctorLines, doctorPassed, runDoctor } from "../doctor";
+import { execSync, platformFor } from "../platform";
+import { completionScript, isShell } from "./completion";
 import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
@@ -160,6 +163,37 @@ async function analyses(inv: Invocation, json: boolean): Promise<number> {
   return EXIT.ok;
 }
 
+async function doctor(inv: Invocation, json: boolean): Promise<number> {
+  const env = process.env;
+  const platform = platformFor(process.platform, { env });
+  const tty = { stdin: !!process.stdin.isTTY, stdout: !!process.stdout.isTTY };
+  const checks = await runDoctor({
+    dir: dataDir(env),
+    env,
+    platform,
+    keyringKind: typeof inv.values.keyring === "string" ? inv.values.keyring : undefined,
+    keyring: () => platform.keyring(),
+    pack: pack as Pack,
+    uiDir: uiDir(env),
+    runtimeDir: runtimeDir(env),
+    tty,
+    columns: process.stdout.columns,
+    run: execSync,
+    alive: (pid) => {
+      try {
+        process.kill(pid, 0);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+  });
+  const passed = doctorPassed(checks);
+  if (json) console.log(jsonLine("doctor", { ok: passed, checks }));
+  else for (const line of doctorLines(checks)) console.log(line);
+  return passed ? EXIT.ok : EXIT.failure;
+}
+
 export async function execute(inv: Invocation): Promise<number> {
   const name = inv.command.name;
   const json = inv.values.json === true;
@@ -184,6 +218,13 @@ export async function execute(inv: Invocation): Promise<number> {
     }
   }
   if (name === "app" && reopenRunningApp(route)) return EXIT.ok;
+  if (name === "completion") {
+    const shell = inv.positionals[0];
+    if (!isShell(shell)) throw new UsageError(`unknown shell ${shell}`, inv.command);
+    console.log(completionScript(shell));
+    return EXIT.ok;
+  }
+  if (name === "doctor") return doctor(inv, json);
   if (name === "analyze") return analyzeCmd(inv.args);
   if (name === "analyses") return analyses(inv, json);
   if (name === "hai freeze") {
