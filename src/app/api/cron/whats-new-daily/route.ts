@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import whatsNew from "../../../../../data/whats-new.json";
 import { getWaitlistStore } from "@/lib/waitlist/store";
-import { cronAuthorized, digestConfig, optedInRecipients, sendDailyDigest } from "@/lib/whats-new-email/send";
+import { freshPublicWhatsNew } from "@/lib/whats-new/cached";
+import { getWhatsNewStore } from "@/lib/whats-new/store";
+import { cronAuthorized, digestConfig, digestLedger, optedInRecipients, sendDailyDigest } from "@/lib/whats-new-email/send";
 import { getOptOutStore, unsubscribeSecret } from "@/lib/whats-new-email/unsubscribe";
 
 export const runtime = "nodejs";
@@ -19,10 +20,12 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const downloads = getWaitlistStore(process.env, "downloads");
   const optOuts = getOptOutStore();
   const progress = getOptOutStore(process.env, "progress");
-  if (!list || !downloads || !optOuts || !progress) return NextResponse.json({ error: "No Blob store is connected." }, { status: 503 });
+  const store = getWhatsNewStore();
+  if (!list || !downloads || !optOuts || !progress || !store) return NextResponse.json({ error: "No Blob store is connected." }, { status: 503 });
   try {
     const report = await sendDailyDigest({
-      entries: whatsNew.entries,
+      entries: freshPublicWhatsNew,
+      ledger: digestLedger(store),
       recipients: () => optedInRecipients([list, downloads], optOuts, config.secret),
       config,
       now: Date.now(),
@@ -30,6 +33,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       progress,
     });
     console.log("[whats-new] daily digest", report);
+    if (report.skipped === "offline") return NextResponse.json({ error: "The mail API is unreachable.", ...report }, { status: 502 });
     return NextResponse.json({ ok: true, ...report });
   } catch (err) {
     console.error("[whats-new] daily digest failed:", err instanceof Error ? err.message : "unknown");

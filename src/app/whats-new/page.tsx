@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import feedData from "../../../feed.json";
-import whatsNewData from "../../../data/whats-new.json";
+import { publicWhatsNew } from "@/lib/whats-new/cached";
+import { pageSections } from "@/lib/whats-new/public";
 import type { Feed, FeedEvent } from "./types";
 import FeedFilters from "./FeedFilters";
 import MilestoneTimeline from "./MilestoneTimeline";
+import GenerationCard, { type Generation } from "./GenerationCard";
 import ProductionCard from "./ProductionCard";
 
 export const revalidate = 300;
@@ -37,23 +39,24 @@ export type Production = Milestone & {
   category: "production";
   status: "merged" | "open";
   plot_title: string;
-  discussion: string;
-  image: string;
+  discussion?: string;
+  image?: string;
   image_alt: string;
   extra_images?: { src: string; alt: string }[];
   links: { label: string; href: string }[];
 };
 
-export default function Page() {
+export default async function Page() {
   const feed = feedData as Feed;
   const events: FeedEvent[] = [...feed.events].sort(
     (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
-  const entries: Milestone[] = [...((whatsNewData as any).entries as Milestone[])].sort(
-    (a, b) => b.date.localeCompare(a.date),
-  );
-  const productions = entries.filter((m): m is Production => m.category === "production");
-  const milestones = entries.filter((m) => m.category !== "production");
+  const entries = (await publicWhatsNew()) as unknown as Milestone[];
+  const sections = pageSections([...entries].sort((a, b) => b.date.localeCompare(a.date)));
+  const productions = sections.productions as Production[];
+  const milestones = sections.milestones;
+  const generations = sections.generations as unknown as Generation[];
+  const titles = new Map(productions.map((p) => [p.id, p.title]));
 
   return (
     <PageShell
@@ -65,7 +68,7 @@ export default function Page() {
     >
       <div className="mb-8 small-caps text-[10px] text-[color:var(--parchment-dim)]">
         feed schema v{feed.schema_version} · {feed.total_events.toLocaleString()} paper events ·{" "}
-        {milestones.length} milestones · {productions.length} productions
+        {milestones.length} milestones · {productions.length} productions · {generations.length} generations
       </div>
 
       {productions.length > 0 && (
@@ -74,6 +77,20 @@ export default function Page() {
           <div className="grid gap-8">
             {productions.map((p) => (
               <ProductionCard key={p.id} production={p} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {generations.length > 0 && (
+        <section id="generations" className="mb-16">
+          <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-2">Generations</h2>
+          <p className="text-sm text-[color:var(--parchment-dim)] mb-6">
+            Claims made by a machine. Each one shows its state: candidate, tested, refuted or proved. Refuted claims stay on the page.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {generations.map((g) => (
+              <GenerationCard key={g.id} generation={g} parentTitle={g.parent ? titles.get(g.parent) : undefined} />
             ))}
           </div>
         </section>

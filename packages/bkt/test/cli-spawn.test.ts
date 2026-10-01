@@ -162,7 +162,9 @@ describe("json output", () => {
     expect(typeof body.analyses[0].mtime).toBe("number");
     body.analyses[0].mtime = 0;
     expect(JSON.stringify(body)).toBe(`{"v":1,"analyses":[{"name":"sales-2026-10-01","dir":${JSON.stringify(one)},"mtime":0}]}`);
-    expect(bkt(["analyses"])).toEqual({ code: 0, out: `sales-2026-10-01\t${one}\n`, err: "" });
+    const plain = bkt(["analyses"]);
+    expect(plain.out).toMatch(/^sales-2026-10-01  \d{4}-\d{2}-\d{2} \d{2}:\d{2}\n$/);
+    expect(bkt(["analyses", "--where"])).toEqual({ code: 0, out: `${plain.out.trimEnd()}  ${one}\n`, err: "" });
     expect(bkt(["analyses", join(dir, "elsewhere"), "--json"]).code).toBe(3);
     expect(untouched()).toBe(true);
   });
@@ -171,10 +173,12 @@ describe("json output", () => {
     const first = bkt(["init", ...vault], { stdin: "pw\n" });
     expect(first.err).toBe("");
     expect(first.code).toBe(0);
-    const legacy = JSON.parse(first.out);
-    expect(legacy.v).toBeUndefined();
-    expect(legacy.newDevice).toBe(true);
+    expect(first.out).toStartWith("Bucket is ready on this device.\nThis device      ");
+    expect(first.out).toContain("\nNew device       yes\n");
+    expect(first.out).toContain("\nKey store        passphrase vault\n");
     expect(keyringCalls()).toEqual([]);
+    const legacy = JSON.parse(bkt(["whoami", "--json", ...vault], { stdin: "pw\n" }).out) as { device: string; publicKey: string };
+    expect(first.out).toContain(`This device      ${legacy.device}\nPublic key       ${legacy.publicKey}\n`);
 
     const items = (pack as { items: unknown[]; version: string }).items.length;
     const who = bkt(["whoami", "--json", ...vault], { stdin: "pw\n" });
@@ -187,9 +191,10 @@ describe("json output", () => {
     const stats = bkt(["stats", "--json", ...vault], { stdin: "pw\n" });
     expect(stats).toEqual({ code: 0, out: `{"v":1,"items":${items},"seen":0,"due":0,"attempts":0}\n`, err: "" });
     const text = bkt(["stats", ...vault], { stdin: "pw\n" });
-    expect(text.out).toBe(`items     ${items}\nseen      0\ndue       0\nattempts  0\n`);
+    expect(text.out).toBe(`Items       ${items}\nCards seen  0\nDue now     0\nAttempts    0\n`);
     const whoText = bkt(["whoami", ...vault], { stdin: "pw\n" });
-    expect(whoText.out).toContain(`device     ${legacy.device}\n`);
+    expect(whoText.out).toStartWith(`This device      ${legacy.device}\n`);
+    expect(whoText.out).toContain("\nNew device       no\n");
 
     const kr = new PassphraseKeyring(join(home, "keyring.json"), "pw");
     const dataKey = (await kr.get(keyAccounts(home).data))!;
@@ -211,7 +216,7 @@ describe("keyring guard through the command line", () => {
   test.skipIf(!linux)("a fresh home mints keys once, a locked collection later refuses and writes nothing", () => {
     const first = bkt(["init"]);
     expect(first.err).toBe("");
-    expect(JSON.parse(first.out)).toMatchObject({ newDevice: true, keyring: "libsecret" });
+    expect(first.out).toContain("\nNew device       yes\nKey store        login keyring\n");
     expect(keyringCalls().filter((c) => c === "store")).toHaveLength(2);
     expect(bkt(["stats", "--json"]).code).toBe(0);
     expect(keyringCalls().filter((c) => c === "store")).toHaveLength(2);

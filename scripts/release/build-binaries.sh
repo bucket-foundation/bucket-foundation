@@ -21,8 +21,8 @@ for t in $targets; do
   bun build --compile --minify --define "BKT_BUILD_VERSION=\"$version\"" --target="bun-$t" src/cli.tsx --outfile "$out/$name" >/dev/null
   [ -s "$out/$name" ] || fail "no binary for $t"
   if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
-    bun scripts/check-no-staff.ts "$out/$name" content/canon.json || fail "staff atlas data found in $name"
+    bun scripts/check-no-staff.ts "$out/$name" content/canon.json content/explore.json || fail "staff atlas data found in $name"
   fi
-  bun scripts/check-no-kruse.ts content/canon.json "$out/$name" || fail "denied source material found in $name"
+  bun scripts/check-no-kruse.ts content/canon.json content/explore.json "$out/$name" || fail "denied source material found in $name"
   echo "$out/$name"
 done
