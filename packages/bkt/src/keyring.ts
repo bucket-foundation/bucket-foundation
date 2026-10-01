@@ -13,6 +13,23 @@ export const SERVICE = "bucket-bkt";
 
 export class KeyringError extends Error {}
 
+const REMEDY: Record<Keyring["kind"], string> = {
+  libsecret: "Unlock the login keyring by signing in to the desktop session, then run bkt again.",
+  keychain: "Unlock the login keychain with security unlock-keychain, then run bkt again.",
+  dpapi: "Sign in as the Windows user who made the database, then run bkt again.",
+  passphrase: "Put keyring.json back beside the database, then run bkt again.",
+  memory: "Run bkt again with the keyring that made the database.",
+};
+
+export class KeyringLockedError extends KeyringError {
+  constructor(kind: Keyring["kind"], db: string, detail: string) {
+    super(
+      `keyring locked or key missing: ${db} exists and the ${kind} keyring gave no key for it (${detail}). ${REMEDY[kind]} ` +
+        `If another keyring made this database, name it with --keyring. To start fresh, move ${db} aside and run bkt init. bkt made no new key and left the database untouched.`,
+    );
+  }
+}
+
 export function refuseOverwrite(account: string): never {
   throw new KeyringError(`keyring already holds ${account}; refusing to overwrite`);
 }
@@ -71,7 +88,8 @@ export class PassphraseKeyring implements Keyring {
   private key: Buffer;
   private vault: VaultFile;
 
-  constructor(private file: string, passphrase: string) {
+  constructor(private file: string, passphrase: string, existingDb?: string) {
+    if (existingDb && !existsSync(file)) throw new KeyringLockedError("passphrase", existingDb, `${file} is missing`);
     mkdirSync(dirname(file), { recursive: true, mode: 0o700 });
     chmodSync(dirname(file), 0o700);
     if (existsSync(file)) {
