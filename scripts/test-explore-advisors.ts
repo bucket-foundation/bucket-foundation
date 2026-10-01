@@ -8,6 +8,10 @@ import { hasEmail } from "../src/lib/research-os/advisor-review";
 import { mapLayout } from "../src/lib/explore/modes/map";
 import { unify } from "../src/lib/explore/search";
 import fixture from "../src/lib/explore/fixtures/advisor-bundle.sample.json";
+import sampleReview from "../src/lib/explore/fixtures/advisors.sample.json";
+import samplePrime from "../src/lib/explore/fixtures/prime.sample.json";
+import { samplesAllowed } from "../src/lib/explore/sample-gate";
+import { SAMPLE_DATASET, dataParam, listDatasets } from "../src/lib/explore/datasets";
 
 let failed = 0;
 function check(name: string, cond: boolean, detail = "") {
@@ -90,21 +94,47 @@ check("loadBundle returns null for a missing file", loadBundle(path.join(tmp, "n
 fs.writeFileSync(file, "{not json");
 check("loadBundle returns null for a damaged file", loadBundle(file) === null);
 
-const saved = { ...process.env };
-function fresh(env: Record<string, string | undefined>) {
-  for (const k of ["BUCKET_ADVISOR_REVIEW", "BUCKET_ADVISOR_BUNDLE"]) delete process.env[k];
-  Object.assign(process.env, env);
+const absent = path.join(tmp, "none.json");
+const fresh = (env: Record<string, string | undefined>) => {
   resetAdvisors();
-  return loadAdvisors();
-}
+  return loadAdvisors(env);
+};
 fs.writeFileSync(file, JSON.stringify(fixture));
+const reviewFile = path.join(tmp, "review.json");
+const primeFile = path.join(tmp, "prime.json");
+fs.writeFileSync(reviewFile, JSON.stringify(sampleReview));
+fs.writeFileSync(primeFile, JSON.stringify(samplePrime));
+const production = { VERCEL_ENV: "production" };
+const dev = { NODE_ENV: "development" };
 check("env path selects the bundle origin", fresh({ BUCKET_ADVISOR_BUNDLE: file }).origin === "bundle");
-check("a missing bundle falls back to the sample", fresh({ BUCKET_ADVISOR_BUNDLE: path.join(tmp, "none.json") }).origin === "sample");
-check("BUCKET_ADVISOR_REVIEW takes precedence over the bundle", fresh({ BUCKET_ADVISOR_REVIEW: path.join(tmp, "none.json"), BUCKET_ADVISOR_BUNDLE: file }).origin === "sample");
+check("a missing bundle falls back to the sample", fresh({ ...dev, BUCKET_ADVISOR_BUNDLE: absent }).origin === "sample");
+check("BUCKET_ADVISOR_REVIEW takes precedence over the bundle", fresh({ ...dev, BUCKET_ADVISOR_REVIEW: absent, BUCKET_ADVISOR_BUNDLE: file }).origin === "sample");
+check("preview keeps the sample", fresh({ VERCEL_ENV: "preview", BUCKET_ADVISOR_BUNDLE: absent }).sources.length === 6);
+check("production without a bundle returns no advisors", (() => {
+  const got = fresh({ ...production, BUCKET_ADVISOR_BUNDLE: absent });
+  return got.sources.length === 0 && got.axes.length === 0 && got.origin === "none" && got.sample === false;
+})());
+check("production with a damaged review returns no advisors", fresh({ ...production, BUCKET_ADVISOR_REVIEW: absent }).origin === "none");
+check("production with a review and no prime directions returns no advisors", fresh({ ...production, BUCKET_ADVISOR_REVIEW: reviewFile }).origin === "none");
+check("production with a review and prime directions serves the review", (() => {
+  const got = fresh({ ...production, BUCKET_ADVISOR_REVIEW: reviewFile, BUCKET_PRIME_DIRECTIONS: primeFile });
+  return got.origin === "review" && got.sample === false && got.sources.length === 6;
+})());
+check("production with a bundle serves the bundle", fresh({ ...production, BUCKET_ADVISOR_BUNDLE: file }).origin === "bundle");
+check("a changed env is never answered from the cache", loadAdvisors({ ...dev, BUCKET_ADVISOR_BUNDLE: absent }).origin === "sample" && loadAdvisors({ ...production, BUCKET_ADVISOR_BUNDLE: absent }).origin === "none");
+check("an unset environment returns no advisors", fresh({ BUCKET_ADVISOR_BUNDLE: absent }).origin === "none" && fresh({ BUCKET_ADVISOR_BUNDLE: absent }).sources.length === 0);
+check("a self-hosted production build returns no advisors", fresh({ NODE_ENV: "production", BUCKET_ADVISOR_BUNDLE: absent }).origin === "none");
+check("an unset environment still serves a real bundle", fresh({ BUCKET_ADVISOR_BUNDLE: file }).origin === "bundle");
+check("samples need a positive preview, development or test signal", (() => {
+  const on = [{ VERCEL_ENV: "preview" }, { VERCEL_ENV: "development" }, { VERCEL_ENV: "preview", NODE_ENV: "production" }, { NODE_ENV: "development" }, { NODE_ENV: "test" }];
+  const off = [{}, production, { NODE_ENV: "production" }, { VERCEL_ENV: "production", NODE_ENV: "development" }, { VERCEL_ENV: "staging" }, { NODE_ENV: "" }, { VERCEL_ENV: "", NODE_ENV: "production" }];
+  return on.every((e) => samplesAllowed(e)) && off.every((e) => !samplesAllowed(e));
+})());
+check("production search over no advisors returns no advisor hit", unify({ query: "quantum photon entropy", excerpts: [], advisors: fresh({ ...production, BUCKET_ADVISOR_BUNDLE: absent }).sources }).length === 0);
+check("the production switcher drops the sample data set", !listDatasets([], [], false).some((e) => e.id === SAMPLE_DATASET) && listDatasets([], [], true).some((e) => e.id === SAMPLE_DATASET) && dataParam(SAMPLE_DATASET, listDatasets([], [], false)) === "canon");
 check("default path points at the local advisor review folder", DEFAULT_BUNDLE_PATH.endsWith(path.join(".local", "share", "bucket-advisor-review", "advisor-bundle.json")));
-check("origin labels read as the UI strings", ORIGIN_LABEL.bundle === "source: local advisor bundle" && ORIGIN_LABEL.sample === "source: sample");
+check("origin labels read as the UI strings", ORIGIN_LABEL.bundle === "source: local advisor bundle" && ORIGIN_LABEL.sample === "source: sample" && ORIGIN_LABEL.none === "no advisors published");
 check("no real bundle is committed", !fs.existsSync("src/data/advisor-bundle.json") && fs.statSync("src/lib/explore/fixtures/advisor-bundle.sample.json").size < 5000);
-Object.assign(process.env, saved);
 
 if (failed) {
   console.error(`${failed} failed`);
