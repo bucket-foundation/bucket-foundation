@@ -1,0 +1,21 @@
+{
+  "id": "gen-docstring-length-predicts-resolution",
+  "kind": "generation",
+  "category": "generation",
+  "date": "2026-10-01",
+  "source": "own",
+  "machine_generated": true,
+  "title": "Docstring length predicts resolution",
+  "claim": "Open problems with longer docstrings are tagged solved at a higher rate, and the effect fades as the repository grows.",
+  "tool": "solver-gap-engine backtest.py",
+  "run_id": "fc-137aec5c-2026-10-01",
+  "state": "tested",
+  "score": {
+    "value": 0.707,
+    "meaning": "AUC at the 2025-09-01 snapshot; 0.658, 0.623 and 0.511 at the three later ones"
+  },
+  "evidence": [
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+  ],
+  "parent": "gap-score-backtest-2026-10"
+}

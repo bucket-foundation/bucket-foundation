@@ -202,7 +202,7 @@ function trueFalse(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | nu
     answer: offset === 0 ? "true" : "false",
     tolerance: 0,
     limitSec: LIMIT_SEC.true_false,
-    explain: `Change #${p.number} merged on ${p.date}.`,
+    explain: `That change merged on ${p.date}.`,
     sources: [prRef(p, src.repoUrl)],
   };
 }

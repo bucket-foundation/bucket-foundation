@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, type WorkQuestion, type WorkStatus } from "../api";
 import { href } from "../router";
+import { FILE_UNREADABLE } from "./file";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
 
@@ -22,11 +23,14 @@ export function Why({ result }: { result: WorkAnswer }) {
   );
 }
 
+export const NO_WORK_QUESTIONS = "Bucket needs more of your tasks or merged changes to ask a question.";
+
 export function WorkQuizView({ api }: { api: Api }) {
   const [q, setQ] = useState<WorkQuestion | null>(null);
   const [result, setResult] = useState<WorkAnswer | null>(null);
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [none, setNone] = useState(false);
   const started = useRef(Date.now());
 
   const next = useCallback(() => {
@@ -36,9 +40,15 @@ export function WorkQuizView({ api }: { api: Api }) {
     api.workNext().then(
       (x) => {
         setQ(x);
+        setNone(false);
         started.current = Date.now();
       },
-      (e: Error) => setError(e.message),
+      (e: Error) => {
+        if (e instanceof ApiError && e.status === 404) {
+          setQ(null);
+          setNone(true);
+        } else setError(e.message);
+      },
     );
   }, [api]);
 
@@ -57,9 +67,15 @@ export function WorkQuizView({ api }: { api: Api }) {
     <section>
       <header className="head">
         <h1>Work quiz</h1>
-        <p className="muted">Questions from your own beads and commit history.</p>
+        <p className="muted">Questions from your own tasks and merged changes.</p>
       </header>
       {error && <p className="error">{error}</p>}
+      {none && (
+        <div className="panel empty">
+          <h2>No questions yet</h2>
+          <p>{NO_WORK_QUESTIONS}</p>
+        </div>
+      )}
       {q && (
         <article className="panel card">
           <span className="tag ghost">{q.type.replace(/_/g, " ")}</span>
@@ -157,7 +173,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       },
       (e: Error) => {
         if (!live) return;
-        if (e instanceof ApiError && e.status === 404 && e.message === NO_QUIZ) setMissing(true);
+        if (e instanceof ApiError && e.status === 404 && e.code === NO_QUIZ) setMissing(true);
         else if (e instanceof ApiError && e.status === 404) setOutdated(true);
         else setError(e.message);
       },
@@ -209,7 +225,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {missing && (
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
-          <p>Bucket has no quiz saved for this day. A quiz is built from your recent chat sessions when its page opens on its own day, and nothing was built for this one. Either both chat sources were off under Import, or the sessions from those two days held no line Bucket could ask about.</p>
+          <p>Bucket has no quiz saved for this day. A daily quiz is built from your recent chats on the day itself, and nothing was built for this one. Either reading your chats was turned off, or the chats from those two days held nothing Bucket could ask about.</p>
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>
@@ -302,6 +318,8 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   );
 }
 
+export const FOLDER_UNUSABLE = "Bucket could not read that folder.";
+
 export function WorkQuizSources({ api }: { api: Api }) {
   const [status, setStatus] = useState<WorkStatus | null>(null);
   const [path, setPath] = useState("");
@@ -322,20 +340,20 @@ export function WorkQuizSources({ api }: { api: Api }) {
     if (f.size > 32 * 1024 * 1024) return setMsg("That file is larger than 32 MB.");
     try {
       const r = await api.workBeads(await f.text());
-      setMsg(`Read ${r.beads} beads.`);
+      setMsg(`Read ${r.beads} tasks.`);
       load();
-    } catch (e) {
-      setMsg((e as Error).message);
+    } catch {
+      setMsg(FILE_UNREADABLE);
     }
   };
 
   const repo = async (p: string | null) => {
     try {
       await api.workRepo(p);
-      setMsg(p === null ? "Repository removed." : "Repository set.");
+      setMsg(p === null ? "Project folder removed." : "Project folder set.");
       load();
-    } catch (e) {
-      setMsg((e as Error).message);
+    } catch {
+      setMsg(FOLDER_UNUSABLE);
     }
   };
 
@@ -343,7 +361,7 @@ export function WorkQuizSources({ api }: { api: Api }) {
   const setChat = async (next: { claude: boolean; codex: boolean }) => {
     try {
       await api.workChat(next);
-      setMsg(next.claude || next.codex ? "The daily quiz reads your recent chat sessions on this computer." : "Chat sessions are off.");
+      setMsg(next.claude || next.codex ? "The daily quiz reads your recent chats on this computer." : "Chats are off.");
       load();
     } catch (e) {
       setMsg((e as Error).message);
@@ -352,13 +370,13 @@ export function WorkQuizSources({ api }: { api: Api }) {
 
   return (
     <article className="panel card">
-      <h2>Work quiz sources</h2>
+      <h2>Work quiz</h2>
       <p className="muted">
-        {status ? `${status.beads} beads, ${status.prs} merged PRs${status.repoError ? `; ${status.repoError}` : ""}.` : "Loading…"} The Work quiz tab appears once either source is set.
+        Get quizzed on your own recent work. {status ? `${status.beads} tasks, ${status.prs} merged changes.${status.repoError ? ` ${FOLDER_UNUSABLE}` : ""}` : "Loading…"} Work quiz joins the menu once tasks or a project folder are set.
       </p>
       <label className="file row">
         <input type="file" accept=".jsonl" onChange={(e) => void beads(e.target.files?.[0])} />
-        <span>Pick .beads/issues.jsonl</span>
+        <span>Choose tasks file</span>
       </label>
       <form
         className="toolbar"
@@ -367,9 +385,9 @@ export function WorkQuizSources({ api }: { api: Api }) {
           void repo(path);
         }}
       >
-        <input className="search" placeholder="~/code/your-repo" value={path} onChange={(e) => setPath(e.target.value)} />
+        <input className="search" placeholder="Your project folder" value={path} onChange={(e) => setPath(e.target.value)} />
         <button className="primary" disabled={!path.trim()}>
-          Use repository
+          Use this folder
         </button>
         {status?.repo && (
           <button type="button" className="ghost" onClick={() => void repo(null)}>
@@ -377,16 +395,16 @@ export function WorkQuizSources({ api }: { api: Api }) {
           </button>
         )}
       </form>
-      <p className="muted small">The daily quiz can read the last two days of chat sessions. The text stays on this computer.</p>
+      <p className="muted small">The daily quiz can read your last two days of chats. The text stays on this computer.</p>
       <label className="row">
-        <input type="checkbox" checked={chat.claude} disabled={!status} onChange={(e) => void setChat({ ...chat, claude: e.target.checked })} /> Claude sessions in ~/.claude/projects
+        <input type="checkbox" checked={chat.claude} disabled={!status} onChange={(e) => void setChat({ ...chat, claude: e.target.checked })} /> Claude chats
       </label>
       <label className="row">
-        <input type="checkbox" checked={chat.codex} disabled={!status} onChange={(e) => void setChat({ ...chat, codex: e.target.checked })} /> Codex sessions in ~/.codex/sessions
+        <input type="checkbox" checked={chat.codex} disabled={!status} onChange={(e) => void setChat({ ...chat, codex: e.target.checked })} /> Codex chats
       </label>
       {status && (status.beads > 0 || status.repo || chat.claude || chat.codex) && (
-        <button className="ghost" onClick={() => window.confirm("Remove the work quiz sources from this computer?") && void api.workForget().then(load)}>
-          Remove all sources
+        <button className="ghost" onClick={() => window.confirm("Remove everything the work quiz reads from this computer?") && void api.workForget().then(load)}>
+          Remove all
         </button>
       )}
       {msg && <p className="status">{msg}</p>}
