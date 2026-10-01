@@ -58,7 +58,7 @@ bkt whoami --json
 
 Exit codes: 0 ok, 1 failure, 2 usage, 3 no data, 130 cancelled. A usage error exits before bkt creates the data folder or calls the key store. `NO_COLOR` turns colour off. Without a terminal, or with `TERM=dumb`, the terminal app, `bkt hai` and `bkt analyze --tui` print usage and exit 2, and `bkt analyses` prints a plain list.
 
-When `bkt.db` exists and the key store returns no data key, bkt stops with `keyring locked or key missing`, exit 1, and stores no new key. Unlock the key store and run it again.
+When `bkt.db` exists and the key store returns no data key, bkt stops with `keyring locked or key missing`, exit 1, and stores no new key. Unlock the key store and run it again, or move `bkt.db` aside to start fresh. An empty `bkt.db` counts as absent.
 
 ## Storage
 

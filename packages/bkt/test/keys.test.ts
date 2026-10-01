@@ -5,7 +5,8 @@ import { join } from "node:path";
 import { DATA_KEY_ACCOUNT, DEVICE_ACCOUNT, deviceIdFor, ensureDataKey, ensureDevice, verifyDeviceSignature } from "../src/device";
 import { MemoryKeyring, PassphraseKeyring, SecretToolKeyring, type Keyring } from "../src/keyring";
 import { keyringOptions, resolve } from "../src/cli/run";
-import { openSession, pickKeyring } from "../src/setup";
+import { Database } from "bun:sqlite";
+import { existingDb, openSession, pickKeyring } from "../src/setup";
 
 let dir: string;
 beforeEach(() => {
@@ -314,5 +315,47 @@ describe("keyring guard", () => {
     const before = readFileSync(vault, "utf8");
     await expect(openSession(empty, dir, 2)).rejects.toThrow("keyring locked or key missing");
     expect(readFileSync(vault, "utf8")).toBe(before);
+  });
+});
+
+describe("a database that holds nothing counts as absent", () => {
+  const db = () => join(dir, "bkt.db");
+
+  test("a 0-byte bkt.db lets a fresh install mint its keys", async () => {
+    writeFileSync(db(), "");
+    expect(existingDb(dir)).toBeUndefined();
+    const s = await openSession(new MemoryKeyring(), dir, 1);
+    expect(s.device.created).toBe(true);
+    s.store.close();
+    expect(existingDb(dir)).toBe(db());
+  });
+
+  test("a schema-0 bkt.db with no tables lets a fresh install mint its keys", async () => {
+    const blank = new Database(db(), { create: true });
+    blank.run("pragma journal_mode = wal");
+    blank.run("vacuum");
+    blank.close();
+    expect(statSync(db()).size).toBeGreaterThan(0);
+    expect(existingDb(dir)).toBeUndefined();
+    const s = await openSession(new MemoryKeyring(), dir, 1);
+    expect(s.device.created).toBe(true);
+    s.store.close();
+  });
+
+  test("a schema-0 file with a table, and a file that is no database, both count as present", async () => {
+    const odd = new Database(db(), { create: true });
+    odd.run("create table t (x)");
+    odd.close();
+    expect(existingDb(dir)).toBe(db());
+    await expect(openSession(new MemoryKeyring(), dir, 1)).rejects.toThrow("keyring locked or key missing");
+    writeFileSync(db(), "not a sqlite file, sixteen bytes and more");
+    expect(existingDb(dir)).toBe(db());
+  });
+
+  test("the refusal names both recoveries", async () => {
+    (await openSession(new MemoryKeyring(), dir, 1)).store.close();
+    const failure = (await openSession(new MemoryKeyring(), dir, 2).catch((e: Error) => e)) as Error;
+    expect(failure.message).toContain("Run bkt again with the keyring that made the database");
+    expect(failure.message).toContain(`To start fresh, move ${db()} aside and run bkt init`);
   });
 });

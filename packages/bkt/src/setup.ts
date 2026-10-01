@@ -1,4 +1,5 @@
 import { closeSync, existsSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
+import { Database } from "bun:sqlite";
 import { join } from "node:path";
 import { ensureDataKey, ensureDevice, type DeviceIdentity } from "./device";
 import { CancelledError } from "./cli/run";
@@ -52,7 +53,26 @@ export async function promptPassphrase(label = "bkt passphrase: "): Promise<stri
 
 export function existingDb(dir: string): string | undefined {
   const db = join(dir, "bkt.db");
-  return existsSync(db) ? db : undefined;
+  if (!existsSync(db) || statSync(db).size === 0) return undefined;
+  return blankDatabase(db) ? undefined : db;
+}
+
+function blankDatabase(path: string): boolean {
+  let db: Database;
+  try {
+    db = new Database(path, { readonly: true });
+  } catch {
+    return false;
+  }
+  try {
+    const version = db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version;
+    const objects = db.query<{ n: number }, []>("select count(*) n from sqlite_master").get()!.n;
+    return version === 0 && objects === 0;
+  } catch {
+    return false;
+  } finally {
+    db.close();
+  }
 }
 
 export async function pickKeyring(
