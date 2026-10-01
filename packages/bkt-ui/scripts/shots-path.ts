@@ -71,6 +71,19 @@ try {
   await page.waitForSelector('.grip-rows .branch[aria-pressed="true"]');
   await page.screenshot({ path: join(out, "6h-path-topic.png") });
 
+  const placed = () => page.getAttribute(".topic-map svg > g", "transform");
+  const box = (await page.locator(".topic-map svg").boundingBox())!;
+  const start = await placed();
+  await page.mouse.move(box.x + 20, box.y + 20);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 140, box.y + 90, { steps: 6 });
+  await page.mouse.up();
+  const dragged = await placed();
+  await page.mouse.wheel(0, -300);
+  await page.waitForTimeout(100);
+  const zoomed = await placed();
+  if (start === dragged || dragged === zoomed) throw new Error("the map did not move on drag or zoom on scroll");
+
   await page.fill(".search", "entropy");
   await page.click(".matches a >> nth=0");
   await page.waitForSelector(".topic-panel h2");
