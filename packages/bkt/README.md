@@ -1,6 +1,6 @@
 # bkt
 
-Offline Bucket terminal app: timed quiz and FSRS review over a local SQLite store. Download it at [bucket.foundation/download](https://www.bucket.foundation/download).
+Offline Bucket study app: a timed quiz and FSRS review over a local SQLite store, in the terminal and in a window. Download it at [bucket.foundation/download](https://www.bucket.foundation/download).
 
 ## Install
 
@@ -21,6 +21,17 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 `BKT_VERSION` pins a release and `BKT_INSTALL_DIR` sets the target directory, default `~/.local/bin` on macOS and Linux and `%LOCALAPPDATA%\Programs\bkt` on Windows. `BKT_NO_MODIFY_PATH=1` leaves your shell profile alone on macOS and Linux. Then run `bkt init` and `bkt`.
+
+## Window
+
+`bkt app` starts `bkt serve` and opens the views from `packages/bkt-ui` in a window: a Chromium-family browser in app mode (Chrome, Chromium, Brave, Edge) when one is installed, the default browser otherwise. `bkt serve` prints the local URL without opening anything.
+
+What a user gets today:
+
+- **Linux x86_64:** `Bucket-0.4.0-x86_64.AppImage` on the [bkt-v0.4.0](https://github.com/bucket-foundation/bucket-foundation/releases/tag/bkt-v0.4.0) release. Run `chmod +x` on it and start it; with no arguments it runs `bkt app`, and any argument goes to `bkt`.
+- **macOS and Windows:** the release carries the `bkt` binaries only, with no windowed installer. The binaries do not bundle the views, so `bkt app` needs a checkout: `cd packages/bkt-ui && bun install && bun run build`, then build `bkt` as below and run `BKT_UI_DIR=../bkt-ui/dist ./dist/bkt app` in `packages/bkt`.
+
+`packages/bkt-desktop` is a Tauri shell around the same views and a `bkt` sidecar. Its release workflow builds `deb` and `AppImage` on Linux, `dmg` on macOS for arm64 and x64, and `msi` on Windows, and uploads them as `Bucket-desktop-<version>-<os>-<arch>.<ext>` to the `bkt-v*` release. No release has them yet: they arrive with the next tag. The shell opens `bucket://quiz/<YYYY-MM-DD>` as that day's quiz at `#/work/daily/<day>`.
 
 ## Build from source
 
