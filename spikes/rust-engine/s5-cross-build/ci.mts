@@ -50,6 +50,10 @@ step("engine start, --version", () => {
   const r = sh(["bun", "bench.mts", "20", "3", "--", bin("release", "engine-min"), "--version"]);
   return { ok: r.ok, seconds: r.seconds, detail: r.ok ? lastJson(r.out) : tail(r) };
 });
+step("engine opens SQLite and ranks, self-test", () => {
+  const r = sh([bin("release", "engine-min"), "--selftest"]);
+  return { ok: r.ok, seconds: r.seconds, detail: r.ok ? lastJson(r.out) : tail(r) };
+});
 step("other spike binaries build", () => {
   const a = sh(["cargo", "build", "--release", "--locked", "-p", "s1-two-writers", "-p", "s6-sealed-reader"]);
   const b = sh(["cargo", "build", "--profile", "parity", "--locked", "-p", "s2-ranking-parity"]);

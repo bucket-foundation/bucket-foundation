@@ -13,6 +13,8 @@ for target in aarch64-unknown-linux-gnu x86_64-apple-darwin aarch64-apple-darwin
   if cargo zigbuild --release --locked -p s4-native-engine --target "$target" >"$out/cross-$target.log" 2>&1; then
     file=$(ls "target/$target/release/engine-min" "target/$target/release/engine-min.exe" 2>/dev/null | head -1)
     state="built, $(wc -c <"$file" | tr -d ' ') bytes"
+    mkdir -p "$out/cross-bin/$target"
+    cp "$file" "$out/cross-bin/$target/"
   else
     state="failed: $(grep -m1 -E '^error' "$out/cross-$target.log" | cut -c1-160)"
     failed=$((failed + 1))
