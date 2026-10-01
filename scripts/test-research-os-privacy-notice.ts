@@ -2,11 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { COLLECTED, DOWNLOAD_STORED, EVENTS, PRIVACY_DRAFT } from "../src/lib/privacy-notice";
+import { COLLECTED, DOWNLOAD_STORED, EVENTS, PRIVACY_DRAFT, PROCESSORS } from "../src/lib/privacy-notice";
 import { CONSENT_VERSION, RETENTION_DAYS, RETENTION_MONTHS, parseDownload } from "../src/lib/download/core";
 import { EMAIL_COOLDOWN_MS, LINK_REUSE_MS, LINK_TTL_MS } from "../src/lib/download/notify";
 import { MARK_MAX_AGE_MS } from "../src/lib/download/marks";
 import { mergeEntry } from "../src/lib/waitlist/core";
+import { handleDownload } from "../src/lib/download/handler";
+import { getOptOutStore, subscriberId } from "../src/lib/whats-new-email/unsubscribe";
 
 const ROOT = path.join(__dirname, "..");
 const PLAN = path.join(ROOT, "learning/research-os/LAUNCH-PLAN.md");
@@ -71,4 +73,58 @@ test("the page states the link, cooldown, sweep and retention windows the code u
   assert.equal(RETENTION_MONTHS, 12);
   assert.match(page, /\{RETENTION_MONTHS\} months after your last request/);
   assert.match(page, /\{CONSENT_VERSION\}/);
+});
+
+const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), "utf8");
+
+test("the page states the five a minute limit the download route enforces", () => {
+  const route = read("src/app/api/download/route.ts");
+  assert.match(route, /rateLimiter\(5, 60_000\)/);
+  assert.match(route, /sharedRateLimiter\(marks, 5, 60_000\)/);
+  assert.match(read("src/app/privacy/page.tsx"), /allow five a minute/);
+});
+
+test("a spam-trap request is stored apart and gets no email, as the page says", async () => {
+  assert.match(read("src/app/api/download/route.ts"), /suspect \? "downloads\/suspect" : "downloads"/);
+  const saved: { suspect: boolean; keys: string[] }[] = [];
+  let notified = 0;
+  const store = (suspect: boolean) => ({
+    kind: "file" as const,
+    prefix: "",
+    read: async () => null,
+    write: async (_k: string, e: object) => void saved.push({ suspect, keys: Object.keys(e) }),
+    keys: async () => [],
+    remove: async () => {},
+  });
+  const notify = async () => {
+    notified++;
+    return "sent" as const;
+  };
+  const body = { email: "ada@example.org", name: "Ada", consent: true };
+  await handleDownload({ ...body, website: "spam" }, "ip", { store, notify });
+  await handleDownload(body, "ip", { store, notify });
+  assert.deepEqual(saved.map((s) => s.suspect), [true, false]);
+  assert.deepEqual(saved[0].keys.sort(), saved[1].keys.sort());
+  assert.equal(notified, 1);
+  assert.match(read("src/app/privacy/page.tsx"), /hidden spam-trap field is stored apart, with the same fields, and gets no email/);
+});
+
+test("the unsubscribe record is a keyed hash that the purge and deletion paths leave in place", () => {
+  const id = subscriberId("ada@example.org", "s".repeat(32));
+  assert.match(id, /^[0-9a-f]{64}$/);
+  assert.notEqual(id, subscriberId("ada@example.org", "t".repeat(32)));
+  assert.ok(getOptOutStore({}));
+  assert.match(read("src/lib/whats-new-email/unsubscribe.ts"), /whats-new-\$\{part\}\//);
+  for (const rel of ["src/app/api/cron/download-retention/route.ts", "src/app/api/download/route.ts", "src/lib/download/handler.ts"]) {
+    assert.doesNotMatch(read(rel), /getOptOutStore|whats-new-optout|optout/, rel);
+  }
+  const page = read("src/app/privacy/page.tsx");
+  assert.match(page, /keyed hash of your address and the time/);
+  assert.match(page, /so the address stays unsubscribed/);
+  assert.match(page, /daily deletion job and a deletion request both leave it in place/);
+});
+
+test("the processor list names only senders the code shows", () => {
+  assert.deepEqual(PROCESSORS.map((p) => p.name), ["Supabase", "Vercel", "Resend", "Anthropic"]);
+  for (const p of PROCESSORS) assert.doesNotMatch(p.role, /\bwill\b|name it here/);
 });

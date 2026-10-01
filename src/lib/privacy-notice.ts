@@ -40,7 +40,6 @@ export const PROCESSORS: { name: string; role: string }[] = [
   { name: "Supabase", role: "stores your account and the records above" },
   { name: "Vercel", role: "hosts the site, counts page views without cookies, and holds download requests in private Blob storage" },
   { name: "Resend", role: "sends the download link and the daily digest" },
-  { name: "Email provider", role: "will send sign-in codes and invites from a bucket.foundation address; we name it here before the first wave of invites" },
   { name: "Anthropic", role: "receives the text of a tutor question and the lesson it is about, once the tutor is on" },
 ];
 

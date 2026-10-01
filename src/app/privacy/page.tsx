@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           Resend emails you a download link. The link works for 24 hours, and for 10 minutes after its first use. One address gets one link an hour. A second message, with your email and the time of the request, goes to the founder&apos;s inbox.
         </p>
         <p className={P}>
-          If you tick the daily digest, Resend emails you each day&apos;s What&apos;s New entries. Every digest carries an unsubscribe link, and unsubscribing stores a keyed hash of your address and the time so the digest stays off. The release notes choice is stored, and the site sends no release notes yet.
+          If you tick the daily digest, Resend emails you each day&apos;s What&apos;s New entries. Every digest carries an unsubscribe link, and unsubscribing stores a keyed hash of your address and the time. We keep that record so the address stays unsubscribed. The daily deletion job and a deletion request both leave it in place. The release notes choice is stored, and the site sends no release notes yet.
         </p>
         <p className={P}>
           To limit abuse we count requests from each IP address and allow five a minute. Each count is stored under a hash of the IP address and the minute. A daily job deletes counts older than 25 hours, along with the marks that record a sent link and a used link. A request that fills the hidden spam-trap field is stored apart, with the same fields, and gets no email.
