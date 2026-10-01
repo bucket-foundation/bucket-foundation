@@ -584,13 +584,14 @@ test("mergeEntries publishes through one path: drafts dropped, legacy wins an id
   assert.deepEqual(mergeEntries([...LEGACY, { id: "legacy-prod", date: "2026-09-30", category: "production" }], stored, "production").map((e) => e.id), ["legacy-prod"]);
 });
 
-test("the image object is checked for type and size and stored beside the entry as received", async (t) => {
+test("the image object is checked for type and size and stored beside the entry as WebP", async (t) => {
   const { deps, store, root } = await bench(t);
   const withImage = (image: unknown): Record<string, unknown> => ({ ...production(), image });
   assert.equal((await post(deps, production())).status, 201);
-  const kept = JSON.parse(await readFile(path.join(root, "whats-new-test", "entries", "gap-score-backtest-2026-10.image.json"), "utf8")) as unknown;
-  assert.deepEqual(kept, { filename: "gap-score-backtest.png", content_type: "image/png", base64: PNG });
-  assert.deepEqual((await readEntry(store, "gap-score-backtest-2026-10"))?.image, { filename: "gap-score-backtest.png", content_type: "image/png", bytes: Buffer.from(PNG, "base64").length, width: 1, height: 1 });
+  const kept = JSON.parse(await readFile(path.join(root, "whats-new-test", "entries", "gap-score-backtest-2026-10.image.json"), "utf8")) as { filename: string; content_type: string; base64: string };
+  const webpBytes = Buffer.from(kept.base64, "base64");
+  assert.deepEqual([kept.filename, kept.content_type, webpBytes.toString("latin1", 0, 4), webpBytes.toString("latin1", 8, 12)], ["gap-score-backtest.webp", "image/webp", "RIFF", "WEBP"]);
+  assert.deepEqual((await readEntry(store, "gap-score-backtest-2026-10"))?.image, { filename: "gap-score-backtest.webp", content_type: "image/webp", bytes: webpBytes.length, width: 1, height: 1 });
   const svg = Buffer.from("<svg xmlns='http://www.w3.org/2000/svg'/>").toString("base64");
   const cases: [unknown, string][] = [
     [{ filename: "a.svg", content_type: "image/svg+xml", base64: svg }, "content_type"],
@@ -632,15 +633,15 @@ test("the image object is checked for type and size and stored beside the entry 
   assert.equal(imageSize(Buffer.concat([webp, Buffer.alloc(4)]), "image/webp"), null);
   assert.equal(imageSize(webp, "image/png"), null);
 
-  assert.equal((await readUsage(store, "ada")).image_bytes, header.length);
+  assert.equal((await readUsage(store, "ada")).image_bytes, webpBytes.length);
   assert.equal((await post(deps, { ...production(), image: undefined })).status, 200);
   assert.equal((await readUsage(store, "ada")).image_bytes, 0);
   assert.equal((await store.list("entries")).includes("gap-score-backtest-2026-10.image.json"), false);
-  const tight = { ...deps, limits: { ...(deps.limits as Limits), imageBytesPerPoster: header.length + 10 } };
+  const tight = { ...deps, limits: { ...(deps.limits as Limits), imageBytesPerPoster: webpBytes.length + 10 } };
   assert.equal((await post(tight, production())).status, 200);
   const second = await post(tight, fixture("formal-conjectures-september-2026"));
   assert.deepEqual([second.status, /bytes of images/.test(String(second.body?.error))], [429, true]);
-  assert.equal((await readUsage(store, "ada")).image_bytes, header.length);
+  assert.equal((await readUsage(store, "ada")).image_bytes, webpBytes.length);
   const oversize = Buffer.concat([header, Buffer.alloc(IMAGE_MAX_BYTES)]).toString("base64");
   const big = parseEntryBody(withImage({ filename: "a.png", content_type: "image/png", base64: oversize }));
   assert.deepEqual([big.ok, !big.ok && big.field], [false, "image.base64"]);
