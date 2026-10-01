@@ -123,7 +123,7 @@ export function getWhatsNewStore(env: Env = process.env): DocStore | null {
   return null;
 }
 
-export type ReviewState = "draft" | "published";
+export type ReviewState = "draft" | "published" | "deleted";
 
 export interface StoredEntry {
   id: string;
@@ -133,6 +133,8 @@ export interface StoredEntry {
   created_at: string;
   updated_at: string;
   body_hash: string;
+  published_at?: string;
+  deleted_at?: string;
   [field: string]: unknown;
 }
 
@@ -140,10 +142,11 @@ export interface AuditRecord {
   ts: string;
   id: string;
   poster: string;
-  action: "create" | "replace" | "revoke";
+  action: "create" | "replace" | "revoke" | "publish" | "delete";
   body_hash: string | null;
   previous_body_hash: string | null;
   deleted?: string[];
+  previous_body_hashes?: Record<string, string>;
 }
 
 const ENTRY_FILE = /^([a-z0-9-]{3,80})\.json$/;
@@ -160,6 +163,15 @@ export async function writeEntry(store: DocStore, entry: StoredEntry): Promise<v
 
 export async function writeImage(store: DocStore, id: string, image: unknown): Promise<void> {
   await store.write(`entries/${id}.image.json`, JSON.stringify(image));
+}
+
+export async function readImage(store: DocStore, id: string): Promise<string | null> {
+  return store.read(`entries/${id}.image.json`);
+}
+
+export async function restoreImage(store: DocStore, id: string, previous: string | null): Promise<void> {
+  if (previous === null) await store.remove(`entries/${id}.image.json`);
+  else await store.write(`entries/${id}.image.json`, previous);
 }
 
 export async function entryIds(store: DocStore): Promise<string[]> {
@@ -184,6 +196,19 @@ export async function createEntry(store: DocStore, entry: StoredEntry): Promise<
 export async function removeEntry(store: DocStore, id: string): Promise<void> {
   await store.remove(`entries/${id}.image.json`);
   await store.remove(`entries/${id}.json`);
+}
+
+export function tombstone(entry: StoredEntry, at: string): StoredEntry {
+  return {
+    id: entry.id,
+    kind: entry.kind,
+    review_state: "deleted",
+    poster: entry.poster,
+    created_at: entry.created_at,
+    updated_at: at,
+    deleted_at: at,
+    body_hash: entry.body_hash,
+  };
 }
 
 export async function removeImage(store: DocStore, id: string): Promise<void> {
