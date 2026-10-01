@@ -18,6 +18,7 @@ import { PeopleStore } from "./people";
 import { JOB_BODY_BYTES, jobRoutes } from "./job-routes";
 import { jobSpecs } from "./job-specs";
 import { JobRunner } from "./jobs";
+import { parentGone } from "./parent";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "./work-quiz";
 import { NOTES_BODY_BYTES, NotesStore, notesRoutes } from "./notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "./history";
@@ -193,6 +194,10 @@ async function main(argv: string[]) {
       await new Promise<void>((done) => {
         process.once("SIGINT", done);
         process.once("SIGTERM", done);
+        void parentGone(process.env, () => Bun.stdin.stream()).then(() => {
+          console.error("bkt serve: the Bucket window process is gone; stopping");
+          done();
+        });
       });
       process.off("SIGUSR1", reopen);
       runner.stopAll();

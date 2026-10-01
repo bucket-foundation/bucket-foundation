@@ -14,6 +14,79 @@ export function appRecordPath(env: Record<string, string | undefined>, uid: numb
   return join(base, "bucket", "app.json");
 }
 
+export interface AppRecord {
+  pid: number;
+  port: number;
+}
+
+export function readRecord(path: string): AppRecord | null {
+  if (!existsSync(path)) return null;
+  try {
+    const rec = JSON.parse(readFileSync(path, "utf8")) as { pid?: unknown; port?: unknown };
+    return typeof rec.pid === "number" && typeof rec.port === "number" ? { pid: rec.pid, port: rec.port } : null;
+  } catch {
+    return null;
+  }
+}
+
+export type Run = (argv: string[]) => { code: number; stdout: string };
+
+export const run: Run = (argv) => {
+  try {
+    const r = Bun.spawnSync(argv, { stdin: "ignore", stdout: "pipe", stderr: "ignore" });
+    return { code: r.exitCode ?? 1, stdout: r.stdout.toString() };
+  } catch {
+    return { code: 127, stdout: "" };
+  }
+};
+
+export function linuxStat(stat: string): { state: string; ppid: number } | null {
+  const rest = stat.slice(stat.lastIndexOf(")") + 1).trim().split(/\s+/);
+  const ppid = Number(rest[1]);
+  return rest[0] && Number.isInteger(ppid) ? { state: rest[0], ppid } : null;
+}
+
+export function alive(pid: number, os: string = process.platform, exec: Run = run, kill: (pid: number, sig: number) => unknown = process.kill.bind(process)): boolean {
+  if (os === "win32") return exec(["tasklist", "/fi", `PID eq ${pid}`, "/fo", "csv", "/nh"]).stdout.includes(`"${pid}"`);
+  try {
+    kill(pid, 0);
+  } catch {
+    return false;
+  }
+  if (os !== "linux") return true;
+  try {
+    return linuxStat(readFileSync(`/proc/${pid}/stat`, "utf8"))?.state !== "Z";
+  } catch {
+    return false;
+  }
+}
+
+export function parentPid(pid: number, os: string = process.platform, exec: Run = run): number | null {
+  let text = "";
+  if (os === "linux") {
+    try {
+      return linuxStat(readFileSync(`/proc/${pid}/stat`, "utf8"))?.ppid ?? null;
+    } catch {
+      return null;
+    }
+  } else if (os === "win32") {
+    text = exec(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", `(Get-CimInstance Win32_Process -Filter "ProcessId=${pid}").ParentProcessId`]).stdout;
+  } else {
+    text = exec(["ps", "-o", "ppid=", "-p", String(pid)]).stdout;
+  }
+  const n = Number(text.trim());
+  return text.trim() !== "" && Number.isInteger(n) && n > 1 ? n : null;
+}
+
+export async function waitGone(pid: number, ms: number, isAlive: (pid: number) => boolean = alive, sleep: (ms: number) => Promise<unknown> = (n) => new Promise((r) => setTimeout(r, n))): Promise<boolean> {
+  const deadline = Date.now() + ms;
+  while (Date.now() < deadline) {
+    if (!isAlive(pid)) return true;
+    await sleep(200);
+  }
+  return !isAlive(pid);
+}
+
 export function readPort(path: string): number | null {
   if (!existsSync(path)) return null;
   const rec = JSON.parse(readFileSync(path, "utf8")) as { port?: unknown };

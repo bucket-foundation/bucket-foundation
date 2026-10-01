@@ -2,7 +2,7 @@ import { expect, test } from "bun:test";
 import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { appRecordPath, probe, readPort, secondLaunch, type SecondLaunch } from "./probe";
+import { alive, appRecordPath, linuxStat, parentPid, probe, readPort, readRecord, secondLaunch, waitGone, type SecondLaunch } from "./probe";
 
 test("finds app.json where bkt writes it", () => {
   expect(appRecordPath({ XDG_RUNTIME_DIR: "/run/user/7" }, 7)).toBe(join("/run/user/7", "bucket", "app.json"));
@@ -67,4 +67,47 @@ test("a second launch that stays up, fails, starts a sidecar, kills the app or o
   ).toEqual(["the sidecar record changed after a second launch, so a second sidecar started"]);
   expect(await secondLaunch(second({ firstAlive: () => false }))).toEqual(["the first app exited after a second launch"]);
   expect(await secondLaunch(second({ log: () => "bucket opened /work/daily/2026-09-29" }))).toEqual(["the first app did not open the linked quiz route"]);
+});
+
+test("reads the sidecar record or reports none", () => {
+  const dir = mkdtempSync(join(tmpdir(), "bkt-probe-"));
+  const p = join(dir, "app.json");
+  expect(readRecord(p)).toBeNull();
+  writeFileSync(p, "{not json");
+  expect(readRecord(p)).toBeNull();
+  writeFileSync(p, JSON.stringify({ port: 4321 }));
+  expect(readRecord(p)).toBeNull();
+  writeFileSync(p, JSON.stringify({ pid: 9, port: 4321 }));
+  expect(readRecord(p)).toEqual({ pid: 9, port: 4321 });
+});
+
+test("parses the state and parent out of a Linux stat line, parentheses in the name included", () => {
+  expect(linuxStat("812 (bkt serve) (x)) S 77 812 812 0 -1")).toEqual({ state: "S", ppid: 77 });
+  expect(linuxStat("812 (bkt) Z 1 812")).toEqual({ state: "Z", ppid: 1 });
+  expect(linuxStat("garbage")).toBeNull();
+});
+
+test("liveness and parent lookups per platform", () => {
+  const dead = () => {
+    throw new Error("ESRCH");
+  };
+  expect(alive(process.pid)).toBe(true);
+  expect(alive(7, "darwin", undefined, dead)).toBe(false);
+  expect(alive(7, "darwin", undefined, () => true)).toBe(true);
+  expect(alive(7, "win32", () => ({ code: 0, stdout: '"bkt.exe","7","Console","1","9,000 K"' }))).toBe(true);
+  expect(alive(7, "win32", () => ({ code: 0, stdout: "INFO: No tasks are running which match the specified criteria." }))).toBe(false);
+  expect(alive(7, "win32", () => ({ code: 0, stdout: '"bkt.exe","77","Console","1","9,000 K"' }))).toBe(false);
+  expect(parentPid(7, "darwin", () => ({ code: 0, stdout: "  431\n" }))).toBe(431);
+  expect(parentPid(7, "darwin", () => ({ code: 1, stdout: "" }))).toBeNull();
+  expect(parentPid(7, "darwin", () => ({ code: 0, stdout: "1\n" }))).toBeNull();
+  expect(parentPid(7, "win32", () => ({ code: 0, stdout: "5120\r\n" }))).toBe(5120);
+  expect(parentPid(7, "win32", () => ({ code: 127, stdout: "" }))).toBeNull();
+  if (process.platform === "linux") expect(parentPid(process.pid)).toBe(process.ppid);
+});
+
+test("waits for a pid to go, and reports one that stays", async () => {
+  let n = 0;
+  const fast = (ms: number) => new Promise((r) => setTimeout(r, Math.min(ms, 2)));
+  expect(await waitGone(7, 500, () => n++ < 2, fast)).toBe(true);
+  expect(await waitGone(7, 20, () => true, fast)).toBe(false);
 });

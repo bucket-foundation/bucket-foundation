@@ -76,35 +76,87 @@ impl LinkState {
     pub fn loaded(&mut self, base: Url) {
         self.base = Some(base);
     }
-}
 
-struct Link(Mutex<LinkState>);
-
-fn raise(app: &tauri::AppHandle) {
-    if let Some(w) = app.get_webview_window("main") {
-        let _ = w.unminimize();
-        let _ = w.show();
-        let _ = w.set_focus();
+    pub fn unloaded(&mut self) {
+        self.base = None;
     }
 }
 
-fn open_route(app: &tauri::AppHandle, route: String) {
-    let target = app.state::<Link>().0.lock().unwrap().request(route.clone());
-    if let (Some(url), Some(w)) = (target, app.get_webview_window("main")) {
-        match w.navigate(url) {
+pub trait Host {
+    fn navigate(&self, url: Url) -> Result<(), String>;
+    fn raise(&self);
+    fn start_sidecar(&self) -> Result<(), String>;
+    fn report(&self, message: &str);
+}
+
+pub fn open_route<H: Host>(host: &H, link: &Mutex<LinkState>, route: String) {
+    let target = link.lock().unwrap().request(route.clone());
+    if let Some(url) = target {
+        match host.navigate(url) {
             Ok(()) => eprintln!("bucket opened {route}"),
             Err(e) => eprintln!("bucket could not open {route}: {e}"),
         }
     }
-    raise(app);
+    host.raise();
 }
 
-fn second_launch(app: &tauri::AppHandle, args: &[String]) {
+pub fn second_launch<H: Host>(host: &H, link: &Mutex<LinkState>, args: &[String]) {
     match route_in(args) {
-        Some(route) => open_route(app, route),
-        None => raise(app),
+        Some(route) => open_route(host, link, route),
+        None => host.raise(),
     }
 }
+
+pub fn first_launch<H: Host>(host: &H, link: &Mutex<LinkState>, args: &[String]) {
+    if let Some(route) = route_in(args) {
+        link.lock().unwrap().request(route);
+    }
+    if let Err(e) = host.start_sidecar() {
+        host.report(&format!("bkt serve did not start: {e}"));
+    }
+}
+
+pub fn sidecar_ready<H: Host>(host: &H, link: &Mutex<LinkState>, url: Url) -> bool {
+    let mut state = link.lock().unwrap();
+    let opened = host.navigate(state.first_target(&url)).is_ok();
+    if opened {
+        state.loaded(url);
+    }
+    opened
+}
+
+pub fn sidecar_stopped<H: Host>(host: &H, link: &Mutex<LinkState>, why: &str) {
+    link.lock().unwrap().unloaded();
+    host.report(&format!("bkt serve stopped: {why}"));
+}
+
+struct Shell(tauri::AppHandle);
+
+impl Host for Shell {
+    fn navigate(&self, url: Url) -> Result<(), String> {
+        let w = self.0.get_webview_window("main").ok_or("the main window is closed")?;
+        w.navigate(url).map_err(|e| e.to_string())
+    }
+
+    fn raise(&self) {
+        if let Some(w) = self.0.get_webview_window("main") {
+            let _ = w.unminimize();
+            let _ = w.show();
+            let _ = w.set_focus();
+        }
+    }
+
+    fn start_sidecar(&self) -> Result<(), String> {
+        start(&self.0)
+    }
+
+    fn report(&self, message: &str) {
+        eprintln!("{message}");
+        show_error(&self.0, message);
+    }
+}
+
+struct Link(Mutex<LinkState>);
 
 struct Sidecar(Mutex<Option<CommandChild>>);
 
@@ -127,6 +179,7 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
         .map_err(|e| e.to_string())?
         .args(["serve"])
         .env("BKT_UI_DIR", ui)
+        .env("BKT_SIDECAR", "1")
         .spawn()
         .map_err(|e| e.to_string())?;
     app.state::<Sidecar>().0.lock().unwrap().replace(child);
@@ -139,15 +192,7 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
                 CommandEvent::Stdout(bytes) if !opened => {
                     let text = String::from_utf8_lossy(&bytes).to_string();
                     if let Some(url) = text.lines().find_map(serve_url) {
-                        if let Some(w) = handle.get_webview_window("main") {
-                            let link = handle.state::<Link>();
-                            let mut state = link.0.lock().unwrap();
-                            let target = state.first_target(&url);
-                            opened = w.navigate(target).is_ok();
-                            if opened {
-                                state.loaded(url);
-                            }
-                        }
+                        opened = sidecar_ready(&Shell(handle.clone()), &handle.state::<Link>().0, url);
                     }
                 }
                 CommandEvent::Stderr(bytes) => {
@@ -157,8 +202,7 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
                 CommandEvent::Error(e) => tail = e,
                 CommandEvent::Terminated(p) => {
                     let why = if tail.is_empty() { format!("exit code {:?}", p.code) } else { tail.clone() };
-                    eprintln!("bkt serve stopped: {why}");
-                    show_error(&handle, &format!("bkt serve stopped: {why}"));
+                    sidecar_stopped(&Shell(handle.clone()), &handle.state::<Link>().0, &why);
                     break;
                 }
                 _ => {}
@@ -181,26 +225,24 @@ async fn update(app: tauri::AppHandle) -> Result<(), tauri_plugin_updater::Error
 
 pub fn run() {
     let app = tauri::Builder::default()
-        .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| second_launch(app, &args)))
+        .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| second_launch(&Shell(app.clone()), &app.state::<Link>().0, &args)))
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .manage(Sidecar(Mutex::new(None)))
         .manage(Link(Mutex::new(LinkState::default())))
         .setup(|app| {
-            if let Some(route) = route_in(&std::env::args().collect::<Vec<_>>()) {
-                app.state::<Link>().0.lock().unwrap().request(route);
-            }
             let links = app.handle().clone();
             app.deep_link().on_open_url(move |event| {
                 if let Some(route) = event.urls().iter().find_map(|u| quiz_route(u.as_str())) {
-                    open_route(&links, route);
+                    open_route(&Shell(links.clone()), &links.state::<Link>().0, route);
                 }
             });
-            if let Err(e) = start(app.handle()) {
-                eprintln!("bkt serve did not start: {e}");
-                show_error(app.handle(), &format!("bkt serve did not start: {e}"));
+            let signals = app.handle().clone();
+            if let Err(e) = ctrlc::set_handler(move || signals.exit(0)) {
+                eprintln!("bucket could not watch for termination signals: {e}");
             }
+            first_launch(&Shell(app.handle().clone()), &app.state::<Link>().0, &std::env::args().collect::<Vec<_>>());
             if updates_enabled() {
                 let handle = app.handle().clone();
                 tauri::async_runtime::spawn(async move {
@@ -333,7 +375,6 @@ mod tests {
 
     #[test]
     fn launch_arguments_yield_the_first_valid_link_and_skip_the_program_name() {
-        let args = |v: &[&str]| v.iter().map(|s| s.to_string()).collect::<Vec<_>>();
         assert_eq!(route_in(&args(&["bucket-desktop"])), None);
         assert_eq!(route_in(&args(&[DAY])), None);
         assert_eq!(route_in(&args(&["bucket-desktop", DAY])).as_deref(), Some("/work/daily/2026-09-30"));
@@ -370,33 +411,122 @@ mod tests {
         assert_eq!(same, base());
     }
 
-    fn body_of(name: &str) -> &'static str {
-        let src = include_str!("lib.rs");
-        let from = src.find(&format!("fn {name}(")).unwrap();
-        let rest = &src[from..];
-        &rest[..rest.find("\n}\n").unwrap()]
+    #[derive(Default)]
+    struct Spy {
+        calls: std::cell::RefCell<Vec<String>>,
+        navigation_fails: bool,
+        sidecar_fails: bool,
     }
 
-    #[test]
-    fn the_second_launch_path_never_reaches_the_sidecar_a_shell_or_eval() {
-        for name in ["second_launch", "open_route", "raise", "quiz_route", "route_in", "with_route"] {
-            let body = body_of(name);
-            for banned in ["start(", "sidecar", "shell()", "Command", "eval(", "spawn", "env("] {
-                assert!(!body.contains(banned), "{name} holds {banned}");
-            }
+    impl Spy {
+        fn calls(&self) -> Vec<String> {
+            self.calls.borrow().clone()
         }
-        assert!(body_of("second_launch").contains("route_in(args)"));
+    }
+
+    impl Host for Spy {
+        fn navigate(&self, url: Url) -> Result<(), String> {
+            self.calls.borrow_mut().push(format!("navigate {url}"));
+            if self.navigation_fails { Err("closed".into()) } else { Ok(()) }
+        }
+
+        fn raise(&self) {
+            self.calls.borrow_mut().push("raise".into());
+        }
+
+        fn start_sidecar(&self) -> Result<(), String> {
+            self.calls.borrow_mut().push("start_sidecar".into());
+            if self.sidecar_fails { Err("missing".into()) } else { Ok(()) }
+        }
+
+        fn report(&self, message: &str) {
+            self.calls.borrow_mut().push(format!("report {message}"));
+        }
+    }
+
+    fn args(v: &[&str]) -> Vec<String> {
+        v.iter().map(|s| s.to_string()).collect()
+    }
+
+    fn running() -> Mutex<LinkState> {
+        let link = Mutex::new(LinkState::default());
+        assert!(sidecar_ready(&Spy::default(), &link, base()));
+        link
     }
 
     #[test]
-    fn single_instance_registers_before_every_other_plugin_and_the_sidecar_starts_in_setup_alone() {
-        let run = body_of("run");
-        let first = run.find(".plugin(").unwrap();
-        assert!(run[first..].starts_with(".plugin(tauri_plugin_single_instance::init("));
+    fn a_second_launch_with_a_link_navigates_by_fragment_raises_and_starts_no_sidecar() {
+        let (spy, link) = (Spy::default(), running());
+        second_launch(&spy, &link, &args(&["bucket-desktop", DAY]));
+        assert_eq!(spy.calls(), ["navigate http://127.0.0.1:41234/#/work/daily/2026-09-30", "raise"]);
+    }
+
+    #[test]
+    fn a_second_launch_without_a_valid_link_only_raises_the_window() {
+        for argv in [
+            args(&["bucket-desktop"]),
+            args(&["bucket-desktop", "bucket://quiz/../../etc"]),
+            args(&["bucket-desktop", "serve", "--port", "1"]),
+            args(&["bucket-desktop", "https://evil.example/"]),
+            args(&[]),
+        ] {
+            let (spy, link) = (Spy::default(), running());
+            second_launch(&spy, &link, &argv);
+            assert_eq!(spy.calls(), ["raise"], "{argv:?}");
+        }
+    }
+
+    #[test]
+    fn a_second_launch_before_the_sidecar_is_ready_queues_the_route_and_starts_nothing() {
+        let (spy, link) = (Spy::default(), Mutex::new(LinkState::default()));
+        second_launch(&spy, &link, &args(&["bucket-desktop", DAY]));
+        assert_eq!(spy.calls(), ["raise"]);
+        assert!(sidecar_ready(&spy, &link, base()));
+        assert_eq!(spy.calls(), ["raise", "navigate http://127.0.0.1:41234/#/work/daily/2026-09-30"]);
+    }
+
+    #[test]
+    fn the_first_launch_starts_one_sidecar_and_holds_its_link_for_the_first_navigation() {
+        let (spy, link) = (Spy::default(), Mutex::new(LinkState::default()));
+        first_launch(&spy, &link, &args(&["bucket-desktop", DAY]));
+        assert_eq!(spy.calls(), ["start_sidecar"]);
+        assert!(sidecar_ready(&spy, &link, base()));
+        assert_eq!(spy.calls(), ["start_sidecar", "navigate http://127.0.0.1:41234/#/work/daily/2026-09-30"]);
+        let plain = Spy::default();
+        let fresh = Mutex::new(LinkState::default());
+        first_launch(&plain, &fresh, &args(&["bucket-desktop"]));
+        assert!(sidecar_ready(&plain, &fresh, base()));
+        assert_eq!(plain.calls(), ["start_sidecar", "navigate http://127.0.0.1:41234/"]);
+    }
+
+    #[test]
+    fn a_sidecar_that_fails_to_start_is_reported() {
+        let spy = Spy { sidecar_fails: true, ..Spy::default() };
+        first_launch(&spy, &Mutex::new(LinkState::default()), &args(&["bucket-desktop"]));
+        assert_eq!(spy.calls(), ["start_sidecar", "report bkt serve did not start: missing"]);
+    }
+
+    #[test]
+    fn a_failed_first_navigation_leaves_no_base_for_later_links() {
+        let spy = Spy { navigation_fails: true, ..Spy::default() };
+        let link = Mutex::new(LinkState::default());
+        assert!(!sidecar_ready(&spy, &link, base()));
+        assert_eq!(link.lock().unwrap().request("/work/daily/2026-09-30".into()), None);
+    }
+
+    #[test]
+    fn a_stopped_sidecar_clears_the_base_so_a_later_link_navigates_nowhere() {
+        let (spy, link) = (Spy::default(), running());
+        sidecar_stopped(&spy, &link, "exit code Some(1)");
+        second_launch(&spy, &link, &args(&["bucket-desktop", DAY]));
+        assert_eq!(spy.calls(), ["report bkt serve stopped: exit code Some(1)", "raise"]);
+    }
+
+    #[test]
+    fn single_instance_registers_before_every_other_plugin() {
         let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
-        assert_eq!(shipped.matches("start(").count(), 2);
-        assert_eq!(shipped.matches("start(app.handle())").count(), 1);
-        assert!(run.find(".setup(").unwrap() < run.find("start(app.handle())").unwrap());
+        let first = shipped.find(".plugin(").unwrap();
+        assert!(shipped[first..].starts_with(".plugin(tauri_plugin_single_instance::init("));
     }
 
     #[test]
