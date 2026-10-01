@@ -1,0 +1,1939 @@
+{
+ "head": "137aec5c",
+ "pin": "7d450ef",
+ "open": 1402,
+ "finite": 61,
+ "by_tier": {
+  "closed": 1,
+  "definition_unbounded": 60
+ },
+ "bounded_search": 10,
+ "rejected_first_reason": {
+  "infinite object": 381,
+  "asymptotic": 333,
+  "free variable": 324,
+  "unbounded quantifier": 154,
+  "answer term": 118,
+  "no numeral": 31
+ },
+ "cases": [
+  {
+   "id": "ErdosProblems/596.lean::erdos_596.variants.K4_K3_exceptional_iff",
+   "file": "ErdosProblems/596.lean",
+   "name": "erdos_596.variants.K4_K3_exceptional_iff",
+   "namespace": "Erdos596",
+   "statement": ": answer(sorry) ↔ IsErdosHajnalExceptional (completeGraph (Fin 4)) (completeGraph (Fin 3))",
+   "tier": "closed",
+   "unbounded_definitions": [],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "1586144b8673",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Arxiv/math.0608009/PoissonConjecture.lean::poisson_conjecture.variants.dimension_one",
+   "file": "Arxiv/math.0608009/PoissonConjecture.lean",
+   "name": "poisson_conjecture.variants.dimension_one",
+   "namespace": "Arxiv.«math.0608009»",
+   "statement": ": PoissonConjectureFor K 1",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsPoissonEndomorphism",
+    "PoissonConjectureFor"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "36dcac45f688",
+   "attempt": {
+    "harness": "timeout",
+    "outcomes": {
+     "decide": "harness_error",
+     "omega": "harness_error",
+     "simp": "harness_error",
+     "norm_num": "harness_error",
+     "aesop": "harness_error"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/263.lean::erdos_263.parts.i",
+   "file": "ErdosProblems/263.lean",
+   "name": "erdos_263.parts.i",
+   "namespace": "Erdos263",
+   "statement": ": answer(sorry) ↔ IsIrrationalitySequence (fun n : ℕ => 2 ^ 2 ^ n)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsIrrationalitySequence"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "9665679dad50",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/5.lean::erdos_5.variants.limit_point_set",
+   "file": "ErdosProblems/5.lean",
+   "name": "erdos_5.variants.limit_point_set",
+   "namespace": "Erdos5",
+   "statement": ": answer(sorry) ↔ limitPointSet = Ici 0",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "limitPointSet",
+    "normalizedGap"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "062f5aca13a9",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/936.lean::erdos_936.variants.factorial_add_one",
+   "file": "ErdosProblems/936.lean",
+   "name": "erdos_936.variants.factorial_add_one",
+   "namespace": "Erdos936",
+   "statement": ": answer(sorry) ↔ EventuallyNotPowerful (·! + 1)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "EventuallyNotPowerful"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "65bc5d6ea638",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/936.lean::erdos_936.variants.factorial_sub_one",
+   "file": "ErdosProblems/936.lean",
+   "name": "erdos_936.variants.factorial_sub_one",
+   "namespace": "Erdos936",
+   "statement": ": answer(sorry) ↔ EventuallyNotPowerful (·! - 1)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "EventuallyNotPowerful"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "305c1100d361",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/936.lean::erdos_936.variants.two_pow_add_one",
+   "file": "ErdosProblems/936.lean",
+   "name": "erdos_936.variants.two_pow_add_one",
+   "namespace": "Erdos936",
+   "statement": ": answer(sorry) ↔ EventuallyNotPowerful (2 ^ · + 1)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "EventuallyNotPowerful"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "c02771c05e29",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "ErdosProblems/936.lean::erdos_936.variants.two_pow_sub_one",
+   "file": "ErdosProblems/936.lean",
+   "name": "erdos_936.variants.two_pow_sub_one",
+   "namespace": "Erdos936",
+   "statement": ": answer(sorry) ↔ EventuallyNotPowerful (2 ^ · - 1)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "EventuallyNotPowerful"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "120589b21151",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_21_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_21_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 21 = 416",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 125.2,
+   "search_basis": "2-colourings of 1..416, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "e1beb5518bcf",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_22_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_22_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 22 = 464",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 139.7,
+   "search_basis": "2-colourings of 1..464, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "a60b70c2cc06",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_23_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_23_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 23 = 516",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 155.3,
+   "search_basis": "2-colourings of 1..516, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "15b88febb5bd",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_24_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_24_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 24 = 593",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 178.5,
+   "search_basis": "2-colourings of 1..593, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "6c89f5dd8e8a",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_25_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_25_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 25 = 656",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 197.5,
+   "search_basis": "2-colourings of 1..656, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "850eb0374778",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_26_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_26_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 26 = 727",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 218.8,
+   "search_basis": "2-colourings of 1..727, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "8c2ebb1e5c78",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_27_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_27_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 27 = 770",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 231.8,
+   "search_basis": "2-colourings of 1..770, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "a816b3950f10",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/14.lean::W_3_28_eq",
+   "file": "GreensOpenProblems/14.lean",
+   "name": "W_3_28_eq",
+   "namespace": "Green14",
+   "statement": ": answer(sorry) ↔ W 3 28 = 827",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "W",
+    "mixedMonoAPGuaranteeSet"
+   ],
+   "log10_cases": 249.0,
+   "search_basis": "2-colourings of 1..827, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "b4f555f67244",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/24.lean::conjecture",
+   "file": "GreensOpenProblems/24.lean",
+   "name": "conjecture",
+   "namespace": "Green24.variants",
+   "statement": ": gamma = 1/3",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "gamma",
+    "max013AffineTranslates"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "6554e9309c32",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "GreensOpenProblems/40.lean::green_40.f_two_eq_one",
+   "file": "GreensOpenProblems/40.lean",
+   "name": "green_40.f_two_eq_one",
+   "namespace": "Green40",
+   "statement": ": answer(sorry) ↔ f 2 = 1",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "f",
+    "minDensity"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "ef09a148ce54",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Millennium/Poincare.lean::poincare_conjecture.variants.smooth_dimension_four",
+   "file": "Millennium/Poincare.lean",
+   "name": "poincare_conjecture.variants.smooth_dimension_four",
+   "namespace": "PoincareConjecture",
+   "statement": ": SmoothConjectureFor 4",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "SmoothConjectureFor"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "e90a4caa7082",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "OEIS/153330.lean::conjecture2",
+   "file": "OEIS/153330.lean",
+   "name": "conjecture2",
+   "namespace": "OeisA153330",
+   "statement": ": indices 1 = {1} ∧ indices 6 = {2} ∧ indices 16 = {8} ∧ indices 3 = {4, 5}",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "indices"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "769601225bb0",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "OEIS/72200.lean::conjecture",
+   "file": "OEIS/72200.lean",
+   "name": "conjecture",
+   "namespace": "OeisA72200",
+   "statement": ": a 24 = 0",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "a"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "a85187ac0d1f",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "OEIS/76495.lean::conjecture",
+   "file": "OEIS/76495.lean",
+   "name": "conjecture",
+   "namespace": "OeisA76495",
+   "statement": ": a 5 = 0",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "a"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "bb01e4639cfb",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_56",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_56",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 56",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "91a19f42765c",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_58",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_58",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 58",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "8b3e633e0a72",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_59",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_59",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 59",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "245de3a84469"
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_60",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_60",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 60",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "6f7e67f3886c",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_64",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_64",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 64",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "54947c617d92",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_68",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_68",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 68",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "0f4aa93b1fce",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_69",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_69",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 69",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "fcee331008d7",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_70",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_70",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 70",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "f03d657c4e07",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_71",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_71",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 71",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "b9b40fb4a810",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_72",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_72",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 72",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "54b64e95853a",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/23.lean::hasSICPOVM_75",
+   "file": "OpenQuantumProblems/23.lean",
+   "name": "hasSICPOVM_75",
+   "namespace": "OpenQuantumProblem23",
+   "statement": ": answer(sorry) ↔ HasSICPOVM 75",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasSICPOVM",
+    "IsSICFamily",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "6d86e7c0cea7",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_10_10_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_10_10_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 10 10",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "b784860bc452",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_10_6_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_10_6_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 10 6",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "1b28683380b1",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_11_3_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_11_3_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 11 3",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "f3a97b3d36ec",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_11_6_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_11_6_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 11 6",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "5e3fd85113c8",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_12_10_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_12_10_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 12 10",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "29b39c0d6d9f",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_12_6_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_12_6_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 12 6",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "3244fb7a41ef",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_8_10_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_8_10_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 8 10",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "aec4a28905fd",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_8_4_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_8_4_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 8 4",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "d04f904c5bcf",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "OpenQuantumProblems/35.lean::ame_8_6_open",
+   "file": "OpenQuantumProblems/35.lean",
+   "name": "ame_8_6_open",
+   "namespace": "OpenQuantumProblem35",
+   "statement": ": answer(sorry) ↔ ExistsAME 8 6",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "ExistsAME",
+    "IsAME",
+    "StateVector"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "fe26869ea296",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/DeGiorgi.lean::DeGiorgi_eight",
+   "file": "Paper/DeGiorgi.lean",
+   "name": "DeGiorgi_eight",
+   "namespace": "DeGiorgi",
+   "statement": ": (DeGiorgi_conclusion 8)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "DeGiorgi_conclusion",
+    "HasHyperplaneLevelSets",
+    "HasPositiveDeriv",
+    "IsBoundedSolution"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "6bddc6a13366",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/DeGiorgi.lean::DeGiorgi_five",
+   "file": "Paper/DeGiorgi.lean",
+   "name": "DeGiorgi_five",
+   "namespace": "DeGiorgi",
+   "statement": ": (DeGiorgi_conclusion 5)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "DeGiorgi_conclusion",
+    "HasHyperplaneLevelSets",
+    "HasPositiveDeriv",
+    "IsBoundedSolution"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "031252906d82",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/DeGiorgi.lean::DeGiorgi_four",
+   "file": "Paper/DeGiorgi.lean",
+   "name": "DeGiorgi_four",
+   "namespace": "DeGiorgi",
+   "statement": ": (DeGiorgi_conclusion 4)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "DeGiorgi_conclusion",
+    "HasHyperplaneLevelSets",
+    "HasPositiveDeriv",
+    "IsBoundedSolution"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "db4ec805da04",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/DeGiorgi.lean::DeGiorgi_seven",
+   "file": "Paper/DeGiorgi.lean",
+   "name": "DeGiorgi_seven",
+   "namespace": "DeGiorgi",
+   "statement": ": (DeGiorgi_conclusion 7)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "DeGiorgi_conclusion",
+    "HasHyperplaneLevelSets",
+    "HasPositiveDeriv",
+    "IsBoundedSolution"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "f75792166116",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/DeGiorgi.lean::DeGiorgi_six",
+   "file": "Paper/DeGiorgi.lean",
+   "name": "DeGiorgi_six",
+   "namespace": "DeGiorgi",
+   "statement": ": (DeGiorgi_conclusion 6)",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "DeGiorgi_conclusion",
+    "HasHyperplaneLevelSets",
+    "HasPositiveDeriv",
+    "IsBoundedSolution"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "b3827b829d05",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/KaplanskyUInvariant.lean::u_invariant_values.variants.fifteen",
+   "file": "Paper/KaplanskyUInvariant.lean",
+   "name": "u_invariant_values.variants.fifteen",
+   "namespace": "KaplanskyUInvariant",
+   "statement": ": answer(sorry) ↔ IsUInvariant 15",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsUInvariant"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "ae5d63232fd5",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/KaplanskyUInvariant.lean::u_invariant_values.variants.thirteen",
+   "file": "Paper/KaplanskyUInvariant.lean",
+   "name": "u_invariant_values.variants.thirteen",
+   "namespace": "KaplanskyUInvariant",
+   "statement": ": answer(sorry) ↔ IsUInvariant 13",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsUInvariant"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "71f31df136ce",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Paper/LatinSquare.lean::molsOrder12",
+   "file": "Paper/LatinSquare.lean",
+   "name": "molsOrder12",
+   "namespace": "LatinSquare",
+   "statement": ": answer(sorry) ↔ HasCompleteMOLS 12",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HasCompleteMOLS",
+    "MutuallyOrthogonal"
+   ],
+   "log10_cases": 1709.4,
+   "search_basis": "11 square tables of order 12, read from the local definition by hand",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "eb94a15fe8ed",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/BorsukConjecture.lean::borsuk_conjecture.four",
+   "file": "Wikipedia/BorsukConjecture.lean",
+   "name": "borsuk_conjecture.four",
+   "namespace": "Borsuk",
+   "statement": ": BorsukConjecture 4",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "BorsukConjecture",
+    "HasBorsukCover"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "7ef44e096331",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Brennanconjecture.lean::brennan_universalSpectrum",
+   "file": "Wikipedia/Brennanconjecture.lean",
+   "name": "brennan_universalSpectrum",
+   "namespace": "BrennanConjecture",
+   "statement": ": universalSpectrum (-2) = 1",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsUnivalentNormalized",
+    "integralMeansSpectrum",
+    "universalSpectrum"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "a44dca0e75f0",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Brennanconjecture.lean::brennan_universalSpectrumBounded",
+   "file": "Wikipedia/Brennanconjecture.lean",
+   "name": "brennan_universalSpectrumBounded",
+   "namespace": "BrennanConjecture",
+   "statement": ": universalSpectrumBounded (-2) = 1",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsUnivalentNormalized",
+    "integralMeansSpectrum",
+    "unitDisk",
+    "universalSpectrumBounded"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "997388005125",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Buchi.lean::buchi_problem_M5",
+   "file": "Wikipedia/Buchi.lean",
+   "name": "buchi_problem_M5",
+   "namespace": "Buchi",
+   "statement": ": IsBuchi 5",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsBuchi"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "c8ab6134e163",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Conway99Graph.lean::conway99Graph",
+   "file": "Wikipedia/Conway99Graph.lean",
+   "name": "conway99Graph",
+   "namespace": "Conway99Graph",
+   "statement": ": answer(sorry) ↔ ∃ G : SimpleGraph (Fin 99), G.LocallyLinear ∧ NonEdgesAreDiagonals G",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "NonEdgesAreDiagonals"
+   ],
+   "log10_cases": 1460.3,
+   "search_basis": "graphs on 99 vertices",
+   "bounded_search": true,
+   "same_statement_at_pin": true,
+   "statement_sha1": "d03d2a107979",
+   "attempt": {
+    "harness": "timeout",
+    "outcomes": {
+     "decide/True": "harness_error",
+     "decide/False": "harness_error",
+     "omega/True": "harness_error",
+     "omega/False": "harness_error",
+     "simp/True": "harness_error",
+     "simp/False": "harness_error",
+     "norm_num/True": "harness_error",
+     "norm_num/False": "harness_error",
+     "aesop/True": "harness_error",
+     "aesop/False": "harness_error"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Fuglede.lean::FugledeConjecture.variants.dim_1",
+   "file": "Wikipedia/Fuglede.lean",
+   "name": "FugledeConjecture.variants.dim_1",
+   "namespace": "Fuglede",
+   "statement": ": answer(sorry) ↔ FugledeConjectureFor 1",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "FugledeConjectureFor"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "de83e884b2cf",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Fuglede.lean::FugledeConjecture.variants.dim_2",
+   "file": "Wikipedia/Fuglede.lean",
+   "name": "FugledeConjecture.variants.dim_2",
+   "namespace": "Fuglede",
+   "statement": ": answer(sorry) ↔ FugledeConjectureFor 2",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "FugledeConjectureFor"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "7c9798bf7869",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/Hall.lean::hall_conjecture",
+   "file": "Wikipedia/Hall.lean",
+   "name": "hall_conjecture",
+   "namespace": "Hall",
+   "statement": ": HallConjectureExp 2⁻¹",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "HallConjectureExp",
+    "HallIneq"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "aea0c873fd90",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/LychrelNumbers.lean::isLychrel10_196",
+   "file": "Wikipedia/LychrelNumbers.lean",
+   "name": "isLychrel10_196",
+   "namespace": "LychrelNumbers",
+   "statement": ": answer(sorry) ↔ IsLychrel10 196",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsLychrel10"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "af3e90c0d86b",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/PollocksConjecture.lean::pollock_tetrahedral.salzer_levine",
+   "file": "Wikipedia/PollocksConjecture.lean",
+   "name": "pollock_tetrahedral.salzer_levine",
+   "namespace": "PollocksConjecture",
+   "statement": ": IsGreatest NotSumOfFourTetrahedral 343867",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "NotSumOfFourTetrahedral"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "a4f77b90d908",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide": "failure",
+     "omega": "failure",
+     "simp": "failure",
+     "norm_num": "failure",
+     "aesop": "failure"
+    }
+   }
+  },
+  {
+   "id": "Wikipedia/SolitaryNumber.lean::is_ten_solitary",
+   "file": "Wikipedia/SolitaryNumber.lean",
+   "name": "is_ten_solitary",
+   "namespace": "SolitaryNumber",
+   "statement": ": answer(sorry) ↔ IsSolitary 10",
+   "tier": "definition_unbounded",
+   "unbounded_definitions": [
+    "IsSolitary"
+   ],
+   "log10_cases": null,
+   "search_basis": "single evaluation; cost set by the definitions, absent from the statement",
+   "bounded_search": false,
+   "same_statement_at_pin": true,
+   "statement_sha1": "e8b4081f4156",
+   "attempt": {
+    "harness": "harness_ok",
+    "outcomes": {
+     "decide/True": "failure",
+     "decide/False": "failure",
+     "omega/True": "failure",
+     "omega/False": "failure",
+     "simp/True": "failure",
+     "simp/False": "failure",
+     "norm_num/True": "failure",
+     "norm_num/False": "failure",
+     "aesop/True": "failure",
+     "aesop/False": "failure"
+    }
+   }
+  }
+ ],
+ "build": {
+  "modules": 34,
+  "exit": 0,
+  "tail": "Build completed successfully (8968 jobs)."
+ },
+ "attempts": {
+  "sampled": 60,
+  "sample_by_tier": {
+   "closed": 1,
+   "definition_unbounded": 59
+  },
+  "harness_ok": 58,
+  "harness_other": {
+   "harness_error": 0,
+   "timeout": 2,
+   "killed": 0
+  },
+  "runs": 515,
+  "by_tactic": {
+   "decide": {
+    "failure": 100,
+    "harness_error": 3
+   },
+   "omega": {
+    "failure": 100,
+    "harness_error": 3
+   },
+   "simp": {
+    "failure": 100,
+    "harness_error": 3
+   },
+   "norm_num": {
+    "failure": 100,
+    "harness_error": 3
+   },
+   "aesop": {
+    "failure": 100,
+    "harness_error": 3
+   }
+  },
+  "own_process_runs": 15,
+  "resumed_problems": 58,
+  "controls": {
+   "proved_upstream_by_one_tactic": 8,
+   "reproduced": 8
+  },
+  "limits": {
+   "processes": 2,
+   "timeout_seconds": 60,
+   "memory": "4G"
+  },
+  "successes_unverified_pending_human_review": [],
+  "successes_not_reproduced": 0
+ }
+}
