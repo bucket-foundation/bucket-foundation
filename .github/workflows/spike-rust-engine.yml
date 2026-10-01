@@ -59,7 +59,7 @@ jobs:
         run: bun install --frozen-lockfile
       - name: experiments
         working-directory: spikes/rust-engine
-        run: bun s5-cross-build/ci.ts ${{ matrix.label }} 60
+        run: bun s5-cross-build/ci.mts ${{ matrix.label }} 60
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

@@ -30,8 +30,8 @@ setup.close();
 
 const commands: Record<string, string[]> =
   layout === "bun-writers-rust-reader"
-    ? { bun: [process.execPath, join(here, "writer.ts"), db, dir, "bun"], bun2: [process.execPath, join(here, "writer.ts"), db, dir, "bun2"], reader: [rustBin, "read", db, dir] }
-    : { bun: [process.execPath, join(here, "writer.ts"), db, dir, "bun"], rust: [rustBin, "write", db, dir] };
+    ? { bun: [process.execPath, join(here, "writer.mts"), db, dir, "bun"], bun2: [process.execPath, join(here, "writer.mts"), db, dir, "bun2"], reader: [rustBin, "read", db, dir] }
+    : { bun: [process.execPath, join(here, "writer.mts"), db, dir, "bun"], rust: [rustBin, "write", db, dir] };
 const names = Object.keys(commands);
 const writerNames = names.filter((n) => n !== "reader");
 const procs: Record<string, ReturnType<typeof Bun.spawn>> = {};

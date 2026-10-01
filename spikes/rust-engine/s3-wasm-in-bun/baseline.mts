@@ -1,5 +1,5 @@
 import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
-import { TEXTS } from "./texts";
+import { TEXTS } from "./texts.mts";
 
 const [mode, arg] = process.argv.slice(2);
 const target = `${process.platform}-${process.arch}`;

@@ -1,14 +1,16 @@
 diff --git a/src/lib/canon-rank.ts b/src/lib/canon-rank.ts
-index 12e30e33b..378c8e70b 100644
+index 12e30e33b..83f025090 100644
 --- a/src/lib/canon-rank.ts
 +++ b/src/lib/canon-rank.ts
-@@ -1,3 +1,5 @@
-+import { hooked } from "../../spikes/rust-engine/s2-ranking-parity/hook";
+@@ -1,3 +1,7 @@
++const { hooked } = require("../../spikes/rust-engine/s2-ranking-parity/hook.cjs") as {
++  hooked: (fn: "token" | "cosine", index: ClaimIndexEntry[], arg: string | Float32Array, topK: number, ts: () => CanonHit[]) => CanonHit[];
++};
 +
  export type ClaimIndexEntry = {
    rowid: number;
    branch: string;
-@@ -49,6 +51,10 @@ export function indexDim(index: ClaimIndexEntry[]): number {
+@@ -49,6 +53,10 @@ export function indexDim(index: ClaimIndexEntry[]): number {
  }
  
  export function cosineRank(index: ClaimIndexEntry[], q: Float32Array, topK = 10): CanonHit[] {
@@ -19,7 +21,7 @@ index 12e30e33b..378c8e70b 100644
    const scores = new Array<CanonHit>(index.length);
    for (let i = 0; i < index.length; i++) {
      const v = index[i].vec;
-@@ -61,6 +67,10 @@ export function cosineRank(index: ClaimIndexEntry[], q: Float32Array, topK = 10)
+@@ -61,6 +69,10 @@ export function cosineRank(index: ClaimIndexEntry[], q: Float32Array, topK = 10)
  }
  
  export function tokenRank(index: ClaimIndexEntry[], query: string, topK = 10): CanonHit[] {

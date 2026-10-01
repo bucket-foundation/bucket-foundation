@@ -1,6 +1,6 @@
 import wasmPath from "./rank.wasm" with { type: "file" };
-import { loadRank, scoreBits } from "./rank-wasm";
-import { TEXTS } from "./texts";
+import { loadRank, scoreBits } from "./rank-wasm.cjs";
+import { TEXTS } from "./texts.mts";
 
 const [mode, arg] = process.argv.slice(2);
 const before = performance.now();
