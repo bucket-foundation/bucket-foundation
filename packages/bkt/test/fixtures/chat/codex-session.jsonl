@@ -1,0 +1,4 @@
+{"type":"session_meta","payload":{"id":"fixture"},"timestamp":"2026-09-29T08:00:00.000Z"}
+{"type":"response_item","payload":{"type":"message","role":"user","content":[{"type":"input_text","text":"DATABASE_URL=postgres://fixture:FAKEpassword@127.0.0.1/db\nRefactor the deep link parser into a pure function"}]},"timestamp":"2026-09-29T08:01:00.000Z"}
+{"type":"event_msg","payload":{"type":"user_message","message":"jwt eyJGQUtFZml4dHVyZQ.eyJGQUtFZml4dHVyZQ.FAKEsig"},"timestamp":"2026-09-29T08:02:00.000Z"}
+{"type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"done"}]},"timestamp":"2026-09-29T08:03:00.000Z"}

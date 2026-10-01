@@ -7,8 +7,10 @@ import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/wor
 import { gradeAnswer, log10Distance, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
+import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
-import { attemptId, DailyQuizStore, validDay } from "./daily-quiz";
+import { attemptId, DailyQuizStore, validDay, type DailyQuiz } from "./daily-quiz";
+import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
 
@@ -17,6 +19,7 @@ export const MAX_PRS = 400;
 export const BEADS_BODY_BYTES = 32 * 1024 * 1024;
 export const MAX_BEAD_BYTES = 24 * 1024 * 1024;
 export const MAX_BEAD_LINES = 100_000;
+export const CHAT_META = "work_quiz_chat";
 
 export const SAFE_GIT_CONFIG = [
   "-c", "core.fsmonitor=false",
@@ -93,12 +96,23 @@ export class WorkQuizStore {
       .run(repo === null ? null : seal(this.key, repo, "work_quiz_repo"), now);
   }
 
+  chat(): ChatToggles {
+    const raw = this.store.meta(CHAT_META);
+    const saved = (raw ? JSON.parse(raw) : {}) as Partial<ChatToggles>;
+    return { claude: saved.claude === true, codex: saved.codex === true };
+  }
+
+  setChat(on: ChatToggles) {
+    this.store.setMeta(CHAT_META, JSON.stringify({ claude: on.claude, codex: on.codex }));
+  }
+
   get daily(): DailyQuizStore {
     return new DailyQuizStore(this.store, this.key);
   }
 
   clear() {
     this.store.db.run("delete from work_quiz_source");
+    this.setChat(CHAT_OFF);
     this.daily.clear();
   }
 
@@ -131,6 +145,9 @@ export interface WorkQuizOptions {
   now?: () => number;
   home?: string;
   seed?: () => string;
+  readChats?: (on: ChatToggles, o: { home?: string; now: number }) => ChatScan;
+  writer?: WriterOptions;
+  log?: (line: string) => void;
 }
 
 export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Record<string, Route> {
@@ -138,6 +155,29 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const now = o.now ?? Date.now;
   const seed = o.seed ?? (() => randomUUID());
   const issued = new Map<string, { q: QuizQuestion; at: number }>();
+  const readChats = o.readChats ?? readChatSources;
+  const log = o.log ?? ((line: string) => console.error(line));
+  const building = new Map<string, Promise<DailyQuiz | null>>();
+
+  async function build(day: string): Promise<DailyQuiz | null> {
+    const on = wq.chat();
+    if (!CHAT_ROOT_NAMES.some((r) => on[r])) return null;
+    const { stubs, counts } = readChats(on, { home: o.home, now: now() });
+    const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
+    const quiz = written.quiz ? wq.daily.put(written.quiz, now()) : null;
+    log(
+      `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${quiz?.questions.length ?? 0} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
+    );
+    return quiz;
+  }
+
+  function daily(day: string): Promise<DailyQuiz | null> {
+    const stored = wq.daily.get(day);
+    if (stored || day !== localDay(now())) return Promise.resolve(stored);
+    const running = building.get(day) ?? build(day).finally(() => building.delete(day));
+    building.set(day, running);
+    return running;
+  }
 
   async function sources(): Promise<{ sources: WorkSources; repoError: string | null }> {
     const repo = wq.repo();
@@ -162,7 +202,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   return {
     "GET /local/work-quiz/status": async () => {
       const { sources: s, repoError } = await sources();
-      return json({ beads: s.beads.length, prs: s.prs.length, repo: wq.repo(), repoError, ready: !sourcesEmpty(s), ...wq.tally() });
+      return json({ beads: s.beads.length, prs: s.prs.length, repo: wq.repo(), repoError, chat: wq.chat(), ready: !sourcesEmpty(s), ...wq.tally() });
     },
     "POST /local/work-quiz/beads": async (req) => {
       const b = await body(req);
@@ -192,6 +232,12 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
         return json({ error: e instanceof RepoPathError ? e.message : "git could not read that folder" }, 400);
       }
     },
+    "POST /local/work-quiz/chat": async (req) => {
+      const b = await body(req);
+      if (!b || !CHAT_ROOT_NAMES.every((r) => typeof b[r] === "boolean")) return json({ error: "send claude and codex as true or false" }, 400);
+      wq.setChat({ claude: b.claude === true, codex: b.codex === true });
+      return json({ chat: wq.chat() });
+    },
     "POST /local/work-quiz/forget": () => {
       wq.clear();
       issued.clear();
@@ -207,10 +253,10 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       issued.set(q.id, { q, at });
       return json(toPublic(q));
     },
-    "GET /local/work-quiz/daily": (_req, url) => {
+    "GET /local/work-quiz/daily": async (_req, url) => {
       const day = url.searchParams.get("day");
       if (!validDay(day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
-      const quiz = wq.daily.get(day);
+      const quiz = await daily(day);
       if (!quiz) return json({ error: "no quiz for that day" }, 404);
       return json({ day, questions: quiz.questions.map(toPublic), answered: [...wq.daily.answered(day)] });
     },

@@ -33,11 +33,11 @@ const text = (v: unknown, what: string, max = MAX_TEXT): string => {
   return v;
 };
 
-const KINDS: readonly SourceRef["kind"][] = ["bead", "pr", "note"];
+const KINDS: readonly SourceRef["kind"][] = ["bead", "pr", "note", "chat"];
 
 function source(v: unknown): SourceRef {
   const r = (v && typeof v === "object" ? v : {}) as Record<string, unknown>;
-  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr or note");
+  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr, note or chat");
   const href = r.href === null || r.href === undefined ? null : text(r.href, "a source href");
   if (href !== null && !href.startsWith("https://")) throw new DailyQuizError("a source href must start with https://");
   return { kind: r.kind as SourceRef["kind"], ref: text(r.ref, "a source ref", 120), label: text(r.label, "a source label", 120), href };
