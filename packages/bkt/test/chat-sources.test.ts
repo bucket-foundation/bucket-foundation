@@ -87,9 +87,26 @@ describe("secret scan", () => {
       "clone https://fixture:FAKEpassword@example.test/repo",
       "mail someone@example.test about it",
       "hash 9f86d081884c7a659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "the db password is correct-horse-battery",
+      "password hunter2",
+      "my passphrase was open sesame",
+      "set the token to tulip-garden",
+      "sk_live_FAKE0000",
+      "rk_live_FAKE0000",
+      "whsec_FAKEfixture",
+      "hf_FAKEfixture00",
+      "SG.FAKEfixture.FAKE",
+      "post to https://hooks.slack.com/services/T000/B000/FAKE",
+      "short id a1b2c3d4e5f6a7b8c9d0 here",
+      "ghp_FAKE0000",
     ])
       expect([bad, secretLine(bad)]).toEqual([bad, true]);
-    for (const ok of [CLAUDE_LABEL, CODEX_LABEL, "Open packages/bkt/src/work-quiz.ts and read the daily route", "How many of the 200 files changed since 2026-09-28?"])
+    for (const ok of [CLAUDE_LABEL, CODEX_LABEL, "Open packages/bkt/src/work-quiz.ts and read the daily route", "How many of the 200 files changed since 2026-09-28?",
+      "The key file sits next to the token count table",
+      "Add a secret scan to the reader and keep the password field hidden",
+      "The key is to read the plan before the branch feat/desktop-quiz-2-sources",
+      "Use scikit sk-learn for the fit",
+    ])
       expect([ok, secretLine(ok)]).toEqual([ok, false]);
   });
 
@@ -97,6 +114,12 @@ describe("secret scan", () => {
     const scan = scanLines("before the key\n-----BEGIN OPENSSH PRIVATE KEY-----\nshort\nplain looking line inside the block\n-----END OPENSSH PRIVATE KEY-----\nafter the key");
     expect(scan.kept).toEqual(["before the key", "after the key"]);
     expect(scan.dropped).toBe(4);
+  });
+
+  test("a key split across two lines drops both lines", () => {
+    expect(scanLines("first plain line of text\nthe deploy key is ghp_FA\nKEfixture0000 for now\nlast plain line of text").kept).toEqual(["first plain line of text", "last plain line of text"]);
+    expect(scanLines("the password\nis correct-horse-battery").kept).toEqual([]);
+    expect(scanLines("Wire the Fermi grader\ninto the daily quiz route").dropped).toBe(0);
   });
 });
 
@@ -151,21 +174,25 @@ describe("chat sources", () => {
     expect(counts.skipped).toBe(2);
   });
 
-  test("a root that resolves outside home is refused", () => {
-    session("far.jsonl", "A session that sits outside the home folder");
-    writeFileSync(join(outside, "far.jsonl"), readFileSync(join(home, "far.jsonl")));
-    utimesSync(join(outside, "far.jsonl"), NOW / 1000, NOW / 1000);
-    mkdirSync(join(home, ".claude"));
-    symlinkSync(outside, join(home, ".claude/projects"));
+  test("a root that resolves outside home through a symlinked parent is refused", () => {
+    mkdirSync(join(outside, "projects"));
+    writeFileSync(join(outside, "projects", "far.jsonl"), `${JSON.stringify({ type: "user", message: { role: "user", content: "A session that sits outside the home folder" } })}\n`);
+    utimesSync(join(outside, "projects", "far.jsonl"), NOW / 1000, NOW / 1000);
+    symlinkSync(outside, join(home, ".claude"));
     expect(chatRoot("claude", home)).toBeNull();
     expect(readChatSources(BOTH, { home, now: NOW }).stubs).toEqual([]);
     expect(chatRoot("codex", home)).toBeNull();
   });
 
-  test("a root that is the home folder itself is refused", () => {
+  test("a root that is a symlink is refused, inside home or at home itself", () => {
+    session("elsewhere/inside.jsonl", "A session behind a root symlinked inside home");
+    mkdirSync(join(home, ".claude"));
+    symlinkSync(join(home, "elsewhere"), join(home, ".claude/projects"));
     mkdirSync(join(home, ".codex"));
     symlinkSync(home, join(home, ".codex/sessions"));
+    expect(chatRoot("claude", home)).toBeNull();
     expect(chatRoot("codex", home)).toBeNull();
+    expect(readChatSources(BOTH, { home, now: NOW })).toEqual({ stubs: [], counts: { files: 0, bytes: 0, dropped: 0, skipped: 0, timedOut: false } });
   });
 
   test("files older than two days are skipped", () => {
@@ -305,6 +332,7 @@ describe("daily quiz from chats", () => {
   let logs: string[];
   let prompts: string[];
   let model: Fetcher;
+  let reads: number;
   const req = (path: string, init: { method?: string; body?: unknown } = {}) =>
     fetch(`http://127.0.0.1:${s.port}${path}`, { method: init.method ?? "GET", body: init.body === undefined ? undefined : JSON.stringify(init.body), headers: { host: `127.0.0.1:${s.port}`, ...auth } });
   const disk = () =>
@@ -318,6 +346,7 @@ describe("daily quiz from chats", () => {
     store = new Store(join(dir, "bkt.db"), key);
     logs = [];
     prompts = [];
+    reads = 0;
     model = async () => {
       throw new TypeError("connection refused");
     };
@@ -325,7 +354,16 @@ describe("daily quiz from chats", () => {
       prompts.push(String(init.body));
       return model(url, init);
     };
-    s = startServe({ uid: 4, resolvePeerUid: () => 4, routes: workQuizRoutes(new WorkQuizStore(store, key), { home, now: () => NOW, writer: { fetch: fetcher }, log: (l) => logs.push(l) }) });
+    s = startServe({ uid: 4, resolvePeerUid: () => 4, routes: workQuizRoutes(new WorkQuizStore(store, key), {
+        home,
+        now: () => NOW,
+        writer: { fetch: fetcher },
+        log: (l) => logs.push(l),
+        readChats: (on, o) => {
+          reads++;
+          return readChatSources(on, o);
+        },
+      }) });
     auth = {};
     const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
     const r = await fetch(`http://127.0.0.1:${s.port}/session`, { method: "POST", body: JSON.stringify({ nonce }), headers: { host: `127.0.0.1:${s.port}`, origin: `http://127.0.0.1:${s.port}` } });
@@ -345,6 +383,39 @@ describe("daily quiz from chats", () => {
     expect((await req(`/local/work-quiz/daily?day=${DAY}`)).status).toBe(404);
     expect(logs).toEqual([]);
     expect(prompts).toEqual([]);
+    expect(reads).toBe(0);
+  });
+
+  test("a day with no stubs is read once", async () => {
+    rmSync(join(home, ".claude/projects/project-a/session.jsonl"));
+    rmSync(join(home, ".codex"), { recursive: true });
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    for (let i = 0; i < 3; i++) expect((await req(`/local/work-quiz/daily?day=${DAY}`)).status).toBe(404);
+    expect(reads).toBe(1);
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    await req(`/local/work-quiz/daily?day=${DAY}`);
+    expect(reads).toBe(2);
+  });
+
+  test("a forget during a build seals nothing", async () => {
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    let release = () => {};
+    const asked = new Promise<void>((started) => {
+      model = () =>
+        new Promise((done) => {
+          release = () => done(new Response("busy", { status: 503 }));
+          started();
+        });
+    });
+    const pending = req(`/local/work-quiz/daily?day=${DAY}`);
+    await asked;
+    expect((await req("/local/work-quiz/forget", { method: "POST", body: {} })).status).toBe(200);
+    release();
+    expect((await pending).status).toBe(404);
+    expect(store.db.query<{ n: number }, []>("select count(*) n from daily_quiz").get()!.n).toBe(0);
+    expect(logs).toEqual([]);
+    expect((await req(`/local/work-quiz/daily?day=${DAY}`)).status).toBe(404);
+    expect(reads).toBe(1);
   });
 
   test("the switch takes two booleans and no path", async () => {

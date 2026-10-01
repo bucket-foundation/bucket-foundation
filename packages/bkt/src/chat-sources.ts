@@ -60,7 +60,9 @@ export function localDay(ms: number): string {
 export function chatRoot(root: ChatRoot, home = homedir()): string | null {
   try {
     const realHome = realpathSync(home);
-    const real = realpathSync(join(home, CHAT_ROOTS[root]));
+    const path = join(home, CHAT_ROOTS[root]);
+    if (lstatSync(path).isSymbolicLink()) return null;
+    const real = realpathSync(path);
     const rel = relative(realHome, real);
     if (!rel || rel.startsWith("..") || isAbsolute(rel)) return null;
     return lstatSync(real).isDirectory() ? real : null;

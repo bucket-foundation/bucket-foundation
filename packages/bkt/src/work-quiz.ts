@@ -158,13 +158,17 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const readChats = o.readChats ?? readChatSources;
   const log = o.log ?? ((line: string) => console.error(line));
   const building = new Map<string, Promise<DailyQuiz | null>>();
+  const empty = new Set<string>();
 
   async function build(day: string): Promise<DailyQuiz | null> {
     const on = wq.chat();
     if (!CHAT_ROOT_NAMES.some((r) => on[r])) return null;
     const { stubs, counts } = readChats(on, { home: o.home, now: now() });
     const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
+    const still = wq.chat();
+    if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
     const quiz = written.quiz ? wq.daily.put(written.quiz, now()) : null;
+    if (!quiz) empty.add(day);
     log(
       `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${quiz?.questions.length ?? 0} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
     );
@@ -173,7 +177,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
 
   function daily(day: string): Promise<DailyQuiz | null> {
     const stored = wq.daily.get(day);
-    if (stored || day !== localDay(now())) return Promise.resolve(stored);
+    if (stored || day !== localDay(now()) || empty.has(day)) return Promise.resolve(stored);
     const running = building.get(day) ?? build(day).finally(() => building.delete(day));
     building.set(day, running);
     return running;
@@ -236,11 +240,13 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const b = await body(req);
       if (!b || !CHAT_ROOT_NAMES.every((r) => typeof b[r] === "boolean")) return json({ error: "send claude and codex as true or false" }, 400);
       wq.setChat({ claude: b.claude === true, codex: b.codex === true });
+      empty.clear();
       return json({ chat: wq.chat() });
     },
     "POST /local/work-quiz/forget": () => {
       wq.clear();
       issued.clear();
+      empty.clear();
       return json({ cleared: true });
     },
     "GET /local/work-quiz/next": async () => {
