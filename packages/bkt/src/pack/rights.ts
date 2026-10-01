@@ -35,11 +35,11 @@ export function deniedVideoIds(repo: string): Set<string> {
     const m = VIDEO_DIR.exec(dir);
     if (!m || !statSync(join(root, dir)).isDirectory()) continue;
     const named = DENIED_NAME.test(dir);
-    const described = VIDEO_META_FILES.some((f) => {
-      const p = join(root, dir, f);
-      return existsSync(p) && DENIED_NAME.test(readFileSync(p, "utf8"));
-    });
-    if (named || described) ids.add(m[1]);
+    const found = VIDEO_META_FILES.map((f) => join(root, dir, f))
+      .filter((p) => existsSync(p))
+      .map((p) => DENIED_NAME.test(readFileSync(p, "utf8")));
+    if (found.length > 1 && new Set(found).size > 1) throw new Error(`rights: ${VIDEO_META_FILES.join(" and ")} disagree for yt/${dir}, so the denied video list cannot be trusted`);
+    if (named || found.some(Boolean)) ids.add(m[1]);
   }
   if (ids.size === 0) throw new Error("rights: no denied video found under yt, so the filter would pass everything");
   return ids;

@@ -22,9 +22,12 @@ const DETAIL: CanonExcerpt = {
   title: "Claim",
   text: "Claim. Entropy rises and entropy never falls.",
   source: { title: "A lecture on heat", url: "https://www.youtube.com/watch?v=BBBBBBBBBBB&t=10", timestamp: "00:00:10.000" },
-  evidence: [{ score: 0.71, kind: "pubmed", source_path: "pubmed/PMID-1-x/abstract.txt", text: "Heat flows from hot to cold.", url: "https://pubmed.ncbi.nlm.nih.gov/1/" }],
+  evidence: [
+    { score: 0.71, kind: "pubmed", source_path: "pubmed/PMID-1-x/abstract.txt", text: "Heat flows from hot to cold.", url: "https://pubmed.ncbi.nlm.nih.gov/1/", title: "On heat", author: "A. Writer", openable: true },
+    { score: 0.6, kind: "archive", source_path: "archive/item/a.txt", text: "An old book on heat.", url: "https://archive.org/details/item", title: "Old book", author: null, openable: false },
+  ],
 };
-const ABOUT: CanonAbout = { version: "abc", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov" }] };
+const ABOUT: CanonAbout = { version: "abc", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] };
 
 function fakeApi(over: Partial<CanonSearchApi> = {}) {
   const calls: { search: [string, string | undefined][]; opened: string[] } = { search: [], opened: [] };
@@ -114,7 +117,11 @@ describe("canon search view", () => {
     const v = await mount(api, 7);
     expect(v.host.querySelector("blockquote")?.textContent).toBe("Entropy rises and entropy never falls.");
     expect(v.host.textContent).toContain("A lecture on heat, at 00:00:10");
-    expect(v.host.querySelectorAll(".evidence li").length).toBe(1);
+    const rows = v.host.querySelectorAll(".evidence li");
+    expect(rows.length).toBe(2);
+    expect(rows[0].querySelector(".cite")?.textContent).toBe("On heat, A. Writer");
+    expect(rows[1].querySelector(".cite")?.textContent).toBe("Old book, https://archive.org/details/item");
+    expect(rows[1].querySelector("button")).toBeNull();
     expect(v.host.querySelectorAll("a[href^='http']").length).toBe(0);
     await v.act(async () => v.button("Open the source in your browser")!.click());
     await v.act(async () => (v.host.querySelector(".evidence button") as HTMLButtonElement).click());

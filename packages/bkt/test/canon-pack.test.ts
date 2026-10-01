@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
-import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, readInputs, sourceUrl } from "../src/pack/canon";
+import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, readInputs, sourceMeta } from "../src/pack/canon";
 import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -66,6 +66,12 @@ describe("rights filter", () => {
       writeFileSync(join(dir, `yt/${CLEAN_ID}-other-talk/info.md`), "# A talk");
       expect(() => deniedVideoIds(dir)).toThrow(/no denied video/);
       expect(() => deniedVideoIds(join(dir, "missing"))).toThrow(/missing/);
+      mkdirSync(join(dir, `yt/${DENIED_ID}-a-talk`), { recursive: true });
+      writeFileSync(join(dir, `yt/${DENIED_ID}-a-talk/info.md`), "# A talk");
+      writeFileSync(join(dir, `yt/${DENIED_ID}-a-talk/metadata.json`), JSON.stringify({ channel: `Dr. ${OWNER}` }));
+      expect(() => deniedVideoIds(dir)).toThrow(/disagree/);
+      writeFileSync(join(dir, `yt/${DENIED_ID}-a-talk/info.md`), `# A talk with ${OWNER}`);
+      expect([...deniedVideoIds(dir)]).toEqual([DENIED_ID]);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
@@ -81,12 +87,14 @@ describe("canon pack counts", () => {
     expect(c.passages.total).toBe(5990);
     expect(c.passages.denied).toEqual({ prefix: 1165, video: 519, path: 0, file: 692, text: 0 });
     expect(c.passages.droppedWithExcerpt).toBe(527);
-    expect(c.passages.kept).toBe(3087);
+    expect(c.passages.kept).toBe(2127);
+    expect(c.passages.dropped).toEqual({ licence: { blog: 930, archive: 28 }, noSource: { pubmed: 2 } });
     expect(c.passages.namedInListedFolders + c.passages.namedElsewhere).toBe(126);
     expect(c.vectorRows).toEqual({ total: 599, kept: 364 });
     expect(c.connections.denied).toBe(0);
     const denied = Object.values(c.passages.denied).reduce((a, b) => a + b, 0);
-    expect(c.passages.kept + denied + c.passages.droppedWithExcerpt).toBe(c.passages.total);
+    const dropped = Object.values(c.passages.dropped).flatMap((d) => Object.values(d)).reduce((a, b) => a + b, 0);
+    expect(c.passages.kept + denied + c.passages.droppedWithExcerpt + dropped).toBe(c.passages.total);
   });
 
   test("directory names alone miss videos that the description files find", () => {
@@ -113,22 +121,57 @@ describe("canon pack counts", () => {
       writeFileSync(join(dir, "leak.bin"), `xx${[...buildDenylist(REPO).videoIds][0]}xx`);
       expect(findKruse([dir], markers).map((h) => h.file)).toEqual([join(dir, "leak.bin")]);
       writeFileSync(join(dir, "leak.bin"), `by ${OWNER.toUpperCase()} himself`);
-      expect(findKruse([dir], markers).length).toBe(1);
-      expect(findKruse([dir], markers, false)).toEqual([]);
+      expect(findKruse([dir], markers).map((h) => h.marker)).toEqual(["the denied name"]);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
   }, 60_000);
 
-  test("source paths map to links on known hosts only", () => {
-    expect(sourceUrl("pubmed/PMID-38219775-from-conformal/abstract.txt")).toBe("https://pubmed.ncbi.nlm.nih.gov/38219775/");
-    expect(sourceUrl("gutenberg/PG-56852-time-and-free-will/text.txt")).toBe("https://www.gutenberg.org/ebooks/56852");
-    expect(sourceUrl("arxiv/1103.1984-search/abs.txt")).toBe("https://arxiv.org/abs/1103.1984");
-    expect(sourceUrl("arxiv/hep-th_0512172-lectures/abs.txt")).toBe("https://arxiv.org/abs/hep-th/0512172");
-    expect(sourceUrl("openalex-fanout/W4243740685-how/x.md")).toBe("https://openalex.org/W4243740685");
-    expect(sourceUrl(`yt/${CLEAN_ID}-talk/transcript.txt`)).toBe(`https://www.youtube.com/watch?v=${CLEAN_ID}`);
-    expect(sourceUrl("blog/plato-stanford-edu/x.md")).toBeNull();
-    expect(kindOf("openalex-citers/W1-x.md")).toBe("openalex");
+  test("every kept passage names its source, and no passage ships from a source that forbids redistribution", () => {
+    const passages = Object.values(pack.evidence).flat();
+    expect(passages.filter((p) => !p.title)).toEqual([]);
+    expect(passages.filter((p) => p.kind !== "_intake" && !/^https:\/\//.test(p.url ?? ""))).toEqual([]);
+    expect(passages.filter((p) => p.kind === "blog")).toEqual([]);
+    const wiki = passages.filter((p) => p.kind === "wikisource");
+    expect(wiki.length).toBe(23);
+    expect(wiki.every((p) => p.url!.startsWith("https://en.wikisource.org/wiki/"))).toBe(true);
+    const row = pack.licences.find((l) => l.kind === "wikisource")!;
+    expect(row.terms).toContain("CC BY-SA 4.0");
+    expect(row.terms).toContain("same licence");
+    expect(row.works).toBe(new Set(wiki.map((p) => p.url)).size);
+    expect(pack.licences.every((l) => l.works > 0)).toBe(true);
+  });
+
+  test("source files give a title, link and author, and say whether the text may ship", () => {
+    const dir = mkdtempSync(join(tmpdir(), "bkt-src-"));
+    const put = (p: string, body: string) => {
+      mkdirSync(dirname(join(dir, p)), { recursive: true });
+      writeFileSync(join(dir, p), body);
+    };
+    try {
+      put("wikisource/a-page/info.md", "# A Page\n\n- **Wikisource**: https://en.wikisource.org/wiki/A_Page\n");
+      put("blog/plato-stanford-edu/chaos.md", "# Chaos\n\n- **URL**: https://plato.stanford.edu/entries/chaos/\n");
+      put("gutenberg/PG-1-free/info.md", "# Free\n\n- **URL**: https://www.gutenberg.org/ebooks/1\n- **Authors**: Someone, A.\n- **Copyright**: False\n");
+      put("gutenberg/PG-2-held/info.md", "# Held\n\n- **URL**: https://www.gutenberg.org/ebooks/2\n- **Copyright**: True\n");
+      put("archive/open-item/info.md", "# Open item\n\n- **URL**: https://archive.org/details/open-item\n- **Creator**: A. Writer\n");
+      put("archive/open-item/metadata.json", JSON.stringify({ licenseurl: "http://creativecommons.org/publicdomain/mark/1.0/" }));
+      put("archive/held-item/info.md", "# Held item\n\n- **URL**: https://archive.org/details/held-item\n");
+      put("archive/held-item/metadata.json", JSON.stringify({ licenseurl: "https://creativecommons.org/licenses/by-nc-nd/4.0/" }));
+      put("pubmed/PMID-1-x/info.md", "no heading here");
+      put("_intake/NOTES.md", "# Notes\n");
+      expect(sourceMeta(dir, "wikisource/a-page/page.txt")).toEqual({ title: "A Page", url: "https://en.wikisource.org/wiki/A_Page", author: null, permitted: true });
+      expect(sourceMeta(dir, "blog/plato-stanford-edu/chaos.md")?.permitted).toBe(false);
+      expect(sourceMeta(dir, "gutenberg/PG-1-free/PG-1.txt")).toEqual({ title: "Free", url: "https://www.gutenberg.org/ebooks/1", author: "Someone, A.", permitted: true });
+      expect(sourceMeta(dir, "gutenberg/PG-2-held/PG-2.txt")?.permitted).toBe(false);
+      expect(sourceMeta(dir, "archive/open-item/a_djvu.txt")).toEqual({ title: "Open item", url: "https://archive.org/details/open-item", author: "A. Writer", permitted: true });
+      expect(sourceMeta(dir, "archive/held-item/a_djvu.txt")?.permitted).toBe(false);
+      expect(sourceMeta(dir, "pubmed/PMID-1-x/info.md")).toBeNull();
+      expect(sourceMeta(dir, "pubmed/PMID-9-gone/info.md")).toBeNull();
+      expect(sourceMeta(dir, "_intake/NOTES.md")).toEqual({ title: "Notes", url: null, author: null, permitted: true });
+      expect(kindOf("openalex-citers/W1-x.md")).toBe("openalex");
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
 
@@ -184,6 +227,7 @@ describe("planted rows", () => {
     const dir = plantRepo({
       "bucket-canon/02-physics/sub-claims/light/002-denied.md": claimFile("Claim two", "A talk", DENIED_ID, quote),
       "_intake/embeddings/claim-evidence.jsonl": `${JSON.stringify({ concept: "light", slug: "001-clean", evidence: [{ score: 0.9, source_path: "pubmed/PMID-1-x/abstract.txt", text: `someone wrote: ${quote}` }] })}\n`,
+      "pubmed/PMID-1-x/info.md": "# A paper\n\n- **URL**: https://pubmed.ncbi.nlm.nih.gov/1/\n",
     });
     try {
       expect(() => buildCanonPack(dir)).toThrow(/quotes a denied row/);

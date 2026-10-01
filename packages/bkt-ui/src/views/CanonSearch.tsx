@@ -10,7 +10,7 @@ export interface CanonSearchApi {
 }
 
 const label = (branch: string) => branch.replace(/^\d+-/, "").replace(/-/g, " ");
-const KIND: Record<string, string> = { yt: "video", pubmed: "PubMed", arxiv: "arXiv", gutenberg: "Gutenberg", wikisource: "Wikisource", openalex: "OpenAlex", archive: "Internet Archive", blog: "article", _intake: "Bucket notes" };
+const KIND: Record<string, string> = { yt: "video", pubmed: "PubMed", arxiv: "arXiv", gutenberg: "Gutenberg", wikisource: "Wikisource", openalex: "OpenAlex", archive: "Internet Archive", _intake: "Bucket notes" };
 
 function SourceLink({ api, url, onError, children }: { api: CanonSearchApi; url: string | null; onError: (m: string) => void; children: string }) {
   if (!url) return null;
@@ -145,7 +145,12 @@ export function CanonSearchView({ api, id }: { api: CanonSearchApi; id?: number 
                         <span className="mastery">{p.score.toFixed(2)}</span>
                       </span>
                       <p>{p.text}</p>
-                      <SourceLink api={api} url={p.url} onError={setError}>
+                      <p className="muted cite">
+                        {p.title}
+                        {p.author ? `, ${p.author}` : ""}
+                        {p.url && !p.openable ? `, ${p.url}` : ""}
+                      </p>
+                      <SourceLink api={api} url={p.openable ? p.url : null} onError={setError}>
                         Open the source
                       </SourceLink>
                     </li>
@@ -165,7 +170,10 @@ export function CanonSearchView({ api, id }: { api: CanonSearchApi; id?: number 
             <tbody>
               {about.licences.map((l) => (
                 <tr key={l.kind}>
-                  <th scope="row">{l.name}</th>
+                  <th scope="row">
+                    {l.name}
+                    <span className="muted cite">{l.works} sources</span>
+                  </th>
                   <td>
                     {l.terms}{" "}
                     <SourceLink api={api} url={l.url} onError={setError}>

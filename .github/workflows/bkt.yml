@@ -18,6 +18,7 @@ on:
       - "src/app/api/research-os/**"
       - "packages/ros-contract/**"
       - "tools/helix/**"
+      - "tools/prime-directions/**"
       - "learning/app/corpus/**"
       - "scripts/release/**"
       - "public/bucket_logo.webp"
@@ -95,7 +96,7 @@ jobs:
         working-directory: packages/bkt-ui
         run: bun run build && bun run size
       - name: no denied source material in the build
-        run: bun packages/bkt/scripts/check-no-kruse.ts --markers-only packages/bkt-ui/dist
+        run: bun packages/bkt/scripts/check-no-kruse.ts packages/bkt-ui/dist
 
   appimage:
     runs-on: ubuntu-latest

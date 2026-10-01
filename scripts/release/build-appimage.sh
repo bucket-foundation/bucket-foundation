@@ -25,7 +25,7 @@ fi
 if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
   bun "$repo/packages/bkt/scripts/check-no-staff.ts" "$repo/packages/bkt-ui/dist" "$repo/packages/bkt/dist/bkt" "$repo/packages/bkt/content/staff-ros.json" "$repo/packages/bkt/content/canon.json" || fail "staff atlas data found in a public build"
 fi
-bun "$repo/packages/bkt/scripts/check-no-kruse.ts" "$repo/packages/bkt/content/canon.json" --markers-only "$repo/packages/bkt-ui/dist" "$repo/packages/bkt/dist/bkt" || fail "denied source material found in a public build"
+bun "$repo/packages/bkt/scripts/check-no-kruse.ts" "$repo/packages/bkt/content/canon.json" "$repo/packages/bkt-ui/dist" "$repo/packages/bkt/dist/bkt" || fail "denied source material found in a public build"
 
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT

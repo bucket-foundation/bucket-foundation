@@ -72,6 +72,9 @@ export interface CanonPassage {
   source_path: string;
   text: string;
   url: string | null;
+  title: string;
+  author: string | null;
+  openable: boolean;
 }
 
 export interface CanonExcerpt {
@@ -90,6 +93,7 @@ export interface CanonLicence {
   name: string;
   terms: string;
   url: string | null;
+  works: number;
 }
 
 export interface CanonAbout {

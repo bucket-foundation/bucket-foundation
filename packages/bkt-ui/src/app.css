@@ -1248,3 +1248,10 @@ section > article + article {
     grid-template-columns: 1fr;
   }
 }
+
+.cite {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}

@@ -117,7 +117,9 @@ describe("GET /local/canon/search", () => {
 
     const d = await req(`/local/canon/excerpt?id=${first.claim_id}`, { headers: auth(t) });
     expect(d.status).toBe(200);
-    const detail = (await d.json()) as { id: number; source: { url: string | null }; evidence: { text: string; kind: string }[] };
+    const detail = (await d.json()) as { id: number; source: { url: string | null }; evidence: { text: string; kind: string; title: string; url: string | null; openable: boolean }[] };
+    expect(detail.evidence.every((p) => p.title.length > 0)).toBe(true);
+    expect(detail.evidence.every((p) => p.openable === (openable(p.url) !== null))).toBe(true);
     expect(detail.id).toBe(first.claim_id);
     expect(detail.evidence.length).toBe(first.evidence_count);
     expect((await req("/local/canon/excerpt?id=999999", { headers: auth(t) })).status).toBe(404);
@@ -151,7 +153,10 @@ describe("POST /local/open", () => {
       "https://evil.example/?https://www.youtube.com/",
       "file:///etc/passwd",
       "javascript:alert(1)",
-      "ftp://archive.org/x",
+      "ftp://arxiv.org/x",
+      "http://arxiv.org/abs/1",
+      "https://archive.org/details/x",
+      "https://doi.org/10.1/x",
       "data:text/html,x",
       "https://user:pw@www.youtube.com/",
       "https://user@www.youtube.com/",
@@ -167,17 +172,18 @@ describe("POST /local/open", () => {
     for (const url of refused) expect([url, (await post(t, { url })).status]).toEqual([url, 400]);
     for (const body of [{}, { url: 5 }, { url: null }, []]) expect((await post(t, body)).status).toBe(400);
     expect(opened).toEqual([]);
-    expect((await post(t, { url: "http://archive.org/details/x" })).status).toBe(200);
+    expect((await post(t, { url: "https://arxiv.org/abs/1103.1984" })).status).toBe(200);
     expect((await post(t, { url: "https://pubmed.ncbi.nlm.nih.gov/123/" })).status).toBe(200);
-    expect(opened).toEqual(["http://archive.org/details/x", "https://pubmed.ncbi.nlm.nih.gov/123/"]);
-    const big = JSON.stringify({ url: `https://archive.org/${"a".repeat(OPEN_BODY_BYTES)}` });
+    expect(opened).toEqual(["https://arxiv.org/abs/1103.1984", "https://pubmed.ncbi.nlm.nih.gov/123/"]);
+    const big = JSON.stringify({ url: `https://arxiv.org/${"a".repeat(OPEN_BODY_BYTES)}` });
     expect((await req("/local/open", { method: "POST", headers: { ...auth(t), "content-length": String(big.length) }, body: big })).status).toBe(413);
   });
 
   test("every source link in the pack is on the allowlist", () => {
     const urls = [...pack.excerpts.map((e) => e.source.url), ...Object.values(pack.evidence).flatMap((ps) => ps.map((p) => p.url)), ...pack.licences.map((l) => l.url)].filter((u): u is string => !!u);
     expect(urls.length).toBeGreaterThan(300);
-    expect(urls.filter((u) => !openable(u))).toEqual([]);
+    expect(urls.filter((u) => !u.startsWith("https://"))).toEqual([]);
+    expect(urls.filter((u) => !openable(u) && new URL(u).hostname !== "archive.org")).toEqual([]);
   });
 
   test("the browser command passes the link as one argument and never through a shell", () => {

@@ -23,6 +23,6 @@ for t in $targets; do
   if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
     bun scripts/check-no-staff.ts "$out/$name" content/canon.json || fail "staff atlas data found in $name"
   fi
-  bun scripts/check-no-kruse.ts content/canon.json --markers-only "$out/$name" || fail "denied source material found in $name"
+  bun scripts/check-no-kruse.ts content/canon.json "$out/$name" || fail "denied source material found in $name"
   echo "$out/$name"
 done
