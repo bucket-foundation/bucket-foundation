@@ -191,7 +191,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {missing && (
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
-          <p>Bucket has no quiz saved for this day. Daily quizzes are built from your chats and your work, and that builder has not shipped yet, so this page stays empty for now.</p>
+          <p>Bucket has no quiz saved for this day. Today's quiz is built from your recent chat sessions when this page opens, and nothing was built. Either both chat sources are off under Import, or the sessions from the last two days held no line Bucket could ask about.</p>
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>

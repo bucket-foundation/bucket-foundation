@@ -60,7 +60,7 @@ export interface Platform {
   cacheDir(): string;
   configDir(): string;
   python(): string;
-  notifyCommand(title: string, body: string, action: { name: string; label: string }): string[] | null;
+  notifyCommand(title: string, body: string, action: { name: string; label: string }, waitMs: number): string[] | null;
   timerDir(): string | null;
 }
 
@@ -263,7 +263,7 @@ function linux(d: PlatformDeps): Platform {
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(d.home, ".cache"),
     configDir: () => d.env.XDG_CONFIG_HOME ?? posix.join(d.home, ".config"),
     python: () => "python3",
-    notifyCommand: (title, body, action) => ["notify-send", "--app-name=Bucket", `--action=${action.name}=${action.label}`, "--", title, body],
+    notifyCommand: (title, body, action, waitMs) => ["notify-send", "--app-name=Bucket", `--expire-time=${Math.round(waitMs)}`, `--action=${action.name}=${action.label}`, "--", title, body],
     timerDir: () => posix.join(d.env.XDG_CONFIG_HOME ?? posix.join(d.home, ".config"), "systemd", "user"),
   };
 }

@@ -68,7 +68,7 @@ export const TABLE: CommandSpec[] = [
     options: { route: { type: "string", value: "PATH", help: "open the window on a view, such as /work/daily/2026-09-30" } },
   },
   { name: "quiz notify", summary: "send the daily quiz notification when a chat source changed", options: { force: { type: "boolean", help: "send even when today's notification went out" } } },
-  { name: "quiz schedule", summary: "run the daily quiz notification once a day; Linux only", options: { at: { type: "string", value: "HH:MM", help: "time of day, 08:53 when omitted" } } },
+  { name: "quiz schedule", summary: "run the daily quiz notification once a day; Linux only", options: { at: { type: "string", value: "HH:MM", help: "time of day, 08:53 when omitted" }, force: { type: "boolean", help: "replace a unit file that was edited by hand" } } },
   { name: "quiz unschedule", summary: "remove the daily quiz notification timer" },
   {
     name: "analyze",

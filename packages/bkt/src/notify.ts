@@ -1,8 +1,8 @@
 import { spawn } from "node:child_process";
-import { chmodSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { changedChatFiles, CHAT_OFF, localDay, type ChatToggles } from "./chat-sources";
-import { exec, platformFor, type Exec, type Platform } from "./platform";
+import { exec, platformFor, type Exec, type ExecResult, type Platform } from "./platform";
 import { dataDir } from "./setup";
 
 export const UNIT = "bkt-quiz-notify";
@@ -12,7 +12,25 @@ export const ACTION = { name: "open", label: "Open quiz" };
 export const ROOTS_FILE = "quiz-roots.json";
 export const STAMP_FILE = "quiz-notified";
 export const LINUX_ONLY = "bkt quiz runs on Linux for now; macOS and Windows have no notifier or schedule yet";
-export const USAGE = "usage: bkt quiz notify [--force] | bkt quiz schedule [--at HH:MM] | bkt quiz unschedule";
+export const USAGE = "usage: bkt quiz notify [--force] | bkt quiz schedule [--at HH:MM] [--force] | bkt quiz unschedule";
+export const WAIT_MS = 10 * 60_000;
+export const KILL_MS = WAIT_MS + 30_000;
+export const UNIT_TIMEOUT = "15min";
+export const SILENT: Record<"unsupported" | "off" | "already" | "quiet" | "failed", string> = {
+  unsupported: "this system has no notifier",
+  off: "both chat sources are off, or the Bucket window has not run with this data folder",
+  already: "today's notification went out; pass --force to send it again",
+  quiet: "no chat session changed in the last 24 hours",
+  failed: "notify-send did not run",
+};
+
+export function boundedExec(ms: number): Exec {
+  return async (argv) => {
+    const p = Bun.spawn(argv, { stdin: "ignore", stdout: "pipe", stderr: "pipe", timeout: ms });
+    const [stdout, stderr, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
+    return { code: p.signalCode ? 124 : code, stdout, stderr };
+  };
+}
 
 export function writeQuizRoots(dir: string, on: ChatToggles): void {
   const p = join(dir, ROOTS_FILE);
@@ -30,7 +48,7 @@ export function readQuizRoots(dir: string): ChatToggles {
 }
 
 export function notificationBody(count: number): string {
-  return `Today's quiz is ready. ${count} chat ${count === 1 ? "session" : "sessions"} changed in the last day.`;
+  return `${count} chat ${count === 1 ? "session" : "sessions"} changed in the last day. Open Bucket to build today's quiz from them.`;
 }
 
 export const quizLink = (day: string) => `bucket://quiz/${day}`;
@@ -46,6 +64,9 @@ export interface QuizDeps {
   exec: Exec;
   dataDir: string;
   self: string[];
+  env?: Record<string, string | undefined>;
+  waitMs?: number;
+  graceMs?: number;
   home?: string;
   now: number;
   start: (argv: string[]) => void;
@@ -59,7 +80,7 @@ const startDetached = (argv: string[]) => {
 };
 
 export function defaultDeps(): QuizDeps {
-  return { platform: platformFor(), exec, dataDir: dataDir(), self: selfArgv(), now: Date.now(), start: startDetached, out: (l) => console.log(l) };
+  return { platform: platformFor(), exec, dataDir: dataDir(), self: selfArgv(), env: process.env, now: Date.now(), start: startDetached, out: (l) => console.log(l) };
 }
 
 export type NotifyResult = { sent: false; why: "unsupported" | "off" | "already" | "quiet" | "failed" } | { sent: true; count: number; opened: string[] | null };
@@ -78,11 +99,19 @@ export async function quizNotify(d: QuizDeps, force = false): Promise<NotifyResu
   if (last === day && !force) return { sent: false, why: "already" };
   const count = changedChatFiles(on, { home: d.home, now: d.now }).files;
   if (count === 0) return { sent: false, why: "quiet" };
-  const argv = d.platform.notifyCommand(TITLE, notificationBody(count), ACTION);
+  const wait = d.waitMs ?? WAIT_MS;
+  const bound = wait + (d.graceMs ?? KILL_MS - WAIT_MS);
+  const argv = d.platform.notifyCommand(TITLE, notificationBody(count), ACTION, wait);
   if (!argv) return { sent: false, why: "unsupported" };
   writeFileSync(stamp, day, { mode: 0o600 });
-  const r = await d.exec(argv).catch(() => ({ code: 127, stdout: "", stderr: "" }));
-  if (r.code !== 0) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const ignored = new Promise<ExecResult>((done) => {
+    timer = setTimeout(() => done({ code: 0, stdout: "", stderr: "" }), bound);
+  });
+  const send = d.exec === exec ? boundedExec(bound) : d.exec;
+  const r = await Promise.race([send(argv).catch(() => ({ code: 127, stdout: "", stderr: "" })), ignored]);
+  clearTimeout(timer);
+  if (r.code !== 0 && r.code !== 124) {
     rmSync(stamp, { force: true });
     d.out(`notify-send failed (exit ${r.code})`);
     return { sent: false, why: "failed" };
@@ -105,15 +134,15 @@ function unitArg(arg: string): string {
   return `"${arg.replace(/[\\"]/g, "\\$&").replace(/%/g, "%%").replace(/\$/g, "$$$$")}"`;
 }
 
-export function unitFiles(self: string[], at = DEFAULT_AT): { service: string; timer: string } {
+export function unitFiles(self: string[], at = DEFAULT_AT, env: Record<string, string | undefined> = {}): { service: string; timer: string } {
   return {
     service: `[Unit]
 Description=Bucket daily quiz notification
 
 [Service]
 Type=oneshot
-ExecStart=${[...self, "quiz", "notify"].map(unitArg).join(" ")}
-TimeoutStartSec=6h
+${env.BKT_HOME ? `Environment=${unitArg(`BKT_HOME=${env.BKT_HOME}`)}\n` : ""}ExecStart=${[...self, "quiz", "notify"].map(unitArg).join(" ")}
+TimeoutStartSec=${UNIT_TIMEOUT}
 `,
     timer: `[Unit]
 Description=Bucket daily quiz notification, once a day
@@ -134,16 +163,24 @@ async function systemctl(d: QuizDeps, ...args: string[]): Promise<boolean> {
   return r.code === 0;
 }
 
-export async function quizSchedule(d: QuizDeps, at = DEFAULT_AT): Promise<number> {
+export async function quizSchedule(d: QuizDeps, at = DEFAULT_AT, force = false): Promise<number> {
   const dir = d.platform.timerDir();
   if (!dir) {
     d.out(LINUX_ONLY);
     return 2;
   }
-  const files = unitFiles(d.self, at);
+  const files = unitFiles(d.self, at, d.env);
+  const targets: [string, string][] = [
+    [join(dir, `${UNIT}.service`), files.service],
+    [join(dir, `${UNIT}.timer`), files.timer],
+  ];
+  const differs = targets.filter(([path, text]) => existsSync(path) && readFileSync(path, "utf8") !== text).map(([path]) => path);
+  if (differs.length && !force) {
+    d.out(`${differs.join(" and ")} ${differs.length === 1 ? "differs" : "differ"} from what bkt would write; pass --force to replace`);
+    return 1;
+  }
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, `${UNIT}.service`), files.service);
-  writeFileSync(join(dir, `${UNIT}.timer`), files.timer);
+  for (const [path, text] of targets) writeFileSync(path, text);
   if (!(await systemctl(d, "daemon-reload")) || !(await systemctl(d, "enable", "--now", `${UNIT}.timer`))) return 1;
   d.out(`the daily quiz notification runs at ${parseAt(at)}; turn on a chat source under Import for it to fire`);
   return 0;
@@ -171,14 +208,20 @@ export async function quizCommand(args: string[], d: QuizDeps = defaultDeps()): 
       return 2;
     }
     const r = await quizNotify(d, rest.includes("--force"));
+    if (!r.sent) d.out(`bkt quiz notify: silent, ${SILENT[r.why]}`);
     return r.sent || r.why !== "failed" ? 0 : 1;
   }
-  if (cmd === "schedule" && (rest.length === 0 || (rest.length === 2 && rest[0] === "--at") || (rest.length === 1 && rest[0].startsWith("--at=")))) {
-    try {
-      return await quizSchedule(d, rest.length === 2 ? rest[1] : rest.length === 1 ? rest[0].slice(5) : DEFAULT_AT);
-    } catch (e) {
-      d.out((e as Error).message);
-      return 2;
+  if (cmd === "schedule") {
+    const force = rest.includes("--force");
+    const args = rest.filter((a) => a !== "--force");
+    const at = args.length === 0 ? DEFAULT_AT : args.length === 2 && args[0] === "--at" ? args[1] : args.length === 1 && args[0].startsWith("--at=") ? args[0].slice(5) : null;
+    if (at !== null) {
+      try {
+        return await quizSchedule(d, at, force);
+      } catch (e) {
+        d.out((e as Error).message);
+        return 2;
+      }
     }
   }
   if (cmd === "unschedule" && rest.length === 0) return quizUnschedule(d);

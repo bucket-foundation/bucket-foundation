@@ -126,11 +126,13 @@ Every line a chat session yields passes `secret-scan.ts` before any other use. A
 
 ## Quiz notification
 
-Linux only for now. `bkt quiz schedule` writes `bkt-quiz-notify.service` and `bkt-quiz-notify.timer` under `~/.config/systemd/user` and enables the timer: once a day at 08:53, or at `--at HH:MM`. `bkt quiz unschedule` removes both. On macOS and Windows the three `bkt quiz` commands print that they are Linux only and exit 2.
+Linux only for now. `bkt quiz schedule` writes `bkt-quiz-notify.service` and `bkt-quiz-notify.timer` under `~/.config/systemd/user` and enables the timer: once a day at 08:53, or at `--at HH:MM`. When `BKT_HOME` is set at schedule time the service carries it. A unit file that differs from what `bkt` would write is left alone unless `--force` is given. `bkt quiz unschedule` removes both. On macOS and Windows the three `bkt quiz` commands print that they are Linux only and exit 2.
 
-`bkt quiz notify` is one shot. It opens no database and reads no file content: it reads the two switches from `quiz-roots.json` in the data folder, which `bkt serve` writes, and stats the chat roots that are on under the caps above. It stays silent when both switches are off, when no session file changed in the last 24 hours, or when it already fired today (`--force` skips that check). The notification is a fixed line plus the count of changed session files. A click on Open quiz runs `xdg-open bucket://quiz/<day>` when a handler for `bucket://` is registered, and `bkt app --route /work/daily/<day>` otherwise.
+`bkt quiz notify` is one shot. It opens no database and reads no file content: it reads the two switches from `quiz-roots.json` in the data folder, which `bkt serve` writes, and stats the chat roots that are on under the caps above. It stays silent, and prints one line with the reason, when both switches are off, when no session file changed in the last 24 hours, or when it already fired today (`--force` skips that check). The notification is a fixed line plus the count of changed session files; it promises a build on open, since the notifier cannot see the sealed quiz. It waits at most 10 minutes for a click, and the service times out at 15 minutes. A click on Open quiz runs `xdg-open bucket://quiz/<day>` when a handler for `bucket://` is registered, and `bkt app --route /work/daily/<day>` otherwise. When the build finds nothing to ask about, the quiz page says so.
 
-`bkt app --route <path>` opens the window on that view. The path holds letters, digits, `.`, `_`, `-` and `/`, at most 120 characters, and reaches the window as the URL fragment.
+`quiz-roots.json` is plain and owned by the user. Another process running as the same user can flip the switches in it and cause a notification that carries a count; it gains no transcript text that way, and the sealed switches in `bkt.db` still decide what `bkt serve` reads.
+
+`bkt app --route <path>` opens the window on a view: `/work/daily/YYYY-MM-DD` with a valid date, or one of the named views such as `/work` and `/import`. The path reaches the window as the URL fragment.
 
 ## Daily quiz
 

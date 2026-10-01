@@ -165,7 +165,7 @@ export async function execute(inv: Invocation): Promise<number> {
     return r.status === "error" ? EXIT.failure : EXIT.ok;
   }
   if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
-  if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : [])]);
+  if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz unschedule") return quizCommand(["unschedule"]);
   let route: string | null = null;
   if (name === "app" && inv.values.route !== undefined) {

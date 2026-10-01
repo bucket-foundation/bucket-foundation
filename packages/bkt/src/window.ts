@@ -65,13 +65,21 @@ export function openWindow(url: string, profile: string): void {
   child.unref();
 }
 
-export const ROUTE = /^\/[\w./-]{0,120}$/;
+export const VIEWS = ["learn", "path", "quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"] as const;
+const DAILY = /^\/work\/daily\/(\d{4}-\d{2}-\d{2})$/;
 
 export class RouteError extends Error {}
 
+function calendarDay(day: string): boolean {
+  const d = new Date(`${day}T00:00:00Z`);
+  return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === day;
+}
+
 export function checkRoute(route: unknown): string {
-  if (typeof route !== "string" || !ROUTE.test(route) || route.includes("..") || route.includes("//")) throw new RouteError("--route takes a path such as /work/daily/2026-09-30");
-  return route;
+  const daily = typeof route === "string" ? DAILY.exec(route) : null;
+  const ok = typeof route === "string" && (daily ? calendarDay(daily[1]) : (VIEWS as readonly string[]).some((v) => route === `/${v}`));
+  if (!ok) throw new RouteError(`--route takes /work/daily/YYYY-MM-DD or one of ${VIEWS.map((v) => `/${v}`).join(", ")}`);
+  return route as string;
 }
 
 export function routeUrl(url: string, route: string | null): string {
