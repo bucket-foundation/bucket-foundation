@@ -29,7 +29,8 @@ import { BUNDLED_ROS, rosRoutes } from "./ros";
 import { startServe } from "./serve";
 import { checkUpdate, describeUpdate } from "./update";
 import { VERSION } from "./version";
-import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "./window";
+import { openWindow, readApp, routeUrl, runtimeDir, splitRoute, takeRoute, uiDir, writeApp, writeRoute } from "./window";
+import { quizCommand, writeQuizRoots } from "./notify";
 
 const HAI_TOOLS = new Set(["freeze", "review", "score"]);
 
@@ -83,13 +84,20 @@ async function main(argv: string[]) {
     if (r.status === "error") process.exitCode = 1;
     return;
   }
+  if (argv[0] === "quiz") {
+    process.exitCode = await quizCommand(argv.slice(1));
+    return;
+  }
+  let route: string | null = null;
   if (argv[0] === "app") {
+    ({ argv, route } = splitRoute(argv));
     const running = readApp(runtimeDir());
     if (running) {
       if (process.platform === "win32") {
-        console.log(`Bucket is already running at http://127.0.0.1:${running.port}/`);
+        console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
         return;
       }
+      if (route !== null) writeRoute(runtimeDir(), route);
       process.kill(running.pid, "SIGUSR1");
       console.log(`reopened the Bucket window on port ${running.port}`);
       return;
@@ -160,13 +168,15 @@ async function main(argv: string[]) {
         root: join(dir, "jobs"),
         specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
       });
+      const workQuiz = new WorkQuizStore(session.store, session.key);
+      writeQuizRoots(dir, workQuiz.chat());
       const srv = startServe({
         routes: {
           ...localRoutes(session.store, { content }),
           ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
           ...advisorRoutes(people),
           ...jobRoutes(runner),
-          ...workQuizRoutes(new WorkQuizStore(session.store, session.key)),
+          ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),
           ...notesRoutes(new NotesStore(session.store, session.key)),
           ...historyRoutes(new HistoryStore(session.store, session.key)),
         },
@@ -184,13 +194,13 @@ async function main(argv: string[]) {
       });
       const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
       const profile = join(dir, "window-profile");
-      const show = () => (cmd === "app" ? openWindow(srv.url, profile) : console.log(srv.url));
+      const show = (to: string | null) => (cmd === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
       const reopen = () => {
         srv.remint();
-        show();
+        show(takeRoute(runtimeDir()));
       };
       if (process.platform !== "win32") process.on("SIGUSR1", reopen);
-      show();
+      show(route);
       await new Promise<void>((done) => {
         process.once("SIGINT", done);
         process.once("SIGTERM", done);

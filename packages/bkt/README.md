@@ -109,6 +109,14 @@ Every line a chat session yields passes `secret-scan.ts` before any other use. A
 
 `GET /local/work-quiz/daily` builds today's quiz on first open when a chat switch is on. Templates write the questions by default. When `bkt-llm-server` answers on `http://127.0.0.1:11435` (`BKT_LLM_URL`, `BKT_LLM_MODEL`), the local model writes recall questions from the stubs and templates fill the rest. The address must be `http` on `127.0.0.1` or `[::1]`, redirects are refused, the reply is scanned for secrets and validated, and any failure or a 30 second timeout falls back to templates. Transcript text can steer the model's wording, so a model-written question can mislead; template questions carry counts, days and tool names the code computed.
 
+## Quiz notification
+
+Linux only for now. `bkt quiz schedule` writes `bkt-quiz-notify.service` and `bkt-quiz-notify.timer` under `~/.config/systemd/user` and enables the timer: once a day at 08:53, or at `--at HH:MM`. `bkt quiz unschedule` removes both. On macOS and Windows the three `bkt quiz` commands print that they are Linux only and exit 2.
+
+`bkt quiz notify` is one shot. It opens no database and reads no file content: it reads the two switches from `quiz-roots.json` in the data folder, which `bkt serve` writes, and stats the chat roots that are on under the caps above. It stays silent when both switches are off, when no session file changed in the last 24 hours, or when it already fired today (`--force` skips that check). The notification is a fixed line plus the count of changed session files. A click on Open quiz runs `xdg-open bucket://quiz/<day>` when a handler for `bucket://` is registered, and `bkt app --route /work/daily/<day>` otherwise.
+
+`bkt app --route <path>` opens the window on that view. The path holds letters, digits, `.`, `_`, `-` and `/`, at most 120 characters, and reaches the window as the URL fragment.
+
 ## Daily quiz
 
 `bkt serve` keeps each day's quiz sealed in the `daily_quiz` table of `bkt.db`, one row a day, at most 20 questions and 256 KB. The table is local and never syncs. `GET /local/work-quiz/daily?day=YYYY-MM-DD` returns the questions without answers; `POST /local/work-quiz/answer` with `day` grades one question once. A Fermi question is right when the answer sits within half an order of magnitude: `abs(log10(got / want))` at or under 0.5. The distance is stored beside the attempt in `log10_distance`; attempts from before schema 8 keep their grades and hold no distance. A zero or negative estimate is wrong. Forgetting the work quiz sources deletes the stored quizzes.

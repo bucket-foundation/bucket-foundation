@@ -64,3 +64,45 @@ export function openWindow(url: string, profile: string): void {
   child.on("error", (e) => console.error(`could not open a window: ${e.message}; open ${url}`));
   child.unref();
 }
+
+export const ROUTE = /^\/[\w./-]{0,120}$/;
+
+export class RouteError extends Error {}
+
+export function checkRoute(route: unknown): string {
+  if (typeof route !== "string" || !ROUTE.test(route) || route.includes("..") || route.includes("//")) throw new RouteError("--route takes a path such as /work/daily/2026-09-30");
+  return route;
+}
+
+export function routeUrl(url: string, route: string | null): string {
+  return route === null ? url : `${url}#${checkRoute(route)}`;
+}
+
+export function writeRoute(dir: string, route: string): void {
+  platformFor().secureDir(dir);
+  const p = join(dir, "app-route");
+  writeFileSync(p, checkRoute(route), { mode: 0o600 });
+  chmodSync(p, 0o600);
+}
+
+export function takeRoute(dir: string): string | null {
+  const p = join(dir, "app-route");
+  try {
+    return checkRoute(readFileSync(p, "utf8"));
+  } catch {
+    return null;
+  } finally {
+    rmSync(p, { force: true });
+  }
+}
+
+export function splitRoute(argv: string[]): { argv: string[]; route: string | null } {
+  const rest: string[] = [];
+  let route: string | null = null;
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === "--route") route = checkRoute(argv[++i]);
+    else if (argv[i].startsWith("--route=")) route = checkRoute(argv[i].slice("--route=".length));
+    else rest.push(argv[i]);
+  }
+  return { argv: rest, route };
+}

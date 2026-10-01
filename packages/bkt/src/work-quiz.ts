@@ -148,6 +148,7 @@ export interface WorkQuizOptions {
   readChats?: (on: ChatToggles, o: { home?: string; now: number }) => ChatScan;
   writer?: WriterOptions;
   log?: (line: string) => void;
+  onChat?: (on: ChatToggles) => void;
 }
 
 export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Record<string, Route> {
@@ -240,12 +241,14 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const b = await body(req);
       if (!b || !CHAT_ROOT_NAMES.every((r) => typeof b[r] === "boolean")) return json({ error: "send claude and codex as true or false" }, 400);
       wq.setChat({ claude: b.claude === true, codex: b.codex === true });
+      o.onChat?.(wq.chat());
       empty.clear();
       return json({ chat: wq.chat() });
     },
     "POST /local/work-quiz/forget": () => {
       wq.clear();
       issued.clear();
+      o.onChat?.(wq.chat());
       empty.clear();
       return json({ cleared: true });
     },
