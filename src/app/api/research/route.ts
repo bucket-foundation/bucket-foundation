@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { buildIndex, tokenRank } from "@/lib/canon-search-index";
+import { canonIndex, canonTokenRank, type CanonHit } from "@/lib/canon-search";
 import { getEvidenceFor } from "@/lib/canon-evidence";
 import { rankPrimary, authorsShort, type PrimaryPaper } from "@/lib/canon-primary";
 
@@ -147,9 +147,9 @@ function isQuarantined(title: string, snippet: string): boolean {
 }
 
 function transcriptCandidates(q: string) {
-  let ranked: ReturnType<typeof tokenRank> = [];
+  let ranked: CanonHit[] = [];
   try {
-    if (buildIndex().length) ranked = tokenRank(q, 24);
+    if (canonIndex().length) ranked = canonTokenRank(q, 24);
   } catch {
     ranked = [];
   }
