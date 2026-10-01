@@ -6,7 +6,7 @@ import { newDataKey, open, seal } from "../src/crypto";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../src/deck";
 import type { Item } from "../src/grade";
 import { buildPack, itemsFromCorpus } from "../src/pack/export";
-import { Store } from "../src/store";
+import { SCHEMA_VERSION, Store } from "../src/store";
 
 const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   id: `phys/${id}/0`,
@@ -43,7 +43,7 @@ describe("Store", () => {
     expect(s.journalMode()).toBe("wal");
     s.close();
     const again = new Store(path, key);
-    expect(again.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(7);
+    expect(again.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     again.close();
   });
 
