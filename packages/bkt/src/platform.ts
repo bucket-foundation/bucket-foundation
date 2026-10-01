@@ -196,7 +196,7 @@ function windowsUser(d: PlatformDeps): string {
 let sid: string | null = null;
 
 export function windowsWhoami(env: Env): string {
-  return win32.join(env.SystemRoot ?? env.SYSTEMROOT ?? env.windir ?? "C:\\Windows", "System32", "whoami.exe");
+  return win32.join(env.SystemRoot || env.SYSTEMROOT || env.windir || "C:\\Windows", "System32", "whoami.exe");
 }
 
 export function windowsSid(d: PlatformDeps): string {

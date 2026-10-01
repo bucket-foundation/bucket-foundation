@@ -211,6 +211,8 @@ const WHOAMI = "C:\\Windows\\System32\\whoami.exe";
 describe("owner-only dirs", () => {
   test("windows whoami resolves under SystemRoot and never from PATH", () => {
     expect(windowsWhoami({})).toBe(WHOAMI);
+    expect(windowsWhoami({ SystemRoot: "" })).toBe(WHOAMI);
+    expect(windowsWhoami({ SystemRoot: "", SYSTEMROOT: "", windir: "G:\\Win" })).toBe("G:\\Win\\System32\\whoami.exe");
     expect(windowsWhoami({ SystemRoot: "D:\\WINNT", PATH: "C:\\Program Files\\Git\\usr\\bin" })).toBe("D:\\WINNT\\System32\\whoami.exe");
     expect(windowsWhoami({ SYSTEMROOT: "E:\\Win" })).toBe("E:\\Win\\System32\\whoami.exe");
     expect(windowsWhoami({ windir: "F:\\Win" })).toBe("F:\\Win\\System32\\whoami.exe");
