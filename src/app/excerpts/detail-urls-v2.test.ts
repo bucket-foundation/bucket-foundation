@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { buildIndex } from "@/lib/canon-search-index";
+import { canonIndex } from "@/lib/canon-search";
 import { detailStaticParams, resolveDetail } from "./detail-params-v2";
 
-const indexed = buildIndex();
+const indexed = canonIndex();
 assert.ok(indexed.length > 0, "canon search index is empty");
 
 const routed = new Set(detailStaticParams().map((p) => `${p.concept}/${p.slug}`));
