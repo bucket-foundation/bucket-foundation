@@ -7,7 +7,7 @@ import { exploreSearch, type ExploreSearchDeps } from "../../../src/lib/explore/
 import { prepare, type Prepared, type SourceKind } from "../../../src/lib/explore/source-index";
 import type { CanonStore } from "./canon";
 import type { Licence } from "./pack/canon";
-import type { ExplorePack, FoundingWorks } from "./pack/explore";
+import type { ExplorePack, FoundingRow } from "./pack/explore";
 import type { Route } from "./serve";
 
 export const EXPLORE_META_KEY = "explore_pack_version";
@@ -68,8 +68,13 @@ export class ExploreStore {
     return this.yearMap.get(concept) ?? null;
   }
 
-  foundingWorks(): FoundingWorks | null {
-    return this.doc<FoundingWorks>("foundingWorks");
+  foundingWorks(): FoundingRow[] {
+    return this.doc<FoundingRow[]>("foundingWorks") ?? [];
+  }
+
+  hasPrimaryPaper(doi: string): boolean {
+    if (!this.version()) return false;
+    return this.db.query<{ n: number }, [string]>("select count(*) as n from explore_sources where kind = 'd' and id = ?").get(doi)!.n > 0;
   }
 
   referenceBasis(): ReferenceBasis | null {

@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
 import { findStaff } from "../scripts/check-no-staff";
-import { assembleExplore, buildExplorePack, deniedSourceMarkers, describeExploreCounts, EXPLORE_LICENCES, EXPLORE_PACK_BUDGET_BYTES, readExploreInputs, SOURCES_FILE, splitSources, type ExploreInputs } from "../src/pack/explore";
+import { approvedFoundingRows, assembleExplore, buildExplorePack, deniedSourceMarkers, describeExploreCounts, EXPLORE_LICENCES, EXPLORE_PACK_BUDGET_BYTES, readExploreInputs, SOURCES_FILE, splitSources, type ExploreInputs } from "../src/pack/explore";
 import { buildDenylist, type Denylist } from "../src/pack/rights";
 import { SOURCE_TYPE, sourceUrl, type SourceIndex } from "../../../src/lib/explore/source-index";
 import sampleReview from "../../../src/lib/explore/fixtures/advisors.sample.json";
@@ -51,7 +51,7 @@ describe("explore rights filter", () => {
 
   test("the build stops on a row of an unknown kind and on denied material that survives", () => {
     expect(() => splitSources({ v: 1, items: [["z" as "y", "1", "t", null, "", ""]] }, deny)).toThrow(/no licence row/);
-    const founding = { ...inputs().foundingWorks, rows: [{ basis: `a book by ${OWNER}` }] };
+    const founding = { ...inputs().foundingWorks, rows: [{ basis: `a book by ${OWNER}`, reviewer: "A Reviewer", basis_verified: true }] };
     expect(() => assembleExplore(inputs({ foundingWorks: founding }), deny)).toThrow(/denied rows left in the explore pack/);
     const basis = inputs().referenceBasis;
     expect(() => assembleExplore(inputs({ referenceBasis: { ...basis, stop_words: [OWNER.toLowerCase()] } }), deny)).toThrow(/reference basis/);
@@ -71,7 +71,7 @@ describe("explore pack on this repo", () => {
     expect(s.deniedByKind).toEqual({ o: 0, p: 0, a: 0, g: 0, w: 0, y: 167, d: 0 });
     expect(pack.counts.videoIds).toBe(167);
     expect(pack.counts.years).toEqual({ total: 114, kept: 112 });
-    expect(pack.counts.foundingWorks).toBe(40);
+    expect(pack.counts.foundingWorks).toEqual({ total: 40, approved: 0 });
     expect(pack.sources.length).toBe(s.kept);
   });
 
@@ -95,7 +95,6 @@ describe("explore pack on this repo", () => {
     expect(pack.licences.reduce((n, l) => n + l.works, 0)).toBe(pack.sources.length);
     expect(pack.licences.filter((l) => !l.terms || !/^https:\/\//.test(l.url ?? ""))).toEqual([]);
     expect(Buffer.byteLength(JSON.stringify(pack))).toBeLessThan(EXPLORE_PACK_BUDGET_BYTES);
-    expect(pack.foundingWorks.rows.length).toBe(40);
     expect(pack.referenceBasis.vocab.length).toBe(pack.referenceBasis.idf.length);
   });
 
@@ -115,6 +114,28 @@ describe("explore pack on this repo", () => {
       rmSync(dir, { recursive: true, force: true });
     }
   }, 120_000);
+
+  test("the pack holds no founding work that a named reviewer has not approved", () => {
+    const draft = readExploreInputs(REPO).foundingWorks;
+    expect(draft.rows.length).toBe(40);
+    expect(approvedFoundingRows(draft)).toEqual([]);
+    expect(pack.foundingWorks).toEqual([]);
+    const text = JSON.stringify({ ...pack, sources: [] });
+    expect(text).not.toContain("basis_verified");
+    expect(text).not.toContain("written from memory");
+    const rows = [
+      { concept: "kept", reviewer: "A Reviewer", basis_verified: true, disputed: false },
+      { concept: "no reviewer", reviewer: "", basis_verified: true },
+      { concept: "blank reviewer", reviewer: "  ", basis_verified: true },
+      { concept: "unverified", reviewer: "A Reviewer", basis_verified: false },
+      { concept: "disputed", reviewer: "A Reviewer", basis_verified: true, disputed: true },
+      { concept: "missing fields" },
+    ];
+    const p = assembleExplore(inputs({ foundingWorks: { ...draft, rows } }), deny);
+    expect(p.foundingWorks.map((r) => r.concept)).toEqual(["kept"]);
+    expect(p.counts.foundingWorks).toEqual({ total: 6, approved: 1 });
+    expect(p.foundingWorks.filter((r) => !r.reviewer || r.basis_verified !== true || r.disputed === true)).toEqual([]);
+  });
 
   test("no sample advisor is in the pack", () => {
     const text = JSON.stringify(pack);

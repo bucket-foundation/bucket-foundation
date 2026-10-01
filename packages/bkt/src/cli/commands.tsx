@@ -89,10 +89,11 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
   const canon = new CanonStore(session.store.db);
+  const explore = new ExploreStore(session.store.db);
   const srv = startServe({
     routes: {
-      ...canonRoutes(canon),
-      ...exploreRoutes(new ExploreStore(session.store.db), canon),
+      ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
+      ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...advisorRoutes(people),

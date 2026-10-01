@@ -23,14 +23,25 @@ export interface ExploreCounts {
   videoIds: number;
   sources: { total: number; kept: number; denied: Reasons; keptByKind: PerKind; deniedByKind: PerKind };
   years: { total: number; kept: number };
-  foundingWorks: number;
+  foundingWorks: { total: number; approved: number };
   referenceTerms: number;
+}
+
+export interface FoundingRow {
+  reviewer?: unknown;
+  basis_verified?: unknown;
+  disputed?: unknown;
+  [key: string]: unknown;
 }
 
 export interface FoundingWorks {
   schema: string;
-  rows: unknown[];
+  rows: FoundingRow[];
   [key: string]: unknown;
+}
+
+export function approvedFoundingRows(works: FoundingWorks): FoundingRow[] {
+  return works.rows.filter((r) => typeof r.reviewer === "string" && r.reviewer.trim() !== "" && r.basis_verified === true && r.disputed !== true);
 }
 
 export interface ExplorePack {
@@ -39,7 +50,7 @@ export interface ExplorePack {
   source: string;
   sources: PackSourceRow[];
   years: Record<string, number>;
-  foundingWorks: FoundingWorks;
+  foundingWorks: FoundingRow[];
   referenceBasis: ReferenceBasis;
   licences: Licence[];
   counts: ExploreCounts;
@@ -107,11 +118,12 @@ export function deniedSourceMarkers(split: ExploreSplit): string[] {
 
 export function assembleExplore(inputs: ExploreInputs, deny: Denylist): ExplorePack {
   const split = splitSources(inputs.index, deny);
+  const approved = approvedFoundingRows(inputs.foundingWorks);
   const counts: ExploreCounts = {
     videoIds: deny.videoIds.size,
     sources: { total: inputs.index.items.length, kept: split.kept.length, denied: zero(), keptByKind: perKind(), deniedByKind: perKind() },
     years: { total: inputs.timeline.events.length, kept: 0 },
-    foundingWorks: inputs.foundingWorks.rows.length,
+    foundingWorks: { total: inputs.foundingWorks.rows.length, approved: approved.length },
     referenceTerms: inputs.referenceBasis.vocab.length,
   };
   for (const r of split.kept) counts.sources.keptByKind[r[0]]++;
@@ -123,7 +135,7 @@ export function assembleExplore(inputs: ExploreInputs, deny: Denylist): ExploreP
   for (const e of inputs.timeline.events) if (!denyRow(deny, [e.id], e.title ?? "")) years[e.id] = e.year;
   counts.years.kept = Object.keys(years).length;
   const licences = KINDS.filter((k) => counts.sources.keptByKind[k] > 0).map((k) => ({ kind: k, ...EXPLORE_LICENCES[k], works: counts.sources.keptByKind[k] }));
-  const body = { source: "explore source index", sources: split.kept, years, foundingWorks: inputs.foundingWorks, referenceBasis: inputs.referenceBasis, licences, counts };
+  const body = { source: "explore source index", sources: split.kept, years, foundingWorks: approved, referenceBasis: inputs.referenceBasis, licences, counts };
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: ExplorePack = { version: sha256.slice(0, 12), sha256, ...body };
   const { referenceBasis, ...rest } = pack;
@@ -142,7 +154,7 @@ export function describeExploreCounts(c: ExploreCounts): string[] {
   return [
     `sources: ${s.kept} kept of ${s.total}; denied prefix ${s.denied.prefix}, video ${s.denied.video}, path ${s.denied.path}, file ${s.denied.file}, text ${s.denied.text}`,
     `kept by kind: ${JSON.stringify(s.keptByKind)}; denied by kind: ${JSON.stringify(s.deniedByKind)}`,
-    `timeline years: ${c.years.kept} kept of ${c.years.total}; founding works: ${c.foundingWorks}; reference terms: ${c.referenceTerms}`,
+    `timeline years: ${c.years.kept} kept of ${c.years.total}; founding works: ${c.foundingWorks.approved} approved of ${c.foundingWorks.total}; reference terms: ${c.referenceTerms}`,
   ];
 }
 

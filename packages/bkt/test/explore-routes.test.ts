@@ -2,7 +2,7 @@ import { Database } from "bun:sqlite";
 import { afterEach, describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
-import { CanonStore, syncCanon } from "../src/canon";
+import { canonRoutes, CanonStore, OPEN_BODY_BYTES, openableDoi, syncCanon } from "../src/canon";
 import { EXPLORE_META_KEY, exploreRoutes, ExploreStore, NO_ADVISORS, syncExplore } from "../src/explore";
 import { buildCanonPack } from "../src/pack/canon";
 import { buildExplorePack } from "../src/pack/explore";
@@ -21,6 +21,7 @@ const pack = buildExplorePack(REPO);
 const ME = 4242;
 let peerUid = ME;
 let s: Serve | null = null;
+let opened: string[] = [];
 
 function freshDb(): Database {
   const db = new Database(":memory:");
@@ -32,7 +33,15 @@ function boot(db = freshDb()) {
   syncCanon(db, canonPack);
   syncExplore(db, pack);
   peerUid = ME;
-  s = startServe({ uid: ME, resolvePeerUid: () => peerUid, routes: exploreRoutes(new ExploreStore(db), new CanonStore(db)) });
+  opened = [];
+  const canon = new CanonStore(db);
+  const explore = new ExploreStore(db);
+  s = startServe({
+    uid: ME,
+    resolvePeerUid: () => peerUid,
+    routes: { ...canonRoutes(canon, { open: (u) => opened.push(u), holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }), ...exploreRoutes(explore, canon) },
+    routeBodyBytes: { "POST /local/open": OPEN_BODY_BYTES },
+  });
   return s;
 }
 
@@ -114,7 +123,7 @@ describe("explore tables", () => {
     expect(store.pool().length).toBe(pack.sources.length);
     expect(store.pool()[0].row).toEqual([pack.sources[0][0], pack.sources[0][1], pack.sources[0][2], pack.sources[0][3], "", pack.sources[0][4]]);
     expect(store.licences()).toEqual(pack.licences);
-    expect(store.foundingWorks()).toEqual(pack.foundingWorks);
+    expect(store.foundingWorks()).toEqual([]);
     expect(store.referenceBasis()!.vocab.length).toBe(pack.referenceBasis.vocab.length);
     expect(store.yearOf(Object.keys(pack.years)[0])).toBe(Object.values(pack.years)[0]);
     expect(store.yearOf("no-such-concept")).toBeNull();
@@ -127,7 +136,8 @@ describe("explore tables", () => {
     const store = new ExploreStore(freshDb());
     expect(store.pool()).toEqual([]);
     expect(store.licences()).toEqual([]);
-    expect(store.foundingWorks()).toBeNull();
+    expect(store.foundingWorks()).toEqual([]);
+    expect(store.hasPrimaryPaper("10.1002/j.1538-7305.1948.tb01338.x")).toBe(false);
     expect(store.referenceBasis()).toBeNull();
     expect(store.yearOf("light")).toBeNull();
   });
@@ -218,11 +228,65 @@ describe("GET /local/explore/search", () => {
       expect(localBody.results.some((h) => h.type === type)).toBe(true);
     }
     expect(shape(localBody)).toEqual(shape(webBody));
+    const isSource = (h: { type: string }) => ["paper", "text", "talk"].includes(h.type);
+    expect(webBody.results.filter(isSource).some((h) => h.text.length > 0)).toBe(true);
+    expect(localBody.results.filter(isSource).map((h) => h.text).filter((t) => t !== "")).toEqual([]);
     const webMap = await exploreSearch(webDeps(), new URL("http://site.test/api/explore/search?map=1"));
     expect(shape(await (await req("/local/explore/search?map=1", { headers: auth(t) })).json())).toEqual(shape(webMap.body));
     const webErr = await exploreSearch(webDeps(), new URL("http://site.test/api/explore/search"));
     const localErr = await req("/local/explore/search", { headers: auth(t) });
     expect(localErr.status).toBe(webErr.status);
     expect(shape(await localErr.json())).toEqual(shape(webErr.body));
+  });
+});
+
+describe("POST /local/open for primary papers", () => {
+  const SHANNON = "10.1002/j.1538-7305.1948.tb01338.x";
+  const open = (t: string, url: string) => {
+    const text = JSON.stringify({ url });
+    return req("/local/open", { method: "POST", headers: { ...auth(t), "content-type": "application/json", "content-length": String(text.length) }, body: text });
+  };
+
+  test("a DOI held in the pack opens, and every other doi.org link is refused", async () => {
+    boot();
+    const t = await token();
+    expect(pack.sources.some((r) => r[0] === "d" && r[1] === SHANNON)).toBe(true);
+    expect((await open(t, `https://doi.org/${SHANNON}`)).status).toBe(200);
+    expect(opened).toEqual([`https://doi.org/${SHANNON}`]);
+    const refused = [
+      "https://doi.org/10.9999/well-formed-and-absent",
+      `https://doi.org/${SHANNON}?next=https://evil.example`,
+      `https://doi.org/${SHANNON}#frag`,
+      `https://doi.org/${SHANNON}/../../evil`,
+      `https://doi.org/x/../${SHANNON}`,
+      `https://doi.org//${SHANNON}`,
+      `https://doi.org/${SHANNON.toUpperCase()}`,
+      `https://doi.org/${SHANNON} --flag`,
+      `http://doi.org/${SHANNON}`,
+      `https://doi.org:8443/${SHANNON}`,
+      `https://user@doi.org/${SHANNON}`,
+      `https://doi.org.evil.example/${SHANNON}`,
+      `https://evil.example/https://doi.org/${SHANNON}`,
+      `https://dx.doi.org/${SHANNON}`,
+      "https://doi.org/",
+      "https://doi.org/10.1/x",
+    ];
+    for (const url of refused) expect([url, (await open(t, url)).status]).toEqual([url, 400]);
+    expect(opened.length).toBe(1);
+    expect((await open("x".repeat(43), `https://doi.org/${SHANNON}`)).status).toBe(401);
+  });
+
+  test("every primary paper in the pack passes the DOI rule, and a non-paper id never does", () => {
+    const held = new Set(pack.sources.filter((r) => r[0] === "d").map((r) => r[1]));
+    expect(held.size).toBe(150);
+    expect([...held].filter((id) => !openableDoi(`https://doi.org/${id}`, (d) => held.has(d)))).toEqual([]);
+    expect(openableDoi(`https://doi.org/${SHANNON}`, () => false)).toBeNull();
+    const store = new ExploreStore(freshDb());
+    expect(store.hasPrimaryPaper(SHANNON)).toBe(false);
+    const db = freshDb();
+    syncExplore(db, pack);
+    const other = pack.sources.find((r) => r[0] === "p")!;
+    expect(new ExploreStore(db).hasPrimaryPaper(other[1])).toBe(false);
+    expect(new ExploreStore(db).hasPrimaryPaper(SHANNON)).toBe(true);
   });
 });
