@@ -170,7 +170,7 @@ await page.fill(".search", "4000");
 await page.click(".toolbar button.primary");
 await page.waitForSelector(".after-block");
 await page.screenshot({ path: join(out, "5d-daily-quiz-fermi.png") });
-await page.click('nav a[href="#/atlases"]');
+await page.evaluate(() => (window.location.hash = "#/atlases"));
 await page.waitForSelector("text=This build has no solvability atlas");
 await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../../../src/lib/research-os/solvability-atlas-data.json"));
 await page.waitForSelector(".atlas-body");
@@ -180,12 +180,12 @@ await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../..
 await page.waitForSelector(".atlas-body");
 await page.screenshot({ path: join(out, "6f-atlas-patents.png") });
 
-await page.click('nav a[href="#/advisors"]');
+await page.evaluate(() => (window.location.hash = "#/advisors"));
 await page.waitForSelector(".people button");
 await page.click(".people li:nth-child(3) button");
 await page.screenshot({ path: join(out, "7-advisors.png") });
 
-await page.click('nav a[href="#/primes"]');
+await page.evaluate(() => (window.location.hash = "#/primes"));
 await page.waitForSelector(".spokes");
 await page.screenshot({ path: join(out, "8-prime-directions.png") });
 
@@ -205,7 +205,7 @@ await page.waitForSelector(".log");
 await page.screenshot({ path: join(out, "9-jobs.png") });
 
 await page.click('nav a[href="#/import"]');
-await page.waitForSelector(".file");
+await page.waitForSelector('h1:has-text("Import")');
 await page.screenshot({ path: join(out, "6-import.png") });
 
 const home = mkdtempSync(join(out, ".home-"));
