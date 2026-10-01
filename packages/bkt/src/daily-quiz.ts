@@ -1,4 +1,5 @@
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
+import { checkLimits, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { QUIZ_TYPES, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import { open, seal } from "./crypto";
 import type { Store } from "./store";
@@ -43,7 +44,13 @@ function source(v: unknown): SourceRef {
   return { kind: r.kind as SourceRef["kind"], ref: text(r.ref, "a source ref", 120), label: text(r.label, "a source label", 120), href };
 }
 
-function question(v: unknown): QuizQuestion {
+function limited(q: QuizQuestion, limits: boolean): QuizQuestion {
+  const over = limits ? checkLimits(q) : [];
+  if (over.length) throw new DailyQuizError(`question ${q.id} is over length: ${over.join("; ")}`);
+  return q;
+}
+
+function question(v: unknown, limits: boolean): QuizQuestion {
   const r = (v && typeof v === "object" && !Array.isArray(v) ? v : {}) as Record<string, unknown>;
   const id = text(r.id, "a question id", 120);
   if (!/^[\w.-]+$/.test(id)) throw new DailyQuizError("a question id holds letters, digits, dot, dash and underscore");
@@ -72,7 +79,7 @@ function question(v: unknown): QuizQuestion {
     const choices = r.choices.map((c) => text(c, `a choice of question ${id}`));
     if (new Set(choices).size !== choices.length) throw new DailyQuizError(`question ${id} repeats a choice`);
     if (!choices.includes(answer)) throw new DailyQuizError(`the answer of question ${id} is missing from its choices`);
-    return { ...base, choices, tolerance: 0 };
+    return limited({ ...base, choices, tolerance: 0 }, limits);
   }
   const want = Number(answer);
   if (!Number.isFinite(want)) throw new DailyQuizError(`question ${id} needs a numeric answer or choices`);
@@ -80,25 +87,29 @@ function question(v: unknown): QuizQuestion {
     const tol = r.log10Tolerance;
     if (typeof tol !== "number" || !(tol > 0) || tol > 3) throw new DailyQuizError(`question ${id} needs a log10 tolerance between 0 and 3`);
     if (want <= 0) throw new DailyQuizError(`question ${id} is graded on log10 and needs a positive answer`);
-    return { ...base, choices: null, tolerance: 0, log10Tolerance: tol };
+    return limited({ ...base, choices: null, tolerance: 0, log10Tolerance: tol }, limits);
   }
   const tolerance = r.tolerance;
   if (typeof tolerance !== "number" || !Number.isFinite(tolerance) || tolerance < 0) throw new DailyQuizError(`question ${id} needs a tolerance of zero or more`);
-  return { ...base, choices: null, tolerance };
+  return limited({ ...base, choices: null, tolerance }, limits);
 }
 
-export function parseDailyQuiz(raw: unknown): DailyQuiz {
+export function parseDailyQuiz(raw: unknown, o: { limits?: boolean } = {}): DailyQuiz {
   const r = (raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {}) as Record<string, unknown>;
   if (!validDay(r.day)) throw new DailyQuizError("the quiz needs a day written as YYYY-MM-DD");
   if (!Array.isArray(r.questions) || r.questions.length === 0 || r.questions.length > MAX_DAILY_QUESTIONS)
     throw new DailyQuizError(`the quiz needs between 1 and ${MAX_DAILY_QUESTIONS} questions`);
-  const questions = r.questions.map(question);
+  const questions = r.questions.map((q) => question(q, o.limits !== false));
   if (new Set(questions.map((q) => q.id)).size !== questions.length) throw new DailyQuizError("the quiz repeats a question id");
   return { day: r.day, questions };
 }
 
+export function overLength(quiz: DailyQuiz): boolean {
+  return quiz.questions.some((q) => !withinLimits(q));
+}
+
 export function fermi(q: { id: string; prompt: string; answer: number; explain: string; limitSec?: number; lines?: string[]; sources?: SourceRef[] }): QuizQuestion {
-  return question({ ...q, type: "estimate", answer: String(q.answer), limitSec: q.limitSec ?? 90, log10Tolerance: FERMI_LOG10_TOLERANCE });
+  return question({ ...q, type: "estimate", answer: String(q.answer), limitSec: q.limitSec ?? 90, log10Tolerance: FERMI_LOG10_TOLERANCE }, true);
 }
 
 export class DailyQuizStore {
@@ -120,7 +131,7 @@ export class DailyQuizStore {
   get(day: string): DailyQuiz | null {
     if (!validDay(day)) return null;
     const r = this.store.db.query<{ body: string }, [string]>("select body from daily_quiz where day = ?").get(day);
-    return r ? parseDailyQuiz(JSON.parse(open(this.key, r.body, `daily_quiz:${day}`))) : null;
+    return r ? parseDailyQuiz(JSON.parse(open(this.key, r.body, `daily_quiz:${day}`)), { limits: false }) : null;
   }
 
   days(): string[] {

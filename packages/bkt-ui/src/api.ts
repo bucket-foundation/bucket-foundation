@@ -38,11 +38,19 @@ export interface WorkQuestion {
   limitSec: number;
 }
 
+export interface WorkSource {
+  kind: string;
+  ref: string;
+  label: string;
+  href: string | null;
+}
+
 export interface WorkAnswer {
   correct: boolean;
   timedOut: boolean;
   answer: string;
   explain: string;
+  sources?: WorkSource[];
 }
 
 export interface DailyQuiz {

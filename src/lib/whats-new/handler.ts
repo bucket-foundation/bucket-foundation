@@ -1,6 +1,7 @@
 import { createHash, randomBytes } from "node:crypto";
 import { sharedRateLimiter, type MarkStore } from "../download/marks";
 import { bearer, matchToken, parseTokens, revokedInEnv, revokedInStore, sharedRevocationCache, type Poster, type RevocationCache } from "./auth";
+import { storedWebp, toWebp, webpName, type Encoded, type StoredImage } from "./image";
 import { entryLeaks } from "./leak-filter.mjs";
 import { loadPublicEntries, mergeEntries, type LegacyEntry } from "./public";
 import { ID, KINDS, parseEntryBody, type ImageMeta, type Kind } from "./schema";
@@ -17,7 +18,8 @@ import {
   readUsage,
   removeEntry,
   removeImage,
-  restoreImage,
+  withEntryLock,
+  BUSY,
   tombstone,
   writeEntry,
   writeImage,
@@ -48,6 +50,7 @@ export interface Deps {
   limits?: Limits;
   revocationCache?: RevocationCache;
   published?: () => Promise<StoredEntry[]>;
+  encodeImage?: (bytes: Buffer, declared: string) => Promise<Encoded>;
 }
 
 export { mergeEntries, type LegacyEntry };
@@ -83,6 +86,7 @@ export interface RevokeRequest {
 }
 
 const NOT_FOUND: Result = { status: 404, body: null };
+const IN_FLIGHT: Result = { status: 409, body: { error: "Another write to this id is in flight. Send it again." } };
 const POSTER_NAME = /^[a-z0-9-]{1,40}$/;
 
 function fail(status: number, error: string, extra: Record<string, unknown> = {}): Result {
@@ -158,7 +162,7 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
 
   const parsed = parseEntryBody(body);
   if (!parsed.ok) return fail(400, parsed.error, { field: parsed.field });
-  const { entry, image } = parsed;
+  const { entry } = parsed;
 
   const leaks = entryLeaks(entry) as { field: string; kind: string }[];
   if (leaks.length > 0) {
@@ -171,56 +175,51 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
 
   const now = new Date(clock()).toISOString();
   const body_hash = createHash("sha256").update(raw).digest("hex");
-  const fresh: StoredEntry = { ...entry, review_state: "draft", poster: poster.name, created_at: now, updated_at: now, body_hash };
   let reserved: Usage | null = null;
-  try {
-    let existing = await readEntry(store, entry.id);
-    if (!existing) {
-      const usage = await readUsage(store, poster.name);
-      if (usage.drafts >= limits.draftsPerPoster) return fail(429, "This poster holds the maximum number of drafts.");
-      if (usage.image_bytes + imageBytes(fresh) > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
-      if ((await entryIds(store)).length >= limits.draftsTotal) return fail(429, "The store holds the maximum number of drafts.");
-      const claim: Usage = { drafts: 1, image_bytes: imageBytes(fresh) };
-      await addUsage(store, poster.name, claim);
-      reserved = claim;
-      if (!(await createEntry(store, fresh))) {
-        await addUsage(store, poster.name, { drafts: -1, image_bytes: -claim.image_bytes });
-        reserved = null;
-        existing = await readEntry(store, entry.id);
-        if (!existing) return fail(409, "This id was taken while the post was in flight. Send it again.");
-      }
-    }
-
-    const wasPublished = existing?.review_state === "published";
+  const write = async (): Promise<Result> => {
+    const existing = await readEntry(store, entry.id);
     if (existing) {
       if (existing.poster !== poster.name) return fail(409, "This id belongs to another poster.");
       if (existing.review_state === "deleted") return fail(409, "This id was deleted and stays retired.");
       if (existing.kind !== entry.kind) return fail(409, `This id holds a ${existing.kind}; the kind of an entry is fixed.`);
-      const delta = imageBytes(fresh) - imageBytes(existing);
-      const usage = await readUsage(store, poster.name);
-      if (delta > 0 && usage.image_bytes + delta > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
-      const claim: Usage = { drafts: wasPublished ? 1 : 0, image_bytes: delta };
-      if (claim.drafts !== 0 || delta !== 0) {
-        await addUsage(store, poster.name, claim);
-        reserved = claim;
-      }
-      const previousImage = await readImage(store, entry.id);
-      if (image) await writeImage(store, entry.id, image);
-      try {
-        await writeEntry(store, { ...fresh, created_at: existing.created_at });
-      } catch (err) {
-        if (image) await restoreImage(store, entry.id, previousImage);
-        throw err;
-      }
-      if (!image) await removeImage(store, entry.id);
-    } else if (image) {
-      try {
-        await writeImage(store, entry.id, image);
-      } catch (err) {
-        await removeEntry(store, entry.id);
-        throw err;
-      }
+    } else {
+      if ((await readUsage(store, poster.name)).drafts >= limits.draftsPerPoster) return fail(429, "This poster holds the maximum number of drafts.");
+      if ((await entryIds(store)).length >= limits.draftsTotal) return fail(429, "The store holds the maximum number of drafts.");
     }
+
+    let image: StoredImage | null = null;
+    if (parsed.image && entry.kind === "production") {
+      const encoded = await (deps.encodeImage ?? toWebp)(Buffer.from(parsed.image.base64, "base64"), parsed.image.content_type);
+      if (!encoded.ok && encoded.unavailable) return fail(503, "Images cannot be processed right now. Entries without an image still post.");
+      if (!encoded.ok) return fail(400, `image.base64 ${encoded.reason}`, { field: "image.base64" });
+      const filename = webpName(parsed.image.filename);
+      image = { filename, content_type: "image/webp", base64: encoded.webp.toString("base64") };
+      entry.image = { filename, content_type: "image/webp", bytes: encoded.webp.length, width: encoded.width, height: encoded.height };
+    }
+    const fresh: StoredEntry = { ...entry, review_state: "draft", poster: poster.name, created_at: existing?.created_at ?? now, updated_at: now, body_hash };
+    const wasPublished = existing?.review_state === "published";
+    const delta = imageBytes(fresh) - imageBytes(existing);
+    if (delta > 0 && (await readUsage(store, poster.name)).image_bytes + delta > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
+    const claim: Usage = { drafts: !existing || wasPublished ? 1 : 0, image_bytes: delta };
+    if (claim.drafts !== 0 || delta !== 0) {
+      await addUsage(store, poster.name, claim);
+      reserved = claim;
+    }
+
+    if (existing) await writeEntry(store, fresh);
+    else if (!(await createEntry(store, fresh))) {
+      await addUsage(store, poster.name, { drafts: -claim.drafts, image_bytes: -claim.image_bytes });
+      reserved = null;
+      return fail(409, "This id was taken while the post was in flight. Send it again.");
+    }
+    try {
+      if (image) await writeImage(store, entry.id, body_hash, image);
+    } catch (err) {
+      if (existing) await writeEntry(store, existing);
+      else await removeEntry(store, entry.id, body_hash);
+      throw err;
+    }
+    if (existing && existing.body_hash !== body_hash) await removeImage(store, entry.id, existing.body_hash);
 
     reserved = null;
     await appendAudit(
@@ -233,9 +232,14 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
       body: { ok: true, id: entry.id, kind: entry.kind, review_state: "draft", replaced: Boolean(existing) },
       publicChanged: wasPublished,
     };
+  };
+  try {
+    const result = await withEntryLock(store, entry.id, clock, write);
+    return result === BUSY ? IN_FLIGHT : result;
   } catch (err) {
-    if (reserved) {
-      await addUsage(store, poster.name, { drafts: -reserved.drafts, image_bytes: -reserved.image_bytes }).catch((release: unknown) => {
+    const held = reserved as Usage | null;
+    if (held) {
+      await addUsage(store, poster.name, { drafts: -held.drafts, image_bytes: -held.image_bytes }).catch((release: unknown) => {
         console.error("[whats-new] usage release failed:", release instanceof Error ? release.message : release);
       });
     }
@@ -256,7 +260,7 @@ export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Resu
     await markRevoked(store, req.name, now);
     (deps.revocationCache ?? sharedRevocationCache).set(`${store.prefix}${req.name}`, { revoked: true, at: clock() });
     const drafts = (await listEntries(store)).filter((e) => e.poster === req.name && e.review_state === "draft");
-    for (const draft of drafts) await removeEntry(store, draft.id);
+    for (const draft of drafts) await removeEntry(store, draft.id, draft.body_hash);
     await clearUsage(store, req.name);
     const deleted = drafts.map((d) => d.id).sort();
     const previous_body_hashes = Object.fromEntries(deleted.map((id) => [id, drafts.find((d) => d.id === id)?.body_hash ?? ""]));
@@ -271,64 +275,85 @@ export async function handleRevoke(req: RevokeRequest, deps: Deps): Promise<Resu
   }
 }
 
-async function adminEntry(req: EntryRequest, deps: Deps): Promise<{ poster: Poster; store: DocStore; entry: StoredEntry } | Result> {
+async function admin(req: EntryRequest, deps: Deps): Promise<{ poster: Poster; store: DocStore } | Result> {
   const auth = await authorize(req.authorization, deps);
   if ("status" in auth) return auth;
   if (auth.poster.scope !== "admin") return NOT_FOUND;
   if (!ID.test(req.id)) return fail(400, "id must match [a-z0-9-]{3,80}", { field: "id" });
+  return auth;
+}
+
+async function liveEntry(store: DocStore, id: string): Promise<{ entry: StoredEntry } | { refused: Result }> {
+  const entry = await readEntry(store, id);
+  if (!entry) return { refused: fail(404, "No stored entry has this id.") };
+  if (entry.review_state === "deleted") return { refused: fail(410, "This entry was deleted.") };
+  return { entry };
+}
+
+async function locked(store: DocStore, id: string, deps: Deps, what: string, run: () => Promise<Result>): Promise<Result> {
   try {
-    const entry = await readEntry(auth.store, req.id);
-    if (!entry) return fail(404, "No stored entry has this id.");
-    if (entry.review_state === "deleted") return fail(410, "This entry was deleted.");
-    return { ...auth, entry };
+    const result = await withEntryLock(store, id, deps.clock ?? Date.now, run);
+    return result === BUSY ? IN_FLIGHT : result;
   } catch (err) {
-    return unavailable("entry read failed", err);
+    return { ...unavailable(`${what} failed`, err), publicChanged: true };
   }
 }
 
 export async function handlePublish(req: EntryRequest, deps: Deps): Promise<Result> {
-  const found = await adminEntry(req, deps);
-  if ("status" in found) return found;
-  const { poster, store, entry } = found;
-  if (deps.legacy.some((e) => e.id === entry.id)) return fail(409, "This id belongs to an entry in the legacy feed.");
-  if (entry.source !== "own") return fail(409, "Only own work can be published; this entry stays a draft.");
-  if (req.ifMatch && req.ifMatch !== entry.body_hash) return fail(412, "The entry changed after it was reviewed. Read the draft again.");
-  if (entry.review_state === "published") {
-    return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: entry.published_at, changed: false } };
-  }
-  const now = new Date((deps.clock ?? Date.now)()).toISOString();
-  try {
+  const auth = await admin(req, deps);
+  if ("status" in auth) return auth;
+  const { poster, store } = auth;
+  const reviewed = (req.ifMatch ?? "").trim().replace(/^"|"$/g, "");
+  if (!reviewed) return fail(428, "Send the body hash of the reviewed draft in if-match.");
+  return locked(store, req.id, deps, "publish", async () => {
+    const found = await liveEntry(store, req.id);
+    if ("refused" in found) return found.refused;
+    const { entry } = found;
+    if (deps.legacy.some((e) => e.id === entry.id)) return fail(409, "This id belongs to an entry in the legacy feed.");
+    if (entry.source !== "own") return fail(409, "Only own work can be published; this entry stays a draft.");
+    if (reviewed !== entry.body_hash) return fail(412, "The entry changed after it was reviewed. Read the draft again.");
+    if (entry.review_state === "published") {
+      return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: entry.published_at, changed: false } };
+    }
+    if (entry.image && !storedWebp(await readImage(store, entry.id, entry.body_hash))) {
+      return fail(409, "The stored image is missing or was stored before images were converted. Post the entry again.");
+    }
+    const now = new Date((deps.clock ?? Date.now)()).toISOString();
     await appendAudit(
       store,
       { ts: now, id: entry.id, poster: poster.name, action: "publish", body_hash: entry.body_hash, previous_body_hash: entry.body_hash },
       randomBytes(4).toString("hex"),
     );
     await writeEntry(store, { ...entry, review_state: "published", published_at: now, updated_at: now });
+    const after = await readEntry(store, entry.id);
+    if (!after || after.body_hash !== reviewed) {
+      if (after?.review_state === "published") await writeEntry(store, { ...after, review_state: "draft", published_at: undefined });
+      return { ...fail(409, "The entry changed while it was being published. It stays a draft; read it again."), publicChanged: true };
+    }
     await addUsage(store, entry.poster, { drafts: -1, image_bytes: 0 });
-  } catch (err) {
-    return { ...unavailable("publish failed", err), publicChanged: true };
-  }
-  return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: now, date: now.slice(0, 10), changed: true }, publicChanged: true };
+    return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: now, date: now.slice(0, 10), changed: true }, publicChanged: true };
+  });
 }
 
 export async function handleDelete(req: EntryRequest, deps: Deps): Promise<Result> {
-  const found = await adminEntry(req, deps);
-  if ("status" in found) return found;
-  const { poster, store, entry } = found;
-  const now = new Date((deps.clock ?? Date.now)()).toISOString();
-  try {
+  const auth = await admin(req, deps);
+  if ("status" in auth) return auth;
+  const { poster, store } = auth;
+  return locked(store, req.id, deps, "delete", async () => {
+    const found = await liveEntry(store, req.id);
+    if ("refused" in found) return found.refused;
+    const { entry } = found;
+    const now = new Date((deps.clock ?? Date.now)()).toISOString();
     await appendAudit(
       store,
       { ts: now, id: entry.id, poster: poster.name, action: "delete", body_hash: null, previous_body_hash: entry.body_hash },
       randomBytes(4).toString("hex"),
     );
     await writeEntry(store, tombstone(entry, now));
-    await removeImage(store, entry.id);
+    await removeImage(store, entry.id, entry.body_hash);
     await addUsage(store, entry.poster, { drafts: entry.review_state === "draft" ? -1 : 0, image_bytes: -imageBytes(entry) });
-  } catch (err) {
-    return { ...unavailable("delete failed", err), publicChanged: true };
-  }
-  return { status: 200, body: { ok: true, id: entry.id, review_state: "deleted", deleted_at: now }, publicChanged: true };
+    return { status: 200, body: { ok: true, id: entry.id, review_state: "deleted", deleted_at: now }, publicChanged: true };
+  });
 }
 
 export async function handleList(req: ListRequest, deps: Deps): Promise<Result> {

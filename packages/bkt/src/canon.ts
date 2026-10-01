@@ -126,6 +126,24 @@ export function openable(raw: unknown, hosts: readonly string[] = OPEN_HOSTS): U
   return u;
 }
 
+export const DOI_HOST = "doi.org";
+export const DOI_ID = /^10\.\d{4,9}\/[^\s?#]+$/;
+
+export function openableDoi(raw: unknown, held: (doi: string) => boolean): URL | null {
+  if (typeof raw !== "string" || raw.length > 2048) return null;
+  const prefix = `https://${DOI_HOST}/`;
+  if (!raw.startsWith(prefix)) return null;
+  const id = raw.slice(prefix.length);
+  if (!DOI_ID.test(id) || !held(id)) return null;
+  try {
+    const u = new URL(raw);
+    if (u.protocol !== "https:" || u.hostname !== DOI_HOST || u.port || u.username || u.password || u.search || u.hash) return null;
+    return decodeURI(u.pathname) === `/${id}` ? u : null;
+  } catch {
+    return null;
+  }
+}
+
 export function browserCommand(url: string, os: NodeJS.Platform = process.platform): string[] {
   if (os === "darwin") return ["open", url];
   if (os === "win32") return ["rundll32", "url.dll,FileProtocolHandler", url];
@@ -142,6 +160,7 @@ export function openInBrowser(url: string): void {
 export interface CanonRouteOptions {
   open?: (url: string) => void;
   hosts?: readonly string[];
+  holdsDoi?: (doi: string) => boolean;
 }
 
 export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Record<string, Route> {
@@ -176,7 +195,8 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
       } catch {
         return json({ error: "expected { url }" }, 400);
       }
-      const u = openable((body as { url?: unknown } | null)?.url, opts.hosts ?? OPEN_HOSTS);
+      const raw = (body as { url?: unknown } | null)?.url;
+      const u = openable(raw, opts.hosts ?? OPEN_HOSTS) ?? openableDoi(raw, opts.holdsDoi ?? (() => false));
       if (!u) return json({ error: "that link is outside the allowed sites" }, 400);
       open(u.toString());
       return json({ opened: u.toString() });

@@ -1,0 +1,17 @@
+[package]
+name = "s2-ranking-parity"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "s2-parity"
+path = "src/main.rs"
+
+[dependencies]
+bucket-rank-spike = { path = "../rank" }
+serde.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+regex = "1"

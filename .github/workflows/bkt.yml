@@ -9,6 +9,11 @@ on:
       - "src/lib/academy/**"
       - "src/lib/canon-rank.ts"
       - "src/lib/canon-index-loader.ts"
+      - "src/lib/explore/**"
+      - "src/data/explore-sources.json"
+      - "src/data/founding-works.json"
+      - "src/data/explore/reference-basis.json"
+      - "src/data/canon-timeline.json"
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
@@ -32,6 +37,11 @@ on:
       - "src/lib/academy/**"
       - "src/lib/canon-rank.ts"
       - "src/lib/canon-index-loader.ts"
+      - "src/lib/explore/**"
+      - "src/data/explore-sources.json"
+      - "src/data/founding-works.json"
+      - "src/data/explore/reference-basis.json"
+      - "src/data/canon-timeline.json"
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
@@ -56,9 +66,9 @@ jobs:
       - name: engine guard, store, serve and routes
         working-directory: packages/bkt
         run: bun run pack:content && bun test
-      - name: no denied or staff material in the canon pack
+      - name: no denied or staff material in the canon and explore packs
         working-directory: packages/bkt
-        run: bun scripts/check-no-kruse.ts content/canon.json && bun scripts/check-no-staff.ts content/canon.json
+        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json
       - name: typecheck
         working-directory: packages/bkt
         run: bun run typecheck
