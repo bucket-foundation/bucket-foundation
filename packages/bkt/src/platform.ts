@@ -36,7 +36,6 @@ export const execSync: ExecSync = (argv) => {
 };
 
 export type Owner = number | string;
-export type PeerCheck = "strict" | "best-effort";
 
 export interface PlatformDeps {
   env: Env;
@@ -55,7 +54,6 @@ export interface Platform {
   windowCommand(url: string, profile: string): string[];
   secureDir(path: string): string;
   self(): Owner;
-  readonly peerCheck: PeerCheck;
   peerOwner(peerPort: number, serverPort: number): Owner | null | undefined;
   dataDir(): string;
   cacheDir(): string;
@@ -246,7 +244,6 @@ function linux(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
-    peerCheck: "strict",
     peerOwner: (peer, server) => procNetTcpOwner(peer, server),
     dataDir: () => data,
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(d.home, ".cache"),
@@ -271,7 +268,6 @@ function darwin(d: PlatformDeps): Platform {
     },
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
-    peerCheck: "best-effort",
     peerOwner: (peer, server) => lsofOwner(d.execSync, peer, server),
     dataDir: () => d.env.XDG_DATA_HOME ?? posix.join(lib, "Application Support"),
     cacheDir: () => d.env.XDG_CACHE_HOME ?? posix.join(lib, "Caches"),
@@ -299,7 +295,6 @@ function windows(d: PlatformDeps): Platform {
     },
     secureDir: (path) => windowsSecure(d, path),
     self: () => windowsUser(d),
-    peerCheck: "best-effort",
     peerOwner: (peer, server) => netstatOwner(d, peer, server),
     dataDir: () => roaming,
     cacheDir: () => local,

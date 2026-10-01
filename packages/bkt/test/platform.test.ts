@@ -240,9 +240,6 @@ describe("peer owner", () => {
     expect(lsofOwner(() => ({ code: 1, stdout: "", stderr: "" }), 5000, 80)).toBeNull();
     expect(lsofOwner(() => ({ code: 127, stdout: "", stderr: "lsof: not found" }), 5000, 80)).toBeUndefined();
     expect(lsofOwner(() => ({ code: 1, stdout: "", stderr: "lsof: WARNING: can't stat() fuse" }), 5000, 80)).toBeNull();
-    expect(platformFor("darwin", deps()).peerCheck).toBe("best-effort");
-    expect(platformFor("win32", deps()).peerCheck).toBe("best-effort");
-    expect(platformFor("linux", deps()).peerCheck).toBe("strict");
   });
 
   test("windows maps netstat pid to its tasklist user and hides other users", () => {
