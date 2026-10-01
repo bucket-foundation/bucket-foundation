@@ -23,6 +23,7 @@ export interface WorkStatus {
   prs: number;
   repo: string | null;
   repoError: string | null;
+  chat?: { claude: boolean; codex: boolean };
   ready: boolean;
   answered: number;
   correct: number;
@@ -231,6 +232,10 @@ export class Api {
 
   workRepo(path: string | null) {
     return this.call<{ repo: string | null }>("/local/work-quiz/repo", { method: "POST", body: { path } });
+  }
+
+  workChat(chat: { claude: boolean; codex: boolean }) {
+    return this.call<{ chat: { claude: boolean; codex: boolean } }>("/local/work-quiz/chat", { method: "POST", body: chat });
   }
 
   workForget() {

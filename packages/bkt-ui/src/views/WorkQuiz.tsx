@@ -321,6 +321,17 @@ export function WorkQuizSources({ api }: { api: Api }) {
     }
   };
 
+  const chat = status?.chat ?? { claude: false, codex: false };
+  const setChat = async (next: { claude: boolean; codex: boolean }) => {
+    try {
+      await api.workChat(next);
+      setMsg(next.claude || next.codex ? "The daily quiz reads your recent chat sessions on this computer." : "Chat sessions are off.");
+      load();
+    } catch (e) {
+      setMsg((e as Error).message);
+    }
+  };
+
   return (
     <article className="panel card">
       <h2>Work quiz sources</h2>
@@ -348,7 +359,14 @@ export function WorkQuizSources({ api }: { api: Api }) {
           </button>
         )}
       </form>
-      {status && (status.beads > 0 || status.repo) && (
+      <p className="muted small">The daily quiz can read the last two days of chat sessions. The text stays on this computer.</p>
+      <label className="row">
+        <input type="checkbox" checked={chat.claude} disabled={!status} onChange={(e) => void setChat({ ...chat, claude: e.target.checked })} /> Claude sessions in ~/.claude/projects
+      </label>
+      <label className="row">
+        <input type="checkbox" checked={chat.codex} disabled={!status} onChange={(e) => void setChat({ ...chat, codex: e.target.checked })} /> Codex sessions in ~/.codex/sessions
+      </label>
+      {status && (status.beads > 0 || status.repo || chat.claude || chat.codex) && (
         <button className="ghost" onClick={() => window.confirm("Remove the work quiz sources from this computer?") && void api.workForget().then(load)}>
           Remove all sources
         </button>
