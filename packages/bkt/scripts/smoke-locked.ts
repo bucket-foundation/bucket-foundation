@@ -27,12 +27,13 @@ const entries = () => (gdbus(ROOT, "org.freedesktop.Secret.Service.SearchItems",
 const bkt = (args: string[]) => sh([bin, ...args], env);
 
 try {
+  const earlier = entries().length;
   const init = bkt(["init"]);
   check(init.code === 0, `bkt init on the unlocked keyring (exit ${init.code}: ${init.err.trim()})`);
   const scope = readFileSync(join(data, "keyring-scope"), "utf8").trim();
   const account = ["service", "bucket-bkt", "account", `db-data-key.${scope}`];
   const before = entries();
-  check(before.length === 2, `the keyring holds this folder's two entries (${before.length})`);
+  check(before.length === earlier + 2, `bkt init added this folder's two entries (${earlier} before, ${before.length} after)`);
 
   const collection = gdbus(ROOT, "org.freedesktop.Secret.Service.ReadAlias", "default").out.match(/\/org\/freedesktop\/secrets\/collection\/[^']+/)?.[0];
   check(collection, `the default collection is ${collection}`);
@@ -59,7 +60,7 @@ try {
   check(noDb.code === 1 && noDb.err.includes("keyring locked"), "bkt refuses with the locked message when bkt.db is gone");
   check(!existsSync(join(data, "bkt.db")), "no database was created");
   check(readFileSync(join(data, "keyring-scope"), "utf8").trim() === scope, "the scope file is unchanged");
-  check(JSON.stringify(entries()) === JSON.stringify(before), "the keyring holds the same two entries");
+  check(JSON.stringify(entries()) === JSON.stringify(before), "the keyring holds the same entries as before the lock");
   console.log("locked smoke passed");
 } finally {
   rmSync(home, { recursive: true, force: true });
