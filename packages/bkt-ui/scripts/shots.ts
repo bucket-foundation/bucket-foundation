@@ -115,7 +115,7 @@ wq.daily.put(
     day: "2026-09-30",
     questions: [
       fermi({ id: "f1", prompt: "How many lines of chat did the day's sessions hold?", answer: 16000, explain: "About 16,000 lines across the day's sessions." }),
-      { id: "c1", type: "recall", prompt: "Which branch takes desktop pull requests?", choices: ["dev", "main", "hte/integration", "ops/integration"], answer: "dev", limitSec: 30, explain: "Desktop work opens pull requests into dev." },
+      { id: "c1", type: "recall", prompt: "Which branch takes desktop pull requests?", choices: ["dev", "main"], answer: "dev", limitSec: 30, explain: "Desktop work opens pull requests into dev." },
     ],
   },
   Date.now(),
@@ -179,7 +179,7 @@ await page.waitForSelector(".globe-box canvas", { timeout: 30000 });
 await page.waitForTimeout(3000);
 await page.screenshot({ path: join(out, "6d-canon-globe.png") });
 
-await page.click('nav a[href="#/atlases"]');
+await page.evaluate(() => (window.location.hash = "#/atlases"));
 await page.waitForSelector("text=This build has no solvability atlas");
 await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../../../src/lib/research-os/solvability-atlas-data.json"));
 await page.waitForSelector(".atlas-body");
@@ -189,12 +189,12 @@ await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../..
 await page.waitForSelector(".atlas-body");
 await page.screenshot({ path: join(out, "6f-atlas-patents.png") });
 
-await page.click('nav a[href="#/advisors"]');
+await page.evaluate(() => (window.location.hash = "#/advisors"));
 await page.waitForSelector(".people button");
 await page.click(".people li:nth-child(3) button");
 await page.screenshot({ path: join(out, "7-advisors.png") });
 
-await page.click('nav a[href="#/primes"]');
+await page.evaluate(() => (window.location.hash = "#/primes"));
 await page.waitForSelector(".spokes");
 await page.screenshot({ path: join(out, "8-prime-directions.png") });
 
@@ -214,7 +214,7 @@ await page.waitForSelector(".log");
 await page.screenshot({ path: join(out, "9-jobs.png") });
 
 await page.click('nav a[href="#/import"]');
-await page.waitForSelector(".file");
+await page.waitForSelector('h1:has-text("Import")');
 await page.screenshot({ path: join(out, "6-import.png") });
 
 await browser.close();

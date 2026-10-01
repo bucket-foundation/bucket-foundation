@@ -976,6 +976,18 @@ button {
   margin-top: 10px;
 }
 
+.q,
+.lines li,
+.choice,
+.why {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.why .source {
+  color: var(--ink-2);
+}
+
 section > .panel + .panel,
 section > article + article {
   margin-top: 14px;
@@ -1166,6 +1178,17 @@ section > article + article {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 10px 12px;
+}
+
+.card > p:first-child {
+  margin-top: 0;
+}
+
+label.row:not(.file) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
 }
 
 .canon-q {

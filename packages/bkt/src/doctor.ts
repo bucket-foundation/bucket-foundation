@@ -7,6 +7,7 @@ import { colorEnabled, interactive, KEY_STORES, type Tty } from "./cli/out";
 import { LEGACY_ACCOUNTS, scopedAccounts, type KeyAccounts } from "./device";
 import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
 import type { Pack } from "./pack/export";
+import type { ExplorePack } from "./pack/explore";
 import type { Env, ExecSync, Platform } from "./platform";
 import { SCHEMA_VERSION } from "./store";
 
@@ -27,6 +28,7 @@ export interface DoctorDeps {
   keyringKind?: string;
   keyring: () => Keyring | null;
   pack: Pick<Pack, "version" | "items" | "atoms">;
+  explore: ExplorePack;
   uiDir: string;
   runtimeDir: string;
   tty: Tty;
@@ -47,6 +49,7 @@ interface DbFacts {
   version: number;
   pack: string | null;
   scope: string | null;
+  explore: string | null;
 }
 
 export function readDbFacts(path: string): DbFacts {
@@ -55,7 +58,7 @@ export function readDbFacts(path: string): DbFacts {
     const version = db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version;
     const hasMeta = db.query<{ n: number }, []>("select count(*) n from sqlite_master where name = 'meta'").get()!.n > 0;
     const meta = (k: string) => (hasMeta ? (db.query<{ v: string }, [string]>("select v from meta where k = ?").get(k)?.v ?? null) : null);
-    return { version, pack: meta("pack_version"), scope: meta("keyring_scope") };
+    return { version, pack: meta("pack_version"), scope: meta("keyring_scope"), explore: meta("explore_pack_version") };
   } finally {
     db.close();
   }
@@ -137,6 +140,20 @@ function contentPack(d: DoctorDeps, facts: DbFacts | null): Check {
   return ok("content-pack", name, `Version ${d.pack.version}, ${d.pack.items.length} items, checksum matches.${held}`);
 }
 
+export function exploreChecksum(pack: ExplorePack): string {
+  const { version: _v, sha256: _s, ...body } = pack;
+  return createHash("sha256").update(JSON.stringify(body)).digest("hex");
+}
+
+function explorePackCheck(d: DoctorDeps, facts: DbFacts | null): Check {
+  const name = "Explore pack";
+  const sum = exploreChecksum(d.explore);
+  if (sum !== d.explore.sha256 || !sum.startsWith(d.explore.version))
+    return fail("explore-pack", name, `Version ${d.explore.version} has checksum ${sum.slice(0, 12)}; the two should match.`, "Install bkt again: run bkt update.");
+  const held = facts?.explore ? (facts.explore === d.explore.version ? " The database holds the same version." : " The next bkt app loads it into the database.") : "";
+  return ok("explore-pack", name, `Version ${d.explore.version}, ${d.explore.sources.length} sources, checksum matches.${held}`);
+}
+
 function windowFiles(d: DoctorDeps): Check {
   const name = "Window files";
   if (existsSync(join(d.uiDir, "index.html"))) return ok("window-files", name, `Present in ${d.uiDir}.`);
@@ -175,7 +192,7 @@ function terminal(d: DoctorDeps): Check {
 
 export async function runDoctor(d: DoctorDeps): Promise<Check[]> {
   const db = dbState(d.dir);
-  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
+  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
 }
 
 export function doctorPassed(checks: Check[]): boolean {

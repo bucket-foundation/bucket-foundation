@@ -8,10 +8,15 @@ import { loadLearnData, type LearnData } from "./learn-data";
 
 const SHELL_RANK: Record<string, number> = { prereq: 0, nucleus: 1, frontier: 2 };
 
-function describe(error: PathError, title: (id: string) => string): string {
-  if (error.kind === "MissingNode") return error.requiredBy ? `${title(error.requiredBy)} requires ${error.id}, which is not in the graph.` : `${error.id} is not in the graph.`;
-  if (error.kind === "Cycle") return `The prerequisite graph has a cycle through ${error.nodes.map(title).join(", ")}.`;
-  return "Some concepts are marked mastered while one of their prerequisites is not.";
+export const MISSING_TOPIC = "This needs a topic Bucket does not have yet.";
+export const UNKNOWN_TOPIC = "Bucket does not have that topic yet.";
+export const TOPIC_CYCLE = "Some topics wait on each other.";
+export const MASTERY_UNSURE = "Bucket is unsure what you already know here.";
+
+function describe(error: PathError): string {
+  if (error.kind === "MissingNode") return MISSING_TOPIC;
+  if (error.kind === "Cycle") return TOPIC_CYCLE;
+  return MASTERY_UNSURE;
 }
 
 export function PathView({ api, to }: { api: Api; to?: string }) {
@@ -33,7 +38,7 @@ export function PathView({ api, to }: { api: Api; to?: string }) {
     for (const a of data.atoms.values()) if (masteryFor(data.states.get(a.deck)!, a.id) >= MASTERED_THRESHOLD) out.add(a.id);
     return out;
   }, [data]);
-  const title = (id: string) => data?.atoms.get(id)?.title ?? id;
+  const title = (id: string) => data?.atoms.get(id)?.title ?? "A topic Bucket does not have yet";
   const rank = (id: string) => SHELL_RANK[data?.atoms.get(id)?.shell ?? "nucleus"] ?? 1;
   const repair = useMemo(() => (graph && to ? repairMastery(graph, to, mastered) : null), [graph, to, mastered]);
   const plan = useMemo(
@@ -50,17 +55,17 @@ export function PathView({ api, to }: { api: Api; to?: string }) {
   }, [data, query]);
 
   if (error) return <p className="error">{error}</p>;
-  if (!data || !graph) return <p className="muted">Loading the prerequisite graph…</p>;
+  if (!data || !graph) return <p className="muted">Loading topics…</p>;
   const target = to ? data.atoms.get(to) : undefined;
 
   return (
     <section>
       <header className="head">
         <h1>Path</h1>
-        <p className="muted">Pick a concept. Bucket lists what to learn first, in order, across every deck.</p>
+        <p className="muted">Pick a topic. Bucket lists what to learn first, in order, across every deck.</p>
       </header>
       <div className="panel list">
-        <input className="search" placeholder="Find a concept, such as entropy or the Schrödinger equation" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input className="search" placeholder="Find a topic, such as entropy or the Schrödinger equation" value={query} onChange={(e) => setQuery(e.target.value)} />
         {matches.length > 0 && (
           <ul className="matches">
             {matches.map((a) => (
@@ -74,16 +79,16 @@ export function PathView({ api, to }: { api: Api; to?: string }) {
           </ul>
         )}
       </div>
-      {to && !target && <p className="error">{to} is not in the graph.</p>}
+      {to && !target && <p className="error">{UNKNOWN_TOPIC}</p>}
       {target && plan && (
         <article className="panel card path">
           <h2>{target.title}</h2>
           {!plan.ok ? (
             <>
-              <p className="error">{describe(plan.error, title)}</p>
+              <p className="error">{describe(plan.error)}</p>
               {plan.error.kind === "MasteryConflict" && repair && repair.demoted.length > 0 && !repaired && (
                 <button className="ghost" onClick={() => setRepaired(true)}>
-                  Treat {repair.demoted.length} of them as not mastered
+                  Plan with {repair.demoted.length} {repair.demoted.length === 1 ? "topic" : "topics"} to study again
                 </button>
               )}
             </>

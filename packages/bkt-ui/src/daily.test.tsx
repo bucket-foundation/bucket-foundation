@@ -57,7 +57,8 @@ describe("daily quiz view", () => {
     expect(text).toContain(`No quiz for ${DAY}`);
     expect(text).toContain("Bucket has no quiz saved for this day");
     expect(text).toContain("nothing was built for this one");
-    expect(text).toContain("held no line Bucket could ask about");
+    expect(text).toContain("held nothing Bucket could ask about");
+    expect(text).not.toContain("Import");
     expect(v.host.querySelector(".error")).toBeNull();
     expect(v.host.querySelector("article")).toBeNull();
     expect(v.host.querySelector('a[href="#/work"]')).not.toBeNull();
@@ -129,7 +130,7 @@ describe("daily quiz view", () => {
 
   test("a server failure shows the error and never the empty state", async () => {
     const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError("data key does not match", 500)), dailyAnswer: async () => graded({}) });
-    expect(v.host.querySelector(".error")!.textContent).toBe("data key does not match");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket ran into a problem. Try again.");
     expect(v.host.textContent).not.toContain("No quiz for");
     await v.unmount();
   });
@@ -208,7 +209,7 @@ describe("daily quiz view", () => {
   test("a failed answer that is no refusal keeps the question open", async () => {
     const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: () => Promise.reject(new ApiError("elapsedMs required", 400)) });
     await v.click(v.button("dev"));
-    expect(v.host.querySelector(".error")!.textContent).toBe("elapsedMs required");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket could not use that. Check it and try again.");
     expect(v.host.textContent).toContain("0 of 2 answered");
     expect((v.button("dev") as HTMLButtonElement).disabled).toBe(false);
     await v.unmount();
@@ -216,6 +217,44 @@ describe("daily quiz view", () => {
 });
 
 describe("factor wording", () => {
+  test("a question at the length limits shows every word, then the why line and one source link", async () => {
+    const words = (n: number, w: string) => Array.from({ length: n }, (_, i) => `${w}${i}`).join(" ");
+    const choices = [words(5, "a"), words(5, "b"), words(5, "c"), words(5, "d")];
+    const full: DailyQuiz = { day: DAY, answered: [], questions: [{ id: "w1", type: "recall", prompt: words(10, "p"), lines: [words(5, "l")], choices, limitSec: 30 }] };
+    const sources = [
+      { kind: "pr", ref: "#504", label: "PR #504", href: "https://github.com/example/repo/pull/504" },
+      { kind: "pr", ref: "#505", label: "PR #505", href: "https://github.com/example/repo/pull/505" },
+    ];
+    const v = await mount({ dailyQuiz: async () => full, dailyAnswer: async () => graded({ answer: choices[0], explain: words(20, "e"), sources }) });
+    const card = v.host.querySelector("article")!;
+    for (const text of [words(10, "p"), words(5, "l"), ...choices]) expect(card.textContent).toContain(text);
+    expect(card.textContent).not.toContain("…");
+    expect(card.querySelector(".why")).toBeNull();
+    await v.click(v.host.querySelector(".choice"));
+    expect(card.querySelector(".why")!.textContent).toBe(`${words(20, "e")} PR #504`);
+    const links = card.querySelectorAll(".why a");
+    expect(links.length).toBe(1);
+    expect(links[0].getAttribute("href")).toBe("https://github.com/example/repo/pull/504");
+    await v.unmount();
+  });
+
+  test("a source without an https link shows as plain text", async () => {
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async () => graded({ sources: [{ kind: "chat", ref: "aa", label: "Claude session, 2026-09-30", href: null }] }) });
+    await v.click(v.host.querySelector(".choice"));
+    expect(v.host.querySelector(".why a")).toBeNull();
+    expect(v.host.querySelector(".why .source")!.textContent).toBe("Claude session, 2026-09-30");
+    await v.unmount();
+  });
+
+  test("the quiz card styles wrap text and never clip it", async () => {
+    const { readFileSync } = await import("node:fs");
+    const css = readFileSync(new URL("./app.css", import.meta.url), "utf8");
+    const rules = Array.from(css.matchAll(/([^{}]+)\{([^{}]*)\}/g)).filter((m) => /(^|[\s,])\.(q|choice|lines|why)\b/.test(m[1]));
+    expect(rules.length).toBeGreaterThan(3);
+    for (const m of rules) expect(m[2]).not.toMatch(/text-overflow|line-clamp|nowrap/);
+    expect(css).toMatch(/\.why\s*\{[^}]*overflow-wrap: anywhere/);
+  });
+
   test("names the factor in plain numbers", async () => {
     const { factorOff } = await import("./views/WorkQuiz");
     expect(factorOff(0)).toBe("on the mark");

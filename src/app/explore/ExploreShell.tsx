@@ -19,6 +19,8 @@ import canonSpace from "@/data/explore/canon.space.json";
 import { SAMPLE_DATASET, dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
 import { ParseTokens, sizeError, type SpaceReply } from "@/lib/explore/genome/job";
 import { sampleDataset } from "@/lib/explore/space-sample";
+import { DrawerSave } from "@/components/explore/SaveCite";
+import { markerCiteFields } from "@/lib/explore/saved";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
@@ -157,7 +159,7 @@ const DNA_UPLOAD: DatasetEntry = { id: "dna-upload", label: "DNA: your file…",
 
 const NORMAL_CLASS = "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 
-export default function ExploreShell({ workspaceLinks = false, initialView = "circle", samples = false }: { workspaceLinks?: boolean; initialView?: SpaceViewId; samples?: boolean }) {
+export default function ExploreShell({ workspaceLinks = false, initialView = "circle", samples = false, saveInPlace = false }: { workspaceLinks?: boolean; initialView?: SpaceViewId; samples?: boolean; saveInPlace?: boolean }) {
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const explorer = useExplorerState({ minYear: MIN_YEAR_BOUND, maxYear: new Date().getFullYear(), defaultYear: DEFAULT_YEAR, branches: EXPLORER_BRANCHES });
   const { sort, q, branch: branchFilter } = explorer.state;
@@ -551,6 +553,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
+        saveInPlace={saveInPlace}
       />
     </div>
   );
@@ -562,6 +565,7 @@ function Drawer({
   datasetInfo,
   transparent = false,
   workspaceLinks = false,
+  saveInPlace = false,
   onClose,
   onSelectMarker,
 }: {
@@ -570,6 +574,7 @@ function Drawer({
   datasetInfo?: { label: string; count: number; license?: string };
   transparent?: boolean;
   workspaceLinks?: boolean;
+  saveInPlace?: boolean;
   onClose: () => void;
   onSelectMarker?: (id: string) => void;
 }) {
@@ -758,7 +763,13 @@ function Drawer({
               </p>
 
               <div className="flex flex-wrap gap-1.5">
-                {workspaceLinks && (
+                {saveInPlace ? (
+                  <DrawerSave
+                    key={selected.id}
+                    fields={markerCiteFields({ id: selected.id, title: search ? search.title : selected.title, year: selected.year ?? null, path: search ? `/excerpts/${search.concept}/${search.slug}` : pageUrl, excerpt: !!search })}
+                    className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"
+                  />
+                ) : workspaceLinks && (
                   <Link
                     href={`/research-os/workspace?q=${encodeURIComponent(search ? search.title : selected.title)}`}
                     className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"
