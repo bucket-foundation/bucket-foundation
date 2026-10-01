@@ -1683,6 +1683,141 @@
   "type": "∀ (f : List Rat → Rat) (v : List Rat) (us : List (List Rat)),\n  ¬v ∈ us → BucketMath.Vec.sum (List.map (fun u => f u * if u = v then 1 else 0) us) = 0"
  },
  {
+  "name": "BucketMath.Ranking.Ordered",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 28,
+  "type": "List BucketMath.Ranking.Result → Prop"
+ },
+ {
+  "name": "BucketMath.Ranking.Result",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Ranking.UniqueIds",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 26,
+  "type": "List BucketMath.Ranking.Result → Prop"
+ },
+ {
+  "name": "BucketMath.Ranking.before",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 5,
+  "type": "BucketMath.Ranking.Result → BucketMath.Ranking.Result → Prop"
+ },
+ {
+  "name": "BucketMath.Ranking.before_asymm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 15,
+  "type": "∀ {a b : BucketMath.Ranking.Result}, BucketMath.Ranking.before a b → ¬BucketMath.Ranking.before b a"
+ },
+ {
+  "name": "BucketMath.Ranking.before_trans",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 12,
+  "type": "∀ {a b c : BucketMath.Ranking.Result},\n  BucketMath.Ranking.before a b → BucketMath.Ranking.before b c → BucketMath.Ranking.before a c"
+ },
+ {
+  "name": "BucketMath.Ranking.before_trichotomy",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 9,
+  "type": "∀ (a b : BucketMath.Ranking.Result), a.fst ≠ b.fst → BucketMath.Ranking.before a b ∨ BucketMath.Ranking.before b a"
+ },
+ {
+  "name": "BucketMath.Ranking.insert",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 18,
+  "type": "BucketMath.Ranking.Result → List BucketMath.Ranking.Result → List BucketMath.Ranking.Result"
+ },
+ {
+  "name": "BucketMath.Ranking.insert_ordered",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 44,
+  "type": "∀ (a : BucketMath.Ranking.Result) (l : List BucketMath.Ranking.Result),\n  (∀ (b : BucketMath.Ranking.Result), b ∈ l → a.fst ≠ b.fst) →\n    BucketMath.Ranking.Ordered l → BucketMath.Ranking.Ordered (BucketMath.Ranking.insert a l)"
+ },
+ {
+  "name": "BucketMath.Ranking.insert_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 30,
+  "type": "∀ (a : BucketMath.Ranking.Result) (l : List BucketMath.Ranking.Result), (BucketMath.Ranking.insert a l).Perm (a :: l)"
+ },
+ {
+  "name": "BucketMath.Ranking.ordered_perm_unique",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 72,
+  "type": "∀ {l₁ l₂ : List BucketMath.Ranking.Result},\n  l₁.Perm l₂ → BucketMath.Ranking.Ordered l₁ → BucketMath.Ranking.Ordered l₂ → l₁ = l₂"
+ },
+ {
+  "name": "BucketMath.Ranking.rank",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 22,
+  "type": "List BucketMath.Ranking.Result → List BucketMath.Ranking.Result"
+ },
+ {
+  "name": "BucketMath.Ranking.rank_ordered",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 64,
+  "type": "∀ (l : List BucketMath.Ranking.Result),\n  BucketMath.Ranking.UniqueIds l → BucketMath.Ranking.Ordered (BucketMath.Ranking.rank l)"
+ },
+ {
+  "name": "BucketMath.Ranking.rank_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 39,
+  "type": "∀ (l : List BucketMath.Ranking.Result), (BucketMath.Ranking.rank l).Perm l"
+ },
+ {
+  "name": "BucketMath.Ranking.rank_unique",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Ranking",
+  "source": "lean/BucketMath/Ranking.lean",
+  "line": 76,
+  "type": "∀ (l out : List BucketMath.Ranking.Result),\n  BucketMath.Ranking.UniqueIds l → out.Perm l → BucketMath.Ranking.Ordered out → out = BucketMath.Ranking.rank l"
+ },
+ {
   "name": "BucketMath.Vec.add",
   "kind": "def",
   "status": "def",
