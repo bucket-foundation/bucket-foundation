@@ -1,4 +1,4 @@
-export const PRIVACY_DRAFT = true;
+export const PRIVACY_DRAFT = false;
 
 export const COLLECTED: { what: string; detail: string; why: string }[] = [
   {
@@ -38,7 +38,18 @@ export const EVENTS: { name: string; when: string }[] = [
 
 export const PROCESSORS: { name: string; role: string }[] = [
   { name: "Supabase", role: "stores your account and the records above" },
-  { name: "Vercel", role: "hosts the site and counts page views without cookies" },
+  { name: "Vercel", role: "hosts the site, counts page views without cookies, and holds download requests in private Blob storage" },
+  { name: "Resend", role: "sends the download link and the daily digest" },
   { name: "Email provider", role: "will send sign-in codes and invites from a bucket.foundation address; we name it here before the first wave of invites" },
   { name: "Anthropic", role: "receives the text of a tutor question and the lesson it is about, once the tutor is on" },
+];
+
+export const DOWNLOAD_STORED: { what: string; fields: string[]; detail: string }[] = [
+  { what: "Email", fields: ["email"], detail: "The address you type. The download link goes there." },
+  { what: "Name", fields: ["name"], detail: "The name you type." },
+  { what: "Role and research", fields: ["role", "research"], detail: "Stored when you fill them in. Both are optional." },
+  { what: "Computer", fields: ["wanted"], detail: "The operating system and chip you pick." },
+  { what: "Email choices", fields: ["release_notes", "whats_new_daily"], detail: "Whether you ticked release notes and the daily digest." },
+  { what: "Agreement", fields: ["consent_at", "consent_version"], detail: "The time you ticked the privacy box and the version of the terms you agreed to." },
+  { what: "Request times", fields: ["created_at", "updated_at", "signups"], detail: "When you first asked, when you last asked, and how many times." },
 ];

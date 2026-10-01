@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
-import { RETENTION_MONTHS } from "@/lib/download/core";
-import { COLLECTED, EVENTS, PRIVACY_DRAFT, PROCESSORS } from "@/lib/privacy-notice";
+import { CONSENT_VERSION, RETENTION_MONTHS } from "@/lib/download/core";
+import { COLLECTED, DOWNLOAD_STORED, EVENTS, PRIVACY_DRAFT, PROCESSORS } from "@/lib/privacy-notice";
 
 export const metadata: Metadata = {
   title: PRIVACY_DRAFT ? "Privacy · draft" : "Privacy",
-  description: "What Bucket Foundation records when you sign in and study, why, and how to export or delete it.",
+  description: "What Bucket Foundation stores when you request the desktop app or sign in and study, why, and how to export or delete it.",
   alternates: { canonical: "/privacy" },
   robots: { index: !PRIVACY_DRAFT, follow: !PRIVACY_DRAFT },
 };
@@ -29,10 +29,40 @@ export default function PrivacyPage() {
           what we keep <span className="inlay-gold">and why.</span>
         </h1>
         <p className={P}>
-          Bucket Foundation runs Learn, a study app for the science canon. When you sign in and study, we keep the records below. We sell no data and run no ads.
+          Bucket Foundation makes the Bucket desktop app and Learn, a study app for the science canon. A download request and a Learn account each leave the records on this page. We sell no data and run no ads.
         </p>
 
-        <h2 className={H2}>what we collect</h2>
+        <h2 className={H2}>download requests</h2>
+        <p className={P}>
+          The form at <Link href="/download" className="underline underline-offset-4">/download</Link> stores one record for each email address, in private storage on Vercel Blob. We use it to send the download link and the email you chose.
+        </p>
+        <dl className="mt-7 flex flex-col gap-px bg-[color:var(--hairline)] grid-hairlines">
+          {DOWNLOAD_STORED.map((d) => (
+            <div key={d.what} className="bg-[color:var(--bone)] p-6 md:p-7">
+              <dt className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">{d.what}</dt>
+              <dd className="mt-3 text-[15px] leading-[1.7] text-[color:var(--basalt-2)]">{d.detail}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className={P}>
+          The terms version stored with a request today is <code className="font-mono text-[14px]">{CONSENT_VERSION}</code>.
+        </p>
+        <p className={P}>
+          Resend emails you a download link. The link works for 24 hours, and for 10 minutes after its first use. One address gets one link an hour. A second message, with your email and the time of the request, goes to the founder&apos;s inbox.
+        </p>
+        <p className={P}>
+          If you tick the daily digest, Resend emails you each day&apos;s What&apos;s New entries. Every digest carries an unsubscribe link, and unsubscribing stores a keyed hash of your address and the time so the digest stays off. The release notes choice is stored, and the site sends no release notes yet.
+        </p>
+        <p className={P}>
+          To limit abuse we count requests from each IP address and allow five a minute. Each count is stored under a hash of the IP address and the minute. A daily job deletes counts older than 25 hours, along with the marks that record a sent link and a used link. A request that fills the hidden spam-trap field is stored apart, with the same fields, and gets no email.
+        </p>
+        <p className={P}>
+          A daily job deletes a download record {RETENTION_MONTHS} months after your last request. To have it deleted sooner, write to{" "}
+          <a className="underline underline-offset-4" href={mailto("Delete my download request")}>{CONTACT_EMAIL}</a>
+          {" "}and we remove the stored record for your address. The message in the founder&apos;s inbox and the send log Resend keeps sit outside that job.
+        </p>
+
+        <h2 className={H2}>what learn keeps</h2>
         <dl className="mt-7 flex flex-col gap-px bg-[color:var(--hairline)] grid-hairlines">
           {COLLECTED.map((c) => (
             <div key={c.what} className="bg-[color:var(--bone)] p-6 md:p-7">
@@ -76,12 +106,6 @@ export default function PrivacyPage() {
             </li>
           ))}
         </ul>
-
-        <h2 className={H2}>download requests</h2>
-        <p className={P}>
-          When you ask for the desktop app we keep your email, the name you give, your role and research if you add them, the computer you pick, your update choices, and the time of each request. We keep it in private storage and use it for the download link and the notices you chose. We delete it {RETENTION_MONTHS} months after your last request, and sooner on request: write to{" "}
-          <a className="underline underline-offset-4" href={mailto("Delete my download request")}>{CONTACT_EMAIL}</a>.
-        </p>
 
         <h2 className={H2}>export and delete</h2>
         <p className={P}>
