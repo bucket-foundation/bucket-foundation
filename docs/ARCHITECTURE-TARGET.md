@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v3, 2026-10-01, revised after critic round 2 (node network 5.1, Lean 7.4, settlement 6.6, Rust engine 7.1), awaiting round 3 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v4, 2026-10-01, revised after critic round 3 (Lean 8.5, Rust engine 8.2, settlement 8.1, node network 7.7), awaiting round 4 and founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -31,6 +31,40 @@ Founder decisions this design follows, 2026-10-01:
 - Payments settle in stablecoin.
 
 Phases 0 to 3 deliver the whole desktop product with no node and no settlement. The node and settlement phases are gated on a measured user need and on First Decisions 2 and 3.
+
+## Path to a Verified Design
+
+Writing can establish what the repo holds today and what a design would need. Each row below is something writing cannot establish. Evidence or the founder closes it.
+
+| Unproven or undecided | What closes it | Size | Blocks |
+|---|---|---|---|
+| Rust now or later | First Decision 1 | Founder | Phases 1 to 3 |
+| Legal entity | First Decision 2 and counsel on Open Questions | Founder, counsel | Phases 4 and 5 payouts, contract deployment |
+| Who pays, and the meaning of net | First Decision 3 | Founder | Phase 5 |
+| Wasm inside the compiled Bun binary on four targets | Spike S1: load the 13 KB module on each target in CI | Half a day | Phase 1 on those targets |
+| f64 cosine parity | Rerun the round 2 critic's 2000-trial comparison in CI | One hour | Phase 1 |
+| Ranking statement proved, and equal to `cosineRank` | Prove the permutation and order statement in core Lean, under 100 lines, and diff it against `cosineRank` on 10,000 generated inputs | Two days | Phase 1 |
+| Tokenizer agreement on non-ASCII text | Non-ASCII fixtures through both engines | Half a day | Phase 1 |
+| `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
+| Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
+| Two writers on one WAL database | Experiment: `bun:sqlite` and rusqlite processes write one database for ten minutes with a `kill -9` injected, then an integrity check and a row count | Half a day | Phase 2 |
+| Cross-build of five targets | CI trial of the cargo workspace on native runners | One day | Phase 2 |
+| Binary size and startup | A minimal engine build: rusqlite, one route, the keyring adapter | Half a day | Phase 2 |
+| Reproducible builds | Two builds from one commit on separate runners, compared by hash | One day | Phase 3 |
+| Search library and vector index at 1.6 GB and 6.5 million entries | Build both indexes at full size and record size, build time and query latency | One week | Full corpora in phase 5 |
+| Embedding runtime | A trial of each candidate for size, speed and licence | Three days | Semantic search |
+| Adoption threshold for the downgrade guard | Founder decision | Founder | Phase 3 |
+| Port duration | The first two crates, timed | Known after phase 1 | Planning alone |
+| A mirror node that resists a hostile peer | Reference mirror prototype: serves a pack by hash under a two-signature manifest, tested against a peer that attempts rollback, withholding and oversized requests | Two weeks | Phase 4 |
+| Node process isolation | Sandbox trial: Landlock on Linux and the macOS sandbox, with a test that the node cannot open `bkt.db` or reach the keyring | One week | Phase 4 |
+| Inbound parser safety | A fuzz target for every inbound message parser | One week, then continuous | Phase 4 |
+| A measured user need for nodes | Download failures or unreachable users, counted | Unknown | Phase 4 |
+| First peer set | Founder decision: a Bucket-run peer set at first, or a registry of operators | Founder | Phase 4 |
+| Splitter contract correctness | The contract, a test suite against the Lean split vectors, and an audit | Unpriced | Phase 5 |
+| Licence labels are correct | A per-source check at ingest, with its strictness set by counsel | Per source | Any pack beyond the canon pack |
+| A user's task finished | The study in Measurement of User Impact | 20 users | Any claim of impact |
+| Ranking quality | The signed evaluation set in `bkt-1fuf` | In `bkt-1fuf` | Any ranking claim |
+| Eclipse, traffic analysis, two-party collusion, proof of service for free reads | No experiment in this design closes these. They stay open | None | Node earnings |
 
 ## System Map
 
@@ -111,6 +145,9 @@ One codebase for native and WebAssembly holds for `bucket-core` and `bucket-pack
 | `exp`, `ln` and `powf` agree in the last bit across platforms and with JavaScript | Unproven | FSRS calls `Math.exp` and `Math.pow` (`src/lib/academy/fsrs.ts` lines 8 to 68) |
 | Rust regex word boundaries match the JavaScript tokenizer | Unproven, expected to differ | `canon-rank.ts` lines 65 and 72 use ASCII classes and `\b` without the Unicode flag. Rust `\b` is Unicode-aware |
 | A same-user node process can be kept away from `bkt.db` and the keyring | Unproven | See Private Data |
+| A signed Rust app reads macOS keychain items made by `/usr/bin/security` without a prompt on every read | Unproven | Items made by `security` carry an access list for that tool, per the round 3 critic. Not checked on a Mac for this draft. Spike S2 |
+| `bun:sqlite` and rusqlite write one WAL database without loss | Unproven | The two-writer experiment in Path to a Verified Design |
+| Cross-build of five targets for the Rust workspace | Unproven | A one-day CI trial |
 
 ### Contracts
 
@@ -219,7 +256,7 @@ Proposed targets, specify then prove:
 | 3 | Tier cap: the capped increase is at or below the cap | The cap from `bkt-1fuf` | A mislabelled row cannot outrank by more than the cap |
 | 4 | Split: a specification in integer micro-units whose parts sum to the amount, with the author part at or above the floor. The Solidity contract is tested against vectors from it | First Decision 3 | Small. It catches rounding loss and a floor breach on tested amounts. It proves nothing about the contract's code |
 | 5 | FSRS: clamp bounds alone. D in [1,10], S at least 0.01, interval in [1,3650] | Non-NaN inputs | Bounds hold. The schedule's values stay unverified because they pass through `exp` and `pow` |
-| 6 | Log-scale grade: `log10Distance` is symmetric in the ratio, and correctness is monotone in distance | Positive finite inputs | Specifies the existing function |
+| 6 | Log-scale grade: `log10Distance` is symmetric in its two arguments, zero when they are equal, and correctness is monotone in distance | Positive finite inputs | Specifies the existing function at `grade.ts` lines 26 to 32 |
 | 7 | Extend the `sorry` and axiom gates in `bm.py` to external modules, with `encode_injective` on an explicit open list | None | Closes the gap in which 16 entries pass ungated |
 
 Links from Lean to Rust, proposed:
@@ -257,18 +294,31 @@ Proposed controls, all before the store moves:
 
 | Control | Design |
 |---|---|
-| Downgrade guard release | A TypeScript release, shipped before any Rust store, that refuses to open a `user_version` above the one it knows and says which version to install. Until users hold that release, a Rust schema change can corrupt work done by a 0.4.0 binary on the same file |
+| Downgrade guard release | A TypeScript release, shipped before any Rust store, that refuses to open a `user_version` above the one it knows and says which version to install |
+| Minimum-client field | The signed manifest gains `min_client`. Today it carries name, version, checksum and expiry (`update.ts` lines 28 to 31), and 0.4.0 ignores an unknown field. A guarded client that is older than `min_client` stops writing and asks for an update |
+| Schema location | See Schema Bump |
 | Keyring read adapters | Three in `bucket-store`: libsecret by `service` and `account` attributes, macOS generic password with base64 decoding, and the `.dpapi` file through the same `Unprotect` call. Plus the `keyring.json` vault |
 | Cross-implementation test | Per operating system in CI: the TypeScript binary writes both keys and a database, the Rust binary reads them and opens every sealed row byte-equal, and the reverse |
 | Format freeze | Rust reads and writes `v1:` unchanged, with the same associated-data strings |
-| Backup | `VACUUM INTO` a dated file, plus a copy of `keyring.json` where present, then open the backup and count rows. A plain file copy is ruled out by the ledger |
-| Single writer | Until cutover Bun is the writer. During route-by-route cutover both processes write through SQLite locking with the existing 5 second busy timeout. Behaviour under that contention is unproven |
-| Shared database | The 0.4.0 terminal binary and the new desktop open one `bkt.db`. Every schema change waits for the downgrade guard release |
-| Rollback | Before the first Rust schema bump, install the previous release. After it, restore the dated backup, and work since the backup is lost |
+| Backup | `VACUUM INTO` a dated file before every migration, plus a rolling daily `VACUUM INTO` with seven kept, each with a copy of `keyring.json` where present. Each backup is opened and its rows counted. A plain file copy is ruled out by the ledger |
+| Writers | Until cutover Bun is the writer. During route-by-route cutover both processes write through SQLite locking with the existing 5 second busy timeout. Unproven until the two-writer experiment passes, and cutover does not start before it |
+| Shared database | The 0.4.0 terminal binary and the new desktop open one `bkt.db` through phase 2, at schema version 8 |
+| Rollback | Before the store moves, install the previous release. After it, the untouched `bkt.db` or the latest daily backup is the restore point. Maximum loss is the work since the last daily backup, at most 24 hours on a device that runs daily |
 | Key loss | An encrypted export of the data key and the device key under a user passphrase, using the existing scrypt parameters, offered at first run. Bucket holds no key. A user who skips it has no recovery |
 | Outbox | The outbox stays unsent. Any sync is a separate design with its own consent |
 
-Phase 3 is the point of no return, at the first Rust `user_version` bump. Until then the unchanged format, the unchanged schema version and the dated backup keep the move reversible.
+### Schema Bump
+
+A 0.4.0 binary has no guard and cannot be given one, so a user who never updates can still open the file. Two ways to make the first Rust schema change:
+
+| Option | For | Against |
+|---|---|---|
+| A. Bump `user_version` in the shared `bkt.db`, gated on `min_client` and an adoption threshold | One file. The old terminal and the new desktop stay in step | A 0.4.0 binary that never updated opens the newer schema with no error and may write rows the new schema misreads. The threshold bounds that risk and never removes it |
+| B. The Rust store writes a new file. It imports `bkt.db` once by `VACUUM INTO`, migrates the copy, and never writes the original | No binary of any age can damage the new store. The original stays as the rollback copy | A 0.4.0 binary keeps working on a stale file, so the user sees two histories until they update |
+
+Choice, proposed: B. Reasons: it protects users who never update, it makes the import its own backup, and its cost is a visible stale state that the guard release explains. The Rust engine never bumps `user_version` in the shared file. `min_client` is set in the manifest at the release that moves the store, so a guarded client stops writing the stale file. The share of users on a guarded release that is enough to ship that release is a founder decision.
+
+Phase 3 is the point of no return, when the Rust store becomes the single writer of the new file. Until then the unchanged format and schema version keep the move reversible. After it, work written to the new file is lost on rollback to the original, and the daily backup bounds a restore to 24 hours.
 
 ## Desktop as a Node
 
@@ -297,11 +347,14 @@ Limit. The node runs as the same operating-system user, and that user can read `
 
 | Concern | Design |
 |---|---|
+| Transport | Every peer link runs an authenticated encrypted handshake, the Noise protocol, with the peer identity bound to the node key. Bootstrap and relay identities are pinned in the signed release. A link that fails the handshake is dropped. General knowledge, unproven here |
 | Discovery | A distributed hash table, seeded from a bootstrap list pinned in the signed release. General knowledge |
 | Minimum peers | A query or a pack fetch uses at least a set number of peers from distinct address ranges, with one from the pinned list |
 | Wrong answers | Answers carry record hashes checked against the signed pack manifest. Ranking is deterministic over a given pack, so a second node recomputes and compares |
 | Withheld answers | Recomputation cannot catch omission. The device asks several nodes, compares result sets against the manifest's record count, and ranks the canon pack locally |
 | NAT | Relay plus hole-punching, with the relay as a Bucket cost. General knowledge |
+| Parsers | Every inbound message has a length prefix checked against a byte limit, a bounded field count and a bounded nesting depth, enforced before allocation. Each parser has a fuzz target run in CI |
+| First peer set | A Bucket-run peer set at first, or a registry of operators. Founder decision |
 
 Eclipse and Sybil on discovery stay unmitigated. An attacker who controls the peers a device finds controls what it sees, and distinct address ranges cost little. The pinned bootstrap list and local verification of signed packs bound the damage to withholding and delay. They do not prevent either.
 
@@ -310,11 +363,12 @@ Eclipse and Sybil on discovery stay unmitigated. An attacker who controls the pe
 | Observer | Queries | IP address | Timing |
 |---|---|---|---|
 | Peer serving a pack | The pack hash requested | Yes, or the relay's when relayed | Yes |
+| Any peer or monitor that joins the swarm | Which pack hashes a mirror holds and offers | The mirror's address, tied to those packs | When it is online |
 | Peer answering a query | The query text | Yes, or the relay's | Yes |
-| Relay | Ciphertext, if the peer link is encrypted end to end | Both ends | Yes |
+| Relay | Ciphertext alone, since the peer handshake is end to end | Both ends | Yes |
 | Bootstrap server | None | Every node that starts | Start times |
 
-Traffic analysis is unmitigated. A reader who wants privacy keeps the node off and uses the local pack.
+Traffic analysis is unmitigated. A mirror's address is public together with the packs it holds, which is what swarm monitoring looks for. A reader who wants privacy keeps the node off and uses the local pack.
 
 ### Resource Caps
 
@@ -361,6 +415,7 @@ Proposed. The node is opt-in and off by default.
 | Operator exposure | Question: what does an operator carry for distributing third-party text from home, and for content that peers request through the node? |
 | Internet provider | Question: do the operator's provider terms allow serving, and who tells the operator to check? |
 | Takedown | Question: who receives a notice, and what process answers it? None exists today |
+| Swarm monitoring | Question: what follows for an operator whose address is observed offering a pack that a rights claimant disputes? The settings screen states that the address and the packs held are visible to any peer |
 
 ## Packs
 
@@ -395,6 +450,11 @@ Proposed:
 | Attribution | Each record carries the attribution its licence asks for, and every surface that shows the text shows it |
 | Share-alike | CC BY-SA records keep their licence in the pack and in any export |
 | Excluded | EPO OPS data and Reliance on Science stay out of packs and off nodes |
+| Allowlist owner | One named person owns the allowlist and signs each change. The founder names that person |
+| Unverified labels | A record whose licence label was asserted by its source and checked by nobody is excluded from packs |
+| Per-source check at ingest | Each source gets a recorded check before its first record enters a pack: who asserts the licence, whether the item is a translation, scan or edition that may carry its own rights apart from the underlying work, and what attribution is asked for |
+
+A licence field records a label. It does not establish that the label is right: a share-alike label on a collection can sit over a translation or a scan with separate rights. Question for counsel: how strict must the per-source check be before a record is redistributed?
 
 ### Withdrawal
 
@@ -434,9 +494,12 @@ Public claims the code does not meet, tracked in `bkt-r3rg`:
 
 Proposed flow for one paid citation:
 
-1. A publisher's wallet signs one EIP-3009 `transferWithAuthorization` in USDC on Base.
-2. The payee is a splitter contract, which divides the amount between author, node and operations.
-3. A receipt is written: transaction hash, record SHA-256, and the node signature extension.
+1. A publisher's wallet signs one EIP-3009 `receiveWithAuthorization` in USDC on Base, with the splitter contract as payee. That form lets the payee alone submit it, so the transfer happens inside the splitter's call.
+2. The signed `nonce` is a hash of the record SHA-256, the author address, the node address, the split and a random salt. The payer's signature therefore commits to who is paid.
+3. The facilitator calls the splitter with those values. The splitter recomputes the hash, reverts on a mismatch with the nonce, pulls the funds and divides them between author, node and operations.
+4. A receipt is written: transaction hash, record SHA-256, and the node signature extension.
+
+No contract exists, so this flow is unproven.
 
 Payment is voluntary in this design. Nothing identifies a publisher who republishes, and nothing makes one pay. Enforcement would need payer identification, a licence term that binds republication to the fee, and someone with standing to act on it. None exists, and whether any is wanted is a founder decision.
 
@@ -446,7 +509,7 @@ The 80% floor, open:
 |---|---|
 | Net | The charter draft says 80% of net citation receipts. Net of what is undefined: gas, facilitator fee, refunds |
 | Who bears gas and facilitator fees | The payer on top of the fee, or the operations share. If they come out before the split, the author's share of the gross falls below 80% |
-| Node pay | Proposed inside the 20% operations share, so the author floor is untouched. First Decision 3 |
+| Node pay | Proposed inside the 20% operations share, so the author floor is untouched. The node's fraction is undecided, and so is the figure left for operations after it. First Decision 3 |
 
 Failure states for one citation, proposed handling:
 
@@ -455,12 +518,14 @@ Failure states for one citation, proposed handling:
 | Wrong author wallet | The registry entry is signed by its submitter. A correction applies to later payments. Funds already sent are not recalled |
 | Disputed author | Payment for that record pauses into escrow, if an escrow holder exists. Otherwise no fee is taken |
 | Refund | None on chain. Question for the founder: is there an off-chain refund, and who funds it? |
-| Replay | EIP-3009 nonces are single-use, and the signed domain includes the chain id and token contract |
+| Replay | EIP-3009 nonces are single-use, and the signed domain includes the chain id and token contract. The random salt keeps two citations of one record distinct |
 | Amount below fees | The client refuses to sign when gas plus facilitator fee exceeds a set fraction of the amount |
 | Failed split | The contract reverts and no funds move |
 | Facilitator down | The authorisation stays valid until `validBefore`. Anyone holding it can submit it |
-| Facilitator dishonest | It can delay or drop. It cannot redirect, since the payee is fixed in the signature |
+| Facilitator dishonest | It can delay or drop. The signed payee is the splitter, so the payee field alone does not fix the author and node addresses, which arrive as calldata. The nonce commitment does: changed addresses or a changed split fail the recomputed hash and the call reverts |
+| Authorisation submitted outside the splitter | `receiveWithAuthorization` requires the caller to be the payee, so a third party cannot move the funds without the split |
 | Author with no wallet | Open. Most canon authors have none, and many are dead |
+| Wallet submitted for a dead author | Open. Who may submit one, such as an estate or a publisher, what evidence is asked for, who checks it, and how a rival claim is heard are undecided. Question for counsel and the founder |
 
 Contract keys, open:
 
@@ -541,17 +606,31 @@ What exists, and what each measures:
 | The human and AI probe, `packages/bkt/src/hai` | Accuracy and reliance on multiple-choice items, alone and with a precomputed AI answer shown (`session.ts` line 62, `view.tsx` line 88) | 20 pairs per probe (`probe.ts` line 4), one device, never touches Explore |
 | FSRS review outcomes in `learn_*` tables | Recall on reviewed cards | Unreported |
 
-Ship rule for ranking changes, proposed. With 20 held-out queries, a top-3 rate near 80% has a 95% interval of about plus or minus 18 points, from the binomial formula. A phase therefore ships when the held-out rate stays within a stated tolerance band of the previous engine and at or above a lexical baseline run on the same set. A drop inside the band is noise at this sample size. A larger held-out set narrows the band.
+Ship rule for ranking changes, proposed:
+
+| Part | Rule | Derivation |
+|---|---|---|
+| Held-out band | The held-out top-3 count must not fall more than 3 of 20 queries, 15 points, below the previous engine | One-sided 95% bound for a rate near 80% on 20 queries: 1.645 times the square root of 0.8 times 0.2 over 20, which is 14.7 points |
+| Development band | Not more than 4 of 40 queries, 10 points | The same formula on 40 queries gives 10.4 points |
+| Floor | At or above a lexical baseline run on the same set | The baseline is the engine with no semantic ranking |
+| Port phases | A port is held to exact agreement with the oracle by the differential test, so its expected change is zero. Every query that flips from hit to miss is reviewed by hand before the phase ships | Parity is the goal of a port |
+
+The two-sided 95% interval on 20 queries is about plus or minus 18 points. A drop inside the band cannot be told from noise at this sample size, and a larger held-out set narrows the band.
 
 Proposed instrument for task completion:
 
 | Element | Design |
 |---|---|
-| Who | Real users on their own tasks, recruited outside the team |
-| Outcome | Pre-registered before any session: the user states the task, then reports whether it was finished and what was saved or cited |
+| Who | At least 20 users on their own tasks, recruited outside the team |
+| Outcome | Defined before the study: the user states the task, and the task counts as finished when the user saved or cited a result that a rater judges to answer it |
 | Baseline | The same users on the same kind of task with their current tools |
+| Order | Counterbalanced: half start with their current tools and half with Bucket |
+| Rating | Two raters judge each saved or cited result independently, and their agreement is reported |
+| Pre-registration | The outcome, the sample size and the analysis are committed to the repo as `docs/studies/task-completion-prereg.md`, with the commit hash recorded on `bkt-1fuf` before the first session |
 | Record | Local, exported by the user |
 | Signer | Named by the founder, as for the evaluation set |
+
+Twenty users give a 95% interval of about plus or minus 22 points on a completion rate near 50%, so the study detects a large difference and no small one.
 
 A Rust engine changes none of these measures by itself.
 
@@ -578,7 +657,7 @@ Proposed, subject to First Decision 1.
 | 2 | `bkt-1fuf` Explore | The evaluation set and the ranking rule come from here. Baseline is 0 of 40 |
 | 3 | `bkt-6wjd` parity, in TypeScript | Freezes the contracts and the golden fixtures |
 | 4 | `bkt-r3rg` | Public claims corrected before any settlement work |
-| 5 | Downgrade guard release | Must reach users before any Rust store |
+| 5 | Downgrade guard release, then spikes S1 and S2 and the two-writer experiment | The guard must reach users before the store moves. The spikes gate phases 1 and 2 |
 | 6 | Phases 1 to 3 | Rust behind frozen contracts |
 | 7 | Phases 4 and 5 | After First Decisions 2 and 3, the open questions, and a measured need |
 
@@ -591,7 +670,7 @@ Each phase ships a working app. All proposed.
 | 0 | Freeze data contract v1, Local API v1 and the fixtures in TypeScript. Ship the downgrade guard | Yes |
 | 1 | `bucket-core` ranking as wasm inside Bun, on targets where the load test passes. The site loads the same wasm | Yes, a flag selects the TypeScript ranker |
 | 2 | Rust loopback engine serves the data contract and the read routes, with keyring adapters. Bun keeps writes | Yes |
-| 3 | Rust serves every route. Store, keys and FSRS move. Bun removed | No, after the first schema bump. Restore from the `VACUUM INTO` backup |
+| 3 | Rust serves every route. Store, keys and FSRS move to a new file under Schema Bump. Bun removed | No, once Rust is the single writer. The original `bkt.db` and the daily backup are the restore points |
 | 4 | Node as a verified pack mirror on a test network, off by default | Yes for the device. Seeded copies are permanent |
 | 5 | Query answering, then settlement on a test network, then mainnet | No, for a deployed immutable contract |
 
@@ -609,7 +688,7 @@ Replaced: the Ink terminal app and the `bun:sqlite` store.
 
 ## Open Questions
 
-Today no legal entity exists: the packet is unfiled (`nonprofit-application/README.md` lines 5 and 11), no EIN has been applied for (line 65 lists it as a future step), and `GOVERNANCE.md` line 5 calls itself a statement of intent. "The Foundation" here names a project held by the founder in a personal capacity (`GOVERNANCE.md` line 99). Each row is a question. This document answers none.
+Today no legal entity exists: the packet is unfiled (`nonprofit-application/README.md` lines 5 and 11), no EIN exists (`nonprofit-application/00-BASE-INFO-MEMO.md` line 15, row G-1: Form SS-4 not filed), and `GOVERNANCE.md` line 5 calls itself a statement of intent. "The Foundation" here names a project held by the founder in a personal capacity (`GOVERNANCE.md` line 99). Each row is a question. This document answers none.
 
 | Question | Blocks |
 |---|---|
@@ -637,3 +716,7 @@ Founder decisions after the first three:
 8. Who signs the Explore evaluation set in `bkt-1fuf`?
 9. Is a registry of known operators acceptable, at the cost of permissionless entry?
 10. Who holds the second pack-signing key?
+11. What share of users on a guarded release is enough to move the store?
+12. Does the network start with a Bucket-run peer set?
+13. Who owns the licence allowlist?
+14. Who may submit a wallet for a dead author?
