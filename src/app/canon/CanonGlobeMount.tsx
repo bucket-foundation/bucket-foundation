@@ -1,8 +1,8 @@
 "use client";
 import nextDynamic from "next/dynamic";
-import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import NextLink from "next/link";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 import type { MutableRefObject } from "react";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
@@ -128,6 +128,18 @@ const MOBILE_MARKER_CAP = 250;
 const VIEW_LABEL: Record<ProjectionId, string> = { globe: "globe", circle: "circle" };
 const SORT_LABEL: Record<ThetaSort, string> = { rank: "similarity", year: "year", branch: "branch" };
 
+export type CanonFetcher = (url: string, init: { signal: AbortSignal }) => Promise<Pick<Response, "ok" | "status" | "json">>;
+export type CanonLinkMapper = (href: string) => string | null;
+
+const siteFetcher: CanonFetcher = (url, init) => fetch(url, init);
+const siteLink: CanonLinkMapper = (href) => href;
+const LinkMapContext = createContext<CanonLinkMapper>(siteLink);
+
+function Link({ href, ...rest }: Omit<ComponentProps<typeof NextLink>, "href"> & { href: string }) {
+  const to = useContext(LinkMapContext)(href);
+  return to === null ? null : <NextLink href={to} {...rest} />;
+}
+
 function useIsNarrow(): boolean {
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -150,6 +162,8 @@ interface Props {
   variant?: DecorativeVariant;
   layout?: "default" | "home";
   workspaceLinks?: boolean;
+  fetcher?: CanonFetcher;
+  linkFor?: CanonLinkMapper;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -189,6 +203,8 @@ export default function CanonGlobeMount({
   variant,
   layout,
   workspaceLinks,
+  fetcher,
+  linkFor,
 }: Props) {
   if (decorative) {
     return (
@@ -206,6 +222,8 @@ export default function CanonGlobeMount({
       globeWrapperStyle={globeWrapperStyle}
       layout={layout}
       workspaceLinks={workspaceLinks}
+      fetcher={fetcher}
+      linkFor={linkFor}
     />
   );
 }
@@ -217,7 +235,9 @@ function InteractiveCanonGlobeMount({
   globeWrapperStyle,
   layout = "default",
   workspaceLinks = false,
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks">) {
+  fetcher = siteFetcher,
+  linkFor = siteLink,
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks" | "fetcher" | "linkFor">) {
   const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
@@ -377,7 +397,7 @@ function InteractiveCanonGlobeMount({
         url.searchParams.set("q", q);
         url.searchParams.set("top_k", "15");
         if (branchFilter) url.searchParams.set("branch", branchFilter);
-        const r = await fetch(url.toString(), { signal: ac.signal });
+        const r = await fetcher(url.toString(), { signal: ac.signal });
         if (!r.ok) throw new Error(`http ${r.status}`);
         const j = await r.json();
         setResults(j.results || []);
@@ -388,7 +408,7 @@ function InteractiveCanonGlobeMount({
       }
     }, 250);
     return () => clearTimeout(t);
-  }, [q, branchFilter]);
+  }, [q, branchFilter, fetcher]);
 
   return (
     <div
@@ -836,7 +856,9 @@ function InteractiveCanonGlobeMount({
         </div>
       </div>
 
+      <LinkMapContext.Provider value={linkFor}>
       <Drawer
+        fetcher={fetcher}
         selected={selected}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
@@ -864,6 +886,7 @@ function InteractiveCanonGlobeMount({
         }}
         workspaceLinks={workspaceLinks}
       />
+      </LinkMapContext.Provider>
     </div>
   );
 }
@@ -872,9 +895,11 @@ function Drawer({
   selected,
   transparent = false,
   workspaceLinks = false,
+  fetcher,
   onClose,
   onSelectMarker,
 }: {
+  fetcher: CanonFetcher;
   selected: CanonMarker | null;
   transparent?: boolean;
   workspaceLinks?: boolean;
@@ -902,7 +927,7 @@ function Drawer({
         const url = new URL("/api/canon/search", window.location.origin);
         url.searchParams.set("q", selected.title);
         url.searchParams.set("top_k", "8");
-        const r = await fetch(url.toString(), { signal: ac.signal });
+        const r = await fetcher(url.toString(), { signal: ac.signal });
         const j = r.ok ? await r.json() : { results: [] };
         const out = (j.results || []).filter((x: SearchResult) =>
           !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
@@ -915,7 +940,7 @@ function Drawer({
       }
     }, 250);
     return () => { clearTimeout(t); ac.abort(); };
-  }, [selected, search]);
+  }, [selected, search, fetcher]);
 
   const sameEra = useMemo(() => {
     if (!selected || selected.year === undefined) return [];
