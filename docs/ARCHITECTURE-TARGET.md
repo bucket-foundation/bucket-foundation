@@ -2,7 +2,7 @@
 
 Bead `bkt-neoj`. Founder question: what is the full infrastructure and architecture of Bucket with the desktop app as the product.
 
-Status: draft v8, 2026-10-01, revised after round 7 scores (Rust engine 9.1, Lean 9.0, settlement 8.6, node network 8.1) and the experiments of `bkt-neoj.1` and `bkt-neoj.2`, awaiting founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
+Status: draft v9, 2026-10-01, adds experiment S2 on OS key stores; v8 revised after round 7 scores (Rust engine 9.1, Lean 9.0, settlement 8.6, node network 8.1) and the experiments of `bkt-neoj.1` and `bkt-neoj.2`, awaiting founder decisions. `docs/ARCHITECTURE.md` describes what runs today.
 
 Conventions:
 
@@ -46,7 +46,7 @@ Writing can establish what the repo holds today and what a design would need. Ea
 | Ranking statement proved, and equal to `cosineRank` | Evidenced: `BucketMath.Ranking` proves the order for exact integer scores under unique ids, merged in PR #536 (`78f980bb1`, 2026-10-01). It matches `cosineRank` on 10,000 generated cases in id order, which the loader guarantees. On shuffled input 4,677 cases differ, every one a tie, until the tie-break in open draft PR #542 lands | Done, PR #542 in review | Phase 1 |
 | Tokenizer agreement on non-ASCII text | Evidenced as a difference, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: Unicode word boundaries differ on 1,576 of 5,000 non-ASCII inputs, and the PR #511 fixture cannot detect it. The Rust tokenizer rule is pinned to ASCII boundaries and ASCII lowercasing | Done. The pinned rule needs its own fixture | Phase 1 |
 | `exp`, `ln`, `powf` last-bit agreement | Differential run of FSRS over generated cards on five targets | One day | Phase 3 |
-| Keyring reads across implementations, including macOS keychain access lists | Spike S2: TypeScript writes both keys, a signed Rust binary reads them, on three operating systems | Two days | Phase 2 |
+| Keyring reads across implementations | Evidenced, spike S2, run 2026-10-01, workflow run 36919432926 on open draft PR #539, four runners: Rust read the 0.4.0 entries and the PR #516 scoped entries byte-equal on Linux, macOS arm64, macOS Intel and Windows, through the methods in Data Migration. Developer ID signing, KWallet, a desktop unlock prompt and DPAPI roaming were not determined | Done | Phase 2 |
 | Import then replay equals sequential grading, and deletions hold | A property test over generated interleavings of old-file and new-file attempts, including state written through `/local/progress` and deletions on both sides: merged state after import and replay equals the state from grading the same attempts in time order, no row deleted on either side returns, and no old-file deletion removes a newer row | One day | Phase 3 |
 | Old-file deletions reach the new file | A test per table rule in Changes in the Old File After the Import, including a delete in the old file after an earlier import | Two days | Phase 3 |
 | Concurrent access to `bkt.db` through phase 2 | Evidenced, run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: a `bun:sqlite` writer and a rusqlite writer on one WAL database for 600 s with 87 `kill -9`: 0 rows lost, 0 duplicated, integrity ok. 44 to 52 percent of deferred read-then-write transactions failed at once with `SQLITE_BUSY`, so writers use `begin immediate` or a retry. A test writer with the same pragmas stood in for the installed 0.4.0 app | Done | Phase 2 |
@@ -148,7 +148,9 @@ One codebase for native and WebAssembly holds for `bucket-core` and `bucket-pack
 | Rust regex word boundaries match the JavaScript tokenizer | Disproved for the default `\b`, evidenced for an ASCII boundary | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 1,576 of 5,000 non-ASCII inputs differ. `canon-rank.ts` lines 65 and 72 use ASCII classes and `\b` without the Unicode flag. Lowercasing also differs on 55 code points between Rust and Bun, none in ASCII, so the rule is pinned to ASCII output |
 | A Rust reader decrypts the sealed columns byte-equal | Evidenced through the passphrase vault | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 23 of 23 cells across 11 columns on five targets. OS keyrings untested |
 | A same-user node process can be kept away from `bkt.db` and the keyring | Unproven | See Private Data |
-| A signed Rust app reads macOS keychain items made by `/usr/bin/security` without a prompt on every read | Unproven | Items made by `security` carry an access list for that tool, per the round 3 critic. Not checked on a Mac for this draft. Spike S2 |
+| A Rust app reads macOS keychain items made by `/usr/bin/security` | Evidenced through `/usr/bin/security` alone | Spike S2, run 2026-10-01, workflow run 36919432926 on open draft PR #539, four runners: `/usr/bin/security -w` plus base64 decode works. The `keyring` crate and `SecItemCopyMatching` wait 20 s at the keychain password dialog whether the binary is linker-signed, ad hoc or unsigned, and return -25293 with UI disabled, because the item's access list grants `/usr/bin/security` alone. Developer ID signing untested |
+| A Rust app reads the Linux Secret Service entry | Evidenced through the Secret Service API with the `account` attribute | Spike S2: search on `service` plus `account` returns equal bytes and leaves the item unchanged. The `keyring` crate 3.6.3 finds nothing, since it searches `username`. A locked collection shows as locked in 40 ms, no method returns the secret, and unlock fails with `Prompt` on no display. KWallet untested |
+| A Rust app reads the Windows `.dpapi` file | Evidenced | Spike S2: `CryptUnprotectData` on the base64-decoded file works. The `keyring` crate does not apply. No read prompted. DPAPI roaming untested |
 | Two writers share a WAL database without loss | Evidenced, with a caveat | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743: 0 lost, 0 duplicated through 87 `kill -9`. Deferred read-then-write transactions fail at once with `SQLITE_BUSY` 44 to 52 percent of the time |
 | Cross-build of five targets for the Rust workspace | Evidenced for SQLite, unproven with a keyring library | run 2026-10-01, spike commit `4dac0bd51` on open draft PR #540, workflow run 36919225743 |
 
@@ -283,11 +285,11 @@ Today:
 | Sealing | AES-256-GCM per column, 12-byte random IV, 16-byte tag | `crypto.ts` `seal` |
 | Stored form | `v1:` then base64 of IV, tag, ciphertext | `crypto.ts` |
 | Associated data | A per-row string such as `attempt:<id>`, `note:<id>`, `hai:<id>` | `store.ts` line 298, `notes.ts`, `hai/store.ts` |
-| Data key | 32 random bytes, stored as hex under service `bucket-bkt`, account `db-data-key` | `device.ts` lines 64 to 74 |
-| Device key | Ed25519 private key as PKCS#8 PEM under account `device-ed25519` | `device.ts` lines 42 to 62 |
-| Linux keyring | `secret-tool` with attributes `service` and `account` | `keyring.ts` lines 49 to 66 |
-| macOS keyring | `security` generic password, value base64-encoded | `platform.ts` lines 80 to 99 |
-| Windows keyring | A DPAPI-protected file `bucket-bkt.<account>.dpapi` | `platform.ts` lines 108 to 135 |
+| Data key | 32 random bytes, stored as hex under service `bucket-bkt`, account `db-data-key` | `device.ts` lines 75 to 85 |
+| Device key | Ed25519 private key as PKCS#8 PEM under account `device-ed25519` | `device.ts` lines 53 to 73 |
+| Linux keyring | `secret-tool` with attributes `service` and `account` | `keyring.ts` lines 53 to 91 |
+| macOS keyring | `security` generic password, value base64-encoded | `platform.ts` lines 82 to 100 |
+| Windows keyring | A DPAPI-protected file `bucket-bkt.<account>.dpapi` | `platform.ts` lines 102 to 147 |
 | Passphrase fallback | scrypt N 2^17, r 8, p 1, 16-byte salt, NFKC input, wrapping entries in `keyring.json` beside the database | `crypto.ts`, `keyring.ts` lines 86 to 118 |
 | Key check | `meta.key_check` seals the string `bkt` | `store.ts` lines 142 to 150 |
 | Schema version | `pragma user_version`, 8 today | `store.ts` line 9 |
@@ -302,7 +304,7 @@ Proposed controls, all before the store moves:
 | Downgrade guard release | A TypeScript release, shipped before any Rust store, that refuses to open a `user_version` above the one it knows and says which version to install |
 | Minimum-client field | The signed manifest gains `min_client`. Today it carries name, version, checksum and expiry (`update.ts` lines 28 to 31), and 0.4.0 ignores an unknown field. A guarded client that is older than `min_client` tells the user to update before it accepts new work |
 | Schema location | See Schema Bump |
-| Keyring read adapters | Three in `bucket-store`: libsecret by `service` and `account` attributes, macOS generic password with base64 decoding, and the `.dpapi` file through the same `Unprotect` call. Plus the `keyring.json` vault |
+| Keyring read adapters | Three in `bucket-store`, each the method spike S2 proved: the Secret Service API searched by `service` and `account` on Linux; reads and writes through `/usr/bin/security` with base64 decoding on macOS; `CryptUnprotectData` on the `.dpapi` file on Windows. Plus the `keyring.json` vault. A locked Linux collection is reported to the user as locked, and the engine never unlocks it in the background |
 | Cross-implementation test | Per operating system in CI: the TypeScript binary writes both keys and a database, the Rust binary reads them and opens every sealed row byte-equal, and the reverse |
 | Format freeze | Rust reads and writes `v1:` unchanged, with the same associated-data strings |
 | Backup | `VACUUM INTO` a dated file before every migration, plus a rolling daily `VACUUM INTO` with seven kept, each with a copy of `keyring.json` where present. Each backup is opened and its rows counted. A plain file copy is ruled out by the ledger |
@@ -718,7 +720,7 @@ Proposed, subject to First Decision 1.
 | 2 | `bkt-1fuf` Explore | The evaluation set and the ranking rule come from here. Baseline is 0 of 40 |
 | 3 | `bkt-6wjd` parity, in TypeScript | Freezes the contracts and the golden fixtures |
 | 4 | `bkt-r3rg` | Public claims corrected before any settlement work |
-| 5 | Downgrade guard release, then spike S2 on OS keyrings. S1 and the concurrent-access experiment ran on 2026-10-01 | The guard must reach users before the store moves. S2 gates phase 2 |
+| 5 | Downgrade guard release, S1, S2 and the concurrent-access experiment ran on 2026-10-01 | The guard must reach users before the store moves |
 | 6 | Phases 1 to 3 | Rust behind frozen contracts |
 | 7 | Phases 4 and 5 | After First Decisions 2 and 3, the open questions, and a measured need |
 
