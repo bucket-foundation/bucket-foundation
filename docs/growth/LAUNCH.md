@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/bucket-foundation/bucket-foundation
 irm https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/main/scripts/install.ps1 | iex
 ```
 
-Release 0.4.0 carries `bkt` for five targets and the Linux AppImage `Bucket-0.4.0-x86_64.AppImage`. Then `bkt init` and `bkt` open the first quiz. The installers are also public on the [releases page](https://github.com/bucket-foundation/bucket-foundation/releases).
+Release `bkt-v0.4.0` carries `bkt` for five targets (`bkt-darwin-arm64`, `bkt-darwin-x64`, `bkt-linux-arm64`, `bkt-linux-x64`, `bkt-windows-x64.exe`) and one Linux AppImage, `Bucket-0.4.0-x86_64.AppImage`, which opens the window through `bkt app`. Each file has `.sha256`, `.manifest` and `.manifest.sig` companions. macOS and Windows get the terminal app only; the windowed installers named `Bucket-desktop-<version>-<os>-<arch>` arrive with the next tag. Then `bkt init` and `bkt` open the first quiz. The installers are also public on the [releases page](https://github.com/bucket-foundation/bucket-foundation/releases).
 
 The What's New email is a daily digest of shipped work. The `whats-new` workflow appends to `data/whats-new.json` on each merge to `main`, a leak filter screens every entry, and the `/api/cron/whats-new-daily` crons send through Resend to opted-in addresses with an unsubscribe link. `npm run email:whats-new-preview` renders a digest locally. The same feed is public at `/whats-new`.
 
@@ -55,7 +55,7 @@ First comment:
 >
 > The same graph of concepts is on the web as Research OS, and the canon behind it is free to read: axioms, laws and primary sources, each with a canonical URL. Agents can query it over MCP at https://www.bucket.foundation/api/mcp.
 >
-> Limits today: release 0.4.0 is the first public build, the desktop window ships for Linux as an AppImage, and the author fee rail over x402 on Base is specified but does not settle yet. I would like feedback on the first-run quiz and on the install flow.
+> Limits today: release 0.4.0 is the first public build, the window ships only as a Linux AppImage while macOS and Windows get the terminal app, and the author fee rail over x402 on Base is specified but does not settle yet. I would like feedback on the first-run quiz and on the install flow.
 
 ## Cross-posts
 
@@ -63,11 +63,11 @@ One link per post: https://www.bucket.foundation/download. All FOUNDER-GATED.
 
 X and Bluesky:
 
-> Bucket 0.4.0 is out. An offline study app for macOS, Windows and Linux, signed releases, answers stay on your computer. Free canon on the web, MCP endpoint for agents. bucket.foundation/download
+> Bucket 0.4.0 is out. An offline study app: a terminal app for macOS, Windows and Linux and a window on Linux, signed releases, answers stay on your computer. Free canon on the web, MCP endpoint for agents. bucket.foundation/download
 
 LinkedIn:
 
-> Bucket 0.4.0 is out. It is a study app that runs offline: a timed quiz and spaced-repetition review over an encrypted local store, with signed installers for macOS, Windows and Linux. The web side is Research OS and a free-to-read canon of foundations, open to agents over MCP. The code is MIT. Download it at bucket.foundation/download and tell me what breaks.
+> Bucket 0.4.0 is out. It is a study app that runs offline: a timed quiz and spaced-repetition review over an encrypted local store, with signed binaries for macOS, Windows and Linux and a Linux window. The web side is Research OS and a free-to-read canon of foundations, open to agents over MCP. The code is MIT. Download it at bucket.foundation/download and tell me what breaks.
 
 dev.to or Medium, long form. Title: "Building an offline study app with signed releases". Outline:
 
