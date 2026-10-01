@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/supabase/server";
+import { signInEntryUrl } from "@/lib/sign-in-gate";
 import corpusIndex from "../../../learning/app/corpus/index.json";
 
 export const dynamic = "force-dynamic";
@@ -57,7 +58,7 @@ export default async function AcademyPage({ searchParams }: { searchParams?: Rec
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
-            href="/sign-in?next=/academy"
+            href={signInEntryUrl("/academy")}
             className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition-colors"
           >
             Launch list →
