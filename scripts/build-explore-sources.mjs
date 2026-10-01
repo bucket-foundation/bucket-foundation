@@ -1,10 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
+import yaml from "js-yaml";
 
 const ROOT = process.cwd();
 const LIMIT = 5 * 1024 * 1024;
 const PER_AUTHOR = 4;
 const SNIPPET = 150;
+const AUTHORS = 120;
+const CANON_DIR = "bucket-canon";
+const PRIMARY_FILE = "primary-papers.yaml";
 const OUT_DIR = path.join(ROOT, "src", "data");
 const COMMITTED = path.join(OUT_DIR, "explore-sources.json");
 const LOCAL = path.join(OUT_DIR, "explore-sources.local.json");
@@ -51,7 +55,19 @@ function abstractOf(inv) {
   return words.filter(Boolean).join(" ");
 }
 
-export function buildOpenalex() {
+const lastWord = (name) => String(name ?? "").trim().split(/\s+/).pop() ?? "";
+const entry = (row, doi, family) => ({ row, doi: normDoi(doi), key: dedupeKey(row[2], family) });
+
+export function normDoi(doi) {
+  return String(doi ?? "").trim().toLowerCase().replace(/^https?:\/\/(?:dx\.)?doi\.org\//, "");
+}
+
+export function dedupeKey(title, family) {
+  const norm = (v) => flat(v).normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  return norm(title) && norm(family) ? `${norm(title)}|${norm(family)}` : "";
+}
+
+function openalexEntries() {
   const seen = new Set();
   const out = [];
   for (const a of dirs("openalex")) {
@@ -68,35 +84,40 @@ export function buildOpenalex() {
       const first = w.authorships?.[0]?.author?.display_name ?? "";
       const more = (w.authorships?.length ?? 0) > 1 ? " et al." : "";
       const venue = w.primary_location?.source?.display_name ?? "";
-      out.push(["o", id, flat(w.title), w.publication_year ?? null, cut(abstractOf(w.abstract_inverted_index) || venue), cut(`${first}${more}`, 60)]);
+      out.push(entry(["o", id, flat(w.title), w.publication_year ?? null, cut(abstractOf(w.abstract_inverted_index) || venue), cut(`${first}${more}`, 60)], w.doi, lastWord(first)));
     }
   }
   return out;
 }
 
-export function buildPubmed() {
+function pubmedEntries() {
   const out = [];
   for (const d of dirs("pubmed")) {
     const m = readJson(path.join(ROOT, "pubmed", d, "metadata.json"));
     if (!m?.title || !m.pmid) continue;
     const first = m.authors?.[0] ?? "";
     const more = (m.authors?.length ?? 0) > 1 ? " et al." : "";
-    out.push(["p", String(m.pmid), flat(m.title), yearOf(m.year), cut(m.abstract || m.journal), cut(`${first}${more}`, 60)]);
+    out.push(entry(["p", String(m.pmid), flat(m.title), yearOf(m.year), cut(m.abstract || m.journal), cut(`${first}${more}`, 60)], m.doi, lastWord(first)));
   }
   return out;
 }
 
-export function buildArxiv() {
+function arxivEntries() {
   const out = [];
   for (const d of dirs("arxiv")) {
     const m = readJson(path.join(ROOT, "arxiv", d, "metadata.json"));
     if (!m?.title || !m.id) continue;
     const first = m.authors?.[0] ?? "";
     const more = (m.authors?.length ?? 0) > 1 ? " et al." : "";
-    out.push(["a", m.id, flat(m.title), yearOf(m.published), cut(m.summary), cut(`${first}${more}`, 60)]);
+    out.push(entry(["a", m.id, flat(m.title), yearOf(m.published), cut(m.summary), cut(`${first}${more}`, 60)], m.doi, lastWord(first)));
   }
   return out;
 }
+
+const rows = (entries) => entries.map((e) => e.row);
+export const buildOpenalex = () => rows(openalexEntries());
+export const buildPubmed = () => rows(pubmedEntries());
+export const buildArxiv = () => rows(arxivEntries());
 
 export function buildGutenberg() {
   const out = [];
@@ -151,15 +172,66 @@ export const LICENSE = {
   g: "Project Gutenberg, public domain in the US",
   w: "Wikisource, CC BY-SA 4.0",
   y: "YouTube transcript, link only",
+  d: "Crossref and OpenAlex metadata, CC0",
 };
 
+function primaryFiles(dir = CANON_DIR) {
+  let list = [];
+  try {
+    list = fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return list
+    .sort((a, b) => (a.name < b.name ? -1 : 1))
+    .flatMap((e) => (e.isDirectory() ? primaryFiles(path.join(dir, e.name)) : e.name === PRIMARY_FILE ? [path.join(dir, e.name)] : []));
+}
+
+export function readPrimaryPapers() {
+  return primaryFiles().flatMap((file) => {
+    const doc = yaml.load(read(path.join(ROOT, file)));
+    if (!Array.isArray(doc?.records)) throw new Error(`${file} has no records list`);
+    return doc.records;
+  });
+}
+
+const authorName = (a) => [a?.given, a?.family].filter(Boolean).join(" ");
+
+export function mergePrimaryPapers(existing, records) {
+  const dois = new Set(existing.map((e) => e.doi).filter(Boolean));
+  const keys = new Set(existing.map((e) => e.key).filter(Boolean));
+  const added = new Set();
+  const stats = { read: records.length, added: 0, sameDoi: 0, sameTitleAuthor: 0, repeated: 0, noDoi: 0, noAuthor: 0 };
+  const out = [];
+  for (const r of records) {
+    const doi = normDoi(r?.doi);
+    const key = dedupeKey(r?.title, r?.authors?.[0]?.family);
+    const by = (r?.authors ?? []).map(authorName).filter(Boolean).join(", ");
+    if (!doi || !flat(r?.title)) stats.noDoi++;
+    else if (!by) stats.noAuthor++;
+    else if (added.has(doi) || (key && added.has(key))) stats.repeated++;
+    else if (dois.has(doi)) stats.sameDoi++;
+    else if (key && keys.has(key)) stats.sameTitleAuthor++;
+    else {
+      added.add(doi);
+      if (key) added.add(key);
+      out.push(["d", doi, flat(r.title), yearOf(r.year), cut(r.venue?.name), cut(by, AUTHORS)]);
+      stats.added++;
+    }
+  }
+  return { rows: out, stats };
+}
+
+
 export function buildIndex() {
-  const items = [...buildOpenalex(), ...buildPubmed(), ...buildArxiv(), ...buildGutenberg(), ...buildWikisource(), ...buildYt()];
-  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], licenses: LICENSE, items };
+  const existing = [...openalexEntries(), ...pubmedEntries(), ...arxivEntries()];
+  const primary = mergePrimaryPapers(existing, readPrimaryPapers());
+  const items = [...rows(existing), ...buildGutenberg(), ...buildWikisource(), ...buildYt(), ...primary.rows];
+  return { v: 1, fields: ["kind", "id", "title", "year", "snippet", "by"], licenses: LICENSE, items, primary: primary.stats };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
-  const index = buildIndex();
+  const { primary, ...index } = buildIndex();
   const body = JSON.stringify(index);
   const big = Buffer.byteLength(body) > LIMIT;
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -168,5 +240,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url
   fs.writeFileSync(target, body);
   const counts = {};
   for (const it of index.items) counts[it[0]] = (counts[it[0]] ?? 0) + 1;
-  console.log(`${path.relative(ROOT, target)} ${Buffer.byteLength(body)} bytes ${index.items.length} items`, counts);
+  console.log(`${path.relative(ROOT, target)} ${Buffer.byteLength(body)} bytes ${index.items.length} items`, counts, primary);
 }
