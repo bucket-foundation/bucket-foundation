@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import { jobRoutes } from "../src/job-routes";
-import { checkModules, jobSpecs } from "../src/job-specs";
+import { checkModules, jobSpecs, type AnalysisCard } from "../src/job-specs";
 import { JOB_MARKER, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { buildPySource } from "../src/pack/pysrc";
 import { PeopleStore } from "../src/people";
@@ -232,6 +232,59 @@ describe("real job specs", () => {
     store.close();
     rmSync(cache, { recursive: true, force: true });
   }, 150_000);
+
+  const HAS_NUMPY = checkModules("python3", ["numpy"]) === null;
+  const TABLE = ["day,sleep_h,focus,mood"].concat(Array.from({ length: 40 }, (_, i) => `2026-08-${String((i % 28) + 1).padStart(2, "0")},${(6 + (i % 5) * 0.5).toFixed(1)},${50 + ((i * 7) % 40)},${i % 9 === 0 ? "" : "ok"}`)).join("\n");
+
+  async function analyzed(text: string) {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const cache = mkdtempSync(join(tmpdir(), "bkt-py-"));
+    const r = new JobRunner({ root, timeoutMs: 120_000, specs: jobSpecs({ src: buildPySource(join(import.meta.dir, ".."), REPO), cacheRoot: join(cache, "bkt", "py"), dataRoot: root, people: new PeopleStore(store, key) }) });
+    let done = r.start("analyze", { data: { text, ext: ".csv" } });
+    for (let i = 0; i < 1200 && done.state === "running"; i++) {
+      await Bun.sleep(100);
+      done = r.get(done.id)!;
+    }
+    store.close();
+    rmSync(cache, { recursive: true, force: true });
+    return done;
+  }
+
+  test.skipIf(!HAS_NUMPY)("analyze returns a card of rows, columns and warnings", async () => {
+    const done = await analyzed(TABLE);
+    expect(done.state).toBe("done");
+    const { card } = done.result as { card: AnalysisCard };
+    expect(card.rows).toBe(40);
+    expect(card.time).toBe("day");
+    expect(card.columns).toEqual([
+      { name: "day", kind: "datetime", unit: null, missing: 0, low: null, high: null },
+      { name: "sleep", kind: "float", unit: "h", missing: 0, low: 6, high: 8 },
+      { name: "focus", kind: "integer", unit: null, missing: 0, low: 50, high: 89 },
+      { name: "mood", kind: "string", unit: null, missing: 5, low: null, high: null },
+    ]);
+    expect(card.warnings.map((w) => w.code)).toEqual(["W_MISSING", "W_TIME_ORDER", "W_TIME_DUP"]);
+    expect(card.problems).toEqual([]);
+  }, 150_000);
+
+  test.skipIf(!HAS_NUMPY)("an analysis that stops on the table's form still returns its problems", async () => {
+    const done = await analyzed("name,name\na,b\n");
+    expect(done.state).toBe("failed");
+    expect(done.error).toBe("exited with code 2");
+    const { card } = done.result as { card: AnalysisCard };
+    expect(card.problems.map((p) => p.code)).toEqual(["E_DUP_COLUMN", "E_NO_NUMERIC"]);
+  }, 150_000);
+
+  test("analyze names the install line when its module is missing", () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const specs = jobSpecs({ src: { version: "x", files: {} }, cacheRoot: root, dataRoot: root, people: new PeopleStore(store, key), python: "python3", check: () => "this job needs numpy: python3 -m pip install --user numpy" });
+    const j = new JobRunner({ root, specs }).start("analyze", { data: "a,b\n1,2\n" });
+    expect(j.state).toBe("failed");
+    expect(j.install).toBe("python3 -m pip install --user numpy");
+    expect(j.result).toBeNull();
+    store.close();
+  });
 
   test("fit-me refuses with an install hint when Python modules are missing", () => {
     const key = newDataKey();

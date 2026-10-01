@@ -4,7 +4,10 @@ import { grade, masteryFor, normalizeState, type Atom, type EngineState } from "
 import { MASTERED_THRESHOLD } from "@academy/mastery";
 import { generateQuestion } from "@ros/work-quiz/generate";
 import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
-import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type WorkQuestion } from "./api";
+import { analysisCard } from "../../bkt/src/job-specs";
+import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type JobView, type WorkQuestion } from "./api";
+import REPORT from "./fixtures/analysis-report.json";
+import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
 
 mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
@@ -148,12 +151,30 @@ function served(seed: string, only: (typeof QUIZ_TYPES)[number]) {
   return { question, answer: { correct: true, timedOut: false, answer: q.answer, explain: q.explain } };
 }
 
+const STARTED = Date.UTC(2026, 9, 1, 18, 2, 34);
+const job = (over: Partial<JobView>): JobView => ({ id: "20261001T180234-fccc2bf2", kind: "analyze", state: "done", startedAt: STARTED, endedAt: STARTED + 4000, code: 0, log: "", logTruncated: false, result: null, error: null, install: null, ...over });
+const OUT = "jobs/20261001T180234-fccc2bf2/out";
+const JOBS = {
+  working: job({ state: "running", endedAt: null, code: null }),
+  finished: job({ result: { out: OUT, card: analysisCard(REPORT) }, log: JSON.stringify(REPORT) }),
+  stoppedOnForm: job({ state: "failed", code: 2, error: "exited with code 2", result: { out: OUT, card: analysisCard(STOPPED) }, log: JSON.stringify(STOPPED) }),
+  crashed: job({ state: "failed", code: 1, error: "exited with code 1", result: { out: OUT, card: null }, log: 'Traceback (most recent call last):\n  File "bkt_analyze.py", line 880, in <module>\nValueError: bad row' }),
+  noModule: job({ state: "failed", code: null, endedAt: STARTED, error: "this job needs numpy: python3 -m pip install --user numpy", install: "python3 -m pip install --user numpy" }),
+  noPython: job({ state: "failed", code: null, endedAt: STARTED, error: "python3 not found; install Python 3, then python3 -m pip install --user numpy", install: "python3 -m pip install --user numpy" }),
+  stopped: job({ state: "cancelled", code: null }),
+  tooLong: job({ state: "timeout", code: null, error: "the job ran past its time limit" }),
+};
+const jobsStub = (...jobs: JobView[]) => ({ jobs: async () => ({ kinds: ALL_KINDS, jobs }) });
+
 type Stub = { [K in keyof Api]?: unknown };
 
 const days = (fill: (i: number) => number) => Array.from({ length: 60 }, (_, i) => ({ day: new Date(Date.UTC(2026, 7, 1 + i)).toISOString().slice(0, 10), learn: fill(i), work: 0, notes: 0 }));
 const progress = (branches: Record<string, { data: unknown }> | null) => ({ pull: async () => branches, load: async () => normalizeState(null), save: () => {}, flush: async () => {} });
 
-const JOB_KINDS: JobKind[] = [{ kind: "analyze", label: "Analyze a data file", inputs: [{ name: "data", label: "Data file", exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] }] }];
+const ALL_KINDS: JobKind[] = [
+  { kind: "analyze", label: "Analyze a data file", inputs: [{ name: "data", label: "Data file", exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] }] },
+  { kind: "fit-me", label: "Fit me to a people file", inputs: [{ name: "statement", label: "Research statement", exts: [".md", ".txt"] }, { name: "people", label: "People file", exts: [".jsonl"] }] },
+];
 
 function empty(): Stub {
   return {
@@ -167,7 +188,7 @@ function empty(): Stub {
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, ready: false, answered: 0, correct: 0 }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file or a repository", 404)),
     dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
-    jobs: async () => ({ kinds: JOB_KINDS, jobs: [] }),
+    jobs: async () => ({ kinds: ALL_KINDS, jobs: [] }),
     advisor: async () => ({ review: null, forgotten: 0 }),
     primeDirections: async () => [],
     ros: async () => null,
@@ -202,6 +223,7 @@ function populated(over: Stub = {}): Stub {
         { score: 0.6, kind: "archive", source_path: "archive/item/a.txt", text: "An old book on heat.", url: "https://archive.org/details/item", title: "Old book", author: null, openable: false },
       ],
     }),
+    ...jobsStub(JOBS.finished, { ...JOBS.stoppedOnForm, id: "20261001T170000-0a1b2c3d" }),
     workNext: async () => served("populated", "true_false")!.question,
     dailyQuiz: async () => ({
       day: DAY,
@@ -228,6 +250,8 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
+    jobs: fail("data key does not match", 500),
+    startJob: fail("Data file must be one of .csv, .tsv, .json, .jsonl, .txt", 400),
     canonAbout: fail("data key does not match", 500),
     canonSearch: fail("data key does not match", 500),
     canonExcerpt: fail("no such excerpt", 404),
@@ -258,11 +282,10 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "import" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
-  { name: "jobs", fixedBy: "slice 2, Analyze data" },
   { name: "primes", fixedBy: "slice 6, Themes" },
   { name: "advisors", fixedBy: "slice 7, Advisors action" },
   { name: "atlases", fixedBy: "bkt-cfcs, staff atlases" },
@@ -271,7 +294,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Analyze data", "Import"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -280,13 +303,13 @@ describe("navigation", () => {
     const pending = PENDING.map((p) => p.name);
     expect(NAV.map((n) => n.route.name).filter((n) => !COVERED_NAMES.includes(n) && !pending.includes(n))).toEqual([]);
     expect(COVERED_NAMES.filter((n) => pending.includes(n))).toEqual([]);
-    expect(PENDING.length).toBeLessThanOrEqual(4);
+    expect(PENDING.length).toBeLessThanOrEqual(3);
     expect(PENDING.every((p) => p.fixedBy.length > 0)).toBe(true);
   });
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Analyze data", "Import"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -373,6 +396,161 @@ describe("what the helper sends", () => {
       }
     }
     expect(violationsIn([PROGRESS_TROUBLE])).toEqual([]);
+  });
+});
+
+describe("analyze data", () => {
+  const open = async (v: Awaited<ReturnType<typeof mount>>, label: string) => {
+    const b = Array.from(v.host.querySelectorAll("button")).find((x) => x.textContent === label) as HTMLButtonElement;
+    await v.act(async () => b.click());
+  };
+
+  test("offers one action and never the fit job", async () => {
+    const v = await mount({ name: "jobs" }, empty());
+    expect(v.host.querySelector("h1")!.textContent).toBe("Analyze data");
+    expect(v.host.querySelector(".head p")!.textContent).toBe("Find patterns in your own data.");
+    expect(Array.from(v.host.querySelectorAll("label.file span")).map((e) => e.textContent)).toEqual(["Choose data"]);
+    expect(v.host.querySelectorAll("select, button").length).toBe(0);
+    expect(v.text()).not.toContain("people");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a job of another kind never shows", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(job({ kind: "fit-me", result: { imported: 160, forgotten: 0 } })) });
+    expect(v.host.querySelectorAll(".jobs li").length).toBe(0);
+    await v.unmount();
+  });
+
+  test("a finished analysis shows rows, columns and warnings as sentences", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.finished) });
+    expect(v.host.querySelector(".tag")!.textContent).toBe("Finished");
+    expect(v.host.querySelector(".big-line")!.textContent).toBe("40 rows, 5 columns");
+    expect(Array.from(v.host.querySelectorAll("table.columns tbody tr")).map((r) => Array.from(r.children).map((c) => c.textContent))).toEqual([
+      ["day", "date", "", "", ""],
+      ["sleep", "number", "h", "", "6 to 8"],
+      ["focus", "whole number", "", "", "50 to 89"],
+      ["mood", "text", "", "5", ""],
+      ["note", "text", "", "", ""],
+    ]);
+    expect(Array.from(v.host.querySelectorAll(".notes li")).map((e) => e.textContent)).toEqual(['"mood" has 5 empty cells.', 'The dates in "day" are out of order. Bucket sorted them.', '"day" repeats 12 dates.']);
+    expect(v.text()).toContain('Time runs along "day".');
+    expect(v.host.querySelector("pre")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the raw output and the log sit behind Show details, as exact strings", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.finished) });
+    await open(v, "Show details");
+    const shown = Array.from(v.host.querySelectorAll("pre")).map((e) => e.textContent ?? "");
+    expect(shown).toEqual([JSON.stringify(JOBS.finished.result, null, 2), JOBS.finished.log]);
+    expect(violations(v.host).length).toBeGreaterThan(0);
+    for (const s of shown) ALLOW.add(s.trim());
+    expect(violations(v.host)).toEqual([]);
+    for (const s of shown) ALLOW.delete(s.trim());
+    await open(v, "Hide details");
+    expect(v.host.querySelector("pre")).toBeNull();
+    await v.unmount();
+  });
+
+  test("each state reads Working, Finished, Did not finish or Stopped", async () => {
+    const { STATE_WORDS } = await import("./views/Jobs");
+    expect(STATE_WORDS).toEqual({ running: "Working", done: "Finished", failed: "Did not finish", cancelled: "Stopped", timeout: "Did not finish" });
+    for (const [j, word, line] of [
+      [JOBS.working, "Working", "Bucket is reading your data."],
+      [JOBS.stopped, "Stopped", "You stopped this one."],
+      [JOBS.tooLong, "Did not finish", "This took longer than Bucket allows."],
+      [JOBS.crashed, "Did not finish", "Bucket could not finish this."],
+    ] as const) {
+      const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(j) });
+      expect(v.host.querySelector(".tag")!.textContent).toBe(word);
+      expect(v.text()).toContain(line);
+      expect(violations(v.host)).toEqual([]);
+      await v.unmount();
+    }
+    const working = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.working) });
+    expect(working.host.querySelector("label.file span")!.textContent).toBe("Working…");
+    expect((working.host.querySelector('input[type="file"]') as HTMLInputElement).disabled).toBe(true);
+    expect(Array.from(working.host.querySelectorAll("button.ghost")).map((b) => b.textContent)).toEqual(["Stop"]);
+    await working.unmount();
+  });
+
+  test("a table Bucket cannot analyze says why in sentences", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.stoppedOnForm) });
+    expect(v.host.querySelector(".tag")!.textContent).toBe("Did not finish");
+    expect(Array.from(v.host.querySelectorAll(".notes li")).map((e) => e.textContent)).toEqual(["Two columns share a name.", "The table has no column of numbers to analyze."]);
+    expect(v.host.querySelector("table")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a missing piece shows one button that copies the install line", async () => {
+    const { NEEDS_PIECE, COPIED } = await import("./views/Jobs");
+    expect(NEEDS_PIECE).toBe("Bucket needs one more piece to do this");
+    for (const j of [JOBS.noModule, JOBS.noPython]) {
+      const copies: string[] = [];
+      Object.defineProperty(navigator, "clipboard", { value: { writeText: async (t: string) => void copies.push(t) }, configurable: true });
+      const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(j) });
+      expect(v.host.querySelector("h3")!.textContent).toBe(NEEDS_PIECE);
+      expect(Array.from(v.host.querySelectorAll("button.primary")).map((b) => b.textContent)).toEqual(["Copy the install line"]);
+      expect(violations(v.host)).toEqual([]);
+      await open(v, "Copy the install line");
+      expect(copies).toEqual(["python3 -m pip install --user numpy"]);
+      expect(v.text()).toContain(COPIED);
+      expect(violations(v.host)).toEqual([]);
+      await open(v, "Show details");
+      expect(v.host.querySelector("pre")!.textContent).toBe(j.error!);
+      await v.unmount();
+    }
+  });
+
+  test("a file of the wrong kind, a large file and a refusal read in plain words", async () => {
+    const { WRONG_KIND, TOO_LARGE } = await import("./views/Jobs");
+    const sent: unknown[] = [];
+    const v = await mount({ name: "jobs" }, { ...empty(), startJob: (...a: unknown[]) => (sent.push(a), Promise.reject(new ApiError("another job is running; cancel it or wait", 409))) });
+    const status = () => v.host.querySelector(".status")!.textContent;
+    await v.pickFile(0, new File(["x"], "photo.png"));
+    expect(status()).toBe(WRONG_KIND);
+    const big = new File(["x"], "table.csv");
+    Object.defineProperty(big, "size", { value: 17 * 1024 * 1024 });
+    await v.pickFile(0, big);
+    expect(status()).toBe(TOO_LARGE);
+    expect(sent).toEqual([]);
+    await v.pickFile(0, new File(["a,b\n1,2\n"], "Table.CSV"));
+    expect(sent).toEqual([["analyze", { data: { text: "a,b\n1,2\n", ext: ".csv" } }]]);
+    expect(status()).toBe(plainError(409));
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("every warning and problem the analyzer writes has a plain sentence", async () => {
+    const { noteSentence } = await import("./views/Jobs");
+    const real: [string, string, string][] = [
+      ["W_TRUNCATED", "body", "read the first 200000 rows; raise --max-rows to read more"],
+      ["W_PREAMBLE", "header", "skipped 3 rows above the header"],
+      ["W_MIXED", "sleep_h", "only 80% of values parse as one type"],
+      ["W_EMPTY_COLUMN", "mood", "every value is missing"],
+      ["W_MISSING", "mood", "5 missing (12.5%)"],
+      ["W_CONSTANT", "note", "constant column"],
+      ["W_TIME_ORDER", "day", "time index is not sorted; analysis sorts it"],
+      ["W_TIME_DUP", "day", "12 repeated time values"],
+      ["W_NO_TIME", "header", "no time index found; trend, seasonality and helix skipped"],
+      ["W_DUP_ROWS", "body", "4 duplicate rows"],
+      ["E_READ", "/home/someone/table.csv", "E_MAGIC: contents do not match xlsx"],
+      ["E_HEADER", "header", "blank column names at [2]"],
+      ["E_DUP_COLUMN", "header", "duplicate columns ['name']"],
+      ["E_EMPTY", "body", "header but no rows"],
+      ["E_NO_NUMERIC", "columns", "no numeric columns to analyze"],
+      ["E_RAGGED", "record 4", "3 fields, header has 5"],
+      ["E_KEYS", "record 2", "missing keys ['a']"],
+      ["W_FUTURE", "body", "a code this window has never seen"],
+    ];
+    const lines = real.map(([code, where, message]) => noteSentence({ code, where, message }));
+    expect(violationsIn(lines)).toEqual([]);
+    expect(lines[0]).toBe("Bucket read the first 200,000 rows.");
+    expect(lines[2]).toBe('"sleep h" mixes kinds of values.');
+    expect(lines.filter((l) => l.includes("noticed something else")).length).toBe(1);
   });
 });
 

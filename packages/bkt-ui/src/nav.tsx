@@ -26,7 +26,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "search" }, label: "Canon search" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
-  { route: { name: "jobs" }, label: "Jobs" },
+  { route: { name: "jobs" }, label: "Analyze data" },
   { route: { name: "import" }, label: "Import" },
 ];
 
