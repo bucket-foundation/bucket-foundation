@@ -1,5 +1,6 @@
 import type { Api } from "./api";
 import type { Route } from "./router";
+import { AddView, WorkSetupView } from "./views/Add";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonView } from "./views/Canon";
@@ -26,9 +27,9 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "search" }, label: "Canon search" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
-  { route: { name: "jobs" }, label: "Jobs" },
-  { route: { name: "import" }, label: "Import" },
 ];
+
+export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add" }, label: "Add your own" };
 
 export function navFor(workReady: boolean) {
   return NAV.filter((n) => n.route.name !== "work" || workReady);
@@ -50,5 +51,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;
   if (route.name === "import") return <ImportView api={api} />;
+  if (route.name === "add") return <AddView />;
+  if (route.name === "setup") return <WorkSetupView api={api} />;
   return <LearnHome api={api} />;
 }

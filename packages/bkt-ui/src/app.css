@@ -1266,3 +1266,21 @@ label.row:not(.file) {
   font-weight: 400;
   overflow-wrap: anywhere;
 }
+
+.foot-link {
+  margin-top: auto;
+  padding: 8px;
+  font-size: 14px;
+  color: var(--ink-2, var(--ink));
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.foot-link.on,
+.foot-link:hover {
+  background: var(--panel);
+}
+
+.foot-link + .foot {
+  margin-top: 6px;
+}

@@ -7,6 +7,8 @@ export type Route =
   | { name: "quiz" }
   | { name: "review" }
   | { name: "import" }
+  | { name: "add" }
+  | { name: "setup" }
   | { name: "advisors" }
   | { name: "primes" }
   | { name: "jobs" }
@@ -18,7 +20,7 @@ export type Route =
   | { name: "notes" }
   | { name: "history" };
 
-const SIMPLE = new Set(["quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"]);
+const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"]);
 
 export function isDay(day: string | undefined): day is string {
   if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;
