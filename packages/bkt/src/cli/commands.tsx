@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
+import explorePack from "../../content/explore.json" with { type: "json" };
 import { join } from "node:path";
 import { App } from "../app";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
@@ -19,7 +20,9 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
+import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
+import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
@@ -86,9 +89,13 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
   });
   syncCanon(session.store.db, canonPack as CanonPack);
+  syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  const canon = new CanonStore(session.store.db);
+  const explore = new ExploreStore(session.store.db);
   const srv = startServe({
     routes: {
-      ...canonRoutes(new CanonStore(session.store.db)),
+      ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
+      ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...advisorRoutes(people),

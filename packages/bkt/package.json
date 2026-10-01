@@ -7,8 +7,8 @@
     "bkt": "./src/cli.tsx"
   },
   "scripts": {
-    "pack:content": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts",
-    "test": "bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun test",
+    "pack:content": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts",
+    "test": "bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts && bun test",
     "typecheck": "tsc --noEmit",
     "build": "bun run pack:content && bun build --compile --minify src/cli.tsx --outfile dist/bkt"
   },
