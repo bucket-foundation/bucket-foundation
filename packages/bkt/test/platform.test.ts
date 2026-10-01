@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ensureDevice } from "../src/device";
 import { SERVICE } from "../src/keyring";
-import { DpapiKeyring, KeychainKeyring, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
+import { DpapiKeyring, KeychainKeyring, lsofOwner, netstatOwner, platformFor, procNetTcpOwner, windowsWhoami, type Exec, type ExecSync, type PlatformDeps } from "../src/platform";
 import { statSync, writeFileSync } from "node:fs";
 import { pickKeyring } from "../src/setup";
 
@@ -206,7 +206,18 @@ describe("keyring selection per platform", () => {
   });
 });
 
+const WHOAMI = "C:\\Windows\\System32\\whoami.exe";
+
 describe("owner-only dirs", () => {
+  test("windows whoami resolves under SystemRoot and never from PATH", () => {
+    expect(windowsWhoami({})).toBe(WHOAMI);
+    expect(windowsWhoami({ SystemRoot: "" })).toBe(WHOAMI);
+    expect(windowsWhoami({ SystemRoot: "", SYSTEMROOT: "", windir: "G:\\Win" })).toBe("G:\\Win\\System32\\whoami.exe");
+    expect(windowsWhoami({ SystemRoot: "D:\\WINNT", PATH: "C:\\Program Files\\Git\\usr\\bin" })).toBe("D:\\WINNT\\System32\\whoami.exe");
+    expect(windowsWhoami({ SYSTEMROOT: "E:\\Win" })).toBe("E:\\Win\\System32\\whoami.exe");
+    expect(windowsWhoami({ windir: "F:\\Win" })).toBe("F:\\Win\\System32\\whoami.exe");
+  });
+
   test("unix dirs are 0700", () => {
     const p = join(dir, "a", "b");
     platformFor("linux", deps()).secureDir(p);
@@ -215,11 +226,12 @@ describe("owner-only dirs", () => {
 
   test("windows dirs get an ACL for the current user SID alone, and failures stop", () => {
     const calls: string[][] = [];
-    const ok: ExecSync = (argv) => (calls.push(argv), argv[0] === "whoami" ? { code: 0, stdout: '"pc\\ann","S-1-5-21-1-2-3-1001"\r\n', stderr: "" } : { code: 0, stdout: "", stderr: "" });
+    const ok: ExecSync = (argv) => (calls.push(argv), argv[0] === WHOAMI ? { code: 0, stdout: '"pc\\ann","S-1-5-21-1-2-3-1001"\r\n', stderr: "" } : { code: 0, stdout: "", stderr: "" });
     const p = join(dir, "w1");
     platformFor("win32", deps({ execSync: ok })).secureDir(p);
+    expect(calls[0]).toEqual([WHOAMI, "/user", "/fo", "csv", "/nh"]);
     expect(calls.find((c) => c[0] === "icacls")).toEqual(["icacls", p, "/inheritance:r", "/grant:r", "*S-1-5-21-1-2-3-1001:(OI)(CI)F", "/q"]);
-    const denied: ExecSync = (argv) => (argv[0] === "whoami" ? ok(argv) : { code: 5, stdout: "", stderr: "Access is denied." });
+    const denied: ExecSync = (argv) => (argv[0] === WHOAMI ? ok(argv) : { code: 5, stdout: "", stderr: "Access is denied." });
     expect(() => platformFor("win32", deps({ execSync: denied })).secureDir(join(dir, "w2"))).toThrow("Access is denied.");
   });
 });
