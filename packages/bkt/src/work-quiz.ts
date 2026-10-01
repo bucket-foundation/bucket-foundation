@@ -4,10 +4,11 @@ import { existsSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/work-quiz/generate";
-import { gradeAnswer, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { gradeAnswer, log10Distance, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
 import { open, seal } from "./crypto";
+import { attemptId, DailyQuizStore, validDay } from "./daily-quiz";
 import type { Route } from "./serve";
 import type { Store } from "./store";
 
@@ -92,14 +93,19 @@ export class WorkQuizStore {
       .run(repo === null ? null : seal(this.key, repo, "work_quiz_repo"), now);
   }
 
-  clear() {
-    this.store.db.run("delete from work_quiz_source");
+  get daily(): DailyQuizStore {
+    return new DailyQuizStore(this.store, this.key);
   }
 
-  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number) {
+  clear() {
+    this.store.db.run("delete from work_quiz_source");
+    this.daily.clear();
+  }
+
+  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
     this.store.db
-      .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at) values (?, ?, ?, ?, ?, ?, ?)")
-      .run(randomUUID(), q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at);
+      .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at, log10_distance) values (?, ?, ?, ?, ?, ?, ?, ?)")
+      .run(randomUUID(), extra.questionId ?? q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at, extra.log10Distance ?? null);
   }
 
   tally(): { answered: number; correct: number } {
@@ -201,9 +207,29 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       issued.set(q.id, { q, at });
       return json(toPublic(q));
     },
+    "GET /local/work-quiz/daily": (_req, url) => {
+      const day = url.searchParams.get("day");
+      if (!validDay(day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
+      const quiz = wq.daily.get(day);
+      if (!quiz) return json({ error: "no quiz for that day" }, 404);
+      return json({ day, questions: quiz.questions.map(toPublic), answered: [...wq.daily.answered(day)] });
+    },
     "POST /local/work-quiz/answer": async (req) => {
       const b = await body(req);
       if (!b || typeof b.id !== "string") return json({ error: "id required" }, 400);
+      if (b.day !== undefined) {
+        if (!validDay(b.day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
+        const q = wq.daily.get(b.day)?.questions.find((x) => x.id === b.id);
+        if (!q) return json({ error: "no such question" }, 404);
+        if (wq.daily.answered(b.day).has(q.id)) return json({ error: "already answered" }, 409);
+        if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs) || b.elapsedMs < 0) return json({ error: "elapsedMs required" }, 400);
+        const elapsed = Math.min(b.elapsedMs, 3_600_000);
+        const response = normalizeResponse(q, b.response);
+        const g = gradeAnswer(q, response, elapsed);
+        const distance = q.log10Tolerance === undefined ? null : log10Distance(q.answer, response);
+        wq.record(q, g.correct, g.rating, elapsed, now(), { questionId: attemptId(b.day, q.id), log10Distance: distance });
+        return json({ ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources });
+      }
       const open = issued.get(b.id);
       if (!open) return json({ error: "no open question" }, 404);
       issued.delete(b.id);

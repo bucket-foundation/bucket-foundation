@@ -6,11 +6,11 @@ import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
 import type { Card, Item, Rating } from "./grade";
 
-export const SCHEMA_VERSION = 7;
+export const SCHEMA_VERSION = 8;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -93,6 +93,8 @@ export const MIGRATIONS: Migration[] = [
   `create table notes (id text primary key, doc text not null, pinned integer not null default 0, created_at integer not null, updated_at integer not null);
    create index notes_updated on notes(updated_at);`,
   `create table history_snapshot (id integer primary key check (id = 1), doc text not null, imported_at integer not null);`,
+  `create table daily_quiz (day text primary key, body text not null, created_at integer not null);
+   alter table work_quiz_attempts add column log10_distance real;`,
 ];
 
 export interface AttemptInput {

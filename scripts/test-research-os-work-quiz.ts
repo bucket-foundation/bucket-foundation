@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { generateQuestion, prTitle, seededRng, sourcesEmpty, LIMIT_SEC } from "../src/lib/research-os/work-quiz/generate";
-import { gradeAnswer, isCorrect, nextCard, normalizeResponse, GRACE_MS } from "../src/lib/research-os/work-quiz/grade";
+import { gradeAnswer, isCorrect, log10Distance, nextCard, normalizeResponse, FERMI_CLOSE_LOG10, FERMI_LOG10_TOLERANCE, GRACE_MS } from "../src/lib/research-os/work-quiz/grade";
 import { DAILY_CAP, MIN_GAP_ACTIVE_MS, P_PER_ACTIVE_MINUTE, TICK_MS, initialState, markShown, normalizeState, tick, type TriggerState } from "../src/lib/research-os/work-quiz/trigger";
 import { QUIZ_TYPES, toPublic, type WorkSources } from "../src/lib/research-os/work-quiz/types";
 import { DAY_MS } from "../src/lib/academy/fsrs";
@@ -163,6 +163,35 @@ test("grading: choices, numbers, timeouts and ratings", () => {
   assert.ok(isCorrect(num, "60"));
   assert.ok(isCorrect(num, "40"));
   assert.ok(!isCorrect(num, "61"));
+});
+
+test("Fermi grading: log10 distance bands, non-positive answers, and the old tolerance left alone", () => {
+  const f = { choices: null, answer: "1000", tolerance: 0, log10Tolerance: FERMI_LOG10_TOLERANCE, limitSec: 90 };
+  assert.equal(log10Distance("1000", "1000"), 0);
+  assert.ok(Math.abs(log10Distance("1000", "100")! - 1) < 1e-12);
+  assert.ok(Math.abs(log10Distance("1000", "10000")! - 1) < 1e-12);
+  for (const bad of ["0", "-5", "abc", null]) assert.equal(log10Distance("1000", bad), null);
+  assert.equal(log10Distance("0", "10"), null);
+  assert.equal(log10Distance("-3", "10"), null);
+  assert.equal(FERMI_LOG10_TOLERANCE, 0.5);
+  assert.ok(isCorrect(f, "3162"));
+  assert.ok(isCorrect(f, "317"));
+  assert.ok(!isCorrect(f, "3200"));
+  assert.ok(!isCorrect(f, "310"));
+  assert.ok(!isCorrect(f, "0"));
+  assert.ok(!isCorrect(f, "-1000"));
+  assert.ok(isCorrect({ ...f, answer: "1e12" }, String(10 ** 12.5)));
+  assert.deepEqual(gradeAnswer(f, "1000", 80_000), { correct: true, timedOut: false, rating: 4 });
+  assert.deepEqual(gradeAnswer(f, String(1000 * 10 ** FERMI_CLOSE_LOG10), 1000), { correct: true, timedOut: false, rating: 4 });
+  assert.deepEqual(gradeAnswer(f, "2000", 1000), { correct: true, timedOut: false, rating: 3 });
+  assert.deepEqual(gradeAnswer(f, "9000", 1000), { correct: false, timedOut: false, rating: 1 });
+  assert.deepEqual(gradeAnswer(f, "1000", 90_000 + GRACE_MS + 1), { correct: false, timedOut: true, rating: 1 });
+  assert.deepEqual(gradeAnswer(f, null, 1000), { correct: false, timedOut: false, rating: 1 });
+  const old = { choices: null, answer: "1000", tolerance: 10, limitSec: 40 };
+  assert.ok(!isCorrect(old, "2000"));
+  assert.ok(isCorrect(old, "1010"));
+  assert.deepEqual(gradeAnswer(old, "1005", 1000), { correct: true, timedOut: false, rating: 4 });
+  assert.ok(isCorrect({ ...f, choices: ["1000", "5"], answer: "5" }, "5"));
 });
 
 test("a miss makes an FSRS card due within a day; a first correct answer makes none", () => {
