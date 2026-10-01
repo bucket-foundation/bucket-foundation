@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CONTACT_EMAIL, mailto } from "@/lib/support";
+import { RETENTION_MONTHS } from "@/lib/download/core";
 import { COLLECTED, EVENTS, PRIVACY_DRAFT, PROCESSORS } from "@/lib/privacy-notice";
 
 export const metadata: Metadata = {
@@ -75,6 +76,12 @@ export default function PrivacyPage() {
             </li>
           ))}
         </ul>
+
+        <h2 className={H2}>download requests</h2>
+        <p className={P}>
+          When you ask for the desktop app we keep your email, the name you give, your role and research if you add them, the computer you pick, your update choices, and the time of each request. We keep it in private storage and use it for the download link and the notices you chose. We delete it {RETENTION_MONTHS} months after your last request, and sooner on request: write to{" "}
+          <a className="underline underline-offset-4" href={mailto("Delete my download request")}>{CONTACT_EMAIL}</a>.
+        </p>
 
         <h2 className={H2}>export and delete</h2>
         <p className={P}>
