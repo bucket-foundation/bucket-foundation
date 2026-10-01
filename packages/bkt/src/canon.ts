@@ -7,6 +7,7 @@ import type { Route } from "./serve";
 export const CANON_META_KEY = "canon_pack_version";
 export const CANON_DEFAULT_TOP_K = 20;
 export const OPEN_BODY_BYTES = 4096;
+export const CANON_SITE = "https://bucket.foundation";
 export const OPEN_HOSTS = [
   "www.youtube.com",
   "youtube.com",
@@ -126,6 +127,24 @@ export function openable(raw: unknown, hosts: readonly string[] = OPEN_HOSTS): U
   return u;
 }
 
+export const DOI_HOST = "doi.org";
+export const DOI_ID = /^10\.\d{4,9}\/[^\s?#]+$/;
+
+export function openableDoi(raw: unknown, held: (doi: string) => boolean): URL | null {
+  if (typeof raw !== "string" || raw.length > 2048) return null;
+  const prefix = `https://${DOI_HOST}/`;
+  if (!raw.startsWith(prefix)) return null;
+  const id = raw.slice(prefix.length);
+  if (!DOI_ID.test(id) || !held(id)) return null;
+  try {
+    const u = new URL(raw);
+    if (u.protocol !== "https:" || u.hostname !== DOI_HOST || u.port || u.username || u.password || u.search || u.hash) return null;
+    return decodeURI(u.pathname) === `/${id}` ? u : null;
+  } catch {
+    return null;
+  }
+}
+
 export function browserCommand(url: string, os: NodeJS.Platform = process.platform): string[] {
   if (os === "darwin") return ["open", url];
   if (os === "win32") return ["rundll32", "url.dll,FileProtocolHandler", url];
@@ -142,12 +161,14 @@ export function openInBrowser(url: string): void {
 export interface CanonRouteOptions {
   open?: (url: string) => void;
   hosts?: readonly string[];
+  holdsDoi?: (doi: string) => boolean;
 }
 
 export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Record<string, Route> {
   const open = opts.open ?? openInBrowser;
   return {
     "GET /local/canon/search": (_req, url) => {
+      const t0 = Date.now();
       const params = parseCanonSearchParams(url, CANON_DEFAULT_TOP_K);
       const found = rankCanon({ loadIndex: () => canon.index(), decodeQVec: () => null }, { ...params, qvec: null });
       if (!found.ok) return json({ error: found.message, code: found.code }, found.status);
@@ -158,10 +179,11 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
         slug: r.entry.slug,
         title: r.entry.title,
         score: r.score,
+        url: `${CANON_SITE}/excerpts/${r.entry.concept}/${r.entry.slug}`,
         excerpt: r.entry.text.slice(0, 400),
         evidence_count: canon.evidenceCount(r.entry.rowid),
       }));
-      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results });
+      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results, took_ms: Date.now() - t0 });
     },
     "GET /local/canon/excerpt": (_req, url) => {
       const raw = url.searchParams.get("id") ?? "";
@@ -176,7 +198,8 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
       } catch {
         return json({ error: "expected { url }" }, 400);
       }
-      const u = openable((body as { url?: unknown } | null)?.url, opts.hosts ?? OPEN_HOSTS);
+      const raw = (body as { url?: unknown } | null)?.url;
+      const u = openable(raw, opts.hosts ?? OPEN_HOSTS) ?? openableDoi(raw, opts.holdsDoi ?? (() => false));
       if (!u) return json({ error: "that link is outside the allowed sites" }, 400);
       open(u.toString());
       return json({ opened: u.toString() });

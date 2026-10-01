@@ -9,7 +9,7 @@ import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
-import { attemptId, DailyQuizStore, validDay, type DailyQuiz } from "./daily-quiz";
+import { attemptId, DailyQuizStore, overLength, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
@@ -178,8 +178,14 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
 
   function daily(day: string): Promise<DailyQuiz | null> {
     const stored = wq.daily.get(day);
-    if (stored || day !== localDay(now()) || empty.has(day)) return Promise.resolve(stored);
-    const running = building.get(day) ?? build(day).finally(() => building.delete(day));
+    const today = day === localDay(now());
+    const rebuild = today && stored !== null && overLength(stored) && wq.daily.answered(day).size === 0;
+    if ((stored && !rebuild) || !today || empty.has(day)) return Promise.resolve(stored);
+    const running =
+      building.get(day) ??
+      build(day)
+        .then((built) => built ?? stored)
+        .finally(() => building.delete(day));
     building.set(day, running);
     return running;
   }

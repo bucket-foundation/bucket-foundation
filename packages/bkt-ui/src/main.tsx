@@ -46,7 +46,8 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name;
+  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
+  const canon = route.name === "canon" || route.name === "search";
 
   return (
     <div className="shell">
@@ -64,7 +65,7 @@ function App() {
         </nav>
         <p className="foot">Offline on this computer</p>
       </aside>
-      <main className="main">
+      <main className={canon ? "main wide" : "main"}>
         {warn && (
           <div className="banner" role="status">
             {warn}

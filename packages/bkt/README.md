@@ -54,7 +54,9 @@ bkt stats --json
 bkt whoami --json
 ```
 
-`bkt --help`, `-h` and `help` print the command list; `bkt help <command>` and `bkt <command> --help` print one command's flags. The list comes from the table in `src/cli/table.ts`, which also drives parsing and the `:` palette. `whoami`, `init`, `stats`, `analyses`, `update` and `version` take `--json` and print one line shaped `{"v":1,...}` with keys, tokens and sealed content left out.
+`bkt --help`, `-h` and `help` print the command list; `bkt help <command>` and `bkt <command> --help` print one command's flags. The list comes from the table in `src/cli/table.ts`, which also drives parsing and the `:` palette. `whoami`, `init`, `stats`, `analyses`, `update` and `version` take `--json` and print one line shaped `{"v":1,...}` with keys, tokens and sealed content left out. `--json` is for scripts. Without it every command prints plain text: `init`, `whoami` and `stats` print labelled rows, `analyses` prints name and date with the folder behind `--where`, and `hai report` prints the probe results as sentences. `hai export` is the one data command and prints JSON for scripts.
+
+`bkt doctor` checks the data folder, key store, database, content pack, window files, open window, analysis tools and terminal, one line each with the fix on a problem. It writes nothing, exits 1 when a check fails, and takes `--json`. `bkt completion bash`, `zsh` or `fish` prints a completion script generated from the same table; load it with `source <(bkt completion bash)`.
 
 Exit codes: 0 ok, 1 failure, 2 usage, 3 no data, 130 cancelled. A usage error exits before bkt creates the data folder or calls the key store. `NO_COLOR` turns colour off. Without a terminal, or with `TERM=dumb`, the terminal app, `bkt hai` and `bkt analyze --tui` print usage and exit 2, and `bkt analyses` prints a plain list.
 

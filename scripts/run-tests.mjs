@@ -44,11 +44,14 @@ const SUITES = {
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-whats-new.mjs",
       "scripts/test-whats-new-api.ts",
+      "scripts/test-whats-new-publish.ts",
+      "scripts/test-whats-new-page.ts",
+      "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
     ],
     commands: [
@@ -72,7 +75,7 @@ const SUITES = {
       "scripts/test-research-tools-routes.ts",
     ],
     exclude: [
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits}.ts",
       "scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts",
     ],
     commands: [

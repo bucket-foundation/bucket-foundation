@@ -19,6 +19,7 @@ export interface CommandSpec {
   terminal?: "always" | "with-tui-flag";
   palette?: { run: PaletteTarget; hint: string; order: number };
   tuiOnly?: boolean;
+  data?: boolean;
 }
 
 export const EXIT = { ok: 0, failure: 1, usage: 2, noData: 3, cancelled: 130 } as const;
@@ -34,7 +35,7 @@ export const VERSION_OPTION: Record<string, OptionSpec> = {
 };
 
 export const JSON_OPTION: Record<string, OptionSpec> = {
-  json: { type: "boolean", help: 'print one line of JSON shaped {"v":1,...}' },
+  json: { type: "boolean", help: 'for scripts: print one line of JSON shaped {"v":1,...}' },
 };
 
 export const KEYRING_OPTIONS: Record<string, OptionSpec> = {
@@ -57,7 +58,7 @@ export const TABLE: CommandSpec[] = [
     summary: "print item, seen, due and attempt counts",
     session: true,
     json: true,
-    palette: { run: "stats", hint: "counts and device", order: 3 },
+    palette: { run: "stats", hint: "your counts", order: 3 },
   },
   { name: "home", summary: "main menu", tuiOnly: true, palette: { run: "home", hint: "main menu", order: 4 } },
   { name: "serve", summary: "start the local server and print its URL", session: true },
@@ -83,12 +84,19 @@ export const TABLE: CommandSpec[] = [
       horizon: { type: "string", value: "N", help: "forecast horizon, a whole number" },
       "max-rows": { type: "string", value: "N", help: "stop reading after N rows" },
       out: { type: "string", value: "DIR", help: "report folder" },
-      json: { type: "boolean", help: "print the report as JSON" },
+      json: { type: "boolean", help: "for scripts: print the report as JSON" },
       tui: { type: "boolean", help: "show progress and the report in the terminal app" },
       dev: { type: "boolean", help: "use the analyzer from the checkout" },
     },
   },
-  { name: "analyses", summary: "list saved analyses; in a terminal, browse them", args: "[dir]", positionals: [0, 1], json: true },
+  {
+    name: "analyses",
+    summary: "list saved analyses by name and date; in a terminal, browse them",
+    args: "[dir]",
+    positionals: [0, 1],
+    json: true,
+    options: { where: { type: "boolean", help: "also print the folder of each analysis" } },
+  },
   { name: "hai", summary: "open the human and AI probe", session: true, terminal: "always" },
   { name: "hai freeze", summary: "write the frozen item bank", options: HAI_TOOL_OPTIONS },
   {
@@ -108,7 +116,8 @@ export const TABLE: CommandSpec[] = [
       "max-usd": { type: "string", value: "USD", help: "refuse a batch whose worst case costs more" },
     },
   },
-  { name: "hai export", summary: "print the probe data as JSON", session: true, json: true },
+  { name: "hai report", summary: "print the probe results as sentences", session: true },
+  { name: "hai export", summary: "for scripts: print the probe data as JSON", session: true, json: true, data: true },
   { name: "hai wipe", summary: "delete the probe data", session: true },
   { name: "forget people", summary: "forget imported people", session: true },
   {
@@ -118,6 +127,18 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  {
+    name: "doctor",
+    summary: "check this install and name the fix for each problem; writes nothing",
+    json: true,
+    options: { keyring: { type: "string", value: "KIND", help: "key store to check: native or passphrase" } },
+  },
+  {
+    name: "completion",
+    summary: "print a shell completion script",
+    args: "<bash|zsh|fish>",
+    positionals: [1, 1],
+  },
   {
     name: "help",
     summary: "show help for bkt or one command",
