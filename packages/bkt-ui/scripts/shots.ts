@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { chromium } from "playwright";
 import { newDataKey } from "../../bkt/src/crypto";
@@ -170,15 +170,6 @@ await page.fill(".search", "4000");
 await page.click(".toolbar button.primary");
 await page.waitForSelector(".after-block");
 await page.screenshot({ path: join(out, "5d-daily-quiz-fermi.png") });
-await page.click('nav a[href="#/canon"]');
-await page.waitForSelector(".circle-view .pt");
-await page.locator(".circle-view .pt").nth(40).dispatchEvent("click");
-await page.screenshot({ path: join(out, "6c-canon-circle.png") });
-await page.click(".seg button >> nth=1");
-await page.waitForSelector(".globe-box canvas", { timeout: 30000 });
-await page.waitForTimeout(3000);
-await page.screenshot({ path: join(out, "6d-canon-globe.png") });
-
 await page.click('nav a[href="#/atlases"]');
 await page.waitForSelector("text=This build has no solvability atlas");
 await page.setInputFiles(".toolbar .file input", resolve(import.meta.dir, "../../../src/lib/research-os/solvability-atlas-data.json"));
@@ -216,6 +207,96 @@ await page.screenshot({ path: join(out, "9-jobs.png") });
 await page.click('nav a[href="#/import"]');
 await page.waitForSelector(".file");
 await page.screenshot({ path: join(out, "6-import.png") });
+
+const home = mkdtempSync(join(out, ".home-"));
+const real = Bun.spawn(["bash", "-c", 'exec "$0" "$1" serve --keyring passphrase --passphrase-fd 3 3<<<"$BKT_SHOTS_PASSPHRASE"', process.execPath, resolve(import.meta.dir, "../../bkt/src/cli.tsx")], {
+  env: {
+    PATH: process.env.PATH ?? "",
+    HOME: home,
+    BKT_HOME: join(home, "data"),
+    BKT_UI_DIR: resolve(import.meta.dir, "../dist"),
+    BKT_SHOTS_PASSPHRASE: "shots only",
+    XDG_RUNTIME_DIR: join(home, "run"),
+    XDG_CACHE_HOME: join(home, "cache"),
+    XDG_DATA_HOME: join(home, "share"),
+    XDG_CONFIG_HOME: join(home, "config"),
+  },
+  stdout: "pipe",
+  stderr: "inherit",
+});
+const printed = real.stdout.getReader();
+let buffered = "";
+async function nextUrl(): Promise<string> {
+  const deadline = Date.now() + 60_000;
+  while (Date.now() < deadline) {
+    const m = buffered.match(/http:\/\/127\.0\.0\.1:\d+\//);
+    if (m) {
+      buffered = buffered.slice(buffered.indexOf(m[0]) + m[0].length);
+      return m[0];
+    }
+    const { value, done } = await printed.read();
+    if (done) break;
+    buffered += new TextDecoder().decode(value);
+  }
+  throw new Error(`bkt serve printed no address: ${buffered}`);
+}
+
+const outside: string[] = [];
+async function canonPage(graphics: boolean) {
+  const p = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
+  p.on("pageerror", (e) => (errors.push(e.message), console.error("pageerror", e.message)));
+  p.on("console", (m) => m.type() === "error" && !m.text().includes("status of 404") && errors.push(m.text()));
+  await p.route("**/*", (r) => {
+    if (new URL(r.request().url()).hostname === "127.0.0.1") return r.continue();
+    outside.push(r.request().url());
+    return r.abort();
+  });
+  if (!graphics) await p.addInitScript(() => (HTMLCanvasElement.prototype.getContext = () => null));
+  await p.goto(await nextUrl());
+  await p.waitForSelector(".side nav a");
+  await p.click('nav a[href="#/canon"]');
+  return p;
+}
+
+try {
+  const canon = await canonPage(true);
+  await canon.waitForSelector(".canon-site canvas", { timeout: 30000 });
+  await canon.waitForTimeout(3000);
+  await canon.screenshot({ path: join(out, "6c-canon-globe.png") });
+  await canon.fill('.canon-site input[type="text"]', "entropy");
+  await canon.waitForSelector(".canon-site .max-h-72 > button");
+  await canon.screenshot({ path: join(out, "6c-canon-results.png") });
+  await canon.click(".canon-site .max-h-72 > button >> nth=0");
+  await canon.waitForSelector(".canon-site aside blockquote");
+  await canon.waitForSelector(".canon-site aside li a");
+  await canon.waitForTimeout(1500);
+  await canon.screenshot({ path: join(out, "6c-canon-drawer.png") });
+  await canon.click('.canon-site [data-view="circle"]');
+  await canon.waitForSelector(".canon-site details summary");
+  await canon.waitForTimeout(3000);
+  await canon.screenshot({ path: join(out, "6d-canon-circle.png") });
+  await canon.click(".canon-site aside >> text=open full claim");
+  await canon.waitForSelector(".canon-detail blockquote");
+  await canon.screenshot({ path: join(out, "6d-canon-excerpt.png") });
+  await canon.click("a.back");
+  await canon.waitForSelector(".canon-site canvas", { timeout: 30000 });
+  await canon.close();
+
+  real.kill("SIGUSR1");
+  const plain = await canonPage(false);
+  await plain.waitForSelector(".canon-q");
+  await plain.fill(".canon-q", "entropy");
+  await plain.click('.toolbar button[type="submit"]');
+  await plain.click(".hit >> nth=0");
+  await plain.waitForSelector(".canon-detail blockquote");
+  await plain.screenshot({ path: join(out, "6d-canon-no-graphics.png") });
+  await plain.close();
+} finally {
+  real.kill();
+  await real.exited;
+  rmSync(home, { recursive: true, force: true });
+}
+if (outside.length) errors.push(`the canon screen asked the network for ${outside.join(", ")}`);
 
 await browser.close();
 srv.stop();

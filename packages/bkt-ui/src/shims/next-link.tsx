@@ -6,7 +6,7 @@ export default function Link({ href, children, prefetch: _prefetch, ...rest }: P
   const url = typeof href === "string" ? href : (href.pathname ?? "#");
   const external = /^https:\/\//.test(url);
   return (
-    <a href={external ? url : "#"} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} {...rest}>
+    <a href={external || url.startsWith("#/") ? url : "#"} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} {...rest}>
       {children}
     </a>
   );

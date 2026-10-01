@@ -6,7 +6,6 @@ import { AdvisorsView } from "./views/Advisors";
 import { DeckView } from "./views/Deck";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
-import { CanonView } from "./views/Canon";
 import { CanonSearchView } from "./views/CanonSearch";
 import { AtlasesView } from "./views/Atlases";
 import { NotesView } from "./views/Notes";
@@ -26,7 +25,6 @@ const NAV: { route: Route; label: string }[] = [
   { route: { name: "review" }, label: "Review" },
   { route: { name: "work" }, label: "Work quiz" },
   { route: { name: "canon" }, label: "Canon" },
-  { route: { name: "search" }, label: "Canon search" },
   { route: { name: "atlases" }, label: "Atlases" },
   { route: { name: "advisors" }, label: "Advisors" },
   { route: { name: "primes" }, label: "Prime directions" },
@@ -67,7 +65,8 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name;
+  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
+  const canon = route.name === "canon" || route.name === "search";
 
   return (
     <div className="shell">
@@ -85,7 +84,7 @@ function App() {
         </nav>
         <p className="foot">Offline on this computer</p>
       </aside>
-      <main className="main">
+      <main className={canon ? "main wide" : "main"}>
         {warn && (
           <div className="banner" role="status">
             {warn}
@@ -118,7 +117,7 @@ function App() {
         ) : route.name === "atlases" ? (
           <AtlasesView api={api} />
         ) : route.name === "canon" ? (
-          <CanonView />
+          <CanonSearchView api={api} find={route.find} />
         ) : route.name === "search" ? (
           <CanonSearchView api={api} id={route.id} />
         ) : route.name === "daily" ? (

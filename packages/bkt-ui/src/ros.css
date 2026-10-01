@@ -34,3 +34,99 @@
 .ros .chisel {
   color: var(--ink);
 }
+
+.canon-site {
+  --basalt: #1f1c16;
+  --basalt-2: #2a261e;
+  --bone: #efe8d4;
+  --bone-2: #e4dcc4;
+  --bone-3: #d3c9ab;
+  --gold: #b8861e;
+  --gold-deep: #8a641a;
+  --hairline: rgba(31, 28, 22, 0.14);
+  --parchment-dim: #4a4238;
+  color: var(--basalt);
+  color-scheme: light;
+  font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+:where(.canon-site) *,
+:where(.canon-site) ::before,
+:where(.canon-site) ::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+:where(.canon-site) :where(h1, h2, h3, h4, p, blockquote, dl, dd, ol, ul) {
+  margin: 0;
+}
+
+:where(.canon-site) :where(h1, h2, h3, h4) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+:where(.canon-site) :where(ol, ul) {
+  list-style: none;
+  padding: 0;
+}
+
+:where(.canon-site) :where(a) {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+:where(.canon-site) :where(button, input, select) {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:where(.canon-site) :where(button) {
+  background-color: transparent;
+  background-image: none;
+  text-transform: none;
+}
+
+:where(.canon-site) :where(svg, canvas) {
+  display: block;
+}
+
+.canon-site .small-caps {
+  font-family: "Cinzel", "Trajan Pro", Georgia, serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.canon-site .font-serif-display {
+  font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.canon-site .max-w-2xl {
+  max-width: min(42rem, calc(100% - 96px));
+}
+
+.canon-site input::placeholder {
+  color: transparent;
+}
+
+.canon-site a[href^="/"],
+.canon-site a[href^="https://"]:not([href^="https://en.wikipedia.org/"]):not([href^="https://openalex.org/"]):not([href^="https://whc.unesco.org/"]),
+.canon-site button[title^="copies /canon"] {
+  display: none;
+}
+
+.canon-site aside :is(section, div.rounded-md):has(dl) {
+  display: none;
+}
