@@ -54,7 +54,7 @@ async function mount(api: CanonSearchApi, id?: number) {
   const host = document.createElement("div");
   document.body.appendChild(host);
   const root = createRoot(host);
-  await act(async () => root.render(<CanonSearchView api={api} id={id} webgl={false} />));
+  await act(async () => root.render(<CanonSearchView api={api} page="search" id={id} webgl={false} />));
   const search = async (text: string) => {
     const input = host.querySelector('input[type="search"]') as HTMLInputElement;
     await act(async () => {

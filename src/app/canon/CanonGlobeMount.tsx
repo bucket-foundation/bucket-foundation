@@ -130,9 +130,11 @@ const SORT_LABEL: Record<ThetaSort, string> = { rank: "similarity", year: "year"
 
 export type CanonFetcher = (url: string, init: { signal: AbortSignal }) => Promise<Pick<Response, "ok" | "status" | "json">>;
 export type CanonLinkMapper = (href: string) => string | null;
+export type CanonCounts = { excerpts: number; branches: number; bridges: number | null; events: number; span: string };
 
 const siteFetcher: CanonFetcher = (url, init) => fetch(url, init);
 const siteLink: CanonLinkMapper = (href) => href;
+const siteCounts: CanonCounts = { excerpts: 599, branches: 9, bridges: 17, events: 50, span: "570 BCE, 2020 CE" };
 const LinkMapContext = createContext<CanonLinkMapper>(siteLink);
 
 function Link({ href, ...rest }: Omit<ComponentProps<typeof NextLink>, "href"> & { href: string }) {
@@ -164,6 +166,7 @@ interface Props {
   workspaceLinks?: boolean;
   fetcher?: CanonFetcher;
   linkFor?: CanonLinkMapper;
+  counts?: CanonCounts;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -205,6 +208,7 @@ export default function CanonGlobeMount({
   workspaceLinks,
   fetcher,
   linkFor,
+  counts,
 }: Props) {
   if (decorative) {
     return (
@@ -224,6 +228,7 @@ export default function CanonGlobeMount({
       workspaceLinks={workspaceLinks}
       fetcher={fetcher}
       linkFor={linkFor}
+      counts={counts}
     />
   );
 }
@@ -237,7 +242,8 @@ function InteractiveCanonGlobeMount({
   workspaceLinks = false,
   fetcher = siteFetcher,
   linkFor = siteLink,
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks" | "fetcher" | "linkFor">) {
+  counts = siteCounts,
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks" | "fetcher" | "linkFor" | "counts">) {
   const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
@@ -470,7 +476,7 @@ function InteractiveCanonGlobeMount({
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="search 599 source excerpts across 9 branches"
+              placeholder={`search ${counts.excerpts} source excerpts across ${counts.branches} branches`}
               className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
@@ -859,6 +865,7 @@ function InteractiveCanonGlobeMount({
       <LinkMapContext.Provider value={linkFor}>
       <Drawer
         fetcher={fetcher}
+        counts={counts}
         selected={selected}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
@@ -896,10 +903,12 @@ function Drawer({
   transparent = false,
   workspaceLinks = false,
   fetcher,
+  counts,
   onClose,
   onSelectMarker,
 }: {
   fetcher: CanonFetcher;
+  counts: CanonCounts;
   selected: CanonMarker | null;
   transparent?: boolean;
   workspaceLinks?: boolean;
@@ -1382,23 +1391,25 @@ function Drawer({
               >
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Source excerpts</dt>
-                  <dd>599</dd>
+                  <dd>{counts.excerpts}</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Branches</dt>
-                  <dd>9</dd>
+                  <dd>{counts.branches}</dd>
                 </div>
+                {counts.bridges !== null && (
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Detected bridges</dt>
-                  <dd>17</dd>
+                  <dd>{counts.bridges}</dd>
                 </div>
+                )}
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Geocoded events</dt>
-                  <dd>50</dd>
+                  <dd>{counts.events}</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Year span</dt>
-                  <dd>570 BCE, 2020 CE</dd>
+                  <dd>{counts.span}</dd>
                 </div>
               </dl>
             </div>

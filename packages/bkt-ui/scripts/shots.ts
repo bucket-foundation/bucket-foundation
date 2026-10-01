@@ -242,8 +242,8 @@ async function nextUrl(): Promise<string> {
 }
 
 const outside: string[] = [];
-async function canonPage(graphics: boolean) {
-  const p = await browser.newPage({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
+async function canonPage(graphics: boolean, wide = false) {
+  const p = await browser.newPage(wide ? { viewport: { width: 1650, height: 1000 }, deviceScaleFactor: 1.2 } : { viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1 });
   p.on("pageerror", (e) => (errors.push(e.message), console.error("pageerror", e.message)));
   p.on("console", (m) => m.type() === "error" && !m.text().includes("status of 404") && errors.push(m.text()));
   await p.route("**/*", (r) => {
@@ -280,7 +280,28 @@ try {
   await canon.screenshot({ path: join(out, "6d-canon-excerpt.png") });
   await canon.click("a.back");
   await canon.waitForSelector(".canon-site canvas", { timeout: 30000 });
+  await canon.click(".canon-site aside >> text=full-page search");
+  await canon.waitForSelector(".canon-q");
+  await canon.screenshot({ path: join(out, "6d-canon-full-search.png") });
   await canon.close();
+
+  real.kill("SIGUSR1");
+  const full = await canonPage(true, true);
+  await full.waitForSelector(".canon-site canvas", { timeout: 30000 });
+  await full.click('.canon-site button[aria-label="expand to fullscreen"]');
+  await full.waitForTimeout(4000);
+  await full.screenshot({ path: join(out, "7a-canon-expanded-globe.png") });
+  await full.click('.canon-site [data-view="circle"]');
+  await full.waitForTimeout(3000);
+  await full.screenshot({ path: join(out, "7c-canon-expanded-circle.png") });
+  await full.click(".canon-site details summary");
+  await full.click(".canon-site details ol button >> nth=60");
+  await full.waitForSelector(".canon-site aside h2");
+  await full.click(".canon-site details summary");
+  await full.click('.canon-site [data-view="globe"]');
+  await full.waitForTimeout(4000);
+  await full.screenshot({ path: join(out, "7b-canon-expanded-pin.png") });
+  await full.close();
 
   real.kill("SIGUSR1");
   const plain = await canonPage(false);

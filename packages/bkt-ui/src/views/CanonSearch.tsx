@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent } from "react";
-import CanonGlobeMount, { type CanonFetcher, type CanonLinkMapper } from "@/app/canon/CanonGlobeMount";
+import CanonGlobeMount, { type CanonCounts, type CanonFetcher, type CanonLinkMapper } from "@/app/canon/CanonGlobeMount";
+import { ALL_EVENTS, ALL_SITES, MAX_YEAR, MIN_YEAR } from "@/lib/canon-explorer/markers";
 import type { CanonAbout, CanonExcerpt, CanonHit } from "../api";
 import { href } from "../router";
 import "../ros.css";
@@ -16,6 +17,12 @@ export const CANON_CONTAINER =
 
 const label = (branch: string) => branch.replace(/^\d+-/, "").replace(/-/g, " ");
 const KIND: Record<string, string> = { yt: "video", pubmed: "PubMed", arxiv: "arXiv", gutenberg: "Gutenberg", wikisource: "Wikisource", openalex: "OpenAlex", archive: "Internet Archive", _intake: "Bucket notes" };
+
+const era = (y: number) => (y < 0 ? `${-y} BCE` : `${y} CE`);
+
+export function canonCounts(about: CanonAbout): CanonCounts {
+  return { excerpts: about.excerpts, branches: about.branches.length, bridges: null, events: ALL_EVENTS.length + ALL_SITES.length, span: `${era(MIN_YEAR)}, ${era(MAX_YEAR)}` };
+}
 
 export function webglAvailable(doc: Document = document): boolean {
   try {
@@ -160,7 +167,7 @@ function Problem({ error }: { error: string | null }) {
   );
 }
 
-function KeywordSearch({ api, id }: { api: CanonSearchApi; id?: number }) {
+function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; globe: boolean }) {
   const [q, setQ] = useState("");
   const [branch, setBranch] = useState("");
   const [asked, setAsked] = useState<string | null>(null);
@@ -189,10 +196,15 @@ function KeywordSearch({ api, id }: { api: CanonSearchApi; id?: number }) {
 
   return (
     <section className="narrow">
+      {globe && (
+        <a className="back" href={href({ name: "canon" })}>
+          Back to the globe
+        </a>
+      )}
       <header className="head">
-        <h1>Canon</h1>
+        <h1>{globe ? "Canon search" : "Canon"}</h1>
         <p className="muted">{about ? `${about.excerpts} source excerpts on this computer. Keyword search works with the network off.` : "Opening the canon…"}</p>
-        <p className="muted">Bucket could not start 3D graphics on this computer, so the globe and the circle are hidden.</p>
+        {!globe && <p className="muted">Bucket could not start 3D graphics on this computer, so the globe and the circle are hidden.</p>}
       </header>
       <form className="toolbar" onSubmit={run}>
         <input className="search canon-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="entropy, structured water, speed of light" aria-label="Search the canon" />
@@ -244,28 +256,13 @@ function KeywordSearch({ api, id }: { api: CanonSearchApi; id?: number }) {
   );
 }
 
-function ExcerptPage({ api, id }: { api: CanonSearchApi; id: number }) {
-  const [error, setError] = useState<string | null>(null);
-  const about = useAbout(api, setError);
-  const detail = useExcerpt(api, id, setError);
-  return (
-    <section className="narrow">
-      <a className="back" href={href({ name: "canon" })}>
-        Back to Canon
-      </a>
-      <Problem error={error} />
-      <article className="panel card canon-detail">{detail ? <Excerpt api={api} detail={detail} onError={setError} /> : <p className="muted">Opening the excerpt…</p>}</article>
-      <Licences api={api} about={about} onError={setError} />
-    </section>
-  );
-}
-
 function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [round, setRound] = useState(0);
   const about = useAbout(api, setError);
   const ids = useRef(new Map<string, number>());
   const linkFor = useMemo(() => canonLink(ids.current), []);
+  const counts = useMemo(() => (about ? canonCounts(about) : null), [about]);
 
   const fetcher = useCallback<CanonFetcher>(
     async (url, { signal }) => {
@@ -299,6 +296,7 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
     const to = a?.getAttribute("href") ?? "";
     if (!a || to.startsWith("#/")) return;
     e.preventDefault();
+    if (to === "/canon/search") window.location.hash = href({ name: "search" });
     if (/^https:\/\//.test(to)) void api.openLink(to).catch((err: Error) => setError(err.message));
   };
 
@@ -310,21 +308,20 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
       </header>
       <Problem error={error} />
       <div className="canon-site" onClickCapture={onLink}>
-        <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} fetcher={fetcher} linkFor={linkFor} />
+        {counts && <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} fetcher={fetcher} linkFor={linkFor} counts={counts} />}
       </div>
       <Licences api={api} about={about} onError={setError} />
     </section>
   );
 }
 
-export function CanonSearchView({ api, id, find, webgl }: { api: CanonSearchApi; id?: number; find?: string; webgl?: boolean }) {
+export function CanonSearchView({ api, page, id, find, webgl }: { api: CanonSearchApi; page: "globe" | "search"; id?: number; find?: string; webgl?: boolean }) {
   const [drawable, setDrawable] = useState(() => webgl ?? webglAvailable());
   useEffect(() => {
     const refused = () => setDrawable(false);
     document.addEventListener("webglcontextcreationerror", refused, true);
     return () => document.removeEventListener("webglcontextcreationerror", refused, true);
   }, []);
-  if (!drawable) return <KeywordSearch api={api} id={id} />;
-  if (id !== undefined) return <ExcerptPage api={api} id={id} />;
+  if (!drawable || page === "search") return <KeywordSearch api={api} id={id} globe={drawable} />;
   return <GlobeScreen api={api} find={find} />;
 }

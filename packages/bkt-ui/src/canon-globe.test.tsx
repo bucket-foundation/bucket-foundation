@@ -43,7 +43,7 @@ const DETAIL: CanonExcerpt = {
   source: { title: "A lecture on heat", url: "https://www.youtube.com/watch?v=BBBBBBBBBBB&t=10", timestamp: "00:00:10.000" },
   evidence: [],
 };
-const ABOUT: CanonAbout = { version: "abc", excerpts: 364, branches: ["02-physics"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] };
+const ABOUT: CanonAbout = { version: "abc", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] };
 
 function fakeApi(over: Partial<CanonSearchApi> = {}) {
   const calls: { search: [string, string | undefined, number | undefined][]; opened: string[] } = { search: [], opened: [] };
@@ -70,7 +70,7 @@ async function mount(api: CanonSearchApi, props: { id?: number; find?: string } 
   const host = document.createElement("div");
   document.body.appendChild(host);
   const root = createRoot(host);
-  await act(async () => root.render(<CanonSearchView api={api} webgl {...props} />));
+  await act(async () => root.render(<CanonSearchView api={api} page={props.id === undefined ? "globe" : "search"} webgl {...props} />));
   const settle = (ms = 320) => act(async () => new Promise((r) => setTimeout(r, ms)));
   await settle(30);
   const type = async (text: string) => {
@@ -111,6 +111,20 @@ describe("canon screen with the globe", () => {
     const globe = v.host.querySelector('[data-testid="globe"]') as HTMLElement;
     expect(Number(globe.dataset.markers)).toBeGreaterThan(50);
     expect(Array.from(v.host.querySelectorAll('[role="radio"]')).map((b) => b.textContent)).toEqual(["globe", "circle"]);
+    expect((v.host.querySelector('.canon-site input[type="text"]') as HTMLInputElement).placeholder).toBe("search 364 source excerpts across 2 branches");
+    const { canonCounts } = await import("./views/CanonSearch");
+    const counts = canonCounts(ABOUT);
+    const card = Object.fromEntries(Array.from(v.host.querySelectorAll(".canon-site aside dl > div")).map((row) => [row.querySelector("dt")!.textContent, row.querySelector("dd")!.textContent]));
+    expect(card).toEqual({ "Source excerpts": "364", Branches: "2", "Geocoded events": String(Number(globe.dataset.markers)), "Year span": counts.span });
+    expect(counts.bridges).toBeNull();
+    expect(v.host.textContent).not.toContain("599");
+    const { rules, of } = hidden(v.host);
+    const panel = Array.from(v.host.querySelectorAll(".canon-site aside a")).filter((a) => !rules.some((r) => of(r).includes(a)));
+    expect(panel.map((a) => a.getAttribute("href"))).toEqual(["/canon/search"]);
+    const go = new MouseEvent("click", { bubbles: true, cancelable: true });
+    panel[0].dispatchEvent(go);
+    expect(go.defaultPrevented).toBe(true);
+    expect(window.location.hash).toBe("#/search");
 
     await v.type("entropy");
     expect(calls.search).toEqual([["entropy", "", 15]]);
@@ -129,6 +143,7 @@ describe("canon screen with the globe", () => {
     const related = Array.from(drawer.querySelectorAll("li a")).map((a) => a.getAttribute("href"));
     expect(related).toEqual(["#/search/8"]);
     expect(Array.from(drawer.querySelectorAll("a")).filter((a) => !/^(#\/|https:\/\/)/.test(a.getAttribute("href") ?? ""))).toEqual([]);
+    expect(drawer.textContent).not.toContain("Detected bridges");
     await v.unmount();
   });
 
@@ -158,7 +173,7 @@ describe("canon screen with the globe", () => {
     expect(calls.opened).toEqual([wiki.getAttribute("href")!]);
 
     const { rules, of } = hidden(v.host);
-    expect(rules.length).toBe(4);
+    expect(rules.length).toBe(5);
     const shown = links.filter((a) => !rules.some((r) => of(r).includes(a)));
     expect(shown.length).toBeGreaterThan(0);
     expect(shown.map((a) => new URL(a.href).hostname).filter((h) => !OPEN_HOSTS.includes(h))).toEqual([]);
@@ -175,7 +190,7 @@ describe("canon screen with the globe", () => {
     await v.settle();
     const open = rules.map((r) => of(r).length);
     expect(rules.map((r, i) => [r, idle[i] + open[i] > 0])).toEqual(rules.map((r) => [r, true]));
-    const meta = of(".canon-site aside :is(section, div.rounded-md):has(dl)");
+    const meta = of(".canon-site aside section:has(dl)");
     expect(meta.map((el) => el.querySelector("dt")?.textContent)).toEqual(["id"]);
     expect(of(".canon-site button[title^='copies /canon']").length).toBe(1);
     await v.unmount();
@@ -195,11 +210,13 @@ describe("canon screen with the globe", () => {
     await v.unmount();
   });
 
-  test("an excerpt route shows the reader with a way back, and a find route fills the search box", async () => {
+  test("the search page reads an excerpt with a way back to the globe, and a find route fills the search box", async () => {
     const reader = await mount(fakeApi().api, { id: 7 });
     expect(reader.host.querySelector("blockquote")?.textContent).toBe("Entropy rises and entropy never falls.");
     expect(reader.host.querySelector("a.back")?.getAttribute("href")).toBe("#/canon");
     expect(reader.host.querySelector('[data-testid="globe"]')).toBeNull();
+    expect(reader.host.querySelector("h1")?.textContent).toBe("Canon search");
+    expect(reader.host.textContent).not.toContain("3D graphics");
     await reader.unmount();
 
     const { api, calls } = fakeApi();
