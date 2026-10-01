@@ -16,6 +16,7 @@ import {
   windowCommand,
   windowPid,
   windowRoutes,
+  windowState,
   writeApp,
   writeWindow,
   type ProcessTable,
@@ -176,10 +177,18 @@ describe("one window per profile", () => {
     expect(() => askRunningApp(dir, SERVER, "//evil.test", { table: desk.table, signal: () => {} })).toThrow("--route takes");
   });
 
+  test("a server started by serve has no window, so a launch opens one with a fresh launch code and records it", () => {
+    expect(windowState(dir)).toBe("none");
+    expect(launch()).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
+    expect(desk.spawned).toEqual([["/usr/bin/chromium", "--app=http://127.0.0.1:4321/?mint=1", profileFlag(profile)]]);
+    expect(windowState(dir)).toBe("tracked");
+    expect(launch()).toEqual({ line: "the Bucket window is already open", did: null });
+    expect(launch("/notes").did).toBe("routed");
+    expect(desk.spawned).toHaveLength(1);
+    expect(mints).toBe(1);
+  });
+
   test("a route with no window opens one window on that route", () => {
-    win.open("http://127.0.0.1:4321/");
-    desk.close(500);
-    desk.spawned.length = 0;
     expect(launch("/notes")).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
     expect(desk.spawned).toEqual([["/usr/bin/chromium", "--app=http://127.0.0.1:4321/?mint=1#/notes", profileFlag(profile)]]);
   });
@@ -207,7 +216,7 @@ describe("one window per profile", () => {
     writeWindow(dir, { pid: 77, profile });
     const tab = new AppWindow(dir, profile, { table: desk.table, spawn: desk.spawn, command: (url) => ["xdg-open", url] });
     tab.open("http://127.0.0.1:4321/");
-    expect(existsSync(join(dir, "window.json"))).toBe(false);
+    expect(windowState(dir)).toBe("tab");
     win = tab;
     desk.close(500);
     expect(launch()).toEqual({ line: "Bucket is already running at http://127.0.0.1:4321/", did: null });

@@ -23,7 +23,7 @@ import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
 import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
-import { parentGone } from "../parent";
+import { isSidecar, parentGone } from "../parent";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
 import { NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
@@ -117,11 +117,12 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   };
   const reopen = () => {
     const to = takeRoute(runtimeDir());
-    if (name === "app") win.relaunch(to, fresh);
+    if (name === "app" || !isSidecar(process.env)) win.relaunch(to, fresh);
     else console.log(routeUrl(fresh(), to));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
   const asked = process.platform === "win32" ? setInterval(() => takeReopen(runtimeDir()) && reopen(), 1000) : undefined;
+  win.forget();
   if (name === "app") win.open(routeUrl(srv.url, route));
   else console.log(srv.url);
   await new Promise<void>((done) => {
@@ -135,7 +136,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   process.off("SIGUSR1", reopen);
   clearInterval(asked);
-  if (name === "app") win.forget();
+  win.forget();
   runner.stopAll();
   release();
   srv.stop();

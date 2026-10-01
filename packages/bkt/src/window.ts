@@ -107,7 +107,23 @@ export function takeReopen(dir: string): boolean {
   return true;
 }
 
-export const windowTracked = (dir: string) => existsSync(join(dir, "window.json"));
+export type WindowState = "none" | "tab" | "tracked";
+
+export function windowState(dir: string): WindowState {
+  try {
+    const rec = JSON.parse(readFileSync(join(dir, "window.json"), "utf8")) as { tab?: unknown };
+    return rec.tab === true ? "tab" : "tracked";
+  } catch {
+    return "none";
+  }
+}
+
+export function writeTab(dir: string): void {
+  platformFor().secureDir(dir);
+  const p = join(dir, "window.json");
+  writeFileSync(p, JSON.stringify({ tab: true }), { mode: 0o600 });
+  chmodSync(p, 0o600);
+}
 
 export function processTable(platform: Platform = platformFor()): ProcessTable {
   return { commandLine: (pid) => platform.commandLine(pid), lockPid: singletonLockPid };
@@ -207,13 +223,13 @@ export class AppWindow {
     mkdirSync(this.profile, { recursive: true, mode: 0o700 });
     const cmd = this.deps.command(url, this.profile);
     const child = this.deps.spawn(cmd, url);
-    if (child.pid === null || !cmd.includes(profileFlag(this.profile))) return this.forget();
+    if (child.pid === null || !cmd.includes(profileFlag(this.profile))) return writeTab(this.dir);
     writeWindow(this.dir, { pid: child.pid, profile: this.profile });
     this.exited = child.exited;
   }
 
   relaunch(route: string | null, freshUrl: () => string): Relaunch {
-    if (windowTracked(this.dir) && !this.isOpen()) {
+    if (windowState(this.dir) !== "tab" && !this.isOpen()) {
       this.open(routeUrl(freshUrl(), route));
       return "opened";
     }
@@ -241,11 +257,12 @@ export interface AskDeps {
 }
 
 export function askRunningApp(dir: string, running: AppRecord, route: string | null, deps: AskDeps): string {
-  const open = !windowTracked(dir) || windowPid(dir, deps.table) !== null;
+  const tab = windowState(dir) === "tab";
+  const open = tab || windowPid(dir, deps.table) !== null;
   if (route !== null) writeRoute(dir, route);
   if (!open || route !== null) deps.signal(running.pid);
   if (!open) return `opened the Bucket window on port ${running.port}`;
-  if (!windowTracked(dir)) return `Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`;
+  if (tab) return `Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`;
   return route === null ? "the Bucket window is already open" : `the Bucket window is already open and now shows ${route}`;
 }
 
