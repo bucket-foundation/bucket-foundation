@@ -49,6 +49,8 @@ const SUITES = {
       "scripts/test-beads-export.mjs",
       "scripts/test-whats-new.mjs",
       "scripts/test-whats-new-api.ts",
+      "scripts/test-whats-new-publish.ts",
+      "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
     ],
     commands: [

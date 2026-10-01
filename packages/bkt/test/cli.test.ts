@@ -26,7 +26,7 @@ describe("command table", () => {
     expect(COMMANDS.map((c) => [c.name, c.run, c.hint])).toEqual([
       ["quiz", "quiz", "timed multiple choice"],
       ["review", "review", "due cards, self rated"],
-      ["stats", "stats", "counts and device"],
+      ["stats", "stats", "your counts"],
       ["home", "home", "main menu"],
       ["help", "help", "key bindings"],
       ["quit", "quit", "exit bkt"],
@@ -89,7 +89,7 @@ describe("resolve", () => {
       [["stats", "extra"], "unexpected argument extra"],
       [["version", "--keyring", "passphrase"], "unknown option --keyring"],
       [["stats", "--version"], "unknown option --version"],
-      [["hai", "bogus"], "unknown hai command bogus; try freeze, review, score, export, wipe"],
+      [["hai", "bogus"], "unknown hai command bogus; try freeze, review, score, report, export, wipe"],
       [["forget"], "forget needs a subcommand: people"],
       [["forget", "pets"], "unknown forget command pets"],
       [["analyze"], "analyze needs <file>"],
