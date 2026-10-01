@@ -63,7 +63,7 @@ export function yearLabel(year: number | null): string {
 }
 
 export function hitAuthors(hit: Pick<Hit, "subtitle" | "source" | "branch" | "type">): string {
-  if (hit.type !== "paper" && hit.type !== "text" && hit.type !== "talk") return "";
+  if (hit.type !== "paper" && hit.type !== "text") return "";
   const label = hit.source ?? hit.branch;
   const tail = ` · ${label}`;
   if (label && hit.subtitle.endsWith(tail)) return hit.subtitle.slice(0, -tail.length).trim();
@@ -105,6 +105,10 @@ export function markerCiteFields(m: { id: string; title: string; year: number | 
   };
 }
 
+export function citable(f: Pick<CiteFields, "authors">): boolean {
+  return f.authors.trim().length > 0;
+}
+
 export function plainCitation(f: Pick<CiteFields, "title" | "authors" | "year" | "url" | "publisher">): string {
   const parts = [`${f.authors || NO_AUTHOR} (${yearLabel(f.year)}).`, `${f.title.replace(/[.\s]+$/, "")}.`];
   if (f.publisher) parts.push(`${f.publisher}.`);
@@ -132,16 +136,24 @@ export function savedItemFromHit(hit: Hit, now: Date): SavedItem | null {
   return f ? buildSavedItem(f, now) : null;
 }
 
-function bibEscape(s: string): string {
-  return s.replace(/[\\{}]/g, "").replace(/([&%$#_])/g, "\\$1");
+const BIB_ESCAPES: Record<string, string> = { "\\": "\\textbackslash{}", "{": "\\{", "}": "\\}", "&": "\\&", "%": "\\%", $: "\\$", "#": "\\#", _: "\\_", "~": "\\textasciitilde{}", "^": "\\textasciicircum{}" };
+
+export function bibEscape(s: string): string {
+  return s.replace(/[\\{}&%$#_~^]/g, (c) => BIB_ESCAPES[c]);
 }
 
-export function bibKey(item: Pick<SavedItem, "authors" | "year" | "title">): string {
-  const word = (s: string) => (/[A-Za-z]{2,}/.exec(s.normalize("NFKD").replace(/[̀-ͯ]/g, ""))?.[0] ?? "").toLowerCase();
+function idTag(id: string): string {
+  let h = 5381;
+  for (let i = 0; i < id.length; i++) h = ((h * 33) ^ id.charCodeAt(i)) >>> 0;
+  return h.toString(36).padStart(7, "0");
+}
+
+export function bibKey(item: Pick<SavedItem, "id" | "authors" | "year" | "title">): string {
+  const word = (s: string) => (/[A-Za-z]{2,}/.exec(s.normalize("NFKD").replace(/[\u0300-\u036f]/g, ""))?.[0] ?? "").toLowerCase();
   const first = item.authors.split(/,|;| et al\.?| and /)[0] ?? "";
   const names = first.trim().split(/\s+/);
   const surname = names[names.length - 1] ?? "";
-  return [word(surname) || "anon", item.year === null ? "nd" : String(Math.abs(item.year)), word(item.title) || "untitled"].join("");
+  return [word(surname) || "anon", item.year === null ? "nd" : String(Math.abs(item.year)), word(item.title) || "untitled", "-", idTag(item.id)].join("");
 }
 
 export function bibtex(item: SavedItem): string {
@@ -153,38 +165,75 @@ export function bibtex(item: SavedItem): string {
   if (doi) fields.push(["doi", doi]);
   if (item.url) fields.push(["url", item.url]);
   if (item.licence) fields.push(["note", item.licence]);
-  const body = fields.map(([k, v]) => `  ${k} = {${k === "url" || k === "doi" ? v.replace(/[{}]/g, "") : bibEscape(v)}}`).join(",\n");
+  const body = fields.map(([k, v]) => `  ${k} = {${k === "url" || k === "doi" ? v.replace(/[{}\\\s]/g, "") : bibEscape(v)}}`).join(",\n");
   return `@${type}{${bibKey(item)},\n${body}\n}`;
 }
 
-function isItem(x: unknown): x is SavedItem {
-  if (!x || typeof x !== "object") return false;
+const LIMITS = { id: 300, title: 500, authors: 500, citation: 2000, url: 2000, licence: 300 };
+
+export function safeUrl(url: unknown): url is string | null {
+  if (url === null) return true;
+  if (typeof url !== "string" || url.length === 0 || url.length > LIMITS.url || /[\u0000-\u0020]/.test(url)) return false;
+  if (url.startsWith("/")) return !url.startsWith("//") && !url.includes("\\");
+  if (!/^https?:\/\//i.test(url)) return false;
+  try {
+    const u = new URL(url);
+    return u.protocol === "https:" || u.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+function text(v: unknown, max: number, min = 0): v is string {
+  return typeof v === "string" && v.length >= min && v.length <= max;
+}
+
+export function isSavedItem(x: unknown): x is SavedItem {
+  if (!x || typeof x !== "object" || Array.isArray(x)) return false;
   const r = x as Record<string, unknown>;
   return (
-    typeof r.id === "string" &&
-    r.id.length > 0 &&
+    text(r.id, LIMITS.id, 1) &&
     KINDS.includes(r.kind as SavedKind) &&
-    typeof r.title === "string" &&
-    typeof r.authors === "string" &&
-    (r.year === null || typeof r.year === "number") &&
-    typeof r.citation === "string" &&
-    (r.url === null || typeof r.url === "string") &&
-    (r.licence === undefined || typeof r.licence === "string") &&
-    typeof r.savedAt === "string"
+    text(r.title, LIMITS.title, 1) &&
+    text(r.authors, LIMITS.authors) &&
+    (r.year === null || (typeof r.year === "number" && Number.isInteger(r.year) && Math.abs(r.year) < 100000)) &&
+    text(r.citation, LIMITS.citation) &&
+    safeUrl(r.url) &&
+    (r.licence === undefined || text(r.licence, LIMITS.licence)) &&
+    text(r.savedAt, 40, 1) &&
+    !Number.isNaN(Date.parse(r.savedAt))
   );
 }
 
-export function parseSaved(raw: string | null | undefined): SavedState {
-  if (!raw) return EMPTY_SAVED;
+function cleanItems(list: unknown[]): SavedItem[] {
+  const seen = new Set<string>();
+  const out: SavedItem[] = [];
+  for (const x of list) {
+    if (!isSavedItem(x) || seen.has(x.id)) continue;
+    seen.add(x.id);
+    const item: SavedItem = { id: x.id, kind: x.kind, title: x.title, authors: x.authors, year: x.year, citation: x.citation, url: x.url, savedAt: x.savedAt };
+    if (x.licence) item.licence = x.licence;
+    out.push(item);
+    if (out.length >= SAVED_LIMIT) break;
+  }
+  return out;
+}
+
+export type ReadStatus = "ok" | "empty" | "damaged" | "blocked";
+
+export function parseStored(raw: string | null | undefined): { state: SavedState; status: ReadStatus } {
+  if (raw === null || raw === undefined || raw === "") return { state: EMPTY_SAVED, status: "empty" };
   try {
     const parsed = JSON.parse(raw) as Partial<SavedState> | null;
-    if (!parsed || parsed.v !== SAVED_VERSION || !Array.isArray(parsed.items)) return EMPTY_SAVED;
-    const seen = new Set<string>();
-    const items = parsed.items.filter((x): x is SavedItem => isItem(x) && !seen.has(x.id) && !!seen.add(x.id)).slice(0, SAVED_LIMIT);
-    return { v: SAVED_VERSION, items, noticeSeen: parsed.noticeSeen === true };
+    if (!parsed || typeof parsed !== "object" || parsed.v !== SAVED_VERSION || !Array.isArray(parsed.items)) return { state: EMPTY_SAVED, status: "damaged" };
+    return { state: { v: SAVED_VERSION, items: cleanItems(parsed.items), noticeSeen: parsed.noticeSeen === true }, status: "ok" };
   } catch {
-    return EMPTY_SAVED;
+    return { state: EMPTY_SAVED, status: "damaged" };
   }
+}
+
+export function parseSaved(raw: string | null | undefined): SavedState {
+  return parseStored(raw).state;
 }
 
 export function serializeSaved(state: SavedState): string {
@@ -215,6 +264,24 @@ export function exportSaved(state: SavedState, now: Date): SavedExport {
   return { kind: "bucket.explore.saved", version: SAVED_VERSION, exportedAt: now.toISOString(), items: state.items };
 }
 
+export function importSaved(raw: string): SavedItem[] | null {
+  try {
+    const parsed = JSON.parse(raw) as Partial<SavedExport> | null;
+    if (!parsed || typeof parsed !== "object" || parsed.kind !== "bucket.explore.saved" || parsed.version !== SAVED_VERSION || !Array.isArray(parsed.items)) return null;
+    return cleanItems(parsed.items);
+  } catch {
+    return null;
+  }
+}
+
+export type SavedChange = { add: SavedItem } | { remove: string } | { noticeSeen: true };
+
+export function applyChange(state: SavedState, change: SavedChange): SavedState {
+  if ("add" in change) return addSaved(state, change.add);
+  if ("remove" in change) return removeSaved(state, change.remove);
+  return { ...state, noticeSeen: true };
+}
+
 export function exportFileName(now: Date): string {
   return `bucket-saved-${now.toISOString().slice(0, 10)}.json`;
 }
@@ -224,13 +291,21 @@ export interface StorageLike {
   setItem(key: string, value: string): void;
 }
 
-export function readSaved(storage: StorageLike | null | undefined): { state: SavedState; ok: boolean } {
-  if (!storage) return { state: EMPTY_SAVED, ok: false };
+export function readSaved(storage: StorageLike | null | undefined): { state: SavedState; ok: boolean; status: ReadStatus } {
+  if (!storage) return { state: EMPTY_SAVED, ok: false, status: "blocked" };
   try {
-    return { state: parseSaved(storage.getItem(SAVED_KEY)), ok: true };
+    const r = parseStored(storage.getItem(SAVED_KEY));
+    return { state: r.state, ok: r.status !== "damaged", status: r.status };
   } catch {
-    return { state: EMPTY_SAVED, ok: false };
+    return { state: EMPTY_SAVED, ok: false, status: "blocked" };
   }
+}
+
+export function changeSaved(storage: StorageLike | null | undefined, memory: SavedState, change: SavedChange): { state: SavedState; kept: boolean } {
+  const fresh = readSaved(storage);
+  if (!fresh.ok) return { state: applyChange(memory, change), kept: false };
+  const state = applyChange(fresh.state, change);
+  return { state, kept: writeSaved(storage, state) };
 }
 
 export function writeSaved(storage: StorageLike | null | undefined, state: SavedState): boolean {

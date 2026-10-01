@@ -3,16 +3,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   EMPTY_SAVED,
-  addSaved,
+  SAVED_KEY,
   bibtex,
+  changeSaved,
+  citable,
+  safeUrl,
   buildSavedItem,
   exportFileName,
   exportSaved,
   hasSaved,
   readSaved,
-  removeSaved,
-  writeSaved,
   type CiteFields,
+  type SavedChange,
   type SavedItem,
   type SavedState,
   type StorageLike,
@@ -35,6 +37,7 @@ export const COPY = {
   gotIt: "Got it",
   blockedNotice: "This browser is not keeping saves. Your list lasts until you leave this page. Download it to keep a copy.",
   full: "Your saved list is full. Remove an item to save another.",
+  noAuthor: "No author is listed for this item, so it has no citation.",
   seeSaved: "See your saved list",
 } as const;
 
@@ -68,36 +71,54 @@ export function useSaved(): SavedApi {
   const [full, setFull] = useState(false);
   const current = useRef<SavedState>(EMPTY_SAVED);
 
-  useEffect(() => {
-    const r = readSaved(browserStorage());
-    current.current = r.state;
-    setState(r.state);
-    setKept(r.ok);
-    setReady(true);
-  }, []);
-
-  const commit = useCallback((next: SavedState) => {
+  const put = useCallback((next: SavedState, ok: boolean) => {
     current.current = next;
     setState(next);
-    setKept(writeSaved(browserStorage(), next));
+    setKept(ok);
   }, []);
 
-  const save = useCallback(
-    (item: SavedItem) => {
-      const next = addSaved(current.current, item);
-      setFull(next === current.current && !hasSaved(current.current, item.id));
-      if (next !== current.current) commit(next);
+  useEffect(() => {
+    const sync = () => {
+      const r = readSaved(browserStorage());
+      if (r.ok) put(r.state, true);
+      else setKept(false);
+      setReady(true);
+    };
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === null || e.key === SAVED_KEY) sync();
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") sync();
+    };
+    sync();
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("focus", sync);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("focus", sync);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [put]);
+
+  const change = useCallback(
+    (c: SavedChange) => {
+      const r = changeSaved(browserStorage(), current.current, c);
+      put(r.state, r.kept);
+      return r.state;
     },
-    [commit],
+    [put],
   );
+
+  const save = useCallback((item: SavedItem) => setFull(!hasSaved(change({ add: item }), item.id)), [change]);
   const remove = useCallback(
     (id: string) => {
       setFull(false);
-      commit(removeSaved(current.current, id));
+      change({ remove: id });
     },
-    [commit],
+    [change],
   );
-  const dismissNotice = useCallback(() => commit({ ...current.current, noticeSeen: true }), [commit]);
+  const dismissNotice = useCallback(() => void change({ noticeSeen: true }), [change]);
   const has = useCallback((id: string) => hasSaved(state, id), [state]);
 
   return { state, kept, ready, full, has, save, remove, dismissNotice };
@@ -133,6 +154,7 @@ export function ResultActions({ fields, saved }: { fields: CiteFields; saved: Sa
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
   const item = buildSavedItem(fields, new Date(0));
+  const canCite = citable(fields);
 
   const cite = async () => {
     setOpen(true);
@@ -145,17 +167,17 @@ export function ResultActions({ fields, saved }: { fields: CiteFields; saved: Sa
   return (
     <div data-testid="result-actions" className="mt-2">
       <div className="flex flex-wrap items-center gap-2">
-        <button type="button" data-testid="cite-button" aria-expanded={open} aria-label={`${COPY.cite}: ${fields.title}`} className={BUTTON} style={mono} onClick={cite}>
+        {canCite && <button type="button" data-testid="cite-button" aria-expanded={open} aria-label={`${COPY.cite}: ${fields.title}`} className={BUTTON} style={mono} onClick={cite}>
           {COPY.cite}
-        </button>
+        </button>}
         <SaveButton fields={fields} saved={saved} />
         <span role="status" aria-live="polite" data-testid="cite-status" className="text-xs" style={{ color: "var(--parchment-dim)" }}>
           {status}
         </span>
       </div>
-      {open && (
+      {open && canCite && (
         <div className="mt-2 text-sm">
-          <p data-testid="cite-text" className="border hairline px-2 py-1 select-all break-words" tabIndex={0} aria-label="Citation">
+          <p data-testid="cite-text" className="border hairline px-2 py-1 select-all break-words">
             {item.citation}
           </p>
           <button type="button" data-testid="reference-button" className={`${BUTTON} mt-2`} style={mono} onClick={reference}>
@@ -219,7 +241,7 @@ export function SavedPanel({ saved }: { saved: SavedApi }) {
             {items.map((i) => (
               <li key={i.id} data-testid="saved-item" className="flex items-start justify-between gap-3">
                 <span className="break-words min-w-0">
-                  {i.url ? (
+                  {i.url && safeUrl(i.url) ? (
                     <a className={`underline ${FOCUS}`} href={i.url} target="_blank" rel="noreferrer">
                       {i.title}
                     </a>
@@ -227,7 +249,7 @@ export function SavedPanel({ saved }: { saved: SavedApi }) {
                     i.title
                   )}
                   <span className="block" style={{ color: "var(--parchment-dim)" }}>
-                    {i.citation}
+                    {citable(i) ? i.citation : COPY.noAuthor}
                   </span>
                 </span>
                 <button type="button" aria-label={`${COPY.remove}: ${i.title}`} className={BUTTON} style={mono} onClick={() => saved.remove(i.id)}>

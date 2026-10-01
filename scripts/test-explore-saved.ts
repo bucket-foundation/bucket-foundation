@@ -6,7 +6,15 @@ import {
   SAVED_KEY,
   SAVED_LIMIT,
   addSaved,
+  bibEscape,
+  bibKey,
   bibtex,
+  changeSaved,
+  citable,
+  citeFieldsFromHit,
+  importSaved,
+  parseStored,
+  safeUrl,
   doiOf,
   exportFileName,
   exportSaved,
@@ -101,14 +109,18 @@ test("a book with no author and no year states both and invents neither", () => 
   const b = bibtex(s);
   assert.doesNotMatch(b, /author\s*=/);
   assert.doesNotMatch(b, /year\s*=/);
-  assert.match(b, /^@book\{anonndthe,/);
+  assert.match(b, /^@book\{anonndthe-[0-9a-z]{7},/);
+  assert.equal(citable(citeFieldsFromHit(ANON_BOOK)!), false);
+  assert.equal(citable(citeFieldsFromHit(BOOK)!), true);
 });
 
-test("a talk cites the channel the row names and its watch link", () => {
+test("a talk never presents its channel as the author, so it is saved and not cited", () => {
   const s = savedItemFromHit(TALK, NOW)!;
   assert.equal(s.kind, "talk");
-  assert.equal(s.citation, "Nathan Hawkins (2022). WITTGENSTEIN: Interview with Prof. Michael Potter. YouTube. https://www.youtube.com/watch?v=-4O4hUwcpDw");
-  assert.match(bibtex(s), /^@misc\{hawkins2022wittgenstein,/);
+  assert.equal(s.authors, "");
+  assert.equal(s.citation.includes("Nathan Hawkins"), false);
+  assert.equal(citable(s), false);
+  assert.equal(s.url, "https://www.youtube.com/watch?v=-4O4hUwcpDw");
 });
 
 test("a canon excerpt has no author, an absolute site link and no licence field", () => {
@@ -116,6 +128,7 @@ test("a canon excerpt has no author, an absolute site link and no licence field"
   assert.equal(s.kind, "excerpt");
   assert.equal(s.citation, "Author not listed (year not listed). The second law. Bucket Foundation canon. https://www.bucket.foundation/excerpts/thermodynamics/second-law");
   assert.equal("licence" in s, false);
+  assert.equal(citable(s), false);
 });
 
 test("people and a visitor's own upload are not saved items", () => {
@@ -129,8 +142,8 @@ test("the subtitle of a canon row is never read as an author", () => {
 
 test("BibTeX for a paper carries the doi and escapes special characters", () => {
   const b = bibtex(savedItemFromHit({ ...PAPER, title: "Risk & {choice} 100%" }, NOW)!);
-  assert.match(b, /^@article\{eilenberg1945risk,/);
-  assert.match(b, /title = \{Risk \\& choice 100\\%\}/);
+  assert.match(b, /^@article\{eilenberg1945risk-[0-9a-z]{7},/);
+  assert.ok(b.includes("title = {Risk \\& \\{choice\\} 100\\%}"));
   assert.match(b, /doi = \{10\.1090\/s0002-9947-1945-0013131-6\}/);
   assert.match(b, /author = \{Samuel Eilenberg, Saunders MacLane\}/);
 });
@@ -172,16 +185,16 @@ test("blocked, full or missing storage never throws", () => {
       throw new Error("quota");
     },
   };
-  assert.deepEqual(readSaved(blocked), { state: EMPTY_SAVED, ok: false });
+  assert.deepEqual(readSaved(blocked), { state: EMPTY_SAVED, ok: false, status: "blocked" });
   assert.equal(writeSaved(blocked, state), false);
-  assert.deepEqual(readSaved(null), { state: EMPTY_SAVED, ok: false });
+  assert.deepEqual(readSaved(null), { state: EMPTY_SAVED, ok: false, status: "blocked" });
   assert.equal(writeSaved(undefined, state), false);
   const mem = new Map<string, string>();
   const good = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v) };
   assert.equal(writeSaved(good, state), true);
   assert.equal(SAVED_KEY, "bucket.explore.saved.v1");
   assert.ok(mem.has("bucket.explore.saved.v1"));
-  assert.deepEqual(readSaved(good), { state, ok: true });
+  assert.deepEqual(readSaved(good), { state, ok: true, status: "ok" });
 });
 
 test("the export carries every item, a version and a dated name", () => {
@@ -192,4 +205,88 @@ test("the export carries every item, a version and a dated name", () => {
   assert.equal(out.exportedAt, "2026-10-01T12:00:00.000Z");
   assert.equal(out.items.length, 2);
   assert.equal(exportFileName(NOW), "bucket-saved-2026-10-01.json");
+});
+
+test("a title with braces, quotes and a backslash keeps every character", () => {
+  assert.equal(bibEscape('The {"real"} C:\\path_1'), 'The \\{"real"\\} C:\\textbackslash{}path\\_1');
+  const b = bibtex(savedItemFromHit({ ...PAPER, title: 'The {"real"} C:\\path' }, NOW)!);
+  assert.ok(b.includes('title = {The \\{"real"\\} C:\\textbackslash{}path}'));
+  const unescaped = b.replace(/\\[{}]/g, "").replace(/\\textbackslash\{\}/g, "");
+  assert.equal((unescaped.match(/\{/g) ?? []).length, (unescaped.match(/\}/g) ?? []).length);
+});
+
+test("two items with the same author, year and first word get different keys", () => {
+  const a = savedItemFromHit(PAPER, NOW)!;
+  const b = { ...a, id: "paper:d/10.1000/other" };
+  assert.notEqual(bibKey(a), bibKey(b));
+  assert.equal(bibKey(a), bibKey({ ...a }));
+});
+
+test("a hostile stored value is dropped on read", () => {
+  const good = savedItemFromHit(PAPER, NOW)!;
+  const hostile = [
+    { ...good, id: "h1", url: "javascript:alert(1)" },
+    { ...good, id: "h2", url: " javascript:alert(1)" },
+    { ...good, id: "h3", url: "JaVaScRiPt:alert(1)" },
+    { ...good, id: "h4", url: "data:text/html,<script>1</script>" },
+    { ...good, id: "h5", url: "//evil.example/x" },
+    { ...good, id: "h6", url: "/\\evil.example" },
+    { ...good, id: "h7", url: "https://ok.example/\njavascript:1" },
+    { ...good, id: "h8", url: 7 },
+    { ...good, id: "h9", title: "x".repeat(501) },
+    { ...good, id: "h10", citation: "x".repeat(2001) },
+    { ...good, id: "h11", year: 1.5 },
+    { ...good, id: "h12", year: "1999" },
+    { ...good, id: "h13", savedAt: "soon" },
+    { ...good, id: "h14", kind: "script" },
+    { ...good, id: "h15", authors: ["a"] },
+    { ...good, id: "h16", licence: 3 },
+    { ...good, id: "" },
+    [good],
+  ];
+  const kept = { ...good, id: "k1", url: "/excerpts/a/b", extra: "<img onerror=1>" };
+  const r = parseStored(JSON.stringify({ v: 1, items: [...hostile, good, kept] }));
+  assert.equal(r.status, "ok");
+  assert.deepEqual(r.state.items.map((i) => i.id), [good.id, "k1"]);
+  assert.equal("extra" in r.state.items[1], false);
+  for (const u of ["https://a.example/x", "http://a.example", "/explore#saved", null]) assert.equal(safeUrl(u), true);
+  for (const u of ["javascript:alert(1)", "vbscript:x", "ftp://a.example", "", "mailto:a@b.c", "https://"]) assert.equal(safeUrl(u), false);
+});
+
+test("a value that cannot be read is never written over", () => {
+  const item = savedItemFromHit(PAPER, NOW)!;
+  for (const raw of ["{not a list", JSON.stringify({ v: 2, items: [item] })]) {
+    const mem = new Map<string, string>([[SAVED_KEY, raw]]);
+    const store = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v) };
+    assert.equal(readSaved(store).status, "damaged");
+    const r = changeSaved(store, EMPTY_SAVED, { add: item });
+    assert.equal(r.kept, false);
+    assert.deepEqual(r.state.items, [item]);
+    assert.equal(mem.get(SAVED_KEY), raw);
+  }
+});
+
+test("a change applies to what the other tab stored, merged by id", () => {
+  const a = savedItemFromHit(PAPER, NOW)!;
+  const b = savedItemFromHit(BOOK, NOW)!;
+  const c = savedItemFromHit(TALK, NOW)!;
+  const mem = new Map<string, string>();
+  const store = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v) };
+  const tabOne = changeSaved(store, EMPTY_SAVED, { add: a }).state;
+  changeSaved(store, EMPTY_SAVED, { add: b });
+  const merged = changeSaved(store, tabOne, { add: c });
+  assert.equal(merged.kept, true);
+  assert.deepEqual(merged.state.items.map((i) => i.id).sort(), [a.id, b.id, c.id].sort());
+  assert.deepEqual(changeSaved(store, tabOne, { add: a }).state.items.length, 3);
+  assert.deepEqual(changeSaved(store, tabOne, { remove: b.id }).state.items.map((i) => i.id).sort(), [a.id, c.id].sort());
+});
+
+test("export then import yields the same items and refuses anything else", () => {
+  const state = addSaved(addSaved(addSaved(EMPTY_SAVED, savedItemFromHit(PAPER, NOW)!), savedItemFromHit(EXCERPT, NOW)!), savedItemFromHit(TALK, NOW)!);
+  const raw = JSON.stringify(exportSaved(state, NOW), null, 2);
+  assert.deepEqual(importSaved(raw), state.items);
+  assert.equal(importSaved("{"), null);
+  assert.equal(importSaved(JSON.stringify({ kind: "other", version: 1, items: [] })), null);
+  assert.equal(importSaved(JSON.stringify({ kind: "bucket.explore.saved", version: 2, items: [] })), null);
+  assert.deepEqual(importSaved(JSON.stringify({ kind: "bucket.explore.saved", version: 1, items: [{ ...state.items[0], url: "javascript:1" }] })), []);
 });
