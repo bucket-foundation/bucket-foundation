@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
+import canonPack from "../../content/canon.json" with { type: "json" };
 import { join } from "node:path";
 import { App } from "../app";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
@@ -15,6 +16,8 @@ import { keyringOptions, NoDataError, type Invocation, UsageError } from "./run"
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
+import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
+import type { CanonPack } from "../pack/canon";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
@@ -80,8 +83,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     root: join(dir, "jobs"),
     specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
   });
+  syncCanon(session.store.db, canonPack as CanonPack);
   const srv = startServe({
     routes: {
+      ...canonRoutes(new CanonStore(session.store.db)),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...advisorRoutes(people),
@@ -98,6 +103,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
+      "POST /local/open": OPEN_BODY_BYTES,
     },
     uiDir: uiDir(),
     onError: (e) => console.error(`bkt serve: ${e.message}`),
