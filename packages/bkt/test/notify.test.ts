@@ -5,7 +5,9 @@ import { join } from "node:path";
 import { changedChatFiles, localDay } from "../src/chat-sources";
 import { LINUX_ONLY, notificationBody, parseAt, quizCommand, quizNotify, readQuizRoots, selfArgv, STAMP_FILE, unitFiles, USAGE, writeQuizRoots, type QuizDeps } from "../src/notify";
 import { platformFor, type ExecResult } from "../src/platform";
-import { checkRoute, routeUrl, splitRoute, takeRoute, writeRoute } from "../src/window";
+import { resolve } from "../src/cli/run";
+import { findCommand } from "../src/cli/table";
+import { checkRoute, routeUrl, takeRoute, writeRoute } from "../src/window";
 
 const NOW = Date.parse("2026-10-01T12:00:00Z");
 const DAY = localDay(NOW);
@@ -237,12 +239,19 @@ describe("bkt app --route", () => {
     expect(routeUrl("http://127.0.0.1:5/", null)).toBe("http://127.0.0.1:5/");
   });
 
-  test("the flag is split from the other arguments", () => {
-    expect(splitRoute(["app", "--route", "/work", "--keyring", "file"])).toEqual({ argv: ["app", "--keyring", "file"], route: "/work" });
-    expect(splitRoute(["app", "--route=/work/daily/2026-10-01"])).toEqual({ argv: ["app"], route: "/work/daily/2026-10-01" });
-    expect(splitRoute(["app"])).toEqual({ argv: ["app"], route: null });
-    expect(() => splitRoute(["app", "--route"])).toThrow("--route takes a path");
-    expect(() => splitRoute(["app", "--route", "--keyring"])).toThrow("--route takes a path");
+  test("the command table carries the flag and the three quiz commands", () => {
+    const run = (argv: string[]) => {
+      const r = resolve(argv);
+      if (r.kind !== "run") throw new Error("help");
+      return [r.command.name, r.values];
+    };
+    expect(run(["app", "--route", "/work/daily/2026-10-01"])).toEqual(["app", { route: "/work/daily/2026-10-01" }]);
+    expect(run(["quiz", "notify", "--force"])).toEqual(["quiz notify", { force: true }]);
+    expect(run(["quiz", "schedule", "--at", "07:00"])).toEqual(["quiz schedule", { at: "07:00" }]);
+    expect(run(["quiz", "unschedule"])[0]).toBe("quiz unschedule");
+    expect(() => resolve(["quiz"])).toThrow("quiz needs a subcommand");
+    expect(() => resolve(["quiz", "notify", "--loud"])).toThrow();
+    expect(findCommand("quiz notify")!.session).toBeUndefined();
   });
 
   test("a waiting route is handed over once and a bad one is dropped", () => {

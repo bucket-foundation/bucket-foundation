@@ -95,14 +95,3 @@ export function takeRoute(dir: string): string | null {
     rmSync(p, { force: true });
   }
 }
-
-export function splitRoute(argv: string[]): { argv: string[]; route: string | null } {
-  const rest: string[] = [];
-  let route: string | null = null;
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === "--route") route = checkRoute(argv[++i]);
-    else if (argv[i].startsWith("--route=")) route = checkRoute(argv[i].slice("--route=".length));
-    else rest.push(argv[i]);
-  }
-  return { argv: rest, route };
-}
