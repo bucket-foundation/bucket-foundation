@@ -16,7 +16,7 @@ security default-keychain -s "$keychain"
 security unlock-keychain -p spike "$keychain"
 security set-keychain-settings "$keychain"
 
-bun "$here/ts/write-keys.ts" write "$work" "$release" "$branch" || exit 1
+bun "$here/ts/write-keys.mjs" write "$work" "$release" "$branch" || exit 1
 
 "$reader" timed 30 "$work/acl" /usr/bin/security dump-keychain -a "$keychain"
 echo '```'
@@ -36,7 +36,7 @@ for variant in linker adhoc unsigned; do
   codesign -dvvv "$work/reader-$variant" 2>&1 | grep -E "Identifier|Signature|flags|CDHash|not signed|TeamIdentifier"
   echo '```'
   "$work/reader-$variant" run "$work" "$variant" || echo "reader-$variant did not run: exit $?"
-  bun "$here/ts/write-keys.ts" verify "$work"
+  bun "$here/ts/write-keys.mjs" verify "$work"
 done
 
 printf 'restore-check-value' > "$work/restore/expected/restore-test"

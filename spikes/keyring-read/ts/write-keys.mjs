@@ -5,14 +5,14 @@ import { LEGACY_ACCOUNTS, scopedAccounts } from "../../../packages/bkt/src/devic
 import { platformFor } from "../../../packages/bkt/src/platform";
 
 const [mode, work, releaseBin, branchBin] = process.argv.slice(2);
-if (!mode || !work) throw new Error("usage: write-keys.ts write WORK RELEASE_BKT BRANCH_BKT | verify WORK");
+if (!mode || !work) throw new Error("usage: write-keys.mjs write WORK RELEASE_BKT BRANCH_BKT | verify WORK");
 
 const keyring = platformFor().keyring();
 if (!keyring) throw new Error("the native keyring is unavailable");
 const expected = join(work, "expected");
-const digest = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 12);
+const digest = (s) => createHash("sha256").update(s).digest("hex").slice(0, 12);
 
-function init(bin: string, data: string): void {
+function init(bin, data) {
   const env = { ...process.env, BKT_HOME: data, BKT_UI_DIR: join(work, "no-ui") };
   const version = Bun.spawnSync([bin, "--version"], { env, stdin: "ignore", stdout: "pipe", stderr: "pipe" });
   const r = Bun.spawnSync([bin, "init"], { env, stdin: "ignore", stdout: "pipe", stderr: "pipe", timeout: 120_000 });
@@ -28,7 +28,7 @@ if (mode === "write") {
   if (existsSync(join(legacyData, "keyring-scope"))) throw new Error("the release binary wrote a scope file; it is not a 0.4.0 build");
   init(branchBin, scopedData);
   const scoped = scopedAccounts(readFileSync(join(scopedData, "keyring-scope"), "utf8").trim());
-  const entries: [string, string][] = [
+  const entries = [
     ["legacy-data", LEGACY_ACCOUNTS.data],
     ["legacy-device", LEGACY_ACCOUNTS.device],
     ["scoped-data", scoped.data],
