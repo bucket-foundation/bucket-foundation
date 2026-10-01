@@ -18,6 +18,7 @@ import { HaiApp } from "../hai/view";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
 import type { CanonPack } from "../pack/canon";
+import { canonAdapter, dataRoutes, learningAdapter, ownAdapter } from "../data";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
@@ -84,8 +85,11 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     specs: jobSpecs({ src: pysrc as PySource, cacheRoot: cacheRoot(), dataRoot: join(dir, "fit-me"), people }),
   });
   syncCanon(session.store.db, canonPack as CanonPack);
+  const data = dataRoutes([learningAdapter(content), canonAdapter(canonPack as CanonPack), ownAdapter(session.store, { analyses: () => runner.list().length })]);
   const srv = startServe({
+    match: data.match,
     routes: {
+      ...data.routes,
       ...canonRoutes(new CanonStore(session.store.db)),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),

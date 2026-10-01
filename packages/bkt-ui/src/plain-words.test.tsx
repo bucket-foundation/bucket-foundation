@@ -4,7 +4,7 @@ import { grade, masteryFor, normalizeState, type Atom, type EngineState } from "
 import { MASTERED_THRESHOLD } from "@academy/mastery";
 import { generateQuestion } from "@ros/work-quiz/generate";
 import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
-import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type WorkQuestion } from "./api";
+import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type DataRow, type DeckRow, type JobKind, type WorkQuestion } from "./api";
 import { href, type Route } from "./router";
 
 mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
@@ -56,6 +56,7 @@ const ATTRS = ["title", "placeholder", "aria-label", "alt"];
 function strings(host: Element): string[] {
   const out: string[] = [];
   const walk = (n: Node) => {
+    if (n.nodeType === 1 && (n as Element).matches("details.fine:not([open])")) return;
     if (n.nodeType === 3) {
       const t = (n.textContent ?? "").trim();
       if (t) out.push(t);
@@ -155,8 +156,54 @@ const progress = (branches: Record<string, { data: unknown }> | null) => ({ pull
 
 const JOB_KINDS: JobKind[] = [{ kind: "analyze", label: "Analyze a data file", inputs: [{ name: "data", label: "Data file", exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] }] }];
 
+const DATASETS: Dataset[] = [
+  {
+    id: "canon",
+    name: "Canon excerpts",
+    about: "Short quotations from talks, papers and books, each with the passages that support it.",
+    browsable: true,
+    version: "246f1a6cea3e",
+    builtAt: null,
+    checksum: "246f1a6cea3e".repeat(5),
+    counts: [{ kind: "excerpt", label: "excerpts", n: 364 }, { kind: "passage", label: "supporting passages", n: 2104 }],
+    kinds: [{ id: "excerpt", label: "Excerpt" }, { id: "passage", label: "Supporting passage" }],
+    parts: [
+      { name: "PubMed abstracts", count: 83, unit: "sources", terms: "Publisher copyright.", link: "https://pubmed.ncbi.nlm.nih.gov", openable: true },
+      { name: "Internet Archive", count: 7, unit: "sources", terms: null, link: null, openable: false },
+    ],
+    leftOut: { count: 4121, reason: "Left out because the author has not agreed to sharing." },
+  },
+  {
+    id: "yours",
+    name: "Your work",
+    about: "What you have written and answered in Bucket. It stays on this computer.",
+    browsable: false,
+    version: null,
+    builtAt: null,
+    checksum: null,
+    counts: [{ kind: "note", label: "notes", n: 2, stored: "encrypted", screen: "notes" }, { kind: "answer", label: "quiz and review answers", n: 40, stored: "partly", screen: "history" }, { kind: "started", label: "lessons started", n: 9, stored: "plain", screen: "learn" }],
+    kinds: [],
+    parts: [],
+    leftOut: null,
+  },
+];
+const DATA_ROWS: DataRow[] = [
+  { id: "excerpt/7", title: "Entropy rises and never falls", creators: null, year: null, kind: "excerpt", kindLabel: "Excerpt", source: "https://www.youtube.com/watch?v=BBBBBBBBBBB", openable: true },
+  { id: "passage/7/0", title: "Old book", creators: "A. Writer", year: 1905, kind: "passage", kindLabel: "Supporting passage", source: "https://archive.org/details/item", openable: false },
+];
+const DATA_TABS = JSON.stringify({
+  tabs: [
+    { id: "set:canon", title: "Canon excerpts", dataset: "canon" },
+    { id: "rec:canon:excerpt/7", title: "Entropy rises and never falls", dataset: "canon", record: "excerpt/7" },
+  ],
+  active: "set:canon",
+});
+
 function empty(): Stub {
   return {
+    data: async () => [],
+    dataRecords: async () => ({ total: 0, offset: 0, limit: 50, records: [] }),
+    dataRecord: () => Promise.reject(new ApiError("no such record", 404)),
     progress: progress({}),
     decks: async () => [],
     atoms: async () => [],
@@ -180,6 +227,9 @@ function empty(): Stub {
 function populated(over: Stub = {}): Stub {
   return {
     ...empty(),
+    data: async () => DATASETS,
+    dataRecords: async () => ({ total: DATA_ROWS.length, offset: 0, limit: 50, records: DATA_ROWS }),
+    dataRecord: async (_set: string, id: string) => ({ record: DATA_ROWS.find((r) => r.id === id)!, fields: [{ label: "Branch", value: "physics" }, { label: "Text", value: "Entropy rises and entropy never falls." }] }),
     decks: async () => DECKS,
     atoms: async (deck: string) => ATOMS[deck] ?? [],
     quiz: async () => [{ itemId: "ph-heat", prompt: "What moves when heat flows?", choices: ["Energy", "Mass"], limitSec: 30 }],
@@ -219,6 +269,9 @@ function failing(): Stub {
   const fail = (code: string, status: number) => () => Promise.reject(new ApiError(code, status));
   return {
     progress: progress(null),
+    data: fail("data key does not match", 500),
+    dataRecords: fail("no such dataset", 404),
+    dataRecord: fail("no such record", 404),
     decks: fail("data key does not match", 500),
     atoms: fail("unknown deck", 404),
     quiz: fail("data key does not match", 500),
@@ -258,7 +311,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "data" }, { name: "import" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -271,7 +324,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Data", "Jobs", "Import"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -286,7 +339,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Data", "Jobs", "Import"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -441,6 +494,47 @@ describe("history", () => {
     expect(v.text()).not.toContain("Productions");
     expect(v.host.querySelector('input[type="file"]')).toBeNull();
     await v.unmount();
+  });
+});
+
+describe("data", () => {
+  const open = async (tabs: string | null, stub: Stub) => {
+    window.localStorage.clear();
+    if (tabs) window.localStorage.setItem("bucket.data.tabs", tabs);
+    return mount({ name: "data" }, stub);
+  };
+
+  test("the list, a dataset's table and one record read in plain words in every state", async () => {
+    for (const active of [null, "set:canon", "rec:canon:excerpt/7"]) {
+      for (const stub of [empty, populated, failing]) {
+        const v = await open(JSON.stringify({ ...JSON.parse(DATA_TABS), active }), stub());
+        expect(v.text().length).toBeGreaterThan(0);
+        expect({ active, problems: violations(v.host) }).toEqual({ active, problems: [] });
+        await v.unmount();
+      }
+    }
+    window.localStorage.clear();
+  });
+
+  test("the version and checksum sit behind Details, closed until a person opens it", async () => {
+    const v = await open(null, populated());
+    const fine = v.host.querySelector("details.fine") as HTMLDetailsElement;
+    expect(fine.open).toBe(false);
+    expect(fine.querySelector("summary")!.textContent).toBe("Details");
+    expect(fine.textContent).toContain("246f1a6cea3e");
+    expect(v.text()).not.toContain("246f1a6cea3e");
+    expect(violationsIn([fine.querySelector("dd")!.textContent!]).length).toBeGreaterThan(0);
+    await v.unmount();
+  });
+
+  test("your own work shows counts and how each is stored, with no table to browse", async () => {
+    const v = await open(null, populated());
+    const card = Array.from(v.host.querySelectorAll("article.dataset")).find((a) => a.querySelector("h2")!.textContent === "Your work")!;
+    expect(Array.from(card.querySelectorAll(".counts li")).map((li) => li.textContent)).toEqual(["2 notes, stored encryptedOpen", "40 quiz and review answers, answer text stored encryptedOpen", "9 lessons started, stored without encryptionOpen"]);
+    expect(Array.from(card.querySelectorAll("a")).map((a) => a.getAttribute("href"))).toEqual(["#/notes", "#/history", "#/learn"]);
+    expect(card.querySelector("button")).toBeNull();
+    await v.unmount();
+    window.localStorage.clear();
   });
 });
 
