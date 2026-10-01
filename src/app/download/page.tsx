@@ -15,6 +15,7 @@ export default async function DownloadPage() {
   const os = detectOs(ua);
   const release = await fetchLatestReleaseV2();
   const installers = release ? release.installers : [];
+  const windowed = release ? release.windowed : [];
 
   return (
     <main className="stone-bone relative grain">
@@ -22,7 +23,7 @@ export default async function DownloadPage() {
         <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.25rem)] leading-[1.05] chisel text-[color:var(--basalt)]">
           bucket on <span className="inlay-gold">your computer.</span>
         </h1>
-        <DownloadFlowV3 detected={os} installers={installers} />
+        <DownloadFlowV3 detected={os} installers={installers} windowed={windowed} />
       </div>
     </main>
   );

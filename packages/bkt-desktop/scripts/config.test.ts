@@ -35,3 +35,12 @@ test("updates verify against a minisign public key over https", () => {
 test("the sidecar is the only external binary", () => {
   expect(conf.bundle.externalBin).toEqual(["binaries/bkt"]);
 });
+
+test("the desktop shell carries the bkt version in every manifest", () => {
+  const read = (p: string) => readFileSync(resolve(root, p), "utf8");
+  const bkt = JSON.parse(read("../../bkt/package.json")).version;
+  expect(conf.version).toBe(bkt);
+  expect(JSON.parse(read("../package.json")).version).toBe(bkt);
+  expect(cargo.match(/^version = "(.+)"$/m)?.[1]).toBe(bkt);
+  expect(read("Cargo.lock").match(/name = "bucket-desktop"\nversion = "(.+)"/)?.[1]).toBe(bkt);
+});

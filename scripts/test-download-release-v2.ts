@@ -2,12 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fetchLatestReleaseV2, hasDesktop, installersForV2, pickLatestV2, preferArch } from "../src/lib/download/release-v2";
+import { fetchLatestReleaseV2, hasDesktop, installersForV2, pickLatestV2, preferArch, windowedInstallers } from "../src/lib/download/release-v2";
 import type { GitHubRelease, ReleaseAsset } from "../src/lib/download/release";
 
 const fixture = (name: string): ReleaseAsset[] => JSON.parse(fs.readFileSync(path.join(__dirname, "../src/lib/download/__fixtures__", name), "utf8"));
 const terminal = fixture("bkt-v0.4.0.json");
 const desktop = fixture("bkt-v0.5.0-desktop.json");
+const tauri = fixture("bkt-v0.5.0-tauri.json");
 const summary = (list: ReturnType<typeof installersForV2>) => list.map((i) => `${i.os}/${i.arch}/${i.kind}/${i.name}`);
 
 test("0.4.0 maps the bare macOS binaries, the AppImage, and the terminal binaries once per OS and architecture", () => {
@@ -67,4 +68,25 @@ test("pickLatestV2 takes the newest published bkt-v release", () => {
 test("fetchLatestReleaseV2 returns null when GitHub fails", async () => {
   assert.equal(await fetchLatestReleaseV2((async () => new Response("", { status: 503 })) as typeof fetch), null);
   assert.equal(await fetchLatestReleaseV2((async () => { throw new Error("offline"); }) as typeof fetch), null);
+});
+
+test("a release with the Tauri bundles hands each system its windowed installer", () => {
+  assert.deepEqual(windowedInstallers(tauri).map((w) => `${w.os}/${w.arch}/${w.format}/${w.name}`), [
+    "macos/arm64/dmg/Bucket-desktop-0.5.0-macos-arm64.dmg",
+    "macos/x64/dmg/Bucket-desktop-0.5.0-macos-x64.dmg",
+    "windows/x64/msi/Bucket-desktop-0.5.0-windows-x64.msi",
+    "linux/x64/AppImage/Bucket-desktop-0.5.0-linux-x64.AppImage",
+  ]);
+  for (const w of windowedInstallers(tauri)) assert.equal(w.checksumUrl, `${w.url}.sha256`);
+});
+
+test("the Tauri bundles leave the terminal installers and the signed AppImage command untouched", () => {
+  assert.deepEqual(summary(installersForV2(tauri)), summary(installersForV2(terminal)).map((s) => s.replace("0.4.0", "0.5.0")));
+  assert.deepEqual(windowedInstallers(terminal), []);
+  assert.deepEqual(windowedInstallers(desktop), []);
+});
+
+test("pickLatestV2 carries the windowed installers of the release it picks", () => {
+  const got = pickLatestV2([{ tag_name: "bkt-v0.5.0", name: "Bucket 0.5.0", html_url: "https://example.org", draft: false, prerelease: false, assets: tauri }]);
+  assert.equal(got?.windowed.length, 4);
 });

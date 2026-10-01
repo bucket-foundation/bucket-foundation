@@ -22,8 +22,43 @@ function archOf(name: string): Arch {
   return /arm64|aarch64/i.test(name) ? "arm64" : "x64";
 }
 
+const WINDOWED = /^Bucket-desktop-\d+\.\d+\.\d+-(macos|windows|linux)-(arm64|x64)\.(dmg|msi|exe|AppImage|deb)$/;
+const FORMAT_ORDER: WindowedFormat[] = ["dmg", "msi", "exe", "AppImage", "deb"];
+
+export type WindowedFormat = "dmg" | "msi" | "exe" | "AppImage" | "deb";
+
+export interface WindowedInstaller {
+  os: Os;
+  arch: Arch;
+  format: WindowedFormat;
+  name: string;
+  url: string;
+  size: number;
+  checksumUrl: string | null;
+}
+
+export function windowedInstallers(assets: ReleaseAsset[]): WindowedInstaller[] {
+  const best = new Map<string, WindowedInstaller>();
+  for (const asset of assets) {
+    const m = WINDOWED.exec(asset.name);
+    if (!m) continue;
+    const format = m[3] as WindowedFormat;
+    const key = `${m[1]}/${m[2]}`;
+    const held = best.get(key);
+    if (held && FORMAT_ORDER.indexOf(held.format) <= FORMAT_ORDER.indexOf(format)) continue;
+    const sidecar = assets.find((a) => a.name === `${asset.name}.sha256`);
+    best.set(key, { os: m[1] as Os, arch: m[2] as Arch, format, name: asset.name, url: asset.browser_download_url, size: asset.size, checksumUrl: sidecar?.browser_download_url ?? null });
+  }
+  const out: WindowedInstaller[] = [];
+  for (const os of OSES) for (const arch of ARCH_ORDER) {
+    const e = best.get(`${os}/${arch}`);
+    if (e) out.push(e);
+  }
+  return out;
+}
+
 function classify(asset: ReleaseAsset): Omit<InstallerV2, "checksumUrl" | "url" | "size" | "name"> | null {
-  if (SIDECAR.test(asset.name) || !/^[A-Za-z0-9._-]+$/.test(asset.name)) return null;
+  if (SIDECAR.test(asset.name) || !/^[A-Za-z0-9._-]+$/.test(asset.name) || asset.name.startsWith("Bucket-desktop-")) return null;
   const terminal = TERMINAL.exec(asset.name);
   if (terminal) return { os: TERMINAL_OS[terminal[1]], arch: terminal[2] as Arch, kind: "terminal" };
   if (/\.dmg$/i.test(asset.name)) return { os: "macos", arch: archOf(asset.name), kind: "desktop" };
@@ -65,12 +100,13 @@ export interface LatestReleaseV2 {
   name: string;
   page: string;
   installers: InstallerV2[];
+  windowed: WindowedInstaller[];
 }
 
 export function pickLatestV2(releases: GitHubRelease[]): LatestReleaseV2 | null {
   const r = releases.find((x) => !x.draft && !x.prerelease && x.tag_name.startsWith(RELEASE_TAG_PREFIX));
   if (!r) return null;
-  return { tag: r.tag_name, name: r.name || r.tag_name, page: r.html_url, installers: installersForV2(r.assets) };
+  return { tag: r.tag_name, name: r.name || r.tag_name, page: r.html_url, installers: installersForV2(r.assets), windowed: windowedInstallers(r.assets) };
 }
 
 export async function fetchLatestReleaseV2(fetcher: typeof fetch = fetch): Promise<LatestReleaseV2 | null> {

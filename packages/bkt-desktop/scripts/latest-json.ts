@@ -8,9 +8,10 @@ export interface UpdaterManifest {
 }
 
 const PLATFORMS: [RegExp, string][] = [
-  [/\.AppImage$/, "linux-x86_64"],
-  [/\.app\.tar\.gz$/, "darwin-aarch64"],
-  [/\.msi$/, "windows-x86_64"],
+  [/-linux-x64\.AppImage$/, "linux-x86_64"],
+  [/-macos-arm64\.app\.tar\.gz$/, "darwin-aarch64"],
+  [/-macos-x64\.app\.tar\.gz$/, "darwin-x86_64"],
+  [/-windows-x64\.msi$/, "windows-x86_64"],
 ];
 
 export function manifest(files: string[], sig: (f: string) => string, tag: string, repo: string, now: Date): UpdaterManifest {
