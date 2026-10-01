@@ -1,8 +1,8 @@
 "use client";
 import nextDynamic from "next/dynamic";
-import NextLink from "next/link";
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
-import type { ComponentProps, CSSProperties } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import type { MutableRefObject } from "react";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
@@ -128,20 +128,6 @@ const MOBILE_MARKER_CAP = 250;
 const VIEW_LABEL: Record<ProjectionId, string> = { globe: "globe", circle: "circle" };
 const SORT_LABEL: Record<ThetaSort, string> = { rank: "similarity", year: "year", branch: "branch" };
 
-export type CanonFetcher = (url: string, init: { signal: AbortSignal }) => Promise<Pick<Response, "ok" | "status" | "json">>;
-export type CanonLinkMapper = (href: string) => string | null;
-export type CanonCounts = { excerpts: number; branches: number; bridges: number | null; events: number; span: string };
-
-const siteFetcher: CanonFetcher = (url, init) => fetch(url, init);
-const siteLink: CanonLinkMapper = (href) => href;
-const siteCounts: CanonCounts = { excerpts: 599, branches: 9, bridges: 17, events: 50, span: "570 BCE, 2020 CE" };
-const LinkMapContext = createContext<CanonLinkMapper>(siteLink);
-
-function Link({ href, ...rest }: Omit<ComponentProps<typeof NextLink>, "href"> & { href: string }) {
-  const to = useContext(LinkMapContext)(href);
-  return to === null ? null : <NextLink href={to} {...rest} />;
-}
-
 function useIsNarrow(): boolean {
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -164,9 +150,6 @@ interface Props {
   variant?: DecorativeVariant;
   layout?: "default" | "home";
   workspaceLinks?: boolean;
-  fetcher?: CanonFetcher;
-  linkFor?: CanonLinkMapper;
-  counts?: CanonCounts;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -206,9 +189,6 @@ export default function CanonGlobeMount({
   variant,
   layout,
   workspaceLinks,
-  fetcher,
-  linkFor,
-  counts,
 }: Props) {
   if (decorative) {
     return (
@@ -226,9 +206,6 @@ export default function CanonGlobeMount({
       globeWrapperStyle={globeWrapperStyle}
       layout={layout}
       workspaceLinks={workspaceLinks}
-      fetcher={fetcher}
-      linkFor={linkFor}
-      counts={counts}
     />
   );
 }
@@ -240,10 +217,7 @@ function InteractiveCanonGlobeMount({
   globeWrapperStyle,
   layout = "default",
   workspaceLinks = false,
-  fetcher = siteFetcher,
-  linkFor = siteLink,
-  counts = siteCounts,
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks" | "fetcher" | "linkFor" | "counts">) {
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks">) {
   const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
@@ -403,7 +377,7 @@ function InteractiveCanonGlobeMount({
         url.searchParams.set("q", q);
         url.searchParams.set("top_k", "15");
         if (branchFilter) url.searchParams.set("branch", branchFilter);
-        const r = await fetcher(url.toString(), { signal: ac.signal });
+        const r = await fetch(url.toString(), { signal: ac.signal });
         if (!r.ok) throw new Error(`http ${r.status}`);
         const j = await r.json();
         setResults(j.results || []);
@@ -414,7 +388,7 @@ function InteractiveCanonGlobeMount({
       }
     }, 250);
     return () => clearTimeout(t);
-  }, [q, branchFilter, fetcher]);
+  }, [q, branchFilter]);
 
   return (
     <div
@@ -476,7 +450,7 @@ function InteractiveCanonGlobeMount({
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder={`search ${counts.excerpts} source excerpts across ${counts.branches} branches`}
+              placeholder="search 599 source excerpts across 9 branches"
               className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
@@ -862,10 +836,7 @@ function InteractiveCanonGlobeMount({
         </div>
       </div>
 
-      <LinkMapContext.Provider value={linkFor}>
       <Drawer
-        fetcher={fetcher}
-        counts={counts}
         selected={selected}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
@@ -893,7 +864,6 @@ function InteractiveCanonGlobeMount({
         }}
         workspaceLinks={workspaceLinks}
       />
-      </LinkMapContext.Provider>
     </div>
   );
 }
@@ -902,13 +872,9 @@ function Drawer({
   selected,
   transparent = false,
   workspaceLinks = false,
-  fetcher,
-  counts,
   onClose,
   onSelectMarker,
 }: {
-  fetcher: CanonFetcher;
-  counts: CanonCounts;
   selected: CanonMarker | null;
   transparent?: boolean;
   workspaceLinks?: boolean;
@@ -936,7 +902,7 @@ function Drawer({
         const url = new URL("/api/canon/search", window.location.origin);
         url.searchParams.set("q", selected.title);
         url.searchParams.set("top_k", "8");
-        const r = await fetcher(url.toString(), { signal: ac.signal });
+        const r = await fetch(url.toString(), { signal: ac.signal });
         const j = r.ok ? await r.json() : { results: [] };
         const out = (j.results || []).filter((x: SearchResult) =>
           !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
@@ -949,7 +915,7 @@ function Drawer({
       }
     }, 250);
     return () => { clearTimeout(t); ac.abort(); };
-  }, [selected, search, fetcher]);
+  }, [selected, search]);
 
   const sameEra = useMemo(() => {
     if (!selected || selected.year === undefined) return [];
@@ -1391,25 +1357,23 @@ function Drawer({
               >
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Source excerpts</dt>
-                  <dd>{counts.excerpts}</dd>
+                  <dd>599</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Branches</dt>
-                  <dd>{counts.branches}</dd>
+                  <dd>9</dd>
                 </div>
-                {counts.bridges !== null && (
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Detected bridges</dt>
-                  <dd>{counts.bridges}</dd>
+                  <dd>17</dd>
                 </div>
-                )}
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Geocoded events</dt>
-                  <dd>{counts.events}</dd>
+                  <dd>50</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Year span</dt>
-                  <dd>{counts.span}</dd>
+                  <dd>570 BCE, 2020 CE</dd>
                 </div>
               </dl>
             </div>

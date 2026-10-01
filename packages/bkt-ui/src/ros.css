@@ -117,6 +117,7 @@
   max-width: min(42rem, calc(100% - 96px));
 }
 
+.canon-site a[href="#"],
 .canon-site a[href="/canon/bridges"],
 .canon-site a[href="/canon/graph"],
 .canon-site a[href^="https://"]:not([href^="https://en.wikipedia.org/"]):not([href^="https://openalex.org/"]):not([href^="https://whc.unesco.org/"]),

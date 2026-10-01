@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent } from "react";
-import CanonGlobeMount, { type CanonCounts, type CanonFetcher, type CanonLinkMapper } from "@/app/canon/CanonGlobeMount";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent } from "react";
+import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
 import { ALL_EVENTS, ALL_SITES, MAX_YEAR, MIN_YEAR } from "@/lib/canon-explorer/markers";
-import type { CanonAbout, CanonExcerpt, CanonHit } from "../api";
+import { plainError, type CanonAbout, type CanonExcerpt, type CanonHit } from "../api";
 import { href } from "../router";
+import { CANON_TROUBLE, windowHref } from "../site-fetch";
 import "../ros.css";
 
 export interface CanonSearchApi {
@@ -20,8 +21,31 @@ const KIND: Record<string, string> = { yt: "video", pubmed: "PubMed", arxiv: "ar
 
 const era = (y: number) => (y < 0 ? `${-y} BCE` : `${y} CE`);
 
+export interface CanonCounts {
+  excerpts: number;
+  branches: number;
+  events: number;
+  span: string;
+}
+
 export function canonCounts(about: CanonAbout): CanonCounts {
-  return { excerpts: about.excerpts, branches: about.branches.length, bridges: null, events: ALL_EVENTS.length + ALL_SITES.length, span: `${era(MIN_YEAR)}, ${era(MAX_YEAR)}` };
+  return { excerpts: about.excerpts, branches: about.branches.length, events: ALL_EVENTS.length + ALL_SITES.length, span: `${era(MIN_YEAR)}, ${era(MAX_YEAR)}` };
+}
+
+export function showCounts(root: Element, counts: CanonCounts): void {
+  const box = root.querySelector<HTMLInputElement>('input[placeholder^="search "]');
+  const placeholder = `search ${counts.excerpts} source excerpts across ${counts.branches} branches`;
+  if (box && box.placeholder !== placeholder) box.placeholder = placeholder;
+  const values: Record<string, string | null> = { "Source excerpts": String(counts.excerpts), Branches: String(counts.branches), "Detected bridges": null, "Geocoded events": String(counts.events), "Year span": counts.span };
+  for (const row of Array.from(root.querySelectorAll<HTMLElement>("aside dl > div"))) {
+    const name = row.querySelector("dt")?.textContent ?? "";
+    const cell = row.querySelector("dd");
+    if (!cell || !(name in values)) continue;
+    const value = values[name];
+    if (value === null) {
+      if (row.style.display !== "none") row.style.display = "none";
+    } else if (cell.firstChild && cell.firstChild.nodeValue !== value) cell.firstChild.nodeValue = value;
+  }
 }
 
 export function webglAvailable(doc: Document = document): boolean {
@@ -34,23 +58,6 @@ export function webglAvailable(doc: Document = document): boolean {
   } catch {
     return false;
   }
-}
-
-export function canonLink(ids: ReadonlyMap<string, number>): CanonLinkMapper {
-  return (path) => {
-    const excerpt = /^\/excerpts\/([^/?#]+)\/([^/?#]+)$/.exec(path);
-    if (excerpt) {
-      const id = ids.get(`${excerpt[1]}/${excerpt[2]}`);
-      return id === undefined ? null : href({ name: "search", id });
-    }
-    const find = /^\/canon\/search\?q=([^&#]+)$/.exec(path);
-    if (!find) return null;
-    try {
-      return href({ name: "canon", find: decodeURIComponent(find[1]) });
-    } catch {
-      return null;
-    }
-  };
 }
 
 function SourceLink({ api, url, onError, children }: { api: CanonSearchApi; url: string | null; onError: (m: string) => void; children: string }) {
@@ -260,26 +267,23 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [round, setRound] = useState(0);
   const about = useAbout(api, setError);
-  const ids = useRef(new Map<string, number>());
-  const linkFor = useMemo(() => canonLink(ids.current), []);
   const counts = useMemo(() => (about ? canonCounts(about) : null), [about]);
+  const frame = useRef<HTMLDivElement>(null);
 
-  const fetcher = useCallback<CanonFetcher>(
-    async (url, { signal }) => {
-      const p = new URL(url).searchParams;
-      try {
-        const hits = (await api.canonSearch(p.get("q") ?? "", p.get("branch") ?? "", Number(p.get("top_k")) || undefined)).filter((h) => h.score > 0);
-        if (signal.aborted) throw Object.assign(new Error("search replaced by a newer one"), { name: "AbortError" });
-        for (const h of hits) ids.current.set(`${h.concept}/${h.slug}`, h.claim_id);
-        setError(null);
-        return { ok: true, status: 200, json: async () => ({ results: hits }) };
-      } catch (e) {
-        if ((e as Error).name !== "AbortError") setError((e as Error).message);
-        throw e;
-      }
-    },
-    [api],
-  );
+  useEffect(() => {
+    const on = (e: Event) => setError(plainError((e as CustomEvent<{ status: number }>).detail.status));
+    window.addEventListener(CANON_TROUBLE, on);
+    return () => window.removeEventListener(CANON_TROUBLE, on);
+  }, []);
+
+  useEffect(() => {
+    const root = frame.current;
+    if (!root || !counts) return;
+    showCounts(root, counts);
+    const watch = new MutationObserver(() => showCounts(root, counts));
+    watch.observe(root, { childList: true, subtree: true });
+    return () => watch.disconnect();
+  }, [counts, round]);
 
   useEffect(() => {
     if (!find) return;
@@ -296,8 +300,9 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
     const to = a?.getAttribute("href") ?? "";
     if (!a || to.startsWith("#/")) return;
     e.preventDefault();
-    if (to === "/canon/search") window.location.hash = href({ name: "search" });
-    if (/^https:\/\//.test(to)) void api.openLink(to).catch((err: Error) => setError(err.message));
+    if (/^https:\/\//.test(to)) return void api.openLink(to).catch((err: Error) => setError(err.message));
+    const local = windowHref(to);
+    if (local) window.location.hash = local;
   };
 
   return (
@@ -307,8 +312,8 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
         <p className="muted">{about ? `${about.excerpts} source excerpts on this computer. Search and the globe work with the network off.` : "Opening the canon…"}</p>
       </header>
       <Problem error={error} />
-      <div className="canon-site" onClickCapture={onLink}>
-        {counts && <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} fetcher={fetcher} linkFor={linkFor} counts={counts} />}
+      <div className="canon-site" ref={frame} onClickCapture={onLink}>
+        {counts && <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} />}
       </div>
       <Licences api={api} about={about} onError={setError} />
     </section>
