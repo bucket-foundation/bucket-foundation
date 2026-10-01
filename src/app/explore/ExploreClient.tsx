@@ -3,6 +3,7 @@
 import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
+import type { FoundingCard } from "@/lib/explore/founding";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
@@ -33,10 +34,28 @@ const TYPES: { id: HitType; label: string }[] = [
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
+const KIND: Record<HitType, string> = {
+  excerpt: "Talk",
+  advisor: "Advisor",
+  work: "Topic",
+  paper: "Paper",
+  text: "Book or text",
+  talk: "Talk",
+  "canon-file": "Canon file",
+  you: "Your document",
+};
+
+function kindLine(h: Hit): string {
+  const n = (h.also?.length ?? 0) + 1;
+  const passages = h.type === "excerpt" ? `${n} passage${n === 1 ? "" : "s"}` : null;
+  return [KIND[h.type], h.year !== null && h.type !== "excerpt" && h.type !== "work" ? String(h.year) : null, passages].filter(Boolean).join(" · ");
+}
+
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
+  const [pinned, setPinned] = useState<FoundingCard | null>(null);
   const [origin, setOrigin] = useState<AdvisorOrigin>("none");
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -80,11 +99,13 @@ export default function ExploreClient() {
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
+      setPinned(body.pinned ?? null);
       setOrigin(body.advisors_source ?? (body.advisors_sample ? "sample" : "review"));
       setSelected(body.results[0]?.id ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setHits([]);
+      setPinned(null);
     } finally {
       setLoading(false);
     }
@@ -315,6 +336,40 @@ export default function ExploreClient() {
           </ul>
         </div>
         <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
+          <div>
+          {pinned && (
+            <section data-testid="explore-pinned" aria-label={pinned.label} className="border hairline px-3 py-3 mb-4" style={{ borderColor: "var(--gold, #D9A43A)" }}>
+              <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
+                {pinned.label} on {pinned.concept}
+              </p>
+              <h2 className="text-lg mt-1">{pinned.title}</h2>
+              <p className="text-sm" style={{ color: "var(--parchment-dim)" }}>
+                {pinned.author}, {pinned.year}
+              </p>
+              {pinned.dispute_note && (
+                <p data-testid="explore-pinned-dispute" className="text-sm mt-2">
+                  Disputed: {pinned.dispute_note}
+                </p>
+              )}
+              {!pinned.checked && (
+                <p data-testid="explore-pinned-unchecked" className="text-sm mt-2" style={{ color: "var(--parchment-dim)" }}>
+                  A reviewer has yet to check this attribution.
+                </p>
+              )}
+              <div className="flex flex-wrap gap-4 mt-2 text-sm">
+                {pinned.url && (
+                  <a className="underline" href={pinned.url} target="_blank" rel="noreferrer">
+                    Open the source
+                  </a>
+                )}
+                {pinned.hit_id && byId.has(pinned.hit_id) && (
+                  <button className="underline" onClick={() => setSelected(pinned.hit_id)}>
+                    Show in results
+                  </button>
+                )}
+              </div>
+            </section>
+          )}
           <ol data-testid="explore-results" className="space-y-2">
             {visible.map((h) => (
               <li key={h.id}>
@@ -324,19 +379,25 @@ export default function ExploreClient() {
                   style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
                 >
                   <span className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                    {h.type} · {h.score.toFixed(2)}
+                    {kindLine(h)}
                   </span>
                   <span className="block">{h.title}</span>
                   <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
+                  {h.type === "excerpt" && h.fragments?.map((f) => (
+                    <span key={f.id} className="block text-sm mt-1">
+                      “{f.text}”
+                    </span>
+                  ))}
                 </button>
               </li>
             ))}
-            {!loading && !visible.length && !error && <li className="text-sm">No results.</li>}
+            {!loading && !visible.length && !error && <li className="text-sm">Nothing in the canon matches that search.</li>}
           </ol>
+          </div>
           <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">
             {current ? (
               <>
-                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{current.type}</p>
+                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{KIND[current.type]}</p>
                 <h2 className="text-lg mt-1">{current.title}</h2>
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
@@ -346,30 +407,26 @@ export default function ExploreClient() {
                     Open
                   </a>
                 )}
-                {current.links.length > 0 && (
+                {current.links.some((id) => byId.has(id)) && (
                   <>
                     <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
                       {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
                     </p>
                     <ul className="mt-1 space-y-1 text-sm">
-                      {current.links.filter((id) => !isSourceHit(current) || byId.has(id)).map((id) => {
-                        const l = byId.get(id);
-                        return (
-                          <li key={id}>
-                            <button className="underline text-left" onClick={() => setSelected(id)}>
-                              {l?.title ?? id}
-                            </button>
-                          </li>
-                        );
-                      })}
+                      {current.links.filter((id) => byId.has(id)).map((id) => (
+                        <li key={id}>
+                          <button className="underline text-left" onClick={() => setSelected(id)}>
+                            {byId.get(id)?.title}
+                          </button>
+                        </li>
+                      ))}
                     </ul>
                   </>
                 )}
               </>
             ) : selectedNode ? (
               <>
-                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{selectedNode.id.split(":")[0]}</p>
-                <p className="mt-1">{selectedNode.label ?? selectedNode.id}</p>
+                <p className="mt-1">{selectedNode.label ?? "This point has no name yet."}</p>
               </>
             ) : (
               <p className="text-sm">Select a result.</p>

@@ -1,10 +1,11 @@
 import { NextRequest } from "next/server";
 import { canonSearch, parseCanonSearchParams } from "@/lib/canon-search";
-import { canonFileHits } from "@/lib/explore/canon-files";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { HIT_TYPES, advisorId, unify, type HitType } from "@/lib/explore/search";
-import { loadSourceIndex, searchSources, sourceToHit } from "@/lib/explore/sources";
+import { foundingFor } from "@/lib/explore/founding";
+import { loadExploreCorpus, rankedPools } from "@/lib/explore/ranked";
+import { talkFor } from "@/lib/explore/talks";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
 
@@ -36,20 +37,28 @@ export async function GET(req: NextRequest) {
   const found = canonSearch(params);
   if (!found.ok) return json({ error: { code: found.code, message: found.message } }, found.status);
 
-  const excerpts = found.results.map(({ entry, score }) => ({
-    branch: entry.branch,
-    concept: entry.concept,
-    slug: entry.slug,
-    title: entry.title,
-    text: entry.text,
-    score,
-    year: YEAR_BY_ID.get(entry.concept) ?? null,
-  }));
+  const year = (concept: string) => YEAR_BY_ID.get(concept) ?? null;
+  const semantic = found.mode === "semantic";
+  const founding = params.branch ? null : foundingFor(params.q);
+  const corpus = await loadExploreCorpus();
+  const bonus = founding?.hitId && founding.bonus > 0 ? new Map([[founding.hitId, founding.bonus]]) : undefined;
+  const ranked = rankedPools(params.q, corpus, { branch: params.branch, bonus, year });
+  const excerpts = semantic
+    ? found.results.map(({ entry, score }) => ({ branch: entry.branch, concept: entry.concept, slug: entry.slug, title: entry.title, text: entry.text, score, year: year(entry.concept), talk: talkFor(entry.path) }))
+    : ranked.excerpts;
   const { sources, sample, origin } = loadAdvisors();
   const advisors = params.branch ? [] : sources;
-  const wantsSources = !types.length || types.some((t) => t === "paper" || t === "text" || t === "talk");
-  const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await loadSourceIndex()).map(sourceToHit) : [];
-  const results = unify({ query: params.q, excerpts, advisors, sources: sourceHits, types, topK: params.topK, extraHits: params.branch ? [] : canonFileHits(params.q) });
+  const results = unify({
+    query: params.q,
+    excerpts,
+    advisors,
+    sources: params.branch ? [] : ranked.sources,
+    types,
+    topK: params.topK,
+    extraHits: params.branch ? [] : ranked.files,
+    stats: corpus.stats,
+    semantic,
+  });
   return json({
     query: params.q || null,
     top_k: params.topK,
@@ -57,6 +66,7 @@ export async function GET(req: NextRequest) {
     n_results: results.length,
     advisors_sample: sample,
     advisors_source: origin,
+    pinned: founding?.card ?? null,
     results,
     took_ms: Date.now() - t0,
   });

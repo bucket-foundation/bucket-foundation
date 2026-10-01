@@ -1,7 +1,7 @@
 {
  "schema": "bucket.founding-works/1",
  "status": "draft",
- "notice": "Draft by an agent, written from memory: every attribution, dispute reason and basis citation is unchecked. basis_verified stays false until a person checks the named source, and reviewer stays empty until a named person approves the row. A row with an empty reviewer or disputed true earns no ranking effect. Nothing reads this file yet.",
+ "notice": "Draft by an agent, written from memory: every attribution, dispute reason and basis citation is unchecked. basis_verified stays false until a person checks the named source, and reviewer stays empty until a named person approves the row. A row with an empty reviewer or disputed true earns no ranking effect. Explore search reads approved rows. Outside production it reads unapproved rows when EXPLORE_FOUNDING_UNVERIFIED is 1.",
  "tiers": {"founding": "The accepted founding text for the concept.", "landmark": "A primary paper the canon holds for the concept where the founding text is another work or unsettled."},
  "work_kinds": {"doi": "d", "openalex": "o", "gutenberg": "g", "wikisource": "w"},
  "index": "src/data/explore-sources.json",
