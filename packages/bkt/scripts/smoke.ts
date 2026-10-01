@@ -1,10 +1,10 @@
-import { mkdtempSync, rmSync, statSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync, statSync } from "node:fs";
 import { connect } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const [bin, expected] = process.argv.slice(2);
-if (!bin || !expected) throw new Error("usage: smoke.ts BKT_BINARY EXPECTED_VERSION");
+const [bin, expected, mode] = process.argv.slice(2);
+if (!bin || !expected || (mode !== undefined && mode !== "--cli-only")) throw new Error("usage: smoke.ts BKT_BINARY EXPECTED_VERSION [--cli-only]");
 
 const home = mkdtempSync(join(tmpdir(), "bkt-smoke-"));
 const env = { ...process.env, BKT_HOME: join(home, "data"), BKT_UI_DIR: join(home, "no-ui") };
@@ -19,6 +19,26 @@ function run(args: string[]): string {
   const r = Bun.spawnSync([bin, ...args], { env, stdout: "pipe", stderr: "pipe" });
   if (r.exitCode !== 0) throw new Error(`bkt ${args.join(" ")} exited ${r.exitCode}: ${r.stderr.toString()}`);
   return r.stdout.toString();
+}
+
+function attempt(args: string[]): { code: number; out: string; err: string } {
+  const r = Bun.spawnSync([bin, ...args], { env, stdin: "ignore", stdout: "pipe", stderr: "pipe" });
+  return { code: r.exitCode, out: r.stdout.toString(), err: r.stderr.toString() };
+}
+
+function cliChecks(): void {
+  const help = attempt(["--help"]);
+  check(help.code === 0 && help.out.includes("usage: bkt [command] [options]") && help.out.includes(`bkt ${expected}`), "bkt --help prints usage and exits 0");
+  check(attempt(["-h"]).out === help.out && attempt(["help"]).out === help.out, "-h and help print the same usage");
+  const one = attempt(["help", "stats"]);
+  check(one.code === 0 && one.out.startsWith("usage: bkt stats [options]") && attempt(["stats", "--help"]).out === one.out, "help stats and stats --help print that command's usage");
+  check(attempt(["version", "--json"]).out.trim() === JSON.stringify({ v: 1, version: expected }), "version --json is the v1 shape");
+  const parsed = attempt(["analyses", "--json", `--keyring=x`]);
+  check(parsed.code === 2 && parsed.err.includes("unknown option --keyring"), "parseArgs rejects a flag the command does not take");
+  for (const args of [["bogus"], ["stats", "--nope"], ["init", "--keyring", "bogus"], []]) {
+    const r = attempt(args);
+    check(r.code === 2 && r.err.includes("usage: bkt") && !existsSync(env.BKT_HOME), `bkt ${args.join(" ")} exits 2 and leaves BKT_HOME absent`);
+  }
 }
 
 function raw(port: number, request: string): Promise<string> {
@@ -50,12 +70,25 @@ async function readUrl(stream: ReadableStream<Uint8Array>): Promise<string> {
 
 try {
   check(run(["--version"]).trim() === expected, `bkt --version prints ${expected}`);
+  cliChecks();
+  if (mode === "--cli-only") console.log("cli smoke passed");
+  else await full();
+} finally {
+  rmSync(home, { recursive: true, force: true });
+}
+
+async function full(): Promise<void> {
 
   const first = JSON.parse(run(["init"]));
   const second = JSON.parse(run(["init"]));
   check(first.keyring === native, `bkt init uses the ${native} keystore (got ${first.keyring})`);
   check(first.newDevice === true && second.newDevice === false, "the device key round trips through the keystore");
   check(first.device === second.device && first.publicKey === second.publicKey, "the second run reads the same device");
+
+  const stats = JSON.parse(run(["stats", "--json"]));
+  check(stats.v === 1 && stats.items > 0 && stats.attempts === 0, "stats --json is the v1 shape");
+  const who = JSON.parse(run(["whoami", "--json"]));
+  check(who.v === 1 && who.device === first.device && who.keyring === native, "whoami --json names the same device");
 
   const data = env.BKT_HOME;
   if (process.platform === "win32") {
@@ -87,6 +120,4 @@ try {
     await serve.exited;
   }
   console.log("smoke passed");
-} finally {
-  rmSync(home, { recursive: true, force: true });
 }
