@@ -1,0 +1,96 @@
+name: spike-rust-engine
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["spike/rust-engine"]
+    paths:
+      - "spikes/rust-engine/**"
+      - ".github/workflows/spike-rust-engine.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: spike-rust-engine-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native:
+    if: github.ref == 'refs/heads/spike/rust-engine'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            label: linux-x64
+          - os: ubuntu-24.04-arm
+            label: linux-arm64
+          - os: macos-15
+            label: darwin-arm64
+          - os: macos-15-intel
+            label: darwin-x64
+          - os: windows-2025
+            label: windows-x64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - name: let git skip repo paths that NTFS cannot hold
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /spikes/rust-engine/
+            /packages/bkt/
+            /src/lib/
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+        with:
+          bun-version: "1.3.11"
+      - name: rust toolchain
+        shell: bash
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal --target wasm32-unknown-unknown
+          rustup default 1.96.0
+      - name: bkt dependencies
+        working-directory: packages/bkt
+        run: bun install --frozen-lockfile
+      - name: experiments
+        working-directory: spikes/rust-engine
+        run: bun s5-cross-build/ci.ts ${{ matrix.label }} 60
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: result-${{ matrix.label }}
+          path: spikes/rust-engine/.data/ci/result-*.json
+          if-no-files-found: warn
+          include-hidden-files: true
+
+  cross:
+    if: github.ref == 'refs/heads/spike/rust-engine'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /spikes/rust-engine/
+      - name: rust toolchain and zig
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal
+          rustup default 1.96.0
+          python3 -m pip install --user --break-system-packages ziglang cargo-zigbuild
+      - name: cross-build the engine for the four other targets
+        working-directory: spikes/rust-engine
+        run: bash s5-cross-build/cross.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: result-cross
+          path: spikes/rust-engine/.data/ci/cross*
+          if-no-files-found: warn
+          include-hidden-files: true
