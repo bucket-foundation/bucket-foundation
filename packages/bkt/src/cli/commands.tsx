@@ -11,7 +11,7 @@ import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
 import { interactive, JSON_SHAPES, jsonLine, pick, textRows } from "./out";
-import { keyringOptions, NoDataError, type Invocation } from "./run";
+import { keyringOptions, NoDataError, type Invocation, UsageError } from "./run";
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
@@ -31,7 +31,8 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { openWindow, readApp, runtimeDir, uiDir, writeApp } from "../window";
+import { checkRoute, openWindow, readApp, RouteError, routeUrl, runtimeDir, takeRoute, uiDir, writeApp, writeRoute } from "../window";
+import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -71,7 +72,9 @@ async function analyzeCmd(argv: string[]): Promise<number> {
   }
 }
 
-async function serve(name: "serve" | "app", session: Session, dir: string, content: Pack): Promise<void> {
+async function serve(name: "serve" | "app", session: Session, dir: string, content: Pack, route: string | null): Promise<void> {
+  const workQuiz = new WorkQuizStore(session.store, session.key);
+  writeQuizRoots(dir, workQuiz.chat());
   const people = new PeopleStore(session.store, session.key);
   const runner = new JobRunner({
     root: join(dir, "jobs"),
@@ -83,7 +86,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...workQuizRoutes(new WorkQuizStore(session.store, session.key)),
+      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
     },
@@ -101,13 +104,13 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
   const profile = join(dir, "window-profile");
-  const show = () => (name === "app" ? openWindow(srv.url, profile) : console.log(srv.url));
+  const show = (to: string | null) => (name === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
   const reopen = () => {
     srv.remint();
-    show();
+    show(takeRoute(runtimeDir()));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
-  show();
+  show(route);
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
@@ -122,13 +125,14 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   srv.stop();
 }
 
-function reopenRunningApp(): boolean {
+function reopenRunningApp(route: string | null): boolean {
   const running = readApp(runtimeDir());
   if (!running) return false;
   if (process.platform === "win32") {
-    console.log(`Bucket is already running at http://127.0.0.1:${running.port}/`);
+    console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
     return true;
   }
+  if (route !== null) writeRoute(runtimeDir(), route);
   process.kill(running.pid, "SIGUSR1");
   console.log(`reopened the Bucket window on port ${running.port}`);
   return true;
@@ -160,7 +164,18 @@ export async function execute(inv: Invocation): Promise<number> {
     console.log(json ? jsonLine("update", r) : describeUpdate(r));
     return r.status === "error" ? EXIT.failure : EXIT.ok;
   }
-  if (name === "app" && reopenRunningApp()) return EXIT.ok;
+  if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
+  if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
+  if (name === "quiz unschedule") return quizCommand(["unschedule"]);
+  let route: string | null = null;
+  if (name === "app" && inv.values.route !== undefined) {
+    try {
+      route = checkRoute(inv.values.route);
+    } catch (e) {
+      throw e instanceof RouteError ? new UsageError(e.message, inv.command) : e;
+    }
+  }
+  if (name === "app" && reopenRunningApp(route)) return EXIT.ok;
   if (name === "analyze") return analyzeCmd(inv.args);
   if (name === "analyses") return analyses(inv, json);
   if (name === "hai freeze") {
@@ -207,7 +222,7 @@ export async function execute(inv: Invocation): Promise<number> {
     } else if (name === "forget people") {
       const n = new PeopleStore(session.store, session.key).forget(Date.now());
       console.log(`forgot ${n} people; a later import skips them unless you confirm`);
-    } else if (name === "serve" || name === "app") await serve(name, session, dir, content);
+    } else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
       console.log(json ? jsonLine("stats", s) : textRows(Object.entries(s)));

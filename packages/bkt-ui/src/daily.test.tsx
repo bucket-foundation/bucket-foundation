@@ -56,7 +56,8 @@ describe("daily quiz view", () => {
     const text = v.host.textContent ?? "";
     expect(text).toContain(`No quiz for ${DAY}`);
     expect(text).toContain("Bucket has no quiz saved for this day");
-    expect(text).toContain("has not shipped yet");
+    expect(text).toContain("nothing was built for this one");
+    expect(text).toContain("held no line Bucket could ask about");
     expect(v.host.querySelector(".error")).toBeNull();
     expect(v.host.querySelector("article")).toBeNull();
     expect(v.host.querySelector('a[href="#/work"]')).not.toBeNull();
