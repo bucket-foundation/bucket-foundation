@@ -5,7 +5,7 @@ import path from "node:path";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { BLOCKED_FORMS, DEPTHS, FORMATS, FORMS, VALID_PAIRS, allCells, cellValid, openCells, validPair, validPairs, type Form } from "../src/lib/research-os/work-quiz/space";
-import { CARD_KEY_SEPARATOR, cardKey, factId, factsFromSources, parseCardKey } from "../src/lib/research-os/work-quiz/fact";
+import { CARD_KEY_SEPARATOR, cardFields, compoundFactId, cardKey, factId, factsFromSources, parseCardKey } from "../src/lib/research-os/work-quiz/fact";
 import { FORM_MAKERS, makeForm, sampledId } from "../src/lib/research-os/work-quiz/forms";
 import type { WorkSources } from "../src/lib/research-os/work-quiz/types";
 
@@ -81,7 +81,7 @@ for (const form of BUILT) {
         made += 1;
         assert.deepEqual(checkLimits(q), [], `${form} seed ${s}: ${q.prompt} ${q.lines.join(" / ")}`);
         assert.equal(q.form, form);
-        assert.equal(q.cardKey, cardKey(q.factIds[0], form));
+        assert.equal(q.cardKey, cardKey(compoundFactId(q.factIds), form));
         assert.equal(q.id, sampledId(form, q.factIds, depth));
         assert.equal(gradeAnswer(q, q.answer, 1000).correct, true);
         if (q.choices) assert.ok(q.choices.includes(q.answer));
@@ -109,4 +109,31 @@ test("order uses a choice string and estimate grades by log10 distance", () => {
 test("which_changed has no maker and the other built forms do", () => {
   assert.equal(FORM_MAKERS.which_changed, undefined);
   for (const f of BUILT) assert.ok(FORM_MAKERS[f]);
+});
+
+test("cardFields maps legacy question rows to the same fact.id|form key the migration backfill writes", () => {
+  const pr = { id: "which_first:abc", type: "which_first" as const, sources: [{ kind: "pr" as const, ref: "#504", label: "", href: null }] };
+  assert.deepEqual(cardFields(pr), { fact_id: "pr:504", form: "compare", card_key: "pr:504|compare" });
+  const bead = { id: "true_false:x", type: "true_false" as const, sources: [{ kind: "bead" as const, ref: "bkt-33cg", label: "", href: null }] };
+  assert.equal(cardFields(bead).card_key, "bead:bkt-33cg|true_false");
+  assert.equal(cardFields({ id: "estimate:q1", type: "estimate", sources: [] }).card_key, "count:estimate:q1|estimate");
+  const q = makeForm("order", SOURCES, "o", 2)!;
+  assert.equal(cardFields(q).card_key, q.cardKey);
+  const sql = fs.readFileSync(path.join(process.cwd(), "supabase/migrations/20261001150000_research_os_work_quiz_card_key.sql"), "utf8");
+  assert.match(sql, /when 'which_first' then 'compare'/);
+  assert.match(sql, /'pr:' \|\| ltrim\(question -> 'sources' -> 0 ->> 'ref', '#'\)/);
+});
+
+test("order cards key on every fact id in order, so two triples sharing an oldest change do not collide", () => {
+  const keys = new Map<string, string>();
+  for (let s = 0; s < SEEDS; s++) {
+    const q = makeForm("order", SOURCES, `collide-${s}`, 2);
+    if (!q) continue;
+    assert.equal(q.factIds.length, 3);
+    assert.equal(q.cardKey, `${q.factIds.join("+")}|order`);
+    const prior = keys.get(q.cardKey);
+    if (prior) assert.equal(prior, q.factIds.join(","));
+    keys.set(q.cardKey, q.factIds.join(","));
+  }
+  assert.ok(new Set(Array.from(keys.keys()).map((k) => k.split("+")[0])).size < keys.size);
 });

@@ -1,8 +1,8 @@
 import { MAKERS, hashString, seededRng, type Rng } from "./generate";
-import { cardKey, factId, makeFact, type Fact } from "./fact";
+import { cardKey, compoundFactId, factId, factIdOfSource, makeFact, type Fact } from "./fact";
 import { checkLimits, parityOk, shortTitle } from "./limits";
 import { FORM_LIMIT_SEC, MIN_ORDER_FACTS, type Depth, type Form } from "./space";
-import type { PrFact, QuizQuestion, QuizType, SourceRef, WorkSources } from "./types";
+import type { PrFact, QuizQuestion, QuizType, WorkSources } from "./types";
 
 export interface SampledQuestion extends QuizQuestion {
   form: Form;
@@ -22,13 +22,9 @@ export function sampledId(form: Form, factIds: readonly string[], depth: Depth):
   return `${form}:${hashString(`${factIds.join(",")}|${form}|${depth}`).toString(36)}`;
 }
 
-function factIdOf(ref: SourceRef): string {
-  return ref.kind === "pr" ? factId("pr", ref.ref.replace(/^#/, "")) : factId(ref.kind, ref.ref.replace(/\|/g, "/"));
-}
-
 function stamp(q: QuizQuestion, form: Form, depth: Depth, factIds: string[]): SampledQuestion | null {
   if (factIds.length === 0) return null;
-  const out: SampledQuestion = { ...q, id: sampledId(form, factIds, depth), form, depth, factIds, cardKey: cardKey(factIds[0], form), limitSec: FORM_LIMIT_SEC[form] };
+  const out: SampledQuestion = { ...q, id: sampledId(form, factIds, depth), form, depth, factIds, cardKey: cardKey(compoundFactId(factIds), form), limitSec: FORM_LIMIT_SEC[form] };
   return checkLimits(out).length === 0 ? out : null;
 }
 
@@ -48,7 +44,7 @@ function shuffle<T>(rng: Rng, xs: readonly T[]): T[] {
 function wrap(type: QuizType, form: Form): FormMaker {
   return (src, rng, depth) => {
     const q = MAKERS[type](src, rng);
-    return q ? stamp(q, form, depth, q.sources.map(factIdOf)) : null;
+    return q ? stamp(q, form, depth, q.sources.map(factIdOfSource)) : null;
   };
 }
 
