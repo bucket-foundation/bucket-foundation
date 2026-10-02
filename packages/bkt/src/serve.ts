@@ -17,6 +17,7 @@ export interface ServeOptions {
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
+  match?: (method: string, pathname: string) => Route | undefined;
   uiDir?: string;
   maxBodyBytes?: number;
   routeBodyBytes?: Record<string, number>;
@@ -261,7 +262,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
       if (!token || !m || !same(m[1], token)) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
       const key = `${req.method} ${url.pathname}`;
-      const route = routes[key];
+      const route = routes[key] ?? opts.match?.(req.method, url.pathname);
       if (!route) return deny(404);
       if (req.method !== "GET") {
         const cap = routeBody[key] ?? maxBody;

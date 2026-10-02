@@ -124,6 +124,69 @@ export interface CanonAbout {
   licences: CanonLicence[];
 }
 
+export interface DataCount {
+  kind: string;
+  label: string;
+  n: number;
+  stored?: "encrypted" | "partly" | "plain";
+  screen?: string;
+}
+
+export interface DataPart {
+  name: string;
+  count: number;
+  unit: string;
+  terms: string | null;
+  link: string | null;
+  openable: boolean;
+}
+
+export interface Dataset {
+  id: string;
+  name: string;
+  about: string;
+  browsable: boolean;
+  version: string | null;
+  builtAt: number | null;
+  checksum: string | null;
+  counts: DataCount[];
+  kinds: { id: string; label: string }[];
+  parts: DataPart[];
+  leftOut: { count: number; reason: string } | null;
+}
+
+export interface DataRow {
+  id: string;
+  title: string;
+  creators: string | null;
+  year: number | null;
+  kind: string;
+  kindLabel: string;
+  source: string | null;
+  openable: boolean;
+}
+
+export interface DataPage {
+  total: number;
+  offset: number;
+  limit: number;
+  records: DataRow[];
+}
+
+export interface DataQuery {
+  q?: string;
+  kind?: string;
+  sort?: "title" | "creators" | "year" | "kind";
+  dir?: "asc" | "desc";
+  offset?: number;
+  limit?: number;
+}
+
+export interface DataDetail {
+  record: DataRow;
+  fields: { label: string; value: string }[];
+}
+
 export class ApiError extends Error {
   constructor(
     readonly code: string,
@@ -381,5 +444,19 @@ export class Api {
 
   forgetHistory() {
     return this.call<{ cleared: boolean }>("/local/history/forget", { method: "POST", body: {} });
+  }
+
+  data() {
+    return this.call<{ datasets: Dataset[] }>("/local/data").then((r) => r.datasets);
+  }
+
+  dataRecords(dataset: string, query: DataQuery = {}) {
+    const p = new URLSearchParams();
+    for (const [k, v] of Object.entries(query)) if (v !== undefined && v !== "") p.set(k, String(v));
+    return this.call<DataPage>(`/local/data/${encodeURIComponent(dataset)}/records?${p}`);
+  }
+
+  dataRecord(dataset: string, id: string) {
+    return this.call<DataDetail>(`/local/data/${encodeURIComponent(dataset)}/records/${encodeURIComponent(id)}`);
   }
 }
