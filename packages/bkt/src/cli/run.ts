@@ -7,6 +7,7 @@ import { platformFor } from "../platform";
 import type { KeyringOptions } from "../setup";
 import { VERSION } from "../version";
 import { isShell, SHELLS } from "./completion";
+import { validDay } from "../daily-quiz";
 import { interactive, type Tty } from "./out";
 import {
   CLI_COMMANDS,
@@ -122,6 +123,8 @@ export function resolve(argv: string[]): Resolved {
     if (spec.session) keyringOptions(inv);
     if (spec.name === "analyze") parseAnalyzeArgs(args);
     if (HAI_TOOLS.has(spec.name)) parseToolArgs(args);
+    if (spec.options?.count) countOf(inv);
+    if (spec.name === "daily" && parsed.positionals.length && !validDay(parsed.positionals[0])) throw new Error(`give the day as YYYY-MM-DD, such as 2026-10-01`);
     if (spec.name === "search") searchOptions(inv);
     if (spec.name === "canon show" && parseId(parsed.positionals[0]) === null) throw new Error(`canon show needs an excerpt number, such as 42`);
     if (spec.name === "completion" && !isShell(parsed.positionals[0])) throw new Error(`unknown shell ${parsed.positionals[0]}; use ${SHELLS.join(", ")}`);
@@ -129,6 +132,14 @@ export function resolve(argv: string[]): Resolved {
     throw new UsageError(reason(e), spec);
   }
   return { kind: "run", ...inv };
+}
+
+export function countOf(inv: Pick<Invocation, "values">, fallback = 10): number {
+  const raw = inv.values.count;
+  if (raw === undefined) return fallback;
+  const n = Number(raw);
+  if (typeof raw !== "string" || !/^\d+$/.test(raw) || n < 1 || n > 50) throw new Error("--count needs a whole number from 1 to 50");
+  return n;
 }
 
 export function searchOptions(inv: Invocation): { q: string; limit: number; branch: string; tsv: boolean } {
@@ -155,7 +166,7 @@ export function keyringOptions(inv: Invocation): KeyringOptions {
 
 export function preflight(inv: Invocation, env: Record<string, string | undefined>, tty: Tty, os: string = process.platform): void {
   const spec = inv.command;
-  const screen = spec.terminal === "always" || (spec.terminal === "with-tui-flag" && inv.values.tui === true);
+  const screen = spec.terminal === "always" || (spec.terminal === "with-tui-flag" && inv.values.tui === true) || (spec.terminal === "without-json" && inv.values.json !== true);
   if (screen && !interactive(env, tty)) {
     const what = spec.name === DEFAULT_COMMAND ? "the terminal app" : `bkt ${spec.name}${inv.values.tui ? " --tui" : ""}`;
     throw new UsageError(`${what} needs a terminal`, spec);

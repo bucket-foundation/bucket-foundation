@@ -1,11 +1,11 @@
 import { randomBytes } from "node:crypto";
-import { buildEncompassingMap, mergeState, normalizeState, withLeverage, type Atom, type EncEdge } from "../../../src/lib/academy/engine";
-import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
-import type { Question, Rating } from "./grade";
+import { mergeState, normalizeState } from "../../../src/lib/academy/engine";
+import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQuestion, quizSession, rateCard } from "./core/learn";
+import type { Question } from "./grade";
 import type { Route } from "./serve";
 import type { Pack, PackDeck } from "./pack/export";
 import type { ShortFile } from "./short-fields";
-import { deckOf, type Store } from "./store";
+import type { Store } from "./store";
 
 export interface LocalOptions {
   shorts?: ShortFile;
@@ -33,75 +33,55 @@ async function body(req: Request): Promise<Record<string, unknown> | null> {
 
 const elapsed = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.min(v, 86_400_000) : null);
 
+function guarded(fn: () => unknown): Response {
+  try {
+    return json(fn());
+  } catch (e) {
+    if (e instanceof LearnError) return json({ error: e.message }, e.status);
+    throw e;
+  }
+}
+
 export function localRoutes(store: Store, opts: LocalOptions = {}): Record<string, Route> {
   const now = opts.now ?? Date.now;
   const seed = opts.seed ?? (() => randomBytes(8).toString("hex"));
   const open = new Map<string, Question>();
   const decks: PackDeck[] = opts.content?.decks ?? [];
-  const atoms = new Map<string, Atom[]>(Object.entries(opts.content?.atoms ?? {}).map(([d, a]) => [d, withLeverage(a)]));
-  const enc = new Map<string, Record<string, EncEdge[]>>();
-  const encFor = (deck: string) => {
-    if (!enc.has(deck)) enc.set(deck, buildEncompassingMap(atoms.get(deck) ?? []));
-    return enc.get(deck)!;
-  };
-  const itemDeck = (itemId: string) => {
-    const it = store.items().find((i) => i.id === itemId);
-    return it ? deckOf(it.branch) : "";
-  };
+  const enc = new Encompassing(store, opts.content);
 
   return {
     "GET /local/quiz": (_req, url) => {
-      const s = seed();
-      const qs = quizQuestions(store, pickSession(store, now(), count(url, 10, 50), s, opts.shorts), s, opts.shorts);
+      const qs = quizSession(store, now(), count(url, 10, 50), seed(), opts.shorts);
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
-      return json({ questions: qs.map(({ itemId, prompt, choices, limitSec, long }) => ({ itemId, prompt, choices, limitSec, ...(long ? { long } : {}) })) });
+      return json({ questions: qs.map(publicQuestion) });
     },
     "POST /local/quiz": async (req) => {
       const b = await body(req);
       if (!b || typeof b.itemId !== "string") return json({ error: "itemId required" }, 400);
       const q = open.get(b.itemId);
       if (!q) return json({ error: "no open question" }, 404);
-      const choice = b.choice === null ? null : b.choice;
-      if (choice !== null && (typeof choice !== "number" || !Number.isInteger(choice) || choice < 0 || choice >= q.choices.length))
-        return json({ error: "bad choice" }, 400);
       const ms = elapsed(b.elapsedMs);
       if (ms === null) return json({ error: "bad elapsedMs" }, 400);
-      open.delete(q.itemId);
-      const r = answerQuiz(store, q, choice as number | null, ms, now(), encFor(itemDeck(q.itemId)));
-      return json({ ...r, answer: q.choices[q.answerIndex] });
-    },
-    "GET /local/review": (_req, url) => {
-      const byId = new Map(store.items().map((i) => [i.id, i]));
-      const items = store
-        .dueItemIds(now(), count(url, 20, 100))
-        .map((id) => byId.get(id))
-        .filter((i) => !!i)
-        .map((i) => ({ id: i!.id, title: i!.title, prompt: i!.prompt, answer: i!.answer }));
-      return json({ items });
-    },
-    "POST /local/review": async (req) => {
-      const b = await body(req);
-      if (!b || typeof b.itemId !== "string" || !store.items().some((i) => i.id === b.itemId)) return json({ error: "unknown item" }, 404);
-      if (b.rating !== 1 && b.rating !== 2 && b.rating !== 3 && b.rating !== 4) return json({ error: "rating must be 1..4" }, 400);
-      const ms = elapsed(b.elapsedMs);
-      if (ms === null) return json({ error: "bad elapsedMs" }, 400);
-      answerReview(store, b.itemId, b.rating as Rating, ms, now(), encFor(itemDeck(b.itemId)));
-      return json({ ok: true, due: store.card(b.itemId)?.due ?? null });
-    },
-    "GET /local/decks": () => {
-      const s = now();
-      return json({
-        decks: decks.map((d) => {
-          const state = store.learnState(d.id);
-          const cards = Object.values(state.cards);
-          return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= s).length, xp: state.stats.xp };
-        }),
+      return guarded(() => {
+        const r = gradeQuiz(store, enc, q, b.choice, ms, now());
+        open.delete(q.itemId);
+        return r;
       });
     },
+    "GET /local/review": (_req, url) => json({ items: dueCards(store, now(), count(url, 20, 100)) }),
+    "POST /local/review": async (req) => {
+      const b = await body(req);
+      if (!b) return json({ error: "unknown item" }, 404);
+      const ms = elapsed(b.elapsedMs);
+      if (typeof b.itemId === "string" && store.items().some((i) => i.id === b.itemId) && (b.rating === 1 || b.rating === 2 || b.rating === 3 || b.rating === 4) && ms === null)
+        return json({ error: "bad elapsedMs" }, 400);
+      return guarded(() => ({ ok: true, ...rateCard(store, enc, b.itemId, b.rating, ms ?? 0, now()) }));
+    },
+    "GET /local/decks": () => json({ decks: deckProgress(store, decks, now()) }),
     "GET /local/atoms": (_req, url) => {
       const deck = url.searchParams.get("deck") ?? "";
-      const list = atoms.get(deck);
+      const list = enc.deckAtoms(deck);
       return list ? json({ deck, atoms: list }) : json({ error: "unknown deck" }, 404);
     },
     "GET /local/progress": () => {

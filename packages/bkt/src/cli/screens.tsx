@@ -191,6 +191,16 @@ export interface GraphView {
   edges: number;
 }
 
+const count = (v: unknown) => (Array.isArray(v) ? v.length : 0);
+
+export function graphView(raw: unknown): GraphView | null {
+  if (!raw || typeof raw !== "object") return null;
+  const outer = raw as { graph?: unknown; nodes?: unknown; edges?: unknown; links?: unknown };
+  const g = (outer.graph && typeof outer.graph === "object" ? outer.graph : outer) as { nodes?: unknown; edges?: unknown; links?: unknown };
+  const nodes = count(g.nodes);
+  return nodes ? { nodes, edges: count(g.edges ?? g.links) } : null;
+}
+
 export function GraphScreen({ graph }: { graph: GraphView | null }) {
   return (
     <Box flexDirection="column">
