@@ -66,7 +66,7 @@ test("a visitor saves two results, finds them after a reload, cites one, removes
 
 test("a result with no author offers Save and no Cite", async ({ page }) => {
   await open(page);
-  const excerpt = page.getByTestId("explore-result").filter({ hasText: /^excerpt/i }).first();
+  const excerpt = page.getByTestId("explore-result").filter({ hasText: /^Talk · \d+ passages?/ }).first();
   await expect(excerpt.getByTestId("save-button")).toBeVisible();
   await expect(excerpt.getByTestId("cite-button")).toHaveCount(0);
   await excerpt.getByTestId("save-button").click();
