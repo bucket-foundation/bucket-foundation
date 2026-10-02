@@ -264,8 +264,8 @@ app. His words that day:
 - "depin is a highly integral direction" <!-- voice-ignore-line -->
 
 **Why.** A research tool that runs on the reader's machine keeps
-working offline, keeps notes local, and can later join a network of
-nodes. The website became the place to get the app.
+working offline and keeps notes local. It can later join a network
+of nodes. The website became the place to get the app.
 
 **Architecture decision.** Today the app is TypeScript with Bun and
 React inside a Tauri 2 shell written in Rust. The target moves the
@@ -312,7 +312,7 @@ ships third-party quotations until the founder rules on them.
 
 **Open decisions.**
 
-- Kruse corpus: license, exclude for good, or ask the author.
+- Kruse corpus: ask the author, or exclude it for good.
 - Third-party quotations in app releases.
 - When the Rust engine replaces the TypeScript one.
 - When the DePIN node and USDC settlement on Base move out of the
