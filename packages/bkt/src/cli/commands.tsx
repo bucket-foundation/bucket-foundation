@@ -4,7 +4,8 @@ import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
 import { join } from "node:path";
-import { App } from "../app";
+import { App, type AppSources } from "../app";
+import { spawn } from "node:child_process";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../analyze-view";
 import type { Pack } from "../pack/export";
@@ -13,7 +14,8 @@ import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
 import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
-import { keyringOptions, NoDataError, type Invocation, UsageError } from "./run";
+import { keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
+import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
 import { EXIT } from "./table";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
@@ -31,7 +33,7 @@ import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
 import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
-import { parentGone } from "../parent";
+import { isSidecar, parentGone } from "../parent";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
 import { NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
@@ -42,7 +44,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { checkRoute, openWindow, readApp, RouteError, routeUrl, runtimeDir, takeRoute, uiDir, writeApp, writeRoute } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -95,8 +97,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
+  const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
   const srv = startServe({
     routes: {
+      ...windowRoutes(win.routes),
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
@@ -121,14 +125,20 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     onError: (e) => console.error(`bkt serve: ${e.message}`),
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
-  const profile = join(dir, "window-profile");
-  const show = (to: string | null) => (name === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
-  const reopen = () => {
+  const fresh = () => {
     srv.remint();
-    show(takeRoute(runtimeDir()));
+    return srv.url;
+  };
+  const reopen = () => {
+    const to = takeRoute(runtimeDir());
+    if (name === "app" || !isSidecar(process.env)) win.relaunch(to, fresh);
+    else console.log(routeUrl(fresh(), to));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
-  show(route);
+  const asked = process.platform === "win32" ? setInterval(() => takeReopen(runtimeDir()) && reopen(), 1000) : undefined;
+  win.forget();
+  if (name === "app") win.open(routeUrl(srv.url, route));
+  else console.log(srv.url);
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
@@ -136,8 +146,11 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });
+    if (name === "app") void win.closed(() => runner.busy()).then(done);
   });
   process.off("SIGUSR1", reopen);
+  clearInterval(asked);
+  win.forget();
   runner.stopAll();
   release();
   srv.stop();
@@ -146,13 +159,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
 function reopenRunningApp(route: string | null): boolean {
   const running = readApp(runtimeDir());
   if (!running) return false;
-  if (process.platform === "win32") {
-    console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
-    return true;
-  }
-  if (route !== null) writeRoute(runtimeDir(), route);
-  process.kill(running.pid, "SIGUSR1");
-  console.log(`reopened the Bucket window on port ${running.port}`);
+  const signal = (pid: number) => (process.platform === "win32" ? requestReopen(runtimeDir()) : void process.kill(pid, "SIGUSR1"));
+  console.log(askRunningApp(runtimeDir(), running, route, { table: processTable(), signal }));
   return true;
 }
 
@@ -202,6 +210,55 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
   return passed ? EXIT.ok : EXIT.failure;
 }
 
+function search(inv: Invocation, json: boolean): number {
+  const o = searchOptions(inv);
+  const found = searchCanon(packCanon(canonPack as CanonPack), searchParams(o.q, o), { matchedOnly: true });
+  if (!found.ok) throw new NoDataError("this copy of bkt holds no canon; run bkt update");
+  if (json) console.log(jsonLine("search", { query: o.q, mode: found.mode, results: found.results }));
+  else if (o.tsv) {
+    if (found.results.length) console.log(searchTsv(found.results));
+  } else if (found.results.length) console.log(searchText(found.results));
+  if (!found.results.length) throw new NoDataError(`nothing in the canon matches ${o.q}`);
+  return EXIT.ok;
+}
+
+function canonShow(inv: Invocation, json: boolean): number {
+  const id = parseId(inv.positionals[0]);
+  const found = id === null ? null : showExcerpt(packCanon(canonPack as CanonPack), id);
+  if (!found) throw new NoDataError(`no canon excerpt numbered ${inv.positionals[0]}; bkt search finds one`);
+  console.log(json ? jsonLine("canon show", found) : excerptText(found));
+  return EXIT.ok;
+}
+
+function openInWindow(route: string): void {
+  const running = readApp(runtimeDir());
+  if (running && process.platform !== "win32") {
+    writeRoute(runtimeDir(), route);
+    process.kill(running.pid, "SIGUSR1");
+    return;
+  }
+  const self = Bun.main.endsWith(".tsx") ? [process.execPath, Bun.main] : [process.execPath];
+  const [cmd, ...rest] = [...self, "app", "--route", route];
+  spawn(cmd, rest, { detached: true, stdio: "ignore" }).unref();
+}
+
+function tuiSources(session: Session): AppSources {
+  const graph = (canonPack as { graph?: { nodes?: unknown[]; edges?: unknown[] } }).graph;
+  return {
+    canon: packCanon(canonPack as CanonPack),
+    graph: graph ? { nodes: graph.nodes?.length ?? 0, edges: graph.edges?.length ?? 0 } : null,
+    research: () => {
+      const saved = new HistoryStore(session.store, session.key).snapshot();
+      return {
+        notes: new NotesStore(session.store, session.key).list().slice(0, 8),
+        saved: saved ? { results: saved.productions.length, importedAt: saved.importedAt } : null,
+      };
+    },
+    jobs: () => listAnalyses(),
+    openRoute: openInWindow,
+  };
+}
+
 export async function execute(inv: Invocation): Promise<number> {
   const name = inv.command.name;
   const json = inv.values.json === true;
@@ -233,6 +290,8 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (name === "search") return search(inv, json);
+  if (name === "canon show") return canonShow(inv, json);
   if (name === "analyze") return analyzeCmd(inv.args);
   if (name === "analyses") return analyses(inv, json);
   if (name === "hai freeze") {
@@ -288,7 +347,7 @@ export async function execute(inv: Invocation): Promise<number> {
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
       console.log(json ? jsonLine("stats", s) : textRows(statRows(s)));
-    } else await render(<App session={session} />).waitUntilExit();
+    } else await render(<App session={session} sources={tuiSources(session)} />).waitUntilExit();
     return EXIT.ok;
   } finally {
     session.store.close();

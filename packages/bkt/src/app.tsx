@@ -5,8 +5,27 @@ import { selfRating, type GradeResult, type Item, type Question } from "./grade"
 import { statRows } from "./cli/out";
 import { paletteEntries, type PaletteTarget } from "./cli/table";
 import type { Session } from "./setup";
+import type { CanonSource } from "./core/search";
+import { GraphScreen, JobsScreen, nextTab, ResearchScreen, SearchScreen, TabBar, TABS, type GraphView, type JobView, type KeyHandler, type ResearchView } from "./cli/screens";
 
-type Screen = "home" | "quiz" | "review" | "stats";
+type Screen = "home" | "quiz" | "review" | "stats" | "search" | "graph" | "research" | "jobs";
+
+const TOP = new Set<string>(TABS.map((t) => t.screen));
+
+export interface AppSources {
+  canon?: CanonSource;
+  graph?: GraphView | null;
+  research?: () => ResearchView;
+  jobs?: () => JobView[];
+  openRoute?: (route: string) => void;
+  copy?: (text: string) => void;
+}
+
+const NO_CANON: CanonSource = { index: () => [], evidenceCount: () => 0, passages: () => [] };
+
+export function osc52(text: string): string {
+  return `\u001b]52;c;${Buffer.from(text).toString("base64")}\u0007`;
+}
 
 export const COMMANDS = paletteEntries();
 
@@ -26,6 +45,10 @@ export function matchCommands(input: string) {
 }
 
 const HELP = [
+  ["1-5 / tab", "Search, Graph, Learn, Research, Jobs"],
+  ["/", "search as you type"],
+  ["y", "copy the excerpt number"],
+  ["o", "open this view in the Bucket window"],
   ["j / k", "move down / up"],
   ["g / G", "first / last"],
   ["enter / l", "select"],
@@ -50,12 +73,27 @@ function useNow(ms: number, active: boolean) {
 
 function Home({ cursor, session }: { cursor: number; session: Session }) {
   const s = session.store.stats(Date.now());
+  const due = useMemo(() => {
+    const byId = new Map(session.store.items().map((i) => [i.id, i]));
+    return session.store.dueItemIds(Date.now(), 5).map((id) => byId.get(id)).filter((i): i is Item => !!i);
+  }, [session]);
   return (
     <Box flexDirection="column">
-      <Text bold>bkt</Text>
+      <Text bold>Learn</Text>
       <Text dimColor>
         {s.items} items, {s.due} due, {s.attempts} attempts
       </Text>
+      {due.length ? (
+        <Box flexDirection="column" marginTop={1}>
+          <Text>Due cards</Text>
+          {due.map((i) => (
+            <Text key={i.id} wrap="truncate">
+              {"  "}
+              {i.title}
+            </Text>
+          ))}
+        </Box>
+      ) : null}
       <Box flexDirection="column" marginTop={1}>
         {MENU.map((m, i) => (
           <Text key={m} color={i === cursor ? "cyan" : undefined}>
@@ -214,10 +252,10 @@ function Stats({ session }: { session: Session }) {
   );
 }
 
-type KeyHandler = (input: string, key: Parameters<Parameters<typeof useInput>[0]>[1]) => void;
-type KeyBus = { current: KeyHandler | null };
+type InkHandler = (input: string, key: Parameters<Parameters<typeof useInput>[0]>[1]) => void;
+type KeyBus = { current: InkHandler | null };
 
-export function App({ session }: { session: Session }) {
+export function App({ session, sources = {} }: { session: Session; sources?: AppSources }) {
   const { exit } = useApp();
   const [screen, setScreen] = useState<Screen>("home");
   const [cursor, setCursor] = useState(0);
@@ -225,6 +263,9 @@ export function App({ session }: { session: Session }) {
   const [palette, setPalette] = useState<string | null>(null);
   const [paletteCursor, setPaletteCursor] = useState(0);
   const keys = useMemo<KeyBus>(() => ({ current: null }), []);
+  const searchKeys = useMemo<{ current: KeyHandler | null }>(() => ({ current: null }), []);
+  const openRoute = sources.openRoute ?? (() => {});
+  const copy = sources.copy ?? ((text: string) => process.stdout.write(osc52(text)));
 
   const run = (target: PaletteTarget) => {
     if (target === "quit") return exit();
@@ -233,6 +274,14 @@ export function App({ session }: { session: Session }) {
   };
 
   useInput((input, key) => {
+    if (palette === null && !help && screen === "search" && searchKeys.current?.(input, key)) return;
+    if (palette === null && !help && TOP.has(screen)) {
+      const tab = TABS.find((t) => t.key === input);
+      if (tab) return setScreen(tab.screen);
+      if (key.tab) return setScreen(nextTab(screen, key.shift ? -1 : 1));
+      if (input === "o") return openRoute(TABS.find((t) => t.screen === screen)!.route);
+      if (screen !== "home" && (input === "q" || key.escape)) return setScreen("home");
+    }
     if (palette !== null) {
       const matches = matchCommands(palette);
       if (key.escape) setPalette(null);
@@ -268,6 +317,7 @@ export function App({ session }: { session: Session }) {
       else if (input === "q") exit();
       return;
     }
+    if (screen === "graph" || screen === "research" || screen === "jobs") return;
     if (screen === "stats") {
       if (input === "q" || input === "h" || key.escape) setScreen("home");
       return;
@@ -278,6 +328,7 @@ export function App({ session }: { session: Session }) {
   const back = () => setScreen("home");
   return (
     <Box flexDirection="column" paddingX={1}>
+      {TOP.has(screen) && !help ? <TabBar screen={screen} /> : null}
       {help ? (
         <Box flexDirection="column">
           <Text bold>keys</Text>
@@ -295,6 +346,14 @@ export function App({ session }: { session: Session }) {
         <Quiz session={session} onDone={back} keys={keys} />
       ) : screen === "review" ? (
         <Review session={session} onDone={back} keys={keys} />
+      ) : screen === "search" ? (
+        <SearchScreen canon={sources.canon ?? NO_CANON} keys={searchKeys} onOpen={openRoute} onCopy={copy} />
+      ) : screen === "graph" ? (
+        <GraphScreen graph={sources.graph ?? null} />
+      ) : screen === "research" ? (
+        <ResearchScreen view={sources.research?.() ?? { notes: [], saved: null }} />
+      ) : screen === "jobs" ? (
+        <JobsScreen jobs={sources.jobs?.() ?? []} />
       ) : (
         <Stats session={session} />
       )}
@@ -303,7 +362,7 @@ export function App({ session }: { session: Session }) {
           <Text>:{palette}</Text>
           {matchCommands(palette).map((c, i) => (
             <Text key={c.name} color={i === paletteCursor ? "cyan" : undefined}>
-              {c.name.padEnd(8)}
+              {c.name.padEnd(9)}
               <Text dimColor>{c.hint}</Text>
             </Text>
           ))}

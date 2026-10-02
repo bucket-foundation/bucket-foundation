@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { firstRunHash, href, parseHash } from "./router";
+import { firstRunHash, followRoutes, href, parseHash } from "./router";
 import { blocks } from "./views/Lesson";
 
 describe("hash router", () => {
@@ -43,5 +43,29 @@ describe("lesson blocks", () => {
       { kind: "ul", items: ["a", "b"] },
       { kind: "p", text: "tail" },
     ]);
+  });
+});
+
+describe("routes sent to an open window", () => {
+  test("each route is applied, a failed poll is retried and a refused one ends the loop", async () => {
+    const answers: (string | null | Error)[] = ["/notes", null, new Error("offline"), "/work/daily/2026-10-01", Object.assign(new Error("gone"), { status: 401 }), "/quiz"];
+    const polls = { n: 0 };
+    await followRoutes(async () => (polls.n++, { route: null, superseded: true }), () => polls.n++, () => true);
+    expect(polls.n).toBe(1);
+    const went: string[] = [];
+    const waits: number[] = [];
+    await followRoutes(
+      async () => {
+        const a = answers.shift()!;
+        if (a instanceof Error) throw a;
+        return { route: a, superseded: false };
+      },
+      (to) => went.push(to),
+      () => true,
+      async (ms) => void waits.push(ms),
+    );
+    expect(went).toEqual(["/notes", "/work/daily/2026-10-01"]);
+    expect(waits).toEqual([5000]);
+    expect(answers).toEqual(["/quiz"]);
   });
 });

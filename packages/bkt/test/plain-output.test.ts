@@ -8,6 +8,8 @@ import { render } from "ink";
 import type { AnalysisReport, AnalysisResult, RunningAnalysis } from "../src/analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../src/analyze-view";
 import { App } from "../src/app";
+import { packCanon } from "../src/core/search";
+import type { CanonPack } from "../src/pack/canon";
 import { analysisRows, stamp } from "../src/cli/out";
 import { CLI_COMMANDS, commandHelp, generalHelp, type CommandSpec } from "../src/cli/table";
 import type { Item } from "../src/grade";
@@ -140,6 +142,8 @@ function plans(spec: CommandSpec): { args: string[]; stdin?: string }[] {
   if (spec.name === "analyses") return [{ args: ["analyses"] }, { args: ["analyses", "--where"] }, { args: ["analyses", join(dir, "nowhere")] }];
   if (spec.name === "hai score") return [{ args: [...words, "--dry-run", "--dir", join(dir, "hai")] }];
   if (spec.name === "hai freeze" || spec.name === "hai review") return [{ args: [...words, "--dir", join(dir, "hai")] }];
+  if (spec.name === "search") return [{ args: ["search", "light"] }, { args: ["search", "zzzqqqxx"] }];
+  if (spec.name === "canon show") return [{ args: ["canon", "show", "1"] }, { args: ["canon", "show", "999999999"] }];
   if (spec.name === "completion") return ["bash", "zsh", "fish"].map((shell) => ({ args: ["completion", shell] }));
   if (spec.name === "help") return [{ args: ["help"] }, ...CLI_COMMANDS.map((c) => ({ args: ["help", ...c.name.split(" ")] }))];
   if (spec.session && !spec.terminal) return [{ args: [...words, ...vault], stdin: "pw\n" }];
@@ -307,6 +311,50 @@ describe("terminal app screens", () => {
       const review = await screen(el, ["j", "\r", " ", "3"]);
       expect(review.lines.join("\n")).toMatch(/space to reveal|Nothing due/);
       for (const shot of [stats, help, palette, quiz, review]) expect(denied(shot.lines)).toEqual([]);
+    } finally {
+      s.store.close();
+    }
+  }, 30_000);
+
+  test("search, graph, learn, research and jobs screens use plain words", async () => {
+    const s = await session();
+    const canon = packCanon({
+      excerpts: [{ rowid: 3, branch: "02-physics", concept: "speed-of-light", slug: "one", title: "Light keeps one speed", text: "light travels at one speed", path: "sources/a.md", source: {} }],
+      evidence: { "3": [{ score: 1, kind: "talk", source_path: "sources/talks/one.md", text: "the speed of light is constant", url: "https://www.youtube.com/watch?v=x", title: "Relativity lecture", author: "A. Speaker" }] },
+    } as unknown as CanonPack);
+    const copied: string[] = [];
+    const opened: string[] = [];
+    const sources = {
+      canon,
+      graph: null,
+      research: () => ({ notes: [{ title: "Water notes", pinned: true, updatedAt: new Date(2026, 9, 1).getTime() }], saved: { results: 4, importedAt: new Date(2026, 9, 1).getTime() } }),
+      jobs: () => [{ name: "Sales", mtime: new Date(2026, 9, 1).getTime() }],
+      openRoute: (r: string) => opened.push(r),
+      copy: (t: string) => copied.push(t),
+    };
+    try {
+      const el = React.createElement(App, { session: s, sources });
+      const learn = await screen(el);
+      expect(learn.last).toContain("1 Search  2 Graph  3 Learn  4 Research  5 Jobs");
+      const graph = await screen(el, ["2", "o"]);
+      expect(graph.last).toContain("No graph in this pack yet.");
+      const research = await screen(el, ["4"]);
+      expect(research.last).toContain("* Water notes");
+      expect(research.last).toContain("Saved results: 4");
+      const jobs = await screen(el, ["\t", "\t"]);
+      expect(jobs.last).toContain("Sales");
+      const found = await screen(el, ["1", "l", "i", "g", "h", "t", "\r", "\r", "y", "o"]);
+      expect(found.last).toContain("Evidence, 1 passage");
+      expect(found.last).toContain("Relativity lecture, A. Speaker");
+      expect(found.last).toContain("Copied excerpt number 3.");
+      expect(copied).toEqual(["3"]);
+      expect(opened).toEqual(["/atlases", "/canon"]);
+      const empty = await screen(React.createElement(App, { session: s }), ["1", "x", "y", "z"]);
+      expect(empty.last).toContain("This copy of bkt holds no canon.");
+      for (const shot of [learn, graph, research, jobs, found, empty]) {
+        expect(denied(shot.lines)).toEqual([]);
+        expect(structured(shot.lines.join("\n"))).toEqual([]);
+      }
     } finally {
       s.store.close();
     }

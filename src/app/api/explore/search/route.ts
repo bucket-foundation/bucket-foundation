@@ -4,6 +4,9 @@ import { canonFileHits } from "@/lib/explore/canon-files";
 import { loadAdvisors } from "@/lib/explore/advisors";
 import timeline from "@/data/canon-timeline.json";
 import { exploreSearch, type ExploreSearchDeps } from "@/lib/explore/respond";
+import { foundingFor } from "@/lib/explore/founding";
+import { loadExploreCorpus, needsClosest, rankedPools, semanticExcerpts } from "@/lib/explore/ranked";
+import { talkFor } from "@/lib/explore/talks";
 import { loadSourceIndex } from "@/lib/explore/sources";
 
 const YEAR_BY_ID = new Map<string, number>(timeline.events.map((e: { id: string; year: number }) => [e.id, e.year]));
@@ -17,6 +20,7 @@ const deps: ExploreSearchDeps = {
   sources: () => loadSourceIndex(),
   yearOf: (concept) => YEAR_BY_ID.get(concept) ?? null,
   canonFiles: (query) => canonFileHits(query),
+  ranking: { corpus: loadExploreCorpus, founding: foundingFor, talkFor, rankedPools, semanticExcerpts, needsClosest },
 };
 
 export async function GET(req: NextRequest) {
