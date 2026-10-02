@@ -1,31 +1,6 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { boxOf, STATE_LABEL, wrapTitle, type Box, type TopicLayout, type TopicState } from "./path-graph";
-
-const FALLBACK: Size = { w: 1000, h: 560 };
-const READABLE = 0.75;
-const SMALLEST = 0.04;
-const PAD = 60;
-
-interface Size {
-  w: number;
-  h: number;
-}
-
-interface View {
-  k: number;
-  x: number;
-  y: number;
-}
-
-function fit(box: Box, floor: number, size: Size): View {
-  const k = Math.max(floor, Math.min(1, size.w / (box.w + PAD * 2), size.h / (box.h + PAD * 2)));
-  return { k, x: size.w / 2 - (box.x + box.w / 2) * k, y: size.h / 2 - (box.y + box.h / 2) * k };
-}
-
-function zoomAt(v: View, factor: number, cx: number, cy: number): View {
-  const k = Math.max(SMALLEST, Math.min(2, v.k * factor));
-  return { k, x: cx - ((cx - v.x) / v.k) * k, y: cy - ((cy - v.y) / v.k) * k };
-}
+import { memo, useCallback, useEffect, useMemo, useRef, type KeyboardEvent } from "react";
+import { READABLE, useMapView } from "./map-view";
+import { boxOf, STATE_LABEL, wrapTitle, type TopicLayout, type TopicState } from "./path-graph";
 
 function Glyph({ state }: { state: TopicState }) {
   if (state === "known") return <circle cx={16} cy={18} r={6} className="glyph solid" />;
@@ -116,82 +91,22 @@ export interface TopicGraphProps {
 
 export function TopicGraph({ layout, title, states, selected, dimmed, focus, onSelect }: TopicGraphProps) {
   const svg = useRef<SVGSVGElement | null>(null);
-  const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
-  const dragged = useRef(false);
   const frontier = useMemo(() => boxOf(layout, focus.ids) ?? layout.box, [layout, focus]);
-  const [size, setSize] = useState<Size>(FALLBACK);
-  const [view, setView] = useState<View>(() => fit(frontier, READABLE, FALLBACK));
+  const map = useMapView(svg, frontier);
+  const { reveal, wasDrag } = map;
   const order = useMemo(() => new Map(Array.from(layout.nodes.keys()).map((id, i) => [id, i])), [layout]);
   const domId = useCallback((id: string) => `topic-${order.get(id)}`, [order]);
 
   useEffect(() => {
-    const el = svg.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
-    const measure = () => {
-      const r = el.getBoundingClientRect();
-      if (r.width > 0 && r.height > 0) setSize((s) => (s.w === Math.round(r.width) && s.h === Math.round(r.height) ? s : { w: Math.round(r.width), h: Math.round(r.height) }));
-    };
-    const watch = new ResizeObserver(measure);
-    watch.observe(el);
-    measure();
-    return () => watch.disconnect();
-  }, []);
-
-  useEffect(() => setView(fit(frontier, READABLE, size)), [frontier, size]);
-
-  useEffect(() => {
     const n = selected ? layout.nodes.get(selected) : undefined;
-    if (!n) return;
-    setView((v) => {
-      const left = n.x * v.k + v.x;
-      const top = n.y * v.k + v.y;
-      const inside = left >= 0 && top >= 0 && left + layout.size.nodeW * v.k <= size.w && top + layout.size.nodeH * v.k <= size.h;
-      if (inside && v.k >= READABLE / 2) return v;
-      const k = Math.max(v.k, READABLE);
-      return { k, x: size.w / 2 - (n.x + layout.size.nodeW / 2) * k, y: size.h / 2 - (n.y + layout.size.nodeH / 2) * k };
-    });
-  }, [selected, layout, size]);
+    if (n) reveal({ x: n.x, y: n.y, w: layout.size.nodeW, h: layout.size.nodeH });
+  }, [selected, layout, reveal]);
 
-  const zoom = (factor: number) => setView((v) => zoomAt(v, factor, size.w / 2, size.h / 2));
-
-  useEffect(() => {
-    const el = svg.current;
-    if (!el) return;
-    const wheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const r = el.getBoundingClientRect();
-      setView((v) => zoomAt(v, e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX - r.left, e.clientY - r.top));
-    };
-    el.addEventListener("wheel", wheel, { passive: false });
-    return () => el.removeEventListener("wheel", wheel);
-  }, []);
-
-  const down = (e: PointerEvent<SVGSVGElement>) => {
-    drag.current = { x: e.clientX, y: e.clientY, moved: false };
-  };
-  const move = (e: PointerEvent<SVGSVGElement>) => {
-    const d = drag.current;
-    if (!d) return;
-    const dx = e.clientX - d.x;
-    const dy = e.clientY - d.y;
-    if (!d.moved && Math.abs(dx) + Math.abs(dy) < 4) return;
-    d.moved = true;
-    d.x = e.clientX;
-    d.y = e.clientY;
-    setView((v) => ({ ...v, x: v.x + dx, y: v.y + dy }));
-  };
-  const up = () => {
-    const d = drag.current;
-    drag.current = null;
-    if (!d?.moved) return;
-    dragged.current = true;
-    setTimeout(() => (dragged.current = false), 0);
-  };
   const pick = useCallback(
     (id: string) => {
-      if (!dragged.current) onSelect(id);
+      if (!wasDrag()) onSelect(id);
     },
-    [onSelect],
+    [onSelect, wasDrag],
   );
 
   const step = (key: string): string | null => {
@@ -208,41 +123,38 @@ export function TopicGraph({ layout, title, states, selected, dimmed, focus, onS
       e.preventDefault();
       const next = step(e.key);
       if (next) onSelect(next);
-    } else if (e.key === "+" || e.key === "=") zoom(1.25);
-    else if (e.key === "-") zoom(0.8);
-    else if (e.key === "0") setView(fit(layout.box, SMALLEST, size));
+    } else if (e.key === "+" || e.key === "=") map.zoom(1.25);
+    else if (e.key === "-") map.zoom(0.8);
+    else if (e.key === "0") map.show(layout.box);
   };
 
   return (
     <div className="topic-map">
       <div className="map-tools">
-        <button className="tool" onClick={() => zoom(1.25)}>
+        <button className="tool" onClick={() => map.zoom(1.25)}>
           Zoom in
         </button>
-        <button className="tool" onClick={() => zoom(0.8)}>
+        <button className="tool" onClick={() => map.zoom(0.8)}>
           Zoom out
         </button>
-        <button className="tool" onClick={() => setView(fit(frontier, READABLE, size))}>
+        <button className="tool" onClick={() => map.show(frontier, READABLE)}>
           Show what is next
         </button>
-        <button className="tool" onClick={() => setView(fit(layout.box, SMALLEST, size))}>
+        <button className="tool" onClick={() => map.show(layout.box)}>
           Show every topic
         </button>
       </div>
       <svg
         ref={svg}
-        viewBox={`0 0 ${size.w} ${size.h}`}
+        viewBox={`0 0 ${map.size.w} ${map.size.h}`}
         tabIndex={0}
         role="group"
         aria-label="Topic map. Arrow keys move between linked topics. Plus and minus zoom."
         aria-activedescendant={selected && order.has(selected) ? domId(selected) : undefined}
         onKeyDown={keys}
-        onPointerDown={down}
-        onPointerMove={move}
-        onPointerUp={up}
-        onPointerLeave={up}
+        {...map.handlers}
       >
-        <g transform={`translate(${view.x} ${view.y}) scale(${view.k})`}>
+        <g transform={map.transform}>
           <Drawn layout={layout} title={title} states={states} selected={selected} dimmed={dimmed} domId={domId} onPick={pick} />
         </g>
       </svg>

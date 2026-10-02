@@ -1,5 +1,6 @@
 import { createBktServeStore, type BktServeStore } from "@academy/bkt-serve-store";
 import type { Atom } from "@academy/engine";
+import type { CanonGraph } from "@/lib/canon-graph-core";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
@@ -416,6 +417,13 @@ export class Api {
 
   canonAbout() {
     return this.call<CanonAbout>("/local/canon/licences");
+  }
+
+  canonGraph(): Promise<CanonGraph | null> {
+    return this.call<CanonGraph>("/local/canon/graph").catch((e) => {
+      if (e instanceof ApiError && e.status === 404) return null;
+      throw e;
+    });
   }
 
   openLink(url: string) {
