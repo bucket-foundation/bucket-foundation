@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync } from "node:fs";
+import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { directBackend, readServerRecord, SERVER_FILE, writeServerRecord, type LearnBackend } from "../src/core/backend";
@@ -14,6 +14,8 @@ import { startServe } from "../src/serve";
 import { Store } from "../src/store";
 import { LEARN_ITEMS } from "./fixtures/learn-items";
 
+const TOKEN = "T".repeat(43);
+const SECRET = "S".repeat(43);
 const CLI = join(import.meta.dir, "../src/cli.tsx");
 const WRITER = join(import.meta.dir, "fixtures/learn-writer.ts");
 
@@ -105,8 +107,14 @@ describe("learn commands over the core module", () => {
     const text = io();
     await learnDue(later, 10, false, text);
     expect(text.out[0]).toBe("2 cards are due.");
+    const ratedId = JSON.parse(due.out[0]).cards[0].id as string;
+    const dueBefore = store.card(ratedId)?.due;
     const rated = io(['{"rating":3,"elapsedMs":700}']);
     expect(await reviewJson(later, 10, spec("learn review"), rated)).toBe(0);
+    const dueAfter = JSON.parse(rated.out[1]).due as number;
+    expect(dueAfter).toBe(store.card(ratedId)!.due!);
+    expect(dueAfter).toBeGreaterThan(1_000_000 + 400 * 86_400_000);
+    expect(dueAfter).not.toBe(dueBefore);
     expect(Object.keys(JSON.parse(rated.out[0]).cards[0])).toEqual(["id", "title", "prompt", "answer", "long"]);
     expect(Object.keys(JSON.parse(rated.out[1]))).toEqual(["v", "itemId", "due"]);
     const path = io();
@@ -159,8 +167,9 @@ describe("writes beside a running server", () => {
     const db = join(home, "bkt.db");
     const store = new Store(db, key);
     store.importPack("fixture", LEARN_ITEMS);
-    const srv = startServe({ routes: localRoutes(store), cliToken: "T".repeat(43), uid: 1, resolvePeerUid: () => 1 });
-    const release = writeServerRecord(home, { pid: process.pid, port: srv.port, token: "T".repeat(43) });
+    const srv = startServe({ routes: localRoutes(store), cliToken: TOKEN, cliSecret: SECRET, uid: 1, resolvePeerUid: () => 1 });
+    const release = writeServerRecord(home, { pid: process.pid, port: srv.port, token: TOKEN, secret: SECRET });
+    if (process.platform !== "win32") expect(statSync(join(home, SERVER_FILE)).mode & 0o777).toBe(0o600);
     try {
       expect(readServerRecord(home)?.port).toBe(srv.port);
       const answers = Array.from({ length: 5 }, () => '{"choice":0,"elapsedMs":600}').join("\n");
@@ -175,6 +184,7 @@ describe("writes beside a running server", () => {
       expect(err).toBe("");
       expect(code).toBe(0);
       expect(wcode).toBe(0);
+      for (const secret of [TOKEN, SECRET]) expect(out + err).not.toContain(secret);
       expect(out.trimEnd().split("\n")).toHaveLength(6);
       expect(store.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n).toBe(45);
       expect(readdirSync(home).filter((f) => f.startsWith("keyring") || f === "keys.lock")).toEqual([]);
@@ -186,8 +196,48 @@ describe("writes beside a running server", () => {
     expect(existsSync(join(home, SERVER_FILE))).toBe(false);
   }, 60_000);
 
+  test("a squatter on the recorded port never sees the token, and the CLI writes directly", async () => {
+    const home = join(dir, "data");
+    mkdirSync(home, { mode: 0o700 });
+    const seen: string[] = [];
+    const squatter = Bun.serve({
+      hostname: "127.0.0.1",
+      port: 0,
+      fetch(req) {
+        seen.push(`${req.method} ${new URL(req.url).pathname} ${req.headers.get("authorization") ?? "-"}`);
+        return Response.json({ proof: "x".repeat(43), questions: [], items: [] });
+      },
+    });
+    const release = writeServerRecord(home, { pid: process.pid, port: squatter.port!, token: TOKEN, secret: SECRET });
+    try {
+      const pw = join(dir, "pw");
+      writeFileSync(pw, "pw\n");
+      const fd = openSync(pw, "r");
+      const p = Bun.spawn([process.execPath, CLI, "learn", "quiz", "--json", "--count", "2", "--keyring", "passphrase", "--passphrase-fd", "3"], {
+        env: { PATH: join(dir, "bin"), HOME: join(dir, "user"), BKT_HOME: home, TMPDIR: dir },
+        stdio: ["ignore", "pipe", "pipe", fd],
+      });
+      const [exitCode, stdout, stderr] = await Promise.all([p.exited, new Response(p.stdout).text(), new Response(p.stderr).text()]);
+      closeSync(fd);
+      const r = { exitCode, stdout, stderr };
+      expect(r.stderr.toString()).toBe("");
+      expect(r.exitCode).toBe(0);
+      expect(JSON.parse(r.stdout.toString().split("\n")[0]).questions).toHaveLength(2);
+      expect(existsSync(join(home, "bkt.db"))).toBe(true);
+      expect(seen.length).toBeGreaterThan(0);
+      for (const line of seen) {
+        expect(line).toEndWith(" -");
+        expect(line).toStartWith("GET /cli/prove ");
+      }
+      expect(seen.join("\n")).not.toContain(TOKEN);
+    } finally {
+      release();
+      squatter.stop(true);
+    }
+  }, 60_000);
+
   test("a server record whose process is gone is ignored", () => {
-    writeServerRecord(dir, { pid: 1, port: 1, token: "T".repeat(43) });
+    writeServerRecord(dir, { pid: 1, port: 1, token: TOKEN, secret: SECRET });
     expect(readServerRecord(dir, () => false)).toBeNull();
     expect(readServerRecord(dir, () => true)?.port).toBe(1);
   });

@@ -132,8 +132,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const cliToken = randomBytes(32).toString("base64url");
+  const cliSecret = randomBytes(32).toString("base64url");
   const srv = startServe({
     cliToken,
+    cliSecret,
     routes: {
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
@@ -159,7 +161,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     onError: (e) => console.error(`bkt serve: ${e.message}`),
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
-  const releaseServer = writeServerRecord(dir, { pid: process.pid, port: srv.port, token: cliToken });
+  const releaseServer = writeServerRecord(dir, { pid: process.pid, port: srv.port, token: cliToken, secret: cliSecret });
   const profile = join(dir, "window-profile");
   const show = (to: string | null) => (name === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
   const reopen = () => {

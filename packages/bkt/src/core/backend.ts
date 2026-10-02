@@ -1,4 +1,5 @@
-import { randomBytes } from "node:crypto";
+import { randomBytes, timingSafeEqual } from "node:crypto";
+import { proveServer } from "../serve";
 import { chmodSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { PublicQuestion as DailyQuestion } from "../../../../src/lib/research-os/work-quiz/types";
@@ -87,7 +88,10 @@ export interface ServerRecord {
   pid: number;
   port: number;
   token: string;
+  secret: string;
 }
+
+export const SERVER_CALL_MS = 10_000;
 
 export const SERVER_FILE = "serve.json";
 
@@ -122,20 +126,29 @@ export function readServerRecord(dir: string, isAlive: (pid: number) => boolean 
   } catch {
     return null;
   }
-  if (!Number.isInteger(rec.pid) || !Number.isInteger(rec.port) || typeof rec.token !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(rec.token)) return null;
+  if (!Number.isInteger(rec.pid) || !Number.isInteger(rec.port) || typeof rec.token !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(rec.token) || typeof rec.secret !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(rec.secret)) return null;
   return isAlive(rec.pid!) ? (rec as ServerRecord) : null;
+}
+
+export async function proven(rec: ServerRecord): Promise<boolean> {
+  const challenge = randomBytes(32).toString("base64url");
+  try {
+    const r = await fetch(`http://127.0.0.1:${rec.port}/cli/prove?challenge=${challenge}`, { signal: AbortSignal.timeout(2000) });
+    if (!r.ok) return false;
+    const proof = ((await r.json()) as { proof?: unknown }).proof;
+    if (typeof proof !== "string") return false;
+    const want = Buffer.from(proveServer(rec.secret, challenge));
+    const got = Buffer.from(proof);
+    return want.length === got.length && timingSafeEqual(want, got);
+  } catch {
+    return false;
+  }
 }
 
 export async function findServer(dir: string, isAlive?: (pid: number) => boolean): Promise<LearnBackend | null> {
   const rec = readServerRecord(dir, isAlive);
-  if (!rec) return null;
-  const backend = serverBackend(rec);
-  try {
-    const r = await fetch(`http://127.0.0.1:${rec.port}/local/ping`, { headers: { authorization: `Bucket ${rec.token}` }, signal: AbortSignal.timeout(2000) });
-    return r.ok ? backend : null;
-  } catch {
-    return null;
-  }
+  if (!rec || !(await proven(rec))) return null;
+  return serverBackend(rec);
 }
 
 export function serverBackend(rec: ServerRecord): LearnBackend {
@@ -146,6 +159,7 @@ export function serverBackend(rec: ServerRecord): LearnBackend {
       method: body === undefined ? "GET" : "POST",
       headers: { authorization: `Bucket ${rec.token}`, ...(text ? { "content-type": "application/json", "content-length": String(Buffer.byteLength(text)) } : {}) },
       body: text,
+      signal: AbortSignal.timeout(SERVER_CALL_MS),
     });
     const out = (await r.json().catch(() => ({}))) as T & { error?: string };
     if (!r.ok) throw new LearnError(out.error ?? `the running Bucket answered ${r.status}`, r.status);
