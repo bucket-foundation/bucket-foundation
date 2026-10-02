@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ApiError, type Api } from "../api";
 import { FILE_UNREADABLE } from "./file";
-import { WorkQuizSources } from "./WorkQuiz";
 
 export const ALREADY_IMPORTED = "Your progress from the website is already on this computer.";
 
@@ -60,7 +59,6 @@ export function ImportView({ api }: { api: Api }) {
           </button>
         )}
       </article>
-      <WorkQuizSources api={api} />
     </section>
   );
 }
