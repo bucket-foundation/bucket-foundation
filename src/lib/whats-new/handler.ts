@@ -39,7 +39,7 @@ export interface Limits {
   imageBytesPerPoster: number;
 }
 
-export const DEFAULT_LIMITS: Limits = { ratePerMinute: 20, draftsPerPoster: 200, draftsTotal: 2000, imageBytesPerPoster: 50 * 1024 * 1024 };
+export const DEFAULT_LIMITS: Limits = { ratePerMinute: 120, draftsPerPoster: 1000, draftsTotal: 20000, imageBytesPerPoster: 50 * 1024 * 1024 };
 
 export interface Deps {
   env: Env;
@@ -196,11 +196,18 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
       image = { filename, content_type: "image/webp", base64: encoded.webp.toString("base64") };
       entry.image = { filename, content_type: "image/webp", bytes: encoded.webp.length, width: encoded.width, height: encoded.height };
     }
-    const fresh: StoredEntry = { ...entry, review_state: "draft", poster: poster.name, created_at: existing?.created_at ?? now, updated_at: now, body_hash };
+    const autopublish = poster.scope === "autopublish:generation" && entry.kind === "generation" && entry.source === "own";
+    const created_at = existing?.created_at ?? now;
+    const fresh: StoredEntry = { ...entry, at: entry.at ?? created_at, review_state: autopublish ? "published" : "draft", poster: poster.name, created_at, updated_at: now, body_hash };
+    if (autopublish) {
+      fresh.published_at = now;
+      fresh.autopublished = true;
+    }
     const wasPublished = existing?.review_state === "published";
+    const wasDraft = existing?.review_state === "draft";
     const delta = imageBytes(fresh) - imageBytes(existing);
     if (delta > 0 && (await readUsage(store, poster.name)).image_bytes + delta > limits.imageBytesPerPoster) return fail(429, "This poster holds the maximum bytes of images.");
-    const claim: Usage = { drafts: !existing || wasPublished ? 1 : 0, image_bytes: delta };
+    const claim: Usage = { drafts: autopublish ? (wasDraft ? -1 : 0) : !existing || wasPublished ? 1 : 0, image_bytes: delta };
     if (claim.drafts !== 0 || delta !== 0) {
       await addUsage(store, poster.name, claim);
       reserved = claim;
@@ -224,13 +231,13 @@ export async function handlePost(req: PostRequest, deps: Deps): Promise<Result> 
     reserved = null;
     await appendAudit(
       store,
-      { ts: now, id: entry.id, poster: poster.name, action: existing ? "replace" : "create", body_hash, previous_body_hash: existing?.body_hash ?? null },
+      { ts: now, id: entry.id, poster: poster.name, action: autopublish ? "autopublish" : existing ? "replace" : "create", body_hash, previous_body_hash: existing?.body_hash ?? null },
       randomBytes(4).toString("hex"),
     );
     return {
       status: existing ? 200 : 201,
-      body: { ok: true, id: entry.id, kind: entry.kind, review_state: "draft", replaced: Boolean(existing) },
-      publicChanged: wasPublished,
+      body: { ok: true, id: entry.id, kind: entry.kind, review_state: fresh.review_state, replaced: Boolean(existing) },
+      publicChanged: wasPublished || autopublish,
     };
   };
   try {
@@ -331,7 +338,31 @@ export async function handlePublish(req: EntryRequest, deps: Deps): Promise<Resu
       return { ...fail(409, "The entry changed while it was being published. It stays a draft; read it again."), publicChanged: true };
     }
     await addUsage(store, entry.poster, { drafts: -1, image_bytes: 0 });
-    return { status: 200, body: { ok: true, id: entry.id, review_state: "published", published_at: now, date: now.slice(0, 10), changed: true }, publicChanged: true };
+    return { status: 200, body: { ok: true, id: entry.id, kind: entry.kind, review_state: "published", published_at: now, date: now.slice(0, 10), changed: true }, publicChanged: true };
+  });
+}
+
+export async function handleRetract(req: EntryRequest, deps: Deps): Promise<Result> {
+  const auth = await authorize(req.authorization, deps);
+  if ("status" in auth) return auth;
+  const { poster, store } = auth;
+  if (!ID.test(req.id)) return fail(400, "id must match [a-z0-9-]{3,80}", { field: "id" });
+  return locked(store, req.id, deps, "retract", async () => {
+    const found = await liveEntry(store, req.id);
+    if ("refused" in found) return found.refused;
+    const { entry } = found;
+    if (poster.scope !== "admin" && entry.poster !== poster.name) return fail(404, "No stored entry has this id.");
+    if (entry.review_state === "draft") return { status: 200, body: { ok: true, id: entry.id, review_state: "draft", changed: false } };
+    const now = new Date((deps.clock ?? Date.now)()).toISOString();
+    await appendAudit(
+      store,
+      { ts: now, id: entry.id, poster: poster.name, action: "retract", body_hash: entry.body_hash, previous_body_hash: entry.body_hash },
+      randomBytes(4).toString("hex"),
+    );
+    const { published_at: _published, autopublished: _auto, ...rest } = entry;
+    await writeEntry(store, { ...rest, review_state: "draft", updated_at: now });
+    await addUsage(store, entry.poster, { drafts: 1, image_bytes: 0 });
+    return { status: 200, body: { ok: true, id: entry.id, review_state: "draft", changed: true }, publicChanged: true };
   });
 }
 
