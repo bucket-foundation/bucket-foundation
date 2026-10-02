@@ -166,7 +166,7 @@ export interface StoredReview {
 
 declare global {
   interface Window {
-    __BKT__?: { nonce?: string };
+    __BKT__?: { nonce?: string; offline?: boolean };
   }
 }
 
@@ -209,12 +209,13 @@ export class Api {
 
   static async connect(onError: (e: Error) => void): Promise<Api> {
     const nonce = window.__BKT__?.nonce;
+    const offline = window.__BKT__?.offline === true;
     delete window.__BKT__;
     if (!nonce) throw new Error("This window has no launch code. Run bkt app to open Bucket.");
     const r = await fetch("/session", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nonce }) });
     if (!r.ok) throw new Error(`Bucket refused the launch code (${r.status}). Run bkt app to open Bucket again.`);
     const { token } = (await r.json()) as { token: string };
-    window.fetch = siteFetch(window.fetch.bind(window), window.location.origin, token);
+    window.fetch = siteFetch(window.fetch.bind(window), window.location.origin, token, offline);
     return new Api(token, onError);
   }
 
