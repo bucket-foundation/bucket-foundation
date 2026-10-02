@@ -51,7 +51,7 @@ export const globeMode: ExploreMode = {
     return {
       nodes,
       links: linksFromHits(hits, ids),
-      guides: [{ kind: "sphere", radius: 1, color: "#2B3A34", opacity: 0.35, wireframe: true }],
+      guides: [{ kind: "sphere", radius: 1, color: "#141311", opacity: 0.35, wireframe: true }],
       legend: [
         ...BRANCH_ORDER.filter((b) => hits.some((h) => h.type === "excerpt" && bareBranch(h.branch) === b)).map((b) => ({ label: b, color: BRANCH_COLOR[b] })),
         { label: "advisor", color: ADVISOR_COLOR },
