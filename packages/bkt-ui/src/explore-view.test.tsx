@@ -4,7 +4,6 @@ import { SAVED_KEY } from "@/lib/explore/saved";
 import { siteFetch } from "./site-fetch";
 
 mock.module("@/components/explore/SceneHost", () => ({ default: () => <div>scene</div> }));
-mock.module("@/components/explore/ProteinView", () => ({ default: () => <div>protein</div> }));
 
 beforeAll(() => {
   GlobalRegistrator.register({ url: "http://127.0.0.1:4100/" });
@@ -63,7 +62,7 @@ describe("Explore in the window", () => {
     };
     const { act } = await import("react");
     const { createRoot } = await import("react-dom/client");
-    const { ExploreView, NOTES_TITLE } = await import("./views/Explore");
+    const { ExploreView, NOTES_TITLE, WINDOW_PLACEHOLDER } = await import("./views/Explore");
     const host = document.createElement("div");
     document.body.appendChild(host);
     const root = createRoot(host);
@@ -74,6 +73,10 @@ describe("Explore in the window", () => {
     await settle();
     const box = host.querySelector<HTMLInputElement>('[data-testid="explore-query"]')!;
     expect(box).not.toBeNull();
+    expect(box.placeholder).toBe(WINDOW_PLACEHOLDER);
+    const shown = [...host.querySelectorAll<HTMLElement>("label")].filter((l) => l.style.display !== "none").map((l) => l.textContent ?? "");
+    expect(shown.some((t) => /advisor/i.test(t))).toBe(false);
+    expect(host.querySelector<HTMLElement>('[data-testid="advisor-source"]')?.style.display).toBe("none");
     await act(async () => {
       const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
       set.call(box, "communication");

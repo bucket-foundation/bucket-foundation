@@ -1,4 +1,4 @@
-import { Component, useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { Component, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import ExploreClient from "@/app/explore/ExploreClient";
 import { SAVED_KEY, parseStored, serializeSaved, type SavedState } from "@/lib/explore/saved";
 import { CANON_TROUBLE, windowHref } from "../site-fetch";
@@ -14,6 +14,18 @@ export interface ExploreApi {
 }
 
 export const NO_GRAPHICS = "Bucket could not start 3D graphics on this computer, so Explore is hidden. Keyword search still works on the Canon screen.";
+export const WINDOW_PLACEHOLDER = "Search papers, books, talks and canon excerpts";
+
+export function hideAdvisors(root: Element): void {
+  for (const label of Array.from(root.querySelectorAll<HTMLElement>("label"))) {
+    if (/^Advisors\b/.test(label.textContent ?? "") && label.style.display !== "none") label.style.display = "none";
+  }
+  const source = root.querySelector<HTMLElement>('[data-testid="advisor-source"]');
+  if (source && source.style.display !== "none") source.style.display = "none";
+  const box = root.querySelector<HTMLInputElement>('[data-testid="explore-query"]');
+  if (box && box.placeholder !== WINDOW_PLACEHOLDER) box.placeholder = WINDOW_PLACEHOLDER;
+}
+
 export const NOTES_TITLE = "Saved from Explore";
 
 type Restore = () => void;
@@ -80,6 +92,16 @@ export function ExploreView({ api, webgl }: { api: ExploreApi; webgl?: boolean }
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
   const [drawable] = useState(() => webgl ?? webglAvailable());
+  const frame = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = frame.current;
+    if (!root || !ready) return;
+    hideAdvisors(root);
+    const watch = new MutationObserver(() => hideAdvisors(root));
+    watch.observe(root, { childList: true, subtree: true });
+    return () => watch.disconnect();
+  }, [ready]);
 
   useEffect(() => {
     let live = true;
@@ -148,7 +170,7 @@ export function ExploreView({ api, webgl }: { api: ExploreApi; webgl?: boolean }
           {error}
         </p>
       )}
-      <div className="explore-site" onClickCapture={onLink}>
+      <div className="explore-site" ref={frame} onClickCapture={onLink}>
         {!drawable ? <p className="muted">{NO_GRAPHICS}</p> : ready ? <Guard><ExploreClient /></Guard> : <p className="muted">Opening Explore…</p>}
       </div>
     </section>

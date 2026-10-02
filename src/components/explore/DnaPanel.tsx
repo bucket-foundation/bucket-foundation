@@ -43,7 +43,9 @@ export default function DnaPanel({ genome, onGenome }: Props) {
   const loadSample = async () => {
     setStatus("Parsing the sample genome…");
     const token = tokens.current.next();
-    const text = await (await fetch("/explore/sample-genome.txt")).text();
+    const r = await fetch("/explore/sample-genome.txt").catch(() => null);
+    if (!r?.ok) return setStatus("The sample genome could not load here. Drop your own file to try DNA mode.");
+    const text = await r.text();
     if (!tokens.current.isCurrent(token)) return;
     worker.current?.postMessage({ token, text });
   };
