@@ -39,6 +39,13 @@ export interface SceneLayout {
   camera: Vec3;
   spin?: number;
   wheel?: "zoom" | "scroll";
+  stage?: SceneStage;
+}
+
+export interface SceneStage {
+  background: string;
+  link: string;
+  hot: string;
 }
 
 export interface ModeContext {
