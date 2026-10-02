@@ -198,11 +198,12 @@ await page.click('nav a[href="#/history"]');
 await page.waitForSelector(".activity");
 await page.screenshot({ path: join(out, "8c-history.png") });
 
-await page.evaluate(() => (window.location.hash = "#/jobs"));
-await page.waitForSelector(".job-head");
-await page.click(".job-head");
+await page.click('nav a[href="#/jobs"]');
+await page.waitForSelector(".big-line");
+await page.screenshot({ path: join(out, "9-analyze-data.png") });
+await page.click("text=Show details");
 await page.waitForSelector(".log");
-await page.screenshot({ path: join(out, "9-jobs.png") });
+await page.screenshot({ path: join(out, "9b-analyze-data-details.png") });
 
 await page.evaluate(() => (window.location.hash = "#/import"));
 await page.waitForSelector('h1:has-text("Import")');

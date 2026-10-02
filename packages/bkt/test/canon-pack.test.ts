@@ -2,7 +2,9 @@ import { describe, expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
+import { parseCanonSearchParams } from "../../../src/lib/canon-rank";
+import { CANON_DEFAULT_TOP_K } from "../src/canon";
+import { packCanon, searchCanon } from "../src/core/search";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
 import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, keepGraph, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
 import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
@@ -263,7 +265,7 @@ describe("planted rows", () => {
 describe("parity with the website fixture", () => {
   type Row = [string, number];
   const fixture = JSON.parse(readFileSync(join(REPO, "scripts/fixtures/canon-search-parity.json"), "utf8")) as Record<string, Record<string, { status: number; top_k: number | null; results?: Row[] }>>;
-  const index: ClaimIndexEntry[] = pack.excerpts.map((e) => ({ ...e, vec: new Float32Array(0) }));
+  const shipped = packCanon(pack);
   const kept = new Set(pack.excerpts.map((e) => e.rowid));
 
   test("surviving rows keep the website's order and scores for every recorded keyword query", () => {
@@ -273,9 +275,10 @@ describe("parity with the website fixture", () => {
       const p = JSON.parse(key) as Record<string, string>;
       if (p.qvec || want.status !== 200 || want.top_k === null || (p.q ?? "").length > 200) continue;
       const survivors = (want.results ?? []).filter(([id]) => kept.has(Number(id.split(":")[0])));
-      let got = tokenRank(index, p.q, want.top_k * 3);
-      if (p.branch) got = got.filter((r) => r.entry.branch === p.branch);
-      const mine = got.slice(0, want.top_k).map((r): Row => [`${r.entry.rowid}:${r.entry.concept}/${r.entry.slug}`, r.score]);
+      const url = new URL(`http://127.0.0.1/local/canon/search?${new URLSearchParams(p)}`);
+      const got = searchCanon(shipped, parseCanonSearchParams(url, CANON_DEFAULT_TOP_K));
+      if (!got.ok) throw new Error(`${key}: ${got.message}`);
+      const mine = got.results.map((r): Row => [`${r.id}:${r.concept}/${r.slug}`, r.score]);
       expect(mine.slice(0, survivors.length)).toEqual(survivors);
       compared++;
       rows += survivors.length;
