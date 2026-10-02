@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseAdvisorReview } from "../../../src/lib/research-os/advisor-review";
 import type { PySource } from "./pack/pysrc";
@@ -24,6 +24,56 @@ export const checkModules: PyCheck = (python, modules) => {
   return `this job needs ${pkgs}: ${python} -m pip install --user ${pkgs}`;
 };
 
+export function installLine(python: string, modules: string[]): string {
+  return `${python} -m pip install --user ${modules.map((m) => (m === "sklearn" ? "scikit-learn" : m)).join(" ")}`;
+}
+
+export interface AnalysisNote {
+  code: string;
+  where: string;
+  message: string;
+}
+
+export interface AnalysisCard {
+  rows: number;
+  truncated: boolean;
+  time: string | null;
+  columns: { name: string; kind: string; unit: string | null; missing: number; low: number | null; high: number | null }[];
+  warnings: AnalysisNote[];
+  problems: AnalysisNote[];
+}
+
+const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+const notes = (v: unknown): AnalysisNote[] =>
+  (Array.isArray(v) ? v : []).filter((n): n is Record<string, unknown> => !!n && typeof n === "object").map((n) => ({ code: String(n.code ?? ""), where: String(n.where ?? ""), message: String(n.message ?? "") }));
+
+export function analysisCard(report: unknown): AnalysisCard | null {
+  const form = (report as { form?: Record<string, unknown> } | null)?.form;
+  if (!form || typeof form !== "object" || !Array.isArray(form.columns)) return null;
+  const summary = ((report as { analysis?: { summary?: Record<string, Record<string, unknown>> } }).analysis?.summary ?? {}) as Record<string, Record<string, unknown>>;
+  const time = (form.time_index as { column?: unknown } | null)?.column;
+  return {
+    rows: num(form.rows) ?? 0,
+    truncated: form.truncated === true,
+    time: typeof time === "string" ? time : null,
+    columns: (form.columns as Record<string, unknown>[]).map((c) => {
+      const name = String(c.name ?? "");
+      const s = Object.hasOwn(summary, name) ? summary[name] : undefined;
+      return { name: String(c.base ?? name), kind: String(c.type ?? ""), unit: typeof c.unit === "string" ? c.unit : null, missing: num(c.missing) ?? 0, low: num(s?.min), high: num(s?.max) };
+    }),
+    warnings: notes(form.warnings),
+    problems: notes(form.errors),
+  };
+}
+
+function readCard(out: string): AnalysisCard | null {
+  for (const name of existsSync(out) ? readdirSync(out).sort() : []) {
+    const file = join(out, name, "report.json");
+    if (existsSync(file)) return analysisCard(JSON.parse(readFileSync(file, "utf8")));
+  }
+  return null;
+}
+
 export interface SpecDeps {
   src: PySource;
   cacheRoot: string;
@@ -44,14 +94,15 @@ export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
       inputs: { data: { label: "Data file", maxBytes: 16 * MB, exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] } },
       plan: (dirs: JobDirs) => {
         const missing = check(python, ["numpy"]);
-        if (missing) return { error: missing };
+        if (missing) return { error: missing, install: installLine(python, ["numpy"]) };
         const py = extractPy(d.src, d.cacheRoot);
         return {
           argv: [python, join(py, "bkt_analyze.py"), dirs.inputs.data, "--out", dirs.out],
           env: { BKT_HELIX_DIR: join(py, "helix"), BKT_PRIME_DIR: join(py, "helix") },
         };
       },
-      after: (dirs: JobDirs) => ({ out: dirs.out }),
+      after: (dirs: JobDirs) => ({ out: dirs.out, card: readCard(dirs.out) }),
+      failed: (dirs: JobDirs) => ({ out: dirs.out, card: readCard(dirs.out) }),
     },
     "fit-me": {
       label: "Fit me to a people file",
@@ -67,7 +118,7 @@ export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
       },
       plan: (dirs: JobDirs, o: Record<string, number>) => {
         const missing = check(python, ["numpy", "scipy", "sklearn", "matplotlib"]);
-        if (missing) return { error: missing };
+        if (missing) return { error: missing, install: installLine(python, ["numpy", "scipy", "sklearn", "matplotlib"]) };
         const py = extractPy(d.src, d.cacheRoot);
         return {
           argv: [
