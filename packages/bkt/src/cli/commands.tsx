@@ -17,6 +17,7 @@ import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textR
 import { keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
 import { EXIT } from "./table";
+import { graphView } from "./screens";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
 import { execSync, platformFor } from "../platform";
@@ -27,6 +28,7 @@ import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
 import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
+import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
@@ -98,9 +100,17 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
+  const data = dataRoutes([
+    learningAdapter(content),
+    canonAdapter(canonPack as CanonPack),
+    exploreAdapter(explorePack as unknown as ExplorePack),
+    ownAdapter(session.store, { analyses: () => runner.list().length }),
+  ]);
   const srv = startServe({
+    match: data.match,
     routes: {
       ...windowRoutes(win.routes),
+      ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
@@ -243,10 +253,10 @@ function openInWindow(route: string): void {
 }
 
 function tuiSources(session: Session): AppSources {
-  const graph = (canonPack as { graph?: { nodes?: unknown[]; edges?: unknown[] } }).graph;
+  const graph = graphView((canonPack as { graph?: unknown }).graph);
   return {
     canon: packCanon(canonPack as CanonPack),
-    graph: graph ? { nodes: graph.nodes?.length ?? 0, edges: graph.edges?.length ?? 0 } : null,
+    graph,
     research: () => {
       const saved = new HistoryStore(session.store, session.key).snapshot();
       return {

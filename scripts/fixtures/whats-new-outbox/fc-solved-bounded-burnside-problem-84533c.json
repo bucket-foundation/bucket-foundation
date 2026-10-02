@@ -1,0 +1,21 @@
+{
+ "id": "fc-solved-bounded-burnside-problem-84533c",
+ "kind": "generation",
+ "category": "generation",
+ "date": "2026-09-10",
+ "source": "own",
+ "machine_generated": true,
+ "title": "Upstream marked solved: bounded_burnside_problem",
+ "claim": "formal-conjectures tagged bounded_burnside_problem solved. Docstring while it was tagged open: Let $G$ be a finitely generated group, and assume there exists $n$ such that for every $g$ in $G$, $g^n = 1$. Is $G$ necessarily finite?",
+ "tool": "solver-gap-engine watch.py",
+ "run_id": "fc-7d1a8c99-137aec5c",
+ "state": "candidate",
+ "score": {
+  "value": 0,
+  "meaning": "1 when the upstream tag carries a formal-proof link; the proof was not read here"
+ },
+ "evidence": [
+  "https://github.com/google-deepmind/formal-conjectures/commit/43eeacb8e40e495e9580c74f00b533b0718aebff",
+  "https://github.com/google-deepmind/formal-conjectures/blob/137aec5c7abd3aa61f7a73138a97279acfc79e93/FormalConjectures/Wikipedia/BoundedBurnsideProblem.lean"
+ ]
+}

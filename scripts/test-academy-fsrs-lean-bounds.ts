@@ -116,14 +116,22 @@ test("10,000 generated cards stay in bounds through four reviews each", () => {
   assert.equal(reviews, GENERATED_CARDS * REVIEWS_PER_CARD);
 });
 
-test("a stored stability at or below zero, or a stored negative difficulty, escapes the bounds", () => {
-  const stored = (stability: number, difficulty: number): Card => ({ stability, difficulty, lastReview: NOW - DAY_MS, state: "review" }) as Card;
-  const zero = engine.review(stored(0, 5), 3, NOW);
-  assert.ok(Number.isNaN(zero.stability) && Number.isNaN(zero.scheduledDays) && Number.isNaN(zero.due));
-  const negative = engine.review(stored(-1, 5), 3, NOW);
-  assert.ok(Number.isNaN(negative.stability) && Number.isNaN(negative.scheduledDays));
-  const difficulty = engine.review(stored(1, -5), 1, NOW);
-  assert.ok(Number.isNaN(difficulty.stability));
-  assert.equal(difficulty.scheduledDays, 1);
-  assert.ok(inBounds(engine.review(stored(0, 5), 1, NOW)));
+test("stored values outside the clamp ranges are clamped before review and stay in bounds", () => {
+  const stabilities = [0, -0.5, -1, -Infinity, 1e-320, 0.001, Infinity];
+  const difficulties = [-5, 0, 0.5, 11, 1e308, Infinity, -Infinity];
+  const days = [0, 1, 1e6, -5];
+  let reviews = 0;
+  for (const stability of stabilities) for (const difficulty of difficulties) for (const d of days) for (const g of [1, 2, 3, 4] as Rating[]) {
+    const card = engine.review({ stability, difficulty, lastReview: NOW - d * DAY_MS, state: "review" } as Card, g, NOW);
+    assert.ok(inBounds(card), `${stability} ${difficulty} ${d} ${g} ${JSON.stringify(card)}`);
+    reviews++;
+  }
+  assert.equal(reviews, 784);
+});
+
+test("a review of an in-range card gives the same result as before the stored-value clamp", () => {
+  const card = { stability: 3.2, difficulty: 6.5, lastReview: NOW - 4 * DAY_MS, state: "review" } as Card;
+  const next = engine.review(card, 3, NOW);
+  assert.equal(next.difficulty, engine.nextDifficulty(6.5, 3));
+  assert.equal(next.stability, engine.stabilityRecall(6.5, 3.2, engine.retrievability(4, 3.2), 3));
 });
