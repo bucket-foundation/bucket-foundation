@@ -245,19 +245,29 @@ async function mount(route: Route, stub: Stub) {
   document.body.appendChild(host);
   const root = createRoot(host);
   await act(async () => root.render(<Screen api={stub as unknown as Api} route={route} />));
-  await act(async () => new Promise((r) => setTimeout(r, 20)));
+  const settle = async () => {
+    let last = "";
+    for (let i = 0; i < 50; i++) {
+      await act(async () => new Promise((r) => setTimeout(r, 0)));
+      const now = host.innerHTML;
+      if (now === last) return;
+      last = now;
+    }
+    throw new Error("the screen never settled");
+  };
+  await settle();
   const text = () => strings(host).join("\n");
   const pickFile = async (index: number, file: File) => {
     const input = host.querySelectorAll('input[type="file"]')[index] as HTMLInputElement;
     Object.defineProperty(input, "files", { value: [file], configurable: true });
     await act(async () => input.dispatchEvent(new Event("change", { bubbles: true })));
-    await act(async () => new Promise((r) => setTimeout(r, 20)));
+    await settle();
   };
   return { host, text, pickFile, act, unmount: () => act(async () => root.unmount()) };
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }, { name: "add" }, { name: "setup" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -270,7 +280,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Notes", "History", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Notes", "History"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -285,13 +295,51 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
+  });
+
+  test("no screen in the navigation needs a file or shows a format word", async () => {
+    const { navFor, FOOT_LINK } = await import("./nav");
+    expect(FOOT_LINK.label).toBe("Add your own");
+    for (const n of navFor(true)) {
+      for (const stub of [empty, populated, failing]) {
+        const v = await mount(n.route, stub());
+        expect({ screen: n.label, fileInputs: v.host.querySelectorAll('input[type="file"]').length, bad: violations(v.host) }).toEqual({ screen: n.label, fileInputs: 0, bad: [] });
+        await v.unmount();
+      }
+    }
+  });
+
+  test("Add your own opens one page with two plain choices, and Import holds one button", async () => {
+    const add = await mount({ name: "add" }, empty());
+    expect(Array.from(add.host.querySelectorAll("a")).map((a) => [a.textContent!.split("\n")[0], a.getAttribute("href")])).toEqual([
+      [expect.stringContaining("Bring progress from the website"), "#/import"],
+      [expect.stringContaining("Analyze my data"), "#/jobs"],
+    ]);
+    expect(add.host.querySelector('input[type="file"]')).toBeNull();
+    await add.unmount();
+    const imp = await mount({ name: "import" }, populated());
+    expect(imp.host.querySelectorAll('input[type="file"]').length).toBe(1);
+    expect(imp.text()).not.toContain("Choose tasks file");
+    expect(imp.host.querySelector('input[type="checkbox"]')).toBeNull();
+    await imp.unmount();
+  });
+
+  test("the work quiz links to its own setup page for someone who has it", async () => {
+    const work = await mount({ name: "work" }, populated());
+    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    await work.unmount();
+    const setup = await mount({ name: "setup" }, populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(setup.text()).toContain("Choose tasks file");
+    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
+    await setup.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
     const { parseHash } = await import("./router");
-    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"]] as const) {
+    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"], ["jobs", "Jobs"], ["import", "Import"]] as const) {
       expect(parseHash(`#/${name}`)).toEqual({ name });
       const v = await mount({ name }, empty());
       expect(v.host.querySelector("h1")!.textContent).toBe(heading);
@@ -594,7 +642,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "import" }, populated());
+    const v = await mount({ name: "setup" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -606,8 +654,8 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "import" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
-    await v.pickFile(1, new File(["x"], "tasks"));
+    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that folder.");
