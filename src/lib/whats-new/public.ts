@@ -20,7 +20,8 @@ function legacyKind(entry: PublicEntry): string {
 export function publicView(entry: StoredEntry): PublicEntry {
   const { poster: _poster, body_hash: _hash, review_state: _review, image, date, ...rest } = entry;
   const day = typeof entry.published_at === "string" ? entry.published_at.slice(0, 10) : (date as string);
-  return image ? { ...rest, date: day, image: `${IMAGE_ROUTE}${entry.id}` } : { ...rest, date: day };
+  const at = typeof entry.at === "string" ? entry.at : entry.created_at;
+  return image ? { ...rest, at, date: day, image: `${IMAGE_ROUTE}${entry.id}` } : { ...rest, at, date: day };
 }
 
 export function mergeEntries(legacy: readonly LegacyEntry[], stored: readonly StoredEntry[], kind: Kind | null = null): PublicEntry[] {
@@ -49,20 +50,6 @@ export async function publishedEntries(store: DocStore | null): Promise<StoredEn
 
 export async function loadPublicEntries(legacy: readonly LegacyEntry[], store: DocStore | null, kind: Kind | null = null): Promise<PublicEntry[]> {
   return mergeEntries(legacy, await publishedEntries(store), kind);
-}
-
-export interface PageSections<T> {
-  productions: T[];
-  generations: T[];
-  milestones: T[];
-}
-
-export function pageSections<T extends { category?: string }>(entries: readonly T[]): PageSections<T> {
-  return {
-    productions: entries.filter((e) => e.category === "production"),
-    generations: entries.filter((e) => e.category === "generation"),
-    milestones: entries.filter((e) => e.category !== "production" && e.category !== "generation"),
-  };
 }
 
 export interface FeedItem {
