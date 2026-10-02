@@ -17,10 +17,12 @@ export interface ServeOptions {
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
+  match?: (method: string, pathname: string) => Route | undefined;
   uiDir?: string;
   maxBodyBytes?: number;
   routeBodyBytes?: Record<string, number>;
   onError?: (e: Error) => void;
+  offline?: boolean;
 }
 
 export interface Serve {
@@ -86,8 +88,38 @@ export function loadUi(dir: string | undefined): UiAssets {
   return { files, scripts: js.includes(UI_ENTRY) ? [UI_ENTRY] : js, styles: keys.filter((k) => k.startsWith("/assets/") && k.endsWith(".css")) };
 }
 
-export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = { scripts: [], styles: [] }): { html: string; csp: string } {
-  const script = `window.__BKT__=${JSON.stringify({ nonce })};`;
+export const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
+
+export function isOffline(env: Record<string, string | undefined> = process.env): boolean {
+  return env.BKT_OFFLINE === "1";
+}
+
+export class OfflineError extends Error {
+  constructor(readonly url: string) {
+    super(`BKT_OFFLINE refuses a request to ${url}`);
+  }
+}
+
+export function offlineFetch(base: typeof fetch, refused: (url: string) => void = () => {}): typeof fetch {
+  const guarded = (input: RequestInfo | URL, init?: RequestInit) => {
+    const raw = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+    let host = "";
+    try {
+      host = new URL(raw).hostname;
+    } catch {
+      host = "";
+    }
+    if (!LOOPBACK.has(host)) {
+      refused(raw);
+      return Promise.reject(new OfflineError(raw));
+    }
+    return base(input, init);
+  };
+  return Object.assign(guarded, base) as typeof fetch;
+}
+
+export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = { scripts: [], styles: [] }, offline = false): { html: string; csp: string } {
+  const script = `window.__BKT__=${JSON.stringify(offline ? { nonce, offline: true } : { nonce })};`;
   const hash = createHash("sha256").update(script).digest("base64");
   const csp = [
     "default-src 'none'",
@@ -113,6 +145,10 @@ export function startServe(opts: ServeOptions = {}): Serve {
   const now = opts.now ?? Date.now;
   const routes = opts.routes ?? {};
   const ui = loadUi(opts.uiDir);
+  const offline = opts.offline ?? isOffline();
+  if (offline && !(globalThis.fetch as { bktOffline?: boolean }).bktOffline) {
+    globalThis.fetch = Object.assign(offlineFetch(globalThis.fetch, (u) => opts.onError?.(new OfflineError(u))), { bktOffline: true });
+  }
   const maxBody = opts.maxBodyBytes ?? MAX_BODY_BYTES;
   const routeBody = opts.routeBodyBytes ?? {};
   const serverMax = Math.max(maxBody, ...Object.values(routeBody));
@@ -191,7 +227,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
         if (!peerOk()) return deny(403);
         if (served || !live()) return gone();
         served = true;
-        const { html, csp } = page(nonce, ui);
+        const { html, csp } = page(nonce, ui, offline);
         return new Response(html, {
           headers: {
             "content-type": "text/html; charset=utf-8",
@@ -226,7 +262,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
       if (!token || !m || !same(m[1], token)) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
       const key = `${req.method} ${url.pathname}`;
-      const route = routes[key];
+      const route = routes[key] ?? opts.match?.(req.method, url.pathname);
       if (!route) return deny(404);
       if (req.method !== "GET") {
         const cap = routeBody[key] ?? maxBody;

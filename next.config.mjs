@@ -12,6 +12,16 @@ const SECURITY_HEADERS = [
 const nextConfig = {
   eslint: { ignoreDuringBuilds: false },
 
+  experimental: {
+    outputFileTracingExcludes: {
+      "/api/whats-new/**": [
+        "node_modules/@img/sharp-libvips-linuxmusl-x64/**",
+        "node_modules/@img/sharp-linuxmusl-x64/**",
+        "node_modules/@img/sharp-wasm32/**",
+      ],
+    },
+  },
+
   outputFileTracingIncludes: {
     "/api/canon/search": [
       "./_intake/embeddings-v2/claims-vectors.npy",

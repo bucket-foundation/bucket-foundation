@@ -27,6 +27,7 @@ import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
 import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
+import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
@@ -44,7 +45,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -98,9 +99,17 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
+  const data = dataRoutes([
+    learningAdapter(content),
+    canonAdapter(canonPack as CanonPack),
+    exploreAdapter(explorePack as unknown as ExplorePack),
+    ownAdapter(session.store, { analyses: () => runner.list().length }),
+  ]);
   const srv = startServe({
+    match: data.match,
     routes: {
       ...windowRoutes(win.routes),
+      ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),

@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import feedData from "../../../feed.json";
 import { publicWhatsNew } from "@/lib/whats-new/cached";
-import { pageSections } from "@/lib/whats-new/public";
 import type { Feed, FeedEvent } from "./types";
 import FeedFilters from "./FeedFilters";
-import MilestoneTimeline from "./MilestoneTimeline";
-import GenerationCard, { type Generation } from "./GenerationCard";
-import ProductionCard from "./ProductionCard";
+import LiveTimeline from "./LiveTimeline";
+import type { TimelineEntry } from "@/lib/whats-new/timeline";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "What's New",
@@ -51,54 +49,26 @@ export default async function Page() {
   const events: FeedEvent[] = [...feed.events].sort(
     (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
-  const entries = (await publicWhatsNew()) as unknown as Milestone[];
-  const sections = pageSections([...entries].sort((a, b) => b.date.localeCompare(a.date)));
-  const productions = sections.productions as Production[];
-  const milestones = sections.milestones;
-  const generations = sections.generations as unknown as Generation[];
-  const titles = new Map(productions.map((p) => [p.id, p.title]));
+  const entries = (await publicWhatsNew()) as unknown as TimelineEntry[];
+  const productions = entries.filter((e) => (e.kind ?? e.category) === "production").length;
+  const generations = entries.filter((e) => (e.kind ?? e.category) === "generation").length;
 
   return (
     <PageShell
       eyebrow="§ what's new"
       title="What's New"
       subtitle={
-        "Merged pull requests, productions, branch openings and canon promotions. Every entry links to its pull request or commit on github.com/bucket-foundation/bucket-foundation."
+        "Everything that lands on Bucket, newest first: productions with their plots, and short rows for merged pull requests, machine-made claims and canon changes."
       }
     >
       <div className="mb-8 small-caps text-[10px] text-[color:var(--parchment-dim)]">
-        feed schema v{feed.schema_version} · {feed.total_events.toLocaleString()} paper events ·{" "}
-        {milestones.length} milestones · {productions.length} productions · {generations.length} generations
+        feed schema v{feed.schema_version} · {feed.total_events.toLocaleString()} paper events · {entries.length} entries · {productions} productions · {generations} generations
       </div>
 
-      {productions.length > 0 && (
-        <section className="mb-16">
-          <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">Productions</h2>
-          <div className="grid gap-8">
-            {productions.map((p) => (
-              <ProductionCard key={p.id} production={p} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {generations.length > 0 && (
-        <section id="generations" className="mb-16">
-          <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-2">Generations</h2>
-          <p className="text-sm text-[color:var(--parchment-dim)] mb-6">
-            Claims made by a machine. Each one shows its state: candidate, tested, refuted or proved. Refuted claims stay on the page.
-          </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            {generations.map((g) => (
-              <GenerationCard key={g.id} generation={g} parentTitle={g.parent ? titles.get(g.parent) : undefined} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      <section className="mb-16">
-        <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">Milestones</h2>
-        <MilestoneTimeline milestones={milestones} />
+      <section id="timeline" className="mb-16">
+        <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-2">Timeline</h2>
+        <p className="text-sm text-[color:var(--parchment-dim)] mb-6">Times are in UTC. The page checks for new entries every minute.</p>
+        <LiveTimeline initial={entries} />
       </section>
 
       <section>

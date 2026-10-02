@@ -1,6 +1,6 @@
 export const SITE_URL = "https://www.bucket.foundation";
 export const DAY_MS = 86_400_000;
-export const KINDS = ["release", "production", "feature"] as const;
+export const KINDS = ["release", "production", "feature", "generation"] as const;
 export type DigestKind = (typeof KINDS)[number];
 
 const KIND_OF: Record<string, DigestKind> = {
@@ -8,12 +8,14 @@ const KIND_OF: Record<string, DigestKind> = {
   production: "production",
   feature: "feature",
   "site-feature": "feature",
+  generation: "generation",
 };
 
 const HEADINGS: Record<DigestKind, string> = {
   release: "Releases",
   production: "Productions",
   feature: "Features",
+  generation: "Machine-made claims",
 };
 
 const LINE_MAX = 200;
@@ -24,6 +26,8 @@ export interface RawEntry {
   category?: unknown;
   title?: unknown;
   summary?: unknown;
+  claim?: unknown;
+  state?: unknown;
 }
 
 export interface DigestItem {
@@ -79,7 +83,9 @@ export function buildDigest(entries: readonly RawEntry[], day: string): Digest {
     const kind = typeof e.category === "string" ? KIND_OF[e.category] : undefined;
     if (!kind || typeof e.title !== "string" || !e.title.trim()) continue;
     seen.add(e.id);
-    const item = { id: e.id, kind, title: e.title.trim(), line: typeof e.summary === "string" ? oneLine(e.summary) : "", link: entryLink(e.id) };
+    const text = typeof e.summary === "string" ? e.summary : typeof e.claim === "string" ? e.claim : "";
+    const title = kind === "generation" && typeof e.state === "string" ? `${e.title.trim()}, ${e.state}` : e.title.trim();
+    const item = { id: e.id, kind, title, line: text ? oneLine(text) : "", link: entryLink(e.id) };
     byKind.set(kind, [...(byKind.get(kind) ?? []), item]);
   }
   const groups = KINDS.filter((k) => byKind.has(k)).map((kind) => ({ kind, heading: HEADINGS[kind], items: byKind.get(kind)! }));
@@ -90,8 +96,8 @@ export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
 
-export function renderDigest(digest: Digest, unsubscribeUrl: string, postalAddress: string): RenderedEmail {
-  const subject = `What's new on Bucket, ${digest.day}: ${digest.count} ${digest.count === 1 ? "update" : "updates"}`;
+export function renderDigest(digest: Digest, unsubscribeUrl: string, postalAddress: string, subjectLine?: string): RenderedEmail {
+  const subject = subjectLine ?? `What's new on Bucket, ${digest.day}: ${digest.count} ${digest.count === 1 ? "update" : "updates"}`;
   const textParts = [`What's new on bucket.foundation, ${digest.day}`, ""];
   for (const g of digest.groups) {
     textParts.push(g.heading.toUpperCase(), "");

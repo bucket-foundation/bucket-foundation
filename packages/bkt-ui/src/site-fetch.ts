@@ -32,7 +32,10 @@ function trouble(status: number): void {
   if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent(CANON_TROUBLE, { detail: { status } }));
 }
 
-export function siteFetch(base: typeof fetch, origin: string, token: string): typeof fetch {
+export const OFFLINE_REFUSED = "bkt:offline-refused";
+export const OFFLINE_MESSAGE = "Bucket works offline on this computer.";
+
+export function siteFetch(base: typeof fetch, origin: string, token: string, offline = false): typeof fetch {
   const wrapped = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
     const raw = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
     const method = (init?.method ?? (typeof input === "object" && "method" in input ? input.method : "GET")).toUpperCase();
@@ -41,6 +44,11 @@ export function siteFetch(base: typeof fetch, origin: string, token: string): ty
       url = new URL(raw, origin);
     } catch {
       return base(input, init);
+    }
+    if (offline && url.origin !== origin) {
+      if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent(OFFLINE_REFUSED, { detail: { url: url.href } }));
+      console.warn(`bkt offline: refused ${url.href}`);
+      throw new TypeError(OFFLINE_MESSAGE);
     }
     const local = url.origin === origin && method === "GET" ? SITE_ROUTES[url.pathname] : undefined;
     if (!local) return base(input, init);

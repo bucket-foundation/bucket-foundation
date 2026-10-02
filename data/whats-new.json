@@ -2,6 +2,63 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-desktop-turn",
+      "date": "2026-10-01",
+      "category": "production",
+      "branch": null,
+      "title": "Bucket runs on your computer",
+      "summary": "The website now exists to download the app. Canon search with the globe, drawer and circle runs offline on a local pack of 364 of 599 excerpts after the rights pass. Path shows a grip sphere and a graph of topics. Every screen uses plain words, with no file dialogs on the default screens.",
+      "commit": null,
+      "pr": 541,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/541",
+      "status": "merged",
+      "plot_title": "Canon clusters of the Bucket graph, the map behind the canon search globe",
+      "image": "/whats-new/canon-clusters-projection.webp",
+      "image_alt": "Scatter of every public node on components 2 and 3 with kernel density contours, colored by canon.",
+      "discussion": "Quiz stems stay under 15 tokens and options under 5, in six forms: recall, cloze, true or false, estimate, compare, order. A terminal CLI and TUI ship with bkt search, bkt canon show, bkt learn, bkt daily, bkt notes and bkt doctor. The target engine is Rust, with Lean proofs for ranking, grading, scheduling and the payment split. The data standard bucket.data/1 is in draft. What's New takes machine posts as drafts. One private corpus stays out of the pack until its author rules.",
+      "links": [
+        {
+          "label": "PR 541",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/541"
+        },
+        {
+          "label": "Architecture",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/ARCHITECTURE-TARGET.md"
+        },
+        {
+          "label": "Data standard",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/DATA-STANDARD.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-01-explore-without-samples",
+      "date": "2026-10-01",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Explore drops the sample advisors",
+      "summary": "Explore lists 150 primary papers, pins founding works by concept, and lets you save and cite a result.",
+      "commit": null
+    },
+    {
+      "id": "2026-10-01-sign-in-closed",
+      "date": "2026-10-01",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Sign-in closed, download the app",
+      "summary": "Sign-in on the website is closed. The download page is the way in.",
+      "commit": null
+    },
+    {
+      "id": "2026-10-01-production-push",
+      "date": "2026-10-01",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Production push",
+      "summary": "dev reached production in three releases today: PRs 505, 512 and 541.",
+      "commit": null
+    },
+    {
       "id": "pr-496",
       "date": "2026-10-01",
       "category": "pr-merged",
