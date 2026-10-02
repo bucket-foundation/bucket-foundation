@@ -7,7 +7,6 @@ import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
 import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type DataRow, type DeckRow, type JobKind, type WorkQuestion } from "./api";
 import { href, type Route } from "./router";
 
-mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
 mock.module("@/components/research-os/views/SolvabilityAtlas", () => ({ default: () => <div>solvability</div> }));
@@ -299,19 +298,29 @@ async function mount(route: Route, stub: Stub) {
   document.body.appendChild(host);
   const root = createRoot(host);
   await act(async () => root.render(<Screen api={stub as unknown as Api} route={route} />));
-  await act(async () => new Promise((r) => setTimeout(r, 20)));
+  const settle = async () => {
+    let last = "";
+    for (let i = 0; i < 50; i++) {
+      await act(async () => new Promise((r) => setTimeout(r, 0)));
+      const now = host.innerHTML;
+      if (now === last) return;
+      last = now;
+    }
+    throw new Error("the screen never settled");
+  };
+  await settle();
   const text = () => strings(host).join("\n");
   const pickFile = async (index: number, file: File) => {
     const input = host.querySelectorAll('input[type="file"]')[index] as HTMLInputElement;
     Object.defineProperty(input, "files", { value: [file], configurable: true });
     await act(async () => input.dispatchEvent(new Event("change", { bubbles: true })));
-    await act(async () => new Promise((r) => setTimeout(r, 20)));
+    await settle();
   };
   return { host, text, pickFile, act, unmount: () => act(async () => root.unmount()) };
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "data" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -324,7 +333,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Data", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Notes", "History", "Data"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -339,13 +348,51 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Data", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History", "Data"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
+  });
+
+  test("no screen in the navigation needs a file or shows a format word", async () => {
+    const { navFor, FOOT_LINK } = await import("./nav");
+    expect(FOOT_LINK.label).toBe("Add your own");
+    for (const n of navFor(true)) {
+      for (const stub of [empty, populated, failing]) {
+        const v = await mount(n.route, stub());
+        expect({ screen: n.label, fileInputs: v.host.querySelectorAll('input[type="file"]').length, bad: violations(v.host) }).toEqual({ screen: n.label, fileInputs: 0, bad: [] });
+        await v.unmount();
+      }
+    }
+  });
+
+  test("Add your own opens one page with two plain choices, and Import holds one button", async () => {
+    const add = await mount({ name: "add" }, empty());
+    expect(Array.from(add.host.querySelectorAll("a")).map((a) => [a.textContent!.split("\n")[0], a.getAttribute("href")])).toEqual([
+      [expect.stringContaining("Bring progress from the website"), "#/import"],
+      [expect.stringContaining("Analyze my data"), "#/jobs"],
+    ]);
+    expect(add.host.querySelector('input[type="file"]')).toBeNull();
+    await add.unmount();
+    const imp = await mount({ name: "import" }, populated());
+    expect(imp.host.querySelectorAll('input[type="file"]').length).toBe(1);
+    expect(imp.text()).not.toContain("Choose tasks file");
+    expect(imp.host.querySelector('input[type="checkbox"]')).toBeNull();
+    await imp.unmount();
+  });
+
+  test("the work quiz links to its own setup page for someone who has it", async () => {
+    const work = await mount({ name: "work" }, populated());
+    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    await work.unmount();
+    const setup = await mount({ name: "setup" }, populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(setup.text()).toContain("Choose tasks file");
+    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
+    await setup.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
     const { parseHash } = await import("./router");
-    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"]] as const) {
+    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"], ["jobs", "Jobs"], ["import", "Import"]] as const) {
       expect(parseHash(`#/${name}`)).toEqual({ name });
       const v = await mount({ name }, empty());
       expect(v.host.querySelector("h1")!.textContent).toBe(heading);
@@ -458,7 +505,119 @@ describe("path", () => {
     const v = await mount({ name: "path", to: "ph-entropy" }, withAtoms([{ id: "ph-entropy", title: "Entropy", requires: ["ph-heat"] }, { id: "ph-heat", title: "Heat", requires: ["ph-work"] }, { id: "ph-work", title: "Work", requires: ["ph-entropy"] }]));
     expect(v.host.querySelector(".error")!.textContent).toBe(TOPIC_CYCLE);
     expect(TOPIC_CYCLE).toBe("Some topics wait on each other.");
+    expect(Array.from(v.host.querySelectorAll(".error")).map((e) => e.textContent)).toEqual([TOPIC_CYCLE]);
+    expect(v.host.querySelectorAll(".topic-map .topic").length).toBe(4);
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(3);
     expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("no topics: one sentence and no map", async () => {
+    const { NO_TOPICS } = await import("./views/Path");
+    const v = await mount({ name: "path" }, empty());
+    expect(v.text()).toContain(NO_TOPICS);
+    expect(v.host.querySelector(".topic-map")).toBeNull();
+    expect(v.host.querySelector(".grip")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the map names each topic with its state in words and a shape", async () => {
+    const { GRIP_CAPTION, PICK_A_TOPIC } = await import("./views/Path");
+    const physics = ATOMS["02-physics"];
+    const now = Date.now();
+    let s = grade(normalizeState(null), physics, {}, "ph-heat", 3, "recall", now - 40 * 86_400_000);
+    s = grade(s, physics, {}, "ph-entropy", 3, "recall", now);
+    const v = await mount({ name: "path" }, withAtoms(physics, { "02-physics": { data: s } }));
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Known.", "Heat. Due.", "Limit. New.", "Second law. New."]);
+    expect(v.host.querySelector(".topic.due path.glyph")).not.toBeNull();
+    expect(v.host.querySelector(".topic.known circle.glyph.solid")).not.toBeNull();
+    expect(v.host.querySelector(".topic.new circle.glyph.hollow")).not.toBeNull();
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(2);
+    expect(v.text()).toContain("4 topics joined by 2 links.");
+    expect(v.text()).toContain(GRIP_CAPTION);
+    expect(v.text()).toContain(PICK_A_TOPIC);
+    expect(v.host.querySelector(".topic-map svg")!.getAttribute("tabindex")).toBe("0");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a locked topic is drawn as locked", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Locked.", "Heat. New.", "Limit. New.", "Second law. Locked."]);
+    expect(v.host.querySelector(".topic.locked rect.glyph.hollow")).not.toBeNull();
+    await v.unmount();
+  });
+
+  test("picking a topic shows what it needs and opens, and the sphere follows", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const node = (name: string) => Array.from(v.host.querySelectorAll(".topic-map .topic")).find((g) => g.getAttribute("aria-label")!.startsWith(name))!;
+    const pressed = () => Array.from(v.host.querySelectorAll(".grip-rows .branch")).filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.textContent);
+    expect(pressed()).toEqual([]);
+    await v.act(async () => node("Entropy").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(window.location.hash).toBe("#/path/ph-entropy");
+    expect(node("Entropy").getAttribute("aria-pressed")).toBe("true");
+    const panel = v.host.querySelector(".topic-panel")!;
+    expect(panel.querySelector("h2")!.textContent).toBe("Entropy");
+    expect(Array.from(panel.querySelectorAll("h3")).map((h) => h.textContent)).toEqual(["Needs first", "Opens next", "Learn in this order"]);
+    expect(Array.from(panel.querySelectorAll(".linked")).map((u) => Array.from(u.querySelectorAll(".link")).map((b) => b.textContent))).toEqual([["Heat"], ["Second law"]]);
+    const start = panel.querySelector("a.start") as HTMLAnchorElement;
+    expect(start.textContent).toBe("Start with Heat");
+    expect(start.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(Array.from(panel.querySelectorAll(".steps-list a.go")).map((a) => a.getAttribute("href"))).toEqual(["#/learn/02-physics/ph-heat"]);
+    expect(pressed()).toEqual(["physics"]);
+    expect(violations(v.host)).toEqual([]);
+
+    const maths = Array.from(v.host.querySelectorAll(".grip-rows .branch")).find((b) => b.textContent === "mathematics") as HTMLButtonElement;
+    await v.act(async () => maths.click());
+    expect(pressed()).toEqual(["mathematics"]);
+    expect(window.location.hash).toBe("#/path");
+    expect(v.host.querySelector(".topic-panel h2")).toBeNull();
+    expect(Array.from(v.host.querySelectorAll(".topic-map .topic.dim")).map((g) => g.getAttribute("aria-label")).sort()).toEqual(["Entropy. Locked.", "Heat. New.", "Second law. Locked."]);
+
+    await v.act(async () => node("Heat").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(pressed()).toEqual(["physics"]);
+    expect(v.host.querySelectorAll(".topic-map .topic.dim").length).toBe(0);
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("start never targets a locked topic", async () => {
+    const { startFor } = await import("./views/Path");
+    const needs = new Map([["a", []], ["b", ["a"]], ["c", ["b"]], ["x", ["y"]], ["y", ["x"]]]);
+    const states = new Map<string, "known" | "due" | "new" | "locked">([["a", "new"], ["b", "locked"], ["c", "locked"], ["x", "locked"], ["y", "locked"]]);
+    expect(startFor("c", needs, states)).toBe("a");
+    expect(startFor("a", needs, states)).toBe("a");
+    expect(startFor("x", needs, states)).toBeNull();
+    states.set("a", "known");
+    states.set("b", "new");
+    expect(startFor("c", needs, states)).toBe("b");
+    const v = await mount({ name: "path", to: "ph-second-law" }, populated());
+    expect(v.host.querySelector("a.start")!.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(v.text()).toContain("Start with Heat");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("arrow keys walk the links and the list repeats them in words", async () => {
+    const v = await mount({ name: "path", to: "ph-entropy" }, populated());
+    const svg = v.host.querySelector(".topic-map svg")!;
+    const press = (key: string) => v.act(async () => svg.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true })));
+    await press("ArrowLeft");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Heat");
+    await press("ArrowRight");
+    await press("ArrowRight");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Second law");
+    expect(svg.getAttribute("aria-activedescendant")).toBe(v.host.querySelector('.topic[aria-pressed="true"]')!.id);
+    const rows = Array.from(v.host.querySelectorAll(".links-list li")).map((li) => li.textContent);
+    expect(rows).toContain("Entropy. Locked. Needs Heat. Opens Second law.");
+    expect(rows).toContain("Limit. New. Needs nothing first. Opens nothing yet.");
+    expect(v.host.querySelector(".links-list summary")!.textContent).toBe("Read the same links as a list");
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
     await v.unmount();
   });
 
@@ -577,7 +736,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "import" }, populated());
+    const v = await mount({ name: "setup" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -589,8 +748,8 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "import" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
-    await v.pickFile(1, new File(["x"], "tasks"));
+    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that folder.");

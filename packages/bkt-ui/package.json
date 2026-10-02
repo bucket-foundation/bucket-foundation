@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "size": "bun run scripts/size.ts",
     "shots": "bun run scripts/shots.ts",
+    "shots:path": "bun run scripts/shots-path.ts",
     "test": "bun test src"
   },
   "dependencies": {

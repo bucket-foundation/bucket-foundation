@@ -131,8 +131,33 @@ button {
   width: 100%;
 }
 
+.main.wide {
+  max-width: none;
+  padding: 16px 32px 32px;
+}
+
+.narrow {
+  max-width: 944px;
+}
+
 .head {
   margin-bottom: 20px;
+}
+
+.head.slim {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-bottom: 12px;
+}
+
+.head.slim p {
+  margin: 0;
+}
+
+.canon-site + .licences {
+  max-width: 944px;
 }
 
 .head h1 {
@@ -1020,67 +1045,6 @@ section > article + article {
   color: var(--ink-2);
 }
 
-.year {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 14px;
-  font-variant-numeric: tabular-nums;
-}
-
-.split.canon {
-  grid-template-columns: 1fr 300px;
-}
-
-.stage {
-  padding: 8px;
-}
-
-.circle-view {
-  width: 100%;
-  height: auto;
-  max-height: 640px;
-}
-
-.circle-view .ring,
-.circle-view .edge {
-  fill: none;
-  stroke: var(--line);
-}
-
-.circle-view .core {
-  fill: var(--paper);
-}
-
-.circle-view .ring-label {
-  font-size: 8px;
-  fill: var(--ink-3);
-  text-transform: capitalize;
-}
-
-.circle-view .pt {
-  cursor: pointer;
-  opacity: 0.85;
-}
-
-.circle-view .pt.on {
-  stroke: var(--ink);
-  stroke-width: 1.5;
-  opacity: 1;
-}
-
-.globe-box {
-  position: relative;
-  height: 600px;
-}
-
-@media (max-width: 900px) {
-  .split.canon {
-    grid-template-columns: 1fr;
-  }
-}
-
 .atlas-body {
   padding: 20px 24px;
   overflow-x: auto;
@@ -1277,4 +1241,22 @@ label.row:not(.file) {
   font-size: 12px;
   font-weight: 400;
   overflow-wrap: anywhere;
+}
+
+.foot-link {
+  margin-top: auto;
+  padding: 8px;
+  font-size: 14px;
+  color: var(--ink-2, var(--ink));
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.foot-link.on,
+.foot-link:hover {
+  background: var(--panel);
+}
+
+.foot-link + .foot {
+  margin-top: 6px;
 }
