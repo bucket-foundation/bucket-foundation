@@ -1,0 +1,95 @@
+.canon-graph {
+  margin-top: 16px;
+  padding: 16px 18px;
+}
+
+.canon-graph h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.graph-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 14px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.canon-graph .topic-map svg {
+  height: 520px;
+}
+
+.canon-graph .link {
+  stroke: var(--ink-3);
+  opacity: 0.45;
+}
+
+.canon-graph line.link.faint {
+  opacity: 0.12;
+}
+
+.canon-graph line.link.on {
+  stroke: var(--accent);
+  opacity: 1;
+}
+
+.canon-graph .author {
+  cursor: pointer;
+}
+
+.canon-graph .author circle {
+  fill: var(--r4);
+  stroke: var(--panel);
+  stroke-width: 1.5;
+}
+
+.canon-graph .author.near circle {
+  fill: var(--ok);
+}
+
+.canon-graph .author.hit circle {
+  fill: var(--r2);
+}
+
+.canon-graph .author.on circle {
+  fill: var(--accent);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.canon-graph .author.dim {
+  opacity: 0.25;
+}
+
+.canon-graph .author text {
+  font-size: 11px;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+}
+
+.graph-side h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.graph-side h4 {
+  margin: 14px 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.graph-side {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1000px) {
+  .graph-grid {
+    grid-template-columns: 1fr;
+  }
+}

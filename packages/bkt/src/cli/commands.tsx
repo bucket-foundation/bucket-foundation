@@ -8,13 +8,17 @@ import { App, type AppSources } from "../app";
 import { spawn } from "node:child_process";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../analyze-view";
-import type { Pack } from "../pack/export";
+import type { Pack, PackDeck } from "../pack/export";
 import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "../setup";
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
 import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
-import { keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
+import { countOf, keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
+import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
+import { daily, learnDue, learnPath, quizJson, reviewJson, screen } from "./learn";
+import { localDay } from "../chat-sources";
+import { randomBytes } from "node:crypto";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
 import { EXIT } from "./table";
 import { graphView } from "./screens";
@@ -87,6 +91,38 @@ async function analyzeCmd(argv: string[]): Promise<number> {
   }
 }
 
+const LEARN = new Set(["learn due", "learn path", "learn quiz", "learn review", "daily"]);
+
+async function learn(inv: Invocation, json: boolean): Promise<number> {
+  const name = inv.command.name;
+  const content = pack as Pack;
+  let deck: PackDeck | null = null;
+  if (name === "learn path" && inv.positionals[0] !== undefined) {
+    deck = (content.decks ?? []).find((d) => d.id === inv.positionals[0]) ?? null;
+    if (!deck) throw new UsageError(`unknown deck ${inv.positionals[0]}; run bkt learn path for the list`, inv.command);
+  }
+  const size = countOf(inv);
+  const day = inv.positionals[0] ?? localDay(Date.now());
+  const run = (b: LearnBackend) => {
+    if (name === "learn due") return learnDue(b, size, json);
+    if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json);
+    if (name === "learn quiz") return json ? quizJson(b, size, inv.command) : screen("quiz", b, size);
+    if (name === "learn review") return json ? reviewJson(b, size, inv.command) : screen("review", b, size);
+    return daily(b, day, json, inv.command);
+  };
+  const server = await findServer(dataDir());
+  if (server) return run(server);
+  const dir = ensureDataDir(dataDir());
+  const session = await openSession(await pickKeyring(keyringOptions(inv), dir), dir);
+  try {
+    session.store.importPack(content.version, content.items);
+    const wq = new WorkQuizStore(session.store, session.key);
+    return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a) }));
+  } finally {
+    session.store.close();
+  }
+}
+
 async function serve(name: "serve" | "app", session: Session, dir: string, content: Pack, route: string | null): Promise<void> {
   const workQuiz = new WorkQuizStore(session.store, session.key);
   writeQuizRoots(dir, workQuiz.chat());
@@ -99,6 +135,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
+  const cliToken = randomBytes(32).toString("base64url");
+  const cliSecret = randomBytes(32).toString("base64url");
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
   const data = dataRoutes([
     learningAdapter(content),
@@ -107,11 +145,13 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     ownAdapter(session.store, { analyses: () => runner.list().length }),
   ]);
   const srv = startServe({
+    cliToken,
+    cliSecret,
     match: data.match,
     routes: {
       ...windowRoutes(win.routes),
       ...data.routes,
-      ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
+      ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
@@ -135,6 +175,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     onError: (e) => console.error(`bkt serve: ${e.message}`),
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
+  const releaseServer = writeServerRecord(dir, { pid: process.pid, port: srv.port, token: cliToken, secret: cliSecret });
   const fresh = () => {
     srv.remint();
     return srv.url;
@@ -163,6 +204,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   win.forget();
   runner.stopAll();
   release();
+  releaseServer();
   srv.stop();
 }
 
@@ -316,6 +358,8 @@ export async function execute(inv: Invocation): Promise<number> {
     await score(parseToolArgs(inv.args));
     return EXIT.ok;
   }
+
+  if (LEARN.has(name)) return learn(inv, json);
 
   const dir = ensureDataDir(dataDir());
   const session = await openSession(await pickKeyring(keyringOptions(inv), dir), dir);

@@ -77,7 +77,7 @@ describe("bkt completion", () => {
       const driver = [
         `source "${file}"`,
         't() { COMP_WORDS=("$@"); COMP_CWORD=$(($# - 1)); _bkt; echo "${COMPREPLY[*]}"; }',
-        "t bkt d",
+        "t bkt do",
         "t bkt hai ''",
         "t bkt hai score --",
         "t bkt doctor --",

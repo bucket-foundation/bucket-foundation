@@ -6,13 +6,15 @@ import { isAbsolute, join, relative, resolve } from "node:path";
 import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/work-quiz/generate";
 import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
 import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
-import { gradeAnswer, log10Distance, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
 import type { Card, Rating } from "../../../src/lib/academy/fsrs";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
-import { attemptId, DailyQuizStore, MAX_DAILY_QUESTIONS, overLength, validDay, type DailyQuiz } from "./daily-quiz";
+import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
+import { answerDaily, LearnError } from "./core/learn";
+import { DailyQuizStore, MAX_DAILY_QUESTIONS, overLength, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
@@ -345,28 +347,25 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       if (!validDay(day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
       const quiz = await daily(day);
       if (!quiz) return json({ error: "no quiz for that day" }, 404);
-      return json({ day, questions: quiz.questions.map(toPublic), answered: [...wq.daily.answered(day)] });
+      const fit = url.searchParams.get("fit") === "1";
+      return json({ day, questions: quiz.questions.filter((q) => !fit || checkLimits(q).length === 0).map(toPublic), answered: [...wq.daily.answered(day)] });
     },
     "POST /local/work-quiz/answer": async (req) => {
       const b = await body(req);
       if (!b || typeof b.id !== "string") return json({ error: "id required" }, 400);
       if (b.day !== undefined) {
         if (!validDay(b.day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
-        const q = wq.daily.get(b.day)?.questions.find((x) => x.id === b.id);
-        if (!q) return json({ error: "no such question" }, 404);
-        if (wq.daily.answered(b.day).has(q.id)) return json({ error: "already answered" }, 409);
-        if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs) || b.elapsedMs < 0) return json({ error: "elapsedMs required" }, 400);
-        const elapsed = Math.min(b.elapsedMs, 3_600_000);
-        const response = normalizeResponse(q, b.response);
-        const g = gradeAnswer(q, response, elapsed);
-        const distance = q.log10Tolerance === undefined ? null : log10Distance(q.answer, response);
+        if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs) || b.elapsedMs < 0) {
+          if (!wq.daily.get(b.day)?.questions.some((x) => x.id === b.id)) return json({ error: "no such question" }, 404);
+          if (wq.daily.answered(b.day).has(b.id)) return json({ error: "already answered" }, 409);
+          return json({ error: "elapsedMs required" }, 400);
+        }
         try {
-          wq.record(q, g.correct, g.rating, elapsed, now(), { questionId: attemptId(b.day, q.id), log10Distance: distance });
+          return json(answerDaily(wq.daily, (...a) => wq.record(...a), b.day, b.id, b.response, Math.min(b.elapsedMs, 3_600_000), now()));
         } catch (e) {
-          if (/UNIQUE constraint failed/i.test((e as Error).message)) return json({ error: "already answered" }, 409);
+          if (e instanceof LearnError) return json({ error: e.message }, e.status);
           throw e;
         }
-        return json({ ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources });
       }
       const open = issued.get(b.id);
       if (!open) return json({ error: "no open question" }, 404);

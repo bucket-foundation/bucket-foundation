@@ -1,4 +1,4 @@
-import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual, createHmac } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
 import { platformFor, procNetTcpOwner, type Owner, type Platform } from "./platform";
@@ -11,6 +11,8 @@ export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | 
 export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 
 export interface ServeOptions {
+  cliToken?: string;
+  cliSecret?: string;
   port?: number;
   uid?: Owner;
   platform?: Platform;
@@ -34,6 +36,10 @@ export interface Serve {
 }
 
 export const procNetTcpUid = procNetTcpOwner;
+
+export function proveServer(secret: string, challenge: string): string {
+  return createHmac("sha256", secret).update(`bkt-serve:${challenge}`).digest("base64url");
+}
 
 function same(a: string, b: string): boolean {
   const x = Buffer.from(a);
@@ -257,9 +263,15 @@ export function startServe(opts: ServeOptions = {}): Serve {
         return json({ token });
       }
 
+      if (url.pathname === "/cli/prove" && req.method === "GET" && opts.cliSecret !== undefined) {
+        const challenge = url.searchParams.get("challenge") ?? "";
+        if (!/^[A-Za-z0-9_-]{43}$/.test(challenge)) return deny(400);
+        return json({ proof: proveServer(opts.cliSecret, challenge) });
+      }
       const auth = req.headers.get("authorization") ?? "";
       const m = auth.match(/^Bucket ([A-Za-z0-9_-]{43})$/);
-      if (!token || !m || !same(m[1], token)) return deny(401);
+      const cli = opts.cliToken !== undefined && !!m && same(m[1], opts.cliToken);
+      if (!cli && (!token || !m || !same(m[1], token))) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
       const key = `${req.method} ${url.pathname}`;
       const route = routes[key] ?? opts.match?.(req.method, url.pathname);
