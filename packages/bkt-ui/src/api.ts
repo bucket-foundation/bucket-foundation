@@ -358,6 +358,14 @@ export class Api {
     return this.call<{ opened: string }>("/local/open", { method: "POST", body: { url } });
   }
 
+  exploreSaved() {
+    return this.call<unknown>("/local/explore/saved");
+  }
+
+  putExploreSaved(state: unknown) {
+    return this.call<unknown>("/local/explore/saved", { method: "POST", body: state });
+  }
+
   notes() {
     return this.call<{ notes: Note[] }>("/local/notes").then((r) => r.notes);
   }

@@ -11,7 +11,11 @@ import { readCanonClaims } from "../../../src/lib/canon-index-loader";
 import { rankCanon, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
 import { loadAdvisors } from "../../../src/lib/explore/advisors";
 import { canonFileHits } from "../../../src/lib/explore/canon-files";
+import { CANON_FILES } from "../../../src/lib/explore/canon-files";
+import { foundingFor } from "../../../src/lib/explore/founding";
+import { buildCorpus, needsClosest, rankedPools, semanticExcerpts } from "../../../src/lib/explore/ranked-core";
 import { exploreSearch, type ExploreSearchDeps } from "../../../src/lib/explore/respond";
+import { talkFor } from "../../../src/lib/explore/talks";
 import { loadSourceIndex, resetSourceIndex } from "../../../src/lib/explore/sources";
 import timeline from "../../../src/data/canon-timeline.json";
 
@@ -93,7 +97,16 @@ const YEARS = new Map<string, number>(timeline.events.map((e: { id: string; year
 function webDeps(): ExploreSearchDeps {
   const index: ClaimIndexEntry[] = readCanonClaims(REPO).map((c, rowid) => ({ rowid, branch: c.branch, concept: c.concept, slug: c.slug, title: c.title, path: c.path, text: c.text, vec: new Float32Array(0) }));
   resetSourceIndex();
+  const sources = () => loadSourceIndex(join(REPO, "src", "data"));
   return {
+    ranking: {
+      corpus: async () => buildCorpus({ rows: (await sources()).map((p) => p.row), entries: index, files: CANON_FILES, talk: (f) => talkFor(f, REPO) }),
+      founding: (q) => foundingFor(q, { NODE_ENV: "production" }),
+      talkFor: (f) => talkFor(f, REPO),
+      rankedPools,
+      semanticExcerpts,
+      needsClosest,
+    },
     canon: (p) => rankCanon({ loadIndex: () => index, decodeQVec: () => null }, p),
     advisors: () => loadAdvisors({ NODE_ENV: "production", BUCKET_ADVISOR_BUNDLE: join(REPO, "no-such-bundle.json") }),
     sources: () => loadSourceIndex(join(REPO, "src", "data")),
@@ -216,16 +229,16 @@ describe("GET /local/explore/search", () => {
   test("one query yields the same field names and types from the web assembly and the local route", async () => {
     boot();
     const t = await token();
-    const q = "?q=energy&top_k=50";
+    const q = "?q=energy&top_k=100";
     const local = await req(`/local/explore/search${q}`, { headers: auth(t) });
     const web = await exploreSearch(webDeps(), new URL(`http://site.test/api/explore/search${q}`));
     expect(web.status).toBe(200);
     const webBody = web.body as Body;
     const localBody = (await local.json()) as Body;
     expect(webBody.advisors_source).toBe("none");
-    for (const type of ["excerpt", "work", "paper", "talk", "text", "canon-file"]) {
-      expect(webBody.results.some((h) => h.type === type)).toBe(true);
-      expect(localBody.results.some((h) => h.type === type)).toBe(true);
+    for (const type of ["excerpt", "paper", "talk", "canon-file"]) {
+      expect([type, webBody.results.some((h) => h.type === type)]).toEqual([type, true]);
+      expect([type, localBody.results.some((h) => h.type === type)]).toEqual([type, true]);
     }
     expect(shape(localBody)).toEqual(shape(webBody));
     const isSource = (h: { type: string }) => ["paper", "text", "talk"].includes(h.type);

@@ -82,6 +82,8 @@ function violationsIn(all: string[]): string[] {
     .flatMap((s) => DENY.filter((d) => d.re.test(s)).map((d) => `${d.name}: ${s}`));
 }
 
+const SAVED_ITEM = { id: "paper:d/10.1002/j.1538-7305.1948.tb01338.x", kind: "paper", title: "A Mathematical Theory of Communication", authors: "C. E. Shannon", year: 1948, citation: "C. E. Shannon. A Mathematical Theory of Communication. 1948.", url: "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x", savedAt: "2026-10-01T00:00:00.000Z" };
+
 const DECKS: DeckRow[] = [
   { id: "02-physics", title: "Physics", atoms: 3, introduced: 1, due: 1, xp: 10 },
   { id: "01-mathematics", title: "Mathematics", atoms: 1, introduced: 0, due: 0, xp: 0 },
@@ -192,6 +194,8 @@ function empty(): Stub {
     primeDirections: async () => [],
     ros: async () => null,
     canonAbout: async () => ({ version: null, excerpts: 0, branches: [], licences: [] }),
+    exploreSaved: async () => ({ v: 1, items: [], noticeSeen: false }),
+    putExploreSaved: async (s: unknown) => s,
     canonSearch: async () => [],
     canonExcerpt: () => Promise.reject(new ApiError("no such excerpt", 404)),
   };
@@ -207,6 +211,8 @@ function populated(over: Stub = {}): Stub {
     notes: async () => [{ id: "n1", title: "Reading list", body: "Start with Carnot.", pinned: true, createdAt: 1, updatedAt: 2 }],
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
+    exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
+    putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
     canonSearch: async () => [{ claim_id: 7, branch: "02-physics", concept: "free-will", slug: "001-a", title: "Claim", score: 2, excerpt: "Claim. Entropy rises and entropy never falls.", evidence_count: 1 }],
     canonExcerpt: async () => ({
@@ -252,6 +258,8 @@ function failing(): Stub {
     jobs: fail("data key does not match", 500),
     startJob: fail("Data file must be one of .csv, .tsv, .json, .jsonl, .txt", 400),
     canonAbout: fail("data key does not match", 500),
+    exploreSaved: fail("data key does not match", 500),
+    putExploreSaved: fail("bad_saved_list", 400),
     canonSearch: fail("data key does not match", 500),
     canonExcerpt: fail("no such excerpt", 404),
     importWeb: fail("expected { branches: { <deck>: EngineState } }", 400),
@@ -291,7 +299,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "import" }, { name: "add" }, { name: "setup" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "import" }, { name: "add" }, { name: "setup" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -303,7 +311,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Notes", "History", "Analyze data"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Explore", "Notes", "History", "Analyze data"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -318,7 +326,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Notes", "History", "Analyze data"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Explore", "Notes", "History", "Analyze data"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 

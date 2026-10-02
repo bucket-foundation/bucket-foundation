@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { readCanonClaims } from "../../../../src/lib/canon-index-loader";
 import { CANON_FILES } from "../../../../src/lib/explore/canon-files";
+import { parseTalk, type Talk } from "../../../../src/lib/explore/talks";
 import { parseReferenceBasis, type ReferenceBasis } from "../../../../src/lib/explore/reference-core";
 import { SOURCE_LABEL, sourceUrl, type SourceIndex, type SourceKind } from "../../../../src/lib/explore/source-index";
 import type { Licence } from "./canon";
@@ -25,6 +27,7 @@ export interface ExploreCounts {
   years: { total: number; kept: number };
   foundingWorks: { total: number; approved: number };
   referenceTerms: number;
+  talks: { total: number; kept: number };
 }
 
 export interface FoundingRow {
@@ -52,6 +55,7 @@ export interface ExplorePack {
   years: Record<string, number>;
   foundingWorks: FoundingRow[];
   referenceBasis: ReferenceBasis;
+  talks: Record<string, Talk>;
   licences: Licence[];
   counts: ExploreCounts;
 }
@@ -75,6 +79,21 @@ export interface ExploreInputs {
   timeline: { events: { id: string; title?: string; year: number }[] };
   foundingWorks: FoundingWorks;
   referenceBasis: ReferenceBasis;
+  talks?: Record<string, Talk>;
+}
+
+export function readTalks(repo: string): Record<string, Talk> {
+  const out: Record<string, Talk> = {};
+  for (const c of readCanonClaims(repo)) {
+    let talk: Talk | null = null;
+    try {
+      talk = parseTalk(readFileSync(join(repo, c.path), "utf8").slice(0, 2000));
+    } catch {
+      talk = null;
+    }
+    if (talk) out[c.path] = talk;
+  }
+  return out;
 }
 
 function readJson(repo: string, file: string): unknown {
@@ -86,7 +105,7 @@ export function readExploreInputs(repo: string): ExploreInputs {
   if (index?.v !== 1 || !Array.isArray(index.items) || index.items.length === 0) throw new Error(`explore pack: ${SOURCES_FILE} holds no rows`);
   const foundingWorks = readJson(repo, FOUNDING_FILE) as FoundingWorks;
   if (foundingWorks?.schema !== FOUNDING_SCHEMA || !Array.isArray(foundingWorks.rows)) throw new Error(`explore pack: ${FOUNDING_FILE} is not a ${FOUNDING_SCHEMA} file`);
-  return { index, timeline: readJson(repo, TIMELINE_FILE) as ExploreInputs["timeline"], foundingWorks, referenceBasis: parseReferenceBasis(readJson(repo, REFERENCE_FILE)) };
+  return { index, timeline: readJson(repo, TIMELINE_FILE) as ExploreInputs["timeline"], foundingWorks, referenceBasis: parseReferenceBasis(readJson(repo, REFERENCE_FILE)), talks: readTalks(repo) };
 }
 
 export interface ExploreSplit {
@@ -125,7 +144,15 @@ export function assembleExplore(inputs: ExploreInputs, deny: Denylist): ExploreP
     years: { total: inputs.timeline.events.length, kept: 0 },
     foundingWorks: { total: inputs.foundingWorks.rows.length, approved: approved.length },
     referenceTerms: inputs.referenceBasis.vocab.length,
+    talks: { total: 0, kept: 0 },
   };
+  const talks: Record<string, Talk> = {};
+  for (const [path, t] of Object.entries(inputs.talks ?? {})) {
+    counts.talks.total++;
+    if (denyRow(deny, [path, `https://www.youtube.com/watch?v=${t.id}`], t.title)) continue;
+    talks[path] = t;
+    counts.talks.kept++;
+  }
   for (const r of split.kept) counts.sources.keptByKind[r[0]]++;
   for (const d of split.denied) {
     counts.sources.denied[d.why]++;
@@ -135,7 +162,7 @@ export function assembleExplore(inputs: ExploreInputs, deny: Denylist): ExploreP
   for (const e of inputs.timeline.events) if (!denyRow(deny, [e.id], e.title ?? "")) years[e.id] = e.year;
   counts.years.kept = Object.keys(years).length;
   const licences = KINDS.filter((k) => counts.sources.keptByKind[k] > 0).map((k) => ({ kind: k, ...EXPLORE_LICENCES[k], works: counts.sources.keptByKind[k] }));
-  const body = { source: "explore source index", sources: split.kept, years, foundingWorks: approved, referenceBasis: inputs.referenceBasis, licences, counts };
+  const body = { source: "explore source index", sources: split.kept, years, foundingWorks: approved, referenceBasis: inputs.referenceBasis, talks, licences, counts };
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: ExplorePack = { version: sha256.slice(0, 12), sha256, ...body };
   const { referenceBasis, ...rest } = pack;
@@ -154,7 +181,7 @@ export function describeExploreCounts(c: ExploreCounts): string[] {
   return [
     `sources: ${s.kept} kept of ${s.total}; denied prefix ${s.denied.prefix}, video ${s.denied.video}, path ${s.denied.path}, file ${s.denied.file}, text ${s.denied.text}`,
     `kept by kind: ${JSON.stringify(s.keptByKind)}; denied by kind: ${JSON.stringify(s.deniedByKind)}`,
-    `timeline years: ${c.years.kept} kept of ${c.years.total}; founding works: ${c.foundingWorks.approved} approved of ${c.foundingWorks.total}; reference terms: ${c.referenceTerms}`,
+    `timeline years: ${c.years.kept} kept of ${c.years.total}; founding works: ${c.foundingWorks.approved} approved of ${c.foundingWorks.total}; reference terms: ${c.referenceTerms}; talk titles: ${c.talks.kept} kept of ${c.talks.total}`,
   ];
 }
 

@@ -93,6 +93,7 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
     "default-src 'none'",
     `script-src 'self' 'sha256-${hash}'`,
     "connect-src 'self'",
+    "worker-src 'self'",
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",

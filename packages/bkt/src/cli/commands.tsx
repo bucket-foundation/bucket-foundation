@@ -25,7 +25,7 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
-import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
+import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
@@ -44,7 +44,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -118,6 +118,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
+      "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
       "POST /local/open": OPEN_BODY_BYTES,
     },

@@ -266,7 +266,7 @@ export function askRunningApp(dir: string, running: AppRecord, route: string | n
   return route === null ? "the Bucket window is already open" : `the Bucket window is already open and now shows ${route}`;
 }
 
-export const VIEWS = ["learn", "path", "quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"] as const;
+export const VIEWS = ["learn", "path", "quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history"] as const;
 const DAILY = /^\/work\/daily\/(\d{4}-\d{2}-\d{2})$/;
 
 export class RouteError extends Error {}

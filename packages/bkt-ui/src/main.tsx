@@ -48,7 +48,7 @@ function App() {
   }, [api]);
 
   const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
-  const canon = route.name === "canon" || route.name === "search";
+  const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
 
   return (
     <div className="shell">
