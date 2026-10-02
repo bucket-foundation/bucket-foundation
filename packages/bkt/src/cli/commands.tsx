@@ -17,6 +17,7 @@ import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textR
 import { keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
 import { EXIT } from "./table";
+import { graphView } from "./screens";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
 import { execSync, platformFor } from "../platform";
@@ -252,10 +253,10 @@ function openInWindow(route: string): void {
 }
 
 function tuiSources(session: Session): AppSources {
-  const graph = (canonPack as { graph?: { nodes?: unknown[]; edges?: unknown[] } }).graph;
+  const graph = graphView((canonPack as { graph?: unknown }).graph);
   return {
     canon: packCanon(canonPack as CanonPack),
-    graph: graph ? { nodes: graph.nodes?.length ?? 0, edges: graph.edges?.length ?? 0 } : null,
+    graph,
     research: () => {
       const saved = new HistoryStore(session.store, session.key).snapshot();
       return {
