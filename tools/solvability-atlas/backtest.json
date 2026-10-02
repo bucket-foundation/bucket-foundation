@@ -1,0 +1,115 @@
+{
+ "problems": 71,
+ "resolved": 15,
+ "auc": {
+  "solvability_score": {
+   "auc": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ]
+  },
+  "formal_term_alone": {
+   "auc": 0.883,
+   "ci95": [
+    0.742,
+    0.987
+   ]
+  },
+  "level_reversed": {
+   "auc": 0.723,
+   "ci95": [
+    0.57,
+    0.855
+   ]
+  },
+  "year_posed": {
+   "auc": 0.351,
+   "ci95": [
+    0.189,
+    0.526
+   ]
+  },
+  "market_count": {
+   "auc": 0.376,
+   "ci95": [
+    0.278,
+    0.485
+   ]
+  }
+ },
+ "by_level": {
+  "2": {
+   "problems": 1,
+   "resolved": 1
+  },
+  "3": {
+   "problems": 10,
+   "resolved": 5
+  },
+  "4": {
+   "problems": 28,
+   "resolved": 6
+  },
+  "5": {
+   "problems": 32,
+   "resolved": 3
+  }
+ },
+ "by_branch": {
+  "biophysics": {
+   "problems": 7,
+   "resolved": 1
+  },
+  "chemistry": {
+   "problems": 4,
+   "resolved": 0
+  },
+  "cosmology": {
+   "problems": 6,
+   "resolved": 0
+  },
+  "information": {
+   "problems": 18,
+   "resolved": 4
+  },
+  "mathematics": {
+   "problems": 23,
+   "resolved": 10
+  },
+  "mind": {
+   "problems": 4,
+   "resolved": 0
+  },
+  "physics": {
+   "problems": 9,
+   "resolved": 0
+  }
+ },
+ "by_lean": {
+  "none": {
+   "problems": 35,
+   "resolved": 2
+  },
+  "partial": {
+   "problems": 16,
+   "resolved": 3
+  },
+  "proved": {
+   "problems": 10,
+   "resolved": 10
+  },
+  "statement": {
+   "problems": 10,
+   "resolved": 0
+  }
+ },
+ "years_to_resolution": {
+  "n": 15,
+  "median": 62.0,
+  "min": 0,
+  "max": 387
+ },
+ "resolved_since_2000": 9,
+ "posed_before_resolved_check": true
+}
