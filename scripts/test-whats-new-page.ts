@@ -6,7 +6,9 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import DraftList, { type Draft } from "../src/app/admin/whats-new/DraftList";
 import GenerationCard, { STATE_LABEL, toolLabel, type Generation } from "../src/app/whats-new/GenerationCard";
-import { mergeEntries, pageSections } from "../src/lib/whats-new/public";
+import { Timeline } from "../src/app/whats-new/LiveTimeline";
+import { mergeEntries } from "../src/lib/whats-new/public";
+import { dayHeading, POLL_MS, rowTime, timeline, timelineKey, type TimelineEntry } from "../src/lib/whats-new/timeline";
 import { GENERATION_STATES } from "../src/lib/whats-new/schema";
 import type { StoredEntry } from "../src/lib/whats-new/store";
 
@@ -67,21 +69,52 @@ test("the card shows claim, score, tool, parent and evidence, and escapes posted
   assert.ok(!card(generation()).includes("not published"));
 });
 
-test("the page lists published generations in their own section and keeps them out of milestones", () => {
-  const base = { poster: "ada", created_at: "t", updated_at: "t", body_hash: "h", source: "own" };
+test("the timeline is one stream, newest first, under day headers, with a time on every row", () => {
+  const base = { poster: "ada", created_at: "2026-10-02T09:00:00.000Z", updated_at: "t", body_hash: "h", source: "own" };
   const stored: StoredEntry[] = [
-    { ...base, id: "gen-live", kind: "generation", category: "generation", review_state: "published", published_at: "2026-10-02T01:00:00.000Z", date: "2026-10-01", state: "refuted", title: "Live" },
-    { ...base, id: "gen-draft", kind: "generation", category: "generation", review_state: "draft", date: "2026-10-01", state: "tested", title: "Draft" },
+    { ...base, id: "gen-live", kind: "generation", category: "generation", review_state: "published", published_at: "2026-10-02T10:00:00.000Z", date: "2026-10-02", at: "2026-10-02T08:15:00.000Z", state: "refuted", title: "Live", machine_generated: true, tool: "x", evidence: ["https://github.com/bucket-foundation/bucket-foundation/pull/519"] },
+    { ...base, id: "gen-draft", kind: "generation", category: "generation", review_state: "draft", date: "2026-10-02", state: "tested", title: "Draft" },
     { ...base, id: "gen-dead", kind: "generation", category: "generation", review_state: "deleted", date: "2026-10-01" },
-    { ...base, id: "prod-live", kind: "production", category: "production", review_state: "published", published_at: "2026-10-02T01:00:00.000Z", date: "2026-10-01", title: "Prod" },
+    { ...base, id: "prod-live", kind: "production", category: "production", review_state: "published", published_at: "2026-10-02T11:00:00.000Z", date: "2026-10-02", at: "2026-10-02T09:30:00+02:00", title: "Prod", summary: "s", plot_title: "p", image_alt: "a", links: [], status: "merged" },
+    { ...base, id: "gen-auto", kind: "generation", category: "generation", review_state: "published", autopublished: true, published_at: "2026-10-02T12:00:00.000Z", date: "2026-09-23", at: "2026-09-23T17:40:00.000Z", state: "candidate", title: "Upstream solved", machine_generated: true, tool: "x" },
   ];
-  const sections = pageSections(mergeEntries([{ id: "pr-1", date: "2026-09-30", category: "pr-merged" }], stored));
-  assert.deepEqual(sections.generations.map((e) => e.id), ["gen-live"]);
-  assert.deepEqual(sections.productions.map((e) => e.id), ["prod-live"]);
-  assert.deepEqual(sections.milestones.map((e) => e.id), ["pr-1"]);
+  const merged = mergeEntries([{ id: "pr-1", date: "2026-10-01", category: "pr-merged", title: "Merged", pr: 12 }], stored);
+  const days = timeline(merged);
+  assert.deepEqual(days.map((d) => [d.day, d.rows.map((r) => [r.entry.id, r.size, r.time])]), [
+    ["2026-10-02", [["gen-live", "small", "08:15 UTC"], ["prod-live", "large", "07:30 UTC"]]],
+    ["2026-10-01", [["pr-1", "small", null]]],
+    ["2026-09-23", [["gen-auto", "small", "17:40 UTC"]]],
+  ]);
+  assert.equal(dayHeading("2026-10-02"), "Friday, October 2, 2026");
+  assert.equal(timelineKey({ id: "x", date: "2026-10-01", at: "nonsense" }), "2026-10-01T00:00:00.000Z");
+  assert.equal(rowTime({ id: "x", date: "2026-10-01" }), null);
+
+  const html = renderToStaticMarkup(createElement(Timeline, { entries: merged as unknown as TimelineEntry[] }));
+  const order = ["Friday, October 2, 2026", 'id="gen-live"', "08:15 UTC", "07:30 UTC", 'id="prod-live"', "Thursday, October 1, 2026", 'id="pr-1"', "no time", "Wednesday, September 23, 2026", 'id="gen-auto"'];
+  let at = -1;
+  for (const want of order) {
+    const next = html.indexOf(want, at + 1);
+    assert.ok(next > at, `${want} out of order`);
+    at = next;
+  }
+  for (const hidden of ["gen-draft", "gen-dead"]) assert.ok(!html.includes(hidden), hidden);
+  const live = html.slice(html.indexOf('id="gen-live"'), html.indexOf("</li>", html.indexOf('id="gen-live"')));
+  for (const want of ["made by a machine", ">refuted<", "line-through", "generation", 'href="https://github.com/bucket-foundation/bucket-foundation/pull/519"', "evidence ↗"]) assert.ok(live.includes(want), want);
+  const auto = html.slice(html.indexOf('id="gen-auto"'));
+  assert.ok(auto.includes("not reviewed by a person") && auto.includes("candidate, not yet tested"));
+  assert.ok(html.includes('href="https://github.com/bucket-foundation/bucket-foundation/pull/12"') && html.includes(">merged<"));
+  assert.ok(!live.includes("not reviewed by a person"));
+  assert.equal(renderToStaticMarkup(createElement(Timeline, { entries: [] })).includes("Nothing has been posted yet."), true);
+});
+
+test("the page reads the merged list, revalidates at 60 seconds and polls the public list once a minute", () => {
   const page = readFileSync(path.join(SRC, "app/whats-new/page.tsx"), "utf8");
-  for (const want of ["<GenerationCard", 'id="generations"', "sections.generations", "Claims made by a machine.", "Refuted claims stay on the page."]) assert.ok(page.includes(want), want);
-  assert.ok(!page.includes("admin/whats-new") && !page.includes("DraftList"));
+  for (const want of ["export const revalidate = 60;", "await publicWhatsNew()", "<LiveTimeline initial={entries} />", "Times are in UTC. The page checks for new entries every minute."]) assert.ok(page.includes(want), want);
+  for (const gone of ["MilestoneTimeline", "pageSections", "admin/whats-new"]) assert.ok(!page.includes(gone), gone);
+  const live = readFileSync(path.join(SRC, "app/whats-new/LiveTimeline.tsx"), "utf8");
+  assert.equal(POLL_MS, 60_000);
+  for (const want of ['"use client";', 'fetch("/api/whats-new/entries", { cache: "no-store" })', "window.setInterval(poll, POLL_MS)", "window.clearInterval(timer)", 'document.visibilityState !== "visible"']) assert.ok(live.includes(want), want);
+  assert.ok(!live.includes("state=draft") && !live.includes("authorization"));
 });
 
 test("the draft list shows who posted each draft and says nothing is public", () => {

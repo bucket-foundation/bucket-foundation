@@ -105,6 +105,10 @@ export class Unreachable extends Error {
 
 type Published = RawEntry & { published_at?: unknown };
 
+export function mailedInstantly(e: RawEntry & { published_at?: unknown }): boolean {
+  return e.category === "production" && typeof e.published_at === "string";
+}
+
 async function frozenEntries(all: readonly Published[], day: string, ledger: DigestLedger | undefined): Promise<{ entries: Published[]; frozen: boolean }> {
   const frozen = ledger ? await ledger.frozen(day) : null;
   if (frozen) return { entries: all.filter((e) => typeof e.id === "string" && frozen.includes(e.id)), frozen: true };
@@ -120,7 +124,7 @@ async function frozenEntries(all: readonly Published[], day: string, ledger: Dig
   return { entries, frozen: false };
 }
 
-async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
+export async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
   const res = await fetcher(RESEND_URL, {
     method: "POST",
     headers: { authorization: `Bearer ${config.apiKey}`, "content-type": "application/json", "idempotency-key": `whats-new/${day}/${to.key}` },
@@ -151,12 +155,14 @@ export async function sendDailyDigest(opts: {
   clock?: () => number;
   gapMs?: number;
   progress?: MarkStore;
+  instant?: (e: Published) => boolean;
 }): Promise<SendReport> {
   const { config, now } = opts;
   const fetcher = opts.fetcher ?? fetch;
   const clock = opts.clock ?? Date.now;
   const day = digestDay(now);
-  const all: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
+  const loaded: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
+  const all = opts.instant ? loaded.filter((e) => !opts.instant?.(e)) : loaded;
   const ledger = opts.ledger;
   const picked = await frozenEntries(all, day, ledger);
   let digest = buildDigest(picked.entries, day);
