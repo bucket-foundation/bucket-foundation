@@ -251,6 +251,75 @@ What is new in 2026 and has no 2022 precedent:
 
 ---
 
+## The desktop turn, 2026-10-01
+
+On 2026-10-01 the founder moved Bucket from a website to a desktop
+app. His words that day:
+
+- "everything on web is for the desktop app to download"
+- "the knowledge graph, learning system, research os needs to be functional"
+- "canon and canon search should be in the same place"
+- "you need strong tui cli"
+- "lean compatible math compatible"
+- "depin is a highly integral direction" <!-- voice-ignore-line -->
+
+**Why.** A research tool that runs on the reader's machine keeps
+working offline, keeps notes local, and can later join a network of
+nodes. The website became the place to get the app.
+
+**Architecture decision.** Today the app is TypeScript with Bun and
+React inside a Tauri 2 shell written in Rust. The target moves the
+engine into Rust crates behind contract v1, with Lean proofs for
+ranking, grading, scheduling and the payment split. A DePIN node and
+USDC settlement on Base are gated to later phases. The plan lives in
+`docs/ARCHITECTURE-TARGET.md`; the data format, `bucket.data/1`, in
+`docs/DATA-STANDARD.md`.
+
+**Production.** Three releases promoted dev to main: #505 with the
+short download page and the Canon header link, #512 with sign-in
+closed and the daily quiz in the app, and #541 with Explore minus
+the sample advisors, 150 primary papers and the What's New API.
+
+**What shipped the same day.**
+
+- App: #523, #538 and #544 put plain words on every screen, replace
+  Jobs with Analyze data and drop file dialogs from the default
+  screens; #530 and #531 run canon search with the globe, drawer and
+  circle on a local pack; #548 adds the grip sphere and topic graph
+  on Path.
+- Command line: #516 scopes keyring entries to the data folder; #535
+  plain output; #537 `bkt doctor` and `bkt completion`; #558
+  `bkt search`, `bkt canon show` and TUI screens 1 to 5; #554
+  `bkt learn` and `bkt daily`, in review.
+- Quiz: #528 caps stems at 15 tokens and options at 5; #556 adds the
+  question sample space, the short forms and the card key.
+- Explore: #532 save and cite a result; #542 an explicit id
+  tie-break in the rankers; #533 ranking with a pinned founding work,
+  in review.
+- Proofs: #536 ranking order, #545 log-scale grade, #547 review
+  scheduling clamps, #550 payment split with contract vectors, each
+  replayed against the TypeScript code.
+- Rust: #539 reads the keyring entries the TypeScript app stored;
+  #540 engine feasibility experiments; #553 target architecture v9.
+- Data and posts: #551 the `bucket.data/1` draft; #552 the
+  Generations section and draft preview for machine posts on What's
+  New.
+
+**Rights.** The Kruse corpus stays private until its author rules.
+167 video ids and the blog corpus are filtered from every pack, which
+leaves 364 of 599 canon excerpts in the local pack. No app release
+ships third-party quotations until the founder rules on them.
+
+**Open decisions.**
+
+- Kruse corpus: license, exclude for good, or ask the author.
+- Third-party quotations in app releases.
+- When the Rust engine replaces the TypeScript one.
+- When the DePIN node and USDC settlement on Base move out of the
+  gated phases.
+
+---
+
 ## The one-line summary of the transformation
 
 **2022:** *"Let's make history a discussion"* → a social network for
