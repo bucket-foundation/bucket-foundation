@@ -1243,6 +1243,46 @@ label.row:not(.file) {
   overflow-wrap: anywhere;
 }
 
+.job-body {
+  margin-top: 12px;
+}
+
+.big-line {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+table.columns {
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+table.columns th,
+table.columns td {
+  text-align: left;
+  padding: 6px 24px 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+table.columns thead th {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.notes {
+  margin: 8px 0 12px;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.details {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .foot-link {
   margin-top: auto;
   padding: 8px;

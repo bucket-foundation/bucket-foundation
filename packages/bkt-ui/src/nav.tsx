@@ -25,6 +25,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "canon" }, label: "Canon" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
+  { route: { name: "jobs" }, label: "Analyze data" },
 ];
 
 export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add" }, label: "Add your own" };
