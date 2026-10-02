@@ -60,6 +60,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   withdrawn_factoids: [{ columns: ["factoid_id"], nullable: [] }],
   work_quiz_attempts: [{ columns: ["id"], nullable: [] }],
   work_quiz_cards: [{ columns: ["learner_id", "question_id"], nullable: [] }],
+  work_quiz_coverage: [{ columns: ["learner_id", "cell", "fact_id"], nullable: [] }],
 };
 
 export function orderIsTotal(table: string, ordered: readonly string[], pinned: readonly string[]): boolean {
