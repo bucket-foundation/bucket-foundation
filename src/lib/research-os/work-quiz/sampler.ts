@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { compoundFactId, FACT_JOIN } from "./fact";
+import { cardFields, compoundFactId, FACT_JOIN } from "./fact";
 import { FORM_MAKERS, type SampledQuestion } from "./forms";
 import { seededRng, type Rng } from "./generate";
 import { checkLimits } from "./limits";
@@ -40,6 +40,7 @@ export interface SampleInput {
   coverage?: readonly CoverageRow[];
   slots?: number;
   reviewSlots?: number;
+  exclude?: readonly string[];
 }
 
 export interface SampledQuiz {
@@ -109,7 +110,7 @@ export function sampleQuiz(input: SampleInput): SampledQuiz {
   const due = input.due ?? [];
   const coverage = input.coverage ?? [];
   const slots = input.slots ?? QUIZ_SLOTS;
-  const used = new Set<string>();
+  const used = new Set<string>(input.exclude ?? []);
   const questions: QuizQuestion[] = [];
   const picks: SamplePick[] = [];
   const overdue = due.filter((c) => c.dueAt <= now).sort((a, b) => a.dueAt - b.dueAt || a.cardKey.localeCompare(b.cardKey));
@@ -155,4 +156,13 @@ export function recordPicks(coverage: readonly CoverageRow[], picks: readonly Sa
 
 export function splitFactId(id: string): string[] {
   return id.split(FACT_JOIN);
+}
+
+export function usedOn(coverage: readonly CoverageRow[], day: string): string[] {
+  return Array.from(new Set(coverage.filter((r) => r.lastDay === day && r.picks > 0 && r.cell !== "miss").flatMap((r) => splitFactId(r.factId))));
+}
+
+export function dueFrom(question: QuizQuestion, dueAt: number): DueCard {
+  const { fact_id, card_key } = cardFields(question);
+  return { cardKey: card_key, factIds: splitFactId(fact_id), question, dueAt };
 }

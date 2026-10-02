@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { makeForm } from "../src/lib/research-os/work-quiz/forms";
-import { DAY_MS, QUIZ_SLOTS, REVIEW_SLOTS, builtCells, cellStats, daySeed, factWeights, recordPicks, sampleQuiz, type CoverageRow, type DueCard } from "../src/lib/research-os/work-quiz/sampler";
+import { DAY_MS, QUIZ_SLOTS, REVIEW_SLOTS, builtCells, cellStats, daySeed, factWeights, recordPicks, sampleQuiz, usedOn, type CoverageRow, type DueCard } from "../src/lib/research-os/work-quiz/sampler";
 import type { WorkSources } from "../src/lib/research-os/work-quiz/types";
 
 const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
@@ -83,4 +83,16 @@ test("misses and overdue days raise a fact's weight", () => {
   const w = factWeights([{ cell: "order/order/1", factId: "pr:1+pr:2+pr:3", picks: 1, misses: 2, lastDay: "2026-09-30" }], [due("a", ["bead:x1"], now - 4 * DAY_MS)], now);
   assert.equal(w.get("pr:2"), 5);
   assert.equal(w.get("bead:x1"), 5);
+});
+
+test("samples on one day share one no-repeat set through the facts already used that day", () => {
+  let coverage: CoverageRow[] = [];
+  const seen: string[] = [];
+  for (let i = 0; i < 8; i++) {
+    const q = sampleQuiz({ day: "2026-10-01", sources: SOURCES, coverage, slots: 1, reviewSlots: 0, exclude: usedOn(coverage, "2026-10-01") });
+    seen.push(...q.picks.flatMap((p) => p.factIds));
+    coverage = recordPicks(coverage, q.picks, "2026-10-01");
+  }
+  assert.equal(new Set(seen).size, seen.length);
+  assert.equal(seen.length >= 8, true);
 });

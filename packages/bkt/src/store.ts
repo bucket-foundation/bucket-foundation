@@ -102,7 +102,8 @@ export const MIGRATIONS: Migration[] = [
      updated_at integer not null);
    create index work_quiz_cards_due on work_quiz_cards(due);`,
   `create table work_quiz_coverage (cell text not null, fact_id text not null, picks integer not null default 0, misses integer not null default 0,
-     last_day text not null, primary key (cell, fact_id));`,
+     last_day text not null, primary key (cell, fact_id));
+   alter table work_quiz_cards add column question text;`,
 ];
 
 export interface AttemptInput {

@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import { LOCAL_ONLY_TABLES, MIGRATIONS, SCHEMA_VERSION, Store } from "../src/store";
 import { WorkQuizStore, workQuizRoutes } from "../src/work-quiz";
-import { cellStats, sampleQuiz } from "../../../src/lib/research-os/work-quiz/sampler";
+import { cellStats, dueFrom, sampleQuiz } from "../../../src/lib/research-os/work-quiz/sampler";
 import { parseDailyQuiz } from "../src/daily-quiz";
 import type { BeadFact } from "../../../src/lib/research-os/work-quiz/types";
 
@@ -68,6 +68,52 @@ describe("schema 10 coverage", () => {
     expect(wq.daily.get(day)!.questions.map((q) => q.id)).toEqual(want.questions.map((q) => q.id));
     expect(() => parseDailyQuiz({ day, questions: want.questions })).not.toThrow();
     expect(cellStats(wq.coverage()).size).toBe(want.picks.length);
+    s.close();
+  });
+
+  test("/next serves a card that came due from a wrong answer, and a day's samples never repeat a fact", async () => {
+    const key = newDataKey();
+    const s = new Store(join(dir, "bkt.db"), key);
+    const wq = new WorkQuizStore(s, key);
+    wq.setBeads(BEADS, 1);
+    let at = Date.parse("2026-10-01T09:00:00");
+    const routes = workQuizRoutes(wq, { now: () => at, log: () => {} });
+    const next = async () => (await (await routes["GET /local/work-quiz/next"](new Request("http://x"), new URL("http://x/"))).json()) as { id: string };
+    const first = await next();
+    const ans = await routes["POST /local/work-quiz/answer"](new Request("http://x", { method: "POST", body: JSON.stringify({ id: first.id, response: "no such choice", elapsedMs: 1000 }) }), new URL("http://x/"));
+    expect(((await ans.json()) as { correct: boolean }).correct).toBe(false);
+    expect(wq.dueCards(at + 86_400_000).map((c) => c.question.id)).toEqual([first.id]);
+    at += 86_400_000 + 1;
+    expect((await next()).id).toBe(first.id);
+    const facts: string[] = [];
+    at = Date.parse("2026-10-05T09:00:00");
+    for (let i = 0; i < 6; i++) {
+      const q = await next();
+      const day = wq.coverage().filter((r) => r.lastDay === "2026-10-05" && r.cell !== "miss");
+      facts.push(...day.flatMap((r) => r.factId.split("+")));
+      expect(q.id).toBeTruthy();
+    }
+    const today = wq.coverage().filter((r) => r.lastDay === "2026-10-05" && r.cell !== "miss").flatMap((r) => r.factId.split("+"));
+    expect(new Set(today).size).toBe(today.length);
+    expect(today.length).toBeGreaterThanOrEqual(6);
+    s.close();
+  });
+
+  test("the daily build places due cards in the review slots", async () => {
+    const key = newDataKey();
+    const s = new Store(join(dir, "bkt.db"), key);
+    const wq = new WorkQuizStore(s, key);
+    wq.setBeads(BEADS, 1);
+    const sources = { beads: BEADS, prs: [], notes: [], repoUrl: null };
+    const old = sampleQuiz({ day: "2026-09-20", sources }).questions[0];
+    wq.record(old, false, 1, 1000, Date.parse("2026-09-20T10:00:00"));
+    const at = Date.parse("2026-10-01T15:00:00");
+    const day = new Date(at).toLocaleDateString("en-CA");
+    expect(dueFrom(old, 0).cardKey).toContain("|");
+    const routes = workQuizRoutes(wq, { now: () => at, log: () => {} });
+    const res = await routes["GET /local/work-quiz/daily"](new Request("http://x"), new URL(`http://x/?day=${day}`));
+    const body = (await res.json()) as { questions: { id: string }[] };
+    expect(body.questions[0].id).toBe(old.id);
     s.close();
   });
 });
