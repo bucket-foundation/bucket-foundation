@@ -4,9 +4,11 @@ import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
 import type { Question, Rating } from "./grade";
 import type { Route } from "./serve";
 import type { Pack, PackDeck } from "./pack/export";
+import type { ShortFile } from "./short-fields";
 import { deckOf, type Store } from "./store";
 
 export interface LocalOptions {
+  shorts?: ShortFile;
   now?: () => number;
   seed?: () => string;
   content?: Pick<Pack, "decks" | "atoms">;
@@ -50,7 +52,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
   return {
     "GET /local/quiz": (_req, url) => {
       const s = seed();
-      const qs = quizQuestions(store, pickSession(store, now(), count(url, 10, 50), s), s);
+      const qs = quizQuestions(store, pickSession(store, now(), count(url, 10, 50), s, opts.shorts), s, opts.shorts);
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
       return json({ questions: qs.map(({ itemId, prompt, choices, limitSec }) => ({ itemId, prompt, choices, limitSec })) });

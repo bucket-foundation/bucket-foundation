@@ -9,6 +9,7 @@ import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
 import type { Env, ExecSync, Platform } from "./platform";
+import { SHORT_FIELDS } from "./short-fields";
 import { SCHEMA_VERSION } from "./store";
 
 export type CheckStatus = "ok" | "warn" | "fail";
@@ -137,7 +138,8 @@ function contentPack(d: DoctorDeps, facts: DbFacts | null): Check {
   const sum = packChecksum(d.pack);
   if (sum !== d.pack.version) return fail("content-pack", name, `Version ${d.pack.version} has checksum ${sum}; the two should match.`, "Install bkt again: run bkt update.");
   const held = facts?.pack ? (facts.pack === d.pack.version ? " The database holds the same version." : " The next bkt command loads it into the database.") : "";
-  return ok("content-pack", name, `Version ${d.pack.version}, ${d.pack.items.length} items, checksum matches.${held}`);
+  const quiz = d.pack.items.filter((i) => SHORT_FIELDS.items[i.id]).length;
+  return ok("content-pack", name, `Version ${d.pack.version}, ${d.pack.items.length} items, ${quiz} with short quiz fields, checksum matches.${held}`);
 }
 
 export function exploreChecksum(pack: ExplorePack): string {

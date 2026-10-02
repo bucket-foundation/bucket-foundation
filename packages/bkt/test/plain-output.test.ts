@@ -17,6 +17,7 @@ import { GAIN_LABEL, RATIO_LABEL, reportRows, reportSentences } from "../src/hai
 import { MODEL } from "../src/hai/score";
 import type { Report } from "../src/hai/session";
 import { HaiStore } from "../src/hai/store";
+import { SHORT_FIELDS } from "../src/short-fields";
 import { HaiApp } from "../src/hai/view";
 import { MemoryKeyring } from "../src/keyring";
 import { openSession, type Session } from "../src/setup";
@@ -277,9 +278,13 @@ const items: Item[] = Array.from({ length: 120 }, (_, n) => ({
   answer: `It is ${words[(n + 3) % 8]} number ${n}${"!".repeat(n % 5)}`,
 }));
 
+const quizItems: Item[] = Object.entries(SHORT_FIELDS.items)
+  .slice(0, 12)
+  .map(([id, f], n) => ({ id, atomId: `quiz ${n}`, branch: id.split("/")[0], title: `Quiz ${n}`, level: "recall", prompt: f.short_stem, answer: f.short_answer }));
+
 async function session(): Promise<Session> {
   const s = await openSession(new MemoryKeyring(), join(dir, "data"));
-  s.store.importPack("pack one", items.slice(0, 12));
+  s.store.importPack("pack one", quizItems);
   return s;
 }
 

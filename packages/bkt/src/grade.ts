@@ -13,6 +13,8 @@ export interface Item {
   level: string;
   prompt: string;
   answer: string;
+  shortPrompt?: string;
+  shortAnswer?: string;
 }
 
 export interface Question {

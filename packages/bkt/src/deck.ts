@@ -1,11 +1,28 @@
 import type { EncEdge } from "../../../src/lib/academy/engine";
-import { buildQuestion, gradeChoice, isDue, seededRandom, type GradeResult, type Item, type Question, type Rating } from "./grade";
+import { gradeChoice, isDue, seededRandom, type GradeResult, type Item, type Question, type Rating } from "./grade";
+import { buildShortQuestion, hasShort, SHORT_FIELDS, withShort, type ShortFile } from "./short-fields";
 import type { Store } from "./store";
 
-export function pickSession(store: Store, now: number, size: number, seed: string): Item[] {
-  const byId = new Map(store.items().map((i) => [i.id, i]));
-  const ids = store.dueItemIds(now, size);
-  if (ids.length < size) ids.push(...store.newItemIds(size - ids.length));
+export function quizPool(store: Store, shorts: ShortFile = SHORT_FIELDS): Item[] {
+  return store.items().map((i) => withShort(i, shorts)).filter(hasShort);
+}
+
+export function pickSession(store: Store, now: number, size: number, seed: string, shorts: ShortFile = SHORT_FIELDS): Item[] {
+  const pool = quizPool(store, shorts);
+  const byId = new Map(pool.map((i) => [i.id, i]));
+  const byAtom = new Map<string, string>();
+  for (const i of pool) if (!byAtom.has(`${i.branch}|${i.atomId}`)) byAtom.set(`${i.branch}|${i.atomId}`, i.id);
+  const all = new Map(store.items().map((i) => [i.id, i]));
+  const quizzable = (id: string) => {
+    const i = all.get(id);
+    return i ? byAtom.get(`${i.branch}|${i.atomId}`) : undefined;
+  };
+  const ids: string[] = [];
+  const take = (list: string[]) => {
+    for (const id of list.map(quizzable)) if (id && ids.length < size && !ids.includes(id)) ids.push(id);
+  };
+  take(store.dueItemIds(now, size * 4));
+  if (ids.length < size) take(store.newItemIds(size * 4));
   if (ids.length < size) {
     const rand = seededRandom(seed);
     const rest = [...byId.keys()].filter((id) => !ids.includes(id));
@@ -14,9 +31,9 @@ export function pickSession(store: Store, now: number, size: number, seed: strin
   return ids.map((id) => byId.get(id)).filter((i): i is Item => !!i);
 }
 
-export function quizQuestions(store: Store, items: Item[], seed: string): Question[] {
-  const pool = store.items();
-  return items.map((i) => buildQuestion(i, pool, seed));
+export function quizQuestions(store: Store, items: Item[], seed: string, shorts: ShortFile = SHORT_FIELDS): Question[] {
+  const pool = quizPool(store, shorts);
+  return items.map((i) => buildShortQuestion(withShort(i, shorts), pool, seed)).filter((q): q is Question => q !== null);
 }
 
 export function answerQuiz(store: Store, q: Question, choice: number | null, elapsedMs: number, now: number, enc: Record<string, EncEdge[]> = {}): GradeResult {
