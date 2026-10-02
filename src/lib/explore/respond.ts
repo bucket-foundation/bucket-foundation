@@ -1,26 +1,35 @@
 import { parseCanonSearchParams, type CanonSearchParams, type CanonSearchResult } from "../canon-rank";
 import type { LoadedAdvisors } from "./advisors";
-import type { FoundingCard } from "./founding";
-import { ANY_TERM, type Floor } from "./rank";
-import type { ExploreCorpus, needsClosest as NeedsClosest, rankedPools as RankedPools, semanticExcerpts as SemanticExcerpts } from "./ranked";
-import { HIT_TYPES, advisorId, unify, type Hit, type HitType } from "./search";
-import type { Talk } from "./talks";
+import { ANY_TERM, type Floor, type RankStats } from "./rank";
+import { HIT_TYPES, advisorId, unify, type ExcerptSource, type Hit, type HitType, type Talk } from "./search";
 import { searchSources, sourceToHit, type Prepared } from "./source-index";
 
 export const EXPLORE_DEFAULT_TOP_K = 40;
 export const MAP_ADVISOR_CAP = 400;
 
-export interface ExploreRanking {
-  corpus: () => Promise<ExploreCorpus>;
-  founding: (query: string) => { hitId: string | null; bonus: number; card: FoundingCard } | null;
+type CanonFound = Extract<CanonSearchResult, { ok: true }>;
+
+export interface RankingCorpus {
+  stats: RankStats;
+}
+
+export interface RankingFounding {
+  hitId: string | null;
+  bonus: number;
+  card: unknown;
+}
+
+export interface ExploreRanking<C extends RankingCorpus = RankingCorpus> {
+  corpus: () => Promise<C>;
+  founding: (query: string) => RankingFounding | null;
   talkFor: (file: string) => Talk | null;
-  rankedPools: typeof RankedPools;
-  semanticExcerpts: typeof SemanticExcerpts;
-  needsClosest: typeof NeedsClosest;
+  rankedPools: (query: string, corpus: C, opts: { branch?: string; bonus?: Map<string, number>; year?: (concept: string) => number | null; floor?: Floor }) => { sources: Hit[]; excerpts: ExcerptSource[]; files: Hit[] };
+  semanticExcerpts: (query: string, corpus: C, found: CanonFound["results"], year?: (concept: string) => number | null, talk?: (file: string) => Talk | null) => ExcerptSource[];
+  needsClosest: (query: string, rows: number) => boolean;
 }
 
 export interface ExploreSearchDeps {
-  ranking?: ExploreRanking;
+  ranking?: ExploreRanking<any>;
   canon: (p: CanonSearchParams) => CanonSearchResult;
   advisors: () => LoadedAdvisors;
   sources: () => Prepared[] | Promise<Prepared[]>;
@@ -89,7 +98,7 @@ async function rankedSearch(
   t0: number,
   params: CanonSearchParams,
   types: HitType[],
-  found: Extract<CanonSearchResult, { ok: true }>,
+  found: CanonFound,
 ): Promise<ExploreReply> {
   const semantic = found.mode === "semantic";
   const founding = params.branch ? null : ranking.founding(params.q);
