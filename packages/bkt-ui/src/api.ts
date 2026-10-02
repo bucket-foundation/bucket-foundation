@@ -150,6 +150,7 @@ export interface JobView {
   logTruncated: boolean;
   result: unknown;
   error: string | null;
+  install?: string | null;
 }
 
 export interface StoredReview {
