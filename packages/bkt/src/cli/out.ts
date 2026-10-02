@@ -51,6 +51,8 @@ export const JSON_SHAPES = {
     ["probes", ["id", "bank_version", "seed", "started_at", "completed_at", "due_at", "retest_completed_at"]],
     ["answers", ["id", "probeId", "pairId", "itemId", "condition", "phase", "choice", "correct", "acceptedAi", "elapsedMs", "at"]],
   ],
+  search: ["query", "mode", ["results", ["id", "branch", "concept", "title", "score", "url", "excerpt", "evidence"]]],
+  "canon show": ["id", "branch", "concept", "title", "text", "url", ["evidence", ["title", "author", "kind", "url", "score", "text"]]],
 } as const satisfies Record<string, Shape>;
 
 export type ShapeName = keyof typeof JSON_SHAPES;

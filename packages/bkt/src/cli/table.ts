@@ -6,7 +6,7 @@ export interface OptionSpec {
   help: string;
 }
 
-export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit";
+export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit" | "search" | "graph" | "research" | "jobs";
 
 export interface CommandSpec {
   name: string;
@@ -152,6 +152,23 @@ export const TABLE: CommandSpec[] = [
     palette: { run: "help", hint: "key bindings", order: 5 },
   },
   { name: "quit", summary: "exit bkt", tuiOnly: true, palette: { run: "quit", hint: "exit bkt", order: 6 } },
+  {
+    name: "search",
+    summary: "search the canon held on this device",
+    args: "<words>",
+    positionals: [1, 64],
+    json: true,
+    palette: { run: "search", hint: "search the canon", order: 7 },
+    options: {
+      limit: { type: "string", value: "N", help: "show at most N results, 1 to 50; 20 when omitted" },
+      branch: { type: "string", value: "BRANCH", help: "keep results from one branch, such as 05-biophysics" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per result: number, score, branch, title, passages, link" },
+    },
+  },
+  { name: "canon show", summary: "print one canon excerpt with its evidence passages", args: "<number>", positionals: [1, 1], json: true },
+  { name: "graph", summary: "knowledge graph", tuiOnly: true, palette: { run: "graph", hint: "knowledge graph", order: 8 } },
+  { name: "research", summary: "notes and saved results", tuiOnly: true, palette: { run: "research", hint: "notes and saved results", order: 9 } },
+  { name: "jobs", summary: "saved analyses", tuiOnly: true, palette: { run: "jobs", hint: "saved analyses", order: 10 } },
 ];
 
 export const CLI_COMMANDS = TABLE.filter((c) => !c.tuiOnly);
