@@ -277,8 +277,11 @@ export function validAt(value: unknown): string {
   const [y, mo, d] = value.slice(0, 10).split("-").map(Number);
   const local = new Date(Date.UTC(y, mo - 1, d));
   if (local.getUTCMonth() !== mo - 1 || local.getUTCDate() !== d) throw new Invalid("at", "must be a real time");
+  if (ms < AT_EARLIEST || ms > Date.now() + 86_400_000) throw new Invalid("at", "must fall between 2020-01-01 and one day from now");
   return new Date(ms).toISOString();
 }
+
+const AT_EARLIEST = Date.parse("2020-01-01T00:00:00Z");
 
 function production(body: Record<string, unknown>): { entry: ProductionEntry; image: ImageInput | null } {
   knownKeys(body, PRODUCTION_KEYS);

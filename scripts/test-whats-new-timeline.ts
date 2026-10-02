@@ -304,3 +304,43 @@ test("the publish route mails productions alone, and the cron resumes the instan
   assert.ok(retractRoute.includes("if (result.publicChanged) revalidateWhatsNew();"));
   assert.deepEqual(mailWiring({}), { status: 503, error: "Digest email is not configured.", missing: ["RESEND_API_KEY", "WHATS_NEW_UNSUBSCRIBE_SECRET", "INVITE_POSTAL_ADDRESS"] });
 });
+
+test("at outside 2020-01-01 to one day from now is refused", () => {
+  for (const bad of ["2019-12-31T23:59:59Z", new Date(Date.now() + 2 * 86_400_000).toISOString()]) {
+    const res = parseEntryBody(generation("gen-a", { at: bad }));
+    assert.deepEqual([res.ok, !res.ok && res.field, !res.ok && res.error], [false, "at", "at must fall between 2020-01-01 and one day from now"], bad);
+  }
+  for (const ok of ["2020-01-01T00:00:00Z", new Date(Date.now() + 3_600_000).toISOString()]) assert.ok(parseEntryBody(generation("gen-a", { at: ok })).ok, ok);
+});
+
+test("a poster retracts only rows it autopublished; an admin-published entry needs an admin", async (t) => {
+  const b = await bench(t);
+  assert.equal((await post(b.deps, generation("gen-bot"), tokens.bot)).status, 201);
+  assert.equal((await publish(b.deps, b.store, "gen-bot")).status, 200);
+  assert.equal((await retract(b.deps, "gen-bot", tokens.bot)).status, 200);
+  assert.equal((await post(b.deps, production("prod-bob"), tokens.bob)).status, 201);
+  assert.equal((await publish(b.deps, b.store, "prod-bob")).status, 200);
+  const refused = await retract(b.deps, "prod-bob", tokens.bob);
+  assert.deepEqual([refused.status, refused.body?.error], [409, "An admin published this entry, so only an admin can retract it."]);
+  assert.equal((await readEntry(b.store, "prod-bob"))?.review_state, "published");
+  assert.equal((await retract(b.deps, "prod-bob", tokens.root)).status, 200);
+});
+
+test("the instant email skips while its entry sits in a digest freeze", async (t) => {
+  const b = await bench(t);
+  assert.equal((await post(b.deps, production("prod-a"))).status, 201);
+  assert.equal((await publish(b.deps, b.store, "prod-a")).status, 200);
+  const ledger = digestLedger(b.store);
+  await ledger.freeze("2026-10-01", ["prod-a"]);
+  await queueInstant(b.store, "prod-a", b.now.value);
+  const outbox: Mail[] = [];
+  const progress = fileMarks(path.join(b.root, "progress"));
+  const run = () => sendInstant({ id: "prod-a", entries: () => loadPublicEntries([], b.store), store: b.store, ledger, recipients: async () => RECIPIENTS, config: CONFIG, progress, now: b.now.value, fetcher: mailer(outbox), gapMs: 0 });
+  assert.equal((await run()).skipped, "frozen");
+  assert.deepEqual([outbox.length, await queuedInstant(b.store)], [0, ["prod-a"]]);
+  await ledger.markMailed("prod-a", "2026-10-01");
+  assert.equal((await run()).skipped, "frozen");
+  b.now.value += 2 * 86_400_000;
+  assert.equal((await run()).skipped, "mailed");
+  assert.deepEqual([outbox.length, await queuedInstant(b.store)], [0, []]);
+});

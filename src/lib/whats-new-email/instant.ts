@@ -1,6 +1,6 @@
 import type { MarkStore } from "../download/marks";
 import type { DocStore } from "../whats-new/store";
-import { buildDigest, renderDigest, utcDay, type RawEntry } from "./digest";
+import { buildDigest, digestDay, renderDigest, utcDay, type RawEntry } from "./digest";
 import { sendOne, SEND_GAP_MS, Unreachable, type DigestConfig, type DigestLedger, type Recipient } from "./send";
 import { unsubscribeUrl } from "./unsubscribe";
 
@@ -15,7 +15,7 @@ export interface InstantReport {
   sent: number;
   failed: number;
   pending: number;
-  skipped?: "retracted" | "done" | "offline" | "mailed";
+  skipped?: "retracted" | "done" | "offline" | "mailed" | "frozen";
 }
 
 export async function queueInstant(store: DocStore, id: string, at: number): Promise<void> {
@@ -53,6 +53,9 @@ export async function sendInstant(opts: {
   if (!entry) {
     await dequeue(store, id);
     return { ...base, skipped: "retracted" };
+  }
+  for (const day of [digestDay(opts.now), utcDay(opts.now)]) {
+    if ((await ledger.frozen(day))?.includes(id)) return { ...base, skipped: "frozen" };
   }
   const mailed = await ledger.mailedOn(id);
   if (mailed !== null && mailed !== INSTANT_MARK) {

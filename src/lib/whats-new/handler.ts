@@ -352,6 +352,7 @@ export async function handleRetract(req: EntryRequest, deps: Deps): Promise<Resu
     if ("refused" in found) return found.refused;
     const { entry } = found;
     if (poster.scope !== "admin" && entry.poster !== poster.name) return fail(404, "No stored entry has this id.");
+    if (poster.scope !== "admin" && entry.review_state === "published" && entry.autopublished !== true) return fail(409, "An admin published this entry, so only an admin can retract it.");
     if (entry.review_state === "draft") return { status: 200, body: { ok: true, id: entry.id, review_state: "draft", changed: false } };
     const now = new Date((deps.clock ?? Date.now)()).toISOString();
     await appendAudit(
