@@ -1,6 +1,6 @@
-import data from "@/data/founding-works.json";
+import data from "../../data/founding-works.json";
 import { matchFounding, type FoundingMatch, type FoundingRow } from "./rank";
-import { sourceHitId, sourceUrl, type SourceKind } from "./sources";
+import { sourceHitId, sourceUrl, type SourceKind } from "./source-index";
 
 export type Env = Record<string, string | undefined>;
 

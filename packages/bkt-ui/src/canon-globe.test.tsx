@@ -236,7 +236,7 @@ describe("canon screen with the globe", () => {
 
 describe("site requests in the window", () => {
   test("only the listed site paths are rewritten, and the session code goes to this window alone", async () => {
-    expect(SITE_ROUTES).toEqual({ "/api/canon/search": "/local/canon/search" });
+    expect(SITE_ROUTES).toEqual({ "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search" });
     const sent: { url: string; auth: string | null; method: string }[] = [];
     const base = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const req = input instanceof Request ? input : null;
@@ -264,7 +264,7 @@ describe("site requests in the window", () => {
       "//evil.example/api/canon/search?q=x",
       `${ORIGIN}/api/canon/search/extra?q=x`,
       `${ORIGIN}/api/canon/searchx`,
-      `${ORIGIN}/api/explore/search?q=x`,
+      `${ORIGIN}/api/explore/search/extra?q=x`,
       "/local/decks",
       "/session",
       "/textures/earth/landmask-2k.bin",

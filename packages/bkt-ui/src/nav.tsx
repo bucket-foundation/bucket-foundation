@@ -6,6 +6,7 @@ import { AtlasesView } from "./views/Atlases";
 import { CanonSearchView } from "./views/CanonSearch";
 import { DataView } from "./views/Data";
 import { DeckView } from "./views/Deck";
+import { ExploreView } from "./views/Explore";
 import { HistoryView } from "./views/History";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
@@ -24,6 +25,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "review" }, label: "Review" },
   { route: { name: "work" }, label: "Work quiz" },
   { route: { name: "canon" }, label: "Canon" },
+  { route: { name: "explore" }, label: "Explore" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
   { route: { name: "jobs" }, label: "Analyze data" },
@@ -48,6 +50,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "atlases") return <AtlasesView api={api} />;
   if (route.name === "canon") return <CanonSearchView api={api} page="globe" find={route.find} />;
   if (route.name === "search") return <CanonSearchView api={api} page="search" id={route.id} />;
+  if (route.name === "explore") return <ExploreView api={api} />;
   if (route.name === "daily") return <DailyQuizView key={route.day} api={api} day={route.day} />;
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;

@@ -73,6 +73,8 @@ export interface UiAssets {
 const UI_DIRS: { dir: string; types: Record<string, string> }[] = [
   { dir: "assets", types: TYPES },
   { dir: "textures/earth", types: { ".bin": "application/octet-stream", ".json": "application/json" } },
+  { dir: "explore", types: { ".txt": "text/plain; charset=utf-8" } },
+  { dir: "explore/fixtures", types: { ".pdb": "chemical/x-pdb" } },
 ];
 
 export const UI_ENTRY = "/assets/app.js";
@@ -131,6 +133,7 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
     "default-src 'none'",
     `script-src 'self' 'sha256-${hash}'`,
     "connect-src 'self'",
+    "worker-src 'self'",
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",

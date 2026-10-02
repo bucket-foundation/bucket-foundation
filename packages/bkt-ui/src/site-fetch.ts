@@ -1,6 +1,6 @@
 import { href } from "./router";
 
-export const SITE_ROUTES: Readonly<Record<string, string>> = { "/api/canon/search": "/local/canon/search" };
+export const SITE_ROUTES: Readonly<Record<string, string>> = { "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search" };
 export const CANON_TROUBLE = "bkt:canon-trouble";
 
 const seen = new Map<string, number>();
@@ -17,6 +17,7 @@ export function windowHref(path: string): string | null {
     return id === undefined ? null : href({ name: "search", id });
   }
   if (path === "/canon/search") return href({ name: "search" });
+  if (path === "/explore" || path.startsWith("/explore#") || path.startsWith("/explore?")) return href({ name: "explore" });
   const find = /^\/canon\/search\?q=([^&#]+)$/.exec(path);
   if (!find) return null;
   try {
@@ -64,6 +65,7 @@ export function siteFetch(base: typeof fetch, origin: string, token: string, off
       trouble(r.status);
       return r;
     }
+    if (url.pathname !== "/api/canon/search") return r;
     const body = (await r.json()) as { results?: Hit[] };
     const results = (body.results ?? []).filter((h) => h.score > 0);
     for (const h of results) rememberExcerpt(h.concept, h.slug, h.claim_id);

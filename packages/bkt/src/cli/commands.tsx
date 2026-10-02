@@ -33,7 +33,7 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
-import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
+import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
 import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
@@ -199,6 +199,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
+      "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
       "POST /local/open": OPEN_BODY_BYTES,
     },
