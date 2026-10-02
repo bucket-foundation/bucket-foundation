@@ -1,4 +1,6 @@
 import { parseArgs } from "node:util";
+import { CANON_TOP_K_MAX } from "../../../../src/lib/canon-rank";
+import { parseId, SEARCH_DEFAULT_LIMIT } from "../core/search";
 import { parseAnalyzeArgs } from "../analyze";
 import { parseToolArgs } from "../hai/tools";
 import { platformFor } from "../platform";
@@ -120,11 +122,23 @@ export function resolve(argv: string[]): Resolved {
     if (spec.session) keyringOptions(inv);
     if (spec.name === "analyze") parseAnalyzeArgs(args);
     if (HAI_TOOLS.has(spec.name)) parseToolArgs(args);
+    if (spec.name === "search") searchOptions(inv);
+    if (spec.name === "canon show" && parseId(parsed.positionals[0]) === null) throw new Error(`canon show needs an excerpt number, such as 42`);
     if (spec.name === "completion" && !isShell(parsed.positionals[0])) throw new Error(`unknown shell ${parsed.positionals[0]}; use ${SHELLS.join(", ")}`);
   } catch (e) {
     throw new UsageError(reason(e), spec);
   }
   return { kind: "run", ...inv };
+}
+
+export function searchOptions(inv: Invocation): { q: string; limit: number; branch: string; tsv: boolean } {
+  const raw = inv.values.limit;
+  const limit = typeof raw === "string" ? Number(raw) : SEARCH_DEFAULT_LIMIT;
+  if (!Number.isInteger(limit) || limit < 1 || limit > CANON_TOP_K_MAX) throw new Error(`--limit takes a whole number from 1 to ${CANON_TOP_K_MAX}`);
+  if (inv.values.tsv === true && inv.values.json === true) throw new Error("pick one of --json and --tsv");
+  const q = inv.positionals.join(" ").trim();
+  if (!q) throw new Error("search needs words to look for");
+  return { q, limit, branch: typeof inv.values.branch === "string" ? inv.values.branch : "", tsv: inv.values.tsv === true };
 }
 
 export function keyringOptions(inv: Invocation): KeyringOptions {
