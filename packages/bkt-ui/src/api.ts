@@ -150,6 +150,7 @@ export interface JobView {
   logTruncated: boolean;
   result: unknown;
   error: string | null;
+  install?: string | null;
 }
 
 export interface StoredReview {
@@ -226,6 +227,10 @@ export class Api {
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
     if (!r.ok) throw new ApiError(data.error ?? "", r.status);
     return data;
+  }
+
+  windowRoute() {
+    return this.call<{ route: string | null; superseded: boolean }>("/local/window/route");
   }
 
   decks() {
