@@ -40,7 +40,7 @@ import { PeopleStore } from "../people";
 import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
 import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
-import { parentGone } from "../parent";
+import { isSidecar, parentGone } from "../parent";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
 import { MAX_BODY, NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
@@ -51,7 +51,7 @@ import { BUNDLED_ROS, rosRoutes } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { checkRoute, openWindow, readApp, RouteError, routeUrl, runtimeDir, takeRoute, uiDir, writeApp, writeRoute } from "../window";
+import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
@@ -166,10 +166,12 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const explore = new ExploreStore(session.store.db);
   const cliToken = randomBytes(32).toString("base64url");
   const cliSecret = randomBytes(32).toString("base64url");
+  const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
   const srv = startServe({
     cliToken,
     cliSecret,
     routes: {
+      ...windowRoutes(win.routes),
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
@@ -195,14 +197,20 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   const release = writeApp(runtimeDir(), { pid: process.pid, port: srv.port });
   const releaseServer = writeServerRecord(dir, { pid: process.pid, port: srv.port, token: cliToken, secret: cliSecret });
-  const profile = join(dir, "window-profile");
-  const show = (to: string | null) => (name === "app" ? openWindow(routeUrl(srv.url, to), profile) : console.log(srv.url));
-  const reopen = () => {
+  const fresh = () => {
     srv.remint();
-    show(takeRoute(runtimeDir()));
+    return srv.url;
+  };
+  const reopen = () => {
+    const to = takeRoute(runtimeDir());
+    if (name === "app" || !isSidecar(process.env)) win.relaunch(to, fresh);
+    else console.log(routeUrl(fresh(), to));
   };
   if (process.platform !== "win32") process.on("SIGUSR1", reopen);
-  show(route);
+  const asked = process.platform === "win32" ? setInterval(() => takeReopen(runtimeDir()) && reopen(), 1000) : undefined;
+  win.forget();
+  if (name === "app") win.open(routeUrl(srv.url, route));
+  else console.log(srv.url);
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
@@ -210,8 +218,11 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });
+    if (name === "app") void win.closed(() => runner.busy()).then(done);
   });
   process.off("SIGUSR1", reopen);
+  clearInterval(asked);
+  win.forget();
   runner.stopAll();
   release();
   releaseServer();
@@ -221,13 +232,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
 function reopenRunningApp(route: string | null): boolean {
   const running = readApp(runtimeDir());
   if (!running) return false;
-  if (process.platform === "win32") {
-    console.log(`Bucket is already running at ${routeUrl(`http://127.0.0.1:${running.port}/`, route)}`);
-    return true;
-  }
-  if (route !== null) writeRoute(runtimeDir(), route);
-  process.kill(running.pid, "SIGUSR1");
-  console.log(`reopened the Bucket window on port ${running.port}`);
+  const signal = (pid: number) => (process.platform === "win32" ? requestReopen(runtimeDir()) : void process.kill(pid, "SIGUSR1"));
+  console.log(askRunningApp(runtimeDir(), running, route, { table: processTable(), signal }));
   return true;
 }
 
