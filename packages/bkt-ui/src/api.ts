@@ -3,6 +3,7 @@ import type { Atom } from "@academy/engine";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
+import { siteFetch } from "./site-fetch";
 
 export interface HistoryData {
   snapshot: (ProductionsSnapshot & { importedAt: number }) | null;
@@ -38,11 +39,19 @@ export interface WorkQuestion {
   limitSec: number;
 }
 
+export interface WorkSource {
+  kind: string;
+  ref: string;
+  label: string;
+  href: string | null;
+}
+
 export interface WorkAnswer {
   correct: boolean;
   timedOut: boolean;
   answer: string;
   explain: string;
+  sources?: WorkSource[];
 }
 
 export interface DailyQuiz {
@@ -73,6 +82,7 @@ export interface CanonHit {
   slug: string;
   title: string;
   score: number;
+  url: string;
   excerpt: string;
   evidence_count: number;
 }
@@ -204,6 +214,7 @@ export class Api {
     const r = await fetch("/session", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nonce }) });
     if (!r.ok) throw new Error(`Bucket refused the launch code (${r.status}). Run bkt app to open Bucket again.`);
     const { token } = (await r.json()) as { token: string };
+    window.fetch = siteFetch(window.fetch.bind(window), window.location.origin, token);
     return new Api(token, onError);
   }
 

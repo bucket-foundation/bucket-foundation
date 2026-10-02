@@ -5,17 +5,29 @@ def step (s : Nat) : Nat := (s * 6364136223846793005 + 1442695040888963407) % 18
 
 def draw (s bound : Nat) : Nat := (s / 4294967296) % bound
 
+def edgeScores : Array Int := #[0, 1, -1, 16777216, -16777216, 16777215, -16777215]
+
+def idOf (index k : Nat) : Nat :=
+  match index % 5 with
+  | 3 => k * 1000003 + 7
+  | 4 => 9007199254740991 - k * 97
+  | _ => k
+
+def scoreOf (index s : Nat) : Int :=
+  match index % 4 with
+  | 2 => edgeScores[draw s edgeScores.size]!
+  | 3 => Int.ofNat (draw s 2001) - 1000
+  | _ => Int.ofNat (draw s 5) - 2
+
 def genCase (seed : Nat) (index : Nat) : Nat × List Result := Id.run do
   let mut s := step seed
-  let n := draw s 13
-  let radius := if index % 4 == 3 then 1000 else 2
+  let n := if index % 29 == 28 then 51 + draw s 30 else draw s 13
   let mut l : List Result := []
   for k in [0:n] do
     s := step s
     let pos := draw s (l.length + 1)
     s := step s
-    let score : Int := Int.ofNat (draw s (2 * radius + 1)) - Int.ofNat radius
-    l := l.insertIdx pos (k, score)
+    l := l.insertIdx pos (idOf index k, scoreOf index s)
   return (s, l)
 
 def renderCase (l : List Result) : String :=

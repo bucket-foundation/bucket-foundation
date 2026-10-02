@@ -38,6 +38,7 @@ export const JSON_SHAPES = {
     ["analysis", "open"],
     ["helix", ["status", "reason", "run_dir"]],
   ],
+  doctor: ["ok", ["checks", ["id", "name", "status", "result", "fix"]]],
   "hai export": [
     ["probes", ["id", "bank_version", "seed", "started_at", "completed_at", "due_at", "retest_completed_at"]],
     ["answers", ["id", "probeId", "pairId", "itemId", "condition", "phase", "choice", "correct", "acceptedAi", "elapsedMs", "at"]],
@@ -94,7 +95,7 @@ export function statRows(s: Counts, waiting?: number): [string, number][] {
   return waiting === undefined ? rows : [...rows, ["Waiting to sync", waiting]];
 }
 
-const KEY_STORES: Record<string, string> = {
+export const KEY_STORES: Record<string, string> = {
   libsecret: "login keyring",
   keychain: "login keychain",
   dpapi: "Windows account",

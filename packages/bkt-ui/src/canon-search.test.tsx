@@ -11,8 +11,8 @@ beforeAll(() => {
 afterAll(() => GlobalRegistrator.unregister());
 
 const HITS: CanonHit[] = [
-  { claim_id: 7, branch: "02-physics", concept: "entropy", slug: "001-a", title: "Claim", score: 2, excerpt: "Claim. Entropy rises and entropy never falls.", evidence_count: 1 },
-  { claim_id: 9, branch: "07-mind", concept: "free-will", slug: "002-b", title: "Claim", score: 0, excerpt: "Claim. Nothing about the query.", evidence_count: 0 },
+  { claim_id: 7, branch: "02-physics", concept: "entropy", slug: "001-a", title: "Claim", score: 2, url: "https://bucket.foundation/excerpts/entropy/001-a", excerpt: "Claim. Entropy rises and entropy never falls.", evidence_count: 1 },
+  { claim_id: 9, branch: "07-mind", concept: "free-will", slug: "002-b", title: "Claim", score: 0, url: "https://bucket.foundation/excerpts/free-will/002-b", excerpt: "Claim. Nothing about the query.", evidence_count: 0 },
 ];
 const DETAIL: CanonExcerpt = {
   id: 7,
@@ -54,7 +54,7 @@ async function mount(api: CanonSearchApi, id?: number) {
   const host = document.createElement("div");
   document.body.appendChild(host);
   const root = createRoot(host);
-  await act(async () => root.render(<CanonSearchView api={api} id={id} />));
+  await act(async () => root.render(<CanonSearchView api={api} page="search" id={id} webgl={false} />));
   const search = async (text: string) => {
     const input = host.querySelector('input[type="search"]') as HTMLInputElement;
     await act(async () => {
@@ -75,14 +75,20 @@ describe("canon search route", () => {
     expect(href({ name: "search" })).toBe("#/search");
     for (const bad of ["#/search/x", "#/search/-1", "#/search/1/2", "#/search/1e3", "#/search/%3Cscript%3E"]) expect(parseHash(bad)).toEqual({ name: "search" });
     expect(parseHash("#/canon")).toEqual({ name: "canon" });
+    expect(parseHash("#/canon/find/speed%20of%20light")).toEqual({ name: "canon", find: "speed of light" });
+    expect(href({ name: "canon", find: "speed of light" })).toBe("#/canon/find/speed%20of%20light");
+    expect(parseHash(`#/canon/find/${"a".repeat(201)}`)).toEqual({ name: "canon" });
+    expect(parseHash("#/canon/find/a/b")).toEqual({ name: "canon" });
   });
 });
 
-describe("canon search view", () => {
+describe("canon keyword view, shown when the computer cannot draw the globe", () => {
   test("searches through the injected api and lists only rows that match", async () => {
     const { api, calls } = fakeApi();
     const v = await mount(api);
     expect(v.host.textContent).toContain("364 source excerpts");
+    expect(v.host.textContent).toContain("the globe and the circle are hidden");
+    expect(v.host.querySelector("canvas, [data-testid='globe']")).toBeNull();
     expect(v.host.querySelectorAll(".hit").length).toBe(0);
     await v.search("  entropy ");
     expect(calls.search).toEqual([["entropy", ""]]);

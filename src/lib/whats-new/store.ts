@@ -161,17 +161,43 @@ export async function writeEntry(store: DocStore, entry: StoredEntry): Promise<v
   await store.write(`entries/${entry.id}.json`, JSON.stringify(entry));
 }
 
-export async function writeImage(store: DocStore, id: string, image: unknown): Promise<void> {
-  await store.write(`entries/${id}.image.json`, JSON.stringify(image));
+export function imageName(id: string, bodyHash: string): string {
+  return `entries/${id}.image.${bodyHash}.json`;
 }
 
-export async function readImage(store: DocStore, id: string): Promise<string | null> {
-  return store.read(`entries/${id}.image.json`);
+export async function writeImage(store: DocStore, id: string, bodyHash: string, image: unknown): Promise<void> {
+  await store.write(imageName(id, bodyHash), JSON.stringify(image));
 }
 
-export async function restoreImage(store: DocStore, id: string, previous: string | null): Promise<void> {
-  if (previous === null) await store.remove(`entries/${id}.image.json`);
-  else await store.write(`entries/${id}.image.json`, previous);
+export async function readImage(store: DocStore, id: string, bodyHash: string): Promise<string | null> {
+  return store.read(imageName(id, bodyHash));
+}
+
+export async function removeImage(store: DocStore, id: string, bodyHash: string): Promise<void> {
+  await store.remove(imageName(id, bodyHash));
+  await store.remove(`entries/${id}.image.json`);
+}
+
+export const LOCK_TTL_MS = 90_000;
+export const BUSY = Symbol("busy");
+
+export async function withEntryLock<T>(store: DocStore, id: string, clock: () => number, run: () => Promise<T>): Promise<T | typeof BUSY> {
+  const name = `locks/${id}.json`;
+  const claim = (): Promise<boolean> => store.create(name, JSON.stringify({ at: clock() }));
+  if (!(await claim())) {
+    const text = await store.read(name);
+    const at = text === null ? 0 : Number((JSON.parse(text) as { at?: unknown }).at);
+    if (Number.isFinite(at) && clock() - at < LOCK_TTL_MS) return BUSY;
+    await store.remove(name);
+    if (!(await claim())) return BUSY;
+  }
+  try {
+    return await run();
+  } finally {
+    await store.remove(name).catch((err: unknown) => {
+      console.error("[whats-new] lock release failed:", err instanceof Error ? err.message : err);
+    });
+  }
 }
 
 export async function entryIds(store: DocStore): Promise<string[]> {
@@ -193,8 +219,8 @@ export async function createEntry(store: DocStore, entry: StoredEntry): Promise<
   return store.create(`entries/${entry.id}.json`, JSON.stringify(entry));
 }
 
-export async function removeEntry(store: DocStore, id: string): Promise<void> {
-  await store.remove(`entries/${id}.image.json`);
+export async function removeEntry(store: DocStore, id: string, bodyHash: string): Promise<void> {
+  await removeImage(store, id, bodyHash);
   await store.remove(`entries/${id}.json`);
 }
 
@@ -209,10 +235,6 @@ export function tombstone(entry: StoredEntry, at: string): StoredEntry {
     deleted_at: at,
     body_hash: entry.body_hash,
   };
-}
-
-export async function removeImage(store: DocStore, id: string): Promise<void> {
-  await store.remove(`entries/${id}.image.json`);
 }
 
 export async function appendAudit(store: DocStore, record: AuditRecord, suffix: string): Promise<void> {
