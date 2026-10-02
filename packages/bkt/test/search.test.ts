@@ -31,20 +31,22 @@ describe("core search", () => {
   const src = packCanon(fixture);
 
   test("ranks by matched words, drops zero scores and keeps the branch filter", () => {
-    const r = searchCanon(src, searchParams("light"));
+    const r = searchCanon(src, searchParams("light"), { matchedOnly: true });
     expect(r.ok && r.results.map((h) => [h.id, h.score, h.evidence])).toEqual([
       [7, 2, 1],
       [9, 1, 0],
     ]);
-    const b = searchCanon(src, searchParams("light", { branch: "05-biophysics" }));
+    const b = searchCanon(src, searchParams("light", { branch: "05-biophysics" }), { matchedOnly: true });
     expect(b.ok && b.results.map((h) => h.id)).toEqual([9]);
-    const none = searchCanon(src, searchParams("zzzz"));
+    const none = searchCanon(src, searchParams("zzzz"), { matchedOnly: true });
+    const all = searchCanon(src, searchParams("zzzz"));
+    expect(all.ok && all.results.length).toBe(3);
     expect(none.ok && none.results).toEqual([]);
     expect(searchCanon(packCanon({ ...fixture, excerpts: [] }), searchParams("light")).ok).toBe(false);
   });
 
   test("text, tab separated rows and the JSON body match their golden forms", () => {
-    const r = searchCanon(src, searchParams("light", { limit: 2 }));
+    const r = searchCanon(src, searchParams("light", { limit: 2 }), { matchedOnly: true });
     if (!r.ok) throw new Error("expected results");
     expect(searchText(r.results)).toBe("7  Light keeps one speed  (physics, 1 passage)\n9  Water absorbs light  (biophysics, 0 passages)");
     expect(searchTsv(r.results)).toBe(

@@ -49,13 +49,13 @@ export function searchParams(q: string, o: { limit?: number; branch?: string } =
   return { q: q.trim().slice(0, 200), qvec: null, topK: o.limit ?? SEARCH_DEFAULT_LIMIT, tier: "all", branch: o.branch ?? "", mode: "lexical" };
 }
 
-export function searchCanon(src: CanonSource, p: CanonSearchParams): SearchResult {
+export function searchCanon(src: CanonSource, p: CanonSearchParams, o: { matchedOnly?: boolean } = {}): SearchResult {
   const found = rankCanon({ loadIndex: () => src.index(), decodeQVec: () => null }, { ...p, qvec: null });
   if (!found.ok) return found;
   return {
     ok: true,
     mode: found.mode,
-    results: found.results.filter((r) => r.score > 0).map((r) => ({
+    results: found.results.filter((r) => !o.matchedOnly || r.score > 0).map((r) => ({
       id: r.entry.rowid,
       branch: r.entry.branch,
       concept: r.entry.concept,

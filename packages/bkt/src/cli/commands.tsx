@@ -206,7 +206,7 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
 
 function search(inv: Invocation, json: boolean): number {
   const o = searchOptions(inv);
-  const found = searchCanon(packCanon(canonPack as CanonPack), searchParams(o.q, o));
+  const found = searchCanon(packCanon(canonPack as CanonPack), searchParams(o.q, o), { matchedOnly: true });
   if (!found.ok) throw new NoDataError("this copy of bkt holds no canon; run bkt update");
   if (json) console.log(jsonLine("search", { query: o.q, mode: found.mode, results: found.results }));
   else if (o.tsv) {

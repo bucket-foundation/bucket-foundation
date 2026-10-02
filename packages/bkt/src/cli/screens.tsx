@@ -93,7 +93,7 @@ export function SearchScreen({ canon, keys, onOpen, onCopy }: SearchProps) {
 
   const hits = useMemo<SearchHit[]>(() => {
     if (!settled.trim()) return [];
-    const r = searchCanon(canon, searchParams(settled, { limit: 20 }));
+    const r = searchCanon(canon, searchParams(settled, { limit: 20 }), { matchedOnly: true });
     return r.ok ? r.results : [];
   }, [canon, settled]);
   const empty = canon.index().length === 0;
