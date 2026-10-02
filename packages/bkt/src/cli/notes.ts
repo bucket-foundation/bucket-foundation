@@ -16,7 +16,7 @@ export class PlainError extends Error {}
 
 export function readText(path: string, limit: number): string {
   try {
-    if (statSync(path).size > limit) throw new PlainError(`That file is larger than ${Math.round(limit / 1048576)} MB.`);
+    if (statSync(path).size > limit) throw new PlainError(FILE_UNREADABLE);
     return readFileSync(path, "utf8");
   } catch (e) {
     throw e instanceof PlainError ? e : new PlainError(FILE_UNREADABLE);

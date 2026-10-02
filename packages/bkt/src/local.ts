@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { ALREADY_IMPORTED, importProgress } from "./core/importer";
+import { ALREADY_IMPORTED, checkState, importProgress } from "./core/importer";
 import { mergeState, normalizeState } from "../../../src/lib/academy/engine";
 import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQuestion, quizSession, rateCard } from "./core/learn";
 import type { Question } from "./grade";
@@ -122,8 +122,9 @@ export function webBranches(b: Record<string, unknown>): Record<string, ReturnTy
         return null;
       }
     }
-    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
-    out[deck] = normalizeState(raw);
+    const state = checkState(raw);
+    if (!state) return null;
+    out[deck] = state;
   }
   return Object.keys(out).length ? out : null;
 }

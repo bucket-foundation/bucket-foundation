@@ -50,6 +50,48 @@ function seed(s: Session) {
   w.run("w3", "q3", "estimate", 1, 3, 500, at(5));
 }
 
+describe("import shape check", () => {
+  const good = { state: "review", stability: 4.2, difficulty: 5, due: NOW + DAY, lastReview: NOW - DAY, reps: 3, lapses: 0, scheduledDays: 2 };
+
+  test("a malformed card with a newer review is refused whole and changes no row, even with force", async () => {
+    const s = await session();
+    try {
+      const decks = [{ id: "02-physics" }];
+      expect(importProgress(s.store, decks, { branches: { "02-physics": { cards: { "atom-a": good } } } }, false, NOW)).toMatchObject({ ok: true });
+      const before = JSON.stringify(s.store.learnState("02-physics"));
+      const at = s.store.meta("web_import_at");
+      for (const bad of [
+        { ...good, state: "zzz", lastReview: NOW + 5 * DAY },
+        { ...good, stability: "4", lastReview: NOW + 5 * DAY },
+        { ...good, difficulty: 99, lastReview: NOW + 5 * DAY },
+        { ...good, reps: -1, lastReview: NOW + 5 * DAY },
+        { ...good, extra: 1, lastReview: NOW + 5 * DAY },
+        "card",
+      ]) {
+        const payload = { branches: { "02-physics": { cards: { "atom-a": bad, "atom-b": good } } } };
+        expect(importProgress(s.store, decks, payload, true, NOW + 9)).toMatchObject({ ok: false, status: 400 });
+      }
+      expect(importProgress(s.store, decks, { branches: { "02-physics": { cards: { "bad id!": good } } } }, true, NOW)).toMatchObject({ ok: false, status: 400 });
+      expect(importProgress(s.store, decks, { branches: { "02-physics": { stats: { history: { yesterday: { new: 1 } } } } } }, true, NOW)).toMatchObject({ ok: false, status: 400 });
+      expect(importProgress(s.store, decks, { branches: { "02-physics": { settings: { newPerDay: "9" } } } }, true, NOW)).toMatchObject({ ok: false, status: 400 });
+      expect(JSON.stringify(s.store.learnState("02-physics"))).toBe(before);
+      expect(s.store.meta("web_import_at")).toBe(at);
+      expect(importProgress(s.store, decks, { branches: { "02-physics": { settings: { newPerDay: 6, theme: "dark", __proto__x: 1 } } } }, true, NOW)).toMatchObject({ ok: true });
+      expect(Object.keys(s.store.learnState("02-physics").settings).sort()).toEqual(["newPerDay", "requestRetention"]);
+      expect(s.store.learnState("02-physics").cards["atom-a"]).toEqual(good);
+    } finally {
+      s.store.close();
+    }
+  });
+
+  test("bkt import refuses the malformed file with the plain message and a note file over the limit gets the same words", () => {
+    writeFileSync(join(dir, "bad-card.json"), JSON.stringify({ branches: { "02-physics": { cards: { "atom-a": { state: "zzz" } } } } }));
+    expect(bkt(["import", join(dir, "bad-card.json"), "--force", ...vault])).toEqual({ code: 1, out: "", err: "bkt: Bucket could not read that file.\n" });
+    writeFileSync(join(dir, "big.txt"), "x".repeat(512 * 1024 + 1));
+    expect(bkt(["notes", "add", "Big", "--file", join(dir, "big.txt"), ...vault])).toEqual({ code: 1, out: "", err: "bkt: Bucket could not read that file.\n" });
+  }, 60_000);
+});
+
 describe("core", () => {
   test("study history counts days, reviews and accuracy for each form inside the window", async () => {
     const s = await session();
