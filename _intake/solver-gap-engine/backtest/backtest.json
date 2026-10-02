@@ -1,0 +1,368 @@
+{
+ "model": "all-MiniLM-L6-v2",
+ "head": "137aec5",
+ "head_date": "2026-09-30",
+ "snapshots": [
+  {
+   "date": "2025-09-01",
+   "commit": "bf6630d",
+   "problems": 689,
+   "open": 366,
+   "solved": 271,
+   "open_missing_at_head": 53,
+   "tracked": 313,
+   "solved_later": 43,
+   "base_rate": 0.1374,
+   "auc": 0.583,
+   "auc_ci95": [
+    0.484,
+    0.679
+   ],
+   "p_permutation": 0.0442,
+   "auc_within_collection": 0.567,
+   "auc_any_file": 0.515,
+   "auc_docstring_length": 0.707,
+   "top": {
+    "25": {
+     "solved_later": 7,
+     "precision": 0.28,
+     "lift": 2.04
+    },
+    "50": {
+     "solved_later": 12,
+     "precision": 0.24,
+     "lift": 1.75
+    },
+    "100": {
+     "solved_later": 20,
+     "precision": 0.2,
+     "lift": 1.46
+    }
+   },
+   "by_collection": {
+    "Arxiv": {
+     "tracked": 10,
+     "solved_later": 1,
+     "auc": 0.556
+    },
+    "Books": {
+     "tracked": 2,
+     "solved_later": 0,
+     "auc": null
+    },
+    "ErdosProblems": {
+     "tracked": 169,
+     "solved_later": 30,
+     "auc": 0.565
+    },
+    "Mathoverflow": {
+     "tracked": 10,
+     "solved_later": 4,
+     "auc": 0.125
+    },
+    "Other": {
+     "tracked": 4,
+     "solved_later": 0,
+     "auc": null
+    },
+    "Paper": {
+     "tracked": 4,
+     "solved_later": 1,
+     "auc": 0.667
+    },
+    "Wikipedia": {
+     "tracked": 109,
+     "solved_later": 4,
+     "auc": 0.617
+    },
+    "WrittenOnTheWallII": {
+     "tracked": 5,
+     "solved_later": 3,
+     "auc": 0.5
+    }
+   }
+  },
+  {
+   "date": "2025-12-01",
+   "commit": "f33f5dd",
+   "problems": 954,
+   "open": 528,
+   "solved": 362,
+   "open_missing_at_head": 75,
+   "tracked": 453,
+   "solved_later": 69,
+   "base_rate": 0.1523,
+   "auc": 0.585,
+   "auc_ci95": [
+    0.507,
+    0.657
+   ],
+   "p_permutation": 0.0138,
+   "auc_within_collection": 0.567,
+   "auc_any_file": 0.5,
+   "auc_docstring_length": 0.658,
+   "top": {
+    "25": {
+     "solved_later": 6,
+     "precision": 0.24,
+     "lift": 1.58
+    },
+    "50": {
+     "solved_later": 13,
+     "precision": 0.26,
+     "lift": 1.71
+    },
+    "100": {
+     "solved_later": 24,
+     "precision": 0.24,
+     "lift": 1.58
+    }
+   },
+   "by_collection": {
+    "Arxiv": {
+     "tracked": 10,
+     "solved_later": 1,
+     "auc": 0.444
+    },
+    "Books": {
+     "tracked": 2,
+     "solved_later": 0,
+     "auc": null
+    },
+    "ErdosProblems": {
+     "tracked": 290,
+     "solved_later": 54,
+     "auc": 0.569
+    },
+    "GreensOpenProblems": {
+     "tracked": 1,
+     "solved_later": 1,
+     "auc": null
+    },
+    "Mathoverflow": {
+     "tracked": 11,
+     "solved_later": 5,
+     "auc": 0.133
+    },
+    "Other": {
+     "tracked": 4,
+     "solved_later": 0,
+     "auc": null
+    },
+    "Paper": {
+     "tracked": 4,
+     "solved_later": 1,
+     "auc": 0.667
+    },
+    "Wikipedia": {
+     "tracked": 126,
+     "solved_later": 4,
+     "auc": 0.547
+    },
+    "WrittenOnTheWallII": {
+     "tracked": 5,
+     "solved_later": 3,
+     "auc": 0.5
+    }
+   }
+  },
+  {
+   "date": "2026-03-01",
+   "commit": "62ce01b",
+   "problems": 1431,
+   "open": 762,
+   "solved": 575,
+   "open_missing_at_head": 109,
+   "tracked": 653,
+   "solved_later": 97,
+   "base_rate": 0.1485,
+   "auc": 0.528,
+   "auc_ci95": [
+    0.467,
+    0.592
+   ],
+   "p_permutation": 0.182,
+   "auc_within_collection": 0.522,
+   "auc_any_file": 0.485,
+   "auc_docstring_length": 0.623,
+   "top": {
+    "25": {
+     "solved_later": 4,
+     "precision": 0.16,
+     "lift": 1.08
+    },
+    "50": {
+     "solved_later": 8,
+     "precision": 0.16,
+     "lift": 1.08
+    },
+    "100": {
+     "solved_later": 17,
+     "precision": 0.17,
+     "lift": 1.14
+    }
+   },
+   "by_collection": {
+    "Arxiv": {
+     "tracked": 15,
+     "solved_later": 6,
+     "auc": 0.259
+    },
+    "Books": {
+     "tracked": 2,
+     "solved_later": 0,
+     "auc": null
+    },
+    "ErdosProblems": {
+     "tracked": 390,
+     "solved_later": 64,
+     "auc": 0.524
+    },
+    "GreensOpenProblems": {
+     "tracked": 35,
+     "solved_later": 8,
+     "auc": 0.616
+    },
+    "Mathoverflow": {
+     "tracked": 12,
+     "solved_later": 5,
+     "auc": 0.086
+    },
+    "OEIS": {
+     "tracked": 20,
+     "solved_later": 4,
+     "auc": 0.281
+    },
+    "Other": {
+     "tracked": 7,
+     "solved_later": 2,
+     "auc": 0.9
+    },
+    "Paper": {
+     "tracked": 20,
+     "solved_later": 1,
+     "auc": 0.579
+    },
+    "Wikipedia": {
+     "tracked": 147,
+     "solved_later": 4,
+     "auc": 0.5
+    },
+    "WrittenOnTheWallII": {
+     "tracked": 5,
+     "solved_later": 3,
+     "auc": 0.5
+    }
+   }
+  },
+  {
+   "date": "2026-06-01",
+   "commit": "729af54",
+   "problems": 2001,
+   "open": 1054,
+   "solved": 880,
+   "open_missing_at_head": 39,
+   "tracked": 1015,
+   "solved_later": 150,
+   "base_rate": 0.1478,
+   "auc": 0.441,
+   "auc_ci95": [
+    0.389,
+    0.494
+   ],
+   "p_permutation": 0.9886,
+   "auc_within_collection": 0.497,
+   "auc_any_file": 0.555,
+   "auc_docstring_length": 0.511,
+   "top": {
+    "25": {
+     "solved_later": 8,
+     "precision": 0.32,
+     "lift": 2.17
+    },
+    "50": {
+     "solved_later": 10,
+     "precision": 0.2,
+     "lift": 1.35
+    },
+    "100": {
+     "solved_later": 18,
+     "precision": 0.18,
+     "lift": 1.22
+    }
+   },
+   "by_collection": {
+    "Arxiv": {
+     "tracked": 14,
+     "solved_later": 2,
+     "auc": 0.917
+    },
+    "Books": {
+     "tracked": 11,
+     "solved_later": 4,
+     "auc": 0.179
+    },
+    "ErdosProblems": {
+     "tracked": 543,
+     "solved_later": 65,
+     "auc": 0.511
+    },
+    "GreensOpenProblems": {
+     "tracked": 90,
+     "solved_later": 29,
+     "auc": 0.268
+    },
+    "HilbertProblems": {
+     "tracked": 2,
+     "solved_later": 0,
+     "auc": null
+    },
+    "LittProblems": {
+     "tracked": 2,
+     "solved_later": 0,
+     "auc": null
+    },
+    "Mathoverflow": {
+     "tracked": 13,
+     "solved_later": 5,
+     "auc": 0.3
+    },
+    "OEIS": {
+     "tracked": 21,
+     "solved_later": 3,
+     "auc": 0.37
+    },
+    "OpenQuantumProblems": {
+     "tracked": 35,
+     "solved_later": 7,
+     "auc": 0.709
+    },
+    "OptimizationConstants": {
+     "tracked": 3,
+     "solved_later": 0,
+     "auc": null
+    },
+    "Other": {
+     "tracked": 8,
+     "solved_later": 2,
+     "auc": 0.833
+    },
+    "Paper": {
+     "tracked": 67,
+     "solved_later": 21,
+     "auc": 0.467
+    },
+    "Wikipedia": {
+     "tracked": 195,
+     "solved_later": 4,
+     "auc": 0.476
+    },
+    "WrittenOnTheWallII": {
+     "tracked": 11,
+     "solved_later": 8,
+     "auc": 0.333
+    }
+   }
+  }
+ ]
+}
