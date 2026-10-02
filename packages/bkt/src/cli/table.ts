@@ -169,6 +169,46 @@ export const TABLE: CommandSpec[] = [
   { name: "graph", summary: "knowledge graph", tuiOnly: true, palette: { run: "graph", hint: "knowledge graph", order: 8 } },
   { name: "research", summary: "notes and saved results", tuiOnly: true, palette: { run: "research", hint: "notes and saved results", order: 9 } },
   { name: "jobs", summary: "saved analyses", tuiOnly: true, palette: { run: "jobs", hint: "saved analyses", order: 10 } },
+  {
+    name: "notes ls",
+    summary: "list your notes, pinned first, by number",
+    session: true,
+    json: true,
+    options: { tsv: { type: "boolean", help: "for scripts: one tab separated row per note: number, pinned, updated, title" } },
+  },
+  {
+    name: "notes add",
+    summary: "save a note; the text comes from --body or --file",
+    args: "<title>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: {
+      body: { type: "string", value: "TEXT", help: "the note's text" },
+      file: { type: "string", value: "FILE", help: "read the note's text from a file" },
+      pin: { type: "boolean", help: "pin the note to the top" },
+    },
+  },
+  { name: "notes show", summary: "print one note by its number in bkt notes ls", args: "<number>", positionals: [1, 1], session: true, json: true },
+  {
+    name: "history",
+    summary: "print study days, reviews and accuracy for each question form",
+    session: true,
+    json: true,
+    options: {
+      days: { type: "string", value: "N", help: "how many days back, 30 when omitted" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per study day: day, reviews, answered, correct" },
+    },
+  },
+  {
+    name: "import",
+    summary: "bring over your progress file from the website's Learn page",
+    args: "<file>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: { force: { type: "boolean", help: "merge again when progress was already brought over" } },
+  },
 ];
 
 export const CLI_COMMANDS = TABLE.filter((c) => !c.tuiOnly);

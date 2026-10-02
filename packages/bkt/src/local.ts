@@ -1,4 +1,5 @@
 import { randomBytes } from "node:crypto";
+import { ALREADY_IMPORTED, importProgress } from "./core/importer";
 import { mergeState, normalizeState } from "../../../src/lib/academy/engine";
 import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQuestion, quizSession, rateCard } from "./core/learn";
 import type { Question } from "./grade";
@@ -96,23 +97,9 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
     },
     "POST /local/import": async (req, url) => {
       const force = url.searchParams.get("force") === "1";
-      if (store.meta("web_import_at") && !force) return json({ error: "already imported" }, 409);
-      const b = await body(req);
-      const incoming = b ? webBranches(b) : null;
-      if (!incoming) return json({ error: "expected { branches: { <deck>: EngineState } }" }, 400);
-      const known = new Set(decks.map((d) => d.id));
-      const unknown = Object.keys(incoming).filter((d) => !known.has(d));
-      if (unknown.length) return json({ error: `unknown decks: ${unknown.sort().join(", ")}` }, 400);
-      const at = now();
-      const imported: string[] = [];
-      store.db.transaction(() => {
-        for (const [deck, state] of Object.entries(incoming)) {
-          store.putLearnState(deck, mergeState(store.learnState(deck), state), at);
-          imported.push(deck);
-        }
-        store.setMeta("web_import_at", String(at));
-      })();
-      return json({ imported: imported.sort() });
+      if (store.meta("web_import_at") && !force) return json({ error: ALREADY_IMPORTED }, 409);
+      const r = importProgress(store, decks, await body(req), force, now());
+      return r.ok ? json({ imported: r.imported }) : json({ error: r.error }, r.status);
     },
   };
 }

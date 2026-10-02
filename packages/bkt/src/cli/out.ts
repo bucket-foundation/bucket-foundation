@@ -52,6 +52,11 @@ export const JSON_SHAPES = {
     ["answers", ["id", "probeId", "pairId", "itemId", "condition", "phase", "choice", "correct", "acceptedAi", "elapsedMs", "at"]],
   ],
   search: ["query", "mode", ["results", ["id", "branch", "concept", "title", "score", "url", "excerpt", "evidence"]]],
+  "notes ls": [["notes", ["n", "id", "title", "pinned", "updatedAt"]]],
+  "notes show": ["n", "id", "title", "body", "pinned", "createdAt", "updatedAt"],
+  "notes add": ["id", "title", "pinned", "createdAt", "updatedAt"],
+  history: ["days", "studyDays", "reviews", "answered", "correct", ["forms", ["form", "answered", "correct", "accuracy"]], ["byDay", ["day", "reviews", "answered", "correct"]]],
+  import: [["imported", "open"]],
   "canon show": ["id", "branch", "concept", "title", "text", "url", ["evidence", ["title", "author", "kind", "url", "score", "text"]]],
 } as const satisfies Record<string, Shape>;
 

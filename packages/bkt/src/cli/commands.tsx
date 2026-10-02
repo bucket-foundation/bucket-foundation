@@ -14,13 +14,16 @@ import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
 import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
-import { countOf, keyringOptions, NoDataError, searchOptions, type Invocation, UsageError } from "./run";
+import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
 import { daily, learnDue, learnPath, quizJson, reviewJson, screen } from "./learn";
 import { localDay } from "../chat-sources";
 import { randomBytes } from "node:crypto";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
 import { EXIT } from "./table";
+import { readImport, readText, runResearch } from "./notes";
+import { directResearch, serverResearch } from "../core/research";
+import { provenServer } from "../core/remote";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
 import { execSync, platformFor } from "../platform";
@@ -39,7 +42,7 @@ import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
 import { parentGone } from "../parent";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
-import { NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
+import { MAX_BODY, NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
 import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
@@ -116,6 +119,34 @@ async function learn(inv: Invocation, json: boolean): Promise<number> {
     session.store.importPack(content.version, content.items);
     const wq = new WorkQuizStore(session.store, session.key);
     return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a) }));
+  } finally {
+    session.store.close();
+  }
+}
+
+const RESEARCH = new Set(["notes ls", "notes add", "notes show", "history", "import"]);
+
+async function research(inv: Invocation, json: boolean): Promise<number> {
+  const name = inv.command.name;
+  const o = noteOptions(inv);
+  const payload = {
+    body: name === "notes add" ? (o.file !== null ? readText(o.file, MAX_BODY) : (o.body ?? "")) : undefined,
+    data: name === "import" ? readImport(o.file!) : undefined,
+  };
+  const server = await provenServer(dataDir());
+  if (server) return runResearch(name, o, json, serverResearch(server), payload);
+  const dir = ensureDataDir(dataDir());
+  const session = await openSession(await pickKeyring(keyringOptions(inv), dir), dir);
+  try {
+    const content = pack as Pack;
+    session.store.importPack(content.version, content.items);
+    const b = directResearch({
+      store: session.store,
+      notes: new NotesStore(session.store, session.key),
+      history: new HistoryStore(session.store, session.key),
+      decks: content.decks ?? [],
+    });
+    return await runResearch(name, o, json, b, payload);
   } finally {
     session.store.close();
   }
@@ -344,6 +375,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
 
   if (LEARN.has(name)) return learn(inv, json);
+  if (RESEARCH.has(name)) return research(inv, json);
 
   const dir = ensureDataDir(dataDir());
   const session = await openSession(await pickKeyring(keyringOptions(inv), dir), dir);

@@ -1,4 +1,6 @@
 import { parseArgs } from "node:util";
+import { HISTORY_DEFAULT_DAYS, HISTORY_MAX_DAYS } from "../core/history";
+import { MAX_TITLE } from "../notes";
 import { CANON_TOP_K_MAX } from "../../../../src/lib/canon-rank";
 import { parseId, SEARCH_DEFAULT_LIMIT } from "../core/search";
 import { parseAnalyzeArgs } from "../analyze";
@@ -126,6 +128,7 @@ export function resolve(argv: string[]): Resolved {
     if (spec.options?.count) countOf(inv);
     if (spec.name === "daily" && parsed.positionals.length && !validDay(parsed.positionals[0])) throw new Error(`give the day as YYYY-MM-DD, such as 2026-10-01`);
     if (spec.name === "search") searchOptions(inv);
+    if (NOTE_COMMANDS.has(spec.name)) noteOptions(inv);
     if (spec.name === "canon show" && parseId(parsed.positionals[0]) === null) throw new Error(`canon show needs an excerpt number, such as 42`);
     if (spec.name === "completion" && !isShell(parsed.positionals[0])) throw new Error(`unknown shell ${parsed.positionals[0]}; use ${SHELLS.join(", ")}`);
   } catch (e) {
@@ -150,6 +153,38 @@ export function searchOptions(inv: Invocation): { q: string; limit: number; bran
   const q = inv.positionals.join(" ").trim();
   if (!q) throw new Error("search needs words to look for");
   return { q, limit, branch: typeof inv.values.branch === "string" ? inv.values.branch : "", tsv: inv.values.tsv === true };
+}
+
+const NOTE_COMMANDS = new Set(["notes ls", "notes add", "notes show", "history", "import"]);
+
+export interface NoteOptions {
+  tsv: boolean;
+  days: number;
+  number: number;
+  title: string;
+  body: string | null;
+  file: string | null;
+  pin: boolean;
+  force: boolean;
+}
+
+export function noteOptions(inv: Invocation): NoteOptions {
+  const v = inv.values;
+  const name = inv.command.name;
+  if (v.tsv === true && v.json === true) throw new Error("pick one of --json and --tsv");
+  const rawDays = v.days;
+  const days = typeof rawDays === "string" ? Number(rawDays) : HISTORY_DEFAULT_DAYS;
+  if (typeof rawDays === "string" && (!/^\d+$/.test(rawDays) || days < 1 || days > HISTORY_MAX_DAYS)) throw new Error(`--days takes a whole number from 1 to ${HISTORY_MAX_DAYS}`);
+  const pos = inv.positionals[0] ?? "";
+  if (name === "notes show" && (!/^\d{1,6}$/.test(pos) || Number(pos) < 1)) throw new Error("notes show needs a note number, such as 1");
+  const title = name === "notes add" ? pos.trim() : "";
+  if (name === "notes add" && !title) throw new Error("a note needs a title");
+  if (title.length > MAX_TITLE) throw new Error(`titles stop at ${MAX_TITLE} characters`);
+  const body = typeof v.body === "string" ? v.body : null;
+  const file = typeof v.file === "string" ? v.file : null;
+  if (body !== null && file !== null) throw new Error("pick one of --body and --file");
+  if (name === "import" && !pos) throw new Error("import needs a file");
+  return { tsv: v.tsv === true, days, number: Number(pos) || 0, title, body, file: name === "import" ? pos : file, pin: v.pin === true, force: v.force === true };
 }
 
 export function keyringOptions(inv: Invocation): KeyringOptions {
