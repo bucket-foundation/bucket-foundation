@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { OPEN_HOSTS } from "../../bkt/src/canon";
 import type { CanonAbout, CanonExcerpt, CanonHit } from "./api";
-import { CANON_TROUBLE, rememberExcerpt, siteFetch, SITE_ROUTES, windowHref } from "./site-fetch";
+import { CANON_TROUBLE, OFFLINE_MESSAGE, rememberExcerpt, siteFetch, SITE_ROUTES, windowHref } from "./site-fetch";
 import type { CanonSearchApi } from "./views/CanonSearch";
 
 type GlobeProps = { markers: { id: string }[]; projection?: { id: string } };
@@ -340,7 +340,9 @@ test("an offline window refuses a request off its own origin", async () => {
   const calls: string[] = [];
   const base = (async (input: RequestInfo | URL) => (calls.push(String(input)), new Response("{}"))) as typeof fetch;
   const f = siteFetch(base, ORIGIN, TOKEN, true);
-  await expect(f("https://example.org/data.json")).rejects.toThrow("Bucket is offline");
+  const refused = await f("https://example.org/data.json").then(() => null, (e: Error) => e.message);
+  expect(refused).toBe(OFFLINE_MESSAGE);
+  expect(refused).not.toContain("example.org");
   expect(calls).toEqual([]);
   await f(`${ORIGIN}/local/ping`);
   expect(calls).toEqual([`${ORIGIN}/local/ping`]);

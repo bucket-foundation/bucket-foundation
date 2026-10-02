@@ -82,11 +82,30 @@ export async function learnOffline(): Promise<ViewResult[]> {
     await page.goto(srv.url);
     await page.waitForSelector(".side nav a");
 
+    const tally = () => ({
+      cards: store.db.query<{ n: string }, []>("select coalesce(group_concat(deck || card_id || updated_at), '') n from learn_cards").get()!.n,
+      attempts: store.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n,
+      work: store.db.query<{ n: number }, []>("select count(*) n from work_quiz_attempts").get()!.n,
+      notes: store.db.query<{ n: number }, []>("select coalesce(max(updated_at), 0) n from notes").get()!.n,
+    });
+    const changed = async (what: keyof ReturnType<typeof tally>, before: ReturnType<typeof tally>) => {
+      for (let i = 0; i < 50; i++) {
+        if (tally()[what] !== before[what]) return;
+        await Bun.sleep(100);
+      }
+      throw new Error(`the store's ${what} did not change`);
+    };
     const views: [string, string, () => Promise<void>][] = [
-      ["Learn", "open home, grip sphere and deck list", async () => {
+      ["Learn", "open a deck, show the answer, grade it; learn cards change", async () => {
         await page.evaluate(() => (window.location.hash = "#/learn"));
         await page.waitForSelector(".grip");
         await page.waitForSelector(".deck");
+        const before = tally();
+        await page.click('a.deck[href="#/learn/03-chemistry"]');
+        await page.waitForSelector(".card h2");
+        await page.click("text=Show answer");
+        await page.click(".card button.r3");
+        await changed("cards", before);
       }],
       ["Path", "search entropy, open the first match, steps render", async () => {
         await page.evaluate(() => (window.location.hash = "#/path"));
@@ -94,21 +113,29 @@ export async function learnOffline(): Promise<ViewResult[]> {
         await page.click(".matches a >> nth=0");
         await page.waitForSelector(".steps-list, .path p");
       }],
-      ["Quiz", "answer one question, feedback renders", async () => {
+      ["Quiz", "answer one question; an attempt is stored", async () => {
         await page.evaluate(() => (window.location.hash = "#/quiz"));
         await page.waitForSelector(".choice");
+        const before = tally();
         await page.click(".choice >> nth=1");
         await page.waitForSelector(".after");
+        await changed("attempts", before);
       }],
-      ["Review", "show answer on a due card", async () => {
+      ["Review", "show answer and grade a due card; learn cards change", async () => {
         await page.evaluate(() => (window.location.hash = "#/review"));
         await page.waitForSelector(".card .q");
+        const before = tally();
         await page.click("text=Show answer");
+        await page.click(".card button.r3");
+        await changed("cards", before);
       }],
-      ["Notes", "open the seeded note, preview it", async () => {
+      ["Notes", "edit the seeded note, autosave, preview; the note is saved", async () => {
         await page.evaluate(() => (window.location.hash = "#/notes"));
         await page.waitForSelector(".editor");
         await page.waitForSelector("text=Exclusion zone reading list");
+        const before = tally();
+        await page.fill(".body-input", "Saved with the network denied.");
+        await changed("notes", before);
         await page.click("text=Preview");
       }],
       ["History", "60-day activity chart shows the seeded study days", async () => {
@@ -117,12 +144,14 @@ export async function learnOffline(): Promise<ViewResult[]> {
         const active = await page.evaluate(() => [...document.querySelectorAll(".activity .day")].filter((d) => !d.querySelector(".none")).length);
         if (active < 2) throw new Error(`the activity chart shows ${active} active days, expected today and the seeded note three days back`);
       }],
-      ["Work quiz", `open #/work/daily/${DAY}, answer the Fermi question`, async () => {
+      ["Work quiz", `open #/work/daily/${DAY}, answer the Fermi question; an attempt is stored`, async () => {
         await page.evaluate(() => (window.location.hash = "#/work/daily/2026-09-30"));
         await page.waitForSelector(".q");
+        const before = tally();
         await page.fill(".search", "4000");
         await page.click(".toolbar button.primary");
         await page.waitForSelector(".after-block");
+        await changed("work", before);
       }],
     ];
     for (const [view, actions, drive] of views) {
