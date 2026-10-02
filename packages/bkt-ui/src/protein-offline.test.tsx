@@ -1,7 +1,8 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, beforeAll, describe, expect, mock, test } from "bun:test";
-import { readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import { loadUi } from "../../bkt/src/serve";
 
 let threeDmol: () => unknown = () => ({});
@@ -48,10 +49,19 @@ describe("Explore modes offline", () => {
   });
 
   test("the window ships and serves the protein fixture and the sample genome", () => {
-    const dist = resolve(import.meta.dir, "../dist");
-    expect(readdirSync(resolve(dist, "explore/fixtures"))).toContain("apoe3-nterm.pdb");
-    const ui = loadUi(dist);
-    expect(ui.files.has("/explore/fixtures/apoe3-nterm.pdb")).toBe(true);
-    expect(ui.files.has("/explore/sample-genome.txt")).toBe(true);
+    const files = ["explore/sample-genome.txt", "explore/fixtures/apoe3-nterm.pdb"];
+    const config = readFileSync(resolve(import.meta.dir, "../vite.config.ts"), "utf8");
+    for (const f of files) expect([f, config.includes(`"${f}"`)]).toEqual([f, true]);
+    const dist = mkdtempSync(join(tmpdir(), "bkt-ui-dist-"));
+    try {
+      for (const f of files) {
+        mkdirSync(dirname(join(dist, f)), { recursive: true });
+        copyFileSync(resolve(import.meta.dir, "../../../public", f), join(dist, f));
+      }
+      const ui = loadUi(dist);
+      for (const f of files) expect([f, ui.files.has(`/${f}`)]).toEqual([f, true]);
+    } finally {
+      rmSync(dist, { recursive: true, force: true });
+    }
   });
 });
