@@ -603,6 +603,15 @@
   "type": "∀ (rawD rawS n d : Int),\n  (BucketMath.Fsrs.difficultyUnit ≤ BucketMath.Fsrs.clampD rawD ∧\n      BucketMath.Fsrs.clampD rawD ≤ 10 * BucketMath.Fsrs.difficultyUnit) ∧\n    BucketMath.Fsrs.stabilityFloor ≤ BucketMath.Fsrs.clampS rawS ∧\n      1 ≤ BucketMath.Fsrs.schedule n d ∧ BucketMath.Fsrs.schedule n d ≤ 3650"
  },
  {
+  "name": "BucketMath.Fsrs.review_inputs_positive",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 65,
+  "type": "∀ (storedS storedD : Int),\n  0 < BucketMath.Fsrs.clampS storedS ∧\n    0 < BucketMath.Fsrs.clampS storedS + BucketMath.Fsrs.stabilityUnit ∧\n      0 < BucketMath.Fsrs.clampD storedD ∧ 0 < 11 * BucketMath.Fsrs.difficultyUnit - BucketMath.Fsrs.clampD storedD"
+ },
+ {
   "name": "BucketMath.Fsrs.roundHalfUp",
   "kind": "def",
   "status": "def",
@@ -698,7 +707,7 @@
   "status": "proved",
   "module": "BucketMath.Grade",
   "source": "lean/BucketMath/Grade.lean",
-  "line": 87,
+  "line": 100,
   "type": "BucketMath.Grade.Correct 1000 3162 ∧\n  ¬BucketMath.Grade.Correct 1000 3163 ∧\n    BucketMath.Grade.Correct 1000 317 ∧\n      ¬BucketMath.Grade.Correct 1000 316 ∧\n        BucketMath.Grade.Close 1000 1412 ∧\n          ¬BucketMath.Grade.Close 1000 1413 ∧ ¬BucketMath.Grade.Correct 8658 27379 ∧ ¬BucketMath.Grade.Correct 0 0"
  },
  {
@@ -707,8 +716,17 @@
   "status": "proved",
   "module": "BucketMath.Grade",
   "source": "lean/BucketMath/Grade.lean",
-  "line": 46,
+  "line": 59,
   "type": "∀ {a b : Nat}, BucketMath.Grade.Close a b → BucketMath.Grade.Correct a b"
+ },
+ {
+  "name": "BucketMath.Grade.correct_accepted_with_epsilon",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 40,
+  "type": "∀ {a b : Nat},\n  BucketMath.Grade.Correct a b →\n    BucketMath.Grade.Within (BucketMath.Grade.epsilonScale / 2 + 1) BucketMath.Grade.epsilonScale a b"
  },
  {
   "name": "BucketMath.Grade.correct_strict",
@@ -716,8 +734,17 @@
   "status": "proved",
   "module": "BucketMath.Grade",
   "source": "lean/BucketMath/Grade.lean",
-  "line": 81,
+  "line": 94,
   "type": "∀ {a b : Nat}, BucketMath.Grade.Correct a b → max a b ^ 2 < 10 * min a b ^ 2"
+ },
+ {
+  "name": "BucketMath.Grade.epsilonScale",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 38,
+  "type": "Nat"
  },
  {
   "name": "BucketMath.Grade.no_exact_boundary",
@@ -725,7 +752,7 @@
   "status": "proved",
   "module": "BucketMath.Grade",
   "source": "lean/BucketMath/Grade.lean",
-  "line": 56,
+  "line": 69,
   "type": "∀ (b a : Nat), 0 < b → a * a ≠ 10 * (b * b)"
  },
  {
@@ -734,8 +761,17 @@
   "status": "proved",
   "module": "BucketMath.Grade",
   "source": "lean/BucketMath/Grade.lean",
-  "line": 34,
+  "line": 47,
   "type": "∀ {p q a b c d : Nat},\n  0 < a → 0 < b → BucketMath.Grade.Closer a b c d → BucketMath.Grade.Within p q c d → BucketMath.Grade.Within p q a b"
+ },
+ {
+  "name": "BucketMath.Grade.within_refine",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Grade",
+  "source": "lean/BucketMath/Grade.lean",
+  "line": 34,
+  "type": "∀ (p q k a b : Nat), 0 < k → (BucketMath.Grade.Within p q a b ↔ BucketMath.Grade.Within (p * k) (q * k) a b)"
  },
  {
   "name": "BucketMath.Grade.within_scale",
@@ -2196,6 +2232,15 @@
   "type": "∀ (nodeBps nodeFloor amount : Nat), amount < 5 → (BucketMath.Split.split nodeBps nodeFloor amount).author = amount"
  },
  {
+  "name": "BucketMath.Split.intermediates_fit",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 77,
+  "type": "∀ (nodeBps amount : Nat),\n  amount < BucketMath.Split.uint256Bound →\n    nodeBps ≤ BucketMath.Split.nonAuthorBps →\n      amount / 5 < BucketMath.Split.uint256Bound ∧\n        amount / BucketMath.Split.bpsDenominator * nodeBps < BucketMath.Split.uint256Bound ∧\n          amount % BucketMath.Split.bpsDenominator * nodeBps < BucketMath.Split.uint256Bound"
+ },
+ {
   "name": "BucketMath.Split.nodePart",
   "kind": "def",
   "status": "def",
@@ -2212,6 +2257,15 @@
   "source": "lean/BucketMath/Split.lean",
   "line": 28,
   "type": "∀ (nodeBps nodeFloor amount : Nat),\n  nodeBps ≤ BucketMath.Split.nonAuthorBps →\n    BucketMath.Split.nodePart nodeBps nodeFloor amount ≤ BucketMath.Split.nonAuthor amount"
+ },
+ {
+  "name": "BucketMath.Split.nodePart_without_overflow",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 67,
+  "type": "∀ (nodeBps nodeFloor amount : Nat),\n  nodeFloor ≤ amount →\n    BucketMath.Split.nodePart nodeBps nodeFloor amount =\n      amount / BucketMath.Split.bpsDenominator * nodeBps +\n        amount % BucketMath.Split.bpsDenominator * nodeBps / BucketMath.Split.bpsDenominator"
  },
  {
   "name": "BucketMath.Split.node_share_le",
@@ -2250,6 +2304,15 @@
   "type": "Nat"
  },
  {
+  "name": "BucketMath.Split.nonAuthor_eq_div_five",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 64,
+  "type": "∀ (amount : Nat), BucketMath.Split.nonAuthor amount = amount / 5"
+ },
+ {
   "name": "BucketMath.Split.nonAuthor_le",
   "kind": "theorem",
   "status": "proved",
@@ -2275,6 +2338,15 @@
   "source": "lean/BucketMath/Split.lean",
   "line": 35,
   "type": "∀ (nodeBps nodeFloor amount : Nat),\n  nodeBps ≤ BucketMath.Split.nonAuthorBps → (BucketMath.Split.split nodeBps nodeFloor amount).total = amount"
+ },
+ {
+  "name": "BucketMath.Split.uint256Bound",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Split",
+  "source": "lean/BucketMath/Split.lean",
+  "line": 75,
+  "type": "Nat"
  },
  {
   "name": "BucketMath.Vec.add",

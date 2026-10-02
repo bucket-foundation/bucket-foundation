@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, rmSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { chromium } from "playwright";
+import { dataShots } from "./shots-data";
 import { newDataKey } from "../../bkt/src/crypto";
 import { advisorRoutes } from "../../bkt/src/advisor";
 import { localRoutes } from "../../bkt/src/local";
@@ -336,4 +337,5 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
+await dataShots(out);
 console.log(`screenshots in ${out}`);

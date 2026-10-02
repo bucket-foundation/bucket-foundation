@@ -142,7 +142,7 @@ export interface AuditRecord {
   ts: string;
   id: string;
   poster: string;
-  action: "create" | "replace" | "revoke" | "publish" | "delete";
+  action: "create" | "replace" | "revoke" | "publish" | "delete" | "autopublish" | "retract";
   body_hash: string | null;
   previous_body_hash: string | null;
   deleted?: string[];

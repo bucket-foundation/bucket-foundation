@@ -19,9 +19,10 @@ export type Route =
   | { name: "explore" }
   | { name: "atlases" }
   | { name: "notes" }
-  | { name: "history" };
+  | { name: "history" }
+  | { name: "data" };
 
-const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history"]);
+const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data"]);
 
 export function isDay(day: string | undefined): day is string {
   if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;

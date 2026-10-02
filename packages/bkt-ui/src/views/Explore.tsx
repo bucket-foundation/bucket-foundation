@@ -50,9 +50,11 @@ export function savedStorage(real: Storage | null, initial: string, push: (raw: 
 }
 
 export function installStorage(storage: Storage): Restore {
+  const own = Object.getOwnPropertyDescriptor(window, "localStorage");
   Object.defineProperty(window, "localStorage", { value: storage, configurable: true, writable: true });
   return () => {
-    delete (window as { localStorage?: Storage }).localStorage;
+    if (own) Object.defineProperty(window, "localStorage", own);
+    else delete (window as { localStorage?: Storage }).localStorage;
   };
 }
 

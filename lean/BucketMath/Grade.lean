@@ -31,6 +31,19 @@ theorem within_scale (p q a b k : Nat) (hk : 0 < k) : Within p q (k * a) (k * b)
 theorem within_tolerance_mono {p p' q a b : Nat} (hp : p ≤ p') (h : Within p q a b) : Within p' q a b :=
   ⟨h.1, h.2.1, Nat.le_trans h.2.2 (Nat.mul_le_mul_right _ (Nat.pow_le_pow_right (by decide) hp))⟩
 
+theorem within_refine (p q k a b : Nat) (hk : 0 < k) : Within p q a b ↔ Within (p * k) (q * k) a b := by
+  unfold Within
+  rw [Nat.pow_mul, Nat.pow_mul, Nat.pow_mul, ← Nat.mul_pow, Nat.pow_le_pow_iff_left (by omega)]
+
+def epsilonScale : Nat := 1000000000
+
+theorem correct_accepted_with_epsilon {a b : Nat} (h : Correct a b) :
+    Within (epsilonScale / 2 + 1) epsilonScale a b := by
+  have h' := (within_refine 1 2 (epsilonScale / 2) a b (by decide)).mp h
+  have hq : 2 * (epsilonScale / 2) = epsilonScale := by decide
+  rw [hq] at h'
+  exact within_tolerance_mono (p := 1 * (epsilonScale / 2)) (by decide) h'
+
 theorem within_of_closer {p q a b c d : Nat} (ha : 0 < a) (hb : 0 < b) (hc : Closer a b c d)
     (h : Within p q c d) : Within p q a b := by
   refine ⟨ha, hb, ?_⟩
