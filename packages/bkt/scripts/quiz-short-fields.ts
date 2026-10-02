@@ -9,6 +9,7 @@ import { buildShortQuestion, normShort, type ShortField, type ShortFile } from "
 const ROOT = resolve(import.meta.dir, "../../..");
 const CORPUS = join(ROOT, "learning/app/corpus");
 const OUT = join(ROOT, "learning/app/short-fields.json");
+const MODEL_FILE = join(ROOT, "learning/app/short-fields-model.json");
 const SAMPLE = join(ROOT, "learning/app/REVIEW-SAMPLE.md");
 const LLM = process.env.BKT_LLM_URL ?? "http://127.0.0.1:11435";
 const SAMPLE_SIZE = 100;
@@ -51,58 +52,76 @@ function contentWords(s: string): number {
   return s.split(/\s+/).filter((w) => bare(w).length >= 2 && !STOP.has(bare(w))).length;
 }
 
+const LEADING_BAN = new Set([...PREP, "which", "that", "who", "whose", "whom", "where", "whereas", "though", "although", "unless", "until", "once", "as", "than", "rather", "not", "only", "even", "then", "it", "its", "they", "there", "this", "these", "those", "making", "says", "set", "build", "merge", "compute", "use", "take", "convert", "add", "solve", "plug"]);
+const FINITE = new Set([...VERBS, "stays", "stay", "yields", "yield", "sits", "sit", "grows", "grow", "closes", "close", "accesses", "encodes", "describe", "describes", "run", "runs", "need", "needs", "remains", "remain", "lowers", "raises", "rises", "falls", "changes", "forms", "acts", "occurs", "follows", "comes", "goes", "gets", "leads", "reduces", "increases", "decreases", "flows", "flow", "matters", "works", "fails", "explains", "predicts", "measures", "means", "rearranges", "terminates", "applies", "stabilizes", "suppresses", "sets", "favors", "differ", "differs", "share", "shares", "detects", "assigns", "rotates", "costs", "requires", "adds", "add", "points", "point", "preserves", "preserved", "suppress", "suppresses", "exchange", "exchanges", "strengthen", "strengthens", "bind", "binds", "fire", "fires", "move", "moves", "emit", "emits", "absorb", "absorbs", "carry", "carries", "drop", "drops"]);
+
+function nounShaped(s: string): boolean {
+  const words = s.trim().split(/\s+/);
+  const first = bare(words[0] ?? "");
+  const last = bare(words[words.length - 1] ?? "");
+  if (LEADING_BAN.has(first) || STOP.has(last) || PREP.has(last) || LEADING_BAN.has(last)) return false;
+  if (/^[a-z]/.test(words[0]) && /(ing|ed)$/.test(first) && words.length > 1) return false;
+  if (/[=≈∝→<>]/.test(s)) return true;
+  return !words.slice(1).some((w) => FINITE.has(bare(w))) && !FINITE.has(first);
+}
+
 function answerOk(s: string): boolean {
+  if (!nounShaped(s)) return false;
+  if (/\b(whose|that|which|who|where)\b/i.test(s) || /,\s*\p{L}+$/u.test(s)) return false;
+  if (/[()]/.test(s) && !/[=≈∝→]/.test(s) && !/^\(.*\)$/.test(s)) return false;
+  if ((s.match(/(^|\s)['‘"“]/g) ?? []).length !== (s.match(/['’"”]($|\s)/g) ?? []).length) return false;
   if (!balanced(s) || /^[=≈∝<>≤≥→+×·\/^−-]|[=≈∝<>≤≥→+×·\/^−-]$/.test(s.trim())) return false;
   if (/^[(~≈<>]?[−+-]?[\d.,]+\)?$/.test(s.trim()) || /,$/.test(s.trim())) return false;
   return countTokens(s) >= 1 && countTokens(s) <= LIMITS.option && longestToken(s) <= LIMITS.tokenChars && s.length <= 48 && hasContent(s);
 }
 
+function firstClause(item: Item): string {
+  return item.answer.replace(/\s+/g, " ").trim().split(/;\s+|:\s+|\.\s+|\s+[—–]\s+|\s+-\s+|\?\s+|!\s+/)[0] ?? "";
+}
+
+function inFirstClause(item: Item, c: string): boolean {
+  const a = item.answer.replace(/\s+/g, " ");
+  const i = a.indexOf(c);
+  return i >= 0 && a.indexOf(c) <= firstClause(item).length && !/^\s?[(:]/.test(a.slice(i + c.length)) && !a.slice(0, i).endsWith("(");
+}
+
+const explanatory = (item: Item) => /\b(why|explain|argue|how come|sketch|justify|in what sense|difference between|differ|compare|contrast|two|three|four|five|both|list|lines of|and isn't)\b/i.test(item.prompt) || /\bnot\b|n't\b/i.test(firstClause(item));
+
 function answerCandidates(item: Item): string[][] {
   const a = item.answer.replace(/\s+/g, " ").trim();
   const strong = a.split(/;\s+|:\s+|\.\s+|\s+[—–]\s+|\s+-\s+|\?\s+|!\s+/).map(trimEdge).filter(Boolean);
-  const clauses = [strong[0] ?? "", ...strong.slice(1), ...strong.flatMap((c) => c.split(/,\s+|\s*\(|\)\s*/).map(trimEdge)).filter((c) => contentWords(c) >= 2)];
+  const clauses = [strong[0] ?? "", ...strong.slice(1), ...strong.flatMap((c) => c.replace(/\([^()]*\)/g, " ").split(/,\s+/).map(trimEdge)).filter((c) => contentWords(c) >= 2)];
   const first = clauses[0] ?? "";
-  const lead = (c: string) => {
-    const words = c.split(" ");
-    if (PREP.has(bare(words[0] ?? ""))) return "";
-    const cut = words.findIndex((w, i) => i > 0 && VERBS.has(bare(w)));
-    return dropTrailingStop(cut > 0 ? words.slice(0, cut) : words).join(" ");
-  };
   const formulas = strong.filter((c) => /[=≈∝→]/.test(c));
   const numeric = /\b(compute|calculate|estimate|how (much|many|long|far|fast|large|big)|value|roughly|approximately|find|what is the)\b/i.test(item.prompt);
   const numbers = numeric ? [...a.matchAll(NUMBER_WITH_UNIT)].map((m) => trimEdge(m[0])).reverse().slice(0, 1) : [];
+  if (numbers.length && !a.replace(/[.\s]+$/, "").endsWith(numbers[0])) numbers.length = 0;
   const title = (() => {
     const i = a.toLowerCase().indexOf(item.title.toLowerCase());
     return i >= 0 ? a.slice(i, i + item.title.length) : "";
   })();
-  return [
-    clauses.slice(0, 1),
-    [lead(first)].filter((c) => contentWords(c) >= 2),
-    formulas,
-    [title],
-    numbers,
-    clauses.slice(1),
-    clauses.slice(1).map(lead).filter((c) => contentWords(c) >= 2),
-  ].map((group) => group.filter((c) => c && a.includes(c) && !PREP.has(bare(c.split(" ")[0]))));
+  return [clauses.slice(0, 1), formulas.slice(0, 1).filter((f) => f === strong[0]), numbers].map((group) =>
+    group.filter((c) => c && inFirstClause(item, c)),
+  );
 }
 
 function stemCandidates(prompt: string): string[] {
   const p = prompt.replace(/\s+/g, " ").trim();
   const out = [p];
-  const q = p.match(/^(.+?),? (?:and|or) (?:why|how|what|which|when|where|who|name|give|state|say|explain|is|are|does|do)\b.*$/i);
-  if (q) out.push(q[1].replace(/[,;:]$/, "") + (p.trim().endsWith("?") ? "?" : "."));
-  const sentences = p.split(/(?<=[.?!])\s+/).filter(Boolean);
-  const ordered = [...sentences.filter((s) => s.includes("?")), ...sentences.filter((s) => !s.includes("?")).reverse()];
-  for (const s of ordered) {
-    out.push(s);
-    const parts = s.split(/(?<=[,:;])\s+/);
-    for (let i = 1; i < parts.length; i++) out.push(parts.slice(i).join(" "));
-  }
-  return out.map((s) => s.trim()).filter((s) => s.split(" ").length >= 3 && !/^(and|or|but|so)\b/i.test(s));
+  const q = p.match(/^(.+?),? (?:and|or) (?:why|how|what|which|when|where|who|is|are|does|do|can)\b.*\?$/i);
+  if (q) out.push(q[1].replace(/[,;:]$/, "") + "?");
+  const asked = (s: string) => {
+    const m = s.match(/^(?:State|Define|Give|Write|Compute|Calculate|Evaluate|Find|Identify|Determine|Name)\s+(.+?)[.!]?$/);
+    return m && !/^and\b|,| and (?:say|explain|state|give|describe|show|argue|why)\b/i.test(m[1]) ? `What is ${m[1]}?` : "";
+  };
+  for (const s of [p]) if (!s.endsWith("?")) out.push(asked(s));
+  return out.map((s) => s.trim()).filter((s) => s.split(" ").length >= 3);
 }
 
+const isQuestion = (s: string) => !/\b(this|these|those|the given|above|that result|it|they|its|their)\b|\band (write|give|name|state|say)\b/i.test(s) && (s.endsWith("?") || /_{3,}/.test(s)) && /^[A-Z\p{Lu}]/u.test(s) && !/^(and|or|but|so)\b/i.test(s);
+
 function stemOk(s: string, answer: string): boolean {
-  return countTokens(s) <= LIMITS.stem && s.length <= 150 && longestToken(s) <= LIMITS.tokenChars && !normShort(s).includes(normShort(answer));
+  return isQuestion(s) && countTokens(s) <= LIMITS.stem && s.length <= 150 && longestToken(s) <= LIMITS.tokenChars && !normShort(s).includes(normShort(answer));
 }
 
 function pickStem(item: Item, answer: string): string | null {
@@ -128,11 +147,12 @@ async function modelShort(item: Item, taken: Set<string>): Promise<ShortField | 
   const answer = await ask(
     `Copy the shortest phrase, at most 5 words, from the ANSWER below that answers the QUESTION. Copy it exactly, character for character. Reply with the phrase only.\nQUESTION: ${item.prompt}\nANSWER: ${item.answer}`,
   );
-  if (!answer || !item.answer.includes(answer) || !answerOk(answer) || !unique(taken, answer)) return null;
+  if (!answer || !inFirstClause(item, answer) || !answerOk(answer) || !unique(taken, answer)) return null;
   let stem = pickStem(item, answer);
   if (!stem) {
-    const s = await ask(`Copy a part of this question, at most 15 words, that still asks the question. Copy it exactly. Reply with the part only.\nQUESTION: ${item.prompt}`);
-    if (s && item.prompt.includes(s) && stemOk(s, answer)) stem = s;
+    const raw = (await ask(`Rewrite this question as one question of at most 12 words that ends with a question mark and keeps its subject. Reply with the question only.\nQUESTION: ${item.prompt}`)) + "?";
+    const s = raw.replace(/\?+$/, "?");
+    if (stemOk(s, answer)) stem = s;
   }
   return stem ? { short_stem: stem, short_answer: answer, source: "model" } : null;
 }
@@ -166,7 +186,7 @@ function prune(items: Item[], fields: Record<string, ShortField>) {
   }
 }
 
-const rank = (id: string) => createHash("sha256").update("review:" + id).digest("hex");
+const rank = (id: string) => createHash("sha256").update("review-2:" + id).digest("hex");
 
 function sample(items: Item[], fields: Record<string, ShortField>): Item[] {
   const kept = items.filter((i) => fields[i.id]);
@@ -187,13 +207,13 @@ const cell = (s: string) => s.replace(/\|/g, "\\|").replace(/\s+/g, " ");
 async function main() {
   const useModel = process.argv.includes("--model");
   const items = loadItems();
-  const prev: ShortFile | null = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : null;
   const fields: Record<string, ShortField> = {};
   const taken = new Map<string, Set<string>>();
   const takenIn = (b: string) => taken.get(b) ?? taken.set(b, new Set()).get(b)!;
   const missing: Item[] = [];
   for (const item of items) {
     const t = takenIn(item.branch);
+    if (explanatory(item)) continue;
     let found: ShortField | null = null;
     for (const group of answerCandidates(item)) {
       const valid = [...new Set(group)].filter((c) => answerOk(c) && unique(t, c));
@@ -211,17 +231,28 @@ async function main() {
       t.add(normShort(found.short_answer));
     } else missing.push(item);
   }
+  const modelFile: Record<string, { short_stem: string; short_answer: string }> = existsSync(MODEL_FILE) ? JSON.parse(readFileSync(MODEL_FILE, "utf8")).items : {};
+  const modelValid = (item: Item, f: { short_stem: string; short_answer: string } | undefined, t: Set<string>) =>
+    !!f && inFirstClause(item, f.short_answer) && (!/^[~≈]?\d/.test(f.short_answer) || item.answer.replace(/[.\s]+$/, "").endsWith(f.short_answer)) && answerOk(f.short_answer) && unique(t, f.short_answer) && stemOk(f.short_stem, f.short_answer);
   const up = useModel && (await llmUp());
-  if (useModel && !up) console.log(`no local model at ${LLM}; ${missing.length} items stay out`);
+  if (useModel && !up) console.log(`no local model at ${LLM}; the committed model file is used as is`);
   for (const item of missing) {
     const t = takenIn(item.branch);
-    const old = prev?.items[item.id];
-    const keep = old?.source === "model" && item.answer.includes(old.short_answer) && answerOk(old.short_answer) && unique(t, old.short_answer) && stemOk(old.short_stem, old.short_answer) && item.prompt.includes(old.short_stem) ? old : null;
-    const got = keep ?? (up ? await modelShort(item, t) : null);
-    if (got) {
-      fields[item.id] = got;
-      t.add(normShort(got.short_answer));
+    if (explanatory(item)) continue;
+    let f = modelFile[item.id];
+    if (!modelValid(item, f, t) && up) {
+      const got = await modelShort(item, t);
+      if (got) modelFile[item.id] = f = { short_stem: got.short_stem, short_answer: got.short_answer };
+      else delete modelFile[item.id];
     }
+    if (f && modelValid(item, f, t)) {
+      fields[item.id] = { ...f, source: "model" };
+      t.add(normShort(f.short_answer));
+    }
+  }
+  if (up) {
+    const ids = items.map((i) => i.id).filter((id) => modelFile[id]);
+    writeFileSync(MODEL_FILE, JSON.stringify({ items: Object.fromEntries(ids.map((id) => [id, modelFile[id]])) }, null, 1) + "\n");
   }
   prune(items, fields);
   const ordered = Object.fromEntries(items.filter((i) => fields[i.id]).map((i) => [i.id, fields[i.id]]));

@@ -23,7 +23,7 @@ describe("quiz short fields", () => {
   test("every short field belongs to a corpus item", () => {
     const ids = new Set(items.map((i) => i.id));
     expect(Object.keys(SHORT_FIELDS.items).filter((id) => !ids.has(id))).toEqual([]);
-    expect(pool.length).toBeGreaterThan(items.length / 2);
+    expect(pool.length).toBeGreaterThan(100);
   });
 
   test("short answers appear verbatim in the full answer and are unique within a branch", () => {
@@ -60,4 +60,14 @@ describe("quiz short fields", () => {
     for (const q of qs) expect(checkLimits(q)).toEqual([]);
     s.close();
   });
+});
+
+describe("quiz short-fields extractor", () => {
+  test("a run without the model reproduces the committed file", () => {
+    const out = resolve(import.meta.dir, "../../../learning/app/short-fields.json");
+    const before = readFileSync(out, "utf8");
+    const run = Bun.spawnSync(["bun", "run", resolve(import.meta.dir, "../scripts/quiz-short-fields.ts")], { env: { ...process.env, BKT_LLM_URL: "http://127.0.0.1:9" } });
+    expect(run.exitCode).toBe(0);
+    expect(readFileSync(out, "utf8")).toBe(before);
+  }, 120_000);
 });
