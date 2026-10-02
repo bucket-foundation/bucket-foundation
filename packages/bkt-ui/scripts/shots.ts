@@ -198,15 +198,24 @@ await page.click('nav a[href="#/history"]');
 await page.waitForSelector(".activity");
 await page.screenshot({ path: join(out, "8c-history.png") });
 
-await page.click('nav a[href="#/jobs"]');
+await page.evaluate(() => (window.location.hash = "#/jobs"));
 await page.waitForSelector(".job-head");
 await page.click(".job-head");
 await page.waitForSelector(".log");
 await page.screenshot({ path: join(out, "9-jobs.png") });
 
-await page.click('nav a[href="#/import"]');
+await page.evaluate(() => (window.location.hash = "#/import"));
 await page.waitForSelector('h1:has-text("Import")');
 await page.screenshot({ path: join(out, "6-import.png") });
+
+await page.click("a.foot-link");
+await page.waitForSelector('h1:has-text("Add your own")');
+await page.screenshot({ path: join(out, "6g-add-your-own.png") });
+
+await page.evaluate(() => (window.location.hash = "#/setup"));
+await page.waitForSelector('h1:has-text("Work quiz setup")');
+await page.waitForSelector("text=Claude chats");
+await page.screenshot({ path: join(out, "5e-work-quiz-setup.png") });
 
 const home = mkdtempSync(join(out, ".home-"));
 const real = Bun.spawn(["bash", "-c", 'exec "$0" "$1" serve --keyring passphrase --passphrase-fd 3 3<<<"$BKT_SHOTS_PASSPHRASE"', process.execPath, resolve(import.meta.dir, "../../bkt/src/cli.tsx")], {
