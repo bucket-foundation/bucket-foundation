@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { newDataKey } from "../src/crypto";
 import type { Item } from "../src/grade";
+import type { ShortFile } from "../src/short-fields";
 import { localRoutes } from "../src/local";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
@@ -16,6 +17,8 @@ const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   prompt: `what is ${id}`,
   answer: `answer ${id}`,
 }));
+
+const shorts: ShortFile = { version: "t", items: Object.fromEntries(items.map((i) => [i.id, { short_stem: i.prompt, short_answer: i.answer, source: "rule" as const }])) };
 
 const content = {
   decks: [{ id: "phys", source: "phys", title: "Physics", atoms: 5 }],
@@ -40,7 +43,7 @@ beforeEach(async () => {
   store = new Store(":memory:", newDataKey());
   store.importPack("v1", items);
   const uid = 7;
-  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content }) });
+  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content, shorts }) });
   const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
   const r = await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } });
   auth = { authorization: `Bucket ${((await r.json()) as { token: string }).token}` };
@@ -216,7 +219,7 @@ describe("import round 2", () => {
     const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
     const t = ((await (await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } })).json()) as { token: string }).token;
     const h = { authorization: `Bucket ${t}` };
-    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`2026-1-${i}`, { new: 1, reviews: 1 }])) } };
+    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`${2000 + i}-1-1`, { new: 1, reviews: 1 }])) } };
     expect(JSON.stringify(big).length).toBeGreaterThan(1024);
     expect((await req("/local/progress", { method: "POST", headers: h, body: { branch: "phys", data: big } })).status).toBe(413);
     expect((await req("/local/import", { method: "POST", headers: h, body: { branches: { phys: big } } })).status).toBe(200);

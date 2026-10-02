@@ -1,4 +1,4 @@
-import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual, createHmac } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { extname, join } from "node:path";
 import { platformFor, procNetTcpOwner, type Owner, type Platform } from "./platform";
@@ -11,16 +11,20 @@ export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | 
 export type Route = (req: Request, url: URL) => Response | Promise<Response>;
 
 export interface ServeOptions {
+  cliToken?: string;
+  cliSecret?: string;
   port?: number;
   uid?: Owner;
   platform?: Platform;
   resolvePeerUid?: PeerUidResolver;
   now?: () => number;
   routes?: Record<string, Route>;
+  match?: (method: string, pathname: string) => Route | undefined;
   uiDir?: string;
   maxBodyBytes?: number;
   routeBodyBytes?: Record<string, number>;
   onError?: (e: Error) => void;
+  offline?: boolean;
 }
 
 export interface Serve {
@@ -32,6 +36,10 @@ export interface Serve {
 }
 
 export const procNetTcpUid = procNetTcpOwner;
+
+export function proveServer(secret: string, challenge: string): string {
+  return createHmac("sha256", secret).update(`bkt-serve:${challenge}`).digest("base64url");
+}
 
 function same(a: string, b: string): boolean {
   const x = Buffer.from(a);
@@ -65,6 +73,8 @@ export interface UiAssets {
 const UI_DIRS: { dir: string; types: Record<string, string> }[] = [
   { dir: "assets", types: TYPES },
   { dir: "textures/earth", types: { ".bin": "application/octet-stream", ".json": "application/json" } },
+  { dir: "explore", types: { ".txt": "text/plain; charset=utf-8" } },
+  { dir: "explore/fixtures", types: { ".pdb": "chemical/x-pdb" } },
 ];
 
 export const UI_ENTRY = "/assets/app.js";
@@ -86,13 +96,44 @@ export function loadUi(dir: string | undefined): UiAssets {
   return { files, scripts: js.includes(UI_ENTRY) ? [UI_ENTRY] : js, styles: keys.filter((k) => k.startsWith("/assets/") && k.endsWith(".css")) };
 }
 
-export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = { scripts: [], styles: [] }): { html: string; csp: string } {
-  const script = `window.__BKT__=${JSON.stringify({ nonce })};`;
+export const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
+
+export function isOffline(env: Record<string, string | undefined> = process.env): boolean {
+  return env.BKT_OFFLINE === "1";
+}
+
+export class OfflineError extends Error {
+  constructor(readonly url: string) {
+    super(`BKT_OFFLINE refuses a request to ${url}`);
+  }
+}
+
+export function offlineFetch(base: typeof fetch, refused: (url: string) => void = () => {}): typeof fetch {
+  const guarded = (input: RequestInfo | URL, init?: RequestInit) => {
+    const raw = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+    let host = "";
+    try {
+      host = new URL(raw).hostname;
+    } catch {
+      host = "";
+    }
+    if (!LOOPBACK.has(host)) {
+      refused(raw);
+      return Promise.reject(new OfflineError(raw));
+    }
+    return base(input, init);
+  };
+  return Object.assign(guarded, base) as typeof fetch;
+}
+
+export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = { scripts: [], styles: [] }, offline = false): { html: string; csp: string } {
+  const script = `window.__BKT__=${JSON.stringify(offline ? { nonce, offline: true } : { nonce })};`;
   const hash = createHash("sha256").update(script).digest("base64");
   const csp = [
     "default-src 'none'",
     `script-src 'self' 'sha256-${hash}'`,
     "connect-src 'self'",
+    "worker-src 'self'",
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",
@@ -113,6 +154,10 @@ export function startServe(opts: ServeOptions = {}): Serve {
   const now = opts.now ?? Date.now;
   const routes = opts.routes ?? {};
   const ui = loadUi(opts.uiDir);
+  const offline = opts.offline ?? isOffline();
+  if (offline && !(globalThis.fetch as { bktOffline?: boolean }).bktOffline) {
+    globalThis.fetch = Object.assign(offlineFetch(globalThis.fetch, (u) => opts.onError?.(new OfflineError(u))), { bktOffline: true });
+  }
   const maxBody = opts.maxBodyBytes ?? MAX_BODY_BYTES;
   const routeBody = opts.routeBodyBytes ?? {};
   const serverMax = Math.max(maxBody, ...Object.values(routeBody));
@@ -191,7 +236,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
         if (!peerOk()) return deny(403);
         if (served || !live()) return gone();
         served = true;
-        const { html, csp } = page(nonce, ui);
+        const { html, csp } = page(nonce, ui, offline);
         return new Response(html, {
           headers: {
             "content-type": "text/html; charset=utf-8",
@@ -221,12 +266,18 @@ export function startServe(opts: ServeOptions = {}): Serve {
         return json({ token });
       }
 
+      if (url.pathname === "/cli/prove" && req.method === "GET" && opts.cliSecret !== undefined) {
+        const challenge = url.searchParams.get("challenge") ?? "";
+        if (!/^[A-Za-z0-9_-]{43}$/.test(challenge)) return deny(400);
+        return json({ proof: proveServer(opts.cliSecret, challenge) });
+      }
       const auth = req.headers.get("authorization") ?? "";
       const m = auth.match(/^Bucket ([A-Za-z0-9_-]{43})$/);
-      if (!token || !m || !same(m[1], token)) return deny(401);
+      const cli = opts.cliToken !== undefined && !!m && same(m[1], opts.cliToken);
+      if (!cli && (!token || !m || !same(m[1], token))) return deny(401);
       if (url.pathname === "/local/ping" && req.method === "GET") return json({ ok: true });
       const key = `${req.method} ${url.pathname}`;
-      const route = routes[key];
+      const route = routes[key] ?? opts.match?.(req.method, url.pathname);
       if (!route) return deny(404);
       if (req.method !== "GET") {
         const cap = routeBody[key] ?? maxBody;

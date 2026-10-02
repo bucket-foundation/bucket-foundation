@@ -2,9 +2,11 @@ import { describe, expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { tokenRank, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
+import { parseCanonSearchParams } from "../../../src/lib/canon-rank";
+import { CANON_DEFAULT_TOP_K } from "../src/canon";
+import { packCanon, searchCanon } from "../src/core/search";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
-import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
+import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, keepGraph, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
 import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -263,7 +265,7 @@ describe("planted rows", () => {
 describe("parity with the website fixture", () => {
   type Row = [string, number];
   const fixture = JSON.parse(readFileSync(join(REPO, "scripts/fixtures/canon-search-parity.json"), "utf8")) as Record<string, Record<string, { status: number; top_k: number | null; results?: Row[] }>>;
-  const index: ClaimIndexEntry[] = pack.excerpts.map((e) => ({ ...e, vec: new Float32Array(0) }));
+  const shipped = packCanon(pack);
   const kept = new Set(pack.excerpts.map((e) => e.rowid));
 
   test("surviving rows keep the website's order and scores for every recorded keyword query", () => {
@@ -273,14 +275,75 @@ describe("parity with the website fixture", () => {
       const p = JSON.parse(key) as Record<string, string>;
       if (p.qvec || want.status !== 200 || want.top_k === null || (p.q ?? "").length > 200) continue;
       const survivors = (want.results ?? []).filter(([id]) => kept.has(Number(id.split(":")[0])));
-      let got = tokenRank(index, p.q, want.top_k * 3);
-      if (p.branch) got = got.filter((r) => r.entry.branch === p.branch);
-      const mine = got.slice(0, want.top_k).map((r): Row => [`${r.entry.rowid}:${r.entry.concept}/${r.entry.slug}`, r.score]);
+      const url = new URL(`http://127.0.0.1/local/canon/search?${new URLSearchParams(p)}`);
+      const got = searchCanon(shipped, parseCanonSearchParams(url, CANON_DEFAULT_TOP_K));
+      if (!got.ok) throw new Error(`${key}: ${got.message}`);
+      const mine = got.results.map((r): Row => [`${r.id}:${r.concept}/${r.slug}`, r.score]);
       expect(mine.slice(0, survivors.length)).toEqual(survivors);
       compared++;
       rows += survivors.length;
     }
     expect(compared).toBeGreaterThanOrEqual(60);
     expect(rows).toBeGreaterThan(200);
+  });
+});
+
+describe("knowledge graph in the pack", () => {
+  test("ships every connected author with centrality for kept ids only", () => {
+    expect(pack.graph.graph.nodes.length).toBe(pack.counts.connections.nodes - pack.counts.connections.denied);
+    expect(pack.graph.graph.edges.length).toBeGreaterThan(300);
+    const ids = new Set(pack.graph.graph.nodes.map((n) => n.id));
+    expect(Object.keys(pack.graph.centrality.weighted).every((k) => ids.has(k))).toBe(true);
+    expect(residual(buildDenylist(REPO), pack.graph)).toEqual([]);
+  });
+
+  test("a node naming the denied author drops with its edges and centrality", () => {
+    const raw = {
+      nodes: [
+        { id: "A1", name: "Ada Lovelace", group: "author" },
+        { id: "A2", name: `Jack ${OWNER}`, group: "author" },
+        { id: "A3", name: "Charles Babbage", group: "author" },
+      ],
+      edges: [
+        { source: "A1", target: "A2", weight: 2 },
+        { source: "A1", target: "A3", weight: 5 },
+      ],
+    };
+    const kept = keepGraph(deny, raw, { degree: { A1: 2, A2: 1, A3: 1 }, weighted: { A1: 7, A2: 2, A3: 5 } });
+    expect(kept.denied).toBe(1);
+    expect(kept.graph.graph.nodes.map((n) => n.id)).toEqual(["A1", "A3"]);
+    expect(kept.graph.graph.edges).toEqual([{ source: "A1", target: "A3", weight: 5 }]);
+    expect(kept.graph.centrality).toEqual({ degree: { A1: 2, A3: 1 }, weighted: { A1: 7, A3: 5 } });
+    expect(residual(deny, kept.graph)).toEqual([]);
+  });
+
+  test("a graph edited after the filter fails the build", () => {
+    const inputs = readInputs(REPO);
+    const full = buildDenylist(REPO);
+    const leaky = { ...inputs, graph: { ...inputs.graph, nodes: inputs.graph.nodes.map((n, i) => (i === 0 ? { ...n, name: `${n.name} ${OWNER}` } : n)) } };
+    const kept = assemble(leaky, full);
+    expect(kept.graph.graph.nodes.length).toBe(inputs.graph.nodes.length - 1);
+    const tampered = structuredClone(kept);
+    tampered.graph.graph.nodes[0].name = OWNER;
+    expect(residual(full, tampered).length).toBeGreaterThan(0);
+  });
+});
+
+describe("excerpts by author id", () => {
+  test("every author id maps to kept excerpts that name the author", () => {
+    const ids = new Set(pack.graph.graph.nodes.map((n) => n.id));
+    const rows = new Map(pack.excerpts.map((e) => [e.rowid, e]));
+    const entries = Object.entries(pack.graph.excerpts);
+    expect(entries.length).toBeGreaterThan(10);
+    for (const [id, list] of entries) {
+      expect(ids.has(id)).toBe(true);
+      const fold = (t: string) => ` ${t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()} `;
+      const surname = fold(pack.graph.graph.nodes.find((n) => n.id === id)!.name.split(/\s+/).pop()!);
+      for (const r of list) {
+        const e = rows.get(r)!;
+        const said = fold([e.text, ...(pack.evidence[String(r)] ?? []).map((p) => p.author ?? "")].join(" "));
+        expect(said).toContain(surname);
+      }
+    }
   });
 });

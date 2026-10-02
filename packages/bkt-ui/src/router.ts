@@ -7,18 +7,22 @@ export type Route =
   | { name: "quiz" }
   | { name: "review" }
   | { name: "import" }
+  | { name: "add" }
+  | { name: "setup" }
   | { name: "advisors" }
   | { name: "primes" }
   | { name: "jobs" }
   | { name: "work" }
   | { name: "daily"; day: string }
-  | { name: "canon" }
+  | { name: "canon"; find?: string }
   | { name: "search"; id?: number }
+  | { name: "explore" }
   | { name: "atlases" }
   | { name: "notes" }
-  | { name: "history" };
+  | { name: "history" }
+  | { name: "data" };
 
-const SIMPLE = new Set(["quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"]);
+const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data"]);
 
 export function isDay(day: string | undefined): day is string {
   if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;
@@ -36,6 +40,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "learn" && parts[1]) return parts[2] ? { name: "deck", deck: parts[1], atom: parts[2] } : { name: "deck", deck: parts[1] };
   if (parts[0] === "path") return parts[1] ? { name: "path", to: parts[1] } : { name: "path" };
   if (parts[0] === "work" && parts[1] === "daily" && parts.length === 3 && isDay(parts[2])) return { name: "daily", day: parts[2] };
+  if (parts[0] === "canon" && parts[1] === "find" && parts.length === 3 && parts[2].length <= 200) return { name: "canon", find: parts[2] };
   if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
@@ -45,6 +50,7 @@ export function href(r: Route): string {
   if (r.name === "deck") return `#/learn/${encodeURIComponent(r.deck)}${r.atom ? `/${encodeURIComponent(r.atom)}` : ""}`;
   if (r.name === "path") return r.to ? `#/path/${encodeURIComponent(r.to)}` : "#/path";
   if (r.name === "daily") return `#/work/daily/${r.day}`;
+  if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";
   if (r.name === "search") return r.id === undefined ? "#/search" : `#/search/${r.id}`;
   return `#/${r.name}`;
 }
@@ -62,4 +68,25 @@ export function useRoute(): Route {
     return () => window.removeEventListener("hashchange", on);
   }, []);
   return route;
+}
+
+export async function followRoutes(
+  next: () => Promise<{ route: string | null; superseded: boolean }>,
+  go: (route: string) => void,
+  live: () => boolean,
+  wait: (ms: number) => Promise<unknown> = (ms) => new Promise((r) => setTimeout(r, ms)),
+): Promise<void> {
+  while (live()) {
+    let answer: { route: string | null; superseded: boolean };
+    try {
+      answer = await next();
+    } catch (e) {
+      const status = (e as { status?: number }).status;
+      if (status === 401 || status === 404) return;
+      await wait(5000);
+      continue;
+    }
+    if (answer.superseded) return;
+    if (answer.route !== null && live()) go(answer.route);
+  }
 }

@@ -35,3 +35,17 @@ test("production search returns no sample advisor", async ({ page, request }) =>
   await expect(page.getByTestId("explore-results").locator("li").first()).toBeVisible();
   await expect(page.getByText(/Sample Advisor/)).toHaveCount(0);
 });
+
+test("with sign-in closed the drawer offers Save in place of work on this", async ({ page }) => {
+  await ready(page, "/explore?view=circle&q=entropy");
+  await page.getByTestId("shell-result").first().click();
+  await expect(page.getByRole("button", { name: "close drawer" })).toBeVisible();
+  await expect(page.getByText("work on this")).toHaveCount(0);
+  const save = page.getByTestId("save-button");
+  await expect(save).toHaveText("Save");
+  await save.click();
+  await expect(save).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByTestId("drawer-save-status")).toContainText("Saved on this device, in this browser.");
+  await page.getByRole("link", { name: "See your saved list" }).click();
+  await expect(page.getByTestId("saved-panel").getByTestId("saved-item")).toHaveCount(1);
+});

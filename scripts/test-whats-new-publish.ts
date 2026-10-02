@@ -8,7 +8,8 @@ import path from "node:path";
 import { fileMarks, type MarkStore } from "../src/lib/download/marks";
 import { tokenHash } from "../src/lib/whats-new/auth";
 import { handleDelete, handleList, handlePost, handlePublish, handleRevoke, type Deps, type LegacyEntry, type Result } from "../src/lib/whats-new/handler";
-import { feedItems, feedItemXml, loadPublicEntries, pageSections, type PublicEntry } from "../src/lib/whats-new/public";
+import { feedItems, feedItemXml, loadPublicEntries, type PublicEntry } from "../src/lib/whats-new/public";
+import { timeline } from "../src/lib/whats-new/timeline";
 import { fileDocs, readEntry, readUsage, writeEntry, type AuditRecord, type DocStore } from "../src/lib/whats-new/store";
 import { digestLedger, sendDailyDigest, type DigestConfig, type Recipient, type SendReport } from "../src/lib/whats-new-email/send";
 
@@ -72,8 +73,13 @@ function post(deps: Deps, body: unknown, token: string = tokens.ada): Promise<Re
 
 const auth = (token: string | null): string | null => (token === null ? null : `Bearer ${token}`);
 
-function publish(deps: Deps, id: string, token: string | null = tokens.root, ifMatch: string | null = null): Promise<Result> {
-  return handlePublish({ authorization: auth(token), id, ifMatch }, deps);
+async function publish(deps: Deps, id: string, token: string | null = tokens.root, ifMatch?: string | null): Promise<Result> {
+  let reviewed = ifMatch;
+  if (reviewed === undefined) {
+    const stored = deps.store && /^[a-z0-9-]{3,80}$/.test(id) ? await readEntry(deps.store, id).catch(() => null) : null;
+    reviewed = stored?.body_hash ?? "0".repeat(64);
+  }
+  return handlePublish({ authorization: auth(token), id, ifMatch: reviewed }, deps);
 }
 
 function remove(deps: Deps, id: string, token: string | null = tokens.root): Promise<Result> {
@@ -163,14 +169,13 @@ function digestIds(mail: Mail): string[] {
 
 async function surfaces(b: Bench, digestAt: string): Promise<{ list: string[]; page: string[]; feed: string; digest: string[]; merged: PublicEntry[] }> {
   const merged = await loadPublicEntries(LEGACY, b.store);
-  const sections = pageSections(merged);
   const outbox: Mail[] = [];
   const marks = fileMarks(path.join(b.root, `digest-${randomBytes(4).toString("hex")}`));
   const scratch = fileDocs(b.root, `ledger-${randomBytes(4).toString("hex")}/`);
   await sendDailyDigest({ entries: () => loadPublicEntries(LEGACY, b.store), ledger: digestLedger(scratch), recipients: async () => RECIPIENTS.slice(0, 1), config: CONFIG, now: Date.parse(digestAt), fetcher: mailer(outbox), gapMs: 0, progress: marks });
   return {
     list: await publicIds(b.deps),
-    page: [...sections.productions, ...sections.milestones].map((e) => e.id),
+    page: timeline(merged).flatMap((d) => d.rows.map((r) => r.entry.id)),
     feed: feedItems(merged).map((i) => feedItemXml(i, "now")).join("\n"),
     digest: outbox.flatMap(digestIds),
     merged,
@@ -180,7 +185,7 @@ async function surfaces(b: Bench, digestAt: string): Promise<{ list: string[]; p
 function absentEverywhere(s: Awaited<ReturnType<typeof surfaces>>, id: string): void {
   assert.ok(!s.list.includes(id), `${id} in the public GET`);
   assert.ok(!s.page.includes(id), `${id} on the page`);
-  assert.ok(!s.feed.includes(`#${id}<`), `${id} in feed.xml`);
+  assert.ok(!s.feed.includes(`#${id}<`) && !s.feed.includes(`:${id}<`), `${id} in feed.xml`);
   assert.ok(!s.digest.includes(id), `${id} in the digest`);
   assert.ok(!JSON.stringify(s.merged).includes(`"${id}"`), `${id} in the merged list`);
 }
@@ -259,7 +264,7 @@ test("delete returns 200, 400, 404, 410 and 503, and the tombstone retires the i
     assert.equal((await remove(b.deps, id)).status, 410);
     const stone = await readEntry(b.store, id);
     assert.deepEqual(Object.keys(stone ?? {}).sort(), ["body_hash", "created_at", "deleted_at", "id", "kind", "poster", "review_state", "updated_at"]);
-    assert.equal((await b.store.list("entries")).includes(`${id}.image.json`), false);
+    assert.equal((await b.store.list("entries")).some((n) => n.startsWith(`${id}.image.`)), false);
     const mine = await post(b.deps, production(id));
     assert.deepEqual([mine.status, /deleted/.test(String(mine.body?.error))], [409, true]);
     assert.equal((await post(b.deps, production(id), tokens.bob)).status, 409);
@@ -317,8 +322,8 @@ test("a draft, a tombstone and a replaced entry appear in none of the four publi
   for (const id of ["prod-live", "prod-dead", "prod-redo"]) {
     assert.ok(first.list.includes(id) && first.page.includes(id) && first.feed.includes(`#${id}<`) && first.digest.includes(id), id);
   }
-  assert.ok(first.list.includes("gen-refuted") && first.feed.includes("#gen-refuted<"));
-  assert.ok(!first.page.includes("gen-refuted"));
+  assert.ok(first.list.includes("gen-refuted") && first.feed.includes("whats-new-generation:gen-refuted<"));
+  assert.ok(first.page.includes("gen-refuted"));
   for (const id of ["prod-draft", "gen-draft"]) absentEverywhere(first, id);
 
   assert.equal((await remove(b.deps, "prod-dead")).status, 200);
@@ -328,8 +333,8 @@ test("a draft, a tombstone and a replaced entry appear in none of the four publi
   const second = await surfaces(b, at);
   for (const id of ["prod-draft", "gen-draft", "prod-dead", "prod-redo"]) absentEverywhere(second, id);
   assert.deepEqual(second.list, ["gen-refuted", "prod-live", "pr-496"]);
-  assert.deepEqual(second.page, ["prod-live", "pr-496"]);
-  assert.deepEqual(second.digest, ["prod-live"]);
+  assert.deepEqual(second.page, ["gen-refuted", "prod-live", "pr-496"]);
+  assert.deepEqual(second.digest, ["prod-live", "gen-refuted"]);
 
   b.now.value = Date.parse("2026-10-03T09:00:00.000Z");
   assert.equal((await publish(b.deps, "prod-redo")).status, 200);
@@ -351,7 +356,9 @@ test("generations carry kind, state and machine_generated in the list and the fe
   for (const hidden of ["poster", "body_hash", "review_state", "image"]) assert.ok(!(hidden in gen));
   const merged = await loadPublicEntries(LEGACY, b.store);
   const live = merged.find((e) => e.id === "prod-live");
-  assert.ok(live && !("image" in live) && !("poster" in live));
+  assert.ok(live && live.image === "/api/whats-new/image/prod-live" && !("poster" in live));
+  const genItem = feedItems(merged).find((i) => i.guid === "whats-new-generation:gen-refuted");
+  assert.deepEqual([genItem?.path, feedItems(merged).find((i) => i.path === "/whats-new#prod-live")?.guid], ["/whats-new", undefined]);
   const xml = feedItems(merged).map((i) => feedItemXml(i, "now")).join("\n");
   assert.match(xml, /<title>Generation, refuted: Generation gen-refuted<\/title>/);
   for (const tag of ['<category domain="kind">generation</category>', '<category domain="state">refuted</category>', '<category domain="machine_generated">true</category>']) assert.ok(xml.includes(tag), tag);
@@ -382,29 +389,37 @@ test("the four surfaces read the merged list through one module", () => {
   for (const route of ["app/api/whats-new/entries/route.ts", "app/api/whats-new/entries/[id]/route.ts", "app/api/whats-new/entries/[id]/publish/route.ts"]) {
     assert.ok(readFileSync(path.join(src, route), "utf8").includes("if (result.publicChanged) revalidateWhatsNew();"), route);
   }
-  assert.match(readFileSync(path.join(src, "app/whats-new/page.tsx"), "utf8"), /export const revalidate = 300;/);
+  assert.match(readFileSync(path.join(src, "app/whats-new/page.tsx"), "utf8"), /export const revalidate = 60;/);
 });
 
 test("a failed image write rolls the new entry back, and a failed replace keeps the old image", async (t) => {
   const b = await bench(t);
-  const noImage = failing(b.store, (op, name) => op === "write" && name.endsWith(".image.json"));
+  const noImage = failing(b.store, (op, name) => op === "write" && name.includes(".image."));
   assert.equal((await post({ ...b.deps, store: noImage }, production("prod-a"))).status, 503);
   assert.equal(await readEntry(b.store, "prod-a"), null);
   assert.deepEqual(await b.store.list("entries"), []);
   assert.deepEqual(await readUsage(b.store, "ada"), { drafts: 0, image_bytes: 0 });
 
   assert.equal((await post(b.deps, production("prod-a"))).status, 201);
-  const image = await b.store.read("entries/prod-a.image.json");
   const before = await readEntry(b.store, "prod-a");
+  const imageKey = `entries/prod-a.image.${before?.body_hash}.json`;
+  const image = await b.store.read(imageKey);
+  assert.notEqual(image, null);
   const usage = await readUsage(b.store, "ada");
   let entryWrites = 0;
   const noEntry = failing(b.store, (op, name) => op === "write" && name === "entries/prod-a.json" && ++entryWrites > 0);
-  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0, 4, 0, 0, 0xff, 0xc0, 0, 11, 8, 0, 2, 0, 3, 1, 1, 0x11, 0, 0xff, 0xd9]).toString("base64");
-  const swapped = { ...production("prod-a", "Second take"), image: { filename: "b.jpg", content_type: "image/jpeg", base64: jpeg } };
+  const swapped = production("prod-a", "Second take");
   assert.equal((await post({ ...b.deps, store: noEntry }, swapped)).status, 503);
-  assert.equal(await b.store.read("entries/prod-a.image.json"), image);
+  assert.equal(await b.store.read(imageKey), image);
+  assert.deepEqual((await b.store.list("entries")).sort(), [`prod-a.image.${before?.body_hash}.json`, "prod-a.json"]);
   assert.deepEqual(await readEntry(b.store, "prod-a"), before);
   assert.deepEqual(await readUsage(b.store, "ada"), usage);
+
+  assert.equal((await post({ ...b.deps, store: noImage }, swapped)).status, 503);
+  assert.deepEqual(await readEntry(b.store, "prod-a"), before);
+  assert.equal(await b.store.read(imageKey), image);
+  assert.deepEqual(await readUsage(b.store, "ada"), usage);
+  assert.deepEqual(await b.store.list("locks"), []);
 });
 
 test("the digest freezes its ids in the first slot, drops a retraction at send time and never mails an entry twice", async (t) => {
@@ -493,4 +508,79 @@ test("an HTTP error from the mail API still counts as a failure and the run goes
   const report = await digestRun(b, "2026-10-02T06:00:00.000Z", progress, flaky);
   assert.deepEqual([report.sent, report.failed, report.skipped], [3, 1, undefined]);
   assert.notEqual(await b.store.read("digest/freeze-2026-10-01.json"), null);
+});
+
+test("publish needs if-match, holds the id lock against a replace, and rolls back when the body changes under it", async (t) => {
+  const b = await bench(t);
+  assert.equal((await post(b.deps, production("prod-a"))).status, 201);
+  const reviewed = (await readEntry(b.store, "prod-a"))?.body_hash as string;
+  for (const ifMatch of [null, "", "  "]) {
+    const res = await handlePublish({ authorization: auth(tokens.root), id: "prod-a", ifMatch }, b.deps);
+    assert.equal(res.status, 428);
+  }
+  assert.deepEqual(await handlePublish({ authorization: auth(tokens.ada), id: "prod-a", ifMatch: null }, b.deps), { status: 404, body: null });
+  assert.equal((await readEntry(b.store, "prod-a"))?.review_state, "draft");
+
+  let during: Result | null = null;
+  const racing: DocStore = {
+    ...b.store,
+    write: async (name, text) => {
+      if (name === "entries/prod-a.json" && during === null) during = await post(b.deps, production("prod-a", "Replaced while publishing"));
+      return b.store.write(name, text);
+    },
+  };
+  const quoted = await handlePublish({ authorization: auth(tokens.root), id: "prod-a", ifMatch: `"${reviewed}"` }, { ...b.deps, store: racing });
+  assert.deepEqual([quoted.status, quoted.body?.changed], [200, true]);
+  const blocked = during as Result | null;
+  assert.deepEqual([blocked?.status, /in flight/.test(String(blocked?.body?.error))], [409, true]);
+  const live = await readEntry(b.store, "prod-a");
+  assert.deepEqual([live?.review_state, live?.body_hash, live?.title], ["published", reviewed, "Production prod-a"]);
+  assert.deepEqual(await b.store.list("locks"), []);
+
+  assert.equal((await post(b.deps, production("prod-b"))).status, 201);
+  const hashB = (await readEntry(b.store, "prod-b"))?.body_hash as string;
+  const drafts = (await readUsage(b.store, "ada")).drafts;
+  const lockless: DocStore = {
+    ...b.store,
+    write: async (name, text) => {
+      await b.store.write(name, text);
+      if (name === "entries/prod-b.json") {
+        const mine = JSON.parse(text) as Record<string, unknown>;
+        await b.store.write(name, JSON.stringify({ ...mine, title: "Slipped in", body_hash: "f".repeat(64) }));
+      }
+    },
+  };
+  let once = false;
+  const slips: DocStore = { ...lockless, write: async (name, text) => (once || name !== "entries/prod-b.json" ? b.store.write(name, text) : ((once = true), lockless.write(name, text))) };
+  const lost = await handlePublish({ authorization: auth(tokens.root), id: "prod-b", ifMatch: hashB }, { ...b.deps, store: slips });
+  assert.deepEqual([lost.status, lost.publicChanged], [409, true]);
+  const after = await readEntry(b.store, "prod-b");
+  assert.deepEqual([after?.review_state, after?.title, after?.published_at], ["draft", "Slipped in", undefined]);
+  assert.equal((await readUsage(b.store, "ada")).drafts, drafts);
+  assert.ok(!(await publicIds(b.deps)).includes("prod-b"));
+});
+
+test("the digest re-reads the freeze after writing it and sends the stored list", async (t) => {
+  const b = await bench(t);
+  for (const id of ["prod-a", "prod-b"]) {
+    assert.equal((await post(b.deps, production(id))).status, 201);
+    assert.equal((await publish(b.deps, id)).status, 200);
+  }
+  const ledger = digestLedger(b.store);
+  const raced = { ...ledger, freeze: async (day: string) => ledger.freeze(day, ["prod-a"]) };
+  const outbox: Mail[] = [];
+  const report = await sendDailyDigest({
+    entries: () => loadPublicEntries(LEGACY, b.store),
+    ledger: raced,
+    recipients: async () => RECIPIENTS,
+    config: CONFIG,
+    now: Date.parse("2026-10-02T06:00:00.000Z"),
+    fetcher: mailer(outbox),
+    gapMs: 0,
+    progress: fileMarks(path.join(b.root, "progress")),
+  });
+  assert.equal(report.sent, 4);
+  assert.deepEqual(outbox.map(digestIds), [["prod-a", "prod-b"], ["prod-a"], ["prod-a"], ["prod-a"]]);
+  assert.equal(await b.store.read("digest/mailed-prod-b.json"), null);
+  assert.notEqual(await b.store.read("digest/mailed-prod-a.json"), null);
 });

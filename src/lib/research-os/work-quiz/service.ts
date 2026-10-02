@@ -1,11 +1,15 @@
 import type { Card, Rating } from "@/lib/academy/fsrs";
 import type { AnswerFields, AttemptRow, CardRow, QuizMode } from "./db";
-import { generateQuestion, seededRng } from "./generate";
+import { generateQuestion, rewriteQuestion, seededRng } from "./generate";
 import { gradeAnswer, nextCard, normalizeResponse } from "./grade";
 import { questionText } from "./learn-match";
+import { withinLimits } from "./limits";
+import { dueFrom, sampleQuiz, usedOn, type CoverageRow, type SamplePick } from "./sampler";
 import { toPublic, type LearnLink, type PublicQuestion, type QuizQuestion, type SourceRef, type WorkSources } from "./types";
 
 export const REVIEW_SHARE = 0.5;
+export const DUE_SCAN = 200;
+export const DUE_ROUNDS = 50;
 
 export interface QuizDeps {
   loadSources(): Promise<WorkSources>;
@@ -17,11 +21,50 @@ export interface QuizDeps {
   answerAttempt(learnerId: string, id: string, fields: AnswerFields, answeredAt: string): Promise<AttemptRow | null>;
   loadCard(learnerId: string, questionId: string): Promise<CardRow | null>;
   writeCard(learnerId: string, question: QuizQuestion, card: Card, previous: CardRow | null): Promise<boolean>;
+  rekeyCard(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean>;
+  retireCard(learnerId: string, questionId: string): Promise<void>;
+  loadCoverage?(learnerId: string): Promise<CoverageRow[]>;
+  recordPicks?(learnerId: string, picks: SamplePick[], day: string): Promise<void>;
+  recordMiss?(learnerId: string, question: QuizQuestion, day: string): Promise<void>;
+}
+
+export interface CardRefresh {
+  rewritten: number;
+  retired: number;
+}
+
+export async function refreshDue(deps: QuizDeps, learnerId: string, now: Date): Promise<CardRefresh & { card: CardRow | null }> {
+  let rewritten = 0;
+  let retired = 0;
+  let first: CardRow | null = null;
+  let sources: WorkSources | null = null;
+  for (let round = 0; round < DUE_ROUNDS; round++) {
+    const batch = await deps.dueCards(learnerId, now, DUE_SCAN);
+    let changed = false;
+    for (const c of batch) {
+      if (withinLimits(c.question)) {
+        first = first ?? c;
+        continue;
+      }
+      changed = true;
+      sources = sources ?? (await deps.loadSources());
+      const shorter = rewriteQuestion(c.question, sources);
+      if (shorter && (await deps.rekeyCard(learnerId, c, shorter))) {
+        rewritten++;
+        first = first ?? { ...c, question_id: shorter.id, question: shorter };
+      } else {
+        await deps.retireCard(learnerId, c.question_id);
+        retired++;
+      }
+    }
+    if (!changed || batch.length < DUE_SCAN) break;
+  }
+  return { card: first, rewritten, retired };
 }
 
 export type IssueResult =
-  | { status: "issued"; attemptId: string; mode: QuizMode; fromReview: boolean; question: PublicQuestion }
-  | { status: "empty"; reason: "no_sources" | "nothing_due" };
+  | { status: "issued"; attemptId: string; mode: QuizMode; fromReview: boolean; question: PublicQuestion; retired: number; rewritten: number }
+  | { status: "empty"; reason: "no_sources" | "nothing_due"; retired: number; rewritten: number };
 
 export interface QuizResult {
   attemptId: string;
@@ -46,28 +89,35 @@ export function parseMode(raw: string | null): QuizMode | null {
 
 export async function issueQuestion(deps: QuizDeps, learnerId: string, mode: QuizMode, now: Date): Promise<IssueResult> {
   const open = deps.openAttempt ? await deps.openAttempt(learnerId, mode, now) : null;
-  if (open) return { status: "issued", attemptId: open.id, mode, fromReview: false, question: toPublic(open.question) };
+  if (open) return { status: "issued", attemptId: open.id, mode, fromReview: false, question: toPublic(open.question), retired: 0, rewritten: 0 };
   const seed = `${learnerId}|${now.toISOString()}`;
   const rng = seededRng(seed);
-  const due = await deps.dueCards(learnerId, now, 1);
+  const { card, retired, rewritten } = await refreshDue(deps, learnerId, now);
+  const due = card ? [card] : [];
   let question: QuizQuestion | null = null;
   let fromReview = false;
   if (due.length > 0 && (mode === "review" || rng() < REVIEW_SHARE)) {
     question = due[0].question;
     fromReview = true;
   } else if (mode === "review") {
-    return { status: "empty", reason: "nothing_due" };
+    return { status: "empty", reason: "nothing_due", retired, rewritten };
   } else {
-    question = generateQuestion(await deps.loadSources(), seed);
+    const sources = await deps.loadSources();
+    const day = now.toISOString().slice(0, 10);
+    const coverage = deps.loadCoverage ? await deps.loadCoverage(learnerId) : [];
+    const dueNow = due.map((c) => dueFrom(c.question, Date.parse(c.due_at)));
+    const picked = sampleQuiz({ day, sources, coverage, due: dueNow, slots: 1, reviewSlots: 0, now: now.getTime(), exclude: usedOn(coverage, day) });
+    question = picked.questions[0] ?? generateQuestion(sources, seed);
+    if (picked.questions.length > 0 && deps.recordPicks) await deps.recordPicks(learnerId, picked.picks, day);
     if (!question && due.length > 0) {
       question = due[0].question;
       fromReview = true;
     }
   }
-  if (!question) return { status: "empty", reason: "no_sources" };
+  if (!question) return { status: "empty", reason: "no_sources", retired, rewritten };
   if (!fromReview) question = { ...question, learn: deps.matchLearn(questionText(question)) };
   const row = await deps.issueAttempt(learnerId, question, mode);
-  return { status: "issued", attemptId: row.id, mode, fromReview, question: toPublic(question) };
+  return { status: "issued", attemptId: row.id, mode, fromReview, question: toPublic(question), retired, rewritten };
 }
 
 function resultFrom(row: AttemptRow, reviewDueAt: string | null, reviewSaved: boolean): QuizResult {
@@ -126,6 +176,7 @@ export async function answerQuestion(deps: QuizDeps, learnerId: string, body: Re
     const stored = await deps.loadAttempt(learnerId, attemptId);
     return stored ? { status: "ok", result: resultFrom(stored, null, true) } : { status: "not_found" };
   }
+  if (!skipped && !fields.correct && deps.recordMiss) await deps.recordMiss(learnerId, q, now.toISOString().slice(0, 10));
   if (rating === null) return { status: "ok", result: resultFrom(claimed, null, true) };
   const review = await scheduleReview(deps, learnerId, q, rating, now);
   return { status: "ok", result: resultFrom(claimed, review.dueAt, review.saved) };

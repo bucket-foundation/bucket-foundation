@@ -5,12 +5,14 @@ import { randomUUID } from "node:crypto";
 import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
 import type { Card, Item, Rating } from "./grade";
+import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
+import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
-export const SCHEMA_VERSION = 8;
+export const SCHEMA_VERSION = 10;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -96,6 +98,12 @@ export const MIGRATIONS: Migration[] = [
   `create table daily_quiz (day text primary key, body text not null, created_at integer not null);
    alter table work_quiz_attempts add column log10_distance real;
    create unique index work_quiz_attempts_daily on work_quiz_attempts(question_id) where substr(question_id, 1, 6) = 'daily:';`,
+  `create table work_quiz_cards (card_key text primary key, fact_id text not null, form text not null, state text not null, due integer,
+     updated_at integer not null);
+   create index work_quiz_cards_due on work_quiz_cards(due);`,
+  `create table work_quiz_coverage (cell text not null, fact_id text not null, picks integer not null default 0, misses integer not null default 0,
+     last_day text not null, primary key (cell, fact_id));
+   alter table work_quiz_cards add column question text;`,
 ];
 
 export interface AttemptInput {
@@ -118,12 +126,23 @@ export class Store {
   constructor(path: string, private key: Buffer) {
     if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
     this.db = new Database(path, { create: true, strict: true });
+    this.db.run("pragma busy_timeout = 5000");
     this.db.run("pragma journal_mode = wal");
     this.db.run("pragma foreign_keys = on");
     this.db.run("pragma secure_delete = on");
-    this.db.run("pragma busy_timeout = 5000");
     this.migrate();
     this.checkKey();
+  }
+
+  putWorkQuizCard(factId: string, form: Form, state: string, due: number | null, at: number): string {
+    const key = cardKey(factId, form);
+    this.db
+      .query(
+        `insert into work_quiz_cards (card_key, fact_id, form, state, due, updated_at) values (?, ?, ?, ?, ?, ?)
+         on conflict (card_key) do update set state = excluded.state, due = excluded.due, updated_at = excluded.updated_at`,
+      )
+      .run(key, factId, form, state, due, at);
+    return key;
   }
 
   private migrate() {

@@ -3,6 +3,14 @@ import { connect } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+if (process.argv[2] === "--learn-offline") {
+  const { learnOffline } = await import("./learn-offline");
+  const results = await learnOffline();
+  const passed = results.filter((r) => r.pass).length;
+  console.log(`learn offline: ${passed} of ${results.length} views pass`);
+  process.exit(passed === results.length ? 0 : 1);
+}
+
 const [bin, expected, mode] = process.argv.slice(2);
 if (!bin || !expected || (mode !== undefined && mode !== "--cli-only")) throw new Error("usage: smoke.ts BKT_BINARY EXPECTED_VERSION [--cli-only]");
 
@@ -35,6 +43,10 @@ function cliChecks(): void {
   check(attempt(["version", "--json"]).out.trim() === JSON.stringify({ v: 1, version: expected }), "version --json is the v1 shape");
   const parsed = attempt(["analyses", "--json", `--keyring=x`]);
   check(parsed.code === 2 && parsed.err.includes("unknown option --keyring"), "parseArgs rejects a flag the command does not take");
+  const completion = attempt(["completion", "bash"]);
+  check(completion.code === 0 && completion.out.includes("complete -o default -F _bkt bkt"), "completion bash prints a script");
+  const fresh = attempt(["doctor"]);
+  check(fresh.code === 1 && fresh.out.includes("No database yet. Fix: Run bkt init.") && !existsSync(env.BKT_HOME), "doctor on a fresh home exits 1 and leaves BKT_HOME absent");
   for (const args of [["bogus"], ["stats", "--nope"], ["init", "--keyring", "bogus"], []]) {
     const r = attempt(args);
     check(r.code === 2 && r.err.includes("usage: bkt") && !existsSync(env.BKT_HOME), `bkt ${args.join(" ")} exits 2 and leaves BKT_HOME absent`);
@@ -91,6 +103,11 @@ async function full(): Promise<void> {
   check(stats.v === 1 && stats.items > 0 && stats.attempts === 0, "stats --json is the v1 shape");
   const who = JSON.parse(run(["whoami", "--json"]));
   check(who.v === 1 && who.device === first.device && who.keyring === native, "whoami --json names the same device");
+
+  const doctor = attempt(["doctor", "--json"]);
+  const checks = (JSON.parse(doctor.out) as { checks: { id: string; status: string; result: string }[] }).checks;
+  const status = (id: string) => checks.find((c) => c.id === id)?.status;
+  check(status("data-folder") === "ok" && status("key-store") === "ok" && status("database") === "ok" && status("content-pack") === "ok", `doctor passes the data folder, key store, database and content pack:\n${doctor.out}`);
 
   const data = env.BKT_HOME;
   if (process.platform === "win32") {

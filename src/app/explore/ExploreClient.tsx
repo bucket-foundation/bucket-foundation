@@ -3,6 +3,8 @@
 import nextDynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Hit, HitType } from "@/lib/explore/search";
+import type { FoundingCard } from "@/lib/explore/founding";
+import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById } from "@/lib/explore/modes";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
@@ -17,6 +19,8 @@ import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, registerCustom, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
 import { loadLandmask, type Landmask } from "@/components/canon-globe/landmaskFromImage";
 import { proteinById, proteinHits, snpFor, type ResidueLink } from "@/lib/explore/protein";
+import { ResultActions, SavedPanel, useSaved } from "@/components/explore/SaveCite";
+import { citeFieldsFromHit } from "@/lib/explore/saved";
 
 const SceneHost = nextDynamic(() => import("@/components/explore/SceneHost"), { ssr: false });
 const ProteinView = nextDynamic(() => import("@/components/explore/ProteinView"), { ssr: false });
@@ -33,10 +37,30 @@ const TYPES: { id: HitType; label: string }[] = [
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
 
+const KIND: Record<HitType, string> = {
+  excerpt: "Talk",
+  advisor: "Advisor",
+  work: "Topic",
+  paper: "Paper",
+  text: "Book or text",
+  talk: "Talk",
+  "canon-file": "Canon file",
+  you: "Your document",
+};
+
+function kindLine(h: Hit): string {
+  const n = (h.also?.length ?? 0) + 1;
+  const passages = h.type === "excerpt" ? `${n} passage${n === 1 ? "" : "s"}` : null;
+  return [KIND[h.type], h.year !== null && h.type !== "excerpt" && h.type !== "work" ? String(h.year) : null, passages].filter(Boolean).join(" · ");
+}
+
 export default function ExploreClient() {
   const [q, setQ] = useState("light water mitochondria");
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
+  const [pinned, setPinned] = useState<FoundingCard | null>(null);
+  const [closest, setClosest] = useState(false);
+  const [asked, setAsked] = useState("");
   const [origin, setOrigin] = useState<AdvisorOrigin>("none");
   const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +81,7 @@ export default function ExploreClient() {
   const [mapModel, setMapModel] = useState<MapModel | null>(null);
   const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
+  const saved = useSaved();
 
   useEffect(() => {
     const m = new URLSearchParams(window.location.search).get("mode");
@@ -80,11 +105,16 @@ export default function ExploreClient() {
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error?.message || `search failed: ${res.status}`);
       setHits(body.results);
+      setPinned(body.pinned ?? null);
+      setClosest(body.closest === true);
+      setAsked(query);
       setOrigin(body.advisors_source ?? (body.advisors_sample ? "sample" : "review"));
       setSelected(body.results[0]?.id ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setHits([]);
+      setPinned(null);
+      setClosest(false);
     } finally {
       setLoading(false);
     }
@@ -98,13 +128,14 @@ export default function ExploreClient() {
   const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
   const byId = useMemo(() => new Map([...hits, ...uploaded].map((h) => [h.id, h])), [hits, uploaded]);
   const current = selected ? byId.get(selected) ?? null : null;
+  const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
   const protein = proteinById(null);
 
   useEffect(() => {
     if (mode.id !== "dna" || geneHits.length) return;
     const genes = Array.from(new Set(SNPS.map((s) => s.gene))).join(" ");
-    fetch(`/api/explore/search?q=${encodeURIComponent(genes)}&types=excerpt&top_k=40`)
+    fetch(`/api/explore/search?q=${encodeURIComponent(genes)}&types=excerpt&top_k=40&match=any`)
       .then((r) => (r.ok ? r.json() : { results: [] }))
       .then((b) => setGeneHits(b.results ?? []))
       .catch(() => setGeneHits([]));
@@ -128,7 +159,7 @@ export default function ExploreClient() {
   useEffect(() => {
     if (!matterQuery) return;
     let live = true;
-    fetch(`/api/explore/search?q=${encodeURIComponent(matterQuery)}&types=excerpt&top_k=40`)
+    fetch(`/api/explore/search?q=${encodeURIComponent(matterQuery)}&types=excerpt&top_k=40&match=any`)
       .then((r) => (r.ok ? r.json() : { results: [] }))
       .then((b) => live && setMatterHits(b.results ?? []))
       .catch(() => live && setMatterHits([]));
@@ -315,67 +346,114 @@ export default function ExploreClient() {
           </ul>
         </div>
         <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
+          <div>
+          {pinned && (
+            <section data-testid="explore-pinned" aria-label={pinned.label} className="border hairline px-3 py-3 mb-4" style={{ borderColor: "var(--gold, #D9A43A)" }}>
+              <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
+                {pinned.label} on {pinned.concept}
+              </p>
+              <h2 className="text-lg mt-1">{pinned.title}</h2>
+              <p className="text-sm" style={{ color: "var(--parchment-dim)" }}>
+                {pinned.author}, {pinned.year}
+              </p>
+              {pinned.dispute_note && (
+                <p data-testid="explore-pinned-dispute" className="text-sm mt-2">
+                  Disputed: {pinned.dispute_note}
+                </p>
+              )}
+              {!pinned.checked && (
+                <p data-testid="explore-pinned-unchecked" className="text-sm mt-2" style={{ color: "var(--parchment-dim)" }}>
+                  A reviewer has yet to check this attribution.
+                </p>
+              )}
+              <div className="flex flex-wrap gap-4 mt-2 text-sm">
+                {pinned.url && (
+                  <a className="underline" href={pinned.url} target="_blank" rel="noreferrer">
+                    Open the source
+                  </a>
+                )}
+                {pinned.hit_id && byId.has(pinned.hit_id) && (
+                  <button className="underline" onClick={() => setSelected(pinned.hit_id)}>
+                    Show in results
+                  </button>
+                )}
+              </div>
+            </section>
+          )}
+          {closest && visible.length > 0 && (
+            <p data-testid="explore-closest" className="text-sm mb-2">
+              Closest matches. Few sources hold every word of that search, so these share some of its words.
+            </p>
+          )}
           <ol data-testid="explore-results" className="space-y-2">
-            {visible.map((h) => (
-              <li key={h.id}>
+            {visible.map((h) => {
+              const fields = citeFieldsFromHit(h);
+              return (
+              <li key={h.id} data-testid="explore-result">
                 <button
                   onClick={() => setSelected(h.id)}
                   className="w-full text-left border hairline px-3 py-2"
                   style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
                 >
                   <span className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                    {h.type} · {h.score.toFixed(2)}
+                    {kindLine(h)}
                   </span>
                   <span className="block">{h.title}</span>
                   <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
+                  {h.type === "excerpt" && h.fragments?.map((f) => (
+                    <span key={f.id} className="block text-sm mt-1">
+                      “{f.text}”
+                    </span>
+                  ))}
                 </button>
+                {fields && <ResultActions fields={fields} saved={saved} />}
               </li>
-            ))}
-            {!loading && !visible.length && !error && <li className="text-sm">No results.</li>}
+              );
+            })}
+            {!loading && !visible.length && !error && <li className="text-sm" data-testid="explore-empty">{unreadableScript(asked) ? "Bucket reads searches in Latin letters for now. Try the English name." : "Nothing in the canon matches that search."}</li>}
           </ol>
+          </div>
           <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">
             {current ? (
               <>
-                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{current.type}</p>
+                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{KIND[current.type]}</p>
                 <h2 className="text-lg mt-1">{current.title}</h2>
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
                 <SourcePanel hit={current} />
+                {currentFields && <ResultActions key={current.id} fields={currentFields} saved={saved} />}
                 {current.url && !isSourceHit(current) && (
                   <a className="text-sm underline mt-3 inline-block" href={current.url}>
                     Open
                   </a>
                 )}
-                {current.links.length > 0 && (
+                {current.links.some((id) => byId.has(id)) && (
                   <>
                     <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
                       {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
                     </p>
                     <ul className="mt-1 space-y-1 text-sm">
-                      {current.links.filter((id) => !isSourceHit(current) || byId.has(id)).map((id) => {
-                        const l = byId.get(id);
-                        return (
-                          <li key={id}>
-                            <button className="underline text-left" onClick={() => setSelected(id)}>
-                              {l?.title ?? id}
-                            </button>
-                          </li>
-                        );
-                      })}
+                      {current.links.filter((id) => byId.has(id)).map((id) => (
+                        <li key={id}>
+                          <button className="underline text-left" onClick={() => setSelected(id)}>
+                            {byId.get(id)?.title}
+                          </button>
+                        </li>
+                      ))}
                     </ul>
                   </>
                 )}
               </>
             ) : selectedNode ? (
               <>
-                <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>{selectedNode.id.split(":")[0]}</p>
-                <p className="mt-1">{selectedNode.label ?? selectedNode.id}</p>
+                <p className="mt-1">{selectedNode.label ?? "This point has no name yet."}</p>
               </>
             ) : (
               <p className="text-sm">Select a result.</p>
             )}
           </aside>
         </div>
+        <SavedPanel saved={saved} />
       </div>
     </main>
   );

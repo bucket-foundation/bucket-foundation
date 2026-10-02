@@ -6,7 +6,7 @@ export interface OptionSpec {
   help: string;
 }
 
-export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit";
+export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit" | "search" | "graph" | "research" | "jobs";
 
 export interface CommandSpec {
   name: string;
@@ -16,7 +16,7 @@ export interface CommandSpec {
   options?: Record<string, OptionSpec>;
   session?: boolean;
   json?: boolean;
-  terminal?: "always" | "with-tui-flag";
+  terminal?: "always" | "with-tui-flag" | "without-json";
   palette?: { run: PaletteTarget; hint: string; order: number };
   tuiOnly?: boolean;
   data?: boolean;
@@ -127,6 +127,23 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  { name: "learn due", summary: "list the cards due now", session: true, json: true, options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "learn path", summary: "show each deck's progress, or the topics of one deck in order", args: "[deck]", positionals: [0, 1], session: true, json: true },
+  { name: "learn quiz", summary: "timed multiple choice; scripts send answers on standard input", session: true, json: true, terminal: "without-json", options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "learn review", summary: "rate the cards due now; scripts send ratings on standard input", session: true, json: true, terminal: "without-json", options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "daily", summary: "print a day's quiz, today when no day is given; scripts send answers on standard input", args: "[day]", positionals: [0, 1], session: true, json: true },
+  {
+    name: "doctor",
+    summary: "check this install and name the fix for each problem; writes nothing",
+    json: true,
+    options: { keyring: { type: "string", value: "KIND", help: "key store to check: native or passphrase" } },
+  },
+  {
+    name: "completion",
+    summary: "print a shell completion script",
+    args: "<bash|zsh|fish>",
+    positionals: [1, 1],
+  },
   {
     name: "help",
     summary: "show help for bkt or one command",
@@ -135,6 +152,63 @@ export const TABLE: CommandSpec[] = [
     palette: { run: "help", hint: "key bindings", order: 5 },
   },
   { name: "quit", summary: "exit bkt", tuiOnly: true, palette: { run: "quit", hint: "exit bkt", order: 6 } },
+  {
+    name: "search",
+    summary: "search the canon held on this device",
+    args: "<words>",
+    positionals: [1, 64],
+    json: true,
+    palette: { run: "search", hint: "search the canon", order: 7 },
+    options: {
+      limit: { type: "string", value: "N", help: "show at most N results, 1 to 50; 20 when omitted" },
+      branch: { type: "string", value: "BRANCH", help: "keep results from one branch, such as 05-biophysics" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per result: number, score, branch, title, passages, link" },
+    },
+  },
+  { name: "canon show", summary: "print one canon excerpt with its evidence passages", args: "<number>", positionals: [1, 1], json: true },
+  { name: "graph", summary: "knowledge graph", tuiOnly: true, palette: { run: "graph", hint: "knowledge graph", order: 8 } },
+  { name: "research", summary: "notes and saved results", tuiOnly: true, palette: { run: "research", hint: "notes and saved results", order: 9 } },
+  { name: "jobs", summary: "saved analyses", tuiOnly: true, palette: { run: "jobs", hint: "saved analyses", order: 10 } },
+  {
+    name: "notes ls",
+    summary: "list your notes, pinned first, by number",
+    session: true,
+    json: true,
+    options: { tsv: { type: "boolean", help: "for scripts: one tab separated row per note: number, pinned, updated, title" } },
+  },
+  {
+    name: "notes add",
+    summary: "save a note; the text comes from --body or --file",
+    args: "<title>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: {
+      body: { type: "string", value: "TEXT", help: "the note's text" },
+      file: { type: "string", value: "FILE", help: "read the note's text from a file" },
+      pin: { type: "boolean", help: "pin the note to the top" },
+    },
+  },
+  { name: "notes show", summary: "print one note by its number in bkt notes ls", args: "<number>", positionals: [1, 1], session: true, json: true },
+  {
+    name: "history",
+    summary: "print study days, reviews and accuracy for each question form",
+    session: true,
+    json: true,
+    options: {
+      days: { type: "string", value: "N", help: "how many days back, 30 when omitted" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per study day: day, reviews, answered, correct" },
+    },
+  },
+  {
+    name: "import",
+    summary: "bring over your progress file from the website's Learn page",
+    args: "<file>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: { force: { type: "boolean", help: "merge again when progress was already brought over" } },
+  },
 ];
 
 export const CLI_COMMANDS = TABLE.filter((c) => !c.tuiOnly);

@@ -1,7 +1,8 @@
 import { Database } from "bun:sqlite";
 import { afterEach, describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { browserCommand, CANON_META_KEY, canonRoutes, CanonStore, openable, OPEN_BODY_BYTES, syncCanon } from "../src/canon";
+import { browserCommand, CANON_META_KEY, CANON_SITE, canonRoutes, CanonStore, openable, OPEN_BODY_BYTES, syncCanon } from "../src/canon";
 import { buildCanonPack } from "../src/pack/canon";
 import { startServe, type Serve } from "../src/serve";
 
@@ -131,6 +132,24 @@ describe("GET /local/canon/search", () => {
   });
 });
 
+describe("the search response shape", () => {
+  const shapeOf = (row: Record<string, unknown>) => Object.fromEntries(Object.keys(row).sort().map((k) => [k, Array.isArray(row[k]) ? "array" : typeof row[k]]));
+
+  test("has the field names and types the website's canon search returns for the same query", async () => {
+    const fixture = JSON.parse(readFileSync(resolve(import.meta.dir, "../../../scripts/fixtures/canon-search-shape.json"), "utf8")) as { query: Record<string, string>; body: Record<string, string>; result: Record<string, string> };
+    boot();
+    const r = await req(`/local/canon/search?${new URLSearchParams(fixture.query)}`, { headers: auth(await token()) });
+    expect(r.status).toBe(200);
+    const body = (await r.json()) as { results: Record<string, unknown>[] };
+    expect(shapeOf(body)).toEqual(fixture.body);
+    expect(body.results.length).toBe(Number(fixture.query.top_k));
+    for (const row of body.results) expect(shapeOf(row)).toEqual(fixture.result);
+    const first = body.results[0] as { url: string; concept: string; slug: string };
+    expect(first.url).toBe(`${CANON_SITE}/excerpts/${first.concept}/${first.slug}`);
+    expect(openable(first.url)).not.toBeNull();
+  });
+});
+
 describe("POST /local/open", () => {
   test("is refused without the token and for another user's process", async () => {
     boot();
@@ -191,5 +210,32 @@ describe("POST /local/open", () => {
     expect(browserCommand(u, "linux")).toEqual(["xdg-open", u]);
     expect(browserCommand(u, "darwin")).toEqual(["open", u]);
     expect(browserCommand(u, "win32")).toEqual(["rundll32", "url.dll,FileProtocolHandler", u]);
+  });
+});
+
+describe("knowledge graph route", () => {
+  const serve = (graph: typeof pack.graph | null) => {
+    const db = freshDb();
+    syncCanon(db, pack);
+    s = startServe({ uid: ME, resolvePeerUid: () => ME, routes: canonRoutes(new CanonStore(db), { graph }) });
+  };
+
+  test("serves the filtered graph with record ids", async () => {
+    serve(pack.graph);
+    const r = await req("/local/canon/graph", { headers: auth(await token()) });
+    expect(r.status).toBe(200);
+    const body = (await r.json()) as { version: string; nodes: { id: string }[]; edges: unknown[] };
+    expect(body.version).toBe(pack.version);
+    expect(body.nodes.length).toBeGreaterThan(150);
+    expect(body.nodes.every((n) => n.id.startsWith("openalex:A"))).toBe(true);
+    expect(body.edges.length).toBe(pack.graph.graph.edges.length);
+  });
+
+  test("says so when no graph ships, and refuses a caller without the token", async () => {
+    serve(null);
+    expect((await req("/local/canon/graph")).status).toBe(401);
+    const r = await req("/local/canon/graph", { headers: auth(await token()) });
+    expect(r.status).toBe(404);
+    expect(((await r.json()) as { error: string }).error).toBe("no knowledge graph on this computer");
   });
 });

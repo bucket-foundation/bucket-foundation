@@ -1,8 +1,9 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
-import { firstRunHash, href, useRoute } from "./router";
-import { navFor, Screen } from "./nav";
+import { firstRunHash, followRoutes, href, useRoute } from "./router";
+import { FOOT_LINK, navFor, Screen } from "./nav";
+
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "./app.css";
 
@@ -32,12 +33,22 @@ function App() {
   }, [api]);
 
   useEffect(() => {
+    if (!api) return;
+    let live = true;
+    void followRoutes(() => api.windowRoute(), (to) => (window.location.hash = to), () => live);
+    return () => {
+      live = false;
+    };
+  }, [api]);
+
+  useEffect(() => {
     const flush = () => void api?.progress.flush();
     window.addEventListener("pagehide", flush);
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name;
+  const active = route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
+  const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
 
   return (
     <div className="shell">
@@ -53,9 +64,12 @@ function App() {
             </a>
           ))}
         </nav>
+        <a className={route.name === FOOT_LINK.route.name ? "foot-link on" : "foot-link"} href={href(FOOT_LINK.route)}>
+          {FOOT_LINK.label}
+        </a>
         <p className="foot">Offline on this computer</p>
       </aside>
-      <main className="main">
+      <main className={canon ? "main wide" : "main"}>
         {warn && (
           <div className="banner" role="status">
             {warn}

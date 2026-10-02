@@ -1,6 +1,7 @@
 import type { Kind } from "./schema";
 import { listEntries, type DocStore, type StoredEntry } from "./store";
 
+export const IMAGE_ROUTE = "/api/whats-new/image/";
 export const SITE_URL = "https://www.bucket.foundation";
 
 export interface LegacyEntry {
@@ -17,9 +18,10 @@ function legacyKind(entry: PublicEntry): string {
 }
 
 export function publicView(entry: StoredEntry): PublicEntry {
-  const { poster: _poster, body_hash: _hash, review_state: _review, image: _image, date, ...rest } = entry;
+  const { poster: _poster, body_hash: _hash, review_state: _review, image, date, ...rest } = entry;
   const day = typeof entry.published_at === "string" ? entry.published_at.slice(0, 10) : (date as string);
-  return { ...rest, date: day };
+  const at = typeof entry.at === "string" ? entry.at : entry.created_at;
+  return image ? { ...rest, at, date: day, image: `${IMAGE_ROUTE}${entry.id}` } : { ...rest, at, date: day };
 }
 
 export function mergeEntries(legacy: readonly LegacyEntry[], stored: readonly StoredEntry[], kind: Kind | null = null): PublicEntry[] {
@@ -50,24 +52,13 @@ export async function loadPublicEntries(legacy: readonly LegacyEntry[], store: D
   return mergeEntries(legacy, await publishedEntries(store), kind);
 }
 
-export interface PageSections<T> {
-  productions: T[];
-  milestones: T[];
-}
-
-export function pageSections<T extends { category?: string }>(entries: readonly T[]): PageSections<T> {
-  return {
-    productions: entries.filter((e) => e.category === "production"),
-    milestones: entries.filter((e) => e.category !== "production" && e.category !== "generation"),
-  };
-}
-
 export interface FeedItem {
   title: string;
   path: string;
   desc: string;
   date: string;
   categories: { domain: string; value: string }[];
+  guid?: string;
 }
 
 function str(v: unknown): string {
@@ -82,7 +73,8 @@ export function feedItems(entries: readonly PublicEntry[]): FeedItem[] {
       const state = str(e.state);
       return {
         title: `Generation, ${state}: ${str(e.title)}`,
-        path,
+        path: "/whats-new",
+        guid: `whats-new-generation:${e.id}`,
         desc: str(e.claim) || `Machine-generated ${state} from ${str(e.tool)}.`,
         date,
         categories: [
@@ -113,7 +105,7 @@ export function feedItemXml(item: FeedItem, pubDate: string, base: string = SITE
   return `<item>
       <title>${esc(item.title)}</title>
       <link>${url}</link>
-      <guid isPermaLink="true">${url}</guid>
+      ${item.guid ? `<guid isPermaLink="false">${esc(item.guid)}</guid>` : `<guid isPermaLink="true">${url}</guid>`}
       <pubDate>${pubDate}</pubDate>
       <description>${esc(item.desc)}</description>${categories}
     </item>`;

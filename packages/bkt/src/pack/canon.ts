@@ -2,11 +2,19 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { readCanonClaims, type CanonClaim } from "../../../../src/lib/canon-index-loader";
-import { assertClean, BACKSTOP_PREFIXES, buildDenylist, denyRow, keepConnections, DENIED_NAME, marker, withDeniedFiles, type Denial, type Denylist, type GraphLike } from "./rights";
+import { excerptsByAuthor, NO_CENTRALITY, type Centrality, type RawGraph } from "../../../../src/lib/canon-graph-core";
+import { assertClean, BACKSTOP_PREFIXES, buildDenylist, denyRow, keepConnections, DENIED_NAME, marker, withDeniedFiles, type Denial, type Denylist } from "./rights";
 
 export const CANON_PACK_BUDGET_BYTES = 6 * 1024 * 1024;
 const EVIDENCE_FILE = "_intake/embeddings/claim-evidence.jsonl";
 const GRAPH_FILE = "_intake/connections/graph.json";
+const CENTRALITY_FILE = "_intake/connections/centrality.json";
+
+export interface PackGraph {
+  graph: RawGraph;
+  centrality: Centrality;
+  excerpts: Record<string, number[]>;
+}
 
 export interface PackSource {
   title: string;
@@ -72,6 +80,7 @@ export interface CanonPack {
   excerpts: PackExcerpt[];
   evidence: Record<string, PackPassage[]>;
   licences: Licence[];
+  graph: PackGraph;
   counts: CanonCounts;
 }
 
@@ -194,16 +203,32 @@ export interface CanonInputs {
   repo: string;
   claims: (CanonClaim & { raw: string })[];
   evidence: Map<string, EvidenceLine["evidence"]>;
-  graph: GraphLike;
+  graph: RawGraph;
+  centrality: Centrality;
 }
 
 export function readInputs(repo: string): CanonInputs {
   const claims = readCanonClaims(repo).map((c) => ({ ...c, raw: readFileSync(join(repo, c.path), "utf8") }));
   if (claims.length === 0) throw new Error("canon pack: no excerpts under bucket-canon");
-  return { repo, claims, evidence: readEvidence(repo), graph: JSON.parse(readFileSync(join(repo, GRAPH_FILE), "utf8")) as GraphLike };
+  const centPath = join(repo, CENTRALITY_FILE);
+  return {
+    repo,
+    claims,
+    evidence: readEvidence(repo),
+    graph: JSON.parse(readFileSync(join(repo, GRAPH_FILE), "utf8")) as RawGraph,
+    centrality: existsSync(centPath) ? (JSON.parse(readFileSync(centPath, "utf8")) as Centrality) : NO_CENTRALITY,
+  };
+}
+
+export function keepGraph(deny: Denylist, raw: RawGraph, centrality: Centrality): { graph: PackGraph; denied: number } {
+  const kept = keepConnections(deny, raw);
+  const ids = new Set(kept.graph.nodes.map((n) => n.id));
+  const only = (m: Record<string, number>) => Object.fromEntries(Object.entries(m).filter(([k]) => ids.has(k)));
+  return { graph: { graph: kept.graph, centrality: { degree: only(centrality.degree ?? {}), weighted: only(centrality.weighted ?? {}) }, excerpts: {} }, denied: kept.denied };
 }
 
 export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
+  const graph = keepGraph(deny, inputs.graph, inputs.centrality);
   const excerpts: PackExcerpt[] = [];
   const evidence: Record<string, PackPassage[]> = {};
   const counts: CanonCounts = {
@@ -213,7 +238,7 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
     excerpts: { total: inputs.claims.length, kept: 0, denied: zero() },
     passages: { total: 0, kept: 0, denied: zero(), namedInListedFolders: 0, namedElsewhere: 0, droppedWithExcerpt: 0, dropped: { licence: {}, noSource: {} } },
     vectorRows: { total: inputs.claims.length, kept: 0 },
-    connections: { nodes: inputs.graph.nodes.length, denied: keepConnections(deny, inputs.graph).denied },
+    connections: { nodes: inputs.graph.nodes.length, denied: graph.denied },
   };
   const kinds = new Set<string>(["yt"]);
   const works: Record<string, Set<string>> = {};
@@ -262,7 +287,8 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
   const allWorks = Object.values(works).reduce((n, w) => n + w.size, 0);
   const unlicensed = [...kinds].filter((k) => !LICENCES.some((l) => l.kind === k));
   if (unlicensed.length) throw new Error(`canon pack: no licence row for ${unlicensed.sort().join(", ")}`);
-  const body = { source: "bucket-canon sub-claims", excerpts, evidence, licences: LICENCES.filter((l) => kinds.has(l.kind) || l.kind === NOTICE_KIND).map((l) => ({ ...l, works: l.kind === NOTICE_KIND ? allWorks : (works[l.kind]?.size ?? 0) })), counts };
+  graph.graph.excerpts = excerptsByAuthor(graph.graph.graph.nodes, excerpts.map((e) => ({ rowid: e.rowid, text: e.text, authors: (evidence[String(e.rowid)] ?? []).map((p) => p.author) })));
+  const body = { source: "bucket-canon sub-claims", excerpts, evidence, graph: graph.graph, licences: LICENCES.filter((l) => kinds.has(l.kind) || l.kind === NOTICE_KIND).map((l) => ({ ...l, works: l.kind === NOTICE_KIND ? allWorks : (works[l.kind]?.size ?? 0) })), counts };
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: CanonPack = { version: sha256.slice(0, 12), sha256, ...body };
   assertClean(deny, pack, "the canon pack", markers, [...excerpts.map((e) => e.text), ...Object.values(evidence).flatMap((ps) => ps.map((p) => p.text))]);

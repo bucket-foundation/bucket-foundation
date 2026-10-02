@@ -4,10 +4,12 @@ import { grade, masteryFor, normalizeState, type Atom, type EngineState } from "
 import { MASTERED_THRESHOLD } from "@academy/mastery";
 import { generateQuestion } from "@ros/work-quiz/generate";
 import { QUIZ_TYPES, type WorkSources } from "@ros/work-quiz/types";
-import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type DeckRow, type JobKind, type WorkQuestion } from "./api";
+import { analysisCard } from "../../bkt/src/job-specs";
+import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type DataRow, type DeckRow, type JobKind, type JobView, type WorkQuestion } from "./api";
+import REPORT from "./fixtures/analysis-report.json";
+import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
 
-mock.module("./views/Globe3d", () => ({ default: () => <div>globe</div> }));
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
 mock.module("@/components/research-os/views/SolvabilityAtlas", () => ({ default: () => <div>solvability</div> }));
@@ -56,6 +58,7 @@ const ATTRS = ["title", "placeholder", "aria-label", "alt"];
 function strings(host: Element): string[] {
   const out: string[] = [];
   const walk = (n: Node) => {
+    if (n.nodeType === 1 && (n as Element).matches("details.fine:not([open])")) return;
     if (n.nodeType === 3) {
       const t = (n.textContent ?? "").trim();
       if (t) out.push(t);
@@ -79,6 +82,8 @@ function violationsIn(all: string[]): string[] {
     .filter((s) => !ALLOW.has(s))
     .flatMap((s) => DENY.filter((d) => d.re.test(s)).map((d) => `${d.name}: ${s}`));
 }
+
+const SAVED_ITEM = { id: "paper:d/10.1002/j.1538-7305.1948.tb01338.x", kind: "paper", title: "A Mathematical Theory of Communication", authors: "C. E. Shannon", year: 1948, citation: "C. E. Shannon. A Mathematical Theory of Communication. 1948.", url: "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x", savedAt: "2026-10-01T00:00:00.000Z" };
 
 const DECKS: DeckRow[] = [
   { id: "02-physics", title: "Physics", atoms: 3, introduced: 1, due: 1, xp: 10 },
@@ -148,15 +153,79 @@ function served(seed: string, only: (typeof QUIZ_TYPES)[number]) {
   return { question, answer: { correct: true, timedOut: false, answer: q.answer, explain: q.explain } };
 }
 
+const STARTED = Date.UTC(2026, 9, 1, 18, 2, 34);
+const job = (over: Partial<JobView>): JobView => ({ id: "20261001T180234-fccc2bf2", kind: "analyze", state: "done", startedAt: STARTED, endedAt: STARTED + 4000, code: 0, log: "", logTruncated: false, result: null, error: null, install: null, ...over });
+const OUT = "jobs/20261001T180234-fccc2bf2/out";
+const JOBS = {
+  working: job({ state: "running", endedAt: null, code: null }),
+  finished: job({ result: { out: OUT, card: analysisCard(REPORT) }, log: JSON.stringify(REPORT) }),
+  stoppedOnForm: job({ state: "failed", code: 2, error: "exited with code 2", result: { out: OUT, card: analysisCard(STOPPED) }, log: JSON.stringify(STOPPED) }),
+  crashed: job({ state: "failed", code: 1, error: "exited with code 1", result: { out: OUT, card: null }, log: 'Traceback (most recent call last):\n  File "bkt_analyze.py", line 880, in <module>\nValueError: bad row' }),
+  noModule: job({ state: "failed", code: null, endedAt: STARTED, error: "this job needs numpy: python3 -m pip install --user numpy", install: "python3 -m pip install --user numpy" }),
+  noPython: job({ state: "failed", code: null, endedAt: STARTED, error: "python3 not found; install Python 3, then python3 -m pip install --user numpy", install: "python3 -m pip install --user numpy" }),
+  stopped: job({ state: "cancelled", code: null }),
+  tooLong: job({ state: "timeout", code: null, error: "the job ran past its time limit" }),
+};
+const jobsStub = (...jobs: JobView[]) => ({ jobs: async () => ({ kinds: ALL_KINDS, jobs }) });
+
 type Stub = { [K in keyof Api]?: unknown };
 
 const days = (fill: (i: number) => number) => Array.from({ length: 60 }, (_, i) => ({ day: new Date(Date.UTC(2026, 7, 1 + i)).toISOString().slice(0, 10), learn: fill(i), work: 0, notes: 0 }));
 const progress = (branches: Record<string, { data: unknown }> | null) => ({ pull: async () => branches, load: async () => normalizeState(null), save: () => {}, flush: async () => {} });
 
-const JOB_KINDS: JobKind[] = [{ kind: "analyze", label: "Analyze a data file", inputs: [{ name: "data", label: "Data file", exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] }] }];
+const ALL_KINDS: JobKind[] = [
+  { kind: "analyze", label: "Analyze a data file", inputs: [{ name: "data", label: "Data file", exts: [".csv", ".tsv", ".json", ".jsonl", ".txt"] }] },
+  { kind: "fit-me", label: "Fit me to a people file", inputs: [{ name: "statement", label: "Research statement", exts: [".md", ".txt"] }, { name: "people", label: "People file", exts: [".jsonl"] }] },
+];
+
+const DATASETS: Dataset[] = [
+  {
+    id: "canon",
+    name: "Canon excerpts",
+    about: "Short quotations from talks, papers and books, each with the passages that support it.",
+    browsable: true,
+    version: "246f1a6cea3e",
+    builtAt: null,
+    checksum: "246f1a6cea3e".repeat(5),
+    counts: [{ kind: "excerpt", label: "excerpts", n: 364 }, { kind: "passage", label: "supporting passages", n: 2104 }],
+    kinds: [{ id: "excerpt", label: "Excerpt" }, { id: "passage", label: "Supporting passage" }],
+    parts: [
+      { name: "PubMed abstracts", count: 83, unit: "sources", terms: "Publisher copyright.", link: "https://pubmed.ncbi.nlm.nih.gov", openable: true },
+      { name: "Internet Archive", count: 7, unit: "sources", terms: null, link: null, openable: false },
+    ],
+    leftOut: { count: 4121, reason: "Left out because the author has not agreed to sharing." },
+  },
+  {
+    id: "yours",
+    name: "Your work",
+    about: "What you have written and answered in Bucket. It stays on this computer.",
+    browsable: false,
+    version: null,
+    builtAt: null,
+    checksum: null,
+    counts: [{ kind: "note", label: "notes", n: 2, stored: "encrypted", screen: "notes" }, { kind: "answer", label: "quiz and review answers", n: 40, stored: "partly", screen: "history" }, { kind: "started", label: "lessons started", n: 9, stored: "plain", screen: "learn" }],
+    kinds: [],
+    parts: [],
+    leftOut: null,
+  },
+];
+const DATA_ROWS: DataRow[] = [
+  { id: "excerpt/7", title: "Entropy rises and never falls", creators: null, year: null, kind: "excerpt", kindLabel: "Excerpt", source: "https://www.youtube.com/watch?v=BBBBBBBBBBB", openable: true },
+  { id: "passage/7/0", title: "Old book", creators: "A. Writer", year: 1905, kind: "passage", kindLabel: "Supporting passage", source: "https://archive.org/details/item", openable: false },
+];
+const DATA_TABS = JSON.stringify({
+  tabs: [
+    { id: "set:canon", title: "Canon excerpts", dataset: "canon" },
+    { id: "rec:canon:excerpt/7", title: "Entropy rises and never falls", dataset: "canon", record: "excerpt/7" },
+  ],
+  active: "set:canon",
+});
 
 function empty(): Stub {
   return {
+    data: async () => [],
+    dataRecords: async () => ({ total: 0, offset: 0, limit: 50, records: [] }),
+    dataRecord: () => Promise.reject(new ApiError("no such record", 404)),
     progress: progress({}),
     decks: async () => [],
     atoms: async () => [],
@@ -167,11 +236,13 @@ function empty(): Stub {
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, ready: false, answered: 0, correct: 0 }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file or a repository", 404)),
     dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
-    jobs: async () => ({ kinds: JOB_KINDS, jobs: [] }),
+    jobs: async () => ({ kinds: ALL_KINDS, jobs: [] }),
     advisor: async () => ({ review: null, forgotten: 0 }),
     primeDirections: async () => [],
     ros: async () => null,
     canonAbout: async () => ({ version: null, excerpts: 0, branches: [], licences: [] }),
+    exploreSaved: async () => ({ v: 1, items: [], noticeSeen: false }),
+    putExploreSaved: async (s: unknown) => s,
     canonSearch: async () => [],
     canonExcerpt: () => Promise.reject(new ApiError("no such excerpt", 404)),
   };
@@ -180,6 +251,9 @@ function empty(): Stub {
 function populated(over: Stub = {}): Stub {
   return {
     ...empty(),
+    data: async () => DATASETS,
+    dataRecords: async () => ({ total: DATA_ROWS.length, offset: 0, limit: 50, records: DATA_ROWS }),
+    dataRecord: async (_set: string, id: string) => ({ record: DATA_ROWS.find((r) => r.id === id)!, fields: [{ label: "Branch", value: "physics" }, { label: "Text", value: "Entropy rises and entropy never falls." }] }),
     decks: async () => DECKS,
     atoms: async (deck: string) => ATOMS[deck] ?? [],
     quiz: async () => [{ itemId: "ph-heat", prompt: "What moves when heat flows?", choices: ["Energy", "Mass"], limitSec: 30 }],
@@ -187,6 +261,8 @@ function populated(over: Stub = {}): Stub {
     notes: async () => [{ id: "n1", title: "Reading list", body: "Start with Carnot.", pinned: true, createdAt: 1, updatedAt: 2 }],
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, ready: true, answered: 2, correct: 1 }),
+    exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
+    putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
     canonSearch: async () => [{ claim_id: 7, branch: "02-physics", concept: "free-will", slug: "001-a", title: "Claim", score: 2, excerpt: "Claim. Entropy rises and entropy never falls.", evidence_count: 1 }],
     canonExcerpt: async () => ({
@@ -202,6 +278,7 @@ function populated(over: Stub = {}): Stub {
         { score: 0.6, kind: "archive", source_path: "archive/item/a.txt", text: "An old book on heat.", url: "https://archive.org/details/item", title: "Old book", author: null, openable: false },
       ],
     }),
+    ...jobsStub(JOBS.finished, { ...JOBS.stoppedOnForm, id: "20261001T170000-0a1b2c3d" }),
     workNext: async () => served("populated", "true_false")!.question,
     dailyQuiz: async () => ({
       day: DAY,
@@ -219,6 +296,9 @@ function failing(): Stub {
   const fail = (code: string, status: number) => () => Promise.reject(new ApiError(code, status));
   return {
     progress: progress(null),
+    data: fail("data key does not match", 500),
+    dataRecords: fail("no such dataset", 404),
+    dataRecord: fail("no such record", 404),
     decks: fail("data key does not match", 500),
     atoms: fail("unknown deck", 404),
     quiz: fail("data key does not match", 500),
@@ -228,7 +308,11 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
+    jobs: fail("data key does not match", 500),
+    startJob: fail("Data file must be one of .csv, .tsv, .json, .jsonl, .txt", 400),
     canonAbout: fail("data key does not match", 500),
+    exploreSaved: fail("data key does not match", 500),
+    putExploreSaved: fail("bad_saved_list", 400),
     canonSearch: fail("data key does not match", 500),
     canonExcerpt: fail("no such excerpt", 404),
     importWeb: fail("expected { branches: { <deck>: EngineState } }", 400),
@@ -246,23 +330,32 @@ async function mount(route: Route, stub: Stub) {
   document.body.appendChild(host);
   const root = createRoot(host);
   await act(async () => root.render(<Screen api={stub as unknown as Api} route={route} />));
-  await act(async () => new Promise((r) => setTimeout(r, 20)));
+  const settle = async () => {
+    let last = "";
+    for (let i = 0; i < 50; i++) {
+      await act(async () => new Promise((r) => setTimeout(r, 0)));
+      const now = host.innerHTML;
+      if (now === last) return;
+      last = now;
+    }
+    throw new Error("the screen never settled");
+  };
+  await settle();
   const text = () => strings(host).join("\n");
   const pickFile = async (index: number, file: File) => {
     const input = host.querySelectorAll('input[type="file"]')[index] as HTMLInputElement;
     Object.defineProperty(input, "files", { value: [file], configurable: true });
     await act(async () => input.dispatchEvent(new Event("change", { bubbles: true })));
-    await act(async () => new Promise((r) => setTimeout(r, 20)));
+    await settle();
   };
   return { host, text, pickFile, act, unmount: () => act(async () => root.unmount()) };
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "notes" }, { name: "history" }, { name: "import" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
 const COVERED_NAMES = COVERED.map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
-  { name: "jobs", fixedBy: "slice 2, Analyze data" },
   { name: "primes", fixedBy: "slice 6, Themes" },
   { name: "advisors", fixedBy: "slice 7, Advisors action" },
   { name: "atlases", fixedBy: "bkt-cfcs, staff atlases" },
@@ -271,7 +364,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Explore", "Notes", "History", "Analyze data", "Data"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -280,19 +373,57 @@ describe("navigation", () => {
     const pending = PENDING.map((p) => p.name);
     expect(NAV.map((n) => n.route.name).filter((n) => !COVERED_NAMES.includes(n) && !pending.includes(n))).toEqual([]);
     expect(COVERED_NAMES.filter((n) => pending.includes(n))).toEqual([]);
-    expect(PENDING.length).toBeLessThanOrEqual(4);
+    expect(PENDING.length).toBeLessThanOrEqual(3);
     expect(PENDING.every((p) => p.fixedBy.length > 0)).toBe(true);
   });
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Canon search", "Notes", "History", "Jobs", "Import"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Explore", "Notes", "History", "Analyze data", "Data"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
+  });
+
+  test("no screen in the navigation needs a file or shows a format word", async () => {
+    const { navFor, FOOT_LINK } = await import("./nav");
+    expect(FOOT_LINK.label).toBe("Add your own");
+    for (const n of navFor(true)) {
+      for (const stub of [empty, populated, failing]) {
+        const v = await mount(n.route, stub());
+        expect({ screen: n.label, fileInputs: v.host.querySelectorAll('input[type="file"]').length, bad: violations(v.host) }).toEqual({ screen: n.label, fileInputs: n.label === "Analyze data" ? 1 : 0, bad: [] });
+        await v.unmount();
+      }
+    }
+  });
+
+  test("Add your own opens one page with two plain choices, and Import holds one button", async () => {
+    const add = await mount({ name: "add" }, empty());
+    expect(Array.from(add.host.querySelectorAll("a")).map((a) => [a.textContent!.split("\n")[0], a.getAttribute("href")])).toEqual([
+      [expect.stringContaining("Bring progress from the website"), "#/import"],
+      [expect.stringContaining("Analyze my data"), "#/jobs"],
+    ]);
+    expect(add.host.querySelector('input[type="file"]')).toBeNull();
+    await add.unmount();
+    const imp = await mount({ name: "import" }, populated());
+    expect(imp.host.querySelectorAll('input[type="file"]').length).toBe(1);
+    expect(imp.text()).not.toContain("Choose tasks file");
+    expect(imp.host.querySelector('input[type="checkbox"]')).toBeNull();
+    await imp.unmount();
+  });
+
+  test("the work quiz links to its own setup page for someone who has it", async () => {
+    const work = await mount({ name: "work" }, populated());
+    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    await work.unmount();
+    const setup = await mount({ name: "setup" }, populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(setup.text()).toContain("Choose tasks file");
+    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
+    await setup.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
     const { parseHash } = await import("./router");
-    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"]] as const) {
+    for (const [name, heading] of [["advisors", "Advisors"], ["primes", "Prime directions"], ["atlases", "Atlases"], ["jobs", "Analyze data"], ["import", "Import"]] as const) {
       expect(parseHash(`#/${name}`)).toEqual({ name });
       const v = await mount({ name }, empty());
       expect(v.host.querySelector("h1")!.textContent).toBe(heading);
@@ -376,6 +507,161 @@ describe("what the helper sends", () => {
   });
 });
 
+describe("analyze data", () => {
+  const open = async (v: Awaited<ReturnType<typeof mount>>, label: string) => {
+    const b = Array.from(v.host.querySelectorAll("button")).find((x) => x.textContent === label) as HTMLButtonElement;
+    await v.act(async () => b.click());
+  };
+
+  test("offers one action and never the fit job", async () => {
+    const v = await mount({ name: "jobs" }, empty());
+    expect(v.host.querySelector("h1")!.textContent).toBe("Analyze data");
+    expect(v.host.querySelector(".head p")!.textContent).toBe("Find patterns in your own data.");
+    expect(Array.from(v.host.querySelectorAll("label.file span")).map((e) => e.textContent)).toEqual(["Choose data"]);
+    expect(v.host.querySelectorAll("select, button").length).toBe(0);
+    expect(v.text()).not.toContain("people");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a job of another kind never shows", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(job({ kind: "fit-me", result: { imported: 160, forgotten: 0 } })) });
+    expect(v.host.querySelectorAll(".jobs li").length).toBe(0);
+    await v.unmount();
+  });
+
+  test("a finished analysis shows rows, columns and warnings as sentences", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.finished) });
+    expect(v.host.querySelector(".tag")!.textContent).toBe("Finished");
+    expect(v.host.querySelector(".big-line")!.textContent).toBe("40 rows, 5 columns");
+    expect(Array.from(v.host.querySelectorAll("table.columns tbody tr")).map((r) => Array.from(r.children).map((c) => c.textContent))).toEqual([
+      ["day", "date", "", "", ""],
+      ["sleep", "number", "h", "", "6 to 8"],
+      ["focus", "whole number", "", "", "50 to 89"],
+      ["mood", "text", "", "5", ""],
+      ["note", "text", "", "", ""],
+    ]);
+    expect(Array.from(v.host.querySelectorAll(".notes li")).map((e) => e.textContent)).toEqual(['"mood" has 5 empty cells.', 'The dates in "day" are out of order. Bucket sorted them.', '"day" repeats 12 dates.']);
+    expect(v.text()).toContain('Time runs along "day".');
+    expect(v.host.querySelector("pre")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the raw output and the log sit behind Show details, as exact strings", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.finished) });
+    await open(v, "Show details");
+    const shown = Array.from(v.host.querySelectorAll("pre")).map((e) => e.textContent ?? "");
+    expect(shown).toEqual([JSON.stringify(JOBS.finished.result, null, 2), JOBS.finished.log]);
+    expect(violations(v.host).length).toBeGreaterThan(0);
+    for (const s of shown) ALLOW.add(s.trim());
+    expect(violations(v.host)).toEqual([]);
+    for (const s of shown) ALLOW.delete(s.trim());
+    await open(v, "Hide details");
+    expect(v.host.querySelector("pre")).toBeNull();
+    await v.unmount();
+  });
+
+  test("each state reads Working, Finished, Did not finish or Stopped", async () => {
+    const { STATE_WORDS } = await import("./views/Jobs");
+    expect(STATE_WORDS).toEqual({ running: "Working", done: "Finished", failed: "Did not finish", cancelled: "Stopped", timeout: "Did not finish" });
+    for (const [j, word, line] of [
+      [JOBS.working, "Working", "Bucket is reading your data."],
+      [JOBS.stopped, "Stopped", "You stopped this one."],
+      [JOBS.tooLong, "Did not finish", "This took longer than Bucket allows."],
+      [JOBS.crashed, "Did not finish", "Bucket could not finish this."],
+    ] as const) {
+      const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(j) });
+      expect(v.host.querySelector(".tag")!.textContent).toBe(word);
+      expect(v.text()).toContain(line);
+      expect(violations(v.host)).toEqual([]);
+      await v.unmount();
+    }
+    const working = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.working) });
+    expect(working.host.querySelector("label.file span")!.textContent).toBe("Working…");
+    expect((working.host.querySelector('input[type="file"]') as HTMLInputElement).disabled).toBe(true);
+    expect(Array.from(working.host.querySelectorAll("button.ghost")).map((b) => b.textContent)).toEqual(["Stop"]);
+    await working.unmount();
+  });
+
+  test("a table Bucket cannot analyze says why in sentences", async () => {
+    const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(JOBS.stoppedOnForm) });
+    expect(v.host.querySelector(".tag")!.textContent).toBe("Did not finish");
+    expect(Array.from(v.host.querySelectorAll(".notes li")).map((e) => e.textContent)).toEqual(["Two columns share a name.", "The table has no column of numbers to analyze."]);
+    expect(v.host.querySelector("table")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a missing piece shows one button that copies the install line", async () => {
+    const { NEEDS_PIECE, COPIED } = await import("./views/Jobs");
+    expect(NEEDS_PIECE).toBe("Bucket needs one more piece to do this");
+    for (const j of [JOBS.noModule, JOBS.noPython]) {
+      const copies: string[] = [];
+      Object.defineProperty(navigator, "clipboard", { value: { writeText: async (t: string) => void copies.push(t) }, configurable: true });
+      const v = await mount({ name: "jobs" }, { ...empty(), ...jobsStub(j) });
+      expect(v.host.querySelector("h3")!.textContent).toBe(NEEDS_PIECE);
+      expect(Array.from(v.host.querySelectorAll("button.primary")).map((b) => b.textContent)).toEqual(["Copy the install line"]);
+      expect(violations(v.host)).toEqual([]);
+      await open(v, "Copy the install line");
+      expect(copies).toEqual(["python3 -m pip install --user numpy"]);
+      expect(v.text()).toContain(COPIED);
+      expect(violations(v.host)).toEqual([]);
+      await open(v, "Show details");
+      expect(v.host.querySelector("pre")!.textContent).toBe(j.error!);
+      await v.unmount();
+    }
+  });
+
+  test("a file of the wrong kind, a large file and a refusal read in plain words", async () => {
+    const { WRONG_KIND, TOO_LARGE } = await import("./views/Jobs");
+    const sent: unknown[] = [];
+    const v = await mount({ name: "jobs" }, { ...empty(), startJob: (...a: unknown[]) => (sent.push(a), Promise.reject(new ApiError("another job is running; cancel it or wait", 409))) });
+    const status = () => v.host.querySelector(".status")!.textContent;
+    await v.pickFile(0, new File(["x"], "photo.png"));
+    expect(status()).toBe(WRONG_KIND);
+    const big = new File(["x"], "table.csv");
+    Object.defineProperty(big, "size", { value: 17 * 1024 * 1024 });
+    await v.pickFile(0, big);
+    expect(status()).toBe(TOO_LARGE);
+    expect(sent).toEqual([]);
+    await v.pickFile(0, new File(["a,b\n1,2\n"], "Table.CSV"));
+    expect(sent).toEqual([["analyze", { data: { text: "a,b\n1,2\n", ext: ".csv" } }]]);
+    expect(status()).toBe(plainError(409));
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("every warning and problem the analyzer writes has a plain sentence", async () => {
+    const { noteSentence } = await import("./views/Jobs");
+    const real: [string, string, string][] = [
+      ["W_TRUNCATED", "body", "read the first 200000 rows; raise --max-rows to read more"],
+      ["W_PREAMBLE", "header", "skipped 3 rows above the header"],
+      ["W_MIXED", "sleep_h", "only 80% of values parse as one type"],
+      ["W_EMPTY_COLUMN", "mood", "every value is missing"],
+      ["W_MISSING", "mood", "5 missing (12.5%)"],
+      ["W_CONSTANT", "note", "constant column"],
+      ["W_TIME_ORDER", "day", "time index is not sorted; analysis sorts it"],
+      ["W_TIME_DUP", "day", "12 repeated time values"],
+      ["W_NO_TIME", "header", "no time index found; trend, seasonality and helix skipped"],
+      ["W_DUP_ROWS", "body", "4 duplicate rows"],
+      ["E_READ", "data/table.csv", "E_MAGIC: contents do not match xlsx"],
+      ["E_HEADER", "header", "blank column names at [2]"],
+      ["E_DUP_COLUMN", "header", "duplicate columns ['name']"],
+      ["E_EMPTY", "body", "header but no rows"],
+      ["E_NO_NUMERIC", "columns", "no numeric columns to analyze"],
+      ["E_RAGGED", "record 4", "3 fields, header has 5"],
+      ["E_KEYS", "record 2", "missing keys ['a']"],
+      ["W_FUTURE", "body", "a code this window has never seen"],
+    ];
+    const lines = real.map(([code, where, message]) => noteSentence({ code, where, message }));
+    expect(violationsIn(lines)).toEqual([]);
+    expect(lines[0]).toBe("Bucket read the first 200,000 rows.");
+    expect(lines[2]).toBe('"sleep h" mixes kinds of values.');
+    expect(lines.filter((l) => l.includes("noticed something else")).length).toBe(1);
+  });
+});
+
 describe("path", () => {
   const withAtoms = (physics: Atom[], branches: Record<string, { data: unknown }> = {}) => populated({ atoms: async (deck: string) => (deck === "02-physics" ? physics : ATOMS[deck]), progress: progress(branches) });
 
@@ -405,7 +691,119 @@ describe("path", () => {
     const v = await mount({ name: "path", to: "ph-entropy" }, withAtoms([{ id: "ph-entropy", title: "Entropy", requires: ["ph-heat"] }, { id: "ph-heat", title: "Heat", requires: ["ph-work"] }, { id: "ph-work", title: "Work", requires: ["ph-entropy"] }]));
     expect(v.host.querySelector(".error")!.textContent).toBe(TOPIC_CYCLE);
     expect(TOPIC_CYCLE).toBe("Some topics wait on each other.");
+    expect(Array.from(v.host.querySelectorAll(".error")).map((e) => e.textContent)).toEqual([TOPIC_CYCLE]);
+    expect(v.host.querySelectorAll(".topic-map .topic").length).toBe(4);
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(3);
     expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("no topics: one sentence and no map", async () => {
+    const { NO_TOPICS } = await import("./views/Path");
+    const v = await mount({ name: "path" }, empty());
+    expect(v.text()).toContain(NO_TOPICS);
+    expect(v.host.querySelector(".topic-map")).toBeNull();
+    expect(v.host.querySelector(".grip")).toBeNull();
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the map names each topic with its state in words and a shape", async () => {
+    const { GRIP_CAPTION, PICK_A_TOPIC } = await import("./views/Path");
+    const physics = ATOMS["02-physics"];
+    const now = Date.now();
+    let s = grade(normalizeState(null), physics, {}, "ph-heat", 3, "recall", now - 40 * 86_400_000);
+    s = grade(s, physics, {}, "ph-entropy", 3, "recall", now);
+    const v = await mount({ name: "path" }, withAtoms(physics, { "02-physics": { data: s } }));
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Known.", "Heat. Due.", "Limit. New.", "Second law. New."]);
+    expect(v.host.querySelector(".topic.due path.glyph")).not.toBeNull();
+    expect(v.host.querySelector(".topic.known circle.glyph.solid")).not.toBeNull();
+    expect(v.host.querySelector(".topic.new circle.glyph.hollow")).not.toBeNull();
+    expect(v.host.querySelectorAll(".topic-map .edge").length).toBe(2);
+    expect(v.text()).toContain("4 topics joined by 2 links.");
+    expect(v.text()).toContain(GRIP_CAPTION);
+    expect(v.text()).toContain(PICK_A_TOPIC);
+    expect(v.host.querySelector(".topic-map svg")!.getAttribute("tabindex")).toBe("0");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("a locked topic is drawn as locked", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const labels = Array.from(v.host.querySelectorAll(".topic-map .topic")).map((g) => g.getAttribute("aria-label")).sort();
+    expect(labels).toEqual(["Entropy. Locked.", "Heat. New.", "Limit. New.", "Second law. Locked."]);
+    expect(v.host.querySelector(".topic.locked rect.glyph.hollow")).not.toBeNull();
+    await v.unmount();
+  });
+
+  test("picking a topic shows what it needs and opens, and the sphere follows", async () => {
+    const v = await mount({ name: "path" }, populated());
+    const node = (name: string) => Array.from(v.host.querySelectorAll(".topic-map .topic")).find((g) => g.getAttribute("aria-label")!.startsWith(name))!;
+    const pressed = () => Array.from(v.host.querySelectorAll(".grip-rows .branch")).filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.textContent);
+    expect(pressed()).toEqual([]);
+    await v.act(async () => node("Entropy").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(window.location.hash).toBe("#/path/ph-entropy");
+    expect(node("Entropy").getAttribute("aria-pressed")).toBe("true");
+    const panel = v.host.querySelector(".topic-panel")!;
+    expect(panel.querySelector("h2")!.textContent).toBe("Entropy");
+    expect(Array.from(panel.querySelectorAll("h3")).map((h) => h.textContent)).toEqual(["Needs first", "Opens next", "Learn in this order"]);
+    expect(Array.from(panel.querySelectorAll(".linked")).map((u) => Array.from(u.querySelectorAll(".link")).map((b) => b.textContent))).toEqual([["Heat"], ["Second law"]]);
+    const start = panel.querySelector("a.start") as HTMLAnchorElement;
+    expect(start.textContent).toBe("Start with Heat");
+    expect(start.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(Array.from(panel.querySelectorAll(".steps-list a.go")).map((a) => a.getAttribute("href"))).toEqual(["#/learn/02-physics/ph-heat"]);
+    expect(pressed()).toEqual(["physics"]);
+    expect(violations(v.host)).toEqual([]);
+
+    const maths = Array.from(v.host.querySelectorAll(".grip-rows .branch")).find((b) => b.textContent === "mathematics") as HTMLButtonElement;
+    await v.act(async () => maths.click());
+    expect(pressed()).toEqual(["mathematics"]);
+    expect(window.location.hash).toBe("#/path");
+    expect(v.host.querySelector(".topic-panel h2")).toBeNull();
+    expect(Array.from(v.host.querySelectorAll(".topic-map .topic.dim")).map((g) => g.getAttribute("aria-label")).sort()).toEqual(["Entropy. Locked.", "Heat. New.", "Second law. Locked."]);
+
+    await v.act(async () => node("Heat").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(pressed()).toEqual(["physics"]);
+    expect(v.host.querySelectorAll(".topic-map .topic.dim").length).toBe(0);
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("start never targets a locked topic", async () => {
+    const { startFor } = await import("./views/Path");
+    const needs = new Map([["a", []], ["b", ["a"]], ["c", ["b"]], ["x", ["y"]], ["y", ["x"]]]);
+    const states = new Map<string, "known" | "due" | "new" | "locked">([["a", "new"], ["b", "locked"], ["c", "locked"], ["x", "locked"], ["y", "locked"]]);
+    expect(startFor("c", needs, states)).toBe("a");
+    expect(startFor("a", needs, states)).toBe("a");
+    expect(startFor("x", needs, states)).toBeNull();
+    states.set("a", "known");
+    states.set("b", "new");
+    expect(startFor("c", needs, states)).toBe("b");
+    const v = await mount({ name: "path", to: "ph-second-law" }, populated());
+    expect(v.host.querySelector("a.start")!.getAttribute("href")).toBe("#/learn/02-physics/ph-heat");
+    expect(v.text()).toContain("Start with Heat");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("arrow keys walk the links and the list repeats them in words", async () => {
+    const v = await mount({ name: "path", to: "ph-entropy" }, populated());
+    const svg = v.host.querySelector(".topic-map svg")!;
+    const press = (key: string) => v.act(async () => svg.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true })));
+    await press("ArrowLeft");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Heat");
+    await press("ArrowRight");
+    await press("ArrowRight");
+    expect(v.host.querySelector(".topic-panel h2")!.textContent).toBe("Second law");
+    expect(svg.getAttribute("aria-activedescendant")).toBe(v.host.querySelector('.topic[aria-pressed="true"]')!.id);
+    const rows = Array.from(v.host.querySelectorAll(".links-list li")).map((li) => li.textContent);
+    expect(rows).toContain("Entropy. Locked. Needs Heat. Opens Second law.");
+    expect(rows).toContain("Limit. New. Needs nothing first. Opens nothing yet.");
+    expect(v.host.querySelector(".links-list summary")!.textContent).toBe("Read the same links as a list");
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
     await v.unmount();
   });
 
@@ -441,6 +839,47 @@ describe("history", () => {
     expect(v.text()).not.toContain("Productions");
     expect(v.host.querySelector('input[type="file"]')).toBeNull();
     await v.unmount();
+  });
+});
+
+describe("data", () => {
+  const open = async (tabs: string | null, stub: Stub) => {
+    window.localStorage.clear();
+    if (tabs) window.localStorage.setItem("bucket.data.tabs", tabs);
+    return mount({ name: "data" }, stub);
+  };
+
+  test("the list, a dataset's table and one record read in plain words in every state", async () => {
+    for (const active of [null, "set:canon", "rec:canon:excerpt/7"]) {
+      for (const stub of [empty, populated, failing]) {
+        const v = await open(JSON.stringify({ ...JSON.parse(DATA_TABS), active }), stub());
+        expect(v.text().length).toBeGreaterThan(0);
+        expect({ active, problems: violations(v.host) }).toEqual({ active, problems: [] });
+        await v.unmount();
+      }
+    }
+    window.localStorage.clear();
+  });
+
+  test("the version and checksum sit behind Details, closed until a person opens it", async () => {
+    const v = await open(null, populated());
+    const fine = v.host.querySelector("details.fine") as HTMLDetailsElement;
+    expect(fine.open).toBe(false);
+    expect(fine.querySelector("summary")!.textContent).toBe("Details");
+    expect(fine.textContent).toContain("246f1a6cea3e");
+    expect(v.text()).not.toContain("246f1a6cea3e");
+    expect(violationsIn([fine.querySelector("dd")!.textContent!]).length).toBeGreaterThan(0);
+    await v.unmount();
+  });
+
+  test("your own work shows counts and how each is stored, with no table to browse", async () => {
+    const v = await open(null, populated());
+    const card = Array.from(v.host.querySelectorAll("article.dataset")).find((a) => a.querySelector("h2")!.textContent === "Your work")!;
+    expect(Array.from(card.querySelectorAll(".counts li")).map((li) => li.textContent)).toEqual(["2 notes, stored encryptedOpen", "40 quiz and review answers, answer text stored encryptedOpen", "9 lessons started, stored without encryptionOpen"]);
+    expect(Array.from(card.querySelectorAll("a")).map((a) => a.getAttribute("href"))).toEqual(["#/notes", "#/history", "#/learn"]);
+    expect(card.querySelector("button")).toBeNull();
+    await v.unmount();
+    window.localStorage.clear();
   });
 });
 
@@ -483,7 +922,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "import" }, populated());
+    const v = await mount({ name: "setup" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -495,8 +934,8 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "import" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
-    await v.pickFile(1, new File(["x"], "tasks"));
+    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that folder.");
@@ -512,5 +951,59 @@ describe("work quiz setup", () => {
     expect(v.host.querySelector("a")).toBeNull();
     expect(v.host.querySelector('input[type="file"]')).toBeNull();
     await v.unmount();
+  });
+});
+
+describe("canon knowledge graph", () => {
+  const GRAPH = {
+    nodes: [
+      { id: "openalex:A1", name: "Roger Penrose", group: "author", centrality: 0.9, edges: 2, excerpts: [7, 9] },
+      { id: "openalex:A2", name: "Stuart Hameroff", group: "author", centrality: 0.4, edges: 1, excerpts: [] },
+      { id: "openalex:A3", name: "Stephen Hawking", group: "author", centrality: 0.3, edges: 1, excerpts: [] },
+    ],
+    edges: [
+      { source: "openalex:A1", target: "openalex:A2", weight: 15 },
+      { source: "openalex:A1", target: "openalex:A3", weight: 1 },
+    ],
+  };
+  const withGraph = (over: Stub = {}) => populated({ canonGraph: async () => GRAPH, ...over });
+  const node = (host: Element, name: string) => Array.from(host.querySelectorAll(".canon-graph .author")).find((g) => g.getAttribute("aria-label")!.startsWith(name))!;
+
+  test("a click opens the drawer on the excerpt the pack ties to that author id", async () => {
+    const { GRAPH_ABOUT, PICK_AN_AUTHOR } = await import("./views/CanonGraph");
+    let searched = 0;
+    const v = await mount({ name: "search" }, withGraph({ canonSearch: async () => (searched++, []) }));
+    expect(v.text()).toContain(`${GRAPH_ABOUT} 3 authors, 2 pairs.`);
+    expect(v.text()).toContain(PICK_AN_AUTHOR);
+    expect(violations(v.host)).toEqual([]);
+    expect(node(v.host, "Roger Penrose").getAttribute("aria-label")).toBe("Roger Penrose. Wrote with 2 canon authors.");
+    await v.act(async () => node(v.host, "Roger Penrose").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(window.location.hash).toBe("#/search/7");
+    expect(searched).toBe(0);
+    const side = v.host.querySelector(".graph-side")!;
+    expect(side.querySelector("h3")!.textContent).toBe("Roger Penrose");
+    expect(Array.from(side.querySelectorAll(".linked .link")).map((b) => b.textContent)).toEqual(["Open excerpt 1 of 2", "Open excerpt 2 of 2", "Stuart Hameroff", "Stephen Hawking"]);
+    expect(violations(v.host)).toEqual([]);
+    window.location.hash = "";
+    await v.unmount();
+  });
+
+  test("an author with no excerpt, no graph and a broken graph each read as a sentence", async () => {
+    const { NO_GRAPH, noExcerpt } = await import("./views/CanonGraph");
+    const none = await mount({ name: "search" }, withGraph());
+    window.location.hash = "#/search";
+    await none.act(async () => node(none.host, "Stuart Hameroff").dispatchEvent(new MouseEvent("click", { bubbles: true })));
+    expect(window.location.hash).toBe("#/search");
+    expect(none.text()).toContain(noExcerpt("Stuart Hameroff"));
+    expect(violations(none.host)).toEqual([]);
+    window.location.hash = "";
+    await none.unmount();
+    const missing = await mount({ name: "search" }, populated());
+    expect(missing.text()).toContain(NO_GRAPH);
+    await missing.unmount();
+    const broken = await mount({ name: "search" }, withGraph({ canonGraph: () => Promise.reject(new ApiError("data key does not match", 500)) }));
+    expect(broken.host.querySelector(".error")!.textContent).toBe(plainError(500));
+    expect(violations(broken.host)).toEqual([]);
+    await broken.unmount();
   });
 });

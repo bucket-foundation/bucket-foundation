@@ -8,6 +8,8 @@ import { render } from "ink";
 import type { AnalysisReport, AnalysisResult, RunningAnalysis } from "../src/analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../src/analyze-view";
 import { App } from "../src/app";
+import { packCanon } from "../src/core/search";
+import type { CanonPack } from "../src/pack/canon";
 import { analysisRows, stamp } from "../src/cli/out";
 import { CLI_COMMANDS, commandHelp, generalHelp, type CommandSpec } from "../src/cli/table";
 import type { Item } from "../src/grade";
@@ -17,6 +19,7 @@ import { GAIN_LABEL, RATIO_LABEL, reportRows, reportSentences } from "../src/hai
 import { MODEL } from "../src/hai/score";
 import type { Report } from "../src/hai/session";
 import { HaiStore } from "../src/hai/store";
+import { SHORT_FIELDS } from "../src/short-fields";
 import { HaiApp } from "../src/hai/view";
 import { MemoryKeyring } from "../src/keyring";
 import { openSession, type Session } from "../src/setup";
@@ -139,6 +142,18 @@ function plans(spec: CommandSpec): { args: string[]; stdin?: string }[] {
   if (spec.name === "analyses") return [{ args: ["analyses"] }, { args: ["analyses", "--where"] }, { args: ["analyses", join(dir, "nowhere")] }];
   if (spec.name === "hai score") return [{ args: [...words, "--dry-run", "--dir", join(dir, "hai")] }];
   if (spec.name === "hai freeze" || spec.name === "hai review") return [{ args: [...words, "--dir", join(dir, "hai")] }];
+  if (spec.name === "notes add") return [{ args: ["notes", "add", "Water", "--body", "Layers form near surfaces.", ...vault], stdin: "pw\n" }];
+  if (spec.name === "notes ls") return [{ args: ["notes", "ls", ...vault], stdin: "pw\n" }, { args: ["notes", "ls", "--tsv", ...vault], stdin: "pw\n" }];
+  if (spec.name === "notes show") return [{ args: ["notes", "show", "1", ...vault], stdin: "pw\n" }, { args: ["notes", "show", "9", ...vault], stdin: "pw\n" }];
+  if (spec.name === "history") return [{ args: ["history", ...vault], stdin: "pw\n" }, { args: ["history", "--tsv", ...vault], stdin: "pw\n" }];
+  if (spec.name === "import") {
+    writeFileSync(join(dir, "progress.json"), JSON.stringify({ branches: { "02-physics": {} } }));
+    writeFileSync(join(dir, "broken.json"), "{");
+    return ["progress.json", "progress.json", "broken.json"].map((f) => ({ args: ["import", join(dir, f), ...vault], stdin: "pw\n" }));
+  }
+  if (spec.name === "search") return [{ args: ["search", "light"] }, { args: ["search", "zzzqqqxx"] }];
+  if (spec.name === "canon show") return [{ args: ["canon", "show", "1"] }, { args: ["canon", "show", "999999999"] }];
+  if (spec.name === "completion") return ["bash", "zsh", "fish"].map((shell) => ({ args: ["completion", shell] }));
   if (spec.name === "help") return [{ args: ["help"] }, ...CLI_COMMANDS.map((c) => ({ args: ["help", ...c.name.split(" ")] }))];
   if (spec.session && !spec.terminal) return [{ args: [...words, ...vault], stdin: "pw\n" }];
   return [{ args: words }];
@@ -150,7 +165,7 @@ describe("default command output", () => {
     mkdirSync(one, { recursive: true });
     writeFileSync(join(one, "report.md"), "# Sales\n");
     const ran: string[] = [];
-    const order = [...CLI_COMMANDS].sort((a, b) => Number(b.name === "init") - Number(a.name === "init") || Number(b.name === "hai freeze") - Number(a.name === "hai freeze"));
+    const order = [...CLI_COMMANDS].sort((a, b) => Number(b.name === "init") - Number(a.name === "init") || Number(b.name === "hai freeze") - Number(a.name === "hai freeze") || Number(b.name === "notes add") - Number(a.name === "notes add"));
     for (const spec of order) {
       if (spec.data) {
         expect(commandHelp(spec), spec.name).toContain("for scripts");
@@ -276,9 +291,13 @@ const items: Item[] = Array.from({ length: 120 }, (_, n) => ({
   answer: `It is ${words[(n + 3) % 8]} number ${n}${"!".repeat(n % 5)}`,
 }));
 
+const quizItems: Item[] = Object.entries(SHORT_FIELDS.items)
+  .slice(0, 12)
+  .map(([id, f], n) => ({ id, atomId: `quiz ${n}`, branch: id.split("/")[0], title: `Quiz ${n}`, level: "recall", prompt: f.short_stem, answer: f.short_answer }));
+
 async function session(): Promise<Session> {
   const s = await openSession(new MemoryKeyring(), join(dir, "data"));
-  s.store.importPack("pack one", items.slice(0, 12));
+  s.store.importPack("pack one", quizItems);
   return s;
 }
 
@@ -301,6 +320,50 @@ describe("terminal app screens", () => {
       const review = await screen(el, ["j", "\r", " ", "3"]);
       expect(review.lines.join("\n")).toMatch(/space to reveal|Nothing due/);
       for (const shot of [stats, help, palette, quiz, review]) expect(denied(shot.lines)).toEqual([]);
+    } finally {
+      s.store.close();
+    }
+  }, 30_000);
+
+  test("search, graph, learn, research and jobs screens use plain words", async () => {
+    const s = await session();
+    const canon = packCanon({
+      excerpts: [{ rowid: 3, branch: "02-physics", concept: "speed-of-light", slug: "one", title: "Light keeps one speed", text: "light travels at one speed", path: "sources/a.md", source: {} }],
+      evidence: { "3": [{ score: 1, kind: "talk", source_path: "sources/talks/one.md", text: "the speed of light is constant", url: "https://www.youtube.com/watch?v=x", title: "Relativity lecture", author: "A. Speaker" }] },
+    } as unknown as CanonPack);
+    const copied: string[] = [];
+    const opened: string[] = [];
+    const sources = {
+      canon,
+      graph: null,
+      research: () => ({ notes: [{ title: "Water notes", pinned: true, updatedAt: new Date(2026, 9, 1).getTime() }], saved: { results: 4, importedAt: new Date(2026, 9, 1).getTime() } }),
+      jobs: () => [{ name: "Sales", mtime: new Date(2026, 9, 1).getTime() }],
+      openRoute: (r: string) => opened.push(r),
+      copy: (t: string) => copied.push(t),
+    };
+    try {
+      const el = React.createElement(App, { session: s, sources });
+      const learn = await screen(el);
+      expect(learn.last).toContain("1 Search  2 Graph  3 Learn  4 Research  5 Jobs");
+      const graph = await screen(el, ["2", "o"]);
+      expect(graph.last).toContain("No graph in this pack yet.");
+      const research = await screen(el, ["4"]);
+      expect(research.last).toContain("* Water notes");
+      expect(research.last).toContain("Saved results: 4");
+      const jobs = await screen(el, ["\t", "\t"]);
+      expect(jobs.last).toContain("Sales");
+      const found = await screen(el, ["1", "l", "i", "g", "h", "t", "\r", "\r", "y", "o"]);
+      expect(found.last).toContain("Evidence, 1 passage");
+      expect(found.last).toContain("Relativity lecture, A. Speaker");
+      expect(found.last).toContain("Copied excerpt number 3.");
+      expect(copied).toEqual(["3"]);
+      expect(opened).toEqual(["/atlases", "/canon"]);
+      const empty = await screen(React.createElement(App, { session: s }), ["1", "x", "y", "z"]);
+      expect(empty.last).toContain("This copy of bkt holds no canon.");
+      for (const shot of [learn, graph, research, jobs, found, empty]) {
+        expect(denied(shot.lines)).toEqual([]);
+        expect(structured(shot.lines.join("\n"))).toEqual([]);
+      }
     } finally {
       s.store.close();
     }

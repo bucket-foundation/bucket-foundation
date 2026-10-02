@@ -9,13 +9,16 @@
     "typecheck": "tsc --noEmit",
     "size": "bun run scripts/size.ts",
     "shots": "bun run scripts/shots.ts",
+    "shots:path": "bun run scripts/shots-path.ts",
     "test": "bun test src"
   },
   "dependencies": {
+    "3dmol": "2.5.5",
     "@react-three/drei": "9.122.0",
     "@react-three/fiber": "8.18.0",
     "react": "18",
     "react-dom": "18",
+    "smiles-drawer": "2.4.1",
     "three": "0.170.0",
     "three-stdlib": "2.36.1"
   },

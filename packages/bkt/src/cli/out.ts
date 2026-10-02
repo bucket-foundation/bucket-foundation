@@ -38,10 +38,26 @@ export const JSON_SHAPES = {
     ["analysis", "open"],
     ["helix", ["status", "reason", "run_dir"]],
   ],
+  "learn due": [["cards", ["id", "title", "prompt", "long"]]],
+  "learn path": [["decks", ["id", "title", "atoms", "introduced", "due", "xp"]], "deck", ["topics", ["id", "title", ["requires", "open"]]]],
+  "learn quiz": [["questions", ["itemId", "prompt", ["choices", "open"], "limitSec", "long"]]],
+  "learn quiz answer": ["itemId", "correct", "timedOut", "rating", "answer"],
+  "learn review": [["cards", ["id", "title", "prompt", "answer", "long"]]],
+  "learn review answer": ["itemId", "due"],
+  daily: ["day", ["questions", ["id", "type", "prompt", ["lines", "open"], ["choices", "open"], "limitSec"]], ["answered", "open"]],
+  "daily answer": ["id", "correct", "timedOut", "rating", "log10Distance", "answer", "explain"],
+  doctor: ["ok", ["checks", ["id", "name", "status", "result", "fix"]]],
   "hai export": [
     ["probes", ["id", "bank_version", "seed", "started_at", "completed_at", "due_at", "retest_completed_at"]],
     ["answers", ["id", "probeId", "pairId", "itemId", "condition", "phase", "choice", "correct", "acceptedAi", "elapsedMs", "at"]],
   ],
+  search: ["query", "mode", ["results", ["id", "branch", "concept", "title", "score", "url", "excerpt", "evidence"]]],
+  "notes ls": [["notes", ["n", "id", "title", "pinned", "updatedAt"]]],
+  "notes show": ["n", "id", "title", "body", "pinned", "createdAt", "updatedAt"],
+  "notes add": ["id", "title", "pinned", "createdAt", "updatedAt"],
+  history: ["days", "studyDays", "reviews", "answered", "correct", ["forms", ["form", "answered", "correct", "accuracy"]], ["byDay", ["day", "reviews", "answered", "correct"]]],
+  import: [["imported", "open"]],
+  "canon show": ["id", "branch", "concept", "title", "text", "url", ["evidence", ["title", "author", "kind", "url", "score", "text"]]],
 } as const satisfies Record<string, Shape>;
 
 export type ShapeName = keyof typeof JSON_SHAPES;
@@ -94,7 +110,7 @@ export function statRows(s: Counts, waiting?: number): [string, number][] {
   return waiting === undefined ? rows : [...rows, ["Waiting to sync", waiting]];
 }
 
-const KEY_STORES: Record<string, string> = {
+export const KEY_STORES: Record<string, string> = {
   libsecret: "login keyring",
   keychain: "login keychain",
   dpapi: "Windows account",

@@ -1,12 +1,15 @@
 import type { Database } from "bun:sqlite";
 import { spawn } from "node:child_process";
-import { parseCanonSearchParams, rankCanon, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
-import type { CanonPack, Licence, PackPassage, PackSource } from "./pack/canon";
+import { parseCanonSearchParams, type ClaimIndexEntry } from "../../../src/lib/canon-rank";
+import { CANON_SITE, searchCanon, type CanonSource } from "./core/search";
+import type { CanonPack, Licence, PackGraph, PackPassage, PackSource } from "./pack/canon";
+import { buildCanonGraph } from "../../../src/lib/canon-graph-core";
 import type { Route } from "./serve";
 
 export const CANON_META_KEY = "canon_pack_version";
 export const CANON_DEFAULT_TOP_K = 20;
 export const OPEN_BODY_BYTES = 4096;
+export { CANON_SITE };
 export const OPEN_HOSTS = [
   "www.youtube.com",
   "youtube.com",
@@ -57,7 +60,7 @@ export function syncCanon(db: Database, pack: CanonPack): boolean {
 
 type ExcerptRow = { id: number; branch: string; concept: string; slug: string; title: string; text: string; path: string; source: string };
 
-export class CanonStore {
+export class CanonStore implements CanonSource {
   private cached: ClaimIndexEntry[] | null = null;
 
   constructor(private db: Database) {}
@@ -79,6 +82,10 @@ export class CanonStore {
 
   evidenceCount(id: number): number {
     return this.db.query<{ n: number }, [number]>("select count(*) as n from canon_evidence where excerpt = ?").get(id)!.n;
+  }
+
+  passages(id: number): PackPassage[] {
+    return this.db.query<PackPassage, [number]>("select score, kind, source_path, text, url, title, author from canon_evidence where excerpt = ? order by n").all(id);
   }
 
   excerpt(id: number): (Omit<ExcerptRow, "source"> & { source: PackSource; evidence: (PackPassage & { openable: boolean })[] }) | null {
@@ -126,6 +133,24 @@ export function openable(raw: unknown, hosts: readonly string[] = OPEN_HOSTS): U
   return u;
 }
 
+export const DOI_HOST = "doi.org";
+export const DOI_ID = /^10\.\d{4,9}\/[^\s?#]+$/;
+
+export function openableDoi(raw: unknown, held: (doi: string) => boolean): URL | null {
+  if (typeof raw !== "string" || raw.length > 2048) return null;
+  const prefix = `https://${DOI_HOST}/`;
+  if (!raw.startsWith(prefix)) return null;
+  const id = raw.slice(prefix.length);
+  if (!DOI_ID.test(id) || !held(id)) return null;
+  try {
+    const u = new URL(raw);
+    if (u.protocol !== "https:" || u.hostname !== DOI_HOST || u.port || u.username || u.password || u.search || u.hash) return null;
+    return decodeURI(u.pathname) === `/${id}` ? u : null;
+  } catch {
+    return null;
+  }
+}
+
 export function browserCommand(url: string, os: NodeJS.Platform = process.platform): string[] {
   if (os === "darwin") return ["open", url];
   if (os === "win32") return ["rundll32", "url.dll,FileProtocolHandler", url];
@@ -140,33 +165,41 @@ export function openInBrowser(url: string): void {
 }
 
 export interface CanonRouteOptions {
+  graph?: PackGraph | null;
   open?: (url: string) => void;
   hosts?: readonly string[];
+  holdsDoi?: (doi: string) => boolean;
 }
 
 export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Record<string, Route> {
   const open = opts.open ?? openInBrowser;
   return {
     "GET /local/canon/search": (_req, url) => {
+      const t0 = Date.now();
       const params = parseCanonSearchParams(url, CANON_DEFAULT_TOP_K);
-      const found = rankCanon({ loadIndex: () => canon.index(), decodeQVec: () => null }, { ...params, qvec: null });
+      const found = searchCanon(canon, params);
       if (!found.ok) return json({ error: found.message, code: found.code }, found.status);
       const results = found.results.map((r) => ({
-        claim_id: r.entry.rowid,
-        branch: r.entry.branch,
-        concept: r.entry.concept,
-        slug: r.entry.slug,
-        title: r.entry.title,
+        claim_id: r.id,
+        branch: r.branch,
+        concept: r.concept,
+        slug: r.slug,
+        title: r.title,
         score: r.score,
-        excerpt: r.entry.text.slice(0, 400),
-        evidence_count: canon.evidenceCount(r.entry.rowid),
+        url: r.url,
+        excerpt: r.excerpt,
+        evidence_count: r.evidence,
       }));
-      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results });
+      return json({ query: params.q, top_k: params.topK, mode: found.mode, n_results: results.length, results, took_ms: Date.now() - t0 });
     },
     "GET /local/canon/excerpt": (_req, url) => {
       const raw = url.searchParams.get("id") ?? "";
       const found = /^\d{1,9}$/.test(raw) ? canon.excerpt(Number(raw)) : null;
       return found ? json(found) : json({ error: "no such excerpt" }, 404);
+    },
+    "GET /local/canon/graph": () => {
+      if (!opts.graph) return json({ error: "no knowledge graph on this computer" }, 404);
+      return json({ version: canon.version(), ...buildCanonGraph(opts.graph.graph, opts.graph.centrality, opts.graph.excerpts ?? {}) });
     },
     "GET /local/canon/licences": () => json({ version: canon.version(), excerpts: canon.index().length, branches: canon.branches(), licences: canon.licences() }),
     "POST /local/open": async (req) => {
@@ -176,7 +209,8 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
       } catch {
         return json({ error: "expected { url }" }, 400);
       }
-      const u = openable((body as { url?: unknown } | null)?.url, opts.hosts ?? OPEN_HOSTS);
+      const raw = (body as { url?: unknown } | null)?.url;
+      const u = openable(raw, opts.hosts ?? OPEN_HOSTS) ?? openableDoi(raw, opts.holdsDoi ?? (() => false));
       if (!u) return json({ error: "that link is outside the allowed sites" }, 400);
       open(u.toString());
       return json({ opened: u.toString() });

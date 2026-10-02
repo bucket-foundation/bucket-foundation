@@ -105,6 +105,10 @@ export class Unreachable extends Error {
 
 type Published = RawEntry & { published_at?: unknown };
 
+export function mailedInstantly(e: RawEntry & { published_at?: unknown }): boolean {
+  return e.category === "production" && typeof e.published_at === "string";
+}
+
 async function frozenEntries(all: readonly Published[], day: string, ledger: DigestLedger | undefined): Promise<{ entries: Published[]; frozen: boolean }> {
   const frozen = ledger ? await ledger.frozen(day) : null;
   if (frozen) return { entries: all.filter((e) => typeof e.id === "string" && frozen.includes(e.id)), frozen: true };
@@ -120,7 +124,7 @@ async function frozenEntries(all: readonly Published[], day: string, ledger: Dig
   return { entries, frozen: false };
 }
 
-async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
+export async function sendOne(fetcher: Fetch, config: DigestConfig, to: Recipient, day: string, email: { subject: string; html: string; text: string }, unsub: string): Promise<void> {
   const res = await fetcher(RESEND_URL, {
     method: "POST",
     headers: { authorization: `Bearer ${config.apiKey}`, "content-type": "application/json", "idempotency-key": `whats-new/${day}/${to.key}` },
@@ -151,22 +155,26 @@ export async function sendDailyDigest(opts: {
   clock?: () => number;
   gapMs?: number;
   progress?: MarkStore;
+  instant?: (e: Published) => boolean;
 }): Promise<SendReport> {
   const { config, now } = opts;
   const fetcher = opts.fetcher ?? fetch;
   const clock = opts.clock ?? Date.now;
   const day = digestDay(now);
-  const all: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
+  const loaded: readonly Published[] = typeof opts.entries === "function" ? await opts.entries() : opts.entries;
+  const all = opts.instant ? loaded.filter((e) => !opts.instant?.(e)) : loaded;
   const ledger = opts.ledger;
   const picked = await frozenEntries(all, day, ledger);
-  const digest = buildDigest(picked.entries, day);
+  let digest = buildDigest(picked.entries, day);
   const published = new Set(picked.entries.filter((e) => typeof e.published_at === "string").map((e) => e.id as string));
   let recorded = picked.frozen || !ledger;
   const record = async () => {
     if (recorded || !ledger) return;
     const ids = digest.groups.flatMap((g) => g.items.map((i) => i.id));
     await ledger.freeze(day, ids);
-    for (const id of ids) if (published.has(id)) await ledger.markMailed(id, day);
+    const kept = (await ledger.frozen(day)) ?? ids;
+    if (kept.length !== ids.length || kept.some((id) => !ids.includes(id))) digest = buildDigest(picked.entries.filter((e) => kept.includes(e.id as string)), day);
+    for (const id of kept) if (published.has(id)) await ledger.markMailed(id, day);
     recorded = true;
   };
   const base = { day: digest.day, entries: digest.count, recipients: 0, sent: 0, failed: 0, pending: 0, resumedAt: 0 };
@@ -183,6 +191,10 @@ export async function sendDailyDigest(opts: {
       break;
     }
     const r = recipients[i];
+    if (digest.count === 0) {
+      report.pending = recipients.length - i;
+      break;
+    }
     const unsub = unsubscribeUrl(r.email, config.secret);
     try {
       await sendOne(fetcher, config, r, digest.day, renderDigest(digest, unsub, config.postalAddress), unsub);

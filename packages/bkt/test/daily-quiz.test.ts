@@ -64,7 +64,21 @@ describe("daily quiz parsing", () => {
     const ref = { kind: "pr", ref: "1", label: "one", href: null };
     expect(bad([{ ...CHOICE, sources: Array.from({ length: 9 }, () => ref) }])).toThrow("at most 8 sources");
     expect(bad([{ ...CHOICE, sources: "pr 1" }])).toThrow("at most 8 sources");
-    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, explain: "x".repeat(600), sources: Array.from({ length: 8 }, () => ref) }] }).questions[0].sources).toHaveLength(8);
+    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, explain: "x".repeat(600), sources: Array.from({ length: 8 }, () => ref) }] }, { limits: false }).questions[0].sources).toHaveLength(8);
+  });
+
+  test("refuses a question over a length limit and names the limit", () => {
+    const bad = (over: Record<string, unknown>) => () => parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, ...over }] });
+    const ref = { kind: "pr", ref: "1", label: "one", href: null };
+    expect(bad({ prompt: "Which of the four long-lived branches in this repository takes the pull requests for the desktop app?" })).toThrow("the stem has 17 tokens, the limit is 15");
+    expect(bad({ prompt: "Which branch?", lines: ["one two three four five six seven", "eight nine ten eleven twelve thirteen fourteen"] })).toThrow("the stem has 16 tokens");
+    expect(bad({ choices: ["dev", "main", "prod", "beta", "next"] })).toThrow("5 options, the limit is 4");
+    expect(bad({ choices: ["dev", "main", "the branch every pull request targets"] })).toThrow("an option has 6 tokens, the limit is 5");
+    expect(bad({ choices: ["dev", "hte/integration"] })).toThrow("the options differ");
+    expect(bad({ explain: Array.from({ length: 21 }, (_, i) => `w${i}`).join(" ") })).toThrow("the why line has 21 tokens, the limit is 20");
+    expect(bad({ sources: [ref, ref] })).toThrow("2 sources, the limit is 1 link");
+    expect(() => fermi({ ...FERMI, prompt: Array.from({ length: 16 }, (_, i) => `w${i}`).join(" ") })).toThrow("the stem has 16 tokens");
+    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, choices: ["dev", "the branch that takes every desktop pull request today"] , answer: "dev" }] }, { limits: false }).questions).toHaveLength(1);
   });
 });
 
@@ -83,7 +97,7 @@ describe("schema 8", () => {
   }
 
   test("the version constant matches the migration list and daily_quiz stays local", () => {
-    expect(SCHEMA_VERSION).toBe(8);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(9);
     expect(MIGRATIONS.length).toBe(SCHEMA_VERSION);
     expect(LOCAL_ONLY_TABLES).toContain("daily_quiz");
     expect((SYNC_TABLES as readonly string[]).includes("daily_quiz")).toBe(false);
@@ -94,7 +108,7 @@ describe("schema 8", () => {
     v7Fixture(path);
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(8);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select name from sqlite_master where name = 'daily_quiz'").get()).not.toBeNull();
     expect(s.db.query("select id, question_id, type, correct, rating, elapsed_ms, at, log10_distance from work_quiz_attempts order by at").all()).toEqual([
       { id: "a1", question_id: "estimate-beads-status-open", type: "estimate", correct: 1, rating: 4, elapsed_ms: 9000, at: 100, log10_distance: null },

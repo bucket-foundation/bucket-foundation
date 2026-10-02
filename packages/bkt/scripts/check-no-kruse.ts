@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { claimMeta, readInputs } from "../src/pack/canon";
+import { deniedSourceMarkers, readExploreInputs, splitSources } from "../src/pack/explore";
 import { buildDenylist, DENIED_NAME, DENIED_PREFIXES, denyRow, marker, withDeniedFiles } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -26,6 +27,7 @@ export function kruseMarkers(repo: string = REPO): string[] {
       if (why && why !== "file") note(p.text);
     }
   }
+  for (const m of deniedSourceMarkers(splitSources(readExploreInputs(repo).index, deny))) out.add(m);
   return [...out];
 }
 

@@ -28,7 +28,7 @@ const excerpts = [
 const hits = unify({ query: "photon quantum", excerpts, advisors });
 check("results are non-empty", hits.length > 0);
 check("scores sorted descending", hits.every((h, i) => i === 0 || hits[i - 1].score >= h.score));
-check("scores are in [0,1]", hits.every((h) => h.score >= 0 && h.score <= 1));
+check("every score is above zero", hits.every((h) => h.score > 0));
 const types = new Set(hits.map((h) => h.type));
 check("hits include every type", types.has("excerpt") && types.has("advisor") && types.has("work"));
 check("advisor B ranks first among advisors", hits.find((h) => h.type === "advisor")?.id === advisorId({ rank: 2 }));
@@ -78,7 +78,8 @@ for (const [label, srcs] of [["parsed", parsedLeaky], ["unparsed", directLeaky]]
 const ranked = unify({ query: "photon quantum", excerpts, advisors, types: ["excerpt", "advisor"] });
 const topExcerpt = ranked.filter((h) => h.type === "excerpt")[0];
 const topAdvisor = ranked.filter((h) => h.type === "advisor")[0];
-check("top excerpt and top advisor share normalized rank 1", topExcerpt.score === 1 && topAdvisor.score === 1);
+check("pools keep absolute scores", topExcerpt.score === 4 && topAdvisor.score > 0 && topAdvisor.score !== 1);
+check("an excerpt scored zero is dropped for a worded query", !unify({ query: "photon", excerpts: [{ ...excerpts[0], score: 0 }], advisors: [] }).length);
 check("excerpt order follows canon rank", topExcerpt.id === excerptId(excerpts[0]));
 check("empty query keeps canon excerpts from qvec search", unify({ query: "", excerpts, advisors }).some((h) => h.type === "excerpt"));
 

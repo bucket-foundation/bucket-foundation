@@ -1,12 +1,15 @@
 import { randomBytes } from "node:crypto";
-import { buildEncompassingMap, mergeState, normalizeState, withLeverage, type Atom, type EncEdge } from "../../../src/lib/academy/engine";
-import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
-import type { Question, Rating } from "./grade";
+import { ALREADY_IMPORTED, checkState, importProgress } from "./core/importer";
+import { mergeState, normalizeState } from "../../../src/lib/academy/engine";
+import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQuestion, quizSession, rateCard } from "./core/learn";
+import type { Question } from "./grade";
 import type { Route } from "./serve";
 import type { Pack, PackDeck } from "./pack/export";
-import { deckOf, type Store } from "./store";
+import type { ShortFile } from "./short-fields";
+import type { Store } from "./store";
 
 export interface LocalOptions {
+  shorts?: ShortFile;
   now?: () => number;
   seed?: () => string;
   content?: Pick<Pack, "decks" | "atoms">;
@@ -31,75 +34,55 @@ async function body(req: Request): Promise<Record<string, unknown> | null> {
 
 const elapsed = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.min(v, 86_400_000) : null);
 
+function guarded(fn: () => unknown): Response {
+  try {
+    return json(fn());
+  } catch (e) {
+    if (e instanceof LearnError) return json({ error: e.message }, e.status);
+    throw e;
+  }
+}
+
 export function localRoutes(store: Store, opts: LocalOptions = {}): Record<string, Route> {
   const now = opts.now ?? Date.now;
   const seed = opts.seed ?? (() => randomBytes(8).toString("hex"));
   const open = new Map<string, Question>();
   const decks: PackDeck[] = opts.content?.decks ?? [];
-  const atoms = new Map<string, Atom[]>(Object.entries(opts.content?.atoms ?? {}).map(([d, a]) => [d, withLeverage(a)]));
-  const enc = new Map<string, Record<string, EncEdge[]>>();
-  const encFor = (deck: string) => {
-    if (!enc.has(deck)) enc.set(deck, buildEncompassingMap(atoms.get(deck) ?? []));
-    return enc.get(deck)!;
-  };
-  const itemDeck = (itemId: string) => {
-    const it = store.items().find((i) => i.id === itemId);
-    return it ? deckOf(it.branch) : "";
-  };
+  const enc = new Encompassing(store, opts.content);
 
   return {
     "GET /local/quiz": (_req, url) => {
-      const s = seed();
-      const qs = quizQuestions(store, pickSession(store, now(), count(url, 10, 50), s), s);
+      const qs = quizSession(store, now(), count(url, 10, 50), seed(), opts.shorts);
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
-      return json({ questions: qs.map(({ itemId, prompt, choices, limitSec }) => ({ itemId, prompt, choices, limitSec })) });
+      return json({ questions: qs.map(publicQuestion) });
     },
     "POST /local/quiz": async (req) => {
       const b = await body(req);
       if (!b || typeof b.itemId !== "string") return json({ error: "itemId required" }, 400);
       const q = open.get(b.itemId);
       if (!q) return json({ error: "no open question" }, 404);
-      const choice = b.choice === null ? null : b.choice;
-      if (choice !== null && (typeof choice !== "number" || !Number.isInteger(choice) || choice < 0 || choice >= q.choices.length))
-        return json({ error: "bad choice" }, 400);
       const ms = elapsed(b.elapsedMs);
       if (ms === null) return json({ error: "bad elapsedMs" }, 400);
-      open.delete(q.itemId);
-      const r = answerQuiz(store, q, choice as number | null, ms, now(), encFor(itemDeck(q.itemId)));
-      return json({ ...r, answer: q.choices[q.answerIndex] });
-    },
-    "GET /local/review": (_req, url) => {
-      const byId = new Map(store.items().map((i) => [i.id, i]));
-      const items = store
-        .dueItemIds(now(), count(url, 20, 100))
-        .map((id) => byId.get(id))
-        .filter((i) => !!i)
-        .map((i) => ({ id: i!.id, title: i!.title, prompt: i!.prompt, answer: i!.answer }));
-      return json({ items });
-    },
-    "POST /local/review": async (req) => {
-      const b = await body(req);
-      if (!b || typeof b.itemId !== "string" || !store.items().some((i) => i.id === b.itemId)) return json({ error: "unknown item" }, 404);
-      if (b.rating !== 1 && b.rating !== 2 && b.rating !== 3 && b.rating !== 4) return json({ error: "rating must be 1..4" }, 400);
-      const ms = elapsed(b.elapsedMs);
-      if (ms === null) return json({ error: "bad elapsedMs" }, 400);
-      answerReview(store, b.itemId, b.rating as Rating, ms, now(), encFor(itemDeck(b.itemId)));
-      return json({ ok: true, due: store.card(b.itemId)?.due ?? null });
-    },
-    "GET /local/decks": () => {
-      const s = now();
-      return json({
-        decks: decks.map((d) => {
-          const state = store.learnState(d.id);
-          const cards = Object.values(state.cards);
-          return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= s).length, xp: state.stats.xp };
-        }),
+      return guarded(() => {
+        const r = gradeQuiz(store, enc, q, b.choice, ms, now());
+        open.delete(q.itemId);
+        return r;
       });
     },
+    "GET /local/review": (_req, url) => json({ items: dueCards(store, now(), count(url, 20, 100)) }),
+    "POST /local/review": async (req) => {
+      const b = await body(req);
+      if (!b) return json({ error: "unknown item" }, 404);
+      const ms = elapsed(b.elapsedMs);
+      if (typeof b.itemId === "string" && store.items().some((i) => i.id === b.itemId) && (b.rating === 1 || b.rating === 2 || b.rating === 3 || b.rating === 4) && ms === null)
+        return json({ error: "bad elapsedMs" }, 400);
+      return guarded(() => ({ ok: true, ...rateCard(store, enc, b.itemId, b.rating, ms ?? 0, now()) }));
+    },
+    "GET /local/decks": () => json({ decks: deckProgress(store, decks, now()) }),
     "GET /local/atoms": (_req, url) => {
       const deck = url.searchParams.get("deck") ?? "";
-      const list = atoms.get(deck);
+      const list = enc.deckAtoms(deck);
       return list ? json({ deck, atoms: list }) : json({ error: "unknown deck" }, 404);
     },
     "GET /local/progress": () => {
@@ -116,23 +99,9 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
     },
     "POST /local/import": async (req, url) => {
       const force = url.searchParams.get("force") === "1";
-      if (store.meta("web_import_at") && !force) return json({ error: "already imported" }, 409);
-      const b = await body(req);
-      const incoming = b ? webBranches(b) : null;
-      if (!incoming) return json({ error: "expected { branches: { <deck>: EngineState } }" }, 400);
-      const known = new Set(decks.map((d) => d.id));
-      const unknown = Object.keys(incoming).filter((d) => !known.has(d));
-      if (unknown.length) return json({ error: `unknown decks: ${unknown.sort().join(", ")}` }, 400);
-      const at = now();
-      const imported: string[] = [];
-      store.db.transaction(() => {
-        for (const [deck, state] of Object.entries(incoming)) {
-          store.putLearnState(deck, mergeState(store.learnState(deck), state), at);
-          imported.push(deck);
-        }
-        store.setMeta("web_import_at", String(at));
-      })();
-      return json({ imported: imported.sort() });
+      if (store.meta("web_import_at") && !force) return json({ error: ALREADY_IMPORTED }, 409);
+      const r = importProgress(store, decks, await body(req), force, now());
+      return r.ok ? json({ imported: r.imported }) : json({ error: r.error }, r.status);
     },
   };
 }
@@ -155,8 +124,9 @@ export function webBranches(b: Record<string, unknown>): Record<string, ReturnTy
         return null;
       }
     }
-    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
-    out[deck] = normalizeState(raw);
+    const state = checkState(raw);
+    if (!state) return null;
+    out[deck] = state;
   }
   return Object.keys(out).length ? out : null;
 }

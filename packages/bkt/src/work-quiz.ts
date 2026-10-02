@@ -4,12 +4,17 @@ import { existsSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/work-quiz/generate";
-import { gradeAnswer, log10Distance, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
+import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
+import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import type { Card, Rating } from "../../../src/lib/academy/fsrs";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
-import { attemptId, DailyQuizStore, validDay, type DailyQuiz } from "./daily-quiz";
+import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
+import { answerDaily, LearnError } from "./core/learn";
+import { DailyQuizStore, MAX_DAILY_QUESTIONS, overLength, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
@@ -114,12 +119,65 @@ export class WorkQuizStore {
     this.store.db.run("delete from work_quiz_source");
     this.setChat(CHAT_OFF);
     this.daily.clear();
+    this.store.db.run("delete from work_quiz_coverage");
+    this.store.db.run("delete from work_quiz_cards");
   }
 
   record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
     this.store.db
       .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at, log10_distance) values (?, ?, ?, ?, ?, ?, ?, ?)")
       .run(randomUUID(), extra.questionId ?? q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at, extra.log10Distance ?? null);
+    if (!correct) this.recordMiss(q, localDay(at));
+    this.review(q, rating as Rating, at);
+  }
+
+  coverage(): CoverageRow[] {
+    return this.store.db
+      .query<{ cell: string; fact_id: string; picks: number; misses: number; last_day: string }, []>("select cell, fact_id, picks, misses, last_day from work_quiz_coverage")
+      .all()
+      .map((r) => ({ cell: r.cell, factId: r.fact_id, picks: r.picks, misses: r.misses, lastDay: r.last_day }));
+  }
+
+  review(q: QuizQuestion, rating: Rating, at: number) {
+    const { fact_id, form, card_key } = cardFields(q);
+    const prev = this.store.db.query<{ state: string }, [string]>("select state from work_quiz_cards where card_key = ?").get(card_key);
+    const card = nextCard(prev ? (JSON.parse(prev.state) as Card) : null, rating, at);
+    if (!card) return;
+    this.store.db
+      .query(
+        `insert into work_quiz_cards (card_key, fact_id, form, state, due, updated_at, question) values (?, ?, ?, ?, ?, ?, ?)
+         on conflict (card_key) do update set state = excluded.state, due = excluded.due, updated_at = excluded.updated_at, question = excluded.question`,
+      )
+      .run(card_key, fact_id, form, JSON.stringify(card), card.due ?? at, at, seal(this.key, JSON.stringify(q), `work_quiz_card:${card_key}`));
+  }
+
+  dueCards(at: number): DueCard[] {
+    return this.store.db
+      .query<{ card_key: string; due: number; question: string }, [number]>("select card_key, due, question from work_quiz_cards where question is not null and due <= ? order by due")
+      .all(at)
+      .map((r) => dueFrom(JSON.parse(open(this.key, r.question, `work_quiz_card:${r.card_key}`)) as QuizQuestion, r.due));
+  }
+
+  recordPicks(picks: readonly SamplePick[], day: string) {
+    const q = this.store.db.query(
+      `insert into work_quiz_coverage (cell, fact_id, picks, misses, last_day) values (?, ?, 1, 0, ?)
+       on conflict (cell, fact_id) do update set picks = picks + 1, last_day = max(last_day, excluded.last_day)`,
+    );
+    this.store.db.transaction(() => {
+      for (const p of picks) q.run(p.cell, p.factIds.join("+"), day);
+    })();
+  }
+
+  recordMiss(q: QuizQuestion, day: string) {
+    const { fact_id } = cardFields(q);
+    const cell = "miss";
+    const ins = this.store.db.query(
+      `insert into work_quiz_coverage (cell, fact_id, picks, misses, last_day) values (?, ?, 0, 1, ?)
+       on conflict (cell, fact_id) do update set misses = misses + 1`,
+    );
+    this.store.db.transaction(() => {
+      for (const id of splitFactId(fact_id)) ins.run(cell, id, day);
+    })();
   }
 
   tally(): { answered: number; correct: number } {
@@ -162,24 +220,41 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const empty = new Set<string>();
 
   async function build(day: string): Promise<DailyQuiz | null> {
+    const { sources: src } = await sources();
+    const sampled = sourcesEmpty(src) ? null : sampleQuiz({ day, sources: src, coverage: wq.coverage(), due: wq.dueCards(now()), now: now(), exclude: usedOn(wq.coverage(), day) });
     const on = wq.chat();
-    if (!CHAT_ROOT_NAMES.some((r) => on[r])) return null;
-    const { stubs, counts } = readChats(on, { home: o.home, now: now() });
-    const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
-    const still = wq.chat();
-    if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
-    const quiz = written.quiz ? wq.daily.put(written.quiz, now()) : null;
-    if (!quiz) empty.add(day);
-    log(
-      `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${quiz?.questions.length ?? 0} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
-    );
+    let chat: QuizQuestion[] = [];
+    if (CHAT_ROOT_NAMES.some((r) => on[r])) {
+      const { stubs, counts } = readChats(on, { home: o.home, now: now() });
+      const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
+      const still = wq.chat();
+      if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
+      chat = written.quiz?.questions ?? [];
+      log(
+        `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${chat.length} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
+      );
+    }
+    const seen = new Set<string>();
+    const questions = [...(sampled?.questions ?? []), ...chat].filter((q) => !seen.has(q.id) && seen.add(q.id)).slice(0, MAX_DAILY_QUESTIONS);
+    if (questions.length === 0) {
+      empty.add(day);
+      return null;
+    }
+    const quiz = wq.daily.put({ day, questions }, now());
+    if (sampled) wq.recordPicks(sampled.picks, day);
     return quiz;
   }
 
   function daily(day: string): Promise<DailyQuiz | null> {
     const stored = wq.daily.get(day);
-    if (stored || day !== localDay(now()) || empty.has(day)) return Promise.resolve(stored);
-    const running = building.get(day) ?? build(day).finally(() => building.delete(day));
+    const today = day === localDay(now());
+    const rebuild = today && stored !== null && overLength(stored) && wq.daily.answered(day).size === 0;
+    if ((stored && !rebuild) || !today || empty.has(day)) return Promise.resolve(stored);
+    const running =
+      building.get(day) ??
+      build(day)
+        .then((built) => built ?? stored)
+        .finally(() => building.delete(day));
     building.set(day, running);
     return running;
   }
@@ -255,9 +330,14 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     "GET /local/work-quiz/next": async () => {
       const { sources: s } = await sources();
       if (sourcesEmpty(s)) return json({ error: "no sources: pick a beads file or a repository" }, 404);
-      const q = generateQuestion(s, seed());
-      if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
       const at = now();
+      const today = localDay(at);
+      const coverage = wq.coverage();
+      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today) });
+      const q = picked.questions[0] ?? generateQuestion(s, seed());
+      if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
+      if (picked.picks.length > 0) wq.recordPicks(picked.picks, today);
+      else if (picked.reviewed > 0) wq.recordPicks([{ cell: "review", factIds: dueFrom(picked.questions[0], at).factIds }], today);
       for (const [id, v] of issued) if (at - v.at > 10 * 60_000) issued.delete(id);
       issued.set(q.id, { q, at });
       return json(toPublic(q));
@@ -267,28 +347,25 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       if (!validDay(day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
       const quiz = await daily(day);
       if (!quiz) return json({ error: "no quiz for that day" }, 404);
-      return json({ day, questions: quiz.questions.map(toPublic), answered: [...wq.daily.answered(day)] });
+      const fit = url.searchParams.get("fit") === "1";
+      return json({ day, questions: quiz.questions.filter((q) => !fit || checkLimits(q).length === 0).map(toPublic), answered: [...wq.daily.answered(day)] });
     },
     "POST /local/work-quiz/answer": async (req) => {
       const b = await body(req);
       if (!b || typeof b.id !== "string") return json({ error: "id required" }, 400);
       if (b.day !== undefined) {
         if (!validDay(b.day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
-        const q = wq.daily.get(b.day)?.questions.find((x) => x.id === b.id);
-        if (!q) return json({ error: "no such question" }, 404);
-        if (wq.daily.answered(b.day).has(q.id)) return json({ error: "already answered" }, 409);
-        if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs) || b.elapsedMs < 0) return json({ error: "elapsedMs required" }, 400);
-        const elapsed = Math.min(b.elapsedMs, 3_600_000);
-        const response = normalizeResponse(q, b.response);
-        const g = gradeAnswer(q, response, elapsed);
-        const distance = q.log10Tolerance === undefined ? null : log10Distance(q.answer, response);
+        if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs) || b.elapsedMs < 0) {
+          if (!wq.daily.get(b.day)?.questions.some((x) => x.id === b.id)) return json({ error: "no such question" }, 404);
+          if (wq.daily.answered(b.day).has(b.id)) return json({ error: "already answered" }, 409);
+          return json({ error: "elapsedMs required" }, 400);
+        }
         try {
-          wq.record(q, g.correct, g.rating, elapsed, now(), { questionId: attemptId(b.day, q.id), log10Distance: distance });
+          return json(answerDaily(wq.daily, (...a) => wq.record(...a), b.day, b.id, b.response, Math.min(b.elapsedMs, 3_600_000), now()));
         } catch (e) {
-          if (/UNIQUE constraint failed/i.test((e as Error).message)) return json({ error: "already answered" }, 409);
+          if (e instanceof LearnError) return json({ error: e.message }, e.status);
           throw e;
         }
-        return json({ ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources });
       }
       const open = issued.get(b.id);
       if (!open) return json({ error: "no open question" }, 404);

@@ -34,6 +34,9 @@ The lint resolves tags. It cannot tell whether the cited theorem supports the se
 | `BucketMath.Learning` | prerequisite closure, learning paths, the minimum unit and weighted learning path, coverage and extent monotonicity; `Learning.Diamond` is the worked example |
 | `BucketMath.Marketing` | marketing ratios as partial division over ℚ, CPA times conversions equals spend, CTR and retention at most one, channel shares summing to one, last-touch and linear credit conserving the conversion count |
 | `BucketMath.Ranking` | an insertion sort over id and integer score pairs, its output a permutation ordered by score descending then id ascending, and the one list with that property |
+| `BucketMath.Grade` | the log-scale grade as an integer inequality: two positive values are within a rational tolerance when a power of the larger is at most a power of ten multiplied by the same power of the smaller; symmetry, scale invariance, monotonicity in the ratio, the boundary at one half |
+| `BucketMath.Fsrs` | the review scheduling clamps in fixed point: a two-sided clamp, a floor, round half up and the capped interval, with their bounds |
+| `BucketMath.Split` | the payment split in integer micro-units: author, node and operations parts, with the node part inside the non-author share and zero under a payment floor |
 | `BucketMath.Open` | stated claims without proofs, empty today |
 | `BucketMathAll` | BucketMath plus the history engine package at `papers/history-hypothesis-engine/lean` |
 
@@ -51,4 +54,11 @@ Core Lean 4.33.1 only; `Std` ships with the toolchain. Adding a fetched package 
 | An enumerated, prerequisite-ordered list of missing concepts is a shortest path, and a minimum-effort one under nonnegative weights | [bm:BucketMath.Learning.minimum_unit_distance], [bm:BucketMath.Learning.minimum_weighted_effort] |
 | Under a strict rank, every required prerequisite ranks below its target | [bm:BucketMath.Graph.required_rank_lt] |
 | With unique ids, ranking returns a permutation ordered by score descending then id ascending, and that list is unique | [bm:BucketMath.Ranking.rank_perm], [bm:BucketMath.Ranking.rank_ordered], [bm:BucketMath.Ranking.rank_unique] |
+| The log-scale grade is symmetric, unchanged by a common scale, and accepts every pair whose ratio is no larger than an accepted pair's; no pair of positive rationals sits on the boundary at tolerance one half | [bm:BucketMath.Grade.within_symm], [bm:BucketMath.Grade.within_scale], [bm:BucketMath.Grade.within_of_closer], [bm:BucketMath.Grade.no_exact_boundary] |
+| Every pair the specification accepts at tolerance one half is also accepted at one half plus one billionth, the margin `grade.ts` adds | [bm:BucketMath.Grade.correct_accepted_with_epsilon] |
+| For any raw values, the clamped difficulty, stability and interval sit inside their bounds; this covers the clamps alone, and the end-to-end review is checked by replay | [bm:BucketMath.Fsrs.review_bounds] |
+| Stored stability and difficulty, once clamped, give positive arguments to every power and logarithm in a review | [bm:BucketMath.Fsrs.review_inputs_positive] |
+| The split parts sum to the amount and the author part is at least four fifths of it | [bm:BucketMath.Split.split_total], [bm:BucketMath.Split.author_floor] |
+| The author part exceeds four fifths of the amount by under one micro-unit; the node part stays inside the non-author share, at or under its rate, and is zero under the payment floor; amounts under five go whole to the author | [bm:BucketMath.Split.author_tight], [bm:BucketMath.Split.nodePart_le], [bm:BucketMath.Split.node_share_le], [bm:BucketMath.Split.node_zero_below_floor], [bm:BucketMath.Split.dust_to_author] |
+| The split computes without overflow for any amount below 2^256: the non-author share is the amount divided by five, and the node part splits into quotient and remainder terms that each fit | [bm:BucketMath.Split.nonAuthor_eq_div_five], [bm:BucketMath.Split.nodePart_without_overflow], [bm:BucketMath.Split.intermediates_fit] |
 | Graph edges, direction probabilities and values, market returns, benchmark choice, concept edges, effort weights, learner evidence | inputs; cite each with `[empirical: source, date, command]` |

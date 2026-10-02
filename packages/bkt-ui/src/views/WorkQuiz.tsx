@@ -5,6 +5,24 @@ import { FILE_UNREADABLE } from "./file";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
 
+export function Why({ result }: { result: WorkAnswer }) {
+  const source = result.sources?.[0];
+  return (
+    <p className="muted why">
+      {result.explain}
+      {source && " "}
+      {source &&
+        (source.href?.startsWith("https://") ? (
+          <a href={source.href} target="_blank" rel="noreferrer noopener">
+            {source.label}
+          </a>
+        ) : (
+          <span className="source">{source.label}</span>
+        ))}
+    </p>
+  );
+}
+
 export const NO_WORK_QUESTIONS = "Bucket needs more of your tasks or merged changes to ask a question.";
 
 export function WorkQuizView({ api }: { api: Api }) {
@@ -50,6 +68,11 @@ export function WorkQuizView({ api }: { api: Api }) {
       <header className="head">
         <h1>Work quiz</h1>
         <p className="muted">Questions from your own tasks and merged changes.</p>
+        {q && (
+          <p className="muted small">
+            <a href={href({ name: "setup" })}>Work quiz setup</a>
+          </p>
+        )}
       </header>
       {error && <p className="error">{error}</p>}
       {none && (
@@ -102,7 +125,7 @@ export function WorkQuizView({ api }: { api: Api }) {
               <p>
                 <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
               </p>
-              <p className="muted">{result.explain}</p>
+              <Why result={result} />
               <button className="primary" onClick={next}>
                 Next
               </button>
@@ -272,7 +295,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
                 <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
                 {result.log10Distance !== null ? ` · ${factorOff(result.log10Distance)}` : ""}
               </p>
-              <p className="muted">{result.explain}</p>
+              <Why result={result} />
             </div>
           )}
           {refused && (

@@ -9,9 +9,15 @@ on:
       - "src/lib/academy/**"
       - "src/lib/canon-rank.ts"
       - "src/lib/canon-index-loader.ts"
+      - "src/lib/explore/**"
+      - "src/data/explore-sources.json"
+      - "src/data/founding-works.json"
+      - "src/data/explore/reference-basis.json"
+      - "src/data/canon-timeline.json"
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
+      - "scripts/fixtures/canon-search-shape.json"
       - "src/lib/research-os/**"
       - "src/components/research-os/**"
       - "src/app/research-os/**"
@@ -32,9 +38,15 @@ on:
       - "src/lib/academy/**"
       - "src/lib/canon-rank.ts"
       - "src/lib/canon-index-loader.ts"
+      - "src/lib/explore/**"
+      - "src/data/explore-sources.json"
+      - "src/data/founding-works.json"
+      - "src/data/explore/reference-basis.json"
+      - "src/data/canon-timeline.json"
       - "bucket-canon/**"
       - "_intake/embeddings/claim-evidence.jsonl"
       - "scripts/fixtures/canon-search-parity.json"
+      - "scripts/fixtures/canon-search-shape.json"
 
 permissions:
   contents: read
@@ -56,12 +68,18 @@ jobs:
       - name: engine guard, store, serve and routes
         working-directory: packages/bkt
         run: bun run pack:content && bun test
-      - name: no denied or staff material in the canon pack
+      - name: no denied or staff material in the canon and explore packs
         working-directory: packages/bkt
-        run: bun scripts/check-no-kruse.ts content/canon.json && bun scripts/check-no-staff.ts content/canon.json
+        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json
       - name: typecheck
         working-directory: packages/bkt
         run: bun run typecheck
+      - name: window build and chromium for the offline Learn run
+        working-directory: packages/bkt-ui
+        run: bun install --frozen-lockfile && bun run build && bunx playwright install --with-deps chromium
+      - name: seven Learn views pass with the network denied
+        working-directory: packages/bkt
+        run: bun scripts/smoke.ts --learn-offline
 
   ros-contract:
     runs-on: ubuntu-latest

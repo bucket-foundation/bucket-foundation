@@ -6,6 +6,7 @@ import { DENIED_NAME } from "../bkt/src/pack/rights";
 
 const SRC = resolve(__dirname, "../../src");
 const LANDMASK = ["landmask-2k.bin", "landmask-2k.json"];
+const EXPLORE_FILES = ["explore/sample-genome.txt", "explore/fixtures/apoe3-nterm.pdb"];
 
 function landmask(): Plugin {
   return {
@@ -14,6 +15,10 @@ function landmask(): Plugin {
       const out = resolve(__dirname, "dist/textures/earth");
       mkdirSync(out, { recursive: true });
       for (const f of LANDMASK) copyFileSync(resolve(__dirname, "../../public/textures/earth", f), resolve(out, f));
+      for (const f of EXPLORE_FILES) {
+        mkdirSync(resolve(__dirname, "dist", f, ".."), { recursive: true });
+        copyFileSync(resolve(__dirname, "../../public", f), resolve(__dirname, "dist", f));
+      }
     },
   };
 }
@@ -39,7 +44,7 @@ export default defineConfig({
   resolve: {
     dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
     alias: [
-      ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei"].map((pkg) => ({
+      ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei", "3dmol", "smiles-drawer"].map((pkg) => ({
         find: new RegExp(`^${pkg.replace("/", "\\/")}(/.*)?$`),
         replacement: `${resolve(__dirname, "node_modules", pkg)}$1`,
       })),

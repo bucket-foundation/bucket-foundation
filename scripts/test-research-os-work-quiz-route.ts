@@ -27,6 +27,12 @@ quizDb.issueAttempt = async (learnerId: string, question: unknown, mode: string)
   return { id: "11111111-1111-4111-8111-111111111111", learner_id: learnerId, question, mode, issued_at: new Date().toISOString(), answered_at: null };
 };
 quizDb.loadAttempt = async () => null;
+let picks = 0;
+quizDb.loadCoverage = async () => [];
+quizDb.recordPicks = async () => {
+  picks++;
+};
+quizDb.recordMiss = async () => {};
 quizDb.loadStats = async () => {
   writes++;
   return { answered: 0 };
@@ -88,5 +94,6 @@ test("staff are served a question and stats", async () => {
   assert.equal(out.body.status, "issued");
   assert.ok(out.body.question);
   assert.equal(writes, 1);
+  assert.equal(picks, 1);
   assert.equal((await read(await get("?view=stats"))).status, 200);
 });
