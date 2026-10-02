@@ -7,6 +7,8 @@ export const GLOBE_RADIUS = 1.008;
 export const ADVISOR_COLOR = "#EFE8D4";
 export const WORK_COLOR = "#8A7A5A";
 export const YOU_COLOR = "#F2C14E";
+export const GLOBE_ADVISOR_COLOR = "#1F1C16";
+export const GLOBE_STAGE = { background: "transparent", link: "#3A3529", hot: "#8A641A" } as const;
 export const SOURCE_COLOR = { paper: "#6FA8DC", text: "#C98B5B", talk: "#A78BD6" } as const;
 
 export function hitColor(h: Hit): string {
@@ -42,7 +44,7 @@ export const globeMode: ExploreMode = {
       return {
         id: h.id,
         position: globeProjection.position({ id: h.id, lat, lng, branch: h.branch }, { radius: GLOBE_RADIUS, theta: () => 0 }),
-        color: hitColor(h),
+        color: h.type === "advisor" ? GLOBE_ADVISOR_COLOR : hitColor(h),
         size: 0.018 + 0.03 * h.score,
         label: h.title,
       };
@@ -51,14 +53,15 @@ export const globeMode: ExploreMode = {
     return {
       nodes,
       links: linksFromHits(hits, ids),
-      guides: [{ kind: "sphere", radius: 1, color: "#141311", opacity: 0.35, wireframe: true }],
+      guides: [{ kind: "sphere", radius: 1, color: "#1F1C16", opacity: 0.08, wireframe: true }],
       legend: [
         ...BRANCH_ORDER.filter((b) => hits.some((h) => h.type === "excerpt" && bareBranch(h.branch) === b)).map((b) => ({ label: b, color: BRANCH_COLOR[b] })),
-        { label: "advisor", color: ADVISOR_COLOR },
+        { label: "advisor", color: GLOBE_ADVISOR_COLOR },
         { label: "work", color: WORK_COLOR },
       ],
       camera: globeProjection.camera,
       spin: 0.08,
+      stage: GLOBE_STAGE,
     };
   },
 };
