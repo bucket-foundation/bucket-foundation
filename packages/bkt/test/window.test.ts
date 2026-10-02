@@ -1,8 +1,27 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { readApp, runtimeDir, windowCommand, writeApp } from "../src/window";
+import {
+  AppWindow,
+  askRunningApp,
+  holdsProfile,
+  requestReopen,
+  takeReopen,
+  profileFlag,
+  readApp,
+  runtimeDir,
+  singletonLockPid,
+  takeRoute,
+  windowCommand,
+  windowPid,
+  windowRoutes,
+  windowState,
+  writeApp,
+  writeWindow,
+  type ProcessTable,
+  type Spawner,
+} from "../src/window";
 
 let dir: string;
 beforeEach(() => {
@@ -55,5 +74,215 @@ describe("window command", () => {
 
   test("falls back to xdg-open", () => {
     expect(windowCommand("http://127.0.0.1:5/", "/p", () => null)).toEqual(["xdg-open", "http://127.0.0.1:5/"]);
+  });
+});
+
+class Desk {
+  procs = new Map<number, string>();
+  locks = new Map<string, number>();
+  spawned: string[][] = [];
+  exits = new Map<number, () => void>();
+  nextPid = 500;
+  table: ProcessTable = { commandLine: (pid) => this.procs.get(pid) ?? null, lockPid: (profile) => this.locks.get(profile) ?? null };
+  spawn: Spawner = (cmd) => {
+    const pid = this.nextPid++;
+    this.spawned.push(cmd);
+    this.procs.set(pid, cmd.join(" "));
+    return { pid, exited: new Promise<void>((done) => this.exits.set(pid, done)) };
+  };
+  command = (url: string, profile: string) => ["/usr/bin/chromium", `--app=${url}`, profileFlag(profile)];
+  close(pid: number) {
+    this.procs.delete(pid);
+    this.exits.get(pid)?.();
+  }
+  windows(profile: string) {
+    return [...this.procs.values()].filter((c) => c.includes(profileFlag(profile))).length;
+  }
+}
+
+describe("one window per profile", () => {
+  const SERVER = { pid: 4242, port: 4321 };
+  let desk: Desk;
+  let profile: string;
+  let win: AppWindow;
+  let signals: number[];
+  let mints: number;
+  const fresh = () => `http://127.0.0.1:4321/?mint=${++mints}`;
+  const launch = (route: string | null = null) => {
+    const line = askRunningApp(dir, SERVER, route, { table: desk.table, signal: (pid) => signals.push(pid) });
+    const signalled = signals.splice(0).length > 0;
+    return { line, did: signalled ? win.relaunch(takeRoute(dir), fresh) : null };
+  };
+
+  beforeEach(() => {
+    desk = new Desk();
+    profile = join(dir, "..", "window-profile");
+    win = new AppWindow(dir, profile, desk);
+    signals = [];
+    mints = 0;
+  });
+
+  test("two launches leave one window process", () => {
+    win.open("http://127.0.0.1:4321/");
+    expect(desk.windows(profile)).toBe(1);
+    expect(launch()).toEqual({ line: "the Bucket window is already open", did: null });
+    expect(launch()).toEqual({ line: "the Bucket window is already open", did: null });
+    expect(desk.spawned).toHaveLength(1);
+    expect(desk.windows(profile)).toBe(1);
+    expect(mints).toBe(0);
+    expect(statSync(join(dir, "window.json")).mode & 0o777).toBe(0o600);
+  });
+
+  test("a window that is gone is opened once, with a fresh launch code", () => {
+    win.open("http://127.0.0.1:4321/");
+    desk.close(500);
+    expect(launch()).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
+    expect(launch().line).toBe("the Bucket window is already open");
+    expect(desk.spawned).toHaveLength(2);
+    expect(desk.spawned[1][1]).toBe("--app=http://127.0.0.1:4321/?mint=1");
+    expect(desk.windows(profile)).toBe(1);
+  });
+
+  test("a stale record with a reused pid opens one window", () => {
+    writeWindow(dir, { pid: 77, profile });
+    desk.procs.set(77, "/usr/bin/vim notes.txt");
+    expect(windowPid(dir, desk.table)).toBeNull();
+    expect(launch().did).toBe("opened");
+    expect(launch().did).toBeNull();
+    expect(desk.spawned).toHaveLength(1);
+    expect(desk.windows(profile)).toBe(1);
+  });
+
+  test("a browser that took the window over from the spawned process still counts", () => {
+    win.open("http://127.0.0.1:4321/");
+    desk.close(500);
+    desk.procs.set(900, `/usr/bin/chromium ${profileFlag(profile)}`);
+    desk.locks.set(profile, 900);
+    expect(windowPid(dir, desk.table)).toBe(900);
+    expect(launch().line).toBe("the Bucket window is already open");
+    desk.procs.set(900, "/usr/bin/vim");
+    expect(launch().did).toBe("opened");
+  });
+
+  test("a route to an open window opens none and reaches the page through the server", async () => {
+    win.open("http://127.0.0.1:4321/");
+    const poll = windowRoutes(win.routes, 1000)["GET /local/window/route"]();
+    expect(launch("/work/daily/2026-10-01")).toEqual({ line: "the Bucket window is already open and now shows /work/daily/2026-10-01", did: "routed" });
+    expect(await (await poll).json()).toEqual({ route: "/work/daily/2026-10-01", superseded: false });
+    expect(launch("/notes").did).toBe("routed");
+    expect(await (await windowRoutes(win.routes, 1000)["GET /local/window/route"]()).json()).toEqual({ route: "/notes", superseded: false });
+    expect(await (await windowRoutes(win.routes, 5)["GET /local/window/route"]()).json()).toEqual({ route: null, superseded: false });
+    expect(desk.spawned).toHaveLength(1);
+    expect(mints).toBe(0);
+    expect(() => askRunningApp(dir, SERVER, "//evil.test", { table: desk.table, signal: () => {} })).toThrow("--route takes");
+  });
+
+  test("a server started by serve has no window, so a launch opens one with a fresh launch code and records it", () => {
+    expect(windowState(dir)).toBe("none");
+    expect(launch()).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
+    expect(desk.spawned).toEqual([["/usr/bin/chromium", "--app=http://127.0.0.1:4321/?mint=1", profileFlag(profile)]]);
+    expect(windowState(dir)).toBe("tracked");
+    expect(launch()).toEqual({ line: "the Bucket window is already open", did: null });
+    expect(launch("/notes").did).toBe("routed");
+    expect(desk.spawned).toHaveLength(1);
+    expect(mints).toBe(1);
+  });
+
+  test("a route with no window opens one window on that route", () => {
+    expect(launch("/notes")).toEqual({ line: "opened the Bucket window on port 4321", did: "opened" });
+    expect(desk.spawned).toEqual([["/usr/bin/chromium", "--app=http://127.0.0.1:4321/?mint=1#/notes", profileFlag(profile)]]);
+  });
+
+  test("the server waits for the last window to close and for a running job", async () => {
+    win.open("http://127.0.0.1:4321/");
+    let done = false;
+    let busy = true;
+    let ticks = 0;
+    const closed = win.closed(() => busy, async () => (ticks++, Bun.sleep(1)), 0).then(() => (done = true));
+    await Bun.sleep(5);
+    expect(done).toBe(false);
+    expect(ticks).toBe(0);
+    desk.close(500);
+    await Bun.sleep(5);
+    expect(done).toBe(false);
+    busy = false;
+    await closed;
+    expect(done).toBe(true);
+    win.forget();
+    expect(existsSync(join(dir, "window.json"))).toBe(false);
+  });
+
+  test("a browser tab opened without a profile is never tracked, so the server keeps running", async () => {
+    writeWindow(dir, { pid: 77, profile });
+    const tab = new AppWindow(dir, profile, { table: desk.table, spawn: desk.spawn, command: (url) => ["xdg-open", url] });
+    tab.open("http://127.0.0.1:4321/");
+    expect(windowState(dir)).toBe("tab");
+    win = tab;
+    desk.close(500);
+    expect(launch()).toEqual({ line: "Bucket is already running at http://127.0.0.1:4321/", did: null });
+    expect(launch("/notes")).toEqual({ line: "Bucket is already running at http://127.0.0.1:4321/#/notes", did: "routed" });
+    expect((await tab.routes.next(5)).route).toBe("/notes");
+    expect(desk.spawned).toHaveLength(1);
+    expect(mints).toBe(0);
+    let done = false;
+    void tab.closed(() => false, () => Bun.sleep(1), 0).then(() => (done = true));
+    desk.close(500);
+    await Bun.sleep(5);
+    expect(done).toBe(false);
+  });
+
+  test("a displaced poller stops, so two pollers do not flood the server", async () => {
+    const poll = windowRoutes(win.routes, 300)["GET /local/window/route"];
+    const requests = [0, 0];
+    let live = true;
+    const page = async (i: number) => {
+      while (live) {
+        requests[i]++;
+        const answer = (await (await poll()).json()) as { superseded: boolean };
+        if (answer.superseded) return;
+      }
+    };
+    const both = [page(0), page(1)];
+    await Bun.sleep(2000);
+    live = false;
+    await Promise.all(both);
+    expect(requests[0]).toBe(1);
+    expect(requests[1]).toBeGreaterThan(3);
+    expect(requests[1]).toBeLessThan(9);
+  });
+
+  test("another profile that shares the prefix is a different window", () => {
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile2 --app=http://x/", "/x/window-profile")).toBe(false);
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile2 --user-data-dir=/x/window-profile", "/x/window-profile")).toBe(true);
+    expect(holdsProfile("/usr/bin/chromium --user-data-dir=/x/window-profile --app=http://x/", "/x/window-profile")).toBe(true);
+    expect(holdsProfile(null, "/x/window-profile")).toBe(false);
+  });
+
+  test("on Windows the profile holds a plain lockfile, so the recorded pid and its quoted command line decide", () => {
+    const winProfile = "C:\\Users\\a b\\bkt\\window-profile";
+    mkdirSync(profile, { recursive: true });
+    writeFileSync(join(profile, "lockfile"), "");
+    writeFileSync(join(profile, "SingletonLock"), "");
+    expect(singletonLockPid(profile)).toBeNull();
+    writeWindow(dir, { pid: 61, profile: winProfile });
+    desk.procs.set(61, `"C:\\e\\msedge.exe" --app=http://127.0.0.1:5/ "--user-data-dir=${winProfile}" --no-first-run`);
+    expect(windowPid(dir, desk.table)).toBe(61);
+    desk.procs.set(61, `"C:\\e\\msedge.exe" "--user-data-dir=${winProfile}2"`);
+    expect(windowPid(dir, desk.table)).toBeNull();
+  });
+
+  test("a Windows launch asks through a file the server takes once", () => {
+    expect(takeReopen(dir)).toBe(false);
+    requestReopen(dir);
+    expect(takeReopen(dir)).toBe(true);
+    expect(takeReopen(dir)).toBe(false);
+  });
+
+  test("the browser's own lock names the process that holds the profile", () => {
+    mkdirSync(profile, { recursive: true });
+    expect(singletonLockPid(profile)).toBeNull();
+    if (process.platform === "win32") return;
+    symlinkSync("host.example-31337", join(profile, "SingletonLock"));
+    expect(singletonLockPid(profile)).toBe(31337);
   });
 });

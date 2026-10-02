@@ -1,8 +1,9 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
-import { firstRunHash, href, useRoute } from "./router";
+import { firstRunHash, followRoutes, href, useRoute } from "./router";
 import { FOOT_LINK, navFor, Screen } from "./nav";
+
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "./app.css";
 
@@ -29,6 +30,15 @@ function App() {
     check();
     window.addEventListener(WORK_QUIZ_CHANGED, check);
     return () => window.removeEventListener(WORK_QUIZ_CHANGED, check);
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    let live = true;
+    void followRoutes(() => api.windowRoute(), (to) => (window.location.hash = to), () => live);
+    return () => {
+      live = false;
+    };
   }, [api]);
 
   useEffect(() => {
