@@ -63,6 +63,7 @@ interface Common {
   title: string;
   source: (typeof SOURCES)[number];
   category: Kind;
+  at?: string;
 }
 
 export interface ProductionEntry extends Common {
@@ -110,8 +111,8 @@ const FILENAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/;
 const BASE64 = /^[A-Za-z0-9+/]+={0,2}$/;
 const SENTENCE_BREAK = /[.!?]\s+\S/;
 
-const PRODUCTION_KEYS = ["id", "kind", "category", "date", "title", "source", "summary", "plot_title", "image_alt", "discussion", "status", "links", "image"];
-const GENERATION_KEYS = ["id", "kind", "category", "date", "title", "source", "machine_generated", "tool", "run_id", "state", "claim", "score", "evidence", "parent"];
+const PRODUCTION_KEYS = ["id", "kind", "category", "date", "at", "title", "source", "summary", "plot_title", "image_alt", "discussion", "status", "links", "image"];
+const GENERATION_KEYS = ["id", "kind", "category", "date", "at", "title", "source", "machine_generated", "tool", "run_id", "state", "claim", "score", "evidence", "parent"];
 
 function hasControl(s: string): boolean {
   for (let i = 0; i < s.length; i++) {
@@ -262,8 +263,25 @@ function validImage(value: unknown): { input: ImageInput; meta: ImageMeta } {
 function common(body: Record<string, unknown>, kind: Kind): Common {
   if (typeof body.id !== "string" || !ID.test(body.id)) throw new Invalid("id", "must match [a-z0-9-]{3,80}");
   if (body.category !== undefined && body.category !== kind) throw new Invalid("category", "must equal kind when given");
-  return { id: body.id, date: validDate(body), title: text(body, "title", 120), source: oneOf(body, "source", SOURCES), category: kind };
+  const base: Common = { id: body.id, date: validDate(body), title: text(body, "title", 120), source: oneOf(body, "source", SOURCES), category: kind };
+  if (body.at !== undefined) base.at = validAt(body.at);
+  return base;
 }
+
+export const AT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,9})?)?(?:Z|[+-]\d{2}:\d{2})$/;
+
+export function validAt(value: unknown): string {
+  if (typeof value !== "string" || value.length > 40 || !AT.test(value)) throw new Invalid("at", "must be an ISO 8601 time with a zone, such as 2026-10-01T14:05:00Z");
+  const ms = Date.parse(value);
+  if (Number.isNaN(ms)) throw new Invalid("at", "must be a real time");
+  const [y, mo, d] = value.slice(0, 10).split("-").map(Number);
+  const local = new Date(Date.UTC(y, mo - 1, d));
+  if (local.getUTCMonth() !== mo - 1 || local.getUTCDate() !== d) throw new Invalid("at", "must be a real time");
+  if (ms < AT_EARLIEST || ms > Date.now() + 86_400_000) throw new Invalid("at", "must fall between 2020-01-01 and one day from now");
+  return new Date(ms).toISOString();
+}
+
+const AT_EARLIEST = Date.parse("2020-01-01T00:00:00Z");
 
 function production(body: Record<string, unknown>): { entry: ProductionEntry; image: ImageInput | null } {
   knownKeys(body, PRODUCTION_KEYS);

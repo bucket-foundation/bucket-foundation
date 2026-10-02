@@ -97,7 +97,7 @@ describe("schema 8", () => {
   }
 
   test("the version constant matches the migration list and daily_quiz stays local", () => {
-    expect(SCHEMA_VERSION).toBe(8);
+    expect(SCHEMA_VERSION).toBe(9);
     expect(MIGRATIONS.length).toBe(SCHEMA_VERSION);
     expect(LOCAL_ONLY_TABLES).toContain("daily_quiz");
     expect((SYNC_TABLES as readonly string[]).includes("daily_quiz")).toBe(false);
@@ -108,7 +108,7 @@ describe("schema 8", () => {
     v7Fixture(path);
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(8);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select name from sqlite_master where name = 'daily_quiz'").get()).not.toBeNull();
     expect(s.db.query("select id, question_id, type, correct, rating, elapsed_ms, at, log10_distance from work_quiz_attempts order by at").all()).toEqual([
       { id: "a1", question_id: "estimate-beads-status-open", type: "estimate", correct: 1, rating: 4, elapsed_ms: 9000, at: 100, log10_distance: null },

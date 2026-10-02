@@ -8,7 +8,8 @@ import path from "node:path";
 import { fileMarks, type MarkStore } from "../src/lib/download/marks";
 import { tokenHash } from "../src/lib/whats-new/auth";
 import { handleDelete, handleList, handlePost, handlePublish, handleRevoke, type Deps, type LegacyEntry, type Result } from "../src/lib/whats-new/handler";
-import { feedItems, feedItemXml, loadPublicEntries, pageSections, type PublicEntry } from "../src/lib/whats-new/public";
+import { feedItems, feedItemXml, loadPublicEntries, type PublicEntry } from "../src/lib/whats-new/public";
+import { timeline } from "../src/lib/whats-new/timeline";
 import { fileDocs, readEntry, readUsage, writeEntry, type AuditRecord, type DocStore } from "../src/lib/whats-new/store";
 import { digestLedger, sendDailyDigest, type DigestConfig, type Recipient, type SendReport } from "../src/lib/whats-new-email/send";
 
@@ -168,14 +169,13 @@ function digestIds(mail: Mail): string[] {
 
 async function surfaces(b: Bench, digestAt: string): Promise<{ list: string[]; page: string[]; feed: string; digest: string[]; merged: PublicEntry[] }> {
   const merged = await loadPublicEntries(LEGACY, b.store);
-  const sections = pageSections(merged);
   const outbox: Mail[] = [];
   const marks = fileMarks(path.join(b.root, `digest-${randomBytes(4).toString("hex")}`));
   const scratch = fileDocs(b.root, `ledger-${randomBytes(4).toString("hex")}/`);
   await sendDailyDigest({ entries: () => loadPublicEntries(LEGACY, b.store), ledger: digestLedger(scratch), recipients: async () => RECIPIENTS.slice(0, 1), config: CONFIG, now: Date.parse(digestAt), fetcher: mailer(outbox), gapMs: 0, progress: marks });
   return {
     list: await publicIds(b.deps),
-    page: [...sections.productions, ...sections.milestones].map((e) => e.id),
+    page: timeline(merged).flatMap((d) => d.rows.map((r) => r.entry.id)),
     feed: feedItems(merged).map((i) => feedItemXml(i, "now")).join("\n"),
     digest: outbox.flatMap(digestIds),
     merged,
@@ -323,7 +323,7 @@ test("a draft, a tombstone and a replaced entry appear in none of the four publi
     assert.ok(first.list.includes(id) && first.page.includes(id) && first.feed.includes(`#${id}<`) && first.digest.includes(id), id);
   }
   assert.ok(first.list.includes("gen-refuted") && first.feed.includes("whats-new-generation:gen-refuted<"));
-  assert.ok(!first.page.includes("gen-refuted"));
+  assert.ok(first.page.includes("gen-refuted"));
   for (const id of ["prod-draft", "gen-draft"]) absentEverywhere(first, id);
 
   assert.equal((await remove(b.deps, "prod-dead")).status, 200);
@@ -333,8 +333,8 @@ test("a draft, a tombstone and a replaced entry appear in none of the four publi
   const second = await surfaces(b, at);
   for (const id of ["prod-draft", "gen-draft", "prod-dead", "prod-redo"]) absentEverywhere(second, id);
   assert.deepEqual(second.list, ["gen-refuted", "prod-live", "pr-496"]);
-  assert.deepEqual(second.page, ["prod-live", "pr-496"]);
-  assert.deepEqual(second.digest, ["prod-live"]);
+  assert.deepEqual(second.page, ["gen-refuted", "prod-live", "pr-496"]);
+  assert.deepEqual(second.digest, ["prod-live", "gen-refuted"]);
 
   b.now.value = Date.parse("2026-10-03T09:00:00.000Z");
   assert.equal((await publish(b.deps, "prod-redo")).status, 200);
@@ -389,7 +389,7 @@ test("the four surfaces read the merged list through one module", () => {
   for (const route of ["app/api/whats-new/entries/route.ts", "app/api/whats-new/entries/[id]/route.ts", "app/api/whats-new/entries/[id]/publish/route.ts"]) {
     assert.ok(readFileSync(path.join(src, route), "utf8").includes("if (result.publicChanged) revalidateWhatsNew();"), route);
   }
-  assert.match(readFileSync(path.join(src, "app/whats-new/page.tsx"), "utf8"), /export const revalidate = 300;/);
+  assert.match(readFileSync(path.join(src, "app/whats-new/page.tsx"), "utf8"), /export const revalidate = 60;/);
 });
 
 test("a failed image write rolls the new entry back, and a failed replace keeps the old image", async (t) => {

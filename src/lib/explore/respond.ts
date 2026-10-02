@@ -1,12 +1,35 @@
 import { parseCanonSearchParams, type CanonSearchParams, type CanonSearchResult } from "../canon-rank";
 import type { LoadedAdvisors } from "./advisors";
-import { HIT_TYPES, advisorId, unify, type Hit, type HitType } from "./search";
+import { ANY_TERM, type Floor, type RankStats } from "./rank";
+import { HIT_TYPES, advisorId, unify, type ExcerptSource, type Hit, type HitType, type Talk } from "./search";
 import { searchSources, sourceToHit, type Prepared } from "./source-index";
 
 export const EXPLORE_DEFAULT_TOP_K = 40;
 export const MAP_ADVISOR_CAP = 400;
 
+type CanonFound = Extract<CanonSearchResult, { ok: true }>;
+
+export interface RankingCorpus {
+  stats: RankStats;
+}
+
+export interface RankingFounding {
+  hitId: string | null;
+  bonus: number;
+  card: unknown;
+}
+
+export interface ExploreRanking<C extends RankingCorpus = RankingCorpus> {
+  corpus: () => Promise<C>;
+  founding: (query: string) => RankingFounding | null;
+  talkFor: (file: string) => Talk | null;
+  rankedPools: (query: string, corpus: C, opts: { branch?: string; bonus?: Map<string, number>; year?: (concept: string) => number | null; floor?: Floor }) => { sources: Hit[]; excerpts: ExcerptSource[]; files: Hit[] };
+  semanticExcerpts: (query: string, corpus: C, found: CanonFound["results"], year?: (concept: string) => number | null, talk?: (file: string) => Talk | null) => ExcerptSource[];
+  needsClosest: (query: string, rows: number) => boolean;
+}
+
 export interface ExploreSearchDeps {
+  ranking?: ExploreRanking<any>;
   canon: (p: CanonSearchParams) => CanonSearchResult;
   advisors: () => LoadedAdvisors;
   sources: () => Prepared[] | Promise<Prepared[]>;
@@ -37,6 +60,8 @@ export async function exploreSearch(deps: ExploreSearchDeps, url: URL): Promise<
   const found = deps.canon(params);
   if (!found.ok) return { status: found.status, body: { error: { code: found.code, message: found.message } } };
 
+  if (deps.ranking) return rankedSearch(deps, deps.ranking, url, t0, params, types, found);
+
   const excerpts = found.results.map(({ entry, score }) => ({
     branch: entry.branch,
     concept: entry.concept,
@@ -60,6 +85,55 @@ export async function exploreSearch(deps: ExploreSearchDeps, url: URL): Promise<
       n_results: results.length,
       advisors_sample: sample,
       advisors_source: origin,
+      results,
+      took_ms: Date.now() - t0,
+    },
+  };
+}
+
+async function rankedSearch(
+  deps: ExploreSearchDeps,
+  ranking: ExploreRanking,
+  url: URL,
+  t0: number,
+  params: CanonSearchParams,
+  types: HitType[],
+  found: CanonFound,
+): Promise<ExploreReply> {
+  const semantic = found.mode === "semantic";
+  const founding = params.branch ? null : ranking.founding(params.q);
+  const corpus = await ranking.corpus();
+  const bonus = founding?.hitId && founding.bonus > 0 ? new Map([[founding.hitId, founding.bonus]]) : undefined;
+  const anyTerm = url.searchParams.get("match") === "any";
+  const { sources, sample, origin } = deps.advisors();
+  const advisors = params.branch ? [] : sources;
+  const search = (floor?: Floor) => {
+    const ranked = ranking.rankedPools(params.q, corpus, { branch: params.branch, bonus, year: deps.yearOf, floor });
+    return unify({
+      query: params.q,
+      excerpts: semantic ? ranking.semanticExcerpts(params.q, corpus, found.results, deps.yearOf, ranking.talkFor) : ranked.excerpts,
+      advisors,
+      sources: params.branch ? [] : ranked.sources,
+      types,
+      topK: params.topK,
+      extraHits: params.branch ? [] : ranked.files,
+      stats: corpus.stats,
+    });
+  };
+  const strict = search(anyTerm ? ANY_TERM : undefined);
+  const closest = !anyTerm && !semantic && ranking.needsClosest(params.q, strict.length);
+  const results = closest ? search(ANY_TERM) : strict;
+  return {
+    status: 200,
+    body: {
+      query: params.q || null,
+      top_k: params.topK,
+      mode: found.mode,
+      n_results: results.length,
+      advisors_sample: sample,
+      advisors_source: origin,
+      pinned: founding?.card ?? null,
+      closest,
       results,
       took_ms: Date.now() - t0,
     },

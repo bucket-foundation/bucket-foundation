@@ -124,6 +124,69 @@ export interface CanonAbout {
   licences: CanonLicence[];
 }
 
+export interface DataCount {
+  kind: string;
+  label: string;
+  n: number;
+  stored?: "encrypted" | "partly" | "plain";
+  screen?: string;
+}
+
+export interface DataPart {
+  name: string;
+  count: number;
+  unit: string;
+  terms: string | null;
+  link: string | null;
+  openable: boolean;
+}
+
+export interface Dataset {
+  id: string;
+  name: string;
+  about: string;
+  browsable: boolean;
+  version: string | null;
+  builtAt: number | null;
+  checksum: string | null;
+  counts: DataCount[];
+  kinds: { id: string; label: string }[];
+  parts: DataPart[];
+  leftOut: { count: number; reason: string } | null;
+}
+
+export interface DataRow {
+  id: string;
+  title: string;
+  creators: string | null;
+  year: number | null;
+  kind: string;
+  kindLabel: string;
+  source: string | null;
+  openable: boolean;
+}
+
+export interface DataPage {
+  total: number;
+  offset: number;
+  limit: number;
+  records: DataRow[];
+}
+
+export interface DataQuery {
+  q?: string;
+  kind?: string;
+  sort?: "title" | "creators" | "year" | "kind";
+  dir?: "asc" | "desc";
+  offset?: number;
+  limit?: number;
+}
+
+export interface DataDetail {
+  record: DataRow;
+  fields: { label: string; value: string }[];
+}
+
 export class ApiError extends Error {
   constructor(
     readonly code: string,
@@ -150,6 +213,7 @@ export interface JobView {
   logTruncated: boolean;
   result: unknown;
   error: string | null;
+  install?: string | null;
 }
 
 export interface StoredReview {
@@ -165,7 +229,7 @@ export interface StoredReview {
 
 declare global {
   interface Window {
-    __BKT__?: { nonce?: string };
+    __BKT__?: { nonce?: string; offline?: boolean };
   }
 }
 
@@ -208,12 +272,13 @@ export class Api {
 
   static async connect(onError: (e: Error) => void): Promise<Api> {
     const nonce = window.__BKT__?.nonce;
+    const offline = window.__BKT__?.offline === true;
     delete window.__BKT__;
     if (!nonce) throw new Error("This window has no launch code. Run bkt app to open Bucket.");
     const r = await fetch("/session", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nonce }) });
     if (!r.ok) throw new Error(`Bucket refused the launch code (${r.status}). Run bkt app to open Bucket again.`);
     const { token } = (await r.json()) as { token: string };
-    window.fetch = siteFetch(window.fetch.bind(window), window.location.origin, token);
+    window.fetch = siteFetch(window.fetch.bind(window), window.location.origin, token, offline);
     return new Api(token, onError);
   }
 
@@ -226,6 +291,10 @@ export class Api {
     const data = (await r.json().catch(() => ({}))) as T & { error?: string };
     if (!r.ok) throw new ApiError(data.error ?? "", r.status);
     return data;
+  }
+
+  windowRoute() {
+    return this.call<{ route: string | null; superseded: boolean }>("/local/window/route");
   }
 
   decks() {
@@ -375,5 +444,19 @@ export class Api {
 
   forgetHistory() {
     return this.call<{ cleared: boolean }>("/local/history/forget", { method: "POST", body: {} });
+  }
+
+  data() {
+    return this.call<{ datasets: Dataset[] }>("/local/data").then((r) => r.datasets);
+  }
+
+  dataRecords(dataset: string, query: DataQuery = {}) {
+    const p = new URLSearchParams();
+    for (const [k, v] of Object.entries(query)) if (v !== undefined && v !== "") p.set(k, String(v));
+    return this.call<DataPage>(`/local/data/${encodeURIComponent(dataset)}/records?${p}`);
+  }
+
+  dataRecord(dataset: string, id: string) {
+    return this.call<DataDetail>(`/local/data/${encodeURIComponent(dataset)}/records/${encodeURIComponent(id)}`);
   }
 }

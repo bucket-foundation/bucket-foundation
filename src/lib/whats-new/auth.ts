@@ -3,7 +3,7 @@ import { revokedMark, type DocStore } from "./store";
 
 type Env = Record<string, string | undefined>;
 
-export type Scope = "post" | "admin";
+export type Scope = "post" | "admin" | "autopublish:generation";
 
 export interface TokenRecord {
   name: string;
@@ -19,7 +19,7 @@ export interface Poster {
 export const TOKEN_MIN = 32;
 export const REVOCATION_TTL_MS = 30_000;
 
-const RECORD = /^([a-z0-9-]{1,40}):([0-9a-f]{64}):(post|admin)$/;
+const RECORD = /^([a-z0-9-]{1,40}):([0-9a-f]{64}):(post|admin|autopublish:generation)$/;
 
 export function parseTokens(raw: string | undefined): TokenRecord[] {
   const out: TokenRecord[] = [];

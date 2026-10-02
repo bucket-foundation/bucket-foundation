@@ -84,7 +84,7 @@ check("unify returns source hits", unified.some((h) => h.type === "paper") && un
 check("source hit links to nearest excerpt", unified.find((h) => h.type === "paper")!.links.some((l) => l.startsWith("excerpt:")));
 check("excerpt links back to the source hit", unified.find((h) => h.type === "excerpt")!.links.some((l) => l.startsWith("paper:") || l.startsWith("talk:")));
 check("type filter drops source hits", unify({ query: "photon light", excerpts, advisors: [], sources: hits, types: ["excerpt"] }).every((h) => h.type === "excerpt"));
-check("scores stay in [0,1]", unified.every((h) => h.score >= 0 && h.score <= 1));
+check("every score is above zero", unified.every((h) => h.score > 0));
 
 check("source hits carry source and licence", hits.every((h) => !!h.source && !!h.license));
 

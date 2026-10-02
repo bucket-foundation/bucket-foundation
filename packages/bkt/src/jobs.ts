@@ -17,7 +17,7 @@ export interface JobDirs {
   out: string;
 }
 
-export type JobPlan = { argv: string[]; env?: Record<string, string> } | { error: string };
+export type JobPlan = { argv: string[]; env?: Record<string, string> } | { error: string; install?: string };
 
 export interface JobSpec {
   label: string;
@@ -25,6 +25,7 @@ export interface JobSpec {
   options?: Record<string, { min: number; max: number; integer: boolean }>;
   plan(dirs: JobDirs, options: Record<string, number>): JobPlan;
   after?(dirs: JobDirs): unknown;
+  failed?(dirs: JobDirs): unknown;
 }
 
 export interface JobView {
@@ -38,6 +39,7 @@ export interface JobView {
   logTruncated: boolean;
   result: unknown;
   error: string | null;
+  install: string | null;
 }
 
 export class JobError extends Error {
@@ -137,7 +139,7 @@ export class JobRunner {
       writeFileSync(inputs[name], text, { mode: 0o600, flag: "wx" });
     }
     const dirs: JobDirs = { dir, inputs, out };
-    const view: JobView = { id, kind, state: "running", startedAt: now(), endedAt: null, code: null, log: "", logTruncated: false, result: null, error: null };
+    const view: JobView = { id, kind, state: "running", startedAt: now(), endedAt: null, code: null, log: "", logTruncated: false, result: null, error: null, install: null };
     const job: Running = { view, proc: null, timer: null, killTimer: null, stop: null };
     this.jobs.push(job);
     this.jobs = this.jobs.slice(-(this.o.keep ?? 20));
@@ -158,6 +160,7 @@ export class JobRunner {
       plan = { error: e instanceof Error ? e.message : String(e) };
     }
     if ("error" in plan) {
+      view.install = plan.install ?? null;
       finish("failed", plan.error);
       return { ...view };
     }
@@ -218,7 +221,14 @@ export class JobRunner {
       this.signalGroup(proc, "SIGKILL");
       view.code = code;
       if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : null);
-      if (code !== 0) return finish("failed", code === null ? "the job could not start" : `exited with code ${code}`);
+      if (code !== 0) {
+        try {
+          view.result = code !== null && spec.failed ? ((await spec.failed(dirs)) ?? null) : null;
+        } catch {
+          view.result = null;
+        }
+        return finish("failed", code === null ? "the job could not start" : `exited with code ${code}`);
+      }
       try {
         view.result = spec.after ? ((await spec.after(dirs)) ?? null) : null;
         finish("done");

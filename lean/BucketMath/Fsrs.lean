@@ -62,4 +62,9 @@ theorem review_bounds (rawD rawS n d : Int) :
       1 ≤ schedule n d ∧ schedule n d ≤ 3650 :=
   ⟨clampD_bounds rawD, clampS_bounds rawS, schedule_bounds n d⟩
 
+theorem review_inputs_positive (storedS storedD : Int) :
+    0 < clampS storedS ∧ 0 < clampS storedS + stabilityUnit ∧ 0 < clampD storedD ∧
+      0 < 11 * difficultyUnit - clampD storedD := by
+  unfold clampS clampD floorAt clamp stabilityFloor stabilityUnit difficultyUnit; omega
+
 end BucketMath.Fsrs
