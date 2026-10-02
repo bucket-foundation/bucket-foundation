@@ -185,7 +185,7 @@ describe.if(PTY)("the terminal app in a pseudo terminal", () => {
       expect(await until("passphrase")).toBe(true);
       proc.terminal!.write("pw\r");
       expect(await until("1 Search")).toBe(true);
-      expect(await send("2", "No graph in this pack yet.")).toContain("No graph in this pack yet.");
+      expect(await send("2", "opens the atlases")).toMatch(/No graph in this pack yet\.|\d+ ideas joined by \d+ links\./);
       expect(await send("4", "No notes yet.")).toContain("No saved results yet.");
       expect(await send("\t", "No saved analyses yet.")).toContain("No saved analyses yet.");
       expect(await send("1", "Type to search")).toContain("Type to search the canon.");
@@ -198,4 +198,15 @@ describe.if(PTY)("the terminal app in a pseudo terminal", () => {
       await proc.exited;
     }
   }, 60_000);
+});
+
+describe("graph screen data", () => {
+  test("reads a bare graph or a pack graph and treats an empty one as missing", async () => {
+    const { graphView } = await import("../src/cli/screens");
+    const raw = { nodes: [{ id: "a" }, { id: "b" }], edges: [{ source: "a", target: "b" }] };
+    expect(graphView(raw)).toEqual({ nodes: 2, edges: 1 });
+    expect(graphView({ graph: raw, centrality: {} })).toEqual({ nodes: 2, edges: 1 });
+    expect(graphView({ graph: { nodes: [], edges: [] } })).toBeNull();
+    expect(graphView(undefined)).toBeNull();
+  });
 });
