@@ -142,6 +142,15 @@ function plans(spec: CommandSpec): { args: string[]; stdin?: string }[] {
   if (spec.name === "analyses") return [{ args: ["analyses"] }, { args: ["analyses", "--where"] }, { args: ["analyses", join(dir, "nowhere")] }];
   if (spec.name === "hai score") return [{ args: [...words, "--dry-run", "--dir", join(dir, "hai")] }];
   if (spec.name === "hai freeze" || spec.name === "hai review") return [{ args: [...words, "--dir", join(dir, "hai")] }];
+  if (spec.name === "notes add") return [{ args: ["notes", "add", "Water", "--body", "Layers form near surfaces.", ...vault], stdin: "pw\n" }];
+  if (spec.name === "notes ls") return [{ args: ["notes", "ls", ...vault], stdin: "pw\n" }, { args: ["notes", "ls", "--tsv", ...vault], stdin: "pw\n" }];
+  if (spec.name === "notes show") return [{ args: ["notes", "show", "1", ...vault], stdin: "pw\n" }, { args: ["notes", "show", "9", ...vault], stdin: "pw\n" }];
+  if (spec.name === "history") return [{ args: ["history", ...vault], stdin: "pw\n" }, { args: ["history", "--tsv", ...vault], stdin: "pw\n" }];
+  if (spec.name === "import") {
+    writeFileSync(join(dir, "progress.json"), JSON.stringify({ branches: { "02-physics": {} } }));
+    writeFileSync(join(dir, "broken.json"), "{");
+    return ["progress.json", "progress.json", "broken.json"].map((f) => ({ args: ["import", join(dir, f), ...vault], stdin: "pw\n" }));
+  }
   if (spec.name === "search") return [{ args: ["search", "light"] }, { args: ["search", "zzzqqqxx"] }];
   if (spec.name === "canon show") return [{ args: ["canon", "show", "1"] }, { args: ["canon", "show", "999999999"] }];
   if (spec.name === "completion") return ["bash", "zsh", "fish"].map((shell) => ({ args: ["completion", shell] }));
@@ -156,7 +165,7 @@ describe("default command output", () => {
     mkdirSync(one, { recursive: true });
     writeFileSync(join(one, "report.md"), "# Sales\n");
     const ran: string[] = [];
-    const order = [...CLI_COMMANDS].sort((a, b) => Number(b.name === "init") - Number(a.name === "init") || Number(b.name === "hai freeze") - Number(a.name === "hai freeze"));
+    const order = [...CLI_COMMANDS].sort((a, b) => Number(b.name === "init") - Number(a.name === "init") || Number(b.name === "hai freeze") - Number(a.name === "hai freeze") || Number(b.name === "notes add") - Number(a.name === "notes add"));
     for (const spec of order) {
       if (spec.data) {
         expect(commandHelp(spec), spec.name).toContain("for scripts");

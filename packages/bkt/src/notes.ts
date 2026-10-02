@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { checkNote } from "./core/notes";
 import { open, seal } from "./crypto";
 import type { Route } from "./serve";
 import type { Store } from "./store";
@@ -84,15 +85,9 @@ export function notesRoutes(notes: NotesStore, now: () => number = Date.now): Re
     "GET /local/notes": () => json({ notes: notes.list() }),
     "POST /local/notes": async (req) => {
       const b = await body(req);
-      if (!b) return json({ error: "bad body" }, 400);
-      const id = b.id === undefined || b.id === null ? undefined : b.id;
-      if (id !== undefined && (typeof id !== "string" || !ID.test(id))) return json({ error: "bad id" }, 400);
-      if (id !== undefined && !notes.get(id)) return json({ error: "no such note" }, 404);
-      if (typeof b.title !== "string" || typeof b.body !== "string") return json({ error: "title and body required" }, 400);
-      if (b.title.length > MAX_TITLE) return json({ error: `titles stop at ${MAX_TITLE} characters` }, 413);
-      if (b.body.length > MAX_BODY) return json({ error: "the note is longer than 512 KB" }, 413);
-      if (id === undefined && notes.count() >= MAX_NOTES) return json({ error: `this computer holds at most ${MAX_NOTES} notes` }, 409);
-      return json(notes.save({ id, title: b.title, body: b.body, pinned: b.pinned === true }, now()));
+      const c = checkNote(b, { has: (id) => notes.get(id) !== null, count: () => notes.count() });
+      if (!c.ok) return json({ error: c.error }, c.status);
+      return json(notes.save(c.value, now()));
     },
     "POST /local/notes/delete": async (req) => {
       const b = await body(req);

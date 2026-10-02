@@ -219,7 +219,7 @@ describe("import round 2", () => {
     const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
     const t = ((await (await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } })).json()) as { token: string }).token;
     const h = { authorization: `Bucket ${t}` };
-    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`2026-1-${i}`, { new: 1, reviews: 1 }])) } };
+    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`${2000 + i}-1-1`, { new: 1, reviews: 1 }])) } };
     expect(JSON.stringify(big).length).toBeGreaterThan(1024);
     expect((await req("/local/progress", { method: "POST", headers: h, body: { branch: "phys", data: big } })).status).toBe(413);
     expect((await req("/local/import", { method: "POST", headers: h, body: { branches: { phys: big } } })).status).toBe(200);
