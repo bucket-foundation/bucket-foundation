@@ -61,4 +61,28 @@ theorem dust_to_author (nodeBps nodeFloor amount : Nat) (h : amount < 5) :
     (split nodeBps nodeFloor amount).author = amount := by
   unfold split nonAuthor nonAuthorBps bpsDenominator; simp only; omega
 
+theorem nonAuthor_eq_div_five (amount : Nat) : nonAuthor amount = amount / 5 := by
+  unfold nonAuthor nonAuthorBps bpsDenominator; omega
+
+theorem nodePart_without_overflow (nodeBps nodeFloor amount : Nat) (h : nodeFloor ≤ amount) :
+    nodePart nodeBps nodeFloor amount =
+      amount / bpsDenominator * nodeBps + amount % bpsDenominator * nodeBps / bpsDenominator := by
+  unfold nodePart
+  rw [if_neg (by omega)]
+  conv => lhs; rw [← Nat.div_add_mod amount bpsDenominator]
+  rw [Nat.add_mul, Nat.mul_assoc, Nat.mul_add_div (by decide)]
+
+def uint256Bound : Nat := 2 ^ 256
+
+theorem intermediates_fit (nodeBps amount : Nat) (ha : amount < uint256Bound) (hb : nodeBps ≤ nonAuthorBps) :
+    amount / 5 < uint256Bound ∧ amount / bpsDenominator * nodeBps < uint256Bound ∧
+      amount % bpsDenominator * nodeBps < uint256Bound := by
+  unfold bpsDenominator nonAuthorBps uint256Bound at *
+  refine ⟨by omega, ?_, ?_⟩
+  · have : amount / 10000 * nodeBps ≤ amount / 10000 * 2000 := Nat.mul_le_mul_left _ hb
+    omega
+  · have : amount % 10000 * nodeBps ≤ amount % 10000 * 2000 := Nat.mul_le_mul_left _ hb
+    have : amount % 10000 < 10000 := Nat.mod_lt _ (by decide)
+    omega
+
 end BucketMath.Split
