@@ -34,6 +34,7 @@ import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
 import { exploreRoutes, ExploreStore, syncExplore } from "../explore";
 import type { CanonPack } from "../pack/canon";
+import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
@@ -167,11 +168,19 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const cliToken = randomBytes(32).toString("base64url");
   const cliSecret = randomBytes(32).toString("base64url");
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
+  const data = dataRoutes([
+    learningAdapter(content),
+    canonAdapter(canonPack as CanonPack),
+    exploreAdapter(explorePack as unknown as ExplorePack),
+    ownAdapter(session.store, { analyses: () => runner.list().length }),
+  ]);
   const srv = startServe({
     cliToken,
     cliSecret,
+    match: data.match,
     routes: {
       ...windowRoutes(win.routes),
+      ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi) }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),

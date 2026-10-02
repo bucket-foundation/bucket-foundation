@@ -3,6 +3,14 @@ import { connect } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+if (process.argv[2] === "--learn-offline") {
+  const { learnOffline } = await import("./learn-offline");
+  const results = await learnOffline();
+  const passed = results.filter((r) => r.pass).length;
+  console.log(`learn offline: ${passed} of ${results.length} views pass`);
+  process.exit(passed === results.length ? 0 : 1);
+}
+
 const [bin, expected, mode] = process.argv.slice(2);
 if (!bin || !expected || (mode !== undefined && mode !== "--cli-only")) throw new Error("usage: smoke.ts BKT_BINARY EXPECTED_VERSION [--cli-only]");
 
