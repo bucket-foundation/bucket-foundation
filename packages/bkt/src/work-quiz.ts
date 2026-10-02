@@ -4,14 +4,17 @@ import { existsSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/work-quiz/generate";
-import { gradeAnswer, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
+import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
+import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import type { Card, Rating } from "../../../src/lib/academy/fsrs";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
 import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { answerDaily, LearnError } from "./core/learn";
-import { DailyQuizStore, overLength, validDay, type DailyQuiz } from "./daily-quiz";
+import { DailyQuizStore, MAX_DAILY_QUESTIONS, overLength, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
@@ -116,12 +119,65 @@ export class WorkQuizStore {
     this.store.db.run("delete from work_quiz_source");
     this.setChat(CHAT_OFF);
     this.daily.clear();
+    this.store.db.run("delete from work_quiz_coverage");
+    this.store.db.run("delete from work_quiz_cards");
   }
 
   record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
     this.store.db
       .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at, log10_distance) values (?, ?, ?, ?, ?, ?, ?, ?)")
       .run(randomUUID(), extra.questionId ?? q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at, extra.log10Distance ?? null);
+    if (!correct) this.recordMiss(q, localDay(at));
+    this.review(q, rating as Rating, at);
+  }
+
+  coverage(): CoverageRow[] {
+    return this.store.db
+      .query<{ cell: string; fact_id: string; picks: number; misses: number; last_day: string }, []>("select cell, fact_id, picks, misses, last_day from work_quiz_coverage")
+      .all()
+      .map((r) => ({ cell: r.cell, factId: r.fact_id, picks: r.picks, misses: r.misses, lastDay: r.last_day }));
+  }
+
+  review(q: QuizQuestion, rating: Rating, at: number) {
+    const { fact_id, form, card_key } = cardFields(q);
+    const prev = this.store.db.query<{ state: string }, [string]>("select state from work_quiz_cards where card_key = ?").get(card_key);
+    const card = nextCard(prev ? (JSON.parse(prev.state) as Card) : null, rating, at);
+    if (!card) return;
+    this.store.db
+      .query(
+        `insert into work_quiz_cards (card_key, fact_id, form, state, due, updated_at, question) values (?, ?, ?, ?, ?, ?, ?)
+         on conflict (card_key) do update set state = excluded.state, due = excluded.due, updated_at = excluded.updated_at, question = excluded.question`,
+      )
+      .run(card_key, fact_id, form, JSON.stringify(card), card.due ?? at, at, seal(this.key, JSON.stringify(q), `work_quiz_card:${card_key}`));
+  }
+
+  dueCards(at: number): DueCard[] {
+    return this.store.db
+      .query<{ card_key: string; due: number; question: string }, [number]>("select card_key, due, question from work_quiz_cards where question is not null and due <= ? order by due")
+      .all(at)
+      .map((r) => dueFrom(JSON.parse(open(this.key, r.question, `work_quiz_card:${r.card_key}`)) as QuizQuestion, r.due));
+  }
+
+  recordPicks(picks: readonly SamplePick[], day: string) {
+    const q = this.store.db.query(
+      `insert into work_quiz_coverage (cell, fact_id, picks, misses, last_day) values (?, ?, 1, 0, ?)
+       on conflict (cell, fact_id) do update set picks = picks + 1, last_day = max(last_day, excluded.last_day)`,
+    );
+    this.store.db.transaction(() => {
+      for (const p of picks) q.run(p.cell, p.factIds.join("+"), day);
+    })();
+  }
+
+  recordMiss(q: QuizQuestion, day: string) {
+    const { fact_id } = cardFields(q);
+    const cell = "miss";
+    const ins = this.store.db.query(
+      `insert into work_quiz_coverage (cell, fact_id, picks, misses, last_day) values (?, ?, 0, 1, ?)
+       on conflict (cell, fact_id) do update set misses = misses + 1`,
+    );
+    this.store.db.transaction(() => {
+      for (const id of splitFactId(fact_id)) ins.run(cell, id, day);
+    })();
   }
 
   tally(): { answered: number; correct: number } {
@@ -164,17 +220,28 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const empty = new Set<string>();
 
   async function build(day: string): Promise<DailyQuiz | null> {
+    const { sources: src } = await sources();
+    const sampled = sourcesEmpty(src) ? null : sampleQuiz({ day, sources: src, coverage: wq.coverage(), due: wq.dueCards(now()), now: now(), exclude: usedOn(wq.coverage(), day) });
     const on = wq.chat();
-    if (!CHAT_ROOT_NAMES.some((r) => on[r])) return null;
-    const { stubs, counts } = readChats(on, { home: o.home, now: now() });
-    const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
-    const still = wq.chat();
-    if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
-    const quiz = written.quiz ? wq.daily.put(written.quiz, now()) : null;
-    if (!quiz) empty.add(day);
-    log(
-      `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${quiz?.questions.length ?? 0} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
-    );
+    let chat: QuizQuestion[] = [];
+    if (CHAT_ROOT_NAMES.some((r) => on[r])) {
+      const { stubs, counts } = readChats(on, { home: o.home, now: now() });
+      const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
+      const still = wq.chat();
+      if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
+      chat = written.quiz?.questions ?? [];
+      log(
+        `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${chat.length} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
+      );
+    }
+    const seen = new Set<string>();
+    const questions = [...(sampled?.questions ?? []), ...chat].filter((q) => !seen.has(q.id) && seen.add(q.id)).slice(0, MAX_DAILY_QUESTIONS);
+    if (questions.length === 0) {
+      empty.add(day);
+      return null;
+    }
+    const quiz = wq.daily.put({ day, questions }, now());
+    if (sampled) wq.recordPicks(sampled.picks, day);
     return quiz;
   }
 
@@ -263,9 +330,14 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     "GET /local/work-quiz/next": async () => {
       const { sources: s } = await sources();
       if (sourcesEmpty(s)) return json({ error: "no sources: pick a beads file or a repository" }, 404);
-      const q = generateQuestion(s, seed());
-      if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
       const at = now();
+      const today = localDay(at);
+      const coverage = wq.coverage();
+      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today) });
+      const q = picked.questions[0] ?? generateQuestion(s, seed());
+      if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
+      if (picked.picks.length > 0) wq.recordPicks(picked.picks, today);
+      else if (picked.reviewed > 0) wq.recordPicks([{ cell: "review", factIds: dueFrom(picked.questions[0], at).factIds }], today);
       for (const [id, v] of issued) if (at - v.at > 10 * 60_000) issued.delete(id);
       issued.set(q.id, { q, at });
       return json(toPublic(q));

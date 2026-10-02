@@ -97,7 +97,7 @@ describe("schema 8", () => {
   }
 
   test("the version constant matches the migration list and daily_quiz stays local", () => {
-    expect(SCHEMA_VERSION).toBe(9);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(9);
     expect(MIGRATIONS.length).toBe(SCHEMA_VERSION);
     expect(LOCAL_ONLY_TABLES).toContain("daily_quiz");
     expect((SYNC_TABLES as readonly string[]).includes("daily_quiz")).toBe(false);

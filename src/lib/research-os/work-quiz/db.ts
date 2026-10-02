@@ -2,6 +2,7 @@ import type { Card } from "@/lib/academy/fsrs";
 import { graphService } from "../db";
 import type { QuizQuestion } from "./types";
 import { cardFields } from "./fact";
+import { splitFactId, type CoverageRow, type SamplePick } from "./sampler";
 
 function cardColumns(q: QuizQuestion): { fact_id: string; form: string } {
   const { fact_id, form } = cardFields(q);
@@ -195,4 +196,24 @@ export async function loadStats(learnerId: string, now: Date): Promise<QuizStats
     nextDueAt: later?.due_at ?? null,
     recent: rows.slice(0, 12),
   };
+}
+
+export async function loadCoverage(learnerId: string): Promise<CoverageRow[]> {
+  const { data, error } = await graphService().from("work_quiz_coverage").select("cell, fact_id, picks, misses, last_day").eq("learner_id", learnerId);
+  const rows = must((data as { cell: string; fact_id: string; picks: number; misses: number; last_day: string }[] | null) ?? [], error);
+  return rows.map((r) => ({ cell: r.cell, factId: r.fact_id, picks: r.picks, misses: r.misses, lastDay: r.last_day }));
+}
+
+export async function recordPicks(learnerId: string, picks: SamplePick[], day: string): Promise<void> {
+  const { error } = await graphService().rpc("work_quiz_record_picks", {
+    p_learner_id: learnerId,
+    p_picks: picks.map((p) => ({ cell: p.cell, fact_id: p.factIds.join("+") })),
+    p_day: day,
+  });
+  must(null, error);
+}
+
+export async function recordMiss(learnerId: string, question: QuizQuestion, day: string): Promise<void> {
+  const { error } = await graphService().rpc("work_quiz_record_miss", { p_learner_id: learnerId, p_fact_ids: splitFactId(cardFields(question).fact_id), p_day: day });
+  must(null, error);
 }

@@ -29,8 +29,8 @@ describe("schema 9 work quiz cards", () => {
     const path = join(dir, "bkt.db");
     v8(path);
     const s = new Store(path, newDataKey());
-    expect(SCHEMA_VERSION).toBe(9);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(9);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(9);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select id, correct from work_quiz_attempts").all()).toEqual([{ id: "a1", correct: 1 }]);
     expect(LOCAL_ONLY_TABLES).toContain("work_quiz_cards");
     s.close();
