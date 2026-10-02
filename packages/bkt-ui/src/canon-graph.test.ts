@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildCanonGraph, components, layoutCanonGraph, matchNodes, neighbours, recordId, type RawGraph } from "@/lib/canon-graph-core";
+import { buildCanonGraph, components, excerptsByAuthor, layoutCanonGraph, matchNodes, neighbours, recordId, type RawGraph } from "@/lib/canon-graph-core";
 
 const RAW: RawGraph = {
   nodes: [
@@ -27,7 +27,8 @@ describe("canon graph module", () => {
     const g = buildCanonGraph(RAW, CENT);
     expect(g.nodes.map((n) => n.id)).toEqual(["openalex:A1", "openalex:A2", "openalex:A3", "openalex:A4", "openalex:A6", "openalex:A7"]);
     expect(g.edges.length).toBe(4);
-    expect(g.nodes[0]).toEqual({ id: "openalex:A1", name: "Roger Penrose", group: "author", centrality: 0.9, edges: 2 });
+    expect(g.nodes[0]).toEqual({ id: "openalex:A1", name: "Roger Penrose", group: "author", centrality: 0.9, edges: 2, excerpts: [] });
+    expect(buildCanonGraph(RAW, CENT, { A1: [4] }).nodes[0].excerpts).toEqual([4]);
     expect(g.nodes[2].centrality).toBe(0);
     expect(recordId("A123")).toBe("openalex:A123");
     expect(recordId("openalex:A123")).toBe("openalex:A123");
@@ -45,6 +46,16 @@ describe("canon graph module", () => {
       ["openalex:A1", "openalex:A2", "openalex:A3"],
       ["openalex:A4", "openalex:A6", "openalex:A7"],
     ]);
+  });
+
+  test("excerpts tie to an author id by full name or first and last name, in text or byline", () => {
+    const map = excerptsByAuthor(RAW.nodes, [
+      { rowid: 3, text: "Roger Penrose on twistors.", authors: [] },
+      { rowid: 1, text: "Consciousness and microtubules.", authors: ["Stuart Hameroff (and others)"] },
+      { rowid: 2, text: "Ananda Coomaraswamy on art.", authors: [null] },
+      { rowid: 5, text: "Penrose tiles.", authors: [] },
+    ]);
+    expect(map).toEqual({ A1: [3], A2: [1], A4: [2] });
   });
 
   test("search matches names with or without accents and ignores short words", () => {

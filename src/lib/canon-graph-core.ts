@@ -1,4 +1,4 @@
-export type GraphNode = { id: string; name: string; group: string; centrality: number; edges: number };
+export type GraphNode = { id: string; name: string; group: string; centrality: number; edges: number; excerpts: number[] };
 export type GraphEdge = { source: string; target: string; weight: number };
 export type CanonGraph = { nodes: GraphNode[]; edges: GraphEdge[] };
 
@@ -20,7 +20,7 @@ export function recordId(raw: string): string {
   return OPENALEX_AUTHOR.test(raw) ? `openalex:${raw}` : raw;
 }
 
-export function buildCanonGraph(raw: RawGraph, cent: Centrality = NO_CENTRALITY): CanonGraph {
+export function buildCanonGraph(raw: RawGraph, cent: Centrality = NO_CENTRALITY, byAuthor: Record<string, number[]> = {}): CanonGraph {
   const known = new Set(raw.nodes.map((n) => n.id));
   const edges = raw.edges.filter((e) => e.source !== e.target && known.has(e.source) && known.has(e.target));
   const linked = new Set<string>();
@@ -30,7 +30,7 @@ export function buildCanonGraph(raw: RawGraph, cent: Centrality = NO_CENTRALITY)
   }
   const nodes = raw.nodes
     .filter((n) => linked.has(n.id))
-    .map((n) => ({ id: recordId(n.id), name: n.name, group: n.group, centrality: cent.weighted[n.id] || 0, edges: cent.degree[n.id] || 0 }));
+    .map((n) => ({ id: recordId(n.id), name: n.name, group: n.group, centrality: cent.weighted[n.id] || 0, edges: cent.degree[n.id] || 0, excerpts: byAuthor[n.id] ?? [] }));
   return { nodes, edges: edges.map((e) => ({ source: recordId(e.source), target: recordId(e.target), weight: e.weight })) };
 }
 
@@ -66,6 +66,31 @@ const fold = (s: string) =>
     .replace(/[\u0300-\u036f]/g, "")
     .split(/[^a-z0-9]+/)
     .filter(Boolean);
+
+export interface ExcerptByline {
+  rowid: number;
+  text: string;
+  authors: (string | null)[];
+}
+
+function nameForms(name: string): string[] {
+  const parts = fold(name);
+  if (parts.length < 2) return [];
+  const full = ` ${parts.join(" ")} `;
+  return parts.length > 2 ? [full, ` ${parts[0]} ${parts[parts.length - 1]} `] : [full];
+}
+
+export function excerptsByAuthor(nodes: RawGraph["nodes"], excerpts: ExcerptByline[]): Record<string, number[]> {
+  const folded = excerpts.map((e) => ({ rowid: e.rowid, texts: [e.text, ...e.authors.filter((a): a is string => Boolean(a))].map((t) => ` ${fold(t).join(" ")} `) }));
+  const out: Record<string, number[]> = {};
+  for (const n of nodes) {
+    const forms = nameForms(n.name);
+    if (!forms.length) continue;
+    const ids = folded.filter((e) => e.texts.some((t) => forms.some((f) => t.includes(f)))).map((e) => e.rowid);
+    if (ids.length) out[n.id] = ids.sort((a, b) => a - b);
+  }
+  return out;
+}
 
 export function matchNodes(g: CanonGraph, query: string): string[] {
   const words = fold(query).filter((w) => w.length >= 3);

@@ -194,7 +194,7 @@ export function canonRoutes(canon: CanonStore, opts: CanonRouteOptions = {}): Re
     },
     "GET /local/canon/graph": () => {
       if (!opts.graph) return json({ error: "no knowledge graph on this computer" }, 404);
-      return json({ version: canon.version(), ...buildCanonGraph(opts.graph.graph, opts.graph.centrality) });
+      return json({ version: canon.version(), ...buildCanonGraph(opts.graph.graph, opts.graph.centrality, opts.graph.excerpts ?? {}) });
     },
     "GET /local/canon/licences": () => json({ version: canon.version(), excerpts: canon.index().length, branches: canon.branches(), licences: canon.licences() }),
     "POST /local/open": async (req) => {

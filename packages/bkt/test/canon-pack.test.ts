@@ -325,3 +325,22 @@ describe("knowledge graph in the pack", () => {
     expect(residual(full, tampered).length).toBeGreaterThan(0);
   });
 });
+
+describe("excerpts by author id", () => {
+  test("every author id maps to kept excerpts that name the author", () => {
+    const ids = new Set(pack.graph.graph.nodes.map((n) => n.id));
+    const rows = new Map(pack.excerpts.map((e) => [e.rowid, e]));
+    const entries = Object.entries(pack.graph.excerpts);
+    expect(entries.length).toBeGreaterThan(10);
+    for (const [id, list] of entries) {
+      expect(ids.has(id)).toBe(true);
+      const fold = (t: string) => ` ${t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()} `;
+      const surname = fold(pack.graph.graph.nodes.find((n) => n.id === id)!.name.split(/\s+/).pop()!);
+      for (const r of list) {
+        const e = rows.get(r)!;
+        const said = fold([e.text, ...(pack.evidence[String(r)] ?? []).map((p) => p.author ?? "")].join(" "));
+        expect(said).toContain(surname);
+      }
+    }
+  });
+});

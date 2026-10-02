@@ -1,6 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { layoutCanonGraph, matchNodes, neighbours, type CanonGraph } from "@/lib/canon-graph-core";
-import type { CanonHit } from "../api";
 import { READABLE, useMapView } from "./map-view";
 import type { Box } from "./path-graph";
 import "../path.css";
@@ -8,12 +7,12 @@ import "../canon-graph.css";
 
 export interface CanonGraphApi {
   canonGraph?: () => Promise<CanonGraph | null>;
-  canonSearch(q: string, branch?: string, topK?: number): Promise<CanonHit[]>;
 }
 
 export const GRAPH_ABOUT = "Each dot is an author in the canon. A line joins two authors who wrote together, and a thicker line means more shared papers.";
 export const NO_GRAPH = "This copy of Bucket has no knowledge graph.";
 export const PICK_AN_AUTHOR = "Pick an author to see who they wrote with and to open their excerpts.";
+export const noExcerpt = (name: string) => `The canon on this computer holds no excerpt by ${name}.`;
 
 const radius = (degree: number) => 5 + 2 * Math.sqrt(degree);
 const papers = (n: number) => `${n} shared ${n === 1 ? "paper" : "papers"}`;
@@ -64,7 +63,6 @@ export function CanonGraphPanel({ api, query, onOpen }: { api: CanonGraphApi; qu
   const [graph, setGraph] = useState<CanonGraph | null | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
-  const [missing, setMissing] = useState<string | null>(null);
   const svg = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
@@ -105,22 +103,12 @@ export function CanonGraphPanel({ api, query, onOpen }: { api: CanonGraphApi; qu
   const pick = useCallback(
     (id: string) => {
       if (wasDrag()) return;
-      setMissing(null);
       setSelected(id);
+      const first = byId.get(id)?.excerpts[0];
+      if (first !== undefined) onOpen(first);
     },
-    [wasDrag],
+    [wasDrag, byId, onOpen],
   );
-
-  const open = async (name: string) => {
-    setMissing(null);
-    try {
-      const found = (await api.canonSearch(name, "", 1)).filter((h) => h.score > 0);
-      if (found.length) onOpen(found[0].claim_id);
-      else setMissing(`No excerpt names ${name} yet.`);
-    } catch (e) {
-      setError((e as Error).message);
-    }
-  };
 
   const keys = (e: KeyboardEvent<SVGSVGElement>) => {
     if (e.key.startsWith("Arrow")) {
@@ -184,10 +172,19 @@ export function CanonGraphPanel({ api, query, onOpen }: { api: CanonGraphApi; qu
           ) : (
             <>
               <h3>{here.name}</h3>
-              <button className="primary" onClick={() => void open(here.name)}>
-                Open in the canon
-              </button>
-              {missing && <p className="muted small">{missing}</p>}
+              {here.excerpts.length === 0 ? (
+                <p className="muted small">{noExcerpt(here.name)}</p>
+              ) : (
+                <ul className="linked">
+                  {here.excerpts.map((x, i) => (
+                    <li key={x}>
+                      <button className="link" onClick={() => onOpen(x)}>
+                        {`Open excerpt ${i + 1} of ${here.excerpts.length}`}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <h4>Wrote with</h4>
               <ul className="linked">
                 {neighbours(g, here.id).map((n) => (
