@@ -6,6 +6,7 @@ import { attemptId, type DailyQuizStore } from "../daily-quiz";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../deck";
 import type { GradeResult, Question, Rating } from "../grade";
 import type { Pack, PackDeck } from "../pack/export";
+import { SHORT_FIELDS, type ShortFile } from "../short-fields";
 import { deckOf, type Store } from "../store";
 
 export class LearnError extends Error {
@@ -54,8 +55,8 @@ export const fitsScreen = (q: { prompt: string; choices?: readonly string[] | nu
 
 export const publicQuestion = (q: Question): PublicQuestion => ({ itemId: q.itemId, prompt: q.prompt, choices: q.choices, limitSec: q.limitSec, long: !fitsScreen(q) });
 
-export function quizSession(store: Store, now: number, size: number, seed: string): Question[] {
-  return quizQuestions(store, pickSession(store, now, size, seed), seed);
+export function quizSession(store: Store, now: number, size: number, seed: string, shorts: ShortFile = SHORT_FIELDS): Question[] {
+  return quizQuestions(store, pickSession(store, now, size, seed, shorts), seed, shorts);
 }
 
 export class Encompassing {

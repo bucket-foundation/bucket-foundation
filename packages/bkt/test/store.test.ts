@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { newDataKey, open, seal } from "../src/crypto";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../src/deck";
 import type { Item } from "../src/grade";
+import type { ShortFile } from "../src/short-fields";
 import { buildPack, itemsFromCorpus } from "../src/pack/export";
 import { SCHEMA_VERSION, Store } from "../src/store";
 
@@ -17,6 +18,8 @@ const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   prompt: `what is ${id}`,
   answer: `answer ${id}`,
 }));
+
+const shorts: ShortFile = { version: "t", items: Object.fromEntries(items.map((i) => [i.id, { short_stem: i.prompt, short_answer: i.answer, source: "rule" as const }])) };
 
 let dir: string;
 beforeEach(() => {
@@ -90,13 +93,13 @@ describe("Store", () => {
     const s = new Store(":memory:", newDataKey());
     s.importPack("v1", items);
     const now = 10_000_000;
-    const session = pickSession(s, now, 3, "seed");
+    const session = pickSession(s, now, 3, "seed", shorts);
     expect(session).toHaveLength(3);
-    const [q] = quizQuestions(s, session, "seed");
+    const [q] = quizQuestions(s, session, "seed", shorts);
     const r = answerQuiz(s, q, q.answerIndex, 1000, now);
     expect(r.correct).toBe(true);
     expect(s.card(q.itemId)!.due!).toBeGreaterThan(now);
-    const wrong = quizQuestions(s, session, "seed")[1];
+    const wrong = quizQuestions(s, session, "seed", shorts)[1];
     answerQuiz(s, wrong, (wrong.answerIndex + 1) % wrong.choices.length, 1000, now);
     expect(s.dueItemIds(now + 86_400_000, 10)).toContain(wrong.itemId);
     expect(s.attempts()).toHaveLength(2);
@@ -107,7 +110,7 @@ describe("Store", () => {
     const s = new Store(":memory:", newDataKey());
     s.importPack("v1", items);
     answerReview(s, items[4].id, 1, 500, 0);
-    const picked = pickSession(s, 86_400_000, 2, "x");
+    const picked = pickSession(s, 86_400_000, 2, "x", shorts);
     expect(picked[0].id).toBe(items[4].id);
     expect(s.stats(86_400_000)).toEqual({ items: 5, seen: 1, due: 1, attempts: 1 });
     s.close();

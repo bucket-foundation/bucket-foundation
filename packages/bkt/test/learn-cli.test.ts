@@ -66,7 +66,7 @@ describe("learn commands over the core module", () => {
     store.close();
   });
 
-  test("the shipped pack prints questions, long ones marked, and exits 0", async () => {
+  test("the shipped pack prints short questions first, none marked long, and exits 0", async () => {
     const pack = (await import("../content/pack.json")).default as { items: typeof LEARN_ITEMS };
     const key = newDataKey();
     const store = new Store(":memory:", key);
@@ -75,7 +75,7 @@ describe("learn commands over the core module", () => {
     expect(await quizJson(backend(store, key), 5, spec("learn quiz"), t)).toBe(0);
     const qs = JSON.parse(t.out[0]).questions as { long: boolean }[];
     expect(qs).toHaveLength(5);
-    expect(qs.some((q) => q.long)).toBe(true);
+    expect(qs.every((q) => !q.long)).toBe(true);
     const empty = new Store(":memory:", key);
     await expect(quizJson(backend(empty, key), 5, spec("learn quiz"), io())).rejects.toBeInstanceOf(NoDataError);
     store.close();

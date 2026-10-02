@@ -4,9 +4,11 @@ import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQues
 import type { Question } from "./grade";
 import type { Route } from "./serve";
 import type { Pack, PackDeck } from "./pack/export";
+import type { ShortFile } from "./short-fields";
 import type { Store } from "./store";
 
 export interface LocalOptions {
+  shorts?: ShortFile;
   now?: () => number;
   seed?: () => string;
   content?: Pick<Pack, "decks" | "atoms">;
@@ -49,7 +51,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
 
   return {
     "GET /local/quiz": (_req, url) => {
-      const qs = quizSession(store, now(), count(url, 10, 50), seed());
+      const qs = quizSession(store, now(), count(url, 10, 50), seed(), opts.shorts);
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
       return json({ questions: qs.map(publicQuestion) });

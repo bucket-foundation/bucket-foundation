@@ -1,0 +1,600 @@
+{
+ "version": "a45bffa0f4d4",
+ "items": {
+  "01-mathematics/limit/0": {
+   "short_stem": "In the epsilon–delta definition, who 'chooses' ε?",
+   "short_answer": "The adversary fixes ε first",
+   "source": "rule"
+  },
+  "01-mathematics/combinatorics/1": {
+   "short_stem": "How many ways are there to choose a 3-person committee from 6 people?",
+   "short_answer": "C(6,3) = 6!/(3!·3!) = 20",
+   "source": "rule"
+  },
+  "01-mathematics/probability/1": {
+   "short_stem": "If P(A)=0.5, P(B)=0.4, and A,B are independent, what is P(A∩B)?",
+   "short_answer": "Independence gives P(A∩B)=P(A)P(B)=0.5×0.4=0.2",
+   "source": "rule"
+  },
+  "01-mathematics/random-variables/1": {
+   "short_stem": "A fair die is rolled. What is the expected value of the result?",
+   "short_answer": "E[X] = (1+2+3+4+5+6)/6 = 21/6 = 3.5",
+   "source": "rule"
+  },
+  "01-mathematics/complex-numbers/1": {
+   "short_stem": "What is the value of e^{iπ} using Euler's formula?",
+   "short_answer": "cos π + i sin π",
+   "source": "model"
+  },
+  "01-mathematics/multivariable-calculus/0": {
+   "short_stem": "What does the gradient of a scalar field point toward?",
+   "short_answer": "direction of steepest increase",
+   "source": "model"
+  },
+  "01-mathematics/multivariable-calculus/1": {
+   "short_stem": "What is the gradient of f(x,y) = x²y at the point (1,2)?",
+   "short_answer": "(4, 1)",
+   "source": "model"
+  },
+  "01-mathematics/trigonometry/1": {
+   "short_stem": "What are cos(π/2) and sin(π/2), and where is that point on the unit circle?",
+   "short_answer": "cos(π/2) = 0 and sin(π/2) = 1",
+   "source": "rule"
+  },
+  "01-mathematics/change-of-variables/1": {
+   "short_stem": "What is the area element dA in polar coordinates?",
+   "short_answer": "dA = r dr dθ",
+   "source": "rule"
+  },
+  "01-mathematics/svd/0": {
+   "short_stem": "What does the singular value decomposition factor a matrix into?",
+   "short_answer": "A = UΣVᵀ",
+   "source": "rule"
+  },
+  "01-mathematics/graph-theory/1": {
+   "short_stem": "How many edges does a tree with 10 vertices have?",
+   "short_answer": "9 edges",
+   "source": "model"
+  },
+  "02-physics/work-energy/0": {
+   "short_stem": "What does the work–energy theorem equate?",
+   "short_answer": "W_net = Δ(½mv²)",
+   "source": "model"
+  },
+  "02-physics/lagrangian/0": {
+   "short_stem": "What is the Lagrangian?",
+   "short_answer": "L = T − V (kinetic minus potential energy)",
+   "source": "rule"
+  },
+  "02-physics/waves/0": {
+   "short_stem": "What is the relationship between wave speed, frequency, and wavelength?",
+   "short_answer": "v = fλ",
+   "source": "model"
+  },
+  "02-physics/maxwell-equations/1": {
+   "short_stem": "Where does the speed of light come from in Maxwell's framework?",
+   "short_answer": "c = 1/√(μ₀ε₀)",
+   "source": "model"
+  },
+  "02-physics/thermo-temperature/0": {
+   "short_stem": "What microscopic quantity does temperature measure in an ideal gas?",
+   "short_answer": "average translational kinetic energy",
+   "source": "model"
+  },
+  "02-physics/geometric-optics/0": {
+   "short_stem": "What is Snell's law and define the refractive index?",
+   "short_answer": "n₁sinθ₁ = n₂sinθ₂",
+   "source": "rule"
+  },
+  "02-physics/geometric-optics/1": {
+   "short_stem": "What variational principle does Snell's law follow from?",
+   "short_answer": "Fermat's principle of least time",
+   "source": "rule"
+  },
+  "02-physics/spacetime/0": {
+   "short_stem": "What quantity is invariant for all inertial observers in special relativity?",
+   "short_answer": "Δs²",
+   "source": "model"
+  },
+  "02-physics/mass-energy/1": {
+   "short_stem": "What does the relation predict for a massless particle?",
+   "short_answer": "E = pc",
+   "source": "model"
+  },
+  "02-physics/geodesics-curvature/0": {
+   "short_stem": "What path does a freely falling body follow in general relativity?",
+   "short_answer": "A geodesic",
+   "source": "rule"
+  },
+  "02-physics/photoelectric-quantization/0": {
+   "short_stem": "What does the photoelectric effect reveal about light, and what equation captures a photon's energy?",
+   "short_answer": "E = hν",
+   "source": "model"
+  },
+  "02-physics/wavefunction/0": {
+   "short_stem": "What does the Born rule say |ψ(x)|² represents?",
+   "short_answer": "probability density",
+   "source": "model"
+  },
+  "02-physics/schrodinger/1": {
+   "short_stem": "What operator replaces classical momentum p to build the Hamiltonian?",
+   "short_answer": "p → −iℏ∇",
+   "source": "model"
+  },
+  "02-physics/operators-observables/0": {
+   "short_stem": "What are the possible results of measuring an observable, in operator language?",
+   "short_answer": "eigenvalues",
+   "source": "model"
+  },
+  "02-physics/uncertainty/0": {
+   "short_stem": "What is the position–momentum uncertainty relation?",
+   "short_answer": "Δx·Δp ≥ ℏ/2",
+   "source": "rule"
+  },
+  "02-physics/hydrogen-atom/0": {
+   "short_stem": "What is the energy of the nth hydrogen level, and what does n = 1 give?",
+   "short_answer": "E_n = −13.6 eV/n²",
+   "source": "rule"
+  },
+  "02-physics/standard-model/0": {
+   "short_stem": "Which fundamental force is NOT described by the Standard Model?",
+   "short_answer": "Gravity",
+   "source": "rule"
+  },
+  "02-physics/standard-model/1": {
+   "short_stem": "What role does the Higgs field play in the Standard Model?",
+   "short_answer": "spontaneous symmetry breaking",
+   "source": "model"
+  },
+  "02-physics/cosmology-glimpse/1": {
+   "short_stem": "What observation is taken as direct evidence of a hot early universe?",
+   "short_answer": "The cosmic microwave background",
+   "source": "rule"
+  },
+  "02-physics/electric-potential/1": {
+   "short_stem": "How much energy does a capacitor of capacitance C store when charged to voltage V?",
+   "short_answer": "U = ½CV²",
+   "source": "model"
+  },
+  "03-chemistry/atom-nucleus-electrons/0": {
+   "short_stem": "Which subatomic particle determines what element an atom is?",
+   "short_answer": "The proton",
+   "source": "rule"
+  },
+  "03-chemistry/ionic-bond/0": {
+   "short_stem": "What holds an ionic crystal together?",
+   "short_answer": "Electrostatic attraction",
+   "source": "model"
+  },
+  "03-chemistry/lewis-structures/1": {
+   "short_stem": "What is one molecule that violates the octet rule and how?",
+   "short_answer": "SF₆",
+   "source": "model"
+  },
+  "03-chemistry/hybridization/1": {
+   "short_stem": "What is the hybridization of each carbon in ethene (C₂H₄)?",
+   "short_answer": "sp²",
+   "source": "rule"
+  },
+  "03-chemistry/mole-concept/1": {
+   "short_stem": "How many molecules are in 18 g of water (molar mass 18 g/mol)?",
+   "short_answer": "6.022×10²³ molecules",
+   "source": "model"
+  },
+  "03-chemistry/solutions-concentration/1": {
+   "short_stem": "How many moles of solute are in 250 mL of a 0.40 M solution?",
+   "short_answer": "0.40 mol/L × 0.250 L = 0.10 mol",
+   "source": "rule"
+  },
+  "03-chemistry/ph-scale/0": {
+   "short_stem": "What is the value of K_w at 25 °C?",
+   "short_answer": "1.0×10⁻¹⁴, the product [H⁺][OH⁻]",
+   "source": "rule"
+  },
+  "03-chemistry/reaction-rate/1": {
+   "short_stem": "A reaction is first order in A. If [A] doubles, what happens to the rate?",
+   "short_answer": "The rate doubles",
+   "source": "model"
+  },
+  "03-chemistry/arrhenius-activation/0": {
+   "short_stem": "What does the activation energy represent?",
+   "short_answer": "minimum energy barrier",
+   "source": "model"
+  },
+  "03-chemistry/arrhenius-activation/1": {
+   "short_stem": "How can you extract E_a from rate-constant measurements at several temperatures?",
+   "short_answer": "Plot ln k versus 1/T",
+   "source": "rule"
+  },
+  "03-chemistry/redox/1": {
+   "short_stem": "In Zn + Cu²⁺ → Zn²⁺ + Cu, which species is oxidized?",
+   "short_answer": "Zinc",
+   "source": "rule"
+  },
+  "03-chemistry/electrochemical-cells/0": {
+   "short_stem": "At which electrode does oxidation occur?",
+   "short_answer": "The anode",
+   "source": "rule"
+  },
+  "03-chemistry/nernst-equation/0": {
+   "short_stem": "What is the cell potential when a battery reaches equilibrium?",
+   "short_answer": "Zero",
+   "source": "rule"
+  },
+  "03-chemistry/thermodynamics-vs-kinetics/0": {
+   "short_stem": "What conditions favor the thermodynamic product over the kinetic one?",
+   "short_answer": "Higher temperature",
+   "source": "model"
+  },
+  "03-chemistry/computational-chemistry/0": {
+   "short_stem": "What quantity does density functional theory use instead of the full wavefunction?",
+   "short_answer": "The electron density",
+   "source": "rule"
+  },
+  "03-chemistry/phase-equilibria-clausius/0": {
+   "short_stem": "What molecular quantity governs how steeply vapor pressure rises with temperature?",
+   "short_answer": "The enthalpy of vaporization, ΔH_vap",
+   "source": "rule"
+  },
+  "03-chemistry/reaction-mechanisms/0": {
+   "short_stem": "Which step in a mechanism determines the overall reaction rate?",
+   "short_answer": "The rate-determining step",
+   "source": "rule"
+  },
+  "03-chemistry/equilibrium-thermo-link/0": {
+   "short_stem": "What is the relationship between ΔG° and K?",
+   "short_answer": "ΔG° = −RT ln K",
+   "source": "rule"
+  },
+  "03-chemistry/equilibrium-thermo-link/1": {
+   "short_stem": "If ΔG° = 0, what is the value of K?",
+   "short_answer": "K = 1",
+   "source": "model"
+  },
+  "04-information/bit/0": {
+   "short_stem": "How many bits of information does learning the outcome of one fair coin flip provide?",
+   "short_answer": "Exactly one bit",
+   "source": "rule"
+  },
+  "04-information/probability-basics/1": {
+   "short_stem": "A fair six-sided die is rolled. What is E[X]?",
+   "short_answer": "E[X] = (1+2+3+4+5+6)/6 = 3.5",
+   "source": "rule"
+  },
+  "04-information/shannon-entropy/0": {
+   "short_stem": "What is the entropy of a biased coin with P(heads)=1/4?",
+   "short_answer": "0.811 bits",
+   "source": "model"
+  },
+  "04-information/mutual-information/0": {
+   "short_stem": "When is the mutual information I(X;Y) exactly zero?",
+   "short_answer": "statistically independent",
+   "source": "model"
+  },
+  "04-information/error-correcting-codes/0": {
+   "short_stem": "How many bit errors can a code with a minimum Hamming distance of 7 correct?",
+   "short_answer": "3 errors",
+   "source": "model"
+  },
+  "04-information/context-free/0": {
+   "short_stem": "What machine model recognizes exactly the context-free languages?",
+   "short_answer": "Pushdown automata",
+   "source": "rule"
+  },
+  "04-information/turing-machine/0": {
+   "short_stem": "What makes a Turing machine more powerful than a pushdown automaton?",
+   "short_answer": "An unbounded, read/write tape",
+   "source": "model"
+  },
+  "04-information/proof-systems/1": {
+   "short_stem": "What does the Curry–Howard correspondence identify?",
+   "short_answer": "Proofs with programs",
+   "source": "model"
+  },
+  "04-information/greedy-algorithms/0": {
+   "short_stem": "What property must a problem have for a greedy algorithm to be optimal?",
+   "short_answer": "The greedy-choice property",
+   "source": "model"
+  },
+  "04-information/perfect-secrecy/0": {
+   "short_stem": "What is the mutual-information condition for perfect secrecy?",
+   "short_answer": "I(M;C)=0",
+   "source": "rule"
+  },
+  "06-cosmology/spacetime-curvature/0": {
+   "short_stem": "In general relativity, what plays the role that 'gravitational force' played in Newton's picture?",
+   "short_answer": "The curvature of spacetime",
+   "source": "rule"
+  },
+  "06-cosmology/metric/0": {
+   "short_stem": "What does the metric tensor g_{μν} let you compute from coordinate differences?",
+   "short_answer": "Physical spacetime intervals ds",
+   "source": "rule"
+  },
+  "06-cosmology/geodesics/0": {
+   "short_stem": "What kind of path does an object in free fall follow in general relativity?",
+   "short_answer": "A geodesic",
+   "source": "rule"
+  },
+  "06-cosmology/scale-factor/0": {
+   "short_stem": "What is the value of the scale factor today, by convention?",
+   "short_answer": "a(t₀) = 1",
+   "source": "rule"
+  },
+  "06-cosmology/friedmann-equations/0": {
+   "short_stem": "What does the first Friedmann equation give in terms of the universe's contents?",
+   "short_answer": "H² = (ȧ/a)²",
+   "source": "model"
+  },
+  "06-cosmology/critical-density/0": {
+   "short_stem": "What value of Ω corresponds to a spatially flat universe?",
+   "short_answer": "Ω = 1",
+   "source": "model"
+  },
+  "06-cosmology/thermal-history/0": {
+   "short_stem": "How does the temperature of the cosmic radiation scale with the scale factor?",
+   "short_answer": "T ∝ 1/a = 1 + z",
+   "source": "rule"
+  },
+  "06-cosmology/baryogenesis/0": {
+   "short_stem": "Roughly how large was the matter–antimatter asymmetry that survived?",
+   "short_answer": "one extra baryon per billion",
+   "source": "model"
+  },
+  "06-cosmology/recombination/0": {
+   "short_stem": "At roughly what redshift and age did recombination occur?",
+   "short_answer": "~3000 K",
+   "source": "rule"
+  },
+  "06-cosmology/cmb-anisotropies/1": {
+   "short_stem": "What do CMB anisotropies physically correspond to in the early universe?",
+   "short_answer": "Tiny density fluctuations at recombination",
+   "source": "rule"
+  },
+  "06-cosmology/acoustic-peaks/0": {
+   "short_stem": "What physical scale do the CMB acoustic peaks encode?",
+   "short_answer": "The sound horizon at recombination",
+   "source": "rule"
+  },
+  "06-cosmology/gravitational-instability/0": {
+   "short_stem": "What process grows tiny density fluctuations into galaxies and clusters?",
+   "short_answer": "Gravitational instability",
+   "source": "rule"
+  },
+  "06-cosmology/baryon-acoustic-oscillations/0": {
+   "short_stem": "What is the approximate comoving scale of the baryon acoustic oscillation feature?",
+   "short_answer": "About 150 megaparsecs",
+   "source": "rule"
+  },
+  "06-cosmology/gravitational-lensing/1": {
+   "short_stem": "What is the difference between strong and weak gravitational lensing?",
+   "short_answer": "visible arcs",
+   "source": "model"
+  },
+  "06-cosmology/dark-energy-equation-of-state/0": {
+   "short_stem": "What value of w distinguishes a true cosmological constant from evolving dark energy?",
+   "short_answer": "w = −1 exactly",
+   "source": "model"
+  },
+  "06-cosmology/primordial-gravitational-waves/0": {
+   "short_stem": "What CMB signature would primordial gravitational waves from inflation produce?",
+   "short_answer": "A curl-type 'B-mode' polarization pattern",
+   "source": "model"
+  },
+  "06-cosmology/cosmic-fate/0": {
+   "short_stem": "Under a constant cosmological constant, what long-term fate awaits the universe?",
+   "short_answer": "Eternal accelerating expansion",
+   "source": "model"
+  },
+  "06-cosmology/sachs-wolfe-effect/0": {
+   "short_stem": "What does the Sachs–Wolfe effect relate the largest-scale CMB temperature fluctuations to?",
+   "short_answer": "gravitational potential Φ",
+   "source": "model"
+  },
+  "06-cosmology/reionization/0": {
+   "short_stem": "What is the Gunn–Peterson trough?",
+   "short_answer": "near-complete absorption",
+   "source": "model"
+  },
+  "06-cosmology/transfer-function/0": {
+   "short_stem": "What sets the turnover scale in the matter power spectrum?",
+   "short_answer": "k_eq",
+   "source": "model"
+  },
+  "06-cosmology/cmb-polarization/0": {
+   "short_stem": "What physical process polarizes the CMB, and what distinguishes E-modes from B-modes?",
+   "short_answer": "Thomson scattering",
+   "source": "model"
+  },
+  "07-mind/nernst/0": {
+   "short_stem": "Roughly what are E_K and E_Na for a typical mammalian neuron?",
+   "short_answer": "E_K ≈ −90 mV",
+   "source": "model"
+  },
+  "07-mind/chemical-synapse/0": {
+   "short_stem": "What ion triggers neurotransmitter release?",
+   "short_answer": "Ca²⁺",
+   "source": "rule"
+  },
+  "07-mind/synaptic-integration/0": {
+   "short_stem": "What is the difference between spatial and temporal summation?",
+   "short_answer": "Spatial summation",
+   "source": "model"
+  },
+  "07-mind/sensory-transduction/0": {
+   "short_stem": "What does sensory transduction produce?",
+   "short_answer": "a graded receptor potential",
+   "source": "model"
+  },
+  "07-mind/hippocampus-memory/1": {
+   "short_stem": "How do place cells and pattern separation/completion let the hippocampus store distinct episodes?",
+   "short_answer": "distinct sparse code",
+   "source": "model"
+  },
+  "07-mind/perceptron/0": {
+   "short_stem": "What class of functions can a single perceptron compute?",
+   "short_answer": "linearly separable functions",
+   "source": "model"
+  },
+  "07-mind/neural-criticality/0": {
+   "short_stem": "What experimental signature is taken as evidence for cortical criticality?",
+   "short_answer": "Neuronal avalanches",
+   "source": "model"
+  },
+  "07-mind/amygdala-emotion/0": {
+   "short_stem": "In amygdalar fear learning, where does the neutral cue and the aversive signal converge?",
+   "short_answer": "lateral amygdala",
+   "source": "model"
+  },
+  "07-mind/hopfield-network/0": {
+   "short_stem": "What guarantees that a Hopfield network settles into a stored memory rather than oscillating forever?",
+   "short_answer": "Symmetric weights",
+   "source": "model"
+  },
+  "biophysics/free-energy/0": {
+   "short_stem": "What quantity do systems minimize at constant temperature and volume?",
+   "short_answer": "U − TS",
+   "source": "model"
+  },
+  "biophysics/hydrophobic/0": {
+   "short_stem": "Is the hydrophobic effect mainly enthalpic or entropic, and whose entropy increases?",
+   "short_answer": "Mainly entropic",
+   "source": "rule"
+  },
+  "biophysics/debye/0": {
+   "short_stem": "What physically causes the Debye length?",
+   "short_answer": "Mobile counter-ions screen charges",
+   "source": "rule"
+  },
+  "biophysics/folding-funnel/0": {
+   "short_stem": "What does the funnel picture replace?",
+   "short_answer": "statistical downhill search",
+   "source": "model"
+  },
+  "biophysics/anfinsen/1": {
+   "short_stem": "What is one in vivo caveat to the pure thermodynamic picture?",
+   "short_answer": "Chaperones",
+   "source": "model"
+  },
+  "biophysics/hill/0": {
+   "short_stem": "What does a Hill coefficient n > 1 indicate?",
+   "short_answer": "Positive cooperativity",
+   "source": "rule"
+  },
+  "biophysics/eyring/0": {
+   "short_stem": "What single quantity sets the rate in transition-state theory?",
+   "short_answer": "The activation free energy ΔG‡",
+   "source": "rule"
+  },
+  "biophysics/fick/0": {
+   "short_stem": "What does Fick's first law relate?",
+   "short_answer": "Diffusive flux J",
+   "source": "model"
+  },
+  "biophysics/fick/1": {
+   "short_stem": "What is the diffusion equation that follows from Fick's law plus conservation of mass?",
+   "short_answer": "∂c/∂t = D∇²c",
+   "source": "rule"
+  },
+  "biophysics/einstein-stokes/0": {
+   "short_stem": "How does diffusion coefficient depend on particle radius and viscosity?",
+   "short_answer": "Inversely on both: D = kT/(6πηr)",
+   "source": "model"
+  },
+  "biophysics/bilayer/0": {
+   "short_stem": "What drives lipids to form a bilayer?",
+   "short_answer": "The hydrophobic effect",
+   "source": "rule"
+  },
+  "biophysics/md/0": {
+   "short_stem": "What does molecular dynamics integrate, and with what model of the forces?",
+   "short_answer": "Newton's equations of motion (F = ma)",
+   "source": "model"
+  },
+  "biophysics/alphafold-plddt/0": {
+   "short_stem": "What does pLDDT measure?",
+   "short_answer": "per-residue confidence",
+   "source": "model"
+  },
+  "biophysics/idp-llps/0": {
+   "short_stem": "What is a biomolecular condensate?",
+   "short_answer": "liquid–liquid phase separation",
+   "source": "model"
+  },
+  "biophysics/idp-llps/1": {
+   "short_stem": "How can phase separation connect to disease?",
+   "short_answer": "Aberrant liquid-to-solid transitions",
+   "source": "model"
+  },
+  "biophysics/langevin/1": {
+   "short_stem": "What is the overdamped Langevin equation?",
+   "short_answer": "γ·dx/dt = −∂U/∂x + ξ(t)",
+   "source": "model"
+  },
+  "biophysics/smoluchowski-rate/0": {
+   "short_stem": "What is the Smoluchowski diffusion-limited rate constant and what does each symbol mean?",
+   "short_answer": "k = 4πDR",
+   "source": "model"
+  },
+  "biophysics/bragg/0": {
+   "short_stem": "What is Bragg's law and what d and θ represent?",
+   "short_answer": "nλ = 2d·sinθ",
+   "source": "rule"
+  },
+  "biophysics/nmr-noe/0": {
+   "short_stem": "What structural information does the NOE provide, and over what distance range?",
+   "short_answer": "Inter-proton distances",
+   "source": "model"
+  },
+  "biophysics/fret/0": {
+   "short_stem": "What is the FRET efficiency as a function of distance and define R₀?",
+   "short_answer": "E = 1/(1+(r/R₀)⁶)",
+   "source": "rule"
+  },
+  "biophysics/ghk/0": {
+   "short_stem": "What does the GHK voltage equation compute that the Nernst equation cannot?",
+   "short_answer": "membrane potential",
+   "source": "model"
+  },
+  "biophysics/monte-carlo/0": {
+   "short_stem": "What is the Metropolis acceptance rule for a proposed move with energy change ΔE?",
+   "short_answer": "Accept if ΔE ≤ 0",
+   "source": "rule"
+  },
+  "biophysics/pka-shift/1": {
+   "short_stem": "How does a residue's pKa shift relate to an electrostatic free-energy change?",
+   "short_answer": "ΔpKa = ΔΔG_elec/(2.303·RT)",
+   "source": "model"
+  },
+  "biophysics/optical-tweezers/0": {
+   "short_stem": "How does an optical trap convert a bead's measured displacement into a force?",
+   "short_answer": "F = −k_trap·x",
+   "source": "model"
+  },
+  "biophysics/optical-tweezers/1": {
+   "short_stem": "How is trap stiffness calibrated from thermal motion?",
+   "short_answer": "k_trap = k_BT/⟨x²⟩",
+   "source": "model"
+  },
+  "biophysics/coarse-graining/0": {
+   "short_stem": "In coarse-graining, what replaces the detailed atomic forces between beads, and what do you gain?",
+   "short_answer": "potential of mean force",
+   "source": "model"
+  },
+  "biophysics/rouse-model/0": {
+   "short_stem": "What does the Rouse model represent a polymer as?",
+   "short_answer": "Beads connected by entropic springs",
+   "source": "model"
+  },
+  "biophysics/equipartition/0": {
+   "short_stem": "How much average energy does a single quadratic degree of freedom carry at thermal equilibrium?",
+   "short_answer": "½k_BT",
+   "source": "rule"
+  },
+  "biophysics/chemical-potential/0": {
+   "short_stem": "In thermodynamic terms, what is the chemical potential of a species?",
+   "short_answer": "μ_i = (∂G/∂n_i)",
+   "source": "model"
+  }
+ }
+}

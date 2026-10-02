@@ -13,6 +13,8 @@ export interface Item {
   level: string;
   prompt: string;
   answer: string;
+  shortPrompt?: string;
+  shortAnswer?: string;
 }
 
 export interface Question {
@@ -21,6 +23,7 @@ export interface Question {
   choices: string[];
   answerIndex: number;
   limitSec: number;
+  long?: boolean;
 }
 
 export interface GradeResult {

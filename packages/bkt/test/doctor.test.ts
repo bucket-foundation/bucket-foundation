@@ -1,3 +1,4 @@
+import { SHORT_FIELDS } from "../src/short-fields";
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { Database } from "bun:sqlite";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
@@ -102,7 +103,7 @@ describe("bkt doctor checks", () => {
       ["terminal", "ok"],
     ]);
     expect(byId(checks, "database").result).toBe(`It opens at version ${SCHEMA_VERSION}.`);
-    expect(byId(checks, "content-pack").result).toBe(`Version ${content.version}, ${content.items.length} items, checksum matches. The database holds the same version.`);
+    expect(byId(checks, "content-pack").result).toBe(`Version ${content.version}, ${content.items.length} items, ${content.items.filter((i) => SHORT_FIELDS.items[i.id]).length} with short quiz fields, checksum matches. The database holds the same version.`);
     expect(byId(checks, "python").result).toBe("python3 3.13.1 has numpy, matplotlib, pypdf, pyarrow.".replace("python3", platformFor().python()));
     expect(byId(checks, "terminal").result).toBe("A real terminal, 120 columns wide, colour on.");
     expect(doctorPassed(checks)).toBe(true);
