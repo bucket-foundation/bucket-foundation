@@ -49,7 +49,7 @@ export async function learnDue(b: LearnBackend, size: number, json: boolean, io:
   if (json) io.print(jsonLine("learn due", { cards }));
   else if (cards.length) {
     io.print(cards.length === 1 ? "1 card is due." : `${cards.length} cards are due.`);
-    for (const c of cards) io.print(`  ${c.title}`);
+    for (const c of cards) io.print(`  ${c.title}${c.long ? " (long)" : ""}`);
   }
   if (!cards.length) throw new NoDataError("nothing is due; run bkt learn quiz to start cards");
   return EXIT.ok;
@@ -77,7 +77,7 @@ export async function learnPath(b: LearnBackend, deck: PackDeck | null, atoms: A
 export async function quizJson(b: LearnBackend, size: number, spec: CommandSpec, io: LearnIo = consoleIo): Promise<number> {
   const questions = await b.quiz(size);
   io.print(jsonLine("learn quiz", { questions }));
-  if (!questions.length) throw new NoDataError("no quiz question fits the length limits yet");
+  if (!questions.length) throw new NoDataError("no questions yet; the store holds no items");
   let at = 0;
   for await (const { n, row } of answers(io, spec)) {
     const q = questions[at++];
@@ -184,7 +184,7 @@ export function QuizScreen({ backend, size, onExit }: { backend: LearnBackend; s
   });
   if (error || problem) return <Text color="red">{error ?? problem}</Text>;
   if (!questions) return <Text dimColor>Loading questions.</Text>;
-  if (!questions.length) return <Text>No quiz question fits the length limits yet. Press q to leave.</Text>;
+  if (!questions.length) return <Text>No questions yet. Press q to leave.</Text>;
   if (!q)
     return (
       <Text bold>
@@ -195,6 +195,7 @@ export function QuizScreen({ backend, size, onExit }: { backend: LearnBackend; s
     <Box flexDirection="column">
       <Text dimColor>
         {idx + 1} of {questions.length}, score {score}
+        {q.long ? ", long" : ""}
       </Text>
       <Box marginY={1}>
         <Text bold>{q.prompt}</Text>
@@ -245,6 +246,7 @@ export function ReviewScreen({ backend, size, onExit }: { backend: LearnBackend;
     <Box flexDirection="column">
       <Text dimColor>
         {idx + 1} of {cards.length}, {c.title}
+        {c.long ? ", long" : ""}
       </Text>
       <Box marginY={1}>
         <Text bold>{c.prompt}</Text>

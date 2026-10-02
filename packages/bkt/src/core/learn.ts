@@ -22,6 +22,7 @@ export interface PublicQuestion {
   prompt: string;
   choices: string[];
   limitSec: number;
+  long: boolean;
 }
 
 export interface ReviewCard {
@@ -29,6 +30,7 @@ export interface ReviewCard {
   title: string;
   prompt: string;
   answer: string;
+  long: boolean;
 }
 
 export interface DeckProgress extends PackDeck {
@@ -50,12 +52,10 @@ export interface DailyOutcome extends GradeResult {
 
 export const fitsScreen = (q: { prompt: string; choices?: readonly string[] | null }) => checkLimits({ prompt: q.prompt, choices: q.choices ? [...q.choices] : null }).length === 0;
 
-export const publicQuestion = ({ itemId, prompt, choices, limitSec }: Question): PublicQuestion => ({ itemId, prompt, choices, limitSec });
+export const publicQuestion = (q: Question): PublicQuestion => ({ itemId: q.itemId, prompt: q.prompt, choices: q.choices, limitSec: q.limitSec, long: !fitsScreen(q) });
 
-export function quizSession(store: Store, now: number, size: number, seed: string, o: { fit?: boolean } = {}): Question[] {
-  if (!o.fit) return quizQuestions(store, pickSession(store, now, size, seed), seed);
-  const wide = quizQuestions(store, pickSession(store, now, Math.min(size * 3, 150), seed), seed);
-  return wide.filter(fitsScreen).slice(0, size);
+export function quizSession(store: Store, now: number, size: number, seed: string): Question[] {
+  return quizQuestions(store, pickSession(store, now, size, seed), seed);
 }
 
 export class Encompassing {
@@ -84,13 +84,13 @@ export function gradeQuiz(store: Store, enc: Encompassing, q: Question, choice: 
   return { ...r, answer: q.choices[q.answerIndex] };
 }
 
-export function dueCards(store: Store, now: number, size: number, o: { fit?: boolean } = {}): ReviewCard[] {
+export function dueCards(store: Store, now: number, size: number): ReviewCard[] {
   const byId = new Map(store.items().map((i) => [i.id, i]));
   return store
     .dueItemIds(now, size)
     .map((id) => byId.get(id))
-    .filter((i) => !!i && (!o.fit || fitsScreen({ prompt: i.prompt })))
-    .map((i) => ({ id: i!.id, title: i!.title, prompt: i!.prompt, answer: i!.answer }));
+    .filter((i) => !!i)
+    .map((i) => ({ id: i!.id, title: i!.title, prompt: i!.prompt, answer: i!.answer, long: !fitsScreen({ prompt: i!.prompt }) }));
 }
 
 export function rateCard(store: Store, enc: Encompassing, itemId: unknown, rating: unknown, elapsedMs: number, now: number): { due: number | null } {

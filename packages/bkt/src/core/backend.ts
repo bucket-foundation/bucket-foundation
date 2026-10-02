@@ -53,7 +53,7 @@ export function directBackend(p: DirectParts): LearnBackend {
   return {
     kind: "direct",
     async quiz(size) {
-      const qs = quizSession(p.store, now(), size, seed(), { fit: true });
+      const qs = quizSession(p.store, now(), size, seed());
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
       return qs.map(publicQuestion);
@@ -66,7 +66,7 @@ export function directBackend(p: DirectParts): LearnBackend {
       return r;
     },
     async review(size) {
-      return dueCards(p.store, now(), size, { fit: true });
+      return dueCards(p.store, now(), size);
     },
     async rate(itemId, rating, elapsedMs) {
       return rateCard(p.store, enc, itemId, rating, elapsedMs, now());
@@ -153,9 +153,9 @@ export function serverBackend(rec: ServerRecord): LearnBackend {
   };
   return {
     kind: "server",
-    quiz: async (size) => (await call<{ questions: PublicQuestion[] }>(`/local/quiz?fit=1&n=${size}`)).questions,
+    quiz: async (size) => (await call<{ questions: PublicQuestion[] }>(`/local/quiz?n=${size}`)).questions,
     answerQuiz: (itemId, choice, elapsedMs) => call<QuizOutcome>("/local/quiz", { itemId, choice, elapsedMs }),
-    review: async (size) => (await call<{ items: ReviewCard[] }>(`/local/review?fit=1&n=${size}`)).items,
+    review: async (size) => (await call<{ items: ReviewCard[] }>(`/local/review?n=${size}`)).items,
     rate: (itemId, rating, elapsedMs) => call<{ due: number | null }>("/local/review", { itemId, rating, elapsedMs }),
     decks: async () => (await call<{ decks: DeckProgress[] }>("/local/decks")).decks,
     daily: async (day) => {

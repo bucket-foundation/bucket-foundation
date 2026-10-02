@@ -42,19 +42,19 @@ function backend(store: Store, key: Buffer, now = 1_000_000): LearnBackend {
 const spec = (name: string) => findCommand(name)!;
 
 describe("learn commands over the core module", () => {
-  test("quiz --json prints questions that pass the limits, then one result per answer line", async () => {
+  test("quiz --json prints questions with a long flag, then one result per answer line", async () => {
     const key = newDataKey();
     const store = new Store(":memory:", key);
     store.importPack("fixture", LEARN_ITEMS);
     const b = backend(store, key);
     const t = io(['{"choice":0,"elapsedMs":800}', "", '{"choice":null,"elapsedMs":900}']);
     expect(await quizJson(b, 3, spec("learn quiz"), t)).toBe(0);
-    const head = JSON.parse(t.out[0]) as { v: number; questions: { itemId: string; prompt: string; choices: string[]; limitSec: number }[] };
+    const head = JSON.parse(t.out[0]) as { v: number; questions: { itemId: string; prompt: string; choices: string[]; limitSec: number; long: boolean }[] };
     expect(head.v).toBe(1);
     expect(head.questions).toHaveLength(3);
     for (const q of head.questions) {
-      expect(Object.keys(q)).toEqual(["itemId", "prompt", "choices", "limitSec"]);
-      expect(checkLimits({ prompt: q.prompt, choices: q.choices })).toEqual([]);
+      expect(Object.keys(q)).toEqual(["itemId", "prompt", "choices", "limitSec", "long"]);
+      expect(q.long).toBe(checkLimits({ prompt: q.prompt, choices: q.choices }).length > 0);
     }
     expect(t.out).toHaveLength(3);
     const second = JSON.parse(t.out[2]);
@@ -62,6 +62,22 @@ describe("learn commands over the core module", () => {
     expect([second.itemId, second.correct]).toEqual([head.questions[1].itemId, false]);
     expect(store.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n).toBe(2);
     store.close();
+  });
+
+  test("the shipped pack prints questions, long ones marked, and exits 0", async () => {
+    const pack = (await import("../content/pack.json")).default as { items: typeof LEARN_ITEMS };
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    store.importPack("pack", pack.items);
+    const t = io();
+    expect(await quizJson(backend(store, key), 5, spec("learn quiz"), t)).toBe(0);
+    const qs = JSON.parse(t.out[0]).questions as { long: boolean }[];
+    expect(qs).toHaveLength(5);
+    expect(qs.some((q) => q.long)).toBe(true);
+    const empty = new Store(":memory:", key);
+    await expect(quizJson(backend(empty, key), 5, spec("learn quiz"), io())).rejects.toBeInstanceOf(NoDataError);
+    store.close();
+    empty.close();
   });
 
   test("a bad answer line is a usage error and a line past the last question too", async () => {
@@ -91,7 +107,7 @@ describe("learn commands over the core module", () => {
     expect(text.out[0]).toBe("2 cards are due.");
     const rated = io(['{"rating":3,"elapsedMs":700}']);
     expect(await reviewJson(later, 10, spec("learn review"), rated)).toBe(0);
-    expect(Object.keys(JSON.parse(rated.out[0]).cards[0])).toEqual(["id", "title", "prompt", "answer"]);
+    expect(Object.keys(JSON.parse(rated.out[0]).cards[0])).toEqual(["id", "title", "prompt", "answer", "long"]);
     expect(Object.keys(JSON.parse(rated.out[1]))).toEqual(["v", "itemId", "due"]);
     const path = io();
     await expect(learnPath(later, null, [], true, path)).rejects.toBeInstanceOf(NoDataError);

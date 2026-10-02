@@ -49,7 +49,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
 
   return {
     "GET /local/quiz": (_req, url) => {
-      const qs = quizSession(store, now(), count(url, 10, 50), seed(), { fit: url.searchParams.get("fit") === "1" });
+      const qs = quizSession(store, now(), count(url, 10, 50), seed());
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
       return json({ questions: qs.map(publicQuestion) });
@@ -67,7 +67,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
         return r;
       });
     },
-    "GET /local/review": (_req, url) => json({ items: dueCards(store, now(), count(url, 20, 100), { fit: url.searchParams.get("fit") === "1" }) }),
+    "GET /local/review": (_req, url) => json({ items: dueCards(store, now(), count(url, 20, 100)) }),
     "POST /local/review": async (req) => {
       const b = await body(req);
       if (!b) return json({ error: "unknown item" }, 404);
