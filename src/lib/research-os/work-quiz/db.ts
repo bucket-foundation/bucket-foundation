@@ -1,6 +1,12 @@
 import type { Card } from "@/lib/academy/fsrs";
 import { graphService } from "../db";
 import type { QuizQuestion } from "./types";
+import { cardFields } from "./fact";
+
+function cardColumns(q: QuizQuestion): { fact_id: string; form: string } {
+  const { fact_id, form } = cardFields(q);
+  return { fact_id, form };
+}
 import { OPEN_WINDOW_MS, stillOpen } from "./open";
 
 export type QuizMode = "surprise" | "review" | "manual";
@@ -96,6 +102,7 @@ export async function writeCard(learnerId: string, question: QuizQuestion, card:
   const row = {
     learner_id: learnerId,
     question_id: question.id,
+    ...cardColumns(previous?.question ?? question),
     question: previous?.question ?? question,
     card,
     due_at: new Date(card.due ?? Date.now()).toISOString(),
@@ -120,7 +127,7 @@ export async function writeCard(learnerId: string, question: QuizQuestion, card:
 async function moveQuestion(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean> {
   const { data, error } = await graphService()
     .from("work_quiz_cards")
-    .update({ question, updated_at: new Date().toISOString() })
+    .update({ question, ...cardColumns(question), updated_at: new Date().toISOString() })
     .eq("learner_id", learnerId)
     .eq("question_id", previous.question_id)
     .eq("reps", previous.reps)
@@ -129,7 +136,7 @@ async function moveQuestion(learnerId: string, previous: CardRow, question: Quiz
 }
 
 async function copyCard(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean> {
-  const row = { learner_id: learnerId, question_id: question.id, question, card: previous.card, due_at: previous.due_at, reps: previous.reps, updated_at: new Date().toISOString() };
+  const row = { learner_id: learnerId, question_id: question.id, ...cardColumns(question), question, card: previous.card, due_at: previous.due_at, reps: previous.reps, updated_at: new Date().toISOString() };
   const { data, error } = await graphService().from("work_quiz_cards").upsert(row, { onConflict: "learner_id,question_id", ignoreDuplicates: true }).select("question_id");
   return must(((data as unknown[] | null) ?? []).length > 0, error);
 }

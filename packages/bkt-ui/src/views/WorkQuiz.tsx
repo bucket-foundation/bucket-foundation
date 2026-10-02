@@ -68,6 +68,11 @@ export function WorkQuizView({ api }: { api: Api }) {
       <header className="head">
         <h1>Work quiz</h1>
         <p className="muted">Questions from your own tasks and merged changes.</p>
+        {q && (
+          <p className="muted small">
+            <a href={href({ name: "setup" })}>Work quiz setup</a>
+          </p>
+        )}
       </header>
       {error && <p className="error">{error}</p>}
       {none && (
