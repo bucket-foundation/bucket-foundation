@@ -450,6 +450,213 @@
   "type": "∀ (ds : List BucketMath.Discovery.Direction), BucketMath.Discovery.Admissible ds → 0 ≤ BucketMath.Discovery.expected ds"
  },
  {
+  "name": "BucketMath.Fsrs.clamp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 3,
+  "type": "Int → Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.clampD",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 15,
+  "type": "Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.clampD_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 50,
+  "type": "∀ (x : Int),\n  BucketMath.Fsrs.difficultyUnit ≤ BucketMath.Fsrs.clampD x ∧\n    BucketMath.Fsrs.clampD x ≤ 10 * BucketMath.Fsrs.difficultyUnit"
+ },
+ {
+  "name": "BucketMath.Fsrs.clampS",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 19,
+  "type": "Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.clampS_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 55,
+  "type": "∀ (x : Int), BucketMath.Fsrs.stabilityFloor ≤ BucketMath.Fsrs.clampS x"
+ },
+ {
+  "name": "BucketMath.Fsrs.clamp_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 23,
+  "type": "∀ (lo hi x : Int), lo ≤ hi → lo ≤ BucketMath.Fsrs.clamp lo hi x ∧ BucketMath.Fsrs.clamp lo hi x ≤ hi"
+ },
+ {
+  "name": "BucketMath.Fsrs.clamp_idem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 29,
+  "type": "∀ (lo hi x : Int), lo ≤ hi → BucketMath.Fsrs.clamp lo hi (BucketMath.Fsrs.clamp lo hi x) = BucketMath.Fsrs.clamp lo hi x"
+ },
+ {
+  "name": "BucketMath.Fsrs.clamp_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 32,
+  "type": "∀ (lo hi : Int) {x y : Int}, x ≤ y → BucketMath.Fsrs.clamp lo hi x ≤ BucketMath.Fsrs.clamp lo hi y"
+ },
+ {
+  "name": "BucketMath.Fsrs.clamp_of_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 26,
+  "type": "∀ (lo hi x : Int), lo ≤ x → x ≤ hi → BucketMath.Fsrs.clamp lo hi x = x"
+ },
+ {
+  "name": "BucketMath.Fsrs.difficultyUnit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 11,
+  "type": "Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.floorAt",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 5,
+  "type": "Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.floorAt_ge",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 35,
+  "type": "∀ (lo x : Int), lo ≤ BucketMath.Fsrs.floorAt lo x"
+ },
+ {
+  "name": "BucketMath.Fsrs.floorAt_of_ge",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 38,
+  "type": "∀ (lo x : Int), lo ≤ x → BucketMath.Fsrs.floorAt lo x = x"
+ },
+ {
+  "name": "BucketMath.Fsrs.interval",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 9,
+  "type": "Int → Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.interval_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 41,
+  "type": "∀ (cap n d : Int), 1 ≤ cap → 1 ≤ BucketMath.Fsrs.interval cap n d ∧ BucketMath.Fsrs.interval cap n d ≤ cap"
+ },
+ {
+  "name": "BucketMath.Fsrs.interval_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 44,
+  "type": "∀ (cap : Int) {n n' d : Int}, 0 < d → n ≤ n' → BucketMath.Fsrs.interval cap n d ≤ BucketMath.Fsrs.interval cap n' d"
+ },
+ {
+  "name": "BucketMath.Fsrs.review_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 60,
+  "type": "∀ (rawD rawS n d : Int),\n  (BucketMath.Fsrs.difficultyUnit ≤ BucketMath.Fsrs.clampD rawD ∧\n      BucketMath.Fsrs.clampD rawD ≤ 10 * BucketMath.Fsrs.difficultyUnit) ∧\n    BucketMath.Fsrs.stabilityFloor ≤ BucketMath.Fsrs.clampS rawS ∧\n      1 ≤ BucketMath.Fsrs.schedule n d ∧ BucketMath.Fsrs.schedule n d ≤ 3650"
+ },
+ {
+  "name": "BucketMath.Fsrs.roundHalfUp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 7,
+  "type": "Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.schedule",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 21,
+  "type": "Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.schedule_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 57,
+  "type": "∀ (n d : Int), 1 ≤ BucketMath.Fsrs.schedule n d ∧ BucketMath.Fsrs.schedule n d ≤ 3650"
+ },
+ {
+  "name": "BucketMath.Fsrs.stabilityFloor",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 17,
+  "type": "Int"
+ },
+ {
+  "name": "BucketMath.Fsrs.stabilityFloor_hundredth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 53,
+  "type": "100 * BucketMath.Fsrs.stabilityFloor = BucketMath.Fsrs.stabilityUnit"
+ },
+ {
+  "name": "BucketMath.Fsrs.stabilityUnit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Fsrs",
+  "source": "lean/BucketMath/Fsrs.lean",
+  "line": 13,
+  "type": "Int"
+ },
+ {
   "name": "BucketMath.Grade.Close",
   "kind": "def",
   "status": "def",
