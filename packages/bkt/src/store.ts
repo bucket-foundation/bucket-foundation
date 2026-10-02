@@ -123,10 +123,10 @@ export class Store {
   constructor(path: string, private key: Buffer) {
     if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
     this.db = new Database(path, { create: true, strict: true });
+    this.db.run("pragma busy_timeout = 5000");
     this.db.run("pragma journal_mode = wal");
     this.db.run("pragma foreign_keys = on");
     this.db.run("pragma secure_delete = on");
-    this.db.run("pragma busy_timeout = 5000");
     this.migrate();
     this.checkKey();
   }
