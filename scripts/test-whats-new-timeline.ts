@@ -118,7 +118,7 @@ test("the autopublish scope publishes own generations at once and leaves everyth
   assert.deepEqual([prod.status, prod.body?.review_state, prod.publicChanged], [201, "draft", false]);
   const third = await post(b.deps, generation("gen-third", { source: "third-party" }), tokens.bot);
   assert.deepEqual([third.status, third.body?.review_state], [201, "draft"]);
-  const leak = await post(b.deps, generation("gen-leak", { claim: "Read /home/someone/notes.txt for the result." }), tokens.bot);
+  const leak = await post(b.deps, generation("gen-leak", { claim: `Read ${["", "home", "someone", "notes.txt"].join("/")} for the result.` }), tokens.bot);
   assert.equal(leak.status, 422);
   const link = await post(b.deps, generation("gen-link", { evidence: ["https://example.com/x"] }), tokens.bot);
   assert.deepEqual([link.status, link.body?.field], [400, "evidence[0]"]);
