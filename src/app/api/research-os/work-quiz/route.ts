@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { verifyLearnerIdentity } from "@/lib/research-os/db";
 import { isStaff } from "@/lib/research-os/staff";
 import { bad, readJson, withResearchOsRoute } from "@/lib/research-os/route";
-import { answerAttempt, dueCards, openAttempt, issueAttempt, loadAttempt, loadCard, loadStats, rekeyCard, retireCard, writeCard } from "@/lib/research-os/work-quiz/db";
+import { answerAttempt, dueCards, openAttempt, issueAttempt, loadAttempt, loadCard, loadCoverage, loadStats, recordMiss, recordPicks, rekeyCard, retireCard, writeCard } from "@/lib/research-os/work-quiz/db";
 import { answerQuestion, issueQuestion, parseMode, type QuizDeps } from "@/lib/research-os/work-quiz/service";
 import { loadWorkSources } from "@/lib/research-os/work-quiz/sources-server";
 import { matchLearnItem } from "@/lib/research-os/work-quiz/learn-match";
@@ -23,6 +23,9 @@ const deps: QuizDeps = {
   writeCard,
   rekeyCard,
   retireCard,
+  loadCoverage,
+  recordPicks,
+  recordMiss,
 };
 
 async function staff(req: NextRequest): Promise<boolean> {

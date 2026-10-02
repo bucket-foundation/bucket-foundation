@@ -4,6 +4,7 @@ import { generateQuestion, rewriteQuestion, seededRng } from "./generate";
 import { gradeAnswer, nextCard, normalizeResponse } from "./grade";
 import { questionText } from "./learn-match";
 import { withinLimits } from "./limits";
+import { sampleQuiz, type CoverageRow, type SamplePick } from "./sampler";
 import { toPublic, type LearnLink, type PublicQuestion, type QuizQuestion, type SourceRef, type WorkSources } from "./types";
 
 export const REVIEW_SHARE = 0.5;
@@ -22,6 +23,9 @@ export interface QuizDeps {
   writeCard(learnerId: string, question: QuizQuestion, card: Card, previous: CardRow | null): Promise<boolean>;
   rekeyCard(learnerId: string, previous: CardRow, question: QuizQuestion): Promise<boolean>;
   retireCard(learnerId: string, questionId: string): Promise<void>;
+  loadCoverage?(learnerId: string): Promise<CoverageRow[]>;
+  recordPicks?(learnerId: string, picks: SamplePick[], day: string): Promise<void>;
+  recordMiss?(learnerId: string, question: QuizQuestion, day: string): Promise<void>;
 }
 
 export interface CardRefresh {
@@ -98,7 +102,12 @@ export async function issueQuestion(deps: QuizDeps, learnerId: string, mode: Qui
   } else if (mode === "review") {
     return { status: "empty", reason: "nothing_due", retired, rewritten };
   } else {
-    question = generateQuestion(await deps.loadSources(), seed);
+    const sources = await deps.loadSources();
+    const day = now.toISOString().slice(0, 10);
+    const coverage = deps.loadCoverage ? await deps.loadCoverage(learnerId) : [];
+    const picked = sampleQuiz({ day: `${day}|${seed}`, sources, coverage, slots: 1, reviewSlots: 0, now: now.getTime() });
+    question = picked.questions[0] ?? generateQuestion(sources, seed);
+    if (picked.questions.length > 0 && deps.recordPicks) await deps.recordPicks(learnerId, picked.picks, day);
     if (!question && due.length > 0) {
       question = due[0].question;
       fromReview = true;
@@ -166,6 +175,7 @@ export async function answerQuestion(deps: QuizDeps, learnerId: string, body: Re
     const stored = await deps.loadAttempt(learnerId, attemptId);
     return stored ? { status: "ok", result: resultFrom(stored, null, true) } : { status: "not_found" };
   }
+  if (!skipped && !fields.correct && deps.recordMiss) await deps.recordMiss(learnerId, q, now.toISOString().slice(0, 10));
   if (rating === null) return { status: "ok", result: resultFrom(claimed, null, true) };
   const review = await scheduleReview(deps, learnerId, q, rating, now);
   return { status: "ok", result: resultFrom(claimed, review.dueAt, review.saved) };

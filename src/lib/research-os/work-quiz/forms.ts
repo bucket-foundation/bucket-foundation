@@ -19,7 +19,7 @@ export const ORDER_TITLE_TOKENS = 3;
 export const ORDER_LABELS = ["A", "B", "C"] as const;
 
 export function sampledId(form: Form, factIds: readonly string[], depth: Depth): string {
-  return `${form}:${hashString(`${factIds.join(",")}|${form}|${depth}`).toString(36)}`;
+  return `${form}-${hashString(`${factIds.join(",")}|${form}|${depth}`).toString(36)}`;
 }
 
 function stamp(q: QuizQuestion, form: Form, depth: Depth, factIds: string[]): SampledQuestion | null {
@@ -133,6 +133,8 @@ const order: FormMaker = (src, rng, depth) => {
 };
 
 export const FORM_MAKERS: Readonly<Partial<Record<Form, FormMaker>>> = {
+  cloze: wrap("recall", "cloze"),
+  spot_error: wrap("spot_error", "spot_error"),
   true_false: wrap("true_false", "true_false"),
   estimate,
   compare: wrap("which_first", "compare"),
