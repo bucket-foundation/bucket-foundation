@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { firstRunHash, href, useRoute } from "./router";
-import { navFor, Screen } from "./nav";
+import { FOOT_LINK, navFor, Screen } from "./nav";
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "./app.css";
 
@@ -54,6 +54,9 @@ function App() {
             </a>
           ))}
         </nav>
+        <a className={route.name === FOOT_LINK.route.name ? "foot-link on" : "foot-link"} href={href(FOOT_LINK.route)}>
+          {FOOT_LINK.label}
+        </a>
         <p className="foot">Offline on this computer</p>
       </aside>
       <main className={canon ? "main wide" : "main"}>
