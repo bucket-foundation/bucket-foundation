@@ -23,6 +23,7 @@ export interface Question {
   choices: string[];
   answerIndex: number;
   limitSec: number;
+  long?: boolean;
 }
 
 export interface GradeResult {

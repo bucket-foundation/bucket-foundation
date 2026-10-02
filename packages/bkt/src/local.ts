@@ -55,7 +55,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
       const qs = quizQuestions(store, pickSession(store, now(), count(url, 10, 50), s, opts.shorts), s, opts.shorts);
       open.clear();
       for (const q of qs) open.set(q.itemId, q);
-      return json({ questions: qs.map(({ itemId, prompt, choices, limitSec }) => ({ itemId, prompt, choices, limitSec })) });
+      return json({ questions: qs.map(({ itemId, prompt, choices, limitSec, long }) => ({ itemId, prompt, choices, limitSec, ...(long ? { long } : {}) })) });
     },
     "POST /local/quiz": async (req) => {
       const b = await body(req);

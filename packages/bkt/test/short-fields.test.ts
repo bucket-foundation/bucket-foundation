@@ -49,7 +49,7 @@ describe("quiz short fields", () => {
     }
   });
 
-  test("the learning quiz shows short text and leaves out items without short fields", () => {
+  test("the learning quiz draws short items first and they pass checkLimits", () => {
     const s = new Store(":memory:", newDataKey());
     s.importPack("v1", items);
     const session = pickSession(s, 10_000_000, 50, "seed");
@@ -58,6 +58,31 @@ describe("quiz short fields", () => {
     const qs = quizQuestions(s, session, "seed");
     expect(qs.length).toBe(50);
     for (const q of qs) expect(checkLimits(q)).toEqual([]);
+    s.close();
+  });
+});
+
+describe("long fallback", () => {
+  test("a deck with 5 short and 10 long items yields the 5 short first, then long ones flagged", () => {
+    const deck: Item[] = Array.from({ length: 15 }, (_, n) => ({
+      id: `d/a${String(n).padStart(2, "0")}/0`,
+      atomId: `a${String(n).padStart(2, "0")}`,
+      branch: "d",
+      title: `T${n}`,
+      level: "recall",
+      prompt: `Which value is listed as number ${n} in the long reference table for this deck today?`,
+      answer: `The value listed as number ${n} is the long answer text ${n}`,
+    }));
+    const shortIds = [2, 5, 8, 11, 14].map((n) => deck[n].id);
+    const file = { version: "t", items: Object.fromEntries(shortIds.map((id, k) => [id, { short_stem: `What is item ${k}?`, short_answer: `value ${k}`, source: "rule" as const }])) };
+    const s = new Store(":memory:", newDataKey());
+    s.importPack("v1", deck);
+    const session = pickSession(s, 10_000_000, 15, "seed", file);
+    expect(session.slice(0, 5).map((i) => i.id).sort()).toEqual(shortIds.sort());
+    const qs = quizQuestions(s, session, "seed", file);
+    expect(qs).toHaveLength(15);
+    expect(qs.slice(0, 5).every((q) => !q.long && checkLimits(q).length === 0)).toBe(true);
+    expect(qs.slice(5).every((q) => q.long === true)).toBe(true);
     s.close();
   });
 });
