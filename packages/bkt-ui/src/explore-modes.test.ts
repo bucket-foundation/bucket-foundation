@@ -50,7 +50,7 @@ describe("desktop helix direction", () => {
   });
 
   test("all other modes keep their existing geometry", () => {
-    for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction", "globe", "earth", "map"].includes(mode.id))) {
+    for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction", "globe", "earth", "map", "graph", "timeline"].includes(mode.id))) {
       expect(modeById(mode.id)).toBe(mode);
     }
     expect(modeById("missing")).toBe(MODES[0]);
@@ -104,8 +104,8 @@ test("Canon globe styling preserves each Explore projection and source links", (
 });
 
 
-test("Globe and Earth markers stay selectable with native search scores", () => {
-  for (const id of ["globe", "earth"]) {
+test("Desktop markers stay selectable with native search scores", () => {
+  for (const id of ["globe", "earth", "helix", "graph", "timeline"]) {
     for (const score of [-10, 0, 0.5, 1, 5387382, Number.NaN, Number.POSITIVE_INFINITY]) {
       const hits = SAMPLE_HITS.map((hit) => ({ ...hit, title: "France", score }));
       const context = { selected: null, scroll: 0 };
@@ -114,11 +114,36 @@ test("Globe and Earth markers stay selectable with native search scores", () => 
       expect(desktop.nodes.length).toBeGreaterThan(0);
       expect(desktop.links).toEqual(original.links);
       desktop.nodes.forEach((node, index) => {
-        expect(node.position).toEqual(original.nodes[index].position);
+        expect(node.position).toEqual(id === "helix" ? [original.nodes[index].position[1], -original.nodes[index].position[0], original.nodes[index].position[2]] : original.nodes[index].position);
         expect(node.id).toBe(original.nodes[index].id);
         expect(node.size).toBeGreaterThanOrEqual(0.018);
-        expect(node.size).toBeLessThanOrEqual(0.048);
+        expect(node.size).toBeLessThanOrEqual(0.07);
       });
     }
+  }
+});
+
+
+test("Graph and Timeline preserve geometry for unit-range source scores", () => {
+  for (const id of ["graph", "timeline"]) {
+    const context = { selected: null, scroll: 0 };
+    expect(modeById(id).layout(SAMPLE_HITS, context)).toEqual(originals.find((mode) => mode.id === id)!.layout(SAMPLE_HITS, context));
+  }
+});
+
+
+test("Native score bounds preserve source ranking and bridge markers", () => {
+  const hits = SAMPLE_HITS.map((hit, index) => ({ ...hit, year: null, score: (index + 1) * 50000 }));
+  const context = { selected: null, scroll: 0 };
+  for (const id of ["helix", "graph", "timeline"]) {
+    const source = originals.find((mode) => mode.id === id)!.layout(hits, context);
+    const desktop = modeById(id).layout(hits, context);
+    expect(desktop.links).toEqual(source.links);
+    expect(desktop.nodes.map((node) => node.id)).toEqual(source.nodes.map((node) => node.id));
+    desktop.nodes.forEach((node, index) => {
+      const [x, y, z] = source.nodes[index].position;
+      expect(node.position).toEqual(id === "helix" ? [y, -x, z] : [x, y, z]);
+      if (!hits.some((hit) => hit.id === node.id)) expect(node).toEqual(source.nodes[index]);
+    });
   }
 });

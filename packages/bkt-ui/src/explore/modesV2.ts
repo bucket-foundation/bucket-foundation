@@ -41,7 +41,25 @@ function horizontalGuide(guide: Guide): Guide {
   return guide;
 }
 
-export const MODES: ExploreMode[] = originalModes.map((mode) => mode.id === "map" ? { ...mode, layout: (hits, context) => hasMapAxes(context.map) ? mode.layout(hits, context) : sourceMap(hits) } : ["globe", "earth"].includes(mode.id) ? { ...mode, layout(hits, context): DesktopLayout { const base = mode.layout(hits, context); return { ...base, nodes: base.nodes.map((node) => ({ ...node, size: Number.isFinite(node.size) ? Math.max(0.018, Math.min(0.048, node.size)) : 0.018 })), canonEarth: true, guides: [] }; } } : ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
+const markerRanges: Record<string, [number, number]> = {
+  globe: [0.018, 0.048],
+  earth: [0.018, 0.048],
+  helix: [0.03, 0.06],
+  graph: [0.03, 0.065],
+  timeline: [0.028, 0.058],
+};
+
+const desktopModes = originalModes.map((mode): ExploreMode => markerRanges[mode.id] ? {
+  ...mode,
+  layout(hits, context) {
+    const layout = mode.layout(hits, context);
+    const ids = new Set(hits.map((hit) => hit.id));
+    const [min, max] = markerRanges[mode.id];
+    return { ...layout, nodes: layout.nodes.map((node) => ids.has(node.id) ? { ...node, size: Number.isFinite(node.size) ? Math.max(min, Math.min(max, node.size)) : min } : node) };
+  },
+} : mode);
+
+export const MODES: ExploreMode[] = desktopModes.map((mode) => mode.id === "map" ? { ...mode, layout: (hits, context) => hasMapAxes(context.map) ? mode.layout(hits, context) : sourceMap(hits) } : ["globe", "earth"].includes(mode.id) ? { ...mode, layout(hits, context): DesktopLayout { const base = mode.layout(hits, context); return { ...base, canonEarth: true, guides: [] }; } } : ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
   ...mode,
   layout(hits, context): DesktopLayout {
     const layout = mode.layout(hits, context);

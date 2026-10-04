@@ -60,17 +60,19 @@ try {
   await page.getByTestId('map-note').filter({ hasText: 'Sources are grouped' }).waitFor();
   const sourceHits = await page.evaluate(async () => (await (await fetch('/api/explore/search?q=light%20water%20mitochondria&top_k=60')).json()).results);
   async function selectMarker(mode: string) {
-    const layout = modeById(mode).layout(sourceHits, { selected: null, scroll: 0 });
+    const layout = modeById(mode).layout(sourceHits, { selected: null, scroll: 0 }) as DesktopLayout;
     const canvas = page.getByTestId('explore-scene').locator('canvas');
     const box = await canvas.boundingBox();
     if (!box) throw new Error('Scene canvas missing');
     const camera = new THREE.PerspectiveCamera(mode === 'globe' ? 44 : 45, box.width / box.height, .1, 1000);
     camera.position.set(...layout.camera);
+    if (layout.axisLength) camera.position.set(0, 0, Math.max(5.5, layout.axisLength / 2 / (box.width / box.height) / Math.tan(camera.fov * Math.PI / 360)));
     camera.lookAt(0, 0, 0);
     camera.updateMatrixWorld();
     const currentLabel = await page.getByTestId("explore-panel").innerText();
     for (const node of layout.nodes) {
-      if (currentLabel.includes(node.label!)) continue;
+      const label = sourceHits.find((hit: { id: string; title: string }) => hit.id === node.id)?.title;
+      if (!label || currentLabel.includes(label)) continue;
       const point = new THREE.Vector3(...node.position);
       if (mode === 'globe') point.applyAxisAngle(new THREE.Vector3(1, 0, 0), .35);
       if (mode === 'globe' && point.z < .1) continue;
@@ -79,7 +81,7 @@ try {
       const clickY = box.y + (1 - point.y) * box.height / 2;
       await page.mouse.click(clickX, clickY);
       await page.waitForTimeout(100);
-      if ((await page.getByTestId('explore-panel').innerText()).includes(node.label!)) return node.id;
+      if ((await page.getByTestId('explore-panel').innerText()).includes(label)) return node.id;
     }
     throw new Error(mode + ' marker selection failed');
   }
@@ -125,6 +127,14 @@ try {
   await selectMarker('globe');
   await page.screenshot({ path: join(run, 'globe-landmask-fallback.png') });
   await page.unroute('**/textures/earth/*');
+  for (const mode of ['helix', 'graph', 'timeline']) {
+    await page.getByTestId('mode-' + mode).click();
+    await page.locator('nav a[href="#/notes"]').click();
+    await page.locator('nav a[href="#/explore"]').click();
+    await page.getByTestId('explore-result').first().waitFor();
+    await page.waitForTimeout(350);
+    await selectMarker(mode);
+  }
   console.log('atom interactions');
   await page.getByTestId('mode-atom').click();
   if (await page.locator('[data-particle]').count() !== 18) throw new Error('Carbon-12 count');
