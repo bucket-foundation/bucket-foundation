@@ -4,6 +4,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html, Line, OrbitControls } from "@react-three/drei";
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { EarthV2 } from "./EarthV2";
+import { HaloV2 } from "./HaloV2";
 import { useSceneTheme } from "./useSceneTheme";
 import type { DesktopLayout } from "./modesV2";
 import type { Guide, Vec3 } from "@/lib/explore/modes/types";
@@ -113,8 +115,8 @@ function Scene({ layout, selected, onSelect, theme }: Props & { theme: ReturnTyp
   useFrame((_, dt) => {
     if (group.current && layout.spin && !reduced) group.current.rotation.y += layout.spin * dt;
   });
-  return (
-    <group ref={group}>
+  const contents = (
+    <>
       {layout.helicoid && <Helicoid ribbon={layout.helicoid} color={theme.accent} />}
       {layout.guides.map((g, i) => (
         <GuideView key={`${g.kind}-${i}`} g={g} theme={theme} />
@@ -144,8 +146,9 @@ function Scene({ layout, selected, onSelect, theme }: Props & { theme: ReturnTyp
           )}
         </mesh>
       ))}
-    </group>
+    </>
   );
+  return <group ref={group}>{layout.canonEarth ? <><EarthV2 targetRotationY={0} reducedMotion={true} landmaskUrl="/textures/earth/landmask-2k.bin">{contents}</EarthV2><HaloV2 color={theme.accent} alpha={0.12} /></> : contents}</group>;
 }
 
 export default function SceneHost(props: Props) {
@@ -156,12 +159,13 @@ export default function SceneHost(props: Props) {
     <div
       data-testid="explore-scene"
       data-surface={layout.helicoid ? "helicoid" : undefined}
+      data-globe-style={layout.canonEarth ? "canon" : undefined}
       data-axis={layout.axisLength ? "horizontal" : undefined}
       className="w-full h-[420px] md:h-[520px] border hairline"
       style={{ background: "var(--paper)" }}
       onWheel={scrollMode && onScroll ? (e) => onScroll(e.deltaY) : undefined}
     >
-      <Canvas camera={{ position: layout.camera, fov: 45 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: layout.camera, fov: layout.canonEarth ? 44 : 45 }} dpr={[1, 2]}>
         {layout.axisLength && <HorizontalCamera length={layout.axisLength} />}
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.1} />

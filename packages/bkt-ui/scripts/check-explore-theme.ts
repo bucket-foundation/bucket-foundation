@@ -49,9 +49,82 @@ try {
       });
       if (styles.paper !== styles.stage || styles.overflow) throw new Error(JSON.stringify({ theme, mode, styles }));
       evidence.push({ theme, mode, ...styles });
-      if (['globe', 'helix', 'dna', 'atom', 'particle', 'molecule', 'reaction', 'protein'].includes(mode)) await page.screenshot({ path: join(run, theme + '-' + mode + '.png') });
+      if (['globe', 'helix', 'dna', 'atom', 'particle', 'molecule', 'reaction', 'protein', 'earth', 'map'].includes(mode)) await page.screenshot({ path: join(run, theme + '-' + mode + '.png') });
     }
   }
+  console.log('Map source selection');
+  await page.getByTestId('mode-map').click();
+  await page.locator('nav a[href="#/notes"]').click();
+  await page.locator('nav a[href="#/explore"]').click();
+  await page.getByTestId('explore-result').first().waitFor();
+  await page.getByTestId('map-note').filter({ hasText: 'Sources are grouped' }).waitFor();
+  const sourceHits = await page.evaluate(async () => (await (await fetch('/api/explore/search?q=light%20water%20mitochondria&top_k=60')).json()).results);
+  async function selectMarker(mode: string) {
+    const layout = modeById(mode).layout(sourceHits, { selected: null, scroll: 0 });
+    const canvas = page.getByTestId('explore-scene').locator('canvas');
+    const box = await canvas.boundingBox();
+    if (!box) throw new Error('Scene canvas missing');
+    const camera = new THREE.PerspectiveCamera(mode === 'globe' ? 44 : 45, box.width / box.height, .1, 1000);
+    camera.position.set(...layout.camera);
+    camera.lookAt(0, 0, 0);
+    camera.updateMatrixWorld();
+    const currentLabel = await page.getByTestId("explore-panel").innerText();
+    for (const node of layout.nodes) {
+      if (currentLabel.includes(node.label!)) continue;
+      const point = new THREE.Vector3(...node.position);
+      if (mode === 'globe') point.applyAxisAngle(new THREE.Vector3(1, 0, 0), .35);
+      if (mode === 'globe' && point.z < .1) continue;
+      point.project(camera);
+      const clickX = box.x + (point.x + 1) * box.width / 2;
+      const clickY = box.y + (1 - point.y) * box.height / 2;
+      await page.mouse.click(clickX, clickY);
+      await page.waitForTimeout(100);
+      if ((await page.getByTestId('explore-panel').innerText()).includes(node.label!)) return node.id;
+    }
+    throw new Error(mode + ' marker selection failed');
+  }
+  await selectMarker('map');
+  const mapSelection = await page.getByTestId('explore-panel').innerText();
+  await page.emulateMedia({ colorScheme: 'light' });
+  if (await page.getByTestId('explore-panel').innerText() !== mapSelection) throw new Error('Map selection lost');
+  await page.screenshot({ path: join(run, 'map-selected.png') });
+  console.log('Canon globe interactions');
+  await page.getByTestId('mode-globe').click();
+  await page.locator('nav a[href="#/notes"]').click();
+  await page.locator('nav a[href="#/explore"]').click();
+  await page.getByTestId('explore-result').first().waitFor();
+  await page.waitForSelector('[data-globe-style="canon"] canvas');
+  await page.waitForTimeout(700);
+  const globeCanvas = page.locator('[data-globe-style="canon"] canvas');
+  await selectMarker('globe');
+  const stationary = await globeCanvas.screenshot();
+  await page.waitForTimeout(400);
+  if (!stationary.equals(await globeCanvas.screenshot())) throw new Error('Reduced-motion globe moved');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.waitForTimeout(500);
+  if (stationary.equals(await globeCanvas.screenshot())) throw new Error('Globe spin did not resume');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.waitForTimeout(400);
+  const beforeDrag = await globeCanvas.screenshot();
+  const globeBox = await globeCanvas.boundingBox();
+  if (!globeBox) throw new Error('Globe canvas missing');
+  await page.mouse.move(globeBox.x + globeBox.width / 2, globeBox.y + globeBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(globeBox.x + globeBox.width / 2 + 160, globeBox.y + globeBox.height / 2 + 50, { steps: 12 });
+  await page.mouse.up();
+  await page.waitForTimeout(250);
+  if (beforeDrag.equals(await globeCanvas.screenshot())) throw new Error('Globe drag did not change the view');
+  await page.screenshot({ path: join(run, 'globe-after-drag.png') });
+  await page.getByTestId('mode-graph').click();
+  await page.route('**/textures/earth/*', route => route.abort());
+  await page.getByTestId('mode-globe').click();
+  await page.locator('nav a[href="#/notes"]').click();
+  await page.locator('nav a[href="#/explore"]').click();
+  await page.getByTestId('explore-result').first().waitFor();
+  await page.getByText('Land outline unavailable. Source markers remain selectable.', { exact: true }).waitFor();
+  await selectMarker('globe');
+  await page.screenshot({ path: join(run, 'globe-landmask-fallback.png') });
+  await page.unroute('**/textures/earth/*');
   console.log('atom interactions');
   await page.getByTestId('mode-atom').click();
   if (await page.locator('[data-particle]').count() !== 18) throw new Error('Carbon-12 count');
@@ -101,6 +174,29 @@ try {
     if (style === 'surface') await page.waitForSelector('[data-protein-style="surface"][data-surface-ready="true"]');
     await page.waitForTimeout(250);
   }
+  console.log('protein surface limits');
+  const pdb = (count: number) => Array.from({ length: count }, (_, i) => {
+    const x = (i % 15) * 2.5;
+    const y = (Math.floor(i / 15) % 15) * 2.5;
+    const z = Math.floor(i / 225) * 2.5;
+    return `ATOM  ${String(i + 1).padStart(5)}  CA  ALA A${String(i + 1).padStart(4)}    ${x.toFixed(3).padStart(8)}${y.toFixed(3).padStart(8)}${z.toFixed(3).padStart(8)}  1.00 20.00           C`;
+  }).join('\n') + '\nEND\n';
+  const boundedStart = Date.now();
+  await page.getByTestId('protein-file').setInputFiles({ name: 'near-limit.pdb', mimeType: 'chemical/x-pdb', buffer: Buffer.from(pdb(3000)) });
+  await page.getByText(/near-limit.pdb/).waitFor();
+  await page.getByTestId('protein-style-surface').click();
+  await page.waitForSelector('[data-protein-style="surface"][data-surface-ready="true"]', { timeout: 15000 });
+  const surfaceMs = Date.now() - boundedStart;
+  const rejectedStart = Date.now();
+  await page.getByTestId('protein-file').setInputFiles({ name: 'over-limit.pdb', mimeType: 'chemical/x-pdb', buffer: Buffer.from(pdb(3001)) });
+  await page.getByRole('alert').filter({ hasText: 'Use Ribbon or Backbone' }).waitFor();
+  const rejectedMs = Date.now() - rejectedStart;
+  for (const style of ['cartoon', 'backbone']) {
+    await page.getByTestId('protein-style-' + style).click();
+    await page.waitForFunction(() => !document.querySelector('[role="alert"]'));
+  }
+  evidence.push({ surfaceMs, rejectedMs, nearLimitAtoms: 3000, overLimitAtoms: 3001 });
+  console.log(JSON.stringify({ surfaceMs, rejectedMs }));
   await page.emulateMedia({ colorScheme: 'light' });
   console.log('DNA marker');
   await page.getByTestId('mode-dna').click();
@@ -148,10 +244,11 @@ try {
   }
   await page.screenshot({ path: join(run, 'narrow.png'), fullPage: true });
   if (problems.length) throw new Error(JSON.stringify(problems));
-  console.log(JSON.stringify({ screenshots: run, modesChecked: evidence.length, saved, focus, problems, markerSelected: marker.id }));
+  console.log(JSON.stringify({ screenshots: run, modesChecked: evidence.length - 1, saved, focus, problems, markerSelected: marker.id }));
 } catch (error) {
+  console.error(error);
   await page.screenshot({ path: join(run, 'failure.png'), fullPage: true });
-  console.error(JSON.stringify({ screenshots: run, text: await page.locator('main').first().innerText() }));
+  console.error(JSON.stringify({ screenshots: run, text: await page.locator('body').innerText() }));
   throw error;
 } finally {
   await browser.close();

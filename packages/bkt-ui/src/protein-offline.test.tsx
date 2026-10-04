@@ -5,8 +5,9 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { loadUi } from "../../bkt/src/serve";
 
-let threeDmol: () => unknown = () => ({});
-mock.module("3dmol", () => threeDmol());
+mock.module("3dmol", () => {
+  throw new Error("blocked by the content policy");
+});
 
 beforeAll(() => {
   GlobalRegistrator.register({ url: "http://127.0.0.1:4100/" });
@@ -18,7 +19,7 @@ async function mountProtein(fetcher: typeof fetch) {
   window.fetch = fetcher;
   const { act } = await import("react");
   const { createRoot } = await import("react-dom/client");
-  const { default: ProteinView, PROTEIN_OFFLINE } = await import("@/components/explore/ProteinView");
+  const { default: ProteinView, PROTEIN_OFFLINE } = await import("./explore/ProteinViewV2");
   const { proteinById } = await import("@/lib/explore/protein");
   const { PROTEINS } = await import("@/lib/explore/protein");
   const host = document.createElement("div");
@@ -40,9 +41,6 @@ describe("Explore modes offline", () => {
   });
 
   test("a 3D library that fails to load shows the same plain sentence", async () => {
-    threeDmol = () => {
-      throw new Error("blocked by the content policy");
-    };
     const { text, PROTEIN_OFFLINE } = await mountProtein((async () => new Response("HEADER\nEND\n")) as unknown as typeof fetch);
     expect(text).toContain(PROTEIN_OFFLINE);
     expect(text).not.toContain("content policy");

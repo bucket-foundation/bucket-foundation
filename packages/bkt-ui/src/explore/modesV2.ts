@@ -6,10 +6,12 @@ import type { ExploreMode, Guide, SceneLayout, Vec3 } from "../../../../src/lib/
 
 import { circleLayout } from "./circle-layout";
 import type { CircleGraph } from "./chem-circle";
+import { hasMapAxes, sourceMap } from "./source-map";
 
 const horizontal = ([x, y, z]: Vec3): Vec3 => [y, -x, z];
 
 export interface DesktopLayout extends SceneLayout {
+  canonEarth?: boolean;
   circle?: CircleGraph;
   circleError?: string;
   axisLength?: number;
@@ -39,7 +41,7 @@ function horizontalGuide(guide: Guide): Guide {
   return guide;
 }
 
-export const MODES: ExploreMode[] = originalModes.map((mode) => ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
+export const MODES: ExploreMode[] = originalModes.map((mode) => mode.id === "map" ? { ...mode, layout: (hits, context) => hasMapAxes(context.map) ? mode.layout(hits, context) : sourceMap(hits) } : ["globe", "earth"].includes(mode.id) ? { ...mode, layout(hits, context): DesktopLayout { const base = mode.layout(hits, context); return { ...base, nodes: base.nodes.map((node) => ({ ...node, size: Number.isFinite(node.size) ? Math.max(0.018, Math.min(0.048, node.size)) : 0.018 })), canonEarth: true, guides: [] }; } } : ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
   ...mode,
   layout(hits, context): DesktopLayout {
     const layout = mode.layout(hits, context);

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { GLViewer } from "3dmol";
 import { useSceneTheme } from "./useSceneTheme";
+import { surfaceEligible } from "./protein-surface";
 
 export const PROTEIN_OFFLINE = "The protein viewer could not start here, so this structure is hidden.";
 import { formatOf, summarize, type ProteinEntry, type ResidueLink, type StructureSummary } from "@/lib/explore/protein";
@@ -66,7 +67,9 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
       }
       setSummary(summarize(data.text, data.format));
       v.setStyle({}, { cartoon: { color: "spectrum", style: style === "backbone" ? "trace" : "rectangle" } });
-      if (style === "surface") {
+      if (style === "surface" && !surfaceEligible(v.selectedAtoms({}))) {
+        setError("Use Ribbon or Backbone for this structure's size.");
+      } else if (style === "surface") {
         $3Dmol.setSyncSurface(true);
         void v.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.7, color: "#C9B27A" }).then(
           () => live && setSurfaceReady(true),

@@ -13,6 +13,7 @@ import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
 import { SPLIT_NOTE } from "@/lib/explore/modes/map";
+import { hasMapAxes } from "./source-map";
 import type { MapModel } from "@/lib/explore/map";
 import DropZone from "@/components/explore/DropZone";
 import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
@@ -268,9 +269,9 @@ export default function ExploreClient() {
             </button>
           ))}
         </div>
-        {mode.id === "map" && origin === "bundle" && (
+        {mode.id === "map" && (
           <p data-testid="map-note" className="mt-3 text-sm" style={{ color: "var(--parchment-dim)", ...mono }}>
-            {SPLIT_NOTE}. The bundle builder decides who is published; profiles the bundle flags as unpublished, opted out or private are skipped.
+            {hasMapAxes(mapModel) ? mapModel.split ? SPLIT_NOTE : "Positions follow the available map axes." : "Sources are grouped by their recorded category. Lines show connections between the displayed sources."}
           </p>
         )}
         <DropZone onResult={handleUpload} />

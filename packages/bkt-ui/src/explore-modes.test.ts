@@ -50,7 +50,7 @@ describe("desktop helix direction", () => {
   });
 
   test("all other modes keep their existing geometry", () => {
-    for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction"].includes(mode.id))) {
+    for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction", "globe", "earth", "map"].includes(mode.id))) {
       expect(modeById(mode.id)).toBe(mode);
     }
     expect(modeById("missing")).toBe(MODES[0]);
@@ -86,5 +86,39 @@ test("DNA surface joins both strands and keeps markers on the horizontal axis", 
       const [x, y, z] = node.position;
       expect(horizontal.nodes[index]).toEqual({ ...node, position: [y, -x, z] });
     });
+  }
+});
+
+
+test("Canon globe styling preserves each Explore projection and source links", () => {
+  for (const id of ["globe", "earth"]) {
+    const context = { selected: null, scroll: 0 };
+    const original = originals.find((mode) => mode.id === id)!.layout(SAMPLE_HITS, context);
+    const desktop = modeById(id).layout(SAMPLE_HITS, context) as DesktopLayout;
+    expect(desktop.canonEarth).toBe(true);
+    expect(desktop.nodes).toEqual(original.nodes);
+    expect(desktop.links).toEqual(original.links);
+    expect(desktop.guides).toEqual([]);
+    expect(desktop.camera).toEqual(original.camera);
+  }
+});
+
+
+test("Globe and Earth markers stay selectable with native search scores", () => {
+  for (const id of ["globe", "earth"]) {
+    for (const score of [-10, 0, 0.5, 1, 5387382, Number.NaN, Number.POSITIVE_INFINITY]) {
+      const hits = SAMPLE_HITS.map((hit) => ({ ...hit, title: "France", score }));
+      const context = { selected: null, scroll: 0 };
+      const desktop = modeById(id).layout(hits, context);
+      const original = originals.find((mode) => mode.id === id)!.layout(hits, context);
+      expect(desktop.nodes.length).toBeGreaterThan(0);
+      expect(desktop.links).toEqual(original.links);
+      desktop.nodes.forEach((node, index) => {
+        expect(node.position).toEqual(original.nodes[index].position);
+        expect(node.id).toBe(original.nodes[index].id);
+        expect(node.size).toBeGreaterThanOrEqual(0.018);
+        expect(node.size).toBeLessThanOrEqual(0.048);
+      });
+    }
   }
 });
