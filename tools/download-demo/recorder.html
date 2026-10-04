@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bucket narration studio</title>
+<style>
+body{margin:0;background:#eeeadf;color:#1f1c16;font:16px/1.6 system-ui,sans-serif}main{max-width:800px;margin:50px auto;padding:24px}h1{font:44px Georgia,serif}label{display:block;margin:24px 0 8px}select,button{font:inherit;padding:12px;border:1px solid #98866a;background:#faf7ef}select{width:100%}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}#script{font:28px/1.55 Georgia,serif;padding:28px;background:#faf7ef;border-left:4px solid #b8861e;margin:24px 0}#record{background:#315e50;color:#fff}#status{min-height:28px}audio{display:block;width:100%;margin:24px 0}a{color:#315e50}small{display:block;color:#74634e}#takes article{border-top:1px solid #cbbfa9;padding:18px 0}*:focus-visible{outline:3px solid #b8861e;outline-offset:3px}
+</style>
+<main>
+<small>BUCKET / NARRATION STUDIO</small><h1>Tell the story in your voice.</h1>
+<p>Choose a section and read it at your pace. Stop, listen, and save the take you want to use. Audio stays in this browser until you save it to your computer.</p>
+<label for="chapter">Section</label><select id="chapter"></select>
+<p id="script"></p><button id="record">Record this section</button> <button id="stop" disabled>Stop</button>
+<p id="status" role="status">The microphone starts when you press Record.</p>
+<small>Each take can run for two minutes. Save your takes before leaving this page. A refresh removes unsaved recordings.</small>
+<div id="takes"></div>
+</main>
+<script type="module">
+const response = await fetch("./chapters.json");
+if (!response.ok) throw new Error("Narration script unavailable");
+const chapters = (await response.json()).chapters.map(({id, text}) => [id, text]);
+const chapter = document.querySelector("#chapter");
+const script = document.querySelector("#script");
+const record = document.querySelector("#record");
+const stop = document.querySelector("#stop");
+const status = document.querySelector("#status");
+let recorder, stream, timer;
+const urls = [];
+for (const [id] of chapters) { const option = new Option(id[0].toUpperCase() + id.slice(1), id); chapter.add(option); }
+function showScript() { script.textContent = chapters.find(([id]) => id === chapter.value)[1]; }
+chapter.addEventListener("change", showScript);
+showScript();
+function release() { clearTimeout(timer); stream?.getTracks().forEach(track => track.stop()); stream = undefined; }
+function finish() { if (recorder?.state === "recording") recorder.stop(); release(); }
+stop.addEventListener("click", finish);
+record.addEventListener("click", async () => {
+  if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { status.textContent = "Open this page on localhost in a browser that supports microphone recording."; return; }
+  record.disabled = true; chapter.disabled = true;
+  const id = chapter.value;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true }, video: false });
+    const mime = ["audio/webm;codecs=opus", "audio/ogg;codecs=opus", "audio/mp4"].find(type => MediaRecorder.isTypeSupported(type));
+    recorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+    const chunks = [];
+    recorder.addEventListener("dataavailable", event => { if (event.data.size) chunks.push(event.data); });
+    recorder.addEventListener("stop", () => {
+      const blob = new Blob(chunks, { type: recorder.mimeType });
+      const url = URL.createObjectURL(blob); urls.push(url);
+      const item = document.createElement("article");
+      const title = document.createElement("strong"); title.textContent = `${id}: ${new Date().toLocaleTimeString()}`;
+      const audio = document.createElement("audio"); audio.controls = true; audio.src = url;
+      const save = document.createElement("a"); save.href = url; save.textContent = "Save this take ↓";
+      const ext = blob.type.includes("mp4") ? "m4a" : blob.type.includes("ogg") ? "ogg" : "webm";
+      save.download = `${id}-${Date.now()}.${ext}`;
+      item.append(title, audio, save); document.querySelector("#takes").prepend(item);
+      release(); record.disabled = false; chapter.disabled = false; stop.disabled = true;
+      status.textContent = "Take ready. Listen and save it, or record another.";
+    });
+    recorder.addEventListener("error", () => { finish(); status.textContent = "Recording stopped. Check microphone access and try again."; });
+    recorder.start(); stop.disabled = false;
+    status.textContent = "Recording. Read the section, then press Stop.";
+    timer = setTimeout(finish, 120000);
+  } catch (error) {
+    release(); record.disabled = false; chapter.disabled = false; stop.disabled = true;
+    status.textContent = `Microphone unavailable: ${error.message}`;
+  }
+});
+window.addEventListener("pagehide", () => { finish(); urls.forEach(url => URL.revokeObjectURL(url)); });
+</script>
+</html>
