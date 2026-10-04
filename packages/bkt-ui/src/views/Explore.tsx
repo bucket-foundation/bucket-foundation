@@ -5,6 +5,7 @@ import { CANON_TROUBLE, windowHref } from "../site-fetch";
 import { plainError } from "../api";
 import { webglAvailable } from "./CanonSearch";
 import "../ros.css";
+import "../explore.css";
 
 export interface ExploreApi {
   exploreSaved(): Promise<unknown>;
