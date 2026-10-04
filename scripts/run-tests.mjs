@@ -20,6 +20,7 @@ const SUITES = {
       "scripts/test-research-host.ts",
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
+      "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-site-chrome.ts",
       "scripts/test-sitemap-routes.ts",
