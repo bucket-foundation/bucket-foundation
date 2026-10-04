@@ -360,6 +360,42 @@
   "type": "∀ (n1 N : Nat), n1 ≤ N → Bucket.Unknowns.missingMass n1 N ≤ 1"
  },
  {
+  "name": "BucketMath.Atom.counts",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Atom",
+  "source": "lean/BucketMath/Atom.lean",
+  "line": 3,
+  "type": "Nat → Nat → Nat × Nat × Nat"
+ },
+ {
+  "name": "BucketMath.Atom.neutral",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Atom",
+  "source": "lean/BucketMath/Atom.lean",
+  "line": 5,
+  "type": "∀ (z a : Nat), (BucketMath.Atom.counts z a).fst = (BucketMath.Atom.counts z a).snd.snd"
+ },
+ {
+  "name": "BucketMath.Atom.nucleons",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Atom",
+  "source": "lean/BucketMath/Atom.lean",
+  "line": 8,
+  "type": "∀ (z a : Nat), z ≤ a → (BucketMath.Atom.counts z a).fst + (BucketMath.Atom.counts z a).snd.fst = a"
+ },
+ {
+  "name": "BucketMath.Atom.total",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Atom",
+  "source": "lean/BucketMath/Atom.lean",
+  "line": 12,
+  "type": "∀ (z a : Nat),\n  z ≤ a →\n    (BucketMath.Atom.counts z a).fst + (BucketMath.Atom.counts z a).snd.fst + (BucketMath.Atom.counts z a).snd.snd =\n      a + z"
+ },
+ {
   "name": "BucketMath.Directions.modularity_single_cluster",
   "kind": "theorem",
   "status": "proved",

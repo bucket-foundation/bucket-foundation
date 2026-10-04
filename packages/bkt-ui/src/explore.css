@@ -1,0 +1,329 @@
+.main:has(.explore-site) {
+  min-width: 0;
+}
+
+.explore-site {
+  --basalt: var(--ink);
+  --basalt-2: var(--ink-2);
+  --bone: var(--paper);
+  --bone-2: var(--panel);
+  --hairline: var(--line);
+  --parchment-dim: var(--ink-2);
+  --gold: var(--accent);
+  --font-jetbrains: inherit;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+:where(.explore-site) *,
+:where(.explore-site) ::before,
+:where(.explore-site) ::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+:where(.explore-site) :where(h1, h2, h3, p, ol, ul) {
+  margin: 0;
+}
+
+:where(.explore-site) :where(ol, ul) {
+  list-style: none;
+  padding: 0;
+}
+
+:where(.explore-site) :where(button, input, select) {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+:where(.explore-site) :where(button) {
+  background: transparent;
+}
+
+.explore-site .hairline {
+  border-color: var(--line);
+}
+
+.explore-site > main {
+  min-height: 0;
+}
+
+.explore-site > main > div {
+  max-width: none;
+  padding: 16px 0 32px;
+}
+
+.explore-site > main > div > p:first-child {
+  display: none;
+}
+
+.explore-site form input,
+.explore-site select,
+.explore-site button.border {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.explore-site form input {
+  min-width: 0;
+  min-height: 44px;
+}
+
+.explore-site input::placeholder {
+  color: var(--ink-3);
+}
+
+.explore-site input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.explore-site input[type="file"] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.explore-site input::file-selector-button {
+  font: inherit;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--panel);
+  cursor: pointer;
+}
+
+.explore-site [data-testid="dna-panel"] {
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.explore-site [data-testid="dna-panel"] label {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.explore-site select option {
+  color: var(--ink);
+  background: var(--panel);
+}
+
+.explore-site button.border:hover,
+.explore-site [data-testid="drop-zone"]:hover {
+  border-color: var(--accent);
+}
+
+.explore-site :is(button, input, select, a, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.explore-site button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.explore-site :is(button[type="submit"], [aria-selected="true"], [aria-pressed="true"]) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.explore-site [role="tab"] {
+  min-height: 36px;
+  padding: 6px 14px;
+}
+
+.explore-site [data-testid="drop-zone"] {
+  border-radius: 10px;
+  color: var(--ink-2);
+  background: var(--panel);
+}
+
+.explore-site [data-testid="explore-scene"] {
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.explore-site [data-testid="explore-scene"] canvas {
+  display: block;
+}
+
+.explore-site :is([data-testid="explore-panel"], [data-testid="explore-pinned"], [data-testid="saved-panel"]) {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.explore-site [data-testid="explore-result"] > button {
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+.explore-site :is([data-testid="explore-panel"], [data-testid="explore-result"]) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.explore-site a,
+.explore-site button.underline {
+  color: var(--accent);
+}
+
+.explore-site .grid {
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.atom-controls,
+.atom-legend,
+.atom-related {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.atom-controls button,
+.atom-controls select,
+.atom-related button {
+  padding: 6px 12px;
+}
+
+.atom-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.atom-stage {
+  background: var(--paper);
+  height: 520px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.atom-stage svg {
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+}
+
+.atom-guide {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 0.8;
+}
+
+.atom-point {
+  stroke: var(--paper);
+  stroke-width: 0.5;
+}
+
+.atom-stage [role="button"] {
+  cursor: pointer;
+}
+
+.atom-stage [role="button"]:focus-visible {
+  outline: none;
+}
+
+.atom-stage [role="button"]:focus-visible .atom-point,
+.atom-stage [role="button"]:hover .atom-point {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.atom-center {
+  fill: var(--ink);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.atom-caption {
+  fill: var(--ink-2);
+  font-size: 12px;
+}
+
+.atom-symbol {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 8px;
+}
+
+.atom-description,
+.atom-legend {
+  color: var(--ink-2);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.atom-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.atom-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.atom-related {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.atom-related button {
+  text-align: left;
+}
+
+@media (max-width: 1100px) {
+  .explore-site .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .explore-site [data-testid="explore-panel"] {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .atom-stage {
+    height: min(520px, 100vw);
+  }
+  .shell:has(.explore-site) .side {
+    flex-wrap: wrap;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .shell:has(.explore-site) .side nav {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .main.wide:has(.explore-site) {
+    padding: 20px 16px 32px;
+  }
+}
+
+.explore-site .circle-stage svg { width: 100%; height: 100%; }
+.explore-site .circle-bond { stroke: var(--ink-3); stroke-width: 1.4; }
+.explore-site .circle-point text { fill: var(--ink); stroke: none; font-size: 12px; pointer-events: none; }
+.explore-site .circle-point .circle-symbol { fill: #151412; font-size: 10px; font-weight: 600; paint-order: stroke; stroke: #fffdf8; stroke-width: 2px; }
+.explore-site .circle-point[aria-pressed="true"] > circle { stroke: var(--accent); stroke-width: 4px; }
+.explore-site .circle-point:focus-visible > circle,
+.explore-site .circle-point:hover > circle { stroke: var(--accent); stroke-width: 3px; }
