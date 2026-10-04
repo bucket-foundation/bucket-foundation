@@ -90,11 +90,17 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
   }
 
   return (
-    <form onSubmit={submit} className="mt-6 flex flex-col gap-3" noValidate>
+    <form onSubmit={submit} className="mt-4 flex flex-col gap-2" noValidate data-download-form>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-2">
+      <div className="flex flex-col gap-2">
       <label htmlFor="flow-email" className={LABEL}>Email</label>
       <input id="flow-email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={INPUT} />
+      </div>
+      <div className="flex flex-col gap-2">
       <label htmlFor="flow-name" className={LABEL}>Name</label>
       <input id="flow-name" type="text" autoComplete="name" required maxLength={NAME_MAX} value={name} onChange={(e) => setName(e.target.value)} className={INPUT} />
+      </div>
+      </div>
       <label htmlFor="flow-platform" className={LABEL}>Computer</label>
       <select id="flow-platform" required value={platform} onChange={(e) => setPlatform(e.target.value)} className={INPUT}>
         <option value="">Choose</option>
@@ -102,6 +108,9 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
           <option key={p} value={p}>{PLATFORM_LABEL[p]}</option>
         ))}
       </select>
+      <details className="my-2 text-[12px]">
+      <summary className="cursor-pointer py-2">Research interests and email updates</summary>
+      <div className="flex flex-col gap-2 pt-2">
       <label htmlFor="flow-role" className={LABEL}>Role</label>
       <select id="flow-role" value={role} onChange={(e) => setRole(e.target.value)} className={INPUT}>
         <option value="">Skip</option>
@@ -125,6 +134,8 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
         <input type="checkbox" checked={dailyNew} onChange={(e) => setDailyNew(e.target.checked)} className="mt-1" />
         <span>Daily digest</span>
       </label>
+      </div>
+      </details>
       <label className={CHECK}>
         <input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1" aria-label="Agree to the privacy terms" />
         <span>I agree to the <Link href="/privacy" className="underline">privacy terms</Link>.</span>
