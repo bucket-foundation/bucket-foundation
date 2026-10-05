@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { EarthV2 } from "./EarthV2";
 import { HaloV2 } from "./HaloV2";
 import { useSceneTheme } from "./useSceneTheme";
+import { spinStep, startSpinTicker } from "./frame-policy";
 import type { DesktopLayout } from "./modesV2";
 import type { Guide, Vec3 } from "@/lib/explore/modes/types";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
@@ -19,13 +20,14 @@ interface Props {
 }
 
 function HorizontalCamera({ length }: { length: number }) {
-  const { camera, size } = useThree();
+  const { camera, size, invalidate } = useThree();
   useLayoutEffect(() => {
     if (!(camera instanceof THREE.PerspectiveCamera)) return;
     camera.position.set(0, 0, Math.max(5.5, length / 2 / (size.width / size.height) / Math.tan(camera.fov * Math.PI / 360)));
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
-  }, [camera, length, size.width, size.height]);
+    invalidate();
+  }, [camera, length, size.width, size.height, invalidate]);
   return null;
 }
 
@@ -108,12 +110,28 @@ function GuideView({ g, theme }: { g: Guide; theme: ReturnType<typeof useSceneTh
   }
 }
 
-function Scene({ layout, selected, onSelect, theme }: Props & { theme: ReturnType<typeof useSceneTheme> }) {
+function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: ReturnType<typeof useSceneTheme>; active: { current: number } }) {
   const group = useRef<THREE.Group>(null);
   const reduced = useReducedMotion();
   const pos = useMemo(() => new Map(layout.nodes.map((n) => [n.id, n.position])), [layout]);
+  const invalidate = useThree((state) => state.invalidate);
+  const spinning = !!layout.spin && !reduced;
+  useEffect(() => {
+    if (!spinning) return;
+    return startSpinTicker({
+      invalidate,
+      hidden: () => document.hidden,
+      idleMs: () => performance.now() - active.current,
+      every: (run, ms) => setInterval(run, ms),
+      cancel: (handle) => clearInterval(handle as ReturnType<typeof setInterval>),
+    });
+  }, [spinning, invalidate, active]);
+  useEffect(() => {
+    active.current = performance.now();
+    invalidate();
+  }, [layout, selected, theme, invalidate, active]);
   useFrame((_, dt) => {
-    if (group.current && layout.spin && !reduced) group.current.rotation.y += layout.spin * dt;
+    if (group.current && layout.spin && !reduced) group.current.rotation.y += spinStep(layout.spin, dt);
   });
   const contents = (
     <>
@@ -155,6 +173,10 @@ export default function SceneHost(props: Props) {
   const { layout, onScroll } = props;
   const theme = useSceneTheme();
   const scrollMode = layout.wheel === "scroll";
+  const active = useRef(performance.now());
+  const touch = () => {
+    active.current = performance.now();
+  };
   return (
     <div
       data-testid="explore-scene"
@@ -163,13 +185,18 @@ export default function SceneHost(props: Props) {
       data-axis={layout.axisLength ? "horizontal" : undefined}
       className="w-full h-[420px] md:h-[520px] border hairline"
       style={{ background: "var(--paper)" }}
-      onWheel={scrollMode && onScroll ? (e) => onScroll(e.deltaY) : undefined}
+      onPointerMove={touch}
+      onPointerDown={touch}
+      onWheel={(e) => {
+        touch();
+        if (scrollMode && onScroll) onScroll(e.deltaY);
+      }}
     >
-      <Canvas camera={{ position: layout.camera, fov: layout.canonEarth ? 44 : 45 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: layout.camera, fov: layout.canonEarth ? 44 : 45 }} dpr={[1, 2]} frameloop="demand">
         {layout.axisLength && <HorizontalCamera length={layout.axisLength} />}
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.1} />
-        <Scene {...props} theme={theme} />
+        <Scene {...props} theme={theme} active={active} />
         <OrbitControls enablePan={false} enableZoom={!scrollMode} makeDefault />
       </Canvas>
     </div>
