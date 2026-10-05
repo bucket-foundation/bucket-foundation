@@ -7,7 +7,7 @@ import { FORM_MAKERS, type SampledQuestion } from "../src/lib/research-os/work-q
 import { LIMIT_SEC, rewriteQuestion, seededRng } from "../src/lib/research-os/work-quiz/generate";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
-import { LANGUAGE_CHOICES, MIN_STRICT_PAIRS, buildWordSet, fold, headword, knownLanguages, languageMakers, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
+import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
 import { BLOCKED_FORMS, DEPTHS, FORMS, FORM_LIMIT_SEC, LANGUAGE_FORMS, VALID_PAIRS, type Depth, type LanguageForm } from "../src/lib/research-os/work-quiz/space";
@@ -25,9 +25,11 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 1449;
-const STRICT_CONCEPTS = 184;
-const STRICT_PAIRS = 11902;
+const STRICT_CELLS = 844;
+const STRICT_CONCEPTS = 144;
+const STRICT_PAIRS = 5190;
+const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
+const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;
 
 function made(form: LanguageForm, languages: string[], tries = TRIES): SampledQuestion[] {
@@ -61,10 +63,45 @@ test("a cell is strict when the gloss reduces to its concept and its language ho
   const keys = SET.cells.map((c) => `${c.lang}:${c.concept}`);
   assert.equal(new Set(keys).size, keys.length);
   for (const c of SET.cells) {
-    const twins = RAW.words.filter((w) => w.l === c.lang && w.c === c.concept && strictMatch(w));
+    const twins = RAW.words.filter((w) => w.l === c.lang && w.c === c.concept && cleanMatch(w, SET.conceptPos));
     assert.equal(twins.length, 1, `${c.lang}:${c.concept}`);
+    assert.equal(c.pos, SET.conceptPos[c.concept]);
     assert.ok(![c.word, c.concept, c.lang].some((s) => s.includes(FACT_JOIN) || s.includes(CARD_KEY_SEPARATOR)));
   }
+});
+
+test("the strict cell count and the pair count hold exact values", () => {
+  assert.deepEqual([SET.cells.length, strictPairs(SET)], [STRICT_CELLS, STRICT_PAIRS]);
+});
+
+test("known bad cells fail the filter", () => {
+  for (const [lang, word] of [["ja", "空手"], ["fr", "assises"], ["id", "asap"], ["hi", "शुभ"], ["ru", "добро"], ["la", "diu"], ["ar", "أصل"]]) {
+    assert.ok(raw(lang, word).c, `${lang} ${word}`);
+    assert.equal(cleanMatch(raw(lang, word), SET.conceptPos), false, `${lang} ${word}`);
+    assert.ok(!SET.cells.some((c) => c.lang === lang && c.word === word), `${lang} ${word}`);
+  }
+  for (const [lang, concept] of [["ja", "left"], ["fr", "law"], ["id", "smoke"], ["hi", "good"], ["ru", "good"], ["la", "long"], ["ar", "ground"], ["en", "book"], ["en", "smoke"]]) assert.equal(has(lang, concept), false, `${lang}:${concept}`);
+  assert.equal(SET.conceptPos.long, "adj");
+  assert.equal(SET.conceptPos.good, "adj");
+  assert.equal(SET.conceptPos.book, undefined);
+  assert.equal(raw("en", "book").p, "verb");
+  assert.equal(SET.conceptPos.smoke, undefined);
+  const long = SET.cells.find((c) => c.lang === "he" && c.concept === "long")!;
+  assert.ok(pairTargets(SET, long).every((c) => c.pos === "adj" && c.word !== "diu"));
+  for (const c of SET.byLang.en) assert.ok(!/^(bold|terms|relating|to do with)/i.test(c.gloss), c.gloss);
+  assert.equal(SET.byLang.en.find((c) => c.word === "bad")?.gloss ?? "", "");
+});
+
+test("a pair needs one part of speech and a concept held by three languages", () => {
+  const ground = SET.byConcept.ground ?? [];
+  assert.ok(ground.length > 0 && new Set(ground.map((c) => c.lang)).size < MIN_PAIR_LANGUAGES);
+  for (const c of ground) assert.deepEqual(pairTargets(SET, c), []);
+  assert.ok(!ground.some((c) => c.word === "أصل"));
+  for (const c of SET.cells) for (const t of pairTargets(SET, c)) {
+    assert.equal(t.pos, c.pos);
+    assert.ok(new Set(SET.byConcept[c.concept].map((x) => x.lang)).size >= MIN_PAIR_LANGUAGES);
+  }
+  for (const q of made("pair", [...SET.languages], 80)) assert.ok(!q.explain.includes('"ground"') && ![q.lines[0], ...q.choices!].includes("أصل"));
 });
 
 test("the strict pair count clears the bar, so pair ships", () => {
@@ -149,7 +186,7 @@ test("wrong words come from other concepts in the same language and script and n
   for (const lang of SET.languages) for (const form of ["meaning", "sound", "pair"] as const) for (const q of made(form, [lang], 10)) {
     const a = cellOf(q.sources[0].ref);
     for (const wrong of q.choices!.filter((c) => c !== q.answer)) {
-      const cell = SET.byLang[a.lang].find((c) => c.word === wrong)!;
+      const cell = SET.fill[a.lang].find((c) => c.word === wrong)!;
       assert.ok(cell, `${wrong} is a strict ${a.lang} word`);
       assert.notEqual(cell.concept, a.concept);
       assert.equal(cell.script, a.script);
@@ -196,6 +233,16 @@ test("the language form skips shared spellings and keeps one right answer", () =
     for (const c of q.choices!) assert.ok(Object.values(SET.names).includes(c));
     if (lang === "zh") assert.ok(!q.choices!.includes(SET.names.ja));
     if (lang === "ja") assert.equal(a.script, "kana");
+  }
+  const lever = SET.cells.find((c) => c.lang === "sv" && c.word === "lever")!;
+  assert.equal(lever.shared, false);
+  const rivals = languageRivals(SET, lever).flat();
+  for (const l of ["nl", "en", "de"]) assert.ok(!rivals.includes(l), l);
+  for (const lang of ["nl", "en"]) {
+    const twin = buildWordSet({ ...RAW, words: [...RAW.words, { s: "Léver", l: lang, g: "lever", p: "noun", c: "liver" }] });
+    assert.equal(twin.cells.find((c) => c.lang === "sv" && c.word === "lever")!.shared, true);
+    const maker = languageMakers(twin, ["sv"]).language!;
+    for (let i = 0; i < 300; i++) assert.notEqual(maker(NONE, seededRng(`lever-${i}`), 3)?.lines[0], "lever");
   }
   const near = made("language", ["fa"], 40).filter((q) => q.depth === 1);
   assert.ok(near.length > 0 && near.every((q) => q.choices!.includes(SET.names.ar)));
