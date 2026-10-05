@@ -1300,3 +1300,9 @@ table.columns thead th {
 .foot-link + .foot {
   margin-top: 6px;
 }
+.ros-stack { display: grid; gap: 16px; }
+.ros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.ros-links { margin: 0; padding-left: 18px; }
+.ros-links li { margin: 4px 0; }
+.ros-recall li { margin: 8px 0; }
+.ros-form label { display: flex; gap: 12px; align-items: center; margin: 8px 0; }

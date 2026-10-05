@@ -20,9 +20,15 @@ export type Route =
   | { name: "atlases" }
   | { name: "notes" }
   | { name: "history" }
-  | { name: "data" };
+  | { name: "data" }
+  | { name: "graph"; branch?: string }
+  | { name: "node"; slug: string }
+  | { name: "progress" }
+  | { name: "profile" };
 
-const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data"]);
+const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+const NODE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/;
 
 export function isDay(day: string | undefined): day is string {
   if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;
@@ -42,6 +48,8 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "work" && parts[1] === "daily" && parts.length === 3 && isDay(parts[2])) return { name: "daily", day: parts[2] };
   if (parts[0] === "canon" && parts[1] === "find" && parts.length === 3 && parts[2].length <= 200) return { name: "canon", find: parts[2] };
   if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
+  if (parts[0] === "graph") return parts.length === 2 && BRANCH.test(parts[1]) ? { name: "graph", branch: parts[1] } : { name: "graph" };
+  if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
 }
@@ -52,6 +60,8 @@ export function href(r: Route): string {
   if (r.name === "daily") return `#/work/daily/${r.day}`;
   if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";
   if (r.name === "search") return r.id === undefined ? "#/search" : `#/search/${r.id}`;
+  if (r.name === "graph") return r.branch ? `#/graph/${encodeURIComponent(r.branch)}` : "#/graph";
+  if (r.name === "node") return `#/node/${encodeURIComponent(r.slug)}`;
   return `#/${r.name}`;
 }
 

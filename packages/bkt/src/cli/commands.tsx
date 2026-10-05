@@ -49,7 +49,7 @@ import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
 import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
-import { BUNDLED_ROS, rosRoutes } from "../ros";
+import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
@@ -164,6 +164,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const cliToken = randomBytes(32).toString("base64url");
@@ -186,6 +187,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
+      ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),

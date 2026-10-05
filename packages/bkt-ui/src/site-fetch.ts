@@ -1,3 +1,4 @@
+import { rosLiveLocal } from "@ros/contract";
 import { href } from "./router";
 
 export const SITE_ROUTES: Readonly<Record<string, string>> = { "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search" };
@@ -18,6 +19,8 @@ export function windowHref(path: string): string | null {
   }
   if (path === "/canon/search") return href({ name: "search" });
   if (path === "/explore" || path.startsWith("/explore#") || path.startsWith("/explore?")) return href({ name: "explore" });
+  const ros = rosHref(path);
+  if (ros) return ros;
   const find = /^\/canon\/search\?q=([^&#]+)$/.exec(path);
   if (!find) return null;
   try {
@@ -25,6 +28,30 @@ export function windowHref(path: string): string | null {
   } catch {
     return null;
   }
+}
+
+function rosHref(path: string): string | null {
+  if (!path.startsWith("/research-os")) return null;
+  let url: URL;
+  try {
+    url = new URL(path, "http://window.local");
+    decodeURIComponent(url.pathname);
+  } catch {
+    return null;
+  }
+  const p = url.pathname;
+  const node = /^\/research-os\/n\/([^/]+)$/.exec(p);
+  if (node) return href({ name: "node", slug: decodeURIComponent(node[1]) });
+  if (p === "/research-os/map") {
+    const branch = url.searchParams.get("branch");
+    return url.searchParams.get("view") === "globe" ? href({ name: "canon" }) : href(branch ? { name: "graph", branch } : { name: "graph" });
+  }
+  if (p === "/research-os/home" || p === "/research-os") return href({ name: "progress" });
+  if (p === "/research-os/profile") return href({ name: "profile" });
+  if (p === "/research-os/learn/path" || p === "/research-os/learn") return href({ name: "learn" });
+  const learn = /^\/research-os\/learn\/([^/]+)(?:\/([^/]+))?$/.exec(p);
+  if (learn) return href({ name: "deck", deck: decodeURIComponent(learn[1]), atom: learn[2] ? decodeURIComponent(learn[2]) : undefined });
+  return null;
 }
 
 type Hit = { claim_id: number; concept: string; slug: string; score: number };
@@ -51,9 +78,16 @@ export function siteFetch(base: typeof fetch, origin: string, token: string, off
       console.warn(`bkt offline: refused ${url.href}`);
       throw new TypeError(OFFLINE_MESSAGE);
     }
+    const signal = init?.signal ?? (typeof input === "object" && "signal" in input ? input.signal : undefined);
+    const ros = url.origin === origin ? rosLiveLocal(url.pathname) : undefined;
+    if (ros && (method === "GET" || method === "POST")) {
+      const headers: Record<string, string> = { authorization: `Bucket ${token}` };
+      if (method === "POST") headers["content-type"] = "application/json";
+      const body = method === "POST" ? init?.body ?? (input instanceof Request ? await input.clone().text() : undefined) : undefined;
+      return base(`${ros}${url.search}`, { method, signal, headers, body });
+    }
     const local = url.origin === origin && method === "GET" ? SITE_ROUTES[url.pathname] : undefined;
     if (!local) return base(input, init);
-    const signal = init?.signal ?? (typeof input === "object" && "signal" in input ? input.signal : undefined);
     let r: Response;
     try {
       r = await base(`${local}${url.search}`, { method: "GET", signal, headers: { authorization: `Bucket ${token}` } });
