@@ -91,8 +91,18 @@ for (const form of BUILT) {
   });
 }
 
-test("the same seed yields the same question id, so regenerating keeps ids", () => {
-  for (const form of BUILT) assert.equal(makeForm(form, SOURCES, "x", 2)?.id, makeForm(form, SOURCES, "x", 2)?.id);
+test("the same seed yields a deep-equal question for every built form, depth and seed", () => {
+  let made = 0;
+  for (const form of BUILT) {
+    for (const depth of DEPTHS) {
+      for (let s = 0; s < 50; s++) {
+        const a = makeForm(form, SOURCES, `same-${s}`, depth);
+        assert.deepEqual(makeForm(form, SOURCES, `same-${s}`, depth), a, `${form} ${depth} ${s}`);
+        if (a) made += 1;
+      }
+    }
+  }
+  assert.ok(made >= 300, `made ${made}`);
 });
 
 test("order uses a choice string and estimate grades by log10 distance", () => {

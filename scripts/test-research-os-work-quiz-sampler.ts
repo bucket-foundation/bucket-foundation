@@ -38,6 +38,17 @@ test("no fact appears twice in a day and every question passes checkLimits", () 
   }
 });
 
+test("every day of 60 samples to a deep-equal quiz when run twice", () => {
+  let d = "2026-10-01";
+  const seen = new Set<string>();
+  for (let i = 0; i < 60; i++, d = nextDay(d)) {
+    const a = sampleQuiz({ day: d, sources: SOURCES });
+    assert.deepEqual(sampleQuiz({ day: d, sources: SOURCES }), a, d);
+    seen.add(JSON.stringify(a.questions));
+  }
+  assert.equal(seen.size, 60);
+});
+
 const due = (key: string, factIds: string[], dueAt: number): DueCard => {
   const q = makeForm("true_false", SOURCES, key, 1)!;
   return { cardKey: `${factIds.join("+")}|true_false`, factIds, question: { ...q, id: `${q.id}-${key}` }, dueAt };
@@ -59,6 +70,22 @@ test("a due card whose fact is already used that day is skipped", () => {
   const now = Date.parse("2026-10-01T12:00:00Z");
   const cards = [due("a", ["bead:x1"], now - 2 * DAY_MS), due("b", ["bead:x1"], now - 3 * DAY_MS)];
   assert.equal(sampleQuiz({ day: "2026-10-01", sources: SOURCES, due: cards, now }).reviewed, 1);
+});
+
+test("no fact repeats across review cards and sampled questions on one day", () => {
+  let d = "2026-10-01";
+  for (let i = 0; i < 30; i++, d = nextDay(d)) {
+    const now = Date.parse(`${d}T12:00:00Z`);
+    const taken = sampleQuiz({ day: d, sources: SOURCES }).picks.flatMap((p) => p.factIds);
+    assert.ok(taken.length >= 2, d);
+    const cards = [due("a", [taken[0]], now - 2 * DAY_MS), due("b", [taken[1]], now - DAY_MS)];
+    const quiz = sampleQuiz({ day: d, sources: SOURCES, due: cards, now });
+    assert.equal(quiz.reviewed, REVIEW_SLOTS, d);
+    const facts = [...cards.flatMap((c) => c.factIds), ...quiz.picks.flatMap((p) => p.factIds)];
+    assert.equal(new Set(facts).size, facts.length, `${d} ${facts.join(" ")}`);
+    assert.equal(quiz.questions.length, quiz.reviewed + quiz.picks.length);
+    assert.deepEqual(sampleQuiz({ day: d, sources: SOURCES, due: cards, now }), quiz, d);
+  }
 });
 
 test("over 30 simulated days coverage moves to the least-seen cell and reaches every built cell", () => {
