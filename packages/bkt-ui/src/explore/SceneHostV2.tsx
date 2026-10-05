@@ -2,12 +2,12 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html, Line, OrbitControls } from "@react-three/drei";
-import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { EarthV2 } from "./EarthV2";
 import { HaloV2 } from "./HaloV2";
 import { useSceneTheme } from "./useSceneTheme";
-import { spinStep, startSpinTicker } from "./frame-policy";
+import { isResting, onVisible, sceneDpr, spinStep, startSpinTicker } from "./frame-policy";
 import type { DesktopLayout } from "./modesV2";
 import type { Guide, Vec3 } from "@/lib/explore/modes/types";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
@@ -129,7 +129,15 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
   useEffect(() => {
     active.current = performance.now();
     invalidate();
-  }, [layout, selected, theme, invalidate, active]);
+  }, [layout, selected, theme, reduced, invalidate, active]);
+  useEffect(
+    () =>
+      onVisible(document, () => {
+        active.current = performance.now();
+        invalidate();
+      }),
+    [invalidate, active],
+  );
   useFrame((_, dt) => {
     if (group.current && layout.spin && !reduced) group.current.rotation.y += spinStep(layout.spin, dt);
   });
@@ -174,9 +182,15 @@ export default function SceneHost(props: Props) {
   const theme = useSceneTheme();
   const scrollMode = layout.wheel === "scroll";
   const active = useRef(performance.now());
+  const [resting, setResting] = useState(false);
   const touch = () => {
     active.current = performance.now();
+    if (resting) setResting(false);
   };
+  useEffect(() => {
+    const timer = setInterval(() => setResting(isResting(performance.now() - active.current)), 1000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <div
       data-testid="explore-scene"
@@ -192,7 +206,7 @@ export default function SceneHost(props: Props) {
         if (scrollMode && onScroll) onScroll(e.deltaY);
       }}
     >
-      <Canvas camera={{ position: layout.camera, fov: layout.canonEarth ? 44 : 45 }} dpr={[1, 2]} frameloop="demand">
+      <Canvas camera={{ position: layout.camera, fov: layout.canonEarth ? 44 : 45 }} dpr={sceneDpr(resting)} frameloop="demand">
         {layout.axisLength && <HorizontalCamera length={layout.axisLength} />}
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.1} />
