@@ -331,7 +331,7 @@ const sound = (set: WordSet, languages: readonly string[]): FormMaker => (_src, 
 
 export function languageRivals(set: WordSet, a: WordCell): string[][] {
   const tier = FAMILY_TIERS.find((t) => t.includes(a.lang)) ?? [];
-  const bare = a.script === "latin" && a.word.normalize("NFKD") === a.word && !/[^\x00-\x7f]/.test(a.word);
+  const bare = a.script === "latin" && a.word.normalize("NFKD") === a.word && Array.from(a.word).every((ch) => ch.charCodeAt(0) < 0x80);
   const others = set.languages.filter((l) => l !== a.lang && !(a.lang === "zh" && l === "ja") && !(bare && tier.includes(l)));
   const sameScript = others.filter((l) => set.scripts[l] === set.scripts[a.lang] || (a.script === "kana" && set.scripts[l] === "han"));
   const family = others.filter((l) => tier.includes(l) && !sameScript.includes(l));
