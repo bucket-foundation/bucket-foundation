@@ -1079,7 +1079,7 @@ describe("Research OS views on the local store", () => {
     });
     await submit();
     expect(v.text()).toContain("Saved.");
-    globalThis.fetch = (() => Promise.reject(new TypeError("offline"))) as typeof fetch;
+    globalThis.fetch = (() => Promise.reject(new TypeError("offline"))) as unknown as typeof fetch;
     await submit();
     expect(v.text()).toContain("That did not save. Try again.");
     expect(v.text()).not.toContain("Saved.");
