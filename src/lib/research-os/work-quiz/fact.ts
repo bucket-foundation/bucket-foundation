@@ -1,7 +1,7 @@
 import type { Form } from "./space";
 import type { QuizQuestion, QuizType, SourceRef, WorkSources } from "./types";
 
-export const FACT_KINDS = ["pr", "bead", "note", "chat", "atom", "count"] as const;
+export const FACT_KINDS = ["pr", "bead", "note", "chat", "atom", "count", "word"] as const;
 export type FactKind = (typeof FACT_KINDS)[number];
 
 export interface Fact {
@@ -53,6 +53,10 @@ export const TYPE_FORM: Readonly<Record<QuizType, Form>> = {
   which_first: "compare",
   estimate: "estimate",
   spot_error: "spot_error",
+  meaning: "meaning",
+  sound: "sound",
+  language: "language",
+  pair: "pair",
 };
 
 export function factIdOfSource(ref: SourceRef): string {

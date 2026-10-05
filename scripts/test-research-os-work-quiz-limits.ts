@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CLOZE_TITLE_TOKENS, MAKERS, OPTION_TITLE_TOKENS, STEM_TITLE_TOKENS, clozeOptions, clozeWords, generateQuestion, rewriteQuestion, seededRng, shortPair, uniqueShort } from "../src/lib/research-os/work-quiz/generate";
 import { LIMITS, checkLimits, countTokens, parityOk, screenTokens, shortTitle, stemTokens, tokenize, withinLimits } from "../src/lib/research-os/work-quiz/limits";
-import { QUIZ_TYPES, type QuizType, type WorkSources } from "../src/lib/research-os/work-quiz/types";
+import { QUIZ_TYPES, type WorkQuizType, type WorkSources } from "../src/lib/research-os/work-quiz/types";
 
 const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
 const SEEDS = 200;
@@ -238,7 +238,7 @@ function allPairs(titles: string[]): boolean[] {
   return out;
 }
 
-export function validCells(titles: { prs: string[]; beads: string[] }): Record<QuizType | "four_titles", number> {
+export function validCells(titles: { prs: string[]; beads: string[] }): Record<WorkQuizType | "four_titles", number> {
   const all = [...titles.prs, ...titles.beads];
   const shorts = all.map((t) => shortTitle(t, CLOZE_TITLE_TOKENS));
   const pool = Array.from(new Set(shorts.flatMap(clozeWords)));

@@ -1,5 +1,8 @@
-export const FORMS = ["recall", "cloze", "true_false", "estimate", "compare", "order", "which_changed", "cause_effect", "spot_error"] as const;
+export const FORMS = ["recall", "cloze", "true_false", "estimate", "compare", "order", "which_changed", "cause_effect", "spot_error", "meaning", "sound", "language", "pair"] as const;
 export type Form = (typeof FORMS)[number];
+
+export const LANGUAGE_FORMS = ["meaning", "sound", "language", "pair"] as const satisfies readonly Form[];
+export type LanguageForm = (typeof LANGUAGE_FORMS)[number];
 
 export const FORMATS = ["pick", "word", "number", "order"] as const;
 export type Format = (typeof FORMATS)[number];
@@ -17,6 +20,10 @@ export const VALID_PAIRS: Readonly<Record<Form, readonly Format[]>> = {
   which_changed: ["pick"],
   cause_effect: ["pick"],
   spot_error: ["pick"],
+  meaning: ["pick"],
+  sound: ["pick"],
+  language: ["pick"],
+  pair: ["pick"],
 };
 
 export const BLOCKED_FORMS: Readonly<Partial<Record<Form, string>>> = {
@@ -33,6 +40,10 @@ export const FORM_LIMIT_SEC: Readonly<Record<Form, number>> = {
   which_changed: 25,
   cause_effect: 35,
   spot_error: 45,
+  meaning: 20,
+  sound: 25,
+  language: 15,
+  pair: 25,
 };
 
 export const MIN_ORDER_FACTS = 3;

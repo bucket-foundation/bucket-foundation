@@ -1,6 +1,6 @@
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
-import { QUIZ_TYPES, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
+import { ALL_QUIZ_TYPES, SOURCE_KINDS, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import { open, seal } from "./crypto";
 import type { Store } from "./store";
 
@@ -34,11 +34,11 @@ const text = (v: unknown, what: string, max = MAX_TEXT): string => {
   return v;
 };
 
-const KINDS: readonly SourceRef["kind"][] = ["bead", "pr", "note", "chat"];
+export const KINDS: readonly SourceRef["kind"][] = SOURCE_KINDS;
 
 function source(v: unknown): SourceRef {
   const r = (v && typeof v === "object" ? v : {}) as Record<string, unknown>;
-  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr, note or chat");
+  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr, note, chat or word");
   const href = r.href === null || r.href === undefined ? null : text(r.href, "a source href");
   if (href !== null && !href.startsWith("https://")) throw new DailyQuizError("a source href must start with https://");
   return { kind: r.kind as SourceRef["kind"], ref: text(r.ref, "a source ref", 120), label: text(r.label, "a source label", 120), href };
@@ -54,7 +54,7 @@ function question(v: unknown, limits: boolean): QuizQuestion {
   const r = (v && typeof v === "object" && !Array.isArray(v) ? v : {}) as Record<string, unknown>;
   const id = text(r.id, "a question id", 120);
   if (!/^[\w.-]+$/.test(id)) throw new DailyQuizError("a question id holds letters, digits, dot, dash and underscore");
-  if (!QUIZ_TYPES.includes(r.type as QuizType)) throw new DailyQuizError(`question ${id} has an unknown type`);
+  if (!ALL_QUIZ_TYPES.includes(r.type as QuizType)) throw new DailyQuizError(`question ${id} has an unknown type`);
   const limitSec = r.limitSec;
   if (typeof limitSec !== "number" || !Number.isInteger(limitSec) || limitSec < 5 || limitSec > MAX_LIMIT_SEC) throw new DailyQuizError(`question ${id} needs a limit between 5 and ${MAX_LIMIT_SEC} seconds`);
   const lines = r.lines === undefined ? [] : r.lines;
