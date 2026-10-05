@@ -129,7 +129,7 @@ export function sampleQuiz(input: SampleInput): SampledQuiz {
   const weights = factWeights(coverage, due, now);
   const stats = cellStats(coverage);
   const ranked = builtCells()
-    .map((c) => ({ c, id: cellId(c), tie: rng(), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
+    .map((c) => ({ c, id: cellId(c), tie: rngInt(rng), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
     .sort((a, b) => a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie - b.tie);
   for (const cell of ranked) {
     if (questions.length >= slots) break;
