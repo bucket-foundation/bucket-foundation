@@ -13,7 +13,8 @@ import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
-import { analysisRows, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
+import { atlasFrontier, fitWidth, frontierLines, frontierOptions, writeFrontierSvg } from "./atlas";
+import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
 import { daily, learnDue, learnPath, quizJson, reviewJson, screen } from "./learn";
@@ -376,6 +377,14 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "doctor") return doctor(inv, json);
   if (name === "search") return search(inv, json);
   if (name === "canon show") return canonShow(inv, json);
+  if (name === "atlas frontier") {
+    const o = frontierOptions(inv.values);
+    const f = atlasFrontier(o.reach);
+    if (o.svg) writeFrontierSvg(f, o.svg);
+    if (json) console.log(jsonLine("atlas frontier", f));
+    else for (const line of frontierLines(f, o.width ?? fitWidth(process.stdout.columns), colorEnabled(process.env, { stdin: process.stdin.isTTY === true, stdout: process.stdout.isTTY === true }))) console.log(line);
+    return EXIT.ok;
+  }
   if (name === "analyze") return analyzeCmd(inv.args);
   if (name === "analyses") return analyses(inv, json);
   if (name === "hai freeze") {
