@@ -54,6 +54,14 @@ test("growth predicts the inside count after solving any outside problem on the 
   }
 });
 
+test("a problem with no similarity row is left off and named", () => {
+  const t = buildFrontier([...toyRows, row("stray", null)], toy, 0.8);
+  assert.deepEqual(t.missing, ["stray"]);
+  assert.equal(t.points.length, toyRows.length);
+  assert.ok(t.rule.endsWith("1 problem has no similarity row and is left off."));
+  assert.deepEqual(f.missing, []);
+});
+
 test("the frontier needs two solved problems and a threshold between 0 and 1", () => {
   assert.throws(() => buildFrontier([row("s1", 1900), row("near", null)], toy));
   assert.throws(() => buildFrontier(toyRows, toy, 1));
@@ -103,9 +111,14 @@ test("the svg draws one mark per point and escapes titles", () => {
 test("the terminal drawing fits its width, tags each outside problem, and carries no colour unless asked", () => {
   const lines = frontierText(f, { width: 79 });
   assert.ok(lines.every((l) => !l.includes("\x1b")));
-  const grid = lines.slice(2, 2 + 39);
-  assert.ok(grid.every((l) => l.length <= 79));
+  const grid = lines.slice(3, 3 + 39);
+  assert.ok(lines.every((l) => l.length <= 79));
+  assert.ok(frontierText(f, { width: 41 }).every((l) => l.length <= 62));
+  assert.ok(lines[0].startsWith("Solvability frontier:"));
   assert.ok(grid.join("").includes("#"));
   assert.equal(lines.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).length, f.outside);
+  const narrow = frontierText(f, { width: 41 });
+  assert.ok(narrow.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).every((l) => l.length <= 62));
+  assert.ok(lines.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).every((l) => l.length <= 79));
   assert.ok(frontierText(f, { color: true }).some((l) => l.includes("\x1b[")));
 });

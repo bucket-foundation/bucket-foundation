@@ -64,6 +64,7 @@ export const JSON_SHAPES = {
     ["counts", ["solved", "reachable", "beyond"]],
     "inside",
     "outside",
+    ["missing", "open"],
     ["points", ["id", "title", "branch", "sourceKind", "theta", "zone", "reach", ["nearest", ["id", "title", "similarity"]], "radius", ["pulls", "open"], "growth"]],
   ],
   "canon show": ["id", "branch", "concept", "title", "text", "url", ["evidence", ["title", "author", "kind", "url", "score", "text"]]],

@@ -40,6 +40,7 @@ export interface Frontier {
   counts: Record<Zone, number>;
   inside: number;
   outside: number;
+  missing: string[];
   points: FrontierPoint[];
 }
 
@@ -71,6 +72,7 @@ function span(value: number, from: number, to: number): number {
 export function buildFrontier(rows: readonly FrontierRow[], data: SimilarityData, threshold?: number): Frontier {
   const sim = similarityOf(data);
   const known = rows.filter((r) => sim(r.id, r.id) !== null);
+  const missing = rows.filter((r) => sim(r.id, r.id) === null).map((r) => r.id);
   const solved = known.filter((r) => r.resolved !== null);
   if (solved.length < 2) throw new Error("the frontier needs at least two solved problems");
   const nearest = (r: FrontierRow) => {
@@ -115,16 +117,18 @@ export function buildFrontier(rows: readonly FrontierRow[], data: SimilarityData
   });
   const counts = { solved: 0, reachable: 0, beyond: 0 } as Record<Zone, number>;
   for (const p of points) counts[p.zone] += 1;
+  const left = missing.length ? ` ${missing.length} ${missing.length === 1 ? "problem has" : "problems have"} no similarity row and ${missing.length === 1 ? "is" : "are"} left off.` : "";
   return {
     schema: "bucket.solvability-frontier/v1",
     threshold: round3(tau),
     rule:
-      threshold === undefined
+      (threshold === undefined
         ? `Reach is a problem's highest text similarity to a solved problem. The circle sits at reach ${round3(tau)}: nine in ten solved problems are at least that close to another solved problem.`
-        : `Reach is a problem's highest text similarity to a solved problem. The circle sits at reach ${round3(tau)}, set by hand.`,
+        : `Reach is a problem's highest text similarity to a solved problem. The circle sits at reach ${round3(tau)}, set by hand.`) + left,
     counts,
     inside: counts.solved + counts.reachable,
     outside: counts.beyond,
+    missing,
     points,
   };
 }

@@ -31,7 +31,9 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 | productions.json | one production card per node: claim, formal status, minted state, status, sources |
 | similarity.json | cosine similarity between every pair of nodes, upper triangle, three decimals |
 
-`build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. `site.py` also copies `similarity.json` to `src/lib/research-os/solvability-similarity-data.json`, which the frontier circle reads: `bkt atlas frontier` prints it in the terminal, `--svg FILE` writes the drawing and `--json` prints the data. Research OS renders the cards at `/research-os/solvability`. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
+`build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. `site.py` also copies `similarity.json` to `src/lib/research-os/solvability-similarity-data.json`, which the frontier circle reads: `bkt atlas frontier` prints it in the terminal, `--svg FILE` writes the drawing and `--json` prints the data. Research OS renders the cards at `/research-os/solvability`.
+
+The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
 `out/` stays out of git; its PNGs, graph.json, graph.cypher and stats.json are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/`.
 

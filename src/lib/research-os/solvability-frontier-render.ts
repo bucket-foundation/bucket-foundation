@@ -101,6 +101,15 @@ const ANSI: Record<Zone | "ring" | "dim" | "off", string> = { solved: "\x1b[32m"
 export const TEXT_MARK: Record<Zone, string> = { solved: "·", reachable: "o", beyond: "▲" };
 const TAGS = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+export function wrapWords(text: string, width: number): string[] {
+  const lines: string[] = [];
+  for (const word of text.split(" ")) {
+    if (lines.length && `${lines[lines.length - 1]} ${word}`.length <= width) lines[lines.length - 1] += ` ${word}`;
+    else lines.push(word);
+  }
+  return lines;
+}
+
 export function frontierText(f: Frontier, opts: TextOptions = {}): string[] {
   const width = Math.max(41, (opts.width ?? 79) | 1);
   const height = Math.round(width / 2) | 1;
@@ -131,19 +140,23 @@ export function frontierText(f: Frontier, opts: TextOptions = {}): string[] {
     }
   const lines = cells.map((row) => row.map((c) => (c.kind ? paint(c.kind, c.ch) : c.ch)).join("").replace(/\s+$/, ""));
   const out = [
-    `Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside`,
+    ...wrapWords(`Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside`, width),
     "",
     ...lines,
     "",
-    `${paint("ring", "#")} frontier at reach ${f.threshold}   ${paint("solved", TEXT_MARK.solved)} solved   ${paint("reachable", TEXT_MARK.reachable)} open, within reach   ${paint("beyond", "1-9a-z")} open, needs a new idea`,
+    `${paint("ring", "#")} frontier at reach ${f.threshold}   ${paint("solved", TEXT_MARK.solved)} solved   ${paint("reachable", TEXT_MARK.reachable)} open, within reach`,
+    `${paint("beyond", "1-9a-z")} open, needs a new idea`,
     "",
-    "Outside the circle, ranked by how far solving each one moves the frontier:",
+    ...wrapWords("Outside the circle, ranked by how far solving each one moves the frontier:", width),
   ];
   const pad = Math.min(34, Math.max(...ranked.map((p) => p.title.length), 8));
   ranked.slice(0, opts.list ?? ranked.length).forEach((p, i) => {
     const title = p.title.length > pad ? `${p.title.slice(0, pad - 1)}…` : p.title.padEnd(pad);
-    out.push(` ${paint("beyond", TAGS[i] ?? TEXT_MARK.beyond)}  ${title}  reach ${p.reach.toFixed(2)}  +${String(p.growth).padEnd(2)} nearest solved: ${p.nearest?.title ?? "none"}`);
+    const head = `  ${title}  reach ${p.reach.toFixed(2)}  +${String(p.growth).padEnd(2)} `;
+    const tail = `nearest solved: ${p.nearest?.title ?? "none"}`;
+    const room = width - 2 - head.length;
+    out.push(` ${paint("beyond", TAGS[i] ?? TEXT_MARK.beyond)}${head}${room >= tail.length ? tail : room > 16 ? `${tail.slice(0, room - 1)}…` : ""}`.replace(/\s+$/, ""));
   });
-  out.push("", f.rule, "Similarity is measured on titles and keywords. Whether AI can solve what sits inside is the hypothesis under test.");
+  out.push("", ...wrapWords(f.rule, width), ...wrapWords("Similarity is measured on titles and keywords. Whether AI can solve what sits inside is the hypothesis under test.", width));
   return out;
 }
