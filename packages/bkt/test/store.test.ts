@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey, open, seal } from "../src/crypto";
@@ -7,7 +7,7 @@ import { answerQuiz, answerReview, pickSession, quizQuestions } from "../src/dec
 import type { Item } from "../src/grade";
 import type { ShortFile } from "../src/short-fields";
 import { buildPack, itemsFromCorpus } from "../src/pack/export";
-import { SCHEMA_VERSION, Store } from "../src/store";
+import { CACHE_KIB, SCHEMA_VERSION, Store, WAL_CHECKPOINT_PAGES, WAL_LIMIT_BYTES } from "../src/store";
 
 const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   id: `phys/${id}/0`,
@@ -39,6 +39,31 @@ describe("crypto", () => {
 });
 
 describe("Store", () => {
+  test("bounds the page cache and the checkpoint interval", () => {
+    const s = new Store(join(dir, "bkt.db"), newDataKey());
+    const one = (q: string) => Object.values(s.db.query<Record<string, number>, []>(q).get()!)[0];
+    expect(one("pragma wal_autocheckpoint")).toBe(WAL_CHECKPOINT_PAGES);
+    expect(one("pragma journal_size_limit")).toBe(WAL_LIMIT_BYTES);
+    expect(one("pragma cache_size")).toBe(-CACHE_KIB);
+    expect(WAL_LIMIT_BYTES).toBeLessThanOrEqual(8 * 1024 * 1024);
+    expect(CACHE_KIB).toBeLessThanOrEqual(16 * 1024);
+    s.close();
+  });
+
+  test("the WAL shrinks back under its limit after a large write", () => {
+    const path = join(dir, "bkt.db");
+    const s = new Store(path, newDataKey());
+    s.db.run("create table wal_probe (id integer primary key, body text)");
+    const insert = s.db.query("insert into wal_probe (body) values (?)");
+    s.db.transaction(() => {
+      for (let i = 0; i < 5000; i++) insert.run("x".repeat(4000));
+    })();
+    expect(statSync(`${path}-wal`).size).toBeGreaterThan(4 * WAL_LIMIT_BYTES);
+    for (let i = 0; i < 3; i++) insert.run("y");
+    expect(statSync(`${path}-wal`).size).toBeLessThanOrEqual(WAL_LIMIT_BYTES);
+    s.close();
+  });
+
   test("runs in WAL mode and migrates once", () => {
     const key = newDataKey();
     const path = join(dir, "bkt.db");

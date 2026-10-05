@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 import { chmodSync, existsSync, mkdirSync, readFileSync, readlinkSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { platformFor, type Platform } from "./platform";
 
@@ -9,9 +9,10 @@ export interface AppRecord {
   port: number;
 }
 
-export function runtimeDir(env = process.env): string {
-  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? tmpdir(), `bucket-${process.getuid?.() ?? "user"}`);
-  return join(base, "bucket");
+export function runtimeDir(env: Record<string, string | undefined> = process.env, os: string = process.platform, home = homedir()): string {
+  if (env.XDG_RUNTIME_DIR !== undefined) return join(env.XDG_RUNTIME_DIR, "bucket");
+  if (os === "linux") return join(env.XDG_CACHE_HOME ?? join(home, ".cache"), "bkt", "run");
+  return join(env.TMPDIR ?? tmpdir(), `bucket-${process.getuid?.() ?? "user"}`, "bucket");
 }
 
 export function uiDir(env = process.env): string {

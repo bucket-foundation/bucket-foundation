@@ -120,6 +120,10 @@ export interface Attempt extends AttemptInput {
   id: string;
 }
 
+export const WAL_CHECKPOINT_PAGES = 256;
+export const WAL_LIMIT_BYTES = 4 * 1024 * 1024;
+export const CACHE_KIB = 8192;
+
 export class Store {
   readonly db: Database;
 
@@ -130,6 +134,9 @@ export class Store {
     this.db.run("pragma journal_mode = wal");
     this.db.run("pragma foreign_keys = on");
     this.db.run("pragma secure_delete = on");
+    this.db.run(`pragma wal_autocheckpoint = ${WAL_CHECKPOINT_PAGES}`);
+    this.db.run(`pragma journal_size_limit = ${WAL_LIMIT_BYTES}`);
+    this.db.run(`pragma cache_size = -${CACHE_KIB}`);
     this.migrate();
     this.checkKey();
   }
