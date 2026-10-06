@@ -16,7 +16,8 @@
  "level": 5,
  "industries": [
   "cryptography",
-  "algebra and number theory"
+  "algebra and number theory",
+  "geometry and topology"
  ],
  "posed": 1859,
  "resolved": null,
@@ -170,9 +171,47 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1506247181",
+   "title": "Mathematical Developments Arising from Hilbert Problems",
+   "year": 1976,
+   "cited_by_count": 229,
+   "doi": "https://doi.org/10.1090/pspum/028.2",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W603376266",
+   "title": "The Millennium Prize Problems",
+   "year": 2006,
+   "cited_by_count": 228,
+   "doi": null,
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2011809718",
+   "title": "Explicit bounds for primality testing and related problems",
+   "year": 1990,
+   "cited_by_count": 215,
+   "doi": "https://doi.org/10.1090/s0025-5718-1990-1023756-8",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 6,
+  "duplicate": 2,
+  "off-field": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1927": 1,
@@ -356,6 +395,12 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "I102322142",
+   "name": "Rutgers, The State University of New Jersey",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "I187986737",
    "name": "Collège de France",
    "works": 1,
@@ -376,12 +421,6 @@
   {
    "openalex": "I4210119712",
    "name": "Max Planck Institute for Mathematics",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I102322142",
-   "name": "Rutgers, The State University of New Jersey",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -430,6 +469,12 @@
   {
    "openalex": "I36258959",
    "name": "University of California San Diego",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1289762815",
+   "name": "Royal Society",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -487,6 +532,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "13 relevant works of 25 considered, 19557 works with the phrase"
+  "reason": "16 relevant works of 25 considered, 19557 works with the phrase"
  }
 }

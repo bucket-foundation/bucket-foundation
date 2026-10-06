@@ -18,7 +18,8 @@
  "branch": "information",
  "level": 3,
  "industries": [
-  "computational theory and mathematics"
+  "computational theory and mathematics",
+  "ecology"
  ],
  "posed": 1962,
  "resolved": 2024,
@@ -35,6 +36,17 @@
   }
  ],
  "key_works": [
+  {
+   "openalex": "W1561186228",
+   "title": "Computing the Busy Beaver Function",
+   "year": 1987,
+   "cited_by_count": 40,
+   "doi": "https://doi.org/10.1007/978-1-4612-4808-8_28",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
   {
    "openalex": "W2345781622",
    "title": "A Relatively Small Turing Machine Whose Behavior Is Independent of Set Theory",
@@ -63,6 +75,17 @@
    "year": 2016,
    "cited_by_count": 8,
    "doi": "https://doi.org/10.1142/9789813109032_0001",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1998724425",
+   "title": "Some better results estimating the shift function in terms of busy beaver function",
+   "year": 1997,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.1145/250037.250038",
    "role": "partial",
    "relevance": 6,
    "in_embedding": true,
@@ -102,6 +125,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W2067356164",
+   "title": "Improved Bounds for Functions Related to Busy Beavers",
+   "year": 2002,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.1007/s00224-001-1052-0",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W4386746839",
    "title": "Combining Finite Combination Properties: Finite Models and Busy Beavers",
    "year": 2023,
@@ -109,7 +143,7 @@
    "doi": "https://doi.org/10.1007/978-3-031-43369-6_9",
    "role": "resolved",
    "relevance": 4,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -120,7 +154,7 @@
    "doi": "https://doi.org/10.5281/zenodo.21536437",
    "role": "partial",
    "relevance": 4,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -158,6 +192,10 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 8,
+  "duplicate": 3
+ },
  "activity": {
   "openalex_by_year": {
    "1987": 2,
@@ -210,20 +248,50 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "A5019616888",
+   "name": "Amir M. Ben-Amram",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063257061",
+   "name": "Gregory J. Chaitin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "A5045137858",
    "name": "Adam Yedidia",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5019616888",
-   "name": "Amir M. Ben-Amram",
+   "openalex": "A5112276874",
+   "name": "Ruiguang Yang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101792363",
+   "name": "Longyun Ding",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5077327926",
+   "name": "Shurun Xu",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5040770339",
    "name": "U. Zwick",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "H. Petersen",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -250,39 +318,21 @@
    "name": "Maria Smith",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5027140762",
-   "name": "Tristan Stérin",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5029275026",
-   "name": "Damien Woods",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": null,
-   "name": "Laurent Bienvenu",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": null,
-   "name": "Damien Desfontaines",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": null,
-   "name": "Alexander Shen",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
+  {
+   "openalex": "I1341412227",
+   "name": "IBM (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210114115",
+   "name": "IBM Research - Thomas J. Watson Research Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
   {
    "openalex": "I63966007",
    "name": "Massachusetts Institute of Technology",
@@ -292,6 +342,12 @@
   {
    "openalex": "I122140584",
    "name": "Universidade Federal do Rio de Janeiro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I205237279",
+   "name": "Nankai University",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -310,6 +366,18 @@
   {
    "openalex": "I173963315",
    "name": "St. Cloud State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210141777",
+   "name": "Academic College of Tel Aviv-Yafo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I100066346",
+   "name": "University of Stuttgart",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -340,18 +408,6 @@
   {
    "openalex": "I19894307",
    "name": "Université de Montpellier",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I4210101743",
-   "name": "Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I4210100430",
-   "name": "Google (Switzerland)",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -393,6 +449,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "11 relevant works of 25 considered, 159 works with the phrase"
+  "reason": "14 relevant works of 25 considered, 159 works with the phrase"
  }
 }

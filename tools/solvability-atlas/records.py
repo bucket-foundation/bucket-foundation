@@ -34,6 +34,7 @@ EMBED_WORKS = 8
 MIN_SUBFIELD_WORKS = 3
 TOP_PEOPLE = 15
 STOP = {"problem", "conjecture", "theorem", "hypothesis", "program", "versus", "existence", "model", "theory", "function", "energy", "effect", "number", "general", "structure", "design", "system", "method", "state", "states", "ground", "limits", "identity", "mechanism", "control", "complexity", "formal", "optimal", "exact", "rational", "anomalous", "properties", "programmed", "stochastic", "neural", "quantum", "matrix", "light", "water", "glass"}
+PROBLEM_WORDS = {"conjecture", "conjectures", "problem", "problems", "theorem", "undecidable", "decidable", "proof", "hypothesis", "unsolved"}
 SYNONYMS = {"artificial intelligence": "ai", "machine learning": "ai"}
 BRANCH_FIELDS = {
     "mathematics": {"Mathematics", "Computer Science", "Physics and Astronomy"},
@@ -256,36 +257,50 @@ def normal_title(t):
     return re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).strip()
 
 
-def relevance(w, p, terms):
+def name_terms(p, aliases):
+    return {normal_title(x) for x in [p["name"], p["query"], *aliases] if len(x) >= 5}
+
+
+def relevance(w, p, terms, names):
+    if not int(w.get("cited_by_count") or 0):
+        return 0, "uncited"
     topic = w.get("primary_topic") or {}
     field = topic.get("field", {}).get("display_name", "")
-    if not int(w.get("cited_by_count") or 0) or (field and field not in BRANCH_FIELDS[p["branch"]]):
-        return 0
     title = normal_title(w.get("title"))
+    named = any(n in title for n in names)
+    if field and field not in BRANCH_FIELDS[p["branch"]] and not named:
+        return 0, "off-field"
     topic_text = normal_title(topic.get("display_name", "") + " " + topic.get("subfield", {}).get("display_name", ""))
     hits = sum(2 for t in terms if normal_title(t) in title) + sum(1 for t in terms if normal_title(t) in topic_text)
-    return hits
+    if hits == 0 and PROBLEM_WORDS & set(title.split()):
+        hits = 1
+    return (hits, "kept") if hits else (0, "no keyword hit")
 
 
 def select_works(works, p, aliases):
     terms = match_terms(p, aliases)
+    names = name_terms(p, aliases)
     seen = set()
     kept = []
+    dropped = Counter()
     for w in works:
         key = normal_title(w.get("title"))
         if not key or key in seen:
+            dropped["duplicate"] += 1
             continue
         seen.add(key)
-        r = relevance(w, p, terms)
+        r, why = relevance(w, p, terms, names)
         if r > 0:
             kept.append((r, w))
+        else:
+            dropped[why] += 1
     kept.sort(key=lambda t: (-t[0], -int(t[1].get("cited_by_count") or 0)))
-    return [(r, w) for r, w in kept]
+    return [(r, w) for r, w in kept], dict(dropped)
 
 
 def key_works(works, p, src, aliases=()):
     out = []
-    for i, (r, w) in enumerate(select_works(works, p, aliases)):
+    for i, (r, w) in enumerate(select_works(works, p, aliases)[0]):
         out.append({"openalex": w["id"].rsplit("/", 1)[-1], "title": w["title"], "year": w.get("publication_year"), "cited_by_count": int(w.get("cited_by_count") or 0), "doi": w.get("doi"), "role": role_of(w, p), "relevance": r, "in_embedding": i < EMBED_WORKS, "source": src})
     return out
 
@@ -420,13 +435,14 @@ def build(p, problems, titles, offline):
     if x_entry["status"]:
         sources.append(source(x_entry))
     kw = key_works(works, p, w_entry["url"], aliases)
-    kept = [w for _, w in select_works(works, p, aliases)]
+    selected, dropped = select_works(works, p, aliases)
+    kept = [w for _, w in selected]
     ppl, org = people_orgs(kept, w_entry["url"])
     f = p["formal_source"]
     rec = {
         "schema": record_schema.SCHEMA, "id": p["id"], "title": p["name"], "statement": statement, "aliases": aliases,
         "branch": p["branch"], "level": p["level"], "industries": industries(p, kept), "posed": p["posed"], "resolved": p["resolved"],
-        "history": history(p, rows, wiki_url or "wikipedia"), "key_works": kw, "key_works_considered": len(works),
+        "history": history(p, rows, wiki_url or "wikipedia"), "key_works": kw, "key_works_considered": len(works), "key_works_dropped": dropped,
         "activity": {"openalex_by_year": by_year, "openalex_total": sum(by_year.values()), "arxiv_total": arx, "source": a_entry["url"] + (" ; " + x_entry["url"] if arx is not None else "")},
         "people": ppl, "organizations": org, "related": related(p, problems), "repo_mentions": mentions(p, aliases, titles),
         "formal": {"status": p["lean"], "source": f["source"] if f else None, "url": f["url"] if f else None},
@@ -444,7 +460,8 @@ def quality(rec):
     if n == 0 or total < 5:
         return {"status": "weak", "reason": f"query matched {total} works, {n} kept; refine the query phrase in sources.tsv"}
     if n < EMBED_WORKS:
-        return {"status": "partial", "reason": f"{n} relevant works of {rec['key_works_considered']} considered"}
+        drops = ", ".join(f"{c} {why}" for why, c in sorted(rec["key_works_dropped"].items(), key=lambda t: -t[1]))
+        return {"status": "partial", "reason": f"{n} relevant works of {rec['key_works_considered']} considered; dropped {drops}"}
     return {"status": "full", "reason": f"{n} relevant works of {rec['key_works_considered']} considered, {total} works with the phrase"}
 
 
@@ -468,14 +485,30 @@ def index(records):
 NEIGHBOUR_HEADING = "## Neighbour shift"
 
 
+SECTION_HEADINGS = (NEIGHBOUR_HEADING, "## Embedding ablation")
+
+
+def split_sections(text):
+    cuts = sorted(i for h in SECTION_HEADINGS for i in [text.find(h)] if i >= 0)
+    head = text[:cuts[0]] if cuts else text
+    parts = {}
+    for i, start in enumerate(cuts):
+        end = cuts[i + 1] if i + 1 < len(cuts) else len(text)
+        chunk = text[start:end]
+        parts[chunk.split("\n", 1)[0]] = chunk.rstrip() + "\n"
+    return head.rstrip() + "\n", parts
+
+
+def replace_section(path, heading, body):
+    head, parts = split_sections(path.read_text()) if path.exists() else ("", {})
+    parts[heading] = body.rstrip() + "\n"
+    path.write_text(head + "".join("\n" + parts[h] for h in SECTION_HEADINGS if h in parts))
+
+
 def write_index(records):
     path = RECORDS / "INDEX.md"
-    tail = ""
-    if path.exists():
-        old = path.read_text()
-        if NEIGHBOUR_HEADING in old:
-            tail = "\n" + old[old.index(NEIGHBOUR_HEADING):]
-    path.write_text(index(records) + tail)
+    _, parts = split_sections(path.read_text()) if path.exists() else ("", {})
+    path.write_text(index(records) + "".join("\n" + parts[h] for h in SECTION_HEADINGS if h in parts))
 
 
 def main():

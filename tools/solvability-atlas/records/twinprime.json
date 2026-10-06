@@ -123,6 +123,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W2413684032",
+   "title": "Statistics of Primes (and Probably Twin Primes) Satisfy Taylor's Law from Ecology",
+   "year": 2016,
+   "cited_by_count": 18,
+   "doi": "https://doi.org/10.1080/00031305.2016.1173591",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W2971524145",
    "title": "On the Chowla and twin primes conjectures over $\\mathbb{F}_q[T]$",
    "year": 2022,
@@ -220,9 +231,45 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2949144136",
+   "title": "The Bateman–Horn conjecture: Heuristic, history, and applications",
+   "year": 2019,
+   "cited_by_count": 21,
+   "doi": "https://doi.org/10.1016/j.exmath.2019.04.005",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2964005884",
+   "title": "Hardy–Littlewood Tuple Conjecture Over Large Finite Fields",
+   "year": 2012,
+   "cited_by_count": 13,
+   "doi": "https://doi.org/10.1093/imrn/rns249",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2043185883",
+   "title": "INDUCTIVE COMPLEXITY MEASURES FOR MATHEMATICAL PROBLEMS",
+   "year": 2013,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.1142/s0129054113500160",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 4
+ },
  "activity": {
   "openalex_by_year": {
    "1979": 2,
@@ -332,6 +379,12 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "A5010543213",
+   "name": "Joel E. Cohen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "A5066955363",
    "name": "Will Sawin",
    "works": 1,
@@ -348,12 +401,6 @@
    "name": "Ben Green",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5066728260",
-   "name": "Terence Tao",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
@@ -364,14 +411,20 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "I60158472",
    "name": "Concordia University",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I78577930",
-   "name": "Columbia University",
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -424,26 +477,20 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "I40347166",
+   "name": "University of Chicago",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I83399316",
+   "name": "Rockefeller University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "I135310074",
    "name": "University of Wisconsin–Madison",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I241749",
-   "name": "University of Cambridge",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I161318765",
-   "name": "University of California, Los Angeles",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I27804330",
-   "name": "Brown University",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22twin+prime+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -501,6 +548,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "17 relevant works of 25 considered, 3034 works with the phrase"
+  "reason": "21 relevant works of 25 considered, 3034 works with the phrase"
  }
 }

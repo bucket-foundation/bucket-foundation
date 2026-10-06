@@ -92,6 +92,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W2407637222",
+   "title": "On cap sets and the group-theoretic approach to matrix multiplication",
+   "year": 2017,
+   "cited_by_count": 90,
+   "doi": "https://doi.org/10.19086/da.1245",
+   "role": "resolved",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W2963631653",
    "title": "On large subsets of $\\mathbb{F}_q^n$ with no three-term arithmetic progression",
    "year": 2016,
@@ -121,7 +132,7 @@
    "doi": "https://doi.org/10.19086/da.3733",
    "role": "partial",
    "relevance": 1,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -148,6 +159,11 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 8,
+  "duplicate": 5,
+  "off-field": 1
+ },
  "activity": {
   "openalex_by_year": {
    "2013": 1,
@@ -168,15 +184,15 @@
  },
  "people": [
   {
-   "openalex": "A5071941381",
-   "name": "Jordan S. Ellenberg",
+   "openalex": "A5062065155",
+   "name": "Joshua A. Grochow",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5062065155",
-   "name": "Joshua A. Grochow",
-   "works": 1,
+   "openalex": "A5071941381",
+   "name": "Jordan S. Ellenberg",
+   "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -216,43 +232,55 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "A5064317285",
+   "name": "Jonah Blasiak",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Thomas Church",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5003897795",
+   "name": "Henry Cohn",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5032528753",
+   "name": "Eric Naslund",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5109344796",
+   "name": "William F. Sawin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5047283705",
+   "name": "Chris Umans",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "A5065602628",
    "name": "Dion Gijswijt",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5112361944",
-   "name": "Jacob Fox",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5067889485",
-   "name": "László Lovász",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5097443670",
-   "name": "Luke Peabody",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": null,
-   "name": "More about Thomas Bloom",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": null,
-   "name": "More about Olof Sisask",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
   {
    "openalex": "I135310074",
    "name": "University of Wisconsin–Madison",
@@ -284,14 +312,38 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I98358874",
-   "name": "Delft University of Technology",
+   "openalex": "I72816309",
+   "name": "Drexel University",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I97018004",
-   "name": "Stanford University",
+   "openalex": "I4400600948",
+   "name": "Microsoft Research New England (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1308548392",
+   "name": "Santa Fe Institute",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122411786",
+   "name": "California Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I98358874",
+   "name": "Delft University of Technology",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -367,6 +419,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "10 relevant works of 25 considered, 50 works with the phrase"
+  "reason": "11 relevant works of 25 considered, 50 works with the phrase"
  }
 }

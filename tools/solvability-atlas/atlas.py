@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -57,6 +58,10 @@ def load_bucketmath():
 
 RECORDS = HERE / "records"
 KEY_WORK_TITLES = 8
+TEXT_VARIANTS = ("keywords", "statement", "statement_titles", "statement_titles_aliases")
+DEFAULT_TEXT = "keywords"
+TEXT = os.environ.get("ATLAS_TEXT", DEFAULT_TEXT)
+EXPECTED_PAIRS = [("navier", "turbulence"), ("goldbach", "twinprime"), ("pnp", "bqp"), ("protein", "foldpath"), ("hubble", "darkenergy"), ("darkmatter", "darkenergy"), ("ramsey", "capset"), ("fermat", "abc"), ("riemann", "twinprime"), ("factoring", "ecc"), ("owf", "zkp"), ("halting", "busybeaver"), ("consciousness", "bindingprob"), ("mitoredox", "aging"), ("hubbard", "roomtemp")]
 
 
 def load_record(pid):
@@ -68,17 +73,28 @@ def keyword_text(n):
     return f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"])
 
 
-def record_text(n, rec):
+def record_text(n, rec, variant="statement_titles_aliases"):
     titles = [w["title"] for w in rec["key_works"] if w.get("in_embedding")][:KEY_WORK_TITLES]
     parts = [n["name"] + "."]
-    if rec["aliases"]:
+    if rec["aliases"] and variant == "statement_titles_aliases":
         parts.append("Also called " + ", ".join(rec["aliases"]) + ".")
     if rec["statement"]["text"]:
         parts.append(rec["statement"]["text"])
     parts.append("Keywords: " + ", ".join(n["keywords"]) + ".")
-    if titles:
+    if titles and variant in ("statement_titles", "statement_titles_aliases"):
         parts.append("Key works: " + "; ".join(titles) + ".")
     return " ".join(parts)
+
+
+def neighbours(ids, emb, k=K):
+    sim = emb @ emb.T
+    return {pid: {ids[j] for j in np.argsort(-sim[i])[1:k + 1]} for i, pid in enumerate(ids)}
+
+
+def pair_hits(ids, emb, pairs=EXPECTED_PAIRS, k=K):
+    nb = neighbours(ids, emb, k)
+    hits = [(a, b) for a, b in pairs if a in nb and b in nb and (b in nb[a] or a in nb[b])]
+    return {"hits": len(hits), "pairs": len(pairs), "rate": round(len(hits) / len(pairs), 3), "hit_pairs": hits, "missed": [p for p in pairs if p not in hits]}
 
 
 def neighbour_shift(ids, emb_a, emb_b, k=K):
@@ -92,10 +108,13 @@ def neighbour_shift(ids, emb_a, emb_b, k=K):
     return {"k": k, "problems": len(ids), "changed_edges": total, "possible_edges": len(ids) * k, "problems_with_change": sum(r["changed"] > 0 for r in rows), "rows": sorted(rows, key=lambda r: (-r["changed"], r["cosine"]))}
 
 
-def embed_text(n):
-    rec = load_record(n["id"]) if n["kind"] == "problem" else None
+def embed_text(n, variant=None):
+    variant = variant or TEXT
+    if variant not in TEXT_VARIANTS:
+        raise ValueError(f"unknown text variant {variant}")
+    rec = load_record(n["id"]) if n["kind"] == "problem" and variant != "keywords" else None
     if rec and (rec["statement"]["text"] or rec["key_works"]):
-        return record_text(n, rec), "record"
+        return record_text(n, rec, variant), variant
     return keyword_text(n), "keywords"
 
 
@@ -444,7 +463,7 @@ def export_graph(g, nodes, tokens, users, stats):
         for n in users[t]:
             edges.append({"source": n["id"], "target": "token:" + t, "type": "MARKET" if t in n["market"] else "HAS_TOKEN"})
     counts = Counter(n["embedding_text"] for n in nodes)
-    json.dump({"schema": "bucket.solvability-atlas/v1", "embedding_text": {"record": counts["record"], "keywords": counts["keywords"]}, "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
+    json.dump({"schema": "bucket.solvability-atlas/v1", "embedding_text": {"variant": TEXT, "counts": dict(counts)}, "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
     json.dump(stats["summary"], open(OUT / "stats.json", "w"), indent=1)
     with open(OUT / "graph.cypher", "w") as f:
         for n in out_nodes:

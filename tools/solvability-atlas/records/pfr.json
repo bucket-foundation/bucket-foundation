@@ -200,6 +200,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W4408419148",
+   "title": "On a conjecture of Marton",
+   "year": 2025,
+   "cited_by_count": 15,
+   "doi": "https://doi.org/10.4007/annals.2025.201.2.5",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W3090539902",
    "title": "On iterated product sets with shifts, II",
    "year": 2020,
@@ -223,6 +234,10 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 5,
+  "no keyword hit": 2
+ },
  "activity": {
   "openalex_by_year": {
    "2007": 1,
@@ -256,6 +271,18 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "A5100610718",
+   "name": "Ben Green",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5066728260",
+   "name": "Terence Tao",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "A5063038325",
    "name": "Dmitrii Zhelezov",
    "works": 2,
@@ -268,14 +295,8 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5100610718",
-   "name": "Ben Green",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5066728260",
-   "name": "Terence Tao",
+   "openalex": "A5047625167",
+   "name": "Freddie Manners",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -332,18 +353,24 @@
    "name": "Raghavan, Rushil",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5012226631",
-   "name": "Sean Eberhard",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
   {
    "openalex": "I36258959",
    "name": "University of California San Diego",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I40120149",
+   "name": "University of Oxford",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
    "works": 3,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -354,14 +381,8 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I40120149",
-   "name": "University of Oxford",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I161318765",
-   "name": "University of California, Los Angeles",
+   "openalex": "I241749",
+   "name": "University of Cambridge",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -390,12 +411,6 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I241749",
-   "name": "University of Cambridge",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
    "openalex": "I5124864",
    "name": "École Polytechnique Fédérale de Lausanne",
    "works": 1,
@@ -404,6 +419,12 @@
   {
    "openalex": "I174306211",
    "name": "Technion – Israel Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I187986737",
+   "name": "Collège de France",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -422,12 +443,6 @@
   {
    "openalex": "I127817813",
    "name": "HUN-REN Alfréd Rényi Institute of Mathematics",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I7597260",
-   "name": "Hungarian Academy of Sciences",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22polynomial+Freiman-Ruzsa+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -473,6 +488,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "17 relevant works of 25 considered, 39 works with the phrase"
+  "reason": "18 relevant works of 25 considered, 39 works with the phrase"
  }
 }

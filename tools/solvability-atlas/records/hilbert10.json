@@ -188,6 +188,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W1975261774",
+   "title": "The Complexity of the Finite Containment Problem for Petri Nets",
+   "year": 1981,
+   "cited_by_count": 101,
+   "doi": "https://doi.org/10.1145/322261.322271",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W1964691638",
    "title": "Arithmetical problems and recursively enumerable predicates",
    "year": 1953,
@@ -200,6 +211,11 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 3,
+  "no keyword hit": 5,
+  "off-field": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1953": 1,
@@ -419,6 +435,12 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "I157725225",
    "name": "University of Illinois Urbana-Champaign",
    "works": 1,
@@ -468,6 +490,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "15 relevant works of 25 considered, 310 works with the phrase"
+  "reason": "16 relevant works of 25 considered, 310 works with the phrase"
  }
 }

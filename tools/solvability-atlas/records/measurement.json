@@ -162,9 +162,25 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3104348698",
+   "title": "A strong no-go theorem on the Wigner’s friend paradox",
+   "year": 2020,
+   "cited_by_count": 224,
+   "doi": "https://doi.org/10.1038/s41567-020-0990-x",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 3,
+  "no keyword hit": 7,
+  "duplicate": 2
+ },
  "activity": {
   "openalex_by_year": {
    "1950": 1,
@@ -456,6 +472,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "12 relevant works of 25 considered, 1894 works with the phrase"
+  "reason": "13 relevant works of 25 considered, 1894 works with the phrase"
  }
 }

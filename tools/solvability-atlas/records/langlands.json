@@ -137,9 +137,24 @@
    "relevance": 1,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2046395287",
+   "title": "Selberg’s conjectures and Artin 𝐿-functions",
+   "year": 1994,
+   "cited_by_count": 51,
+   "doi": "https://doi.org/10.1090/s0273-0979-1994-00479-3",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 11,
+  "duplicate": 3
+ },
  "activity": {
   "openalex_by_year": {
    "1984": 1,
@@ -197,6 +212,12 @@
   {
    "openalex": "A5048774120",
    "name": "James Cogdell",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5029980962",
+   "name": "M. Ram Murty",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -263,12 +284,6 @@
   {
    "openalex": "A5020427762",
    "name": "Stephen S. Kudla",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5057660436",
-   "name": "Tamás Hausel",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Langlands+program%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -406,6 +421,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "10 relevant works of 25 considered, 979 works with the phrase"
+  "reason": "11 relevant works of 25 considered, 979 works with the phrase"
  }
 }

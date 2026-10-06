@@ -34,6 +34,17 @@
  ],
  "key_works": [
   {
+   "openalex": "W2051550950",
+   "title": "On entropy method of turbulence closure problem",
+   "year": 1996,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1088/0305-4470/29/6/016",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W630244277",
    "title": "Fundamentals of turbulence modeling",
    "year": 1998,
@@ -101,6 +112,11 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 4,
+  "no keyword hit": 13,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1974": 1,
@@ -134,6 +150,12 @@
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22turbulence+closure+problem%22&max_results=1"
  },
  "people": [
+  {
+   "openalex": "A5052597621",
+   "name": "Jing Qian",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
   {
    "openalex": "A5110702056",
    "name": "Ching Jen Chen",
@@ -215,12 +237,6 @@
   {
    "openalex": "A5048183710",
    "name": "Bohua Sun",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5048243433",
-   "name": "Romit Maulik",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -346,6 +362,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "partial",
-  "reason": "6 relevant works of 25 considered"
+  "reason": "7 relevant works of 25 considered; dropped 13 no keyword hit, 4 off-field, 1 duplicate"
  }
 }

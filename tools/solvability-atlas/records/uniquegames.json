@@ -128,9 +128,24 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1965562201",
+   "title": "Reductions between Expansion Problems",
+   "year": 2012,
+   "cited_by_count": 90,
+   "doi": "https://doi.org/10.1109/ccc.2012.43",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 12,
+  "duplicate": 3
+ },
  "activity": {
   "openalex_by_year": {
    "2002": 1,
@@ -167,18 +182,18 @@
   {
    "openalex": "A5089128021",
    "name": "David Steurer",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101701586",
+   "name": "Prasad Raghavendra",
    "works": 3,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5067917669",
    "name": "Subhash Khot",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5101701586",
-   "name": "Prasad Raghavendra",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -265,6 +280,12 @@
   {
    "openalex": "I130701444",
    "name": "Georgia Institute of Technology",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4400600948",
+   "name": "Microsoft Research New England (United States)",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -277,12 +298,6 @@
   {
    "openalex": "I4210129961",
    "name": "IBM (India)",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "I4400600948",
-   "name": "Microsoft Research New England (United States)",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
@@ -319,6 +334,12 @@
   {
    "openalex": "I95457486",
    "name": "University of California, Berkeley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I160992636",
+   "name": "Toyota Technological Institute at Chicago",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -364,6 +385,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "9 relevant works of 25 considered, 524 works with the phrase"
+  "reason": "10 relevant works of 25 considered, 524 works with the phrase"
  }
 }

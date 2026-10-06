@@ -7,7 +7,7 @@ EMBED_WORKS = 8
 TOP = {
     "schema": str, "id": str, "title": str, "statement": dict, "aliases": list, "branch": str, "level": int,
     "industries": list, "posed": int, "resolved": (int, type(None)), "history": list, "key_works": list,
-    "key_works_considered": int, "activity": dict, "people": list, "organizations": list, "related": list, "repo_mentions": list,
+    "key_works_considered": int, "key_works_dropped": dict, "activity": dict, "people": list, "organizations": list, "related": list, "repo_mentions": list,
     "formal": dict, "sources": list, "retrieved": str, "quality": dict,
 }
 

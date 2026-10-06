@@ -15,7 +15,8 @@
  "branch": "information",
  "level": 2,
  "industries": [
-  "computational theory and mathematics"
+  "computational theory and mathematics",
+  "ai"
  ],
  "posed": 1936,
  "resolved": 1936,
@@ -121,6 +122,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W1562473198",
+   "title": "Phase Transitions in Combinatorial Optimization Problems",
+   "year": 2005,
+   "cited_by_count": 271,
+   "doi": "https://doi.org/10.1002/3527606734",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W3209192400",
    "title": "MIP* = RE",
    "year": 2021,
@@ -137,6 +149,17 @@
    "year": 1983,
    "cited_by_count": 165,
    "doi": "https://doi.org/10.1016/0022-0000(83)90027-2",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2792739471",
+   "title": "Bounded Quantification Is Undecidable",
+   "year": 1994,
+   "cited_by_count": 108,
+   "doi": "https://doi.org/10.1006/inco.1994.1055",
    "role": "partial",
    "relevance": 1,
    "in_embedding": false,
@@ -166,6 +189,11 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 7,
+  "off-field": 3,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1964": 1,
@@ -321,8 +349,8 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5043930796",
-   "name": "Zhengfeng Ji",
+   "openalex": "A5005760050",
+   "name": "Alexander K. Hartmann",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -467,6 +495,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "12 relevant works of 25 considered, 1709 works with the phrase"
+  "reason": "14 relevant works of 25 considered, 1709 works with the phrase"
  }
 }

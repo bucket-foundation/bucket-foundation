@@ -145,9 +145,35 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22abc+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W566744996",
+   "title": "Notes on Fermat's last theorem",
+   "year": 1996,
+   "cited_by_count": 27,
+   "doi": "https://doi.org/10.5860/choice.34-1608",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22abc+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2080406081",
+   "title": "Mason's theorem and syzygy gaps",
+   "year": 2005,
+   "cited_by_count": 21,
+   "doi": "https://doi.org/10.1016/j.jalgebra.2005.10.012",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22abc+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 11,
+  "duplicate": 2
+ },
  "activity": {
   "openalex_by_year": {
    "1988": 1,
@@ -325,6 +351,12 @@
    "name": "Harvard University",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22abc+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I6902469",
+   "name": "Brandeis University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22abc+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -380,6 +412,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "10 relevant works of 25 considered, 1097 works with the phrase"
+  "reason": "12 relevant works of 25 considered, 1097 works with the phrase"
  }
 }

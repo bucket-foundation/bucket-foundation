@@ -34,6 +34,17 @@
  ],
  "key_works": [
   {
+   "openalex": "W1493370200",
+   "title": "The continuum hypothesis : independence and truth-value",
+   "year": 1974,
+   "cited_by_count": 3,
+   "doi": null,
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W1507376847",
    "title": "Set theory and the continuum problem",
    "year": 1997,
@@ -46,6 +57,10 @@
   }
  ],
  "key_works_considered": 4,
+ "key_works_dropped": {
+  "uncited": 1,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1974": 1,
@@ -56,7 +71,14 @@
   "arxiv_total": 0,
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22continuum+hypothesis+independence%22&max_results=1"
  },
- "people": [],
+ "people": [
+  {
+   "openalex": "A5078532689",
+   "name": "T. S. Weston",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
  "organizations": [],
  "related": [],
  "repo_mentions": [],
@@ -90,6 +112,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "weak",
-  "reason": "query matched 4 works, 1 kept; refine the query phrase in sources.tsv"
+  "reason": "query matched 4 works, 2 kept; refine the query phrase in sources.tsv"
  }
 }

@@ -12,7 +12,7 @@ Solvability score: `0.55 * resolved + 0.45 * formal`, where formal is proved 1.0
 ./build.sh
 ```
 
-Embeddings come from `BAAI/bge-small-en-v1.5`. A problem with a record in `records/` embeds its title, aliases, statement, keywords and the titles of its eight most cited key works; a problem without one embeds title, branch and keywords. `graph.json` names the text used per node in `embedding_text` and counts both kinds at the top. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
+Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.TEXT_VARIANTS`): `keywords` (title, branch, keywords), `statement`, `statement_titles` (plus the titles of the kept key works marked `in_embedding`) and `statement_titles_aliases`. `ATLAS_TEXT=<variant>` selects one; the default is the variant with the best hit rate against `atlas.EXPECTED_PAIRS` in the ablation table of `records/INDEX.md` (`python3 ablation.py` rebuilds it), `keywords` as of 2026-10-06. `graph.json` names the variant and counts the text kinds per node in `embedding_text`. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
 
 ## Outputs
 

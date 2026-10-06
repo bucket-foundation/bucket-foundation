@@ -155,9 +155,35 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2073566464",
+   "title": "On De Jong’s conjecture",
+   "year": 2007,
+   "cited_by_count": 78,
+   "doi": "https://doi.org/10.1007/s11856-006-0006-2",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3038317384",
+   "title": "The spectral gluing theorem revisited",
+   "year": 2020,
+   "cited_by_count": 7,
+   "doi": null,
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 7,
+  "no keyword hit": 5
+ },
  "activity": {
   "openalex_by_year": {
    "1995": 1,
@@ -194,7 +220,7 @@
   {
    "openalex": "A5036917592",
    "name": "Dennis Gaitsgory",
-   "works": 5,
+   "works": 6,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -284,15 +310,15 @@
  ],
  "organizations": [
   {
-   "openalex": "I95457486",
-   "name": "University of California, Berkeley",
+   "openalex": "I40347166",
+   "name": "University of Chicago",
    "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I40347166",
-   "name": "University of Chicago",
-   "works": 1,
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 2,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -328,6 +354,30 @@
   {
    "openalex": "I99065089",
    "name": "Tsinghua University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I134560555",
+   "name": "Université Toulouse III - Paul Sabatier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405258862",
+   "name": "Université de Toulouse",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I84500057",
+   "name": "Institut de Mathématiques de Toulouse",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22geometric+Langlands+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -369,6 +419,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "11 relevant works of 25 considered, 109 works with the phrase"
+  "reason": "13 relevant works of 25 considered, 109 works with the phrase"
  }
 }

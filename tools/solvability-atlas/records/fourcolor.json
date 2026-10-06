@@ -102,6 +102,28 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W574460519",
+   "title": "The four color theorem",
+   "year": 1977,
+   "cited_by_count": 144,
+   "doi": null,
+   "role": "resolved",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2107870865",
+   "title": "An Update On The Four-Color Theorem",
+   "year": 1998,
+   "cited_by_count": 75,
+   "doi": null,
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W1969557632",
    "title": "Five-Coloring Maps on Surfaces",
    "year": 1993,
@@ -109,7 +131,7 @@
    "doi": "https://doi.org/10.1006/jctb.1993.1057",
    "role": "partial",
    "relevance": 5,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -120,7 +142,7 @@
    "doi": "https://doi.org/10.18910/8209",
    "role": "partial",
    "relevance": 4,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -180,6 +202,11 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 5,
+  "off-field": 4,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1967": 1,
@@ -318,14 +345,14 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": null,
-   "name": "Hisashi Nakayama",
+   "openalex": "A5110334806",
+   "name": "Joseph Miller Thomas",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5064676393",
-   "name": "Yasuzo Nishimura",
+   "openalex": null,
+   "name": "Robin Thomas",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22four+color+theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -441,6 +468,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "13 relevant works of 25 considered, 647 works with the phrase"
+  "reason": "15 relevant works of 25 considered, 647 works with the phrase"
  }
 }

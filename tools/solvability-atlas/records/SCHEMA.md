@@ -20,6 +20,7 @@ type Record = {
     role: "posed" | "partial" | "resolved" | "survey"; relevance: number; in_embedding: boolean; source: string;
   }[];
   key_works_considered: number;    // hits returned before the relevance filter
+  key_works_dropped: Record<string, number>;   // drops per filter: uncited, off-field, no keyword hit, duplicate
   activity: {                      // works per year with the phrase in title or abstract
     openalex_by_year: Record<string, number>; openalex_total: number; arxiv_total: number | null; source: string;
   };
@@ -34,7 +35,7 @@ type Record = {
 };
 ```
 
-Relevance filter for key works: a hit is kept when it has at least one citation, its OpenAlex field sits in the branch's field set (`BRANCH_FIELDS` in `records.py`), and its title or topic holds the query phrase, the title, an alias, a keyword or a keyword word of five letters or more outside the stop list. Score = 2 per title match + 1 per topic match; ties break on citations. Duplicate titles keep the first hit. The first 8 kept works carry `in_embedding: true` and their titles enter the embedding text in `atlas.py`.
+Relevance filter for key works: a hit is kept when it has at least one citation, its OpenAlex field sits in the branch's field set (`BRANCH_FIELDS` in `records.py`) or its title names the problem (title, query or alias), and its title or topic holds the query phrase, the title, an alias, a keyword or a keyword word of five letters or more outside the stop list. A title with none of those but a problem word (conjecture, problem, theorem, undecidable, proof, hypothesis, unsolved) scores 1, since OpenAlex matched the phrase in its abstract. Score = 2 per title match + 1 per topic match; ties break on citations. Duplicate titles keep the first hit. The first 8 kept works carry `in_embedding: true` and their titles enter the embedding text in `atlas.py`.
 
 Quality: `full` means at least 8 kept works and at least 5 phrase hits; `partial` means fewer than 8 kept works; `weak` means no kept work or fewer than 5 phrase hits (refine the query in `sources.tsv`); `empty` means no OpenAlex response is cached.
 

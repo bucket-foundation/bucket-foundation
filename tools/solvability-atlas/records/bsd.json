@@ -217,9 +217,24 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2626548081",
+   "title": "Recent progress on the Tate conjecture",
+   "year": 2017,
+   "cited_by_count": 20,
+   "doi": "https://doi.org/10.1090/bull/1588",
+   "role": "survey",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 6,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1962": 1,
@@ -507,6 +522,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "17 relevant works of 25 considered, 615 works with the phrase"
+  "reason": "18 relevant works of 25 considered, 615 works with the phrase"
  }
 }

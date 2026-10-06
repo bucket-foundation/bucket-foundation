@@ -247,9 +247,35 @@
    "relevance": 2,
    "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Collatz+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7140184054",
+   "title": "The Spectral Existence Theorem for Developmental Geometry",
+   "year": 2026,
+   "cited_by_count": 15,
+   "doi": "https://doi.org/10.5281/zenodo.19210681",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Collatz+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1884033210",
+   "title": "Inclusion problems for patterns with a bounded number of variables",
+   "year": 2012,
+   "cited_by_count": 14,
+   "doi": "https://doi.org/10.1016/j.ic.2012.10.003",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Collatz+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 2,
+  "no keyword hit": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1982": 1,
@@ -504,6 +530,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "20 relevant works of 25 considered, 4194 works with the phrase"
+  "reason": "22 relevant works of 25 considered, 4194 works with the phrase"
  }
 }

@@ -99,6 +99,11 @@
   }
  ],
  "key_works_considered": 12,
+ "key_works_dropped": {
+  "no keyword hit": 1,
+  "duplicate": 1,
+  "uncited": 4
+ },
  "activity": {
   "openalex_by_year": {
    "2012": 1,
@@ -333,6 +338,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "partial",
-  "reason": "6 relevant works of 12 considered"
+  "reason": "6 relevant works of 12 considered; dropped 4 uncited, 1 no keyword hit, 1 duplicate"
  }
 }

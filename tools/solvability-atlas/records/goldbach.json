@@ -79,6 +79,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W4251040159",
+   "title": "Goldbach Conjecture",
+   "year": 1984,
+   "cited_by_count": 78,
+   "doi": "https://doi.org/10.1142/0069",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W1972837770",
    "title": "Verifying the Goldbach conjecture up to 4⋅10¹⁴",
    "year": 2000,
@@ -119,7 +130,7 @@
    "doi": "https://doi.org/10.1007/s10910-016-0628-5",
    "role": "partial",
    "relevance": 4,
-   "in_embedding": true,
+   "in_embedding": false,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
@@ -256,6 +267,10 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 2,
+  "no keyword hit": 2
+ },
  "activity": {
   "openalex_by_year": {
    "1956": 1,
@@ -377,6 +392,12 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "A5100344872",
+   "name": "Yuan Wang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": null,
    "name": "Jörg Richstein",
    "works": 1,
@@ -397,12 +418,6 @@
   {
    "openalex": "A5015514236",
    "name": "Ramon Carbó‐Dorca",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
-  },
-  {
-   "openalex": "A5005163295",
-   "name": "Jean‐Marc Deshouillers",
    "works": 1,
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Goldbach+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
@@ -531,6 +546,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "20 relevant works of 25 considered, 2314 works with the phrase"
+  "reason": "21 relevant works of 25 considered, 2314 works with the phrase"
  }
 }

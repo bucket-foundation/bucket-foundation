@@ -204,6 +204,17 @@
    "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
+   "openalex": "W603376266",
+   "title": "The Millennium Prize Problems",
+   "year": 2006,
+   "cited_by_count": 228,
+   "doi": null,
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W2141416465",
    "title": "A Semiregularity Map for Modules and Applications to Deformations",
    "year": 2003,
@@ -260,6 +271,10 @@
   }
  ],
  "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 2,
+  "duplicate": 1
+ },
  "activity": {
   "openalex_by_year": {
    "1969": 1,
@@ -531,6 +546,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "full",
-  "reason": "21 relevant works of 25 considered, 2105 works with the phrase"
+  "reason": "22 relevant works of 25 considered, 2105 works with the phrase"
  }
 }

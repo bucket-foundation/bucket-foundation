@@ -58,9 +58,33 @@ def test_record_text_holds_statement_aliases_and_titles_without_branch():
 def test_embed_text_falls_back_to_keywords(monkeypatch):
     monkeypatch.setattr(atlas, "RECORDS", FIXTURES)
     n = {"id": "alpha", "name": "Alpha problem", "branch": "mathematics", "keywords": ["k"], "kind": "problem"}
-    assert atlas.embed_text(n)[1] == "record"
-    assert atlas.embed_text(n | {"id": "nope"}) == ("Alpha problem. mathematics. k", "keywords")
-    assert atlas.embed_text(n | {"kind": "lean"})[1] == "keywords"
+    assert atlas.embed_text(n, "statement_titles_aliases")[1] == "statement_titles_aliases"
+    assert atlas.embed_text(n | {"id": "nope"}, "statement") == ("Alpha problem. mathematics. k", "keywords")
+    assert atlas.embed_text(n | {"kind": "lean"}, "statement_titles")[1] == "keywords"
+    assert atlas.embed_text(n, "keywords") == ("Alpha problem. mathematics. k", "keywords")
+    assert atlas.DEFAULT_TEXT in atlas.TEXT_VARIANTS
+    with pytest.raises(ValueError):
+        atlas.embed_text(n, "nope")
+
+
+def test_text_variants_add_parts_in_order():
+    r = fixture("alpha")
+    n = {"id": r["id"], "name": r["title"], "branch": r["branch"], "keywords": ["k"], "kind": "problem"}
+    st = atlas.record_text(n, r, "statement")
+    tt = atlas.record_text(n, r, "statement_titles")
+    al = atlas.record_text(n, r, "statement_titles_aliases")
+    assert r["statement"]["text"] in st and "Key works" not in st and "Also called" not in st
+    assert "Key works" in tt and "Also called" not in tt
+    assert "Key works" in al and "Also called" in al
+
+
+def test_pair_hits_scores_expected_neighbours():
+    import numpy as np
+    ids = ["a", "b", "c", "d"]
+    emb = atlas.unit(np.array([[1, 0, 0], [0.9, 0.1, 0], [0, 1, 0], [0, 0.2, 1.0]]))
+    res = atlas.pair_hits(ids, emb, pairs=[("a", "b"), ("a", "d"), ("x", "a")], k=1)
+    assert res["hits"] == 1 and res["hit_pairs"] == [("a", "b")] and res["missed"] == [("a", "d"), ("x", "a")]
+    assert atlas.neighbours(ids, emb, k=1)["a"] == {"b"}
 
 
 def test_offline_build_from_fixture_records(tmp_path, monkeypatch):
@@ -74,7 +98,7 @@ def test_offline_build_from_fixture_records(tmp_path, monkeypatch):
     assert [record_schema.errors(r) for r in built] == [[], []]
     assert built[0]["statement"]["text"] == "fallback statement" and built[0]["statement"]["source"] == "descriptions.tsv"
     assert built[0]["statement"]["licence"] and built[0]["statement"]["attribution"]["url"]
-    assert built[0]["quality"]["status"] == "empty" and built[0]["key_works_considered"] == 0
+    assert built[0]["quality"]["status"] == "empty" and built[0]["key_works_considered"] == 0 and built[0]["key_works_dropped"] == {}
     assert built[0]["key_works"] == [] and built[0]["activity"]["openalex_total"] == 0 and built[0]["activity"]["arxiv_total"] is None
     assert built[0]["related"][0]["id"] == "beta" and "shared word" in built[0]["related"][0]["why"]
     assert [m["id"] for m in built[0]["repo_mentions"]] == ["PMID1"]
@@ -90,6 +114,21 @@ def problem(pid, branch, markets, keywords, query):
 WORKS = json.load(open(FIXTURES / "openalex_works.json"))
 
 
+def test_name_hit_overrides_field_and_problem_words_rescue_abstract_hits():
+    cases = [("turbulence", "physics", ["fluid dynamics"], "turbulence closure", "On entropy method of turbulence closure problem", "Economics, Econometrics and Finance"),
+             ("hodge", "mathematics", ["algebraic cycles"], "Hodge conjecture", "The Millennium Prize Problems", "Computer Science"),
+             ("poincare", "mathematics", ["3-manifold"], "Poincaré conjecture", "Some Open Problems and Research Directions", "Mathematics"),
+             ("geomlanglands", "mathematics", ["D-modules"], "geometric Langlands", "On De Jong's conjecture", "Mathematics"),
+             ("halting", "information", ["Turing machine"], "halting problem", "Bounded Quantification Is Undecidable", "Computer Science")]
+    for pid, branch, kws, query, title, field in cases:
+        p = problem(pid, branch, [], kws, query)
+        w = {"id": "https://openalex.org/W1", "title": title, "publication_year": 2000, "cited_by_count": 5, "primary_topic": {"display_name": "x", "field": {"display_name": field}, "subfield": {"display_name": "y"}}}
+        assert [x["title"] for x in records.key_works([w], p, "src")] == [title], pid
+    off = {"id": "https://openalex.org/W2", "title": "Random Matrix Theory and Wireless Communications", "publication_year": 2004, "cited_by_count": 2125, "primary_topic": {"display_name": "Random Matrices", "field": {"display_name": "Mathematics"}, "subfield": {"display_name": "Statistics"}}}
+    kept, dropped = records.select_works([off, dict(off, id="https://openalex.org/W3")], problem("riemann", "mathematics", [], ["zeta function"], "Riemann hypothesis"), [])
+    assert kept == [] and dropped == {"no keyword hit": 1, "duplicate": 1}
+
+
 def test_key_work_filter_drops_off_topic_and_uncited_works():
     riemann = problem("riemann", "mathematics", ["cryptography"], ["zeta function", "nontrivial zeros", "prime distribution", "critical line", "analytic number theory"], "Riemann hypothesis")
     kept = records.key_works(WORKS["riemann"], riemann, "src", ["Riemann hypothesis"])
@@ -101,7 +140,7 @@ def test_key_work_filter_drops_off_topic_and_uncited_works():
     dark = problem("darkmatter", "cosmology", [], ["rotation curves", "WIMP", "axion", "galaxy clusters", "lensing"], "dark matter")
     kept = records.key_works(WORKS["darkmatter"], dark, "src", [])
     assert [w["openalex"] for w in kept] == ["W10"]
-    assert records.industries(dark, [w for _, w in records.select_works(WORKS["darkmatter"], dark, [])]) == []
+    assert records.industries(dark, [w for _, w in records.select_works(WORKS["darkmatter"], dark, [])[0]]) == []
 
 
 def test_key_works_dedupe_and_embedding_cap():

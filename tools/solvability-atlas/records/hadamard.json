@@ -30,6 +30,17 @@
  ],
  "key_works": [
   {
+   "openalex": "W2340561673",
+   "title": "On the circulant Hadamard matrix conjecture",
+   "year": 1993,
+   "cited_by_count": 9,
+   "doi": null,
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hadamard+matrix+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
    "openalex": "W1566828525",
    "title": "Characters and Cyclotomic Fields in Finite Geometry",
    "year": 2002,
@@ -42,6 +53,12 @@
   }
  ],
  "key_works_considered": 21,
+ "key_works_dropped": {
+  "off-field": 9,
+  "no keyword hit": 1,
+  "duplicate": 4,
+  "uncited": 5
+ },
  "activity": {
   "openalex_by_year": {
    "1993": 1,
@@ -64,6 +81,18 @@
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hadamard+matrix+conjecture%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Hadamard+matrix+conjecture%22&max_results=1"
  },
  "people": [
+  {
+   "openalex": "A5074069043",
+   "name": "Cantian Lin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hadamard+matrix+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5109812339",
+   "name": "W. D. Wallis",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hadamard+matrix+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
   {
    "openalex": "A5107466673",
    "name": "Bernhard Schmidt",
@@ -111,6 +140,6 @@
  "retrieved": "2026-10-05",
  "quality": {
   "status": "partial",
-  "reason": "1 relevant works of 21 considered"
+  "reason": "2 relevant works of 21 considered; dropped 9 off-field, 5 uncited, 4 duplicate, 1 no keyword hit"
  }
 }
