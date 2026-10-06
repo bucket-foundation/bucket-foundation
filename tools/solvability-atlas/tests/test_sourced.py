@@ -11,7 +11,7 @@ from wikipedia_lists import bullets, name_of
 from common import keywords_from, posed_year, resolved_year, first_sentence
 import re
 
-COLUMNS = ["id", "name", "branch", "level", "form", "variant_of", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source"]
+COLUMNS = ["id", "name", "branch", "level", "form", "variant_of", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source", "posed_evidence"]
 TRAILING = {"especially", "and", "or", "of", "the", "in", "for", "to", "with", "by", "an"}
 
 
@@ -255,3 +255,67 @@ def test_each_science_branch_states_its_solved_count():
     short = {branch: solved_discoveries.TARGET - n for branch, n in counts.items() if n < solved_discoveries.TARGET}
     for branch, floor in POSED_FLOOR.items():
         assert counts[branch] >= floor, (branch, counts[branch], f"shortfall below {solved_discoveries.TARGET}: {short}")
+
+
+DATED_COUNTS = {
+    "science-2005": {"open": 48, "partial": 65, "solved": 4},
+    "science-2021": {"open": 80, "partial": 42},
+    "darpa": {"solved": 13, "open": 3},
+    "xprize": {"solved": 17, "open": 3, "partial": 1},
+    "neuro-23": {"partial": 8, "open": 15},
+    "holy-grails": {"open": 20, "partial": 6},
+}
+
+
+def test_dated_list_rows_carry_posed_year_statement_band_and_sources():
+    import dated_lists
+
+    data = [r for r in rows() if r["id"].startswith("dl-")]
+    assert len(data) == sum(sum(c.values()) for c in DATED_COUNTS.values())
+    for r in data:
+        assert re.fullmatch(r"\d{4}", r["posed"]), r["id"]
+        assert dated_lists.MIN_WORDS <= len(r["statement"].split()) <= dated_lists.MAX_WORDS, r["id"]
+        assert r["status_source"] and r["licence"] in dated_lists.LICENCES and r["posed_evidence"], r["id"]
+        assert (r["status"] == "solved") == bool(r["resolved"]), r["id"]
+        assert r["form"] in {"question", "problem"}, r["id"]
+    curated = dated_lists.curated_rows()
+    assert not [(c["line"], dated_lists.check(c)) for c in curated if dated_lists.check(c)]
+
+
+def test_dated_list_counts_per_source():
+    import dated_lists
+
+    assert {name: dict(table) for name, table in dated_lists.counts(rows()).items()} == DATED_COUNTS
+
+
+def test_posed_evidence_column_is_present_and_filled_where_posed_came_from_a_list():
+    data = rows()
+    assert all("posed_evidence" in r for r in data)
+    import dated_lists
+
+    for r in data:
+        if r["id"].startswith(("dl-", "sd-", "hilbert-", "smale-")) or r["id"] in dated_lists.POSED_FILLS:
+            assert r["posed_evidence"], r["id"]
+    by_id = {r["id"]: r for r in data}
+    assert by_id["wp-landau-s-problems"]["posed"] == "1912"
+    assert by_id["fc-millennium-riemannhypothesis-riemannhypothesis"]["posed"] == "1859"
+    assert by_id["wp-why-do-we-dream"]["posed"] == "2005"
+    erdos = [r for r in data if r["id"].startswith("fc-erdosproblems") and r["posed_evidence"].startswith("formal-conjectures text")]
+    assert len(erdos) == 20
+    assert all(r["posed"] for r in erdos)
+
+
+def test_no_dated_statement_duplicates_another_row():
+    import solved_discoveries
+
+    data = rows()
+    dated = [r for r in data if r["id"].startswith("dl-")]
+    others = [r for r in data if not r["id"].startswith("dl-")]
+    assert solved_discoveries.similar_pairs(dated, dated + others) == []
+
+
+def test_copyrighted_headlines_stay_short():
+    for r in rows():
+        if r["licence"].startswith(("AAAS", "ACS")):
+            assert len(r["name"].split()) < 15, r["id"]
+            assert r["statement"] != r["name"], r["id"]
