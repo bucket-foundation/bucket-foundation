@@ -194,7 +194,7 @@ describe("bounded wait", () => {
 describe("bkt quiz schedule", () => {
   test("the unit carries BKT_HOME when it is set at schedule time", async () => {
     expect(unitFiles(["/opt/bucket/bkt"], "08:53", { BKT_HOME: '/h/my "data" 50%' }).service).toBe(
-      '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nEnvironment="BKT_HOME=/h/my \\"data\\" 50%%"\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\n',
+      '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nEnvironment="BKT_HOME=/h/my \\"data\\" 50%%"\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\nKillMode=process\n',
     );
     expect(unitFiles(["/h/$x/bkt"], "08:53", { BKT_HOME: "/h/$data/100%" }).service).toContain('Environment="BKT_HOME=/h/$data/100%%"\nExecStart="/h/$$x/bkt" "quiz" "notify"\n');
     expect(unitFiles(["/b"], "08:53", { BKT_HOME: "" }).service).not.toContain("Environment");
@@ -205,7 +205,7 @@ describe("bkt quiz schedule", () => {
 
   test("the unit files are fixed text around the bkt path and the time", () => {
     expect(unitFiles(["/opt/bucket/bkt"])).toEqual({
-      service: '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\n',
+      service: '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\nKillMode=process\n',
       timer: "[Unit]\nDescription=Bucket daily quiz notification, once a day\n\n[Timer]\nOnCalendar=*-*-* 08:53:00\nPersistent=true\n\n[Install]\nWantedBy=timers.target\n",
     });
     expect(unitFiles(['/h/my "apps"/50%/$x/bkt'], "7:05").service).toContain('ExecStart="/h/my \\"apps\\"/50%%/$$x/bkt" "quiz" "notify"');

@@ -16,6 +16,7 @@ export const USAGE = "usage: bkt quiz notify [--force] | bkt quiz schedule [--at
 export const WAIT_MS = 10 * 60_000;
 export const KILL_MS = WAIT_MS + 30_000;
 export const UNIT_TIMEOUT = "15min";
+export const KILL_MODE = "process";
 export const SILENT: Record<"unsupported" | "off" | "already" | "quiet" | "failed", string> = {
   unsupported: "this system has no notifier",
   off: "both chat sources are off, or the Bucket window has not run with this data folder",
@@ -144,6 +145,7 @@ Description=Bucket daily quiz notification
 Type=oneshot
 ${env.BKT_HOME ? `Environment=${unitArg(`BKT_HOME=${env.BKT_HOME}`, false)}\n` : ""}ExecStart=${[...self, "quiz", "notify"].map((a) => unitArg(a)).join(" ")}
 TimeoutStartSec=${UNIT_TIMEOUT}
+KillMode=${KILL_MODE}
 `,
     timer: `[Unit]
 Description=Bucket daily quiz notification, once a day

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+day="${1:-$(date +%F)}"
+if [ -z "${BKT_QUIZ_NOTIFY_INNER:-}" ] && command -v systemd-run >/dev/null; then
+  exec systemd-run --user --quiet --collect --unit "bkt-daily-quiz-notify-$day" -p TimeoutStartSec=12h \
+    --setenv=BKT_QUIZ_NOTIFY_INNER=1 "$0" "$day"
+fi
+action=$(notify-send -u critical --app-name=Bucket --expire-time=43200000 -A open="Open quiz" "Bucket daily quiz" "Quiz and critic for $day are ready" || true)
+if [ "$action" = open ]; then
+  if command -v bkt >/dev/null; then
+    bkt app --route "/work/daily/$day"
+  else
+    "$HOME/.local/bin/bkt-quiz-open" "$day"
+  fi
+fi
