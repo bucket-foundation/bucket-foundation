@@ -59,6 +59,10 @@ The frontier circle sits at reach 0.795, the 10th percentile of each solved prob
 
 `records.py` builds one JSON record per problem in `records/` from OpenAlex, Wikipedia, arXiv and the repo's own corpora, with every network field carrying its source URL and licence. Schema, relevance filter and build flags: `records/SCHEMA.md`. Per-problem counts, a status per record and the neighbour shift between keyword and record embeddings: `records/INDEX.md` (`python3 neighbour_shift.py` rebuilds the shift section). Responses cache under `cache/`, which stays out of git. Records hold Wikipedia text under CC BY-SA 4.0 with attribution; the code is MIT and the derived numbers are CC0 in intent.
 
+## Make-up
+
+`python3 makeup.py [out] --publish` reads `problems.tsv`, `problems-sourced.tsv`, the latest `output/solvability-frontier/report/{frontier,predictions}.json`, the committed neighbour file and `openalex-sourced.json` when present, and writes one horizontal bar chart per label (branch, status, form, source, licence, resolved kind, posed year present, posed and resolved year by decade, zone, prediction class, variant or top-level, embedding text kind, statement length band), a stacked status by branch chart, an OpenAlex works by branch chart and `makeup.json` with every count to `out/makeup/`. `--publish` also copies them to `output/solvability-frontier/report/makeup/`, the webp charts to `public/atlas/makeup/`, the combined figure to `papers/solvability-frontier/figures/fig_makeup.pdf` and the counts to `src/lib/research-os/solvability-makeup-data.json`, which the report page reads for its provenance section. `tests/test_makeup.py` checks that every label sums to the row total.
+
 ## Reproduce
 
 `pip install -r requirements.txt`. The embedding model is pinned by revision in `atlas.py`. `python3 -m pytest tests` checks that the angles, the network and its statistics repeat on a fixed input.
