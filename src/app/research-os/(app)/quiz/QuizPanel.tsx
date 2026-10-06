@@ -6,11 +6,21 @@ import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
 import type { QuizStats } from "@/lib/research-os/work-quiz/db";
 import type { SourceStatus } from "@/lib/research-os/work-quiz/sources-server";
+import LanguagePicker from "./LanguagePicker";
 
 interface StatsBody {
   stats: QuizStats;
   sources: SourceStatus;
   counts: { beads: number; prs: number; notes: number };
+  languages: string[];
+}
+
+const API = "/api/research-os/work-quiz";
+
+export async function saveLanguages(languages: string[]): Promise<string[]> {
+  const res = await fetch(API, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ languages }) });
+  if (!res.ok) throw new Error(`languages_${res.status}`);
+  return ((await res.json()) as { languages: string[] }).languages;
 }
 
 const CARD = "border border-[color:var(--hairline)] rounded-sm p-4 bg-[color:var(--bone)]/70";
@@ -21,7 +31,7 @@ export default function QuizPanel() {
 
   const load = useCallback(async () => {
     try {
-      const res = await fetch("/api/research-os/work-quiz?view=stats", { cache: "no-store" });
+      const res = await fetch(`${API}?view=stats`, { cache: "no-store" });
       if (!res.ok) {
         setError(`Stats are unavailable (${res.status}).`);
         return;
@@ -71,6 +81,8 @@ export default function QuizPanel() {
           ))}
         </dl>
       )}
+
+      {body && <LanguagePicker languages={body.languages ?? []} save={saveLanguages} onSaved={(languages) => setBody((b) => (b ? { ...b, languages } : b))} />}
 
       {body && (
         <section className={CARD}>

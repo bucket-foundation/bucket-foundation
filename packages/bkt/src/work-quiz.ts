@@ -13,6 +13,7 @@ import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "..
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
 import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
+import { LANGUAGES_ERROR, languagesByName, parseLanguages } from "../../../src/lib/research-os/work-quiz/languages";
 import { answerDaily, LearnError } from "./core/learn";
 import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
@@ -112,6 +113,21 @@ export class WorkQuizStore {
     this.store.setMeta(CHAT_META, JSON.stringify({ claude: on.claude, codex: on.codex }));
   }
 
+  languages(): string[] {
+    return this.store.db
+      .query<{ code: string }, []>("select code from work_quiz_languages order by rowid")
+      .all()
+      .map((r) => r.code);
+  }
+
+  setLanguages(codes: readonly string[], now: number) {
+    const ins = this.store.db.query("insert into work_quiz_languages (code, added_at) values (?, ?)");
+    this.store.db.transaction(() => {
+      this.store.db.run("delete from work_quiz_languages");
+      for (const c of codes) ins.run(c, now);
+    })();
+  }
+
   get daily(): DailyQuizStore {
     return new DailyQuizStore(this.store, this.key);
   }
@@ -122,6 +138,7 @@ export class WorkQuizStore {
     this.daily.clear();
     this.store.db.run("delete from work_quiz_coverage");
     this.store.db.run("delete from work_quiz_cards");
+    this.store.db.run("delete from work_quiz_languages");
   }
 
   record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
@@ -220,9 +237,12 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const building = new Map<string, Promise<DailyQuiz | null>>();
   const empty = new Map<string, string>();
 
+  const askable = (s: WorkSources) => !sourcesEmpty(s) || wq.languages().length > 0;
+
   async function build(day: string): Promise<DailyQuiz | null> {
     const { sources: src } = await sources();
-    const sampled = sourcesEmpty(src) ? null : sampleQuiz({ day, sources: src, coverage: wq.coverage(), due: wq.dueCards(now()), now: now(), exclude: usedOn(wq.coverage(), day) });
+    const languages = wq.languages();
+    const sampled = askable(src) ? sampleQuiz({ day, sources: src, coverage: wq.coverage(), due: wq.dueCards(now()), now: now(), exclude: usedOn(wq.coverage(), day), languages }) : null;
     const on = wq.chat();
     let chat: QuizQuestion[] = [];
     if (CHAT_ROOT_NAMES.some((r) => on[r])) {
@@ -283,7 +303,16 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   return {
     "GET /local/work-quiz/status": async () => {
       const { sources: s, repoError } = await sources();
-      return json({ beads: s.beads.length, prs: s.prs.length, repo: wq.repo(), repoError, chat: wq.chat(), ready: !sourcesEmpty(s), ...wq.tally() });
+      return json({ beads: s.beads.length, prs: s.prs.length, repo: wq.repo(), repoError, chat: wq.chat(), languages: wq.languages(), ready: askable(s), ...wq.tally() });
+    },
+    "GET /local/work-quiz/languages": () => json({ languages: wq.languages(), available: languagesByName() }),
+    "POST /local/work-quiz/languages": async (req) => {
+      const b = await body(req);
+      const languages = b ? parseLanguages(b.languages) : null;
+      if (!languages) return json({ error: LANGUAGES_ERROR }, 400);
+      wq.setLanguages(languages, now());
+      empty.clear();
+      return json({ languages: wq.languages() });
     },
     "POST /local/work-quiz/beads": async (req) => {
       const b = await body(req);
@@ -330,11 +359,11 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     },
     "GET /local/work-quiz/next": async () => {
       const { sources: s } = await sources();
-      if (sourcesEmpty(s)) return json({ error: "no sources: pick a beads file or a repository" }, 404);
+      if (!askable(s)) return json({ error: "no sources: pick a beads file, a repository or a language" }, 404);
       const at = now();
       const today = localDay(at);
       const coverage = wq.coverage();
-      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today) });
+      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today), languages: wq.languages() });
       const q = picked.questions[0] ?? generateQuestion(s, seed());
       if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
       if (picked.picks.length > 0) wq.recordPicks(picked.picks, today);

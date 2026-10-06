@@ -1,0 +1,10 @@
+{
+  "02-physics": [
+    { "id": "force", "title": "Force", "shell": "prereq", "type": "concept", "summary": "A push or a pull that changes motion.", "lesson": "Force equals mass times acceleration.", "quiz": [{ "level": "recall", "prompt": "What changes motion?", "answer": "A force" }] },
+    { "id": "momentum", "title": "Momentum", "shell": "nucleus", "type": "law", "requires": ["force"], "summary": "Mass times velocity, conserved in a closed system.", "quiz": [{ "level": "recall", "prompt": "Momentum is mass times what?", "answer": "Velocity" }, { "level": "apply", "prompt": "Two carts collide. What stays the same?", "answer": "Total momentum" }] },
+    { "id": "rocket", "title": "Rocket motion", "shell": "frontier", "type": "derivation", "requires": ["momentum", "missing"], "summary": "Thrust from expelled mass." }
+  ],
+  "07-mind": [
+    { "id": "attention", "title": "Attention", "shell": "nucleus", "summary": "Selecting what to process." }
+  ]
+}

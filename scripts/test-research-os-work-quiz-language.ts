@@ -9,6 +9,7 @@ import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
+import { LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
 import { BLOCKED_FORMS, DEPTHS, FORMS, FORM_LIMIT_SEC, LANGUAGE_FORMS, VALID_PAIRS, type Depth, type LanguageForm } from "../src/lib/research-os/work-quiz/space";
 import { ALL_QUIZ_TYPES, LANGUAGE_QUIZ_TYPES, QUIZ_TYPES, SOURCE_KINDS, TYPE_LABEL, toPublic, type WorkSources } from "../src/lib/research-os/work-quiz/types";
@@ -275,6 +276,53 @@ test("each language question carries the Wiktionary CC-BY-SA credit and link", (
     assert.equal(factIdOfSource(s), q.factIds[q.factIds.length - 1]);
     assert.ok(!s.ref.includes(FACT_JOIN) && !s.ref.includes(CARD_KEY_SEPARATOR));
   }
+});
+
+test("the static language list is the manifest, and a saved list is parsed against it", () => {
+  assert.deepEqual(LANGUAGE_CODES.slice().sort(), RAW.manifest.languages.slice().sort());
+  assert.deepEqual(LANGUAGE_NAMES, RAW.manifest.language_names);
+  assert.equal(MAX_LANGUAGES, 27);
+  assert.deepEqual(parseLanguages(["de", "he", "de"]), ["de", "he"]);
+  assert.deepEqual(parseLanguages([]), []);
+  assert.equal(parseLanguages(["xx"]), null);
+  assert.equal(parseLanguages("de"), null);
+  assert.equal(parseLanguages([1]), null);
+  assert.equal(parseLanguages(Array(28).fill("de")), null);
+  assert.deepEqual(toggleLanguage(["de"], "he"), ["de", "he"]);
+  assert.deepEqual(toggleLanguage(["de", "he"], "de"), ["he"]);
+  const byName = languagesByName();
+  assert.equal(byName.length, 27);
+  assert.deepEqual(byName.slice(0, 2).map((l) => l.name), ["Arabic", "Chinese"]);
+});
+
+test("right-to-left words and languages are marked rtl, the rest ltr", () => {
+  assert.deepEqual(RTL_LANGUAGES, ["ar", "he", "fa"]);
+  for (const l of RTL_LANGUAGES) assert.equal(languageDir(l), "rtl");
+  assert.equal(languageDir("de"), "ltr");
+  for (const lang of ["ar", "he", "fa"]) for (const c of SET.byLang[lang].slice(0, 20)) assert.equal(textDir(c.word), "rtl", `${lang} ${c.word}`);
+  for (const lang of ["de", "ru", "ja", "th", "hi"]) for (const c of SET.byLang[lang].slice(0, 20)) assert.equal(textDir(c.word), "ltr", `${lang} ${c.word}`);
+  assert.equal(textDir("/ʃaˈlom/"), "ltr");
+});
+
+test("each language question carries public word metadata: shown language, choices language, credit and link", () => {
+  for (const form of LANGUAGE_FORMS) for (const q of made(form, ["he", "de", "ja"], 10)) {
+    const pub = toPublic(q);
+    assert.ok(pub.word, form);
+    assert.equal(pub.word!.credit, SET.credit);
+    assert.equal(pub.word!.href, RAW.attribution.wiktionary_url);
+    const ref = q.sources[0].ref.split(":")[0];
+    if (form === "language") assert.deepEqual([pub.word!.lang, pub.word!.choicesLang], [null, null]);
+    if (form === "meaning" || form === "sound") assert.deepEqual([pub.word!.lang, pub.word!.choicesLang], [null, ref]);
+    if (form === "pair") {
+      assert.equal(pub.word!.choicesLang, ref);
+      assert.ok(["he", "de", "ja"].includes(pub.word!.lang!));
+    }
+    const caption = wordCaption(pub)!;
+    assert.equal(caption.credit, SET.credit);
+    assert.equal(caption.language, form === "language" ? null : SET.names[pub.word!.choicesLang === ref && form !== "pair" ? ref : pub.word!.lang!]);
+  }
+  assert.equal(wordCaption(toPublic(FORM_MAKERS.cloze!(SOURCES, seededRng("x"), 1)!)), null);
+  assert.equal("word" in toPublic(FORM_MAKERS.cloze!(SOURCES, seededRng("x"), 1)!), false);
 });
 
 test("an empty or absent language list leaves the quiz byte-identical", () => {

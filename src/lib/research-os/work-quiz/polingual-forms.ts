@@ -3,7 +3,7 @@ import { pick, shuffle, stamp, type FormMaker, type SampledQuestion } from "./fo
 import type { Rng } from "./generate";
 import { LIMITS, countTokens, parityOk } from "./limits";
 import { LANGUAGE_FORMS, type Depth, type LanguageForm } from "./space";
-import type { QuizQuestion, SourceRef } from "./types";
+import type { QuestionWord, QuizQuestion, SourceRef } from "./types";
 
 export interface RawSense {
   g?: string;
@@ -302,9 +302,13 @@ function rivals(set: WordSet, answer: WordCell, ok: (c: WordCell) => boolean = (
   return out;
 }
 
-function question(form: LanguageForm, set: WordSet, answer: WordCell, body: Pick<QuizQuestion, "prompt" | "lines" | "choices" | "answer" | "explain">, depth: Depth, factIds: string[]): SampledQuestion | null {
+export function wordMeta(set: WordSet, shown: WordCell | null, choices: WordCell | null): QuestionWord {
+  return { lang: shown?.lang ?? null, choicesLang: choices?.lang ?? null, credit: set.credit, href: set.wiktionaryUrl };
+}
+
+function question(form: LanguageForm, set: WordSet, answer: WordCell, body: Pick<QuizQuestion, "prompt" | "lines" | "choices" | "answer" | "explain">, depth: Depth, factIds: string[], word: QuestionWord): SampledQuestion | null {
   if (!body.choices || body.choices.filter((c) => c === body.answer).length !== 1) return null;
-  return stamp({ id: "", type: form, tolerance: 0, limitSec: 0, sources: [wordSource(set, answer)], ...body }, form, depth, factIds);
+  return stamp({ id: "", type: form, tolerance: 0, limitSec: 0, sources: [wordSource(set, answer)], word, ...body }, form, depth, factIds);
 }
 
 function wordChoices(set: WordSet, rng: Rng, answer: WordCell, depth: Depth, ok?: (c: WordCell) => boolean): string[] | null {
@@ -317,7 +321,7 @@ const meaning = (set: WordSet, languages: readonly string[]): FormMaker => (_src
   const a = pick(rng, pool);
   const choices = wordChoices(set, rng, a, depth);
   const name = set.names[a.lang];
-  return question("meaning", set, a, { prompt: `Which ${name} word means "${a.gloss}"?`, lines: [], choices, answer: a.word, explain: `${a.word} is ${name} for "${a.gloss}".` }, depth, [wordFactId(a)]);
+  return question("meaning", set, a, { prompt: `Which ${name} word means "${a.gloss}"?`, lines: [], choices, answer: a.word, explain: `${a.word} is ${name} for "${a.gloss}".` }, depth, [wordFactId(a)], wordMeta(set, null, a));
 };
 
 const sound = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
@@ -326,7 +330,7 @@ const sound = (set: WordSet, languages: readonly string[]): FormMaker => (_src, 
   const a = pick(rng, pool);
   const choices = wordChoices(set, rng, a, depth, (c) => c.ipa !== "" && c.ipa !== a.ipa);
   const name = set.names[a.lang];
-  return question("sound", set, a, { prompt: `Which ${name} word sounds like this?`, lines: [`/${a.ipa}/`], choices, answer: a.word, explain: `${a.word} is said /${a.ipa}/ in ${name}.` }, depth, [wordFactId(a)]);
+  return question("sound", set, a, { prompt: `Which ${name} word sounds like this?`, lines: [`/${a.ipa}/`], choices, answer: a.word, explain: `${a.word} is said /${a.ipa}/ in ${name}.` }, depth, [wordFactId(a)], wordMeta(set, null, a));
 };
 
 export function languageRivals(set: WordSet, a: WordCell): string[][] {
@@ -346,7 +350,7 @@ const language = (set: WordSet, languages: readonly string[]): FormMaker => (_sr
   const name = set.names[a.lang];
   const ordered = languageRivals(set, a).flatMap((ls) => shuffle(rng, ls)).map((l) => set.names[l]);
   const choices = choose(rng, name, ordered, LANGUAGE_CHOICES);
-  return question("language", set, a, { prompt: "Which language is this word?", lines: [a.word], choices, answer: name, explain: `${a.word} is ${name} for "${a.concept}".` }, depth, [wordFactId(a)]);
+  return question("language", set, a, { prompt: "Which language is this word?", lines: [a.word], choices, answer: name, explain: `${a.word} is ${name} for "${a.concept}".` }, depth, [wordFactId(a)], wordMeta(set, null, null));
 };
 
 const pair = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
@@ -366,6 +370,7 @@ const pair = (set: WordSet, languages: readonly string[]): FormMaker => (_src, r
     { prompt: `Which ${name} word matches this ${fromName} word?`, lines: [from.word], choices, answer: a.word, explain: `${from.word} in ${fromName} and ${a.word} in ${name} both mean "${from.concept}".` },
     depth,
     [wordFactId(from), wordFactId(a)],
+    wordMeta(set, from, a),
   );
 };
 

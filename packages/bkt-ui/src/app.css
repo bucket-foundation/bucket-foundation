@@ -1001,6 +1001,52 @@ button {
   margin-top: 10px;
 }
 
+.lines.word {
+  list-style: none;
+  padding-left: 0;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.choice .word {
+  font-size: 18px;
+}
+
+.lang-panel {
+  margin-bottom: 12px;
+}
+
+.lang-panel summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lang-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.lang-chip {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.lang-chip.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
 .q,
 .lines li,
 .choice,
@@ -1300,3 +1346,9 @@ table.columns thead th {
 .foot-link + .foot {
   margin-top: 6px;
 }
+.ros-stack { display: grid; gap: 16px; }
+.ros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.ros-links { margin: 0; padding-left: 18px; }
+.ros-links li { margin: 4px 0; }
+.ros-recall li { margin: 8px 0; }
+.ros-form label { display: flex; gap: 12px; align-items: center; margin: 8px 0; }

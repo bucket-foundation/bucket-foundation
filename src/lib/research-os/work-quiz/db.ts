@@ -217,3 +217,17 @@ export async function recordMiss(learnerId: string, question: QuizQuestion, day:
   const { error } = await graphService().rpc("work_quiz_record_miss", { p_learner_id: learnerId, p_fact_ids: splitFactId(cardFields(question).fact_id), p_day: day });
   must(null, error);
 }
+
+export async function loadLanguages(learnerId: string): Promise<string[]> {
+  const { data, error } = await graphService().from("work_quiz_languages").select("languages").eq("learner_id", learnerId).maybeSingle();
+  return must((data as { languages: string[] } | null)?.languages ?? [], error);
+}
+
+export async function saveLanguages(learnerId: string, languages: string[]): Promise<string[]> {
+  const { data, error } = await graphService()
+    .from("work_quiz_languages")
+    .upsert({ learner_id: learnerId, languages, updated_at: new Date().toISOString() }, { onConflict: "learner_id" })
+    .select("languages")
+    .single();
+  return must((data as { languages: string[] }).languages, error);
+}
