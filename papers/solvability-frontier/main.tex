@@ -6,6 +6,7 @@
 \usepackage{csquotes}
 \usepackage{longtable}
 
+
 \usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
 \addbibresource{bib/refs.bib}
 \addbibresource{../bib/common.bib}
@@ -27,6 +28,7 @@
 \newcommand{\bt}{\emp{output/solvability-frontier/report/backtest.json, 2026-10-06, \cmd}}
 \newcommand{\fr}{\emp{output/solvability-frontier/report/frontier.json, 2026-10-06, \cmd}}
 \newcommand{\pr}{\emp{output/solvability-frontier/report/predictions.json, 2026-10-06, \cmd}}
+\newcommand{\mk}{\emp{output/solvability-frontier/report/makeup/makeup.json, 2026-10-06, python3 tools/solvability-atlas/makeup.py --publish}}
 
 \glossentry{reach}{reach}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts}%
@@ -109,6 +111,51 @@ Rows are stratified by the word count of the embedded text, under 20, 20 to 40 a
 
 \paragraph{Reproduction.}
 \texttt{tools/solvability-atlas/build.sh} rebuilds the embeddings and the neighbour file; \cmd{} writes \texttt{frontier.json}, \texttt{backtest.json}, \texttt{predictions.json} and \texttt{predictions.csv} under \texttt{output/solvability-frontier/report/} and the page data under \texttt{src/lib/research-os/}. \texttt{make figures} in this directory redraws every figure and table from those files.
+
+\section{Provenance and method}
+\label{sec:provenance}
+
+\subsection{Sources}
+
+\Cref{tab:sources} lists every source the rows came from, with its licence, what was read from it and what the ingest did to it. The 5080 rows are 71 curated atlas problems and 5009 ingested rows \mk. \Cref{fig:makeup} shows the make-up of the set under every label the pipeline reads: mathematics holds 4,112 rows, formal-conjectures supplies 3,567, Apache-2.0 covers 3,557, 588 rows carry a posed year, 236 a resolved year, and 2,194 are variants of another row \mk.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Sources of the rows, with licence, what was taken and what was done \mk.}
+  \label{tab:sources}
+  \footnotesize
+  \input{tables/sources.tex}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_makeup.pdf}
+  \caption{Make-up of the 5,080 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, prediction class, variant or top-level, embedding text kind and statement length, with status by branch \mk.}
+  \label{fig:makeup}
+\end{figure}
+
+\subsection{Pipeline}
+
+Each step names its formula; $i$ and $j$ index rows.
+
+\begin{enumerate}
+  \item \textbf{Text.} $t_i$ is the ingested statement when present, else the atlas problem record (name, aliases, statement, keywords, key work titles), else name plus keywords: 5,009 statement, 71 record and 0 name plus keywords rows \mk. The branch word never enters the text.
+  \item \textbf{Embedding.} $e_i = f(t_i)/\lVert f(t_i)\rVert$ with $f$ = bge-small-en-v1.5 at revision 5c38ec7, 384 dimensions, cached by model revision and text hash \fr.
+  \item \textbf{Similarity.} $s_{ij} = e_i \cdot e_j$, the cosine. The 50 highest $s_{ij}$ per row are stored to three decimals, with the nearest solved row over the whole set \fr.
+  \item \textbf{Solved set.} $S = \{\, i : \mathrm{status}_i = \text{solved} \wedge (\mathrm{parent}_i = \varnothing \vee \mathrm{status}_{\mathrm{parent}_i} = \text{solved}) \,\}$, so a proved special case of an open problem stays partial; $|S| = 1{,}621$ \fr.
+  \item \textbf{Reach.} $r_i = \max_{j \in S,\, j \neq i} s_{ij}$ over the stored neighbours and the stored nearest solved row (\Cref{def:reach}).
+  \item \textbf{Threshold.} $\tau = Q_{0.1}(\{ r_j : j \in S \})$, the value at index $\lfloor 0.1\,|S| \rfloor$ of the sorted solved reaches; $\tau = 0.781$ \fr.
+  \item \textbf{Zones.} solved if $i \in S$; unsampled if the branch holds fewer than 10 solved rows; reachable if $r_i \geq \tau$; beyond if $r_i < \tau$: 1,621, 103, 2,225 and 1,131 rows \fr.
+  \item \textbf{Radius.} With $\mathrm{span}(x,a,b) = \min(1,\max(0,(x-a)/(b-a)))$: $\rho_i = 0.6\,(1 - \mathrm{span}(r_i, \min_S r, 1))$ for solved rows, $0.6 + 0.4\,(1 - \mathrm{span}(r_i, \tau, 1))$ for reachable rows, $1 + 0.5\,(1 - \mathrm{span}(r_i, \mathrm{floor}, \tau))$ for beyond rows and $1 + 0.5\,(1 - \mathrm{span}(r_i, \mathrm{floor}, 1))$ for unsampled rows, where $\mathrm{floor} = \min(\tau, \min_i r_i)$ \fr.
+  \item \textbf{Growth.} $g_i = 1 + |\{\, j \in N_i : \mathrm{zone}_j = \text{beyond},\ j \text{ top-level},\ s_{ij} \geq \tau \,\}|$ over the 50 stored neighbours $N_i$ (\Cref{def:growth}).
+  \item \textbf{Angle.} $p_i = (e_i - \bar e)\,V_2$ with $V_2$ the first two right singular vectors of the centred embeddings; $\theta_i$ is the rank of $\operatorname{atan2}(p_{i2}, p_{i1})$ over the rows, scaled to $[0, 2\pi)$ \fr.
+  \item \textbf{Reach class.} $u = Q_{0.75}(\{ r_i : i \text{ open, inside} \}) = 0.854$ \pr; close when $r_i \geq u$, borderline when $\tau \leq r_i < u$, needs a new idea when $r_i < \tau$, unsampled by branch (\Cref{def:class}).
+  \item \textbf{Backtest statistic.} At cutoff $c$: $d_c = p_{\mathrm{in}} - p_{\mathrm{out}}$ with $p$ the resolved share of scored rows on each side of $\tau_c$; ratio $p_{\mathrm{in}}/p_{\mathrm{out}}$, undefined when $p_{\mathrm{out}} = 0$ \bm{BucketMath.Marketing.ratio}; AUC $= \Pr(r_{\text{resolved}} > r_{\text{unresolved}})$ with ties at one half (\Cref{def:backtest}).
+  \item \textbf{Permutation test.} $p = (1 + |\{ b : |d^*_b| \geq |d_c| \}|)/(B+1)$ with $B = 10{,}000$ shuffles of the outcomes across the inside and outside rows under seed 20261006 \bt, so $0 < p \leq 1$ (\Cref{app:lean}).
+\end{enumerate}
+
+\paragraph{OpenAlex activity.}
+A title-and-abstract search on each sourced row's name or first clause, run against the OpenAlex works index with a key, stores the matching work count, counts per year for the last 30 years and the three most cited works per row in \texttt{tools/solvability-atlas/openalex-sourced.json}. The free daily budget is 1,000 requests, two per row. The first run took the file in its own order and stored 499 of the 5,009 rows before the budget ran out, 388 of them with at least one matching work, all 499 in mathematics (median 15 works) and none in the other seven branches \mk; a second run the same day was refused for ten hours. Later runs take the remaining rows in an order that interleaves the branches. Until every branch holds at least 30 rows with data no comparison across branches is possible. The frontier score does not use these counts yet; \Cref{fig:makeup} carries no activity axis and the distribution by branch sits in the page's make-up charts.
 
 \section{Results}
 \label{sec:results}
