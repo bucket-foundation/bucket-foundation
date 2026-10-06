@@ -20,7 +20,7 @@ const TITLES = JSON.parse(readFileSync(join(import.meta.dir, "../../../scripts/f
 const BEADS: BeadFact[] = TITLES.beads.map((title, i) => ({ id: `bkt-f${i.toString(36)}`, title, status: ["open", "closed", "in_progress"][i % 3], priority: i % 5, createdAt: "2026-09-01" }));
 
 describe("schema 10 coverage", () => {
-  test("a v9 database migrates to 10 and the coverage table stays local", () => {
+  test("a v9 database migrates to the current schema and the coverage table stays local", () => {
     const path = join(dir, "bkt.db");
     const db = new Database(path, { create: true, strict: true });
     for (const m of MIGRATIONS.slice(0, 9)) {

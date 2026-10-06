@@ -1,0 +1,455 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "blackscholes",
+ "title": "Rough volatility pricing",
+ "statement": {
+  "text": "In statistics, stochastic volatility models are those in which the variance of a stochastic process is itself randomly distributed. They are used in the field of mathematical finance to evaluate derivative securities, such as options. The name derives from the models' treatment of the underlying security's volatility as a random process, governed by state variables such as the price level of the underlying security, the tendency of volatility to revert to some long-run mean value, and the variance of the volatility process itself, among others.",
+  "source": "https://en.wikipedia.org/wiki/Stochastic_volatility",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Stochastic volatility",
+   "url": "https://en.wikipedia.org/wiki/Stochastic_volatility"
+  }
+ },
+ "aliases": [
+  "Stochastic volatility",
+  "stochastic volatility"
+ ],
+ "branch": "mathematics",
+ "level": 3,
+ "industries": [
+  "finance",
+  "economics and econometrics"
+ ],
+ "posed": 2014,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2014,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W3021131124",
+   "title": "Pricing under rough volatility",
+   "year": 2015,
+   "cited_by_count": 465,
+   "doi": "https://doi.org/10.1080/14697688.2015.1099717",
+   "role": "posed",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3095372661",
+   "title": "Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models",
+   "year": 2020,
+   "cited_by_count": 154,
+   "doi": "https://doi.org/10.1080/14697688.2020.1817974",
+   "role": "survey",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2588426171",
+   "title": "Rough volatility: Evidence from option prices",
+   "year": 2018,
+   "cited_by_count": 101,
+   "doi": "https://doi.org/10.1080/24725854.2018.1444297",
+   "role": "posed",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2785688177",
+   "title": "Volatility Options in Rough Volatility Models",
+   "year": 2018,
+   "cited_by_count": 48,
+   "doi": "https://doi.org/10.1137/18m1169242",
+   "role": "posed",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2522906556",
+   "title": "The microstructural foundations of leverage effect and rough volatility",
+   "year": 2018,
+   "cited_by_count": 158,
+   "doi": "https://doi.org/10.1007/s00780-018-0360-z",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2963515658",
+   "title": "Multifactor Approximation of Rough Volatility Models",
+   "year": 2019,
+   "cited_by_count": 144,
+   "doi": "https://doi.org/10.1137/18m1170236",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2766498901",
+   "title": "A regularity structure for rough volatility",
+   "year": 2019,
+   "cited_by_count": 66,
+   "doi": "https://doi.org/10.1111/mafi.12233",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2803897013",
+   "title": "No‐arbitrage implies power‐law market impact and rough volatility",
+   "year": 2020,
+   "cited_by_count": 62,
+   "doi": "https://doi.org/10.1111/mafi.12254",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2990522534",
+   "title": "Rough volatility of Bitcoin",
+   "year": 2019,
+   "cited_by_count": 60,
+   "doi": "https://doi.org/10.1016/j.frl.2019.101379",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2767224804",
+   "title": "Functional central limit theorems for rough volatility",
+   "year": 2024,
+   "cited_by_count": 46,
+   "doi": "https://doi.org/10.1007/s00780-024-00533-5",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2904253929",
+   "title": "Calibrating Rough Volatility Models: A Convolutional Neural Network Approach",
+   "year": 2019,
+   "cited_by_count": 42,
+   "doi": "https://doi.org/10.1080/14697688.2019.1654126",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2895507058",
+   "title": "On Deep Calibration of (rough) Stochastic Volatility Models",
+   "year": 2025,
+   "cited_by_count": 34,
+   "doi": "https://doi.org/10.1142/s2705109925500051",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4392000350",
+   "title": "Rough Volatility: Fact or Artefact?",
+   "year": 2024,
+   "cited_by_count": 34,
+   "doi": "https://doi.org/10.1007/s13571-024-00322-2",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2899058947",
+   "title": "Precise asymptotics: Robust stochastic volatility models",
+   "year": 2021,
+   "cited_by_count": 32,
+   "doi": "https://doi.org/10.1214/20-aap1608",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 10,
+  "no keyword hit": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1968": 1,
+   "1994": 1,
+   "2014": 1,
+   "2015": 3,
+   "2016": 2,
+   "2017": 14,
+   "2018": 19,
+   "2019": 29,
+   "2020": 33,
+   "2021": 41,
+   "2022": 44,
+   "2023": 47,
+   "2024": 58,
+   "2025": 73,
+   "2026": 155
+  },
+  "openalex_total": 521,
+  "arxiv_total": 173,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22rough+volatility%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5011490173",
+   "name": "Blanka N. Horvath",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5042780618",
+   "name": "Christian Bayer",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5085656370",
+   "name": "Peter K. Friz",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5103053430",
+   "name": "Aitor Muguruza",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5068736485",
+   "name": "Mathieu Rosenbaum",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5010182407",
+   "name": "Mehdi Tomas",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019481499",
+   "name": "Antoine Jacquier",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5013330642",
+   "name": "Omar El Euch",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5080851833",
+   "name": "Paul Gassiat",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5060704462",
+   "name": "Benjamin Stemper",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5028270155",
+   "name": "Jim Gatheral",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5071886724",
+   "name": "Giulia Livieri",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5036548763",
+   "name": "Saad Mouti",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5041766874",
+   "name": "Andrea Pallavicini",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052828075",
+   "name": "Peter Tankov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I142476485",
+   "name": "École Polytechnique",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210092021",
+   "name": "Weierstrass Institute for Applied Analysis and Stochastics",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4577782",
+   "name": "Technische Universität Berlin",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210128584",
+   "name": "The Alan Turing Institute",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I40120149",
+   "name": "University of Oxford",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I183935753",
+   "name": "King's College London",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210102092",
+   "name": "Laboratoire d'Hydrodynamique de l'École polytechnique",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210107641",
+   "name": "Centre de Mathématiques Appliquées de l'École polytechnique",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I56435720",
+   "name": "Université Paris Dauphine-PSL",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I141810926",
+   "name": "Baruch College",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I174216632",
+   "name": "City University of New York",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157210198",
+   "name": "Scuola Normale Superiore",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405264447",
+   "name": "Université Pierre-et-Marie-Curie",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I84009706",
+   "name": "ENSAE Paris",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "optimalstop",
+   "why": "shared markets: finance"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Stochastic_volatility",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22rough+volatility%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "14 relevant works of 25 considered, 521 works with the phrase"
+ }
+}

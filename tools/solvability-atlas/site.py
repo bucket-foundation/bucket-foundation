@@ -64,6 +64,7 @@ def site(repo):
     plots = [{"src": "/atlas/" + f.replace(".png", ".webp"), "title": t, "caption": d} for f, t, d in PLOTS]
     json.dump({"producer": "bucket.foundation", "generator": "tools/solvability-atlas", "productions": cards, "summary": s, "plots": plots}, open(lib / "solvability-atlas-data.json", "w"), indent=1)
     (lib / "solvability-similarity-data.json").write_text((OUT / "similarity.json").read_text())
+    (lib / "solvability-neighbors-data.json").write_text((OUT / "neighbors.json").read_text())
 
 
 if __name__ == "__main__":

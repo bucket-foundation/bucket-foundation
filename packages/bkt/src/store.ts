@@ -8,11 +8,11 @@ import type { Card, Item, Rating } from "./grade";
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
-export const SCHEMA_VERSION = 11;
+export const SCHEMA_VERSION = 12;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "work_quiz_languages"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile", "work_quiz_languages"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -104,6 +104,16 @@ export const MIGRATIONS: Migration[] = [
   `create table work_quiz_coverage (cell text not null, fact_id text not null, picks integer not null default 0, misses integer not null default 0,
      last_day text not null, primary key (cell, fact_id));
    alter table work_quiz_cards add column question text;`,
+  `create table ros_nodes (id text primary key, slug text not null unique, title text not null, kind text not null, tier integer not null,
+     branch text not null, summary text, frontier_flag text, provenance text not null);
+   create index ros_nodes_branch on ros_nodes(branch);
+   create table ros_edges (id text primary key, from_id text not null, to_id text not null, kind text not null);
+   create index ros_edges_from on ros_edges(from_id);
+   create index ros_edges_to on ros_edges(to_id);
+   create table ros_items (id text primary key, node_id text not null, kind text not null, ordinal integer not null, body text not null);
+   create index ros_items_node on ros_items(node_id);
+   create table ros_state (node_id text primary key, stage text not null, confidence real, evidence text not null default '[]', updated_at integer not null);
+   create table ros_profile (id integer primary key check (id = 1), role text, birth_year_bucket text, game text, updated_at integer not null);`,
   `create table if not exists work_quiz_languages (code text primary key check (length(code) between 2 and 3), added_at integer not null);`,
 ];
 

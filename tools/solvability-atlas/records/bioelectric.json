@@ -1,0 +1,498 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bioelectric",
+ "title": "Bioelectric pattern control",
+ "statement": {
+  "text": "In biology, developmental bioelectricity is the regulation of cell, tissue, and organ-level patterning and behavior by electrical signals during the development of embryonic animals and plants. The charge carrier in developmental bioelectricity is the ion rather than the electron, and an electric current and field is generated whenever a net ion flux occurs. Cells and tissues of all types use flows of ions to communicate electrically. Endogenous electric currents and fields, ion fluxes, and differences in resting potential across tissues comprise a signalling system. It functions along with biochemical factors, transcriptional networks, and other physical forces to regulate cell behaviour and large-scale patterning in processes such as embryogenesis, regeneration, and cancer suppression.",
+  "source": "https://en.wikipedia.org/wiki/Developmental_bioelectricity",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Developmental bioelectricity",
+   "url": "https://en.wikipedia.org/wiki/Developmental_bioelectricity"
+  }
+ },
+ "aliases": [
+  "Developmental bioelectricity",
+  "developmental bioelectricity"
+ ],
+ "branch": "biophysics",
+ "level": 4,
+ "industries": [
+  "biotech",
+  "longevity",
+  "molecular biology"
+ ],
+ "posed": 1938,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1938,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2003046273",
+   "title": "Bioelectric controls of cell proliferation: Ion channels, membrane voltage and the cell cycle",
+   "year": 2009,
+   "cited_by_count": 485,
+   "doi": "https://doi.org/10.4161/cc.8.21.9888",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2139064489",
+   "title": "Molecular bioelectricity: how endogenous voltage potentials control cell behavior and instruct pattern regulation in vivo",
+   "year": 2014,
+   "cited_by_count": 389,
+   "doi": "https://doi.org/10.1091/mbc.e13-12-0708",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3145858057",
+   "title": "Bioelectric signaling: Reprogrammable circuits underlying embryogenesis, regeneration, and cancer",
+   "year": 2021,
+   "cited_by_count": 527,
+   "doi": "https://doi.org/10.1016/j.cell.2021.02.034",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2537617515",
+   "title": "Endogenous Bioelectric Signaling Networks: Exploiting Voltage Gradients for Control of Growth and Form",
+   "year": 2017,
+   "cited_by_count": 305,
+   "doi": "https://doi.org/10.1146/annurev-bioeng-071114-040647",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2162868485",
+   "title": "Molecular bioelectricity in developmental biology: New tools and recent discoveries",
+   "year": 2012,
+   "cited_by_count": 253,
+   "doi": "https://doi.org/10.1002/bies.201100136",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2117636863",
+   "title": "Endogenous bioelectrical networks store non‐genetic patterning information during development and regeneration",
+   "year": 2014,
+   "cited_by_count": 245,
+   "doi": "https://doi.org/10.1113/jphysiol.2014.271940",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1881061730",
+   "title": "Voltage-Gated Ion Channels in Cancer Cell Proliferation",
+   "year": 2015,
+   "cited_by_count": 242,
+   "doi": "https://doi.org/10.3390/cancers7020813",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2777149919",
+   "title": "Bioelectric signaling in regeneration: Mechanisms of ionic controls of growth and form",
+   "year": 2017,
+   "cited_by_count": 238,
+   "doi": "https://doi.org/10.1016/j.ydbio.2017.08.032",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1883664232",
+   "title": "Bioelectrical Signal Processing in Cardiac and Neurological Applications",
+   "year": 2005,
+   "cited_by_count": 1003,
+   "doi": "https://doi.org/10.1016/b978-0-12-437552-9.x5000-4",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2124366608",
+   "title": "Membrane potential and cancer progression",
+   "year": 2013,
+   "cited_by_count": 641,
+   "doi": "https://doi.org/10.3389/fphys.2013.00185",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1966759550",
+   "title": "Transplasma-membrane redox systems in growth and development",
+   "year": 1985,
+   "cited_by_count": 446,
+   "doi": "https://doi.org/10.1016/0304-4173(85)90013-8",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2049656714",
+   "title": "Large-scale biophysics: ion flows and regeneration",
+   "year": 2007,
+   "cited_by_count": 283,
+   "doi": "https://doi.org/10.1016/j.tcb.2007.04.007",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1966525549",
+   "title": "1990: Annus Mirabilis of Potassium Channels",
+   "year": 1991,
+   "cited_by_count": 261,
+   "doi": "https://doi.org/10.1126/science.252.5009.1092",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 4,
+  "off-field": 7,
+  "duplicate": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1944": 1,
+   "1951": 1,
+   "1953": 1,
+   "1960": 1,
+   "1961": 2,
+   "1962": 1,
+   "1964": 2,
+   "1966": 1,
+   "1967": 2,
+   "1968": 2,
+   "1969": 1,
+   "1970": 2,
+   "1971": 5,
+   "1972": 8,
+   "1973": 4,
+   "1974": 3,
+   "1975": 6,
+   "1976": 1,
+   "1977": 4,
+   "1979": 6,
+   "1980": 7,
+   "1981": 7,
+   "1982": 7,
+   "1983": 4,
+   "1984": 3,
+   "1985": 5,
+   "1986": 4,
+   "1987": 2,
+   "1988": 6,
+   "1989": 11,
+   "1990": 11,
+   "1991": 4,
+   "1992": 9,
+   "1993": 6,
+   "1994": 4,
+   "1995": 5,
+   "1996": 7,
+   "1997": 7,
+   "1998": 7,
+   "1999": 5,
+   "2000": 7,
+   "2001": 6,
+   "2002": 19,
+   "2003": 19,
+   "2004": 20,
+   "2005": 31,
+   "2006": 30,
+   "2007": 35,
+   "2008": 34,
+   "2009": 41,
+   "2010": 46,
+   "2011": 59,
+   "2012": 58,
+   "2013": 70,
+   "2014": 75,
+   "2015": 78,
+   "2016": 72,
+   "2017": 91,
+   "2018": 99,
+   "2019": 110,
+   "2020": 124,
+   "2021": 133,
+   "2022": 126,
+   "2023": 135,
+   "2024": 158,
+   "2025": 298,
+   "2026": 318
+  },
+  "openalex_total": 2467,
+  "arxiv_total": 26,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22bioelectric+signaling%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5085228887",
+   "name": "Michael G. Levin",
+   "works": 8,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5051439001",
+   "name": "Kelly A. McLaughlin",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011096047",
+   "name": "Douglas J. Blackiston",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5053290697",
+   "name": "Giovanni Pezzulo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5079155945",
+   "name": "Joshua M. Finkelstein",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5072993943",
+   "name": "Vidhya R. Rao",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037438266",
+   "name": "Mathew Perez‐Neut",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031089455",
+   "name": "Simon Kaja",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5102350379",
+   "name": "Saverio Gentile",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052426139",
+   "name": "Leif Sörnmo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5084527753",
+   "name": "Pablo Laguna",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101761960",
+   "name": "Ming Yang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023299117",
+   "name": "William J. Brackenbury",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001217490",
+   "name": "F.L. Crane",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5056781333",
+   "name": "IRIS L. SUN",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I121934306",
+   "name": "Tufts University",
+   "works": 7,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I136199984",
+   "name": "Harvard University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I44142251",
+   "name": "Wyss Institute for Biologically Inspired Engineering",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210155236",
+   "name": "National Research Council",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210166865",
+   "name": "Institute of Cognitive Sciences and Technologies",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1925986",
+   "name": "Loyola University Chicago",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I75421653",
+   "name": "University of Missouri–Kansas City",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I52099693",
+   "name": "University of York",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I219193219",
+   "name": "Purdue University West Lafayette",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1292875679",
+   "name": "Commonwealth Scientific and Industrial Research Organisation",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210101388",
+   "name": "Health Sciences and Nutrition",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I28166907",
+   "name": "Karolinska Institutet",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405268108",
+   "name": "The Forsyth Institute",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1344073410",
+   "name": "Howard Hughes Medical Institute",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I6902469",
+   "name": "Brandeis University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "aging",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "circadian",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: biotech; same branch"
+  },
+  {
+   "id": "mitoredox",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "protein",
+   "why": "shared markets: biotech; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Developmental_bioelectricity",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22bioelectric+signaling%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "13 relevant works of 25 considered, 2467 works with the phrase"
+ }
+}

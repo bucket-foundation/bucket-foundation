@@ -13,7 +13,7 @@ import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
-import { atlasFrontier, fitWidth, frontierLines, frontierOptions, writeFrontierSvg } from "./atlas";
+import { atlasFrontier, fitWidth, frontierLines, frontierOptions, NO_ATLAS, writeFrontierSvg } from "./atlas";
 import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
@@ -50,7 +50,7 @@ import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
 import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
-import { BUNDLED_ROS, rosRoutes } from "../ros";
+import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
@@ -165,6 +165,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const cliToken = randomBytes(32).toString("base64url");
@@ -187,6 +188,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
+      ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),
@@ -379,7 +381,8 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {
     const o = frontierOptions(inv.values);
-    const f = atlasFrontier(o.reach);
+    const f = atlasFrontier(o.reach, undefined, o.full || undefined);
+    if (!f) throw new NoDataError(NO_ATLAS);
     if (o.svg) writeFrontierSvg(f, o.svg);
     if (json) console.log(jsonLine("atlas frontier", f));
     else for (const line of frontierLines(f, o.width ?? fitWidth(process.stdout.columns), colorEnabled(process.env, { stdin: process.stdin.isTTY === true, stdout: process.stdout.isTTY === true }))) console.log(line);

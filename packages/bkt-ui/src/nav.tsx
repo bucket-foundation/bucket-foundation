@@ -16,6 +16,10 @@ import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
 import { QuizView } from "./views/Quiz";
 import { ReviewView } from "./views/Review";
+import { RosMapView } from "./views/RosMap";
+import { RosNodeView } from "./views/RosNode";
+import { RosProfileView } from "./views/RosProfile";
+import { RosProgressView } from "./views/RosProgress";
 import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
 
 export const NAV: { route: Route; label: string }[] = [
@@ -24,12 +28,15 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
   { route: { name: "work" }, label: "Work quiz" },
+  { route: { name: "graph" }, label: "Graph" },
+  { route: { name: "progress" }, label: "Progress" },
   { route: { name: "canon" }, label: "Canon" },
   { route: { name: "explore" }, label: "Explore" },
   { route: { name: "notes" }, label: "Notes" },
   { route: { name: "history" }, label: "History" },
   { route: { name: "jobs" }, label: "Analyze data" },
   { route: { name: "data" }, label: "Data" },
+  { route: { name: "profile" }, label: "Profile" },
 ];
 
 export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add" }, label: "Add your own" };
@@ -58,5 +65,9 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
   if (route.name === "setup") return <WorkSetupView api={api} />;
+  if (route.name === "graph") return <RosMapView branch={route.branch} />;
+  if (route.name === "node") return <RosNodeView key={route.slug} slug={route.slug} />;
+  if (route.name === "progress") return <RosProgressView />;
+  if (route.name === "profile") return <RosProfileView />;
   return <LearnHome api={api} />;
 }

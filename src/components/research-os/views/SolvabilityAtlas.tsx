@@ -177,7 +177,7 @@ export default function SolvabilityAtlas({ data }: { data: SolvabilityAtlasData 
 
       <div className="flex flex-col gap-2 border-y border-[color:var(--hairline)] py-3">
         <Pills label="source" value={f.source} onChange={(v) => setF({ ...f, source: v })} options={[{ v: "problem", label: "problems" }, { v: "lean", label: "BucketMath" }]} />
-        <Pills label="branch" value={f.branch} onChange={(v) => setF({ ...f, branch: v })} options={[{ v: "", label: "all" }, ...BRANCHES.filter((b) => b !== "bucketmath").map((b) => ({ v: b, label: b }))]} />
+        <Pills label="branch" value={f.branch} onChange={(v) => setF({ ...f, branch: v })} options={[{ v: "", label: "all" }, ...BRANCHES.filter((b) => b !== "bucketmath" && b !== "applied").map((b) => ({ v: b, label: b }))]} />
         <Pills label="minted" value={f.mint} onChange={(v) => setF({ ...f, mint: v })} options={[{ v: "", label: "all" }, ...MINT_STATES.map((m) => ({ v: m, label: m }))]} />
       </div>
 

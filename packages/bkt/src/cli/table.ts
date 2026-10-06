@@ -178,6 +178,7 @@ export const TABLE: CommandSpec[] = [
       reach: { type: "string", value: "R", help: "put the circle at this similarity, above 0 and below 1; the stated rule picks it when omitted" },
       svg: { type: "string", value: "FILE", help: "also write the drawing to FILE as SVG" },
       width: { type: "string", value: "N", help: "drawing width in columns, 41 to 200; the terminal width when omitted" },
+      full: { type: "boolean", help: "use the full problem set, 71 atlas problems plus the sourced rows; the default whenever this build holds it" },
     },
   },
   {

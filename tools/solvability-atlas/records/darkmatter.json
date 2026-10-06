@@ -1,0 +1,151 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "darkmatter",
+ "title": "Dark matter identity",
+ "statement": {
+  "text": "In astronomy and cosmology, dark matter is an invisible and hypothetical form of matter that does not interact with electromagnetic radiation, including light. Dark matter is implied by gravitational effects that cannot be explained by general relativity unless more matter is present than can be observed. Such effects occur in the context of formation and evolution of galaxies, gravitational lensing, the observable universe's current structure, mass position in galactic collisions, the motion of galaxies within galaxy clusters, and cosmic microwave background anisotropies. Dark matter is thought to serve as gravitational scaffolding for cosmic structures. After the Big Bang, dark matter clumped into blobs along narrow filaments with superclusters of galaxies forming a cosmic web at scales on which entire galaxies appear like tiny particles.",
+  "source": "https://en.wikipedia.org/wiki/Dark_matter",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Dark matter",
+   "url": "https://en.wikipedia.org/wiki/Dark_matter"
+  }
+ },
+ "aliases": [
+  "Dark matter",
+  "dark matter"
+ ],
+ "branch": "cosmology",
+ "level": 5,
+ "industries": [],
+ "posed": 1933,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1933,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 2,
+  "uncited": 11,
+  "duplicate": 12
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2018": 1,
+   "2019": 1,
+   "2025": 5,
+   "2026": 23
+  },
+  "openalex_total": 30,
+  "arxiv_total": 1,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22dark+matter+identity%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22dark+matter+identity%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W1999831587",
+   "title": "Wino cold dark matter from anomaly mediated SUSY breaking",
+   "source": "openalex-fanout/W1999831587-wino-cold-dark-matter-from-anomaly-mediated-susy-breaking"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2122765019",
+   "title": "A theory of dark matter",
+   "source": "openalex-fanout/W2122765019-a-theory-of-dark-matter"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2799676946",
+   "title": "Search for dark matter, extra dimensions, and unparticles in monojet events in proton–proton collisions at $$\\sqrt{s} = 8$$ s = 8 $$\\,{\\mathrm{TeV}}\\,$$ TeV",
+   "source": "openalex-fanout/W2799676946-search-for-dark-matter-extra-dimensions-and-unparticles-in-m"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10012932",
+   "title": "Positron line radiation as a signature of particle dark matter in the halo.",
+   "source": "pubmed/PMID-10012932-positron-line-radiation-as-a-signature-of-particle-dark-matt"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11019199",
+   "title": "Observational evidence for self-interacting cold dark matter.",
+   "source": "pubmed/PMID-11019199-observational-evidence-for-self-interacting-cold-dark-matter"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11580638",
+   "title": "Q-ball candidates for self-interacting dark matter.",
+   "source": "pubmed/PMID-11580638-q-ball-candidates-for-self-interacting-dark-matter"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID24815633",
+   "title": "Dark matter as a trigger for periodic comet impacts.",
+   "source": "pubmed/PMID-24815633-dark-matter-as-a-trigger-for-periodic-comet-impacts"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID26069461",
+   "title": "Search for dark matter, extra dimensions, and unparticles in monojet events in proton-proton collisions at [Formula: see text][Formula: see text].",
+   "source": "pubmed/PMID-26069461-search-for-dark-matter-extra-dimensions-and-unparticles-in-m"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID28128244",
+   "title": "Axions: Detecting particles of dark matter.",
+   "source": "pubmed/PMID-28128244-axions-detecting-particles-of-dark-matter"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID29743708",
+   "title": "What Is Dark Matter?",
+   "source": "pubmed/PMID-29743708-what-is-dark-matter"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID39332010",
+   "title": "Detecting Planck-Scale Dark Matter with Quantum Interference.",
+   "source": "pubmed/PMID-39332010-detecting-planck-scale-dark-matter-with-quantum-interference"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Dark_matter",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22dark+matter+identity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22dark+matter+identity%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22dark+matter+identity%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 30 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

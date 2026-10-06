@@ -66,17 +66,17 @@ describe("schema 11 languages", () => {
   test("a v10 database migrates to 11 with an empty local languages table", () => {
     const path = join(dir, "bkt.db");
     const db = new Database(path, { create: true, strict: true });
-    for (const m of MIGRATIONS.slice(0, 10)) {
+    for (const m of MIGRATIONS.slice(0, 11)) {
       if (typeof m === "string") db.run(m);
       else m(db);
     }
-    db.run("pragma user_version = 10");
+    db.run("pragma user_version = 11");
     db.run("insert into work_quiz_coverage (cell, fact_id, picks, misses, last_day) values ('c', 'f', 1, 0, '2026-10-01')");
     db.close();
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(SCHEMA_VERSION).toBe(11);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(11);
+    expect(SCHEMA_VERSION).toBe(12);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(12);
     expect(s.db.query("select cell from work_quiz_coverage").all()).toEqual([{ cell: "c" }]);
     expect(LOCAL_ONLY_TABLES).toContain("work_quiz_languages");
     const wq = new WorkQuizStore(s, key);

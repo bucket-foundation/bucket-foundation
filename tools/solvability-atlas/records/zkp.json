@@ -1,0 +1,492 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "zkp",
+ "title": "Succinct proofs without trusted setup optimality",
+ "statement": {
+  "text": "In cryptography, a zero-knowledge proof is a protocol in which one party can convince another party that some given statement is true, without conveying to the verifier any information beyond the mere fact of that statement's truth. The intuition behind the nontriviality of zero-knowledge proofs is that it is trivial to prove possession of the relevant information simply by revealing it; the hard part is to prove this possession without revealing this information.",
+  "source": "https://en.wikipedia.org/wiki/Zero-knowledge_proof",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Zero-knowledge proof",
+   "url": "https://en.wikipedia.org/wiki/Zero-knowledge_proof"
+  }
+ },
+ "aliases": [
+  "Zero-knowledge proof",
+  "zero-knowledge proof",
+  "ZK proof",
+  "ZKP"
+ ],
+ "branch": "information",
+ "level": 3,
+ "industries": [
+  "cryptography",
+  "finance",
+  "ai"
+ ],
+ "posed": 1985,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1985,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W53264231",
+   "title": "Succinct Arguments from Multi-prover Interactive Proofs and Their Efficiency Benefits",
+   "year": 2012,
+   "cited_by_count": 54,
+   "doi": "https://doi.org/10.1007/978-3-642-32009-5_16",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1890128745",
+   "title": "Succinct Non-interactive Arguments via Linear Interactive Proofs",
+   "year": 2013,
+   "cited_by_count": 274,
+   "doi": "https://doi.org/10.1007/978-3-642-36594-2_18",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2968027060",
+   "title": "Scalable Zero Knowledge with No Trusted Setup",
+   "year": 2019,
+   "cited_by_count": 192,
+   "doi": "https://doi.org/10.1007/978-3-030-26954-8_23",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3127664165",
+   "title": "Proof-Carrying Data Without Succinct Arguments",
+   "year": 2021,
+   "cited_by_count": 58,
+   "doi": "https://doi.org/10.1007/978-3-030-84242-0_24",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2794524511",
+   "title": "Quasi-Optimal SNARGs via Linear Multi-Prover Interactive Proofs",
+   "year": 2018,
+   "cited_by_count": 45,
+   "doi": "https://doi.org/10.1007/978-3-319-78372-7_8",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2967946631",
+   "title": "Subvector Commitments with Application to Succinct Arguments",
+   "year": 2019,
+   "cited_by_count": 97,
+   "doi": "https://doi.org/10.1007/978-3-030-26948-7_19",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4385654747",
+   "title": "Lattice-Based Succinct Arguments from Vanishing Polynomials",
+   "year": 2023,
+   "cited_by_count": 38,
+   "doi": "https://doi.org/10.1007/978-3-031-38545-2_3",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2898776076",
+   "title": "Aurora: Transparent Succinct Arguments for R1CS",
+   "year": 2019,
+   "cited_by_count": 327,
+   "doi": "https://doi.org/10.1007/978-3-030-17653-2_4",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2971043132",
+   "title": "Succinct Arguments in the Quantum Random Oracle Model",
+   "year": 2019,
+   "cited_by_count": 64,
+   "doi": "https://doi.org/10.1007/978-3-030-36033-7_1",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2951188427",
+   "title": "Quadratic Span Programs and Succinct NIZKs without PCPs.",
+   "year": 2012,
+   "cited_by_count": 35,
+   "doi": null,
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2984459379",
+   "title": "Succinct Arguments for Bilinear Group Arithmetic",
+   "year": 2019,
+   "cited_by_count": 34,
+   "doi": "https://doi.org/10.1145/3319535.3354262",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3172882520",
+   "title": "Post-Quantum Succinct Arguments: Breaking the Quantum Rewinding Barrier",
+   "year": 2022,
+   "cited_by_count": 30,
+   "doi": "https://doi.org/10.1109/focs52979.2021.00014",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2913353093",
+   "title": "Proof-of-Stake Sidechains",
+   "year": 2019,
+   "cited_by_count": 222,
+   "doi": "https://doi.org/10.1109/sp.2019.00040",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1971029566",
+   "title": "Fast reductions from RAMs to delegatable succinct constraint satisfaction problems",
+   "year": 2013,
+   "cited_by_count": 70,
+   "doi": "https://doi.org/10.1145/2422436.2422481",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3198234886",
+   "title": "Shorter and Faster Post-Quantum Designated-Verifier zkSNARKs from Lattices",
+   "year": 2021,
+   "cited_by_count": 40,
+   "doi": "https://doi.org/10.1145/3460120.3484572",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4285234987",
+   "title": "Gemini: Elastic SNARKs for Diverse Environments",
+   "year": 2022,
+   "cited_by_count": 39,
+   "doi": "https://doi.org/10.1007/978-3-031-07085-3_15",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 8,
+  "off-field": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1980": 1,
+   "1982": 1,
+   "1987": 1,
+   "2000": 1,
+   "2001": 2,
+   "2003": 3,
+   "2004": 1,
+   "2005": 1,
+   "2006": 3,
+   "2008": 2,
+   "2010": 1,
+   "2011": 3,
+   "2012": 4,
+   "2013": 4,
+   "2014": 1,
+   "2015": 3,
+   "2016": 4,
+   "2017": 1,
+   "2018": 4,
+   "2019": 10,
+   "2020": 9,
+   "2021": 9,
+   "2022": 18,
+   "2023": 10,
+   "2024": 17,
+   "2025": 19,
+   "2026": 36
+  },
+  "openalex_total": 169,
+  "arxiv_total": 13,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22succinct+arguments%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5101591310",
+   "name": "Alessandro Chiesa",
+   "works": 8,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5072056838",
+   "name": "Nicholas Spooner",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5081852077",
+   "name": "Yuval Ishai",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5058111762",
+   "name": "Eli Ben‐Sasson",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034642945",
+   "name": "Russell W. F. Lai",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5007500399",
+   "name": "Giulio Malavolta",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5065373891",
+   "name": "Nir Bitansky",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5015138390",
+   "name": "Michael Riabzev",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5017970656",
+   "name": "David J. Wu",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5035828031",
+   "name": "Omer Paneth",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5020375635",
+   "name": "Rafail Ostrovsky",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5075906914",
+   "name": "Iddo Bentov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5041209433",
+   "name": "Yinon Horesh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5050862609",
+   "name": "Benedikt Bünz",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5062318903",
+   "name": "William Lin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I174306211",
+   "name": "Technion – Israel Institute of Technology",
+   "works": 6,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I16391192",
+   "name": "Tel Aviv University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74973139",
+   "name": "Carnegie Mellon University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I181369854",
+   "name": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5124864",
+   "name": "École Polytechnique Fédérale de Lausanne",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405261073",
+   "name": "Cornell Tech",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I132118926",
+   "name": "AIT Austrian Institute of Technology GmbH",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I9927081",
+   "name": "Aalto University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210096592",
+   "name": "Max Planck Institute for Security and Privacy",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405268810",
+   "name": "MIT Media Lab",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Zero-knowledge_proof",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22succinct+arguments%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "16 relevant works of 25 considered, 169 works with the phrase"
+ }
+}

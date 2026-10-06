@@ -1,8 +1,7 @@
 import { writeFileSync } from "node:fs";
-import atlas from "../../../../src/lib/research-os/solvability-atlas-data.json" with { type: "json" };
-import similarity from "../../../../src/lib/research-os/solvability-similarity-data.json" with { type: "json" };
+import staff from "../../content/staff-ros.json" with { type: "json" };
 import type { SolvabilityAtlasData } from "../../../../src/lib/research-os/solvability-atlas";
-import { buildFrontier, type Frontier, type SimilarityData } from "../../../../src/lib/research-os/solvability-frontier";
+import { buildFrontier, frontierRows, type Frontier, type NeighborData, type SimilarityData } from "../../../../src/lib/research-os/solvability-frontier";
 import { frontierSvg, frontierText } from "../../../../src/lib/research-os/solvability-frontier-render";
 
 export const MIN_WIDTH = 41;
@@ -13,6 +12,7 @@ export interface FrontierOptions {
   reach: number | undefined;
   svg: string | null;
   width: number | null;
+  full: boolean;
 }
 
 export function frontierOptions(values: Record<string, unknown>): FrontierOptions {
@@ -22,11 +22,21 @@ export function frontierOptions(values: Record<string, unknown>): FrontierOption
   if (width !== null && !(Number.isInteger(width) && width >= MIN_WIDTH && width <= MAX_WIDTH)) throw new Error(`give --width as a whole number from ${MIN_WIDTH} to ${MAX_WIDTH}`);
   const svg = typeof values.svg === "string" ? values.svg : null;
   if (svg !== null && !svg.trim()) throw new Error("--svg needs a file name");
-  return { reach, svg, width };
+  return { reach, svg, width, full: values.full === true };
 }
 
-export function atlasFrontier(reach?: number): Frontier {
-  return buildFrontier((atlas as SolvabilityAtlasData).productions, similarity as SimilarityData, reach);
+export const NO_ATLAS = "this copy of bkt holds no solvability atlas; a staff build includes it";
+export const NO_FULL = "this copy of bkt holds no neighbour data for the full problem set; a staff build includes it";
+export const FULL_LIST = 40;
+
+export function atlasFrontier(reach?: number, data: Record<string, unknown> = staff, full?: boolean): Frontier | null {
+  const neighbors = data.neighbors as NeighborData | undefined;
+  if (full && !neighbors) throw new Error(NO_FULL);
+  if (neighbors && full !== false) return buildFrontier(frontierRows(neighbors), neighbors, reach);
+  const atlas = data.solvability as SolvabilityAtlasData | undefined;
+  const similarity = data.similarity as SimilarityData | undefined;
+  if (!atlas || !similarity) return null;
+  return buildFrontier(atlas.productions, similarity, reach);
 }
 
 export function fitWidth(columns: number | undefined): number {
@@ -34,7 +44,7 @@ export function fitWidth(columns: number | undefined): number {
 }
 
 export function frontierLines(f: Frontier, width: number, color: boolean): string[] {
-  return frontierText(f, { width, color });
+  return frontierText(f, { width, color, list: f.points.length > 400 ? FULL_LIST : undefined });
 }
 
 export function writeFrontierSvg(f: Frontier, file: string): void {

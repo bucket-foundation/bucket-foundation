@@ -358,7 +358,8 @@ async function mount(route: Route, stub: Stub) {
 
 const DAY = "2026-09-30";
 const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
-const COVERED_NAMES = COVERED.map((r) => r.name);
+const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
+const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
   { name: "primes", fixedBy: "slice 6, Themes" },
@@ -369,7 +370,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Canon", "Explore", "Notes", "History", "Analyze data", "Data"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -384,7 +385,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Canon", "Explore", "Notes", "History", "Analyze data", "Data"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -1010,5 +1011,104 @@ describe("canon knowledge graph", () => {
     expect(broken.host.querySelector(".error")!.textContent).toBe(plainError(500));
     expect(violations(broken.host)).toEqual([]);
     await broken.unmount();
+  });
+});
+
+describe("Research OS views on the local store", () => {
+  const realFetch = globalThis.fetch;
+  let routes: Record<string, (req: Request, url: URL) => Response | Promise<Response>> = {};
+
+  async function useLocalStore(opened: string[] = []) {
+    const { Store } = await import("../../bkt/src/store");
+    const { newDataKey } = await import("../../bkt/src/crypto");
+    const { RosGraph, rosLiveRoutes, syncRosGraph } = await import("../../bkt/src/ros");
+    const db = new Store(":memory:", newDataKey()).db;
+    syncRosGraph(db, "test", ATOMS);
+    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30));
+    const { siteFetch } = await import("./site-fetch");
+    const loop = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(String(input), "http://127.0.0.1");
+      const route = routes[`${(init?.method ?? "GET").toUpperCase()} ${url.pathname}`];
+      return route ? route(new Request(url, { method: init?.method, body: init?.body }), url) : new Response("{}", { status: 404 });
+    }) as typeof fetch;
+    globalThis.fetch = siteFetch(loop, "http://127.0.0.1", "t".repeat(43));
+    for (const id of opened) await globalThis.fetch("http://127.0.0.1/api/research-os/state", { method: "POST", body: JSON.stringify({ nodeId: id, action: "open" }) });
+  }
+
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+  });
+
+  for (const route of ROS_COVERED)
+    for (const opened of [[], ["02-physics:ph-heat", "02-physics:ph-entropy"]])
+      test(`${href(route)}, ${opened.length ? "after opening ideas" : "fresh"}`, async () => {
+        await useLocalStore(opened);
+        const v = await mount(route, empty());
+        await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+        expect(v.text().length).toBeGreaterThan(0);
+        expect(v.host.querySelector(".error")).toBeNull();
+        expect(violations(v.host)).toEqual([]);
+        await v.unmount();
+      });
+
+  test("an idea page names what it builds on and leads to, and opening it records a first look", async () => {
+    await useLocalStore();
+    const v = await mount({ name: "node", slug: "02-physics:ph-entropy" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.querySelector("h1")!.textContent).toBe("Entropy");
+    expect(v.text()).toContain("Heat");
+    expect(v.text()).toContain("Second law");
+    expect(v.host.querySelector('a[href="#/node/02-physics%3Aph-heat"]')).not.toBeNull();
+    const state = await (await globalThis.fetch("http://127.0.0.1/api/research-os/state?nodeIds=02-physics:ph-entropy")).json();
+    expect(state.states[0].stage).toBe("awareness");
+    await v.unmount();
+  });
+
+  test("an idea missing from this computer says so in one line", async () => {
+    await useLocalStore();
+    const { NODE_MISSING } = await import("./views/RosNode");
+    const v = await mount({ name: "node", slug: "nope" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.text()).toBe(NODE_MISSING);
+    await v.unmount();
+  });
+
+  test("the profile keeps its form after a failed save and retries", async () => {
+    await useLocalStore();
+    const localFetch = globalThis.fetch;
+    const v = await mount({ name: "profile" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    const submit = () => v.act(async () => {
+      v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    await submit();
+    expect(v.text()).toContain("Saved.");
+    globalThis.fetch = (() => Promise.reject(new TypeError("offline"))) as unknown as typeof fetch;
+    await submit();
+    expect(v.text()).toContain("That did not save. Try again.");
+    expect(v.text()).not.toContain("Saved.");
+    expect(v.host.querySelector("form")).not.toBeNull();
+    globalThis.fetch = localFetch;
+    await submit();
+    expect(v.text()).toContain("Saved.");
+    expect(v.host.querySelector(".error")).toBeNull();
+    await v.unmount();
+  });
+
+  test("the profile saves a role and shows the level earned by opening ideas", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    const v = await mount({ name: "profile" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toMatch(/Level \d+ · \d+ XP/);
+    const select = v.host.querySelector("select") as HTMLSelectElement;
+    select.value = "student";
+    await v.act(async () => select.dispatchEvent(new Event("change", { bubbles: true })));
+    await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.text()).toContain("Saved.");
+    const saved = await (await globalThis.fetch("http://127.0.0.1/api/research-os/profile")).json();
+    expect(saved.profile.role).toBe("student");
+    await v.unmount();
   });
 });

@@ -1,0 +1,495 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "consciousness",
+ "title": "Hard problem of consciousness",
+ "statement": {
+  "text": "In philosophy of mind, the hard problem of consciousness is to explain how and why organisms have qualia, phenomenal consciousness, or subjective experience. It is contrasted with the \"easy problems\" of explaining why and how physical systems give rise to the ability to discriminate, to integrate information, and to perform behavioural functions such as watching, listening, speaking, and so forth. The easy problems are amenable to functional explanation—that is, explanations that are mechanistic or behavioural—since each physical system can be explained purely by reference to the \"structure and dynamics\" that underpin the phenomenon.",
+  "source": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Hard problem of consciousness",
+   "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+  }
+ },
+ "aliases": [
+  "hard problem"
+ ],
+ "branch": "mind",
+ "level": 5,
+ "industries": [
+  "ai",
+  "cognitive neuroscience",
+  "experimental and cognitive psychology"
+ ],
+ "posed": 1995,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1995,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2905018743",
+   "title": "The Hard Problem of Consciousness and the Free Energy Principle",
+   "year": 2019,
+   "cited_by_count": 237,
+   "doi": "https://doi.org/10.3389/fpsyg.2018.02714",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3165779310",
+   "title": "Making the hard problem of consciousness easier",
+   "year": 2021,
+   "cited_by_count": 205,
+   "doi": "https://doi.org/10.1126/science.abj3259",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2560748441",
+   "title": "Towards solving the hard problem of consciousness: The varieties of brain resonances and the conscious experiences that they support",
+   "year": 2016,
+   "cited_by_count": 121,
+   "doi": "https://doi.org/10.1016/j.neunet.2016.11.003",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4237674828",
+   "title": "The Hard Problem of Consciousness",
+   "year": 2017,
+   "cited_by_count": 118,
+   "doi": "https://doi.org/10.1002/9781119132363.ch3",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2977476031",
+   "title": "The Easy Part of the Hard Problem: A Resonance Theory of Consciousness",
+   "year": 2019,
+   "cited_by_count": 132,
+   "doi": "https://doi.org/10.3389/fnhum.2019.00378",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1538507074",
+   "title": "Consciousness revisited: materialism without phenomenal concepts",
+   "year": 2009,
+   "cited_by_count": 403,
+   "doi": "https://doi.org/10.5860/choice.47-0800",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2008992674",
+   "title": "The Harder Problem of Consciousness",
+   "year": 2002,
+   "cited_by_count": 296,
+   "doi": "https://doi.org/10.2307/3655621",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2484987043",
+   "title": "The Ancient Origins of Consciousness",
+   "year": 2016,
+   "cited_by_count": 237,
+   "doi": "https://doi.org/10.7551/mitpress/10714.001.0001",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3043856481",
+   "title": "The Meta-Problem of Consciousness",
+   "year": 2018,
+   "cited_by_count": 205,
+   "doi": null,
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1587155369",
+   "title": "Moving Forward on the Problem of Consciousness",
+   "year": 1997,
+   "cited_by_count": 162,
+   "doi": null,
+   "role": "posed",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2884485769",
+   "title": "Facing up to the hard question of consciousness",
+   "year": 2018,
+   "cited_by_count": 158,
+   "doi": "https://doi.org/10.1098/rstb.2017.0342",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2975648870",
+   "title": "How and why consciousness arises: Some considerations from physics and physiology",
+   "year": 2018,
+   "cited_by_count": 150,
+   "doi": null,
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4246924129",
+   "title": "Consciousness Revisited",
+   "year": 2008,
+   "cited_by_count": 142,
+   "doi": "https://doi.org/10.7551/mitpress/9780262012737.001.0001",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4225502240",
+   "title": "Consciousness matters: phenomenal experience has functional value",
+   "year": 2022,
+   "cited_by_count": 119,
+   "doi": "https://doi.org/10.1093/nc/niac007",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2888693004",
+   "title": "The Universe in Consciousness",
+   "year": 2018,
+   "cited_by_count": 106,
+   "doi": null,
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W13653559",
+   "title": "Seeing red: a study in consciousness",
+   "year": 2006,
+   "cited_by_count": 105,
+   "doi": "https://doi.org/10.5860/choice.44-1813",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 7,
+  "duplicate": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1996": 5,
+   "1997": 3,
+   "1998": 3,
+   "1999": 5,
+   "2000": 4,
+   "2001": 5,
+   "2002": 4,
+   "2003": 9,
+   "2004": 5,
+   "2005": 3,
+   "2006": 17,
+   "2007": 16,
+   "2008": 15,
+   "2009": 17,
+   "2010": 13,
+   "2011": 31,
+   "2012": 26,
+   "2013": 26,
+   "2014": 25,
+   "2015": 34,
+   "2016": 49,
+   "2017": 47,
+   "2018": 47,
+   "2019": 47,
+   "2020": 43,
+   "2021": 59,
+   "2022": 75,
+   "2023": 56,
+   "2024": 88,
+   "2025": 466,
+   "2026": 1615,
+   "2028": 1
+  },
+  "openalex_total": 2859,
+  "arxiv_total": 26,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22hard+problem+of+consciousness%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5103215889",
+   "name": "David J. Chalmers",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5056005467",
+   "name": "Mark Solms",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019045358",
+   "name": "Lucía Melloni",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5051873475",
+   "name": "Liad Mudrik",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5039275994",
+   "name": "Michael A. Pitts",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5084822308",
+   "name": "Christof Koch",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5080971897",
+   "name": "Stephen Grossberg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034266525",
+   "name": "Tam Hunt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5000454013",
+   "name": "Jonathan W. Schooler",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001386594",
+   "name": "Ned Block",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5111697687",
+   "name": "Todd E. Feinberg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5000584262",
+   "name": "Jon M. Mallatt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5083743331",
+   "name": "Daniel C. Dennett",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5086852785",
+   "name": "Karl John Friston",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5103038491",
+   "name": "Michael Tye",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I157614274",
+   "name": "University of Cape Town",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210086768",
+   "name": "Max Planck Institute for Empirical Aesthetics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I57206974",
+   "name": "New York University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I16391192",
+   "name": "Tel Aviv University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I55486353",
+   "name": "Reed College",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1314596251",
+   "name": "Allen Institute for Brain Science",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387153645",
+   "name": "Tiny Blue Dot Foundation",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154570441",
+   "name": "University of California, Santa Barbara",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I121934306",
+   "name": "Tufts University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I132053463",
+   "name": "Université Libre de Bruxelles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154526488",
+   "name": "Inserm",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2746051580",
+   "name": "Université Paris Sciences et Lettres",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I29607241",
+   "name": "École Normale Supérieure - PSL",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "bindingprob",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "freeenergy",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "smale18",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W3110947387",
+   "title": "Hard Problem and Free Will: An Information-Theoretical Approach",
+   "source": "openalex-fanout/W3110947387-hard-problem-and-free-will-an-information-theoretical-approa"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22hard+problem+of+consciousness%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "16 relevant works of 25 considered, 2859 works with the phrase"
+ }
+}

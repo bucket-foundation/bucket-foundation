@@ -1,0 +1,104 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "roomtemp",
+ "title": "Room-temperature superconductivity mechanism",
+ "statement": {
+  "text": "A room-temperature superconductor is a hypothetical material capable of displaying superconductivity above 0 °C, operating temperatures which are commonly encountered in everyday settings. As of 2023, the material with the highest accepted superconducting temperature was highly pressurized lanthanum decahydride, whose transition temperature is approximately 250 K at 150 GPa.",
+  "source": "https://en.wikipedia.org/wiki/Room-temperature_superconductor",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Room-temperature superconductor",
+   "url": "https://en.wikipedia.org/wiki/Room-temperature_superconductor"
+  }
+ },
+ "aliases": [
+  "Room-temperature superconductor",
+  "room-temperature superconductor"
+ ],
+ "branch": "physics",
+ "level": 5,
+ "industries": [
+  "energy",
+  "semiconductors"
+ ],
+ "posed": 1986,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1986,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 2,
+ "key_works_dropped": {
+  "uncited": 1,
+  "duplicate": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2026": 2
+  },
+  "openalex_total": 2,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22room-temperature+superconductivity+mechanism%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22room-temperature+superconductivity+mechanism%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "hubbard",
+   "why": "shared markets: energy, semiconductors; same branch"
+  },
+  {
+   "id": "yangmills",
+   "why": "shared markets: energy, semiconductors; same branch"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "navier",
+   "why": "shared markets: energy; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Room-temperature_superconductor",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22room-temperature+superconductivity+mechanism%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22room-temperature+superconductivity+mechanism%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22room-temperature+superconductivity+mechanism%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 2 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

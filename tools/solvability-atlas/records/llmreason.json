@@ -1,0 +1,426 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "llmreason",
+ "title": "Formal reasoning limits of transformers",
+ "statement": {
+  "text": "In deep learning, the transformer is a family of artificial neural network architectures based on the multi-head attention mechanism, in which input data such as text, images, or audio is converted to a sequence of numerical representations called tokens, and each token is converted into a vector through an embedding layer. At each layer, each token is then contextualized within the scope of the context window with other (unmasked) tokens via a parallel multi-head attention mechanism, allowing the signal for key tokens to be amplified and less important tokens to be diminished. Because self-attention alone is permutation-invariant, transformers inject positional information, typically through positional encodings or learned positional embeddings, so token order can affect the output.",
+  "source": "https://en.wikipedia.org/wiki/Transformer_(deep_learning)",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Transformer (deep learning)",
+   "url": "https://en.wikipedia.org/wiki/Transformer_(deep_learning)"
+  }
+ },
+ "aliases": [
+  "Transformer (deep learning)",
+  "transformer"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "ai",
+  "computer vision and pattern recognition"
+ ],
+ "posed": 2017,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2017,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W4318242594",
+   "title": "Tighter Bounds on the Expressivity of Transformer Encoders",
+   "year": 2023,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.48550/arxiv.2301.10743",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3111551570",
+   "title": "Taming Transformers for High-Resolution Image Synthesis",
+   "year": 2021,
+   "cited_by_count": 2404,
+   "doi": "https://doi.org/10.1109/cvpr46437.2021.01268",
+   "role": "posed",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3191529106",
+   "title": "Finetuning Pretrained Transformers into Variational Autoencoders",
+   "year": 2021,
+   "cited_by_count": 13,
+   "doi": "https://doi.org/10.18653/v1/2021.insights-1.5",
+   "role": "posed",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4286349576",
+   "title": "How Expressive are Transformers in Spectral Domain for Graphs?",
+   "year": 2022,
+   "cited_by_count": 4,
+   "doi": "https://doi.org/10.48550/arxiv.2201.09332",
+   "role": "posed",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4402670793",
+   "title": "ETAS: Zero-Shot Transformer Architecture Search via Network Trainability and Expressivity",
+   "year": 2024,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.18653/v1/2024.findings-acl.405",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4403570399",
+   "title": "Learning Linear Attention in Polynomial Time",
+   "year": 2025,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.52202/085713-5109",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4413019490",
+   "title": "Medical visual question answering based on Transformer and Mamba fusion Architecture",
+   "year": 2025,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.1145/3745034.3745038",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4312358791",
+   "title": "StyleSwin: Transformer-based GAN for High-resolution Image Generation",
+   "year": 2022,
+   "cited_by_count": 240,
+   "doi": "https://doi.org/10.1109/cvpr52688.2022.01102",
+   "role": "posed",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4409482842",
+   "title": "Transformer-based deep probabilistic network for load forecasting",
+   "year": 2025,
+   "cited_by_count": 36,
+   "doi": "https://doi.org/10.1016/j.engappai.2025.110781",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4392490786",
+   "title": "Polynormer: Polynomial-Expressive Graph Transformer in Linear Time",
+   "year": 2024,
+   "cited_by_count": 5,
+   "doi": "https://doi.org/10.48550/arxiv.2403.01232",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4414968800",
+   "title": "Pool Me Wisely: On the Effect of Pooling in Transformer-Based Models",
+   "year": 2025,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.52202/085713-1486",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3169302580",
+   "title": "PairConnect: A Compute-Efficient MLP Alternative to Attention",
+   "year": 2021,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.48550/arxiv.2106.08235",
+   "role": "posed",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 1,
+  "duplicate": 3,
+  "uncited": 9
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2021": 5,
+   "2022": 2,
+   "2023": 1,
+   "2024": 10,
+   "2025": 12,
+   "2026": 15
+  },
+  "openalex_total": 45,
+  "arxiv_total": 89,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22expressivity+of+transformers%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5036026526",
+   "name": "David Chiang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5062882161",
+   "name": "Peter A. Cholak",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110147319",
+   "name": "Anand Pillay",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Patrick Esser",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5022021439",
+   "name": "Robin Rombach",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5084415727",
+   "name": "Björn Ommer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100762910",
+   "name": "Seongmin Park",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5118899059",
+   "name": "Jihwa Lee",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5073517640",
+   "name": "Anson Bastos",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034635361",
+   "name": "Abhishek Nadgeri",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031764611",
+   "name": "Kuldeep Singh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5103213189",
+   "name": "Hiroki Kanezashi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011886931",
+   "name": "Toyotaro Suzumura",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5040691313",
+   "name": "Isaiah Onando Mulang'",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5036826106",
+   "name": "Jiechao Yang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I223822909",
+   "name": "Heidelberg University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I78988378",
+   "name": "Renmin University of China",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I99065089",
+   "name": "Tsinghua University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I62916508",
+   "name": "Technical University of Munich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I113940042",
+   "name": "Shanghai University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I126520041",
+   "name": "University of Science and Technology of China",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210113369",
+   "name": "Microsoft Research Asia (China)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I60158472",
+   "name": "Concordia University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I205783295",
+   "name": "Cornell University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1290206253",
+   "name": "Microsoft (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I121883995",
+   "name": "Johannes Kepler University of Linz",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I86987016",
+   "name": "KTH Royal Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74775410",
+   "name": "Rice University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "bindingprob",
+   "why": "shared keywords: attention; shared markets: ai"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "matmul",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "pnp",
+   "why": "shared markets: ai; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2113520789",
+   "title": "Transformer insulating oils",
+   "source": "openalex-fanout/W2113520789-transformer-insulating-oils"
+  }
+ ],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Transformer_(deep_learning)",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22expressivity+of+transformers%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22expressivity+of+transformers%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "12 relevant works of 25 considered, 45 works with the phrase"
+ }
+}
