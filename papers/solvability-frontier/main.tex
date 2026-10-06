@@ -184,7 +184,7 @@ The 66 undecided rows at 2005 resolve at 32\% settled and 53\% settled or advanc
   \label{fig:backtest}
 \end{figure}
 
-Under settled or advanced, two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on. Mathematics scores one row outside at both cutoffs, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+Under settled or advanced, two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on \bt. Mathematics scores one row outside at both cutoffs \bt, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
 
 \subsection{Where this is weak}
 \label{sec:weak}
@@ -202,7 +202,7 @@ Cosine similarity between statement embeddings measures shared words and phrasin
 4,112 of 5,080 rows and 1,473 of 1,621 solved rows are mathematics \fr. The threshold is a mathematics quantity, and the other six branches are read against it.
 
 \paragraph{Two cohorts.}
-Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule.
+Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule \bt.
 
 \paragraph{The 50-neighbour bound.}
 At a cutoff with few solved rows, most of a row's solved peers fall outside its 50 stored neighbours, so its reach is unknown: 66 rows undecided and 16 solved rows dropped at 2005, 43 and 11 at 2021 \bt. Dropping them can only raise the threshold; the undecided bounds above show how far they can move the inside rate.
@@ -321,8 +321,8 @@ theorem lengthBand_total (words : Nat) :
     lengthBand words = .short \/ lengthBand words = .middle \/ lengthBand words = .long
 \end{lstlisting}
 
-\texttt{lake build} output, quoted verbatim.
-% voice-ignore-next 4
+\texttt{lake build} output, quoted verbatim \emp{papers/solvability-frontier/lean, 2026-10-06, make lean}.
+% voice-ignore-next 3
 \begin{verbatim}
 Build completed successfully (4 jobs).
 \end{verbatim}

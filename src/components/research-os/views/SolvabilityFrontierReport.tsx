@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { PageHeader, Panel } from "@/components/ui";
 import type { Stratum } from "@/lib/research-os/solvability-backtest";
 import { REACH_CLASSES, type Prediction } from "@/lib/research-os/solvability-predictions";
-import { boundSentence, cutoffSummary, f3, methodParagraphs, n, pct, verdict, weakParagraphs, type ReportData } from "@/lib/research-os/solvability-frontier-report-copy";
+import { boundSentence, cutoffSummary, f3, ledeCodings, methodParagraphs, n, pct, verdict, weakParagraphs, type ReportData } from "@/lib/research-os/solvability-frontier-report-copy";
 
 const TH = "text-left small-caps text-[10px] tracking-[0.16em] text-[color:var(--basalt-3)] font-normal px-2 py-1 border-b border-[color:var(--hairline)]";
 const TD = "px-2 py-1 align-top text-[12px] text-[color:var(--basalt)] border-b border-[color:var(--hairline)]";
@@ -98,7 +98,7 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
       <PageHeader
         eyebrow="Research OS · solvability"
         title="solvability frontier report"
-        lede={`${n(data.nodes)} problems, ${n(data.frontier.counts.solved)} solved, frontier at reach ${f3(data.frontier.threshold)}. Which open problems sit close to solved ones, how the rule fared on the questions of ${data.backtest.cutoffs.map((c) => c.cutoff).join(" and ")}, and where the method is weak. Built ${data.built}.`}
+        lede={`${n(data.nodes)} problems, ${n(data.frontier.counts.solved)} solved, frontier at reach ${f3(data.frontier.threshold)}. Which open problems sit close to solved ones, how the rule fared on the questions of ${data.backtest.cutoffs.map((c) => c.cutoff).join(" and ")}, and where the method is weak. ${ledeCodings(data)} Built ${data.built}.`}
       />
       <p className={P}>{verdict(data)}</p>
 

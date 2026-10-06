@@ -62,6 +62,13 @@ export function cutoffSummary(c: Omit<CutoffBacktest, "rows">, data: ReportData)
   ];
 }
 
+export function ledeCodings(data: ReportData): string {
+  const e = empirical(data);
+  const settled = data.backtest.cutoffs.map((c) => `${pct(c.codings[0].all.rateInside)} against ${pct(c.codings[0].all.rateOutside)} on ${n(c.codings[0].aucRows)} rows at ${c.cutoff}`).join(" and ");
+  const advanced = data.backtest.cutoffs.map((c) => `${pct(c.codings[1].all.rateInside)} against ${pct(c.codings[1].all.rateOutside)} at ${c.cutoff}`).join(" and ");
+  return `Settled only, the inside rows settle at ${settled}; settled or advanced, the rates are ${advanced}, no difference the shuffles do not produce ${e}.`;
+}
+
 export function verdict(data: ReportData): string {
   const e = empirical(data);
   const parts = data.backtest.cutoffs.map((c) => {
