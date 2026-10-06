@@ -10,6 +10,7 @@ import type { KeyringOptions } from "../setup";
 import { VERSION } from "../version";
 import { isShell, SHELLS } from "./completion";
 import { validDay } from "../daily-quiz";
+import { frontierOptions } from "./atlas";
 import { interactive, type Tty } from "./out";
 import {
   CLI_COMMANDS,
@@ -128,6 +129,7 @@ export function resolve(argv: string[]): Resolved {
     if (spec.options?.count) countOf(inv);
     if (spec.name === "daily" && parsed.positionals.length && !validDay(parsed.positionals[0])) throw new Error(`give the day as YYYY-MM-DD, such as 2026-10-01`);
     if (spec.name === "search") searchOptions(inv);
+    if (spec.name === "atlas frontier") frontierOptions(inv.values);
     if (NOTE_COMMANDS.has(spec.name)) noteOptions(inv);
     if (spec.name === "canon show" && parseId(parsed.positionals[0]) === null) throw new Error(`canon show needs an excerpt number, such as 42`);
     if (spec.name === "completion" && !isShell(parsed.positionals[0])) throw new Error(`unknown shell ${parsed.positionals[0]}; use ${SHELLS.join(", ")}`);

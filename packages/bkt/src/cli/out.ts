@@ -57,6 +57,16 @@ export const JSON_SHAPES = {
   "notes add": ["id", "title", "pinned", "createdAt", "updatedAt"],
   history: ["days", "studyDays", "reviews", "answered", "correct", ["forms", ["form", "answered", "correct", "accuracy"]], ["byDay", ["day", "reviews", "answered", "correct"]]],
   import: [["imported", "open"]],
+  "atlas frontier": [
+    "schema",
+    "threshold",
+    "rule",
+    ["counts", ["solved", "reachable", "beyond"]],
+    "inside",
+    "outside",
+    ["missing", "open"],
+    ["points", ["id", "title", "branch", "sourceKind", "theta", "zone", "reach", ["nearest", ["id", "title", "similarity"]], "radius", ["pulls", "open"], "growth"]],
+  ],
   "canon show": ["id", "branch", "concept", "title", "text", "url", ["evidence", ["title", "author", "kind", "url", "score", "text"]]],
 } as const satisfies Record<string, Shape>;
 

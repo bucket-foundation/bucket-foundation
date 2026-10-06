@@ -24,15 +24,15 @@ const SOURCES: WorkSources = {
   ],
 };
 
-test("the space has nine forms, four formats, three depths and eleven valid form-format pairs", () => {
-  assert.equal(FORMS.length, 9);
+test("the space has thirteen forms, four formats, three depths and fifteen valid form-format pairs", () => {
+  assert.equal(FORMS.length, 13);
   assert.equal(FORMATS.length, 4);
   assert.equal(DEPTHS.length, 3);
   assert.deepEqual(
     validPairs().map(([f, fmt]) => `${f}:${fmt}`).sort(),
-    ["cause_effect:pick", "cloze:pick", "cloze:word", "compare:pick", "estimate:number", "order:order", "recall:pick", "recall:word", "spot_error:pick", "true_false:pick", "which_changed:pick"],
+    ["cause_effect:pick", "cloze:pick", "cloze:word", "compare:pick", "estimate:number", "language:pick", "meaning:pick", "order:order", "pair:pick", "recall:pick", "recall:word", "sound:pick", "spot_error:pick", "true_false:pick", "which_changed:pick"],
   );
-  assert.equal(allCells().length, 33);
+  assert.equal(allCells().length, 45);
   for (const f of FORMS) for (const fmt of FORMATS) assert.equal(validPair(f, fmt), VALID_PAIRS[f].includes(fmt));
   assert.equal(validPair("estimate", "pick"), false);
   assert.equal(validPair("order", "pick"), false);

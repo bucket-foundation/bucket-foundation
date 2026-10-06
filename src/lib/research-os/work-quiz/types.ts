@@ -1,6 +1,15 @@
-export type QuizType = "recall" | "true_false" | "which_first" | "estimate" | "spot_error";
+export type WorkQuizType = "recall" | "true_false" | "which_first" | "estimate" | "spot_error";
+export type LanguageQuizType = "meaning" | "sound" | "language" | "pair";
+export type QuizType = WorkQuizType | LanguageQuizType;
 
-export const QUIZ_TYPES: readonly QuizType[] = ["recall", "true_false", "which_first", "estimate", "spot_error"];
+export const QUIZ_TYPES: readonly WorkQuizType[] = ["recall", "true_false", "which_first", "estimate", "spot_error"];
+export const LANGUAGE_QUIZ_TYPES: readonly LanguageQuizType[] = ["meaning", "sound", "language", "pair"];
+export const ALL_QUIZ_TYPES: readonly QuizType[] = [...QUIZ_TYPES, ...LANGUAGE_QUIZ_TYPES];
+export const SOURCE_KINDS = ["bead", "pr", "note", "chat", "word"] as const;
+
+export function isWorkQuizType(type: QuizType): type is WorkQuizType {
+  return (QUIZ_TYPES as readonly QuizType[]).includes(type);
+}
 
 export interface BeadFact {
   id: string;
@@ -31,7 +40,7 @@ export interface WorkSources {
 }
 
 export interface SourceRef {
-  kind: "bead" | "pr" | "note" | "chat";
+  kind: (typeof SOURCE_KINDS)[number];
   ref: string;
   label: string;
   href: string | null;
@@ -69,6 +78,10 @@ export const TYPE_LABEL: Record<QuizType, string> = {
   which_first: "which came first",
   estimate: "estimate the number",
   spot_error: "spot the error",
+  meaning: "word meaning",
+  sound: "word sound",
+  language: "which language",
+  pair: "word pair",
 };
 
 export function retiredNotice(retired: number): string {

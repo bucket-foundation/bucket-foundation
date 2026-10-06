@@ -1,5 +1,6 @@
 import { countTokens, parityOk, shortTitle, withinLimits } from "./limits";
-import { QUIZ_TYPES, type BeadFact, type NoteFact, type PrFact, type QuizQuestion, type QuizType, type SourceRef, type WorkSources } from "./types";
+import { QUIZ_TYPES, isWorkQuizType, type BeadFact, type NoteFact, type PrFact, type QuizQuestion, type QuizType, type SourceRef, type WorkQuizType, type WorkSources } from "./types";
+import { FORM_LIMIT_SEC } from "./space";
 
 export const LIMIT_SEC: Record<QuizType, number> = {
   recall: 30,
@@ -7,6 +8,10 @@ export const LIMIT_SEC: Record<QuizType, number> = {
   which_first: 25,
   estimate: 40,
   spot_error: 45,
+  meaning: FORM_LIMIT_SEC.meaning,
+  sound: FORM_LIMIT_SEC.sound,
+  language: FORM_LIMIT_SEC.language,
+  pair: FORM_LIMIT_SEC.pair,
 };
 
 export const ESTIMATE_TOLERANCE = 0.2;
@@ -363,7 +368,7 @@ function spotError(src: WorkSources, rng: Rng, focus?: Focus): QuizQuestion | nu
   };
 }
 
-export const MAKERS: Record<QuizType, (src: WorkSources, rng: Rng, focus?: Focus) => QuizQuestion | null> = {
+export const MAKERS: Record<WorkQuizType, (src: WorkSources, rng: Rng, focus?: Focus) => QuizQuestion | null> = {
   recall,
   true_false: trueFalse,
   which_first: whichFirst,
@@ -371,7 +376,7 @@ export const MAKERS: Record<QuizType, (src: WorkSources, rng: Rng, focus?: Focus
   spot_error: spotError,
 };
 
-export function generateQuestion(src: WorkSources, seed: string, only?: QuizType): QuizQuestion | null {
+export function generateQuestion(src: WorkSources, seed: string, only?: WorkQuizType): QuizQuestion | null {
   const rng = seededRng(seed);
   const order = only ? [only] : shuffle(rng, QUIZ_TYPES);
   for (const type of order) {
@@ -384,15 +389,16 @@ export function generateQuestion(src: WorkSources, seed: string, only?: QuizType
 export function focusOf(q: QuizQuestion): Focus | null {
   if (q.type === "estimate") return { kind: "estimate", ref: q.id };
   const first = q.sources[0];
-  if (!first || first.kind === "chat") return null;
+  if (!first || first.kind === "chat" || first.kind === "word") return null;
   return { kind: first.kind, ref: first.ref, other: q.sources[1]?.ref };
 }
 
 export function rewriteQuestion(old: QuizQuestion, src: WorkSources): QuizQuestion | null {
   const focus = focusOf(old);
-  if (!focus) return null;
+  const type = old.type;
+  if (!focus || !isWorkQuizType(type)) return null;
   for (let i = 0; i < REWRITE_TRIES; i++) {
-    const q = MAKERS[old.type](src, seededRng(`${old.id}|${i}`), focus);
+    const q = MAKERS[type](src, seededRng(`${old.id}|${i}`), focus);
     if (q && withinLimits(q)) return q;
   }
   return null;

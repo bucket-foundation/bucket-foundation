@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Box, Text, useStdout } from "ink";
 import { branchLabel, searchCanon, searchParams, showExcerpt, type CanonSource, type Excerpt, type SearchHit } from "../core/search";
 import type { Note } from "../notes";
+import { atlasFrontier, fitWidth, frontierLines } from "./atlas";
 import { stamp } from "./out";
 
 export const TABS = [
@@ -199,6 +200,21 @@ export function graphView(raw: unknown): GraphView | null {
   const g = (outer.graph && typeof outer.graph === "object" ? outer.graph : outer) as { nodes?: unknown; edges?: unknown; links?: unknown };
   const nodes = count(g.nodes);
   return nodes ? { nodes, edges: count(g.edges ?? g.links) } : null;
+}
+
+export function FrontierScreen() {
+  const { stdout } = useStdout();
+  const lines = useMemo(() => frontierLines(atlasFrontier(), fitWidth(stdout?.columns), false), [stdout?.columns]);
+  return (
+    <Box flexDirection="column">
+      {lines.map((line, i) => (
+        <Text key={i} bold={i === 0}>
+          {line || " "}
+        </Text>
+      ))}
+      <Text dimColor>q goes back; bkt atlas frontier --svg FILE writes the drawing</Text>
+    </Box>
+  );
 }
 
 export function GraphScreen({ graph }: { graph: GraphView | null }) {

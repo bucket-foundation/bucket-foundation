@@ -9,6 +9,22 @@ import { extractPy } from "./pyruntime";
 
 const MB = 1024 * 1024;
 
+export const JOB_THREADS = 4;
+export const JOB_ADDRESS_BYTES = 8 * 1024 * MB;
+export const JOB_NICE = 10;
+export const THREAD_VARS = ["OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"] as const;
+
+export type Which = (bin: string) => string | null;
+
+export function capJob(argv: string[], env: Record<string, string> = {}, which: Which = (b) => Bun.which(b)): { argv: string[]; env: Record<string, string> } {
+  const prlimit = which("prlimit");
+  const nice = which("nice");
+  return {
+    argv: [...(prlimit ? [prlimit, `--as=${JOB_ADDRESS_BYTES}`] : []), ...(nice ? [nice, "-n", String(JOB_NICE)] : []), ...argv],
+    env: { ...env, ...Object.fromEntries(THREAD_VARS.map((v) => [v, String(JOB_THREADS)])) },
+  };
+}
+
 export type PyCheck = (python: string, modules: string[]) => string | null;
 
 export const checkModules: PyCheck = (python, modules) => {
@@ -81,6 +97,7 @@ export interface SpecDeps {
   people: PeopleStore;
   python?: string;
   check?: PyCheck;
+  which?: Which;
   now?: () => number;
 }
 
@@ -88,6 +105,7 @@ export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
   const python = d.python ?? platformFor().python();
   const check = d.check ?? checkModules;
   const now = d.now ?? Date.now;
+  const cap = (argv: string[], env: Record<string, string>) => capJob(argv, env, d.which);
   return {
     analyze: {
       label: "Analyze a data file",
@@ -96,10 +114,7 @@ export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
         const missing = check(python, ["numpy"]);
         if (missing) return { error: missing, install: installLine(python, ["numpy"]) };
         const py = extractPy(d.src, d.cacheRoot);
-        return {
-          argv: [python, join(py, "bkt_analyze.py"), dirs.inputs.data, "--out", dirs.out],
-          env: { BKT_HELIX_DIR: join(py, "helix"), BKT_PRIME_DIR: join(py, "helix") },
-        };
+        return cap([python, join(py, "bkt_analyze.py"), dirs.inputs.data, "--out", dirs.out], { BKT_HELIX_DIR: join(py, "helix"), BKT_PRIME_DIR: join(py, "helix") });
       },
       after: (dirs: JobDirs) => ({ out: dirs.out, card: readCard(dirs.out) }),
       failed: (dirs: JobDirs) => ({ out: dirs.out, card: readCard(dirs.out) }),
@@ -120,13 +135,13 @@ export function jobSpecs(d: SpecDeps): Record<string, JobSpec> {
         const missing = check(python, ["numpy", "scipy", "sklearn", "matplotlib"]);
         if (missing) return { error: missing, install: installLine(python, ["numpy", "scipy", "sklearn", "matplotlib"]) };
         const py = extractPy(d.src, d.cacheRoot);
-        return {
-          argv: [
+        return cap(
+          [
             python, "-m", "prime_directions", "fit-me", "--statement", dirs.inputs.statement, "--people", dirs.inputs.people, "--out", join(dirs.out, "fit"),
             ...Object.entries(o).flatMap(([k, v]) => [`--${k.replace(/_/g, "-")}`, String(v)]),
           ],
-          env: { PYTHONPATH: py, PRIME_DATA_ROOT: d.dataRoot, MPLBACKEND: "Agg" },
-        };
+          { PYTHONPATH: py, PRIME_DATA_ROOT: d.dataRoot, MPLBACKEND: "Agg" },
+        );
       },
       after: (dirs: JobDirs) => {
         const file = join(dirs.out, "fit", "review.json");

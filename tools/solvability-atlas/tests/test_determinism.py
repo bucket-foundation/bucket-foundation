@@ -32,3 +32,14 @@ def test_knn_graph_and_stats_repeat():
 
 def test_model_revision_pinned():
     assert len(atlas.MODEL_REVISION) == 40
+
+
+def test_similarity_rows_hold_the_upper_triangle():
+    v = fixture()
+    sim = v @ v.T
+    nodes = [{"id": str(i)} for i in range(20)]
+    rows = atlas.similarity_rows(nodes, sim)
+    assert rows["ids"] == [str(i) for i in range(20)]
+    assert [len(r) for r in rows["upper"]] == list(range(19, -1, -1))
+    assert rows["upper"][0][0] == round(float(sim[0, 1]), 3)
+    assert rows == atlas.similarity_rows(nodes, sim.copy())
