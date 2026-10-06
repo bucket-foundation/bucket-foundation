@@ -2,7 +2,11 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const REPO = resolve(import.meta.dir, "../../..");
-const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
+export const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json", "solvability-similarity-data.json", "solvability-neighbors-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
+export const ID_LIST_FILES = new Set(["solvability-similarity-data.json", "solvability-neighbors-data.json"]);
+export const ID_RUN = 6;
+export const MIN_MARKERS = 3;
+export const MIN_ID_MARKERS = 1;
 const CODE = [join(REPO, "src/components/research-os/views"), join(REPO, "src/components/ui"), join(REPO, "packages/bkt-ui/src")];
 
 function strings(v: unknown, out: string[]) {
@@ -17,19 +21,34 @@ function files(p: string): string[] {
   return readdirSync(p).flatMap((n) => files(join(p, n)));
 }
 
+export function idListMarkers(ids: readonly string[], perFile: number, run = ID_RUN): string[] {
+  const out: string[] = [];
+  for (let i = 0; i + run <= ids.length && out.length < perFile; i += Math.max(run, Math.floor(ids.length / perFile)))
+    out.push(ids.slice(i, i + run).map((id) => JSON.stringify(id)).join(","));
+  return out;
+}
+
+export function markersOf(file: string, data: unknown, code: string, perFile: number): string[] {
+  const name = file.slice(file.lastIndexOf("/") + 1);
+  if (ID_LIST_FILES.has(name)) {
+    const ids = (data as { ids?: unknown }).ids;
+    if (!Array.isArray(ids) || !ids.every((x) => typeof x === "string")) throw new Error(`${file} holds no ids array`);
+    const picked = idListMarkers(ids, perFile).filter((s) => !code.includes(s));
+    if (picked.length < MIN_ID_MARKERS) throw new Error(`too few markers in ${file}`);
+    return picked;
+  }
+  const all: string[] = [];
+  strings(data, all);
+  const picked = [...new Set(all)].filter((s) => s.length >= 25 && s.length <= 160 && s.includes(" ") && !code.includes(s)).slice(0, perFile);
+  if (picked.length < MIN_MARKERS) throw new Error(`too few markers in ${file}`);
+  return picked;
+}
+
 export function staffMarkers(perFile = 12): string[] {
   const code = CODE.flatMap(files)
     .map((f) => readFileSync(f, "utf8"))
     .join("\n");
-  const out: string[] = [];
-  for (const f of STAFF) {
-    const all: string[] = [];
-    strings(JSON.parse(readFileSync(f, "utf8")), all);
-    const picked = [...new Set(all)].filter((s) => s.length >= 25 && s.length <= 160 && s.includes(" ") && !code.includes(s)).slice(0, perFile);
-    if (picked.length < 3) throw new Error(`too few markers in ${f}`);
-    out.push(...picked);
-  }
-  return out;
+  return STAFF.flatMap((f) => markersOf(f, JSON.parse(readFileSync(f, "utf8")), code, perFile));
 }
 
 export function findStaff(targets: string[], markers = staffMarkers()): { file: string; marker: string }[] {

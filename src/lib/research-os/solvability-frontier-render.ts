@@ -47,6 +47,14 @@ export const METHOD: readonly string[] = [
   "Produced by bkt atlas frontier --svg from src/lib/research-os/solvability-frontier.ts.",
 ];
 
+export function branchSentence(f: Frontier): string {
+  const rows = Object.entries(f.branches).sort((a, b) => b[1].total - a[1].total);
+  const [top, c] = rows[0];
+  const inside = c.solved + c.reachable;
+  const rest = rows.slice(1).map(([b, k]) => `${b} ${k.solved + k.reachable} inside, ${k.beyond + k.unsampled} outside`);
+  return `${inside} of the ${f.inside} inside are ${top}; ${rest.join("; ")}.`;
+}
+
 export function methodFull(f: Frontier): string[] {
   const kinds = { problem: 0, sourced: 0, variant: 0, lean: 0 } as Record<FrontierPoint["sourceKind"], number>;
   for (const p of f.points) kinds[p.sourceKind] += 1;
@@ -59,6 +67,7 @@ export function methodFull(f: Frontier): string[] {
     "6. Radius: solved entries fill the inner disc by reach, open entries inside fill the ring up to the frontier, outside entries sit beyond it by how far their reach falls short.",
     "7. For each outside top-level entry, +n counts the outside top-level entries that would move inside if it were solved, counted over its 50 stored neighbours; variants neither pull nor count as pulled. A red line joins such pairs. Labels name the 40 outside entries with the largest +n and the atlas problems.",
     `8. An open entry whose branch holds fewer than ${MIN_BRANCH_SOLVED} solved entries is unsampled, drawn grey outside the circle: its distance says nothing yet, since the corpus has no solved peer in that branch. ${f.gaps}`,
+    `9. Per branch, inside and outside: ${branchSentence(f)}`,
     "Produced by bkt atlas frontier --svg from src/lib/research-os/solvability-frontier.ts.",
   ];
 }
@@ -117,6 +126,7 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
   out.push(`<rect width="100%" height="100%" fill="${PAPER}"/>`);
   out.push(`<text x="60" y="64" font-size="34" font-weight="700" fill="${INK}">Solvability frontier</text>`);
   out.push(`<text x="60" y="100" font-size="21" fill="${INK}">${f.inside} problems inside the circle: ${f.counts.solved} solved, ${f.counts.reachable} open and close to a solved one. ${f.outside} outside.</text>`);
+  if (full) out.push(`<text x="60" y="128" font-size="17" fill="${MUTED}">${esc(branchSentence(f))}</text>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(OUTER_RADIUS * unit)}" fill="none" stroke="${MUTED}" stroke-width="0.6" stroke-dasharray="2 7" opacity="0.5"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(FRONTIER_RADIUS * unit)}" fill="#e7efe9" stroke="${INK}" stroke-width="3.2"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(CORE_RADIUS * unit)}" fill="#d6e6dc" stroke="${MUTED}" stroke-width="1" stroke-dasharray="5 5"/>`);

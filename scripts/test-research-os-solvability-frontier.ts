@@ -233,6 +233,9 @@ test("the full drawing labels the top outside problems by growth and the atlas p
   for (const p of ff.points) if (p.sourceKind === "problem" && p.zone !== "solved") assert.ok(names.includes(p));
   const svg = frontierSvg(ff);
   assert.ok(svg.includes("mathematics: ") && svg.includes("problems-sourced.tsv") && svg.includes("Apache-2.0") && svg.includes("CC BY-SA 4.0"));
+  const m = ff.branches.mathematics;
+  assert.ok(svg.includes(`${m.solved + m.reachable} of the ${ff.inside} inside are mathematics`));
+  assert.ok(svg.includes("9. Per branch, inside and outside"));
   const marks = (svg.match(/<circle cx="\d/g) ?? []).length + (svg.match(/<path d="M\d/g) ?? []).length;
   assert.equal(marks, ff.points.length + 7 + Object.keys(branchCounts(ff)).length);
   const lines = frontierText(ff, { width: 79, list: 10 });
