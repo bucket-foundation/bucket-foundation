@@ -13,7 +13,10 @@ export function lengthBand(words: number): LengthBand {
   return LENGTH_BANDS[2];
 }
 
-export const RESOLVED_STATUSES = ["solved", "partial"] as const;
+export const CODINGS = ["settled", "advanced"] as const;
+export type Coding = (typeof CODINGS)[number];
+export const CODING_LABEL: Record<Coding, string> = { settled: "settled: solved only", advanced: "settled or advanced: solved or partial" };
+export const CODING_STATUSES: Record<Coding, readonly string[]> = { settled: ["solved"], advanced: ["solved", "partial"] };
 
 export interface BacktestRow {
   id: string;
@@ -26,7 +29,9 @@ export interface BacktestRow {
   inside: boolean;
   decided: boolean;
   sampled: boolean;
-  resolved: boolean;
+  undatedSolved: boolean;
+  settled: boolean;
+  advanced: boolean;
   status: string;
 }
 
@@ -43,6 +48,28 @@ export interface Stratum {
   belowFloor: boolean;
 }
 
+export interface Bound {
+  name: string;
+  inside: number;
+  outside: number;
+  rateInside: number | null;
+  rateOutside: number | null;
+  ratio: number | null;
+}
+
+export interface CodingResult {
+  coding: Coding;
+  label: string;
+  all: Stratum;
+  byLength: Stratum[];
+  byBranch: Stratum[];
+  auc: number | null;
+  aucRows: number;
+  undatedRemoved: { all: Stratum; auc: number | null; aucRows: number };
+  undecidedResolved: number;
+  undecidedBounds: Bound[];
+}
+
 export interface CutoffBacktest {
   cutoff: number;
   solvedAtCutoff: number;
@@ -52,22 +79,20 @@ export interface CutoffBacktest {
   unsampled: number;
   reachBounded: number;
   undecided: number;
-  resolvedOutcomes: number;
-  all: Stratum;
-  byLength: Stratum[];
-  byBranch: Stratum[];
-  auc: number | null;
-  aucRows: number;
+  undatedSolved: number;
+  undatedSolvedTested: number;
+  codings: CodingResult[];
   rows: BacktestRow[];
 }
 
 export interface Backtest {
-  schema: "bucket.solvability-backtest/v1";
+  schema: "bucket.solvability-backtest/v2";
   permutations: number;
   seed: number;
   floor: number;
   neighbourBound: number;
   rule: string;
+  leakage: string;
   cutoffs: CutoffBacktest[];
 }
 
@@ -119,11 +144,11 @@ export function auc(scores: readonly number[], outcomes: readonly boolean[]): nu
   return sum / (pos.length * neg.length);
 }
 
-export function stratum(name: string, rows: readonly BacktestRow[], permutations: number, seed: number, floor = STRATUM_FLOOR): Stratum {
+export function stratum(name: string, rows: readonly BacktestRow[], permutations: number, seed: number, floor = STRATUM_FLOOR, coding: Coding = "advanced"): Stratum {
   const ins = rows.filter((r) => r.inside);
   const outs = rows.filter((r) => !r.inside);
-  const resolvedInside = ins.filter((r) => r.resolved).length;
-  const resolvedOutside = outs.filter((r) => r.resolved).length;
+  const resolvedInside = ins.filter((r) => r[coding]).length;
+  const resolvedOutside = outs.filter((r) => r[coding]).length;
   const belowFloor = ins.length < floor || outs.length < floor;
   if (belowFloor) return { name, inside: ins.length, outside: outs.length, resolvedInside, resolvedOutside, rateInside: null, rateOutside: null, ratio: null, pValue: null, belowFloor };
   const rateInside = resolvedInside / ins.length;
@@ -137,7 +162,7 @@ export function stratum(name: string, rows: readonly BacktestRow[], permutations
     rateInside: round3(rateInside),
     rateOutside: round3(rateOutside),
     ratio: rateOutside === 0 ? null : round3(rateInside / rateOutside),
-    pValue: round4(permutationP(ins.map((r) => r.resolved), outs.map((r) => r.resolved), permutations, seed)),
+    pValue: round4(permutationP(ins.map((r) => r[coding]), outs.map((r) => r[coding]), permutations, seed)),
     belowFloor,
   };
 }
@@ -189,17 +214,42 @@ export function backtestCutoff(data: NeighborData, cutoff: number, opts: Options
         inside: !r.bounded && r.reach >= threshold,
         decided: !r.bounded || r.reach < threshold,
         sampled: (solvedInBranch.get(n.branch) ?? 0) >= minBranchSolved,
-        resolved: (RESOLVED_STATUSES as readonly string[]).includes(n.status),
+        undatedSolved: n.solved && n.resolved === null,
+        settled: CODING_STATUSES.settled.includes(n.status),
+        advanced: CODING_STATUSES.advanced.includes(n.status),
         status: n.status,
       };
     })
     .sort((a, b) => a.id.localeCompare(b.id));
   const sampled = rows.filter((r) => r.sampled && r.decided);
-  const all = stratum("all", sampled, permutations, seed, opts.floor);
-  const byLength = LENGTH_BANDS.map((band) => stratum(band, sampled.filter((r) => lengthBand(r.words) === band), permutations, seed, opts.floor));
-  const branches = Array.from(new Set(sampled.map((r) => r.branch))).sort();
-  const byBranch = branches.map((b) => stratum(b, sampled.filter((r) => r.branch === b), permutations, seed, opts.floor));
-  const aucValue = auc(sampled.map((r) => r.reach), sampled.map((r) => r.resolved));
+  const undecided = rows.filter((r) => r.sampled && !r.decided);
+  const dated = sampled.filter((r) => !r.undatedSolved);
+  const rate = (xs: readonly BacktestRow[], coding: Coding) => (xs.length ? xs.filter((r) => r[coding]).length / xs.length : null);
+  const bound = (name: string, ins: readonly BacktestRow[], outs: readonly BacktestRow[], coding: Coding): Bound => {
+    const ri = rate(ins, coding);
+    const ro = rate(outs, coding);
+    return { name, inside: ins.length, outside: outs.length, rateInside: ri === null ? null : round3(ri), rateOutside: ro === null ? null : round3(ro), ratio: ri === null || !ro ? null : round3(ri / ro) };
+  };
+  const codings = CODINGS.map((coding): CodingResult => {
+    const aucValue = auc(sampled.map((r) => r.reach), sampled.map((r) => r[coding]));
+    const aucDated = auc(dated.map((r) => r.reach), dated.map((r) => r[coding]));
+    const ins = sampled.filter((r) => r.inside);
+    const outs = sampled.filter((r) => !r.inside);
+    return {
+      coding,
+      label: CODING_LABEL[coding],
+      all: stratum("all", sampled, permutations, seed, opts.floor, coding),
+      byLength: LENGTH_BANDS.map((band) => stratum(band, sampled.filter((r) => lengthBand(r.words) === band), permutations, seed, opts.floor, coding)),
+      byBranch: Array.from(new Set(sampled.map((r) => r.branch)))
+        .sort()
+        .map((b) => stratum(b, sampled.filter((r) => r.branch === b), permutations, seed, opts.floor, coding)),
+      auc: aucValue === null ? null : round3(aucValue),
+      aucRows: sampled.length,
+      undatedRemoved: { all: stratum("all, undated solved rows removed", dated, permutations, seed, opts.floor, coding), auc: aucDated === null ? null : round3(aucDated), aucRows: dated.length },
+      undecidedResolved: undecided.filter((r) => r[coding]).length,
+      undecidedBounds: [bound("all undecided inside", [...ins, ...undecided], outs, coding), bound("all undecided outside", ins, [...outs, ...undecided], coding)],
+    };
+  });
   return {
     cutoff,
     solvedAtCutoff: solved.size,
@@ -208,25 +258,23 @@ export function backtestCutoff(data: NeighborData, cutoff: number, opts: Options
     tested: rows.length,
     unsampled: rows.filter((r) => !r.sampled).length,
     reachBounded: rows.filter((r) => r.sampled && r.reachBounded).length,
-    undecided: rows.filter((r) => r.sampled && !r.decided).length,
-    resolvedOutcomes: sampled.filter((r) => r.resolved).length,
-    all,
-    byLength,
-    byBranch,
-    auc: aucValue === null ? null : round3(aucValue),
-    aucRows: sampled.length,
+    undecided: undecided.length,
+    undatedSolved: sampled.filter((r) => r.undatedSolved).length,
+    undatedSolvedTested: rows.filter((r) => r.undatedSolved).length,
+    codings,
     rows,
   };
 }
 
 export function backtest(data: NeighborData, cutoffs: readonly number[] = CUTOFFS, opts: Options = {}): Backtest {
   return {
-    schema: "bucket.solvability-backtest/v1",
+    schema: "bucket.solvability-backtest/v2",
     permutations: opts.permutations ?? PERMUTATIONS,
     seed: opts.seed ?? SEED,
     floor: opts.floor ?? STRATUM_FLOOR,
     neighbourBound: data.k,
-    rule: `For a cutoff year the solved set is every row solved under the atlas rule with a resolved year at or before the cutoff. Every row posed at or before the cutoff and outside that set is tested. Its reach is its highest similarity to a cutoff-solved row among its ${data.k} stored neighbours and its stored nearest solved row; when none of those was solved by the cutoff the reach is unknown and bounded above by the ${data.k}th neighbour's similarity. The threshold is the ${Math.round(REACH_QUANTILE * 100)}th percentile of reach among the cutoff-solved rows that have a cutoff-solved neighbour; the rest are counted and dropped, which can only raise the threshold. A tested row is inside when its reach is at or above the threshold, outside when its reach or its bound falls below it, and undecided when its reach is unknown and its bound is at or above the threshold; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status: solved or partial counts as resolved, open does not. Rows whose branch holds fewer than ${opts.minBranchSolved ?? MIN_BRANCH_SOLVED} cutoff-solved rows are unsampled and left out of the rates. A stratum with fewer than ${opts.floor ?? STRATUM_FLOOR} rows on either side reports counts only. The p-value is two-sided: the share of ${opts.permutations ?? PERMUTATIONS} seeded shuffles of the outcomes whose absolute rate difference is at least the observed one, with one added to numerator and denominator. The AUC is the Mann-Whitney probability that a resolved row's reach exceeds an unresolved row's, ties counting one half.`,
+    rule: `For a cutoff year the solved set is every row solved under the atlas rule with a resolved year at or before the cutoff. Every row posed at or before the cutoff and outside that set is tested. Its reach is its highest similarity to a cutoff-solved row among its ${data.k} stored neighbours and its stored nearest solved row; when none of those was solved by the cutoff the reach is unknown and bounded above by the ${data.k}th neighbour's similarity. The threshold is the ${Math.round(REACH_QUANTILE * 100)}th percentile of reach among the cutoff-solved rows that have a cutoff-solved neighbour; the rest are counted and dropped, which can only raise the threshold. A tested row is inside when its reach is at or above the threshold, outside when its reach or its bound falls below it, and undecided when its reach is unknown and its bound is at or above the threshold; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status under two codings reported side by side: settled counts solved only; settled or advanced counts solved or partial. Partial is assigned in 2026 by the ingest from the status source, so the two codings bound what the row's history supports. A solved row with no resolved year posed by the cutoff is tested and scored as resolved under both codings; the tables repeat the all-rows result with those rows removed. Undecided rows are also scored under the two extremes, all of them inside and all of them outside, as a bound without a p-value. Rows whose branch holds fewer than ${opts.minBranchSolved ?? MIN_BRANCH_SOLVED} cutoff-solved rows are unsampled and left out of the rates. A stratum with fewer than ${opts.floor ?? STRATUM_FLOOR} rows on either side reports counts only. The p-value is two-sided: the share of ${opts.permutations ?? PERMUTATIONS} seeded shuffles of the outcomes whose absolute rate difference is at least the observed one, with one added to numerator and denominator. The AUC is the Mann-Whitney probability that a resolved row's reach exceeds an unresolved row's, ties counting one half.`,
+    leakage: `The embeddings and the ${data.k} stored neighbours come from the 2026 corpus, so statements written after a cutoff shape the geometry a cutoff is scored on. The test checks the rule against known outcomes under that leak, which is a weaker claim than a forecast. A clean version needs embeddings fitted on text dated at or before the cutoff and a neighbour set frozen per cutoff.`,
     cutoffs: cutoffs.map((c) => backtestCutoff(data, c, opts)),
   };
 }

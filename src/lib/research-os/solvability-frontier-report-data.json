@@ -77,12 +77,13 @@
   "gaps": "Branches with fewer than 10 solved problems (mind 5 of 108): their open problems are unsampled, since no solved peer exists in the corpus to measure reach against, and they stay out of the growth count."
  },
  "backtest": {
-  "schema": "bucket.solvability-backtest/v1",
+  "schema": "bucket.solvability-backtest/v2",
   "permutations": 10000,
   "seed": 20261006,
   "floor": 10,
   "neighbourBound": 50,
-  "rule": "For a cutoff year the solved set is every row solved under the atlas rule with a resolved year at or before the cutoff. Every row posed at or before the cutoff and outside that set is tested. Its reach is its highest similarity to a cutoff-solved row among its 50 stored neighbours and its stored nearest solved row; when none of those was solved by the cutoff the reach is unknown and bounded above by the 50th neighbour's similarity. The threshold is the 10th percentile of reach among the cutoff-solved rows that have a cutoff-solved neighbour; the rest are counted and dropped, which can only raise the threshold. A tested row is inside when its reach is at or above the threshold, outside when its reach or its bound falls below it, and undecided when its reach is unknown and its bound is at or above the threshold; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status: solved or partial counts as resolved, open does not. Rows whose branch holds fewer than 10 cutoff-solved rows are unsampled and left out of the rates. A stratum with fewer than 10 rows on either side reports counts only. The p-value is two-sided: the share of 10000 seeded shuffles of the outcomes whose absolute rate difference is at least the observed one, with one added to numerator and denominator. The AUC is the Mann-Whitney probability that a resolved row's reach exceeds an unresolved row's, ties counting one half.",
+  "rule": "For a cutoff year the solved set is every row solved under the atlas rule with a resolved year at or before the cutoff. Every row posed at or before the cutoff and outside that set is tested. Its reach is its highest similarity to a cutoff-solved row among its 50 stored neighbours and its stored nearest solved row; when none of those was solved by the cutoff the reach is unknown and bounded above by the 50th neighbour's similarity. The threshold is the 10th percentile of reach among the cutoff-solved rows that have a cutoff-solved neighbour; the rest are counted and dropped, which can only raise the threshold. A tested row is inside when its reach is at or above the threshold, outside when its reach or its bound falls below it, and undecided when its reach is unknown and its bound is at or above the threshold; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status under two codings reported side by side: settled counts solved only; settled or advanced counts solved or partial. Partial is assigned in 2026 by the ingest from the status source, so the two codings bound what the row's history supports. A solved row with no resolved year posed by the cutoff is tested and scored as resolved under both codings; the tables repeat the all-rows result with those rows removed. Undecided rows are also scored under the two extremes, all of them inside and all of them outside, as a bound without a p-value. Rows whose branch holds fewer than 10 cutoff-solved rows are unsampled and left out of the rates. A stratum with fewer than 10 rows on either side reports counts only. The p-value is two-sided: the share of 10000 seeded shuffles of the outcomes whose absolute rate difference is at least the observed one, with one added to numerator and denominator. The AUC is the Mann-Whitney probability that a resolved row's reach exceeds an unresolved row's, ties counting one half.",
+  "leakage": "The embeddings and the 50 stored neighbours come from the 2026 corpus, so statements written after a cutoff shape the geometry a cutoff is scored on. The test checks the rule against known outcomes under that leak, which is a weaker claim than a forecast. A clean version needs embeddings fitted on text dated at or before the cutoff and a neighbour set frozen per cutoff.",
   "cutoffs": [
    {
     "cutoff": 2005,
@@ -93,133 +94,340 @@
     "unsampled": 38,
     "reachBounded": 76,
     "undecided": 66,
-    "resolvedOutcomes": 94,
-    "all": {
-     "name": "all",
-     "inside": 112,
-     "outside": 71,
-     "resolvedInside": 51,
-     "resolvedOutside": 43,
-     "rateInside": 0.455,
-     "rateOutside": 0.606,
-     "ratio": 0.752,
-     "pValue": 0.0508,
-     "belowFloor": false
-    },
-    "byLength": [
+    "undatedSolved": 11,
+    "undatedSolvedTested": 32,
+    "codings": [
      {
-      "name": "under 20 words",
-      "inside": 28,
-      "outside": 20,
-      "resolvedInside": 13,
-      "resolvedOutside": 14,
-      "rateInside": 0.464,
-      "rateOutside": 0.7,
-      "ratio": 0.663,
-      "pValue": 0.139,
-      "belowFloor": false
+      "coding": "settled",
+      "label": "settled: solved only",
+      "all": {
+       "name": "all",
+       "inside": 112,
+       "outside": 71,
+       "resolvedInside": 24,
+       "resolvedOutside": 4,
+       "rateInside": 0.214,
+       "rateOutside": 0.056,
+       "ratio": 3.804,
+       "pValue": 0.0062,
+       "belowFloor": false
+      },
+      "byLength": [
+       {
+        "name": "under 20 words",
+        "inside": 28,
+        "outside": 20,
+        "resolvedInside": 2,
+        "resolvedOutside": 0,
+        "rateInside": 0.071,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 0.5027,
+        "belowFloor": false
+       },
+       {
+        "name": "20 to 40 words",
+        "inside": 44,
+        "outside": 36,
+        "resolvedInside": 6,
+        "resolvedOutside": 2,
+        "rateInside": 0.136,
+        "rateOutside": 0.056,
+        "ratio": 2.455,
+        "pValue": 0.282,
+        "belowFloor": false
+       },
+       {
+        "name": "over 40 words",
+        "inside": 40,
+        "outside": 15,
+        "resolvedInside": 16,
+        "resolvedOutside": 2,
+        "rateInside": 0.4,
+        "rateOutside": 0.133,
+        "ratio": 3,
+        "pValue": 0.1018,
+        "belowFloor": false
+       }
+      ],
+      "byBranch": [
+       {
+        "name": "applied",
+        "inside": 4,
+        "outside": 3,
+        "resolvedInside": 0,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "biophysics",
+        "inside": 18,
+        "outside": 44,
+        "resolvedInside": 2,
+        "resolvedOutside": 2,
+        "rateInside": 0.111,
+        "rateOutside": 0.045,
+        "ratio": 2.444,
+        "pValue": 0.5768,
+        "belowFloor": false
+       },
+       {
+        "name": "chemistry",
+        "inside": 7,
+        "outside": 2,
+        "resolvedInside": 0,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "cosmology",
+        "inside": 11,
+        "outside": 5,
+        "resolvedInside": 0,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "mathematics",
+        "inside": 49,
+        "outside": 1,
+        "resolvedInside": 15,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "physics",
+        "inside": 23,
+        "outside": 16,
+        "resolvedInside": 7,
+        "resolvedOutside": 2,
+        "rateInside": 0.304,
+        "rateOutside": 0.125,
+        "ratio": 2.435,
+        "pValue": 0.2633,
+        "belowFloor": false
+       }
+      ],
+      "auc": 0.8,
+      "aucRows": 183,
+      "undatedRemoved": {
+       "all": {
+        "name": "all, undated solved rows removed",
+        "inside": 101,
+        "outside": 71,
+        "resolvedInside": 13,
+        "resolvedOutside": 4,
+        "rateInside": 0.129,
+        "rateOutside": 0.056,
+        "ratio": 2.285,
+        "pValue": 0.1305,
+        "belowFloor": false
+       },
+       "auc": 0.7,
+       "aucRows": 172
+      },
+      "undecidedResolved": 21,
+      "undecidedBounds": [
+       {
+        "name": "all undecided inside",
+        "inside": 178,
+        "outside": 71,
+        "rateInside": 0.253,
+        "rateOutside": 0.056,
+        "ratio": 4.487
+       },
+       {
+        "name": "all undecided outside",
+        "inside": 112,
+        "outside": 137,
+        "rateInside": 0.214,
+        "rateOutside": 0.182,
+        "ratio": 1.174
+       }
+      ]
      },
      {
-      "name": "20 to 40 words",
-      "inside": 44,
-      "outside": 36,
-      "resolvedInside": 20,
-      "resolvedOutside": 27,
-      "rateInside": 0.455,
-      "rateOutside": 0.75,
-      "ratio": 0.606,
-      "pValue": 0.0126,
-      "belowFloor": false
-     },
-     {
-      "name": "over 40 words",
-      "inside": 40,
-      "outside": 15,
-      "resolvedInside": 18,
-      "resolvedOutside": 2,
-      "rateInside": 0.45,
-      "rateOutside": 0.133,
-      "ratio": 3.375,
-      "pValue": 0.0534,
-      "belowFloor": false
+      "coding": "advanced",
+      "label": "settled or advanced: solved or partial",
+      "all": {
+       "name": "all",
+       "inside": 112,
+       "outside": 71,
+       "resolvedInside": 51,
+       "resolvedOutside": 43,
+       "rateInside": 0.455,
+       "rateOutside": 0.606,
+       "ratio": 0.752,
+       "pValue": 0.0508,
+       "belowFloor": false
+      },
+      "byLength": [
+       {
+        "name": "under 20 words",
+        "inside": 28,
+        "outside": 20,
+        "resolvedInside": 13,
+        "resolvedOutside": 14,
+        "rateInside": 0.464,
+        "rateOutside": 0.7,
+        "ratio": 0.663,
+        "pValue": 0.139,
+        "belowFloor": false
+       },
+       {
+        "name": "20 to 40 words",
+        "inside": 44,
+        "outside": 36,
+        "resolvedInside": 20,
+        "resolvedOutside": 27,
+        "rateInside": 0.455,
+        "rateOutside": 0.75,
+        "ratio": 0.606,
+        "pValue": 0.0126,
+        "belowFloor": false
+       },
+       {
+        "name": "over 40 words",
+        "inside": 40,
+        "outside": 15,
+        "resolvedInside": 18,
+        "resolvedOutside": 2,
+        "rateInside": 0.45,
+        "rateOutside": 0.133,
+        "ratio": 3.375,
+        "pValue": 0.0534,
+        "belowFloor": false
+       }
+      ],
+      "byBranch": [
+       {
+        "name": "applied",
+        "inside": 4,
+        "outside": 3,
+        "resolvedInside": 1,
+        "resolvedOutside": 2,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "biophysics",
+        "inside": 18,
+        "outside": 44,
+        "resolvedInside": 14,
+        "resolvedOutside": 32,
+        "rateInside": 0.778,
+        "rateOutside": 0.727,
+        "ratio": 1.069,
+        "pValue": 0.7564,
+        "belowFloor": false
+       },
+       {
+        "name": "chemistry",
+        "inside": 7,
+        "outside": 2,
+        "resolvedInside": 1,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "cosmology",
+        "inside": 11,
+        "outside": 5,
+        "resolvedInside": 2,
+        "resolvedOutside": 3,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "mathematics",
+        "inside": 49,
+        "outside": 1,
+        "resolvedInside": 24,
+        "resolvedOutside": 1,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "physics",
+        "inside": 23,
+        "outside": 16,
+        "resolvedInside": 9,
+        "resolvedOutside": 5,
+        "rateInside": 0.391,
+        "rateOutside": 0.313,
+        "ratio": 1.252,
+        "pValue": 0.7454,
+        "belowFloor": false
+       }
+      ],
+      "auc": 0.479,
+      "aucRows": 183,
+      "undatedRemoved": {
+       "all": {
+        "name": "all, undated solved rows removed",
+        "inside": 101,
+        "outside": 71,
+        "resolvedInside": 40,
+        "resolvedOutside": 43,
+        "rateInside": 0.396,
+        "rateOutside": 0.606,
+        "ratio": 0.654,
+        "pValue": 0.0075,
+        "belowFloor": false
+       },
+       "auc": 0.416,
+       "aucRows": 172
+      },
+      "undecidedResolved": 35,
+      "undecidedBounds": [
+       {
+        "name": "all undecided inside",
+        "inside": 178,
+        "outside": 71,
+        "rateInside": 0.483,
+        "rateOutside": 0.606,
+        "ratio": 0.798
+       },
+       {
+        "name": "all undecided outside",
+        "inside": 112,
+        "outside": 137,
+        "rateInside": 0.455,
+        "rateOutside": 0.569,
+        "ratio": 0.8
+       }
+      ]
      }
-    ],
-    "byBranch": [
-     {
-      "name": "applied",
-      "inside": 4,
-      "outside": 3,
-      "resolvedInside": 1,
-      "resolvedOutside": 2,
-      "rateInside": null,
-      "rateOutside": null,
-      "ratio": null,
-      "pValue": null,
-      "belowFloor": true
-     },
-     {
-      "name": "biophysics",
-      "inside": 18,
-      "outside": 44,
-      "resolvedInside": 14,
-      "resolvedOutside": 32,
-      "rateInside": 0.778,
-      "rateOutside": 0.727,
-      "ratio": 1.069,
-      "pValue": 0.7564,
-      "belowFloor": false
-     },
-     {
-      "name": "chemistry",
-      "inside": 7,
-      "outside": 2,
-      "resolvedInside": 1,
-      "resolvedOutside": 0,
-      "rateInside": null,
-      "rateOutside": null,
-      "ratio": null,
-      "pValue": null,
-      "belowFloor": true
-     },
-     {
-      "name": "cosmology",
-      "inside": 11,
-      "outside": 5,
-      "resolvedInside": 2,
-      "resolvedOutside": 3,
-      "rateInside": null,
-      "rateOutside": null,
-      "ratio": null,
-      "pValue": null,
-      "belowFloor": true
-     },
-     {
-      "name": "mathematics",
-      "inside": 49,
-      "outside": 1,
-      "resolvedInside": 24,
-      "resolvedOutside": 1,
-      "rateInside": null,
-      "rateOutside": null,
-      "ratio": null,
-      "pValue": null,
-      "belowFloor": true
-     },
-     {
-      "name": "physics",
-      "inside": 23,
-      "outside": 16,
-      "resolvedInside": 9,
-      "resolvedOutside": 5,
-      "rateInside": 0.391,
-      "rateOutside": 0.313,
-      "ratio": 1.252,
-      "pValue": 0.7454,
-      "belowFloor": false
-     }
-    ],
-    "auc": 0.479,
-    "aucRows": 183
+    ]
    },
    {
     "cutoff": 2021,
@@ -230,145 +438,364 @@
     "unsampled": 58,
     "reachBounded": 53,
     "undecided": 43,
-    "resolvedOutcomes": 151,
-    "all": {
-     "name": "all",
-     "inside": 238,
-     "outside": 126,
-     "resolvedInside": 102,
-     "resolvedOutside": 49,
-     "rateInside": 0.429,
-     "rateOutside": 0.389,
-     "ratio": 1.102,
-     "pValue": 0.5034,
-     "belowFloor": false
-    },
-    "byLength": [
+    "undatedSolved": 21,
+    "undatedSolvedTested": 33,
+    "codings": [
      {
-      "name": "under 20 words",
-      "inside": 101,
-      "outside": 57,
-      "resolvedInside": 37,
-      "resolvedOutside": 21,
-      "rateInside": 0.366,
-      "rateOutside": 0.368,
-      "ratio": 0.994,
-      "pValue": 1,
-      "belowFloor": false
+      "coding": "settled",
+      "label": "settled: solved only",
+      "all": {
+       "name": "all",
+       "inside": 238,
+       "outside": 126,
+       "resolvedInside": 28,
+       "resolvedOutside": 1,
+       "rateInside": 0.118,
+       "rateOutside": 0.008,
+       "ratio": 14.824,
+       "pValue": 0.0002,
+       "belowFloor": false
+      },
+      "byLength": [
+       {
+        "name": "under 20 words",
+        "inside": 101,
+        "outside": 57,
+        "resolvedInside": 1,
+        "resolvedOutside": 0,
+        "rateInside": 0.01,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "20 to 40 words",
+        "inside": 77,
+        "outside": 49,
+        "resolvedInside": 6,
+        "resolvedOutside": 1,
+        "rateInside": 0.078,
+        "rateOutside": 0.02,
+        "ratio": 3.818,
+        "pValue": 0.2534,
+        "belowFloor": false
+       },
+       {
+        "name": "over 40 words",
+        "inside": 60,
+        "outside": 20,
+        "resolvedInside": 21,
+        "resolvedOutside": 0,
+        "rateInside": 0.35,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 0.0016,
+        "belowFloor": false
+       }
+      ],
+      "byBranch": [
+       {
+        "name": "applied",
+        "inside": 13,
+        "outside": 11,
+        "resolvedInside": 0,
+        "resolvedOutside": 0,
+        "rateInside": 0,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "biophysics",
+        "inside": 39,
+        "outside": 52,
+        "resolvedInside": 1,
+        "resolvedOutside": 0,
+        "rateInside": 0.026,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 0.4306,
+        "belowFloor": false
+       },
+       {
+        "name": "chemistry",
+        "inside": 30,
+        "outside": 16,
+        "resolvedInside": 1,
+        "resolvedOutside": 0,
+        "rateInside": 0.033,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "cosmology",
+        "inside": 20,
+        "outside": 10,
+        "resolvedInside": 0,
+        "resolvedOutside": 0,
+        "rateInside": 0,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "information",
+        "inside": 18,
+        "outside": 11,
+        "resolvedInside": 1,
+        "resolvedOutside": 1,
+        "rateInside": 0.056,
+        "rateOutside": 0.091,
+        "ratio": 0.611,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "mathematics",
+        "inside": 87,
+        "outside": 1,
+        "resolvedInside": 24,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "physics",
+        "inside": 31,
+        "outside": 25,
+        "resolvedInside": 1,
+        "resolvedOutside": 0,
+        "rateInside": 0.032,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 1,
+        "belowFloor": false
+       }
+      ],
+      "auc": 0.883,
+      "aucRows": 364,
+      "undatedRemoved": {
+       "all": {
+        "name": "all, undated solved rows removed",
+        "inside": 217,
+        "outside": 126,
+        "resolvedInside": 7,
+        "resolvedOutside": 1,
+        "rateInside": 0.032,
+        "rateOutside": 0.008,
+        "ratio": 4.065,
+        "pValue": 0.2692,
+        "belowFloor": false
+       },
+       "auc": 0.7,
+       "aucRows": 343
+      },
+      "undecidedResolved": 12,
+      "undecidedBounds": [
+       {
+        "name": "all undecided inside",
+        "inside": 281,
+        "outside": 126,
+        "rateInside": 0.142,
+        "rateOutside": 0.008,
+        "ratio": 17.936
+       },
+       {
+        "name": "all undecided outside",
+        "inside": 238,
+        "outside": 169,
+        "rateInside": 0.118,
+        "rateOutside": 0.077,
+        "ratio": 1.529
+       }
+      ]
      },
      {
-      "name": "20 to 40 words",
-      "inside": 77,
-      "outside": 49,
-      "resolvedInside": 38,
-      "resolvedOutside": 28,
-      "rateInside": 0.494,
-      "rateOutside": 0.571,
-      "ratio": 0.864,
-      "pValue": 0.465,
-      "belowFloor": false
-     },
-     {
-      "name": "over 40 words",
-      "inside": 60,
-      "outside": 20,
-      "resolvedInside": 27,
-      "resolvedOutside": 0,
-      "rateInside": 0.45,
-      "rateOutside": 0,
-      "ratio": null,
-      "pValue": 0.0001,
-      "belowFloor": false
+      "coding": "advanced",
+      "label": "settled or advanced: solved or partial",
+      "all": {
+       "name": "all",
+       "inside": 238,
+       "outside": 126,
+       "resolvedInside": 102,
+       "resolvedOutside": 49,
+       "rateInside": 0.429,
+       "rateOutside": 0.389,
+       "ratio": 1.102,
+       "pValue": 0.5034,
+       "belowFloor": false
+      },
+      "byLength": [
+       {
+        "name": "under 20 words",
+        "inside": 101,
+        "outside": 57,
+        "resolvedInside": 37,
+        "resolvedOutside": 21,
+        "rateInside": 0.366,
+        "rateOutside": 0.368,
+        "ratio": 0.994,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "20 to 40 words",
+        "inside": 77,
+        "outside": 49,
+        "resolvedInside": 38,
+        "resolvedOutside": 28,
+        "rateInside": 0.494,
+        "rateOutside": 0.571,
+        "ratio": 0.864,
+        "pValue": 0.465,
+        "belowFloor": false
+       },
+       {
+        "name": "over 40 words",
+        "inside": 60,
+        "outside": 20,
+        "resolvedInside": 27,
+        "resolvedOutside": 0,
+        "rateInside": 0.45,
+        "rateOutside": 0,
+        "ratio": null,
+        "pValue": 0.0001,
+        "belowFloor": false
+       }
+      ],
+      "byBranch": [
+       {
+        "name": "applied",
+        "inside": 13,
+        "outside": 11,
+        "resolvedInside": 2,
+        "resolvedOutside": 2,
+        "rateInside": 0.154,
+        "rateOutside": 0.182,
+        "ratio": 0.846,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "biophysics",
+        "inside": 39,
+        "outside": 52,
+        "resolvedInside": 25,
+        "resolvedOutside": 35,
+        "rateInside": 0.641,
+        "rateOutside": 0.673,
+        "ratio": 0.952,
+        "pValue": 0.8227,
+        "belowFloor": false
+       },
+       {
+        "name": "chemistry",
+        "inside": 30,
+        "outside": 16,
+        "resolvedInside": 6,
+        "resolvedOutside": 3,
+        "rateInside": 0.2,
+        "rateOutside": 0.188,
+        "ratio": 1.067,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "cosmology",
+        "inside": 20,
+        "outside": 10,
+        "resolvedInside": 8,
+        "resolvedOutside": 4,
+        "rateInside": 0.4,
+        "rateOutside": 0.4,
+        "ratio": 1,
+        "pValue": 1,
+        "belowFloor": false
+       },
+       {
+        "name": "information",
+        "inside": 18,
+        "outside": 11,
+        "resolvedInside": 6,
+        "resolvedOutside": 1,
+        "rateInside": 0.333,
+        "rateOutside": 0.091,
+        "ratio": 3.667,
+        "pValue": 0.1974,
+        "belowFloor": false
+       },
+       {
+        "name": "mathematics",
+        "inside": 87,
+        "outside": 1,
+        "resolvedInside": 45,
+        "resolvedOutside": 0,
+        "rateInside": null,
+        "rateOutside": null,
+        "ratio": null,
+        "pValue": null,
+        "belowFloor": true
+       },
+       {
+        "name": "physics",
+        "inside": 31,
+        "outside": 25,
+        "resolvedInside": 10,
+        "resolvedOutside": 4,
+        "rateInside": 0.323,
+        "rateOutside": 0.16,
+        "ratio": 2.016,
+        "pValue": 0.2227,
+        "belowFloor": false
+       }
+      ],
+      "auc": 0.523,
+      "aucRows": 364,
+      "undatedRemoved": {
+       "all": {
+        "name": "all, undated solved rows removed",
+        "inside": 217,
+        "outside": 126,
+        "resolvedInside": 81,
+        "resolvedOutside": 49,
+        "rateInside": 0.373,
+        "rateOutside": 0.389,
+        "ratio": 0.96,
+        "pValue": 0.8176,
+        "belowFloor": false
+       },
+       "auc": 0.455,
+       "aucRows": 343
+      },
+      "undecidedResolved": 23,
+      "undecidedBounds": [
+       {
+        "name": "all undecided inside",
+        "inside": 281,
+        "outside": 126,
+        "rateInside": 0.445,
+        "rateOutside": 0.389,
+        "ratio": 1.144
+       },
+       {
+        "name": "all undecided outside",
+        "inside": 238,
+        "outside": 169,
+        "rateInside": 0.429,
+        "rateOutside": 0.426,
+        "ratio": 1.006
+       }
+      ]
      }
-    ],
-    "byBranch": [
-     {
-      "name": "applied",
-      "inside": 13,
-      "outside": 11,
-      "resolvedInside": 2,
-      "resolvedOutside": 2,
-      "rateInside": 0.154,
-      "rateOutside": 0.182,
-      "ratio": 0.846,
-      "pValue": 1,
-      "belowFloor": false
-     },
-     {
-      "name": "biophysics",
-      "inside": 39,
-      "outside": 52,
-      "resolvedInside": 25,
-      "resolvedOutside": 35,
-      "rateInside": 0.641,
-      "rateOutside": 0.673,
-      "ratio": 0.952,
-      "pValue": 0.8227,
-      "belowFloor": false
-     },
-     {
-      "name": "chemistry",
-      "inside": 30,
-      "outside": 16,
-      "resolvedInside": 6,
-      "resolvedOutside": 3,
-      "rateInside": 0.2,
-      "rateOutside": 0.188,
-      "ratio": 1.067,
-      "pValue": 1,
-      "belowFloor": false
-     },
-     {
-      "name": "cosmology",
-      "inside": 20,
-      "outside": 10,
-      "resolvedInside": 8,
-      "resolvedOutside": 4,
-      "rateInside": 0.4,
-      "rateOutside": 0.4,
-      "ratio": 1,
-      "pValue": 1,
-      "belowFloor": false
-     },
-     {
-      "name": "information",
-      "inside": 18,
-      "outside": 11,
-      "resolvedInside": 6,
-      "resolvedOutside": 1,
-      "rateInside": 0.333,
-      "rateOutside": 0.091,
-      "ratio": 3.667,
-      "pValue": 0.1974,
-      "belowFloor": false
-     },
-     {
-      "name": "mathematics",
-      "inside": 87,
-      "outside": 1,
-      "resolvedInside": 45,
-      "resolvedOutside": 0,
-      "rateInside": null,
-      "rateOutside": null,
-      "ratio": null,
-      "pValue": null,
-      "belowFloor": true
-     },
-     {
-      "name": "physics",
-      "inside": 31,
-      "outside": 25,
-      "resolvedInside": 10,
-      "resolvedOutside": 4,
-      "rateInside": 0.323,
-      "rateOutside": 0.16,
-      "ratio": 2.016,
-      "pValue": 0.2227,
-      "belowFloor": false
-     }
-    ],
-    "auc": 0.523,
-    "aucRows": 364
+    ]
    }
   ]
  },
@@ -376,15 +803,15 @@
   "schema": "bucket.solvability-predictions/v1",
   "threshold": 0.781,
   "upperReach": 0.854,
-  "rule": "Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above 0.781) with reach at or above 0.854, the 75th percentile of reach among inside open problems, is \"AI can reach with known results\"; inside below that is \"borderline\"; beyond the frontier is \"needs a new idea\"; a branch with too few solved problems is \"unsampled\". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the 50 stored neighbours. Starting works exist only for the atlas problems with a record.",
+  "rule": "Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above 0.781) with reach at or above 0.854, the 75th percentile of reach among inside open problems, is \"close to known results\"; inside below that is \"borderline\"; beyond the frontier is \"needs a new idea\"; a branch with too few solved problems is \"unsampled\". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the 50 stored neighbours. Starting works exist only for the atlas problems with a record.",
   "counts": {
-   "AI can reach with known results": 251,
+   "close to known results": 251,
    "borderline": 764,
    "needs a new idea": 911,
    "unsampled": 103
   },
   "top": {
-   "AI can reach with known results": [
+   "close to known results": [
     {
      "id": "fc-wikipedia-pierpontprime-infinitely-many-pierpont-primes",
      "title": "Pierpont Prime, infinitely many pierpont primes",
@@ -393,7 +820,7 @@
      "status": "open",
      "reach": 0.87,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 4,
      "nearest": [
       {
@@ -423,7 +850,7 @@
      "status": "open",
      "reach": 0.924,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 3,
      "nearest": [
       {
@@ -453,7 +880,7 @@
      "status": "open",
      "reach": 0.871,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 3,
      "nearest": [
       {
@@ -478,7 +905,7 @@
      "status": "open",
      "reach": 0.868,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 2,
      "nearest": [
       {
@@ -508,7 +935,7 @@
      "status": "open",
      "reach": 0.908,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -538,7 +965,7 @@
      "status": "open",
      "reach": 0.894,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -568,7 +995,7 @@
      "status": "open",
      "reach": 0.887,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -598,7 +1025,7 @@
      "status": "open",
      "reach": 0.882,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -628,7 +1055,7 @@
      "status": "open",
      "reach": 0.882,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -658,7 +1085,7 @@
      "status": "open",
      "reach": 0.878,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -688,7 +1115,7 @@
      "status": "open",
      "reach": 0.87,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -718,7 +1145,7 @@
      "status": "open",
      "reach": 0.865,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -748,7 +1175,7 @@
      "status": "open",
      "reach": 0.864,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -778,7 +1205,7 @@
      "status": "open",
      "reach": 0.859,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -808,7 +1235,7 @@
      "status": "open",
      "reach": 0.858,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -838,7 +1265,7 @@
      "status": "open",
      "reach": 0.857,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -868,7 +1295,7 @@
      "status": "open",
      "reach": 0.856,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 1,
      "nearest": [
       {
@@ -898,7 +1325,7 @@
      "status": "open",
      "reach": 0.977,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -928,7 +1355,7 @@
      "status": "open",
      "reach": 0.97,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -958,7 +1385,7 @@
      "status": "open",
      "reach": 0.96,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -988,7 +1415,7 @@
      "status": "open",
      "reach": 0.96,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1018,7 +1445,7 @@
      "status": "open",
      "reach": 0.959,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1048,7 +1475,7 @@
      "status": "open",
      "reach": 0.958,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1078,7 +1505,7 @@
      "status": "open",
      "reach": 0.954,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1108,7 +1535,7 @@
      "status": "open",
      "reach": 0.947,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1138,7 +1565,7 @@
      "status": "open",
      "reach": 0.945,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1168,7 +1595,7 @@
      "status": "open",
      "reach": 0.942,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1198,7 +1625,7 @@
      "status": "open",
      "reach": 0.94,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1228,7 +1655,7 @@
      "status": "open",
      "reach": 0.939,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1258,7 +1685,7 @@
      "status": "open",
      "reach": 0.937,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1288,7 +1715,7 @@
      "status": "open",
      "reach": 0.935,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1318,7 +1745,7 @@
      "status": "open",
      "reach": 0.935,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1348,7 +1775,7 @@
      "status": "open",
      "reach": 0.935,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1378,7 +1805,7 @@
      "status": "open",
      "reach": 0.933,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1408,7 +1835,7 @@
      "status": "open",
      "reach": 0.929,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1438,7 +1865,7 @@
      "status": "open",
      "reach": 0.928,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1468,7 +1895,7 @@
      "status": "open",
      "reach": 0.922,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1498,7 +1925,7 @@
      "status": "open",
      "reach": 0.921,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1528,7 +1955,7 @@
      "status": "open",
      "reach": 0.918,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1558,7 +1985,7 @@
      "status": "open",
      "reach": 0.918,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1588,7 +2015,7 @@
      "status": "open",
      "reach": 0.917,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1618,7 +2045,7 @@
      "status": "open",
      "reach": 0.916,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1648,7 +2075,7 @@
      "status": "open",
      "reach": 0.913,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1678,7 +2105,7 @@
      "status": "open",
      "reach": 0.912,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1708,7 +2135,7 @@
      "status": "open",
      "reach": 0.911,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1738,7 +2165,7 @@
      "status": "open",
      "reach": 0.91,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1768,7 +2195,7 @@
      "status": "open",
      "reach": 0.909,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1798,7 +2225,7 @@
      "status": "open",
      "reach": 0.908,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1828,7 +2255,7 @@
      "status": "open",
      "reach": 0.908,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -1858,7 +2285,7 @@
      "status": "open",
      "reach": 0.907,
      "zone": "reachable",
-     "reachClass": "AI can reach with known results",
+     "reachClass": "close to known results",
      "growth": 0,
      "nearest": [
       {
@@ -5896,7 +6323,7 @@
     "status": "open",
     "reach": 0.867,
     "zone": "reachable",
-    "reachClass": "AI can reach with known results",
+    "reachClass": "close to known results",
     "growth": 0,
     "nearest": [
      {
@@ -5945,7 +6372,7 @@
     "status": "open",
     "reach": 0.863,
     "zone": "reachable",
-    "reachClass": "AI can reach with known results",
+    "reachClass": "close to known results",
     "growth": 0,
     "nearest": [
      {

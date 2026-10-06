@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { PageHeader, Panel } from "@/components/ui";
 import type { Stratum } from "@/lib/research-os/solvability-backtest";
 import { REACH_CLASSES, type Prediction } from "@/lib/research-os/solvability-predictions";
-import { cutoffSummary, f3, methodParagraphs, n, pct, weakParagraphs, type ReportData } from "@/lib/research-os/solvability-frontier-report-copy";
+import { boundSentence, cutoffSummary, f3, methodParagraphs, n, pct, verdict, weakParagraphs, type ReportData } from "@/lib/research-os/solvability-frontier-report-copy";
 
 const TH = "text-left small-caps text-[10px] tracking-[0.16em] text-[color:var(--basalt-3)] font-normal px-2 py-1 border-b border-[color:var(--hairline)]";
 const TD = "px-2 py-1 align-top text-[12px] text-[color:var(--basalt)] border-b border-[color:var(--hairline)]";
@@ -100,6 +100,7 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
         title="solvability frontier report"
         lede={`${n(data.nodes)} problems, ${n(data.frontier.counts.solved)} solved, frontier at reach ${f3(data.frontier.threshold)}. Which open problems sit close to solved ones, how the rule fared on the questions of ${data.backtest.cutoffs.map((c) => c.cutoff).join(" and ")}, and where the method is weak. Built ${data.built}.`}
       />
+      <p className={P}>{verdict(data)}</p>
 
       <Panel title="frontier">
         <div className="w-full overflow-hidden [&>svg]:w-full [&>svg]:h-auto" dangerouslySetInnerHTML={{ __html: svg }} />
@@ -125,7 +126,7 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
       </Panel>
 
       {data.backtest.cutoffs.map((c) => (
-        <Panel key={c.cutoff} title={`backtest, cutoff ${c.cutoff}`} meta={`AUC ${f3(c.auc)} over ${n(c.aucRows)} rows`}>
+        <Panel key={c.cutoff} title={`backtest, cutoff ${c.cutoff}`} meta={c.codings.map((k) => `${k.coding} AUC ${f3(k.auc)}`).join(", ")}>
           <div className="flex flex-col gap-2 mb-4">
             {cutoffSummary(c, data).map((s) => (
               <p key={s} className={P}>
@@ -133,13 +134,29 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
               </p>
             ))}
           </div>
-          <Table head={STRATUM_HEAD}>
-            <StratumRows rows={[c.all]} />
-            <StratumRows rows={c.byLength} />
-            <StratumRows rows={c.byBranch} />
-          </Table>
+          {c.codings.map((k) => (
+            <div key={k.coding} className="mb-4">
+              <h3 className="small-caps text-[11px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">{k.label}</h3>
+              <Table head={STRATUM_HEAD}>
+                <StratumRows rows={[k.all, k.undatedRemoved.all]} />
+                <StratumRows rows={k.byLength} />
+                <StratumRows rows={k.byBranch} />
+              </Table>
+              <p className={`${P} mt-2`}>{k.undecidedBounds.map(boundSentence).join("; ")}.</p>
+            </div>
+          ))}
         </Panel>
       ))}
+
+      <Panel title="where this is weak">
+        <div className="flex flex-col gap-3">
+          {weakParagraphs(data).map((p) => (
+            <p key={p} className={P}>
+              {p}
+            </p>
+          ))}
+        </div>
+      </Panel>
 
       {REACH_CLASSES.map((k) => (
         <Panel key={k} title={`predictions: ${k}`} meta={`${n(data.predictions.counts[k])} problems, top ${n(data.predictions.top[k].length)} shown`}>
@@ -192,16 +209,6 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
             </p>
           ))}
           <p className={P}>{data.predictions.rule}</p>
-        </div>
-      </Panel>
-
-      <Panel title="where this is weak">
-        <div className="flex flex-col gap-3">
-          {weakParagraphs(data).map((p) => (
-            <p key={p} className={P}>
-              {p}
-            </p>
-          ))}
         </div>
       </Panel>
     </div>

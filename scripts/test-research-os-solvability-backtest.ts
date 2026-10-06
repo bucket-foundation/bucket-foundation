@@ -51,16 +51,21 @@ test("a toy cutoff uses only problems solved by then and scores 2026 outcomes", 
   assert.deepEqual(Object.keys(byId).sort(), ["c", "d", "e"]);
   assert.equal(byId.c.reach, 0.85);
   assert.equal(byId.c.inside, false);
-  assert.equal(byId.c.resolved, true);
-  assert.equal(byId.e.resolved, true);
-  assert.equal(byId.d.resolved, false);
+  assert.equal(byId.c.settled, true);
+  assert.equal(byId.e.settled, false);
+  assert.equal(byId.e.advanced, true);
+  assert.equal(byId.d.advanced, false);
+  assert.equal(byId.c.undatedSolved, false);
   assert.equal(byId.d.reach, 0.3);
   assert.equal(c.tested, 3);
-  assert.equal(c.all.inside + c.all.outside, 3);
+  assert.deepEqual(c.codings.map((k) => k.coding), ["settled", "advanced"]);
+  for (const k of c.codings) assert.equal(k.all.inside + k.all.outside, 3);
+  assert.equal(c.codings[0].all.resolvedInside + c.codings[0].all.resolvedOutside, 1);
+  assert.equal(c.codings[1].all.resolvedInside + c.codings[1].all.resolvedOutside, 2);
 });
 
 test("the stratum floor hides rates below ten rows a side", () => {
-  const row = (id: string, inside: boolean, resolved: boolean): BacktestRow => ({ id, title: id, branch: "physics", posed: 1900, words: 10, reach: 0.5, reachBounded: false, inside, decided: true, sampled: true, resolved, status: resolved ? "solved" : "open" });
+  const row = (id: string, inside: boolean, resolved: boolean): BacktestRow => ({ id, title: id, branch: "physics", posed: 1900, words: 10, reach: 0.5, reachBounded: false, inside, decided: true, sampled: true, undatedSolved: false, settled: resolved, advanced: resolved, status: resolved ? "solved" : "open" });
   const small = stratum("small", [row("1", true, true), row("2", false, false)], 100, 1);
   assert.equal(small.belowFloor, true);
   assert.equal(small.rateInside, null);
@@ -95,9 +100,16 @@ test("the real backtest is deterministic and states its sizes", () => {
   assert.deepEqual(a, b);
   for (const c of a.cutoffs) {
     assert.ok(c.solvedAtCutoff >= 2);
-    assert.equal(c.all.inside + c.all.outside + c.unsampled + c.undecided, c.tested);
-    for (const s of [...c.byLength, ...c.byBranch]) if (s.belowFloor) assert.equal(s.rateInside, null);
-    assert.equal(c.byLength.reduce((n, s) => n + s.inside + s.outside, 0), c.all.inside + c.all.outside);
+    for (const k of c.codings) {
+      assert.equal(k.all.inside + k.all.outside + c.unsampled + c.undecided, c.tested);
+      for (const s of [...k.byLength, ...k.byBranch]) if (s.belowFloor) assert.equal(s.rateInside, null);
+      assert.equal(k.byLength.reduce((n, s) => n + s.inside + s.outside, 0), k.all.inside + k.all.outside);
+      assert.equal(k.undatedRemoved.all.inside + k.undatedRemoved.all.outside, k.all.inside + k.all.outside - c.undatedSolved);
+      assert.equal(k.undecidedBounds[0].inside, k.all.inside + c.undecided);
+      assert.equal(k.undecidedBounds[1].outside, k.all.outside + c.undecided);
+    }
+    const [settled, advanced] = c.codings;
+    assert.ok(settled.all.resolvedInside <= advanced.all.resolvedInside);
     for (const r of c.rows) assert.ok(r.posed <= c.cutoff);
   }
 });
@@ -106,7 +118,7 @@ test("predictions classify by zone and the upper reach, rank by growth, and keep
   const f = buildFrontier(frontierRows(data), data);
   const p = buildPredictions(f, data, { collatz: [{ title: "A work", year: 2000, role: "posed", doi: null }] });
   assert.equal(classify({ zone: "solved", reach: 1 }, 0.8), null);
-  assert.equal(classify({ zone: "reachable", reach: 0.85 }, 0.8), "AI can reach with known results");
+  assert.equal(classify({ zone: "reachable", reach: 0.85 }, 0.8), "close to known results");
   assert.equal(classify({ zone: "reachable", reach: 0.79 }, 0.8), "borderline");
   assert.equal(classify({ zone: "beyond", reach: 0.5 }, 0.8), "needs a new idea");
   assert.equal(classify({ zone: "unsampled", reach: 0.5 }, 0.8), "unsampled");

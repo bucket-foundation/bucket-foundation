@@ -8,7 +8,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import report from "../src/lib/research-os/solvability-frontier-report-data.json";
 import SolvabilityFrontierReport from "../src/components/research-os/views/SolvabilityFrontierReport";
-import { cutoffSummary, methodParagraphs, rateSentence, reportMarkdown, weakParagraphs, type ReportData } from "../src/lib/research-os/solvability-frontier-report-copy";
+import { cutoffSummary, methodParagraphs, rateSentence, reportMarkdown, verdict, weakParagraphs, type ReportData } from "../src/lib/research-os/solvability-frontier-report-copy";
 import { REACH_CLASSES } from "../src/lib/research-os/solvability-predictions";
 
 const ROOT = path.join(__dirname, "..");
@@ -18,6 +18,10 @@ const TAGGED = /\[(bm|bm-open):[A-Za-z0-9_.']+\]|\[empirical:[^\]]+\]/;
 test("the report page renders every section from the committed data", () => {
   const html = renderToStaticMarkup(createElement(SolvabilityFrontierReport, { data, svg: "<svg viewBox=\"0 0 10 10\"></svg>" }));
   for (const heading of ["frontier", "per branch", "backtest, cutoff 2005", "backtest, cutoff 2021", "method", "where this is weak", "the atlas problems"]) assert.ok(html.includes(`>${heading}<`), heading);
+  assert.ok(html.indexOf(">where this is weak<") < html.indexOf(">predictions: close to known results<"));
+  assert.ok(html.indexOf(">backtest, cutoff 2021<") < html.indexOf(">where this is weak<"));
+  assert.ok(html.includes("settled: solved only") && html.includes("settled or advanced: solved or partial"));
+  assert.ok(html.includes("all undecided inside"));
   for (const k of REACH_CLASSES) assert.ok(html.includes(`>predictions: ${k}<`), k);
   assert.ok(html.includes("<svg"));
   assert.ok(html.includes("under 10"));
@@ -35,7 +39,8 @@ test("the page sits behind the solvability launch gate", () => {
 test("every sentence with a number in the method and backtest copy carries a math-contract tag", () => {
   const copy = [...methodParagraphs(data), ...data.backtest.cutoffs.flatMap((c) => cutoffSummary(c, data))];
   for (const p of copy) assert.match(p, TAGGED, p.slice(0, 80));
-  for (const c of data.backtest.cutoffs) for (const s of [...c.byLength, ...c.byBranch]) assert.ok(rateSentence(s, data.backtest.floor).length > 10);
+  for (const c of data.backtest.cutoffs) for (const k of c.codings) for (const s of [...k.byLength, ...k.byBranch]) assert.ok(rateSentence(s, data.backtest.floor).length > 10);
+  assert.match(verdict(data), /settled only/);
   assert.ok(weakParagraphs(data).length >= 6);
 });
 

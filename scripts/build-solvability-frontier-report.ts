@@ -59,7 +59,7 @@ function main(): void {
     predictions: { ...predictionSummary, top: topPerClass(predictions), atlas: rows.filter((r) => r.atlas) },
   };
   writeFileSync(path.join(LIB, "solvability-frontier-report-data.json"), JSON.stringify(page, null, 1));
-  console.log(JSON.stringify({ threshold: frontier.threshold, counts: frontier.counts, classes: predictions.counts, cutoffs: bt.cutoffs.map((c) => ({ cutoff: c.cutoff, solved: c.solvedAtCutoff, threshold: c.threshold, tested: c.tested, unsampled: c.unsampled, bounded: c.reachBounded, all: c.all, auc: c.auc })) }, null, 1));
+  console.log(JSON.stringify({ threshold: frontier.threshold, counts: frontier.counts, classes: predictions.counts, cutoffs: bt.cutoffs.map((c) => ({ cutoff: c.cutoff, solved: c.solvedAtCutoff, threshold: c.threshold, tested: c.tested, unsampled: c.unsampled, undecided: c.undecided, undatedSolved: c.undatedSolved, codings: c.codings.map((k) => ({ coding: k.coding, all: k.all, auc: k.auc, undated: k.undatedRemoved, bounds: k.undecidedBounds })) })) }, null, 1));
 }
 
 main();

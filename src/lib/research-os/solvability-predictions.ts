@@ -1,6 +1,6 @@
 import { quantile, type Frontier, type FrontierPoint, type NeighborData } from "./solvability-frontier";
 
-export const REACH_CLASSES = ["AI can reach with known results", "borderline", "needs a new idea", "unsampled"] as const;
+export const REACH_CLASSES = ["close to known results", "borderline", "needs a new idea", "unsampled"] as const;
 export type ReachClass = (typeof REACH_CLASSES)[number];
 export const UPPER_QUANTILE = 0.75;
 export const NEAREST = 3;
@@ -49,7 +49,7 @@ export function classify(p: Pick<FrontierPoint, "zone" | "reach">, upperReach: n
   if (p.zone === "solved") return null;
   if (p.zone === "unsampled") return "unsampled";
   if (p.zone === "beyond") return "needs a new idea";
-  return p.reach >= upperReach ? "AI can reach with known results" : "borderline";
+  return p.reach >= upperReach ? "close to known results" : "borderline";
 }
 
 export function nearestSolved(data: NeighborData, id: string, solved: ReadonlySet<string>, title: Map<string, string>, k = NEAREST): NearestSolved[] {
@@ -66,7 +66,7 @@ export function nearestSolved(data: NeighborData, id: string, solved: ReadonlySe
     .slice(0, k);
 }
 
-export const CLASS_ORDER: Record<ReachClass, number> = { "AI can reach with known results": 0, borderline: 1, "needs a new idea": 2, unsampled: 3 };
+export const CLASS_ORDER: Record<ReachClass, number> = { "close to known results": 0, borderline: 1, "needs a new idea": 2, unsampled: 3 };
 
 export function rankPredictions(rows: readonly Prediction[]): Prediction[] {
   return [...rows].sort((a, b) => CLASS_ORDER[a.reachClass] - CLASS_ORDER[b.reachClass] || b.growth - a.growth || b.reach - a.reach || a.id.localeCompare(b.id));
@@ -99,20 +99,20 @@ export function buildPredictions(frontier: Frontier, data: NeighborData, works: 
     });
   }
   const ranked = rankPredictions(rows);
-  const counts = { "AI can reach with known results": 0, borderline: 0, "needs a new idea": 0, unsampled: 0 } as Record<ReachClass, number>;
+  const counts = { "close to known results": 0, borderline: 0, "needs a new idea": 0, unsampled: 0 } as Record<ReachClass, number>;
   for (const r of ranked) counts[r.reachClass] += 1;
   return {
     schema: "bucket.solvability-predictions/v1",
     threshold: frontier.threshold,
     upperReach,
-    rule: `Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above ${frontier.threshold}) with reach at or above ${upperReach}, the ${Math.round(UPPER_QUANTILE * 100)}th percentile of reach among inside open problems, is "AI can reach with known results"; inside below that is "borderline"; beyond the frontier is "needs a new idea"; a branch with too few solved problems is "unsampled". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the ${data.k} stored neighbours. Starting works exist only for the atlas problems with a record.`,
+    rule: `Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above ${frontier.threshold}) with reach at or above ${upperReach}, the ${Math.round(UPPER_QUANTILE * 100)}th percentile of reach among inside open problems, is "close to known results"; inside below that is "borderline"; beyond the frontier is "needs a new idea"; a branch with too few solved problems is "unsampled". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the ${data.k} stored neighbours. Starting works exist only for the atlas problems with a record.`,
     counts,
     rows: ranked,
   };
 }
 
 export function topPerClass(p: Predictions, top = PAGE_TOP): Record<ReachClass, Prediction[]> {
-  const out = { "AI can reach with known results": [], borderline: [], "needs a new idea": [], unsampled: [] } as Record<ReachClass, Prediction[]>;
+  const out = { "close to known results": [], borderline: [], "needs a new idea": [], unsampled: [] } as Record<ReachClass, Prediction[]>;
   for (const r of p.rows) if (out[r.reachClass].length < top) out[r.reachClass].push(r);
   return out;
 }
