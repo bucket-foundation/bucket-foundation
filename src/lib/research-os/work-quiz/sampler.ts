@@ -1,9 +1,11 @@
 import { createHash } from "node:crypto";
 import { cardFields, compoundFactId, FACT_JOIN } from "./fact";
-import { FORM_MAKERS, type SampledQuestion } from "./forms";
+import { FORM_MAKERS, type FormMaker, type SampledQuestion } from "./forms";
 import { seededRng, type Rng } from "./generate";
 import { checkLimits } from "./limits";
-import { BLOCKED_FORMS, FORMS, allCells, cellId, type Cell, type Form } from "./space";
+import { knownLanguages, languageMakers, type WordSet } from "./polingual-forms";
+import { loadWordSet } from "./polingual-server";
+import { BLOCKED_FORMS, FORMS, LANGUAGE_FORMS, allCells, cellId, type Cell, type Form } from "./space";
 import type { QuizQuestion, WorkSources } from "./types";
 
 export const QUIZ_SLOTS = 5;
@@ -41,6 +43,8 @@ export interface SampleInput {
   slots?: number;
   reviewSlots?: number;
   exclude?: readonly string[];
+  languages?: readonly string[];
+  words?: WordSet;
 }
 
 export interface SampledQuiz {
@@ -62,6 +66,16 @@ export function blockedForms(): Form[] {
 
 export function builtCells(): Cell[] {
   return allCells().filter((c) => FORM_MAKERS[c.form] && !BLOCKED_FORMS[c.form]);
+}
+
+export function languageCells(makers: Readonly<Partial<Record<Form, FormMaker>>>): Cell[] {
+  return allCells().filter((c) => (LANGUAGE_FORMS as readonly Form[]).includes(c.form) && makers[c.form] && !BLOCKED_FORMS[c.form]);
+}
+
+function wordMakers(input: Pick<SampleInput, "languages" | "words">): Partial<Record<Form, FormMaker>> {
+  if (!input.languages || input.languages.length === 0) return {};
+  const set = input.words ?? loadWordSet();
+  return languageMakers(set, knownLanguages(set, input.languages));
 }
 
 function cellOf(q: SampledQuestion, format: Cell["format"]): Cell {
@@ -123,12 +137,13 @@ export function sampleQuiz(input: SampleInput): SampledQuiz {
   const reviewed = questions.length;
   const weights = factWeights(coverage, due, now);
   const stats = cellStats(coverage);
-  const ranked = builtCells()
+  const extra = wordMakers(input);
+  const ranked = [...builtCells(), ...languageCells(extra)]
     .map((c) => ({ c, id: cellId(c), tie: rng(), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
     .sort((a, b) => a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie - b.tie);
   for (const cell of ranked) {
     if (questions.length >= slots) break;
-    const maker = FORM_MAKERS[cell.c.form]!;
+    const maker = (FORM_MAKERS[cell.c.form] ?? extra[cell.c.form])!;
     const found: SampledQuestion[] = [];
     for (let i = 0; i < CANDIDATES; i++) {
       const q = maker(input.sources, seededRng(`${seed}|${cell.id}|${i}`), cell.c.depth);
