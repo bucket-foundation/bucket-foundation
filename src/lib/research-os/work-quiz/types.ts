@@ -51,6 +51,13 @@ export interface LearnLink {
   title: string;
 }
 
+export interface QuestionWord {
+  lang: string | null;
+  choicesLang: string | null;
+  credit: string;
+  href: string | null;
+}
+
 export interface QuizQuestion {
   id: string;
   type: QuizType;
@@ -64,12 +71,13 @@ export interface QuizQuestion {
   explain: string;
   sources: SourceRef[];
   learn?: LearnLink | null;
+  word?: QuestionWord;
 }
 
 export type PublicQuestion = Omit<QuizQuestion, "answer" | "tolerance" | "log10Tolerance" | "explain" | "learn" | "sources">;
 
 export function toPublic(q: QuizQuestion): PublicQuestion {
-  return { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec };
+  return { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec, ...(q.word ? { word: q.word } : {}) };
 }
 
 export const TYPE_LABEL: Record<QuizType, string> = {
