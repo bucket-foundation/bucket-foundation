@@ -2,11 +2,24 @@ import { describe, expect, test } from "bun:test";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { atlasFrontier, DEFAULT_WIDTH, fitWidth, frontierLines, frontierOptions, MAX_WIDTH, MIN_WIDTH, writeFrontierSvg } from "../src/cli/atlas";
+import { resolve as resolvePath } from "node:path";
+import { atlasFrontier as fromPack, DEFAULT_WIDTH, fitWidth, frontierLines, frontierOptions, MAX_WIDTH, MIN_WIDTH, writeFrontierSvg } from "../src/cli/atlas";
+import { staffData } from "../src/pack/staff";
+
+const REPO = resolvePath(import.meta.dir, "../../..");
+const STAFF = staffData(REPO, { BKT_INCLUDE_STAFF_DATA: "1" });
+const atlasFrontier = (reach?: number) => fromPack(reach, STAFF)!;
 import { JSON_SHAPES, jsonLine } from "../src/cli/out";
 import { resolve } from "../src/cli/run";
 
 describe("bkt atlas frontier", () => {
+  test("a public build without the atlas answers null, and the staff pack holds the similarity file", () => {
+    expect(fromPack(undefined, {})).toBeNull();
+    expect(fromPack(undefined, { solvability: STAFF.solvability })).toBeNull();
+    expect(JSON.parse(readFileSync(resolvePath(REPO, "src/lib/research-os/solvability-similarity-data.json"), "utf8")).ids.length).toBeGreaterThan(0);
+    expect(fromPack(undefined, STAFF)).not.toBeNull();
+  });
+
   test("resolves with its options and refuses a bad reach or width", () => {
     const got = resolve(["atlas", "frontier", "--reach", "0.8", "--width", "60"]);
     expect(got.kind).toBe("run");

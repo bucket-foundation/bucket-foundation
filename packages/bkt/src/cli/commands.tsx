@@ -13,7 +13,7 @@ import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
-import { atlasFrontier, fitWidth, frontierLines, frontierOptions, writeFrontierSvg } from "./atlas";
+import { atlasFrontier, fitWidth, frontierLines, frontierOptions, NO_ATLAS, writeFrontierSvg } from "./atlas";
 import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
@@ -380,6 +380,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "atlas frontier") {
     const o = frontierOptions(inv.values);
     const f = atlasFrontier(o.reach);
+    if (!f) throw new NoDataError(NO_ATLAS);
     if (o.svg) writeFrontierSvg(f, o.svg);
     if (json) console.log(jsonLine("atlas frontier", f));
     else for (const line of frontierLines(f, o.width ?? fitWidth(process.stdout.columns), colorEnabled(process.env, { stdin: process.stdin.isTTY === true, stdout: process.stdout.isTTY === true }))) console.log(line);

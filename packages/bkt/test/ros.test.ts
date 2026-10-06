@@ -9,7 +9,7 @@ describe("staff-gated Research OS data", () => {
   test("is left out of the build unless BKT_INCLUDE_STAFF_DATA=1", () => {
     expect(staffData(REPO, {})).toEqual({});
     expect(staffData(REPO, { BKT_INCLUDE_STAFF_DATA: "true" })).toEqual({});
-    expect(Object.keys(staffData(REPO, { BKT_INCLUDE_STAFF_DATA: "1" })).sort()).toEqual(["patents", "software", "solvability"]);
+    expect(Object.keys(staffData(REPO, { BKT_INCLUDE_STAFF_DATA: "1" })).sort()).toEqual(["patents", "similarity", "software", "solvability"]);
   });
 
   test("the default content ships no staff data and the routes answer 404", async () => {

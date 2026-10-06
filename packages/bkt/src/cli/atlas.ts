@@ -1,6 +1,5 @@
 import { writeFileSync } from "node:fs";
-import atlas from "../../../../src/lib/research-os/solvability-atlas-data.json" with { type: "json" };
-import similarity from "../../../../src/lib/research-os/solvability-similarity-data.json" with { type: "json" };
+import staff from "../../content/staff-ros.json" with { type: "json" };
 import type { SolvabilityAtlasData } from "../../../../src/lib/research-os/solvability-atlas";
 import { buildFrontier, type Frontier, type SimilarityData } from "../../../../src/lib/research-os/solvability-frontier";
 import { frontierSvg, frontierText } from "../../../../src/lib/research-os/solvability-frontier-render";
@@ -25,8 +24,13 @@ export function frontierOptions(values: Record<string, unknown>): FrontierOption
   return { reach, svg, width };
 }
 
-export function atlasFrontier(reach?: number): Frontier {
-  return buildFrontier((atlas as SolvabilityAtlasData).productions, similarity as SimilarityData, reach);
+export const NO_ATLAS = "this copy of bkt holds no solvability atlas; a staff build includes it";
+
+export function atlasFrontier(reach?: number, data: Record<string, unknown> = staff): Frontier | null {
+  const atlas = data.solvability as SolvabilityAtlasData | undefined;
+  const similarity = data.similarity as SimilarityData | undefined;
+  if (!atlas || !similarity) return null;
+  return buildFrontier(atlas.productions, similarity, reach);
 }
 
 export function fitWidth(columns: number | undefined): number {
