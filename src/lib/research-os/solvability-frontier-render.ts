@@ -14,7 +14,7 @@ export const BRANCH_COLOR: Record<AtlasBranch, string> = {
 
 const INK = "#1c2b2d";
 const PAPER = "#f7f3ea";
-const MUTED = "#6b756f";
+const MUTED = "#3f4a46";
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const f1 = (x: number) => x.toFixed(1);
@@ -40,14 +40,14 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
     return [cx + x * unit, cy + y * unit];
   };
   const out: string[] = [];
-  out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size + 260}" width="${size}" height="${size + 260}" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Solvability frontier: ${f.inside} problems inside the circle, ${f.outside} outside">`);
+  out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size + 290}" width="${size}" height="${size + 290}" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Solvability frontier: ${f.inside} problems inside the circle, ${f.outside} outside">`);
   out.push(`<rect width="100%" height="100%" fill="${PAPER}"/>`);
   out.push(`<text x="60" y="64" font-size="34" font-weight="700" fill="${INK}">Solvability frontier</text>`);
-  out.push(`<text x="60" y="96" font-size="17" fill="${MUTED}">${f.inside} problems inside the circle: ${f.counts.solved} solved, ${f.counts.reachable} open and close to a solved one. ${f.outside} outside.</text>`);
+  out.push(`<text x="60" y="100" font-size="21" fill="${INK}">${f.inside} problems inside the circle: ${f.counts.solved} solved, ${f.counts.reachable} open and close to a solved one. ${f.outside} outside.</text>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(OUTER_RADIUS * unit)}" fill="none" stroke="${MUTED}" stroke-width="0.6" stroke-dasharray="2 7" opacity="0.5"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(FRONTIER_RADIUS * unit)}" fill="#e7efe9" stroke="${INK}" stroke-width="3.2"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(CORE_RADIUS * unit)}" fill="#d6e6dc" stroke="${MUTED}" stroke-width="1" stroke-dasharray="5 5"/>`);
-  const band = (r: number, text: string, strong = false) => out.push(`<text x="${f1(cx - r * unit)}" y="${f1(cy)}" font-size="13" fill="${strong ? INK : MUTED}" text-anchor="middle" letter-spacing="2" font-weight="${strong ? 700 : 400}" transform="rotate(-90 ${f1(cx - r * unit)} ${f1(cy)})">${text}</text>`);
+  const band = (r: number, text: string, strong = false) => out.push(`<text x="${f1(cx - r * unit)}" y="${f1(cy)}" font-size="16" fill="${INK}" text-anchor="middle" letter-spacing="2.5" font-weight="700" opacity="${strong ? 1 : 0.8}" transform="rotate(-90 ${f1(cx - r * unit)} ${f1(cy)})">${text}</text>`);
   band(CORE_RADIUS - 0.05, "SOLVED");
   band((CORE_RADIUS + FRONTIER_RADIUS) / 2, "WITHIN REACH OF KNOWN RESULTS");
   band(FRONTIER_RADIUS + 0.05, "FRONTIER", true);
@@ -59,7 +59,7 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
       const q = byId.get(id);
       if (!q || q.id < p.id) continue;
       const [x2, y2] = at(q);
-      out.push(`<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="#b0486b" stroke-width="0.9" opacity="0.45"/>`);
+      out.push(`<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="#b0486b" stroke-width="1.4" opacity="0.7"/>`);
     }
   }
   for (const p of f.points) {
@@ -79,14 +79,14 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
     const deg = (-p.theta * 180) / Math.PI;
     const flip = dx < 0;
     const text = `${p.title}${p.zone === "beyond" && p.growth > 1 ? `  +${p.growth}` : ""}`;
-    out.push(`<text x="${f1(x)}" y="${f1(y)}" font-size="11.5" fill="${p.zone === "beyond" ? INK : MUTED}" font-weight="${p.zone === "beyond" ? 700 : 400}" text-anchor="${flip ? "end" : "start"}" dominant-baseline="middle" transform="rotate(${f1(flip ? deg + 180 : deg)} ${f1(x)} ${f1(y)})">${esc(text)}</text>`);
+    out.push(`<text x="${f1(x)}" y="${f1(y)}" font-size="13.5" fill="${INK}" font-weight="${p.zone === "beyond" ? 700 : 500}" text-anchor="${flip ? "end" : "start"}" dominant-baseline="middle" transform="rotate(${f1(flip ? deg + 180 : deg)} ${f1(x)} ${f1(y)})">${esc(text)}</text>`);
   }
   const ly = size + 150;
-  const legend: [Zone, string][] = [["solved", `<circle cx="0" cy="-4" r="5" fill="${INK}"/>`], ["reachable", `<circle cx="0" cy="-4" r="6" fill="${PAPER}" stroke="${INK}" stroke-width="2.6"/>`], ["beyond", `<path d="M0,-12 L7,2 L-7,2 Z" fill="${INK}"/>`]];
-  legend.forEach(([zone, mark], i) => out.push(`<g transform="translate(${70 + i * 330} ${ly})">${mark}<text x="16" y="0" font-size="15" fill="${INK}">${esc(ZONE_LABEL[zone])}: ${f.counts[zone]}</text></g>`));
-  out.push(`<text x="60" y="${ly + 34}" font-size="14" fill="${MUTED}">${esc(f.rule)}</text>`);
-  out.push(`<text x="60" y="${ly + 58}" font-size="14" fill="${MUTED}">Angle is position in meaning. A red line joins two outside problems close enough that solving one brings the other inside; +n counts the problems that move.</text>`);
-  out.push(`<text x="60" y="${ly + 82}" font-size="14" fill="${MUTED}">Similarity is measured on titles and keywords. Whether AI can solve what sits inside is the hypothesis under test.</text>`);
+  const legend: [Zone, string][] = [["solved", `<circle cx="0" cy="-6" r="7" fill="${INK}"/>`], ["reachable", `<circle cx="0" cy="-6" r="8" fill="${PAPER}" stroke="${INK}" stroke-width="3"/>`], ["beyond", `<path d="M0,-16 L9,2 L-9,2 Z" fill="${INK}"/>`]];
+  legend.forEach(([zone, mark], i) => out.push(`<g transform="translate(${70 + i * 400} ${ly})">${mark}<text x="18" y="0" font-size="20" font-weight="700" fill="${INK}">${esc(ZONE_LABEL[zone])}: ${f.counts[zone]}</text></g>`));
+  out.push(`<text x="60" y="${ly + 40}" font-size="17" fill="${INK}">${esc(f.rule)}</text>`);
+  out.push(`<text x="60" y="${ly + 66}" font-size="17" fill="${INK}">Angle is position in meaning. A red line joins two outside problems close enough that solving one brings the other inside; +n counts the problems that move.</text>`);
+  out.push(`<text x="60" y="${ly + 92}" font-size="17" fill="${INK}">Similarity is measured on titles and keywords. Whether AI can solve what sits inside is the hypothesis under test.</text>`);
   out.push("</svg>");
   return out.join("\n");
 }
