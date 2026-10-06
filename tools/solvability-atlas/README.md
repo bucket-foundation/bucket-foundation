@@ -30,6 +30,7 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 | stats.json | density, clustering, modularity, assortativity, permutation test, Spearman |
 | productions.json | one production card per node: claim, formal status, minted state, status, sources |
 | similarity.json | cosine similarity between every pair of nodes, upper triangle, three decimals |
+| components*.json, components*.csv, 10-components*.png | each node's coordinates on the first five principal components of the embeddings, the share of variance each explains, and the tokens that load each end of each component; a labelled scatter of the first two. `components-problems` repeats this on the 71 problems alone, because the first component of the full set mainly separates Lean theorems from problems |
 
 `build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. `site.py` also copies `similarity.json` to `src/lib/research-os/solvability-similarity-data.json`, which the frontier circle reads: `bkt atlas frontier` prints it in the terminal, `--svg FILE` writes the drawing and `--json` prints the data. Research OS renders the cards at `/research-os/solvability`.
 
