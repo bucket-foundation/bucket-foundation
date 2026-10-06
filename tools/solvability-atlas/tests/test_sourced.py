@@ -175,3 +175,27 @@ def test_named_list_status_and_gloss():
     assert status_of("{{partial|some progress}}", "–") == "partial"
     assert status_of("{{partial|some progress}}", "1940, 1963?") == "partial"
     assert gloss("Hilbert's 3rd problem", "(a) Given any two [[polyhedra]] of equal volume, is it always possible.") == "Hilbert's 3rd problem: Given any two polyhedra of equal volume, is it always possible"
+
+
+def test_solved_discovery_rows_carry_year_source_and_status():
+    import solved_discoveries
+
+    data = [r for r in rows() if r["id"].startswith("sd-")]
+    assert len(data) >= 700
+    for r in data:
+        assert r["status"] == "solved" and r["form"] in {"question", "problem"}, r["id"]
+        assert re.fullmatch(r"\d{4}", r["resolved"]), r["id"]
+        assert r["source"].startswith("https://") and r["licence"] in solved_discoveries.LICENCES, r["id"]
+        assert r["statement"] and r["status_source"], r["id"]
+        assert solved_discoveries.problem_shaped(r["statement"]), r["id"]
+        assert "–" not in r["statement"] and "—" not in r["statement"], r["id"]
+    curated = solved_discoveries.curated_rows()
+    assert not [(c["line"], solved_discoveries.check(c)) for c in curated if solved_discoveries.check(c)]
+
+
+def test_each_science_branch_holds_at_least_100_solved_problems():
+    import solved_discoveries
+
+    counts = solved_discoveries.solved_counts(ATLAS / "problems-sourced.tsv")
+    short = {branch: n for branch, n in counts.items() if n < solved_discoveries.TARGET}
+    assert not short, f"solved shortfall below {solved_discoveries.TARGET}: {short}"

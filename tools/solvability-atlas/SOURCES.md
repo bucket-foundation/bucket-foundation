@@ -56,6 +56,24 @@ Where open and solved problems can be sourced, with count, status coverage, lice
 | IRDS semiconductor roadmap | https://irds.ieee.org/editions | editions 2016 to 2026, each with chapters of "difficult challenges" | no | IEEE copyright | PDF | metadata only |
 | Battery and aviation roadmaps | Battery 2030+, ICAO, ATI | unverified | no | varies | PDF | metadata only |
 
+## Solved problems outside mathematics
+
+Second ingest, 2026-10-05. Curated rows in `sources/solved/<branch>.tsv`, loaded by `sources/solved_discoveries.py` with ids `sd-<slug>`. Each row is one question the field asked and later answered, with the year the source gives for the answer. `python3 sources/solved_discoveries.py --verify` fetched all 163 source pages and confirmed that the resolved year and one anchor term from the name or keywords appear on each page: 821 rows, 0 failures. `--append` adds the rows to `problems-sourced.tsv` after dedupe by normalised title; `sources/build.py` includes them on a full rebuild.
+
+Selection rule: a row needs a statement that was an open question before the resolution year, a resolution the source page states with a year, one https source url, a licence from the allowed set in `solved_discoveries.LICENCES`, and a `status_source` naming the page and the entry or citation. `posed` is filled only when the page states the year the question was raised (26 rows). Discovery reports ("X was found in 1998") are rewritten as the question they closed ("Does the neutrino have mass?"). Prize citations are quoted in at most twelve words with the url; the prize year stands as `resolved`. Rows whose year the page did not carry were dropped (20 mind candidates). Within the ingest, a title that appears in two branch files keeps the science branch and the applied copy is removed.
+
+| Branch | Solved before | Added | Solved after | Sources with rows |
+|---|---|---|---|---|
+| physics | 20 | 107 | 127 | Timeline of particle discoveries 29, thermodynamics 20, quantum mechanics 19, atomic and subatomic physics 17, electromagnetism and classical optics 14, gravitational physics and relativity 6, Solar System astronomy 1, cosmological theories 1 |
+| chemistry | 0 | 110 | 110 | Timeline of chemistry 79, biology and organic chemistry 10, chemical element discoveries 9, materials technology 8, hydrogen technologies 4 |
+| biophysics | 0 | 110 | 110 | Timeline of biology and organic chemistry 71, biotechnology 12, human vaccines 12, immunology 12, antibiotics 3 |
+| cosmology | 0 | 110 | 110 | Timeline of Solar System astronomy 42, galaxies and large-scale structure 17, cosmological theories 17, black hole physics 16, white dwarfs, neutron stars and supernovae 11, Solar System planets and moons 6, gravitational physics 1 |
+| mind | 0 | 116 | 116 | nobelprize.org medicine and economics summaries 23, kavliprize.org neuroscience 9, 84 Wikipedia topic pages one row each (Broca's area, Hodgkin-Huxley model, Place cell, Long-term potentiation, Prospect theory and so on) |
+| information | 0 | 126 | 126 | Timeline of algorithms 33, Gödel Prize 27, information theory 21, artificial intelligence 20, cryptography 11, Solved game 2, 12 topic pages one row each (Halting problem, Entscheidungsproblem, Cook-Levin theorem, Graph isomorphism problem, Zero-knowledge proof and so on) |
+| applied | 0 | 137 | 137 | Timeline of medicine and medical technology 47, Nobel economics laureate list 22, transportation technology 16, materials technology 13, human vaccines 10, low-temperature technology 8, antibiotics 7, XPRIZE 6, hydrogen technologies 5, Longitude rewards 2, nuclear fusion 1 |
+
+Licences: 784 rows CC BY-SA 4.0 (Wikipedia), 23 rows Nobel Prize Outreach AB with the citation quoted briefly, 9 rows Kavli Foundation with the citation quoted briefly. Every row is `form=question`. Shortfalls: none, every branch holds at least 100 top-level solved rows. Sources named in the bead and not used for rows: Breakthrough Prize, Crafoord Prize, XPRIZE and Longitude Prize sites (the Wikipedia pages stood in), formal-conjectures proved rows outside number theory (none map outside mathematics). Weak spots a curator should read: the 6 cosmology rows from the planets and moons table name only the moon and discoverer; mind and information `status_source` text for Wikipedia pages is a paraphrase of the page entry.
+
 ## Ingest rules
 
 - Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `form`, `variant_of`, `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py` and `sources/named_lists.py`, merges Erdős aliases, dedupes by normalised title against `problems.tsv` and within the file, and `tests/test_sourced.py` checks the file.
