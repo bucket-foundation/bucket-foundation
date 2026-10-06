@@ -55,6 +55,39 @@ def load_bucketmath():
     return rows
 
 
+RECORDS = HERE / "records"
+KEY_WORK_TITLES = 8
+
+
+def load_record(pid):
+    path = RECORDS / f"{pid}.json"
+    return json.load(open(path)) if path.exists() else None
+
+
+def keyword_text(n):
+    return f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"])
+
+
+def record_text(n, rec):
+    titles = [w["title"] for w in sorted(rec["key_works"], key=lambda w: -w["cited_by_count"])[:KEY_WORK_TITLES]]
+    parts = [n["name"] + "."]
+    if rec["aliases"]:
+        parts.append("Also called " + ", ".join(rec["aliases"]) + ".")
+    if rec["statement"]["text"]:
+        parts.append(rec["statement"]["text"])
+    parts.append("Keywords: " + ", ".join(n["keywords"]) + ".")
+    if titles:
+        parts.append("Key works: " + "; ".join(titles) + ".")
+    return " ".join(parts)
+
+
+def embed_text(n):
+    rec = load_record(n["id"]) if n["kind"] == "problem" else None
+    if rec and (rec["statement"]["text"] or rec["key_works"]):
+        return record_text(n, rec), "record"
+    return keyword_text(n), "keywords"
+
+
 def unit(v):
     return v / np.linalg.norm(v, axis=1, keepdims=True)
 
@@ -145,7 +178,10 @@ def main():
     lean = load_bucketmath()
     nodes = problems + lean
     model = SentenceTransformer(MODEL, revision=MODEL_REVISION)
-    texts = [f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"]) for n in nodes]
+    texts = []
+    for n in nodes:
+        text, n["embedding_text"] = embed_text(n)
+        texts.append(text)
     emb = unit(model.encode(texts, normalize_embeddings=True))
     sim = emb @ emb.T
 
@@ -389,14 +425,15 @@ def export_graph(g, nodes, tokens, users, stats):
     per = stats["per_node"]
     out_nodes = []
     for n in nodes:
-        out_nodes.append({k: n[k] for k in ("id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "solvability", "kind", "theta")} | per[n["id"]])
+        out_nodes.append({k: n[k] for k in ("id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "solvability", "kind", "theta", "embedding_text")} | per[n["id"]])
     for t in tokens:
         out_nodes.append({"id": "token:" + t, "name": t, "kind": "token"})
     edges = [{"source": a, "target": b, "type": "SIMILAR_TO", "weight": round(d["weight"], 4)} for a, b, d in g.edges(data=True)]
     for t in tokens:
         for n in users[t]:
             edges.append({"source": n["id"], "target": "token:" + t, "type": "MARKET" if t in n["market"] else "HAS_TOKEN"})
-    json.dump({"schema": "bucket.solvability-atlas/v1", "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
+    counts = Counter(n["embedding_text"] for n in nodes)
+    json.dump({"schema": "bucket.solvability-atlas/v1", "embedding_text": {"record": counts["record"], "keywords": counts["keywords"]}, "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
     json.dump(stats["summary"], open(OUT / "stats.json", "w"), indent=1)
     with open(OUT / "graph.cypher", "w") as f:
         for n in out_nodes:

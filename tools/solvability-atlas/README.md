@@ -12,7 +12,7 @@ Solvability score: `0.55 * resolved + 0.45 * formal`, where formal is proved 1.0
 ./build.sh
 ```
 
-Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
+Embeddings come from `BAAI/bge-small-en-v1.5`. A problem with a record in `records/` embeds its title, aliases, statement, keywords and the titles of its eight most cited key works; a problem without one embeds title, branch and keywords. `graph.json` names the text used per node in `embedding_text` and counts both kinds at the top. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
 
 ## Outputs
 
@@ -37,6 +37,10 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
 `out/` stays out of git; its PNGs, graph.json, graph.cypher and stats.json are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/`.
+
+## Problem records
+
+`records.py` builds one JSON record per problem in `records/` from OpenAlex, Wikipedia, arXiv and the repo's own corpora, with every network field carrying its source URL and licence. Schema and build flags: `records/SCHEMA.md`. Per-problem counts: `records/INDEX.md`. Responses cache under `cache/`, which stays out of git.
 
 ## Reproduce
 
