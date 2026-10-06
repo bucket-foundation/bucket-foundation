@@ -43,3 +43,17 @@ def test_similarity_rows_hold_the_upper_triangle():
     assert [len(r) for r in rows["upper"]] == list(range(19, -1, -1))
     assert rows["upper"][0][0] == round(float(sim[0, 1]), 3)
     assert rows == atlas.similarity_rows(nodes, sim.copy())
+
+
+def test_components_repeat_and_explain_variance():
+    v = fixture()
+    nodes = [{"id": str(i), "name": str(i), "branch": "physics", "kind": "problem", "solvability": 0.5, "resolved": None} for i in range(20)]
+    tokens = [f"t{i}" for i in range(6)]
+    tok = atlas.unit(np.random.default_rng(5).normal(size=(6, 8)))
+    a = atlas.components(nodes, v, tokens, tok)
+    b = atlas.components(nodes, v.copy(), tokens, tok.copy())
+    assert a == b
+    assert len(a["nodes"]) == 20 and len(a["nodes"][0]["pc"]) == atlas.N_COMPONENTS
+    assert 0 < sum(a["explained"]) <= 1
+    assert a["explained"] == sorted(a["explained"], reverse=True)
+    assert all(len(d["positive"]) == min(atlas.DIRECTION_TOKENS, 6) for d in a["directions"])

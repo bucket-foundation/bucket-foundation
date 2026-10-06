@@ -70,6 +70,65 @@ def ranked_angles(vecs):
     return theta, c @ vt[:3].T
 
 
+N_COMPONENTS = 5
+DIRECTION_TOKENS = 8
+
+
+def components(nodes, emb, tokens, tok_emb, n=N_COMPONENTS):
+    c = emb - emb.mean(0)
+    _, sv, vt = np.linalg.svd(c, full_matrices=False)
+    axes = vt[:n]
+    coords = c @ axes.T
+    explained = (sv[:n] ** 2 / (sv ** 2).sum()).tolist()
+    tok = (tok_emb - emb.mean(0)) @ axes.T
+    directions = []
+    for k in range(n):
+        order = np.argsort(tok[:, k])
+        directions.append({"component": k + 1, "explained": round(explained[k], 4), "positive": [tokens[i] for i in order[::-1][:DIRECTION_TOKENS]], "negative": [tokens[i] for i in order[:DIRECTION_TOKENS]]})
+    rows = [{"id": m["id"], "name": m["name"], "branch": m["branch"], "kind": m["kind"], "solvability": m["solvability"], "resolved": m["resolved"], "pc": [round(float(x), 4) for x in coords[i]]} for i, m in enumerate(nodes)]
+    return {"schema": "bucket.solvability-atlas.components/v1", "model": MODEL, "explained": [round(x, 4) for x in explained], "directions": directions, "nodes": rows}
+
+
+def export_components(nodes, emb, tokens, tok_emb):
+    data = components(nodes, emb, tokens, tok_emb)
+    write_components(data, "components")
+    problems = [i for i, n in enumerate(nodes) if n["kind"] == "problem"]
+    only = components([nodes[i] for i in problems], emb[problems], tokens, tok_emb)
+    write_components(only, "components-problems")
+    return data
+
+
+def write_components(data, stem):
+    json.dump(data, open(OUT / f"{stem}.json", "w"), indent=1)
+    with open(OUT / f"{stem}.csv", "w") as f:
+        f.write("id\tname\tbranch\tkind\tsolvability\tresolved\t" + "\t".join(f"pc{k + 1}" for k in range(N_COMPONENTS)) + "\n")
+        for r in data["nodes"]:
+            f.write("\t".join([r["id"], r["name"], r["branch"], r["kind"], str(r["solvability"]), str(r["resolved"] or ""), *map(str, r["pc"])]) + "\n")
+    plot_components(data, OUT / f"10-{stem}.png")
+
+
+def plot_components(data, path):
+    fig, ax = plt.subplots(figsize=(16, 14))
+    d = data["directions"]
+    for r in data["nodes"]:
+        x, y = r["pc"][0], r["pc"][1]
+        problem = r["kind"] == "problem"
+        ax.scatter(x, y, c=COLORS[r["branch"]], s=70 if problem else 14, marker="^" if r["resolved"] is None else "o", edgecolor="k" if problem else "none", lw=0.4, alpha=0.95 if problem else 0.45)
+        if problem:
+            ax.annotate(r["name"], (x, y), xytext=(4, 3), textcoords="offset points", fontsize=6.5)
+    ax.axhline(0, color="#999", lw=0.6)
+    ax.axvline(0, color="#999", lw=0.6)
+    ax.set_xlabel(f"component 1, {d[0]['explained'] * 100:.1f} percent of variance")
+    ax.set_ylabel(f"component 2, {d[1]['explained'] * 100:.1f} percent of variance", rotation=0, ha="right", va="center", labelpad=10)
+    n = len(data["nodes"])
+    ax.set_title(f"Principal components of {n} entries: triangles are open, dots are solved, small dots are Lean theorems")
+    notes = [f"component {k + 1} ({c['explained'] * 100:.1f} percent). Toward: {', '.join(c['positive'][:6])}. Away: {', '.join(c['negative'][:6])}." for k, c in enumerate(d)]
+    fig.text(0.02, -0.02, "\n".join(notes), fontsize=8.5, va="top", family="monospace")
+    legend(ax)
+    fig.savefig(path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+
 def knn_graph(nodes, sim):
     g = nx.Graph()
     for n in nodes:
@@ -113,6 +172,7 @@ def main():
     plot_matrices(nodes, sim, stats, problems, tokens, tok_sim)
     export_graph(g, nodes, tokens, tok_users, stats)
     export_similarity(nodes, sim)
+    export_components(nodes, emb, tokens, tok_emb)
     print(json.dumps(stats["summary"], indent=1))
 
 
